@@ -8,6 +8,7 @@ class ObservationFieldValue < ActiveRecord::Base
   before_validation :strip_value
   before_save :set_user
   after_create :create_annotation
+  after_destroy :destroy_annotation
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   # I'd like to keep this, but since mobile clients could be submitting
   # observations that weren't created on a mobile device now, the check really
@@ -158,20 +159,40 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def create_annotation
+    attr_val = annotation_attribute_and_value
+    return if attr_val.blank?
+    Annotation.create!(observation_field_value: self,
+      resource: observation,
+      controlled_attribute: attr_val[:controlled_attribute],
+      controlled_value: attr_val[:controlled_value],
+      user_id: user_id,
+      created_at: created_at)
+  end
+
+  def annotation_attribute_and_value
     return unless observation
     return unless observation_field.datatype == "text"
     stripped_value = value.strip.downcase
-    return unless ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym]
-    controlled_value = ControlledTerm.first_term_by_label(stripped_value)
-    return unless controlled_value
-    controlled_attribute = ControlledTerm.first_term_by_label(
-      ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym].to_s)
-    return unless controlled_attribute
-    Annotation.create(observation_field_value: self, resource: observation,
-      controlled_attribute: controlled_attribute,
-      controlled_value: controlled_value,
-      user_id: user_id,
-      created_at: created_at)
+    if ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym]
+      controlled_attribute = ControlledTerm.first_term_by_label(
+        ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym].to_s.tr("_", " "))
+      controlled_value = ControlledTerm.first_term_by_label(stripped_value)
+    elsif ( observation_field.name =~ /phenology/i && value =~ /^flower(s|ing)?$/i ) ||
+          ( observation_field.name == "Plant flowering" && value == "Yes" )
+      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
+      controlled_value = ControlledTerm.first_term_by_label("Flowering")
+    elsif observation_field.name =~ /phenology/i && value =~ /fruit(s|ing)?$/i &&
+          value !~ /[0-9]/
+      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
+      controlled_value = ControlledTerm.first_term_by_label("Fruiting")
+    end
+    return unless controlled_attribute && controlled_value
+    { controlled_attribute: controlled_attribute,
+      controlled_value: controlled_value }
+  end
+
+  def destroy_annotation
+    Annotation.where(observation_field_value_id: id).destroy_all
   end
 
   def as_indexed_json(options={})

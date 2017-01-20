@@ -7,7 +7,7 @@ import {
   openObservationsSearch
 } from "../ducks/observations";
 
-const TERMS_TO_CHART = ["Life Stage"];
+const TERMS_TO_CHART = ["Life Stage", "Plant Phenology"];
 
 function mapStateToProps( state ) {
   // process columns for seasonality
