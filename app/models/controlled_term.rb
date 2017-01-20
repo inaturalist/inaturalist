@@ -1,6 +1,8 @@
 #encoding: utf-8
 class ControlledTerm < ActiveRecord::Base
 
+  include ActsAsElasticModel
+
   has_many :controlled_term_values, foreign_key: :controlled_attribute_id,
     class_name: "ControlledTermValue", dependent: :destroy
   has_many :controlled_term_value_attrs, foreign_key: :controlled_value_id,
@@ -12,6 +14,7 @@ class ControlledTerm < ActiveRecord::Base
   has_many :attribute_annotations, class_name: "Annotation", foreign_key: :controlled_attribute_id
   belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
     class_name: "Taxon"
+  belongs_to :user
 
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }

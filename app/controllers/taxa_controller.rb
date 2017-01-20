@@ -865,9 +865,9 @@ class TaxaController < ApplicationController
   def map_layers
     render json: {
       id: @taxon.id,
-      ranges: @taxon.taxon_ranges.any?,
+      ranges: @taxon.taxon_ranges.exists?,
       gbif_id: @taxon.get_gbif_id,
-      listed_places: @taxon.listed_taxa.joins(place: :place_geometry).any?
+      listed_places: @taxon.listed_taxa.joins(place: :place_geometry).exists?
     }
   end
 

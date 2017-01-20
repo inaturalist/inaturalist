@@ -10,12 +10,9 @@ var application =  angular.module( "ObservationSearch", [
 
 // Load translations for moment if available
 // http://stackoverflow.com/a/22965260
-if (I18n.translations[I18n.locale] && 
-    I18n.translations[I18n.locale].momentjs && 
-    I18n.translations[I18n.locale].momentjs.shortRelativeTime) {
-  moment.locale(I18n.locale, {
-    relativeTime: I18n.translations[I18n.locale].momentjs.shortRelativeTime
-  })
+var shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
+if ( shortRelativeTime ) {
+  moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
 }
 
 // defining the views

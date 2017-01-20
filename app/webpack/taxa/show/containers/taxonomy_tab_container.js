@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
+    showNewTaxon: ( taxon, options ) => dispatch( showNewTaxon( taxon, options ) )
   };
 }
 

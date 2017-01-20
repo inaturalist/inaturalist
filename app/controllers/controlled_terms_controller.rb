@@ -10,6 +10,7 @@ class ControlledTermsController < ApplicationController
   def create
     label_attrs = params[:controlled_term].delete(:controlled_term_label)
     term = ControlledTerm.new(params[:controlled_term])
+    term.user = current_user
     term.save
     if label_attrs && !term.errors.any?
       term.labels << ControlledTermLabel.create(label_attrs)
