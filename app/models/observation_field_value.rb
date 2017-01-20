@@ -21,7 +21,7 @@ class ObservationFieldValue < ActiveRecord::Base
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
 
-  after_save :update_observation_field_counts
+  after_save :update_observation_field_counts, :index_observation
 
   notifies_subscribers_of :observation, :notification => "activity",
     :on => :save,
@@ -156,6 +156,10 @@ class ObservationFieldValue < ActiveRecord::Base
 
   def update_observation_field_counts
     observation_field.update_counts
+  end
+
+  def index_observation
+    observation.try( :elastic_index! )
   end
 
   def create_annotation
