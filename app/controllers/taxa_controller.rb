@@ -180,6 +180,10 @@ class TaxaController < ApplicationController
     return render_404 unless @taxon
     
     respond_to do |format|
+      if @taxon.name == "Life" && !@taxon.parent_id
+        return redirect_to( action: "index" )
+      end
+
       format.html do
         if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
           site_place = @site && @site.place
@@ -194,10 +198,6 @@ class TaxaController < ApplicationController
           @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
           render layout: "bootstrap", action: "show2"
           return
-        end
-        
-        if @taxon.name == 'Life' && !@taxon.parent_id
-          return redirect_to(:action => 'index')
         end
 
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
