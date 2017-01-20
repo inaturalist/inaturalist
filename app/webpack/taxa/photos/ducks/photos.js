@@ -303,7 +303,7 @@ export function reloadPhotos( ) {
 export function hydrateFromUrlParams( params ) {
   return function ( dispatch ) {
     if ( params.grouping ) {
-      const match = params.grouping.match( /terms:([0-9])/ );
+      const match = params.grouping.match( /terms:([0-9]+)$/ );
       if ( match ) {
         dispatch( setGrouping( params.grouping, Number( match[1] ) ) );
       } else {
