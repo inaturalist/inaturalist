@@ -17,36 +17,26 @@
     help_url = CONFIG.help_url
     feedback_url = CONFIG.feedback_url
   end
-  img_url = if logo_square_url =~ /http/
-    logo_square_url
-  else
-    FakeView.uri_join(site_url, FakeView.image_url(logo_square_url.to_s))
-  end
 -%>
-<%= link_to image_tag(img_url, 
-  :align => "right", :border => 0, :alt => t(:welcome_to_inat, :site_name => SITE_NAME)), site_url %>
-<p><%= t(:welcome_comma) %> <%= @resource.login %>!</p>
-
-<p>
+<h1>
 <%=raw t(:your_inat_account_has_been_activated, :inat => link_to(site_name, site_url)) %>
-  <%= t(:thanks_for_signing_up) %>
-</p>
+</h1>
 
 <p><%= t(:wondering_what_to_do_next) %></p>
 
 <ul>
   <li><%= link_to t(:read_our_getting_started_guide), url_for(:controller => "help", :action => "getting_started", :only_path => false) %></li>
-  <li><%= link_to t(:add_an_observation).downcase, new_observation_url %></li>
-  <li><%= link_to t(:fill_out_your_profile).downcase, edit_user_url(@resource) %></li>
+  <li><%= link_to t(:add_an_observation).capitalize, new_observation_url %></li>
+  <li><%= link_to t(:fill_out_your_profile).capitalize, edit_user_url(@resource) %></li>
   <li>
-    <%= link_to t(:find_some_people_to_follow).downcase, people_url %>
+    <%= link_to t(:find_some_people_to_follow).capitalize, people_url %>
     <%= t(:or) %>
     <%= link_to t(:invite_your_friends).downcase, emailer_invite_url %>
   </li>
 </ul>
 
 <p>
-  <%=raw t(:if_you_have_any_trouble_with_the_site_check_out, :help_url => help_url, :feedback_url => feedback_url) %>
+  <%=raw t(:if_you_have_any_trouble_with_the_site_check_out, :help_url => help_url, :feedback_url => feedback_url).capitalize %>
 </p>
 
 <%= render 'emailer/footer' %>

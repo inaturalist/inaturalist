@@ -8,6 +8,15 @@
       %h2.pull-left
         = "Atlases"
       .pull-right= link_to "Create an atlas", new_atlas_path, class: "btn btn-default"
+  .panel.panel-info
+    .panel-heading
+      %h3.panel-title
+        = "About Atlases"
+    .panel-body
+      %p
+        = "Atlases convey the global distribution of a taxon. Curators make atlases by defining the structure"
+        = "of an atlas and curating the listed taxa that drive it."
+        = link_to "Learn more", "/pages/atlases"
   = "All active atlases are checked daily and marked if relevant observatons fall out of range."
   = "Any marked atlases are listed below."
   = "Once you've resolved any issues, manually refresh the atlas to unmark it."

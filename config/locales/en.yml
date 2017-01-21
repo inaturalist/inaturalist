@@ -1135,7 +1135,7 @@ en:
   fields_merged: Fields merged
   file_should_be_in_the_following_format: "File should be in the following format: taxon name, description"
   fill_out_project_observation_fields: Fill out project observation fields
-  fill_out_your_profile: fill out your profile
+  fill_out_your_profile: complete your profile
   filling_out_checklist_for_place: filling out checklists for places you know well
   filling_out_your_profile: filling out your profile
   filter: Filter
@@ -1362,7 +1362,7 @@ en:
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
   if_you_already_have_an_account: "If you already have %{article} %{site_name} account..."
   if_you_dont_want_us_to_share_your_data: If you don't want us to share your data
-  if_you_have_any_trouble_with_the_site_check_out: 'If you have any trouble with the site, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
+  if_you_have_any_trouble_with_the_site_check_out: 'If you have any questions, please check out our <a href="%{help_url}">help section</a> or post a message to our <a href="%{feedback_url}">feedback group</a>.'
   if_you_have_trouble_with_the_site: "If you have any trouble with the site, please check out our help section:"
   if_you_use: If you use
   if_youd_like_us_to_share_your_observations_with: |
@@ -1683,6 +1683,7 @@ en:
   lowest_rank: Lowest rank
   made_a: made a
   make_admin: Make admin
+  make_an_observation: make an observation
   mail_disclaimer: "%{site_name} will not allow its users to send you additional invitations via our inviter. Please report invitation abuse to %{site}."
   main_content: Main content
   main_content_description:  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
@@ -2145,16 +2146,16 @@ en:
         species to keep tabs on new observations of those species, or do the
         same thing with places.
       comments_panel_title: Curious what kind of discussions are happening on %{site_name}?
-      comments_panel_body: <p>%{site_name} is all about sharing and discussing observations of living things. Here are some discussions happening right now...</p> <p>You'll be automatically subscribed to any discussions you contribute comments or identifications to. You can always use the Manage Subscriptions tool on the right to stop receiving updates</p>
+      comments_panel_body: "<p>%{site_name} is all about sharing and discussing observations of living things. Below are discussions happening right now. (Note: You are automatically subscribed to any discussions you contribute comments or identifications to. Manage these updates in the 'Subscriptions' section to the right.)</p>"
       updates_by_you_panel_title: This tab is a quick way to filter out only updates on your content.
       updates_by_you_panel_body: Remember, in the 'All updates' tab you'll receive updates not just on your own content but also on content from people you follow and the taxa or places that you subscribe to using the Subscriptions tool on the right.
       youve_got_updates_panel_title: You've got updates!
       youve_got_updates_panel_body_p1: Stay current with updates on the following...
       youve_got_updates_panel_body_p2: |
         <ul>
-          <li><strong>Your Content:</strong> Activity on your observations such as comments, identifications, or faves from the %{site_name} community. You will also receive updates when someone adds your observation to a project or annotated it with additional fields.</li>
+          <li><strong>Your Content:</strong> Activity on your observations such as comments, identifications, or faves from the %{site_name} community. You will also receive updates when someone adds your observation to a project, or annotates it with additional fields.</li>
           <li><strong>People:</strong> New observations or journal posts from the people you follow.</li>
-          <li><strong>Organisms, Projects & Places:</strong> New observations from specific organisms or places you're subscribed to'. You can also join projects to be updated when they publish project journal posts.</li>
+          <li><strong>Organisms, Projects & Places:</strong> New observations from specific organisms or places you're subscribed to. You can also join projects so you will be updated when they publish project journal posts.</li>
           <li><strong>Discussions you've engaged in:</strong> Commenting or adding identifications to someone else's content automatically subscribes you to any new activity on this content. Use the 'Manage your subscriptions' tool to stop receiving updates.</li>
         </ul>
   one_by_one: "One-by-one"
@@ -3580,7 +3581,7 @@ en:
   withdrawing: Withdrawing...
   with_errors: With errors
   within_inaturalist: "Within %{site_name}"
-  wondering_what_to_do_next: Wondering what to do next?  Why not
+  wondering_what_to_do_next: Here's some next steps to get you on your way to observing and identifying the natural world
   would_you_like_to: Would you like to
   would_like_some_help_identifying_this: would like some help identifying this
   x_admin: "%{login} admins"
@@ -3724,6 +3725,7 @@ en:
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
   your: Your
   your_: Your
+  your_account_has_been_activated: Your account has been activated!
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
   your_coarser_id: |
