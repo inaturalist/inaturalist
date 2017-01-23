@@ -979,6 +979,7 @@ it:
     con successo.
   custom_project_was_successfully_updated: Il Progetto Personalizzato è stato aggiornato
     con successo.
+  customize_location: Personalizza la posizione
   darr_apply_darr: '&darr; Applica &darr;'
   dashboard: Bacheca
   data_deficient: Carente di Dati
@@ -2063,6 +2064,8 @@ it:
   most_agree: la maggior parte è daccordo
   most_disagree: la maggior parte è in disaccordo
   most_observations: Con più osservazioni
+  most_recent_observation_by_date_observed: Le osservazioni verificabili più recenti
+    per data
   most_species: Con più specie
   most_observed_species: Le specie più osservate
   multiple: Più di uno
@@ -2605,6 +2608,7 @@ it:
   photo_s: Foto
   photo_type: Tipo di foto
   photo_urls_repaired: URL della foto riparati
+  photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
   photos_of: Foto di
   photos_of_taxon_html: Foto di %{taxon}
@@ -3478,6 +3482,10 @@ it:
   taxon_observed_by_user: '%{taxon} osservato da %{user}'
   taxon_photos_updated: Foto del taxon aggiornate!
   taxon_range: Areale del taxon
+  taxon_range_created_notice: L'areale del taxon è stato creato con successo. Attendi
+    qualche minuto affinché appaia sulla mappa.
+  taxon_range_updated_notice: L'areale del taxon è stato aggiornato con successo.
+    Attendi qualche minuto affinché le modifiche compaiano sulla mappa.
   taxon_removed_from_list: Taxon rimosso dalla lista.
   taxon_scheme: Classificazione del taxon
   taxon_schemes: Classificazione del taxon
@@ -4146,7 +4154,7 @@ it:
     %{project}
   you_are_not_editing_any_guides_add_one_html: Non stai editando nessuna Guida. <a
     href="/guides/new">Creane una</a>
-  you_are_already_a_member_of_this_project: Sei già membro di questo progetto!
+  you_are_already_a_member_of_this_project: Sei già un membro di questo progetto!
   you_are_no_longer_following_x: Non stai più seguendo %{friend}.
   you_are_setting_this_project_to_aggregate: 'Stai impostando il progetto in modo
     che aggreghi tutte le osservazioni che soddisfino alle seguenti regole: %{rules}.
@@ -5167,6 +5175,13 @@ it:
           Insect life stage=nymph: Ninfa
           Insect life stage=pupa: Pupa
           Insect life stage=adult: Adulto
+        photo_chooser_modal_desc: Trascina qui le foto da sinistra, oppure trascinale
+          qui per riordinarle.
+        photo_chooser_modal_explanation: |-
+          Nota che la pagina del taxon mostra le foto di questo taxon
+          e dei suoi discendenti. La foto scelta per questo
+          taxon sarà mostrata per prima. La prima foto sarà
+          l'immagine predefinita per tutto il sito.
     taxon_names:
       form:
         new_name_guidelines_html: |-
