@@ -125,7 +125,13 @@ class Site < ActiveRecord::Base
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
   end
 
-  validates_attachment_content_type :stylesheet, :content_type => "text/css", :message => "must be CSS"
+  validates_attachment_content_type :stylesheet, content_type: [
+    "text/css", 
+    # Not great, but probably ok here where only site admins can add the file.
+    # Underlying problem is that we force all validations to depend on the file
+    # commant (see paperclip initializer) and it reads CSS as plain/text
+    "text/plain"
+  ], message: "must be CSS"
 
   # URL where visitors can learn more about the site
   preference :about_url, :string
