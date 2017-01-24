@@ -168,19 +168,19 @@ class TaxaController < ApplicationController
 
       format.html do
         # if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
-          site_place = @site && @site.place
-          user_place = current_user && current_user.place
-          preferred_place = user_place || site_place
-          place_id = current_user.preferred_taxon_page_place_id if logged_in?
-          place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
-          api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
-          @node_taxon_json = INatAPIService.get_json( api_url )
-          @node_place_json = INatAPIService.get_json( "/places/#{place_id.to_i}" )
-          @chosen_tab = session[:preferred_taxon_page_tab]
-          @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-          render layout: "bootstrap", action: "show2"
-          return
-        end
+        site_place = @site && @site.place
+        user_place = current_user && current_user.place
+        preferred_place = user_place || site_place
+        place_id = current_user.preferred_taxon_page_place_id if logged_in?
+        place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
+        api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
+        @node_taxon_json = INatAPIService.get_json( api_url )
+        @node_place_json = INatAPIService.get_json( "/places/#{place_id.to_i}" )
+        @chosen_tab = session[:preferred_taxon_page_tab]
+        @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+        render layout: "bootstrap", action: "show2"
+        return
+        # end
 
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
         place_id ||= current_user.place_id if logged_in?
