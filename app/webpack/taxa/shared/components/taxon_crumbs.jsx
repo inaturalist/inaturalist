@@ -18,6 +18,7 @@ class TaxonCrumbs extends React.Component {
     if ( !this.props.showNewTaxon ) {
       return true;
     }
+    if ( e.metaKey || e.ctrlKey ) return true;
     e.preventDefault( );
     this.hideChildren( );
     this.props.showNewTaxon( taxon );

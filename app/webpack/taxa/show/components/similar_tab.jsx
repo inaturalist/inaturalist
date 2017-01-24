@@ -17,6 +17,7 @@ const SimilarTab = ( { results, place, showNewTaxon } ) => {
             truncate={20}
             onClick={ e => {
               if ( !showNewTaxon ) return true;
+              if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               showNewTaxon( result.taxon );
               return false;
