@@ -103,7 +103,7 @@ class Project < ActiveRecord::Base
       where("1 = 2")
     end
   }
-  
+
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
@@ -122,6 +122,7 @@ class Project < ActiveRecord::Base
       :path => "projects/:id-cover.:extension",
       :url => ":s3_alias_url",
       :default_url => ""
+    invalidate_cloudfront_caches :cover, "projects/:id-cover.*"
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",

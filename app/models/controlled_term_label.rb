@@ -14,6 +14,7 @@ class ControlledTermLabel < ActiveRecord::Base
       path: "controlled_terms/:id-icon.:extension",
       url: ":s3_alias_url",
       default_url: ""
+    invalidate_cloudfront_caches :icon, "controlled_terms/:id-icon.*"
   else
     has_attached_file :icon,
       path: ":rails_root/public/attachments/:class/:id-icon.:extension",

@@ -20,6 +20,7 @@ class GuideRange < ActiveRecord::Base
     :path => "guide_maps/:id-:style.:extension",
     :url => ":s3_alias_url",
     :default_url => "/attachment_defaults/local_photos/:style.png"
+  invalidate_cloudfront_caches :file, "guide_maps/:id-*"
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
   validates_presence_of :thumb_url

@@ -57,6 +57,7 @@ class Site < ActiveRecord::Base
       :path => "sites/:id-logo.:extension",
       :url => ":s3_alias_url",
       :default_url => "/assets/logo-small.gif"
+    invalidate_cloudfront_caches :logo, "sites/:id-logo.*"
   else
     has_attached_file :logo,
       :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
@@ -77,6 +78,7 @@ class Site < ActiveRecord::Base
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
       :default_url => ->(i){ FakeView.image_url("bird.png") }
+    invalidate_cloudfront_caches :logo_square, "sites/:id-logo_square.*"
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
@@ -97,6 +99,7 @@ class Site < ActiveRecord::Base
       :path => "sites/:id-logo_email_banner.:extension",
       :url => ":s3_alias_url",
       :default_url => ->(i){ FakeView.image_url("inat_email_banner.png") }
+    invalidate_cloudfront_caches :logo_email_banner, "sites/:id-logo_email_banner.*"
   else
     has_attached_file :logo_email_banner,
       :path => ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
@@ -115,6 +118,7 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-stylesheet.css",
       :url => ":s3_alias_url"
+    invalidate_cloudfront_caches :stylesheet, "sites/:id-stylesheet.css"
   else
     has_attached_file :stylesheet,
       :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",

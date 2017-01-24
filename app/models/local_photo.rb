@@ -48,6 +48,7 @@ class LocalPhoto < Photo
       url: ":s3_alias_url",
       only_process: [ :original, :large ]
     )
+    invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
