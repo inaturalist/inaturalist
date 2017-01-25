@@ -74,6 +74,7 @@ const LeaderItem = ( {
             href={url}
             onClick={ e => {
               if ( !onClickUrl ) return true;
+              if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickUrl( onClickUrlPayload );
               return false;
@@ -95,6 +96,7 @@ const LeaderItem = ( {
             href={url}
             onClick={ e => {
               if ( !onClickUrl ) return true;
+              if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickUrl( onClickUrlPayload );
               return false;
