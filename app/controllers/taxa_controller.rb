@@ -165,11 +165,12 @@ class TaxaController < ApplicationController
     return render_404 unless @taxon
     
     respond_to do |format|
-      if @taxon.name == "Life" && !@taxon.parent_id
-        return redirect_to( action: "index" )
-      end
 
       format.html do
+        if @taxon.name == "Life" && !@taxon.parent_id
+          return redirect_to( action: "index" )
+        end
+        
         # if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
         site_place = @site && @site.place
         user_place = current_user && current_user.place
@@ -1034,7 +1035,8 @@ class TaxaController < ApplicationController
 
   def links
     places_exist = ListedTaxon.where( "place_id IS NOT NULL AND taxon_id = ?", @taxon ).exists?
-    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: !places_exist )
+    place = Place.find_by_id( params[:place_id] )
+    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: !places_exist, place: place )
     respond_to do |format|
       format.json { render json: taxon_links.map{ |tl| {
         taxon_link: tl,

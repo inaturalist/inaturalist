@@ -70,30 +70,33 @@ class TaxonLink < ActiveRecord::Base
     stripped_url
   end
 
-  def self.by_taxon(taxon, options = {})
+  def self.by_taxon( taxon, options = {} )
     return [] if taxon.blank?
     taxon_links = if taxon.species_or_lower?
       # fetch all relevant links
-      TaxonLink.for_taxon(taxon).includes(:taxon).to_a
+      TaxonLink.for_taxon( taxon ).includes( :taxon ).to_a
     else
       # fetch links without species only
-      TaxonLink.for_taxon(taxon).where(:species_only => false).includes(:taxon).to_a
+      TaxonLink.for_taxon( taxon ).where( species_only: false ).includes( :taxon ).to_a
     end
     tl_place_ids = taxon_links.map(&:place_id).compact
+    if options[:place]
+      tl_place_ids = options[:place].self_and_ancestor_ids
+    end
     if !tl_place_ids.blank?
       if options[:reject_places]
-        taxon_links.reject! {|tl| tl.place_id}
+        taxon_links.reject! { |tl| tl.place_id }
       else
         # fetch listed taxa for this taxon with places matching the links
-        place_listed_taxa = ListedTaxon.where("place_id IN (?)", tl_place_ids).where(:taxon_id => taxon)
+        place_listed_taxa = ListedTaxon.where( "place_id IN (?)", tl_place_ids ).where( taxon_id: taxon )
 
         # remove links that have a place_id set but don't have a corresponding listed taxon
         taxon_links.reject! do |tl|
-          tl.place_id && place_listed_taxa.detect{|lt| lt.place_id == tl.place_id}.blank?
+          tl.place_id && place_listed_taxa.detect { |lt| lt.place_id == tl.place_id }.blank?
         end
       end
     end
-    taxon_links.uniq!{|tl| tl.url}
-    taxon_links.sort_by{|tl| tl.taxon.ancestry || ''}.reverse
+    taxon_links.uniq! { |tl| tl.url }
+    taxon_links.sort_by { |tl| tl.taxon.ancestry || "" }.reverse
   end
 end
