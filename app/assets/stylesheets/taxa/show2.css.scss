@@ -85,7 +85,15 @@
   box-shadow: none;
   outline: 0 none;
 }
-
+#charts .help-btn i {
+  font-size: 20px;
+  line-height: 25px;
+  color: #999;
+}
+#ChartsHelpModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
 .SeasonalityChart .c3-line {
   stroke-width: 2px;
 }

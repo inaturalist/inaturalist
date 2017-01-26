@@ -108,6 +108,7 @@ en:
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
   about_bioblitz_results: About bioblitz results
+  about_charts: About Charts
   about_community_taxa: About community taxa
   about_conservation_status: About Conservation Status
   about_establishment_means: About Establishment Means
@@ -2048,7 +2049,10 @@ en:
   observations_by: Observations by
   observations_by_everyone: Observations by everyone
   observations_by_user: "Observations by %{user}"
-  observations_circle_have_their_radii_scaled: Observation circles have their radii scaled proportionally to their positional accuracy. Observations without positional accuracy data are shown at the minimum size.
+  observations_circle_have_their_radii_scaled: |
+    Observation circles have their radii scaled proportionally to their
+    positional accuracy. Observations without positional accuracy data are shown
+    at the minimum size.
   observations_confirmed: Observations (confirmed)
   observations_deleted: Observations deleted.
   observations_fields_are: |
@@ -4719,6 +4723,41 @@ en:
           currently occurs. Introduced means it arrived because of human
           activity, while native means it arrived without human assistance.
           Endemic species only occur in a specific place and nowhere else.
+        charts_help_seasonality: |
+          This chart shows the number of observations of this taxon grouped by
+          month. Keep in mind that these are numbers of observations, so they
+          are influenced both by when the organism can be observed and when
+          people bother to observe them. So a bird might seem to be very active
+          in May, but that could also be due to more people birding in May who
+          tend to ignore that species in later months. Similarly, if you see
+          more dragonflies in June than in January, that's probably because we
+          have more people observing in the northern hemisphere than in the
+          southern hemisphere and not because dragonflies are more active in
+          June, so check the map when considering these charts. It's always a
+          good idea to be skeptical of these charts when there are low numbers
+          of observations and/or large discrepancies between the number of
+          "Verifiable" and "Research Grade" observations.
+        charts_help_history: |
+          This chart shows the number of observations of this taxon by month for
+          the last ten years. Again, it is biased by the number of people
+          observing, but it will show you unusual spikes in observations, and if
+          it seems flat or decreasing despite an increasing number of observers,
+          that might suggest a change in abundance.
+        charts_help_other: |
+          We also show seasonality charts for observation annotations.
+          Annotations are a new system for adding metadata to observations using
+          a controlled vocabulary of terms. So far we are only using "Life
+          Stage" and "Plant Phenology" (when the plant is flowering or
+          fruiting). We do not yet have a way to add annotations directly, so
+          for now we are converting data from observation fields to annotations.
+          If you can't wait for us to build our annotating system, you can
+          contribute to "Life Stage" annotations by adding observation field
+          values that have any of the following values: Adult, Teneral, Pupa,
+          Nymph, Larva, Egg, or Juvenile. So in particular, the "Life Stage" and
+          "Insect Life Stage" fields are good. For "Plant Phenology," we're
+          looking at any field with the word "phenology" in its name and
+          "flower" or "fruit" in the value, so the "Flowering Phenology" field
+          is a good one to use.
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
         rare_desc: Least-observed threatened taxa
