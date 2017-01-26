@@ -59,7 +59,8 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def elastic_index_observation
-    observation.elastic_index!
+    return true unless observation
+    observation.reload.elastic_index!
     true
   end
 

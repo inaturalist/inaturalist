@@ -17,15 +17,13 @@ describe QualityMetric, "creation" do
     it "should get the updated quality_grade" do
       o = without_delay { make_research_grade_observation }
       o.elastic_index!
-      eo = Observation.elastic_search( id: o.id ).results[0]
-      puts "eo.description: #{eo.description}"
-      puts "o.description: #{o.description}"
+      eo = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( eo.id.to_i ).to eq o.id
       expect( eo.quality_grade ).to eq Observation::RESEARCH_GRADE
       without_delay do
         QualityMetric.make!( observation: o, metric: QualityMetric::METRICS.first, agree: false )
       end
-      eo = Observation.elastic_search( id: o.id ).results[0]
+      eo = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( eo.quality_grade ).to eq Observation::CASUAL
     end
   end
