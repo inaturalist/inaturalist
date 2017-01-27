@@ -84,7 +84,7 @@ store.dispatch( fetchTaxonAssociates( taxon ) );
 // to get back from future page states we will be able to retrieve the original
 // taxon
 const s = windowStateForTaxon( taxon );
-history.replaceState( s.state, s.title, s.path );
+history.replaceState( s.state, s.title, s.url );
 
 window.onpopstate = e => {
   // User returned from BACK

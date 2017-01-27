@@ -177,6 +177,12 @@ class TaxaController < ApplicationController
         preferred_place = user_place || site_place
         place_id = current_user.preferred_taxon_page_place_id if logged_in?
         place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
+        # If there's no place and there is a preferred place and this user has
+        # never changed their taxon page place preference, use the preferred
+        # place
+        if place_id.blank? && preferred_place && !session.has_key?( :preferred_taxon_page_place_id )
+          place_id = preferred_place.id
+        end
         api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
         @node_taxon_json = INatAPIService.get_json( api_url )
         return render_404 unless @node_taxon_json

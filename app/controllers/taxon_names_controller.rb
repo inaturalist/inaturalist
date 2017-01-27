@@ -89,17 +89,17 @@ class TaxonNamesController < ApplicationController
   
   def update
     # Set the last editor
-    params[:taxon_name].update(:updater_id => current_user.id)
+    params[:taxon_name].update( updater_id: current_user.id )
     
     respond_to do |format|
-      if @taxon_name.update_attributes(params[:taxon_name])
+      if @taxon_name.update_attributes( params[:taxon_name] )
         Taxon.refresh_es_index
         flash[:notice] = t(:taxon_name_was_successfully_updated)
-        format.html { redirect_to(taxon_name_path(@taxon_name)) }
+        format.html { redirect_to( taxon_name_path( @taxon_name ) ) }
         format.json  { head :ok }
       else
-        format.html { render :action => 'edit' }
-        format.json  { render :json => @taxon_name.errors, :status => :unprocessable_entity }
+        format.html { render action: "edit" }
+        format.json  { render json: @taxon_name.errors, status: :unprocessable_entity }
       end
     end
   end
