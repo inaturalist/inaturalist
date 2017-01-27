@@ -1025,6 +1025,7 @@ fr:
   custom_project_was_successfully_created: Le projet personnalisé a bien été créé.
   custom_project_was_successfully_updated: Le projet personnalisé a bien été mis à
     jour.
+  customize_location: Personnaliser l’emplacement
   darr_apply_darr: '&darr; Appliquez &darr;'
   dashboard: Tableau de bord
   data_deficient: données insuffisantes
@@ -2130,6 +2131,8 @@ fr:
   most_agree: la plupart sont d’accord
   most_disagree: la plupart ne sont pas d’accord
   most_observations: Le plus d'observations
+  most_recent_observation_by_date_observed: Observation vérifiable la plus récente
+    observée par date
   most_species: Le plus d'espèces
   most_observed_species: Espèces les plus observées
   multiple: multiple
@@ -2685,6 +2688,7 @@ fr:
   photo_s: Photo(s)
   photo_type: Type de Photo
   photo_urls_repaired: URL de photo réparées
+  photos_chosen_for_this_taxon: Photos choisies pour ce taxon
   photos_from: Photos de
   photos_of: Photos de
   photos_of_taxon_html: Photos de %{taxon}
@@ -3567,6 +3571,10 @@ fr:
   taxon_observed_by_user: '%{taxon} observé par %{user}'
   taxon_photos_updated: Photos du taxon mises à jour!
   taxon_range: Aire de répartition du taxon
+  taxon_range_created_notice: La gamme de taxons a bien été créée. Veuillez attendre
+    quelques minutes qu’elle apparaisse sur les cartes.
+  taxon_range_updated_notice: La gamme de taxons a bien été mise à jour. Veuillez
+    attendre quelques minutes pour que les modifications apparaissent sur les cartes.
   taxon_removed_from_list: Taxon enlevé de la liste.
   taxon_scheme: Classification du taxon
   taxon_schemes: Classifications de taxons
@@ -5431,6 +5439,13 @@ fr:
           Insect life stage=nymph: Nymphe
           Insect life stage=pupa: Chrysalide
           Insect life stage=adult: Adulte
+        photo_chooser_modal_desc: Faire glisser les photos d’ici vers la gauche, ou
+          les faire glisser ici pour les réarranger.
+        photo_chooser_modal_explanation: |-
+          À noter que la page du taxon affichera les photos de ce taxon
+          et de ses descendants. Les photos choisies pour ce
+          taxon seront cependant affichées en premier. La première photo sera
+          celle par défaut utilisée sur le site.
     taxon_names:
       form:
         new_name_guidelines_html: |-
