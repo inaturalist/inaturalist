@@ -134,6 +134,7 @@ it:
     di Flickr.
   about: Informazioni
   about_bioblitz_results: A proposito dei risultati bioblitz
+  about_charts: Sui Grafici
   about_community_taxa: A proposito dei taxa della community
   about_conservation_status: A proposito dello stato di conservazione
   about_establishment_means: A proposito dell'origine del popolamento
@@ -939,6 +940,7 @@ it:
   create_a_new_taxon: Crea un nuovo taxon
   create_a_query: Crea una ricerca
   create_an_account: Crea un account
+  create_an_atlas: Crea un Atlante
   create_new_taxon: Crea un nuovo taxon
   create_observations: Crea delle osservazioni
   create_observations_by_uploading_photos_to: |-
@@ -1131,6 +1133,7 @@ it:
   edit_a_batch_of_observations: Modifica un gruppo di osservazioni
   edit_account_settings_and_profile: Modifica impostazioni utenza e profilo
   edit_assessment: Modifica la valutazione
+  edit_atlas: Modifica Atlante
   edit_body: Modifica il corpo
   edit_colors: Modifica i colori
   edit_comment: Modifica il tuo commento
@@ -1305,7 +1308,7 @@ it:
   file_should_be_in_the_following_format: 'Il file deve essere nel seguente formato:
     nome del taxon, descrizione'
   fill_out_project_observation_fields: Compila i campi dell'osservazione del progetto
-  fill_out_your_profile: compila il tuo profilo
+  fill_out_your_profile: completa il tuo profilo
   filling_out_checklist_for_place: Compilazione in corso delle checklist dei luoghi
     che conosci bene
   filling_out_your_profile: compilando il tuo profilo
@@ -1563,7 +1566,7 @@ it:
     puoi usare modelli di etichettte per completare il nome del taxon nell'URL
   if_you_already_have_an_account: Se hai già un account %{article} su %{site_name}...
   if_you_dont_want_us_to_share_your_data: Se non vuoi che condividiamo i tuoi dati
-  if_you_have_any_trouble_with_the_site_check_out: Se hai dei problemi col sito, controlla
+  if_you_have_any_trouble_with_the_site_check_out: Se hai delle domande, controlla
     la nostra <a href="%{help_url}">sezione "aiuto"</a> o posta un messaggio al nostro
     <a href="%{feedback_url}">gruppo di feedback</a>.
   if_you_have_trouble_with_the_site: Se hai dei problemi col sito, controlla la nostra
@@ -1888,6 +1891,7 @@ it:
     e la formattazione della data.
   locales_: Localizzazioni
   locales:
+    bg: Bulgaro
     br: Bretone
     ca: Catalano
     en: Inglese
@@ -1947,6 +1951,7 @@ it:
   lowest_rank: Il rango più basso
   made_a: fatto un
   make_admin: Rendi amministratore
+  make_an_observation: Aggiungi un'osservazione
   mail_disclaimer: '%{site_name} non permette ai suoi utenti di mandarti altri inviti
     utilizzando il nostro sistema di inviti. Per favore riporta l''abuso a %{site}.'
   main_content: Contenuto principale
@@ -2343,9 +2348,9 @@ it:
   observations_by: Le osservazioni di
   observations_by_everyone: Le osservazioni di tutti
   observations_by_user: Le osservazioni di %{user}
-  observations_circle_have_their_radii_scaled: I cerchi delle osservazioni hanno il
-    loro raggio proporzionale all'accuratezza della posizione. Le osservazioni senza
-    accuratezza di posizione sono mostrate alla dimensione minima.
+  observations_circle_have_their_radii_scaled: |-
+    I cerchi delle osservazioni hanno il loro raggio proporzionale all'accuratezza della posizione.
+    Le osservazioni senza accuratezza di posizione sono mostrate alla dimensione minima.
   observations_confirmed: Osservazioni (confermate)
   observations_deleted: Osservazioni eliminate.
   observations_fields_are: I campi delle osservazioni sono dati aggiuntivi associati
@@ -2457,11 +2462,11 @@ it:
       cosa con i luoghi.
     comments_panel_title: Sei curioso di sapere quali discussioni sono in corso su
       %{site_name}?
-    comments_panel_body: <p>%{site_name} serve condividere e discutere le osservazioni
-      degli esseri viventi. Qui ci sono alcune discussioni ora in corso...</p> <p>Sarete
-      automaticamente iscritti a qualsiasi discussione a cui hai contribuito con commenti
-      o identificazioni. È sempre possibile utilizzare lo strumento 'Gestione delle
-      Iscrizioni' a destra per interrompere gli aggiornamenti</p>
+    comments_panel_body: '<p>%{site_name} serve condividere e discutere le osservazioni
+      degli esseri viventi. Qui sotto ci sono alcune discussioni ora in corso. (Nota:
+      Sarete automaticamente iscritti a qualsiasi discussione a cui hai contribuito
+      con commenti o identificazioni. Organizza questi aggiornamenti nella sezione
+      ''Iscrizioni'' a destra).</p>'
     updates_by_you_panel_title: Questa scheda è un modo rapido per filtrare solo gli
       aggiornamenti dei tuoi contenuti.
     updates_by_you_panel_body: Ricorda, in "Tutti gli aggiornamenti" potrai ricevere
@@ -4097,7 +4102,8 @@ it:
   withdrawing: Ritiro in corso...
   with_errors: Con errori
   within_inaturalist: All'interno di %{site_name}
-  wondering_what_to_do_next: Ti chiedi cosa fare dopo? Perché non
+  wondering_what_to_do_next: Ecco alcuni altri passaggi per procedere ad osservare
+    e identificare il mondo naturale
   would_you_like_to: Ti piacerebbe
   would_like_some_help_identifying_this: vorresti qualche aiuto per identificare questo
   x_admin: '%{login} amministra'
@@ -4268,6 +4274,7 @@ it:
     tua osservazione è stata aggiunta
   your: Il tuo
   your_: La tua/Il tuo
+  your_account_has_been_activated: La tua utenza è stata attivata!
   your_account_has_been_verified: Il tuo account %{site_name} è stato verificato!
     Effettua l'accesso per continuare.
   your_activation_code_was_missing: Manca il tuo codice di attivazione. Per favore
@@ -4290,7 +4297,6 @@ it:
   your_id: La tua ID
   your_identification: La tua Identificazione
   your_inat_account_has_been_activated: Il tuo account %{inat} è stato attivato
-  your_account_has_been_activated: Il tuo account è stato attivato
   your_life_list: la tua lista degli esseri viventi!
   your_month_observations: Le tue osservazioni di %{month}
   your_name_was_saved: Il tuo nome è stato salvato.
@@ -5173,6 +5179,28 @@ it:
           a causa di attività antropiche, mentre "Nativa" indica una presenza indipendente
           dall'uomo. le specie "Endemiche" sono presenti unicamente in un unico luogo
           e da nessuna altra parte.
+        charts_help_seasonality: |-
+          Questo grafico mostra il numero di osservazione di questo taxon raggruppate per mese. Tieni a mente che rappresenta il numero di osservazioni, e quindi è influenzato sia da quando l'organismo può essere osservato, sia da quando le persone comunemente lo osservano. Per questo, ad esempio, una specie di uccello può sembrare molto attiva a Maggio, ma questo può essere dovuto al fatto che la maggior parte delle persone fa birdwatching a Maggio rispetto ai mesi successivi.
+          Analogamente, se vedi più osservazioni di libellule in Giugno che in Gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a Giugno: controlla la mappa quando esamini questi grafici! E' sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni "Verificabili" e quelle "Livello Ricerca".
+        charts_help_history: Questo grafico mostra il numero di osservazioni di questo
+          taxon al mese negli ultimi 10 anni. Di nuovo, è influenzato dal numero di
+          persone, ma permette di vedere picchi inusuali nel numero di osservazioni;
+          inoltre, se sembra piatto o decrescente nonostante un aumento del numero
+          di osservatori, questo potrebbe suggerire una reale variazione nell'abbondanza
+          del taxon.
+        charts_help_other: 'Mostriamo anche i grafici di stagionalità per le annotazioni
+          delle osservazioni. Le annotazioni sono un nuovo sistema per aggiungere
+          metadati alle osservazioni usando un vocabolario controllato di termini.
+          Per ora stiamo usando solo "Stadio Vitale" e "Fenologia della Pianta" (quando
+          la pianta è in fiore o in frutto). Non abbiamo ancora un modo per aggiungere
+          le annotazioni direttamente, così per ora stiamo convertendo i dati dai
+          campi delle osservazioni alle annotazioni. Se non riesci ad aspettare che
+          implementiamo il nostro sistema delle annotazioni, puoi contribuire alle
+          annotazioni "Stadio Vitale" aggiungendo campi di osservazione con questi
+          valori: Adulto, Pupa, Ninfa, Larva, Uovo, Giovane. Campi idonei sono "Stadio
+          Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi
+          cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto"
+          come valore; un campo adatto è ad esempio "Fenologia della fioritura".'
         trending_desc: Taxa più osservati nell'ultimo mese
         trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
         rare_desc: Taxa minacciati osservati meno frequentemente
