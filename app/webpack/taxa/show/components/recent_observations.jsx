@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import Carousel from "./carousel";
 import TaxonPhoto from "../../shared/components/taxon_photo";
 
-const RecentObservations = ( { observations, showTaxonPhotoModal, url } ) => {
+const RecentObservations = ( { observations, showPhotoModal, url } ) => {
   const chunkSize = 7;
   return (
     <Grid className={`RecentObservations ${observations.length < chunkSize ? "no-slides" : ""}`}>
@@ -24,7 +24,7 @@ const RecentObservations = ( { observations, showTaxonPhotoModal, url } ) => {
                       observation={observation}
                       width={120}
                       height={120}
-                      showTaxonPhotoModal={ ( ) => showTaxonPhotoModal(
+                      showTaxonPhotoModal={ ( ) => showPhotoModal(
                         observation.photos[0],
                         observation.taxon,
                         observation
@@ -48,7 +48,7 @@ const RecentObservations = ( { observations, showTaxonPhotoModal, url } ) => {
 
 RecentObservations.propTypes = {
   observations: PropTypes.array,
-  showTaxonPhotoModal: PropTypes.func,
+  showPhotoModal: PropTypes.func,
   url: PropTypes.string
 };
 
