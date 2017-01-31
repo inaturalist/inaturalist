@@ -135,6 +135,7 @@ fr:
   able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
   about: À propos
   about_bioblitz_results: À propos des résultats de bioblitz
+  about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
   about_conservation_status: À propos de l’état de conservation
   about_establishment_means: À propos des moyens d’implantation
@@ -983,6 +984,7 @@ fr:
   create_a_new_taxon: Créer un nouveau taxon
   create_a_query: Créer une requête
   create_an_account: Créer un compte
+  create_an_atlas: Créer un atlas
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   create_observations_by_uploading_photos_to: |-
@@ -1178,6 +1180,7 @@ fr:
   edit_a_batch_of_observations: Modifier un lot d’observations
   edit_account_settings_and_profile: Modifier les paramètres &amp; profil d’un compte
   edit_assessment: Modifier une évaluation
+  edit_atlas: Modifier un atlas
   edit_body: Modifier le corps
   edit_colors: Modifier les couleurs
   edit_comment: Modifier votre commentaire
@@ -1356,7 +1359,7 @@ fr:
   file_should_be_in_the_following_format: 'Le fichier doit être dans le format suivant
     : nom du taxon, description'
   fill_out_project_observation_fields: Remplir vos champs d’observation de projet
-  fill_out_your_profile: remplissez votre profil
+  fill_out_your_profile: compléter votre profil
   filling_out_checklist_for_place: Remplir des listes de contrôle pour les lieux que
     vous connaissez bien
   filling_out_your_profile: remplissant votre profil
@@ -1616,9 +1619,9 @@ fr:
   if_you_already_have_an_account: Si vous avez déjà un compte %{article} sur %{site_name}…
   if_you_dont_want_us_to_share_your_data: Si vous ne voulez pas que nous partagions
     vos données
-  if_you_have_any_trouble_with_the_site_check_out: Si vous avez des problèmes avec
-    ce site, veuillez consulter notre <a href="%{help_url}">section d’aide</a> ou
-    inscrire un message sur notre <a href="%{feedback_url}">groupe de commentaires</a>.
+  if_you_have_any_trouble_with_the_site_check_out: Si vous avez des questions, veuillez
+    consulter notre <a href="%{help_url}">section d’aide</a> ou inscrire un message
+    sur notre <a href="%{feedback_url}">groupe de commentaires</a>.
   if_you_have_trouble_with_the_site: 'Si vous avez des problèmes avec le site, veuillez
     consulter notre section d’aide :'
   if_you_use: Si vous utilisez
@@ -1953,6 +1956,7 @@ fr:
     de date.
   locales_: Paramètres régionaux
   locales:
+    bg: Bulgare
     br: Breton
     ca: Catalan
     en: Anglais
@@ -2013,6 +2017,7 @@ fr:
   lowest_rank: Rang le moins élevé
   made_a: a fait un
   make_admin: Rendre administrateur
+  make_an_observation: faire une observation
   mail_disclaimer: '%{site_name} ne permettra pas à ses utilisateurs de vous envoyer
     des invitations supplémentaires au moyen de notre système d’invitation. Merci
     de signaler les abus d’invitation à %{site}.'
@@ -2418,9 +2423,10 @@ fr:
   observations_by: Observations de
   observations_by_everyone: Observations de tout le monde
   observations_by_user: Observations de %{user}
-  observations_circle_have_their_radii_scaled: Le rayon des cercles d’observation
-    est réglé proportionnellement à la précision de l’emplacement. Les observations
-    sans données pour préciser l’emplacement sont affichées à la taille minimale.
+  observations_circle_have_their_radii_scaled: |-
+    Le rayon des cercles d’observation est réglé proportionnellement à la
+    précision de leur emplacement. Les observations sans données pour préciser la précision de l’emplacement sont affichées
+    à la taille minimale.
   observations_confirmed: Observations (confirmées)
   observations_deleted: Observations supprimées.
   observations_fields_are: Les champs de l’observation sont des données supplémentaires
@@ -2535,12 +2541,11 @@ fr:
       la même chose avec les lieux.
     comments_panel_title: Curieux de connaître quelles sortes de discussions ont lieu
       sur %{site_name} ?
-    comments_panel_body: <p>%{site_name} est entièrement dédié au partage et à la
-      discussion d’observations de choses vivantes. Voici certaines discussions en
-      cours actuellement…</p> <p>Vous serez abonné automatiquement à toute discussion
+    comments_panel_body: '<p>%{site_name} est entièrement dédié au partage et à la
+      discussion d’observations de choses vivantes. Ci-dessous certaines discussions
+      en cours actuellement (Note : Vous êtes abonné automatiquement à toute discussion
       à laquelle vous avez contribué par des commentaires ou des identifications.
-      Vous pouvez toujours utiliser l’outil Gestion des abonnements sur la droite
-      pour arrêter de recevoir les mises à jour</p>
+      Gérez ces mises à jour dans la section ''Abonnements'' sur la droite).</p>'
     updates_by_you_panel_title: Cet onglet est un moyen rapide de filtrer uniquement
       les mises à jour de votre contenu.
     updates_by_you_panel_body: Souvenez-vous, dans l’onglet 'Toutes les mises à jour',
@@ -2552,9 +2557,9 @@ fr:
       suit…
     youve_got_updates_panel_body_p2: |-
       <ul>
-        <li><strong>Votre contenu :</strong> Activité sur vos observations, comme des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des mises à jour quand quelqu’un ajoute votre observation  à un projet ou l’annote avec des champs supplémentaires.</li>
+        <li><strong>Votre contenu :</strong> Activité sur vos observations, comme des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des mises à jour quand quelqu’un ajoute votre observation  à un projet, ou annotez-le avec des champs supplémentaires.</li>
         <li><strong>Personnes :</strong> Nouvelles observations ou publications de journaux des personnes que vous suivez.</li>
-        <li><strong>Organismes, projets et lieux :</strong> Nouvelles observations des organismes ou lieux particuliers auxquels vous êtes abonnés. Vous pouvez aussi rejoindre des projets pour être mis à jour quand ils publient des notes de journal du projet.</li>
+        <li><strong>Organismes, projets et lieux :</strong> Nouvelles observations des organismes ou lieux particuliers auxquels vous êtes abonnés. Vous pouvez aussi rejoindre des projets quand vous voulez pour être mis à jour quand ils publient des notes de journal du projet.</li>
         <li><strong>Discussions auxquelles vous participez :</strong> Commentaire ou ajout d’identifications au contenu de quelqu’un d’autre vous abonne automatiquement à toute nouvelle activité sur ce contenu. Utilisez l’outil 'Gérer vos abonnements' pour arrêter de recevoir les mises à jour.</li>
       </ul>
   one_by_one: Un par un
@@ -4200,7 +4205,8 @@ fr:
   withdrawing: Retrait…
   with_errors: Avec des erreurs
   within_inaturalist: Dans %{site_name}
-  wondering_what_to_do_next: Vous vous demandez quoi faire maintenant? Pourquoi pas
+  wondering_what_to_do_next: Voici quelques étapes suivantes pour vous guider dans
+    l’observation et l’identification du monde naturel
   would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: aimerait de l’aide pour identifier ceci
   x_admin: que %{login} administre
@@ -4383,6 +4389,7 @@ fr:
     observation a été ajoutée
   your: Votre
   your_: Votre
+  your_account_has_been_activated: Votre compte a été activé.
   your_account_has_been_verified: Votre compte %{site_name} a été vérifié! Veuillez
     vous connecter pour continuer.
   your_activation_code_was_missing: Votre code d'activation est manquant. Veuillez
@@ -4406,7 +4413,6 @@ fr:
   your_id: Votre ID
   your_identification: Votre Identifiant
   your_inat_account_has_been_activated: Votre compte %{inat} a été activé.
-  your_account_has_been_activated: Votre compte a été activé.
   your_life_list: votre liste des êtres vivants!
   your_month_observations: vos observations de %{month}
   your_name_was_saved: Votre nom a été enregistré.
