@@ -2639,7 +2639,7 @@ I18n.translations["en"] = {
     "no_known_copyright_restrictions": "%{name}, no known copyright restrictions (%{license_name})",
     "no_rights_reserved": "no rights reserved"
   },
-  "create_an_atlas": "Create an Atlas",
+  "create_an_atlas": "Create an atlas",
   "created_on": "Created on",
   "critically_endangered": "critically endangered",
   "csv": "CSV",
@@ -6084,6 +6084,7 @@ I18n.translations["fi"] = {
 };
 I18n.translations["fr"] = {
   "about": "À propos",
+  "about_charts": "À propos des graphiques",
   "about_community_taxa": "À propos des taxons de la communauté",
   "about_conservation_status": "À propos de l’état de conservation",
   "about_establishment_means": "À propos des moyens d’implantation",
@@ -6251,10 +6252,12 @@ I18n.translations["fr"] = {
     "no_known_copyright_restrictions": "%{name}, aucune restriction de droit connue (%{license_name})",
     "no_rights_reserved": "aucun droits réservés"
   },
+  "create_an_atlas": "Créer un atlas",
   "created_on": "Créé@{f:e|} le",
   "critically_endangered": "gravement menacée",
   "csv": "CSV",
   "curation": "Organisation",
+  "customize_location": "Personnaliser l’emplacement",
   "dashboard": "Tableau de bord",
   "data_deficient": "données insuffisantes",
   "date": {
@@ -6335,6 +6338,7 @@ I18n.translations["fr"] = {
   "drag_and_drop_some_photos": "Glisser & déposer quelques photos",
   "drop_it": "Le déposer",
   "edit": "Modifier",
+  "edit_atlas": "Modifier un atlas",
   "edit_license": "Modifier la licence",
   "edit_multiple_dates": "Modifier des dates multiples",
   "edit_multiple_descriptions": "Modifier des descriptions multiples",
@@ -6533,6 +6537,7 @@ I18n.translations["fr"] = {
   "more_import_options": "Plus options d’importation",
   "more_info": "Plus d’informations",
   "more_photos": "Plus de photos",
+  "most_recent_observation_by_date_observed": "Observation vérifiable la plus récente observée par date",
   "multiple": "multiple",
   "multiple_select_option": "-- multiple --",
   "must_be_observed_after": "doit être observé après %{operand}",
@@ -6591,6 +6596,7 @@ I18n.translations["fr"] = {
   "photo_browser": "Navigateur de photos",
   "photo_licensing": "Licence de photo",
   "photo_s": "Photo(s)",
+  "photos_chosen_for_this_taxon": "Photos choisies pour ce taxon",
   "photos_from": "Photos de",
   "photos_of": "Photos de",
   "pink": "rose",
@@ -6962,6 +6968,8 @@ I18n.translations["fr"] = {
           "Insect life stage=adult": "Adulte"
         },
         "no_trending_desc": "Rien d’observé dans le dernier mois concernant ce taxon",
+        "photo_chooser_modal_desc": "Faire glisser les photos d’ici vers la gauche, ou les faire glisser ici pour les réarranger.",
+        "photo_chooser_modal_explanation": "À noter que la page du taxon affichera les photos de ce taxon\net de ses descendants. Les photos choisies pour ce\ntaxon seront cependant affichées en premier. La première photo sera\ncelle par défaut utilisée sur le site.",
         "rare_desc": "Taxons menacés les moins observés",
         "rare_in_place_desc_html": "Taxons menacés les moins observés à <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Taxons les plus observés lors du dernier mois",
@@ -8561,6 +8569,7 @@ I18n.translations["is"] = {
 };
 I18n.translations["it"] = {
   "about": "Informazioni",
+  "about_charts": "Sui Grafici",
   "about_community_taxa": "A proposito dei taxa della community",
   "about_conservation_status": "A proposito dello stato di conservazione",
   "about_establishment_means": "A proposito dell'origine del popolamento",
@@ -8728,10 +8737,12 @@ I18n.translations["it"] = {
     "no_known_copyright_restrictions": "%{name}, senza restrizioni del copyright (%{license_name})",
     "no_rights_reserved": "nessun diritto riservato"
   },
+  "create_an_atlas": "Crea un Atlante",
   "created_on": "Creato il",
   "critically_endangered": "In Pericolo Critico",
   "csv": "CSV",
   "curation": "Amministrazione",
+  "customize_location": "Personalizza la posizione",
   "dashboard": "Bacheca",
   "data_deficient": "Carente di Dati",
   "date": {
@@ -8812,6 +8823,7 @@ I18n.translations["it"] = {
   "drag_and_drop_some_photos": "Clicca e trascina alcune foto",
   "drop_it": "Trascina qua",
   "edit": "Modifica",
+  "edit_atlas": "Modifica Atlante",
   "edit_license": "Modifica la licenza",
   "edit_multiple_dates": "Modifica più date",
   "edit_multiple_descriptions": "Modifica più descrizioni",
@@ -9010,6 +9022,7 @@ I18n.translations["it"] = {
   "more_import_options": "Più opzioni di importazione",
   "more_info": "Più info",
   "more_photos": "Più Foto",
+  "most_recent_observation_by_date_observed": "Le osservazioni verificabili più recenti per data",
   "multiple": "Più di uno",
   "multiple_select_option": "-- più --",
   "must_be_observed_after": "deve essere stato osservato dopo %{operand}",
@@ -9068,6 +9081,7 @@ I18n.translations["it"] = {
   "photo_browser": "Browser delle foto",
   "photo_licensing": "Licenza delle foto",
   "photo_s": "Foto",
+  "photos_chosen_for_this_taxon": "Foto scelte per questo taxon",
   "photos_from": "Foto da",
   "photos_of": "Foto di",
   "pink": "rosa",
@@ -9423,6 +9437,10 @@ I18n.translations["it"] = {
       "show": {
         "about_conservation_status_desc": "Lo stato di conservazione riassume il rischio di estinzione per un gruppo di organismi.",
         "about_establishment_desc": "L'\"origine del popolamento\" descrive come una specie è arrivata nel luogo di attuale presenza. \"Introdotta\" significa che è arrivata a causa di attività antropiche, mentre \"Nativa\" indica una presenza indipendente dall'uomo. le specie \"Endemiche\" sono presenti unicamente in un unico luogo e da nessuna altra parte.",
+        "about_names_desc": "<p>\n  La maggior parte degli organismi hanno \"nomi comuni\" nel   linguaggio parlato. Questi nomi sono spesso riconoscibili, facili da pronunciare stabili nel tempo, ma molti organismi hanno nomi differenti nei diversi luoghi, anche nella stessa lingua, che possono creare alcune confusioni. \n  Gli scienziati risolvono il problema utilizzando un singolo \"nome scientifico\" per ogni specie che segue le regole della\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">nomenclatura binomiale</a>; ma questi nomi sono in Latino, una lingua che non parla nessuno, e pertanto non sono facilmente memorizzabili per la maggior parte delle persone. I nomi scientifici possono anche riflettere la posizione tassonomica di un organismo, e così possono cambiare quando gli scienziati sviluppano teorie più accurate sulle relazioni evoluzionistiche tra gli organismi, riducendone ancora la loro utilità, anche tra le persone che ne conoscono il loro nome scientifico.\n</p>\n<p>\n  Un vecchio detto dice così: \"I nomi comuni cambiano da luogo a luogo, quelli scientifici di anni in anni\"\n</p>\n<p>\n  Noi cerchiamo di compensare questa carenza permettendo, se possibile, di visualizzare sia i nomi comuni che quelli scientifici, e scegliendo il nome comune in base alla lingua e alle preferenze geografiche dell'utente.\n</p>",
+        "charts_help_history": "Questo grafico mostra il numero di osservazioni di questo taxon al mese negli ultimi 10 anni. Di nuovo, è influenzato dal numero di persone, ma permette di vedere picchi inusuali nel numero di osservazioni; inoltre, se sembra piatto o decrescente nonostante un aumento del numero di osservatori, questo potrebbe suggerire una reale variazione nell'abbondanza del taxon.",
+        "charts_help_other": "Mostriamo anche i grafici di stagionalità per le annotazioni delle osservazioni. Le annotazioni sono un nuovo sistema per aggiungere metadati alle osservazioni usando un vocabolario controllato di termini. Per ora stiamo usando solo \"Stadio Vitale\" e \"Fenologia della Pianta\" (quando la pianta è in fiore o in frutto). Non abbiamo ancora un modo per aggiungere le annotazioni direttamente, così per ora stiamo convertendo i dati dai campi delle osservazioni alle annotazioni. Se non riesci ad aspettare che implementiamo il nostro sistema delle annotazioni, puoi contribuire alle annotazioni \"Stadio Vitale\" aggiungendo campi di osservazione con questi valori: Adulto, Pupa, Ninfa, Larva, Uovo, Giovane. Campi idonei sono \"Stadio Vitale di insetto\" o \"Stadio Vitale\". Per la \"Fenologia della Pianta\" noi cerchiamo ogni campo con la parola \"fenologia\" nel nome, e \"fiore\" o \"frutto\" come valore; un campo adatto è ad esempio \"Fenologia della fioritura\".",
+        "charts_help_seasonality": "Questo grafico mostra il numero di osservazione di questo taxon raggruppate per mese. Tieni a mente che rappresenta il numero di osservazioni, e quindi è influenzato sia da quando l'organismo può essere osservato, sia da quando le persone comunemente lo osservano. Per questo, ad esempio, una specie di uccello può sembrare molto attiva a Maggio, ma questo può essere dovuto al fatto che la maggior parte delle persone fa birdwatching a Maggio rispetto ai mesi successivi.\nAnalogamente, se vedi più osservazioni di libellule in Giugno che in Gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a Giugno: controlla la mappa quando esamini questi grafici! E' sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni \"Verificabili\" e quelle \"Livello Ricerca\".",
         "frequency": {
           "research": "Livello Ricerca",
           "verifiable": "Verificabile",
@@ -9438,6 +9456,8 @@ I18n.translations["it"] = {
           "Insect life stage=adult": "Adulto"
         },
         "no_trending_desc": "Nulla al di sotto di questo taxon è stato osservato nell'ultimo mese",
+        "photo_chooser_modal_desc": "Trascina qui le foto da sinistra, oppure trascinale qui per riordinarle.",
+        "photo_chooser_modal_explanation": "Nota che la pagina del taxon mostra le foto di questo taxon\ne dei suoi discendenti. La foto scelta per questo\ntaxon sarà mostrata per prima. La prima foto sarà\nl'immagine predefinita per tutto il sito.",
         "rare_desc": "Taxa minacciati osservati meno frequentemente",
         "rare_in_place_desc_html": "Taxa minacciati osservati meno frequentemente in <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Taxa più osservati nell'ultimo mese",
@@ -10950,6 +10970,10 @@ I18n.translations["ko"] = {
     }
   },
   "white": "흰색",
+  "x_comments": {
+    "one": "댓글 1개",
+    "other": "댓글 %{count}개"
+  },
   "yellow": "노랑",
   "yes": "예",
   "you_are_submitting_obs_without_photos_and_names": "사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우 정확하게 동정하기 매우 어렵습니다."
@@ -13207,6 +13231,7 @@ I18n.translations["vi"] = {
 };
 I18n.translations["zh-CN"] = {
   "about": "关于",
+  "about_charts": "关于图表",
   "about_community_taxa": "关于社区分类群",
   "about_conservation_status": "保护状态",
   "about_establishment_means": "关于确立意思",
@@ -13372,9 +13397,11 @@ I18n.translations["zh-CN"] = {
     "no_known_copyright_restrictions": "%{name}，没有已知的版权限制（%{license_name}）",
     "no_rights_reserved": "不保留任何权利"
   },
+  "create_an_atlas": "创建地图集",
   "created_on": "创建于",
   "csv": "CSV",
   "curation": "管理",
+  "customize_location": "自定义位置",
   "dashboard": "仪表板",
   "data_deficient": "数据有缺陷",
   "date": {
@@ -13455,6 +13482,7 @@ I18n.translations["zh-CN"] = {
   "drag_and_drop_some_photos": "拖放一些图片",
   "drop_it": "放弃它",
   "edit": "编辑",
+  "edit_atlas": "编辑地图集",
   "edit_license": "编辑许可协议",
   "edit_multiple_dates": "编辑多个日期",
   "edit_multiple_descriptions": "编辑多个描述",
@@ -13695,6 +13723,7 @@ I18n.translations["zh-CN"] = {
   "photo_browser": "照片浏览者",
   "photo_licensing": "照片许可协议",
   "photo_s": "照片",
+  "photos_chosen_for_this_taxon": "为此分类单元选择的照片",
   "photos_from": "照片来自",
   "photos_of": "照片属于",
   "pink": "粉色",
@@ -13895,6 +13924,7 @@ I18n.translations["zh-CN"] = {
   },
   "removed!": "已移除！",
   "removing": "正在移除……",
+  "reptiles": "爬行动物",
   "request_failed": "请求失败",
   "research": "研究",
   "research_grade": "研究指导",
@@ -13961,6 +13991,7 @@ I18n.translations["zh-CN"] = {
   "taxonomy": "分类学",
   "terrain": "地形",
   "the_world": "世界",
+  "threatened": "受到威胁",
   "today": "今天",
   "top_identifier": "最多标识符",
   "top_identifiers": "顶端标识符",
