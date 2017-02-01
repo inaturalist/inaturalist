@@ -1990,8 +1990,8 @@ class Observation < ActiveRecord::Base
     lat_lon_distance_in_meters( 
       base_lat, 
       base_lon, 
-      base_lat+COORDINATE_UNCERTAINTY_CELL_SIZE,
-      base_lon+COORDINATE_UNCERTAINTY_CELL_SIZE
+      base_lat + COORDINATE_UNCERTAINTY_CELL_SIZE,
+      base_lon + COORDINATE_UNCERTAINTY_CELL_SIZE
     ).ceil
   end
 
