@@ -19,7 +19,7 @@ describe User do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  describe 'creation' do
+  describe "creation" do
     before do
       @user = nil
       @creating_user = lambda do
@@ -142,6 +142,42 @@ describe User do
       es_o = Observation.elastic_paginate(where: {site_id: s2.id}).first
       expect( es_o ).to eq o
     end
+
+    it "should update the native_realname on all photos if the name changed" do
+      u = User.make!( name: "timdal the great" )
+      o = make_research_grade_observation( user: u )
+      p = o.photos.first
+      expect( p.native_realname ).to eq u.name
+      new_name = "Zolophon the Destroyer"
+      without_delay { u.update_attributes( name: new_name ) }
+      p.reload
+      expect( p.native_realname ).to eq new_name
+    end
+
+    it "should update the native_username on all photos if the login changed" do
+      o = make_research_grade_observation
+      u = o.user
+      p = o.photos.first
+      expect( p.native_username ).to eq u.login
+      new_login = "zolophon"
+      without_delay { u.update_attributes( login: new_login ) }
+      p.reload
+      expect( p.native_username ).to eq new_login
+    end
+
+    it "should not update photos by other users when the name changes" do
+      target_o = make_research_grade_observation
+      target_u = target_o.user
+      other_o = make_research_grade_observation
+      other_p = other_o.photos.first
+      other_u = other_o.user
+      expect( other_p.native_realname ).to eq other_u.name
+      new_login = "zolophon"
+      without_delay { target_u.update_attributes( login: new_login ) }
+      other_p.reload
+      expect( other_p.native_realname ).to eq other_u.name
+    end
+
   end
 
   #
@@ -316,6 +352,9 @@ describe User do
   end
   
   describe "deletion" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+    
     before do
       @user = User.make!
     end
@@ -327,6 +366,19 @@ describe User do
       expect(deleted_user.user_id).to eq @user.id
       expect(deleted_user.login).to eq @user.login
       expect(deleted_user.email).to eq @user.email
+    end
+
+    it "should not update photos by other users" do
+      target_o = make_research_grade_observation
+      target_u = target_o.user
+      other_o = make_research_grade_observation
+      other_p = other_o.photos.first
+      other_u = other_o.user
+      expect( other_p.native_realname ).to eq other_u.name
+      new_login = "zolophon"
+      without_delay { target_u.destroy }
+      other_p.reload
+      expect( other_p.native_realname ).to eq other_u.name
     end
   end
 

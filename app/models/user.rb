@@ -174,6 +174,7 @@ class User < ActiveRecord::Base
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
+  after_update :update_photo_properties
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -734,6 +735,21 @@ class User < ActiveRecord::Base
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
     end
     true
+  end
+
+  def update_photo_properties
+    changes = {}
+    changes[:native_username] = login if login_changed?
+    changes[:native_realname] = name if name_changed?
+    unless changes.blank?
+      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
+    end
+    true
+  end
+
+  def update_photos_with_changes( changes )
+    return if changes.blank?
+    photos.update_all( changes )
   end
 
   def recent_notifications(options={})
