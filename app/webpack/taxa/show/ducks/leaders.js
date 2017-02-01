@@ -49,7 +49,10 @@ export function fetchTopObserver( ) {
 
 export function fetchTopIdentifier( ) {
   return function ( dispatch, getState ) {
-    return inatjs.observations.identifiers( defaultObservationParams( getState( ) ) )
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      own_observation: false
+    } );
+    return inatjs.identifications.identifiers( params )
       .then( response => dispatch( setLeader( "topIdentifier", response.results[0] ) ) );
   };
 }
