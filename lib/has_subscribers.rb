@@ -300,11 +300,7 @@ module HasSubscribers
 
     def notify_users(method)
       options = self.class.notifies_users_options
-      resource = if respond_to?(:parent) && !parent.is_a?(User)
-        parent
-      elsif respond_to?(:observation)
-        observation
-      end
+      resource = observation if respond_to?(:observation)
       resource ||= self
       action_attrs = {
         resource: resource,

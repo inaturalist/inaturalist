@@ -240,8 +240,8 @@ class ApplicationController < ActionController::Base
   # Redirect user to front page when they do something naughty.
   #
   def redirect_to_hell
-    flash[:notice] = t(:you_tried_to_do_something_you_shouldnt)
-    redirect_to root_path, :status => :see_other
+    flash[:notice] = t(:you_dont_have_permission_to_do_that)
+    redirect_to root_path, status: :see_other
   end
 
   # Caching
