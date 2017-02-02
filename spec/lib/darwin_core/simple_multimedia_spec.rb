@@ -15,8 +15,17 @@ describe DarwinCore::SimpleMultimedia do
   it "should return MIME type for format" do
     expect( p.format ).to eq "image/jpeg"
   end
-  it "should return original_url for identifier" do
+  it "should return original_url for identifier if available" do
+    expect( p.original_url ).not_to be_blank
     expect( p.identifier ).to eq p.original_url
+  end
+  it "should return the medium_url if that's the best available" do
+    p.update_attributes( large_url: nil, original_url: nil )
+    p.reload
+    expect( p.original_url ).to be_blank
+    expect( p.large_url ).to be_blank
+    expect( p.medium_url ).not_to be_blank
+    expect( p.identifier ).to eq p.medium_url
   end
   it "should return photo page URL for references" do
     expect( p.references ).to eq p.native_page_url
