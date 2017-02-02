@@ -18,6 +18,15 @@ describe TaxonSwap, "creation" do
     expect(swap).not_to be_valid
   end
 
+  it "should now allow identical inputs and outputs" do
+    t = Taxon.make!
+    swap = TaxonSwap.make
+    swap.add_input_taxon( t )
+    swap.add_output_taxon( t )
+    expect( swap.input_taxon ).to eq swap.output_taxon
+    expect( swap ).not_to be_valid
+  end
+
   it "should generate mentions" do
     u = User.make!
     tc = without_delay { make_taxon_swap( description: "hey @#{ u.login }" ) }
@@ -25,6 +34,7 @@ describe TaxonSwap, "creation" do
     expect( UpdateAction.where( notifier: tc, notification: "mention" ).first.
       update_subscribers.first.subscriber ).to eq u
   end
+
 end
 
 describe TaxonSwap, "destruction" do
