@@ -43,8 +43,10 @@ module DarwinCore
         file_content_type
       end
 
+      # Note that this is *supposed* to be a URL to locate the resource, *not* a
+      # unique identifier for the image
       def identifier
-        original_url
+        best_url( "original" )
       end
 
       def references
