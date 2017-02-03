@@ -1,0 +1,17 @@
+#pageheader.column.span-24
+  %span.breadcrumbs
+    = link_to t(:back_to_this, place: @object.try_methods( :to_plain_s, :to_s ) ), @object, class: "back crumb"
+  %h2
+    = t :new_flag_for
+    = link_to @object.to_plain_s, @object
+.description
+  %p= t :flag_description
+= form_for( [@object,  @flag], html: { class: "clear readable buttonrow" } ) do |f|
+  = f.label :reason, raw( t(:flag_reason, :record => @model.name.downcase) ), class: "inter"
+  = f.text_field :flag, class: "inter text"
+  %label &rdquo;
+  = f.hidden_field :user_id, value: current_user.id
+  = f.hidden_field :flaggable_id, value: @object.id
+  = f.hidden_field :flaggable_type, value: @model.name
+  = f.submit t(:flag_it!), class: "default button"
+= render "flag_list", flags: @flags
