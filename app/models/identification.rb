@@ -124,10 +124,10 @@ class Identification < ActiveRecord::Base
     return true unless ( current_changed? || new_record? ) && current?
     if id
       Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
-        each {|ident| ident.update_attributes( current: false ) }
+        each {|ident| ident.update_attributes( current: false, skip_observation: true ) }
     else
       Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id).
-        each {|ident| ident.update_attributes( current: false ) }
+        each {|ident| ident.update_attributes( current: false, skip_observation: true ) }
     end
     true
   end

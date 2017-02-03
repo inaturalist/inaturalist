@@ -15,6 +15,7 @@ class Place < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
+      indexes :slug, analyzer: "keyword_analyzer"
       indexes :place_type, type: "integer"
       indexes :geometry_geojson, type: "geo_shape"
       indexes :bounding_box_geojson, type: "geo_shape"
@@ -31,6 +32,7 @@ class Place < ActiveRecord::Base
     preload_for_elastic_index
     {
       id: id,
+      slug: slug,
       name: name,
       display_name: display_name,
       display_name_autocomplete: display_name,

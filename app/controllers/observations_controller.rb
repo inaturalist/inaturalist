@@ -2,7 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index ]
+  before_filter :decide_if_skipping_preloading, only: [ :index, :show ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
@@ -225,6 +225,10 @@ class ObservationsController < ApplicationController
         if params[:partial] == "cached_component"
           return render(partial: "cached_component",
             object: @observation, layout: false)
+        elsif ( logged_in? && current_user.in_test_group?( "observation-page" ) )
+          @skip_application_js = true
+          render layout: "bootstrap", action: "show2"
+          return
         end
 
         # always display the time in the zone in which is was observed
@@ -3005,7 +3009,10 @@ class ObservationsController < ApplicationController
   end
 
   def decide_if_skipping_preloading
-    @skipping_preloading = (params[:partial] == "cached_component")
+    @skipping_preloading =
+      ( params[:partial] == "cached_component" ) ||
+      ( action_name == "show" &&
+        logged_in? && current_user.in_test_group?( "observation-page" ) )
   end
 
   def observations_index_search(params)

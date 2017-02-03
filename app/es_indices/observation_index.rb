@@ -156,6 +156,7 @@ class Observation < ActiveRecord::Base
         comments_count: comments.size,
         obscured: coordinates_obscured? || geoprivacy_obscured?,
         field_change_times: field_changes_to_index,
+        positional_accuracy: positional_accuracy,
         location: (latitude && longitude) ?
           ElasticModel.point_latlon(latitude, longitude) : nil,
         private_location: (private_latitude && private_longitude) ?
