@@ -39,10 +39,10 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, UpdateAction, Taxon)
+    enable_elastic_indexing( Observation, UpdateAction, Taxon )
     prepare_swap
   end
-  after(:each) { disable_elastic_indexing(Observation, UpdateAction, Taxon) }
+  after(:each) { disable_elastic_indexing( Observation, UpdateAction, Taxon ) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)
@@ -213,9 +213,9 @@ end
 describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
-    enable_elastic_indexing(Observation, Taxon, UpdateAction, Place)
+    enable_elastic_indexing( Observation, Taxon, UpdateAction, Place )
   end
-  after(:each) { disable_elastic_indexing(Observation, Taxon, UpdateAction, Place) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon, UpdateAction, Place ) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)

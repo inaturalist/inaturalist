@@ -1,12 +1,14 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 def setup_taxon_merge
-  @input_taxon1 = Taxon.make!( rank: Taxon::GENUS )
-  @input_taxon2 = Taxon.make!( rank: Taxon::GENUS )
-  @output_taxon = Taxon.make!( rank: Taxon::GENUS )
+  @input_taxon1 = Taxon.make!( rank: Taxon::SPECIES )
+  @input_taxon2 = Taxon.make!( rank: Taxon::SPECIES )
+  @input_taxon3 = Taxon.make!( rank: Taxon::SPECIES )
+  @output_taxon = Taxon.make!( rank: Taxon::SPECIES )
   @merge = TaxonMerge.make
   @merge.add_input_taxon( @input_taxon1 )
   @merge.add_input_taxon( @input_taxon2 )
+  @merge.add_input_taxon( @input_taxon3 )
   @merge.add_output_taxon( @output_taxon )
   @merge.save!
 end
@@ -156,14 +158,26 @@ describe TaxonMerge, "commit_records" do
   before(:each) do
     setup_taxon_merge
   end
-  it "should add new identifications" do
-    ident = Identification.make!( taxon: @input_taxon1 )
+  it "should add new identifications for all inputs" do
+    ident1 = Identification.make!( taxon: @input_taxon1 )
+    ident2 = Identification.make!( taxon: @input_taxon2 )
+    ident3 = Identification.make!( taxon: @input_taxon3 )
     @merge.commit_records
-    ident.reload
-    expect(ident).not_to be_current
-    new_ident = ident.observation.identifications.by(ident.user).order("id asc").last
-    expect(new_ident).not_to eq(ident)
-    expect(new_ident.taxon).to eq(@output_taxon)
+    ident1.reload
+    ident2.reload
+    ident3.reload
+    expect( ident1 ).not_to be_current
+    expect( ident2 ).not_to be_current
+    expect( ident3 ).not_to be_current
+    new_ident1 = ident1.observation.identifications.by( ident1.user ).order( "id asc" ).last
+    new_ident2 = ident2.observation.identifications.by( ident2.user ).order( "id asc" ).last
+    new_ident3 = ident3.observation.identifications.by( ident3.user ).order( "id asc" ).last
+    expect( new_ident1 ).not_to eq( ident1 )
+    expect( new_ident1.taxon ).to eq( @output_taxon )
+    expect( new_ident2 ).not_to eq( ident2 )
+    expect( new_ident2.taxon ).to eq( @output_taxon )
+    expect( new_ident3 ).not_to eq( ident3 )
+    expect( new_ident3.taxon ).to eq( @output_taxon )
   end
 
   it "should not add multiple identifications" do
