@@ -1,8 +1,8 @@
 class TaxonChangesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :curator_required, :except => [:index, :show, :commit_for_user, :commit_records]
+  before_filter :curator_required, :except => [:index, :show, :commit_for_user, :commit_records, :group]
   before_filter :admin_required, :only => [:commit_taxon_change]
-  before_filter :load_taxon_change, :except => [:index, :new, :create]
+  before_filter :load_taxon_change, :except => [:index, :new, :create, :group]
   before_filter :return_here, :only => [:index, :show, :new, :edit, :commit_for_user] 
   
   def index
@@ -237,6 +237,44 @@ class TaxonChangesController < ApplicationController
       flash[:error] = "#{not_updated} record(s) failed to update: #{errors.to_sentence.downcase}"
     end
     redirect_back_or_default(@taxon_change)
+  end
+
+  def group
+    @group = params[:group]
+    @taxon_changes = TaxonChange.where( change_group: @group ).page( params[:page] )
+    swap_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = ?", "TaxonSwap" )
+    @swap_input_taxa_count = swap_input_taxa.count
+    merge_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = ?", "TaxonMerge" )
+    @merge_input_taxa_count = merge_input_taxa.count
+    split_input_taxa = Taxon.joins( :taxon_changes ).
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = ?", "TaxonSplit" )
+    @split_input_taxa_count = split_input_taxa.count
+    limit = 500
+    @input_taxa = swap_input_taxa.limit( limit ).to_a
+    @input_taxa += merge_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
+    @input_taxa += split_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
+    @input_taxa.sort_by!(&:name)
+    swap_output_taxa = Taxon.joins( :taxon_changes ).
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = ?", "TaxonSwap" )
+    merge_output_taxa = Taxon.joins( :taxon_changes ).
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = ?", "TaxonMerge" )
+    split_output_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = ?", "TaxonSplit" )
+    @output_taxa = swap_output_taxa.limit( limit ).to_a
+    @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
+    @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
+    @output_taxa.sort_by!(&:name)
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
   end
   
   private

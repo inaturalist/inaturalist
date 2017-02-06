@@ -529,12 +529,15 @@ Rails.application.routes.draw do
   get 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
   post 'subscriptions/:resource_type/:resource_id/subscribe' => 'subscriptions#subscribe', as: :subscribe
 
-  resources :taxon_changes, :constraints => { :id => id_param_pattern } do
-    resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
+  resources :taxon_changes, constraints: { id: id_param_pattern } do
+    resources :taxon_change_taxa, controller: :taxon_change_taxa, shallow: true
+    collection do
+      get "group/:group" => "taxon_changes#group", as: :group
+    end
     put :commit
     get :commit_for_user
-    put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
-    put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
+    put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
+    put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
   end
   resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html, :mobile]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa

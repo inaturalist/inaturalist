@@ -1,0 +1,91 @@
+- content_for(:extrajs) do
+  :javascript
+    $( document ).ready( function( ) {
+      $( ".grafting_link" )
+        .bind( "ajax:success", function( e, json, status ) {
+          $( this ).text( json.msg ).addClass( "success status" )
+        })
+        .bind( "ajax:error", function( event, request, settings ) {
+          var json = $.parseJSON( request.responseText )
+          if ( json ) { alert( json.error ) }
+          else { alert( "Something went wrong" ) }
+        } );
+      $( ".taxon-table" ).dataTable( {
+        bPaginate: false,
+        bFilter: false,
+        paging: false,
+        info: false
+      } )
+    } )
+.container
+  .row
+    .col-xs-12
+      %h2
+        Taxon Change Group:
+        = @group
+  .row
+    .col-xs-12
+      %h3 Summary Stats
+      %table.table
+        %tbody
+          %tr
+            %th=t :taxon_change_count
+            %td= @taxon_changes.total_entries
+          %tr
+            %th=t :taxa_swapped
+            %td= @swap_input_taxa_count
+          %tr
+            %th=t :taxa_merged
+            %td= @merge_input_taxa_count
+          %tr
+            %th=t :taxa_split
+            %td= @split_input_taxa_count
+  .row
+    .col-xs-6
+      %h3 Input Taxa (swapped, merged, or split)
+      %p Limited to 500, see taxon changes for all taxa
+      %table.table.taxon-table
+        %thead
+          %tr
+            %th=t :taxon
+            %th=t :obs
+            %th=t :actions
+        %tbody.taxon_links
+          - for taxon in @input_taxa
+            %tr
+              %td= render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
+              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon )
+              %td= link_to t(:view_change), taxon_changes_url( taxon_id: taxon ), class: "btn btn-link btn-xs"
+    .col-xs-6
+      %h3 Output Taxa (created / activated)
+      %p Limited to 500, see taxon changes for all taxa
+      %table.table.taxon-table
+        %thead
+          %tr
+            %th=t :taxon
+            %th=t :obs
+            %th=t :actions
+        %tbody.taxon_links
+          - for taxon in @output_taxa
+            %tr
+              %td
+                = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
+              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon )
+              %td
+                - if is_curator? && !taxon.grafted?
+                  = link_to t(:graft), graft_taxon_path( taxon, format: "json" ), 
+                    id: "grafting_link_#{taxon.id}",
+                    class: "grafting_link btn btn-default btn-xs",
+                    remote: true,
+                    method: "patch",
+                    "data-type" => "json",
+                    "data-loading-click" => "Grafting..."
+                = link_to t(:view_change), taxon_changes_url( taxon_id: taxon ), class: "btn btn-link btn-xs"
+  .row
+    .col-xs-12
+      %h3=t :taxon_changes
+      - if @taxon_changes.empty?
+        %p.description= t :no_taxonomic_changes_match_those_criteria
+      - for taxon_change in @taxon_changes
+        = render "show_change_taxon", show_change_taxon: taxon_change
+      = will_paginate @taxon_changes
