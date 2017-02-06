@@ -596,7 +596,7 @@ class Taxon < ActiveRecord::Base
   def grafted?
     return false if new_record? # New records haven't been grafted
     return false if self.name != 'Life' && ancestry.blank?
-    return false if parent_id === Taxon::LIFE.id && !kingdom?
+    return false if !kingdom? && Taxon::LIFE && parent_id === Taxon::LIFE.id
     true
   end
   
