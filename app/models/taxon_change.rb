@@ -293,8 +293,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def index_taxon
-    t = taxon || Taxon.find_by_id( taxon_id )
-    t.delay( priority: USER_INTEGRITY_PRIORITY ).elastic_index! if t
+    Taxon.elastic_index!( ids: [input_taxa, output_taxa].flatten.compact.map(&:id) )    
     true
   end
 

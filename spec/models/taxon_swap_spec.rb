@@ -417,6 +417,20 @@ describe TaxonSwap, "commit_records" do
   end
 end
 
+describe "move_input_children_to_output" do
+  it "should queue jobs to commit records for sub-swaps" do
+    prepare_swap
+    @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+    @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
+    child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
+    [@input_taxon, @output_taxon, child].each(&:reload)
+    @swap.commit
+    [@input_taxon, @output_taxon, child].each(&:reload)
+    @swap.move_input_children_to_output( @input_taxon )
+    expect( Delayed::Job.all.select{ |j| j.handler =~ /commit_records/m }.size ).to eq 2
+  end
+end
+
 def prepare_swap
   @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
   @output_taxon = Taxon.make!( rank: Taxon::FAMILY )
