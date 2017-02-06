@@ -5426,6 +5426,41 @@ fr:
           où elle se trouve actuellement. Implanté signifie qu’elle est arrivée par une activité
           humaine, alors qu’indigène signifie qu’elle est arrivée sans assistance humaine.
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
+        charts_help_seasonality: |-
+          Ce graphique affiche le nombre d’observations de ce taxon, groupées par
+          mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
+          sont influencés à la fois par le moment où l’organisme peut être  observé et par celui
+          où les gens prennent la peine de les observer. Ainsi, un oiseau peut sembler très actif
+          en mai, mais cela peut aussi être dû à ce que davantage de gens observent les oiseaux en mai, qui
+          tendent à ignorer ces espèces les mois suivants. De même, si vous voyez
+          davantage de libellules en juin qu’en janvier, c’est sans doute parce que nous
+          avons plus d’observateurs dans l’hémisphère nord que dans le
+          sud, et pas parce que les libellules sont plus actives en
+          juin ; vérifiez donc la carte en examinant ces graphiques. C’est toujours une
+          bonne idée d’être critique à propos de ces graphiques, quand ils représentent un faible nombre
+          d’observations ou une grande divergence entre les nombres d’observations
+          « vérifiables » et « qualité de recherche ».
+        charts_help_history: |-
+          Ce graphique affiche le nombre d’observations de ce taxon par mois au cours
+          des dix dernières années. De nouveau, il est biaisé par le nombre de personnes
+          observant, mais il affichera des pics inhabituels dans les observations, et s’il
+          semble plat ou en décroissance malgré un nombre croissant d’observateurs,
+          cela peut suggérer une modification de son abondance.
+        charts_help_other: |-
+          Nous affichons aussi des graphiques saisonniers pour les annotations d’observation.
+          Les annotations sont un nouveau système pour ajouter des métadonnées aux observations en utilisant
+          un vocabulaire restreint de termes. Ainsi, nous n’utilisons que « Étape de vie »
+          et « Phénologie de la plante » (quand la plante fleurit ou produit
+          des fruits). Nous n’avons pas encore de moyen d’ajouter directement des annotations, donc
+          pour le moment, nous convertissons les données des champs d’observation en annotations.
+          Si vous ne voulez pas attendre que nous construisions notre système d’annotations, vous pouvez
+          contribuer aux annotations d’« Étape de vie » en ajoutant des valeurs au champ d’observation
+          qui ont une des valeurs suivantes : Adulte, Ténéral, Chrysalide,
+          Nymphe, Larve, Œuf, ou Juvénile. Ainsi, en particulier, les champs « Étape de vie »
+          et «Étape de vie d’un insecte » sont bons. Pour la « Phgénologie des plantes », nous
+          chefchons n’importe quel champ contenant le mot « phénologie » dans son nom et
+          « fleur » ou « fruit » dans la valeur ; ainsi, le champ « Phénologie de floraison »
+          est un bon candidat à utiliser.
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois
           à <a href="%{url}">%{place}</a>
