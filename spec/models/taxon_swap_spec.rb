@@ -39,10 +39,10 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, UpdateAction, Taxon)
+    enable_elastic_indexing( Observation, UpdateAction, Taxon )
     prepare_swap
   end
-  after(:each) { disable_elastic_indexing(Observation, UpdateAction, Taxon) }
+  after(:each) { disable_elastic_indexing( Observation, UpdateAction, Taxon ) }
 
   it "should destroy updates" do
     Observation.make!(:taxon => @input_taxon)
@@ -213,9 +213,9 @@ end
 describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
-    enable_elastic_indexing(Observation, Taxon, UpdateAction, Place)
+    enable_elastic_indexing( Observation, Taxon, UpdateAction, Place )
   end
-  after(:each) { disable_elastic_indexing(Observation, Taxon, UpdateAction, Place) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon, UpdateAction, Place ) }
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -414,6 +414,20 @@ describe TaxonSwap, "commit_records" do
     expect( o.identifications.by( o.user ) ).to be_blank
     tc.commit_records
     expect( o.identifications.by( o.user ) ).to be_blank
+  end
+end
+
+describe "move_input_children_to_output" do
+  it "should queue jobs to commit records for sub-swaps" do
+    prepare_swap
+    @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
+    @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
+    child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
+    [@input_taxon, @output_taxon, child].each(&:reload)
+    @swap.commit
+    [@input_taxon, @output_taxon, child].each(&:reload)
+    @swap.move_input_children_to_output( @input_taxon )
+    expect( Delayed::Job.all.select{ |j| j.handler =~ /commit_records/m }.size ).to eq 2
   end
 end
 

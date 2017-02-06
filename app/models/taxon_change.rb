@@ -125,37 +125,47 @@ class TaxonChange < ActiveRecord::Base
       return
     end
     return if input_taxa.blank?
-    Rails.logger.info "[INFO #{Time.now}] starting commit_records for #{self}"
+    Rails.logger.info "[INFO #{Time.now}] #{self}: starting commit_records"
     notified_user_ids = []
-    associations_to_update = %w(observations listed_taxa taxon_links identifications)
+    associations_to_update = %w(identifications observations listed_taxa taxon_links)
     has_many_reflections = associations_to_update.map do |a| 
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
-      reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id)).find_each do |record|
-        record_has_user = record.respond_to?(:user) && record.user
-        if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-          action_attrs = {
-            resource: self,
-            notifier: self,
-            notification: "committed"
-          }
-          action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-          action.bulk_insert_subscribers( [record.user.id] )
-          UpdateAction.elastic_index!(ids: [action.id])
-          notified_user_ids << record.user.id
+      Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
+      scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id) )
+      scope.find_in_batches do |batch|
+        auto_updatable_records = []
+        batch.each do |record|
+          record_has_user = record.respond_to?(:user) && record.user
+          if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
+            action_attrs = {
+              resource: self,
+              notifier: self,
+              notification: "committed"
+            }
+            action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+            action.bulk_insert_subscribers( [record.user.id] )
+            UpdateAction.elastic_index!(ids: [action.id])
+            notified_user_ids << record.user.id
+          end
+          if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
+            # update_records_of_class(record.class, output_taxon, :records => [record])
+            auto_updatable_records << record
+          end
         end
-        if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
-          update_records_of_class(record.class, output_taxon, :records => [record])
+        unless auto_updatable_records.blank?
+          update_records_of_class( reflection.klass, output_taxon, records: auto_updatable_records )
         end
       end
     end
     [input_taxa, output_taxa].flatten.compact.each do |taxon|
+      Rails.logger.info "[INFO #{Time.now}] #{self}: updating counts for #{taxon}"
       Taxon.where(id: taxon.id).update_all(
         observations_count: Observation.of(taxon).count,
         listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
     end
-    Rails.logger.info "[INFO #{Time.now}] finished commit_records for #{self}"
+    Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
   end
 
   # Change all records associated with input taxa to use the selected taxon
@@ -283,8 +293,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def index_taxon
-    t = taxon || Taxon.find_by_id( taxon_id )
-    t.delay( priority: USER_INTEGRITY_PRIORITY ).elastic_index! if t
+    Taxon.elastic_index!( ids: [input_taxa, output_taxa].flatten.compact.map(&:id) )    
     true
   end
 

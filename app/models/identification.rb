@@ -13,20 +13,20 @@ class Identification < ActiveRecord::Base
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
-  # validate :uniqueness_of_current, :on => :update
   
   before_save :update_other_identifications
-  after_create  :update_observation,
-                :create_observation_review
-  
+  after_create :update_observation,
+               :create_observation_review,
+               :update_obs_stats, 
+               :update_curator_identification,
+               :update_quality_metrics
+  after_update :update_obs_stats, 
+               :update_curator_identification,
+               :update_quality_metrics
   after_commit :update_categories,
-               :update_observation,
-               :update_user_counter_cache,
+                 :update_observation,
+                 :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
-
-  after_save    :update_obs_stats, 
-                :update_curator_identification,
-                :update_quality_metrics
   
   # Rails 3.x runs after_commit callbacks in reverse order from after_destroy.
   # Yes, really. set_last_identification_as_current needs to run after_commit
@@ -57,13 +57,13 @@ class Identification < ActiveRecord::Base
       self.category == category
     end
   end
+
   CATEGORIES = [
     IMPROVING,
     SUPPORTING,
     LEADING,
     MAVERICK
   ]
-
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| 
@@ -122,12 +122,18 @@ class Identification < ActiveRecord::Base
 
   def update_other_identifications
     return true unless ( current_changed? || new_record? ) && current?
-    if id
-      Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id).
-        each {|ident| ident.update_attributes( current: false ) }
+    scope = if id
+      Identification.where("observation_id = ? AND user_id = ? AND id != ?", observation_id, user_id, id)
     else
-      Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id).
-        each {|ident| ident.update_attributes( current: false ) }
+      Identification.where("observation_id = ? AND user_id = ?", observation_id, user_id)
+    end
+    scope.update_all( current: false )
+    begin
+      Identification.elastic_index!( scope: scope )
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+      # Saves us having to load this index in a million places for tests, but
+      # might cause some testing problems if we're testing indexing...
+      raise e unless Rails.env.test?
     end
     true
   end
@@ -161,7 +167,7 @@ class Identification < ActiveRecord::Base
   def update_observation_after_destroy
     return true unless self.observation
     # return true unless self.observation.user_id == self.user_id
-    return true if @skip_observation
+    return true if skip_observation
 
     if last_current = observation.identifications.current.by(user_id).order("id ASC").last
       last_current.update_observation
@@ -194,7 +200,7 @@ class Identification < ActiveRecord::Base
   #
   def update_obs_stats
     return true unless observation
-    return true if @skip_observation
+    return true if skip_observation
     observation.update_stats(:include => self)
     true
   end
@@ -416,18 +422,41 @@ class Identification < ActiveRecord::Base
     obs.elastic_index!
   end
 
-  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+  def self.update_for_taxon_change( taxon_change, taxon, options = {} )
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
-    scope = Identification.current.where("identifications.taxon_id IN (?)", input_taxon_ids)
-    scope = scope.where(:user_id => options[:user]) if options[:user]
-    scope = scope.where("identifications.id IN (?)", options[:records]) unless options[:records].blank?
-    scope = scope.where(options[:conditions]) if options[:conditions]
-    scope = scope.includes(options[:include]) if options[:include]
-    scope = scope.where("identifications.created_at < ?", Time.now)
+    scope = Identification.current.where( "identifications.taxon_id IN (?)", input_taxon_ids )
+    scope = scope.where( user_id: options[:user] ) if options[:user]
+    scope = scope.where( "identifications.id IN (?)", options[:records] ) unless options[:records].blank?
+    scope = scope.where( options[:conditions] ) if options[:conditions]
+    scope = scope.includes( options[:include] ) if options[:include]
+    scope = scope.includes( :observation, :user ) # these are involved in validations, so it helps to load them
+    scope = scope.where( "identifications.created_at < ?", Time.now )
+    observation_ids = []
     scope.find_each do |ident|
-      new_ident = Identification.create(:observation => ident.observation, :taxon => taxon, 
-        :user => ident.user, :taxon_change => taxon_change)
-      yield(new_ident) if block_given?
+      new_ident = Identification.new(
+        observation_id: ident.observation_id,
+        taxon: taxon, 
+        user_id: ident.user_id,
+        taxon_change: taxon_change
+      )
+      new_ident.skip_observation = true
+      new_ident.save
+      observation_ids << ident.observation_id
+      yield( new_ident ) if block_given?
+    end
+    observation_ids.in_groups_of( 1000 ) do |obs_ids|
+      Observation.where( "id IN (?)", obs_ids.compact ).includes( identifications: :taxon ).each do |obs|
+        ProjectUser.delay(
+          priority: INTEGRITY_PRIORITY,
+          unique_hash: {
+            "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [ obs.id, obs.user_id ]
+          }
+        ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
+        obs.set_community_taxon( force: true )
+        obs.skip_indexing
+        obs.save
+      end
+      Observation.elastic_index!( ids: obs_ids )
     end
   end
   

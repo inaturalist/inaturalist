@@ -2,6 +2,9 @@ require "spec_helper"
 
 describe Identification, "creation" do
 
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
+
   before(:all) { User.destroy_all }
   before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
@@ -36,7 +39,7 @@ describe Identification, "creation" do
     expect( old_ident ).not_to be_current
   end
 
-  it "should make older identifications in elasticsearch" do
+  it "should make older identifications not current in elasticsearch" do
     old_ident = Identification.make!
     without_delay do
       Identification.make!( observation: old_ident.observation, user: old_ident.user )
@@ -449,13 +452,13 @@ describe Identification, "deletion" do
   end
   
   it "should decrement the observations num_identification_disagreements if this was a disagreement" do
-    ident = Identification.make!(:observation => @observation)
+    ident = Identification.make!( observation: @observation )
     @observation.reload
-    expect(@observation.num_identification_disagreements).to be >= 1
+    expect( @observation.num_identification_disagreements ).to be >= 1
     num_identification_disagreements = @observation.num_identification_disagreements
     ident.destroy
     @observation.reload
-    expect(@observation.num_identification_disagreements).to eq num_identification_disagreements - 1
+    expect( @observation.num_identification_disagreements ).to eq num_identification_disagreements - 1
   end
   
   it "should decremement the counter cache in users for an ident on someone else's observation" do
