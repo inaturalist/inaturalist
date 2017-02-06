@@ -271,7 +271,7 @@ class TaxonChangesController < ApplicationController
     @output_taxa = swap_output_taxa.limit( limit ).to_a
     @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
     @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
-    @output_taxa.sort_by!(&:name)
+    @output_taxa.uniq!.sort_by!(&:name)
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end

@@ -6,9 +6,16 @@
           $( this ).text( json.msg ).addClass( "success status" )
         })
         .bind( "ajax:error", function( event, request, settings ) {
-          var json = $.parseJSON( request.responseText )
-          if ( json ) { alert( json.error ) }
-          else { alert( "Something went wrong" ) }
+          try {
+            var json = $.parseJSON( request.responseText )
+            if ( json ) {
+              alert( json.error );
+              return;
+            }
+          } catch ( e ) {
+            console.log( "Failed to graft: ", e );
+          }
+          alert( "Failed to graft, try editing the taxon and choosing a parent manually." );
         } );
       $( ".taxon-table" ).dataTable( {
         bPaginate: false,
