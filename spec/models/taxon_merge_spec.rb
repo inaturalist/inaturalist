@@ -11,6 +11,17 @@ def setup_taxon_merge
   @merge.add_input_taxon( @input_taxon3 )
   @merge.add_output_taxon( @output_taxon )
   @merge.save!
+  @merge.reload
+end
+
+describe "create" do
+  it "should not allow a single input taxon" do
+    setup_taxon_merge
+    tc = TaxonMerge.make
+    tc.add_input_taxon( Taxon.make! )
+    tc.add_output_taxon( Taxon.make! )
+    expect( tc ).not_to be_valid
+  end
 end
 
 describe TaxonMerge, "commit" do

@@ -11,6 +11,13 @@ describe TaxonSplit, "validation" do
     tc.save
     expect(tc).not_to be_valid
   end
+
+  it "should now allow a split with only one output" do
+    tc = TaxonSplit.make
+    tc.add_input_taxon( Taxon.make! )
+    tc.add_output_taxon( Taxon.make! )
+    expect( tc ).not_to be_valid
+  end
 end
 
 describe TaxonSplit, "commit" do
