@@ -293,7 +293,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def index_taxon
-    Taxon.elastic_index!( ids: [input_taxa, output_taxa].flatten.compact.map(&:id) )    
+    Taxon.elastic_index!( ids: [input_taxa.map(&:id), output_taxa.map(&:id)].flatten.compact )
     true
   end
 
