@@ -112,6 +112,7 @@ ca:
   able_to_connect_flickr: Molt bé! L'hem pogut vincular al compte de Flickr.
   about: Sobre
   about_bioblitz_results: Sobre els resultats del bioblitz
+  about_charts: Sobre els gràfics
   about_community_taxa: Sobre la comunitat de tàxons
   about_conservation_status: Sobre l'estat de conservació
   about_establishment_means: Sobre les formes d'establiment
@@ -924,6 +925,7 @@ ca:
   create_a_new_taxon: Crea un nou tàxon
   create_a_query: Crea una consulta
   create_an_account: Crea un compte
+  create_an_atlas: Crear un Atlas
   create_new_taxon: Crea un nou tàxon
   create_observations: Crea observacions
   create_observations_by_uploading_photos_to: |-
@@ -964,6 +966,7 @@ ca:
   custom_project_was_successfully_created: El projecte de l'usuari s'ha creat satisfactòriament.
   custom_project_was_successfully_updated: El projecte de l'usuari s'ha actualitzat
     correctament.
+  customize_location: Personalitzar la ubicació
   darr_apply_darr: ↓ Aplica ↓
   dashboard: Tauler
   data_deficient: dades insuficients
@@ -1111,6 +1114,7 @@ ca:
   edit_a_batch_of_observations: Modifica un grup d'observacions
   edit_account_settings_and_profile: Modifica el compte i el perfil
   edit_assessment: Edita valoració
+  edit_atlas: Edita Atlas
   edit_body: Edita el cos
   edit_colors: Modifica els colors
   edit_comment: Modifica el vostre comentari
@@ -1286,7 +1290,7 @@ ca:
   file_should_be_in_the_following_format: 'L''arxiu hauria de tenir el següent format:
     nom de l''espècie o grup, descripció'
   fill_out_project_observation_fields: Ompliu els camps d'observació del projecte
-  fill_out_your_profile: completeu el perfil
+  fill_out_your_profile: ompliu el perfil
   filling_out_checklist_for_place: ompliu les llistes de verificació dels llocs que
     coneixeu bé
   filling_out_your_profile: completeu el perfil
@@ -1541,9 +1545,9 @@ ca:
     a l’URL
   if_you_already_have_an_account: Si ja teniu %{article} compte a %{site_name}...
   if_you_dont_want_us_to_share_your_data: Si no voleu compartir aquesta informació
-  if_you_have_any_trouble_with_the_site_check_out: Si tinguéssiu algun problema amb
-    el lloc, si us plau, reviseu la nostra <a href="%{help_url}">secció d'ajuda</a>
-    o escriviu un missatge al nostre <a href="%{feedback_url}">grup de participació</a>.
+  if_you_have_any_trouble_with_the_site_check_out: Si teniu algun problema amb el
+    lloc, si us plau, reviseu la nostra <a href="%{help_url}">secció d'ajuda</a> o
+    escriviu un missatge al nostre <a href="%{feedback_url}">grup de participació</a>.
   if_you_have_trouble_with_the_site: Si teniu cap problema amb el lloc, reviseu la
     nostra secció d'ajuda
   if_you_use: Si feu servir
@@ -1870,6 +1874,7 @@ ca:
     de la data.
   locales_: Locals
   locales:
+    bg: Búlgar
     br: Bretó
     ca: Català
     en: Anglès
@@ -1929,6 +1934,7 @@ ca:
   lowest_rank: Tàxon inferior
   made_a: creà una
   make_admin: Fer administrador
+  make_an_observation: fer una observació
   mail_disclaimer: '%{site_name} no permetrà que els usuaris us enviïn més invitacions
     a través del nostre sistema. Us demanem que denuncieu l''abús d''invitacions a
     %{site}.'
@@ -2046,6 +2052,8 @@ ca:
   most_agree: La majoria està d’acord
   most_disagree: La majoria no està d’acord
   most_observations: La majoria de les observacions
+  most_recent_observation_by_date_observed: Observació més recents verificable per
+    data
   most_species: La majoria de les espècies
   most_observed_species: La majoria d'espècies observades
   multiple: múltiples
@@ -2319,9 +2327,9 @@ ca:
   observations_by: Observacions fetes per
   observations_by_everyone: Observacions de tots els usuaris
   observations_by_user: Observacions de %{user}
-  observations_circle_have_their_radii_scaled: El radi dels cercles d'observació està
-    condicionat per l'exactitud de la posició. Les dades d'observacions amb una posició
-    inexacta es mostren amb la mida mínima.
+  observations_circle_have_their_radii_scaled: El radi dels cercles d'observació depèn
+    de l'exactitud de la posició. Les dades d'observacions amb una posició inexacta
+    es mostren amb una mida mínima.
   observations_confirmed: Observacions (confirmades)
   observations_deleted: Les observacions s'han eliminat.
   observations_fields_are: Els camps són informació extra associada a una observació,
@@ -2583,6 +2591,8 @@ ca:
   photo_s: Foto(s)
   photo_type: Tipus de foto
   photo_urls_repaired: L’URL de la foto s'ha reparat.
+  photos_chosen_for_this_taxon: Fotos escollides per a aquest tàxon
+  photos_from: Fotos de
   photos_of: Fotos de
   photos_of_taxon_html: Fotos de %{taxon}
   photos_or_sounds?: Fotos o sons?
@@ -3097,6 +3107,9 @@ ca:
   search: Cerca
   search_all_fields: cerca tots els camps
   search_by_name_or_email: Cerca per nom o correu electrònic
+  search_by_taxon_name_or_observation_id: Cerca pel nom del tàxom o ID de l'observació
+  search_by_taxon_name_or_flickr_photo_id: Cerca pel nom del tàxon o ID de la foto
+    Flickr
   search_catalogue_of_life: 'Cerca al <a href="http: //www.catalogueoflife.org"> Catàleg
     de la Vida</a>'
   search_catalogue_of_life_raquo: Cerca al Catàleg de la Vida »
@@ -4059,7 +4072,8 @@ ca:
   withdrawing: Retirant...
   with_errors: Amb errors
   within_inaturalist: Dins %{site_name}
-  wondering_what_to_do_next: No sabeu què fer ara? Per què no
+  wondering_what_to_do_next: Aquí teniu alguns següents passos que podeu donar per
+    seguir observant i identificant el món natural
   would_you_like_to: Us agradaria
   would_like_some_help_identifying_this: voleu obtenir ajuda per identificar això
   x_admin: administra %{login}
@@ -5049,6 +5063,18 @@ ca:
           cerca no ha estat possible trobar res de res!
     taxa:
       show:
+        about_names_desc: |-
+          <p>
+           La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
+           Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
+           però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre l la història evolutiva de les relacions dels diferents organismes, reduint de nou la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
+          </p>
+          <p>
+           El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."
+          </p>
+          <p>
+           Intentem respondre a aquestes mancances mostrant tant el nom comú com el científic, sempre que sigui possible, i elegint els noms comuns basant-nos en l'idioma i localització geogràfica de les preferències de l'usuari.
+          </p>
         about_conservation_status_desc: L'estat de conservació resumeix el risc d'extinció
           per a un grup d'organismes.
         trending_desc: Tàxons més observats el darrer mes
@@ -5069,6 +5095,8 @@ ca:
           Insect life stage=nymph: Nimfa
           Insect life stage=pupa: Pupa
           Insect life stage=adult: Adult
+        photo_chooser_modal_desc: Arrossegueu les fotografies aquí des de l'esquerra,
+          o arrossegueu les fotografies aquí per tornar a organitzar.
     taxon_names:
       form:
         new_name_guidelines_html: |-
