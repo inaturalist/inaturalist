@@ -241,3 +241,11 @@ input[type="color"]:focus,
   flex: 2;
   min-width: 100px; // apparently required for IE
 }
+.taxon_change ul.change_taxon{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.taxon_change td {
+  vertical-align: top;
+}

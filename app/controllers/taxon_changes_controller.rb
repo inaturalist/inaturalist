@@ -258,7 +258,9 @@ class TaxonChangesController < ApplicationController
     @input_taxa = swap_input_taxa.limit( limit ).to_a
     @input_taxa += merge_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
     @input_taxa += split_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
-    @input_taxa.sort_by!(&:name) unless @input_taxa.blank?
+    unless @input_taxa.blank?
+      @input_taxa = @input_taxa.uniq.sort_by(&:name)
+    end
     swap_output_taxa = Taxon.joins( :taxon_changes ).
       where( "taxon_changes.change_group = ?", @group ).
       where( "taxon_changes.type = ?", "TaxonSwap" )
@@ -271,7 +273,9 @@ class TaxonChangesController < ApplicationController
     @output_taxa = swap_output_taxa.limit( limit ).to_a
     @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
     @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
-    @output_taxa.uniq!.sort_by!(&:name) unless @output_taxa.blank?
+    unless @output_taxa.blank?
+      @output_taxa = @output_taxa.uniq.sort_by(&:name)
+    end
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
