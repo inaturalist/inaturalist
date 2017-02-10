@@ -1,8 +1,6 @@
 require 'rubygems'
 require 'trollop'
 
-headers = %w(photo_id set species_id taxon_id user_id url)
-
 OPTS = Trollop::options do
     banner <<-EOS
 
@@ -170,7 +168,7 @@ species_ids = Set.new
 # slower, probably b/c of the join. This still seems like the slowest part,
 # though.
 CSV.open( photos_path, "wb" ) do |csv|
-  csv << headers
+  csv << %w(photo_id set species_id taxon_id observation_id user_id url)
   observation_photo_ids.each do |set, ids|
     ids.sort.in_groups_of( 500 ) do |group|
       log "Exporting #{set} observation photos starting with #{group[0]}..."
@@ -189,6 +187,7 @@ CSV.open( photos_path, "wb" ) do |csv|
           set,
           species_id,
           op.observation.taxon_id,
+          op.observation_id,
           op.observation.user_id,
           op.photo.best_url( "medium" )
         ]
@@ -242,6 +241,12 @@ Data about photos, including
     Unique identifier for the taxon in the photo. This will
     be different for two different photos of two different subspecies nested
     within the same species.
+  observation_id
+    Unique identifier for the observation associated with this photo. An
+    observation represents an event in which a person witnessed evidence for the
+    presence of an organism, and can have many photos. Rarely, the same photo
+    will be used in multiple observations if the photo depicts multiple
+    organisms.
   user_id
     Unique identifier of the user who uploaded the photo.
   url
