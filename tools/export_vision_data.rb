@@ -180,8 +180,9 @@ CSV.open( photos_path, "wb" ) do |csv|
         species_id = if op.observation.taxon.species?
           op.observation.taxon_id
         else
-          op.observation.taxon.parent_id
+          op.observation.taxon.species.try(:id)
         end
+        next unless species_id
         species_ids << species_id unless set.to_s == "augmented_test"
         csv << [
           op.photo_id,
