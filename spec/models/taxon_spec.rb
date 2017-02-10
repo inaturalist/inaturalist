@@ -1080,3 +1080,21 @@ describe Taxon, "get_gbif_id" do
     expect( t.taxon_scheme_taxa ).to be_blank
   end
 end
+
+describe "rank helpers" do
+  describe "find_species" do
+    it "should return self of the taxon is a species" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      expect( t.species ).to eq t
+    end
+    it "should return the parent if the taxon is a subspecies" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, parent: species )
+      expect( subspecies.species ).to eq species
+    end
+    it "should return nil if the taxon is a hybrid" do
+      hybrid = Taxon.make!( name: "Viola × palmata", rank: Taxon::HYBRID )
+      expect( hybrid.species ).to be_nil
+    end
+  end
+end

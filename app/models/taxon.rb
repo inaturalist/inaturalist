@@ -129,7 +129,7 @@ class Taxon < ActiveRecord::Base
     const_set rank.upcase, rank
     const_set "#{rank.upcase}_LEVEL", level
     define_method "find_#{rank}" do
-      return self if rank_level == level
+      return self if self.rank == rank
       return nil if rank_level.to_i > level.to_i
       @cached_ancestors ||= ancestor_taxa.loaded? ? ancestor_taxa :
         ancestors.select("id, name, rank, ancestry,
@@ -1442,6 +1442,10 @@ class Taxon < ActiveRecord::Base
     return true if id == ancestor_id
     return false if ancestry.blank?
     !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
+  end
+
+  def atlased?
+    atlas && atlas.is_active?
   end
 
   # Static ##################################################################
