@@ -329,12 +329,12 @@ GEM
     doorkeeper (2.1.0)
       railties (>= 3.1)
     dynamic_form (1.1.4)
-    elasticsearch (5.0.3)
-      elasticsearch-api (= 5.0.3)
-      elasticsearch-transport (= 5.0.3)
-    elasticsearch-api (5.0.3)
+    elasticsearch (1.0.8)
+      elasticsearch-api (= 1.0.7)
+      elasticsearch-transport (= 1.0.7)
+    elasticsearch-api (1.0.7)
       multi_json
-    elasticsearch-transport (5.0.3)
+    elasticsearch-transport (1.0.7)
       faraday
       multi_json
     equalizer (0.0.9)
@@ -739,8 +739,6 @@ DEPENDENCIES
   diffy
   doorkeeper
   dynamic_form
-  elasticsearch (~> 5.0)
-  elasticsearch-api (~> 5.0)
   elasticsearch-model!
   elasticsearch-rails!
   exifr

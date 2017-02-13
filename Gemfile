@@ -105,8 +105,6 @@ gem 'statsd-ruby', :require => 'statsd'
 # these need to be loaded after will_paginate
 gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch', '~> 5.0'
-gem 'elasticsearch-api', '~> 5.0'
 
 gem 'rgeo'
 gem 'rgeo-geojson'
