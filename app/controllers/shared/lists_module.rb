@@ -404,7 +404,7 @@ private
   def set_search_taxon_ids(q)
     return [] if q.blank?
     @search_taxon_ids = Taxon.elastic_search(
-      where: { "names.name": @q }, fields: :id).per_page(1000).map(&:id)
+      filters: [ { match: { "names.name": @q } } ]).per_page(1000).map(&:id)
   end
 
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)

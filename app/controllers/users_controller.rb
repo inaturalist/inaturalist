@@ -406,23 +406,22 @@ class UsersController < ApplicationController
 
   def dashboard_updates
     filters = [ ]
-    wheres = { }
     if params[:from]
       filters << { range: { id: { lt: params[:from] } } }
     end
     unless params[:notifier_type].blank?
-      wheres[:notifier_type] = params[:notifier_type]
+      filters << { term: { notifier_type: params[:notifier_type] } }
     end
     if params[:filter] == "you"
-      wheres[:resource_owner_id] = current_user.id
+      filters << { term: { resource_owner_id: current_user.id } }
       @you = true
     end
     if params[:filter] == "following"
-      wheres[:notification] = %w(created_observations new_observations)
+      filters << { terms: { notification: %w(created_observations new_observations) } }
     end
     
     @pagination_updates = current_user.recent_notifications(
-      filters: filters, wheres: wheres, per_page: 50)
+      filters: filters, per_page: 50)
     @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
     UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
     obs = UpdateAction.components_of_class(Observation, @updates)
@@ -476,7 +475,7 @@ class UsersController < ApplicationController
   
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
-      wheres: { notification: [ :activity, :mention ] }, per_page: 1).total_entries
+      filters: [ { terms: { notification: [ "activity", "mention" ] } } ], per_page: 1).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
@@ -484,22 +483,22 @@ class UsersController < ApplicationController
   def new_updates
     params[:notification] ||= "activity"
     params[:notification] = params[:notification].split(",")
-    wheres = { notification: params[:notification] }
+    filters = [ { terms: { notification: params[:notification] } } ]
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
-      wheres[:notifier_type] = notifier_types.map(&:downcase)
+      filters << { terms: { notifier_type: notifier_types.map(&:downcase) } }
     end
     unless params[:resource_type].blank?
-      wheres[:resource_type] = params[:resource_type].downcase
+      filters << { term: { resource_type: params[:resource_type].downcase } }
     end
-    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, wheres: wheres)
+    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, filters: filters)
     unless request.format.json?
       if @updates.count == 0
-        @updates = current_user.recent_notifications(viewed: true, per_page: 10, wheres: wheres)
+        @updates = current_user.recent_notifications(viewed: true, per_page: 10, filters: filters)
       end
       if @updates.count == 0
-        @updates = current_user.recent_notifications(per_page: 5, wheres: wheres)
+        @updates = current_user.recent_notifications(per_page: 5, filters: filters)
       end
     end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)

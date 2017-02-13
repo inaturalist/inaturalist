@@ -1746,7 +1746,7 @@ class Taxon < ActiveRecord::Base
     scope.find_each do |t|
       Taxon.where(id: t.id).update_all(observations_count:
         Observation.elastic_search(
-          where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
+          filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
     end
   end
 

@@ -7,7 +7,23 @@ class ControlledTerm < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
-      indexes :uuid, analyzer: "keyword_analyzer"
+      indexes :uuid, type: "keyword"
+      indexes :ontology_uri, type: "keyword", index: false
+      indexes :uri, type: "keyword", index: false
+      indexes :labels do
+        indexes :definition, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :label, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :locale, type: "keyword"
+      end
+      indexes :values do
+        indexes :labels do
+          indexes :definition, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :label, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :locale, type: "keyword"
+        end
+        indexes :ontology_uri, type: "keyword", index: false
+        indexes :uri, type: "keyword", index: false
+      end
     end
   end
 

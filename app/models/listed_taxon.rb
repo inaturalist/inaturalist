@@ -21,6 +21,10 @@ class ListedTaxon < ActiveRecord::Base
   
   # check list assocs
   belongs_to :place
+  belongs_to :simple_place,
+    -> { select(:id, :name, :display_name, :code, :bbox_area, :ancestry) },
+    foreign_key: :place_id,
+    class_name: "Place"
   belongs_to :taxon_range # if listed taxon was created b/c of a range intersection
   belongs_to :source # if added b/c of a published source
   
@@ -562,14 +566,13 @@ class ListedTaxon < ActiveRecord::Base
     return unless list
     # get the specific options for this list type
     options = list.cache_columns_options(self)
-    options[:search_params][:fields] = [ :id ]
     earliest_id = nil
     latest_id = nil
     month_counts = nil
     total = 0
     # run the query for the first entry, total count, and aggregations
     begin
-      rs = Observation.elastic_search(options[:search_params].merge(
+      rs = Observation.elastic_search(options.merge(
         size: 0,
         aggregate: {
           month: { terms: { field: "observed_on_details.month", size: 15 },
@@ -612,18 +615,19 @@ class ListedTaxon < ActiveRecord::Base
   def self.earliest_and_latest_ids(options)
     earliest_id = nil
     latest_id = nil
-    return [ nil, nil ] unless options[:search_params]
-    options[:search_params][:size] = 1
-    if options[:range_wheres]
-      options[:search_params][:where].merge!(options[:range_wheres])
+    return [ nil, nil ] unless options[:filters]
+    search_params = { filters: options[:filters].dup }
+    search_params[:size] = 1
+    if options[:range_filters]
+      search_params[:filters] += options[:range_filters]
     end
-    if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", ignore_unmapped: true } },
+    if r = Observation.elastic_search(search_params.merge(
+      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", unmapped_type: "long" } },
               { id: :asc } ] )).results.first
       earliest_id = r.id
     end
-    if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:latest_sort_field] || "observed_on") => { order: "desc", ignore_unmapped: true } },
+    if r = Observation.elastic_search(search_params.merge(
+      sort: [ { observed_on: { order: "desc", unmapped_type: "long" } },
               { id: :desc } ] )).results.first
       latest_id = r.id
     end

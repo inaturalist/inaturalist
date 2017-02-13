@@ -319,20 +319,22 @@ class ApplicationController < ActionController::Base
       @limit = 50 if @limit > 50
     end
     site_place = @site.place if @site
-    search_wheres = { match: { display_name: { query: @q, operator: "and" } } }
+    filters = [ { match: { display_name: { query: @q, operator: "and" } } } ]
+    inverse_filters = [ ]
     if site_place
-      search_wheres["ancestor_place_ids"] = site_place
+      filters << { term: { ancestor_place_ids: site_place.id } }
+    end
+    if params[:with_geom].yesish?
+      filters << { exists: { field: "geometry_geojson" } }
+    elsif params[:with_geom].noish?
+      inverse_filters << { exists: { field: "geometry_geojson" } }
     end
     search_params = {
-      where: search_wheres,
+      filters: filters,
+      inverse_filters: inverse_filters,
       per_page: @limit, 
       page: params[:page]
     }
-    if params[:with_geom].yesish?
-      search_params.merge!(filters: [ { exists: { field: "geometry_geojson" } } ])
-    elsif params[:with_geom].noish?
-      search_params.merge!(filters: [ { 'not': { exists: { field: "geometry_geojson" } } } ])
-    end
     @places = Place.elastic_paginate(search_params)
     Place.preload_associations(@places, :place_geometry_without_geom)
     if logged_in? && @places.blank? && !params[:q].blank?

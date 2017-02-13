@@ -654,7 +654,7 @@ class Project < ActiveRecord::Base
           ],
           size: 0,
           aggregate: {
-            top_observers: { terms: { field: "user.id", size: 0 } } }
+            top_observers: { terms: { field: "user.id", size: 1 } } }
         )
         if result && result.response && result.response.aggregations
           result.response.aggregations.top_observers.buckets.each do |b|

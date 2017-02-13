@@ -4,11 +4,15 @@ class ObservationField < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :name, analyzer: "ascii_snowball_analyzer"
-      indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
+      indexes :allowed_values, type: "keyword"
+      indexes :datatype, type: "keyword"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :name_autocomplete, type: "text",
+        analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
-      indexes :description, analyzer: "ascii_snowball_analyzer"
-      indexes :description_autocomplete, analyzer: "autocomplete_analyzer",
+      indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :description_autocomplete, type: "text",
+        analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
     end
   end

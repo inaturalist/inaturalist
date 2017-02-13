@@ -753,18 +753,18 @@ class User < ActiveRecord::Base
   end
 
   def recent_notifications(options={})
-    options[:filters] ||= [ ]
-    options[:wheres] ||= { }
+    options[:filters] = options[:filters] ? options[:filters].dup : [ ]
+    options[:inverse_filters] = options[:inverse_filters] ? options[:inverse_filters].dup : [ ]
     options[:per_page] ||= 10
     if options[:unviewed]
-      options[:filters] << { not: { term: { viewed_subscriber_ids: id } } }
+      options[:inverse_filters] << { term: { viewed_subscriber_ids: id } }
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
     options[:filters] << { term: { subscriber_ids: id } }
     UpdateAction.elastic_paginate(
-      where: options[:wheres],
       filters: options[:filters],
+      inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
       sort: { id: :desc })
   end
@@ -802,7 +802,7 @@ class User < ActiveRecord::Base
   def self.update_identifications_counter_cache(user_id)
     return unless user = User.find_by_id(user_id)
     result = Observation.elastic_search(
-      complex_wheres: [ { nested: {
+      filters: [ { nested: {
         path: "non_owner_ids",
         query: { bool: { must: [
           { term: { "non_owner_ids.user.id": user_id } }

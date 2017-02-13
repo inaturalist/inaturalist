@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :icon, type: "keyword", index: false
       indexes :login, analyzer: "ascii_snowball_analyzer"
       indexes :login_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"

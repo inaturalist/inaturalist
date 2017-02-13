@@ -14,8 +14,8 @@ describe ElasticModel do
   end
 
   describe "search_criteria" do
-    it "returns nil unless given a hash" do
-      expect( ElasticModel.search_criteria(:nonsense) ).to be nil
+    it "returns empty array by default" do
+      expect( ElasticModel.search_criteria(:nonsense) ).to eq [ ]
       expect( ElasticModel.search_criteria({ }) ).to eq [ ]
     end
 
@@ -54,9 +54,9 @@ describe ElasticModel do
   end
 
   describe "search_filters" do
-    it "returns nil unless given a hash with an array of filters" do
-      expect( ElasticModel.search_filters({ }) ).to be nil
-      expect( ElasticModel.search_filters({ filters: { } }) ).to be nil
+    it "returns empty array by default" do
+      expect( ElasticModel.search_filters({ }) ).to eq [ ]
+      expect( ElasticModel.search_filters({ filters: { } }) ).to eq [ ]
       expect( ElasticModel.search_filters({ filters: [ ] }) ).to eq [ ]
     end
 

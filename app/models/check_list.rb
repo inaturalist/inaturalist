@@ -132,13 +132,12 @@ class CheckList < List
   # For CheckLists, returns first_observation_id which represents the first one added to the site (e.g. not first date observed)
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
-    return nil unless lt
-    { search_params: {
-        where: {
-          "taxon.ancestor_ids": lt.taxon_id,
-          place_ids: lt.place } },
+    return nil unless lt && lt.taxon_id
+    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
+    filters << { term: { place_ids: lt.place.id } } if lt.place
+    { filters: filters,
       earliest_sort_field: "id",
-      range_wheres: { quality_grade: :research } }
+      range_filters: [ { term: { quality_grade: "research" } } ] }
   end
   
   # not sure why I originally added this.  Doesn't make sense for taxa on non-comprehensive list 

@@ -2921,9 +2921,9 @@ class ObservationsController < ApplicationController
     leftover_obs_user_ids = tax_user_ids - obs_user_ids
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     leftover_obs_user_elastic_params = elastic_params.marshal_copy
-    leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
+    leftover_obs_user_elastic_params[:filters] << { terms: { "user.id": leftover_obs_user_ids } }
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
-    leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
+    leftover_tax_user_elastic_params[:filters] << { terms: { "user.id": leftover_tax_user_ids } }
     @user_counts        += Observation.elastic_user_observation_counts(leftover_obs_user_elastic_params)[:counts].to_a
     @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params,
       count_users: leftover_tax_user_ids.length).to_a
@@ -2936,6 +2936,8 @@ class ObservationsController < ApplicationController
     elastic_params = Observation.params_to_elastic_query(
       search_params, current_user: current_user).
       select{ |k,v| [ :where, :filters ].include?(k) }
+    elastic_params[:filters] ||= [ ]
+    elastic_params
   end
 
   def search_cache_key(search_params)

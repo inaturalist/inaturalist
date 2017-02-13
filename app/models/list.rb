@@ -113,14 +113,10 @@ class List < ActiveRecord::Base
   #where date represents the first date observed (e.g. not first date added to iNat)
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
-    return nil unless lt
-    options = { search_params: {
-      where: { "taxon.ancestor_ids": lt.taxon_id } } }
-    if user_id
-      options[:search_params][:where]["user.id"] = user_id
-    end
-    options
-
+    return nil unless lt && lt.taxon_id
+    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
+    filters << { term: { "user.id": user_id } } if user_id
+    { filters: filters }
   end
   
   def attribution

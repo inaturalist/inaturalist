@@ -2,10 +2,12 @@ class Taxon < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   # used to cache place_ids when bulk indexing
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:colors, :taxon_descriptions,
+  scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
     :taxon_change_taxa, :taxon_schemes, :taxon_changes,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
@@ -13,18 +15,54 @@ class Taxon < ActiveRecord::Base
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :ancestry, type: "keyword"
+      indexes :min_species_ancestry, type: "keyword"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :rank, type: "keyword"
+      indexes :taxon_photos do
+        indexes :license_code, type: "keyword"
+        indexes :photo do
+          indexes :attribution, type: "keyword", index: false
+          indexes :license_code, type: "keyword"
+          indexes :large_url, type: "keyword", index: false
+          indexes :medium_url, type: "keyword", index: false
+          indexes :small_url, type: "keyword", index: false
+          indexes :square_url, type: "keyword", index: false
+          indexes :url, type: "keyword", index: false
+          indexes :native_page_url, type: "keyword", index: false
+          indexes :native_photo_id, type: "keyword", index: false
+          indexes :type, type: "keyword"
+        end
+      end
+      indexes :colors do
+        indexes :value, type: "keyword"
+      end
+      indexes :default_photo do
+        indexes :attribution, type: "keyword", index: false
+        indexes :license_code, type: "keyword"
+        indexes :medium_url, type: "keyword", index: false
+        indexes :square_url, type: "keyword", index: false
+        indexes :url, type: "keyword", index: false
+      end
+      indexes :listed_taxa do
+        indexes :establishment_means, type: "keyword"
+      end
       indexes :names do
-        indexes :name, analyzer: "ascii_snowball_analyzer"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :locale, type: "keyword"
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
         # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
-        indexes :name_ja, analyzer: "kuromoji"
-        indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
+        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :name_autocomplete, type: "text",
+          analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
-        indexes :name_autocomplete_ja, analyzer: "autocomplete_analyzer_ja"
-        indexes :exact, analyzer: "keyword_analyzer"
-        indexes :taxon_photos do
-          indexes :license_code, analyzer: "keyword_analyzer"
-        end
+        indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
+        indexes :exact, type: "keyword"
+      end
+      indexes :statuses do
+        indexes :authority, type: "keyword"
+        indexes :geoprivacy, type: "keyword"
+        indexes :status, type: "keyword"
       end
     end
   end
