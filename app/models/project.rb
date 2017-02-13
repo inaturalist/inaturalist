@@ -654,7 +654,7 @@ class Project < ActiveRecord::Base
           ],
           size: 0,
           aggregate: {
-            top_observers: { terms: { field: "user.id", size: 1 } } }
+            top_observers: { terms: { field: "user.id", size: 100000 } } }
         )
         if result && result.response && result.response.aggregations
           result.response.aggregations.top_observers.buckets.each do |b|
@@ -685,7 +685,7 @@ class Project < ActiveRecord::Base
           size: 0,
           aggregate: {
             user_taxa: {
-              terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
+              terms: { field: "user.id", size: 1, order: { distinct_taxa: "desc" } },
               aggs: {
                 distinct_taxa: {
                   cardinality: {

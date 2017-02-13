@@ -762,6 +762,12 @@ class User < ActiveRecord::Base
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
     options[:filters] << { term: { subscriber_ids: id } }
+    ops = {
+      filters: options[:filters],
+      inverse_filters: options[:inverse_filters],
+      per_page: options[:per_page],
+      sort: { id: :desc }
+    }
     UpdateAction.elastic_paginate(
       filters: options[:filters],
       inverse_filters: options[:inverse_filters],

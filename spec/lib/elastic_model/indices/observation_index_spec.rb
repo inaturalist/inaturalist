@@ -376,7 +376,7 @@ describe "Observation Index" do
     it "filters by not_in_project" do
       p = Project.make!
       expect( Observation.params_to_elastic_query({ not_in_project: p.id }) ).to include(
-        filters: [ { not: { term: { project_ids: p.id } } } ] )
+        inverse_filters: [ { term: { project_ids: p.id } } ] )
     end
 
     it "filters by lrank" do
@@ -566,41 +566,41 @@ describe "Observation Index" do
 
     it "filters by conservation status" do
       expect( Observation.params_to_elastic_query({ cs: "testing" }) ).to include(
-        filters: [ { nested: { path: "taxon.statuses", query: { filtered: {
-          query: { bool: { must: [ { terms: { "taxon.statuses.status" => [ "testing" ]}}]}},
-          filter: [ { missing: { field: "taxon.statuses.place_id" }}]}}}}])
-      expect( Observation.params_to_elastic_query({ cs: "testing", place_id: 6 }) ).to include(
-        filters: [ { nested: { path: "taxon.statuses", query: { filtered: {
-          query: { bool: { must: [ { terms: {"taxon.statuses.status" => [ "testing" ]}}]}},
-          filter: { bool: { should: [
+        filters: [ { nested: { path: "taxon.statuses", query: { bool: {
+          must: [ { terms: { "taxon.statuses.status" => [ "testing" ] } } ],
+          must_not: [ { exists: { field: "taxon.statuses.place_id" }}]}}}}])
+      expect( Observation.params_to_elastic_query({ cs: "testing", place_id: 6 })[:filters] ).to include(
+        { nested: { path: "taxon.statuses", query: { bool: { must: [
+          { terms: {"taxon.statuses.status" => [ "testing" ] } },
+          { bool: { should: [
             { terms: { "taxon.statuses.place_id" => [ 6 ] } },
-            { missing: { field: "taxon.statuses.place_id" }}]}}}}}}])
+            { bool: { must_not: { exists: { field: "taxon.statuses.place_id" }}}}]}}]}}}})
     end
 
     it "filters by IUCN conservation status" do
       expect( Observation.params_to_elastic_query({ csi: "LC" }) ).to include(
-        filters: [ { nested: { path: "taxon.statuses", query: { filtered: {
-          query: { bool: { must: [ { terms: { "taxon.statuses.iucn" => [ 10 ]}}]}},
-          filter: [ { missing: { field: "taxon.statuses.place_id" }}]}}}}])
-      expect( Observation.params_to_elastic_query({ csi: "LC", place_id: 6 }) ).to include(
-        filters: [ { nested: { path: "taxon.statuses", query: { filtered: {
-          query: { bool: { must: [ { terms: {"taxon.statuses.iucn" => [ 10 ]}}]}},
-          filter: { bool: { should: [
+        filters: [ { nested: { path: "taxon.statuses", query: { bool: {
+          must: [ { terms: { "taxon.statuses.iucn" => [ 10 ] } } ],
+          must_not: [ { exists: { field: "taxon.statuses.place_id" }}]}}}}])
+      expect( Observation.params_to_elastic_query({ csi: "LC", place_id: 6 })[:filters] ).to include(
+        { nested: { path: "taxon.statuses", query: { bool: { must: [
+          { terms: {"taxon.statuses.iucn" => [ 10 ] } },
+          { bool: { should: [
             { terms: { "taxon.statuses.place_id" => [ 6 ] } },
-            { missing: { field: "taxon.statuses.place_id" }}]}}}}}}])
+            { bool: { must_not: { exists: { field: "taxon.statuses.place_id" }}}}]}}]}}}})
     end
 
     it "filters by conservation status authority" do
       expect( Observation.params_to_elastic_query({ csa: "IUCN" }) ).to include(
-        filters: [ { nested: { path: "taxon.statuses", query: { filtered: {
-          query: { bool: { must: [ { terms: { "taxon.statuses.authority" => [ "iucn" ]}}]}},
-          filter: [ { missing: { field: "taxon.statuses.place_id" }}]}}}}])
-      expect( Observation.params_to_elastic_query({ csa: "IUCN", place_id: 6 }) ).to include(
-        filters: [ { nested: { path: "taxon.statuses", query: { filtered: {
-          query: { bool: { must: [ { terms: {"taxon.statuses.authority" => [ "iucn" ]}}]}},
-          filter: { bool: { should: [
+        filters: [ { nested: { path: "taxon.statuses", query: { bool: {
+          must: [ { terms: { "taxon.statuses.authority" => [ "iucn" ] } } ],
+          must_not: [ { exists: { field: "taxon.statuses.place_id" }}]}}}}])
+      expect( Observation.params_to_elastic_query({ csa: "IUCN", place_id: 6 })[:filters] ).to include(
+        { nested: { path: "taxon.statuses", query: { bool: { must: [
+          { terms: {"taxon.statuses.authority" => [ "iucn" ] } },
+          { bool: { should: [
             { terms: { "taxon.statuses.place_id" => [ 6 ] } },
-            { missing: { field: "taxon.statuses.place_id" }}]}}}}}}])
+            { bool: { must_not: { exists: { field: "taxon.statuses.place_id" }}}}]}}]}}}})
     end
 
     it "filters by iconic_taxa" do
@@ -617,7 +617,7 @@ describe "Observation Index" do
       expect( Observation.params_to_elastic_query({ geoprivacy: "any" }) ).to include(
         filters: [ ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "open" }) ).to include(
-        filters: [ { not: { exists: { field: :geoprivacy } } } ])
+        inverse_filters: [ { exists: { field: :geoprivacy } } ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "obscured" }) ).to include(
         filters: [ { term: { geoprivacy: "obscured" } } ])
       expect( Observation.params_to_elastic_query({ geoprivacy: "obscured_private" }) ).to include(

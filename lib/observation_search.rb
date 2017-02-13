@@ -147,8 +147,8 @@ module ObservationSearch
     end
 
     def elastic_taxon_leaf_ids(elastic_params = {})
-      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 1,
-        aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: { species: { "taxon.id": 150000 } })).response.aggregations
       @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] }).
         select(:id, :ancestry)
       ancestors = { }
@@ -581,7 +581,7 @@ module ObservationSearch
     end
 
     def elastic_user_observation_counts(elastic_params, limit = 500)
-      user_counts = Observation.elastic_search(elastic_params.merge(size: 1, aggregate: {
+      user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
         distinct_users: { cardinality: { field: "user.id", precision_threshold: 10000 } },
         user_observations: { "user.id": limit }
       })).response.aggregations
@@ -604,8 +604,8 @@ module ObservationSearch
         return elastic_user_taxon_counts_batch(elastic_params, options)
       end
       # fetch a list of every user_id whose observations match the search
-      user_counts = Observation.elastic_search(elastic_params.merge(size: 1, aggregate: {
-        user_observations: { "user.id": 0 }
+      user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
+        user_observations: { "user.id": 100000 }
       })).response.aggregations
       user_ids = user_counts.user_observations.buckets.map{ |b| b["key"] }
       counts = [ ]
@@ -621,7 +621,7 @@ module ObservationSearch
 
     def elastic_user_taxon_counts_batch(elastic_params, options = {})
       options[:limit] ||= 500
-      species_counts = Observation.elastic_search(elastic_params.merge(size: 1, aggregate: {
+      species_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
         user_taxa: {
           terms: {
             field: "user.id", size: options[:limit], order: { "distinct_taxa": :desc } },
@@ -633,7 +633,7 @@ module ObservationSearch
     end
 
     def elastic_user_identification_counts(elastic_params, limit = 500)
-      id_result = Observation.elastic_search(elastic_params.merge(size: 1,
+      id_result = Observation.elastic_search(elastic_params.merge(size: 0,
         aggregate: {
           identifier_count: {
             cardinality: {

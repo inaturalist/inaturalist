@@ -705,13 +705,16 @@ class Observation < ActiveRecord::Base
       # no place condition specified, so apply a `place is NULL` condition
       inverse_filters << { exists: { field: "taxon.statuses.place_id" } }
     end
+    bool = { must: filters }
+    unless inverse_filters.blank?
+      bool[:must_not] = inverse_filters
+    end
     {
       nested: {
         path: "taxon.statuses",
-        query: { bool: {
-          must: filters,
-          must_not: inverse_filters
-        } }
+        query: {
+          bool: bool
+        }
       }
     }
   end

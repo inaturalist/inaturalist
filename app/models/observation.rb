@@ -1931,14 +1931,14 @@ class Observation < ActiveRecord::Base
     return unless taxon
     descendant_conditions = taxon.descendant_conditions.to_a
     result = Identification.elastic_search(
-      filters: [ { or: [
+      filters: [ { bool: { should: [
         { term: { "taxon.ancestor_ids": taxon.id } },
         { term: { "observation.taxon.ancestor_ids": taxon.id } },
-      ]}],
+      ]}}],
       size: 0,
       aggregate: {
         obs: {
-          terms: { field: "observation.id", size: 0 }
+          terms: { field: "observation.id", size: 3000000 }
         }
       }
     )

@@ -487,10 +487,10 @@ class UsersController < ApplicationController
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
-      filters << { terms: { notifier_type: notifier_types.map(&:downcase) } }
+      filters << { terms: { notifier_type: notifier_types.map(&:capitalize) } }
     end
     unless params[:resource_type].blank?
-      filters << { term: { resource_type: params[:resource_type].downcase } }
+      filters << { term: { resource_type: params[:resource_type].capitalize } }
     end
     @updates = current_user.recent_notifications(unviewed: true, per_page: 200, filters: filters)
     unless request.format.json?

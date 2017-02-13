@@ -86,10 +86,11 @@ describe ElasticModel do
     it "splits envelopes that cross the dateline" do
       expect( ElasticModel.envelope_filter(
         { envelope: { geojson: { nelat: 11, nelng: -150, swlat: 13, swlng: 50 }}})).to eq({
-          or: [{ geo_shape: { geojson: { shape: { type: "envelope",
-                  coordinates: [[50.0, 13.0], [180.0, 11.0]]}}}},
-               { geo_shape: { geojson: { shape: { type: "envelope",
-                  coordinates: [[-180.0, 13.0], [-150.0, 11.0]]}}}}]})
+          bool: { should: [
+            { geo_shape: { geojson: { shape: { type: "envelope",
+                coordinates: [[50.0, 13.0], [180.0, 11.0]]}}}},
+            { geo_shape: { geojson: { shape: { type: "envelope",
+                coordinates: [[-180.0, 13.0], [-150.0, 11.0]]}}}}]}})
     end
 
     it "defaults bounds to their extreme" do
@@ -106,11 +107,12 @@ describe ElasticModel do
       u = User.make!
       expect( ElasticModel.envelope_filter(
         { envelope: { geojson: { nelat: 88, user: u }}})).to eq({
-          or: [
+          bool: { should: [
             { geo_shape: { geojson: { shape: { type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}},
-            { and: [
+            { bool: { must: [
               { term: { "user.id": u.id } },
-              { geo_shape: { private_geojson: { shape: { type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}]})
+              { geo_shape: { private_geojson: { shape: {
+                type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}]}})
     end
   end
 
