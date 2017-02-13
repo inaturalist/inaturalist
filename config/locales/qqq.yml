@@ -2,12 +2,14 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Andreas Plank
+# Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
 # Author: Liuxinyu970226
 # Author: Macofe
+# Author: Pihlaviita
 # Author: Purodha
 # Author: Robby
 # Author: Siebrand
@@ -70,6 +72,8 @@ qqq:
     Number of research-grade observations identified to rank species or lower,
     with the count in a span of class 'count'
   x_taxa_matching_current_filters: Number of taxa matching current filters
+  a: can not be translated to Finnish as we don't have prepositions in our language
+  a_: can not be translated to Finnish as we don't have prepositions in our language
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
   about: '{{Identical|About}}'
@@ -123,6 +127,9 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: can not be translated to Finnish as we don't have prepositions in our language
+  an_: Prepositions like "an" can not be translated to Finnish as we don't have prepositions
+    in our language. How can we remove them from the list of not yet translated texts?
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -151,7 +158,10 @@ qqq:
   asc: Abbreviation of "Ascending".
   assessment_x: where assessment is the display name of an assessment
   associations: '{{Identical|Association}}'
-  at: '{{Identical|At}}'
+  at: |-
+    {{Identical|At}}
+
+    Note: can not be translated to Finnish as we don't have prepositions in our language
   at_time: |-
     where time is a time
     {{Identical|At}}
@@ -187,6 +197,8 @@ qqq:
   calendar: '{{Identical|Calendar}}'
   cancel: '{{Identical|Cancel}}'
   card: '{{Identical|Card}}'
+  catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
+    global index of species currently available.
   categories: '{{Identical|Category}}'
   cc_by_name: '{{Identical|Attribution}}'
   change_password: '{{Identical|Change password}}'
@@ -331,6 +343,8 @@ qqq:
   enlarge: '{{Identical|Enlarge}}'
   end: '{{Identical|End}}'
   endemic_to_x: where x is a place
+  eol: What is the context? EOL = end of lifecycle, or end of life, but also  Encyclopedia
+    of Life.
   error_updating_photo: where photo_errors are a description of the error
   establishment:
     native: '{{Identical|Native}}'
@@ -856,6 +870,11 @@ qqq:
     view_all_soundcount_sounds: number of sounds to view
   source: '{{Identical|Source}}'
   source_: '{{Identical|Source}}'
+  source_list:
+    catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
+      global index of species currently available.
+    catalogue_of_life_2012_annual_checklist: The Catalogue of Life is the most comprehensive
+      and authoritative global index of species currently available.
   sources: '{{Identical|Source}}'
   spam: '{{Identical|Spam}}'
   species: '{{Identical|Species}}'

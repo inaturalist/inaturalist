@@ -1589,6 +1589,10 @@ id:
   layers: Lapisan
   layout: Rancangan
   leaderboards: Papan
+  leaderboard_most:
+    species: Paling banyak spesies pada %{time}
+    observations: Pengamatan terbanyak pada %{time}
+    identifications: Identifikasi terbanyak pada %{time}
   learn!: Pelajari!
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup
   learn_more: Pelajari lebih lanjut
@@ -1599,6 +1603,10 @@ id:
   leave_this_project: Tinggalkan projek ini
   leaves: meninggalkan
   not_absent: tidak absen
+  legacy_authentication_notice_html: |-
+    Sepertinya Anda menggunakan password dari situs versi lama.
+    Harap diingat <a href="%{url}"> Ubah password Anda </a> untuk versi baru.
+  let_us_walk_you_through: Mari kita pandu Anda melalui fitur utama dari situs ini.
   lexicon: Leksikon
   lexicons:
     scientific_names: Nama Peneliti
@@ -1640,6 +1648,10 @@ id:
   less: Kurang
   license_descriptions_and_images: Deskripsi lisensi dan gambar
   licensing: lisensi
+  licensing_your_content_gives_others_legal: Melisensi konten Anda memberikan orang
+    lain hak hukum untuk menggunakannya jika mereka tetap dengan persyaratan lisensi.
+    %{Site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan
+    mitra Data seperti
   life: Kehidupan
   life!: Kehidupan!
   life_list_updated: Daftar kehidupan diperbaharui!
@@ -1656,7 +1668,15 @@ id:
   link_or_unlink_your_picasa_account: Tautkan atau non-tautkan akun Picasa anda
   link_your_facebook_account: Tautkan akun Facebook anda
   link_your_flickr_account: Tautkan akun Flickr anda
+  link_your_flickr_account_with_inat: Tautkan akun Flickr Anda dengan %{site_name}
+  link_your_flickr_account_with_inat_so: Tautkan akun Flickr Anda dengan %{site_name}
+    sehingga Anda dapat menambahkan foto dari pengamatan Anda.
   link_your_picasa_account: Tautkan akun Picasa anda
+  linked_facebook: Akun %{site_name} Anda saat ini terkait dengan akun Facebook Anda.
+  linked_facebook_automaticaly: Perlu diingat bahwa jika Anda masuk ke %{site_name}
+    melalui Facebook, kami akan secara otomatis kembali menghubungkan %{site_name}
+    Anda dengan akun Facebook. Tampaknya masuk akal jika Anda menggunakan Facebook
+    dan Anda ingin dapat mengimpor foto dari Facebook bukan?
   linked_facebook_password: Kami tidak akan pernah menanyakan kata sandi Facebook
     anda (tapi Facebook mungkin, periksa url yang dikirimkan tombol anda dan pastikan
     itu adalah Facebook.com). Kami juga tidak akan mengubah data Facebook anda kecuali
