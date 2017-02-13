@@ -7,10 +7,10 @@ class UpdateAction < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "long"
-      indexes :resource_type, type: "keyword"
-      indexes :notifier, type: "keyword"
-      indexes :notification, type: "keyword"
-      indexes :notifier_type, type: "keyword"
+      indexes :resource_type, index: "not_analyzed"
+      indexes :notifier, index: "not_analyzed"
+      indexes :notification, index: "not_analyzed"
+      indexes :notifier_type, index: "not_analyzed"
     end
   end
 

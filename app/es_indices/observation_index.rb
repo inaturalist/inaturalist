@@ -23,93 +23,93 @@ class Observation < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
-      indexes :uuid, type: "keyword"
+      indexes :uuid, index: "not_analyzed"
       indexes :taxon do
-        indexes :ancestry, type: "keyword"
-        indexes :min_species_ancestry, type: "keyword"
-        indexes :rank, type: "keyword"
-        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :ancestry, index: "not_analyzed"
+        indexes :min_species_ancestry, index: "not_analyzed"
+        indexes :rank, index: "not_analyzed"
+        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
         indexes :names do
-          indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-          indexes :locale, type: "keyword"
+          indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+          indexes :locale, index: "not_analyzed"
         end
         indexes :statuses, type: :nested do
-          indexes :authority, type: "keyword"
-          indexes :status, type: "keyword"
-          indexes :geoprivacy, type: "keyword"
+          indexes :authority, index: "not_analyzed"
+          indexes :status, index: "not_analyzed"
+          indexes :geoprivacy, index: "not_analyzed"
         end
       end
       indexes :photos do
-        indexes :license_code, type: "keyword"
+        indexes :license_code, index: "not_analyzed"
       end
       indexes :sounds do
-        indexes :license_code, type: "keyword"
+        indexes :license_code, index: "not_analyzed"
       end
       indexes :ofvs, type: :nested do
-        indexes :uuid, type: "keyword"
-        indexes :name, type: "keyword"
-        indexes :value, type: "keyword"
+        indexes :uuid, index: "not_analyzed"
+        indexes :name, index: "not_analyzed"
+        indexes :value, index: "not_analyzed"
       end
       indexes :annotations, type: :nested do
-        indexes :uuid, type: "keyword"
-        indexes :resource_type, type: "keyword"
-        indexes :concatenated_attr_val, type: "keyword"
+        indexes :uuid, index: "not_analyzed"
+        indexes :resource_type, index: "not_analyzed"
+        indexes :concatenated_attr_val, index: "not_analyzed"
       end
       indexes :non_owner_ids, type: :nested do
-        indexes :uuid, type: "keyword"
-        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
-        indexes :category, type: "keyword"
+        indexes :uuid, index: "not_analyzed"
+        indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :category, index: "not_analyzed"
         indexes :user do
-          indexes :login, type: "keyword"
+          indexes :login, index: "not_analyzed"
         end
       end
       indexes :field_change_times, type: :nested do
-        indexes :field_name, type: "keyword"
-        indexes :keyword, type: "keyword"
+        indexes :field_name, index: "not_analyzed"
+        indexes :keyword, index: "not_analyzed"
       end
       indexes :comments do
-        indexes :uuid, type: "keyword"
-        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :uuid, index: "not_analyzed"
+        indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
         indexes :user do
-          indexes :login, type: "keyword"
+          indexes :login, index: "not_analyzed"
         end
       end
       indexes :project_observations do
-        indexes :uuid, type: "keyword"
+        indexes :uuid, index: "not_analyzed"
       end
       indexes :observation_photos do
-        indexes :uuid, type: "keyword"
+        indexes :uuid, index: "not_analyzed"
       end
       indexes :user do
-        indexes :login, type: "keyword"
+        indexes :login, index: "not_analyzed"
       end
       indexes :photos do
-        indexes :attribution, type: "keyword", index: "false"
-        indexes :url, type: "keyword", index: "false"
-        indexes :license_code, type: "keyword"
+        indexes :attribution, index: "not_analyzed"
+        indexes :url, index: "not_analyzed"
+        indexes :license_code, index: "not_analyzed"
       end
       indexes :sounds do
-        indexes :attribution, type: "keyword", index: "false"
-        indexes :native_sound_id, type: "keyword"
-        indexes :license_code, type: "keyword"
+        indexes :attribution, index: "not_analyzed"
+        indexes :native_sound_id, index: "not_analyzed"
+        indexes :license_code, index: "not_analyzed"
       end
-      indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :species_guess, type: "keyword"
-      indexes :license_code, type: "keyword"
+      indexes :description, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :tags, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :place_guess, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :species_guess, index: "not_analyzed"
+      indexes :license_code, index: "not_analyzed"
       indexes :observed_on, type: "date", format: "dateOptionalTime"
       indexes :observed_on_string, type: "string"
       indexes :location, type: "geo_point"
       indexes :private_location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
       indexes :private_geojson, type: "geo_shape"
-      indexes :created_time_zone, type: "keyword", index: "false"
-      indexes :geoprivacy, type: "keyword"
-      indexes :observed_time_zone, type: "keyword", index: "false"
-      indexes :quality_grade, type: "keyword"
-      indexes :time_zone_offset, type: "keyword", index: "false"
-      indexes :uri, type: "keyword", index: "false"
+      indexes :created_time_zone, index: "not_analyzed"
+      indexes :geoprivacy, index: "not_analyzed"
+      indexes :observed_time_zone, index: "not_analyzed"
+      indexes :quality_grade, index: "not_analyzed"
+      indexes :time_zone_offset, index: "not_analyzed"
+      indexes :uri, index: "not_analyzed"
     end
   end
 

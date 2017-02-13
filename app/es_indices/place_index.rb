@@ -15,19 +15,19 @@ class Place < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
-      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
       indexes :place_type, type: "integer"
       indexes :geometry_geojson, type: "geo_shape"
       indexes :bounding_box_geojson, type: "geo_shape"
       indexes :location, type: "geo_point"
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
-      indexes :display_name, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :display_name_autocomplete, type: "text",
+      indexes :display_name, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :display_name_autocomplete, type: "string",
         analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
       indexes :user do
-        indexes :login, type: "keyword"
+        indexes :login, index: "not_analyzed"
       end
     end
   end

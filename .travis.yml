@@ -10,19 +10,7 @@ cache:
 rvm:
   - 2.3.1
 
-jdk:
-  - oraclejdk8
-
-env:
-  - CXX=g++-4.8
-
 addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
-      - oracle-java8-set-default
   postgresql: "9.3"
 
 before_install:
@@ -34,10 +22,9 @@ before_install:
   - psql -U postgres -c 'create extension "uuid-ossp"'
   - createdb -O postgres template_postgis
   - psql -U postgres template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
-  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.2.0.deb && sudo dpkg -i --force-confnew elasticsearch-5.2.0.deb
-  - export JAVA_HOME='/usr'
-  - sudo cat /usr/share/elasticsearch/bin/elasticsearch-plugin
-  - sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
+  - curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.2/elasticsearch-2.3.2.deb && sudo dpkg -i --force-confnew elasticsearch-2.3.2.deb
+  - sudo /usr/share/elasticsearch/bin/plugin install analysis-kuromoji
+  - sudo /usr/share/elasticsearch/bin/plugin install delete-by-query
   - sudo service elasticsearch start
   - gem install bundler
   - mkdir -p tmp/pids

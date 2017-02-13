@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
   scope :load_for_index, -> { includes(:place, :project_users) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :icon, type: "keyword", index: false
+      indexes :icon, index: "not_analyzed"
       indexes :title, analyzer: "ascii_snowball_analyzer"
       indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
