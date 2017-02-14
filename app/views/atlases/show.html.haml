@@ -22,7 +22,7 @@
         = "Atlas"
         = t :for
         = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon }
-      -if current_user.is_curator?
+      - if current_user.is_curator?
         .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
   .row.cf#top
     .col-sm-3.col-xs-12.pull-right
@@ -58,7 +58,6 @@
           exploded_places: @exploded_places_json,
           is_curator: @is_curator
         }
-        Rails.logger.debug( "map_attributes: #{map_attributes}")
         map_attributes["data"] = map_attributes["data"].merge( atlas_data )
       #map{ map_attributes }
   

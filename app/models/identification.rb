@@ -422,20 +422,22 @@ class Identification < ActiveRecord::Base
     obs.elastic_index!
   end
 
-  def self.update_for_taxon_change( taxon_change, taxon, options = {} )
+  def self.update_for_taxon_change( taxon_change, options = {} )
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Identification.current.where( "identifications.taxon_id IN (?)", input_taxon_ids )
     scope = scope.where( user_id: options[:user] ) if options[:user]
     scope = scope.where( "identifications.id IN (?)", options[:records] ) unless options[:records].blank?
     scope = scope.where( options[:conditions] ) if options[:conditions]
     scope = scope.includes( options[:include] ) if options[:include]
-    scope = scope.includes( :observation, :user ) # these are involved in validations, so it helps to load them
+    # these are involved in validations, so it helps to load them
+    scope = scope.includes( { observation: :observations_places }, :user )
     scope = scope.where( "identifications.created_at < ?", Time.now )
     observation_ids = []
     scope.find_each do |ident|
+      next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
-        taxon: taxon, 
+        taxon: output_taxon, 
         user_id: ident.user_id,
         taxon_change: taxon_change
       )

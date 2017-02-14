@@ -132,8 +132,8 @@ class TaxonChange < ActiveRecord::Base
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
-      Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
       scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id) )
+      Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{scope.count} records"
       scope.find_in_batches do |batch|
         auto_updatable_records = []
         batch.each do |record|
@@ -150,12 +150,11 @@ class TaxonChange < ActiveRecord::Base
             notified_user_ids << record.user.id
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
-            # update_records_of_class(record.class, output_taxon, :records => [record])
             auto_updatable_records << record
           end
         end
         unless auto_updatable_records.blank?
-          update_records_of_class( reflection.klass, output_taxon, records: auto_updatable_records )
+          update_records_of_class( reflection.klass, records: auto_updatable_records )
         end
       end
     end
@@ -169,9 +168,9 @@ class TaxonChange < ActiveRecord::Base
   end
 
   # Change all records associated with input taxa to use the selected taxon
-  def update_records_of_class(klass, taxon, options = {}, &block)
+  def update_records_of_class(klass, options = {}, &block)
     if klass.respond_to?(:update_for_taxon_change)
-      klass.update_for_taxon_change(self, taxon, options, &block)
+      klass.update_for_taxon_change(self, options, &block)
       return
     end
     records = if options[:records]
@@ -184,7 +183,9 @@ class TaxonChange < ActiveRecord::Base
       scope
     end
     proc = Proc.new do |record|
-      record.update_attributes(:taxon => taxon)
+      if taxon = output_taxon_for_record( record )
+        record.update_attributes( taxon: taxon )
+      end
       yield(record) if block_given?
     end
     if records.respond_to?(:find_each)
@@ -192,6 +193,10 @@ class TaxonChange < ActiveRecord::Base
     else
       records.each(&proc)
     end
+  end
+
+  def output_taxon_for_record( record )
+    output_taxa.first if output_taxa.size == 1
   end
 
   # This is an emergency tool, so for the love of Linnaeus please be careful
