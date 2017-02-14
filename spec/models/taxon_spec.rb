@@ -778,6 +778,7 @@ describe Taxon, "moving" do
     stamp = Time.now
     o = Observation.make!(:taxon => @Calypte)
     expect(Observation.of(@Calypte).count).to eq(1)
+    AncestryDenormalizer.denormalize
     @Calypte.update_attributes(:parent => @Hylidae)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}).not_to be_blank
@@ -787,6 +788,7 @@ describe Taxon, "moving" do
     Delayed::Job.delete_all
     stamp = Time.now
     expect(Observation.of(@Calypte).count).to eq(0)
+    AncestryDenormalizer.denormalize
     @Calypte.update_attributes(:parent => @Hylidae)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}).to be_blank
@@ -801,6 +803,7 @@ describe Taxon, "moving" do
     i1 = Identification.make!(:observation => o, :taxon => subfam)
     i2 = Identification.make!(:observation => o, :taxon => sp)
     expect(Identification.of(gen).exists?).to be true
+    AncestryDenormalizer.denormalize
     o.reload
     expect(o.taxon).to eq fam
     Delayed::Worker.new.work_off

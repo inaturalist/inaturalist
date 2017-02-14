@@ -383,12 +383,11 @@ class Taxon < ActiveRecord::Base
     return true if skip_after_move
     update_life_lists
     update_obs_iconic_taxa
-    conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, "#{ancestry}/#{id}", "#{ancestry}/#{id}/%"]
-    old_conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, ancestry_was, "#{ancestry_was}/#{id}/%"]
-    if (Observation.joins(:taxon).where(conditions).exists? || 
-        Observation.joins(:taxon).where(old_conditions).exists? || 
-        Identification.joins(:taxon).where(conditions).exists? || 
-        Identification.joins(:taxon).where(old_conditions).exists? )
+    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
+    if (
+      Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists? || 
+      Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    )
       Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
