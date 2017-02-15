@@ -95,4 +95,5 @@
         %p.description= t :no_taxonomic_changes_match_those_criteria
       - for taxon_change in @taxon_changes
         = render "show_change_taxon", show_change_taxon: taxon_change
-      = will_paginate @taxon_changes
+      - if @taxon_changes.total_pages > 1
+        = link_to t( :view_all_n, n: @taxon_changes.total_entries ), taxon_changes_path( change_group: @group ), class: "btn btn-primary"

@@ -389,6 +389,7 @@ class TaxaController < ApplicationController
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
           "into an existing taxon instead."
       end
+      Taxon.refresh_es_index
       redirect_to taxon_path(@taxon)
       return
     else
