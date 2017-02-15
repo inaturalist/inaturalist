@@ -226,7 +226,8 @@ unless OPTS.skip_augmented
       taxa t
         LEFT OUTER JOIN observations o ON o.taxon_id = t.id
     WHERE
-      t.rank_level <= 10
+      t.rank_level = 10
+      AND t.rank = 'species'
       AND o.quality_grade = 'research'
     GROUP BY
       t.id
