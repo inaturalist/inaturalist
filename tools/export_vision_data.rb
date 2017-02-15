@@ -33,7 +33,6 @@ end
 
 START = Time.now
 num_unique_users = OPTS.users
-conn = ActiveRecord::Base.connection
 minimum_validation_count = OPTS.min_validation
 TIMING = {}
 
@@ -68,6 +67,7 @@ def show_timing_stats
   end
 end
 
+# If species_ids passed in as a param just use those
 if OPTS.species_ids
   target_taxon_ids = OPTS.species_ids
 else
@@ -95,11 +95,10 @@ else
 end
 log "Collected #{target_taxon_ids.size} taxon IDs"
 
-target_species_ids = Set.new
 tmpdir_path = Dir.mktmpdir
 photos_path = File.join( tmpdir_path, "photos.csv" )
 totals = { test: 0, validation: 0, training: 0, augmented_test: 0 }
-species_ids = Set.new
+target_species_ids = Set.new
 taxon_batch_size = 20
 CSV.open( photos_path, "wb" ) do |csv|
   csv << %w(photo_id set species_id taxon_id observation_id user_id url)
@@ -138,7 +137,6 @@ CSV.open( photos_path, "wb" ) do |csv|
     rows_by_species.each do |species_id, rows|
       next unless rows.size > 5 * minimum_validation_count
       log "Target Species #{species_id}, #{rows.size} photos total"
-      target_species_ids << species_id
       # Randomly assign user_ids to sets
       test_remainder, training_remainder, validation_remainder = ( 0..2 ).to_a.shuffle
       # log "\ttest_remainder: #{test_remainder}, training_remainder: #{training_remainder}, validation_remainder: #{validation_remainder}"
@@ -161,8 +159,7 @@ CSV.open( photos_path, "wb" ) do |csv|
           photosets[:validation] << r
         end
       end      
-      # sample the sets so they're in the right ratios
-      log "\tPre-sampling:  #{photosets.map{|set, photos| "#{photos.size} #{set}"}.join( ", " )}"
+      # Determine sample sizes to maintain desired ratios
       max_count = [
         photosets[:test].size,
         photosets[:training].size
@@ -187,8 +184,10 @@ CSV.open( photos_path, "wb" ) do |csv|
         log "\tNot enough photos for #{set_without_enough_photos[0]}, skipping species #{species_id}"
         next
       end
-      species_ids << species_id
+      target_species_ids << species_id
+      log "\tPre-sampling:  #{photosets.map{|set, photos| "#{photos.size} #{set}"}.join( ", " )}"
       photosets.each do |set, photos|
+        # Sample the photos based on the sample sizes determined above. Validation is always the smaller size
         sample_size = set == :validation ? min_count : max_count
         sample = photos.sample( sample_size )
         if OPTS.debug
@@ -239,7 +238,11 @@ unless OPTS.skip_augmented
     run_sql( non_target_species_sql ).map{ |r| r["taxon_id"].to_i }.shuffle
   end
   log "Collected #{non_target_taxon_ids.size} taxon IDs"
-  # Iterate over non-target taxa and collect observation photo IDs until you have as many as the test group
+  # Iterate over non-target taxa and collect observation photo IDs until you
+  # have as many as the test group. This is not going to result in an evenly
+  # distributed set of photos b/c if you end up with some highly observed
+  # species early on they will dominate the augmented_test set, but shuffling
+  # the taxon IDs should alleviate that a bit
   CSV.open( photos_path, "ab" ) do |csv|
     non_target_taxon_ids.in_groups_of( 500 ) do |group|
       show_timing_stats if OPTS.debug
@@ -297,7 +300,7 @@ species_path = File.join( tmpdir_path, "target_species.csv" )
 CSV.open( species_path, "wb" ) do |csv|
   csv << %w(species_id name)
 end
-species_ids.to_a.in_groups_of( 500 ) do |group|
+target_species_ids.to_a.in_groups_of( 500 ) do |group|
   group.compact!
   sql = "COPY (SELECT id AS species_id, name FROM taxa WHERE id IN (#{group.join( "," )})) TO STDOUT WITH CSV"
   dbconf = Rails.configuration.database_configuration[Rails.env]
@@ -371,7 +374,7 @@ Photos:
 #{totals.map { |set, total| "#{total} #{set}" }.join( "\n" )}
 
 Target Species:
-#{species_ids.size}
+#{target_species_ids.size}
 
 Generated #{Time.now}
   EOT
