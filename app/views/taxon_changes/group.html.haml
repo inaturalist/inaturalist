@@ -23,7 +23,12 @@
         bPaginate: false,
         bFilter: false,
         paging: false,
-        info: false
+        info: false,
+        "aoColumns": [
+          { "orderSequence": ["asc", "desc"] },
+          { "orderSequence": ["desc", "asc"] },
+          { "bSortable": false }
+        ],
       } )
     } )
 .container
@@ -51,7 +56,7 @@
     .col-xs-6
       %h3 Input Taxa (swapped, merged, or split)
       %p Limited to 500, see taxon changes for all taxa
-      %table.table.taxon-table
+      %table.table.taxon-table.leaderboard-container
         %thead
           %tr
             %th=t :taxon
@@ -66,7 +71,7 @@
     .col-xs-6
       %h3 Output Taxa (created / activated)
       %p Limited to 500, see taxon changes for all taxa
-      %table.table.taxon-table
+      %table.table.taxon-table.leaderboard-container
         %thead
           %tr
             %th=t :taxon
