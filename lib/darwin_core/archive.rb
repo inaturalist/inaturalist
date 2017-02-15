@@ -344,16 +344,17 @@ module DarwinCore
 
     # Helper to perform a long running task, catch an exception, and try again
     # after sleeping for a while
-    def try_and_try_again( exception, options = { } )
+    def try_and_try_again( exceptions, options = { } )
+      exceptions = [exceptions].flatten
       tries = options.delete( :tries ) || 3
       sleep_for = options.delete( :sleep ) || 60
       begin
         yield
-      rescue exception => e
+      rescue *exceptions => e
         if ( tries -= 1 ).zero?
           raise e
         else
-          logger.debug "Caught #{exception}, sleeping for #{sleep_for} s before trying again..."
+          logger.debug "Caught #{e.class}, sleeping for #{sleep_for} s before trying again..."
           sleep( sleep_for )
           retry
         end
