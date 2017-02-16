@@ -34,6 +34,15 @@
 .container
   .row
     .col-xs-12
+      - unless @taxa_with_multiple_changes.blank?
+        .alert.alert-warning
+          %p
+            Heads up: the following taxa are the inputs for multiple changes... which shouldn't be the case, since that means they'll be swapped twice or split twice, etc. Please fix this before committing.
+          %ul
+            - for taxon in @taxa_with_multiple_changes
+              %li
+                = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
+                = link_to t(:view_changes), taxon_changes_path( taxon_id: taxon.id, change_group: @group)
       %h2= @title
   .row
     .col-xs-12
@@ -42,9 +51,9 @@
         %thead
           %tr
             %th
-            %th=t :draft
-            %th=t :committed
-            %th=t :total
+            %th= t(:draft).upcase
+            %th= t(:committed).upcase
+            %th= t(:total).upcase
         %tbody
           %tr
             %th=t :taxon_change_count
@@ -74,20 +83,20 @@
         = @input_taxa.size
         of
         = succeed "." do
-          = @input_taxa_count
+          = @input_taxa_counts.map{|type, groups| groups.values.map(&:to_i)}.flatten.sum
         See taxon changes for all taxa.
       %table.table.taxon-table.leaderboard-container
         %thead
           %tr
-            %th=t :taxon
-            %th=t :obs
-            %th=t :actions
+            %th= t(:taxon).upcase
+            %th= t(:obs).upcase
+            %th= t(:actions).upcase
         %tbody.taxon_links
           - for taxon in @input_taxa
             %tr
               %td= render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
               %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon.id )
-              %td= link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id ), class: "btn btn-link btn-xs"
+              %td= link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id, change_group: @group ), class: "btn btn-link btn-xs"
     .col-xs-6
       %h3 Output Taxa (created / activated)
       %p
@@ -95,14 +104,14 @@
         = @output_taxa.size
         of
         = succeed "." do
-          = @output_taxa_count
+          = @output_taxa_counts.map{|type, groups| groups.values.map(&:to_i)}.flatten.sum
         See taxon changes for all taxa.
       %table.table.taxon-table.leaderboard-container
         %thead
           %tr
-            %th=t :taxon
-            %th=t :obs
-            %th=t :actions
+            %th= t(:taxon).upcase
+            %th= t(:obs).upcase
+            %th= t(:actions).upcase
         %tbody.taxon_links
           - for taxon in @output_taxa
             %tr
@@ -118,7 +127,7 @@
                     method: "patch",
                     "data-type" => "json",
                     "data-loading-click" => "Grafting..."
-                = link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id ), class: "btn btn-link btn-xs"
+                = link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id, change_group: @group ), class: "btn btn-link btn-xs"
   .row
     .col-xs-12
       %h3=t :taxon_changes
