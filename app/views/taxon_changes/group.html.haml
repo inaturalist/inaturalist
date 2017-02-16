@@ -48,24 +48,24 @@
         %tbody
           %tr
             %th=t :taxon_change_count
-            %td= @uncommitted_count
-            %td= @committed_count
-            %td= @taxon_changes.total_entries
+            %td= link_to @uncommitted_count, taxon_changes_path( filters: { committed: "No", change_group: @group } )
+            %td= link_to @committed_count, taxon_changes_path( filters: { committed: "Yes", change_group: @group } )
+            %td= link_to @taxon_changes.total_entries, taxon_changes_path( filters: { change_group: @group } )
           %tr
             %th=t :taxa_swapped
-            %td= @input_taxa_counts[:swap]["draft"].to_i
-            %td= @input_taxa_counts[:swap]["committed"].to_i
-            %td= @input_taxa_counts[:swap].values.map(&:to_i).sum
+            %td= link_to @input_taxa_counts[:swap]["draft"].to_i, taxon_changes_path( filters: { committed: "No", swap: 1, change_group: @group } )
+            %td= link_to @input_taxa_counts[:swap]["committed"].to_i, taxon_changes_path( filters: { committed: "Yes", swap: 1, change_group: @group } )
+            %td= link_to @input_taxa_counts[:swap].values.map(&:to_i).sum, taxon_changes_path( filters: { swap: 1, change_group: @group } )
           %tr
             %th=t :taxa_merged
-            %td= @input_taxa_counts[:merge]["draft"].to_i
-            %td= @input_taxa_counts[:merge]["committed"].to_i
-            %td= @input_taxa_counts[:merge].values.map(&:to_i).sum
+            %td= link_to @input_taxa_counts[:merge]["draft"].to_i, taxon_changes_path( filters: { change_group: @group, swap: 1, committed: "No" } )
+            %td= link_to @input_taxa_counts[:merge]["committed"].to_i, taxon_changes_path( filters: { change_group: @group, swap: 1, committed: "Yes" } )
+            %td= link_to @input_taxa_counts[:merge].values.map(&:to_i).sum, taxon_changes_path( filters: { change_group: @group, swap: 1 } )
           %tr
             %th=t :taxa_split
-            %td= @input_taxa_counts[:split]["draft"].to_i
-            %td= @input_taxa_counts[:split]["committed"].to_i
-            %td= @input_taxa_counts[:split].values.map(&:to_i).sum
+            %td= link_to @input_taxa_counts[:split]["draft"].to_i, taxon_changes_path( filters: { change_group: @group, split: 1, committed: "No" } )
+            %td= link_to @input_taxa_counts[:split]["committed"].to_i, taxon_changes_path( filters: { change_group: @group, split: 1, committed: "Yes" } )
+            %td= link_to @input_taxa_counts[:split].values.map(&:to_i).sum, taxon_changes_path( filters: { change_group: @group, split: 1 } )
   .row
     .col-xs-6
       %h3 Input Taxa (swapped, merged, or split)

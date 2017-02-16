@@ -1303,6 +1303,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.import(name, options = {})
+    skip_grafting = options.delete(:skip_grafting)
     name = normalize_name(name)
     ancestor = options.delete(:ancestor)
     external_names = begin
@@ -1313,7 +1314,7 @@ class Taxon < ActiveRecord::Base
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
-      if en.save && !en.taxon.grafted? && en.taxon.persisted?
+      if en.save && !skip_grafting && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
     end
