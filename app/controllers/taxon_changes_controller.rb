@@ -245,15 +245,17 @@ class TaxonChangesController < ApplicationController
     swap_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
       where( "taxon_changes.change_group = ?", @group ).
       where( "taxon_changes.type = ?", "TaxonSwap" )
-    @swap_input_taxa_count = swap_input_taxa.count
     merge_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
       where( "taxon_changes.change_group = ?", @group ).
       where( "taxon_changes.type = ?", "TaxonMerge" )
-    @merge_input_taxa_count = merge_input_taxa.count
     split_input_taxa = Taxon.joins( :taxon_changes ).
       where( "taxon_changes.change_group = ?", @group ).
       where( "taxon_changes.type = ?", "TaxonSplit" )
-    @split_input_taxa_count = split_input_taxa.count
+    @input_taxa_counts = {
+      swap: swap_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      merge: merge_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      split: split_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count
+    }
     limit = 500
     @input_taxa = swap_input_taxa.limit( limit ).to_a
     @input_taxa += merge_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
@@ -273,6 +275,13 @@ class TaxonChangesController < ApplicationController
     @output_taxa = swap_output_taxa.limit( limit ).to_a
     @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
     @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
+    @output_taxa_counts = {
+      swap: swap_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      merge: merge_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      split: split_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count
+    }
+    @committed_count = @taxon_changes.where( "committed_on IS NOT NULL ").total_entries
+    @uncommitted_count = @taxon_changes.where( "committed_on IS NULL ").total_entries
     unless @output_taxa.blank?
       @output_taxa = @output_taxa.uniq.sort_by(&:name)
     end

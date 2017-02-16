@@ -39,23 +39,43 @@
     .col-xs-12
       %h3 Summary Stats
       %table.table
+        %thead
+          %tr
+            %th
+            %th=t :draft
+            %th=t :committed
+            %th=t :total
         %tbody
           %tr
             %th=t :taxon_change_count
+            %td= @uncommitted_count
+            %td= @committed_count
             %td= @taxon_changes.total_entries
           %tr
             %th=t :taxa_swapped
-            %td= @swap_input_taxa_count
+            %td= @input_taxa_counts[:swap]["draft"].to_i
+            %td= @input_taxa_counts[:swap]["committed"].to_i
+            %td= @input_taxa_counts[:swap].values.map(&:to_i).sum
           %tr
             %th=t :taxa_merged
-            %td= @merge_input_taxa_count
+            %td= @input_taxa_counts[:merge]["draft"].to_i
+            %td= @input_taxa_counts[:merge]["committed"].to_i
+            %td= @input_taxa_counts[:merge].values.map(&:to_i).sum
           %tr
             %th=t :taxa_split
-            %td= @split_input_taxa_count
+            %td= @input_taxa_counts[:split]["draft"].to_i
+            %td= @input_taxa_counts[:split]["committed"].to_i
+            %td= @input_taxa_counts[:split].values.map(&:to_i).sum
   .row
     .col-xs-6
       %h3 Input Taxa (swapped, merged, or split)
-      %p Limited to 500, see taxon changes for all taxa
+      %p
+        Showing
+        = @input_taxa.size
+        of
+        = succeed "." do
+          = @input_taxa_count
+        See taxon changes for all taxa.
       %table.table.taxon-table.leaderboard-container
         %thead
           %tr
@@ -70,7 +90,13 @@
               %td= link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id ), class: "btn btn-link btn-xs"
     .col-xs-6
       %h3 Output Taxa (created / activated)
-      %p Limited to 500, see taxon changes for all taxa
+      %p
+        Showing
+        = @output_taxa.size
+        of
+        = succeed "." do
+          = @output_taxa_count
+        See taxon changes for all taxa.
       %table.table.taxon-table.leaderboard-container
         %thead
           %tr
