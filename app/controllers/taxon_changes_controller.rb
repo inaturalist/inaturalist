@@ -245,39 +245,83 @@ class TaxonChangesController < ApplicationController
     @group = params[:group]
     @taxon_changes = TaxonChange.where( change_group: @group ).page( params[:page] )
     swap_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      select( "DISTINCT taxa.*").
       where( "taxon_changes.change_group = ?", @group ).
-      where( "taxon_changes.type = ?", "TaxonSwap" )
-    @swap_input_taxa_count = swap_input_taxa.count
+      where( "taxon_changes.type = 'TaxonSwap'" )
     merge_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      select( "DISTINCT taxa.*").
       where( "taxon_changes.change_group = ?", @group ).
-      where( "taxon_changes.type = ?", "TaxonMerge" )
-    @merge_input_taxa_count = merge_input_taxa.count
+      where( "taxon_changes.type = 'TaxonMerge'" )
     split_input_taxa = Taxon.joins( :taxon_changes ).
+      select( "DISTINCT taxa.*").
       where( "taxon_changes.change_group = ?", @group ).
-      where( "taxon_changes.type = ?", "TaxonSplit" )
-    @split_input_taxa_count = split_input_taxa.count
+      where( "taxon_changes.type = 'TaxonSplit'" )
+    @input_taxa_counts = {
+      swap: swap_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      merge: merge_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      split: split_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count
+    }
     limit = 500
     @input_taxa = swap_input_taxa.limit( limit ).to_a
-    @input_taxa += merge_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
-    @input_taxa += split_input_taxa.limit( limit - @input_taxa.size ) if @input_taxa.size < limit
+    @input_taxa += merge_input_taxa.limit( limit - @input_taxa.size ).to_a if @input_taxa.size < limit
+    @input_taxa += split_input_taxa.limit( limit - @input_taxa.size ).to_a if @input_taxa.size < limit
     unless @input_taxa.blank?
       @input_taxa = @input_taxa.uniq.sort_by(&:name)
     end
     swap_output_taxa = Taxon.joins( :taxon_changes ).
+      select( "DISTINCT taxa.*").
       where( "taxon_changes.change_group = ?", @group ).
-      where( "taxon_changes.type = ?", "TaxonSwap" )
+      where( "taxon_changes.type = 'TaxonSwap'" )
     merge_output_taxa = Taxon.joins( :taxon_changes ).
+      select( "DISTINCT taxa.*").
       where( "taxon_changes.change_group = ?", @group ).
-      where( "taxon_changes.type = ?", "TaxonMerge" )
+      where( "taxon_changes.type = 'TaxonMerge'" )
     split_output_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      select( "DISTINCT taxa.*").
       where( "taxon_changes.change_group = ?", @group ).
-      where( "taxon_changes.type = ?", "TaxonSplit" )
+      where( "taxon_changes.type = 'TaxonSplit'" )
     @output_taxa = swap_output_taxa.limit( limit ).to_a
-    @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
-    @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ) if @output_taxa.size < limit
+    @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ).to_a if @output_taxa.size < limit
+    @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ).to_a if @output_taxa.size < limit
+    @output_taxa_counts = {
+      swap: swap_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      merge: merge_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      split: split_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count
+    }
+    @committed_count = @taxon_changes.where( "committed_on IS NOT NULL ").total_entries
+    @uncommitted_count = @taxon_changes.where( "committed_on IS NULL ").total_entries
     unless @output_taxa.blank?
       @output_taxa = @output_taxa.uniq.sort_by(&:name)
     end
+    # TODO preload taxon: {taxon_scheme_taxa: taxon_scheme}, taxon_change_taxa: { taxon: atlas }, source
+    TaxonChange.preload_associations( @taxon_changes, [
+      {
+        taxon: [
+          :taxon_schemes,
+          :taxon_ranges_without_geom,
+          :photos
+        ]
+      },
+      {
+        taxa: [
+          :taxon_schemes,
+          :atlas,
+          :taxon_ranges_without_geom,
+          :photos
+        ]
+      },
+      :source
+    ] )
+    
+    input_counts = {}
+    [
+      swap_input_taxa.pluck(:id),
+      merge_input_taxa.pluck(:id),
+      split_input_taxa.pluck(:id)
+    ].flatten.each { |id| input_counts[id] ||= 0; input_counts[id] += 1 }
+    duplicate_input_ids = input_counts.map{ |id, count| Rails.logger.debug "[id, count]: #{[id, count]}"; count > 1 ? id : nil }.compact
+    @taxa_with_multiple_changes = Taxon.where( id: duplicate_input_ids )
+
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
