@@ -1,0 +1,87 @@
+:ruby
+  photo ||= change_taxon.photos.first
+  taxon_range ||= change_taxon.taxon_ranges_without_geom.first
+  taxon_change ||= nil
+  swaps = if @swaps_by_taxon_id
+    @swaps_by_taxon_id[change_taxon.id].try(:clone) || []
+  else
+    change_taxon.taxon_changes.committed.where(:type => "TaxonSwap") +
+    change_taxon.taxon_change_taxa.joins(:taxon_change).
+      where(taxon_changes: { type: "TaxonSwap" } ).where( "committed_on IS NOT NULL" ).map{|tct| tct.taxon_change}
+  end
+  if taxon_change
+    swaps.delete_if{|swap| swap.id == taxon_change.id}
+  end
+  show_change_links ||= false
+  show_atlas_alert ||= false
+.change_taxon.clear{"data-taxon-id" => "#{change_taxon.id}", :id => "change_taxon_#{change_taxon.id}"}
+  = image_and_content taxon_image(change_taxon), :image_size => 75 do
+    = link_to change_taxon, :class => "taxon #{change_taxon.rank}" do
+      %span.sciname= change_taxon.name
+      = change_taxon.id
+    .stacked
+      = link_to change_taxon.observations_count, observations_path( taxon_id: change_taxon.id, verifiable: "any", place_id: "any" ), :rel => "nofollow"
+      = t :obs
+      - unless change_taxon.conservation_status.blank?
+        %span.meta |
+        = change_taxon.conservation_status_code
+      - if taxon_range
+        %span.meta |
+        = link_to t(:range), taxon_path(change_taxon, :anchor => 'taxon_range')
+      - if change_taxon.is_active?
+        |
+        %span.active= t(:active).humanize
+      - else
+        |
+        %span.inactive= t(:inactive).humanize
+      - if change_taxon.flagged?
+        |
+        %span#flaggings_heads_up.description
+          = t :flagged_for_curation
+          \.
+          \#{link_to t(:view_flags), taxon_flags_path(change_taxon), :class => 'readmore', :title => t(:see_something_wrong_with_taxon)}
+      - else
+        - if logged_in?
+          | #{link_to t(:flag_for_curation), new_taxon_flag_path(change_taxon), :id => "flag_this"}
+      - if show_atlas_alert && taxon_change && taxon_change.is_a?( TaxonSplit )
+        |
+        - if change_taxon.atlased?
+          %span.text-success Atlased
+        - else
+          %span.text-danger Not Atlased!
+    .meta
+      .small.description
+        - schemes = change_taxon.taxon_schemes.to_a.compact
+        - unless schemes.blank?
+          %label
+            = t :schemes
+            \:
+          = schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe
+        - unless swaps.blank?
+          %label= t :synonyms
+          %ul
+            - for swap in swaps
+              - next unless aka_taxon = swap.opposite_taxon_from(change_taxon)
+              - if aka_taxon.taxon_schemes.blank?
+                %li
+                  = link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon
+                  %br/
+                  = link_to t(:view_change), taxon_change_path(swap)
+              - else
+                - for aka_scheme in aka_taxon.taxon_schemes
+                  %li
+                    = link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon
+                    .meta
+                      = aka_scheme.title
+                    = link_to t(:view_change), taxon_change_path(swap)
+    - if show_change_links && taxon_change && @type
+      .text-muted
+        - input_names = taxon_change.input_taxa.map{|t| "#{t.name} #{t.id}"}
+        = link_to "Change your matching #{@type.humanize.downcase} to this taxon",                                                                                      |
+          taxon_change_commit_records_path(taxon_change.id, @type, change_taxon.id),                                                                                    |
+          :method => :put,                                                                                                                                              |
+          :data => {                                                                                                                                                    |
+            :confirm => "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?", |
+            :loading_click => t(:updating)                                                                                                                              |
+          },                                                                                                                                                            |
+          :class => "btn btn-default btn-xs"                                                                                                                                   |

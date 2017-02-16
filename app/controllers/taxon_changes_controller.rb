@@ -4,6 +4,8 @@ class TaxonChangesController < ApplicationController
   before_filter :admin_required, :only => [:commit_taxon_change]
   before_filter :load_taxon_change, :except => [:index, :new, :create, :group]
   before_filter :return_here, :only => [:index, :show, :new, :edit, :commit_for_user] 
+
+  layout "bootstrap"
   
   def index
     filter_params = params[:filters] || params
@@ -93,7 +95,7 @@ class TaxonChangesController < ApplicationController
     @input_taxa.each {|t| @taxon_change.add_input_taxon(t)} unless @input_taxa.blank?
     @output_taxa.each {|t| @taxon_change.add_output_taxon(t)} unless @output_taxa.blank?
     respond_to do |format|
-      format.html
+      format.html { render layout: "application" }
     end
   end
   
@@ -108,17 +110,17 @@ class TaxonChangesController < ApplicationController
     @taxon_change.user = current_user
     if @taxon_change.save
       flash[:notice] = 'Taxon Change was successfully created.'
-      redirect_to :action => 'show', :id => @taxon_change
+      redirect_to action: "show", id: @taxon_change
     else
       @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
-      render :action => 'new'
+      render action: "new", layout: "application"
     end
   end
   
   def edit
     @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
     respond_to do |format|
-      format.html
+      format.html { render layout: "application"}
     end
   end
 

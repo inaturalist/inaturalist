@@ -307,4 +307,8 @@ class TaxonChange < ActiveRecord::Base
     description.mentioned_users
   end
 
+  def draft?
+    committed_on.blank?
+  end
+
 end
