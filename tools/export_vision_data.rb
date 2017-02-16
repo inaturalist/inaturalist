@@ -22,10 +22,6 @@ EOS
     User cuttoff, number of unique users that must have observed a taxon for
     photos of that taxon to be included.
     ", type: :integer, default: 20, short: "-u"
-  opt :min_validation, "
-    Minimum number of validation photos per species. Training and test will be
-    scaled relative to this value.
-  ", type: :integer, default: 4, short: "-m"
   opt :skip_augmented, "Skip export of augmented_test photos", type: :boolean, default: false
   opt :species_ids, "Only look at these species IDs. Mainly for testing", type: :integers
   opt :debug, "Print lots of crap", type: :boolean
@@ -33,7 +29,6 @@ end
 
 START = Time.now
 num_unique_users = OPTS.users
-minimum_validation_count = OPTS.min_validation
 TIMING = {}
 
 def log( msg )
@@ -135,65 +130,63 @@ CSV.open( photos_path, "wb" ) do |csv|
       run_sql( sql ).group_by{ |r| r["species_id"].to_i }
     end
     rows_by_species.each do |species_id, rows|
-      next unless rows.size > 5 * minimum_validation_count
       log "Target Species #{species_id}, #{rows.size} photos total"
-      # Randomly assign user_ids to sets
-      test_remainder, training_remainder, validation_remainder = ( 0..2 ).to_a.shuffle
-      # log "\ttest_remainder: #{test_remainder}, training_remainder: #{training_remainder}, validation_remainder: #{validation_remainder}"
+      # Randomly assign user_ids to sets, 2/5 in training, 2/5 in test, 1/5 in validation
       photosets = {
         test: [],
-        validation: [],
-        training: []
+        training: [],
+        validation: []
       }
-      # For each photo of this species, assign it to a set based on the user
-      rows.each do |r|
-        id = r["id"].to_i
-        user_id = r["user_id"].to_i
-        quality_grade = r["quality_grade"]
-        taxon_id = r["taxon_id"].to_i
-        if quality_grade == "research" && user_id % 3 == test_remainder
-          photosets[:test] << r
-        elsif user_id % 3 == training_remainder
-          photosets[:training] << r
-        elsif user_id % 3 == validation_remainder
-          photosets[:validation] << r
+      number_of_rg_users = rows.map{ |r| r["quality_grade"] == "research" ? r["user_id"].to_i : nil }.compact.uniq.size
+      log "\tNumber of RG users: #{number_of_rg_users}"
+      desired_number_of_test_users = ( number_of_rg_users * 0.4 ).floor
+      log "\tDesired number of test users: #{desired_number_of_test_users}"
+      desired_number_of_training_users = desired_number_of_test_users
+      desired_number_of_validation_users = ( desired_number_of_test_users / 2 ).floor
+      actual_number_of_test_users = 0
+      actual_number_of_training_users = 0
+      actual_number_of_validation_users = 0
+      # shuffle users so we assign them to sets randomly
+      species_rows_by_user_id = rows.group_by{|r| r["user_id"].to_i }.to_a.shuffle
+      # # Or we could try to make sure that test always has the most users, even at the expense of the other sets
+      # species_rows_by_user_id = rows.group_by{|r| r["user_id"].to_i }.sort_by{ |user_id, rows| rows.size }
+      species_rows_by_user_id.each do |user_id, rows|
+        # Assign users to sets until we meet our desired quotas Note that
+        # Grant's recommendation of 2017-02-15 was to stick to the quotas (I
+        # think), but in order to avoid discarding photos we are just filling
+        # the test quota and then dividing the rest between validation and
+        # training
+        rg_rows = rows.select{ |r| r["quality_grade"] == "research" }
+        # log "\tUser #{user_id}, #{rows.size} photos, #{rg_rows.size} RG photos"
+        # Fill our test quota first
+        if rg_rows.size > 0 && actual_number_of_test_users < desired_number_of_test_users
+          # log "\t\tAdding to test"
+          photosets[:test] += rg_rows
+          actual_number_of_test_users += 1
+        # elsif actual_number_of_training_users < desired_number_of_training_users # this fills the training quota first
+        # When test is filled, assign the rest randomly to training and validation
+        elsif user_id % 2 == 0
+          # log "\t\tAdding to training"
+          photosets[:training] += rows
+          actual_number_of_training_users += 1
+        # elsif actual_number_of_validation_users < desired_number_of_validation_users # this fills the validation quota
+        elsif user_id % 2 == 1
+          # log "\t\tAdding to validation"
+          photosets[:validation] += rows
+          actual_number_of_validation_users += 1
         end
-      end      
-      # Determine sample sizes to maintain desired ratios
-      max_count = [
-        photosets[:test].size,
-        photosets[:training].size
-      ].min.floor
-      min_count = [
-        max_count / 2.0,
-        photosets[:validation].size
-      ].min.floor
-      if min_count < max_count / 2.0
-        max_count = 2 * min_count
       end
-      log "\tmin_count: #{min_count}, max_count: #{max_count}"
-      if min_count < minimum_validation_count # must have at least 4 validation
-        log "\tLess than #{minimum_validation_count} validation photos, skipping"
-        next
-      end
-      set_without_enough_photos = photosets.detect do |set, photos|
-        sample_size = set == :validation ? min_count : max_count
-        photos.size < sample_size
-      end
-      if set_without_enough_photos
-        log "\tNot enough photos for #{set_without_enough_photos[0]}, skipping species #{species_id}"
-        next
+      if OPTS.debug
+        log "\tTest Users:        #{desired_number_of_test_users} desired, #{actual_number_of_test_users} actual"
+        log "\tTraining Users:    #{desired_number_of_training_users} desired, #{actual_number_of_training_users} actual"
+        log "\tValidation Users:  #{desired_number_of_validation_users} desired, #{actual_number_of_validation_users} actual"
+        photosets.each do |set, photos|
+          log "\t#{"#{set.to_s.capitalize} Photos:".ljust( 18 )} #{photos.size}"
+        end
       end
       target_species_ids << species_id
-      log "\tPre-sampling:  #{photosets.map{|set, photos| "#{photos.size} #{set}"}.join( ", " )}"
       photosets.each do |set, photos|
-        # Sample the photos based on the sample sizes determined above. Validation is always the smaller size
-        sample_size = set == :validation ? min_count : max_count
-        sample = photos.sample( sample_size )
-        if OPTS.debug
-          log "\t#{set.to_s.ljust(10)} sample_size: #{sample_size}, sample.size: #{sample.size}, photos.size: #{photos.size}"
-        end
-        sample.each do |photo|
+        photos.each do |photo|
           photo_url = photo["medium_url"].blank? ? photo["small_url"] : photo["medium_url"]
           next unless photo_url
           totals[set] += 1
@@ -327,15 +320,15 @@ Data about photos, including
     multiple times for different species if used in multiple observations)
   set
     Photos in the "test" set come from "Research Grade" observations of the
-    Target Species. Photos in "validation" and "training" are all photos of the
-    Target Species by users not represented in the "test" set from observations
-    in the "Needs ID" or "Research Grade" categories. Photos in the
-    "augmented_test" set are from Research Grade observations by any user of
-    taxa *not* in the Target Species. "test," "validation," and "training" have
-    been sampled such that they're in a rougle 2:1:2 ratio, with a minimum of
-    #{minimum_validation_count} in "validation." "augmented_test" photos have
-    been capped at the total number of test photos. For definitions of quality
-    grades, see http://www.inaturalist.org/pages/help#quality
+    Target Species made by 40% of the users who have observed each species.
+    Photos in "validation" and "training" are all photos of the Target Species
+    by users not represented in the "test" set from observations in the "Needs
+    ID" or "Research Grade" categories. Photos in the "augmented_test" set are
+    from Research Grade observations by any user of taxa *not* in the Target
+    Species. "test," "validation," and "training" have been sampled such that
+    users are in a rough 2:1:2 ratio "augmented_test" photos have been capped at
+    the total number of test photos. For definitions of quality grades, see
+    http://www.inaturalist.org/pages/help#quality
   species_id
     Unique identifier for the species in the photo. This
     will be the same for two different photos of two different subspecies nested
