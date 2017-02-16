@@ -23,7 +23,12 @@
         bPaginate: false,
         bFilter: false,
         paging: false,
-        info: false
+        info: false,
+        "aoColumns": [
+          { "orderSequence": ["asc", "desc"] },
+          { "orderSequence": ["desc", "asc"] },
+          { "bSortable": false }
+        ],
       } )
     } )
 .container
@@ -51,7 +56,7 @@
     .col-xs-6
       %h3 Input Taxa (swapped, merged, or split)
       %p Limited to 500, see taxon changes for all taxa
-      %table.table.taxon-table
+      %table.table.taxon-table.leaderboard-container
         %thead
           %tr
             %th=t :taxon
@@ -61,12 +66,12 @@
           - for taxon in @input_taxa
             %tr
               %td= render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
-              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon )
-              %td= link_to t(:view_changes), taxon_changes_url( taxon_id: taxon ), class: "btn btn-link btn-xs"
+              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon.id )
+              %td= link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id ), class: "btn btn-link btn-xs"
     .col-xs-6
       %h3 Output Taxa (created / activated)
       %p Limited to 500, see taxon changes for all taxa
-      %table.table.taxon-table
+      %table.table.taxon-table.leaderboard-container
         %thead
           %tr
             %th=t :taxon
@@ -77,7 +82,7 @@
             %tr
               %td
                 = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
-              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon )
+              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon.id )
               %td
                 - if is_curator? && !taxon.grafted?
                   = link_to t(:graft), graft_taxon_path( taxon, format: "json" ), 
@@ -87,7 +92,7 @@
                     method: "patch",
                     "data-type" => "json",
                     "data-loading-click" => "Grafting..."
-                = link_to t(:view_changes), taxon_changes_url( taxon_id: taxon ), class: "btn btn-link btn-xs"
+                = link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id ), class: "btn btn-link btn-xs"
   .row
     .col-xs-12
       %h3=t :taxon_changes
@@ -95,4 +100,5 @@
         %p.description= t :no_taxonomic_changes_match_those_criteria
       - for taxon_change in @taxon_changes
         = render "show_change_taxon", show_change_taxon: taxon_change
-      = will_paginate @taxon_changes
+      - if @taxon_changes.total_pages > 1
+        = link_to t( :view_all_n, n: @taxon_changes.total_entries ), taxon_changes_path( change_group: @group ), class: "btn btn-primary"
