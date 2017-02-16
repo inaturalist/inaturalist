@@ -249,6 +249,8 @@ module DarwinCore
           csv << headers
           observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
             observation.observation_photos.each do |op|
+              # If ES is out of sync with the DB, the photo might no longer exist
+              next unless op && op.photo
               DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
               csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
             end
