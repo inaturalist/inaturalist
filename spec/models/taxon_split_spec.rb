@@ -125,6 +125,14 @@ describe TaxonSplit, "commit_records" do
             @observation.identifications.current.of( output_taxon ).by( @identification.user_id ).first
           ).not_to be_blank
         end
+        it "should not be replaced if the observation has no coordinates" do
+          @observation.update_attributes( latitude: nil, longitude: nil )
+          expect( @split.output_taxon_for_record( @observation ) ).to be_blank
+          prev_ident_count = @observation.identifications.size
+          @split.commit_records
+          @observation.reload
+          expect( @observation.identifications.size ).to eq prev_ident_count
+        end
       end
       describe "observations" do
         it "should change the taxon if coordinates are in a non-overlapping presence place" do

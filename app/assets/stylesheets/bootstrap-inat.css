@@ -251,13 +251,13 @@ input[type="color"]:focus,
   margin:0;
   padding:0;
 }
-.taxon_change td {
+.taxon-change-table td {
   vertical-align: top;
 }
-.taxon_change td:first-child,
-.taxon_change td:last-child {
+.taxon-change-table td:first-child,
+.taxon-change-table td:last-child {
   width: 45%;
 }
-.taxon_change td.mergetype {
+.taxon-change-table td.mergetype {
   width: 10%;
 }

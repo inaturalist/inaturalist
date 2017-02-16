@@ -2276,7 +2276,7 @@ class Observation < ActiveRecord::Base
     scope = scope.includes( :user, :identifications, :observations_places )
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
-        unless output_taxon = taxon_change.output_taxon_for_record( observation )
+        if output_taxon = taxon_change.output_taxon_for_record( observation )
           Identification.create(
             user: observation.user,
             observation: observation,

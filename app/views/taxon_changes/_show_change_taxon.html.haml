@@ -57,7 +57,7 @@
       %label= t(:committed) + ' ' + t(:by).downcase
       = link_to taxon_change.committer.login, taxon_change.committer
       = t(:on_) + ' ' + l(taxon_change.committed_on)
-  %table{:border => "0", :cellpadding => "5", :cellspacing => "5"}
+  %table.taxon-change-table{ border: 0, cellpadding: 5, cellspacing: 5 }
     %tr
       %td
         %ul.change_taxon

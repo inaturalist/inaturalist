@@ -2276,7 +2276,7 @@ describe Observation do
     it "should add new identifications" do
       expect(@obs_of_input.identifications.size).to eq(1)
       expect(@obs_of_input.identifications.first.taxon).to eq(@input_taxon)
-      Observation.update_for_taxon_change(@taxon_swap, @output_taxon)
+      Observation.update_for_taxon_change( @taxon_swap )
       @obs_of_input.reload
       expect(@obs_of_input.identifications.size).to eq(2)
       expect(@obs_of_input.identifications.detect{|i| i.taxon_id == @output_taxon.id}).not_to be_blank

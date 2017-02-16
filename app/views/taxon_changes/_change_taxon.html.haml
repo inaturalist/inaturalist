@@ -37,8 +37,8 @@
       - if change_taxon.flagged?
         |
         %span#flaggings_heads_up.description
-          = t :flagged_for_curation
-          \.
+          = succeed "." do
+            = t :flagged_for_curation
           \#{link_to t(:view_flags), taxon_flags_path(change_taxon), :class => 'readmore', :title => t(:see_something_wrong_with_taxon)}
       - else
         - if logged_in?
@@ -77,11 +77,8 @@
     - if show_change_links && taxon_change && @type
       .text-muted
         - input_names = taxon_change.input_taxa.map{|t| "#{t.name} #{t.id}"}
-        = link_to "Change your matching #{@type.humanize.downcase} to this taxon",                                                                                      |
-          taxon_change_commit_records_path(taxon_change.id, @type, change_taxon.id),                                                                                    |
-          :method => :put,                                                                                                                                              |
-          :data => {                                                                                                                                                    |
-            :confirm => "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?", |
-            :loading_click => t(:updating)                                                                                                                              |
-          },                                                                                                                                                            |
-          :class => "btn btn-default btn-xs"                                                                                                                                   |
+        = link_to "Change your matching #{@type.humanize.downcase} to this taxon",
+          taxon_change_commit_records_path(taxon_change.id, @type, change_taxon.id),
+          :method => :put,
+          :data => { confirm: "Are you sure you want to change all your #{@type.humanize.downcase} of #{commas_and input_names} to #{change_taxon.name} #{change_taxon.id}?", loading_click: t(:updating) },
+          :class => "btn btn-default btn-xs"
