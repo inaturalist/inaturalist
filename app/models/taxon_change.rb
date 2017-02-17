@@ -132,9 +132,8 @@ class TaxonChange < ActiveRecord::Base
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
-      scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id) )
-      Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{scope.count} records"
-      scope.find_in_batches do |batch|
+      Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
+      find_batched_records_of( reflection ) do |batch|
         auto_updatable_records = []
         batch.each do |record|
           record_has_user = record.respond_to?(:user) && record.user
@@ -165,6 +164,31 @@ class TaxonChange < ActiveRecord::Base
         listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
     end
     Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
+  end
+
+  def find_batched_records_of( reflection )
+    input_taxon_ids = input_taxa.to_a.compact.map(&:id)
+    if reflection.klass == Observation
+      Observation.search_in_batches( taxon_ids: input_taxon_ids ) do |batch|
+        yield batch
+      end
+    elsif reflection.klass == Identification
+      page = 1
+      loop do
+        results = Identification.elastic_paginate(
+          filters: [{ terms: { "taxon.ancestor_ids" => input_taxon_ids } }],
+          page: page,
+          per_page: 100
+        )
+        break if results.blank?
+        yield results
+        page += 1
+      end
+    else
+      reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids ).find_in_batches do |batch|
+        yield batch
+      end
+    end
   end
 
   # Change all records associated with input taxa to use the selected taxon

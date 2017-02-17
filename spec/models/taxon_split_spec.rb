@@ -44,6 +44,8 @@ end
 
 describe TaxonSplit, "commit_records" do
   before(:each) { prepare_split }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
   it "should not update records if one of the output taxa isn't atlased" do
     @split.output_taxa.each do |t|
@@ -56,8 +58,6 @@ describe TaxonSplit, "commit_records" do
   end
 
   describe "with atlased taxa" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
 
     let( :presence_place1 ) {
       make_place_with_geom(
