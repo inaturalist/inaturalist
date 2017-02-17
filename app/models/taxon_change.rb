@@ -135,6 +135,7 @@ class TaxonChange < ActiveRecord::Base
       Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
       find_batched_records_of( reflection ) do |batch|
         auto_updatable_records = []
+        Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, batch starting with #{batch[0]}" if options[:debug]
         batch.each do |record|
           record_has_user = record.respond_to?(:user) && record.user
           if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
@@ -152,6 +153,7 @@ class TaxonChange < ActiveRecord::Base
             auto_updatable_records << record
           end
         end
+        Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
         unless auto_updatable_records.blank?
           update_records_of_class( reflection.klass, records: auto_updatable_records )
         end
