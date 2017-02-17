@@ -183,7 +183,7 @@ class TaxonChange < ActiveRecord::Base
       scope
     end
     proc = Proc.new do |record|
-      if taxon = output_taxon_for_record( record )
+      if taxon = options[:taxon] || output_taxon_for_record( record )
         record.update_attributes( taxon: taxon )
       end
       yield(record) if block_given?

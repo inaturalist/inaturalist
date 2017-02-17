@@ -183,33 +183,33 @@ class TaxonChangesController < ApplicationController
   def commit_records
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
       flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
-      redirect_back_or_default(@taxon_change)
+      redirect_back_or_default( @taxon_change )
       return
     end
     return unless load_user_content_info
 
     if params[:record_id]
-      @record = current_user.send(@reflection.name).where("#{@reflection.table_name}.id = ?", params[:record_id]).first
+      @record = current_user.send( @reflection.name ).where("#{@reflection.table_name}.id = ?", params[:record_id]).first
       unless @record
         flash[:error] = "Couldn't find that record"
-        redirect_back_or_default(@taxon_change)
+        redirect_back_or_default( @taxon_change )
         return
       end
       @records = [@record]
     elsif params[:record_ids]
-      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids]).to_a
+      @records = current_user.send(@reflection.name).where( "#{@reflection.table_name}.id IN (?)", params[:record_ids] ).to_a
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
-        redirect_back_or_default(@taxon_change)
+        redirect_back_or_default( @taxon_change )
         return
       end
     end
 
-    @taxon = Taxon.find_by_id(params[:taxon_id])
-    @taxon = nil unless @taxon_change.output_taxa.include?(@taxon)
+    @taxon = Taxon.find_by_id( params[:taxon_id] )
+    @taxon = nil unless @taxon_change.output_taxa.include?( @taxon )
     unless @taxon
       flash[:error] = "That taxon isn't an option"
-      redirect_back_or_default(@taxon_change)
+      redirect_back_or_default( @taxon_change )
       return
     end
 
@@ -218,12 +218,13 @@ class TaxonChangesController < ApplicationController
     errors = []
 
     opts = {
-      :user => current_user, 
-      :records => @records,
-      :conditions => @reflection.options[:conditions],
-      :include => @reflection.options[:include]
+      user: current_user, 
+      records: @records,
+      conditions: @reflection.options[:conditions],
+      include: @reflection.options[:include],
+      taxon: @taxon
     }
-    @taxon_change.update_records_of_class(@reflection.klass, @taxon, opts) do |record|
+    @taxon_change.update_records_of_class( @reflection.klass, opts ) do |record|
       if record.valid?
         updated += 1
       else
@@ -238,7 +239,7 @@ class TaxonChangesController < ApplicationController
     else
       flash[:error] = "#{not_updated} record(s) failed to update: #{errors.to_sentence.downcase}"
     end
-    redirect_back_or_default(@taxon_change)
+    redirect_back_or_default( @taxon_change )
   end
 
   def group
