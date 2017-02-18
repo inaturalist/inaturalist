@@ -206,7 +206,7 @@ class Identification < ActiveRecord::Base
   end
   
   # Set the project_observation curator_identification_id if the
-  #identifier is a curator of a project that the observation is submitted to
+  # identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.blank?
     Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(id)
@@ -248,6 +248,7 @@ class Identification < ActiveRecord::Base
   end
 
   def create_observation_review
+    return true if skip_observation
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id).first_or_create.touch
     true
@@ -346,6 +347,7 @@ class Identification < ActiveRecord::Base
   end
 
   def update_categories
+    return true if skip_observation
     Identification.update_categories_for_observation( observation )
     true
   end
@@ -455,6 +457,7 @@ class Identification < ActiveRecord::Base
           }
         ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
         obs.set_community_taxon( force: true )
+        Identification.update_categories_for_observation( obs )
         obs.skip_indexing
         obs.save
       end
