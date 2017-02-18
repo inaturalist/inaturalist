@@ -145,6 +145,17 @@ describe TaxonSplit, "commit_records" do
           o.reload
           expect( o.taxon ).to eq @split.output_taxa[0]
         end
+        it "should not change the taxon if the obs is of a competely different taxon" do
+          t = Taxon.make!
+          o = Observation.make!(
+            latitude: presence_place1.latitude,
+            longitude: presence_place1.longitude,
+            taxon: t
+          )
+          @split.commit_records
+          o.reload
+          expect( o.taxon ).to eq t
+        end
         it "should not change the taxon if the coordinates are outside both output atlases" do
           o = Observation.make!(
             latitude: presence_place1.latitude * 10 ,

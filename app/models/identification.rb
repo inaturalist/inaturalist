@@ -448,20 +448,27 @@ class Identification < ActiveRecord::Base
       observation_ids << ident.observation_id
       yield( new_ident ) if block_given?
     end
-    observation_ids.in_groups_of( 1000 ) do |obs_ids|
-      Observation.where( "id IN (?)", obs_ids.compact ).includes( identifications: :taxon ).each do |obs|
-        ProjectUser.delay(
-          priority: INTEGRITY_PRIORITY,
-          unique_hash: {
-            "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [ obs.id, obs.user_id ]
-          }
-        ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
-        obs.set_community_taxon( force: true )
-        Identification.update_categories_for_observation( obs )
-        obs.skip_indexing
-        obs.save
+    observation_ids.in_groups_of( 100 ) do |obs_ids|
+      Observation.search_in_batches( id: obs_ids.compact ) do |batch|
+        Observation.preload_associations( batch, identifications: :taxon )
+        batch.each do |obs|
+          ProjectUser.delay(
+            priority: INTEGRITY_PRIORITY,
+            unique_hash: {
+              "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [ obs.id, obs.user_id ]
+            }
+          ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
+          obs.set_community_taxon( force: true )
+          obs.skip_indexing = true
+          obs.skip_refresh_lists = true
+          obs.skip_refresh_check_lists = true
+          obs.skip_identifications = true
+          obs.save
+          Identification.update_categories_for_observation( obs )
+        end
       end
       Observation.elastic_index!( ids: obs_ids )
+      Observation.refresh_es_index
     end
   end
   
