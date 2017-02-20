@@ -436,6 +436,7 @@ ja:
   because: その理由は：
   because_of: 理由として
   before_importing_photos: 写真をインポートする前に
+  before_you_can_contribute_your_observations: 観察記録を提供することができる前に
   bg_color: 背景色
   bioblitz: バイオビリッツ（生物観察会）
   birds: 鳥類
@@ -508,11 +509,18 @@ ja:
     merge_into: 次に統合する
     merged_into: 次に統合された
     replace_with: '置換用:'
+    input_taxon_was_split_into_output_taxa_html: '%{input_taxon}は%{output_taxa}に分割されました'
+    input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon}を%{output_taxa}に分割します'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon}は%{output_taxon}と置き換えられました'
+    input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon}は%{output_taxon}に置き換えられます'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}は%{output_taxon}に統合されました'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa}は%{output_taxon}に統合されます'
   change_visibility_of: 位置情報の公開設定を変更しますか？
   change_your_password: パスワードを変更
   check_it_out: 見てね
   check_list: チェックリスト
   check_list_for_individual_taxa_that: この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）
+  check_list_individual_taxa: この地域で棲息する分類群のチェックリスト（例：「%{place}の鳥類」）
   check_lists_must_belong_to_a_place: チェックリストは場所に所属しなければなりません。新規チェックリストを作るには、場所のデフォルトチェックリストから、「新規チェックリストを作成」のリンクをクリックしてください。
   check_list_of_species_occuring_in: 種チェックリスト：
   check_list_place: '%{place} チェックリスト'
@@ -1235,6 +1243,7 @@ ja:
   is_this_observation_offensive_html: この観察記録の内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？
   is_this_offensive_html: この内容は<a href="/help#inappropriate">不適切</a>、迷惑、不愉快ですか？
   is_this_place_a_duplicate: この場所は重複していますか？
+  its_important_that_you: 必ずクリックしてください：
   iucn_red_list_status: IUCNレッドリスト状況
   january: 1月
   join: 参加
@@ -1390,6 +1399,7 @@ ja:
   loading_wikipedia_description: ウィキペディアより情報を読み込み中...
   locale_description: 地域設定で表記言語、日付のフォーマットなどが変えられます
   locales:
+    bg: ブルガリア語
     br: ブルトン語
     ca: カタルーニャ語
     en: 英語
