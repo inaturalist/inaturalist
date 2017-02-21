@@ -67,7 +67,7 @@ class IdentificationsController < ApplicationController
       ]
     end
     result = Observation.elastic_search(
-      complex_wheres: [ { nested: {
+      filters: [ { nested: {
         path: "non_owner_ids",
         query: { bool: { must: [ user_filter, date_filters ].flatten.compact } }
       } } ],

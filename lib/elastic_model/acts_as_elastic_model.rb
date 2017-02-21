@@ -39,9 +39,8 @@ module ActsAsElasticModel
 
       def elastic_paginate(options={})
         options[:page] ||= 1
-        # 20 was the default of Sphinx, which Elasticsearch is replacing for us
         options[:per_page] ||= 20
-        options[:fields] ||= :id
+        options[:source] ||= [ "id" ]
         result = elastic_search(options).
           per_page(options[:per_page]).page(options[:page])
         result_to_will_paginate_collection(result)

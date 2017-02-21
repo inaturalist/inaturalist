@@ -2,16 +2,19 @@ class Project < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   scope :load_for_index, -> { includes(:place, :project_users) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :icon, index: "not_analyzed"
       indexes :title, analyzer: "ascii_snowball_analyzer"
       indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
       indexes :title_exact, analyzer: "keyword_analyzer"
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :slug, analyzer: "keyword_analyzer"
-      indexes :location, type: "geo_point", lat_lon: true
+      indexes :location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
     end
   end

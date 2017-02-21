@@ -69,7 +69,7 @@ module ElasticModel
   }
 
   def self.search_criteria(options={})
-    return unless options && options.is_a?(Hash)
+    return [] unless options && options.is_a?(Hash)
     criteria = [ ]
     options[:where] ||= { }
     options[:where].each do |key, value|
@@ -81,13 +81,11 @@ module ElasticModel
         criteria << { match: { key => id_or_object(value) } }
       end
     end
-    options[:complex_wheres] ||= [ ]
-    criteria += options[:complex_wheres]
     criteria
   end
 
   def self.search_filters(options={})
-    return unless options && options.is_a?(Hash) &&
+    return [] unless options && options.is_a?(Hash) &&
       options[:filters] && options[:filters].is_a?(Array)
     options[:filters].map do |f|
       next unless f.is_a?(Hash) && f.count == 1
@@ -100,25 +98,20 @@ module ElasticModel
   end
 
   def self.search_hash(options={})
-    criteria = ElasticModel.search_criteria(options)
-    filters = ElasticModel.search_filters(options)
-    query = criteria.blank? ?
-      { match_all: { } } :
-      { bool: { must: criteria } }
-    # when there are filters, the query needs to be wrapped
-    # in a filtered block that includes the filters being applied
-    unless filters.blank?
-      query = {
-        filtered: {
-          query: query,
-          filter: {
-            bool: { must: filters } } } }
+    filters = ElasticModel.search_criteria(options) +
+      ElasticModel.search_filters(options)
+    query = { bool: { } }
+    if !filters.blank?
+      query[:bool][:must] = filters
+    end
+    if !options[:inverse_filters].blank?
+      query[:bool][:must_not] = options[:inverse_filters]
     end
     elastic_hash = { query: query }
     elastic_hash[:sort] = options[:sort] if options[:sort]
-    elastic_hash[:fields] = options[:fields] if options[:fields]
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
+    elastic_hash[:_source] = options[:source] if options[:source]
     if options[:aggregate]
       elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
         # some aggregations are simple like
@@ -153,12 +146,12 @@ module ElasticModel
     #   where public geom X OR ( obs.owner=user and private_geom X)
     if opts[:user] && opts[:user].is_a?(User)
       coords = opts.reject{ |k,v| k == :user }
-      return { or: [
+      return { bool: { should: [
         envelope_filter({ envelope: { field => coords } }),
-        { and: [
+        { bool: { must: [
           { term: { "user.id": opts[:user].id } },
-          envelope_filter({ envelope: { "private_#{field}": coords } }) ]}
-      ]}
+          envelope_filter({ envelope: { "private_#{field}": coords } }) ]} }
+      ]} }
     end
     nelat = opts[:nelat]
     nelng = opts[:nelng]
@@ -177,9 +170,9 @@ module ElasticModel
       right = options.deep_dup
       left[:envelope][field][:nelng] = 180
       right[:envelope][field][:swlng] = -180
-      return { or: [
+      return { bool: { should: [
           envelope_filter(left),
-          envelope_filter(right) ]}
+          envelope_filter(right) ]}}
     end
     { geo_shape: {
         field => {

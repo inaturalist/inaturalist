@@ -38,6 +38,9 @@ module Shared::LicenseModule
 
   # Return a string with attribution info about this photo
   def attribution
+      # attribution_name
+      # license_name
+      # license_short
     if license == PD
       I18n.t('copyright.no_known_copyright_restrictions', :name => attribution_name, :license_name => I18n.t("copyright.#{license_name.gsub(' ','_').gsub('-','_').downcase}", :default => license_name))
     elsif license == CC0

@@ -2,10 +2,12 @@ class Taxon < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   # used to cache place_ids when bulk indexing
   attr_accessor :indexed_place_ids
 
-  scope :load_for_index, -> { includes(:colors, :taxon_descriptions,
+  scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
     :taxon_change_taxa, :taxon_schemes, :taxon_changes,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
@@ -13,18 +15,54 @@ class Taxon < ActiveRecord::Base
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :ancestry, index: "not_analyzed"
+      indexes :min_species_ancestry, index: "not_analyzed"
+      indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :rank, index: "not_analyzed"
+      indexes :taxon_photos do
+        indexes :license_code, index: "not_analyzed"
+        indexes :photo do
+          indexes :attribution, index: "not_analyzed"
+          indexes :license_code, index: "not_analyzed"
+          indexes :large_url, index: "not_analyzed"
+          indexes :medium_url, index: "not_analyzed"
+          indexes :small_url, index: "not_analyzed"
+          indexes :square_url, index: "not_analyzed"
+          indexes :url, index: "not_analyzed"
+          indexes :native_page_url, index: "not_analyzed"
+          indexes :native_photo_id, index: "not_analyzed"
+          indexes :type, index: "not_analyzed"
+        end
+      end
+      indexes :colors do
+        indexes :value, index: "not_analyzed"
+      end
+      indexes :default_photo do
+        indexes :attribution, index: "not_analyzed"
+        indexes :license_code, index: "not_analyzed"
+        indexes :medium_url, index: "not_analyzed"
+        indexes :square_url, index: "not_analyzed"
+        indexes :url, index: "not_analyzed"
+      end
+      indexes :listed_taxa do
+        indexes :establishment_means, index: "not_analyzed"
+      end
       indexes :names do
-        indexes :name, analyzer: "ascii_snowball_analyzer"
+        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :locale, index: "not_analyzed"
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
         # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
-        indexes :name_ja, analyzer: "kuromoji"
-        indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
+        indexes :name_ja, type: "string", analyzer: "kuromoji"
+        indexes :name_autocomplete, type: "string",
+          analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
-        indexes :name_autocomplete_ja, analyzer: "autocomplete_analyzer_ja"
-        indexes :exact, analyzer: "keyword_analyzer"
-        indexes :taxon_photos do
-          indexes :license_code, analyzer: "keyword_analyzer"
-        end
+        indexes :name_autocomplete_ja, type: "string", analyzer: "autocomplete_analyzer_ja"
+        indexes :exact, index: "not_analyzed"
+      end
+      indexes :statuses do
+        indexes :authority, index: "not_analyzed"
+        indexes :geoprivacy, index: "not_analyzed"
+        indexes :status, index: "not_analyzed"
       end
     end
   end

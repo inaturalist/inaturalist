@@ -451,31 +451,31 @@ class TaxaController < ApplicationController
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
 
-    search_wheres = { }
+    filters = [ ]
     unless @q.blank?
-      search_wheres[:match] = { "names.name": { query: @q, operator: "and" } }
+      filters << { match: { "names.name": { query: @q, operator: "and" } } }
     end
-    search_wheres[:is_active] = true if @is_active === true
-    search_wheres[:is_active] = false if @is_active === false
-    search_wheres[:iconic_taxon_id] =  @iconic_taxa_ids if @iconic_taxa_ids
-    search_wheres["colors.id"] =  @color_ids if @color_ids
-    search_wheres["place_ids"] =  @place_ids if @place_ids
-    search_wheres["ancestor_ids"] =  @taxon.id if @taxon
+    filters << { term: { is_active: true } } if @is_active === true
+    filters << { term: { is_active: false } } if @is_active === false
+    filters << { terms: { iconic_taxon_id: @iconic_taxa_ids } } if @iconic_taxa_ids
+    filters << { terms: { "colors.id": @color_ids } } if @color_ids
+    filters << { terms: { place_ids: @place_ids } } if @place_ids
+    filters << { term: { ancestor_ids: @taxon.id } } if @taxon
     search_options = { sort: { observations_count: "desc" },
       aggregate: {
         color: { "colors.id": 12 },
         iconic_taxon_id: { "iconic_taxon_id": 12 },
         place: { "places.id": 12 }
       } }
-    search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+    search_result = Taxon.elastic_search(search_options.merge(filters: filters)).
       per_page(per_page).page(page)
     # if there are no search results, and the search was performed with
     # a search ID filter, but one wasn't asked for. This will happen when
     # CONFIG.site_only_observations is true and a search filter is
     # set automatically. Re-run the search w/o the place filter
-    if search_result.total_entries == 0 && params[:places].blank? && !search_wheres["place_ids"].blank?
-      search_wheres.delete("place_ids")
-      search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+    if search_result.total_entries == 0 && params[:places].blank? && !@place_ids.blank?
+      without_place_filters = filters.select{ |f| !( f[:terms] && f[:terms][:place_ids] ) }
+      search_result = Taxon.elastic_search(search_options.merge(filters: without_place_filters)).
         per_page(per_page).page(page)
     end
     @taxa = Taxon.result_to_will_paginate_collection(search_result)
@@ -604,18 +604,18 @@ class TaxaController < ApplicationController
     else
       params[:is_active]
     end
-    search_wheres = { match: { "names.name_autocomplete": { query: @q, operator: "and" } } }
-    search_wheres[:is_active] = true if @is_active === true
-    search_wheres[:is_active] = false if @is_active === false
+    filters = [{ match: { "names.name_autocomplete": { query: @q, operator: "and" } } }]
+    filters << { term: { is_active: true } } if @is_active === true
+    filters << { term: { is_active: false } } if @is_active === false
     @taxa = Taxon.elastic_paginate(
-      where: search_wheres,
+      filters: filters,
       sort: { observations_count: "desc" },
       per_page: 30,
       page: 1
     )
     # attempt to fetch the best exact match, which will go first
     exact_results = Taxon.elastic_paginate(
-      where: search_wheres.merge(match: { "names.exact" => @q }),
+      filters: filters + [ { match: { "names.exact" => @q } } ],
       sort: { observations_count: "desc" },
       per_page: 1,
       page: 1
@@ -778,20 +778,22 @@ class TaxaController < ApplicationController
       # Look up photos associated with a specific observation
       Observation.where( id: params[:q] )
     else
-      search_wheres = params[:q].blank? ? nil : {
-        multi_match: {
-          query: params[:q],
-          operator: "and",
-          fields: [ :description, "taxon.names.name", "user.login", "field_values.value" ]
+      filters = [ { exists: { field: "photos" } } ]
+      unless params[:q].blank?
+        filters << {
+          multi_match: {
+            query: params[:q],
+            operator: "and",
+            fields: [ :description, "taxon.names.name", "user.login", "field_values.value" ]
+          }
         }
-      }
+      end
       Observation.elastic_paginate(
-        where: search_wheres,
-        filters: [ { exists: { field: "photos" } } ],
+        filters: filters,
         per_page: per_page,
         page: params[:page])
     end
-    Observation.preload_associations(observations, :photos)
+    Observation.preload_associations(observations, { photos: :user })
     @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
     @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if licensed
     partial = params[:partial].to_s

@@ -15,7 +15,7 @@ describe LifeList do
     before(:each) { enable_elastic_indexing( Observation, Place, Identification ) }
     after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
 
-    it "should destroy listed taxa where the taxon doesn't match the observation taxon" do
+    it "should destroy listed taxa where the taxon doesn't match the observation taxon", disabled: ENV["TRAVIS_CI"] do
       user = @list.user
       listed_taxon = make_listed_taxon_of_taxon(@child)
       obs = Observation.make!(:user => user, :taxon => @child)

@@ -284,16 +284,15 @@ class PlacesController < ApplicationController
     else
       # search both the autocomplete and normal field
       # autocomplete doesn't work well with 1- or 2-letter words
-      search_wheres = { bool: { should: [
+      filters = [ { bool: { should: [
         { match: { display_name_autocomplete: @q } },
         { match: { display_name: { query: @q, operator: "and" } } }
-      ] } }
+      ] } } ]
       if site_place
-        search_wheres["ancestor_place_ids"] = site_place
+        filters << { term: { ancestor_place_ids: site_place.id } }
       end
       @places = Place.elastic_paginate(
-        where: search_wheres,
-        fields: [ :id ],
+        filters: filters,
         sort: { bbox_area: "desc" },
         per_page: params[:per_page])
       Place.preload_associations(@places, :place_geometry_without_geom)
@@ -399,7 +398,7 @@ class PlacesController < ApplicationController
       begin
         Place.find(place_id)
       rescue ActiveRecord::RecordNotFound
-        Place.elastic_paginate(where: { display_name: place_id }, per_page: 1).first
+        Place.elastic_paginate(filters: [ { match: { display_name: place_id } } ], per_page: 1).first
       end
     else
       Place.find_by_id(place_id.to_i)

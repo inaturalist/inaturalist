@@ -35,9 +35,9 @@ describe ActsAsElasticModel do
 
   describe "class methods" do
     describe "elastic_search" do
-      it "searches for match_all: { } as a wildcard query" do
+      it "searches for bool: { } as a wildcard query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { match_all: { } } }).and_return(true)
+          { query: { bool: { } } }).and_return(true)
         Observation.elastic_search( )
       end
 
@@ -57,29 +57,29 @@ describe ActsAsElasticModel do
 
       it "adds envelope filters" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { filtered: { query: { match_all: { } },
-            filter: { bool: { must: [ { geo_shape: { geojson: { shape: {
-              type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}}}).and_return(true)
+          { query: { bool: { must: [
+            { geo_shape: { geojson: { shape: {
+              type: "envelope", coordinates: [[-180, -90], [180, 88]]}}}}]}}}).and_return(true)
         Observation.elastic_search(filters: [ { envelope: { geojson: { nelat: 88 }}}])
       end
 
       it "adds sorts to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { match_all: { } },
+          { query: { bool: { } },
             sort: { score: :desc } }).and_return(true)
         Observation.elastic_search(sort: { score: :desc })
       end
 
       it "allows certain fields to be specified" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { match_all: { } },
-            fields: [ :id, :description ] }).and_return(true)
-        Observation.elastic_search(fields: [ :id, :description ])
+          { query: { bool: { } },
+            _source: [ "id", "description" ] }).and_return(true)
+        Observation.elastic_search(source: [ "id", "description" ])
       end
 
       it "adds aggregations to the query" do
         expect(Observation.__elasticsearch__).to receive(:search).with(
-          { query: { match_all: { } },
+          { query: { bool: { } },
             aggs: { colors: { terms: {
               field: :"colors.id", size: 10 } } } }).and_return(true)
         Observation.elastic_search(aggregate: { colors: { "colors.id": 10 } } )
