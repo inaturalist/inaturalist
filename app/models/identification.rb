@@ -469,7 +469,6 @@ class Identification < ActiveRecord::Base
       end
       Observation.elastic_index!( ids: obs_ids )
     end
-    Observation.refresh_es_index
   end
   
   # /Static #################################################################
