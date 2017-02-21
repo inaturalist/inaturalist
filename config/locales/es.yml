@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Asierog
 # Author: Cgalindo
+# Author: Cruzan
 # Author: Csbotero
 # Author: Dgstranz
 # Author: Eduardo Martinez
@@ -936,6 +937,7 @@ es:
     la fecha y el tiempo de la foto. Para comenzar
   created: Creado
   created_by: Creado por
+  created_by_user_on_date: Creado por %{user} el %{date}
   created_on: Creado el
   creating_your_account: Creando su cuenta...
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetadas en Flickr
@@ -968,6 +970,7 @@ es:
   custom_project_fields: Campos de proyecto personalizados
   custom_project_was_successfully_created: El proyecto personalizado fue creado exitosamente.
   custom_project_was_successfully_updated: El proyecto actualizado fue creado exitosamente.
+  customize_location: Personalizar La Ubicación
   darr_apply_darr: '&darr; Aplicar &darr;'
   dashboard: Tablero
   data_deficient: datos insuficientes
@@ -1928,6 +1931,7 @@ es:
   lowest_rank: Rango más bajo
   made_a: creo una
   make_admin: Hacer administrador
+  make_an_observation: hacer una observación
   mail_disclaimer: '%{site_name} no permitirá que sus usuarios le envíen más invitaciones
     a través de nuestro invitador. Por favor reporte el abuso de invitaciones a %{site}.'
   main_content: Contenido principal
