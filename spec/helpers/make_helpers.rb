@@ -252,8 +252,17 @@ module MakeHelpers
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 
-  def make_check_listed_taxon(options = {})
-    list = CheckList.make!
-    ListedTaxon.make!(options)
+  def make_check_listed_taxon( options = {} )
+    list = CheckList.make!( place: options[:place] || Place.make! )
+    list.add_taxon( options[:taxon] || Taxon.make! )
+  end
+
+  def make_atlas_with_presence( options = { } )
+    taxon = options[:taxon]
+    presence_place = options.delete(:place) || make_place_with_geom( place_type: Place::COUNTRY, admin_level: Place::COUNTRY_LEVEL )
+    listed_taxon = presence_place.check_list.add_taxon( taxon )
+    AncestryDenormalizer.denormalize
+    PlaceDenormalizer.denormalize
+    Atlas.make!( options )
   end
 end

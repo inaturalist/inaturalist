@@ -10,8 +10,10 @@ class Atlas < ActiveRecord::Base
   after_save :index_taxon
   after_destroy :index_taxon
 
-  # All of the atlased places, i.e. all the places where the atlas author has
-  # declared this taxon to exist
+  def to_s
+    "<Atlas #{id} taxon_id: #{taxon_id}>"
+  end
+
   def places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
     # If no places have been exploded, we assume the taxon exists in all countries
@@ -28,7 +30,7 @@ class Atlas < ActiveRecord::Base
     places
   end
 
-  # All of the atlas places where there is a ListedTaxon demonstraging presence
+  # All of the atlas places where there is a ListedTaxon demonstrating presence
   def presence_places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
     descendant_listed_taxa = ListedTaxon.joins( list: :check_list_place ).
@@ -89,6 +91,8 @@ class Atlas < ActiveRecord::Base
     scope
   end
   
+  # All presence places, including est. means data, NOT just the places with
+  # est. means data
   def presence_places_with_establishment_means
     scope = ListedTaxon.joins( { list: :check_list_place } ).
       where( "lists.type = 'CheckList'" ).

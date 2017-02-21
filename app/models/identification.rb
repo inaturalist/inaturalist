@@ -206,7 +206,7 @@ class Identification < ActiveRecord::Base
   end
   
   # Set the project_observation curator_identification_id if the
-  #identifier is a curator of a project that the observation is submitted to
+  # identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.blank?
     Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(id)
@@ -248,6 +248,7 @@ class Identification < ActiveRecord::Base
   end
 
   def create_observation_review
+    return true if skip_observation
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id).first_or_create.touch
     true
@@ -346,6 +347,7 @@ class Identification < ActiveRecord::Base
   end
 
   def update_categories
+    return true if skip_observation
     Identification.update_categories_for_observation( observation )
     true
   end
@@ -422,20 +424,22 @@ class Identification < ActiveRecord::Base
     obs.elastic_index!
   end
 
-  def self.update_for_taxon_change( taxon_change, taxon, options = {} )
+  def self.update_for_taxon_change( taxon_change, options = {} )
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Identification.current.where( "identifications.taxon_id IN (?)", input_taxon_ids )
     scope = scope.where( user_id: options[:user] ) if options[:user]
     scope = scope.where( "identifications.id IN (?)", options[:records] ) unless options[:records].blank?
     scope = scope.where( options[:conditions] ) if options[:conditions]
     scope = scope.includes( options[:include] ) if options[:include]
-    scope = scope.includes( :observation, :user ) # these are involved in validations, so it helps to load them
+    # these are involved in validations, so it helps to load them
+    scope = scope.includes( { observation: :observations_places }, :user )
     scope = scope.where( "identifications.created_at < ?", Time.now )
     observation_ids = []
     scope.find_each do |ident|
+      next unless output_taxon = taxon_change.output_taxon_for_record( ident )
       new_ident = Identification.new(
         observation_id: ident.observation_id,
-        taxon: taxon, 
+        taxon: output_taxon, 
         user_id: ident.user_id,
         taxon_change: taxon_change
       )
@@ -444,8 +448,11 @@ class Identification < ActiveRecord::Base
       observation_ids << ident.observation_id
       yield( new_ident ) if block_given?
     end
-    observation_ids.in_groups_of( 1000 ) do |obs_ids|
-      Observation.where( "id IN (?)", obs_ids.compact ).includes( identifications: :taxon ).each do |obs|
+    observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
+      obs_ids.compact!
+      batch = Observation.where( id: obs_ids )
+      Observation.preload_associations( batch, [{ identifications: :taxon }, :community_taxon] )
+      batch.each do |obs|
         ProjectUser.delay(
           priority: INTEGRITY_PRIORITY,
           unique_hash: {
@@ -453,11 +460,16 @@ class Identification < ActiveRecord::Base
           }
         ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
         obs.set_community_taxon( force: true )
-        obs.skip_indexing
+        obs.skip_indexing = true
+        obs.skip_refresh_lists = true
+        obs.skip_refresh_check_lists = true
+        obs.skip_identifications = true
         obs.save
+        Identification.update_categories_for_observation( obs, skip_reload: true )
       end
       Observation.elastic_index!( ids: obs_ids )
     end
+    Observation.refresh_es_index
   end
   
   # /Static #################################################################

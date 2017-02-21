@@ -862,7 +862,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
 
-  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+  def self.update_for_taxon_change(taxon_change, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids)
     scope = scope.where(:user_id => options[:user]) if options[:user]
@@ -871,7 +871,9 @@ class ListedTaxon < ActiveRecord::Base
     scope = scope.includes(options[:include]) if options[:include]
     scope.find_each do |lt|
       lt.force_update_cache_columns = true
-      lt.update_attributes(:taxon => taxon)
+      if output_taxon = taxon_change.output_taxon_for_record( lt )
+        lt.update_attributes( taxon: output_taxon )
+      end
       yield(lt) if block_given?
     end
   end

@@ -1448,6 +1448,10 @@ class Taxon < ActiveRecord::Base
     atlas && atlas.is_active?
   end
 
+  def cached_atlas_presence_places
+    @cached_atlas_presence_places ||= atlas.presence_places if atlas
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)

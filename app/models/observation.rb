@@ -2268,20 +2268,22 @@ class Observation < ActiveRecord::Base
     @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
   end
   
-  def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
+  def self.update_for_taxon_change(taxon_change, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids)
     scope = scope.by(options[:user]) if options[:user]
     scope = scope.where("observations.id IN (?)", options[:records].to_a) unless options[:records].blank?
-    scope = scope.includes(:user, :identifications)
+    scope = scope.includes( :user, :identifications, :observations_places )
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
-        Identification.create(
-          user: observation.user,
-          observation: observation,
-          taxon: taxon,
-          taxon_change: taxon_change
-        )
+        if output_taxon = taxon_change.output_taxon_for_record( observation )
+          Identification.create(
+            user: observation.user,
+            observation: observation,
+            taxon: output_taxon,
+            taxon_change: taxon_change
+          )
+        end
       end
       yield(observation) if block_given?
     end

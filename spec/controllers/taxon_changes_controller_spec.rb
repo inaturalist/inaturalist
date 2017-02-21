@@ -6,6 +6,8 @@ describe TaxonChangesController, "commit_records" do
   before do
     sign_in u
   end
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
   it "should work for multuple records" do
     observations = []
