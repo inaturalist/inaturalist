@@ -448,28 +448,28 @@ class Identification < ActiveRecord::Base
       observation_ids << ident.observation_id
       yield( new_ident ) if block_given?
     end
-    observation_ids.in_groups_of( 100 ) do |obs_ids|
-      Observation.search_in_batches( id: obs_ids.compact ) do |batch|
-        Observation.preload_associations( batch, identifications: :taxon )
-        batch.each do |obs|
-          ProjectUser.delay(
-            priority: INTEGRITY_PRIORITY,
-            unique_hash: {
-              "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [ obs.id, obs.user_id ]
-            }
-          ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
-          obs.set_community_taxon( force: true )
-          obs.skip_indexing = true
-          obs.skip_refresh_lists = true
-          obs.skip_refresh_check_lists = true
-          obs.skip_identifications = true
-          obs.save
-          Identification.update_categories_for_observation( obs )
-        end
+    observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
+      obs_ids.compact!
+      batch = Observation.where( id: obs_ids )
+      Observation.preload_associations( batch, [{ identifications: :taxon }, :community_taxon] )
+      batch.each do |obs|
+        ProjectUser.delay(
+          priority: INTEGRITY_PRIORITY,
+          unique_hash: {
+            "ProjectUser::update_taxa_obs_and_observed_taxa_count_after_update_observation": [ obs.id, obs.user_id ]
+          }
+        ).update_taxa_obs_and_observed_taxa_count_after_update_observation( obs.id, obs.user_id )
+        obs.set_community_taxon( force: true )
+        obs.skip_indexing = true
+        obs.skip_refresh_lists = true
+        obs.skip_refresh_check_lists = true
+        obs.skip_identifications = true
+        obs.save
+        Identification.update_categories_for_observation( obs, skip_reload: true )
       end
       Observation.elastic_index!( ids: obs_ids )
-      Observation.refresh_es_index
     end
+    Observation.refresh_es_index
   end
   
   # /Static #################################################################

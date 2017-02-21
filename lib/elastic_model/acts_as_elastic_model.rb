@@ -61,6 +61,7 @@ module ActsAsElasticModel
           filter_scope : self.all
         # it also accepts an array of IDs to filter by
         if filter_ids = options.delete(:ids)
+          filter_ids.compact!
           if filter_ids.length > options[:batch_size]
             # call again for each batch, then return
             filter_ids.each_slice(options[:batch_size]) do |slice|
