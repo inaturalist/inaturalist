@@ -7,7 +7,10 @@ function mapStateToProps( state ) {
   return {
     observation: state.observation,
     config: state.config,
-    qualityMetrics: _.groupBy( state.qualityMetrics, "metric" )
+    qualityMetrics: Object.assign( { },
+      _.groupBy( state.qualityMetrics, "metric" ),
+      _.groupBy( state.observation.votes, "vote_scope" )
+    )
   };
 }
 

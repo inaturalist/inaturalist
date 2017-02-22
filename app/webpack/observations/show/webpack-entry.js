@@ -10,6 +10,8 @@ import observationPlacesReducer from "./ducks/observation_places";
 import controlledTermsReducer from "./ducks/controlled_terms";
 import otherObservationsReducer from "./ducks/other_observations";
 import qualityMetricsReducer from "./ducks/quality_metrics";
+import subscriptionsReducer from "./ducks/subscriptions";
+import flaggingModalReducer from "./ducks/flagging_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 
 const rootReducer = combineReducers( {
@@ -18,7 +20,9 @@ const rootReducer = combineReducers( {
   observationPlaces: observationPlacesReducer,
   controlledTerms: controlledTermsReducer,
   qualityMetrics: qualityMetricsReducer,
-  otherObservations: otherObservationsReducer
+  otherObservations: otherObservationsReducer,
+  subscriptions: subscriptionsReducer,
+  flaggingModal: flaggingModalReducer
 } );
 
 const store = createStore(
@@ -50,7 +54,8 @@ store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
   fetchPlaces: true,
   fetchControlledTerms: true,
   fetchQualityMetrics: true,
-  fetchOtherObservations: true
+  fetchOtherObservations: true,
+  fetchSubscriptions: true
 } ) );
 
 render(

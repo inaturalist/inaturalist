@@ -14,6 +14,7 @@
   display: inline-block;
   margin: 20px auto;
 }
+
 .bootstrap {
   h1, h2, h3, h4, h5 {
     margin-top: 20px;
@@ -22,6 +23,10 @@
   a {
     color: inherit;
   }
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .UserImage {
@@ -153,35 +158,6 @@ a.UserImage {
         padding: 0px 20px 20px 20px;
         border-bottom: 1px solid #ddd;
         margin: 0px -2px 0px 0px;
-      }
-      .obs_map {
-        margin: 20px 20px 0px 20px;
-        border: 1px solid #ddd;
-      }
-      .TaxonMap {
-        height: 230px;
-        width: 100%;
-      }
-      .map_details {
-        padding: 10px;
-        font-size: 14px;
-        .details_menu {
-          float: right;
-          button {
-            margin: 0px 0px 2px 12px;
-            padding: 0;
-            border: none;
-            background: inherit;
-          }
-          .btn-group.open .dropdown-toggle {
-            -webkit-box-shadow: none;
-            box-shadow: none;
-          }
-          .dropdown-menu {
-            margin: 0;
-            padding: 0;
-          }
-        }
       }
       .date_row {
         margin: 20px;
@@ -404,6 +380,10 @@ a.UserImage {
   }
   .FollowButton {
     float: right;
+    .unfollow {
+      color: #468cc7;
+      margin-left: 5px;
+    }
   }
   .upper {
     margin-bottom: 40px;
@@ -491,6 +471,45 @@ a.UserImage {
   }
 }
 
+.Map {
+  margin: 20px 20px 0px 20px;
+  border: 1px solid #ddd;
+  .place-guess {
+    display: inline-block;
+    max-width: 80%;
+    span, div {
+      display: inline-block;
+    }
+  }
+  .show-more {
+    display: inline-block;
+  }
+  .TaxonMap {
+    height: 230px;
+    width: 100%;
+  }
+  .map_details {
+    padding: 10px;
+    font-size: 14px;
+    .details_menu {
+      float: right;
+      button {
+        margin: 0px 0px 2px 12px;
+        padding: 0;
+        border: none;
+        background: inherit;
+      }
+      .btn-group.open .dropdown-toggle {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .dropdown-menu {
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+}
 
 .MapDetails {
   min-width: 550px;
@@ -676,6 +695,9 @@ a.UserImage {
     font-weight: 100;
     margin: 25px 0px 25px;
   }
+  .text {
+    font-size: 16px;
+  }
   h3 {
     margin-top: 30px;
   }
@@ -689,6 +711,86 @@ a.UserImage {
       border-bottom: 1px !important;
     }
 
+  }
+}
+
+.ResearchGradeProgress {
+  margin-top: 85px;
+  .graphic {
+    text-align: center;
+    .checks {
+      .check, .separator {
+        display: inline-block;
+      }
+      .check {
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        background: #DCDCDC;
+        border-radius: 20px;
+        font-size: 12px;
+        &.needs-id.active {
+          background: #E0E000;
+          color: #979797;
+        }
+        &.research.active {
+          background: #74AC00;
+          color: #fff;
+        }
+        &.incomplete {
+          color: #B3B2B7;
+          background: #fff;
+          border: 1px solid #DDD;
+          vertical-align: top;
+          line-height: 18px;
+        }
+      }
+      .separator {
+        border: 2px solid #DDD;
+        width: 140px;
+        margin: 2px;
+        border-style: dashed;
+        &.active {
+          border-style: solid;
+        }
+      }
+    }
+    .labels {
+      margin-top: 10px;
+      & > div {
+        display: inline-block;
+        width: 115px;
+      }
+      .active {
+        font-weight: 600;
+      }
+      .casual {
+        text-align: left;
+      }
+      .research {
+        text-align: right;
+      }
+    }
+  }
+  .info {
+    margin-top: 35px;
+    font-size: 18px;
+    line-height: 23px;
+  }
+  ul.remaining {
+    margin-top: 30px;
+    padding-left: 15px;
+    li {
+      list-style-type: none;
+      font-size: 16px;
+      margin-bottom: 10px;
+      i.fa {
+        font-size: 20px;
+        color: #74AC00;
+        width: 40px;
+        text-align: center;
+      }
+    }
   }
 }
 
@@ -742,7 +844,7 @@ a.UserImage {
   .caption {
     background: #fff;
     padding: 8px;
-    min-height: 50px;
+    min-height: 56px;
     text-align: left;
     a {
       display: block;

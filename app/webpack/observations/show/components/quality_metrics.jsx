@@ -47,14 +47,15 @@ class QualityMetrics extends React.Component {
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
     _.each( this.props.qualityMetrics[metric], m => {
-      if ( m.agree ) {
+      const agree = ( "vote_scope" in m ) ? m.vote_flag : m.agree;
+      if ( agree ) {
         votersFor.push( m.user );
       } else {
         votersAgainst.push( m.user );
       }
       if ( loggedIn && m.user.id === config.currentUser.id ) {
-        userVotedFor = m.agree;
-        userVotedAgainst = !m.agree;
+        userVotedFor = agree;
+        userVotedAgainst = !agree;
       }
     } );
     const agreeClass = userVotedFor ? "fa-thumbs-up" : "fa-thumbs-o-up";
@@ -84,13 +85,14 @@ class QualityMetrics extends React.Component {
     const dateCells = this.voteCellsForMetric( "date" );
     const evidenceCells = this.voteCellsForMetric( "evidence" );
     const recentCells = this.voteCellsForMetric( "recent" );
+    const needsIDCells = this.voteCellsForMetric( "needs_id" );
     return (
       <div className="QualityMetrics">
         <h3>Data Quality Assessment</h3>
         <div className="grade">
           Quality Grade:
           <span className={ `quality_grade ${observation.quality_grade} ` }>
-            { observation.quality_grade }
+            { _.upperFirst( observation.quality_grade ) }
           </span>
         </div>
         <div className="text">
@@ -167,8 +169,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa fa-gavel" />
                 Community can confirm/improve ID
               </td>
-              <td className="agree"></td>
-              <td className="disagree"></td>
+              <td className="agree">{ needsIDCells.agreeCell }</td>
+              <td className="disagree">{ needsIDCells.disagreeCell }</td>
             </tr>
             <tr>
               <td className="metric_title">

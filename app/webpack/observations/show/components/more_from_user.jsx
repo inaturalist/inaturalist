@@ -20,6 +20,7 @@ const MoreFromUser = ( { observation, observations } ) => {
               <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
             );
           }
+          const iconicTaxonName = o.taxon ? o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
           return (
             <div className="obs">
               <div className="photo">
@@ -31,7 +32,7 @@ const MoreFromUser = ( { observation, observations } ) => {
                   target="_self"
                   className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
                 >
-                  <i className={ `icon icon-iconic-${o.taxon.iconic_taxon_name.toLowerCase( )}`} />
+                  <i className={ `icon icon-iconic-${iconicTaxonName}`} />
                   <i className="sound-icon fa fa-volume-up" />
                 </a>
               </div>

@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import { Badge } from "react-bootstrap";
+import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import ZoomableImageGallery from "../../identify/components/zoomable_image_gallery";
 
 
@@ -20,9 +20,16 @@ const PhotoBrowser = ( { observation } ) => {
     thumbnail: photo.photoUrl( "square" ),
     description: (
       <div className="captions">
-        <Badge className="license">
-          { photo.license_code ? photo.license_code.substr( 0, 2 ) : "c" }
-        </Badge>
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 500 }
+          overlay={ ( <Tooltip id="add-tip">{ photo.attribution }</Tooltip> ) }
+          key={ `photo-${photo.id}-license` }
+        >
+          <Badge className="license">
+            { photo.license_code ? photo.license_code.substr( 0, 2 ) : "c" }
+          </Badge>
+        </OverlayTrigger>
         <a href={ `/photos/${photo.id}` }>
           <Badge>
             <i className="fa fa-info" />

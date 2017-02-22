@@ -11,6 +11,7 @@ class Observation < ActiveRecord::Base
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
     :model_attribute_changes,
+    :votes_for,
     { annotations: :votes_for },
     { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
@@ -63,6 +64,9 @@ class Observation < ActiveRecord::Base
       end
       indexes :observation_photos do
         indexes :uuid, analyzer: "keyword_analyzer"
+      end
+      indexes :votes, type: :nested do
+        indexes :vote_scope, analyzer: "keyword_analyzer"
       end
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :tags, analyzer: "ascii_snowball_analyzer"
@@ -164,7 +168,10 @@ class Observation < ActiveRecord::Base
         geojson: (latitude && longitude) ?
           ElasticModel.point_geojson(latitude, longitude) : nil,
         private_geojson: (private_latitude && private_longitude) ?
-          ElasticModel.point_geojson(private_latitude, private_longitude) : nil
+          ElasticModel.point_geojson(private_latitude, private_longitude) : nil,
+        votes: votes_for.map{ |v|
+          { user_id: v.voter_id, vote_flag: v.vote_flag, vote_scope: v.vote_scope }
+        }
       })
       add_taxon_statuses(json, t) if t && json[:taxon]
     end

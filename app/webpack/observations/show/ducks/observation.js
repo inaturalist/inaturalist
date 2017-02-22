@@ -3,6 +3,7 @@ import { fetchObservationPlaces } from "./observation_places";
 import { fetchControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser } from "./other_observations";
 import { fetchQualityMetrics } from "./quality_metrics";
+import { fetchSubscriptions } from "./subscriptions";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 
@@ -36,6 +37,7 @@ export function fetchObservation( id, options = { } ) {
       if ( options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
       if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
       if ( options.fetchOtherObservations ) { dispatch( fetchMoreFromThisUser( ) ); }
+      if ( options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
     } );
   };
 }
@@ -129,10 +131,11 @@ export function restoreID( id ) {
   };
 }
 
-export function fave( ) {
+export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
     const observationID = getState( ).observation.id;
-    const payload = { id: observationID };
+    const payload = Object.assign( { }, { id: observationID }, params );
+    if ( scope ) { payload.scope = scope; }
     inatjs.observations.fave( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
@@ -141,16 +144,25 @@ export function fave( ) {
   };
 }
 
-export function unfave( ) {
+export function unvote( scope ) {
   return ( dispatch, getState ) => {
     const observationID = getState( ).observation.id;
     const payload = { id: observationID };
+    if ( scope ) { payload.scope = scope; }
     inatjs.observations.unfave( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
       console.log( e );
     } );
   };
+}
+
+export function fave( ) {
+  return vote( );
+}
+
+export function unfave( ) {
+  return unvote( );
 }
 
 export function followUser( ) {
@@ -162,7 +174,7 @@ export function followUser( ) {
     }
     const payload = { id: state.config.currentUser.id, friend_id: state.observation.user.id };
     inatjs.users.update( payload ).then( ( ) => {
-      console.log( "done" );
+      dispatch( fetchSubscriptions( ) );
     } ).catch( e => {
       console.log( e );
     } );
@@ -181,7 +193,7 @@ export function unfollowUser( ) {
       remove_friend_id: state.observation.user.id
     };
     inatjs.users.update( payload ).then( ( ) => {
-      console.log( "done" );
+      dispatch( fetchSubscriptions( ) );
     } ).catch( e => {
       console.log( e );
     } );
@@ -197,7 +209,7 @@ export function subscribe( ) {
     }
     const payload = { id: state.observation.id };
     inatjs.observations.subscribe( payload ).then( ( ) => {
-      console.log( "done" );
+      dispatch( fetchSubscriptions( ) );
     } ).catch( e => {
       console.log( e );
     } );
@@ -258,6 +270,9 @@ export function unvoteAnnotation( id ) {
 }
 
 export function voteMetric( metric, params = { } ) {
+  if ( metric === "needs_id" ) {
+    return vote( "needs_id", { vote: ( params.agree === "false" ) ? "no" : "yes" } );
+  }
   return ( dispatch, getState ) => {
     const observationID = getState( ).observation.id;
     const payload = Object.assign( { }, { id: observationID, metric }, params );
@@ -270,6 +285,9 @@ export function voteMetric( metric, params = { } ) {
 }
 
 export function unvoteMetric( metric ) {
+  if ( metric === "needs_id" ) {
+    return unvote( "needs_id" );
+  }
   return ( dispatch, getState ) => {
     const observationID = getState( ).observation.id;
     const payload = { id: observationID, metric };

@@ -40,7 +40,7 @@ class Annotations extends React.Component {
           const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
           const mostAgree = votersFor.length > votersAgainst.length;
           const mostDisagree = votersAgainst.length > votersFor.length;
-          const viewerIsAnnotator = loggedIn && config.currentUser.id === gt.user.id;
+          const viewerIsAnnotator = loggedIn && gt.user && config.currentUser.id === gt.user.id;
           const remove = viewerIsObserver || viewerIsAnnotator ? (
             <Glyphicon
               glyph="remove-circle"

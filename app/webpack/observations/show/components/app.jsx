@@ -1,23 +1,22 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Grid, Row, Col, Button, Tabs, Tab, Dropdown } from "react-bootstrap";
+import { Grid, Row, Col, Button } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
-import TaxonMap from "../../identify/components/taxon_map";
-import UserImage from "../../identify/components/user_image";
 import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
-import FollowButton from "./follow_button";
-import ActivityItem from "./activity_item";
-import MapDetails from "./map_details";
+import ActivityContainer from "../containers/activity_container";
+import FlaggingModalContainer from "../containers/flagging_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import TagsContainer from "../containers/tags_container";
 import FavesContainer from "../containers/faves_container";
+import FollowButtonContainer from "../containers/follow_button_container";
+import MapContainer from "../containers/map_container";
 import MoreFromUserContainer from "../containers/more_from_user_container";
 import NearbyContainer from "../containers/nearby_container";
 import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
+import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
 
 moment.locale( "en", {
@@ -38,8 +37,7 @@ moment.locale( "en", {
   }
 } );
 
-const App = ( { observation, config, addComment, deleteComment, addID, deleteID, restoreID,
-  observationPlaces, followUser, unfollowUser, subscribe } ) => {
+const App = ( { observation, config } ) => {
   if ( _.isEmpty( observation ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -47,46 +45,8 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
       </div>
     );
   }
-  let taxonMap;
-  if ( observation.latitude ) {
-    // Select a small set of attributes that won't change wildy as the
-    // observation changes.
-    const obsForMap = _.pick( observation, [
-      "id",
-      "species_guess",
-      "latitude",
-      "longitude",
-      "positional_accuracy",
-      "geoprivacy",
-      "taxon",
-      "user"
-    ] );
-    obsForMap.coordinates_obscured = observation.obscured;
-    taxonMap = (
-      <TaxonMap
-        key={`map-for-${observation.id}`}
-        taxonLayers={[{
-          taxon: obsForMap.taxon,
-          observations: { observation_id: obsForMap.id },
-          places: { disabled: true },
-          gbif: { disabled: true }
-        }] }
-        observations={[obsForMap]}
-        zoomLevel={ observation.map_scale || 8 }
-        mapTypeControl={false}
-        showAccuracy
-        showAllLayer={false}
-        scrollwheel={false}
-        overlayMenu
-        zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
-      />
-    );
-  }
   const viewerIsObserver = config && config.currentUser &&
     config.currentUser.id === observation.user.id;
-  const activity = _.sortBy(
-    observation.identifications.concat( observation.comments ), a => (
-      moment.parseZone( a.created_at ) ) );
   const editButton = (
     viewerIsObserver ?
       <Button bsStyle="primary" className="edit" href={ `/observations/${observation.id}/edit` } >
@@ -95,32 +55,7 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
   );
   const photosColClass =
     ( !observation.photos || observation.photos.length === 0 ) ? "empty" : null;
-  const tabs = (
-    <Tabs defaultActiveKey="comment">
-      <Tab eventKey="comment" title="Comment" className="comment_tab">
-        <div className="form-group">
-          <textarea
-            placeholder="Leave a comment"
-            className="form-control"
-          />
-        </div>
-      </Tab>
-      <Tab eventKey="add_id" title="Suggest an ID" className="id_tab">
-        <TaxonAutocomplete
-          bootstrap
-          searchExternal
-          perPage={ 6 }
-          resetOnChange={ false }
-        />
-        <div className="form-group">
-          <textarea
-            placeholder="Tell us why..."
-            className="form-control"
-          />
-        </div>
-      </Tab>
-    </Tabs>
-  );
+  const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
   return (
     <div id="ObservationShow">
       <div className="upper">
@@ -129,11 +64,11 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
             <Col xs={10}>
               <div className="ObservationTitle">
                 <div className="title">
-                  <SplitTaxon taxon={observation.taxon} url={`/taxa/${observation.taxon.id}`} />
+                  <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
                 </div>
                 <div className="quality_flag">
                   <span className={ `quality_grade ${observation.quality_grade} ` }>
-                    { observation.quality_grade }
+                    { _.upperFirst( observation.quality_grade ) }
                   </span>
                 </div>
               </div>
@@ -151,38 +86,10 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
                   </Col>
                   <Col xs={5} className="info_column">
                     <div className="user_info">
-                      { !viewerIsObserver ? (
-                        <FollowButton
-                          observation={ observation }
-                          followUser={ followUser }
-                          unfollowUser={ unfollowUser }
-                          subscribe={ subscribe }
-                        /> ) : null }
+                      { !viewerIsObserver ? ( <FollowButtonContainer /> ) : null }
                       <UserWithIcon user={ observation.user } />
                     </div>
-                    <div className="obs_map">
-                      { taxonMap }
-                      <div className="map_details">
-                        { observation.place_guess }
-                        <div className="details_menu">
-                          <Dropdown
-                            id="grouping-control"
-                          >
-                            <Dropdown.Toggle>
-                              Details
-                            </Dropdown.Toggle>
-                            <Dropdown.Menu className="dropdown-menu-right">
-                              <li>
-                                <MapDetails
-                                  observation={ observation }
-                                  observationPlaces={ observationPlaces }
-                                />
-                              </li>
-                            </Dropdown.Menu>
-                          </Dropdown>
-                        </div>
-                      </div>
-                    </div>
+                    <MapContainer />
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">Observed:</span>
@@ -229,39 +136,7 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
               </Row>
               <Row>
                 <Col xs={12}>
-                  <h3>Activity</h3>
-                  <div className="activity">
-                    { activity.map( item => (
-                      <ActivityItem
-                        key={ `activity-${item.id}` }
-                        item={ item }
-                        config={ config }
-                        deleteComment={ deleteComment }
-                        deleteID={ deleteID }
-                        restoreID={ restoreID }
-                      /> ) ) }
-                    <div className="icon">
-                      <UserImage user={ config.currentUser } />
-                    </div>
-                    <div className="comment_id_panel">
-                      { tabs }
-                    </div>
-                    <Button bsSize="small" onClick={
-                      ( ) => {
-                        if ( $( ".comment_tab" ).is( ":visible" ) ) {
-                          addComment( $( ".comment_tab textarea" ).val( ) );
-                          $( ".comment_tab textarea" ).val( "" );
-                        } else {
-                          addID( $( ".id_tab input[name='taxon_id']" ).val( ),
-                            $( ".id_tab textarea" ).val( ) );
-                          $( ".id_tab input[name='taxon_id']" ).val( "" );
-                          $( ".id_tab textarea" ).val( "" );
-                        }
-                      } }
-                    >
-                      Done
-                    </Button>
-                  </div>
+                  <ActivityContainer />
                 </Col>
               </Row>
             </Col>
@@ -269,7 +144,7 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
               <Row>
                 <Col xs={12}>
                   <h4>Community ID</h4>
-                  <SplitTaxon taxon={observation.taxon} url={`/taxa/${observation.taxon.id}`} />
+                  <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
                 </Col>
               </Row>
               <Row>
@@ -309,8 +184,8 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
             <Col xs={7}>
               <QualityMetricsContainer />
             </Col>
-            <Col xs={5} className="temporary">
-              Research grade progress
+            <Col xs={5}>
+              <ResearchGradeProgressContainer />
             </Col>
           </Row>
         </Grid>
@@ -336,23 +211,20 @@ const App = ( { observation, config, addComment, deleteComment, addID, deleteID,
           </Row>
         </Grid>
       </div>
+      <FlaggingModalContainer />
     </div>
   );
 };
 
 App.propTypes = {
   observation: PropTypes.object,
-  observationPlaces: PropTypes.array,
   config: PropTypes.object,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   deleteComment: PropTypes.func,
   addID: PropTypes.func,
   deleteID: PropTypes.func,
-  restoreID: PropTypes.func,
-  followUser: PropTypes.func,
-  unfollowUser: PropTypes.func,
-  subscribe: PropTypes.func
+  restoreID: PropTypes.func
 };
 
 export default App;
