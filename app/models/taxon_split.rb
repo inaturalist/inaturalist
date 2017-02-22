@@ -17,7 +17,22 @@ class TaxonSplit < TaxonChange
   end
 
   def automatable?
-    output_taxa.detect{ |t| !t.atlased? }.nil?
+    return true if output_taxa.detect{ |t| !t.atlased? }.nil?
+    return true if output_ancestor
+    false
+  end
+
+  def output_ancestor( options = { })
+    if !@output_ancestor || options[:force]
+      output_ancestor_id = output_taxa.first.ancestor_ids.reverse.detect do |aid|
+        output_taxa.all? { |t| t.ancestor_ids.include?( aid ) }
+      end
+      if output_ancestor_id && ( Taxon::LIFE.blank? || output_ancestor_id != Taxon::LIFE.id )
+        @output_ancestor = Taxon.find( output_ancestor_id )
+      end
+      @output_ancestor = nil if @output_ancestor && @output_ancestor.name == "Life"
+    end
+    @output_ancestor
   end
 
   def output_taxon_for_record( record )
@@ -30,7 +45,9 @@ class TaxonSplit < TaxonChange
       o = record.is_a?( Observation ) ? record : record.observation
       o.observations_places.map(&:place_id)
     end
-    return if record_place_ids.blank?
+    if record_place_ids.blank?
+      return output_ancestor
+    end
     candidate_taxa = []
     output_taxa.each do |candidate_taxon|
       # don't even bother looking at more taxa if you already have ambiguity
@@ -48,8 +65,12 @@ class TaxonSplit < TaxonChange
         candidate_taxa << candidate_taxon
       end
     end
-    return unless candidate_taxa.size == 1
-    # If there's only one left standing, that's the unambiguous output taxon
-    candidate_taxa.first
+    if candidate_taxa.size == 1
+      # If there's only one left standing, that's the unambiguous output taxon
+      candidate_taxa.first
+    else
+      # Otherwise, try the common ancestor of the outputs
+      output_ancestor
+    end
   end
 end

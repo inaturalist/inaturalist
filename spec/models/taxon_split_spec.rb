@@ -42,19 +42,95 @@ describe TaxonSplit, "commit" do
   end
 end
 
+describe TaxonSplit, "output_ancestor" do
+  before(:all) { load_test_taxa }
+  let(:pseudacris_crucifer) {
+    Taxon.make!( name: "Pseudacris crucifer", rank: Taxon::SPECIES, parent: @Pseudacris )
+  }
+  it "should be the genus for two congeneric species" do
+    split = TaxonSplit.make
+    split.add_input_taxon( Taxon.make!(:species) )
+    split.add_output_taxon( pseudacris_crucifer )
+    split.add_output_taxon( @Pseudacris_regilla )
+    split.save!
+    expect( split.output_ancestor ).to eq @Pseudacris
+  end
+  it "should work with three species" do
+    split = TaxonSplit.make
+    split.add_input_taxon( Taxon.make!(:species) )
+    split.add_output_taxon( pseudacris_crucifer )
+    split.add_output_taxon( @Pseudacris_regilla )
+    split.add_output_taxon( @Calypte_anna )
+    split.save!
+    expect( split.output_ancestor ).to eq @Chordata
+  end
+  it "should work for taxa of different ranks" do
+    split = TaxonSplit.make
+    split.add_input_taxon( Taxon.make!(:species) )
+    split.add_output_taxon( @Pseudacris_regilla )
+    split.add_output_taxon( @Calypte )
+    split.save!
+    expect( split.output_ancestor ).to eq @Chordata
+  end
+  it "should never be life" do
+    split = TaxonSplit.make
+    split.add_input_taxon( Taxon.make!(:species) )
+    split.add_output_taxon( @Pseudacris_regilla )
+    split.add_output_taxon( @Clarkia_amoena )
+    split.save!
+    expect( split.output_ancestor ).to be_nil
+  end
+  it "should be nil if there are ungrafted outputs" do
+    split = TaxonSplit.make
+    split.add_input_taxon( Taxon.make!(:species) )
+    split.add_output_taxon( @Pseudacris_regilla )
+    split.add_output_taxon( Taxon.make!(:species) )
+    split.save!
+    expect( split.output_ancestor ).to be_nil
+  end
+end
+
 describe TaxonSplit, "commit_records" do
   before(:each) { prepare_split }
   before(:each) { enable_elastic_indexing( Observation, Identification ) }
   after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
-  it "should not update records if one of the output taxa isn't atlased" do
-    @split.output_taxa.each do |t|
-      expect( t ).not_to be_atlased
+  describe "with unatlased taxa" do
+    describe "identifications" do
+      let(:observation) { Observation.make!( taxon: @split.input_taxon ) }
+      it "should be replaced with the nearest common ancestor of all output taxa if there is ambiguity" do
+        ancestor = Taxon.make!( rank: Taxon::ORDER )
+        ident = observation.identifications.first
+        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.reload
+        expect( ident.taxon ).not_to eq ancestor
+        @split.commit_records
+        ident.reload
+        expect( ident ).not_to be_current
+        new_ident = observation.identifications.of( ancestor ).by( ident.user_id ).first
+        expect( new_ident ).not_to be_blank
+      end
     end
-    obs = Observation.make!( taxon: @input_taxon )
-    @split.commit_records
-    obs.reload
-    expect( obs.taxon ).to eq( @input_taxon )
+    describe "observations" do
+      let(:observation) { Observation.make!( taxon: @split.input_taxon ) }
+      it "should change to the nearest common ancestor of all output taxa if there is ambiguity" do
+        ancestor = Taxon.make!( rank: Taxon::ORDER )
+        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.reload
+        expect( observation.taxon ).not_to eq ancestor
+        @split.commit_records
+        observation.reload
+        expect( observation.taxon ).to eq ancestor
+      end
+    end
+    describe "listed_taxa" do
+      it "should be left alone if there is ambiguity" do
+        lt = ListedTaxon.make!( taxon: @split.input_taxon )
+        @split.commit_records
+        lt.reload
+        expect( lt.taxon ).to eq @split.input_taxon
+      end
+    end
   end
 
   describe "with atlased taxa" do
@@ -211,76 +287,112 @@ describe TaxonSplit, "commit_records" do
         expect( atlas2.presence_places ).to include presence_place1
         @split.reload
       end
-      describe "identifications" do
-        it "should not be affected for observations in the overlapping place" do
-          observation = without_delay do
-            Observation.make!(
-              taxon: @split.input_taxon,
-              latitude: presence_place1.latitude,
-              longitude: presence_place1.longitude
-            )
-          end
-          PlaceDenormalizer.denormalize
-          observation.reload
-          expect( observation.observations_places ).not_to be_blank
-          identification = observation.identifications.first
-          expect( identification.taxon ).to eq @split.input_taxon
-          expect( identification ).to be_current
-          @split.commit_records
-          identification.reload
-          expect( identification ).to be_current
+      describe "and a common output ancestor" do
+        before do
+          ancestor = Taxon.make!( rank: Taxon::ORDER )
+          @split.output_taxa.each {|t| t.update_attributes( parent: ancestor ) }
+          expect( @split.output_ancestor ).to eq ancestor
         end
-        it "should still be made not current in non-overlapping places" do
-          observation = without_delay do
-            Observation.make!(
-              taxon: @split.input_taxon,
-              latitude: presence_place2.latitude,
-              longitude: presence_place2.longitude
-            )
+        describe "identifications" do
+          let(:identification) {
+            observation = without_delay do
+              Observation.make!(
+                taxon: @split.input_taxon,
+                latitude: presence_place1.latitude,
+                longitude: presence_place1.longitude
+              )
+            end
+            PlaceDenormalizer.denormalize
+            observation.reload
+            observation.identifications.first
+          }
+          it "should be made not current for an obs in an overlapping place" do
+            expect( identification.taxon ).to eq @split.input_taxon
+            expect( identification ).to be_current
+            @split.commit_records
+            identification.reload
+            expect( identification ).not_to be_current
           end
-          PlaceDenormalizer.denormalize
-          observation.reload
-          expect( observation.observations_places ).not_to be_blank
-          identification = observation.identifications.first
-          expect( identification.taxon ).to eq @split.input_taxon
-          expect( identification ).to be_current
-          @split.commit_records
-          identification.reload
-          expect( identification ).not_to be_current
+          it "should be replaced for an obs in an overlapping place" do
+            expect( identification.taxon ).to eq @split.input_taxon
+            @split.commit_records
+            new_ident = identification.observation.identifications.of( @split.output_ancestor ).by( identification.user_id ).first
+            expect( new_ident ).not_to be_nil
+          end
         end
       end
-      describe "observations" do
-        it "should change the taxon if coordinates are in a non-overlapping presence place" do
-          o = Observation.make!(
-            latitude: presence_place2.latitude,
-            longitude: presence_place2.longitude,
-            taxon: @split.input_taxon
-          )
-          @split.commit_records
-          o.reload
-          expect( o.taxon ).to eq @split.output_taxa[0]
+      describe "and no common output ancestor" do
+        describe "identifications" do
+          it "should not be affected for observations in the overlapping place" do
+            observation = without_delay do
+              Observation.make!(
+                taxon: @split.input_taxon,
+                latitude: presence_place1.latitude,
+                longitude: presence_place1.longitude
+              )
+            end
+            PlaceDenormalizer.denormalize
+            observation.reload
+            expect( observation.observations_places ).not_to be_blank
+            identification = observation.identifications.first
+            expect( identification.taxon ).to eq @split.input_taxon
+            expect( identification ).to be_current
+            @split.commit_records
+            identification.reload
+            expect( identification ).to be_current
+          end
+          it "should still be made not current in non-overlapping places" do
+            observation = without_delay do
+              Observation.make!(
+                taxon: @split.input_taxon,
+                latitude: presence_place2.latitude,
+                longitude: presence_place2.longitude
+              )
+            end
+            PlaceDenormalizer.denormalize
+            observation.reload
+            expect( observation.observations_places ).not_to be_blank
+            identification = observation.identifications.first
+            expect( identification.taxon ).to eq @split.input_taxon
+            expect( identification ).to be_current
+            @split.commit_records
+            identification.reload
+            expect( identification ).not_to be_current
+          end
         end
-        it "should not change the taxon if coordinates are in an overlapping presence place" do
-          o = Observation.make!(
-            latitude: presence_place1.latitude,
-            longitude: presence_place1.longitude,
-            taxon: @split.input_taxon
-          )
-          @split.commit_records
-          o.reload
-          expect( o.taxon ).to eq @split.input_taxon
-        end
-        it "should not change the taxon if the coordinates are outside both output atlases" do
-          o = Observation.make!(
-            latitude: presence_place1.latitude * 10 ,
-            longitude: presence_place1.longitude * 10 ,
-            taxon: @split.input_taxon
-          )
-          expect( o.system_places ).not_to include presence_place1
-          expect( o.system_places ).not_to include presence_place2
-          @split.commit_records
-          o.reload
-          expect( o.taxon ).to eq @split.input_taxon
+        describe "observations" do
+          it "should change the taxon if coordinates are in a non-overlapping presence place" do
+            o = Observation.make!(
+              latitude: presence_place2.latitude,
+              longitude: presence_place2.longitude,
+              taxon: @split.input_taxon
+            )
+            @split.commit_records
+            o.reload
+            expect( o.taxon ).to eq @split.output_taxa[0]
+          end
+          it "should not change the taxon if coordinates are in an overlapping presence place" do
+            o = Observation.make!(
+              latitude: presence_place1.latitude,
+              longitude: presence_place1.longitude,
+              taxon: @split.input_taxon
+            )
+            @split.commit_records
+            o.reload
+            expect( o.taxon ).to eq @split.input_taxon
+          end
+          it "should not change the taxon if the coordinates are outside both output atlases" do
+            o = Observation.make!(
+              latitude: presence_place1.latitude * 10 ,
+              longitude: presence_place1.longitude * 10 ,
+              taxon: @split.input_taxon
+            )
+            expect( o.system_places ).not_to include presence_place1
+            expect( o.system_places ).not_to include presence_place2
+            @split.commit_records
+            o.reload
+            expect( o.taxon ).to eq @split.input_taxon
+          end
         end
       end
     end
