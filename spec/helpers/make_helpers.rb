@@ -265,4 +265,11 @@ module MakeHelpers
     PlaceDenormalizer.denormalize
     Atlas.make!( options )
   end
+
+  def make_observation_photo( options = { } )
+    options[:observation] ||= Observation.make!
+    options[:photo] ||= LocalPhoto.make!
+    options[:photo].update_attributes( user: options[:observation].user )
+    ObservationPhoto.make!( options )
+  end
 end

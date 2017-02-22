@@ -4,6 +4,7 @@ class ObservationPhoto < ActiveRecord::Base
 
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => :observation_id
+  validate :observer_owns_photo
   
   after_create :set_observation_quality_grade,
                :set_observation_photos_count
@@ -33,6 +34,12 @@ class ObservationPhoto < ActiveRecord::Base
     Observation.where(id: observation_id).update_all(
       observation_photos_count: ObservationPhoto.where(:observation_id => observation_id).count)
     true
+  end
+
+  def observer_owns_photo
+    unless observation.user_id == photo.user_id
+      errors.add(:photo, "must be owned by the observer" )
+    end
   end
 
 end

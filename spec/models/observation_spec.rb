@@ -1301,7 +1301,7 @@ describe Observation do
     end
   
     it "should find observations with photos" do
-      ObservationPhoto.make!(:observation => @pos)
+      make_observation_photo(:observation => @pos)
       obs = Observation.has_photos.all
       expect(obs).to include(@pos)
       expect(obs).not_to include(@neg)
@@ -2376,7 +2376,7 @@ describe Observation do
     end
 
     it "should preserve photos" do
-      op = ObservationPhoto.make!(:observation => reject)
+      op = make_observation_photo(:observation => reject)
       keeper.merge(reject)
       op.reload
       expect(op.observation).to eq(keeper)
@@ -2887,7 +2887,7 @@ describe Observation do
 
     it "should not be mappable if its photo is flagged" do
       o = make_research_grade_observation
-      op = ObservationPhoto.make!(observation: o)
+      op = make_observation_photo(observation: o)
       expect(o.mappable?).to be true
       Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
       o.reload

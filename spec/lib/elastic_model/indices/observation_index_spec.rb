@@ -50,12 +50,12 @@ describe "Observation Index" do
     p2 = LocalPhoto.make!
     p4 = LocalPhoto.make!
     p5 = LocalPhoto.make!
-    ObservationPhoto.make!(photo: p1, observation: o, position: 1)
-    ObservationPhoto.make!(photo: p2, observation: o, position: 2)
-    ObservationPhoto.make!(photo: p3, observation: o, position: 3)
+    make_observation_photo(photo: p1, observation: o, position: 1)
+    make_observation_photo(photo: p2, observation: o, position: 2)
+    make_observation_photo(photo: p3, observation: o, position: 3)
     # these without a position will be last in order of creation
-    ObservationPhoto.make!(photo: p4, observation: o)
-    ObservationPhoto.make!(photo: p5, observation: o)
+    make_observation_photo(photo: p4, observation: o)
+    make_observation_photo(photo: p5, observation: o)
     json = o.as_indexed_json
     expect( json[:photos][0][:id] ).to eq p1.id
     expect( json[:photos][1][:id] ).to eq p2.id
