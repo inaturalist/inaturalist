@@ -118,7 +118,7 @@ describe Taxon, "updating" do
     o = Observation.make!
     p = Photo.make!
     t.photos << p
-    o.photos << p
+    make_observation_photo( observation: o, photo: p )
     t.photos = [Photo.make!]
     o.reload
     expect(o.photos).not_to be_blank
