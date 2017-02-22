@@ -98,7 +98,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def input_taxa
-    [taxon]
+    [taxon].compact
   end
 
   def output_taxa
@@ -178,7 +178,10 @@ class TaxonChange < ActiveRecord::Base
       page = 1
       loop do
         results = Identification.elastic_paginate(
-          filters: [{ terms: { "taxon.ancestor_ids" => input_taxon_ids } }],
+          filters: [
+            { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+            { term: { current: true } }
+          ],
           page: page,
           per_page: 100
         )
