@@ -796,7 +796,11 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
     Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
       next unless p.aggregation_allowed? && p.prefers_aggregation?
-      p.aggregate_observations(logger: logger, pidfile: pidfile)
+      begin
+        p.aggregate_observations(logger: logger, pidfile: pidfile)
+      rescue => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed to aggregate project #{p.id} after error: #{e}"
+      end
       num_projects += 1
     end
     logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"

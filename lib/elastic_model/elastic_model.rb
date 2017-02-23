@@ -107,7 +107,7 @@ module ElasticModel
     if !options[:inverse_filters].blank?
       query[:bool][:must_not] = options[:inverse_filters]
     end
-    elastic_hash = { query: query }
+    elastic_hash = { query: { constant_score: { query: query } } }
     elastic_hash[:sort] = options[:sort] if options[:sort]
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
