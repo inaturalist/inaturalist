@@ -17,6 +17,7 @@ class WikiPage < ActiveRecord::Base
     href
     mozallowfullscreen
     name
+    s
     src
     style
     title

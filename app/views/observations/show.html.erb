@@ -379,7 +379,7 @@
     <div id="observation-description">
       <h3><%= t :description %></h3>
       <div class="clear readable description">
-        <%= formatted_user_text(@observation.description) %>
+        <%= formatted_user_text( @observation.description, tags: Observation::ALLOWED_DESCRIPTION_TAGS ) %>
       </div>
     </div>
   <% end %>
