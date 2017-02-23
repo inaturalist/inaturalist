@@ -174,21 +174,23 @@ class TaxonChange < ActiveRecord::Base
       Observation.search_in_batches( taxon_ids: input_taxon_ids ) do |batch|
         yield batch
       end
-    elsif reflection.klass == Identification
-      page = 1
-      loop do
-        results = Identification.elastic_paginate(
-          filters: [
-            { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
-            { term: { current: true } }
-          ],
-          page: page,
-          per_page: 100
-        )
-        break if results.blank?
-        yield results
-        page += 1
-      end
+    # Omitting using ES for idents now until the ident index gets fully 
+    # rebuilt. This should be slower but more reliable
+    # elsif reflection.klass == Identification
+    #   page = 1
+    #   loop do
+    #     results = Identification.elastic_paginate(
+    #       filters: [
+    #         { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+    #         { term: { current: true } }
+    #       ],
+    #       page: page,
+    #       per_page: 100
+    #     )
+    #     break if results.blank?
+    #     yield results
+    #     page += 1
+    #   end
     else
       reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids ).find_in_batches do |batch|
         yield batch
