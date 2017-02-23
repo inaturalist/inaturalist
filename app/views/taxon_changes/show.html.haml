@@ -40,16 +40,34 @@
                 = "(#{tc.committed_on.blank? ? "Draft" : "Committed on #{tc.committed_on}"})"
                 = link_to t(:view), tc, :class => "readmore"
           %p.ui
-            You should probably delete this taxon change, or at least come figure
+            You should probably delete this taxon change, or at least figure
             out some kind of solution with the person / people who made the other
             change(s).
-      - if @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit) && !@taxon_change.automatable?
+      - if @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
         .alert.alert-warning
           %strong= "#{t(:heads_up)}:"
-          This taxon split has output taxa that do not have atlases. This means
-          that records associated with its input taxa cannot be automatically
-          assigned to output taxa when this split is committed and
-          the community will have to add new IDs for these records.
+          - if @taxon_change.automatable?
+            When you commit this change, identifications will be re-assigned to
+            the output taxa based on their atlases. If some or all of the
+            outputs lack atlases, or if atlases overlap for a given record,
+            identifications will be replaced with identifications of the nearest
+            common ancestor taxon,
+            = link_to_taxon @taxon_change.output_ancestor, sciname: true
+          - else
+            This taxon split has output taxa that either do not have atlases or
+            don't share a common ancestor, so the records associated with its
+            input taxa cannot be automatically assigned to output taxa when this
+            split is committed and the community will have to add new IDs for
+            these records.
+      - elsif @taxon_change.is_a?( TaxonSplit ) && @taxon_change.automatable?
+        .alert.alert-warning
+          %strong= "#{t(:heads_up)}:"
+          Some or all of the identifications affected by this split may have been replaced with identifications of 
+          = succeed "." do
+            = link_to_taxon @taxon_change.output_ancestor, sciname: true
+          This happens when we can't automatically assign an identification to one of the output taxa.
+          = link_to "Review identifications of <span class='sciname'>#{@taxon_change.input_taxon.name}</span> #{@taxon_change.input_taxon.id}".html_safe, identifications_path( taxon_id: @taxon_change.input_taxon.id, current: "any" ), class: "viewmore taxon #{@taxon_change.input_taxon.rank}"
+
       #pageheader
         .breadcrumbs
           %strong= link_to "&laquo #{t :back_to_taxon_changes}".html_safe, taxon_changes_path, :class => 'crumb'

@@ -26,6 +26,8 @@ class IdentificationsController < ApplicationController
       search_params[:current] = "true"
     elsif params[:current].noish?
       search_params[:current] = "false"
+    else
+      search_params[:current] = "any"
     end
     if params[:for] == "others"
       search_params[:own_observation] = "false"

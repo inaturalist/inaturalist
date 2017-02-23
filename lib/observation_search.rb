@@ -387,7 +387,7 @@ module ObservationSearch
         if params[:taxon_ids].size == 1
           scope = scope.of(taxon_ids.first)
         else
-          taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id)}
+          taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id) }
           if taxa.size == taxon_ids.size
             scope = scope.has_iconic_taxa(taxon_ids)
           end
