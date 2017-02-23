@@ -181,13 +181,13 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     if logged_in?
       old_time_class = Chronic.time_class
-      Time.use_zone(self.current_user.time_zone) do
-        begin
+      begin
+        Time.use_zone( self.current_user.time_zone ) do
           Chronic.time_class = Time.zone
-          yield 
-        ensure
-          Chronic.time_class = old_time_class
+          yield
         end
+      ensure
+        Chronic.time_class = old_time_class
       end
     else
       yield
