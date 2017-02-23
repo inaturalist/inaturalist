@@ -40,7 +40,7 @@
                 = "(#{tc.committed_on.blank? ? "Draft" : "Committed on #{tc.committed_on}"})"
                 = link_to t(:view), tc, :class => "readmore"
           %p.ui
-            You should probably delete this taxon change, or at least come figure
+            You should probably delete this taxon change, or at least figure
             out some kind of solution with the person / people who made the other
             change(s).
       - if @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
@@ -66,7 +66,7 @@
           = succeed "." do
             = link_to_taxon @taxon_change.output_ancestor, sciname: true
           This happens when we can't automatically assign an identification to one of the output taxa.
-          = link_to "Review observations of <span class='sciname'>#{@taxon_change.output_ancestor.name}</span>".html_safe, identify_observations_path( taxon_id: @taxon_change.output_ancestor.id, rank: @taxon_change.output_ancestor.rank ), class: "viewmore taxon #{@taxon_change.output_ancestor.rank}"
+          = link_to "Review identifications of <span class='sciname'>#{@taxon_change.input_taxon.name}</span> #{@taxon_change.input_taxon.id}".html_safe, identifications_path( taxon_id: @taxon_change.input_taxon.id, current: "any" ), class: "viewmore taxon #{@taxon_change.input_taxon.rank}"
 
       #pageheader
         .breadcrumbs

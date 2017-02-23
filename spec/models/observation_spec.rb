@@ -1903,16 +1903,16 @@ describe Observation do
     end
     it "should filter by taxon_ids[] if all taxa are iconic" do
       load_test_taxa
-      o1 = Observation.make!(taxon: @Aves)
-      o2 = Observation.make!(taxon: @Amphibia)
-      o3 = Observation.make!(taxon: @Animalia)
+      o1 = Observation.make!( taxon: @Aves )
+      o2 = Observation.make!( taxon: @Amphibia )
+      o3 = Observation.make!( taxon: @Animalia )
       expect( @Aves ).to be_is_iconic
       expect( @Amphibia ).to be_is_iconic
       expect( @Animalia ).to be_is_iconic
-      observations = Observation.query(taxon_ids: [@Aves.id, @Amphibia.id]).all
-      expect( observations ).to include(o1)
-      expect( observations ).to include(o2)
-      expect( observations ).not_to include(o3)
+      observations = Observation.query( taxon_ids: [@Aves.id, @Amphibia.id] ).to_a
+      expect( observations ).to include( o1 )
+      expect( observations ).to include( o2 )
+      expect( observations ).not_to include( o3 )
     end
   end
 

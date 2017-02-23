@@ -167,28 +167,23 @@ module MakeHelpers
   #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-    @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life', :rank => "state of matter")
+    @Life = Taxon.find_by_name( "Life" ) || Taxon.make!( name: 'Life', rank: "state of matter" )
     
-    set_taxon_with_rank_and_parent( "Animalia", Taxon::KINGDOM, @Life )
+    set_taxon_with_rank_and_parent( "Animalia", Taxon::KINGDOM, @Life, is_iconic: true )
     set_taxon_with_rank_and_parent( "Chordata", Taxon::PHYLUM, @Animalia )
-    set_taxon_with_rank_and_parent( "Amphibia", Taxon::CLASS, @Chordata )
+    set_taxon_with_rank_and_parent( "Amphibia", Taxon::CLASS, @Chordata, is_iconic: true )
     set_taxon_with_rank_and_parent( "Anura", Taxon::ORDER, @Amphibia )
     set_taxon_with_rank_and_parent( "Hylidae", Taxon::FAMILY, @Anura )
     set_taxon_with_rank_and_parent( "Pseudacris", Taxon::GENUS, @Hylidae )
     set_taxon_with_rank_and_parent( "Pseudacris regilla", Taxon::SPECIES, @Pseudacris )
 
-    set_taxon_with_rank_and_parent( "Aves", Taxon::CLASS, @Chordata )
+    set_taxon_with_rank_and_parent( "Aves", Taxon::CLASS, @Chordata, is_iconic: true )
     set_taxon_with_rank_and_parent( "Apodiformes", Taxon::ORDER, @Aves )
     set_taxon_with_rank_and_parent( "Trochilidae", Taxon::FAMILY, @Apodiformes )
     set_taxon_with_rank_and_parent( "Calypte", Taxon::GENUS, @Trochilidae )
-    set_taxon_with_rank_and_parent( "Calypte anna", Taxon::SPECIES, @Calypte )
-    @Calypte_anna.taxon_names << TaxonName.make!(
-      name: "Anna's Hummingbird", 
-      taxon: @Calypte_anna, 
-      lexicon: TaxonName::LEXICONS[:ENGLISH]
-    )
+    set_taxon_with_rank_and_parent( "Calypte anna", Taxon::SPECIES, @Calypte, common_name: "Anna's Hummingbird" )
     
-    set_taxon_with_rank_and_parent( "Plantae", Taxon::KINGDOM, @Life )
+    set_taxon_with_rank_and_parent( "Plantae", Taxon::KINGDOM, @Life, is_iconic: true )
     set_taxon_with_rank_and_parent( "Magnoliophyta", Taxon::PHYLUM, @Plantae )
     set_taxon_with_rank_and_parent( "Magnoliopsida", Taxon::CLASS, @Magnoliophyta )
     set_taxon_with_rank_and_parent( "Myrtales", Taxon::ORDER, @Magnoliopsida )
@@ -201,8 +196,9 @@ module MakeHelpers
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 
-  def set_taxon_with_rank_and_parent( name, rank, parent)
+  def set_taxon_with_rank_and_parent( name, rank, parent, options = { } )
     varname = name.gsub( /\s+/, "_" )
+    common_name = options.delete( :common_name )
     if existing_in_memory = instance_variable_get( "@#{varname}" )
       return existing_in_memory
     end
@@ -210,7 +206,15 @@ module MakeHelpers
       instance_variable_set( "@#{varname}", existing_in_db )
       return instance_variable_get( "@#{varname}" )
     end
-    instance_variable_set( "@#{varname}", Taxon.make!( name: name, rank: rank, parent: parent ) )
+    instance_variable_set( "@#{varname}", Taxon.make!( options.merge( name: name, rank: rank ) ) )
+    instance_variable_get( "@#{varname}" ).update_attributes( parent: parent )
+    if common_name
+      instance_variable_get( "@#{varname}" ).taxon_names << TaxonName.make!(
+        name: common_name, 
+        taxon: instance_variable_get( "@#{varname}" ),
+        lexicon: TaxonName::LEXICONS[:ENGLISH]
+      )
+    end
     instance_variable_get( "@#{varname}" )
   end
 
