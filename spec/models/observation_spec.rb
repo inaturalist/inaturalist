@@ -445,6 +445,18 @@ describe Observation do
       expect(o).to be_georeferenced
     end
 
+    it "should create an observation review for the observer if there's a taxon" do
+      o = Observation.make!( taxon: Taxon.make! )
+      o.reload
+      expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 1
+    end
+
+    it "should not create an observation review for the observer if there's no taxon" do
+      o = Observation.make!
+      o.reload
+      expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 0
+    end
+
   end
 
   describe "updating" do

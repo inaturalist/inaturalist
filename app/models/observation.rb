@@ -354,7 +354,8 @@ class Observation < ActiveRecord::Base
              :set_captive,
              :update_observations_places,
              :set_taxon_photo
-  after_create :set_uri
+  after_create :set_uri,
+               :create_observation_review
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
   
@@ -2208,6 +2209,12 @@ class Observation < ActiveRecord::Base
       c.update_attributes(:current => true)
     end
     save!
+  end
+
+  def create_observation_review
+    return true unless taxon
+    ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
+    true
   end
 
   def create_deleted_observation
