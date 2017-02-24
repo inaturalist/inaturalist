@@ -1,0 +1,23 @@
+.container
+  .row
+    .col-xs-12
+      %h1= t :listing_announcements
+      %table.table
+        %thead
+          %tr
+            %th= t :placement
+            %th= t :start
+            %th= t :end
+            %th= t :body
+        %tbody
+          - @announcements.each do |announcement|
+            %tr
+              %td= h announcement.placement
+              %td= h announcement.start
+              %td= h announcement.end
+              %td= h announcement.body
+              %td= link_to t(:show), announcement
+              %td= link_to t(:edit), edit_announcement_path(announcement)
+              %td= link_to t(:destroy), announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete
+      = will_paginate @announcements
+      = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"

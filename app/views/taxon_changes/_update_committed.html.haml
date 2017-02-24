@@ -11,10 +11,11 @@
       %tr
         %td
           - for taxon in taxon_change.input_taxa
-            = render "shared/taxon", taxon: taxon, link_url: taxon          
+            = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true         
         %td
           - for taxon in taxon_change.output_taxa
-            = render "shared/taxon", taxon: taxon, link_url: taxon
+            %div
+              = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true
   %p
     = formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
 .timeline-footer
