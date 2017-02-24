@@ -191,6 +191,10 @@ class TaxonChange < ActiveRecord::Base
     #     yield results
     #     page += 1
     #   end
+    elsif reflection.klass == Identification
+      Identification.where( taxon_id: input_taxon_ids, current: true ).find_in_batches do |batch|
+        yield batch
+      end
     else
       reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids ).find_in_batches do |batch|
         yield batch

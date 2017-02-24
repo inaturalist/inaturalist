@@ -33,6 +33,7 @@ class TaxonMerge < TaxonChange
   end
 
   def commit
+    super
     input_taxa.each do |input_taxon|
       #duplicate photos
       input_taxon.taxon_photos.sort_by(&:id).each do |taxon_photo|
@@ -67,7 +68,6 @@ class TaxonMerge < TaxonChange
       # Move input child taxa to the output taxon
       delay( priority: USER_PRIORITY ).move_input_children_to_output( input_taxon.id )
     end
-    super
   end
   
 end
