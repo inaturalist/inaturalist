@@ -207,4 +207,24 @@ class ObservationFieldValue < ActiveRecord::Base
     }
   end
 
+  def self.update_for_taxon_change( taxon_change, options, &block )
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = ObservationFieldValue.joins( :observation_field ).
+      where( "observation_fields.datatype = ?", ObservationField::TAXON )
+    scope = scope.where(
+      input_taxon_ids.map {|itid| "observation_field_values.value = '#{itid}'" }.join( " OR " )
+    )
+    scope = scope.where( user_id: options[:user] ) if options[:user]
+    scope = scope.where( "observation_field_values.id IN (?)", options[:records] ) unless options[:records].blank?
+    scope = scope.where( options[:conditions] ) if options[:conditions]
+    scope = scope.includes( options[:include] ) if options[:include]
+    obs_ids = Set.new
+    scope.find_each do |ofv|
+      next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
+      ofv.update_attributes( value: output_taxon.id )
+      obs_ids << ofv.observation_id
+    end
+    Observation.elastic_index!( ids: obs_ids.to_a )
+  end
+
 end

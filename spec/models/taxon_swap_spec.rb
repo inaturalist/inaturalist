@@ -425,6 +425,14 @@ describe TaxonSwap, "commit_records" do
     tc.commit_records
     expect( o.identifications.by( o.user ) ).to be_blank
   end
+
+  it "should update observation fields of type taxon" do
+    of = ObservationField.make!( datatype: ObservationField::TAXON )
+    ofv = ObservationFieldValue.make!( observation_field: of, value: @swap.input_taxon.id )
+    @swap.commit_records
+    ofv.reload
+    expect( ofv.value ).to eq @swap.output_taxon.id.to_s
+  end
 end
 
 describe "move_input_children_to_output" do

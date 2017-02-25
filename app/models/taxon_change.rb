@@ -127,7 +127,7 @@ class TaxonChange < ActiveRecord::Base
     return if input_taxa.blank?
     Rails.logger.info "[INFO #{Time.now}] #{self}: starting commit_records"
     notified_user_ids = []
-    associations_to_update = %w(identifications observations listed_taxa taxon_links)
+    associations_to_update = %w(identifications observations listed_taxa taxon_links observation_field_values)
     has_many_reflections = associations_to_update.map do |a| 
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
@@ -196,7 +196,10 @@ class TaxonChange < ActiveRecord::Base
         yield batch
       end
     else
-      reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids ).find_in_batches do |batch|
+      scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids )
+      # sometimes reflections have custom scopes that need to be applied
+      scope = scope.merge( reflection.scope ) if reflection.scope
+      scope.find_in_batches do |batch|
         yield batch
       end
     end

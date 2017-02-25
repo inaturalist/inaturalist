@@ -131,6 +131,18 @@ describe TaxonSplit, "commit_records" do
         expect( lt.taxon ).to eq @split.input_taxon
       end
     end
+    describe "observation field values" do
+      it "should change to the nearest common ancestor of all output taxa if there is ambiguity" do
+        of = ObservationField.make!( datatype: ObservationField::TAXON )
+        ofv = ObservationFieldValue.make!( observation_field: of, value: @split.input_taxon.id )
+        ancestor = Taxon.make!( rank: Taxon::ORDER )
+        @split.output_taxa.each{ |t| t.update_attributes( parent: ancestor ) }
+        @split.reload
+        @split.commit_records
+        ofv.reload
+        expect( ofv.value ).to eq ancestor.id.to_s
+      end
+    end
   end
 
   describe "with atlased taxa" do

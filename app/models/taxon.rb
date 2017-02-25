@@ -56,6 +56,9 @@ class Taxon < ActiveRecord::Base
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, :inverse_of => :taxon
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
+  has_many :observation_field_values,
+    -> { joins(:observation_field).where( "observation_fields.datatype = ?", ObservationField::TAXON ) },
+    foreign_key: "value::int"
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
