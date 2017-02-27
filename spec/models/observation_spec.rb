@@ -467,6 +467,14 @@ describe Observation do
         :time_zone => 'UTC')
     end
 
+    it "should create an obs review if taxon set but was blank" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      o.update_attributes( taxon: Taxon.make! )
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
     it "should not destroy the owner's old identification if the taxon has changed" do
       t1 = Taxon.make!
       t2 = Taxon.make!

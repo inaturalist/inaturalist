@@ -353,9 +353,9 @@ class Observation < ActiveRecord::Base
              :update_mappable,
              :set_captive,
              :update_observations_places,
-             :set_taxon_photo
-  after_create :set_uri,
-               :create_observation_review
+             :set_taxon_photo,
+             :create_observation_review
+  after_create :set_uri
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
   
@@ -2213,6 +2213,7 @@ class Observation < ActiveRecord::Base
 
   def create_observation_review
     return true unless taxon
+    return true unless taxon_id_was.blank?
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
   end
