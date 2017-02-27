@@ -7,13 +7,14 @@ class UsersController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
-    :show, :update, :relationships, :add_role, :remove_role, :set_spammer ]
+    :show, :update, :relationships, :add_role, :remove_role, :set_spammer,
+    :merge ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
-  before_filter :admin_required, :only => [:curation]
+  before_filter :admin_required, :only => [:curation, :merge]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
@@ -612,6 +613,19 @@ class UsersController < ApplicationController
         @observations = Observation.page_of_results( user_id: @display_user.id )
       end
     end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def merge
+    unless @reject_user = User.find_by_id( params[:reject_user_id] )
+      flash[:error] = "Couldn't find user to delete"
+      redirect_back_or_default "/"
+    end
+    @user.merge( @reject_user )
+    flash[:notice] = "Merged user #{@reject_user.login} deleted"
+    redirect_back_or_default "/"
   end
 
   def update_session

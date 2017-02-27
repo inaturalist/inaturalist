@@ -149,6 +149,7 @@ Rails.application.routes.draw do
     member do
       put :join_test
       put :leave_test
+      put :merge
     end
   end
   # resource :session
