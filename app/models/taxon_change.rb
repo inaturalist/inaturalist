@@ -195,6 +195,13 @@ class TaxonChange < ActiveRecord::Base
       Identification.where( taxon_id: input_taxon_ids, current: true ).find_in_batches do |batch|
         yield batch
       end
+    elsif reflection.klass == ObservationFieldValue
+      ObservationFieldValue.
+          joins(:observation_field).
+          where( "value IN (?)", input_taxon_ids.map(&:to_s) ).
+          find_in_batches do |batch|
+        yield batch
+      end
     else
       scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids )
       # sometimes reflections have custom scopes that need to be applied
