@@ -34,7 +34,7 @@
   background-color: #eeeeee;
   margin-left: 25px;
 }
-.timeline > li {
+.timeline li {
   margin-bottom: 20px;
   position: relative;
 }
@@ -239,6 +239,7 @@ h2.timeline-title { /* fix - added h2 */
 }
 .timeline-body {
   padding: 15px 15px 15px 15px;
+  overflow: hidden;
 }
 .timeline-body > p + p {
   margin-top: 10px;
@@ -495,19 +496,17 @@ ul.timeline_observation {
   margin-top:0;
   margin-bottom:0;
   padding-top:0;
-  padding-bottom:0
+  padding-bottom:0;
 }
+
+ul.timeline_observation > li {
+  margin-bottom: 2px;
+}
+
 .timeline_observation:before {
   width: 0;
   margin-left: 20px;
 }​
-ul.timeline_observation > li {
-  margin-bottom:10px; 
-}
-
-ul.timeline_observation > li.last {
-  margin-bottom:0px;  
-}
 
 ul.timeline_observation > li > .timeline-badge {
   color: #fff;
@@ -555,39 +554,39 @@ ul.timeline_observation > li > .timeline-badge {
   border-right-width: 10px;
   left: -10px;
   right: auto;
-  border:none
+  border:none;
 }
 ul.timeline_observation > li > .timeline-badge > img {
   width: 40px;
-  height: 40px
+  height: 40px;
 }
 ul.timeline_observation > li > .timeline-panel {
   box-shadow: none;
   border:none;
-  border-radius:0
+  border-radius:0;
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-heading {
   background-color: transparent;
-    border-top: 1px solid #eee;
-    padding-left:0;
-    padding-right:0;
-    margin-right:0
+  
+  padding-left:0;
+  padding-right:0;
+  margin-right:0;
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > h2.timeline-title {
   padding-bottom: 10px;
   margin-right: 0;
-  padding-right:0
+  padding-right:0;
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > .timeline-title > .time {
   border-right: 0;
 }
 .timeline-panel a.subscriptionsettings {
   margin-top:-2px;
-  color: gray
+  color: gray;
 }
 ul.timeline_observation > li > .timeline-panel .btn_agree {
   float: right;
-  margin-top: 5px
+  margin-top: 5px;
 }
 ul.timeline_observation > li > .timeline-panel .label_refined {
   float: right;
@@ -596,18 +595,23 @@ ul.timeline_observation > li > .timeline-panel .label_refined {
   background-color: #ddd;
   font-weight: normal;
   color: black;
-  padding: .5em .6em .5em .7em
+  padding: .5em .6em .5em .7em;
 }
 ul.timeline_observation > li.id_refined {
-  opacity: .6
+  opacity: .6;
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-body > .media > .media-left > a > img {
   padding: 2px;
-  margin-right: 0
+  margin-right: 0;
 }
 ul.timeline_observation > li > .timeline-panel > .timeline-body {
   padding-top: 0;
-  padding-bottom: 0
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+ul.timeline_observation > li.last > .timeline-panel > .timeline-body {
+  border-bottom: 1px transparent;
+  padding-bottom: 0px;
 }
 /* ------------------------- */
 
@@ -672,7 +676,8 @@ h3 .glyphicon.info-link {
   font-size: 14px;
 }
 .icon_container {
-  padding: 20px;
+  display: block;
+  text-align: center;
 }
 
 .thumbnail > a > .scaledimg {
