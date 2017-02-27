@@ -53,7 +53,7 @@ ca:
     one: <span class='count'>1</span> tàxon coincident
     other: <span class='count'>%{count}</span> tàxons coincidents
   x_misidentifications_of_this_species:
-    one: 1 identificació errònia d''aquesta espècie
+    one: 1 identificació errònia d'aquesta espècie
     other: '%{count} identificacions errònies d''aquesta espècie'
   x_observations:
     one: 1 observació
@@ -74,7 +74,7 @@ ca:
     one: 1 persona
     other: '%{count} persones'
   x_people_found_this_helpful:
-    one: Una persona ha trobat això d''ajuda
+    one: Una persona ha trobat això d'ajuda
     other: '%{count} usuaris han trobat això d''ajuda'
   x_faves:
     one: 1 favorit
@@ -941,6 +941,7 @@ ca:
     Per començar,
   created: Creat
   created_by: Creat per
+  created_by_user_on_date: Creat per %{user} el %{date}
   created_on: Creat el
   creating_your_account: Creant el vostre compte...
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
@@ -1351,7 +1352,7 @@ ca:
   flag_this_observation: Marca aquesta observació
   flag_this_photo: Marca aquesta foto
   flagged: marcat
-  flagged_for_curation: Marcat per a supervisió.
+  flagged_for_curation: Marcat per a supervisió
   flagged_thing_explanation: Els usuaris han marcat aquest %{thing} perquè
   flagger: Marcador
   flags: Marques
