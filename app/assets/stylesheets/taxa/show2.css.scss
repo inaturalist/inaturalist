@@ -36,11 +36,11 @@
 }
 
 #hero {
-  background-color: #eee;
+  background-color: #f8f8f8;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 #charts {
@@ -296,8 +296,6 @@ $leaderItemImageDim: 56px;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
 }
 .LeaderItem h4 {
   text-transform: none;
@@ -329,6 +327,7 @@ $leaderItemImageDim: 56px;
 .LeaderItem .extra i {
   color: #999;
   margin-right: 2px;
+  color: $inat-green;
 }
 .LeaderItem .media-body {
   vertical-align: middle;
@@ -344,7 +343,7 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 590px;
+  height: 580px;
 }
 .PhotoPreview .photo-bg {
   position: absolute;
@@ -538,8 +537,14 @@ $photoPreviewThumbGutterTop: 3px;
 .TaxonomyTab .taxonomy li.root:before {
   content: '';
 }
+.TaxonomyTab .taxonomy .taxon {
+  margin-left: 3px;
+}
 .TaxonomyTab .taxonomy .taxon a {
   color: #333;
+}
+.TaxonomyTab .taxonomy .taxon a:hover {
+  color: #23527c;
 }
 
 .TaxonomyTab .taxonomy li.current > .SplitTaxon {
@@ -700,11 +705,13 @@ $introducedColor: #E4007C;
 .InteractionsTab {
   padding-top: 20px;
 }
-
+.ArticlesTab .taxon_description {
+  font-size: 16px;
+}
 .ArticlesTab .taxon_description_header {
   display: none;
 }
-.ArticlesTab h2 .fa-external-link {
+.ArticlesTab h2 .icon-link-external {
   font-size: 20px;
 }
 
@@ -890,6 +897,7 @@ $nav-btn-dim: 40px;
 .curation-tab .dropdown i {
   width: 20px;
   text-align: center;
+  color: $inat-green;
 }
 #curation-dropdown {
   margin-top: 14px;

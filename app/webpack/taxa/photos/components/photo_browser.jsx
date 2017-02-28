@@ -95,8 +95,8 @@ const PhotoBrowser = ( {
   );
   const renderGroupedPhotos = ( ) => (
     <div>
-      { sortedGroupedPhotos.map( group => (
-        <div key={`group-${group.groupName}`} className="photo-group">
+      { sortedGroupedPhotos.map( ( group, i ) => (
+        <div key={`group-${group.groupName}`} className={`photo-group ${ i === 0 ? "first" : "" }`}>
           <h3>
             { group.groupObject ?
               <SplitTaxon
