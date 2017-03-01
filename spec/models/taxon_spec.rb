@@ -782,19 +782,17 @@ describe Taxon, "moving" do
   it "should queue a job to update observation stats if there are observations" do
     Delayed::Job.delete_all
     stamp = Time.now
-    o = Observation.make!(:taxon => @Calypte)
-    expect(Observation.of(@Calypte).count).to eq(1)
-    AncestryDenormalizer.denormalize
-    @Calypte.update_attributes(:parent => @Hylidae)
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}).not_to be_blank
+    o = Observation.make!( taxon: @Calypte )
+    expect( Observation.of( @Calypte ).count ).to eq 1
+    @Calypte.update_attributes( parent: @Hylidae )
+    jobs = Delayed::Job.where( "created_at >= ?", stamp )
+    expect( jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m} ).not_to be_blank
   end
 
   it "should not queue a job to update observation stats if there are no observations" do
     Delayed::Job.delete_all
     stamp = Time.now
     expect(Observation.of(@Calypte).count).to eq(0)
-    AncestryDenormalizer.denormalize
     @Calypte.update_attributes(:parent => @Hylidae)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}).to be_blank
@@ -809,7 +807,6 @@ describe Taxon, "moving" do
     i1 = Identification.make!(:observation => o, :taxon => subfam)
     i2 = Identification.make!(:observation => o, :taxon => sp)
     expect(Identification.of(gen).exists?).to be true
-    AncestryDenormalizer.denormalize
     o.reload
     expect(o.taxon).to eq fam
     Delayed::Worker.new.work_off
@@ -821,11 +818,11 @@ describe Taxon, "moving" do
   end
 
   it "should create TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES )
-    expect( t.taxon_ancestors ).to be_blank
+    t = Taxon.make!( rank: Taxon::SPECIES, name: "Ronica vestrit" )
+    expect( t.taxon_ancestors.count ).to eq 1 # should always make one for itself
     t.move_to_child_of( @Calypte )
     t.reload
-    expect( t.taxon_ancestors ).not_to be_blank
+    expect( t.taxon_ancestors.count ).to be > 1
     expect( t.taxon_ancestors.detect{ |ta| ta.ancestor_taxon_id == @Calypte.id } ).not_to be_blank
   end
 

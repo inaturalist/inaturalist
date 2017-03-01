@@ -380,18 +380,16 @@ class Taxon < ActiveRecord::Base
   # Callbacks ###############################################################
   
   def handle_after_move
-    return true unless ancestry_changed?
-    set_iconic_taxon
+    set_iconic_taxon if ancestry_changed?
     return true if skip_after_move
     denormalize_ancestry
     return true if id_changed?
     update_life_lists
     update_obs_iconic_taxa
     conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
-    if (
-      Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists? || 
-      Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
-    )
+    obs_exist = Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    idents_exist = Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    if ( obs_exist || idents_exist )
       Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
@@ -404,11 +402,9 @@ class Taxon < ActiveRecord::Base
   def denormalize_ancestry
     Taxon.transaction do
       TaxonAncestor.where( taxon_id: id ).delete_all
-      unless ancestor_ids.blank?
-        ActiveRecord::Base.connection.execute(
-          "INSERT INTO taxon_ancestors VALUES " +
-          ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
-        )
+      unless self_and_ancestor_ids.blank?
+        sql = "INSERT INTO taxon_ancestors VALUES " + self_and_ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
+        ActiveRecord::Base.connection.execute( sql )
       end
     end
   end
