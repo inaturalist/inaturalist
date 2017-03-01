@@ -1461,5 +1461,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $scope.togglFullscreen = function( ) {
     $scope.fullscreen = !$scope.fullscreen;
+    setTimeout( function( ) {
+      google.maps.event.trigger( $scope.map, "resize" );
+    }, 100 );
   };
 }]);
