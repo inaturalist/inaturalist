@@ -382,8 +382,9 @@ class Taxon < ActiveRecord::Base
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon
-    return true if id_changed?
     return true if skip_after_move
+    denormalize_ancestry
+    return true if id_changed?
     update_life_lists
     update_obs_iconic_taxa
     conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
@@ -398,6 +399,18 @@ class Taxon < ActiveRecord::Base
     elastic_index!
     Taxon.refresh_es_index
     true
+  end
+
+  def denormalize_ancestry
+    Taxon.transaction do
+      TaxonAncestor.where( taxon_id: id ).delete_all
+      unless ancestor_ids.blank?
+        ActiveRecord::Base.connection.execute(
+          "INSERT INTO taxon_ancestors VALUES " +
+          ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
+        )
+      end
+    end
   end
 
   def index_observations

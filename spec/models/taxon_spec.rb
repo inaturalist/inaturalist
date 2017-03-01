@@ -102,6 +102,12 @@ describe Taxon, "creation" do
     @taxon.save
     expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
   end
+
+  it "should create TaxonAncestors" do
+    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
+    t.reload
+    expect( t.taxon_ancestors ).not_to be_blank
+  end
 end
 
 describe Taxon, "updating" do
@@ -812,6 +818,22 @@ describe Taxon, "moving" do
     end
     o.reload
     expect(o.taxon).to eq subfam
+  end
+
+  it "should create TaxonAncestors" do
+    t = Taxon.make!( rank: Taxon::SPECIES )
+    expect( t.taxon_ancestors ).to be_blank
+    t.move_to_child_of( @Calypte )
+    t.reload
+    expect( t.taxon_ancestors ).not_to be_blank
+    expect( t.taxon_ancestors.detect{ |ta| ta.ancestor_taxon_id == @Calypte.id } ).not_to be_blank
+  end
+
+  it "should remove existing TaxonAncestors" do
+    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
+    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 1
+    t.move_to_child_of( @Pseudacris )
+    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 0
   end
   
 end
