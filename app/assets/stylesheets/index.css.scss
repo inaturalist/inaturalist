@@ -329,7 +329,13 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Site Header */
 
-#header { color: #999; position: relative; margin-bottom: 20px; min-width: 980px;}
+#header {
+  color: #999;
+  position: relative;
+  margin-bottom: 20px;
+  min-width: 980px;
+  border-bottom: 1px solid #ddd;
+}
 #header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
 
 #header .innertab a, #header .count { color: #333; }
