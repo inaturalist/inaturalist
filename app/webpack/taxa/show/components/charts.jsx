@@ -19,6 +19,8 @@ class Charts extends React.Component {
   }
   shouldComponentUpdate( nextProps, nextState ) {
     if (
+      this.props.scaled === nextProps.scaled
+      &&
       _.isEqual(
         objectToComparable( this.props.seasonalityColumns ),
         objectToComparable( nextProps.seasonalityColumns )
@@ -50,6 +52,9 @@ class Charts extends React.Component {
   }
   hideHelpModal( ) {
     this.setState( { helpModalVisible: false } );
+  }
+  numberPrecision( ) {
+    return this.props.scaled ? 2 : 0;
   }
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
@@ -94,7 +99,7 @@ class Charts extends React.Component {
           },
           tick: {
             outer: false,
-            format: d => I18n.toNumber( d, { precision: 0 } )
+            format: d => I18n.toNumber( d, { precision: this.numberPrecision( ) } )
           }
         }
       },
@@ -121,7 +126,7 @@ class Charts extends React.Component {
             <span class="swatch" style="background-color: ${color( item )}"></span>
             <span class="column-label">${I18n.t( `views.taxa.show.frequency.${item.name}`,
               { defaultValue: item.name.split( "=" )[1] } )}:</span>
-            <span class="value">${I18n.toNumber( item.value, { precision: 0 } )}</span>
+            <span class="value">${I18n.toNumber( item.value, { precision: this.numberPrecision( ) } )}</span>
           </div>
         `;
       }
@@ -288,6 +293,25 @@ class Charts extends React.Component {
         ) );
       } );
     }
+    const scaleControl = (
+      <div className="scale-control">
+        { this.props.scaled ? (
+          <button
+            className="btn btn-link btn-xs center-block"
+            onClick={ ( ) => this.props.setScaledPreference( false ) }
+          >
+            Show total counts for this taxon
+          </button>
+        ) : (
+          <button
+            className="btn btn-link btn-xs center-block"
+            onClick={ ( ) => this.props.setScaledPreference( true ) }
+          >
+            Show counts relative to observations of all taxa
+          </button>
+        ) }
+      </div>
+    );
     return (
       <div id="charts" className="Charts">
         <ul className="nav nav-tabs" role="tablist">
@@ -332,6 +356,7 @@ class Charts extends React.Component {
             </div>
             <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart">
             </div>
+            { scaleControl }
           </div>
           <div role="tabpanel" className="tab-pane" id="charts-history">
             <div
@@ -342,6 +367,7 @@ class Charts extends React.Component {
               { I18n.t( "no_observations_yet" ) }
             </div>
             <div id="HistoryChart" className="HistoryChart FrequencyChart"></div>
+            { scaleControl }
           </div>
           { fieldValuePanels }
         </div>
@@ -383,7 +409,9 @@ Charts.propTypes = {
   seasonalityKeys: PropTypes.array,
   historyColumns: PropTypes.array,
   historyKeys: PropTypes.array,
-  colors: PropTypes.object
+  colors: PropTypes.object,
+  scaled: PropTypes.bool,
+  setScaledPreference: PropTypes.func
 };
 
 Charts.defaultProps = {
