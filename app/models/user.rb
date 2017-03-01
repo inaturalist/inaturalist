@@ -296,13 +296,18 @@ class User < ActiveRecord::Base
   end
   
   def whitelist_licenses
-    unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?(preferred_observation_license)
+    unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?( preferred_observation_license )
       self.preferred_observation_license = nil
     end
     
-    unless preferred_photo_license.blank? || Observation::LICENSE_CODES.include?(preferred_photo_license)
+    unless preferred_photo_license.blank? || Observation::LICENSE_CODES.include?( preferred_photo_license )
       self.preferred_photo_license = nil
     end
+
+    unless preferred_sound_license.blank? || Observation::LICENSE_CODES.include?( preferred_sound_license )
+      self.preferred_sound_license = nil
+    end
+
     true
   end
 
