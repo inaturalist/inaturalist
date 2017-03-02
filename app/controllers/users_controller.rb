@@ -461,7 +461,6 @@ class UsersController < ApplicationController
         @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
-          order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
