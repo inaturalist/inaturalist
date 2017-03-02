@@ -39,9 +39,11 @@ class Tags extends React.Component {
   render( ) {
     const observation = this.props.observation;
     const config = this.props.config;
-    if ( !observation ) { return ( <div /> ); }
     const viewerIsObserver = config && config.currentUser &&
       config.currentUser.id === observation.user.id;
+    if ( !observation || ( _.isEmpty( observation.tags ) && !viewerIsObserver ) ) {
+      return ( <div /> );
+    }
     let addTagLink;
     let addTagInput;
     if ( viewerIsObserver ) {

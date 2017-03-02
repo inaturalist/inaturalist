@@ -135,8 +135,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   if (options.showAccuracy && 
       (observation.coordinates_obscured || (observation.positional_accuracy && observation.positional_accuracy > 0))) {
     var iconicTaxonName = observation.iconic_taxon_name
-    if (!iconicTaxonName && observation.iconic_taxon) iconicTaxonName = observation.iconic_taxon.name
-    var color = iconicTaxonName ? iNaturalist.Map.ICONIC_TAXON_COLORS[iconicTaxonName] : '#333333'
+    if (!iconicTaxonName && observation.iconic_taxon) iconicTaxonName = observation.iconic_taxon.name;
+    if (!iconicTaxonName && observation.taxon) iconicTaxonName = observation.taxon.iconic_taxon_name;
+    var color = iconicTaxonName ? iNaturalist.Map.ICONIC_TAXON_COLORS[iconicTaxonName] : '#333333';
     var shape;
     var shapeOptions = {
       strokeColor: color,

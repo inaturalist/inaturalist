@@ -7,6 +7,7 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
 import observationReducer, { fetchObservation } from "./ducks/observation";
 import observationPlacesReducer from "./ducks/observation_places";
+import identificationsReducer from "./ducks/identifications";
 import controlledTermsReducer from "./ducks/controlled_terms";
 import otherObservationsReducer from "./ducks/other_observations";
 import qualityMetricsReducer from "./ducks/quality_metrics";
@@ -17,6 +18,7 @@ import configReducer, { setConfig } from "../../shared/ducks/config";
 const rootReducer = combineReducers( {
   config: configReducer,
   observation: observationReducer,
+  identifications: identificationsReducer,
   observationPlaces: observationPlacesReducer,
   controlledTerms: controlledTermsReducer,
   qualityMetrics: qualityMetricsReducer,
@@ -55,7 +57,8 @@ store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
   fetchControlledTerms: true,
   fetchQualityMetrics: true,
   fetchOtherObservations: true,
-  fetchSubscriptions: true
+  fetchSubscriptions: true,
+  fetchIdentifiers: true
 } ) );
 
 render(

@@ -29,6 +29,12 @@
   font-weight: bold;
 }
 
+.container.flash-warning {
+  a {
+    color: #337ab7;
+  }
+}
+
 .UserImage {
   margin-right: 5px;
   min-width: 40px;
@@ -44,7 +50,6 @@ a.UserImage {
   background-color: #aaa;
   color: white;
   text-align: center;
-  border: 2px solid white;
   vertical-align: middle;
   color: white;
 }
@@ -81,6 +86,9 @@ a.UserImage {
             top: 0;
             line-height: 20px;
             margin: 10px;
+            .license {
+              cursor: default;
+            }
             .badge {
               background-color: rgba(0,0,0,0.3);
               margin-right: 5px;
@@ -259,73 +267,6 @@ a.UserImage {
   .middle_left {
     padding-right: 40px;
   }
-  .activity {
-    .taxon {
-      display: inline-block;
-    }
-    .taxon-image {
-      width: 44px;
-      height: 44px;
-      border: 1px solid #ddd;
-      border-radius: 2px;
-      float: left;
-      margin-right: 15px;
-      display: inline-block;
-    }
-    span.taxon {
-      display: inline-block;
-    }
-    a.display-name {
-      color: #000;
-      font-size: 20px;
-      display: block;
-      line-height: 24px;
-    }
-    a.sciname {
-      color: #000;
-      font-size: 14px;
-    }
-    .panel-title {
-      font-size: 14px;
-    }
-    .icon {
-      float: left;
-    }
-    button {
-      margin-left: 60px;
-    }
-    .icon-person {
-      font-size: 36px;
-      line-height: 36px;
-    }
-    i.taxon-image.icon {
-      font-size: 44px;
-      opacity: 0.9;
-    }
-    .panel {
-      margin-left: 60px;
-    }
-    .id_body {
-      margin-top: 15px;
-    }
-    .withdrawn {
-      .title_text, .time {
-        opacity: 0.5;
-      }
-      .title_text {
-        text-decoration: line-through;
-      }
-      .panel-body {
-        background-color: #f8f8f8;
-        .taxon-image, .taxon, .taxon a {
-          opacity: 0.5;
-        }
-        .taxon {
-          text-decoration: line-through;
-        }
-      }
-    }
-  }
   .opposite_activity {
     h4:not(:first-child) {
       border-top: 1px solid #ddd;
@@ -350,32 +291,6 @@ a.UserImage {
     }
     .title {
       float: left;
-    }
-  }
-  .UserWithIcon {
-    .icon {
-      float: left;
-    }
-    .icon-person {
-      font-size: 36px;
-      line-height: 36px;
-    }
-    .title {
-      font-size: 20px;
-      line-height: 22px;
-      a {
-        color: #000;
-      }
-    }
-    .subtitle {
-      margin-top: 5px;
-      line-height: 18px;
-      font-size: 15px;
-      i.fa-binoculars {
-        font-size: 12px;
-        color: #74AC00;
-        margin-right: 5px;
-      }
     }
   }
   .FollowButton {
@@ -411,27 +326,31 @@ a.UserImage {
       line-height: 100px;
     }
   }
+}
 
-
-  .time {
-    float: right;
-    margin-right: 12px;
+.UserWithIcon {
+  .icon {
+    float: left;
   }
-  .ActivityItemMenu {
-    float: right;
-    border-left: 1px solid #ddd;
-    button {
-      margin: 0px 0px 2px 12px;
-      padding: 0;
-      border: none;
-      background: inherit;
+  .icon-person {
+    font-size: 36px;
+    line-height: 36px;
+  }
+  .title {
+    font-size: 20px;
+    line-height: 22px;
+    a {
+      color: #000;
     }
-    .btn-group.open .dropdown-toggle {
-      -webkit-box-shadow: none;
-      box-shadow: none;
-    }
-    .dropdown-menu {
-      margin-right: -10px;
+  }
+  .subtitle {
+    margin-top: 5px;
+    line-height: 18px;
+    font-size: 15px;
+    i.fa-binoculars {
+      font-size: 12px;
+      color: #74AC00;
+      margin-right: 5px;
     }
   }
 }
@@ -474,16 +393,6 @@ a.UserImage {
 .Map {
   margin: 20px 20px 0px 20px;
   border: 1px solid #ddd;
-  .place-guess {
-    display: inline-block;
-    max-width: 80%;
-    span, div {
-      display: inline-block;
-    }
-  }
-  .show-more {
-    display: inline-block;
-  }
   .TaxonMap {
     height: 230px;
     width: 100%;
@@ -491,6 +400,28 @@ a.UserImage {
   .map_details {
     padding: 10px;
     font-size: 14px;
+    .place-guess {
+      display: inline-block;
+      max-width: 80%;
+      span, div {
+        display: inline;
+      }
+      .place {
+        margin-right: 5px;
+      }
+      .show-more {
+        color: #428BCA;
+        cursor: pointer;
+        margin-right: 5px;
+      }
+      .obscured {
+        color: #aaa;
+      }
+    }
+    .dropdown-toggle {
+      color: #428BCA !important;
+      background: none !important;
+    }
     .details_menu {
       float: right;
       button {
@@ -552,7 +483,7 @@ a.UserImage {
   }
 }
 
-.Tags {
+.Tags, .Projects {
   .panel {
     background: none;
     border: 0;
@@ -568,6 +499,9 @@ a.UserImage {
     color: #428BCA;
     cursor: pointer;
   }
+}
+
+.Tags {
   .tag {
     background: rgba(115,172,0,0.10);
     border: 1px solid #74AC00;
@@ -581,10 +515,144 @@ a.UserImage {
       top: 3px;
       margin-left: 5px;
     }
+    .glyphicon-remove-circle {
+      cursor: pointer;
+    }
+  }
+}
+
+.Activity {
+  .identification {
+    display: inline-block;
+  }
+  .buttons {
+    float: right;
+  }
+  .taxon {
+    display: inline-block;
+  }
+  .taxon-image {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    float: left;
+    margin-right: 15px;
+    display: inline-block;
+  }
+  span.taxon {
+    display: inline-block;
+  }
+  a.display-name {
+    color: #000;
+    font-size: 20px;
+    display: block;
+    line-height: 24px;
+  }
+  a.sciname {
+    color: #000;
+    font-size: 14px;
+  }
+  .time {
+    float: right;
+    margin-right: 12px;
+    color: #999999;
+  }
+  .panel-title {
+    font-size: 14px;
+    .item-status {
+      float: right;
+      margin-right: 15px;
+     .fa {
+        width: 20px;
+        text-align: center;
+      }
+    }
+  }
+  .panel.flagged .panel-heading {
+    background: #fcf8e3;
+    .item-status {
+      color: #8a6d3b;
+    }
+  }
+  .panel.maverick .panel-heading {
+    background: rgba(216, 84, 79, 0.05);
+    .item-status {
+      color: #D9534F;
+    }
+  }
+  .panel.improving .panel-heading {
+    background: rgba(116, 173, 0, 0.05);
+    .item-status {
+      color: #74AC00;
+    }
+  }
+  .icon {
+    float: left;
+  }
+  button {
+    margin-left: 60px;
+  }
+  .icon-person {
+    font-size: 36px;
+    line-height: 36px;
+  }
+  i.taxon-image.icon {
+    font-size: 44px;
+    opacity: 0.9;
+  }
+  .panel {
+    margin-left: 60px;
+  }
+  .id_body {
+    margin-top: 15px;
+  }
+  .withdrawn {
+    .title_text, .time {
+      opacity: 0.5;
+    }
+    .title_text {
+      text-decoration: line-through;
+    }
+    .panel-body {
+      background-color: #f8f8f8;
+      .taxon-image, .taxon, .taxon a {
+        opacity: 0.5;
+      }
+      .taxon {
+        text-decoration: line-through;
+      }
+    }
+  }
+}
+
+.ActivityItemMenu {
+  float: right;
+  border-left: 1px solid #ddd;
+  .control-group {
+    .dropdown.btn-group {
+      button {
+        margin: 0px 0px 2px 12px;
+        padding: 0;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+      }
+      .btn-group.open .dropdown-toggle {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .dropdown-menu {
+        margin-right: -10px;
+      }
+    }
   }
 }
 
 .Annotations {
+  table, .table {
+    margin-bottom: 0px;
+  }
   thead {
     background: rgba(174,174,174, 0.09);
     th {
@@ -695,8 +763,22 @@ a.UserImage {
     font-weight: 100;
     margin: 25px 0px 25px;
   }
+  .flag_link {
+    color: #337AB7;
+    cursor: pointer;
+  }
   .text {
     font-size: 16px;
+  }
+  tr.flags.flagged {
+    background: #F2DEDE;
+    .metric_title .fa {
+      color: #D9534F;
+    }
+    a {
+      color: #337AB7;
+      margin-left: 10px;
+    }
   }
   h3 {
     margin-top: 30px;
@@ -855,8 +937,6 @@ a.UserImage {
   }
 }
 
-
-
 .ObservationsHighlight {
   padding-bottom: 30px;
   h3 {
@@ -888,6 +968,152 @@ a.UserImage {
     }
   }
 }
+
+.FlaggingModal {
+  .flagInput {
+    .heading {
+      input {
+        margin: 0px 5px;
+      }
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+  .modal-dialog {
+    .modal-body {
+      textarea {
+        min-height: 75px;
+        resize: none;
+        border-radius: 3px;
+        background: #F7F7F7;
+      }
+      a.userimage {
+        min-width: 30px;
+        height: 30px;
+        width: 30px;
+      }
+      .username {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .glyphicon-remove-circle {
+        top: 3px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.ObservationFields {
+  .field-value {
+    margin-bottom: 10px;
+  }
+  .field {
+    font-weight: 600;
+    display: inline;
+    margin-right: 5px;
+  }
+  .value {
+    display: inline;
+    .dna {
+      font-family: inherit;
+    }
+  }
+}
+
+.Identifiers {
+  .identifier {
+    height: 50px;
+    width: 50%;
+    display: inline-block;
+    margin-bottom: 15px;
+    .UserWithIcon {
+      .icon {
+        margin-right: 5px;
+      }
+      .title {
+        font-size: 14px;
+        line-height: 14px;
+        padding-top: 8px;
+        font-weight: 700;
+      }
+      .subtitle {
+        font-size: 14px;
+        margin-top: 4px;
+        .fa {
+          color: #74AC00;
+          margin-right: 4px;
+        }
+      }
+    }
+  }
+}
+
+.CommunityIdentification {
+  .info {
+    border: 1px solid #ddd;
+    background: #fff;
+    font-size: 16px;
+    padding: 15px;
+    .taxon {
+      display: block;
+    }
+    .photo {
+      float: right;
+      img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+    .graphic {
+      margin-top: 20px;
+      .for, .against {
+        display: inline-block;
+        height: 8px;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
+      }
+      .for {
+        background: #74AC00;
+      }
+      .against {
+        background: #D9534F;
+      }
+    }
+  }
+  .action {
+    border: 1px solid #ddd;
+    border-top: 0px;
+    padding: 17px 12px;
+    .btn-space {
+      width: 33%;
+      display: inline-block;
+      text-align: center;
+      button {
+        width: 90%;
+        .fa {
+          color: #74AC00;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

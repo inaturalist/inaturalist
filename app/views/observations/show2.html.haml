@@ -3,6 +3,7 @@
   Title
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ name: "config:help_email", content: CONFIG.help_email }
   :javascript
     INITIAL_OBSERVATION_ID = #{@observation.id};
 - content_for :extracss do

@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Panel } from "react-bootstrap";
 import moment from "moment-timezone";
@@ -6,7 +7,8 @@ import UserImage from "../../identify/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 
 
-const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) => {
+const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
+                         restoreID, setFlaggingModalState } ) => {
   if ( !item ) { return ( <div /> ); }
   let taxonImageTag;
   const taxon = item.taxon;
@@ -14,6 +16,7 @@ const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) =>
   let contents;
   let header;
   let className;
+  let buttons;
   const userLink = (
     <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
   );
@@ -37,13 +40,12 @@ const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) =>
     header = "suggested an ID";
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
-      <div>
+      <div className="identification">
         <div className="taxon">
           { taxonImageTag }
           <SplitTaxon
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }
-            noInactive
           />
         </div>
         { item.body ? (
@@ -54,6 +56,15 @@ const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) =>
         ) : null }
       </div>
     );
+    buttons = ( <div className="buttons">
+      <div className="btn-space">
+        <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${observation.taxon.id}` }>
+          <button className="btn btn-default">
+            <i className="fa fa-exchange" /> Compare
+          </button>
+        </a>
+      </div>
+    </div> );
   } else {
     header = "commented";
     contents = (
@@ -61,12 +72,32 @@ const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) =>
     );
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
+  let panelClass;
+  let status;
+  if ( item.flags && item.flags.length > 0 ) {
+    panelClass = "flagged";
+    status = ( <span className="item-status">
+      <i className="fa fa-flag" /> Flagged
+    </span> );
+  } else if ( item.category ) {
+    if ( item.category === "maverick" ) {
+      panelClass = "maverick";
+      status = ( <span className="item-status">
+        <i className="fa fa-bolt" /> Maverick
+      </span> );
+    } else if ( item.category === "improving" ) {
+      panelClass = "improving";
+      status = ( <span className="item-status">
+        <i className="fa fa-trophy" /> Improving
+      </span> );
+    }
+  }
   return (
     <div className={ className }>
       <div className="icon">
         <UserImage user={ item.user } />
       </div>
-      <Panel header={(
+      <Panel className={ panelClass } header={(
         <span>
           <span className="title_text">
             { userLink }&nbsp;
@@ -78,14 +109,17 @@ const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) =>
             deleteComment={ deleteComment }
             deleteID={ deleteID }
             restoreID={ restoreID }
+            setFlaggingModalState={ setFlaggingModalState }
           />
           <span className="time">
             { relativeTime }
           </span>
+          { status }
         </span>
         )}
       >
         { contents }
+        { buttons }
       </Panel>
     </div>
   );
@@ -94,9 +128,12 @@ const ActivityItem = ( { item, config, deleteComment, deleteID, restoreID } ) =>
 ActivityItem.propTypes = {
   item: PropTypes.object,
   config: PropTypes.object,
+  currentUserID: PropTypes.object,
+  observation: PropTypes.object,
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
-  restoreID: PropTypes.func
+  restoreID: PropTypes.func,
+  setFlaggingModalState: PropTypes.func
 };
 
 export default ActivityItem;

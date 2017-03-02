@@ -36,30 +36,39 @@ const Map = ( { observation, observationPlaces, config, setConfig } ) => {
         showAllLayer={false}
         scrollwheel={false}
         overlayMenu
+        clickable={false}
         zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
       />
     );
   }
-  let placeGuess;
-  if ( observation.place_guess.length > 22 &&
-       !( config.map && config.map.expandLocation === true ) ) {
-    placeGuess = (
-      <div>
-        <span>{ observation.place_guess.substring( 0, 22 ).trim( ) }...</span>
+  let placeGuessElement;
+  let placeGuess = observation.place_guess;
+  if ( placeGuess ) {
+    let showMore;
+    const obscured = observation.obscured && ( <span className="obscured">(Obscured)</span> );
+    const showLength = observation.obscured ? 22 : 32;
+    if ( observation.place_guess.length > showLength &&
+         !( config.map && config.map.expandLocation === true ) ) {
+      placeGuess = `${observation.place_guess.substring( 0, showLength ).trim( )}...`;
+      showMore = (
         <div className="show-more">
-          <div onClick={ ( ) => { setConfig( { map: { expandLocation: true } } ); } }>Show </div>
-          (Obscured)</div>
+          <div onClick={ ( ) => { setConfig( { map: { expandLocation: true } } ); } }>Show</div>
+        </div> );
+    }
+    placeGuessElement = (
+      <div>
+        <span className="place">{ placeGuess }</span>
+        { showMore }
+        { obscured }
       </div>
     );
-  } else {
-    placeGuess = observation.place_guess;
   }
   return (
     <div className="Map">
       { taxonMap }
       <div className="map_details">
         <div className="place-guess">
-          { placeGuess }
+          { placeGuessElement }
         </div>
         <div className="details_menu">
           <Dropdown

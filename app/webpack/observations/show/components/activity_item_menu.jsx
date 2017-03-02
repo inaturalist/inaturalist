@@ -2,7 +2,8 @@ import React, { PropTypes } from "react";
 import { Dropdown, MenuItem } from "react-bootstrap";
 
 
-const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID } ) => {
+const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
+                             restoreID, setFlaggingModalState } ) => {
   if ( !item ) { return ( <div /> ); }
   const isID = !!item.taxon;
   let menuItems = [];
@@ -65,7 +66,10 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID } 
         <Dropdown
           id="grouping-control"
           onSelect={ ( event, key ) => {
-            if ( isID ) {
+            if ( key === "flag" ) {
+              setFlaggingModalState( "item", item );
+              setFlaggingModalState( "show", true );
+            } else if ( isID ) {
               if ( key === "delete" ) {
                 deleteID( item.id );
               } else if ( key === "restore" ) {
@@ -95,7 +99,8 @@ ActivityItemMenu.propTypes = {
   config: PropTypes.object,
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
-  restoreID: PropTypes.func
+  restoreID: PropTypes.func,
+  setFlaggingModalState: PropTypes.func
 };
 
 export default ActivityItemMenu;

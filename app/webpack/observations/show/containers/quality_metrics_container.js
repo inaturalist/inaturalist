@@ -2,6 +2,7 @@ import _ from "lodash";
 import { connect } from "react-redux";
 import QualityMetrics from "../components/quality_metrics";
 import { voteMetric, unvoteMetric } from "../ducks/observation";
+import { setState } from "../ducks/flagging_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -16,6 +17,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
+    setFlaggingModalState: ( key, value ) => { dispatch( setState( key, value ) ); },
     voteMetric: ( metric, params ) => { dispatch( voteMetric( metric, params ) ); },
     unvoteMetric: ( metric ) => { dispatch( unvoteMetric( metric ) ); }
   };

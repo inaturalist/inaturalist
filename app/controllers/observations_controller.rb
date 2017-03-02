@@ -225,8 +225,10 @@ class ObservationsController < ApplicationController
         if params[:partial] == "cached_component"
           return render(partial: "cached_component",
             object: @observation, layout: false)
-        elsif ( logged_in? && current_user.in_test_group?( "observation-page" ) )
+        elsif ( logged_in? && current_user.in_test_group?( "observation-page" ) && !params.key?(:old) )
           @skip_application_js = true
+          flash.now[:warning_title] = nil
+          flash.now[:warning] = nil
           render layout: "bootstrap", action: "show2"
           return
         end
@@ -3012,7 +3014,7 @@ class ObservationsController < ApplicationController
     @skipping_preloading =
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "show" &&
-        logged_in? && current_user.in_test_group?( "observation-page" ) )
+        logged_in? && current_user.in_test_group?( "observation-page" ) && !params.key?(:old) )
   end
 
   def observations_index_search(params)

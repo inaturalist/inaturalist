@@ -44,6 +44,7 @@ class Observation < ActiveRecord::Base
         indexes :uuid, analyzer: "keyword_analyzer"
         indexes :name, analyzer: "keyword_analyzer"
         indexes :value, analyzer: "keyword_analyzer"
+        indexes :datatype, analyzer: "keyword_analyzer"
       end
       indexes :annotations, type: :nested do
         indexes :uuid, analyzer: "keyword_analyzer"

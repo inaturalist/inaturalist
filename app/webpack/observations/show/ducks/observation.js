@@ -1,9 +1,12 @@
+import _ from "lodash";
 import inatjs from "inaturalistjs";
 import { fetchObservationPlaces } from "./observation_places";
 import { fetchControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser } from "./other_observations";
 import { fetchQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions } from "./subscriptions";
+import { fetchIdentifiers } from "./identifications";
+import { setState } from "./flagging_modal";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 
@@ -32,12 +35,25 @@ export function fetchObservation( id, options = { } ) {
       locale: I18n.locale
     };
     return inatjs.observations.fetch( id, params ).then( response => {
-      dispatch( setObservation( response.results[0] ) );
+      const observation = response.results[0];
+      dispatch( setObservation( observation ) );
       if ( options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
       if ( options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
       if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
       if ( options.fetchOtherObservations ) { dispatch( fetchMoreFromThisUser( ) ); }
       if ( options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
+      if ( options.fetchIdentifiers && observation.taxon && observation.taxon.rank_level <= 50 ) {
+        dispatch( fetchIdentifiers( { taxon_id: observation.taxon.id, per_page: 10 } ) );
+      }
+      if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
+        // TODO: put item type in flaggingModal state
+        const item = s.flaggingModal.item;
+        let newItem;
+        if ( id === item.id ) { newItem = observation; }
+        newItem = newItem || _.find( observation.comments, c => c.id === item.id );
+        newItem = newItem || _.find( observation.identifications, c => c.id === item.id );
+        if ( newItem ) { dispatch( setState( "item", newItem ) ); }
+      }
     } );
   };
 }

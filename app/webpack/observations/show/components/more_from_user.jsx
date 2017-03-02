@@ -22,7 +22,7 @@ const MoreFromUser = ( { observation, observations } ) => {
           }
           const iconicTaxonName = o.taxon ? o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
           return (
-            <div className="obs">
+            <div className="obs" key={ `more-obs-${o.id}` }>
               <div className="photo">
                 <a
                   href={`/observations/${o.id}`}

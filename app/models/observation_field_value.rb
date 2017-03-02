@@ -200,11 +200,15 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    {
+    json = {
       uuid: uuid,
+      field_id: observation_field.id,
+      datatype: observation_field.datatype,
       name: observation_field.name,
       value: self.value
     }
+    json[:taxon_id] = value if observation_field.datatype == ObservationField::TAXON
+    json
   end
 
 end

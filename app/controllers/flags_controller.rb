@@ -88,17 +88,27 @@ class FlagsController < ApplicationController
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
-    if @object.is_a?(Comment)
-      redirect_to @object.parent
-    elsif @object.is_a?(Identification)
-      redirect_to @object.observation
-    elsif @object.is_a?(Message)
-      redirect_to messages_path
-    elsif @object.is_a?(Photo)
-      redirect_to @object.becomes(Photo)
-    else
-      redirect_to @object
+
+    respond_to do |format|
+      format.html do
+        if @object.is_a?(Comment)
+          redirect_to @object.parent
+        elsif @object.is_a?(Identification)
+          redirect_to @object.observation
+        elsif @object.is_a?(Message)
+          redirect_to messages_path
+        elsif @object.is_a?(Photo)
+          redirect_to @object.becomes(Photo)
+        else
+          redirect_to @object
+        end
+      end
+      format.json do
+        render :json => @flag.to_json
+      end
     end
+
+
   end
   
   def update
@@ -122,6 +132,7 @@ class FlagsController < ApplicationController
     @flag.destroy
     respond_to do |format|
       format.html { redirect_back_or_default(admin_path) }
+      format.json { head :ok }
     end
   end
 

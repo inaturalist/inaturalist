@@ -6,6 +6,7 @@ class QualityMetrics extends React.Component {
   constructor( ) {
     super( );
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
+    this.openFlaggingModal = this.openFlaggingModal.bind( this );
   }
 
   voteCell( metric, isAgree, isMajority, className, usersChoice, voters ) {
@@ -74,6 +75,11 @@ class QualityMetrics extends React.Component {
     };
   }
 
+  openFlaggingModal( ) {
+    this.props.setFlaggingModalState( "item", this.props.observation );
+    this.props.setFlaggingModalState( "show", true );
+  }
+
   render( ) {
     const observation = this.props.observation;
     const checkIcon = ( <i className="fa fa-check check" /> );
@@ -86,6 +92,20 @@ class QualityMetrics extends React.Component {
     const evidenceCells = this.voteCellsForMetric( "evidence" );
     const recentCells = this.voteCellsForMetric( "recent" );
     const needsIDCells = this.voteCellsForMetric( "needs_id" );
+    const flagged = _.find( observation.flags, f => f.flag === "spam" );
+    let flaggingCell;
+    if ( flagged ) {
+      flaggingCell = ( <span>
+        <strong>Flagged</strong>
+        <a href={ `/observations/${observation.id}/flags` }>
+          View flags
+        </a>
+      </span> );
+    } else {
+      flaggingCell = ( <span className="flag_link" onClick={ this.openFlaggingModal }>
+        Flag as inappropriate
+      </span> );
+    }
     return (
       <div className="QualityMetrics">
         <h3>Data Quality Assessment</h3>
@@ -166,14 +186,6 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr>
               <td className="metric_title">
-                <i className="fa fa-gavel" />
-                Community can confirm/improve ID
-              </td>
-              <td className="agree">{ needsIDCells.agreeCell }</td>
-              <td className="disagree">{ needsIDCells.disagreeCell }</td>
-            </tr>
-            <tr>
-              <td className="metric_title">
                 <i className="fa fa-bolt" />
                 Organism is wild
               </td>
@@ -182,11 +194,36 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr>
               <td className="metric_title">
+                <i className="fa fa-bolt" />
+                Evidence of organism
+              </td>
+              <td className="agree">{ evidenceCells.agreeCell }</td>
+              <td className="disagree">{ evidenceCells.disagreeCell }</td>
+            </tr>
+            <tr>
+              <td className="metric_title">
+                <i className="fa fa-bolt" />
+                Recent evidence of organism
+              </td>
+              <td className="agree">{ recentCells.agreeCell }</td>
+              <td className="disagree">{ recentCells.disagreeCell }</td>
+            </tr>
+            <tr>
+              <td className="metric_title">
+                <i className="fa fa-gavel" />
+                Community can confirm/improve ID
+              </td>
+              <td className="agree">{ needsIDCells.agreeCell }</td>
+              <td className="disagree">{ needsIDCells.disagreeCell }</td>
+            </tr>
+            <tr className={ `flags ${flagged && "flagged"}` }>
+              <td className="metric_title">
                 <i className="fa fa-flag" />
                 Content is appropriate for site
               </td>
-              <td className="agree"></td>
-              <td className="disagree"></td>
+              <td colSpan="2" className="flagging">
+                { flaggingCell }
+              </td>
             </tr>
           </tbody>
         </table>
@@ -200,7 +237,8 @@ QualityMetrics.propTypes = {
   observation: PropTypes.object,
   qualityMetrics: PropTypes.object,
   voteMetric: PropTypes.func,
-  unvoteMetric: PropTypes.func
+  unvoteMetric: PropTypes.func,
+  setFlaggingModalState: PropTypes.func
 };
 
 export default QualityMetrics;

@@ -6,8 +6,8 @@ import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import UserImage from "../../identify/components/user_image";
 import ActivityItem from "./activity_item";
 
-const Activity = ( { observation, config, addComment, deleteComment,
-                     addID, deleteID, restoreID } ) => {
+const Activity = ( { observation, config, addComment, deleteComment, addID, deleteID,
+                     restoreID, setFlaggingModalState, createFlag, deleteFlag } ) => {
   if ( !observation ) { return ( <div /> ); }
   const activity = _.sortBy(
     observation.identifications.concat( observation.comments ), a => (
@@ -38,6 +38,10 @@ const Activity = ( { observation, config, addComment, deleteComment,
       </Tab>
     </Tabs>
   );
+  const loggedIn = config && config.currentUser;
+  const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
+    i.current && i.user && i.user.id === config.currentUser.id
+  ) );
   return (
     <div className="Activity">
       <h3>Activity</h3>
@@ -45,11 +49,16 @@ const Activity = ( { observation, config, addComment, deleteComment,
         { activity.map( item => (
           <ActivityItem
             key={ `activity-${item.id}` }
+            observation={ observation }
             item={ item }
+            currentUserID={ currentUserID }
             config={ config }
             deleteComment={ deleteComment }
             deleteID={ deleteID }
             restoreID={ restoreID }
+            setFlaggingModalState={ setFlaggingModalState }
+            createFlag={ createFlag }
+            deleteFlag={ deleteFlag }
           /> ) ) }
         <div className="icon">
           <UserImage user={ config.currentUser } />
@@ -85,7 +94,10 @@ Activity.propTypes = {
   deleteComment: PropTypes.func,
   addID: PropTypes.func,
   deleteID: PropTypes.func,
-  restoreID: PropTypes.func
+  restoreID: PropTypes.func,
+  setFlaggingModalState: PropTypes.func,
+  createFlag: PropTypes.func,
+  deleteFlag: PropTypes.func
 };
 
 export default Activity;

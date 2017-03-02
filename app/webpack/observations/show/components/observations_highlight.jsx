@@ -13,7 +13,7 @@ const ObservationsHighlight = ( { title, observations, searchParams } ) => {
       </h3>
       <div className="list">
         { _.filter( observations, o => ( o.photo( ) ) ).map( o => (
-          <div className="photo">
+          <div className="photo" key={ `highlight-${o.id}` }>
             <a
               href={ `/observations/${o.id}` }
               style={ { backgroundImage: `url( '${o.photo( "small" )}' )` } }

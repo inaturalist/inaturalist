@@ -62,6 +62,10 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
               return ( <li><i className="fa fa-bullseye" />Accurate Location</li> );
             case "metric-wild":
               return ( <li><i className="fa fa-bolt" />Wild Organism</li> );
+            case "metric-evidence":
+              return ( <li><i className="fa fa-bolt" />Evidence of an Organism</li> );
+            case "metric-recent":
+              return ( <li><i className="fa fa-bolt" />Recent Evidence</li> );
             case "metric-needs_id":
               return ( <li><i className="fa fa-gavel" />Community Agreement</li> );
             default:

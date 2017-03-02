@@ -8,12 +8,15 @@ import UserWithIcon from "./user_with_icon";
 import ActivityContainer from "../containers/activity_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
+import CommunityIdentificationContainer from "../containers/community_identification_container";
 import TagsContainer from "../containers/tags_container";
 import FavesContainer from "../containers/faves_container";
+import IdentifiersContainer from "../containers/identifiers_container";
 import FollowButtonContainer from "../containers/follow_button_container";
 import MapContainer from "../containers/map_container";
 import MoreFromUserContainer from "../containers/more_from_user_container";
 import NearbyContainer from "../containers/nearby_container";
+import ObservationFieldsContainer from "../containers/observation_fields_container";
 import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
 import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
@@ -56,8 +59,28 @@ const App = ( { observation, config } ) => {
   const photosColClass =
     ( !observation.photos || observation.photos.length === 0 ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
+  let warning;
+  if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
+    const helpEmail = $( "meta[name='config:help_email']" ).attr( "content" );
+    warning = (
+      <div className="container flash-warning">
+        <div className="alert alert-warning">
+          <strong>This has been flagged as spam</strong>
+          <p className="unstacked">
+            This record has been flagged as spam and is no longer publicly visible.
+            You can see it because you created it, or you are a site curator.
+            If you think this is a mistake, please&nbsp;
+            <a href={ `mailto:${helpEmail}` }>
+              contact us
+            </a>.
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div id="ObservationShow">
+    { warning }
       <div className="upper">
         <Grid>
           <Row>
@@ -143,8 +166,7 @@ const App = ( { observation, config } ) => {
             <Col xs={5} className="opposite_activity">
               <Row>
                 <Col xs={12}>
-                  <h4>Community ID</h4>
-                  <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
+                  <CommunityIdentificationContainer />
                 </Col>
               </Row>
               <Row>
@@ -164,7 +186,12 @@ const App = ( { observation, config } ) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <h4>Top Identifiers</h4>
+                  <ObservationFieldsContainer />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12}>
+                  <IdentifiersContainer />
                 </Col>
               </Row>
               <Row>

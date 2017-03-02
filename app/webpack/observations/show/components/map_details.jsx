@@ -18,7 +18,9 @@ const MapDetails = ( { observation, observationPlaces } ) => {
         </div>
         <div className="info">
           <span className="attr">Accuracy:</span>&nbsp;
-          <span className="value">{ observation.positional_accuracy || 0 }m</span>
+          <span className="value">
+            { observation.positional_accuracy ? `${observation.positional_accuracy}m` : "-" }
+          </span>
         </div>
         <div className="info">
           <span className="attr">Geoprivacy:</span>&nbsp;
