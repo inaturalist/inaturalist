@@ -21,8 +21,7 @@ class TaxonAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialTaxonID &&
-         this.props.initialTaxonID !== prevProps.initialTaxonID ) {
+    if ( this.props.initialTaxonID !== prevProps.initialTaxonID ) {
       this.fetchTaxon( );
     }
   }
@@ -34,6 +33,8 @@ class TaxonAutocomplete extends React.Component {
           this.updateTaxon( { taxon: r.results[0] } );
         }
       } );
+    } else {
+      this.updateTaxon( { taxon: null } );
     }
   }
 
@@ -42,6 +43,9 @@ class TaxonAutocomplete extends React.Component {
     if ( options.taxon ) {
       $( "input[name='taxon_name']", domNode ).
         trigger( "assignSelection", options.taxon );
+    } else {
+      $( "input[name='taxon_name']", domNode ).
+        trigger( "resetAll" );
     }
   }
 
@@ -84,6 +88,6 @@ TaxonAutocomplete.propTypes = {
 
 TaxonAutocomplete.defaultProps = {
   placeholder: I18n.t( "species" )
-}
+};
 
 export default TaxonAutocomplete;

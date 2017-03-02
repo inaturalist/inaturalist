@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import StatsControl from "../components/stats_control";
-import { updateSearchParams, fetchObservations } from "../actions";
+import { updateSearchParams } from "../actions";
 
 function mapStateToProps( state ) {
   return {
@@ -13,7 +13,6 @@ function mapDispatchToProps( dispatch ) {
   return {
     updateQualityGrade: ( qualityGrade ) => {
       dispatch( updateSearchParams( { quality_grade: qualityGrade } ) );
-      dispatch( fetchObservations( ) );
     }
   };
 }

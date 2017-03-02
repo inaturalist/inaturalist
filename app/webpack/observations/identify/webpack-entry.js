@@ -17,6 +17,7 @@ import {
   updateDefaultParams
 } from "./actions/";
 import App from "./components/app";
+import _ from "lodash";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -62,15 +63,36 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 
 setupKeyboardShortcuts( store.dispatch );
 
+// Somewhat magic, so be advised: binding a a couple actions to changes in
+// particular parts of the state. Might belong elsewhere, but this is where we
+// have access to the store
+function observeStore( storeToObserve, select, onChange ) {
+  let currentState;
+  function handleChange() {
+    const nextState = select( storeToObserve.getState( ) );
+    if ( !_.isEqual( nextState, currentState ) ) {
+      currentState = nextState;
+      onChange( currentState );
+    }
+  }
+  const unsubscribe = storeToObserve.subscribe( handleChange );
+  handleChange( );
+  return unsubscribe;
+}
+// Fetch observations when the params change
+observeStore( store, s => s.searchParams.params, ( ) => {
+  store.dispatch( fetchObservations( ) );
+} );
+
 window.onpopstate = ( e ) => {
   store.dispatch( updateSearchParamsFromPop( e.state ) );
-  store.dispatch( fetchObservations() );
   store.dispatch( fetchObservationsStats() );
 };
 
 // retrieve initial set of observations
 store.dispatch( fetchObservations() );
 store.dispatch( fetchObservationsStats() );
+
 
 render(
   <Provider store={store}>

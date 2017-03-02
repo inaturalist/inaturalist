@@ -181,7 +181,7 @@ const searchParamsReducer = ( state = {
     case UPDATE_SEARCH_PARAMS_FROM_POP:
       newState = Object.assign( {}, {
         default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, action.params )
+        params: Object.assign( {}, state.default, action.params )
       } );
       break;
     case RECEIVE_OBSERVATIONS:

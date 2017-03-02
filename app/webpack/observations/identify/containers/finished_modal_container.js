@@ -3,8 +3,7 @@ import _ from "lodash";
 import FinishedModal from "../components/finished_modal";
 import {
   hideFinishedModal,
-  updateSearchParams,
-  fetchObservations
+  updateSearchParams
 } from "../actions";
 
 function mapStateToProps( state ) {
@@ -32,13 +31,11 @@ function mapDispatchToProps( dispatch ) {
       window.scrollTo( 0, 0 );
       dispatch( hideFinishedModal( ) );
       dispatch( updateSearchParams( { page: 1 } ) );
-      dispatch( fetchObservations( ) );
     },
     loadPage: ( page ) => {
       window.scrollTo( 0, 0 );
       dispatch( hideFinishedModal( ) );
       dispatch( updateSearchParams( { page } ) );
-      dispatch( fetchObservations( ) );
     }
   };
 }
