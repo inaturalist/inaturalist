@@ -53,7 +53,7 @@ ca:
     one: <span class='count'>1</span> tàxon coincident
     other: <span class='count'>%{count}</span> tàxons coincidents
   x_misidentifications_of_this_species:
-    one: 1 identificació errònia d''aquesta espècie
+    one: 1 identificació errònia d'aquesta espècie
     other: '%{count} identificacions errònies d''aquesta espècie'
   x_observations:
     one: 1 observació
@@ -74,7 +74,7 @@ ca:
     one: 1 persona
     other: '%{count} persones'
   x_people_found_this_helpful:
-    one: Una persona ha trobat això d''ajuda
+    one: Una persona ha trobat això d'ajuda
     other: '%{count} usuaris han trobat això d''ajuda'
   x_faves:
     one: 1 favorit
@@ -941,6 +941,7 @@ ca:
     Per començar,
   created: Creat
   created_by: Creat per
+  created_by_user_on_date: Creat per %{user} el %{date}
   created_on: Creat el
   creating_your_account: Creant el vostre compte...
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
@@ -1351,7 +1352,7 @@ ca:
   flag_this_observation: Marca aquesta observació
   flag_this_photo: Marca aquesta foto
   flagged: marcat
-  flagged_for_curation: Marcat per a supervisió.
+  flagged_for_curation: Marcat per a supervisió
   flagged_thing_explanation: Els usuaris han marcat aquest %{thing} perquè
   flagger: Marcador
   flags: Marques
@@ -3468,6 +3469,10 @@ ca:
   taxon_observed_by_user: '%{taxon} observat per %{user}'
   taxon_photos_updated: S'han actualitzat les fotos del tàxon.
   taxon_range: Rang de tàxon
+  taxon_range_created_notice: El rang del tàxon a estat creat correctament. Espereu
+    uns minut perquè aparegui als mapes.
+  taxon_range_updated_notice: El rang del tàxon a estat actualitzat correctament.
+    Espereu uns minut perquè els canvis apareguin als mapes.
   taxon_removed_from_list: Tàxon eliminat de la llista.
   taxon_scheme: Esquema de taxonomia
   taxon_schemes: Esquema de taxonomia
@@ -5087,6 +5092,27 @@ ca:
           </p>
         about_conservation_status_desc: L'estat de conservació resumeix el risc d'extinció
           per a un grup d'organismes.
+        about_establishment_desc: |-
+          "Forma d'Establiment" fa referència a com ha arribat una espècie arribat a on viu actualment. Introduïda significa que va arribar per la intervenció humana, mentre que autòctona vol dir que ha arribat sense participació humana.
+          Les espècies endèmiques només existeixen en un lloc específic i en cap altre indret.
+        charts_help_seasonality: Aquest gràfic mostra el nombre d'observacions d'aquest
+          tàxon agrupades per mes. Tingueu en compte que aquests són el número d'observacions,
+          per tant estan influïts tant per quan l'organisme pot ser observat com quan
+          la gent s'ha interessat per observar-lo. Així, pot semblar que un ocell
+          és molt actiu al Maig, però que també podria ser degut a que més persones
+          estan interessades en observar-lo, però el poden ignorar en mesos posteriors.
+          D'igual forma, si veieu més odonats al juny que el gener, probablement sigui
+          perquè hi ha més persones observant a l'hemisferi nord que a l'hemisferi
+          sud i no perquè els odonats siguin més actius al juny, per tant cal comprovar
+          el mapa a l'hora de considerar aquests gràfics. Sempre és convenient cert
+          escepticisme sobre aquestes gràfiques quan mostren números petits o poques
+          observacions i/o grans diferències entre el nombre d'observacions "Verificable"
+          i de "Grau de Recerca".
+        charts_help_history: Aquest gràfic mostra el nombre d'observacions d'aquest
+          tàxon per mes els darrers deu anys. Una vegada més, pot estar esbiaixada
+          pel nombre de persones observant, però pot mostrar pics inusuals d'observacions,
+          i si sembla plana o en disminució, malgrat l'augment del nombre d'observadors,
+          podria suggerir un canvi en abundància.
         trending_desc: Tàxons més observats el darrer mes
         trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
         rare_desc: Tàxon amenaçat menys observat
@@ -5107,6 +5133,10 @@ ca:
           Insect life stage=adult: Adult
         photo_chooser_modal_desc: Arrossegueu les fotografies aquí des de l'esquerra,
           o arrossegueu les fotografies aquí per tornar a organitzar.
+        photo_chooser_modal_explanation: Tingueu en compte que la pàgina del tàxon
+          mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies
+          escollides per aquest tàxon es mostraran les primeres. La primera foto serà
+          la imatge que s'utilitzi per defecte de tot el lloc.
     taxon_names:
       form:
         new_name_guidelines_html: |-

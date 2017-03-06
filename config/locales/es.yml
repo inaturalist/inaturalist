@@ -123,6 +123,7 @@ es:
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
   about: Acerca de
   about_bioblitz_results: sobre los resultados del "bioblitz" (evaluación rápida)
+  about_charts: Sobre los Gáficos
   about_community_taxa: Sobre los taxones comunitarios
   about_conservation_status: Sobre el estado de conservación
   about_establishment_means: Acerca de los medios de establecimiento
@@ -702,7 +703,7 @@ es:
       por %{output_taxon}'
     input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} será sustituido
       por %{output_taxon}'
-    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} ha sido incluido
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} se han incluido
       en %{output_taxon}'
     input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} será incluido
       en %{output_taxon}'
@@ -930,6 +931,7 @@ es:
   create_a_new_taxon: Crea una nueva especie o grupo
   create_a_query: Crea una consulta
   create_an_account: Crear una cuenta
+  create_an_atlas: Crear un atlas
   create_new_taxon: Crear un Nuevo Taxón
   create_observations: Crear observaciones
   create_observations_by_uploading_photos_to: Crea observaciones subiendo fotos a
@@ -1119,6 +1121,7 @@ es:
   edit_a_batch_of_observations: Modificar un grupo de observaciones
   edit_account_settings_and_profile: Modificar la cuenta y perfil
   edit_assessment: Editar evaluación
+  edit_atlas: Editar Atlas
   edit_body: Editar el cuerpo
   edit_colors: Modificar colores
   edit_comment: Modificar su comentario
@@ -1290,7 +1293,7 @@ es:
   file_should_be_in_the_following_format: 'El archivo debería tener el siguiente formato:
     nombre de la especie o grupo, descripción'
   fill_out_project_observation_fields: Llenar los campos de observación del proyecto
-  fill_out_your_profile: completa su perfil
+  fill_out_your_profile: completa tu perfil
   filling_out_checklist_for_place: llenar las listas de verificación de los lugares
     que usted conoce bien
   filling_out_your_profile: completar su perfil
@@ -1343,7 +1346,7 @@ es:
   flag_this_observation: Marcar esta observación
   flag_this_photo: Marcar esta foto
   flagged: marcado
-  flagged_for_curation: Marcado para curación.
+  flagged_for_curation: Marcado para curación
   flagged_thing_explanation: Los usuarios han marcado esta %{thing} porque
   flagger: Marcador
   flags: Marcas
@@ -1545,9 +1548,9 @@ es:
     taxón en la URL
   if_you_already_have_an_account: Si usted ya tiene una cuenta de %{site_name}...
   if_you_dont_want_us_to_share_your_data: Si no deseas compartir esta información
-  if_you_have_any_trouble_with_the_site_check_out: Si tuviera algún problema con el
-    sitio, por favor revise nuestro <a href="%{help_url}">sección de ayuda</a> o escriba
-    un mensaje a nuestro <a href="%{feedback_url}">grupo de retroalimentación</a>.
+  if_you_have_any_trouble_with_the_site_check_out: Si tienes alguna duda con el sitio,
+    por favor revise nuestra <a href="%{help_url}">sección de ayuda</a> o escribe
+    un mensaje a nuestro <a href="%{feedback_url}">grupo de participación</a>.
   if_you_have_trouble_with_the_site: Si tuviera algún problema con el sitio, por favor
     revise nuestra sección de ayuda
   if_you_use: Si usted usa
@@ -2050,6 +2053,8 @@ es:
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
   most_observations: Con más observaciones
+  most_recent_observation_by_date_observed: Observación comprobable más reciente por
+    fecha de observación
   most_species: La mayoría de las especies
   most_observed_species: Especies más observadas
   multiple: Múltiple
@@ -2332,8 +2337,8 @@ es:
   observations_by_everyone: Observaciones de todos
   observations_by_user: Observaciones de %{user}
   observations_circle_have_their_radii_scaled: Los círculos de observación tienen
-    su radios a escala proporcional a su exactitud posicional. Los datos de observaciones
-    sin exactitud posicional se muestran en el tamaño mínimo.
+    el radio proporcional a la exactitud de su posición. Los datos de observaciones
+    sin una posición exacta se muestran en el tamaño mínimo.
   observations_confirmed: Observaciones (confirmadas)
   observations_deleted: Las observaciones se han eliminado.
   observations_fields_are: |-
@@ -2446,11 +2451,11 @@ es:
       de las observaciones que han estado publicando. También puedes suscribirte a
       ciertos especies para seguir sus nuevas observaciones, o hacerlo con lugares.
     comments_panel_title: Curioso qué tipo de discusiones están ocurriendo en %{site_name}?
-    comments_panel_body: <p>%{site_name} es compartir y discutir las observaciones
-      de los seres vivos . Estas son algunas discusiones que ocurren en este momento...</p><p>Quedará
-      suscrito automáticamente a cualquier discusión que contribuir con comentarios
-      o identificaciones a. Siempre se puede utilizar la herramienta de administrar
-      las suscripciones a la derecha de parar de recibir actualizaciones</p>
+    comments_panel_body: '<p>%{site_name} está dedicado a compartir y discutir observaciones
+      de seres vivos. Éstas son algunas conversaciones que tienen lugar en este momento...</p><p>Nota:
+      Quedará suscrito automáticamente a cualquier discusión a la que contribuya con
+      comentarios o identificaciones. Puede utilizar la herramienta de administración
+      de suscripciones a la derecha de dejar de recibir actualizaciones.</p>'
     updates_by_you_panel_title: Esta ficha es una forma rápida para filtrar sólo las
       actualizaciones de su contenido.
     updates_by_you_panel_body: Recuerde , en la pestaña 'Todas las Actualizaciones'
@@ -2596,6 +2601,7 @@ es:
   photo_s: Foto(s)
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
+  photos_chosen_for_this_taxon: Fotos elegidas para este taxón
   photos_from: Fotos de
   photos_of: Fotos de
   photos_of_taxon_html: Fotos de %{taxon}
@@ -3108,6 +3114,8 @@ es:
   search: Buscar
   search_all_fields: buscar todos los campos
   search_by_name_or_email: Búsqueda por nombre o email
+  search_by_taxon_name_or_observation_id: Búsqueda por nombre taxonómico o por Identificación
+    de la observación
   search_by_taxon_name_or_flickr_photo_id: Busqueda por ID foto de Flickr o nombre
     taxonómico.
   search_catalogue_of_life: 'Búsqueda <a href="http: //www.catalogueoflife.org">Catpalogo
@@ -3469,6 +3477,11 @@ es:
   taxon_observed_by_user: '%{taxon} observado por %{user}'
   taxon_photos_updated: ¡Las fotos del taxón fueron actualizadas!
   taxon_range: Rango de taxón
+  taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente.
+    Por favor, espere unos minutos para que aparezca en los mapas.
+  taxon_range_updated_notice: El área de distribución del taxón se ha actualizado
+    correctamente. Por favor, espere unos minutos para que los cambios aparezcan en
+    los mapas.
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonómia
   taxon_schemes: Esquema de taxón
@@ -4078,7 +4091,8 @@ es:
   withdrawing: Retirando...
   with_errors: Con errores
   within_inaturalist: Dentro de %{site_name}
-  wondering_what_to_do_next: ¿Se pregunta qué hacer ahora? Por qué no
+  wondering_what_to_do_next: He aquí algunos de los siguientes pasos que puedes dar
+    para observar e identificación en el mundo natural
   would_you_like_to: . ¿Le gustaría
   would_like_some_help_identifying_this: le agradaría recibir ayuda identificando
     esto
@@ -5194,6 +5208,12 @@ es:
           Insect life stage=nymph: Ninfa
           Insect life stage=pupa: Pupa
           Insect life stage=adult: Adulto
+        photo_chooser_modal_desc: Arrastre las fotos aquí desde la izquierda, o arrastre
+          las fotos aquí para volver a organizar.
+        photo_chooser_modal_explanation: "Tenga en cuenta que en la página del taxón
+          se muestran las fotos de este taxón y los de taxones inferiores. Las fotos
+          elegidas para este taxón muestran en primer lugar. La primera foto es \nla
+          imagen por defecto utilizada en todo el sitio."
     taxon_names:
       form:
         new_name_guidelines_html: |-

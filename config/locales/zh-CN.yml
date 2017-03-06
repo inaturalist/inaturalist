@@ -8,6 +8,7 @@
 # Author: Jiangche
 # Author: Liuxinyu970226
 # Author: Peishanxu
+# Author: Shizhao
 # Author: Yfdyh000
 # Author: 아라
 ---
@@ -48,6 +49,9 @@ zh-CN:
   x_matching_taxa_html:
     one: <span class="count">1</span>个匹配的分类单元
     other: <span class="count">%{count}</span> 个匹配的分类群
+  x_misidentifications_of_this_species:
+    one: 该物种的1个错误鉴定
+    other: 该物种的%{count}个错误鉴定
   x_observations:
     one: 1次观察
     other: '%{count} 次观察'
@@ -133,7 +137,7 @@ zh-CN:
   accuracy: 准确性
   accuracy_m: 精确度（米）
   accuracy_meters: 精确度（米）
-  accuracy_of_the_coordinates: 坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使你能保证自己在圈内的某个位置。
+  accuracy_of_the_coordinates: 坐标精度以米为单位。您可以通过点击上方“编辑”链接或者点击地图标记并拖动手柄来修改坐标。试着画一个足够大的圈使您能保证自己在圈内的某个位置。
   acquaintances: 熟人
   action: 操作
   actions: 操作
@@ -589,7 +593,7 @@ zh-CN:
     input_taxon_will_be_activated_soon_html: '%{input_taxon}将很快被激活'
     input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon}已替换为%{output_taxon}'
     input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon}将被替换为%{output_taxon}'
-    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}，而它已合并至%{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}已合并至%{output_taxon}'
     input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa}将被合并至%{output_taxon}'
   change_visibility_of: 要改变空间坐标的可见与否吗？
   change_your_matching: 更改您的匹配
@@ -1118,7 +1122,7 @@ zh-CN:
   flag_this_observation: 标记此观察
   flag_this_photo: 标记这张照片
   flagged: 已标记
-  flagged_for_curation: 已标记管理。
+  flagged_for_curation: 已标记管理
   flagged_thing_explanation: 用户已标记此 %{thing} 因为
   flagger: 标记者
   flags: 标记
@@ -1818,6 +1822,9 @@ zh-CN:
   observations_by_user: 由 %{user} 做出的观察
   observations_deleted: 观察已删除。
   observations_for_project: 对 %{project} 的观察
+  observations_from_this_place: 来自此地区的观察
+  observations_from_this_project: 来自此项目的观察
+  observations_from_you: 您的观察
   observations_have_had_their_coordinates: 他们的观察中的坐标已转移至相距 %{km} 千米外的随机点上，既因为分类单元受到威胁，又因为观察者选择模糊坐标。
   observations_map: 观察 / 地图
   observation_must_dotdotdot: 观察必须...
@@ -1825,6 +1832,7 @@ zh-CN:
   observations_per_month: 观察 / 月
   observations_saved: 观察报告已保存！
   observations_text_search_warning: 当与其他过滤器结合使用时，文本搜索可能产生怪异结果。如果您希望查找特定物种的观察，请使用分类过滤器。
+  observations_title: 所有人的观察
   observations_total: 观察总计
   observations_w: 观察 w/
   observations_w_field: 观察报告 w/ 字段

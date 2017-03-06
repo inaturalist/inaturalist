@@ -31,11 +31,11 @@ ko:
     one: 댓글 1개
     other: 댓글 %{count}개
   x_ids:
-    one: 1 아이디
-    other: '%{count} 아이디'
+    one: 아이디 1개
+    other: 아이디 %{count}개
   x_people_like_this:
     one: 한 명이 좋아합니다
-    other: '%{count} 명이 좋아합니다'
+    other: '%{count}명이 좋아합니다'
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_few_points_to_make_things_clear: '더 쉽게 사용하기 위한 팁:'
   a_flag_for_x: '%{x}을 위한 플래그'
@@ -481,6 +481,8 @@ ko:
     replaced_by: '다음으로 교체:'
     replace_with: '바꾸기:'
     dropped: 포기함
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}은(는) %{output_taxon}으(로)
+      병합되었습니다'
   change_visibility_of: 공간 좌표의 가시성을 변경
   change_your_matching: 매치 변경
   change_your_password: 비밀번호 바꾸기
@@ -782,9 +784,9 @@ ko:
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disagree: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
-  display_link_to_checklist: 프로젝트 페이지에 프로젝트 목록 표시
-  display_listings_added_by_curators: 큐레이터가 올린 목록 표시
-  display_listings_from_place: 장소 목록 표시
+  display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
+  display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
+  display_listings_from_place: 장소로부터 목록 표시
   drop_it: 버리기
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
   do_you_know_where_this_species_lives: 이 종이 어디 사는지 아시나요?
@@ -998,7 +1000,7 @@ ko:
   flag_as_spammer: 스패머로 플래그
   flag_as_non_spammer: 비스패머로 플래그
   flag_description: 큐레이터들이 이 자료의 문제점을 알 수 있도록 플래그를 다세요.
-  flag_for_curation: 큐래이션 대상으로 플래그
+  flag_for_curation: 큐레이션 대상으로 플래그
   flag_it!: 플래그!
   flag_reason: '&ldquo; %{record}를 플래그하는 이유는'
   flag_saved: 플래그 저장
@@ -1006,7 +1008,7 @@ ko:
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flagged: 플래그됨
-  flagged_for_curation: 큐래이션 대상으로 플래그되었습니다.
+  flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
   flagged_thing_explanation: 사용자들이 이 %{thing}을(를) 플래그한 이유는
   flagger: 플래그한 사용자
   flags: 플래그들
@@ -1828,8 +1830,8 @@ ko:
   remove_from_project: 프로젝트에서 제거
   remove_this_section: 이 항목 제거
   remove_observations:
-    one: 1개 관찰 삭제?
-    other: ' %{count}개 관찰 삭제?'
+    one: 1개 관찰을 제거하시겠습니까?
+    other: ' %{count}개 관찰을 제거하시겠습니까?'
   remove_project_user: 프로젝트 사용자 제거
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거

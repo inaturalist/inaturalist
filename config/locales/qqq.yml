@@ -194,9 +194,22 @@ qqq:
   built_with_site_guides_html: where site_name is the name of the site
   by: '{{Identical|By}}'
   by_user: attribution for user, user is a username
+  by_you: |-
+    Konteksti: Observations
+    By you
+    but also
+    Projects
+    By you and so on.
   calendar: '{{Identical|Calendar}}'
   cancel: '{{Identical|Cancel}}'
   card: '{{Identical|Card}}'
+  casual: |-
+    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when
+
+    the observation has a date /
+    the observation is georeferenced (i.e. has lat/lon coordinates) /
+    the observation has photos or sounds /
+    the observation isn't of a human
   catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
     global index of species currently available.
   categories: '{{Identical|Category}}'
@@ -210,8 +223,8 @@ qqq:
     drop: '{{Identical|Drop}}'
     dropped: '{{Identical|Dropped}}'
     staged: '{{Identical|Staged}}'
-    input_taxa_were_merged_into_output_taxon_html: The word "where" is a misspelling
-      for "were".
+  check_here_to_autoload_description: '"Parus" is still used in Finland, bad example
+    here.'
   check_list_for_individual_taxa_that: where place is the name of a place
   check_list_individual_taxa: where place is the name of a place
   check_list_place: where place is the name of a place
@@ -785,7 +798,7 @@ qqq:
   public_coordinates_obscured_by: where distance is a number
   public_domain: '{{Identical|Public domain}}'
   purple: '{{Identical|Purple}}'
-  queued: '{{Identical|Queued}}'
+  queued: '{{Identical|Queue}}'
   query: '{{Identical|Query}}'
   range: '{{Identical|Range}}'
   rank: '{{Identical|Rank}}'
