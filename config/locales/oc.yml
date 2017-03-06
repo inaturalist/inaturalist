@@ -431,6 +431,7 @@ oc:
   change_cover: Modificar la tampa
   change_descriptions:
     swap: modificacion de nom 1-a-1
+    stage: Preparar un concèpte inactiu per difusion dins un grop de modificacions.
   change_geoprivacy: Modificar la confidencialitat geografica
   change_group: Modificar lo grop
   change_icon: Modificar l’icòna
@@ -732,6 +733,8 @@ oc:
   finished: Acabat
   first_observer: Primièr observador
   flag: Marcar
+  flag_as_spammer: Marcar coma productor de spam
+  flag_as_non_spammer: Marcar coma non productor de spam
   flag_it!: Lo marcar !
   flagged: a senhalat
   flagger: Marcador
@@ -1013,6 +1016,7 @@ oc:
       featured_observations: Observacions mesas en avant
       range: airal de reparticion
   map_for: Mapa de
+  mark_as_reviewed: Marcar coma revisat
   mark_all_as_unreviewed: Marcar tot coma pas relegit
   media: Mèdia
   medium: mejan
@@ -1400,6 +1404,7 @@ oc:
   september: Setembre
   settings: paramètres
   show: Afichar
+  shown_publicly_as: Afichat publicament coma
   sign_in: Connexion
   sign_in_with_provider: Connexion amb %{provider}
   sign_out: Desconnexion
@@ -1453,6 +1458,9 @@ oc:
   thats_not_a_real_date: Es pas una vertadièra data !
   the_past: lo passat
   theres_also: i a tanben
+  those_are_the_basics_of: S’agís de l’essencial per l’apondon d’observacions! I a
+    fòrça causas mai que podètz far, coma cercar e filtrar vòstras observacions o
+    las modificar dins un lòt, mas aquelas accions se deurián passar d’explicacions.
   thu: Dij
   time_: ora
   time_ago: i a %{time}
@@ -1464,10 +1472,13 @@ oc:
   "true": Verai
   tue: Mar
   type: Tipe
+  unreview_all: Marcar tot coma pas relegit
   updated_daily: Mes a jorn a cada jorn
   uploader:
     tooltips:
       select_all: Seleccionar totas las observacions
+  url_of_this_taxon_on_the_source_website: URL d'aqueste taxon sul site Web de la
+    font
   user: Utilizaire
   user_invited_you_to_join_project: '%{user} vos a convidat a vos jónher a %{project}'
   user_invited_you_to_join_html: '%{user} vos a convidat a vos jónher'
@@ -1536,6 +1547,10 @@ oc:
     projects:
       confirm_leave:
         remove_observations_label: Suprimir totas vòstras observacions d'aqueste projècte
+    taxa:
+      show:
+        about_conservation_status_desc: L’estat de conservacion sintetisa la risca
+          d’escantiment d’un grop d’organismes.
     users:
       show:
         this_user_was_banned: Aqueste utilizaire es estat suspendut
