@@ -2342,7 +2342,7 @@ class ObservationsController < ApplicationController
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
       sync_attrs = %w(description species_guess taxon_id observed_on 
-        observed_on_string latitude longitude place_guess map_scale)
+        observed_on_string latitude longitude place_guess map_scale tag_list)
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end

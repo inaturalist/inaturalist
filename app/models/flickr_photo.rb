@@ -156,18 +156,27 @@ class FlickrPhoto < Photo
       observation.species_guess = t.common_name.try(:name) || t.name
     end
 
+    observation.tag_list = to_tags
+
     observation
+  end
+
+  def to_tags( options = { } )
+    self.api_response ||= FlickrPhoto.get_api_response(native_photo_id,
+      user: options[:user] || user )
+    return [] if api_response.tags.blank?
+    api_response.tags.map{|t| t.raw}
   end
   
   # Try to extract known taxa from the tags of a flickr photo
   def to_taxa(options = {})
-    self.api_response ||= FlickrPhoto.get_api_response(self.native_photo_id, :user => options[:user] || self.user)
-    taxa = if api_response.tags.blank?
+    tags = to_tags( options )
+    taxa = if tags.blank?
       []
     else
       # First try to find taxa matching taxonomic machine tags, then default 
       # to all tags
-      tags = [api_response.tags.map{|t| t.raw}, api_response.title].flatten.compact.uniq
+      tags = [tags, api_response.title].flatten.compact.uniq
       machine_tags = tags.select{|t| t =~ /taxonomy\:/}
       taxa = Taxon.tags_to_taxa(machine_tags, options) unless machine_tags.blank?
       taxa ||= Taxon.tags_to_taxa(tags, options)
