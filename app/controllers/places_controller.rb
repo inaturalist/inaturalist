@@ -14,7 +14,9 @@ class PlacesController < ApplicationController
   before_filter :curator_required, :only => [:planner]
   
   caches_page :geometry
-  caches_page :cached_guide
+  caches_action :cached_guide,
+    expires_in: 1.hour,
+    cache_path: Proc.new {|c| c.params.merge( locale: I18n.locale ) }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]

@@ -797,11 +797,11 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon::ORDERS.each do |order|
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
     end
-    unless place_id.blank?
-      ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-      ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
+    if !place_id.blank? && manually_added
+      I18N_SUPPORTED_LOCALES.each do |locale|
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place
+      end
     end
     if list
       ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
