@@ -3129,4 +3129,18 @@ describe Observation do
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
   end
+
+  describe "public_positional_accuracy" do
+    it "should be set on read if nil" do
+      t = make_threatened_taxon
+      o = make_research_grade_observation( taxon: t )
+      expect( o ).to be_coordinates_obscured
+      expect( o.public_positional_accuracy ).not_to be_blank
+      # o.update_attribute( :public_positional_accuracy, nil )
+      Observation.where( id: o.id ).update_all( public_positional_accuracy: nil )
+      o.reload
+      expect( o.read_attribute( :public_positional_accuracy ) ).to be_blank
+      expect( o.public_positional_accuracy ).not_to be_blank
+    end
+  end
 end

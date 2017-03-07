@@ -2356,6 +2356,13 @@ class Observation < ActiveRecord::Base
     "#{record.class.name.underscore}_#{record.id}"
   end
 
+  def public_positional_accuracy
+    if coordinates_obscured? && !read_attribute(:public_positional_accuracy)
+      update_public_positional_accuracy
+    end
+    read_attribute(:public_positional_accuracy)
+  end
+
   def update_public_positional_accuracy
     update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
   end
