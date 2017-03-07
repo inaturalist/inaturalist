@@ -24,7 +24,7 @@ const DEFAULT_PARAMS = {
   ttl: -1
 };
 
-const HIDDEN_PARAMS = ["dateType", "createdDateType"];
+const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];
 
 // Coerce params into a consistent format for update the state
 const normalizeParams = ( params ) => {

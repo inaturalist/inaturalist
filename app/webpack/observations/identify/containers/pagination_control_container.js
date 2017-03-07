@@ -15,7 +15,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     loadMore: ( ) => {
       window.scrollTo( 0, 0 ); // $.scrollTo didn't seem to work for some reason
-      dispatch( updateSearchParams( { page: 1 } ) );
+      dispatch( updateSearchParams( { page: 1, force: ( new Date( ) ).getTime( ) } ) );
     },
     loadPage: ( page ) => {
       window.scrollTo( 0, 0 );
