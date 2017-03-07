@@ -16,7 +16,8 @@ class PlacesController < ApplicationController
   caches_page :geometry
   caches_action :cached_guide,
     expires_in: 1.hour,
-    cache_path: Proc.new {|c| c.params.merge( locale: I18n.locale ) }
+    cache_path: Proc.new {|c| c.params.merge( locale: I18n.locale ) },
+    if: Proc.new {|c| c.session.blank? || c.session["warden.user.user.key"].blank? }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
