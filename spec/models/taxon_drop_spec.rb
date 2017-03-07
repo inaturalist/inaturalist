@@ -6,26 +6,29 @@ describe TaxonDrop, "commit" do
   end
 
   it "should mark input taxon as active" do
-    @input_taxon.should be_is_active
+    expect( @input_taxon ).to be_is_active
     @drop.commit
     @input_taxon.reload
-    @input_taxon.should_not be_is_active
+    expect( @input_taxon ).not_to be_is_active
   end
 end
 
-describe TaxonSplit, "commit_records" do
+describe TaxonDrop, "commit_records" do
   before(:each) { prepare_drop }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   it "should not update records" do
-    obs = Observation.make!(:taxon => @input_taxon)
+    obs = Observation.make!( taxon: @input_taxon )
     @drop.commit_records
     obs.reload
-    obs.taxon.should eq(@input_taxon)
+    expect( obs.taxon ).to eq( @input_taxon )
   end
 end
 
 def prepare_drop
   @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
   @drop = TaxonDrop.make
-  @drop.add_input_taxon(@input_taxon)
+  @drop.add_input_taxon( @input_taxon )
   @drop.save!  
 end
