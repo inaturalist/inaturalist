@@ -58,7 +58,9 @@ class UserText extends React.Component {
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
     }
-    const html = safeHtml( this.hyperlinkMentions( text ), config || CONFIG );
+    let withBreaks = text.trim( ).replace( /\n\s*\n/g, "\n" );
+    withBreaks = withBreaks.replace( /\n/gm, "<br />" );
+    const html = safeHtml( this.hyperlinkMentions( withBreaks ), config || CONFIG );
     let truncatedHtml;
     const style = {
       transition: "height 2s",

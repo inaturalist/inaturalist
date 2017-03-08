@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Projects from "../components/projects";
-import { } from "../ducks/observation";
+import { addToProject, removeFromProject } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
@@ -10,7 +10,10 @@ function mapStateToProps( state ) {
 }
 
 function mapDispatchToProps( dispatch ) {
-  return { };
+  return {
+    addToProject: ( project ) => { dispatch( addToProject( project ) ); },
+    removeFromProject: ( project ) => { dispatch( removeFromProject( project ) ); }
+  };
 }
 
 const ProjectsContainer = connect(

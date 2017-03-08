@@ -3,6 +3,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col, Button } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import UserText from "../../../shared/components/user_text";
 import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
 import ActivityContainer from "../containers/activity_container";
@@ -21,6 +22,7 @@ import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
 import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
+import ErrorModalContainer from "../containers/error_modal_container";
 
 moment.locale( "en", {
   relativeTime: {
@@ -91,7 +93,7 @@ const App = ( { observation, config } ) => {
                 </div>
                 <div className="quality_flag">
                   <span className={ `quality_grade ${observation.quality_grade} ` }>
-                    { _.upperFirst( observation.quality_grade ) }
+                    { _.upperFirst( I18n.t( observation.quality_grade ) ) }
                   </span>
                 </div>
               </div>
@@ -154,7 +156,7 @@ const App = ( { observation, config } ) => {
               <Row>
                 <Col xs={12}>
                   <h3>Description</h3>
-                  { observation.description }
+                  <UserText text={ observation.description } />
                 </Col>
               </Row>
               <Row>
@@ -195,7 +197,7 @@ const App = ( { observation, config } ) => {
                 </Col>
               </Row>
               <Row>
-                <Col xs={12}>
+                <Col xs={12} className="Copyright">
                   <h4>Copyright Info</h4>
                   Observation &copy; { observation.user.login } &middot;
                   All Rights Reserved
@@ -239,6 +241,7 @@ const App = ( { observation, config } ) => {
         </Grid>
       </div>
       <FlaggingModalContainer />
+      <ErrorModalContainer />
     </div>
   );
 };

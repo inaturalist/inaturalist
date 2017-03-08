@@ -1,22 +1,23 @@
-import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Panel } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import UserText from "../../../shared/components/user_text";
 import UserImage from "../../identify/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 
 
 const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
-                         restoreID, setFlaggingModalState } ) => {
+                         restoreID, setFlaggingModalState, currentUserID, addID } ) => {
   if ( !item ) { return ( <div /> ); }
   let taxonImageTag;
   const taxon = item.taxon;
   const isID = !!taxon;
+  const loggedIn = config && config.currentUser;
   let contents;
   let header;
   let className;
-  let buttons;
+  let buttonDiv;
   const userLink = (
     <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
   );
@@ -48,28 +49,32 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
             url={ `/taxa/${taxon.id}` }
           />
         </div>
-        { item.body ? (
-          <div
-            className="id_body"
-            dangerouslySetInnerHTML={ { __html: item.body } }
-          />
-        ) : null }
+        { item.body && ( <UserText text={ item.body } className="id_body" /> ) }
       </div>
     );
-    buttons = ( <div className="buttons">
+    let buttons = [];
+    if ( loggedIn && !currentUserID ) {
+      buttons.push( (
+        <button className="btn btn-default" onClick={ () => { addID( taxon.id ); } }>
+          <i className="fa fa-check" /> Agree
+        </button>
+      ) );
+    }
+    buttons.push( (
+      <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }>
+        <button className="btn btn-default">
+          <i className="fa fa-exchange" /> Compare
+        </button>
+      </a>
+    ) );
+    buttonDiv = ( <div className="buttons">
       <div className="btn-space">
-        <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${observation.taxon.id}` }>
-          <button className="btn btn-default">
-            <i className="fa fa-exchange" /> Compare
-          </button>
-        </a>
+        { buttons }
       </div>
     </div> );
   } else {
     header = "commented";
-    contents = (
-      <div dangerouslySetInnerHTML={ { __html: item.body } } />
-    );
+    contents = ( <UserText text={ item.body } /> );
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
@@ -119,7 +124,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
         )}
       >
         { contents }
-        { buttons }
+        { buttonDiv }
       </Panel>
     </div>
   );
@@ -130,6 +135,7 @@ ActivityItem.propTypes = {
   config: PropTypes.object,
   currentUserID: PropTypes.object,
   observation: PropTypes.object,
+  addID: PropTypes.func,
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,

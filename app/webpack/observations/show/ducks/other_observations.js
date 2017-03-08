@@ -86,8 +86,6 @@ export function fetchMoreFromThisUser( ) {
         order: "asc", id_above: observation.id, per_page: 3 };
       return inatjs.observations.search( params ).then( responseAfter => {
         dispatch( setMoreFromThisUser( responseBefore.results.concat( responseAfter.results ) ) );
-        dispatch( fetchNearby( ) );
-        dispatch( fetchMoreFromClade( ) );
       } );
     } );
   };

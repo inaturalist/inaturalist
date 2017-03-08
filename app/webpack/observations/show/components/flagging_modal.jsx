@@ -12,11 +12,11 @@ class FlaggingModal extends Component {
   }
 
   setRadioOption( name ) {
-    this.props.setState( "radioOption", name );
+    this.props.setFlaggingModalState( "radioOption", name );
   }
 
   close( ) {
-    this.props.setState( "show", false );
+    this.props.setFlaggingModalState( "show", false );
   }
 
   submit( ) {
@@ -131,7 +131,7 @@ class FlaggingModal extends Component {
 FlaggingModal.propTypes = {
   config: PropTypes.object,
   state: PropTypes.object,
-  setState: PropTypes.func,
+  setFlaggingModalState: PropTypes.func,
   createFlag: PropTypes.func,
   deleteFlag: PropTypes.func
 };

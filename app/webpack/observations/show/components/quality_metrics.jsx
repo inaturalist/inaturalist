@@ -112,7 +112,7 @@ class QualityMetrics extends React.Component {
         <div className="grade">
           Quality Grade:
           <span className={ `quality_grade ${observation.quality_grade} ` }>
-            { _.upperFirst( observation.quality_grade ) }
+            { _.upperFirst( I18n.t( observation.quality_grade ) ) }
           </span>
         </div>
         <div className="text">

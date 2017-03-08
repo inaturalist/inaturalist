@@ -1,9 +1,9 @@
-const SET_STATE = "obs-show/flagging_modal/SET_STATE";
+const SET_FLAGGING_MODAL_STATE = "obs-show/flagging_modal/SET_FLAGGING_MODAL_STATE";
 
 export default function reducer( state = { show: false }, action ) {
   let newState;
   switch ( action.type ) {
-    case SET_STATE:
+    case SET_FLAGGING_MODAL_STATE:
       newState = Object.assign( { }, state );
       newState[action.key] = action.value;
       if ( action.key === "show" ) {
@@ -16,9 +16,9 @@ export default function reducer( state = { show: false }, action ) {
   return state;
 }
 
-export function setState( key, value ) {
+export function setFlaggingModalState( key, value ) {
   return {
-    type: SET_STATE,
+    type: SET_FLAGGING_MODAL_STATE,
     key,
     value
   };

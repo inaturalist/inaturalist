@@ -13,7 +13,7 @@ class Annotations extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    if ( !observation ) { return ( <div /> ); }
+    if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const viewerIsObserver = loggedIn && config.currentUser.id === observation.user.id;
     const groupedTerms = _.groupBy( observation.annotations, a => ( a.controlled_attribute.id ) );

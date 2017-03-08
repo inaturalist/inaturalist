@@ -7,9 +7,9 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
   if ( !item ) { return ( <div /> ); }
   const isID = !!item.taxon;
   let menuItems = [];
-  const viewerIsObserver = config && config.currentUser && config.currentUser.id === item.user.id;
-  if ( isID && viewerIsObserver ) {
-    if ( viewerIsObserver ) {
+  const viewerIsActor = config && config.currentUser && config.currentUser.id === item.user.id;
+  if ( isID ) {
+    if ( viewerIsActor ) {
       if ( item.current ) {
         menuItems.push( (
           <MenuItem
@@ -40,7 +40,16 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
       ) );
     }
   } else {
-    if ( viewerIsObserver ) {
+    if ( viewerIsActor ) {
+      menuItems.push( (
+        <MenuItem
+          key={ `comment-edit-${item.id}` }
+          eventKey="edit"
+          href={ `/comments/${item.id}/edit` }
+        >
+          Edit
+        </MenuItem>
+      ) );
       menuItems.push( (
         <MenuItem
           key={ `comment-delete-${item.id}` }

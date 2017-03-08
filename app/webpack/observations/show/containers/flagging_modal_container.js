@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import FlaggingModal from "../components/flagging_modal";
-import { setState } from "../ducks/flagging_modal";
+import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
 
 function mapStateToProps( state ) {
@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setState: ( key, value ) => { dispatch( setState( key, value ) ); },
+    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
     createFlag: ( className, id, flag, body ) => {
       dispatch( createFlag( className, id, flag, body ) );
     },

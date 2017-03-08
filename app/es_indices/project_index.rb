@@ -2,7 +2,7 @@ class Project < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes(:place, :project_users) }
+  scope :load_for_index, -> { includes(:place, :project_users, :observation_fields) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :title, analyzer: "ascii_snowball_analyzer"
@@ -30,7 +30,8 @@ class Project < ActiveRecord::Base
       user_ids: project_users.map(&:user_id).sort,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
-      icon: icon ? icon.url(:span2) : nil
+      icon: icon ? icon.url(:span2) : nil,
+      project_observation_fields: project_observation_fields.map(&:as_indexed_json)
     }
   end
 

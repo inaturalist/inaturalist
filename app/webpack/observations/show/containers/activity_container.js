@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import Activity from "../components/activity";
 import { addComment, deleteComment, addID, deleteID, restoreID } from "../ducks/observation";
-import { setState } from "../ducks/flagging_modal";
+import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
 
 function mapStateToProps( state ) {
@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( key, value ) => { dispatch( setState( key, value ) ); },
+    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
     addComment: ( body ) => { dispatch( addComment( body ) ); },
     deleteComment: ( id ) => { dispatch( deleteComment( id ) ); },
     addID: ( taxonID, body ) => { dispatch( addID( taxonID, body ) ); },

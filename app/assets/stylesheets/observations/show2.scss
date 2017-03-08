@@ -268,8 +268,8 @@ a.UserImage {
     padding-right: 40px;
   }
   .opposite_activity {
-    h4:not(:first-child) {
-      border-top: 1px solid #ddd;
+    & > .row > .col-xs-12 > div {
+      margin-bottom: 10px;
     }
   }
   .ObservationTitle {
@@ -374,19 +374,56 @@ a.UserImage {
 }
 
 .Projects {
-  .project {
-    margin-bottom: 15px;
+  .projectEntry, .project, .projectFields {
+    display: inline-block;
+    width: 100%;
+  }
+  .projectEntry + .projectEntry {
+    margin-top: 15px;
+  }
+  .panel {
+    margin-top: 10px;
   }
   .image {
     border: 1px solid #DDDDDD;
     padding: 1px;
     display: inline-block;
     margin-right: 5px;
+    float: left;
+  }
+  .info {
+    float: left;
+    width: 80%;
+    .fieldLink {
+      color: #337AB7;
+      cursor: pointer;
+      .fa {
+        font-size: 12px;
+      }
+    }
+  }
+  .title {
+    font-size: 16px;
   }
   img {
     width: 40px;
     height: 40px;
     border: 1px solid #B3B2B7;
+  }
+  .control-group {
+    float: right;
+  }
+  button.dropdown-toggle {
+    border: none;
+    background: inherit !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    &:hover {
+      border: none;
+      background: inherit;
+    }
+    padding: 0;
+    line-height: 0px;
   }
 }
 
@@ -396,6 +433,7 @@ a.UserImage {
   .TaxonMap {
     height: 230px;
     width: 100%;
+    background: #e3eaf6;
   }
   .map_details {
     padding: 10px;
@@ -481,6 +519,10 @@ a.UserImage {
     display: inline-block;
     padding-bottom: 15px;
   }
+}
+
+.Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
+  border-top: 1px solid #ddd;
 }
 
 .Tags, .Projects {
@@ -590,7 +632,15 @@ a.UserImage {
   .icon {
     float: left;
   }
-  button {
+  .buttons {
+    button {
+      margin-left: 10px;
+      .fa {
+        color: #74AC00;
+      }
+    }
+  }
+  button.comment_id {
     margin-left: 60px;
   }
   .icon-person {
@@ -1005,10 +1055,8 @@ a.UserImage {
   }
 }
 
-.ObservationFields {
-  .field-value {
-    margin-bottom: 10px;
-  }
+.ObservationFieldValue {
+  margin-bottom: 10px;
   .field {
     font-weight: 600;
     display: inline;
@@ -1051,13 +1099,18 @@ a.UserImage {
 }
 
 .CommunityIdentification {
+  a.display-name {
+    color: #000;
+    font-weight: 700;
+  }
   .info {
     border: 1px solid #ddd;
     background: #fff;
-    font-size: 16px;
     padding: 15px;
     .taxon {
       display: block;
+      font-size: 16px;
+      margin-bottom: 3px;
     }
     .photo {
       float: right;
@@ -1073,6 +1126,7 @@ a.UserImage {
         height: 8px;
         border-left: 1px solid #fff;
         border-right: 1px solid #fff;
+        cursor: pointer;
       }
       .for {
         background: #74AC00;
@@ -1100,19 +1154,95 @@ a.UserImage {
   }
 }
 
+.CommunityIDPopoverOverlay {
+  padding: 0px !important;
+  max-width: 600px;
+  .arrow:after {
+    border-top-color: #f8fbf2 !important;
+  }
+  .popover-content {
+    padding: 0px !important;
+    display: inline-block;
+  }
+  .header {
+    border-radius: 5px 5px 0px 0px;
+    background: #eaf2da;
+    padding: 10px;
+      font-size: 16px;
+    .UserImage {
+      min-width: 26px;
+      width: 26px;
+      height: 26px;
+    }
+    a {
+      color: inherit;
+    }
+  }
+  .contents {
+    padding: 10px 20px 10px 10px;
+    border-radius: 0px 0px 5px 5px;
+    background: #f8fbf2;
+    white-space: nowrap;
+    display: inline-block;
+    & > ul {
+      display: inline-block;
+      & > li, & > li > ul > li {
+        margin-left: 5px !important;
+      }
+    }
+    .taxonomy {
+      ul.last, .boldTaxon > span.taxon {
+        font-weight: 700;
+      }
+      li.child {
+        margin-left: 20px;
+        &:before {
+          content: "\21B3";
+          color: #999;
+        }
+      }
+      a.display-name {
+        color: #000;
+      }
+    }
+  }
+  &.disagree {
+    .arrow:after {
+      border-top-color: #fcf4f3 !important;
+    }
+    .header {
+      background: #f8e2e1;
+    }
+    .contents {
+      background: #fcf4f3;
+    }
+  }
+}
+
+.ErrorModal {
+  .modal-body {
+    font-size: 16px;
+    ul {
+      margin-top: 10px;
+      li {
+        margin-bottom: 5px;
+      }
+    }
+  }
+}
 
 
 
 
-
-
-
-
-
-
-
-
-
+.UserText {
+  br {
+    line-height: 35px;
+  }
+  a {
+    color: #428BCA;
+    cursor: pointer;
+  }
+}
 
 
 

@@ -9,7 +9,7 @@ const UsersPopover = ( { keyPrefix, users, contents } ) => {
       { users.map( u => (
         <span key={ `popover-${keyPrefix}-${u.id}` } className="user">
           <UserImage user={ u } />
-          <a href={ `/people/${u.login}` }>{ u.login }</a>
+          <a href={ `/people/${u.login}` }>{ u.login }'s ID</a>
         </span>
       ) ) }
     </Popover>

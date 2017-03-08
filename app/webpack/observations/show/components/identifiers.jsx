@@ -5,7 +5,7 @@ import UserImage from "../../identify/components/user_image";
 class Identifiers extends React.Component {
 
   render( ) {
-    if ( _.isEmpty( this.props.identifiers ) ) { return ( <div /> ); }
+    if ( _.isEmpty( this.props.identifiers ) ) { return ( <span /> ); }
     const taxon = this.props.observation.taxon;
     return (
       <div className="Identifiers">

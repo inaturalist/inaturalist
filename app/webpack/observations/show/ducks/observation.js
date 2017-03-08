@@ -2,11 +2,12 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import { fetchObservationPlaces } from "./observation_places";
 import { fetchControlledTerms } from "./controlled_terms";
-import { fetchMoreFromThisUser } from "./other_observations";
+import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade } from "./other_observations";
 import { fetchQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions } from "./subscriptions";
 import { fetchIdentifiers } from "./identifications";
-import { setState } from "./flagging_modal";
+import { setFlaggingModalState } from "./flagging_modal";
+import { handleAPIError } from "./error_modal";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 
@@ -37,14 +38,20 @@ export function fetchObservation( id, options = { } ) {
     return inatjs.observations.fetch( id, params ).then( response => {
       const observation = response.results[0];
       dispatch( setObservation( observation ) );
-      if ( options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
       if ( options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
       if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
-      if ( options.fetchOtherObservations ) { dispatch( fetchMoreFromThisUser( ) ); }
       if ( options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
-      if ( options.fetchIdentifiers && observation.taxon && observation.taxon.rank_level <= 50 ) {
-        dispatch( fetchIdentifiers( { taxon_id: observation.taxon.id, per_page: 10 } ) );
-      }
+      if ( options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
+      setTimeout( ( ) => {
+        if ( options.fetchOtherObservations ) {
+          dispatch( fetchMoreFromThisUser( ) );
+          dispatch( fetchNearby( ) );
+          dispatch( fetchMoreFromClade( ) );
+        }
+        if ( options.fetchIdentifiers && observation.taxon && observation.taxon.rank_level <= 50 ) {
+          dispatch( fetchIdentifiers( { taxon_id: observation.taxon.id, per_page: 10 } ) );
+        }
+      }, 2000 );
       if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
         // TODO: put item type in flaggingModal state
         const item = s.flaggingModal.item;
@@ -52,7 +59,7 @@ export function fetchObservation( id, options = { } ) {
         if ( id === item.id ) { newItem = observation; }
         newItem = newItem || _.find( observation.comments, c => c.id === item.id );
         newItem = newItem || _.find( observation.identifications, c => c.id === item.id );
-        if ( newItem ) { dispatch( setState( "item", newItem ) ); }
+        if ( newItem ) { dispatch( setFlaggingModalState( "item", newItem ) ); }
       }
     } );
   };
@@ -309,6 +316,38 @@ export function unvoteMetric( metric ) {
     const payload = { id: observationID, metric };
     inatjs.observations.deleteQualityMetric( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
+    } ).catch( e => {
+      console.log( e );
+    } );
+  };
+}
+
+export function addToProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser ||
+         !state.observation || state.config.currentUser.id !== state.observation.user.id ) {
+      return;
+    }
+    const payload = { id: project.id, observation_id: state.observation.id };
+    inatjs.projects.add( payload ).then( ( ) => {
+      dispatch( fetchObservation( state.observation.id ) );
+    } ).catch( e => {
+      dispatch( handleAPIError( e, `Failed to add to project ${project.title}` ) );
+    } );
+  };
+}
+
+export function removeFromProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser ||
+         !state.observation || state.config.currentUser.id !== state.observation.user.id ) {
+      return;
+    }
+    const payload = { id: project.id, observation_id: state.observation.id };
+    inatjs.projects.remove( payload ).then( ( ) => {
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
       console.log( e );
     } );
