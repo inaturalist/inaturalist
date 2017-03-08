@@ -745,6 +745,18 @@ describe User do
       o.reload
       expect(o.taxon).to eq o.community_taxon
     end
+
+    it "should re-assess quality grade when changed" do
+      u = User.make!( prefers_community_taxa: false )
+      o = make_research_grade_candidate_observation( user: u )
+      t = Taxon.make!
+      3.times { Identification.make!( observation: o, taxon: t ) }
+      expect( o.quality_grade ).to eq Observation::CASUAL
+      o.user.update_attributes( prefers_community_taxa: true )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+    end
   end
 
   describe "updating" do

@@ -877,7 +877,7 @@ describe Observation do
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
         it "should be needs_id if no CID" do
-          o = make_research_grade_candidate_observation
+          o = make_research_grade_candidate_observation( user: u )
           expect( o.community_taxon ).to be_blank
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
@@ -911,7 +911,18 @@ describe Observation do
         end
       end
 
-
+      describe "when observer opts out of CID for a single observation" do
+        it "should be casual if the taxon is a descendant of the CID taxon" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( taxon: species, prefers_community_taxon: false )
+          3.times { Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.community_taxon ).to eq genus
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
+      end
     end
   
     it "should queue a job to update user lists"

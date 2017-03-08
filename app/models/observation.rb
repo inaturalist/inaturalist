@@ -1196,12 +1196,11 @@ class Observation < ActiveRecord::Base
   end
 
   def observer_accedes_to_community?
-    return true if user.prefers_community_taxa?
+    return true unless community_taxon_rejected?
     taxon_id == community_taxon_id
   end
   
   def research_grade?
-    # community_supported_id? && research_grade_candidate?
     quality_grade == RESEARCH_GRADE
   end
 
