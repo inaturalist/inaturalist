@@ -1184,6 +1184,7 @@ class Observation < ActiveRecord::Base
     return false unless georeferenced?
     return false unless quality_metrics_pass?
     return false unless observed_on?
+    return false unless observer_accedes_to_community?
     return false unless (photos? || sounds?)
     return false unless appropriate?
     true
@@ -1192,6 +1193,11 @@ class Observation < ActiveRecord::Base
   def human?
     t = community_taxon || taxon
     t && t.name =~ /^Homo /
+  end
+
+  def observer_accedes_to_community?
+    return true if user.prefers_community_taxa?
+    taxon_id == community_taxon_id
   end
   
   def research_grade?
