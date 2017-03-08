@@ -24,12 +24,12 @@
             nil
           end
         -%>
-        <%= o.hidden_field(:taxon_id, :value => taxon.try(:id), :alt => alt, :rel => (taxon ? taxon_image_url(taxon) : nil)) %>
+        <%= o.hidden_field(:taxon_id,
+          value: taxon.try(:id),
+          alt: alt,
+          rel: taxon ? taxon_image_url( taxon ) : nil
+        ) %>
       </div>
-      
-      <!-- <div class="field">
-        <%= link_to_function t(:browse_all_species), "$('#taxonchooser').dialog('open')" %>
-      </div> -->
 
       <div class="field">
         <%= o.check_box :captive_flag %>
