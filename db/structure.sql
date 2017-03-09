@@ -6450,6 +6450,13 @@ CREATE INDEX index_flow_tasks_on_user_id ON flow_tasks USING btree (user_id);
 
 
 --
+-- Name: index_friendships_on_user_id_and_friend_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_friendships_on_user_id_and_friend_id ON friendships USING btree (user_id, friend_id);
+
+
+--
 -- Name: index_guide_photos_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8733,4 +8740,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170110025450');
 INSERT INTO schema_migrations (version) VALUES ('20170110185648');
 
 INSERT INTO schema_migrations (version) VALUES ('20170113211950');
+
+INSERT INTO schema_migrations (version) VALUES ('20170309003500');
 
