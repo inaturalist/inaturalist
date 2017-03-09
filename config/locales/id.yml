@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Arief
 # Author: Bramadiarya
+# Author: Hidayatsrf
 # Author: Kenrick95
 ---
 id:
@@ -87,25 +88,25 @@ id:
     other: '%{count} taxa matching current filters'
   a: a
   a_: a
-  a_community_for_naturalist: Komunitas untuk Naturalists
+  a_community_for_naturalist: Komunitas untuk Naturalis
   a_few_points_to_make_things_clear: 'Beberapa poin untuk membuat hal-hal sedikit
     lebih jelas:'
   a_flag_for_x: a flag for %{x}
-  a_greasemonkey_script: Script greasemonkey
-  a_member_of_taxon_html: a member of %{taxon}
+  a_greasemonkey_script: Skrip greasemonkey
+  a_member_of_taxon_html: anggota dari %{taxon}
   able_to_connect_flickr: Bagus! Kami sudah menghubungkan ke akun Flickr Anda.
   about: Tentang
   about_bioblitz_results: Tentang hasil bioblitz
-  about_community_taxa: Tentang komunitas taxa
+  about_community_taxa: Tentang komunitas taksa
   about_conservation_status: Tentang Status Konservasi
-  about_external_links: Tentang Link eksternal
+  about_external_links: Tentang Pranala Luar
   about_licenses: Tentang Lisensi
   about_licensing: Tentang perizinan
-  about_life!: Tentang kehidupan anda!
+  about_life!: Tentang kehidupan!
   about_names: Tentang Nama
   about_places: Tentang tempat
   about_taxon_changes: Tentang Perubahan Takson
-  about_the_cc_licenses: Tentang lisensi kreativitas umum
+  about_the_cc_licenses: Tentang lisensi Creative Commons
   about_the_taxobox_raquo: Tentang Taxobox & raquo;
   about_these_licenses: Tentang lisensi ini
   about_this_map: Tentang peta ini
@@ -127,23 +128,23 @@ id:
   actions: Tindakan
   activate_user: Aktifasi pengguna
   active: Aktif
-  activity_settings: Pengaturan pengaktifan
+  activity_settings: Pengaturan aktivitas
   adapted_by_name_from_a_work_by_original: Adapted by %{name} from a work by %{original}
   add: Tambahkan
   add_a: menambahkan
   add_a_batch_of_observations: Menambahkan sejumlah observasi
   add_a_batch_of_observations_by_csv: menambahkan sejumlah observasi dari CSV
-  add_a_batch_of_taxa: Menambahkan sejumlah taxa
+  add_a_batch_of_taxa: Menambahkan sejumlah taksa
   add_a_comment: Tambahkan Komentar
   add_a_field: Tambahkan kolom
   add_a_flag: Tambahkan sebuah penanda
-  add_a_link_raquo: menambahkan link &raquo;
+  add_a_link_raquo: menambahkan pranala &raquo;
   add_a_name: Tambahkan nama
   add_a_new_change_group: menambahkan perubahan grup baru
   add_a_new_observation_to_id_please!: menambahkan observasi baru ke identitas!
   add_a_place_raquo: menambahkan lokasi &raquo;
   add_a_single_observation: menambahkan satu observasi
-  add_a_taxon: menambahkan taksonomi
+  add_a_taxon: menambahkan takson
   add_all_your_matching_obs_of_this_taxon: menambahkan semua observasi yang sama.
     dalam taksonomi ini kedalam proyek
   add_all_your_matching_obs_to_this_project: menambahkan semua observasimu yang sama
@@ -153,7 +154,7 @@ id:
   add_an_observation: menambahkan observasi
   add_an_observation?: menambahkan observasi?
   add_an_observation_of: Add an observation of %{taxon}
-  add_another: Tambah lagi
+  add_another: Tambahkan yang lain
   add_another_flag: menambahkan penanda lain
   add_another_photo: Menambahkan foto lain
   add_another_section: menambahkan bagian lain
@@ -179,14 +180,14 @@ id:
   add_new_lexicon: Tambahkan kosa kata baru
   add_new_observations: Tambahkan pengamatan baru
   add_new_photos_by_their_ids: Tambahkan foto baru dari ID Flickr mereka (harus berlisensi
-    creative Commons!)
+    Creative Commons!)
   add_new_place: Tambahkan tempat baru
   add_new_rule: Menambahkan aturan baru
   add_new_source: Menambahkan sumber baru
   add_new_taxon_name: Tambahkan nama takson baru
   add_notes_about_this_taxon: Menambahkan catatan tentang takson ini di tempat ini,
     misalnya di mana dan kapan itu terjadi.
-  add_obs_from_a_link: 'Add Obs from list: %{link}'
+  add_obs_from_a_link: 'Menambahkan Obs dari daftar: %{link}'
   add_obs_from_a_list: Tambahkan pengamat dari Daftar
   add_observation: Tambahkan pengamatan
   add_observations!: Tambahkan Pengamatan!
@@ -247,8 +248,8 @@ id:
   additional_range_data_from_an_unknown_source: Berbagai data tambahan dari sumber
     yang tidak diketahui
   admin: Admin
-  admin_any_projects: admin setiap proyek
-  admin_tools: Alat Admin
+  admin_any_projects: pengurus setiap proyek
+  admin_tools: Peralatan Pengurus
   agree: Setuju
   agree?: Setuju?
   agree_to_the_project_terms: Setuju dengan persyaratan proyek
@@ -269,7 +270,7 @@ id:
   all_species: Semua spesies
   all_taxa:
     rank:
-      kingdom: Kingdom
+      kingdom: Kerajaan
       class: Kelas
       phylum: Filum
       species: Spesies
@@ -334,7 +335,7 @@ id:
       other: '%{count} other animals'
   all_taxa_in_this_guide: Semua taksa dalam panduan ini
   all_taxonomic_groups: '&laquo; Semua grup taksonomi'
-  all_updates: Semua Update
+  all_updates: Semua Pembaruan
   all_your_observations_will_default_this_time_zone: Semua pengamatan Anda akan otomatis
     masuk ke zona waktu ini kecuali Anda melakukan pegaturan lain.
   all_your_observations_will_default_to_this_time_zone: Semua pengamatan Anda otomatis
@@ -388,7 +389,7 @@ id:
     bawah ini.
   appropriate?: Tepat?
   arachnids: arakhnida
-  archives: Diarsipkan
+  archives: Arsip
   are_you_really_sure_want_delete_this_user: Apakah Anda benar-benar yakin Anda ingin
     menghapus pengguna ini dan semua isinya?
   are_you_sure?: Apakah Anda yakin?
@@ -1305,6 +1306,7 @@ id:
   flickr_tagger: Yang menandai Flickr
   flickr_tags: Tanda Flickr
   flickr_youre_all_set: Anda siap untuk mulai mengeksplorasi %{site_name}
+  flowering_phenology: Fenologi pembungaan
   fluid: cairan
   follow_us: Ikuti kami di
   follow_us_on: Follow us on
@@ -1547,6 +1549,7 @@ id:
   invite_more: Undang lebih banyak
   invite_observations: Undang pengamatan-pengamatan
   invite_people: Undang orang
+  invite_people_to_project: Undang orang ke %{project}
   invite_photos_from_other_sites: Undang foto dari situs lain
   invite_to_project: Undang ke projek
   invite_your_friends: Undang teman-teman anda
@@ -1555,6 +1558,7 @@ id:
   inviteonly: undang-satunya
   invited: Telah diundang
   invited_to_the_following_projects: 'Telah diundang ke projek berikut:'
+  invited_x: Telah diundang %{x}
   inviting: Mengundang...
   iphone: iPhone
   is_a: adalah
@@ -1584,11 +1588,13 @@ id:
   just_added!: Ditambahkan!
   keep_editing: Tetap mengedit
   kelp_diatoms_and_allies: kelp, diatom, dan sekutu
+  keyboard_shortcuts: Pintasan Papan ketik
   kml: KML
   kml_file_size_error: KML harus kurang dari size 1 MB
   labels: Label
   label_to_group_a_batch_of_taxon_changes: Label untuk sekelompok grup pada perubahan
     takson
+  language_slash_type: Bahasa / Tipe
   large: besar
   last_confirmed_observation: Pengamatan yang telah dikonfirmasi
   last_inat_observation: '%{site_name} Observasi terakhir'
@@ -1733,7 +1739,9 @@ id:
   loading_taxa_from_your: Mengunggah taksa dari pengamatan anda...
   loading_wikipedia_description: Mengunggah deskripsi Wikipedia...
   locale_description: Lokal menetapkan bahasa dan tanggal preferensi format Anda
+  locales_: Lokal
   locales:
+    bg: Bahasa bulgaria
     br: Breton
     ca: Bahasa Catalan
     en: Bahasa Inggris
@@ -1744,6 +1752,7 @@ id:
     fr: Bahasa Perancis
     eu: Bahasa Basque
     gl: Bahasa Galician
+    ko: Bahasa korea
     id: bahasa Indonesia
     it: bahasa Italia
     mk: Bahasa Macedonian
@@ -1778,6 +1787,8 @@ id:
   low: rendah
   lowest_rank: Ranking terendah
   made_a: membuat sebuah
+  make_admin: Jadikan pengurus
+  make_an_observation: buat sebuah observasi
   main_content: Konten Utama
   make_a_new_place: Buat tempat baru
   make_a_taxon_swap_instead?: Membuat sebuah TaxonSwap bukan?
@@ -1821,10 +1832,13 @@ id:
   map_tooltip: Tunjukan tampilan peta
   map_for: Peta untuk
   mark_as_reviewed: Tandai sebagai telah ditinjau
+  mark_all_as_reviewed: Tandai Semua sebagai Telah ditinjau
+  mark_all_as_unreviewed: Tandai semua sebagai belum ditinjau
   matched_several_different_taxa: cocok dengan beberapa taksa yang berbeda
   media: Media
   medium: Menengah
   members: Anggota
+  mentioned_you_in_noun_html: '%{user} menyebut Anda di %{noun}'
   mentions: Sebutan
   merge: Gabungkan
   merge_it_with_another_place: Gabungkan dengan tempat lainnya
@@ -1841,7 +1855,8 @@ id:
   mollusks: Moluska
   momentjs:
     shortRelativeTime:
-      s: s
+      past: '%s'
+      s: 1s
       m: 1 menit
       h: 1 jam
       d: 1 hari
