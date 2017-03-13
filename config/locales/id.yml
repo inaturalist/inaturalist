@@ -97,6 +97,7 @@ id:
   able_to_connect_flickr: Bagus! Kami sudah menghubungkan ke akun Flickr Anda.
   about: Tentang
   about_bioblitz_results: Tentang hasil bioblitz
+  about_charts: Tentang Grafik
   about_community_taxa: Tentang komunitas taksa
   about_conservation_status: Tentang Status Konservasi
   about_external_links: Tentang Pranala Luar
@@ -764,6 +765,7 @@ id:
   comma_separated_please: Tolong dipisahkan dengan koma
   comment_preview: Tampilan komentar
   comment: Komentar
+  comment_feed: Umpan komentar
   comment_deleted: Hapus komentar
   commented: Telah dikomentari
   comments: Komentar
@@ -892,6 +894,7 @@ id:
     Untuk memulai,
   created: Telah dibuat
   created_by: Dibuat oleh
+  created_by_user_on_date: Dibuat oleh %{user} pada %{date}
   created_on: Dibuat pada
   creating_your_account: sedang membuat akun anda...
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
@@ -1029,6 +1032,7 @@ id:
   display_link_to_checklist: Tampilkan tautan ke daftar proyek dari halaman proyek
   display_listings_added_by_curators: Daftar layar ditambahkan oleh kurator
   display_listings_from_place: Daftar tampilan dari tempat
+  drop_it: Jatuhkan
   do_not_show_this_message_again: Jangan tampilkan pesan ini lagi
   do_you_know_where_this_species_lives: Apakah anda mengetahui dimana spesies tersebut
     hidup?
@@ -1224,6 +1228,7 @@ id:
     <strong>Note:</strong> Jika Anda ingin membuat halaman, periksa untuk melihat apakah
     orang lain telah membuat untuk menghindari duplikasi.
   fields: Halaman
+  fields_: Bidang
   fields_can_only_be_edited_by_the_people_who: laman hanya bisa diedit oleh orang-orang
     yang menciptakan mereka dan kurator situs
   fields_merged: Penggabungan halaman
@@ -1564,6 +1569,7 @@ id:
   is_a: adalah
   is_an: adalah
   is_not_following_anyone: tidak mengikuti siapapun.
+  is_now: sekarang
   is_the_organism_wild: Apakah organisme liar/naturalisasi?
   is_this_place_a_duplicate: Apakah tempat ini merupakan duplikasi?
   it: Ini
@@ -1574,6 +1580,7 @@ id:
   january: Januari
   join: Gabung
   join_and: Gabung dan
+  join_inat: Gabung %{site_name}!
   join_project: Gabung dengan projek ini
   join_this_project: Gabung dengan projek ini
   joined!: Bergabung!
@@ -1761,10 +1768,13 @@ id:
     ja: Bahasa Jepang
     zh-CN: Bahasa Cina (disederhanakan)
     zh-TW: Bahasa Cina (tradisional)
+  locality_notes: Catatan lokalitas
   localized_species_accounts: Akun spesies lokal
   location: Lokasi
   location_: Lokasi
   location_is_exact: lokasi yang tepat
+  location_is_public: Lokasi publik
+  location_is_private: Lokasi privat
   log_in: Masuk
   logged_in_as: Masuk sebagai
   login_slash_username: Masuk / nama pengguna
@@ -1803,6 +1813,7 @@ id:
     ini;
   make_this_the_primary_listing: Buat ini menjadi daftar utama
   mammals: mamalia
+  manage: Kelola
   manage_all_your_subscriptions: Kelola semua abonemen Anda
   manage_names: Kelola nama
   manage_your_project_invitations: Kelola undangan proyek Anda
@@ -1855,13 +1866,19 @@ id:
   mollusks: Moluska
   momentjs:
     shortRelativeTime:
+      future: dalam %s
       past: '%s'
       s: 1s
       m: 1 menit
+      mm: '%dm'
       h: 1 jam
+      hh: '%dh'
       d: 1 hari
+      dd: '%dd'
       M: 1 bulan
+      MM: '%dmo'
       1: 1 tahun
+      yy: '%dy'
   mon: Senin
   month: Bulan
   months: Bulan
@@ -1872,6 +1889,7 @@ id:
   more_info_title: Info lainnya
   more_journal_posts: Postingan jurnal lainnya
   more_observations: Pengamatan lainnya
+  more_photos: Lebih Banyak Foto
   most: Paling
   most_agree: Paling setuju
   most_disagree: Paling tidak setuju
@@ -2189,6 +2207,7 @@ id:
   offensive_inappropriate: ofensif / tidak pantas
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
+  ok: Oke
   on_: Pada
   on_date: pada %{date}
   on_day: pada
@@ -2306,8 +2325,10 @@ id:
   photo_hosting_accounts: Akun foto tuan rumah
   photo_integration: Integrasi Foto
   photo_licensing: lisensi foto
+  photo_s: Foto
   photo_type: Tipe foto
   photo_urls_repaired: URL foto diperbaiki
+  photos_from: Foto dari
   photos_or_sounds?: Foto atau suara?
   photos_size:
     small: kecil
@@ -2363,6 +2384,8 @@ id:
       local_administrative_area: area administratif lokal
       Miscellaneous: bermacam-macam
       miscellaneous: bermacam-macam
+      Municipality: Munisipalitas (Kotamadya/Kabupaten)
+      municipality: munisipalitas
       Nationality: Kebangsaan
       nationality: kebangsaan
       Nearby_Building: Bangunan terdekat
@@ -2381,6 +2404,7 @@ id:
       province: provinsi
       Region: Wilayah
       region: wilayah
+      Republic: Republik
       Sports_Team: Tim Olahraga
       sports_team: tim olahraga
       State: Negara Bagian
@@ -2401,6 +2425,8 @@ id:
       town: kota
       Undefined: Tak terdefinisi
       undefined: tak terdefinisi
+      Unknown: Tidak diketahui
+      unknown: tidak diketahui
       Zone: Zona
       zone: zona
   place_guess: tepak tebakan
@@ -2613,6 +2639,7 @@ id:
     variety: varietas
     form: bentuk
     leaves: meninggalkan
+  rare: Langka
   ray_finned_fishes: ikan bersirip cahaya
   re_apply_list_rules: Apply kembali aturan daftar
   re_order_photos: Pesan kembali foto&raquo;

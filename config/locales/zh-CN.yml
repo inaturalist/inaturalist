@@ -10,6 +10,7 @@
 # Author: Peishanxu
 # Author: Shizhao
 # Author: Yfdyh000
+# Author: Zz
 # Author: 아라
 ---
 zh-CN:
@@ -379,7 +380,7 @@ zh-CN:
   apply_darr: 申请 &darr;
   apply_these_settings_to_all: 将这些设置应用于下面所有的观察记录
   appropriate?: 适当么？
-  arachnids: 蛛形类
+  arachnids: 蛛形纲
   archives: 档案
   are_you_really_sure_want_delete_this_user: 您真的，真的确定要删除这位用户及其所有内容么？
   are_you_sure?: 您确定么？
@@ -517,7 +518,7 @@ zh-CN:
   browse_all_projects: 浏览所有项目
   browse_all_species: 浏览所有物种
   browse_observations: 浏览订阅
-  browse_people: 浏览人
+  browse_people: 浏览人们
   browse_projects: 浏览项目
   browse_species_that_occur_near_this_observation: 浏览这条观察记录附近出现的物种
   browse_your_observations: 浏览您的观点
@@ -535,8 +536,8 @@ zh-CN:
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 无法给不存在的对象进行标注
   cant_merge_a_taxon_with_itself: 不能将分类单元合并到它本身。
-  captive: 俘虏
-  captive_cultivated: 俘虏 / 耕种
+  captive: 捕获
+  captive_cultivated: 捕获的 / 种植的
   card: 卡
   case_plural: s
   casual: 变装
@@ -625,6 +626,7 @@ zh-CN:
   child_taxa: 子分类
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
+  choose_a_taxon: 选择一个分类单元（可选）
   choose_cc_licensed_photos_html: 从其他网站选择<a href="http://creativecommons.org/">开放</a>授权的照片，或从
     %{site_name} 的观察中挑选一个。尝试选择<em>展示诊断特性</em>并且<em>看起来适合图标</em>的照片。<em>第一个为默认照片</em>。
   chose_columns: 选择列
@@ -632,6 +634,7 @@ zh-CN:
   choose_from_your_lists: 从您的列表中选择
   choose_good_default_photos: 从Flickr上的知识共享图片池中选择良好的默认照片
   choose_photos: 选择照片
+  choose_photos_for_this_taxon: 为这个分类单元选择照片
   choose_place: 选择一个地方
   choose_rule: 选择一条规则
   choose_subjects: 选择学科
@@ -647,6 +650,7 @@ zh-CN:
   clear_shapes: 清除形状
   click_add_an_observation_to_the_lower_right: 欢迎来到 %{site_name_short}！在右下方点击“添加观察”。如果您尚未登录/注册的话，您将被提示这样做
   click_the_map: <strong>点击地图</strong>以增加一个地点。
+  click_the_map_to_jump_new_place: 点击地图切换到新地点
   code: 代码
   collapse_days: 折叠日子
   collapse_updates: 折叠更新
@@ -724,6 +728,7 @@ zh-CN:
   coordinates: 坐标
   coordinates_private: （私有坐标）
   copy: 复制
+  copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
   copy_guide_taxon_to: 把指南的分类单元复制到……
   copyright:
     some_rights_reserved: 保留部分权利
@@ -1270,15 +1275,15 @@ zh-CN:
   id: ID
   id_: ID
   id_more_in_id_please: 更多ID请在ID中
-  id_please!: ID请！
-  id_please: ID请
-  id_please_expandable_html: ID<span class='full'>请</span>！
+  id_please!: 请添加ID！
+  id_please: 请添加ID
+  id_please_expandable_html: <span class='full'>需要</span>ID！
   identify: 鉴定
   identify_observations: 对观察记录进行鉴定
   identify_title: 鉴定
   identification: 鉴定
-  identification_deleted: 身份证明已删除。
-  identification_saved: 身份证明已保存！
+  identification_deleted: 身份验证已删除。
+  identification_saved: 身份验证已保存！
   identification_summary: 身份证明摘要
   identification_updated: 身份证明已更新！
   identification_withdrawn: 身份验证已放弃。
@@ -1749,16 +1754,24 @@ zh-CN:
   no_countries_added_yet: 尚未添加国家
   no_creative_commons_flickr_photo: 没有知识共享Flickr照片已标记
   no_creative_commons_flickr_photos_tagged_x: 没有知识共享Flickr照片标记为“%{x}”
+  no_facebook_photos: 我们找不到任何来自Facebook的照片。
   no_flags: 目前没有标记
   no_header_row: 没有标题行
   no_identifications: 没有鉴定
+  no_identifications_added:
+    current_user: 您还没有对别人的观察添加过身份验证。
+    user: '%{user}还没有对别人的观察添加过身份验证。'
   no_interaction_data_available: 没有可用的交互数据
   no_favorites_added:
     current_user: 您尚未添加收藏夹。
+    user: '%{user}还没有添加过收藏。'
   no_license_all_rights_reserved: 无许可协议（保留所有权利）
   no_link_flickr: 不，我宁愿不那样。
   no_matching_article_from_x: 没有来自%{x}的匹配的条目
+  no_matching_places: 没有匹配的地点
+  no_matching_projects: 没有匹配的项目
   no_matching_species: 没有匹配的物种。
+  no_matching_users: 没有匹配的用户。
   no_members_yet: 尚无成员。
   no_messages_yet: 尚无消息
   no_misidentifications_yet: 尚无错误标识过的
@@ -1769,8 +1782,10 @@ zh-CN:
   no_new_messages: 没有新消息
   no_observations: 没有观察
   no_observations_submitted: 没有提交观察！
+  no_one_has_been_invited_yet: 还没有人被邀请
   no_photos: 无照片
   no_places_available: 没有可用的地点
+  no_places_selected: 没有选择地点。
   no_post_yet: 尚无帖子！
   no_project_selected: 未选择项目
   no_project_to_admin_current_user: 您不管理任何项目
@@ -1778,26 +1793,37 @@ zh-CN:
   no_projects_yet: 尚无项目
   no_range_data_available: 没有范围数据可用。
   no_recent_activity: 没有最近活跃
+  no_recently_active: 没有近期激活的项目。
   no_reply_yet: 尚无恢复
   no_results_found: 没有找到结果
   no_results_for: 没有结果用于
+  no_results_matching: 没有匹配的结果
   no_species_observed: 没有观察的物种
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: （无主题）
   no_summary_from_wikipedia: 没有来自维基百科的概要
   no_taxa: 无分类群
+  no_taxa_yet: 尚无分类群！
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
   no_x_this_y: 不是%{x}这个%{y}
   noble_curators: '%{site}的博物馆长'
   non_human?: 非人类？
   none: 无
   normal: 一般
+  not_completed: 未完成
+  not_evaluated: 未评估
+  not_findig_what_you_want: 没找到你想要的？
+  not_finding_place_you_want?: 没找到你想找的地点？
   not_found: 未找到
   not_linked_facebook: 您的%{site_name}账户并未链接至您的Facebook账户&#59;
+  not_linked_flickr: 你的%{site_name}账号没有关联到你的Flickr账号&#59;
   not_logged_in: 未登录
+  not_on_this_list: 不在此列表中。
+  not_seeing_what_looking_for: 看不到您要寻找的东西么？
   not_yet: 尚未
   note: 注释
+  note_you_can_modify_the_height_attribute: 注意：您可以调整“height”属性来适应你页面的空间。
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
   number_selected: '# 已选择'
@@ -1887,6 +1913,8 @@ zh-CN:
   open_description: 任何人可以查看观察，除非分类受到威胁。
   optional: 可选
   or: 或
+  or_if_you_dont_want_email: 或如果您不希望接受任何电子邮件的话...
+  or_invite_your_friends: 或者邀请你的好友
   or_post_message_to_google_group: 或者向我们的Google群组发送消息：
   or_upload: 或上传
   or_you_can: 或者您可以...
@@ -1896,6 +1924,9 @@ zh-CN:
   order_by: 排序方式：
   organisms: 有机体
   original: 原文
+  original_page_url_for_this_photo: 本图片的原始页面URL。
+  original_rights_holder: 原始版权持有者
+  original_url_for_this_map: 本地图的原始URL
   other: 其他
   other_animals: 其他动物
   other_animals_plural:
@@ -1903,6 +1934,7 @@ zh-CN:
     other: 其他动物
   other_annimals: 其他动物
   our_blog: 我们的博客
+  out_of_range: 超出范围
   owner: 所有人
   parent: 父
   parent_name: 父名称
@@ -2113,6 +2145,7 @@ zh-CN:
   please_add_this_to_x_html: 请将此添加至 %{x}
   please_confirm_your_inat_username: 请确认您在%{site_name}的用户名
   please_confirm_your_account_html: 请花一秒钟<a href="%{url}">确认您的账户</a>。
+  please_enter_a_new_pass: 请输入新密码并确认。
   please_fix_your_csv_and_try_again: 请修复您的CSV，然后重试。
   popular: 热门
   position: 位置
@@ -2248,10 +2281,7 @@ zh-CN:
   related_species: 相关物种
   reload_and_refresh: 重新加载和刷新列表
   remarks_optional: 摘要<span class="small description">（可选）</span>
-  remember_its_a_lot_easier_to_id: 请记住，it's a lot easier to ID something if you provide
-    as much descriptive information as possible. Most importantly, please provide
-    a <strong>place</strong>, a <strong>date/time</strong>, and some information about
-    the <strong>size</strong>.
+  remember_its_a_lot_easier_to_id: 请记住，如果您提供的描述信息越多，就越容易找到该物种ID。最重要的是，请提供<strong>地点</strong>、<strong>日期/时间</strong>，以及有关<strong>尺寸</strong>的一些信息。
   remember_me: 记住我
   remove: 移除
   remove_all_tags: 移除所有标签
@@ -2490,6 +2520,7 @@ zh-CN:
   start_a_new_project: 开始一个新项目
   start_a_project: 启动一个计划
   start_new_account: 开始一个新的账户
+  start_new_project: 开始新的项目
   start_one: 开始一个
   start_typing_taxon_name: 开始输入分类名称……
   states: 州
@@ -2502,6 +2533,7 @@ zh-CN:
   still_needs_id?: 社群可以确认/改进ID么？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
   stop_editing: 停止编辑
+  stop_following_user: 停止关注%{user}
   stop_updating_position: 停止更新位置
   stuff_just_added: 您刚刚添加的东西
   subject_resolved_noun_html: '%{subject} 解决了 %{noun}'
@@ -2520,6 +2552,8 @@ zh-CN:
   subscribe_to_x_from_this_y_html: 从此%{y}<a href="#" onclick="$(this).parents('form:first').submit();
     return false;">订阅</a>至%{x}。
   subscriptions: 订阅
+  successfully_changed_your_password: 成功更改了您的密码。
+  suggest_an_id: 建议ID
   summary: 摘要
   suspicious_photos: 可疑照片
   sun: 日
@@ -3254,6 +3288,7 @@ zh-CN:
         automatically_add_to_project: 自动添加到项目
         automatically_id_the_new_obs_as: 自动ID新观察作为
         dont_forget_the_invite_link_placeholder: 不要忘记 {{INVITE_LINK}} 占位符
+        invite_other_photographers_to_inat: 邀请其他摄影师到%{site_name}
     places:
       edit:
         complex_boundary_note_html: 此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
