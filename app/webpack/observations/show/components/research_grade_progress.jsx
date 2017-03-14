@@ -45,32 +45,61 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
       <ul className="remaining">
         { _.map( remainingCriteria, ( bool, type ) => {
           if ( bool !== true ) { return null; }
+          let icon;
+          let label;
           switch ( type ) {
             case "date":
-              return ( <li><i className="fa fa-calendar" />Specify Date</li> );
+              icon = "fa-calendar";
+              label = "Specify Date";
+              break;
             case "location":
-              return ( <li><i className="fa fa-map-marker" />Specify Location</li> );
+              icon = "fa-map-marker";
+              label = "Specify Location";
+              break;
             case "media":
-              return ( <li><i className="fa fa-file-image-o" />Add photos or sounds</li> );
+              icon = "fa-file-image-o";
+              label = "Add photos or sounds";
+              break;
             case "ids":
-              return ( <li><i className="fa icon-identification" />Community Identification</li> );
+              icon = "icon-identification";
+              label = "Community Identification";
+              break;
             case "rank":
-              return ( <li><i className="fa fa-leaf" />More specific ID</li> );
+              icon = "fa-leaf";
+              label = "More specific ID";
+              break;
             case "metric-date":
-              return ( <li><i className="fa fa-calendar-check-o" />Accurate Date</li> );
+              icon = "fa-calendar-check-o";
+              label = "Accurate Date";
+              break;
             case "metric-location":
-              return ( <li><i className="fa fa-bullseye" />Accurate Location</li> );
+              icon = "fa-bullseye";
+              label = "Accurate Location";
+              break;
             case "metric-wild":
-              return ( <li><i className="fa fa-bolt" />Wild Organism</li> );
+              icon = "fa-bolt";
+              label = "Wild Organism";
+              break;
             case "metric-evidence":
-              return ( <li><i className="fa fa-bolt" />Evidence of an Organism</li> );
+              icon = "fa-bolt";
+              label = "Evidence of an Organism";
+              break;
             case "metric-recent":
-              return ( <li><i className="fa fa-bolt" />Recent Evidence</li> );
+              icon = "fa-bolt";
+              label = "Recent Evidence";
+              break;
             case "metric-needs_id":
-              return ( <li><i className="fa fa-gavel" />Community Agreement</li> );
+              icon = "fa-gavel";
+              label = "Community Agreement";
+              break;
             default:
               return null;
           }
+          return (
+            <li key={ `need-${type}` }>
+              <i className={ `fa ${icon}` } />{ label }
+            </li>
+          );
         } ) }
       </ul>
     );

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import CommunityIdentification from "../components/community_identification";
+import { addID } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
@@ -9,7 +10,9 @@ function mapStateToProps( state ) {
 }
 
 function mapDispatchToProps( dispatch ) {
-  return { };
+  return {
+    addID: ( taxon ) => { dispatch( addID( taxon ) ); }
+  };
 }
 
 const CommunityIdentificationContainer = connect(

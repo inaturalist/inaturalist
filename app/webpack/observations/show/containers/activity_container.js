@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Activity from "../components/activity";
-import { addComment, deleteComment, addID, deleteID, restoreID } from "../ducks/observation";
+import { addComment, confirmDeleteComment, addID, deleteID, restoreID } from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
 
@@ -15,8 +15,8 @@ function mapDispatchToProps( dispatch ) {
   return {
     setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
     addComment: ( body ) => { dispatch( addComment( body ) ); },
-    deleteComment: ( id ) => { dispatch( deleteComment( id ) ); },
-    addID: ( taxonID, body ) => { dispatch( addID( taxonID, body ) ); },
+    deleteComment: ( id ) => { dispatch( confirmDeleteComment( id ) ); },
+    addID: ( taxon, body ) => { dispatch( addID( taxon, body ) ); },
     deleteID: ( id ) => { dispatch( deleteID( id ) ); },
     restoreID: ( id ) => { dispatch( restoreID( id ) ); },
     createFlag: ( className, id, flag, body ) => {

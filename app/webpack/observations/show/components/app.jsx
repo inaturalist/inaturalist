@@ -22,7 +22,7 @@ import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
 import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
-import ErrorModalContainer from "../containers/error_modal_container";
+import ConfirmModalContainer from "../containers/confirm_modal_container";
 
 moment.locale( "en", {
   relativeTime: {
@@ -241,7 +241,7 @@ const App = ( { observation, config } ) => {
         </Grid>
       </div>
       <FlaggingModalContainer />
-      <ErrorModalContainer />
+      <ConfirmModalContainer />
     </div>
   );
 };

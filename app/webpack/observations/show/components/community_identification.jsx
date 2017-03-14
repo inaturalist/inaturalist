@@ -2,8 +2,9 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import CommunityIDPopover from "./community_id_popover";
+import util from "../util";
 
-const CommunityIdentification = ( { observation, config } ) => {
+const CommunityIdentification = ( { observation, config, addID } ) => {
   const loggedIn = config && config.currentUser;
   const taxon = observation.taxon;
   if ( !observation || !taxon ) {
@@ -12,22 +13,11 @@ const CommunityIdentification = ( { observation, config } ) => {
   const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
     i.current && i.user && i.user.id === config.currentUser.id
   ) );
-  let taxonImageTag;
-  if ( taxon.defaultPhoto ) {
-    taxonImageTag = (
-      <img src={ taxon.defaultPhoto.photoUrl( ) } className="taxon-image" />
-    );
-  } else if ( taxon.iconic_taxon_name ) {
-    taxonImageTag = (
-      <i
-        className={`taxon-image icon icon-iconic-${
-          taxon.iconic_taxon_name.toLowerCase( )}`}
-      >
-      </i>
-    );
-  } else {
-    taxonImageTag = <i className="taxon-image icon icon-iconic-unknown"></i>;
+  let canAgree = true;
+  if ( currentUserID ) {
+    canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
   }
+  const taxonImageTag = util.taxonImage( taxon );
   const votesFor = [];
   const votesAgainst = [];
   const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
@@ -46,9 +36,10 @@ const CommunityIdentification = ( { observation, config } ) => {
   _.each( votesFor, v => {
     voteCells.push( (
       <CommunityIDPopover
+        key={ `community-id-${v.id}` }
         keyPrefix="ids"
         identification={ v }
-        communityIDTaxon={ observation.taxon }
+        communityIDTaxon={ taxon }
         agreement
         contents={ ( <div className="for" style={ { width } } /> ) }
       />
@@ -57,9 +48,10 @@ const CommunityIdentification = ( { observation, config } ) => {
   _.each( votesAgainst, v => {
     voteCells.push( (
       <CommunityIDPopover
+        key={ `community-id-${v.id}` }
         keyPrefix="ids"
         identification={ v }
-        communityID={ observation.taxon }
+        communityID={ taxon }
         agreement={ false }
         contents={ ( <div className="against" style={ { width } } /> ) }
       />
@@ -70,9 +62,11 @@ const CommunityIdentification = ( { observation, config } ) => {
       <h4>Community ID</h4>
       <div className="info">
         <div className="photo">
-          { taxonImageTag }
+          <a href={ `/taxa/${taxon.id}` }>
+            { taxonImageTag }
+          </a>
         </div>
-        <SplitTaxon taxon={observation.taxon} url={`/taxa/${observation.taxon.id}`} />
+        <SplitTaxon taxon={observation.taxon} url={`/taxa/${taxon.id}`} />
         <span className="cumulative">
           Cumulative IDs: { voteCells.length }
         </span>
@@ -82,21 +76,25 @@ const CommunityIdentification = ( { observation, config } ) => {
       </div>
       <div className="action">
         <div className="btn-space">
-          <button className="btn btn-default">
+          <button className="btn btn-default" disabled={ !canAgree }
+            onClick={ ( ) => { addID( taxon ); } }
+          >
             <i className="fa fa-check" /> Agree
           </button>
         </div>
         <div className="btn-space">
-          <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${observation.taxon.id}` }>
+          <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }>
             <button className="btn btn-default">
               <i className="fa fa-exchange" /> Compare
             </button>
           </a>
         </div>
         <div className="btn-space">
-          <button className="btn btn-default">
-            <i className="fa fa-info-circle" /> About
-          </button>
+          <a href={ `/taxa/${taxon.id}` }>
+            <button className="btn btn-default">
+              <i className="fa fa-info-circle" /> About
+            </button>
+          </a>
         </div>
       </div>
     </div>
@@ -105,7 +103,8 @@ const CommunityIdentification = ( { observation, config } ) => {
 
 CommunityIdentification.propTypes = {
   config: PropTypes.object,
-  observation: PropTypes.object
+  observation: PropTypes.object,
+  addID: PropTypes.func
 };
 
 export default CommunityIdentification;

@@ -5,39 +5,57 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 import UserImage from "../../identify/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
-
+import util from "../util";
 
 const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
                          restoreID, setFlaggingModalState, currentUserID, addID } ) => {
   if ( !item ) { return ( <div /> ); }
-  let taxonImageTag;
   const taxon = item.taxon;
   const isID = !!taxon;
   const loggedIn = config && config.currentUser;
   let contents;
   let header;
   let className;
-  let buttonDiv;
   const userLink = (
     <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
   );
-  // TODO: mentions
   if ( isID ) {
-    if ( taxon && item.taxon.defaultPhoto ) {
-      taxonImageTag = (
-        <img src={ taxon.defaultPhoto.photoUrl( ) } className="taxon-image" />
-      );
-    } else if ( taxon.iconic_taxon_name ) {
-      taxonImageTag = (
-        <i
-          className={`taxon-image icon icon-iconic-${
-            taxon.iconic_taxon_name.toLowerCase( )}`}
-        >
-        </i>
-      );
-    } else {
-      taxonImageTag = <i className="taxon-image icon icon-iconic-unknown"></i>;
+    let buttons = [];
+    let canAgree = false;
+    if ( item.current && item.user.id !== config.currentUser.id ) {
+      if ( currentUserID ) {
+        canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+      } else {
+        canAgree = true;
+      }
     }
+    if ( loggedIn && canAgree ) {
+      buttons.push( (
+        <button
+          key={ `id-agree-${item.id}` }
+          className="btn btn-default btn-sm"
+          onClick={ () => { addID( taxon ); } }
+        >
+          <i className="fa fa-check" /> Agree
+        </button>
+      ) );
+    }
+    buttons.push( (
+      <a
+        key={ `id-compare-${item.id}` }
+        href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
+      >
+        <button className="btn btn-default btn-sm">
+          <i className="fa fa-exchange" /> Compare
+        </button>
+      </a>
+    ) );
+    const buttonDiv = ( <div className="buttons">
+      <div className="btn-space">
+        { buttons }
+      </div>
+    </div> );
+    const taxonImageTag = util.taxonImage( taxon );
     header = "suggested an ID";
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
@@ -49,29 +67,10 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
             url={ `/taxa/${taxon.id}` }
           />
         </div>
+        { buttonDiv }
         { item.body && ( <UserText text={ item.body } className="id_body" /> ) }
       </div>
     );
-    let buttons = [];
-    if ( loggedIn && !currentUserID ) {
-      buttons.push( (
-        <button className="btn btn-default" onClick={ () => { addID( taxon.id ); } }>
-          <i className="fa fa-check" /> Agree
-        </button>
-      ) );
-    }
-    buttons.push( (
-      <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }>
-        <button className="btn btn-default">
-          <i className="fa fa-exchange" /> Compare
-        </button>
-      </a>
-    ) );
-    buttonDiv = ( <div className="buttons">
-      <div className="btn-space">
-        { buttons }
-      </div>
-    </div> );
   } else {
     header = "commented";
     contents = ( <UserText text={ item.body } /> );
@@ -124,7 +123,6 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
         )}
       >
         { contents }
-        { buttonDiv }
       </Panel>
     </div>
   );

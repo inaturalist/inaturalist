@@ -7,7 +7,8 @@ import { fetchQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions } from "./subscriptions";
 import { fetchIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
-import { handleAPIError } from "./error_modal";
+import { setConfirmModalState, handleAPIError } from "./confirm_modal";
+import { updateSession } from "./users";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 
@@ -109,20 +110,60 @@ export function deleteComment( id ) {
   };
 }
 
-export function addID( taxonID, body ) {
+
+export function confirmDeleteComment( id ) {
+  return ( dispatch ) => {
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: "Are you sure you want to delete this comment?",
+      confirmText: "Yes",
+      onConfirm: ( ) => {
+        dispatch( deleteComment( id ) );
+      }
+    } ) );
+  };
+}
+
+export function doAddID( taxon, body, confirmForm ) {
   return ( dispatch, getState ) => {
+    if ( confirmForm && confirmForm.silenceCoarse ) {
+      dispatch( updateSession( { prefers_skip_coarer_id_modal: true } ) );
+    }
     const observationID = getState( ).observation.id;
     const payload = {
       observation_id: observationID,
-      taxon_id: taxonID,
+      taxon_id: taxon.id,
       body
     };
-
     inatjs.identifications.create( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
       console.log( e );
     } );
+  };
+}
+
+export function addID( taxon, body ) {
+  return ( dispatch, getState ) => {
+    const observation = getState( ).observation;
+    const config = getState( ).config;
+    const userPrefersSkip = config && config.currentUser &&
+      config.currentUser.prefers_skip_coarer_id_modal;
+    if ( !userPrefersSkip && observation.taxon && taxon.id !== observation.taxon.id &&
+         _.includes( observation.taxon.ancestor_ids, taxon.id ) ) {
+      dispatch( setConfirmModalState( {
+        show: true,
+        type: "coarserID",
+        idTaxon: taxon,
+        existingTaxon: observation.taxon,
+        confirmText: "Proceed",
+        onConfirm: ( confirmForm ) => {
+          dispatch( doAddID( taxon, body, confirmForm ) );
+        }
+      } ) );
+    } else {
+      dispatch( doAddID( taxon, body ) );
+    }
   };
 }
 
@@ -351,5 +392,18 @@ export function removeFromProject( project ) {
     } ).catch( e => {
       console.log( e );
     } );
+  };
+}
+
+export function confirmRemoveFromProject( project ) {
+  return ( dispatch ) => {
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: `Are you sure you want to remove this observation from ${project.title}?`,
+      confirmText: "Yes",
+      onConfirm: ( ) => {
+        dispatch( removeFromProject( project ) );
+      }
+    } ) );
   };
 }

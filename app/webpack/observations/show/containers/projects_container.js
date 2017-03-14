@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Projects from "../components/projects";
-import { addToProject, removeFromProject } from "../ducks/observation";
+import { addToProject, confirmRemoveFromProject } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     addToProject: ( project ) => { dispatch( addToProject( project ) ); },
-    removeFromProject: ( project ) => { dispatch( removeFromProject( project ) ); }
+    removeFromProject: ( project ) => { dispatch( confirmRemoveFromProject( project ) ); }
   };
 }
 

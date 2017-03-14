@@ -14,7 +14,7 @@ class CommunityIDPopover extends React.Component {
     const taxon = taxa.shift( );
     if ( !taxon ) { return ( <div /> ); }
     const lastTaxon = ( taxa.length === 0 );
-    const bold = ( taxon.id === this.props.communityIDTaxon.id );
+    const bold = ( this.props.communityIDTaxon && taxon.id === this.props.communityIDTaxon.id );
     return (
       <ul className={ `plain taxonomy ${lastTaxon ? "last" : null}` }>
         <li className={ `${!root && "child"} ${bold && "boldTaxon"}` }>
@@ -30,7 +30,6 @@ class CommunityIDPopover extends React.Component {
   }
 
   render( ) {
-    const keyPrefix = this.props.keyPrefix;
     const identification = this.props.identification;
     const contents = this.props.contents;
     const agreement = this.props.agreement;
@@ -38,7 +37,7 @@ class CommunityIDPopover extends React.Component {
     const popover = (
       <Popover
         className={ `CommunityIDPopoverOverlay ${agreement ? "agree" : "disagree"}` }
-        id={ `popover-${keyPrefix}` }
+        id={ `popover-${identification.id}` }
       >
         <div className="header">
           <UserImage user={ identification.user } />

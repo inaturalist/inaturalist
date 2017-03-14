@@ -1,9 +1,8 @@
-const SET_ERROR_MODAL_STATE = "obs-show/error_modal/SET_ERROR_MODAL_STATE";
+const SET_CONFIRM_MODAL_STATE = "obs-show/confirm_modal/SET_CONFIRM_MODAL_STATE";
 
 export default function reducer( state = { show: false }, action ) {
   switch ( action.type ) {
-    case SET_ERROR_MODAL_STATE:
-    console.log(action.newState);
+    case SET_CONFIRM_MODAL_STATE:
       return Object.assign( { }, action.newState );
     default:
       // nothing to see here
@@ -11,9 +10,9 @@ export default function reducer( state = { show: false }, action ) {
   return state;
 }
 
-export function setErrorModalState( newState ) {
+export function setConfirmModalState( newState ) {
   return {
-    type: SET_ERROR_MODAL_STATE,
+    type: SET_CONFIRM_MODAL_STATE,
     newState
   };
 }
@@ -23,11 +22,12 @@ export function handleAPIError( e, message ) {
     if ( e && e.response && e.response.status ) {
       e.response.text( ).then( text => {
         const body = JSON.parse( text );
-        console.log(body);
-        console.log(body.error.original.errors);
         if ( body && body.error && body.error.original && body.error.original.errors ) {
-          dispatch( setErrorModalState( {
+          dispatch( setConfirmModalState( {
             show: true,
+            type: "error",
+            hideCancel: true,
+            confirmText: "OK",
             message,
             errors: body.error.original.errors
           } ) );

@@ -71,57 +71,61 @@ class FlaggingModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          { existingFlags }
-          <div className="flagInput">
-            <label className="heading">
-              <input
-                type="radio"
-                name="spam"
-                checked={ this.props.state.radioOption === "spam" }
-                onClick={ () => { this.setRadioOption( "spam" ); } }
-              /> spam
-            </label>
-            <div className="help-block">
-              Commercial solicitation, links to nowhere, etc.
+          <div className="text">
+            { existingFlags }
+            <div className="flagInput">
+              <label className="heading">
+                <input
+                  type="radio"
+                  name="spam"
+                  checked={ this.props.state.radioOption === "spam" }
+                  onClick={ () => { this.setRadioOption( "spam" ); } }
+                /> spam
+              </label>
+              <div className="help-block">
+                Commercial solicitation, links to nowhere, etc.
+              </div>
             </div>
-          </div>
-          <div className="flagInput">
-            <label className="heading">
-              <input
-                type="radio"
-                name="inappropriate"
-                checked={ this.props.state.radioOption === "inappropriate" }
-                onClick={ () => { this.setRadioOption( "inappropriate" ); } }
-              /> offensive / inappropriate
-            </label>
-            <div className="help-block">
-              Misleading or illegal content, racial or ethnic slurs, etc.
-              For more on our definition of "appropriate," see the&nbsp;
-              <a href="/pages/help#inappropriate">FAQ</a>.
+            <div className="flagInput">
+              <label className="heading">
+                <input
+                  type="radio"
+                  name="inappropriate"
+                  checked={ this.props.state.radioOption === "inappropriate" }
+                  onClick={ () => { this.setRadioOption( "inappropriate" ); } }
+                /> offensive / inappropriate
+              </label>
+              <div className="help-block">
+                Misleading or illegal content, racial or ethnic slurs, etc.
+                For more on our definition of "appropriate," see the&nbsp;
+                <a href="/pages/help#inappropriate">FAQ</a>.
+              </div>
             </div>
-          </div>
-          <div className="flagInput">
-            <label className="heading">
-              <input
-                type="radio"
-                name="other"
-                checked={ this.props.state.radioOption === "other" }
-                onClick={ () => { this.setRadioOption( "other" ); } }
-              /> other
-            </label>
-            <div className="help-block">
-              Some other reason you can explain below.
+            <div className="flagInput">
+              <label className="heading">
+                <input
+                  type="radio"
+                  name="other"
+                  checked={ this.props.state.radioOption === "other" }
+                  onClick={ () => { this.setRadioOption( "other" ); } }
+                /> other
+              </label>
+              <div className="help-block">
+                Some other reason you can explain below.
+              </div>
+              { otherTextarea }
             </div>
-            { otherTextarea }
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={ this.close }>
-            { I18n.t( "cancel" ) }
-          </Button>
-          <Button onClick={ this.submit }>
-            { I18n.t( "save" ) }
-          </Button>
+          <div className="buttons">
+            <Button onClick={ this.close }>
+              { I18n.t( "cancel" ) }
+            </Button>
+            <Button bsStyle="primary" onClick={ this.submit }>
+              { I18n.t( "save" ) }
+            </Button>
+          </div>
         </Modal.Footer>
       </Modal>
     );
