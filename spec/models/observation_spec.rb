@@ -855,6 +855,17 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
 
+      it "should be research grade if the taxon is in a different subtree from the CID taxon" do
+        owner_taxon = Taxon.make!( rank: Taxon::SPECIES )
+        community_taxon = Taxon.make!( rank: Taxon::SPECIES )
+        o = make_research_grade_candidate_observation( taxon: owner_taxon )
+        3.times { Identification.make!( observation: o, taxon: community_taxon ) }
+        o.reload
+        expect( o.community_taxon ).to eq community_taxon
+        expect( o.owners_identification.taxon ).to eq owner_taxon
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
       describe "when observer opts out of CID" do
         let(:u) { User.make!( prefers_community_taxa: false ) }
         it "should be casual if the taxon is in a different subtree from the CID taxon" do
