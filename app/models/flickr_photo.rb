@@ -164,8 +164,7 @@ class FlickrPhoto < Photo
   def to_tags( options = { } )
     self.api_response ||= FlickrPhoto.get_api_response(native_photo_id,
       user: options[:user] || user )
-    return [] if api_response.tags.blank?
-    api_response.tags.map{|t| t.raw}
+    [( api_response.tags || [] ).map{|t| t.raw}, api_response.title].flatten.compact.uniq
   end
   
   # Try to extract known taxa from the tags of a flickr photo
