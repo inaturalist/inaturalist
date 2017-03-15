@@ -37,6 +37,7 @@ class Map extends React.Component {
             places: { disabled: true },
             gbif: { disabled: true }
           }] }
+          static
           observations={[obsForMap]}
           zoomLevel={ observation.map_scale || 8 }
           mapTypeControl={false}

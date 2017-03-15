@@ -62,7 +62,7 @@ class Projects extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
-    if ( !observation || ( _.isEmpty( observation.project_observations ) ) ) {
+    if ( !observation ) {
       return ( <span /> );
     }
     let addProjectLink;

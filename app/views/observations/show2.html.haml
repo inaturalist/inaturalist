@@ -1,11 +1,23 @@
-/ - @no_footer_gap = true
 - content_for :title do
-  Title
+  - if @observation.taxon
+    = raw [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?}
+  - elsif @observation.species_guess.blank?
+    = @observation.species_guess
+  - else
+    t(:something)
+  = t(:observed_by).downcase
+  = @observation.user.login
+  - if @observation.time_observed_at && @coordinates_viewable
+    = l @observation.time_observed_at, :format => :observed_at
+  - if @observation.observed_on
+    - date_format = @observation.observed_on.to_s(:long).split(" ")
+    = t :on_
+    = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
-  %meta{ name: "config:help_email", content: CONFIG.help_email }
   :javascript
     INITIAL_OBSERVATION_ID = #{@observation.id};
+    SITE_HELP_EMAIL = "#{CONFIG.help_email}";
 - content_for :extracss do
   - # needed for tooltips
   = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"

@@ -43,6 +43,8 @@ class ProjectListing extends React.Component {
     const config = this.props.config;
     const viewerIsObserver = config && config.currentUser &&
       config.currentUser.id === observation.user.id;
+    const viewerIsAdder = config && config.currentUser &&
+      config.currentUser.id === po.user_id;
     const fields = po.project.project_observation_fields;
     if ( fields && fields.length > 1 ) {
       const fieldIDs = po.project.project_observation_fields.
@@ -83,7 +85,7 @@ class ProjectListing extends React.Component {
             </div>
             { observationFieldLink }
           </div>
-          { viewerIsObserver && this.settingsMenu( po ) }
+          { viewerIsObserver || viewerIsAdder ? this.settingsMenu( po ) : "" }
         </div>
         { observationFields }
       </div>

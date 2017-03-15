@@ -10,6 +10,17 @@
     height: 200px;
 }
 
+#header * {
+  -webkit-box-sizing: initial;
+  -moz-box-sizing: initial;
+  box-sizing: initial;
+}
+
+#header {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-size: 12px;
+}
+
 #initial-loading .loading {
   display: inline-block;
   margin: 20px auto;
@@ -25,6 +36,12 @@
   }
 }
 
+input.failed {
+  border-color: #d9534f !important;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -35,14 +52,14 @@
   }
 }
 
-.UserImage {
-  margin-right: 5px;
-  min-width: 40px;
-}
-
 a.UserImage {
+  &:hover {
+    color: #fff;
+  }
   display: inline-block;
   border-radius: 120px;
+  margin-right: 5px;
+  min-width: 40px;
   width: 48px;
   height: 48px;
   background-size: cover;
@@ -52,6 +69,33 @@ a.UserImage {
   text-align: center;
   vertical-align: middle;
   color: white;
+  .icon-person {
+    font-size: 36px;
+    line-height: 40px;
+  }
+}
+
+.UserWithIcon {
+  .icon {
+    float: left;
+  }
+  .title {
+    font-size: 20px;
+    line-height: 22px;
+    a {
+      color: #000;
+    }
+  }
+  .subtitle {
+    margin-top: 5px;
+    line-height: 18px;
+    font-size: 15px;
+    i.fa-binoculars {
+      font-size: 12px;
+      color: #74AC00;
+      margin-right: 5px;
+    }
+  }
 }
 
 #ObservationShow {
@@ -59,6 +103,9 @@ a.UserImage {
   .top_container {
     margin: 0;
     width: auto;
+  }
+  .title_row {
+    margin: 10px 0px 10px;
   }
   .top_row {
     background: #fff;
@@ -175,6 +222,9 @@ a.UserImage {
         .bold_label {
           display: block;
           font-weight: bold;
+        }
+        .date {
+          font-size: 13px;
         }
       }
       .stats_row, .faves_row {
@@ -324,33 +374,6 @@ a.UserImage {
     &.d1 {
       maxheight: 100px !important;
       line-height: 100px;
-    }
-  }
-}
-
-.UserWithIcon {
-  .icon {
-    float: left;
-  }
-  .icon-person {
-    font-size: 36px;
-    line-height: 36px;
-  }
-  .title {
-    font-size: 20px;
-    line-height: 22px;
-    a {
-      color: #000;
-    }
-  }
-  .subtitle {
-    margin-top: 5px;
-    line-height: 18px;
-    font-size: 15px;
-    i.fa-binoculars {
-      font-size: 12px;
-      color: #74AC00;
-      margin-right: 5px;
     }
   }
 }
@@ -743,6 +766,10 @@ a.UserImage {
     height: 22px;
     vertical-align: bottom;
     line-height: 16px;
+    .icon-person {
+      font-size: 16px;
+      line-height: 18px;
+    }
   }
 }
 
@@ -790,6 +817,10 @@ a.UserImage {
       width: 22px;
       height: 22px;
       vertical-align: bottom;
+      .icon-person {
+        font-size: 14px;
+        line-height: 20px;
+      }
     }
   }
   .popover-content {

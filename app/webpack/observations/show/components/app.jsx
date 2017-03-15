@@ -63,7 +63,7 @@ const App = ( { observation, config } ) => {
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
   let warning;
   if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
-    const helpEmail = $( "meta[name='config:help_email']" ).attr( "content" );
+    /* global SITE_HELP_EMAIL */
     warning = (
       <div className="container flash-warning">
         <div className="alert alert-warning">
@@ -72,7 +72,7 @@ const App = ( { observation, config } ) => {
             This record has been flagged as spam and is no longer publicly visible.
             You can see it because you created it, or you are a site curator.
             If you think this is a mistake, please&nbsp;
-            <a href={ `mailto:${helpEmail}` }>
+            <a href={ `mailto:${SITE_HELP_EMAIL}` }>
               contact us
             </a>.
           </p>
@@ -85,7 +85,7 @@ const App = ( { observation, config } ) => {
     { warning }
       <div className="upper">
         <Grid>
-          <Row>
+          <Row className="title_row">
             <Col xs={10}>
               <div className="ObservationTitle">
                 <div className="title">
@@ -118,13 +118,17 @@ const App = ( { observation, config } ) => {
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">Observed:</span>
-                        { moment.tz( observation.time_observed_at,
-                            observation.observed_time_zone ).format( "lll z" ) }
+                        <span className="date">
+                          { moment.tz( observation.time_observed_at,
+                            observation.observed_time_zone ).format( "MMM D, YYYY · LT z" ) }
+                        </span>
                       </Col>
                       <Col xs={6}>
                         <span className="bold_label">Submitted:</span>
-                        { moment.tz( observation.created_at,
-                            observation.created_time_zone ).format( "lll z" ) }
+                        <span className="date">
+                          { moment.tz( observation.created_at,
+                            observation.created_time_zone ).format( "MMM D, YYYY · LT z" ) }
+                        </span>
                       </Col>
                     </Row>
                     <Row className="stats_row">

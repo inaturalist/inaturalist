@@ -1,5 +1,6 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
+import moment from "moment";
 import { fetchObservationPlaces } from "./observation_places";
 import { fetchControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade } from "./other_observations";
@@ -11,13 +12,15 @@ import { setConfirmModalState, handleAPIError } from "./confirm_modal";
 import { updateSession } from "./users";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
+const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
 
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
     case SET_OBSERVATION:
       return action.observation;
+    case SET_ATTRIBUTES:
+      return Object.assign( { }, state, action.attributes );
     default:
-      // nothing to see here
   }
   return state;
 }
@@ -26,6 +29,13 @@ export function setObservation( observation ) {
   return {
     type: SET_OBSERVATION,
     observation
+  };
+}
+
+export function setAttributes( attributes ) {
+  return {
+    type: SET_ATTRIBUTES,
+    attributes
   };
 }
 
@@ -68,14 +78,23 @@ export function fetchObservation( id, options = { } ) {
 
 export function updateObservation( attributes ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
+    const state = getState( );
+    if ( !state.observation ) {
+      return;
+    }
+    const attributesToSet = Object.assign( { }, attributes );
+    if ( _.has( attributesToSet, "tag_list" ) ) {
+      attributesToSet.tags = _.compact(
+        _.map( attributesToSet.tag_list.split( "," ), t => ( t.trim( ) ) ) );
+    }
+    dispatch( setAttributes( attributesToSet ) );
     const payload = {
-      id: observationID,
+      id: state.observation.id,
       ignore_photos: true,
-      observation: Object.assign( { }, { id: observationID }, attributes )
+      observation: Object.assign( { }, { id: state.observation.id }, attributes )
     };
     inatjs.observations.update( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
       console.log( e );
     } );
@@ -84,14 +103,23 @@ export function updateObservation( attributes ) {
 
 export function addComment( body ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    dispatch( setAttributes( { comments: state.observation.comments.concat( [{
+      created_at: moment( ).format( ),
+      user: state.config.currentUser,
+      body
+    }] ) } ) );
+
     const payload = {
       parent_type: "Observation",
-      parent_id: observationID,
+      parent_id: state.observation.id,
       body
     };
     inatjs.comments.create( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
       console.log( e );
     } );
@@ -100,10 +128,16 @@ export function addComment( body ) {
 
 export function deleteComment( id ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    dispatch( setAttributes( { comments:
+      state.observation.comments.filter( c => ( c.id !== id ) ) } ) );
+
     const payload = { id };
     inatjs.comments.delete( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
       console.log( e );
     } );
@@ -222,11 +256,30 @@ export function unvote( scope ) {
 }
 
 export function fave( ) {
-  return vote( );
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    dispatch( setAttributes( { faves: state.observation.faves.concat( [{
+      votable_id: state.observation.id,
+      user: state.config.currentUser
+    }] ) } ) );
+    dispatch( vote( ) );
+  };
 }
 
 export function unfave( ) {
-  return unvote( );
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    dispatch( setAttributes( { faves: state.observation.faves.filter( f => (
+      f.user.id !== state.config.currentUser.id
+    ) ) } ) );
+    dispatch( unvote( ) );
+  };
 }
 
 export function followUser( ) {
@@ -366,8 +419,7 @@ export function unvoteMetric( metric ) {
 export function addToProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser ||
-         !state.observation || state.config.currentUser.id !== state.observation.user.id ) {
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
       return;
     }
     const payload = { id: project.id, observation_id: state.observation.id };
@@ -382,8 +434,7 @@ export function addToProject( project ) {
 export function removeFromProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser ||
-         !state.observation || state.config.currentUser.id !== state.observation.user.id ) {
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
       return;
     }
     const payload = { id: project.id, observation_id: state.observation.id };
