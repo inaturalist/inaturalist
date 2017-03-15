@@ -686,6 +686,7 @@ describe Observation do
         o.reload
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
+
       it "should not be research grade if community taxon above family" do
         o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'order'))
         Identification.make!(observation: o, taxon: o.taxon)
@@ -890,7 +891,7 @@ describe Observation do
           expect( o.taxon ).to eq family
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
-        it "should be casual if the taxon is an ancestor of the CID taxon" do
+        it "should be needs_id if the taxon is an ancestor of the CID taxon" do
           genus = Taxon.make!( rank: Taxon::GENUS )
           species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
           o = make_research_grade_candidate_observation( taxon: genus, user: u )
@@ -898,7 +899,7 @@ describe Observation do
           o.reload
           expect( o.community_taxon ).to eq species
           expect( o.taxon ).to eq genus
-          expect( o.quality_grade ).to eq Observation::CASUAL
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
         it "should be research if the taxon matches the CID taxon and the CID taxon is a species" do
           species = Taxon.make!( rank: Taxon::SPECIES )
