@@ -30,7 +30,7 @@ function mapDispatchToProps( dispatch ) {
     viewMore: ( ) => {
       window.scrollTo( 0, 0 );
       dispatch( hideFinishedModal( ) );
-      dispatch( updateSearchParams( { page: 1 } ) );
+      dispatch( updateSearchParams( { page: 1, force: ( new Date( ) ).getTime( ) } ) );
     },
     loadPage: ( page ) => {
       window.scrollTo( 0, 0 );
