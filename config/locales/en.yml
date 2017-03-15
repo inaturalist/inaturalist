@@ -4498,8 +4498,13 @@ en:
           If the only reason you're leaving is to stop project curators from viewing your private coordinates.
       edit:
         aggregation_pending: Aggregation pending
-        bioblitz_create_a_new_place_html: |
-          %{link}, make sure it has a boundary, then come back here and try again.
+        new_place_desc_html: |
+          Try looking through
+          <a href="%{places_url}" target="_blank">our existing places</a>
+          and make sure you're getting the name of the place correct. If you
+          really can't find the place you want, consider
+          <a href="%{new_place_url}" target="_blank">creating a new place</a>,
+          but please make sure you're not just duplicating an existing place.
         bioblitz_desc_html: |
           <p>
             A bioblitz is an event where participants try to observe as many
