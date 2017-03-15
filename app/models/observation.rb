@@ -1232,7 +1232,7 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
-    elsif community_taxon_id && !community_supported_id?
+    elsif community_taxon_id && owners_identification && owners_identification.maverick?
       CASUAL
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE

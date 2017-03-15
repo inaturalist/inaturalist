@@ -857,16 +857,6 @@ describe Observation do
 
       describe "when observer opts out of CID" do
         let(:u) { User.make!( prefers_community_taxa: false ) }
-        it "should be casual if the taxon is a descendant of the CID taxon" do
-          genus = Taxon.make!( rank: Taxon::GENUS )
-          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-          o = make_research_grade_candidate_observation( taxon: species, user: u )
-          3.times { Identification.make!( observation: o, taxon: genus ) }
-          o.reload
-          expect( o.community_taxon ).to eq genus
-          expect( o.taxon ).to eq species
-          expect( o.quality_grade ).to eq Observation::CASUAL
-        end
         it "should be casual if the taxon is in a different subtree from the CID taxon" do
           species1 = Taxon.make!( rank: Taxon::SPECIES )
           species2 = Taxon.make!( rank: Taxon::SPECIES )
@@ -901,6 +891,16 @@ describe Observation do
           expect( o.taxon ).to eq genus
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
+        it "should be needs_id if the CID taxon is an ancestor of the taxon" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( taxon: species, user: u )
+          3.times { Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.community_taxon ).to eq genus
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
         it "should be research if the taxon matches the CID taxon and the CID taxon is a species" do
           species = Taxon.make!( rank: Taxon::SPECIES )
           o = make_research_grade_candidate_observation( taxon: species, user: u )
@@ -913,14 +913,14 @@ describe Observation do
       end
 
       describe "when observer opts out of CID for a single observation" do
-        it "should be casual if the taxon is a descendant of the CID taxon" do
-          genus = Taxon.make!( rank: Taxon::GENUS )
-          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-          o = make_research_grade_candidate_observation( taxon: species, prefers_community_taxon: false )
-          3.times { Identification.make!( observation: o, taxon: genus ) }
+        it "should be casual if the taxon is in a different subtree from the CID taxon" do
+          species1 = Taxon.make!( rank: Taxon::SPECIES )
+          species2 = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species1, prefers_community_taxon: false )
+          3.times { Identification.make!( observation: o, taxon: species2 ) }
           o.reload
-          expect( o.community_taxon ).to eq genus
-          expect( o.taxon ).to eq species
+          expect( o.community_taxon ).to eq species2
+          expect( o.taxon ).to eq species1
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
       end
