@@ -192,6 +192,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "coordinates_obscured",
     "positioning_method",
     "positioning_device",
     "place_town_name",

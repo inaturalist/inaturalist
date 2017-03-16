@@ -4218,7 +4218,7 @@ en:
         id: "Unique identifier for the observation"
         species_guess: "Name the observer entered for the observed taxon"
         scientific_name: "Scientific name of the observed taxon according to this site"
-        common_name: "Common of vernacular name of the observed taxon according to this site"
+        common_name: "Common or vernacular name of the observed taxon according to this site"
         iconic_taxon_name: Higher-level taxonomic category for the observed taxon
         taxon_id: Unique identifier for the observed taxon
         id_please: Whether or not the observer requested ID help
@@ -4234,6 +4234,8 @@ en:
         positional_accuracy: "Coordinate precision (yeah, yeah, accuracy != precision, poor choice of names)"
         private_latitude: "Private latitude, set if observation private or obscured"
         private_longitude: "Private longitude, set if observation private or obscured" 
+        geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
+        coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
         out_of_range: Whether or not this observation lies outside the taxon's known range
         user_id: Unique identifier for the observer
         user_login: Username of the observer
