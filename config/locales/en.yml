@@ -2002,7 +2002,7 @@ en:
   notify_me_about_redundant_identifications: Notify me about confirming identifications
   notify_me_about_redundant_identifications_desc: |
     Receive notifications about identifications that match your own. If you
-    opt out of this you will only reveive notifications about identifications
+    opt out of this you will only receive notifications about identifications
     of taxa that don't match the taxon in your own identification exactly.
   number_of_observations: Number of observations
   number_selected: "# selected"
@@ -4368,6 +4368,11 @@ en:
             </li>
             <li>
               the observation no longer needs an ID <em>and</em> the community ID is above family
+            </li>
+            <li>
+              the observer has opted out of the community ID and the community
+              ID taxon is not an ancestor or descendant of the taxon associated
+              with the observer's ID
             </li>
           </ul>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
