@@ -10,7 +10,7 @@ const SideBar = ( { blind } ) => (
       <div className="alert alert-warning">
         <p>
           <strong>
-            How accurate are taxonomic crowd-sourced identifications by citizen scientists?
+            How accurate are crowd-sourced taxonomic identifications by citizen scientists?
           </strong>
         </p>
         <p>
@@ -19,8 +19,9 @@ const SideBar = ( { blind } ) => (
           that hides the opinions of the iNaturalist community. Please be aware
           that your identifications will be shared with the observers and the
           broader community.
-          <a href="/pages/identification-experiment" target="_blank">Click here</a>
-          to learn more about the study.
+          <a href="/pages/identification_quality_experiment" target="_blank">
+            Click here
+          </a> to learn more about the study.
         </p>
         <p>Instructions:</p>
         <ol>
