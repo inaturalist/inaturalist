@@ -18,8 +18,8 @@ const SideBar = ( { blind } ) => (
           iNaturalist data quality. This is a "blind" version of the iNaturalist
           "Identify" tool that hides the opinions of the iNaturalist community.
           Please be aware that your identifications will be shared with the
-          observers and the broader community.
-          <a href="/pages/identification_quality_experiment" target="_blank">
+          observers and the broader
+          community. <a href="/pages/identification_quality_experiment" target="_blank">
             Click here
           </a> to learn more about the study.
         </p>
