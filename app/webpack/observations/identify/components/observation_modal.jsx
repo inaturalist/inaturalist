@@ -185,7 +185,7 @@ const ObservationModal = ( {
               <div className="place-guess">
                 { observation.place_guess }
               </div>
-              <UserText text={observation.description} truncate={100} className="stacked" />
+              <UserText text={observation.description} truncate={100} className="stacked observation-description" />
               <DiscussionListContainer observation={observation} />
               <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                 <i className="fa fa-spin fa-refresh"></i>

@@ -13,7 +13,7 @@ const App = ( { blind } ) => (
     <Grid fluid>
       <Row>
         <Col xs={12}>
-          <h2>{ blind ? "Blind " : "" }{ I18n.t( "identify_title" ) }</h2>
+          <h2>{ blind ? "Identifcation Quality Experiment" : I18n.t( "identify_title" ) }</h2>
         </Col>
       </Row>
       <Row>

@@ -8,12 +8,19 @@ const SideBar = ( { blind } ) => (
     <IdentifierStatsContainer />
     { blind ? (
       <div className="alert alert-warning">
-        <p><strong>You're Identifying Blind!</strong></p>
         <p>
-          Thanks for volunteering to improve our data quality.
-          You're using a modified version of our Identify tool where you are
-          "blind" to social details like the opinions of others, who the
-          observer is, etc.
+          <strong>
+            How accurate are taxonomic crowd-sourced identifications by citizen scientists?
+          </strong>
+        </p>
+        <p>
+          Thanks for volunteering your taxonomic expertise to improve our data
+          quality. This is a "blind" version of the iNaturalist "Identify" tool
+          that hides the opinions of the iNaturalist community. Please be aware
+          that your identifications will be shared with the observers and the
+          broader community.
+          <a href="/pages/identification-experiment" target="_blank">Click here</a>
+          to learn more about the study.
         </p>
         <p>Instructions:</p>
         <ol>
