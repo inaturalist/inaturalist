@@ -211,7 +211,7 @@ const searchParamsReducer = ( state = {
   if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
     return newState;
   }
-  if ( !_.isEqual( newState.params, newState.defaultParams ) ) {
+  if ( !_.isEqual( newState.params, newState.default ) ) {
     setUrl( newState.params, newState.default );
   }
   return newState;
