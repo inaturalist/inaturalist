@@ -39,7 +39,8 @@ const ObservationModal = ( {
   currentUserIdentification,
   showNextObservation,
   showPrevObservation,
-  agreeingWithObservation
+  agreeingWithObservation,
+  blind
 } ) => {
   if ( !observation ) {
     return <div></div>;
@@ -61,15 +62,18 @@ const ObservationModal = ( {
       "user"
     ] );
     obsForMap.coordinates_obscured = observation.obscured;
+    const taxonLayer = {
+      observations: { observation_id: obsForMap.id },
+      places: { disabled: true }
+    };
+    if ( !blind ) {
+      taxonLayer.taxon = obsForMap.taxon;
+      taxonLayer.gbif = { disabled: true };
+    }
     taxonMap = (
       <TaxonMap
         key={`map-for-${obsForMap.id}`}
-        taxonLayers={[{
-          taxon: obsForMap.taxon,
-          observations: { observation_id: obsForMap.id },
-          places: { disabled: true },
-          gbif: { disabled: true }
-        }] }
+        taxonLayers={ [taxonLayer] }
         observations={[obsForMap]}
         zoomLevel={ observation.map_scale || 8 }
         mapTypeControl={false}
@@ -140,7 +144,7 @@ const ObservationModal = ( {
       show={visible}
       onHide={onClose}
       bsSize="large"
-      className="ObservationModal"
+      className={`ObservationModal ${blind ? "blind" : ""}`}
     >
       <Button className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
         &lsaquo;
@@ -155,11 +159,11 @@ const ObservationModal = ( {
             url={`/observations/${observation.id}`}
             placeholder={observation.species_guess}
           />
-          <span className="titlebit">
+          <span className="observed_on titlebit">
             <label>{ I18n.t( "observed" ) }:</label>
             { moment( observation.observed_on ).format( "L" ) }
           </span>
-          <span className="titlebit">
+          <span className="user titlebit">
             <label>{ I18n.t( "by" ) }:</label>
             { observation.user.login }
           </span>
@@ -238,14 +242,18 @@ const ObservationModal = ( {
                       <dt>r</dt>
                       <dd>{ I18n.t( "mark_as_reviewed" ) }</dd>
                     </dl>
-                    <dl className="keyboard-shortcuts">
-                      <dt>c</dt>
-                      <dd>{ _.capitalize( I18n.t( "comment" ) ) }</dd>
-                    </dl>
-                    <dl className="keyboard-shortcuts">
-                      <dt>a</dt>
-                      <dd>{ _.capitalize( I18n.t( "agree" ) ) }</dd>
-                    </dl>
+                    { blind ? null : (
+                      <dl className="keyboard-shortcuts">
+                        <dt>c</dt>
+                        <dd>{ _.capitalize( I18n.t( "comment" ) ) }</dd>
+                      </dl>
+                    ) }
+                    { blind ? null : (
+                      <dl className="keyboard-shortcuts">
+                        <dt>a</dt>
+                        <dd>{ _.capitalize( I18n.t( "agree" ) ) }</dd>
+                      </dl>
+                    ) }
                     <dl className="keyboard-shortcuts">
                       <dt>i</dt>
                       <dd>{ I18n.t( "add_id" ) }</dd>
@@ -278,6 +286,7 @@ const ObservationModal = ( {
                 <Button
                   href={`/observations/${observation.id}`}
                   target="_blank"
+                  className="link-btn"
                 >
                   <i className="fa fa-link"></i>
                 </Button>
@@ -331,7 +340,11 @@ const ObservationModal = ( {
                   /> { I18n.t( "reviewed" ) }
                 </label>
               </OverlayTrigger>
-              <Button bsStyle="default" onClick={ function ( ) { addComment( ); } }>
+              <Button
+                bsStyle="default"
+                className="comment-btn"
+                onClick={ function ( ) { addComment( ); } }
+              >
                 <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
               </Button>
               <OverlayTrigger
@@ -347,6 +360,7 @@ const ObservationModal = ( {
                 <Button
                   bsStyle="default"
                   disabled={ agreeingWithObservation || !showAgree( ) }
+                  className="agree-btn"
                   onClick={ function ( ) {
                     agreeWithCurrentObservation( );
                   } }
@@ -384,7 +398,8 @@ ObservationModal.propTypes = {
   currentUserIdentification: PropTypes.object,
   showNextObservation: PropTypes.func,
   showPrevObservation: PropTypes.func,
-  agreeingWithObservation: PropTypes.bool
+  agreeingWithObservation: PropTypes.bool,
+  blind: PropTypes.bool
 };
 
 export default ObservationModal;

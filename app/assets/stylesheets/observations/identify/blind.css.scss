@@ -1,0 +1,22 @@
+#Identify.blind {
+  .SearchBar,
+  .IdentifierStats,
+  .UserImage,
+  .ObservationsGridItem .caption,
+  .rc-pagination {
+    display: none;
+  }
+}
+
+.ObservationModal.blind {
+  .modal-title .SplitTaxon,
+  .modal-title .user,
+  .quality_grade,
+  .DiscussionListItem.by-someone-else,
+  .link-btn,
+  .comment-btn,
+  .agree-btn,
+  .CommentForm {
+    display: none;
+  }
+}

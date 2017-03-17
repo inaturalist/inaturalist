@@ -8,9 +8,25 @@ import FinishedModalContainer from "../containers/finished_modal_container";
 import SideBar from "./side_bar";
 import AlertModalContainer from "../containers/alert_modal_container";
 
-const App = () => (
-  <div id="Identify">
+const App = ( { blind } ) => (
+  <div id="Identify" className={ blind ? "blind" : "" }>
     <Grid fluid>
+      { blind ? (
+        <Row>
+          <Col xs={12}>
+            <div className="alert alert-warning">
+              <p><strong>You're Identifying Blind!</strong></p>
+              <p>Thanks for volunteering to improve iNaturalist's data quality.
+              You're using a modified version of our Identify where you are
+              "blind" to biasing details like the opinions of others. Obviously
+              we can't stop you from using the non-blind version, but we'd
+              appreciate it if you stayed on this page while participating in
+              this process and not "peek" at other pages that would provide you
+              with social context.</p>
+            </div>
+          </Col>
+        </Row>
+      ) : null }
       <Row>
         <Col xs={12}>
           <h2>{ I18n.t( "identify_title" ) }</h2>
@@ -36,4 +52,9 @@ const App = () => (
     </Grid>
   </div>
 );
+
+App.propTypes = {
+  blind: React.PropTypes.bool
+};
+
 export default App;

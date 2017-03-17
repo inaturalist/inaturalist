@@ -16,7 +16,7 @@ import {
   updateSearchParamsFromPop,
   updateDefaultParams
 } from "./actions/";
-import App from "./components/app";
+import AppContainer from "./containers/app_container";
 import _ from "lodash";
 
 // Use custom relative times for moment
@@ -39,10 +39,12 @@ const store = createStore(
 
 // Set state from initial url search and listen for changes
 // Order is important, this needs to happen before any other actions are dispatched.
-const newParams = normalizeParams(
-  $.deparam( window.location.search.replace( /^\?/, "" ) )
-);
+const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+const newParams = normalizeParams( urlParams );
 store.dispatch( updateSearchParams( newParams ) );
+if ( urlParams.hasOwnProperty( "blind" ) ) {
+  store.dispatch( setConfig( { blind: true } ) );
+}
 
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   store.dispatch( setConfig( {
@@ -96,7 +98,7 @@ store.dispatch( fetchObservationsStats() );
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById( "app" )
 );
