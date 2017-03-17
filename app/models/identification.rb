@@ -9,12 +9,14 @@ class Identification < ActiveRecord::Base
   belongs_to :user
   belongs_to :taxon
   belongs_to :taxon_change
+  belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
   
-  before_save :update_other_identifications
+  before_save :update_other_identifications,
+              :set_previous_observation_taxon
   after_create :update_observation,
                :create_observation_review,
                :update_obs_stats, 
@@ -135,6 +137,11 @@ class Identification < ActiveRecord::Base
       # might cause some testing problems if we're testing indexing...
       raise e unless Rails.env.test?
     end
+    true
+  end
+
+  def set_previous_observation_taxon
+    self.previous_observation_taxon_id = observation.taxon_id
     true
   end
   

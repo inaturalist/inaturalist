@@ -75,6 +75,7 @@ const ObservationModal = ( {
         key={`map-for-${obsForMap.id}`}
         taxonLayers={ [taxonLayer] }
         observations={[obsForMap]}
+        clickable={!blind}
         zoomLevel={ observation.map_scale || 8 }
         mapTypeControl={false}
         showAccuracy

@@ -16,7 +16,8 @@ import {
 function mapStateToProps( state, ownProps ) {
   return {
     observation: ownProps.observation,
-    currentUser: state.config.currentUser
+    currentUser: state.config.currentUser,
+    blind: state.config.blind
   };
 }
 
