@@ -1708,7 +1708,9 @@ CREATE TABLE identifications (
     current boolean DEFAULT true,
     taxon_change_id integer,
     category character varying,
-    uuid uuid DEFAULT uuid_generate_v4()
+    uuid uuid DEFAULT uuid_generate_v4(),
+    blind boolean,
+    previous_observation_taxon_id integer
 );
 
 
@@ -6590,6 +6592,13 @@ CREATE INDEX index_identifications_on_observation_id_and_created_at ON identific
 
 
 --
+-- Name: index_identifications_on_previous_observation_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_identifications_on_previous_observation_taxon_id ON identifications USING btree (previous_observation_taxon_id);
+
+
+--
 -- Name: index_identifications_on_taxon_change_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8742,4 +8751,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170110185648');
 INSERT INTO schema_migrations (version) VALUES ('20170113211950');
 
 INSERT INTO schema_migrations (version) VALUES ('20170309003500');
+
+INSERT INTO schema_migrations (version) VALUES ('20170317183900');
 

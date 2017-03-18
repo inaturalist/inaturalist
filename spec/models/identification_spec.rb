@@ -371,6 +371,13 @@ describe Identification, "creation" do
     expect(po.curator_identification_id).to eq i1.id
   end
 
+  it "should store the previous observation taxon" do
+    o = make_research_grade_observation
+    previous_observation_taxon = o.taxon
+    i = Identification.make!( observation: o )
+    expect( i.previous_observation_taxon ).to eq previous_observation_taxon
+  end
+
 end
 
 describe Identification, "updating" do

@@ -16,7 +16,7 @@ import {
   updateSearchParamsFromPop,
   updateDefaultParams
 } from "./actions/";
-import App from "./components/app";
+import AppContainer from "./containers/app_container";
 import _ from "lodash";
 
 // Use custom relative times for moment
@@ -36,14 +36,6 @@ const store = createStore(
   )
 );
 
-
-// Set state from initial url search and listen for changes
-// Order is important, this needs to happen before any other actions are dispatched.
-const newParams = normalizeParams(
-  $.deparam( window.location.search.replace( /^\?/, "" ) )
-);
-store.dispatch( updateSearchParams( newParams ) );
-
 if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
@@ -62,6 +54,23 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 }
 
 setupKeyboardShortcuts( store.dispatch );
+
+window.onpopstate = ( e ) => {
+  if ( !e.state ) {
+    return;
+  }
+  store.dispatch( updateSearchParamsFromPop( e.state ) );
+  store.dispatch( fetchObservationsStats() );
+};
+
+// Set state from initial url search and listen for changes
+// Order is important, this needs to happen before any other actions are dispatched.
+const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+const newParams = normalizeParams( urlParams );
+if ( urlParams.hasOwnProperty( "blind" ) ) {
+  store.dispatch( setConfig( { blind: true } ) );
+}
+store.dispatch( updateSearchParams( newParams ) );
 
 // Somewhat magic, so be advised: binding a a couple actions to changes in
 // particular parts of the state. Might belong elsewhere, but this is where we
@@ -84,19 +93,10 @@ observeStore( store, s => s.searchParams.params, ( ) => {
   store.dispatch( fetchObservations( ) );
 } );
 
-window.onpopstate = ( e ) => {
-  store.dispatch( updateSearchParamsFromPop( e.state ) );
-  store.dispatch( fetchObservationsStats() );
-};
-
-// retrieve initial set of observations
-store.dispatch( fetchObservations() );
-store.dispatch( fetchObservationsStats() );
-
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById( "app" )
 );
