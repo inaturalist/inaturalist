@@ -850,6 +850,9 @@ class Observation < ActiveRecord::Base
 
     # strip paranthesized stuff
     date_string.gsub!(/\(.*\)/, '')
+
+    # strip noon hour madness
+    date_string.gsub!( /(\d\d)\s+?(a|p)m/i, '\\1')
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
