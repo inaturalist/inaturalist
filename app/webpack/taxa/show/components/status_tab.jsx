@@ -192,7 +192,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                 >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
               </p>
               <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
-              <ul className="tab-links list-group">
+              <ul className="tab-links list-group iconified-list-group">
                 {
                   [
                     {
@@ -212,10 +212,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                       <a
                         href={link.url}
                         style={{
-                          backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${link.host}' )`,
-                          backgroundRepeat: "no-repeat",
-                          padding: "1px 0 1px 25px",
-                          backgroundPosition: "0 2px"
+                          backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${link.host}' )`
                         }}
                       >
                         <i className="icon-link-external pull-right"></i>

@@ -1191,3 +1191,13 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
     width: 200px !important;
   }
 }
+.iconified-list-group .list-group-item {
+  display: flex;
+}
+.iconified-list-group .list-group-item a:first-child {
+  background-repeat: no-repeat;
+  padding: 1px 0 1px 25px;
+  display: block;
+  flex: 1;
+  background-position-y: 2px;
+}
