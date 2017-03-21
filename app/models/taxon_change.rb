@@ -304,7 +304,7 @@ class TaxonChange < ActiveRecord::Base
 
   def taxa_below_order
     return true if user && user.is_admin?
-    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level >= Taxon::ORDER_LEVEL }
+    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level.to_i >= Taxon::ORDER_LEVEL }
       errors.add(:base, "only admins can move around taxa at order-level and above")
     end
     true

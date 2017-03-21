@@ -35,6 +35,14 @@ describe TaxonSwap, "creation" do
     disable_elastic_indexing( Observation, UpdateAction )
   end
 
+  it "should not bail if a taxon has no rank_level" do
+    swap = TaxonSwap.make
+    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
+    swap.add_output_taxon( Taxon.make!( rank: "something ridiculous" ) )
+    expect( swap.output_taxon.rank_level ).to be_blank
+    expect(swap).to be_valid
+  end
+
 end
 
 describe TaxonSwap, "destruction" do
