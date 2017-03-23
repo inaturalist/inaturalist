@@ -3147,3 +3147,57 @@ describe Observation do
     end
   end
 end
+
+describe Observation, "probably_captive?" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  let( :taxon ) { Taxon.make! }
+  let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
+  def make_captive_obs
+    Observation.make!( taxon: taxon, captive_flag: true, latitude: place.latitude, longitude: place.longitude )
+  end
+  def make_non_captive_obs
+    Observation.make!( taxon: taxon, latitude: place.latitude, longitude: place.longitude )
+  end
+  it "should be false with under 10 captive obs" do
+    9.times { make_captive_obs }
+    expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+  it "should be true with more than 10 captive obs" do
+    11.times { make_captive_obs }
+    expect( make_non_captive_obs ).to be_probably_captive
+  end
+  it "should require more than 80% captive" do
+    11.times { make_non_captive_obs }
+    11.times { make_captive_obs }
+    expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+
+  describe Observation, "and update_quality_metrics" do
+    it "should add a userless quality metric if probably_captive?" do
+      11.times { make_captive_obs }
+      o = make_non_captive_obs
+      o.reload
+      expect( o ).to be_captive
+      expect(
+        o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).not_to be_blank
+    end
+    it "should remove the quality metric if not probably_captive? anymore" do
+      11.times { make_captive_obs }
+      o = make_non_captive_obs
+      o.reload
+      expect( o ).to be_captive
+      11.times do
+        obs = make_non_captive_obs
+        QualityMetric.vote( nil, obs, QualityMetric::WILD, true )
+      end
+      o.update_attributes( description: "foo" )
+      o.reload
+      expect( o ).not_to be_captive
+      expect(
+        o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).to be_blank
+    end
+  end
+end

@@ -2588,7 +2588,11 @@ class Observation < ActiveRecord::Base
 
   def probably_captive?
     return false unless taxon_id
-    place = system_places[0]
+    place = system_places.detect do |p|
+      [
+        Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
+      ].include?( p.admin_level )
+    end
     return false unless place
     buckets = Observation.elastic_search(
       filters: [
@@ -2606,8 +2610,8 @@ class Observation < ActiveRecord::Base
     captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
     total = captive_stats.values.sum
     ratio = captive_stats[1].to_f / total
-    puts "total: #{total}, ratio: #{ratio}, place: #{place}"
-    total > 10 && ratio > 0.8
+    # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
+    total > 10 && ratio >= 0.8
   end
 
   def self.dedupe_for_user(user, options = {})
