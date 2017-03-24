@@ -1,3 +1,16 @@
-.clear
-  .column.span-12
-    = f.text_field :taxon_id
+- content_for :extrajs do
+  :javascript
+    var taxon = #{ @atlas.taxon ? @atlas.taxon.as_indexed_json.to_json : "null" };
+    $( ".taxonchooser" ).taxonAutocomplete( {
+      idEl: $( "#atlas_taxon_id" ),
+      initialSelection: taxon ? new iNatModels.Taxon( taxon ) : null
+    } );
+.row.stacked
+  .col-xs-12
+    - if @atlas.new_record?
+      = text_field_tag :taxon_name, @atlas.taxon.try( :name ), class: "taxonchooser form-control"
+      = f.hidden_field :taxon_id
+.row
+  .col-xs-12
+    = f.radio_button :is_active, true, label_after: true, label: t( :active ).titleize
+    = f.radio_button :is_active, false, label_after: true, label: t( :inactive ).titleize

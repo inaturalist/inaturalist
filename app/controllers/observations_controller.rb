@@ -794,6 +794,7 @@ class ObservationsController < ApplicationController
         old_photo_ids = observation.photo_ids
         Photo.subclasses.each do |klass|
           klass_key = klass.to_s.underscore.pluralize.to_sym
+          next if klass_key.blank?
           if params[klass_key] && params[klass_key][fieldset_index]
             updated_photos += retrieve_photos(params[klass_key][fieldset_index], 
               :user => current_user, :photo_class => klass, :sync => true)
@@ -805,12 +806,6 @@ class ObservationsController < ApplicationController
         else
           observation.photos = updated_photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
             Photo.local_photo_from_remote_photo(p) : p }
-        end
-        
-        # Destroy old photos.  ObservationPhotos seem to get removed by magic
-        doomed_photo_ids = (old_photo_ids - observation.photo_ids).compact
-        unless doomed_photo_ids.blank?
-          Photo.delay(:priority => INTEGRITY_PRIORITY).destroy_orphans(doomed_photo_ids)
         end
 
         Photo.subclasses.each do |klass|
@@ -1588,14 +1583,22 @@ class ObservationsController < ApplicationController
       if Observation.able_to_use_elasticsearch?(search_params)
         if params[:rank] == "leaves"
           search_params.delete(:rank)
-          leaf_ids = Observation.elastic_taxon_leaf_ids(prepare_counts_elastic_query(search_params))
-          @taxa = Taxon.where(id: leaf_ids)
-        else
-          elastic_params = prepare_counts_elastic_query(search_params)
-          # using 0 for the aggregation count to get all results
-          distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-            aggregate: { species: { "taxon.id": 0 } })).response.aggregations
-          @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
+        end
+        elastic_params = prepare_counts_elastic_query(search_params)
+        # using 0 for the aggregation count to get all results
+        distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+          aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+        @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
+        # if `leaves` were requested, remove any taxon in another's ancestry
+        if params[:rank] == "leaves"
+          ancestors = { }
+          @taxa.each do |t|
+            t.ancestor_ids.each do |aid|
+              ancestors[aid] ||= 0
+              ancestors[aid] += 1
+            end
+          end
+          @taxa = @taxa.select{ |t| !ancestors[t.id] }
         end
       else
         oscope = Observation.query(search_params)
@@ -2300,7 +2303,7 @@ class ObservationsController < ApplicationController
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
       sync_attrs = %w(description species_guess taxon_id observed_on 
-        observed_on_string latitude longitude place_guess map_scale)
+        observed_on_string latitude longitude place_guess map_scale tag_list)
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end
@@ -2879,9 +2882,9 @@ class ObservationsController < ApplicationController
     leftover_obs_user_ids = tax_user_ids - obs_user_ids
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     leftover_obs_user_elastic_params = elastic_params.marshal_copy
-    leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
+    leftover_obs_user_elastic_params[:filters] << { terms: { "user.id": leftover_obs_user_ids } }
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
-    leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
+    leftover_tax_user_elastic_params[:filters] << { terms: { "user.id": leftover_tax_user_ids } }
     @user_counts        += Observation.elastic_user_observation_counts(leftover_obs_user_elastic_params)[:counts].to_a
     @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params,
       count_users: leftover_tax_user_ids.length).to_a
@@ -2894,6 +2897,8 @@ class ObservationsController < ApplicationController
     elastic_params = Observation.params_to_elastic_query(
       search_params, current_user: current_user).
       select{ |k,v| [ :where, :filters ].include?(k) }
+    elastic_params[:filters] ||= [ ]
+    elastic_params
   end
 
   def search_cache_key(search_params)

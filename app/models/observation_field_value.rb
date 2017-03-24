@@ -3,9 +3,12 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation_field
   belongs_to :user
   belongs_to :updater, :class_name => 'User'
+  has_one :annotation, dependent: :destroy
   
   before_validation :strip_value
   before_save :set_user
+  after_create :create_annotation
+  after_destroy :destroy_annotation
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   # I'd like to keep this, but since mobile clients could be submitting
   # observations that weren't created on a mobile device now, the check really
@@ -18,7 +21,7 @@ class ObservationFieldValue < ActiveRecord::Base
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
 
-  after_save :update_observation_field_counts
+  after_save :update_observation_field_counts, :index_observation
 
   notifies_subscribers_of :observation, :notification => "activity",
     :on => :save,
@@ -155,12 +158,73 @@ class ObservationFieldValue < ActiveRecord::Base
     observation_field.update_counts
   end
 
+  def index_observation
+    observation.try( :elastic_index! )
+  end
+
+  def create_annotation
+    attr_val = annotation_attribute_and_value
+    return if attr_val.blank?
+    Annotation.create!(observation_field_value: self,
+      resource: observation,
+      controlled_attribute: attr_val[:controlled_attribute],
+      controlled_value: attr_val[:controlled_value],
+      user_id: user_id,
+      created_at: created_at)
+  end
+
+  def annotation_attribute_and_value
+    return unless observation
+    return unless observation_field.datatype == "text"
+    stripped_value = value.strip.downcase
+    if ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym]
+      controlled_attribute = ControlledTerm.first_term_by_label(
+        ControlledTerm::VALUES_TO_MIGRATE[stripped_value.to_sym].to_s.tr("_", " "))
+      controlled_value = ControlledTerm.first_term_by_label(stripped_value)
+    elsif ( observation_field.name =~ /phenology/i && value =~ /^flower(s|ing)?$/i ) ||
+          ( observation_field.name == "Plant flowering" && value == "Yes" )
+      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
+      controlled_value = ControlledTerm.first_term_by_label("Flowering")
+    elsif observation_field.name =~ /phenology/i && value =~ /fruit(s|ing)?$/i &&
+          value !~ /[0-9]/
+      controlled_attribute = ControlledTerm.first_term_by_label("Plant Phenology")
+      controlled_value = ControlledTerm.first_term_by_label("Fruiting")
+    end
+    return unless controlled_attribute && controlled_value
+    { controlled_attribute: controlled_attribute,
+      controlled_value: controlled_value }
+  end
+
+  def destroy_annotation
+    Annotation.where(observation_field_value_id: id).destroy_all
+  end
+
   def as_indexed_json(options={})
     {
       uuid: uuid,
       name: observation_field.name,
       value: self.value
     }
+  end
+
+  def self.update_for_taxon_change( taxon_change, options, &block )
+    input_taxon_ids = taxon_change.input_taxa.map(&:id)
+    scope = ObservationFieldValue.joins( :observation_field ).
+      where( "observation_fields.datatype = ?", ObservationField::TAXON )
+    scope = scope.where(
+      input_taxon_ids.map {|itid| "observation_field_values.value = '#{itid}'" }.join( " OR " )
+    )
+    scope = scope.where( user_id: options[:user] ) if options[:user]
+    scope = scope.where( "observation_field_values.id IN (?)", options[:records] ) unless options[:records].blank?
+    scope = scope.where( options[:conditions] ) if options[:conditions]
+    scope = scope.includes( options[:include] ) if options[:include]
+    obs_ids = Set.new
+    scope.find_each do |ofv|
+      next unless output_taxon = taxon_change.output_taxon_for_record( ofv )
+      ofv.update_attributes( value: output_taxon.id )
+      obs_ids << ofv.observation_id
+    end
+    Observation.elastic_index!( ids: obs_ids.to_a )
   end
 
 end

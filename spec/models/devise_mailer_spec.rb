@@ -5,13 +5,13 @@ describe DeviseMailer, "confirmation_instructions" do
   it "should default to English if no locale" do
     u = User.make!
     mail = DeviseMailer.confirmation_instructions(u, u.confirmation_token)
-    expect( mail.body ).to include "Welcome"
+    expect( mail.body ).to include "activated"
   end
 
   it "should use the user's locale" do
     u = User.make!(:locale => "es-MX")
     mail = DeviseMailer.confirmation_instructions(u, u.confirmation_token)
-    expect( mail.body ).to include "Bienvenido"
+    expect( mail.body ).to include "activada"
   end
 end
 

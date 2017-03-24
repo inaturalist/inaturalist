@@ -1,0 +1,18 @@
+.container
+  .row
+    .col-xs-12
+      %h2.pull-left
+        = "Edit Complete Set"
+        = t :for
+        = render partial: "shared/taxon", locals: { taxon: @complete_set.taxon, named_ancestor: true }
+        = t :in
+        = @complete_set.place.name
+  .row
+    .col-xs-12
+    = form_for(@complete_set, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|
+      = f.error_messages
+      = render :partial => 'form_fields', :locals => {:f => f}
+      = link_to t(:back), @complete_set, :class => "button"
+      = f.submit t(:update), :class => "default button"
+      = link_to t(:delete), @complete_set, :method => :delete, data: {:confirm => "are you sure?"}, :class => "btn btn-danger"
+

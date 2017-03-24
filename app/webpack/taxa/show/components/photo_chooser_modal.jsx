@@ -163,6 +163,12 @@ class PhotoChooserModal extends React.Component {
   }
   render( ) {
     const { visible, onClose } = this.props;
+    let searchPlaceholder = I18n.t( "type_species_name" );
+    if ( this.state.provider === "inat" ) {
+      searchPlaceholder = I18n.t( "search_by_taxon_name_or_observation_id" );
+    } else if ( this.state.provider === "flickr" ) {
+      searchPlaceholder = I18n.t( "search_by_taxon_name_or_flickr_photo_id" );
+    }
     return (
       <Modal
         show={visible}
@@ -188,14 +194,14 @@ class PhotoChooserModal extends React.Component {
                     <input
                       type="text"
                       className="form-control"
-                      placeholder="Search for..."
-                      value={this.state.query}
+                      placeholder={ searchPlaceholder }
+                      value={ this.state.query }
                       onChange={ e => this.setState( { query: e.target.value } ) }
                     />
                     <span className="input-group-btn">
                       <button
                         className="btn btn-default"
-                        type="button"
+                        type="submit"
                       >
                         { I18n.t( "search" ) }
                       </button>
@@ -205,12 +211,12 @@ class PhotoChooserModal extends React.Component {
                 <form className="form-inline controls nav-buttons stacked">
                   <div className="form-group">
                     <label>
-                      Photos from
+                      { I18n.t( "photos_from" ) }
                     </label> <select
                       className="form-control"
                       onChange={ e => this.setProvider( e.target.value ) }
                     >
-                      <option value="inat">iNat</option>
+                      <option value="inat">{ $( "meta[property='og:site_name']" ).attr( "content" ) }</option>
                       <option value="flickr">Flickr</option>
                       <option value="eol">EOL</option>
                       <option value="wikimedia_commons">Wikimedia Commons</option>
@@ -261,9 +267,9 @@ class PhotoChooserModal extends React.Component {
                   photos={this.state.chosen}
                   droppedPhoto={ chooserID => this.choosePhoto( chooserID ) }
                 >
-                  <h4>Photos chosen for this taxon</h4>
+                  <h4>{ I18n.t( "photos_chosen_for_this_taxon" ) }</h4>
                   <p>
-                    Drag photos here from the left, or drag photos here to re-arrange.
+                    { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
                   </p>
                   <div className="stacked photos">
                     { _.map( this.state.chosen, ( photo, i ) => (
@@ -284,10 +290,7 @@ class PhotoChooserModal extends React.Component {
                   </div>
                   <p className="text-muted">
                     <small>
-                      Note that the taxon page will show photos of this taxon
-                      <em>and</em> its descendants. The photos chosen for this
-                      taxon will show first, though. The first photo will be
-                      the default image used across the site.
+                      { I18n.t( "views.taxa.show.photo_chooser_modal_explanation" ) }
                     </small>
                   </p>
                 </PhotoChooserDropArea>

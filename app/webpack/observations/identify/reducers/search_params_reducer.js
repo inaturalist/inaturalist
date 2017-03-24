@@ -24,7 +24,7 @@ const DEFAULT_PARAMS = {
   ttl: -1
 };
 
-const HIDDEN_PARAMS = ["dateType", "createdDateType"];
+const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];
 
 // Coerce params into a consistent format for update the state
 const normalizeParams = ( params ) => {
@@ -181,7 +181,7 @@ const searchParamsReducer = ( state = {
     case UPDATE_SEARCH_PARAMS_FROM_POP:
       newState = Object.assign( {}, {
         default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, action.params )
+        params: Object.assign( {}, state.default, action.params )
       } );
       break;
     case RECEIVE_OBSERVATIONS:
@@ -211,7 +211,9 @@ const searchParamsReducer = ( state = {
   if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
     return newState;
   }
-  setUrl( newState.params, newState.default );
+  if ( !_.isEqual( newState.params, newState.default ) ) {
+    setUrl( newState.params, newState.default );
+  }
   return newState;
 };
 

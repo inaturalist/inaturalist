@@ -31,7 +31,7 @@
         %td{:class => row_class}= n[:disagreement_count]
         %td{:class => row_class}= n[:conservative_disagreement_count]
         %td{:class => "#{row_class} score"}
-          = "#{n[:cumulative_count]}/(#{n[:cumulative_count]}+#{n[:disagreement_count]}+#{n[:disagreement_count]}+#{n[:conservative_disagreement_count]}=#{n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count]}) = #{n[:score].round(4)}"
+          = "#{n[:cumulative_count]}/(#{n[:cumulative_count]}+#{n[:disagreement_count]}+#{n[:conservative_disagreement_count]}=#{n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count]}) = #{n[:score].round(4)}"
   .legend.stacked
     %label.agreement=t :agreement
     %label.disagreement=t :disagreement

@@ -36,11 +36,11 @@
 }
 
 #hero {
-  background-color: #eee;
+  background-color: #f8f8f8;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 #charts {
@@ -85,7 +85,15 @@
   box-shadow: none;
   outline: 0 none;
 }
-
+#charts .help-btn i {
+  font-size: 20px;
+  line-height: 25px;
+  color: #999;
+}
+#ChartsHelpModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
 .SeasonalityChart .c3-line {
   stroke-width: 2px;
 }
@@ -103,7 +111,6 @@
 .FrequencyChart .c3-axis-y .tick line {
    display: none;
 }
-
 .FrequencyChart .c3-region {
   fill: #999;
   opacity: 1;
@@ -158,16 +165,23 @@
 
 .TaxonMap {
   height: 600px;
-  margin: 20px 0;
+  margin: 20px 0 10px;
   border: 1px solid #ddd;
+}
+
+.permalink {
+  position: relative;
+  top: -6px;
 }
 
 .TaxonCrumbs {
   color: #aaa;
   padding: 0;
   margin: 0 7px 0 0;
-  line-height: 28px;
+  line-height: 25px;
   display: inline;
+  position: relative;
+  top: -4px;
 }
 .TaxonCrumbs.contracted .inner {
   display: none;
@@ -289,8 +303,6 @@ $leaderItemImageDim: 56px;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
 }
 .LeaderItem h4 {
   text-transform: none;
@@ -322,6 +334,7 @@ $leaderItemImageDim: 56px;
 .LeaderItem .extra i {
   color: #999;
   margin-right: 2px;
+  color: $inat-green;
 }
 .LeaderItem .media-body {
   vertical-align: middle;
@@ -336,6 +349,22 @@ $photoPreviewThumbGutter: 1px;
 $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
+  overflow: hidden;
+  height: 580px;
+}
+.PhotoPreview .photo-bg {
+  position: absolute;
+  left: -50px;
+  top: -50px;
+  background-size: cover;
+  width: 120%;
+  height: 120%;
+  background-color: black;
+  filter: blur(20px) brightness(0.5);
+  -webkit-filter: blur(20px) brightness(0.5);
+  -moz-filter: blur(20px) brightness(0.5);
+  -o-filter: blur(20px) brightness(0.5);
+  -ms-filter: "blur(20px)";
 }
 .PhotoPreview ul.others {
   width: 100%;
@@ -415,8 +444,15 @@ $photoPreviewThumbGutterTop: 3px;
     opacity: 0;
     transition: opacity 0.2s linear;
     text-align: center;
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+      opacity: 0.8;
+    }
   }
-  .btn-link {
+  .modal-link {
     width: 100%;
     height: 100%;
     font-size: 80%;
@@ -425,14 +461,42 @@ $photoPreviewThumbGutterTop: 3px;
     i {
       display: inline-block;
       font-size: 300%;
-      // margin-bottom: 10px;
       padding: 10px;
       background-color: rgba(0,0,0,0.5);
     }
   }
-  .btn-link:hover {
+  .modal-link:hover {
     text-decoration: none;
     color: white;
+  }
+  .photo-taxon {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.4);
+    font-weight: 100;
+    font-size: 90%;
+    line-height: 20px;
+    text-align: left;
+
+    .display-name {
+      font-size: 120%;
+      display: block;
+    }
+    i {
+      font-size: 150%;
+    }
+    .SplitTaxon a {
+      color: white;
+    }
+    .info-link {
+      padding: 0;
+      position: relative;
+      top: -2px;
+    }
   }
 }
 .TaxonPhoto:hover .photo-hover {
@@ -480,8 +544,14 @@ $photoPreviewThumbGutterTop: 3px;
 .TaxonomyTab .taxonomy li.root:before {
   content: '';
 }
+.TaxonomyTab .taxonomy .taxon {
+  margin-left: 3px;
+}
 .TaxonomyTab .taxonomy .taxon a {
   color: #333;
+}
+.TaxonomyTab .taxonomy .taxon a:hover {
+  color: #23527c;
 }
 
 .TaxonomyTab .taxonomy li.current > .SplitTaxon {
@@ -617,10 +687,11 @@ $introducedColor: #E4007C;
 }
 
 .TaxonPageTabs .nav-tabs > li > a {
-  color: black;
+  color: #555;
   font-weight: bold;
   font-size: 18px;
   padding: 20px 30px 16px;
+  text-transform: capitalize;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;
@@ -632,20 +703,22 @@ $introducedColor: #E4007C;
 .TaxonPageTabs .nav-tabs > li.active > a:hover,
 .TaxonPageTabs .nav-tabs > li.active > a:focus {
   border: 0 transparent;
-  border-bottom: 2px solid $inat-green;
+  border-bottom: 3px solid $inat-green;
   background-color: inherit;
   color: black;
-  font-weight: 800;
+  opacity: 1;
 }
 
 .InteractionsTab {
   padding-top: 20px;
 }
-
+.ArticlesTab .taxon_description {
+  font-size: 16px;
+}
 .ArticlesTab .taxon_description_header {
   display: none;
 }
-.ArticlesTab h2 .fa-external-link {
+.ArticlesTab h2 .icon-link-external {
   font-size: 20px;
 }
 
@@ -702,7 +775,7 @@ $nav-btn-dim: 40px;
 .nav-buttons .next-btn:before {
   content: '\276F';
 }
-.HighlightsTab .viewall {
+.Carousel .viewall, {
   width: 100%;
   height: 262px;
   background-color: #333;
@@ -714,8 +787,8 @@ $nav-btn-dim: 40px;
   font-size: 16px;
   text-transform: uppercase;
 }
-.HighlightsTab .viewall:hover,
-.HighlightsTab .viewall:focus {
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
   color: white;
 }
 
@@ -728,6 +801,19 @@ $nav-btn-dim: 40px;
   text-align: center;
 }
 
+[role="dialog"] .PhotoModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  opacity: 0.8;
+  z-index: 1;
+}
+[role="dialog"] .PhotoModal .close:hover {
+  color: white;
+  opacity: 0.5;
+}
 .PhotoModal .btn.nav-button {
   position: absolute;
   top: 50%;
@@ -773,7 +859,7 @@ $nav-btn-dim: 40px;
   content: "";
   display: block;
   width: 100%;
-  height: 20px;
+  height: 40px;
   background-color: black;
 }
 .PhotoModal .photo-modal-content .photo-container {
@@ -814,6 +900,11 @@ $nav-btn-dim: 40px;
 }
 .curation-tab .dropdown {
   float: right;
+}
+.curation-tab .dropdown i {
+  width: 20px;
+  text-align: center;
+  color: $inat-green;
 }
 #curation-dropdown {
   margin-top: 14px;
@@ -889,6 +980,18 @@ $nav-btn-dim: 40px;
   background-color: lighten($inat-green, 1%);
   border-color: lighten($inat-green, 1%);
 }
+.btn.btn-outline {
+  background-color: transparent;
+  color: black;
+  border-color: #999;
+}
+.btn.btn-outline:hover,
+.btn.btn-outline:focus {
+  background-color: transparent;
+  border-color: #999;
+  color: lighten(#000, 1%);
+  border-color: lighten(#999, 1%);
+}
 
 .PlaceChooserPopoverTrigger {
   margin-top: 20px;
@@ -955,13 +1058,14 @@ $nav-btn-dim: 40px;
   position: relative;
   border: 2px solid transparent;
   width: 104px;
+  min-height: 50px;
 }
 .DraggablePhoto .control-link {
   position: absolute;
   color: white;
   display: block;
   line-height: 0;
-
+  text-shadow: 0px 0px 10px black;
 }
 .DraggablePhoto .control-link:hover,
 .DraggablePhoto .control-link:active {
@@ -1022,3 +1126,78 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   content: '';
 }
 .AkaNames .name { color: black; }
+.RecentObservations { margin-bottom: 20px; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
+}
+.iconified-list-group .list-group-item {
+  display: flex;
+}
+.iconified-list-group .list-group-item a:first-child {
+  background-repeat: no-repeat;
+  padding: 1px 0 1px 25px;
+  display: block;
+  flex: 1;
+  background-position-y: 2px;
+}

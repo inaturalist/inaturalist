@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 
-const TaxonPageMap = ( { taxon } ) => {
+const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel } ) => {
   let loading;
   let taxonMap;
   if ( taxon ) {
@@ -26,6 +26,13 @@ const TaxonPageMap = ( { taxon } ) => {
           places: true,
           ranges: true
         }]}
+        minX={ bounds ? bounds.swlng : null }
+        minY={ bounds ? bounds.swlat : null }
+        maxX={ bounds ? bounds.nelng : null }
+        maxY={ bounds ? bounds.nelat : null }
+        latitude={ latitude }
+        longitude={ longitude }
+        zoomLevel={ zoomLevel }
       />
     );
   } else {
@@ -46,7 +53,11 @@ const TaxonPageMap = ( { taxon } ) => {
 };
 
 TaxonPageMap.propTypes = {
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  bounds: PropTypes.object,
+  latitude: PropTypes.number,
+  longitude: PropTypes.number,
+  zoomLevel: PropTypes.number
 };
 
 export default TaxonPageMap;

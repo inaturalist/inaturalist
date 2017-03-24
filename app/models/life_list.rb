@@ -196,16 +196,12 @@ class LifeList < List
 
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
-    return nil unless lt
+    return nil unless lt && lt.list && lt.taxon_id
     return super if lt.list.place.blank?
-    options = { search_params: {
-      where: {
-        "taxon.ancestor_ids": lt.taxon_id,
-        place_ids: lt.list.place } } }
-    if user_id
-      options[:search_params][:where]["user.id"] = user_id
-    end
-    options
+    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
+    filters << { term: { place_ids: lt.list.place.id } } if lt.list.place
+    filters << { term: { "user.id": user_id } } if user_id
+    { filters: filters }
   end
 
   def default_title

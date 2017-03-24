@@ -93,7 +93,8 @@ class SitesController < ApplicationController
   private
 
   def site_admin_required
-    unless current_user.is_admin? || @record_admin = @record.site_admins.where(:user_id => current_user).first
+    unless current_user.is_admin? || 
+        ( @record && @record_admin = @record.site_admins.where( user_id: current_user ).first )
       redirect_to_hell 
     end
   end

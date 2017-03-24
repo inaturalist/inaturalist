@@ -1,0 +1,95 @@
+:ruby
+  if @taxon
+    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+  end
+  @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
+    taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+    taxon
+  end
+  if @user
+    @user.html = render(:partial => "users/chooser", :object => @user)
+  end
+  @default_users = User.curators.limit(10).map do |user|
+    user.html = render(:partial => "users/chooser", :object => user)
+    user
+  end
+- content_for(:title) do
+  - @title = capture do
+    = t(:taxonomic_changes).titleize
+    - if @taxon
+      = t :for
+      %i= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id
+      (#{@taxon.is_active ? t(:active) : t(:inactive)})"
+  = strip_tags(@title)
+- content_for(:extracss) do
+  = stylesheet_link_tag 'taxon_changes'
+  = stylesheet_link_tag 'autocomplete'
+  :css
+    .ui-chooser-choice {max-width:190px;}
+    .change_taxon {margin-bottom: 10px; width: 310px;}
+    #change_types .field {min-width:60px;}
+    form .text {width:200px;}
+- content_for(:extrajs) do
+  :javascript
+    window.taxon = #{json_escape @taxon.to_json(:methods => [:html]).html_safe}
+    window.user = #{json_escape @user.to_json(:methods => [:html]).html_safe}
+    window.defaultTaxa = #{json_escape @default_taxa.to_json(:methods => [:html]).html_safe}
+    window.defaultUsers = #{json_escape @default_users.to_json(:methods => [:html]).html_safe}
+    $(document).ready(function() {
+      $('#filters_source_id').chooser({
+       collectionUrl: '/sources.json',
+        resourceUrl: '/sources/{{id}}.json'
+      })
+      
+      $('#filters_user_id').chooser({
+        queryParam: 'q',
+        collectionUrl: '/people/search.json',
+        resourceUrl: '/people/{{id}}.json',
+        chosen: user,
+        defaultSources: defaultUsers
+      })
+      
+      $('#filters_taxon_name').taxonAutocomplete( {
+        idEl: $('#filters_taxon_id' ),
+        initialSelection: #{raw @taxon.to_json},
+        thumbnail: false,
+        bootstrapClear: true
+      } );
+      
+      if (taxon) {
+        $('[data-taxon-id='+taxon.id+']').css('background-color', 'lightyellow')
+      }
+    })
+.container
+  .row
+    .col-xs-12
+      = link_to t(:new_taxon_change), new_taxon_change_path, :class => "pull-right btn btn-default"
+      %h2= @title
+  .row
+    .col-xs-4
+      = form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f|
+        %fieldset#change_types
+          %legend= t("change_types.change_types")
+          - %w(split merge swap stage drop).each do |type|
+            = f.check_box type,                                      |
+              :wrapper => {:class => "inlineblock"},                 |
+              :label_after => true,                                  |
+              :label => t("change_types.#{type}"),                   |
+              :checked => @types.include?("Taxon#{type.capitalize}") |
+        = f.select :change_group, @change_groups, :include_blank => t(:none), :selected => @change_group, :label => t(:change_group)
+        = f.select :taxon_scheme_id, @taxon_schemes.map{|ts| [ts.title, ts.id]}, :include_blank => t(:none), :selected => @taxon_scheme.try(:id), :label => t(:taxon_scheme)
+        = f.select :committed, [t(:yes), t(:no)], :include_blank => t(:either), :selected => @committed, :label => t(:committed)
+        = f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => t(:any), :selected => @iconic_taxon.try(:read_attribute, :id), :label => t(:iconic_taxon)
+        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon)
+        = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
+        = f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => t(:type_source_name), :label => t(:source)
+        - if logged_in?
+          = f.text_field :user_id, :value => @user ? @user.id : nil, :placeholder => t(:start_typing_someones_name), :label => t(:added_by)
+        = f.submit t(:filter), :class => "default button", "data-loading-click" => t(:filtering)
+        = link_to t(:clear_filters), taxon_changes_url, :class => "minor button"
+    .col-xs-8
+      - if @taxon_changes.empty?
+        %p.description= t :no_taxonomic_changes_match_those_criteria
+      - for taxon_change in @taxon_changes
+        = render :partial => 'show_change_taxon', :object => taxon_change
+      = will_paginate @taxon_changes

@@ -15,6 +15,11 @@ Rails.application.routes.draw do
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
 
+  resources :controlled_terms
+  resources :controlled_term_labels, only: [:create, :update, :destroy]
+  resources :controlled_term_values, only: [:create, :destroy]
+  resources :annotations
+
   resources :guide_sections do
     collection do
       get :import
@@ -143,6 +148,7 @@ Rails.application.routes.draw do
     member do
       put :join_test
       put :leave_test
+      put :merge
     end
   end
   # resource :session
@@ -207,12 +213,12 @@ Rails.application.routes.draw do
   get 'observations/identotron' => 'observations#identotron', :as => :identotron
   post 'observations/update' => 'observations#update', :as => :update_observations
   get 'observations/new/batch_csv' => 'observations#new_batch_csv', :as => :new_observation_batch_csv
-  match 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch, :via => [ :get, :post ]
+  match 'observations/new/batch' => 'observations#new_batch', :as => :new_observation_batch, :via => [:get, :post]
   post 'observations/new/bulk_csv' => 'observations#new_bulk_csv', :as => :new_observation_bulk_csv
   get 'observations/edit/batch' => 'observations#edit_batch', :as => :edit_observation_batch
   delete 'observations/delete_batch' => 'observations#delete_batch', :as => :delete_observation_batch
   get 'observations/import' => 'observations#import', :as => :import_observations
-  match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos, via: [ :get, :post ]
+  match 'observations/import_photos' => 'observations#import_photos', :as => :import_photos, via: [:get, :post]
   post 'observations/import_sounds' => 'observations#import_sounds', :as => :import_sounds
   post 'observations/email_export/:id' => 'observations#email_export', :as => :email_export
   get 'observations/id_please' => 'observations#id_please', :as => :id_please
@@ -220,7 +226,7 @@ Rails.application.routes.draw do
   get '/observations/curation' => 'observations#curation', :as => :curate_observations
   get '/observations/widget' => 'observations#widget', :as => :observations_widget
   get 'observations/add_from_list' => 'observations#add_from_list', :as => :add_observations_from_list
-  match 'observations/new_from_list' => 'observations#new_from_list', :as => :new_observations_from_list, via: [ :get, :post ]
+  match 'observations/new_from_list' => 'observations#new_from_list', :as => :new_observations_from_list, via: [:get, :post]
   get 'observations/nearby' => 'observations#nearby', :as => :nearby_observations
   get 'observations/add_nearby' => 'observations#add_nearby', :as => :add_nearby_observations
   get 'observations/:id/edit_photos' => 'observations#edit_photos', :as => :edit_observation_photos
@@ -234,7 +240,7 @@ Rails.application.routes.draw do
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
   
 
-  match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [ :get, :post ]
+  match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [:get, :post]
   delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
   post 'projects/:id/add' => 'projects#add', :as => :add_project_observation
   match 'projects/:id/remove' => 'projects#remove', :as => :remove_project_observation, :via => [:post, :delete]
@@ -316,7 +322,7 @@ Rails.application.routes.draw do
       post :refresh_observationcounts
     end
   end
-  match 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }, :via => [ :get, :post ]
+  match 'lists/:login' => 'lists#by_login', :as => :lists_by_login, :constraints => { :login => simplified_login_regex }, :via => [:get, :post]
   get 'lists/:id/compare' => 'lists#compare', :as => :compare_lists, :constraints => { :id => /\d+([\w\-\%]*)/ }
   delete 'lists/:id/remove_taxon/:taxon_id' => 'lists#remove_taxon', :as => :list_remove_taxon, :constraints => { :id => /\d+([\w\-\%]*)/ }
   post 'lists/:id/add_taxon_batch' => 'lists#add_taxon_batch', :as => :list_add_taxon_batch, :constraints => { :id => /\d+([\w\-\%]*)/ }
@@ -350,6 +356,8 @@ Rails.application.routes.draw do
       get 'links'
       get "map_layers"
       get "browse_photos"
+      get "show_google"
+      get "taxobox"
     end
     collection do
       get 'synonyms'
@@ -367,7 +375,7 @@ Rails.application.routes.draw do
   get 'taxa/:id/photos' => 'taxa#photos', :as => :taxon_photos
   get 'taxa/:id/edit_photos' => 'taxa#edit_photos', :as => :edit_taxon_photos
   put 'taxa/:id/update_colors' => 'taxa#update_colors', :as => :update_taxon_colors
-  match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [ :get, :post ]
+  match 'taxa/:id/add_places' => 'taxa#add_places', :as => :add_taxon_places, :via => [:get, :post]
   get 'taxa/flickr_tagger' => 'taxa#flickr_tagger', :as => :flickr_tagger
   get 'taxa/flickr_tagger.:format' => 'taxa#flickr_tagger', :as => :formatted_flickr_tagger
   post 'taxa/tag_flickr_photos'
@@ -376,7 +384,7 @@ Rails.application.routes.draw do
   get 'taxa/search' => 'taxa#search', :as => :search_taxa
   get 'taxa/search.:format' => 'taxa#search', :as => :formatted_search_taxa
   get 'taxa/:action.:format' => 'taxa#index', :as => :formatted_taxa_action
-  match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon, :via => [ :get, :post ]
+  match 'taxa/:id/merge' => 'taxa#merge', :as => :merge_taxon, :via => [:get, :post]
   get 'taxa/:id/merge.:format' => 'taxa#merge', :as => :formatted_merge_taxon
   get 'taxa/:id/observation_photos' => 'taxa#observation_photos', :as => :taxon_observation_photos
   get 'taxa/observation_photos' => 'taxa#observation_photos'
@@ -433,7 +441,7 @@ Rails.application.routes.draw do
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
   get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
-  resources :taxon_links, :except => [:show]
+  resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
   get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget
@@ -489,10 +497,25 @@ Rails.application.routes.draw do
   put 'admin/update_user/:id', :to => 'admin#update_user', :as => "admin_update_user"
   resources :taxon_ranges, :except => [:show]
   
-  resources :atlases
-  post ':atlases/alter_atlas_presence' => 'atlases#alter_atlas_presence', :as => :alter_atlas_presence
-  post ':atlases/destroy_all_alterations' => 'atlases#destroy_all_alterations', :as => :destroy_all_alterations
+  resources :atlases do
+    member do
+      post :alter_atlas_presence
+      post :destroy_all_alterations
+      post :remove_atlas_alteration
+      post :remove_listed_taxon_alteration
+      post :refresh_atlas
+      get :get_defaults_for_taxon_place
+    end
+  end
   resources :exploded_atlas_places
+  
+  resources :complete_sets do
+    member do
+      post :destroy_relevant_listings
+      post :remove_listed_taxon_alteration
+      get :get_relevant_listings
+    end
+  end
   
   get '/calendar/:login' => 'calendars#index', :as => :calendar
   get '/calendar/:login/compare' => 'calendars#compare', :as => :calendar_compare
@@ -507,12 +530,15 @@ Rails.application.routes.draw do
   get 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
   post 'subscriptions/:resource_type/:resource_id/subscribe' => 'subscriptions#subscribe', as: :subscribe
 
-  resources :taxon_changes, :constraints => { :id => id_param_pattern } do
-    resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
+  resources :taxon_changes, constraints: { id: id_param_pattern } do
+    resources :taxon_change_taxa, controller: :taxon_change_taxa, shallow: true
+    collection do
+      get "group/:group" => "taxon_changes#group", as: :group
+    end
     put :commit
     get :commit_for_user
-    put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
-    put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
+    put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
+    put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
   end
   resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa

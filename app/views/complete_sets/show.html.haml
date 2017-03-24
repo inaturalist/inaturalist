@@ -1,0 +1,81 @@
+- content_for :extrajs do
+  = javascript_include_tag "complete_sets/show"
+
+.container
+  .row
+    .col-xs-12
+      - unless @complete_set.is_active
+        .alert.alert-info{ role: :alert }
+          This complete set is currently not active
+      - if @num_obs > 0
+        .alert.alert-warning{ role: "alert" }
+          Warning: there are observations not represented in this complete set
+          = link_to t( :view ), observations_path(@observation_search_url_params)
+      %h2.pull-left
+        = "Complete Set"
+        = t :for
+        = render partial: "shared/taxon", locals: { taxon: @complete_set.taxon, named_ancestor: true }
+        = t :in
+        = @complete_set.place.name
+      .pull-right= link_to t( :edit ), edit_complete_set_path( @complete_set )
+
+  - complete_set_data = {                               |
+    complete_set_id: @complete_set.id,                  |
+    taxon_id: @complete_set.taxon_id,                   |
+    place_id: @complete_set.place_id }                  |
+      
+  .row.cf#top
+    .col-sm-3.col-xs-12.pull-right
+      .content-entry#right
+    .col-sm-9.col-xs-12.pull-left#left  
+      %table.table.table-striped#set{ data: complete_set_data }
+        %thead
+          %tr
+            %th= "Taxon"
+            %th= ""
+            %th= ""
+        %tbody#alteration
+          - @taxa.each do |taxon|
+            %tr
+              %td= render partial: "shared/taxon", locals: { taxon: taxon, named_ancestor: true }
+              %td= link_to "destroy", "#", :class => "destroy_element", :data => { taxon_id: taxon.id }
+              %td= link_to "show listings", "#", :class => "show_listings_element", :data => { taxon_id: taxon.id }
+
+  - list_id = @complete_set.place.check_list_id
+  - lt = ListedTaxon.new( list_id: list_id )
+  = form_for( lt, :remote => true, :method => :post, :html => { "data-type" => 'json', :class => 'add_to_list' } ) do |f|
+    = f.error_messages
+    = label_tag "Add species to set"
+    = f.text_field :taxon_id, :value => "enter a taxon_id"
+    = f.hidden_field :list_id
+    = hidden_field_tag 'success_msg', t( :life_list_updated )
+    = f.submit t( :add ), :id => "listed_taxon_submit", :class => 'default inline button inlineblock'
+    = image_tag( 'spinner.gif', :id => 'listed_taxon_loading', :style => 'display: none' )  
+
+  #comments
+    = render :partial => "comments/comments", :object => @complete_set
+  
+  %h3
+    = "Recent Listed Taxon Alterations"
+
+  %table.table.table-striped
+    %thead
+      %tr
+        %th= "Place"
+        %th= "Taxon"
+        %th= "Action"
+        %th= "Login"
+        %th= "Date"
+        %th= ""
+    %tbody#listed_taxon_alteration
+      - @listed_taxon_alterations.each do |listed_taxon_alteration|
+        %tr
+          %th{ :scope => "row" }= link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
+          %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
+          %td= listed_taxon_alteration.action
+          %td= listed_taxon_alteration.user.nil? ? "" : ( link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user )
+          %td= listed_taxon_alteration.created_at
+          %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
+
+  - if @listed_taxon_alterations.count == 0
+    .no_listed_taxon_alterations= "No listed taxon alterations relevant to this complete set yet"

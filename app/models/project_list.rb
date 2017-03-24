@@ -24,15 +24,13 @@ class ProjectList < List
 
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
-    return nil unless lt
-    { search_params: {
-        where: {
-          "taxon.ancestor_ids": lt.taxon_id,
-          project_ids: project_id
-        }
-      },
+    return nil unless lt && lt.taxon_id && project_id
+    { filters: [
+        { term: { "taxon.ancestor_ids": lt.taxon_id } },
+        { term: { project_ids: project_id } }
+      ],
       earliest_sort_field: "id",
-      range_wheres: { quality_grade: :research } }
+      range_filters: [ { term: { quality_grade: "research" } } ] }
   end
 
   def self.refresh_with_project_observation(project_observation, options = {})

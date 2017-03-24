@@ -7,6 +7,8 @@ import {
   openObservationsSearch
 } from "../ducks/observations";
 
+const TERMS_TO_CHART = ["Life Stage", "Plant Phenology"];
+
 function mapStateToProps( state ) {
   // process columns for seasonality
   const monthOfYearFrequencyVerifiable = state.observations.monthOfYearFrequency.verifiable || {};
@@ -15,19 +17,19 @@ function mapStateToProps( state ) {
   ).map( k => parseInt( k, 0 ) ).sort( ( a, b ) => a - b );
   const seasonalityColumns = [];
   const order = [
-    "Flowering Phenology=bare",
-    "Flowering Phenology=budding",
-    "Flowering Phenology=flower",
-    "Flowering Phenology=fruit",
-    "Insect life stage=egg",
-    "Insect life stage=larva",
-    "Insect life stage=teneral",
-    "Insect life stage=nymph",
-    "Insect life stage=pupa",
-    "Insect life stage=adult",
     "verifiable",
     "research"
   ];
+  const chartedFieldValues = { };
+  _.each( state.taxon.fieldValues, ( values, termID ) => {
+    if ( !_.includes( TERMS_TO_CHART, values[0].controlled_attribute.label ) ) {
+      return;
+    }
+    chartedFieldValues[termID] = values;
+    _.each( values, v => {
+      order.push( `${v.controlled_attribute.label}=${v.controlled_value.label}` );
+    } );
+  } );
   for ( let i = 0; i < order.length; i++ ) {
     const series = order[i];
     const frequency = state.observations.monthOfYearFrequency[series];
@@ -40,20 +42,22 @@ function mapStateToProps( state ) {
 
   // process columns for history
   const monthFrequencyVerifiable = state.observations.monthFrequency.verifiable || {};
+  const monthFrequencyResearch = state.observations.monthFrequency.research || {};
   const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
   if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
     historyColumns.push( ["verifiable", ...historyKeys.map( d =>
-      state.observations.monthFrequency.verifiable[d] || 0 )] );
+      monthFrequencyVerifiable[d] || 0 )] );
     historyColumns.push( ["research", ...historyKeys.map( d =>
-      state.observations.monthFrequency.research[d] || 0 )] );
+      monthFrequencyResearch[d] || 0 )] );
   }
   return {
     seasonalityKeys,
     seasonalityColumns,
     historyColumns,
-    historyKeys
+    historyKeys,
+    chartedFieldValues
   };
 }
 

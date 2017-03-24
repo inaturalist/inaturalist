@@ -178,13 +178,13 @@ class ApplicationController < ActionController::Base
   def set_time_zone
     if logged_in?
       old_time_class = Chronic.time_class
-      Time.use_zone(self.current_user.time_zone) do
-        begin
+      begin
+        Time.use_zone( self.current_user.time_zone ) do
           Chronic.time_class = Time.zone
-          yield 
-        ensure
-          Chronic.time_class = old_time_class
+          yield
         end
+      ensure
+        Chronic.time_class = old_time_class
       end
     else
       yield
@@ -237,8 +237,8 @@ class ApplicationController < ActionController::Base
   # Redirect user to front page when they do something naughty.
   #
   def redirect_to_hell
-    flash[:notice] = t(:you_tried_to_do_something_you_shouldnt)
-    redirect_to root_path, :status => :see_other
+    flash[:notice] = t(:you_dont_have_permission_to_do_that)
+    redirect_to root_path, status: :see_other
   end
 
   # Caching
@@ -316,20 +316,22 @@ class ApplicationController < ActionController::Base
       @limit = 50 if @limit > 50
     end
     site_place = @site.place if @site
-    search_wheres = { match: { display_name: { query: @q, operator: "and" } } }
+    filters = [ { match: { display_name: { query: @q, operator: "and" } } } ]
+    inverse_filters = [ ]
     if site_place
-      search_wheres["ancestor_place_ids"] = site_place
+      filters << { term: { ancestor_place_ids: site_place.id } }
+    end
+    if params[:with_geom].yesish?
+      filters << { exists: { field: "geometry_geojson" } }
+    elsif params[:with_geom].noish?
+      inverse_filters << { exists: { field: "geometry_geojson" } }
     end
     search_params = {
-      where: search_wheres,
+      filters: filters,
+      inverse_filters: inverse_filters,
       per_page: @limit, 
       page: params[:page]
     }
-    if params[:with_geom].yesish?
-      search_params.merge!(filters: [ { exists: { field: "geometry_geojson" } } ])
-    elsif params[:with_geom].noish?
-      search_params.merge!(filters: [ { 'not': { exists: { field: "geometry_geojson" } } } ])
-    end
     @places = Place.elastic_paginate(search_params)
     Place.preload_associations(@places, :place_geometry_without_geom)
     if logged_in? && @places.blank? && !params[:q].blank?

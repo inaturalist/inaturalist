@@ -141,6 +141,7 @@ class User < ActiveRecord::Base
       default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
       url: ":s3_alias_url"
     )
+    invalidate_cloudfront_caches :icon, "attachments/users/icons/:id/*"
   else
     has_attached_file :icon, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
@@ -173,10 +174,11 @@ class User < ActiveRecord::Base
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
+  after_update :update_photo_properties
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
-  
+
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
     :message => "must be JPG, PNG, or GIF"
@@ -208,7 +210,7 @@ class User < ActiveRecord::Base
   validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
-  validate :validate_email_pattern
+  validate :validate_email_pattern, on: :create
   
   scope :order_by, Proc.new { |sort_by, sort_dir|
     sort_dir ||= 'DESC'
@@ -294,13 +296,18 @@ class User < ActiveRecord::Base
   end
   
   def whitelist_licenses
-    unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?(preferred_observation_license)
+    unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?( preferred_observation_license )
       self.preferred_observation_license = nil
     end
     
-    unless preferred_photo_license.blank? || Observation::LICENSE_CODES.include?(preferred_photo_license)
+    unless preferred_photo_license.blank? || Observation::LICENSE_CODES.include?( preferred_photo_license )
       self.preferred_photo_license = nil
     end
+
+    unless preferred_sound_license.blank? || Observation::LICENSE_CODES.include?( preferred_sound_license )
+      self.preferred_sound_license = nil
+    end
+
     true
   end
 
@@ -477,9 +484,7 @@ class User < ActiveRecord::Base
     longitude = nil
     lat_lon_acc_admin_level = nil
     begin
-      resp = http.start() {|http|
-        http.get("/?ip=#{last_ip}")
-      }
+      resp = http.start() {|http| http.get("/?ip=#{last_ip}") }
       data = resp.body
       begin
         result = JSON.parse(data)
@@ -507,6 +512,11 @@ class User < ActiveRecord::Base
         lat_lon_acc_admin_level = nil
         Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
+    rescue SocketError
+      latitude = nil
+      longitude = nil
+      lat_lon_acc_admin_level = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip unrecognized due to dropped connection"
     rescue Timeout::Error => e
       latitude = nil
       longitude = nil
@@ -737,19 +747,40 @@ class User < ActiveRecord::Base
     true
   end
 
+  def update_photo_properties
+    changes = {}
+    changes[:native_username] = login if login_changed?
+    changes[:native_realname] = name if name_changed?
+    unless changes.blank?
+      delay( priority: USER_INTEGRITY_PRIORITY ).update_photos_with_changes( changes )
+    end
+    true
+  end
+
+  def update_photos_with_changes( changes )
+    return if changes.blank?
+    photos.update_all( changes )
+  end
+
   def recent_notifications(options={})
-    options[:filters] ||= [ ]
-    options[:wheres] ||= { }
+    options[:filters] = options[:filters] ? options[:filters].dup : [ ]
+    options[:inverse_filters] = options[:inverse_filters] ? options[:inverse_filters].dup : [ ]
     options[:per_page] ||= 10
     if options[:unviewed]
-      options[:filters] << { not: { term: { viewed_subscriber_ids: id } } }
+      options[:inverse_filters] << { term: { viewed_subscriber_ids: id } }
     elsif options[:viewed]
       options[:filters] << { term: { viewed_subscriber_ids: id } }
     end
     options[:filters] << { term: { subscriber_ids: id } }
-    UpdateAction.elastic_paginate(
-      where: options[:wheres],
+    ops = {
       filters: options[:filters],
+      inverse_filters: options[:inverse_filters],
+      per_page: options[:per_page],
+      sort: { id: :desc }
+    }
+    UpdateAction.elastic_paginate(
+      filters: options[:filters],
+      inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
       sort: { id: :desc })
   end
@@ -787,7 +818,7 @@ class User < ActiveRecord::Base
   def self.update_identifications_counter_cache(user_id)
     return unless user = User.find_by_id(user_id)
     result = Observation.elastic_search(
-      complex_wheres: [ { nested: {
+      filters: [ { nested: {
         path: "non_owner_ids",
         query: { bool: { must: [
           { term: { "non_owner_ids.user.id": user_id } }

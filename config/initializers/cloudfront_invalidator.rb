@@ -1,0 +1,1 @@
+require "cloudfront_invalidator"

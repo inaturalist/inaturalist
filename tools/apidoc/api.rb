@@ -137,7 +137,7 @@ def api(name, &block)
 end
 
 LICENSE_PARAMS = ActiveSupport::OrderedHash.new
-LICENSE_PARAMS[:none]          = "No license specified, observer witholds all rights to distribution."
+LICENSE_PARAMS[:none]          = "No license specified, observer withholds all rights to distribution."
 LICENSE_PARAMS[:any]           = "Observation licensed, see response for license specified."
 LICENSE_PARAMS["CC-BY"]        = "Creative Commons Attribution License"
 LICENSE_PARAMS["CC-BY-NC"]     = "Creative Commons Attribution-NonCommercial License"
@@ -428,7 +428,7 @@ EOT
     end
 
     param "list_id" do
-      desc "Restrict results to observations of taxa on the specifified list. Limited to lists with 2000 taxa or less."
+      desc "Restrict results to observations of taxa on the specified list. Limited to lists with 2000 taxa or less."
       values "iNat list ID"
     end
 
@@ -680,8 +680,8 @@ EOT
       values -90..90
     end
 
-    param "observation[longitide]" do
-      desc "Longitide of the observation. Presumed datum is WGS84."
+    param "observation[longitude]" do
+      desc "Longitude of the observation. Presumed datum is WGS84."
       values -180..180
     end
 
@@ -691,7 +691,7 @@ EOT
     end
 
     param "observation[positional_accuracy]" do
-      desc "Postional accuracy of the observation coordinates in meters."
+      desc "Positional accuracy of the observation coordinates in meters."
       values "Any positive integer"
     end
 
@@ -1216,7 +1216,7 @@ EOT
   end
 
   put "/observation_field_values/:id", auth_required: true do
-    desc "Update an observation field value. Parans are the same as POST /observation_field_values"
+    desc "Update an observation field value. Parameters are the same as POST /observation_field_values"
     formats %w(json)
   end
 

@@ -54,7 +54,8 @@ const DroppedFile = class DroppedFile {
         } );
         // check that object for metadata we care about
         if ( exif.ImageDescription ) {
-          metadata.description = exif.ImageDescription;
+          metadata.description = _.trim(
+            exif.ImageDescription.replace( /\u0000/g, "" ) );
         }
         if ( exif.GPSLatitude && exif.GPSLatitude.length === 3 ) {
           metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude );

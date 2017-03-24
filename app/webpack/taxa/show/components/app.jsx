@@ -13,16 +13,15 @@ import TaxonChangeAlertContainer from "../containers/taxon_change_alert_containe
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
-import { urlForTaxon } from "../../shared/util";
 
-const App = ( { taxon } ) => (
+const App = ( { taxon, showNewTaxon } ) => (
   <div id="TaxonDetail">
     <Grid>
       <TaxonChangeAlertContainer />
       <Row className="preheader">
         <Col xs={8}>
           <TaxonCrumbsContainer />
-          <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
+          <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="icon-link"></i>
           </a>
         </Col>
@@ -34,7 +33,7 @@ const App = ( { taxon } ) => (
               placeholder={I18n.t( "search_species_" )}
               searchExternal={false}
               afterSelect={ function ( result ) {
-                window.location = urlForTaxon( result.item );
+                showNewTaxon( result.item );
               } }
               position={{ my: "right top", at: "right bottom", collision: "none" }}
             />
@@ -92,7 +91,8 @@ const App = ( { taxon } ) => (
 );
 
 App.propTypes = {
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  showNewTaxon: PropTypes.func
 };
 
 export default App;

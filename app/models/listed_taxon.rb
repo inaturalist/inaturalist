@@ -21,6 +21,10 @@ class ListedTaxon < ActiveRecord::Base
   
   # check list assocs
   belongs_to :place
+  belongs_to :simple_place,
+    -> { select(:id, :name, :display_name, :code, :bbox_area, :ancestry) },
+    foreign_key: :place_id,
+    class_name: "Place"
   belongs_to :taxon_range # if listed taxon was created b/c of a range intersection
   belongs_to :source # if added b/c of a published source
   
@@ -38,13 +42,14 @@ class ListedTaxon < ActiveRecord::Base
   after_save :remove_other_primary_listings
   after_save :update_attributes_on_related_listed_taxa
   after_save :index_taxon
+  after_save :log_create_if_taxon_id_changed
   after_commit :expire_caches
   after_create :update_user_life_list_taxa_count
   after_create :sync_parent_check_list
   after_create :sync_species_if_infraspecies
-  after_create :log_create_in_atlas
+  after_create :log_create
   before_destroy :set_old_list
-  before_destroy :log_destroy_in_atlas
+  before_destroy :log_destroy
   after_destroy :reassign_primary_listed_taxon
   after_destroy :update_user_life_list_taxa_count
 
@@ -490,22 +495,34 @@ class ListedTaxon < ActiveRecord::Base
     ActiveRecord::Base.connection.execute(sql)
   end
   
-  def is_atlased?
-    if list.is_a?(CheckList) && list.is_default?
-      if atlas = Atlas.where(taxon_id: taxon_id).first
-        if atlas.places.map(&:id).include? place_id
-          return true
-        end
-      end
+  def has_atlas_or_complete_set?(options = {})
+    return false unless list.is_a?( CheckList ) && list.is_default?
+    return false unless [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include? place.admin_level
+    relevant_taxon = taxon
+    if options[:taxon_was]
+      relevant_taxon = Taxon.where(id: options[:taxon_was]).first
     end
-    return false
+    return false unless relevant_taxon
+    place_ancestor_place_ids = place.ancestor_place_ids.nil? ? [place_id] : place.ancestor_place_ids
+    atlas_ids = Atlas.where( "is_active = true AND taxon_id IN (?)", relevant_taxon.self_and_ancestor_ids ).pluck( :id )
+    # there are atlases for this taxon or ancestors and this place isn't
+    # exploded for all matching atlases, therefore this action is relevant
+    # to some atlas and should be logged
+    return true if atlas_ids.any? &&
+      ExplodedAtlasPlace.where( "atlas_id IN ( ? )", atlas_ids ).
+        where( place_id: place.id ).count < atlas_ids.length
+    cs = CompleteSet.
+      where( "is_active = true").
+      where("taxon_id IN ( ? ) AND place_id IN ( ? )", relevant_taxon.self_and_ancestor_ids, place_ancestor_place_ids ).
+      count
+    return true if cs > 0
+    false
   end
   
-  def log_create_in_atlas
-    if is_atlased?
-      atlas = Atlas.where(taxon_id: taxon_id).first
-      AtlasAlteration.create(
-        atlas_id: atlas.id,
+  def log_create
+    if has_atlas_or_complete_set?
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
         user_id: user_id,
         place_id: place_id,
         action: "listed"
@@ -513,15 +530,27 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
   
-  def log_destroy_in_atlas
-    if is_atlased?
-      atlas = Atlas.where(taxon_id: taxon_id).first
+  def log_destroy
+    if has_atlas_or_complete_set?
       updater_id = updater.nil? ? nil : updater.id
-      AtlasAlteration.create(
-        atlas_id: atlas.id,
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
         user_id: updater_id,
         place_id: place_id,
         action: "unlisted"
+      )
+    end
+  end
+  
+  def log_create_if_taxon_id_changed
+    return true unless taxon_id_changed?
+    return true if taxon_id_was.nil?
+    if has_atlas_or_complete_set?(taxon_was: taxon_id_was)
+      ListedTaxonAlteration.create(
+        taxon_id: taxon_id,
+        user_id: nil,
+        place_id: place_id,
+        action: "listed"
       )
     end
   end
@@ -537,14 +566,13 @@ class ListedTaxon < ActiveRecord::Base
     return unless list
     # get the specific options for this list type
     options = list.cache_columns_options(self)
-    options[:search_params][:fields] = [ :id ]
     earliest_id = nil
     latest_id = nil
     month_counts = nil
     total = 0
     # run the query for the first entry, total count, and aggregations
     begin
-      rs = Observation.elastic_search(options[:search_params].merge(
+      rs = Observation.elastic_search(options.merge(
         size: 0,
         aggregate: {
           month: { terms: { field: "observed_on_details.month", size: 15 },
@@ -587,18 +615,19 @@ class ListedTaxon < ActiveRecord::Base
   def self.earliest_and_latest_ids(options)
     earliest_id = nil
     latest_id = nil
-    return [ nil, nil ] unless options[:search_params]
-    options[:search_params][:size] = 1
-    if options[:range_wheres]
-      options[:search_params][:where].merge!(options[:range_wheres])
+    return [ nil, nil ] unless options[:filters]
+    search_params = { filters: options[:filters].dup }
+    search_params[:size] = 1
+    if options[:range_filters]
+      search_params[:filters] += options[:range_filters]
     end
-    if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", ignore_unmapped: true } },
+    if r = Observation.elastic_search(search_params.merge(
+      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", unmapped_type: "long" } },
               { id: :asc } ] )).results.first
       earliest_id = r.id
     end
-    if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:latest_sort_field] || "observed_on") => { order: "desc", ignore_unmapped: true } },
+    if r = Observation.elastic_search(search_params.merge(
+      sort: [ { observed_on: { order: "desc", unmapped_type: "long" } },
               { id: :desc } ] )).results.first
       latest_id = r.id
     end
@@ -629,6 +658,21 @@ class ListedTaxon < ActiveRecord::Base
       :list_id => lt.place.check_list_id
     )
     lt.save
+  end
+
+  def self.get_defaults_for_taxon_place( place,taxon, options = { } )
+    options[:limit] ||= 100
+    options[:limit] = 200 if options[:limit] > 200
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    return unless taxon
+    place = Place.find_by_id( place ) unless place.is_a?( Place )
+    return unless place
+    place_descendant_ids = place.descendants.
+      where( "admin_level IN ( ? )", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck( :id )
+    place_with_descendant_ids = [ place.id, place_descendant_ids ].compact.flatten
+    lt = ListedTaxon.includes( :place, :taxon ).joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
+    where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck(:taxon_id) ).
+    where( "listed_taxa.place_id IN ( ? )", place_with_descendant_ids ).limit( options[:limit] )
   end
 
   def observation_month_stats
@@ -720,7 +764,7 @@ class ListedTaxon < ActiveRecord::Base
       !updater_id && 
       comments_count.to_i == 0 &&
       list.is_default? &&
-      !is_atlased?
+      !has_atlas_or_complete_set?
   end
   
   def introduced?
@@ -753,11 +797,11 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon::ORDERS.each do |order|
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
     end
-    unless place_id.blank?
-      ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-      ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
+    if !place_id.blank? && manually_added
+      I18N_SUPPORTED_LOCALES.each do |locale|
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place
+      end
     end
     if list
       ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
@@ -818,7 +862,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
 
-  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+  def self.update_for_taxon_change(taxon_change, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids)
     scope = scope.where(:user_id => options[:user]) if options[:user]
@@ -827,7 +871,9 @@ class ListedTaxon < ActiveRecord::Base
     scope = scope.includes(options[:include]) if options[:include]
     scope.find_each do |lt|
       lt.force_update_cache_columns = true
-      lt.update_attributes(:taxon => taxon)
+      if output_taxon = taxon_change.output_taxon_for_record( lt )
+        lt.update_attributes( taxon: output_taxon )
+      end
       yield(lt) if block_given?
     end
   end

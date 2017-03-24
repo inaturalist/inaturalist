@@ -5,12 +5,14 @@
   <% for update in @updates %>
     <%- 
       resource = update.resource
+      link_subject = resource
       if update.notification == "mention"
         anchor = "activity_comment_#{ update.notifier_id }"
+        link_subject = update.notifier
       end
     -%>
     <li>
-      <a href="<%= polymorphic_url(resource, anchor: anchor) %>">
+      <a href="<%= polymorphic_url(link_subject, anchor: anchor) %>">
         <%= update_image_for(update, :width => 32) %>
         <span class="inlineblock">
           <span class="small meta">

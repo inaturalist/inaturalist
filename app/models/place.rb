@@ -489,12 +489,17 @@ class Place < ActiveRecord::Base
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
       else
-        pg = PlaceGeometry.create(other_attrs)
+        pg = PlaceGeometry.create!(other_attrs)
         self.place_geometry = pg
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
+      if e.message =~ /TopologyException/
+        add_custom_error( :base, e.message[/TopologyException: (.+)/, 1] )
+      else
+        add_custom_error( :base, "Boundary did not save: #{e.message[0..200]}" )
+      end
     end
   end
   

@@ -1,4 +1,7 @@
 class ObservationField < ActiveRecord::Base
+
+  include ActsAsElasticModel
+
   belongs_to :user
   has_many :observation_field_values, :dependent => :destroy
   has_many :observations, :through => :observation_field_values

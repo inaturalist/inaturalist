@@ -1,9 +1,10 @@
 <% content_for(:title) do %>
-  <%= @title = capture do %>
+  <%- @title = capture do %>
     <%=t :editing %>
     <%=t @taxon_change.class.name.underscore %>
-    (<%= @taxon_change.committed? ? t(:committed_on, :date => l(@taxon_change.committed_on)) : t(:draft) %>)
+    (<%= @taxon_change.committed? ? t(:committed_on, date: l( @taxon_change.committed_on ) ) : t(:draft) %>)
   <% end -%>
+  <%= strip_tags @title %>
 <% end %>
 <%= render :partial => 'form_head' %>
 

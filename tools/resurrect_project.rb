@@ -97,6 +97,7 @@ resurrection_cmds << "psql inaturalist_production -c \"\\copy assessment_section
   resurrection_cmds << "psql inaturalist_production -c \"\\copy comments FROM '#{fname}' WITH CSV\""
 end
 
+resurrection_cmds << "bundle exec rails r 'p = Project.find(#{record_id}); p.elastic_index!; Observation.elastic_index!( scope: p.observations )'"
 
 cmd = "tar cvzf resurrect_#{record_id}.tgz resurrect_#{record_id}-*"
 puts "Zipping it all up..."

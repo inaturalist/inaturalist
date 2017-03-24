@@ -57,6 +57,7 @@ class Site < ActiveRecord::Base
       :path => "sites/:id-logo.:extension",
       :url => ":s3_alias_url",
       :default_url => "/assets/logo-small.gif"
+    invalidate_cloudfront_caches :logo, "sites/:id-logo.*"
   else
     has_attached_file :logo,
       :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
@@ -77,6 +78,7 @@ class Site < ActiveRecord::Base
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
       :default_url => ->(i){ FakeView.image_url("bird.png") }
+    invalidate_cloudfront_caches :logo_square, "sites/:id-logo_square.*"
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
@@ -97,6 +99,7 @@ class Site < ActiveRecord::Base
       :path => "sites/:id-logo_email_banner.:extension",
       :url => ":s3_alias_url",
       :default_url => ->(i){ FakeView.image_url("inat_email_banner.png") }
+    invalidate_cloudfront_caches :logo_email_banner, "sites/:id-logo_email_banner.*"
   else
     has_attached_file :logo_email_banner,
       :path => ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
@@ -115,13 +118,20 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-stylesheet.css",
       :url => ":s3_alias_url"
+    invalidate_cloudfront_caches :stylesheet, "sites/:id-stylesheet.css"
   else
     has_attached_file :stylesheet,
       :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
       :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
   end
 
-  validates_attachment_content_type :stylesheet, :content_type => "text/css", :message => "must be CSS"
+  validates_attachment_content_type :stylesheet, content_type: [
+    "text/css", 
+    # Not great, but probably ok here where only site admins can add the file.
+    # Underlying problem is that we force all validations to depend on the file
+    # commant (see paperclip initializer) and it reads CSS as plain/text
+    "text/plain"
+  ], message: "must be CSS"
 
   # URL where visitors can learn more about the site
   preference :about_url, :string

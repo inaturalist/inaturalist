@@ -33,7 +33,6 @@ class QualityMetric < ActiveRecord::Base
   def set_observation_quality_grade
     return true unless observation
     new_quality_grade = observation.get_quality_grade
-    Rails.logger.debug "[DEBUG] setting obs quality grade to #{new_quality_grade}"
     Observation.where(id: observation_id).update_all(quality_grade: new_quality_grade)
     CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "CheckList::refresh_with_observation": observation.id}).
@@ -60,8 +59,9 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def elastic_index_observation
-    Rails.logger.debug "[DEBUG] indexing obs, quality: #{observation.quality_grade}"
-    observation.elastic_index!
+    return true unless observation
+    observation.reload.elastic_index!
+    true
   end
 
   def self.vote(user, observation, metric, agree)

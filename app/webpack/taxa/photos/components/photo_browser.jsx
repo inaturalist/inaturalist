@@ -27,8 +27,11 @@ const PhotoBrowser = ( {
   setParam,
   setTerm,
   showTaxonPhotoModal,
+  selectedTerm,
+  selectedTermValue,
   terms,
-  showTaxonGrouping
+  showTaxonGrouping,
+  place
 } ) => {
   let sortedGroupedPhotos;
   if ( grouping.param === "taxon_id" ) {
@@ -62,6 +65,8 @@ const PhotoBrowser = ( {
             observationPhoto.observation.taxon,
             observationPhoto.observation
           ) }
+          showTaxon
+          linkTaxon
         />
       );
     } )
@@ -71,6 +76,11 @@ const PhotoBrowser = ( {
       <i className="fa fa-refresh fa-spin"></i>
     </div>
   );
+  const noObsNotice = (
+    <div className="nocontent text-muted">
+      { I18n.t( place ? "no_observations_from_this_place_yet" : "no_observations_yet" ) }
+    </div>
+  );
   const renderUngroupedPhotos = ( ) => (
     <InfiniteScroll
       loadMore={( ) => loadMorePhotos( )}
@@ -78,18 +88,15 @@ const PhotoBrowser = ( {
       className="photos"
       loader={loader}
     >
-      { observationPhotos && observationPhotos.length === 0 ?
-        <div className="nocontent text-muted">{ I18n.t( "no_observations_yet" ) }</div>
-        : null
-      }
+      { observationPhotos && observationPhotos.length === 0 ? noObsNotice : null }
       { observationPhotos ? null : loader }
       { renderObservationPhotos( observationPhotos ) }
     </InfiniteScroll>
   );
   const renderGroupedPhotos = ( ) => (
     <div>
-      { sortedGroupedPhotos.map( group => (
-        <div key={`group-${group.groupName}`} className="photo-group">
+      { sortedGroupedPhotos.map( ( group, i ) => (
+        <div key={`group-${group.groupName}`} className={`photo-group ${ i === 0 ? "first" : "" }`}>
           <h3>
             { group.groupObject ?
               <SplitTaxon
@@ -120,8 +127,8 @@ const PhotoBrowser = ( {
   const groupingDisplay = param => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
-    } else if ( param ) {
-      const displayText = param.replace( "field:", "" );
+    } else if ( param && terms[grouping.values] ) {
+      const displayText = terms[grouping.values][0].controlled_attribute.label;
       return I18n.t( displayText, { defaultValue: displayText } );
     }
     return I18n.t( "none" );
@@ -139,13 +146,14 @@ const PhotoBrowser = ( {
     );
   }
   groupingMenuItems = groupingMenuItems.concat(
-    terms.map( term => (
+    _.map( terms, values => (
       <MenuItem
-        key={`grouping-chooser-item-${term.name}`}
-        eventKey={term.name}
-        active={grouping.param === `field:${term.name}`}
+        key={`grouping-chooser-item-${values[0].controlled_attribute.label}`}
+        eventKey={values[0].controlled_attribute}
+        active={grouping.param === `field:${values[0].controlled_attribute.label}`}
       >
-        { term.name }
+        { I18n.t( _.snakeCase( values[0].controlled_attribute.label ),
+          { defaultValue: values[0].controlled_attribute.label } ) }
       </MenuItem>
     ) )
   );
@@ -191,10 +199,7 @@ const PhotoBrowser = ( {
                     } else if ( key === "taxon_id" ) {
                       setGrouping( "taxon_id" );
                     } else {
-                      setGrouping(
-                        `field:${key}`,
-                        _.find( terms, t => t.name === key ).values
-                      );
+                      setGrouping( `terms:${key.id}`, key.id );
                     }
                   } }
                 >
@@ -207,36 +212,49 @@ const PhotoBrowser = ( {
                 </Dropdown>
               </span>
             ) }
-            { terms.map( term => (
-              <span key={`term-${term}`} className="control-group">
-                <Dropdown
-                  id={`term-chooser-${term.name}`}
-                  onSelect={ ( event, key ) => setTerm( term.name, key ) }
-                >
-                  <Dropdown.Toggle bsClass="link">
-                    { term.name }: <strong>{ term.selectedValue || I18n.t( "any" ) }</strong>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <MenuItem
-                      key={`term-chooser-item-${term.name}-any`}
-                      eventKey={"any"}
-                      active={term.selectedValue === "any" || !term.selectedValue}
-                    >
-                      { I18n.t( "any" ) }
-                    </MenuItem>
-                    { term.values.map( value => (
+            { _.map( terms, values => {
+              const attr = values[0].controlled_attribute;
+              return (
+                <span key={`term-${attr.label}`} className="control-group">
+                  <Dropdown
+                    id={`term-chooser-${attr.label}`}
+                    onSelect={ ( event, key ) => setTerm( attr.id, key ) }
+                  >
+                    <Dropdown.Toggle bsClass="link">
+                      { attr.label }:&nbsp;
+                      <strong>{
+                        ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
+                          I18n.t( _.snakeCase( selectedTermValue.label ),
+                            { defaultValue: selectedTermValue.label } ) :
+                          I18n.t( "any" )
+                        ) }
+                      </strong>
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
                       <MenuItem
-                        key={`term-chooser-item-${term.name}-${value}`}
-                        eventKey={value}
-                        active={term.selectedValue === value}
+                        key={`term-chooser-item-${attr.label}-any`}
+                        eventKey={"any"}
+                        active={ !selectedTermValue }
                       >
-                        { value }
+                        { I18n.t( "any" ) }
                       </MenuItem>
-                    ) ) }
-                  </Dropdown.Menu>
-                </Dropdown>
-              </span>
-            ) ) }
+                      { values.map( v => {
+                        const value = v.controlled_value;
+                        return (
+                          <MenuItem
+                            key={`term-chooser-item-${attr.label}-${value.label}`}
+                            eventKey={value.id}
+                            active={ selectedTermValue && selectedTermValue.id === value.id }
+                          >
+                            { I18n.t( _.snakeCase( value.label ), { defaultValue: value.label } ) }
+                          </MenuItem>
+                        );
+                      } ) }
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </span>
+              );
+            } ) }
             <span className="control-group">
               <Dropdown
                 id="sort-control"
@@ -284,24 +302,21 @@ PhotoBrowser.propTypes = {
   hasMorePhotos: PropTypes.bool,
   layout: PropTypes.string,
   setLayout: PropTypes.func.isRequired,
-  terms: PropTypes.arrayOf(
-    PropTypes.shape( {
-      name: PropTypes.string,
-      values: PropTypes.array,
-      selectedValue: PropTypes.string
-    } )
-  ),
+  selectedTerm: PropTypes.object,
+  selectedTermValue: PropTypes.object,
+  terms: PropTypes.object,
   setTerm: PropTypes.func,
   grouping: PropTypes.object,
   setGrouping: PropTypes.func,
   params: PropTypes.object,
   setParam: PropTypes.func,
-  showTaxonGrouping: PropTypes.bool
+  showTaxonGrouping: PropTypes.bool,
+  place: PropTypes.object
 };
 
 PhotoBrowser.defaultProps = {
   layout: "fluid",
-  terms: [],
+  terms: {},
   grouping: {},
   groupedPhotos: {},
   showTaxonGrouping: true

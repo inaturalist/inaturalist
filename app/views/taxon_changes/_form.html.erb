@@ -58,6 +58,7 @@
       })
       rearrangeTaxonFieldsets()
       $('input[name="taxon_change[type]"]').change(rearrangeTaxonFieldsets)
+      $( "#taxon_change_description" ).textcompleteUsers( );
     })
   </script>
 <%- end -%>
@@ -75,7 +76,7 @@
         <%= t(:this_taxon_change_has_been_commited).html_safe %>
       </div>  
     <% end -%>
-    <% if taxon_change.new_record? -%>
+    <% unless taxon_change.committed? -%>
       <fieldset class="column span-8">
         <legend>
           <%= t :type %>
@@ -98,7 +99,7 @@
       <%= f.hidden_field :type %>
     <% end %>
 
-    <fieldset id="sourcing" class="last column span-<%= taxon_change.new_record? ? '16' : '24' %>">
+    <fieldset id="sourcing" class="last column span-<%= taxon_change.committed? ? 24 : 16 %>">
       <legend>
         <%= t :sourcing %>
         <% helptip_for "source" do %>

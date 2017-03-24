@@ -103,7 +103,7 @@ class Project < ActiveRecord::Base
       where("1 = 2")
     end
   }
-  
+
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
@@ -122,6 +122,7 @@ class Project < ActiveRecord::Base
       :path => "projects/:id-cover.:extension",
       :url => ":s3_alias_url",
       :default_url => ""
+    invalidate_cloudfront_caches :cover, "projects/:id-cover.*"
   else
     has_attached_file :cover,
       :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
@@ -538,7 +539,15 @@ class Project < ActiveRecord::Base
   def self.delete_project_observations_on_leave_project(project_id, user_id)
     return unless proj = Project.find_by_id(project_id)
     return unless usr = User.find_by_id(user_id)
-    proj.project_observations.joins(:observation).where("observations.user_id = ?", usr).find_each do |po|
+    # max_id prevents a problem with aggregated projects (see issue #1227)
+    # Aggregated projects will add back whatever is currently relevant to the
+    # project, but may as well remove all existing obs in case some don't match
+    # the current rules. The max_id prevents this from deleting the re-aggregated
+    # obs and creating an endless loop of deletes and re-agg
+    max_id = Observation.maximum(:id)
+    proj.project_observations.joins(:observation).
+         where("observations.user_id = ?", usr).
+         where("observations.id <= ?", max_id).find_each do |po|
       po.destroy
     end
   end
@@ -645,7 +654,7 @@ class Project < ActiveRecord::Base
           ],
           size: 0,
           aggregate: {
-            top_observers: { terms: { field: "user.id", size: 0 } } }
+            top_observers: { terms: { field: "user.id", size: 100000 } } }
         )
         if result && result.response && result.response.aggregations
           result.response.aggregations.top_observers.buckets.each do |b|
@@ -676,7 +685,7 @@ class Project < ActiveRecord::Base
           size: 0,
           aggregate: {
             user_taxa: {
-              terms: { field: "user.id", size: 0, order: { distinct_taxa: "desc" } },
+              terms: { field: "user.id", size: 1, order: { distinct_taxa: "desc" } },
               aggs: {
                 distinct_taxa: {
                   cardinality: {
@@ -787,7 +796,11 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
     Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
       next unless p.aggregation_allowed? && p.prefers_aggregation?
-      p.aggregate_observations(logger: logger, pidfile: pidfile)
+      begin
+        p.aggregate_observations(logger: logger, pidfile: pidfile)
+      rescue => e
+        Rails.logger.error "[ERROR #{Time.now}] Failed to aggregate project #{p.id} after error: #{e}"
+      end
       num_projects += 1
     end
     logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"

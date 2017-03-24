@@ -1,47 +1,120 @@
-- content_for :extrahead do
-  = stylesheet_link_tag "atlases/show"
-  = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"
-  = javascript_include_tag "https://d3js.org/d3.v3.min.js"
-  = javascript_include_tag "https://d3js.org/d3.geo.projection.v0.min.js"
-  = javascript_include_tag "https://d3js.org/topojson.v1.min.js"
+- content_for :title do
+  Atlas for
+  = render "taxa/taxon.txt.erb", taxon: @atlas.taxon
+
+- content_for :extrajs do
   = javascript_include_tag "atlases/show"
-  = javascript_tag "world = #{@atlas_place_json.to_json.html_safe};"
-  = javascript_tag "taxon_id = #{@atlas.taxon_id}"
+
+- content_for :extracss do
+  = stylesheet_link_tag "atlases/show"
 
 .container
   .row
     .col-xs-12
+      - unless @atlas.is_active
+        .alert.alert-info{ role: :alert }
+          This atlas is currently not active
+      - if @num_obs_not_in_atlas_places > 0
+        .alert.alert-warning{ role: :alert }
+          Warning: there are observations not represented by this atlas
+          = link_to t( :view ), observations_path( @observations_not_in_atlas_places_params )
       %h2.pull-left
         = "Atlas"
         = t :for
-        = link_to @atlas.taxon.name, @atlas.taxon
-      .pull-right= link_to t(:edit), edit_atlas_path(@atlas)
-  #map
-  %p
-    = link_to "alter", alter_atlas_presence_path(@atlas), :id => "alter"
-
-  %h3
-    = "Recent Alterations"
-
-  %table.table.table-striped
-    %thead
-      %tr
-        %th="#"
-        %th="Place"
-        %th="Action"
-        %th="Login"
-        %th="Date"
-    %tbody#alteration
-      - @atlas_alterations.each do |atlas_alteration|
-        %tr
-          %th{:scope => "row"}=atlas_alteration.id
-          %td= link_to atlas_alteration.place.name, atlas_alteration.place
-          %td= atlas_alteration.action
-          %td= atlas_alteration.user.nil? ? "" : (link_to atlas_alteration.user.login, atlas_alteration.user)
-          %td= atlas_alteration.created_at
-  - if @atlas_alterations.count == 0
-    .no_alterations="No alterations to this atlas yet"
-  - else
-    = link_to "Clear Alteration Log", destroy_all_alterations_path(@atlas.id), :data => {:id => @atlas.id}, :id => "destroy_all_alterations", :class => "btn btn-danger"
+        = render partial: "shared/taxon", locals: { taxon: @atlas.taxon, named_ancestor: true, link_url: @atlas.taxon }
+      - if current_user.is_curator?
+        .pull-right= link_to t( :edit ), edit_atlas_path( @atlas )
+  .row.cf#top
+    .col-sm-3.col-xs-12.pull-right
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            = "About Atlases"
+        .panel-body
+          %p
+            = "Atlases convey the global distribution of a taxon. Curators make atlases by defining the structure"
+            = "of an atlas and curating the listed taxa that drive it."
+            = link_to "Learn more", "/pages/atlases"
+          %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/720-original.png", class: "img-responsive" }
+      .content-entry#right
+      .content-entry#bottomright
+    .col-sm-9.col-xs-12.pull-left#left
+      :ruby
+        map_attributes = setup_map_tag_attrs(
+          min_zoom: 1,
+          show_all_layer: false,
+          taxon_layers: [ {
+            taxon: @atlas.taxon,
+            places: false,
+            ranges: true,
+            observations: true,
+            gbif: { disabled: true },
+          } ]
+        )
+        atlas_data = {
+          atlas_id: @atlas.id,
+          taxon_id: @atlas.taxon_id,
+          place_ids: @atlas_presence_places_with_establishment_means_hash_json,
+          exploded_places: @exploded_places_json,
+          is_curator: @is_curator
+        }
+        map_attributes["data"] = map_attributes["data"].merge( atlas_data )
+      #map{ map_attributes }
   
-      
+  #bottom
+    #comments
+      = render partial: "comments/comments", object: @atlas
+    
+    %h3
+      = "Recent Atlas Alterations"
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= "Place"
+          %th= "Action"
+          %th= "Login"
+          %th= "Date"
+          %th= ""
+      %tbody#alteration
+        - @atlas_alterations.each do |atlas_alteration|
+          %tr
+            %th{:scope => "row" }= link_to atlas_alteration.place.name, atlas_alteration.place
+            %td= atlas_alteration.action
+            %td= atlas_alteration.user.nil? ? "" : ( link_to atlas_alteration.user.login, atlas_alteration.user )
+            %td= atlas_alteration.created_at
+            -if current_user.is_curator?
+              %td= link_to "remove", "#", :class => "remove_atlas_alteration", :data => { atlas_alteration_id: atlas_alteration.id }
+
+    - if @atlas_alterations.count == 0
+      .no_alterations= "No alterations to this atlas yet"
+
+    %h3
+      = "Recent Listed Taxon Alterations"
+
+    %table.table.table-striped
+      %thead
+        %tr
+          %th= "Place"
+          %th= "Taxon"
+          %th= "Action"
+          %th= "Login"
+          %th= "Date"
+          %th=""
+      %tbody#listed_taxon_alteration
+        - @listed_taxon_alterations.each do |listed_taxon_alteration|
+          %tr
+            %th{ :scope => "row" }= link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
+            %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
+            %td= listed_taxon_alteration.action
+            %td= listed_taxon_alteration.user.nil? ? "" : ( link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user )
+            %td= listed_taxon_alteration.created_at
+            -if current_user.is_curator?
+              %td= link_to "remove", "#", :class => "remove_listed_taxon_alteration", :data => { listed_taxon_alteration_id: listed_taxon_alteration.id }
+
+    - if @listed_taxon_alterations.count == 0
+      .no_listed_taxon_alterations= "No listed taxon alterations relevant to this atlas yet"
+    - if @atlas.user
+      .pull-right
+        = link_to @atlas.user.login, @atlas.user
+        = "created this atlas on #{l(@atlas.created_at.to_date, :format => :long)}"

@@ -2,6 +2,8 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   attr_accessor :indexed_tag_names, :indexed_project_ids, :indexed_place_ids,
     :indexed_places, :indexed_project_ids_with_curator_id,
     :indexed_project_ids_without_curator_id
@@ -9,64 +11,105 @@ class Observation < ActiveRecord::Base
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
     :model_attribute_changes,
+    { annotations: :votes_for },
     { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: :user },
+    { identifications: [ :user, :taxon ] },
     { comments: :user } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
-      indexes :uuid, analyzer: "keyword_analyzer"
+      indexes :uuid, index: "not_analyzed"
       indexes :taxon do
+        indexes :ancestry, index: "not_analyzed"
+        indexes :min_species_ancestry, index: "not_analyzed"
+        indexes :rank, index: "not_analyzed"
+        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
         indexes :names do
-          indexes :name, analyzer: "ascii_snowball_analyzer"
+          indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+          indexes :locale, index: "not_analyzed"
         end
         indexes :statuses, type: :nested do
-          indexes :authority, analyzer: "keyword_analyzer"
-          indexes :status, analyzer: "keyword_analyzer"
+          indexes :authority, index: "not_analyzed"
+          indexes :status, index: "not_analyzed"
+          indexes :geoprivacy, index: "not_analyzed"
         end
       end
       indexes :photos do
-        indexes :license_code, analyzer: "keyword_analyzer"
+        indexes :license_code, index: "not_analyzed"
       end
       indexes :sounds do
-        indexes :license_code, analyzer: "keyword_analyzer"
+        indexes :license_code, index: "not_analyzed"
       end
       indexes :ofvs, type: :nested do
-        indexes :uuid, analyzer: "keyword_analyzer"
-        indexes :name, analyzer: "keyword_analyzer"
-        indexes :value, analyzer: "keyword_analyzer"
+        indexes :uuid, index: "not_analyzed"
+        indexes :name, index: "not_analyzed"
+        indexes :value, index: "not_analyzed"
+      end
+      indexes :annotations, type: :nested do
+        indexes :uuid, index: "not_analyzed"
+        indexes :resource_type, index: "not_analyzed"
+        indexes :concatenated_attr_val, index: "not_analyzed"
       end
       indexes :non_owner_ids, type: :nested do
-        indexes :uuid, analyzer: "keyword_analyzer"
+        indexes :uuid, index: "not_analyzed"
+        indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :category, index: "not_analyzed"
+        indexes :user do
+          indexes :login, index: "not_analyzed"
+        end
       end
       indexes :field_change_times, type: :nested do
+        indexes :field_name, index: "not_analyzed"
+        indexes :keyword, index: "not_analyzed"
       end
       indexes :comments do
-        indexes :uuid, analyzer: "keyword_analyzer"
-        indexes :body, analyzer: "ascii_snowball_analyzer"
+        indexes :uuid, index: "not_analyzed"
+        indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :user do
+          indexes :login, index: "not_analyzed"
+        end
       end
       indexes :project_observations do
-        indexes :uuid, analyzer: "keyword_analyzer"
+        indexes :uuid, index: "not_analyzed"
       end
       indexes :observation_photos do
-        indexes :uuid, analyzer: "keyword_analyzer"
+        indexes :uuid, index: "not_analyzed"
       end
-      indexes :description, analyzer: "ascii_snowball_analyzer"
-      indexes :tags, analyzer: "ascii_snowball_analyzer"
-      indexes :place_guess, analyzer: "ascii_snowball_analyzer"
-      indexes :species_guess, analyzer: "keyword_analyzer"
-      indexes :license_code, analyzer: "keyword_analyzer"
+      indexes :user do
+        indexes :login, index: "not_analyzed"
+      end
+      indexes :photos do
+        indexes :attribution, index: "not_analyzed"
+        indexes :url, index: "not_analyzed"
+        indexes :license_code, index: "not_analyzed"
+      end
+      indexes :sounds do
+        indexes :attribution, index: "not_analyzed"
+        indexes :native_sound_id, index: "not_analyzed"
+        indexes :license_code, index: "not_analyzed"
+      end
+      indexes :description, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :tags, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :place_guess, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :species_guess, index: "not_analyzed"
+      indexes :license_code, index: "not_analyzed"
       indexes :observed_on, type: "date", format: "dateOptionalTime"
       indexes :observed_on_string, type: "string"
-      indexes :location, type: "geo_point", lat_lon: true, geohash: true, geohash_precision: 10
-      indexes :private_location, type: "geo_point", lat_lon: true
+      indexes :location, type: "geo_point"
+      indexes :private_location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
       indexes :private_geojson, type: "geo_shape"
+      indexes :created_time_zone, index: "not_analyzed"
+      indexes :geoprivacy, index: "not_analyzed"
+      indexes :observed_time_zone, index: "not_analyzed"
+      indexes :quality_grade, index: "not_analyzed"
+      indexes :time_zone_offset, index: "not_analyzed"
+      indexes :uri, index: "not_analyzed"
     end
   end
 
@@ -132,14 +175,7 @@ class Observation < ActiveRecord::Base
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
-        photos: observation_photos.sort_by{ |op| op.position || op.id }.
-          reject{ |op| op.photo.blank? }.
-          map{ |op| op.photo.as_indexed_json },
-        observation_photos: observation_photos.sort_by{ |op| op.position || op.id }.
-          reject{ |op| op.photo.blank? }.
-          each_with_index.map{ |op, i|
-            { uuid: op.uuid, photo_id: op.photo.id, position: i }
-        },
+        annotations: annotations.map(&:as_indexed_json),
         sounds: sounds.map(&:as_indexed_json),
         non_owner_ids: others_identifications.map{ |i| i.as_indexed_json(no_details: true) },
         identifications_count: num_identifications_by_others,
@@ -156,6 +192,15 @@ class Observation < ActiveRecord::Base
         private_geojson: (private_latitude && private_longitude) ?
           ElasticModel.point_geojson(private_latitude, private_longitude) : nil
       })
+      json[:photos] = [ ]
+      json[:observation_photos] = [ ]
+      observation_photos.sort_by{ |op| op.position || op.id }.
+        reject{ |op| op.photo.blank? }.
+        each_with_index.map{ |op, i|
+          json[:photos] << op.photo.as_indexed_json
+          json[:observation_photos] << { uuid: op.uuid, photo_id: op.photo.id, position: i }
+        }
+
       add_taxon_statuses(json, t) if t && json[:taxon]
     end
     json
@@ -233,9 +278,8 @@ class Observation < ActiveRecord::Base
     # one of the param initializing steps saw an impossible condition
     return nil if p[:empty_set]
     p = site_search_params(options[:site], p)
-    search_wheres = { }
-    complex_wheres = [ ]
     search_filters = [ ]
+    inverse_filters = [ ]
     extra_preloads = [ ]
     q = p[:q] unless p[:q].blank?
     search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
@@ -252,7 +296,7 @@ class Observation < ActiveRecord::Base
       else
         [ "taxon.names.name", :tags, :description, :place_guess ]
       end
-      search_wheres["multi_match"] = { query: q, operator: "and", fields: fields }
+      search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
     end
     if p[:user]
       search_filters << { term: {
@@ -310,7 +354,7 @@ class Observation < ActiveRecord::Base
       if p[ filter[:http_param] ].yesish?
         search_filters << f
       elsif p[ filter[:http_param] ].noish?
-        search_filters << { not: f }
+        inverse_filters << f
       end
     end
     if p[:verifiable].yesish?
@@ -332,7 +376,7 @@ class Observation < ActiveRecord::Base
     if p[:license] == "any"
       search_filters << { exists: { field: "license_code" } }
     elsif p[:license] == "none"
-      search_filters << { missing: { field: "license_code" } }
+      inverse_filters << { exists: { field: "license_code" } }
     elsif p[:license]
       search_filters << { terms: { license_code:
         [ p[:license] ].flatten.map{ |l| l.downcase } } }
@@ -340,7 +384,7 @@ class Observation < ActiveRecord::Base
     if p[:photo_license] == "any"
       search_filters << { exists: { field: "photos.license_code" } }
     elsif p[:photo_license] == "none"
-      search_filters << { missing: { field: "photos.license_code" } }
+      inverse_filters << { exists: { field: "photos.license_code" } }
     elsif p[:photo_license]
       search_filters << { terms: { "photos.license_code" =>
         [ p[:photo_license] ].flatten.map{ |l| l.downcase } } }
@@ -379,8 +423,8 @@ class Observation < ActiveRecord::Base
       end
     end
     if p[:not_in_project]
-      search_filters << { not: { term: { project_ids:
-        ElasticModel.id_or_object(p[:not_in_project]) } } }
+      inverse_filters << { term: { project_ids:
+        ElasticModel.id_or_object(p[:not_in_project]) } }
     end
 
     extra_preloads << { identifications: [:user, :taxon] } if extra.include?("identifications")
@@ -427,7 +471,7 @@ class Observation < ActiveRecord::Base
         # valid terms as well as missing terms (null)
         search_filters << { bool: { should: [
           { terms: { "taxon.iconic_taxon_id" => known_taxa.map(&:id) } },
-          { missing: { field: "taxon.iconic_taxon_id" } }
+          { bool: { must_not: { exists: { field: "taxon.iconic_taxon_id" } } } }
         ]}}
       else
         # if we don't want to include null values, a terms filter is simpler
@@ -440,7 +484,7 @@ class Observation < ActiveRecord::Base
       if p[:reviewed].yesish?
         search_filters << { term: { reviewed_by: current_user.id } }
       elsif p[:reviewed].noish?
-        search_filters << { not: { term: { reviewed_by: current_user.id } } }
+        inverse_filters << { term: { reviewed_by: current_user.id } }
       end
     end
 
@@ -460,10 +504,12 @@ class Observation < ActiveRecord::Base
         time_filter = { time_observed_at: {
           gte: d1.strftime("%FT%T%:z"),
           lte: d2.strftime("%FT%T%:z") } }
-        search_filters << { or: [
-          { and: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] },
-          { and: [ { range: date_filter }, { missing: { field: "time_observed_at" } } ] }
-        ] }
+        search_filters << { bool: { should: [
+          { bool: { must: [ { range: time_filter }, { exists: { field: "time_observed_at" } } ] } },
+          { bool: {
+            must: { range: date_filter },
+            must_not: { exists: { field: "time_observed_at" } } } }
+        ] } }
       end
     end
     if p[:h1] && p[:h2]
@@ -493,6 +539,12 @@ class Observation < ActiveRecord::Base
       end
     end
     unless p[:updated_since].blank?
+      # This inanity brought to by the fact that all +'s in URLs get interpreted
+      # as spaces, so if you want a plus, we either have to handle it like this
+      # or you use %2B
+      if p[:updated_since].is_a?( String )
+        p[:updated_since] = p[:updated_since].gsub( /\s(\d+\:\d+)$/, "+\\1" )
+      end
       timestamp = Chronic.parse(p[:updated_since])
       # there is an expectation in a spec that when updated_since is
       # invalid, the search will fail to return any results
@@ -506,6 +558,25 @@ class Observation < ActiveRecord::Base
         ] } }
       end
     end
+
+    if p[:term_id]
+      nested_query = {
+        nested: {
+          path: "annotations",
+          query: { bool: { must: [
+            { term: { "annotations.controlled_attribute_id": p[:term_id] } },
+            { range: { "annotations.vote_score": { gte: 0 } } }
+          ] }
+          }
+        }
+      }
+      if p[:term_value_id]
+        nested_query[:nested][:query][:bool][:must] <<
+          { term: { "annotations.controlled_value_id": p[:term_value_id] } }
+      end
+      search_filters << nested_query
+    end
+
     if p[:ofv_params]
       p[:ofv_params].each do |k,v|
         # use a nested query to search within a single nested
@@ -522,26 +593,26 @@ class Observation < ActiveRecord::Base
           nested_query[:nested][:query][:bool][:must] <<
             { match: { "ofvs.value" => v[:value] } }
         end
-        complex_wheres << nested_query
+        search_filters << nested_query
       end
     end
     # conservation status
     unless p[:cs].blank?
       values = [ p[:cs] ].flatten.map(&:downcase)
-      complex_wheres << conservation_condition(:status, values, p)
+      search_filters << conservation_condition(:status, values, p)
     end
     # IUCN conservation status
     unless p[:csi].blank?
       iucn_equivs = [ p[:csi] ].flatten.map{ |v|
         Taxon::IUCN_CODE_VALUES[v.upcase] }.compact.uniq
       unless iucn_equivs.blank?
-        complex_wheres << conservation_condition(:iucn, iucn_equivs, p)
+        search_filters << conservation_condition(:iucn, iucn_equivs, p)
       end
     end
     # conservation status authority
     unless p[:csa].blank?
       values = [ p[:csa] ].flatten.map(&:downcase)
-      complex_wheres << conservation_condition(:authority, values, p)
+      search_filters << conservation_condition(:authority, values, p)
     end
     # sort defaults to created at descending
     sort_order = (p[:order] || "desc").downcase.to_sym
@@ -561,7 +632,7 @@ class Observation < ActiveRecord::Base
     unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
       case p[:geoprivacy]
       when Observation::OPEN
-        search_filters << { not: { exists: { field: :geoprivacy } } }
+        inverse_filters << { exists: { field: :geoprivacy } }
       when "obscured_private"
         search_filters << { terms: { geoprivacy: Observation::GEOPRIVACIES } }
       else
@@ -571,33 +642,29 @@ class Observation < ActiveRecord::Base
 
     if p[:changed_since]
       if changedDate = DateTime.parse(p[:changed_since])
-        nested_query = {
-          nested: {
-            path: "field_change_times",
-            query: { filtered: { query: {
-              bool: {
-                must: [ { range: { "field_change_times.changed_at":
-                  { gte: changedDate.strftime("%F") }}}]
-              }
-            }}}
-          }
-        }
+        changed_since_filters = [ { range: { "field_change_times.changed_at": {
+          gte: changedDate.strftime("%F") }}}]
         if p[:changed_fields]
           # one of these fields must have changed (and have that recorded by Rails)
-          nested_query[:nested][:query][:filtered][:query][:bool][:must] << {
+          changed_since_filters << {
             terms: { "field_change_times.field_name": p[:changed_fields].split(",") }
           }
         end
         if p[:change_project_id]
           # project curator ID must have changed for these projects
-          nested_query[:nested][:query][:filtered][:query][:bool][:must] << {
-            or: [
-              { terms: { "field_change_times.project_id": p[:change_project_id].split(",") } },
-              { not: { exists: { field: "field_change_times.project_id" } } }
-            ]
-          }
+          changed_since_filters << { bool: { should: [
+            { terms: { "field_change_times.project_id": p[:change_project_id].split(",") } },
+            { bool: { must_not: { exists: { field: "field_change_times.project_id" } } } }
+          ]}}
         end
-        complex_wheres << nested_query
+        search_filters << {
+          nested: {
+            path: "field_change_times",
+            query: { bool: {
+              must: changed_since_filters
+            } }
+          }
+        }
       end
     end
 
@@ -613,9 +680,8 @@ class Observation < ActiveRecord::Base
       search_filters << { range: { id: { lte: p[:max_id] } } }
     end
 
-    { where: search_wheres,
-      complex_wheres: complex_wheres,
-      filters: search_filters,
+    { filters: search_filters,
+      inverse_filters: inverse_filters,
       per_page: p[:per_page] || 30,
       page: p[:page],
       sort: sort,
@@ -625,32 +691,32 @@ class Observation < ActiveRecord::Base
   private
 
   def self.conservation_condition(es_field, values, params)
-    # use a nested query to search the specified fiels
-    status_condition = {
-      nested: {
-        path: "taxon.statuses",
-        query: { filtered: { query: {
-          bool: { must: [ { terms: {
-            "taxon.statuses.#{ es_field }" => values
-          } } ] }
-        } } }
-      }
-    }
+    filters = [ { terms: { "taxon.statuses.#{ es_field }" => values } } ]
+    inverse_filters = [ ]
     if params[:place_id]
       # if a place condition is specified, return all results
       # from the place(s) specified, or where place is NULL
-      status_condition[:nested][:query][:filtered][:filter] = { bool: { should: [
+      filters << { bool: { should: [
         { terms: { "taxon.statuses.place_id" =>
           [ params[:place_id] ].flatten.map{ |v| ElasticModel.id_or_object(v) } } },
-        { missing: { field: "taxon.statuses.place_id" } }
+        { bool: { must_not: { exists: { field: "taxon.statuses.place_id" } } } }
       ] } }
     else
       # no place condition specified, so apply a `place is NULL` condition
-      status_condition[:nested][:query][:filtered][:filter] = [
-        { missing: { field: "taxon.statuses.place_id" } }
-      ]
+      inverse_filters << { exists: { field: "taxon.statuses.place_id" } }
     end
-    status_condition
+    bool = { must: filters }
+    unless inverse_filters.blank?
+      bool[:must_not] = inverse_filters
+    end
+    {
+      nested: {
+        path: "taxon.statuses",
+        query: {
+          bool: bool
+        }
+      }
+    }
   end
 
   def add_taxon_statuses(json, t)

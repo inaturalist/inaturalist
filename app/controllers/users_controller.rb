@@ -7,13 +7,14 @@ class UsersController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
-    :show, :update, :relationships, :add_role, :remove_role, :set_spammer ]
+    :show, :update, :relationships, :add_role, :remove_role, :set_spammer,
+    :merge ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
-  before_filter :admin_required, :only => [:curation]
+  before_filter :admin_required, :only => [:curation, :merge]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
@@ -400,23 +401,22 @@ class UsersController < ApplicationController
 
   def dashboard_updates
     filters = [ ]
-    wheres = { }
     if params[:from]
       filters << { range: { id: { lt: params[:from] } } }
     end
     unless params[:notifier_type].blank?
-      wheres[:notifier_type] = params[:notifier_type]
+      filters << { term: { notifier_type: params[:notifier_type] } }
     end
     if params[:filter] == "you"
-      wheres[:resource_owner_id] = current_user.id
+      filters << { term: { resource_owner_id: current_user.id } }
       @you = true
     end
     if params[:filter] == "following"
-      wheres[:notification] = %w(created_observations new_observations)
+      filters << { terms: { notification: %w(created_observations new_observations) } }
     end
     
     @pagination_updates = current_user.recent_notifications(
-      filters: filters, wheres: wheres, per_page: 50)
+      filters: filters, per_page: 50)
     @updates = UpdateAction.load_additional_activity_updates(@pagination_updates, current_user.id)
     UpdateAction.preload_associations(@updates, [ :resource, :notifier, :resource_owner ])
     obs = UpdateAction.components_of_class(Observation, @updates)
@@ -455,7 +455,6 @@ class UsersController < ApplicationController
         @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
-          order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
@@ -470,7 +469,7 @@ class UsersController < ApplicationController
   
   def updates_count
     count = current_user.recent_notifications(unviewed: true,
-      wheres: { notification: [ :activity, :mention ] }, per_page: 1).total_entries
+      filters: [ { terms: { notification: [ "activity", "mention" ] } } ], per_page: 1).total_entries
     session[:updates_count] = count
     render :json => {:count => count}
   end
@@ -478,22 +477,22 @@ class UsersController < ApplicationController
   def new_updates
     params[:notification] ||= "activity"
     params[:notification] = params[:notification].split(",")
-    wheres = { notification: params[:notification] }
+    filters = [ { terms: { notification: params[:notification] } } ]
     notifier_types = [(params[:notifier_types] || params[:notifier_type])].compact
     unless notifier_types.blank?
       notifier_types = notifier_types.map{|t| t.split(',')}.flatten.compact.uniq
-      wheres[:notifier_type] = notifier_types.map(&:downcase)
+      filters << { terms: { notifier_type: notifier_types.map(&:capitalize) } }
     end
     unless params[:resource_type].blank?
-      wheres[:resource_type] = params[:resource_type].downcase
+      filters << { term: { resource_type: params[:resource_type].capitalize } }
     end
-    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, wheres: wheres)
+    @updates = current_user.recent_notifications(unviewed: true, per_page: 200, filters: filters)
     unless request.format.json?
       if @updates.count == 0
-        @updates = current_user.recent_notifications(viewed: true, per_page: 10, wheres: wheres)
+        @updates = current_user.recent_notifications(viewed: true, per_page: 10, filters: filters)
       end
       if @updates.count == 0
-        @updates = current_user.recent_notifications(per_page: 5, wheres: wheres)
+        @updates = current_user.recent_notifications(per_page: 5, filters: filters)
       end
     end
     if !%w(1 yes y true t).include?(params[:skip_view].to_s)
@@ -607,6 +606,19 @@ class UsersController < ApplicationController
         @observations = Observation.page_of_results( user_id: @display_user.id )
       end
     end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def merge
+    unless @reject_user = User.find_by_id( params[:reject_user_id] )
+      flash[:error] = "Couldn't find user to delete"
+      redirect_back_or_default "/"
+    end
+    @user.merge( @reject_user )
+    flash[:notice] = "Merged user #{@reject_user.login} deleted"
+    redirect_back_or_default "/"
   end
 
   def update_session

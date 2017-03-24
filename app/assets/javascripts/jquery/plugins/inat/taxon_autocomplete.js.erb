@@ -18,7 +18,7 @@ autocompleter.defaultPhotoForResult = function( result ) {
   if( result.type === "search_external" || result.type === "message" || !result.name ) {
     return "<i class='fa fa-search'></i>";
   }
-  return result.photoTag( );
+  return result.photoTag ? result.photoTag( ) : null;
 };
 
 // return the best name in the locale, or defaulting to EN
@@ -263,5 +263,22 @@ $.fn.taxonAutocomplete = function( options ) {
   });
   if( options.initialSelection ) {
     field.trigger( "assignSelection", options.initialSelection );
+  }
+  if ( $( options.idEl ).val( ) ) {
+    $.ajax( {
+      url: "<%= CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( ),
+      dataType: "jsonp",
+      cache: true,
+      data: {
+        locale: I18n.locale,
+        preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+      },
+      jsonpCallback: "initialTaxonCallback",
+      success: function( data ) {
+        field.trigger( "assignSelection", _.map( data.results || [], function( r ) {
+          return new iNatModels.Taxon( r );
+        } ) );
+      }
+    } );
   }
 };

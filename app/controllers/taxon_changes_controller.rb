@@ -1,9 +1,11 @@
 class TaxonChangesController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :curator_required, :except => [:index, :show, :commit_for_user, :commit_records]
+  before_filter :curator_required, :except => [:index, :show, :commit_for_user, :commit_records, :group]
   before_filter :admin_required, :only => [:commit_taxon_change]
-  before_filter :load_taxon_change, :except => [:index, :new, :create]
+  before_filter :load_taxon_change, :except => [:index, :new, :create, :group]
   before_filter :return_here, :only => [:index, :show, :new, :edit, :commit_for_user] 
+
+  layout "bootstrap"
   
   def index
     filter_params = params[:filters] || params
@@ -93,7 +95,7 @@ class TaxonChangesController < ApplicationController
     @input_taxa.each {|t| @taxon_change.add_input_taxon(t)} unless @input_taxa.blank?
     @output_taxa.each {|t| @taxon_change.add_output_taxon(t)} unless @output_taxa.blank?
     respond_to do |format|
-      format.html
+      format.html { render layout: "application" }
     end
   end
   
@@ -108,17 +110,17 @@ class TaxonChangesController < ApplicationController
     @taxon_change.user = current_user
     if @taxon_change.save
       flash[:notice] = 'Taxon Change was successfully created.'
-      redirect_to :action => 'show', :id => @taxon_change
+      redirect_to action: "show", id: @taxon_change
     else
       @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
-      render :action => 'new'
+      render action: "new", layout: "application"
     end
   end
   
   def edit
     @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
     respond_to do |format|
-      format.html
+      format.html { render layout: "application"}
     end
   end
 
@@ -181,33 +183,33 @@ class TaxonChangesController < ApplicationController
   def commit_records
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
       flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
-      redirect_back_or_default(@taxon_change)
+      redirect_back_or_default( @taxon_change )
       return
     end
     return unless load_user_content_info
 
     if params[:record_id]
-      @record = current_user.send(@reflection.name).where("#{@reflection.table_name}.id = ?", params[:record_id]).first
+      @record = current_user.send( @reflection.name ).where("#{@reflection.table_name}.id = ?", params[:record_id]).first
       unless @record
         flash[:error] = "Couldn't find that record"
-        redirect_back_or_default(@taxon_change)
+        redirect_back_or_default( @taxon_change )
         return
       end
       @records = [@record]
     elsif params[:record_ids]
-      @records = current_user.send(@reflection.name).where("#{@reflection.table_name}.id IN (?)", params[:record_ids]).to_a
+      @records = current_user.send(@reflection.name).where( "#{@reflection.table_name}.id IN (?)", params[:record_ids] ).to_a
       if @records.blank?
         flash[:error] = "Couldn't find any of those records"
-        redirect_back_or_default(@taxon_change)
+        redirect_back_or_default( @taxon_change )
         return
       end
     end
 
-    @taxon = Taxon.find_by_id(params[:taxon_id])
-    @taxon = nil unless @taxon_change.output_taxa.include?(@taxon)
+    @taxon = Taxon.find_by_id( params[:taxon_id] )
+    @taxon = nil unless @taxon_change.output_taxa.include?( @taxon )
     unless @taxon
       flash[:error] = "That taxon isn't an option"
-      redirect_back_or_default(@taxon_change)
+      redirect_back_or_default( @taxon_change )
       return
     end
 
@@ -216,12 +218,13 @@ class TaxonChangesController < ApplicationController
     errors = []
 
     opts = {
-      :user => current_user, 
-      :records => @records,
-      :conditions => @reflection.options[:conditions],
-      :include => @reflection.options[:include]
+      user: current_user, 
+      records: @records,
+      conditions: @reflection.options[:conditions],
+      include: @reflection.options[:include],
+      taxon: @taxon
     }
-    @taxon_change.update_records_of_class(@reflection.klass, @taxon, opts) do |record|
+    @taxon_change.update_records_of_class( @reflection.klass, opts ) do |record|
       if record.valid?
         updated += 1
       else
@@ -236,7 +239,93 @@ class TaxonChangesController < ApplicationController
     else
       flash[:error] = "#{not_updated} record(s) failed to update: #{errors.to_sentence.downcase}"
     end
-    redirect_back_or_default(@taxon_change)
+    redirect_back_or_default( @taxon_change )
+  end
+
+  def group
+    @group = params[:group]
+    @taxon_changes = TaxonChange.where( change_group: @group ).page( params[:page] )
+    swap_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      select( "DISTINCT taxa.*").
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = 'TaxonSwap'" )
+    merge_input_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      select( "DISTINCT taxa.*").
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = 'TaxonMerge'" )
+    split_input_taxa = Taxon.joins( :taxon_changes ).
+      select( "DISTINCT taxa.*").
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = 'TaxonSplit'" )
+    @input_taxa_counts = {
+      swap: swap_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      merge: merge_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      split: split_input_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count
+    }
+    limit = 500
+    @input_taxa = swap_input_taxa.limit( limit ).to_a
+    @input_taxa += merge_input_taxa.limit( limit - @input_taxa.size ).to_a if @input_taxa.size < limit
+    @input_taxa += split_input_taxa.limit( limit - @input_taxa.size ).to_a if @input_taxa.size < limit
+    unless @input_taxa.blank?
+      @input_taxa = @input_taxa.uniq.sort_by(&:name)
+    end
+    swap_output_taxa = Taxon.joins( :taxon_changes ).
+      select( "DISTINCT taxa.*").
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = 'TaxonSwap'" )
+    merge_output_taxa = Taxon.joins( :taxon_changes ).
+      select( "DISTINCT taxa.*").
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = 'TaxonMerge'" )
+    split_output_taxa = Taxon.joins( taxon_change_taxa: :taxon_change ).
+      select( "DISTINCT taxa.*").
+      where( "taxon_changes.change_group = ?", @group ).
+      where( "taxon_changes.type = 'TaxonSplit'" )
+    @output_taxa = swap_output_taxa.limit( limit ).to_a
+    @output_taxa += merge_output_taxa.limit( limit - @output_taxa.size ).to_a if @output_taxa.size < limit
+    @output_taxa += split_output_taxa.limit( limit - @output_taxa.size ).to_a if @output_taxa.size < limit
+    @output_taxa_counts = {
+      swap: swap_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      merge: merge_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count,
+      split: split_output_taxa.group( "CASE WHEN committed_on IS NULL THEN 'draft' ELSE 'committed' END" ).count
+    }
+    @committed_count = @taxon_changes.where( "committed_on IS NOT NULL ").total_entries
+    @uncommitted_count = @taxon_changes.where( "committed_on IS NULL ").total_entries
+    unless @output_taxa.blank?
+      @output_taxa = @output_taxa.uniq.sort_by(&:name)
+    end
+    # TODO preload taxon: {taxon_scheme_taxa: taxon_scheme}, taxon_change_taxa: { taxon: atlas }, source
+    TaxonChange.preload_associations( @taxon_changes, [
+      {
+        taxon: [
+          :taxon_schemes,
+          :taxon_ranges_without_geom,
+          :photos
+        ]
+      },
+      {
+        taxa: [
+          :taxon_schemes,
+          :atlas,
+          :taxon_ranges_without_geom,
+          :photos
+        ]
+      },
+      :source
+    ] )
+    
+    input_counts = {}
+    [
+      swap_input_taxa.pluck(:id),
+      merge_input_taxa.pluck(:id),
+      split_input_taxa.pluck(:id)
+    ].flatten.each { |id| input_counts[id] ||= 0; input_counts[id] += 1 }
+    duplicate_input_ids = input_counts.map{ |id, count| Rails.logger.debug "[id, count]: #{[id, count]}"; count > 1 ? id : nil }.compact
+    @taxa_with_multiple_changes = Taxon.where( id: duplicate_input_ids )
+
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
   end
   
   private

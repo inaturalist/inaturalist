@@ -147,25 +147,18 @@ module ObservationSearch
     end
 
     def elastic_taxon_leaf_ids(elastic_params = {})
-      results = Observation.elastic_search(elastic_params.merge(size: 0,
-        aggregate: {
-          ancestors: {
-            terms: {
-              field: "taxon.ancestor_ids", size: 0 } },
-          taxa: {
-            terms: {
-              field: "taxon.id", size: 0 } }
-        })).response.aggregations
-      # make a hash of all ancestors and how many times they
-      # are used. This will include the observations' direct taxa
-      ancestors = Hash[ results.ancestors.buckets.map{ |b| [ b["key"], b["doc_count"] ] } ]
-      # remove the number of times they were direct taxa for an observation
-      results.taxa.buckets.each do |b|
-        ancestors[ b["key"] ] -= b["doc_count"]
+      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: { species: { "taxon.id": 150000 } })).response.aggregations
+      @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] }).
+        select(:id, :ancestry)
+      ancestors = { }
+      @taxa.each do |t|
+        t.ancestor_ids.each do |aid|
+          ancestors[aid] ||= 0
+          ancestors[aid] += 1
+        end
       end
-      # any 'ancestor' now with a count of 0 has only ever been used directly,
-      # not as an ancestor of another observation, i.e. leaf node
-      leaf_ids = ancestors.select{ |k,v| v == 0 }.keys
+      @taxa.select{ |t| !ancestors[t.id] }.map(&:id)
     end
 
     # Takes a hash of query params like you'd get from an ActionController and
@@ -394,7 +387,7 @@ module ObservationSearch
         if params[:taxon_ids].size == 1
           scope = scope.of(taxon_ids.first)
         else
-          taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id)}
+          taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id) }
           if taxa.size == taxon_ids.size
             scope = scope.has_iconic_taxa(taxon_ids)
           end
@@ -540,6 +533,9 @@ module ObservationSearch
       end
 
       unless params[:updated_since].blank?
+        if params[:updated_since].is_a?( String )
+          params[:updated_since] = params[:updated_since].gsub( /\s(\d+\:\d+)$/, "+\\1" )
+        end
         if timestamp = Chronic.parse(params[:updated_since])
           if params[:aggregation_user_ids].blank?
             scope = scope.where("observations.updated_at > ?", timestamp)
@@ -609,7 +605,7 @@ module ObservationSearch
       end
       # fetch a list of every user_id whose observations match the search
       user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
-        user_observations: { "user.id": 0 }
+        user_observations: { "user.id": 100000 }
       })).response.aggregations
       user_ids = user_counts.user_observations.buckets.map{ |b| b["key"] }
       counts = [ ]

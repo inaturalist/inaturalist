@@ -69,9 +69,10 @@ class CoverImage extends React.Component {
         style={{
           width: "100%",
           minHeight: this.props.height,
-          backgroundSize: "cover",
+          backgroundSize: this.props.backgroundSize,
           backgroundPosition: "center",
-          backgroundImage: `url(${lowResUrl})`
+          backgroundRepeat: "no-repeat",
+          backgroundImage: `url('${lowResUrl}')`
         }}
       >
       </div>
@@ -84,7 +85,12 @@ CoverImage.propTypes = {
   low: PropTypes.string,
   height: PropTypes.number.isRequired,
   className: PropTypes.string,
-  lazyLoad: PropTypes.bool
+  lazyLoad: PropTypes.bool,
+  backgroundSize: PropTypes.string
+};
+
+CoverImage.defaultProps = {
+  backgroundSize: "cover"
 };
 
 export default CoverImage;

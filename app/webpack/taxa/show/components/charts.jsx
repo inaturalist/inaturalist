@@ -3,51 +3,35 @@ import ReactDOM from "react-dom";
 import _ from "lodash";
 import c3 from "c3";
 import moment from "moment";
+import { Modal } from "react-bootstrap";
+import { objectToComparable } from "../../../shared/util";
 
 class Charts extends React.Component {
-  componentDidMount( ) {
-    const domNode = ReactDOM.findDOMNode( this );
-    this.renderSeasonalityChart( );
-    $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
-      switch ( e.target.hash ) {
-        case "#charts-seasonality":
-          if ( this.seasonalityChart ) {
-            this.seasonalityChart.flush( );
-          }
-          break;
-        case "#charts-history":
-          if ( !_.isEmpty( this.props.historyColumns ) ) {
-            this.props.fetchMonthFrequency( );
-          }
-          if ( this.historyChart ) {
-            this.historyChart.flush( );
-          }
-          break;
-        case "#charts-insect-life-stage":
-          if ( this.insectLifeStageChart ) {
-            this.insectLifeStageChart.flush( );
-          }
-          break;
-        case "#charts-flowering-phenology":
-          if ( this.floweringPhenologyChart ) {
-            this.floweringPhenologyChart.flush( );
-          }
-          break;
-        default:
-          // it's cool, you probably have what you need
-      }
-    } );
+  constructor( ) {
+    super( );
+    this.state = {
+      helpModalVisible: false
+    };
   }
-  shouldComponentUpdate( nextProps ) {
+  componentDidMount( ) {
+    this.renderSeasonalityChart( );
+    this.resetChartTabEvents( );
+  }
+  shouldComponentUpdate( nextProps, nextState ) {
     if (
       _.isEqual(
-        this.objectToComparable( this.props.seasonalityColumns ),
-        this.objectToComparable( nextProps.seasonalityColumns )
+        objectToComparable( this.props.seasonalityColumns ),
+        objectToComparable( nextProps.seasonalityColumns )
       )
       &&
       _.isEqual(
-        this.objectToComparable( this.props.historyColumns ),
-        this.objectToComparable( nextProps.historyColumns )
+        objectToComparable( this.props.historyColumns ),
+        objectToComparable( nextProps.historyColumns )
+      )
+      &&
+      _.isEqual(
+        objectToComparable( this.state ),
+        objectToComparable( nextState )
       )
     ) {
       // No change in underlying data series, don't update
@@ -58,8 +42,34 @@ class Charts extends React.Component {
   componentDidUpdate( ) {
     this.renderSeasonalityChart( );
     this.renderHistoryChart( );
-    this.renderFloweringPhenologyChart( );
-    this.renderInsectLifeStageChart( );
+    this.renderFieldValueCharts( );
+    this.resetChartTabEvents( );
+  }
+  showHelpModal( ) {
+    this.setState( { helpModalVisible: true } );
+  }
+  hideHelpModal( ) {
+    this.setState( { helpModalVisible: false } );
+  }
+  resetChartTabEvents( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( "a[data-toggle=tab]", domNode ).unbind( "shown.bs.tab" );
+    $( "a[data-toggle=tab]", domNode ).bind( "shown.bs.tab", e => {
+      if ( e.target.hash === "#charts-seasonality" ) {
+        if ( this.seasonalityChart ) {
+          this.seasonalityChart.flush( );
+        }
+      } else if ( e.target.hash === "#charts-history" ) {
+        if ( this.historyChart ) {
+          this.historyChart.flush( );
+        }
+      } else {
+        const match = e.target.hash.match( /field-values-([0-9]+)$/ );
+        if ( match && this.fieldValueCharts[Number( match[1] )] ) {
+          this.fieldValueCharts[Number( match[1] )].flush( );
+        }
+      }
+    } );
   }
   defaultC3Config( ) {
     return {
@@ -101,36 +111,16 @@ class Charts extends React.Component {
       }
     };
   }
-  objectToComparable( object = {} ) {
-    return _.map( object, ( v, k ) => {
-      if ( _.isArrayLikeObject( v ) ) {
-        return `(${k}-${this.objectToComparable( v )})`;
-      }
-      return `(${k}-${v})`;
-    } ).sort( ).join( "," );
-  }
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
-    const order = [
-      "research",
-      "verifiable",
-      "Flowering Phenology=bare",
-      "Flowering Phenology=budding",
-      "Flowering Phenology=flower",
-      "Flowering Phenology=fruit",
-      "Insect life stage=egg",
-      "Insect life stage=larva",
-      "Insect life stage=teneral",
-      "Insect life stage=nymph",
-      "Insect life stage=pupa",
-      "Insect life stage=adult"
-    ];
+    const order = _.map( this.props.seasonalityColumns, c => ( c[0] ) );
     const tipRows = order.map( seriesName => {
       const item = _.find( data, series => series.name === seriesName );
       if ( item ) {
         return `
           <div class="series">
             <span class="swatch" style="background-color: ${color( item )}"></span>
-            <span class="column-label">${I18n.t( `views.taxa.show.frequency.${item.name}` )}:</span>
+            <span class="column-label">${I18n.t( `views.taxa.show.frequency.${item.name}`,
+              { defaultValue: item.name.split( "=" )[1] } )}:</span>
             <span class="value">${I18n.toNumber( item.value, { precision: 0 } )}</span>
           </div>
         `;
@@ -144,22 +134,32 @@ class Charts extends React.Component {
       </div>
     `;
   }
-  seasonalityConfigForColumns( columns ) {
+  seasonalityConfigForColumns( columns, options = { } ) {
     const that = this;
+    const pointSearchOptions = { };
+    if ( options.controlled_attribute ) {
+      pointSearchOptions.term_id = options.controlled_attribute.id;
+    }
     return _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
         columns,
         onclick: d => {
+          const searchOptions = Object.assign( { }, pointSearchOptions, { month: d.x + 1 } );
+          if ( options.labels_to_value_ids && options.labels_to_value_ids[d.id] ) {
+            searchOptions.term_value_id = options.labels_to_value_ids[d.id];
+          }
           that.seasonalityChart.unselect( ["verifiable", "research"] );
-          that.props.openObservationsSearch( {
-            month: d.x + 1
-          } );
+          that.props.openObservationsSearch( searchOptions );
         }
       },
       axis: {
         x: {
           type: "category",
-          categories: this.props.seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) )
+          categories: this.props.seasonalityKeys.map( i =>
+            I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) ),
+          tick: {
+            multiline: false
+          }
         }
       },
       tooltip: {
@@ -178,30 +178,27 @@ class Charts extends React.Component {
     const mountNode = $( "#SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
-  renderInsectLifeStageChart( ) {
-    const columns = _.filter( this.props.seasonalityColumns, column => column[0].match( /Insect/ ) );
-    const config = this.seasonalityConfigForColumns( columns );
-    config.data.types = {};
-    for ( let i = 0; i < columns.length; i++ ) {
-      config.data.types[columns[i][0]] = "area-spline";
-    }
-    // config.data.groups = [columns.map( column => column[0] )];
-    config.data.order = null;
-    const mountNode = $( "#InsectLifeStageChart", ReactDOM.findDOMNode( this ) ).get( 0 );
-    this.insectLifeStageChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
-  }
-  renderFloweringPhenologyChart( ) {
-    const columns = _.filter( this.props.seasonalityColumns, column => column[0].match( /Flowering/ ) );
-    const config = this.seasonalityConfigForColumns( columns );
-    config.data.types = {};
-    for ( let i = 0; i < columns.length; i++ ) {
-      config.data.types[columns[i][0]] = "area-spline";
-    }
-    // config.data.groups = [columns.map( column => column[0] )];
-    config.data.order = null;
-    // config.point = { show: false };
-    const mountNode = $( "#FloweringPhenologyChart", ReactDOM.findDOMNode( this ) ).get( 0 );
-    this.floweringPhenologyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
+  renderFieldValueCharts( ) {
+    this.fieldValueCharts = this.fieldValueCharts || { };
+    if ( !this.props.chartedFieldValues ) { return; }
+    _.each( this.props.chartedFieldValues, ( values, termID ) => {
+      const columns = _.filter( this.props.seasonalityColumns, column =>
+        _.startsWith( column[0], `${values[0].controlled_attribute.label}=` ) );
+      const labelsToValueIDs = _.fromPairs( _.map( values, v => (
+        [`${v.controlled_attribute.label}=${v.controlled_value.label}`,
+          v.controlled_value.id] ) ) );
+      const config = this.seasonalityConfigForColumns( columns, {
+        controlled_attribute: values[0].controlled_attribute,
+        labels_to_value_ids: labelsToValueIDs } );
+      config.data.types = { };
+      for ( let i = 0; i < columns.length; i++ ) {
+        config.data.types[columns[i][0]] = "area-spline";
+      }
+      config.data.order = null;
+      const mountNode = $( `#FieldValueChart${termID}`, ReactDOM.findDOMNode( this ) ).get( 0 );
+      this.fieldValueCharts[termID] = c3.generate(
+        Object.assign( { bindto: mountNode }, config ) );
+    } );
   }
   renderHistoryChart( ) {
     const dates = this.props.historyKeys;
@@ -257,61 +254,40 @@ class Charts extends React.Component {
   render( ) {
     const noHistoryData = _.isEmpty( this.props.historyKeys );
     const noSeasonalityData = _.isEmpty( this.props.seasonalityKeys );
-    const showLifeStage = _.find( this.props.seasonalityColumns, column => column[0].match( /Insect/ ) );
-    const insectLifeStageTab = (
-      <li role="presentation">
-        <a
-          href="#charts-insect-life-stage"
-          aria-controls="charts-insect-life-stage"
-          role="tab"
-          data-toggle="tab"
-          style={{ display: showLifeStage ? "block" : "none" }}
-        >
-          { I18n.t( "insect_life_stage" ) }
-        </a>
-      </li>
-    );
-    const insectLifeStagePanel = (
-      <div role="tabpanel" className="tab-pane" id="charts-insect-life-stage">
-        <div
-          className={
-            `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
-          }
-        >
-          { I18n.t( "no_observations_yet" ) }
-        </div>
-        <div id="InsectLifeStageChart" className="SeasonalityChart FrequencyChart">
-        </div>
-      </div>
-    );
-    const showFlowering = _.find( this.props.seasonalityColumns, column => column[0].match( /Flowering/ ) );
-    const floweringPhenologyTab = (
-      <li role="presentation">
-        <a
-          href="#charts-flowering-phenology"
-          aria-controls="charts-flowering-phenology"
-          role="tab"
-          data-toggle="tab"
-          style={{ display: showFlowering ? "block" : "none" }}
-        >
-          { I18n.t( "flowering_phenology" ) }
-        </a>
-      </li>
-    );
-    const floweringPhenologyPanel = (
-      <div role="tabpanel" className="tab-pane" id="charts-flowering-phenology">
-        <div
-          className={
-            `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
-          }
-        >
-          { I18n.t( "no_observations_yet" ) }
-        </div>
-        <div id="FloweringPhenologyChart" className="SeasonalityChart FrequencyChart">
-        </div>
-      </div>
-    );
-    // }
+    let fieldValueTabs = [];
+    let fieldValuePanels = [];
+    if ( this.props.chartedFieldValues ) {
+      _.each( this.props.chartedFieldValues, ( values, termID ) => {
+        fieldValueTabs.push( (
+          <li role="presentation" key={ `charts-field-values-${termID}` }>
+            <a
+              href={ `#charts-field-values-${termID}` }
+              aria-controls={ `charts-field-values-${termID}` }
+              role="tab"
+              data-toggle="tab"
+            >
+              { I18n.t( _.snakeCase( values[0].controlled_attribute.label ),
+                { defaultValue: values[0].controlled_attribute.label } ) }
+            </a>
+          </li>
+        ) );
+        fieldValuePanels.push( (
+          <div role="tabpanel" className="tab-pane" id={ `charts-field-values-${termID}` }
+            key={ `charts-field-values-${termID}` }
+          >
+            <div
+              className={
+                `no-content text-muted text-center ${noSeasonalityData ? "" : "hidden"}`
+              }
+            >
+              { I18n.t( "no_observations_yet" ) }
+            </div>
+            <div id={ `FieldValueChart${termID}` } className="SeasonalityChart FrequencyChart">
+            </div>
+          </div>
+        ) );
+      } );
+    }
     return (
       <div id="charts" className="Charts">
         <ul className="nav nav-tabs" role="tablist">
@@ -335,8 +311,15 @@ class Charts extends React.Component {
               { I18n.t( "history" ) }
             </a>
           </li>
-          { insectLifeStageTab }
-          { floweringPhenologyTab }
+          { fieldValueTabs }
+          <li role="presentation" className="pull-right">
+            <button
+              className="btn btn-link help-btn"
+              onClick={ ( ) => this.showHelpModal( ) }
+            >
+              <i className="fa fa-question-circle"></i>
+            </button>
+          </li>
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="charts-seasonality">
@@ -360,15 +343,38 @@ class Charts extends React.Component {
             </div>
             <div id="HistoryChart" className="HistoryChart FrequencyChart"></div>
           </div>
-          { insectLifeStagePanel }
-          { floweringPhenologyPanel }
+          { fieldValuePanels }
         </div>
+        <Modal
+          id="ChartsHelpModal"
+          show={ this.state.helpModalVisible }
+          onHide={ ( ) => this.hideHelpModal( ) }
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>{ I18n.t( "about_charts" ) }</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>{ I18n.t( "seasonality" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_seasonality" ) }
+            </p>
+            <h4>{ I18n.t( "history" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_history" ) }
+            </p>
+            <h4>{ I18n.t( "other" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_other" ) }
+            </p>
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }
 }
 
 Charts.propTypes = {
+  chartedFieldValues: PropTypes.object,
   fetchMonthOfYearFrequency: PropTypes.func,
   fetchMonthFrequency: PropTypes.func,
   openObservationsSearch: PropTypes.func,
@@ -384,16 +390,6 @@ Charts.defaultProps = {
   colors: {
     research: "#74ac00",
     verifiable: "#dddddd"
-    // "Flowering Phenology=bare": "#fecc5c",
-    // "Flowering Phenology=budding": "#f03b20",
-    // "Flowering Phenology=flower": "#bd0026",
-    // "Flowering Phenology=fruit": "#fd8d3c",
-    // "Insect life stage=egg": "#d4b9da",
-    // "Insect life stage=larva": "#c994c7",
-    // "Insect life stage=teneral": "#df65b0",
-    // "Insect life stage=nymph": "#e7298a",
-    // "Insect life stage=pupa": "#ce1256",
-    // "Insect life stage=adult": "#91003f"
   }
 };
 

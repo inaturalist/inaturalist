@@ -719,7 +719,8 @@ iNaturalist.OverlayControl.prototype.removeOverlayControl = function(title) {
 }
 
 iNaturalist.OverlayControl.prototype.removeAll = function( ) {
-  $("li[data-title]", this.div).remove()
+  $("li[data-title]", this.div).remove( );
+  $("li[data-taxon-id]", this.div).remove( );
 }
 
 // Given an array of wax.g map layers (overlayMapTypes), add a single
@@ -984,6 +985,7 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
 google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
   var layer = new wax.g.connector( tilejson );
+  layer.title = options.title;
   var layerID = this.overlayMapTypes.push( layer );
   if( options.interactivity ) {
     layer.interactivity = this.addTileInteractivity( tilejson, layerID );
@@ -1040,6 +1042,9 @@ google.maps.Map.prototype.removeAllLayers = function( ) {
       this._overlayControl.removeOverlayControl(title)
     }
   }
+  if ( this._overlayControl ) {
+    this._overlayControl.removeAll( );
+  }
 }
 
 google.maps.Map.prototype.removeObservationsLayer = function(title) {
@@ -1047,7 +1052,6 @@ google.maps.Map.prototype.removeObservationsLayer = function(title) {
     if( this.overlayMapTypes.getAt(i).title == title ) {
       this.overlayMapTypes.getAt(i).interactivity.remove();
       this.overlayMapTypes.removeAt(i);
-      // this.overlayMapTypes.setAt( i, emptyLayer);
       if( this._overlayControl ) {
         this._overlayControl.removeOverlayControl(title)
       } 
@@ -1084,7 +1088,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
     'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
     'taxon_ids', 'changed_fields', 'changed_since', 'change_project_id',
-    'not_in_place' ];
+    'not_in_place', 'unobserved_by_user_id', 'radius' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(

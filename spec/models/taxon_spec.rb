@@ -102,6 +102,12 @@ describe Taxon, "creation" do
     @taxon.save
     expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
   end
+
+  it "should create TaxonAncestors" do
+    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
+    t.reload
+    expect( t.taxon_ancestors ).not_to be_blank
+  end
 end
 
 describe Taxon, "updating" do
@@ -118,7 +124,7 @@ describe Taxon, "updating" do
     o = Observation.make!
     p = Photo.make!
     t.photos << p
-    o.photos << p
+    make_observation_photo( observation: o, photo: p )
     t.photos = [Photo.make!]
     o.reload
     expect(o.photos).not_to be_blank
@@ -776,11 +782,11 @@ describe Taxon, "moving" do
   it "should queue a job to update observation stats if there are observations" do
     Delayed::Job.delete_all
     stamp = Time.now
-    o = Observation.make!(:taxon => @Calypte)
-    expect(Observation.of(@Calypte).count).to eq(1)
-    @Calypte.update_attributes(:parent => @Hylidae)
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}).not_to be_blank
+    o = Observation.make!( taxon: @Calypte )
+    expect( Observation.of( @Calypte ).count ).to eq 1
+    @Calypte.update_attributes( parent: @Hylidae )
+    jobs = Delayed::Job.where( "created_at >= ?", stamp )
+    expect( jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m} ).not_to be_blank
   end
 
   it "should not queue a job to update observation stats if there are no observations" do
@@ -809,6 +815,22 @@ describe Taxon, "moving" do
     end
     o.reload
     expect(o.taxon).to eq subfam
+  end
+
+  it "should create TaxonAncestors" do
+    t = Taxon.make!( rank: Taxon::SPECIES, name: "Ronica vestrit" )
+    expect( t.taxon_ancestors.count ).to eq 1 # should always make one for itself
+    t.move_to_child_of( @Calypte )
+    t.reload
+    expect( t.taxon_ancestors.count ).to be > 1
+    expect( t.taxon_ancestors.detect{ |ta| ta.ancestor_taxon_id == @Calypte.id } ).not_to be_blank
+  end
+
+  it "should remove existing TaxonAncestors" do
+    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
+    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 1
+    t.move_to_child_of( @Pseudacris )
+    expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 0
   end
   
 end
@@ -1078,5 +1100,23 @@ describe Taxon, "get_gbif_id" do
     expect { t.get_gbif_id }.not_to raise_error
     expect( t.get_gbif_id ).to_not be_blank
     expect( t.taxon_scheme_taxa ).to be_blank
+  end
+end
+
+describe "rank helpers" do
+  describe "find_species" do
+    it "should return self of the taxon is a species" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      expect( t.species ).to eq t
+    end
+    it "should return the parent if the taxon is a subspecies" do
+      species = Taxon.make!( rank: Taxon::SPECIES )
+      subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, parent: species )
+      expect( subspecies.species ).to eq species
+    end
+    it "should return nil if the taxon is a hybrid" do
+      hybrid = Taxon.make!( name: "Viola × palmata", rank: Taxon::HYBRID )
+      expect( hybrid.species ).to be_nil
+    end
   end
 end

@@ -4,10 +4,11 @@
 # just lists of taxa that interest them for some reason.
 #
 class List < ActiveRecord::Base
-  acts_as_spammable fields: [ :title, :description ],
+  acts_as_spammable fields: [:title, :description],
                     comment_type: "item-description",
                     automated: false
   belongs_to :user
+  has_one :check_list_place, class_name: "Place", foreign_key: :check_list_id
   has_many :rules, :class_name => 'ListRule', :dependent => :destroy
   has_many :listed_taxa, :dependent => :destroy
   has_many :taxa, :through => :listed_taxa
@@ -112,14 +113,10 @@ class List < ActiveRecord::Base
   #where date represents the first date observed (e.g. not first date added to iNat)
   def cache_columns_options(lt)
     lt = ListedTaxon.find_by_id(lt) unless lt.is_a?(ListedTaxon)
-    return nil unless lt
-    options = { search_params: {
-      where: { "taxon.ancestor_ids": lt.taxon_id } } }
-    if user_id
-      options[:search_params][:where]["user.id"] = user_id
-    end
-    options
-
+    return nil unless lt && lt.taxon_id
+    filters = [ { term: { "taxon.ancestor_ids": lt.taxon_id } } ]
+    filters << { term: { "user.id": user_id } } if user_id
+    { filters: filters }
   end
   
   def attribution
@@ -250,7 +247,7 @@ class List < ActiveRecord::Base
     # anyway, so it seems like duplication.
     target_lists = if options[:taxa]
       user.lists.joins(:listed_taxa).
-        where([ "listed_taxa.taxon_id in (?) OR type = ?", options[:taxa], LifeList.to_s ])
+        where(["listed_taxa.taxon_id in (?) OR type = ?", options[:taxa], LifeList.to_s])
     else
       user.lists.all
     end

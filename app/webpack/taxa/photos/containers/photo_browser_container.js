@@ -16,35 +16,26 @@ function mapStateToProps( state ) {
     layout: state.config.layout,
     grouping: state.config.grouping,
     groupedPhotos: state.photos.groupedPhotos,
-    params: state.photos.observationParams
+    params: state.photos.observationParams,
+    place: state.config.chosenPlace
   };
-  props.terms = state.taxon.terms.map( term => {
-    const newTerm = Object.assign( { }, term );
-    const paramName = `field:${term.name}`;
-    const param = _.find( state.photos.observationParams, ( v, k ) => ( k === paramName ) );
-    if ( param ) {
-      newTerm.selectedValue = state.photos.observationParams[paramName];
-    }
-    return newTerm;
-  } );
-  if ( state.photos.observationPhotos && state.photos.observationPhotos.length > 0 ) {
-    let observationPhotos = [];
-    if ( state.taxon.taxon.rank_level <= 10 ) {
-      // For species and lower, show all photos
-      observationPhotos = state.photos.observationPhotos;
-    } else {
-      // For taxa above species, show one photo per observation
-      const obsPhotoHash = {};
-      for ( let i = 0; i < state.photos.observationPhotos.length; i++ ) {
-        const observationPhoto = state.photos.observationPhotos[i];
-        if ( !obsPhotoHash[observationPhoto.observation.id] ) {
-          obsPhotoHash[observationPhoto.observation.id] = true;
-          observationPhotos.push( observationPhoto );
-        }
+  props.terms = Object.assign( { }, state.taxon.fieldValues || { } );
+  // set props for selected term/value
+  if ( props.params.term_id && props.params.term_value_id ) {
+    const match = props.terms[props.params.term_id];
+    if ( match && match.length > 0 ) {
+      const valueMatch = _.find( match, m => (
+        m.controlled_value.id === Number( props.params.term_value_id )
+      ) );
+      if ( valueMatch && match ) {
+        props.selectedTerm = match[0].controlled_attribute;
+        props.selectedTermValue = valueMatch.controlled_value;
       }
     }
+  }
+  if ( state.photos.observationPhotos && state.photos.observationPhotos.length > 0 ) {
     return Object.assign( props, {
-      observationPhotos,
+      observationPhotos: state.photos.observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
   } else if ( state.photos.observationPhotos ) {
@@ -73,8 +64,12 @@ function mapDispatchToProps( dispatch ) {
       dispatch( setConfigAndUrl( { layout } ) );
     },
     setTerm: ( term, value ) => {
-      const key = `field:${term}`;
-      dispatch( updateObservationParamsAndUrl( { [key]: value === "any" ? null : value } ) );
+      const clear = ( value === "any" );
+      dispatch( setConfigAndUrl( { grouping: { } } ) );
+      dispatch( updateObservationParamsAndUrl( {
+        term_id: clear ? null : term,
+        term_value_id: clear ? null : value
+      } ) );
       dispatch( reloadPhotos( ) );
     },
     setGrouping: ( param, values ) => {

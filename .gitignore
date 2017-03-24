@@ -56,7 +56,5 @@ xmp.xml
 
 config/environments/development.rb
 
-app/assets/javascripts/observations-identify-webpack.js
-app/assets/javascripts/observations-uploader-webpack.js
-app/assets/javascripts/project-slideshow-webpack.js
+app/assets/javascripts/*-webpack.js
 

@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import _ from "lodash";
 import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
 
 class PlaceChooser extends React.Component {
@@ -26,14 +27,14 @@ class PlaceChooser extends React.Component {
   }
 
   render( ) {
-    let displayLink = <a onClick={ ( ) => this.toggle( ) }>Customize Location</a>;
+    let displayLink = <a onClick={ ( ) => this.toggle( ) }>{ I18n.t( "customize_location" ) }</a>;
     if ( this.props.place ) {
       displayLink = (
         <a
           className="display"
           onClick={ ( ) => this.toggle( ) }
         >
-          { this.props.place.display_name }
+          { I18n.t( `places_name.${_.snakeCase( this.props.place.name )}` ) }
         </a>
       );
     }

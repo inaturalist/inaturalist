@@ -1,0 +1,41 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "font-awesome"
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "controlled_terms/form"
+
+- content_for :delayed_js do
+  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+  = javascript_include_tag "//getbootstrap.com/dist/js/bootstrap.min.js"
+
+%h2 Controlled Terms
+
+
+%h3
+  Attributes
+%ul
+  - attrs = ControlledTerm.attributes.order(id: :asc)
+  - if attrs.any?
+    - attrs.each do |ct|
+      = render partial: "term", locals: { term: ct }
+      - if ct.values.any?
+        %ul
+          - ct.values.each do |cv|
+            = render partial: "term", locals: { term: cv }
+  - else
+    None yet
+
+%hr
+%h3
+  Unassigned Values
+%ul
+  - vals = ControlledTerm.unassigned_values.order(id: :asc)
+  - if vals.any?
+    - vals.each do |ct|
+      = render partial: "term", locals: { term: ct }
+  - else
+    None yet
+
+%hr
+
+%h3 Create a new term
+= render partial: "form"

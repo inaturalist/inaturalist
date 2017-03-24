@@ -1,0 +1,139 @@
+- content_for( :title ) do
+  = @title = "#{@group} Taxon Change Group"
+- content_for( :extrajs ) do
+  :javascript
+    $( document ).ready( function( ) {
+      $( ".grafting_link" )
+        .bind( "ajax:success", function( e, json, status ) {
+          $( this ).text( json.msg ).addClass( "success status" )
+        })
+        .bind( "ajax:error", function( event, request, settings ) {
+          try {
+            var json = $.parseJSON( request.responseText )
+            if ( json ) {
+              alert( json.error );
+              return;
+            }
+          } catch ( e ) {
+            console.log( "Failed to graft: ", e );
+          }
+          alert( "Failed to graft, try editing the taxon and choosing a parent manually." );
+        } );
+      $( ".taxon-table" ).dataTable( {
+        bPaginate: false,
+        bFilter: false,
+        paging: false,
+        info: false,
+        "aoColumns": [
+          { "orderSequence": ["asc", "desc"] },
+          { "orderSequence": ["desc", "asc"] },
+          { "bSortable": false }
+        ],
+      } )
+    } )
+.container
+  .row
+    .col-xs-12
+      - unless @taxa_with_multiple_changes.blank?
+        .alert.alert-warning
+          %p
+            Heads up: the following taxa are the inputs for multiple changes... which shouldn't be the case, since that means they'll be swapped twice or split twice, etc. Please fix this before committing.
+          %ul
+            - for taxon in @taxa_with_multiple_changes
+              %li
+                = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
+                = link_to t(:view_changes), taxon_changes_path( taxon_id: taxon.id, change_group: @group)
+      %h2= @title
+  .row
+    .col-xs-12
+      %h3 Summary Stats
+      %table.table
+        %thead
+          %tr
+            %th
+            %th= t(:draft).upcase
+            %th= t(:committed).upcase
+            %th= t(:total).upcase
+        %tbody
+          %tr
+            %th=t :taxon_change_count
+            %td= link_to @uncommitted_count, taxon_changes_path( filters: { committed: "No", change_group: @group } )
+            %td= link_to @committed_count, taxon_changes_path( filters: { committed: "Yes", change_group: @group } )
+            %td= link_to @taxon_changes.total_entries, taxon_changes_path( filters: { change_group: @group } )
+          %tr
+            %th=t :taxa_swapped
+            %td= link_to @input_taxa_counts[:swap]["draft"].to_i, taxon_changes_path( filters: { committed: "No", swap: 1, change_group: @group } )
+            %td= link_to @input_taxa_counts[:swap]["committed"].to_i, taxon_changes_path( filters: { committed: "Yes", swap: 1, change_group: @group } )
+            %td= link_to @input_taxa_counts[:swap].values.map(&:to_i).sum, taxon_changes_path( filters: { swap: 1, change_group: @group } )
+          %tr
+            %th=t :taxa_merged
+            %td= link_to @input_taxa_counts[:merge]["draft"].to_i, taxon_changes_path( filters: { change_group: @group, swap: 1, committed: "No" } )
+            %td= link_to @input_taxa_counts[:merge]["committed"].to_i, taxon_changes_path( filters: { change_group: @group, swap: 1, committed: "Yes" } )
+            %td= link_to @input_taxa_counts[:merge].values.map(&:to_i).sum, taxon_changes_path( filters: { change_group: @group, swap: 1 } )
+          %tr
+            %th=t :taxa_split
+            %td= link_to @input_taxa_counts[:split]["draft"].to_i, taxon_changes_path( filters: { change_group: @group, split: 1, committed: "No" } )
+            %td= link_to @input_taxa_counts[:split]["committed"].to_i, taxon_changes_path( filters: { change_group: @group, split: 1, committed: "Yes" } )
+            %td= link_to @input_taxa_counts[:split].values.map(&:to_i).sum, taxon_changes_path( filters: { change_group: @group, split: 1 } )
+  .row
+    .col-xs-6
+      %h3 Input Taxa (swapped, merged, or split)
+      %p
+        Showing
+        = @input_taxa.size
+        of
+        = succeed "." do
+          = @input_taxa_counts.map{|type, groups| groups.values.map(&:to_i)}.flatten.sum
+        See taxon changes for all taxa.
+      %table.table.taxon-table.leaderboard-container
+        %thead
+          %tr
+            %th= t(:taxon).upcase
+            %th= t(:obs).upcase
+            %th= t(:actions).upcase
+        %tbody.taxon_links
+          - for taxon in @input_taxa
+            %tr
+              %td= render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
+              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon.id )
+              %td= link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id, change_group: @group ), class: "btn btn-link btn-xs"
+    .col-xs-6
+      %h3 Output Taxa (created / activated)
+      %p
+        Showing
+        = @output_taxa.size
+        of
+        = succeed "." do
+          = @output_taxa_counts.map{|type, groups| groups.values.map(&:to_i)}.flatten.sum
+        See taxon changes for all taxa.
+      %table.table.taxon-table.leaderboard-container
+        %thead
+          %tr
+            %th= t(:taxon).upcase
+            %th= t(:obs).upcase
+            %th= t(:actions).upcase
+        %tbody.taxon_links
+          - for taxon in @output_taxa
+            %tr
+              %td
+                = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true, no_common: true
+              %td.text-right= link_to taxon.observations_count, observations_url( taxon_id: taxon.id )
+              %td
+                - if is_curator? && !taxon.grafted?
+                  = link_to t(:graft), graft_taxon_path( taxon, format: "json" ), 
+                    id: "grafting_link_#{taxon.id}",
+                    class: "grafting_link btn btn-default btn-xs",
+                    remote: true,
+                    method: "patch",
+                    "data-type" => "json",
+                    "data-loading-click" => "Grafting..."
+                = link_to t(:view_changes), taxon_changes_url( taxon_id: taxon.id, change_group: @group ), class: "btn btn-link btn-xs"
+  .row
+    .col-xs-12
+      %h3=t :taxon_changes
+      - if @taxon_changes.empty?
+        %p.description= t :no_taxonomic_changes_match_those_criteria
+      - for taxon_change in @taxon_changes
+        = render "show_change_taxon", show_change_taxon: taxon_change
+      - if @taxon_changes.total_pages > 1
+        = link_to t( :view_all_n, n: @taxon_changes.total_entries ), taxon_changes_path( change_group: @group ), class: "btn btn-primary"

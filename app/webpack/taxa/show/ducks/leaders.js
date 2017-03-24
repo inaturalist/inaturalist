@@ -1,18 +1,24 @@
 import inatjs from "inaturalistjs";
 import {
   fetchRecentObservations,
-  fetchFirstObservation
+  fetchLastObservation
 } from "./observations";
 import { defaultObservationParams } from "../../shared/util";
 
 const SET_LEADER = "taxa-show/leaders/SET_LEADER";
+const RESET_STATE = "taxa-show/leaders/RESET_STATE";
+
+const INITIAL_STATE = { topObserver: {}, topIdentifier: {}, firstObserver: {}, topSpecies: {} };
 
 export default function reducer(
-  state = { topObserver: {}, topIdentifier: {}, firstObserver: {}, topSpecies: {} },
+  state = INITIAL_STATE,
   action
 ) {
-  const newState = Object.assign( {}, state );
+  let newState = Object.assign( {}, state );
   switch ( action.type ) {
+    case RESET_STATE:
+      newState = INITIAL_STATE;
+      break;
     case SET_LEADER:
       newState[action.key] = action.leader;
       break;
@@ -20,6 +26,10 @@ export default function reducer(
       // leave it alone
   }
   return newState;
+}
+
+export function resetLeadersState( ) {
+  return { type: RESET_STATE };
 }
 
 export function setLeader( key, leader ) {
@@ -39,7 +49,10 @@ export function fetchTopObserver( ) {
 
 export function fetchTopIdentifier( ) {
   return function ( dispatch, getState ) {
-    return inatjs.observations.identifiers( defaultObservationParams( getState( ) ) )
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      own_observation: false
+    } );
+    return inatjs.identifications.identifiers( params )
       .then( response => dispatch( setLeader( "topIdentifier", response.results[0] ) ) );
   };
 }
@@ -72,7 +85,7 @@ export function fetchLeaders( selectedTaxon ) {
       dispatch( fetchTopObserver( ) ),
       dispatch( fetchTopIdentifier( ) ),
       dispatch( fetchRecentObservations( taxon ) ),
-      dispatch( fetchFirstObservation( taxon ) )
+      dispatch( fetchLastObservation( taxon ) )
     ];
     if ( taxon.rank_level <= 10 ) {
       promises.push( dispatch( fetchFirstObserver( taxon ) ) );

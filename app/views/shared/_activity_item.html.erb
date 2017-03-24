@@ -82,12 +82,12 @@
       elsif item.respond_to?(:description) && item.description
         item.description
       end -%>
-    <% if text -%>
+    <% unless text.blank? -%>
       <div class="readable body">
         <%- if context_around && context = text.context_of_pattern(context_around) %>
           <%= formatted_user_text(context) %>
         <% else -%>
-          <%= formatted_user_text(text) %>
+          <%= formatted_user_text( text, tags: Observation::ALLOWED_DESCRIPTION_TAGS ) %>
         <% end -%>
       </div>
     <% end -%>

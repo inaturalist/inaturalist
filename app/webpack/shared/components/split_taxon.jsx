@@ -10,13 +10,16 @@ const SplitTaxon = ( {
   displayClassName,
   forceRank,
   showIcon,
-  truncate
+  truncate,
+  onClick
 } ) => {
   const LinkElement = url ? "a" : "span";
   let title = "";
   if ( taxon ) {
-    if ( taxon.rank_level > 10 ) {
-      title += _.capitalize( taxon.rank );
+    if ( taxon.rank && taxon.rank_level > 10 ) {
+      title += _.capitalize(
+        I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } )
+      );
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
@@ -60,6 +63,7 @@ const SplitTaxon = ( {
           className={`comname display-name ${displayClassName || ""}`}
           href={ url }
           target={ target }
+          onClick={ onClick }
         >
           { truncateText( taxon.preferred_common_name ) }
         </LinkElement>
@@ -71,6 +75,7 @@ const SplitTaxon = ( {
             <LinkElement
               className={`noname display-name ${displayClassName || ""}`}
               href={ url }
+              onClick={ onClick }
               target={ target }
             >
               { I18n.t( "unknown" ) }
@@ -84,6 +89,7 @@ const SplitTaxon = ( {
         <LinkElement
           className={`noname display-name ${displayClassName || ""}`}
           href={ url }
+          onClick={ onClick }
           target={ target }
         >
           { I18n.t( "unknown" ) }
@@ -97,10 +103,10 @@ const SplitTaxon = ( {
       return null;
     }
     const taxonRank = ( ) => {
-      if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank_level > 10 ) {
+      if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
         return (
           <span className="rank">
-            { _.capitalize( taxon.rank ) }
+            { _.capitalize( I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) ) }
           </span>
         );
       }
@@ -110,14 +116,40 @@ const SplitTaxon = ( {
     if ( !taxon.preferred_common_name ) {
       sciNameClass += ` display-name ${displayClassName || ""}`;
     }
+    let name = taxon.name;
+    if ( taxon.rank_level < 10 ) {
+      const namePieces = name.split( " " );
+      let rankPiece;
+      if ( taxon.rank === "variety" ) {
+        rankPiece = "var.";
+      } else if ( taxon.rank === "subspecies" ) {
+        rankPiece = "ssp.";
+      } else if ( taxon.rank === "form" ) {
+        rankPiece = "f.";
+      }
+      if ( rankPiece ) {
+        name = (
+          <span>
+            {
+              namePieces.slice( 0, namePieces.length - 1 ).join( " " )
+            } <span className="rank">
+              { rankPiece }
+            </span> {
+              namePieces[namePieces.length - 1]
+            }
+          </span>
+        );
+      }
+    }
     return (
       <LinkElement
         className={sciNameClass}
         href={ url }
+        onClick={ onClick }
         target={ target }
       >
         { taxonRank( ) }
-        { truncateText( taxon.name ) }
+        { truncateText( name ) }
       </LinkElement>
     );
   };
@@ -154,7 +186,8 @@ SplitTaxon.propTypes = {
   displayClassName: PropTypes.string,
   forceRank: PropTypes.bool,
   showIcon: PropTypes.bool,
-  truncate: PropTypes.number
+  truncate: PropTypes.number,
+  onClick: PropTypes.func
 };
 SplitTaxon.defaultProps = {
   target: "_self"

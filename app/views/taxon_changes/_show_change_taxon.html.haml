@@ -1,0 +1,83 @@
+:ruby
+  taxon_change ||= show_change_taxon || @taxon_change
+  hide_buttons ||= false
+  hide_title ||= false
+  show_change_links ||= false
+  show_commit_button ||= false
+.taxon_change
+  - unless hide_buttons
+    .pull-right.inline.buttonrow
+      = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-default"
+      - if taxon_change.editable_by?(current_user)
+        = link_to t(:edit), edit_taxon_change_path(taxon_change), :class => "btn btn-default"
+        - if show_commit_button && !taxon_change.committed?
+          = link_to t(:commit), taxon_change_commit_path(taxon_change),    |
+            :data => {                                                     |
+              :confirm => t(:are_you_sure_you_want_to_commit_this_change), |
+              :loading_click => t(:committing)                             |
+            },                                                             |
+            :method => :put,                                               |
+            :class => "btn btn-primary"                             |
+  - unless hide_title
+    %h2
+      = link_to image_tag("#{taxon_change.class.name.underscore}-aaaaaa-48px.png", :style => "vertical-align:middle;"), taxon_change
+      = link_to "Taxonomic #{taxon_change.class.name.split('Taxon')[1]} #{taxon_change.id}", taxon_change_path(taxon_change)
+      = "(#{taxon_change.committed_on.blank? ? t(:draft_) : t(:committed) + ' ' + t(:on_) + ' ' + l(taxon_change.committed_on)})"
+  .meta.ui.stacked
+    - unless taxon_change.description.blank?
+      .meta.stacked.ui
+        = formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+    .meta
+      %label
+        = t :source
+        \:
+      - if taxon_change.source
+        - if taxon_change.source.url
+          = link_to truncate(taxon_change.source.title, :length => 40), taxon_change.source.url
+        - elsif taxon_change.source
+          = taxon_change.source.title
+        = surround "(", ")" do
+          = link_to_dialog t(:citation), title: "#{t(:citation)} #{t(:for)} #{taxon_change.class.name.underscore.titleize} #{taxon_change.id}" do
+            = citation_for taxon_change.source
+      - else
+        = t(:unknown).downcase
+      - unless taxon_change.change_group.blank?
+        |
+        %label
+          = t :group
+          \:
+        = link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group)
+    - if taxon_change.user
+      %label= t :added_by
+      = link_to taxon_change.user.login, taxon_change.user
+      = t :on_
+      = taxon_change.created_at.to_date
+    - if taxon_change.committed? && taxon_change.committer
+      |
+      %label= t(:committed) + ' ' + t(:by).downcase
+      = link_to taxon_change.committer.login, taxon_change.committer
+      = t(:on_) + ' ' + l(taxon_change.committed_on)
+  %table.taxon-change-table{ border: 0, cellpadding: 5, cellspacing: 5 }
+    %tr
+      %td
+        %ul.change_taxon
+          - for change_taxon in taxon_change.input_taxa
+            %li
+              = render :partial => 'taxon_changes/change_taxon', :object => change_taxon, :locals => {:taxon_change => taxon_change}
+      %td.mergetype
+        - case taxon_change.class.name when "TaxonSplit"
+          = t("change_types.split_into")
+        - when "TaxonMerge"
+          = t("change_types.merge_into")
+        - when "TaxonSwap"
+          = t("change_types.replace_with")
+        - when "TaxonDrop"
+          = t("change_types.dropped")
+        - when "TaxonDrop"
+          = t("change_types.staged")
+      %td
+        %ul.change_taxon
+          - unless taxon_change.class.name == "TaxonDrop" || taxon_change.class.name == "TaxonStage"
+            - for change_taxon in taxon_change.output_taxa
+              %li
+                = render partial: "taxon_changes/change_taxon", object: change_taxon, locals: { taxon_change: taxon_change, show_change_links: show_change_links, show_atlas_alert: true }

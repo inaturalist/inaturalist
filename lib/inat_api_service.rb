@@ -24,6 +24,10 @@ module INatAPIService
     return INatAPIService.get("/observations/species_counts", params)
   end
 
+  def self.observations_popular_field_values(params={})
+    return INatAPIService.get("/observations/popular_field_values", params)
+  end
+
   def self.get_json( path, params = {}, retries = 3 )
     url = INatAPIService::ENDPOINT + path;
     unless params.blank? || !params.is_a?(Hash)

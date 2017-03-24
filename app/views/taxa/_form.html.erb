@@ -17,7 +17,8 @@
       <% end -%>
     </div>
     <div class="column span-8">
-      <%= f.text_field :rank, :class => "text", :required => true %>
+      <%= f.select :rank, Taxon::RANK_LEVELS.keys.reject {|r| r === "root" },
+        { allow_blank: true }, { class: "text", required: true } %>
     </div>
     
     <div class="last column span-8">

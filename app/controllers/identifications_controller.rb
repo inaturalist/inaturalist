@@ -26,6 +26,8 @@ class IdentificationsController < ApplicationController
       search_params[:current] = "true"
     elsif params[:current].noish?
       search_params[:current] = "false"
+    else
+      search_params[:current] = "any"
     end
     if params[:for] == "others"
       search_params[:own_observation] = "false"
@@ -67,7 +69,7 @@ class IdentificationsController < ApplicationController
       ]
     end
     result = Observation.elastic_search(
-      complex_wheres: [ { nested: {
+      filters: [ { nested: {
         path: "non_owner_ids",
         query: { bool: { must: [ user_filter, date_filters ].flatten.compact } }
       } } ],

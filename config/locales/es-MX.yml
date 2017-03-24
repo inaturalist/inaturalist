@@ -694,7 +694,7 @@ es-MX:
     galería
   choose_place: Escoge un lugar
   choose_rule: Escoge una regla
-  choose_subjects: Elije sujetos
+  choose_subjects: Elige sujetos
   choose_tags: Escoge etiquetas
   choose_taxon: Escoge una especie o grupo
   choose_what_kind_of_change_youre_creating: Escoge que clase de cambio quieres crear.
@@ -1156,6 +1156,7 @@ es-MX:
   failed_to_repair_photo: 'No se pudo reparar la foto: %{errors}'
   "false": "No"
   faq: Preguntas frecuentes
+  faves: favoritos
   Family: Familia
   favorite_taxa: Grupos de especies (taxa) favoritos
   favorites: Favoritos
@@ -2344,7 +2345,6 @@ es-MX:
   photo_s: Foto(s)
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
-  photos: Fotos
   photos_or_sounds?: ¿Fotos o sonidos?
   photos_size:
     small: chica
@@ -3122,6 +3122,7 @@ es-MX:
       datos, si existen en GBIF.
     data_url: Enlace de datos
     overlays: Capas
+  taxon_changes: Cambios a especies o grupos
   taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
@@ -3462,11 +3463,11 @@ es-MX:
   uploader:
     tooltips:
       add: Añadir observación(es)
-      remove: Quitar la observación seleccionada
       combine: Combinar observaciones seleccionadas
-      select_all: Seleccionar todas las observaciones
-      remove_photo: Quitar la foto
+      remove: Quitar la observación seleccionada
       remove_observation: Quitar la observación
+      remove_photo: Quitar la foto
+      select_all: Seleccionar todas las observaciones
   url_identifier_of_a_project_derived_from: Dirección web / identificador del proyecto
     derivado de fuentes externas
   url_of_this_taxon_on_the_source_website: Enlace de esta especie o grupo en el sitio
@@ -3862,6 +3863,7 @@ es-MX:
     observaciones fueron añadidas
   your: Tus
   your_: Tu
+  your_account_has_been_activated: Tu cuenta ha sido activada
   your_account_has_been_verified: ¡Tu cuenta de %{site_name} ha sido confirmada! Porfavor
     ingresa al sistema para continuar.
   your_activation_code_was_missing: Tu código de activación se ha perdido.  Porfavor
@@ -4005,7 +4007,7 @@ es-MX:
           políticas, como naciones, estados, provincias o condados.
         replace_existing_eol_desc: Eliminar el contenido existente antes de importar
           desde EOL
-        place_choose_taxon_note: Si quieres concretar su búsqueda, elije un taxón
+        place_choose_taxon_note: Si quieres concretar su búsqueda, elige un taxón
           para filtrar, por ejemplo, "plantas"
       eolupdate_notice: Por favor, sea paciente, importar contenido desde EOL puede
         tomar un minuto o dos.
@@ -4293,12 +4295,12 @@ es-MX:
         resultado de su traslado por el ser humanos. Todas las observaciones de los seres vivos son bienvenidas,
         pero nos gustaría saber si los organismos son o no son silvestres.
       export:
-        choose_columns_desc: Elije las columnas que deseas exportar
+        choose_columns_desc: Elige las columnas que deseas exportar
         create_a_query_desc_html: |-
           Crea una consulta de observación igual que lo harías en otro lugar en el sitio. También puedes cortar y pegar una URL de  observaciones desde otra parte del sitio. Debes especificar un
           <strong>taxón</strong>, <strong>lugar</strong>, <strong>de
           usuario</strong>, <strong>proyecto</strong>, o <strong>consulta de búsqueda</strong>.
-        query_placeholder: Elije los parámetros de consulta a continuación o pega
+        query_placeholder: Elige los parámetros de consulta a continuación o pega
           un URL de observaciones
         taxon_extras_help_html: 'Nota: estas columnas alentarán la generación de tu
           exportación'

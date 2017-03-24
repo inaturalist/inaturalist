@@ -193,7 +193,7 @@ shared_examples_for "an ObservationsController" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank
       o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
-      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      op = make_observation_photo(:photo => p, :observation => o)
       get :show, :format => :json, :id => o.id
       response_obs = JSON.parse(response.body)
       response_photo = response_obs['observation_photos'][0]['photo']
@@ -495,7 +495,7 @@ shared_examples_for "an ObservationsController" do
       expect( o ).to be_captive_cultivated
     end
     
-    it "should wild as captive in response to captive_flag" do
+    it "should mark as wild in response to captive_flag" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
       put :update, format: :json, id: o.id, observation: {captive_flag: "0", force_quality_metrics: true}
@@ -571,6 +571,27 @@ shared_examples_for "an ObservationsController" do
         expect( o.private_place_guess ).to eq original_place_guess
       end
     end
+
+    describe "existing photos" do
+      let(:o) { make_research_grade_observation( user: user ) }
+      it "should leave them alone if included" do
+        without_delay do
+          put :update, format: :json, id: o.id, local_photos: { o.id.to_s => [ o.photos.first.id ] }, observation: { description: "foo" }
+        end
+        o.reload
+        expect( o.photos ).not_to be_blank
+      end
+      it "should delete them if omitted" do
+        without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
+        o.reload
+        expect( o.photos ).to be_blank
+      end
+      it "should delete corresponding ObservationPhotos if omitted" do
+        without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
+        o.reload
+        expect( o.observation_photos ).to be_blank
+      end
+    end
   end
 
   describe "by_login" do
@@ -592,6 +613,20 @@ shared_examples_for "an ObservationsController" do
       json = JSON.parse(response.body)
       expect(json.detect{|o| o['id'] == newo.id}).not_to be_blank
       expect(json.detect{|o| o['id'] == oldo.id}).to be_blank
+    end
+
+    it "should allow filtering by updated_since with positive offsets" do
+      time_zone_was = Time.zone
+      Time.zone = ActiveSupport::TimeZone["Berlin"]
+      oldo = Observation.make!( created_at: 10.days.ago, updated_at: 5.days.ago, user: user )
+      newo = Observation.make!( user: user )
+      updated_stamp = ( newo.updated_at - 4.days ).iso8601
+      expect( updated_stamp ).to match /\+\d\d:\d\d$/
+      get :by_login, format: :json, login: user.login, updated_since: updated_stamp
+      json = JSON.parse( response.body )
+      expect( json.detect{ |o| o['id'] == newo.id } ).not_to be_blank
+      expect( json.detect{ |o| o['id'] == oldo.id } ).to be_blank
+      Time.zone = time_zone_was
     end
 
     it "should return no results if updated_since is specified but incorrectly formatted" do
@@ -807,7 +842,7 @@ shared_examples_for "an ObservationsController" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank
       o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
-      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      op = make_observation_photo(:photo => p, :observation => o)
       get :index, :format => :json, :taxon_id => o.taxon_id
       json = JSON.parse(response.body)
       response_obs = json.detect{|obs| obs['id'] == o.id}
@@ -1234,10 +1269,10 @@ shared_examples_for "an ObservationsController" do
       before do
         @all_rights = Observation.make!
         photo = LocalPhoto.make!
-        ObservationPhoto.make!(photo: photo, observation: @all_rights)
+        make_observation_photo(photo: photo, observation: @all_rights)
         @cc_by = Observation.make!(license: Observation::CC_BY)
         photo = LocalPhoto.make!(license: Photo::CC_BY)
-        ObservationPhoto.make!(photo: photo, observation: @cc_by)
+        make_observation_photo(photo: photo, observation: @cc_by)
       end
       it "should work for any" do
         get :index, format: :json, photo_license: 'any'

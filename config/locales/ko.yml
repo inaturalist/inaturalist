@@ -6,6 +6,7 @@
 # Author: Hosseinblue
 # Author: Hwangjy9
 # Author: Idh0854
+# Author: Jerrykim306
 # Author: Jonghaya
 # Author: Lefion
 # Author: Revi
@@ -26,24 +27,29 @@ ko:
     \n<a href=\"http://facebook.com\">페이스북</a>\n의 이미지 호스팅 또한 지원합니다."
   a_default_taxon_name_will_automatically_created: 학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을
     저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
+  x_comments:
+    one: 댓글 1개
+    other: 댓글 %{count}개
   x_ids:
-    one: 1 아이디
-    other: '%{count} 아이디'
+    one: 아이디 1개
+    other: 아이디 %{count}개
   x_people_like_this:
     one: 한 명이 좋아합니다
-    other: '%{count} 명이 좋아합니다'
+    other: '%{count}명이 좋아합니다'
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_few_points_to_make_things_clear: '더 쉽게 사용하기 위한 팁:'
   a_flag_for_x: '%{x}을 위한 플래그'
-  a_member_of_taxon_html: '%{taxon}에 속한'
+  a_member_of_taxon_html: '%{taxon}에 속함'
   able_to_connect_flickr: 플리커 계정과 연동되었습니다!
   about: 소개
   about_bioblitz_results: 바이오블릿츠 결과에 대해
+  about_charts: Charts 정보
   about_community_taxa: 공동체 분류군에 대해
   about_external_links: 외부 링크에 대해
   about_licenses: 라이선스 정보
   about_licensing: 라이선스에 대해
   about_life!: Life!에 대해
+  about_names: 명칭 정보
   about_places: 장소에 대해
   about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대해
   about_the_taxobox_raquo: 분류군 상자에 대해 &raquo;
@@ -105,6 +111,7 @@ ko:
   add_edit_more_fields: 더 많은 필드 추가/편집
   add_description: '%{description_name} 추가하기'
   add_from_your_observations: 관찰에서 추가하기
+  add_link: 링크 추가
   add_listed_taxa_from_observations: 관찰에서 기재된 분류군을 추가하기
   add_higher_level_taxon: '상위 계층 분류군 추가하기 (예: "새")'
   add_id: ID 추가하기
@@ -474,6 +481,8 @@ ko:
     replaced_by: '다음으로 교체:'
     replace_with: '바꾸기:'
     dropped: 포기함
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}은(는) %{output_taxon}으(로)
+      병합되었습니다'
   change_visibility_of: 공간 좌표의 가시성을 변경
   change_your_matching: 매치 변경
   change_your_password: 비밀번호 바꾸기
@@ -648,6 +657,7 @@ ko:
     시작하기 위해:
   created: 생성함
   created_by: '작성자:'
+  created_by_user_on_date: '%{date}에 %{user}의 의하여 만들어짐'
   created_on: '작성일:'
   creating_your_account: 계정 만드는 중...
   creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
@@ -774,9 +784,9 @@ ko:
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disagree: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
-  display_link_to_checklist: 프로젝트 페이지에 프로젝트 목록 표시
-  display_listings_added_by_curators: 큐레이터가 올린 목록 표시
-  display_listings_from_place: 장소 목록 표시
+  display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
+  display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
+  display_listings_from_place: 장소로부터 목록 표시
   drop_it: 버리기
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
   do_you_know_where_this_species_lives: 이 종이 어디 사는지 아시나요?
@@ -953,7 +963,7 @@ ko:
   fields_merged: 필드 병합
   file_should_be_in_the_following_format: '파일은 다음의 형식을 따라야 합니다: 분류군 이름, 설명'
   fill_out_project_observation_fields: 프로젝트 관찰 필드를 기입하십시오
-  fill_out_your_profile: 프로파일을 기입하십시오
+  fill_out_your_profile: 프로파일을 완성하십시오
   filling_out_checklist_for_place: 잘 아는 장소들의 체크리스트를 기입하십시오
   filling_out_your_profile: 프로파일을 기입하십시오
   filter: 필터
@@ -990,7 +1000,7 @@ ko:
   flag_as_spammer: 스패머로 플래그
   flag_as_non_spammer: 비스패머로 플래그
   flag_description: 큐레이터들이 이 자료의 문제점을 알 수 있도록 플래그를 다세요.
-  flag_for_curation: 큐래이션 대상으로 플래그
+  flag_for_curation: 큐레이션 대상으로 플래그
   flag_it!: 플래그!
   flag_reason: '&ldquo; %{record}를 플래그하는 이유는'
   flag_saved: 플래그 저장
@@ -998,7 +1008,7 @@ ko:
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flagged: 플래그됨
-  flagged_for_curation: 큐래이션 대상으로 플래그되었습니다.
+  flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
   flagged_thing_explanation: 사용자들이 이 %{thing}을(를) 플래그한 이유는
   flagger: 플래그한 사용자
   flags: 플래그들
@@ -1114,6 +1124,7 @@ ko:
   hide_details: 자세한 내용 숨기기
   high: 높음
   highest_rank: 가장 높은 랭크
+  history: 역사
   home: 처음으로
   home_faq: FAQ
   however_there_were_some_issues: '하지만, 몇 가지 문제가 있었습니다: %{issues}'
@@ -1143,7 +1154,7 @@ ko:
     이름을 기입할 수 있습니다.
   if_you_already_have_an_account: '%{article} %{site_name} 계정이 이미 있다면...'
   if_you_dont_want_us_to_share_your_data: 당신의 데이터를 공유하는 것을 원친 않는다면
-  if_you_have_any_trouble_with_the_site_check_out: 사이트 이용이 불편이 있다면, <a href="%{help_url}">도움말
+  if_you_have_any_trouble_with_the_site_check_out: 질문이 있으시다면, <a href="%{help_url}">도움말
     문단</a>을 확인하시거나, <a href="%{feedback_url}">피드백 그룹</a>에 글을 남겨주세요.
   if_you_have_trouble_with_the_site: 사이트 이용이 불편이 있다면, 도움말 섹션을 참조해주세요.
   if_you_use: 을 사용한다면
@@ -1195,6 +1206,7 @@ ko:
     곳입니다.
   internal_server_error: 내부 서버 오류
   introduced: 도입종
+  introduced_in_place: '%{place}에서 유입됨'
   invasive: 외래종
   invitation: 초대장
   invitations: 초대장들
@@ -1244,6 +1256,7 @@ ko:
   kml: KML
   kml_file_size_error: KML은 1MB보다 크기가 작아야 합니다.
   labels: 라벨
+  language_slash_type: 언어 / 유형
   large: 크게
   last_confirmed_observation: 마지막으로 확인된 관찰
   last_observation: 마지막 관찰
@@ -1344,6 +1357,7 @@ ko:
   loading_wikipedia_description: 위키백과 설정 불러오는 중...
   locale_description: 로케일은 당신의 언어와 날짜 형식 설정을 정합니다.
   locales:
+    bg: 불가리아어
     ca: Català
     en: 영어
     en-US: 영어 (미국)
@@ -1414,7 +1428,7 @@ ko:
   medium: 보통
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>의
     회원
-  members: 구성원
+  members: 회원
   mentioned_you_in_noun_html: '%{user}님이 %{noun}에서 당신을 언급했습니다.'
   mentioned_you_in_noun_by_html: '%{user}님이 %{noun}에서 당신을 %{by}을(를) 통해 언급했습니다.'
   mentioned_you_in_a_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 당신을 언급했습니다.'
@@ -1452,6 +1466,7 @@ ko:
   more_info: 자세한 정보
   more_info_title: 자세한 정보
   more_observations: 더 많은 관찰
+  more_photos: 더 많은 사진들
   most_observations: 가장 많은 관찰
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
   n_ago: '%{n}전'
@@ -1482,7 +1497,7 @@ ko:
   new_guide: 새로운 가이드
   new_journal_posts: 새로운 일지
   new_list: 새 목록
-  new_members: 새 구성원
+  new_members: 새 회원
   new_message: 새 메시지
   new_observation_field: 새로운 관찰 필드
   new_observation_rules: 새로운 관찰 규칙
@@ -1542,11 +1557,12 @@ ko:
   no_matching_projects: 일치하는 프로젝트가 없습니다.
   no_matching_species: 일치하는 종이 없습니다.
   no_matching_users: 해당하는 사용자가 없습니다.
-  no_members_yet: 아직 구성원이 없습니다.
+  no_members_yet: 아직 회원이 없습니다.
   no_messages_yet: 아직 메시지가 없습니다.
   no_mobilized_version_of_that_view: 이 뷰의 모바일 버전이 없습니다.
   no_more_mail_from_site: '%{site_name}에서 이메일을 받고 싶지 않으시다면 이메일 설정을 여기서 변경하세요:'
   no_more_taxa_to_load: 더 이상 불러올 분류군이 없습니다.
+  no_more_results_found: 더 이상 결과가 없습니다
   no_more_updates: 더 이상 업데이트가 없습니다.
   no_nearby_observations: 근처 관찰이 없습니다.
   no_new_messages: 새 메시지가 없습니다
@@ -1683,8 +1699,9 @@ ko:
     identification:
       without_observation: <strong>ID</strong> 추가됨
   photo: 사진
+  photo_browser: 사진 탐색기
   photo_deleted: 사진 삭제됨
-  photos: 사진
+  photos_from: 촬영 장소
   photos_size:
     small: 작게
     medium: 보통
@@ -1766,7 +1783,6 @@ ko:
     있는 분류군의 경우 부탁드립니다.
   please_hold_on_while_the_file: 파일이 생성될 때까지 잠시 기다려 주세요. 관찰이 많을 경우 몇 분 걸릴 수 있습니다.
   position: 위치
-  position_accurate_to_within_5km?: 위치가 5km 이내로 정확합니까?
   previous: 이전
   prev: 이전
   previous_page: 이전 문서
@@ -1780,7 +1796,7 @@ ko:
   project_group_label: 그룹
   project_icon: 프로젝트 아이콘
   project_list: 프로젝트 목록
-  project_members: '%{project} 구성원'
+  project_members: '%{project} 회원'
   project_observation_settings: 프로젝트 관찰 설정
   project_observations: 프로젝트 관찰
   project_rules: 프로젝트 규칙
@@ -1814,8 +1830,8 @@ ko:
   remove_from_project: 프로젝트에서 제거
   remove_this_section: 이 항목 제거
   remove_observations:
-    one: 1개 관찰 삭제?
-    other: ' %{count}개 관찰 삭제?'
+    one: 1개 관찰을 제거하시겠습니까?
+    other: ' %{count}개 관찰을 제거하시겠습니까?'
   remove_project_user: 프로젝트 사용자 제거
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거
@@ -1853,6 +1869,7 @@ ko:
   search_places: 장소 검색
   search_projects: 프로젝트 검색
   search_species: 종 검색
+  search_species_: 종 검색...
   search_the_map: 지도 검색
   searching: 검색 중...
   select_all: 모두 선택
@@ -1865,6 +1882,7 @@ ko:
   send_invite: 초대장 보내기
   sending: 보내는 중...
   sent: 보냄
+  separate_values_with_a_pipe: '파이프로 값을 구분합니다. (예: "1-5|6-10|a lot" 또는 "yes|no|maybe")'
   september: 9월
   set_license: 라이선스 설정
   settings: 설정
@@ -1937,9 +1955,10 @@ ko:
   upload_photos: 사진 올리기
   uploader:
     tooltips:
+      photo_failed: 사진 업로드를 실패했습니다
       remove: 선택된 관찰 제거
-      select_all: 모든 관찰 선택
       remove_photo: 사진 제거
+      select_all: 모든 관찰 선택
   uploading_num_of_count_photos:
     one: 사진을 올리는 중...
     other: '%{count}개 중 %{num}개의 사진을 올리는 중...'
@@ -1958,7 +1977,7 @@ ko:
   valid_options_are: '유효한 옵션:'
   view: 보기
   view_all: 모두 보기
-  view_all_members: 모든 구성원 보기
+  view_all_members: 모든 회원 보기
   view_all_n: 모든 %{n} 보기
   view_all_observations: 모든 관찰 보기
   view_all_your_projects: 나의 모든 프로젝트 보기
@@ -2017,7 +2036,7 @@ ko:
   you_are_submitting_obs_without_photos_and_names: 사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우
     정확하게 동정하기 매우 어렵습니다.
   you_are_subscribed_to: '다음을 구독했습니다:'
-  you_arent_a_member_of_that_project: 그 프로젝트의 구성원이 아닙니다.
+  you_arent_a_member_of_that_project: 해당 프로젝트의 회원이 아닙니다.
   you_arent_following_that_person: 그 사람을 팔로우하고 있지 않습니다.
   you_can_accept_invitations: 여기서 초대를 수락할 수 있습니다.
   you_can_alwais_add_new: 문서의 오른쪽 위에 있는 작은 화살표를 클릭하고 하단 메뉴를 이용하면 언제든지 새로운 관찰을 추가할
@@ -2027,6 +2046,7 @@ ko:
   you_didnt_select_any_observations: 관찰을 선택하지 않았습니다.
   you_havent_left_any_comments_recently: 최근에 댓글 단 것이 없습니다. 댓글을 달아주세요.
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
+  your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_month_observations: '%{month}월의 내 관찰'
   your_observations_couldnt_be_added_to_that_project: 관찰이 프로젝트에 추가되지 못했습니다.%{errors}
   your_subscriptions: 당신의 구독 목록
@@ -2082,6 +2102,11 @@ ko:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
       project_user_curator_coordinate_access_labels:
         none: 아무도 없음
+    taxa:
+      show:
+        frequency:
+          Flowering Phenology=bare: 꽃 없음
+          Insect life stage=egg: 알
     users:
       edit:
         project_addition_preferences:

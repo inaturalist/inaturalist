@@ -51,7 +51,7 @@ describe Post do
   describe "publish" do
     describe "for a project" do
       let(:project) { Project.make! }
-      let(:post) { Post.make!(parent: project, user: project.user) }
+      let(:post) { Post.make!( :draft, parent: project, user: project.user) }
 
       it "should generate an update for a project user" do
         pu = ProjectUser.make!(project: project)
@@ -69,6 +69,35 @@ describe Post do
           post.update_attributes(published_at: Time.now)
         end
         expect( pu.user.update_subscribers.count ).to eq 0
+      end
+    end
+    describe "for a user" do
+      it "should increment the user's counter cache" do
+        u = User.make!
+        expect( u.journal_posts_count ).to eq 0
+        p = Post.make!( :draft, parent: u, user: u )
+        u.reload
+        expect( p ).not_to be_published
+        expect( u.journal_posts_count ).to eq 0
+        p.update_attributes( published_at: Time.now )
+        expect( p ).to be_published
+        u.reload
+        expect( u.journal_posts_count ).to eq 1
+      end
+    end
+  end
+
+  describe "unpublish" do
+    describe "for a user" do
+      it "should decrement the user's counter cache" do
+        u = User.make!
+        expect( u.journal_posts_count ).to eq 0
+        p = Post.make!( parent: u, user: u )
+        u.reload
+        expect( u.journal_posts_count ).to eq 1
+        p.update_attributes( published_at: nil )
+        u.reload
+        expect( u.journal_posts_count ).to eq 0
       end
     end
   end
@@ -100,13 +129,23 @@ describe Post do
       expect( p.mentioned_users ).to eq [ u ]
     end
 
-    it "generates mention updates" do
-      u = User.make!
-      project = Project.make!
-      p = without_delay { Post.make!(body: "hey @#{ u.login }", parent: project) }
-      expect( UpdateAction.where(notifier: p, notification: "mention").count ).to eq 1
-      expect( UpdateAction.where(notifier: p, notification: "mention").first.
-        update_subscribers.first.subscriber ).to eq u
+    describe "generates mention updates" do
+      it "for published posts" do
+        u = User.make!
+        project = Project.make!
+        p = without_delay { Post.make!( body: "hey @#{ u.login }", parent: project ) }
+        expect( p ).to be_published
+        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 1
+        expect( UpdateAction.where( notifier: p, notification: "mention" ).first.
+          update_subscribers.first.subscriber ).to eq u
+      end
+      it "but not for drafts" do
+        u = User.make!
+        project = Project.make!
+        p = without_delay { Post.make!( :draft, body: "hey @#{ u.login }", parent: project ) }
+        expect( p ).not_to be_published
+        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 0
+      end
     end
   end
 end

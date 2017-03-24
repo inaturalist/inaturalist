@@ -1,6 +1,12 @@
 require 'machinist/active_record'
 require 'faker'
 
+Annotation.blueprint do
+  controlled_attribute { ControlledTerm.make! }
+  controlled_value { ControlledTerm.make! }
+  resource { Observation.make! }
+end
+
 ApiEndpoint.blueprint do
   title { Faker::Lorem.sentence }
 end
@@ -24,7 +30,8 @@ end
 
 Atlas.blueprint do
   taxon { Taxon.make }
-  user { user.make }
+  user { User.make }
+  is_active { true }
 end
 
 CheckList.blueprint do
@@ -47,6 +54,24 @@ ConservationStatus.blueprint do
   status { "E" }
   iucn { Taxon::IUCN_ENDANGERED }
   geoprivacy { Observation::OBSCURED }
+end
+
+ControlledTerm.blueprint do
+end
+
+ControlledTermLabel.blueprint do
+  label { Faker::Lorem.word }
+  definition { Faker::Lorem.paragraph }
+end
+
+ControlledTermValue.blueprint do
+  controlled_attribute { ControlledTerm.make! }
+  controlled_value { ControlledTerm.make!(is_value: true) }
+end
+
+ExplodedAtlasPlace.blueprint do
+  atlas { Atlas.make! }
+  place { Place.make! }
 end
 
 Flag.blueprint do

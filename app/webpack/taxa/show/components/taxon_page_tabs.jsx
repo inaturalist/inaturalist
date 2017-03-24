@@ -2,13 +2,14 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col, Dropdown, MenuItem } from "react-bootstrap";
 import _ from "lodash";
-import TaxonPageMap from "./taxon_page_map";
+import TaxonPageMapContainer from "../containers/taxon_page_map_container";
 import StatusTab from "./status_tab";
 import TaxonomyTabContainer from "../containers/taxonomy_tab_container";
 import ArticlesTabContainer from "../containers/articles_tab_container";
 import InteractionsTabContainer from "../containers/interactions_tab_container";
 import HighlightsTabContainer from "../containers/highlights_tab_container";
 import SimilarTabContainer from "../containers/similar_tab_container";
+import RecentObservationsContainer from "../containers/recent_observations_container";
 
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
@@ -17,6 +18,20 @@ class TaxonPageTabs extends React.Component {
       this.props.choseTab( e.target.hash.match( /\#(.+)\-tab/ )[1] );
     } );
     this.props.loadDataForTab( this.props.chosenTab );
+  }
+  componentDidUpdate( prevProps ) {
+    const prevTaxonId = prevProps.taxon ? prevProps.taxon.id : null;
+    const currTaxonId = this.props.taxon ? this.props.taxon.id : null;
+    if ( prevTaxonId !== currTaxonId ) {
+      this.props.loadDataForTab( this.props.chosenTab );
+    }
+    // very lame hack to make sure the map resizes correctly if it rendered when
+    // not visible
+    if ( this.props.chosenTab === "map" && prevProps.chosenTab !== "map" ) {
+      const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
+      google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
+      taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+    }
   }
   render( ) {
     const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
@@ -27,6 +42,18 @@ class TaxonPageTabs extends React.Component {
       const isCurator =
         currentUser.roles.indexOf( "curator" ) >= 0 ||
         currentUser.roles.indexOf( "admin" ) >= 0;
+      let atlasItem;
+      if ( isCurator && this.props.taxon.rank_level <= 10 ) {
+        atlasItem = this.props.taxon.atlas_id ? (
+          <MenuItem eventKey="edit-atlas" >
+            <i className="fa fa-globe"></i> { I18n.t( "edit_atlas" ) }
+          </MenuItem>
+        ) : (
+          <MenuItem eventKey="new-atlas" >
+            <i className="fa fa-globe"></i> { I18n.t( "create_an_atlas" ) }
+          </MenuItem>
+        );
+      }
       curationTab = (
         <li className="curation-tab">
           <Dropdown
@@ -34,11 +61,20 @@ class TaxonPageTabs extends React.Component {
             pullRight
             onSelect={ ( e, eventKey ) => {
               switch ( eventKey ) {
-                case "1":
+                case "add-flag":
                   window.location = `/taxa/${this.props.taxon.id}/flags/new`;
                   break;
-                case "2":
+                case "view-flags":
+                  window.location = `/taxa/${this.props.taxon.id}/flags`;
+                  break;
+                case "edit-photos":
                   this.props.showPhotoChooserModal( );
+                  break;
+                case "edit-atlas":
+                  window.location = `/atlases/${this.props.taxon.atlas_id}`;
+                  break;
+                case "new-atlas":
+                  window.location = `/atlases/new?taxon_id=${this.props.taxon.id}`;
                   break;
                 default:
                   window.location = `/taxa/${this.props.taxon.id}/edit`;
@@ -50,22 +86,28 @@ class TaxonPageTabs extends React.Component {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <MenuItem
-                className={isCurator ? "" : "hidden"}
-                eventKey="1"
+                eventKey="add-flag"
               >
                 <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
-                eventKey="2"
+                className={isCurator ? "" : "hidden"}
+                eventKey="view-flags"
+              >
+                <i className="fa fa-flag-checkered"></i> { I18n.t( "view_flags" ) }
+              </MenuItem>
+              <MenuItem
+                eventKey="edit-photos"
               >
                 <i className="fa fa-picture-o"></i> { I18n.t( "edit_photos" ) }
               </MenuItem>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
-                eventKey="3"
+                eventKey="edit-taxon"
               >
                 <i className="fa fa-pencil"></i> { I18n.t( "edit_taxon" ) }
               </MenuItem>
+              { atlasItem }
             </Dropdown.Menu>
           </Dropdown>
         </li>
@@ -134,7 +176,8 @@ class TaxonPageTabs extends React.Component {
             className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
             id="map-tab"
           >
-            <TaxonPageMap taxon={this.props.taxon} />
+            <TaxonPageMapContainer />
+            <RecentObservationsContainer />
           </div>
           <div
             role="tabpanel"
@@ -196,7 +239,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "map"
+  chosenTab: "articles"
 };
 
 export default TaxonPageTabs;

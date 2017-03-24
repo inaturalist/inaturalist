@@ -78,13 +78,23 @@ namespace :inaturalist do
       secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
     bucket = AWS::S3.new.buckets[CONFIG.s3_bucket]
 
+    fails = 0
     DeletedPhoto.still_in_s3.
-      where("(orphan=false AND created_at >= ?) OR (orphan=true AND created_at >= ?)",
+      joins("LEFT JOIN photos ON (deleted_photos.photo_id = photos.id)").
+      where("photos.id IS NULL").
+      where("(orphan=false AND deleted_photos.created_at <= ?)
+        OR (orphan=true AND deleted_photos.created_at <= ?)",
         6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
       images = bucket.objects.with_prefix("photos/#{ p.photo_id }/").to_a
       if images.any?
-        bucket.objects.delete(images)
-        p.update_attributes(removed_from_s3: true)
+        pp images
+        begin
+          bucket.objects.delete(images)
+          p.update_attributes(removed_from_s3: true)
+        rescue
+          fails += 1
+          break if fails >= 5
+        end
       end
     end
   end
@@ -112,6 +122,12 @@ namespace :inaturalist do
     end
   end
 
+
+  desc "Delete orphaned and expired photos"
+  task :delete_orphaned_and_expired_photos => :environment do
+    Rake::Task["inaturalist:delete_orphaned_photos"].invoke
+    Rake::Task["inaturalist:delete_expired_photos"].invoke
+  end
 
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
@@ -144,15 +160,20 @@ namespace :inaturalist do
                  "all_taxa.fungi", "fungi",
                  "all_taxa.protozoans", "protozoans",
                  "unknown", "date.formats.month_day_year",
-                 "views.taxa.show.frequency" ]
-    all_keys += Date::MONTHNAMES.compact.map{|m| "date_format.month.#{m.downcase}"}
+                 "views.taxa.show.frequency", "flowering_phenology", "insect_life_stage",
+                 "lexicons", "places_name" ]
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
+      # Ignore non-files
       next unless File.file?( f )
+      # Ignore images and php scripts
       next if f =~ /\.(gif|png|php)$/
+      # Ignore generated webpack outputs
+      next if f =~ /\-webpack.js$/
+      # Ignore an existing translations file
       next if f == output_path
       contents = IO.read( f )
-      results = contents.scan(/(I18n|shared).t\( ?(.)(.*?)\2/i)
+      results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
       unless results.empty?
         all_keys += results.map{ |r| r[2].chomp(".") }
       end
@@ -183,11 +204,9 @@ namespace :inaturalist do
       all_translations[ locale ] = { }
       all_keys.uniq.sort.each do |key_string|
         split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
-        var = split_keys.inject(all_translations[ locale ]) do |h, key|
+        split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
-            # fallback to English if there is no translation in the specified locale
             value = split_keys.inject(I18n.backend.send(:translations)[locale], :[]) rescue nil
-            value ||= split_keys.inject(I18n.backend.send(:translations)[:en], :[]) rescue nil
             if value
               h[key] ||= value
             elsif Rails.env.development?
@@ -205,7 +224,7 @@ namespace :inaturalist do
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
       all_translations.sort.each do |locale, translastions|
-        file.puts "I18n.translations[\"#{ locale }\"] = #{ translastions.to_json };"
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translastions ) };"
       end
     end
   end

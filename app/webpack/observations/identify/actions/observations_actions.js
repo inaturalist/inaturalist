@@ -24,6 +24,11 @@ function fetchObservations( ) {
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
       locale: I18n.locale
     }, paramsForSearch( s.searchParams.params ) );
+    if ( s.config.blind ) {
+      apiParams.order_by = "random";
+      apiParams.quality_grade = "any";
+      apiParams.page = 1;
+    }
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         let obs = response.results;

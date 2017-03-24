@@ -55,6 +55,10 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, :inverse_of => :taxon
+  has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
+  has_many :observation_field_values,
+    -> { joins(:observation_field).where( "observation_fields.datatype = ?", ObservationField::TAXON ) },
+    foreign_key: :value
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -97,37 +101,38 @@ class Taxon < ActiveRecord::Base
   }
   
   RANK_LEVELS = {
-    'root'         => 100,
-    'kingdom'      => 70,
-    'phylum'       => 60,
-    'subphylum'    => 57,
-    'superclass'   => 53,
-    'class'        => 50,
-    'subclass'     => 47,
-    'superorder'   => 43,
-    'order'        => 40,
-    'suborder'     => 37,
-    'infraorder'   => 35,
-    'superfamily'  => 33,
-    'epifamily'    => 32,
-    'family'       => 30,
-    'subfamily'    => 27,
-    'supertribe'   => 26,
-    'tribe'        => 25,
-    'subtribe'     => 24,
-    'genus'        => 20,
-    'genushybrid'  => 20,
-    'species'      => 10,
-    'hybrid'       => 10,
-    'subspecies'   => 5,
-    'variety'      => 5,
-    'form'         => 5
+    "root"         => 100,
+    "kingdom"      => 70,
+    "phylum"       => 60,
+    "subphylum"    => 57,
+    "superclass"   => 53,
+    "class"        => 50,
+    "subclass"     => 47,
+    "superorder"   => 43,
+    "order"        => 40,
+    "suborder"     => 37,
+    "infraorder"   => 35,
+    "superfamily"  => 33,
+    "epifamily"    => 32,
+    "family"       => 30,
+    "subfamily"    => 27,
+    "supertribe"   => 26,
+    "tribe"        => 25,
+    "subtribe"     => 24,
+    "genus"        => 20,
+    "genushybrid"  => 20,
+    "subgenus"     => 15,
+    "species"      => 10,
+    "hybrid"       => 10,
+    "subspecies"   => 5,
+    "variety"      => 5,
+    "form"         => 5
   }
   RANK_LEVELS.each do |rank, level|
     const_set rank.upcase, rank
     const_set "#{rank.upcase}_LEVEL", level
     define_method "find_#{rank}" do
-      return self if rank_level == level
+      return self if self.rank == rank
       return nil if rank_level.to_i > level.to_i
       @cached_ancestors ||= ancestor_taxa.loaded? ? ancestor_taxa :
         ancestors.select("id, name, rank, ancestry,
@@ -375,18 +380,16 @@ class Taxon < ActiveRecord::Base
   # Callbacks ###############################################################
   
   def handle_after_move
-    return true unless ancestry_changed?
-    set_iconic_taxon
-    return true if id_changed?
+    set_iconic_taxon if ancestry_changed?
     return true if skip_after_move
+    denormalize_ancestry
+    return true if id_changed?
     update_life_lists
     update_obs_iconic_taxa
-    conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, "#{ancestry}/#{id}", "#{ancestry}/#{id}/%"]
-    old_conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, ancestry_was, "#{ancestry_was}/#{id}/%"]
-    if (Observation.joins(:taxon).where(conditions).exists? || 
-        Observation.joins(:taxon).where(old_conditions).exists? || 
-        Identification.joins(:taxon).where(conditions).exists? || 
-        Identification.joins(:taxon).where(old_conditions).exists? )
+    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
+    obs_exist = Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    idents_exist = Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    if ( obs_exist || idents_exist )
       Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
@@ -394,6 +397,16 @@ class Taxon < ActiveRecord::Base
     elastic_index!
     Taxon.refresh_es_index
     true
+  end
+
+  def denormalize_ancestry
+    Taxon.transaction do
+      TaxonAncestor.where( taxon_id: id ).delete_all
+      unless self_and_ancestor_ids.blank?
+        sql = "INSERT INTO taxon_ancestors VALUES " + self_and_ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
+        ActiveRecord::Base.connection.execute( sql )
+      end
+    end
   end
 
   def index_observations
@@ -543,11 +556,12 @@ class Taxon < ActiveRecord::Base
   end
 
   def taxon_changes_count
-    TaxonChange.taxon( id ).count
+    (taxon_changes.map(&:id) +
+     taxon_change_taxa.map(&:taxon_change_id)).uniq.length
   end
 
   def taxon_schemes_count
-    taxon_schemes.count
+    taxon_schemes.size
   end
 
   #
@@ -593,6 +607,7 @@ class Taxon < ActiveRecord::Base
   def grafted?
     return false if new_record? # New records haven't been grafted
     return false if self.name != 'Life' && ancestry.blank?
+    return false if !kingdom? && Taxon::LIFE && parent_id === Taxon::LIFE.id
     true
   end
   
@@ -710,10 +725,11 @@ class Taxon < ActiveRecord::Base
     end
     if chosen_taxon_photos.size < options[:limit]
       descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes(:photo).
-        order("taxon_photos.id ASC").
-        limit(options[:limit] - chosen_taxon_photos.size).
-        where("taxa.ancestry LIKE '#{ancestry}/#{id}%'").
-        where("taxon_photos.id NOT IN (?)", chosen_taxon_photos.map(&:id))
+        order( "taxon_photos.id ASC" ).
+        limit( options[:limit] - chosen_taxon_photos.size ).
+        where( "taxa.ancestry LIKE '#{ancestry}/#{id}%'" ).
+        where( "taxa.is_active = ?", true ).
+        where( "taxon_photos.id NOT IN (?)", chosen_taxon_photos.map(&:id) )
       chosen_taxon_photos += descendant_taxon_photos.to_a
     end
     chosen_taxon_photos
@@ -894,6 +910,66 @@ class Taxon < ActiveRecord::Base
         td.update_attributes(:body => summary)
       end
     end
+    summary
+  end
+
+  def auto_summary
+    name_part = name
+    other_names = taxon_names.select { |tn| tn.name != name }
+    unless other_names.blank?
+      name_part += " (also known as #{FakeView.commas_and( other_names.map(&:name) )})"
+    end
+    summary = if kingdom?
+      "#{name} is a kingdom of life with #{observations_count} observations"
+    elsif iconic_taxon_id
+      iconic_name = if iconic_taxon_id == id
+        parent.iconic_taxon_name
+      else
+        iconic_taxon_name
+      end
+      iconic_part = if iconic_name == "Chromista"
+        "in Chromista (brown algae and allies)"
+      elsif ICONIC_TAXON_NAMES[iconic_name]
+        iconic_common_name = I18n.t(
+          ICONIC_TAXON_NAMES[iconic_name].downcase.parameterize.underscore,
+          count: 1
+        )
+        if rank_level && rank_level <= 10
+          iconic_common_name = iconic_common_name.singularize
+        end
+        "of #{iconic_common_name.downcase}"
+      else
+        "in #{iconic_name}"
+      end
+      "#{name_part} is a #{rank} #{iconic_part} with #{observations_count} observations"
+    else
+      "#{name} is a #{rank}"
+    end
+    # This stuff is all so slow that we'd need to cache it.
+    # endemic_listed_taxon = listed_taxa.
+    #   where( establishment_means: ListedTaxon::ENDEMIC ).
+    #   joins( :place ).
+    #   order( "places.admin_level DESC" ).first
+    # if endemic_listed_taxon
+    #   summary += " that only occurs in #{endemic_listed_taxon.place.display_name}"
+    # else
+    #   place_listed_taxa = listed_taxa.joins( :place ).where( "places.admin_level = ?", Place::COUNTRY_LEVEL ).limit( 6 )
+    #   unless place_listed_taxa.blank?
+    #     summary += " that occurs in #{FakeView.commas_and( place_listed_taxa[0..5].map{ |lt| lt.place.display_name } )}"
+    #     if place_listed_taxa.size > 5
+    #       summary += ", and elsewhere"
+    #     end
+    #   end
+    # end
+    # status_scope = conservation_statuses.where( "iucn > ?", IUCN_NEAR_THREATENED )
+    # conservation_status = status_scope.where( "place_id IS NULL" ).first
+    # conservation_status ||= status_scope.joins( :place ).order( "places.admin_level ASC" ).first
+    # if conservation_status
+    #   status_desc = "It is considered #{conservation_status.status_name}"
+    #   status_desc += " in #{conservation_status.place.display_name}" if conservation_status.place
+    #   status_desc += " by #{conservation_status.authority}"
+    #   summary += ". #{status_desc}"
+    # end
     summary
   end
   
@@ -1239,6 +1315,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.import(name, options = {})
+    skip_grafting = options.delete(:skip_grafting)
     name = normalize_name(name)
     ancestor = options.delete(:ancestor)
     external_names = begin
@@ -1249,7 +1326,7 @@ class Taxon < ActiveRecord::Base
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
-      if en.save && !en.taxon.grafted? && en.taxon.persisted?
+      if en.save && !skip_grafting && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
     end
@@ -1371,6 +1448,20 @@ class Taxon < ActiveRecord::Base
       end
     end
     nil
+  end
+
+  def has_ancestor_taxon_id(ancestor_id)
+    return true if id == ancestor_id
+    return false if ancestry.blank?
+    !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
+  end
+
+  def atlased?
+    atlas && atlas.is_active?
+  end
+
+  def cached_atlas_presence_places
+    @cached_atlas_presence_places ||= atlas.presence_places if atlas
   end
 
   # Static ##################################################################
@@ -1671,7 +1762,7 @@ class Taxon < ActiveRecord::Base
     scope.find_each do |t|
       Taxon.where(id: t.id).update_all(observations_count:
         Observation.elastic_search(
-          where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
+          filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
     end
   end
 

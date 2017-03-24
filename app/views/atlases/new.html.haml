@@ -1,10 +1,9 @@
 .container
   .row
     .col-xs-12
-      %h2.pull-left
-        = "New Atlas"
+      %h2= "New Atlas"
   = form_for(@atlas, :builder => DefaultFormBuilder, :html => {:multipart => true}) do |f|
     = f.error_messages
     = render :partial => 'form_fields', :locals => {:f => f}
-    = f.submit t(:create), :class => "default button"
-    = link_to t(:back), @atlas.taxon || taxa_path, :class => "button"
+    = f.submit t(:create), :class => "btn btn-primary"
+    = link_to t(:back), @atlas.taxon || taxa_path, :class => "btn btn-default"

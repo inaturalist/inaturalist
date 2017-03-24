@@ -15,6 +15,10 @@ class PlaceGeometry < ActiveRecord::Base
   validates_presence_of :geom
   validate :validate_geometry
 
+  def to_s
+    "<PlaceGeometry #{id} place_id: #{place_id}>"
+  end
+
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
     if geom.blank?
@@ -118,11 +122,17 @@ class PlaceGeometry < ActiveRecord::Base
         0.075
       end
     if s = PlaceGeometry.where(id: id).
-             select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
+      select("id, cleangeometry(ST_SimplifyPreserveTopology(geom, #{ tolerance })) as simpl").first.simpl
       return s
     end
     PlaceGeometry.where(id: id).
       select("id, cleangeometry(ST_Buffer(ST_SimplifyPreserveTopology(geom, #{ tolerance }),0)) as simpl").first.simpl
+  end
+
+  def bounding_box_geom
+    return if !geom
+    db_pg = PlaceGeometry.where( id: id ).select( "id, ST_Envelope( geom ) AS bounding_box" ).first
+    db_pg.bounding_box if db_pg
   end
 
   def self.update_observations_places(place_geometry_id)

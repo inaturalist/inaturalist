@@ -2,9 +2,14 @@
 class TaxaController < ApplicationController
   caches_page :range, :if => Proc.new {|c| c.request.format == :geojson}
   caches_action :show, :expires_in => 1.day,
-    :cache_path => Proc.new{ |c| { locale: I18n.locale? } },
+    :cache_path => Proc.new{ |c| {
+      locale: I18n.locale,
+      mobile: c.request.format.mobile?,
+      ssl: c.request.ssl? } },
     :if => Proc.new {|c|
-      !request.format.json? && (c.session.blank? || c.session['warden.user.user.key'].blank?)
+      !request.format.json? &&
+      (c.session.blank? || c.session['warden.user.user.key'].blank?) &&
+      c.params[:test].blank?
     }
   caches_action :describe, :expires_in => 1.day,
     :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
@@ -27,7 +32,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -135,9 +140,9 @@ class TaxaController < ApplicationController
   end
 
   def show
-    if params[:entry] == 'widget'
-      flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
-    end
+    # if params[:entry] == 'widget'
+    #   flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
+    # end
     if params[:id]
       begin
         @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
@@ -150,29 +155,33 @@ class TaxaController < ApplicationController
     return render_404 unless @taxon
     
     respond_to do |format|
+
       format.html do
-        if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
-          respond_to do |format|
-            format.html do
-              site_place = @site && @site.place
-              user_place = current_user && current_user.place
-              preferred_place = user_place || site_place
-              place_id = current_user.preferred_taxon_page_place_id if logged_in?
-              place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
-              @place = Place.find_by_id( place_id )
-              api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}"
-              @node_taxon_json = INatAPIService.get_json( api_url )
-              @chosen_tab = session[:preferred_taxon_page_tab]
-              @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-              render layout: "bootstrap", action: "show2"
-            end
-          end
-          return
+        if @taxon.name == "Life" && !@taxon.parent_id
+          return redirect_to( action: "index" )
         end
         
-        if @taxon.name == 'Life' && !@taxon.parent_id
-          return redirect_to(:action => 'index')
+        # if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
+        site_place = @site && @site.place
+        user_place = current_user && current_user.place
+        preferred_place = user_place || site_place
+        place_id = current_user.preferred_taxon_page_place_id if logged_in?
+        place_id = session[:preferred_taxon_page_place_id] if place_id.blank?
+        # If there's no place and there is a preferred place and this user has
+        # never changed their taxon page place preference, use the preferred
+        # place
+        if place_id.blank? && preferred_place && !session.has_key?( :preferred_taxon_page_place_id )
+          place_id = preferred_place.id
         end
+        api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
+        @node_taxon_json = INatAPIService.get_json( api_url )
+        return render_404 unless @node_taxon_json
+        @node_place_json = INatAPIService.get_json( "/places/#{place_id.to_i}" )
+        @chosen_tab = session[:preferred_taxon_page_tab]
+        @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
+        render layout: "bootstrap", action: "show2"
+        return
+        # end
 
         place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
         place_id ||= current_user.place_id if logged_in?
@@ -361,6 +370,7 @@ class TaxaController < ApplicationController
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
           "into an existing taxon instead."
       end
+      Taxon.refresh_es_index
       redirect_to taxon_path(@taxon)
       return
     else
@@ -422,31 +432,31 @@ class TaxaController < ApplicationController
     user_per_page = 100 if user_per_page > 100
     per_page = page == 1 && user_per_page < 50 ? 50 : user_per_page
 
-    search_wheres = { }
+    filters = [ ]
     unless @q.blank?
-      search_wheres[:match] = { "names.name": { query: @q, operator: "and" } }
+      filters << { match: { "names.name": { query: @q, operator: "and" } } }
     end
-    search_wheres[:is_active] = true if @is_active === true
-    search_wheres[:is_active] = false if @is_active === false
-    search_wheres[:iconic_taxon_id] =  @iconic_taxa_ids if @iconic_taxa_ids
-    search_wheres["colors.id"] =  @color_ids if @color_ids
-    search_wheres["place_ids"] =  @place_ids if @place_ids
-    search_wheres["ancestor_ids"] =  @taxon.id if @taxon
+    filters << { term: { is_active: true } } if @is_active === true
+    filters << { term: { is_active: false } } if @is_active === false
+    filters << { terms: { iconic_taxon_id: @iconic_taxa_ids } } if @iconic_taxa_ids
+    filters << { terms: { "colors.id": @color_ids } } if @color_ids
+    filters << { terms: { place_ids: @place_ids } } if @place_ids
+    filters << { term: { ancestor_ids: @taxon.id } } if @taxon
     search_options = { sort: { observations_count: "desc" },
       aggregate: {
         color: { "colors.id": 12 },
         iconic_taxon_id: { "iconic_taxon_id": 12 },
         place: { "places.id": 12 }
       } }
-    search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+    search_result = Taxon.elastic_search(search_options.merge(filters: filters)).
       per_page(per_page).page(page)
     # if there are no search results, and the search was performed with
     # a search ID filter, but one wasn't asked for. This will happen when
     # CONFIG.site_only_observations is true and a search filter is
     # set automatically. Re-run the search w/o the place filter
-    if search_result.total_entries == 0 && params[:places].blank? && !search_wheres["place_ids"].blank?
-      search_wheres.delete("place_ids")
-      search_result = Taxon.elastic_search(search_options.merge(where: search_wheres)).
+    if search_result.total_entries == 0 && params[:places].blank? && !@place_ids.blank?
+      without_place_filters = filters.select{ |f| !( f[:terms] && f[:terms][:place_ids] ) }
+      search_result = Taxon.elastic_search(search_options.merge(filters: without_place_filters)).
         per_page(per_page).page(page)
     end
     @taxa = Taxon.result_to_will_paginate_collection(search_result)
@@ -575,18 +585,18 @@ class TaxaController < ApplicationController
     else
       params[:is_active]
     end
-    search_wheres = { match: { "names.name_autocomplete": { query: @q, operator: "and" } } }
-    search_wheres[:is_active] = true if @is_active === true
-    search_wheres[:is_active] = false if @is_active === false
+    filters = [{ match: { "names.name_autocomplete": { query: @q, operator: "and" } } }]
+    filters << { term: { is_active: true } } if @is_active === true
+    filters << { term: { is_active: false } } if @is_active === false
     @taxa = Taxon.elastic_paginate(
-      where: search_wheres,
+      filters: filters,
       sort: { observations_count: "desc" },
       per_page: 30,
       page: 1
     )
     # attempt to fetch the best exact match, which will go first
     exact_results = Taxon.elastic_paginate(
-      where: search_wheres.merge(match: { "names.exact" => @q }),
+      filters: filters + [ { match: { "names.exact" => @q } } ],
       sort: { observations_count: "desc" },
       per_page: 1,
       page: 1
@@ -745,21 +755,26 @@ class TaxaController < ApplicationController
         obs = obs.where("photos.license IS NOT NULL AND photos.license > ? OR photos.user_id = ?", Photo::COPYRIGHT, current_user)
       end
       obs.to_a
+    elsif params[:q].to_i > 0
+      # Look up photos associated with a specific observation
+      Observation.where( id: params[:q] )
     else
-      search_wheres = params[:q].blank? ? nil : {
-        multi_match: {
-          query: params[:q],
-          operator: "and",
-          fields: [ :description, "taxon.names.name", "user.login", "field_values.value" ]
+      filters = [ { exists: { field: "photos" } } ]
+      unless params[:q].blank?
+        filters << {
+          multi_match: {
+            query: params[:q],
+            operator: "and",
+            fields: [ :description, "taxon.names.name", "user.login", "field_values.value" ]
+          }
         }
-      }
+      end
       Observation.elastic_paginate(
-        where: search_wheres,
-        filters: [ { exists: { field: "photos" } } ],
+        filters: filters,
         per_page: per_page,
         page: params[:page])
     end
-    Observation.preload_associations(observations, :photos)
+    Observation.preload_associations(observations, { photos: :user })
     @photos = observations.compact.map(&:photos).flatten.reject{|p| p.user_id.blank?}
     @photos = @photos.reject{|p| p.license.to_i <= Photo::COPYRIGHT} if licensed
     partial = params[:partial].to_s
@@ -827,10 +842,16 @@ class TaxaController < ApplicationController
   def map_layers
     render json: {
       id: @taxon.id,
-      ranges: @taxon.taxon_ranges.any?,
+      ranges: @taxon.taxon_ranges.exists?,
       gbif_id: @taxon.get_gbif_id,
-      listed_places: @taxon.listed_taxa.joins(place: :place_geometry).any?
+      listed_places: @taxon.listed_taxa.joins(place: :place_geometry).exists?
     }
+  end
+
+  def taxobox
+    respond_to do |format|
+      format.html { render partial: "wikipedia_taxobox", object: @taxon }
+    end
   end
 
   private
@@ -1009,8 +1030,9 @@ class TaxaController < ApplicationController
   end
 
   def links
-    places_exist = ListedTaxon.where("place_id IS NOT NULL AND taxon_id = ?", @taxon).exists?
-    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: places_exist )
+    places_exist = ListedTaxon.where( "place_id IS NOT NULL AND taxon_id = ?", @taxon ).exists?
+    place = Place.find_by_id( params[:place_id] )
+    taxon_links = TaxonLink.by_taxon( @taxon, reject_places: !places_exist, place: place )
     respond_to do |format|
       format.json { render json: taxon_links.map{ |tl| {
         taxon_link: tl,

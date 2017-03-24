@@ -17,6 +17,7 @@ const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
+const SET_FIELD_VALUES = "taxa-show/taxon/SET_FIELD_VALUES";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -24,36 +25,6 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_TAXON:
       newState.taxon = action.taxon;
       newState.taxonPhotos = _.uniqBy( newState.taxon.taxonPhotos, tp => tp.photo.id );
-      // HACK until we get controlled terms working.
-      newState.terms = [];
-      if ( newState.taxon.iconic_taxon_name === "Insecta" ) {
-        newState.terms.push( {
-          name: "Insect life stage",
-          values: [
-            "adult",
-            "teneral",
-            "pupa",
-            "nymph",
-            "larva",
-            "egg"
-          ]
-        } );
-      }
-      if (
-        newState.taxon &&
-        _.find( newState.taxon.ancestors, a => a.name === "Magnoliophyta" )
-      ) {
-        newState.terms.push( {
-          name: "Flowering Phenology",
-          values: [
-            "bare",
-            "budding",
-            "flower",
-            "fruit"
-          ]
-        } );
-      }
-      // END HACK
       break;
     case SET_DESCRIPTION:
       newState.description = {
@@ -92,6 +63,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_TAXON_CHANGE:
       newState.taxonChange = action.taxonChange;
+      break;
+    case SET_FIELD_VALUES:
+      newState.fieldValues = action.fieldValues;
       break;
     default:
       // nothing to see here
@@ -189,15 +163,35 @@ export function showPhotoChooserIfSignedIn( ) {
   };
 }
 
+export function fetchTerms( callback ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
+    if ( s.config.chosenPlace ) {
+      params.place_id = s.config.chosenPlace.id;
+    }
+    inatjs.observations.popularFieldValues( params ).then( r => {
+      dispatch( { type: SET_FIELD_VALUES, fieldValues:
+        _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
+      if ( callback ) { callback( ); }
+    } ).catch( e => { console.log( e ); } );
+  };
+}
+
 export function fetchTaxon( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const t = taxon || s.taxon.taxon;
     const params = Object.assign( { }, options, {
-      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale
     } );
     return inatjs.taxa.fetch( t.id, params ).then( response => {
+      // make sure the charts revert back to the "Seasonality" tab
+      // in case the incoming results have no data for the current tab
+      $( "a[href=#charts-seasonality]" ).tab( "show" );
       dispatch( setTaxon( response.results[0] ) );
+      dispatch( fetchTerms( ) );
     } );
   };
 }
@@ -209,9 +203,11 @@ export function fetchDescription( ) {
       response => {
         const source = response.headers.get( "X-Describer-Name" );
         const url = response.headers.get( "X-Describer-URL" );
-        response.text( ).then(
-          body => dispatch( setDescription( source, url, body )
-        ) );
+        response.text( ).then( body => {
+          if ( body && body.length > 0 ) {
+            dispatch( setDescription( source, url, body ) );
+          }
+        } );
       },
       error => {
         console.log( "[DEBUG] error: ", error );
@@ -222,8 +218,13 @@ export function fetchDescription( ) {
 
 export function fetchLinks( ) {
   return ( dispatch, getState ) => {
-    const taxon = getState( ).taxon.taxon;
-    fetch( `/taxa/${taxon.id}/links.json` ).then(
+    const s = getState( );
+    const taxon = s.taxon.taxon;
+    let url = `/taxa/${taxon.id}/links.json`;
+    if ( s.config.preferredPlace ) {
+      url += `?place_id=${s.config.preferredPlace.id}`;
+    }
+    fetch( url ).then(
       response => {
         response.json( ).then( json => dispatch( setLinks( json ) ) );
       },
@@ -301,11 +302,14 @@ export function fetchRare( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
+    const taxon = getState( ).taxon.taxon;
     inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
-        const commonlyMisidentified = response.results.filter( r => ( r.count > 1 ) );
+        const withoutAncestors = response.results.filter( r =>
+          taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
+        const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
-          dispatch( setSimilar( response.results ) );
+          dispatch( setSimilar( withoutAncestors ) );
         } else {
           dispatch( setSimilar( commonlyMisidentified ) );
         }
@@ -352,7 +356,11 @@ export function fetchTaxonChange( taxon ) {
         if ( !json[0] ) {
           return;
         }
-        dispatch( setTaxonChange( json[0] ) );
+        let taxonChange = json[0];
+        if ( taxon.is_active ) {
+          taxonChange = _.find( json, tc => !tc.committed_on );
+        }
+        dispatch( setTaxonChange( taxonChange ) );
       } );
   };
 }

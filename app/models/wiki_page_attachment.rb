@@ -10,6 +10,7 @@ class WikiPageAttachment < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "wiki_page_attachments/:id-:style.:extension",
       :url => ":s3_alias_url"
+    invalidate_cloudfront_caches :wiki_page_attachment, "wiki_page_attachments/:id-*"
     validates_attachment_presence :wiki_page_attachment, :message => " is missing."
     validates_attachment_content_type :wiki_page_attachment, :content_type => [
       'image/jpeg',

@@ -3,6 +3,7 @@ import HighlightsTab from "../components/highlights_tab";
 import moment from "moment";
 import querystring from "querystring";
 import { defaultObservationParams, urlForPlace } from "../../shared/util";
+import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   const trendingParams = Object.assign( { }, defaultObservationParams( state ), {
@@ -18,8 +19,10 @@ function mapStateToProps( state ) {
   };
 }
 
-function mapDispatchToProps( ) {
-  return {};
+function mapDispatchToProps( dispatch ) {
+  return {
+    showNewTaxon: taxon => dispatch( showNewTaxon( taxon ) )
+  };
 }
 
 const HighlightsTabContainer = connect(
