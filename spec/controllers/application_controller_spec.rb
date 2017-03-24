@@ -16,9 +16,6 @@ describe ApplicationController do
         get :index, format: :html
         expect(response.response_code).to eq 200
         expect(response.body).to include "Observations"
-        get :index, format: :mobile
-        expect(response.response_code).to eq 200
-        expect(response.body).to include "Observations"
         get :index, format: :json
         expect(response.response_code).to eq 200
         expect(JSON.parse response.body).to eq [ ]

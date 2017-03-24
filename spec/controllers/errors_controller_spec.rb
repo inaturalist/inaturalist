@@ -5,14 +5,14 @@ describe ErrorsController do
 
   describe "error_404" do
     it "should have proper response code for all formats" do
-      [ :html, :mobile, :json ].each do |f|
+      [ :html, :json ].each do |f|
         get :error_404, format: f
         expect(response.response_code).to eq 404
       end
     end
 
-    it "should show the right page for .html and .mobile" do
-      [ :html, :mobile ].each do |f|
+    it "should show the right page for .html" do
+      [ :html ].each do |f|
         get :error_404, format: f
         expect(response.body).to include "Sorry, that doesn't exist!"
       end
@@ -26,14 +26,14 @@ describe ErrorsController do
 
   describe "error_422" do
     it "should have proper response code for all formats" do
-      [ :html, :mobile, :json ].each do |f|
+      [ :html, :json ].each do |f|
         get :error_422, format: f
         expect(response.response_code).to eq 422
       end
     end
 
-    it "should show the 404 page .html and .mobile" do
-      [ :html, :mobile ].each do |f|
+    it "should show the 404 page .html" do
+      [ :html ].each do |f|
         get :error_422, format: f
         expect(response.body).to include "Sorry, that doesn't exist!"
       end
@@ -47,14 +47,14 @@ describe ErrorsController do
 
   describe "error_500" do
     it "should have proper response code for all formats" do
-      [ :html, :mobile, :json ].each do |f|
+      [ :html, :json ].each do |f|
         get :error_500, format: f
         expect(response.response_code).to eq 500
       end
     end
 
-    it "should show the right page for .html and .mobile" do
-      [ :html, :mobile ].each do |f|
+    it "should show the right page for .html" do
+      [ :html ].each do |f|
         get :error_500, format: f
         expect(response.body).to include "I ate iNaturalist.org"
       end
