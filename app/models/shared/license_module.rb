@@ -77,7 +77,7 @@ module Shared::LicenseModule
   end
   
   def license_url
-    self.license_url_for_number( license )
+    Shared::LicenseModule.license_url_for_number( license )
   end
   
   def copyrighted?
