@@ -2587,7 +2587,9 @@ class Observation < ActiveRecord::Base
   end
 
   def probably_captive?
-    return false unless taxon_id
+    target_taxon = community_taxon || taxon
+    return false unless target_taxon
+    return false if target_taxon.rank_level > Taxon::GENUS_LEVEL
     place = system_places.detect do |p|
       [
         Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
@@ -2596,10 +2598,10 @@ class Observation < ActiveRecord::Base
     return false unless place
     buckets = Observation.elastic_search(
       filters: [
-        { term: { "taxon.ancestor_ids": taxon_id } },
+        { term: { "taxon.ancestor_ids": target_taxon.id } },
         { term: { place_ids: place.id } },
       ],
-      earliest_sort_field: "id",
+      # earliest_sort_field: "id",
       size: 0,
       aggregate: {
         captive: {

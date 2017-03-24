@@ -3151,7 +3151,7 @@ end
 describe Observation, "probably_captive?" do
   before(:all) { enable_elastic_indexing( Observation ) }
   after(:all) { disable_elastic_indexing( Observation ) }
-  let( :taxon ) { Taxon.make! }
+  let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
   let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
   def make_captive_obs
     Observation.make!( taxon: taxon, captive_flag: true, latitude: place.latitude, longitude: place.longitude )
@@ -3171,6 +3171,32 @@ describe Observation, "probably_captive?" do
     11.times { make_non_captive_obs }
     11.times { make_captive_obs }
     expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+  it "should be false with no coordinates" do
+    11.times { make_captive_obs }
+    o = Observation.make!( taxon: taxon )
+    expect( o ).not_to be_georeferenced
+    expect( o ).not_to be_probably_captive
+  end
+  it "should be false with no taxon" do
+    11.times { make_captive_obs }
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude )
+    expect( o.taxon ).to be_blank
+    expect( o ).not_to be_probably_captive
+  end
+  it "should use the community taxon if present" do
+    11.times { make_captive_obs }
+    o = Observation.make!(
+      taxon: Taxon.make!( rank: Taxon::SPECIES ),
+      latitude: place.latitude,
+      longitude: place.longitude,
+      prefers_community_taxon: false
+    )
+    4.times { Identification.make!( observation: o, taxon: taxon ) }
+    o.reload
+    expect( o.taxon ).not_to eq taxon 
+    expect( o.community_taxon ).to eq taxon
+    expect( o ).to be_probably_captive
   end
 
   describe Observation, "and update_quality_metrics" do
