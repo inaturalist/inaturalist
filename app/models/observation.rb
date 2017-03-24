@@ -1200,7 +1200,6 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
-    # community_supported_id? && research_grade_candidate?
     quality_grade == RESEARCH_GRADE
   end
 
@@ -1238,6 +1237,8 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
+    elsif community_taxon_id && owners_identification && owners_identification.maverick? && community_taxon_rejected?
+      CASUAL
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
     elsif voted_out_of_needs_id?
@@ -1355,8 +1356,6 @@ class Observation < ActiveRecord::Base
 
 
   def obscure_place_guess
-    # puts "obscure_place_guess, coordinates_private?: #{coordinates_private?}"
-    # return true unless latitude_changed? || 
     public_place_guess = Observation.place_guess_from_latlon(
       private_latitude,
       private_longitude,
@@ -1364,9 +1363,6 @@ class Observation < ActiveRecord::Base
       user: user
     )
     if coordinates_private?
-      # puts "obscure_place_guess, place_guess_changed?: #{place_guess_changed?}"
-      # puts "obscure_place_guess, place_guess: #{place_guess}"
-      # puts "obscure_place_guess, private_place_guess: #{private_place_guess}"
       if place_guess_changed? && place_guess == private_place_guess
         self.place_guess = nil
       elsif !place_guess.blank? && place_guess != public_place_guess

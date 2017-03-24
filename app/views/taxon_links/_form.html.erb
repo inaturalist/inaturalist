@@ -24,7 +24,7 @@
   </script>
 <%- end -%>
 <div class="column span-15 append-1">
-  <%= form_for @taxon_link, :builder => DefaultFormBuilder, :html => {:class => 'taxon_link_form'} do |f| %>
+  <%= form_for @taxon_link, :builder => DefaultFormBuilder, :html => {:class => 'clear taxon_link_form'} do |f| %>
     <%= f.text_field :url, :required => true %>
     <%= f.text_field :site_title, :required => true %>
     <%= f.text_field :short_title, :maxlength => 10, :description => t(:short_or_abbreviated_title_for_display) %>
@@ -46,11 +46,19 @@
     <div class="buttonrow">
       <%= f.submit t(:save), :class => "default button" %>
       <%= link_to t(:cancel), @taxon_link.taxon, :class => "button" %>
-      <% unless @taxon_link.new_record?  -%>
+      <% if @taxon_link.deletable_by?( current_user )  -%>
         <%= link_to t(:delete), @taxon_link, :method => :delete,
           :data => {:confirm => t(:are_you_sure_want_delete_taxon_link)},
           :class => "minor button delete" %>
       <% end -%>
+    </div>
+  <% end -%>
+  <% if @taxon_link.user -%>
+    <div class="clear description">
+      <%= t( :created_by, gender: "taxon_link" ) %>
+      <%= link_to user_image( @taxon_link.user ), @taxon_link.user %>
+      <%= link_to @taxon_link.user.login, @taxon_link.user %>
+      <%= t :on_day %> <%= l( @taxon_link.created_at.to_date, format: :long ) %>
     </div>
   <% end -%>
 </div>

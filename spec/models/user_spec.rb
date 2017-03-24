@@ -693,6 +693,9 @@ describe User do
   end
 
   describe "community taxa preference" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+
     it "should not remove community taxa when set to false" do
       o = Observation.make!
       i1 = Identification.make!(:observation => o)
@@ -744,6 +747,21 @@ describe User do
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to eq o.community_taxon
+    end
+
+    it "should re-assess quality grade when changed" do
+      u = User.make!( prefers_community_taxa: false )
+      owners_taxon = Taxon.make!( rank: Taxon::SPECIES )
+      community_taxon = Taxon.make!( rank: Taxon::SPECIES )
+      o = make_research_grade_candidate_observation( user: u, taxon: owners_taxon )
+      3.times { Identification.make!( observation: o, taxon: community_taxon ) }
+      o.reload
+      expect( o.owners_identification ).to be_maverick
+      expect( o.quality_grade ).to eq Observation::CASUAL
+      o.user.update_attributes( prefers_community_taxa: true )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
     end
   end
 

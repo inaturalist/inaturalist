@@ -689,6 +689,7 @@ describe Observation do
         o.reload
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
+
       it "should not be research grade if community taxon above family" do
         o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'order'))
         Identification.make!(observation: o, taxon: o.taxon)
@@ -768,7 +769,6 @@ describe Observation do
         expect(o.quality_grade).to eq Observation::CASUAL
       end
 
-      # needs ID
       it "should be research grade if community ID at species or lower and research grade candidate" do
         o = make_research_grade_candidate_observation
         t = Taxon.make!(rank: Taxon::SPECIES)
@@ -858,16 +858,85 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
 
-      it "should work with query" do
-        o_needs_id = make_research_grade_candidate_observation
-        o_needs_id.reload
-        o_verified = make_research_grade_observation
-        o_casual = Observation.make!
-        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).to include o_needs_id
-        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_verified
-        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_casual
-        expect( Observation.query(quality_grade: Observation::RESEARCH_GRADE) ).to include o_verified
-        expect( Observation.query(quality_grade: Observation::CASUAL) ).to include o_casual
+      it "should be research grade if the taxon is in a different subtree from the CID taxon" do
+        owner_taxon = Taxon.make!( rank: Taxon::SPECIES )
+        community_taxon = Taxon.make!( rank: Taxon::SPECIES )
+        o = make_research_grade_candidate_observation( taxon: owner_taxon )
+        3.times { Identification.make!( observation: o, taxon: community_taxon ) }
+        o.reload
+        expect( o.community_taxon ).to eq community_taxon
+        expect( o.owners_identification.taxon ).to eq owner_taxon
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      describe "when observer opts out of CID" do
+        let(:u) { User.make!( prefers_community_taxa: false ) }
+        it "should be casual if the taxon is in a different subtree from the CID taxon" do
+          species1 = Taxon.make!( rank: Taxon::SPECIES )
+          species2 = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species1, user: u )
+          3.times { Identification.make!( observation: o, taxon: species2 ) }
+          o.reload
+          expect( o.community_taxon ).to eq species2
+          expect( o.taxon ).to eq species1
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
+        it "should be needs_id if no CID" do
+          o = make_research_grade_candidate_observation( user: u )
+          expect( o.community_taxon ).to be_blank
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be needs_id if the taxon matches the CID taxon and the CID taxon is a family" do
+          family = Taxon.make!( rank: Taxon::FAMILY )
+          o = make_research_grade_candidate_observation( taxon: family, user: u )
+          Identification.make!( observation: o, taxon: family )
+          o.reload
+          expect( o.community_taxon ).to eq family
+          expect( o.taxon ).to eq family
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be needs_id if the taxon is an ancestor of the CID taxon" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( taxon: genus, user: u )
+          3.times { Identification.make!( observation: o, taxon: species ) }
+          o.reload
+          expect( o.community_taxon ).to eq species
+          expect( o.taxon ).to eq genus
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be needs_id if the CID taxon is an ancestor of the taxon" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( taxon: species, user: u )
+          3.times { Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.community_taxon ).to eq genus
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be research if the taxon matches the CID taxon and the CID taxon is a species" do
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species, user: u )
+          Identification.make!( observation: o, taxon: species )
+          o.reload
+          expect( o.community_taxon ).to eq species
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
+      end
+
+      describe "when observer opts out of CID for a single observation" do
+        it "should be casual if the taxon is in a different subtree from the CID taxon" do
+          species1 = Taxon.make!( rank: Taxon::SPECIES )
+          species2 = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species1, prefers_community_taxon: false )
+          3.times { Identification.make!( observation: o, taxon: species2 ) }
+          o.reload
+          expect( o.community_taxon ).to eq species2
+          expect( o.taxon ).to eq species1
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
       end
     end
   
@@ -1894,6 +1963,18 @@ describe Observation do
   end
 
   describe "query" do
+    it "should filter by quality_grade" do
+      o_needs_id = make_research_grade_candidate_observation
+      o_needs_id.reload
+      o_verified = make_research_grade_observation
+      o_casual = Observation.make!
+      expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).to include o_needs_id
+      expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_verified
+      expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_casual
+      expect( Observation.query(quality_grade: Observation::RESEARCH_GRADE) ).to include o_verified
+      expect( Observation.query(quality_grade: Observation::CASUAL) ).to include o_casual
+    end
+
     it "should filter by research grade" do
       r = make_research_grade_observation
       c = Observation.make!(:user => r.user)

@@ -32,7 +32,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -865,6 +865,12 @@ class TaxaController < ApplicationController
       gbif_id: @taxon.get_gbif_id,
       listed_places: @taxon.listed_taxa.joins(place: :place_geometry).exists?
     }
+  end
+
+  def taxobox
+    respond_to do |format|
+      format.html { render partial: "wikipedia_taxobox", object: @taxon }
+    end
   end
 
   private

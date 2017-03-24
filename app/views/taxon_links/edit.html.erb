@@ -4,4 +4,8 @@
 
 <h2><%= t(:editing_taxon_link) %></h2>
 
-<%= render :partial => 'form' %>
+<%= render partial: "form" %>
+
+<div class="column span-12">
+  <%= render partial: "comments/comments", locals: { parent: @taxon_link } %>
+</div>

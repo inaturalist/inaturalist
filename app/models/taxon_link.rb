@@ -2,11 +2,16 @@ class TaxonLink < ActiveRecord::Base
   belongs_to :taxon
   belongs_to :user
   belongs_to :place
+  has_many :comments, as: :parent, dependent: :destroy
   validates_format_of :url, :with => URI.regexp, :message => "should look like a URL, e.g. http://www.inaturalist.org"
   validates_presence_of :taxon_id, :site_title
   validates_length_of :short_title, :maximum => 10, :allow_blank => true
   
   before_validation :set_site_title
+
+  has_subscribers to: {
+    comments: { notification: "activity", include_owner: true },
+  }
   
   scope :for_taxon, lambda {|taxon|
     if taxon.species_or_lower?
@@ -68,6 +73,12 @@ class TaxonLink < ActiveRecord::Base
     stripped_url = self.url
     TEMPLATE_TAGS.each {|tt| stripped_url.gsub!(tt, '')}
     stripped_url
+  end
+
+  def deletable_by?( user )
+    return false if new_record? || user.blank?
+    return true if user.is_admin?
+    user.id == user_id
   end
 
   def self.by_taxon( taxon, options = {} )
