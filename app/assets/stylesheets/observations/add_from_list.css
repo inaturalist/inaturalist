@@ -21,28 +21,6 @@
   margin-left: 10px;
 }
 
-#mobilenav {
-  position: relative;
-  text-align: right;
-  width: 300px;
-  float: right;
-}
-
-#show_mobile_nav_link,
-#mobilenav.open {
-  text-align: left;
-  background-color: #eee;
-  padding: 10px;
-  -webkit-border-bottom-left-radius: 5px;
-  -webkit-border-bottom-right-radius: 5px;
-  -webkit-box-shadow: 0px 2px 5px #aaa;
-}
-
-#show_mobile_nav_link {
-  display: inline-block;
-}
-
-#hide_mobile_nav_link,
 #goto_nav_link {
   display: inline-block;
   float: right;
