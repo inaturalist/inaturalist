@@ -24,6 +24,7 @@ EOS
     ", type: :integer, default: 20, short: "-u"
   opt :skip_augmented, "Skip export of augmented_test photos", type: :boolean, default: false
   opt :species_ids, "Only look at these species IDs. Mainly for testing", type: :integers
+  opt :licenses, "Licenses to filter photos by", type: :strings
   opt :debug, "Print lots of crap", type: :boolean
 end
 
@@ -95,8 +96,9 @@ photos_path = File.join( tmpdir_path, "photos.csv" )
 totals = { test: 0, validation: 0, training: 0, augmented_test: 0 }
 target_species_ids = Set.new
 taxon_batch_size = 20
+license_numbers = ( OPTS.licenses || [] ).map{ |code| Photo.license_number_for_code( code ) }
 CSV.open( photos_path, "wb" ) do |csv|
-  csv << %w(photo_id set species_id taxon_id observation_id user_id url)
+  csv << %w(photo_id set species_id taxon_id observation_id user_id url quality_grade photo_license obs_license rights_holder)
   target_taxon_ids.in_groups_of( taxon_batch_size ) do |group|
     show_timing_stats if OPTS.debug
     group.compact!
@@ -113,16 +115,21 @@ CSV.open( photos_path, "wb" ) do |csv|
         op.observation_id,
         o.user_id,
         p.medium_url,
-        p.small_url
+        p.small_url,
+        p.license AS photo_license,
+        o.license AS obs_license,
+        COALESCE(NULLIF(u.name, ''), u.login) AS rights_holder
       FROM
         observation_photos op
           JOIN observations o ON op.observation_id = o.id
           JOIN photos p ON op.photo_id = p.id
           JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
           JOIN taxa taa ON taa.id = ta.ancestor_taxon_id AND taa.rank = 'species'
+          JOIN users u ON u.id = p.user_id
       WHERE
         o.quality_grade IN ( 'research', 'needs_id' )
         AND taa.id IN (#{group.join( "," )})
+        #{"AND p.license IN (#{license_numbers.join( "," )})" unless license_numbers.blank?}
     SQL
     # For each species...
     log "Querying photos for #{taxon_batch_size} taxa starting with #{group[0]}"
@@ -189,6 +196,8 @@ CSV.open( photos_path, "wb" ) do |csv|
         photos.each do |photo|
           photo_url = photo["medium_url"].blank? ? photo["small_url"] : photo["medium_url"]
           next unless photo_url
+          photo_license_url = Photo.license_url_for_number( photo["photo_license"] )
+          obs_license_url = Photo.license_url_for_code( photo["obs_license"] )
           totals[set] += 1
           csv << [
             photo["photo_id"],
@@ -197,7 +206,11 @@ CSV.open( photos_path, "wb" ) do |csv|
             photo["taxon_id"],
             photo["observation_id"],
             photo["user_id"],
-            photo_url
+            photo_url,
+            photo["quality_grade"],
+            photo_license_url,
+            obs_license_url,
+            photo["rights_holder"]
           ]
         end
       end
@@ -251,16 +264,21 @@ unless OPTS.skip_augmented
           op.observation_id,
           o.user_id,
           p.medium_url,
-          p.small_url
+          p.small_url,
+          p.license AS photo_license,
+          o.license AS obs_license,
+          COALESCE(NULLIF(u.name, ''), u.login) AS rights_holder
         FROM
           observation_photos op
             JOIN observations o ON op.observation_id = o.id
             JOIN photos p ON op.photo_id = p.id
             JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
             JOIN taxa taa ON taa.id = ta.ancestor_taxon_id AND taa.rank = 'species'
+            JOIN users u ON u.id = p.user_id
         WHERE
           o.quality_grade = 'research'
           AND taa.id IN (#{group.join( "," )})
+          #{"AND p.license IN (#{license_numbers.join( "," )})" unless license_numbers.blank?}
       SQL
       non_target_photos = run_with_timing( :query_non_target_photos ) do
         run_sql( non_target_test_sql )
@@ -268,6 +286,8 @@ unless OPTS.skip_augmented
       non_target_photos.each do |photo|
         next if totals[:augmented_test] >= totals[:test]
         photo_url = photo["medium_url"].blank? ? photo["small_url"] : photo["medium_url"]
+        photo_license_url = Photo.license_url_for_number( photo["photo_license"] )
+        obs_license_url = Photo.license_url_for_code( photo["obs_license"] )
         totals[:augmented_test] += 1
         csv << [
           photo["photo_id"],
@@ -276,7 +296,11 @@ unless OPTS.skip_augmented
           photo["taxon_id"],
           photo["observation_id"],
           photo["user_id"],
-          photo_url
+          photo_url,
+          photo["quality_grade"],
+          photo_license_url,
+          obs_license_url,
+          photo["rights_holder"]
         ]
       end
     end
@@ -348,6 +372,16 @@ Data about photos, including
   url
     URL of the medium-sized version of the photo, usually about 500 px on the
     long edge.
+  quality_grade
+    iNaturalist quality grade. For definitions of quality grades, see
+    http://www.inaturalist.org/pages/help#quality
+  photo_license
+    URL for the license applied to this image, if any license.
+  obs_license
+    URL for the license applied to the observation.
+  rights_holder
+    Legal rights holder for this image, suitable for use in attribution to
+    comply with Creative Commons licenses.
 
 target_species.csv
 

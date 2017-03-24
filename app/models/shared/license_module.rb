@@ -77,7 +77,7 @@ module Shared::LicenseModule
   end
   
   def license_url
-    LICENSE_INFO[license.to_i].try(:[], :url)
+    self.license_url_for_number( license )
   end
   
   def copyrighted?
@@ -113,6 +113,14 @@ module Shared::LicenseModule
 
     def license_name_for_code( code )
       LICENSE_INFO[ license_number_for_code( code ) ].try(:[], :name)
+    end
+
+    def license_url_for_number( number )
+      LICENSE_INFO[number.to_i].try(:[], :url)
+    end
+
+    def license_url_for_code( code )
+      license_url_for_number( license_number_for_code( code ) )
     end
   end
 
