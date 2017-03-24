@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
     last_ip = request.env["HTTP_X_CLUSTER_CLIENT_IP"] if last_ip.split(".")[0..1].join(".") == "10.183"
     resource.update_attribute(:last_ip, last_ip)
     respond_to do |format|
-      format.any(:html, :mobile) do
+      format.html do
         flash.delete(:notice)
         if session[:return_to]
           redirect_to session[:return_to]

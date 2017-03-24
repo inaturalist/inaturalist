@@ -133,11 +133,10 @@ module UsersHelper
   def activity_stream_body(update, options = {})
     activity_object = options[:activity_object] || update.activity_object
     return nil unless activity_object
-    mobile = request.format.mobile?
     if update.batch_ids.blank?
       case update.activity_object_type
       when "Observation"
-        content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object), :class => "mini observations #{'compact' if mobile}")
+        content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object), :class => "mini observations")
       when "Identification" 
         render :partial => "identifications/identification_with_observation", :object => activity_object 
       when "ListedTaxon" 
@@ -147,7 +146,7 @@ module UsersHelper
       when "List" 
       when "Comment"
         if activity_object.parent.is_a?(Observation)
-          content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object.parent), :class => "mini observations #{'compact' if mobile}") +
+          content_tag(:div, render(:partial => "observations/cached_component", :object => activity_object.parent), :class => "mini observations") +
           render(update.activity_object)
         else
           render(update.activity_object)

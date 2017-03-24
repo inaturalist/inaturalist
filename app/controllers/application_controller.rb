@@ -2,9 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   include Ambidextrous
-  
-  has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
-  around_filter :catch_missing_mobile_templates
 
   # many people try random URLs like wordpress login pages with format .php
   # for any format we do not recognize, make sure we render a proper 404
@@ -227,7 +224,7 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
-    unless request.format.json? || request.format.mobile?
+    unless request.format.json?
       request.format = "html"
     end
     respond_to do |format|
@@ -343,30 +340,6 @@ class ApplicationController < ActionController::Base
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
-  end
-  
-  def catch_missing_mobile_templates
-    begin
-      yield
-    rescue ActionView::MissingTemplate => e
-      if in_mobile_view?
-        flash[:notice] = t(:no_mobilized_version_of_that_view)
-        session[:mobile_view] = false
-        Rails.logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
-        return redirect_to request.path.gsub(/\.mobile/, '')
-      end
-      raise e
-    end
-    true
-  end
-  
-  def mobilized
-    @mobilized = true
-  end
-  
-  def unmobilized
-    @mobilized = false
-    request.format = :html if in_mobile_view? && request.format == :mobile
   end
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session

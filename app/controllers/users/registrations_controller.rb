@@ -24,7 +24,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
         respond_with(resource) do |format|
-          format.any(:html, :mobile) do
+          format.html do
             if session[:return_to_for_new_user]
               redirect_to session[:return_to_for_new_user]
             else
@@ -46,7 +46,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
       clean_up_passwords resource
       respond_with(resource) do |format|
         format.html { render :new }
-        format.mobile { render :new, :status => 422 }
         format.json { render :json => {:errors => resource.errors.full_messages} }
       end
     end

@@ -7,10 +7,6 @@ class CommentsController < ApplicationController
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
   
-  MOBILIZED = [:edit]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
-  
   def index
     find_options = {
       :select => "MAX(comments.id) AS id, parent_id",
@@ -65,9 +61,6 @@ class CommentsController < ApplicationController
   def edit
     respond_to do |format|
       format.html
-      format.mobile do
-        render "edit.html.erb"
-      end
     end
   end
   
@@ -77,7 +70,6 @@ class CommentsController < ApplicationController
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
-      format.mobile { respond_to_create }
       format.json do
         if @comment.valid?
           if params[:partial] == "activity_item"

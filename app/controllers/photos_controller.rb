@@ -1,8 +1,5 @@
 #encoding: utf-8
 class PhotosController < ApplicationController
-  MOBILIZED = [:show]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
   before_filter :require_owner, :only => [:update, :destroy, :rotate]
   before_filter :authenticate_user!, :only =>
@@ -26,7 +23,6 @@ class PhotosController < ApplicationController
         @observations = @photo.observations.limit(100)
         @flags = @photo.flags
       end
-      format.mobile
       format.js do
         partial = params[:partial] || 'photo'
         render :layout => false, :partial => partial, :object => @photo

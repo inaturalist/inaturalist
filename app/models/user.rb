@@ -522,6 +522,11 @@ class User < ActiveRecord::Base
       longitude = nil
       lat_lon_acc_admin_level = nil
       Rails.logger.info "[INFO #{Time.now}] geoip timeout"
+    rescue SocketError => e
+      latitude = nil
+      longitude = nil
+      lat_lon_acc_admin_level = nil
+      Rails.logger.info "[INFO #{Time.now}] geoip socket error: #{e}"
     end
     self.latitude = latitude
     self.longitude = longitude
