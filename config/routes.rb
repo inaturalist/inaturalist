@@ -358,6 +358,7 @@ Rails.application.routes.draw do
       get "map_layers"
       get "browse_photos"
       get "show_google"
+      get "taxobox"
     end
     collection do
       get 'synonyms'
@@ -441,7 +442,7 @@ Rails.application.routes.draw do
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
   get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
-  resources :taxon_links, :except => [:show]
+  resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
   get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget
