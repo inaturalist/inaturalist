@@ -41,7 +41,7 @@ class CommunityIDPopover extends React.Component {
       >
         <div className="header">
           <UserImage user={ identification.user } />
-          <a href={ `/people/${identification.user.login}` }>{ identification.user.login }</a>'s ID
+          <a href={ `/people/${identification.user.login}` }>{ identification.user.login }</a>'s ID:
         </div>
         <div className="contents">
           { this.renderTaxonomy( taxa, true ) }

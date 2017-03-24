@@ -1,16 +1,35 @@
 import _ from "lodash";
+import moment from "moment-timezone";
 import React, { PropTypes } from "react";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
 const MoreFromUser = ( { observation, observations } ) => {
   if ( !observation || _.isEmpty( observations ) ) { return ( <div /> ); }
+  let dateObserved;
+  if ( observation.time_observed_at ) {
+    dateObserved = moment.tz( observation.time_observed_at,
+      observation.observed_time_zone );
+  } else if ( observation.observed_on ) {
+    dateObserved = moment( observation.observed_on );
+  }
+  const onDate = dateObserved ? dateObserved.format( "YYYY-MM-DD" ) : null;
   return (
     <div className="MoreFromUser">
       <h3>
         More from { observation.user.login }
-        <a href={ `/observations?user_id=${observation.user.login}` }>
-          View all
-        </a>
+        <div className="links">
+          <a href={ `/observations?user_id=${observation.user.login}` }>
+            View all
+          </a>
+          { dateObserved ? (
+            <span>
+              <span className="separator">·</span>
+              <a href={ `/observations?user_id=${observation.user.login}&on=${onDate}` }>
+                View all from { dateObserved.format( "MMMM D, YYYY" ) }
+              </a>
+            </span>
+          ) : "" }
+        </div>
       </h3>
       <div className="list">
         { observations.map( o => {

@@ -6,8 +6,11 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
+import ConservationStatusBadge from "../components/conservation_status_badge";
+import EstablishmentMeansBadge from "../components/establishment_means_badge";
 import ActivityContainer from "../containers/activity_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
+import CommunityIDModalContainer from "../containers/community_id_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
 import TagsContainer from "../containers/tags_container";
@@ -80,6 +83,15 @@ const App = ( { observation, config } ) => {
       </div>
     );
   }
+  let formattedDateObserved;
+  if ( observation.time_observed_at ) {
+    formattedDateObserved = moment.tz( observation.time_observed_at,
+      observation.observed_time_zone ).format( "MMM D, YYYY · LT z" );
+  } else if ( observation.observed_on ) {
+    formattedDateObserved = moment( observation.observed_on ).format( "MMM D, YYYY" );
+  } else {
+    formattedDateObserved = "Not recorded";
+  }
   return (
     <div id="ObservationShow">
     { warning }
@@ -91,6 +103,8 @@ const App = ( { observation, config } ) => {
                 <div className="title">
                   <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
                 </div>
+                <ConservationStatusBadge observation={ observation } />
+                <EstablishmentMeansBadge observation={ observation } />
                 <div className="quality_flag">
                   <span className={ `quality_grade ${observation.quality_grade} ` }>
                     { _.upperFirst( I18n.t( observation.quality_grade ) ) }
@@ -119,8 +133,7 @@ const App = ( { observation, config } ) => {
                       <Col xs={6}>
                         <span className="bold_label">Observed:</span>
                         <span className="date">
-                          { moment.tz( observation.time_observed_at,
-                            observation.observed_time_zone ).format( "MMM D, YYYY · LT z" ) }
+                          { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
@@ -142,7 +155,7 @@ const App = ( { observation, config } ) => {
                       </Col>
                       <Col xs={4}>
                         <i className="fa fa-star" />
-                        { observation.faves_count }
+                        { observation.faves.length }
                       </Col>
                     </Row>
                     <Row className="faves_row">
@@ -246,6 +259,7 @@ const App = ( { observation, config } ) => {
       </div>
       <FlaggingModalContainer />
       <ConfirmModalContainer />
+      <CommunityIDModalContainer />
     </div>
   );
 };

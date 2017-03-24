@@ -11,24 +11,73 @@ class ProjectListing extends React.Component {
   }
 
   settingsMenu( po ) {
+    const currentUser = this.props.config && this.props.config.currentUser;
+    let menuItems = [];
+    const allowsAccess = po.preferences && po.preferences.allows_curator_coordinate_access;
+    menuItems.push( ( <div key={ `project-allow-${po.project.id}` } className="allow">
+      <input
+        type="checkbox"
+        defaultChecked={ allowsAccess }
+        id={ `project-allow-input-${po.project.id}` }
+        onClick={ ( ) => {
+          this.props.updateCuratorAccess( po, allowsAccess ? 0 : 1 );
+        }}
+      />
+      <label htmlFor={ `project-allow-input-${po.project.id}` }>
+        Allow curator Access
+      </label>
+      <div className="text-muted">
+        Allow curator access to view the private coordinates of this observation
+      </div>
+    </div> ) );
+    menuItems.push( ( <MenuItem divider key="project-allow-divider" /> ) );
+    if ( !po.current_user_is_member ) {
+      menuItems.push( ( <MenuItem
+        key={ `project-join-${po.project.id}` }
+        eventKey="join"
+      >
+        Join this project
+      </MenuItem> ) );
+    }
+    menuItems.push( ( <MenuItem
+      key={ `project-remove-${po.project.id}` }
+      eventKey="delete"
+    >
+      Remove from project
+    </MenuItem> ) );
+    if ( po.current_user_is_member ) {
+      menuItems.push( ( <MenuItem
+        key={ `project-settings-${po.project.id}` }
+        eventKey="projectSettings"
+        href={ `/projects/${po.project.slug}/contributors/${currentUser.login}` }
+      >
+        Edit your settings for this project
+      </MenuItem> ) );
+    }
+    menuItems.push( ( <MenuItem
+      key={ `project-global-${po.project.id}` }
+      eventKey="globalSettings"
+      href="/users/edit#projects"
+    >
+      Edit your global project settings
+    </MenuItem> ) );
     return (
       <span className="control-group">
         <Dropdown
           id="grouping-control"
-          onSelect={ ( ) => {
-            this.props.removeFromProject( po.project );
+          onSelect={ ( event, key ) => {
+            if ( key === "join" ) {
+              this.props.joinProject( po.project );
+            } else if ( key === "delete" ) {
+              this.props.removeFromProject( po.project );
+            }
           } }
         >
           <Dropdown.Toggle noCaret>
             <i className="fa fa-cog" />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-right">
-            <MenuItem
-              key={ `project-remove-${po.project.id}` }
-              eventKey="delete"
-            >
-              Remove
-            </MenuItem>
+            { menuItems }
           </Dropdown.Menu>
         </Dropdown>
       </span>
@@ -94,7 +143,9 @@ class ProjectListing extends React.Component {
 }
 
 ProjectListing.propTypes = {
+  joinProject: PropTypes.func,
   removeFromProject: PropTypes.func,
+  updateCuratorAccess: PropTypes.func,
   config: PropTypes.object,
   observation: PropTypes.object,
   projectObservation: PropTypes.object

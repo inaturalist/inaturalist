@@ -5,10 +5,6 @@ import UsersPopover from "./users_popover";
 import UserImage from "../../identify/components/user_image";
 
 class Annotations extends React.Component {
-  constructor( ) {
-    super( );
-  }
-
   render( ) {
     const observation = this.props.observation;
     const config = this.props.config;
@@ -118,8 +114,8 @@ class Annotations extends React.Component {
             <td>
               <Dropdown
                 id="grouping-control"
-                onSelect={ ( event, key ) => {
-                  this.props.addAnnotation( ct.id, key );
+                onSelect={ ( event, index ) => {
+                  this.props.addAnnotation( ct, availableValues[index] );
                 }}
               >
                 <Dropdown.Toggle>
@@ -129,10 +125,10 @@ class Annotations extends React.Component {
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu-right">
                   {
-                    availableValues.map( v => (
+                    availableValues.map( ( v, index ) => (
                       <MenuItem
                         key={ `term-${v.id}` }
-                        eventKey={ v.id }
+                        eventKey={ index }
                       >{ v.label }</MenuItem>
                     ) )
                   }

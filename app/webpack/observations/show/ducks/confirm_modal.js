@@ -18,20 +18,24 @@ export function setConfirmModalState( newState ) {
 }
 
 export function handleAPIError( e, message ) {
+  if ( !e || !message ) { return null; }
   return ( dispatch ) => {
-    if ( e && e.response && e.response.status ) {
+    if ( e.response && e.response.status ) {
       e.response.text( ).then( text => {
         const body = JSON.parse( text );
+        // these errors come from Rails and have their own usable error messages
+        let railsErrors;
         if ( body && body.error && body.error.original && body.error.original.errors ) {
-          dispatch( setConfirmModalState( {
-            show: true,
-            type: "error",
-            hideCancel: true,
-            confirmText: "OK",
-            message,
-            errors: body.error.original.errors
-          } ) );
+          railsErrors = body.error.original.errors;
         }
+        dispatch( setConfirmModalState( {
+          show: true,
+          type: "error",
+          hideCancel: true,
+          confirmText: "OK",
+          message,
+          errors: railsErrors
+        } ) );
       } );
     }
   };

@@ -13,16 +13,19 @@ const util = class util {
       ( testTaxonAncestry.includes( compareToTaxonAncestry ) ) );
   }
 
-  static taxonImage( taxon ) {
+  static taxonImage( taxon, options = { } ) {
     if ( taxon && taxon.defaultPhoto ) {
-      return ( <img src={ taxon.defaultPhoto.photoUrl( ) } className="taxon-image" /> );
+      return (
+        <img
+          src={ taxon.defaultPhoto.photoUrl( options.size ) }
+          className="taxon-image"
+        /> );
     } else if ( taxon.iconic_taxon_name ) {
       return (
         <i className={`taxon-image icon icon-iconic-${taxon.iconic_taxon_name.toLowerCase( )}`} />
       );
-    } else {
-      return ( <i className="taxon-image icon icon-iconic-unknown" /> );
     }
+    return ( <i className="taxon-image icon icon-iconic-unknown" /> );
   }
 
 };

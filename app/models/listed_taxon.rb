@@ -977,4 +977,14 @@ class ListedTaxon < ActiveRecord::Base
     }
   end
 
+  def establishment_means_label
+    I18n.t( "establishment.#{establishment_means}", default: establishment_means ).capitalize
+  end
+
+  def establishment_means_description
+    default = ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[establishment_means]
+    key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
+    I18n.t( "establishment_means_descriptions.#{ key }", default: default )
+  end
+
 end

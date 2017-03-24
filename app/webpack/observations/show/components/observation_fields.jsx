@@ -6,7 +6,7 @@ const ObservationFields = ( { observation } ) => {
   if ( !observation || _.isEmpty( observation.ofvs ) ) { return ( <span /> ); }
   // fieldIDs used by projects
   const projectFieldIDs = _.compact( _.flatten( observation.project_observations.map( po => (
-    po.project.project_observation_fields.map( pof => (
+    ( po.project.project_observation_fields || [] ).map( pof => (
       pof.observation_field.id ) ) ) ) ) );
   let nonProjectFieldValues = observation.ofvs;
   if ( projectFieldIDs.length > 0 ) {
@@ -22,7 +22,9 @@ const ObservationFields = ( { observation } ) => {
   return (
     <div className="ObservationFields">
       <h4>Observation Fields</h4>
-      { sortedFieldValues.map( ofv => ( <ObservationFieldValue ofv={ ofv } /> ) ) }
+      { sortedFieldValues.map( ofv => (
+        <ObservationFieldValue ofv={ ofv } key={ `field-value-${ofv.uuid}`} />
+      ) ) }
     </div>
   );
 };

@@ -203,6 +203,7 @@ Rails.application.routes.draw do
       post :moimport
     end
     member do
+      get :taxon_summary
       put :viewed_updates
       patch :update_fields
       post :review

@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import Projects from "../components/projects";
 import { addToProject, confirmRemoveFromProject } from "../ducks/observation";
+import { joinProject } from "../ducks/projects";
+import { updateCuratorAccess } from "../ducks/project_observations";
 
 function mapStateToProps( state ) {
   return {
@@ -12,7 +14,9 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     addToProject: ( project ) => { dispatch( addToProject( project ) ); },
-    removeFromProject: ( project ) => { dispatch( confirmRemoveFromProject( project ) ); }
+    removeFromProject: ( project ) => { dispatch( confirmRemoveFromProject( project ) ); },
+    joinProject: ( project ) => { dispatch( joinProject( project ) ); },
+    updateCuratorAccess: ( po, value ) => { dispatch( updateCuratorAccess( po, value ) ); }
   };
 }
 

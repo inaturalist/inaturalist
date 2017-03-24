@@ -21,7 +21,7 @@ class Projects extends React.Component {
   }
 
   setUpProjectAutocomplete( ) {
-    const input = $( ".Projects input" );
+    const input = $( ".Projects .panel-collapse input" );
     if ( input.data( "uiAutocomplete" ) ) {
       input.autocomplete( "destroy" );
       input.removeData( "uiAutocomplete" );
@@ -95,7 +95,7 @@ class Projects extends React.Component {
         { addProjectInput }
         { observation.project_observations.map( po => (
           <ProjectListing
-            key={ po.uuid }
+            key={ po.project.id }
             projectObservation={ po }
             { ...this.props }
           />
@@ -107,6 +107,8 @@ class Projects extends React.Component {
 
 Projects.propTypes = {
   addToProject: PropTypes.func,
+  joinProject: PropTypes.func,
+  updateCuratorAccess: PropTypes.func,
   removeFromProject: PropTypes.func,
   config: PropTypes.object,
   observation: PropTypes.object,

@@ -2,6 +2,13 @@
 @import "../shared/split_taxon";
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 
+$bootstrap-link-color: #428BCA;
+$other-link-color: #337AB7;
+
+body {
+  min-width: 980px;
+}
+
 #bodywrapper, #wrapper {
   background: #f8f8f8;
 }
@@ -48,7 +55,7 @@ input.failed {
 
 .container.flash-warning {
   a {
-    color: #337ab7;
+    color: $other-link-color;
   }
 }
 
@@ -92,14 +99,13 @@ a.UserImage {
     font-size: 15px;
     i.fa-binoculars {
       font-size: 12px;
-      color: #74AC00;
+      color: $inat-green;
       margin-right: 5px;
     }
   }
 }
 
 #ObservationShow {
-  min-width: 980px;
   .top_container {
     margin: 0;
     width: auto;
@@ -174,7 +180,7 @@ a.UserImage {
           width: 50px;
         }
         .image-gallery-thumbnail.active img {
-          border: 3px solid #74AC00;
+          border: 3px solid $inat-green;
         }
         .image-gallery-thumbnails-container {
           transform: none !important;
@@ -323,8 +329,12 @@ a.UserImage {
     }
   }
   .ObservationTitle {
-    font-size: 36px;
-    line-height: 43px;
+    display: inline-block;
+    width: 100%;
+    line-height: 48px;
+    & > div {
+      display: inline-block;
+    }
     a.display-name {
       color: #000;
     }
@@ -341,6 +351,8 @@ a.UserImage {
     }
     .title {
       float: left;
+      font-size: 36px;
+      line-height: 43px;
     }
   }
   .FollowButton {
@@ -381,7 +393,7 @@ a.UserImage {
 .Faves {
   i.fa-star, i.fa-star-o {
     font-size: 16px;
-    color: #74AC00;
+    color: $inat-green;
     margin-right: 8px;
     &:hover {
       cursor: pointer;
@@ -418,7 +430,7 @@ a.UserImage {
     float: left;
     width: 80%;
     .fieldLink {
-      color: #337AB7;
+      color: $other-link-color;
       cursor: pointer;
       .fa {
         font-size: 12px;
@@ -448,6 +460,21 @@ a.UserImage {
     padding: 0;
     line-height: 0px;
   }
+  .dropdown {
+    .allow {
+      display: inline-block;
+      padding: 10px 20px 3px 20px;
+      input[type="checkbox"] {
+        margin-right: 5px;
+      }
+      .text-muted {
+        margin-top: 5px;
+      }
+      label {
+        font-weight: normal;
+      }
+    }
+  }
 }
 
 .Map {
@@ -471,7 +498,7 @@ a.UserImage {
         margin-right: 5px;
       }
       .show-more {
-        color: #428BCA;
+        color: $bootstrap-link-color;
         cursor: pointer;
         margin-right: 5px;
       }
@@ -480,7 +507,7 @@ a.UserImage {
       }
     }
     .dropdown-toggle {
-      color: #428BCA !important;
+      color: $bootstrap-link-color !important;
       background: none !important;
     }
     .details_menu {
@@ -510,11 +537,6 @@ a.UserImage {
   .attr {
     font-weight: 700;
   }
-  .info {
-    display: block;
-    float: left;
-    min-width: 120px;
-  }
   .places {
     h4 {
       margin-top: 10px;
@@ -533,14 +555,25 @@ a.UserImage {
     }
   }
   .standard, .community {
-    width: 50%;
+    min-width: 40%;
+    max-width: 50%;
     float: left;
     line-height: 1.8em;
+  }
+  .standard {
+    padding-right: 15px;
   }
   .top_info {
     border-bottom: 1px solid #ddd;
     display: inline-block;
     padding-bottom: 15px;
+    width: 100%;
+    .info {
+      display: block;
+      float: left;
+      min-width: 110px;
+      margin-right: 5px;
+    }
   }
 }
 
@@ -561,7 +594,7 @@ a.UserImage {
   .add {
     float: right;
     font-size: 14px;
-    color: #428BCA;
+    color: $bootstrap-link-color;
     cursor: pointer;
   }
 }
@@ -569,7 +602,7 @@ a.UserImage {
 .Tags {
   .tag {
     background: rgba(115,172,0,0.10);
-    border: 1px solid #74AC00;
+    border: 1px solid $inat-green;
     border-radius: 2px;
     padding: 3px 7px;
     font-size: 14px;
@@ -650,7 +683,7 @@ a.UserImage {
   .panel.improving .panel-heading {
     background: rgba(116, 173, 0, 0.05);
     .item-status {
-      color: #74AC00;
+      color: $inat-green;
     }
   }
   .icon {
@@ -660,7 +693,7 @@ a.UserImage {
     button {
       margin-left: 10px;
       .fa {
-        color: #74AC00;
+        color: $inat-green;
       }
     }
   }
@@ -751,7 +784,7 @@ a.UserImage {
       }
     }
     .dropdown-toggle {
-      color: #428BCA;
+      color: $bootstrap-link-color;
     }
   }
   .attribute {
@@ -795,7 +828,7 @@ a.UserImage {
     width: 20px;
   }
   .agree .check {
-    color: #74AC00;
+    color: $inat-green;
   }
   .disagree .check {
     color: #D9534F;
@@ -846,7 +879,7 @@ a.UserImage {
     margin: 25px 0px 25px;
   }
   .flag_link {
-    color: #337AB7;
+    color: $other-link-color;
     cursor: pointer;
   }
   .text {
@@ -858,7 +891,7 @@ a.UserImage {
       color: #D9534F;
     }
     a {
-      color: #337AB7;
+      color: $other-link-color;
       margin-left: 10px;
     }
   }
@@ -898,7 +931,7 @@ a.UserImage {
           color: #979797;
         }
         &.research.active {
-          background: #74AC00;
+          background: $inat-green;
           color: #fff;
         }
         &.incomplete {
@@ -950,7 +983,7 @@ a.UserImage {
       margin-bottom: 10px;
       i.fa {
         font-size: 20px;
-        color: #74AC00;
+        color: $inat-green;
         width: 40px;
         text-align: center;
       }
@@ -961,10 +994,15 @@ a.UserImage {
 .MoreFromUser {
   padding-bottom: 30px;
   h3 {
-    a {
+    .links {
       float: right;
-      color: #337AB7;
       font-size: 14px;
+      a {
+        color: $other-link-color;
+      }
+      .separator {
+        margin: 0px 5px;
+      }
     }
   }
   .list {
@@ -1024,7 +1062,7 @@ a.UserImage {
   h3 {
     a {
       float: right;
-      color: #337AB7;
+      color: $other-link-color;
       font-size: 14px;
     }
   }
@@ -1044,7 +1082,7 @@ a.UserImage {
       background-position: center;
       border-radius: 2px;
       &:hover {
-        box-shadow: inset 0 0 0 3px #74AC00;
+        box-shadow: inset 0 0 0 3px $inat-green;
         opacity: 1;
       }
     }
@@ -1062,6 +1100,37 @@ a.UserImage {
     display: inline;
     .dna {
       font-family: inherit;
+    }
+  }
+}
+
+.ObservationFieldPopover.popover {
+  padding: 0px !important;
+  .popover-content {
+    padding: 0px;
+  }
+  .info {
+    padding: 12px 14px;
+    .header {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+  .contents {
+    padding: 12px 14px;
+    border-top: 1px solid #e5e5e5;
+    .view {
+      color: #aaa;
+    }
+    .search {
+      line-height: 24px;
+      .fa {
+        color: $inat-green;
+        margin-right: 5px;
+      }
+      a {
+        color: inherit;
+      }
     }
   }
 }
@@ -1086,7 +1155,7 @@ a.UserImage {
         font-size: 14px;
         margin-top: 4px;
         .fa {
-          color: #74AC00;
+          color: $inat-green;
           margin-right: 4px;
         }
       }
@@ -1103,16 +1172,31 @@ a.UserImage {
     border: 1px solid #ddd;
     background: #fff;
     padding: 15px;
+    .badges {
+      float: right;
+      .ConservationStatusBadge, .EstablishmentMeansBadge {
+        display: inline-block;
+        margin: 0px 3px;
+      }
+    }
     .taxon {
-      display: block;
       font-size: 16px;
-      margin-bottom: 3px;
+      display: block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: #aaa;
     }
     .photo {
       float: right;
+      cursor: pointer;
       img {
         width: 40px;
         height: 40px;
+      }
+      i.taxon-image.icon {
+        font-size: 36px;
+        opacity: 0.9;
       }
     }
     .graphic {
@@ -1125,7 +1209,7 @@ a.UserImage {
         cursor: pointer;
       }
       .for {
-        background: #74AC00;
+        background: $inat-green;
       }
       .against {
         background: #D9534F;
@@ -1143,8 +1227,35 @@ a.UserImage {
       button {
         width: 90%;
         .fa {
-          color: #74AC00;
+          color: $inat-green;
         }
+      }
+    }
+  }
+  .override {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-top: 10px;
+    text-align: center;
+    a {
+      color: $bootstrap-link-color;
+    }
+    &.in {
+      .fa {
+        color: $other-link-color;
+        cursor: pointer;
+        margin-left: 4px;
+      }
+    }
+    &.out {
+      border-color: #faebcc;
+      color: #8a6d3b;
+      background: #fcf8e3;
+      .bold {
+        display: block;
+      }
+      .separator {
+        margin: 0px 5px;
       }
     }
   }
@@ -1169,6 +1280,10 @@ a.UserImage {
       min-width: 26px;
       width: 26px;
       height: 26px;
+      .icon-person {
+        font-size: 18px;
+        line-height: 24px;
+      }
     }
     a {
       color: inherit;
@@ -1211,6 +1326,42 @@ a.UserImage {
     }
     .contents {
       background: #fcf4f3;
+    }
+  }
+}
+
+.TaxonSummaryPopoverOverlay.popover {
+  width: 500px;
+  max-width: 500px;
+  margin-top: -25px !important;
+  .popover-content {
+    display: inline-block;
+    padding: 15px 15px;
+  }
+  .photo {
+    float: left;
+    max-height: 165px;
+    width: 165px;
+    text-align: center;
+    img {
+      max-width: 165px;
+      max-height: 165px;
+    }
+    i.taxon-image.icon {
+      vertical-align: top;
+      font-size: 160px;
+      opacity: 0.9;
+    }
+
+  }
+  .summary {
+    margin-left: 175px;
+    a.more {
+      display: block;
+      margin-top: 5px;
+      .fa {
+        color: $inat-green;
+      }
     }
   }
 }
@@ -1315,13 +1466,104 @@ a.UserImage {
   }
 }
 
+.ConservationStatusBadge, .EstablishmentMeansBadge {
+  .badge {
+    min-width: 24px;
+  }
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.ConservationStatusBadgePopover, .EstablishmentMeansBadgePopover {
+  padding: 0px !important;
+  color: white !important;
+  max-width: 450px;
+  .bold {
+    font-weight: 500;
+  }
+  .popover-content {
+    background: #84A92F;
+    border-radius: 5px;
+  }
+  .arrow:after {
+    border-bottom-color: #84A92F !important;
+  }
+}
+
+.ConservationStatusBadge {
+  .badge {
+    background: #84A92F;
+    &.near_threatened, &.vulnerable {
+      background: #817134;
+    }
+    &.endangered, &.critically_endangered {
+      background: #D12F19;
+    }
+    &.extinct_in_the_wild, &.extinct {
+      background: black;
+    }
+  }
+}
+
+.ConservationStatusBadgePopover {
+  .summary {
+    font-size: 12px;
+  }
+  &.near_threatened, &.vulnerable {
+    .popover-content {
+      background: #817134;
+    }
+    .arrow:after {
+      border-bottom-color: #817134 !important;
+    }
+  }
+  &.endangered, &.critically_endangered {
+    .popover-content {
+      background: #D12F19;
+    }
+    .arrow:after {
+      border-bottom-color: #D12F19 !important;
+    }
+  }
+  &.extinct_in_the_wild, &.extinct {
+    .popover-content {
+      background: black;
+    }
+    .arrow:after {
+      border-bottom-color: black !important;
+    }
+  }
+}
+
+.EstablishmentMeansBadge {
+  .badge {
+    background: #84A92F;
+    &.introduced {
+      background: deeppink;
+    }
+  }
+}
+
+.EstablishmentMeansBadgePopover {
+  &.introduced {
+    .popover-content {
+      background: deeppink;
+    }
+    .arrow:after {
+      border-bottom-color: deeppink !important;
+    }
+  }
+}
+
+
+
 
 .UserText {
   br {
     line-height: 35px;
   }
   a {
-    color: #428BCA;
+    color: $bootstrap-link-color;
     cursor: pointer;
   }
 }
@@ -1394,7 +1636,7 @@ body > div > [role="dialog"] .easyzoom > a > img {
   z-index: 1;
   margin-right: 20px;
   // added
-  margin-left: 15px;
+  margin-left: 10px;
   vertical-align: middle;
 }
 .quality_grade:after {

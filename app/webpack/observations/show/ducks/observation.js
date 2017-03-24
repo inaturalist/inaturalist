@@ -4,7 +4,7 @@ import moment from "moment";
 import { fetchObservationPlaces } from "./observation_places";
 import { fetchControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade } from "./other_observations";
-import { fetchQualityMetrics } from "./quality_metrics";
+import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions } from "./subscriptions";
 import { fetchIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
@@ -39,6 +39,18 @@ export function setAttributes( attributes ) {
   };
 }
 
+export function fetchTaxonSummary( ) {
+  return ( dispatch, getState ) => {
+    const observation = getState( ).observation;
+    if ( !observation || !observation.taxon ) { return null; }
+    const params = { id: observation.id };
+    return inatjs.observations.taxonSummary( params ).then( response => {
+      dispatch( setAttributes( { taxon:
+        Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );
+    } );
+  };
+}
+
 export function fetchObservation( id, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
@@ -49,6 +61,7 @@ export function fetchObservation( id, options = { } ) {
     return inatjs.observations.fetch( id, params ).then( response => {
       const observation = response.results[0];
       dispatch( setObservation( observation ) );
+      dispatch( fetchTaxonSummary( ) );
       if ( options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
       if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
       if ( options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
@@ -96,7 +109,8 @@ export function updateObservation( attributes ) {
     inatjs.observations.update( payload ).then( ( ) => {
       dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
@@ -110,7 +124,8 @@ export function addComment( body ) {
     dispatch( setAttributes( { comments: state.observation.comments.concat( [{
       created_at: moment( ).format( ),
       user: state.config.currentUser,
-      body
+      body,
+      temporary: true
     }] ) } ) );
 
     const payload = {
@@ -121,7 +136,8 @@ export function addComment( body ) {
     inatjs.comments.create( payload ).then( ( ) => {
       dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
@@ -139,7 +155,8 @@ export function deleteComment( id ) {
     inatjs.comments.delete( payload ).then( ( ) => {
       dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
@@ -172,7 +189,8 @@ export function doAddID( taxon, body, confirmForm ) {
     inatjs.identifications.create( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID ) );
     } );
   };
 }
@@ -208,7 +226,8 @@ export function deleteID( id ) {
     inatjs.identifications.delete( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID ) );
     } );
   };
 }
@@ -220,37 +239,55 @@ export function restoreID( id ) {
       id,
       current: true
     };
-
     inatjs.identifications.update( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID ) );
     } );
   };
 }
 
 export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
     const observationID = getState( ).observation.id;
     const payload = Object.assign( { }, { id: observationID }, params );
-    if ( scope ) { payload.scope = scope; }
+    if ( scope ) {
+      payload.scope = scope;
+      const newVotes = state.observation.votes.concat( [{
+        vote_flag: ( params.vote === "yes" ),
+        vote_scope: payload.scope,
+        user: state.config.currentUser,
+        temporary: true
+      }] );
+      dispatch( setAttributes( { votes: newVotes } ) );
+    }
     inatjs.observations.fave( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID ) );
     } );
   };
 }
 
 export function unvote( scope ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
-    const payload = { id: observationID };
-    if ( scope ) { payload.scope = scope; }
+    const state = getState( );
+    const payload = { id: state.observation.id };
+    if ( scope ) {
+      payload.scope = scope;
+      const newVotes = state.observation.votes.filter( v => (
+        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope )
+      ) );
+      dispatch( setAttributes( { votes: newVotes } ) );
+    }
     inatjs.observations.unfave( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
@@ -261,10 +298,12 @@ export function fave( ) {
     if ( !state.config || !state.config.currentUser || !state.observation ) {
       return;
     }
-    dispatch( setAttributes( { faves: state.observation.faves.concat( [{
+    const newFaves = state.observation.faves.concat( [{
       votable_id: state.observation.id,
-      user: state.config.currentUser
-    }] ) } ) );
+      user: state.config.currentUser,
+      temporary: true
+    }] );
+    dispatch( setAttributes( { faves: newFaves } ) );
     dispatch( vote( ) );
   };
 }
@@ -275,9 +314,10 @@ export function unfave( ) {
     if ( !state.config || !state.config.currentUser || !state.observation ) {
       return;
     }
-    dispatch( setAttributes( { faves: state.observation.faves.filter( f => (
+    const newFaves = state.observation.faves.filter( f => (
       f.user.id !== state.config.currentUser.id
-    ) ) } ) );
+    ) );
+    dispatch( setAttributes( { faves: newFaves } ) );
     dispatch( unvote( ) );
   };
 }
@@ -293,7 +333,8 @@ export function followUser( ) {
     inatjs.users.update( payload ).then( ( ) => {
       dispatch( fetchSubscriptions( ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchSubscriptions( ) );
     } );
   };
 }
@@ -312,7 +353,8 @@ export function unfollowUser( ) {
     inatjs.users.update( payload ).then( ( ) => {
       dispatch( fetchSubscriptions( ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchSubscriptions( ) );
     } );
   };
 }
@@ -328,60 +370,112 @@ export function subscribe( ) {
     inatjs.observations.subscribe( payload ).then( ( ) => {
       dispatch( fetchSubscriptions( ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchSubscriptions( ) );
     } );
   };
 }
 
-export function addAnnotation( controlledAttributeID, controlledValueID ) {
+export function addAnnotation( controlledAttribute, controlledValue ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    const newAnnotations = ( state.observation.annotations || [] ).concat( [{
+      controlled_attribute: controlledAttribute,
+      controlled_value: controlledValue,
+      user: state.config.currentUser,
+      temporary: true
+    }] );
+    dispatch( setAttributes( { annotations: newAnnotations } ) );
+
     const observationID = getState( ).observation.id;
     const payload = {
       resource_type: "Observation",
       resource_id: observationID,
-      controlled_attribute_id: controlledAttributeID,
-      controlled_value_id: controlledValueID
+      controlled_attribute_id: controlledAttribute.id,
+      controlled_value_id: controlledValue.id
     };
     inatjs.annotations.create( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID ) );
     } );
   };
 }
 
 export function deleteAnnotation( id ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    const newAnnotations = state.observation.annotations.filter( a => (
+      !( a.user.id === state.config.currentUser.id && a.uuid === id )
+    ) );
+    dispatch( setAttributes( { annotations: newAnnotations } ) );
+
     const payload = { id };
     inatjs.annotations.delete( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
 
-export function voteAnnotation( id, vote ) {
+export function voteAnnotation( id, voteValue ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
-    const payload = { id, vote };
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    const newAnnotations = Object.assign( { }, state.observation.annotations );
+    const annotation = _.find( newAnnotations, a => ( a.uuid === id ) );
+    if ( annotation ) {
+      annotation.votes = ( annotation.votes || [] ).concat( [{
+        vote_flag: ( voteValue !== "bad" ),
+        user: state.config.currentUser,
+        temporary: true
+      }] );
+      dispatch( setAttributes( { annotations: newAnnotations } ) );
+    }
+
+    const payload = { id, vote: voteValue };
     inatjs.annotations.vote( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
 
 export function unvoteAnnotation( id ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    const newAnnotations = Object.assign( { }, state.observation.annotations );
+    const annotation = _.find( newAnnotations, a => ( a.uuid === id ) );
+    if ( annotation && annotation.votes ) {
+      annotation.votes = annotation.votes.filter( v => (
+        v.user.id !== state.config.currentUser.id
+      ) );
+      dispatch( setAttributes( { annotations: newAnnotations } ) );
+    }
+
     const observationID = getState( ).observation.id;
     const payload = { id };
     inatjs.annotations.unvote( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID ) );
     } );
   };
 }
@@ -391,12 +485,26 @@ export function voteMetric( metric, params = { } ) {
     return vote( "needs_id", { vote: ( params.agree === "false" ) ? "no" : "yes" } );
   }
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    const newMetrics = state.qualityMetrics.concat( [{
+      observation_id: state.observation.id,
+      metric,
+      agree: ( params.agree !== "false" ),
+      created_at: moment( ).format( ),
+      user: state.config.currentUser
+    }] );
+    dispatch( setQualityMetrics( newMetrics ) );
+
     const observationID = getState( ).observation.id;
     const payload = Object.assign( { }, { id: observationID, metric }, params );
     inatjs.observations.setQualityMetric( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -406,12 +514,22 @@ export function unvoteMetric( metric ) {
     return unvote( "needs_id" );
   }
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.config || !state.config.currentUser || !state.observation ) {
+      return;
+    }
+    const newMetrics = state.qualityMetrics.filter( qm => (
+      !( qm.user.id === state.config.currentUser.id && qm.user_id === qm.metric )
+    ) );
+    dispatch( setQualityMetrics( newMetrics ) );
+
     const observationID = getState( ).observation.id;
     const payload = { id: observationID, metric };
     inatjs.observations.deleteQualityMetric( payload ).then( ( ) => {
       dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -422,11 +540,21 @@ export function addToProject( project ) {
     if ( !state.config || !state.config.currentUser || !state.observation ) {
       return;
     }
+    const newProjectObs = _.clone( state.observation.project_observations );
+    newProjectObs.unshift( {
+      project,
+      user_id: state.config.currentUser.id,
+      user: state.config.currentUser,
+      temporary: true
+    } );
+    dispatch( setAttributes( { project_observations: newProjectObs } ) );
+
     const payload = { id: project.id, observation_id: state.observation.id };
     inatjs.projects.add( payload ).then( ( ) => {
       dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
       dispatch( handleAPIError( e, `Failed to add to project ${project.title}` ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }
@@ -437,11 +565,17 @@ export function removeFromProject( project ) {
     if ( !state.config || !state.config.currentUser || !state.observation ) {
       return;
     }
+    const newProjectObs = state.observation.project_observations.filter( po => (
+      po.project.id !== project.id
+    ) );
+    dispatch( setAttributes( { project_observations: newProjectObs } ) );
+
     const payload = { id: project.id, observation_id: state.observation.id };
     inatjs.projects.remove( payload ).then( ( ) => {
       dispatch( fetchObservation( state.observation.id ) );
     } ).catch( e => {
-      console.log( e );
+      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( fetchObservation( state.observation.id ) );
     } );
   };
 }

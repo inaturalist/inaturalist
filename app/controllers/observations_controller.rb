@@ -2,7 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index, :show ]
+  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
@@ -42,12 +42,13 @@ class ObservationsController < ApplicationController
                             :taxon_stats,
                             :user_stats,
                             :community_taxon_summary,
-                            :map]
+                            :map,
+                            :taxon_summary]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
-    :review ]
+    :review, :taxon_summary ]
   before_filter :load_observation, :only => load_only
-  blocks_spam :only => load_only, :instance => :observation
+  blocks_spam :only => load_only - [ :taxon_summary ], :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -202,7 +203,45 @@ class ObservationsController < ApplicationController
       end
     end
   end
-  
+
+  def taxon_summary
+    Observation.preload_associations( @observation, { observations_places: :place } )
+    @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
+    @places = @coordinates_viewable ?
+      @observation.observations_places.map(&:place) : @observation.public_places
+    if @observation.taxon
+      unless @places.blank?
+        @listed_taxon = ListedTaxon.
+          joins(:place).
+          where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL",
+            @observation.taxon_id, @places ]).
+          order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").
+          first
+        @conservation_status = ConservationStatus.
+          where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
+          where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
+          includes(:place).first
+      end
+      @conservation_status ||= ConservationStatus.where(taxon_id: @observation.taxon).
+        where("place_id IS NULL").where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
+      if @listed_taxon
+        @conservation_status ||= @observation.taxon.
+          threatened_status(place_id: @listed_taxon.place_id)
+      end
+      @conservation_status ||= @observation.taxon.threatened_status
+    end
+    render json: {
+      conservation_status: @conservation_status ?
+        @conservation_status.as_json( methods: [ :status_name, :iucn_status, :iucn_status_code ],
+          include: { place: { only: [:id, :display_name] } } ) : nil,
+      listed_taxon: @listed_taxon && ( @listed_taxon.endemic? || @listed_taxon.introduced? ) ?
+        @listed_taxon.as_json(
+          methods: [ :establishment_means_label, :establishment_means_description ],
+          include: { place: { only: [:id, :display_name] } } ) : nil,
+      wikipedia_summary: @observation.taxon ? @observation.taxon.wikipedia_summary : nil
+    }
+  end
+
   # GET /observations/1
   # GET /observations/1.xml
   def show
@@ -3013,6 +3052,7 @@ class ObservationsController < ApplicationController
   def decide_if_skipping_preloading
     @skipping_preloading =
       ( params[:partial] == "cached_component" ) ||
+      ( action_name == "taxon_summary" ) ||
       ( action_name == "show" &&
         logged_in? && current_user.in_test_group?( "observation-page" ) && !params.key?(:old) )
   end

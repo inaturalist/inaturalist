@@ -13,8 +13,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    addAnnotation: ( controlledAttributeID, controlledValueID ) => {
-      dispatch( addAnnotation( controlledAttributeID, controlledValueID ) );
+    addAnnotation: ( controlledAttribute, controlledValue ) => {
+      dispatch( addAnnotation( controlledAttribute, controlledValue ) );
     },
     deleteAnnotation: ( id ) => { dispatch( deleteAnnotation( id ) ); },
     voteAnnotation: ( id, vote ) => { dispatch( voteAnnotation( id, vote ) ); },
