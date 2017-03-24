@@ -2585,7 +2585,9 @@ class Observation < ActiveRecord::Base
   def probably_captive?
     target_taxon = community_taxon || taxon
     return false unless target_taxon
-    return false if target_taxon.rank_level > Taxon::GENUS_LEVEL
+    if target_taxon.rank_level.blank? || target_taxon.rank_level.to_i > Taxon::GENUS_LEVEL
+      return false
+    end
     place = system_places.detect do |p|
       [
         Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
