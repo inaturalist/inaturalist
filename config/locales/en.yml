@@ -4374,6 +4374,18 @@ en:
               with the observer's ID
             </li>
           </ul>
+          <p>
+            And if that wasn't complicated enough, there are also situations where the system gets a vote:
+          </p>
+          <ul>
+            <li>
+              The system will vote that the observation is not wild/naturalized
+              if there are at least 10 other observations of a genus or lower in
+              the smallest county-, state-, or country-equivalent place that
+              contains this observation and 80% or more of those observations
+              have been marked as not wild/naturalized.
+            </li>
+          </ul>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
       user_stats:
         user_stats_desc: |

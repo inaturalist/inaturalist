@@ -555,7 +555,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
   
-  # Retrievest the first and last observations and the month counts. Note that
+  # Retrieve the first and last observations and the month counts. Note that
   # at present first_observation has a different meaning depending on the
   # list: for check lists it means the first observation added to iNat (i.e.
   # sorted by ID), but for everything else it means first observation by date

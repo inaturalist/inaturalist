@@ -1822,13 +1822,19 @@ class Observation < ActiveRecord::Base
 
   def update_quality_metrics
     if captive_flag.yesish?
-      QualityMetric.vote(user, self, QualityMetric::WILD, false)
+      QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote(user, self, QualityMetric::WILD, true)
-    elsif captive_flag.noish? && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
-      qm.update_attributes(:agree => true)
-    elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+      qm.update_attributes( agree: true)
+    elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
+    end
+    system_captive_vote = quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+    if probably_captive?
+      QualityMetric.vote( nil, self, QualityMetric::WILD, false ) unless system_captive_vote
+    elsif system_captive_vote
+      system_captive_vote.destroy
     end
     true
   end
@@ -2574,6 +2580,38 @@ class Observation < ActiveRecord::Base
   # use acts_as_votable, faves_count seems clearer.
   def faves_count
     cached_votes_total
+  end
+
+  def probably_captive?
+    target_taxon = community_taxon || taxon
+    return false unless target_taxon
+    if target_taxon.rank_level.blank? || target_taxon.rank_level.to_i > Taxon::GENUS_LEVEL
+      return false
+    end
+    place = system_places.detect do |p|
+      [
+        Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
+      ].include?( p.admin_level )
+    end
+    return false unless place
+    buckets = Observation.elastic_search(
+      filters: [
+        { term: { "taxon.ancestor_ids": target_taxon.id } },
+        { term: { place_ids: place.id } },
+      ],
+      # earliest_sort_field: "id",
+      size: 0,
+      aggregate: {
+        captive: {
+          terms: { field: "captive", size: 15 }
+        }
+      }
+    ).results.response.response.aggregations.captive.buckets
+    captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
+    total = captive_stats.values.sum
+    ratio = captive_stats[1].to_f / total
+    # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
+    total > 10 && ratio >= 0.8
   end
 
   def self.dedupe_for_user(user, options = {})

@@ -3228,3 +3228,83 @@ describe Observation do
     end
   end
 end
+
+describe Observation, "probably_captive?" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
+  let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
+  def make_captive_obs
+    Observation.make!( taxon: taxon, captive_flag: true, latitude: place.latitude, longitude: place.longitude )
+  end
+  def make_non_captive_obs
+    Observation.make!( taxon: taxon, latitude: place.latitude, longitude: place.longitude )
+  end
+  it "should be false with under 10 captive obs" do
+    9.times { make_captive_obs }
+    expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+  it "should be true with more than 10 captive obs" do
+    11.times { make_captive_obs }
+    expect( make_non_captive_obs ).to be_probably_captive
+  end
+  it "should require more than 80% captive" do
+    11.times { make_non_captive_obs }
+    11.times { make_captive_obs }
+    expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+  it "should be false with no coordinates" do
+    11.times { make_captive_obs }
+    o = Observation.make!( taxon: taxon )
+    expect( o ).not_to be_georeferenced
+    expect( o ).not_to be_probably_captive
+  end
+  it "should be false with no taxon" do
+    11.times { make_captive_obs }
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude )
+    expect( o.taxon ).to be_blank
+    expect( o ).not_to be_probably_captive
+  end
+  it "should use the community taxon if present" do
+    11.times { make_captive_obs }
+    o = Observation.make!(
+      taxon: Taxon.make!( rank: Taxon::SPECIES ),
+      latitude: place.latitude,
+      longitude: place.longitude,
+      prefers_community_taxon: false
+    )
+    4.times { Identification.make!( observation: o, taxon: taxon ) }
+    o.reload
+    expect( o.taxon ).not_to eq taxon 
+    expect( o.community_taxon ).to eq taxon
+    expect( o ).to be_probably_captive
+  end
+
+  describe Observation, "and update_quality_metrics" do
+    it "should add a userless quality metric if probably_captive?" do
+      11.times { make_captive_obs }
+      o = make_non_captive_obs
+      o.reload
+      expect( o ).to be_captive
+      expect(
+        o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).not_to be_blank
+    end
+    it "should remove the quality metric if not probably_captive? anymore" do
+      11.times { make_captive_obs }
+      o = make_non_captive_obs
+      o.reload
+      expect( o ).to be_captive
+      11.times do
+        obs = make_non_captive_obs
+        QualityMetric.vote( nil, obs, QualityMetric::WILD, true )
+      end
+      o.update_attributes( description: "foo" )
+      o.reload
+      expect( o ).not_to be_captive
+      expect(
+        o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).to be_blank
+    end
+  end
+end
