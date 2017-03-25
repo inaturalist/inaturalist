@@ -213,7 +213,7 @@ class PlacesController < ApplicationController
           error: @place.errors.full_messages.join(', '))
       end
 
-      if params[:remove_geom]
+      if params[:remove_geom] && @place.place_geometry_without_geom
         @place.place_geometry_without_geom.delete
       end
 

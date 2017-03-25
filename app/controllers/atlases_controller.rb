@@ -11,8 +11,7 @@ class AtlasesController < ApplicationController
   end
 
   def edit
-    @exploded_atlas_places = @atlas.exploded_atlas_places.includes( :place )
-    @atlas_places = @atlas.places
+    load_for_edit
   end
 
   def show
@@ -67,6 +66,7 @@ class AtlasesController < ApplicationController
         @atlas.taxon
         format.html { redirect_to( @atlas, notice: "Atlas was successfully updated." ) }
       else
+        load_for_edit
         format.html { render action: "edit" }
       end
     end
@@ -156,6 +156,11 @@ class AtlasesController < ApplicationController
     rescue
       render_404
     end
+  end
+
+  def load_for_edit
+    @exploded_atlas_places = @atlas.exploded_atlas_places.includes( :place )
+    @atlas_places = @atlas.places
   end
 
 end
