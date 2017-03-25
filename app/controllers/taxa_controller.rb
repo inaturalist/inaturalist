@@ -964,7 +964,14 @@ class TaxaController < ApplicationController
       @taxon.elastic_index!
       Taxon.refresh_es_index
     else
-      errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+      respond_to do |format|
+        format.json do
+          render status: :unprocessable_entity, json: {
+            error: "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+          }
+        end
+      end
+      return
     end
     unless photos.count == 0
       Taxon.delay( priority: INTEGRITY_PRIORITY ).update_ancestor_photos( @taxon.id, photos.first.id )
