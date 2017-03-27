@@ -12,8 +12,11 @@ class CommunityIdentification extends React.Component {
 
   constructor( ) {
     super( );
+    this.ownerID = null;
     this.communityIDOptIn = this.communityIDOptIn.bind( this );
     this.communityIDOptOut = this.communityIDOptOut.bind( this );
+    this.communityIDOverridePanel = this.communityIDOverridePanel.bind( this );
+    this.communityIDOverrideStatement = this.communityIDOverrideStatement.bind( this );
     this.showCommunityIDModal = this.showCommunityIDModal.bind( this );
   }
 
@@ -27,6 +30,95 @@ class CommunityIdentification extends React.Component {
     this.props.updateObservation( { prefers_community_taxon: false } );
   }
 
+  communityIDInfoPopover( ) {
+    return (
+      <Popover
+        className="CommunityIDInfoOverlay"
+        id="popover-community-id-info"
+      >
+        <p>
+          If for some reason a user doesn't agree with the community taxon,
+          they can reject it, which means their ID is the one used for
+          linking to other observations, updating life lists, etc. It also
+          means their observation can only become research grade when the
+          community agrees with them.
+        </p>
+        <p>
+          However, the community ID is still shown, so all may see the
+          different IDs that have been suggested.
+        </p>
+      </Popover>
+    );
+  }
+
+  communityIDOverridePanel( ) {
+    const observation = this.props.observation;
+    const observerOptedOut = (
+      this.ownerID && observation.user.preferences.prefers_community_taxa === false );
+    let panel;
+    if ( observerOptedOut ) {
+      if ( !observation.preferences.prefers_community_taxon ) {
+        panel = ( <div className="override out">
+          <span className="bold">
+            You have opted out of community identifications.
+          </span>
+          <a href="#" onClick={ this.communityIDOptIn }>
+            Opt in for this observation
+          </a>
+          <span className="separator">·</span>
+          <a href="/users/edit">
+            Edit your default settings
+          </a>
+        </div> );
+      } else {
+        let dissimilarMessage;
+        const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
+        if ( util.taxaDissimilar( this.ownerID.taxon, this.props.observation.taxon ) ) {
+          dissimilarMessage = ( <span className="something">
+            Your ID (<span className="bold">{ idName }</span>) does not match
+            the community ID.&nbsp;
+          </span> );
+        }
+        panel = ( <div className="override in">
+          { dissimilarMessage }
+          Would you like to <a href="#" onClick={ this.communityIDOptOut }>
+            reject the community ID
+          </a>?
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            overlay={ this.communityIDInfoPopover( ) }
+          >
+            <i className="fa fa-info-circle" />
+          </OverlayTrigger>
+        </div> );
+      }
+    }
+    return panel;
+  }
+
+  communityIDOverrideStatement( ) {
+    const observation = this.props.observation;
+    const observerOptedOut = (
+      this.ownerID && observation.user.preferences.prefers_community_taxa === false );
+    let statement;
+    if ( observerOptedOut && !observation.preferences.prefers_community_taxon ) {
+      statement = ( <span className="opted_out">
+        (User has opted-out of Community ID)
+        <OverlayTrigger
+          trigger="click"
+          rootClose
+          placement="top"
+          overlay={ this.communityIDInfoPopover( ) }
+          containerPadding={ 20 }
+        >
+          <i className="fa fa-info-circle" />
+        </OverlayTrigger>
+      </span> );
+    }
+    return statement;
+  }
   showCommunityIDModal( ) {
     this.props.setCommunityIDModalState( { show: true } );
   }
@@ -41,7 +133,7 @@ class CommunityIdentification extends React.Component {
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
-    const ownerID = _.findLast( observation.identifications, i => (
+    this.ownerID = _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === observation.user.id
     ) );
     let canAgree = true;
@@ -88,67 +180,13 @@ class CommunityIdentification extends React.Component {
         />
       ) );
     } );
-    let communityOverridePanel;
-    if ( ownerID && observation.user.preferences.prefers_community_taxa === false ) {
-      if ( !observation.preferences.prefers_community_taxon ) {
-        communityOverridePanel = ( <div className="override out">
-          <span className="bold">
-            You have opted out of community identifications.
-          </span>
-          <a href="#" onClick={ this.communityIDOptIn }>
-            Opt in for this observation
-          </a>
-          <span className="separator">·</span>
-          <a href="/users/edit">
-            Edit your default settings
-          </a>
-        </div> );
-      } else {
-        let dissimilarMessage;
-        const idName = ownerID.taxon.preferred_common_name || ownerID.taxon.name;
-        if ( util.taxaDissimilar( ownerID.taxon, taxon ) ) {
-          dissimilarMessage = ( <span className="something">
-            Your ID (<span className="bold">{ idName }</span>) does not match
-            the community ID.&nbsp;
-          </span> );
-        }
-        const popover = (
-          <Popover
-            className="CommunityIDInfoOverlay"
-            id="popover-community-id-info"
-          >
-            <p>
-              If for some reason a user doesn't agree with the community taxon,
-              they can reject it, which means their ID is the one used for
-              linking to other observations, updating life lists, etc. It also
-              means their observation can only become research grade when the
-              community agrees with them.
-            </p>
-            <p>
-              However, the community ID is still shown, so all may see the
-              different IDs that have been suggested.
-            </p>
-          </Popover>
-        );
-        communityOverridePanel = ( <div className="override in">
-          { dissimilarMessage }
-          Would you like to <a href="#" onClick={ this.communityIDOptOut }>
-            reject the community ID
-          </a>?
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            overlay={popover}
-          >
-            <i className="fa fa-info-circle" />
-          </OverlayTrigger>
-        </div> );
-      }
-    }
+
     return (
       <div className="CommunityIdentification">
-        <h4>Community ID</h4>
+        <h4>
+          Community ID
+          { this.communityIDOverrideStatement( ) }
+        </h4>
         <div className="info">
           <div className="photo">
             <TaxonSummaryPopover
@@ -189,7 +227,7 @@ class CommunityIdentification extends React.Component {
             </button>
           </div>
         </div>
-        { communityOverridePanel }
+        { this.communityIDOverridePanel( ) }
       </div>
     );
   }

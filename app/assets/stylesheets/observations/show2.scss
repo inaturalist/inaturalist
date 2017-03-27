@@ -28,11 +28,6 @@ body {
   font-size: 12px;
 }
 
-#initial-loading .loading {
-  display: inline-block;
-  margin: 20px auto;
-}
-
 .bootstrap {
   h1, h2, h3, h4, h5 {
     margin-top: 20px;
@@ -219,6 +214,9 @@ a.UserImage {
         padding: 0px 20px 20px 20px;
         border-bottom: 1px solid #ddd;
         margin: 0px -2px 0px 0px;
+        a.UserImage:hover {
+          opacity: initial;
+        }
       }
       .date_row {
         margin: 20px;
@@ -360,6 +358,9 @@ a.UserImage {
     .unfollow {
       color: #468cc7;
       margin-left: 5px;
+    }
+    .dropdown-menu {
+      min-width: 220px;
     }
   }
   .upper {
@@ -1168,6 +1169,15 @@ a.UserImage {
     color: #000;
     font-weight: 700;
   }
+  .fa-info-circle {
+    color: $other-link-color;
+    cursor: pointer;
+    margin-left: 4px;
+  }
+  .opted_out {
+    font-size: 14px;
+    padding-left: 5px;
+  }
   .info {
     border: 1px solid #ddd;
     background: #fff;
@@ -1239,13 +1249,9 @@ a.UserImage {
     text-align: center;
     a {
       color: $bootstrap-link-color;
+      font-weight: 200;
     }
     &.in {
-      .fa {
-        color: $other-link-color;
-        cursor: pointer;
-        margin-left: 4px;
-      }
     }
     &.out {
       border-color: #faebcc;
@@ -1327,6 +1333,13 @@ a.UserImage {
     .contents {
       background: #fcf4f3;
     }
+  }
+}
+
+.CommunityIDInfoOverlay {
+  min-width: 400px;
+  p:last-child {
+    margin-bottom: 0px;
   }
 }
 
@@ -1666,6 +1679,42 @@ body > div > [role="dialog"] .easyzoom > a > img {
   border-color: $inat-green;
   border-right-color: transparent;
 }
+
+
+
+.loading_spinner {
+  width: 14px;
+  height: 14px;
+  border: 3px solid #ddd;
+  border-radius: 50%;
+  border-top: 3px solid #74ac00;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#initial-loading .loading_spinner {
+  display: inline-block;
+  margin: 0px auto;
+  margin-top: 150px;
+  width: 80px;
+  height: 80px;
+  border: 15px solid #ddd;
+  border-top: 15px solid #74ac00;
+}
+
 
 
 

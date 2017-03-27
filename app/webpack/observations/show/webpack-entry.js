@@ -62,12 +62,14 @@ store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
   fetchQualityMetrics: true,
   fetchOtherObservations: true,
   fetchSubscriptions: true,
-  fetchIdentifiers: true
+  fetchIdentifiers: true,
+  callback: ( ) => {
+    render(
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>,
+      document.getElementById( "app" )
+    );
+  }
 } ) );
 
-render(
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>,
-  document.getElementById( "app" )
-);

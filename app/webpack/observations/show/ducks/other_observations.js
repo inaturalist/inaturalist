@@ -62,7 +62,8 @@ export function fetchNearby( ) {
 export function fetchMoreFromClade( ) {
   return ( dispatch, getState ) => {
     const observation = getState( ).observation;
-    if ( !observation || !observation.latitude || !observation.longitude ) { return null; }
+    if ( !observation || !observation.latitude || !observation.longitude ||
+         !observation.taxon ) { return null; }
     const searchTaxon =
       observation.taxon.min_species_ancestry.split( "," ).reverse( )[1] || observation.taxon.id;
     const baseParams = { taxon_id: searchTaxon, order_by: "votes" };

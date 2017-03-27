@@ -49,7 +49,7 @@ const App = ( { observation, config } ) => {
   if ( _.isEmpty( observation ) ) {
     return (
       <div id="initial-loading" className="text-center">
-        <span className="bigloading loading status">Loading...</span>
+        <div className="loading_spinner" />
       </div>
     );
   }

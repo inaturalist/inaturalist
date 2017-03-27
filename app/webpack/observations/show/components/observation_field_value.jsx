@@ -15,7 +15,7 @@ class ObservationFieldValue extends React.Component {
 
   render( ) {
     const ofv = this.props.ofv;
-    if ( !ofv ) { return ( <div /> ); }
+    if ( !ofv || !ofv.observation_field ) { return ( <div /> ); }
     let value = ofv.value;
     if ( ofv.datatype === "dna" ) {
       value = ( <div className="dna">{ ofv.value }</div> );

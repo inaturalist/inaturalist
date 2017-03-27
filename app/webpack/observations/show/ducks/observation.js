@@ -5,7 +5,7 @@ import { fetchObservationPlaces } from "./observation_places";
 import { fetchControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade } from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
-import { fetchSubscriptions } from "./subscriptions";
+import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "./confirm_modal";
@@ -84,6 +84,9 @@ export function fetchObservation( id, options = { } ) {
         newItem = newItem || _.find( observation.comments, c => c.id === item.id );
         newItem = newItem || _.find( observation.identifications, c => c.id === item.id );
         if ( newItem ) { dispatch( setFlaggingModalState( "item", newItem ) ); }
+      }
+      if ( options.callback ) {
+        options.callback( );
       }
     } );
   };
@@ -329,6 +332,13 @@ export function followUser( ) {
          !state.observation || state.config.currentUser.id === state.observation.user.id ) {
       return;
     }
+    const newSubscriptions = state.subscriptions.concat( [{
+      resource_type: "User",
+      resource_id: state.observation.user.id,
+      user_id: state.config.currentUser.id,
+      api_status: "saving"
+    }] );
+    dispatch( setSubscriptions( newSubscriptions ) );
     const payload = { id: state.config.currentUser.id, friend_id: state.observation.user.id };
     inatjs.users.update( payload ).then( ( ) => {
       dispatch( fetchSubscriptions( ) );
@@ -346,6 +356,12 @@ export function unfollowUser( ) {
          !state.observation || state.config.currentUser.id === state.observation.user.id ) {
       return;
     }
+    const newSubscriptions = _.map( state.subscriptions, s => (
+      s.resource_type === "User" ?
+        Object.assign( { }, s, { api_status: "deleting" } ) : s
+    ) );
+    dispatch( setSubscriptions( newSubscriptions ) );
+
     const payload = {
       id: state.config.currentUser.id,
       remove_friend_id: state.observation.user.id
@@ -365,6 +381,23 @@ export function subscribe( ) {
     if ( !state.config || !state.config.currentUser ||
          !state.observation || state.config.currentUser.id === state.observation.user.id ) {
       return;
+    }
+    const obsSubscription = _.find( state.subscriptions, s => (
+      s.resource_type === "Observation" ) );
+    if ( obsSubscription ) {
+      const newSubscriptions = _.map( state.subscriptions, s => (
+        s.resource_type === "Observation" ?
+          Object.assign( { }, s, { api_status: "deleting" } ) : s
+      ) );
+      dispatch( setSubscriptions( newSubscriptions ) );
+    } else {
+      const newSubscriptions = state.subscriptions.concat( [{
+        resource_type: "Observation",
+        resource_id: state.observation.id,
+        user_id: state.config.currentUser.id,
+        api_status: "saving"
+      }] );
+      dispatch( setSubscriptions( newSubscriptions ) );
     }
     const payload = { id: state.observation.id };
     inatjs.observations.subscribe( payload ).then( ( ) => {
