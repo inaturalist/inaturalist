@@ -60,9 +60,9 @@ class ConfirmModal extends Component {
       let errorList;
       if ( this.props.errors ) {
         errorList = ( <ul>
-          { _.map( this.props.errors( ( e, i ) => (
+          { _.map( this.props.errors, ( e, i ) => (
             <li key={ `error-${i}` }>{ e }</li>
-          ) ) ) }
+          ) ) }
         </ul> );
       }
       message = ( <span>
