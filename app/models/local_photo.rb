@@ -78,6 +78,16 @@ class LocalPhoto < Photo
     :message => "must be JPG, PNG, or GIF"
 
   attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
+
+  BRANDED_DESCRIPTIONS = [
+    "OLYMPUS DIGITAL CAMERA",
+    "SONY DSC",
+    "MOULTRIE DIGITAL GAME CAMERA",
+    "<KENOX S1050 / Samsung S1050>",
+    "KODAK Digital Still Camera",
+    "DIGITAL CAMERA",
+    "SAMSUNG CAMERA PICTURES"
+  ]
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
@@ -255,14 +265,19 @@ class LocalPhoto < Photo
       if o.species_guess.blank?
         o.species_guess = nil
       end
-      o.description = [metadata[:dc][:description]].flatten.to_sentence unless metadata[:dc][:description].blank?
-      if o.description.blank? && metadata[:image_description]
+      candidate_description = nil
+      unless metadata[:dc][:description].blank?
+        candidate_description = [metadata[:dc][:description]].flatten.to_sentence.strip
+      end
+      if candidate_description.blank? && metadata[:image_description]
         if metadata[:image_description].is_a?(Array)
-          o.description = metadata[:image_description].to_sentence
+          candidate_description = metadata[:image_description].to_sentence
         elsif metadata[:image_description].is_a?(String)
-          o.description = metadata[:image_description]
+          candidate_description = metadata[:image_description]
         end
       end
+      o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+
       o.build_observation_fields_from_tags(to_tags)
       o.tag_list = to_tags
     end

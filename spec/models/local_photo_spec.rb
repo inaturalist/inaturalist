@@ -163,6 +163,19 @@ describe LocalPhoto, "to_observation" do
     expect( o.tag_list ).to include 'tag1'
     expect( o.tag_list ).to include 'tag2'
   end
+
+  it "shoudl not import branded descriptions" do
+    LocalPhoto::BRANDED_DESCRIPTIONS.each do |branded_description|
+      lp = LocalPhoto.make!
+      lp.metadata = {
+        dc: {
+          description: branded_description
+        }
+      }
+      o = lp.to_observation
+      expect( o.description ).to be_blank
+    end
+  end
 end
 
 describe LocalPhoto, "flagging" do
