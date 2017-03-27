@@ -826,6 +826,7 @@ ca:
   commercial_solicitation: Anuncieu alguna cosa, els enllaços no són vàlids, etc.
   commit: Desa
   committed: Desa
+  committed_on: Validat el %{date}
   committing: Desant...
   community_curated: Supervisat per la Comunitat
   community_id: 'ID de la <strong>Comunitat</strong>:'
@@ -2273,8 +2274,8 @@ ca:
   not_finding_what_looking_for: No trobeu el que busqueu?
   not_found: No trobat
   not_just_creative_commons_licensed: no només llicències de Creative Commons
-  not_linked_facebook: El vostre compte d’%{site_name} ja no està vinculat amb  Facebook.
-  not_linked_flickr: El vostre compte d’%{site_name} no està vinculat amb Flickr
+  not_linked_facebook: El vostre compte a %{site_name} no està vinculat amb  Facebook.
+  not_linked_flickr: El vostre compte a %{site_name} no està vinculat amb Flickr
   not_logged_in: No heu iniciat sessió
   not_on_this_list: No sou en aquesta llista.
   not_seeing_what_looking_for: No trobeu el que buscàveu?
@@ -4922,6 +4923,11 @@ ca:
           privades.
       edit:
         aggregation_pending: Agregació pendent
+        new_place_desc_html: Intenteu trobar-lo <a href="%{places_url}" target="_blank">als
+          nostres llocs existents</a> i comproveu que heu posat correctament el nom
+          del lloc. Si no podeu trobar el nom de lloc que busqueu, proveu <a href="%{new_place_url}"
+          target="_blank">crear-lo</a> però assegureu-vos que no esteu duplicant un
+          nom de lloc ja existent.
         bioblitz_desc_html: |-
           <p>
           Un bioblitz és un esdeveniment on els participants intenten observar tantes espècies com els sigui possible en un temps determinat. És una forma divertida d'acostar la biodiversitat a la gent mentre s'obtenen dades molt útils.
@@ -5111,6 +5117,11 @@ ca:
           pel nombre de persones observant, però pot mostrar pics inusuals d'observacions,
           i si sembla plana o en disminució, malgrat l'augment del nombre d'observadors,
           podria suggerir un canvi en abundància.
+        charts_help_other: |-
+          També mostrem els gràfics d'estacionalitat per anotar les observacions.
+          Les anotacions són un sistema nou d'afegir metadades a les observacions utilitzant un vocabulari definit de termes. Per ara només estem fent servir "Etapa Vital" i "Fenologia vegetal" (per determinar si la planta està florint o fructificant). Encara no tenim una manera d'afegir anotacions directament, pel que ara estem convertint les dades dels camps d'observació al d'anotacions.
+          Si no podeu esperar que acabem el sistema d'anotacions, pots contribuir a les anotacions de "Etapa Vital" afegint al camp d'observació alguns dels valors següents: edat, ècdisi, Pupa,
+          Nimfa, larva, ou, o juvenil. En particular, els camps "Etapa Vital" i  "Etapa Vital dels Insectes" són correctes. Per a la "Fenologia vegetal," busquem qualsevol camp amb la paraula "Fenologia" en el seu nom i "Flor" o "Fruit" en el valor, de manera que el camp "Floració Fenologia" és una bon nom per utilitzar.
         trending_desc: Tàxons més observats el darrer mes
         trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
         rare_desc: Tàxon amenaçat menys observat
