@@ -2356,9 +2356,7 @@ fr:
   not_found: Non trouvé
   not_just_creative_commons_licensed: pas seulement sous licence Creative Commons
   not_linked_facebook: Votre compte %{site_name} n’est pas lié à votre compte Facebook
-    &#59;
   not_linked_flickr: Votre compte %{site_name} n’est pas lié à votre compte Flickr
-    &#59;
   not_logged_in: Non connecté
   not_on_this_list: Pas dans cette liste.
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
@@ -5202,8 +5200,12 @@ fr:
           les superviseurs du projet de voir vos coordonnées privées.
       edit:
         aggregation_pending: En attente d'aggrégation
-        bioblitz_create_a_new_place_html: '%{link}, assurez-vous qu’il a une frontière,
-          puis revenez ici et réessayez.'
+        new_place_desc_html: "Essayez de voir en utilisant \n<a href=\"%{places_url}\"
+          target=\"_blank\">nos lieux</a>\net assurez-vous que vous obtenez le nom
+          de l'endroit est correct. Si vous\nne pouvez vraiment pas trouver l'endroit
+          que vous souhaitez, envisager\n<a href=\"%{new_place_url}\" target=\"_blank\">la
+          création d'un nouveau lieu</a>,\nmais s'il vous plaît assurez-vous que vous
+          n'êtes pas en train de dupliquer entrée qui existe déjà."
         bioblitz_desc_html: |-
           <p>
             Un bioblitz est une activité durant laquelle les participants tentent d’observer autant

@@ -824,6 +824,7 @@ es:
   commercial_solicitation: Publicidad comercial, enlaces a ningún lugar, etc.
   commit: Guardar
   committed: Guardar
+  committed_on: Validado el %{date}
   committing: Guardando...
   community_curated: Supervisado por la Comunidad
   community_id: 'Identificación de la <strong>comunidad</strong>:'
@@ -2268,8 +2269,8 @@ es:
   not_finding_what_looking_for: ¿No encuentra lo que está buscando?
   not_found: No encontrado
   not_just_creative_commons_licensed: No solamente licencias de Creative Commons
-  not_linked_facebook: Su cuenta de %{site_name} ya no está ligada con su cuenta de
-    Facebook.
+  not_linked_facebook: Su cuenta de %{site_name} no está vinculada con su cuenta de
+    Facebook
   not_linked_flickr: Su cuenta de %{site_name} no está vinculada con su cuenta de
     Flickr
   not_logged_in: No ha iniciado sesión
@@ -5009,8 +5010,6 @@ es:
           a los curadores del proyecto ver tu tus coordenadas privadas.
       edit:
         aggregation_pending: Agregación pendiente
-        bioblitz_create_a_new_place_html: '%{link}, make sure it has a boundary, then
-          come back here and try again.'
         bioblitz_desc_html: |-
           <p>
            Un inventario rápido (bioblitz) es un evento donde los participantes tratan de observar tantas especies como sea posible en un período dado de tiempo. Es una manera divertida de introducir a la gente a la biodiversidad, a la vez recogiendo valiosos  datos.
