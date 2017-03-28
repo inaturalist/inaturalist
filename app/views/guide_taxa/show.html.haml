@@ -110,7 +110,7 @@
                   = link_to(gr.attribution, gr.source_url)
       - if @guide_taxon.taxon
         %h3
-          = SITE_NAME_SHORT
+          = @site.try_methods( :site_name_short, :name )
           =t :map
         :ruby
           a = {
