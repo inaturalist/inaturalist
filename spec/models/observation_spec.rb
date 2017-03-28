@@ -2770,7 +2770,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s1)
         i = Identification.make!(:observation => @o, :taxon => @s2)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 g1" do
@@ -2778,7 +2778,15 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @g1)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @s1
+      end
+
+      it "s1 s1 g1.disagreement" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: true )
+        @o.reload
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 s1 g1" do
@@ -2787,7 +2795,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @g1)
         @o.reload
-        expect(@o.community_taxon).to eq @s1
+        expect( @o.community_taxon ).to eq @s1
       end
 
       it "ss1 ss1 ss2 ss2" do
@@ -2796,7 +2804,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s2)
         Identification.make!(:observation => @o, :taxon => @s2)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "f f f f ss1 s2 s2 s2 s2" do
@@ -2810,7 +2818,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s2)
         Identification.make!(:observation => @o, :taxon => @s2)
         @o.reload
-        expect(@o.community_taxon).to eq @s2
+        expect( @o.community_taxon ).to eq @s2
       end
 
       it "f f f f ss1 ss1 s2 s2 s2 s2 g1" do
@@ -2826,7 +2834,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s2)
         Identification.make!(:observation => @o, :taxon => @g1)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "f g1 s1 (should not taxa with only one ID to be the community taxon)" do
@@ -2834,7 +2842,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @g1)
         Identification.make!(:observation => @o, :taxon => @s1)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "f f g1 s1" do
@@ -2843,7 +2851,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @g1)
         Identification.make!(:observation => @o, :taxon => @s1)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 f f" do
@@ -2852,7 +2860,16 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @f)
         Identification.make!(:observation => @o, :taxon => @f)
         @o.reload
-        expect(@o.community_taxon).to eq @f
+        expect( @o.community_taxon ).to eq @s1
+      end
+
+      it "s1 s1 f.disagreement f" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @f)
+        @o.reload
+        expect( @o.community_taxon ).to eq @f
       end
     end
   end

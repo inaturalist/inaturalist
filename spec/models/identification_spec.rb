@@ -942,3 +942,26 @@ describe Identification, "category" do
     end
   end
 end
+
+describe Identification, "disagreement" do
+  it "should be nil by default" do
+    expect( Identification.make! ).not_to be_disagreement
+  end
+  it "should automatically set to true on create if the taxon is not a descendant or ancestor of the community taxon" do
+    o = make_research_grade_observation
+    2.times { Identification.make!( observation: o, taxon: o.taxon ) }
+    i = Identification.make!( observation: o )
+    i.reload
+    # expect( i ).to be_maverick
+    expect( i ).to be_disagreement
+  end
+  it "should not be automatically set to true on update if the taxon is not a descendant or ancestor of the community taxon" do
+    o = make_research_grade_candidate_observation
+    i = Identification.make!( observation: o )
+    t = Taxon.make!
+    4.times { Identification.make!( observation: o, taxon: t ) }
+    i.reload
+    # expect( i ).to be_maverick
+    expect( i ).not_to be_disagreement
+  end
+end

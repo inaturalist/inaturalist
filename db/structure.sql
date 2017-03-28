@@ -1710,7 +1710,8 @@ CREATE TABLE identifications (
     category character varying,
     uuid uuid DEFAULT uuid_generate_v4(),
     blind boolean,
-    previous_observation_taxon_id integer
+    previous_observation_taxon_id integer,
+    disagreement boolean
 );
 
 
@@ -8753,4 +8754,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170113211950');
 INSERT INTO schema_migrations (version) VALUES ('20170309003500');
 
 INSERT INTO schema_migrations (version) VALUES ('20170317183900');
+
+INSERT INTO schema_migrations (version) VALUES ('20170327224712');
 

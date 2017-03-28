@@ -17,6 +17,7 @@ class Identification < ActiveRecord::Base
   
   before_save :update_other_identifications,
               :set_previous_observation_taxon
+  before_create :set_disagreement
   after_create :update_observation,
                :create_observation_review,
                :update_obs_stats, 
@@ -142,6 +143,15 @@ class Identification < ActiveRecord::Base
 
   def set_previous_observation_taxon
     self.previous_observation_taxon_id = observation.taxon_id
+    true
+  end
+
+  def set_disagreement
+    return true if disagreement?
+    return true unless observation.community_taxon
+    ancestor_of_community_taxon = observation.community_taxon.self_and_ancestor_ids.include?( taxon_id )
+    descendant_of_community_taxon = taxon.self_and_ancestor_ids.include?( observation.community_taxon_id )
+    self.disagreement = !ancestor_of_community_taxon && !descendant_of_community_taxon
     true
   end
   
@@ -271,25 +281,29 @@ class Identification < ActiveRecord::Base
   
   #
   # Tests whether this identification should be considered an agreement with
-  # the observer's identification.  If this identification has the same taxon
-  # or a child taxon of the observer's identification, then they agree.
+  # the observation's taxon.  If this identification has the same taxon
+  # or a descendant taxon of the observation's taxon, then they agree.
   #
   def is_agreement?(options = {})
     return false if frozen?
     o = options[:observation] || observation
     return false if o.taxon_id.blank?
     return false if o.user_id == user_id
-    return false if o.identifications.count == 1
+    return false if o.community_taxon_id.blank?
     return true if taxon_id == o.taxon_id
     taxon.in_taxon? o.taxon_id
   end
   
-  def is_disagreement?(options = {})
+  def old_is_disagreement?(options = {})
     return false if frozen?
     o = options[:observation] || observation
     return false if o.user_id == user_id
     return false if o.identifications.count == 1
     !is_agreement?(options)
+  end
+
+  def is_disagreement?( options = {} )
+    disagreement
   end
   
   #
