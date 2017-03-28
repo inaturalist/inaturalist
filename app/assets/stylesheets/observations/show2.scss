@@ -38,6 +38,10 @@ body {
   }
 }
 
+tr.disabled td {
+  opacity: 0.5;
+}
+
 input.failed {
   border-color: #d9534f !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
@@ -486,6 +490,19 @@ a.UserImage {
     width: 100%;
     background: #e3eaf6;
   }
+  .no_location {
+    background: #f8f8f8;
+    height: 200px;
+    text-align: center;
+    font-size: 18px;
+    color: #999;
+    padding: 55px;
+    .fa {
+      display: block;
+      font-size: 60px;
+      color: #ccc;
+    }
+  }
   .map_details {
     padding: 10px;
     font-size: 14px;
@@ -602,7 +619,7 @@ a.UserImage {
 
 .Tags {
   .tag {
-    background: rgba(115,172,0,0.10);
+    background: #f1f6e5;
     border: 1px solid $inat-green;
     border-radius: 2px;
     padding: 3px 7px;
@@ -610,9 +627,15 @@ a.UserImage {
     line-height: 1.5;
     display: inline-block;
     margin: 0px 8px 6px 0px;
+    &.loading {
+      color: #808080;
+      background: #f6f6f6;
+      border: 1px solid #bbb;
+    }
     .glyphicon {
       top: 3px;
       margin-left: 5px;
+      color: #b2b2b2;
     }
     .glyphicon-remove-circle {
       cursor: pointer;
@@ -745,6 +768,9 @@ a.UserImage {
         border: none !important;
         background: none !important;
         box-shadow: none !important;
+        &[disabled] {
+          opacity: 0.5;
+        }
       }
       .btn-group.open .dropdown-toggle {
         -webkit-box-shadow: none;

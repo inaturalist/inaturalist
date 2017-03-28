@@ -4,8 +4,8 @@ import { Modal, Button } from "react-bootstrap";
 
 class ConfirmModal extends Component {
 
-  constructor( props, context ) {
-    super( props, context );
+  constructor( ) {
+    super( );
     this.close = this.close.bind( this );
     this.confirm = this.confirm.bind( this );
   }
@@ -31,7 +31,6 @@ class ConfirmModal extends Component {
   }
 
   render( ) {
-    const { show } = this.props;
     let cancel;
     let message;
     if ( !this.props.hideCancel ) {
@@ -72,7 +71,7 @@ class ConfirmModal extends Component {
     }
     return (
       <Modal
-        show={ show }
+        show={ this.props.show }
         className={ `ConfirmModal confirm ${this.props.type}` }
         onHide={ this.close }
       >

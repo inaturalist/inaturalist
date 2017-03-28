@@ -9,7 +9,14 @@ class QualityMetrics extends React.Component {
     this.openFlaggingModal = this.openFlaggingModal.bind( this );
   }
 
-  voteCell( metric, isAgree, isMajority, className, usersChoice, voters ) {
+  voteCell( metric, isAgree, isMajority, className, usersChoice, voters, loading, disabled ) {
+    let votesCount = loading ? (
+      <div className="loading_spinner" /> ) : (
+      <UsersPopover
+        users={ voters }
+        keyPrefix={ `metric-${metric}` }
+        contents={ ( <span>({voters.length})</span> ) }
+      /> );
     return (
       <span>
         <span className="check">
@@ -18,6 +25,7 @@ class QualityMetrics extends React.Component {
           ) : null }
         </span>
         <i className={ `fa ${className}` } onClick={ () => {
+          if ( disabled ) { return; }
           if ( usersChoice ) {
             this.props.unvoteMetric( metric );
           } else {
@@ -29,13 +37,7 @@ class QualityMetrics extends React.Component {
           }
         } }
         />
-        <span className="count">
-          <UsersPopover
-            users={ voters }
-            keyPrefix={ `metric-${metric}` }
-            contents={ ( <span>({voters.length})</span> ) }
-          />
-        </span>
+        <span className="count">{ votesCount }</span>
       </span>
     );
   }
@@ -45,14 +47,18 @@ class QualityMetrics extends React.Component {
     const votersAgainst = [];
     let userVotedFor;
     let userVotedAgainst;
+    let voteForLoading;
+    let voteAgainstLoading;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
     _.each( this.props.qualityMetrics[metric], m => {
       const agree = ( "vote_scope" in m ) ? m.vote_flag : m.agree;
       if ( agree ) {
         votersFor.push( m.user );
+        if ( m.api_status ) { voteForLoading = true; }
       } else {
         votersAgainst.push( m.user );
+        if ( m.api_status ) { voteAgainstLoading = true; }
       }
       if ( loggedIn && m.user.id === config.currentUser.id ) {
         userVotedFor = agree;
@@ -69,9 +75,12 @@ class QualityMetrics extends React.Component {
 
     return {
       agreeCell: this.voteCell(
-        metric, true, mostAgree, agreeClass, userVotedFor, votersFor ),
+        metric, true, mostAgree, agreeClass, userVotedFor, votersFor,
+        voteForLoading, ( voteForLoading || voteAgainstLoading ) ),
       disagreeCell: this.voteCell(
-        metric, false, mostDisagree, disagreeClass, userVotedAgainst, votersAgainst )
+        metric, false, mostDisagree, disagreeClass, userVotedAgainst, votersAgainst,
+        voteAgainstLoading, ( voteForLoading || voteAgainstLoading ) ),
+      loading: ( voteForLoading || voteAgainstLoading )
     };
   }
 
@@ -168,7 +177,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ atLeastSpecies ? checkIcon : null }</td>
               <td className="disagree">{ atLeastSpecies ? null : checkIcon }</td>
             </tr>
-            <tr>
+            <tr className={ dateCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-calendar-check-o" />
                 Date is accurate
@@ -176,7 +185,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ dateCells.agreeCell }</td>
               <td className="disagree">{ dateCells.disagreeCell }</td>
             </tr>
-            <tr>
+            <tr className={ locationCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bullseye" />
                 Location is accurate
@@ -184,7 +193,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ locationCells.agreeCell }</td>
               <td className="disagree">{ locationCells.disagreeCell }</td>
             </tr>
-            <tr>
+            <tr className={ wildCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bolt" />
                 Organism is wild
@@ -192,7 +201,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ wildCells.agreeCell }</td>
               <td className="disagree">{ wildCells.disagreeCell }</td>
             </tr>
-            <tr>
+            <tr className={ evidenceCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bolt" />
                 Evidence of organism
@@ -200,7 +209,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ evidenceCells.agreeCell }</td>
               <td className="disagree">{ evidenceCells.disagreeCell }</td>
             </tr>
-            <tr>
+            <tr className={ recentCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bolt" />
                 Recent evidence of organism
@@ -208,7 +217,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ recentCells.agreeCell }</td>
               <td className="disagree">{ recentCells.disagreeCell }</td>
             </tr>
-            <tr>
+            <tr className={ needsIDCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-gavel" />
                 Community can confirm/improve ID

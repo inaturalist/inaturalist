@@ -1,18 +1,24 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import moment from "moment";
-import { fetchObservationPlaces } from "./observation_places";
-import { fetchControlledTerms } from "./controlled_terms";
-import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade } from "./other_observations";
+import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
+import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
+import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
+  setMoreFromThisUser, setNearby, setMoreFromClade } from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
-import { fetchIdentifiers } from "./identifications";
+import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "./confirm_modal";
 import { updateSession } from "./users";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
+let lastAction;
+
+function hasObsAndLoggedIn( state ) {
+  return ( state.config && state.config.currentUser && state.observation );
+}
 
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
@@ -39,6 +45,25 @@ export function setAttributes( attributes ) {
   };
 }
 
+export function getActionTime( ) {
+  const currentTime = new Date( ).getTime( );
+  lastAction = currentTime;
+  return currentTime;
+}
+
+export function resetStates( ) {
+  return dispatch => {
+    dispatch( setIdentifiers( [] ) );
+    dispatch( setObservationPlaces( [] ) );
+    dispatch( setControlledTerms( [] ) );
+    dispatch( setQualityMetrics( [] ) );
+    dispatch( setMoreFromThisUser( [] ) );
+    dispatch( setNearby( [] ) );
+    dispatch( setMoreFromClade( [] ) );
+    dispatch( setSubscriptions( [] ) );
+  };
+}
+
 export function fetchTaxonSummary( ) {
   return ( dispatch, getState ) => {
     const observation = getState( ).observation;
@@ -58,9 +83,21 @@ export function fetchObservation( id, options = { } ) {
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale
     };
+    const originalObservation = s.observation;
     return inatjs.observations.fetch( id, params ).then( response => {
       const observation = response.results[0];
+      const taxonUpdated = ( originalObservation &&
+        originalObservation.id === observation.id &&
+        ( ( !originalObservation.taxon && observation.taxon ) ||
+          ( originalObservation.taxon && !observation.taxon ) ||
+          ( originalObservation.taxon.id !== observation.taxon.id ) ) );
       dispatch( setObservation( observation ) );
+      if ( options.resetStates ) {
+        dispatch( resetStates( ) );
+      } else if ( taxonUpdated ) {
+        dispatch( setIdentifiers( [] ) );
+        dispatch( setMoreFromClade( [] ) );
+      }
       dispatch( fetchTaxonSummary( ) );
       if ( options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
       if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
@@ -70,12 +107,15 @@ export function fetchObservation( id, options = { } ) {
         if ( options.fetchOtherObservations ) {
           dispatch( fetchMoreFromThisUser( ) );
           dispatch( fetchNearby( ) );
+        }
+        if ( options.fetchOtherObservations || taxonUpdated ) {
           dispatch( fetchMoreFromClade( ) );
         }
-        if ( options.fetchIdentifiers && observation.taxon && observation.taxon.rank_level <= 50 ) {
+        if ( ( options.fetchIdentifiers || taxonUpdated ) &&
+             observation.taxon && observation.taxon.rank_level <= 50 ) {
           dispatch( fetchIdentifiers( { taxon_id: observation.taxon.id, per_page: 10 } ) );
         }
-      }, 2000 );
+      }, taxonUpdated ? 1 : 2000 );
       if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
         // TODO: put item type in flaggingModal state
         const item = s.flaggingModal.item;
@@ -92,43 +132,82 @@ export function fetchObservation( id, options = { } ) {
   };
 }
 
+export function afterAPICall( id, options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.observation ) { return; }
+    if ( options.error ) {
+      dispatch( handleAPIError( options.error, I18n.t( "failed_to_save_record" ) ) );
+    }
+    if ( options.actionTime && lastAction !== options.actionTime ) { return; }
+    dispatch( fetchObservation( id, options ) );
+  };
+}
+
 export function updateObservation( attributes ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.observation ) {
-      return;
-    }
-    const attributesToSet = Object.assign( { }, attributes );
-    if ( _.has( attributesToSet, "tag_list" ) ) {
-      attributesToSet.tags = _.compact(
-        _.map( attributesToSet.tag_list.split( "," ), t => ( t.trim( ) ) ) );
-    }
-    dispatch( setAttributes( attributesToSet ) );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const payload = {
       id: state.observation.id,
       ignore_photos: true,
       observation: Object.assign( { }, { id: state.observation.id }, attributes )
     };
+    const actionTime = getActionTime( );
     inatjs.observations.update( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
+  };
+}
+
+export function addTag( tag ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !tag || !hasObsAndLoggedIn( state ) ) { return; }
+    if ( _.find( state.observation.tags, t => (
+      _.lowerCase( t.tag || t ) === _.lowerCase( tag ) ) ) ) { return; }
+    dispatch( setAttributes( { tags: state.observation.tags.concat( [{
+      tag,
+      api_status: "saving"
+    }] ) } ) );
+
+    let newTagList = tag;
+    const tags = state.observation.tags;
+    if ( !_.isEmpty( tags ) ) {
+      const currentTags = _.filter( tags, t => ( t.api_status !== "deleting" ) );
+      const currentTagList = _.map( currentTags, t => ( t.tag || t ) ).join( ", " );
+      newTagList = `${newTagList}, ${currentTagList}`;
+    }
+    dispatch( updateObservation( { tag_list: newTagList } ) );
+  };
+}
+
+export function removeTag( tag ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !tag || !hasObsAndLoggedIn( state ) ) { return; }
+    const newTags = _.map( state.observation.tags, t => (
+      t === tag ? { tag: t, api_status: "deleting" } : t
+    ) );
+    dispatch( setAttributes( { tags: newTags } ) );
+
+    const currentTags = _.filter( state.observation.tags, t => ( t.api_status !== "deleting" ) );
+    const newTagList = _.map( _.without( currentTags, tag ), t => ( t.tag || t ) ).join( ", " );
+    dispatch( updateObservation( { tag_list: newTagList } ) );
   };
 }
 
 export function addComment( body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     dispatch( setAttributes( { comments: state.observation.comments.concat( [{
       created_at: moment( ).format( ),
       user: state.config.currentUser,
       body,
-      temporary: true
+      api_status: "saving"
     }] ) } ) );
 
     const payload = {
@@ -136,11 +215,11 @@ export function addComment( body ) {
       parent_id: state.observation.id,
       body
     };
+    const actionTime = getActionTime( );
     inatjs.comments.create( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
@@ -148,18 +227,19 @@ export function addComment( body ) {
 export function deleteComment( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
-    dispatch( setAttributes( { comments:
-      state.observation.comments.filter( c => ( c.id !== id ) ) } ) );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newComments = _.map( state.observation.comments, c => (
+      c.id === id ?
+        Object.assign( { }, c, { api_status: "deleting" } ) : c
+    ) );
+    dispatch( setAttributes( { comments: newComments } ) );
 
     const payload = { id };
+    const actionTime = getActionTime( );
     inatjs.comments.delete( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
@@ -180,28 +260,44 @@ export function confirmDeleteComment( id ) {
 
 export function doAddID( taxon, body, confirmForm ) {
   return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     if ( confirmForm && confirmForm.silenceCoarse ) {
       dispatch( updateSession( { prefers_skip_coarer_id_modal: true } ) );
     }
-    const observationID = getState( ).observation.id;
+    const newIdentifications = _.map( state.observation.identifications, i => (
+      i.user.id === state.config.currentUser.id ?
+        Object.assign( { }, i, { current: false } ) : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications.concat( [{
+      created_at: moment( ).format( ),
+      user: state.config.currentUser,
+      body,
+      taxon,
+      current: true,
+      api_status: "saving"
+    }] ) } ) );
+
     const payload = {
-      observation_id: observationID,
+      observation_id: state.observation.id,
       taxon_id: taxon.id,
       body
     };
+    const actionTime = getActionTime( );
     inatjs.identifications.create( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
 
 export function addID( taxon, body ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
-    const config = getState( ).config;
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const observation = state.observation;
+    const config = state.config;
     const userPrefersSkip = config && config.currentUser &&
       config.currentUser.prefers_skip_coarer_id_modal;
     if ( !userPrefersSkip && observation.taxon && taxon.id !== observation.taxon.id &&
@@ -224,29 +320,35 @@ export function addID( taxon, body ) {
 
 export function deleteID( id ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
-    const payload = { id };
-    inatjs.identifications.delete( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newIdentifications = _.map( state.observation.identifications, i => (
+      i.id === id ?
+        Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications } ) );
+    const actionTime = getActionTime( );
+    inatjs.identifications.delete( { id } ).then( ( ) => {
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
 
 export function restoreID( id ) {
   return ( dispatch, getState ) => {
-    const observationID = getState( ).observation.id;
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const payload = {
       id,
       current: true
     };
+    const actionTime = getActionTime( );
     inatjs.identifications.update( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
@@ -254,23 +356,23 @@ export function restoreID( id ) {
 export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const observationID = getState( ).observation.id;
-    const payload = Object.assign( { }, { id: observationID }, params );
+    const payload = Object.assign( { }, { id: state.observation.id }, params );
     if ( scope ) {
       payload.scope = scope;
       const newVotes = state.observation.votes.concat( [{
         vote_flag: ( params.vote === "yes" ),
         vote_scope: payload.scope,
         user: state.config.currentUser,
-        temporary: true
+        temporary: true,
+        api_status: "saving"
       }] );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
+    const actionTime = getActionTime( );
     inatjs.observations.fave( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
@@ -281,16 +383,17 @@ export function unvote( scope ) {
     const payload = { id: state.observation.id };
     if ( scope ) {
       payload.scope = scope;
-      const newVotes = state.observation.votes.filter( v => (
-        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope )
+      const newVotes = _.map( state.observation.votes, v => (
+        ( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ?
+          Object.assign( { }, v, { api_status: "deleting" } ) : v
       ) );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
+    const actionTime = getActionTime( );
     inatjs.observations.unfave( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
@@ -298,9 +401,7 @@ export function unvote( scope ) {
 export function fave( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newFaves = state.observation.faves.concat( [{
       votable_id: state.observation.id,
       user: state.config.currentUser,
@@ -314,9 +415,7 @@ export function fave( ) {
 export function unfave( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newFaves = state.observation.faves.filter( f => (
       f.user.id !== state.config.currentUser.id
     ) );
@@ -412,29 +511,28 @@ export function subscribe( ) {
 export function addAnnotation( controlledAttribute, controlledValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = ( state.observation.annotations || [] ).concat( [{
       controlled_attribute: controlledAttribute,
       controlled_value: controlledValue,
       user: state.config.currentUser,
-      temporary: true
+      api_status: "saving"
     }] );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
 
-    const observationID = getState( ).observation.id;
     const payload = {
       resource_type: "Observation",
-      resource_id: observationID,
+      resource_id: state.observation.id,
       controlled_attribute_id: controlledAttribute.id,
       controlled_value_id: controlledValue.id
     };
+    const actionTime = getActionTime( );
     inatjs.annotations.create( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, error: e, fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -442,20 +540,21 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
 export function deleteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
-    const newAnnotations = state.observation.annotations.filter( a => (
-      !( a.user.id === state.config.currentUser.id && a.uuid === id )
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.observation.annotations, a => (
+      ( a.user.id === state.config.currentUser.id && a.uuid === id ) ?
+        Object.assign( { }, a, { api_status: "deleting" } ) : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
 
     const payload = { id };
+    const actionTime = getActionTime( );
     inatjs.annotations.delete( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, error: e, fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -463,26 +562,27 @@ export function deleteAnnotation( id ) {
 export function voteAnnotation( id, voteValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = Object.assign( { }, state.observation.annotations );
     const annotation = _.find( newAnnotations, a => ( a.uuid === id ) );
     if ( annotation ) {
+      annotation.api_status = "voting";
       annotation.votes = ( annotation.votes || [] ).concat( [{
         vote_flag: ( voteValue !== "bad" ),
         user: state.config.currentUser,
-        temporary: true
+        api_status: "saving"
       }] );
       dispatch( setAttributes( { annotations: newAnnotations } ) );
     }
 
     const payload = { id, vote: voteValue };
+    const actionTime = getActionTime( );
     inatjs.annotations.vote( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, error: e, fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -490,25 +590,27 @@ export function voteAnnotation( id, voteValue ) {
 export function unvoteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = Object.assign( { }, state.observation.annotations );
     const annotation = _.find( newAnnotations, a => ( a.uuid === id ) );
     if ( annotation && annotation.votes ) {
-      annotation.votes = annotation.votes.filter( v => (
-        v.user.id !== state.config.currentUser.id
+      annotation.api_status = "voting";
+      annotation.votes = _.map( annotation.votes, v => (
+        v.user.id === state.config.currentUser.id ?
+          Object.assign( { }, v, { api_status: "deleting" } ) : v
       ) );
+
       dispatch( setAttributes( { annotations: newAnnotations } ) );
     }
 
-    const observationID = getState( ).observation.id;
     const payload = { id };
+    const actionTime = getActionTime( );
     inatjs.annotations.unvote( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, error: e, fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -519,25 +621,25 @@ export function voteMetric( metric, params = { } ) {
   }
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newMetrics = state.qualityMetrics.concat( [{
       observation_id: state.observation.id,
       metric,
       agree: ( params.agree !== "false" ),
       created_at: moment( ).format( ),
-      user: state.config.currentUser
+      user: state.config.currentUser,
+      api_status: "saving"
     }] );
     dispatch( setQualityMetrics( newMetrics ) );
 
-    const observationID = getState( ).observation.id;
-    const payload = Object.assign( { }, { id: observationID, metric }, params );
+    const payload = Object.assign( { }, { id: state.observation.id, metric }, params );
+    const actionTime = getActionTime( );
     inatjs.observations.setQualityMetric( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, error: e, fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -548,21 +650,21 @@ export function unvoteMetric( metric ) {
   }
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
-    const newMetrics = state.qualityMetrics.filter( qm => (
-      !( qm.user.id === state.config.currentUser.id && qm.user_id === qm.metric )
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newMetrics = _.map( state.qualityMetrics, qm => (
+      ( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ?
+        Object.assign( { }, qm, { api_status: "deleting" } ) : qm
     ) );
     dispatch( setQualityMetrics( newMetrics ) );
 
-    const observationID = getState( ).observation.id;
-    const payload = { id: observationID, metric };
+    const payload = { id: state.observation.id, metric };
+    const actionTime = getActionTime( );
     inatjs.observations.deleteQualityMetric( payload ).then( ( ) => {
-      dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, fetchQualityMetrics: true } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( observationID, { fetchQualityMetrics: true } ) );
+      dispatch( afterAPICall( state.observation.id, {
+        actionTime, error: e, fetchQualityMetrics: true } ) );
     } );
   };
 }
@@ -570,9 +672,7 @@ export function unvoteMetric( metric ) {
 export function addToProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newProjectObs = _.clone( state.observation.project_observations );
     newProjectObs.unshift( {
       project,
@@ -595,9 +695,7 @@ export function addToProject( project ) {
 export function removeFromProject( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser || !state.observation ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newProjectObs = state.observation.project_observations.filter( po => (
       po.project.id !== project.id
     ) );
@@ -623,5 +721,34 @@ export function confirmRemoveFromProject( project ) {
         dispatch( removeFromProject( project ) );
       }
     } ) );
+  };
+}
+
+export function windowStateForObservation( observation ) {
+  return {
+    state: { observation: { id: observation.id } },
+    title: "TODO: set the title",
+    url: `/observations/${observation.id}`
+  };
+}
+
+export function showNewObservation( observation, options ) {
+  return dispatch => {
+    dispatch( fetchObservation( observation.id, {
+      resetStates: true,
+      fetchPlaces: true,
+      fetchControlledTerms: true,
+      fetchQualityMetrics: true,
+      fetchOtherObservations: true,
+      fetchSubscriptions: true,
+      fetchIdentifiers: true
+    } ) ).then( ( ) => {
+      window.scrollTo( 0, 0 );
+      const s = windowStateForObservation( observation );
+      if ( !( options && options.skipSetState ) ) {
+        history.pushState( s.state, s.title, s.url );
+      }
+      document.title = s.title;
+    } );
   };
 }

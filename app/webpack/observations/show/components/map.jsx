@@ -14,6 +14,14 @@ class Map extends React.Component {
     let taxonMap;
     const observation = this.props.observation;
     const observationPlaces = this.props.observationPlaces;
+    if ( !observation || !observation.latitude ) {
+      return ( <div className="Map">
+        <div className="no_location">
+          <i className="fa fa-map-marker" />
+          Location unknown
+        </div>
+      </div> );
+    }
     if ( observation.latitude ) {
       // Select a small set of attributes that won't change wildy as the
       // observation changes.

@@ -19,7 +19,7 @@ class MapDetails extends React.Component {
       );
       return (
         <span className="place" key={ `place-${p.id}` }>
-          <a href={ `/places/${p.slug || p.id}` }>
+          <a href={ `/observations?place_id=${p.id}` }>
             { p.display_name }
           </a>
           { label }

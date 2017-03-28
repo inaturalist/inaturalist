@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import MoreFromUser from "../components/more_from_user";
+import { showNewObservation } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
@@ -8,8 +9,15 @@ function mapStateToProps( state ) {
   };
 }
 
+function mapDispatchToProps( dispatch ) {
+  return {
+    showNewObservation: ( observation ) => { dispatch( showNewObservation( observation ) ); }
+  };
+}
+
 const MoreFromUserContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( MoreFromUser );
 
 export default MoreFromUserContainer;

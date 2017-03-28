@@ -3,7 +3,7 @@ import moment from "moment-timezone";
 import React, { PropTypes } from "react";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
-const MoreFromUser = ( { observation, observations } ) => {
+const MoreFromUser = ( { observation, observations, showNewObservation } ) => {
   if ( !observation || _.isEmpty( observations ) ) { return ( <div /> ); }
   let dateObserved;
   if ( observation.time_observed_at ) {
@@ -13,6 +13,12 @@ const MoreFromUser = ( { observation, observations } ) => {
     dateObserved = moment( observation.observed_on );
   }
   const onDate = dateObserved ? dateObserved.format( "YYYY-MM-DD" ) : null;
+  const loadObservationCallback = ( e, o ) => {
+    if ( !e.metaKey ) {
+      e.preventDefault( );
+      showNewObservation( o );
+    }
+  };
   return (
     <div className="MoreFromUser">
       <h3>
@@ -50,6 +56,7 @@ const MoreFromUser = ( { observation, observations } ) => {
                   } }
                   target="_self"
                   className={`${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
+                  onClick={ e => { loadObservationCallback( e, o ); } }
                 >
                   <i className={ `icon icon-iconic-${iconicTaxonName}`} />
                   <i className="sound-icon fa fa-volume-up" />
@@ -68,7 +75,8 @@ const MoreFromUser = ( { observation, observations } ) => {
 
 MoreFromUser.propTypes = {
   observation: PropTypes.object,
-  observations: PropTypes.array
+  observations: PropTypes.array,
+  showNewObservation: PropTypes.func
 };
 
 export default MoreFromUser;

@@ -91,7 +91,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
             }
           } }
         >
-          <Dropdown.Toggle noCaret>
+          <Dropdown.Toggle noCaret disabled={ !!item.api_status }>
             <i className="fa fa-chevron-down" />
           </Dropdown.Toggle>
           <Dropdown.Menu className="dropdown-menu-right">

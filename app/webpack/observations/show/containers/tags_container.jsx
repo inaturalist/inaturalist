@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import Tags from "../components/tags";
-import { updateObservation } from "../ducks/observation";
+import { addTag, removeTag } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    updateObservation: ( attributes ) => { dispatch( updateObservation( attributes ) ); }
+    addTag: tag => { dispatch( addTag( tag ) ); },
+    removeTag: tag => { dispatch( removeTag( tag ) ); }
   };
 }
 

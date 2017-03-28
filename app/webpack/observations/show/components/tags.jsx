@@ -15,25 +15,12 @@ class Tags extends React.Component {
   submitTag( e ) {
     e.preventDefault( );
     const input = $( e.target ).find( "input" );
-    const tag = _.trim( input.val( ) );
-    if ( tag ) {
-      let newTagList = tag;
-      if ( !_.isEmpty( this.props.observation.tags ) ) {
-        newTagList = `${newTagList}, ${this.props.observation.tags.join( ", " )}`;
-      }
-      this.props.updateObservation( { tag_list: newTagList } );
-    }
-    // TODO: disable new entries until we've set a temprary tag list
-    // or the update is finished. We don't want to wipe out tags with
-    // very fast entries
+    this.props.addTag( _.trim( input.val( ) ) );
     input.val( "" );
   }
 
   removeTag( tag ) {
-    if ( tag ) {
-      const newTagList = _.without( this.props.observation.tags, tag ).join( ", " );
-      this.props.updateObservation( { tag_list: newTagList } );
-    }
+    this.props.removeTag( tag );
   }
 
   render( ) {
@@ -68,16 +55,19 @@ class Tags extends React.Component {
         <h4>Tags ({ observation.tags.length }) { addTagLink }</h4>
         { addTagInput }
         {
-          observation.tags.map( t => {
+          _.sortBy( observation.tags, t => ( _.lowerCase( t.tag || t ) ) ).map( t => {
             let remove;
+            const tag = t.tag || t;
             if ( viewerIsObserver ) {
-              remove = (
-                <Glyphicon glyph="remove-circle" onClick={ () => { this.removeTag( t ); } } />
+              remove = t.api_status ? ( <div className="loading_spinner" /> ) : (
+                <Glyphicon glyph="remove-circle" onClick={ () => { this.removeTag( tag ); } } />
               );
             }
             return (
-              <div className="tag" key={ t }>
-                { t }
+              <div className={ `tag ${t.api_status ? "loading" : ""}` } key={ tag }>
+                <a href={ `/observations?q=${t}&search_on=tags` }>
+                  { tag }
+                </a>
                 { remove }
               </div>
             );
@@ -91,7 +81,8 @@ class Tags extends React.Component {
 Tags.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
-  updateObservation: PropTypes.func
+  addTag: PropTypes.func,
+  removeTag: PropTypes.func
 };
 
 export default Tags;

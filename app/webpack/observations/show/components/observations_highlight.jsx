@@ -1,8 +1,14 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 
-const ObservationsHighlight = ( { title, observations, searchParams } ) => {
+const ObservationsHighlight = ( { title, observations, searchParams, showNewObservation } ) => {
   if ( _.isEmpty( observations ) ) { return ( <div /> ); }
+  const loadObservationCallback = ( e, observation ) => {
+    if ( !e.metaKey ) {
+      e.preventDefault( );
+      showNewObservation( observation );
+    }
+  };
   return (
     <div className="ObservationsHighlight">
       <h3>
@@ -17,6 +23,7 @@ const ObservationsHighlight = ( { title, observations, searchParams } ) => {
             <a
               href={ `/observations/${o.id}` }
               style={ { backgroundImage: `url( '${o.photo( "small" )}' )` } }
+              onClick={ e => { loadObservationCallback( e, o ); } }
             />
           </div>
           ) )
@@ -29,7 +36,8 @@ const ObservationsHighlight = ( { title, observations, searchParams } ) => {
 ObservationsHighlight.propTypes = {
   title: PropTypes.string,
   searchParams: PropTypes.object,
-  observations: PropTypes.array
+  observations: PropTypes.array,
+  showNewObservation: PropTypes.func
 };
 
 export default ObservationsHighlight;
