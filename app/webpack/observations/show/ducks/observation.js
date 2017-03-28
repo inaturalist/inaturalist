@@ -512,6 +512,7 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
+    console.log(state.observation.annotations);
     const newAnnotations = ( state.observation.annotations || [] ).concat( [{
       controlled_attribute: controlledAttribute,
       controlled_value: controlledValue,
@@ -563,17 +564,18 @@ export function voteAnnotation( id, voteValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newAnnotations = Object.assign( { }, state.observation.annotations );
-    const annotation = _.find( newAnnotations, a => ( a.uuid === id ) );
-    if ( annotation ) {
-      annotation.api_status = "voting";
-      annotation.votes = ( annotation.votes || [] ).concat( [{
-        vote_flag: ( voteValue !== "bad" ),
-        user: state.config.currentUser,
-        api_status: "saving"
-      }] );
-      dispatch( setAttributes( { annotations: newAnnotations } ) );
-    }
+    const newAnnotations = _.map( state.observation.annotations, a => (
+      ( a.uuid === id ) ?
+        Object.assign( { }, a, {
+          api_status: "voting",
+          votes: ( a.votes || [] ).concat( [{
+            vote_flag: ( voteValue !== "bad" ),
+            user: state.config.currentUser,
+            api_status: "saving"
+          }] )
+        } ) : a
+    ) );
+    dispatch( setAttributes( { annotations: newAnnotations } ) );
 
     const payload = { id, vote: voteValue };
     const actionTime = getActionTime( );
@@ -591,17 +593,17 @@ export function unvoteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newAnnotations = Object.assign( { }, state.observation.annotations );
-    const annotation = _.find( newAnnotations, a => ( a.uuid === id ) );
-    if ( annotation && annotation.votes ) {
-      annotation.api_status = "voting";
-      annotation.votes = _.map( annotation.votes, v => (
-        v.user.id === state.config.currentUser.id ?
-          Object.assign( { }, v, { api_status: "deleting" } ) : v
-      ) );
-
-      dispatch( setAttributes( { annotations: newAnnotations } ) );
-    }
+    const newAnnotations = _.map( state.observation.annotations, a => (
+      ( a.uuid === id ) ?
+        Object.assign( { }, a, {
+          api_status: "voting",
+          votes: _.map( a.votes, v => (
+            v.user.id === state.config.currentUser.id ?
+              Object.assign( { }, v, { api_status: "deleting" } ) : v
+          ) )
+        } ) : a
+    ) );
+    dispatch( setAttributes( { annotations: newAnnotations } ) );
 
     const payload = { id };
     const actionTime = getActionTime( );
