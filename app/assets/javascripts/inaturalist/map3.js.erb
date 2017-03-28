@@ -1225,7 +1225,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
           // needs to be asynchronous so the selector resolves
           var googleMainMapDiv = $(map.div).find("div[style*='cursor'][style*='z-index: 0']");
           var googleMapInteractionsDiv = $(googleMainMapDiv).children()[2];
-          if(googleMapInteractionsDiv !== o.e.target) { return false; }
+          if( !$.contains( googleMapInteractionsDiv, o.e.target ) ) { return false; }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room
