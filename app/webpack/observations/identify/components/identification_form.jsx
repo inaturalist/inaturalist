@@ -58,7 +58,7 @@ const IdentificationForm = ( {
     { blind ? (
       <div className="form-group">
         <label>
-          <input type="checkbox" name="dont_disagree" /> Don't disagree
+          <input type="checkbox" name="dont_disagree" /> Others could potentially refine this ID
         </label>
       </div>
     ) : null }
