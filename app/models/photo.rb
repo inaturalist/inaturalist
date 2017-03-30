@@ -123,7 +123,7 @@ class Photo < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: observations, delay: true)
+    Observation.elastic_index!(scope: observations)
   end
 
   def editable_by?(user)

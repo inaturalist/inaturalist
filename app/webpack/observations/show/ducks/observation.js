@@ -16,10 +16,6 @@ const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
 let lastAction;
 
-function hasObsAndLoggedIn( state ) {
-  return ( state.config && state.config.currentUser && state.observation );
-}
-
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
     case SET_OBSERVATION:
@@ -51,8 +47,13 @@ export function getActionTime( ) {
   return currentTime;
 }
 
+export function hasObsAndLoggedIn( state ) {
+  return ( state.config && state.config.currentUser && state.observation );
+}
+
 export function resetStates( ) {
   return dispatch => {
+    dispatch( setObservation( { } ) );
     dispatch( setIdentifiers( [] ) );
     dispatch( setObservationPlaces( [] ) );
     dispatch( setControlledTerms( [] ) );
@@ -68,7 +69,7 @@ export function fetchTaxonSummary( ) {
   return ( dispatch, getState ) => {
     const observation = getState( ).observation;
     if ( !observation || !observation.taxon ) { return null; }
-    const params = { id: observation.id };
+    const params = { id: observation.id, ttl: -1 };
     return inatjs.observations.taxonSummary( params ).then( response => {
       dispatch( setAttributes( { taxon:
         Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );
@@ -81,7 +82,8 @@ export function fetchObservation( id, options = { } ) {
     const s = getState( );
     const params = {
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
-      locale: I18n.locale
+      locale: I18n.locale,
+      ttl: -1
     };
     const originalObservation = s.observation;
     return inatjs.observations.fetch( id, params ).then( response => {
@@ -90,11 +92,10 @@ export function fetchObservation( id, options = { } ) {
         originalObservation.id === observation.id &&
         ( ( !originalObservation.taxon && observation.taxon ) ||
           ( originalObservation.taxon && !observation.taxon ) ||
-          ( originalObservation.taxon.id !== observation.taxon.id ) ) );
+          ( originalObservation.taxon && observation.taxon &&
+            originalObservation.taxon.id !== observation.taxon.id ) ) );
       dispatch( setObservation( observation ) );
-      if ( options.resetStates ) {
-        dispatch( resetStates( ) );
-      } else if ( taxonUpdated ) {
+      if ( taxonUpdated ) {
         dispatch( setIdentifiers( [] ) );
         dispatch( setMoreFromClade( [] ) );
       }
@@ -115,7 +116,7 @@ export function fetchObservation( id, options = { } ) {
              observation.taxon && observation.taxon.rank_level <= 50 ) {
           dispatch( fetchIdentifiers( { taxon_id: observation.taxon.id, per_page: 10 } ) );
         }
-      }, taxonUpdated ? 1 : 2000 );
+      }, taxonUpdated ? 1 : 1500 );
       if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
         // TODO: put item type in flaggingModal state
         const item = s.flaggingModal.item;
@@ -137,7 +138,8 @@ export function afterAPICall( id, options ) {
     const state = getState( );
     if ( !state.observation ) { return; }
     if ( options.error ) {
-      dispatch( handleAPIError( options.error, I18n.t( "failed_to_save_record" ) ) );
+      dispatch( handleAPIError( options.error,
+        options.errorMessage || I18n.t( "failed_to_save_record" ) ) );
     }
     if ( options.actionTime && lastAction !== options.actionTime ) { return; }
     dispatch( fetchObservation( id, options ) );
@@ -356,16 +358,17 @@ export function restoreID( id ) {
 export function vote( scope, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
     const payload = Object.assign( { }, { id: state.observation.id }, params );
     if ( scope ) {
       payload.scope = scope;
-      const newVotes = state.observation.votes.concat( [{
-        vote_flag: ( params.vote === "yes" ),
-        vote_scope: payload.scope,
-        user: state.config.currentUser,
-        temporary: true,
-        api_status: "saving"
-      }] );
+      const newVotes = _.filter( state.observation.votes, v => (
+        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ) ).concat( [{
+          vote_flag: ( params.vote === "yes" ),
+          vote_scope: payload.scope,
+          user: state.config.currentUser,
+          api_status: "saving"
+        }] );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
     const actionTime = getActionTime( );
@@ -624,14 +627,15 @@ export function voteMetric( metric, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const newMetrics = state.qualityMetrics.concat( [{
-      observation_id: state.observation.id,
-      metric,
-      agree: ( params.agree !== "false" ),
-      created_at: moment( ).format( ),
-      user: state.config.currentUser,
-      api_status: "saving"
-    }] );
+    const newMetrics = _.filter( state.qualityMetrics, qm => (
+      !( qm.user.id === state.config.currentUser.id && qm.metric !== metric ) ) ).concat( [{
+        observation_id: state.observation.id,
+        metric,
+        agree: ( params.agree !== "false" ),
+        created_at: moment( ).format( ),
+        user: state.config.currentUser,
+        api_status: "saving"
+      }] );
     dispatch( setQualityMetrics( newMetrics ) );
 
     const payload = Object.assign( { }, { id: state.observation.id, metric }, params );
@@ -680,16 +684,23 @@ export function addToProject( project ) {
       project,
       user_id: state.config.currentUser.id,
       user: state.config.currentUser,
-      temporary: true
+      api_status: "saving"
     } );
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
 
     const payload = { id: project.id, observation_id: state.observation.id };
+    const actionTime = getActionTime( );
     inatjs.projects.add( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, `Failed to add to project ${project.title}` ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( handleAPIError( e, `Failed to add to project ${project.title}`, {
+        onConfirm: ( ) => {
+          const currentProjObs = getState( ).observation.project_observations;
+          dispatch( setAttributes( { project_observations:
+            _.filter( currentProjObs, po => ( po.project.id !== project.id ) )
+          } ) );
+        }
+      } ) );
     } );
   };
 }
@@ -704,11 +715,11 @@ export function removeFromProject( project ) {
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
 
     const payload = { id: project.id, observation_id: state.observation.id };
+    const actionTime = getActionTime( );
     inatjs.projects.remove( payload ).then( ( ) => {
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
     } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchObservation( state.observation.id ) );
+      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
     } );
   };
 }
@@ -736,21 +747,20 @@ export function windowStateForObservation( observation ) {
 
 export function showNewObservation( observation, options ) {
   return dispatch => {
+    window.scrollTo( 0, 0 );
+    const s = windowStateForObservation( observation );
+    if ( !( options && options.skipSetState ) ) {
+      history.pushState( s.state, s.title, s.url );
+    }
+    document.title = s.title;
+    dispatch( resetStates( ) );
     dispatch( fetchObservation( observation.id, {
-      resetStates: true,
       fetchPlaces: true,
       fetchControlledTerms: true,
       fetchQualityMetrics: true,
       fetchOtherObservations: true,
       fetchSubscriptions: true,
       fetchIdentifiers: true
-    } ) ).then( ( ) => {
-      window.scrollTo( 0, 0 );
-      const s = windowStateForObservation( observation );
-      if ( !( options && options.skipSetState ) ) {
-        history.pushState( s.state, s.title, s.url );
-      }
-      document.title = s.title;
-    } );
+    } ) );
   };
 }

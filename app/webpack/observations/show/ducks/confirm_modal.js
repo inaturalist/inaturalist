@@ -17,9 +17,9 @@ export function setConfirmModalState( newState ) {
   };
 }
 
-export function handleAPIError( e, message ) {
+export function handleAPIError( e, message, options = { } ) {
   if ( !e || !message ) { return null; }
-  return ( dispatch ) => {
+  return dispatch => {
     if ( e.response && e.response.status ) {
       e.response.text( ).then( text => {
         const body = JSON.parse( text );
@@ -34,7 +34,8 @@ export function handleAPIError( e, message ) {
           hideCancel: true,
           confirmText: "OK",
           message,
-          errors: railsErrors
+          errors: railsErrors,
+          onConfirm: options.onConfirm
         } ) );
       } );
     }

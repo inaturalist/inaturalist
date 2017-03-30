@@ -78,7 +78,8 @@ class FlagsController < ApplicationController
       flash[:error] = t(:cant_flag_an_object_that_doesnt_exist)
       redirect_to root_path
     end
-    
+
+    # TODO - this fails if you try to add a flag that was already resolved
     @flag = @object.flags.build(create_options)
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
@@ -104,6 +105,7 @@ class FlagsController < ApplicationController
         end
       end
       format.json do
+        Observation.refresh_es_index if @object.is_a?(Observation)
         render :json => @flag.to_json
       end
     end
@@ -132,7 +134,10 @@ class FlagsController < ApplicationController
     @flag.destroy
     respond_to do |format|
       format.html { redirect_back_or_default(admin_path) }
-      format.json { head :ok }
+      format.json do
+        Observation.refresh_es_index if @object.is_a?(Observation)
+        head :ok
+      end
     end
   end
 

@@ -25,7 +25,7 @@ export function fetchControlledTerms( ) {
     if ( !observation || !observation.taxon ) {
       return null;
     }
-    const params = { taxon_id: observation.taxon.ancestor_ids.join( "," ) };
+    const params = { taxon_id: observation.taxon.ancestor_ids.join( "," ), ttl: -1 };
     return inatjs.controlled_terms.for_taxon( params ).then( response => {
       dispatch( setControlledTerms( response.results ) );
     } );

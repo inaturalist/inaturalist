@@ -78,7 +78,7 @@ export function fetchMoreFromClade( ) {
 export function fetchMoreFromThisUser( ) {
   return ( dispatch, getState ) => {
     const observation = getState( ).observation;
-    if ( !observation ) { return null; }
+    if ( !observation || !observation.user ) { return null; }
     // TODO: this needs to be smarter
     let params = { user_id: observation.user.id, order_by: "id",
       order: "desc", id_below: observation.id, per_page: 3 };

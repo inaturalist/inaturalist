@@ -26,9 +26,8 @@ const PhotoBrowser = ( { observation } ) => {
           overlay={ ( <Tooltip id="add-tip">{ photo.attribution }</Tooltip> ) }
           key={ `photo-${photo.id}-license` }
         >
-          <Badge className="license">
-            { photo.license_code ? photo.license_code.substr( 0, 2 ) : "c" }
-          </Badge>
+          { photo.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
+              ( <i className="fa fa-copyright license" /> ) }
         </OverlayTrigger>
         <a href={ `/photos/${photo.id}` }>
           <Badge>

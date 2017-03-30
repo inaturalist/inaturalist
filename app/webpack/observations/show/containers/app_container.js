@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
+import { setFlaggingModalState } from "../ducks/flagging_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -8,8 +9,15 @@ function mapStateToProps( state ) {
   };
 }
 
+function mapDispatchToProps( dispatch ) {
+  return {
+    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); }
+  };
+}
+
 const AppContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( App );
 
 export default AppContainer;

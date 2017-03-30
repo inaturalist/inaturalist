@@ -21,6 +21,7 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
     remainingCriteria.rank = ( observation.taxon && observation.taxon.rank_level > 10 );
     remainingCriteria.ids = !observation.identifications_most_agree;
     remainingCriteria.location = !observation.location;
+    remainingCriteria.flags = observation.flags.length > 0;
     const votesFor = { };
     const votesAgainst = { };
     _.each( qualityMetrics, ( values, metric ) => {
@@ -91,6 +92,10 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
             case "metric-needs_id":
               icon = "fa-gavel";
               label = "Community Agreement";
+              break;
+            case "flags":
+              icon = "fa-flag danger";
+              label = "All flags must be resolved";
               break;
             default:
               return null;

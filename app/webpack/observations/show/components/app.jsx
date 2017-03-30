@@ -69,16 +69,19 @@ const App = ( { observation, config } ) => {
     /* global SITE_HELP_EMAIL */
     warning = (
       <div className="container flash-warning">
-        <div className="alert alert-warning">
-          <strong>This has been flagged as spam</strong>
-          <p className="unstacked">
-            This record has been flagged as spam and is no longer publicly visible.
-            You can see it because you created it, or you are a site curator.
-            If you think this is a mistake, please&nbsp;
-            <a href={ `mailto:${SITE_HELP_EMAIL}` }>
-              contact us
-            </a>.
-          </p>
+        <div className="alert alert-danger">
+          <i className="fa fa-flag" />
+          <span className="bold">This has been flagged as spam.</span>
+          This observation has been flagged as spam and is no longer publicly visible.
+          You can see it because you created it, or you are a site curator.
+          If you think this is a mistake, please <a
+            href={ `mailto:${SITE_HELP_EMAIL}` }
+            className="contact"
+          >
+            contact us
+          </a>. <a href={ `/observations/${observation.id}/flags` }>
+            Manage flags
+          </a>
         </div>
       </div>
     );

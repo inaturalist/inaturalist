@@ -42,20 +42,20 @@ class FlaggingModal extends Component {
       /> );
     const existingFlags = item && item.flags && item.flags.length > 0 && (
       <div className="alert alert-warning">
+        Current Flags
+        <ul>
         { item.flags.map( flag => (
-          <div>
-            <UserImage user={ flag.user } />
-            <div className="username">
-              <a href={ `/people/${flag.user.login}` }>{ flag.user.login }</a>
-            </div>
-            { flag.flag }
+          <li key={ `flag-${flag.id || flag.user.id}` }>
+            { flag.flag } (
+              <a href={ `/people/${flag.user.login}` }>{ flag.user.login }</a>)
             { flag.user && loggedInUser && flag.user.id === loggedInUser.id && (
               <Glyphicon glyph="remove-circle"
                 onClick={ ( ) => { this.props.deleteFlag( flag.id ); } }
               />
             ) }
-          </div>
+          </li>
         ) ) }
+        </ul>
       </div>
     );
     return (
@@ -79,7 +79,7 @@ class FlaggingModal extends Component {
                   type="radio"
                   name="spam"
                   checked={ this.props.state.radioOption === "spam" }
-                  onClick={ () => { this.setRadioOption( "spam" ); } }
+                  onChange={ () => { this.setRadioOption( "spam" ); } }
                 /> spam
               </label>
               <div className="help-block">
@@ -92,7 +92,7 @@ class FlaggingModal extends Component {
                   type="radio"
                   name="inappropriate"
                   checked={ this.props.state.radioOption === "inappropriate" }
-                  onClick={ () => { this.setRadioOption( "inappropriate" ); } }
+                  onChange={ () => { this.setRadioOption( "inappropriate" ); } }
                 /> offensive / inappropriate
               </label>
               <div className="help-block">
@@ -107,7 +107,7 @@ class FlaggingModal extends Component {
                   type="radio"
                   name="other"
                   checked={ this.props.state.radioOption === "other" }
-                  onClick={ () => { this.setRadioOption( "other" ); } }
+                  onChange={ () => { this.setRadioOption( "other" ); } }
                 /> other
               </label>
               <div className="help-block">

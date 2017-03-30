@@ -23,7 +23,7 @@ export function fetchQualityMetrics( ) {
   return ( dispatch, getState ) => {
     const observation = getState( ).observation;
     if ( !observation ) { return null; }
-    const params = { id: observation.id };
+    const params = { id: observation.id, ttl: -1 };
     return inatjs.observations.qualityMetrics( params ).then( response => {
       dispatch( setQualityMetrics( response.results ) );
     } );

@@ -7,6 +7,7 @@ class QualityMetrics extends React.Component {
     super( );
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
     this.openFlaggingModal = this.openFlaggingModal.bind( this );
+    this.flaggingDiv = this.flaggingDiv.bind( this );
   }
 
   voteCell( metric, isAgree, isMajority, className, usersChoice, voters, loading, disabled ) {
@@ -42,7 +43,61 @@ class QualityMetrics extends React.Component {
     );
   }
 
-  voteCellsForMetric( metric ) {
+  needsIDInputs( ) {
+    const needsIDInfo = this.infoForMetric( "needs_id" );
+    let votesForCount = needsIDInfo.voteForLoading ? (
+      <div className="loading_spinner" /> ) : (
+      <UsersPopover
+        users={ needsIDInfo.votersFor }
+        keyPrefix="metric-needs_id-agree"
+        contents={ ( <span>({needsIDInfo.votersFor.length})</span> ) }
+      /> );
+    let votesAgainstCount = needsIDInfo.voteAgainstLoading ? (
+      <div className="loading_spinner" /> ) : (
+      <UsersPopover
+        users={ needsIDInfo.votersAgainst }
+        keyPrefix="metric-needs_id-disagree"
+        contents={ ( <span>({needsIDInfo.votersAgainst.length})</span> ) }
+      /> );
+    return (
+      <div className="inputs">
+        <div className="yes">
+          <input type="checkbox" id="improveYes"
+            disabled={ needsIDInfo.loading }
+            checked={ needsIDInfo.userVotedFor }
+            onChange={ () => {
+              if ( needsIDInfo.userVotedFor ) {
+                this.props.unvoteMetric( "needs_id" );
+              } else {
+                this.props.voteMetric( "needs_id" );
+              }
+            } }
+          />
+          <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
+            Yes { votesForCount }
+          </label>
+        </div>
+        <div className="no">
+          <input type="checkbox" id="improveNo"
+            disabled={ needsIDInfo.loading }
+            checked={ needsIDInfo.userVotedAgainst }
+            onChange={ () => {
+              if ( needsIDInfo.userVotedAgainst ) {
+                this.props.unvoteMetric( "needs_id" );
+              } else {
+                this.props.voteMetric( "needs_id", { agree: "false" } );
+              }
+            } }
+          />
+          <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
+            No, it's as good as it can be { votesAgainstCount }
+          </label>
+        </div>
+      </div>
+    );
+  }
+
+  infoForMetric( metric ) {
     const votersFor = [];
     const votersAgainst = [];
     let userVotedFor;
@@ -72,21 +127,66 @@ class QualityMetrics extends React.Component {
     if ( _.isEmpty( this.props.qualityMetrics[metric] ) ) {
       mostAgree = true;
     }
+    return {
+      mostAgree,
+      mostDisagree,
+      agreeClass,
+      disagreeClass,
+      userVotedFor,
+      userVotedAgainst,
+      votersFor,
+      votersAgainst,
+      voteForLoading,
+      voteAgainstLoading,
+      loading: ( voteForLoading || voteAgainstLoading )
+    };
+  }
 
+  voteCellsForMetric( metric ) {
+    const info = this.infoForMetric( metric );
     return {
       agreeCell: this.voteCell(
-        metric, true, mostAgree, agreeClass, userVotedFor, votersFor,
-        voteForLoading, ( voteForLoading || voteAgainstLoading ) ),
+        metric, true, info.mostAgree, info.agreeClass, info.userVotedFor,
+        info.votersFor, info.voteForLoading, info.loading ),
       disagreeCell: this.voteCell(
-        metric, false, mostDisagree, disagreeClass, userVotedAgainst, votersAgainst,
-        voteAgainstLoading, ( voteForLoading || voteAgainstLoading ) ),
-      loading: ( voteForLoading || voteAgainstLoading )
+        metric, false, info.mostDisagree, info.disagreeClass, info.userVotedAgainst,
+        info.votersAgainst, info.voteAgainstLoading, info.loading ),
+      loading: info.loading
     };
   }
 
   openFlaggingModal( ) {
     this.props.setFlaggingModalState( "item", this.props.observation );
     this.props.setFlaggingModalState( "show", true );
+  }
+
+  flaggingDiv( ) {
+    const observation = this.props.observation;
+    if ( observation.flags.length > 0 ) {
+      const groupedFlags = _.groupBy( observation.flags, f => ( f.flag ) );
+      let flagQualifier;
+      if ( groupedFlags.spam ) {
+        flagQualifier = "spam";
+      } else if ( groupedFlags.inappropriate ) {
+        flagQualifier = "inappropriate";
+      }
+      return (
+        <div className="flagging alert alert-danger">
+          <i className="fa fa-flag" />
+          Observation flagged{ flagQualifier ? ` as ${flagQualifier}` : "" }
+          <a href={ `/observations/${observation.id}/flags` } className="view">
+            Add/Edit Flags
+          </a>
+        </div>
+      );
+    }
+    return (
+      <div className="flagging">
+        Inappropriate content? <span className="flag_link" onClick={ this.openFlaggingModal }>
+          Flag as inappropriate
+        </span>
+      </div>
+    );
   }
 
   render( ) {
@@ -100,21 +200,6 @@ class QualityMetrics extends React.Component {
     const dateCells = this.voteCellsForMetric( "date" );
     const evidenceCells = this.voteCellsForMetric( "evidence" );
     const recentCells = this.voteCellsForMetric( "recent" );
-    const needsIDCells = this.voteCellsForMetric( "needs_id" );
-    const flagged = _.find( observation.flags, f => f.flag === "spam" );
-    let flaggingCell;
-    if ( flagged ) {
-      flaggingCell = ( <span>
-        <strong>Flagged</strong>
-        <a href={ `/observations/${observation.id}/flags` }>
-          View flags
-        </a>
-      </span> );
-    } else {
-      flaggingCell = ( <span className="flag_link" onClick={ this.openFlaggingModal }>
-        Flag as inappropriate
-      </span> );
-    }
     return (
       <div className="QualityMetrics">
         <h3>Data Quality Assessment</h3>
@@ -217,25 +302,16 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ recentCells.agreeCell }</td>
               <td className="disagree">{ recentCells.disagreeCell }</td>
             </tr>
-            <tr className={ needsIDCells.loading ? "disabled" : "" }>
-              <td className="metric_title">
+            <tr className="improve">
+              <td className="metric_title" colSpan={ 3 }>
                 <i className="fa fa-gavel" />
-                Community can confirm/improve ID
-              </td>
-              <td className="agree">{ needsIDCells.agreeCell }</td>
-              <td className="disagree">{ needsIDCells.disagreeCell }</td>
-            </tr>
-            <tr className={ `flags ${flagged && "flagged"}` }>
-              <td className="metric_title">
-                <i className="fa fa-flag" />
-                Content is appropriate for site
-              </td>
-              <td colSpan="2" className="flagging">
-                { flaggingCell }
+                Based on the evidence, can the Community ID still be confirmed or improved?
+                { this.needsIDInputs( ) }
               </td>
             </tr>
           </tbody>
         </table>
+        { this.flaggingDiv( ) }
       </div>
     );
   }
