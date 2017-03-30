@@ -782,7 +782,7 @@ class ObservationsController < ApplicationController
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|
-      fieldset_index = observation.id.to_s      
+      fieldset_index = observation.id.to_s
       
       # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be

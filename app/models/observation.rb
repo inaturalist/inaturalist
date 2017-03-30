@@ -300,6 +300,13 @@ class Observation < ActiveRecord::Base
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
   validate do
+    # This should be a validation on cached_tag_list, but acts_as_taggable seems
+    # to set that after the validations run
+    if tag_list.join(", ").length > 750
+      errors.add( :tag_list, "must be under 750 characters total, no more than 256 characters per tag" )
+    end
+  end
+  validate do
     unless coordinate_system.blank?
       begin
         RGeo::CoordSys::Proj4.new( coordinate_system )
