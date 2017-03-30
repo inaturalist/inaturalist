@@ -41,6 +41,14 @@ export function setAttributes( attributes ) {
   };
 }
 
+export function windowStateForObservation( observation ) {
+  return {
+    state: { observation: { id: observation.id } },
+    title: "TODO: set the title",
+    url: `/observations/${observation.id}`
+  };
+}
+
 export function getActionTime( ) {
   const currentTime = new Date( ).getTime( );
   lastAction = currentTime;
@@ -48,7 +56,12 @@ export function getActionTime( ) {
 }
 
 export function hasObsAndLoggedIn( state ) {
-  return ( state.config && state.config.currentUser && state.observation );
+  return ( state && state.config && state.config.currentUser && state.observation );
+}
+
+export function userIsObserver( state ) {
+  return ( hasObsAndLoggedIn( state ) &&
+           state.config.currentUser.id === state.observation.user.id );
 }
 
 export function resetStates( ) {
@@ -104,6 +117,10 @@ export function fetchObservation( id, options = { } ) {
       if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
       if ( options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
       if ( options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
+      if ( options.replaceState ) {
+        const ws = windowStateForObservation( observation );
+        history.replaceState( ws.state, ws.title, ws.url );
+      }
       setTimeout( ( ) => {
         if ( options.fetchOtherObservations ) {
           dispatch( fetchMoreFromThisUser( ) );
@@ -133,16 +150,37 @@ export function fetchObservation( id, options = { } ) {
   };
 }
 
-export function afterAPICall( id, options ) {
+export function afterAPICall( options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.observation ) { return; }
     if ( options.error ) {
       dispatch( handleAPIError( options.error,
         options.errorMessage || I18n.t( "failed_to_save_record" ) ) );
     }
-    if ( options.actionTime && lastAction !== options.actionTime ) { return; }
-    dispatch( fetchObservation( id, options ) );
+    if ( options.callback ) {
+      options.callback( );
+    } else {
+      if ( options.actionTime && lastAction !== options.actionTime ) { return; }
+      if ( state.observation ) {
+        dispatch( fetchObservation( state.observation.id, options ) );
+      }
+    }
+  };
+}
+
+export function callAPI( method, payload, options = { } ) {
+  return dispatch => {
+    const opts = Object.assign( { }, options );
+    // only need to keep track of the times of non-custom callbacks
+    if ( !options.callback ) {
+      opts.actionTime = getActionTime( );
+    }
+    method( payload ).then( ( ) => {
+      dispatch( afterAPICall( opts ) );
+    } ).catch( e => {
+      opts.error = e;
+      dispatch( afterAPICall( opts ) );
+    } );
   };
 }
 
@@ -155,12 +193,7 @@ export function updateObservation( attributes ) {
       ignore_photos: true,
       observation: Object.assign( { }, { id: state.observation.id }, attributes )
     };
-    const actionTime = getActionTime( );
-    inatjs.observations.update( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.observations.update, payload ) );
   };
 }
 
@@ -217,12 +250,7 @@ export function addComment( body ) {
       parent_id: state.observation.id,
       body
     };
-    const actionTime = getActionTime( );
-    inatjs.comments.create( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.comments.create, payload ) );
   };
 }
 
@@ -235,14 +263,7 @@ export function deleteComment( id ) {
         Object.assign( { }, c, { api_status: "deleting" } ) : c
     ) );
     dispatch( setAttributes( { comments: newComments } ) );
-
-    const payload = { id };
-    const actionTime = getActionTime( );
-    inatjs.comments.delete( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.comments.delete, { id } ) );
   };
 }
 
@@ -285,12 +306,7 @@ export function doAddID( taxon, body, confirmForm ) {
       taxon_id: taxon.id,
       body
     };
-    const actionTime = getActionTime( );
-    inatjs.identifications.create( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.identifications.create, payload ) );
   };
 }
 
@@ -329,12 +345,7 @@ export function deleteID( id ) {
         Object.assign( { }, i, { current: false, api_status: "deleting" } ) : i
     ) );
     dispatch( setAttributes( { identifications: newIdentifications } ) );
-    const actionTime = getActionTime( );
-    inatjs.identifications.delete( { id } ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.identifications.delete, { id } ) );
   };
 }
 
@@ -346,12 +357,7 @@ export function restoreID( id ) {
       id,
       current: true
     };
-    const actionTime = getActionTime( );
-    inatjs.identifications.update( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.identifications.update, payload ) );
   };
 }
 
@@ -371,12 +377,7 @@ export function vote( scope, params = { } ) {
         }] );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
-    const actionTime = getActionTime( );
-    inatjs.observations.fave( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.observations.fave, payload ) );
   };
 }
 
@@ -392,12 +393,7 @@ export function unvote( scope ) {
       ) );
       dispatch( setAttributes( { votes: newVotes } ) );
     }
-    const actionTime = getActionTime( );
-    inatjs.observations.unfave( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.observations.unfave, payload ) );
   };
 }
 
@@ -430,10 +426,8 @@ export function unfave( ) {
 export function followUser( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser ||
-         !state.observation || state.config.currentUser.id === state.observation.user.id ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    if ( userIsObserver( state ) ) { return; }
     const newSubscriptions = state.subscriptions.concat( [{
       resource_type: "User",
       resource_id: state.observation.user.id,
@@ -442,22 +436,17 @@ export function followUser( ) {
     }] );
     dispatch( setSubscriptions( newSubscriptions ) );
     const payload = { id: state.config.currentUser.id, friend_id: state.observation.user.id };
-    inatjs.users.update( payload ).then( ( ) => {
+    dispatch( callAPI( inatjs.users.update, payload, { callback: ( ) => {
       dispatch( fetchSubscriptions( ) );
-    } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchSubscriptions( ) );
-    } );
+    } } ) );
   };
 }
 
 export function unfollowUser( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser ||
-         !state.observation || state.config.currentUser.id === state.observation.user.id ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    if ( userIsObserver( state ) ) { return; }
     const newSubscriptions = _.map( state.subscriptions, s => (
       s.resource_type === "User" ?
         Object.assign( { }, s, { api_status: "deleting" } ) : s
@@ -468,22 +457,17 @@ export function unfollowUser( ) {
       id: state.config.currentUser.id,
       remove_friend_id: state.observation.user.id
     };
-    inatjs.users.update( payload ).then( ( ) => {
+    dispatch( callAPI( inatjs.users.update, payload, { callback: ( ) => {
       dispatch( fetchSubscriptions( ) );
-    } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchSubscriptions( ) );
-    } );
+    } } ) );
   };
 }
 
 export function subscribe( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.config || !state.config.currentUser ||
-         !state.observation || state.config.currentUser.id === state.observation.user.id ) {
-      return;
-    }
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    if ( userIsObserver( state ) ) { return; }
     const obsSubscription = _.find( state.subscriptions, s => (
       s.resource_type === "Observation" ) );
     if ( obsSubscription ) {
@@ -502,12 +486,9 @@ export function subscribe( ) {
       dispatch( setSubscriptions( newSubscriptions ) );
     }
     const payload = { id: state.observation.id };
-    inatjs.observations.subscribe( payload ).then( ( ) => {
+    dispatch( callAPI( inatjs.observations.subscribe, payload, { callback: ( ) => {
       dispatch( fetchSubscriptions( ) );
-    } ).catch( e => {
-      dispatch( handleAPIError( e, I18n.t( "failed_to_save_record" ) ) );
-      dispatch( fetchSubscriptions( ) );
-    } );
+    } } ) );
   };
 }
 
@@ -515,7 +496,6 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    console.log(state.observation.annotations);
     const newAnnotations = ( state.observation.annotations || [] ).concat( [{
       controlled_attribute: controlledAttribute,
       controlled_value: controlledValue,
@@ -530,14 +510,7 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
       controlled_attribute_id: controlledAttribute.id,
       controlled_value_id: controlledValue.id
     };
-    const actionTime = getActionTime( );
-    inatjs.annotations.create( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, fetchQualityMetrics: true } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, error: e, fetchQualityMetrics: true } ) );
-    } );
+    dispatch( callAPI( inatjs.annotations.create, payload ) );
   };
 }
 
@@ -550,16 +523,7 @@ export function deleteAnnotation( id ) {
         Object.assign( { }, a, { api_status: "deleting" } ) : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
-
-    const payload = { id };
-    const actionTime = getActionTime( );
-    inatjs.annotations.delete( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, fetchQualityMetrics: true } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, error: e, fetchQualityMetrics: true } ) );
-    } );
+    dispatch( callAPI( inatjs.annotations.delete, { id } ) );
   };
 }
 
@@ -579,16 +543,7 @@ export function voteAnnotation( id, voteValue ) {
         } ) : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
-
-    const payload = { id, vote: voteValue };
-    const actionTime = getActionTime( );
-    inatjs.annotations.vote( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, fetchQualityMetrics: true } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, error: e, fetchQualityMetrics: true } ) );
-    } );
+    dispatch( callAPI( inatjs.annotations.vote, { id, vote: voteValue } ) );
   };
 }
 
@@ -607,16 +562,7 @@ export function unvoteAnnotation( id ) {
         } ) : a
     ) );
     dispatch( setAttributes( { annotations: newAnnotations } ) );
-
-    const payload = { id };
-    const actionTime = getActionTime( );
-    inatjs.annotations.unvote( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, fetchQualityMetrics: true } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, error: e, fetchQualityMetrics: true } ) );
-    } );
+    dispatch( callAPI( inatjs.annotations.unvote, { id } ) );
   };
 }
 
@@ -628,7 +574,7 @@ export function voteMetric( metric, params = { } ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newMetrics = _.filter( state.qualityMetrics, qm => (
-      !( qm.user.id === state.config.currentUser.id && qm.metric !== metric ) ) ).concat( [{
+      !( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
         observation_id: state.observation.id,
         metric,
         agree: ( params.agree !== "false" ),
@@ -639,14 +585,8 @@ export function voteMetric( metric, params = { } ) {
     dispatch( setQualityMetrics( newMetrics ) );
 
     const payload = Object.assign( { }, { id: state.observation.id, metric }, params );
-    const actionTime = getActionTime( );
-    inatjs.observations.setQualityMetric( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, fetchQualityMetrics: true } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, error: e, fetchQualityMetrics: true } ) );
-    } );
+    dispatch( callAPI( inatjs.observations.setQualityMetric, payload, {
+      fetchQualityMetrics: true } ) );
   };
 }
 
@@ -664,14 +604,8 @@ export function unvoteMetric( metric ) {
     dispatch( setQualityMetrics( newMetrics ) );
 
     const payload = { id: state.observation.id, metric };
-    const actionTime = getActionTime( );
-    inatjs.observations.deleteQualityMetric( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, fetchQualityMetrics: true } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, {
-        actionTime, error: e, fetchQualityMetrics: true } ) );
-    } );
+    dispatch( callAPI( inatjs.observations.deleteQualityMetric, payload, {
+      fetchQualityMetrics: true } ) );
   };
 }
 
@@ -691,7 +625,7 @@ export function addToProject( project ) {
     const payload = { id: project.id, observation_id: state.observation.id };
     const actionTime = getActionTime( );
     inatjs.projects.add( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
+      dispatch( afterAPICall( { actionTime } ) );
     } ).catch( e => {
       dispatch( handleAPIError( e, `Failed to add to project ${project.title}`, {
         onConfirm: ( ) => {
@@ -715,12 +649,7 @@ export function removeFromProject( project ) {
     dispatch( setAttributes( { project_observations: newProjectObs } ) );
 
     const payload = { id: project.id, observation_id: state.observation.id };
-    const actionTime = getActionTime( );
-    inatjs.projects.remove( payload ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.projects.remove, payload ) );
   };
 }
 
@@ -734,14 +663,6 @@ export function confirmRemoveFromProject( project ) {
         dispatch( removeFromProject( project ) );
       }
     } ) );
-  };
-}
-
-export function windowStateForObservation( observation ) {
-  return {
-    state: { observation: { id: observation.id } },
-    title: "TODO: set the title",
-    url: `/observations/${observation.id}`
   };
 }
 

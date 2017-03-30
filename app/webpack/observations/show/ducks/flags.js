@@ -1,5 +1,5 @@
 import inatjs from "inaturalistjs";
-import { getActionTime, afterAPICall, hasObsAndLoggedIn } from "./observation";
+import { callAPI, hasObsAndLoggedIn } from "./observation";
 
 export function createFlag( className, id, flag, body ) {
   return ( dispatch, getState ) => {
@@ -10,12 +10,7 @@ export function createFlag( className, id, flag, body ) {
       flaggable_id: id,
       flag
     }, flag_explanation: body };
-    const actionTime = getActionTime( );
-    inatjs.flags.create( params ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.flags.create, params ) );
   };
 }
 
@@ -23,11 +18,6 @@ export function deleteFlag( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const actionTime = getActionTime( );
-    inatjs.flags.delete( { id } ).then( ( ) => {
-      dispatch( afterAPICall( state.observation.id, { actionTime } ) );
-    } ).catch( e => {
-      dispatch( afterAPICall( state.observation.id, { actionTime, error: e } ) );
-    } );
+    dispatch( callAPI( inatjs.flags.delete, { id } ) );
   };
 }

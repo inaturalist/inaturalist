@@ -5,7 +5,8 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
-import observationReducer, { fetchObservation, showNewObservation } from "./ducks/observation";
+import observationReducer, { fetchObservation, showNewObservation,
+  windowStateForObservation } from "./ducks/observation";
 import observationPlacesReducer from "./ducks/observation_places";
 import identificationsReducer from "./ducks/identifications";
 import controlledTermsReducer from "./ducks/controlled_terms";
@@ -63,6 +64,7 @@ store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
   fetchOtherObservations: true,
   fetchSubscriptions: true,
   fetchIdentifiers: true,
+  replaceState: true,
   callback: ( ) => {
     render(
       <Provider store={store}>

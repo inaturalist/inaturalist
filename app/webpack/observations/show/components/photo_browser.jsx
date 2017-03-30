@@ -23,6 +23,7 @@ const PhotoBrowser = ( { observation } ) => {
         <OverlayTrigger
           placement="top"
           delayShow={ 500 }
+          trigger="click"
           overlay={ ( <Tooltip id="add-tip">{ photo.attribution }</Tooltip> ) }
           key={ `photo-${photo.id}-license` }
         >
