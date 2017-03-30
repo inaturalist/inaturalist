@@ -319,7 +319,7 @@ class TaxaController < ApplicationController
   def tip
     @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
     if @observation
-      @places = @observation.system_places
+      @places = @observation.public_system_places
     end
     render :layout => false
   end

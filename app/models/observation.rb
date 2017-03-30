@@ -2056,7 +2056,7 @@ class Observation < ActiveRecord::Base
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p| 
+    all_places.select do |p|
       p.user_id.blank? && (
         [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
         p.place_type == Place::PLACE_TYPE_CODES['Open Space']
@@ -2067,6 +2067,11 @@ class Observation < ActiveRecord::Base
   # The places that are theoretically controlled by site admins
   def system_places(options = {})
     Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+  end
+
+  def public_system_places( options = {} )
+    Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+    public_places.select{|p| !p.admin_level.blank? }
   end
 
   def intersecting_places

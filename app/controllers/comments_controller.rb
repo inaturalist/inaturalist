@@ -145,7 +145,7 @@ class CommentsController < ApplicationController
     elsif @comment.parent.is_a?( TaxonLink )
       redirect_to( edit_taxon_link_path( @comment.parent, anchor: anchor ) )
     else
-      redirect_to( url_for( @comment.parent ) + anchor )
+      redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     end
   end
   
