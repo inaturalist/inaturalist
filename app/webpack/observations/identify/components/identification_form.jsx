@@ -8,7 +8,6 @@ const IdentificationForm = ( {
   observation: o,
   onSubmitIdentification,
   className,
-  currentUser,
   blind
 } ) => (
   <form
@@ -28,38 +27,41 @@ const IdentificationForm = ( {
       confirmationText = confirmationText.replace( /<br>/g, "" );
       confirmationText = confirmationText.replace( /\s+/g, " " );
       const isDisagreement = ( ) => {
-        if ( blind ) {
+        if ( !o || !o.taxon ) {
           return false;
         }
-        if ( !o || !o.taxon || !o.taxon.rank_level || !o.taxon.rank_level ) {
-          return false;
-        }
-        return ( idTaxon && idTaxon.rank_level > o.taxon.rank_level );
+        return o.taxon.id !== idTaxon.id && o.taxon.ancestor_ids.indexOf( idTaxon.id ) > 0;
       };
-      const currentUserSkippedConfirmation = (
-        false && // test to see if this bugs people, we get a lot of mistaken coarse IDs
-        currentUser &&
-        currentUser.prefers_skip_coarer_id_modal
-      );
-      onSubmitIdentification( {
+      const params = {
         observation_id: o.id,
         taxon_id: e.target.elements.taxon_id.value,
         body: e.target.elements.body.value,
         blind
-      }, {
-        confirmationText: (
-          ( isDisagreement( ) && !currentUserSkippedConfirmation ) ? confirmationText : null
-        )
+      };
+      if ( blind && isDisagreement( ) && e.target.elements.dont_disagree ) {
+        params.disagreement = !$( e.target.elements.dont_disagree ).prop( "checked" );
+      }
+      onSubmitIdentification( params, {
+        observation: o,
+        potentialDisagreement: !blind && isDisagreement( )
       } );
       // this doesn't feel right... somehow submitting an ID should alter
       // the app state and this stuff should flow three here as props
       $( "input[name='taxon_name']", e.target ).trigger( "resetAll" );
       $( e.target.elements.body ).val( null );
+      $( e.target.elements.dont_disagree ).prop( "checked", false );
     }}
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
     <INatTextArea type="textarea" name="body" className="form-control" mentions />
+    { blind ? (
+      <div className="form-group">
+        <label>
+          <input type="checkbox" name="dont_disagree" /> Don't disagree
+        </label>
+      </div>
+    ) : null }
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );

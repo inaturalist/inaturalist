@@ -7,6 +7,7 @@ import PaginationControlContainer from "../containers/pagination_control_contain
 import FinishedModalContainer from "../containers/finished_modal_container";
 import SideBar from "./side_bar";
 import AlertModalContainer from "../containers/alert_modal_container";
+import DisagreementAlertContainer from "../containers/disagreement_alert_container";
 
 const App = ( { blind } ) => (
   <div id="Identify" className={ blind ? "blind" : "" }>
@@ -33,6 +34,7 @@ const App = ( { blind } ) => (
       </Row>
       <ObservationModalContainer />
       <AlertModalContainer />
+      <DisagreementAlertContainer />
     </Grid>
   </div>
 );

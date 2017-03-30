@@ -224,8 +224,17 @@ li.rc-pagination-item-active a {
   color: #333;
 }
 .bootstrap .AlertModal .modal-dialog,
-body > div > [role="dialog"] .AlertModal .modal-dialog {
-  margin: 100px auto;
+body > div > [role="dialog"] .AlertModal .modal-dialog,
+.bootstrap .DisagreementAlert .modal-dialog,
+body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
+  margin: 170px auto;
+}
+
+.DisagreementAlert .SplitTaxon {
+  display: inline;
+}
+.DisagreementAlert .taxon.has-com-name .sciname {
+  white-space: normal;
 }
 
 .dropdown-menu.textcomplete-dropdown {
