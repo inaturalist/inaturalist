@@ -47,7 +47,9 @@ class TaxonPhoto < ActiveRecord::Base
   end
 
   def index_taxon
-    taxon.self_and_ancestors.reverse.each(&:elastic_index!)
+    taxon.elastic_index!
+    Taxon.delay( priority: INTEGRITY_PRIORITY ).index_taxa( taxon.ancestor_ids )
+    true
   end
 
 end

@@ -180,123 +180,119 @@ class PhotoChooserModal extends React.Component {
           <Modal.Title>{ I18n.t( "choose_photos_for_this_taxon" ) }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Grid fluid>
-            <Row>
-              <Col xs={6}>
-                <form
-                  onSubmit={ e => {
-                    e.preventDefault( );
-                    this.fetchPhotos( );
-                    return false;
-                  } }
-                >
-                  <div className="input-group search-control">
-                    <input
-                      type="text"
-                      className="form-control"
-                      placeholder={ searchPlaceholder }
-                      value={ this.state.query }
-                      onChange={ e => this.setState( { query: e.target.value } ) }
-                    />
-                    <span className="input-group-btn">
-                      <button
-                        className="btn btn-default"
-                        type="submit"
-                      >
-                        { I18n.t( "search" ) }
-                      </button>
-                    </span>
-                  </div>
-                </form>
-                <form className="form-inline controls nav-buttons stacked">
-                  <div className="form-group">
-                    <label>
-                      { I18n.t( "photos_from" ) }
-                    </label> <select
-                      className="form-control"
-                      onChange={ e => this.setProvider( e.target.value ) }
+          <div className="photocols">
+            <div>
+              <form
+                onSubmit={ e => {
+                  e.preventDefault( );
+                  this.fetchPhotos( );
+                  return false;
+                } }
+              >
+                <div className="input-group search-control">
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder={ searchPlaceholder }
+                    value={ this.state.query }
+                    onChange={ e => this.setState( { query: e.target.value } ) }
+                  />
+                  <span className="input-group-btn">
+                    <button
+                      className="btn btn-default"
+                      type="submit"
                     >
-                      <option value="inat">{ $( "meta[property='og:site_name']" ).attr( "content" ) }</option>
-                      <option value="flickr">Flickr</option>
-                      <option value="eol">EOL</option>
-                      <option value="wikimedia_commons">Wikimedia Commons</option>
-                    </select>
-                  </div>
-                  <ButtonGroup className="pull-right">
-                    <Button
-                      disabled={this.state.page === 1}
-                      onClick={ ( ) => this.fetchPrevPhotos( ) }
-                      title={ I18n.t( "prev" ) }
-                    >
-                      { I18n.t( "prev" ) }
-                    </Button>
-                    <Button
-                      onClick={ ( ) => this.fetchNextPhotos( ) }
-                      title={ I18n.t( "next" ) }
-                    >
-                      { I18n.t( "next" ) }
-                    </Button>
-                  </ButtonGroup>
-                </form>
-                <div className="photos">
-                  { this.state.photos.map( photo => (
-                    <ExternalPhoto
-                      key={this.keyForPhoto( photo )}
-                      chooserID={this.keyForPhoto( photo )}
-                      src={photo.small_url}
-                      movePhoto={this.movePhoto}
-                      didNotDropPhoto={ ( ) => this.newPhotoExit( ) }
-                      infoURL={this.infoURL( photo )}
-                    />
-                  ) ) }
-                  { this.state.loading ? (
-                    <div className="loading text-center">
-                      <i className="fa fa-spin fa-refresh fa-2x text-muted"></i>
-                    </div>
-                  ) : null }
-                  { !this.state.loading && this.state.photos.length === 0 && this.state.page === 1 ? (
-                    <div className="text-muted text-center">{ I18n.t( "no_results_found" ) }</div>
-                  ) : null }
-                  { !this.state.loading && this.state.photos.length === 0 && this.state.page > 1 ? (
-                    <div className="text-muted text-center">{ I18n.t( "no_more_results_found" ) }</div>
-                  ) : null }
+                      { I18n.t( "search" ) }
+                    </button>
+                  </span>
                 </div>
-              </Col>
-              <Col xs={6}>
-                <PhotoChooserDropArea
-                  photos={this.state.chosen}
-                  droppedPhoto={ chooserID => this.choosePhoto( chooserID ) }
-                >
-                  <h4>{ I18n.t( "photos_chosen_for_this_taxon" ) }</h4>
-                  <p>
-                    { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
-                  </p>
-                  <div className="stacked photos">
-                    { _.map( this.state.chosen, ( photo, i ) => (
-                      <ChosenPhoto
-                        key={this.keyForPhoto( photo )}
-                        chooserID={this.keyForPhoto( photo )}
-                        src={photo.small_url}
-                        index={i}
-                        movePhoto={this.movePhoto}
-                        newPhotoEnter={ chooserID => this.newPhotoEnter( chooserID ) }
-                        dropNewPhoto={ chooserID => this.choosePhoto( chooserID ) }
-                        removePhoto={ chooserID => this.removePhoto( chooserID ) }
-                        candidate={photo.candidate}
-                        infoURL={this.infoURL( photo )}
-                        isDefault={i === 0}
-                      />
-                    ) ) }
+              </form>
+              <form className="form-inline controls nav-buttons stacked">
+                <div className="form-group">
+                  <label>
+                    { I18n.t( "photos_from" ) }
+                  </label> <select
+                    className="form-control"
+                    onChange={ e => this.setProvider( e.target.value ) }
+                  >
+                    <option value="inat">{ $( "meta[property='og:site_name']" ).attr( "content" ) }</option>
+                    <option value="flickr">Flickr</option>
+                    <option value="eol">EOL</option>
+                    <option value="wikimedia_commons">Wikimedia Commons</option>
+                  </select>
+                </div>
+                <ButtonGroup className="pull-right">
+                  <Button
+                    disabled={this.state.page === 1}
+                    onClick={ ( ) => this.fetchPrevPhotos( ) }
+                    title={ I18n.t( "prev" ) }
+                  >
+                    { I18n.t( "prev" ) }
+                  </Button>
+                  <Button
+                    onClick={ ( ) => this.fetchNextPhotos( ) }
+                    title={ I18n.t( "next" ) }
+                  >
+                    { I18n.t( "next" ) }
+                  </Button>
+                </ButtonGroup>
+              </form>
+              <div className="photos">
+                { this.state.photos.map( photo => (
+                  <ExternalPhoto
+                    key={this.keyForPhoto( photo )}
+                    chooserID={this.keyForPhoto( photo )}
+                    src={photo.small_url}
+                    movePhoto={this.movePhoto}
+                    didNotDropPhoto={ ( ) => this.newPhotoExit( ) }
+                    infoURL={this.infoURL( photo )}
+                  />
+                ) ) }
+                { this.state.loading ? (
+                  <div className="loading text-center">
+                    <i className="fa fa-spin fa-refresh fa-2x text-muted"></i>
                   </div>
-                  <p className="text-muted">
-                    <small>
-                      { I18n.t( "views.taxa.show.photo_chooser_modal_explanation" ) }
-                    </small>
-                  </p>
-                </PhotoChooserDropArea>
-              </Col>
-            </Row>
-          </Grid>
+                ) : null }
+                { !this.state.loading && this.state.photos.length === 0 && this.state.page === 1 ? (
+                  <div className="text-muted text-center">{ I18n.t( "no_results_found" ) }</div>
+                ) : null }
+                { !this.state.loading && this.state.photos.length === 0 && this.state.page > 1 ? (
+                  <div className="text-muted text-center">{ I18n.t( "no_more_results_found" ) }</div>
+                ) : null }
+              </div>
+            </div>
+            <PhotoChooserDropArea
+              photos={this.state.chosen}
+              droppedPhoto={ chooserID => this.choosePhoto( chooserID ) }
+            >
+              <h4>{ I18n.t( "photos_chosen_for_this_taxon" ) }</h4>
+              <p>
+                { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
+              </p>
+              <div className="stacked photos">
+                { _.map( this.state.chosen, ( photo, i ) => (
+                  <ChosenPhoto
+                    key={this.keyForPhoto( photo )}
+                    chooserID={this.keyForPhoto( photo )}
+                    src={photo.small_url}
+                    index={i}
+                    movePhoto={this.movePhoto}
+                    newPhotoEnter={ chooserID => this.newPhotoEnter( chooserID ) }
+                    dropNewPhoto={ chooserID => this.choosePhoto( chooserID ) }
+                    removePhoto={ chooserID => this.removePhoto( chooserID ) }
+                    candidate={photo.candidate}
+                    infoURL={this.infoURL( photo )}
+                    isDefault={i === 0}
+                  />
+                ) ) }
+              </div>
+              <p className="text-muted">
+                <small>
+                  { I18n.t( "views.taxa.show.photo_chooser_modal_explanation" ) }
+                </small>
+              </p>
+            </PhotoChooserDropArea>
+          </div>
         </Modal.Body>
         <Modal.Footer>
           <Button

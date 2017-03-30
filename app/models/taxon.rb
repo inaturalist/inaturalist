@@ -1770,6 +1770,11 @@ class Taxon < ActiveRecord::Base
     Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
+  def self.index_taxa( taxa )
+    taxon_ids = taxa.map{|t| t.is_a?( Taxon ) ? t.id : t}
+    Taxon.elastic_index!( ids: taxon_ids )
+  end
+
   # /Static #################################################################
 
 end

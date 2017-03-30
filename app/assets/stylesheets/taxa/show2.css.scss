@@ -1057,7 +1057,7 @@ $nav-btn-dim: 40px;
   display: inline-block;
   position: relative;
   border: 2px solid transparent;
-  width: 104px;
+  width: 130px;
   min-height: 50px;
 }
 .DraggablePhoto .control-link {
@@ -1118,6 +1118,22 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 }
 .PhotoChooserModal .photos {
   margin: -2.5px;
+}
+.PhotoChooserModal .modal-body {
+  display: flex;
+}
+.PhotoChooserModal .photocols {
+  display: flex;
+  align-items: stretch;
+}
+.PhotoChooserModal .photocols > div {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 20px;
+  width: 50%;
+}
+.PhotoChooserModal .photocols > div:first-child {
+  margin-left: 0;
 }
 .comma-separated-list > *:before {
   content: ', ';
