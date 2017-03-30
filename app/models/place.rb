@@ -475,8 +475,18 @@ class Place < ActiveRecord::Base
   end
   
   # Update the associated place_geometry or create a new one
-  def save_geom(geom, other_attrs = {})
-    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
+  def save_geom( geom, other_attrs = {} )
+    if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
+      georuby_geom = geom
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+    end
+    if geom.blank?
+      # This probably means GeoRuby parsed some polygons but RGeo didn't think
+      # they looked like a multipolygon, possibly because of overlapping
+      # polygons or other problems
+      add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
+      return
+    end
     # 100 is roughly the size of Ethiopia
     if other_attrs[:user] && geom.respond_to?(:area) &&
        geom.area > 100.0 && !other_attrs[:user].is_admin?
