@@ -40,12 +40,6 @@ class Observation < ActiveRecord::Base
           indexes :geoprivacy, index: "not_analyzed"
         end
       end
-      indexes :photos do
-        indexes :license_code, index: "not_analyzed"
-      end
-      indexes :sounds do
-        indexes :license_code, index: "not_analyzed"
-      end
       indexes :ofvs, type: :nested do
         indexes :uuid, index: "not_analyzed"
         indexes :name, index: "not_analyzed"

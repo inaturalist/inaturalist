@@ -13,24 +13,26 @@ class ProjectListing extends React.Component {
   settingsMenu( po ) {
     const currentUser = this.props.config && this.props.config.currentUser;
     let menuItems = [];
-    const allowsAccess = po.preferences && po.preferences.allows_curator_coordinate_access;
-    menuItems.push( ( <div key={ `project-allow-${po.project.id}` } className="allow">
-      <input
-        type="checkbox"
-        defaultChecked={ allowsAccess }
-        id={ `project-allow-input-${po.project.id}` }
-        onClick={ ( ) => {
-          this.props.updateCuratorAccess( po, allowsAccess ? 0 : 1 );
-        }}
-      />
-      <label htmlFor={ `project-allow-input-${po.project.id}` }>
-        Allow curator Access
-      </label>
-      <div className="text-muted">
-        Allow curator access to view the private coordinates of this observation
-      </div>
-    </div> ) );
-    menuItems.push( ( <MenuItem divider key="project-allow-divider" /> ) );
+    if ( currentUser.id === this.props.observation.user.id ) {
+      const allowsAccess = po.preferences && po.preferences.allows_curator_coordinate_access;
+      menuItems.push( ( <div key={ `project-allow-${po.project.id}` } className="allow">
+        <input
+          type="checkbox"
+          defaultChecked={ allowsAccess }
+          id={ `project-allow-input-${po.project.id}` }
+          onClick={ ( ) => {
+            this.props.updateCuratorAccess( po, allowsAccess ? 0 : 1 );
+          }}
+        />
+        <label htmlFor={ `project-allow-input-${po.project.id}` }>
+          Allow curator Access
+        </label>
+        <div className="text-muted">
+          Allow curator access to view the private coordinates of this observation
+        </div>
+      </div> ) );
+      menuItems.push( ( <MenuItem divider key="project-allow-divider" /> ) );
+    }
     if ( !po.current_user_is_member ) {
       menuItems.push( ( <MenuItem
         key={ `project-join-${po.project.id}` }

@@ -44,31 +44,35 @@ export function setAttributes( attributes ) {
 
 /* global SITE */
 export function windowStateForObservation( observation ) {
+  const observationState = {
+    observation: {
+      id: observation.id,
+      observed_on: observation.observed_on,
+      user: {
+        login: observation.user.login
+      }
+    }
+  };
   let title = `observed by ${observation.user.login}`;
   if ( observation.taxon ) {
     title = `${observation.taxon.preferred_common_name || observation.taxon.name} ${title}`;
+    observationState.observation.taxon = {
+      taxon: {
+        name: observation.taxon.name,
+        preferred_common_name: observation.taxon.preferred_common_name
+      }
+    };
   }
   if ( observation.observed_on ) {
     const date = moment( observation.observed_on ).format( "MMMM D, YYYY" );
     title = `${title} on ${date}`;
   }
-  return {
-    state: {
-      observation: {
-        id: observation.id,
-        observed_on: observation.observed_on,
-        user: {
-          login: observation.user.login
-        },
-        taxon: {
-          name: observation.taxon.name,
-          preferred_common_name: observation.taxon.preferred_common_name
-        }
-      }
-    },
+  const windowState = {
+    state: observationState,
     title: `${title} · ${SITE.name}`,
     url: `/observations/${observation.id}`
   };
+  return windowState;
 }
 
 export function getActionTime( ) {

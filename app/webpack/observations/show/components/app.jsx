@@ -62,7 +62,8 @@ const App = ( { observation, config } ) => {
       </Button> : null
   );
   const photosColClass =
-    ( !observation.photos || observation.photos.length === 0 ) ? "empty" : null;
+    ( ( !observation.photos || observation.photos.length === 0 ) &&
+    ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
   let warning;
   if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
