@@ -20,6 +20,7 @@ class Guide < ActiveRecord::Base
     :bucket => CONFIG.s3_bucket,
     :path => "guides/:id-:style.:extension",
     :url => ":s3_alias_url"
+  invalidate_cloudfront_caches :icon, "guides/:id-*"
 
   if Rails.env.production?
     has_attached_file :ngz,
@@ -30,6 +31,7 @@ class Guide < ActiveRecord::Base
       :path => "guides/:id.ngz",
       :url => ":s3_alias_url",
       :default_url => ""
+    invalidate_cloudfront_caches :ngz, "guides/:id.ngz"
   else
     has_attached_file :ngz,
       :path => ":rails_root/public/attachments/:class/:id.ngz",

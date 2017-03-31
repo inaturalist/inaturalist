@@ -6,11 +6,6 @@ class CommentsController < ApplicationController
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
-  # cache_sweeper :comment_sweeper, :only => [:create, :destroy]
-  
-  MOBILIZED = [:edit]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   
   def index
     find_options = {
@@ -66,9 +61,6 @@ class CommentsController < ApplicationController
   def edit
     respond_to do |format|
       format.html
-      format.mobile do
-        render "edit.html.erb"
-      end
     end
   end
   
@@ -78,9 +70,7 @@ class CommentsController < ApplicationController
     @comment.save unless params[:preview]
     respond_to do |format|
       format.html { respond_to_create }
-      format.mobile { respond_to_create }
       format.json do
-        Rails.logger.debug "[DEBUG] @comment: #{@comment}"
         if @comment.valid?
           if params[:partial] == "activity_item"
             @comment.html = view_context.render_in_format(:html, :partial => 'shared/activity_item', :object => @comment)
@@ -133,7 +123,6 @@ class CommentsController < ApplicationController
     end
 
     parent = @comment.parent
-    Rails.logger.debug "[DEBUG] @comment: #{@comment}"
     @comment.destroy
     respond_to do |format|
       format.html do
@@ -149,11 +138,14 @@ class CommentsController < ApplicationController
   
   private
   def redirect_to_parent
-    if @comment.parent.is_a?(Post)
+    anchor = "activity_comment_#{@comment.id}"
+    if @comment.parent.is_a?( Post )
       post = @comment.parent
-      redirect_to(post_path(post, anchor: "activity_comment_#{@comment.id}"))
+      redirect_to( post_path( post, anchor: anchor ) )
+    elsif @comment.parent.is_a?( TaxonLink )
+      redirect_to( edit_taxon_link_path( @comment.parent, anchor: anchor ) )
     else
-      redirect_to(url_for(@comment.parent) + "#activity_comment_#{@comment.id}")
+      redirect_to( url_for( @comment.parent ) + "##{anchor}" )
     end
   end
   

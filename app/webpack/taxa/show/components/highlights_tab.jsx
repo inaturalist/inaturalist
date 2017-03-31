@@ -57,6 +57,7 @@ const HighlightsTab = ( {
                     truncate={thumbnailTruncation}
                     onClick={ e => {
                       if ( !showNewTaxon ) return true;
+                      if ( e.metaKey || e.ctrlKey ) return true;
                       e.preventDefault( );
                       showNewTaxon( taxon );
                       return false;
@@ -112,6 +113,7 @@ const HighlightsTab = ( {
                     truncate={thumbnailTruncation}
                     onClick={ e => {
                       if ( !showNewTaxon ) return true;
+                      if ( e.metaKey || e.ctrlKey ) return true;
                       e.preventDefault( );
                       showNewTaxon( taxon );
                       return false;

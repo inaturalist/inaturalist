@@ -1,0 +1,1587 @@
+# Messages for Occitan (occitan)
+# Exported from translatewiki.net
+# Export driver: phpyaml
+# Author: Cedric31
+# Author: Cgalindo
+---
+oc:
+  x_comments:
+    one: 1 comentari
+    other: '%{count} comentaris'
+  x_followers:
+    one: 1 seguidor
+    other: '%{count} seguidors'
+  x_identifications:
+    one: 1 identificacion
+    other: '%{count} identificacions'
+  x_identifications_:
+    one: 1 identificacion
+    other: '%{count} identificacions'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDs'
+  x_lists:
+    one: 1 lista
+    other: '%{count} listas'
+  x_journal_posts:
+    one: 1 nòta de jornal
+    other: '%{count} nòtas de jornal'
+  x_matching_taxa:
+    one: 1 taxon correspondent
+    other: '%{count} taxons correspondents'
+  x_matching_taxa_html:
+    one: <span class="count">1</span> taxon correspondent
+    other: <span class="count">%{count}</span> taxons correspondents
+  x_observations:
+    one: 1 observacion
+    other: '%{count} observacions'
+  x_observations_:
+    one: 1 observacion
+    other: '%{count} observacions'
+  x_observations_html:
+    one: <span class='count'>1</span> observacion
+    other: <span class='count'>%{count}</span> observacions
+  x_observations_link_html:
+    one: <a href='%{url}'>1 observacion</a>
+    other: <a href='%{url}'>%{count} observacions</a>
+  x_people:
+    one: 1 persona
+    other: '%{count} personas'
+  x_people_agree_html:
+    one: <span class="count">1</span> persona es d’acòrdi
+    other: <span class="count">%{count}</span> personas son d’acòrdi
+  x_species:
+    one: 1 espècia
+    other: '%{count} espècias'
+  x_species_html:
+    one: <span class='count'>1</span> espècia
+    other: <span class='count'>%{count}</span> espècias
+  x_species_link_html:
+    one: <a href='%{url}'>1 espècia</a>
+    other: <a href='%{url}'>%{count} espècias</a>
+  x_taxa_observed_html:
+    one: <span class='count'>1</span> taxon observat
+    other: <span class='count'>%{count}</span> taxons observats
+  x_research_grade_observations_html:
+    one: <span class='count'>1</span> observacion de nivèl recèrca</span>
+    other: <span class='count'>%{count}</span> observacions de nivèl recèrca</span>
+  x_research_grade_observations_to_species_html:
+    one: <span class='count'>1</span> observacion de nivèl recèrca per identificar
+      d'espècias o inferior</span>
+    other: <span class='count'>%{count}</span> observacions de nivèl recèrca per identificar
+      d'espècias o inferior</span>
+  x_taxa_matching_current_filters:
+    one: 1 taxon correspondent als filtres actuals
+    other: '%{count} taxons correspondents als filtres actuals'
+  a: un
+  a_: un
+  a_community_for_naturalist: Una comunautat pels naturalistas
+  a_few_points_to_make_things_clear: 'Qualques punts per rendre las causas un pauc
+    mai claras :'
+  a_flag_for_x: una marca per %{x}
+  a_greasemonkey_script: un escript Greasemonkey
+  a_member_of_taxon_html: un membre de %{taxon}
+  able_to_connect_flickr: Plan ! Nos avèm pogut ligar amb vòstre compte Flickr.
+  about: A prepaus
+  about_bioblitz_results: A prepaus dels resultats de bioblitz
+  about_community_taxa: A prepaus dels taxons de la comunautat
+  about_external_links: A prepaus dels ligams extèrnes
+  about_licenses: A prepaus de las licéncias
+  about_licensing: A prepaus de las licéncias
+  about_life!: a prepaus de la vida !
+  about_names: A prepaus dels noms
+  about_places: A prepaus dels luòcs
+  about_taxon_changes: Sus las modificacions de taxon
+  about_the_cc_licenses: A prepaus de las licéncias Creative Commons
+  about_the_taxobox_raquo: A prepaus de la taxobox &raquo;
+  about_these_licenses: A prepaus d'aquestas licéncias
+  about_this_map: A prepaus d'aquesta mapa
+  about_this_project: A prepaus d'aqueste projècte
+  about_x: A prepaus de %{x}
+  acc: Exactitud (mètres)
+  account: Compte
+  accept: acceptar
+  accept_community_identifications: Acceptar las identificacions de la comunautat
+  accuracy: Precision
+  accuracy_m: Precision (m)
+  accuracy_meters: Precision (mètres)
+  acquaintances: coneissenças
+  action: Accion
+  actions: Accions
+  activate_user: Activar l'utilizaire
+  active: actiu
+  activity_settings: Paramètres d’activitat
+  adapted_by_name_from_a_work_by_original: Adaptat per %{name} d’aprèp un trabalh
+    de %{original}
+  add: Apondre
+  add_a: Apondre un
+  add_a_batch_of_observations: Apondre un lòt d’observacions
+  add_a_batch_of_observations_by_csv: Apondre un lòt d’observacions per CSV
+  add_a_batch_of_taxa: Apondre un lòt de taxons
+  add_a_comment: Apondre un comentari
+  add_a_field: Apondre un camp
+  add_a_flag: Apondre una marca
+  add_a_link_raquo: Apondre un ligam &raquo;
+  add_a_name: Apondre un nom
+  add_a_new_change_group: Apondre una novèla modificacion de grop
+  add_a_new_observation_to_id_please!: Apondre una novèla observacion a identificar,
+    SVP !
+  add_a_place_raquo: Apondre un luòc &raquo;
+  add_a_single_observation: Apondre una observacion unica.
+  add_a_taxon: Apondre un taxon
+  add_all_your_matching_obs_of_this_taxon: Apondre a aqueste projècte totas vòstras
+    observacions que correspondon a aqueste taxon
+  add_all_your_matching_obs_to_this_project: Apondre a aqueste projècte totas vòstras
+    observacions correspondentas
+  add_an_assessment: Apondre una avaloracion
+  add_an_identification: Apondre una identificacion
+  add_an_observation: Apondre una observacion
+  add_an_observation?: Apondre una observacion ?
+  add_an_observation_of: Apondre una observacion sus %{taxon}
+  add_another: N'apondre un autre
+  add_another_flag: Apondre una autra marca
+  add_another_photo: Apondre una autra fòto
+  add_another_section: Apondre una autra seccion
+  add_another_subscription: Apondre un autre abonament
+  add_asset: Apondre un avantatge
+  add_batch: Apondre un tractament per lòt
+  add_colors: Apondre de colors
+  add_comma_separated_tags: Apondre de balisas separadas per de virgulas
+  add_comment: Apondre un comentari
+  add_common_names_for: apondre de noms comuns a de taxons existents
+  add_conservation_status: apondre l’estat de conservacion
+  add_countries: Apondre de païses
+  add_edit_more_fields: Apondre/modificar mai de camps
+  add_description: Apondre %{description_name}
+  add_from_your_observations: Apondre a partir de vòstras observacions
+  add_link: Apondre un ligam
+  add_listed_taxa_from_observations: Apondre los taxons listats dempuèi las observacions
+  add_id: Apondre una identificacion
+  add_it_to_place_raquo: L'apondre a un luòc &raquo;
+  add_more_photos: Apondre mai de fòtos
+  add_new_lexicon: Apondre un lexic novèl
+  add_new_observations: Apondre d'observacions novèlas
+  add_new_place: Apondre luòc novèl
+  add_new_rule: Apondre una règla novèla
+  add_new_source: Apondre una font novèla
+  add_new_taxon_name: Apondre un novèl nom de taxon
+  add_obs_from_a_link: 'Apondre las observacions de la lista : %{link}'
+  add_obs_from_a_list: Apondre las observacions dempuèi una lista
+  add_observation: Apondre una observacion
+  add_observations!: Apondre d'observacions !
+  add_observations: Apondre d'observacions
+  add_one: N'apondre una !
+  add_one_now: N'apondre un ara
+  add_photos: Apondre de fòtos
+  add_photos_to_this_observation: Apondre de fòtos a aquela observacion
+  add_place: Apondre un luòc
+  add_several_observations_at_once: Apondre mantuna observacion a l'encòp.
+  add_shape: Apondre una forma
+  add_some_now: Apondre quicòm ara
+  add_tags: Apondre de balisas
+  add_tags_to_selected_taxa: Apondre de balisas als taxons seleccionats
+  add_taxa: Apondre de taxons
+  add_taxa_to_places: apondre de taxons als luòcs
+  add_taxon_batch_to: Apondre un lòt de taxons a %{list}
+  add_taxon_range: Apondre una plaja de taxons
+  add_to: Apondre a
+  add_to_a_scheme: Apondre a un programa
+  add_to_a_project: Apondre a un projècte
+  add_to_calendar: Apondre al calendièr
+  add_to_checklist: Apondre a la lista de contraròtle
+  add_to_favorites: Apondre als favorits
+  add_to_id_please: Apondre a la demanda d’identificacion
+  add_to_list: Apondre a la lista
+  add_to_project: Apondre al projècte
+  add_to_your_life_list: Apondre a vòstra lista viventa !
+  add_to_your_list: Apondre a vòstra lista
+  add_your_own_observations_at: Apondètz vòstras pròprias observacions a %{site_name}
+  add_your_photo: Apondre vòstra fòto
+  add_your_photo_to: Apondre vòstra fòto a %{project}
+  added: Apondut
+  added!: Apondut !
+  added_an: apondut un
+  added_as_a_part_of: Apondut coma part d’un
+  added_by: Apondut per
+  added_identifications_to: identificacions apondudas a las observacions de qual que
+    siá.
+  added_on: Apondut lo
+  added_to: Apondut a
+  added_to_favorites: Apondut als favorits
+  added_to_favorites_html: Apondut als <a href="%{url}">favorits</a>
+  adding: Apondon en cors…
+  adding_observations: Apondon d'observacions
+  adding_to_your_life_list: Apondon a vòstra lista viventa…
+  additional_range: Plaja suplementària
+  admin: Admin
+  admin_tools: Aisinas d’administracion
+  agree: acceptar
+  agree?: Acceptat ?
+  agree_to_the_project_terms: Acceptar las condicions del projècte
+  agreeing: Acceptacion en cors…
+  aka: aliàs
+  all: Totes
+  all_colors: '&laquo; Totas las colors'
+  all_comments: Totes los comentaris
+  all_csv: Totes los CSV
+  all_life: Tota la vida
+  all_names: Totes los noms
+  all_observations: Totas las observacions
+  all_photos: Totas las fòtos
+  all_places: Totes los luòcs
+  all_projects: Totes los projèctes
+  all_rights_reserved: totes los dreits reservats
+  all_species: Totas las espècias
+  all_taxa:
+    rank:
+      kingdom: Règne
+      class: Classa
+      phylum: Phylum
+      species: Espècias
+      order: Òrdre
+    amphibians: Anfibians
+    animals: Animals
+    arachnids: Aracnids
+    birds: Ausèls
+    chromista: Algas brunas e parents
+    fungi: Campairòls
+    insects: Insèctes
+    mammals: Mamifèrs
+    mollusks: Mollusques
+    other_animals: Autres animals
+    plants: Plantas
+    protozoans: Protozoaris
+    ray_finned_fishes: Peisses amb nadarèlas raionadas
+    reptiles: Reptils
+    life: Vida
+    x_plantae:
+      one: 1 planta
+      other: '%{count} plantas'
+    x_animalia:
+      one: 1 animal
+      other: '%{count} animals'
+    x_mollusca:
+      one: 1 mollusc
+      other: '%{count} mollusques'
+    x_amphibia:
+      one: 1 anfibian
+      other: '%{count} anfibians'
+    x_mammalia:
+      one: 1 mamifèr
+      other: '%{count} mamifèrs'
+    x_actinopterygii:
+      one: 1 peis de nadarèlas raionadas
+      other: '%{count} peisses de nadarèlas raionadas'
+    x_reptilia:
+      one: 1 reptil
+      other: '%{count} reptils'
+    x_aves:
+      one: 1 ausèl
+      other: '%{count} ausèls'
+    x_insecta:
+      one: 1 insècte
+      other: '%{count} insèctes'
+    x_arachnida:
+      one: 1 aracnid
+      other: '%{count} aracnids'
+    x_fungi:
+      one: 1 campairòl
+      other: '%{count} campairòls'
+    x_chromista:
+      one: 1 alga bruna e parent
+      other: '%{count} algas brunas e parents'
+    x_protozoa:
+      one: 1 protozoari
+      other: '%{count} protozoaris'
+    x_other_animals:
+      one: 1 autre animal
+      other: '%{count} autres animals'
+  all_taxa_in_this_guide: Autres taxons dins aqueste guida
+  all_taxonomic_groups: '&laquo; Totes los gropes taxonomics'
+  all_updates: Totas las mesas a jorn
+  all_your_projects: Totes vòstres projèctes
+  allow_any: Autorizar tot
+  allowed_establish_means_values: Valors mejanas determinadas autorizadas
+  allowed_html: HTML autorizat
+  allowed_occurrence_status_values: Valors d’estat d’ocurréncia autorizadas
+  allowed_values: Valors autorizadas
+  alphabetical: Alfabetic
+  alphabetical_order: Òrdre alfabetic
+  amphibians: amfibians
+  amphibiaweb_taxonomy: Taxonomia d'AmphibiaWeb
+  an: un
+  an_: un
+  and: e
+  and_make_some_new: e far un novèl
+  and_other_taxa: '&amp; Autres taxons'
+  and_un_license_all_your_observations: e suprimissètz la licéncia de totas vòstras
+    observacions
+  android: Android
+  animals: Animals
+  announcements: Anoncis
+  any: totes
+  apply_to_selected: Aplicar a la seleccion
+  apply_captive_cultivated: Aplicar captiu / cultivat
+  apply_fields: Aplicar los camps
+  apply_geoprivacy: Aplicar la confidencialitat de la posicion geografica
+  apply_darr: Aplicar &darr;
+  apply_these_settings_to_all: Aplicar aqueles paramètres a totas las observacions
+    çaijós.
+  appropriate?: Apropriat ?
+  arachnids: aracnids
+  archives: Archius
+  are_you_sure?: Sètz segur ?
+  are_you_sure_you_want_to_remove_all_tags: Sètz segur que volètz suprimir totas las
+    etiquetas ?
+  articles: Articles
+  associated_observations: Observacions associadas
+  associated_taxa: Taxons associats
+  attention: Atencion
+  you_sure_delete_list: Sètz segur que volètz suprimir aquesta lista ?
+  asc: creissent
+  ascending: creissent
+  assessment: avaloracion
+  assessment_sections: Seccions d’avaloracion
+  assessment_x: avaloracion %{assessment}
+  assessments: avaloracions
+  associations: Associacions
+  at: a
+  at_time: a %{time}
+  atom: Atòm
+  authority_list:
+    iucn_red_list: Lista roja de l'UICN
+  authorize_permissions_from_provider: Autorizar los accèsses dempuèi %{provider}
+  back: Retorn
+  back_to: Retorn a
+  back_to_all_species: Tornar a totas las espècias
+  back_to_browsing_people: Retorn a la navigacion entre las personas
+  back_to_calendar: Retorn al calendièr de %{user}
+  back_to_editing_observation: Retorn a la modificacion d’observacion
+  back_to_help: Retorn a l’ajuda
+  back_to_import: Retorn a l’importacion
+  back_to_lists: Retorn a las listas %{name}
+  back_to_observation: Retorn a l’observacion
+  back_to_observation_fields: Retorn als camps de l’observacion
+  back_to_people: Retorn a las personas
+  back_to_places: Retorn als luòcs
+  back_to_possessive_user_profile: Retorn al perfil de %{possuser}
+  back_to_post: '&laquo; Retorn a la nòta'
+  back_to_projects: Retorn als projèctes
+  back_to_shared_taxon: Retorn a %{sharedtaxon}
+  back_to_taxon: Retorn a %{defaulttaxon}
+  back_to_this: Retorn a %{place}
+  back_to_viewing: Retorn a la visualizacion de <i>%{taxon}</i>
+  back_to_x: Retorn a %{noun}
+  back_to_x_assessment: Retorn a las avaloracions de %{project}
+  back_to_x_history: Retorn a l’istoric de %{x}
+  back_to_x_journal: Retorn al jornal de %{user}
+  back_to_x_observations: Retorn a las observacions de %{user}
+  back_to_your_lists: Retorn a vòstras listas
+  back_to_your_journal: Retorn a vòstre jornal
+  back_to_your_observations: Retorn a vòstras observacions
+  back_to_your_profile: Retorn a vòstre perfil
+  back_to_your_projects: Retorn a vòstres projèctes
+  batch: Lòt
+  batch_edit: Moditicacion del lòt
+  batch_edit_taxa_for_x_html: Lòt de modificacions de taxons per %{x}
+  batch_operations: Operacions per lòt
+  because: perque
+  before_importing_photos: abans d’importar de fòtos
+  bg_color: Color de fons
+  bioblitz: Bioblitz
+  birds: ausèls
+  black: negre
+  blog_widget: Widget de blog
+  blue: blau
+  blue_butterfly_etc: blau, parpalhòl, etc.
+  body: Còs
+  bounding_box: Bóstia englobanta
+  breadcrumbs: Pista de navigacion
+  brown: brun
+  browse: Percórrer
+  browse_all_projects: Explorar totes los projèctes
+  browse_all_species: Percórrer totas las espècias
+  browse_observations: Veire las observacions
+  browse_people: Percórrer las personas
+  browse_projects: Explorar los projèctes
+  browse_your_observations: Explorar vòstras observacions
+  by: per
+  by_everyone: Per tot lo monde
+  by_project_list: per lista de projècte
+  by_user: per %{user}
+  by_you: Per vos
+  calendar: Calendièr
+  can_you_help_your_friends_id_these: Podètz ajudar vòstres amics a identificar aquò
+    ?
+  cancel: Anullar
+  captive: En captivitat
+  captive_cultivated: En captivitat / cultivat
+  card: Carta
+  case_plural: s
+  casual: ocasional
+  catalogue_of_life: Catalòg de Vida
+  categories: categorias
+  cc_0_name: Pas de dreit d’autor (CC0)
+  cc_by_name: Atribucion
+  cc_by_nc_nd_name: Atribucion non comerciala sens derivats
+  cc_by_nd_name: Atribucion Sens derivats
+  cc_by_sa_name: Atribucion Partejada a l’identic
+  cc_used_under_a: Creative Commons, utilizat jos un
+  change: Modificar
+  change_cover: Modificar la tampa
+  change_descriptions:
+    swap: modificacion de nom 1-a-1
+    stage: Preparar un concèpte inactiu per difusion dins un grop de modificacions.
+  change_geoprivacy: Modificar la confidencialitat geografica
+  change_group: Modificar lo grop
+  change_icon: Modificar l’icòna
+  change_password: Modificar lo senhal
+  change_types:
+    activated_soon: lèu activat
+    change_types: Modificar los tipes
+    split: Devesir
+    merge: Fusionar
+    swap: Escambiar
+    stage: Etapa
+    drop: Levar
+    split_from: devesit a partir de
+    split_into: devesit en
+    merge_into: fusiona en
+    merged_into: fusionat en
+    replaced_by: remplaçat per
+    replace_with: remplaçar per
+    dropped: eliminat
+    staged: presentat
+  change_your_password: Modificar vòstre senhal
+  check_it_out: Verificar
+  check_list: Verificar la lista
+  check_list_place: Lista de contraròtle de %{place}
+  check_list_updated: Lista de contraròtle mesa a jorn !
+  check_list_source: Font <span class="meta">(facultatiu)</span>
+  checklist: Lista de contraròtle
+  child_taxa: Taxons enfants
+  choose_a_place: Causir un luòc
+  choose_a_taxon: Causir un taxon (facultatiu)
+  chose_columns: Causir las colomnas
+  choose_place: Causir un luòc
+  choose_rule: Seleccionar una règla
+  choose_subjects: Causir de subjèctes
+  choose_tags: Causir de balisas
+  choose_taxon: Causir un taxon
+  citation: Citacion
+  classification: Classificacion
+  clear: escafar
+  clear_color_filters: Escafar los filtres de color
+  clear_search: Escafar la recèrca
+  clear_shapes: Escafar las formas
+  code: Còdi
+  collapse_days: replegar los jorns
+  colors: Colors
+  columns: Colomnas
+  combine: Combinar
+  comment_preview: Apercebut del comentari
+  comment: comentari
+  comment_deleted: Comentari suprimit
+  commented: comentat
+  comments: Comentaris
+  comments_and_identifications: Comentaris e identificacions
+  comments_by_me: Mos comentaris
+  comments_on: Comentaris sus
+  commit: Validar
+  committed: Validat
+  committing: Validacion en cors…
+  community_id: 'ID de <strong>comunautat</strong> :'
+  compare_with: Comparar amb
+  comparing: comparason
+  comparing_list_to_list: Comparason de %{list1} amb %{list2}
+  comparing_versions_x_and_y: Comparason de las versions %{x} et %{y}
+  compiled_by_name: Regropat per %{name}
+  completed: Acabat
+  completed_at: Completat a
+  comprehensive: complet
+  comprehensive?: Complet ?
+  comprehensive_list: Lista completa
+  concept_status: Estat del concèpte
+  configure: Configurar
+  confirm: Confirmar
+  confirm_now: Confirmar ara
+  confirmed: confirmat
+  confirmed_observations_are: Las observacions confirmadas son
+  confirming_identifications: confirmacion de las identificacions
+  connect_to_provider: Se connectar a %{provider}
+  connected_accounts: Comptes connectats
+  connecting_flickr: Connexion a Flickr…
+  connecting_to_facebook: Connexion a Facebook…
+  contest: concors
+  continue: Contunhar
+  contributions: contribucions
+  contributions_from: Contribucions de
+  controls: Contraròtles
+  coordinate_systems: Sistèmas de coordenadas
+  coordinates: Coordenadas
+  coordinates_private: (coordenadas privadas)
+  copy: Copiar
+  copyright:
+    anonymous: anonim
+    public_domain: domeni public
+    copyright: dreit d’autor
+    attribution_license: Licéncia Atribucion
+    gnu_free_documentation_license: Licéncia Documentacion liura GNU
+  countries: Païses
+  cover: Tempa
+  create: Crear
+  create_a_guide: Crear un guida
+  create_a_list: Crear una lista
+  create_a_new_field: Crear un camp novèl
+  create_a_new_taxon: Crear un taxon novèl
+  create_a_query: Crear una requèsta
+  create_an_account: Crear un compte
+  create_new_taxon: Crear un taxon novèl
+  create_observations: Crear d'observacions
+  created: Creat
+  created_by: Creat per
+  created_on: Creat lo
+  creating_your_account: Creacion de vòstre compte
+  csv: CSV
+  csv_file: Fichièr CSV
+  curate_users: Organizar los utilizaires
+  curated: Organizat
+  curated_count: Nombre organizat
+  curating: En supervision
+  curation: Supervision
+  curator: Supervisor
+  curators: Supervisors
+  darr_apply_darr: '&darr; Aplicar &darr;'
+  dashboard: Tablèu de bòrd
+  data_deficient: donadas insufisentas
+  datatype: Tipe de donadas
+  date_: Data
+  date?: Data ?
+  date_added: Data aponduda
+  date_created: data de creacion
+  date_format:
+    date_long:
+      january: '%{day} de genièr de %{year}'
+      february: '%{day} de febrièr de %{year}'
+      march: '%{day} de març de %{year}'
+      april: '%{day} d''abril de %{year}'
+      may: '%{day} de mai de %{year}'
+      june: '%{day} de junh de %{year}'
+      july: '%{day} de julhet de %{year}'
+      august: '%{day} d''agost de %{year}'
+      september: '%{day} de setembre de %{year}'
+      october: '%{day} d''octobre de %{year}'
+      november: '%{day} de novembre de %{year}'
+      december: '%{day} de decembre de %{year}'
+    month:
+      january: Genièr
+      february: Febrièr
+      march: Març
+      april: Abril
+      may: Mai
+      june: Junh
+      july: Julhet
+      august: Agost
+      september: Setembre
+      october: Octobre
+      november: Novembre
+      december: Decembre
+  date_observed_on: data d'observacion
+  date_picker:
+    closeText: Tampar
+    currentText: Uèi
+    prevText: Precedent
+    nextText: Seguent
+    monthNames: '[''Genièr'', ''Febrièr'' ,''Març'', ''Abril'', ''Mai'', ''Junh'',
+      ''Julhet'', ''Agost'', ''Setembre'', ''Octobre'', ''Novembre'', ''Decembre'']'
+    monthNamesShort: '[''Gen'',''Feb'',''Mar'',''Abr'', ''Mai'',''Jun'',''Jul'',''Ago'',''Set'',''Oct'',''Nov'',''Dec'']'
+    dayNames: '[''Diluns'', ''Dimars'', ''Dimècres'', ''Dijòus'', ''Divendres'', ''Dissabte'',
+      ''Dimenge'']'
+    dayNamesShort: '[''Dim'',''Lun'',''Mar'',''Mer'',''Jòu'',''Ven'',''Sab'']'
+    dayNamesMin: '[''Di'',''Lu'',''Ma'',''Me'',''Jò'',''Ve'',''Sa'']'
+  date_time: Data/Ora
+  dates: datas
+  datetime_: Data/Ora
+  day: Jorn
+  default: per defaut
+  delete: Suprimir
+  delete_all: Suprimir tot
+  delete_photo: Suprimir la fòto
+  delete_user: Suprimir l'utilizaire
+  delete_your_account: Suprimir vòstre compte
+  deleted_user: utilizaire suprimit
+  deleted_vote: Vòte suprimit
+  deleting: Supression en cors…
+  deleting_verb: Supression
+  desc: desc
+  dna_: ADN
+  descendant_taxa: taxons descendents
+  descending: descendent
+  description: Descripcion
+  description_from: Descripcion de
+  description_tags_more: Descripcion, Balisas, &amp; Mai
+  desription: Descripcion
+  destroy: Destruire
+  details: Detalhs
+  developers: Desvolopaires
+  device: Aparelh
+  did_you_mean: Volètz dire
+  did_you_photos_flickr?: Avètz mes de fòtos sus Flickr ?
+  disagree: pas d’acòrdi
+  disconnect_provider: Desconnectar %{provider}
+  drop_it: Lo depausar
+  dont_filter: Filtrar pas
+  download: Telecargar
+  download_csv: Telecargar lo CSV
+  download_kml: Telecargar lo KML
+  draft: borrolhon
+  draft_: Borrolhon
+  draft_saved: Borrolhon enregistrat !
+  drafts: Borrolhons
+  edit: Modificar
+  edit_body: Modificar lo còs
+  edit_colors: Modificar las colors
+  edit_comment: Modificar vòstre comentari
+  edit_license: Modificar la licéncia
+  edit_notes: Modificar las nòtas
+  edit_photos: Modificar las fòtos
+  edit_place: Modificar lo luòc
+  edit_project: Modificar lo projècte
+  edit_remove: Modificar/Suprimir
+  edit_selected: Modificar la seleccion
+  edit_source: Modificar la font
+  edit_taxa: Modificar los taxons
+  edit_taxon: Modificar lo taxon
+  edit_your_profile: Modificar vòstre perfil
+  edited: Modificat
+  edited_by: Modificat per
+  edited_by_name_html: Modificat per %{name}
+  editing: Modificacion
+  eg: per ex.
+  either: Siá
+  email: Corrièr electronic
+  email_address_for_comments_and_other_feedback: Adreça electronica pels comentaris
+  email_copyright: Copyright &copy; %{x}, totes los dreits reservats
+  embed: Integrar
+  enlarge: Agrandir
+  end: Fin
+  endangered: en via de desaparicion
+  endemic: endemica
+  endemic_to_x: Endemica a %{x}
+  eol: EdlV
+  eol_collection_url: URL de collècta d'EdlV
+  establishment:
+    establishment: Establiment
+    native: indigèna
+    endemic: endemica
+    introduced: introduïda
+    naturalised: naturalizada
+    invasive: invasiva
+    managed: captivitat/cultivada
+  event_stats: Estatisticas de l'eveniment
+  event_url: URL de l’activitat
+  events_only: Eveniments unicament
+  every_species_seen_by: Cada espècia vista per
+  everyone: tot lo monde
+  everywhere: pertot
+  exact_date: Data exacta
+  exact_location: Emplaçament exacte
+  exact_rank: Reng exacte
+  existing_flags: Bandièras existentas
+  exit_full_screen: Sortir del mòde ecran complet
+  expand_days: desvolopar los jorns
+  explore!: Exploratz !
+  export: Exportar
+  export_observations: Exportar las observacions
+  exporting: Expòrt en cors...
+  external_links: Ligams extèrnes
+  extinct: atudat
+  extras: Suplements
+  facebook: Facebook
+  facebook_options: Opcions de Facebook
+  "false": Fals
+  faq: Fèira de las questions
+  fave: favorit
+  faves: Favorits
+  Family: Familha
+  favorite_taxa: taxons favorits
+  favorites: Favorits
+  fblocale: oc_OC
+  featured: remirable
+  featured?: meses en valor ?
+  feedback: Vejaires
+  feeds: Flux
+  feeds_for_current_filters: Flux pels filtres actuals
+  failed: Fracàs
+  fields: camps
+  fields_: Camps
+  fill_out_your_profile: completar vòstre perfil
+  filling_out_your_profile: completar vòstre perfil
+  filter: Filtre
+  filter_by: Filtrar per
+  filtering: Filtratge
+  filters: Filtres
+  find: Recercar
+  find_a_guide: Recercar un guida
+  find_a_place: Recercar un luòc
+  find_guides: Recercar de guidas
+  find_new_place_to_explore: Trobar un luòc novèl d'explorar !
+  find_observations: Trobar d'observacions
+  find_photos: Recercar de fòtos
+  find_places: Recercar de luòcs
+  find_species: Recercar d'espècias
+  finished: Acabat
+  first_observer: Primièr observador
+  flag: Marcar
+  flag_as_spammer: Marcar coma productor de spam
+  flag_as_non_spammer: Marcar coma non productor de spam
+  flag_it!: Lo marcar !
+  flagged: a senhalat
+  flagger: Marcador
+  flags: Bandièras
+  flags_for: Bandièras per
+  flickr_identity: Identitat Flickr
+  flickr_photo: Fòto de Flickr
+  flickr_photos: Fòtos de Flickr
+  flickr_style: Estil Flickr
+  flickr_tagger: Marcador Flickr
+  flickr_tags: Balisas Flickr
+  flickr_youre_all_set: Sètz prèst a començar l’exploracion  d’%{site_name}
+  fluid: fluida
+  follow_us: Seguissètz-nos sus
+  follow_us_on: Seguissètz-nos sus
+  follow_user: Seguir %{user}
+  follower: seguidor
+  following: seguiment
+  for: per
+  for_a_taxon: per un taxon
+  for_more_information: per obténer mai d'informacion.
+  fri: Div
+  from: De
+  from_a_place: A partir d’un luòc
+  from_list: Dempuèi la lista
+  from_this: dempuèi aquò
+  from_photos: Dempuèi las fòtos
+  from_place: Dempuèi lo luòc
+  from_your_site_observations: Dempuèi las observacions de %{site_name}
+  full_id_please: Identificacion, SVP !
+  full_id_please!: Identificacion, SVP !
+  full_id_please?: Identificacion, SVP ?
+  full_screen: Ecran complet
+  fungi:
+    one: campairòl
+    other: campairòls
+  fungus:
+    one: campairòl
+    other: campairòls
+  gbif_occurrences: Ocurréncias de GBIF
+  general: General
+  generate_pdf: Generar lo PDF
+  generate_widget: Generar lo widget
+  generating: Generacion en cors…
+  Genus: Genre
+  genus_slash_species: '[GENRE] / [ESPÈCIA]'
+  geoprivacy: Confidencialitat geografica
+  georeferenced: Geolocalizacion ?
+  georeferenced?: geolocalizat
+  get_current_position: Obténer la posicion actuala
+  get_started_raquo: Aviar &raquo;
+  get_started: Començar
+  getting_started: Primièrs passes
+  global_names: Noms globals
+  globally: globalament
+  go: Anar
+  go_back: Tornar en arrièr
+  got_it!: Es bon !
+  gray: gris
+  green: verd
+  grey: gris
+  grid: Grasilha
+  group: Grop
+  grouping: Regropament
+  guides: Guidas
+  guide_colors: Guida de las colors
+  guide_taxon: Guida dels taxons
+  guidelines: Linhas directrises
+  has_been: es estat
+  has_photos: a de fòtos
+  has_sounds: a de sons
+  heads_up: Avertiment
+  hello: <tèst>
+  help: Ajuda
+  help_faq: Ajuda / FAQ
+  help_out!: Ajudatz-nos !
+  hex_color_eg: Color en exadecimal, ex. 65644F
+  hi: Bonjorn,
+  hi_user: Bonjorn %{user}
+  hide: Amagar
+  hide_details: Amagar los detalhs
+  high: naut
+  highlights: Mesa en evidéncia
+  history: Istoric
+  home: Acuèlh
+  home_faq: FAQ
+  hybrid: ibrid
+  icon: Icòna
+  icon_size: Talha de l'icòna
+  icon_slash_photo: Icòna/Fòto
+  id: Identificant
+  id_: Identificant
+  id_please!: Identificacion, SVP !
+  id_please: Identificacion, SVP
+  identify: Identificar
+  identify_observations: Identificar las observacions
+  identify_title: Identificar
+  identification: identificacion
+  identification_deleted: identificacion suprimida.
+  identification_saved: Identificacion enregistrada !
+  identification_summary: Resumit de l’identificacion
+  identifications: Identificacions
+  identifications_by: Identificacions per %{user}
+  identified?: identificat
+  identifiers: Identificants
+  identotron: Identotron
+  identotron_for: Identotron per
+  identotron_help: Ajuda de l’Identotron
+  ids: IDs
+  if_you_use: Se utilizatz
+  ignore: ignorar
+  imperiled: En perilh
+  import: Importar
+  import_all_photos_as_observations: Importar totas las fòtos coma d'observacions
+  import_photos: Importar de fòtos
+  importing: Importacion en cors...
+  in: dins
+  in_: dins
+  in_n: dins %{n}
+  inbox: bóstia de recepcion
+  including: inclús
+  in_taxon?: dins lo taxon
+  in_the_past: dins lo passat
+  in_the_past_week: la setmana passada
+  inactive: inactiu
+  inactive_taxon: taxon inactiu
+  inappropriate: Inapropriat ?
+  inat_account_action: '%{site_name} &#58; Compte &#58; %{action_name}'
+  inat_user_profile: '%{site_name}:  perfil de %{user}'
+  info: Info
+  input_taxon: Entrar un taxon
+  insects: Insèctes
+  interactions: Interaccions
+  introduced: introduït
+  invasive: invasiu
+  invitation: Convit
+  invitations: Convits
+  invite: convidar
+  invite_more: Convidar mai
+  invited: Convidat
+  invited_x: '%{x} convidat'
+  inviting: Convidacion en cors…
+  iphone: iPhone
+  is_a: es un
+  is_an: es un
+  is_now: es ara
+  it: Aqueste
+  it_has: A
+  it_instead: puslèu el.
+  january: Genièr
+  join: Jonhètz-vos a
+  join_and: Jonhètz-vos e
+  join_inat: Rejonhètz a  %{site_name}!
+  join_project: Rejonhètz aquel projècte
+  joined!: Junt !
+  journal: Jornal
+  jpg_png_or_gif: JPG, PNG o GIF
+  jump_to_letter: Sautar a la letra
+  kml: KML
+  labels: Libellats
+  language_slash_type: Lenga / Tipe
+  large: grand
+  lat: Lat
+  latitude: Latitud
+  layers: Jaces
+  layout: Mesa en pagina
+  leaderboard: Classament
+  leaderboard_for_x: Classament per %{x}
+  leaderboards: Classaments
+  learn!: Apréner !
+  learn_more: Ne saber mai
+  leaves: fuèlhas
+  not_absent: pas absent
+  lexicon: Lexic
+  lexicons:
+    scientific_names: Noms scientifics
+    afrikaans: Afrikaans
+    bengali: Bengalí
+    catalan: Catalan
+    cebuano: Cebuano
+    creole_french: creòl (Francés)
+    creole_portuguese: Creòl (Portugués)
+    davawenyo: Davawenyo
+    dutch: Neerlandés
+    english: Anglés
+    french: Francés
+    gela: Gela
+    german: Alemand
+    hawaiian: Hawaïan
+    hebrew: Ebrieu
+    hiligaynon: Hiligaynon
+    icelandic: Islandés
+    ilokano: Ilokano
+    italian: Italian
+    japanese: Japonés
+    korean: Corean
+    maltese: Maltés
+    maori: Maori
+    misima_paneati: Misima-paneati
+    norwegian: Norvegian
+    pangasinan: Pangasinan
+    portuguese: Portugués
+    romanian: Romanés
+    russian: Rus
+    spanish: Espanhòl
+    swedish: Suedés
+    tagalog: Tagalog
+    tahitian: Tahitian
+    tokelauan: Tokelau
+    turkish: Turc
+    waray_waray: Samaran
+  less: Mens
+  license_descriptions_and_images: Descripcions e imatges de la licéncia
+  licensing: Mesa jos licéncia
+  life: Vida
+  life!: Vida !
+  life_list: Lista de vida de %{user}
+  link: Ligam
+  list: Lista
+  list_deleted: Lista suprimida.
+  list_saved: Lista enregistrada.
+  list_views:
+    plain: unit
+    taxonomic: taxonomic
+    photo: fòto
+  listed_taxon: Taxon listat
+  lists: Listas
+  load: Cargar
+  loading: Cargament en cors...
+  locales_: Paramètres regionals
+  locales:
+    br: Breton
+    ca: Catalan
+    en: Anglés
+    en-US: Anglés (Estats Units)
+    es: Espanhòl
+    es-ES: Espanhòl (Espanha)
+    es-MX: Espanhòl (Mexic)
+    fr: Francés
+    eu: Basc
+    gl: Galician
+    ko: Corean
+    id: Indonesian
+    it: Italian
+    mk: Macedonian
+    pt: Portugués
+    pt-BR: Portugués (Brasil)
+    ja: Japonés
+    zh-CN: Chinés (simplificat)
+    zh-TW: Chinés (tradicional)
+  locality_notes: Nòtas localizadas
+  localized_species_accounts: Comptes d’espècias localizadas
+  location: Emplaçament
+  location_: Emplaçament
+  log_in: Connectatz-vos
+  logged_in_as: Sètz connectat en tant que
+  login_slash_username: Connexion/nom d’utilizaire
+  logo:
+    logo: Lògo
+    none: pas cap
+  long: Lon
+  longitude: Longitud
+  lookup: Recèrca
+  lookup_user_rarr: Recercar un utilizaire &rarr;
+  low: bas
+  lowest_rank: Rend lo mai bas
+  made_a: a fait un
+  main_content: Contengut principal
+  mammals: mamifèrs
+  manage_all_your_subscriptions: Gerir totes vòstres abonaments
+  manage_names: Gerir los noms
+  managed: gerit
+  manager: Gestionari
+  managers: Gestionaris
+  map: Mapa
+  maps:
+    overlays:
+      all_observations: Totas las observacions
+      featured_observations: Observacions mesas en avant
+      range: airal de reparticion
+  map_for: Mapa de
+  mark_as_reviewed: Marcar coma revisat
+  mark_all_as_unreviewed: Marcar tot coma pas relegit
+  media: Mèdia
+  medium: mejan
+  members: Membres
+  mentioned_you_in_noun_html: '%{user} vos a mencionat dins %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} vos a mencionat dins %{noun} per %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} vos a mencionat dins un %{x} sus %{noun}'
+  mentioned_you_in_an_x_on_noun_html: '%{user} vos a mencionat dins un %{x} sus %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} vos a mencionat dins un %{x} sus
+    %{noun} per %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} vos a mencionat dins un %{x} sus
+    %{noun} per %{by}'
+  mentions: Mencions
+  merge: Fusionar
+  merging: Fusion
+  merging_places: Fusion dels luòcs
+  message: Messatge
+  messages: Messatges
+  mixed_licenses: Licéncias combinadas
+  mobile_app_for: Aplicacion mobila per
+  mobile_apps_for: Aplicacions mobilas per
+  mobile_view_available: Afichatge mobil disponible
+  mollusks: mollusques
+  momentjs:
+    shortRelativeTime:
+      future: en %s
+      past: '%s'
+      s: 1s
+      m: 1 min
+      mm: '%dm'
+      h: 1h
+      hh: '%dh'
+      d: 1d
+      dd: '%dd'
+      M: 1 min
+      MM: '%dmo'
+  mon: Lun
+  month: Mes
+  months: Meses
+  months_ago: i a %{text}
+  more: Mai
+  more_fields: Mai de camps
+  more_filters: Mai de filtres
+  more_import_options: Mai d'opcions d'importacion
+  more_info: Mai d'informacions
+  more_info_title: Mai d'informacions
+  more_journal_posts: Mai de nòtas de jornal
+  more_observations: Mai d’observacions
+  more_photos: Mai de Fòtos
+  most: Mai
+  most_observations: Mai d’observacions
+  multiple: multiple
+  multiple_select_option: -- multiple --
+  must_be_observed_after: deu èsser observat aprèp %{operand}
+  must_be_observed_before: deu èsser observat abans %{operand}
+  n_ago: i a %{n}
+  name: Nom
+  name_entered: Nom picat
+  name_llaves: '[NOM]'
+  name_providers:
+    col: Catalòg de la vida
+    ubio: uBio
+  names: Noms
+  names_for_taxon_html: Noms per %{taxon}
+  naturalised: naturalizat
+  naturalized: naturalizat
+  native: indigèna
+  native_to_place: Originari de %{place}
+  nav: Nav
+  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+  ne_lat: Lat. NE
+  ne_lon: Long. NE
+  near: prèp de
+  near_threatened: gaireben menaçat
+  nearby: A proximitat
+  nearby_observations: Observacions a proximitat
+  need_id_help?: Besonh d’ajuda amb l’identificacion ?
+  needs_id: besonh ID
+  needs_id_expandable_html: <span class='full'>Besonh </span>ID
+  new_list: Lista novèla
+  next: Seguent
+  next_page: Pagina seguenta
+  "no": Non
+  no_more_taxa_to_load: Mai de taxons de cargar !
+  no_results_found: Cap de resultat pas trobat
+  no_species_observed: Cap d'espècias pas observadas.
+  none: Pas cap
+  normal: normal
+  not_completed: Incomplet
+  not_evaluated: pas avalorat
+  not_filtering: Pas cap de filtratge
+  not_found: Pas trobat
+  not_yet: Pas encara
+  note: Nòta
+  number_of_observations: Nombre d’observacions
+  numeric_: numeric
+  noun_by_you: '%{noun} per vos'
+  obs: Obs
+  observation: Observacion
+  observation_date: Data
+  observation_date?: Data ?
+  observation_field: Camp d’observacion
+  observation_fields: Camps d’observacion
+  observations_confirmed: Observacions (confirmadas)
+  observed: Observat
+  observed_by: Observat per
+  observed_on: Observat sus
+  observed_one: observat un
+  observer: Observador
+  observer_short: Observador
+  observing: observacion
+  occurrence_status_levels:
+    present: present
+    common: comun
+    uncommon: rare
+    irregular: irregular
+    doubtful: dobtós
+    absent: absent
+  of: de
+  ok: D'acòrdi
+  on_: sus
+  on_date: lo %{date}
+  on_day: sus
+  on_edit_date: lo %{editdate}
+  on_list?: dins la lista
+  on_submit_date: lo %{submitdate}
+  onboarding:
+    observe_panel_title: Començam per publicar qualques observacions
+    follow_panel_title_global: Seguir qualques naturalistas actius
+    updates_by_you_panel_title: Aqueste onglet es un mejan rapid de filtrar unicament
+      las mesas a jorn de vòstre contengut.
+  open: dobrir
+  optional: facultatiu
+  or: o
+  or_you_can: O ben podètz...
+  or_you_can_: o podètz
+  orange: irange
+  order: Òrdre
+  order_by: 'Triar per :'
+  organisms: Organismes
+  original: Original
+  other: autre
+  other_animals: autres animals
+  other_animals_plural:
+    one: autre animal
+    other: autres animals
+  other_annimals: Autres animals
+  owner: Proprietari
+  parent: Parent
+  parent_name: Nom del parent
+  password: Senhal
+  password_confirmation: Confirmacion del senhal
+  paste: Pegar
+  pdf: PDF
+  pdf_slash_print: PDF / Impression
+  people: Personas
+  person: persona
+  personal_message: Messatge personal
+  per_page: Per pagina
+  permalink: Ligam permanent
+  photo: Fòto
+  photo?: Fòto ?
+  photo_deleted: Fòto suprimida
+  photo_s: Fòto(s)
+  photos_from: Fòtos de
+  photos_size:
+    small: pichon
+    medium: mejan
+    large: grand
+    original: original
+  pink: ròse
+  place: Luòc
+  place_geo:
+    geo_planet_place_types:
+      Airport: Aeropòrt
+      airport: aeropòrt
+      Building: Construccion
+      building: bastiment
+      Colloquial: Familièr
+      colloquial: familièr
+      Continent: Continent
+      continent: continent
+      Country: País
+      country: país
+      County: Comtat
+      county: comtat
+      Division: Division
+      Drainage: Drenatge
+      drainage: drenatge
+      estate: domeni
+      Historical_State: Estat istoric
+      historical_town: vila istorica
+      Intersection: Interseccion
+      intersection: interseccion
+      Island: Illa
+      island: illa
+      Land_Feature: Foncion territoriala
+      land_feature: foncion territoriala
+      Miscellaneous: Divèrs
+      miscellaneous: divèrs
+      Municipality: Municipalitat
+      municipality: Municipalitat
+      Nationality: Nacionalitat
+      nationality: nacionalitat
+      Prefecture_City: Vila prefectura
+      Point_of_Interest: Punt interessant
+      point_of_interest: punt interessant
+      Postal_Code: Còdi postal
+      postal_code: còdi postal
+      Region: Region
+      region: region
+      republic: Republica
+      Sports_Team: Equipa esportiva
+      sports_team: equipa esportiva
+      State: Estat
+      state: estat
+      Street: Carrièra
+      street: carrièra
+      Street_Segment: Segment de via
+      street_segment: segment de via
+      subdivision: Subdivision
+      Suburb: Banlèga
+      suburb: banlèga
+      Supername: Supernom
+      Territory: Territòri
+      Time_Zone: Fus orari
+      time_zone: fus orari
+      Town: Vila
+      town: vila
+      Undefined: Pas definit
+      undefined: pas definit
+      Unknown: Desconegut
+      Zone: Zòna
+      zone: zòna
+  placement: Emplaçament
+  places: Luòcs
+  places_name:
+    afghanistan: Afganistan
+    africa: Africa
+    antigua_and_barbuda: Antigua e Barbuda
+    belgium: Belgica
+    bosnia_and_herzegovina: Bòsnia e Ercegovina
+    brazil: Brasil
+    central_america: America Centrala
+    egypt: Egipte
+    equatorial_guinea: Guinèa Eqüatoriala
+    europe: Euròpa
+    france: França
+    germany: Alemanha
+    greece: Grècia
+    hungary: Ongria
+    italy: Itàlia
+    iraq: Iraq
+    japan: Japon
+    martinique: Martinica
+    mexico: Mexic
+    new_guinea: Nòva Guinèa
+    new_zealand: Nòva Zelanda
+    north_africa: Africa del Nòrd
+    north_america: America del Nòrd
+    palestine: Palestina
+    panama: Panamà
+    peru: Peró
+    poland: Polonha
+    republic_of_congo: Republica Democratica del Còngo
+    russia: Russia
+    saudi_arabia: Arabia Saudita
+    sao_tome_and_principe: São Tomé e Principe
+    south_america: America del Sud
+    spain: Espanha
+    sweden: Suécia
+    syria: Siria
+    thailand: Tailàndia
+    trinidad_and_tobago: Trinidad e Tobago
+    turkey: Turquia
+    united_kingdom: Reialme Unit
+    united_states: Estats Units
+    virgin_islands: Illas Verges
+    west_africa: Africa occidentala
+  plants: plantas
+  position: Posicion
+  possessive_user: de %{user}
+  post: Nòta
+  posted_by: Publicat per
+  posts: Nòtas
+  powered_by: Optimizat per
+  present: present
+  preview: Apercebut
+  previewing: Apercebut en cors…
+  previous: Precedent
+  prev: Prec
+  previous_page: Pagina precedenta
+  privacy: Politica de confidencialitat
+  privacy_policy: Politica de confidencialitat
+  private: privat
+  processing3p: Tractament en cors...
+  profile: Perfil
+  project: Projècte
+  project_created_on: projècte creat lo %{date}
+  project_group_label: Grop
+  project_home: Acuèlh del projècte
+  projects: Projèctes
+  protozoans: protozoaris
+  public_domain: Domeni public
+  publish: Publicar
+  purple: porpra
+  quality_grade: Gras de qualitat
+  quality_grade_colon: 'Gras de qualitat :'
+  range: Interval
+  range_from: Distribucion de
+  rank: Reng
+  ranks:
+    kingdom: règne
+    phylum: fil
+    subphylum: sosfil
+    superclass: superclassa
+    class: classa
+    subclass: sosclassa
+    superorder: superòrdre
+    order: òrdre
+    suborder: sosòrdre
+    superfamily: superfamilha
+    family: familha
+    subfamily: sosfamilha
+    supertribe: supertribú
+    tribe: tribú
+    subtribe: sostribú
+    genus: genre
+    genushybrid: genre ibrid
+    species: espècias
+    hybrid: ibrid
+    subspecies: sosespècias
+    variety: varietat
+    form: forma
+  ray_finned_fishes: peisses amb nadarèlas raionadas
+  reason: Motiu
+  received: recebut
+  recent_additions: Darrièrs apondons
+  record!: Enregistrar !
+  red: roge
+  redo_search_in_map_area: Refar la recèrca dins la region cartografica
+  refresh: Refrescar
+  remember_me: Se remembrar de ieu
+  remove: Suprimir
+  remove_all_tags: Suprimir totas las etiquetas
+  remove_from: Suprimir de
+  remove_from_batch: Suprimir del lòt
+  removed: Suprimit
+  removed!: Suprimit !
+  removing: Supression en cors…
+  replace_parentesis: (remplaçar)
+  replacing: remplaçament
+  reply: Respondre
+  reptiles: reptils
+  research: recercar
+  research_grade: recercar un nivèl
+  research_grade_expandable_html: R<span class='full'>ecercar </span> un N<span class='full'>ivèl</span>
+  results: resultats
+  roadmap: fuèlh de rota
+  role: Ròtle
+  rotate_left: Virar a esquèrra
+  rotate_right: Virar a dreita
+  row_singular_or_plural: Linha(s)
+  said: dich
+  sat: Sat
+  satellite: satellit
+  save: Enregistrar
+  save_all: Enregistrar tot
+  save_changes: Enregistrar los cambiaments
+  saving: Enregistrament en cors…
+  saving_verb: Enregistrament
+  schemes: Esquèmas
+  scientific_names: Noms scientifics
+  search: Recercar
+  select: Seleccionar
+  select_one_or_more_photos: Seleccionar una o mantuna fòtos
+  selected: seleccionat
+  send: mandar
+  sent: Mandat
+  september: Setembre
+  settings: paramètres
+  show: Afichar
+  shown_publicly_as: Afichat publicament coma
+  sign_in: Connexion
+  sign_in_with_provider: Connexion amb %{provider}
+  sign_out: Desconnexion
+  sign_up!: Inscrivètz-vos !
+  sign_up: Inscripcion
+  sign_up_exclamation: Inscrivètz-vos !
+  similar_species: Espècias similaras
+  single_observation: Observacion unica
+  sizes: Talhas
+  small: pichon
+  some_other_reason: Una autra rason que podètz explicar çaijós.
+  something: Quicòm
+  something_: quicòm
+  sounds:
+    request_timed_out: Lo relambi de la demanda a SoundCloud s’es passat. Reensajatz
+      pus tard.
+    select_one_or_more_sounds: Seleccionar una o mantuna sons
+    sound: Son
+    soundcloud_replied_with_an_error: SoundCloud aficha una error. Reensajatz pus
+      tard.
+    sounds: Sons
+    sounds_size_sound: Son %{sounds_size}
+    sounds_size_sounds: Sons %{sounds_size}
+  source: Font
+  source_: 'Font :'
+  source_list:
+    ubio: uBio
+    inaturalist: NaturaLista
+    nzbrn_birds: Ausèls de NZBRN
+    nzbrn_fungi: Campairòls de NZBRN
+  sources: Fonts
+  sourcing: Font
+  spam: spam
+  spanish: Espanhòl
+  species: Espècias
+  start: Aviar
+  states: Estats
+  stats: Estatisticas
+  status: Estat
+  summary: Resumit
+  siutable_observations: observacions apropriadas
+  sun: Dim
+  taxa: Taxons
+  taxa_all_species_html: Totas las espècias
+  taxon: Taxon
+  taxon_: taxon
+  terms: Condicions
+  terms_of_service: Condicions d’utilizacion
+  terms_service: Condicions d’utilizacion
+  text_: tèxte
+  thats_not_a_real_date: Es pas una vertadièra data !
+  the_past: lo passat
+  theres_also: i a tanben
+  those_are_the_basics_of: S’agís de l’essencial per l’apondon d’observacions! I a
+    fòrça causas mai que podètz far, coma cercar e filtrar vòstras observacions o
+    las modificar dins un lòt, mas aquelas accions se deurián passar d’explicacions.
+  thu: Dij
+  time_: ora
+  time_ago: i a %{time}
+  title: títol
+  to_: per
+  today: Uèi
+  tools: Aisinas
+  total: total
+  "true": Verai
+  tue: Mar
+  type: Tipe
+  unreview_all: Marcar tot coma pas relegit
+  updated_daily: Mes a jorn a cada jorn
+  uploader:
+    tooltips:
+      select_all: Seleccionar totas las observacions
+  url_of_this_taxon_on_the_source_website: URL d'aqueste taxon sul site Web de la
+    font
+  user: Utilizaire
+  user_invited_you_to_join_project: '%{user} vos a convidat a vos jónher a %{project}'
+  user_invited_you_to_join_html: '%{user} vos a convidat a vos jónher'
+  user_invited_you_to_join_this_project_on_date_html: '%{user} vos a convidat a vos
+    jónher a aqueste projècte lo %{date}'
+  user_s: de %{user}
+  user_s_lists: Listas de %{user}
+  username: Nom d'utilizaire
+  users_id: Identificant de %{user}
+  users_comment_html: comentari de <a href='%{url}'>%{user}</a>
+  view_all_n: Afichar totes los %{n}
+  view_all_observations: Afichar totas las observacions
+  view_all_photos_tagged_taxon_html: Afichar totas las fòtos etiquetadas « %{taxon} »
+    sus <nobr>Flickr &raquo;</nobr>
+  view_more: Veire mai
+  view_more_observations: Veire mai d'observacions
+  view_more_unreviewed: Afichar mai de pas relegits
+  view_your_dashboard: Afichar vòstre tablèu de bòrd
+  view_all_of_your_observations_from_x: Afichar totas vòstras observacions dempuèi
+    %{x}
+  want_to_test_a_new_version_of_this_page: Enveja de testar una novèla version d'aquesta
+    pagina ?
+  welcome!: Benvenguda !
+  welcome_comma!: Benvenguda,
+  welcome_to_inat: Benvenguda sus %{site_name}!
+  would_you_like_to: Vos agradariá
+  x_sent_you_a_new_message_on_y_html: '%{x} vos a mandat un novèl messatge sus %{y}:'
+  you_can_accept_invitations: Podètz acceptar lo convit aicí
+  you_can_also_add_flickr: Tanben podètz apondre d'etiquetas Flickr pendent la modificacion
+    d’una observacion o d’una modificacion per lòt de vòstras observacions.
+  you_can_change_your_new_passwd_after_logging_in: 'Podètz modificar vòstre novèl
+    senhal aprèp que vos sètz connectat aicí :'
+  you_cant_compare_a_list_with_nothing: Podètz pas comparar una lista amb res!
+  you_cant_delete_a_project_list: Podètz pas suprimir una lista de projècte
+  you_cant_flag_that: Podètz pas senhalar que
+  you_cant_remove_other_peoples_observations: Podètz pas suprimir las observacions
+    d’autras personas.
+  you_have_to: Vos cal
+  your_content: Vòstre contengut
+  your_home: Vòstre Acuèlh
+  your_profile_was_successfully_updated: Vòstre perfil es estat mes a jorn corrèctament
+    !
+  your_world!: vòstre monde !
+  youre_viewing_all_observations: Gaitatz totas las observacions
+  views:
+    guides:
+      pdf_layouts:
+        grid: grasilha
+        book: libre
+        journal: jornal
+    help:
+      index:
+        we_also_support_picasa_html: 'Acceptam tanben Picasa: <a href="%{url}">Configuratz
+          vòstre compte Picasa &raquo;</a>'
+        you_can_also_obscure_the_coordinates_html: |-
+          Tanben podètz amagar las coordenadas de vòstras pròprias observacions,
+          qual que siá l’estat del taxon. Consultatz <a href="#geoprivacy">la geoconfidencialitat</a> çaisús.
+    observations:
+      export:
+        receive_an_email_with_your_data: Recebre un corrièr electronic amb vòstras
+          donadas
+      field_descriptions:
+        observed_on_string: Orodatatge entrat per l’observador
+        observed_on: Data normalizada de l’observacion
+        created_at: Orodatatge al qual l’observacion es estada creada
+    projects:
+      confirm_leave:
+        remove_observations_label: Suprimir totas vòstras observacions d'aqueste projècte
+    taxa:
+      show:
+        about_conservation_status_desc: L’estat de conservacion sintetisa la risca
+          d’escantiment d’un grop d’organismes.
+    users:
+      show:
+        this_user_was_banned: Aqueste utilizaire es estat suspendut
+  date:
+    abbr_day_names:
+    - Dim
+    - Dil
+    - Mar
+    - Mèc
+    - Dij
+    - Div
+    abbr_month_names:
+      3: Mar
+    month_names:
+      1: Genièr
+      2: Febrièr
+      3: Març
+      12: Decembre
+  helpers:
+    select:
+      prompt: Seleccionatz
+  number:
+    human:
+      format:
+        significant: "1"
+  activerecord:
+    errors:
+      models:
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: deu èsser observat aprèp %{time}
+              must_be_observed_before: deu èsser observat abans %{time}
+...

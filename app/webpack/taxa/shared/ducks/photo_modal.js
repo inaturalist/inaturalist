@@ -4,13 +4,14 @@ const SET_PHOTO_MODAL = "taxa-show/photo_modal/SET_PHOTO_MODAL";
 const SHOW_PHOTO_MODAL = "taxa-show/photo_modal/SHOW_PHOTO_MODAL";
 const HIDE_PHOTO_MODAL = "taxa-show/photo_modal/HIDE_PHOTO_MODAL";
 
-export default function reducer( state = { visible: false }, action ) {
+export default function reducer( state = { visible: false, options: { } }, action ) {
   const newState = Object.assign( { }, state );
   switch ( action.type ) {
     case SET_PHOTO_MODAL:
       newState.photo = action.photo;
       newState.taxon = action.taxon;
       newState.observation = action.observation;
+      newState.options = action.options || { };
       break;
     case SHOW_PHOTO_MODAL:
       newState.visible = true;
@@ -24,12 +25,13 @@ export default function reducer( state = { visible: false }, action ) {
   return newState;
 }
 
-export function setPhotoModal( photo, taxon, observation ) {
+export function setPhotoModal( photo, taxon, observation, options = { } ) {
   return {
     type: SET_PHOTO_MODAL,
     photo,
     taxon,
-    observation
+    observation,
+    options
   };
 }
 
@@ -59,7 +61,12 @@ export function showNext( getPhotos ) {
     if ( currentIndex < photoContainers.length - 1 ) {
       newPhotoContainer = photoContainers[currentIndex + 1];
     }
-    dispatch( setPhotoModal( newPhotoContainer.photo, newPhotoContainer.taxon ) );
+    dispatch( setPhotoModal(
+      newPhotoContainer.photo,
+      newPhotoContainer.taxon,
+      newPhotoContainer.observation,
+      newPhotoContainer.options
+    ) );
   };
 }
 
@@ -76,6 +83,11 @@ export function showPrev( getPhotos ) {
     if ( currentIndex > 0 ) {
       newPhotoContainer = photoContainers[currentIndex - 1];
     }
-    dispatch( setPhotoModal( newPhotoContainer.photo, newPhotoContainer.taxon ) );
+    dispatch( setPhotoModal(
+      newPhotoContainer.photo,
+      newPhotoContainer.taxon,
+      newPhotoContainer.observation,
+      newPhotoContainer.options
+    ) );
   };
 }

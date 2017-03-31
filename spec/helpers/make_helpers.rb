@@ -167,93 +167,75 @@ module MakeHelpers
   #           `--- Magnoliopsida
   def load_test_taxa
     Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-    @Life = Taxon.find_by_name('Life') || Taxon.make!(:name => 'Life', :rank => "state of matter")
+    @Life = Taxon.find_by_name( "Life" ) || Taxon.make!( name: 'Life', rank: "state of matter" )
+    
+    set_taxon_with_rank_and_parent( "Animalia", Taxon::KINGDOM, @Life, is_iconic: true )
+    set_taxon_with_rank_and_parent( "Chordata", Taxon::PHYLUM, @Animalia )
+    set_taxon_with_rank_and_parent( "Amphibia", Taxon::CLASS, @Chordata, is_iconic: true )
+    set_taxon_with_rank_and_parent( "Anura", Taxon::ORDER, @Amphibia )
+    set_taxon_with_rank_and_parent( "Hylidae", Taxon::FAMILY, @Anura )
+    set_taxon_with_rank_and_parent( "Pseudacris", Taxon::GENUS, @Hylidae )
+    set_taxon_with_rank_and_parent( "Pseudacris regilla", Taxon::SPECIES, @Pseudacris )
 
-    unless @Animalia = Taxon.find_by_name('Animalia')
-      @Animalia = Taxon.make!(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
-    end
-    @Animalia.update_attributes(:parent => @Life)
-
-    unless @Chordata = Taxon.find_by_name('Chordata')
-      @Chordata = Taxon.make!(:name => 'Chordata', :rank => "phylum")
-    end
-    @Chordata.update_attributes(:parent => @Animalia)
-
-    unless @Amphibia = Taxon.find_by_name('Amphibia')
-      @Amphibia = Taxon.make!(:name => 'Amphibia', :rank => "class", :is_iconic => true)
-    end
-    @Amphibia.update_attributes(:parent => @Chordata)
-
-    unless @Anura = Taxon.find_by_name('Anura')
-      @Anura = Taxon.make!(:name => 'Anura', :rank => "order")
-    end
-    @Anura.update_attributes(:parent => @Amphibia)
-
-    unless @Hylidae = Taxon.find_by_name('Hylidae')
-      @Hylidae = Taxon.make!(:name => 'Hylidae', :rank => "family")
-    end
-    @Hylidae.update_attributes(:parent => @Anura)
-
-    unless @Pseudacris = Taxon.find_by_name('Pseudacris')
-      @Pseudacris = Taxon.make!(:name => 'Pseudacris', :rank => "genus")
-    end
-    @Pseudacris.update_attributes(:parent => @Hylidae)
-
-    unless @Pseudacris_regilla = Taxon.find_by_name('Pseudacris regilla')
-      @Pseudacris_regilla = Taxon.make!(:name => 'Pseudacris regilla', :rank => "species")
-    end
-    @Pseudacris_regilla.update_attributes(:parent => @Pseudacris)
-
-    unless @Aves = Taxon.find_by_name('Aves')
-      @Aves = Taxon.make!(:name => "Aves", :rank => "class", :is_iconic => true)
-    end
-    @Aves.update_attributes(:parent => @Chordata)
-
-    unless @Apodiformes = Taxon.find_by_name('Apodiformes')
-      @Apodiformes = Taxon.make!(:name => "Apodiformes", :rank => "order")
-    end
-    @Apodiformes.update_attributes(:parent => @Aves)
-
-    unless @Trochilidae = Taxon.find_by_name('Trochilidae')
-      @Trochilidae = Taxon.make!(:name => "Trochilidae", :rank => "family")
-    end
-    @Trochilidae.update_attributes(:parent => @Apodiformes)
-
-    unless @Calypte = Taxon.find_by_name('Calypte')
-      @Calypte = Taxon.make!(:name => "Calypte", :rank => "genus")
-    end
-    @Calypte.update_attributes(:parent => @Trochilidae)
-
-    unless @Calypte_anna = Taxon.find_by_name('Calypte anna')
-      @Calypte_anna = Taxon.make!(:name => "Calypte anna", :rank => "species")
-      @Calypte_anna.taxon_names << TaxonName.make!(:name => "Anna's Hummingbird", 
-        :taxon => @Calypte_anna, 
-        :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    end
-    @Calypte_anna.update_attributes(:parent => @Calypte)
-
-    unless @Plantae = Taxon.find_by_name('Plantae')
-      @Plantae = Taxon.make!(:name => "Plantae", :rank => "kingdom")
-    end
-    @Plantae.update_attributes(:parent => @Life)
-
-    unless @Magnoliophyta = Taxon.find_by_name('Magnoliophyta')
-      @Magnoliophyta = Taxon.make!(:name => "Magnoliophyta", :rank => "phylum")
-    end
-    @Magnoliophyta.update_attributes(:parent => @Plantae)
-
-    unless @Magnoliopsida = Taxon.find_by_name('Magnoliopsida')
-      @Magnoliopsida = Taxon.make!(:name => "Magnoliopsida", :rank => "class")
-    end
-    @Magnoliopsida.update_attributes(:parent => @Magnoliophyta)
+    set_taxon_with_rank_and_parent( "Aves", Taxon::CLASS, @Chordata, is_iconic: true )
+    set_taxon_with_rank_and_parent( "Apodiformes", Taxon::ORDER, @Aves )
+    set_taxon_with_rank_and_parent( "Trochilidae", Taxon::FAMILY, @Apodiformes )
+    set_taxon_with_rank_and_parent( "Calypte", Taxon::GENUS, @Trochilidae )
+    set_taxon_with_rank_and_parent( "Calypte anna", Taxon::SPECIES, @Calypte, common_name: "Anna's Hummingbird" )
+    
+    set_taxon_with_rank_and_parent( "Plantae", Taxon::KINGDOM, @Life, is_iconic: true )
+    set_taxon_with_rank_and_parent( "Magnoliophyta", Taxon::PHYLUM, @Plantae )
+    set_taxon_with_rank_and_parent( "Magnoliopsida", Taxon::CLASS, @Magnoliophyta )
+    set_taxon_with_rank_and_parent( "Myrtales", Taxon::ORDER, @Magnoliopsida )
+    set_taxon_with_rank_and_parent( "Onagraceae", Taxon::FAMILY, @Myrtales )
+    set_taxon_with_rank_and_parent( "Clarkia", Taxon::GENUS, @Onagraceae )
+    set_taxon_with_rank_and_parent( "Clarkia amoena", Taxon::GENUS, @Clarkia )
 
     Taxon.reset_iconic_taxa_constants_for_tests
 
     Rails.logger.debug "[DEBUG] DONE loading test taxa\n\n\n"
   end
 
-  def make_check_listed_taxon(options = {})
-    list = CheckList.make!
-    ListedTaxon.make!(options)
+  def set_taxon_with_rank_and_parent( name, rank, parent, options = { } )
+    varname = name.gsub( /\s+/, "_" )
+    common_name = options.delete( :common_name )
+    if existing_in_memory = instance_variable_get( "@#{varname}" )
+      return existing_in_memory
+    end
+    if existing_in_db = Taxon.find_by_name( name )
+      instance_variable_set( "@#{varname}", existing_in_db )
+      return instance_variable_get( "@#{varname}" )
+    end
+    instance_variable_set( "@#{varname}", Taxon.make!( options.merge( name: name, rank: rank ) ) )
+    instance_variable_get( "@#{varname}" ).update_attributes( parent: parent )
+    if common_name
+      instance_variable_get( "@#{varname}" ).taxon_names << TaxonName.make!(
+        name: common_name, 
+        taxon: instance_variable_get( "@#{varname}" ),
+        lexicon: TaxonName::LEXICONS[:ENGLISH]
+      )
+    end
+    instance_variable_get( "@#{varname}" )
+  end
+
+  def make_check_listed_taxon( options = {} )
+    list = CheckList.make!( place: options[:place] || Place.make! )
+    list.add_taxon( options[:taxon] || Taxon.make! )
+  end
+
+  def make_atlas_with_presence( options = { } )
+    taxon = options[:taxon]
+    presence_place = options.delete(:place) || make_place_with_geom( place_type: Place::COUNTRY, admin_level: Place::COUNTRY_LEVEL )
+    listed_taxon = presence_place.check_list.add_taxon( taxon )
+    AncestryDenormalizer.denormalize
+    PlaceDenormalizer.denormalize
+    Atlas.make!( options )
+  end
+
+  def make_observation_photo( options = { } )
+    options[:observation] ||= Observation.make!
+    options[:photo] ||= LocalPhoto.make!
+    options[:photo].update_attributes( user: options[:observation].user )
+    ObservationPhoto.make!( options )
   end
 end

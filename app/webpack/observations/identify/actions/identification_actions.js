@@ -63,7 +63,11 @@ function stopAgreeingWithObservation( ) {
 
 function agreeWithCurrentObservation( ) {
   return function ( dispatch, getState ) {
-    const currentObservation = getState( ).currentObservation.observation;
+    const s = getState( );
+    if ( s.config.blind ) {
+      return;
+    }
+    const currentObservation = s.currentObservation.observation;
     if ( !currentObservation || !currentObservation.id || !currentObservation.taxon ) {
       return null;
     }

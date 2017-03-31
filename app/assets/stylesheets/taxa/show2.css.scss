@@ -36,11 +36,11 @@
 }
 
 #hero {
-  background-color: #eee;
+  background-color: #f8f8f8;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 20px 0;
-  margin-top: 10px;
+  margin-top: 5px;
 }
 
 #charts {
@@ -85,7 +85,15 @@
   box-shadow: none;
   outline: 0 none;
 }
-
+#charts .help-btn i {
+  font-size: 20px;
+  line-height: 25px;
+  color: #999;
+}
+#ChartsHelpModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
 .SeasonalityChart .c3-line {
   stroke-width: 2px;
 }
@@ -161,12 +169,19 @@
   border: 1px solid #ddd;
 }
 
+.permalink {
+  position: relative;
+  top: -6px;
+}
+
 .TaxonCrumbs {
   color: #aaa;
   padding: 0;
   margin: 0 7px 0 0;
-  line-height: 28px;
+  line-height: 25px;
   display: inline;
+  position: relative;
+  top: -4px;
 }
 .TaxonCrumbs.contracted .inner {
   display: none;
@@ -288,8 +303,6 @@ $leaderItemImageDim: 56px;
   text-transform: uppercase;
   line-height: 1;
   margin-bottom: 10px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 5px;
 }
 .LeaderItem h4 {
   text-transform: none;
@@ -321,6 +334,7 @@ $leaderItemImageDim: 56px;
 .LeaderItem .extra i {
   color: #999;
   margin-right: 2px;
+  color: $inat-green;
 }
 .LeaderItem .media-body {
   vertical-align: middle;
@@ -336,7 +350,7 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview {
   position: relative;
   overflow: hidden;
-  height: 590px;
+  height: 580px;
 }
 .PhotoPreview .photo-bg {
   position: absolute;
@@ -530,8 +544,14 @@ $photoPreviewThumbGutterTop: 3px;
 .TaxonomyTab .taxonomy li.root:before {
   content: '';
 }
+.TaxonomyTab .taxonomy .taxon {
+  margin-left: 3px;
+}
 .TaxonomyTab .taxonomy .taxon a {
   color: #333;
+}
+.TaxonomyTab .taxonomy .taxon a:hover {
+  color: #23527c;
 }
 
 .TaxonomyTab .taxonomy li.current > .SplitTaxon {
@@ -692,11 +712,13 @@ $introducedColor: #E4007C;
 .InteractionsTab {
   padding-top: 20px;
 }
-
+.ArticlesTab .taxon_description {
+  font-size: 16px;
+}
 .ArticlesTab .taxon_description_header {
   display: none;
 }
-.ArticlesTab h2 .fa-external-link {
+.ArticlesTab h2 .icon-link-external {
   font-size: 20px;
 }
 
@@ -882,6 +904,7 @@ $nav-btn-dim: 40px;
 .curation-tab .dropdown i {
   width: 20px;
   text-align: center;
+  color: $inat-green;
 }
 #curation-dropdown {
   margin-top: 14px;
@@ -957,6 +980,18 @@ $nav-btn-dim: 40px;
   background-color: lighten($inat-green, 1%);
   border-color: lighten($inat-green, 1%);
 }
+.btn.btn-outline {
+  background-color: transparent;
+  color: black;
+  border-color: #999;
+}
+.btn.btn-outline:hover,
+.btn.btn-outline:focus {
+  background-color: transparent;
+  border-color: #999;
+  color: lighten(#000, 1%);
+  border-color: lighten(#999, 1%);
+}
 
 .PlaceChooserPopoverTrigger {
   margin-top: 20px;
@@ -1022,7 +1057,8 @@ $nav-btn-dim: 40px;
   display: inline-block;
   position: relative;
   border: 2px solid transparent;
-  width: 104px;
+  width: 130px;
+  min-height: 50px;
 }
 .DraggablePhoto .control-link {
   position: absolute;
@@ -1083,6 +1119,22 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 .PhotoChooserModal .photos {
   margin: -2.5px;
 }
+.PhotoChooserModal .modal-body {
+  display: flex;
+}
+.PhotoChooserModal .photocols {
+  display: flex;
+  align-items: stretch;
+}
+.PhotoChooserModal .photocols > div {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 20px;
+  width: 50%;
+}
+.PhotoChooserModal .photocols > div:first-child {
+  margin-left: 0;
+}
 .comma-separated-list > *:before {
   content: ', ';
 }
@@ -1090,6 +1142,7 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   content: '';
 }
 .AkaNames .name { color: black; }
+.RecentObservations { margin-bottom: 20px; }
 .RecentObservations .Carousel { position: relative; }
 .RecentObservations .TaxonPhoto {
   display: inline-block;
@@ -1153,4 +1206,14 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   .RecentObservations .viewall {
     width: 200px !important;
   }
+}
+.iconified-list-group .list-group-item {
+  display: flex;
+}
+.iconified-list-group .list-group-item a:first-child {
+  background-repeat: no-repeat;
+  padding: 1px 0 1px 25px;
+  display: block;
+  flex: 1;
+  background-position-y: 2px;
 }

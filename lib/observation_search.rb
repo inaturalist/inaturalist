@@ -148,7 +148,7 @@ module ObservationSearch
 
     def elastic_taxon_leaf_ids(elastic_params = {})
       distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-        aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+        aggregate: { species: { "taxon.id": 150000 } })).response.aggregations
       @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] }).
         select(:id, :ancestry)
       ancestors = { }
@@ -387,7 +387,7 @@ module ObservationSearch
         if params[:taxon_ids].size == 1
           scope = scope.of(taxon_ids.first)
         else
-          taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id)}
+          taxa = Taxon::ICONIC_TAXA.select{|t| taxon_ids.include?(t.id) }
           if taxa.size == taxon_ids.size
             scope = scope.has_iconic_taxa(taxon_ids)
           end
@@ -605,7 +605,7 @@ module ObservationSearch
       end
       # fetch a list of every user_id whose observations match the search
       user_counts = Observation.elastic_search(elastic_params.merge(size: 0, aggregate: {
-        user_observations: { "user.id": 0 }
+        user_observations: { "user.id": 100000 }
       })).response.aggregations
       user_ids = user_counts.user_observations.buckets.map{ |b| b["key"] }
       counts = [ ]

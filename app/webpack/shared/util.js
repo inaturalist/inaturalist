@@ -22,7 +22,6 @@ function updateSession( params ) {
 function objectToComparable( object = {} ) {
   return _.map( _.keys( object ).sort( ), k => {
     const v = object[k];
-    // if ( _.isArrayLikeObject( v ) ) {
     if ( typeof( v ) === "object" ) {
       return `(${k}-${objectToComparable( v )})`;
     }

@@ -176,7 +176,10 @@ class Photo < ActiveRecord::Base
       end
       observations.each(&:update_stats)
     end
-    observations.each(&:update_mappable)
+    observations.each do |o|
+      o.update_mappable
+      o.elastic_index!
+    end
   end
 
   def self.repair_photos_for_user(user, type)

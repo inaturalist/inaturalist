@@ -9,221 +9,224 @@
   = javascript_include_tag "map_bundle", "d3.min", "observations/observation_fields", "users/dashboard"
 .container
   - if announcement = @announcements.detect{|a| a.placement == "users/dashboard"}
-    .column.span-24
-      = announcement.body.html_safe
-  = render partial: "shared/by_login_header_bootstrap", locals: { user: current_user }
-  .col-md-8{ style: "background-color:white" }
-    .tabbable
-      .row.dashboard_tab_row
-        .btn-group
-          %a.btn.btn-default.dashboard_tab.active{ "data-tab" => "updates", "data-target-el" => "#updates", href: "#updates" }
-            = t :all_updates
-          %a.btn.btn-default.dashboard_tab{ "data-tab" => "yours", "data-target-el" => "#updates_by_you", href: "#updates_by_you"}
-            = t :your_content
-          %a.btn.btn-default.dashboard_tab{ "data-tab" => "following", "data-target-el" => "#following", href: "#following", title: t(:observations_from_people_taxa_and_places_youre_following) }
-            = t( :following, default: "Folloing").capitalize
-          %a.btn.btn-default.dashboard_tab{ "data-tab" => "comments", "data-target-el" => "#comments", href: "#comments" }
-            = t :real_time_discussions
-      .tab-content
-        #updates.tab-pane.active{ data: { tab: "updates" } }
-          - if !@has_updates
-            - if current_user.observations_count < 4 && !current_user.prefers_hide_observe_onboarding
-              #observe_panel.panel.panel-success
-                .panel-heading
-                  %a.close{ "data-panel-type" => "observe" } &#215;
-                  %h3.panel-title= t 'onboarding.observe_panel_title'
-                .panel-body
-                  - if @local_onboarding_content[:target_taxa]
-                    %p.lead
-                      = @local_onboarding_content[:local_results] ? t('onboarding.observe_panel_body_p1_local') : t( "onboarding.observe_panel_body_p1_global" )
+    .row
+      .col-xs-12
+        = announcement.body.html_safe
+  .row
+    = render partial: "shared/by_login_header_bootstrap", locals: { user: current_user }
+  .row
+    .col-md-8
+      .tabbable
+        .row.dashboard_tab_row
+          .btn-group
+            %a.btn.btn-default.dashboard_tab.active{ "data-tab" => "updates", "data-target-el" => "#updates", href: "#updates" }
+              = t :all_updates
+            %a.btn.btn-default.dashboard_tab{ "data-tab" => "yours", "data-target-el" => "#updates_by_you", href: "#updates_by_you"}
+              = t :your_content
+            %a.btn.btn-default.dashboard_tab{ "data-tab" => "following", "data-target-el" => "#following", href: "#following", title: t(:observations_from_people_taxa_and_places_youre_following) }
+              = t( :following, default: "Folloing").capitalize
+            %a.btn.btn-default.dashboard_tab{ "data-tab" => "comments", "data-target-el" => "#comments", href: "#comments" }
+              = t :real_time_discussions
+        .tab-content
+          #updates.tab-pane.active{ data: { tab: "updates" } }
+            - if !@has_updates
+              - if current_user.observations_count < 4 && !current_user.prefers_hide_observe_onboarding
+                #observe_panel.panel.panel-success
+                  .panel-heading
+                    %a.close{ "data-panel-type" => "observe" } &#215;
+                    %h3.panel-title= t 'onboarding.observe_panel_title'
+                  .panel-body
+                    - if @local_onboarding_content[:target_taxa]
+                      %p.lead
+                        = @local_onboarding_content[:local_results] ? t('onboarding.observe_panel_body_p1_local') : t( "onboarding.observe_panel_body_p1_global" )
+                      .row
+                        - for taxon in @local_onboarding_content[:target_taxa]
+                          = render( partial: 'favorites', locals: { taxon: taxon } )
+                    .media
+                      .media-body
+                        %p.lead= t( "onboarding.observe_panel_body_p2", site_name: SITE_NAME.gsub(".org",""), new_observation_path: upload_observations_path).html_safe
+                        %p= t( "onboarding.observe_panel_body_p3" )
+                      .media-right
+                        %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/615-original.jpg", style: "padding: 0 0 0 10px" }
+                  .panel-footer
+                    = link_to observations_path, class: "btn btn-primary btn-md" do
+                      = t :browse_observations
+                      %span.glyphicon.glyphicon-chevron-right
+                    = link_to @site.getting_started_url, target: "_blank" do
+                      %span.glyphicon.glyphicon-info-sign
+                      = t :getting_started_guide
+              - if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]
+                #follow_panel.panel.panel-success
+                  .panel-heading
+                    %a.close{ "data-panel-type" => "follow" } &#215;
+                    %h3.panel-title
+                      = @local_onboarding_content[:local_results] ? t( "onboarding.follow_panel_title_local" ) : t( "onboarding.follow_panel_title_global" )
+                  .panel-body
+                    %p= t "onboarding.follow_panel_body"
                     .row
-                      - for taxon in @local_onboarding_content[:target_taxa]
-                        = render( partial: 'favorites', locals: { taxon: taxon } )
-                  .media
-                    .media-body
-                      %p.lead= t( "onboarding.observe_panel_body_p2", site_name: SITE_NAME.gsub(".org",""), new_observation_path: upload_observations_path).html_safe
-                      %p= t( "onboarding.observe_panel_body_p3" )
-                    .media-right
-                      %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/615-original.jpg", style: "padding: 0 0 0 10px" }
-                .panel-footer
-                  = link_to observations_path, class: "btn btn-primary btn-md" do
-                    = t :browse_observations
-                    %span.glyphicon.glyphicon-chevron-right
-                  = link_to @site.getting_started_url, target: "_blank" do
-                    %span.glyphicon.glyphicon-info-sign
-                    = t :getting_started_guide
-            - if current_user.friendships.count < 4 && !current_user.prefers_hide_follow_onboarding && @local_onboarding_content[:to_follows]
-              #follow_panel.panel.panel-success
+                      - @local_onboarding_content[:to_follows].each do |to_follow|
+                        = render( partial: "followees", locals: { friend: to_follow } )
+                  .panel-footer
+                    = link_to people_path, class: "btn btn-primary" do
+                      = t :browse_people
+                      %span.glyphicon.glyphicon-chevron-right
+            - if @has_updates && !current_user.prefers_hide_activity_onboarding
+              #activity_panel.panel.panel-info
                 .panel-heading
-                  %a.close{ "data-panel-type" => "follow" } &#215;
-                  %h3.panel-title
-                    = @local_onboarding_content[:local_results] ? t( "onboarding.follow_panel_title_local" ) : t( "onboarding.follow_panel_title_global" )
+                  %a.close{ "data-panel-type" => "activity" } &#215;
+                  %h3.panel-title= t "onboarding.youve_got_updates_panel_title"
                 .panel-body
-                  %p= t "onboarding.follow_panel_body"
-                  .row
-                    - @local_onboarding_content[:to_follows].each do |to_follow|
-                      = render( partial: "followees", locals: { friend: to_follow } )
+                  %p.lead= t( "onboarding.youve_got_updates_panel_body_p1", site_name: SITE_NAME.gsub( ".org", "" ) )
+                  = t( "onboarding.youve_got_updates_panel_body_p2", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
                 .panel-footer
-                  = link_to people_path, class: "btn btn-primary" do
-                    = t :browse_people
-                    %span.glyphicon.glyphicon-chevron-right
-          - if @has_updates && !current_user.prefers_hide_activity_onboarding
-            #activity_panel.panel.panel-info
-              .panel-heading
-                %a.close{ "data-panel-type" => "activity" } &#215;
-                %h3.panel-title= t "onboarding.youve_got_updates_panel_title"
-              .panel-body
-                %p.lead= t( "onboarding.youve_got_updates_panel_body_p1", site_name: SITE_NAME.gsub( ".org", "" ) )
-                = t( "onboarding.youve_got_updates_panel_body_p2", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
-              .panel-footer
-                %a.btn.btn-primary{ "data-panel-type" => "activity" }= t(:got_it!)
-          #updates_target
-            .loading.status= t :loading
-        #updates_by_you.tab-pane{ data: { tab: "yours" } }
-          - unless current_user.prefers_hide_updates_by_you_onboarding
-            #updates_by_you_panel.panel.panel-info
-              .panel-heading
-                %a.close{ "data-panel-type" => "updates_by_you" } &#215;
-                %h3.panel-title= t( "onboarding.updates_by_you_panel_title" )
-              .panel-body= t( "onboarding.updates_by_you_panel_body" )
-              .panel-footer
-                %a.btn.btn-primary{ "data-panel-type" => "updates_by_you" }= t(:got_it!)
-          #updates_by_you_target
-            .loading.status= t :loading
-        #following.tab-pane{ data: { tab: "following" } }
-          - unless current_user.prefers_hide_following_onboarding
-            #following_panel.panel.panel-info
-              .panel-heading
-                %a.close{ "data-panel-type" => "following" } &#215;
-                %h3.panel-title= t( "onboarding.following_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
-              .panel-body
-                = t( "onboarding.following_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
-              .panel-footer
-                %a.btn.btn-primary{ "data-panel-type" => "following" }= t(:got_it!)
-          #following_target
-            .loading.status= t :loading
-        #comments.tab-pane{ data: { tab: "comments" } }
-          - unless current_user.prefers_hide_comments_onboarding
-            #comments_panel.panel.panel-info
-              .panel-heading
-                %a.close{ "data-panel-type" => "comments" } &#215;
-                %h3.panel-title= t( "onboarding.comments_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
-              .panel-body
-                = t( "onboarding.comments_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
-              .panel-footer
-                %a.btn.btn-primary{ "data-panel-type" => "comments" }= t(:got_it!)
-          #comments_target
-            .loading.status= t :loading
-  .col-md-4
-    = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do
-      %span.glyphicon.glyphicon-plus
-      = t(:add_observations)
-    - announcement = @announcements.detect{|a| a.placement == "users/dashboard#sidebar"}
-    - if announcement && !user_seen_announcement?( announcement )
-      = announcement.body.html_safe
-    #subscriptions
+                  %a.btn.btn-primary{ "data-panel-type" => "activity" }= t(:got_it!)
+            #updates_target
+              .loading.status= t :loading
+          #updates_by_you.tab-pane{ data: { tab: "yours" } }
+            - unless current_user.prefers_hide_updates_by_you_onboarding
+              #updates_by_you_panel.panel.panel-info
+                .panel-heading
+                  %a.close{ "data-panel-type" => "updates_by_you" } &#215;
+                  %h3.panel-title= t( "onboarding.updates_by_you_panel_title" )
+                .panel-body= t( "onboarding.updates_by_you_panel_body" )
+                .panel-footer
+                  %a.btn.btn-primary{ "data-panel-type" => "updates_by_you" }= t(:got_it!)
+            #updates_by_you_target
+              .loading.status= t :loading
+          #following.tab-pane{ data: { tab: "following" } }
+            - unless current_user.prefers_hide_following_onboarding
+              #following_panel.panel.panel-info
+                .panel-heading
+                  %a.close{ "data-panel-type" => "following" } &#215;
+                  %h3.panel-title= t( "onboarding.following_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
+                .panel-body
+                  = t( "onboarding.following_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
+                .panel-footer
+                  %a.btn.btn-primary{ "data-panel-type" => "following" }= t(:got_it!)
+            #following_target
+              .loading.status= t :loading
+          #comments.tab-pane{ data: { tab: "comments" } }
+            - unless current_user.prefers_hide_comments_onboarding
+              #comments_panel.panel.panel-info
+                .panel-heading
+                  %a.close{ "data-panel-type" => "comments" } &#215;
+                  %h3.panel-title= t( "onboarding.comments_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
+                .panel-body
+                  = t( "onboarding.comments_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
+                .panel-footer
+                  %a.btn.btn-primary{ "data-panel-type" => "comments" }= t(:got_it!)
+            #comments_target
+              .loading.status= t :loading
+    .col-md-4
+      = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do
+        %span.glyphicon.glyphicon-plus
+        = t(:add_observations)
+      - announcement = @announcements.detect{|a| a.placement == "users/dashboard#sidebar"}
+      - if announcement && !user_seen_announcement?( announcement )
+        = announcement.body.html_safe
+      #subscriptions
+        %h3.page-header
+          = t :subscriptions
+          %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => t(:subscribe_to_places_to), "data-placement" => "top", "data-toggle" => "popover" }
+          = link_to subscriptions_path, class: "pull-right" do
+            %i.glyphicon.glyphicon-cog
+        - unless @subscriptions.blank?
+          - for resource_type, subscriptions in @subscriptions.group_by(&:resource_type)
+            %h4= t( resource_type.humanize.pluralize.downcase, default: resource_type.humanize.pluralize )
+            %ul.list-group
+              - for subscription in subscriptions
+                %li.list-group-item
+                  = link_to edit_subscription_path( subscription ), class: "pull-right subscriptionsettings", data: { remote: false } do
+                    %span.glyphicon.glyphicon-cog
+                  - if subscription.resource_type == "Taxon"
+                    = render "shared/taxon", taxon: subscription.resource, link_url: subscription.resource
+                  - else
+                    = link_to subscription.resource.try_methods( :display_name, :name, :title ), subscription.resource
+                    - if subscription.taxon
+                      %span.othernames
+                        = surround "(", ")" do
+                          = render "shared/taxon", taxon: subscription.taxon, link_url: subscription.taxon, no_common: true
+        .row
+          .col-sm-6
+            = link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
+              %span.glyphicon.glyphicon-leaf
+              = t :subscribe_to_a_taxon
+          .col-sm-6
+            = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
+              %span.glyphicon.glyphicon-map-marker
+              = t :subscribe_to_a_place
+        / Modal
+        #subscribeModal.modal.fade{ tabindex: "-1" }
+          .modal-dialog{ role: "document" }
+            .modal-content
+              .modal-header
+                %button.close{ "data-dismiss" => "modal", type: "button" } &#215;
+                %h4#subscribePlaceLabel.modal-title= t :subscribe_to_a_place
+                %h4#subscribeTaxonLabel.modal-title= t :subscribe_to_a_taxon
+              .modal-body
+                %p#subscribeTaxonBody= t :subscribe_to_observations_in_a_taxon
+                %p#subscribePlaceBody= t :subscribe_to_observations_in_a_place
       %h3.page-header
-        = t :subscriptions
-        %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => t(:subscribe_to_places_to), "data-placement" => "top", "data-toggle" => "popover" }
-        = link_to subscriptions_path, class: "pull-right" do
-          %i.glyphicon.glyphicon-cog
-      - unless @subscriptions.blank?
-        - for resource_type, subscriptions in @subscriptions.group_by(&:resource_type)
-          %h4= t( resource_type.humanize.pluralize.downcase, default: resource_type.humanize.pluralize )
-          %ul.list-group
-            - for subscription in subscriptions
-              %li.list-group-item
-                = link_to edit_subscription_path( subscription ), class: "pull-right subscriptionsettings", data: { remote: false } do
-                  %span.glyphicon.glyphicon-cog
-                - if subscription.resource_type == "Taxon"
-                  = render "shared/taxon", taxon: subscription.resource, link_url: subscription.resource
-                - else
-                  = link_to subscription.resource.try_methods( :display_name, :name, :title ), subscription.resource
-                  - if subscription.taxon
-                    %span.othernames
-                      = surround "(", ")" do
-                        = render "shared/taxon", taxon: subscription.taxon, link_url: subscription.taxon, no_common: true
-      .row
-        .col-sm-6
-          = link_to "#", "data-subscribe-type" => "taxon", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
-            %span.glyphicon.glyphicon-leaf
-            = t :subscribe_to_a_taxon
-        .col-sm-6
-          = link_to "#", "data-subscribe-type" => "place", "data-toggle" => "modal", "data-target" => "#subscribeModal", class: "btn btn-primary btn-block btn-sm" do
-            %span.glyphicon.glyphicon-map-marker
-            = t :subscribe_to_a_place
-      / Modal
-      #subscribeModal.modal.fade{ tabindex: "-1" }
-        .modal-dialog{ role: "document" }
-          .modal-content
-            .modal-header
-              %button.close{ "data-dismiss" => "modal", type: "button" } &#215;
-              %h4#subscribePlaceLabel.modal-title= t :subscribe_to_a_place
-              %h4#subscribeTaxonLabel.modal-title= t :subscribe_to_a_taxon
-            .modal-body
-              %p#subscribeTaxonBody= t :subscribe_to_observations_in_a_taxon
-              %p#subscribePlaceBody= t :subscribe_to_observations_in_a_place
-    %h3.page-header
-      = t :more
-    - unless current_user.prefers_hide_getting_started_onboarding
-      #getting_started_panel.panel.panel-default
+        = t :more
+      - unless current_user.prefers_hide_getting_started_onboarding
+        #getting_started_panel.panel.panel-default
+          .panel-heading
+            %a.close{ "data-panel-type" => "getting_started" } &#215;
+            %h3.panel-title
+              = t :getting_started_guide
+          .panel-body
+            %p= t :let_us_walk_you_through
+            = link_to t(:get_started), @site.getting_started_url, class: "btn btn-default btn-md"
+      .panel.panel-default
         .panel-heading
-          %a.close{ "data-panel-type" => "getting_started" } &#215;
-          %h3.panel-title
-            = t :getting_started_guide
+          %h3.panel-title= t :blog_widget
         .panel-body
-          %p= t :let_us_walk_you_through
-          = link_to t(:get_started), @site.getting_started_url, class: "btn btn-default btn-md"
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title= t :blog_widget
-      .panel-body
-        %p= t :show_off_your_recent_observations
-        %p
-          = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
-    - if current_user.is_curator?
-      %h3.page-header
-        = t :curation
-        %span.glyphicon.glyphicon-info-sign{ "data-content" => t(:youre_a_site_curator_which_means, email: CONFIG.help_email ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
-      - unless @flags.blank?
+          %p= t :show_off_your_recent_observations
+          %p
+            = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
+      - if current_user.is_curator?
+        %h3.page-header
+          = t :curation
+          %span.glyphicon.glyphicon-info-sign{ "data-content" => t(:youre_a_site_curator_which_means, email: CONFIG.help_email ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+        - unless @flags.blank?
+          .panel.panel-default
+            .panel-heading
+              %h3.panel-title
+                %span.glyphicon.glyphicon-flag
+                = t(:flag).pluralize
+                %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_items_people_on, email: CONFIG.help_email ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+            .list-group
+              - for flag in @flags
+                - flaggable = flag.flaggable
+                - flaggable_class = flaggable.class
+                - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
+                = link_to flag, class: "list-group-item" do
+                  %span.pull-right
+                    %span.glyphicon.glyphicon-comment
+                    = flag.comments.size
+                  - if flag.user
+                    = flag.user.login
+                  - else
+                    = CONFIG.site_name_short
+                  = t(:flagged)
+                  %strong
+                    = ( flaggable.respond_to?(:user) && flaggable.user ) ? "#{flaggable.user.login}'s" : t(:a)
+                    = flaggable_class.name.humanize.downcase
+                  = succeed ":" do
+                    = t :because_of
+                  = flag.flag
         .panel.panel-default
           .panel-heading
             %h3.panel-title
-              %span.glyphicon.glyphicon-flag
-              = t(:flag).pluralize
-              %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_items_people_on, email: CONFIG.help_email ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
-          .list-group
-            - for flag in @flags
-              - flaggable = flag.flaggable
-              - flaggable_class = flaggable.class
-              - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
-              = link_to flag, class: "list-group-item" do
-                %span.pull-right
-                  %span.glyphicon.glyphicon-comment
-                  = flag.comments.size
-                - if flag.user
-                  = flag.user.login
-                - else
-                  = CONFIG.site_name_short
-                = t(:flagged)
-                %strong
-                  = ( flaggable.respond_to?(:user) && flaggable.user ) ? "#{flaggable.user.login}'s" : t(:a)
-                  = flaggable_class.name.humanize.downcase
-                = succeed ":" do
-                  = t :because_of
-                = flag.flag
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title
-            %span.glyphicon.glyphicon-leaf{ "aria-hidden" => "true", style: "" }
-            = t :ungrafted_taxa
-            %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_taxa_that, site: CONFIG.site_name_short ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
-        %ul.list-group
-          - for taxon in @ungrafted_taxa
-            %li.list-group-item
-              = link_to taxon_path( taxon ), class: "pull-right" do
-                %span.glyphicon.glyphicon-edit
-              = link_to_taxon taxon
-        .panel-footer
-          = link_to t(:curate_taxa), curate_taxa_path, class: "btn btn-primary btn-sm"
-          = link_to t(:create_a_new_taxon), new_taxon_path, class: "btn btn-primary btn-sm"
+              %span.glyphicon.glyphicon-leaf{ "aria-hidden" => "true", style: "" }
+              = t :ungrafted_taxa
+              %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_taxa_that, site: CONFIG.site_name_short ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+          %ul.list-group
+            - for taxon in @ungrafted_taxa
+              %li.list-group-item
+                = link_to taxon_path( taxon ), class: "pull-right" do
+                  %span.glyphicon.glyphicon-edit
+                = link_to_taxon taxon
+          .panel-footer
+            = link_to t(:curate_taxa), curate_taxa_path, class: "btn btn-primary btn-sm"
+            = link_to t(:create_a_new_taxon), new_taxon_path, class: "btn btn-primary btn-sm"

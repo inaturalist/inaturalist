@@ -1708,7 +1708,9 @@ CREATE TABLE identifications (
     current boolean DEFAULT true,
     taxon_change_id integer,
     category character varying,
-    uuid uuid DEFAULT uuid_generate_v4()
+    uuid uuid DEFAULT uuid_generate_v4(),
+    blind boolean,
+    previous_observation_taxon_id integer
 );
 
 
@@ -6450,6 +6452,13 @@ CREATE INDEX index_flow_tasks_on_user_id ON flow_tasks USING btree (user_id);
 
 
 --
+-- Name: index_friendships_on_user_id_and_friend_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_friendships_on_user_id_and_friend_id ON friendships USING btree (user_id, friend_id);
+
+
+--
 -- Name: index_guide_photos_on_guide_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6580,6 +6589,13 @@ CREATE INDEX index_identifications_on_created_at ON identifications USING btree 
 --
 
 CREATE INDEX index_identifications_on_observation_id_and_created_at ON identifications USING btree (observation_id, created_at);
+
+
+--
+-- Name: index_identifications_on_previous_observation_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_identifications_on_previous_observation_taxon_id ON identifications USING btree (previous_observation_taxon_id);
 
 
 --
@@ -8733,4 +8749,8 @@ INSERT INTO schema_migrations (version) VALUES ('20170110025450');
 INSERT INTO schema_migrations (version) VALUES ('20170110185648');
 
 INSERT INTO schema_migrations (version) VALUES ('20170113211950');
+
+INSERT INTO schema_migrations (version) VALUES ('20170309003500');
+
+INSERT INTO schema_migrations (version) VALUES ('20170317183900');
 

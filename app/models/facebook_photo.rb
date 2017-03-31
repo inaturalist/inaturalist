@@ -4,6 +4,8 @@ class FacebookPhoto < Photo
   validates_presence_of :native_photo_id
   validate :owned_by_user?
 
+  PHOTO_FIELDS = "id,from,name,source,link,images"
+
   def owned_by_user?
     errors.add(:user, "doesn't own that photo") unless owned_by?(user)
   end
@@ -72,7 +74,7 @@ class FacebookPhoto < Photo
 
   def self.get_api_response(native_photo_id, options = {})
     return nil unless (options[:user] && options[:user].facebook_api)
-    options[:user].facebook_api.get_object(native_photo_id) || nil # api returns 'false' if photo not found
+    options[:user].facebook_api.get_object( native_photo_id, fields: PHOTO_FIELDS) || nil # api returns 'false' if photo not found
   end
 
   def self.new_from_api_response(api_response, options = {})

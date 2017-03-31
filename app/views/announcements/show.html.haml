@@ -1,0 +1,31 @@
+.container
+  .row
+    .col-xs-12
+      %p
+        %b
+          = t :placement
+          \:
+        = @announcement.placement
+      %p
+        %b
+          = t :start
+          \:
+        = @announcement.start
+      %p
+        %b
+          = t :end
+          \:
+        = @announcement.end
+      %p
+        %b
+          = t "locales_"
+          \:
+        = @announcement.locales.join(", ")
+      %p
+        %b
+          = t :body
+          \:
+      = raw @announcement.body
+      = link_to t(:edit), edit_announcement_path(@announcement)
+      |
+      = link_to t(:back), announcements_path

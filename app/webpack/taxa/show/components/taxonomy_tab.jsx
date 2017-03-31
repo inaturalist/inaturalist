@@ -50,6 +50,7 @@ const TaxonomyTab = ( {
               forceRank
               onClick={ e => {
                 if ( !shouldLinkToTaxon ) return true;
+                if ( e.metaKey || e.ctrlKey ) return true;
                 e.preventDefault( );
                 showNewTaxon( t, { skipScrollTop: true } );
                 return false;

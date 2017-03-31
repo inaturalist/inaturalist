@@ -194,3 +194,26 @@ describe UsersController, "update_session" do
     expect(user.prefers_observations_search_subview).to eq "grid"
   end
 end
+
+describe UsersController, "merge" do
+  let(:normal_user) { User.make! }
+  let(:curator_user) { make_curator }
+  let(:admin_user) { make_admin }
+  let(:keeper_user) { User.make! }
+  let(:reject_user) { User.make! }
+  it "should not work for normal users" do
+    sign_in normal_user
+    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    expect( User.find_by_id( reject_user.id ) ).not_to be_blank
+  end
+  it "should not work for curators" do
+    sign_in curator_user
+    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    expect( User.find_by_id( reject_user.id ) ).not_to be_blank
+  end
+  it "should work for site admins" do
+    sign_in admin_user
+    put :merge, id: keeper_user.id, reject_user_id: reject_user.id
+    expect( User.find_by_id( reject_user.id ) ).to be_blank
+  end
+end

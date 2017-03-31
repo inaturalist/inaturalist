@@ -86,7 +86,6 @@ class TaxonPageTabs extends React.Component {
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <MenuItem
-                className={isCurator ? "" : "hidden"}
                 eventKey="add-flag"
               >
                 <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }

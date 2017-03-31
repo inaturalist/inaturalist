@@ -11,6 +11,12 @@ class TaxonLinksController < ApplicationController
     @taxon ||= Taxon.find_by_name('Life')
     @taxon_link = TaxonLink.new(:taxon => @taxon)
   end
+
+  def show
+    respond_to do |format|
+      format.html { redirect_to edit_taxon_link_path( params[:id] ) }
+    end
+  end
   
   def create
     @taxon_link = TaxonLink.new(params[:taxon_link])
@@ -46,11 +52,19 @@ class TaxonLinksController < ApplicationController
   end
 
   def destroy
+    unless @taxon_link.deletable_by?( current_user )
+      respond_to do |format|
+        format.html do
+          flash[:error] = I18n.t( :you_dont_have_permission_to_do_that )
+          return redirect_back_or_default( @taxon_link )
+        end
+      end
+    end
     @taxon_link.destroy
     respond_to do |format|
       format.html do
         flash[:notice] = "Taxon link deleted."
-        return redirect_to @taxon_link.taxon
+        redirect_to @taxon_link.taxon
       end
     end
   end

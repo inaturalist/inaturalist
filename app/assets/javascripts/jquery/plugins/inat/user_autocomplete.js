@@ -24,6 +24,7 @@ $.fn.userAutocomplete = function( options ) {
         },
         success: function( data ) {
           response( _.map( data, function( r ) {
+            r.user_id = r.id;
             r.id = r.login;
             r.title = r.login;
             return r;

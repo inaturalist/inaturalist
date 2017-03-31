@@ -192,7 +192,7 @@ class TaxonName < ActiveRecord::Base
     else
       place_names = []
     end
-    language_name = language_for_locale(options[:locale]) || 'english'
+    language_name = language_for_locale( options[:locale] || I18n.locale ) || 'english'
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
     engnames = common_names.select {|n| n.is_english? }
     unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }
@@ -259,16 +259,23 @@ class TaxonName < ActiveRecord::Base
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
     case locale.to_s
-    when /^ca/      then 'catalan'
-    when /^en/      then 'english'
-    when /^es/      then 'spanish'
-    when /^fr/      then 'french'
-    when /^iw/      then 'hebrew'
-    when /^ja/      then 'japanese'
-    when /^ko/      then 'korean'
-    when /^pt/      then 'portuguese'
-    when /zh.CN/i   then 'chinese_simplified'
-    when /^zh/      then 'chinese_traditional'
+    when /^ca/      then "catalan"
+    when /^en/      then "english"
+    when /^es/      then "spanish"
+    when /^fr/      then "french"
+    when /^haw/     then "hawaiian"
+    when /^id/      then "indonesian"
+    when /^it/      then "italian"
+    when /^iw/      then "hebrew"
+    when /^ja/      then "japanese"
+    when /^ko/      then "korean"
+    when /^mi/      then "maori"
+    when /^myn/     then "maya"
+    when /^nl/      then "dutch"
+    when /^pt/      then "portuguese"
+    when /^sci/     then "scientific_names"
+    when /zh.CN/i   then "chinese_simplified"
+    when /^zh/      then "chinese_traditional"
     end
   end
 

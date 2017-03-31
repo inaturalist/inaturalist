@@ -137,7 +137,11 @@
         <% end -%>
         <div class="upstacked stacked">
           <label><%=t :not_finding_place_you_want? %></label>
-          <div class="meta"><%=t 'views.projects.edit.bioblitz_create_a_new_place_html', :link => link_to(t(:create_a_new_place), new_place_path(:anchor => "manual"), :target => "_blank") %></div>
+          <div class="meta">
+            <%=t "views.projects.edit.new_place_desc_html",
+              places_url: places_url,
+              new_place_url: new_place_url %>
+          </div>
         </div>
         <%= f.check_box :prefers_place_boundary_visible, :label_after => true, :description => t(:you_can_show_the_boundary_of) %>
       </div>

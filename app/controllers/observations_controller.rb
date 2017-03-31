@@ -62,10 +62,6 @@ class ObservationsController < ApplicationController
     :import_photos, :import_sounds, :new_from_list]
   before_filter :photo_identities_required, :only => [:import_photos]
   after_filter :refresh_lists_for_batch, :only => [:create, :update]
-  
-  MOBILIZED = [:add_from_list, :nearby, :add_nearby, :project, :by_login, :index, :show]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   before_filter :load_prefs, :only => [:index, :project, :by_login]
   
   ORDER_BY_FIELDS = %w"created_at observed_on project species_guess votes id"
@@ -100,7 +96,7 @@ class ObservationsController < ApplicationController
     # the new default /observations doesn't need any observations
     # looked up now as it will use Angular/Node. This is for legacy
     # API methods, and HTML/views and partials
-    if request.format.html? &&!request.format.mobile? && !showing_partial
+    if request.format.html? && !showing_partial
       params = params
     else
       h = observations_index_search(params)
@@ -130,8 +126,6 @@ class ObservationsController < ApplicationController
         Observation.preload_associations(@observations, :tags)
         render_observations_to_json
       end
-      
-      format.mobile
       
       format.geojson do
         render :json => @observations.to_geojson(:except => [
@@ -414,8 +408,6 @@ class ObservationsController < ApplicationController
             :layout => false)
         end
       end
-      
-      format.mobile
        
       format.xml { render :xml => @observation }
       
@@ -837,7 +829,7 @@ class ObservationsController < ApplicationController
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|
-      fieldset_index = observation.id.to_s      
+      fieldset_index = observation.id.to_s
       
       # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be
@@ -1212,7 +1204,6 @@ class ObservationsController < ApplicationController
     
     respond_to do |format|
       format.html
-      format.mobile { render "add_from_list.html.erb" }
       format.js do
         if fragment_exist?(@cache_key)
           render read_fragment(@cache_key)
@@ -1270,8 +1261,6 @@ class ObservationsController < ApplicationController
           return render_observations_partial(partial)
         end
       end
-      
-      format.mobile
       
       format.json do
         if timestamp = Chronic.parse(params[:updated_since])
@@ -1369,33 +1358,6 @@ class ObservationsController < ApplicationController
     end
   end
   
-  def nearby
-    @lat = params[:latitude].to_f
-    @lon = params[:longitude].to_f
-    if @lat && @lon
-      @observations = Observation.elastic_paginate(
-        page: params[:page],
-        sort: {
-          _geo_distance: {
-            location: [ @lon, @lat ],
-            unit: "km",
-            order: "asc" } } )
-    end
-    @observations ||= Observation.latest.paginate(:page => params[:page])
-    request.format = :mobile
-    respond_to do |format|
-      format.mobile
-    end
-  end
-  
-  def add_nearby
-    @observation = current_user.observations.build(:time_zone => current_user.time_zone)
-    request.format = :mobile
-    respond_to do |format|
-      format.mobile
-    end
-  end
-  
   def project
     @project = Project.find(params[:id]) rescue nil
     unless @project
@@ -1460,7 +1422,6 @@ class ObservationsController < ApplicationController
           })
         end
       end
-      format.mobile
     end
   end
   
@@ -2393,7 +2354,7 @@ class ObservationsController < ApplicationController
     if fp && @flickr_photo && @flickr_photo.valid?
       @flickr_observation = @flickr_photo.to_observation
       sync_attrs = %w(description species_guess taxon_id observed_on 
-        observed_on_string latitude longitude place_guess map_scale)
+        observed_on_string latitude longitude place_guess map_scale tag_list)
       unless params[:flickr_sync_attrs].blank?
         sync_attrs = sync_attrs & params[:flickr_sync_attrs]
       end
@@ -2972,9 +2933,9 @@ class ObservationsController < ApplicationController
     leftover_obs_user_ids = tax_user_ids - obs_user_ids
     leftover_tax_user_ids = obs_user_ids - tax_user_ids
     leftover_obs_user_elastic_params = elastic_params.marshal_copy
-    leftover_obs_user_elastic_params[:where]['user.id'] = leftover_obs_user_ids
+    leftover_obs_user_elastic_params[:filters] << { terms: { "user.id": leftover_obs_user_ids } }
     leftover_tax_user_elastic_params = elastic_params.marshal_copy
-    leftover_tax_user_elastic_params[:where]['user.id'] = leftover_tax_user_ids
+    leftover_tax_user_elastic_params[:filters] << { terms: { "user.id": leftover_tax_user_ids } }
     @user_counts        += Observation.elastic_user_observation_counts(leftover_obs_user_elastic_params)[:counts].to_a
     @user_taxon_counts  += Observation.elastic_user_taxon_counts(leftover_tax_user_elastic_params,
       count_users: leftover_tax_user_ids.length).to_a
@@ -2987,6 +2948,8 @@ class ObservationsController < ApplicationController
     elastic_params = Observation.params_to_elastic_query(
       search_params, current_user: current_user).
       select{ |k,v| [ :where, :filters ].include?(k) }
+    elastic_params[:filters] ||= [ ]
+    elastic_params
   end
 
   def search_cache_key(search_params)

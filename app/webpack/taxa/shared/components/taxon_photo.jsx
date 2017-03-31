@@ -29,6 +29,7 @@ const TaxonPhoto = ( {
             url={urlForTaxon( taxon )}
             onClick={ e => {
               if ( !onClickTaxon ) return true;
+              if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickTaxon( taxon );
               return false;

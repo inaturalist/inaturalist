@@ -6,6 +6,7 @@
 # Author: C13m3n7
 # Author: Cgalindo
 # Author: Cl3m3n7
+# Author: Derugon
 # Author: Element303
 # Author: Eric.LEWIN
 # Author: Gomoko
@@ -135,6 +136,7 @@ fr:
   able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
   about: À propos
   about_bioblitz_results: À propos des résultats de bioblitz
+  about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
   about_conservation_status: À propos de l’état de conservation
   about_establishment_means: À propos des moyens d’implantation
@@ -872,6 +874,7 @@ fr:
   commercial_solicitation: Démarchage commercial, liens vers nulle part, etc.
   commit: Valider
   committed: Validé
+  committed_on: Validé le %{date}
   committing: Validation en cours…
   community_curated: Communauté organisée
   community_id: 'ID de <strong>communauté</strong> :'
@@ -983,6 +986,7 @@ fr:
   create_a_new_taxon: Créer un nouveau taxon
   create_a_query: Créer une requête
   create_an_account: Créer un compte
+  create_an_atlas: Créer un atlas
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   create_observations_by_uploading_photos_to: |-
@@ -991,6 +995,7 @@ fr:
     l’horodatage de la photo. Pour démarrer,
   created: Date de création
   created_by: Créé@{f:e|} par
+  created_by_user_on_date: Créé par %{user} le %{date}
   created_on: Créé@{f:e|} le
   creating_your_account: Création de votre compte…
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
@@ -1025,6 +1030,7 @@ fr:
   custom_project_was_successfully_created: Le projet personnalisé a bien été créé.
   custom_project_was_successfully_updated: Le projet personnalisé a bien été mis à
     jour.
+  customize_location: Personnaliser l’emplacement
   darr_apply_darr: '&darr; Appliquez &darr;'
   dashboard: Tableau de bord
   data_deficient: données insuffisantes
@@ -1177,6 +1183,7 @@ fr:
   edit_a_batch_of_observations: Modifier un lot d’observations
   edit_account_settings_and_profile: Modifier les paramètres &amp; profil d’un compte
   edit_assessment: Modifier une évaluation
+  edit_atlas: Modifier un atlas
   edit_body: Modifier le corps
   edit_colors: Modifier les couleurs
   edit_comment: Modifier votre commentaire
@@ -1355,7 +1362,7 @@ fr:
   file_should_be_in_the_following_format: 'Le fichier doit être dans le format suivant
     : nom du taxon, description'
   fill_out_project_observation_fields: Remplir vos champs d’observation de projet
-  fill_out_your_profile: remplissez votre profil
+  fill_out_your_profile: compléter votre profil
   filling_out_checklist_for_place: Remplir des listes de contrôle pour les lieux que
     vous connaissez bien
   filling_out_your_profile: remplissant votre profil
@@ -1615,9 +1622,9 @@ fr:
   if_you_already_have_an_account: Si vous avez déjà un compte %{article} sur %{site_name}…
   if_you_dont_want_us_to_share_your_data: Si vous ne voulez pas que nous partagions
     vos données
-  if_you_have_any_trouble_with_the_site_check_out: Si vous avez des problèmes avec
-    ce site, veuillez consulter notre <a href="%{help_url}">section d’aide</a> ou
-    inscrire un message sur notre <a href="%{feedback_url}">groupe de commentaires</a>.
+  if_you_have_any_trouble_with_the_site_check_out: Si vous avez des questions, veuillez
+    consulter notre <a href="%{help_url}">section d’aide</a> ou inscrire un message
+    sur notre <a href="%{feedback_url}">groupe de commentaires</a>.
   if_you_have_trouble_with_the_site: 'Si vous avez des problèmes avec le site, veuillez
     consulter notre section d’aide :'
   if_you_use: Si vous utilisez
@@ -1952,6 +1959,7 @@ fr:
     de date.
   locales_: Paramètres régionaux
   locales:
+    bg: Bulgare
     br: Breton
     ca: Catalan
     en: Anglais
@@ -2012,6 +2020,7 @@ fr:
   lowest_rank: Rang le moins élevé
   made_a: a fait un
   make_admin: Rendre administrateur
+  make_an_observation: faire une observation
   mail_disclaimer: '%{site_name} ne permettra pas à ses utilisateurs de vous envoyer
     des invitations supplémentaires au moyen de notre système d’invitation. Merci
     de signaler les abus d’invitation à %{site}.'
@@ -2130,6 +2139,8 @@ fr:
   most_agree: la plupart sont d’accord
   most_disagree: la plupart ne sont pas d’accord
   most_observations: Le plus d'observations
+  most_recent_observation_by_date_observed: Observation vérifiable la plus récente
+    observée par date
   most_species: Le plus d'espèces
   most_observed_species: Espèces les plus observées
   multiple: multiple
@@ -2345,9 +2356,7 @@ fr:
   not_found: Non trouvé
   not_just_creative_commons_licensed: pas seulement sous licence Creative Commons
   not_linked_facebook: Votre compte %{site_name} n’est pas lié à votre compte Facebook
-    &#59;
   not_linked_flickr: Votre compte %{site_name} n’est pas lié à votre compte Flickr
-    &#59;
   not_logged_in: Non connecté
   not_on_this_list: Pas dans cette liste.
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
@@ -2415,9 +2424,10 @@ fr:
   observations_by: Observations de
   observations_by_everyone: Observations de tout le monde
   observations_by_user: Observations de %{user}
-  observations_circle_have_their_radii_scaled: Le rayon des cercles d’observation
-    est réglé proportionnellement à la précision de l’emplacement. Les observations
-    sans données pour préciser l’emplacement sont affichées à la taille minimale.
+  observations_circle_have_their_radii_scaled: |-
+    Le rayon des cercles d’observation est réglé proportionnellement à la
+    précision de leur emplacement. Les observations sans données pour préciser la précision de l’emplacement sont affichées
+    à la taille minimale.
   observations_confirmed: Observations (confirmées)
   observations_deleted: Observations supprimées.
   observations_fields_are: Les champs de l’observation sont des données supplémentaires
@@ -2532,12 +2542,11 @@ fr:
       la même chose avec les lieux.
     comments_panel_title: Curieux de connaître quelles sortes de discussions ont lieu
       sur %{site_name} ?
-    comments_panel_body: <p>%{site_name} est entièrement dédié au partage et à la
-      discussion d’observations de choses vivantes. Voici certaines discussions en
-      cours actuellement…</p> <p>Vous serez abonné automatiquement à toute discussion
+    comments_panel_body: '<p>%{site_name} est entièrement dédié au partage et à la
+      discussion d’observations de choses vivantes. Ci-dessous certaines discussions
+      en cours actuellement (Note : Vous êtes abonné automatiquement à toute discussion
       à laquelle vous avez contribué par des commentaires ou des identifications.
-      Vous pouvez toujours utiliser l’outil Gestion des abonnements sur la droite
-      pour arrêter de recevoir les mises à jour</p>
+      Gérez ces mises à jour dans la section ''Abonnements'' sur la droite).</p>'
     updates_by_you_panel_title: Cet onglet est un moyen rapide de filtrer uniquement
       les mises à jour de votre contenu.
     updates_by_you_panel_body: Souvenez-vous, dans l’onglet 'Toutes les mises à jour',
@@ -2549,9 +2558,9 @@ fr:
       suit…
     youve_got_updates_panel_body_p2: |-
       <ul>
-        <li><strong>Votre contenu :</strong> Activité sur vos observations, comme des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des mises à jour quand quelqu’un ajoute votre observation  à un projet ou l’annote avec des champs supplémentaires.</li>
+        <li><strong>Votre contenu :</strong> Activité sur vos observations, comme des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des mises à jour quand quelqu’un ajoute votre observation  à un projet, ou annotez-le avec des champs supplémentaires.</li>
         <li><strong>Personnes :</strong> Nouvelles observations ou publications de journaux des personnes que vous suivez.</li>
-        <li><strong>Organismes, projets et lieux :</strong> Nouvelles observations des organismes ou lieux particuliers auxquels vous êtes abonnés. Vous pouvez aussi rejoindre des projets pour être mis à jour quand ils publient des notes de journal du projet.</li>
+        <li><strong>Organismes, projets et lieux :</strong> Nouvelles observations des organismes ou lieux particuliers auxquels vous êtes abonnés. Vous pouvez aussi rejoindre des projets quand vous voulez pour être mis à jour quand ils publient des notes de journal du projet.</li>
         <li><strong>Discussions auxquelles vous participez :</strong> Commentaire ou ajout d’identifications au contenu de quelqu’un d’autre vous abonne automatiquement à toute nouvelle activité sur ce contenu. Utilisez l’outil 'Gérer vos abonnements' pour arrêter de recevoir les mises à jour.</li>
       </ul>
   one_by_one: Un par un
@@ -2685,6 +2694,7 @@ fr:
   photo_s: Photo(s)
   photo_type: Type de Photo
   photo_urls_repaired: URL de photo réparées
+  photos_chosen_for_this_taxon: Photos choisies pour ce taxon
   photos_from: Photos de
   photos_of: Photos de
   photos_of_taxon_html: Photos de %{taxon}
@@ -3567,6 +3577,10 @@ fr:
   taxon_observed_by_user: '%{taxon} observé par %{user}'
   taxon_photos_updated: Photos du taxon mises à jour!
   taxon_range: Aire de répartition du taxon
+  taxon_range_created_notice: La gamme de taxons a bien été créée. Veuillez attendre
+    quelques minutes qu’elle apparaisse sur les cartes.
+  taxon_range_updated_notice: La gamme de taxons a bien été mise à jour. Veuillez
+    attendre quelques minutes pour que les modifications apparaissent sur les cartes.
   taxon_removed_from_list: Taxon enlevé de la liste.
   taxon_scheme: Classification du taxon
   taxon_schemes: Classifications de taxons
@@ -4192,7 +4206,8 @@ fr:
   withdrawing: Retrait…
   with_errors: Avec des erreurs
   within_inaturalist: Dans %{site_name}
-  wondering_what_to_do_next: Vous vous demandez quoi faire maintenant? Pourquoi pas
+  wondering_what_to_do_next: Voici quelques étapes suivantes pour vous guider dans
+    l’observation et l’identification du monde naturel
   would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: aimerait de l’aide pour identifier ceci
   x_admin: que %{login} administre
@@ -4375,6 +4390,7 @@ fr:
     observation a été ajoutée
   your: Votre
   your_: Votre
+  your_account_has_been_activated: Votre compte a été activé.
   your_account_has_been_verified: Votre compte %{site_name} a été vérifié! Veuillez
     vous connecter pour continuer.
   your_activation_code_was_missing: Votre code d'activation est manquant. Veuillez
@@ -5184,8 +5200,12 @@ fr:
           les superviseurs du projet de voir vos coordonnées privées.
       edit:
         aggregation_pending: En attente d'aggrégation
-        bioblitz_create_a_new_place_html: '%{link}, assurez-vous qu’il a une frontière,
-          puis revenez ici et réessayez.'
+        new_place_desc_html: "Essayez de voir en utilisant \n<a href=\"%{places_url}\"
+          target=\"_blank\">nos lieux</a>\net assurez-vous que vous obtenez le nom
+          de l'endroit est correct. Si vous\nne pouvez vraiment pas trouver l'endroit
+          que vous souhaitez, envisager\n<a href=\"%{new_place_url}\" target=\"_blank\">la
+          création d'un nouveau lieu</a>,\nmais s'il vous plaît assurez-vous que vous
+          n'êtes pas en train de dupliquer entrée qui existe déjà."
         bioblitz_desc_html: |-
           <p>
             Un bioblitz est une activité durant laquelle les participants tentent d’observer autant
@@ -5411,6 +5431,41 @@ fr:
           où elle se trouve actuellement. Implanté signifie qu’elle est arrivée par une activité
           humaine, alors qu’indigène signifie qu’elle est arrivée sans assistance humaine.
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
+        charts_help_seasonality: |-
+          Ce graphique affiche le nombre d’observations de ce taxon, groupées par
+          mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
+          sont influencés à la fois par le moment où l’organisme peut être  observé et par celui
+          où les gens prennent la peine de les observer. Ainsi, un oiseau peut sembler très actif
+          en mai, mais cela peut aussi être dû à ce que davantage de gens observent les oiseaux en mai, qui
+          tendent à ignorer ces espèces les mois suivants. De même, si vous voyez
+          davantage de libellules en juin qu’en janvier, c’est sans doute parce que nous
+          avons plus d’observateurs dans l’hémisphère nord que dans le
+          sud, et pas parce que les libellules sont plus actives en
+          juin ; vérifiez donc la carte en examinant ces graphiques. C’est toujours une
+          bonne idée d’être critique à propos de ces graphiques, quand ils représentent un faible nombre
+          d’observations ou une grande divergence entre les nombres d’observations
+          « vérifiables » et « qualité de recherche ».
+        charts_help_history: |-
+          Ce graphique affiche le nombre d’observations de ce taxon par mois au cours
+          des dix dernières années. De nouveau, il est biaisé par le nombre de personnes
+          observant, mais il affichera des pics inhabituels dans les observations, et s’il
+          semble plat ou en décroissance malgré un nombre croissant d’observateurs,
+          cela peut suggérer une modification de son abondance.
+        charts_help_other: |-
+          Nous affichons aussi des graphiques saisonniers pour les annotations d’observation.
+          Les annotations sont un nouveau système pour ajouter des métadonnées aux observations en utilisant
+          un vocabulaire restreint de termes. Ainsi, nous n’utilisons que « Étape de vie »
+          et « Phénologie de la plante » (quand la plante fleurit ou produit
+          des fruits). Nous n’avons pas encore de moyen d’ajouter directement des annotations, donc
+          pour le moment, nous convertissons les données des champs d’observation en annotations.
+          Si vous ne voulez pas attendre que nous construisions notre système d’annotations, vous pouvez
+          contribuer aux annotations d’« Étape de vie » en ajoutant des valeurs au champ d’observation
+          qui ont une des valeurs suivantes : Adulte, Ténéral, Chrysalide,
+          Nymphe, Larve, Œuf, ou Juvénile. Ainsi, en particulier, les champs « Étape de vie »
+          et «Étape de vie d’un insecte » sont bons. Pour la « Phgénologie des plantes », nous
+          chefchons n’importe quel champ contenant le mot « phénologie » dans son nom et
+          « fleur » ou « fruit » dans la valeur ; ainsi, le champ « Phénologie de floraison »
+          est un bon candidat à utiliser.
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois
           à <a href="%{url}">%{place}</a>
@@ -5430,6 +5485,13 @@ fr:
           Insect life stage=nymph: Nymphe
           Insect life stage=pupa: Chrysalide
           Insect life stage=adult: Adulte
+        photo_chooser_modal_desc: Faire glisser les photos d’ici vers la gauche, ou
+          les faire glisser ici pour les réarranger.
+        photo_chooser_modal_explanation: |-
+          À noter que la page du taxon affichera les photos de ce taxon
+          et de ses descendants. Les photos choisies pour ce
+          taxon seront cependant affichées en premier. La première photo sera
+          celle par défaut utilisée sur le site.
     taxon_names:
       form:
         new_name_guidelines_html: |-

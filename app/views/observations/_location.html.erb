@@ -58,7 +58,10 @@
   <% if show_observation_coordinates?(observation) %>
     <div class="coordinates">
       <% if !observation.coordinates_viewable_by?(current_user) -%>
-        <%= t(:public_coordinates_obscured_by, :distance=> (Observation::M_TO_OBSCURE_THREATENED_TAXA / 1000) ) %>
+        <%=
+          t( :public_coordinates_obscured_by,
+            distance: observation.public_positional_accuracy ? number_with_delimiter( ( observation.public_positional_accuracy.to_f / 1000 ).round ) : "?" )
+        %>
       <% else %>
         <% if observation.coordinates_obscured? -%>
           <span class="latitude"><label><%= t :lat %></label> <%= observation.private_latitude %></span>,

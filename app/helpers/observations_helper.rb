@@ -1,11 +1,11 @@
 module ObservationsHelper
   def observation_image_url(observation, params = {})
     return nil if observation.observation_photos.blank?
-    size = params[:size] ? "#{params[:size]}_url" : 'square_url'
+    size = params[:size].blank? ? "square" : params[:size]
     photo = observation.observation_photos.sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i
     end.first.photo
-    url = photo.send(size)
+    url = photo.best_url( size )
     # this assumes you're not using SSL *and* locally hosted attachments for observations
     if params[:ssl] || ( defined? request && request && request.protocol =~ /https/ )
       url = url.sub("http://", "https://s3.amazonaws.com/")

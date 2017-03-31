@@ -26,10 +26,6 @@ class ProjectsController < ApplicationController
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
-
-  MOBILIZED = [:join]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -458,7 +454,6 @@ class ProjectsController < ApplicationController
             # just render the default
           end
         end
-        format.mobile
         format.json { render :json => @project }
       end
       return
@@ -776,12 +771,12 @@ class ProjectsController < ApplicationController
       @place = @site.place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      search_wheres = { multi_match: {
+      filters = [ { multi_match: {
         query: @q,
         operator: "and",
-        fields: [ :title, :description ] } }
-      search_wheres["place_ids"] = @place if @place
-      @projects = Project.elastic_paginate(where: search_wheres, page: params[:page])
+        fields: [ :title, :description ] } } ]
+      filters << { term: { place_ids: @place.id } } if @place
+      @projects = Project.elastic_paginate(filters: filters, page: params[:page])
     end
     respond_to do |format|
       format.html
@@ -896,7 +891,7 @@ class ProjectsController < ApplicationController
     dest = options[:dest] || @project || session[:return_to]
     respond_to do |format|
       if error
-        format.any(:html, :mobile) do
+        format.html do
           flash[:error] = error
           redirect_to dest
         end
@@ -905,7 +900,7 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
-        format.any(:html, :mobile) do
+        format.html do
           flash[:notice] = notice
           redirect_to dest
         end

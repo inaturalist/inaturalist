@@ -48,6 +48,7 @@ class LocalPhoto < Photo
       url: ":s3_alias_url",
       only_process: [ :original, :large ]
     )
+    invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
@@ -64,6 +65,7 @@ class LocalPhoto < Photo
   # to pull the metadata from the true original, i.e. before
   # post_processing which creates thumbnails
   before_post_process :extract_metadata
+  after_post_process :set_skip_invalidation_if_delayed
   after_post_process :set_urls
   # ...but part of the metadata is the size of the thumbnails
   # so grab metadata twice (extract_metadata is purely additive)
@@ -75,7 +77,17 @@ class LocalPhoto < Photo
   validates_attachment_content_type :file, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
-  attr_accessor :rotation, :skip_delay
+  attr_accessor :rotation, :skip_delay, :skip_cloudfront_invalidation
+
+  BRANDED_DESCRIPTIONS = [
+    "OLYMPUS DIGITAL CAMERA",
+    "SONY DSC",
+    "MOULTRIE DIGITAL GAME CAMERA",
+    "<KENOX S1050 / Samsung S1050>",
+    "KODAK Digital Still Camera",
+    "DIGITAL CAMERA",
+    "SAMSUNG CAMERA PICTURES"
+  ]
   
   # I think this may be impossible using delayed_paperclip
   # validates_attachment_presence :file
@@ -253,14 +265,19 @@ class LocalPhoto < Photo
       if o.species_guess.blank?
         o.species_guess = nil
       end
-      o.description = [metadata[:dc][:description]].flatten.to_sentence unless metadata[:dc][:description].blank?
-      if o.description.blank? && metadata[:image_description]
+      candidate_description = nil
+      unless metadata[:dc][:description].blank?
+        candidate_description = [metadata[:dc][:description]].flatten.to_sentence.strip
+      end
+      if candidate_description.blank? && metadata[:image_description]
         if metadata[:image_description].is_a?(Array)
-          o.description = metadata[:image_description].to_sentence
+          candidate_description = metadata[:image_description].to_sentence
         elsif metadata[:image_description].is_a?(String)
-          o.description = metadata[:image_description]
+          candidate_description = metadata[:image_description]
         end
       end
+      o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+
       o.build_observation_fields_from_tags(to_tags)
       o.tag_list = to_tags
     end
@@ -338,6 +355,15 @@ class LocalPhoto < Photo
         end
       end
       sizes
+    end
+  end
+
+  def set_skip_invalidation_if_delayed
+    # the delayed job from process_in_background will have split_processing?
+    # be false. Therefore this is just the delayed bit of a save
+    # so never invalidate caches - it would have been done at save time
+    unless file.split_processing?
+      self.skip_cloudfront_invalidation = true
     end
   end
 

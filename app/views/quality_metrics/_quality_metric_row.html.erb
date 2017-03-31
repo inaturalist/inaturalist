@@ -24,7 +24,11 @@
           </td>
           <td width="100%">
             <% for qm in existing_quality_metrics.select{|qm| qm.metric == metric && qm.agree?} %>
-              <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+              <% if qm.user %>
+                <%= link_to user_image(qm.user, title: qm.user.login, alt: qm.user.login), person_by_login_path(qm.user.login) %>
+              <% else %>
+                <%= image_tag @site.logo_square.url, style: "height: 16px", title: SITE_NAME %>
+              <% end %>
             <% end %>
           </td>
           <td class="small meta"><%= (score * 100).round %>%</td>
@@ -39,7 +43,11 @@
           </td>
           <td>
             <% for qm in existing_quality_metrics.select{|qm| qm.metric == metric && !qm.agree?} %>
-              <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+              <% if qm.user %>
+                <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
+              <% else %>
+                <%= image_tag @site.logo_square.url, style: "height: 16px", title: SITE_NAME %>
+              <% end %>
             <% end %>
           </td>
           <td class="small meta percent"><%= ((1 - score) * 100).round %>%</td>

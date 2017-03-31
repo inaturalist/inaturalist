@@ -1,0 +1,121 @@
+- content_for(:title) do
+  = t(:curating)
+  = @user ? @user.login : t(:users)
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function( ) {
+      $( "#reject_user_name" ).userAutocomplete( {
+        idEl: $( "#reject_user_id" ),
+        afterSelect: function( ui ) {
+          $( "#reject_user_id" ).val( ui.item.user_id );
+        }
+      } );
+    } )
+.container
+  .row
+    .col-xs-12
+      %form.clear.buttonrow{:method => "get"}
+        %input#id.text{:name => "id", :type => "text", :value => "#{@display_user.try(:login)}"}/
+        %input{ type: "submit", value: "Look Up User", class: "button" }
+  - if @display_user
+    .row
+      .col-xs-8
+        %table.table
+          - for user_attr in User.column_names
+            %tr
+              %th= user_attr
+              %td= @display_user.send(user_attr).to_s.html_safe
+          - @display_user.preferences.each do |pref,val|
+            %tr
+              %th= pref
+              %td= val
+          %tr
+            %th Recent user agents
+            %td
+              - if !@observations.blank?
+                %ul
+                  - for observation in @observations
+                    - next if observation.user_agent.blank?
+                    %li
+                      = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
+              - else
+                No observations to check
+      .col-xs-4
+        %p
+          = user_image( @display_user, size: "large", class: "img-responsive center-block" )
+        - if @display_user.is_curator?
+          = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
+        - else
+          = link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post, class: "btn btn-block btn-success"
+        - if @display_user.active?
+          = link_to "Suspend user", suspend_user_path(@display_user), class: "btn btn-block btn-warning"
+        - else
+          = link_to "Unsuspend user", unsuspend_user_path(@display_user), class: "btn btn-block btn-success"
+        - unless @display_user.spammer?
+          = link_to t(:flag_as_spammer), set_spammer_path(@display_user, spammer: true), method: :post, class: "btn btn-block btn-warning"
+        - unless @display_user.known_non_spammer?
+          = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
+            method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
+            class: "btn btn-block btn-success"
+        = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
+        = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
+        = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put, |
+          :data => {:confirm => t(:are_you_sure?)},                                                                                |
+          class: "btn btn-block btn-danger"
+        = link_to t(:delete_user), @display_user, :method => :delete,           |
+          :data => {:confirm => t(:are_you_really_sure_want_delete_this_user)}, |
+          class: "btn btn-block btn-danger"
+        = separator
+        - extra = capture do
+          = link_to comments_by_login_path(@display_user.login), class: "list-group-item" do
+            %span.badge= @display_user.comments.count
+            %i.fa.fa-comments
+            Comments
+        = render :partial => 'glance', :locals => {:user => @display_user, :extra => extra}
+        - unless @display_user.provider_authorizations.blank?
+          %h3= t(:provider_authorizations)
+          %ul
+            - for pa in @display_user.provider_authorizations
+              %li
+                = pa.provider_name
+                (#{pa.provider_uid})
+                .small.meta
+                  = t(:created_on)
+                  = l pa.created_at
+        - if fi = @display_user.flickr_identity
+          %h3= t(:flickr_identity)
+          = link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}"
+          = link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}"
+          .small.meta
+            = t(:created_on)
+            = l fi.created_at
+        .merge.box.upstacked
+          %h3 Merge User
+          = form_tag merge_user_path( @display_user ), class: "form", method: :put do
+            .form-group
+              = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete"
+              = hidden_field_tag :reject_user_id
+            = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }
+  - if !@users.blank?
+    .row
+      .col-xs-12
+        %table.table
+          %thead
+            %tr
+              %th login
+              %th id
+              %th created_at
+              %th confirmed_at
+              %th obs
+              %th IDs
+              %th comments
+          %tbody
+            - for user in @users
+              %tr
+                %td= link_to user.login, url_for(:id => user.id)
+                %td= user.id
+                %td= user.created_at
+                %td= user.confirmed_at
+                %td= link_to user.observations_count, observations_by_login_path(user.login)
+                %td= link_to user.identifications_count, identifications_by_login_path(user.login)
+                %td= link_to @comment_counts_by_user_id[user.id].to_i, comments_by_login_path(user.login)

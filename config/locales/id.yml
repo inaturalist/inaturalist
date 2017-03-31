@@ -2,20 +2,22 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Arief
+# Author: Bramadiarya
+# Author: Hidayatsrf
 # Author: Kenrick95
 ---
 id:
-  licensing_your_content: "Licensing your content gives others the legal right to
-    use it if\nthey stick to the terms of the license. %{site_name} uses your Creative\nCommons-licensed
-    content to share with data partners like the \n<a href=\"http://www.gbif.org/\">Global
-    Biodiversity Information Facility</a>\n(GBIF)."
+  licensing_your_content: Melisensi konten Anda memberi orang lain hak hukum untuk
+    menggunakannya jika mereka tetap dengan persyaratan lisensi. %{Site_name} menggunakan
+    konten Anda yang berlisensi Creative Commons untuk berbagi dengan mitra Data seperti
+    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
   you_think_observation_inacurate: Jika Anda berpikir pengamatan ini tidak akurat,
     silakan menambahkan ID, berpartisipasi dalam penilaian kualitas di atas, atau
     menggambarkan ketidaktepatan di komentar.
   we_also_support: Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a
     href="http://picasaweb.google.com"> Picasa </a>, dan <a href="http://facebook.com">
     Facebook </a> untuk hosting gambar.
-  a_default_taxon_name_will_automatically_created: Sebuah nama takson yang salah akan
+  a_default_taxon_name_will_automatically_created: Sebuah nama standar takson akan
     secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan
     takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama
     ilmiah usang, dll).
@@ -86,22 +88,26 @@ id:
     other: '%{count} taxa matching current filters'
   a: a
   a_: a
-  a_community_for_naturalist: Komunitas untuk Naturalists
+  a_community_for_naturalist: Komunitas untuk Naturalis
   a_few_points_to_make_things_clear: 'Beberapa poin untuk membuat hal-hal sedikit
     lebih jelas:'
   a_flag_for_x: a flag for %{x}
-  a_greasemonkey_script: Script greasemonkey
-  a_member_of_taxon_html: a member of %{taxon}
+  a_greasemonkey_script: Skrip greasemonkey
+  a_member_of_taxon_html: anggota dari %{taxon}
   able_to_connect_flickr: Bagus! Kami sudah menghubungkan ke akun Flickr Anda.
   about: Tentang
   about_bioblitz_results: Tentang hasil bioblitz
-  about_community_taxa: Tentang komunitas taxa
-  about_external_links: Tentang Link eksternal
+  about_charts: Tentang Grafik
+  about_community_taxa: Tentang komunitas taksa
+  about_conservation_status: Tentang Status Konservasi
+  about_external_links: Tentang Pranala Luar
   about_licenses: Tentang Lisensi
   about_licensing: Tentang perizinan
-  about_life!: Tentang kehidupan anda!
+  about_life!: Tentang kehidupan!
+  about_names: Tentang Nama
   about_places: Tentang tempat
-  about_the_cc_licenses: Tentang lisensi kreativitas umum
+  about_taxon_changes: Tentang Perubahan Takson
+  about_the_cc_licenses: Tentang lisensi Creative Commons
   about_the_taxobox_raquo: Tentang Taxobox & raquo;
   about_these_licenses: Tentang lisensi ini
   about_this_map: Tentang peta ini
@@ -110,34 +116,36 @@ id:
   acc: Acc (m)
   account: Akun
   accept: Terima
-  accept_community_identifications: Menerima identifikasi komunitas
+  accept_community_identifications: Menerima identifikasi dari komunitas
   accuracy: akurasi
+  accuracy_m: Akurasi (m)
   accuracy_meters: akurasi (meter)
   accuracy_of_the_coordinates: Keakuratan koordinat di meter. Anda dapat mengedit
     ini dengan klik link "edit" di atas atau dengan mengklik penanda peta dan menyeret
     pegangan. Cobalah untuk membuat lingkaran cukup besar bahwa Anda yakin Anda berada
     di suatu tempat di dalamnya.
   acquaintances: kenalan
+  action: Tindakan
   actions: Tindakan
   activate_user: Aktifasi pengguna
   active: Aktif
-  activity_settings: Pengaturan pengaktifan
+  activity_settings: Pengaturan aktivitas
   adapted_by_name_from_a_work_by_original: Adapted by %{name} from a work by %{original}
   add: Tambahkan
   add_a: menambahkan
   add_a_batch_of_observations: Menambahkan sejumlah observasi
   add_a_batch_of_observations_by_csv: menambahkan sejumlah observasi dari CSV
-  add_a_batch_of_taxa: Menambahkan sejumlah taxa
+  add_a_batch_of_taxa: Menambahkan sejumlah taksa
   add_a_comment: Tambahkan Komentar
   add_a_field: Tambahkan kolom
   add_a_flag: Tambahkan sebuah penanda
-  add_a_link_raquo: menakbahkan link &raquo;
+  add_a_link_raquo: menambahkan pranala &raquo;
   add_a_name: Tambahkan nama
   add_a_new_change_group: menambahkan perubahan grup baru
   add_a_new_observation_to_id_please!: menambahkan observasi baru ke identitas!
   add_a_place_raquo: menambahkan lokasi &raquo;
   add_a_single_observation: menambahkan satu observasi
-  add_a_taxon: menambahkan taksonomi
+  add_a_taxon: menambahkan takson
   add_all_your_matching_obs_of_this_taxon: menambahkan semua observasi yang sama.
     dalam taksonomi ini kedalam proyek
   add_all_your_matching_obs_to_this_project: menambahkan semua observasimu yang sama
@@ -147,9 +155,9 @@ id:
   add_an_observation: menambahkan observasi
   add_an_observation?: menambahkan observasi?
   add_an_observation_of: Add an observation of %{taxon}
-  add_another: Tambah lagi
-  add_another_flag: menambahkan penananda lain
-  add_another_photo: penambahkan foto lain
+  add_another: Tambahkan yang lain
+  add_another_flag: menambahkan penanda lain
+  add_another_photo: Menambahkan foto lain
   add_another_section: menambahkan bagian lain
   add_another_subscription: menambahkan pelanggan lain
   add_asset: menambahkan aset
@@ -164,6 +172,7 @@ id:
   add_edit_more_fields: Menambah / mengedit halaman lainnya
   add_description: Add %{description_name}
   add_from_your_observations: Tambahkan dari pengamatan Anda
+  add_link: Tambahkan pranala
   add_listed_taxa_from_observations: Tambahkan taksa terdaftar dari pengamatan
   add_higher_level_taxon: Tambahkan takson-tingkat yang lebih tinggi (misalnya "burung")
   add_id: tambahkan identitas
@@ -171,14 +180,15 @@ id:
   add_more_photos: Tambahkan foto lainnya
   add_new_lexicon: Tambahkan kosa kata baru
   add_new_observations: Tambahkan pengamatan baru
-  add_new_photos_by_their_ids: Tambahkan foto baru dari ID Flickr mereka (harus kreatif!)
+  add_new_photos_by_their_ids: Tambahkan foto baru dari ID Flickr mereka (harus berlisensi
+    Creative Commons!)
   add_new_place: Tambahkan tempat baru
   add_new_rule: Menambahkan aturan baru
   add_new_source: Menambahkan sumber baru
   add_new_taxon_name: Tambahkan nama takson baru
   add_notes_about_this_taxon: Menambahkan catatan tentang takson ini di tempat ini,
     misalnya di mana dan kapan itu terjadi.
-  add_obs_from_a_link: 'Add Obs from list: %{link}'
+  add_obs_from_a_link: 'Menambahkan Obs dari daftar: %{link}'
   add_obs_from_a_list: Tambahkan pengamat dari Daftar
   add_observation: Tambahkan pengamatan
   add_observations!: Tambahkan Pengamatan!
@@ -191,22 +201,23 @@ id:
   add_observations_project: Tambahkan pengamatan untuk proyek ini
   add_one: Tambahkan satu!
   add_photos: Tambahkan foto
-  add_photos_to_this_observation: Tambahkan foto pengamatan ini
+  add_photos_to_this_observation: Tambahkan foto pada pengamatan ini
   add_place: Tambahkan Tempat
   add_several_observations_at_once: Tambahkan beberapa pengamatan sekaligus
   add_shape: Tambahkan bentuk
-  add_some_now: Tambahkan beberapa saat
+  add_some_now: Tambahkan beberapa sekarang
   add_tags: Tambah penanda
   add_tags_to_selected_taxa: Tambahkan tag ke taksa yang dipilih
   add_taxa: Tambahkan taksa
   add_taxa_to_places: menambahkan taksa ke tempat
   add_taxon_batch_to: Add Taxon Batch to %{list}
   add_taxon_range: Tambahkan jarak taksa
-  add_taxonomic_tags_to: Tambahkan tag taksonomi untuk dipilih Flickr Foto & raquo;
+  add_taxonomic_tags_to: Tambahkan tag taksonomi untuk foto Flickr yang dipilih &raquo;
   add_taxonomic_tags_to_the_fickr_photos: Tambahkan tag taksonomi untuk foto Fickr
     terkait dengan pengamatan yang dipilih.
   add_to: Tambahkan ke
   add_to_a_scheme: Tambahkan ke skema
+  add_to_a_project: Tambahkan ke proyek
   add_to_calendar: Tambahkan ke kalender
   add_to_checklist: Tambahkan kedalam daftar
   add_to_favorites: Tambahkan ke favorit
@@ -217,9 +228,9 @@ id:
   add_to_your_list: Tambahkan ke daftar
   add_your_email_to_get: Tambahkan email Anda untuk mendapatkan umpan balik pada pengamatan
     Anda dari masyarakat. Jika Anda lebih suka tidak berbagi, periksa kembali segera!
-  add_your_own_observations_at: Add your own observations at %{site_name}
+  add_your_own_observations_at: Tambahkan pengamatan Anda sendiri di %{site_name}
   add_your_photo: tambahkan foto anda
-  add_your_photo_to: Add your photo to %{project}
+  add_your_photo_to: Tambahkan foto Anda ke %{project}
   added: Ditambahkan
   added!: Ditambahkan!
   added_an: menambahkan
@@ -238,11 +249,12 @@ id:
   additional_range_data_from_an_unknown_source: Berbagai data tambahan dari sumber
     yang tidak diketahui
   admin: Admin
-  admin_any_projects: admin setiap proyek
-  admin_tools: Alat Admin
+  admin_any_projects: pengurus setiap proyek
+  admin_tools: Peralatan Pengurus
   agree: Setuju
   agree?: Setuju?
   agree_to_the_project_terms: Setuju dengan persyaratan proyek
+  agree_with_current_taxon: Setuju dengan takson saat ini
   agreeing: menyetujui...
   aka: alias
   all: Semua
@@ -255,11 +267,11 @@ id:
   all_photos: Semua foto
   all_places: Semua tempat
   all_projects: Semua proyek
-  all_rights_reserved: Semua yang dilindungi
-  all_species: Smemua spesies
+  all_rights_reserved: Hak cipta dilindungi undang-undang
+  all_species: Semua spesies
   all_taxa:
     rank:
-      kingdom: Kingdom
+      kingdom: Kerajaan
       class: Kelas
       phylum: Filum
       species: Spesies
@@ -324,17 +336,18 @@ id:
       other: '%{count} other animals'
   all_taxa_in_this_guide: Semua taksa dalam panduan ini
   all_taxonomic_groups: '&laquo; Semua grup taksonomi'
+  all_updates: Semua Pembaruan
   all_your_observations_will_default_this_time_zone: Semua pengamatan Anda akan otomatis
     masuk ke zona waktu ini kecuali Anda melakukan pegaturan lain.
-  all_your_observations_will_default_to_this_time_zone: Semua pengamatan Anda akan
-    otomatis masuk ke zona waktu ini kecuali Anda melakukan pegaturan lain.
+  all_your_observations_will_default_to_this_time_zone: Semua pengamatan Anda otomatis
+    akan masuk ke zona waktu ini kecuali Anda menentukan lain.
   all_your_projects: Semua proyek Anda
   allow_any: mengizinkan semua
   allow_curator_coordinate_access: Memungkinkan kurator mengkoordinasikan akses
   allow_project_curators_to_view_your_private_coordinates: Memungkinkan kurator proyek
     untuk melihat koordinat pribadi Anda
   allowed_establish_means_values: Nilai rata-rata pembuatan yang diizinkan
-  allowed_html: HTML yang deiizinkan
+  allowed_html: HTML yang diizinkan
   allowed_occurrence_status_values: Status terjadinya nilai yang diizinkan
   allowed_values: Nilai yang diizinkan
   alphabetical: Alfabet
@@ -377,16 +390,17 @@ id:
     bawah ini.
   appropriate?: Tepat?
   arachnids: arakhnida
-  archives: Diarsipkan
+  archives: Arsip
   are_you_really_sure_want_delete_this_user: Apakah Anda benar-benar yakin Anda ingin
     menghapus pengguna ini dan semua isinya?
   are_you_sure?: Apakah Anda yakin?
+  are_you_sure_no_undo: Apakah Anda yakin? Ini tidak dapat dibatalkan.
   are_you_sure_delete_asset: Apakah Anda yakin ingin menghapus aset ini?
   are_you_sure_delete_observation_from_project: apakah anda yakin ingin menghapus
     observasi ini dari %{project}?
   are_you_sure_delete_post: Apakah Anda yakin ingin menghapus postingan ini?
-  are_you_sure_delete_taxon_move_associates: Are you sure you want to delete %{taxonname}
-    (%{taxonid}) and move all its associates?
+  are_you_sure_delete_taxon_move_associates: Apakah Anda yakin ingin menghapus %{taxonname}(%{taxonid})
+    dan memindahkan semua asosiasi?
   are_you_sure_delete_this: Apakah Anda yakin ingin menghapus ini? Anda mungkin harus
     memeriksa untuk melihat apakah ia memiliki pengamatan atau taksa terdaftar pertama.
   are_you_sure_delete_this_place: Apakah Anda yakin ingin menghapus tempat ini?
@@ -396,6 +410,7 @@ id:
   are_you_sure_remove_curator: Apakah Anda yakin ingin menghapus %{user} sebagai kurator?
   are_you_sure_remove_from_project: Apakah Anda yakin ingin menghapus %{user} dari
     proyek ini?
+  are_you_sure_remove_photo: Apakah Anda yakin ingin menghapus foto ini?
   are_you_sure_remove_taxon_from_list: Apakah Anda yakin ingin menghapus taksa ini
     dari daftar?
   are_you_sure_remove_taxon_from_place: Apakah Anda yakin ingin menghapus takson ini
@@ -448,8 +463,10 @@ id:
     ini?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Apakah Anda yakin ingin
     menghapus takson ini dari daftar %{place}?
+  articles: Artikel
   associated_observations: pengamatan terkait
   associated_taxa: Taksa yang terkait
+  attention: Perhatian
   you_sure_delete_list: Apakah Anda yakin ingin menghapus daftar ini?
   you_sure_delete_taxon_from_list?: Apakah Anda yakin ingin menghapus %{taxon} ini
     dari daftar?
@@ -510,7 +527,7 @@ id:
   back_to_x_journal: Kembali ke %{user}'s journal
   back_to_x_observations: Kembali ke %{user}'s observations
   back_to_your_lists: Kembali ke daftar anda
-  back_to_your_journal: Kembali ke journal anda
+  back_to_your_journal: Kembali ke jurnal anda
   back_to_your_observations: Kembali ke pengamatan anda
   back_to_your_profile: Kembali ke profil anda
   back_to_your_projects: Kembali ke proyek anda
@@ -521,6 +538,7 @@ id:
   beacuse_we_recently_changed_auth_system: Karena kami baru saja mengubah sistem otentikasi
     pengguna Anda, hal itu perlu bagi sandi Anda diatur ulang.
   because: Karena
+  because_of: karena
   before_importing_photos: sebelum memasukkan foto
   before_you_can_contribute_your_observations: sebelum Anda dapat mengkontribusikan
     pengamatan Anda.
@@ -551,6 +569,8 @@ id:
   browse: Telusuri
   browse_all_projects: Mencari semua proyek
   browse_all_species: Mencari semua spesies
+  browse_observations: Cari Pengamatan
+  browse_people: Cari Orang
   browse_projects: Jelajahi proyek
   browse_species_that_occur_near_this_observation: Mencari spesies yang dekat dengan
     lokasi observasi
@@ -573,6 +593,7 @@ id:
   cancel: Batalkan
   cant_flag_an_object_that_doesnt_exist: Tidak dapat menandai objek yang tidak ada
   cant_merge_a_taxon_with_itself: Tidak dapat menggabungkan takson yang sama
+  captive: Peliharaan
   captive_cultivated: Ditangkarkan / dibudidayakan
   card: Kartu
   case_plural: S
@@ -615,12 +636,13 @@ id:
   cc_by_sa_name: Attribution-ShareAlike
   cc_used_under_a: Creative Commons, digunakan di bawah
   change: Ubah
+  change_admin: Perubahan Admin
   change_cover: Merubah sampul
   change_descriptions:
     split: Takson lama dibagi menjadi beberapa taksa baru
     merge: Beberapa taksa lama disatukan dalam satu takson baru
     swap: 1-to-1 merubah nama
-    drop: Konsep takson benar-benar valid, dipelihara untuk tujuan sejarah atau kompatibilitas
+    drop: Konsep takson sangat tidak valid, dipelihara untuk tujuan sejarah atau kompatibilitas
       pasangan
     stage: Siapkan konsep aktif untuk rilis sebagai bagian dari kelompok perubahan
   change_geoprivacy: Ubah privasi geografi
@@ -674,6 +696,7 @@ id:
   check_lists_for: Daftar nama lainnya untuk %{place}
   check_out_my_observations_at: Jika Anda ingin, Anda dapat memeriksa pengamatan saya
     di
+  check_out_our_blog: Lihat Blog kami
   check_out_what_the_observation: Lihat tampilan observasi yang sedang anda coba untuk
     mengidentifikasi bagaimana tampilannya.
   check_out_your_life_list: Periksa Daftar Hidup Anda
@@ -701,6 +724,7 @@ id:
   choose_from_your_lists: Pilih dari daftar anda
   choose_good_default_photos: memilih yang baik foto bawaan dari kolam foto Creative
     Commons di Flickr
+  choose_photos: Pilih foto
   choose_photos_for_this_taxon: Pilih foto dari takson ini
   choose_photos_to_tag_from_photostream: Pilih foto untuk menandai dari photostream
     anda
@@ -733,6 +757,7 @@ id:
     menggunakan warna bunga. Silakan kosongkan untuk warna yang tidak akan berguna dalam kategorisasi, seperti mamalia coklat dan pakis hijau.
   colors: Warna
   columns: Kolom
+  combine: Menggabungkan
   comma_separated_list_of_tracking_codes: |-
     Comma-separated list of tracking codes. Add these if you want to append a tracking code when sending
     people to the new observation form, e.g. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
@@ -740,6 +765,7 @@ id:
   comma_separated_please: Tolong dipisahkan dengan koma
   comment_preview: Tampilan komentar
   comment: Komentar
+  comment_feed: Umpan komentar
   comment_deleted: Hapus komentar
   commented: Telah dikomentari
   comments: Komentar
@@ -775,6 +801,7 @@ id:
   configure_a_widget_to_show: Mengkonfigurasi widget untuk menunjukkan %{site_name}
     pengamatan di website atau blog Anda. Anda mungkin harus memasukkan CSS tertanam
     dalam <code>&lt;head&gt;</code> HTML Anda. Jangan ragu untuk menulis ulang CSS.
+  confirm: Memastikan
   confirm_membership: konfirmasi keanggotaan
   confirm_new_password: Konfirmasi kata sandi
   confirm_now: Konfirmasi sekarang
@@ -805,6 +832,7 @@ id:
   contain_all_descendants?: Apakah daftar ini berisi semua keturunan takson ada di
     sini?
   contest: kontes
+  continue: Lanjutkan
   contributions: kontribusi
   contributions_from: Kontribusi dari
   contributor_cannot_be_found: Kontributor tidak dapat ditemukan
@@ -858,6 +886,7 @@ id:
   create_a_new_taxon: Membuat taksa baru
   create_a_query: Membuat pertanyaan
   create_an_account: Buat akun
+  create_an_atlas: Buat Atlas
   create_new_taxon: Membuat taksa baru
   create_observations: Membuat pengamatan
   create_observations_by_uploading_photos_to: |-
@@ -865,11 +894,13 @@ id:
     Untuk memulai,
   created: Telah dibuat
   created_by: Dibuat oleh
+  created_by_user_on_date: Dibuat oleh %{user} pada %{date}
   created_on: Dibuat pada
   creating_your_account: sedang membuat akun anda...
   creative_commons_flickr_tagged: Creative Commons Flickr Photos Tagged
   creative_commons_unless_otherwise_noted: Creative Commons kecuali dinyatakan lain.
   critically_endangered: Terancam punah
+  critically_imperiled: Terancam kritis
   css_description: Ini akan dapat dimasukkan setelah semua css lain masuk pada halaman.
   csv: CSV
   csv_file: Berkas CSV
@@ -894,6 +925,7 @@ id:
   custom_project_fields: Proyek lapangan kustom
   custom_project_was_successfully_created: Proyek kustom telah berhasil dibuat
   custom_project_was_successfully_updated: Proyek kustom telah berhasil diperbaharui
+  customize_location: Sesuaikan Lokasi
   darr_apply_darr: '&darr; Apply &darr;'
   dashboard: Dashboard
   data_deficient: Kekurangan data
@@ -1000,12 +1032,15 @@ id:
   display_link_to_checklist: Tampilkan tautan ke daftar proyek dari halaman proyek
   display_listings_added_by_curators: Daftar layar ditambahkan oleh kurator
   display_listings_from_place: Daftar tampilan dari tempat
+  drop_it: Jatuhkan
+  do_not_show_this_message_again: Jangan tampilkan pesan ini lagi
   do_you_know_where_this_species_lives: Apakah anda mengetahui dimana spesies tersebut
     hidup?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Apakah Anda belajar nematoda?
     Apakah Anda ahli terkemuka di dunia pada taksonomi teritip? Apakah Anda hanya
     ingin melihat bunga-bunga cantik? Mengisi profil Anda menambahkan beberapa kepribadian
     dan membantu membangun kredibilitas Anda ketika membantu orang dengan identifikasi.
+  do_you_want_to_proceed: Apakah Anda ingin melanjutkan?
   does_the_location_seem_accurate: Apakah lokasi tampak akurat?
   does_the_date_seem_accurate: Apakah tanggal tampak akurat?
   doesnt_have_default_photo: belum memiliki foto default/standar.
@@ -1026,10 +1061,12 @@ id:
   draft_: Rancangan
   draft_saved: Rancangan tersimpan!
   drafts: Rancangan
+  drag_and_drop_some_photos: Drag & drop beberapa foto
   edit: Ubah
   edit_a_batch_of_observations: Menrubah sejumlah observasi
   edit_account_settings_and_profile: Rubah pengaturan akun &amp; profil
   edit_assessment: Merubah penilaian
+  edit_atlas: Mengedit Atlas
   edit_body: merubah isi pesan
   edit_colors: Merubah warna
   edit_comment: Rubah komentar Anda
@@ -1037,6 +1074,10 @@ id:
   edit_field: Merubah halaman
   edit_flagged_observation: Merubah penandaan pada pengamatan
   edit_license: Mengubah lisensi
+  edit_multiple_dates: Mengedit beberapa tanggal
+  edit_multiple_descriptions: Mengedit beberapa deskripsi
+  edit_multiple_locations: Mengedit beberapa lokasi
+  edit_multiple_species: Mengedit beberapa spesies
   edit_notes: Merubah catatan
   edit_photos: Merubah foto
   edit_photos_for_observation_id: Merubah foto untuk pengamatan %{obs_id}
@@ -1047,13 +1088,14 @@ id:
   edit_selected: Rubah yang dipilih
   edit_source: Merubah sumber
   edit_taxa: Merubah taksa
+  edit_taxon: Mengedit takson
   edit_taxon_change: mengedit perubahan taksonomi
   edit_taxon_link: Merubah rangkaian taksa
   edit_taxon_range: Merubah jarak taksa
   edit_the_observation: Merubah pengamatan
   edit_this_link: Ganti link ini
   edit_your_account: Rubah akun anda
-  edit_your_account_and_profile_html: Rubah akun anda &amp; Profil
+  edit_your_account_and_profile_html: Mengedit Akun & Profil Anda
   edit_your_default_settings: Rubah pengauran standar anda
   edit_your_global_project_settings: Mengedit pengaturan proyek global Anda
   edit_your_identification: Mengedit identifikasi Anda
@@ -1096,10 +1138,11 @@ id:
   embed_widget_project: Letakkan widget untuk proyek ini pada website anda
   enable_offline_access: Perbolehkan akses offline
   enable_offline_access_for_mobile: Aktifkan akses offline untuk ponsel
+  enlarge: Memperbesar
   end: Selesai
   endangered: terancam punah
   endemic: endemik
-  endemic_to_x: endemik %{x}
+  endemic_to_x: endemik pada %{x}
   eol: EOL
   eol_collection_url: EOL collection URL
   error_updating_photo: 'Terjadi kesalahan pada pembaharuan foto: %{photo_errors}'
@@ -1148,6 +1191,7 @@ id:
   extinct_in_the_wild: punah di alam liar
   extra_properties: Properti ekstra
   extras: Extra
+  evidence_of_organism?: Bukti organisme?
   facebook: Facebook
   facebook_account_information: Informasi akun facebook anda
   facebook_account_not_linked: '%{user} tidak memiliki akun facebook terkait lagi,
@@ -1161,8 +1205,11 @@ id:
   facebook_options: Opsi facebook
   failed_to_find_your_location: Gagal menemukan lokasi Anda.
   failed_to_repair_photo: 'Gagal untuk meperbaiki foto: %{errors}'
+  failed_to_save_record: Gagal menyimpan catatan. Silakan coba lagi nanti.
   "false": Salah
   faq: Pertanyaan yang sering diajukan
+  fave: favorit
+  faves: Favorit
   Family: Keluarga
   favorite_taxa: Taksa favorit
   favorites: Kesukaan
@@ -1181,13 +1228,14 @@ id:
     <strong>Note:</strong> Jika Anda ingin membuat halaman, periksa untuk melihat apakah
     orang lain telah membuat untuk menghindari duplikasi.
   fields: Halaman
+  fields_: Bidang
   fields_can_only_be_edited_by_the_people_who: laman hanya bisa diedit oleh orang-orang
     yang menciptakan mereka dan kurator situs
   fields_merged: Penggabungan halaman
   file_should_be_in_the_following_format: 'File harus dalam format berikut: nama takson,
     deskripsi'
   fill_out_project_observation_fields: Isi bidang pengamatan proyek
-  fill_out_your_profile: mengisi profil Anda
+  fill_out_your_profile: melengkapi profil Anda
   filling_out_checklist_for_place: mengisi daftar periksa untuk tempat yang Anda kenal
     baik
   filling_out_your_profile: mengisi profil Anda
@@ -1215,10 +1263,13 @@ id:
   find_suitable_observations: Cari pengamatan yang cocok
   find_unsuitable_observations: Temukan pengamatan yang tidak sesuai
   find_your_current_location: Cari lokasi Anda saat ini
+  finished: Selesai
+  finished_with_page: Selesai Dengan Halaman
   first_confirmed_inat_observation: Observasi yang pertama kali dikonfirmasi %{site_name}
   first_connect_your_provider_account_to_your_site: 'Pertama, Hubungkan akun anda
     ke %{provider} %{site_name}:'
   first_inat_observation: Observasi pertama %{site_name}
+  first_observation: Pengamatan pertama
   first_observer: Pengamat pertama
   first_report: Laporan pertama
   flag: Tanda
@@ -1260,6 +1311,7 @@ id:
   flickr_tagger: Yang menandai Flickr
   flickr_tags: Tanda Flickr
   flickr_youre_all_set: Anda siap untuk mulai mengeksplorasi %{site_name}
+  flowering_phenology: Fenologi pembungaan
   fluid: cairan
   follow_us: Ikuti kami di
   follow_us_on: Follow us on
@@ -1277,11 +1329,13 @@ id:
   from_a_place: Dari tempat
   from_anywhere_change: dari mana saja (<span class="button">change</span>)
   from_eol_collection: Dari koleksi EOL
+  from_flickr_facebook_etc: Dari Flickr, Facebook, dll
   from_in_this_place: Dari dalam tempat ini
   from_list: Dari daftar
   from_this: Dari sini
   from_photos: Dari foto
   from_place: Dari tempat
+  from_soundcloud: dari SoundCloud
   from_your_site_observations: Dari %{site_name} observasi
   from_licensed_site_observations: Dari pengamtan berlisensi %{site_name}
   full_id_please: Butuh ID!
@@ -1305,13 +1359,18 @@ id:
   georeferenced?: georeferensi
   get_current_position: Dapatkan posisi saat ini
   get_started_raquo: Memulai &raquo;
+  get_started: Memulai
   getting_started: Memulai
+  getting_started_guide: Panduan Memulai
   give_it_some_detail: Berikan detail!
   global_conservation_status: 'Status konservasi global:'
   global_names: Nama global
   globally: global
   go: Pergi
+  go_back: Kembali
+  going_to_your_observations: Pergi ke pengamatan Anda...
   good_choice_for_sharing: Pilihan yang baik untuk berbagi dengan para ilmuwan
+  got_it!: Mengerti!
   got_your_data_somewhere_else?: Mendapat data Anda di tempat lain? Kami dapat membantu.
   graft: Cantum
   grafting: Mencantumkan...
@@ -1326,6 +1385,7 @@ id:
   grid: kisi-kisi
   grid_tooltip: Tampilkan tampilan kisi-kisi
   group: Kelompok
+  grouping: Pengelompokan
   guess_description: Dugaan / keterangan
   guides: Panduan
   guide_colors: panduan Warna
@@ -1371,6 +1431,7 @@ id:
   here_are_3_examples: Berikut adalah 3 contoh data yang terbentuk
   here_are_some_things_you_can_do_meantime: 'Berikut adalah beberapa hal yang dapat
     Anda lakukan sementara itu:'
+  heres_a_litle_about: Berikut adalah sedikit tentang
   hex_color_eg: warna hex, e.g. 65644F
   hi: Halo,
   hi_user: Hi %{user}
@@ -1378,6 +1439,7 @@ id:
   hide_details: Sembunyikan rincian
   high: tinggi
   highest_rank: Peringkat tertinggi
+  history: Sejarah
   home: Halaman Utama
   home_faq: Tanya jawab
   however_there_were_some_issues: 'Namun, ada beberapa masalah: %{issues}'
@@ -1394,11 +1456,14 @@ id:
   id_please: Tolong masukkan ID
   id_please_expandable_html: ID<span class='full'> Please</span>!
   identify: Mengenali
+  identify_observations: Mengidentifikasi pengamatan
+  identify_title: Mengenali
   identification: Mengidentifikasi
   identification_deleted: Identifikasi telah dihapus
   identification_saved: Identifikasi telah disimpan
   identification_summary: Catatan identifikasi
   identification_updated: Identifikasi telah diperbaharui!
+  identification_withdrawn: Identifikasi ditarik.
   identifications: Mengidentifikasi
   identifications_by: Diidentifikasi oleh %{user}
   identified?: Telah diidentifiaksi
@@ -1416,6 +1481,9 @@ id:
     pada URL
   if_you_dont_want_us_to_share_your_data: Jika anda tidak ingin kita untuk menyebarkan
     datamu
+  if_you_have_any_trouble_with_the_site_check_out: Jika Anda memiliki pertanyaan,
+    silakan lihat <a href="%{help_url}"> bagian bantuan kami </a> atau posting pesan
+    ke <a href="%{feedback_url}"> Grup umpan balik kami</a> .
   if_you_have_trouble_with_the_site: 'Jika anda memiliki masalah-masalah dengan situs
     ini, mohon periksa kembali bagian bantuan kami:'
   if_you_use: Anda dapat menggunakan
@@ -1430,6 +1498,7 @@ id:
   ignore: abaikan
   ignore_times: abaikan waktu
   image_must_be_exactly: gambar harus tepat dengan lebar 950px dan paling tinggi 400px
+  imperiled: Terancam
   import: Masukkan
   import_all_photos_as_observations: Masukkan semua foto-foto sebagai pengamatan-pengamatan
   import_as_an_observation: Masukkan sebagai pengamatan
@@ -1444,6 +1513,7 @@ id:
   import_observations_from_a_photo: Masukkan pengamatan dari pemberi foto atau data
     dari komputer anda.
   import_photos: Masukan foto-foto
+  import_sounds: Mengimpor suara
   import_tags_from_csv: Masukkan tanda dari CSV
   importing: Masukkan...
   in: dalam
@@ -1459,13 +1529,22 @@ id:
   in_the_past_week: dalam seminggu terakhir
   inactive: tidak aktif
   inactive_taxon: takson yang tidak aktif
-  inactive_taxon_concepts_are: Konsep takson yang tidak aktif baik taksonomi yang
-    usang atau yang sedang ditampilkan untuk perubahan takson. Konsep usang disimpan
+  inactive_taxon_concepts_are: Konsep takson yang tidak aktif baik yang usang secara
+    taksonomi atau sedang ditampilkan untuk perubahan takson. Konsep usang tetap disimpan
     untuk mempertahankan sejarah dan kompatibilitas dengan beberapa situs mitra.
   inappropriate: Tidak pantas?
+  inat_user_profile: '%{site_name}: %{user}''s Profil'
+  inaturalist_is_an_online_community: '%{site_name} adalah komunitas online untuk
+    naturalis! Dengan menambahkan foto Anda, Anda dapat membantu peneliti mempelajari
+    lebih lanjut tentang'
   info: Info
   input_taxon: Masukkan takson
   insects: serangga
+  insect_life_stage: Tahapan Hidup Serangga
+  inspired_by_the_flickr_group: Terinspirasi oleh Grup Flickr <a ID href='http://flickr.com/groups/idplease/'>
+    Silakan </a>, ini adalah tempat untuk memasukkan pengamatan untuk hal yang Anda
+    tidak tahu, dan untuk membantu orang mengidentifikasi makhluk misterius!
+  interactions: Interaksi
   internal_server_error: Kesalahan Server Internal
   introduced: introduksi
   invasive: invasif
@@ -1475,17 +1554,22 @@ id:
   invite_more: Undang lebih banyak
   invite_observations: Undang pengamatan-pengamatan
   invite_people: Undang orang
+  invite_people_to_project: Undang orang ke %{project}
   invite_photos_from_other_sites: Undang foto dari situs lain
   invite_to_project: Undang ke projek
   invite_your_friends: Undang teman-teman anda
+  invite_your_friends_description: Bantu membuat %{site_name} lebih besar, komunitas
+    yang lebih baik dengan mengundang teman Anda untuk bergabung!
   inviteonly: undang-satunya
   invited: Telah diundang
   invited_to_the_following_projects: 'Telah diundang ke projek berikut:'
+  invited_x: Telah diundang %{x}
   inviting: Mengundang...
   iphone: iPhone
   is_a: adalah
   is_an: adalah
   is_not_following_anyone: tidak mengikuti siapapun.
+  is_now: sekarang
   is_the_organism_wild: Apakah organisme liar/naturalisasi?
   is_this_place_a_duplicate: Apakah tempat ini merupakan duplikasi?
   it: Ini
@@ -1496,6 +1580,7 @@ id:
   january: Januari
   join: Gabung
   join_and: Gabung dan
+  join_inat: Gabung %{site_name}!
   join_project: Gabung dengan projek ini
   join_this_project: Gabung dengan projek ini
   joined!: Bergabung!
@@ -1508,14 +1593,18 @@ id:
   jpg_png_or_gif: JPG, PNG, or GIF
   jump_to_letter: Melompat ke surat
   just_added!: Ditambahkan!
+  keep_editing: Tetap mengedit
   kelp_diatoms_and_allies: kelp, diatom, dan sekutu
+  keyboard_shortcuts: Pintasan Papan ketik
   kml: KML
   kml_file_size_error: KML harus kurang dari size 1 MB
   labels: Label
   label_to_group_a_batch_of_taxon_changes: Label untuk sekelompok grup pada perubahan
     takson
+  language_slash_type: Bahasa / Tipe
   large: besar
   last_confirmed_observation: Pengamatan yang telah dikonfirmasi
+  last_inat_observation: '%{site_name} Observasi terakhir'
   last_observation: Pengamatan terakhir
   last_seen: Terakhir dilihat
   lat: Lintang
@@ -1525,6 +1614,10 @@ id:
   layers: Lapisan
   layout: Rancangan
   leaderboards: Papan
+  leaderboard_most:
+    species: Paling banyak spesies pada %{time}
+    observations: Pengamatan terbanyak pada %{time}
+    identifications: Identifikasi terbanyak pada %{time}
   learn!: Pelajari!
   learn_about_the_species_live_in: Pelajari tentang spesies yang hidup
   learn_more: Pelajari lebih lanjut
@@ -1535,6 +1628,10 @@ id:
   leave_this_project: Tinggalkan projek ini
   leaves: meninggalkan
   not_absent: tidak absen
+  legacy_authentication_notice_html: |-
+    Sepertinya Anda menggunakan password dari situs versi lama.
+    Harap diingat <a href="%{url}"> Ubah password Anda </a> untuk versi baru.
+  let_us_walk_you_through: Mari kita pandu Anda melalui fitur utama dari situs ini.
   lexicon: Leksikon
   lexicons:
     scientific_names: Nama Peneliti
@@ -1576,6 +1673,10 @@ id:
   less: Kurang
   license_descriptions_and_images: Deskripsi lisensi dan gambar
   licensing: lisensi
+  licensing_your_content_gives_others_legal: Melisensi konten Anda memberikan orang
+    lain hak hukum untuk menggunakannya jika mereka tetap dengan persyaratan lisensi.
+    %{Site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan
+    mitra Data seperti
   life: Kehidupan
   life!: Kehidupan!
   life_list_updated: Daftar kehidupan diperbaharui!
@@ -1592,11 +1693,22 @@ id:
   link_or_unlink_your_picasa_account: Tautkan atau non-tautkan akun Picasa anda
   link_your_facebook_account: Tautkan akun Facebook anda
   link_your_flickr_account: Tautkan akun Flickr anda
+  link_your_flickr_account_with_inat: Tautkan akun Flickr Anda dengan %{site_name}
+  link_your_flickr_account_with_inat_so: Tautkan akun Flickr Anda dengan %{site_name}
+    sehingga Anda dapat menambahkan foto dari pengamatan Anda.
   link_your_picasa_account: Tautkan akun Picasa anda
+  linked_facebook: Akun %{site_name} Anda saat ini terkait dengan akun Facebook Anda.
+  linked_facebook_automaticaly: Perlu diingat bahwa jika Anda masuk ke %{site_name}
+    melalui Facebook, kami akan secara otomatis kembali menghubungkan %{site_name}
+    Anda dengan akun Facebook. Tampaknya masuk akal jika Anda menggunakan Facebook
+    dan Anda ingin dapat mengimpor foto dari Facebook bukan?
+  linked_facebook_howto: Untuk menghubungkan Facebook dengan %{site_name}, klik link
+    disebelah kanan dan masuk ke Facebook.com.
   linked_facebook_password: Kami tidak akan pernah menanyakan kata sandi Facebook
     anda (tapi Facebook mungkin, periksa url yang dikirimkan tombol anda dan pastikan
     itu adalah Facebook.com). Kami juga tidak akan mengubah data Facebook anda kecuali
     Anda ingin kami melakukannya.
+  linked_flickr: Akun %{site_name} Anda saat ini terkait dengan akun Flickr Anda.
   list: Daftar
   list_deleted: Daftar dihapus.
   list_saved: Daftar disimpan.
@@ -1634,7 +1746,9 @@ id:
   loading_taxa_from_your: Mengunggah taksa dari pengamatan anda...
   loading_wikipedia_description: Mengunggah deskripsi Wikipedia...
   locale_description: Lokal menetapkan bahasa dan tanggal preferensi format Anda
+  locales_: Lokal
   locales:
+    bg: Bahasa bulgaria
     br: Breton
     ca: Bahasa Catalan
     en: Bahasa Inggris
@@ -1645,6 +1759,7 @@ id:
     fr: Bahasa Perancis
     eu: Bahasa Basque
     gl: Bahasa Galician
+    ko: Bahasa korea
     id: bahasa Indonesia
     it: bahasa Italia
     mk: Bahasa Macedonian
@@ -1653,10 +1768,13 @@ id:
     ja: Bahasa Jepang
     zh-CN: Bahasa Cina (disederhanakan)
     zh-TW: Bahasa Cina (tradisional)
+  locality_notes: Catatan lokalitas
   localized_species_accounts: Akun spesies lokal
   location: Lokasi
   location_: Lokasi
   location_is_exact: lokasi yang tepat
+  location_is_public: Lokasi publik
+  location_is_private: Lokasi privat
   log_in: Masuk
   logged_in_as: Masuk sebagai
   login_slash_username: Masuk / nama pengguna
@@ -1679,6 +1797,8 @@ id:
   low: rendah
   lowest_rank: Ranking terendah
   made_a: membuat sebuah
+  make_admin: Jadikan pengurus
+  make_an_observation: buat sebuah observasi
   main_content: Konten Utama
   make_a_new_place: Buat tempat baru
   make_a_taxon_swap_instead?: Membuat sebuah TaxonSwap bukan?
@@ -1693,6 +1813,7 @@ id:
     ini;
   make_this_the_primary_listing: Buat ini menjadi daftar utama
   mammals: mamalia
+  manage: Kelola
   manage_all_your_subscriptions: Kelola semua abonemen Anda
   manage_names: Kelola nama
   manage_your_project_invitations: Kelola undangan proyek Anda
@@ -1722,10 +1843,13 @@ id:
   map_tooltip: Tunjukan tampilan peta
   map_for: Peta untuk
   mark_as_reviewed: Tandai sebagai telah ditinjau
+  mark_all_as_reviewed: Tandai Semua sebagai Telah ditinjau
+  mark_all_as_unreviewed: Tandai semua sebagai belum ditinjau
   matched_several_different_taxa: cocok dengan beberapa taksa yang berbeda
   media: Media
   medium: Menengah
   members: Anggota
+  mentioned_you_in_noun_html: '%{user} menyebut Anda di %{noun}'
   mentions: Sebutan
   merge: Gabungkan
   merge_it_with_another_place: Gabungkan dengan tempat lainnya
@@ -1742,12 +1866,19 @@ id:
   mollusks: Moluska
   momentjs:
     shortRelativeTime:
-      s: s
+      future: dalam %s
+      past: '%s'
+      s: 1s
       m: 1 menit
+      mm: '%dm'
       h: 1 jam
+      hh: '%dh'
       d: 1 hari
+      dd: '%dd'
       M: 1 bulan
+      MM: '%dmo'
       1: 1 tahun
+      yy: '%dy'
   mon: Senin
   month: Bulan
   months: Bulan
@@ -1758,6 +1889,7 @@ id:
   more_info_title: Info lainnya
   more_journal_posts: Postingan jurnal lainnya
   more_observations: Pengamatan lainnya
+  more_photos: Lebih Banyak Foto
   most: Paling
   most_agree: Paling setuju
   most_disagree: Paling tidak setuju
@@ -2075,6 +2207,7 @@ id:
   offensive_inappropriate: ofensif / tidak pantas
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
+  ok: Oke
   on_: Pada
   on_date: pada %{date}
   on_day: pada
@@ -2192,8 +2325,10 @@ id:
   photo_hosting_accounts: Akun foto tuan rumah
   photo_integration: Integrasi Foto
   photo_licensing: lisensi foto
+  photo_s: Foto
   photo_type: Tipe foto
   photo_urls_repaired: URL foto diperbaiki
+  photos_from: Foto dari
   photos_or_sounds?: Foto atau suara?
   photos_size:
     small: kecil
@@ -2249,6 +2384,8 @@ id:
       local_administrative_area: area administratif lokal
       Miscellaneous: bermacam-macam
       miscellaneous: bermacam-macam
+      Municipality: Munisipalitas (Kotamadya/Kabupaten)
+      municipality: munisipalitas
       Nationality: Kebangsaan
       nationality: kebangsaan
       Nearby_Building: Bangunan terdekat
@@ -2267,6 +2404,7 @@ id:
       province: provinsi
       Region: Wilayah
       region: wilayah
+      Republic: Republik
       Sports_Team: Tim Olahraga
       sports_team: tim olahraga
       State: Negara Bagian
@@ -2287,6 +2425,8 @@ id:
       town: kota
       Undefined: Tak terdefinisi
       undefined: tak terdefinisi
+      Unknown: Tidak diketahui
+      unknown: tidak diketahui
       Zone: Zona
       zone: zona
   place_guess: tepak tebakan
@@ -2499,6 +2639,7 @@ id:
     variety: varietas
     form: bentuk
     leaves: meninggalkan
+  rare: Langka
   ray_finned_fishes: ikan bersirip cahaya
   re_apply_list_rules: Apply kembali aturan daftar
   re_order_photos: Pesan kembali foto&raquo;
@@ -2928,7 +3069,7 @@ id:
   take_me_facebook: Ya, bawa saya ke Facebook!
   take_me_flickr!: Ya, bawa saya ke Flickr!
   taxa: Taksa
-  taxa_all_species_html: Taksa&middot; Semua Spesies
+  taxa_all_species_html: Semua Spesies
   taxa_needing_curation: Taksa membutuhkan Kurasi
   taxa_observed: taksa diamati
   taxa_to_include: Taksa untuk dimasukkan
@@ -2978,8 +3119,7 @@ id:
   taxonomic_tags_for_flickr: Tanda Taksonomi untuk Flickr
   taxonomic_tree_browser: Browser Pohon Taksonomi
   tell_everyone_a_little_about_you: Beritahu semua orang sedikit mengenai diri Anda
-  tell_the_world_a_little_about_yourself: Beritahu dunia sedikit mengenai diri Anda
-    dengan
+  tell_the_world_a_little_about_yourself: Ceritakan tentang diri Anda
   terms: Ketentuan
   terms_and_rules_html: Ketentuan &amp; Aturan
   terms_new_users: Jika Anda menambahkan terms, pengguna baru harus setuju pada mereka

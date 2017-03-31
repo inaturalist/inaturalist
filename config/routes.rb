@@ -117,7 +117,6 @@ Rails.application.routes.draw do
   end
   
   get '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  get '/toggle_mobile' => 'welcome#toggle_mobile', :as => :toggle_mobile
   get '/help' => 'help#index', :as => :help
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
@@ -149,6 +148,7 @@ Rails.application.routes.draw do
     member do
       put :join_test
       put :leave_test
+      put :merge
     end
   end
   # resource :session
@@ -352,13 +352,14 @@ Rails.application.routes.draw do
       post 'update_photos', as: "update_photos_for"
       post 'set_photos', as: "set_photos_for"
       post 'refresh_wikipedia_summary', as: "refresh_wikipedia_summary_for"
-      get 'schemes', as: "schemes_for", constraints: { format: [:html, :mobile] }
+      get 'schemes', as: "schemes_for", constraints: { format: [:html] }
       get 'tip'
       get 'names', to: "taxon_names#taxon"
       get 'links'
       get "map_layers"
       get "browse_photos"
       get "show_google"
+      get "taxobox"
     end
     collection do
       get 'synonyms'
@@ -442,7 +443,7 @@ Rails.application.routes.draw do
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
   get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
-  resources :taxon_links, :except => [:show]
+  resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
   get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget
@@ -531,14 +532,17 @@ Rails.application.routes.draw do
   get 'subscriptions/:resource_type/:resource_id/edit' => "subscriptions#edit", :as => :edit_subscription_by_resource
   post 'subscriptions/:resource_type/:resource_id/subscribe' => 'subscriptions#subscribe', as: :subscribe
 
-  resources :taxon_changes, :constraints => { :id => id_param_pattern } do
-    resources :taxon_change_taxa, :controller => :taxon_change_taxa, :shallow => true
+  resources :taxon_changes, constraints: { id: id_param_pattern } do
+    resources :taxon_change_taxa, controller: :taxon_change_taxa, shallow: true
+    collection do
+      get "group/:group" => "taxon_changes#group", as: :group
+    end
     put :commit
     get :commit_for_user
-    put 'commit_record/:type/:record_id/to/:taxon_id' => 'taxon_changes#commit_records', :as => :commit_record
-    put 'commit_records/:type/(to/:taxon_id)' => 'taxon_changes#commit_records', :as => :commit_records
+    put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
+    put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
   end
-  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html, :mobile]}
+  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   

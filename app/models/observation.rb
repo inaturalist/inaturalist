@@ -142,6 +142,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "coordinates_obscured",
     "positioning_method",
     "positioning_device",
     "out_of_range",
@@ -191,6 +192,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "coordinates_obscured",
     "positioning_method",
     "positioning_device",
     "place_town_name",
@@ -231,6 +233,7 @@ class Observation < ActiveRecord::Base
   ).map{|r| "taxon_#{r}_name"}.compact
   ALL_EXPORT_COLUMNS = (CSV_COLUMNS + BASIC_COLUMNS + GEO_COLUMNS + TAXON_COLUMNS + EXTRA_TAXON_COLUMNS).uniq
   WGS84_PROJ4 = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs"
+  ALLOWED_DESCRIPTION_TAGS = %w(a abbr acronym b blockquote br cite em i img pre s small strike strong sub sup)
 
   preference :community_taxon, :boolean, :default => nil
   
@@ -297,6 +300,13 @@ class Observation < ActiveRecord::Base
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
   validate do
+    # This should be a validation on cached_tag_list, but acts_as_taggable seems
+    # to set that after the validations run
+    if tag_list.join(", ").length > 750
+      errors.add( :tag_list, "must be under 750 characters total, no more than 256 characters per tag" )
+    end
+  end
+  validate do
     unless coordinate_system.blank?
       begin
         RGeo::CoordSys::Proj4.new( coordinate_system )
@@ -352,7 +362,8 @@ class Observation < ActiveRecord::Base
              :update_mappable,
              :set_captive,
              :update_observations_places,
-             :set_taxon_photo
+             :set_taxon_photo,
+             :create_observation_review
   after_create :set_uri
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
@@ -846,6 +857,9 @@ class Observation < ActiveRecord::Base
 
     # strip paranthesized stuff
     date_string.gsub!(/\(.*\)/, '')
+
+    # strip noon hour madness
+    date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?(a|p)\.?m\.?/i, '\\1')
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -1193,7 +1207,6 @@ class Observation < ActiveRecord::Base
   end
   
   def research_grade?
-    # community_supported_id? && research_grade_candidate?
     quality_grade == RESEARCH_GRADE
   end
 
@@ -1231,6 +1244,8 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
+    elsif community_taxon_id && owners_identification && owners_identification.maverick? && community_taxon_rejected?
+      CASUAL
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
     elsif voted_out_of_needs_id?
@@ -1348,8 +1363,6 @@ class Observation < ActiveRecord::Base
 
 
   def obscure_place_guess
-    # puts "obscure_place_guess, coordinates_private?: #{coordinates_private?}"
-    # return true unless latitude_changed? || 
     public_place_guess = Observation.place_guess_from_latlon(
       private_latitude,
       private_longitude,
@@ -1357,9 +1370,6 @@ class Observation < ActiveRecord::Base
       user: user
     )
     if coordinates_private?
-      # puts "obscure_place_guess, place_guess_changed?: #{place_guess_changed?}"
-      # puts "obscure_place_guess, place_guess: #{place_guess}"
-      # puts "obscure_place_guess, private_place_guess: #{private_place_guess}"
       if place_guess_changed? && place_guess == private_place_guess
         self.place_guess = nil
       elsif !place_guess.blank? && place_guess != public_place_guess
@@ -1819,13 +1829,19 @@ class Observation < ActiveRecord::Base
 
   def update_quality_metrics
     if captive_flag.yesish?
-      QualityMetric.vote(user, self, QualityMetric::WILD, false)
+      QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote(user, self, QualityMetric::WILD, true)
-    elsif captive_flag.noish? && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
-      qm.update_attributes(:agree => true)
-    elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+      qm.update_attributes( agree: true)
+    elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
+    end
+    system_captive_vote = quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+    if probably_captive?
+      QualityMetric.vote( nil, self, QualityMetric::WILD, false ) unless system_captive_vote
+    elsif system_captive_vote
+      system_captive_vote.destroy
     end
     true
   end
@@ -1931,14 +1947,14 @@ class Observation < ActiveRecord::Base
     return unless taxon
     descendant_conditions = taxon.descendant_conditions.to_a
     result = Identification.elastic_search(
-      filters: [ { or: [
+      filters: [ { bool: { should: [
         { term: { "taxon.ancestor_ids": taxon.id } },
         { term: { "observation.taxon.ancestor_ids": taxon.id } },
-      ]}],
+      ]}}],
       size: 0,
       aggregate: {
         obs: {
-          terms: { field: "observation.id", size: 0 }
+          terms: { field: "observation.id", size: 3000000 }
         }
       }
     )
@@ -1990,8 +2006,8 @@ class Observation < ActiveRecord::Base
     lat_lon_distance_in_meters( 
       base_lat, 
       base_lon, 
-      base_lat+COORDINATE_UNCERTAINTY_CELL_SIZE,
-      base_lon+COORDINATE_UNCERTAINTY_CELL_SIZE
+      base_lat + COORDINATE_UNCERTAINTY_CELL_SIZE,
+      base_lon + COORDINATE_UNCERTAINTY_CELL_SIZE
     ).ceil
   end
 
@@ -2047,7 +2063,7 @@ class Observation < ActiveRecord::Base
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p| 
+    all_places.select do |p|
       p.user_id.blank? && (
         [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
         p.place_type == Place::PLACE_TYPE_CODES['Open Space']
@@ -2058,6 +2074,11 @@ class Observation < ActiveRecord::Base
   # The places that are theoretically controlled by site admins
   def system_places(options = {})
     Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+  end
+
+  def public_system_places( options = {} )
+    Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+    public_places.select{|p| !p.admin_level.blank? }
   end
 
   def intersecting_places
@@ -2209,6 +2230,13 @@ class Observation < ActiveRecord::Base
     save!
   end
 
+  def create_observation_review
+    return true unless taxon
+    return true unless taxon_id_was.blank?
+    ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
+    true
+  end
+
   def create_deleted_observation
     DeletedObservation.create(
       :observation_id => id,
@@ -2268,20 +2296,22 @@ class Observation < ActiveRecord::Base
     @white_list_sanitizer ||= HTML::WhiteListSanitizer.new
   end
   
-  def self.update_for_taxon_change(taxon_change, taxon, options = {}, &block)
+  def self.update_for_taxon_change(taxon_change, options = {}, &block)
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids)
     scope = scope.by(options[:user]) if options[:user]
     scope = scope.where("observations.id IN (?)", options[:records].to_a) unless options[:records].blank?
-    scope = scope.includes(:user, :identifications)
+    scope = scope.includes( :user, :identifications, :observations_places )
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )
-        Identification.create(
-          user: observation.user,
-          observation: observation,
-          taxon: taxon,
-          taxon_change: taxon_change
-        )
+        if output_taxon = taxon_change.output_taxon_for_record( observation )
+          Identification.create(
+            user: observation.user,
+            observation: observation,
+            taxon: output_taxon,
+            taxon_change: taxon_change
+          )
+        end
       end
       yield(observation) if block_given?
     end
@@ -2343,6 +2373,13 @@ class Observation < ActiveRecord::Base
 
   def self.generate_csv_for_cache_key(record, options = {})
     "#{record.class.name.underscore}_#{record.id}"
+  end
+
+  def public_positional_accuracy
+    if coordinates_obscured? && !read_attribute(:public_positional_accuracy)
+      update_public_positional_accuracy
+    end
+    read_attribute(:public_positional_accuracy)
   end
 
   def update_public_positional_accuracy
@@ -2555,6 +2592,38 @@ class Observation < ActiveRecord::Base
   # use acts_as_votable, faves_count seems clearer.
   def faves_count
     cached_votes_total
+  end
+
+  def probably_captive?
+    target_taxon = community_taxon || taxon
+    return false unless target_taxon
+    if target_taxon.rank_level.blank? || target_taxon.rank_level.to_i > Taxon::GENUS_LEVEL
+      return false
+    end
+    place = system_places.detect do |p|
+      [
+        Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
+      ].include?( p.admin_level )
+    end
+    return false unless place
+    buckets = Observation.elastic_search(
+      filters: [
+        { term: { "taxon.ancestor_ids": target_taxon.id } },
+        { term: { place_ids: place.id } },
+      ],
+      # earliest_sort_field: "id",
+      size: 0,
+      aggregate: {
+        captive: {
+          terms: { field: "captive", size: 15 }
+        }
+      }
+    ).results.response.response.aggregations.captive.buckets
+    captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
+    total = captive_stats.values.sum
+    ratio = captive_stats[1].to_f / total
+    # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
+    total > 10 && ratio >= 0.8
   end
 
   def self.dedupe_for_user(user, options = {})

@@ -1,0 +1,84 @@
+- content_for(:title) do
+  Taxonomic
+  = @taxon_change.class.name.split('Taxon')[1]
+  = "(#{@taxon_change.committed_on.nil? ? "Draft" : "Committed on #{@taxon_change.committed_on}"})"
+- content_for(:extracss) do
+  = stylesheet_link_tag 'taxon_changes'
+  :css
+    iframe { border: 0; }
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function( ) {
+      $( "#mapwrapper" ).shades( "open", {
+        css: { "background-color": "white" },
+        content: '<center style="margin: 100px;"><span class="loading bigloading status inlineblock">#{t :loading_map}</span></center>'
+      } );
+      $( "iframe" ).load( function( ) {
+        $( "#mapwrapper" ).shades( "close" );
+      } );
+      $( "#comment_body" ).textcompleteUsers( );
+    } );
+.container
+  .row
+    .col-xs-12
+      - unless @existing.blank?
+        .alert.alert-warning
+          %p.ui
+            %strong= "#{t(:heads_up)}:"
+            there
+            = @existing.size == 1 ? "is" : "are"
+            = @existing.size
+            other taxon
+            = "change#{@existing.size == 1 ? "" : "s"}"
+            with the same input taxa:
+          %ul
+            - for tc in @existing
+              %li
+                = "(#{tc.input_taxa.map{|it|  "#{it.name} #{it.id}" }.join(', ')})"
+                %strong= tc.verb_phrase
+                = "(#{tc.output_taxa.map{|it| "#{it.name} #{it.id}"}.join(', ')})"
+                = "(#{tc.committed_on.blank? ? "Draft" : "Committed on #{tc.committed_on}"})"
+                = link_to t(:view), tc, :class => "readmore"
+          %p.ui
+            You should probably delete this taxon change, or at least figure
+            out some kind of solution with the person / people who made the other
+            change(s).
+      - if @taxon_change.draft? && @taxon_change.is_a?( TaxonSplit )
+        .alert.alert-warning
+          %strong= "#{t(:heads_up)}:"
+          - if @taxon_change.automatable?
+            When you commit this change, identifications will be re-assigned to
+            the output taxa based on their atlases. If some or all of the
+            outputs lack atlases, or if atlases overlap for a given record,
+            identifications will be replaced with identifications of the nearest
+            common ancestor taxon,
+            = link_to_taxon @taxon_change.output_ancestor, sciname: true
+          - else
+            This taxon split has output taxa that either do not have atlases or
+            don't share a common ancestor, so the records associated with its
+            input taxa cannot be automatically assigned to output taxa when this
+            split is committed and the community will have to add new IDs for
+            these records.
+      - elsif @taxon_change.is_a?( TaxonSplit ) && @taxon_change.automatable?
+        .alert.alert-warning
+          %strong= "#{t(:heads_up)}:"
+          Some or all of the identifications affected by this split may have been replaced with identifications of 
+          = succeed "." do
+            = link_to_taxon @taxon_change.output_ancestor, sciname: true
+          This happens when we can't automatically assign an identification to one of the output taxa.
+          = link_to "Review identifications of <span class='sciname'>#{@taxon_change.input_taxon.name}</span> #{@taxon_change.input_taxon.id}".html_safe, identifications_path( taxon_id: @taxon_change.input_taxon.id, current: "any" ), class: "viewmore taxon #{@taxon_change.input_taxon.rank}"
+
+      #pageheader
+        .breadcrumbs
+          %strong= link_to "&laquo #{t :back_to_taxon_changes}".html_safe, taxon_changes_path, :class => 'crumb'
+  .row
+    .col-xs-12
+      = render partial: "show_change_taxon", object: @taxon_change, locals: { show_commit_button: true }
+  .row
+    .col-xs-12
+      #mapwrapper.stacked
+        %iframe.stacked{:height => "600", :src => "#{taxa_map_url(:taxa => [@taxon_change.taxon, @taxon_change.taxa].flatten.compact.map{|t| t.id})}", :width => "100%"}
+  .row
+    .col-xs-12
+      #comments.column.span-18
+        = render :partial => "comments/comments", :object => @taxon_change

@@ -6,6 +6,7 @@
 # Author: Hosseinblue
 # Author: Hwangjy9
 # Author: Idh0854
+# Author: Jerrykim306
 # Author: Jonghaya
 # Author: Lefion
 # Author: Revi
@@ -26,12 +27,15 @@ ko:
     \n<a href=\"http://facebook.com\">페이스북</a>\n의 이미지 호스팅 또한 지원합니다."
   a_default_taxon_name_will_automatically_created: 학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을
     저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
+  x_comments:
+    one: 댓글 1개
+    other: 댓글 %{count}개
   x_ids:
-    one: 1 아이디
-    other: '%{count} 아이디'
+    one: 아이디 1개
+    other: 아이디 %{count}개
   x_people_like_this:
     one: 한 명이 좋아합니다
-    other: '%{count} 명이 좋아합니다'
+    other: '%{count}명이 좋아합니다'
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
   a_few_points_to_make_things_clear: '더 쉽게 사용하기 위한 팁:'
   a_flag_for_x: '%{x}을 위한 플래그'
@@ -39,6 +43,7 @@ ko:
   able_to_connect_flickr: 플리커 계정과 연동되었습니다!
   about: 소개
   about_bioblitz_results: 바이오블릿츠 결과에 대해
+  about_charts: Charts 정보
   about_community_taxa: 공동체 분류군에 대해
   about_external_links: 외부 링크에 대해
   about_licenses: 라이선스 정보
@@ -476,6 +481,8 @@ ko:
     replaced_by: '다음으로 교체:'
     replace_with: '바꾸기:'
     dropped: 포기함
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa}은(는) %{output_taxon}으(로)
+      병합되었습니다'
   change_visibility_of: 공간 좌표의 가시성을 변경
   change_your_matching: 매치 변경
   change_your_password: 비밀번호 바꾸기
@@ -650,6 +657,7 @@ ko:
     시작하기 위해:
   created: 생성함
   created_by: '작성자:'
+  created_by_user_on_date: '%{date}에 %{user}의 의하여 만들어짐'
   created_on: '작성일:'
   creating_your_account: 계정 만드는 중...
   creative_commons_flickr_tagged: 크리에이티브 커먼트 Flickr 사진 태그됨
@@ -776,9 +784,9 @@ ko:
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disagree: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
-  display_link_to_checklist: 프로젝트 페이지에 프로젝트 목록 표시
-  display_listings_added_by_curators: 큐레이터가 올린 목록 표시
-  display_listings_from_place: 장소 목록 표시
+  display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
+  display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
+  display_listings_from_place: 장소로부터 목록 표시
   drop_it: 버리기
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
   do_you_know_where_this_species_lives: 이 종이 어디 사는지 아시나요?
@@ -955,7 +963,7 @@ ko:
   fields_merged: 필드 병합
   file_should_be_in_the_following_format: '파일은 다음의 형식을 따라야 합니다: 분류군 이름, 설명'
   fill_out_project_observation_fields: 프로젝트 관찰 필드를 기입하십시오
-  fill_out_your_profile: 프로파일을 기입하십시오
+  fill_out_your_profile: 프로파일을 완성하십시오
   filling_out_checklist_for_place: 잘 아는 장소들의 체크리스트를 기입하십시오
   filling_out_your_profile: 프로파일을 기입하십시오
   filter: 필터
@@ -992,7 +1000,7 @@ ko:
   flag_as_spammer: 스패머로 플래그
   flag_as_non_spammer: 비스패머로 플래그
   flag_description: 큐레이터들이 이 자료의 문제점을 알 수 있도록 플래그를 다세요.
-  flag_for_curation: 큐래이션 대상으로 플래그
+  flag_for_curation: 큐레이션 대상으로 플래그
   flag_it!: 플래그!
   flag_reason: '&ldquo; %{record}를 플래그하는 이유는'
   flag_saved: 플래그 저장
@@ -1000,7 +1008,7 @@ ko:
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flagged: 플래그됨
-  flagged_for_curation: 큐래이션 대상으로 플래그되었습니다.
+  flagged_for_curation: 큐레이션 대상으로 플래그되었습니다
   flagged_thing_explanation: 사용자들이 이 %{thing}을(를) 플래그한 이유는
   flagger: 플래그한 사용자
   flags: 플래그들
@@ -1146,7 +1154,7 @@ ko:
     이름을 기입할 수 있습니다.
   if_you_already_have_an_account: '%{article} %{site_name} 계정이 이미 있다면...'
   if_you_dont_want_us_to_share_your_data: 당신의 데이터를 공유하는 것을 원친 않는다면
-  if_you_have_any_trouble_with_the_site_check_out: 사이트 이용이 불편이 있다면, <a href="%{help_url}">도움말
+  if_you_have_any_trouble_with_the_site_check_out: 질문이 있으시다면, <a href="%{help_url}">도움말
     문단</a>을 확인하시거나, <a href="%{feedback_url}">피드백 그룹</a>에 글을 남겨주세요.
   if_you_have_trouble_with_the_site: 사이트 이용이 불편이 있다면, 도움말 섹션을 참조해주세요.
   if_you_use: 을 사용한다면
@@ -1349,6 +1357,7 @@ ko:
   loading_wikipedia_description: 위키백과 설정 불러오는 중...
   locale_description: 로케일은 당신의 언어와 날짜 형식 설정을 정합니다.
   locales:
+    bg: 불가리아어
     ca: Català
     en: 영어
     en-US: 영어 (미국)
@@ -1611,6 +1620,8 @@ ko:
   not_finding_what_looking_for: 찾으려는 것을 발견하지 못했습니까?
   not_found: 찾을 수 없음
   not_just_creative_commons_licensed: 단순히 크리에이티브 커먼즈 라이선스가 아님
+  not_linked_facebook: 당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있지 않습니다
+  not_linked_flickr: 당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있지 않습니다
   not_logged_in: 로그인하지 않음
   not_on_this_list: 이 목록에 없음
   not_seeing_what_looking_for: 찾으려는 것을 발견하지 못했습니까?
@@ -1821,8 +1832,8 @@ ko:
   remove_from_project: 프로젝트에서 제거
   remove_this_section: 이 항목 제거
   remove_observations:
-    one: 1개 관찰 삭제?
-    other: ' %{count}개 관찰 삭제?'
+    one: 1개 관찰을 제거하시겠습니까?
+    other: ' %{count}개 관찰을 제거하시겠습니까?'
   remove_project_user: 프로젝트 사용자 제거
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거
@@ -2037,6 +2048,7 @@ ko:
   you_didnt_select_any_observations: 관찰을 선택하지 않았습니다.
   you_havent_left_any_comments_recently: 최근에 댓글 단 것이 없습니다. 댓글을 달아주세요.
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
+  your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_month_observations: '%{month}월의 내 관찰'
   your_observations_couldnt_be_added_to_that_project: 관찰이 프로젝트에 추가되지 못했습니다.%{errors}
   your_subscriptions: 당신의 구독 목록

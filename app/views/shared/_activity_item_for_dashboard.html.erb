@@ -109,7 +109,7 @@
         elsif item.respond_to?(:description) && item.description
           item.description
         end -%>
-      <% if text -%>
+      <% unless text.blank? -%>
         <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
           <%- if context_around && context = text.context_of_pattern(context_around) %>
             <%= formatted_user_text(context) %>

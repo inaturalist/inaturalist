@@ -51,7 +51,7 @@
 
 .photo-group {
   margin-bottom: 20px;
-  h3 { margin-top: 0; }
+  h3 { margin-top: 40px; }
   h3 .SplitTaxon {
     text-transform: none;
   }
@@ -59,3 +59,4 @@
     color: black;
   }
 }
+.photo-group.first h3 { margin-top: 0px; }

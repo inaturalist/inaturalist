@@ -262,6 +262,15 @@ describe Project do
         expect(row['captive_cultivated']).not_to be_blank
       end
     end
+    it "should include coordinates_obscured" do
+      path = File.join( Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}" )
+      o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
+      po = make_project_observation( observation: o )
+      po.project.generate_csv( path, Observation::CSV_COLUMNS )
+      CSV.foreach( path, headers: true ) do |row|
+        expect( row["coordinates_obscured"] ).to eq "true"
+      end
+    end
   end
 
   describe "aggregation preference" do

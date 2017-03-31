@@ -15,16 +15,21 @@ class Place < ActiveRecord::Base
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
-      indexes :slug, analyzer: "keyword_analyzer"
+      indexes :slug, index: "not_analyzed"
+      indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
       indexes :place_type, type: "integer"
       indexes :geometry_geojson, type: "geo_shape"
       indexes :bounding_box_geojson, type: "geo_shape"
-      indexes :location, type: "geo_point", lat_lon: true
+      indexes :location, type: "geo_point"
       indexes :point_geojson, type: "geo_shape"
       indexes :bbox_area, type: "double"
-      indexes :display_name, analyzer: "ascii_snowball_analyzer"
-      indexes :display_name_autocomplete, analyzer: "keyword_autocomplete_analyzer",
+      indexes :display_name, type: "string", analyzer: "ascii_snowball_analyzer"
+      indexes :display_name_autocomplete, type: "string",
+        analyzer: "keyword_autocomplete_analyzer",
         search_analyzer: "keyword_analyzer"
+      indexes :user do
+        indexes :login, index: "not_analyzed"
+      end
     end
   end
 
@@ -41,26 +46,26 @@ class Place < ActiveRecord::Base
       bbox_area: bbox_area,
       ancestor_place_ids: ancestor_place_ids,
       user: user ? user.as_indexed_json(no_details: true) : nil,
-      geometry_geojson: (place_geometry && !index_without_geometry) ?
+      geometry_geojson: (place_geometry && place_geometry.persisted? && !index_without_geometry) ?
         ElasticModel.geom_geojson(place_geometry.simplified_geom) : nil,
-      bounding_box_geojson: ( place_geometry && !index_without_geometry ) ?
+      bounding_box_geojson: ( place_geometry && place_geometry.persisted? && !index_without_geometry ) ?
         ElasticModel.geom_geojson( place_geometry.bounding_box_geom ) : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
       point_geojson: ElasticModel.point_geojson(latitude, longitude)
     }
   end
 
-  def geom_in_elastic_index
+  def geom_in_elastic_index?
     # need to make sure Elasticsearch has refreshed with all
     # changes before checking if this Place record exists
     Place.__elasticsearch__.refresh_index!
-    Place.elastic_search(where: { id: id },
-      filters: [ { exists: { field: "geometry_geojson" } } ]).
-      total_entries > 0
+    Place.elastic_search(filters: [
+      { term: { id: id } },
+      { exists: { field: "geometry_geojson" } } ]).total_entries > 0
   end
 
   def double_check_index
-    unless geom_in_elastic_index
+    unless geom_in_elastic_index?
       self.index_without_geometry = true
       self.elastic_index!
     end

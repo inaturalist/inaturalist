@@ -1,7 +1,4 @@
 class WelcomeController < ApplicationController
-  MOBILIZED = [:index]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   before_filter :set_homepage_wiki, only: :index
 
   def index
@@ -17,13 +14,7 @@ class WelcomeController < ApplicationController
           render layout: 'bootstrap'
         end
       end
-      format.mobile
     end
-  end
-
-  def toggle_mobile
-    session[:mobile_view] = session[:mobile_view] ? false : true
-    redirect_to params[:return_to] || session[:return_to] || "/"
   end
 
   private

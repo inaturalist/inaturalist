@@ -1403,13 +1403,15 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         lat: parseFloat( $scope.params.lat ),
         lng: parseFloat( $scope.params.lng )
       };
+      var circleRadius = $scope.params.radius ? parseFloat( $scope.params.radius ) * 1000 : 10000;
       $scope.selectedPlaceLayer = new google.maps.Circle(
         _.extend( { }, $scope.placeLayerStyle, {
           map: $scope.map,
-          radius: 10000,
+          radius: circleRadius,
           center: xMarkerPosition
         })
       );
+      $scope.$parent.mapBounds = $scope.selectedPlaceLayer.getBounds();
     }
     if( xMarkerPosition ) {
       $scope.boundingBoxCenterIcon = new google.maps.Marker({
@@ -1461,5 +1463,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $scope.togglFullscreen = function( ) {
     $scope.fullscreen = !$scope.fullscreen;
+    setTimeout( function( ) {
+      google.maps.event.trigger( $scope.map, "resize" );
+    }, 100 );
   };
 }]);

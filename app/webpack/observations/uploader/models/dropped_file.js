@@ -3,6 +3,16 @@ import piexif from "piexifjs";
 import moment from "moment-timezone";
 import util from "../models/util";
 
+const BRANDED_DESCRIPTIONS = [
+  "OLYMPUS DIGITAL CAMERA",
+  "SONY DSC",
+  "MOULTRIE DIGITAL GAME CAMERA",
+  "<KENOX S1050 / Samsung S1050>",
+  "KODAK Digital Still Camera",
+  "DIGITAL CAMERA",
+  "SAMSUNG CAMERA PICTURES"
+];
+
 const DroppedFile = class DroppedFile {
   constructor( attrs ) {
     Object.assign( this, attrs );
@@ -54,8 +64,11 @@ const DroppedFile = class DroppedFile {
         } );
         // check that object for metadata we care about
         if ( exif.ImageDescription ) {
-          metadata.description = _.trim(
+          const desc = _.trim(
             exif.ImageDescription.replace( /\u0000/g, "" ) );
+          if ( BRANDED_DESCRIPTIONS.indexOf( desc ) < 0 ) {
+            metadata.description = desc;
+          }
         }
         if ( exif.GPSLatitude && exif.GPSLatitude.length === 3 ) {
           metadata.latitude = util.gpsCoordConvert( exif.GPSLatitude );

@@ -8,7 +8,8 @@ const IdentificationForm = ( {
   observation: o,
   onSubmitIdentification,
   className,
-  currentUser
+  currentUser,
+  blind
 } ) => (
   <form
     className={`IdentificationForm ${className}`}
@@ -27,6 +28,9 @@ const IdentificationForm = ( {
       confirmationText = confirmationText.replace( /<br>/g, "" );
       confirmationText = confirmationText.replace( /\s+/g, " " );
       const isDisagreement = ( ) => {
+        if ( blind ) {
+          return false;
+        }
         if ( !o || !o.taxon || !o.taxon.rank_level || !o.taxon.rank_level ) {
           return false;
         }
@@ -40,7 +44,8 @@ const IdentificationForm = ( {
       onSubmitIdentification( {
         observation_id: o.id,
         taxon_id: e.target.elements.taxon_id.value,
-        body: e.target.elements.body.value
+        body: e.target.elements.body.value,
+        blind
       }, {
         confirmationText: (
           ( isDisagreement( ) && !currentUserSkippedConfirmation ) ? confirmationText : null
@@ -63,7 +68,8 @@ IdentificationForm.propTypes = {
   observation: PropTypes.object,
   onSubmitIdentification: PropTypes.func.isRequired,
   className: PropTypes.string,
-  currentUser: PropTypes.object
+  currentUser: PropTypes.object,
+  blind: PropTypes.bool
 };
 
 export default IdentificationForm;

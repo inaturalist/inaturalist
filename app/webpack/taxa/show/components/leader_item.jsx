@@ -33,7 +33,7 @@ const LeaderItem = ( {
       </a> {
         extraLinkUrl ?
           (
-            <a href={extraLinkUrl} className="btn btn-default btn-inat btn-xs">
+            <a href={extraLinkUrl} className="btn btn-default btn-inat btn-outline btn-xs">
               <span className="hidden-lg">{ extraLinkTextShort || extraLinkText }</span>
               <span className="hidden-xs hidden-sm hidden-md">{ extraLinkText }</span>
             </a>
@@ -74,6 +74,7 @@ const LeaderItem = ( {
             href={url}
             onClick={ e => {
               if ( !onClickUrl ) return true;
+              if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickUrl( onClickUrlPayload );
               return false;
@@ -95,6 +96,7 @@ const LeaderItem = ( {
             href={url}
             onClick={ e => {
               if ( !onClickUrl ) return true;
+              if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickUrl( onClickUrlPayload );
               return false;

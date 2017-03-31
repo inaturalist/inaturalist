@@ -5,6 +5,7 @@
 # Author: Exonie
 # Author: StanProg
 # Author: Vodnokon4e
+# Author: АдмиралАнимЕ
 ---
 bg:
   licensing_your_content: Като лицензирате съдържанието си, давате легални права на
@@ -292,6 +293,7 @@ bg:
   automatically_share_your_observations_on: Автоматично споделяй наблюденията си във
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието
     ми при промяна на таксон
+  back: Назад
   back_to_x: Обратно към %{noun}
   back_to_x_history: Обратно към историята на %{x}
   back_to_x_journal: Обратно към дневника на %{user}
@@ -525,7 +527,7 @@ bg:
   editing_project: Редактиране на %{project}
   either_that_user_doesnt_exist_or: Или потребителят не съществува или вече го следвате.
   eligible_for_research_grade: Приемливо за „Изследователски клас“
-  email: Имейл
+  email: Електронна поща
   email_settings: Настройки за имейл
   embed_a_widget_for_this_taxon_on_website: Вмъкни widget за този таксон на сайта
     си
@@ -867,9 +869,9 @@ bg:
       range: Диапазон
   map_tooltip: Покажи на картата
   map_for: Карта за
-  mark_as_reviewed: Маркирай като рецензирано
-  mark_all_as_reviewed: Маркирай всички като рецензирани
-  mark_all_as_unreviewed: Маркирай всички като нерецензирани
+  mark_as_reviewed: Отбелязване като проверено
+  mark_all_as_reviewed: Отбелязване на всички като проверени
+  mark_all_as_unreviewed: Отбелязване на всички като непроверени
   media: Мултимедия
   members: Членове
   mentions: Споменавания
@@ -1842,7 +1844,7 @@ bg:
         positioning_method: Как са били определени координатите
         positioning_device: Устройство използвано за определяне на координатите
       identify:
-        review_all_tooltip: Маркирай всички наблюдения на страницата като рецензирани
+        review_all_tooltip: Отбелязване на всички наблюдения на страницата като проверени
         you_reviewed_message: Рецензирахте %{reviewed} от %{pageTotal} наблюдения
           на тази страница от общо %{total} съвпадащи наблюдения.
         unreview_all_tooltip: Премахни статута „рецензирани“ на всички наблюдения

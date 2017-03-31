@@ -56,6 +56,9 @@ class Taxon < ActiveRecord::Base
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, :inverse_of => :taxon
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
+  has_many :observation_field_values,
+    -> { joins(:observation_field).where( "observation_fields.datatype = ?", ObservationField::TAXON ) },
+    foreign_key: :value
   belongs_to :source
   belongs_to :iconic_taxon, :class_name => 'Taxon', :foreign_key => 'iconic_taxon_id'
   belongs_to :creator, :class_name => 'User'
@@ -129,7 +132,7 @@ class Taxon < ActiveRecord::Base
     const_set rank.upcase, rank
     const_set "#{rank.upcase}_LEVEL", level
     define_method "find_#{rank}" do
-      return self if rank_level == level
+      return self if self.rank == rank
       return nil if rank_level.to_i > level.to_i
       @cached_ancestors ||= ancestor_taxa.loaded? ? ancestor_taxa :
         ancestors.select("id, name, rank, ancestry,
@@ -377,18 +380,16 @@ class Taxon < ActiveRecord::Base
   # Callbacks ###############################################################
   
   def handle_after_move
-    return true unless ancestry_changed?
-    set_iconic_taxon
-    return true if id_changed?
+    set_iconic_taxon if ancestry_changed?
     return true if skip_after_move
+    denormalize_ancestry
+    return true if id_changed?
     update_life_lists
     update_obs_iconic_taxa
-    conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, "#{ancestry}/#{id}", "#{ancestry}/#{id}/%"]
-    old_conditions = ["taxa.id = ? OR taxa.ancestry = ? OR taxa.ancestry LIKE ?", id, ancestry_was, "#{ancestry_was}/#{id}/%"]
-    if (Observation.joins(:taxon).where(conditions).exists? || 
-        Observation.joins(:taxon).where(old_conditions).exists? || 
-        Identification.joins(:taxon).where(conditions).exists? || 
-        Identification.joins(:taxon).where(old_conditions).exists? )
+    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
+    obs_exist = Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    idents_exist = Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
+    if ( obs_exist || idents_exist )
       Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
         unique_hash: { "Observation::update_stats_for_observations_of": id }).
         update_stats_for_observations_of(id)
@@ -396,6 +397,16 @@ class Taxon < ActiveRecord::Base
     elastic_index!
     Taxon.refresh_es_index
     true
+  end
+
+  def denormalize_ancestry
+    Taxon.transaction do
+      TaxonAncestor.where( taxon_id: id ).delete_all
+      unless self_and_ancestor_ids.blank?
+        sql = "INSERT INTO taxon_ancestors VALUES " + self_and_ancestor_ids.map {|aid| "(#{id},#{aid})" }.join( "," )
+        ActiveRecord::Base.connection.execute( sql )
+      end
+    end
   end
 
   def index_observations
@@ -596,6 +607,7 @@ class Taxon < ActiveRecord::Base
   def grafted?
     return false if new_record? # New records haven't been grafted
     return false if self.name != 'Life' && ancestry.blank?
+    return false if !kingdom? && Taxon::LIFE && parent_id === Taxon::LIFE.id
     true
   end
   
@@ -1303,6 +1315,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.import(name, options = {})
+    skip_grafting = options.delete(:skip_grafting)
     name = normalize_name(name)
     ancestor = options.delete(:ancestor)
     external_names = begin
@@ -1313,7 +1326,7 @@ class Taxon < ActiveRecord::Base
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
     external_names.each do |en| 
-      if en.save && !en.taxon.grafted? && en.taxon.persisted?
+      if en.save && !skip_grafting && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
     end
@@ -1441,6 +1454,14 @@ class Taxon < ActiveRecord::Base
     return true if id == ancestor_id
     return false if ancestry.blank?
     !! ancestry.match(/(^|\/)#{ancestor_id}(\/|$)/)
+  end
+
+  def atlased?
+    atlas && atlas.is_active?
+  end
+
+  def cached_atlas_presence_places
+    @cached_atlas_presence_places ||= atlas.presence_places if atlas
   end
 
   # Static ##################################################################
@@ -1741,12 +1762,17 @@ class Taxon < ActiveRecord::Base
     scope.find_each do |t|
       Taxon.where(id: t.id).update_all(observations_count:
         Observation.elastic_search(
-          where: { "taxon.ancestor_ids" => t.id }, size: 0).total_entries)
+          filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
     end
   end
 
   def self.refresh_es_index
     Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
+  end
+
+  def self.index_taxa( taxa )
+    taxon_ids = taxa.map{|t| t.is_a?( Taxon ) ? t.id : t}
+    Taxon.elastic_index!( ids: taxon_ids )
   end
 
   # /Static #################################################################

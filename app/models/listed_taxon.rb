@@ -21,6 +21,10 @@ class ListedTaxon < ActiveRecord::Base
   
   # check list assocs
   belongs_to :place
+  belongs_to :simple_place,
+    -> { select(:id, :name, :display_name, :code, :bbox_area, :ancestry) },
+    foreign_key: :place_id,
+    class_name: "Place"
   belongs_to :taxon_range # if listed taxon was created b/c of a range intersection
   belongs_to :source # if added b/c of a published source
   
@@ -551,7 +555,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
   
-  # Retrievest the first and last observations and the month counts. Note that
+  # Retrieve the first and last observations and the month counts. Note that
   # at present first_observation has a different meaning depending on the
   # list: for check lists it means the first observation added to iNat (i.e.
   # sorted by ID), but for everything else it means first observation by date
@@ -562,14 +566,13 @@ class ListedTaxon < ActiveRecord::Base
     return unless list
     # get the specific options for this list type
     options = list.cache_columns_options(self)
-    options[:search_params][:fields] = [ :id ]
     earliest_id = nil
     latest_id = nil
     month_counts = nil
     total = 0
     # run the query for the first entry, total count, and aggregations
     begin
-      rs = Observation.elastic_search(options[:search_params].merge(
+      rs = Observation.elastic_search(options.merge(
         size: 0,
         aggregate: {
           month: { terms: { field: "observed_on_details.month", size: 15 },
@@ -612,18 +615,19 @@ class ListedTaxon < ActiveRecord::Base
   def self.earliest_and_latest_ids(options)
     earliest_id = nil
     latest_id = nil
-    return [ nil, nil ] unless options[:search_params]
-    options[:search_params][:size] = 1
-    if options[:range_wheres]
-      options[:search_params][:where].merge!(options[:range_wheres])
+    return [ nil, nil ] unless options[:filters]
+    search_params = { filters: options[:filters].dup }
+    search_params[:size] = 1
+    if options[:range_filters]
+      search_params[:filters] += options[:range_filters]
     end
-    if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", ignore_unmapped: true } },
+    if r = Observation.elastic_search(search_params.merge(
+      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", unmapped_type: "long" } },
               { id: :asc } ] )).results.first
       earliest_id = r.id
     end
-    if r = Observation.elastic_search(options[:search_params].merge(
-      sort: [ { (options[:latest_sort_field] || "observed_on") => { order: "desc", ignore_unmapped: true } },
+    if r = Observation.elastic_search(search_params.merge(
+      sort: [ { observed_on: { order: "desc", unmapped_type: "long" } },
               { id: :desc } ] )).results.first
       latest_id = r.id
     end
@@ -793,11 +797,11 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon::ORDERS.each do |order|
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
     end
-    unless place_id.blank?
-      ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-      ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
+    if !place_id.blank? && manually_added
+      I18N_SUPPORTED_LOCALES.each do |locale|
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place
+      end
     end
     if list
       ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
@@ -858,7 +862,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
 
-  def self.update_for_taxon_change(taxon_change, taxon, options = {})
+  def self.update_for_taxon_change(taxon_change, options = {})
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = ListedTaxon.where("listed_taxa.taxon_id IN (?)", input_taxon_ids)
     scope = scope.where(:user_id => options[:user]) if options[:user]
@@ -867,7 +871,9 @@ class ListedTaxon < ActiveRecord::Base
     scope = scope.includes(options[:include]) if options[:include]
     scope.find_each do |lt|
       lt.force_update_cache_columns = true
-      lt.update_attributes(:taxon => taxon)
+      if output_taxon = taxon_change.output_taxon_for_record( lt )
+        lt.update_attributes( taxon: output_taxon )
+      end
       yield(lt) if block_given?
     end
   end

@@ -23,4 +23,4 @@ Paperclip.interpolates("root_url") do |attachment, style|
   FakeView.root_url.chomp("/")
 end
 
-Paperclip::UploadedFileAdapter.content_type_detector = Paperclip::FileCommandContentTypeDetector
+Paperclip::UploadedFileAdapter.content_type_detector = InatContentTypeDetector

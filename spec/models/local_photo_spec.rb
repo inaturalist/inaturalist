@@ -163,6 +163,19 @@ describe LocalPhoto, "to_observation" do
     expect( o.tag_list ).to include 'tag1'
     expect( o.tag_list ).to include 'tag2'
   end
+
+  it "shoudl not import branded descriptions" do
+    LocalPhoto::BRANDED_DESCRIPTIONS.each do |branded_description|
+      lp = LocalPhoto.make!
+      lp.metadata = {
+        dc: {
+          description: branded_description
+        }
+      }
+      o = lp.to_observation
+      expect( o.description ).to be_blank
+    end
+  end
 end
 
 describe LocalPhoto, "flagging" do
@@ -197,6 +210,17 @@ describe LocalPhoto, "flagging" do
   end
   it "should change make associated observations casual grade when flagged"
   it "should change make associated observations research grade when resolved"
+  it "should re-index the observation" do
+    enable_elastic_indexing( Observation )
+    o = make_research_grade_observation
+    p = o.photos.first
+    es_p = Observation.elastic_search( where: { id: o.id } ).results.results.first.photos.first
+    expect( es_p.url ).not_to be =~ /copyright/
+    without_delay { Flag.make!( flaggable: p, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
+    es_p = Observation.elastic_search( where: { id: o.id } ).results.results.first.photos.first
+    expect( es_p.url ).to be =~ /copyright/
+    disable_elastic_indexing( Observation )
+  end
 end
 
 describe LocalPhoto do

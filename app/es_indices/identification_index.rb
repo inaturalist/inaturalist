@@ -2,21 +2,37 @@ class Identification < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  DEFAULT_ES_BATCH_SIZE = 500
+
   scope :load_for_index, -> { includes(:taxon,
     { observation: [ :taxon, :user ] }, :user) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :uuid, analyzer: "keyword_analyzer"
-      indexes :body, analyzer: "ascii_snowball_analyzer"
+      indexes :uuid, index: "not_analyzed"
+      indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
       indexes :category, index: "not_analyzed"
       indexes :observation do
+        indexes :uuid, index: "not_analyzed"
+        indexes :quality_grade, index: "not_analyzed"
         indexes :taxon do
+          indexes :ancestry, index: "not_analyzed"
           indexes :min_species_ancestry, index: "not_analyzed"
+          indexes :rank, index: "not_analyzed"
+          indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+        end
+        indexes :user do
+          indexes :login, index: "not_analyzed"
         end
       end
       indexes :taxon do
+        indexes :ancestry, index: "not_analyzed"
         indexes :min_species_ancestry, index: "not_analyzed"
+        indexes :rank, index: "not_analyzed"
+        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+      end
+      indexes :user do
+        indexes :login, index: "not_analyzed"
       end
     end
   end

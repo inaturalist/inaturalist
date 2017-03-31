@@ -18,6 +18,7 @@ class TaxonCrumbs extends React.Component {
     if ( !this.props.showNewTaxon ) {
       return true;
     }
+    if ( e.metaKey || e.ctrlKey ) return true;
     e.preventDefault( );
     this.hideChildren( );
     this.props.showNewTaxon( taxon );
@@ -59,14 +60,29 @@ class TaxonCrumbs extends React.Component {
     if ( ancestorTaxa.length > 0 ) {
       if ( this.props.ancestorsShown ) {
         contractControl = (
-          <a className="contract-control" href="#" onClick={ ( ) => hideAncestors( ) }>
+          <a
+            className="contract-control"
+            href="#"
+            onClick={ e => {
+              e.preventDefault( );
+              hideAncestors( );
+              return false;
+            } }
+          >
             <i className="glyphicon glyphicon-circle-arrow-left" />
           </a>
         );
       } else {
         expandControl = (
           <li className="expand-control">
-            <a href="#" onClick={ ( ) => showAncestors( ) }>...</a>
+            <a
+              href="#"
+              onClick={ e => {
+                e.preventDefault( );
+                showAncestors( );
+                return false;
+              } }
+            >...</a>
           </li>
         );
       }

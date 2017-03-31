@@ -34,8 +34,8 @@ class Post < ActiveRecord::Base
   validate :user_must_be_on_site_long_enough
   
   before_save :skip_update_for_draft
-  after_create :increment_user_counter_cache
-  after_destroy :decrement_user_counter_cache
+  after_save :update_user_counter_cache
+  after_destroy :update_user_counter_cache
   
   scope :published, -> { where("published_at IS NOT NULL") }
   scope :unpublished, -> { where("published_at IS NULL") }
@@ -67,17 +67,13 @@ class Post < ActiveRecord::Base
     true
   end
   
-  # Update the counter cache in users.
-  def increment_user_counter_cache
-    self.user.increment!(:journal_posts_count) if parent_type == 'User' && published?
+  def update_user_counter_cache
+    if parent_type == "User" && published_at_changed?
+      User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
+    end
     true
   end
-  
-  def decrement_user_counter_cache
-    user.decrement!(:journal_posts_count) if parent_type == 'User' && published?
-    true
-  end
-  
+
   def to_s
     "<Post #{self.id}: #{self.to_plain_s}>"
   end

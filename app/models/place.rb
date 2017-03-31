@@ -475,8 +475,18 @@ class Place < ActiveRecord::Base
   end
   
   # Update the associated place_geometry or create a new one
-  def save_geom(geom, other_attrs = {})
-    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
+  def save_geom( geom, other_attrs = {} )
+    if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
+      georuby_geom = geom
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+    end
+    if geom.blank?
+      # This probably means GeoRuby parsed some polygons but RGeo didn't think
+      # they looked like a multipolygon, possibly because of overlapping
+      # polygons or other problems
+      add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
+      return
+    end
     # 100 is roughly the size of Ethiopia
     if other_attrs[:user] && geom.respond_to?(:area) &&
        geom.area > 100.0 && !other_attrs[:user].is_admin?
@@ -489,12 +499,17 @@ class Place < ActiveRecord::Base
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
       else
-        pg = PlaceGeometry.create(other_attrs)
+        pg = PlaceGeometry.create!(other_attrs)
         self.place_geometry = pg
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
+      if e.message =~ /TopologyException/
+        add_custom_error( :base, e.message[/TopologyException: (.+)/, 1] )
+      else
+        add_custom_error( :base, "Boundary did not save: #{e.message[0..200]}" )
+      end
     end
   end
   

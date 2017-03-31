@@ -21,7 +21,7 @@ const App = ( { taxon, showNewTaxon } ) => (
       <Row className="preheader">
         <Col xs={8}>
           <TaxonCrumbsContainer />
-          <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
+          <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="icon-link"></i>
           </a>
         </Col>

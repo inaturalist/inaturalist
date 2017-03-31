@@ -30,7 +30,7 @@ const ArticlesTab = ( {
       </Col>
       <Col xs={3} xsOffset={1}>
         <h2>{ I18n.t( "more_info" ) }</h2>
-        <ul className="list-group">
+        <ul className="list-group iconified-list-group">
           { links.map( link => {
             const host = link.url.split( "/" )[2];
             return (
@@ -41,15 +41,13 @@ const ArticlesTab = ( {
                 <a
                   href={link.url}
                   style={{
-                    backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${host}' )`,
-                    backgroundRepeat: "no-repeat",
-                    padding: "1px 0 1px 25px"
+                    backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${host}' )`
                   }}
                 >
                   { link.taxon_link.site_title }
                 </a>
                 { currentUser ? (
-                  <a className="pull-right" href={`/taxon_links/${link.taxon_link.id}/edit`}>
+                  <a href={`/taxon_links/${link.taxon_link.id}/edit`}>
                     <i className="fa fa-pencil"></i>
                   </a>
                 ) : null }

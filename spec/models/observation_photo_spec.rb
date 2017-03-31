@@ -4,7 +4,7 @@ describe ObservationPhoto, "creation" do
   it "should queue a job to update observation quality grade" do
     Delayed::Job.delete_all
     stamp = Time.now
-    ObservationPhoto.make!
+    make_observation_photo
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
   end
@@ -12,7 +12,7 @@ describe ObservationPhoto, "creation" do
   it "should increment observation_photos_count on the observation" do
     o = Observation.make!
     lambda {
-      ObservationPhoto.make!(:observation => o)
+      make_observation_photo(:observation => o)
       o.reload
     }.should change(o, :observation_photos_count).by(1)
   end
@@ -20,7 +20,7 @@ describe ObservationPhoto, "creation" do
   it "should touch the observation" do
     o = Observation.make!
     updated_at_was = o.updated_at
-    op = ObservationPhoto.make!(:observation => o)
+    op = make_observation_photo(:observation => o)
     o.reload
     updated_at_was.should < o.updated_at
   end
@@ -28,7 +28,7 @@ end
 
 describe ObservationPhoto, "destruction" do
   it "should queue a job to update observation quality grade" do
-    op = ObservationPhoto.make!
+    op = make_observation_photo
     Delayed::Job.delete_all
     stamp = Time.now
     op.destroy
@@ -37,7 +37,7 @@ describe ObservationPhoto, "destruction" do
   end
 
   it "should decrement observation_photos_count on the observation" do
-    op = ObservationPhoto.make!
+    op = make_observation_photo
     o = op.observation
     o.observation_photos_count.should eq(1)
     lambda {

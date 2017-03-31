@@ -2,12 +2,14 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Andreas Plank
+# Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
 # Author: Liuxinyu970226
 # Author: Macofe
+# Author: Pihlaviita
 # Author: Purodha
 # Author: Robby
 # Author: Siebrand
@@ -70,6 +72,8 @@ qqq:
     Number of research-grade observations identified to rank species or lower,
     with the count in a span of class 'count'
   x_taxa_matching_current_filters: Number of taxa matching current filters
+  a: can not be translated to Finnish as we don't have prepositions in our language
+  a_: can not be translated to Finnish as we don't have prepositions in our language
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
   about: '{{Identical|About}}'
@@ -123,6 +127,9 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: can not be translated to Finnish as we don't have prepositions in our language
+  an_: Prepositions like "an" can not be translated to Finnish as we don't have prepositions
+    in our language. How can we remove them from the list of not yet translated texts?
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -151,7 +158,10 @@ qqq:
   asc: Abbreviation of "Ascending".
   assessment_x: where assessment is the display name of an assessment
   associations: '{{Identical|Association}}'
-  at: '{{Identical|At}}'
+  at: |-
+    {{Identical|At}}
+
+    Note: can not be translated to Finnish as we don't have prepositions in our language
   at_time: |-
     where time is a time
     {{Identical|At}}
@@ -184,9 +194,25 @@ qqq:
   built_with_site_guides_html: where site_name is the name of the site
   by: '{{Identical|By}}'
   by_user: attribution for user, user is a username
+  by_you: |-
+    Konteksti: Observations
+    By you
+    but also
+    Projects
+    By you and so on.
   calendar: '{{Identical|Calendar}}'
   cancel: '{{Identical|Cancel}}'
+  captive: '{{Identical|Captive}}'
   card: '{{Identical|Card}}'
+  casual: |-
+    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when
+
+    the observation has a date /
+    the observation is georeferenced (i.e. has lat/lon coordinates) /
+    the observation has photos or sounds /
+    the observation isn't of a human
+  catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
+    global index of species currently available.
   categories: '{{Identical|Category}}'
   cc_by_name: '{{Identical|Attribution}}'
   change_password: '{{Identical|Change password}}'
@@ -198,6 +224,8 @@ qqq:
     drop: '{{Identical|Drop}}'
     dropped: '{{Identical|Dropped}}'
     staged: '{{Identical|Staged}}'
+  check_here_to_autoload_description: '"Parus" is still used in Finland, bad example
+    here.'
   check_list_for_individual_taxa_that: where place is the name of a place
   check_list_individual_taxa: where place is the name of a place
   check_list_place: where place is the name of a place
@@ -331,6 +359,8 @@ qqq:
   enlarge: '{{Identical|Enlarge}}'
   end: '{{Identical|End}}'
   endemic_to_x: where x is a place
+  eol: What is the context? EOL = end of lifecycle, or end of life, but also  Encyclopedia
+    of Life.
   error_updating_photo: where photo_errors are a description of the error
   establishment:
     native: '{{Identical|Native}}'
@@ -494,9 +524,12 @@ qqq:
   loading: '{{Identical|Loading}}'
   locales_: '{{Identical|Locale}}'
   locales:
+    bg: '{{Identical|Bulgarian}}'
+    br: '{{Identical|Breton}}'
     en: '{{Identical|English}}'
     es: '{{Identical|Spanish}}'
     fr: '{{Identical|French}}'
+    ko: '{{Identical|Korean}}'
     it: '{{Identical|Italian}}'
     pt: '{{Identical|Portuguese}}'
   localized_species_accounts: Check http://www.inaturalist.org/places for context
@@ -641,6 +674,8 @@ qqq:
   order_by: '{{Identical|Order by}}'
   original: '{{Identical|Original}}'
   other: '{{Identical|Other}}'
+  other_species_commonly_misidentified_as_this_species_in_place_html: Paikka (Place)
+    taipuu inessiivissä.
   owner: '{{Identical|Owner}}'
   parent: '{{Identical|Parent}}'
   password: '{{Identical|Password}}'
@@ -767,7 +802,7 @@ qqq:
   public_coordinates_obscured_by: where distance is a number
   public_domain: '{{Identical|Public domain}}'
   purple: '{{Identical|Purple}}'
-  queued: '{{Identical|Queued}}'
+  queued: '{{Identical|Queue}}'
   query: '{{Identical|Query}}'
   range: '{{Identical|Range}}'
   rank: '{{Identical|Rank}}'
@@ -856,6 +891,11 @@ qqq:
     view_all_soundcount_sounds: number of sounds to view
   source: '{{Identical|Source}}'
   source_: '{{Identical|Source}}'
+  source_list:
+    catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
+      global index of species currently available.
+    catalogue_of_life_2012_annual_checklist: The Catalogue of Life is the most comprehensive
+      and authoritative global index of species currently available.
   sources: '{{Identical|Source}}'
   spam: '{{Identical|Spam}}'
   species: '{{Identical|Species}}'
@@ -1149,7 +1189,6 @@ qqq:
         invite_your_friends_description: where site_name is the site name
     projects:
       edit:
-        bioblitz_create_a_new_place_html: where link is a URL
         submission_models:
           any: '{{Identical|Anyone}}'
       show:

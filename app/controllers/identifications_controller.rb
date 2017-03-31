@@ -26,6 +26,8 @@ class IdentificationsController < ApplicationController
       search_params[:current] = "true"
     elsif params[:current].noish?
       search_params[:current] = "false"
+    else
+      search_params[:current] = "any"
     end
     if params[:for] == "others"
       search_params[:own_observation] = "false"
@@ -67,7 +69,7 @@ class IdentificationsController < ApplicationController
       ]
     end
     result = Observation.elastic_search(
-      complex_wheres: [ { nested: {
+      filters: [ { nested: {
         path: "non_owner_ids",
         query: { bool: { must: [ user_filter, date_filters ].flatten.compact } }
       } } ],
@@ -282,14 +284,12 @@ class IdentificationsController < ApplicationController
       end
       if @identification.valid? && duplicate_key_violation == false
         format.html { agree_respond_to_html }
-        format.mobile { agree_respond_to_html }
         format.json do
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(:methods => [:html])
         end
       else
         format.html { agree_respond_to_html_failure }
-        format.mobile { agree_respond_to_html_failure }
         format.json do
           render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
         end

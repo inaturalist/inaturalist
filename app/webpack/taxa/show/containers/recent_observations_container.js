@@ -16,8 +16,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showTaxonPhotoModal: ( photo, taxon, observation ) => {
-      dispatch( setPhotoModal( photo, taxon, observation ) );
+    showPhotoModal: ( photo, taxon, observation ) => {
+      dispatch( setPhotoModal( photo, taxon, observation, { source: "observations" } ) );
       dispatch( showPhotoModal( ) );
     }
   };

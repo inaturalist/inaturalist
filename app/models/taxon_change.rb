@@ -98,7 +98,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def input_taxa
-    [taxon]
+    [taxon].compact
   end
 
   def output_taxa
@@ -125,43 +125,97 @@ class TaxonChange < ActiveRecord::Base
       return
     end
     return if input_taxa.blank?
-    Rails.logger.info "[INFO #{Time.now}] starting commit_records for #{self}"
+    Rails.logger.info "[INFO #{Time.now}] #{self}: starting commit_records"
     notified_user_ids = []
-    associations_to_update = %w(observations listed_taxa taxon_links identifications)
+    associations_to_update = %w(identifications observations listed_taxa taxon_links observation_field_values)
     has_many_reflections = associations_to_update.map do |a| 
       Taxon.reflections.detect{|k,v| k.to_s == a}
     end
     has_many_reflections.each do |k, reflection|
-      reflection.klass.where("#{reflection.foreign_key} IN (?)", input_taxa.to_a.compact.map(&:id)).find_each do |record|
-        record_has_user = record.respond_to?(:user) && record.user
-        if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
-          action_attrs = {
-            resource: self,
-            notifier: self,
-            notification: "committed"
-          }
-          action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-          action.bulk_insert_subscribers( [record.user.id] )
-          UpdateAction.elastic_index!(ids: [action.id])
-          notified_user_ids << record.user.id
+      Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}"
+      find_batched_records_of( reflection ) do |batch|
+        auto_updatable_records = []
+        Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, batch starting with #{batch[0]}" if options[:debug]
+        batch.each do |record|
+          record_has_user = record.respond_to?(:user) && record.user
+          if !options[:skip_updates] && record_has_user && !notified_user_ids.include?(record.user.id)
+            action_attrs = {
+              resource: self,
+              notifier: self,
+              notification: "committed"
+            }
+            action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
+            action.bulk_insert_subscribers( [record.user.id] )
+            UpdateAction.elastic_index!(ids: [action.id])
+            notified_user_ids << record.user.id
+          end
+          if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
+            auto_updatable_records << record
+          end
         end
-        if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
-          update_records_of_class(record.class, output_taxon, :records => [record])
+        Rails.logger.info "[INFO #{Time.now}] #{self}: committing #{k}, #{auto_updatable_records.size} automatable records" if options[:debug]
+        unless auto_updatable_records.blank?
+          update_records_of_class( reflection.klass, records: auto_updatable_records )
         end
       end
     end
     [input_taxa, output_taxa].flatten.compact.each do |taxon|
+      Rails.logger.info "[INFO #{Time.now}] #{self}: updating counts for #{taxon}"
       Taxon.where(id: taxon.id).update_all(
         observations_count: Observation.of(taxon).count,
         listed_taxa_count: ListedTaxon.where(:taxon_id => taxon).count)
     end
-    Rails.logger.info "[INFO #{Time.now}] finished commit_records for #{self}"
+    Rails.logger.info "[INFO #{Time.now}] #{self}: finished commit_records"
+  end
+
+  def find_batched_records_of( reflection )
+    input_taxon_ids = input_taxa.to_a.compact.map(&:id)
+    if reflection.klass == Observation
+      Observation.search_in_batches( taxon_ids: input_taxon_ids ) do |batch|
+        yield batch
+      end
+    # Omitting using ES for idents now until the ident index gets fully 
+    # rebuilt. This should be slower but more reliable
+    # elsif reflection.klass == Identification
+    #   page = 1
+    #   loop do
+    #     results = Identification.elastic_paginate(
+    #       filters: [
+    #         { terms: { "taxon.ancestor_ids" => input_taxon_ids } },
+    #         { term: { current: true } }
+    #       ],
+    #       page: page,
+    #       per_page: 100
+    #     )
+    #     break if results.blank?
+    #     yield results
+    #     page += 1
+    #   end
+    elsif reflection.klass == Identification
+      Identification.where( taxon_id: input_taxon_ids, current: true ).find_in_batches do |batch|
+        yield batch
+      end
+    elsif reflection.klass == ObservationFieldValue
+      ObservationFieldValue.
+          joins(:observation_field).
+          where( "value IN (?)", input_taxon_ids.map(&:to_s) ).
+          find_in_batches do |batch|
+        yield batch
+      end
+    else
+      scope = reflection.klass.where( "#{reflection.foreign_key} IN (?)", input_taxon_ids )
+      # sometimes reflections have custom scopes that need to be applied
+      scope = scope.merge( reflection.scope ) if reflection.scope
+      scope.find_in_batches do |batch|
+        yield batch
+      end
+    end
   end
 
   # Change all records associated with input taxa to use the selected taxon
-  def update_records_of_class(klass, taxon, options = {}, &block)
+  def update_records_of_class(klass, options = {}, &block)
     if klass.respond_to?(:update_for_taxon_change)
-      klass.update_for_taxon_change(self, taxon, options, &block)
+      klass.update_for_taxon_change(self, options, &block)
       return
     end
     records = if options[:records]
@@ -174,7 +228,9 @@ class TaxonChange < ActiveRecord::Base
       scope
     end
     proc = Proc.new do |record|
-      record.update_attributes(:taxon => taxon)
+      if taxon = options[:taxon] || output_taxon_for_record( record )
+        record.update_attributes( taxon: taxon )
+      end
       yield(record) if block_given?
     end
     if records.respond_to?(:find_each)
@@ -182,6 +238,10 @@ class TaxonChange < ActiveRecord::Base
     else
       records.each(&proc)
     end
+  end
+
+  def output_taxon_for_record( record )
+    output_taxa.first if output_taxa.size == 1
   end
 
   # This is an emergency tool, so for the love of Linnaeus please be careful
@@ -244,7 +304,7 @@ class TaxonChange < ActiveRecord::Base
 
   def taxa_below_order
     return true if user && user.is_admin?
-    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level >= Taxon::ORDER_LEVEL }
+    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level.to_i >= Taxon::ORDER_LEVEL }
       errors.add(:base, "only admins can move around taxa at order-level and above")
     end
     true
@@ -283,14 +343,17 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def index_taxon
-    t = taxon || Taxon.find_by_id( taxon_id )
-    t.delay( priority: USER_INTEGRITY_PRIORITY ).elastic_index! if t
+    Taxon.elastic_index!( ids: [input_taxa.map(&:id), output_taxa.map(&:id)].flatten.compact )
     true
   end
 
   def mentioned_users
     return [ ] if description.blank?
     description.mentioned_users
+  end
+
+  def draft?
+    committed_on.blank?
   end
 
 end

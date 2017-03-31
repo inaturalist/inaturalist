@@ -193,7 +193,7 @@ shared_examples_for "an ObservationsController" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank
       o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
-      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      op = make_observation_photo(:photo => p, :observation => o)
       get :show, :format => :json, :id => o.id
       response_obs = JSON.parse(response.body)
       response_photo = response_obs['observation_photos'][0]['photo']
@@ -842,7 +842,7 @@ shared_examples_for "an ObservationsController" do
       p = LocalPhoto.make!(:metadata => {:foo => "bar"})
       expect(p.metadata).not_to be_blank
       o = Observation.make!(:user => p.user, :taxon => Taxon.make!)
-      op = ObservationPhoto.make!(:photo => p, :observation => o)
+      op = make_observation_photo(:photo => p, :observation => o)
       get :index, :format => :json, :taxon_id => o.taxon_id
       json = JSON.parse(response.body)
       response_obs = json.detect{|obs| obs['id'] == o.id}
@@ -1269,10 +1269,10 @@ shared_examples_for "an ObservationsController" do
       before do
         @all_rights = Observation.make!
         photo = LocalPhoto.make!
-        ObservationPhoto.make!(photo: photo, observation: @all_rights)
+        make_observation_photo(photo: photo, observation: @all_rights)
         @cc_by = Observation.make!(license: Observation::CC_BY)
         photo = LocalPhoto.make!(license: Photo::CC_BY)
-        ObservationPhoto.make!(photo: photo, observation: @cc_by)
+        make_observation_photo(photo: photo, observation: @cc_by)
       end
       it "should work for any" do
         get :index, format: :json, photo_license: 'any'

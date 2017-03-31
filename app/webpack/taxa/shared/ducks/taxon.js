@@ -218,8 +218,13 @@ export function fetchDescription( ) {
 
 export function fetchLinks( ) {
   return ( dispatch, getState ) => {
-    const taxon = getState( ).taxon.taxon;
-    fetch( `/taxa/${taxon.id}/links.json` ).then(
+    const s = getState( );
+    const taxon = s.taxon.taxon;
+    let url = `/taxa/${taxon.id}/links.json`;
+    if ( s.config.preferredPlace ) {
+      url += `?place_id=${s.config.preferredPlace.id}`;
+    }
+    fetch( url ).then(
       response => {
         response.json( ).then( json => dispatch( setLinks( json ) ) );
       },

@@ -241,3 +241,23 @@ input[type="color"]:focus,
   flex: 2;
   min-width: 100px; // apparently required for IE
 }
+.taxon_change {
+  border-bottom: 1px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+.taxon_change ul.change_taxon {
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.taxon-change-table td {
+  vertical-align: top;
+}
+.taxon-change-table td:first-child,
+.taxon-change-table td:last-child {
+  width: 45%;
+}
+.taxon-change-table td.mergetype {
+  width: 10%;
+}

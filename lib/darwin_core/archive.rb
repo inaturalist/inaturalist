@@ -147,13 +147,14 @@ module DarwinCore
         { observations_places: :place }
       ]
       
-      start = Time.now
-      CSV.open(tmp_path, 'w') do |csv|
-        csv << headers
-        observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
-          o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
-          csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
-            o.send(method || field)
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+        CSV.open(tmp_path, 'w') do |csv|
+          csv << headers
+          observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
+            o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
+            csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
+              o.send(method || field)
+            end
           end
         end
       end
@@ -243,12 +244,16 @@ module DarwinCore
       params[:has] = [params[:has], 'photos'].flatten.compact
       preloads = [{observation_photos: {photo: :user}}]
       
-      CSV.open(tmp_path, 'w') do |csv|
-        csv << headers
-        observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
-          observation.observation_photos.each do |op|
-            DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
-            csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+        CSV.open(tmp_path, 'w') do |csv|
+          csv << headers
+          observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
+            observation.observation_photos.each do |op|
+              # If ES is out of sync with the DB, the photo might no longer exist
+              next unless op && op.photo
+              DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
+              csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
+            end
           end
         end
       end
@@ -264,13 +269,25 @@ module DarwinCore
       params = observations_params
       preloads = [ { observation_field_values: :observation_field } ]
       
-      CSV.open(tmp_path, 'w') do |csv|
-        csv << headers
-        observations_in_batches(params, preloads, label: 'make_observation_fields_data') do |observation|
-          observation.observation_field_values.each do |ofv|
-            DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
-            csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
+      # If ES goes down, wait a minute and try again. Repeat a few times then just raise the exception
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+        CSV.open(tmp_path, 'w') do |csv|
+          csv << headers
+          observations_in_batches(params, preloads, label: 'make_observation_fields_data') do |observation|
+            observation.observation_field_values.each do |ofv|
+              DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
+              csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
+            end
           end
+        end
+      end
+
+      def try_and_try_again( exception, sleep_for = 60, tries = 3 )
+        begin
+          yield
+        rescue exception
+          sleep( sleep_for )
+          retry unless ( tries -= 1 ).zero?
         end
       end
       
@@ -285,12 +302,14 @@ module DarwinCore
       params = observations_params
       preloads = [ { project_observations: :project } ]
       
-      CSV.open(tmp_path, 'w') do |csv|
-        csv << headers
-        observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
-          observation.project_observations.each do |po|
-            DarwinCore::ProjectObservations.adapt(po, core: @opts[:core])
-            csv << DarwinCore::ProjectObservations::TERMS.map{|field, uri, default, method| po.send(method || field)}
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+        CSV.open(tmp_path, 'w') do |csv|
+          csv << headers
+          observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
+            observation.project_observations.each do |po|
+              DarwinCore::ProjectObservations.adapt(po, core: @opts[:core])
+              csv << DarwinCore::ProjectObservations::TERMS.map{|field, uri, default, method| po.send(method || field)}
+            end
           end
         end
       end
@@ -323,6 +342,25 @@ module DarwinCore
       fnames = args.map{|f| File.basename(f)}
       system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
       tmp_path
+    end
+
+    # Helper to perform a long running task, catch an exception, and try again
+    # after sleeping for a while
+    def try_and_try_again( exceptions, options = { } )
+      exceptions = [exceptions].flatten
+      tries = options.delete( :tries ) || 3
+      sleep_for = options.delete( :sleep ) || 60
+      begin
+        yield
+      rescue *exceptions => e
+        if ( tries -= 1 ).zero?
+          raise e
+        else
+          logger.debug "Caught #{e.class}, sleeping for #{sleep_for} s before trying again..."
+          sleep( sleep_for )
+          retry
+        end
+      end
     end
   end
 end

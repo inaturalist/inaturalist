@@ -3,14 +3,21 @@ import ReactDOM from "react-dom";
 import _ from "lodash";
 import c3 from "c3";
 import moment from "moment";
+import { Modal } from "react-bootstrap";
 import { objectToComparable } from "../../../shared/util";
 
 class Charts extends React.Component {
+  constructor( ) {
+    super( );
+    this.state = {
+      helpModalVisible: false
+    };
+  }
   componentDidMount( ) {
     this.renderSeasonalityChart( );
     this.resetChartTabEvents( );
   }
-  shouldComponentUpdate( nextProps ) {
+  shouldComponentUpdate( nextProps, nextState ) {
     if (
       _.isEqual(
         objectToComparable( this.props.seasonalityColumns ),
@@ -20,6 +27,11 @@ class Charts extends React.Component {
       _.isEqual(
         objectToComparable( this.props.historyColumns ),
         objectToComparable( nextProps.historyColumns )
+      )
+      &&
+      _.isEqual(
+        objectToComparable( this.state ),
+        objectToComparable( nextState )
       )
     ) {
       // No change in underlying data series, don't update
@@ -32,6 +44,12 @@ class Charts extends React.Component {
     this.renderHistoryChart( );
     this.renderFieldValueCharts( );
     this.resetChartTabEvents( );
+  }
+  showHelpModal( ) {
+    this.setState( { helpModalVisible: true } );
+  }
+  hideHelpModal( ) {
+    this.setState( { helpModalVisible: false } );
   }
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
@@ -294,6 +312,14 @@ class Charts extends React.Component {
             </a>
           </li>
           { fieldValueTabs }
+          <li role="presentation" className="pull-right">
+            <button
+              className="btn btn-link help-btn"
+              onClick={ ( ) => this.showHelpModal( ) }
+            >
+              <i className="fa fa-question-circle"></i>
+            </button>
+          </li>
         </ul>
         <div className="tab-content">
           <div role="tabpanel" className="tab-pane active" id="charts-seasonality">
@@ -319,6 +345,29 @@ class Charts extends React.Component {
           </div>
           { fieldValuePanels }
         </div>
+        <Modal
+          id="ChartsHelpModal"
+          show={ this.state.helpModalVisible }
+          onHide={ ( ) => this.hideHelpModal( ) }
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>{ I18n.t( "about_charts" ) }</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>{ I18n.t( "seasonality" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_seasonality" ) }
+            </p>
+            <h4>{ I18n.t( "history" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_history" ) }
+            </p>
+            <h4>{ I18n.t( "other" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_other" ) }
+            </p>
+          </Modal.Body>
+        </Modal>
       </div>
     );
   }

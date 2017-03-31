@@ -178,7 +178,7 @@ module DarwinCore
       end
 
       def countryCode
-        observations_places.map(&:place).detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
+        observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
       end
 
       def identificationID

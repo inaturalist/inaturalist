@@ -13,8 +13,7 @@ class PlaceAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialPlaceID &&
-         this.props.initialPlaceID !== prevProps.initialPlaceID ) {
+    if ( this.props.initialPlaceID !== prevProps.initialPlaceID ) {
       this.fetchPlace( );
     }
   }
@@ -26,6 +25,8 @@ class PlaceAutocomplete extends React.Component {
           this.updatePlace( { place: r.results[0] } );
         }
       } );
+    } else {
+      this.updatePlace( { place: null } );
     }
   }
 
@@ -38,6 +39,9 @@ class PlaceAutocomplete extends React.Component {
           options.place,
           { title: options.place.display_name }
         ) );
+    } else {
+      $( "input[name='place_name']", domNode ).
+        trigger( "resetAll" );
     }
   }
 

@@ -5,12 +5,12 @@ describe TaxonPhoto do
     it "should unfeature the taxon if this was the last photo" do
       tp = TaxonPhoto.make!
       t = tp.taxon
-      t.update_attributes(:featured_at => Time.now)
+      t.update_attributes( featured_at: Time.now )
       t.reload
-      t.featured_at.should_not be_blank
+      expect( t.featured_at ).not_to be_blank
       t.photos = []
       t.reload
-      t.featured_at.should be_blank
+      expect( t.featured_at ).to be_blank
     end
   end
 end

@@ -3,6 +3,8 @@ class AnnouncementsController < ApplicationController
   before_filter :admin_required
   before_filter :load_announcement, :only => [:show, :edit, :update, :destroy]
   before_filter :load_sites, only: [:new, :edit, :create]
+
+  layout "bootstrap"
   
   # GET /announcements
   # GET /announcements.xml

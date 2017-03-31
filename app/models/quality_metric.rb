@@ -59,12 +59,13 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def elastic_index_observation
-    observation.elastic_index!
+    return true unless observation
+    observation.reload.elastic_index!
     true
   end
 
   def self.vote(user, observation, metric, agree)
-    qm = observation.quality_metrics.find_or_initialize_by(metric: metric, user_id: user.id)
-    qm.update_attributes(:agree => agree)
+    qm = observation.quality_metrics.find_or_initialize_by( metric: metric, user_id: user.try(:id) )
+    qm.update_attributes( agree: agree )
   end
 end
