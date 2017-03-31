@@ -5,9 +5,9 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
-import observationReducer, { fetchObservation, showNewObservation,
-  windowStateForObservation } from "./ducks/observation";
+import observationReducer, { fetchObservation, showNewObservation } from "./ducks/observation";
 import observationPlacesReducer from "./ducks/observation_places";
+import observationLinksReducer from "./ducks/observation_links";
 import identificationsReducer from "./ducks/identifications";
 import controlledTermsReducer from "./ducks/controlled_terms";
 import otherObservationsReducer from "./ducks/other_observations";
@@ -23,6 +23,7 @@ const rootReducer = combineReducers( {
   observation: observationReducer,
   identifications: identificationsReducer,
   observationPlaces: observationPlacesReducer,
+  observationLinks: observationLinksReducer,
   controlledTerms: controlledTermsReducer,
   qualityMetrics: qualityMetricsReducer,
   otherObservations: otherObservationsReducer,
@@ -58,12 +59,7 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 
 /* global INITIAL_OBSERVATION_ID */
 store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
-  fetchPlaces: true,
-  fetchControlledTerms: true,
-  fetchQualityMetrics: true,
-  fetchOtherObservations: true,
-  fetchSubscriptions: true,
-  fetchIdentifiers: true,
+  fetchAll: true,
   replaceState: true,
   callback: ( ) => {
     render(

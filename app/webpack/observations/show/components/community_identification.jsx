@@ -137,8 +137,10 @@ class CommunityIdentification extends React.Component {
       i.current && i.user && i.user.id === observation.user.id
     ) );
     let canAgree = true;
+    let userAgreedToThis;
     if ( currentUserID ) {
       canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+      userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
     }
     const taxonImageTag = util.taxonImage( taxon );
     const votesFor = [];
@@ -209,13 +211,16 @@ class CommunityIdentification extends React.Component {
         <div className="action">
           <div className="btn-space">
             <button className="btn btn-default" disabled={ !canAgree }
-              onClick={ ( ) => { addID( taxon ); } }
+              onClick={ ( ) => { addID( taxon, { agreedTo: "communityID" } ); } }
             >
-              <i className="fa fa-check" /> Agree
+            { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
+              ( <i className="fa fa-check" /> ) } Agree
             </button>
           </div>
           <div className="btn-space">
-            <a href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }>
+            <a href={
+              `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
+            >
               <button className="btn btn-default">
                 <i className="fa fa-exchange" /> Compare
               </button>

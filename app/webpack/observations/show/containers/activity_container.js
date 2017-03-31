@@ -16,7 +16,7 @@ function mapDispatchToProps( dispatch ) {
     setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
     addComment: ( body ) => { dispatch( addComment( body ) ); },
     deleteComment: ( id ) => { dispatch( confirmDeleteComment( id ) ); },
-    addID: ( taxon, body ) => { dispatch( addID( taxon, body ) ); },
+    addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
     deleteID: ( id ) => { dispatch( deleteID( id ) ); },
     restoreID: ( id ) => { dispatch( restoreID( id ) ); },
     createFlag: ( className, id, flag, body ) => {

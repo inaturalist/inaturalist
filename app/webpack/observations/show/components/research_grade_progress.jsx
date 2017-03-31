@@ -15,13 +15,13 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
       </span>
     );
   } else {
-    const remainingCriteria = { };
+    let remainingCriteria = { };
+    const passedCriteria = { };
     remainingCriteria.date = !observation.observed_on;
     remainingCriteria.media = ( observation.photos.length + observation.sounds.length ) === 0;
     remainingCriteria.rank = ( observation.taxon && observation.taxon.rank_level > 10 );
     remainingCriteria.ids = !observation.identifications_most_agree;
     remainingCriteria.location = !observation.location;
-    remainingCriteria.flags = observation.flags.length > 0;
     const votesFor = { };
     const votesAgainst = { };
     _.each( qualityMetrics, ( values, metric ) => {
@@ -40,12 +40,51 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
       const score = ( votesFor[metric] || 0 ) - ( votesAgainst[metric] || 0 );
       if ( score < 0 ) {
         remainingCriteria[`metric-${metric}`] = true;
+      } else if ( score > 0 ) {
+        passedCriteria[`metric-${metric}`] = true;
       }
     } );
+    remainingCriteria.flags = observation.flags.length > 0;
+    if ( observation.taxon && observation.taxon.rank_level === 20 ) {
+      remainingCriteria.rank = false;
+      if ( !passedCriteria["metric-needs_id"] ) {
+        remainingCriteria["metric-needs_id"] = false;
+        remainingCriteria.rank_or_needs_id = true;
+      }
+    }
+    remainingCriteria = _.pickBy( remainingCriteria, bool => ( bool === true ) );
     criteria = (
       <ul className="remaining">
         { _.map( remainingCriteria, ( bool, type ) => {
-          if ( bool !== true ) { return null; }
+          if ( type === "rank_or_needs_id" ) {
+            return (
+              <li
+                key="need-rank_or_needs_id"
+                className={ _.size( remainingCriteria ) > 1 ? "top_border" : "" }
+              >
+                <div className="reason">
+                  <div className="reason_icon">
+                    <i className="fa fa-leaf" />
+                  </div>
+                  <div className="reason_label">
+                    Community ID as species level or lower
+                  </div>
+                </div>
+                <div className="or">
+                  - OR -
+                </div>
+                <div className="reason">
+                  <div className="reason_icon">
+                    <i className="fa fa-gavel" />
+                  </div>
+                  <div className="reason_label">
+                    The community must feel that the Community ID is the best
+                    it can be based on the evidence
+                  </div>
+                </div>
+              </li>
+            );
+          }
           let icon;
           let label;
           switch ( type ) {
@@ -67,7 +106,7 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
               break;
             case "rank":
               icon = "fa-leaf";
-              label = "More specific ID";
+              label = "Community ID as species level or lower";
               break;
             case "metric-date":
               icon = "fa-calendar-check-o";
@@ -91,7 +130,7 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
               break;
             case "metric-needs_id":
               icon = "fa-gavel";
-              label = "Community Agreement";
+              label = "The community must feel that the Community ID is the best it can be based on the evidence";
               break;
             case "flags":
               icon = "fa-flag danger";
@@ -102,7 +141,10 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
           }
           return (
             <li key={ `need-${type}` }>
-              <i className={ `fa ${icon}` } />{ label }
+              <div className="reason_icon">
+                <i className={ `fa ${icon}` } />
+              </div>
+              <div className="reason_label">{ label }</div>
             </li>
           );
         } ) }

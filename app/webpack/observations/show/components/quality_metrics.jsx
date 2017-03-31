@@ -254,14 +254,6 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ mostAgree ? checkIcon : null }</td>
               <td className="disagree">{ mostAgree ? null : checkIcon }</td>
             </tr>
-            <tr>
-              <td className="metric_title">
-                <i className="fa fa-leaf" />
-                Community ID as species level or lower
-              </td>
-              <td className="agree">{ atLeastSpecies ? checkIcon : null }</td>
-              <td className="disagree">{ atLeastSpecies ? null : checkIcon }</td>
-            </tr>
             <tr className={ dateCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-calendar-check-o" />
@@ -301,6 +293,14 @@ class QualityMetrics extends React.Component {
               </td>
               <td className="agree">{ recentCells.agreeCell }</td>
               <td className="disagree">{ recentCells.disagreeCell }</td>
+            </tr>
+            <tr>
+              <td className="metric_title">
+                <i className="fa fa-leaf" />
+                Community ID as species level or lower
+              </td>
+              <td className="agree">{ atLeastSpecies ? checkIcon : null }</td>
+              <td className="disagree">{ atLeastSpecies ? null : checkIcon }</td>
             </tr>
             <tr className="improve">
               <td className="metric_title" colSpan={ 3 }>

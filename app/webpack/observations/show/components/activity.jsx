@@ -87,7 +87,7 @@ class Activity extends React.Component {
                 const selectedTaxon = $( ".id_tab input[name='taxon_name']" ).
                   data( "uiAutocomplete" ).selectedItem;
                 if ( selectedTaxon ) {
-                  this.props.addID( selectedTaxon, $( ".id_tab textarea" ).val( ) );
+                  this.props.addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
                   $( ".id_tab input[name='taxon_name']" ).trigger( "resetSelection" );
                   $( ".id_tab input[name='taxon_name']" ).val( "" );
                   $( ".id_tab textarea" ).val( "" );

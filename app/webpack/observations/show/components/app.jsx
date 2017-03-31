@@ -66,7 +66,7 @@ const App = ( { observation, config } ) => {
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
   let warning;
   if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
-    /* global SITE_HELP_EMAIL */
+    /* global SITE */
     warning = (
       <div className="container flash-warning">
         <div className="alert alert-danger">
@@ -75,7 +75,7 @@ const App = ( { observation, config } ) => {
           This observation has been flagged as spam and is no longer publicly visible.
           You can see it because you created it, or you are a site curator.
           If you think this is a mistake, please <a
-            href={ `mailto:${SITE_HELP_EMAIL}` }
+            href={ `mailto:${SITE.help_email}` }
             className="contact"
           >
             contact us

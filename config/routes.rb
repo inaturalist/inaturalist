@@ -204,6 +204,7 @@ Rails.application.routes.draw do
     end
     member do
       get :taxon_summary
+      get :observation_links
       put :viewed_updates
       patch :update_fields
       post :review

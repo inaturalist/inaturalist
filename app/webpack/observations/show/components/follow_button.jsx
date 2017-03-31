@@ -23,7 +23,7 @@ class FollowButton extends React.Component {
     const { observation, followUser, unfollowUser,
       subscribe, subscriptions, config } = this.props;
     const loggedIn = config && config.currentUser;
-    if ( !observation || !loggedIn ) { return ( <div /> ); }
+    if ( _.isEmpty( observation ) || !loggedIn ) { return ( <div /> ); }
     let followingUser;
     let followingObservation;
     _.each( subscriptions, s => {

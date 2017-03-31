@@ -22,21 +22,25 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
   if ( isID ) {
     let buttons = [];
     let canAgree = false;
+    let userAgreedToThis;
     if ( item.current && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
         canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+        userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
       } else {
         canAgree = true;
       }
     }
-    if ( loggedIn && canAgree ) {
+    if ( loggedIn && ( canAgree || userAgreedToThis ) ) {
       buttons.push( (
         <button
           key={ `id-agree-${item.id}` }
           className="btn btn-default btn-sm"
-          onClick={ () => { addID( taxon ); } }
+          onClick={ () => { addID( taxon, { agreedTo: item } ); } }
+          disabled={ userAgreedToThis }
         >
-          <i className="fa fa-check" /> Agree
+          { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
+            ( <i className="fa fa-check" /> ) } Agree
         </button>
       ) );
     }

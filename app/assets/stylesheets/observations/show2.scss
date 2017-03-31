@@ -5,6 +5,8 @@
 $bootstrap-link-color: #428BCA;
 $other-link-color: #337AB7;
 $light-grey: #F7F7F7;
+$border-grey: #DDD;
+$fail-red: #D9534F;
 
 body {
   min-width: 980px;
@@ -44,7 +46,7 @@ tr.disabled td {
 }
 
 input.failed {
-  border-color: #d9534f !important;
+  border-color: $fail-red !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
   box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(217,83,79,.6) !important;
 }
@@ -125,12 +127,12 @@ a.UserImage {
   }
   .top_row {
     background: #fff;
-    border: 1px solid #ddd;
+    border: 1px solid $border-grey;
     & > div {
       padding: 20px;
     }
     .photos_column {
-      border-right: 1px solid #ddd;
+      border-right: 1px solid $border-grey;
       padding: 20px 0px 20px 20px;
       .PhotoBrowser {
         text-align: center;
@@ -232,13 +234,13 @@ a.UserImage {
       }
     }
     .info_column {
-      border-left: 1px solid #ddd;
+      border-left: 1px solid $border-grey;
       margin-left: -1px;
       padding-left: 0px;
       padding-right: 0px;
       .user_info {
         padding: 0px 20px 20px 20px;
-        border-bottom: 1px solid #ddd;
+        border-bottom: 1px solid $border-grey;
         margin: 0px -2px 0px 0px;
         a.UserImage:hover {
           opacity: initial;
@@ -283,7 +285,7 @@ a.UserImage {
   .comment_id_panel {
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    border: 1px solid #ddd;
+    border: 1px solid $border-grey;
     margin-left: 60px;
     margin-bottom: 15px;
     ul.nav-tabs {
@@ -394,15 +396,15 @@ a.UserImage {
   }
   .data_quality_assessment {
     background: #fff;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-grey;
   }
   .more_from {
     background: #eee;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-grey;
   }
   .other_observations {
     background: #f4f4f4;
-    border-top: 1px solid #ddd;
+    border-top: 1px solid $border-grey;
   }
   div.temporary {
     box-shadow: inset 0 0 0 2px black;
@@ -447,7 +449,7 @@ a.UserImage {
     margin-top: 10px;
   }
   .image {
-    border: 1px solid #DDDDDD;
+    border: 1px solid $border-grey;
     padding: 1px;
     display: inline-block;
     margin-right: 5px;
@@ -506,7 +508,7 @@ a.UserImage {
 
 .Map {
   margin: 20px 20px 0px 20px;
-  border: 1px solid #ddd;
+  border: 1px solid $border-grey;
   .TaxonMap {
     height: 230px;
     width: 100%;
@@ -604,7 +606,7 @@ a.UserImage {
     padding-right: 15px;
   }
   .top_info {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $border-grey;
     display: inline-block;
     padding-bottom: 15px;
     width: 100%;
@@ -618,7 +620,7 @@ a.UserImage {
 }
 
 .Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
-  border-top: 1px solid #ddd;
+  border-top: 1px solid $border-grey;
 }
 
 .Tags, .Projects {
@@ -679,7 +681,7 @@ a.UserImage {
   .taxon-image {
     width: 44px;
     height: 44px;
-    border: 1px solid #ddd;
+    border: 1px solid $border-grey;
     border-radius: 2px;
     float: left;
     margin-right: 15px;
@@ -723,7 +725,7 @@ a.UserImage {
   .panel.maverick .panel-heading {
     background: rgba(216, 84, 79, 0.05);
     .item-status {
-      color: #D9534F;
+      color: $fail-red;
     }
   }
   .panel.improving .panel-heading {
@@ -781,7 +783,7 @@ a.UserImage {
 
 .ActivityItemMenu {
   float: right;
-  border-left: 1px solid #ddd;
+  border-left: 1px solid $border-grey;
   .control-group {
     .dropdown.btn-group {
       button {
@@ -853,6 +855,10 @@ a.UserImage {
       line-height: 18px;
     }
   }
+  .agree, .disagree {
+    text-align: center;
+  }
+
 }
 
 .Annotations, .QualityMetrics {
@@ -870,7 +876,6 @@ a.UserImage {
   }
   .agree, .disagree {
     white-space: nowrap;
-    text-align: center;
   }
   .agree .fa, .disagree .fa {
     font-size: 18px;
@@ -880,7 +885,7 @@ a.UserImage {
     color: $inat-green;
   }
   .disagree .check {
-    color: #D9534F;
+    color: $fail-red;
   }
   .count {
     color: inherit;
@@ -938,7 +943,7 @@ a.UserImage {
   tr.flags.flagged {
     background: #F2DEDE;
     .metric_title .fa {
-      color: #D9534F;
+      color: $fail-red;
     }
     a {
       color: $other-link-color;
@@ -975,6 +980,7 @@ a.UserImage {
     th {
       font-weight: 600;
       border-bottom: 1px !important;
+
     }
   }
   .flagging {
@@ -1018,13 +1024,13 @@ a.UserImage {
         &.incomplete {
           color: #B3B2B7;
           background: #fff;
-          border: 1px solid #DDD;
+          border: 1px solid $border-grey;
           vertical-align: top;
           line-height: 18px;
         }
       }
       .separator {
-        border: 2px solid #DDD;
+        border: 2px solid $border-grey;
         width: 140px;
         margin: 2px;
         border-style: dashed;
@@ -1062,13 +1068,26 @@ a.UserImage {
       list-style-type: none;
       font-size: 16px;
       margin-bottom: 10px;
+      &.top_border {
+        border-top: 1px solid $border-grey;
+        padding-top: 10px;
+      }
+      .reason_icon {
+        float: left;
+      }
+      .reason, .or {
+        margin-bottom: 10px;
+      }
+      .or {
+        margin-left: 40px;
+      }
       i.fa {
         font-size: 20px;
         color: $inat-green;
         width: 40px;
         text-align: center;
         &.danger {
-          color: #a94442;
+          color: $fail-red;
         }
       }
     }
@@ -1262,7 +1281,7 @@ a.UserImage {
     padding-left: 5px;
   }
   .info {
-    border: 1px solid #ddd;
+    border: 1px solid $border-grey;
     background: #fff;
     padding: 15px;
     .badges {
@@ -1305,12 +1324,12 @@ a.UserImage {
         background: $inat-green;
       }
       .against {
-        background: #D9534F;
+        background: $fail-red;
       }
     }
   }
   .action {
-    border: 1px solid #ddd;
+    border: 1px solid $border-grey;
     border-top: 0px;
     padding: 17px 12px;
     .btn-space {
@@ -1326,7 +1345,7 @@ a.UserImage {
     }
   }
   .override {
-    border: 1px solid #ddd;
+    border: 1px solid $border-grey;
     padding: 15px;
     margin-top: 10px;
     text-align: center;
@@ -1715,7 +1734,7 @@ body > div > [role="dialog"] .easyzoom > a > img {
 
 .quality_grade {
   display: inline-block;
-  background-color: #ddd;
+  background-color: $border-grey;
   padding: 2px 0px 1px 10px;
   position: relative;
   font-size: 12px !important;
@@ -1731,7 +1750,7 @@ body > div > [role="dialog"] .easyzoom > a > img {
   position: absolute;
   display: block;
   bottom: 0;
-  border: 10px solid #ddd;
+  border: 10px solid $border-grey;
   border-right-width: 5px;
   border-right-color: transparent;
   right: -15px;
@@ -1759,7 +1778,7 @@ body > div > [role="dialog"] .easyzoom > a > img {
 .loading_spinner {
   width: 14px;
   height: 14px;
-  border: 3px solid #ddd;
+  border: 3px solid $border-grey;
   border-radius: 50%;
   border-top: 3px solid #74ac00;
   -webkit-animation: spin 2s linear infinite;
@@ -1785,7 +1804,7 @@ body > div > [role="dialog"] .easyzoom > a > img {
   margin-top: 150px;
   width: 80px;
   height: 80px;
-  border: 15px solid #ddd;
+  border: 15px solid $border-grey;
   border-top: 15px solid #74ac00;
 }
 

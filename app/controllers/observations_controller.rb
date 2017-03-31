@@ -43,12 +43,14 @@ class ObservationsController < ApplicationController
                             :user_stats,
                             :community_taxon_summary,
                             :map,
-                            :taxon_summary]
+                            :taxon_summary,
+                            :observation_links]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
-    :review, :taxon_summary ]
+    :review, :taxon_summary, :observation_links ]
   before_filter :load_observation, :only => load_only
-  blocks_spam :only => load_only - [ :taxon_summary ], :instance => :observation
+  blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
+    :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -2119,6 +2121,10 @@ class ObservationsController < ApplicationController
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end
 
+  def observation_links
+    render json: @observation.observation_links
+  end
+
 ## Protected / private actions ###############################################
   private
 
@@ -3053,6 +3059,7 @@ class ObservationsController < ApplicationController
     @skipping_preloading =
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "taxon_summary" ) ||
+      ( action_name == "observation_links" ) ||
       ( action_name == "show" &&
         logged_in? && current_user.in_test_group?( "observation-page" ) && !params.key?(:old) )
   end

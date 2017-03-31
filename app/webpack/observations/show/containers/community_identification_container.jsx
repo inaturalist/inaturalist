@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    addID: ( taxon ) => { dispatch( addID( taxon ) ); },
+    addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
     updateObservation: ( attributes ) => { dispatch( updateObservation( attributes ) ); },
     setCommunityIDModalState: ( key, value ) => {
       dispatch( setCommunityIDModalState( key, value ) );

@@ -2,6 +2,7 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
+import { fetchObservationLinks, setObservationLinks } from "./observation_links";
 import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setMoreFromThisUser, setNearby, setMoreFromClade } from "./other_observations";
@@ -41,10 +42,31 @@ export function setAttributes( attributes ) {
   };
 }
 
+/* global SITE */
 export function windowStateForObservation( observation ) {
+  let title = `observed by ${observation.user.login}`;
+  if ( observation.taxon ) {
+    title = `${observation.taxon.preferred_common_name || observation.taxon.name} ${title}`;
+  }
+  if ( observation.observed_on ) {
+    const date = moment( observation.observed_on ).format( "MMMM D, YYYY" );
+    title = `${title} on ${date}`;
+  }
   return {
-    state: { observation: { id: observation.id } },
-    title: "TODO: set the title",
+    state: {
+      observation: {
+        id: observation.id,
+        observed_on: observation.observed_on,
+        user: {
+          login: observation.user.login
+        },
+        taxon: {
+          name: observation.taxon.name,
+          preferred_common_name: observation.taxon.preferred_common_name
+        }
+      }
+    },
+    title: `${title} · ${SITE.name}`,
     url: `/observations/${observation.id}`
   };
 }
@@ -75,6 +97,7 @@ export function resetStates( ) {
     dispatch( setNearby( [] ) );
     dispatch( setMoreFromClade( [] ) );
     dispatch( setSubscriptions( [] ) );
+    dispatch( setObservationLinks( [] ) );
   };
 }
 
@@ -99,6 +122,7 @@ export function fetchObservation( id, options = { } ) {
       ttl: -1
     };
     const originalObservation = s.observation;
+    const fetchAll = options.fetchAll;
     return inatjs.observations.fetch( id, params ).then( response => {
       const observation = response.results[0];
       const taxonUpdated = ( originalObservation &&
@@ -113,29 +137,30 @@ export function fetchObservation( id, options = { } ) {
         dispatch( setMoreFromClade( [] ) );
       }
       dispatch( fetchTaxonSummary( ) );
-      if ( options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
-      if ( options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
-      if ( options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
-      if ( options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
-      if ( options.replaceState ) {
+      if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
+      if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
+      if ( fetchAll || options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
+      if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
+      if ( fetchAll || options.replaceState ) {
         const ws = windowStateForObservation( observation );
         history.replaceState( ws.state, ws.title, ws.url );
       }
       setTimeout( ( ) => {
-        if ( options.fetchOtherObservations ) {
+        if ( fetchAll || options.fetchOtherObservations ) {
           dispatch( fetchMoreFromThisUser( ) );
           dispatch( fetchNearby( ) );
         }
-        if ( options.fetchOtherObservations || taxonUpdated ) {
+        if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
           dispatch( fetchMoreFromClade( ) );
         }
-        if ( ( options.fetchIdentifiers || taxonUpdated ) &&
+        if ( ( fetchAll || options.fetchIdentifiers || taxonUpdated ) &&
              observation.taxon && observation.taxon.rank_level <= 50 ) {
-          dispatch( fetchIdentifiers( { taxon_id: observation.taxon.id, per_page: 10 } ) );
+          dispatch( fetchIdentifiers( {
+            taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
         }
-      }, taxonUpdated ? 1 : 1500 );
+        // if ( fetchAll || options.fetchObservationLinks ) { dispatch( fetchObservationLinks( ) ); }
+      }, taxonUpdated ? 1 : 500 );
       if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
-        // TODO: put item type in flaggingModal state
         const item = s.flaggingModal.item;
         let newItem;
         if ( id === item.id ) { newItem = observation; }
@@ -281,7 +306,7 @@ export function confirmDeleteComment( id ) {
   };
 }
 
-export function doAddID( taxon, body, confirmForm ) {
+export function doAddID( taxon, confirmForm, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
@@ -295,7 +320,8 @@ export function doAddID( taxon, body, confirmForm ) {
     dispatch( setAttributes( { identifications: newIdentifications.concat( [{
       created_at: moment( ).format( ),
       user: state.config.currentUser,
-      body,
+      body: options.body,
+      agreedTo: options.agreedTo,
       taxon,
       current: true,
       api_status: "saving"
@@ -304,13 +330,13 @@ export function doAddID( taxon, body, confirmForm ) {
     const payload = {
       observation_id: state.observation.id,
       taxon_id: taxon.id,
-      body
+      body: options.body
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
   };
 }
 
-export function addID( taxon, body ) {
+export function addID( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
@@ -327,11 +353,11 @@ export function addID( taxon, body ) {
         existingTaxon: observation.taxon,
         confirmText: "Proceed",
         onConfirm: ( confirmForm ) => {
-          dispatch( doAddID( taxon, body, confirmForm ) );
+          dispatch( doAddID( taxon, confirmForm, options ) );
         }
       } ) );
     } else {
-      dispatch( doAddID( taxon, body ) );
+      dispatch( doAddID( taxon, null, options ) );
     }
   };
 }
@@ -353,11 +379,12 @@ export function restoreID( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const payload = {
-      id,
-      current: true
-    };
-    dispatch( callAPI( inatjs.identifications.update, payload ) );
+    const newIdentifications = _.map( state.observation.identifications, i => (
+      i.id === id ?
+        Object.assign( { }, i, { current: true, api_status: "saving" } ) : i
+    ) );
+    dispatch( setAttributes( { identifications: newIdentifications } ) );
+    dispatch( callAPI( inatjs.identifications.update, { id, current: true } ) );
   };
 }
 
@@ -675,13 +702,6 @@ export function showNewObservation( observation, options ) {
     }
     document.title = s.title;
     dispatch( resetStates( ) );
-    dispatch( fetchObservation( observation.id, {
-      fetchPlaces: true,
-      fetchControlledTerms: true,
-      fetchQualityMetrics: true,
-      fetchOtherObservations: true,
-      fetchSubscriptions: true,
-      fetchIdentifiers: true
-    } ) );
+    dispatch( fetchObservation( observation.id, { fetchAll: true } ) );
   };
 }
