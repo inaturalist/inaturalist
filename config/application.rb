@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
+require 'rack/mobile-detect'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -73,6 +74,7 @@ module Inaturalist
     end
 
     config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
+    config.middleware.use Rack::MobileDetect
   end
 
 end

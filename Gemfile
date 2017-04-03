@@ -76,6 +76,7 @@ gem 'delayed_paperclip', git: 'git://github.com/jrgifford/delayed_paperclip.git'
 gem 'pg'
 gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
+gem "rack-mobile-detect"
 gem 'rails-observers'
 gem 'rakismet'
 gem 'RedCloth'
