@@ -433,6 +433,23 @@ describe Project do
       expect( pu.observations_count ).to eq 2
       expect( pu.taxa_count ).to eq 1
     end
+
+    it "should create project observations that allow curator coordinate access if the observer has joined and opted in" do
+      project.update_attributes( place: make_place_with_geom, trusted: true )
+      pu = ProjectUser.make!(
+        project: project,
+        preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
+      )
+      o = Observation.make!(
+        latitude: project.place.latitude,
+        longitude: project.place.longitude,
+        user: pu.user
+      )
+      project.aggregate_observations
+      o.reload
+      po = o.project_observations.first
+      expect( po ).to be_prefers_curator_coordinate_access
+    end
   end
 
   describe "aggregation_allowed?" do

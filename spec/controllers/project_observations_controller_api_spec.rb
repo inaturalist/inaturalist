@@ -137,6 +137,24 @@ shared_examples_for "a ProjectObservationsController" do
         expect(other_observation.projects.to_a).not_to include project
       end
     end
+
+    it "should not allow setting preferences if creator is not the observer" do
+      o = Observation.make!
+      post :create, format: :json, project_observation: { observation_id: o.id, project_id: project.id, prefers_curator_coordinate_access: true }
+      o.reload
+      po = o.project_observations.first
+      expect( po ).not_to be_prefers_curator_coordinate_access
+    end
+  end
+
+  describe "update" do
+    it "should not allow setting preferences if updater is not the observer" do
+      po = ProjectObservation.make!( project: project )
+      expect( po ).not_to be_prefers_curator_coordinate_access
+      put :update, format: :json, id: po.id, project_observation: { prefers_curator_coordinate_access: true }
+      po.reload
+      expect( po ).not_to be_prefers_curator_coordinate_access
+    end
   end
 
   describe "destroy" do

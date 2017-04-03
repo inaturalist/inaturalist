@@ -433,7 +433,7 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
       expect( po_by_observer ).to be_valid
       expect( po_by_observer ).to be_coordinates_shareable_by_project_curators
     end
-    it "should be true when submitted by the no one" do
+    it "should be true when submitted by no one" do
       expect( po_by_no_one ).to be_valid
       expect( po_by_no_one ).to be_coordinates_shareable_by_project_curators
     end
@@ -453,7 +453,7 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
       expect( po_by_observer ).to be_prefers_curator_coordinate_access
       expect( po_by_observer ).to be_coordinates_shareable_by_project_curators
     end
-    it "should be false when submitted by the no one" do
+    it "should be false when submitted by no one" do
       expect( po_by_no_one ).not_to be_valid
       expect( po_by_no_one ).not_to be_coordinates_shareable_by_project_curators
     end
@@ -472,7 +472,7 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
       expect( po_by_observer ).not_to be_valid
       expect( po_by_observer ).not_to be_coordinates_shareable_by_project_curators
     end
-    it "should be false when submitted by the no one" do
+    it "should be false when submitted by no one" do
       expect( po_by_no_one ).not_to be_valid
       expect( po_by_no_one ).not_to be_coordinates_shareable_by_project_curators
     end
@@ -489,22 +489,25 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
   describe "when project observation allows curator coordinate access" do
     let(:pu) { ProjectUser.make!(project: p) }
     it "should be true when submitted by the observer" do
-      po_by_observer.prefers_curator_coordinate_access = true
+      po_by_observer.update_attributes( prefers_curator_coordinate_access: true )
       expect( po_by_observer ).to be_valid
       expect( po_by_observer ).to be_coordinates_shareable_by_project_curators
     end
-    it "should be true when submitted by the no one" do
-      po_by_no_one.prefers_curator_coordinate_access = true
+    it "should be true when submitted by no one" do
+      po_by_no_one.update_attributes( prefers_curator_coordinate_access: true )
+      unless po_by_no_one.valid?
+        puts "po_by_no_one.errors: #{po_by_no_one.errors.full_messages.to_sentence}"
+      end
       expect( po_by_no_one ).to be_valid
       expect( po_by_no_one ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by a project curator" do
-      po_by_curator.prefers_curator_coordinate_access = true
+      po_by_curator.update_attributes( prefers_curator_coordinate_access: true )
       expect( po_by_curator ).to be_valid
       expect( po_by_curator ).to be_coordinates_shareable_by_project_curators
     end
     it "should be true when submitted by a non-curator" do
-      po_by_non_curator.prefers_curator_coordinate_access = true
+      po_by_non_curator.update_attributes( prefers_curator_coordinate_access: true )
       expect( po_by_non_curator ).to be_valid
       expect( po_by_non_curator ).to be_coordinates_shareable_by_project_curators
     end
@@ -516,7 +519,7 @@ describe ProjectObservation, "coordinates_shareable_by_project_curators?" do
       expect( po_by_observer ).not_to be_valid
       expect( po_by_observer ).not_to be_coordinates_shareable_by_project_curators
     end
-    it "should be true when submitted by the no one" do
+    it "should be true when submitted by no one" do
       po_by_no_one.prefers_curator_coordinate_access = false
       expect( po_by_no_one ).not_to be_valid
       expect( po_by_no_one ).not_to be_coordinates_shareable_by_project_curators
