@@ -833,6 +833,7 @@ it:
   commercial_solicitation: Promozioni commerciali, link a nulla, etc.
   commit: Conferma
   committed: Confermato
+  committed_on: Validato il %{date}
   committing: Conferma in corso...
   community_curated: Curate dalla Community
   community_id: 'ID della <strong>Community</strong>:'
@@ -4754,6 +4755,10 @@ it:
           infelice scelta dei nomi)'
         private_latitude: Latitudine privata, se l'osservazione è oscurata o privata
         private_longitude: Longitudine privata, se l'osservazione è oscurata o privata
+        geoprivacy: Se l'osservatore ha scelto di oscurare o nascondere le coordinate
+          oppure no
+        coordinates_obscured: Se le coordinate sono state oscurate oppure no, sia
+          che il taxon sia minacciato sia che dipenda dalla geoprivacy
         out_of_range: Se l'osservazione cade o no all'esterno dell'areale conosciuto
           per il taxon
         user_id: Identificatore univoco dell'osservatore
@@ -4876,6 +4881,17 @@ it:
             <li>
               l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a un livello superiore alla famiglia
             </li>
+            <li>
+              l'osservatore ha rifiutato l'ID della community e il tazon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
+            </li>
+          </ul>
+          <p>
+            E come se non fosse già abbastanza complicato, ci sono anche situazioni in cui il sistema assegna un voto:
+          </p>
+          <ul>
+            <li>
+              Il sistema stabilirà che l'osservazione non è selvatica/naturalizzata se, nel luogo più piccolo che contiene questa osservazione (nazione, regione, provincia), ci sono almeno 10 altre osservazioni di un genere o taxon di rango inferiore di cui l'80% o più sono state marcate come non selvatiche/naturalizzate.
+            </li>
           </ul>
         score_desc: punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio
           dei non d'accordo + numero di disaccordi sugli antenati)
@@ -4997,6 +5013,9 @@ it:
           private.
       edit:
         aggregation_pending: In attesa di Aggregazione
+        new_place_desc_html: |-
+          Cerca nei
+          <a href="%{places_url}" target="_blank">nostri luoghi</a> e assicurati che il nome sia corretto. Se davvero non trovi il posto che cerchi, considera di <a href="%{new_place_url}" target="_blank">creare un nuovo luogo</a>, ma per favore assicurati che tu non stia duplicando un luogo che già esiste.
         bioblitz_desc_html: |-
           <p>
           Un Bioblitz è un evento in cui i partecipanti cercano di osservare più specie possibili entro un periodo di tempo determinato.

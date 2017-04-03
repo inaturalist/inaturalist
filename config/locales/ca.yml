@@ -2285,7 +2285,7 @@ ca:
   notify_me_about_redundant_identifications: Notifiqueu-me sobre identificacions confirmades
   notify_me_about_redundant_identifications_desc: Rebre notificacions sobre identificacions
     que coincideixin amb la vostra. Si ho desactiveu només rebreu notificacions sobre
-    identificacions de tàxons que no es corresponen exactament amb la vostra.
+    identificacions de tàxons que no es corresponguin exactament amb la vostra.
   number_of_observations: Nombre d'observacions
   number_selected: '# seleccionat'
   numeric_: numèric
@@ -4701,7 +4701,7 @@ ca:
         id: Identificador únic de l'observació
         species_guess: Nom que va introduir l'observador pel tàxon observat
         scientific_name: Nom científic del tàxon observat, segons aquest lloc.
-        common_name: Nom vulgar en la llengua vernacle del tàxon observat, segons
+        common_name: Nom vulgar o en la llengua vernacle del tàxon observat segons
           aquest lloc
         iconic_taxon_name: Categoria taxonòmica de nivell superior del tàxon observat
         taxon_id: Identificador únic del tàxon observat
@@ -4722,6 +4722,9 @@ ca:
           mateix que precisa, una mala elecció de les paraules)
         private_latitude: Latitud privada, marcar si l'observació és privada o enfosquida
         private_longitude: Longitud privada, marcar si l'observació és privada o enfosquida
+        geoprivacy: Si l'observador ha escollit, o no, enfosquir o amagar les coordenades
+        coordinates_obscured: Si les coordenades han estat enfosquides, o no, a causa
+          d'una condició de geoprivacitat o per tractar-se d'un tàxon vulnerable
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució
           coneguda d'aquest tàxon, o no
         user_id: Identificador únic per a l'observador
@@ -4799,13 +4802,22 @@ ca:
           </ul>
           <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>
           <ul>
-            <li>la <strong>ubicació no és prou precisa</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
+            <li>la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
             <li>l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
            <li>l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.
             </li>
-            <li>l'observació <strong>no mostra evidències recents (~100 anys) d'organismes</strong> (e.g. fòssils, però sí que són correctes les pistes, excrements i fulles mortes)
+            <li>l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organismes</strong> (p.ex. fòssils, però sí s'accepten pistes, excrements i fulles mortes)
             </li>
             <li>l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
+          </ul>
+          <p>
+            I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
+          </ P>
+          <ul>
+            <li>
+              El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitut(municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a <strong>no</stron> salvatge/naturalitzat.
+            </li>
+          </ul>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
           de desacord + desacords en l'avantpassat )
       user_stats:
