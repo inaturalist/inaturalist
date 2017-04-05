@@ -212,7 +212,7 @@
   <% end -%>
   
   <div class="clear buttonrow">
-    <%= f.submit t(:save_changes), :class => 'default button' %>
+    <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
     <%= link_to t(:cancel), taxon, :class => 'button' %>
     <%-
       pieces = []
