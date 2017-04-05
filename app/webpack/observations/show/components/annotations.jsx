@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Dropdown, MenuItem, Glyphicon } from "react-bootstrap";
+import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../identify/components/user_image";
 
@@ -75,12 +75,44 @@ class Annotations extends React.Component {
         keyPrefix={ `votes-against-${a.controlled_value.id}` }
         contents={ ( <span>({votersAgainst.length})</span> ) }
       /> );
+    const termPopover = (
+      <Popover
+        id={ `annotation-popover-${a.uuid}` }
+        className="AnnotationPopover"
+      >
+        <div className="contents">
+          <div className="view">View:</div>
+          <div className="search">
+            <a href={ `/observations?term_id=${a.controlled_attribute.id}&term_value_id=${a.controlled_value.id}` }>
+              <i className="fa fa-arrow-circle-o-right" />
+              Observations with { a.controlled_attribute.label }: { a.controlled_value.label }
+            </a>
+          </div>
+          <div className="search">
+            <a href={ `/observations?term_id=${a.controlled_attribute.id}` }>
+              <i className="fa fa-arrow-circle-o-right" />
+              Observations with { a.controlled_attribute.label }
+            </a>
+          </div>
+        </div>
+      </Popover>
+    );
     return (
       <tr
         key={ `term-row-${a.controlled_value.id}` }
         className={ a.api_status ? "disabled" : "" }
       >
-        <td className="attribute">{ term.label }</td>
+        <td className="attribute">
+          <OverlayTrigger
+            trigger="click"
+            rootClose
+            placement="top"
+            animation={false}
+            overlay={termPopover}
+          >
+            <div>{ term.label }</div>
+          </OverlayTrigger>
+        </td>
         <td className="value">
           <UserImage user={ a.user } />
           { a.controlled_value.label }
@@ -140,13 +172,39 @@ class Annotations extends React.Component {
           _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
         ) );
       }
+      const termPopover = (
+        <Popover
+          id={ `annotation-popover-${ct.id}` }
+          className="AnnotationPopover"
+        >
+          <div className="contents">
+            <div className="view">View:</div>
+            <div className="search">
+              <a href={ `/observations?term_id=${ct.id}` }>
+                <i className="fa fa-arrow-circle-o-right" />
+                Observations with { ct.label }
+              </a>
+            </div>
+          </div>
+        </Popover>
+      );
       if ( availableValues.length > 0 &&
            !( groupedAnnotations[ct.id] && !ct.multivalued ) ) {
         rows.push( (
           <tr
             key={ `term-row-${ct.id}` }
           >
-            <td className="attribute">{ ct.label }</td>
+            <td className="attribute">
+              <OverlayTrigger
+                trigger="click"
+                rootClose
+                placement="top"
+                animation={false}
+                overlay={termPopover}
+              >
+                <div>{ ct.label }</div>
+              </OverlayTrigger>
+            </td>
             <td>
               <Dropdown
                 id="grouping-control"

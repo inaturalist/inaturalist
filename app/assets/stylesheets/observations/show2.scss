@@ -1,6 +1,7 @@
 @import "../colors";
 @import "../shared/split_taxon";
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
+@import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 
 $bootstrap-link-color: #428BCA;
 $other-link-color: #337AB7;
@@ -10,6 +11,32 @@ $fail-red: #D9534F;
 
 body {
   min-width: 980px;
+}
+
+.input-group.date {
+  display: none;
+}
+
+.bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
+  position: absolute;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  height: auto;
+  margin-top: 37px;
+  td span {
+    height: auto;
+  }
+  &:before {
+    right: 110px;
+  }
+  &:after {
+    right: 111px;
+  }
+  .btn {
+    box-shadow: none;
+  }
 }
 
 #bodywrapper, #wrapper {
@@ -71,6 +98,45 @@ input.failed {
   }
 }
 
+.ui-autocomplete {
+  .ac-result {
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    .ac-label {
+      padding: 7px 12px;
+      color: #555;
+      .title {
+        font-size: 1.0em;
+      }
+    }
+  }
+}
+
+.TaxonAutocomplete {
+  .ui-autocomplete {
+    font-size: 1.0em;
+    li {
+      width: 100%;
+    }
+    li.ui-state-focus {
+      background: #f6f6f6;
+    }
+    .ac-label {
+      padding: 0px 9px;
+    }
+  }
+  .ac-select-thumb {
+    margin: 0;
+    padding: 0;
+    height: 34px;
+    width: 34px;
+    text-align: center;
+    .glyphicon-search {
+      top: 3px;
+      left: 1px;
+    }
+  }
+}
+
 a.UserImage {
   &:hover {
     color: #fff;
@@ -91,6 +157,19 @@ a.UserImage {
   .icon-person {
     font-size: 36px;
     line-height: 40px;
+  }
+}
+
+.squareIcon {
+  border: 1px solid $border-grey;
+  padding: 1px;
+  display: inline-block;
+  margin-right: 5px;
+  float: left;
+  img {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #B3B2B7;
   }
 }
 
@@ -315,6 +394,9 @@ a.UserImage {
       .form-group {
         margin-bottom: 0px;
       }
+      .ui-autocomplete .ac-label {
+        min-width: 320px;
+      }
       textarea {
         min-height: 125px;
         resize: none;
@@ -328,26 +410,6 @@ a.UserImage {
         textarea {
           min-height: 81px;
           margin-top: 10px;
-        }
-        .ui-autocomplete {
-          font-size: 0.9em;
-          li {
-            width: 100%;
-          }
-          .ac-label {
-            width: 320px;
-          }
-        }
-        .ac-select-thumb {
-          margin: 0;
-          padding: 0;
-          height: 34px;
-          width: 34px;
-          text-align: center;
-          .glyphicon-search {
-            top: 3px;
-            left: 1px;
-          }
         }
       }
     }
@@ -457,13 +519,6 @@ a.UserImage {
   .panel {
     margin-top: 10px;
   }
-  .image {
-    border: 1px solid $border-grey;
-    padding: 1px;
-    display: inline-block;
-    margin-right: 5px;
-    float: left;
-  }
   .info {
     float: left;
     width: 80%;
@@ -477,11 +532,6 @@ a.UserImage {
   }
   .title {
     font-size: 16px;
-  }
-  img {
-    width: 40px;
-    height: 40px;
-    border: 1px solid #B3B2B7;
   }
   .control-group {
     float: right;
@@ -632,7 +682,7 @@ a.UserImage {
   border-top: 1px solid $border-grey;
 }
 
-.Tags, .Projects {
+.Tags, .Projects, .ObservationFields {
   .panel {
     background: none;
     border: 0;
@@ -849,6 +899,8 @@ a.UserImage {
   }
   .attribute {
     font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
   }
   .value {
     white-space: nowrap;
@@ -1101,6 +1153,26 @@ a.UserImage {
       }
     }
   }
+  .outlinks {
+    border-top: 1px solid $border-grey;
+    padding-top: 15px;
+    margin-top: 30px;
+    font-size: 16px;
+    .intro {
+      display: block;
+      margin-bottom: 10px;
+      .intro-sub {
+        display: block;
+        font-size: 14px;
+      }
+    }
+    .outlink {
+      width: 50%;
+      float: left;
+      margin-bottom: 15px;
+      padding-right: 10px;
+    }
+  }
 }
 
 .MoreFromUser {
@@ -1201,28 +1273,54 @@ a.UserImage {
   }
 }
 
+.ObservationFields {
+  .observation-field {
+    margin-bottom: 20px;
+    textarea {
+      min-height: 125px;
+      border-radius: 3px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .input-group-btn {
+      vertical-align: top;
+    }
+  }
+  .field-name {
+    font-size: 16px;
+    margin: 20px 0px 10px;
+  }
+}
+
 .ObservationFieldValue {
   margin-bottom: 10px;
   .field {
     font-weight: 600;
     display: inline;
     margin-right: 5px;
+    cursor: pointer;
   }
   .value {
     display: inline;
     .dna {
       font-family: inherit;
     }
+    .glyphicon-remove-circle {
+      cursor: pointer;
+    }
   }
 }
 
-.ObservationFieldPopover.popover {
+.ObservationFieldPopover.popover, .AnnotationPopover.popover {
   padding: 0px !important;
+  max-width: 350px;
   .popover-content {
     padding: 0px;
   }
   .info {
     padding: 12px 14px;
+    border-bottom: 1px solid #e5e5e5;
     .header {
       font-size: 18px;
       line-height: 28px;
@@ -1230,12 +1328,12 @@ a.UserImage {
   }
   .contents {
     padding: 12px 14px;
-    border-top: 1px solid #e5e5e5;
     .view {
       color: #aaa;
     }
     .search {
       line-height: 24px;
+      white-space: nowrap;
       .fa {
         color: $inat-green;
         margin-right: 5px;

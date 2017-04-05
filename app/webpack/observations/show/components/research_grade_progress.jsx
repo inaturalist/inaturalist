@@ -1,20 +1,32 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 
-const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
-  if ( !observation ) { return ( <div /> ); }
-  const grade = observation.quality_grade;
-  const needsIDActive = ( grade === "needs_id" || grade === "research" );
-  let description;
-  let criteria;
-  if ( grade === "research" ) {
-    description = (
-      <span>
-        <span className="bold">This observation is Research Grade! </span>
-        It can now be used for research and featured on other websites.
-      </span>
-    );
-  } else {
+
+
+class ResearchGradeProgress extends React.Component {
+
+  constructor( ) {
+    super( );
+    this.criteriaList = this.criteriaList.bind( this );
+  }
+
+  outlinkIcon( source ) {
+    switch ( source ) {
+      case "Atlas of Living Australia":
+        return "/assets/sites/ala.png";
+      case "Calflora":
+        return "/assets/sites/calflora.png";
+      case "GBIF":
+        return "/assets/sites/gbif.png";
+      case "GloBI":
+        return "/assets/sites/globi.png";
+      default:
+        return null;
+    }
+  }
+
+  criteriaList( ) {
+    const { observation, qualityMetrics } = this.props;
     let remainingCriteria = { };
     const passedCriteria = { };
     remainingCriteria.date = !observation.observed_on;
@@ -53,7 +65,7 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
       }
     }
     remainingCriteria = _.pickBy( remainingCriteria, bool => ( bool === true ) );
-    criteria = (
+    return (
       <ul className="remaining">
         { _.map( remainingCriteria, ( bool, type ) => {
           if ( type === "rank_or_needs_id" ) {
@@ -150,43 +162,84 @@ const ResearchGradeProgress = ( { observation, qualityMetrics } ) => {
         } ) }
       </ul>
     );
-    description = (
-      <span>
-        The below items are needed to achieve <span className="bold">Research Grade:</span>
-      </span>
+  }
+
+  render( ) {
+    const observation = this.props.observation;
+    if ( !observation ) { return ( <div /> ); }
+    const grade = observation.quality_grade;
+    const needsIDActive = ( grade === "needs_id" || grade === "research" );
+    let description;
+    let criteria;
+    let outlinks;
+    if ( grade === "research" ) {
+      description = (
+        <span>
+          <span className="bold">This observation is Research Grade! </span>
+          It can now be used for research and featured on other websites.
+        </span>
+      );
+    } else {
+      criteria = this.criteriaList( );
+      description = (
+        <span>
+          The below items are needed to achieve <span className="bold">Research Grade:</span>
+        </span>
+      );
+    }
+    if ( observation.outlinks && observation.outlinks.length > 0 ) {
+      outlinks = ( <div className="outlinks">
+        <span className="intro">
+          This observation is featured on { observation.outlinks.length } sites
+          { grade !== "research" ? (
+            <span className="intro-sub">
+              Please allow a few weeks for external sites to sync changes from this site
+            </span>
+          ) : "" }
+        </span>
+        { observation.outlinks.map( ol => (
+          <div className="outlink" key={ `outlink-${ol.source}` }>
+            <a href={ ol.url }>
+              <div className="squareIcon">
+                <img src={ this.outlinkIcon( ol.source ) } />
+              </div>
+              <div className="title">{ ol.source }</div>
+            </a>
+          </div>
+        ) ) }
+      </div> );
+    }
+    return (
+      <div className="ResearchGradeProgress">
+        <div className="graphic">
+          <div className="checks">
+            <div className="check active">
+              <i className="fa fa-check" />
+            </div>
+            <div className={ `separator ${needsIDActive ? "active" : "incomplete"}` } />
+            <div className={ `check needs-id ${needsIDActive ? "active" : "incomplete"}` }>
+              <i className="fa fa-check" />
+            </div>
+            <div className={ `separator ${grade === "research" ? "active" : "incomplete"}` } />
+            <div className={ `check research ${grade === "research" ? "active" : "incomplete"}` }>
+              <i className="fa fa-check" />
+            </div>
+          </div>
+          <div className="labels">
+            <div className={ `casual ${grade === "casual" && "active"}` }>Casual Grade</div>
+            <div className={ `needs-id ${grade === "needs_id" && "active"}` }>Needs ID</div>
+            <div className={ `research ${grade === "research" && "active"}` }>Research Grade</div>
+          </div>
+        </div>
+        <div className="info">
+          { description }
+        </div>
+        { criteria }
+        { outlinks }
+      </div>
     );
   }
-  return (
-    <div className="ResearchGradeProgress">
-      <div className="graphic">
-        <div className="checks">
-          <div className="check active">
-            <i className="fa fa-check" />
-          </div>
-          <div className={ `separator ${needsIDActive ? "active" : "incomplete"}` } />
-          <div className={ `check needs-id ${needsIDActive ? "active" : "incomplete"}` }>
-            <i className="fa fa-check" />
-          </div>
-          <div className={ `separator ${grade === "research" ? "active" : "incomplete"}` } />
-          <div className={ `check research ${grade === "research" ? "active" : "incomplete"}` }>
-            <i className="fa fa-check" />
-          </div>
-        </div>
-        <div className="labels">
-          <div className={ `casual ${grade === "casual" && "active"}` }>Casual Grade</div>
-          <div className={ `needs-id ${grade === "needs_id" && "active"}` }>Needs ID</div>
-          <div className={ `research ${grade === "research" && "active"}` }>Research Grade</div>
-        </div>
-      </div>
-      <div className="info">
-        { description }
-      </div>
-      { criteria }
-      <div className="links">
-      </div>
-    </div>
-  );
-};
+}
 
 ResearchGradeProgress.propTypes = {
   observation: PropTypes.object,

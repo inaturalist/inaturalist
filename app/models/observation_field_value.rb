@@ -3,7 +3,7 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation_field
   belongs_to :user
   belongs_to :updater, :class_name => 'User'
-  has_one :annotation, dependent: :destroy
+  has_one :annotation
   
   before_validation :strip_value
   before_save :set_user
@@ -170,7 +170,7 @@ class ObservationFieldValue < ActiveRecord::Base
       controlled_attribute: attr_val[:controlled_attribute],
       controlled_value: attr_val[:controlled_value],
       user_id: user_id,
-      created_at: created_at)
+      created_at: created_at) rescue nil
   end
 
   def annotation_attribute_and_value
@@ -196,7 +196,9 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def destroy_annotation
-    Annotation.where(observation_field_value_id: id).destroy_all
+    Annotation.where(observation_field_value_id: id).each do |a|
+      a.destroy if a.vote_score <= 0
+    end
   end
 
   def as_indexed_json(options={})

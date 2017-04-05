@@ -218,10 +218,12 @@ const App = ( { observation, config } ) => {
                 </Col>
               </Row>
               <Row>
-                <Col xs={12} className="Copyright">
-                  <h4>Copyright Info</h4>
-                  Observation &copy; { observation.user.login } &middot;
-                  All Rights Reserved
+                <Col xs={12}>
+                  <div className="Copyright">
+                    <h4>Copyright Info</h4>
+                    Observation &copy; { observation.user.login } &middot;
+                    All Rights Reserved
+                  </div>
                 </Col>
               </Row>
             </Col>

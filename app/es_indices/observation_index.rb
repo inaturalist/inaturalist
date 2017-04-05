@@ -193,7 +193,8 @@ class Observation < ActiveRecord::Base
           ElasticModel.point_geojson(private_latitude, private_longitude) : nil,
         votes: votes_for.map{ |v|
           { user_id: v.voter_id, vote_flag: v.vote_flag, vote_scope: v.vote_scope }
-        }
+        },
+        outlinks: observation_links.map(&:as_indexed_json),
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]

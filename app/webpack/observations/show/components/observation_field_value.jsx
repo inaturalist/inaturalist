@@ -1,29 +1,38 @@
 import React, { PropTypes } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import { Glyphicon } from "react-bootstrap";
 
 class ObservationFieldValue extends React.Component {
-
-  constructor( ) {
-    super( );
-    this.renderTaxonomy = this.renderTaxonomy.bind( this );
-  }
-
-  renderTaxonomy( taxa, root ) {
-
-  }
-
   render( ) {
-    const ofv = this.props.ofv;
+    const { ofv, removeObservationFieldValue, config, observation } = this.props;
     if ( !ofv || !ofv.observation_field ) { return ( <div /> ); }
+    const loggedIn = config && config.currentUser;
     let value = ofv.value;
+    let remove;
+    if ( loggedIn ) {
+      remove = ofv.api_status ? ( <div className="loading_spinner" /> ) : (
+        <Glyphicon glyph="remove-circle"
+          onClick={ () => {
+            removeObservationFieldValue( ofv.uuid );
+          } }
+        />
+      );
+    }
     if ( ofv.datatype === "dna" ) {
-      value = ( <div className="dna">{ ofv.value }</div> );
-    } else if ( ofv.datatype === "taxon" && ofv.taxon ) {
-      value = ( <SplitTaxon
-        taxon={ ofv.taxon }
-        url={ `/taxa/${ofv.taxon.id}` }
-      /> );
+      value = ( <div className="dna">{ ofv.value } { remove }</div> );
+    } else {
+      if ( ofv.datatype === "taxon" && ofv.taxon ) {
+        value = ( <SplitTaxon
+          taxon={ ofv.taxon }
+          url={ `/taxa/${ofv.taxon.id}` }
+        /> );
+      }
+      value = (
+        <div className="value">
+          { value } { remove }
+        </div>
+      );
     }
     let info;
     if ( ofv.observation_field && ofv.observation_field.description ) {
@@ -83,7 +92,10 @@ class ObservationFieldValue extends React.Component {
 }
 
 ObservationFieldValue.propTypes = {
-  ofv: PropTypes.object
+  config: PropTypes.object,
+  observation: PropTypes.object,
+  ofv: PropTypes.object,
+  removeObservationFieldValue: PropTypes.func
 };
 
 export default ObservationFieldValue;

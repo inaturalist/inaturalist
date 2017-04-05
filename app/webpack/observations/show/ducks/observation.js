@@ -2,7 +2,6 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
-import { fetchObservationLinks, setObservationLinks } from "./observation_links";
 import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
   setMoreFromThisUser, setNearby, setMoreFromClade } from "./other_observations";
@@ -101,7 +100,6 @@ export function resetStates( ) {
     dispatch( setNearby( [] ) );
     dispatch( setMoreFromClade( [] ) );
     dispatch( setSubscriptions( [] ) );
-    dispatch( setObservationLinks( [] ) );
   };
 }
 
@@ -162,7 +160,6 @@ export function fetchObservation( id, options = { } ) {
           dispatch( fetchIdentifiers( {
             taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
         }
-        // if ( fetchAll || options.fetchObservationLinks ) { dispatch( fetchObservationLinks( ) ); }
       }, taxonUpdated ? 1 : 500 );
       if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
         const item = s.flaggingModal.item;
@@ -694,6 +691,40 @@ export function confirmRemoveFromProject( project ) {
         dispatch( removeFromProject( project ) );
       }
     } ) );
+  };
+}
+
+export function addObservationFieldValue( options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) || !options.observationField ) { return; }
+    const newOfvs = _.clone( state.observation.ofvs );
+    newOfvs.unshift( {
+      datatype: options.observationField.datatype,
+      name: options.observationField.name,
+      value: options.value,
+      observation_field: options.observationField,
+      api_status: "saving",
+      taxon: options.taxon
+    } );
+    dispatch( setAttributes( { ofvs: newOfvs } ) );
+    const payload = {
+      observation_field_id: options.observationField.id,
+      observation_id: state.observation.id,
+      value: options.value
+    };
+    dispatch( callAPI( inatjs.observation_field_values.create, payload ) );
+  };
+}
+
+export function removeObservationFieldValue( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newOfvs = state.observation.ofvs.map( ofv => (
+      ofv.uuid === id ? Object.assign( { }, ofv, { api_status: "deleting" } ) : ofv ) );
+    dispatch( setAttributes( { ofvs: newOfvs } ) );
+    dispatch( callAPI( inatjs.observation_field_values.delete, { id } ) );
   };
 }
 

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import ObservationFields from "../components/observation_fields";
+import { addObservationFieldValue, removeObservationFieldValue } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
@@ -8,8 +9,16 @@ function mapStateToProps( state ) {
   };
 }
 
+function mapDispatchToProps( dispatch ) {
+  return {
+    addObservationFieldValue: options => { dispatch( addObservationFieldValue( options ) ); },
+    removeObservationFieldValue: id => { dispatch( removeObservationFieldValue( id ) ); }
+  };
+}
+
 const ObservationFieldsContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( ObservationFields );
 
 export default ObservationFieldsContainer;

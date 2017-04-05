@@ -99,11 +99,12 @@ class CommunityIdentification extends React.Component {
   }
 
   communityIDOverrideStatement( ) {
-    const observation = this.props.observation;
+    const { observation, config } = this.props;
+    const loggedIn = config && config.currentUser;
     const observerOptedOut = (
       this.ownerID && observation.user.preferences.prefers_community_taxa === false );
     let statement;
-    if ( observerOptedOut && !observation.preferences.prefers_community_taxon ) {
+    if ( observerOptedOut && loggedIn && config.currentUser.id === observation.user.id ) {
       statement = ( <span className="opted_out">
         (User has opted-out of Community ID)
         <OverlayTrigger
@@ -157,7 +158,7 @@ class CommunityIdentification extends React.Component {
     } );
     const totalVotes = votesFor.length + votesAgainst.length;
     const voteCells = [];
-    const width = `${Math.floor( 100 / totalVotes )}%`;
+    const width = `${_.round( 100 / totalVotes, 3 )}%`;
     _.each( votesFor, v => {
       voteCells.push( (
         <CommunityIDPopover
@@ -202,7 +203,7 @@ class CommunityIdentification extends React.Component {
           </div>
           <SplitTaxon taxon={observation.taxon} url={`/taxa/${taxon.id}`} />
           <span className="cumulative">
-            Cumulative IDs: { voteCells.length }
+            Cumulative IDs: { votesFor.length } of { voteCells.length }
           </span>
           <div className="graphic">
             { voteCells }

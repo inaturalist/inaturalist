@@ -61,17 +61,25 @@ class Activity extends React.Component {
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
+    const taxonIDsDisplayed = { };
     return (
       <div className="Activity">
         <h3>Activity</h3>
         <div className="activity">
-          { activity.map( item => (
-            <ActivityItem
+          { activity.map( item => {
+            let firstDisplay;
+            if ( item.taxon ) {
+              firstDisplay = !taxonIDsDisplayed[item.taxon.id];
+              taxonIDsDisplayed[item.taxon.id] = true;
+            }
+            return ( <ActivityItem
               key={ `activity-${item.id}` }
               item={ item }
               currentUserID={ currentUserID }
+              firstDisplay={ firstDisplay }
               { ...this.props }
-            /> ) ) }
+            /> );
+          } ) }
           <div className="icon">
             <UserImage user={ config.currentUser } />
           </div>

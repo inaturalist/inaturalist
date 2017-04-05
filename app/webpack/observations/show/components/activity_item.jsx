@@ -7,7 +7,7 @@ import UserImage from "../../identify/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 
-const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
+const ActivityItem = ( { observation, item, config, deleteComment, deleteID, firstDisplay,
                          restoreID, setFlaggingModalState, currentUserID, addID } ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
@@ -23,7 +23,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
     let buttons = [];
     let canAgree = false;
     let userAgreedToThis;
-    if ( item.current && item.user.id !== config.currentUser.id ) {
+    if ( item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
         canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
         userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
@@ -44,16 +44,18 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
         </button>
       ) );
     }
-    buttons.push( (
-      <a
-        key={ `id-compare-${item.id}` }
-        href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
-      >
-        <button className="btn btn-default btn-sm">
-          <i className="fa fa-exchange" /> Compare
-        </button>
-      </a>
-    ) );
+    if ( firstDisplay ) {
+      buttons.push( (
+        <a
+          key={ `id-compare-${item.id}` }
+          href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
+        >
+          <button className="btn btn-default btn-sm">
+            <i className="fa fa-exchange" /> Compare
+          </button>
+        </a>
+      ) );
+    }
     const buttonDiv = ( <div className="buttons">
       <div className="btn-space">
         { buttons }
@@ -87,7 +89,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID,
     status = ( <span className="item-status">
       <i className="fa fa-flag" /> Flagged
     </span> );
-  } else if ( item.category ) {
+  } else if ( item.category && item.current ) {
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
       status = ( <span className="item-status">
@@ -141,6 +143,7 @@ ActivityItem.propTypes = {
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
+  firstDisplay: PropTypes.bool,
   setFlaggingModalState: PropTypes.func
 };
 

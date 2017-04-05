@@ -101,7 +101,7 @@ class ProjectListing extends React.Component {
       const fieldIDs = po.project.project_observation_fields.
         map( pof => ( pof.observation_field.id ) );
       const projectFieldValues = _.filter( observation.ofvs, ofv => (
-        _.includes( fieldIDs, ofv.field_id ) ) );
+       ofv.observation_field && _.includes( fieldIDs, ofv.observation_field.id ) ) );
       if ( projectFieldValues.length > 0 ) {
         observationFieldLink = (
           <span
@@ -123,7 +123,7 @@ class ProjectListing extends React.Component {
     return (
       <div className="projectEntry">
         <div className="project" key={ `project-${po.project.id}` }>
-          <div className="image">
+          <div className="squareIcon">
             <a href={ `/projects/${po.project.id}` }>
               <img src={po.project.icon} />
             </a>

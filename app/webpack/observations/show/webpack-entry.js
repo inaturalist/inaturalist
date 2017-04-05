@@ -7,7 +7,6 @@ import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
 import observationReducer, { fetchObservation, showNewObservation } from "./ducks/observation";
 import observationPlacesReducer from "./ducks/observation_places";
-import observationLinksReducer from "./ducks/observation_links";
 import identificationsReducer from "./ducks/identifications";
 import controlledTermsReducer from "./ducks/controlled_terms";
 import otherObservationsReducer from "./ducks/other_observations";
@@ -23,7 +22,6 @@ const rootReducer = combineReducers( {
   observation: observationReducer,
   identifications: identificationsReducer,
   observationPlaces: observationPlacesReducer,
-  observationLinks: observationLinksReducer,
   controlledTerms: controlledTermsReducer,
   qualityMetrics: qualityMetricsReducer,
   otherObservations: otherObservationsReducer,
