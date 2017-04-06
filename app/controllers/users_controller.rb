@@ -874,9 +874,10 @@ protected
   end
 
   def before_edit
-    @user = current_user
     @sites = Site.live.limit(100)
-    @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    if @user = current_user
+      @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    end
   end
 
 end
