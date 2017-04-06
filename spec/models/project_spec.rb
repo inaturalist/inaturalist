@@ -423,15 +423,27 @@ describe Project do
         longitude: project.place.longitude, user: pu.user, taxon: taxon)
       Observation.make!(latitude: project.place.latitude,
         longitude: project.place.longitude, user: pu.user, taxon: taxon)
+      pu2 = ProjectUser.make!(project: project)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: Taxon.make!(rank: "species"))
       expect( pu.observations_count ).to eq 0
       expect( pu.taxa_count ).to eq 0
+      expect( pu2.observations_count ).to eq 0
+      expect( pu2.taxa_count ).to eq 0
       expect( project.observations.count ).to eq 0
       project.aggregate_observations
       project.reload
       pu.reload
-      expect( project.observations.count ).to eq 2
+      pu2.reload
+      expect( project.observations.count ).to eq 5
       expect( pu.observations_count ).to eq 2
       expect( pu.taxa_count ).to eq 1
+      expect( pu2.observations_count ).to eq 3
+      expect( pu2.taxa_count ).to eq 2
     end
 
     it "should create project observations that allow curator coordinate access if the observer has joined and opted in" do

@@ -685,7 +685,7 @@ class Project < ActiveRecord::Base
           size: 0,
           aggregate: {
             user_taxa: {
-              terms: { field: "user.id", size: 1, order: { distinct_taxa: "desc" } },
+              terms: { field: "user.id", size: uids.length, order: { distinct_taxa: "desc" } },
               aggs: {
                 distinct_taxa: {
                   cardinality: {
