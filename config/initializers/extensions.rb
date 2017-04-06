@@ -4,9 +4,9 @@ class Hash
       self.map do |k, v|
         # NaN doesn't work with JSON, so make them nil
         v = nil if v.is_a?(Float) && v.nan?
-        if v.is_a?(Hash) || v.is_a?(Array)
+        if v.is_a?(Hash) || v.instance_of?(Array)
           [ k, v.force_utf8 ]
-        elsif v.is_a?(Array)
+        elsif v.instance_of?(Array)
           [ k, v.force_utf8 ]
         elsif (v.respond_to?(:to_utf8))
           [ k, v.to_utf8 ]
@@ -27,7 +27,7 @@ class Array
     self.map do |v|
       # NaN doesn't work with JSON, so make them nil
       v = nil if v.is_a?(Float) && v.nan?
-      if v.is_a?(Hash) || v.is_a?(Array)
+      if v.is_a?(Hash) || v.instance_of?(Array)
         v.force_utf8
       elsif (v.respond_to?(:to_utf8))
         v.to_utf8
