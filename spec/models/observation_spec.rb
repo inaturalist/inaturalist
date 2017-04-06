@@ -854,6 +854,7 @@ describe Observation do
         o = make_research_grade_candidate_observation
         o.downvote_from User.make!, vote_scope: 'needs_id'
         o.upvote_from User.make!, vote_scope: 'needs_id'
+        Observation.set_quality_grade(o.id)
         o.reload
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end

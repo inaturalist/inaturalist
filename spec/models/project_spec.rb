@@ -238,6 +238,8 @@ describe Project do
   end
 
   describe "generate_csv" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include curator_coordinate_access" do
       path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
       po = make_project_observation
