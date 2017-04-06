@@ -114,7 +114,7 @@ class ProjectListing extends React.Component {
         observationFields = (
           <Panel collapsible expanded={ this.state.fieldsPanelOpen }>
             { projectFieldValues.map( ofv => (
-              <ObservationFieldValue key={ ofv.uuid } ofv={ ofv } />
+              <ObservationFieldValue key={ ofv.uuid || ofv.observation_field.id } ofv={ ofv } />
             ) ) }
           </Panel>
         );

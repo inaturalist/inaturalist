@@ -5,22 +5,16 @@ import { Glyphicon } from "react-bootstrap";
 
 class ObservationFieldValue extends React.Component {
   render( ) {
-    const { ofv, removeObservationFieldValue, config, observation } = this.props;
+    const { ofv, config } = this.props;
     if ( !ofv || !ofv.observation_field ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
     let value = ofv.value;
-    let remove;
-    if ( loggedIn ) {
-      remove = ofv.api_status ? ( <div className="loading_spinner" /> ) : (
-        <Glyphicon glyph="remove-circle"
-          onClick={ () => {
-            removeObservationFieldValue( ofv.uuid );
-          } }
-        />
-      );
+    let loading;
+    if ( ofv.api_status ) {
+      loading = ( <div className="loading_spinner" /> );
     }
     if ( ofv.datatype === "dna" ) {
-      value = ( <div className="dna">{ ofv.value } { remove }</div> );
+      value = ( <div className="dna">{ ofv.value } { loading }</div> );
     } else {
       if ( ofv.datatype === "taxon" && ofv.taxon ) {
         value = ( <SplitTaxon
@@ -28,11 +22,7 @@ class ObservationFieldValue extends React.Component {
           url={ `/taxa/${ofv.taxon.id}` }
         /> );
       }
-      value = (
-        <div className="value">
-          { value } { remove }
-        </div>
-      );
+      value = ( <div className="value">{ value } { loading }</div> );
     }
     let info;
     if ( ofv.observation_field && ofv.observation_field.description ) {
@@ -43,12 +33,28 @@ class ObservationFieldValue extends React.Component {
         </div>
       </div> );
     }
+    let editOptions;
+    if ( loggedIn ) {
+      editOptions = ( <div className="edit">
+        <div onClick={ ( ) => {
+          if ( ofv.api_status ) { return; }
+          this.props.setEditingFieldValue( ofv );
+        } }
+        >Edit</div>
+        <div onClick={ ( ) => {
+          if ( ofv.api_status ) { return; }
+          this.props.removeObservationFieldValue( ofv.uuid );
+        } }
+        >Delete</div>
+      </div> );
+    }
     const popover = (
       <Popover
         id={ `field-popover-${ofv.uuid}` }
         className="ObservationFieldPopover"
       >
         { info }
+        { editOptions }
         <div className="contents">
           <div className="view">View:</div>
           <div className="search">
@@ -73,7 +79,7 @@ class ObservationFieldValue extends React.Component {
       </Popover>
     );
     return (
-      <div className="ObservationFieldValue" key={ ofv.uuid }>
+      <div className="ObservationFieldValue" key={ `ofv-${ofv.uuid || ofv.observation_field.id}` }>
         <OverlayTrigger
           trigger="click"
           rootClose
@@ -93,9 +99,9 @@ class ObservationFieldValue extends React.Component {
 
 ObservationFieldValue.propTypes = {
   config: PropTypes.object,
-  observation: PropTypes.object,
   ofv: PropTypes.object,
-  removeObservationFieldValue: PropTypes.func
+  removeObservationFieldValue: PropTypes.func,
+  setEditingFieldValue: PropTypes.func
 };
 
 export default ObservationFieldValue;

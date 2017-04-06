@@ -22,7 +22,7 @@ class Identifiers extends React.Component {
                 <a href={ `/people/${i.user.login}` }>{ i.user.login }</a>
               </div>
               <div className="subtitle">
-                <i className="fa fa-tag" />
+                <i className="icon-identification" />
                 { i.count }
               </div>
             </div>

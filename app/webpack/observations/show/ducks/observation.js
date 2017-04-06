@@ -61,6 +61,8 @@ export function windowStateForObservation( observation ) {
         preferred_common_name: observation.taxon.preferred_common_name
       }
     };
+  } else {
+    title = `${I18n.t( "something" )} ${title}`;
   }
   if ( observation.observed_on ) {
     const date = moment( observation.observed_on ).format( "MMMM D, YYYY" );
@@ -716,6 +718,31 @@ export function addObservationFieldValue( options ) {
     dispatch( callAPI( inatjs.observation_field_values.create, payload ) );
   };
 }
+
+export function updateObservationFieldValue( id, options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) || !options.observationField ) { return; }
+    const newOfvs = state.observation.ofvs.map( ofv => (
+      ofv.uuid === id ? {
+        datatype: options.observationField.datatype,
+        name: options.observationField.name,
+        value: options.value,
+        observation_field: options.observationField,
+        api_status: "saving",
+        taxon: options.taxon
+      } : ofv ) );
+    dispatch( setAttributes( { ofvs: newOfvs } ) );
+    const payload = {
+      id,
+      observation_field_id: options.observationField.id,
+      observation_id: state.observation.id,
+      value: options.value
+    };
+    dispatch( callAPI( inatjs.observation_field_values.update, payload ) );
+  };
+}
+
 
 export function removeObservationFieldValue( id ) {
   return ( dispatch, getState ) => {

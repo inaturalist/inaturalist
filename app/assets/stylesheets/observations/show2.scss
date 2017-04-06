@@ -17,6 +17,11 @@ body {
   display: none;
 }
 
+.linky {
+  color: $bootstrap-link-color;
+  cursor: pointer;
+}
+
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {
   position: absolute;
   top: auto !important;
@@ -1286,10 +1291,18 @@ a.UserImage {
     .input-group-btn {
       vertical-align: top;
     }
+    &.editing {
+      background: #eef5e0;
+      padding: 10px;
+      button {
+        color: #fff;
+        background: $inat-green;
+      }
+    }
   }
   .field-name {
     font-size: 16px;
-    margin: 20px 0px 10px;
+    margin-bottom: 10px;
   }
 }
 
@@ -1318,13 +1331,16 @@ a.UserImage {
   .popover-content {
     padding: 0px;
   }
-  .info {
+  .info, .edit {
     padding: 12px 14px;
     border-bottom: 1px solid #e5e5e5;
     .header {
       font-size: 18px;
       line-height: 28px;
     }
+  }
+  .edit > div {
+    cursor: pointer;
   }
   .contents {
     padding: 12px 14px;
@@ -1362,11 +1378,12 @@ a.UserImage {
         font-weight: 700;
       }
       .subtitle {
+        color: #808080;
         font-size: 14px;
         margin-top: 4px;
-        .fa {
-          color: $inat-green;
-          margin-right: 4px;
+        i {
+          font-size: 12px;
+          vertical-align: text-bottom;
         }
       }
     }

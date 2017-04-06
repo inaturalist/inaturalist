@@ -89,7 +89,13 @@ class ObservationFieldValuesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @observation_field_value.update_attributes(observation_field_value_params)
+      update_params = observation_field_value_params
+      if !update_params[:id].is_a? Fixnum
+        update_params[:uuid] = update_params[:id]
+        update_params.delete(:id)
+      end
+      # TODO: also update annotation, unless upvoted
+      if @observation_field_value.update_attributes(update_params)
         Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else

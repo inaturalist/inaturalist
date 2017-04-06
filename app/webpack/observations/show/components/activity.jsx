@@ -68,7 +68,7 @@ class Activity extends React.Component {
         <div className="activity">
           { activity.map( item => {
             let firstDisplay;
-            if ( item.taxon ) {
+            if ( item.taxon && item.current ) {
               firstDisplay = !taxonIDsDisplayed[item.taxon.id];
               taxonIDsDisplayed[item.taxon.id] = true;
             }
