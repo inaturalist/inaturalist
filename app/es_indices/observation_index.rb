@@ -147,6 +147,7 @@ class Observation < ActiveRecord::Base
         mappable: mappable,
         species_guess: species_guess.blank? ? nil : species_guess,
         place_guess: place_guess.blank? ? nil : place_guess,
+        private_place_guess: private_place_guess.blank? ? nil : private_place_guess,
         observed_on_string: observed_on_string,
         id_please: id_please,
         out_of_range: out_of_range,
