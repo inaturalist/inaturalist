@@ -103,9 +103,9 @@ module DarwinCore
         if geoprivacy_private?
           "Coordinates hidden at the request of the observer"
         elsif geoprivacy_obscured?
-          "Coordinate uncertainty increased by #{Observation::M_TO_OBSCURE_THREATENED_TAXA}m at the request of the observer"
+          "Coordinate uncertainty increased to #{public_positional_accuracy}m at the request of the observer"
         elsif coordinates_obscured?
-          "Coordinate uncertainty increased by #{Observation::M_TO_OBSCURE_THREATENED_TAXA}m to protect threatened taxon"
+          "Coordinate uncertainty increased to #{public_positional_accuracy}m to protect threatened taxon"
         else
           nil
         end

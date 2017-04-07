@@ -39,7 +39,7 @@ def request
     @key = @opts.request_key
     return
   end
-  url = "http://#{@opts.username}:#{@opts.password}@api.gbif.org/v1/occurrence/download/request"
+  url = "https://#{@opts.username}:#{@opts.password}@api.gbif.org/v1/occurrence/download/request"
   json = {
     :creator => @opts.username,
     :notification_address => [@opts.notification_address],
