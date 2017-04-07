@@ -79,7 +79,7 @@ class TripsController < ApplicationController
       format.html do
         @next = @trip.parent.journal_posts.published.where("published_at > ?", @trip.published_at || @trip.updated_at).order("published_at ASC").first
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
-        @shareable_image_url = @trip.body[/img.+src="(.+?)"/, 1] if @trip.body
+        @shareable_image_url = @trip.body[/img.+?src="(.+?)"/, 1] if @trip.body
         @shareable_image_url ||= if @trip.parent_type == "Project"
           FakeView.image_url(@trip.parent.icon.url(:original))
         else

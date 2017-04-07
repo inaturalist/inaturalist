@@ -20,11 +20,11 @@
     %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}
   %meta{ property: "og:title", content: @taxon.to_plain_s( verb: true, no_time: true ) }
   - if @taxon.photos.blank?
-    %meta{ property: "og:image", content: iconic_taxon_image_url( @taxon ) }
-    %meta{ property: "twitter:image", content: iconic_taxon_image_url( @taxon ) }
+    %meta{ property: "og:image", content: ( @shareable_image_url = iconic_taxon_image_url( @taxon ) ) }
+    %meta{ property: "twitter:image", content: @shareable_image_url }
   - else
-    %meta{ property: "og:image", content: @taxon.photos.first.medium_url }
-    %meta{ property: "twitter:image", content: @taxon.photos.first.medium_url }
+    %meta{ property: "og:image", content: ( @shareable_image_url = @taxon.photos.first.medium_url ) }
+    %meta{ property: "twitter:image", content: @shareable_image_url }
     %meta{ property: "twitter:card", content: "summary_large_image" }
   %meta{ property: "og:url", content: taxon_url( @taxon ) }
   - if @taxon.wikipedia_summary.blank?

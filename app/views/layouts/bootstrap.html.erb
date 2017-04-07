@@ -25,7 +25,7 @@
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
-    <% if @site %>
+    <% if @site && @shareable_image_url.blank? %>
       <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
     <% end %>
   </head>

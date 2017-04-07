@@ -31,7 +31,7 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @title %>"/> 
-  <meta property="og:image" content="<%= @img %>"/>
+  <meta property="og:image" content="<%= @shareable_image_url = @img %>"/>
   <meta property="twitter:image" content="<%= @img %>"/>
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
