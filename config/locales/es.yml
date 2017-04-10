@@ -2020,7 +2020,6 @@ es:
     en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>."
   mobile_app_for: Aplicación móvil para
   mobile_apps_for: Las aplicaciones móviles para
-  mobile_view_available: Vista para teléfonos móviles disponible
   mollusks: moluscos
   momentjs:
     shortRelativeTime:
@@ -2196,7 +2195,6 @@ es:
   no_members_yet: No hay miembros todavía
   no_messages_yet: Ningún mensaje aún
   no_misidentifications_yet: Ninguna identificación errónea
-  no_mobilized_version_of_that_view: No existe una versión móvil de esta vista.
   no_more_mail_from_site: ¿No desea recibir más correos del sitio de %{site_name}?
     Edita tu configuración de Correo en
   no_more_taxa_to_load: No hay más taxones que cargar.
@@ -3958,7 +3956,6 @@ es:
   view_more_recent_observations: Ver más observaciones recientes
   view_more_unreviewed: Ver más sin revisar
   view_nbsp: Ver &nbsp;
-  view_non_mobile_site: Ver el sitio que no es para móviles
   view_observation: Ver observación
   view_observations: Ver observaciones
   view_observation_flags: Ver marcas de observación
@@ -4777,7 +4774,8 @@ es:
         id: Identificador único para la observación
         species_guess: Nombra al observador que incluyó el taxón observado
         scientific_name: Nombre científico del taxón observado de acuerdo a este sitio
-        common_name: Nombre común del taxón observado de acuerdo a este sitio
+        common_name: Nombre común o vernáculo del taxón observado de acuerdo a este
+          sitio
         iconic_taxon_name: Categoría taxonómica de nivel superior para el taxón observado
         taxon_id: Identificador único para el taxón observado
         id_please: Haya solicitado ayuda o no para la identificación el observador
@@ -4797,6 +4795,9 @@ es:
           o está oscurecida
         private_longitude: Longitud privada, selecciona si la observación es privada
           o está oscurecida
+        geoprivacy: Si el observador ha escogido, o no, oscurecer o esconder las coordenadas
+        coordinates_obscured: Si las coordenadas se han ocultado, o no, por una condición
+          de geoprivacidad o por tratarse de un taxón vulnerable
         out_of_range: Si la observación entra o no dentro del área geográfica conocida
           del taxón
         user_id: Identificador único para la observación
@@ -4878,6 +4879,14 @@ es:
             <li>a comunidad acuerda que la <strong>ubicación no parece ser acertada</strong> (es decir, monos en medio del océano, hipopótamos en edificios, etc.)</li>
             <li>la comunidad acuerda que el <strong>organismo no es salvaje/naturalizado</strong> (es decir, cautivo o cultivado por humanos o alienígenas espaciales inteligentes)</li>
           <li>la comunidad considera que la observación ya no necesita una ID <em>y</em> la ID de la comunidad ha quedado por encima del nivel de familias</li>
+          </ul>
+          <p>
+          Y por si esto no fuera suficientemente complicado, en algunos casos el sistema puede modifica la calificación si:
+          </ P>
+          <ul>
+            <li>
+          El sistema considera que la observación no és de un individuo salvaje/naturalizado si hay, al menos otras 10 observaciones del mismo género o inferior en un territorio menor(municipio o provincia) que contienen esta observación y el 80% o más de éstas se han marcado como <strong>no</stron> salvaje/naturalitzada.
+            </li>
           </ul>
         score_desc: puntuación = número acumulado / (conteo acumulado + conteo de
           desacuerdos  + desacuerdos de ancestros)
@@ -5010,6 +5019,11 @@ es:
           a los curadores del proyecto ver tu tus coordenadas privadas.
       edit:
         aggregation_pending: Agregación pendiente
+        new_place_desc_html: Intenta buscar entre <a href="%{places_url}" target="_blank">
+          nuestros lugares existentes </a> y verifica que le estás dando el nombre
+          correcto. Si realmente no puedes encontrar el lugar que desea, puedes <a
+          href="%{new_place_url}" target="_blank"> crear un nuevo lugar </a>, pero
+          asegúrate que no duplicas un sitio ya existente.
         bioblitz_desc_html: |-
           <p>
            Un inventario rápido (bioblitz) es un evento donde los participantes tratan de observar tantas especies como sea posible en un período dado de tiempo. Es una manera divertida de introducir a la gente a la biodiversidad, a la vez recogiendo valiosos  datos.
@@ -5188,6 +5202,28 @@ es:
           una especie adonde se encuentra. <i>Introducida</i> significa que llegó
           por la actividad humana, <i>nativa</i> que ocurrió sin intervención humana.
           Las especies endémicas se encuentran solo en un lugar concreto.
+        charts_help_seasonality: Este gráfico muestra el número de observaciones de
+          este taxón agrupadas por mes. Tenga en cuenta que se trata del número de
+          observaciones, por lo que dependes tanto del momento en el que el organismo
+          puede ser observado como de cuantas personas están participando en su observación.
+          Así, un pájaro podría parecer muy activo en mayo, pero también podría ser
+          debido a que la mayoría de los ornitólogos la citan en mayo pero que tienden
+          a ignorarla los últimos meses. De manera similar, si indica más libélulas
+          en junio que en enero, puede deberse a que hay más observadores en el hemisferio
+          norte que en el hemisferio sur y no porque las libélulas sean más activas
+          en junio, así que compruebe el mapa al considerar estos graficos. Siempre
+          es mejor desconfiar de estos gráficos cuando hay un bajo número de observaciones
+          y/o grandes discrepancias entre el número de observaciones "verificables"
+          y de "grado de investigación".
+        charts_help_history: Este gráfico muestra el número de observaciones de este
+          taxón por meses durante los últimos diez años. Una vez más, puede estar
+          sesgada por el número de observadores, puede mostrar picos inusuales en
+          las observaciones, pero si parece plana o decreciente a pesar de un número
+          creciente de observadores, podría sugerir un cambio en la abundancia.
+        charts_help_other: |-
+          También mostramos los gráficos de estacionalidad para anotar las observaciones.
+          Las anotaciones son un sistema nuevo de añadir metadatos a las observaciones, utilizando un vocabulario definido de términos. Por ahora sólo estamos usando "Etapa Vital" y "Fenología vegetal" (para determinar si la planta está floreciendo o fructificando). Todavía no tenemos una manera de añadir anotaciones directamente, por lo que estamos transformando datos de los campos de observación al de anotaciones.
+          Si no puedes esperar que acabamos el sistema de anotaciones, puedes contribuir a las anotaciones de "Etapa Vital" añadiendo al campo de observación algunos de los valores siguientes: edad, ecdisis, pupa, ninfa, larva, huevo, o juvenil para los campos "Etapa Vital" y "Etapa Vital de los Insectos". Para la "Fenología vegetal," buscamos cualquier campo con la palabra "Fenología" en su nombre y "Flor" o "Fruto" en el valor, por lo que el campo "Floración Fenología" puede ser buen nombre.
         trending_desc: Taxones más observados en el último mes
         trending_in_place_desc_html: Taxones más observados en el último mes en <a
           href="%{url}">%{place}</a>
