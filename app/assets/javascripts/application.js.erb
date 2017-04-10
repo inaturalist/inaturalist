@@ -46,9 +46,12 @@ function openHeaderSubnav(link) {
 
 function closeHeaderSubnav(link) {
   var navtab = $(link).parents('.navtab').get(0)
-  $(navtab).removeClass('open');
-  $('.subnav', navtab).hide()
-  $(document).unbind('click', subnavClickOff);
+  
+  if ($('input:focus', navtab).length <= 0) {
+    $(navtab).removeClass('open');
+    $('.subnav', navtab).hide();
+    $(document).unbind('click', subnavClickOff);
+  }
   return false;
 }
 
