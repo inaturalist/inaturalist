@@ -108,32 +108,12 @@ class ProjectsController < ApplicationController
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
-        @observations_count = current_user.observations.count if current_user
-        @observed_taxa_count = @project.observed_taxa_count
-        top_observers_scope = @project.project_users.limit(10)
-        @top_observers = if @project.project_type == "observation contest"
-          top_observers_scope.order("observations_count desc, taxa_count desc").where("observations_count > 0")
-        else
-          top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
-        end
         @project_users = @project.project_users.includes(:user).
           paginate(:page => 1, :per_page => 5).order("id DESC")
         @members_count = @project_users.total_entries
-        @project_observations = @project.project_observations.page(1).
-          includes([
-            { :observation => [ :iconic_taxon,
-                                :projects,
-                                :quality_metrics,
-                                :stored_preferences,
-                                :taxon,
-                                :flags,
-                                { :photos => :flags },
-                                { :user => :stored_preferences } ] },
-            { :curator_identification => [:user, :taxon] }
-          ]).
-          order("project_observations.id DESC")
-        @project_observations_count = @project_observations.count
-        @observations = @project_observations.map(&:observation)
+        search_params = Observation.get_search_params( { projects: [@project.id] }, current_user: current_user )
+        @observations = Observation.page_of_results( search_params )
+        Observation.preload_for_component( @observations, logged_in: !!current_user )
         @project_journal_posts = @project.posts.published.order("published_at DESC").limit(4)
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.limit(100)
@@ -144,7 +124,6 @@ class ProjectsController < ApplicationController
             @place_geometry = PlaceGeometry.without_geom.where(:place_id => @place).first
           end
         end
-        
         @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
         @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
           where("provider_authorizations.provider_name = 'facebook'").
@@ -161,6 +140,12 @@ class ProjectsController < ApplicationController
 
         if params[:iframe]
           @headless = @footless = true
+          top_observers_scope = @project.project_users.limit(10)
+          @top_observers = if @project.project_type == "observation contest"
+            top_observers_scope.order("observations_count desc, taxa_count desc").where("observations_count > 0")
+          else
+            top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
+          end
           render :action => "show_iframe"
         elsif params[:test]
           render action: 'show_test', layout: 'bootstrap'
