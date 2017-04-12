@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import util from "../util";
 
-const TaxonSummaryPopover = ( { taxon } ) => {
+const TaxonSummaryPopover = ( { taxon, contents } ) => {
   if ( !taxon ) {
     return ( <div /> );
   }
@@ -42,7 +42,7 @@ const TaxonSummaryPopover = ( { taxon } ) => {
       containerPadding={ 20 }
     >
       <span className="TaxonSummaryPopover">
-        { this.props.contents }
+        { contents }
       </span>
     </OverlayTrigger>
   );
