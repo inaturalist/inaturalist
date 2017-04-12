@@ -1,11 +1,32 @@
 @import "../../colors";
 @import "../../shared/user_text";
 
+.ObservationModal .modal-dialog {
+  width: 90% !important;
+  height: 90%;
+  display: flex;
+}
+.ObservationModal .modal-dialog .modal-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 body > div > [role="dialog"] .modal-title {
-  line-height: 10px;
+  line-height: 45px;
+  padding: 0 20px;
+}
+body > div > [role="dialog"] .modal-header {
+  position: relative;
 }
 body > div > [role="dialog"] .modal-header .close {
   margin-top: 0;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  line-height: 45px;
+  padding-right: 10px;
 }
 .ObservationModal .modal-title .SplitTaxon {
   line-height: 20px;
@@ -16,12 +37,34 @@ body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions 
   text-align: left;
 }
 
+.ObservationModal .modal-body {
+  display: flex;
+  flex: 2;
+}
+.ObservationModal .modal-body > div {
+  width: 50%;
+}
+.ObservationModal .modal-body .image-gallery,
+.ObservationModal .modal-body .image-gallery-content,
+.ObservationModal .modal-body .image-gallery-content > div,
+.ObservationModal .modal-body .image-gallery-slides,
+.ObservationModal .modal-body .image-gallery-slide,
+.ObservationModal .modal-body .easyzoom,
+.ObservationModal .modal-body .easyzoom > a,
+.ObservationModal .modal-body .easyzoom > a img {
+  display: block;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+.ObservationModal .modal-body .easyzoom > a img {
+  object-position: 50% 50%;
+}
+
 .ObservationModal .TaxonMap {
   height: 100px;
 }
 
-
-$image-gallery-height: 380px;
 .ObservationModal .image-gallery {
   background-color: #eee;
   position: relative;
@@ -32,10 +75,8 @@ $image-gallery-height: 380px;
 .ObservationModal .image-gallery,
 .ObservationModal .image-gallery-content,
 .ObservationModal .sidebar {
-  height: $image-gallery-height;
 }
 .ObservationModal .image-gallery-content img {
-  height: $image-gallery-height;
   display: block;
   margin: 0 auto;
   width: auto;
@@ -55,9 +96,13 @@ $image-gallery-height: 380px;
 .image-gallery-slide {
   text-align: center;
 }
+.ObservationModal .media {
+  padding-right: 20px;
+}
 .ObservationModal .sidebar {
   overflow-y: auto;
   border-left: 1px solid #ddd;
+  padding-left: 20px;
 }
 .ObservationModal .modal-title {
   font-size: 16px;
@@ -73,7 +118,8 @@ $image-gallery-height: 380px;
 }
 .ObservationModal .modal-body {
   background-color: #eee;
-  min-height: $image-gallery-height + 30px;
+  max-height: none !important;
+  height: 100%;
 }
 .ObservationModal .modal-footer .form-group {
   margin-bottom: 0;
@@ -120,18 +166,28 @@ $image-gallery-height: 380px;
   position: absolute;
   top: 50%;
   margin-top: -25px;
-  border-radius: 100px;
   font-size: 30px;
   font-weight: bold;
   width: 50px;
   height: 50px;
   line-height: 30px;
   text-align: center;
-  left: -100px;
+  left: -50px;
+  color: white;
+  background-color: transparent;
+  border: 0 transparent;
+}
+.ObservationModal .btn.nav-button:hover,
+.ObservationModal .btn.nav-button:active,
+.ObservationModal .btn.nav-button:focus,
+.ObservationModal .btn.nav-button:active:focus {
+  background-color: transparent;
+  border: 0 transparent;
+  color: white;
 }
 .ObservationModal .nav-button.next {
   left: auto;
-  right: -100px;
+  right: -50px;
 }
 
 
@@ -238,4 +294,94 @@ dl.keyboard-shortcuts,
 }
 .UserText.truncated .content:after {
   display: block;
+}
+
+.ObservationModal .sidebar .test {
+  position: relaitve;
+  top: -20px;
+  background-color: deeppink;
+}
+
+body > div > [role="dialog"] .inat-tabs,
+.inat-tabs {
+  display: flex;
+  list-style: none;
+  padding: 0 20px;
+  margin: 0;
+  float: right;
+}
+body > div > [role="dialog"] .inat-tabs li,
+.inat-tabs li {
+  text-align: center;
+  flex: 1;
+  display: flex;
+}
+body > div > [role="dialog"] .inat-tabs li a,
+.inat-tabs li a {
+  border: 0 transparent;
+  border-bottom: 2px solid transparent;
+  color: #555;
+  font-weight: bold;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  display: block;
+  flex: 1;
+  line-height: 45px;
+}
+body > div > [role="dialog"] .inat-tabs li a:focus,
+.inat-tabs li a:focus {
+  text-decoration: none;
+}
+body > div > [role="dialog"] .inat-tabs li.active a,
+.inat-tabs li.active a {
+  border-bottom: 2px solid #74ac00;
+}
+
+
+body > div > [role="dialog"] .ObservationModal .modal-header {
+  min-height: 45px;
+  padding: 0;
+  display: flex;
+}
+.ObservationModal .modal-title {
+  width: 50%;
+}
+.ObservationModal .inat-tabs {
+  width: 50%;
+}
+
+.ObservationModal .inat-tab {
+  display: none;
+}
+.ObservationModal .inat-tab.active {
+  display: block;
+}
+
+.ObservationModal .map-and-details {
+  display: flex;
+}
+.ObservationModal .map-and-details .TaxonMap,
+.ObservationModal .map-and-details .details {
+  width: 50%;
+}
+.ObservationModal .map-and-details .details {
+  list-style: none;
+  padding-left: 10px;
+}
+.ObservationModal .map-and-details .details li {
+  position: relative;
+  padding-left: 20px;
+}
+.ObservationModal .map-and-details .details i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  text-align: center;
+  display: block;
+}
+
+body > div > [role="dialog"] .ObservationModal .modal-body {
+  overflow: initial;
 }
