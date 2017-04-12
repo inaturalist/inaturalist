@@ -105,7 +105,7 @@ class ProjectMap extends Component {
           <div className="value">
             { parksCount }
           </div>
-          <div className="stat">Parks</div>
+          <div className="stat">Places</div>
         </div>
       );
     }

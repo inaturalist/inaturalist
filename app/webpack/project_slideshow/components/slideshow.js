@@ -8,7 +8,7 @@ class Slideshow extends Component {
     let dateRange = "";
     if ( !this.props.project ) {
       return (
-        <h1 className="text-center block-center">
+        <h1 className="noresults">
           No Project Selected
         </h1>
       );

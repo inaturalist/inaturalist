@@ -83,18 +83,19 @@ class StatsController < ApplicationController
         [ p.id,
           {
             id: p.id,
-            title: p.title.sub("2016 National Parks BioBlitz - ", ""),
+            title: p.title,
             slug: p.slug,
             start_time: p.start_time,
             end_time: p.end_time,
             place_id: p.rule_place.try(:id),
             observation_count: p.count,
             in_progress: p.event_in_progress?,
-            species_count: p.node_api_species_count
+            species_count: p.node_api_species_count || 0
           }
         ]
       }]
-    rescue
+    rescue => e
+      Rails.logger.debug "[DEBUG] error loading project data: #{e}"
       sleep(2)
       return redirect_to :nps_bioblitz_stats
     end
@@ -162,6 +163,9 @@ class StatsController < ApplicationController
       all_project_data[7110][:place_id] = 5 if all_project_data[7110]
       all_project_data[7107][:place_id] = 51727 if all_project_data[7107]
       all_project_data[6790][:place_id] = 43 if all_project_data[6790]
+      all_project_data.each do |project_id, project|
+        all_project_data[project_id][:title] = project[:title].sub( "2016 National Parks BioBlitz - ", "" )
+      end
     end
   end
 
@@ -173,7 +177,12 @@ class StatsController < ApplicationController
           11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
       },
       title: "City Nature Challenge 2017"
-    )
+    ) do |all_project_data|
+      all_project_data[11753][:place_id] = 0 if all_project_data[11753]
+      all_project_data.each do |project_id, project|
+        all_project_data[project_id][:title] = project[:title].sub( "City Nature Challenge 2017: ", "" )
+      end
+    end
   end
 
   def cnc2016
@@ -183,7 +192,9 @@ class StatsController < ApplicationController
         11765 => [6345, 6365]
       },
       title: "City Nature Challenge 2016"
-    )
+    ) do |all_project_data|
+      all_project_data[11765][:place_id] = 14 if all_project_data[11765]
+    end
   end
 
   private
