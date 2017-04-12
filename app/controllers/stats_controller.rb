@@ -53,26 +53,27 @@ class StatsController < ApplicationController
     render json: observation_weeks_data
   end
 
-  def nps_bioblitz
-    @overall_id = 6810
-    umbrella_project_ids = [ 6810, 7109, 7110, 7107, 6790 ]
-    sub_project_ids = {
-      6810 => [ ],
-      7109 => [ 6818, 6846, 6864, 7026, 6832, 7069, 6859 ],
-      7110 => [ 6835, 6833, 6840, 7298, 6819, 7299, 6815,
-        6814, 7025, 7281, 6816, 7302, 7301, 6822 ],
-      7107 => [ 6824, 6465, 6478 ],
-      6790 => [ 6850, 6851, 7167, 6852, 7168, 7169 ]
-    }
-    all_project_ids = sub_project_ids.map{ |k,v| v }.flatten +
-      sub_project_ids.keys
+  private
+  def project_slideshow_data( overall_project_id, options = {} )
+    umbrella_project_ids = options[:umbrella_project_ids] || []
+    sub_project_ids = options[:sub_project_ids] || {}
+    @overall_id = overall_project_id
+    all_project_ids = (
+      sub_project_ids.map{ |k,v| v }.flatten +
+      sub_project_ids.keys +
+      umbrella_project_ids +
+      [overall_project_id]
+    ).flatten.uniq
 
     projs = Project.select("projects.*, count(po.observation_id)").
       joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
-      where("projects.group=? OR projects.id=? OR projects.id IN (?)",
-        Project::NPS_BIOBLITZ_GROUP_NAME, params[:project_id], all_project_ids).
       group(:id).
       order("count(po.observation_id) desc")
+    projs = if options[:group]
+      projs.where("projects.group = ? OR projects.id = ? OR projects.id IN (?)", options[:group], params[:project_id], all_project_ids)
+    else
+      projs.where("projects.id = ? OR projects.id IN (?)", params[:project_id], all_project_ids)
+    end
 
     # prepare the data needed for the slideshow
     begin
@@ -95,30 +96,33 @@ class StatsController < ApplicationController
       sleep(2)
       return redirect_to :nps_bioblitz_stats
     end
-    # hard-coding umbrella project places
-    all_project_data[6810][:place_id] = 0
-    all_project_data[7109][:place_id] = 46
-    all_project_data[7110][:place_id] = 5
-    all_project_data[7107][:place_id] = 51727
-    all_project_data[6790][:place_id] = 43
+
+    if block_given?
+      yield all_project_data
+    end
 
     # setting the number of slides to show per umbrella project
     umbrella_project_ids.each do |id|
-      all_project_data[id][:slideshow_count] = 1
+      all_project_data[id][:slideshow_count] = 1 if all_project_data[id]
     end
-    # the overall project shows 5 slides
-    all_project_data[@overall_id][:title] = "NPS Servicewide"
-    all_project_data[@overall_id][:slideshow_count] = 5
 
-    # the overall project shows any non-umbrella project not already
-    # shown under an umbrella project
-    sub_project_ids[@overall_id] = all_project_data.keys -
-      all_project_ids - sub_project_ids.keys
+    if all_project_data[@overall_id]
+      # the overall project shows 5 slides
+      all_project_data[@overall_id][:title] = options[:title]
+      all_project_data[@overall_id][:slideshow_count] = 5
+      # the overall project shows any non-umbrella project not already
+      # shown under an umbrella project
+      sub_project_ids[@overall_id] = all_project_data.keys -
+        all_project_ids - sub_project_ids.keys
+    end
 
     # deleting any empty umbrella projects
     @umbrella_projects = umbrella_project_ids.
-      map{ |id| all_project_data[id] }.compact.
-      delete_if{ |p| p[:observation_count] == 0 }
+      map{ |id| all_project_data[id] }.compact
+    if options[:trim_slackers]
+      @umbrella_projects = @umbrella_projects.delete_if{ |p| p[:observation_count] == 0 }
+    end
+    Rails.logger.debug "[DEBUG] @umbrella_projects: #{@umbrella_projects}"
 
     # randomizing subprojects
     @sub_projects = Hash[ sub_project_ids.map{ |umbrella_id,subproject_ids|
@@ -126,8 +130,55 @@ class StatsController < ApplicationController
     } ]
 
     @all_sub_projects = all_project_data.reject{ |k,v| @sub_projects[k] }.values
+    @logo_paths = options[:logo_paths] || []
 
-    render layout: "basic"
+    render "project_slideshow", layout: "basic"
+  end
+  public
+
+  def nps_bioblitz
+    @overall_id = 6810
+    umbrella_project_ids = [ 6810, 7109, 7110, 7107, 6790 ]
+    sub_project_ids = {
+      6810 => [ ],
+      7109 => [ 6818, 6846, 6864, 7026, 6832, 7069, 6859 ],
+      7110 => [ 6835, 6833, 6840, 7298, 6819, 7299, 6815,
+        6814, 7025, 7281, 6816, 7302, 7301, 6822 ],
+      7107 => [ 6824, 6465, 6478 ],
+      6790 => [ 6850, 6851, 7167, 6852, 7168, 7169 ]
+    }
+    project_slideshow_data( @overall_id, {
+      umbrella_project_ids: umbrella_project_ids,
+      sub_project_ids: sub_project_ids,
+      trim_slackers: true,
+      group: Project::NPS_BIOBLITZ_GROUP_NAME,
+      title: "NPS Servicewide",
+      logo_paths: ["/logo-nps.svg", "/logo-natgeo.svg"]
+    } ) do |all_project_data|
+      # hard-coding umbrella project places
+      all_project_data[6810][:place_id] = 0 if all_project_data[6810]
+      all_project_data[7109][:place_id] = 46 if all_project_data[7109]
+      all_project_data[7110][:place_id] = 5 if all_project_data[7110]
+      all_project_data[7107][:place_id] = 51727 if all_project_data[7107]
+      all_project_data[6790][:place_id] = 43 if all_project_data[6790]
+    end
+  end
+
+  def cnc2017
+    project_slideshow_data( 11753,
+      umbrella_project_ids: [11753],
+      sub_project_ids: {
+        11753 => [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764, 11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
+      }
+      title: "City Nature Challenge 2017"
+    )
+  end
+
+  def cnc2016
+    project_slideshow_data( 6365,
+      umbrella_project_ids: [6365, 6345],
+      title: "City Nature Challenge 2016"
+    )
   end
 
   private

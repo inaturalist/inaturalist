@@ -18,11 +18,9 @@ class Slideshow extends Component {
         dateRange += `(${start} - ${end})`;
       }
     }
-    let npsLogo;
-    let natGeoLogo;
+    let logoPaths;
     if ( !this.props.singleProject ) {
-      npsLogo = ( <img src="/logo-nps.svg" /> );
-      natGeoLogo = ( <img src="/logo-natgeo.svg" /> );
+      logoPaths = LOGO_PATHS;
     }
     return (
       <div id="main-container">
@@ -41,12 +39,11 @@ class Slideshow extends Component {
                 { dateRange }
               </span>
             </div>
-            <div className="nav navbar-nav navbar-right natgeo">
-              { natGeoLogo }
-            </div>
-            <div className="nav navbar-nav navbar-right">
-              { npsLogo }
-            </div>
+            { logoPaths ? logoPaths.map( path => (
+              <div key={`logos-${path}`} className="nav navbar-nav navbar-right">
+                <img src={path} />
+              </div>
+            ) ) : null }
           </div>
         </nav>
         <div className="container-fluid content">

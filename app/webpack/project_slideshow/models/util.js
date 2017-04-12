@@ -2,7 +2,7 @@ import fetch from "isomorphic-fetch";
 
 const Util = class ObsCard {
   static nodeApiFetch( path ) {
-    return fetch( `https://api.inaturalist.org/v1/${path}`, { method: "GET" } ).
+    return fetch( `${$( "meta[name='config:inaturalist_api_url']" ).attr( "content" )}/${path}`, { method: "GET" } ).
       then( response => {
         if ( response.status >= 200 && response.status < 300 ) {
           return response;

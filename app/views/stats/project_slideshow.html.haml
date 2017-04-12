@@ -7,10 +7,11 @@
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
     SLIDESHOW_PROJECT = null;
-    NPS_OVERALL_ID = #{ @overall_id };
-    NPS_UMBRELLA_PROJECTS = #{ @umbrella_projects.to_json };
-    NPS_UMBRELLA_SUB_PROJECTS = #{ @sub_projects.to_json };
-    NPS_ALL_SUB_PROJECTS = #{ @all_sub_projects.to_json };
+    OVERALL_ID = #{ @overall_id };
+    UMBRELLA_PROJECTS = #{ @umbrella_projects.to_json };
+    UMBRELLA_SUB_PROJECTS = #{ @sub_projects.to_json };
+    ALL_SUB_PROJECTS = #{ @all_sub_projects.to_json };
+    LOGO_PATHS = #{ @logo_paths.to_json };
 #app
 - content_for :delayed_js do
   = javascript_include_tag 'i18n/translations'
