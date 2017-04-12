@@ -66,14 +66,14 @@ class Annotations extends React.Component {
       <UsersPopover
         users={ votersFor }
         keyPrefix={ `votes-for-${a.controlled_value.id}` }
-        contents={ ( <span>({votersFor.length})</span> ) }
+        contents={ ( <span>{votersFor.length}</span> ) }
       /> );
     let votesAgainstCount = voteAgainstLoading ? (
       <div className="loading_spinner" /> ) : (
       <UsersPopover
         users={ votersAgainst }
         keyPrefix={ `votes-against-${a.controlled_value.id}` }
-        contents={ ( <span>({votersAgainst.length})</span> ) }
+        contents={ ( <span>{votersAgainst.length}</span> ) }
       /> );
     const termPopover = (
       <Popover
@@ -81,17 +81,19 @@ class Annotations extends React.Component {
         className="AnnotationPopover"
       >
         <div className="contents">
-          <div className="view">View:</div>
+          <div className="view">{ I18n.t( "view" ) }:</div>
           <div className="search">
             <a href={ `/observations?term_id=${a.controlled_attribute.id}&term_value_id=${a.controlled_value.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              Observations with { a.controlled_attribute.label }: { a.controlled_value.label }
+              { I18n.t( "observations_annotated_with_annotation", { annotation:
+                `${a.controlled_attribute.label}: ${a.controlled_value.label}` } ) }
             </a>
           </div>
           <div className="search">
             <a href={ `/observations?term_id=${a.controlled_attribute.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              Observations with { a.controlled_attribute.label }
+              { I18n.t( "observations_annotated_with_annotation", { annotation:
+                a.controlled_attribute.label } ) }
             </a>
           </div>
         </div>
@@ -182,7 +184,7 @@ class Annotations extends React.Component {
             <div className="search">
               <a href={ `/observations?term_id=${ct.id}` }>
                 <i className="fa fa-arrow-circle-o-right" />
-                Observations with { ct.label }
+                { I18n.t( "observations_annotated_with_annotation", { annotation: ct.label } ) }
               </a>
             </div>
           </div>
@@ -214,7 +216,7 @@ class Annotations extends React.Component {
               >
                 <Dropdown.Toggle>
                   <span className="toggle">
-                    Select
+                    { I18n.t( "select" ) }
                   </span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu className="dropdown-menu-right">
@@ -238,14 +240,14 @@ class Annotations extends React.Component {
 
     return (
       <div className="Annotations">
-        <h4>Annotations</h4>
+        <h4>{ I18n.t( "annotations" ) }</h4>
         <table className="table">
           <thead>
             <tr>
-              <th>Attribute</th>
-              <th>Value</th>
-              <th>Agree</th>
-              <th>Disagree</th>
+              <th>{ I18n.t( "attribute" ) }</th>
+              <th>{ I18n.t( "value" ) }</th>
+              <th>{ I18n.t( "agree_" ) }</th>
+              <th>{ I18n.t( "disagree_" ) }</th>
             </tr>
           </thead>
           <tbody>

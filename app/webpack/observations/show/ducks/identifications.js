@@ -22,6 +22,6 @@ export function fetchIdentifiers( params ) {
   return ( dispatch ) => (
     inatjs.identifications.identifiers( params ).then( response => {
       dispatch( setIdentifiers( response.results ) );
-    } )
+    } ).catch( e => { } )
   );
 }

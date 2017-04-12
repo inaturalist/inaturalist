@@ -18,7 +18,7 @@ class Map extends React.Component {
       return ( <div className="Map">
         <div className="no_location">
           <i className="fa fa-map-marker" />
-          Location unknown
+          { I18n.t( "location_unknown" ) }
         </div>
       </div> );
     }
@@ -68,7 +68,9 @@ class Map extends React.Component {
         placeGuess = `${observation.place_guess.substring( 0, showLength ).trim( )}...`;
         showMore = (
           <div className="show-more">
-            <div onClick={ ( ) => { this.setState( { showLongLabel: true } ); } }>Show</div>
+            <div onClick={ ( ) => { this.setState( { showLongLabel: true } ); } }>
+              { I18n.t( "show" ) }
+            </div>
           </div> );
       }
       placeGuessElement = (
@@ -91,7 +93,7 @@ class Map extends React.Component {
               id="grouping-control"
             >
               <Dropdown.Toggle>
-                Details
+                { I18n.t( "details" ) }
               </Dropdown.Toggle>
               <Dropdown.Menu className="dropdown-menu-right">
                 <li>

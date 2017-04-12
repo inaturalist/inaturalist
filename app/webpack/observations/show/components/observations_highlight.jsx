@@ -14,7 +14,7 @@ const ObservationsHighlight = ( { title, observations, searchParams, showNewObse
       <h3>
         { title }
         <a href={ `/observations?${$.param( searchParams )}` }>
-          View all
+          { I18n.t( "view_all" ) }
         </a>
       </h3>
       <div className="list">

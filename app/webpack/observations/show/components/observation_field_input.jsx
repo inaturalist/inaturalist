@@ -267,12 +267,15 @@ class ObservationFieldInput extends React.Component {
             onClick={ ( ) => {
               this.props.onCancel( );
             } }
-          >Cancel</span>
+          >{ I18n.t( "cancel" ) }</span>
         </div>
       );
     }
     const fieldChooser = this.props.hideFieldChooser ? "" : (
-      <input type="text" placeholder="Choose a field" className="form-control ofv-field" /> );
+      <input type="text"
+        placeholder={ I18n.t( "choose_a_field" ) }
+        className="form-control ofv-field"
+      /> );
     return (
       <form onSubmit={ this.submitFieldValue }>
         { fieldChooser }

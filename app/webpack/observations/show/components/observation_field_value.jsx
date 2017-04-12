@@ -1,7 +1,6 @@
 import React, { PropTypes } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { Glyphicon } from "react-bootstrap";
 
 class ObservationFieldValue extends React.Component {
   render( ) {
@@ -27,7 +26,7 @@ class ObservationFieldValue extends React.Component {
     let info;
     if ( ofv.observation_field && ofv.observation_field.description ) {
       info = ( <div className="info">
-        <div className="header">Info:</div>
+        <div className="header">{ I18n.t( "info" ) }:</div>
         <div className="desc">
           { ofv.observation_field.description }
         </div>
@@ -40,12 +39,12 @@ class ObservationFieldValue extends React.Component {
           if ( ofv.api_status ) { return; }
           this.props.setEditingFieldValue( ofv );
         } }
-        >Edit</div>
+        >{ I18n.t( "edit" ) }</div>
         <div onClick={ ( ) => {
           if ( ofv.api_status ) { return; }
           this.props.removeObservationFieldValue( ofv.uuid );
         } }
-        >Delete</div>
+        >{ I18n.t( "delete" ) }</div>
       </div> );
     }
     const popover = (
@@ -60,19 +59,19 @@ class ObservationFieldValue extends React.Component {
           <div className="search">
             <a href={ `/observations?field:${ofv.name}=${ofv.value}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              Observations with this field and value
+              { I18n.t( "observations_with_this_field_and_value" ) }
             </a>
           </div>
           <div className="search">
             <a href={ `/observations?field:${ofv.name}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              Observations with this field
+              { I18n.t( "observations_with_this_field" ) }
             </a>
           </div>
           <div className="search">
             <a href={ `/observation_fields/${ofv.observation_field.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              Observation field details
+              { I18n.t( "observation_field_details" ) }
             </a>
           </div>
         </div>

@@ -28,6 +28,6 @@ export function fetchObservationPlaces( ) {
     const params = { lat: observation.latitude, lng: observation.longitude };
     return inatjs.places.containing( params ).then( response => {
       dispatch( setObservationPlaces( response.results ) );
-    } );
+    } ).catch( e => { } );
   };
 }

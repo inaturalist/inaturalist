@@ -45,7 +45,7 @@ moment.locale( "en", {
   }
 } );
 
-const App = ( { observation, config } ) => {
+const App = ( { observation, config, controlledTerms } ) => {
   if ( _.isEmpty( observation ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -58,7 +58,7 @@ const App = ( { observation, config } ) => {
   const editButton = (
     viewerIsObserver ?
       <Button bsStyle="primary" className="edit" href={ `/observations/${observation.id}/edit` } >
-        Edit Observation
+        { I18n.t( "edit_observation" ) }
       </Button> : null
   );
   const photosColClass =
@@ -72,7 +72,7 @@ const App = ( { observation, config } ) => {
       <div className="container flash-warning">
         <div className="alert alert-danger">
           <i className="fa fa-flag" />
-          <span className="bold">This has been flagged as spam.</span>
+          <span className="bold">{ I18n.t( "this_has_been_flagged_as_spam" ) }.</span>
           This observation has been flagged as spam and is no longer publicly visible.
           You can see it because you created it, or you are a site curator.
           If you think this is a mistake, please <a
@@ -94,8 +94,15 @@ const App = ( { observation, config } ) => {
   } else if ( observation.observed_on ) {
     formattedDateObserved = moment( observation.observed_on ).format( "MMM D, YYYY" );
   } else {
-    formattedDateObserved = "Not recorded";
+    formattedDateObserved = I18n.t( "not_recorded" );
   }
+  const description = observation.description ? (
+    <Row>
+      <Col xs={12}>
+        <h3>{ I18n.t( "description" ) }</h3>
+        <UserText text={ observation.description } />
+      </Col>
+    </Row> ) : "";
   return (
     <div id="ObservationShow">
     { warning }
@@ -104,16 +111,12 @@ const App = ( { observation, config } ) => {
           <Row className="title_row">
             <Col xs={10}>
               <div className="ObservationTitle">
-                <div className="title">
-                  <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
-                </div>
+                <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
-                <div className="quality_flag">
-                  <span className={ `quality_grade ${observation.quality_grade} ` }>
-                    { _.upperFirst( I18n.t( observation.quality_grade ) ) }
-                  </span>
-                </div>
+                <span className={ `quality_grade ${observation.quality_grade} ` }>
+                  { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+                </span>
               </div>
             </Col>
             <Col xs={2}>
@@ -135,13 +138,13 @@ const App = ( { observation, config } ) => {
                     <MapContainer />
                     <Row className="date_row">
                       <Col xs={6}>
-                        <span className="bold_label">Observed:</span>
+                        <span className="bold_label">{ I18n.t( "observed" ) }:</span>
                         <span className="date">
                           { formattedDateObserved }
                         </span>
                       </Col>
                       <Col xs={6}>
-                        <span className="bold_label">Submitted:</span>
+                        <span className="bold_label">{ I18n.t( "submitted" ) }:</span>
                         <span className="date">
                           { moment.tz( observation.created_at,
                             observation.created_time_zone ).format( "MMM D, YYYY · LT z" ) }
@@ -174,12 +177,7 @@ const App = ( { observation, config } ) => {
           </Row>
           <Row>
             <Col xs={7} className="middle_left">
-              <Row>
-                <Col xs={12}>
-                  <h3>Description</h3>
-                  <UserText text={ observation.description } />
-                </Col>
-              </Row>
+              { description }
               <Row>
                 <Col xs={12}>
                   <ActivityContainer />
@@ -197,7 +195,7 @@ const App = ( { observation, config } ) => {
                   <AnnotationsContainer />
                 </Col>
               </Row>
-              <Row>
+              <Row className={ _.isEmpty( controlledTerms ) ? "top-row" : "" }>
                 <Col xs={12}>
                   <ProjectsContainer />
                 </Col>
@@ -273,7 +271,7 @@ const App = ( { observation, config } ) => {
 App.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
-  observation_places: PropTypes.object,
+  controlledTerms: PropTypes.array,
   addComment: PropTypes.func,
   deleteComment: PropTypes.func,
   addID: PropTypes.func,

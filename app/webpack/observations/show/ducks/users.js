@@ -26,6 +26,6 @@ export function updateSession( params ) {
     return inatjs.users.update_session( params ).then( ( ) => {
       const updatedUser = Object.assign( { }, config.currentUser, params );
       dispatch( setConfig( { currentUser: updatedUser } ) );
-    } );
+    } ).catch( e => { } );
   };
 }

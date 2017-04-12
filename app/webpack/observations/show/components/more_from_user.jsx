@@ -22,16 +22,16 @@ const MoreFromUser = ( { observation, observations, showNewObservation } ) => {
   return (
     <div className="MoreFromUser">
       <h3>
-        More from { observation.user.login }
+        { I18n.t( "more_from_x", { x: observation.user.login } ) }
         <div className="links">
           <a href={ `/observations?user_id=${observation.user.login}` }>
-            View all
+            { I18n.t( "view_all" ) }
           </a>
           { dateObserved ? (
             <span>
               <span className="separator">·</span>
               <a href={ `/observations?user_id=${observation.user.login}&on=${onDate}` }>
-                View all from { dateObserved.format( "MMMM D, YYYY" ) }
+                { I18n.t( "view_all_from_x", { x: dateObserved.format( "MMMM D, YYYY" ) } ) }
               </a>
             </span>
           ) : "" }
@@ -45,7 +45,8 @@ const MoreFromUser = ( { observation, observations, showNewObservation } ) => {
               <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
             );
           }
-          const iconicTaxonName = o.taxon ? o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+          const iconicTaxonName = o.taxon ? o.taxon.iconic_taxon_name.toLowerCase( ) :
+            I18n.t( "unknown" );
           return (
             <div className="obs" key={ `more-obs-${o.id}` }>
               <div className="photo">

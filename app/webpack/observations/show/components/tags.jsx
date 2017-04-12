@@ -38,13 +38,13 @@ class Tags extends React.Component {
         <span
           className="add"
           onClick={ ( ) => this.setState( { open: !this.state.open } ) }
-        >Add Tag</span>
+        >{ I18n.t( "add_tag" ) }</span>
       );
       addTagInput = (
         <Panel collapsible expanded={ this.state.open }>
           <form onSubmit={ this.submitTag }>
             <div className="form-group">
-              <input type="text" placeholder="Add tag" className="form-control" />
+              <input type="text" placeholder={ I18n.t( "add_tag" ) } className="form-control" />
             </div>
           </form>
         </Panel>
@@ -52,7 +52,7 @@ class Tags extends React.Component {
     }
     return (
       <div className="Tags">
-        <h4>Tags ({ observation.tags.length }) { addTagLink }</h4>
+        <h4>{ I18n.t( "tags" ) } ({ observation.tags.length }) { addTagLink }</h4>
         { addTagInput }
         {
           _.sortBy( observation.tags, t => ( _.lowerCase( t.tag || t ) ) ).map( t => {

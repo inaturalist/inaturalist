@@ -15,7 +15,7 @@ const UserWithIcon = ( { user } ) => {
       <div className="subtitle">
         <a href={ `/observations?user_id=${user.login}` }>
           <i className="fa fa-binoculars" />
-          { user.observations_count } observations
+          { I18n.t( "x_observations", { count: user.observations_count } ) }
         </a>
       </div>
     </div>

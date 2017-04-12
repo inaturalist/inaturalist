@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
+    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); },
     createFlag: ( className, id, flag, body ) => {
       dispatch( createFlag( className, id, flag, body ) );
     },

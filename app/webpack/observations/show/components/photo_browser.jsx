@@ -16,7 +16,7 @@ class PhotoBrowser extends React.Component {
       key={ `${type}-${media.id}-license` }
     >
       { media.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
-          ( <i className="fa fa-copyright license" /> ) }
+        ( <i className="fa fa-copyright license" /> ) }
     </OverlayTrigger> );
   }
 
@@ -28,7 +28,7 @@ class PhotoBrowser extends React.Component {
       return (
         <div className="PhotoBrowser empty">
           <i className="fa fa-picture-o" />
-          No Photo
+          { I18n.t( "no_photo" ) }
         </div>
       );
     }

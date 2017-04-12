@@ -16,7 +16,7 @@ class QualityMetrics extends React.Component {
       <UsersPopover
         users={ voters }
         keyPrefix={ `metric-${metric}` }
-        contents={ ( <span>({voters.length})</span> ) }
+        contents={ ( <span>{voters.length}</span> ) }
       /> );
     return (
       <span>
@@ -50,14 +50,14 @@ class QualityMetrics extends React.Component {
       <UsersPopover
         users={ needsIDInfo.votersFor }
         keyPrefix="metric-needs_id-agree"
-        contents={ ( <span>({needsIDInfo.votersFor.length})</span> ) }
+        contents={ <span>({needsIDInfo.votersFor.length})</span> }
       /> );
     let votesAgainstCount = needsIDInfo.voteAgainstLoading ? (
       <div className="loading_spinner" /> ) : (
       <UsersPopover
         users={ needsIDInfo.votersAgainst }
         keyPrefix="metric-needs_id-disagree"
-        contents={ ( <span>({needsIDInfo.votersAgainst.length})</span> ) }
+        contents={ <span>({needsIDInfo.votersAgainst.length})</span> }
       /> );
     return (
       <div className="inputs">
@@ -74,8 +74,8 @@ class QualityMetrics extends React.Component {
             } }
           />
           <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
-            Yes { votesForCount }
-          </label>
+            { I18n.t( "yes" ) }
+          </label> { votesForCount }
         </div>
         <div className="no">
           <input type="checkbox" id="improveNo"
@@ -90,8 +90,8 @@ class QualityMetrics extends React.Component {
             } }
           />
           <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
-            No, it's as good as it can be { votesAgainstCount }
-          </label>
+            { I18n.t( "no_its_as_good_as_it_can_be" ) }
+          </label> { votesAgainstCount }
         </div>
       </div>
     );
@@ -124,7 +124,7 @@ class QualityMetrics extends React.Component {
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
     let mostAgree = votersFor.length > votersAgainst.length;
     const mostDisagree = votersAgainst.length > votersFor.length;
-    if ( _.isEmpty( this.props.qualityMetrics[metric] ) ) {
+    if ( _.isEmpty( this.props.qualityMetrics[metric] ) && metric !== "needs_id" ) {
       mostAgree = true;
     }
     return {
@@ -156,8 +156,7 @@ class QualityMetrics extends React.Component {
   }
 
   openFlaggingModal( ) {
-    this.props.setFlaggingModalState( "item", this.props.observation );
-    this.props.setFlaggingModalState( "show", true );
+    this.props.setFlaggingModalState( { item: this.props.observation, show: true } );
   }
 
   flaggingDiv( ) {
@@ -173,17 +172,21 @@ class QualityMetrics extends React.Component {
       return (
         <div className="flagging alert alert-danger">
           <i className="fa fa-flag" />
-          Observation flagged{ flagQualifier ? ` as ${flagQualifier}` : "" }
+          { flagQualifier ?
+            I18n.t( "observation_flagged_as_flag", { flag: flagQualifier } ) :
+            I18n.t( "observation_flagged" ) }
           <a href={ `/observations/${observation.id}/flags` } className="view">
-            Add/Edit Flags
+            { I18n.t( "add_edit_flags" ) }}
           </a>
         </div>
       );
     }
     return (
       <div className="flagging">
-        Inappropriate content? <span className="flag_link" onClick={ this.openFlaggingModal }>
-          Flag as inappropriate
+        { I18n.t( "inappropriate_content" ) } <span
+          className="flag_link" onClick={ this.openFlaggingModal }
+        >
+          { I18n.t( "flag_as_inappropriate" ) }
         </span>
       </div>
     );
@@ -202,30 +205,27 @@ class QualityMetrics extends React.Component {
     const recentCells = this.voteCellsForMetric( "recent" );
     return (
       <div className="QualityMetrics">
-        <h3>Data Quality Assessment</h3>
+        <h3>{ I18n.t( "data_quality_assessment" ) }</h3>
         <div className="grade">
-          Quality Grade:
+          { I18n.t( "quality_grade_" ) }:
           <span className={ `quality_grade ${observation.quality_grade} ` }>
             { _.upperFirst( I18n.t( observation.quality_grade ) ) }
           </span>
         </div>
-        <div className="text">
-          The data quality assessment is an evaluation of an observation’s accuracy.
-          Research Grade observations may be used by scientists for research. Cast your vote below:
-        </div>
+        <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
         <table className="table">
           <thead>
             <tr>
-              <th>Research Grade Qualification</th>
-              <th className="agree">Yes</th>
-              <th className="disagree">No</th>
+              <th>{ I18n.t( "research_grade_qualification" ) }</th>
+              <th className="agree">{ I18n.t( "yes" ) }</th>
+              <th className="disagree">{ I18n.t( "no" ) }</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td className="metric_title">
                 <i className="fa fa-calendar" />
-                Date specified
+                { I18n.t( "date_specified" ) }
               </td>
               <td className="agree">{ observation.observed_on ? checkIcon : null }</td>
               <td className="disagree">{ observation.observed_on ? null : checkIcon }</td>
@@ -233,7 +233,7 @@ class QualityMetrics extends React.Component {
             <tr>
               <td className="metric_title">
                 <i className="fa fa-map-marker" />
-                Location specified
+                { I18n.t( "location_specified" ) }
               </td>
               <td className="agree">{ observation.location ? checkIcon : null }</td>
               <td className="disagree">{ observation.location ? null : checkIcon }</td>
@@ -241,7 +241,7 @@ class QualityMetrics extends React.Component {
             <tr>
               <td className="metric_title">
                 <i className="fa fa-file-image-o" />
-                Has photos or sounds
+                { I18n.t( "has_photos_or_sounds" ) }
               </td>
               <td className="agree">{ hasMedia ? checkIcon : null }</td>
               <td className="disagree">{ hasMedia ? null : checkIcon }</td>
@@ -249,7 +249,7 @@ class QualityMetrics extends React.Component {
             <tr>
               <td className="metric_title">
                 <i className="fa icon-identification" />
-                Has ID supported by two or more
+                { I18n.t( "has_id_supported_by_two_or_more" ) }
               </td>
               <td className="agree">{ mostAgree ? checkIcon : null }</td>
               <td className="disagree">{ mostAgree ? null : checkIcon }</td>
@@ -257,7 +257,7 @@ class QualityMetrics extends React.Component {
             <tr className={ dateCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-calendar-check-o" />
-                Date is accurate
+                { I18n.t( "date_is_accurate" ) }
               </td>
               <td className="agree">{ dateCells.agreeCell }</td>
               <td className="disagree">{ dateCells.disagreeCell }</td>
@@ -265,7 +265,7 @@ class QualityMetrics extends React.Component {
             <tr className={ locationCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bullseye" />
-                Location is accurate
+                { I18n.t( "location_is_accurate" ) }
               </td>
               <td className="agree">{ locationCells.agreeCell }</td>
               <td className="disagree">{ locationCells.disagreeCell }</td>
@@ -273,7 +273,7 @@ class QualityMetrics extends React.Component {
             <tr className={ wildCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bolt" />
-                Organism is wild
+                { I18n.t( "organism_is_wild" ) }
               </td>
               <td className="agree">{ wildCells.agreeCell }</td>
               <td className="disagree">{ wildCells.disagreeCell }</td>
@@ -281,7 +281,7 @@ class QualityMetrics extends React.Component {
             <tr className={ evidenceCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bolt" />
-                Evidence of organism
+                { I18n.t( "evidence_of_organism" ) }
               </td>
               <td className="agree">{ evidenceCells.agreeCell }</td>
               <td className="disagree">{ evidenceCells.disagreeCell }</td>
@@ -289,7 +289,7 @@ class QualityMetrics extends React.Component {
             <tr className={ recentCells.loading ? "disabled" : "" }>
               <td className="metric_title">
                 <i className="fa fa-bolt" />
-                Recent evidence of organism
+                { I18n.t( "recent_evidence_of_organism" ) }
               </td>
               <td className="agree">{ recentCells.agreeCell }</td>
               <td className="disagree">{ recentCells.disagreeCell }</td>
@@ -297,7 +297,7 @@ class QualityMetrics extends React.Component {
             <tr>
               <td className="metric_title">
                 <i className="fa fa-leaf" />
-                Community ID as species level or lower
+                { I18n.t( "community_id_at_species_level_or_lower" ) }
               </td>
               <td className="agree">{ atLeastSpecies ? checkIcon : null }</td>
               <td className="disagree">{ atLeastSpecies ? null : checkIcon }</td>
@@ -305,7 +305,7 @@ class QualityMetrics extends React.Component {
             <tr className="improve">
               <td className="metric_title" colSpan={ 3 }>
                 <i className="fa fa-gavel" />
-                Based on the evidence, can the Community ID still be confirmed or improved?
+                { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
                 { this.needsIDInputs( ) }
               </td>
             </tr>

@@ -383,18 +383,23 @@ a.UserImage {
     margin-bottom: 15px;
     ul.nav-tabs {
       background-color: #f5f5f5;
-      margin-bottom: 0px;
+      margin-bottom: -1px;
       padding-top: 5px;
+      border-bottom: 0px;
       li:first-child {
         margin-left: 15px;
       }
       a {
         color: #666;
         outline: none;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
     .tab-content {
       background-color: #fff;
+      border-top: 1px solid $border-grey;
       padding: 10px;
       .form-group {
         margin-bottom: 0px;
@@ -433,28 +438,25 @@ a.UserImage {
   .ObservationTitle {
     display: inline-block;
     width: 100%;
-    line-height: 48px;
+    margin-bottom: 15px;
+    white-space: nowrap;
     & > div {
       display: inline-block;
     }
-    a.display-name {
-      color: #000;
-    }
-    a.sciname {
-      font-size: 24px;
-      color: #747474;
-      // margin-left: 10px;
-      // &.species, &.genus, &.infraspecies, &.subspecies, &.variety, &.hybrid {
-      //   font-style: normal;
-      //   span {
-      //     font-style: italic;
-      //   }
-      // }
-    }
-    .title {
-      float: left;
-      font-size: 36px;
-      line-height: 43px;
+    .SplitTaxon {
+      white-space: normal;
+      a.sciname {
+        font-size: 20px;
+        line-height: 24px;
+        color: #747474;
+        white-space: normal;
+      }
+      a.display-name {
+        font-size: 32px;
+        line-height: 36px;
+        color: #000;
+        white-space: normal;
+      }
     }
   }
   .FollowButton {
@@ -638,7 +640,7 @@ a.UserImage {
 
 .MapDetails {
   min-width: 550px;
-  padding: 20px 20px 12px 20px;
+  padding: 20px;
   display: inline-block;
   .attr {
     font-weight: 700;
@@ -664,7 +666,10 @@ a.UserImage {
     min-width: 40%;
     max-width: 50%;
     float: left;
-    line-height: 1.8em;
+    .attr, .place {
+      display: block;
+      margin-bottom: 5px;
+    }
   }
   .standard {
     padding-right: 15px;
@@ -685,6 +690,9 @@ a.UserImage {
 
 .Tags, .Projects, .ObservationFields, .Identifiers, .Copyright {
   border-top: 1px solid $border-grey;
+}
+.top-row .Projects {
+  border-top: none;
 }
 
 .Tags, .Projects, .ObservationFields {
@@ -771,6 +779,9 @@ a.UserImage {
   }
   .panel-title {
     font-size: 14px;
+    a.user {
+      font-weight: bold;
+    }
     .item-status {
       float: right;
       margin-right: 15px;
@@ -939,6 +950,7 @@ a.UserImage {
   .check, .count {
     display: inline-block;
     width: 20px;
+    text-align: center;
   }
   .agree, .disagree {
     white-space: nowrap;
@@ -946,6 +958,7 @@ a.UserImage {
   .agree .fa, .disagree .fa {
     font-size: 18px;
     width: 20px;
+    text-align: center;
   }
   .agree .check {
     color: $inat-green;
@@ -955,6 +968,7 @@ a.UserImage {
   }
   .count {
     color: inherit;
+    text-align: center;
   }
 }
 
@@ -1300,6 +1314,11 @@ a.UserImage {
       }
     }
   }
+  .panel {
+    .field-name {
+      margin: 15px 0px 10px;
+    }
+  }
   .field-name {
     font-size: 16px;
     margin-bottom: 10px;
@@ -1437,6 +1456,7 @@ a.UserImage {
     }
     .graphic {
       margin-top: 20px;
+      position: relative;
       .for, .against {
         display: inline-block;
         height: 8px;
@@ -1449,6 +1469,38 @@ a.UserImage {
       }
       .against {
         background: $fail-red;
+      }
+      .lines {
+        width: 100%;
+        height: 15px;
+        position: absolute;
+        top: 0;
+        pointer-events: none;
+        .two-thirds {
+          margin-left: 66.6%;
+          border-left: 1px solid #333;
+          width: 0px;
+          display: inline-block;
+        }
+      }
+      .numbers {
+        width: 100%;
+        .first {
+          width: 50%;
+          text-align: left;
+          display: inline-block;
+        }
+        .two-thirds {
+          width: 33.3%;
+          text-align: center;
+          font-weight: 600;
+          display: inline-block;
+        }
+        .last {
+          width: 16.7%;
+          text-align: right;
+          display: inline-block;
+        }
       }
     }
   }
@@ -1661,6 +1713,76 @@ a.UserImage {
   }
 }
 
+.CommunityIDModal.modal {
+  .modal-dialog {
+    width: 90%;
+    min-width: 750px;
+    .modal-body {
+      overflow-x: auto;
+    }
+    h4:not(:first-child) {
+      margin: 30px 0px 10px;
+    }
+    table {
+      font-size: 13px;
+      th:not(:first-child) {
+        max-width: 100px;
+      }
+      tr {
+        &.current-id {
+          background: #eee;
+          font-weight: 700;
+        }
+        &.included {
+          background: #e6f3c5;
+        }
+        &.excluded {
+          background: #fdcde7;
+        }
+        &.other-branch {
+          td {
+            opacity: 0.5;
+          }
+        }
+      }
+      td {
+        padding: 2px 8px;
+        .sciname {
+          font-size: 12px;
+        }
+        .display-name {
+          font-size: 13px;
+          white-space: nowrap;
+        }
+        &.score {
+          white-space: nowrap;
+        }
+      }
+    }
+    .legend {
+      font-size: 13px;
+      & > span {
+        padding: 5px;
+        &:not(:first-child) {
+          margin-left: 10px;
+        }
+      }
+      .included {
+        background: #e6f3c5;
+      }
+      .excluded {
+        background: #fdcde7;
+      }
+      .other-branch {
+        opacity: 0.5;
+      }
+    }
+    dd {
+      margin-left: 15px;
+    }
+  }
+}
+
 .FlaggingModal.modal {
   .modal-dialog {
     width: 450px;
@@ -1702,6 +1824,7 @@ a.UserImage {
   }
   margin-left: 10px;
   cursor: pointer;
+  vertical-align: text-bottom;
 }
 
 .ConservationStatusBadgePopover, .EstablishmentMeansBadgePopover {
@@ -1867,7 +1990,7 @@ body > div > [role="dialog"] .easyzoom > a > img {
   margin-right: 20px;
   // added
   margin-left: 10px;
-  vertical-align: middle;
+  vertical-align: text-bottom;
 }
 .quality_grade:after {
   content: "";

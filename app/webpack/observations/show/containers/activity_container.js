@@ -13,7 +13,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
+    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); },
     addComment: ( body ) => { dispatch( addComment( body ) ); },
     deleteComment: ( id ) => { dispatch( confirmDeleteComment( id ) ); },
     addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },

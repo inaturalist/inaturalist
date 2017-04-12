@@ -36,58 +36,52 @@ class CommunityIdentification extends React.Component {
         className="CommunityIDInfoOverlay"
         id="popover-community-id-info"
       >
-        <p>
-          If for some reason a user doesn't agree with the community taxon,
-          they can reject it, which means their ID is the one used for
-          linking to other observations, updating life lists, etc. It also
-          means their observation can only become research grade when the
-          community agrees with them.
-        </p>
-        <p>
-          However, the community ID is still shown, so all may see the
-          different IDs that have been suggested.
-        </p>
+        <div dangerouslySetInnerHTML={ { __html:
+          I18n.t( "views.observations.community_id.explanation" ) } }
+        />
       </Popover>
     );
   }
 
   communityIDOverridePanel( ) {
-    const observation = this.props.observation;
+    const { observation, config } = this.props;
+    const loggedIn = config && config.currentUser;
     const observerOptedOut = (
       this.ownerID && observation.user.preferences.prefers_community_taxa === false );
     let panel;
-    if ( observerOptedOut ) {
+    if ( observerOptedOut && loggedIn && config.currentUser.id === observation.user.id ) {
       if ( !observation.preferences.prefers_community_taxon ) {
         panel = ( <div className="override out">
           <span className="bold">
-            You have opted out of community identifications.
+            { I18n.t( "views.observations.community_id.you_have_opted_out" ) }.
           </span>
           <a href="#" onClick={ this.communityIDOptIn }>
-            Opt in for this observation
+            { I18n.t( "views.observations.community_id.opt_in_for_this_observation" ) }
           </a>
           <span className="separator">·</span>
           <a href="/users/edit">
-            Edit your default settings
+            { I18n.t( "edit_your_default_settings" ) }
           </a>
         </div> );
       } else {
         let dissimilarMessage;
         const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
         if ( util.taxaDissimilar( this.ownerID.taxon, this.props.observation.taxon ) ) {
-          dissimilarMessage = ( <span className="something">
-            Your ID (<span className="bold">{ idName }</span>) does not match
-            the community ID.&nbsp;
-          </span> );
+          dissimilarMessage = ( <span className="something" dangerouslySetInnerHTML={ { __html:
+            I18n.t( "views.observations.community_id.your_id_does_not_match", {
+              taxon_name: idName } ) } }
+          /> );
         }
         panel = ( <div className="override in">
           { dissimilarMessage }
-          Would you like to <a href="#" onClick={ this.communityIDOptOut }>
-            reject the community ID
+          { I18n.t( "would_you_like_to" ) } <a href="#" onClick={ this.communityIDOptOut }>
+            { I18n.t( "reject_the_community_id" ) }
           </a>?
           <OverlayTrigger
             trigger="click"
             rootClose
             placement="top"
+            containerPadding={ 20 }
             overlay={ this.communityIDInfoPopover( ) }
           >
             <i className="fa fa-info-circle" />
@@ -99,14 +93,11 @@ class CommunityIdentification extends React.Component {
   }
 
   communityIDOverrideStatement( ) {
-    const { observation, config } = this.props;
-    const loggedIn = config && config.currentUser;
-    const observerOptedOut = (
-      this.ownerID && observation.user.preferences.prefers_community_taxa === false );
+    const observation = this.props.observation;
     let statement;
-    if ( observerOptedOut && loggedIn && config.currentUser.id === observation.user.id ) {
+    if ( !observation.preferences.prefers_community_taxon ) {
       statement = ( <span className="opted_out">
-        (User has opted-out of Community ID)
+        ({ I18n.t( "user_has_opted_out_of_community_id" ) })
         <OverlayTrigger
           trigger="click"
           rootClose
@@ -146,7 +137,7 @@ class CommunityIdentification extends React.Component {
     const taxonImageTag = util.taxonImage( taxon );
     const votesFor = [];
     const votesAgainst = [];
-    const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
+    const taxonAncestry = taxon.ancestry ? `${taxon.ancestry}/${taxon.id}` : `${taxon.id}`;
     _.each( observation.identifications, i => {
       if ( !i.current ) { return; }
       const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
@@ -187,7 +178,7 @@ class CommunityIdentification extends React.Component {
     return (
       <div className="CommunityIdentification">
         <h4>
-          Community ID
+          { I18n.t( "community_id_heading" ) }
           { this.communityIDOverrideStatement( ) }
         </h4>
         <div className="info">
@@ -203,10 +194,18 @@ class CommunityIdentification extends React.Component {
           </div>
           <SplitTaxon taxon={observation.taxon} url={`/taxa/${taxon.id}`} />
           <span className="cumulative">
-            Cumulative IDs: { votesFor.length } of { voteCells.length }
+            { I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) }
           </span>
           <div className="graphic">
             { voteCells }
+            <div className="lines">
+              <div className="two-thirds">&nbsp;</div>
+            </div>
+            <div className="numbers">
+              <div className="first">1</div>
+              <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
+              <div className="last">{ voteCells.length }</div>
+            </div>
           </div>
         </div>
         <div className="action">
@@ -215,7 +214,7 @@ class CommunityIdentification extends React.Component {
               onClick={ ( ) => { addID( taxon, { agreedTo: "communityID" } ); } }
             >
             { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
-              ( <i className="fa fa-check" /> ) } Agree
+              ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
             </button>
           </div>
           <div className="btn-space">
@@ -223,13 +222,13 @@ class CommunityIdentification extends React.Component {
               `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
             >
               <button className="btn btn-default">
-                <i className="fa fa-exchange" /> Compare
+                <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
               </button>
             </a>
           </div>
           <div className="btn-space">
             <button className="btn btn-default" onClick={ this.showCommunityIDModal }>
-              <i className="fa fa-info-circle" /> About
+              <i className="fa fa-info-circle" /> { I18n.t( "about" ) }
             </button>
           </div>
         </div>

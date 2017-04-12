@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import ReactDOMServer from "react-dom/server";
 import { Panel } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -17,7 +18,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   let header;
   let className;
   const userLink = (
-    <a href={ `/people/${item.user.login}` }>{ item.user.login }</a>
+    <a className="user" href={ `/people/${item.user.login}` }>{ item.user.login }</a>
   );
   if ( isID ) {
     let buttons = [];
@@ -40,7 +41,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
           disabled={ userAgreedToThis }
         >
           { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
-            ( <i className="fa fa-check" /> ) } Agree
+            ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
         </button>
       ) );
     }
@@ -51,7 +52,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
           href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
         >
           <button className="btn btn-default btn-sm">
-            <i className="fa fa-exchange" /> Compare
+            <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
           </button>
         </a>
       ) );
@@ -62,7 +63,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       </div>
     </div> );
     const taxonImageTag = util.taxonImage( taxon );
-    header = "suggested an ID";
+    header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
       <div className="identification">
@@ -78,7 +79,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       </div>
     );
   } else {
-    header = "commented";
+    header = I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } );
     contents = ( <UserText text={ item.body } /> );
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
@@ -87,18 +88,18 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   if ( item.flags && item.flags.length > 0 ) {
     panelClass = "flagged";
     status = ( <span className="item-status">
-      <i className="fa fa-flag" /> Flagged
+      <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
     </span> );
   } else if ( item.category && item.current ) {
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
       status = ( <span className="item-status">
-        <i className="fa fa-bolt" /> Maverick
+        <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
       </span> );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
       status = ( <span className="item-status">
-        <i className="fa fa-trophy" /> Improving
+        <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
       </span> );
     }
   }
@@ -109,10 +110,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       </div>
       <Panel className={ panelClass } header={(
         <span>
-          <span className="title_text">
-            { userLink }&nbsp;
-            { header }
-          </span>
+          <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
           <ActivityItemMenu
             item={ item }
             config={ config }

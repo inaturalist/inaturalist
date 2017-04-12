@@ -33,15 +33,15 @@ class Activity extends React.Component {
         moment.parseZone( a.created_at ) ) );
     const tabs = (
       <Tabs defaultActiveKey="comment">
-        <Tab eventKey="comment" title="Comment" className="comment_tab">
+        <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
           <div className="form-group">
             <textarea
-              placeholder="Leave a comment"
+              placeholder={ I18n.t( "leave_a_comment" ) }
               className="form-control"
             />
           </div>
         </Tab>
-        <Tab eventKey="add_id" title="Suggest an ID" className="id_tab">
+        <Tab eventKey="add_id" title={ I18n.t( "suggest_an_id" ) } className="id_tab">
           <TaxonAutocomplete
             bootstrap
             searchExternal
@@ -50,7 +50,7 @@ class Activity extends React.Component {
           />
           <div className="form-group">
             <textarea
-              placeholder="Tell us why..."
+              placeholder={ I18n.t( "tell_us_why" ) }
               className="form-control"
             />
           </div>
@@ -64,7 +64,7 @@ class Activity extends React.Component {
     const taxonIDsDisplayed = { };
     return (
       <div className="Activity">
-        <h3>Activity</h3>
+        <h3>{ I18n.t( "activity" ) }</h3>
         <div className="activity">
           { activity.map( item => {
             let firstDisplay;
@@ -103,7 +103,7 @@ class Activity extends React.Component {
               }
             } }
           >
-            Done
+            { I18n.t( "done" ) }
           </Button>
         </div>
       </div>

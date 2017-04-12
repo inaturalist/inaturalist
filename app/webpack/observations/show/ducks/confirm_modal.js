@@ -37,7 +37,7 @@ export function handleAPIError( e, message, options = { } ) {
           errors: railsErrors,
           onConfirm: options.onConfirm
         } ) );
-      } );
+      } ).catch( e => { } );
     }
   };
 }

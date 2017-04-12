@@ -4,7 +4,7 @@ import React from "react";
 const util = class util {
 
   static taxaDissimilar( testTaxon, compareToTaxon ) {
-    const testTaxonAncestry = _.isEmpty( testTaxon.ancestry ) ? testTaxon.id :
+    const testTaxonAncestry = _.isEmpty( testTaxon.ancestry ) ? `${testTaxon.id}` :
       `${testTaxon.ancestry}/${testTaxon.id}`;
     const compareToTaxonAncestry = _.isEmpty( compareToTaxon.ancestry ) ? compareToTaxon.id :
       `${compareToTaxon.ancestry}/${compareToTaxon.id}`;

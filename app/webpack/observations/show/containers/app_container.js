@@ -5,13 +5,14 @@ import { setFlaggingModalState } from "../ducks/flagging_modal";
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
-    config: state.config
+    config: state.config,
+    controlledTerms: state.controlledTerms
   };
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); }
+    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); }
   };
 }
 

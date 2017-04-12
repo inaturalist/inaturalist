@@ -12,7 +12,7 @@ const Faves = ( { observation, config, fave, unfave } ) => {
       o.user.id === config.currentUser.id
     ) );
     if ( observation.faves.length === 1 && userHasFavedThis ) {
-      message = "You faved this!";
+      message = I18n.t( "you_faved_this" );
     } else {
       const favesToShow = [];
       const otherFaves = [];
@@ -27,13 +27,12 @@ const Faves = ( { observation, config, fave, unfave } ) => {
       if ( otherFaves.length > 0 ) {
         const text = (
           <span className="others">
-            { observation.faves.length - 2 } others
+            { I18n.t( "x_others", { count: observation.faves.length - 2 } ) }
           </span>
         );
         others = (
           <span key={ `fave-others-${observation.id}` }>
-            , and&nbsp;
-            <UsersPopover
+            , { I18n.t( "and" ) } <UsersPopover
               users={ otherFaves.map( f => ( f.user ) ) }
               keyPrefix="faves"
               contents={ text }
@@ -48,13 +47,13 @@ const Faves = ( { observation, config, fave, unfave } ) => {
               <a href={ `/people/${f.user.login}` }>{ f.user.login }</a>
             </span>
           ) ) }
-          { others }
-          &nbsp;faved this observation
+          { others }&nbsp;
+          { I18n.t( "faved_this_observation" ) }
         </span>
       );
     }
   } else {
-    message = "Be the first to fave this observation!";
+    message = I18n.t( "be_the_first_to_fave_this_observation" );
   }
   const starIconClass = userHasFavedThis ? "fa-star" : "fa-star-o";
   const hoverStarIconClass = userHasFavedThis ? "fa-star-o" : "fa-star";

@@ -79,19 +79,18 @@ class ResearchGradeProgress extends React.Component {
                     <i className="fa fa-leaf" />
                   </div>
                   <div className="reason_label">
-                    Community ID as species level or lower
+                    { I18n.t( "community_id_at_species_level_or_lower" ) }
                   </div>
                 </div>
                 <div className="or">
-                  - OR -
+                  - { I18n.t( "or" ) } -
                 </div>
                 <div className="reason">
                   <div className="reason_icon">
                     <i className="fa fa-gavel" />
                   </div>
                   <div className="reason_label">
-                    The community must feel that the Community ID is the best
-                    it can be based on the evidence
+                    { I18n.t( "the_community_must_feel_that" ) }
                   </div>
                 </div>
               </li>
@@ -102,51 +101,51 @@ class ResearchGradeProgress extends React.Component {
           switch ( type ) {
             case "date":
               icon = "fa-calendar";
-              label = "Specify Date";
+              label = I18n.t( "date_specified" );
               break;
             case "location":
               icon = "fa-map-marker";
-              label = "Specify Location";
+              label = I18n.t( "location_specified" );
               break;
             case "media":
               icon = "fa-file-image-o";
-              label = "Add photos or sounds";
+              label = I18n.t( "has_photos_or_sounds" );
               break;
             case "ids":
               icon = "icon-identification";
-              label = "Community Identification";
+              label = I18n.t( "has_id_supported_by_two_or_more" );
               break;
             case "rank":
               icon = "fa-leaf";
-              label = "Community ID as species level or lower";
+              label = I18n.t( "community_id_at_species_level_or_lower" );
               break;
             case "metric-date":
               icon = "fa-calendar-check-o";
-              label = "Accurate Date";
+              label = I18n.t( "date_is_accurate" );
               break;
             case "metric-location":
               icon = "fa-bullseye";
-              label = "Accurate Location";
+              label = I18n.t( "location_is_accurate" );
               break;
             case "metric-wild":
               icon = "fa-bolt";
-              label = "Wild Organism";
+              label = I18n.t( "organism_is_wild" );
               break;
             case "metric-evidence":
               icon = "fa-bolt";
-              label = "Evidence of an Organism";
+              label = I18n.t( "evidence_of_organism" );
               break;
             case "metric-recent":
               icon = "fa-bolt";
-              label = "Recent Evidence";
+              label = I18n.t( "recent_evidence_of_organism" );
               break;
             case "metric-needs_id":
               icon = "fa-gavel";
-              label = "The community must feel that the Community ID is the best it can be based on the evidence";
+              label = I18n.t( "the_community_must_feel_that" );
               break;
             case "flags":
               icon = "fa-flag danger";
-              label = "All flags must be resolved";
+              label = I18n.t( "all_flags_must_be_resolved" );
               break;
             default:
               return null;
@@ -175,25 +174,26 @@ class ResearchGradeProgress extends React.Component {
     if ( grade === "research" ) {
       description = (
         <span>
-          <span className="bold">This observation is Research Grade! </span>
-          It can now be used for research and featured on other websites.
+          <span className="bold">{ I18n.t( "this_observation_is_research_grade" ) }</span>
+          { I18n.t( "it_can_now_be_used_for_research" ) }.
         </span>
       );
     } else {
       criteria = this.criteriaList( );
       description = (
-        <span>
-          The below items are needed to achieve <span className="bold">Research Grade:</span>
-        </span>
+        <span
+          dangerouslySetInnerHTML={ { __html: I18n.t( "the_below_items_are_needed_to_achieve" ) } }
+        />
       );
     }
     if ( observation.outlinks && observation.outlinks.length > 0 ) {
       outlinks = ( <div className="outlinks">
         <span className="intro">
-          This observation is featured on { observation.outlinks.length } sites
+          { I18n.t( "this_observation_is_featured_on_x_sites", {
+            count: observation.outlinks.length } ) }
           { grade !== "research" ? (
             <span className="intro-sub">
-              Please allow a few weeks for external sites to sync changes from this site
+              { I18n.t( "please_allow_a_few_weeks_for_external_sites" ) }
             </span>
           ) : "" }
         </span>

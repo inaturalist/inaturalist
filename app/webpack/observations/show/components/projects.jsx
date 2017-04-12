@@ -72,7 +72,7 @@ class Projects extends React.Component {
         <span
           className="add"
           onClick={ ( ) => this.setState( { open: !this.state.open } ) }
-        >Add To Project</span>
+        >{ I18n.t( "add_to_project" ) }</span>
       );
       addProjectInput = (
         <Panel collapsible expanded={ this.state.open }>
@@ -91,7 +91,7 @@ class Projects extends React.Component {
     const count = observation.project_observations.length;
     return (
       <div className="Projects">
-        <h4>This observation is in { count } projects { addProjectLink }</h4>
+        <h4>{ I18n.t( "this_observation_is_in_x_projects", { count } ) } { addProjectLink }</h4>
         { addProjectInput }
         { observation.project_observations.map( po => (
           <ProjectListing

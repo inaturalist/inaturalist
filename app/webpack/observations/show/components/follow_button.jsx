@@ -13,7 +13,7 @@ class FollowButton extends React.Component {
       return subscription.api_status ?
         ( <div className="loading_spinner" /> ) : (
           <span className="unfollow">
-            (Unfollow)
+            ({ I18n.t( "unfollow" ) })
           </span> );
     }
     return null;
@@ -45,7 +45,7 @@ class FollowButton extends React.Component {
             id="grouping-control"
           >
             <Dropdown.Toggle className="btn-sm">
-              Follow
+              { I18n.t( "follow" ) }
             </Dropdown.Toggle>
             <Dropdown.Menu className="dropdown-menu-right">
               <li className={ followUserPending ? "disabled" : "" }>
@@ -58,7 +58,7 @@ class FollowButton extends React.Component {
                 className={ followObservationPending ? "disabled" : "" }
               >
                 <a href="#" onClick={ followObservationAction }>
-                  This observation
+                  { I18n.t( "this_observation" ) }
                   { this.followStatus( followingObservation ) }
                 </a>
               </li>

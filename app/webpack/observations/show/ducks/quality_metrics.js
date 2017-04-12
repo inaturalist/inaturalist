@@ -26,6 +26,6 @@ export function fetchQualityMetrics( ) {
     const params = { id: observation.id, ttl: -1 };
     return inatjs.observations.qualityMetrics( params ).then( response => {
       dispatch( setQualityMetrics( response.results ) );
-    } );
+    } ).catch( e => { } );
   };
 }

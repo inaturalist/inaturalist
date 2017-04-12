@@ -17,7 +17,7 @@ class ConservationStatusBadge extends React.Component {
       >
         <div className="title">
           <span className="bold">
-            Conservation status:&nbsp;
+            { I18n.t( "conservation_status" ) }:&nbsp;
             { cs.status_name }
             { ( cs.status && cs.status !== cs.status_name ) ? ` (${cs.status})` : "" }
             { cs.place ? ` in ${cs.place.display_name}` : "" }

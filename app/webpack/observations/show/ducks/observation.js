@@ -113,7 +113,7 @@ export function fetchTaxonSummary( ) {
     return inatjs.observations.taxonSummary( params ).then( response => {
       dispatch( setAttributes( { taxon:
         Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );
-    } );
+    } ).catch( e => console.log( e ) );
   };
 }
 
@@ -129,6 +129,10 @@ export function fetchObservation( id, options = { } ) {
     const fetchAll = options.fetchAll;
     return inatjs.observations.fetch( id, params ).then( response => {
       const observation = response.results[0];
+      if ( !observation ) {
+        console.log( "observation not found" );
+        return;
+      }
       const taxonUpdated = ( originalObservation &&
         originalObservation.id === observation.id &&
         ( ( !originalObservation.taxon && observation.taxon ) ||
@@ -149,6 +153,8 @@ export function fetchObservation( id, options = { } ) {
         const ws = windowStateForObservation( observation );
         history.replaceState( ws.state, ws.title, ws.url );
       }
+      // delay these requests for a short while, unless the taxon has changed
+      // which is a user-initiated action that should have a quick re-render time
       setTimeout( ( ) => {
         if ( fetchAll || options.fetchOtherObservations ) {
           dispatch( fetchMoreFromThisUser( ) );
@@ -162,6 +168,9 @@ export function fetchObservation( id, options = { } ) {
           dispatch( fetchIdentifiers( {
             taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
         }
+        if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
+          dispatch( fetchControlledTerms( ) );
+        }
       }, taxonUpdated ? 1 : 500 );
       if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
         const item = s.flaggingModal.item;
@@ -169,12 +178,12 @@ export function fetchObservation( id, options = { } ) {
         if ( id === item.id ) { newItem = observation; }
         newItem = newItem || _.find( observation.comments, c => c.id === item.id );
         newItem = newItem || _.find( observation.identifications, c => c.id === item.id );
-        if ( newItem ) { dispatch( setFlaggingModalState( "item", newItem ) ); }
+        if ( newItem ) { dispatch( setFlaggingModalState( { item: newItem } ) ); }
       }
       if ( options.callback ) {
         options.callback( );
       }
-    } );
+    } ).catch( e => console.log( e ) );
   };
 }
 

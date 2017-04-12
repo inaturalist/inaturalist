@@ -55,7 +55,7 @@ export function fetchNearby( ) {
       photos: true, not_id: observation.id, per_page: 6 } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setNearby( { params: baseParams, observations: response.results } ) );
-    } );
+    } ).catch( e => { } );
   };
 }
 
@@ -71,7 +71,7 @@ export function fetchMoreFromClade( ) {
       photos: true, not_id: observation.id, per_page: 6 } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setMoreFromClade( { params: baseParams, observations: response.results } ) );
-    } );
+    } ).catch( e => { } );
   };
 }
 
@@ -87,8 +87,8 @@ export function fetchMoreFromThisUser( ) {
         order: "asc", id_above: observation.id, per_page: 3 };
       return inatjs.observations.search( params ).then( responseAfter => {
         dispatch( setMoreFromThisUser( responseBefore.results.concat( responseAfter.results ) ) );
-      } );
-    } );
+      } ).catch( e => { } );
+    } ).catch( e => { } );
   };
 }
 

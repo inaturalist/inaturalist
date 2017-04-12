@@ -38,14 +38,14 @@ class ProjectListing extends React.Component {
         key={ `project-join-${po.project.id}` }
         eventKey="join"
       >
-        Join this project
+        { I18n.t( "join_this_project" ) }
       </MenuItem> ) );
     }
     menuItems.push( ( <MenuItem
       key={ `project-remove-${po.project.id}` }
       eventKey="delete"
     >
-      Remove from project
+      { I18n.t( "remove_from_project" ) }
     </MenuItem> ) );
     if ( po.current_user_is_member ) {
       menuItems.push( ( <MenuItem
@@ -53,7 +53,7 @@ class ProjectListing extends React.Component {
         eventKey="projectSettings"
         href={ `/projects/${po.project.slug}/contributors/${currentUser.login}` }
       >
-        Edit your settings for this project
+        { I18n.t( "edit_your_settings_for_this_project" ) }
       </MenuItem> ) );
     }
     menuItems.push( ( <MenuItem
@@ -61,7 +61,7 @@ class ProjectListing extends React.Component {
       eventKey="globalSettings"
       href="/users/edit#projects"
     >
-      Edit your global project settings
+    { I18n.t( "edit_your_global_project_settings" ) }
     </MenuItem> ) );
     return (
       <span className="control-group">
@@ -108,7 +108,7 @@ class ProjectListing extends React.Component {
             className="fieldLink"
             onClick={ ( ) => this.setState( { fieldsPanelOpen: !this.state.fieldsPanelOpen } ) }
           >
-            Observation Fields <i className="fa fa-angle-double-down" />
+            { I18n.t( "observation_fields" ) } <i className="fa fa-angle-double-down" />
           </span>
         );
         observationFields = (

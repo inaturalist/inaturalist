@@ -2,8 +2,8 @@ import React, { PropTypes } from "react";
 import { Dropdown, MenuItem } from "react-bootstrap";
 
 
-const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
-                             restoreID, setFlaggingModalState } ) => {
+const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
+  setFlaggingModalState } ) => {
   if ( !item ) { return ( <div /> ); }
   const isID = !!item.taxon;
   let menuItems = [];
@@ -16,7 +16,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
             key={ `id-delete-${item.id}` }
             eventKey="delete"
           >
-            Withdraw
+            { I18n.t( "withdraw" ) }
           </MenuItem>
         ) );
       } else {
@@ -25,7 +25,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
             key={ `id-restore-${item.id}` }
             eventKey="restore"
           >
-            Restore
+            { I18n.t( "restore" ) }
           </MenuItem>
         ) );
       }
@@ -35,7 +35,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
           key={ `id-flag-${item.id}` }
           eventKey="flag"
         >
-          Flag
+          { I18n.t( "flag" ) }
         </MenuItem>
       ) );
     }
@@ -47,7 +47,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
           eventKey="edit"
           href={ `/comments/${item.id}/edit` }
         >
-          Edit
+          { I18n.t( "edit" ) }
         </MenuItem>
       ) );
       menuItems.push( (
@@ -55,7 +55,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
           key={ `comment-delete-${item.id}` }
           eventKey="delete"
         >
-          Delete
+          { I18n.t( "delete" ) }
         </MenuItem>
       ) );
     } else {
@@ -64,7 +64,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
           key={ `comment-flag-${item.id}` }
           eventKey="flag"
         >
-          Flag
+          { I18n.t( "flag" ) }
         </MenuItem>
       ) );
     }
@@ -76,8 +76,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID,
           id="grouping-control"
           onSelect={ ( event, key ) => {
             if ( key === "flag" ) {
-              setFlaggingModalState( "item", item );
-              setFlaggingModalState( "show", true );
+              setFlaggingModalState( { item, show: true } );
             } else if ( isID ) {
               if ( key === "delete" ) {
                 deleteID( item.id );

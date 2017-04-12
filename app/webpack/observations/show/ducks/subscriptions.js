@@ -25,6 +25,6 @@ export function fetchSubscriptions( ) {
     const params = { id: observation.id };
     return inatjs.observations.subscriptions( params ).then( response => {
       dispatch( setSubscriptions( response.results ) );
-    } );
+    } ).catch( e => { } );
   };
 }

@@ -39,13 +39,14 @@ class ObservationFields extends React.Component {
         <span
           className="add"
           onClick={ ( ) => this.setState( { open: !this.state.open } ) }
-        >Add Field</span>
+        >{ I18n.t( "add_field" ) }</span>
       );
       addValueInput = (
         <Panel collapsible expanded={ this.state.open }>
           <div className="form-group">
             <ObservationFieldInput
-              notIDs={ _.uniq( _.map( observation.ofvs, ofv => ofv.observation_field.id ) ) }
+              notIDs={ _.compact( _.uniq( _.map( observation.ofvs, ofv => (
+                ofv.observation_field && ofv.observation_field.id ) ) ) ) }
               onSubmit={ r => {
                 this.props.addObservationFieldValue( r );
               } }
@@ -56,7 +57,7 @@ class ObservationFields extends React.Component {
     }
     return (
       <div className="ObservationFields">
-        <h4>Observation Fields ({ sortedFieldValues.length }) { addValueLink }</h4>
+        <h4>{ I18n.t( "observation_fields" ) } ({ sortedFieldValues.length }) { addValueLink }</h4>
         { addValueInput }
         { sortedFieldValues.map( ofv => {
           if ( this.state.editingFieldValue && this.state.editingFieldValue.uuid === ofv.uuid ) {

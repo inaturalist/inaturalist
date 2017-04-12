@@ -17,7 +17,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( key, value ) => { dispatch( setFlaggingModalState( key, value ) ); },
+    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); },
     voteMetric: ( metric, params ) => { dispatch( voteMetric( metric, params ) ); },
     unvoteMetric: ( metric ) => { dispatch( unvoteMetric( metric ) ); }
   };

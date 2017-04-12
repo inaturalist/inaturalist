@@ -35,35 +35,36 @@ class MapDetails extends React.Component {
       <div className="MapDetails">
         <div className="top_info">
           <div className="info">
-            <span className="attr">Lat:</span>&nbsp;
+            <span className="attr">{ I18n.t( "lat" ) }:</span>&nbsp;
             <span className="value">{ _.round( observation.latitude, 6 ) }</span>
           </div>
           <div className="info">
-            <span className="attr">Lon:</span>&nbsp;
+            <span className="attr">{ I18n.t( "long" ) }:</span>&nbsp;
             <span className="value">{ _.round( observation.longitude, 6 ) }</span>
           </div>
           <div className="info">
-            <span className="attr">Accuracy:</span>&nbsp;
+            <span className="attr">{ I18n.t( "accuracy" ) }:</span>&nbsp;
             <span className="value">
               { observation.positional_accuracy ?
-                `${observation.positional_accuracy}m` : "Not Recorded" }
+                `${observation.positional_accuracy}m` : I18n.t( "not_recorded" ) }
             </span>
           </div>
           <div className="info">
-            <span className="attr">Geoprivacy:</span>&nbsp;
+            <span className="attr">{ I18n.t( "geoprivacy" ) }:</span>&nbsp;
             <span className="value">
-              { observation.obscured ? "Obscured" : ( observation.geoprivacy || "Open" ) }
+              { observation.obscured ? I18n.t( "obscured" ) :
+                ( observation.geoprivacy || I18n.t( "open_" ) ) }
             </span>
           </div>
         </div>
         <div className="places">
-          <h4>Encompassing Places</h4>
+          <h4>{ I18n.t( "encompassing_places" ) }</h4>
           <div className="standard">
-            <span className="attr">Standard:</span>
+            <span className="attr">{ I18n.t( "standard" ) }:</span>
             { this.placeList( observationPlaces.filter( op => ( op.admin_level !== null ) ) ) }
           </div>
           <div className="community">
-            <span className="attr">Community Curated:</span>
+            <span className="attr">{ I18n.t( "community_curated" ) }:</span>
             { this.placeList( observationPlaces.filter( op => ( op.admin_level === null ) ) ) }
           </div>
         </div>
