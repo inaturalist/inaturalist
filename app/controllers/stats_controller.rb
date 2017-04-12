@@ -169,7 +169,7 @@ class StatsController < ApplicationController
       umbrella_project_ids: [11753],
       sub_project_ids: {
         11753 => [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764, 11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
-      }
+      },
       title: "City Nature Challenge 2017"
     )
   end
