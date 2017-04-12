@@ -5,6 +5,8 @@ class StatsController < ApplicationController
   caches_action :summary, expires_in: 1.hour
   caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
+  caches_action :cnc2016, expires_in: 5.minutes
+  caches_action :cnc2017, expires_in: 5.minutes
 
   def index
     respond_to do |format|
@@ -122,7 +124,6 @@ class StatsController < ApplicationController
     if options[:trim_slackers]
       @umbrella_projects = @umbrella_projects.delete_if{ |p| p[:observation_count] == 0 }
     end
-    Rails.logger.debug "[DEBUG] @umbrella_projects: #{@umbrella_projects}"
 
     # randomizing subprojects
     @sub_projects = Hash[ sub_project_ids.map{ |umbrella_id,subproject_ids|
@@ -168,15 +169,19 @@ class StatsController < ApplicationController
     project_slideshow_data( 11753,
       umbrella_project_ids: [11753],
       sub_project_ids: {
-        11753 => [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764, 11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
+        11753 => [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
+          11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
       },
       title: "City Nature Challenge 2017"
     )
   end
 
   def cnc2016
-    project_slideshow_data( 6365,
-      umbrella_project_ids: [6365, 6345],
+    project_slideshow_data( 11765,
+      umbrella_project_ids: [11765],
+      sub_project_ids: {
+        11765 => [6345, 6365]
+      },
       title: "City Nature Challenge 2016"
     )
   end

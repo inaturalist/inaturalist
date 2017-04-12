@@ -6,6 +6,13 @@ class Slideshow extends Component {
 
   render( ) {
     let dateRange = "";
+    if ( !this.props.project ) {
+      return (
+        <h1 className="text-center block-center">
+          No Project Selected
+        </h1>
+      );
+    }
     if ( this.props.project.start_time && this.props.project.end_time ) {
       if ( this.props.project.in_progress ) {
         dateRange = "In progress ";
