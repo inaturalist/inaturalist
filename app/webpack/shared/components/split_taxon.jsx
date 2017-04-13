@@ -11,7 +11,8 @@ const SplitTaxon = ( {
   forceRank,
   showIcon,
   truncate,
-  onClick
+  onClick,
+  noInactive
 } ) => {
   const LinkElement = url ? "a" : "span";
   let title = "";
@@ -154,7 +155,7 @@ const SplitTaxon = ( {
     );
   };
   const inactive = ( ) => {
-    if ( !taxon || taxon.is_active ) {
+    if ( !taxon || taxon.is_active || noInactive ) {
       return null;
     }
     return (
@@ -187,7 +188,8 @@ SplitTaxon.propTypes = {
   forceRank: PropTypes.bool,
   showIcon: PropTypes.bool,
   truncate: PropTypes.number,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  noInactive: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

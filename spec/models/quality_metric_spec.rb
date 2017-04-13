@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe QualityMetric, "creation" do
-
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should update observation quality_grade" do
     o = make_research_grade_observation
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
@@ -11,9 +12,6 @@ describe QualityMetric, "creation" do
   end
 
   describe "elastic index" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
-
     it "should get the updated quality_grade" do
       o = without_delay { make_research_grade_observation }
       o.elastic_index!
@@ -30,6 +28,8 @@ describe QualityMetric, "creation" do
 end
 
 describe QualityMetric, "destruction" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should update observation quality_grade" do
     o = make_research_grade_observation
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE

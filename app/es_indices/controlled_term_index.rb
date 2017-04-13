@@ -34,7 +34,7 @@ class ControlledTerm < ActiveRecord::Base
     if options[:is_value]
       fields_to_remove << "is_value"
     end
-    if !is_value?
+    if is_value?
       fields_to_remove << "multivalued"
     end
     # splatten out the array with *

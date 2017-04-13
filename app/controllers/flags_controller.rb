@@ -78,8 +78,12 @@ class FlagsController < ApplicationController
       flash[:error] = t(:cant_flag_an_object_that_doesnt_exist)
       redirect_to root_path
     end
-    
-    @flag = @object.flags.build(create_options)
+
+    if @flag = Flag.where(create_options).where(resolved: true).first
+      @flag.resolved = false
+    else
+      @flag = @object.flags.build(create_options)
+    end
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
     end
@@ -88,17 +92,28 @@ class FlagsController < ApplicationController
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
-    if @object.is_a?(Comment)
-      redirect_to @object.parent
-    elsif @object.is_a?(Identification)
-      redirect_to @object.observation
-    elsif @object.is_a?(Message)
-      redirect_to messages_path
-    elsif @object.is_a?(Photo)
-      redirect_to @object.becomes(Photo)
-    else
-      redirect_to @object
+
+    respond_to do |format|
+      format.html do
+        if @object.is_a?(Comment)
+          redirect_to @object.parent
+        elsif @object.is_a?(Identification)
+          redirect_to @object.observation
+        elsif @object.is_a?(Message)
+          redirect_to messages_path
+        elsif @object.is_a?(Photo)
+          redirect_to @object.becomes(Photo)
+        else
+          redirect_to @object
+        end
+      end
+      format.json do
+        Observation.refresh_es_index if @object.is_a?(Observation)
+        render :json => @flag.to_json
+      end
     end
+
+
   end
   
   def update
@@ -122,6 +137,10 @@ class FlagsController < ApplicationController
     @flag.destroy
     respond_to do |format|
       format.html { redirect_back_or_default(admin_path) }
+      format.json do
+        Observation.refresh_es_index if @object.is_a?(Observation)
+        head :ok
+      end
     end
   end
 

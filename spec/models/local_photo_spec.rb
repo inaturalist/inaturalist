@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe LocalPhoto, "creation" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   describe "creation" do
     it "should set the native page url" do
       p = LocalPhoto.make!
@@ -77,6 +79,8 @@ describe LocalPhoto, "creation" do
 end
 
 describe LocalPhoto, "to_observation" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should set a taxon from tags" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
@@ -179,6 +183,8 @@ describe LocalPhoto, "to_observation" do
 end
 
 describe LocalPhoto, "flagging" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   let(:lp) { LocalPhoto.make! }
   it "should change the URLs for copyright infringement" do
     Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
@@ -211,7 +217,6 @@ describe LocalPhoto, "flagging" do
   it "should change make associated observations casual grade when flagged"
   it "should change make associated observations research grade when resolved"
   it "should re-index the observation" do
-    enable_elastic_indexing( Observation )
     o = make_research_grade_observation
     p = o.photos.first
     es_p = Observation.elastic_search( where: { id: o.id } ).results.results.first.photos.first
@@ -219,7 +224,6 @@ describe LocalPhoto, "flagging" do
     without_delay { Flag.make!( flaggable: p, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
     es_p = Observation.elastic_search( where: { id: o.id } ).results.results.first.photos.first
     expect( es_p.url ).to be =~ /copyright/
-    disable_elastic_indexing( Observation )
   end
 end
 

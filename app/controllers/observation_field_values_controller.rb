@@ -75,9 +75,9 @@ class ObservationFieldValuesController < ApplicationController
         @observation_field_value.attributes = ofv_params
       end
     end
-    
     respond_to do |format|
       if @observation_field_value.save
+        Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -89,7 +89,13 @@ class ObservationFieldValuesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @observation_field_value.update_attributes(observation_field_value_params)
+      update_params = observation_field_value_params
+      if !update_params[:id].is_a? Fixnum
+        update_params[:uuid] = update_params[:id]
+        update_params.delete(:id)
+      end
+      if @observation_field_value.update_attributes(update_params)
+        Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -112,12 +118,12 @@ class ObservationFieldValuesController < ApplicationController
       status = :ok
       json = nil
     end
-    
     respond_to do |format|
       format.any do
         render :status => :status, :text => json
       end
       format.json do 
+        Observation.refresh_es_index
         render :status => status, :json => json
       end
     end
@@ -125,7 +131,9 @@ class ObservationFieldValuesController < ApplicationController
 
   private
   def load_observation_field_value
-    @observation_field_value = ObservationFieldValue.find_by_id(params[:id])
+    @observation_field_value =
+      ObservationFieldValue.find_by_uuid(params[:id]) ||
+      ObservationFieldValue.find_by_id(params[:id])
     render_404 unless @observation_field_value
   end
 

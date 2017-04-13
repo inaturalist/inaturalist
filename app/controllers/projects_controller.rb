@@ -652,6 +652,7 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
+        Observation.refresh_es_index
         render :json => @project_observation.to_json(:include => {
           :observation => {:include => :observation_field_values}, 
           :project => {:include => :project_observation_fields}
@@ -688,6 +689,7 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
+        Observation.refresh_es_index
         render :json => @project_observation
       end
     end

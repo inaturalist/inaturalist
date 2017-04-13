@@ -3,12 +3,13 @@ class ObservationFieldValue < ActiveRecord::Base
   belongs_to :observation_field
   belongs_to :user
   belongs_to :updater, :class_name => 'User'
-  has_one :annotation, dependent: :destroy
+  has_one :annotation
   
   before_validation :strip_value
   before_save :set_user
   after_create :create_annotation
   after_destroy :destroy_annotation
+  after_update :fix_annotation_after_update
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   # I'd like to keep this, but since mobile clients could be submitting
   # observations that weren't created on a mobile device now, the check really
@@ -170,7 +171,7 @@ class ObservationFieldValue < ActiveRecord::Base
       controlled_attribute: attr_val[:controlled_attribute],
       controlled_value: attr_val[:controlled_value],
       user_id: user_id,
-      created_at: created_at)
+      created_at: created_at) rescue nil
   end
 
   def annotation_attribute_and_value
@@ -196,15 +197,28 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def destroy_annotation
-    Annotation.where(observation_field_value_id: id).destroy_all
+    return unless annotation && annotation.vote_score <= 0
+    annotation.destroy
+  end
+
+  def fix_annotation_after_update
+    if annotation && annotation.vote_score <= 0
+      annotation.destroy
+      create_annotation
+    end
   end
 
   def as_indexed_json(options={})
-    {
+    json = {
       uuid: uuid,
+      field_id: observation_field.id,
+      datatype: observation_field.datatype,
       name: observation_field.name,
-      value: self.value
+      value: self.value,
+      user_id: user_id
     }
+    json[:taxon_id] = value if observation_field.datatype == ObservationField::TAXON
+    json
   end
 
   def self.update_for_taxon_change( taxon_change, options, &block )
