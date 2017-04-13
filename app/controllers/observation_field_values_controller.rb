@@ -94,7 +94,6 @@ class ObservationFieldValuesController < ApplicationController
         update_params[:uuid] = update_params[:id]
         update_params.delete(:id)
       end
-      # TODO: also update annotation, unless upvoted
       if @observation_field_value.update_attributes(update_params)
         Observation.refresh_es_index
         format.json { render :json => @observation_field_value }

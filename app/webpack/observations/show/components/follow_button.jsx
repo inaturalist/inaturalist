@@ -2,10 +2,6 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Dropdown } from "react-bootstrap";
 
-// TODO: need to add this to state, be able to fetch
-// current isFollowing, isSubscribed for this obs/user
-
-
 class FollowButton extends React.Component {
 
   followStatus( subscription ) {

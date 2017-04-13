@@ -260,7 +260,7 @@ class ObservationsController < ApplicationController
         if params[:partial] == "cached_component"
           return render(partial: "cached_component",
             object: @observation, layout: false)
-        elsif ( logged_in? && current_user.in_test_group?( "observation-page" ) && !params.key?(:old) )
+        elsif ( viewing_new_obs_show? )
           @skip_application_js = true
           flash.now[:warning_title] = nil
           flash.now[:warning] = nil
@@ -3023,8 +3023,7 @@ class ObservationsController < ApplicationController
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "taxon_summary" ) ||
       ( action_name == "observation_links" ) ||
-      ( action_name == "show" &&
-        logged_in? && current_user.in_test_group?( "observation-page" ) && !params.key?(:old) )
+      ( action_name == "show" && viewing_new_obs_show? )
   end
 
   def observations_index_search(params)
@@ -3053,6 +3052,10 @@ class ObservationsController < ApplicationController
     { params: params,
       search_params: search_params,
       observations: observations }
+  end
+
+  def viewing_new_obs_show?
+    logged_in? && current_user.is_admin? && params.key?("show2")
   end
 
 end

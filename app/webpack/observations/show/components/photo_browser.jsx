@@ -33,7 +33,6 @@ class PhotoBrowser extends React.Component {
       );
     }
 
-    // TODO: need to get license URLs somewhere; proper abbreviations
     let images = observation.photos.map( ( photo ) => ( {
       original: photo.photoUrl( "large" ),
       zoom: photo.photoUrl( "original" ),

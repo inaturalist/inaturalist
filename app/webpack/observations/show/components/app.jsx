@@ -72,7 +72,9 @@ const App = ( { observation, config, controlledTerms } ) => {
       <div className="container flash-warning">
         <div className="alert alert-danger">
           <i className="fa fa-flag" />
-          <span className="bold">{ I18n.t( "this_has_been_flagged_as_spam" ) }.</span>
+          <span className="bold">
+            { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }.
+          </span>
           This observation has been flagged as spam and is no longer publicly visible.
           You can see it because you created it, or you are a site curator.
           If you think this is a mistake, please <a

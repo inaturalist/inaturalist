@@ -176,7 +176,7 @@ class QualityMetrics extends React.Component {
             I18n.t( "observation_flagged_as_flag", { flag: flagQualifier } ) :
             I18n.t( "observation_flagged" ) }
           <a href={ `/observations/${observation.id}/flags` } className="view">
-            { I18n.t( "add_edit_flags" ) }}
+            { I18n.t( "add_edit_flags" ) }
           </a>
         </div>
       );

@@ -9,6 +9,7 @@ class ObservationFieldValue < ActiveRecord::Base
   before_save :set_user
   after_create :create_annotation
   after_destroy :destroy_annotation
+  after_update :fix_annotation_after_update
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   # I'd like to keep this, but since mobile clients could be submitting
   # observations that weren't created on a mobile device now, the check really
@@ -196,8 +197,14 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def destroy_annotation
-    Annotation.where(observation_field_value_id: id).each do |a|
-      a.destroy if a.vote_score <= 0
+    return unless annotation && annotation.vote_score <= 0
+    annotation.destroy
+  end
+
+  def fix_annotation_after_update
+    if annotation && annotation.vote_score <= 0
+      annotation.destroy
+      create_annotation
     end
   end
 

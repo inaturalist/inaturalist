@@ -56,10 +56,8 @@ export function windowStateForObservation( observation ) {
   if ( observation.taxon ) {
     title = `${observation.taxon.preferred_common_name || observation.taxon.name} ${title}`;
     observationState.observation.taxon = {
-      taxon: {
-        name: observation.taxon.name,
-        preferred_common_name: observation.taxon.preferred_common_name
-      }
+      name: observation.taxon.name,
+      preferred_common_name: observation.taxon.preferred_common_name
     };
   } else {
     title = `${I18n.t( "something" )} ${title}`;
@@ -71,7 +69,7 @@ export function windowStateForObservation( observation ) {
   const windowState = {
     state: observationState,
     title: `${title} · ${SITE.name}`,
-    url: `/observations/${observation.id}`
+    url: `/observations/${observation.id}?show2`
   };
   return windowState;
 }

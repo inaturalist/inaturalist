@@ -1,28 +1,12 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-
-
+/* global OUTLINK_SITE_ICONS */
 
 class ResearchGradeProgress extends React.Component {
 
   constructor( ) {
     super( );
     this.criteriaList = this.criteriaList.bind( this );
-  }
-
-  outlinkIcon( source ) {
-    switch ( source ) {
-      case "Atlas of Living Australia":
-        return "/assets/sites/ala.png";
-      case "Calflora":
-        return "/assets/sites/calflora.png";
-      case "GBIF":
-        return "/assets/sites/gbif.png";
-      case "GloBI":
-        return "/assets/sites/globi.png";
-      default:
-        return null;
-    }
   }
 
   criteriaList( ) {
@@ -201,7 +185,7 @@ class ResearchGradeProgress extends React.Component {
           <div className="outlink" key={ `outlink-${ol.source}` }>
             <a href={ ol.url }>
               <div className="squareIcon">
-                <img src={ this.outlinkIcon( ol.source ) } />
+                <img src={ OUTLINK_SITE_ICONS[ol.source] } />
               </div>
               <div className="title">{ ol.source }</div>
             </a>

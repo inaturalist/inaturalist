@@ -79,8 +79,11 @@ class FlagsController < ApplicationController
       redirect_to root_path
     end
 
-    # TODO - this fails if you try to add a flag that was already resolved
-    @flag = @object.flags.build(create_options)
+    if @flag = Flag.where(create_options).where(resolved: true).first
+      @flag.resolved = false
+    else
+      @flag = @object.flags.build(create_options)
+    end
     if @flag.flag == "other" && !params[:flag_explanation].blank?
       @flag.flag = params[:flag_explanation]
     end

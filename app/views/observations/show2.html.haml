@@ -17,11 +17,20 @@
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   :javascript
     var INITIAL_OBSERVATION_ID = #{@observation.id};
-    var SITE = { name: "#{@site ? @site.name : CONFIG.site_name}", help_email: "#{CONFIG.help_email}" };
+    var SITE = {
+      name: "#{@site ? @site.name : CONFIG.site_name}",
+      help_email: "#{CONFIG.help_email}"
+    };
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
       only: [ :id ], include: { default_name: { only: [ :name ] } } ) : "{ }" };
+    var OUTLINK_SITE_ICONS = {
+      "Atlas of Living Australia": "#{ asset_url( "sites/ala.png" ) }",
+      "Calflora": "#{ asset_url( "sites/calflora.png" ) }",
+      "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
+      "GloBI": "#{ asset_url( "sites/globi.png" ) }",
+    }
 - content_for :extracss do
   - # needed for tooltips
   = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"

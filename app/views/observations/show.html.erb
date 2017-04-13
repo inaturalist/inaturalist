@@ -83,17 +83,6 @@
 </script>
 <% end %>
 
-<% if logged_in? %>
-  <div class="last column span-24">
-    <%= form_tag join_test_user_path( current_user, test: "observation-page" ),
-        method: "put",
-        class: "clear quiet box centered buttonrow smallbuttons" do %>
-      <span class="inter"><%=t :want_to_test_a_new_version_of_this_page %></span>
-      <%= submit_tag t(:try_it_out), class: "default button" %>
-    <% end %>
-  </div>
-<% end %>
-
 <% if @flagged_photos.size > 0 -%>
   <div class="notice box">
     <h3><%=t :suspicious_photos %></h3>
