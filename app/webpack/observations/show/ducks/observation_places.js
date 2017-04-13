@@ -25,7 +25,8 @@ export function fetchObservationPlaces( ) {
     if ( !observation || !observation.latitude || !observation.longitude ) {
       return null;
     }
-    const params = { lat: observation.latitude, lng: observation.longitude };
+    const params = { lat: observation.latitude, lng: observation.longitude,
+      include_community_places: true };
     return inatjs.places.containing( params ).then( response => {
       dispatch( setObservationPlaces( response.results ) );
     } ).catch( e => { } );
