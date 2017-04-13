@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
     }
   }
 
-  if Rails.env.production?
+  if Rails.env.production? || Rails.env.prod_dev?
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
