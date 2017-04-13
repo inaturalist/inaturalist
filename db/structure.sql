@@ -6424,6 +6424,13 @@ CREATE INDEX index_exploded_atlas_places_on_place_id ON exploded_atlas_places US
 
 
 --
+-- Name: index_flags_on_flaggable_id_and_flaggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON flags USING btree (flaggable_id, flaggable_type);
+
+
+--
 -- Name: index_flickr_photos_on_flickr_native_photo_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8020,6 +8027,13 @@ CREATE INDEX index_users_on_state ON users USING btree (state);
 
 
 --
+-- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE INDEX index_users_on_updated_at ON users USING btree (updated_at);
+
+
+--
 -- Name: index_users_on_uri; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8754,3 +8768,4 @@ INSERT INTO schema_migrations (version) VALUES ('20170309003500');
 
 INSERT INTO schema_migrations (version) VALUES ('20170317183900');
 
+INSERT INTO schema_migrations (version) VALUES ('20170413131753');
