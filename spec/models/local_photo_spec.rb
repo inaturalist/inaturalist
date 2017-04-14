@@ -31,6 +31,16 @@ describe LocalPhoto, "creation" do
       lp = LocalPhoto.make!(subtype: "FlickrPhoto", native_photo_id: "1234")
       expect( lp.native_photo_id ).to eq "1234"
     end
+
+    it "should not remove metadata" do
+      p = LocalPhoto.new(metadata: { test_attr: "test_val", dimensions: { } })
+      expect(p).to receive("file=").at_least(:once).and_return(nil)
+      p.file = { styles: { } }
+      expect( p.metadata[:test_attr] ).to eq "test_val"
+      p.extract_metadata("some non-nil")
+      expect( p.metadata[:test_attr] ).to eq "test_val"
+    end
+
   end
 
   describe "dimensions" do

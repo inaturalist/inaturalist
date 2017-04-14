@@ -112,19 +112,19 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    metadata ||= { dimensions: { } }
+    self.metadata ||= { dimensions: { } }
     begin
       file.styles.keys.each do |style|
-        metadata[:dimensions][style] = extract_dimensions(style)
+        self.metadata[:dimensions][style] = extract_dimensions(style)
       end
       if file_content_type =~ /jpe?g/i && exif = EXIFR::JPEG.new(path || file.queued_for_write[:original].path)
-        metadata.merge!(exif.to_hash)
+        self.metadata.merge!(exif.to_hash)
         xmp = XMP.parse(exif)
         if xmp && xmp.respond_to?(:dc) && !xmp.dc.nil?
-          metadata[:dc] = {}
+          self.metadata[:dc] = {}
           xmp.dc.attributes.each do |dcattr|
             begin
-              metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
+              self.metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
             rescue ArgumentError
               # XMP does this for some DC attributes, not sure why
             end
@@ -140,7 +140,7 @@ class LocalPhoto < Photo
       raise e unless e.message =~ /no implicit conversion of Fixnum into String/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
-    self.metadata = metadata.force_utf8
+    self.metadata = self.metadata.force_utf8
   end
 
   def set_urls
