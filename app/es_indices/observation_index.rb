@@ -498,7 +498,7 @@ class Observation < ActiveRecord::Base
     if p[:d1] || p[:d2]
       d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
       d2 = DateTime.parse(p[:d2]) rescue Time.now
-      d2 = Time.now if d2 && d2 > Time.now
+      # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
       query_by_date = (
         (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
         (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
