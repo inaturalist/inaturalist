@@ -56,6 +56,16 @@ class List < ActiveRecord::Base
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon.id))
   end
+
+  def add_taxon_and_update_primary(taxon, options = {})
+    taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    transaction do
+      lt = ListedTaxon.create(options.merge(:list => self, :taxon => taxon))
+      lt.primary_listed_taxon.update_attributes({occurrence_status_level: lt['occurrence_status_level'],
+                                              establishment_means: lt['establishment_means']})
+      lt
+    end
+  end
   
   #
   # Update all the taxa in this list, or just a select few.  If taxa have been

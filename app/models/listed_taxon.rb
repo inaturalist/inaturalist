@@ -953,6 +953,10 @@ class ListedTaxon < ActiveRecord::Base
         ancestry IS NOT NULL
     SQL
   end
+  def update_primary
+    primary_listed_taxon.update_attributes({occurrence_status_level: occurrence_status_level, 
+                                            establishment_means: establishment_means})
+  end
   
   def primary_occurrence_status
     primary_listed_taxon.try(:occurrence_status)
