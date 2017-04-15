@@ -1710,7 +1710,8 @@ CREATE TABLE identifications (
     category character varying,
     uuid uuid DEFAULT uuid_generate_v4(),
     blind boolean,
-    previous_observation_taxon_id integer
+    previous_observation_taxon_id integer,
+    disagreement boolean
 );
 
 
@@ -2552,7 +2553,7 @@ CREATE TABLE observations (
     observation_photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
     geom geometry(Point),
-    cached_tag_list character varying(768) DEFAULT NULL::character varying,
+    cached_tag_list character varying(768),
     zic_time_zone character varying(255),
     oauth_application_id integer,
     observation_sounds_count integer DEFAULT 0,
@@ -6424,7 +6425,7 @@ CREATE INDEX index_exploded_atlas_places_on_place_id ON exploded_atlas_places US
 
 
 --
--- Name: index_flags_on_flaggable_id_and_flaggable_type; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_flags_on_flaggable_id_and_flaggable_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON flags USING btree (flaggable_id, flaggable_type);
@@ -8027,7 +8028,7 @@ CREATE INDEX index_users_on_state ON users USING btree (state);
 
 
 --
--- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace:
+-- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_updated_at ON users USING btree (updated_at);
@@ -8768,4 +8769,7 @@ INSERT INTO schema_migrations (version) VALUES ('20170309003500');
 
 INSERT INTO schema_migrations (version) VALUES ('20170317183900');
 
+INSERT INTO schema_migrations (version) VALUES ('20170327224712');
+
 INSERT INTO schema_migrations (version) VALUES ('20170413131753');
+
