@@ -1,0 +1,72 @@
+- content_for(:extrajs) do
+  :javascript
+    $( document ).ready( function() {
+      var PLACE = #{@target_place.to_json.html_safe};
+      $('.placechooser').chooser({
+        collectionUrl: '/places/autocomplete.json',
+        resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
+        chosen: PLACE
+      } );
+      $( ".taxon-table" ).dataTable( {
+        bPaginate: false,
+        bFilter: false,
+        paging: false,
+        info: false,
+        "aoColumns": [
+          { "orderSequence": ["asc", "desc"] },
+          { "orderSequence": ["asc", "desc"] },
+          { "orderSequence": ["asc", "desc"] },
+          { "bSortable": false }
+        ],
+      } )
+    } );
+
+.container
+  .row
+    .col-xs-12
+      %h1 Missing and Novel for CNC2017
+      %p
+        Missing = taxa from Research Grade observations from the month and place
+        of the project. Novel = taxa in the project that have *not* been seen in
+        the month and place of the project. Keep an eye out for identification
+        errors, please correct them if you can! The "Place" filter restricts the
+        baseline taxa to a specific place if you want to know what's missing
+        from the project that you could find in that place.
+
+      = form_tag( nil, method: :get ) do
+        %label{ style: "margin-right: 1em; " }
+          Project
+          = select_tag :project_id, options_from_collection_for_select( @projects, :id, :title, @project )
+        %label{ style: "margin-right: 1em; " }
+          Place (optional)
+          = text_field_tag :place_id, @target_place.try(:id), placeholder: t(:type_place_name), class: "placechooser"
+        %label{ style: "margin-right: 1em; " }
+          Status (optional)
+          = select_tag :status, options_for_select( ["Any", "Missing", "Novel"], params[:status] )
+        = submit_tag "Get Taxa", class: "btn btn-primary"
+        = submit_tag "CSV", name: "format", value: "csv", class: "btn btn-default", style: "text-transform: uppercase;"
+
+      - unless @taxa.blank?
+        - @taxa.group_by(&:iconic_taxon_id).each do |iconic_taxon_id, group|
+          - iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id]
+          %h2= iconic_taxon ? iconic_taxon.name : "Unknown"
+          %table.table.taxon-table
+            %thead
+              %tr
+                %th Scientific Name
+                %th Common Name
+                %th Status
+                %th Obs. Link
+            %tbody
+              - group.each do |taxon|
+                - status = @missing_taxon_ids.index( taxon.id ) ? "Missing" : "Novel"
+                - next unless params[:status].blank? || params[:status] == "Any" || params[:status] == status
+                %tr
+                  %td{ style: "width: 25%" }= render "shared/taxon", taxon: taxon, no_common: true, link_url: taxon, exclude_rank: true
+                  %td{ style: "width: 25%" }= taxon.common_name.try(:name)
+                  %td= status
+                  %td
+                    - if status == "Missing"
+                      = link_to "Past Observations", observations_path( @potential_params.merge( taxon_id: taxon.id ) )
+                    - else
+                      = link_to "Project Observations", observations_path( @in_project_params.merge( taxon_id: taxon.id, verifiable: "any", place_id: "any" ) )

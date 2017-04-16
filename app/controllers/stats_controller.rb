@@ -169,6 +169,65 @@ class StatsController < ApplicationController
     end
   end
 
+  def cnc2017_taxa
+    @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
+      11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
+    # @projects = Project.where( id: [3] )
+    if project_id = params[:project_id]
+      @project = @projects.detect{ |p| p.id == project_id }
+      target_place_id = params[:place_id]
+      @target_place = Place.find( target_place_id ) rescue nil
+      project = Project.find_by_id( project_id )
+      month = [project.preferred_start_date_or_time.month, project.preferred_end_date_or_time.month].uniq
+      @potential_params = { month: month, place_id: project.rule_places.map(&:id), quality_grade: "research" }
+      if @target_place
+        @potential_params[:place_id] = @target_place.id
+      end
+      potential_elastic_params = Observation.params_to_elastic_query( @potential_params )
+      potential_leaf_taxon_ids = Observation.elastic_taxon_leaf_ids( potential_elastic_params )
+      potential_taxon_ids = (
+        potential_leaf_taxon_ids + 
+        TaxonAncestor.where( taxon_id: potential_leaf_taxon_ids ).pluck( :ancestor_taxon_id )
+      ).uniq
+      @in_project_params = { projects: [project.id] }
+      in_project_elastic_params = Observation.params_to_elastic_query( @in_project_params )
+      in_project_leaf_taxon_ids = Observation.elastic_taxon_leaf_ids( in_project_elastic_params )
+      in_project_taxon_ids = (
+        in_project_leaf_taxon_ids + 
+        TaxonAncestor.where( taxon_id: in_project_leaf_taxon_ids ).pluck( :ancestor_taxon_id )
+      ).uniq
+      @missing_taxon_ids = potential_leaf_taxon_ids - in_project_taxon_ids
+      @novel_taxon_ids = in_project_leaf_taxon_ids - potential_taxon_ids
+      @taxa = Taxon.where( is_active: true, id: (@missing_taxon_ids + @novel_taxon_ids).uniq )
+      # @taxa.group_by(&:iconic_taxon_id).each do |iconic_taxon_id, group|
+      #   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id]
+      #   puts
+      #   puts iconic_taxon.name.upcase
+      #   puts
+      #   # group.sort_by{|t| t.self_and_ancestor_ids.to_s + t.name }.each do |taxon|
+      #   group.sort_by{|t| t.observations_count * -1 }.each do |taxon|
+      #     if taxon.common_name
+      #       puts "#{taxon.common_name.name} (#{taxon.name})"
+      #     else
+      #       puts taxon.name
+      #     end
+      #   end
+      # end
+    end
+    respond_to do |format|
+      format.html{ render layout: "bootstrap" }
+      format.csv do
+        csv_text = CSV.generate( headers: true ) do |csv|
+          csv << %w{scientific_name common_name iconic_taxon_name status}
+          @taxa.each do |t|
+            csv << [t.name, t.common_name.try(:name), t.iconic_taxon_name, @missing_taxon_ids.index( t.id ) ? "missing" : "novel"]
+          end
+        end
+        render text: csv_text
+      end
+    end
+  end
+
   def cnc2017
     project_slideshow_data( 11753,
       umbrella_project_ids: [11753],
