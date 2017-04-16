@@ -197,7 +197,13 @@ class StatsController < ApplicationController
       ).uniq
       @missing_taxon_ids = potential_leaf_taxon_ids - in_project_taxon_ids
       @novel_taxon_ids = in_project_leaf_taxon_ids - potential_taxon_ids
-      @taxa = Taxon.where( is_active: true, id: (@missing_taxon_ids + @novel_taxon_ids).uniq )
+      @taxa = if params[:status] == "Missing"
+        Taxon.where( is_active: true, id: @missing_taxon_ids )
+      elsif params[:status] == "Novel"
+        Taxon.where( is_active: true, id: @novel_taxon_ids )
+      else
+        Taxon.where( is_active: true, id: (@missing_taxon_ids + @novel_taxon_ids).uniq )
+      end
       # @taxa.group_by(&:iconic_taxon_id).each do |iconic_taxon_id, group|
       #   iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[iconic_taxon_id]
       #   puts
@@ -219,7 +225,7 @@ class StatsController < ApplicationController
         csv_text = CSV.generate( headers: true ) do |csv|
           csv << %w{scientific_name common_name iconic_taxon_name status}
           @taxa.each do |t|
-            csv << [t.name, t.common_name.try(:name), t.iconic_taxon_name, @missing_taxon_ids.index( t.id ) ? "missing" : "novel"]
+            csv << [t.name, t.common_name.try(:name), t.iconic_taxon_name, @missing_taxon_ids.index( t.id ) ? "Missing" : "Novel"]
           end
         end
         render text: csv_text

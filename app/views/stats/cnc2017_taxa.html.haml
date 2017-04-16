@@ -1,3 +1,11 @@
+- content_for(:title) do
+  - @title = "Missing and Novel Taxa for CNC2017"
+  - if @project
+    - @title += ": #{@project.title}"
+  = @title
+- content_for(:extracss) do
+  :css
+    .taxon-table td { width: 25%; }
 - content_for(:extrajs) do
   :javascript
     $( document ).ready( function() {
@@ -24,7 +32,7 @@
 .container
   .row
     .col-xs-12
-      %h1 Missing and Novel for CNC2017
+      %h1 Missing and Novel Taxa for CNC2017
       %p
         Missing = taxa from Research Grade observations from the month and place
         of the project. Novel = taxa in the project that have *not* been seen in
@@ -60,10 +68,9 @@
             %tbody
               - group.each do |taxon|
                 - status = @missing_taxon_ids.index( taxon.id ) ? "Missing" : "Novel"
-                - next unless params[:status].blank? || params[:status] == "Any" || params[:status] == status
                 %tr
-                  %td{ style: "width: 25%" }= render "shared/taxon", taxon: taxon, no_common: true, link_url: taxon, exclude_rank: true
-                  %td{ style: "width: 25%" }= taxon.common_name.try(:name)
+                  %td= render "shared/taxon", taxon: taxon, no_common: true, link_url: taxon, exclude_rank: true
+                  %td= taxon.common_name.try(:name)
                   %td= status
                   %td
                     - if status == "Missing"
