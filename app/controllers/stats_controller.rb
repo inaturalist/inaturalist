@@ -170,9 +170,9 @@ class StatsController < ApplicationController
   end
 
   def cnc2017_taxa
-    # @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
-    #   11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
-    @projects = Project.where( id: [3,4] )
+    @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
+      11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
+    # @projects = Project.where( id: [3,4] )
     @project = @projects.detect{ |p| p.id == params[:project_id].to_i }
     if @project
       target_place_id = params[:place_id]
