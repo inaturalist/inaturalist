@@ -170,16 +170,15 @@ class StatsController < ApplicationController
   end
 
   def cnc2017_taxa
-    @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
-      11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
-    # @projects = Project.where( id: [3] )
-    if project_id = params[:project_id]
-      @project = @projects.detect{ |p| p.id == project_id }
+    # @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
+    #   11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
+    @projects = Project.where( id: [3,4] )
+    @project = @projects.detect{ |p| p.id == params[:project_id].to_i }
+    if @project
       target_place_id = params[:place_id]
       @target_place = Place.find( target_place_id ) rescue nil
-      project = Project.find_by_id( project_id )
-      month = [project.preferred_start_date_or_time.month, project.preferred_end_date_or_time.month].uniq
-      @potential_params = { month: month, place_id: project.rule_places.map(&:id), quality_grade: "research" }
+      month = [@project.preferred_start_date_or_time.month, @project.preferred_end_date_or_time.month].uniq
+      @potential_params = { month: month.join(","), place_id: @project.rule_places.map(&:id), quality_grade: "research" }
       if @target_place
         @potential_params[:place_id] = @target_place.id
       end
@@ -189,7 +188,7 @@ class StatsController < ApplicationController
         potential_leaf_taxon_ids + 
         TaxonAncestor.where( taxon_id: potential_leaf_taxon_ids ).pluck( :ancestor_taxon_id )
       ).uniq
-      @in_project_params = { projects: [project.id] }
+      @in_project_params = { projects: [@project.id] }
       in_project_elastic_params = Observation.params_to_elastic_query( @in_project_params )
       in_project_leaf_taxon_ids = Observation.elastic_taxon_leaf_ids( in_project_elastic_params )
       in_project_taxon_ids = (

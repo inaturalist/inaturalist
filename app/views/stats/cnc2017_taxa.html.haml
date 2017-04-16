@@ -36,7 +36,7 @@
       = form_tag( nil, method: :get ) do
         %label{ style: "margin-right: 1em; " }
           Project
-          = select_tag :project_id, options_from_collection_for_select( @projects, :id, :title, @project )
+          = select_tag :project_id, "<option>Choose a Project</option>".html_safe + options_from_collection_for_select( @projects, :id, :title, @project.try(:id) )
         %label{ style: "margin-right: 1em; " }
           Place (optional)
           = text_field_tag :place_id, @target_place.try(:id), placeholder: t(:type_place_name), class: "placechooser"
