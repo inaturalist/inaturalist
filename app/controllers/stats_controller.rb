@@ -7,6 +7,7 @@ class StatsController < ApplicationController
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes
   caches_action :cnc2017, expires_in: 5.minutes
+  before_filter :authenticate_user!, only: [:cnc2017_taxa]
 
   def index
     respond_to do |format|
