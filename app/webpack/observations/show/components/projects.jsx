@@ -32,6 +32,7 @@ class Projects extends React.Component {
       notIDs: _.map( this.props.observation.project_observations, "project_id" ),
       allowEnterSubmit: true,
       selectFirstMatch: true,
+      currentUsersProjects: true,
       onResults: items => {
         // don't want to add the failed class if there is no search term
         if ( items !== null && items.length === 0 && input.val( ) ) {
