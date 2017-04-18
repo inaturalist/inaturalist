@@ -734,7 +734,6 @@ protected
   end
   
   def counts_for_users
-    @observation_counts = Observation.where(user_id: @users.to_a).group(:user_id).count
     @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
       group(:user_id).count
     @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count

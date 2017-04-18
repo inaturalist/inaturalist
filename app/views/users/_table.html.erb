@@ -7,7 +7,7 @@
 <table>
   <% for person in @users %>
     <%- 
-      observations_count = @observation_counts[person.id].to_i
+      observations_count = person.observations_count
       listed_taxa_count = @listed_taxa_counts[person.id].to_i
       post_count = @post_counts[person.id].to_i
     -%>

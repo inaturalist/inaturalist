@@ -23,8 +23,8 @@
     = link_to user_image(user, :size => "medium", :class => "userimage"), user, :class => "userimagelink"
     .blurb
       = link_to_user user, :class => "userlink"
-      %span.count= @observation_counts[user.id] || 0
-      =  @observation_counts[user.id] == 1 ? "observation" : "observations"
+      %span.count= user.observations_count
+      = user.observations_count == 1 ? "observation" : "observations"
 
 .column.span-24
   = will_paginate @users, :renderer => INatLinkRenderer
