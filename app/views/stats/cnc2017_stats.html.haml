@@ -2,12 +2,15 @@
   = @title = "Stats for CNC2017"
 - content_for(:extracss) do
   :css
-    .table td { width: 33.3333%; }
     .table th { cursor: pointer; }
+    .rank { color: white; white-space: nowrap; overflow: hidden; padding: 0; line-height: 20px; color: white; font-size: 9px; text-align: center; }
+    .ranks { display: flex; width: 100%; }
+    .taxon-ranks .city { width: 1%; white-space: nowrap; }
 - content_for(:extrajs) do
+  = javascript_include_tag "d3.min"
   :javascript
     $( document ).ready( function() {
-      $( ".table" ).dataTable( {
+      $( "#leaderboard" ).dataTable( {
         bPaginate: false,
         bFilter: false,
         paging: false,
@@ -17,12 +20,15 @@
           { "orderSequence": ["asc", "desc"] },
           { "orderSequence": ["desc", "asc"] },
           { "orderSequence": ["desc", "asc"] },
+          { "orderSequence": ["desc", "asc"] },
           { "orderSequence": ["desc", "asc"] }
         ]
-      } )
+      } );
+      var scale = d3.scale.category20( )
+      d3.selectAll( ".rank" ).style("background-color", function( ) { return scale( $( this ).data( "rank" ) ) } );
     } );
 
-.container
+.container-fluid
   .row
     .col-xs-12
       %h1 CNC 2017 Stats
@@ -30,13 +36,17 @@
         %label{ style: "margin-right: 1em; " }
           Observation Quality (optional)
           = select_tag :quality, options_for_select( ["any", "verifiable", "research"], params[:quality] ), data: { autosubmit: true }
-      %h2 Observations
-      %table.table
+        %label{ style: "margin-right: 1em; " }
+          Project (optional)
+          = select_tag :project_id, "<option>Choose a Project</option>".html_safe + options_from_collection_for_select( @projects, :id, :title, @project.try(:id) )
+      %h2 Counts
+      %table#leaderboard.table
         %thead
           %tr
             %th City
             %th Observations
             %th Species
+            %th Observers
             %th Identifiers
         %tbody
           - @data.each do |project|
@@ -44,8 +54,41 @@
               %td= link_to project[:title], project_url( project[:slug] )
               %td= project[:observation_count]
               %td= project[:species_count]
+              %td= project[:observers_count]
               %td= project[:identifiers_count]
-      %h2 Taxon Rank Breakdown
-      %p todo
-      %h2 Unique Taxon Contributors
-      %p todo
+      %h2
+        Taxon Rank Breakdown
+      %p Percent observations in each rank for each project.
+      %table.table.taxon-ranks
+        %thead
+          %tr
+            %th.city City 
+            %th.ranks Ranks
+        %tbody
+          - @rank_counts.each do |slug, ranks|
+            - project = @projects.detect{ |p| p.slug == slug }
+            %tr
+              %td.city= link_to project.title.gsub( "City Nature Challenge: ", "" ), project
+              %td.ranks
+                - total = ranks.map{|r| r.count }.sum
+                - ranks.sort_by{|rank| -1 * ( Taxon::RANK_LEVELS[rank.rank] || 0 ) }.each do |rank|
+                  %div{ class: "rank #{rank.rank}", style: "width: #{rank.count.to_f / total * 100}%", data: { rank: rank.rank }, title: "#{rank.rank} (#{rank.count})" }
+                    = "#{(rank.count.to_f / total * 100).round}% #{rank.rank} (#{rank.count})"
+
+      %h2
+        Unique Taxon Contributors to
+        = @project.title
+      %table.table
+        %thead
+          %tr
+            %th User
+            %th Unique Taxon Contributions
+            %th Links
+        %tbody
+          - @unique_contributors.each do |user|
+            %tr
+              %td
+                = user_image( user )
+                = link_to_user( user )
+              %td= user.unique_count
+              %td= link_to "View all taxa by user", observations_url( @in_project_params.merge( user_id: user.login, view: "species", project_id: @project.id ) )

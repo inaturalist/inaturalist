@@ -251,14 +251,16 @@ class StatsController < ApplicationController
   end
 
   def cnc2017_stats
-    project_ids = [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
-      11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
+    project_ids = [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764, 11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
     # project_ids = [1,2,3,4]
-    projects = Project.where( id: project_ids )
+    project_id = params[:project_id] if project_ids.include?( params[:project_id].to_i )
+    project_id ||= 11753
+    @projects = Project.where( id: project_ids )
+    @project = Project.find( project_id )
 
     # prepare the data needed for the slideshow
     @data = []
-    projects.each do |p|
+    @projects.each do |p|
       node_params = {
         project_id: p.id,
         per_page: 0,
@@ -276,6 +278,25 @@ class StatsController < ApplicationController
       observations_count = (observations_count_response && observations_count_response.total_results) || 0
       identifiers_count_response = INatAPIService.get( "/observations/identifiers", node_params )
       identifiers_count = (identifiers_count_response && identifiers_count_response.total_results) || 0
+      observers_count_response = INatAPIService.get( "/observations/observers", node_params )
+      observers_count = (observers_count_response && observers_count_response.total_results) || 0
+
+      # Descriptive stats are cool but really, really slow to calculate
+      # sql = <<-SQL
+      #   SELECT
+      #     slug,
+      #     avg( obs_count ),
+      #     max( obs_count ),
+      #     median( obs_count )
+      #   FROM
+      #     (
+      #       SELECT p.slug, o.user_id, count(*) AS obs_count
+      #       FROM observations o JOIN project_observations po ON o.id = po.observation_id JOIN projects p ON p.id = po.project_id
+      #       WHERE po.project_id IN (10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764, 11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042)
+      #       GROUP BY p.slug, o.user_id
+      #     ) AS foo
+      #   GROUP BY slug
+      # SQL
       
       @data << {
         id: p.id,
@@ -284,9 +305,37 @@ class StatsController < ApplicationController
         observation_count: observations_count,
         in_progress: p.event_in_progress?,
         species_count: species_count,
+        observers_count: observers_count,
         identifiers_count: identifiers_count
       }
     end
+
+    @in_project_params = { projects: [@project.id] }
+    @in_project_params[:quality_grade] = case params[:quality]
+    when "research" then "research"
+    when "verifiable" then "research,needs_id"
+    end
+    in_project_elastic_params = Observation.params_to_elastic_query( @in_project_params )
+    in_project_leaf_taxon_ids = Observation.elastic_taxon_leaf_ids( in_project_elastic_params )
+    in_project_leaf_taxon_ids = [-1] if in_project_leaf_taxon_ids.blank?
+    unique_taxon_ids = Observation.elastic_taxon_leaf_counts( in_project_elastic_params ).map{|taxon_id, count| count == 1 ? taxon_id : nil}.compact.uniq
+    @unique_contributors = User.
+      select( "users.*, count(*) AS unique_count" ).
+      joins( observations: :project_observations ).
+      where( "project_observations.project_id = ?", @project ).
+      where( "observations.taxon_id IN (?)", unique_taxon_ids ).
+      group( "users.id" ).
+      order( "count(*) DESC" ).
+      limit( 100 )
+
+    @rank_counts = Observation.
+      query( projects: project_ids ).
+      joins( :taxon, :projects ).
+      select( "projects.slug, taxa.rank, count(*)" ).
+      group( "projects.slug, taxa.rank" ).
+      group_by{|o| o.slug }
+    Rails.logger.debug "[DEBUG] @rank_counts: #{@rank_counts}"
+
     respond_to do |format|
       format.html{ render layout: "bootstrap" }
     end
