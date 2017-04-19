@@ -20,12 +20,15 @@ class ComputerVisionDemoApp extends Component {
   about( ) {
     return (
       <div className="about">
-        <a href="https://www.inaturalist.org">iNaturalist</a> has teamed up with the Visipedia project and NVIDIA to begin exploring how
-computer vision can help speed up the identification process on iNaturalist. This demo
-uses a work-in-progress model that we've trained on iNaturalist images. Drag in an image 
-to see how the model performs. We're currently working on improving this model and
-integrating it into the iNaturalist web and mobile apps. <a href="https://www.inaturalist.org/pages/computer_vision_demo">
-        Read more...</a>
+        <a href="https://www.inaturalist.org">iNaturalist</a> has teamed up with
+        the <a href="https://sites.google.com/visipedia.org/index">
+        Visipedia project</a> and <a href="http://www.nvidia.com/object/machine-learning.html">
+        NVIDIA</a> to begin exploring how computer vision can help speed up the identification
+        process on iNaturalist. This demo uses a work-in-progress model that we've
+        trained on iNaturalist images. Drag in an image to see how the model performs.
+        We're currently working on improving this model and integrating it into
+        the iNaturalist web and mobile
+        apps. <a href="https://www.inaturalist.org/pages/computer_vision_demo">Read more...</a>
         <div className="logos">
           <div className="logo">
             <a href="https://sites.google.com/visipedia.org/index">
@@ -89,30 +92,32 @@ integrating it into the iNaturalist web and mobile apps. <a href="https://www.in
             dangerouslySetInnerHTML={ { __html: this.resultsStatement( ) } }
           />
           { _.map( _.take( this.props.obsCard.visionResults.results, 10 ), result => (
-            <div className="result" key={ `result-${result.taxon.id}` }>
-              <div className="title">
+            <Col xs={ 12 } className="result" key={ `result-${result.taxon.id}` }>
+              <Row className="title">
                 <SplitTaxon taxon={ result.taxon } url={ `/taxa/${result.taxon.id}` } />
                 <div className="summary">
                   { result.vision_score ? "Visually Similar" : "" }
                   { result.vision_score && result.frequency_score ? " / " : "" }
                   { result.frequency_score ? "Seen Nearby" : "" }
                 </div>
-              </div>
-              <Row className="photos">
-                { _.map( _.take( result.taxon.taxon_photos, 6 ), tp => (
-                  <Col xs={ 2 } key={ `photo-${tp.photo.id}` }>
-                    <a
-                      className="photo"
-                      href={ `/taxa/${tp.taxon.id}` }
-                      title={ tp.taxon.preferred_common_name || tp.taxon.name }
-                      style={ {
-                        backgroundImage: `url( '${tp.photo.small_url}')`
-                      } }
-                    />
-                  </Col>
-                ) ) }
               </Row>
-            </div>
+              <Row>
+                <div className="photos">
+                  { _.map( _.take( result.taxon.taxon_photos, 6 ), tp => (
+                    <Col xs={ 2 } key={ `photo-${tp.photo.id}` }>
+                      <a
+                        className="photo"
+                        href={ `/taxa/${tp.taxon.id}` }
+                        title={ tp.taxon.preferred_common_name || tp.taxon.name }
+                        style={ {
+                          backgroundImage: `url( '${tp.photo.small_url}')`
+                        } }
+                      />
+                    </Col>
+                  ) ) }
+                </div>
+              </Row>
+            </Col>
           ) ) }
         </Col>
       </Row>
@@ -166,7 +171,9 @@ integrating it into the iNaturalist web and mobile apps. <a href="https://www.in
               <div className="suggestion">
                 <div className="icon"><i className="fa fa-comments" /></div>
                 <div className="text">
-                  You can always submit the photo to iNaturalist.org and see what the community says
+                  You can always submit the photo
+                  to <a href="https://www.inaturalist.org">iNaturalist</a> and
+                  see what the community says
                 </div>
               </div>
             </div>

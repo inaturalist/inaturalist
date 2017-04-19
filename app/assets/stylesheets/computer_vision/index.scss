@@ -176,9 +176,11 @@ a {
   }
   .result {
     margin-top: 20px;
+    padding-bottom: 20px;
     border-bottom: 1px solid #ccc;
     .photos {
       margin-bottom: 30px;
+      margin-left: -1.5%;
       .col-xs-2 {
         padding: 0 1.5%;
       }
@@ -227,7 +229,7 @@ a {
     font-size: 32px;
   }
   .suggestions {
-    padding: 10px 0 0 20px;
+    padding: 20px 0 0 20px;
     .suggestion {
       font-size: 18px;
       margin-bottom: 15px;
@@ -256,6 +258,19 @@ a {
   }
 }
 
+@media (max-width: 800px) {
+  .vision-results {
+    .statement {
+      font-size: 28px;
+    }
+  }
+  .next-steps {
+    h3 {
+      font-size: 28px;
+    }
+  }
+}
+
 @media (max-width: 720px) {
   .navbar {
     min-height: auto;
@@ -277,17 +292,16 @@ a {
   .intro {
     .start {
       margin-top: 5%;
-      .about {
-        margin-top: 20px;
-        padding: 20px 20px 50px 20px;
-        font-size: 13px;
-      }
       .drag_or_choose {
         h1 {
           font-size: 24px;
         }
       }
     }
+  }
+  .about {
+    padding: 20px 20px 50px 20px;
+    font-size: 13px;
   }
   .vision-results {
     .statement {
@@ -298,8 +312,13 @@ a {
         width: 33.333333%;
         margin-bottom: 3%;
       }
-      .title .summary {
-        float: none;
+      .title {
+        .SplitTaxon .display-name {
+          font-size: 22px;
+        }
+        .summary {
+          float: none;
+        }
       }
     }
   }
@@ -308,13 +327,15 @@ a {
       font-size: 24px;
     }
     .suggestions {
-      padding: 10px 0 0 0;
+      padding: 20px 0 0 0;
     }
   }
 }
 
 @media (max-width: 500px) {
   .try-again {
+    max-width: 300px;
+    margin: 0px auto;
     button {
       margin-bottom: 30px;
     }
