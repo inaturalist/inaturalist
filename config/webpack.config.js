@@ -12,7 +12,7 @@ var config = {
     'project-slideshow': './project_slideshow/webpack-entry',
     'taxa-show': './taxa/show/webpack-entry',
     'taxa-photos': './taxa/photos/webpack-entry',
-    'observations-show': './observations/show/webpack-entry'
+    'observations-show': './observations/show/webpack-entry',
     'computer-vision': './computer_vision/webpack-entry'
   },
   output: {
