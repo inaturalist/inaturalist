@@ -119,7 +119,7 @@ export function score( obsCard ) {
     if ( !_.isEmpty( params ) ) {
       fetchURL += `?${$.param( params )}`;
     }
-    fetch( fetchURL ).
+    fetch( fetchURL, { credentials: "same-origin" } ).
       then( thenCheckStatus ).
       then( thenText ).
       then( thenJson ).

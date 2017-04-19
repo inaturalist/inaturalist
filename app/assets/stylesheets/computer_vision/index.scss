@@ -37,6 +37,9 @@ body {
 }
 .navbar-header {
   height: auto;
+  .logo {
+    display: inline;
+  }
   .navbar-brand {
     height: auto;
   }

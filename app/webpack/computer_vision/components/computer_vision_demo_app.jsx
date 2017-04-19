@@ -244,9 +244,11 @@ class ComputerVisionDemoApp extends Component {
           <nav className="navbar navbar-default">
             <div className="container-fluid">
               <div className="navbar-header">
-                <a href="/" className="navbar-brand" title={ SITE.name } alt={ SITE.name }>
-                  <img src={ SITE.logo } />
-                </a>
+                <div className="logo">
+                  <a href="/" className="navbar-brand" title={ SITE.name } alt={ SITE.name }>
+                    <img src={ SITE.logo } />
+                  </a>
+                </div>
                 <div className="title">
                   What did you see?
                 </div>
