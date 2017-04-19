@@ -557,6 +557,14 @@ Rails.application.routes.draw do
   resources :taxon_stages, :controller => :taxon_changes
   resources :conservation_statuses, :only => [:autocomplete]
 
+  resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
+  end
+  resources :computer_vision_demo_uploads do
+    member do
+      get :score
+    end
+  end
+
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate
   get 'translate/reload' => 'translations#reload', :as => :translate_reload

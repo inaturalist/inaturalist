@@ -1,0 +1,27 @@
+- content_for :extrahead do
+  = stylesheet_link_tag "jquery-ui"
+  = stylesheet_link_tag "autocomplete"
+  = stylesheet_link_tag "font-awesome"
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "observations/uploader"
+  = stylesheet_link_tag "computer_vision/index"
+  = javascript_include_tag "i18n"
+  %meta{ name: "viewport", content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" }
+  :javascript
+    var SITE_ICONS = {
+      cas: "#{ asset_url( "sites/logo-cas.svg" ) }",
+      nvidia: "#{ asset_url( "sites/logo-nvidia.svg" ) }",
+      visipedia: "#{ asset_url( "sites/logo-visipedia.svg" ) }"
+    }
+#app
+= google_maps_js libraries: %w(places geometry drawing)
+- content_for :delayed_js do
+  = javascript_include_tag "i18n/translations"
+  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+  = javascript_include_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
+  = javascript_include_tag "inaturalist"
+  = javascript_include_tag "ang/models/taxon"
+  = javascript_include_tag "jquery/plugins/inat/generic_autocomplete"
+  = javascript_include_tag "jquery/plugins/inat/taxon_autocomplete"
+  = javascript_include_tag "computer-vision-webpack"
+  = javascript_include_tag "//getbootstrap.com/dist/js/bootstrap.min.js"
