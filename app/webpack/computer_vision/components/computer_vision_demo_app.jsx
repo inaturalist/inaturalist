@@ -20,12 +20,12 @@ class ComputerVisionDemoApp extends Component {
   about( ) {
     return (
       <div className="about">
-        <a href="https://www.inaturalist.org">iNaturalist</a> has teamed up with
-        lorem ipsum dolor sit amet,
-        consectetur adipisicing elit, sed do eiusmod tempor incididunt
-        ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. <a href="https://www.inaturalist.org">Read more...</a>
+        <a href="https://www.inaturalist.org">iNaturalist</a> has teamed up with the Visipedia project and NVIDIA to begin exploring how
+computer vision can help speed up the identification process on iNaturalist. This demo
+uses a work-in-progress model that we've trained on iNaturalist images. Drag in an image 
+to see how the model performs. We're currently working on improving this model and
+integrating it into the iNaturalist web and mobile apps. <a href="https://www.inaturalist.org/pages/computer_vision_demo">
+        Read more...</a>
         <div className="logos">
           <div className="logo">
             <a href="https://sites.google.com/visipedia.org/index">
@@ -93,11 +93,9 @@ class ComputerVisionDemoApp extends Component {
               <div className="title">
                 <SplitTaxon taxon={ result.taxon } url={ `/taxa/${result.taxon.id}` } />
                 <div className="summary">
-                  { result.vision_score ?
-                    `Visually Similar (score: ${_.round( result.vision_score, 3 )} )` : "" }
+                  { result.vision_score ? "Visually Similar" : "" }
                   { result.vision_score && result.frequency_score ? " / " : "" }
-                  { result.frequency_score ?
-                    `Seen Nearby (score: ${_.round( result.frequency_score, 3 )} )` : "" }
+                  { result.frequency_score ? "Seen Nearby" : "" }
                 </div>
               </div>
               <Row className="photos">
@@ -258,7 +256,7 @@ class ComputerVisionDemoApp extends Component {
                   </a>
                 </div>
                 <div className="title">
-                  What did you see?
+                  Computer Vision Demo
                 </div>
               </div>
             </div>

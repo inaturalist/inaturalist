@@ -557,10 +557,7 @@ Rails.application.routes.draw do
   resources :taxon_stages, :controller => :taxon_changes
   resources :conservation_statuses, :only => [:autocomplete]
 
-  resource :computer_vision, only: :index, controller: :computer_vision do
-    collection do
-      post :upload
-    end
+  resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
   end
   resources :computer_vision_demo_uploads do
     member do

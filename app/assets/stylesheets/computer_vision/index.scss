@@ -93,7 +93,7 @@ a {
   text-align: center;
   font-size: 16px;
   border-top: 1px solid #ccc;
-  padding: 20px 40px 50px 40px;
+  padding: 20px 20px 50px 20px;
   .logos {
     width: 100%;
     margin-top: 30px;
@@ -256,16 +256,6 @@ a {
   }
 }
 
-@media (max-width: 800px) {
-  .vision-results {
-    .result {
-      .title .summary {
-        float: none;
-      }
-    }
-  }
-}
-
 @media (max-width: 720px) {
   .navbar {
     min-height: auto;
@@ -274,12 +264,12 @@ a {
     .navbar-brand {
       padding: 7px 10px 4px 0;
       img {
-        height: 21px;
+        height: 20px;
       }
     }
     .title {
       margin: 7px 5px 4px 0;
-      font-size: 18px;
+      font-size: 15px;
       font-weight: normal;
       padding-left: 10px;
     }
@@ -290,6 +280,7 @@ a {
       .about {
         margin-top: 20px;
         padding: 20px 20px 50px 20px;
+        font-size: 13px;
       }
       .drag_or_choose {
         h1 {
@@ -307,13 +298,22 @@ a {
         width: 33.333333%;
         margin-bottom: 3%;
       }
+      .title .summary {
+        float: none;
+      }
     }
   }
   .next-steps {
     h3 {
       font-size: 24px;
     }
+    .suggestions {
+      padding: 10px 0 0 0;
+    }
   }
+}
+
+@media (max-width: 500px) {
   .try-again {
     button {
       margin-bottom: 30px;
