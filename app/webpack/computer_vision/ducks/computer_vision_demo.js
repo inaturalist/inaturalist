@@ -126,6 +126,7 @@ export function score( obsCard ) {
       then( r => {
         dispatch( updateObsCard( { visionResults: r, visionStatus: null } ) );
       } ).catch( e => {
+        dispatch( updateObsCard( { visionStatus: "failed" } ) );
         console.log( ["error", e] );
       }
     );

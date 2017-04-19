@@ -209,6 +209,8 @@ class ComputerVisionDemoApp extends Component {
     } else {
       let lowerSection;
       if ( obsCard.uploadedFile ) {
+        let loadingSpinner = obsCard.visionStatus === "loading" ?
+          ( <div className="loading_spinner" /> ) : "";
         lowerSection = obsCard.visionResults ? (
           <Grid fluid className="vision-results">
             { this.visionResults( ) }
@@ -218,15 +220,16 @@ class ComputerVisionDemoApp extends Component {
         ) : (
           <div className="classify">
             <Button bsStyle="success" bsSize="large"
-              disabled={ !obsCard.uploadedFile.photo }
+              disabled={ !obsCard.uploadedFile.photo || obsCard.visionStatus === "failed" }
               onClick={ ( ) => { score( obsCard ); } }
             >
               { obsCard.visionStatus ? (
                 <div>
-                  <div>Classifying...</div>
-                  <div className="loading_spinner" />
+                  <div>{ obsCard.visionStatus === "failed" ? "Oops..." : "Classifying..." }</div>
+                  { loadingSpinner }
                 </div> ) : "Classify!" }
             </Button>
+            { obsCard.visionStatus === "failed" ? this.otherActionButtons( ) : "" }
           </div>
         );
       }

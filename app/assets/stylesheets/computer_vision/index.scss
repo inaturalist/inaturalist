@@ -116,6 +116,12 @@ a {
         display: inline-block;
       }
     }
+    .try-again {
+      border-top: 1px solid #ccc;
+      max-width: 500px;
+      margin: 0px auto;
+      margin-top: 25px;
+    }
   }
 }
 .thumbnail {
