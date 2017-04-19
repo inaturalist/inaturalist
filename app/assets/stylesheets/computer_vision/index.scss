@@ -1,0 +1,270 @@
+@import "../shared/split_taxon";
+
+@font-face {
+  font-family: Whitney;
+  src: url('/fonts/Whitney-Book-Pro.otf') format("opentype");
+}
+
+body {
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+}
+
+.uploader {
+  min-width: 0;
+  margin-top: 0;
+}
+
+.loading_spinner {
+  width: 14px;
+  height: 14px;
+  border: 3px solid #fff;
+  border-radius: 50%;
+  border-top: 3px solid #5cb85c;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+.navbar {
+  position: relative;
+  margin-top: 0;
+}
+.navbar-header {
+  height: auto;
+  .navbar-brand {
+    height: auto;
+  }
+  .title {
+    display: inline-block;
+    font-size: 20px;
+    margin: 12px 0px;
+    border-left: 1px solid #ddd;
+    padding-left: 15px;
+    font-weight: 500;
+  }
+}
+.intro {
+  max-width: 450px;
+  margin: 0px auto;
+  padding: 0px;
+  .start {
+    margin-top: 5%;
+  }
+  .drag_or_choose {
+    margin: 0 4%;
+    h1 {
+      font-size: 32px;
+      margin: 0;
+    }
+    p {
+      padding: 10px 0;
+      margin: 0 0 5px;
+    }
+  }
+}
+.about {
+  max-width: 420px;
+  margin: 0px auto;
+  margin-top: 50px;
+  padding: 0px;
+  text-align: center;
+  font-size: 16px;
+  border-top: 1px solid #ccc;
+  padding: 20px 40px 50px 40px;
+  .logos {
+    width: 100%;
+    margin-top: 30px;
+    .logo {
+      width: 33.3%;
+      display: inline-block;
+    }
+  }
+}
+
+.results {
+  text-align: center;
+  .classify {
+    button {
+      min-width: 150px;
+      div {
+        display: inline-block;
+      }
+    }
+  }
+}
+.thumbnail {
+  width: 220px;
+  display: inline-block;
+  text-align: left;
+  .caption {
+    padding: 0 9px;
+    .photo-count {
+      text-align: center;
+    }
+  }
+  .img-container {
+    text-align: center;
+    height: 144px;
+    line-height: 144px;
+    .placeholder .glyphicon {
+      line-height: 144px;
+      font-size: 100px;
+      opacity: 0.07;
+    }
+    .gallery-item > .glyphicon, .gallery-item > .failed > .glyphicon {
+      line-height: 144px;
+      font-size: 40px;
+      opacity: 0.07;
+    }
+    .gallery-item > .failed {
+      width: 180px;
+      line-height: 180px;
+      & > .glyphicon {
+        color: red;
+        opacity: 0.2;
+        line-height: 1;
+      }
+    }
+    img {
+      max-height: 142px;
+      max-width: 180px;
+      width: auto;
+      margin-bottom: 10px;
+      box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+    }
+  }
+  &.completed {
+    pointer-events: none;
+    .caption {
+      opacity: 0.5;
+    }
+  }
+}
+
+.vision-results {
+  text-align: left;
+  .statement {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+  .result {
+    margin-top: 20px;
+    border-bottom: 1px solid #ccc;
+    .photos {
+      margin-bottom: 30px;
+      .col-xs-2 {
+        padding: 0 1.5%;
+      }
+      .photo {
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+    .title {
+      margin-bottom: 10px;
+      .SplitTaxon {
+        a:hover {
+          text-decoration: none;
+        }
+        .sciname {
+          font-size: 14px;
+          color: #626262;
+          line-height: 13px;
+        }
+        .display-name {
+          font-size: 24px;
+          color: #333;
+          line-height: 24px;
+        }
+        .species {
+          font-style: italic
+        }
+      }
+      .summary {
+        float: right;
+        font-weight: 700;
+      }
+    }
+    .photo {
+      width: 100%;
+      height: 0;
+      padding-bottom: 100%;
+      background-size: cover;
+      background-position: center;
+      display: inline-block;
+      border-radius: 2px;
+    }
+  }
+}
+
+.next-steps {
+  border-bottom: 1px solid #ccc;
+  padding: 15px 0 30px;
+  h3 {
+    font-size: 32px;
+  }
+  ul {
+    padding: 10px 0 0 20px;
+    li {
+      list-style: none;
+      font-size: 18px;
+      margin-bottom: 10px;
+      i {
+        width: 50px;
+        text-align: center;
+        font-size: 24px;
+        color: #74AC00;
+      }
+    }
+  }
+}
+
+.try-again {
+  padding-top: 40px;
+  text-align: center;
+  button, .btn-default {
+    margin: 0px 15px;
+  }
+}
+
+@media (max-width: 720px) {
+  .navbar {
+    min-height: auto;
+  }
+  .navbar-header {
+    .navbar-brand {
+      padding: 5px 10px 4px 0;
+    }
+    .title {
+      margin: 4px 5px 4px 0;
+      font-size: 19px;
+      font-weight: normal;
+      padding-left: 10px;
+    }
+  }
+  .intro {
+    .start {
+      margin-top: 5%;
+      .drag_or_choose {
+        h1 {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+  .vision-results .statement {
+    font-size: 22px;
+  }
+  .result .col-xs-2 {
+    width: 33.333333%;
+    margin-bottom: 3%;
+  }
+}
