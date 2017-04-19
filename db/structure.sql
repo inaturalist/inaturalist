@@ -6941,6 +6941,13 @@ CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values 
 
 
 --
+-- Name: index_observation_fields_on_datatype; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_fields_on_datatype ON observation_fields USING btree (datatype);
+
+
+--
 -- Name: index_observation_fields_on_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8821,4 +8828,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170327224712');
 INSERT INTO schema_migrations (version) VALUES ('20170413131753');
 
 INSERT INTO schema_migrations (version) VALUES ('20170414011849');
+
+INSERT INTO schema_migrations (version) VALUES ('20170418202820');
 

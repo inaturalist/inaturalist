@@ -6,13 +6,15 @@ class ObservationFieldValuesController < ApplicationController
   def index
     per_page = params[:per_page].to_i
     per_page = 30 if (per_page <= 0 || per_page > 200)
-    @ofvs = ObservationFieldValue.
-      includes(:observation_field, :observation => [{:taxon => [:source]}, :user]).
-      page(params[:page]).per_page(per_page)
+    @ofvs = ObservationFieldValue.page(params[:page]).per_page(per_page)
     @ofvs = @ofvs.datatype(params[:type]) unless params[:type].blank?
     @ofvs = @ofvs.field(params[:field]) unless params[:field].blank?
     @ofvs = @ofvs.license(params[:license]) unless params[:license].blank?
     @ofvs = @ofvs.quality_grade(params[:quality_grade]) unless params[:quality_grade].blank?
+    ObservationFieldValue.preload_associations( @ofvs, {
+      observation_field: {},
+      observation: [ { taxon: [:source] }, :user ]
+    } )
     pagination_headers_for(@ofvs)
     respond_to do |format|
       format.json do

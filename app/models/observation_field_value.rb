@@ -70,7 +70,7 @@ class ObservationFieldValue < ActiveRecord::Base
   scope :quality_grade, lambda {|quality_grade|
     scope = joins(:observation)
     quality_grade = '' unless Observation::QUALITY_GRADES.include?(quality_grade)
-    where("observations.quality_grade = ?", quality_grade)
+    scope.where("observations.quality_grade = ?", quality_grade)
   }
 
   def to_s
