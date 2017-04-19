@@ -15,6 +15,21 @@ class ComputerVisionDemoApp extends Component {
     this.visionResults = this.visionResults.bind( this );
     this.resultsStatement = this.resultsStatement.bind( this );
     this.otherActionButtons = this.otherActionButtons.bind( this );
+    this.resizeElement = this.resizeElement.bind( this );
+  }
+
+  componentDidMount( ) {
+    this.resizeElement( $( ".uploader" ) );
+  }
+
+  resizeElement( el ) {
+    if ( el.length === 0 ) { return; }
+    const topOffset = el.offset( ).top;
+    const height = $( window ).height( );
+    const difference = height - topOffset;
+    if ( difference > 450 ) {
+      el.css( "min-height", difference );
+    }
   }
 
   about( ) {

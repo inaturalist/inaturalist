@@ -307,7 +307,6 @@ a {
   }
   .about {
     padding: 20px 20px 50px 20px;
-    font-size: 13px;
   }
   .vision-results {
     .statement {
@@ -345,5 +344,12 @@ a {
     button {
       margin-bottom: 30px;
     }
+  }
+}
+
+@media (max-width: 350px) {
+  .about {
+    font-size: 13px;
+    margin-top: 20px;
   }
 }

@@ -126,7 +126,7 @@ class ObsCardComponent extends Component {
                   this.refs.datetime.onChange( undefined, e.target.value );
                 }
               } }
-              placeholder={ I18n.t( "date_" ) }
+              placeholder={ this.refs.datetime ? "" : I18n.t( "date_" ) }
             />
           </div>
           <div className="input-group"
@@ -139,7 +139,7 @@ class ObsCardComponent extends Component {
               type="text"
               className="form-control input-sm"
               value={ locationText }
-              placeholder={ I18n.t( "location" ) }
+              placeholder={ locationText ? "" : I18n.t( "location" ) }
               readOnly
             />
           </div>
