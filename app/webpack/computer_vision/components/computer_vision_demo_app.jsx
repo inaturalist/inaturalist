@@ -92,7 +92,11 @@ class ComputerVisionDemoApp extends Component {
               <div className="title">
                 <SplitTaxon taxon={ result.taxon } url={ `/taxa/${result.taxon.id}` } />
                 <div className="summary">
-                  Visually Similar (score: { _.round( result.vision_score, 4 ) } )
+                  { result.vision_score ?
+                    `Visually Similar (score: ${_.round( result.vision_score, 4 )} )` : "" }
+                  { result.vision_score && result.frequency_score ? " / " : "" }
+                  { result.frequency_score ?
+                    `Seen Nearby (score: ${_.round( result.frequency_score, 4 )} )` : "" }
                 </div>
               </div>
               <Row className="photos">
