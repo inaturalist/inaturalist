@@ -253,7 +253,7 @@ class StatsController < ApplicationController
   def cnc2017_stats
     project_ids = [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
       11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
-    project_ids = [1,2,3,4]
+    # project_ids = [1,2,3,4]
     projects = Project.where( id: project_ids )
 
     # prepare the data needed for the slideshow
