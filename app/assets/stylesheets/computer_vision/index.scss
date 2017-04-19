@@ -9,6 +9,10 @@ body {
   font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
 }
 
+a {
+  color: #4990E2;
+}
+
 .uploader {
   min-width: 0;
   margin-top: 0;
@@ -30,6 +34,16 @@ body {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
+
+.statement, .photo {
+  a {
+    color: #333;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 
 .navbar {
   position: relative;
@@ -57,7 +71,7 @@ body {
   margin: 0px auto;
   padding: 0px;
   .start {
-    margin-top: 5%;
+    margin-top: 10%;
   }
   .drag_or_choose {
     margin: 0 4%;
@@ -74,7 +88,7 @@ body {
 .about {
   max-width: 420px;
   margin: 0px auto;
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 0px;
   text-align: center;
   font-size: 16px;
@@ -86,6 +100,9 @@ body {
     .logo {
       width: 33.3%;
       display: inline-block;
+      img {
+        max-width: 100%;
+      }
     }
   }
 }
@@ -165,11 +182,6 @@ body {
       .col-xs-2 {
         padding: 0 1.5%;
       }
-      .photo {
-        a:hover {
-          text-decoration: none;
-        }
-      }
     }
     .title {
       margin-bottom: 10px;
@@ -214,17 +226,23 @@ body {
   h3 {
     font-size: 32px;
   }
-  ul {
+  .suggestions {
     padding: 10px 0 0 20px;
-    li {
-      list-style: none;
+    .suggestion {
       font-size: 18px;
-      margin-bottom: 10px;
-      i {
-        width: 50px;
-        text-align: center;
-        font-size: 24px;
-        color: #74AC00;
+      margin-bottom: 15px;
+      .icon {
+        float: left;
+          width: 50px;
+          text-align: center;
+          font-size: 24px;
+        i {
+          color: #74AC00;
+          vertical-align: top;
+        }
+      }
+      .text {
+        padding-left: 50px;
       }
     }
   }
@@ -238,17 +256,30 @@ body {
   }
 }
 
+@media (max-width: 800px) {
+  .vision-results {
+    .result {
+      .title .summary {
+        float: none;
+      }
+    }
+  }
+}
+
 @media (max-width: 720px) {
   .navbar {
     min-height: auto;
   }
   .navbar-header {
     .navbar-brand {
-      padding: 5px 10px 4px 0;
+      padding: 7px 10px 4px 0;
+      img {
+        height: 21px;
+      }
     }
     .title {
-      margin: 4px 5px 4px 0;
-      font-size: 19px;
+      margin: 7px 5px 4px 0;
+      font-size: 18px;
       font-weight: normal;
       padding-left: 10px;
     }
@@ -256,6 +287,10 @@ body {
   .intro {
     .start {
       margin-top: 5%;
+      .about {
+        margin-top: 20px;
+        padding: 20px 20px 50px 20px;
+      }
       .drag_or_choose {
         h1 {
           font-size: 24px;
@@ -263,11 +298,25 @@ body {
       }
     }
   }
-  .vision-results .statement {
-    font-size: 22px;
+  .vision-results {
+    .statement {
+      font-size: 22px;
+    }
+    .result {
+      .col-xs-2 {
+        width: 33.333333%;
+        margin-bottom: 3%;
+      }
+    }
   }
-  .result .col-xs-2 {
-    width: 33.333333%;
-    margin-bottom: 3%;
+  .next-steps {
+    h3 {
+      font-size: 24px;
+    }
+  }
+  .try-again {
+    button {
+      margin-bottom: 30px;
+    }
   }
 }

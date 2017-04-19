@@ -20,11 +20,12 @@ class ComputerVisionDemoApp extends Component {
   about( ) {
     return (
       <div className="about">
-        iNaturalist has teamed up with lorem ipsum dolor sit amet,
+        <a href="https://www.inaturalist.org">iNaturalist</a> has teamed up with
+        lorem ipsum dolor sit amet,
         consectetur adipisicing elit, sed do eiusmod tempor incididunt
         ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
         nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat. Read more...
+        commodo consequat. <a href="https://www.inaturalist.org">Read more...</a>
         <div className="logos">
           <div className="logo">
             <a href="https://sites.google.com/visipedia.org/index">
@@ -32,13 +33,13 @@ class ComputerVisionDemoApp extends Component {
             </a>
           </div>
           <div className="logo">
-            <a href="http://www.nvidia.com/object/machine-learning.html">
-              <img src={ SITE_ICONS.nvidia } />
+            <a href="https://www.calacademy.org/">
+              <img src={ SITE_ICONS.cas } />
             </a>
           </div>
           <div className="logo">
-            <a href="https://www.calacademy.org/">
-              <img src={ SITE_ICONS.cas } />
+            <a href="http://www.nvidia.com/object/machine-learning.html">
+              <img src={ SITE_ICONS.nvidia } />
             </a>
           </div>
         </div>
@@ -93,10 +94,10 @@ class ComputerVisionDemoApp extends Component {
                 <SplitTaxon taxon={ result.taxon } url={ `/taxa/${result.taxon.id}` } />
                 <div className="summary">
                   { result.vision_score ?
-                    `Visually Similar (score: ${_.round( result.vision_score, 4 )} )` : "" }
+                    `Visually Similar (score: ${_.round( result.vision_score, 3 )} )` : "" }
                   { result.vision_score && result.frequency_score ? " / " : "" }
                   { result.frequency_score ?
-                    `Seen Nearby (score: ${_.round( result.frequency_score, 4 )} )` : "" }
+                    `Seen Nearby (score: ${_.round( result.frequency_score, 3 )} )` : "" }
                 </div>
               </div>
               <Row className="photos">
@@ -131,8 +132,8 @@ class ComputerVisionDemoApp extends Component {
           <b>${ancestor.preferred_common_name || ancestor.name}</b>.
           Here are our top 10 results:`;
       } else {
-        statement = `We're pretty sure this is in the
-          ${ancestor.rank} <b>${ancestor.preferred_common_name || ancestor.name}</b>.
+        statement = `We're pretty sure this is in the <a href="/taxa/${ancestor.id}">
+          ${ancestor.rank} <b>${ancestor.preferred_common_name || ancestor.name}</b></a>.
           Here are our top 10 results:`;
       }
     } else {
@@ -148,26 +149,29 @@ class ComputerVisionDemoApp extends Component {
         <Col xs={12}>
           <div className="next-steps">
             <h3>Not happy with the results? Here's a few suggestions:</h3>
-            <ul>
-              <li>
-                <i className="fa fa-crop" />
-                Zoom in and crop the photo so little to none of the surrounding
-                area is visible
-              </li>
-              <li>
-                <i className="fa fa-calendar" />
-                Specify when the photo was taken
-              </li>
-              <li>
-                <i className="fa fa-map-marker" />
-                Add a location
-              </li>
-              <li>
-                <i className="fa fa-comments" />
-                You can always submit the photo to iNaturalist.org and see what
-                the community says
-              </li>
-            </ul>
+            <div className="suggestions">
+              <div className="suggestion">
+                <div className="icon"><i className="fa fa-crop" /></div>
+                <div className="text">
+                  Zoom in and crop the photo so little to none of the surrounding
+                  area is visible
+                </div>
+              </div>
+              <div className="suggestion">
+                <div className="icon"><i className="fa fa-calendar" /></div>
+                <div className="text">Specify when the photo was taken</div>
+              </div>
+              <div className="suggestion">
+                <div className="icon"><i className="fa fa-map-marker" /></div>
+                <div className="text">Add a location</div>
+              </div>
+              <div className="suggestion">
+                <div className="icon"><i className="fa fa-comments" /></div>
+                <div className="text">
+                  You can always submit the photo to iNaturalist.org and see what the community says
+                </div>
+              </div>
+            </div>
           </div>
         </Col>
       </Row>
