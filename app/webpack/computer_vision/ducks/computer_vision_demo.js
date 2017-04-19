@@ -133,34 +133,89 @@ export function score( obsCard ) {
   };
 }
 
+export function dataURLToBlob( dataURL ) {
+  const BASE64_MARKER = ";base64,";
+  if ( dataURL.indexOf( BASE64_MARKER ) === -1 ) {
+    const parts = dataURL.split( "," );
+    const contentType = parts[0].split( ":" )[1];
+    const raw = parts[1];
+    return new Blob( [raw], { type: contentType } );
+  }
+
+  const parts = dataURL.split( BASE64_MARKER );
+  const contentType = parts[0].split( ":" )[1];
+  const raw = window.atob( parts[1] );
+  const rawLength = raw.length;
+  const uInt8Array = new Uint8Array( rawLength );
+  for ( let i = 0; i < rawLength; ++i ) {
+    uInt8Array[i] = raw.charCodeAt( i );
+  }
+  return new Blob( [uInt8Array], { type: contentType } );
+}
+
+export function resizeUpload( file, callback ) {
+  const reader = new FileReader( );
+  reader.onload = readerEvent => {
+    const image = new Image();
+    image.onload = ( ) => {
+      // Resize the image
+      const canvas = document.createElement( "canvas" );
+      const maxDimension = 400;
+      let width = image.width;
+      let height = image.height;
+      if ( width > height ) {
+        if ( width > maxDimension ) {
+          height *= maxDimension / width;
+          width = maxDimension;
+        }
+      } else {
+        if ( height > maxDimension ) {
+          width *= maxDimension / height;
+          height = maxDimension;
+        }
+      }
+      canvas.width = width * 2;
+      canvas.height = height * 2;
+      const context = canvas.getContext( "2d" );
+      context.scale( 2, 2 );
+      context.drawImage( image, 0, 0, width, height );
+      callback( canvas.toDataURL( "image/jpeg" ) );
+    };
+    image.src = readerEvent.target.result;
+  };
+  reader.readAsDataURL( file );
+}
+
 export function uploadImage( obsCard ) {
   return function ( dispatch ) {
-    const headers = { };
-    const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
-    const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
-    headers[csrfParam] = csrfToken;
-    const body = new FormData( );
-    body.append( "file", obsCard.uploadedFile.file );
-    const fetchOpts = {
-      method: "post",
-      credentials: "same-origin",
-      headers,
-      body
-    };
-    fetch( "/computer_vision_demo_uploads", fetchOpts ).
-      then( thenCheckStatus ).
-      then( thenText ).
-      then( thenJson ).
-      then( r => {
-        const serverMetadata = obsCard.uploadedFile.additionalPhotoMetadata( r );
-        dispatch( updateObsCard( { uploadedFile: Object.assign( { }, obsCard.uploadedFile, {
-          uploadState: "uploaded", photo: r, serverMetadata } ) } ) );
-      } ).catch( e => {
-        dispatch( updateObsCard( { uploadedFile:
-          Object.assign( { }, obsCard.uploadedFile, { uploadState: "failed" } ) } ) );
-        console.log( ["error", e] );
-      }
-    );
+    resizeUpload( obsCard.uploadedFile.file, resizedBlob => {
+      const headers = { };
+      const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
+      const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
+      headers[csrfParam] = csrfToken;
+      const body = new FormData( );
+      body.append( "file", resizedBlob );
+      const fetchOpts = {
+        method: "post",
+        credentials: "same-origin",
+        headers,
+        body
+      };
+      fetch( "/computer_vision_demo_uploads", fetchOpts ).
+        then( thenCheckStatus ).
+        then( thenText ).
+        then( thenJson ).
+        then( r => {
+          const serverMetadata = obsCard.uploadedFile.additionalPhotoMetadata( r );
+          dispatch( updateObsCard( { uploadedFile: Object.assign( { }, obsCard.uploadedFile, {
+            uploadState: "uploaded", photo: r, serverMetadata } ) } ) );
+        } ).catch( e => {
+          dispatch( updateObsCard( { uploadedFile:
+            Object.assign( { }, obsCard.uploadedFile, { uploadState: "failed" } ) } ) );
+          console.log( ["error", e] );
+        }
+      );
+    } );
   };
 }
 

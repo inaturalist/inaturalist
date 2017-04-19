@@ -7,8 +7,8 @@ class ComputerVisionDemoUpload < ActiveRecord::Base
       original: "2048x2048>",
       thumbnail: "300x300>"
     },
-    path: ":rails_root/public/attachments/:class/:id/:style.:extension",
-    url: "/attachments/:class/:id/:style.:extension",
+    path: ":rails_root/public/attachments/:class/:id/:style.:content_type_extension",
+    url: "/attachments/:class/:id/:style.:content_type_extension",
     default_url: ""
   validates_attachment_content_type :photo,
     content_type: [ /jpe?g/i, /png/i, /gif/i, /octet-stream/ ],

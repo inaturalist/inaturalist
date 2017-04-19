@@ -37,7 +37,7 @@ class ComputerVisionDemoApp extends Component {
       <div className="about">
         <a href="https://www.inaturalist.org">iNaturalist</a> has teamed up with
         the <a href="https://sites.google.com/visipedia.org/index">
-        Visipedia project</a> and <a href="http://www.nvidia.com/object/machine-learning.html">
+        Visipedia</a> project and <a href="http://www.nvidia.com/object/machine-learning.html">
         NVIDIA</a> to begin exploring how computer vision can help speed up the identification
         process on iNaturalist. This demo uses a work-in-progress model that we've
         trained on iNaturalist images. Drag in an image to see how the model performs.
