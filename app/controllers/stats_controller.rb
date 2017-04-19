@@ -250,6 +250,48 @@ class StatsController < ApplicationController
     end
   end
 
+  def cnc2017_stats
+    project_ids = [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
+      11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042]
+    project_ids = [1,2,3,4]
+    projects = Project.where( id: project_ids )
+
+    # prepare the data needed for the slideshow
+    @data = []
+    projects.each do |p|
+      node_params = {
+        project_id: p.id,
+        per_page: 0,
+        ttl: 300
+      }
+      case params[:quality]
+      when "research"
+        node_params[:quality_grade] = "research"
+      when "verifiable"
+        node_params[:quality_grade] = "research,needs_id"
+      end
+      species_count_response = INatAPIService.observations_species_counts( node_params )
+      species_count = (species_count_response && species_count_response.total_results) || 0
+      observations_count_response = INatAPIService.observations( node_params )
+      observations_count = (observations_count_response && observations_count_response.total_results) || 0
+      identifiers_count_response = INatAPIService.get( "/observations/identifiers", node_params )
+      identifiers_count = (identifiers_count_response && identifiers_count_response.total_results) || 0
+      
+      @data << {
+        id: p.id,
+        title: p.title.gsub( /City Nature Challenge: /, "" ),
+        slug: p.slug,
+        observation_count: observations_count,
+        in_progress: p.event_in_progress?,
+        species_count: species_count,
+        identifiers_count: identifiers_count
+      }
+    end
+    respond_to do |format|
+      format.html{ render layout: "bootstrap" }
+    end
+  end
+
   def cnc2016
     project_slideshow_data( 11765,
       umbrella_project_ids: [11765],

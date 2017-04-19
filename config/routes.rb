@@ -494,6 +494,7 @@ Rails.application.routes.draw do
       get :cnc2016
       get :cnc2017
       get :cnc2017_taxa
+      get :cnc2017_stats
     end
   end
 

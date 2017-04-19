@@ -1,0 +1,50 @@
+- content_for(:title) do
+  = @title = "Stats for CNC2017"
+- content_for(:extracss) do
+  :css
+    .table td { width: 33.3333%; }
+    .table th { cursor: pointer; }
+- content_for(:extrajs) do
+  :javascript
+    $( document ).ready( function() {
+      $( ".table" ).dataTable( {
+        bPaginate: false,
+        bFilter: false,
+        paging: false,
+        info: false,
+        "aaSorting": [[2,'desc']],
+        "aoColumns": [
+          { "orderSequence": ["asc", "desc"] },
+          { "orderSequence": ["desc", "asc"] },
+          { "orderSequence": ["desc", "asc"] }
+        ]
+      } )
+    } );
+
+.container
+  .row
+    .col-xs-12
+      %h1 CNC 2017 Stats
+      = form_tag( nil, method: "get" ) do
+        %label{ style: "margin-right: 1em; " }
+          Observation Quality (optional)
+          = select_tag :quality, options_for_select( ["any", "verifiable", "research"], params[:quality] ), data: { autosubmit: true }
+      %h2 Observations
+      %table.table
+        %thead
+          %tr
+            %th City
+            %th Observations
+            %th Species
+            %th Identifiers
+        %tbody
+          - @data.each do |project|
+            %tr
+              %td= link_to project[:title], project_url( project[:slug] )
+              %td= project[:observation_count]
+              %td= project[:species_count]
+              %td= project[:identifiers_count]
+      %h2 Taxon Rank Breakdown
+      %p todo
+      %h2 Unique Taxon Contributors
+      %p todo
