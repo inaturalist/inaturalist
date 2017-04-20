@@ -67,26 +67,27 @@ end
 if OPTS.species_ids
   target_taxon_ids = OPTS.species_ids
 else
-  # show species and lower with observations by at least a certain number of
-  # different people
-  target_taxa_sql = <<-SQL
+  # Select species with observations by at least a certain number of different
+  # people. Photos of infraspecies will get included later when we query on
+  # species
+  target_species_sql = <<-SQL
     SELECT
-      t.id AS taxon_id
+      ta.ancestor_taxon_id AS taxon_id
     FROM
-      taxa t
-        LEFT OUTER JOIN observations o ON o.taxon_id = t.id
+      observations o
+        JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
+        JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
     WHERE
-      t.rank_level <= 10
-      AND o.quality_grade = 'research'
-      AND t.rank != 'hybrid'
+      o.quality_grade = 'research'
+      AND tat.rank = 'species'
     GROUP BY
-      t.id
+      ta.ancestor_taxon_id
     HAVING
       COUNT( DISTINCT o.user_id ) >= #{num_unique_users}
   SQL
   log "Collecting IDs for taxa observed by at least #{num_unique_users} people... "
-  target_taxon_ids = run_with_timing( :query_target_taxa ) do
-    run_sql( target_taxa_sql ).map{ |r| r["taxon_id"].to_i }.sort
+  target_taxon_ids = run_with_timing( :query_target_species ) do
+    run_sql( target_species_sql ).map{ |r| r["taxon_id"].to_i }.sort
   end
 end
 log "Collected #{target_taxon_ids.size} taxon IDs"
