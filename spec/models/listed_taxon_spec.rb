@@ -35,10 +35,6 @@ describe ListedTaxon do
     it "should set observations_count" do
       expect(@listed_taxon.observations_count).to eq(2)
     end
-    
-    it "should set observations_month_counts" do
-      expect(@listed_taxon.observations_month_counts).not_to be_blank
-    end
 
   end
   
@@ -590,8 +586,7 @@ describe ListedTaxon do
       ListedTaxon.where(id: @lt).update_all(
         first_observation_id: nil,
         last_observation_id: nil,
-        observations_count: nil,
-        observations_month_counts: nil)
+        observations_count: nil)
       Delayed::Job.delete_all
       expect(Delayed::Job.count).to eq 0
       @lt.reload
