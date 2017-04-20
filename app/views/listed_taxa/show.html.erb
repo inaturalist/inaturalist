@@ -75,7 +75,6 @@
     <div class="ui description">
       <strong><%= listed_taxon.observations_count %></strong>
       <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>,
-      <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
       <%= t :research_grade %>
     
     <% if logged_in? && current_user.is_admin? -%>
@@ -88,16 +87,6 @@
           "data-loading-click" => t(:refreshing) -%></span>
     <% end -%>
     </div>
-    <% unless listed_taxon.observation_month_stats.blank? -%>
-      <div class="statsgraphs stacked">
-        <div class="observedgraph">
-          <%= month_graph listed_taxon.observation_month_stats %>
-        </div>
-        <div class="confirmedgraph">
-          <%= month_graph listed_taxon.confirmed_observation_month_stats, :max => listed_taxon.observation_month_stats.values.max %>
-        </div>
-      </div>
-    <% end -%>
   </div>
 
   <% if listed_taxon.first_observation -%>

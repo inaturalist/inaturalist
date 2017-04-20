@@ -145,7 +145,7 @@ class List < ActiveRecord::Base
     CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     controller = options[:controller] || FakeView.new
     attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
-       last_observation url created_at updated_at taxon_common_name confirmed_observations_count unconfirmed_observations_count)
+       last_observation url created_at updated_at taxon_common_name)
     ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"
