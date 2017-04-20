@@ -352,12 +352,6 @@ a {
       margin-bottom: 30px;
     }
   }
-  .ui-autocomplete {
-    -webkit-transform:scale(0.65);
-    -moz-transform:scale(0.65);
-    -ms-transform:scale(0.65);
-    transform:scale(0.65);
-  }
 }
 
 @media (max-width: 350px) {
@@ -366,11 +360,5 @@ a {
   }
   .about {
     font-size: 13px;
-  }
-  .ui-autocomplete {
-    -webkit-transform:scale(0.6);
-    -moz-transform:scale(0.6);
-    -ms-transform:scale(0.6);
-    transform:scale(0.6);
   }
 }
