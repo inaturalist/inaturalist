@@ -74,10 +74,10 @@
               %td.city= link_to project.title.gsub( "City Nature Challenge: ", "" ), project
               %td.ranks
                 :ruby
-                  total = ranks.map{|r| r.count }.sum
                   sorted_ranks = ranks.
                     select{|r| Taxon::RANK_LEVELS[r.rank] || r.rank.blank? }.
                     sort_by{|r| -1 * ( Taxon::RANK_LEVELS[r.rank] || 0 ) }
+                  total = sorted_ranks.map{|r| r.count }.sum
                 - sorted_ranks.each do |r|
                   :ruby
                     percent = r.count.to_f / total * 100
