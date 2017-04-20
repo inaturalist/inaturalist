@@ -7,6 +7,7 @@
   = stylesheet_link_tag "computer_vision/index"
   = javascript_include_tag "i18n"
   %meta{ name: "viewport", content: "width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" }
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   :javascript
     var SITE_ICONS = {
       cas: "#{ asset_url( "sites/logo-cas.svg" ) }",
