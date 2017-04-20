@@ -67,7 +67,7 @@ a {
   }
 }
 .intro {
-  max-width: 450px;
+  max-width: 700px;
   margin: 0px auto;
   padding: 0px;
   .start {
@@ -86,14 +86,14 @@ a {
   }
 }
 .about {
-  max-width: 420px;
+  max-width: 700px;
   margin: 0px auto;
   margin-top: 40px;
   padding: 0px;
   text-align: center;
   font-size: 16px;
   border-top: 1px solid #ccc;
-  padding: 20px 20px 50px 20px;
+  padding: 20px 40px 50px 40px;
   .logos {
     width: 100%;
     margin-top: 30px;
@@ -306,6 +306,7 @@ a {
     }
   }
   .about {
+    margin-top: 20px;
     padding: 20px 20px 50px 20px;
   }
   .vision-results {
@@ -335,6 +336,12 @@ a {
       padding: 20px 0 0 0;
     }
   }
+  .try-again {
+    padding-top: 20px;
+    button {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 @media (max-width: 500px) {
@@ -345,11 +352,25 @@ a {
       margin-bottom: 30px;
     }
   }
+  .ui-autocomplete {
+    -webkit-transform:scale(0.65);
+    -moz-transform:scale(0.65);
+    -ms-transform:scale(0.65);
+    transform:scale(0.65);
+  }
 }
 
 @media (max-width: 350px) {
+  .intro .start .drag_or_choose h1 {
+    font-size: 20px;
+  }
   .about {
     font-size: 13px;
-    margin-top: 20px;
+  }
+  .ui-autocomplete {
+    -webkit-transform:scale(0.6);
+    -moz-transform:scale(0.6);
+    -ms-transform:scale(0.6);
+    transform:scale(0.6);
   }
 }

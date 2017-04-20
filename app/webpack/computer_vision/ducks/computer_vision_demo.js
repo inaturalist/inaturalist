@@ -223,18 +223,20 @@ export function onFileDrop( droppedFiles ) {
   return dispatch => {
     if ( droppedFiles.length === 0 ) { return; }
     dispatch( resetState( ) );
-    let done;
-    droppedFiles.forEach( f => {
-      if ( done ) { return; }
-      if ( f.type.match( /^image\// ) ) {
-        done = true;
-        const obsCard = new ObsCard( );
-        obsCard.uploadedFile = DroppedFile.fromFile( f );
-        dispatch( setObsCard( obsCard ) );
-        dispatch( readFileExif( obsCard.uploadedFile ) );
-        dispatch( uploadImage( obsCard ) );
-      }
-    } );
+    setTimeout( ( ) => {
+      let done;
+      droppedFiles.forEach( f => {
+        if ( done ) { return; }
+        if ( f.type.match( /^image\// ) ) {
+          done = true;
+          const obsCard = new ObsCard( );
+          obsCard.uploadedFile = DroppedFile.fromFile( f );
+          dispatch( setObsCard( obsCard ) );
+          dispatch( readFileExif( obsCard.uploadedFile ) );
+          dispatch( uploadImage( obsCard ) );
+        }
+      } );
+    }, 1 );
   };
 }
 

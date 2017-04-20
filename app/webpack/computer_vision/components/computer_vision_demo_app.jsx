@@ -99,6 +99,19 @@ class ComputerVisionDemoApp extends Component {
   }
 
   visionResults( ) {
+    const obsCard = this.props.obsCard;
+    if ( _.isEmpty( obsCard.visionResults.results ) ) {
+      return (
+        <Row>
+          <Col xs={ 12 }>
+            <div className="statement">
+              Sorry, there were no results within {
+                obsCard.selected_taxon.preferred_common_name || obsCard.selected_taxon.name }
+            </div>
+          </Col>
+        </Row>
+      );
+    }
     return (
       <Row>
         <Col xs={ 12 }>
@@ -106,7 +119,7 @@ class ComputerVisionDemoApp extends Component {
             className="statement"
             dangerouslySetInnerHTML={ { __html: this.resultsStatement( ) } }
           />
-          { _.map( _.take( this.props.obsCard.visionResults.results, 10 ), result => (
+          { _.map( _.take( obsCard.visionResults.results, 10 ), result => (
             <Col xs={ 12 } className="result" key={ `result-${result.taxon.id}` }>
               <Row className="title">
                 <SplitTaxon taxon={ result.taxon } url={ `/taxa/${result.taxon.id}` } />
@@ -144,19 +157,20 @@ class ComputerVisionDemoApp extends Component {
     const ancestor = this.props.obsCard.visionResults &&
                      this.props.obsCard.visionResults.common_ancestor &&
                      this.props.obsCard.visionResults.common_ancestor.taxon;
+    const count = _.size( this.props.obsCard.visionResults.results );
     if ( ancestor ) {
       if ( ancestor.rank_level <= 10 ) {
         statement = `We're pretty sure this is
           <b>${ancestor.preferred_common_name || ancestor.name}</b>.
-          Here are our top 10 results:`;
+          Here are our top ${count} results:`;
       } else {
         statement = `We're pretty sure this is in the <a href="/taxa/${ancestor.id}">
           ${ancestor.rank} <b>${ancestor.preferred_common_name || ancestor.name}</b></a>.
-          Here are our top 10 results:`;
+          Here are our top ${count} results:`;
       }
     } else {
-      statement =
-        "We're not confident enough to make a recommendation, but here are our top 10 results:";
+      statement = `We're not confident enough to make a recommendation,
+        but here are our top ${count} results:`;
     }
     return statement;
   }
@@ -229,7 +243,7 @@ class ComputerVisionDemoApp extends Component {
         lowerSection = obsCard.visionResults ? (
           <Grid fluid className="vision-results">
             { this.visionResults( ) }
-            { this.refinementSuggestions( ) }
+            { _.isEmpty( obsCard.visionResults.results ) ? "" : this.refinementSuggestions( ) }
             { this.otherActionButtons( ) }
           </Grid>
         ) : (

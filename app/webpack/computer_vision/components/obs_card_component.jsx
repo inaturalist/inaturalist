@@ -56,30 +56,7 @@ class ObsCardComponent extends Component {
         </div>
       );
     }
-    //      <TaxonAutocomplete
-    //        small
-    //        bootstrap
-    //        searchExternal
-    //        showPlaceholder
-    //        perPage={ 6 }
-    //        resetOnChange={ false }
-    //        afterSelect={ r => {
-    //          if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
-    //            updateObsCard(
-    //              { taxon_id: r.item.id,
-    //                selected_taxon: r.item,
-    //                species_guess: r.item.title } );
-    //          }
-    //        } }
-    //        afterUnselect={ ( ) => {
-    //          if ( obsCard.selected_taxon ) {
-    //            updateObsCard(
-    //              { taxon_id: null,
-    //                selected_taxon: null,
-    //                species_guess: null } );
-    //          }
-    //        } }
-    //      />
+
     const loadingText = ( obsCard.uploadedFile.uploadState === "uploading" ||
       obsCard.uploadedFile.uploadState === "pending" ) ? I18n.t( "loading_metadata" ) : "\u00a0";
     const invalidDate = util.dateInvalid( obsCard.date );
@@ -95,6 +72,31 @@ class ObsCardComponent extends Component {
           <p className="photo-count">
             { loadingText }
           </p>
+          <TaxonAutocomplete
+            small
+            bootstrap
+            searchExternal
+            showPlaceholder
+            perPage={ 6 }
+            resetOnChange={ false }
+            searchExternal={ false }
+            afterSelect={ r => {
+              if ( !obsCard.selected_taxon || r.item.id !== obsCard.selected_taxon.id ) {
+                updateObsCard(
+                  { taxon_id: r.item.id,
+                    selected_taxon: r.item,
+                    species_guess: r.item.title } );
+              }
+            } }
+            afterUnselect={ ( ) => {
+              if ( obsCard.selected_taxon ) {
+                updateObsCard(
+                  { taxon_id: null,
+                    selected_taxon: null,
+                    species_guess: null } );
+              }
+            } }
+          />
           <DateTimeFieldWrapper
             ref="datetime"
             inputFormat="YYYY/MM/DD"
