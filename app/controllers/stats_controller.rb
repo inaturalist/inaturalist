@@ -330,11 +330,16 @@ class StatsController < ApplicationController
 
     @rank_counts = Observation.
       query( projects: project_ids ).
-      joins( :taxon, :projects ).
+      joins( :projects ).
+      joins( "LEFT OUTER JOIN taxa ON taxa.id = observations.taxon_id" ).
       select( "projects.slug, taxa.rank, count(*)" ).
-      group( "projects.slug, taxa.rank" ).
-      group_by{|o| o.slug }
-    Rails.logger.debug "[DEBUG] @rank_counts: #{@rank_counts}"
+      group( "projects.slug, taxa.rank" )
+    if params[:quality] == "research"
+      @rank_counts = @rank_counts.where( quality_grade: "research" )
+    elsif params[:quality] == "verifiable"
+      @rank_counts = @rank_counts.where( "quality_grade IN ('research', 'needs_id')" )
+    end
+    @rank_counts = @rank_counts.group_by{|o| o.slug }
 
     respond_to do |format|
       format.html{ render layout: "bootstrap" }

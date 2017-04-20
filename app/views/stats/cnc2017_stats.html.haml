@@ -3,8 +3,8 @@
 - content_for(:extracss) do
   :css
     .table th { cursor: pointer; }
-    .rank { color: white; white-space: nowrap; overflow: hidden; padding: 0; line-height: 20px; color: white; font-size: 9px; text-align: center; }
-    .ranks { display: flex; width: 100%; }
+    .rank { display: block; color: white !important; white-space: nowrap; overflow: hidden; padding: 0; line-height: 20px; color: white; font-size: 9px; text-align: center; }
+    .ranks { display: flex; }
     .taxon-ranks .city { width: 1%; white-space: nowrap; }
 - content_for(:extrajs) do
   = javascript_include_tag "d3.min"
@@ -25,7 +25,10 @@
         ]
       } );
       var scale = d3.scale.category20( )
-      d3.selectAll( ".rank" ).style("background-color", function( ) { return scale( $( this ).data( "rank" ) ) } );
+      d3.selectAll( ".rank" ).style("background-color", function( ) {
+        var rank = $( this ).data( "rank" );
+        return rank === "unknown" ? "#999" : scale( rank );
+      } );
     } );
 
 .container-fluid
@@ -38,7 +41,7 @@
           = select_tag :quality, options_for_select( ["any", "verifiable", "research"], params[:quality] ), data: { autosubmit: true }
         %label{ style: "margin-right: 1em; " }
           Project (optional)
-          = select_tag :project_id, "<option>Choose a Project</option>".html_safe + options_from_collection_for_select( @projects, :id, :title, @project.try(:id) )
+          = select_tag :project_id, "<option>Choose a Project</option>".html_safe + options_from_collection_for_select( @projects, :id, :title, @project.try(:id) ), data: { autosubmit: true }
       %h2 Counts
       %table#leaderboard.table
         %thead
@@ -63,17 +66,35 @@
         %thead
           %tr
             %th.city City 
-            %th.ranks Ranks
+            %th Ranks
         %tbody
           - @rank_counts.each do |slug, ranks|
-            - project = @projects.detect{ |p| p.slug == slug }
+            - next unless project = @projects.detect{ |p| p.slug == slug }
             %tr
               %td.city= link_to project.title.gsub( "City Nature Challenge: ", "" ), project
               %td.ranks
-                - total = ranks.map{|r| r.count }.sum
-                - ranks.sort_by{|rank| -1 * ( Taxon::RANK_LEVELS[rank.rank] || 0 ) }.each do |rank|
-                  %div{ class: "rank #{rank.rank}", style: "width: #{rank.count.to_f / total * 100}%", data: { rank: rank.rank }, title: "#{rank.rank} (#{rank.count})" }
-                    = "#{(rank.count.to_f / total * 100).round}% #{rank.rank} (#{rank.count})"
+                :ruby
+                  total = ranks.map{|r| r.count }.sum
+                  sorted_ranks = ranks.
+                    select{|r| Taxon::RANK_LEVELS[r.rank] || r.rank.blank? }.
+                    sort_by{|r| -1 * ( Taxon::RANK_LEVELS[r.rank] || 0 ) }
+                - sorted_ranks.each do |r|
+                  :ruby
+                    percent = r.count.to_f / total * 100
+                    rank = r.rank || "unknown"
+                    obs_params = { project_id: project.id, rank: r.rank, iconic_taxa: rank == "unknown" ? rank : nil }
+                    if params[:quality] == "research"
+                      obs_params[:quality_grade] = "research"
+                    elsif params[:quality] == "verifiable"
+                      obs_params[:verifiable] = "true"
+                    else
+                      obs_params[:verifiable] = "any"
+                    end
+                  %a{ class: "rank #{rank}", style: "width: #{percent}%", data: { rank: rank }, title: "#{percent.round}% #{rank} (#{r.count})", href: observations_url( obs_params ) }
+                    - if percent > 15
+                      = "#{percent.round}% #{rank} (#{r.count})"
+                    - else
+                      &nbsp;
 
       %h2
         Unique Taxon Contributors to
