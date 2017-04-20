@@ -97,20 +97,7 @@ describe CheckList, "refresh_with_observation" do
     lt = @check_list.listed_taxa.find_by_taxon_id( t.id )
     expect( lt.observations_count ).to eq 1
   end
-  
-  it "should update observations month counts" do
-    t = Taxon.make!( rank: Taxon::SPECIES )
-    o = make_research_grade_observation(
-      latitude: @place.latitude, longitude: @place.longitude, 
-      taxon: t, observed_on_string: "2011-10-01"
-    )
-    lt = @check_list.add_taxon( t )
-    expect( lt.observations_count ).to eq 0
-    without_delay { CheckList.refresh_with_observation( o ) }
-    lt = @check_list.listed_taxa.find_by_taxon_id( t.id )
-    expect( lt.observation_month_stats['10'] ).to eq 1
-  end
-  
+
   it "should add listed taxa" do
     o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
     expect( @check_list.taxon_ids ).not_to include @taxon.id

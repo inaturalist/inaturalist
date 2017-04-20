@@ -74,9 +74,8 @@
   <div class="observationcounts stacked">
     <div class="ui description">
       <strong><%= listed_taxon.observations_count %></strong>
-      <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>,
-      <%= t :research_grade %>
-    
+      <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>
+
     <% if logged_in? && current_user.is_admin? -%>
       <span class="button">
         <%= link_to t(:refresh).downcase, {
