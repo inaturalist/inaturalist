@@ -227,16 +227,16 @@ unless OPTS.skip_augmented
   log "Collecting augmented_test data with photos of non-target taxa"
   non_target_species_sql = <<-SQL
     SELECT
-      t.id AS taxon_id
+      ta.ancestor_taxon_id AS taxon_id
     FROM
-      taxa t
-        LEFT OUTER JOIN observations o ON o.taxon_id = t.id
+      observations o
+        JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
+        JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
     WHERE
-      t.rank_level = 10
-      AND t.rank = 'species'
-      AND o.quality_grade = 'research'
+      o.quality_grade = 'research'
+      AND tat.rank = 'species'
     GROUP BY
-      t.id
+      ta.ancestor_taxon_id
     HAVING
       COUNT( DISTINCT o.user_id ) < #{num_unique_users}
   SQL
