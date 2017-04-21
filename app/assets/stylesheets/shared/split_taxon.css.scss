@@ -1,6 +1,3 @@
-.SplitTaxon > *:after {
-  content: '\0020';
-}
 .SplitTaxon > *:first-child {
   content: '';
 }
@@ -12,5 +9,4 @@
 .taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
 .taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
 .taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
-.taxon .sciname .rank:after {content: ' ';}
 .taxon .altname { color: #aaa; }

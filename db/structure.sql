@@ -5396,6 +5396,14 @@ ALTER TABLE ONLY complete_sets
 
 
 --
+-- Name: computer_vision_demo_uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY computer_vision_demo_uploads
+    ADD CONSTRAINT computer_vision_demo_uploads_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: conservation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6336,6 +6344,13 @@ CREATE INDEX index_complete_sets_on_taxon_id_and_place_id ON complete_sets USING
 --
 
 CREATE INDEX index_complete_sets_on_user_id ON complete_sets USING btree (user_id);
+
+
+--
+-- Name: index_computer_vision_demo_uploads_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_computer_vision_demo_uploads_on_uuid ON computer_vision_demo_uploads USING btree (uuid);
 
 
 --

@@ -103,16 +103,6 @@ const SplitTaxon = ( {
     if ( !taxon ) {
       return null;
     }
-    const taxonRank = ( ) => {
-      if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
-        return (
-          <span className="rank">
-            { _.capitalize( I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) ) }
-          </span>
-        );
-      }
-      return null;
-    };
     let sciNameClass = `sciname ${taxon.rank}`;
     if ( !taxon.preferred_common_name ) {
       sciNameClass += ` display-name ${displayClassName || ""}`;
@@ -142,6 +132,20 @@ const SplitTaxon = ( {
         );
       }
     }
+    if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
+      return (
+        <LinkElement
+          className={sciNameClass}
+          href={ url }
+          onClick={ onClick }
+          target={ target }
+        >
+          <span className="rank">
+            { _.capitalize( I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) ) }
+          </span> { truncateText( name ) }
+        </LinkElement>
+      );
+    }
     return (
       <LinkElement
         className={sciNameClass}
@@ -149,7 +153,6 @@ const SplitTaxon = ( {
         onClick={ onClick }
         target={ target }
       >
-        { taxonRank( ) }
         { truncateText( name ) }
       </LinkElement>
     );
@@ -173,7 +176,7 @@ const SplitTaxon = ( {
   };
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) }{ displayName( ) }{ sciName( ) }{ inactive( ) }
+      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) }
     </span>
   );
 };
