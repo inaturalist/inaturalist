@@ -67,14 +67,12 @@ a {
   }
 }
 .intro {
-  max-width: 700px;
   margin: 0px auto;
   padding: 0px;
   .start {
-    margin-top: 10%;
+    margin-top: 7%;
   }
   .drag_or_choose {
-    margin: 0 4%;
     h1 {
       font-size: 32px;
       margin: 0;
@@ -86,7 +84,7 @@ a {
   }
 }
 .about {
-  max-width: 700px;
+  max-width: 66%;
   margin: 0px auto;
   margin-top: 40px;
   padding: 0px;
@@ -95,7 +93,8 @@ a {
   border-top: 1px solid #ccc;
   padding: 20px 40px 50px 40px;
   .logos {
-    width: 100%;
+    width: 75%;
+    margin: 0px auto;
     margin-top: 30px;
     .logo {
       width: 33.3%;
@@ -264,6 +263,15 @@ a {
   }
 }
 
+@media (max-width: 900px) {
+  .about {
+    max-width: 85%;
+    .logos {
+      width: 100%;
+    }
+  }
+}
+
 @media (max-width: 800px) {
   .vision-results {
     .statement {
@@ -306,8 +314,9 @@ a {
     }
   }
   .about {
-    margin-top: 20px;
-    padding: 20px 20px 50px 20px;
+    max-width: 100%;
+    margin-top: 10px;
+    padding: 20px 10px 50px 10px;
   }
   .vision-results {
     .statement {
@@ -352,6 +361,9 @@ a {
       margin-bottom: 30px;
     }
   }
+  .about .logos .logo img {
+    max-width: 90px;
+  }
 }
 
 @media (max-width: 350px) {
@@ -360,5 +372,8 @@ a {
   }
   .about {
     font-size: 13px;
+  }
+  .about .logos .logo img {
+    max-width: 75px;
   }
 }
