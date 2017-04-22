@@ -320,13 +320,18 @@ class StatsController < ApplicationController
     in_project_leaf_taxon_ids = [-1] if in_project_leaf_taxon_ids.blank?
     unique_taxon_ids = Observation.elastic_taxon_leaf_counts( in_project_elastic_params ).map{|taxon_id, count| count == 1 ? taxon_id : nil}.compact.uniq
     @unique_contributors = User.
-      select( "users.*, count(*) AS unique_count" ).
+      select( "users.*, count(*) AS unique_count, array_agg(observations.taxon_id) AS taxon_ids" ).
       joins( observations: :project_observations ).
       where( "project_observations.project_id = ?", @project ).
       where( "observations.taxon_id IN (?)", unique_taxon_ids ).
       group( "users.id" ).
       order( "count(*) DESC" ).
       limit( 100 )
+    if params[:quality] == "research"
+      @unique_contributors = @unique_contributors.where ( "observations.quality_grade = 'research'" )
+    elsif params[:quality] == "verifiable"
+      @unique_contributors = @unique_contributors.where ( "observations.quality_grade IN ('research', 'needs_id')" )
+    end
 
     @rank_counts = Observation.
       query( projects: project_ids ).
