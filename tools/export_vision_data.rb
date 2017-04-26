@@ -25,12 +25,42 @@ EOS
   opt :skip_augmented, "Skip export of augmented_test photos", type: :boolean, default: false
   opt :species_ids, "Only look at these species IDs. Mainly for testing", type: :integers
   opt :licenses, "Licenses to filter photos by", type: :strings
+  opt :quality, "Quality of observations to use when determining the Target Species. Values: research,confirmed", type: :string, default: "research"
   opt :debug, "Print lots of crap", type: :boolean
 end
 
 START = Time.now
 num_unique_users = OPTS.users
 TIMING = {}
+
+candidate_observations_sql = <<-SQL
+  SELECT
+    observations.id,
+    observations.taxon_id,
+    observations.community_taxon_id,
+    observations.user_id,
+    observations.quality_grade,
+    observations.license,
+    COUNT(failing_metrics.observation_id) AS num_failing_metrics
+  FROM
+    observations
+      LEFT OUTER JOIN (
+        SELECT observation_id, metric
+        FROM quality_metrics
+        WHERE metric != 'wild'
+        GROUP BY observation_id, metric
+        HAVING count(CASE WHEN agree THEN 1 ELSE null END) < count(CASE WHEN agree THEN null ELSE 1 END)
+      ) failing_metrics ON failing_metrics.observation_id = observations.id
+      LEFT OUTER JOIN flags ON flags.flaggable_type = 'Observation' AND flags.flaggable_id = observations.id AND NOT flags.resolved
+  WHERE
+    observations.observation_photos_count > 0
+    AND observations.community_taxon_id IS NOT NULL
+  GROUP BY
+    observations.id
+  HAVING
+    COUNT(failing_metrics.observation_id) = 0
+    AND COUNT(flags.id) = 0
+SQL
 
 def log( msg )
   puts "[#{(Time.now - START).round}s] #{msg}"
@@ -70,21 +100,42 @@ else
   # Select species with observations by at least a certain number of different
   # people. Photos of infraspecies will get included later when we query on
   # species
-  target_species_sql = <<-SQL
-    SELECT
-      ta.ancestor_taxon_id AS taxon_id
-    FROM
-      observations o
-        JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
-        JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
-    WHERE
-      o.quality_grade = 'research'
-      AND tat.rank = 'species'
-    GROUP BY
-      ta.ancestor_taxon_id
-    HAVING
-      COUNT( DISTINCT o.user_id ) >= #{num_unique_users}
-  SQL
+  target_species_sql = if OPTS.quality == "research"
+    <<-SQL
+      SELECT
+        ta.ancestor_taxon_id AS taxon_id
+      FROM
+        observations o
+          JOIN taxon_ancestors ta ON ta.taxon_id = o.community_taxon_id
+          JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
+          LEFT OUTER JOIN quality_metrics qm ON qm.observation_id = o.id
+      WHERE
+        tat.rank = 'species'
+        AND o.quality_grade = 'research'
+      GROUP BY
+        ta.ancestor_taxon_id
+      HAVING
+        COUNT( DISTINCT o.user_id ) >= #{num_unique_users}
+    SQL
+  else
+    <<-SQL
+      SELECT
+        ta.ancestor_taxon_id AS taxon_id
+      FROM
+        (
+          #{candidate_observations_sql}
+        ) o
+          JOIN taxon_ancestors ta ON ta.taxon_id = o.community_taxon_id
+          JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
+      WHERE
+        tat.rank = 'species'
+        AND o.num_failing_metrics = 0
+      GROUP BY
+        ta.ancestor_taxon_id
+      HAVING
+        COUNT( DISTINCT o.user_id ) >= #{num_unique_users};
+    SQL
+  end
   log "Collecting IDs for taxa observed by at least #{num_unique_users} people... "
   target_taxon_ids = run_with_timing( :query_target_species ) do
     run_sql( target_species_sql ).map{ |r| r["taxon_id"].to_i }.sort
@@ -122,14 +173,15 @@ CSV.open( photos_path, "wb" ) do |csv|
         COALESCE(NULLIF(u.name, ''), u.login) AS rights_holder
       FROM
         observation_photos op
-          JOIN observations o ON op.observation_id = o.id
+          JOIN #{OPTS.quality == "research" ? "observations" : "(#{candidate_observations_sql})"} o ON op.observation_id = o.id
           JOIN photos p ON op.photo_id = p.id
           JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
           JOIN taxa taa ON taa.id = ta.ancestor_taxon_id AND taa.rank = 'species'
           JOIN users u ON u.id = p.user_id
       WHERE
-        o.quality_grade IN ( 'research', 'needs_id' )
-        AND taa.id IN (#{group.join( "," )})
+        taa.id IN (#{group.join( "," )})
+        #{"AND o.quality_grade IN ( 'research', 'needs_id' )" if OPTS.quality == "research"}
+        #{"AND o.community_taxon_id IS NOT NULL" if OPTS.quality != "research"}
         #{"AND p.license IN (#{license_numbers.join( "," )})" unless license_numbers.blank?}
     SQL
     # For each species...
@@ -225,21 +277,41 @@ puts
 
 unless OPTS.skip_augmented
   log "Collecting augmented_test data with photos of non-target taxa"
-  non_target_species_sql = <<-SQL
-    SELECT
-      ta.ancestor_taxon_id AS taxon_id
-    FROM
-      observations o
-        JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
-        JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
-    WHERE
-      o.quality_grade = 'research'
-      AND tat.rank = 'species'
-    GROUP BY
-      ta.ancestor_taxon_id
-    HAVING
-      COUNT( DISTINCT o.user_id ) < #{num_unique_users}
-  SQL
+  non_target_species_sql = if OPTS.quality == "research"
+    <<-SQL
+      SELECT
+        ta.ancestor_taxon_id AS taxon_id
+      FROM
+        observations o
+          JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
+          JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
+      WHERE
+        o.quality_grade = 'research'
+        AND tat.rank = 'species'
+      GROUP BY
+        ta.ancestor_taxon_id
+      HAVING
+        COUNT( DISTINCT o.user_id ) < #{num_unique_users}
+    SQL
+  else
+    <<-SQL
+      SELECT
+        ta.ancestor_taxon_id AS taxon_id
+      FROM
+        (
+          #{candidate_observations_sql}
+        ) o
+          JOIN taxon_ancestors ta ON ta.taxon_id = o.community_taxon_id
+          JOIN taxa tat ON tat.id = ta.ancestor_taxon_id
+      WHERE
+        tat.rank = 'species'
+        AND o.num_failing_metrics = 0
+      GROUP BY
+        ta.ancestor_taxon_id
+      HAVING
+        COUNT( DISTINCT o.user_id ) < #{num_unique_users};
+    SQL
+  end
   log "Collecting IDs for taxa observed by less than #{num_unique_users} people... "
   non_target_taxon_ids = run_with_timing( :query_non_target_taxa) do
     run_sql( non_target_species_sql ).map{ |r| r["taxon_id"].to_i }.shuffle
@@ -271,14 +343,15 @@ unless OPTS.skip_augmented
           COALESCE(NULLIF(u.name, ''), u.login) AS rights_holder
         FROM
           observation_photos op
-            JOIN observations o ON op.observation_id = o.id
+            JOIN #{OPTS.quality == "research" ? "observations" : "(#{candidate_observations_sql})"} o ON op.observation_id = o.id
             JOIN photos p ON op.photo_id = p.id
             JOIN taxon_ancestors ta ON ta.taxon_id = o.taxon_id
             JOIN taxa taa ON taa.id = ta.ancestor_taxon_id AND taa.rank = 'species'
             JOIN users u ON u.id = p.user_id
         WHERE
-          o.quality_grade = 'research'
-          AND taa.id IN (#{group.join( "," )})
+          taa.id IN (#{group.join( "," )})
+          #{"AND o.quality_grade = 'research'" if OPTS.quality == "research"}
+          #{"AND o.community_taxon_id IS NOT NULL" if OPTS.quality != "research"}
           #{"AND p.license IN (#{license_numbers.join( "," )})" unless license_numbers.blank?}
       SQL
       non_target_photos = run_with_timing( :query_non_target_photos ) do
