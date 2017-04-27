@@ -432,7 +432,7 @@ class Project < ActiveRecord::Base
   def event_started?
     return nil if start_time.blank?
     if prefers_range_by_date?
-      start_time.to_date < Date.today
+      start_time.to_date <= Date.today
     else
       start_time < Time.now
     end
