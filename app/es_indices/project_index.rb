@@ -8,7 +8,7 @@ class Project < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :icon, index: "not_analyzed"
+      indexes :icon, type: "keyword", index: false
       indexes :title, analyzer: "ascii_snowball_analyzer"
       indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"

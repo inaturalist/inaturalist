@@ -15,54 +15,54 @@ class Taxon < ActiveRecord::Base
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :ancestry, index: "not_analyzed"
-      indexes :min_species_ancestry, index: "not_analyzed"
-      indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
-      indexes :rank, index: "not_analyzed"
+      indexes :ancestry, type: "keyword"
+      indexes :min_species_ancestry, type: "keyword"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :rank, type: "keyword"
       indexes :taxon_photos do
-        indexes :license_code, index: "not_analyzed"
+        indexes :license_code, type: "keyword"
         indexes :photo do
-          indexes :attribution, index: "not_analyzed"
-          indexes :license_code, index: "not_analyzed"
-          indexes :large_url, index: "not_analyzed"
-          indexes :medium_url, index: "not_analyzed"
-          indexes :small_url, index: "not_analyzed"
-          indexes :square_url, index: "not_analyzed"
-          indexes :url, index: "not_analyzed"
-          indexes :native_page_url, index: "not_analyzed"
-          indexes :native_photo_id, index: "not_analyzed"
-          indexes :type, index: "not_analyzed"
+          indexes :attribution, type: "keyword", index: false
+          indexes :license_code, type: "keyword"
+          indexes :large_url, type: "keyword", index: false
+          indexes :medium_url, type: "keyword", index: false
+          indexes :small_url, type: "keyword", index: false
+          indexes :square_url, type: "keyword", index: false
+          indexes :url, type: "keyword", index: false
+          indexes :native_page_url, type: "keyword", index: false
+          indexes :native_photo_id, type: "keyword", index: false
+          indexes :type, type: "keyword"
         end
       end
       indexes :colors do
-        indexes :value, index: "not_analyzed"
+        indexes :value, type: "keyword"
       end
       indexes :default_photo do
-        indexes :attribution, index: "not_analyzed"
-        indexes :license_code, index: "not_analyzed"
-        indexes :medium_url, index: "not_analyzed"
-        indexes :square_url, index: "not_analyzed"
-        indexes :url, index: "not_analyzed"
+        indexes :attribution, type: "keyword", index: false
+        indexes :license_code, type: "keyword"
+        indexes :medium_url, type: "keyword", index: false
+        indexes :square_url, type: "keyword", index: false
+        indexes :url, type: "keyword", index: false
       end
       indexes :listed_taxa do
-        indexes :establishment_means, index: "not_analyzed"
+        indexes :establishment_means, type: "keyword"
       end
       indexes :names do
-        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
-        indexes :locale, index: "not_analyzed"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :locale, type: "keyword"
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
         # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
-        indexes :name_ja, type: "string", analyzer: "kuromoji"
-        indexes :name_autocomplete, type: "string",
+        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :name_autocomplete, type: "text",
           analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
-        indexes :name_autocomplete_ja, type: "string", analyzer: "autocomplete_analyzer_ja"
-        indexes :exact, index: "not_analyzed"
+        indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
+        indexes :exact, type: "keyword"
       end
       indexes :statuses do
-        indexes :authority, index: "not_analyzed"
-        indexes :geoprivacy, index: "not_analyzed"
-        indexes :status, index: "not_analyzed"
+        indexes :authority, type: "keyword"
+        indexes :geoprivacy, type: "keyword"
+        indexes :status, type: "keyword"
       end
     end
   end
