@@ -10,7 +10,7 @@ class Observation < ActiveRecord::Base
 
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
-    :model_attribute_changes,
+    :model_attribute_changes, :observation_links,
     :votes_for,
     { annotations: :votes_for },
     { project_observations_with_changes: :model_attribute_changes },
