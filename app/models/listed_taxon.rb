@@ -428,7 +428,9 @@ class ListedTaxon < ActiveRecord::Base
 
   def index_taxon
     unless skip_index_taxon
-      Taxon.load_for_index.where(id: taxon.id).elastic_index!
+      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 30.minutes.from_now,
+        unique_hash: { "Taxon::elastic_index": taxon_id }).
+        elastic_index!(ids: [taxon_id])
     end
   end
 
