@@ -427,8 +427,8 @@ es:
   are_you_sure?: ¿Estás seguro?
   are_you_sure_no_undo: ¿Estás seguro? Esto no se puede deshacer.
   are_you_sure_delete_asset: ¿Estás seguro que deseas eliminar esta posesión?
-  are_you_sure_delete_observation_from_project: ¿Estás seguro de que deseas remover
-    esta observación de %{project}?
+  are_you_sure_delete_observation_from_project: ¿Confirma que quiere borrar esta observación
+    de %{project}?
   are_you_sure_delete_post: ¿Estás seguro que deseas eliminar este ingreso?
   are_you_sure_delete_taxon_move_associates: ¿Estás seguro que deseas eliminar %{taxonname}
     (%{taxonid}) y mover a todos sus asociados?
@@ -1258,8 +1258,8 @@ es:
     para %{site_name} por lo que no tiene permiso para acceder a esta foto.
   facebook_access_token_expired: El acceso de muestra ha expirado. El %{user} requiere
     volver a enlazar su cuenta de Facebook.
-  facebook_confirmation: Facebook desea confirmar que usted desea conectar su cuenta
-    a %{site_name}.
+  facebook_confirmation: Facebook solicita confirmación para conectar con la cuenta
+    de %{site_name}.
   facebook_needs_the_owner_of_that_photo_to: Facebook necesita la confirmación del
     propietario de esa foto para poder realizar la conexión a %{site_name_short}.
   facebook_options: Opciones de Facebook
@@ -2172,7 +2172,7 @@ es:
   no_facebook_photos: No podemos encontrar fotos en Facebook.
   no_flags: Sin marcas esta vez
   no_flickr_photos_tagged: ¡No hay fotos etiquetadas con Flickr!
-  no_header_row: No hay encabezado de fila
+  no_header_row: No hay fila de cabecera
   no_identifications: Sin identificaciones
   no_identifications_added:
     current_user: No has añadido identificaciones a ninguna observación.
@@ -4223,7 +4223,7 @@ es:
   you_must_be_project_manager_to_do_that: Debes ser gerente de proyecto para poder
     hacer eso.
   you_must_choose_an_observation_field: Debes elegir un campo de observación
-  you_must_have_a_header_row: Debes tener una fila de encabezado
+  you_must_have_a_header_row: Debes tener una fila de cabecera
   you_must_select_a_csv_file_to_upload: Debes seleccionar un archivo CSV para subir.
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
   you_must_select_at_least_one_taxon: Debe seleccionar al menos un taxón
@@ -4248,10 +4248,10 @@ es:
   you_sure_delete_custom_field?: ¿Está seguro de que desea eliminar estos campos personalizados?
   you_sure_delete_flag?: ¿Estás seguro de querer eliminar esta marca?
   you_sure_delete_project?: ¿Estás seguro de que quieres eliminar este proyecto?
-  you_sure_delete_this_observation: ¿Está seguro de que desea remover esta observación?
+  you_sure_delete_this_observation: ¿Confirma que quiere borrar esta observación?
   you_sure_remove_taxon_from?: ¿Está seguro que desea quitar este taxón de %{list}?
-  you_sure_remove_this_invitation?: ¿Está seguro de que desea remover esta invitación?
-  you_sure_remove_this_observation?: ¿Está seguro de que desea remover esta observación?
+  you_sure_remove_this_invitation?: ¿Confirma que quiere quitar esta invitación?
+  you_sure_remove_this_observation?: ¿Confirma que quiere quitar esta observación?
   you_tried_to_do_something_you_shouldnt: |-
     Intentaste hacer algo que no deberías, como editar
     la información de alguien más sin permiso. No seas malvado.
@@ -5578,7 +5578,7 @@ es:
         even: debe ser par
         exclusion: está reservado
         greater_than: debe ser menor que %{count}
-        greater_than_or_equal_to: debe ser mayor o igual a %{count}
+        greater_than_or_equal_to: debe ser mayor o igual que %{count}
         inclusion: no está incluido en la lista
         invalid: no es válido
         less_than: debe ser menor que %{count}
