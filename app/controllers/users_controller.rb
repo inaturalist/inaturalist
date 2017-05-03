@@ -600,6 +600,15 @@ class UsersController < ApplicationController
       @display_user = User.find_by_id(params[:id].to_i)
       @display_user ||= User.find_by_login(params[:id])
       @display_user ||= User.find_by_email(params[:id])
+      @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
+      @display_user ||= User.elastic_paginate( query: {
+        bool: {
+          should: [
+            { match: { name: { query: params[:id], operator: "and" } } },
+            { match: { login: { query: params[:id], operator: "and" } } }
+          ]
+        }
+      } ).first
       if @display_user.blank?
         flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
