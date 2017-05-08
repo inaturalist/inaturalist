@@ -95,9 +95,6 @@ class ProjectObservation < ActiveRecord::Base
 
   after_save :update_project_list_if_curator_ident_changed
 
-  WATCH_FIELDS_CHANGED_AT = { curator_identification_id: true }
-  include FieldsChangedAt
-
   include Shared::TouchesObservationModule
 
   def update_project_list_if_curator_ident_changed
