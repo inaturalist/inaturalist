@@ -72,10 +72,10 @@ body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions 
 .ObservationModal .image-gallery-content {
   position: relative
 }
-.ObservationModal .image-gallery,
-.ObservationModal .image-gallery-content,
-.ObservationModal .sidebar {
-}
+// .ObservationModal .image-gallery,
+// .ObservationModal .image-gallery-content,
+// .ObservationModal .sidebar {
+// }
 .ObservationModal .image-gallery-content img {
   display: block;
   margin: 0 auto;
@@ -103,6 +103,7 @@ body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions 
   overflow-y: auto;
   border-left: 1px solid #ddd;
   padding-left: 20px;
+  display: flex;
 }
 .ObservationModal .modal-title {
   font-size: 16px;
@@ -355,7 +356,8 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   display: none;
 }
 .ObservationModal .inat-tab.active {
-  display: block;
+  display: flex;
+  flex: 2;
 }
 
 .ObservationModal .map-and-details {

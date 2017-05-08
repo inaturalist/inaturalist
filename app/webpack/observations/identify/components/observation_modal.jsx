@@ -16,21 +16,29 @@ import moment from "moment";
 import DiscussionListContainer from "../containers/discussion_list_container";
 import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
+import SuggestionsContainer from "../containers/suggestions_container";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 
 class ObservationModal extends React.Component {
-  constructor( props ) {
-    super( props );
-    this.state = {
-      tab: "info"
-    };
-  }
-  chooseTab( tab ) {
-    this.setState( { tab } );
-  }
+  // constructor( props ) {
+  //   super( props );
+  //   this.state = {
+  //     tab: "info",
+  //     loaded: {}
+  //   };
+  // }
+  // chooseTab( tab ) {
+  //   this.setState( { tab } );
+  // }
+  // loadSuggestions( options = {} ) {
+  //   if ( tab === "suggestions" && ( options.force || !this.state.loaded.suggestions ) ) {
+  //     this.props.fetchSuggestions( { observation_id: this.props.observation.id } );
+  //     this.setState( { loaded: { suggestions: true } } );
+  //   }
+  // }
   render( ) {
     const {
       onClose,
@@ -51,7 +59,9 @@ class ObservationModal extends React.Component {
       showNextObservation,
       showPrevObservation,
       agreeingWithObservation,
-      blind
+      blind,
+      tab,
+      chooseTab
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -170,12 +180,12 @@ class ObservationModal extends React.Component {
           </Modal.Title>
           <ul className="inat-tabs">
             {["info", "annotations", "data-quality", "suggestions"].map( tabName => (
-              <li className={this.state.tab === tabName ? "active" : ""}>
+              <li className={tab === tabName ? "active" : ""}>
                 <a
                   href="#"
                   onClick={ e => {
                     e.preventDefault( );
-                    this.chooseTab( tabName );
+                    chooseTab( tabName );
                     return false;
                   } }
                 >
@@ -191,7 +201,7 @@ class ObservationModal extends React.Component {
             { sounds }
           </div>
           <div className="sidebar">
-            <div className={`inat-tab info-tab ${this.state.tab === "info" ? "active" : ""}`}>
+            <div className={`inat-tab info-tab ${tab === "info" ? "active" : ""}`}>
               <div className="map-and-details">
                 { taxonMap }
                 <ul className="details">
@@ -253,14 +263,14 @@ class ObservationModal extends React.Component {
                 } }
               />
             </div>
-            <div className={`inat-tab annotations-tab ${this.state.tab === "annotations" ? "active" : ""}`}>
+            <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
               annotations
             </div>
-            <div className={`inat-tab data-quality-tab ${this.state.tab === "data-quality" ? "active" : ""}`}>
+            <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
               data-quality
             </div>
-            <div className={`inat-tab suggestions-tab ${this.state.tab === "suggestions" ? "active" : ""}`}>
-              suggestions
+            <div className={`inat-tab suggestions-tab ${tab === "suggestions" ? "active" : ""}`}>
+              <SuggestionsContainer />
             </div>
           </div>
           <Button className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
@@ -445,7 +455,9 @@ ObservationModal.propTypes = {
   showNextObservation: PropTypes.func,
   showPrevObservation: PropTypes.func,
   agreeingWithObservation: PropTypes.bool,
-  blind: PropTypes.bool
+  blind: PropTypes.bool,
+  tab: PropTypes.bool,
+  chooseTab: PropTypes.func
 };
 
 export default ObservationModal;

@@ -6,7 +6,9 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 @import "../colors";
 @import "../shared/split_taxon";
+@import "../shared/taxon_photo";
 @import "identify/blind";
+@import "identify/suggestions";
 
 .btn-checkbox {
   display: inline-block;

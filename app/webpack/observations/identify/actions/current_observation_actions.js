@@ -4,6 +4,7 @@ import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
+import { fetchSuggestions } from "../ducks/suggestions";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -35,10 +36,9 @@ function receiveCurrentObservation( observation, others ) {
   } );
 }
 
-function updateCurrentObservation( observation, updates ) {
+function updateCurrentObservation( updates ) {
   return Object.assign( { }, {
     type: UPDATE_CURRENT_OBSERVATION,
-    observation,
     updates
   } );
 }
@@ -87,13 +87,16 @@ function fetchCurrentObservation( observation = null ) {
           currentState.currentObservation.observation &&
           currentState.currentObservation.observation.id === obs.id
         ) {
-          dispatch(
-            receiveCurrentObservation( newObs, {
-              captiveByCurrentUser,
-              reviewedByCurrentUser,
-              currentUserIdentification
-            } )
-          );
+          dispatch( receiveCurrentObservation( newObs, {
+            captiveByCurrentUser,
+            reviewedByCurrentUser,
+            currentUserIdentification
+          } ) );
+        }
+      } )
+      .then( ( ) => {
+        if ( s.currentObservation.tab === "suggestions" ) {
+          dispatch( fetchSuggestions( ) );
         }
       } );
   };
@@ -182,7 +185,7 @@ function toggleCaptive( ) {
     const s = getState( );
     const observation = s.currentObservation.observation;
     const agree = observation.captiveByCurrentUser;
-    dispatch( updateCurrentObservation( observation, {
+    dispatch( updateCurrentObservation( {
       captiveByCurrentUser: !observation.captiveByCurrentUser,
       reviewedByCurrentUser: true
     } ) );
@@ -203,7 +206,7 @@ function toggleReviewed( optionalObs = null ) {
       s.currentObservation.observation &&
       observation.id === s.currentObservation.observation.id
     ) {
-      dispatch( updateCurrentObservation( observation, {
+      dispatch( updateCurrentObservation( {
         reviewedByCurrentUser: !reviewed
       } ) );
     }

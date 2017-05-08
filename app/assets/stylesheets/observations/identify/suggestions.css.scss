@@ -1,0 +1,46 @@
+.Suggestions {
+  position: relative;
+  display: flex;
+  flex: 2;
+  overflow-x: hidden;
+
+  .suggestions-wrapper {
+    transition: 0.5s;
+    display: flex;
+    width: 200%;
+    position: absolute;
+    left: 0;
+  }
+
+  .suggestions-wrapper.with-detail {
+    transition: 0.5s;
+    left: -100%;
+    .suggestions-list { height: 0px; overflow: hidden; }
+  }
+
+  .suggestions-list,
+  .suggestions-detail {
+    width: 50%;
+  }
+  .suggestions-list { background-color: pink; }
+  .suggestions-detail { background-color: lightgreen; }
+  .photos {
+    margin: -2.5px;
+    line-height: 0;
+    display: flex;
+  }
+  .TaxonPhoto {
+    display: inline-block;
+    margin: 2.5px;
+    // flex: 1;
+    // width: 100% !important;
+  }
+  .TaxonPhoto .actions {
+    margin-top: -60px;
+  }
+
+}
+
+.ObservationModal .modal-body .Suggestions .image-gallery {
+  height: 500px;
+}

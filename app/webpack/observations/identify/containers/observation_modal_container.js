@@ -8,8 +8,12 @@ import {
   toggleReviewed,
   agreeWithCurrentObservation,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  updateCurrentObservation
 } from "../actions";
+import {
+  fetchSuggestions
+} from "../ducks/suggestions";
 
 function mapStateToProps( state ) {
   let images;
@@ -51,6 +55,12 @@ function mapDispatchToProps( dispatch ) {
     },
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
+    },
+    chooseTab: tab => {
+      dispatch( updateCurrentObservation( { tab } ) );
+      if ( tab === "suggestions" ) {
+        dispatch( fetchSuggestions( ) );
+      }
     }
   };
 }

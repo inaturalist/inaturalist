@@ -27,7 +27,7 @@ const updateLoadingForItemInObs = ( item, observation, isLoading ) => {
   return obs;
 };
 
-const currentObservationReducer = ( state = {}, action ) => {
+const currentObservationReducer = ( state = { tab: "info" }, action ) => {
   switch ( action.type ) {
     case SHOW_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
