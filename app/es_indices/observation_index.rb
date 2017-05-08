@@ -10,10 +10,9 @@ class Observation < ActiveRecord::Base
 
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
-    :model_attribute_changes, :observation_links,
+    :observation_links,
     :votes_for,
     { annotations: :votes_for },
-    { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
@@ -58,10 +57,6 @@ class Observation < ActiveRecord::Base
         indexes :user do
           indexes :login, type: "keyword"
         end
-      end
-      indexes :field_change_times, type: :nested do
-        indexes :field_name, type: "keyword"
-        indexes :keyword, type: "keyword"
       end
       indexes :comments do
         indexes :uuid, type: "keyword"
@@ -182,7 +177,6 @@ class Observation < ActiveRecord::Base
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,
         obscured: coordinates_obscured? || geoprivacy_obscured?,
-        field_change_times: field_changes_to_index,
         positional_accuracy: positional_accuracy,
         public_positional_accuracy: public_positional_accuracy,
         location: (latitude && longitude) ?
@@ -647,34 +641,6 @@ class Observation < ActiveRecord::Base
       end
     end
 
-    if p[:changed_since]
-      if changedDate = DateTime.parse(p[:changed_since])
-        changed_since_filters = [ { range: { "field_change_times.changed_at": {
-          gte: changedDate.strftime("%F") }}}]
-        if p[:changed_fields]
-          # one of these fields must have changed (and have that recorded by Rails)
-          changed_since_filters << {
-            terms: { "field_change_times.field_name": p[:changed_fields].split(",") }
-          }
-        end
-        if p[:change_project_id]
-          # project curator ID must have changed for these projects
-          changed_since_filters << { bool: { should: [
-            { terms: { "field_change_times.project_id": p[:change_project_id].split(",") } },
-            { bool: { must_not: { exists: { field: "field_change_times.project_id" } } } }
-          ]}}
-        end
-        search_filters << {
-          nested: {
-            path: "field_change_times",
-            query: { bool: {
-              must: changed_since_filters
-            } }
-          }
-        }
-      end
-    end
-
     if p[:popular].yesish?
       search_filters << { range: { cached_votes_total: { gte: 1 } } }
     elsif p[:popular].noish?
@@ -750,28 +716,6 @@ class Observation < ActiveRecord::Base
       ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = t.establishment_means_in_place?(
       "endemic", places)
-  end
-
-  # returns an array of change hashes:
-  #   [ { field_name: "geom", changed_at: ... },
-  #     { field_name: "curator_identification_id",
-  #       project_id: 1, changed_at: ... } ]
-  def field_changes_to_index
-    # get all the changes for this observation
-    changes = model_attribute_changes.map do |c|
-      { field_name: c.field_name, changed_at: c.changed_at }
-    end
-    # get all the project curator IDs for this obs
-    if project_observations_with_changes.length > 0
-      changes += project_observations_with_changes.map do |po|
-        po.model_attribute_changes.map do |c|
-          return unless c.field_name == "curator_identification_id"
-          { field_name: "project_curator_id", project_id: po.project_id,
-              changed_at: c.changed_at }
-        end
-      end.flatten.compact
-    end
-    changes
   end
 
 end

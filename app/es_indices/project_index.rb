@@ -12,7 +12,7 @@ class Project < ActiveRecord::Base
       indexes :title, analyzer: "ascii_snowball_analyzer"
       indexes :title_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
-      indexes :title_exact, analyzer: "keyword_analyzer"
+      indexes :title_exact, type: "keyword"
       indexes :description, analyzer: "ascii_snowball_analyzer"
       indexes :slug, analyzer: "keyword_analyzer"
       indexes :location, type: "geo_point"

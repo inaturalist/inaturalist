@@ -75,10 +75,6 @@ class ObservationsExportFlowTask < FlowTask
     includes << { observation_field_values: :observation_field }
     includes << :photos if export_columns.detect{ |c| c == 'image_url' }
     includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
-    if params[:changed_since]
-      includes << :model_attribute_changes
-      includes << { project_observations_with_changes: :model_attribute_changes }
-    end
     includes
   end
 
@@ -90,7 +86,6 @@ class ObservationsExportFlowTask < FlowTask
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
     json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
-    json_opts[:methods] = [:last_changed] if export_columns.include?("last_changed")
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
     open(json_path, "w") do |f|
       f << "["
@@ -132,9 +127,7 @@ class ObservationsExportFlowTask < FlowTask
           logger.info "Obs #{obs_i} (#{observation.id})" if @debug
           csv << columns.map do |c|
             c = "cached_tag_list" if c == "tag_list"
-            if c == "last_changed"
-              observation.send(c, params) rescue nil
-            elsif c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
+            if c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
               nil
             else
               observation.send(c) rescue nil
@@ -189,9 +182,6 @@ class ObservationsExportFlowTask < FlowTask
       if filter_user = User.find_by_id(user_id) || User.find_by_login(user_id)
         filter_user === user
       end
-    end
-    if params[:changed_since]
-      exp_columns << "last_changed"
     end
     unless viewer_curates_project || viewer_is_owner
       exp_columns = exp_columns.select{|c| c !~ /^private_/}
