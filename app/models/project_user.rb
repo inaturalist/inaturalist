@@ -77,7 +77,9 @@ class ProjectUser < ActiveRecord::Base
   def update_project_observations_curator_coordinate_access
     project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
       po.set_curator_coordinate_access( force: true )
-      po.save!
+      unless po.save
+        Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+      end
     end
   end
 
