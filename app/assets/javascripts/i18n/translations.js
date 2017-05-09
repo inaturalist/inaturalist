@@ -457,7 +457,7 @@ I18n.translations["bg"] = {
       "h": "1ч",
       "d": "1д",
       "M": "1мес",
-      "1": "1г"
+      "y": "1г"
     }
   },
   "months": "Месеци",
@@ -1687,7 +1687,7 @@ I18n.translations["ca"] = {
   "finished_with_page": "Acabat Amb Pàgina",
   "first_observation": "Primera Observació",
   "first_observation_by_date_added": "Primera observació segons la data quan es va afegir",
-  "flag": "Notifica",
+  "flag": "Marca",
   "flag_an_item": "Marca un contingut",
   "flag_for_curation": "Marca per a supervisió.",
   "flickr_has_no_creative_commons": "Flickr no té fotos etiquetades amb llicència Creative Commons per a aquest lloc.",
@@ -1842,7 +1842,7 @@ I18n.translations["ca"] = {
       "dd": "%dd",
       "M": "1 mes",
       "MM": "%d mes",
-      "1": "1a",
+      "y": "1a",
       "yy": "%da"
     }
   },
@@ -4357,7 +4357,7 @@ I18n.translations["es"] = {
       "dd": "%dd",
       "M": "1 mes",
       "MM": "%d mes",
-      "1": "1a",
+      "y": "1a",
       "yy": "%da"
     }
   },
@@ -4807,6 +4807,9 @@ I18n.translations["es"] = {
         "about_conservation_status_desc": "El estado de conservación sintetiza el riesgo de extinción de un grupo de organismos.",
         "about_establishment_desc": "«Medios de establecimiento» describe cómo llegó una especie adonde se encuentra. <i>Introducida</i> significa que llegó por la actividad humana, <i>nativa</i> que ocurrió sin intervención humana. Las especies endémicas se encuentran solo en un lugar concreto.",
         "about_names_desc": "<p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href=\"https://es.wikipedia.org/wiki/Nomenclatura_binominal\">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>\n<p>Como resume el antiguo dicho: «Los nombre comunes cambian de sitio en sitio, los científicos de cuando en cuando».</p>\n<p>Afrontamos esta cuestión citando los nombres comunes y científicos si es posible, y eligiendo los nombres comunes de acuedo con el idioma y las preferencias geográficas del lector.</p>",
+        "charts_help_history": "Este gráfico muestra el número de observaciones de este taxón por meses durante los últimos diez años. Una vez más, puede estar sesgada por el número de observadores, puede mostrar picos inusuales en las observaciones, pero si parece plana o decreciente a pesar de un número creciente de observadores, podría sugerir un cambio en la abundancia.",
+        "charts_help_other": "También mostramos los gráficos de estacionalidad para anotar las observaciones.\nLas anotaciones son un sistema nuevo de añadir metadatos a las observaciones, utilizando un vocabulario definido de términos. Por ahora sólo estamos usando \"Etapa Vital\" y \"Fenología vegetal\" (para determinar si la planta está floreciendo o fructificando). Todavía no tenemos una manera de añadir anotaciones directamente, por lo que estamos transformando datos de los campos de observación al de anotaciones.\nSi no puedes esperar que acabamos el sistema de anotaciones, puedes contribuir a las anotaciones de \"Etapa Vital\" añadiendo al campo de observación algunos de los valores siguientes: edad, ecdisis, pupa, ninfa, larva, huevo, o juvenil para los campos \"Etapa Vital\" y \"Etapa Vital de los Insectos\". Para la \"Fenología vegetal,\" buscamos cualquier campo con la palabra \"Fenología\" en su nombre y \"Flor\" o \"Fruto\" en el valor, por lo que el campo \"Floración Fenología\" puede ser buen nombre.",
+        "charts_help_seasonality": "Este gráfico muestra el número de observaciones de este taxón agrupadas por mes. Tenga en cuenta que se trata del número de observaciones, por lo que dependes tanto del momento en el que el organismo puede ser observado como de cuantas personas están participando en su observación. Así, un pájaro podría parecer muy activo en mayo, pero también podría ser debido a que la mayoría de los ornitólogos la citan en mayo pero que tienden a ignorarla los últimos meses. De manera similar, si indica más libélulas en junio que en enero, puede deberse a que hay más observadores en el hemisferio norte que en el hemisferio sur y no porque las libélulas sean más activas en junio, así que compruebe el mapa al considerar estos graficos. Siempre es mejor desconfiar de estos gráficos cuando hay un bajo número de observaciones y/o grandes discrepancias entre el número de observaciones \"verificables\" y de \"grado de investigación\".",
         "frequency": {
           "research": "Grado de investigación",
           "verifiable": "Verificable",
@@ -6722,6 +6725,7 @@ I18n.translations["fi"] = {
   "endemic_to_x": "Endeeminen paikassa %{x}",
   "exact_date": "Tarkka päivämäärä",
   "exact_location": "Tarkka_sijainti",
+  "exporting": "Viedään...",
   "extinct": "kuollut sukupuuttoon",
   "failed_to_find_your_location": "Sijaintisi paikantaminen epäonnistui.",
   "faves": "Suosikit",
@@ -7507,7 +7511,7 @@ I18n.translations["fr"] = {
       "dd": "%dd",
       "M": "1min",
       "MM": "%dmo",
-      "1": "1y",
+      "y": "1y",
       "yy": "%dy"
     }
   },
@@ -9290,7 +9294,7 @@ I18n.translations["id"] = {
       "dd": "%dd",
       "M": "1 bulan",
       "MM": "%dmo",
-      "1": "1 tahun",
+      "y": "1 tahun",
       "yy": "%dy"
     }
   },
@@ -10193,7 +10197,7 @@ I18n.translations["it"] = {
       "dd": "%d g",
       "M": "1 mese",
       "MM": "%d mesi",
-      "1": "1 anno",
+      "y": "1 anno",
       "yy": "%d anni"
     }
   },
@@ -11235,7 +11239,7 @@ I18n.translations["ja"] = {
       "dd": "%dd",
       "M": "1分",
       "MM": "%dmo",
-      "1": "1年",
+      "y": "1年",
       "yy": "%dy"
     }
   },
@@ -15822,7 +15826,7 @@ I18n.translations["zh-CN"] = {
       "dd": "%dd",
       "M": "1分钟",
       "MM": "%dm",
-      "1": "1y",
+      "y": "1y",
       "yy": "%dy"
     }
   },
