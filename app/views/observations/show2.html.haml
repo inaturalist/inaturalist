@@ -1,0 +1,44 @@
+- content_for :title do
+  - if @observation.taxon
+    = raw [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?}
+  - elsif !@observation.species_guess.blank?
+    = @observation.species_guess
+  - else
+    = t(:something)
+  = t(:observed_by).downcase
+  = @observation.user.login
+  - if @observation.time_observed_at && @coordinates_viewable
+    = l @observation.time_observed_at, :format => :observed_at
+  - if @observation.observed_on
+    - date_format = @observation.observed_on.to_s(:long).split(" ")
+    = t :on_
+    = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
+- content_for :extrahead do
+  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  :javascript
+    var INITIAL_OBSERVATION_ID = #{@observation.id};
+    var SITE = {
+      name: "#{@site ? @site.name : CONFIG.site_name}",
+      help_email: "#{CONFIG.help_email}"
+    };
+    var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
+      only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
+    var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
+      only: [ :id ], include: { default_name: { only: [ :name ] } } ) : "{ }" };
+    var OUTLINK_SITE_ICONS = {
+      "Atlas of Living Australia": "#{ asset_url( "sites/ala.png" ) }",
+      "Calflora": "#{ asset_url( "sites/calflora.png" ) }",
+      "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
+      "GloBI": "#{ asset_url( "sites/globi.png" ) }",
+    }
+- content_for :extracss do
+  - # needed for tooltips
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  = stylesheet_link_tag "observations/show2"
+- content_for :extrajs do
+  = javascript_include_tag "observations-show-webpack"
+
+#app
+  #initial-loading.text-center
+    .loading_spinner

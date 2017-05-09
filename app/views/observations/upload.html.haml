@@ -1,3 +1,5 @@
+- content_for :title do
+  =t :add_observations
 - content_for :extrahead do
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ current_user.recent_observation_fields.to_json(only:

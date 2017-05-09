@@ -28,6 +28,15 @@ class ProjectObservationField < ActiveRecord::Base
     true
   end
 
+  def as_indexed_json(options={})
+    return {
+      id: id,
+      required: required,
+      observation_field: observation_field.as_indexed_json,
+      position: position
+    }
+  end
+
   def self.default_json_options
     {
       :methods => [:created_at_utc, :updated_at_utc],

@@ -6,5 +6,5 @@
     {{ taxon.preferred_common_name }}
   %a{:class => "sciname {{ taxon.rank }} {{ taxon.preferred_common_name ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "taxon.name", target: "_self" }><
     %span.rank{"ng-show" => "taxon.preferred_common_name && taxon.rank_level > 10"}><
-      {{ taxon.rank | capitalize }}
+      {{ taxon.rank | capitalize }}&nbsp;
     {{ taxon.name }}

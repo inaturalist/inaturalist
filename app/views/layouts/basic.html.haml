@@ -2,10 +2,8 @@
 %html
   %head
     %title
-      = CONFIG.site_name
-      - if content_for?(:title)
-        &middot;
-        = yield(:title)
+      = content_for(:title) ? "#{content_for(:title)} · " : ""
+      = @site.try(:name)
     = favicon_link_tag
     = csrf_meta_tag
     - if logged_in?

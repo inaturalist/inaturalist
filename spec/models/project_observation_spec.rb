@@ -330,6 +330,8 @@ end
 
 describe ProjectObservation, "has_a_photo?" do
   let(:p) { Project.make! }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
@@ -346,6 +348,8 @@ end
 
 describe ProjectObservation, "has_a_sound?" do
   let(:p) { Project.make! }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should be true if sound present" do
     os = ObservationSound.make!
     o = os.observation
@@ -364,6 +368,8 @@ end
 
 describe ProjectObservation, "has_media?" do
   let(:p) { Project.make! }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)

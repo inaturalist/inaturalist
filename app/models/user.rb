@@ -130,7 +130,7 @@ class User < ActiveRecord::Base
     }
   }
 
-  if Rails.env.production?
+  if Rails.env.production? || Rails.env.prod_dev?
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -556,7 +556,8 @@ class User < ActiveRecord::Base
   
   def self.find_for_authentication(conditions = {})
     s = conditions[:email].to_s.downcase
-    active.where("lower(login) = ? OR lower(email) = ?", s, s).first
+    active.where("lower(login) = ?", s).first ||
+      active.where("lower(email) = ?", s).first
   end
   
   # http://stackoverflow.com/questions/6724494
@@ -644,23 +645,6 @@ class User < ActiveRecord::Base
     taxon_ids = life_list.taxon_ids
     project_ids = self.project_ids
 
-    # transition ownership of projects with observations, delete the rest
-    Project.where(:user_id => id).find_each do |p|
-      if p.observations.exists?
-        if manager = p.project_users.managers.where("user_id != ?", id).first
-          p.user = manager.user
-          manager.role_will_change!
-          manager.save
-        else
-          pu = ProjectUser.create(:user => User.admins.first, :project => p)
-          p.user = pu.user
-        end
-        p.save
-      else
-        p.destroy
-      end
-    end
-
     # delete lists without triggering most of the callbacks
     lists.where("type = 'List'").find_each do |l|
       l.listed_taxa.find_each do |lt|
@@ -678,6 +662,23 @@ class User < ActiveRecord::Base
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
       o.destroy
+    end
+
+    # transition ownership of projects with observations, delete the rest
+    Project.where(:user_id => id).find_each do |p|
+      if p.observations.exists?
+        if manager = p.project_users.managers.where("user_id != ?", id).first
+          p.user = manager.user
+          manager.role_will_change!
+          manager.save
+        else
+          pu = ProjectUser.create(:user => User.admins.first, :project => p)
+          p.user = pu.user
+        end
+        p.save
+      else
+        p.destroy
+      end
     end
 
     # delete the user

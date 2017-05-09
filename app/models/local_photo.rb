@@ -112,7 +112,8 @@ class LocalPhoto < Photo
 
   def extract_metadata(path = nil)
     return unless file && (path || !file.queued_for_write.blank?)
-    metadata ||= { dimensions: { } }
+    metadata = self.metadata.to_h.clone || {}
+    metadata[:dimensions] ||= { }
     begin
       file.styles.keys.each do |style|
         metadata[:dimensions][style] = extract_dimensions(style)
@@ -140,7 +141,8 @@ class LocalPhoto < Photo
       raise e unless e.message =~ /no implicit conversion of Fixnum into String/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
-    self.metadata = metadata.force_utf8
+    metadata = metadata.force_utf8
+    self.metadata = metadata
   end
 
   def set_urls

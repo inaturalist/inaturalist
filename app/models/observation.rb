@@ -859,7 +859,13 @@ class Observation < ActiveRecord::Base
     date_string.gsub!(/\(.*\)/, '')
 
     # strip noon hour madness
-    date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?(a|p)\.?m\.?/i, '\\1')
+    # this is due to a weird, weird bug in Chronic
+    if date_string =~ /p\.?m\.?/i
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1')
+    elsif date_string =~ /a\.?m\.?/i
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
+      date_string.gsub!( / 12:/, " 00:" )
+    end
     
     # Set the time zone appropriately
     old_time_zone = Time.zone

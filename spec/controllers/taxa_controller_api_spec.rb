@@ -5,7 +5,9 @@ shared_examples_for "a TaxaController" do
     it "should filter by place_id" do
       t = Taxon.make!
       p = Place.make!
-      p.check_list.add_taxon(t)
+      without_delay do
+        p.check_list.add_taxon(t)
+      end
       get :index, :format => :json, :place_id => p.id
       expect(response.headers['X-Total-Entries'].to_i).to eq(1)
     end
@@ -42,7 +44,9 @@ shared_examples_for "a TaxaController" do
       taxon_not_in_place = Taxon.make!
       taxon_in_place = Taxon.make!
       p = Place.make!
-      p.check_list.add_taxon(taxon_in_place)
+      without_delay do
+        p.check_list.add_taxon(taxon_in_place)
+      end
       get :search, format: :json, places: p.id.to_s
       json = JSON.parse(response.body)
       expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).to be_blank
@@ -53,7 +57,9 @@ shared_examples_for "a TaxaController" do
       taxon_not_in_place = Taxon.make!(name: "Disco stu")
       taxon_in_place = Taxon.make!(name: "Disco stu")
       p = Place.make!
-      p.check_list.add_taxon(taxon_in_place)
+      without_delay do
+        p.check_list.add_taxon(taxon_in_place)
+      end
       site = Site.make!(place: p)
       expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
       get :search, format: :json, q: "disco"

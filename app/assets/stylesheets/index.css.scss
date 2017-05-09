@@ -1192,7 +1192,6 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
 .taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
 .taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
-.taxon .sciname .rank:after {content: ' ';}
 .taxon .altname { color: #aaa; }
 
 /* Users table */
