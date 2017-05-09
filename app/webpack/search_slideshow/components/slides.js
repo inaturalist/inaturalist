@@ -34,6 +34,9 @@ class Slides extends Component {
     const current = this.slideshowOrders( )[this.props.slideshowIndex];
     // fade in the next slide in the slideshow
     $( current.slide ).fadeIn( 2000 );
+    if ( current.slide === ".map-slide" ) {
+      this.refs.map.reloadMap( );
+    }
     setTimeout( ( ) => {
       // after slide.duration ms, fade out this slide and set up the next one
       $( current.slide ).fadeOut( 2000 );

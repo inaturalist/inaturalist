@@ -8,7 +8,7 @@ class ResultsMap extends Component {
     this.reloadData = this.reloadData.bind( this );
   }
 
-  reloadData( ) {
+  reloadMap( ) {
     const time = new Date( ).getTime( );
     const mapID = `map${time}`;
     $( ".map-slide .right" ).html( `<div id='${mapID}' />` );
@@ -55,7 +55,8 @@ class ResultsMap extends Component {
           const f = { type: "Feature", geometry: data.results[0].geometry_geojson };
           const boundary = new L.geoJson( [f], geoJSONStyle );
           boundary.addTo( this.map );
-          this.map.fitBounds( boundary.getBounds( ), { padding: [10, 10] } );
+          this.mapBounds = boundary.getBounds( );
+          this.map.fitBounds( this.mapBounds, { padding: [10, 10] } );
         }
       } );
     } else {
@@ -70,13 +71,25 @@ class ResultsMap extends Component {
         }
       } );
     }
+    this.fitBounds( );
+  }
 
+  fitBounds( ) {
+    if ( this.mapBounds ) {
+      this.map.fitBounds( this.mapBounds );
+    }
+  }
+
+  reloadData( ) {
     /* eslint no-console: 0 */
     const params = $.param( this.props.searchParams );
     Util.nodeApiFetch( `observations?per_page=0&return_bounds=true&${params}` ).
       then( json => {
         this.props.updateState( { overallStats: { observations: json.total_results } } );
-        this.props.updateState( { overallStats: { bounds: json.total_bounds } } );
+        this.mapBounds = [
+          [json.total_bounds.swlat, json.total_bounds.swlng],
+          [json.total_bounds.nelat, json.total_bounds.nelng]];
+        this.map.fitBounds( this.mapBounds );
       } ).catch( e => console.log( e ) );
     Util.nodeApiFetch( `observations/species_counts?per_page=0&${params}` ).
       then( json => this.props.updateState(
@@ -94,12 +107,6 @@ class ResultsMap extends Component {
 
   render( ) {
     let className = "slide row-fluid map-slide";
-    if ( this.map && this.props.overallStats.bounds ) {
-      const bounds = this.props.overallStats.bounds;
-      this.map.fitBounds( [
-        [bounds.swlat, bounds.swlng],
-        [bounds.nelat, bounds.nelng]] );
-    }
     return (
       <div className={ className }>
         <div className="left map-stats">
