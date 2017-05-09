@@ -197,6 +197,7 @@ class ObservationModal extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <div className={( photos && sounds ) ? "photos sounds" : "media"}>
+            <div className="column-header">{ I18n.t( "detail" ) }</div>
             { photos }
             { sounds }
           </div>

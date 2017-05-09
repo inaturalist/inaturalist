@@ -44,19 +44,35 @@ body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions 
 .ObservationModal .modal-body > div {
   width: 50%;
 }
-.ObservationModal .modal-body .image-gallery,
-.ObservationModal .modal-body .image-gallery-content,
-.ObservationModal .modal-body .image-gallery-content > div,
-.ObservationModal .modal-body .image-gallery-slides,
-.ObservationModal .modal-body .image-gallery-slide,
-.ObservationModal .modal-body .easyzoom,
-.ObservationModal .modal-body .easyzoom > a,
-.ObservationModal .modal-body .easyzoom > a img {
+$galleryHeightElements: "
+  .ObservationModal .modal-body .image-gallery,
+  .ObservationModal .modal-body .image-gallery-content,
+  .ObservationModal .modal-body .image-gallery-content > div,
+  .ObservationModal .modal-body .image-gallery-slides,
+  .ObservationModal .modal-body .image-gallery-slide,
+  .ObservationModal .modal-body .easyzoom,
+  .ObservationModal .modal-body .easyzoom > a,
+  .ObservationModal .modal-body .easyzoom > a img
+";
+ 
+ #{$galleryHeightElements} {
   display: block;
   object-fit: contain;
   width: 100%;
   height: 100%;
+  max-height: 300px;
 }
+
+@media (min-height: 600px) {
+  #{$galleryHeightElements} { max-height: 400px; }
+}
+@media (min-height: 900px) {
+  #{$galleryHeightElements} { max-height: 600px; }
+}
+@media (min-height: 1200px) {
+  #{$galleryHeightElements} { max-height: 800px; }
+}
+
 .ObservationModal .modal-body .easyzoom > a img {
   object-position: 50% 50%;
 }
@@ -65,17 +81,13 @@ body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions 
   height: 100px;
 }
 
-.ObservationModal .image-gallery {
+.ObservationModal .modal-body .image-gallery {
   background-color: #eee;
   position: relative;
 }
 .ObservationModal .image-gallery-content {
   position: relative
 }
-// .ObservationModal .image-gallery,
-// .ObservationModal .image-gallery-content,
-// .ObservationModal .sidebar {
-// }
 .ObservationModal .image-gallery-content img {
   display: block;
   margin: 0 auto;
@@ -356,8 +368,8 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   display: none;
 }
 .ObservationModal .inat-tab.active {
-  display: flex;
-  flex: 2;
+  display: block;
+  width: 100%;
 }
 
 .ObservationModal .map-and-details {
@@ -382,6 +394,14 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   width: 15px;
   text-align: center;
   display: block;
+}
+
+.ObservationModal .column-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.ObservationModal .media .column-header {
+  visibility: hidden;
 }
 
 body > div > [role="dialog"] .ObservationModal .modal-body {
