@@ -7,6 +7,7 @@
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
+# Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: Pihlaviita
@@ -321,6 +322,8 @@ qqq:
   date_picker:
     closeText: '{{Identical|Close}}'
     currentText: '{{Identical|Today}}'
+    dayNamesShort: '''Sun'' is doubled in the code. I assume there should be a ''Fri''
+      instead of the second ''Sun''.'
   date_time: '{{Identical|Date}}'
   dates: '{{Identical|Date}}'
   datetime_: '{{Identical|Date}}'
@@ -495,6 +498,7 @@ qqq:
     french: '{{Identical|French}}'
     german: '{{Identical|German}}'
     italian: '{{Identical|Italian}}'
+    korean: '{{Identical|Korean}}'
     misima_paneati: Language of Papua New Guinea
     portuguese: '{{Identical|Portuguese}}'
   less: '{{Identical|Less}}'
