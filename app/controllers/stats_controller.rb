@@ -8,6 +8,7 @@ class StatsController < ApplicationController
   caches_action :cnc2016, expires_in: 5.minutes
   caches_action :cnc2017, expires_in: 5.minutes
   before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats]
+  before_filter :allow_external_iframes, only: [:world_environment_day]
 
   def index
     respond_to do |format|
@@ -55,89 +56,6 @@ class StatsController < ApplicationController
   def observation_weeks_json
     render json: observation_weeks_data
   end
-
-  private
-  def project_slideshow_data( overall_project_id, options = {} )
-    umbrella_project_ids = options[:umbrella_project_ids] || []
-    sub_project_ids = options[:sub_project_ids] || {}
-    @overall_id = overall_project_id
-    all_project_ids = (
-      sub_project_ids.map{ |k,v| v }.flatten +
-      sub_project_ids.keys +
-      umbrella_project_ids +
-      [overall_project_id]
-    ).flatten.uniq
-
-    projs = Project.select("projects.*, count(po.observation_id)").
-      joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
-      group(:id).
-      order("count(po.observation_id) desc")
-    projs = if options[:group]
-      projs.where("projects.group = ? OR projects.id = ? OR projects.id IN (?)", options[:group], params[:project_id], all_project_ids)
-    else
-      projs.where("projects.id = ? OR projects.id IN (?)", params[:project_id], all_project_ids)
-    end
-
-    # prepare the data needed for the slideshow
-    begin
-      all_project_data = Hash[ projs.map{ |p|
-        [ p.id,
-          {
-            id: p.id,
-            title: p.title,
-            slug: p.slug,
-            start_time: p.start_time,
-            end_time: p.end_time,
-            place_id: p.rule_place.try(:id),
-            observation_count: p.count,
-            in_progress: p.event_in_progress?,
-            species_count: p.node_api_species_count || 0
-          }
-        ]
-      }]
-    rescue => e
-      Rails.logger.debug "[DEBUG] error loading project data: #{e}"
-      sleep(2)
-      return redirect_to :nps_bioblitz_stats
-    end
-
-    if block_given?
-      yield all_project_data
-    end
-
-    # setting the number of slides to show per umbrella project
-    umbrella_project_ids.each do |id|
-      all_project_data[id][:slideshow_count] = 1 if all_project_data[id]
-    end
-
-    if all_project_data[@overall_id]
-      # the overall project shows 5 slides
-      all_project_data[@overall_id][:title] = options[:title]
-      all_project_data[@overall_id][:slideshow_count] = 5
-      # the overall project shows any non-umbrella project not already
-      # shown under an umbrella project
-      sub_project_ids[@overall_id] = all_project_data.keys -
-        all_project_ids - sub_project_ids.keys
-    end
-
-    # deleting any empty umbrella projects
-    @umbrella_projects = umbrella_project_ids.
-      map{ |id| all_project_data[id] }.compact
-    if options[:trim_slackers]
-      @umbrella_projects = @umbrella_projects.delete_if{ |p| p[:observation_count] == 0 }
-    end
-
-    # randomizing subprojects
-    @sub_projects = Hash[ sub_project_ids.map{ |umbrella_id,subproject_ids|
-      [ umbrella_id, subproject_ids.shuffle.map{ |id| all_project_data[id] }.compact ]
-    } ]
-
-    @all_sub_projects = all_project_data.reject{ |k,v| @sub_projects[k] }.values
-    @logo_paths = options[:logo_paths] || []
-
-    render "project_slideshow", layout: "basic"
-  end
-  public
 
   def nps_bioblitz
     @overall_id = 6810
@@ -363,6 +281,10 @@ class StatsController < ApplicationController
     end
   end
 
+  def world_environment_day
+    render layout: "basic"
+  end
+
   private
 
   def set_time_zone_to_utc
@@ -436,6 +358,87 @@ class StatsController < ApplicationController
         observer_count: r.observer_count
       }
     end
+  end
+
+  def project_slideshow_data( overall_project_id, options = {} )
+    umbrella_project_ids = options[:umbrella_project_ids] || []
+    sub_project_ids = options[:sub_project_ids] || {}
+    @overall_id = overall_project_id
+    all_project_ids = (
+      sub_project_ids.map{ |k,v| v }.flatten +
+      sub_project_ids.keys +
+      umbrella_project_ids +
+      [overall_project_id]
+    ).flatten.uniq
+
+    projs = Project.select("projects.*, count(po.observation_id)").
+      joins("LEFT JOIN project_observations po ON (projects.id=po.project_id)").
+      group(:id).
+      order("count(po.observation_id) desc")
+    projs = if options[:group]
+      projs.where("projects.group = ? OR projects.id = ? OR projects.id IN (?)", options[:group], params[:project_id], all_project_ids)
+    else
+      projs.where("projects.id = ? OR projects.id IN (?)", params[:project_id], all_project_ids)
+    end
+
+    # prepare the data needed for the slideshow
+    begin
+      all_project_data = Hash[ projs.map{ |p|
+        [ p.id,
+          {
+            id: p.id,
+            title: p.title,
+            slug: p.slug,
+            start_time: p.start_time,
+            end_time: p.end_time,
+            place_id: p.rule_place.try(:id),
+            observation_count: p.count,
+            in_progress: p.event_in_progress?,
+            species_count: p.node_api_species_count || 0
+          }
+        ]
+      }]
+    rescue => e
+      Rails.logger.debug "[DEBUG] error loading project data: #{e}"
+      sleep(2)
+      return redirect_to :nps_bioblitz_stats
+    end
+
+    if block_given?
+      yield all_project_data
+    end
+
+    # setting the number of slides to show per umbrella project
+    umbrella_project_ids.each do |id|
+      all_project_data[id][:slideshow_count] = 1 if all_project_data[id]
+    end
+
+    if all_project_data[@overall_id]
+      # the overall project shows 5 slides
+      all_project_data[@overall_id][:title] = options[:title]
+      all_project_data[@overall_id][:slideshow_count] = 5
+      # the overall project shows any non-umbrella project not already
+      # shown under an umbrella project
+      sub_project_ids[@overall_id] = all_project_data.keys -
+        all_project_ids - sub_project_ids.keys
+    end
+
+    # deleting any empty umbrella projects
+    @umbrella_projects = umbrella_project_ids.
+      map{ |id| all_project_data[id] }.compact
+    if options[:trim_slackers]
+      @umbrella_projects = @umbrella_projects.delete_if{ |p| p[:observation_count] == 0 }
+    end
+
+    # randomizing subprojects
+    @sub_projects = Hash[ sub_project_ids.map{ |umbrella_id,subproject_ids|
+      [ umbrella_id, subproject_ids.shuffle.map{ |id| all_project_data[id] }.compact ]
+    } ]
+
+    @all_sub_projects = all_project_data.reject{ |k,v| @sub_projects[k] }.values
+    @logo_paths = options[:logo_paths] || []
+
+    render "project_slideshow", layout: "basic"
   end
 
 end
