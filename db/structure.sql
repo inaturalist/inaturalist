@@ -7740,6 +7740,13 @@ CREATE INDEX index_subscriptions_on_user_id ON subscriptions USING btree (user_i
 
 
 --
+-- Name: index_subscriptions_on_user_id_and_resource_type; Type: INDEX; Schema: public; Owner: -; Tablespace:
+--
+
+CREATE INDEX index_subscriptions_on_user_id_and_resource_type ON subscriptions USING btree (user_id, resource_type);
+
+
+--
 -- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: -
 --
 
