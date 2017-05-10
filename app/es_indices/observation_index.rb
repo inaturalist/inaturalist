@@ -157,7 +157,7 @@ class Observation < ActiveRecord::Base
           (num_identification_agreements > 0),
         identifications_most_disagree:
           (num_identification_agreements < num_identification_disagreements),
-        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
+        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq.sort,
         project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
         project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
           project_observations.select{ |po| !po.curator_identification_id.nil? }.
