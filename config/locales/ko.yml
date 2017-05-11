@@ -71,6 +71,7 @@ ko:
   actions: 동작
   activate_user: 활성 사용자
   active: 활성
+  activity: 활동
   activity_settings: 활동 설정
   adapted_by_name_from_a_work_by_original: '%{original}의 연구에서 %{name}이(가) 적용'
   add: 추가
@@ -111,6 +112,7 @@ ko:
   add_custom_project_fields: 자체적 프로젝트 필드 추가하기
   add_edit_more_fields: 더 많은 필드 추가/편집
   add_description: '%{description_name} 추가하기'
+  add_field: 필드 추가
   add_from_your_observations: 관찰에서 추가하기
   add_link: 링크 추가
   add_listed_taxa_from_observations: 관찰에서 기재된 분류군을 추가하기
@@ -142,6 +144,7 @@ ko:
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_shape: 모양 추가하기
   add_some_now: 지금 추가하기
+  add_tag: 태그 추가
   add_tags: 태그 추가하기
   add_tags_to_selected_taxa: 분류군에 태그 추가하기
   add_taxa: 분류군 추가하기
@@ -186,6 +189,7 @@ ko:
   admin_any_projects: 관리자 아무 프로젝트
   admin_tools: 관리자 도구
   agree: 동의
+  agree_: 동의
   agree?: 동의하십니까?
   agree_to_the_project_terms: 프로젝트 약관에 동의합니다.
   agree_with_current_taxon: 현재 분류군에 동의
@@ -257,6 +261,7 @@ ko:
     만드려고 할 수도 있습니다.
   android: 안드로이드
   animals: 동물
+  annotations: 주석
   announcement_was_successfully_created: 공지가 성공적으로 만들어졌습니다.
   announcement_was_successfully_updated: 공지가 성공적으로 업데이트되었습니다.
   announcements: 공지
@@ -338,6 +343,7 @@ ko:
   at_any_time_change: 어떤 시간에도 (<span class="button">change</span>)
   at_time: '%{time} 시간에'
   atom: 원지
+  attribute: 특성
   authority_list:
     iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: '%{provider}의 허용을 수락함'
@@ -515,6 +521,7 @@ ko:
   checklist_places_introduced: 체크리스트 장소 (소개)
   cheklist_places_are_places_with_contain_taxon: 체크리스트 장소는 이 분류군이 포함되어 있고 체크리스트가 있는
     장소입니다.
+  choose_a_field: 필드 선택
   choose_a_list_above: 목록을 선택하세요.
   choose_a_place: 장소를 선택하세요.
   choose_a_taxon: 분류군을 선택하세요.
@@ -553,6 +560,7 @@ ko:
   comma_separated_please: 쉼표로 분리해주세요
   comment_preview: 댓글 미리 보기
   comment: 댓글
+  comment_: 댓글
   comment_deleted: 댓글 삭제됨
   commented: 댓글 담
   comments: 댓글
@@ -563,6 +571,8 @@ ko:
   comments_on_my_observations: 내 관찰에 달린 댓글
   community_curated: 공동으로 큐래이션된
   community_id: '<strong>공동체</strong> ID:'
+  community_id_heading: 공동체 ID
+  compare: 비교하기
   compare_with: 와 비교하다
   comparing: 비교 중
   comparing_list_to_list: '%{list1}와 %{list2}를 비교'
@@ -723,6 +733,7 @@ ko:
       october: 10월
       november: 11월
       december: 12월
+  date_is_accurate: 날짜가 정확함
   date_observed: 관찰 날짜
   date_observed_on: '관찰 날짜:'
   date_picker:
@@ -784,6 +795,7 @@ ko:
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
   disagree: 동의하지 않음
+  disagree_: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
   display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
   display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
@@ -798,6 +810,7 @@ ko:
   does_the_date_seem_accurate: 날짜가 정확한가요?
   doesnt_have_default_photo: 기본 사진이 없습니다.
   doh_something_went_wrong: 문제가 생겼습니다.
+  done: 완료
   dont_filter: 필터 제거
   dont_send_me_email: 메일 수신 거부
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
@@ -1030,6 +1043,7 @@ ko:
   flickr_tags: Flickr 태그
   flickr_youre_all_set: '%{site_name}을 탐색할 준비가 다 되었습니다.'
   fluid: 유체
+  follow: 팔로우
   follow_us: 에서 팔로우해 주세요.
   follow_us_on: 에서 팔로우해 주세요.
   follow_user: '%{user} 팔로우'
@@ -1181,6 +1195,7 @@ ko:
   import_sounds: 음원 불러오기
   import_tags_from_csv: CSV로부터 태그 가져오기
   importing: 가져오는 중...
+  improving: 개선 중
   inbox: 받은 쪽지함
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
@@ -1188,6 +1203,7 @@ ko:
   inactive_taxon_concepts_are: 비활성화된 분류군 개념들은 분류학적으로 구식이거나 분류군 변형 예정인 것들입니다. 구식인 개념들은
     역사와 파트너 웹사이트와의 호환을 위해 유지되고 있습니다.
   inappropriate: 부적절한가요?
+  inappropriate_content: 내용이 부적절합니까?
   inat_account_action: '%{site_name} &#58; 계정 &#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name}은 이것이 이 분류군의 모든 것의 목록이라고
     합니다.'
@@ -1257,6 +1273,7 @@ ko:
   kml: KML
   kml_file_size_error: KML은 1MB보다 크기가 작아야 합니다.
   labels: 라벨
+  location_unknown: 위치 알 수 없음
   language_slash_type: 언어 / 유형
   large: 크게
   last_confirmed_observation: 마지막으로 확인된 관찰
@@ -1376,6 +1393,7 @@ ko:
     zh-CN: 중국어 (번체)
   location: 위치
   location_: 위치
+  location_is_accurate: 위치가 정확함
   location_is_exact: 위치가 정확하다
   location_is_public: 위치가 공개되어있다
   location_is_obscured: 위치가 가려져 있다
@@ -1575,6 +1593,7 @@ ko:
   no_one_has_been_invited_yet: 아직 초대된 사람이 없습니다.
   no_one_posted_anything_yet: 아직 글을 게시한 사람이 없습니다!
   no_ones_observed: 관찰한 사람이 없습니다.
+  no_photo: 사진 없음
   no_photos: 사진 없음
   no_places_available: 사용 가능한 장소 없음
   no_places_selected: 선택된 사진 없음
@@ -1623,6 +1642,7 @@ ko:
   not_linked_flickr: 당신의 %{site_name} 계정은 Flickr 계정과 연결되어 있지 않습니다
   not_logged_in: 로그인하지 않음
   not_on_this_list: 이 목록에 없음
+  not_recorded: 기록되지 않음
   not_seeing_what_looking_for: 찾으려는 것을 발견하지 못했습니까?
   not_yet: 아직 아님
   note: 메모
@@ -1810,6 +1830,7 @@ ko:
   public_domain: 퍼블릭 도메인
   purple: 보라
   quality_grade: 품질 등급
+  quality_grade_: 품질 등급
   quality_grade_colon: '품질 등급:'
   range: 범위
   rank: 순위
@@ -1933,6 +1954,7 @@ ko:
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_all_species_html: 모든 종
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
+  tell_us_why: 이유를 말해주세요...
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
     발생했습니다 :'
@@ -1945,6 +1967,7 @@ ko:
   total_observations: 총 관찰
   tue: 화요일
   twitter: 트위터
+  unfollow: 팔로우 해제
   unsubscribe: 구독 해지
   update: 갱신
   update_photos: 사진 갱신
@@ -1967,6 +1990,8 @@ ko:
   user_added_a_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_an_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
+  user_commented: '%{user}님이 댓글을 남겼습니다'
+  user_suggested_an_id: '%{user}님이 ID를 제시했습니다'
   username: 사용자 이름
   username_or_email: 사용자 이름이나 이메일
   username_or_user_id: 사용자 이름이나 사용자 ID
@@ -1976,8 +2001,10 @@ ko:
   users_profile: '%{user}의 프로필'
   valid_interrogation: 유효합니까?
   valid_options_are: '유효한 옵션:'
+  value: 값
   view: 보기
   view_all: 모두 보기
+  view_all_from_x: '%{x}에서 모두 보기'
   view_all_members: 모든 회원 보기
   view_all_n: 모든 %{n} 보기
   view_all_observations: 모든 관찰 보기
@@ -2090,6 +2117,11 @@ ko:
         you_can_also_obscure_the_coordinates_html: 분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a
           href="#geoprivacy">geoprivacy</a>를 보세요.
     observations:
+      community_id:
+        agreement: 동의
+        algorithm_summary: 알고리즘 요약
+        disagreement: 동의하지 않음
+        score: 점수
       identify:
         you_reviewed_message: 이 페이지에서 일치하는 %{total}개의 관찰 중 이 페이지에서 %{pageTotal}개의
           관찰 중 %{reviewed}개를 리뷰했습니다.

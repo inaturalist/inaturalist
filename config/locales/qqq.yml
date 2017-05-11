@@ -110,6 +110,7 @@ qqq:
   adding: '{{Identical|Adding}}'
   admin: '{{Identical|Admin}}'
   agree: '{{Identical|Agree}}'
+  agree_: '{{Identical|Agree}}'
   agree?: '{{Identical|Agree}}'
   all: '{{Identical|All}}'
   all_rights_reserved: where name is the author name
@@ -135,6 +136,7 @@ qqq:
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
   animals: '{{Identical|Animal}}'
+  annotations: '{{Identical|Annotation}}'
   announcements: '{{Identical|Announcement}}'
   apply_darr: '{{Identical|Apply}}'
   appropriate?: '{{Identical|Appropriate}}'
@@ -340,6 +342,7 @@ qqq:
   developers: '{{Identical|Developer}}'
   device: '{{Identical|Device}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
+  done: '{{Identical|Done}}'
   download: '{{Identical|Download}}'
   each_place_displays_all_species_inat_knows: where site_name is the name of the site
   edit: '{{Identical|Edit}}'
@@ -399,6 +402,7 @@ qqq:
   flag: '{{Identical|Flag}}'
   flag_reason: where record is an observation or other resource
   flagged: '{{Identical|Flagged}}'
+  flagged_: '{{Identical|Flagged}}'
   flags: '{{Identical|Flag}}'
   flags_explanation: where site_name is the name of the site and thing is a resource
     like an observation
@@ -668,6 +672,7 @@ qqq:
     where submitdate is a date
     {{Identical|On}}
   open: '{{Identical|Open}}'
+  open_: '{{Identical|Open}}'
   optional: '{{Identical|Optional}}'
   or: '{{Identical|Or}}'
   orange: |-
@@ -1042,6 +1047,7 @@ qqq:
   users_profile: |-
     where user is the name of a user
     {{Identical|Profile}}
+  value: '{{Identical|Value}}'
   verbing_x_of_y: where verb is a verb like viewing and x and y are numbers
   view: '{{Identical|View}}'
   view_all: '{{Identical|View all}}'
@@ -1184,6 +1190,8 @@ qqq:
         while_the_life_list_is_automatically_populated: where site_name is the site
           name
     observations:
+      community_id:
+        score: '{{Identical|Score}}'
       show:
         community_taxon_desc_html: whre site_name is the site name
         flagged_photos_desc_html: where links is a URL
