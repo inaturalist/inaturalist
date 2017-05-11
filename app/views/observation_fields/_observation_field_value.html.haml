@@ -2,7 +2,7 @@
 - observation ||= @observation || ofv.observation
 - hide_extra ||= false
 .observation_field_value
-  %label{"data-tip" => ofv.observation_field.description, "data-tip-width" => "auto"}
+  %label{"data-tip" => "#{t( :description, default: "Description" )}: #{ofv.observation_field.description}", "data-tip-width" => "auto"}
     = succeed ':' do
       = link_to ofv.observation_field.name, ofv.observation_field
   = observation_field_value_for(ofv)
