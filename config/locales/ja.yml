@@ -1,6 +1,7 @@
 # Messages for Japanese (日本語)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Omotecho
 # Author: Otokoume
 # Author: Sudachi
 # Author: Sujiniku
@@ -1507,7 +1508,6 @@ ja:
   misleading_or_illegal_content_html: 紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など
   mobile_app_for: モバイルアプリ版の
   mobile_apps_for: モバイルアプリ版の
-  mobile_view_available: モバイル表示可
   mollusks: 軟体動物
   momentjs:
     shortRelativeTime:
@@ -1521,7 +1521,7 @@ ja:
       dd: '%dd'
       M: 1分
       MM: '%dmo'
-      1: 1年
+      'y': 1年
       yy: '%dy'
   mon: 月
   month: 月
@@ -1656,7 +1656,6 @@ ja:
   no_members_yet: メンバーはまだありません。
   no_messages_yet: メッセージはまだありません。
   no_misidentifications_yet: 誤った同定がまだありません
-  no_mobilized_version_of_that_view: 現在の表示はモバイルに対応していません。
   no_more_mail_from_site: '%{site_name}からのメール配信停止ご希望ですか？配信設定はこちらで変更できます：'
   no_more_taxa_to_load: 未読込の分類群がありません
   no_more_results_found: これ以上結果がありません
@@ -1714,8 +1713,8 @@ ja:
   not_finding_place_you_want?: お探しの場所は見つかりませんか？
   not_finding_what_looking_for: お探しのもの見つかりませんか？
   not_found: 見つかりません
-  not_linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていない&#59;
-  not_linked_flickr: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている&#59;
+  not_linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されていません
+  not_linked_flickr: 現在あなたの%{site_name}アカウントはFlickrアカウントと連携されていません
   not_logged_in: ログインしていません
   not_on_this_list: このリストに含まれていません
   not_seeing_what_looking_for: お探しのもの見つかりませんか？
@@ -2873,7 +2872,6 @@ ja:
   view_more_observations_from: 次のユーザーの観察記録をさらに表示：
   view_more_recent_observations: 新着観察記録をさらに表示
   view_nbsp: 表示 &nbsp;
-  view_non_mobile_site: PCサイトを表示
   view_observation: 観察記録を表示
   view_observations: 観測記録を表示
   view_observation_flags: 観測記録フラグを表示

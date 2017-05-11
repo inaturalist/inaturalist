@@ -14,4 +14,12 @@ class ObservationLink < ActiveRecord::Base
     self.href_name ||= URI.parse(href).host
     true
   end
+
+  def as_indexed_json
+    return {
+      source: href_name,
+      url: href
+    }
+  end
+
 end

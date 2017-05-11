@@ -14,7 +14,11 @@ $.fn.observationFieldAutocomplete = function( options ) {
     source: function( request, response ) {
       if( !request.term ) {
         if( anyRecentFields ) {
-          response( _.map(RECENT_OBSERVATION_FIELDS, function(r) {
+          var defaultFields = _.size( options.notIDs ) > 0 ?
+            _.filter( RECENT_OBSERVATION_FIELDS, function( f ) {
+              return !_.includes( options.notIDs, f.id );
+            }) : RECENT_OBSERVATION_FIELDS;
+          response( _.map( defaultFields, function( r ) {
               return Object.assign( { }, r, { title: r.name } );
             } ) );
         } else {
@@ -28,7 +32,8 @@ $.fn.observationFieldAutocomplete = function( options ) {
           jsonpCallback: "observationFieldAutocompleteCallback",
           data: {
             q: request.term,
-            per_page: 10
+            per_page: 10,
+            not_id: options.notIDs ? options.notIDs.join(",") : null
           },
           success: function( data ) {
             response( _.map(data.results, function(r) {

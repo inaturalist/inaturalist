@@ -61,6 +61,8 @@ class ProjectPhotos extends Component {
           } ) }
         </div>
       );
+    } else {
+      photos = <h1 className="noresults">No Photos Yet</h1>;
     }
     return (
       <div className="slide photos-slide">

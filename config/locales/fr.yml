@@ -2105,7 +2105,6 @@ fr:
     ou ethniques, etc.
   mobile_app_for: Application mobile pour
   mobile_apps_for: Applications mobiles pour
-  mobile_view_available: Affichage mobile disponible
   mollusks: mollusques
   momentjs:
     shortRelativeTime:
@@ -2120,7 +2119,7 @@ fr:
       dd: '%dd'
       M: 1min
       MM: '%dmo'
-      1: 1y
+      'y': 1y
       yy: '%dy'
   mon: Lun
   month: Mois
@@ -2284,7 +2283,6 @@ fr:
   no_members_yet: Aucun membre jusqu’à présent.
   no_messages_yet: Aucun message jusqu’à présent
   no_misidentifications_yet: Pas encore de mauvaise identification
-  no_mobilized_version_of_that_view: Aucune version mobile de cette vue.
   no_more_mail_from_site: Vous ne voulez pas recevoir de courriel  d’%{site_name}?  Modifiez
     vos paramètres de courriel à
   no_more_taxa_to_load: Il ne reste plus de taxons à charger!
@@ -2369,7 +2367,7 @@ fr:
   notify_me_about_redundant_identifications_desc: Recevoir des avertissements sur
     les identifications qui correspondent aux vôtres. Si vous refusez cela, vous ne
     recevrez que les avertissements sur les identifiants de taxons qui ne correspondent
-    pas exactement avec la vôtre.
+    pas exactement au taxon de votre propre identification.
   number_of_observations: Nombre d’observations
   number_selected: n° sélectionné
   numeric_: numérique
@@ -2884,7 +2882,7 @@ fr:
   please_add_this_observation_to: Veuillez ajouter cette observation à
   please_add_this_to_x_html: Veuillez l’ajouter à %{x}
   please_be_careful_particulary_when: Faites attention, surtout en supprimant des
-    taxons. Veuillez plûtot utiliser la fonctionnalité pour
+    taxons. Veuillez plutôt utiliser la fonctionnalité pour
   please_check_for_you_confirmation_email: Bienvenue sur %{site_name}! N’oubliez pas
     de vérifier si vous avez reçu votre courriel de confirmation, mais n’hésitez pas
     à commencer la visite du site.
@@ -4065,7 +4063,6 @@ fr:
   view_more_recent_observations: Afficher les observations les plus récentes
   view_more_unreviewed: Afficher plus de non relu
   view_nbsp: Voir &nbsp;
-  view_non_mobile_site: Afficher le site non mobile
   view_observation: Afficher l’observation
   view_observations: Afficher toutes les observations
   view_observation_flags: Afficher les observations
@@ -4906,8 +4903,7 @@ fr:
         id: Identificateur unique pour l’observation
         species_guess: Nom de l’observateur entré pour le taxon observé
         scientific_name: Nom scientifique du taxon observé d’après ce site
-        common_name: Nom commun du taxon observé dans la langue vernaculaire d’après
-          ce site
+        common_name: Nom commun ou vernaculaire du taxon observé d’après ce site
         iconic_taxon_name: Catégorie taxonomique de rang supérieur pour le taxon observé
         taxon_id: Identificateur unique pour le taxon observé
         id_please: Si l’observateur a bel et bien demandé de l’aide à l’identification
@@ -4928,6 +4924,10 @@ fr:
           masquée
         private_longitude: Longitude privée, établie si l’observation est privée ou
           masquée
+        geoprivacy: Si l’observateur a choisi ou non de dissimuler ou masquer les
+          coordonnées
+        coordinates_obscured: Si les coordonnées ont ou non été dissimulées, soit
+          à cause de confidentialité géographique, soit à cause d’un taxon menacé
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire
           de répartition connue du taxon
         user_id: Identificateur unique de l’observateur
@@ -5071,7 +5071,23 @@ fr:
             <li>
               l’observation ne nécessite plus d’ID <em>et</em> que l’ID de la communauté est la famille au-dessus
             </li>
+           <li>
+              l’observateur a refusé l’ID de la communauté et l’id de taxon
+              de la communauté n’est pas un ancêtre ou un descendant du taxon associé
+              avec l’ID de l’observateur
+            </li>
           </ul>
+          <p>
+            Et si ce n’est pas assez compliqué comme ça, il y a aussi des situations où le système nécessite un vote :
+          </p>
+          <ul>
+            <li>
+              Le système votera que l’observation n’est pas sauvage/naturalisée
+              s’il y a au moins 10 autres observations d’un genre ou inférieur dans
+              le plus petit lieu équivalent à la région, à l’état ou au pays qui
+              contient cette observation, et 80% ou plus de ces observations
+              qui ont été marquées comme non sauvages/naturalisées.
+            </li></ul>
         score_desc: pointage = nombre cumulé/(nombre cumulé + nombre en désaccord
           + désaccords sur les ancêtres)
       user_stats:
@@ -5508,10 +5524,10 @@ fr:
           d’autres.
       taxon:
         about_html: |-
-          Les taxons peuvent avoir beaucoup de noms communs. Nous acceptons un nom commun par défaut
-          de façon globale, qui peut être modifié ici en tirant un nom vers le haut de
-          la liste. Vous pouvez aussi spécifier des noms par défaut dans différents lieux en
-          modifiant le nom et en ajoutant un lieu, mais faites-le que quand
+          Les taxons peuvent avoir beaucoup de noms communs. Nous acceptons un nom commun
+          par défaut de façon globale, qui peut être modifié ici en tirant un nom vers le
+          haut de la liste. Vous pouvez aussi spécifier des noms par défaut dans différents
+          lieux en modifiant le nom et en ajoutant un lieu, mais faites-le seulement lorsque
           différents noms de lieux sont en conflit.
     users:
       dashboard:

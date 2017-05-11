@@ -683,6 +683,46 @@ ALTER SEQUENCE complete_sets_id_seq OWNED BY complete_sets.id;
 
 
 --
+-- Name: computer_vision_demo_uploads; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE computer_vision_demo_uploads (
+    id integer NOT NULL,
+    uuid uuid DEFAULT uuid_generate_v4(),
+    photo_file_name character varying,
+    photo_content_type character varying,
+    photo_file_size character varying,
+    photo_updated_at character varying,
+    original_url character varying,
+    thumbnail_url character varying,
+    mobile boolean,
+    user_agent character varying,
+    metadata text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: computer_vision_demo_uploads_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE computer_vision_demo_uploads_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: computer_vision_demo_uploads_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE computer_vision_demo_uploads_id_seq OWNED BY computer_vision_demo_uploads.id;
+
+
+--
 -- Name: conservation_statuses; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1710,7 +1750,8 @@ CREATE TABLE identifications (
     category character varying,
     uuid uuid DEFAULT uuid_generate_v4(),
     blind boolean,
-    previous_observation_taxon_id integer
+    previous_observation_taxon_id integer,
+    disagreement boolean
 );
 
 
@@ -2552,7 +2593,7 @@ CREATE TABLE observations (
     observation_photos_count integer DEFAULT 0,
     comments_count integer DEFAULT 0,
     geom geometry(Point),
-    cached_tag_list character varying(768) DEFAULT NULL::character varying,
+    cached_tag_list character varying(768),
     zic_time_zone character varying(255),
     oauth_application_id integer,
     observation_sounds_count integer DEFAULT 0,
@@ -4591,6 +4632,13 @@ ALTER TABLE ONLY complete_sets ALTER COLUMN id SET DEFAULT nextval('complete_set
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY computer_vision_demo_uploads ALTER COLUMN id SET DEFAULT nextval('computer_vision_demo_uploads_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
 
 
@@ -5345,6 +5393,14 @@ ALTER TABLE ONLY comments
 
 ALTER TABLE ONLY complete_sets
     ADD CONSTRAINT complete_sets_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: computer_vision_demo_uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY computer_vision_demo_uploads
+    ADD CONSTRAINT computer_vision_demo_uploads_pkey PRIMARY KEY (id);
 
 
 --
@@ -6291,6 +6347,13 @@ CREATE INDEX index_complete_sets_on_user_id ON complete_sets USING btree (user_i
 
 
 --
+-- Name: index_computer_vision_demo_uploads_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_computer_vision_demo_uploads_on_uuid ON computer_vision_demo_uploads USING btree (uuid);
+
+
+--
 -- Name: index_conservation_statuses_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6421,6 +6484,13 @@ CREATE INDEX index_exploded_atlas_places_on_atlas_id_and_place_id ON exploded_at
 --
 
 CREATE INDEX index_exploded_atlas_places_on_place_id ON exploded_atlas_places USING btree (place_id);
+
+
+--
+-- Name: index_flags_on_flaggable_id_and_flaggable_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_flags_on_flaggable_id_and_flaggable_type ON flags USING btree (flaggable_id, flaggable_type);
 
 
 --
@@ -6883,6 +6953,13 @@ CREATE INDEX index_observation_field_values_on_user_id ON observation_field_valu
 --
 
 CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
+
+
+--
+-- Name: index_observation_fields_on_datatype; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_fields_on_datatype ON observation_fields USING btree (datatype);
 
 
 --
@@ -8020,6 +8097,13 @@ CREATE INDEX index_users_on_state ON users USING btree (state);
 
 
 --
+-- Name: index_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_updated_at ON users USING btree (updated_at);
+
+
+--
 -- Name: index_users_on_uri; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8753,4 +8837,12 @@ INSERT INTO schema_migrations (version) VALUES ('20170113211950');
 INSERT INTO schema_migrations (version) VALUES ('20170309003500');
 
 INSERT INTO schema_migrations (version) VALUES ('20170317183900');
+
+INSERT INTO schema_migrations (version) VALUES ('20170327224712');
+
+INSERT INTO schema_migrations (version) VALUES ('20170413131753');
+
+INSERT INTO schema_migrations (version) VALUES ('20170414011849');
+
+INSERT INTO schema_migrations (version) VALUES ('20170418202820');
 

@@ -30,27 +30,6 @@
       <% end -%>
     </div>
     
-    <div class="observationcounts stacked">
-      <div class="ui description">
-        <strong><%= listed_taxon.observations_count %></strong>
-        <%= listed_taxon.observations_count == 1 ? t(:observation) : t(:observations) %>
-        <%=t :from_in_this_place %>,
-        <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
-        <%=t :research_grade %>
-      </div>
-      <% unless listed_taxon.observation_month_stats.blank? -%>
-        <div class="statsgraphs stacked">
-          <div class="observedgraph">
-            <%= month_graph listed_taxon.observation_month_stats %>
-          </div>
-          <div class="confirmedgraph">
-            <%= month_graph listed_taxon.confirmed_observation_month_stats, 
-              :max => @listed_taxon.observation_month_stats.values.max %>
-          </div>
-        </div>
-      <% end -%>
-    </div>
-    
     <% if listed_taxon.first_observation -%>
       <p class="ui description">
         <%=t :first_confirmed_inat_observation, :site_name => SITE_NAME_SHORT %>

@@ -11,6 +11,7 @@ class Observation < ActiveRecord::Base
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
     :model_attribute_changes,
+    :votes_for,
     { annotations: :votes_for },
     { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
@@ -39,16 +40,11 @@ class Observation < ActiveRecord::Base
           indexes :geoprivacy, index: "not_analyzed"
         end
       end
-      indexes :photos do
-        indexes :license_code, index: "not_analyzed"
-      end
-      indexes :sounds do
-        indexes :license_code, index: "not_analyzed"
-      end
       indexes :ofvs, type: :nested do
         indexes :uuid, index: "not_analyzed"
         indexes :name, index: "not_analyzed"
         indexes :value, index: "not_analyzed"
+        indexes :datatype, index: "not_analyzed"
       end
       indexes :annotations, type: :nested do
         indexes :uuid, index: "not_analyzed"
@@ -87,6 +83,9 @@ class Observation < ActiveRecord::Base
         indexes :attribution, index: "not_analyzed"
         indexes :url, index: "not_analyzed"
         indexes :license_code, index: "not_analyzed"
+      end
+      indexes :votes, type: :nested do
+        indexes :vote_scope, index: "not_analyzed"
       end
       indexes :sounds do
         indexes :attribution, index: "not_analyzed"
@@ -172,7 +171,7 @@ class Observation < ActiveRecord::Base
           project_observations.select{ |po| po.curator_identification_id.nil? }.
             map(&:project_id)).compact.uniq,
         project_observations: (indexed_project_ids || project_observations).map{ |po|
-          { project_id: po[:project_id], uuid: po[:uuid] } },
+          { project_id: po[:project_id], user_id: po[:user_id], uuid: po[:uuid] } },
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
@@ -184,6 +183,8 @@ class Observation < ActiveRecord::Base
         comments_count: comments.size,
         obscured: coordinates_obscured? || geoprivacy_obscured?,
         field_change_times: field_changes_to_index,
+        positional_accuracy: positional_accuracy,
+        public_positional_accuracy: public_positional_accuracy,
         location: (latitude && longitude) ?
           ElasticModel.point_latlon(latitude, longitude) : nil,
         private_location: (private_latitude && private_longitude) ?
@@ -191,7 +192,11 @@ class Observation < ActiveRecord::Base
         geojson: (latitude && longitude) ?
           ElasticModel.point_geojson(latitude, longitude) : nil,
         private_geojson: (private_latitude && private_longitude) ?
-          ElasticModel.point_geojson(private_latitude, private_longitude) : nil
+          ElasticModel.point_geojson(private_latitude, private_longitude) : nil,
+        votes: votes_for.map{ |v|
+          { user_id: v.voter_id, vote_flag: v.vote_flag, vote_scope: v.vote_scope }
+        },
+        outlinks: observation_links.map(&:as_indexed_json),
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]
@@ -238,11 +243,12 @@ class Observation < ActiveRecord::Base
     # fetch all project_ids store them in `indexed_project_ids`
     if options.blank? || options[:projects]
       connection.execute("
-        SELECT observation_id, project_id, curator_identification_id, uuid
+        SELECT observation_id, project_id, curator_identification_id, uuid, user_id
         FROM project_observations
         WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
         if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_project_ids << { project_id: r["project_id"].to_i, uuid: r["uuid"] }
+          o.indexed_project_ids << { project_id: r["project_id"].to_i,
+            uuid: r["uuid"], user_id: r["user_id"] }
           # these are for the `pcid` search param
           if r["curator_identification_id"].nil?
             o.indexed_project_ids_without_curator_id << r["project_id"].to_i
@@ -492,7 +498,7 @@ class Observation < ActiveRecord::Base
     if p[:d1] || p[:d2]
       d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
       d2 = DateTime.parse(p[:d2]) rescue Time.now
-      d2 = Time.now if d2 && d2 > Time.now
+      # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
       query_by_date = (
         (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
         (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))

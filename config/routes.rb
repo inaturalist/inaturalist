@@ -203,6 +203,8 @@ Rails.application.routes.draw do
       post :moimport
     end
     member do
+      get :taxon_summary
+      get :observation_links
       put :viewed_updates
       patch :update_fields
       post :review
@@ -489,6 +491,10 @@ Rails.application.routes.draw do
       get :summary
       get :observation_weeks
       get :nps_bioblitz
+      get :cnc2016
+      get :cnc2017
+      get :cnc2017_taxa
+      get :cnc2017_stats
     end
   end
 
@@ -550,6 +556,14 @@ Rails.application.routes.draw do
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
   resources :conservation_statuses, :only => [:autocomplete]
+
+  resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
+  end
+  resources :computer_vision_demo_uploads do
+    member do
+      get :score
+    end
+  end
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate

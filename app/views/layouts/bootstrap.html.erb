@@ -94,6 +94,7 @@
         CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
+          icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>,
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
         };

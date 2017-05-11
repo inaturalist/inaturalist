@@ -154,6 +154,11 @@ h2{line-height:1;margin:0;float:left;}
   font-weight: bold;
   font-family: 'Whitney', "Trebuchet MS", Arial, sans-serif;
 }
+#projectstats .image .icon {
+  font-size: 48px;
+  display: block;
+  text-align: center;
+}
 #event.with_description {width: 50%; float: right; margin-left: 10px;}
 .invited {background-color: #FFF6BF;}
 #projectnav li.invited:hover {background-color: #fffdcd;}

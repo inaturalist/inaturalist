@@ -4,7 +4,8 @@ class Project < ActiveRecord::Base
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  scope :load_for_index, -> { includes(:place, :project_users) }
+  scope :load_for_index, -> { includes(:place, :project_users, :observation_fields) }
+
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :icon, index: "not_analyzed"
@@ -33,7 +34,8 @@ class Project < ActiveRecord::Base
       user_ids: project_users.map(&:user_id).sort,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
-      icon: icon ? icon.url(:span2) : nil
+      icon: icon ? icon.url(:span2) : nil,
+      project_observation_fields: project_observation_fields.map(&:as_indexed_json)
     }
   end
 

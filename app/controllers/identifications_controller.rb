@@ -151,7 +151,6 @@ class IdentificationsController < ApplicationController
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
-    
     respond_to do |format|
       duplicate_key_violation = false
       begin
