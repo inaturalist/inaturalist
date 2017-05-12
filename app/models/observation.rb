@@ -35,13 +35,6 @@ class Observation < ActiveRecord::Base
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
-  WATCH_FIELDS_CHANGED_AT = {
-    geom: true,
-    observed_on: true,
-    place_guess: true,
-    positional_accuracy: true
-  }
-  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
@@ -2574,22 +2567,6 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
-  end
-
-  def last_changed(params={})
-    changes = field_changes_to_index
-    # only consider the fields requested
-    if params[:changed_fields] && fields = params[:changed_fields].split(",")
-      changes = changes.select{ |c| fields.include?(c[:field_name]) }
-    end
-    # ignore any projects other than those selected
-    if params[:change_project_id]
-      changes = changes.select do |c|
-        c[:project_id].blank? || c[:project_id] == params[:change_project_id]
-      end
-    end
-    # return the max of the remaining dates
-    field_changes_to_index.map{ |c| c[:changed_at] }.max
   end
 
   # Show count of all faves on this observation. cached_votes_total stores the

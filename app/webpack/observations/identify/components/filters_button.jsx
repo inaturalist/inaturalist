@@ -367,9 +367,6 @@ class FiltersButton extends React.Component {
           <input type="hidden" name="apply_project_rules_for" />
           <input type="hidden" name="not_matching_project_rules_for" />
           <input type="hidden" name="list_id" />
-          <input type="hidden" name="changed_fields" />
-          <input type="hidden" name="changed_since" />
-          <input type="hidden" name="change_project_id" />
         </div>
       </Col>
     );
