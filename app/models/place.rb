@@ -758,7 +758,7 @@ class Place < ActiveRecord::Base
     end
     if check_list
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )
-    elsif mergee.check_list.listed_taxa.count > 0
+    elsif mergee.check_list && mergee.check_list.listed_taxa.count > 0
       mergee.check_list.update_attributes( place_id: id, title: "MERGED #{mergee.check_list.title}")
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( place_id: id )
     end

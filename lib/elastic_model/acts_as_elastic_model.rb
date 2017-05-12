@@ -97,7 +97,11 @@ module ActsAsElasticModel
           __elasticsearch__.refresh_index! if Rails.env.test?
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_search failed: #{ e }"
+          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        rescue Elasticsearch::Transport::Transport::Errors::Conflict => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
           Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
         end
       end
