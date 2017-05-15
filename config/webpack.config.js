@@ -13,7 +13,8 @@ var config = {
     'taxa-show': './taxa/show/webpack-entry',
     'taxa-photos': './taxa/photos/webpack-entry',
     'observations-show': './observations/show/webpack-entry',
-    'computer-vision': './computer_vision/webpack-entry'
+    'computer-vision': './computer_vision/webpack-entry',
+    'search-slideshow': './search_slideshow/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
