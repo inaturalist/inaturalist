@@ -8,7 +8,7 @@ class StatsController < ApplicationController
   caches_action :cnc2016, expires_in: 5.minutes
   caches_action :cnc2017, expires_in: 5.minutes
   before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats]
-  before_filter :allow_external_iframes, only: [:world_environment_day]
+  before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
   def index
     respond_to do |format|
@@ -281,7 +281,7 @@ class StatsController < ApplicationController
     end
   end
 
-  def world_environment_day
+  def wed_bioblitz
     render layout: "basic"
   end
 

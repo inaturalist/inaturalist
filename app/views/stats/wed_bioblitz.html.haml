@@ -8,7 +8,7 @@
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
-    SLIDESHOW_PARAMS = #{ params.except(:controller, :action).to_json };
+    SLIDESHOW_PARAMS = { created_d1: "2017-06-01", created_d2: "2017-06-12", verifiable: true };
     SLIDESHOW_TITLE = "World Environment Day";
     SLIDESHOW_SUBTITLE = "(June 1-12, 2017)";
     TILESERVER = "#{ CONFIG.tile_servers.elasticsearch }";
