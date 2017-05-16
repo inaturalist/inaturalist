@@ -17,28 +17,13 @@ import DiscussionListContainer from "../containers/discussion_list_container";
 import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SuggestionsContainer from "../containers/suggestions_container";
+import AnnotationsContainer from "../containers/annotations_container";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 
 class ObservationModal extends React.Component {
-  // constructor( props ) {
-  //   super( props );
-  //   this.state = {
-  //     tab: "info",
-  //     loaded: {}
-  //   };
-  // }
-  // chooseTab( tab ) {
-  //   this.setState( { tab } );
-  // }
-  // loadSuggestions( options = {} ) {
-  //   if ( tab === "suggestions" && ( options.force || !this.state.loaded.suggestions ) ) {
-  //     this.props.fetchSuggestions( { observation_id: this.props.observation.id } );
-  //     this.setState( { loaded: { suggestions: true } } );
-  //   }
-  // }
   render( ) {
     const {
       onClose,
@@ -185,7 +170,7 @@ class ObservationModal extends React.Component {
                   href="#"
                   onClick={ e => {
                     e.preventDefault( );
-                    chooseTab( tabName );
+                    chooseTab( tabName, { observation } );
                     return false;
                   } }
                 >
@@ -229,7 +214,7 @@ class ObservationModal extends React.Component {
               <UserText text={observation.description} truncate={100} className="stacked observation-description" />
               <DiscussionListContainer observation={observation} />
               <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
-                <i className="fa fa-spin fa-refresh"></i>
+                <div className="loading_spinner" />
               </center>
               <CommentFormContainer
                 observation={observation}
@@ -265,7 +250,7 @@ class ObservationModal extends React.Component {
               />
             </div>
             <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
-              annotations
+              <AnnotationsContainer />
             </div>
             <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
               data-quality

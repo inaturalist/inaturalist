@@ -108,6 +108,7 @@ export function fetchTaxonSummary( ) {
     const observation = getState( ).observation;
     if ( !observation || !observation.taxon ) { return null; }
     const params = { id: observation.id, ttl: -1 };
+    console.log( "[DEBUG] fetchTaxonSummary, params: ", params );
     return inatjs.observations.taxonSummary( params ).then( response => {
       dispatch( setAttributes( { taxon:
         Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );

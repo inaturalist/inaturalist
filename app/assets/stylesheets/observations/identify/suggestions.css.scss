@@ -1,29 +1,26 @@
 .Suggestions {
   position: relative;
-  display: flex;
-  flex: 2;
-  overflow-x: hidden;
+  height: 100%;
+  overflow: hidden;
 
   .suggestions-wrapper {
     transition: 0.5s;
-    display: flex;
     width: 200%;
-    position: absolute;
-    left: 0;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
   }
 
   .suggestions-wrapper.with-detail {
     transition: 0.5s;
-    left: -100%;
-    .suggestions-list { height: 0px; overflow: hidden; }
+    transform: translateX( -50% );
   }
 
   .suggestions-list,
   .suggestions-detail {
-    width: 50%;
+    width: 100%;
+    overflow-y: scroll;
   }
-  // .suggestions-list { background-color: pink; }
-  // .suggestions-detail { background-color: lightgreen; }
   .photos {
     margin: -2.5px;
     line-height: 0;

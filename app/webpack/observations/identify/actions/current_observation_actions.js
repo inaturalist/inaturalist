@@ -5,6 +5,7 @@ import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
 import { fetchSuggestions } from "../ducks/suggestions";
+import { fetchControlledTerms } from "../../show/ducks/controlled_terms";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -93,10 +94,13 @@ function fetchCurrentObservation( observation = null ) {
             currentUserIdentification
           } ) );
         }
+        return newObs;
       } )
-      .then( ( ) => {
+      .then( observation => {
         if ( s.currentObservation.tab === "suggestions" ) {
           dispatch( fetchSuggestions( ) );
+        } else if ( s.currentObservation.tab === "annotations" ) {
+          dispatch( fetchControlledTerms( { observation } ) );
         }
       } );
   };
@@ -231,8 +235,94 @@ function toggleReviewed( optionalObs = null ) {
 function loadingDiscussionItem( item ) {
   return { type: LOADING_DISCUSSION_ITEM, item };
 }
+
 function stopLoadingDiscussionItem( item ) {
   return { type: STOP_LOADING_DISCUSSION_ITEM, item };
+}
+
+export function addAnnotation( controlledAttribute, controlledValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = ( state.currentObservation.observation.annotations || [] ).concat( [{
+      controlled_attribute: controlledAttribute,
+      controlled_value: controlledValue,
+      user: state.config.currentUser,
+      api_status: "saving"
+    }] );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+
+    const payload = {
+      resource_type: "Observation",
+      resource_id: state.currentObservation.observation.id,
+      controlled_attribute_id: controlledAttribute.id,
+      controlled_value_id: controlledValue.id
+    };
+    // dispatch( callAPI( inatjs.annotations.create, payload ) );
+    iNaturalistJS.annotations.create( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function deleteAnnotation( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
+      ( a.user.id === state.config.currentUser.id && a.uuid === id ) ?
+        Object.assign( { }, a, { api_status: "deleting" } ) : a
+    ) );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    // dispatch( callAPI( inatjs.annotations.delete, { id } ) );
+    iNaturalistJS.annotations.delete( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function voteAnnotation( id, voteValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
+      ( a.uuid === id ) ?
+        Object.assign( { }, a, {
+          api_status: "voting",
+          votes: ( a.votes || [] ).concat( [{
+            vote_flag: ( voteValue !== "bad" ),
+            user: state.config.currentUser,
+            api_status: "saving"
+          }] )
+        } ) : a
+    ) );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    // dispatch( callAPI( inatjs.annotations.vote, { id, vote: voteValue } ) );
+    iNaturalistJS.annotations.vote( { id, vote: voteValue } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function unvoteAnnotation( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
+      ( a.uuid === id ) ?
+        Object.assign( { }, a, {
+          api_status: "voting",
+          votes: _.map( a.votes, v => (
+            v.user.id === state.config.currentUser.id ?
+              Object.assign( { }, v, { api_status: "deleting" } ) : v
+          ) )
+        } ) : a
+    ) );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    iNaturalistJS.annotations.unvote( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
 }
 
 

@@ -11,9 +11,8 @@ import {
   showPrevObservation,
   updateCurrentObservation
 } from "../actions";
-import {
-  fetchSuggestions
-} from "../ducks/suggestions";
+import { fetchSuggestions } from "../ducks/suggestions";
+import { fetchControlledTerms } from "../../show/ducks/controlled_terms";
 
 function mapStateToProps( state ) {
   let images;
@@ -56,10 +55,12 @@ function mapDispatchToProps( dispatch ) {
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
     },
-    chooseTab: tab => {
+    chooseTab: ( tab, options ) => {
       dispatch( updateCurrentObservation( { tab } ) );
       if ( tab === "suggestions" ) {
         dispatch( fetchSuggestions( ) );
+      } else if ( tab === "annotations" ) {
+        dispatch( fetchControlledTerms( { observation: options.observation } ) );
       }
     }
   };
