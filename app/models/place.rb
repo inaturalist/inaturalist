@@ -488,7 +488,6 @@ class Place < ActiveRecord::Base
       return
     end
     # 66 is roughly the size of Texas
-    debugger
     if other_attrs[:user] && !other_attrs[:user].is_admin?
       if geom.respond_to?(:area) && geom.area > 66.0
         errors.add(:place_geometry, :is_too_large_to_import)
