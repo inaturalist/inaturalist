@@ -39,6 +39,9 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def run(run_options = {})
+    # site will be looked up tons of times in TaxonName.choose_common_name,
+    # so store it in CONFIG
+    CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @logger = run_options[:logger] if run_options[:logger]
     @debug = run_options[:debug]
     update_attributes(finished_at: nil, error: nil, exception: nil)
