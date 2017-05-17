@@ -2,6 +2,7 @@
 class ObservationsExportFlowTask < FlowTask
   validate :must_have_query
   validate :must_have_primary_filter
+  validate :must_have_reasonable_number_of_rows
   validates_presence_of :user_id
 
   before_save do |record|
@@ -24,6 +25,12 @@ class ObservationsExportFlowTask < FlowTask
            params[:projects] ||
            params.keys.detect{|k| k =~ /^field:/}
       errors.add(:base, "You must specify a taxon, place, user, or search query")
+    end
+  end
+
+  def must_have_reasonable_number_of_rows
+    if observations_count > 200000
+      errors.add(:base, "Exports cannot contain more than 200,000 observations")
     end
   end
 
@@ -80,7 +87,7 @@ class ObservationsExportFlowTask < FlowTask
 
   def observations_count
     return 0 if params.blank?
-    Observation.elastic_query(params).total_entries
+    Observation.elastic_query(params.merge(per_page: 1)).total_entries
   end
 
   def json_archive
