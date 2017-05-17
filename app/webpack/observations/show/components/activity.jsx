@@ -28,9 +28,9 @@ class Activity extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     if ( !observation ) { return ( <div /> ); }
-    const activity = _.sortBy(
-      observation.identifications.concat( observation.comments ), a => (
-        moment.parseZone( a.created_at ) ) );
+    let activity = _.compact( ( observation.identifications || [] ).
+      concat( observation.comments ) );
+    activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
     const tabs = (
       <Tabs defaultActiveKey="comment">
         <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">

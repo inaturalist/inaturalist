@@ -3055,7 +3055,8 @@ class ObservationsController < ApplicationController
   end
 
   def viewing_new_obs_show?
-    logged_in? && current_user.is_admin? && params.key?("show2")
+    logged_in? && current_user.is_admin? &&
+      current_user.in_test_group?("obs-show") && !params.key?("show1")
   end
 
 end

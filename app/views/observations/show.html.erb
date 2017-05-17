@@ -92,6 +92,17 @@
   </div>
 <% end -%>
 
+<% if logged_in? && current_user.is_admin? %>
+  <div class="last column span-24">
+    <%= form_tag join_test_user_path( current_user, test: "obs-show" ),
+        method: "put",
+        class: "clear quiet box centered buttonrow smallbuttons" do %>
+      <span class="inter"><%=t :want_to_test_a_new_version_of_this_page %></span>
+      <%= submit_tag t(:try_it_out), class: "default button" %>
+    <% end %>
+  </div>
+<% end %>
+
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">

@@ -45,7 +45,7 @@ moment.locale( "en", {
   }
 } );
 
-const App = ( { observation, config, controlledTerms } ) => {
+const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
   if ( _.isEmpty( observation ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -266,19 +266,21 @@ const App = ( { observation, config, controlledTerms } ) => {
       <FlaggingModalContainer />
       <ConfirmModalContainer />
       <CommunityIDModalContainer />
+      <div className="quiet box text-center opt-out">
+        { I18n.t( "tired_of_testing_this_new_version" ) }
+        <Button className="btn-sm" bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
+          { I18n.t( "take_me_back" ) }
+        </Button>
+      </div>
     </div>
   );
 };
 
 App.propTypes = {
-  observation: PropTypes.object,
   config: PropTypes.object,
   controlledTerms: PropTypes.array,
-  addComment: PropTypes.func,
-  deleteComment: PropTypes.func,
-  addID: PropTypes.func,
-  deleteID: PropTypes.func,
-  restoreID: PropTypes.func
+  leaveTestGroup: PropTypes.func,
+  observation: PropTypes.object
 };
 
 export default App;

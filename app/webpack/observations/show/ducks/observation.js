@@ -69,7 +69,7 @@ export function windowStateForObservation( observation ) {
   const windowState = {
     state: observationState,
     title: `${title} · ${SITE.name}`,
-    url: `/observations/${observation.id}?show2`
+    url: `/observations/${observation.id}`
   };
   return windowState;
 }
