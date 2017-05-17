@@ -1,6 +1,7 @@
 @import "../../colors";
 @import "../../shared/user_text";
 @import "../../shared/annotations";
+@import "../../shared/quality_metrics";
 
 .ObservationModal .modal-dialog {
   width: 90% !important;
@@ -401,6 +402,17 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 }
 .ObservationModal .media .column-header {
   visibility: hidden;
+}
+
+.ObservationModal {
+  .QualityMetrics tr.improve,
+  .QualityMetrics thead,
+  .Annotations thead {
+    background: #dedede;
+  }
+  .QualityMetrics table {
+    margin-top: 0px;
+  }
 }
 
 body > div > [role="dialog"] .ObservationModal .modal-body {

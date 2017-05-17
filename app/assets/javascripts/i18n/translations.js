@@ -2830,6 +2830,7 @@ I18n.translations["en"] = {
   "customize_location": "Customize Location",
   "dashboard": "Dashboard",
   "data_deficient": "data deficient",
+  "data_quality": "Data Quality",
   "data_quality_assessment": "Data Quality Assessment",
   "date": {
     "abbr_month_names": [

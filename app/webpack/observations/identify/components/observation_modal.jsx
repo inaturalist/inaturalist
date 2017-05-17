@@ -18,6 +18,7 @@ import CommentFormContainer from "../containers/comment_form_container";
 import IdentificationFormContainer from "../containers/identification_form_container";
 import SuggestionsContainer from "../containers/suggestions_container";
 import AnnotationsContainer from "../containers/annotations_container";
+import QualityMetricsContainer from "../containers/quality_metrics_container";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
@@ -200,7 +201,7 @@ class ObservationModal extends React.Component {
                     return false;
                   } }
                 >
-                  { I18n.t( tabName, { defaultValue: tabName } ) }
+                  { I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
                 </a>
               </li>
             ) ) }
@@ -279,7 +280,7 @@ class ObservationModal extends React.Component {
               <AnnotationsContainer />
             </div>
             <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
-              data-quality
+              <QualityMetricsContainer />
             </div>
             <div className={`inat-tab suggestions-tab ${tab === "suggestions" ? "active" : ""}`}>
               <SuggestionsContainer />

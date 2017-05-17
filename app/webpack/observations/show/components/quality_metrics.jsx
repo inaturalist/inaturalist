@@ -161,8 +161,9 @@ class QualityMetrics extends React.Component {
 
   flaggingDiv( ) {
     const observation = this.props.observation;
-    if ( observation.flags.length > 0 ) {
-      const groupedFlags = _.groupBy( observation.flags, f => ( f.flag ) );
+    const flags = observation.flags || [];
+    if ( flags.length > 0 ) {
+      const groupedFlags = _.groupBy( flags, f => ( f.flag ) );
       let flagQualifier;
       if ( groupedFlags.spam ) {
         flagQualifier = "spam";
@@ -205,14 +206,18 @@ class QualityMetrics extends React.Component {
     const recentCells = this.voteCellsForMetric( "recent" );
     return (
       <div className="QualityMetrics">
-        <h3>{ I18n.t( "data_quality_assessment" ) }</h3>
-        <div className="grade">
-          { I18n.t( "quality_grade_" ) }:
-          <span className={ `quality_grade ${observation.quality_grade} ` }>
-            { _.upperFirst( I18n.t( observation.quality_grade ) ) }
-          </span>
-        </div>
-        <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
+        { this.props.tableOnly ? null : (
+          <div>
+            <h3>{ I18n.t( "data_quality_assessment" ) }</h3>
+            <div className="grade">
+              { I18n.t( "quality_grade_" ) }:
+              <span className={ `quality_grade ${observation.quality_grade} ` }>
+                { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+              </span>
+            </div>
+            <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
+          </div>
+        ) }
         <table className="table">
           <thead>
             <tr>
@@ -323,7 +328,8 @@ QualityMetrics.propTypes = {
   qualityMetrics: PropTypes.object,
   voteMetric: PropTypes.func,
   unvoteMetric: PropTypes.func,
-  setFlaggingModalState: PropTypes.func
+  setFlaggingModalState: PropTypes.func,
+  tableOnly: PropTypes.bool
 };
 
 export default QualityMetrics;

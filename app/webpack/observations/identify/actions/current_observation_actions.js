@@ -1,4 +1,5 @@
 import iNaturalistJS from "inaturalistjs";
+import moment from "moment";
 import _ from "lodash";
 import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
@@ -6,6 +7,7 @@ import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
 import { fetchSuggestions } from "../ducks/suggestions";
 import { fetchControlledTerms } from "../../show/ducks/controlled_terms";
+import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -96,11 +98,13 @@ function fetchCurrentObservation( observation = null ) {
         }
         return newObs;
       } )
-      .then( observation => {
+      .then( finalObservation => {
         if ( s.currentObservation.tab === "suggestions" ) {
           dispatch( fetchSuggestions( ) );
         } else if ( s.currentObservation.tab === "annotations" ) {
-          dispatch( fetchControlledTerms( { observation } ) );
+          dispatch( fetchControlledTerms( { observation: finalObservation } ) );
+        } else if ( s.currentObservation.tab === "data-quality" ) {
+          dispatch( fetchQualityMetrics( { observation: finalObservation } ) );
         }
       } );
   };
@@ -346,6 +350,125 @@ export function unvoteAnnotation( id ) {
   };
 }
 
+export function vote( scope, params = { } ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const payload = Object.assign( { }, { id: state.currentObservation.observation.id }, params );
+    if ( scope ) {
+      payload.scope = scope;
+      const newVotes = _.filter( state.currentObservation.observation.votes, v => (
+        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ) ).concat( [{
+          vote_flag: ( params.vote === "yes" ),
+          vote_scope: payload.scope,
+          user: state.config.currentUser,
+          api_status: "saving"
+        }] );
+      dispatch( updateCurrentObservation( { votes: newVotes } ) );
+    }
+    iNaturalistJS.observations.fave( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function unvote( scope ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const payload = { id: state.currentObservation.observation.id };
+    if ( scope ) {
+      payload.scope = scope;
+      const newVotes = _.map( state.currentObservation.observation.votes, v => (
+        ( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ?
+          Object.assign( { }, v, { api_status: "deleting" } ) : v
+      ) );
+      dispatch( updateCurrentObservation( { votes: newVotes } ) );
+    }
+    iNaturalistJS.observations.unfave( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function fave( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newFaves = state.currentObservation.observation.faves.concat( [{
+      votable_id: state.currentObservation.observation.id,
+      user: state.config.currentUser,
+      temporary: true
+    }] );
+    dispatch( updateCurrentObservation( { faves: newFaves } ) );
+    dispatch( vote( ) );
+  };
+}
+
+export function unfave( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newFaves = state.currentObservation.observation.faves.filter( f => (
+      f.user.id !== state.config.currentUser.id
+    ) );
+    dispatch( updateCurrentObservation( { faves: newFaves } ) );
+    dispatch( unvote( ) );
+  };
+}
+
+export function voteMetric( metric, params = { } ) {
+  if ( metric === "needs_id" ) {
+    return vote( "needs_id", { vote: ( params.agree === "false" ) ? "no" : "yes" } );
+  }
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newMetrics = _.filter( state.qualityMetrics, qm => (
+      !( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
+        observation_id: state.currentObservation.observation.id,
+        metric,
+        agree: ( params.agree !== "false" ),
+        created_at: moment( ).format( ),
+        user: state.config.currentUser,
+        api_status: "saving"
+      }] );
+    dispatch( setQualityMetrics( newMetrics ) );
+    const payload = Object.assign( { },
+      { id: state.currentObservation.observation.id, metric }, params );
+    iNaturalistJS.observations.setQualityMetric( payload, { fetchQualityMetrics: true } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function unvoteMetric( metric ) {
+  if ( metric === "needs_id" ) {
+    return unvote( "needs_id" );
+  }
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newMetrics = _.map( state.qualityMetrics, qm => (
+      ( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ?
+        Object.assign( { }, qm, { api_status: "deleting" } ) : qm
+    ) );
+    dispatch( setQualityMetrics( newMetrics ) );
+    const payload = { id: state.currentObservation.observation.id, metric };
+    iNaturalistJS.observations.deleteQualityMetric( payload, { fetchQualityMetrics: true } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function createFlag( className, id, flag, body ) {
+  return ( dispatch ) => {
+    const params = { flag: {
+      flaggable_type: className,
+      flaggable_id: id,
+      flag
+    }, flag_explanation: body };
+    iNaturalistJS.flags.create( params )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function deleteFlag( id ) {
+  return ( dispatch ) => {
+    iNaturalistJS.flags.delete( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
 
 export {
   SHOW_CURRENT_OBSERVATION,
