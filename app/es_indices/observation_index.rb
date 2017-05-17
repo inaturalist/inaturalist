@@ -42,7 +42,9 @@ class Observation < ActiveRecord::Base
       indexes :ofvs, type: :nested do
         indexes :uuid, type: "keyword"
         indexes :name, type: "keyword"
+        indexes :name_ci, type: "text", analyzer: "keyword_analyzer"
         indexes :value, type: "keyword"
+        indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
         indexes :datatype, type: "keyword"
       end
       indexes :annotations, type: :nested do
