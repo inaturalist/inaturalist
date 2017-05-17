@@ -161,7 +161,16 @@ namespace :inaturalist do
                  "all_taxa.protozoans", "protozoans",
                  "unknown", "date.formats.month_day_year",
                  "views.taxa.show.frequency", "flowering_phenology", "insect_life_stage",
-                 "lexicons", "places_name" ]
+                 "lexicons", "places_name",
+                 "add_plant_phenology_flowering_annotation",
+                 "add_plant_phenology_fruiting_annotation",
+                 "add_life_stage_adult_annotation",
+                 "add_life_stage_teneral_annotation",
+                 "add_life_stage_pupa_annotation",
+                 "add_life_stage_nymph_annotation",
+                 "add_life_stage_larva_annotation",
+                 "add_life_stage_egg_annotation"
+                ]
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
       # Ignore non-files

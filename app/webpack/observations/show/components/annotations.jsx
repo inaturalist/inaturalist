@@ -149,7 +149,9 @@ class Annotations extends React.Component {
     if ( !observation || _.isEmpty( controlledTerms ) ) { return ( <span /> ); }
     this.loggedIn = config && config.currentUser;
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
-    const groupedAnnotations = _.groupBy( observation.annotations, a => a.controlled_attribute_id || a.controlled_attribute.id );
+    const annotations = observation.annotations.filter( a =>
+      a.controlled_attribute && a.controlled_value );
+    const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
     let rows = [];
     _.each( controlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {

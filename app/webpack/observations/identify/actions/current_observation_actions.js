@@ -265,6 +265,27 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
   };
 }
 
+export function addAnnotationFromKeyboard( attributeLabel, valueLabel ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
+      return;
+    }
+    const attribute = s.controlledTerms.find( a => a.label === attributeLabel );
+    if ( !attribute ) { return; }
+    const value = attribute.values.find( v => v.label === valueLabel );
+    if ( !value ) { return; }
+    const existing = s.currentObservation.observation.annotations.find( a => {
+      return a.controlled_value && a.controlled_attribute &&
+        a.controlled_value.id === value.id &&
+        a.controlled_attribute.id === attribute.id;
+    } );
+    if ( !existing ) {
+      dispatch( addAnnotation( attribute, value ) );
+    }
+  };
+}
+
 export function deleteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );

@@ -46,7 +46,8 @@ class ObservationModal extends React.Component {
       agreeingWithObservation,
       blind,
       tab,
-      chooseTab
+      chooseTab,
+      controlledTerms
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -145,6 +146,31 @@ class ObservationModal extends React.Component {
       }
       return _.capitalize( I18n.t( observation.quality_grade ) );
     };
+
+    const annoShortcuts = [];
+    controlledTerms.forEach( ct => {
+      let availableValues = ct.values;
+      if ( observation.taxon ) {
+        availableValues = _.filter( availableValues, v => (
+          !v.valid_within_clade ||
+          _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
+        ) );
+      }
+      let valueKeyPosition = 0;
+      while (
+        availableValues.length !== _.uniq( availableValues.map( v =>
+          v.label[valueKeyPosition].toLowerCase( ) ) ).length
+      ) {
+        valueKeyPosition += 1;
+      }
+      availableValues.forEach( v => {
+        annoShortcuts.push( {
+          attributeLabel: ct.label,
+          valueLabel: v.label,
+          keys: [ct.label[0].toLowerCase( ), v.label[valueKeyPosition].toLowerCase( )]
+        } );
+      } );
+    } );
 
     return (
       <Modal
@@ -275,38 +301,59 @@ class ObservationModal extends React.Component {
                   placement="top"
                   overlay={
                     <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
-                      <dl className="keyboard-shortcuts">
-                        <dt>z</dt>
-                        <dd>{ I18n.t( "organism_appears_captive_cultivated" ) }</dd>
-                      </dl>
-                      <dl className="keyboard-shortcuts">
-                        <dt>r</dt>
-                        <dd>{ I18n.t( "mark_as_reviewed" ) }</dd>
-                      </dl>
-                      { blind ? null : (
-                        <dl className="keyboard-shortcuts">
-                          <dt>c</dt>
-                          <dd>{ _.capitalize( I18n.t( "comment" ) ) }</dd>
-                        </dl>
-                      ) }
-                      { blind ? null : (
-                        <dl className="keyboard-shortcuts">
-                          <dt>a</dt>
-                          <dd>{ _.capitalize( I18n.t( "agree" ) ) }</dd>
-                        </dl>
-                      ) }
-                      <dl className="keyboard-shortcuts">
-                        <dt>i</dt>
-                        <dd>{ I18n.t( "add_id" ) }</dd>
-                      </dl>
-                      <dl className="keyboard-shortcuts">
-                        <dt>&larr;</dt>
-                        <dd>{ I18n.t( "previous" ) }</dd>
-                      </dl>
-                      <dl className="keyboard-shortcuts">
-                        <dt>&rarr;</dt>
-                        <dd>{ I18n.t( "next" ) }</dd>
-                      </dl>
+                      <table>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>z</code></td>
+                          <td>{ I18n.t( "organism_appears_captive_cultivated" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>r</code></td>
+                          <td>{ I18n.t( "mark_as_reviewed" ) }</td>
+                        </tr>
+                        { blind ? null : (
+                          <tr className="keyboard-shortcuts">
+                            <td><code>c</code></td>
+                            <td>{ _.capitalize( I18n.t( "comment" ) ) }</td>
+                          </tr>
+                        ) }
+                        { blind ? null : (
+                          <tr className="keyboard-shortcuts">
+                            <td><code>a</code></td>
+                            <td>{ _.capitalize( I18n.t( "agree" ) ) }</td>
+                          </tr>
+                        ) }
+                        <tr className="keyboard-shortcuts">
+                          <td><code>i</code></td>
+                          <td>{ I18n.t( "add_id" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>&larr;</code></td>
+                          <td>{ I18n.t( "previous" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>&rarr;</code></td>
+                          <td>{ I18n.t( "next" ) }</td>
+                        </tr>
+                        {
+                          annoShortcuts.map( shortcut => {
+                            // If you add more controlled terms, you'll need to
+                            // add keys like
+                            // add_plant_phenology_flowering_annotation to
+                            // inaturalist.rake generate_translations_js
+                            const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
+                            return (
+                              <tr className="keyboard-shortcuts">
+                                <td>
+                                  <code>{ shortcut.keys[0] }</code> {
+                                    I18n.t( "then_keybord_sequence" )
+                                  } <code>{ shortcut.keys[1] }</code>
+                                </td>
+                                <td>{ I18n.t( labelKey ) }</td>
+                              </tr>
+                            );
+                          } )
+                        }
+                      </table>
                     </Popover>
                   }
                 >
@@ -443,7 +490,12 @@ ObservationModal.propTypes = {
   agreeingWithObservation: PropTypes.bool,
   blind: PropTypes.bool,
   tab: PropTypes.bool,
-  chooseTab: PropTypes.func
+  chooseTab: PropTypes.func,
+  controlledTerms: PropTypes.array
+};
+
+ObservationModal.defaultProps = {
+  controlledTerms: []
 };
 
 export default ObservationModal;

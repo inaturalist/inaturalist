@@ -213,6 +213,14 @@ en:
   add_photos: Add photos
   add_photos_to_this_observation: Add photos to this observation
   add_place: Add place
+  add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
+  add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
+  add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
+  add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
+  add_life_stage_pupa_annotation: 'Add "Life Stage: Pupa" annotation'
+  add_life_stage_nymph_annotation: 'Add "Life Stage: Nymph" annotation'
+  add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
+  add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
   add_several_observations_at_once: Add several observations at once.
   add_shape: Add shape
   add_some_now: Add some now
@@ -3226,6 +3234,7 @@ en:
     The world is full of interesting places, each filled with weird and
     wonderful life forms. Some are on the other side of the world, while
     others are just down the street!
+  then_keybord_sequence: then
   there_are_x_synonyms_html:
     one: "There is <span class='count'>1</span> synonym</span>"
     other: "There are <span class='count'>%{count}</span> synonyms</span>"

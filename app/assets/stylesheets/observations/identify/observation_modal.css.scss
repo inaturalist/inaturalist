@@ -262,16 +262,14 @@ body > div > [role="dialog"] .btn-default.btn-checkbox.checked {
   background-color: $inat-green;
   color: white;
 }
-dl.keyboard-shortcuts,
-.keyboard-shortcuts dt,
-.keyboard-shortcuts dd { margin-bottom: 0px !important; }
-.keyboard-shortcuts dt {
-  width: 30px;
+tr.keyboard-shortcuts td {
+  padding: 2px !important;
+}
+.keyboard-shortcuts td:first-child {
   text-align: center;
   display: inline-block;
-}
-.keyboard-shortcuts dd {
-  display: inline-block;
+  white-space: nowrap;
+  font-weight: bold;
 }
 
 .captive-checkbox-wrapper {

@@ -24,7 +24,11 @@ function mapStateToProps( state ) {
       thumbnail: photo.photoUrl( "square" )
     } ) );
   }
-  return Object.assign( {}, { images, blind: state.config.blind }, state.currentObservation );
+  return Object.assign( {}, {
+    images,
+    blind: state.config.blind,
+    controlledTerms: state.controlledTerms
+  }, state.currentObservation );
 }
 
 function mapDispatchToProps( dispatch ) {
