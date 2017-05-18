@@ -46,6 +46,20 @@ function updateCurrentObservation( updates ) {
   } );
 }
 
+export function fetchDataForTab( options = { } ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const observation = options.observation || s.currentObservation.observation;
+    if ( s.currentObservation.tab === "suggestions" ) {
+      dispatch( fetchSuggestions( ) );
+    } else if ( s.currentObservation.tab === "annotations" ) {
+      dispatch( fetchControlledTerms( { observation } ) );
+    } else if ( s.currentObservation.tab === "data-quality" ) {
+      dispatch( fetchQualityMetrics( { observation } ) );
+    }
+  };
+}
+
 function fetchCurrentObservation( observation = null ) {
   return function ( dispatch, getState ) {
     const s = getState();
@@ -99,13 +113,7 @@ function fetchCurrentObservation( observation = null ) {
         return newObs;
       } )
       .then( finalObservation => {
-        if ( s.currentObservation.tab === "suggestions" ) {
-          dispatch( fetchSuggestions( ) );
-        } else if ( s.currentObservation.tab === "annotations" ) {
-          dispatch( fetchControlledTerms( { observation: finalObservation } ) );
-        } else if ( s.currentObservation.tab === "data-quality" ) {
-          dispatch( fetchQualityMetrics( { observation: finalObservation } ) );
-        }
+        dispatch( fetchDataForTab( { observation: finalObservation } ) );
       } );
   };
 }
@@ -522,6 +530,36 @@ export function showNextPhoto( ) {
     dispatch( updateCurrentObservation( { imagesCurrentIndex: newCurrentIndex } ) );
   };
 }
+
+export function showPrevTab( ) {
+  return ( dispatch, getState ) => {
+    const tabs = ["info", "annotations", "data-quality", "suggestions"];
+    let index = tabs.indexOf( getState( ).currentObservation.tab );
+    if ( index <= 0 ) {
+      index = 0;
+    } else {
+      index = index - 1;
+    }
+    dispatch( updateCurrentObservation( { tab: tabs[index] } ) );
+    dispatch( fetchDataForTab( ) );
+  };
+}
+
+export function showNextTab( ) {
+  return ( dispatch, getState ) => {
+    const tabs = ["info", "annotations", "data-quality", "suggestions"];
+    let index = tabs.indexOf( getState( ).currentObservation.tab );
+    if ( index < 0 ) {
+      index = 0;
+    } else if ( index < tabs.length ) {
+      index = index + 1;
+    }
+    dispatch( updateCurrentObservation( { tab: tabs[index] } ) );
+    dispatch( fetchDataForTab( ) );
+  };
+}
+
+
 
 export {
   SHOW_CURRENT_OBSERVATION,

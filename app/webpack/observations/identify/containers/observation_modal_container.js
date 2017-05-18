@@ -9,11 +9,9 @@ import {
   agreeWithCurrentObservation,
   showNextObservation,
   showPrevObservation,
-  updateCurrentObservation
+  updateCurrentObservation,
+  fetchDataForTab
 } from "../actions";
-import { fetchSuggestions } from "../ducks/suggestions";
-import { fetchControlledTerms } from "../../show/ducks/controlled_terms";
-import { fetchQualityMetrics } from "../../show/ducks/quality_metrics";
 
 function mapStateToProps( state ) {
   let images;
@@ -60,15 +58,9 @@ function mapDispatchToProps( dispatch ) {
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
     },
-    chooseTab: ( tab, options ) => {
+    chooseTab: ( tab ) => {
       dispatch( updateCurrentObservation( { tab } ) );
-      if ( tab === "suggestions" ) {
-        dispatch( fetchSuggestions( ) );
-      } else if ( tab === "annotations" ) {
-        dispatch( fetchControlledTerms( { observation: options.observation } ) );
-      } else if ( tab === "data-quality" ) {
-        dispatch( fetchQualityMetrics( { observation: options.observation } ) );
-      }
+      dispatch( fetchDataForTab( ) );
     }
   };
 }
