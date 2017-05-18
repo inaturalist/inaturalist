@@ -44,7 +44,8 @@ class ObservationModal extends React.Component {
       blind,
       tab,
       chooseTab,
-      controlledTerms
+      controlledTerms,
+      imagesCurrentIndex
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -96,6 +97,7 @@ class ObservationModal extends React.Component {
         <ZoomableImageGallery
           key={`map-for-${observation.id}`}
           items={images}
+          currentIndex={imagesCurrentIndex}
           showThumbnails={images && images.length > 1}
           lazyLoad={false}
           server
@@ -489,6 +491,7 @@ ObservationModal.propTypes = {
   reviewedByCurrentUser: PropTypes.bool,
   captiveByCurrentUser: PropTypes.bool,
   images: PropTypes.array,
+  imagesCurrentIndex: PropTypes.number,
   commentFormVisible: PropTypes.bool,
   identificationFormVisible: PropTypes.bool,
   addIdentification: PropTypes.func,
@@ -500,13 +503,14 @@ ObservationModal.propTypes = {
   showPrevObservation: PropTypes.func,
   agreeingWithObservation: PropTypes.bool,
   blind: PropTypes.bool,
-  tab: PropTypes.bool,
+  tab: PropTypes.string,
   chooseTab: PropTypes.func,
   controlledTerms: PropTypes.array
 };
 
 ObservationModal.defaultProps = {
-  controlledTerms: []
+  controlledTerms: [],
+  imagesCurrentIndex: 0
 };
 
 export default ObservationModal;

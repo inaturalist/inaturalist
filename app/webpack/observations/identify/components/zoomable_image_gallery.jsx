@@ -1,6 +1,8 @@
+import { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import ImageGallery from "react-image-gallery";
 import EasyZoom from "EasyZoom/dist/easyzoom";
+import _ from "lodash";
 
 class ZoomableImageGallery extends ImageGallery {
 
@@ -27,6 +29,16 @@ class ZoomableImageGallery extends ImageGallery {
       loadingNotice: I18n.t( "loading" )
     } );
   }
+
+  componentWillReceiveProps( newProps ) {
+    if ( _.isInteger( newProps.currentIndex ) ) {
+      this.slideToIndex( newProps.currentIndex );
+    }
+  }
 }
+
+ZoomableImageGallery.props = {
+  currentIndex: PropTypes.number
+};
 
 export default ZoomableImageGallery;

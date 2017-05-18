@@ -7,7 +7,10 @@ import {
   showPrevObservation,
   toggleCaptive,
   toggleReviewed,
-  addAnnotationFromKeyboard
+  addAnnotationFromKeyboard,
+  zoomCurrentPhoto,
+  showPrevPhoto,
+  showNextPhoto
 } from "./actions/";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
@@ -25,6 +28,9 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   bindShortcut( "z", toggleCaptive, dispatch, { eventType: "keyup" } );
   bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
   bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
+  bindShortcut( "space", zoomCurrentPhoto, dispatch );
+  bindShortcut( "command+left", showPrevPhoto, dispatch );
+  bindShortcut( "command+right", showNextPhoto, dispatch );
   // Works for now but it's brittle, and will be confusing for locales other
   // than English. It might be wiser to move this logic to an action or a
   // reducer when the controlled terms get set

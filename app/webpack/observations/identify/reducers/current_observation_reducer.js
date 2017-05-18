@@ -36,7 +36,8 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
         commentFormVisible: false,
         identificationFormVisible: false,
         captiveByCurrentUser: action.observation.captiveByCurrentUser,
-        reviewedByCurrentUser: action.observation.reviewedByCurrentUser
+        reviewedByCurrentUser: action.observation.reviewedByCurrentUser,
+        imagesCurrentIndex: 0
       } );
     case HIDE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {

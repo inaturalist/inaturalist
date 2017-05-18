@@ -470,6 +470,59 @@ export function deleteFlag( id ) {
   };
 }
 
+export function zoomCurrentPhoto( ) {
+  return ( ) => {
+    const div = $( ".image-gallery-slide.center .easyzoom" );
+    const easyZoom = div.data( "easyZoom" );
+    if ( !easyZoom ) { return; }
+    if ( easyZoom.isOpen ) {
+      easyZoom.hide( );
+    } else {
+      const e = new MouseEvent( "mouseover", {
+        clientX: div.offset( ).left + ( div.width( ) / 2 ),
+        clientY: div.offset( ).top + ( div.height( ) / 2 )
+      } );
+      easyZoom.show( e );
+    }
+  };
+}
+
+export function showPrevPhoto( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( ).currentObservation;
+    if (
+      !state.observation ||
+      !state.observation.photos ||
+      state.observation.photos.length <= 1
+    ) {
+      return;
+    }
+    let newCurrentIndex = state.imagesCurrentIndex || 0;
+    if ( newCurrentIndex > 0 ) {
+      newCurrentIndex = newCurrentIndex - 1;
+    }
+    dispatch( updateCurrentObservation( { imagesCurrentIndex: newCurrentIndex } ) );
+  };
+}
+
+export function showNextPhoto( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( ).currentObservation;
+    if (
+      !state.observation ||
+      !state.observation.photos ||
+      state.observation.photos.length <= 1
+    ) {
+      return;
+    }
+    let newCurrentIndex = state.imagesCurrentIndex || 0;
+    if ( newCurrentIndex < state.observation.photos.length - 1 ) {
+      newCurrentIndex = newCurrentIndex + 1;
+    }
+    dispatch( updateCurrentObservation( { imagesCurrentIndex: newCurrentIndex } ) );
+  };
+}
+
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
