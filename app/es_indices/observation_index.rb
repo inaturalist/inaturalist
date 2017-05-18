@@ -588,13 +588,13 @@ class Observation < ActiveRecord::Base
           nested: {
             path: "ofvs",
             query: { bool: { must: [ { match: {
-              "ofvs.name" => v[:observation_field].name } } ] }
+              "ofvs.name_ci" => v[:observation_field].name } } ] }
             }
           }
         }
         unless v[:value].blank?
           nested_query[:nested][:query][:bool][:must] <<
-            { match: { "ofvs.value" => v[:value] } }
+            { match: { "ofvs.value_ci" => v[:value] } }
         end
         search_filters << nested_query
       end
