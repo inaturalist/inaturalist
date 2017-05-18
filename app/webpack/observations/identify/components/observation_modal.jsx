@@ -2,11 +2,7 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import {
   Modal,
-  Grid,
-  Row,
-  Col,
   Button,
-  Input,
   OverlayTrigger,
   Popover,
   Tooltip
@@ -149,29 +145,96 @@ class ObservationModal extends React.Component {
     };
 
     const annoShortcuts = [];
-    controlledTerms.forEach( ct => {
-      let availableValues = ct.values;
-      if ( observation.taxon ) {
-        availableValues = _.filter( availableValues, v => (
-          !v.valid_within_clade ||
-          _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
-        ) );
-      }
-      let valueKeyPosition = 0;
-      while (
-        availableValues.length !== _.uniq( availableValues.map( v =>
-          v.label[valueKeyPosition].toLowerCase( ) ) ).length
-      ) {
-        valueKeyPosition += 1;
-      }
-      availableValues.forEach( v => {
-        annoShortcuts.push( {
-          attributeLabel: ct.label,
-          valueLabel: v.label,
-          keys: [ct.label[0].toLowerCase( ), v.label[valueKeyPosition].toLowerCase( )]
+    if ( tab === "annotations" ) {
+      controlledTerms.forEach( ct => {
+        let availableValues = ct.values;
+        if ( observation.taxon ) {
+          availableValues = _.filter( availableValues, v => (
+            !v.valid_within_clade ||
+            _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
+          ) );
+        }
+        let valueKeyPosition = 0;
+        while (
+          availableValues.length !== _.uniq( availableValues.map( v =>
+            v.label[valueKeyPosition].toLowerCase( ) ) ).length
+        ) {
+          valueKeyPosition += 1;
+        }
+        availableValues.forEach( v => {
+          annoShortcuts.push( {
+            attributeLabel: ct.label,
+            valueLabel: v.label,
+            keys: [ct.label[0].toLowerCase( ), v.label[valueKeyPosition].toLowerCase( )]
+          } );
         } );
       } );
-    } );
+    }
+
+    let rightTools;
+    if ( tab === "info" ) {
+      rightTools = (
+        <div className="tools">
+          <OverlayTrigger
+            placement="top"
+            delayShow={1000}
+            overlay={
+              <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                { I18n.t( "mark_as_reviewed" ) }
+              </Tooltip>
+            }
+            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+          >
+            <label
+              className={
+                `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+              }
+            >
+              <input
+                type="checkbox"
+                checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                onChange={function ( ) {
+                  toggleReviewed( );
+                }}
+              />
+              { I18n.t( "reviewed" ) }
+            </label>
+          </OverlayTrigger>
+          <OverlayTrigger
+            placement="top"
+            delayShow={1000}
+            overlay={
+              <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
+                { I18n.t( "agree_with_current_taxon" ) }
+              </Tooltip>
+            }
+            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+          >
+            <Button
+              bsStyle="default"
+              disabled={ agreeingWithObservation || !showAgree( ) }
+              className="agree-btn"
+              onClick={ function ( ) {
+                agreeWithCurrentObservation( );
+              } }
+            >
+              <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
+              </i> { _.capitalize( I18n.t( "agree" ) ) }
+            </Button>
+          </OverlayTrigger>
+          <Button
+            bsStyle="default"
+            className="comment-btn"
+            onClick={ function ( ) { addComment( ); } }
+          >
+            <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
+          </Button>
+          <Button bsStyle="default" onClick={ function ( ) { addIdentification( ); } } >
+            <i className="icon-identification"></i> { I18n.t( "add_id" ) }
+          </Button>
+        </div>
+      );
+    }
 
     return (
       <Modal
@@ -180,187 +243,122 @@ class ObservationModal extends React.Component {
         bsSize="large"
         className={`ObservationModal ${blind ? "blind" : ""}`}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>
-            <SplitTaxon
-              taxon={observation.taxon}
-              url={`/observations/${observation.id}`}
-              placeholder={observation.species_guess}
-            /> <span className={`quality_grade ${observation.quality_grade}`}>
-              { qualityGrade( ) }
-            </span>
-          </Modal.Title>
-          <ul className="inat-tabs">
-            {["info", "annotations", "data-quality", "suggestions"].map( tabName => (
-              <li className={tab === tabName ? "active" : ""}>
-                <a
-                  href="#"
-                  onClick={ e => {
-                    e.preventDefault( );
-                    chooseTab( tabName, { observation } );
-                    return false;
-                  } }
-                >
-                  { I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
-                </a>
-              </li>
-            ) ) }
-          </ul>
-        </Modal.Header>
-        <Modal.Body>
-          <div className={( photos && sounds ) ? "photos sounds" : "media"}>
-            <div className="column-header">{ I18n.t( "detail" ) }</div>
-            { photos }
-            { sounds }
-          </div>
-          <div className="sidebar">
-            <div className={`inat-tab info-tab ${tab === "info" ? "active" : ""}`}>
-              <div className="map-and-details">
-                { taxonMap }
-                <ul className="details">
-                  <li>
-                    <i className="icon-person"></i> { observation.user.login }
-                  </li>
-                  <li>
-                    <i className="fa fa-map-marker"></i> { observation.place_guess }
-                  </li>
-                  <li>
-                    <i className="fa fa-calendar"></i> { moment( observation.observed_on ).format( "L" ) }
-                  </li>
-                  <li>
-                    <a className="permalink" href={`/observations/${observation.id}`}>
-                      <i className="icon-link"></i>
-                      { I18n.t( "view_observation" ) }
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="place-guess">
-                { observation.place_guess }
-              </div>
-              <UserText text={observation.description} truncate={100} className="stacked observation-description" />
-              <DiscussionListContainer observation={observation} />
-              <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
-                <div className="loading_spinner" />
-              </center>
-              <CommentFormContainer
-                observation={observation}
-                className={commentFormVisible ? "" : "collapse"}
-                ref={ function ( elt ) {
-                  const domNode = ReactDOM.findDOMNode( elt );
-                  if ( domNode && commentFormVisible ) {
-                    scrollSidebarToForm( domNode );
-                    if (
-                      $( "textarea", domNode ).val() === ""
-                      && $( ".IdentificationForm textarea" ).val() !== ""
-                    ) {
-                      $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
-                    }
-                  }
-                } }
-              />
-              <IdentificationFormContainer
-                observation={observation}
-                className={identificationFormVisible ? "" : "collapse"}
-                ref={ function ( elt ) {
-                  const domNode = ReactDOM.findDOMNode( elt );
-                  if ( domNode && identificationFormVisible ) {
-                    scrollSidebarToForm( domNode );
-                    if (
-                      $( "textarea", domNode ).val() === ""
-                      && $( ".CommentForm textarea" ).val() !== ""
-                    ) {
-                      $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
-                    }
-                  }
-                } }
-              />
-            </div>
-            <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
-              <AnnotationsContainer />
-            </div>
-            <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
-              <QualityMetricsContainer />
-            </div>
-            <div className={`inat-tab suggestions-tab ${tab === "suggestions" ? "active" : ""}`}>
-              <SuggestionsContainer />
-            </div>
-          </div>
+        <div className="nav-buttons">
           <Button className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
             &lsaquo;
           </Button>
           <Button className="next nav-button" onClick={ function ( ) { showNextObservation( ); } }>
             &rsaquo;
           </Button>
-        </Modal.Body>
-        <Modal.Footer>
-          <Grid fluid>
-            <Row>
-              <Col xs={4} className="secondary-actions">
+        </div>
+        <div className="inner">
+          <div className="left-col">
+            <div className="obs-modal-header">
+              <div className={`quality_grade pull-right ${observation.quality_grade}`}>
+                { qualityGrade( ) }
+              </div>
+              <SplitTaxon
+                taxon={observation.taxon}
+                url={`/observations/${observation.id}`}
+                placeholder={observation.species_guess}
+                noParens
+              />
+            </div>
+            <div className={( photos && sounds ) ? "photos sounds" : "media"}>
+              { photos }
+              { sounds }
+            </div>
+            <div className="tools">
+              <OverlayTrigger
+                trigger="hover"
+                placement="top"
+                overlay={
+                  <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
+                    <table>
+                      <tr className="keyboard-shortcuts">
+                        <td><code>z</code></td>
+                        <td>{ I18n.t( "organism_appears_captive_cultivated" ) }</td>
+                      </tr>
+                      <tr className="keyboard-shortcuts">
+                        <td><code>r</code></td>
+                        <td>{ I18n.t( "mark_as_reviewed" ) }</td>
+                      </tr>
+                      { blind ? null : (
+                        <tr className="keyboard-shortcuts">
+                          <td><code>c</code></td>
+                          <td>{ _.capitalize( I18n.t( "comment" ) ) }</td>
+                        </tr>
+                      ) }
+                      { blind ? null : (
+                        <tr className="keyboard-shortcuts">
+                          <td><code>a</code></td>
+                          <td>{ _.capitalize( I18n.t( "agree" ) ) }</td>
+                        </tr>
+                      ) }
+                      <tr className="keyboard-shortcuts">
+                        <td><code>i</code></td>
+                        <td>{ I18n.t( "add_id" ) }</td>
+                      </tr>
+                      <tr className="keyboard-shortcuts">
+                        <td><code>&larr;</code></td>
+                        <td>{ I18n.t( "previous" ) }</td>
+                      </tr>
+                      <tr className="keyboard-shortcuts">
+                        <td><code>&rarr;</code></td>
+                        <td>{ I18n.t( "next" ) }</td>
+                      </tr>
+                      {
+                        annoShortcuts.map( shortcut => {
+                          // If you add more controlled terms, you'll need to
+                          // add keys like
+                          // add_plant_phenology_flowering_annotation to
+                          // inaturalist.rake generate_translations_js
+                          const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
+                          return (
+                            <tr className="keyboard-shortcuts">
+                              <td>
+                                <code>{ shortcut.keys[0] }</code> {
+                                  I18n.t( "then_keybord_sequence" )
+                                } <code>{ shortcut.keys[1] }</code>
+                              </td>
+                              <td>{ I18n.t( labelKey ) }</td>
+                            </tr>
+                          );
+                        } )
+                      }
+                    </table>
+                  </Popover>
+                }
+              >
+                <Button bsStyle="link" className="btn-keyboard-shortcuts">
+                  <i className="fa fa-keyboard-o"></i>
+                </Button>
+              </OverlayTrigger>
+              <div>
                 <OverlayTrigger
-                  trigger="hover"
                   placement="top"
+                  trigger="hover"
+                  delayShow={1000}
                   overlay={
-                    <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
-                      <table>
-                        <tr className="keyboard-shortcuts">
-                          <td><code>z</code></td>
-                          <td>{ I18n.t( "organism_appears_captive_cultivated" ) }</td>
-                        </tr>
-                        <tr className="keyboard-shortcuts">
-                          <td><code>r</code></td>
-                          <td>{ I18n.t( "mark_as_reviewed" ) }</td>
-                        </tr>
-                        { blind ? null : (
-                          <tr className="keyboard-shortcuts">
-                            <td><code>c</code></td>
-                            <td>{ _.capitalize( I18n.t( "comment" ) ) }</td>
-                          </tr>
-                        ) }
-                        { blind ? null : (
-                          <tr className="keyboard-shortcuts">
-                            <td><code>a</code></td>
-                            <td>{ _.capitalize( I18n.t( "agree" ) ) }</td>
-                          </tr>
-                        ) }
-                        <tr className="keyboard-shortcuts">
-                          <td><code>i</code></td>
-                          <td>{ I18n.t( "add_id" ) }</td>
-                        </tr>
-                        <tr className="keyboard-shortcuts">
-                          <td><code>&larr;</code></td>
-                          <td>{ I18n.t( "previous" ) }</td>
-                        </tr>
-                        <tr className="keyboard-shortcuts">
-                          <td><code>&rarr;</code></td>
-                          <td>{ I18n.t( "next" ) }</td>
-                        </tr>
-                        {
-                          annoShortcuts.map( shortcut => {
-                            // If you add more controlled terms, you'll need to
-                            // add keys like
-                            // add_plant_phenology_flowering_annotation to
-                            // inaturalist.rake generate_translations_js
-                            const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
-                            return (
-                              <tr className="keyboard-shortcuts">
-                                <td>
-                                  <code>{ shortcut.keys[0] }</code> {
-                                    I18n.t( "then_keybord_sequence" )
-                                  } <code>{ shortcut.keys[1] }</code>
-                                </td>
-                                <td>{ I18n.t( labelKey ) }</td>
-                              </tr>
-                            );
-                          } )
-                        }
-                      </table>
-                    </Popover>
+                    <Tooltip id="captive-btn-tooltip">
+                      { I18n.t( "organism_appears_captive_cultivated" ) }
+                    </Tooltip>
                   }
+                  container={ $( "#wrapper.bootstrap" ).get( 0 ) }
                 >
-                  <Button>
-                    <i className="fa fa-keyboard-o"></i>
-                  </Button>
+                  <label
+                    className={
+                      `btn btn-link btn-checkbox ${captiveByCurrentUser ? "checked" : ""}`
+                    }
+                  >
+                    <input
+                      type="checkbox"
+                      checked={ captiveByCurrentUser }
+                      onChange={function ( ) {
+                        toggleCaptive( );
+                      }}
+                    /> { I18n.t( "captive_cultivated" ) }
+                  </label>
                 </OverlayTrigger>
                 <OverlayTrigger
                   placement="top"
@@ -376,95 +374,107 @@ class ObservationModal extends React.Component {
                     href={`/observations/${observation.id}`}
                     target="_blank"
                     className="link-btn"
+                    bsStyle="link"
                   >
-                    <i className="fa fa-link"></i>
+                    <i className="icon-link-external"></i> { I18n.t( "view_observation" ) }
                   </Button>
                 </OverlayTrigger>
-                <OverlayTrigger
-                  placement="top"
-                  trigger="hover"
-                  delayShow={1000}
-                  overlay={
-                    <Tooltip id="captive-btn-tooltip">
-                      { I18n.t( "organism_appears_captive_cultivated" ) }
-                    </Tooltip>
-                  }
-                  container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                >
-                  <div className="captive-checkbox-wrapper">
-                    <Input
-                      type="checkbox"
-                      label={ I18n.t( "captive_cultivated" ) }
-                      checked={ captiveByCurrentUser }
-                      onChange={function ( ) {
-                        toggleCaptive( );
-                      }}
-                      groupClassName="btn-checkbox"
-                    />
-                  </div>
-                </OverlayTrigger>
-              </Col>
-              <Col xs={8}>
-                <OverlayTrigger
-                  placement="top"
-                  delayShow={1000}
-                  overlay={
-                    <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
-                      { I18n.t( "mark_as_reviewed" ) }
-                    </Tooltip>
-                  }
-                  container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                >
-                  <label
-                    className={
-                      `btn btn-default btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
-                    }
-                  >
-                    <input
-                      type="checkbox"
-                      checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
-                      onChange={function ( ) {
-                        toggleReviewed( );
-                      }}
-                    /> { I18n.t( "reviewed" ) }
-                  </label>
-                </OverlayTrigger>
-                <Button
-                  bsStyle="default"
-                  className="comment-btn"
-                  onClick={ function ( ) { addComment( ); } }
-                >
-                  <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
-                </Button>
-                <OverlayTrigger
-                  placement="top"
-                  delayShow={1000}
-                  overlay={
-                    <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
-                      { I18n.t( "agree_with_current_taxon" ) }
-                    </Tooltip>
-                  }
-                  container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                >
-                  <Button
-                    bsStyle="default"
-                    disabled={ agreeingWithObservation || !showAgree( ) }
-                    className="agree-btn"
-                    onClick={ function ( ) {
-                      agreeWithCurrentObservation( );
+              </div>
+            </div>
+          </div>
+          <div className="right-col">
+            <ul className="inat-tabs">
+              {["info", "annotations", "data-quality", "suggestions"].map( tabName => (
+                <li className={tab === tabName ? "active" : ""}>
+                  <a
+                    href="#"
+                    onClick={ e => {
+                      e.preventDefault( );
+                      chooseTab( tabName, { observation } );
+                      return false;
                     } }
                   >
-                    <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
-                    </i> { _.capitalize( I18n.t( "agree" ) ) }
-                  </Button>
-                </OverlayTrigger>
-                <Button bsStyle="primary" onClick={ function ( ) { addIdentification( ); } } >
-                  <i className="icon-identification"></i> { I18n.t( "add_id" ) }
-                </Button>
-              </Col>
-            </Row>
-          </Grid>
-        </Modal.Footer>
+                    { I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
+                  </a>
+                </li>
+              ) ) }
+            </ul>
+            <div className="sidebar">
+              <div className={`inat-tab info-tab ${tab === "info" ? "active" : ""}`}>
+                <div className="map-and-details">
+                  { taxonMap }
+                  <ul className="details">
+                    <li>
+                      <i className="icon-person"></i> { observation.user.login }
+                    </li>
+                    <li>
+                      <i className="fa fa-map-marker"></i> { observation.place_guess }
+                    </li>
+                    <li>
+                      <i className="fa fa-calendar"></i> { moment( observation.observed_on ).format( "L" ) }
+                    </li>
+                    <li>
+                      <a className="permalink" href={`/observations/${observation.id}`}>
+                        <i className="icon-link"></i>
+                        { I18n.t( "view_observation" ) }
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div className="place-guess">
+                  { observation.place_guess }
+                </div>
+                <UserText text={observation.description} truncate={100} className="stacked observation-description" />
+                <DiscussionListContainer observation={observation} />
+                <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
+                  <div className="loading_spinner" />
+                </center>
+                <CommentFormContainer
+                  observation={observation}
+                  className={commentFormVisible ? "" : "collapse"}
+                  ref={ function ( elt ) {
+                    const domNode = ReactDOM.findDOMNode( elt );
+                    if ( domNode && commentFormVisible ) {
+                      scrollSidebarToForm( domNode );
+                      if (
+                        $( "textarea", domNode ).val() === ""
+                        && $( ".IdentificationForm textarea" ).val() !== ""
+                      ) {
+                        $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
+                      }
+                    }
+                  } }
+                />
+                <IdentificationFormContainer
+                  observation={observation}
+                  className={identificationFormVisible ? "" : "collapse"}
+                  ref={ function ( elt ) {
+                    const domNode = ReactDOM.findDOMNode( elt );
+                    if ( domNode && identificationFormVisible ) {
+                      scrollSidebarToForm( domNode );
+                      if (
+                        $( "textarea", domNode ).val() === ""
+                        && $( ".CommentForm textarea" ).val() !== ""
+                      ) {
+                        $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
+                      }
+                    }
+                  } }
+                />
+              </div>
+              <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
+                <AnnotationsContainer />
+              </div>
+              <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
+                <QualityMetricsContainer />
+              </div>
+              <div className={`inat-tab suggestions-tab ${tab === "suggestions" ? "active" : ""}`}>
+                <SuggestionsContainer />
+              </div>
+            </div>
+            { rightTools }
+          </div>
+        </div>
       </Modal>
     );
   }

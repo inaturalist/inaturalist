@@ -8,53 +8,47 @@
   height: 90%;
   display: flex;
 }
-.ObservationModal .modal-dialog .modal-content {
+.ObservationModal .modal-dialog .modal-content,
+.ObservationModal .modal-dialog .modal-content .inner {
   width: 100%;
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
 }
-
-body > div > [role="dialog"] .modal-title {
-  line-height: 45px;
-  padding: 0 20px;
+.ObservationModal .modal-dialog .modal-content .inner {
+  border-radius: 6px;
+  overflow: hidden;
 }
-body > div > [role="dialog"] .modal-header {
-  position: relative;
-}
-body > div > [role="dialog"] .modal-header .close {
-  margin-top: 0;
-  position: absolute;
-  top: 0px;
-  right: 0px;
-  line-height: 45px;
-  padding-right: 10px;
-}
-.ObservationModal .modal-title .SplitTaxon {
-  line-height: 20px;
-}
-
-.bootstrap .ObservationModal .modal-footer .secondary-actions,
-body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions {
-  text-align: left;
-}
-
-.ObservationModal .modal-body {
-  display: flex;
-  flex: 2;
-}
-.ObservationModal .modal-body > div {
+.ObservationModal .modal-dialog .modal-content .left-col,
+.ObservationModal .modal-dialog .modal-content .right-col {
   width: 50%;
+  display: flex;
+  flex-direction: column;
 }
+.ObservationModal .modal-dialog .modal-content .left-col {
+  padding: 15px 20px 10px;
+}
+.left-col .SplitTaxon.taxon,
+.left-col .quality_grade {
+  font-weight: bold;
+}
+.left-col .SplitTaxon.taxon .display-name {
+  font-size: 180%;
+  display: block;
+}
+.ObservationModal .modal-dialog .modal-content .right-col {
+  border-left: 2px solid #ddd;
+  background-color: $light-grey;
+}
+
 $galleryHeightElements: "
-  .ObservationModal .modal-body .image-gallery,
-  .ObservationModal .modal-body .image-gallery-content,
-  .ObservationModal .modal-body .image-gallery-content > div,
-  .ObservationModal .modal-body .image-gallery-slides,
-  .ObservationModal .modal-body .image-gallery-slide,
-  .ObservationModal .modal-body .easyzoom,
-  .ObservationModal .modal-body .easyzoom > a,
-  .ObservationModal .modal-body .easyzoom > a img
+  .ObservationModal .image-gallery,
+  .ObservationModal .image-gallery-content,
+  .ObservationModal .image-gallery-content > div,
+  .ObservationModal .image-gallery-slides,
+  .ObservationModal .image-gallery-slide,
+  .ObservationModal .easyzoom,
+  .ObservationModal .easyzoom > a,
+  .ObservationModal .easyzoom > a img
 ";
  
  #{$galleryHeightElements} {
@@ -62,20 +56,9 @@ $galleryHeightElements: "
   object-fit: contain;
   width: 100%;
   height: 100%;
-  max-height: 300px;
 }
 
-@media (min-height: 600px) {
-  #{$galleryHeightElements} { max-height: 400px; }
-}
-@media (min-height: 900px) {
-  #{$galleryHeightElements} { max-height: 600px; }
-}
-@media (min-height: 1200px) {
-  #{$galleryHeightElements} { max-height: 800px; }
-}
-
-.ObservationModal .modal-body .easyzoom > a img {
+.ObservationModal .easyzoom > a img {
   object-position: 50% 50%;
 }
 
@@ -83,8 +66,7 @@ $galleryHeightElements: "
   height: 100px;
 }
 
-.ObservationModal .modal-body .image-gallery {
-  background-color: #eee;
+.ObservationModal .image-gallery {
   position: relative;
 }
 .ObservationModal .image-gallery-content {
@@ -99,7 +81,7 @@ $galleryHeightElements: "
   position: absolute;
   width: 100%;
   bottom: 0;
-  background-color: rgba(238,238,238,0.3);
+  background-color: rgba(255,255,255,0.3);
   padding: 5px;
   z-index: 1;
 }
@@ -111,33 +93,57 @@ $galleryHeightElements: "
   text-align: center;
 }
 .ObservationModal .media {
-  padding-right: 20px;
+  margin-bottom: 10px;
+  flex: 2;
 }
 .ObservationModal .sidebar {
   overflow-y: auto;
-  border-left: 1px solid #ddd;
-  padding-left: 20px;
+  padding: 20px;
   display: flex;
+  flex: 2;
 }
-.ObservationModal .modal-title {
-  font-size: 16px;
+
+.ObservationModal .tools {
+  display: flex;
+  justify-content: space-between;
+  .form-group {
+    margin-bottom: 0;
+  }
+  .btn {
+    font-weight: bold;
+  }
+  .btn-link,
+  .btn-link:hover {
+    color: black;
+    text-decoration: none;
+  }
+  i {
+    color: $inat-green;
+  }
+  .link-btn:hover {
+    text-decoration: none;
+  }
+  .btn-checkbox {
+    text-align: left;
+    padding-left: 0;
+    input {
+      margin-right: 5px;
+    }
+  }
+  .btn-keyboard-shortcuts {
+    padding-left: 0;
+    i {
+      color: #999;
+    }
+  }
 }
-.ObservationModal .modal-title .titlebit {
-  color: #aaa;
-  margin-left: 10px;
-  font-size: 14px;
-  text-transform: uppercase;
-}
-.ObservationModal .modal-title .titlebit label {
-  margin-right: 5px;
-}
-.ObservationModal .modal-body {
+.ObservationModal .right-col .tools {
+  padding: 10px 20px;
   background-color: #eee;
-  max-height: none !important;
-  height: 100%;
 }
-.ObservationModal .modal-footer .form-group {
-  margin-bottom: 0;
+.ObservationModal .right-col .tools > * {
+  width: 100%;
+  margin: 2px;
 }
 .DiscussionListItem {
   padding: 10px;
@@ -273,11 +279,6 @@ tr.keyboard-shortcuts td {
   font-weight: bold;
 }
 
-.captive-checkbox-wrapper {
-  display: inline-block;
-  margin-left: 10px;
-}
-
 .ObservationModal .photos.sounds .image-gallery {
   margin-bottom: 10px;
 }
@@ -321,7 +322,8 @@ body > div > [role="dialog"] .inat-tabs,
   list-style: none;
   padding: 0 20px;
   margin: 0;
-  float: right;
+  width: 100%;
+  background-color: #eee;
 }
 body > div > [role="dialog"] .inat-tabs li,
 .inat-tabs li {
@@ -332,7 +334,7 @@ body > div > [role="dialog"] .inat-tabs li,
 body > div > [role="dialog"] .inat-tabs li a,
 .inat-tabs li a {
   border: 0 transparent;
-  border-bottom: 2px solid transparent;
+  border-bottom: 3px solid transparent;
   color: #555;
   font-weight: bold;
   text-transform: capitalize;
@@ -348,7 +350,7 @@ body > div > [role="dialog"] .inat-tabs li a:focus,
 }
 body > div > [role="dialog"] .inat-tabs li.active a,
 .inat-tabs li.active a {
-  border-bottom: 2px solid #74ac00;
+  border-bottom: 3px solid #74ac00;
 }
 
 
