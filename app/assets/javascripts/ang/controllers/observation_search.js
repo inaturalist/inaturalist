@@ -515,9 +515,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.identifiers = [ ];
     $scope.observers = [ ];
     $scope.resetStats( );
-    var processedParams = ObservationsFactory.processParamsForAPI( _.extend( { },
-      $scope.params, iNaturalist.localeParams( ) ),
-      $scope.possibleFields);
+    var processedParamsWithoutLocale = ObservationsFactory.processParamsForAPI( _.extend( { },
+      $scope.params ), $scope.possibleFields);
+    var processedParams = _.extend( { },
+      processedParamsWithoutLocale, iNaturalist.localeParams( ) );
     // recording there was some location in the search. That will be used
     // to hide the `Redo Search` button until the map moves
     if( processedParams.place_id || processedParams.swlat ) {
@@ -526,13 +527,35 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
     var searchParams = _.extend( { }, processedParams, {
       page: $scope.apiPage( ),
-      per_page: $scope.pagination.perSection });
+      per_page: $scope.pagination.perSection,
+      return_bounds: true });
     // prevent slow searches from overwriting current results
     var thisSearchTime = new Date( ).getTime( );
     $scope.lastSearchTime = thisSearchTime;
     ObservationsFactory.search( searchParams ).
                         then( function( response ) {
       if( $scope.lastSearchTime != thisSearchTime ) { return; }
+
+      // this is an initial search, and not the default no-params search,
+      // and we have bounds of the results, so focus the map on the results
+      if( response.data.total_bounds &&
+          options.browserStateOnly &&
+          !_.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+        var bounds = response.data.total_bounds;
+        var swlat = bounds.swlat;
+        var swlng = bounds.swlng;
+        var nelat = bounds.nelat;
+        var nelng = bounds.nelng;
+        if( swlat < -80 ) { swlat = -80; }
+        if( swlng < -179.9 ) { swlng = -179.9; }
+        if( nelat > 80 ) { nelat = 80; }
+        if( nelng > 179.9 ) { nelng = 179.9; }
+        $scope.mapBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng( swlat, swlng ),
+          new google.maps.LatLng( nelat, nelng ));
+        $rootScope.$emit( "alignMap" );
+      }
+
       $scope.pagination.searching = false;
       thisSearchTime = new Date( ).getTime( );
       $scope.lastSearchTime = thisSearchTime;
@@ -1176,7 +1199,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     options = options || { };
     options.params = options.params || { };
     if( onMap ) {
-      options.bounds = options.bounds || $scope.map.getBounds( );
+      options.bounds = options.bounds || $scope.mapBounds || $scope.map.getBounds( );
     } else if( $scope.mapBounds ) {
       options.bounds = options.bounds || $scope.mapBounds;
     }

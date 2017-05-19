@@ -1634,7 +1634,7 @@ class ObservationsController < ApplicationController
         elastic_params = prepare_counts_elastic_query(search_params)
         # using 0 for the aggregation count to get all results
         distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-          aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+          aggregate: { species: { "taxon.id": 120000 } })).response.aggregations
         @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
         # if `leaves` were requested, remove any taxon in another's ancestry
         if params[:rank] == "leaves"
@@ -3055,7 +3055,8 @@ class ObservationsController < ApplicationController
   end
 
   def viewing_new_obs_show?
-    logged_in? && current_user.is_admin? && params.key?("show2")
+    logged_in? && current_user.is_admin? &&
+      current_user.in_test_group?("obs-show") && !params.key?("show1")
   end
 
 end

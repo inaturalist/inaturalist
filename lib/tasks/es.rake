@@ -78,11 +78,15 @@ end
 
 def elastic_models
   {
+    ControlledTerm => { },
+    Identification => { },
     Observation => { },
-    Project => { },
+    ObservationField => { },
     Place => { batch_size: 20 },
+    Project => { },
     Taxon => { },
-    UpdateAction => { batch_size: 5000 }
+    UpdateAction => { batch_size: 5000 },
+    User => { }
   }
 end
 

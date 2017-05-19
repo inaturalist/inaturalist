@@ -2635,11 +2635,13 @@ en:
   rank_restrictions: Rank restrictions
   ranks:
       kingdom: kingdom
+      subkingdom: subkingdom
       phylum: phylum
       subphylum: subphylum
       superclass: superclass
       class: class
       subclass: subclass
+      infraclass: infraclass
       superorder: superorder
       order: order
       suborder: suborder
@@ -2653,6 +2655,9 @@ en:
       subtribe: subtribe
       genus: genus
       genushybrid: genushybrid
+      subgenus: subgenus
+      section: section
+      subsection: subsection
       species: species
       hybrid: hybrid
       subspecies: subspecies
@@ -4762,25 +4767,15 @@ en:
           unless you trust the project curators.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: You (<span class="notice status">best option for control over sharing private locations</span>)
-        any: Project members (<span class="success status">best option for sharing your observations with this project</span>)
-        none: No one
+        observer: Yes, but only if I add the observation to the project myself.
+        any: Yes, no matter who adds the observation to the project.
+        none: No.
       curator_coordinate_access_label: |
-        Allow project curators to view the private coordinates of your
-        observations when added to the project by
+        Do you want to make your private/obscured observation coordinates visible to the project curators?
       curator_coordinate_access_note: |
         You can also choose to share the private coordinates of observations
         in this project on a case-by-case basis. These are just the defaults
         for new observations added to the project.
-      project_user_curator_coordinate_access_descriptions:
-        observer: |
-          Only allow project curators to view private coordinates of your
-          observations that you add to this project.
-        any: |
-          Allow project curators to view the private coordinates of your
-          observations added to this project by you and other project members.
-        none: |
-          Don't share private coordinates of your observations with the project curators
       project_terms_desc_html: |
         Allow the curators of this project to use your observations according
         to the <a href="%{url}">project terms</a>.
@@ -5380,6 +5375,7 @@ en:
           attributes:
             place_geometry:
               is_too_large_to_import: is too large to import
+              contains_too_many_observations: contains too many observations to import
         post:
           attributes:
             user:

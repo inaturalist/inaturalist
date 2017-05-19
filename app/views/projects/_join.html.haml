@@ -45,8 +45,7 @@
     - ProjectUser::CURATOR_COORDINATE_ACCESS_OPTIONS.each do |option|
       = f.radio_button :preferred_curator_coordinate_access, option,
         label_after: true, 
-        label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}").html_safe, 
-        description: t("views.projects.project_user_curator_coordinate_access_descriptions.#{option}")
+        label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}").html_safe
     %p.stacked.ui.meta
       = succeed ':' do
         %label=t :note

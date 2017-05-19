@@ -214,7 +214,9 @@ class ObservationFieldValue < ActiveRecord::Base
       field_id: observation_field.id,
       datatype: observation_field.datatype,
       name: observation_field.name,
+      name_ci: observation_field.name,
       value: self.value,
+      value_ci: self.value,
       user_id: user_id
     }
     json[:taxon_id] = value if observation_field.datatype == ObservationField::TAXON

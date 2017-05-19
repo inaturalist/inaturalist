@@ -163,7 +163,6 @@ class PlacesController < ApplicationController
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
-        @place.save_geom(@geometry, user: current_user) if @geometry
       end
       if @geometry && @place.valid?
         @place.save_geom(@geometry, user: current_user)

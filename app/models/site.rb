@@ -47,7 +47,7 @@ class Site < ActiveRecord::Base
   belongs_to :place, :inverse_of => :sites
 
   # header logo, should be at least 118x22
-  if Rails.env.production? || Rails.env.prod_dev?
+  if Rails.env.production?
     has_attached_file :logo,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
