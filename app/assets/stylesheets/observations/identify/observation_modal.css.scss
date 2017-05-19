@@ -2,6 +2,8 @@
 @import "../../shared/user_text";
 @import "../../shared/annotations";
 @import "../../shared/quality_metrics";
+@import "../../shared/place_chooser_popover";
+@import "../../shared/taxon_chooser_popover";
 
 .ObservationModal .modal-dialog {
   width: 90% !important;
@@ -51,7 +53,7 @@ $galleryHeightElements: "
   .ObservationModal .easyzoom > a img
 ";
  
- #{$galleryHeightElements} {
+#{$galleryHeightElements} {
   display: block;
   object-fit: contain;
   width: 100%;
@@ -98,7 +100,6 @@ $galleryHeightElements: "
 }
 .ObservationModal .sidebar {
   overflow-y: auto;
-  padding: 20px;
   display: flex;
   flex: 2;
 }
@@ -368,10 +369,14 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 
 .ObservationModal .inat-tab {
   display: none;
+  padding: 20px;
 }
 .ObservationModal .inat-tab.active {
   display: block;
   width: 100%;
+}
+.ObservationModal .inat-tab.suggestions-tab {
+  padding: 0;
 }
 
 .ObservationModal .map-and-details {
@@ -399,8 +404,9 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 }
 
 .ObservationModal .column-header {
-  font-size: 18px;
+  font-size: 24px;
   margin-bottom: 10px;
+  text-transform: capitalize;
 }
 .ObservationModal .media .column-header {
   visibility: hidden;

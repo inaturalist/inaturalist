@@ -16,16 +16,38 @@
     transform: translateX( -50% );
   }
 
+  .suggestions-inner {
+    padding: 20px;
+  }
+
   .suggestions-list,
   .suggestions-detail {
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
   .photos {
     margin: -2.5px;
     line-height: 0;
     display: flex;
   }
+  
+  $galleryHeightElements: "
+    .image-gallery,
+    .image-gallery-content,
+    .image-gallery-content > div,
+    .image-gallery-slides,
+    .image-gallery-slide,
+    .easyzoom,
+    .easyzoom > a,
+    .easyzoom > a img
+  ";
+   
+  #{$galleryHeightElements} {
+    height: auto;
+    max-height: 500px;
+  }
+
   .TaxonPhoto {
     display: inline-block;
     margin: 2.5px;
@@ -37,9 +59,32 @@
   .SplitTaxon {
     cursor: pointer;
   }
+
+  .PlaceChooserPopoverTrigger,
+  .TaxonChooserPopoverTrigger {
+    display: inline-block;
+    color: $bootstrap-link-color;
+    i {
+      margin-right: 5px;
+    }
+  }
+  .TaxonChooserPopoverTrigger {
+    .SplitTaxon.taxon .display-name,
+    .taxon.has-com-name .sciname {
+      color: $bootstrap-link-color;
+    }
+  }
+
+  .filters > * {
+    margin-right: 10px;
+  }
 }
 
 .ObservationModal .inat-tab.active.suggestions-tab {
   display: flex;
   flex: 2;
+}
+
+body > div > [role="dialog"] .TaxonChooserPopover .form-group {
+  margin-bottom: 0;
 }

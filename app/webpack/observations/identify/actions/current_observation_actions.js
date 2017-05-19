@@ -559,8 +559,6 @@ export function showNextTab( ) {
   };
 }
 
-
-
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,

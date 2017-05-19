@@ -89,6 +89,9 @@ en:
   x_species_link_html:
     one: "<a href='%{url}'>1 species</a>"
     other: "<a href='%{url}'>%{count} species</a>"
+  x_suggestions:
+    one: 1 suggestion
+    other: "%{count} suggestions"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon observed"
     other: "<span class='count'>%{count}</span> taxa observed"
@@ -1183,6 +1186,7 @@ en:
   filter_by: Filter by
   filter_by_curator_identification: Filter by curator identification
   filter_by_place: Filter by place
+  filter_by_taxon: Filter by taxon
   filter_by_place_taxon_and_color: Filter by place, taxon, and color using the controls.
   filter_list_by_this_taxon: Filter list by this taxon
   filtering: Filtering

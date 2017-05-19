@@ -151,12 +151,13 @@ class PlaceChooserPopover extends React.Component {
   }
 
   render( ) {
-    const { place, className } = this.props;
+    const { place, className, container, preIconClass, postIconClass } = this.props;
     return (
       <OverlayTrigger
         trigger="click"
         placement="bottom"
         rootClose
+        container={container}
         onEntered={( ) => {
           this.bindArrowKeys( );
           $( "input", ReactDOM.findDOMNode( this.refs.input ) ).focus( );
@@ -229,12 +230,13 @@ class PlaceChooserPopover extends React.Component {
         <div
           className={`PlaceChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
         >
-          <i className="fa fa-map-marker"></i>
+          { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
           {
             place ?
               I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
               :
               _.startCase( I18n.t( "filter_by_place" ) ) }
+          { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
         </div>
       </OverlayTrigger>
     );
@@ -246,7 +248,14 @@ PlaceChooserPopover.propTypes = {
   defaultPlace: PropTypes.object,
   className: PropTypes.string,
   setPlace: PropTypes.func,
-  clearPlace: PropTypes.func
+  clearPlace: PropTypes.func,
+  container: PropTypes.object,
+  preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
+  postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] )
+};
+
+PlaceChooserPopover.defaultProps = {
+  preIconClass: "fa fa-map-marker"
 };
 
 export default PlaceChooserPopover;

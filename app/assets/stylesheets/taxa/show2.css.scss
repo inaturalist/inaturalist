@@ -3,6 +3,7 @@
 @import "../shared/user_text";
 @import "../shared/split_taxon";
 @import "../shared/taxon_photo";
+@import "../shared/place_chooser_popover";
 
 #app {
   min-height: 600px;
@@ -925,66 +926,6 @@ $nav-btn-dim: 40px;
   border-color: lighten(#999, 1%);
 }
 
-.PlaceChooserPopoverTrigger {
-  margin-top: 20px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.PlaceChooserPopoverTrigger:hover {
-  opacity: 0.8;
-}
-.PlaceChooserPopoverTrigger .fa-map-marker {
-  margin-right: 5px;
-}
-.PlaceChooserPopoverTrigger.chosen .fa-map-marker {
-  color: $inat-green;
-}
-.PlaceChooserPopover {
-  max-width: 200px;
-}
-.PlaceChooserPopover.popover .popover-content {
-  padding: 10px;
-}
-.PlaceChooserPopover a {
-  color: #333;
-}
-.PlaceChooserPopover.popover .form-group {
-  margin-bottom: 5px;
-}
-.PlaceChooserPopover.popover ul {
-  margin-bottom: 0;
-  cursor: pointer;
-}
-.PlaceChooserPopover.popover .media {
-  margin: 0;
-}
-.PlaceChooserPopover.popover .media-left {
-  padding: 0;
-}
-.PlaceChooserPopover li {
-  padding: 5px 0;
-  border-bottom: 1px solid #ddd;
-}
-.PlaceChooserPopover li:last-child {
-  border-bottom: 0 transparent;
-}
-.PlaceChooserPopover li i {
-  color: #999;
-  width: 20px;
-  text-align: center;
-  margin-top: 2px;
-}
-.PlaceChooserPopover li.current {
-  background-color: #eee;
-}
-.PlaceChooserPopover li .place-type {
-  text-transform: capitalize;
-}
-.PlaceChooserPopover .pinned {
-  border-bottom: 2px solid #ddd;
-  font-weight: bold;
-}
-
 .DraggablePhoto {
   display: inline-block;
   position: relative;
@@ -1148,4 +1089,7 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   display: block;
   flex: 1;
   background-position-y: 2px;
+}
+.PlaceChooserPopoverTrigger {
+  margin-top: 20px;
 }

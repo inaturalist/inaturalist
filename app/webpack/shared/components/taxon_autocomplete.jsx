@@ -14,7 +14,8 @@ class TaxonAutocomplete extends React.Component {
     const domNode = ReactDOM.findDOMNode( this );
     const opts = Object.assign( {}, this.props, {
       idEl: $( "input[name='taxon_id']", domNode ),
-      preventEnterSubmit: true
+      preventEnterSubmit: true,
+      react: true
     } );
     $( "input[name='taxon_name']", domNode ).taxonAutocomplete( opts );
     this.fetchTaxon( );
@@ -27,14 +28,14 @@ class TaxonAutocomplete extends React.Component {
   }
 
   fetchTaxon( ) {
-    if ( this.props.initialTaxonID ) {
+    if ( this.props.initialTaxonID && !this.props.initialSelection ) {
       inaturalistjs.taxa.fetch( this.props.initialTaxonID ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateTaxon( { taxon: r.results[0] } );
         }
       } );
     } else {
-      this.updateTaxon( { taxon: null } );
+      this.updateTaxon( { taxon: this.props.initialSelection } );
     }
   }
 

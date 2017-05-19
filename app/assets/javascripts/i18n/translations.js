@@ -2955,6 +2955,7 @@ I18n.translations["en"] = {
   "featured": "featured",
   "fields_": "Fields",
   "filter_by_place": "Filter by place",
+  "filter_by_taxon": "Filter by taxon",
   "filters": "Filters",
   "find": "Find",
   "find_observations": "Find observations",
@@ -3726,6 +3727,10 @@ I18n.translations["en"] = {
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 species</a>",
     "other": "<a href='%{url}'>%{count} species</a>"
+  },
+  "x_suggestions": {
+    "one": "1 suggestion",
+    "other": "%{count} suggestions"
   },
   "yellow": "yellow",
   "yes": "Yes",

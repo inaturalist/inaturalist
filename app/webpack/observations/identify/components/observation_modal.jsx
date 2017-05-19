@@ -45,7 +45,8 @@ class ObservationModal extends React.Component {
       tab,
       chooseTab,
       controlledTerms,
-      imagesCurrentIndex
+      imagesCurrentIndex,
+      setImagesCurrentIndex
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -102,6 +103,7 @@ class ObservationModal extends React.Component {
           lazyLoad={false}
           server
           showNav={false}
+          onSlide={ setImagesCurrentIndex }
         />
       );
     }
@@ -505,7 +507,8 @@ ObservationModal.propTypes = {
   blind: PropTypes.bool,
   tab: PropTypes.string,
   chooseTab: PropTypes.func,
-  controlledTerms: PropTypes.array
+  controlledTerms: PropTypes.array,
+  setImagesCurrentIndex: PropTypes.func
 };
 
 ObservationModal.defaultProps = {

@@ -1,0 +1,16 @@
+.TaxonChooserPopoverTrigger {
+  cursor: pointer;
+  
+  .pre-icon {
+    margin-right: 5px;
+  }
+  .post-icon {
+    margin-left: 5px;
+  }
+}
+
+.TaxonChooserPopoverTrigger.chosen {
+  .pre-icon {
+    color: $inat-green;
+  } 
+}

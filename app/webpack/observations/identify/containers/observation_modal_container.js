@@ -61,6 +61,9 @@ function mapDispatchToProps( dispatch ) {
     chooseTab: ( tab ) => {
       dispatch( updateCurrentObservation( { tab } ) );
       dispatch( fetchDataForTab( ) );
+    },
+    setImagesCurrentIndex: index => {
+      dispatch( updateCurrentObservation( { imagesCurrentIndex: index } ) );
     }
   };
 }
