@@ -218,7 +218,7 @@ fr:
   add_conservation_status: Ajouter la situation quant à la conservation
   add_countries: Ajouter des pays
   add_custom_project_fields: Ajouter des champs de projet personnalisés
-  add_edit_flags: Ajouter / éditer des drapeaux
+  add_edit_flags: Ajouter / éditer les marquages
   add_edit_more_fields: Ajouter/modifier plus de champs
   add_description: Ajouter %{description_name}
   add_field: Ajouter un champ
@@ -258,7 +258,7 @@ fr:
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_shape: Ajouter une forme
   add_some_now: Ajoutez-en maintenant
-  add_tag: Ajouter un balise
+  add_tag: Ajouter une balise
   add_tags: Ajouter des étiquettes
   add_tags_to_selected_taxa: Ajouter des étiquettes aux taxons sélectionnés
   add_taxa: Ajouter des taxons
@@ -3511,7 +3511,7 @@ fr:
   species_search: Recherche d’espèces
   species_taxon_name: Nom de l’espèce/taxon
   species_unknown: Espèce inconnue
-  specify_the_reason_youre_flagging: Spécifier le motif de marquer cet élément
+  specify_the_reason_youre_flagging: Spécifier le motif du marquage de cet élément
   src: Rech.
   standard: Standard
   start: Démarrer
@@ -4971,7 +4971,8 @@ fr:
             Toutefois, l’ID de la communauté reste affiché, afin que tous puissent voir les
             différents IDs qui ont été proposés.
           </p>
-        you_have_opted_out: Vous avez rejeté des identifications de la communauté
+        you_have_opted_out: Vous avez choisi de ne pas recevoir les identifications
+          de la communauté
         opt_in_for_this_observation: Choisir cette observation
         your_id_does_not_match: Votre ID (<span class="bold">%{taxon_name}</span>)
           ne correspond pas à l'ID communautaire

@@ -147,6 +147,7 @@ zh-CN:
   actions: 操作
   activate_user: 激活用户
   active: 激活
+  activity: 活跃
   activity_settings: 活跃设置
   adapted_by_name_from_a_work_by_original: 改编自由 %{original} 创作的作品 %{name}
   add: 添加
@@ -185,8 +186,10 @@ zh-CN:
   add_conservation_status: 添加保护状态
   add_countries: 添加国家
   add_custom_project_fields: 添加自定义项目字段
+  add_edit_flags: 添加/编辑标记
   add_edit_more_fields: 添加/编辑更多字段
   add_description: 添加 %{description_name}
+  add_field: 添加字段
   add_from_your_observations: 从您的观察中添加
   add_link: 添加链接
   add_listed_taxa_from_observations: 从观察中添加列出的分类群
@@ -453,6 +456,7 @@ zh-CN:
   at_any_time_change: 任何时间（<span class="button">更改</span>）
   at_time: 在 %{time}
   atom: 原子
+  attribute: 属性
   authority_list:
     iucn_red_list: IUCN红色名录
   authorize_permissions_from_provider: 来自%{provider}的授权权限
@@ -630,6 +634,7 @@ zh-CN:
   checklist_places_absent: 名录地点（缺如）
   checklist_places_confirmed: 名录地点（已确认）
   child_taxa: 子分类
+  choose_a_field: 选择字段
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
   choose_a_taxon: 选择一个分类单元（可选）
@@ -668,6 +673,7 @@ zh-CN:
   comma_separated_please: 请以逗号分隔
   comment_preview: 评论预览
   comment: 评论
+  comment_: 评论
   comment_feed: 评论订阅源
   comment_deleted: 评论已删除
   commented: 已评论
@@ -686,9 +692,11 @@ zh-CN:
   committing: 提交中……
   community_curated: 社区策划
   community_id: <strong>社区</strong>ID：
+  community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
+  compare: 比较
   compare_with: 比较
   comparing: 比较
   comparing_list_to_list: 比较 %{list1} 与 %{list2}
@@ -798,6 +806,7 @@ zh-CN:
   curator: 馆长
   curators_changed_for_x_html: 为%{x}工作的馆长已更改
   curators: 馆长
+  current_flags: 当前标记
   current_password: 当前密码
   custom_field_values: 自定义字段值
   custom_project_fields: 自定义项目字段
@@ -904,6 +913,7 @@ zh-CN:
   did_you_mean: 您是不是要找
   did_you_photos_flickr?: 您在Flickr上放照片了么？
   disagree: 不同意
+  disagree_: 不同意
   disconnect_provider: 取消连接 %{provider}
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
   display_listings_from_place: 查看某一地点的列表
@@ -949,6 +959,7 @@ zh-CN:
   edit_multiple_locations: 编辑多个位置
   edit_multiple_species: 编辑多个物种
   edit_notes: 编辑注释
+  edit_observation: 编辑观察
   edit_photos: 编辑照片
   edit_photos_for_observation_id: 编辑%{obs_id}这一观察记录的照片
   edit_place: 编辑地点
@@ -1007,6 +1018,7 @@ zh-CN:
   enable_offline_access: 启用离线访问
   enable_offline_access_for_mobile: 为移动设备启用离线访问
   enlarge: 放大
+  encompassing_places: 包围的地方
   end: 结束
   endangered: 濒临灭绝
   endemic: 地方性
@@ -1071,6 +1083,7 @@ zh-CN:
   fave: 喜欢
   faves: 喜爱
   Family: 家庭
+  faved_this_observation: 标记此观察
   favorite_taxa: 已收藏的分类单元
   favorites: 喜爱
   fblocale: en_US
@@ -1122,6 +1135,7 @@ zh-CN:
   first_observer: 第一个观察者
   first_report: 第一份报告
   flag: 标记
+  flag_as_inappropriate: 标记不当内容
   flag_an_item: 标记一个项目
   flag_as_spammer: 标记为破坏者
   flag_as_non_spammer: 标记为非破坏者
@@ -1156,6 +1170,7 @@ zh-CN:
   flowering_phenology: 开花物候学
   fluid_layout: 流动布局
   fluid: 液体
+  follow: 关注
   follow_us: 关注我们在
   follow_us_on: 关注我们在
   follow_user: 关注%{user}
@@ -1243,6 +1258,7 @@ zh-CN:
   has_been: 已经
   has_one_or_more_faves: 有一个或更多喜爱
   has_photos: 有照片
+  has_photos_or_sounds: 有照片或声音
   has_sounds: 有声音
   hasnt_contributed_any_observations: 没有对这一项目贡献观察记录
   hate_me_facebook: 取消链接您的Facebook和 %{site_name} 账户
@@ -1332,6 +1348,7 @@ zh-CN:
   import_sounds: 导入声音
   import_tags_from_csv: 从CSV导入标签
   importing: 正在导入...
+  improving: 正在改进
   in: 于
   in_: 于
   in_n: 在 %{n}
@@ -1675,6 +1692,7 @@ zh-CN:
   more: 更多
   more_fields: 更多字段
   more_filters: 更多过滤器
+  more_from_x: 更多来自 %{x}
   more_import_options: 更多导入选项
   more_info: 更多信息
   more_info_title: 更多信息
@@ -1793,6 +1811,7 @@ zh-CN:
   no_observations: 没有观察
   no_observations_submitted: 没有提交观察！
   no_one_has_been_invited_yet: 还没有人被邀请
+  no_photo: 沒有照片
   no_photos: 无照片
   no_places_available: 没有可用的地点
   no_places_selected: 没有选择地点。
@@ -1830,6 +1849,7 @@ zh-CN:
   not_linked_flickr: 您的%{site_name}账户并未链接至您的Flickr账户
   not_logged_in: 未登录
   not_on_this_list: 不在此列表中。
+  not_recorded: 未记录
   not_seeing_what_looking_for: 看不到您要寻找的东西么？
   not_yet: 尚未
   note: 注释
@@ -2233,6 +2253,7 @@ zh-CN:
   publish: 发布
   purple: 紫色
   quality_grade: 质量等级
+  quality_grade_: 质量等级
   quality_grade_colon: 质量等级：
   queued: 已入队列
   query: 查询
@@ -2615,6 +2636,7 @@ zh-CN:
   taxonomic_status: 分类状态
   tell_everyone_a_little_about_you: 向大家介绍您自己
   tell_the_world_a_little_about_yourself: 告诉我们有关您自己
+  tell_us_why: 告诉我们为什么...
   terms: 条款
   terms_and_rules_html: 条款和规则
   terms_new_users: 如果您添加条款，新用户必须在加入该项目前同意这些条款。
@@ -2672,6 +2694,7 @@ zh-CN:
   this_is_a_life_list_from_place_html: 这是来自 %{place} 的生命清单
   this_job_failed_to_run: 此工作运行失败。请联络%{email}
   this_list_is_empty!: 此列表是空的！
+  this_observation: 此观察
   this_species: 此物种
   this_taxon_change_has_been_commited: <strong>此分类单元更改已经提交！</strong>请不要编辑分类群。可以编辑其他字段。
   this_tool_is_experimental: 本工具是实验性的，所以请
@@ -2736,6 +2759,7 @@ zh-CN:
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
   unknown: 未知
   unknown_rank: （未知排名）
+  unfollow: 不关注
   unlink_your_picasa_account: 取消链接您的Picasa账户
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的订阅目前暂停'
@@ -2788,6 +2812,7 @@ zh-CN:
   user_added_an_x: '%{user} 添加了一个 %{x}'
   user_added_an_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
   user_added_a_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
+  user_commented: '%{user} 已评论'
   user_follows: '%{user}关注'
   user_hasnt: '%{user}没有'
   user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
@@ -2812,6 +2837,7 @@ zh-CN:
   verbing_x_of_y: '%{verb} %{y}的%{x}……'
   view: 查看
   view_all: 查看全部
+  view_all_from_x: 查看所有来自 %{x}
   view_all_members: 查看所有成员
   view_all_n: 查看所有%{n}
   view_all_observations: 查看所有观察
@@ -3217,7 +3243,12 @@ zh-CN:
         inat_users_can_also: '%{site_name}用户也可以添加额外的检查表至地点，但这些检查表不会更新。他们主要为人提供一种方式，以引入外部的数据来源，或只是列出基于他们自己经历的东西。'
     observations:
       community_id:
+        agreement: 协议
+        below_cutoff: 低于截止
+        identification_count: 识别计数
         score: 分数
+        you_have_opted_out: 您已选择退出社区标识
+        your_id_does_not_match: 您的ID（<span class="bold">%{taxon_name}</span>）并不匹配社群ID
       captive_help_html: |-
         有机体<strong>已耕作</strong>或<strong>被俘虏</strong>了么？
         For example, was it in a <strong>garden,

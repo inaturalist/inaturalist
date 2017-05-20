@@ -110,6 +110,7 @@ ko:
   add_conservation_status: 보전 상태 추가하기
   add_countries: 국가 추가하기
   add_custom_project_fields: 자체적 프로젝트 필드 추가하기
+  add_edit_flags: 플래그 추가/편집
   add_edit_more_fields: 더 많은 필드 추가/편집
   add_description: '%{description_name} 추가하기'
   add_field: 필드 추가
@@ -692,6 +693,7 @@ ko:
   curators_can_remove_observations_from: 큐레이터는 프로젝트에서 관찰을 제거할 수 있고 프로젝트 뷰에서 큐레이터가
     표시한 동정을 볼 수 있습니다. 큐레이터는 프로젝트의 사적이거나 숨겨진 좌표와 관찰을 볼 수 있습니다.
   curator_identification: 큐레이터 확인
+  current_flags: 현재 플래그
   current_password: 현재 비밀번호
   custom_field_values: 자체지정한 필드값
   custom_project_fields: 자체지정한 프로젝트 필드
@@ -1010,6 +1012,7 @@ ko:
   first_observer: 첫 번째 관찰자
   first_report: 첫 번째 보고서
   flag: 플래그
+  flag_as_inappropriate: 부적절한 것으로 플래그
   flag_an_item: 아이템을 플래그
   flag_as_spammer: 스패머로 플래그
   flag_as_non_spammer: 비스패머로 플래그
@@ -1111,6 +1114,7 @@ ko:
   has_already_been_flagged_by: 에 의해 이미 플래그함
   has_one_or_more_faves: 하나 이상의 '좋아요'가 있다
   has_photos: 사진이 있다
+  has_photos_or_sounds: 사진이나 음원이 있습니다
   has_sounds: 소리가 있다
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 기여하지 않았습니다.
   hate_me_facebook: 페이스북과 %{site_name} 계정 연결을 끊습니다
@@ -1480,6 +1484,7 @@ ko:
   month: 월
   months_ago: '%{text}전'
   more: 더 보기
+  more_from_x: '%{x}의 더 많은 정보'
   more_import_options: 가져오기 옵션 더 보기
   more_info: 자세한 정보
   more_info_title: 자세한 정보
@@ -1937,6 +1942,7 @@ ko:
     your_soundcloud_account: SoundCloud 계정
   source_list:
     inaturalist: iNaturalist
+  specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
   start_adding_observations: 관찰 추가를 시작하기
   start_one_now: 지금 당장 시작해보세요!
   status: 상태

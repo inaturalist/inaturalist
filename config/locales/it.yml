@@ -167,6 +167,7 @@ it:
   actions: Azioni
   activate_user: Attiva utente
   active: attivo
+  activity: Attività
   activity_settings: Impostazioni dell'attività
   adapted_by_name_from_a_work_by_original: Adattato da %{name}, su un lavoro di %{original}
   add: Aggiungi
@@ -209,6 +210,7 @@ it:
   add_custom_project_fields: Aggiungi campi personalizzati per il progetto
   add_edit_more_fields: Aggiungi più campi/modifica
   add_description: Aggiungi %{description_name}
+  add_field: Aggiungi campo
   add_from_your_observations: Aggiungi le tue osservazioni
   add_link: Aggiungi collegamento
   add_listed_taxa_from_observations: Aggiungi i taxa elencati dalle osservazioni
@@ -417,6 +419,7 @@ it:
     other: e %{count} altre persone!
   android: Android
   animals: Animali
+  annotations: Annotazioni
   announcement_was_successfully_created: L'avviso è stato creato con successo.
   announcement_was_successfully_updated: L'avviso è stato aggiornato correttamente.
   announcements: Avvisi
@@ -525,6 +528,7 @@ it:
   at_any_time_change: in qualsiasi momento (<span class="button">change</span>)
   at_time: alle ore %{time}
   atom: Atom
+  attribute: Attributo
   authority_list:
     iucn_red_list: Lista Rossa IUCN
   authorize_permissions_from_provider: Autorizza i permessi da %{provider}
@@ -1109,6 +1113,7 @@ it:
   does_the_date_seem_accurate: La data sembra corretta?
   doesnt_have_default_photo: non ha ancora una foto predefinita.
   doh_something_went_wrong: Oh, qualcosa è andato storto.
+  done: Fatto
   dont_filter: Non filtrare
   dont_send_me_email: Non inviarmi nessuna e-mail!
   dont_use_double_quotes: Non utilizzare le virgolette da nessun'altra parte
@@ -1365,6 +1370,7 @@ it:
   flag_this_observation: Contrassegna questa osservazione
   flag_this_photo: Contrassegna questa foto
   flagged: ha segnalato
+  flagged_: Contrassegnato
   flagged_for_curation: Contrassegnato per il controllo
   flagged_thing_explanation: Gli utenti hanno contrassegnato questa %{thing} perché
   flagger: Segnalatore
@@ -2231,6 +2237,7 @@ it:
   no_one_has_been_invited_yet: Nessuno è stato ancora invitato
   no_one_posted_anything_yet: Nessuno ha ancora postato qualcosa!
   no_ones_observed: Nessuno ha osservato
+  no_photo: Nessuna foto
   no_photos: Nessuna foto
   no_places_available: Nessun luogo disponibile
   no_places_selected: Nessun luogo selezionato.
@@ -3672,8 +3679,12 @@ it:
   this_list_is_empty!: Questa lista è vuota!
   this_is_the_primary_listing: Questa è la lista principale
   this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
+  this_observation: Questa osservazione
   this_observation_has_been_incorporated_into_the_following_external_websites: Questa
     osservazione è stata incorporata nei seguenti siti web esterni
+  this_observation_is_in_x_projects:
+    one: Questa osservazione è in 1 progetto
+    other: Questa osservazione è in %{count} progetti
   this_observation_lies_outside_the: Questa osservazione cade all'esterno dell'areale
     che %{site_name} ha memorizzato per questa specie. Questo può significare che
     l'areale di %{site_name} è sbagliato, o che l'ID è sbagliata, oppure che si tratta
@@ -3923,6 +3934,7 @@ it:
     dati. Puoi scegliere un'altro tipo di licenza anche dopo esserti registrato.
   valid_interrogation: Valido?
   valid_options_are: Le opzioni valide sono
+  value: Valore
   verbing_x_of_y: '%{verb} %{x} di %{y}...'
   view: Visualizza
   view_all: Mostra tutto

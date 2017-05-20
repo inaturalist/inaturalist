@@ -1,0 +1,1761 @@
+# Messages for Traditional Chinese (中文（繁體）‎)
+# Exported from translatewiki.net
+# Export driver: phpyaml
+# Author: 578985s
+# Author: Cwlin0416
+# Author: Kly
+# Author: LNDDYL
+# Author: Liuxinyu970226
+# Author: Sunny Chan
+# Author: 一個正常人
+# Author: 아라
+---
+zh-TW:
+  licensing_your_content: "開放授權令到其他遵守授權條款的用戶也可使用當中資料。 %{site_name} 使用 你經由Creative\nCommons授權，可讓你與例如
+    \n<a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>的資料夥伴共享內容。\n(GBIF)."
+  you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、參與資料質素評審或在意見欄中詳述不符點。
+  we_also_support: |-
+    我們亦支援 <a href="http://flickr.com">Flickr</a>,
+    <a href="http://picasaweb.google.com">Picasa</a>, 及
+    <a href="http://facebook.com">Facebook</a>
+    作為圖片儲存。
+  a_default_taxon_name_will_automatically_created: |-
+    拉丁文學名會自動成為此物種分類的預設分類學名稱。
+    當你儲存這個分類學名稱後，你將可為這個物種加上其他名稱(例如 通用名字　和過時的學名等。)
+  x_followers:
+    one: '1 追隨者 '
+    other: '%{count} 追隨者'
+  x_identifications:
+    one: 1 物種鑒定
+    other: '%{count} 物種鑒定'
+  x_ids:
+    one: 1個 ID
+    other: '%{count}個 ID'
+  x_lists:
+    one: 1 分類清單
+    other: '%{count} 分類清單'
+  x_journal_posts:
+    one: 1 日誌撰文
+    other: '%{count} 日誌撰文'
+  x_matching_taxa:
+    one: 1 項匹配的物種分類
+    other: '%{count} 項匹配的物種分類'
+  x_matching_taxa_html:
+    one: '<span class="count">1</span>項 匹配的物種分類 '
+    other: <span class="count">%{count}</span>項 匹配的物種分類
+  x_observations:
+    one: 1 觀察紀錄
+    other: '%{count} 觀察紀錄'
+  x_observations_html:
+    one: <span class='count'>1</span> 觀察紀錄
+    other: <span class='count'>%{count}</span> 觀察紀錄
+  x_observations_link_html:
+    one: <a href='%{url}'>1個觀察紀錄
+    other: <a href='%{url}'>%{count}</a>個觀察紀錄
+  x_people:
+    one: 1 個人
+    other: '%{count} 個人'
+  x_people_like_this:
+    one: 1個人喜歡這個
+    other: '%{count}個人喜歡這個'
+  x_people_agree_html:
+    one: <span class="count">1</span> 位認同
+    other: <span class="count">%{count}</span> 位認同
+  x_species:
+    one: 1 物種
+    other: '%{count} 物種'
+  x_species_html:
+    one: <span class='count'>1</span> 種物種
+    other: <span class='count'>%{count}</span> 種物種
+  x_species_link_html:
+    one: <a href='%{url}'>1種物種
+    other: <a href='%{url}'>%{count}種物種
+  x_taxa_observed_html:
+    one: <span class='count'>1</span> 筆已觀察的物種分類
+    other: <span class='count'>%{count}</span> 筆已觀察的物種分類
+  x_research_grade_observations_html:
+    one: <span class='count'>1</span> 筆研究級的觀察記錄</span>
+    other: <span class='count'>%{count}</span> 筆研究級的觀察記錄</span>
+  x_research_grade_observations_to_species_html:
+    one: <span class='count'>1</span> 筆被分類到物種或以下的研究級觀察記錄 </span>
+    other: <span class='count'>%{count}</span> 筆被分類到物種或以下的研究級觀察記錄 </span>
+  x_taxa_matching_current_filters:
+    one: 1 筆符合本過濾條件的物種分類
+    other: '%{count} 筆符合本過濾條件的物種分類'
+  a: 一個
+  a_: 一
+  a_community_for_naturalist: 一個自然愛好者的社群
+  a_few_points_to_make_things_clear: '令事情更清楚的幾個要點 :'
+  a_flag_for_x: '%{x} 已被標上旗號'
+  a_greasemonkey_script: 油猴子腳本
+  a_member_of_taxon_html: '%{taxon} 成員之一'
+  able_to_connect_flickr: 好極了！ 我們已能夠連接你的Flickr帳戶。
+  about: 關於
+  about_bioblitz_results: 關於 bioblitz 的結果
+  about_charts: 關於圖表
+  about_community_taxa: 關於社群分類
+  about_conservation_status: 關於保育狀態
+  about_external_links: 關於外部連結
+  about_licenses: 關於許可
+  about_licensing: 關於認可授權
+  about_life!: 關於生物!
+  about_names: 關於名稱
+  about_places: 關於地點
+  about_taxon_changes: 關於分類更改
+  about_the_cc_licenses: 關於創用CC許可
+  about_the_taxobox_raquo: 關於分類盒
+  about_these_licenses: 關於這些允許協議
+  about_this_map: 關於此地圖
+  about_this_project: 關於此專案
+  about_x: 關於 %{x}
+  acc: 精確度 (公尺)
+  account: 帳號
+  accept: 接受
+  accept_community_identifications: 接納社群的物種鑑定
+  accuracy: 準確性
+  accuracy_m: 精確度（公尺）
+  accuracy_meters: 精確度 (公尺)
+  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方"編輯"連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
+  acquaintances: 熟人
+  actions: 操作
+  activate_user: 激活使用者
+  active: 有效
+  adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
+  add: 新增
+  add_a: 添加一個
+  add_a_batch_of_observations: 新增一批觀察紀錄
+  add_a_batch_of_observations_by_csv: 以CSV檔案新增一批觀察紀錄
+  add_a_batch_of_taxa: 新增一批物種分類
+  add_a_comment: 新增意見
+  add_a_field: 新增一個欄位
+  add_a_link_raquo: 新增一個連結
+  add_a_name: 加入名稱
+  add_a_new_change_group: 新增一個新變更群組
+  add_a_new_observation_to_id_please!: 新增一個請求鑒定的新觀察紀錄
+  add_a_place_raquo: 新增一個地點 &raquo;
+  add_a_single_observation: 添加單一項觀察紀錄
+  add_a_taxon: 添加一項物種分類
+  add_all_your_matching_obs_of_this_taxon: 把這物種分類中所有匹配的觀察紀錄添加到此專案
+  add_all_your_matching_obs_to_this_project: 把所有匹配的觀察紀錄添加到此專案
+  add_an_assessment: 新增一個評審
+  add_an_identification: 添加一個物種鑒定
+  add_an_observation: 添加一項觀察紀錄
+  add_an_observation?: 添加一項觀察紀錄?
+  add_an_observation_of: 添加一筆 %{taxon} 的觀察紀錄
+  add_another: 添加其他紀錄
+  add_another_flag: 新增其他旗號標記
+  add_another_photo: 加入其他圖片
+  add_another_section: 加入其他部份
+  add_another_subscription: 添加其他訂閱
+  add_colors: 添加顏色
+  add_comma_separated_tags: 添加以逗號分隔式標籤
+  add_comment: 新增一條評論
+  add_conservation_status: 新增保育狀態
+  add_countries: 添加國家
+  add_custom_project_fields: 添加自定義專案項目
+  add_edit_more_fields: 新增/編輯更多項目
+  add_description: 添加 %{description_name}
+  add_from_your_observations: 從你的觀察紀錄中添加
+  add_link: 添加連結
+  add_listed_taxa_from_observations: 從觀察紀錄中加入列出的物種分類
+  add_higher_level_taxon: 添加一個更高級的物種分類 (例如:"鳥類")
+  add_id: 添加物種鑒定
+  add_it_to_place_raquo: 把本項添加到地點 &raquo;
+  add_more_photos: 添加更多圖片
+  add_new_lexicon: 添加新的詞彙
+  add_new_observations: 新增多個觀察紀錄
+  add_new_photos_by_their_ids: 從其Flickr身份中加入新圖片 (必須被Creative Commons認可的!)
+  add_new_place: 新增一處新地點
+  add_new_rule: 新增一條新規則
+  add_new_source: 添加新的來源....
+  add_new_taxon_name: 添加新的物種分類名稱
+  add_notes_about_this_taxon: 為本地中本物種分類添加註解, 例如在那裡及何時發生。
+  add_obs_from_a_link: '從生物清單中添加觀察紀錄: %{link}'
+  add_obs_from_a_list: 從一個生物清單中添加觀察紀錄
+  add_observation: 新增觀察紀錄
+  add_observations!: 新增多個觀察紀錄
+  add_observations: 新增多個觀察紀錄。
+  add_observations_by_checking_off: 為生物清單中揀選物種添加觀察紀錄。
+  add_observations_from_list: 從一個生物清單中添加觀察紀錄
+  add_observations_of_taxa_youve_added: 為你已加入到一個生物清單中的物種分類添加觀察紀錄。此功能尚在開發中,仍待修正部份錯誤....
+  add_observations_project: 新增多個觀察紀錄到本專案
+  add_one: 新增一項!
+  add_photos: 新增相片
+  add_photos_to_this_observation: 新增相片到觀察紀錄中
+  add_place: 加入地點
+  add_several_observations_at_once: 一次過添加多筆觀察紀錄。
+  add_shape: 添加形狀
+  add_some_now: 現在添加一些
+  add_tags: 添加標籤
+  add_tags_to_selected_taxa: 添加標籤到已挑選的物種分類
+  add_taxa: 添加物種分類
+  add_taxa_to_places: 添加物種分類到地方
+  add_taxon_batch_to: 把物種分類添加到 %{list}
+  add_to: 新增至
+  add_to_calendar: 加入日曆
+  add_to_checklist: 加入檢查表
+  add_to_favorites: 加入最愛
+  add_to_list: 新增至清單中
+  add_to_project: 新增專案
+  add_to_your_life_list: 新增到您的生物清單！
+  add_to_your_list: 新增到你的清單
+  add_your_photo: 加添你的圖片
+  add_your_photo_to: 加添你的圖片至 %{project} 專案
+  added: 已新增
+  added!: 已新增!
+  added_an: 已添加一個
+  added_as_a_part_of: 已添加成為部份
+  added_by: 添加自
+  added_identifications_to: 為任何人的觀察紀錄添加物種鑒定
+  added_on: 已添加在
+  added_to: 已添加在
+  adding: 正在新增……
+  adding_observations: 新增多個觀察紀錄中
+  adding_to_your_life_list: 新增到您的生物清單中....
+  additional_range: 額外範圍
+  additional_range_data_from_an_unknown_source: 來自不知名來源的額外範圍資料
+  admin: 管理員
+  admin_any_projects: 管理任何專案
+  admin_tools: 管理員工具
+  agree: 同意
+  agree_: 同意
+  agree?: 同意嗎？
+  agree_to_the_project_terms: 同意該專案條款
+  agreeing: 同意中...
+  aka: 也就是
+  all: 所有
+  all_colors: '&laquo; 所有顏色'
+  all_csv: 所有 CSV
+  all_life: 所有生物
+  all_names: 所有名稱
+  all_observations: 所有觀察
+  all_photos: 所有相片
+  all_places: 所有地點
+  all_projects: 所有專案
+  all_rights_reserved: 保留所有權利
+  all_species: 所有物種
+  all_taxa:
+    rank:
+      kingdom: 界
+      class: 綱
+      phylum: 門
+      species: 種
+      order: 目
+    amphibians: 兩棲類
+    animals: 動物
+    arachnids: 蛛形綱
+    birds: 鳥類
+    chromista: 色藻界
+    fungi: 真菌
+    fungi_including_lichens: 真菌（包含地衣）
+    insects: 昆蟲
+    mammals: 哺乳類
+    mollusks: 軟體動物
+    other_animals: 其牠動物
+    plants: 植物
+    protozoans: 原生動物
+    ray_finned_fishes: 輻鰭魚類
+    reptiles: 爬蟲類
+    life: 生物
+    x_plantae:
+      one: 1種植物
+      other: '%{count}種植物'
+    x_animalia:
+      one: 1種動物
+      other: '%{count}種動物'
+    x_mollusca:
+      one: 1種軟體動物
+      other: '%{count}種軟體動物'
+    x_amphibia:
+      one: 1種兩棲類
+      other: '%{count}種兩棲類'
+    x_mammalia:
+      one: 1種哺乳類
+      other: '%{count}種哺乳類'
+    x_actinopterygii:
+      one: 1種輻鰭魚類
+      other: '%{count}種輻鰭魚類'
+    x_reptilia:
+      one: 1種爬蟲類
+      other: '%{count}種爬蟲類'
+    x_aves:
+      one: 1種鳥類
+      other: '%{count}種鳥類'
+    x_insecta:
+      one: 1種昆蟲
+      other: '%{count}種昆蟲'
+    x_arachnida:
+      one: 1種蛛形綱
+      other: '%{count}種蛛形綱'
+    x_fungi:
+      one: 1種真菌
+      other: '%{count}種真菌'
+    x_chromista:
+      one: 1種色藻界
+      other: '%{count}種色藻界'
+    x_protozoa:
+      one: 1種原生動物
+      other: '%{count}種原生動物'
+    x_other_animals:
+      one: 1種其牠動物
+      other: '%{count}種其牠動物'
+  all_taxa_in_this_guide: 在此指南的所有分類
+  all_updates: 所有更新
+  allow_any: 允許任何
+  allowed_html: 允許的 HTML
+  allowed_values: 允許的值
+  alphabetical: 依字母順序
+  alphabetical_order: 依字母排序
+  amphibians: 兩棲類
+  amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb 沒有關於此物種的任何訊息。
+  an: 一個
+  an_: 一個
+  and: 和
+  android: Android
+  animals: 動物
+  announcements: 公告
+  any: 任何
+  apply_darr: 套用 &darr;
+  arachnids: 蛛形綱
+  archives: 存檔
+  are_you_sure?: 您確定嗎？
+  are_you_sure_no_undo: 您確定嗎？這將無法恢復。
+  are_you_sure_want_join: 你確定您想要加入
+  are_you_sure_you_want_to_remove_this_invitation: 您確定要刪除此邀請？
+  at: 在
+  at_any_time_change: 在任何時間（<span class="button">更改</span>）
+  at_time: 在%{time}
+  atom: 原子
+  authority_list:
+    iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
+  back: 返回
+  back_to: 返回至
+  back_to_albums: 返回至相簿
+  back_to_all_species: 返回至所有物種
+  back_to_browsing_people: 返回至瀏覽人物
+  back_to_calendar: 返回至%{user}行事曆
+  back_to_editing_observation: 返回至編輯觀察
+  back_to_help: 返回至協助
+  back_to_import: 返回至匯入
+  back_to_lists: 返回至%{name}列表
+  back_to_observation: 回到觀察紀錄
+  back_to_people: 返回至人物
+  back_to_places: 返回至地點
+  back_to_possessive_user_profile: 返回至%{possuser}的個人檔案
+  back_to_post: '&laquo; 返回至發佈'
+  back_to_shared_taxon: 返回至%{sharedtaxon}
+  back_to_taxon: 返回至%{defaulttaxon}
+  back_to_taxon_changes: 返回至分類更改
+  back_to_this: 返回至%{place}
+  back_to_viewing: 返回至檢視<i>%{taxon}</i>
+  back_to_x: 返回至%{noun}
+  back_to_x_history: 返回至%{x}歷史
+  back_to_x_journal: 返回至%{user}的日誌
+  back_to_x_blog: 返回至%{x}的部落格
+  back_to_x_observations: 返回至%{user}的觀察
+  back_to_your_lists: 返回至您的列表
+  back_to_your_journal: 返回至您的日誌
+  back_to_your_observations: 返回至您的觀察
+  back_to_your_profile: 返回至您的個人檔案
+  batch: 批量
+  because: 因為
+  because_of: 因為
+  bg_color: 背景顏色
+  bioblitz: Bioblitz
+  birds: 鳥類
+  black: 黑色
+  blog_widget: 部落格小工具
+  blue: 藍色
+  brown: 棕色
+  browse: 瀏覽
+  browse_all_projects: 瀏覽所有專案
+  browse_projects: 瀏覽專案
+  browse_your_observations: 瀏覽您的觀察
+  calendar: 日曆
+  cancel: 取消
+  cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
+  case_plural: s
+  cc_0_name: 無著作權 (CC0)
+  cc_attribution_license: 創用CC 姓名標示協議
+  cc_by_name: 姓名標示
+  cc_by_nc_name: 姓名標示-非商業性
+  cc_by_nc_nd_name: 姓名標示-非商業性-禁止改作
+  cc_by_nc_sa_name: 姓名標示-非商業性-相同方式分享
+  cc_by_nd_name: 姓名標示-禁止改作
+  cc_by_sa_name: 姓名標示-相同方式分享
+  cc_used_under_a: 創用CC，用於
+  change: 更改
+  change_cover: 更改封面
+  change_group: 更改群組
+  change_icon: 更改圖示
+  change_types:
+    change_types: 更改類型
+    split: 分割
+    merge: 合併
+    swap: 交換
+    merge_into: 合併至
+    merged_into: 已合併至
+    input_taxon_was_dropped_html: '%{input_taxon}已去除'
+    input_taxon_will_be_dropped_html: '%{input_taxon}將被去除'
+    input_taxon_will_be_activated_soon_html: '%{input_taxon}將立即被啟用'
+  change_your_matching: 更改您的比對
+  change_your_password: 更改您的密碼
+  check_out_our_blog: 看看我們的部落格
+  check_out_your_life_list: 退出及儲存您的生物清單
+  choose_a_place: 挑選一個地點
+  choose_a_taxon: 挑選一個分類（選用）
+  choose_from_your_lists: 從您的列表挑選
+  choose_photos: 挑選照片
+  choose_photos_for_this_taxon: 挑選用於此分類的照片
+  choose_place: 挑選一個地點
+  choose_taxon: 挑選一個分類
+  choose_your_username: 挑選您的用戶名稱
+  citation: 引用
+  clear: 清除
+  clear_color_filters: 清除色彩過濾
+  clear_search: 清除搜尋
+  clear_shapes: 清除外觀
+  code: 代碼
+  colors: 色彩
+  columns: 欄位
+  combine: 結合
+  comment_preview: 評論預覽
+  comment: 評論
+  comment_deleted: 評論已刪除
+  commented: 已評論
+  comments: 評論
+  compare: 比較
+  compare_with: 比較與
+  comparing: 比較
+  comparing_list_to_list: 比較%{list1}與%{list2}
+  comparing_versions_x_and_y: 比較版本 %{x} 和 %{y}
+  comparing_observations_from: 比較 %{user} 自 %{dates} 的觀察
+  compiled_by_name: 編譯由%{name}
+  completed: 已完成
+  completed_at: 完成於
+  configure: 設置
+  confirm: 確認
+  confirm_membership: 確認成員
+  confirm_new_password: 確認新密碼
+  confirm_now: 現在確認
+  confirm_your_info: 確認您的資訊
+  connecting_flickr: 連接至 Flickr...
+  connecting_to_facebook: 連接至臉書...
+  conservation_status_descriptions:
+    iucn: 等同國際自然保護聯盟瀕危物種(IUCN)紅色名錄規範
+  contest: 比賽
+  continue: 繼續
+  contributions: 貢獻
+  contributions_from: 貢獻自
+  contributor_cannot_be_found: 查無貢獻者
+  contributors_to_project: 貢獻至 %{project}
+  controls: 控制
+  coordinate_systems: 座標系統
+  coordinates: 座標
+  copy: 複製
+  copy_and_paste_this_into_your_own_html: 複製貼上至您自己的 HTML。
+  copyright:
+    no_rights_reserved: 不保留任何權利
+    anonymous: 匿名
+    public_domain: 公共領域
+    copyright: 著作權
+    no_copyright: 無版權 (CC0)
+    attribution_noncommercial_sharealike_license: 姓名標示-非商業性-相同方式分享協議
+    attribution_noncommercial_license: 姓名標示-非商業性協議
+    attribution_noncommercial_noderivs_license: 姓名標示-非商業性-禁止改作協議
+    attribution_license: 姓名標示協議
+    attribution_sharealike_license: 姓名標示-相同方式分享協議
+    attribution_noderivs_license: 姓名標示-禁止改作協議
+    gnu_free_documentation_license: GNU 自由文件授權條款
+  copyright_holder: 版權所有人
+  couldnt_change_your_password: 無法更改您的密碼：%{e}
+  couldnt_find_a_user_matching_x_param: 查無用戶符合 %{id}
+  couldnt_find_that_taxon: 找不到分類。
+  countries: 國家
+  create: 建立
+  create_a_guide: 建立一條指南
+  create_a_list: 建立一個清單
+  create_a_new_place: 建立一個新地點
+  create_a_query: 建立一項查詢
+  create_an_account: 建立一個帳號
+  create_an_atlas: 建立一個地圖集
+  create_observations: 建立觀察
+  created_by: 建立由
+  created_by_user_on_date: 由 %{user} 於 %{date} 所建立
+  created_on: 創立於
+  creating_your_account: 建立您的帳號中…
+  csv: CSV
+  csv_file: CSV 檔案
+  csv_should_not_contain_a_header_row: CSV 不應該包含標頭行
+  dashboard: 控制面板
+  data_quality_assessment: 資料品質估計
+  datatype: 資料類型
+  date_: 日期
+  date?: 日期？
+  date_added: 日期已增加
+  date_created: 日期已創建
+  date_format:
+    date_long:
+      january: '%{year} 一月 %{day}'
+      february: '%{year} 二月 %{day}'
+      march: '%{year} 三月 %{day}'
+      april: '%{year} 四月 %{day}'
+      may: '%{year} 五月 %{day}'
+      june: '%{year} 六月 %{day}'
+      july: '%{year} 七月 %{day}'
+      august: '%{year} 八月 %{day}'
+      september: '%{year} 九月 %{day}'
+      october: '%{year} 十月 %{day}'
+      november: '%{year} 十一月 %{day}'
+      december: '%{year} 十二月 %{day}'
+    month:
+      january: 一月
+      february: 二月
+      march: 三月
+      april: 四月
+      may: 五月
+      june: 六月
+      july: 七月
+      august: 八月
+      september: 九月
+      october: 十月
+      november: 十一月
+      december: 十二月
+  date_is_accurate: 日期精準
+  date_observed: 觀察日期
+  date_observed_on: 觀察日期於
+  date_picker:
+    closeText: 關閉
+    currentText: 今日
+    prevText: 上一頁
+    nextText: 下一頁
+  date_specified: 日期指定
+  date_time: 日期/時間
+  dates: 日期
+  datetime_: 日期/時間
+  day: 日
+  default: 預設
+  default_invite_comment: 很棒的照片！您可以發佈至 %{site_name}： {{INVITE_LINK}}
+  default_photo_license: 預設照片許可權
+  default_sound_license: 預設音效許可權
+  defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
+  delete: 刪除
+  delete_all: 刪除全部
+  delete_conversation: 刪除對話
+  delete_cover?: 刪除封面？
+  delete_icon?: 刪除圖示？
+  delete_photo: 刪除照片
+  delete_selected: 刪除所選
+  delete_this_name: 刪除此名稱
+  delete_user: 刪除用戶
+  delete_your_account: 刪除您的帳號
+  deleted_user: 已刪除用戶
+  deleted_vote: 已刪除投票
+  deleting: 刪除中…
+  deleting_verb: 刪除中
+  desc: 降冪
+  dna_: DNA
+  descending: 降冪
+  describe_your_interest_in_nature: 描述您在大自然的興趣！
+  description: 描述
+  description_from: 描述自
+  desription: 描述
+  details: 詳細資料
+  devise:
+    failure:
+      user:
+        suspended: 您的帳號已被停用
+  developers: 開發人員
+  device: 裝置
+  did_you_mean: 您是指
+  did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
+  disagree: 不同意
+  disagree_: 不同意
+  disconnect_provider: 中斷連接%{provider}
+  drop_it: 去除
+  do_not_show_this_message_again: 不要再顯示此訊息
+  doh_something_went_wrong: 噢噢，出現了一些問題。
+  done: 完成
+  dont_filter: 不用過濾
+  dont_send_me_email: 不要替我寄送任何電子郵件！
+  dont_use_double_quotes: 不要在任何其它地方使用雙引號
+  double_click_to_finish: （快按兩下來完成）
+  download: 下載
+  download_bulk_import_template_html: |-
+    <a href="%{url}">下載模板</a>來用於
+    <a href="/observations/import#csv_import">大量上傳</a>
+  download_csv: 下載 CSV
+  download_csv_template: 下載 CSV 模板
+  download_kml: 下載 KML
+  drag_and_drop_photos: 拖拉照片到此視窗或
+  draft: 草稿
+  draft_: 草稿
+  draft_saved: 草稿已儲存！
+  drafts: 草稿
+  drag_and_drop_some_photos: 拖拉一些照片
+  edit: 編輯
+  edit_a_batch_of_observations: 編輯批量觀察
+  edit_account_settings_and_profile: 編輯帳號設定&amp;個人檔案
+  edit_colors: 編輯色彩
+  edit_flagged_observation: 修改被加上旗號標記的觀察紀錄
+  edit_multiple_dates: 編輯多個日期
+  edit_multiple_descriptions: 編輯多項描述
+  edit_multiple_locations: 編輯多個位置
+  edit_multiple_species: 編輯多個物種
+  edit_observation: 編輯觀察
+  edit_photos: 編輯照片
+  edit_place: 編輯地點
+  edit_range_raquo: 編輯範圍&raquo;
+  edit_remove: 編輯/移除
+  edit_selected: 編輯已選
+  edit_source: 編輯來源
+  edit_taxa: 編輯分類
+  edit_taxon: 編輯分類群
+  edit_taxon_change: 編輯分類群變更
+  edit_taxon_link: 編輯分類群連結
+  edit_taxon_range: 編輯分類群範圍
+  edit_the_observation: 編輯觀察
+  edit_this_link: 編輯此連結
+  edit_your_account: 編輯您的帳號
+  edit_your_account_and_profile_html: 編輯您的帳號和個人檔案
+  edit_your_default_settings: 編輯您的預設設定
+  edit_your_profile: 編輯您的個人檔案
+  edited: 已編輯
+  edited_by: 已編輯由
+  edited_by_name_html: 已編輯由%{name}
+  editing: 編輯中
+  editing_observation_id: 編輯觀察 %{obs_id}
+  editing_observations:
+    one: 編輯 <span class="count">1</span> 個觀察：
+    other: 編輯 <span class="count">%{count}</span> 個觀察：
+  editing_project: 編輯%{project}
+  editing_this: 正編輯 %{elem}
+  editing_x_in_y: 正編輯 %{x} 於 %{y}
+  eg: 例如：
+  either: 任一
+  email: 電子郵件
+  email_settings: 電子郵件設定
+  enlarge: 放大
+  endemic: 特有
+  eol: 生命大百科
+  eol_collection_url: 生命大百科收藏 URL
+  error_updating_photo: 上傳照片錯誤： %{photo_errors}
+  establishment:
+    endemic: 特有
+  everyone: 任何人
+  everywhere: 任何地方
+  exact_date: 精確日期
+  exact_location: 精確位置
+  exact_rank: 精確範圍
+  existing_flags: 精確標籤
+  exit_full_screen: 退出全螢幕
+  explore!: 探索！
+  explore_everyones_observations: 瀏覽每一位的觀察
+  export: 匯出
+  export_observations: 匯出觀察
+  export_with_private_coordinates: 以私有座標匯出
+  exporting: 匯出中...
+  external_links: 外部連結
+  extinct: 絕種
+  extinct_in_the_wild: 在野外絕種
+  extra_properties: 額外屬性
+  extras: 額外
+  facebook: Facebook
+  facebook_account_information: 您的臉書帳號訊息
+  facebook_account_not_linked: '%{user}不再有連結臉書的帳號，因此%{site_name}沒有權限來使用此照片。'
+  facebook_options: 臉書選項
+  failed_to_find_your_location: 無法找到您的位置。
+  failed_to_repair_photo: 修復照片失敗：%{errors}
+  failed_to_save_record: 無法儲存記錄。請稍後再重試。
+  faq: 常見問題
+  fblocale: en_US
+  feedback: 意見回饋
+  feedback_group: 意見回饋群組
+  failed: 已失敗
+  find: 尋找
+  find_a_guide: 尋找一個指南
+  find_a_place: 尋找一個地點
+  find_guides: 尋找指南
+  find_new_place_to_explore: 尋找一個新地點來探索！
+  find_observations: 尋找觀察
+  find_photos: 尋找照片
+  find_places: 尋找地點
+  find_some_people_to_follow: 尋找某人來關注
+  find_species: 尋找物種
+  find_suitable_observations: 尋找合適的觀察
+  find_unsuitable_observations: 尋找不合適的觀察
+  find_your_current_location: 尋找您的目前位置
+  finished: 結束
+  finished_with_page: 以頁面結束
+  first_observation: 首個觀察
+  flag: 旗號標記
+  flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
+  flag_it!: 加上旗號標記！
+  flag_marked_as_resolved_html: <span class="meta">的旗號標記項目</span> <strong>已被解決。</strong>
+  flag_saved: 已儲存旗號標記。
+  flag_this_observation: 為本觀察紀錄加上旗號標記。
+  flagged: 已加上旗號標記
+  flagger: 加旗號標記者
+  flickr_account_information: 您的 Flickr 帳號訊息
+  flickr_description: Flickr 是一個線上照片管理服務，您也許已經清楚了解它了！
+  flickr_invite_link_raquo: Flickr 邀請連結 &raquo;
+  flickr_needs_to_confirm: Flickr 需要確認您想要將您的帳號連接至 %{site_name}。
+  flickr_photo: Flickr 照片
+  flickr_photos: Flickr 照片
+  flickr_style: Flickr 風格
+  flickr_tagger: Flickr 標記者
+  flickr_tags: Flickr 標記
+  follow_us: 關注我們在
+  follow_us_on: 關注我們在
+  follow_user: 關注 %{user}
+  follower: 關注者
+  following: 關注中
+  forgot_your_password: 忘記您的密碼？
+  from: 來自
+  from_a_place: 來自一個地點
+  from_anywhere_change: 來自任何地點（<span class="button">更改</span>）
+  from_eol_collection: 來自生命大百科收藏
+  from_flickr_facebook_etc: 來自 Flickr、臉書、或其它。
+  from_in_this_place: 來自此地點
+  from_this: 來自此
+  from_photos: 來自照片
+  from_place: 來自地點
+  from_soundcloud: 來自 Soundcloud
+  from_your_site_observations: 來自 %{site_name} 觀察
+  from_licensed_site_observations: 來自 %{site_name} 的授權許可觀察
+  full_id_please: 需要 ID！
+  full_id_please!: 需要 ID！
+  full_id_please?: 需要 ID？
+  full_screen: 全螢幕
+  fungi:
+    one: 個真菌
+    other: 個真菌
+  fungus:
+    one: 個真菌
+    other: 個真菌
+  generally_these_come_from_iucn_red_list: 通常它們來自國際自然保護聯盟瀕危物種(IUCN)紅色名錄，如它們來自其他地方亦會附帶著IUCN的分類。
+  generate_pdf: 產生 PDF
+  generating: 產生中…
+  Genus: 屬
+  genus_slash_species: '[屬] / [物種]'
+  get_current_position: 獲得目前位置
+  get_started_raquo: 入門&raquo;
+  get_started: 入門
+  getting_started: 入門
+  getting_started_guide: 入門指南
+  give_it_some_detail: 為它提供一些詳細內容！
+  global_names: 全域名稱
+  go: 前往
+  go_back: 返回
+  going_to_your_observations: 前往您的觀察…
+  gray: 灰色
+  green: 綠色
+  group: 群組
+  guess_description: 猜測 / 描述
+  guides: 指南
+  guide_colors: 指南色彩
+  guide_was_successfully_created: 指南已成功創建。
+  guide_was_successfully_published: 指南已成功發佈。
+  guide_was_successfully_updated: 指南已成功更新。
+  has_photos: 擁有照片
+  hello: <test>
+  hex_color_eg: 16 進位色彩碼，例如：65644F
+  hi: 嗨，
+  hi_user: 嗨 %{user}
+  hide: 隱藏
+  hide_details: 隱藏詳細資料
+  highest_rank: 最高評分
+  history: 歷史
+  icon: 圖示
+  icon_size: 圖示大小
+  icon_slash_photo: 圖示/照片
+  id: ID
+  id_: ID
+  id_please!: 需要 ID！
+  id_please: 需要 ID
+  id_please_expandable_html: <span class='full'>需要</span> ID！
+  ids: ID
+  ids_made_for_others: 用於其他的 ID
+  if_you_use: 如果您使用
+  if_you_want_to_change_the_name: 如果您想要更改名稱
+  ignore: 忽略
+  import: 匯入
+  import_all_photos_as_observations: 匯入所有照片成為觀察
+  import_as_an_observation: 匯入成為觀察
+  import_as_another_observation: 匯入成為另一個觀察？
+  import_from_csv: 從 CSV 匯入
+  import_from_photos: 匯入自照片
+  import_from_yahoo: 匯入自 Yahoo
+  import_observations: 匯入自觀察
+  import_photos: 匯入照片
+  import_sounds: 匯入音效
+  import_tags_from_csv: 從 CSV 匯入標籤
+  importing: 匯入中...
+  improving: 改進中
+  in: 在
+  in_: 在
+  in_n: 在%{n}
+  inaturalist_network_affiliation: iNaturalist 網路聯繫
+  inbox: 收件匣
+  including: 包含
+  inappropriate: 不合適？
+  inaturalist_places: '%{site_name} 地點'
+  info: 資訊
+  insects: 昆蟲
+  insect_life_stage: 昆蟲生命階段
+  interactions: 互動
+  internal_server_error: 內部伺服器錯誤
+  invitation: 邀請
+  invitations: 邀請
+  invite: 邀請
+  invite_flickr_photos: 邀請 Flickr 的照片至 %{site_name}
+  invite_more: 邀請更多
+  invite_observations: 邀請觀察
+  invite_people: 邀請人們
+  invite_people_to_project: 邀請人們至%{project}
+  invite_photos_from_other_sites: 從其它網站來邀請照片
+  invite_photos_to: 邀請照片至 %{site_name}
+  invite_photos_to_raquo_html: 邀請照片至<nobr>%{site_name} &raquo;</nobr>
+  invite_someone_to: 邀請一些人至%{name}！
+  invite_your_friends: 邀請您的朋友
+  inviteonly: 僅邀請
+  invited: 已邀請
+  invited_x: 已邀請%{x}
+  inviting: 邀請中...
+  iphone: iPhone
+  is_a: 是一個
+  is_an: 是一個
+  is_not_following_anyone: 沒關注任何人。
+  is_now: 現已
+  is_this_offensive_html: 這是個<a href="/help#inappropriate">不適當</a>、濫發、或攻擊性內容嗎？
+  is_this_place_a_duplicate: 此地點有重複嗎？
+  it: 它
+  it_has: 它有
+  iucn_red_list_status: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄現狀
+  january: 一月
+  join: 加入
+  join_and: 加入及
+  join_inat: 加入%{site_name}！
+  joined!: 已加入！
+  joining: 加入中…
+  journal: 期刊
+  jpg_png_or_gif: JPG、PNG、或 GIF
+  keep_editing: 繼續編輯
+  keyboard_shortcuts: 鍵盤快捷鍵
+  kml: KML
+  kml_file_size_error: KML 大小必須小於 1 MB
+  labels: 標籤
+  large: 大
+  last_confirmed_observation: 最近提交的觀察
+  last_inat_observation: 最近 %{site_name} 的觀察
+  last_observation: 最近觀察
+  last_seen: 上次看見
+  lat: 緯度
+  latitude: 緯度
+  latitude_in_decimals: 帶小數點的緯度，例如：38.123
+  latitude_slash_y_coord_slash_northing: 緯度/y 軸/北距
+  learn!: 了解！
+  learn_about_the_species_live_in: 了較有關物種存活於
+  learn_more: 了解更多
+  learn_more_raquo: 了解更多&raquo;
+  learn_what_these_licenses_mean: 了解這些許可協議的含義
+  leaves: 離開
+  lexicon: 詞典
+  lexicons:
+    scientific_names: 學名
+    afrikaans: 南非語
+    bengali: 孟加拉語
+    catalan: 加泰隆尼亞語
+    cebuano: 宿霧語
+    creole_french: 克里奧爾語 (法語)
+    creole_portuguese: 克里奧爾語 (葡萄牙語)
+    dutch: 荷蘭語
+    english: 英語
+    french: 法語
+    german: 德語
+    hawaiian: 夏威夷語
+    hebrew: 希伯來語
+    icelandic: 冰島語
+    ilokano: 伊洛卡諾語
+    italian: 義大利語
+    japanese: 日語
+    korean: 韓語
+    maltese: 馬爾他語
+    maori: 毛利語
+    norwegian: 挪威語
+    portuguese: 葡萄牙語
+    romanian: 羅馬尼亞語
+    russian: 俄語
+    spanish: 西班牙語
+    swedish: 瑞典語
+    tagalog: 他加祿語
+    tahitian: 大溪地語
+    tokelauan: 托克勞語
+    turkish: 土耳其語
+    waray_waray: 瓦瑞瓦瑞語
+  less: 更少
+  life_list: '%{user}的生物清單'
+  life_list_updated: 已更新生物清單!
+  life_list_updated_we_also_saved_a: 生物清單已更新！我們還儲存一個空白觀察紀錄到這個物種分類中。
+  life_lists_automatically_fill: 你觀察到的每個新物種分類會自動添加到生物清單內，他們會受你訂立的上層物種分類所約束。例如，一個鴉科(Family
+    Corvidae)的分類清單會列該科的鳥類。
+  life_list_first: 首次加入生命清單
+  life_list_firsts: 首次加入生物清單
+  link: 連結
+  link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
+  link_or_unlink_your_flickr_account: 連結或取消連結至您的 Flickr 帳號
+  link_or_unlink_your_picasa_account: 連結或取消連結至您的 Picasa 帳號
+  link_your_facebook_account: 連結您的臉書帳號
+  link_your_flickr_account: 連結您的 Flickr 帳號
+  link_your_flickr_account_with_inat: 連結至您的 Flickr 帳號與 %{site_name}
+  link_your_picasa_account: 連結您的 Picasa 帳號
+  list: 清單
+  list_tooltip: 顯示列表檢視
+  list_updated: 列表已更新！
+  list_views:
+    plain: 純文字
+    photo: 照片
+  list_was_successfully_created: 列表成功創建。
+  lists: 列表
+  lists_are_lists_of_species: 自定清單是物種(或其他上層分類)的列表，例如你可為您觀察到的鳥類或你喜好的有尾目動物自定一份清單。然而它們
+    <em>並非</em>是觀察紀錄的清單。
+  lists_by_login:
+    title:
+      current_user: 您的清單
+  load: 載入
+  loading: 載入中…
+  loading_flickr_photos: 正在載入 Flickr 照片…
+  loading_full_description_html: 正在載入完整描述...
+  loading_images: 讀取圖片中...
+  loading_map: 讀取地圖中...
+  loading_metadata: 正在載入中介資料...
+  loading_more_photos: 正在載入更多照片…
+  loading_observations: 正在載入觀察…
+  loading_preview_and_code: 正在載入預覽和代碼…
+  loading_tags: 正在載入標籤…
+  loading_taxa_from_your: 正在自您的觀察載入分類…
+  loading_wikipedia_description: 正在載入維基百科描述…
+  locales_: 在地
+  locales:
+    bg: 保加利亞語
+    br: 布列塔尼語
+    ca: 加泰隆尼亞語
+    en: 英語
+    en-US: 英語 (美國)
+    es: 西班牙語
+    es-ES: 西班牙語 (西班牙)
+    es-MX: 西班牙語 (墨西哥)
+    fr: 法語
+    eu: 巴斯克語
+    gl: 加利西亞語
+    ko: 韓語
+    id: 印尼語
+    it: 義大利語
+    mk: 馬其頓語
+    pt: 葡萄牙語
+    pt-BR: 葡萄牙語 (巴西)
+    ja: 日語
+    zh-CN: 簡體中文
+    zh-TW: 繁體中文
+  location: 位置
+  location_: 位置
+  location_is_public: 位置為公開的
+  location_is_private: 位置為私有的
+  log_in: 登入
+  logged_in_as: 已登入為
+  login_slash_username: 登入 / 用戶名稱
+  logo:
+    logo: 標誌
+    transparent_png: 透明 PNG
+    white_text_transparent_png: 白文字透明 PNG
+    none: 無
+  long: 經度
+  longitude: 經度
+  longitude_in_decimal: 十進位的緯度，例如：-122.123
+  look_up_name: 查詢名稱
+  lookup: 查詢
+  lookup_user_rarr: 查詢用戶 &rarr;
+  lowest_rank: 最低排名
+  make_an_observation: 製作一個觀察
+  main_content: 主要內容
+  make_it_a_life_list?: 設立一個生物清單?
+  make_one: 製作一個？
+  make_sure_the_default_photo_looks_good: 確認預設照片在放大尺寸下觀看沒有問題。
+  mammals: 哺乳類
+  manage: 管理
+  manage_all_your_subscriptions: 管理您所有的訂閱
+  manage_names: 管理名稱
+  manage_subscriptions: 管理訂閱
+  map: 地圖
+  maps:
+    overlays:
+      all_observations: 所有觀察
+      every_publicly_visible_observation: 任何在 iNaturalist 網路裡所創建的公開可見觀察
+      gbif_network: 全球生物多樣性資訊機構（GBIF）網路
+      observations: 觀察
+      range: 範圍
+  map_for: 地圖用於
+  maverick: 未烙印幼牲
+  members: 成員
+  mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
+  mentioned_you_in_noun_by_html: '%{user} 透過 %{by} 在 %{noun} 提到了您'
+  mentioned_you_in_a_x_on_noun_html: '%{user} 在 %{noun} 中的 %{x} 提到了您'
+  mentioned_you_in_an_x_on_noun_html: '%{user} 在 %{noun} 中的 %{x} 提到了您'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} 透過 %{by} 在 %{noun} 中的 %{x} 提到了您'
+  mentions: 提到
+  merge: 合併
+  merging: 合併中
+  merging_places: 合併地點
+  message: 訊息
+  messages: 訊息
+  mollusks: 軟體動物
+  momentjs:
+    shortRelativeTime:
+      future: 在%s
+      past: '%s'
+      s: 1秒
+      m: 1分
+  month: 月
+  months: 月
+  months_ago: '%{text}前'
+  more: 更多
+  more_filters: 更多過濾
+  more_from_x: 更多來自%{x}
+  more_import_options: 更多匯入選項
+  more_info: 更多資訊
+  more_info_title: 更多資訊
+  more_observations: 更多觀察
+  more_photos: 更多照片
+  most: 多數
+  most_agree: 最多同意
+  most_disagree: 最多不同意
+  most_observations: 最多觀察
+  most_species: 最多物種
+  most_observed_species: 最多被觀察的物種
+  must_be_less_than_x_MB: 必須小於 %{x} MB
+  must_have_x: 必須要有 %{x}
+  n_ago: '%{n} 前'
+  n_people_agrees: '%{amount} 個人同意'
+  n_people_disagrees: '%{amount} 個人不同意'
+  n_person_agrees: '%{amount} 個人同意'
+  n_person_disagrees: '%{amount} 個人不同意'
+  name: 名稱
+  name_llaves: '[名稱]'
+  name_or_username: 名稱和用戶名
+  name_providers:
+    ubio: uBio
+  names: 名稱
+  names_for_taxon_html: 用於%{taxon}的名稱
+  needs_id: 需要 ID
+  Needs_ID!: 需要 ID！
+  new_announcement: 新公告
+  new_check_list: 新檢查列表
+  new_flag_for: 新標記用於
+  new_guide: 新指南
+  new_list: 新列表
+  new_members: 新成員
+  new_message: 新訊息
+  new_observations: 新觀察
+  new_observations_ellispsis: 新觀察...
+  new_observations_from_place_html: 來自於%{place}的新觀察
+  new_observations_of_x_html: '%{x}的新觀察'
+  new_password: 新密碼
+  new_source: 新來源
+  new_trip: 新旅程
+  next_page: 下一頁
+  "no": 否
+  no_matching_invitations: 沒有符合的邀請
+  no_matching_observations: 沒有符合的觀察
+  no_matching_places: 沒有符合的地點
+  no_matching_species: 沒有符合的物種。
+  no_matching_users: 沒有符合的用戶。
+  no_members_yet: 尚無成員。
+  no_messages_yet: 尚無訊息
+  no_observations: 沒有觀察
+  no_photo: 沒有照片
+  no_photos: 沒有照片
+  no_places_available: 沒有可用的地點
+  no_places_selected: 沒有選擇地點
+  no_results_found: 找不到任何結果
+  no_results_for: 沒有結果用於
+  no_results_matching: 沒有符合的結果
+  none: 無
+  number_of_observations: 觀察數目
+  number_selected: '# 已選擇'
+  numeric_: 數字
+  observation: 觀察
+  observation_added: 觀察已添加
+  observation_photo_uploader: 觀察照片上傳者
+  observation_contest: 觀察競賽
+  observation_date: 日期
+  observation_date?: 日期？
+  observation_rights_html: 觀察 %{rights}
+  observation_rules: 觀察規則
+  observation_was_deleted: 觀察已被刪除。
+  observation_without_photo: 不帶有照片的觀察
+  observations: 觀察
+  observations_added_by_x_html: 由 %{x} 新增的觀察
+  observations_deleted: 觀察已刪除。
+  observations_for: 觀察用於
+  observations_for_project: 用於 %{project} 的觀察
+  observations_from: 自 %{date} 的觀察
+  observations_from_this_place: 來自此地點的觀察
+  observations_map: 觀察 / 地圖
+  observation_must_dotdotdot: 觀察必須...
+  observations_per_month: 觀察 / 月
+  observations_w: 觀察 w/
+  observations_week: 觀察 / 週
+  observer: 觀察者
+  observers: 觀察者
+  observer_short: 觀察者
+  observing: 觀察中
+  occurrence_status: 事件狀態
+  occurrence_status_levels:
+    common: 普遍
+    uncommon: 罕見
+  of: 的
+  official_blog: 官方部落格
+  on_date: 於 %{date}
+  on_edit_date: 在 %{editdate}
+  on_submit_date: 在 %{submitdate}
+  on_your_life_list: 在妳的生命清單中
+  onboarding:
+    youve_got_updates_panel_title: 您獲得了更新！
+  only_species: 僅物種
+  open: 開啟
+  open_: 開啟
+  optional: 可選
+  or: 或
+  or_invite_your_friends: 或邀請您的朋友
+  or_upload: 或上傳
+  or_you_can: 或您可以...
+  or_you_can_: 或您可以
+  orange: 橘色
+  order: 排序
+  order_by: 排序依
+  original_url_for_this_map: 此地圖的原始 URL
+  other_animals: 其牠動物
+  other_animals_plural:
+    one: 個其牠動物
+    other: 個其牠動物
+  other_annimals: 其牠動物
+  our_blog: 我們的部落格
+  out_of_range: 超出範圍
+  owner: 擁有者
+  password: 密碼
+  password_confirmation: 密碼確認
+  pdf: PDF
+  pdf_slash_print: PDF / 列印
+  people: 人物
+  people_added:
+    identification:
+      without_observation: 已新增一個 <strong>ID</strong>
+    post: 已製作一個 %{post_link}
+  personal_message: 個人訊息
+  per_page: 各頁
+  permalink: 靜態連結
+  photo: 照片
+  photo?: 照片？
+  photo_attribution: 照片%{attribution}
+  photo_by_id_attribution: 照片 %{id}， %{attribution}
+  photo_deleted: 照片已刪除
+  photo_s: 照片
+  photo_type: 相片類型
+  photo_urls_repaired: 需要照片 URLs
+  photos_from: 照片來自
+  photos_of: 照片屬於
+  photos_of_taxon_html: 屬於 %{taxon} 的照片
+  photos_size:
+    small: 小
+    medium: 中
+    large: 大
+  photos_size_photos: '%{photos_size} 張照片'
+  photos_size_photo: '%{photos_size} 張照片'
+  photos_updated: 照片已更新
+  pick_a_username: 挑選一個用戶名稱
+  pink: 粉紅色
+  place_deleted: 地點已刪除。
+  place_geo:
+    geo_planet_place_types:
+      Aggregate: 聚集
+      aggregate: 聚集
+      Airport: 機場
+      airport: 機場
+      Building: 建築物
+      building: 建築物
+      Commune: 公社
+      commune: 公社
+      Continent: 洲
+      continent: 洲
+      Country: 國家
+      country: 國家
+      County: 縣
+      county: 縣
+      District: 區
+      district: 區
+      Drainage: 排水管道
+      drainage: 排水管道
+      Estate: 莊園
+      estate: 莊園
+      Governorate: 行政區
+      governorate: 行政區
+      Island: 島
+      island: 島
+      Miscellaneous: 雜項
+      miscellaneous: 雜項
+      Nationality: 國籍
+      nationality: 國籍
+      Open_Space: 開放空間
+      open_space: 開放空間
+      Parish: 教區
+      parish: 教區
+      Prefecture_City: 地級市
+      prefecture_city: 地級市
+      Point_of_Interest: 興趣點
+      point_of_interest: 興趣點
+      Postal_Code: 郵遞區號
+      postal_code: 郵遞區號
+      Province: 省
+      province: 省
+      Region: 地帶
+      region: 地帶
+      Republic: 共和國
+      republic: 共和國
+      Shire: 郡
+      shire: 郡
+      Sports_Team: 運動團隊
+      sports_team: 運動團隊
+      State: 州
+      state: 州
+      Street: 街
+      street: 街
+      Suburb: 郊區
+      suburb: 郊區
+      Territory: 領地
+      territory: 領地
+      Time_Zone: 時區
+      time_zone: 時區
+      Town: 城鎮
+      town: 城鎮
+      Undefined: 未定義
+      undefined: 未定義
+      Unknown: 未知
+      unknown: 未知
+      Zone: 地區
+      zone: 地區
+  place_name: 地名
+  places: 地點
+  places_name:
+    afghanistan: 阿富汗
+    africa: 非洲
+    antigua_and_barbuda: 安地卡及巴布達
+    belgium: 比利時
+    bosnia_and_herzegovina: 波士尼亞與赫塞哥維納
+    brazil: 巴西
+    central_america: 中美洲
+    egypt: 埃及
+    equatorial_guinea: 赤道幾內亞
+    europe: 歐洲
+    france: 法國
+    germany: 德國
+    greece: 希臘
+    hungary: 匈牙利
+    italy: 義大利
+    iraq: 伊拉克
+    japan: 日本
+    martinique: 馬丁尼克
+    mexico: 墨西哥
+    new_guinea: 紐幾內亞
+    new_zealand: 紐西蘭
+    north_africa: 北非
+    north_america: 北美洲
+    palestine: 巴勒斯坦
+    panama: 巴拿馬
+    peru: 秘魯
+    poland: 波蘭
+    republic_of_congo: 剛果共和國
+    russia: 俄羅斯
+    saudi_arabia: 沙烏地阿拉伯
+    sao_tome_and_principe: 聖多美普林西比
+    south_america: 南美洲
+    spain: 西班牙
+    sweden: 瑞典
+    syria: 敘利亞
+    thailand: 泰國
+    trinidad_and_tobago: 千里達及托巴哥
+    turkey: 土耳其
+    united_kingdom: 英國
+    united_states: 美國
+    virgin_islands: 維京群島
+    west_africa: 西非
+  plants: 植物
+  please_add_this_to_x_html: 請添加此至%{x}
+  please_fix_your_csv_and_try_again: 請修正您的 CSV 並再重試。
+  popular: 熱門
+  position: 位置
+  possessive_user: '%{user} 的'
+  post: 貼文
+  post_published: 貼文已發佈！
+  posted_by: 發佈由
+  posted_on: 發佈在
+  posts: 貼文
+  powered_by: 技術提供由
+  powered_by_inaturalist_open_source_software_html: 技術由 <a href="https://github.com/inaturalist/inaturalist"
+    target="_new" >iNaturalist 開放原始碼軟體</a>提供
+  preview_personal_message: 我希望您與我一起加入 %{site}，這網站讓您紀錄您對動植物觀察資料，為您觀察到的生物建立清單，並去探索自然世界！
+  previous: 上一步
+  previous_page: 上一頁
+  print_in_browser: 在瀏覽器中列印
+  privacy: 隱私政策
+  privacy_policy: 隱私政策
+  private: 私有
+  processing: 處理中
+  project_group_label: 群組
+  protozoans: 原生動物
+  public_domain: 公有領域
+  publish: 發佈
+  purple: 紫色
+  quality_grade: 品質等級
+  quality_grade_: 品質等級
+  quality_grade_colon: 品質等級：
+  queued: 已排程
+  query: 查詢
+  range: 範圍
+  range_from: 範圍來自
+  rank: 排名
+  rank_position: 排名
+  ranks:
+    kingdom: 界
+    phylum: 門
+    subphylum: 亞門
+    superclass: 總綱
+    class: 綱
+    subclass: 亞綱
+    superorder: 總目
+    order: 目
+    suborder: 亞目
+    infraorder: 下目
+    superfamily: 總科
+    epifamily: 領科
+    family: 科
+    subfamily: 亞科
+    supertribe: 總族
+    tribe: 族
+    subtribe: 亞族
+    genus: 屬
+    species: 種
+    hybrid: 雜種
+    subspecies: 亞種
+    variety: 變種
+    form: 型
+    leaves: 葉
+  rare: 稀有
+  ray_finned_fishes: 輻鰭魚類
+  real_time_stats: 即時統計
+  real_time_discussions: 即時討論
+  reason: 原因
+  recent: 最近
+  recent_additions: 最近新增
+  recent_observations: 最近觀察
+  recent_post: 最近文章
+  recent_atom_observations_by: 最近由 %{login}（Atom）做出的觀察
+  recent_observations_by: 最近由 %{login}做出的觀察
+  recent_updates: 最近更新
+  recently_active: 最近活動
+  recently_created: 最近創建
+  recently_finished: 近期完成
+  recently_observed: 最近已觀察
+  recently_resolved: 最近以解決
+  record!: 記錄！
+  red: 紅色
+  refresh: 重新整理
+  refreshing: 重新整理中
+  reload_from_observations: 從觀察來重新載入
+  remember_me: 記住我
+  remove: 移除
+  remove_all_tags: 移除所有標籤
+  remove_boundary: 移除邊界
+  remove_from: 移除自
+  remove_from_batch: 從批量移除
+  remove_from_guide: 從指南移除
+  remove_from_id_please?: 請從 ID 移除？
+  remove_from_list: 從列表移除
+  remove_place: 移除地點
+  removed: 已移除
+  removed!: 已移除！
+  replace_parentesis: （取代）
+  reply: 回覆
+  report_any_problems: 回報任何問題
+  reset_your_password: 重設您的密碼
+  resolve: 解決
+  resolved: 已解決
+  results: 結果
+  row_singular_or_plural: 橫行
+  save: 儲存
+  save_all: 儲存全部
+  save_changes: 儲存變更
+  save_colors: 儲存色彩
+  save_draft: 儲存草稿
+  save_flag: 儲存標記
+  save_guide: 儲存指南
+  save_photos: 儲存照片
+  save_place: 儲存地點
+  saving: 儲存中...
+  saving_verb: 儲存中
+  search: 搜尋
+  search_places: 搜尋地點
+  second_person_possessive_singular: 您的 %{noun}
+  second_person_possessive_singular_: 您的 %{noun}
+  seen_it?: 看到牠了嗎？
+  seen_one: 看到一個了嗎？
+  select_all: 選擇全部
+  select: 選擇
+  selected: 已選擇
+  send: 傳送
+  september: 九月
+  show_kml: 顯示 KML
+  show_less: 顯示較少
+  show_more: 顯示更多
+  show_only: 僅顯示
+  sign_in: 登入
+  sign_in_with_provider: 登入以 %{provider}
+  sign_out: 登出
+  sign_up!: 註冊！
+  sign_up: 註冊
+  sign_up_exclamation: 註冊！
+  similar_species: 相似物種
+  sign_in_exclamation: 登入！
+  single_observation: 單一觀察
+  sizes: 大小
+  skip_to_next_page: 跳至下一頁
+  small: 小型
+  site_name_place: '%{site_name} 地點'
+  sorry_you_cant_delete_your_own_life_list: 對不起，你是不能刪除個人生物清單的。
+  sort: 排序
+  sort_by: 排序方式
+  sounds:
+    add_media: 增加多媒體
+    add_sounds: 添加音效
+    before_importing_sounds: 在匯入音效前
+  source: 來源
+  source_: 來源：
+  source_list:
+    ubio: uBio
+    inaturalist: iNaturalist
+  source_eg:
+    in_text: 例如：Greene、2000
+    url: 例如：「http://www.ucpress.edu/book.php?isbn=9780520224872」
+  source_unknown: 來源不明
+  source_url: 來源 URL
+  sources: 來源
+  spanish: 西班牙語
+  species: 物種
+  species_from_around_the_world: 來自世界各地的物種
+  species_guess: 物種推測
+  species_guide: 物種指南
+  species_header: 物種
+  species_name: 物種名稱
+  species_name_cap: 物種名稱
+  species_names: 物種名稱
+  species_search: 物種搜尋
+  species_unknown: 不明物種
+  start: 開始
+  start_one: 開始一個
+  status: 狀態
+  status_in_place: '%{status}在%{place}'
+  submit: 送出
+  submitted: 已送出
+  taxa_all_species_html: 所有物種
+  taxon_map:
+    data_url: 資料URL
+  thats_not_a_real_date: 那不是一個實際日期！
+  the_world: 世界
+  third_person_possessive_singular: '%{object_phrase}的%{noun}'
+  this_is_a: 這是一個
+  this_is_a_life_list_of: 這生物清單屬於
+  this_is_a_life_list_of_taxon_in_place: 這是一個在 %{place} 的 %{taxon} 物種分類中的生物清單
+  this_species: 此物種
+  this_tool_is_experimental: 此工具為實驗性的，所以請
+  time_ago: '%{time} 前'
+  title: 標題
+  title_and_description: 標題與描述
+  to: 至
+  today: 今日
+  twitter: Twitter
+  type: 類型
+  type_date_time_or_use_the_calendar: 輸入日期/時間或使用行事曆
+  type_source_name: 輸入來源名稱
+  uicn_red_list_status: '國際自然保護聯盟瀕危物種(IUCN)紅色名錄現狀 :'
+  updating: 正在更新...
+  unsubscribe: 取消訂閱
+  update: 更新
+  update_photos: 更新照片
+  update_search: 更新搜尋
+  update_with_eol_content: 以生命大百科內容更新
+  updated: 已更新
+  updated_by: 已更新由
+  updated_daily: 每日更新
+  updated_photo: 已更新照片
+  upload: 上傳
+  upload_a_csv_file: 上傳 CSV 檔案
+  upload_photos: 上傳照片
+  uploaded_by: 上傳由
+  uploader:
+    tooltips:
+      remove: 移除已選擇的觀察
+      remove_observation: 移除觀察
+      remove_photo: 移除照片
+      select_all: 選擇所有觀察
+  user: 使用者
+  user_is_a_naturalist: '%{user}是個 naturalist！'
+  user_s: '%{user}的'
+  user_s_id: '%{user}的%{id}'
+  username: 使用者名稱
+  username_or_email: 用戶名稱或電子郵件
+  username_or_user_id: 用戶名稱或用戶 ID
+  users: 使用者
+  users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
+  users_id: '%{user} 的 ID'
+  users_identification_short_html: <a href='%{url}'>%{user}</a>的 ID
+  users_observations: '%{user}的觀察'
+  users_profile: '%{user}的個人檔案'
+  valid_interrogation: 有效？
+  valid_options_are: 有效選項為
+  view: 檢視
+  view_all: 檢視所有
+  view_all_members: 檢視所有成員
+  view_all_n: 檢視所有%{n}
+  view_all_observations: 檢視所有觀察
+  view_all_photocount_photos: 檢視所有 %{photo_count} 張照片
+  view_change: 檢視變更
+  view_contributions: 檢視貢獻
+  view_more: 檢視更多
+  view_more_about_x: 檢視更多關於%{x}
+  view_more_observations: 檢視更多觀察
+  view_more_observations_from_x: 檢視更多來自 %{x} 的貢獻
+  view_more_observations_from: 檢視更多貢獻來自於
+  view_the_observation: 檢視觀察
+  view_the_range: 檢視範圍
+  view_user_observations: 檢視 %{user} 的觀察
+  view_your_life_list: 查看妳的生物清單
+  view_your_calendar: 檢視您的行事曆
+  view_your_observations: 檢視您的觀察
+  view_yours: 檢視您的
+  w_photos_only: w/ 照片
+  welcome!: 歡迎！
+  welcome_comma!: 歡迎，
+  welcome: 歡迎
+  welcome_back: 歡迎回來
+  welcome_comma: 歡迎，
+  welcome_login: 歡迎，%{login}
+  welcome_to_x_project: 歡迎來到%{project}
+  what: 什麼
+  what_color_was_it: 它的顏色是什麼
+  what_did_you_see: 您看到了什麼？
+  x_journal: '%{user} 的期刊'
+  year: 年
+  yesterday: 昨天
+  yesterday_at: ，在昨天下午 4 點
+  you: 您
+  you_are_now: 您現在
+  your: 您的
+  your_: 您的
+  your_content: 您的內容
+  your_contributions_to_project: 您對於%{project_title}的貢獻
+  your_default: 您的預設
+  your_default_time_zone: 您的預設時區
+  your_drafts: 您的草稿
+  your_email_address: 您的電子郵件地址
+  your_flickr_account: 您的 Flickr 帳號
+  your_flickr_photos_have_been_tagged: 您的 Flickr 照片已被標記！
+  your_hard_drive: 您的磁碟機
+  your_id: 您的 ID
+  your_identification: 您的識別
+  your_inat_account_has_been_activated: 您的%{inat}帳號已被啟用。
+  your_life_list: 你的生物清單!
+  your_month_observations: 您的%{month}觀察
+  your_new_password_is: 您的新密碼是
+  your_observation_wont_get: 您的觀察紀錄將不會關聯到這物種的其他觀察紀錄，您的生物清單也不會被更新。
+  your_world!: 您的世界!
+  yours: 您的
+  views:
+    help:
+      index:
+        coordinates_are_obscured_for_all_taxa: |-
+          根據IUCN紅色名錄，所有屬於“近危 NEAR THREATENED“或者更糟情況的生物，
+          部份根據其他法定機構宣布受威脅，與及部份被 ％{} SITE_NAME 資料管理員
+          認定值得保護的物種，其存在位置座標將會被遮閉。
+        what_is_a_life_list?: 甚麼是生物清單呢?
+        automatically_updates_based_on_your_observations: 根據您的觀察紀錄自動更新。每位用戶在 %{site_name}
+          都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察紀錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類手動添加到您的生物清單中。就算當您觀察及刪除該紀錄，您手動添加到清單中的物種將不會被刪除。
+        you_can_also_make_additional_life_lists: 您也可為指定的生命體組別製作一份生物列表，例如鳥類的生物列表，或乳草屬植物的生物列表等。
+        is_a_list_of_every_species_that_you_have_seen: 一個生物列表是您看過的所有物種清單，每一個 %{site_name}
+          的用戶都會擁有一個生物列表，新增 %{site_name} 的觀察紀錄會自動遷移入這些列表中。
+        i_observed_a_species: 我觀察過的一個物種, 為何沒顯示在我的生物清單中?
+    taxa:
+      show:
+        frequency:
+          Insect life stage=egg: 卵
+          Insect life stage=nymph: 若蟲
+  date:
+    formats:
+      month_year: '%Y年%B'
+    month_names:
+      1: 一月
+      2: 二月
+      3: 三月
+      4: 四月
+      5: 五月
+      6: 六月
+      7: 七月
+      8: 八月
+      9: 九月
+      10: 十月
+      11: 十一月
+  helpers:
+    submit:
+      submit: 儲存 %{model}
+  number:
+    currency:
+      format:
+        delimiter: ，
+        format: '%u%n'
+        precision: "2"
+        separator: .
+        unit: $
+    format:
+      delimiter: ','
+      precision: "3"
+      separator: .
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: 十億
+          million: 百萬
+          quadrillion: 百萬四次方
+          thousand: 千
+          trillion: 萬億
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: 位元組
+            other: 位元組
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  support:
+    array:
+      last_word_connector: ，和
+      two_words_connector: 和
+      words_connector: ，
+  time:
+    formats:
+      default: '%b. %d, %Y %H:%M:%S %z'
+      long: '%B %d, %Y %I:%M %p'
+      short: '%d %b %H:%M'
+      observed_at: '%I:%M %p %Z'
+      rfc: '%Y年%B%d日'
+      day_month_year: '%Y年%B%d日'
+      hours: '%l:%M %p'
+  activemodel:
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: 必須被接受
+        blank: 不可留空
+        confirmation: 和確認資料不符
+        empty: 不能為空
+        equal_to: 必須相同於%{count}
+        even: 必須是偶數
+        exclusion: 已被保留
+        greater_than: 必須大於%{count}
+        greater_than_or_equal_to: 必須大於或等於 %{count}
+        invalid: 是無效的
+        less_than: 必須小於%{count}
+        less_than_or_equal_to: 必須小於或等於 %{count}
+        not_a_number: 不是一個數字
+        not_an_integer: 必須為整數
+        odd: 必須是奇數
+        record_invalid: '驗證失敗: %{errors}'
+        taken: 已被使用
+        too_long:
+          one: 太長 (最多 1 個字元)
+          other: 太長 (最多 %{count} 個字元)
+        too_short:
+          one: 太短 (最少 1 個字元)
+          other: 太短 (最少 %{count} 個字元)
+  activerecord:
+    attributes:
+      assessment:
+        description: 描述
+      assessment_section:
+        title: 標題
+      conservation_status:
+        url: URL
+        iucn: 等同國際自然保護聯盟瀕危物種(IUCN)紅色名錄
+      guide:
+        source_url: 來源 URL
+        published_at: 出版物
+      project:
+        title: 標題
+        description: 描述
+        end_time: 結束時間
+        map_type: 地圖類型
+        source_url: 來源 URL
+        start_time: 起始時間
+      place:
+        code: 程式碼
+        display_name: 顯示名稱
+        latitude: 緯度
+        longitude: 經度
+        name: 名稱
+        woeid: WOEID
+      flag:
+        reason: 原因
+      taxon:
+        name: 名稱
+        wikipedia_title: 維基百科標題
+        wikipedia_summary: 維基百科摘要
+        source_url: 來源 URL
+      taxon_name:
+        source_url: 來源 URL
+      source:
+        title: 標題
+        url: URL
+        citation: 引用
+  i18n:
+    inflections:
+      :@vow_or_con:
+        a: :@vow
+        e: :@vow
+        i: :@vow
+        o: :@vow
+        u: :@vow
+        default: :@con
+      gender:
+        m: 男
+        f: 女
+        observation: :@f
+        note: :@f
+        place: :@m
+        identification: :@f
+        species: :@f
+        application: :@f
+        check_list: :@f
+        observation_field: :@m
+        post: :@m
+        taxon: :@m
+  wild: 野生
+  will_paginate:
+    previous_label: '&#8592; 上一頁'
+    next_label: 下一頁 &#8594;
+    page_gap: '&hellip;'
+...
