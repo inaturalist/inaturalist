@@ -7,9 +7,19 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
   if ( !item ) { return ( <div /> ); }
   const isID = !!item.taxon;
   let menuItems = [];
-  const viewerIsActor = config && config.currentUser && config.currentUser.id === item.user.id;
+  const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
+  const viewerIsActor = loggedInUser && loggedInUser.id === item.user.id;
   if ( isID ) {
     if ( viewerIsActor ) {
+      menuItems.push( (
+        <MenuItem
+          key={ `id-edit-${item.id}` }
+          eventKey="edit"
+          href={ `/identifications/${item.id}/edit` }
+        >
+          { I18n.t( "edit" ) }
+        </MenuItem>
+      ) );
       if ( item.current ) {
         menuItems.push( (
           <MenuItem
@@ -39,6 +49,37 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
         </MenuItem>
       ) );
     }
+    const searchLinks = [];
+    if ( loggedInUser ) {
+      searchLinks.push( (
+        <div className="search">
+          <a href={ `/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}` }>
+            <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "you_" ) }
+          </a>
+        </div>
+      ) );
+    }
+    if ( !( loggedInUser && loggedInUser.id === item.user.id ) ) {
+      searchLinks.push( (
+        <div className="search">
+          <a href={ `/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}` }>
+            <i className="fa fa-arrow-circle-o-right" />{ item.user.login }
+          </a>
+        </div>
+      ) );
+    }
+    searchLinks.push( (
+      <div className="search">
+        <a href={ `/observations?taxon_id=${item.taxon.id}` }>
+          <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "everyone_" ) }
+        </a>
+      </div>
+    ) );
+    menuItems.push( ( <MenuItem divider key={ `id-menu-divider-${item.id}` } /> ) );
+    menuItems.push( ( <div key={ `id-menu-links-${item.id}` } className="search-links">
+      <div className="text-muted">View observations of this taxon by:</div>
+      { searchLinks }
+    </div> ) );
   } else {
     if ( viewerIsActor ) {
       menuItems.push( (

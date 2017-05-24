@@ -95,7 +95,7 @@ class CommunityIdentification extends React.Component {
   communityIDOverrideStatement( ) {
     const observation = this.props.observation;
     let statement;
-    if ( !observation.preferences.prefers_community_taxon ) {
+    if ( observation.preferences.prefers_community_taxon === false ) {
       statement = ( <span className="opted_out">
         ({ I18n.t( "user_has_opted_out_of_community_id" ) })
         <OverlayTrigger
@@ -122,6 +122,8 @@ class CommunityIdentification extends React.Component {
     if ( !observation || !taxon ) {
       return ( <div /> );
     }
+    const compareTaxonID = taxon.rank_level <= 10 ?
+      taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
@@ -219,7 +221,7 @@ class CommunityIdentification extends React.Component {
           </div>
           <div className="btn-space">
             <a href={
-              `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
+              `/observations/identotron?observation_id=${observation.id}&taxon_id=${compareTaxonID}` }
             >
               <button className="btn btn-default">
                 <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
