@@ -50,6 +50,8 @@ export default function reducer(
       break;
     case SHOW_CURRENT_OBSERVATION:
       newState.query = {};
+      newState.detailTaxon = null;
+      newState.detailPhotoIndex = 0;
       break;
     default:
       // leave it alone

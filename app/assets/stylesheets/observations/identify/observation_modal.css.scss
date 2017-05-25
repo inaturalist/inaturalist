@@ -29,11 +29,11 @@
 .ObservationModal .modal-dialog .modal-content .left-col {
   padding: 15px 20px 10px;
 }
-.left-col .SplitTaxon.taxon,
-.left-col .quality_grade {
+.obs-modal-header .SplitTaxon.taxon,
+.obs-modal-header .quality_grade {
   font-weight: bold;
 }
-.left-col .SplitTaxon.taxon .display-name {
+.obs-modal-header .SplitTaxon.taxon .display-name {
   font-size: 180%;
   display: block;
 }
@@ -404,7 +404,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 }
 
 .ObservationModal .column-header {
-  font-size: 24px;
+  font-size: 18px;
   margin-bottom: 10px;
   text-transform: capitalize;
 }

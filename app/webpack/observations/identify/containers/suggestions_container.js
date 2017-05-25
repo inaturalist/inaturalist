@@ -3,12 +3,16 @@ import Sugggestions from "../components/suggestions";
 import { setDetailTaxon, updateQuery, fetchSuggestions } from "../ducks/suggestions";
 
 function mapStateToProps( state ) {
-  return state.suggestions;
+  return Object.assign( {}, state.suggestions, {
+    observation: Object.assign( {}, state.currentObservation.observation )
+  } );
 }
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setDetailTaxon: ( taxon, options ) => dispatch( setDetailTaxon( taxon, options ) ),
+    setDetailTaxon: ( taxon, options = {} ) => {
+      dispatch( setDetailTaxon( taxon, options ) );
+    },
     setQuery: query => {
       dispatch( updateQuery( query ) );
       dispatch( fetchSuggestions( ) );

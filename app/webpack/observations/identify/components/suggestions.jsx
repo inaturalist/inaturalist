@@ -2,9 +2,11 @@ import React, { PropTypes } from "react";
 import _ from "lodash";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
+import { urlForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
 import TaxonChooserPopover from "./taxon_chooser_popover";
+import TaxonMap from "./taxon_map";
 
 class Suggestions extends React.Component {
   constructor( ) {
@@ -26,6 +28,46 @@ class Suggestions extends React.Component {
       }, 100 );
     }
   }
+  suggestionRowForTaxon( taxon ) {
+    const taxonPhotos = _
+      .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
+      .slice( 0, 5 );
+    return (
+      <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
+        <h3>
+          <SplitTaxon
+            taxon={taxon}
+            onClick={ e => {
+              e.preventDefault( );
+              this.scrollToTop( );
+              this.props.setDetailTaxon( taxon );
+              return false;
+            } }
+          />
+        </h3>
+        <div className="photos">
+          { taxonPhotos.length === 0 ? (
+            <div className="noresults">
+              { I18n.t( "no_photos" ) }
+            </div>
+          ) : taxonPhotos.map( tp => (
+            <TaxonPhoto
+              key={`taxon-${taxon.id}-photo-${tp.photo.id}`}
+              photo={tp.photo}
+              taxon={taxon}
+              width={150}
+              height={150}
+              showTaxonPhotoModal={ p => {
+                const index = _.findIndex( taxon.taxonPhotos,
+                  taxonPhoto => taxonPhoto.photo.id === p.id );
+                this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
+              } }
+            />
+          ) ) }
+        </div>
+      </div>
+    );
+  }
   render( ) {
     const {
       query,
@@ -34,7 +76,8 @@ class Suggestions extends React.Component {
       setDetailTaxon,
       setQuery,
       loading,
-      detailPhotoIndex
+      detailPhotoIndex,
+      observation
     } = this.props;
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos.length > 0 ) {
@@ -98,41 +141,7 @@ class Suggestions extends React.Component {
                   <div className="big loading_spinner" />
                 </div>
               ) : null }
-              { response.results.map( r => (
-                <div key={`suggestion-row-${r.taxon.id}`}>
-                  <h3>
-                    <SplitTaxon
-                      taxon={r.taxon}
-                      onClick={ e => {
-                        e.preventDefault( );
-                        this.scrollToTop( );
-                        setDetailTaxon( r.taxon );
-                        return false;
-                      } }
-                    />
-                  </h3>
-                  <div className="photos">
-                    { r.taxon.taxonPhotos.length === 0 ? (
-                      <div className="noresults">
-                        { I18n.t( "no_photos" ) }
-                      </div>
-                    ) : r.taxon.taxonPhotos.slice( 0, 5 ).map( tp => (
-                      <TaxonPhoto
-                        key={`taxon-${r.taxon.id}-photo-${tp.photo.id}`}
-                        photo={tp.photo}
-                        taxon={r.taxon}
-                        width={150}
-                        height={150}
-                        showTaxonPhotoModal={ p => {
-                          const index = _.findIndex( r.taxon.taxonPhotos,
-                            taxonPhoto => taxonPhoto.photo.id === p.id );
-                          setDetailTaxon( r.taxon, { detailPhotoIndex: index } );
-                        } }
-                      />
-                    ) ) }
-                  </div>
-                </div>
-              ) ) }
+              { response.results.map( r => this.suggestionRowForTaxon( r.taxon ) ) }
             </div>
           </div>
           <div className="suggestions-detail">
@@ -147,16 +156,35 @@ class Suggestions extends React.Component {
                       return false;
                     } }
                   >
-                    &larr; Back to suggestions
+                    <i className="fa fa-arrow-circle-left"></i> Back to suggestions
                   </a>
                 </div>
-                { detailPhotos }
-                <p>
-                  i am the very model of a modern major general,
-                  i've information animal, mineral and vegetable,
-                  I know the kings of england and i quote the fights historical
-                  from marathon to waterloo in order categorical
-                </p>
+                { detailTaxon ? (
+                  <div>
+                    { detailPhotos }
+                    <div className="obs-modal-header">
+                      <SplitTaxon
+                        taxon={detailTaxon}
+                        url={ urlForTaxon( detailTaxon ) }
+                        noParens
+                      />
+                    </div>
+                    <TaxonMap
+                      showAllLayer={false}
+                      minZoom={2}
+                      gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+                      observations={[observation]}
+                      scrollwheel={false}
+                      taxonLayers={[{
+                        taxon: detailTaxon,
+                        observations: true,
+                        gbif: { disabled: true },
+                        places: true,
+                        ranges: true
+                      }]}
+                    />
+                  </div>
+                ) : null }
               </div>
             </div>
         </div>
@@ -172,7 +200,8 @@ Suggestions.propTypes = {
   setDetailTaxon: PropTypes.func,
   setQuery: PropTypes.func,
   loading: PropTypes.bool,
-  detailPhotoIndex: PropTypes.number
+  detailPhotoIndex: PropTypes.number,
+  observation: PropTypes.object
 };
 
 Suggestions.defaultProps = {
