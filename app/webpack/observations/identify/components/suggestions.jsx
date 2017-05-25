@@ -1,4 +1,5 @@
 import React, { PropTypes } from "react";
+import _ from "lodash";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import ZoomableImageGallery from "./zoomable_image_gallery";
@@ -31,7 +32,9 @@ class Suggestions extends React.Component {
       response,
       detailTaxon,
       setDetailTaxon,
-      setQuery
+      setQuery,
+      loading,
+      detailPhotoIndex
     } = this.props;
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos.length > 0 ) {
@@ -40,6 +43,20 @@ class Suggestions extends React.Component {
         zoom: taxonPhoto.photo.photoUrl( "original" ),
         thumbnail: taxonPhoto.photo.photoUrl( "square" )
       } ) );
+    }
+    let detailPhotos = <div className="noresults">No Taxon Chosen</div>;
+    if ( detailTaxonImages && detailTaxonImages.length > 0 ) {
+      detailPhotos = (
+        <ZoomableImageGallery
+          items={detailTaxonImages}
+          showThumbnails={detailTaxonImages && detailTaxonImages.length > 1}
+          lazyLoad={false}
+          server
+          showNav={false}
+          slideIndex={detailPhotoIndex}
+          currentIndex={detailPhotoIndex}
+        />
+      );
     }
     return (
       <div className="Suggestions">
@@ -76,6 +93,11 @@ class Suggestions extends React.Component {
                   } }
                 />
               </div>
+              { loading ? (
+                <div className="text-center">
+                  <div className="big loading_spinner" />
+                </div>
+              ) : null }
               { response.results.map( r => (
                 <div key={`suggestion-row-${r.taxon.id}`}>
                   <h3>
@@ -101,8 +123,10 @@ class Suggestions extends React.Component {
                         taxon={r.taxon}
                         width={150}
                         height={150}
-                        showTaxonPhotoModal={ ( p, t, o ) => {
-                          console.log( "[DEBUG] foo" );
+                        showTaxonPhotoModal={ p => {
+                          const index = _.findIndex( r.taxon.taxonPhotos,
+                            taxonPhoto => taxonPhoto.photo.id === p.id );
+                          setDetailTaxon( r.taxon, { detailPhotoIndex: index } );
                         } }
                       />
                     ) ) }
@@ -126,15 +150,7 @@ class Suggestions extends React.Component {
                     &larr; Back to suggestions
                   </a>
                 </div>
-                { detailTaxonImages && detailTaxonImages.length > 0 ? (
-                  <ZoomableImageGallery
-                    items={detailTaxonImages}
-                    showThumbnails={detailTaxonImages && detailTaxonImages.length > 1}
-                    lazyLoad={false}
-                    server
-                    showNav={false}
-                  />
-                ) : <div className="noresults">No Taxon Chosen</div> }
+                { detailPhotos }
                 <p>
                   i am the very model of a modern major general,
                   i've information animal, mineral and vegetable,
@@ -154,14 +170,17 @@ Suggestions.propTypes = {
   response: PropTypes.object,
   detailTaxon: PropTypes.object,
   setDetailTaxon: PropTypes.func,
-  setQuery: PropTypes.func
+  setQuery: PropTypes.func,
+  loading: PropTypes.bool,
+  detailPhotoIndex: PropTypes.number
 };
 
 Suggestions.defaultProps = {
   query: {},
   response: {
     results: []
-  }
+  },
+  detailPhotoIndex: 0
 };
 
 export default Suggestions;

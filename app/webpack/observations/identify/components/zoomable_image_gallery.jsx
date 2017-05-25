@@ -6,7 +6,7 @@ import _ from "lodash";
 
 class ZoomableImageGallery extends ImageGallery {
 
-  componentDidMount() {
+  componentDidMount( ) {
     super.componentDidMount( );
     const props = this.props;
     const domNode = ReactDOM.findDOMNode( this );
@@ -28,17 +28,26 @@ class ZoomableImageGallery extends ImageGallery {
       },
       loadingNotice: I18n.t( "loading" )
     } );
+    this.slideToSlideIndex( );
   }
 
-  componentWillReceiveProps( newProps ) {
-    if ( _.isInteger( newProps.currentIndex ) ) {
-      this.slideToIndex( newProps.currentIndex );
+  componentDidUpdate( prevProps ) {
+    if ( this.props.slideIndex !== prevProps.slideIndex ) {
+      this.slideToSlideIndex( );
+    }
+  }
+
+  slideToSlideIndex( ) {
+    if (
+      _.isInteger( this.props.slideIndex )
+    ) {
+      this.slideToIndex( this.props.slideIndex );
     }
   }
 }
 
-ZoomableImageGallery.props = {
-  currentIndex: PropTypes.number
-};
+ZoomableImageGallery.propTypes = Object.assign( { }, ImageGallery.propTypes, {
+  slideIndex: PropTypes.number
+} );
 
 export default ZoomableImageGallery;

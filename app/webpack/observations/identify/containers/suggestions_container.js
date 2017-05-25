@@ -8,7 +8,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setDetailTaxon: taxon => dispatch( setDetailTaxon( taxon ) ),
+    setDetailTaxon: ( taxon, options ) => dispatch( setDetailTaxon( taxon, options ) ),
     setQuery: query => {
       dispatch( updateQuery( query ) );
       dispatch( fetchSuggestions( ) );

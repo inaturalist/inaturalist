@@ -98,7 +98,7 @@ class ObservationModal extends React.Component {
         <ZoomableImageGallery
           key={`map-for-${observation.id}`}
           items={images}
-          currentIndex={imagesCurrentIndex}
+          slideIndex={imagesCurrentIndex}
           showThumbnails={images && images.length > 1}
           lazyLoad={false}
           server

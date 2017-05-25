@@ -4,13 +4,21 @@ import _ from "lodash";
 import { SHOW_CURRENT_OBSERVATION } from "../actions/current_observation_actions";
 
 const RESET = "observations-identify/suggestions/RESET";
+const START_LOADING = "observations-identify/suggestions/START_LOADING";
+const STOP_LOADING = "observations-identify/suggestions/STOP_LOADING";
 const SET_QUERY = "observations-identify/suggestions/SET_QUERY";
 const SET_SUGGESTIONS = "observations-identify/suggestions/SET_SUGGESTIONS";
 const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 
 export default function reducer(
   state = {
-    query: {}
+    query: {},
+    loading: false,
+    response: {
+      results: []
+    },
+    detailTaxon: null,
+    detailPhotoIndex: 0
   },
   action
 ) {
@@ -18,6 +26,14 @@ export default function reducer(
   switch ( action.type ) {
     case RESET:
       newState = {};
+      break;
+    case START_LOADING:
+      newState.loading = true;
+      newState.response.results = [];
+      newState.detailTaxon = null;
+      break;
+    case STOP_LOADING:
+      newState.loading = false;
       break;
     case SET_QUERY:
       newState.query = action.query || {};
@@ -28,6 +44,9 @@ export default function reducer(
       break;
     case SET_DETAIL_TAXON:
       newState.detailTaxon = action.taxon;
+      if ( action.options ) {
+        newState.detailPhotoIndex = action.options.detailPhotoIndex;
+      }
       break;
     case SHOW_CURRENT_OBSERVATION:
       newState.query = {};
@@ -44,6 +63,14 @@ function setSuggestions( suggestions ) {
 
 function setQuery( query ) {
   return { type: SET_QUERY, query };
+}
+
+function startLoading( ) {
+  return { type: START_LOADING };
+}
+
+function stopLoading( ) {
+  return { type: STOP_LOADING };
 }
 
 export function updateQuery( query ) {
@@ -85,8 +112,8 @@ export function updateQuery( query ) {
   };
 }
 
-export function setDetailTaxon( taxon ) {
-  return { type: SET_DETAIL_TAXON, taxon };
+export function setDetailTaxon( taxon, options = {} ) {
+  return { type: SET_DETAIL_TAXON, taxon, options };
 }
 
 export function fetchSuggestions( query ) {
@@ -111,7 +138,9 @@ export function fetchSuggestions( query ) {
       }
     }
     dispatch( updateQuery( newQuery ) );
+    dispatch( startLoading( ) );
     return inatjs.taxa.suggest( newQuery ).then( suggestions => {
+      dispatch( stopLoading( ) );
       dispatch( setSuggestions( suggestions ) );
     } );
   };
