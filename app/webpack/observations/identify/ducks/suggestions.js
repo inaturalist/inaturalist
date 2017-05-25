@@ -98,7 +98,10 @@ export function updateQuery( query ) {
       inatjs.taxa.fetch( query.taxon_id )
         .then( response => {
           if ( response.results[0] ) {
-            dispatch( updateQuery( { taxon: response.results[0] } ) );
+            dispatch( updateQuery( {
+              taxon: response.results[0],
+              defaultTaxon: response.results[0]
+            } ) );
           }
         } );
     }
@@ -106,7 +109,10 @@ export function updateQuery( query ) {
       inatjs.places.fetch( query.place_id )
         .then( response => {
           if ( response.results[0] ) {
-            dispatch( updateQuery( { place: response.results[0] } ) );
+            dispatch( updateQuery( {
+              place: response.results[0],
+              defaultPlace: response.results[0]
+            } ) );
           }
         } );
     }

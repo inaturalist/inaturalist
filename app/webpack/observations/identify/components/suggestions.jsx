@@ -114,6 +114,7 @@ class Suggestions extends React.Component {
                 <PlaceChooserPopover
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   place={ query.place }
+                  defaultPlace={ query.defaultPlace }
                   preIconClass={false}
                   postIconClass="fa fa-angle-down"
                   setPlace={ place => {
@@ -126,6 +127,7 @@ class Suggestions extends React.Component {
                 <TaxonChooserPopover
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   taxon={ query.taxon }
+                  defaultTaxon={ query.defaultTaxon }
                   preIconClass={false}
                   postIconClass="fa fa-angle-down"
                   setTaxon={ taxon => {

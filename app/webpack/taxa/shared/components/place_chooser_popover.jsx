@@ -95,21 +95,32 @@ class PlaceChooserPopover extends React.Component {
       newPlaces.splice( 0, 0, props.defaultPlace );
       this.setState( { places: newPlaces } );
     }
+    if ( props.place && props.place.ancestor_place_ids && props.place.ancestor_place_ids.length > 0 ) {
+      this.fetchPlaces( props.place.ancestor_place_ids );
+    }
   }
 
-  fetchPlaces( text ) {
-    inatjs.places.autocomplete( { q: text } ).then( response => {
-      let newPlaces = response.results;
-      if (
-        this.props.defaultPlace &&
-        this.props.place &&
-        this.props.place.id !== this.props.defaultPlace.id
-      ) {
-        newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
-        newPlaces.splice( 0, 0, this.props.defaultPlace );
-      }
-      this.setState( { places: newPlaces } );
-    } );
+  handlePlacesResponse( response ) {
+    let newPlaces = response.results;
+    if (
+      this.props.defaultPlace &&
+      this.props.place &&
+      this.props.place.id !== this.props.defaultPlace.id
+    ) {
+      newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
+      newPlaces.splice( 0, 0, this.props.defaultPlace );
+    }
+    this.setState( { places: newPlaces } );
+  }
+
+  searchPlaces( text ) {
+    const that = this;
+    inatjs.places.autocomplete( { q: text } ).then( response => that.handlePlacesResponse( response ) );
+  }
+
+  fetchPlaces( ids ) {
+    const that = this;
+    inatjs.places.fetch( ids ).then( response => that.handlePlacesResponse( response ) );
   }
 
   highlightNext( ) {
@@ -166,7 +177,7 @@ class PlaceChooserPopover extends React.Component {
           this.unbindArrowKeys( );
         }}
         overlay={
-          <Popover id="place-chooser" className="PlaceChooserPopover">
+          <Popover id="place-chooser" className="PlaceChooserPopover RecordChooserPopover">
             <Input
               type="text"
               placeholder={I18n.t( "search" )}
@@ -176,7 +187,7 @@ class PlaceChooserPopover extends React.Component {
                 if ( text.length === 0 ) {
                   this.setState( { places: [] } );
                 } else {
-                  this.fetchPlaces( text );
+                  this.searchPlaces( text );
                 }
               }}
             />
@@ -228,7 +239,7 @@ class PlaceChooserPopover extends React.Component {
         }
       >
         <div
-          className={`PlaceChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
+          className={`PlaceChooserPopoverTrigger RecordChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
         >
           { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
           {

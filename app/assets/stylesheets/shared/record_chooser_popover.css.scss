@@ -1,0 +1,63 @@
+@import "../colors";
+
+.RecordChooserPopoverTrigger {
+  cursor: pointer;
+  white-space: nowrap;
+  .pre-icon {
+    margin-right: 5px;
+  }
+  .post-icon {
+    margin-left: 5px;
+  }
+}
+.RecordChooserPopoverTrigger:hover {
+  opacity: 0.8;
+}
+.RecordChooserPopoverTrigger.chosen .pre-icon {
+  color: $inat-green;
+}
+.RecordChooserPopover.popover {
+  max-width: 200px;
+  a {
+    color: #333;
+  }
+  .popover-content {
+    padding: 10px;
+  }
+  .form-group {
+    margin-bottom: 5px;
+  }
+  ul {
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  .media {
+    margin: 0;
+  }
+  .media-left {
+    padding: 0;
+  }
+  li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    i {
+      color: #999;
+      width: 20px;
+      text-align: center;
+      margin-top: 2px;
+    }
+    .place-type {
+      text-transform: capitalize;
+    }
+  }
+  li:last-child {
+    border-bottom: 0 transparent;
+  }
+  li.current {
+    background-color: #eee;
+  }
+  .pinned {
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+  }
+}
