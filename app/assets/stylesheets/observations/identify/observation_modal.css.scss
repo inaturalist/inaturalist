@@ -120,6 +120,10 @@ $galleryHeightElements: "
   i {
     color: $inat-green;
   }
+  .btn-primary {
+    background-color: $inat-green;
+    border-color: $inat-green;
+  }
   .link-btn:hover {
     text-decoration: none;
   }
@@ -304,7 +308,7 @@ tr.keyboard-shortcuts td {
   left: 0;
   height: 20px;
   width: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0), #eee);
+  background: linear-gradient(rgba(255, 255, 255, 0), $light-grey);
 }
 .UserText.truncated .content:after {
   display: block;
@@ -374,8 +378,22 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   display: block;
   width: 100%;
 }
-.ObservationModal .inat-tab.suggestions-tab {
+.ObservationModal .inat-tab.suggestions-tab,
+.ObservationModal .inat-tab.info-tab {
   padding: 0;
+}
+.ObservationModal .inat-tab.active.info-tab {
+  display: flex;
+  flex-direction: column;
+}
+.ObservationModal .inat-tab.info-tab .info-tab-content {
+  flex: 2;
+  height: 100%;
+  overflow: auto;
+}
+
+.ObservationModal .inat-tab.info-tab .info-tab-inner {
+  padding: 20px;
 }
 
 .ObservationModal .map-and-details {
@@ -406,6 +424,13 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   font-size: 18px;
   margin-bottom: 10px;
   text-transform: capitalize;
+
+  a {
+    color: black;
+  }
+  i {
+    color: $inat-green;
+  }
 }
 .ObservationModal .media .column-header {
   visibility: hidden;

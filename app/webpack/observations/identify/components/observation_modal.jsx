@@ -175,71 +175,6 @@ class ObservationModal extends React.Component {
       } );
     }
 
-    let rightTools;
-    if ( tab === "info" ) {
-      rightTools = (
-        <div className="tools">
-          <OverlayTrigger
-            placement="top"
-            delayShow={1000}
-            overlay={
-              <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
-                { I18n.t( "mark_as_reviewed" ) }
-              </Tooltip>
-            }
-            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-          >
-            <label
-              className={
-                `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
-              }
-            >
-              <input
-                type="checkbox"
-                checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
-                onChange={function ( ) {
-                  toggleReviewed( );
-                }}
-              />
-              { I18n.t( "reviewed" ) }
-            </label>
-          </OverlayTrigger>
-          <OverlayTrigger
-            placement="top"
-            delayShow={1000}
-            overlay={
-              <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
-                { I18n.t( "agree_with_current_taxon" ) }
-              </Tooltip>
-            }
-            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-          >
-            <Button
-              bsStyle="default"
-              disabled={ agreeingWithObservation || !showAgree( ) }
-              className="agree-btn"
-              onClick={ function ( ) {
-                agreeWithCurrentObservation( );
-              } }
-            >
-              <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
-              </i> { _.capitalize( I18n.t( "agree" ) ) }
-            </Button>
-          </OverlayTrigger>
-          <Button
-            bsStyle="default"
-            className="comment-btn"
-            onClick={ function ( ) { addComment( ); } }
-          >
-            <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
-          </Button>
-          <Button bsStyle="default" onClick={ function ( ) { addIdentification( ); } } >
-            <i className="icon-identification"></i> { I18n.t( "add_id" ) }
-          </Button>
-        </div>
-      );
-    }
-
     return (
       <Modal
         show={visible}
@@ -405,66 +340,126 @@ class ObservationModal extends React.Component {
             </ul>
             <div className="sidebar">
               <div className={`inat-tab info-tab ${tab === "info" ? "active" : ""}`}>
-                <div className="map-and-details">
-                  { taxonMap }
-                  <ul className="details">
-                    <li>
-                      <i className="icon-person"></i> { observation.user.login }
-                    </li>
-                    <li>
-                      <i className="fa fa-map-marker"></i> { observation.place_guess }
-                    </li>
-                    <li>
-                      <i className="fa fa-calendar"></i> { moment( observation.observed_on ).format( "L" ) }
-                    </li>
-                    <li>
-                      <a className="permalink" href={`/observations/${observation.id}`}>
-                        <i className="icon-link"></i>
-                        { I18n.t( "view_observation" ) }
-                      </a>
-                    </li>
-                  </ul>
+                <div className="info-tab-content">
+                  <div className="info-tab-inner">
+                    <div className="map-and-details stacked">
+                      { taxonMap }
+                      <ul className="details">
+                        <li>
+                          <i className="icon-person"></i> { observation.user.login }
+                        </li>
+                        <li>
+                          <i className="fa fa-map-marker"></i> { observation.place_guess }
+                        </li>
+                        <li>
+                          <i className="fa fa-calendar"></i> { moment( observation.observed_on ).format( "L" ) }
+                        </li>
+                        <li>
+                          <a className="permalink" href={`/observations/${observation.id}`}>
+                            <i className="icon-link"></i>
+                            { I18n.t( "view_observation" ) }
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    <UserText text={observation.description} truncate={100} className="stacked observation-description" />
+                    <DiscussionListContainer observation={observation} />
+                    <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
+                      <div className="loading_spinner" />
+                    </center>
+                    <CommentFormContainer
+                      observation={observation}
+                      className={commentFormVisible ? "" : "collapse"}
+                      ref={ function ( elt ) {
+                        const domNode = ReactDOM.findDOMNode( elt );
+                        if ( domNode && commentFormVisible ) {
+                          scrollSidebarToForm( domNode );
+                          if (
+                            $( "textarea", domNode ).val() === ""
+                            && $( ".IdentificationForm textarea" ).val() !== ""
+                          ) {
+                            $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
+                          }
+                        }
+                      } }
+                    />
+                    <IdentificationFormContainer
+                      observation={observation}
+                      className={identificationFormVisible ? "" : "collapse"}
+                      ref={ function ( elt ) {
+                        const domNode = ReactDOM.findDOMNode( elt );
+                        if ( domNode && identificationFormVisible ) {
+                          scrollSidebarToForm( domNode );
+                          if (
+                            $( "textarea", domNode ).val() === ""
+                            && $( ".CommentForm textarea" ).val() !== ""
+                          ) {
+                            $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
+                          }
+                        }
+                      } }
+                    />
+                  </div>
                 </div>
-                <div className="place-guess">
-                  { observation.place_guess }
+                <div className="tools">
+                  <OverlayTrigger
+                    placement="top"
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                        { I18n.t( "mark_as_reviewed" ) }
+                      </Tooltip>
+                    }
+                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                  >
+                    <label
+                      className={
+                        `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                        onChange={function ( ) {
+                          toggleReviewed( );
+                        }}
+                      />
+                      { I18n.t( "reviewed" ) }
+                    </label>
+                  </OverlayTrigger>
+                  <OverlayTrigger
+                    placement="top"
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
+                        { I18n.t( "agree_with_current_taxon" ) }
+                      </Tooltip>
+                    }
+                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                  >
+                    <Button
+                      bsStyle="default"
+                      disabled={ agreeingWithObservation || !showAgree( ) }
+                      className="agree-btn"
+                      onClick={ function ( ) {
+                        agreeWithCurrentObservation( );
+                      } }
+                    >
+                      <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
+                      </i> { _.capitalize( I18n.t( "agree" ) ) }
+                    </Button>
+                  </OverlayTrigger>
+                  <Button
+                    bsStyle="default"
+                    className="comment-btn"
+                    onClick={ function ( ) { addComment( ); } }
+                  >
+                    <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
+                  </Button>
+                  <Button bsStyle="default" onClick={ function ( ) { addIdentification( ); } } >
+                    <i className="icon-identification"></i> { I18n.t( "add_id" ) }
+                  </Button>
                 </div>
-                <UserText text={observation.description} truncate={100} className="stacked observation-description" />
-                <DiscussionListContainer observation={observation} />
-                <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
-                  <div className="loading_spinner" />
-                </center>
-                <CommentFormContainer
-                  observation={observation}
-                  className={commentFormVisible ? "" : "collapse"}
-                  ref={ function ( elt ) {
-                    const domNode = ReactDOM.findDOMNode( elt );
-                    if ( domNode && commentFormVisible ) {
-                      scrollSidebarToForm( domNode );
-                      if (
-                        $( "textarea", domNode ).val() === ""
-                        && $( ".IdentificationForm textarea" ).val() !== ""
-                      ) {
-                        $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
-                      }
-                    }
-                  } }
-                />
-                <IdentificationFormContainer
-                  observation={observation}
-                  className={identificationFormVisible ? "" : "collapse"}
-                  ref={ function ( elt ) {
-                    const domNode = ReactDOM.findDOMNode( elt );
-                    if ( domNode && identificationFormVisible ) {
-                      scrollSidebarToForm( domNode );
-                      if (
-                        $( "textarea", domNode ).val() === ""
-                        && $( ".CommentForm textarea" ).val() !== ""
-                      ) {
-                        $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
-                      }
-                    }
-                  } }
-                />
               </div>
               <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
                 <AnnotationsContainer />
@@ -476,7 +471,6 @@ class ObservationModal extends React.Component {
                 <SuggestionsContainer />
               </div>
             </div>
-            { rightTools }
           </div>
         </div>
       </Modal>

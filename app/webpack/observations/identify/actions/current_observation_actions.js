@@ -551,7 +551,7 @@ export function showNextTab( ) {
     let index = tabs.indexOf( getState( ).currentObservation.tab );
     if ( index < 0 ) {
       index = 0;
-    } else if ( index < tabs.length ) {
+    } else if ( index < tabs.length - 1 ) {
       index = index + 1;
     }
     dispatch( updateCurrentObservation( { tab: tabs[index] } ) );

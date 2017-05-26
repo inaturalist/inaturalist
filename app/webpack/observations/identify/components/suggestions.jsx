@@ -1,5 +1,8 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
+import {
+  Button
+} from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
@@ -52,7 +55,6 @@ class Suggestions extends React.Component {
             </div>
           ) : taxonPhotos.map( tp => (
             <TaxonPhoto
-              key={`taxon-${taxon.id}-photo-${tp.photo.id}`}
               photo={tp.photo}
               taxon={taxon}
               width={150}
@@ -77,7 +79,8 @@ class Suggestions extends React.Component {
       setQuery,
       loading,
       detailPhotoIndex,
-      observation
+      observation,
+      chooseTaxon
     } = this.props;
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos.length > 0 ) {
@@ -87,7 +90,7 @@ class Suggestions extends React.Component {
         thumbnail: taxonPhoto.photo.photoUrl( "square" )
       } ) );
     }
-    let detailPhotos = <div className="noresults">No Taxon Chosen</div>;
+    let detailPhotos = <div className="noresults">{ I18n.t( "no_photos" ) }</div>;
     if ( detailTaxonImages && detailTaxonImages.length > 0 ) {
       detailPhotos = (
         <ZoomableImageGallery
@@ -190,6 +193,22 @@ class Suggestions extends React.Component {
               </div>
             </div>
         </div>
+        { detailTaxon ? (
+          <div className="suggestions-tools tools">
+            <Button
+              bsStyle="link"
+              onClick={ ( ) => setDetailTaxon( null ) }
+            >
+              { I18n.t( "cancel" ) }
+            </Button>
+            <Button
+              bsStyle="primary"
+              onClick={ ( ) => chooseTaxon( detailTaxon, { observation } ) }
+            >
+              { I18n.t( "select_this_taxon" ) }
+            </Button>
+          </div>
+        ) : null }
       </div>
     );
   }
@@ -203,7 +222,8 @@ Suggestions.propTypes = {
   setQuery: PropTypes.func,
   loading: PropTypes.bool,
   detailPhotoIndex: PropTypes.number,
-  observation: PropTypes.object
+  observation: PropTypes.object,
+  chooseTaxon: PropTypes.func
 };
 
 Suggestions.defaultProps = {

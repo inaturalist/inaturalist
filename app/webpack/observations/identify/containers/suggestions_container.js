@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import Sugggestions from "../components/suggestions";
 import { setDetailTaxon, updateQuery, fetchSuggestions } from "../ducks/suggestions";
+import {
+  submitIdentificationWithConfirmation,
+  updateCurrentObservation
+} from "../actions";
 
 function mapStateToProps( state ) {
   return Object.assign( {}, state.suggestions, {
@@ -16,6 +20,16 @@ function mapDispatchToProps( dispatch ) {
     setQuery: query => {
       dispatch( updateQuery( query ) );
       dispatch( fetchSuggestions( ) );
+    },
+    chooseTaxon: ( taxon, options = {} ) => {
+      const ident = {
+        observation_id: options.observation.id,
+        taxon_id: taxon.id
+      };
+      dispatch( updateCurrentObservation( { tab: "info" } ) );
+      dispatch( submitIdentificationWithConfirmation( ident, {
+        confirmationText: options.confirmationText
+      } ) );
     }
   };
 }

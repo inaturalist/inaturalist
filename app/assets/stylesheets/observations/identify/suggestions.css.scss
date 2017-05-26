@@ -2,8 +2,10 @@
 
 .Suggestions {
   position: relative;
-  height: 100%;
+  width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 
   .suggestions-wrapper {
     transition: 0.5s;
@@ -11,6 +13,7 @@
     display: flex;
     height: 100%;
     overflow: hidden;
+    flex: 2;
   }
 
   .suggestions-wrapper.with-detail {
@@ -101,6 +104,20 @@
   .TaxonMap {
     height: 300px;
   }
+
+  .tools {
+    display: block;
+    text-align: right;
+  }
+
+  .loading_spinner {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+
+.ObservationModal .right-col .Suggestions .tools > * {
+  width: auto;
 }
 
 .ObservationModal .inat-tab.active.suggestions-tab {

@@ -47,6 +47,7 @@ const TaxonPhoto = ( {
     <div
       className={`TaxonPhoto ${className}`}
       style={ style }
+      key={`TaxonPhoto-taxon-${taxon.id}-photo-${photo.id}`}
     >
       <div className="photo-hover">
         <button
