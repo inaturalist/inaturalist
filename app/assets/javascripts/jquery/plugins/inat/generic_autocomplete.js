@@ -227,7 +227,8 @@ $.fn.genericAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
-    if( options.idEl.val( ) !== null ) {
+    var id = parseInt( options.idEl.val( ) );
+    if( id && id > 0 ) {
       options.idEl.val( null );
       if( options.afterUnselect ) { options.afterUnselect( ); }
     }

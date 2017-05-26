@@ -4,6 +4,7 @@ import { Grid, Row, Col, Button } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
+import ObservationAttribution from "../../../shared/components/observation_attribution";
 import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
 import ConservationStatusBadge from "../components/conservation_status_badge";
@@ -55,12 +56,6 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
   }
   const viewerIsObserver = config && config.currentUser &&
     config.currentUser.id === observation.user.id;
-  const editButton = (
-    viewerIsObserver ?
-      <Button bsStyle="primary" className="edit" href={ `/observations/${observation.id}/edit` } >
-        { I18n.t( "edit_observation" ) }
-      </Button> : null
-  );
   const photosColClass =
     ( ( !observation.photos || observation.photos.length === 0 ) &&
     ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
@@ -111,7 +106,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
       <div className="upper">
         <Grid>
           <Row className="title_row">
-            <Col xs={10}>
+            <Col xs={ viewerIsObserver ? 10 : 12 }>
               <div className="ObservationTitle">
                 <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
                 <ConservationStatusBadge observation={ observation } />
@@ -121,9 +116,17 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                 </span>
               </div>
             </Col>
-            <Col xs={2}>
-              { editButton }
-            </Col>
+            { viewerIsObserver ? (
+              <Col xs={2}>
+                <Button
+                  bsStyle="primary"
+                  className="edit"
+                  href={ `/observations/${observation.id}/edit` }
+                >
+                  { I18n.t( "edit_observation" ) }
+                </Button>
+              </Col> ) : ""
+            }
           </Row>
           <Row>
             <Col xs={12}>
@@ -160,7 +163,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                       </Col>
                       <Col xs={4}>
                         <i className="fa fa-tag" />
-                        { observation.identifications_count }
+                        { observation.identifications.length }
                       </Col>
                       <Col xs={4}>
                         <i className="fa fa-star" />
@@ -221,8 +224,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                 <Col xs={12}>
                   <div className="Copyright">
                     <h4>Copyright Info</h4>
-                    Observation &copy; { observation.user.login } &middot;
-                    All Rights Reserved
+                    <ObservationAttribution observation={ observation } />
                   </div>
                 </Col>
               </Row>

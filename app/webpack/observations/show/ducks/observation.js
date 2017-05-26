@@ -611,7 +611,7 @@ export function voteMetric( metric, params = { } ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newMetrics = _.filter( state.qualityMetrics, qm => (
-      !( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
+      !( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
         observation_id: state.observation.id,
         metric,
         agree: ( params.agree !== "false" ),
@@ -635,7 +635,7 @@ export function unvoteMetric( metric ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newMetrics = _.map( state.qualityMetrics, qm => (
-      ( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ?
+      ( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric ) ?
         Object.assign( { }, qm, { api_status: "deleting" } ) : qm
     ) );
     dispatch( setQualityMetrics( newMetrics ) );

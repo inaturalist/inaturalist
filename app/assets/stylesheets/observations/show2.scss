@@ -10,6 +10,17 @@ body {
   min-width: 980px;
 }
 
+a:hover, a:focus {
+  text-decoration: none;
+}
+a:focus {
+  outline: none;
+}
+.tooltip-inner a {
+  color: white;
+  font-weight: 700;
+}
+
 .input-group.date {
   display: none;
 }
@@ -406,7 +417,7 @@ a.UserImage {
       }
       textarea {
         min-height: 125px;
-        resize: none;
+        resize: vertical;
         border-radius: 3px;
         background: $light-grey;
       }
@@ -830,6 +841,8 @@ a.UserImage {
   }
   .panel {
     margin-left: 60px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
   }
   .id_body {
     margin-top: 15px;
@@ -874,6 +887,10 @@ a.UserImage {
       }
       .dropdown-menu {
         margin-right: -10px;
+        .search-links {
+          padding: 3px 20px 5px 20px;
+          min-width: 200px;
+        }
       }
     }
   }
@@ -886,15 +903,19 @@ a.UserImage {
 .UsersPopoverOverlay {
   .user {
     display: block;
-    .UserImage {
+    .UserImage, .site {
       min-width: 22px;
       width: 22px;
       height: 22px;
       vertical-align: bottom;
+      margin-right: 5px;
       .icon-person {
         font-size: 14px;
         line-height: 20px;
       }
+    }
+    &:not(:first-child) {
+      margin-top: 4px;
     }
   }
   .popover-content {
@@ -1025,6 +1046,9 @@ a.UserImage {
 .MoreFromUser {
   padding-bottom: 30px;
   h3 {
+    & > span a {
+      font-weight: 700;
+    }
     .links {
       float: right;
       font-size: 14px;
@@ -1194,19 +1218,23 @@ a.UserImage {
     .view {
       color: #aaa;
     }
-    .search {
-      line-height: 24px;
-      white-space: nowrap;
-      .fa {
-        color: $inat-green;
-        margin-right: 5px;
-      }
-      a {
-        color: inherit;
-      }
+  }
+}
+
+.ObservationFieldPopover.popover, .AnnotationPopover.popover, .ActivityItemMenu {
+  .search {
+    line-height: 24px;
+    white-space: nowrap;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    a {
+      color: inherit;
     }
   }
 }
+
 
 .Identifiers {
   .identifier {
@@ -1545,6 +1573,7 @@ a.UserImage {
 .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
+    max-width: 950px;
     min-width: 750px;
     .modal-body {
       overflow-x: auto;
@@ -1734,6 +1763,16 @@ a.UserImage {
     .arrow:after {
       border-bottom-color: deeppink !important;
     }
+  }
+}
+
+.Copyright {
+  a {
+    color: $bootstrap-link-color;
+  }
+  img {
+    display: block;
+    margin-top: 5px;
   }
 }
 

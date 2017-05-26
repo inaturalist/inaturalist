@@ -19,18 +19,21 @@ const MoreFromUser = ( { observation, observations, showNewObservation } ) => {
       showNewObservation( o );
     }
   };
+  const userLogin = observation.user.login;
   return (
     <div className="MoreFromUser">
       <h3>
-        { I18n.t( "more_from_x", { x: observation.user.login } ) }
+        <span dangerouslySetInnerHTML={ { __html:
+          I18n.t( "more_from_x", { x: `<a href="/people/${userLogin}">${userLogin}</a>` } ) } }
+        />
         <div className="links">
-          <a href={ `/observations?user_id=${observation.user.login}` }>
+          <a href={ `/observations?user_id=${userLogin}&place_id=any` }>
             { I18n.t( "view_all" ) }
           </a>
           { dateObserved ? (
             <span>
               <span className="separator">·</span>
-              <a href={ `/observations?user_id=${observation.user.login}&on=${onDate}` }>
+              <a href={ `/observations?user_id=${userLogin}&on=${onDate}&place_id=any` }>
                 { I18n.t( "view_all_from_x", { x: dateObserved.format( "MMMM D, YYYY" ) } ) }
               </a>
             </span>

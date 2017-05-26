@@ -1,17 +1,29 @@
 import React, { PropTypes } from "react";
+import _ from "lodash";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import UserImage from "../../identify/components/user_image";
+/* global SITE */
 
 const UsersPopover = ( { keyPrefix, users, contents } ) => {
   if ( !users || users.length === 0 ) { return ( <div /> ); }
   const popover = (
     <Popover className="UsersPopoverOverlay" id={ `popover-${keyPrefix}` }>
-      { users.map( u => (
-        <span key={ `popover-${keyPrefix}-${u.id}` } className="user">
-          <UserImage user={ u } />
-          <a href={ `/people/${u.login}` }>{ u.login }</a>
-        </span>
-      ) ) }
+      { users.map( u => {
+        if ( _.isEmpty( u ) ) {
+          return (
+            <span key={ `popover-${keyPrefix}-${SITE.name}` } className="user">
+              <img className="site" src={ SITE.logo_square } title={ SITE.name } />
+              { SITE.name }
+            </span>
+          );
+        }
+        return (
+          <span key={ `popover-${keyPrefix}-${u.id}` } className="user">
+            <UserImage user={ u } />
+            <a href={ `/people/${u.login}` }>{ u.login }</a>
+          </span>
+        );
+      } ) }
     </Popover>
   );
   return (

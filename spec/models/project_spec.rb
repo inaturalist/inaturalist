@@ -500,6 +500,15 @@ describe Project do
       por = ProjectObservationRule.make!(operator: 'on_list?', ruler: p)
       expect( por.ruler ).to be_aggregation_allowed
     end
+
+    it "should be true if fails the normal rules, but is in the exceptions" do
+      envelope_ewkt = "MULTIPOLYGON(((0 0,0 15,15 15,15 0,0 0)))"
+      p = Project.make!(place: make_place_with_geom(ewkt: envelope_ewkt), trusted: true)
+      CONFIG.aggregator_exception_project_ids = [ p.id ]
+      expect( p ).to be_aggregation_allowed
+      CONFIG.aggregator_exception_project_ids = nil
+    end
+
   end
 
   describe "slug" do

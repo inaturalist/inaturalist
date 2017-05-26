@@ -19,7 +19,8 @@
     var INITIAL_OBSERVATION_ID = #{@observation.id};
     var SITE = {
       name: "#{@site ? @site.name : CONFIG.site_name}",
-      help_email: "#{CONFIG.help_email}"
+      help_email: "#{CONFIG.help_email}",
+      logo_square: "#{@site.logo_square.url}"
     };
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };

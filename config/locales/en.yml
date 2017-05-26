@@ -730,6 +730,7 @@ en:
   community_id: '<strong>Community</strong> ID: '
   community_id_heading: Community ID
   community_id_at_species_or_lower?: Community ID at species or lower?
+  community_id_at_genus_level_or_lower: Community ID at genus level or lower
   community_id_at_species_level_or_lower: Community ID at species level or lower
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported ID?
@@ -795,6 +796,7 @@ en:
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
     all_rights_reserved: "(c) %{name}, all rights reserved"
     no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
+    no_known_copyright_restrictions_text: "no known copyright restrictions"
     no_rights_reserved: no rights reserved
     no_rights_reserved_by: "%{name}, no rights reserved (%{license_name})"
     anonymous: anonymous
@@ -1116,6 +1118,7 @@ en:
   events_only: Events only
   every_species_seen_by: Every species seen by
   everyone: everyone
+  everyone_: Everyone
   everyone_journal_posts: Everyone's Journal Posts
   everywhere: everywhere
   exact_coordinates_obscured_for: Exact coordinates obscured for public view for threatened species.
@@ -1558,6 +1561,7 @@ en:
     species: Most species in %{time}
     observations: Most observations in %{time}
     identifications: Most identifications in %{time}
+  leading: Leading
   learn!: Learn!
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -3728,6 +3732,7 @@ en:
   yesterday: Yesterday
   yesterday_at: ', yesterday at 4pm'
   you: you
+  you_: You
   you_admin: you admin
   you_appear_offline_try_again: |
     You appear to be offline. Please try again when you are connected to the Internet.
