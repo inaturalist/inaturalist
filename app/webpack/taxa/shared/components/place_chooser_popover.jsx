@@ -89,14 +89,20 @@ class PlaceChooserPopover extends React.Component {
   }
 
   setPlacesFromProps( props ) {
-    if ( props.defaultPlace ) {
+    const usableProps = Object.assign( { }, props, this.props );
+    if ( usableProps.defaultPlace ) {
       let newPlaces = this.state.places;
-      newPlaces = _.filter( newPlaces, p => p.id !== props.defaultPlace.id );
-      newPlaces.splice( 0, 0, props.defaultPlace );
+      newPlaces = _.filter( newPlaces, p => p.id !== usableProps.defaultPlace.id );
+      newPlaces.splice( 0, 0, usableProps.defaultPlace );
       this.setState( { places: newPlaces } );
     }
-    if ( props.place && props.place.ancestor_place_ids && props.place.ancestor_place_ids.length > 0 ) {
-      this.fetchPlaces( props.place.ancestor_place_ids );
+    if ( usableProps.defaultPlaces ) {
+      this.setState( { places: usableProps.defaultPlaces } );
+    } else if (
+      usableProps.place &&
+      usableProps.place.ancestor_place_ids && usableProps.place.ancestor_place_ids.length > 0
+    ) {
+      this.fetchPlaces( usableProps.place.ancestor_place_ids );
     }
   }
 
@@ -257,6 +263,7 @@ class PlaceChooserPopover extends React.Component {
 PlaceChooserPopover.propTypes = {
   place: PropTypes.object,
   defaultPlace: PropTypes.object,
+  defaultPlaces: PropTypes.array,
   className: PropTypes.string,
   setPlace: PropTypes.func,
   clearPlace: PropTypes.func,

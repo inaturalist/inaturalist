@@ -142,6 +142,7 @@ class Suggestions extends React.Component {
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   place={ query.place }
                   defaultPlace={ query.defaultPlace }
+                  defaultPlaces={ observation.places }
                   preIconClass={false}
                   postIconClass="fa fa-angle-down"
                   setPlace={ place => {

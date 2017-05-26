@@ -135,13 +135,21 @@ export function fetchSuggestions( query ) {
     } else {
       const observation = s.currentObservation.observation;
       if ( observation.taxon ) {
-        if ( observation.taxon.rank_level <= 10 ) {
+        if ( observation.taxon.rank_level === 10 ) {
           newQuery.taxon_id = observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 2];
+        } else if ( observation.taxon.rank_level < 10 ) {
+          newQuery.taxon_id = observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 3];
         } else {
           newQuery.taxon_id = observation.taxon.id;
         }
       }
-      if ( observation.place_ids && observation.place_ids.length > 0 ) {
+      if ( observation.places ) {
+        const place = _
+          .sortBy( observation.places, p => ( p.ancestor_place_ids || [] ).length * -1 )
+          .find( p => p.admin_level );
+        newQuery.place_id = place.id;
+        newQuery.place = place;
+      } else if ( observation.place_ids && observation.place_ids.length > 0 ) {
         newQuery.place_id = observation.place_ids[observation.place_ids.length - 1];
       }
     }

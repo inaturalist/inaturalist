@@ -21,6 +21,9 @@ const ADD_COMMENT = "add_comment";
 const LOADING_DISCUSSION_ITEM = "loading_discussion_item";
 const STOP_LOADING_DISCUSSION_ITEM = "stop_loading_discussion_item";
 
+// order matters...
+const TABS = ["info", "suggestions", "annotations", "data-quality"];
+
 function showCurrentObservation( observation ) {
   return {
     type: SHOW_CURRENT_OBSERVATION,
@@ -111,6 +114,15 @@ function fetchCurrentObservation( observation = null ) {
           } ) );
         }
         return newObs;
+      } )
+      .then( o => {
+        if ( o.place_ids && o.place_ids.length > 0 ) {
+          return iNaturalistJS.places.fetch( o.place_ids ).then( response => {
+            dispatch( updateCurrentObservation( { places: response.results } ) );
+            return Object.assign( o, { places: response.results } );
+          } );
+        }
+        return o;
       } )
       .then( finalObservation => {
         dispatch( fetchDataForTab( { observation: finalObservation } ) );
@@ -533,28 +545,26 @@ export function showNextPhoto( ) {
 
 export function showPrevTab( ) {
   return ( dispatch, getState ) => {
-    const tabs = ["info", "annotations", "data-quality", "suggestions"];
-    let index = tabs.indexOf( getState( ).currentObservation.tab );
+    let index = TABS.indexOf( getState( ).currentObservation.tab );
     if ( index <= 0 ) {
       index = 0;
     } else {
       index = index - 1;
     }
-    dispatch( updateCurrentObservation( { tab: tabs[index] } ) );
+    dispatch( updateCurrentObservation( { tab: TABS[index] } ) );
     dispatch( fetchDataForTab( ) );
   };
 }
 
 export function showNextTab( ) {
   return ( dispatch, getState ) => {
-    const tabs = ["info", "annotations", "data-quality", "suggestions"];
-    let index = tabs.indexOf( getState( ).currentObservation.tab );
+    let index = TABS.indexOf( getState( ).currentObservation.tab );
     if ( index < 0 ) {
       index = 0;
-    } else if ( index < tabs.length - 1 ) {
+    } else if ( index < TABS.length - 1 ) {
       index = index + 1;
     }
-    dispatch( updateCurrentObservation( { tab: tabs[index] } ) );
+    dispatch( updateCurrentObservation( { tab: TABS[index] } ) );
     dispatch( fetchDataForTab( ) );
   };
 }
@@ -571,6 +581,7 @@ export {
   ADD_IDENTIFICATION,
   LOADING_DISCUSSION_ITEM,
   STOP_LOADING_DISCUSSION_ITEM,
+  TABS,
   showCurrentObservation,
   hideCurrentObservation,
   fetchCurrentObservation,

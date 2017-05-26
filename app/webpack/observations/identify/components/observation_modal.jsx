@@ -20,6 +20,8 @@ import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 
+import { TABS } from "../actions/current_observation_actions";
+
 class ObservationModal extends React.Component {
   render( ) {
     const {
@@ -323,7 +325,7 @@ class ObservationModal extends React.Component {
           </div>
           <div className="right-col">
             <ul className="inat-tabs">
-              {["info", "annotations", "data-quality", "suggestions"].map( tabName => (
+              {TABS.map( tabName => (
                 <li className={tab === tabName ? "active" : ""}>
                   <a
                     href="#"
@@ -461,14 +463,14 @@ class ObservationModal extends React.Component {
                   </Button>
                 </div>
               </div>
+              <div className={`inat-tab suggestions-tab ${tab === "suggestions" ? "active" : ""}`}>
+                <SuggestionsContainer />
+              </div>
               <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
                 <AnnotationsContainer />
               </div>
               <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
                 <QualityMetricsContainer />
-              </div>
-              <div className={`inat-tab suggestions-tab ${tab === "suggestions" ? "active" : ""}`}>
-                <SuggestionsContainer />
               </div>
             </div>
           </div>
