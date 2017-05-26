@@ -35,6 +35,7 @@ class Suggestions extends React.Component {
     }
   }
   suggestionRowForTaxon( taxon ) {
+    const that = this;
     const taxonPhotos = _
       .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
       .slice( 0, 5 );
@@ -50,6 +51,16 @@ class Suggestions extends React.Component {
               return false;
             } }
           />
+          <Button
+            bsSize="xs"
+            bsStyle="primary"
+            className="pull-right"
+            onClick={ ( ) => {
+              that.props.chooseTaxon( taxon, { observation: that.props.observation } );
+            } }
+          >
+            { I18n.t( "select_this_taxon" ) }
+          </Button>
         </h3>
         <div className="photos">
           { taxonPhotos.length === 0 ? (

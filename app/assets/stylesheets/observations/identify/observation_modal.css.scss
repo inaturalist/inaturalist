@@ -103,6 +103,19 @@ $galleryHeightElements: "
   flex: 2;
 }
 
+.ObservationModal .modal-dialog {
+  .btn-primary {
+    background-color: $inat-green;
+    border-color: $inat-green;
+  }
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus {
+    background-color: $inat-green;
+    border-color: $inat-green;
+  }
+}
+
 .ObservationModal .tools {
   display: flex;
   justify-content: space-between;
@@ -119,10 +132,6 @@ $galleryHeightElements: "
   }
   i {
     color: $inat-green;
-  }
-  .btn-primary {
-    background-color: $inat-green;
-    border-color: $inat-green;
   }
   .link-btn:hover {
     text-decoration: none;
