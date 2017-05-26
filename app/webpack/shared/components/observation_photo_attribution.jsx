@@ -5,7 +5,15 @@ class ObservationPhotoAttribution extends React.Component {
   /* global iNaturalist */
   render( ) {
     const photo = this.props.photo;
-    const user = this.props.observation.user;
+    let user = this.props.photo.user;
+    if ( !user && this.props.observation ) {
+      user = this.props.observation.user;
+    }
+    if ( !user ) {
+      return (
+        <span>{ photo.attribution }</span>
+      );
+    }
     const userName = user.name || user.login;
     const intro = photo.license_code === "cc0" || photo.license_code === "pd" ?
       userName : `\u00A9 ${userName}`;

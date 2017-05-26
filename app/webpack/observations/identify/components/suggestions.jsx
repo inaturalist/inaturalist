@@ -1,13 +1,16 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 import {
-  Button
+  Button,
+  OverlayTrigger,
+  Tooltip
 } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
+import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
 import TaxonChooserPopover from "./taxon_chooser_popover";
 import TaxonMap from "./taxon_map";
 
@@ -87,7 +90,28 @@ class Suggestions extends React.Component {
       detailTaxonImages = detailTaxon.taxonPhotos.map( taxonPhoto => ( {
         original: taxonPhoto.photo.photoUrl( "large" ),
         zoom: taxonPhoto.photo.photoUrl( "original" ),
-        thumbnail: taxonPhoto.photo.photoUrl( "square" )
+        thumbnail: taxonPhoto.photo.photoUrl( "square" ),
+        description: (
+          <div className="photo-meta">
+            <OverlayTrigger
+              container={ $( ".suggestions-detail" ).get( 0 ) }
+              placement="left"
+              delayShow={ 500 }
+              trigger="click"
+              rootClose
+              overlay={ (
+                <Tooltip id="add-tip">
+                  <ObservationPhotoAttribution photo={ taxonPhoto.photo } />
+                </Tooltip> ) }
+              key={ `photo-${taxonPhoto.photo.id}-license` }
+            >
+              { taxonPhoto.photo.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
+                ( <i className="fa fa-copyright license" /> ) }
+            </OverlayTrigger> <a href={`/photos/${taxonPhoto.photo.id}`} target="_blank">
+              <i className="fa fa-info-circle" />
+            </a>
+          </div>
+        )
       } ) );
     }
     let detailPhotos = <div className="noresults">{ I18n.t( "no_photos" ) }</div>;
