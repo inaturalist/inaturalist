@@ -12,6 +12,7 @@ import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
 import TaxonChooserPopover from "./taxon_chooser_popover";
+import SourceChooserPopover from "./source_chooser_popover";
 import TaxonMap from "./taxon_map";
 
 class Suggestions extends React.Component {
@@ -139,6 +140,15 @@ class Suggestions extends React.Component {
         />
       );
     }
+    let comprehensiveList;
+    if (
+      query.source === "checklist" &&
+      response &&
+      response.results.length > 0 &&
+      _.uniq( response.results.map( r => r.sourceKey ) ).length === 1
+    ) {
+      comprehensiveList = response.results[0].sourceDetails.listedTaxon.list;
+    }
     return (
       <div className="Suggestions">
         <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
@@ -176,10 +186,37 @@ class Suggestions extends React.Component {
                     setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
                   } }
                 />
+                <SourceChooserPopover
+                  container={ $( ".ObservationModal" ).get( 0 ) }
+                  source={ query.source }
+                  defaultSource={ "checklist" }
+                  preIconClass={ false }
+                  postIconClass="fa fa-angle-down"
+                  setSource={ source => {
+                    setQuery( Object.assign( { }, query, { source } ) );
+                  } }
+                  clearSource={ ( ) => {
+                    setQuery( Object.assign( { }, query, { source: null } ) );
+                  } }
+                />
               </div>
               { loading ? (
                 <div className="text-center">
                   <div className="big loading_spinner" />
+                </div>
+              ) : null }
+              { comprehensiveList ? (
+                <div className="comprehensive-list">
+                  Comprehensive List: <a target="_blank" href={`/lists/${comprehensiveList.id}`}>
+                    { comprehensiveList.title } { comprehensiveList.source ? (
+                      <span>(Source: { comprehensiveList.source.in_text })</span>
+                    ) : null }
+                  </a>
+                </div>
+              ) : null }
+              { response.results.length === 0 && !loading ? (
+                <div className="noresults">
+                  { I18n.t( "no_results_found" ) }
                 </div>
               ) : null }
               { response.results.map( r => this.suggestionRowForTaxon( r.taxon ) ) }

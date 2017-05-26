@@ -172,7 +172,7 @@ namespace :inaturalist do
                  "add_life_stage_nymph_annotation",
                  "add_life_stage_larva_annotation",
                  "add_life_stage_egg_annotation",
-                 "data_quality"
+                 "data_quality", "checklist"
                 ]
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|

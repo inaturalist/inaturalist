@@ -66,8 +66,7 @@
     cursor: pointer;
   }
 
-  .PlaceChooserPopoverTrigger,
-  .TaxonChooserPopoverTrigger {
+  .RecordChooserPopoverTrigger {
     display: inline-block;
     color: $bootstrap-link-color;
     i {
@@ -133,6 +132,13 @@
   }
   .photo-meta:hover {
     opacity: 1;
+  }
+
+  .comprehensive-list {
+    padding: 10px;
+    background-color: #ddd;
+    font-size: smaller;
+    margin-top: 10px;
   }
 }
 

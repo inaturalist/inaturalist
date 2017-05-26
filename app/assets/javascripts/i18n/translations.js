@@ -947,6 +947,7 @@ I18n.translations["br"] = {
   "categories": "rummadoù",
   "change_types": {
   },
+  "checklist": "Roll kontrollañ",
   "choose_photos": "Dibab al luc'hskeudennoù",
   "choose_photos_for_this_taxon": "Dibabit ho luc'hskeudennoù evit an takson-mañ",
   "clear": "riñsañ",
@@ -1557,6 +1558,7 @@ I18n.translations["ca"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} serà substituït per %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} es dividirà en %{output_taxa}"
   },
+  "checklist": "Llista de comprovació",
   "choose_photos": "Escolliu fotos",
   "choose_photos_for_this_taxon": "Seleccioneu fotos per a aquest tàxon",
   "clear": "Neteja",
@@ -2842,6 +2844,7 @@ I18n.translations["en"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} will be replaced by %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} will be split into %{output_taxa}"
   },
+  "checklist": "Checklist",
   "choose_a_field": "Choose a field",
   "choose_photos": "Choose photos",
   "choose_photos_for_this_taxon": "Choose photos for this taxon",
@@ -4145,6 +4148,7 @@ I18n.translations["es"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} será sustituido por %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} será separado en %{output_taxa}"
   },
+  "checklist": "Lista de comprobación",
   "choose_photos": "Elige fotos",
   "choose_photos_for_this_taxon": "Seleccionar fotos para este taxón",
   "clear": "Limpiar",
@@ -5162,6 +5166,7 @@ I18n.translations["es-MX"] = {
   "categories": "Categorías",
   "change_types": {
   },
+  "checklist": "Lista de especies potenciales",
   "choose_photos": "Escoge las fotos",
   "choose_photos_for_this_taxon": "Escoge fotos para esta especie o grupo",
   "clear": "Limpiar",
@@ -6043,6 +6048,7 @@ I18n.translations["eu"] = {
   "categories": "kategoriak",
   "change_types": {
   },
+  "checklist": "Egiaztatzeko zerrenda",
   "choose_photos_for_this_taxon": "Taxon honetarako argazkiak hautatu",
   "clear": "Garbitu",
   "colors": "Koloreak",
@@ -6782,6 +6788,7 @@ I18n.translations["fi"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "taksoni %{input_taxon} tullaan korvaamaan taksonilla %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} jaetaan %{output_taxa}"
   },
+  "checklist": "Lajiluettelo",
   "choose_photos": "Valitse valokuvat",
   "choose_photos_for_this_taxon": "Valitse kuvat tälle taksoninille",
   "clear": "tyhjennä",
@@ -7380,6 +7387,7 @@ I18n.translations["fr"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} sera remplacé par %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} sera divisé en %{output_taxa}"
   },
+  "checklist": "Liste de contrôle",
   "choose_photos": "Choisir les photos",
   "choose_photos_for_this_taxon": "Choisissez des photos pour ce taxon",
   "clear": "effacer",
@@ -8387,6 +8395,7 @@ I18n.translations["gl"] = {
   "categories": "categorías",
   "change_types": {
   },
+  "checklist": "Lista de comprobación",
   "choose_photos_for_this_taxon": "Seleccionar fotos para este taxón",
   "clear": "Limpar",
   "colors": "Cores",
@@ -9224,6 +9233,7 @@ I18n.translations["id"] = {
   "categories": "Kategori",
   "change_types": {
   },
+  "checklist": "Daftar nama",
   "choose_photos": "Pilih foto",
   "choose_photos_for_this_taxon": "Pilih foto dari takson ini",
   "clear": "kosongkan",
@@ -10130,6 +10140,7 @@ I18n.translations["it"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} sarà rimpiazzato da %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} sarà suddiviso in %{output_taxa}"
   },
+  "checklist": "Checklist",
   "choose_photos": "Scegli le foto",
   "choose_photos_for_this_taxon": "Scegli le foto per questo taxon",
   "clear": "pulisci",
@@ -11212,6 +11223,7 @@ I18n.translations["ja"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon}は%{output_taxon}に置き換えられます",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon}を%{output_taxa}に分割します"
   },
+  "checklist": "チェックリスト",
   "choose_photos": "写真を選択",
   "choose_photos_for_this_taxon": "分類群の写真を選択",
   "clear": "クリア",
@@ -12085,6 +12097,7 @@ I18n.translations["ko"] = {
   "change_types": {
     "input_taxa_were_merged_into_output_taxon_html": "%{input_taxa}은(는) %{output_taxon}으(로) 병합되었습니다"
   },
+  "checklist": "체크리스트",
   "choose_photos": "사진 선택",
   "choose_photos_for_this_taxon": "이 분류군을 위한 사진을 선택",
   "clear": "지우기",
@@ -13715,6 +13728,7 @@ I18n.translations["oc"] = {
   "categories": "categorias",
   "change_types": {
   },
+  "checklist": "Lista de contraròtle",
   "clear": "escafar",
   "colors": "Colors",
   "combine": "Combinar",
@@ -14473,6 +14487,7 @@ I18n.translations["pt-BR"] = {
   "categories": "categorias",
   "change_types": {
   },
+  "checklist": "Checklist",
   "choose_photos": "Escolha fotos",
   "choose_photos_for_this_taxon": "Escolhas fotos para este táxon",
   "clear": "limpar",
@@ -15861,6 +15876,7 @@ I18n.translations["zh-CN"] = {
     "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon}将被替换为%{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon}将被拆分至%{output_taxa}"
   },
+  "checklist": "检查表",
   "choose_photos": "选择照片",
   "choose_photos_for_this_taxon": "为这个分类单元选择照片",
   "clear": "清除",
