@@ -23,6 +23,23 @@ import ZoomableImageGallery from "./zoomable_image_gallery";
 import { TABS } from "../actions/current_observation_actions";
 
 class ObservationModal extends React.Component {
+  componentDidUpdate( prevProps ) {
+    // this is a stupid hack to get the google map to render correctly if it
+    // was created while it wasn't visible
+    if ( this.props.tab === "info" && prevProps.tab !== "info" ) {
+      const that = this;
+      setTimeout( ( ) => {
+        const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
+        google.maps.event.trigger( map, "resize" );
+        if ( this.props.observation && this.props.observation.latitude ) {
+          map.setCenter( new google.maps.LatLng(
+            this.props.observation.latitude,
+            this.props.observation.longitude
+          ) );
+        }
+      }, 500 );
+    }
+  }
   render( ) {
     const {
       onClose,
@@ -91,6 +108,18 @@ class ObservationModal extends React.Component {
           overlayMenu={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
         />
+      );
+    } else if ( observation.obscured ) {
+      taxonMap = (
+        <div className="TaxonMap empty">
+          <i className="fa fa-map-marker" /> { I18n.t( "location_private" ) }
+        </div>
+      );
+    } else {
+      taxonMap = (
+        <div className="TaxonMap empty">
+          <i className="fa fa-map-marker" /> { I18n.t( "location_unknown" ) }
+        </div>
       );
     }
 
@@ -351,10 +380,10 @@ class ObservationModal extends React.Component {
                           <i className="icon-person"></i> { observation.user.login }
                         </li>
                         <li>
-                          <i className="fa fa-map-marker"></i> { observation.place_guess }
+                          <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
                         <li>
-                          <i className="fa fa-calendar"></i> { moment( observation.observed_on ).format( "L" ) }
+                          <i className="fa fa-calendar"></i> { observation.observed_on ? moment( observation.observed_at ).format( "LLL" ) : I18n.t( "unknown" ) }
                         </li>
                         <li>
                           <a className="permalink" href={`/observations/${observation.id}`}>

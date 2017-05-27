@@ -63,8 +63,17 @@ $galleryHeightElements: "
   object-position: 50% 50%;
 }
 
-.ObservationModal .TaxonMap {
-  height: 100px;
+.ObservationModal {
+  .TaxonMap {
+    height: 100px;
+  }
+  .TaxonMap.empty {
+    text-align: center;
+    line-height: 100px;
+    background-color: #eee;
+    border: 1px solid #ccc;
+    color: #999;
+  }
 }
 
 .ObservationModal .image-gallery {
