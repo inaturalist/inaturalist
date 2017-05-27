@@ -4,8 +4,15 @@ class WelcomeController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        @announcement = Announcement.where(placement: "welcome/index").
-          where('? BETWEEN "start" AND "end"', Time.now.utc).last
+        scope = Announcement.
+          where(placement: "welcome/index").
+          where('? BETWEEN "start" AND "end"', Time.now.utc).
+          limit( 5 )
+        base_scope = scope
+        scope = scope.where( site_id: nil )
+        @announcements = scope.in_locale( I18n.locale )
+        @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+        @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
         @google_webmaster_verification = @site.google_webmaster_verification if @site
         
         if logged_in?
