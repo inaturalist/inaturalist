@@ -117,7 +117,10 @@ function fetchCurrentObservation( observation = null ) {
       } )
       .then( o => {
         if ( o.place_ids && o.place_ids.length > 0 ) {
-          return iNaturalistJS.places.fetch( o.place_ids ).then( response => {
+          const placeIDs = _.take( o.place_ids, 100 );
+          return iNaturalistJS.places.fetch(
+            placeIDs, { per_page: 100, no_geom: true }
+          ).then( response => {
             dispatch( updateCurrentObservation( { places: response.results } ) );
             return Object.assign( o, { places: response.results } );
           } );
