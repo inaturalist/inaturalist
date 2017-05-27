@@ -31,6 +31,8 @@ class MapDetails extends React.Component {
   render( ) {
     const { observation, observationPlaces } = this.props;
     if ( !observation ) { return ( <div /> ); }
+    const accuracy = observation.private_geojson ?
+      observation.positional_accuracy : observation.public_positional_accuracy;
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -45,8 +47,7 @@ class MapDetails extends React.Component {
           <div className="info">
             <span className="attr">{ I18n.t( "accuracy" ) }:</span>&nbsp;
             <span className="value">
-              { observation.positional_accuracy ?
-                `${observation.positional_accuracy}m` : I18n.t( "not_recorded" ) }
+              { accuracy ? `${accuracy}m` : I18n.t( "not_recorded" ) }
             </span>
           </div>
           <div className="info">

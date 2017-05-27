@@ -52,7 +52,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     const searchLinks = [];
     if ( loggedInUser ) {
       searchLinks.push( (
-        <div className="search">
+        <div className="search" key={ `id-search-you-${item.id}` }>
           <a href={ `/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}` }>
             <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "you_" ) }
           </a>
@@ -61,7 +61,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     }
     if ( !( loggedInUser && loggedInUser.id === item.user.id ) ) {
       searchLinks.push( (
-        <div className="search">
+        <div className="search" key={ `id-search-user-${item.id}` }>
           <a href={ `/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}` }>
             <i className="fa fa-arrow-circle-o-right" />{ item.user.login }
           </a>
@@ -69,7 +69,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
       ) );
     }
     searchLinks.push( (
-      <div className="search">
+      <div className="search" key={ `id-search-all-${item.id}` }>
         <a href={ `/observations?taxon_id=${item.taxon.id}` }>
           <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "everyone_" ) }
         </a>

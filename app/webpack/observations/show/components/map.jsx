@@ -35,7 +35,7 @@ class Map extends React.Component {
         "taxon",
         "user"
       ] );
-      obsForMap.coordinates_obscured = observation.obscured;
+      obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       taxonMap = (
         <TaxonMap
           key={`map-for-${observation.id}`}

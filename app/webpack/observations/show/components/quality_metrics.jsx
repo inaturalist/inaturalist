@@ -279,7 +279,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={ wildCells.loading ? "disabled" : "" }>
               <td className="metric_title">
-                <i className="fa fa-bolt" />
+                <i className="fa icon-icn-wild" />
                 { I18n.t( "organism_is_wild" ) }
               </td>
               <td className="agree">{ wildCells.agreeCell }</td>
@@ -287,7 +287,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={ evidenceCells.loading ? "disabled" : "" }>
               <td className="metric_title">
-                <i className="fa fa-bolt" />
+                <i className="fa icon-icn-dna" />
                 { I18n.t( "evidence_of_organism" ) }
               </td>
               <td className="agree">{ evidenceCells.agreeCell }</td>
@@ -295,7 +295,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={ recentCells.loading ? "disabled" : "" }>
               <td className="metric_title">
-                <i className="fa fa-bolt" />
+                <i className="fa fa-clock-o" />
                 { I18n.t( "recent_evidence_of_organism" ) }
               </td>
               <td className="agree">{ recentCells.agreeCell }</td>

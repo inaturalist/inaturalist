@@ -125,6 +125,12 @@ input.failed {
       }
     }
   }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
+  }
 }
 
 .TaxonAutocomplete {
@@ -208,6 +214,9 @@ a.UserImage {
       font-size: 12px;
       color: $inat-green;
       margin-right: 5px;
+    }
+    span {
+      vertical-align: text-top;
     }
   }
 }
@@ -462,7 +471,7 @@ a.UserImage {
         color: #747474;
         white-space: normal;
       }
-      a.display-name {
+      a.display-name, .noname {
         font-size: 32px;
         line-height: 36px;
         color: #000;
@@ -1022,6 +1031,7 @@ a.UserImage {
 
 .QualityMetrics {
   margin-bottom: 40px;
+  padding-right: 40px;
   .metric_title .fa {
     font-size: 18px;
     color: #999999;
@@ -1280,7 +1290,12 @@ a.UserImage {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      color: #000;
     }
+  }
+  .view {
+    font-weight: 700;
+    margin-right: 5px;
   }
 }
 
@@ -1430,7 +1445,6 @@ a.UserImage {
         margin-top: 4px;
         i {
           font-size: 12px;
-          vertical-align: text-bottom;
         }
       }
     }
@@ -1745,10 +1759,19 @@ a.UserImage {
 .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
+    height: 85%;
     max-width: 950px;
     min-width: 750px;
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      padding-bottom: 65px;
+      overflow: hidden;
+    }
     .modal-body {
+      height: 100%;
       overflow-x: auto;
+      max-height: none;
     }
     h4:not(:first-child) {
       margin: 30px 0px 10px;
@@ -2099,6 +2122,9 @@ body > div > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.observations.infowindow .observation {
+  width: 245px;
+}
 
 
 
