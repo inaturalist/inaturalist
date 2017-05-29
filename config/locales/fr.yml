@@ -1011,8 +1011,8 @@ fr:
   create_new_taxon: Créer un nouveau taxon
   create_observations: Créer des observations
   create_observations_by_uploading_photos_to: |-
-    Créez des observations en téléchargeant des photos sur %{place}. Quand
-    ce sera fait, %{place} essayera d’extraire les coordonnées GPS et
+    Créez des observations en téléversant des photos sur %{place}. Quand
+    ce sera fait, %{place} essaiera d’extraire les coordonnées GPS et
     l’horodatage de la photo. Pour démarrer,
   created: Date de création
   created_by: Créé@{f:e|} par
@@ -1571,7 +1571,7 @@ fr:
   guidelines: Lignes directrices
   has_already_been_flagged_by: a déjà été signalé@{f:e|} par
   has_been: a été
-  has_id_supported_by_two_or_more: A un ID supporté par au moins deux
+  has_id_supported_by_two_or_more: A un ID établi par au moins deux
   has_one_or_more_faves: A un ou plusieurs favoris
   has_photos: a des photos
   has_photos_or_sounds: A des photos ou des sons
@@ -1581,7 +1581,7 @@ fr:
   hate_me_flickr: Supprimer le lien entre vos comptes Flickr et %{site_name}
   heads_up: Avertissement
   heads_up_observation_search_can_only_load: 'Avertissement : une recherche d’observations
-    peut télécharger un maximum de 50 pages'
+    peut charger un maximum de 50 pages'
   heads_up_this_observation_has_been_flagged: 'AVERTISSEMENT : cette observation a
     été signalée.'
   heads_up_this_photo_has_been_flagged: 'AVERTISSEMENT : cette photo a été signalée.'
@@ -2432,7 +2432,7 @@ fr:
   observation_added: Observation ajoutée.
   observation_added_to_the_project: Observation ajoutée au projet « %{project} »
   observation_aggregation: Agrégation d’observations
-  observation_photo_uploader: Téléchargeur de photos d’observation
+  observation_photo_uploader: Téléverseur de photos d’observation
   observations_by_user_on_date: Observations de %{user} le %{date}
   observations_by_you: Observations de vous
   observations_by_you_on_date: Observations de vous le %{date}
@@ -3816,7 +3816,7 @@ fr:
   these_folks_kindly_volunteer_to: Ces gens se sont aimablement portés volontaires
     pour maintenir notre taxonomie et gérer les autres problèmes.
   these_observations_have_not_been_uploaded_yet: Ces observations n’ont pas encore
-    été téléchargées.
+    été téléversées.
   they_already_have_iNat_accounts: … ils ont déjà des comptes sur %{site_name}
   they_have_been_invited: …ils ont déjà été invités
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
@@ -4025,7 +4025,7 @@ fr:
     tooltips:
       add: Ajouter les observations
       combine: Combiner les observations sélectionnées
-      photo_failed: Échec du téléchargement de la photo
+      photo_failed: Échec du téléversement de la photo
       remove: Supprimer les observations sélectionnées
       remove_observation: Supprimer l’observation
       remove_photo: Supprimer la photo
@@ -4049,7 +4049,7 @@ fr:
     entre [GENRE] et [ESPÈCE] sera remplacé par ce nom de taxon. Utilisez cette action
     avec modération. <br/><br/> <strong>Exemple :</strong><br/>
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques
-    pour les téléchargements séparés
+    pour les téléversements séparés
   use_well_formed_csv: Utilisez un format CSV bien formé, ce qui signifie que le texte
     avec des virgules doit être inclus dans des guillemets. La plupart des applications
     de tableur exportent le CSV dans ce format.
@@ -4243,7 +4243,7 @@ fr:
   we_support_flickr: Pour le moment, nous acceptons Flickr pour l’hébergement d’images
     et espérons ajouter d’autres hébergeurs prochainement.
   we_tried_to_process_your_upload_named_filename: |-
-    Nous avons essayé de traiter votre téléchargement appelé %{filename}, mais cela n’a pas focntionné.
+    Nous avons essayé de traiter votre téléversement appelé %{filename}, mais cela n’a pas fonctionné.
     Veuillez résoudre le(s) problème(s) suivant(s) et réessayer.
   wed: Mer
   welcome!: Bienvenue!
@@ -4433,7 +4433,7 @@ fr:
     exécuter cette action
   you_must_choose_an_observation_field: Vous devez choisir un champ d’observation
   you_must_have_a_header_row: Vous devez avoir une ligne d’entête
-  you_must_select_a_csv_file_to_upload: Vous devez sélectionner un fichier CSV à télécharger.
+  you_must_select_a_csv_file_to_upload: Vous devez sélectionner un fichier CSV à téléverser.
   you_must_select_a_place_to_merge_with: Vous devez sélectionner un lieu avec lequel
     fusionner.
   you_must_select_at_least_one_taxon: Vous devez sélectionner au moins un taxon
@@ -4611,7 +4611,7 @@ fr:
           (par ex. vue « carte », pages de taxon, etc.)
         import_tags_from_csv_help_html: |-
           <p>
-           Téléchargez un fichier CSV contenant des champs pour les taxons de ce guide. Votre fichier CSV doit ressembler à ceci :
+           Téléversez un fichier CSV contenant des champs pour les taxons de ce guide. Votre fichier CSV doit ressembler à ceci :
           </p>
           <table class="table">
            <tbody>
@@ -4631,12 +4631,12 @@ fr:
            <td>Vulpes vulpes</td>
            <td>rouge|noir</td>
            <td>0</td>
-           <td>quadripétale</td>
+           <td>quadrupède</td>
            </tr>
            </tbody>
           </table>
           <p>
-           La première ligne commence par "Nom", suivi par l'étiquette des prédicats de catégories. Ensuite, chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette)  <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadripétale</code>. Les espaces (caractères "blancs") seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' ("ligne verticale").</p>
+           La première ligne commence par « Nom », suivi par l’étiquette des prédicats de catégories. Chaque ligne suivante commence par le nom du taxon, suivi par les contenus correspondant au prédicat de catégorie de la colonne. Dans cet exemple, <i>Homo sapiens</i> contient le prédicat suivant : <code>Nombre de mains=2</code>, plus la mention complémentaire (colonne sans étiquette)  <code>bipède</code> ; et <i>Vulpes vulpes</i> est défini par les mentions : <code>Couleur=rouge</code>, <code>Couleur=noir</code>, <code>Nombre de mains=0</code>, ainsi que la mention complémentaire <code>quadrupède</code>. Les espaces (caractères « blancs ») seront ignorées. Vous pouvez ajouter plusieurs lignes par taxon. Vous pouvez également ajouter plusieurs valeurs par cellule, séparées par le caractère '|' (« ligne verticale »).</p>
         licensing_explanation: |-
           En mettant votre contenu sous licence, vous accordez aux autres le droit de le copier et
           de le modifier sans demander votre permission. Cette mesure facilite l’échange
@@ -4848,7 +4848,7 @@ fr:
           observation pour l’image, car elle représente l’arbre à
           un moment différent.
         please_do_not_upload_pictures_you_didnt_take_html: |-
-          Veuillez <em>ne pas télécharger de photos que vous n’avez pas prises</em>, sauf si vous avez
+          Veuillez <em>ne pas téléverser de photos que vous n’avez pas prises</em>, sauf si vous avez
           obtenu la permission du photographe. Il est illégal de publier
           des œuvres protégées sans une sorte de licence accordée par le créateur
           de l’œuvre, et tous les photographes ont tous les droits réservés sur leurs
@@ -5278,7 +5278,7 @@ fr:
         complex_boundary_note_html: |-
           Cette frontière est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
           <a href="%{url}">télécharger le KML</a>, le modifier dans l’application SIG de votre choix et
-          télécharger directement votre KML modifié.
+          téléverser directement votre KML modifié.
         admin_level_desc: |-
           Doit être établi uniquement pour les entités politiques. En terme
           d’équivalents aux É.-U., 0 = pays, 1 = état, 2 = comté, 3 = ville
@@ -5294,7 +5294,7 @@ fr:
         check_list_note: 'Remarque : les listes de contrôle seront désactivées automatiquement
           pour les lieux très vastes.'
         coordinates_desc: Vous devez préciser des coordonnées si vous n’avez pas tracé
-          une frontière ou téléchargé un KML.
+          une frontière ou téléversé un KML.
         map_instruction: Utilisez l’outil polygone pour tracer la frontière du lieu.
     posts:
       formatting_none_help: Aucun HTML inséré, utilise uniquement les balises que

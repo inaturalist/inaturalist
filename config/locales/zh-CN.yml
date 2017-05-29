@@ -795,6 +795,7 @@ zh-CN:
   csv: CSV
   csv_file: CSV文件
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
+  cumulative_ids: 累计ID：%{count}个，共%{total}个
   curate_observations: 助理观察
   curate_taxa: 助理分类群
   curate_users: 助理用户
@@ -862,6 +863,7 @@ zh-CN:
     dayNames: '[''星期日'', ''星期一'', ''星期二'', ''星期三'', ''星期四'', ''星期五'', ''星期六'']'
     dayNamesShort: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
     dayNamesMin: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
+  date_specified: 已指定日期
   date_time: 日期/时间
   dates: 日期
   datetime_: 日期/时间
@@ -2813,7 +2815,7 @@ zh-CN:
   user_added_an_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
   user_added_a_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
   user_commented: '%{user} 已评论'
-  user_follows: '%{user}关注'
+  user_follows: '%{user} 关注'
   user_hasnt: '%{user}没有'
   user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
   user_s: '%{user}的'

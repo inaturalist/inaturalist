@@ -1021,7 +1021,9 @@ qqq:
   user_commented_on: where user is the name of a user and title is a resource like
     an observation and time is the time
   user_commented: '{{Identical|Commented}}'
-  user_follows: where user is the name of a user
+  user_follows: |-
+    where user is the name of a user
+    {{Identical|Follow}}
   user_has_opted_out_of_community_ids: where user is the name of a user
   user_has_opted_out_of_community_ids_for_this_obs: where user is the name of a user
   user_hasnt: where user is the name of a user
