@@ -5,6 +5,7 @@ import {
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
+import LazyLoad from "react-lazy-load";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
@@ -63,25 +64,27 @@ class Suggestions extends React.Component {
             { I18n.t( "select_this_taxon" ) }
           </Button>
         </h3>
-        <div className="photos">
-          { taxonPhotos.length === 0 ? (
-            <div className="noresults">
-              { I18n.t( "no_photos" ) }
-            </div>
-          ) : taxonPhotos.map( tp => (
-            <TaxonPhoto
-              photo={tp.photo}
-              taxon={taxon}
-              width={150}
-              height={150}
-              showTaxonPhotoModal={ p => {
-                const index = _.findIndex( taxon.taxonPhotos,
-                  taxonPhoto => taxonPhoto.photo.id === p.id );
-                this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
-              } }
-            />
-          ) ) }
-        </div>
+        <LazyLoad height={150} offsetVertical={1000}>
+          <div className="photos">
+            { taxonPhotos.length === 0 ? (
+              <div className="noresults">
+                { I18n.t( "no_photos" ) }
+              </div>
+            ) : taxonPhotos.map( tp => (
+              <TaxonPhoto
+                photo={tp.photo}
+                taxon={taxon}
+                width={150}
+                height={150}
+                showTaxonPhotoModal={ p => {
+                  const index = _.findIndex( taxon.taxonPhotos,
+                    taxonPhoto => taxonPhoto.photo.id === p.id );
+                  this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
+                } }
+              />
+            ) ) }
+          </div>
+        </LazyLoad>
       </div>
     );
   }
