@@ -17,6 +17,7 @@ export default function reducer(
     response: {
       results: []
     },
+    responseQuery: null,
     detailTaxon: null,
     detailPhotoIndex: 0
   },
@@ -40,6 +41,7 @@ export default function reducer(
       break;
     case SET_SUGGESTIONS:
       newState.response = action.suggestions;
+      newState.responseQuery = state.query;
       newState.detailTaxon = null;
       break;
     case SET_DETAIL_TAXON:
@@ -48,11 +50,35 @@ export default function reducer(
         newState.detailPhotoIndex = action.options.detailPhotoIndex;
       }
       break;
-    case SHOW_CURRENT_OBSERVATION:
-      newState.query = {};
+    case SHOW_CURRENT_OBSERVATION: {
+      newState.query = {
+        source: state.query.source
+      };
+      const observation = action.observation;
+      if ( observation.taxon ) {
+        if ( observation.taxon.rank_level === 10 ) {
+          newState.query.taxon_id =
+            observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 2];
+        } else if ( observation.taxon.rank_level < 10 ) {
+          newState.query.taxon_id =
+            observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 3];
+        } else {
+          newState.query.taxon_id = observation.taxon.id;
+        }
+      }
+      if ( observation.places ) {
+        const place = _
+          .sortBy( observation.places, p => ( p.ancestor_place_ids || [] ).length * -1 )
+          .find( p => p.admin_level );
+        newState.query.place_id = place.id;
+        newState.query.place = place;
+      } else if ( observation.place_ids && observation.place_ids.length > 0 ) {
+        newState.query.place_id = observation.place_ids[observation.place_ids.length - 1];
+      }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;
       break;
+    }
     default:
       // leave it alone
   }
@@ -124,40 +150,37 @@ export function setDetailTaxon( taxon, options = {} ) {
   return { type: SET_DETAIL_TAXON, taxon, options };
 }
 
+function sanitizeQuery( query ) {
+  return _.pick( query, ["place_id", "taxon_id", "source"] );
+}
+
 export function fetchSuggestions( query ) {
   return function ( dispatch, getState ) {
     const s = getState( );
     let newQuery = {};
     if ( query && _.keys( query ).length > 0 ) {
       newQuery = query;
-    } else if ( s.suggestions.query && _.keys( s.suggestions.query ).length > 0 ) {
-      newQuery = s.suggestions.query;
     } else {
-      const observation = s.currentObservation.observation;
-      if ( observation.taxon ) {
-        if ( observation.taxon.rank_level === 10 ) {
-          newQuery.taxon_id = observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 2];
-        } else if ( observation.taxon.rank_level < 10 ) {
-          newQuery.taxon_id = observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 3];
-        } else {
-          newQuery.taxon_id = observation.taxon.id;
-        }
-      }
-      if ( observation.places ) {
-        const place = _
-          .sortBy( observation.places, p => ( p.ancestor_place_ids || [] ).length * -1 )
-          .find( p => p.admin_level );
-        newQuery.place_id = place.id;
-        newQuery.place = place;
-      } else if ( observation.place_ids && observation.place_ids.length > 0 ) {
-        newQuery.place_id = observation.place_ids[observation.place_ids.length - 1];
-      }
+      newQuery = s.suggestions.query;
+    }
+    if ( _.keys( newQuery ).length === 0 ) {
+      return null;
+    }
+    if (
+      _.isEqual( sanitizeQuery( s.suggestions.responseQuery, newQuery ) ) &&
+      s.suggestions.response.results.length > 0
+    ) {
+      // already loaded results for this query
+      return null;
     }
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
-    return inatjs.taxa.suggest( newQuery ).then( suggestions => {
-      dispatch( stopLoading( ) );
-      dispatch( setSuggestions( suggestions ) );
+    return inatjs.taxa.suggest( sanitizeQuery( newQuery ) ).then( suggestions => {
+      const currentQuery = getState( ).suggestions.query;
+      if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizeQuery( newQuery ) ) ) {
+        dispatch( stopLoading( ) );
+        dispatch( setSuggestions( suggestions ) );
+      }
     } );
   };
 }

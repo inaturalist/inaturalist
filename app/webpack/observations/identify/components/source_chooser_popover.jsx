@@ -9,7 +9,7 @@ class SourceChooserPopover extends React.Component {
   constructor( props ) {
     super( props );
     this.state = {
-      sources: ["observations", "checklist"],
+      sources: ["checklist", "observations", "misidentifications"],
       current: 0
     };
   }

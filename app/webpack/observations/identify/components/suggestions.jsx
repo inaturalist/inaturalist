@@ -101,7 +101,7 @@ class Suggestions extends React.Component {
       chooseTaxon
     } = this.props;
     let detailTaxonImages;
-    if ( detailTaxon && detailTaxon.taxonPhotos.length > 0 ) {
+    if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
       detailTaxonImages = detailTaxon.taxonPhotos.map( taxonPhoto => ( {
         original: taxonPhoto.photo.photoUrl( "large" ),
         zoom: taxonPhoto.photo.photoUrl( "original" ),
@@ -148,7 +148,8 @@ class Suggestions extends React.Component {
       query.source === "checklist" &&
       response &&
       response.results.length > 0 &&
-      _.uniq( response.results.map( r => r.sourceKey ) ).length === 1
+      _.uniq( response.results.map( r => r.sourceKey ) ).length === 1 &&
+      response.results[0].sourceDetails.listedTaxon.list.comprehensive
     ) {
       comprehensiveList = response.results[0].sourceDetails.listedTaxon.list;
     }
