@@ -1202,9 +1202,16 @@ zh-TW:
   no_results_matching: 沒有符合的結果
   no_summary_from_wikipedia: 未有來自於維基百科的摘要
   no_summary_has_been_set: 未有設定摘要。
+  no_taxa: 沒有物種分類
+  no_taxa_listed: 沒有列出物種分類
+  no_taxa_selected: 沒有選擇物種分類！
+  no_taxa_yet: 尚未有物種分類！
   non_human?: 非人類？
   none: 無
+  not_evaluated: 未評估
   not_found: 未找到
+  not_on_this_list: 未在列表裡。
+  not_recorded: 未記錄
   not_yet: 尚未
   note: 註釋
   number_of_observations: 觀察數目
@@ -1237,6 +1244,7 @@ zh-TW:
   observation_must_dotdotdot: 觀察必須...
   observations_per_month: 觀察 / 月
   observations_title: 由任何人做的觀察
+  observations_total: 觀察總計
   observations_w: 觀察 w/
   observations_week: 觀察 / 週
   observed: 已觀察
@@ -1253,6 +1261,7 @@ zh-TW:
     doubtful: 可疑
   of: 的
   official_blog: 官方部落格
+  old_observation_form: 舊式觀察表單（已廢棄使用）
   ok: 確定
   on_date: 於 %{date}
   on_edit_date: 在 %{editdate}
@@ -1264,6 +1273,7 @@ zh-TW:
     follow_panel_title_global: 關注一些活躍的自然主義者
     youve_got_updates_panel_title: 您獲得了更新！
   one_of_your_lists: 您的列表之一...
+  only_show_active_taxa: 僅顯示有效的物種分類
   only_species: 僅物種
   open: 開啟
   open_: 開啟
@@ -1295,6 +1305,8 @@ zh-TW:
   pdf: PDF
   pdf_slash_print: PDF / 列印
   people: 人物
+  people_agree: 人們同意
+  people_following_user: 關注 %{user} 的人們
   people_added:
     identification:
       without_observation: 已新增一個 <strong>ID</strong>
@@ -1497,6 +1509,7 @@ zh-TW:
   range_from: 範圍來自
   rank: 排名
   rank_position: 排名
+  rank_restrictions: 排名限制
   ranks:
     kingdom: 界
     phylum: 門
@@ -1542,6 +1555,7 @@ zh-TW:
   record!: 記錄！
   red: 紅色
   redo_search_in_map: 在地圖裡重新搜尋
+  redo_search_in_map_area: 在地圖區域裡重新搜尋
   refresh: 重新整理
   refresh_listed_taxa: 重新整理列出的物種分類
   refreshing: 重新整理中
@@ -1562,6 +1576,7 @@ zh-TW:
     one: 移除 1 個觀察？
     other: 移除 %{count} 個觀察？
   remove_place: 移除地點
+  remove_your_existing_id?: 移除您的現有 ID？
   removed: 已移除
   removed!: 已移除！
   removing: 正在移除...
@@ -1571,6 +1586,7 @@ zh-TW:
   reply: 回覆
   report_any_problems: 回報任何問題
   reptiles: 爬蟲類
+  reset_search_filters: 重新設定搜尋過濾
   reset_your_password: 重設您的密碼
   resolve: 解決
   resolved: 已解決
@@ -1596,10 +1612,14 @@ zh-TW:
   save_guide: 儲存指南
   save_photos: 儲存照片
   save_place: 儲存地點
+  save_trip: 儲存旅行
   saving: 儲存中...
   saving_verb: 儲存中
+  scientific_names: 學名
   search: 搜尋
+  search_for_species: 搜尋物種
   search_list: 搜尋列表
+  search_obs: 搜尋觀察...
   search_places: 搜尋地點
   search_results_for: 搜尋結果用於
   search_remote: 搜尋遠端

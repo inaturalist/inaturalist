@@ -43,7 +43,7 @@ fr:
     Un nom de taxon par défaut sera créé automatiquement à partir de
     l’attribution du nom scientifique de ce taxon. Quand vous aurez enregistré
     ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs,
-    noms scientifiques obsolètes, etc.).
+    noms scientifiques désuets, etc.).
   x_comments:
     one: 1 commentaire
     other: '%{count} commentaires'
@@ -265,9 +265,9 @@ fr:
   add_taxa_to_places: Ajouter des taxons aux lieux
   add_taxon_batch_to: Ajouter un lot de taxons à %{list}
   add_taxon_range: Ajouter une aire de répartition pour le taxon
-  add_taxonomic_tags_to: Ajouter des étiquettes taxonomiques aux photos Flickr sélectionnées
+  add_taxonomic_tags_to: Ajouter des étiquettes taxinomiques aux photos Flickr sélectionnées
     &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Ajouter des étiquettes taxonomiques aux
+  add_taxonomic_tags_to_the_fickr_photos: Ajouter des étiquettes taxinomiques aux
     photos Flickr associées aux observations sélectionnées.
   add_to: Ajouter à
   add_to_a_scheme: Ajouter à un programme
@@ -393,7 +393,7 @@ fr:
       one: 1 autre animal
       other: '%{count} autres animaux'
   all_taxa_in_this_guide: Tous les taxons dans ce guide
-  all_taxonomic_groups: '&laquo; Tous les groupes taxonomiques'
+  all_taxonomic_groups: '&laquo; Tous les groupes taxinomiques'
   all_updates: Toutes les mises à jour
   all_your_observations_will_default_this_time_zone: |-
     Toutes vos observations seront par  défaut dans ce fuseau horaire, sauf si
@@ -415,7 +415,7 @@ fr:
   amphibians: amphibiens
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb n’a aucune information sur
     cette espèce.
-  amphibiaweb_taxonomy: Taxonomie d'AmphibiaWeb
+  amphibiaweb_taxonomy: Taxinomie d’AmphibiaWeb
   an: un
   an_: un
   and: et
@@ -586,14 +586,14 @@ fr:
   back_to_projects: Retourner aux projets
   back_to_shared_taxon: Retourner à %{sharedtaxon}
   back_to_taxon: Retourner à %{defaulttaxon}
-  back_to_taxon_changes: Retour aux modifications taxonomiques
+  back_to_taxon_changes: Retour aux modifications taxinomiques
   back_to_this: Retourner à %{place}
   back_to_viewing: Retourner à la visualisation de <i>%{taxon}</i>
   back_to_x: Retourner à %{noun}
   back_to_x_assessment: Retourner aux évaluations de %{project}
   back_to_x_history: Retourner à l’historique de %{x}
   back_to_x_journal: Retourner au journal de %{user}
-  back_to_x_blog: Retour au blog de %{x}
+  back_to_x_blog: Retour au blogue de %{x}
   back_to_x_observations: Retourner aux observations de %{user}
   back_to_your_lists: Retourner à vos listes
   back_to_your_journal: Retourner à votre journal
@@ -799,7 +799,7 @@ fr:
   check_lists_for: Autres listes de contrôle associées à %{place}
   check_out_my_observations_at: Si vous voulez, vous pouvez consulter mes observations
     à
-  check_out_our_blog: Regardez notre blog
+  check_out_our_blog: Visitez notre blogue
   check_out_what_the_observation: Consulter l’apparence de l’observation que vous
     tentez d’identifier.
   check_out_your_life_list: Consulter votre liste des êtres vivants
@@ -1128,7 +1128,7 @@ fr:
   delete_taxon_and_merge_most_data_html: |-
     Supprimez <i>%{taxon}</i> et fusionnez la plupart de ses données dans un autre taxon. Utilisez
     cet outil pour <strong>supprimer les taxons en double</strong>. Si vous voulez
-    supprimer un synonyme obsolète, créez un échange de taxons. <strong>ATTENTION !</strong> La suppression des taxons peut être très destructive. Consultez le
+    supprimer un synonyme désuet, créez un échange de taxons. <strong>ATTENTION !</strong> La suppression des taxons peut être très destructive. Consultez le
     <a href="%{curator_url}">Guide des responsables de l’organisation</a> pour obtenir plus de détails.
   delete_this_name: Supprimer ce nom
   delete_user: Supprimer l’utilisateur
@@ -1172,9 +1172,9 @@ fr:
   drop_it: Le déposer
   do_not_show_this_message_again: Ne plus afficher ce message
   do_you_know_where_this_species_lives: Savez-vous où vivent ces espèces?
-  do_you_study_nematodes_worlds_foremost_expert_barnacle: Étudiez-vous les nématodes?
-    Êtes-vous le plus grand expert mondial de la taxonomie des anatifes? Aimez-vous
-    simplement regarder les belles fleurs? En remplissant votre profil,  vous y donnez
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: Étudiez-vous les nématodes
+    ? Êtes-vous le plus grand expert mondial de la taxinomie des anatifes ? Aimez-vous
+    simplement regarder les belles fleurs ? En remplissant votre profil, vous y donnez
     du caractère et vous contribuez à établir votre crédibilité quand vous aidez les
     autres dans leurs identifications.
   do_you_want_to_proceed: Voulez-vous poursuivre?
@@ -1204,7 +1204,7 @@ fr:
     espèces dont %{site_name} est au courant dans ce lieu, y compris les informations
     sur leur abondance, leur situation quant à la conservation et la personne qui
     a été la première à observer cette espèce dans ce lieu selon %{site_name}. Vous
-    pouvez filtrer les espèces par groupe taxonomique, par couleur, par situation
+    pouvez filtrer les espèces par groupe taxinomique, par couleur, par situation
     quant à la conservation ou par recherche habituelle.
   edit: Modifier
   edit_a_batch_of_observations: Modifier un lot d’observations
@@ -1517,7 +1517,7 @@ fr:
   generally_these_come_from_iucn_red_list: En général, ils viennent de la liste rouge
     de l’UICN et, s’ils viennent d’ailleurs, ils respecteront les catégories de l’UICN.
   generate_pdf: Générer le PDF
-  generate_taxonomic_tags_for_flickr: Générer des étiquettes taxonomiques pour vos
+  generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos
     photos Flickr.
   generate_widget: Générer le widget
   generating: Génération en cours…
@@ -1546,7 +1546,7 @@ fr:
   graft: Greffer
   grafting: Greffage en cours…
   grafting_attemps_to_insert_this_taxon: Le greffage tente d’insérer ce taxon dans
-    notre arbre taxonomique en trouvant un taxon de rang supérieur ou en créant tous
+    notre arbre taxinomique en trouvant un taxon de rang supérieur ou en créant tous
     les taxons intermédiaires afin de le rattacher à un taxon de rang supérieur.
   grant_role: '%{grant} rôle %{role}'
   gray: gris
@@ -1592,8 +1592,8 @@ fr:
     y ajouter de nouveaux descendants en important des taxons. Les responsables de
     l’organisation peuvent le faire en modifiant les taxons et en choisissant un taxon
     de rang supérieur, mais envisagez plutôt de fusionner les taxons.
-  heads_up_you_have_multiple: 'Avertissement : Vous avez de multiples étiquettes taxonomiques
-    automatiques pour des rangs identiques. Ils sont codés par couleur et par rang
+  heads_up_you_have_multiple: 'Avertissement : Vous avez de multiples étiquettes taxinomiques
+    automatiques pour des rangs identiques. Elles sont codées par couleur et par rang
     ci-dessous.'
   hello: <test>
   help: Aide
@@ -1683,7 +1683,7 @@ fr:
   import_as_an_observation: Importer comme une observation
   import_as_another_observation: Importer une autre observation ?
   import_date_time_location_taxonomic: Importer la date, l’horodatage, l’emplacement,
-    la description et les informations taxonomiques de cette photo.
+    la description et les informations taxinomiques de cette photo.
   import_from_csv: Importer à partir d’un format CSV
   import_from_other_photo_sites: Importer à partir d’autres sites de photo
   import_from_photos: Importer à partir des photos
@@ -1709,10 +1709,9 @@ fr:
   in_the_past_week: la semaine passée
   inactive: inactif
   inactive_taxon: taxon inactif
-  inactive_taxon_concepts_are: Les taxons inactifs sont soit obsolètes d’un point
-    de vue taxonomique, soit en attente d’une modification de taxon. Les concepts
-    obsolètes sont conservés aux fins d’historique et de compatibilité avec certains
-    sites partenaires.
+  inactive_taxon_concepts_are: Les taxons inactifs sont soit désuets d’un point de
+    vue taxinomique, soit en attente d’une modification de taxon. Les concepts désuets
+    sont conservés aux fins d’historique et de compatibilité avec certains sites partenaires.
   inappropriate: Inapproprié?
   inappropriate_content: Contenu inapproprié ?
   inat_account_action: '%{site_name} &#58; Compte &#58; %{action_name}'
@@ -1961,7 +1960,7 @@ fr:
   list_updated: Liste à jour !
   list_views:
     plain: normale
-    taxonomic: taxonomique
+    taxonomic: taxinomique
     photo: photo
   list_was_successfully_created: La liste a bien été créée.
   listed_taxa: Taxons listés
@@ -2077,7 +2076,7 @@ fr:
   make_one: voulez-vous en faire un? 
   make_sure_the_default_photo_looks_good: Assurez-vous que la photo s’affiche bien
     en grande taille.
-  make_taxonomic_flickr_tags_for_taxon_raquo: Créer des étiquettes taxonomiques Flickr
+  make_taxonomic_flickr_tags_for_taxon_raquo: Créer des étiquettes taxinomiques Flickr
     pour ce taxon &raquo;
   make_this_your_default_license: Faites-en votre licence %{type} par défaut
   make_this_the_primary_listing: Faites-en votre liste principale
@@ -2276,7 +2275,7 @@ fr:
   new_taxon_name: Nouveau nom de taxon
   new_taxon_name_for: Nouveau nom de taxon pour
   new_taxon_range: Nouvelle aire de répartition pour le taxon
-  new_taxonomic_change: Nouvelle modification taxonomique (brouillon)
+  new_taxonomic_change: Nouvelle modification taxinomique (brouillon)
   new_trip: Nouveau voyage
   new_updates_in_the_last_24_hours_from: Nouvelles mises à jour dans les dernières
     24 heures d’%{site_name}
@@ -2382,7 +2381,7 @@ fr:
   no_taxa_listed: Aucun taxon répertorié
   no_taxa_selected: Aucun taxon sélectionné!
   no_taxa_yet: Aucun taxon jusqu’à présent!
-  no_taxonomic_changes_match_those_criteria: Aucune modification taxonomique ne correspond
+  no_taxonomic_changes_match_those_criteria: Aucune modification taxinomique ne correspond
     à ces critères
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
   no_x_this_y: Aucun %{x} durant %{y}
@@ -2557,9 +2556,9 @@ fr:
   of_it_and_its_descendants: de lui et ses descendants
   of_least_concern: Préoccupation mineure
   offensive_inappropriate: injurieux/inapproprié
-  official_blog: Blog officiel
+  official_blog: Blogue officiel
   offline_access_enabled: Accès hors ligne activé
-  old_observation_form: Ancien formulaire d’observation (obsolète)
+  old_observation_form: Ancien formulaire d’observation (désuet)
   ok: OK
   on_: le
   on_date: le %{date}
@@ -3030,7 +3029,7 @@ fr:
   project_post: Note du projet
   project_preferred_count_description: Voulez-vous que le nombre total de taxons pour
     votre projet soit indiqué comme espèces, taxon ou simplement comme « feuilles »
-    de l’arbre taxonomique?
+    de l’arbre taxinomique ?
   project_rules: Règles du projet
   project_settings: Paramètres du projet
   project_terms_and_rules: conditions &amp; règles du projet
@@ -3179,7 +3178,7 @@ fr:
   removed!: Supprimé!
   removed_project_user: Utilisateur de projet supprimé
   removing: Suppression en cours…
-  reorder_by_taxonomy: Réorganiser l’ordre par taxonomie
+  reorder_by_taxonomy: Réorganiser l’ordre par taxinomie
   repair_doesnt_work_for_that_kind_of_photo: La réparation ne fonctionne pas pour
     ce type de photo
   repair_external_photos: Réparer les photos externes
@@ -3612,7 +3611,7 @@ fr:
   taxa_observed: taxons observés
   taxa_to_include: Taxons à inclure
   taxon: Taxon
-  taxonomy: Taxonomie
+  taxonomy: Taxinomie
   taxon_: taxon
   taxon_assessments_are: |-
     Les évaluations de taxon sont des documents qui évaluent la situation actuelle d’une espèce, habituellement sa situation quant à la conservation.
@@ -3660,14 +3659,14 @@ fr:
   taxon_name_was_successfully_updated: Le nom du taxon a bien été mis à jour.
   taxon_was_successfully_created: Le taxon a bien été créé.
   taxon_was_successfully_updated: Le taxon a bien été mis à jour.
-  taxonomic: Taxonomique
-  taxonomic_changes: Modifications taxonomiques
-  taxonomic_changes_raquo_html: Modifications <nobr>taxonomiques &raquo;</nobr>
-  taxonomic_groups: Groupes taxonomiques
-  taxonomic_order: Ordre taxonomique
-  taxonomic_status: Situation taxonomique
-  taxonomic_tags_for_flickr: Étiquettes taxonomiques pour Flickr
-  taxonomic_tree_browser: Explorateur de l’arborescence taxonomique
+  taxonomic: Taxinomique
+  taxonomic_changes: Modifications taxinomiques
+  taxonomic_changes_raquo_html: Modifications <nobr>taxinomiques &raquo;</nobr>
+  taxonomic_groups: Groupes taxinomiques
+  taxonomic_order: Ordre taxinomique
+  taxonomic_status: Situation taxinomique
+  taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
+  taxonomic_tree_browser: Explorateur de l’arborescence taxinomique
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
   tell_us_why: Dites-nous pourquoi...
@@ -3807,14 +3806,14 @@ fr:
     doivent être gérées au moyen d’un commentaire poli. Les récidivistes doivent être
     signalés à un administrateur du site ou %{email}
   these_are_taxa_that: Voici les taxons que %{site} ne peut pas ajouter de façon automatique
-    à notre arbre taxonomique pour une raison donnée. Vous pouvez les ajouter à l’arbre
+    à notre arbre taxinomique pour une raison donnée. Vous pouvez les ajouter à l’arbre
     en modifiant le taxon et en choisissant un enregistrement parent. Par exemple,
-    le parent de Homo sapiens serait le genre Homo. Vous pouvez aussi vouloir vérifier
-    s’il y a des taxons synonymes et les fusionner.
+    le parent de ''Homo sapiens'' serait le genre ''Homo''. Vous pouvez aussi vouloir
+    vérifier s’il y a des taxons synonymes et les fusionner.
   these_arent_necessarily_relevant_to: Ils ne sont pas forcément pertinents dans le
     cadre de ce projet. Veuillez vérifier les
   these_folks_kindly_volunteer_to: Ces gens se sont aimablement portés volontaires
-    pour maintenir notre taxonomie et gérer les autres problèmes.
+    pour maintenir notre taxinomie et gérer les autres problèmes.
   these_observations_have_not_been_uploaded_yet: Ces observations n’ont pas encore
     été téléversées.
   they_already_have_iNat_accounts: … ils ont déjà des comptes sur %{site_name}
@@ -3866,7 +3865,7 @@ fr:
   this_taxon_has_no_default_photo: Ce taxon n’a pas de photo par défaut!
   this_taxon_is_inactive_this_means: |-
     Ce taxon est <strong>inactif</strong>, ce qui veut dire que les responsables de l’organisation d’%{site_name} l’ont remplacé
-    par un concept taxonomiquement plus actuel.
+    par un concept taxinomiquement plus actuel.
   this_taxon_name_was_originally_imported: 'Ce nom de taxon a été importé initialement
     à partir d’un fournisseur externe de noms :'
   this_taxon_was_originally_imported_from: 'Ce taxon a été importé initialement à
@@ -4041,7 +4040,7 @@ fr:
   use_name_as_a_placeholder: Utilisez <span class='ac-placeholder'>"%{name}"</span>
     comme signet
   use_this_form_to_create_a_new: |-
-    Utilisez ce formulaire pour créer l’ébauche d’un modification taxonomique décrivant une proposition de
+    Utilisez ce formulaire pour créer l’ébauche d’un modification taxinomique décrivant une proposition de
     séparation, de fusion ou d'échange de taxons actifs.
   use_this_if_the_url_needs_genus_species_separated: |-
     Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une
@@ -4232,8 +4231,8 @@ fr:
     pour ce taxon
   we_have_no_establishment_data_for_this_taxon: Nous n’avons aucune donnée d’implantation
     pour ce taxon
-  we_import_our_taxonomic_data: Nous importons nos données taxonomiques de certaines
-    bases de données taxonomiques externes, y compris le Catalogue of Life et uBio.
+  we_import_our_taxonomic_data: Nous importons nos données taxinomiques de certaines
+    bases de données taxinomiques externes, y compris le Catalogue of Life et uBio.
     Quelques-uns de nos taxons ont aussi été saisis manuellement, et n’importe quel
     utilisateur peut ajouter de nouveaux noms de taxons. Si vous ne trouvez pas un
     taxon ou un nom, essayez
@@ -4296,7 +4295,7 @@ fr:
   would_you_like_to: Aimeriez-vous en
   would_like_some_help_identifying_this: aimerait de l’aide pour identifier ceci
   x_admin: que %{login} administre
-  x_blog: Blog de %{x}
+  x_blog: Blogue de %{x}
   x_deleted: '%{x} supprimé'
   x_does_not_exist: « %{x} » n’existe pas
   x_doesnt: '%{login} ne fait pas'
@@ -4479,8 +4478,8 @@ fr:
   your_account_has_been_activated: Votre compte a été activé.
   your_account_has_been_verified: Votre compte %{site_name} a été vérifié! Veuillez
     vous connecter pour continuer.
-  your_activation_code_was_missing: Votre code d'activation est manquant. Veuillez
-    suivre l'URL de votre e-mail.
+  your_activation_code_was_missing: Votre code d’activation est manquant. Veuillez
+    suivre l’URL de votre courriel.
   your_coarser_id: |-
     Votre ID plus générale de <span class='taxon'>%{coarser_taxon_name}</span> implique que vous
     n’êtes pas d’accord avec l’ID plus précise de
@@ -4588,7 +4587,7 @@ fr:
         add_color_tags_help: Ajoutez des étiquettes des couleurs à partir des couleurs
           associées aux taxons sélectionnés.
         add_rank_tags_help_html: |-
-          Ajoutez des étiquettes de rang de taxon d’après notre taxonomie, par ex.
+          Ajoutez des étiquettes de rang de taxon d’après notre taxinomie, par ex.
           <code>family=Laridés</code>
           ou
           <code>family=Goélands et apparentés</code>
@@ -4748,7 +4747,7 @@ fr:
           href="http://code.google.com/apis/maps//">Google Maps</a>, et <a
           href="http://flickr.com/">Flickr</a>. Il utilise aussi les sources de données <a
           href="http://www.catalogueoflife.org">Catalogue of Life</a> et
-          <a href="http://ubio.org/">uBio</a> pour des données taxonomiques.
+          <a href="http://ubio.org/">uBio</a> pour des données taxinomiques.
         what_can_i_do_to_help_inaturalist?: Que puis-je faire pour aider %{site_name}
         you_can_help_inaturalist_by_giving_us_your_feedback_html: "Vous pouvez aider
           %{site_name} en nous donnant votre avis : joignez-vous à notre\n<a href=\"%{feedback_url}\">groupe
@@ -4767,13 +4766,13 @@ fr:
           au code sous-jacent et à la base de données et ils peuvent modifier n’importe quoi
           sur le site.
         curators_are_inat_users_who_volunteer_to_html: "Les responsables de l’organisation
-          sont des utilisateurs d’%{site_name} qui se sont  portés volontaires pour
-          aider à garder nos données taxonomiques\nà jour. Si vous êtes intéressé
-          à devenir responsable de l’organisation, veuillez \n<a href=\"mailto:%{help_email}\">nous
-          contacter</a>. Les responsables de l’organisation peuvent\naussi accorder
-          le statut de responsables de l’organisation à d’autres utilisateurs. Veuillez
-          accorder ce statut qu’à des gens\nà qui vous faites confiance et qui ont
-          une certaine connaissance taxonomique."
+          sont des utilisateurs d’%{site_name} qui se sont \nportés volontaires pour
+          aider à garder nos données taxinomiques à jour. Si vous êtes \nintéressé
+          à devenir responsable de l’organisation, veuillez <a href=\"mailto:%{help_email}\">nous
+          contacter</a>. \nLes responsables de l’organisation peuvent aussi accorder
+          le statut de responsables de \nl’organisation à d’autres utilisateurs. Veuillez
+          n’accorder ce statut qu’à des gens\nà qui vous faites confiance et qui ont
+          une certaine connaissance taxinomique."
         what_is_considered_inappropriate_content?: Qu'est-ce qui est considéré comme
           un contenu inapproprié?
         you_know_it_when_you_see_it_html: "Vous <a href=\"http://en.wikipedia.org/wiki/Jacobellis_v._Ohio\">le
@@ -4836,7 +4835,7 @@ fr:
           les îles Turques et Caïques, \nvous pouvez marquer l’observation &quot;effrayant,
           barracuda, plongée sous-marine, vacances, Turques et Caïques &quot;."
         can_i_include_my_observations_on_my_blog?: Puis-je inclure mes observations
-          d’%{site_name} sur mon propre site Web ou mon blog ?
+          d’%{site_name} sur mon propre site Web ou mon blogue ?
         sure_check_out_our_widget_html: Bien sûr, consultez notre <a href="%{url}"
           title="Observations Widget">widget Observations</a>.
         what_kind_of_photos_should_i_attach: Quelle sorte de photos dois-je associer
@@ -5020,7 +5019,7 @@ fr:
         species_guess: Nom de l’observateur entré pour le taxon observé
         scientific_name: Nom scientifique du taxon observé d’après ce site
         common_name: Nom commun ou vernaculaire du taxon observé d’après ce site
-        iconic_taxon_name: Catégorie taxonomique de rang supérieur pour le taxon observé
+        iconic_taxon_name: Catégorie taxinomique de rang supérieur pour le taxon observé
         taxon_id: Identificateur unique pour le taxon observé
         id_please: Si l’observateur a bel et bien demandé de l’aide à l’identification
         num_identification_agreements: Nombre d’identifications qui sont les mêmes
@@ -5539,13 +5538,13 @@ fr:
             Les scientifiques résolvent ce problème en utilisant un « nom scientifique »
             unique pour chaque catégorie d’organisme, qui se conforme aux règles de
             <a href="https://fr.wikipedia.org/wiki/Nom_binominal">la nomenclature biologique</a>,
-            mais ces noms sont en général basés sur le latin, une langue que personne
+            mais ces noms sont en général basés sur le latin, une langue que plus personne
             ne parle, et ne sont donc pas mémorisables comme des noms communs pour beaucoup
-            de gens. Les noms scientifiques peuvent aussi refléter l’emplacement taxonomique
+            de gens. Les noms scientifiques peuvent aussi refléter l’emplacement taxinomique
             d’un organisme, donc ils peuvent changer quand les scientifiques développent des théories
-            plus précises sur les relations d’évolution entre
-            différents organismes, réduisant encore l’utilité dans la
-            communication, même parmi les personnes qui connaissent les noms scientifiques.
+            plus précises sur les relations d’évolution entre différents organismes, réduisant
+            encore l’utilité dans la communication, même parmi les personnes qui connaissent
+            les noms scientifiques.
           </p>
           <p>
             Le vieil adage le résume ainsi : « Les noms communs changent de lieu en
@@ -5648,11 +5647,11 @@ fr:
     users:
       dashboard:
         taxon_change_desc: |-
-          Les modifications de taxon représentent les changements apportés à la taxonomie d’%{site_name}.
+          Les modifications de taxon représentent les changements apportés à la taxinomie d’%{site_name}.
           La plupart du temps, %{site_name} conservera automatiquement
           votre contenu à jour quand ces changements auront lieu (sauf si vous avez
-          choisi le contraire), mais nous voulons quand même vous faire savoir quand et comment vos données
-          sont modifiées.
+          choisi le contraire), mais nous voulons quand même vous faire savoir quand
+          et comment vos données sont modifiées.
         your_content_will_be_updated: Votre contenu relatif à ces taxons a été mis
           à jour automatiquement.
         you_may_want_to_update: Vous avez du contenu relatif à ces taxons que vous
