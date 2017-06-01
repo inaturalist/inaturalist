@@ -173,6 +173,10 @@ export function fetchSuggestions( query ) {
       // already loaded results for this query
       return null;
     }
+    if ( newQuery.source === "misidentifications" && !newQuery.taxon_id ) {
+      // can't show misidentifications of nothing
+      return null;
+    }
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
     return inatjs.taxa.suggest( sanitizeQuery( newQuery ) ).then( suggestions => {

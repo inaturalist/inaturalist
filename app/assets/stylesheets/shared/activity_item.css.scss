@@ -1,0 +1,165 @@
+@import "../colors";
+
+.ActivityItem,
+body > div > [role="dialog"] .ActivityItem {
+  .identification {
+    display: inline-block;
+    width: 100%;
+  }
+  .buttons {
+    float: right;
+  }
+  .taxon {
+    display: inline-block;
+  }
+  .taxon-image {
+    width: 44px;
+    height: 44px;
+    border: 1px solid $border-grey;
+    border-radius: 2px;
+    float: left;
+    margin-right: 15px;
+    display: inline-block;
+  }
+  span.taxon {
+    display: inline-block;
+  }
+  a.display-name {
+    color: #000;
+    font-size: 20px;
+    display: block;
+    line-height: 24px;
+  }
+  a.sciname {
+    color: #000;
+    font-size: 14px;
+  }
+  .time {
+    float: right;
+    margin-right: 12px;
+    color: #999999;
+  }
+  .panel-title {
+    font-size: 14px;
+    a.user {
+      font-weight: bold;
+    }
+    .item-status {
+      float: right;
+      margin-right: 15px;
+     .fa {
+        width: 20px;
+        text-align: center;
+      }
+    }
+  }
+  .panel.flagged .panel-heading {
+    background: #fcf8e3;
+    .item-status {
+      color: #8a6d3b;
+    }
+  }
+  .panel.maverick .panel-heading {
+    background: rgba(216, 84, 79, 0.05);
+    .item-status {
+      color: $fail-red;
+    }
+  }
+  .panel.improving .panel-heading {
+    background: rgba(116, 173, 0, 0.05);
+    .item-status {
+      color: $inat-green;
+    }
+  }
+  .icon {
+    float: left;
+  }
+  .buttons {
+    button {
+      margin-left: 10px;
+      .fa {
+        color: $inat-green;
+      }
+    }
+  }
+  button.comment_id {
+    margin-left: 60px;
+  }
+  .icon-person {
+    font-size: 36px;
+    line-height: 36px;
+  }
+  i.taxon-image.icon {
+    font-size: 44px;
+    opacity: 0.9;
+  }
+  .panel {
+    margin-left: 60px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+  .id_body {
+    margin-top: 15px;
+  }
+}
+
+.ActivityItem.withdrawn,
+body > div > [role="dialog"] .ActivityItem.withdrawn {
+  .title_text, .time {
+    opacity: 0.5;
+  }
+  .title_text {
+    text-decoration: line-through;
+  }
+  .panel-body {
+    background-color: #f8f8f8;
+    .taxon-image, .taxon, .taxon a {
+      opacity: 0.5;
+    }
+    .taxon {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.ActivityItemMenu,
+body > div > [role="dialog"] .ActivityItemMenu {
+  float: right;
+  border-left: 1px solid $border-grey;
+  .search {
+    line-height: 24px;
+    white-space: nowrap;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    a {
+      color: inherit;
+    }
+  }
+  .control-group {
+    .dropdown.btn-group {
+      button {
+        margin: 0px 0px 2px 12px;
+        padding: 0;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        &[disabled] {
+          opacity: 0.5;
+        }
+      }
+      .btn-group.open .dropdown-toggle {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .dropdown-menu {
+        margin-right: -10px;
+        .search-links {
+          padding: 3px 20px 5px 20px;
+          min-width: 200px;
+        }
+      }
+    }
+  }
+}

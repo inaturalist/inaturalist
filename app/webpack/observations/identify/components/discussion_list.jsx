@@ -1,9 +1,9 @@
 import React, { PropTypes } from "react";
-import DiscussionListItemContainer from "../containers/discussion_list_item_container";
 import moment from "moment";
 import _ from "lodash";
+import ActivityItemContainer from "../containers/activity_item_container";
 
-const DiscussionList = ( { observation, onDelete, onRestore, currentUserID } ) => {
+const DiscussionList = ( { observation, currentUserID } ) => {
   let items = ( observation.comments || [] ).map( ( c ) => (
     Object.assign( c, {
       className: "Comment",
@@ -36,28 +36,24 @@ const DiscussionList = ( { observation, onDelete, onRestore, currentUserID } ) =
     }
     return 0;
   } );
+  const taxonIDsDisplayed = {};
   return (
     <div className="DiscussionList">
-      {items.map( ( item ) => (
-        <DiscussionListItemContainer
-          className="stacked"
-          key={`${item.className}-${item.id}`}
-          user={item.user}
-          body={item.body}
-          createdAt={item.created_at}
-          identification={item.className === "Identification" ? item : null}
-          hideAgree={item.hideAgree ? true : null}
-          onEdit={ ( ) => {
-            window.open( item.editUrl, "_blank" );
-          } }
-          onDelete={ ( ) => {
-            if ( confirm( I18n.t( "are_you_sure?" ) ) ) {
-              onDelete( item );
-            }
-          } }
-          onRestore={ ( ) => onRestore( item ) }
-        />
-      ) ) }
+      {items.map( ( item ) => {
+        let firstDisplay;
+        if ( item.taxon && item.current ) {
+          firstDisplay = !taxonIDsDisplayed[item.taxon.id];
+          taxonIDsDisplayed[item.taxon.id] = true;
+        }
+        return (
+          <ActivityItemContainer
+            item={item}
+            observation={observation}
+            firstDisplay={firstDisplay}
+            linkTarget="_blank"
+          />
+        );
+      } ) }
     </div>
   );
 };

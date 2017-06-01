@@ -3,7 +3,7 @@ import { Dropdown, MenuItem } from "react-bootstrap";
 
 
 const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
-  setFlaggingModalState } ) => {
+  setFlaggingModalState, linkTarget} ) => {
   if ( !item ) { return ( <div /> ); }
   const isID = !!item.taxon;
   let menuItems = [];
@@ -16,6 +16,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
           key={ `id-edit-${item.id}` }
           eventKey="edit"
           href={ `/identifications/${item.id}/edit` }
+          target={linkTarget}
         >
           { I18n.t( "edit" ) }
         </MenuItem>
@@ -53,7 +54,10 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     if ( loggedInUser ) {
       searchLinks.push( (
         <div className="search">
-          <a href={ `/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}` }>
+          <a
+            href={ `/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}` }
+            target={linkTarget}
+          >
             <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "you_" ) }
           </a>
         </div>
@@ -62,7 +66,10 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     if ( !( loggedInUser && loggedInUser.id === item.user.id ) ) {
       searchLinks.push( (
         <div className="search">
-          <a href={ `/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}` }>
+          <a
+            href={ `/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}` }
+            target={linkTarget}
+          >
             <i className="fa fa-arrow-circle-o-right" />{ item.user.login }
           </a>
         </div>
@@ -70,15 +77,19 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     }
     searchLinks.push( (
       <div className="search">
-        <a href={ `/observations?taxon_id=${item.taxon.id}` }>
+        <a
+          href={ `/observations?taxon_id=${item.taxon.id}` }
+          target={linkTarget}
+        >
           <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "everyone_" ) }
         </a>
       </div>
     ) );
     menuItems.push( ( <MenuItem divider key={ `id-menu-divider-${item.id}` } /> ) );
     menuItems.push( ( <div key={ `id-menu-links-${item.id}` } className="search-links">
-      <div className="text-muted">View observations of this taxon by:</div>
-      { searchLinks }
+      <div className="text-muted">
+        View observations of this taxon by:
+      </div> { searchLinks }
     </div> ) );
   } else {
     if ( viewerIsActor ) {
@@ -87,6 +98,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
           key={ `comment-edit-${item.id}` }
           eventKey="edit"
           href={ `/comments/${item.id}/edit` }
+          target={linkTarget}
         >
           { I18n.t( "edit" ) }
         </MenuItem>
@@ -149,7 +161,8 @@ ActivityItemMenu.propTypes = {
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
-  setFlaggingModalState: PropTypes.func
+  setFlaggingModalState: PropTypes.func,
+  linkTarget: PropTypes.string
 };
 
 export default ActivityItemMenu;

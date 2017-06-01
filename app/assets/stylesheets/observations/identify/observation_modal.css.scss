@@ -3,6 +3,7 @@
 @import "../../shared/annotations";
 @import "../../shared/quality_metrics";
 @import "../../shared/record_chooser_popover";
+@import "../../shared/activity_item";
 
 .ObservationModal .modal-dialog {
   width: 90% !important;
@@ -467,4 +468,20 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 
 body > div > [role="dialog"] .ObservationModal .modal-body {
   overflow: initial;
+}
+
+.ActivityItem,
+body > div > [role="dialog"] .ActivityItem {
+  .panel-heading {
+    padding: 7px 15px;
+  }
+  a.display-name {
+    font-size: 16px;
+  }
+  .has-com-name a.sciname {
+    font-size: 12px;
+  }
+  .panel {
+    margin-left: 50px;
+  }
 }
