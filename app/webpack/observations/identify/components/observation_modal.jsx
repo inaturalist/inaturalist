@@ -330,25 +330,6 @@ class ObservationModal extends React.Component {
                     /> { I18n.t( "captive_cultivated" ) }
                   </label>
                 </OverlayTrigger>
-                <OverlayTrigger
-                  placement="top"
-                  delayShow={1000}
-                  overlay={
-                    <Tooltip id="link-btn-tooltip">
-                      { I18n.t( "view_observation" ) }
-                    </Tooltip>
-                  }
-                  container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                >
-                  <Button
-                    href={`/observations/${observation.id}`}
-                    target="_blank"
-                    className="link-btn"
-                    bsStyle="link"
-                  >
-                    <i className="icon-link-external"></i> { I18n.t( "view_observation" ) }
-                  </Button>
-                </OverlayTrigger>
               </div>
             </div>
           </div>
@@ -373,7 +354,7 @@ class ObservationModal extends React.Component {
               <div className={`inat-tab info-tab ${tab === "info" ? "active" : ""}`}>
                 <div className="info-tab-content">
                   <div className="info-tab-inner">
-                    <div className="map-and-details stacked">
+                    <div className="map-and-details">
                       { taxonMap }
                       <ul className="details">
                         <li>
@@ -387,7 +368,7 @@ class ObservationModal extends React.Component {
                         </li>
                         <li>
                           <a className="permalink" href={`/observations/${observation.id}`}>
-                            <i className="icon-link"></i>
+                            <i className="icon-link-external"></i>
                             { I18n.t( "view_observation" ) }
                           </a>
                         </li>

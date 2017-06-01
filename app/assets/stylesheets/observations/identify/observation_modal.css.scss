@@ -417,6 +417,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 
 .ObservationModal .map-and-details {
   display: flex;
+  margin-bottom: 20px;
 }
 .ObservationModal .map-and-details .TaxonMap,
 .ObservationModal .map-and-details .details {
@@ -437,6 +438,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   width: 15px;
   text-align: center;
   display: block;
+  line-height: 16px;
 }
 
 .ObservationModal .column-header {

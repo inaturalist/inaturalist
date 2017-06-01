@@ -52,6 +52,14 @@ const setupKeyboardShortcuts = ( dispatch ) => {
     dispatch( addAnnotationFromKeyboard( "Plant Phenology", "Fruiting" ) );
     return false;
   } );
+  bind( "s f", ( ) => {
+    dispatch( addAnnotationFromKeyboard( "Sex", "Female" ) );
+    return false;
+  } );
+  bind( "s m", ( ) => {
+    dispatch( addAnnotationFromKeyboard( "Sex", "Male" ) );
+    return false;
+  } );
 };
 
 export default setupKeyboardShortcuts;

@@ -304,8 +304,8 @@ export function addAnnotationFromKeyboard( attributeLabel, valueLabel ) {
     if ( !value ) { return; }
     const existing = s.currentObservation.observation.annotations.find( a => {
       return a.controlled_value && a.controlled_attribute &&
-        a.controlled_value.id === value.id &&
-        a.controlled_attribute.id === attribute.id;
+        a.controlled_attribute.id === attribute.id &&
+        ( !a.controlled_attribute.multivalued || a.controlled_value.id === value.id );
     } );
     if ( !existing ) {
       dispatch( addAnnotation( attribute, value ) );
