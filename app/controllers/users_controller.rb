@@ -452,7 +452,11 @@ class UsersController < ApplicationController
         scope = scope.where( site_id: nil )
         @announcements = scope.in_locale( I18n.locale )
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
-        @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
+        if @announcements.blank?
+          @announcements = base_scope.where( "site_id = ? AND locales IN (?)",  @site, [] )
+          @announcements << base_scope.in_locale( I18n.locale ).where( site_id: @site )
+          @announcements = @announcements.flatten
+        end
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           limit(5)
