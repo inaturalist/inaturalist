@@ -1,7 +1,10 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 
-import { SHOW_CURRENT_OBSERVATION } from "../actions/current_observation_actions";
+import {
+  SHOW_CURRENT_OBSERVATION,
+  UPDATE_CURRENT_OBSERVATION
+} from "../actions/current_observation_actions";
 
 const RESET = "observations-identify/suggestions/RESET";
 const START_LOADING = "observations-identify/suggestions/START_LOADING";
@@ -71,15 +74,27 @@ export default function reducer(
       }
       if ( observation.places ) {
         const place = _
-          .sortBy( observation.places, p => ( p.ancestor_place_ids || [] ).length * -1 )
-          .find( p => p.admin_level );
+          .sortBy( observation.places, p => p.bbox_area )
+          .find( p => p.admin_level !== null && p.admin_level < 3 );
         newState.query.place_id = place.id;
         newState.query.place = place;
+        newState.query.defaultPlace = place;
       } else if ( observation.place_ids && observation.place_ids.length > 0 ) {
         newState.query.place_id = observation.place_ids[observation.place_ids.length - 1];
       }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;
+      break;
+    }
+    case UPDATE_CURRENT_OBSERVATION: {
+      if ( action.updates.places ) {
+        const place = _
+          .sortBy( action.updates.places, p => p.bbox_area )
+          .find( p => p.admin_level !== null && p.admin_level < 3 );
+        newState.query.place_id = place.id;
+        newState.query.place = place;
+        newState.query.defaultPlace = place;
+      }
       break;
     }
     default:
@@ -135,12 +150,11 @@ export function updateQuery( query ) {
         } );
     }
     if ( query.place_id && !query.place ) {
-      inatjs.places.fetch( query.place_id )
+      inatjs.places.fetch( query.place_id, { no_geom: true } )
         .then( response => {
           if ( response.results[0] ) {
             dispatch( updateQuery( {
-              place: response.results[0],
-              defaultPlace: response.results[0]
+              place: response.results[0]
             } ) );
           }
         } );

@@ -97,7 +97,13 @@ class PlaceChooserPopover extends React.Component {
       this.setState( { places: newPlaces } );
     }
     if ( usableProps.defaultPlaces ) {
-      this.setState( { places: usableProps.defaultPlaces } );
+      let newPlaces = usableProps.defaultPlaces;
+      if ( usableProps.defaultPlace ) {
+        newPlaces = _.filter( newPlaces, p => p.id !== usableProps.defaultPlace.id );
+        newPlaces.splice( 0, 0, usableProps.defaultPlace );
+        this.setState( { places: newPlaces } );
+      }
+      this.setState( { places: newPlaces } );
     } else if (
       usableProps.place &&
       usableProps.place.ancestor_place_ids && usableProps.place.ancestor_place_ids.length > 0
@@ -121,7 +127,7 @@ class PlaceChooserPopover extends React.Component {
 
   searchPlaces( text ) {
     const that = this;
-    inatjs.places.autocomplete( { q: text } ).then( response => that.handlePlacesResponse( response ) );
+    inatjs.places.autocomplete( { q: text, geo: false } ).then( response => that.handlePlacesResponse( response ) );
   }
 
   fetchPlaces( ids ) {
@@ -168,7 +174,7 @@ class PlaceChooserPopover extends React.Component {
   }
 
   render( ) {
-    const { place, className, container, preIconClass, postIconClass } = this.props;
+    const { place, className, container, preIconClass, postIconClass, defaultPlace } = this.props;
     return (
       <OverlayTrigger
         trigger="click"

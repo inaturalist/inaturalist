@@ -3581,6 +3581,7 @@ I18n.translations["en"] = {
   },
   "submitted": "Submitted",
   "suggest_an_id": "Suggest an ID",
+  "suggestions": "Suggestions",
   "table": "Table",
   "tagging": "Tagging...",
   "tags": "Tags",

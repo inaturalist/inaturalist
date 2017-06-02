@@ -153,13 +153,17 @@ class Suggestions extends React.Component {
     ) {
       comprehensiveList = response.results[0].sourceDetails.listedTaxon.list;
     }
+    let defaultPlaces = observation.places;
+    if ( query.place && query.place.ancestors ) {
+      defaultPlaces = query.place.ancestors;
+    }
     return (
       <div className="Suggestions">
         <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
           <div className="suggestions-list">
             <div className="suggestions-inner">
               <div className="column-header">
-                { I18n.t( "x_suggestions", { count: response.results.length } ) }
+                { loading ? I18n.t( "suggestions" ) : I18n.t( "x_suggestions", { count: response.results.length } ) }
               </div>
               <div className="filters">
                 <label>{ I18n.t( "filters" ) }</label>
@@ -167,7 +171,7 @@ class Suggestions extends React.Component {
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   place={ query.place }
                   defaultPlace={ query.defaultPlace }
-                  defaultPlaces={ observation.places }
+                  defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
                   preIconClass={false}
                   postIconClass="fa fa-angle-down"
                   setPlace={ place => {
