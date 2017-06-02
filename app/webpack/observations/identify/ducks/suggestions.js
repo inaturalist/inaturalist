@@ -12,7 +12,9 @@ const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 
 export default function reducer(
   state = {
-    query: {},
+    query: {
+      source: "checklist"
+    },
     loading: false,
     response: {
       results: []
@@ -52,7 +54,8 @@ export default function reducer(
       break;
     case SHOW_CURRENT_OBSERVATION: {
       newState.query = {
-        source: state.query.source
+        source: state.query.source,
+        order_by: state.query.order_by
       };
       const observation = action.observation;
       if ( observation.taxon ) {
@@ -151,7 +154,7 @@ export function setDetailTaxon( taxon, options = {} ) {
 }
 
 function sanitizeQuery( query ) {
-  return _.pick( query, ["place_id", "taxon_id", "source"] );
+  return _.pick( query, ["place_id", "taxon_id", "source", "order_by"] );
 }
 
 export function fetchSuggestions( query ) {

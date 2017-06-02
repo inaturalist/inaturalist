@@ -70,6 +70,12 @@
   .RecordChooserPopoverTrigger {
     display: inline-block;
     color: $bootstrap-link-color;
+    label {
+      margin-right: 0.3em;
+    }
+    label:after {
+      content: ':';
+    }
     i {
       margin-right: 5px;
     }
@@ -157,4 +163,8 @@
 
 body > div > [role="dialog"] .TaxonChooserPopover .form-group {
   margin-bottom: 0;
+}
+
+body > div > [role="dialog"] .RecordChooserPopover.popover {
+  max-width: 200px;
 }

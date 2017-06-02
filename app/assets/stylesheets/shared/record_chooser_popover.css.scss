@@ -25,7 +25,7 @@
     padding: 0px;
   }
   .form-group {
-    margin-bottom: 5px;
+    margin-bottom: 0px;
     padding: 10px 10px 0 10px;
   }
   ul.list-unstyled {
@@ -33,7 +33,7 @@
     cursor: pointer;
     max-height: 300px;
     overflow: auto;
-    padding: 10px;
+    padding: 5px 10px 10px 10px;
   }
   .media {
     margin: 0;
@@ -49,6 +49,7 @@
       width: 20px;
       text-align: center;
       margin-top: 2px;
+      line-height: 1;
     }
     .place-type {
       text-transform: capitalize;

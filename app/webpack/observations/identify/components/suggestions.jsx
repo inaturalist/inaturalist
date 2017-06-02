@@ -13,7 +13,7 @@ import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
 import TaxonChooserPopover from "./taxon_chooser_popover";
-import SourceChooserPopover from "./source_chooser_popover";
+import ChooserPopover from "./chooser_popover";
 import TaxonMap from "./taxon_map";
 
 class Suggestions extends React.Component {
@@ -190,17 +190,36 @@ class Suggestions extends React.Component {
                     setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
                   } }
                 />
-                <SourceChooserPopover
+                <ChooserPopover
+                  label={ I18n.t( "source" ) }
                   container={ $( ".ObservationModal" ).get( 0 ) }
-                  source={ query.source }
-                  defaultSource={ "checklist" }
+                  chosen={ query.source }
+                  choices={["checklist", "observations", "misidentifications"]}
+                  defaultChoice="checklist"
                   preIconClass={ false }
                   postIconClass="fa fa-angle-down"
-                  setSource={ source => {
+                  hideClear
+                  setChoice={ source => {
                     setQuery( Object.assign( { }, query, { source } ) );
                   } }
-                  clearSource={ ( ) => {
+                  clearChoice={ ( ) => {
                     setQuery( Object.assign( { }, query, { source: null } ) );
+                  } }
+                />
+                <ChooserPopover
+                  label={ I18n.t( "order" ) }
+                  container={ $( ".ObservationModal" ).get( 0 ) }
+                  chosen={ query.order_by }
+                  choices={["frequency", "taxonomy"]}
+                  defaultChoice="frequency"
+                  preIconClass={ false }
+                  postIconClass="fa fa-angle-down"
+                  hideClear
+                  setChoice={ orderBy => {
+                    setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
+                  } }
+                  clearChoice={ ( ) => {
+                    setQuery( Object.assign( { }, query, { order_by: null } ) );
                   } }
                 />
               </div>
