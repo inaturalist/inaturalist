@@ -40,6 +40,20 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         canAgree = true;
       }
     }
+    if ( firstDisplay && !hideCompare ) {
+      const compareTaxonID = taxon.rank_level <= 10 ?
+        taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
+      buttons.push( (
+        <a
+          key={ `id-compare-${item.id}` }
+          href={ `/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}` }
+        >
+          <button className="btn btn-default btn-sm">
+            <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+          </button>
+        </a>
+      ) );
+    }
     if ( loggedIn && ( canAgree || userAgreedToThis ) ) {
       buttons.push( (
         <button
@@ -51,21 +65,6 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
           { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
             ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
         </button>
-      ) );
-    }
-    if ( firstDisplay && !hideCompare ) {
-      const compareTaxonID = taxon.rank_level <= 10 ?
-        taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
-      buttons.push( (
-        <a
-          key={ `id-compare-${item.id}` }
-          href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${compareTaxonID}` }
-          target={linkTarget}
-        >
-          <button className="btn btn-default btn-sm">
-            <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
-          </button>
-        </a>
       ) );
     }
     const buttonDiv = ( <div className="buttons">

@@ -47,7 +47,7 @@ moment.locale( "en", {
 } );
 
 const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
-  if ( _.isEmpty( observation ) ) {
+  if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
         <div className="loading_spinner" />

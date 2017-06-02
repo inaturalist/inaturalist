@@ -123,6 +123,12 @@ input.failed {
       }
     }
   }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
+  }
 }
 
 .TaxonAutocomplete {
@@ -206,6 +212,9 @@ a.UserImage {
       font-size: 12px;
       color: $inat-green;
       margin-right: 5px;
+    }
+    span {
+      vertical-align: text-top;
     }
   }
 }
@@ -460,7 +469,7 @@ a.UserImage {
         color: #747474;
         white-space: normal;
       }
-      a.display-name {
+      a.display-name, .noname {
         font-size: 32px;
         line-height: 36px;
         color: #000;
@@ -966,7 +975,12 @@ a.UserImage {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      color: #000;
     }
+  }
+  .view {
+    font-weight: 700;
+    margin-right: 5px;
   }
 }
 
@@ -1117,7 +1131,6 @@ a.UserImage {
         margin-top: 4px;
         i {
           font-size: 12px;
-          vertical-align: text-bottom;
         }
       }
     }
@@ -1432,10 +1445,19 @@ a.UserImage {
 .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
+    height: 85%;
     max-width: 950px;
     min-width: 750px;
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      padding-bottom: 65px;
+      overflow: hidden;
+    }
     .modal-body {
+      height: 100%;
       overflow-x: auto;
+      max-height: none;
     }
     h4:not(:first-child) {
       margin: 30px 0px 10px;
@@ -1750,6 +1772,48 @@ body > div > [role="dialog"] .easyzoom > a > img {
   border-color: $inat-green;
   border-right-color: transparent;
 }
+
+
+
+.loading_spinner {
+  width: 14px;
+  height: 14px;
+  border: 3px solid $border-grey;
+  border-radius: 50%;
+  border-top: 3px solid #74ac00;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#initial-loading .loading_spinner {
+  display: inline-block;
+  margin: 0px auto;
+  margin-top: 150px;
+  width: 80px;
+  height: 80px;
+  border: 15px solid $border-grey;
+  border-top: 15px solid #74ac00;
+}
+
+.observations.infowindow .observation {
+  width: 245px;
+}
+
+
+
 
 @media (max-width: 1000px) {
   .bootstrap .container {

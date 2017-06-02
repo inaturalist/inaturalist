@@ -22,10 +22,10 @@ class FlaggingModal extends Component {
     const item = this.props.state.item;
     const body = this.refs.reason && $( this.refs.reason ).val( );
     let className = "Comment";
-    if ( item.observation_id ) {
-      className = "Identification";
-    } else if ( item.quality_grade ) {
+    if ( item.quality_grade ) {
       className = "Observation";
+    } else if ( item.taxon ) {
+      className = "Identification";
     }
     this.props.createFlag( className, item.id, this.props.state.radioOption, body );
     this.close( );

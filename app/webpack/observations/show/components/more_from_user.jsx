@@ -13,6 +13,7 @@ const MoreFromUser = ( { observation, observations, showNewObservation } ) => {
     dateObserved = moment( observation.observed_on );
   }
   const onDate = dateObserved ? dateObserved.format( "YYYY-MM-DD" ) : null;
+  const calendarDate = dateObserved ? dateObserved.format( "YYYY/M/D" ) : null;
   const loadObservationCallback = ( e, o ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
@@ -27,14 +28,19 @@ const MoreFromUser = ( { observation, observations, showNewObservation } ) => {
           I18n.t( "more_from_x", { x: `<a href="/people/${userLogin}">${userLogin}</a>` } ) } }
         />
         <div className="links">
+          <span className="view">{ I18n.t( "view" ) }:</span>
           <a href={ `/observations?user_id=${userLogin}&place_id=any` }>
-            { I18n.t( "view_all" ) }
+            { I18n.t( "all" ) }
           </a>
           { dateObserved ? (
             <span>
               <span className="separator">·</span>
               <a href={ `/observations?user_id=${userLogin}&on=${onDate}&place_id=any` }>
-                { I18n.t( "view_all_from_x", { x: dateObserved.format( "MMMM D, YYYY" ) } ) }
+                { dateObserved.format( "MMMM D, YYYY" ) }
+              </a>
+              <span className="separator">·</span>
+              <a href={ `/calendar/${userLogin}/${calendarDate}` }>
+                { I18n.t( "calendar" ) }
               </a>
             </span>
           ) : "" }
