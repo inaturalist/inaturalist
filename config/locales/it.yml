@@ -15,6 +15,7 @@
 # Author: Macofe
 # Author: Marsitown
 # Author: Martinligabue
+# Author: Martinog
 # Author: MattiaMen
 # Author: Nemo bis
 # Author: Oggioniale
@@ -70,9 +71,7 @@ it:
     other: <span class="count">%{count}</span> taxa corrispondenti
   x_misidentifications_of_this_species:
     other: =1 identificazione errata di questa specie
-  x_observations:
-    one: 1 osservazione
-    other: '%{count} osservazioni'
+  x_observations: '{{PLURALE|one=1 osservazione|%{count} osservazioni}}'
   x_observations_:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -164,7 +163,7 @@ it:
   accuracy_of_the_coordinates: Precisione delle coordinate in metri. È possibile modificare
     questa operazione facendo clic sul link "modifica" qui sopra o cliccando sull'indicatore
     di mappa e trascinando gli agganci. Prova a fare un cerchio grande abbastanza
-    per assicurarti che sei stato da qualche parte al suo interno.
+    per assicurarti di essere stato da qualche parte al suo interno.
   acquaintances: conoscenti
   action: Azione
   actions: Azioni
