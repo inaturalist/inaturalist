@@ -11,7 +11,6 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
-SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -549,7 +548,8 @@ CREATE TABLE atlases (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     is_active boolean DEFAULT false,
-    is_marked boolean DEFAULT false
+    is_marked boolean DEFAULT false,
+    account_id integer
 );
 
 
@@ -8845,4 +8845,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170413131753');
 INSERT INTO schema_migrations (version) VALUES ('20170414011849');
 
 INSERT INTO schema_migrations (version) VALUES ('20170418202820');
+
+INSERT INTO schema_migrations (version) VALUES ('20170605234102');
 
