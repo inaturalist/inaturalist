@@ -17,7 +17,7 @@ import { setFlaggingModalState } from "../../show/ducks/flagging_modal";
 function mapStateToProps( state, ownProps ) {
   return {
     config: state.config,
-    currentUserID: ownProps.observation.identifications.find( ident =>
+    currentUserID: ( ownProps.observation.identifications || [] ).find( ident =>
       ident.user.id === state.config.currentUser.id && ident.current ),
     hideCompare: true
   };

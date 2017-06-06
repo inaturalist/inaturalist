@@ -12,6 +12,7 @@ import { urlForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
+import UserText from "../../../shared/components/user_text";
 import TaxonChooserPopover from "./taxon_chooser_popover";
 import ChooserPopover from "./chooser_popover";
 import TaxonMap from "./taxon_map";
@@ -72,6 +73,7 @@ class Suggestions extends React.Component {
               </div>
             ) : taxonPhotos.map( tp => (
               <TaxonPhoto
+                key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
                 photo={tp.photo}
                 taxon={taxon}
                 width={150}
@@ -271,9 +273,14 @@ class Suggestions extends React.Component {
                       <SplitTaxon
                         taxon={detailTaxon}
                         url={ urlForTaxon( detailTaxon ) }
+                        target="_blank"
                         noParens
                       />
                     </div>
+                    { detailTaxon.wikipedia_summary ?
+                      <UserText text={`${detailTaxon.wikipedia_summary} (Source: Wikipedia)`} /> : null
+                    }
+                    <h4>Map of Observations</h4>
                     <TaxonMap
                       showAllLayer={false}
                       minZoom={2}

@@ -16,7 +16,7 @@ const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
 export default function reducer(
   state = {
     query: {
-      source: "checklist"
+      source: "observations"
     },
     loading: false,
     response: {
