@@ -31,8 +31,21 @@ class MapDetails extends React.Component {
   render( ) {
     const { observation, observationPlaces } = this.props;
     if ( !observation ) { return ( <div /> ); }
-    const accuracy = observation.private_geojson ?
+    let accuracy = observation.private_geojson ?
       observation.positional_accuracy : observation.public_positional_accuracy;
+    let accuracyUnits = "m";
+    if ( accuracy > 1000 ) {
+      accuracy = _.round( accuracy / 1000, 2 );
+      accuracyUnits = "km";
+    }
+    let geoprivacy = I18n.t( "open_" );
+    if ( observation.geoprivacy === "private" ) {
+      geoprivacy = I18n.t( "private_" );
+    } else if ( observation.obscured ) {
+      geoprivacy = I18n.t( "obscured" );
+    } else if ( observation.geoprivacy ) {
+      geoprivacy = I18n.t( observation.geoprivacy );
+    }
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -47,15 +60,12 @@ class MapDetails extends React.Component {
           <div className="info">
             <span className="attr">{ I18n.t( "accuracy" ) }:</span>&nbsp;
             <span className="value">
-              { accuracy ? `${accuracy}m` : I18n.t( "not_recorded" ) }
+              { accuracy ? `${accuracy}${accuracyUnits}` : I18n.t( "not_recorded" ) }
             </span>
           </div>
           <div className="info">
             <span className="attr">{ I18n.t( "geoprivacy" ) }:</span>&nbsp;
-            <span className="value">
-              { observation.obscured ? I18n.t( "obscured" ) :
-                ( observation.geoprivacy || I18n.t( "open_" ) ) }
-            </span>
+            <span className="value">{ geoprivacy }</span>
           </div>
         </div>
         <div className="places">

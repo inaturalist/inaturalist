@@ -212,7 +212,6 @@ class QualityMetrics extends React.Component {
       atLeastGenus : atLeastSpecies;
     return (
       <div className="QualityMetrics">
-        <h3>{ I18n.t( "data_quality_assessment" ) }</h3>
         <div className="grade">
           { I18n.t( "quality_grade_" ) }:
           <span className={ `quality_grade ${observation.quality_grade} ` }>

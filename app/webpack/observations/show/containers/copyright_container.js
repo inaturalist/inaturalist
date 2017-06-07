@@ -1,11 +1,10 @@
 import { connect } from "react-redux";
-import Identifiers from "../components/identifiers";
+import Copyright from "../components/copyright";
 import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
-    identifiers: state.identifications.identifiers,
     config: state.config
   };
 }
@@ -16,9 +15,9 @@ function mapDispatchToProps( dispatch ) {
   };
 }
 
-const IdentifiersContainer = connect(
+const CopyrightContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( Identifiers );
+)( Copyright );
 
-export default IdentifiersContainer;
+export default CopyrightContainer;

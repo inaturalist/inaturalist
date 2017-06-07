@@ -4,8 +4,8 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 
 class ObservationFieldValue extends React.Component {
   render( ) {
-    const { ofv, config } = this.props;
-    if ( !ofv || !ofv.observation_field ) { return ( <div /> ); }
+    const { ofv, config, observation } = this.props;
+    if ( !observation || !ofv || !ofv.observation_field ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
     let value = ofv.value;
     let loading;
@@ -47,6 +47,15 @@ class ObservationFieldValue extends React.Component {
         >{ I18n.t( "delete" ) }</div>
       </div> );
     }
+    let addedBy;
+    if ( ofv.user && ofv.user.id !== observation.user.id ) {
+      addedBy = ( <div className="added-by">
+        <div className="view">Added By:</div>
+        <a href={ `/people/${ofv.user.login}` }>
+          { ofv.user.login }
+        </a>
+      </div> );
+    }
     const popover = (
       <Popover
         id={ `field-popover-${ofv.uuid}` }
@@ -54,6 +63,7 @@ class ObservationFieldValue extends React.Component {
       >
         { info }
         { editOptions }
+        { addedBy }
         <div className="contents">
           <div className="view">View:</div>
           <div className="search">
@@ -98,6 +108,7 @@ class ObservationFieldValue extends React.Component {
 
 ObservationFieldValue.propTypes = {
   config: PropTypes.object,
+  observation: PropTypes.object,
   ofv: PropTypes.object,
   removeObservationFieldValue: PropTypes.func,
   setEditingFieldValue: PropTypes.func

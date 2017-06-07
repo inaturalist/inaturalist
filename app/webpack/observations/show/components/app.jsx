@@ -4,7 +4,6 @@ import { Grid, Row, Col, Button } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
-import ObservationAttribution from "../../../shared/components/observation_attribution";
 import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
 import ConservationStatusBadge from "../components/conservation_status_badge";
@@ -24,9 +23,9 @@ import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
 import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
-import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
-import QualityMetricsContainer from "../containers/quality_metrics_container";
 import ConfirmModalContainer from "../containers/confirm_modal_container";
+import CopyrightContainer from "../containers/copyright_container";
+import AssessmentContainer from "../containers/assessment_container";
 
 moment.locale( "en", {
   relativeTime: {
@@ -108,7 +107,11 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
           <Row className="title_row">
             <Col xs={ viewerIsObserver ? 10 : 12 }>
               <div className="ObservationTitle">
-                <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
+                <SplitTaxon
+                  taxon={ observation.taxon }
+                  url={ taxonUrl }
+                  placeholder={observation.species_guess}
+                />
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
@@ -140,7 +143,6 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                       { !viewerIsObserver ? ( <FollowButtonContainer /> ) : null }
                       <UserWithIcon user={ observation.user } />
                     </div>
-                    <MapContainer />
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "observed" ) }:</span>
@@ -156,20 +158,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                         </span>
                       </Col>
                     </Row>
-                    <Row className="stats_row">
-                      <Col xs={4}>
-                        <i className="fa fa-comment" />
-                        { observation.comments_count }
-                      </Col>
-                      <Col xs={4}>
-                        <i className="fa fa-tag" />
-                        { observation.identifications.length }
-                      </Col>
-                      <Col xs={4}>
-                        <i className="fa fa-star" />
-                        { observation.faves.length }
-                      </Col>
-                    </Row>
+                    <MapContainer />
                     <Row className="faves_row">
                       <Col xs={12}>
                         <FavesContainer />
@@ -222,10 +211,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <div className="Copyright">
-                    <h4>Copyright Info</h4>
-                    <ObservationAttribution observation={ observation } />
-                  </div>
+                  <CopyrightContainer />
                 </Col>
               </Row>
             </Col>
@@ -233,16 +219,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
         </Grid>
       </div>
       <div className="data_quality_assessment">
-        <Grid>
-          <Row>
-            <Col xs={7}>
-              <QualityMetricsContainer />
-            </Col>
-            <Col xs={5}>
-              <ResearchGradeProgressContainer />
-            </Col>
-          </Row>
-        </Grid>
+        <AssessmentContainer />
       </div>
       <div className="more_from">
         <Grid>

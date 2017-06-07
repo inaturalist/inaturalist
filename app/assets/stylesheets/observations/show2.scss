@@ -233,24 +233,25 @@ a.UserImage {
     background: #fff;
     border: 1px solid $border-grey;
     & > div {
-      padding: 20px;
+      padding: 20px 20px 0px 20px;
     }
     .photos_column {
       border-right: 1px solid $border-grey;
+      min-height: 500px;
       .PhotoBrowser {
+        width: 100%;
         text-align: center;
-        height: 520px;
-        margin-bottom: -39px;
         .image-gallery, .image-gallery-content, .image-gallery-content div {
           height: 100%;
         }
         .image-gallery-slides .easyzoom-flyout {
-          height: 481px;
+          height: 441px;
         }
         .image-gallery-slides img {
           max-height: 480px;
           max-width: 100%;
           width: auto;
+          padding-bottom: 40px;
         }
         .image-gallery-slide {
           line-height: 480px;
@@ -304,7 +305,7 @@ a.UserImage {
         }
         .image-gallery-thumbnails {
           position: absolute;
-          bottom: 20px;
+          bottom: 39px;
           z-index: 1;
           width: 99%;
           background: rgba(255,255,255,0.52);
@@ -326,7 +327,7 @@ a.UserImage {
           color: #808080;
           text-align: left;
           i {
-            line-height: 450px;
+            line-height: 400px;
             display: block;
             text-align: center;
             font-size: 90px;
@@ -334,7 +335,7 @@ a.UserImage {
           }
           span {
             position: absolute;
-            top: 300px;
+            top: 280px;
             width: 100%;
             text-align: center;
             margin-left: -15px;
@@ -452,7 +453,10 @@ a.UserImage {
   }
   .opposite_activity {
     & > .row > .col-xs-12 > div {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+    h4 {
+      margin-top: 15px;
     }
   }
   .ObservationTitle {
@@ -513,6 +517,18 @@ a.UserImage {
     &.d1 {
       maxheight: 100px !important;
       line-height: 100px;
+    }
+  }
+}
+
+h3, h4 {
+  &.collapsable {
+    i.fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    &.collapsable {
+      cursor: pointer;
     }
   }
 }
@@ -715,7 +731,7 @@ a.UserImage {
   border-top: none;
 }
 
-.Tags, .Projects, .ObservationFields {
+.Tags, .Projects, .ObservationFields, .Annotations, .Identifiers, .Copyright, .QualityMetrics {
   .panel {
     background: none;
     border: 0;
@@ -1030,8 +1046,8 @@ a.UserImage {
 }
 
 .QualityMetrics {
-  margin-bottom: 40px;
-  padding-right: 40px;
+  margin-bottom: 30px;
+  padding-right: 25px;
   .metric_title .fa {
     font-size: 18px;
     color: #999999;
@@ -1042,7 +1058,7 @@ a.UserImage {
   .grade {
     font-size: 18px;
     font-weight: 100;
-    margin: 25px 0px 25px;
+    margin: 15px 0px 25px;
   }
   .flag_link {
     color: $other-link-color;

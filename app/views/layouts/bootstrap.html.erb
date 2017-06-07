@@ -96,6 +96,13 @@
           login: '<%= current_user.login %>',
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>,
+          prefers_hide_obs_show_annotations: <%= current_user.prefers_hide_obs_show_annotations %>,
+          prefers_hide_obs_show_projects: <%= current_user.prefers_hide_obs_show_projects %>,
+          prefers_hide_obs_show_tags: <%= current_user.prefers_hide_obs_show_tags %>,
+          prefers_hide_obs_show_observation_fields: <%= current_user.prefers_hide_obs_show_observation_fields %>,
+          prefers_hide_obs_show_identifiers: <%= current_user.prefers_hide_obs_show_identifiers %>,
+          prefers_hide_obs_show_copyright: <%= current_user.prefers_hide_obs_show_copyright %>,
+          prefers_hide_obs_show_quality_metrics: <%= current_user.prefers_hide_obs_show_quality_metrics %>,
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
         };
       <% end -%>

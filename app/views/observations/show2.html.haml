@@ -20,7 +20,14 @@
     var SITE = {
       name: "#{@site ? @site.name : CONFIG.site_name}",
       help_email: "#{CONFIG.help_email}",
-      logo_square: "#{@site.logo_square.url}"
+      logo_square: "#{@site.logo_square.url}",
+      copyrighted_media_image_urls: {
+        original: "#{image_url("copyright-infringement-original.png")}",
+        large: "#{image_url("copyright-infringement-large.png")}",
+        medium: "#{image_url("copyright-infringement-medium.png")}",
+        small: "#{image_url("copyright-infringement-small.png")}",
+        square: "#{image_url("copyright-infringement-square.png")}"
+      }
     };
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
