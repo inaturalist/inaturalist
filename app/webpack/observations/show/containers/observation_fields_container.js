@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import ObservationFields from "../components/observation_fields";
 import { addObservationFieldValue, removeObservationFieldValue,
   updateObservationFieldValue } from "../ducks/observation";
+import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -16,7 +17,8 @@ function mapDispatchToProps( dispatch ) {
     removeObservationFieldValue: id => { dispatch( removeObservationFieldValue( id ) ); },
     updateObservationFieldValue: ( id, options ) => {
       dispatch( updateObservationFieldValue( id, options ) );
-    }
+    },
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 

@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import ReactDOMServer from "react-dom/server";
+import _ from "lodash";
 import { Panel } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -32,6 +33,20 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         canAgree = true;
       }
     }
+    if ( firstDisplay ) {
+      const compareTaxonID = taxon.rank_level <= 10 ?
+        taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
+      buttons.push( (
+        <a
+          key={ `id-compare-${item.id}` }
+          href={ `/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}` }
+        >
+          <button className="btn btn-default btn-sm">
+            <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+          </button>
+        </a>
+      ) );
+    }
     if ( loggedIn && ( canAgree || userAgreedToThis ) ) {
       buttons.push( (
         <button
@@ -45,18 +60,6 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         </button>
       ) );
     }
-    if ( firstDisplay ) {
-      buttons.push( (
-        <a
-          key={ `id-compare-${item.id}` }
-          href={ `/observations/identotron?observation_id=${observation.id}&taxon_id=${taxon.id}` }
-        >
-          <button className="btn btn-default btn-sm">
-            <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
-          </button>
-        </a>
-      ) );
-    }
     const buttonDiv = ( <div className="buttons">
       <div className="btn-space">
         { buttons }
@@ -68,7 +71,9 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     contents = (
       <div className="identification">
         <div className="taxon">
-          { taxonImageTag }
+          <a href={ `/taxa/${taxon.id}` }>
+            { taxonImageTag }
+          </a>
           <SplitTaxon
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }
@@ -84,24 +89,37 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
-  let status;
+  let statuses = [];
   if ( item.flags && item.flags.length > 0 ) {
     panelClass = "flagged";
-    status = ( <span className="item-status">
+    statuses.push( ( <span key={ `flagged-${item.id}` } className="item-status">
       <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
-    </span> );
+    </span> ) );
   } else if ( item.category && item.current ) {
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
-      status = ( <span className="item-status">
+      statuses.push( ( <span key={ `maverick-${item.id}` } className="item-status">
         <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
-      </span> );
+      </span> ) );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
-      status = ( <span className="item-status">
+      statuses.push( ( <span key={ `improving-${item.id}` } className="item-status">
         <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
-      </span> );
+      </span> ) );
+    } else if ( item.category === "leading" ) {
+      panelClass = "improving";
+      statuses.push( ( <span key={ `leading-${item.id}` } className="item-status">
+        <i className="fa fa-trophy" /> { I18n.t( "leading" ) }
+      </span> ) );
     }
+  }
+  if ( item.taxon_change_id ) {
+    const type = _.snakeCase( item.taxon_change_type );
+    statuses.push( ( <span key={ `change-${item.id}` } className="item-status">
+      { I18n.t( "added_as_a_part_of" ) } <a href={ `/taxon_changes/${item.taxon_change_id}` }>
+        <i className="fa fa-refresh" /> { I18n.t( type ) }
+      </a>
+    </span> ) );
   }
   return (
     <div className={ className }>
@@ -122,7 +140,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
           <span className="time">
             { relativeTime }
           </span>
-          { status }
+          { statuses }
         </span>
         )}
       >

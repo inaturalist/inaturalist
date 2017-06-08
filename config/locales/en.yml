@@ -719,6 +719,7 @@ en:
   community_id: '<strong>Community</strong> ID: '
   community_id_heading: Community ID
   community_id_at_species_or_lower?: Community ID at species or lower?
+  community_id_at_genus_level_or_lower: Community ID at genus level or lower
   community_id_at_species_level_or_lower: Community ID at species level or lower
   community_moderation_settings: Community Moderation Settings
   community_supported_id: Community-supported ID?
@@ -784,6 +785,7 @@ en:
     some_rights_reserved_by: "(c) %{name}, some rights reserved (%{license_short})"
     all_rights_reserved: "(c) %{name}, all rights reserved"
     no_known_copyright_restrictions: "%{name}, no known copyright restrictions (%{license_name})"
+    no_known_copyright_restrictions_text: "no known copyright restrictions"
     no_rights_reserved: no rights reserved
     no_rights_reserved_by: "%{name}, no rights reserved (%{license_name})"
     anonymous: anonymous
@@ -1104,6 +1106,7 @@ en:
   events_only: Events only
   every_species_seen_by: Every species seen by
   everyone: everyone
+  everyone_: Everyone
   everyone_journal_posts: Everyone's Journal Posts
   everywhere: everywhere
   exact_coordinates_obscured_for: Exact coordinates obscured for public view for threatened species.
@@ -1545,6 +1548,7 @@ en:
     species: Most species in %{time}
     observations: Most observations in %{time}
     identifications: Most identifications in %{time}
+  leading: Leading
   learn!: Learn!
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
@@ -2622,11 +2626,13 @@ en:
   rank_restrictions: Rank restrictions
   ranks:
       kingdom: kingdom
+      subkingdom: subkingdom
       phylum: phylum
       subphylum: subphylum
       superclass: superclass
       class: class
       subclass: subclass
+      infraclass: infraclass
       superorder: superorder
       order: order
       suborder: suborder
@@ -2640,6 +2646,9 @@ en:
       subtribe: subtribe
       genus: genus
       genushybrid: genushybrid
+      subgenus: subgenus
+      section: section
+      subsection: subsection
       species: species
       hybrid: hybrid
       subspecies: subspecies
@@ -3708,6 +3717,7 @@ en:
   yesterday: Yesterday
   yesterday_at: ', yesterday at 4pm'
   you: you
+  you_: You
   you_admin: you admin
   you_appear_offline_try_again: |
     You appear to be offline. Please try again when you are connected to the Internet.
@@ -4748,25 +4758,15 @@ en:
           unless you trust the project curators.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: You (<span class="notice status">best option for control over sharing private locations</span>)
-        any: Project members (<span class="success status">best option for sharing your observations with this project</span>)
-        none: No one
+        observer: Yes, but only if I add the observation to the project myself.
+        any: Yes, no matter who adds the observation to the project.
+        none: No.
       curator_coordinate_access_label: |
-        Allow project curators to view the private coordinates of your
-        observations when added to the project by
+        Do you want to make your private/obscured observation coordinates visible to the project curators?
       curator_coordinate_access_note: |
         You can also choose to share the private coordinates of observations
         in this project on a case-by-case basis. These are just the defaults
         for new observations added to the project.
-      project_user_curator_coordinate_access_descriptions:
-        observer: |
-          Only allow project curators to view private coordinates of your
-          observations that you add to this project.
-        any: |
-          Allow project curators to view the private coordinates of your
-          observations added to this project by you and other project members.
-        none: |
-          Don't share private coordinates of your observations with the project curators
       project_terms_desc_html: |
         Allow the curators of this project to use your observations according
         to the <a href="%{url}">project terms</a>.
@@ -5366,6 +5366,7 @@ en:
           attributes:
             place_geometry:
               is_too_large_to_import: is too large to import
+              contains_too_many_observations: contains too many observations to import
         post:
           attributes:
             user:

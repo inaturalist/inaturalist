@@ -13,6 +13,17 @@ body {
   min-width: 980px;
 }
 
+a:hover, a:focus {
+  text-decoration: none;
+}
+a:focus {
+  outline: none;
+}
+.tooltip-inner a {
+  color: white;
+  font-weight: 700;
+}
+
 .input-group.date {
   display: none;
 }
@@ -114,6 +125,12 @@ input.failed {
       }
     }
   }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
+  }
 }
 
 .TaxonAutocomplete {
@@ -198,6 +215,9 @@ a.UserImage {
       color: $inat-green;
       margin-right: 5px;
     }
+    span {
+      vertical-align: text-top;
+    }
   }
 }
 
@@ -213,24 +233,25 @@ a.UserImage {
     background: #fff;
     border: 1px solid $border-grey;
     & > div {
-      padding: 20px;
+      padding: 20px 20px 0px 20px;
     }
     .photos_column {
       border-right: 1px solid $border-grey;
+      min-height: 500px;
       .PhotoBrowser {
+        width: 100%;
         text-align: center;
-        height: 520px;
-        margin-bottom: -39px;
         .image-gallery, .image-gallery-content, .image-gallery-content div {
           height: 100%;
         }
         .image-gallery-slides .easyzoom-flyout {
-          height: 481px;
+          height: 441px;
         }
         .image-gallery-slides img {
           max-height: 480px;
           max-width: 100%;
           width: auto;
+          padding-bottom: 40px;
         }
         .image-gallery-slide {
           line-height: 480px;
@@ -284,7 +305,7 @@ a.UserImage {
         }
         .image-gallery-thumbnails {
           position: absolute;
-          bottom: 20px;
+          bottom: 39px;
           z-index: 1;
           width: 99%;
           background: rgba(255,255,255,0.52);
@@ -306,7 +327,7 @@ a.UserImage {
           color: #808080;
           text-align: left;
           i {
-            line-height: 450px;
+            line-height: 400px;
             display: block;
             text-align: center;
             font-size: 90px;
@@ -314,7 +335,7 @@ a.UserImage {
           }
           span {
             position: absolute;
-            top: 300px;
+            top: 280px;
             width: 100%;
             text-align: center;
             margin-left: -15px;
@@ -409,7 +430,7 @@ a.UserImage {
       }
       textarea {
         min-height: 125px;
-        resize: none;
+        resize: vertical;
         border-radius: 3px;
         background: $light-grey;
       }
@@ -432,7 +453,10 @@ a.UserImage {
   }
   .opposite_activity {
     & > .row > .col-xs-12 > div {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+    h4 {
+      margin-top: 15px;
     }
   }
   .ObservationTitle {
@@ -451,7 +475,7 @@ a.UserImage {
         color: #747474;
         white-space: normal;
       }
-      a.display-name {
+      a.display-name, .noname {
         font-size: 32px;
         line-height: 36px;
         color: #000;
@@ -493,6 +517,18 @@ a.UserImage {
     &.d1 {
       maxheight: 100px !important;
       line-height: 100px;
+    }
+  }
+}
+
+h3, h4 {
+  &.collapsable {
+    i.fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    &.collapsable {
+      cursor: pointer;
     }
   }
 }
@@ -695,7 +731,7 @@ a.UserImage {
   border-top: none;
 }
 
-.Tags, .Projects, .ObservationFields {
+.Tags, .Projects, .ObservationFields, .Annotations, .Identifiers, .Copyright, .QualityMetrics {
   .panel {
     background: none;
     border: 0;
@@ -833,6 +869,8 @@ a.UserImage {
   }
   .panel {
     margin-left: 60px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
   }
   .id_body {
     margin-top: 15px;
@@ -877,6 +915,10 @@ a.UserImage {
       }
       .dropdown-menu {
         margin-right: -10px;
+        .search-links {
+          padding: 3px 20px 5px 20px;
+          min-width: 200px;
+        }
       }
     }
   }
@@ -979,15 +1021,19 @@ a.UserImage {
 .UsersPopoverOverlay {
   .user {
     display: block;
-    .UserImage {
+    .UserImage, .site {
       min-width: 22px;
       width: 22px;
       height: 22px;
       vertical-align: bottom;
+      margin-right: 5px;
       .icon-person {
         font-size: 14px;
         line-height: 20px;
       }
+    }
+    &:not(:first-child) {
+      margin-top: 4px;
     }
   }
   .popover-content {
@@ -1000,7 +1046,8 @@ a.UserImage {
 }
 
 .QualityMetrics {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  padding-right: 25px;
   .metric_title .fa {
     font-size: 18px;
     color: #999999;
@@ -1011,7 +1058,7 @@ a.UserImage {
   .grade {
     font-size: 18px;
     font-weight: 100;
-    margin: 25px 0px 25px;
+    margin: 15px 0px 25px;
   }
   .flag_link {
     color: $other-link-color;
@@ -1197,6 +1244,9 @@ a.UserImage {
 .MoreFromUser {
   padding-bottom: 30px;
   h3 {
+    & > span a {
+      font-weight: 700;
+    }
     .links {
       float: right;
       font-size: 14px;
@@ -1256,7 +1306,12 @@ a.UserImage {
       text-overflow: ellipsis;
       overflow: hidden;
       white-space: nowrap;
+      color: #000;
     }
+  }
+  .view {
+    font-weight: 700;
+    margin-right: 5px;
   }
 }
 
@@ -1366,19 +1421,23 @@ a.UserImage {
     .view {
       color: #aaa;
     }
-    .search {
-      line-height: 24px;
-      white-space: nowrap;
-      .fa {
-        color: $inat-green;
-        margin-right: 5px;
-      }
-      a {
-        color: inherit;
-      }
+  }
+}
+
+.ObservationFieldPopover.popover, .AnnotationPopover.popover, .ActivityItemMenu {
+  .search {
+    line-height: 24px;
+    white-space: nowrap;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    a {
+      color: inherit;
     }
   }
 }
+
 
 .Identifiers {
   .identifier {
@@ -1402,7 +1461,6 @@ a.UserImage {
         margin-top: 4px;
         i {
           font-size: 12px;
-          vertical-align: text-bottom;
         }
       }
     }
@@ -1717,9 +1775,19 @@ a.UserImage {
 .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
+    height: 85%;
+    max-width: 950px;
     min-width: 750px;
+    .modal-content {
+      max-height: none;
+      height: 100%;
+      padding-bottom: 65px;
+      overflow: hidden;
+    }
     .modal-body {
+      height: 100%;
       overflow-x: auto;
+      max-height: none;
     }
     h4:not(:first-child) {
       margin: 30px 0px 10px;
@@ -1909,6 +1977,20 @@ a.UserImage {
   }
 }
 
+.Copyright {
+  a {
+    color: $bootstrap-link-color;
+  }
+  img {
+    display: block;
+    margin-top: 5px;
+  }
+}
+
+.box.opt-out button {
+  margin-left: 10px;
+}
+
 
 
 
@@ -2056,6 +2138,9 @@ body > div > [role="dialog"] .easyzoom > a > img {
   border-top: 15px solid #74ac00;
 }
 
+.observations.infowindow .observation {
+  width: 245px;
+}
 
 
 

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import QualityMetrics from "../components/quality_metrics";
 import { voteMetric, unvoteMetric } from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
+import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -19,7 +20,8 @@ function mapDispatchToProps( dispatch ) {
   return {
     setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); },
     voteMetric: ( metric, params ) => { dispatch( voteMetric( metric, params ) ); },
-    unvoteMetric: ( metric ) => { dispatch( unvoteMetric( metric ) ); }
+    unvoteMetric: ( metric ) => { dispatch( unvoteMetric( metric ) ); },
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 

@@ -29,7 +29,7 @@ function( ObservationsFactory, shared, $scope ) {
     return I18n.t( "x_species_link_html", {
       count: u.species_count,
       url: $scope.searchURL + "&user_id=" + u.login +
-        "&hrank=species&lrank=species&view=species"
+        "&hrank=species&view=species"
     });
   };
   $scope.taxonObservationsLink = function( t ) {

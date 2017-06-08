@@ -23,9 +23,9 @@ import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
 import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
-import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
-import QualityMetricsContainer from "../containers/quality_metrics_container";
 import ConfirmModalContainer from "../containers/confirm_modal_container";
+import CopyrightContainer from "../containers/copyright_container";
+import AssessmentContainer from "../containers/assessment_container";
 
 moment.locale( "en", {
   relativeTime: {
@@ -45,8 +45,8 @@ moment.locale( "en", {
   }
 } );
 
-const App = ( { observation, config, controlledTerms } ) => {
-  if ( _.isEmpty( observation ) ) {
+const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
+  if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
         <div className="loading_spinner" />
@@ -55,12 +55,6 @@ const App = ( { observation, config, controlledTerms } ) => {
   }
   const viewerIsObserver = config && config.currentUser &&
     config.currentUser.id === observation.user.id;
-  const editButton = (
-    viewerIsObserver ?
-      <Button bsStyle="primary" className="edit" href={ `/observations/${observation.id}/edit` } >
-        { I18n.t( "edit_observation" ) }
-      </Button> : null
-  );
   const photosColClass =
     ( ( !observation.photos || observation.photos.length === 0 ) &&
     ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
@@ -111,9 +105,13 @@ const App = ( { observation, config, controlledTerms } ) => {
       <div className="upper">
         <Grid>
           <Row className="title_row">
-            <Col xs={10}>
+            <Col xs={ viewerIsObserver ? 10 : 12 }>
               <div className="ObservationTitle">
-                <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
+                <SplitTaxon
+                  taxon={ observation.taxon }
+                  url={ taxonUrl }
+                  placeholder={observation.species_guess}
+                />
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
@@ -121,9 +119,17 @@ const App = ( { observation, config, controlledTerms } ) => {
                 </span>
               </div>
             </Col>
-            <Col xs={2}>
-              { editButton }
-            </Col>
+            { viewerIsObserver ? (
+              <Col xs={2}>
+                <Button
+                  bsStyle="primary"
+                  className="edit"
+                  href={ `/observations/${observation.id}/edit` }
+                >
+                  { I18n.t( "edit_observation" ) }
+                </Button>
+              </Col> ) : ""
+            }
           </Row>
           <Row>
             <Col xs={12}>
@@ -137,7 +143,6 @@ const App = ( { observation, config, controlledTerms } ) => {
                       { !viewerIsObserver ? ( <FollowButtonContainer /> ) : null }
                       <UserWithIcon user={ observation.user } />
                     </div>
-                    <MapContainer />
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "observed" ) }:</span>
@@ -153,20 +158,7 @@ const App = ( { observation, config, controlledTerms } ) => {
                         </span>
                       </Col>
                     </Row>
-                    <Row className="stats_row">
-                      <Col xs={4}>
-                        <i className="fa fa-comment" />
-                        { observation.comments_count }
-                      </Col>
-                      <Col xs={4}>
-                        <i className="fa fa-tag" />
-                        { observation.identifications_count }
-                      </Col>
-                      <Col xs={4}>
-                        <i className="fa fa-star" />
-                        { observation.faves.length }
-                      </Col>
-                    </Row>
+                    <MapContainer />
                     <Row className="faves_row">
                       <Col xs={12}>
                         <FavesContainer />
@@ -219,11 +211,7 @@ const App = ( { observation, config, controlledTerms } ) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <div className="Copyright">
-                    <h4>Copyright Info</h4>
-                    Observation &copy; { observation.user.login } &middot;
-                    All Rights Reserved
-                  </div>
+                  <CopyrightContainer />
                 </Col>
               </Row>
             </Col>
@@ -231,16 +219,7 @@ const App = ( { observation, config, controlledTerms } ) => {
         </Grid>
       </div>
       <div className="data_quality_assessment">
-        <Grid>
-          <Row>
-            <Col xs={7}>
-              <QualityMetricsContainer />
-            </Col>
-            <Col xs={5}>
-              <ResearchGradeProgressContainer />
-            </Col>
-          </Row>
-        </Grid>
+        <AssessmentContainer />
       </div>
       <div className="more_from">
         <Grid>
@@ -266,19 +245,21 @@ const App = ( { observation, config, controlledTerms } ) => {
       <FlaggingModalContainer />
       <ConfirmModalContainer />
       <CommunityIDModalContainer />
+      <div className="quiet box text-center opt-out">
+        { I18n.t( "tired_of_testing_this_new_version" ) }
+        <Button className="btn-sm" bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
+          { I18n.t( "take_me_back" ) }
+        </Button>
+      </div>
     </div>
   );
 };
 
 App.propTypes = {
-  observation: PropTypes.object,
   config: PropTypes.object,
   controlledTerms: PropTypes.array,
-  addComment: PropTypes.func,
-  deleteComment: PropTypes.func,
-  addID: PropTypes.func,
-  deleteID: PropTypes.func,
-  restoreID: PropTypes.func
+  leaveTestGroup: PropTypes.func,
+  observation: PropTypes.object
 };
 
 export default App;

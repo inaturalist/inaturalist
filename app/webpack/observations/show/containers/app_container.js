@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
-import { setFlaggingModalState } from "../ducks/flagging_modal";
+import { leaveTestGroup } from "../ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); }
+    leaveTestGroup: group => { dispatch( leaveTestGroup( group ) ); }
   };
 }
 

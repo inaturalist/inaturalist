@@ -10,6 +10,9 @@
   %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: SITE_NAME), property: "og:description"}
 - content_for(:title) do
   = t(:a_community_for_naturalist)
+- if announcement = @announcements.detect{|a| a.placement == "welcome/index"}
+  .announcement
+    = announcement.body.html_safe
 - if @page
   - content_for(:extrajs) do
     = google_maps_js

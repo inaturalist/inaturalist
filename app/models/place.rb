@@ -487,11 +487,15 @@ class Place < ActiveRecord::Base
       add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
       return
     end
-    # 100 is roughly the size of Ethiopia
-    if other_attrs[:user] && geom.respond_to?(:area) &&
-       geom.area > 100.0 && !other_attrs[:user].is_admin?
-      errors.add(:place_geometry, :is_too_large_to_import)
-      return
+    # 66 is roughly the size of Texas
+    if other_attrs[:user] && !other_attrs[:user].is_admin?
+      if geom.respond_to?(:area) && geom.area > 66.0
+        errors.add(:place_geometry, :is_too_large_to_import)
+        return
+      elsif Observation.where("ST_Intersects(private_geom, ?)", geom).count >= 500000
+        errors.add(:place_geometry, :contains_too_many_observations)
+        return
+      end
     end
     other_attrs.delete(:user)
     other_attrs.merge!(:geom => geom, :place => self)
@@ -758,7 +762,7 @@ class Place < ActiveRecord::Base
     end
     if check_list
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )
-    elsif mergee.check_list.listed_taxa.count > 0
+    elsif mergee.check_list && mergee.check_list.listed_taxa.count > 0
       mergee.check_list.update_attributes( place_id: id, title: "MERGED #{mergee.check_list.title}")
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( place_id: id )
     end

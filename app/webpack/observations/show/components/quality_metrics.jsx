@@ -109,13 +109,13 @@ class QualityMetrics extends React.Component {
     _.each( this.props.qualityMetrics[metric], m => {
       const agree = ( "vote_scope" in m ) ? m.vote_flag : m.agree;
       if ( agree ) {
-        votersFor.push( m.user );
+        votersFor.push( m.user || { } );
         if ( m.api_status ) { voteForLoading = true; }
       } else {
-        votersAgainst.push( m.user );
+        votersAgainst.push( m.user || { } );
         if ( m.api_status ) { voteAgainstLoading = true; }
       }
-      if ( loggedIn && m.user.id === config.currentUser.id ) {
+      if ( loggedIn && m.user && m.user.id === config.currentUser.id ) {
         userVotedFor = agree;
         userVotedAgainst = !agree;
       }
@@ -197,15 +197,21 @@ class QualityMetrics extends React.Component {
     const checkIcon = ( <i className="fa fa-check check" /> );
     const hasMedia = ( observation.photos.length + observation.sounds.length ) > 0;
     const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );
+    const atLeastGenus = ( observation.taxon && observation.taxon.rank_level <= 20 );
     const mostAgree = observation.identifications_most_agree;
     const wildCells = this.voteCellsForMetric( "wild" );
     const locationCells = this.voteCellsForMetric( "location" );
     const dateCells = this.voteCellsForMetric( "date" );
     const evidenceCells = this.voteCellsForMetric( "evidence" );
     const recentCells = this.voteCellsForMetric( "recent" );
+    const needsIDInfo = this.infoForMetric( "needs_id" );
+    const rankText = needsIDInfo.mostDisagree ?
+      I18n.t( "community_id_at_genus_level_or_lower" ) :
+      I18n.t( "community_id_at_species_level_or_lower" );
+    const rankPassed = needsIDInfo.mostDisagree ?
+      atLeastGenus : atLeastSpecies;
     return (
       <div className="QualityMetrics">
-        <h3>{ I18n.t( "data_quality_assessment" ) }</h3>
         <div className="grade">
           { I18n.t( "quality_grade_" ) }:
           <span className={ `quality_grade ${observation.quality_grade} ` }>
@@ -272,7 +278,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={ wildCells.loading ? "disabled" : "" }>
               <td className="metric_title">
-                <i className="fa fa-bolt" />
+                <i className="fa icon-icn-wild" />
                 { I18n.t( "organism_is_wild" ) }
               </td>
               <td className="agree">{ wildCells.agreeCell }</td>
@@ -280,7 +286,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={ evidenceCells.loading ? "disabled" : "" }>
               <td className="metric_title">
-                <i className="fa fa-bolt" />
+                <i className="fa icon-icn-dna" />
                 { I18n.t( "evidence_of_organism" ) }
               </td>
               <td className="agree">{ evidenceCells.agreeCell }</td>
@@ -288,7 +294,7 @@ class QualityMetrics extends React.Component {
             </tr>
             <tr className={ recentCells.loading ? "disabled" : "" }>
               <td className="metric_title">
-                <i className="fa fa-bolt" />
+                <i className="fa fa-clock-o" />
                 { I18n.t( "recent_evidence_of_organism" ) }
               </td>
               <td className="agree">{ recentCells.agreeCell }</td>
@@ -297,10 +303,10 @@ class QualityMetrics extends React.Component {
             <tr>
               <td className="metric_title">
                 <i className="fa fa-leaf" />
-                { I18n.t( "community_id_at_species_level_or_lower" ) }
+                { rankText }
               </td>
-              <td className="agree">{ atLeastSpecies ? checkIcon : null }</td>
-              <td className="disagree">{ atLeastSpecies ? null : checkIcon }</td>
+              <td className="agree">{ rankPassed ? checkIcon : null }</td>
+              <td className="disagree">{ rankPassed ? null : checkIcon }</td>
             </tr>
             <tr className="improve">
               <td className="metric_title" colSpan={ 3 }>

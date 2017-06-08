@@ -18,7 +18,8 @@ class Map extends React.Component {
       return ( <div className="Map">
         <div className="no_location">
           <i className="fa fa-map-marker" />
-          { I18n.t( "location_unknown" ) }
+          { observation.geoprivacy === "private" ?
+            I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
         </div>
       </div> );
     }
@@ -31,27 +32,27 @@ class Map extends React.Component {
         "latitude",
         "longitude",
         "positional_accuracy",
+        "public_positional_accuracy",
         "geoprivacy",
         "taxon",
         "user"
       ] );
-      obsForMap.coordinates_obscured = observation.obscured;
+      obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
+      const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
       taxonMap = (
         <TaxonMap
-          key={`map-for-${observation.id}`}
+          key={ mapKey }
+          reloadKey={ mapKey }
           taxonLayers={[{
             taxon: obsForMap.taxon,
             observations: { observation_id: obsForMap.id },
             places: { disabled: true },
             gbif: { disabled: true }
           }] }
-          static
           observations={[obsForMap]}
           zoomLevel={ observation.map_scale || 8 }
-          mapTypeControl={false}
           showAccuracy
           showAllLayer={false}
-          scrollwheel={false}
           overlayMenu
           clickable={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
@@ -59,13 +60,14 @@ class Map extends React.Component {
       );
     }
     let placeGuessElement;
-    let placeGuess = observation.place_guess;
+    let placeGuess = observation.private_place_guess || observation.place_guess;
     if ( placeGuess ) {
       let showMore;
-      const obscured = observation.obscured && ( <span className="obscured">(Obscured)</span> );
+      const obscured = observation.obscured && !observation.private_geojson &&
+        ( <span className="obscured">({ I18n.t( "obscured" )})</span> );
       const showLength = observation.obscured ? 22 : 32;
-      if ( observation.place_guess.length > showLength && !this.state.showLongLabel ) {
-        placeGuess = `${observation.place_guess.substring( 0, showLength ).trim( )}...`;
+      if ( placeGuess.length > showLength && !this.state.showLongLabel ) {
+        placeGuess = `${placeGuess.substring( 0, showLength ).trim( )}...`;
         showMore = (
           <div className="show-more">
             <div onClick={ ( ) => { this.setState( { showLongLabel: true } ); } }>

@@ -134,6 +134,7 @@ else
   <<-SQL
     tat.rank = 'species'
     AND o.num_failing_metrics = 0
+    AND o.community_taxon_id IS NOT NULL
   SQL
 end
 # If species_ids passed in as a param just use those
@@ -257,6 +258,7 @@ CSV.open( photos_path, "wb" ) do |csv|
         else
           rows.select{ |r| !r["community_taxon_id"].blank? }
         end
+        next if rg_rows.blank? # if for some reason we're looking at a species with no RG or RG* observations, don't even bother including it
         # Fill our test quota first
         if rg_rows.size > 0 && actual_number_of_test_users < desired_number_of_test_users
           photosets[:test] += rg_rows

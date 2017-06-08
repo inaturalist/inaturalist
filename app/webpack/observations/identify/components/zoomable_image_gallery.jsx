@@ -1,3 +1,4 @@
+import _ from "lodash";
 import ReactDOM from "react-dom";
 import ImageGallery from "react-image-gallery";
 import EasyZoom from "EasyZoom/dist/easyzoom";
@@ -16,7 +17,8 @@ class ZoomableImageGallery extends ImageGallery {
       }
       return null;
     } );
-    $( ".image-gallery-slide .easyzoom", domNode ).easyZoom( {
+    const easyZoomTarget = $( ".image-gallery-slide .easyzoom", domNode );
+    easyZoomTarget.easyZoom( {
       eventType: "click",
       onShow( ) {
         this.$link.addClass( "easyzoom-zoomed" );
@@ -25,6 +27,16 @@ class ZoomableImageGallery extends ImageGallery {
         this.$link.removeClass( "easyzoom-zoomed" );
       },
       loadingNotice: I18n.t( "loading" )
+    } );
+    // close the zoomed image when mouse is out of the container
+    easyZoomTarget.on( {
+      "mouseleave.easyzoom touchend.easyzoom": () => {
+        console.log( "Asdfasdf" );
+        _.each( easyZoomTarget, t => {
+          console.log( t );
+          $( t ).data( "easyZoom" )._onLeave( );
+        } );
+      }
     } );
   }
 }

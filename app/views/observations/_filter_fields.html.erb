@@ -428,9 +428,6 @@
 <input type="hidden" name="list_id" id="list_id" value="<%= @list.try(:id) %>"/>
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
-<input type="hidden" name="changed_fields" value="<%= @changed_fields %>"/>
-<input type="hidden" name="changed_since" value="<%= @changed_since %>"/>
-<input type="hidden" name="change_project_id" value="<%= @change_project_id %>"/>
 
 <% if CONFIG.site_only_observations -%>
   <div class="right buttonrow">

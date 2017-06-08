@@ -239,7 +239,7 @@ TaxonPageTabs.propTypes = {
 };
 
 TaxonPageTabs.defaultProps = {
-  chosenTab: "articles"
+  chosenTab: "map"
 };
 
 export default TaxonPageTabs;

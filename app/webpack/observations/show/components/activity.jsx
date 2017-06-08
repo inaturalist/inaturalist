@@ -28,9 +28,9 @@ class Activity extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     if ( !observation ) { return ( <div /> ); }
-    const activity = _.sortBy(
-      observation.identifications.concat( observation.comments ), a => (
-        moment.parseZone( a.created_at ) ) );
+    let activity = _.compact( ( observation.identifications || [] ).
+      concat( observation.comments ) );
+    activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
     const tabs = (
       <Tabs defaultActiveKey="comment">
         <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
@@ -89,15 +89,19 @@ class Activity extends React.Component {
           <Button className="comment_id" bsSize="small" onClick={
             ( ) => {
               if ( $( ".comment_tab" ).is( ":visible" ) ) {
-                this.props.addComment( $( ".comment_tab textarea" ).val( ) );
-                $( ".comment_tab textarea" ).val( "" );
+                const comment = $( ".comment_tab textarea" ).val( );
+                if ( comment ) {
+                  this.props.addComment( $( ".comment_tab textarea" ).val( ) );
+                  $( ".comment_tab textarea" ).val( "" );
+                }
               } else {
-                const selectedTaxon = $( ".id_tab input[name='taxon_name']" ).
-                  data( "uiAutocomplete" ).selectedItem;
+                const input = $( ".id_tab input[name='taxon_name']" );
+                const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
                 if ( selectedTaxon ) {
                   this.props.addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                  $( ".id_tab input[name='taxon_name']" ).trigger( "resetSelection" );
-                  $( ".id_tab input[name='taxon_name']" ).val( "" );
+                  input.trigger( "resetSelection" );
+                  input.val( "" );
+                  input.data( "uiAutocomplete" ).selectedItem = null;
                   $( ".id_tab textarea" ).val( "" );
                 }
               }

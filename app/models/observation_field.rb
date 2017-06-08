@@ -23,30 +23,20 @@ class ObservationField < ActiveRecord::Base
   before_validation :strip_allowed_values
   validate :allowed_values_has_pipes
 
+  after_save :reindex_observations_if_name_changed
+
   scope :recently_used_by, lambda {|user|
     user_id = user.is_a?(User) ? user.id : user.to_i
     subsql = <<-SQL
       SELECT observation_field_id, max(observation_field_values.id) AS ofv_max_id
       FROM observation_field_values
-        INNER JOIN observations ON observations.id = observation_field_values.observation_ID
-      WHERE observations.user_id = #{user_id}
+      WHERE user_id = #{user_id}
       GROUP BY observation_field_id
     SQL
     select("observation_fields.*, ofvs.ofv_max_id").
     joins("INNER JOIN (#{subsql}) ofvs ON ofvs.observation_field_id = observation_fields.id").
     order("ofvs.ofv_max_id DESC")
   }
-
-  # overselection alternative: faster, but sort of bad for people who use the same field a lot
-  # def self.recently_used_by(user)
-  #   ObservationFieldValue.
-  #     joins(:observation).
-  #     where("observations.user_id = ?", user).
-  #     limit(50).
-  #     order("observation_field_values.id DESC").
-  #     includes(:observation_field).
-  #     map(&:observation_field).uniq[0..10]
-  # end
   
   TYPES = %w(text numeric date time datetime taxon dna)
   TYPES.each do |t|
@@ -138,6 +128,14 @@ class ObservationField < ActiveRecord::Base
     self.update(
       values_count: observation_field_values.count,
       users_count: observation_field_values.select(:user_id).uniq.count)
+  end
+
+  def reindex_observations_if_name_changed
+    if name_changed?
+      Observation.elastic_index!(ids:
+        ObservationFieldValue.where( observation_field_id: self.id).pluck(:observation_id),
+        delay: true)
+    end
   end
 
   def self.default_json_options

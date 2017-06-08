@@ -3,6 +3,7 @@ import Projects from "../components/projects";
 import { addToProject, confirmRemoveFromProject } from "../ducks/observation";
 import { joinProject } from "../ducks/projects";
 import { updateCuratorAccess } from "../ducks/project_observations";
+import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -16,7 +17,8 @@ function mapDispatchToProps( dispatch ) {
     addToProject: ( project ) => { dispatch( addToProject( project ) ); },
     removeFromProject: ( project ) => { dispatch( confirmRemoveFromProject( project ) ); },
     joinProject: ( project ) => { dispatch( joinProject( project ) ); },
-    updateCuratorAccess: ( po, value ) => { dispatch( updateCuratorAccess( po, value ) ); }
+    updateCuratorAccess: ( po, value ) => { dispatch( updateCuratorAccess( po, value ) ); },
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 

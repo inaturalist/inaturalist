@@ -22,7 +22,8 @@ function fetchObservations( ) {
     const apiParams = Object.assign( {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
-      locale: I18n.locale
+      locale: I18n.locale,
+      ttl: -1
     }, paramsForSearch( s.searchParams.params ) );
     if ( s.config.blind ) {
       apiParams.order_by = "random";

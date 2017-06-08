@@ -184,7 +184,8 @@ GEM
     acts-as-taggable-on (3.4.3)
       activerecord (>= 3.2, < 5)
     acts_as_votable (0.10.0)
-    addressable (2.4.0)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     airbrake (4.1.0)
       builder
       multi_json
@@ -321,12 +322,12 @@ GEM
     doorkeeper (2.1.0)
       railties (>= 3.1)
     dynamic_form (1.1.4)
-    elasticsearch (1.0.8)
-      elasticsearch-api (= 1.0.7)
-      elasticsearch-transport (= 1.0.7)
-    elasticsearch-api (1.0.7)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
       multi_json
-    elasticsearch-transport (1.0.7)
+    elasticsearch-transport (5.0.4)
       faraday
       multi_json
     equalizer (0.0.9)
@@ -340,8 +341,7 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
-    fastimage (1.7.0)
-      addressable (~> 2.3, >= 2.3.5)
+    fastimage (2.1.0)
     ffi (1.9.10)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
@@ -497,6 +497,7 @@ GEM
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
+    public_suffix (2.0.5)
     puma (3.4.0)
     rack (1.6.4)
     rack-mobile-detect (0.4.0)
@@ -731,6 +732,8 @@ DEPENDENCIES
   diffy
   doorkeeper
   dynamic_form
+  elasticsearch (~> 5.0)
+  elasticsearch-api (~> 5.0)
   elasticsearch-model!
   elasticsearch-rails!
   exifr
@@ -808,4 +811,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.13.6
+   1.14.6

@@ -9,30 +9,30 @@ class Identification < ActiveRecord::Base
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :uuid, index: "not_analyzed"
-      indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
-      indexes :category, index: "not_analyzed"
+      indexes :uuid, type: "keyword"
+      indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :category, type: "keyword"
       indexes :observation do
-        indexes :uuid, index: "not_analyzed"
-        indexes :quality_grade, index: "not_analyzed"
+        indexes :uuid, type: "keyword"
+        indexes :quality_grade, type: "keyword"
         indexes :taxon do
-          indexes :ancestry, index: "not_analyzed"
-          indexes :min_species_ancestry, index: "not_analyzed"
-          indexes :rank, index: "not_analyzed"
-          indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+          indexes :ancestry, type: "keyword"
+          indexes :min_species_ancestry, type: "keyword"
+          indexes :rank, type: "keyword"
+          indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         end
         indexes :user do
-          indexes :login, index: "not_analyzed"
+          indexes :login, type: "keyword"
         end
       end
       indexes :taxon do
-        indexes :ancestry, index: "not_analyzed"
-        indexes :min_species_ancestry, index: "not_analyzed"
-        indexes :rank, index: "not_analyzed"
-        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :ancestry, type: "keyword"
+        indexes :min_species_ancestry, type: "keyword"
+        indexes :rank, type: "keyword"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       end
       indexes :user do
-        indexes :login, index: "not_analyzed"
+        indexes :login, type: "keyword"
       end
     end
   end

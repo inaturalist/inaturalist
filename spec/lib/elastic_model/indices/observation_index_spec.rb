@@ -563,8 +563,8 @@ describe "Observation Index" do
       ofv_params = { whatever: { observation_field: of, value: "testvalue" } }
       expect( Observation.params_to_elastic_query({ ofv_params: ofv_params }) ).to include(
         filters: [ { nested: { path: "ofvs", query: { bool: { must: [
-          { match: { "ofvs.name" => of.name } },
-          { match: { "ofvs.value" => "testvalue" }}]}}}}])
+          { match: { "ofvs.name_ci" => of.name } },
+          { match: { "ofvs.value_ci" => "testvalue" }}]}}}}])
     end
 
     it "filters by conservation status" do

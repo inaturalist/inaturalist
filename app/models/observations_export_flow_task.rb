@@ -2,6 +2,7 @@
 class ObservationsExportFlowTask < FlowTask
   validate :must_have_query
   validate :must_have_primary_filter
+  validate :must_have_reasonable_number_of_rows
   validates_presence_of :user_id
 
   before_save do |record|
@@ -27,11 +28,20 @@ class ObservationsExportFlowTask < FlowTask
     end
   end
 
+  def must_have_reasonable_number_of_rows
+    if observations_count > 200000
+      errors.add(:base, "Exports cannot contain more than 200,000 observations")
+    end
+  end
+
   def to_s
     "<#{self.class.name} #{id}>"
   end
 
   def run(run_options = {})
+    # site will be looked up tons of times in TaxonName.choose_common_name,
+    # so store it in CONFIG
+    CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @logger = run_options[:logger] if run_options[:logger]
     @debug = run_options[:debug]
     update_attributes(finished_at: nil, error: nil, exception: nil)
@@ -75,22 +85,17 @@ class ObservationsExportFlowTask < FlowTask
     includes << { observation_field_values: :observation_field }
     includes << :photos if export_columns.detect{ |c| c == 'image_url' }
     includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
-    if params[:changed_since]
-      includes << :model_attribute_changes
-      includes << { project_observations_with_changes: :model_attribute_changes }
-    end
     includes
   end
 
   def observations_count
     return 0 if params.blank?
-    Observation.elastic_query(params).total_entries
+    Observation.elastic_query(params.merge(per_page: 1)).total_entries
   end
 
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
     json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
-    json_opts[:methods] = [:last_changed] if export_columns.include?("last_changed")
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
     open(json_path, "w") do |f|
       f << "["
@@ -132,9 +137,7 @@ class ObservationsExportFlowTask < FlowTask
           logger.info "Obs #{obs_i} (#{observation.id})" if @debug
           csv << columns.map do |c|
             c = "cached_tag_list" if c == "tag_list"
-            if c == "last_changed"
-              observation.send(c, params) rescue nil
-            elsif c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
+            if c =~ /^private_/ && !observation.coordinates_viewable_by?( user )
               nil
             else
               observation.send(c) rescue nil
@@ -189,9 +192,6 @@ class ObservationsExportFlowTask < FlowTask
       if filter_user = User.find_by_id(user_id) || User.find_by_login(user_id)
         filter_user === user
       end
-    end
-    if params[:changed_since]
-      exp_columns << "last_changed"
     end
     unless viewer_curates_project || viewer_is_owner
       exp_columns = exp_columns.select{|c| c !~ /^private_/}

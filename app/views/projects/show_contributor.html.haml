@@ -68,7 +68,6 @@
           = f.radio_button :preferred_curator_coordinate_access, option,
             label_after: true, 
             label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}"), 
-            description: t("views.projects.project_user_curator_coordinate_access_descriptions.#{option}"),
             data: {autosubmit: true}
       = link_to t(:leave_this_project) , confirm_leave_project_path(@project), 'class': "ui description"
 

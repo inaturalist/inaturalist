@@ -1,14 +1,17 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover } from "react-bootstrap";
+import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../identify/components/user_image";
 
 class Annotations extends React.Component {
 
-  constructor( ) {
-    super( );
-    this.annotationRow = this.annotationRow.bind( this );
+  constructor( props ) {
+    super( props );
+    const currentUser = props.config && props.config.currentUser;
+    this.state = {
+      open: currentUser ? !currentUser.prefers_hide_obs_show_annotations : true
+    };
   }
 
   annotationRow( a, term ) {
@@ -75,6 +78,8 @@ class Annotations extends React.Component {
         keyPrefix={ `votes-against-${a.controlled_value.id}` }
         contents={ ( <span>{votersAgainst.length}</span> ) }
       /> );
+    const attr = a.controlled_attribute;
+    const value = a.controlled_value;
     const termPopover = (
       <Popover
         id={ `annotation-popover-${a.uuid}` }
@@ -83,17 +88,16 @@ class Annotations extends React.Component {
         <div className="contents">
           <div className="view">{ I18n.t( "view" ) }:</div>
           <div className="search">
-            <a href={ `/observations?term_id=${a.controlled_attribute.id}&term_value_id=${a.controlled_value.id}` }>
+            <a href={ `/observations?term_id=${attr.id}&term_value_id=${value.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
               { I18n.t( "observations_annotated_with_annotation", { annotation:
-                `${a.controlled_attribute.label}: ${a.controlled_value.label}` } ) }
+                `${attr.label}: ${value.label}` } ) }
             </a>
           </div>
           <div className="search">
-            <a href={ `/observations?term_id=${a.controlled_attribute.id}` }>
+            <a href={ `/observations?term_id=${attr.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              { I18n.t( "observations_annotated_with_annotation", { annotation:
-                a.controlled_attribute.label } ) }
+              { I18n.t( "observations_annotated_with_annotation", { annotation: attr.label } ) }
             </a>
           </div>
         </div>
@@ -101,7 +105,7 @@ class Annotations extends React.Component {
     );
     return (
       <tr
-        key={ `term-row-${a.controlled_value.id}` }
+        key={ `term-row-${value.id}` }
         className={ a.api_status ? "disabled" : "" }
       >
         <td className="attribute">
@@ -117,7 +121,7 @@ class Annotations extends React.Component {
         </td>
         <td className="value">
           <UserImage user={ a.user } />
-          { a.controlled_value.label }
+          { value.label }
           { action }
         </td>
         <td className="agree">
@@ -240,20 +244,34 @@ class Annotations extends React.Component {
 
     return (
       <div className="Annotations">
-        <h4>{ I18n.t( "annotations" ) }</h4>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>{ I18n.t( "attribute" ) }</th>
-              <th>{ I18n.t( "value" ) }</th>
-              <th>{ I18n.t( "agree_" ) }</th>
-              <th>{ I18n.t( "disagree_" ) }</th>
-            </tr>
-          </thead>
-          <tbody>
-            { rows }
-          </tbody>
-        </table>
+        <h4
+          className="collapsable"
+          onClick={ ( ) => {
+            if ( this.loggedIn ) {
+              this.props.updateSession( {
+                prefers_hide_obs_show_annotations: this.state.open } );
+            }
+            this.setState( { open: !this.state.open } );
+          } }
+        >
+          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
+          { I18n.t( "annotations" ) } ({ observation.annotations.length })
+        </h4>
+        <Panel collapsible expanded={ this.state.open }>
+          <table className="table">
+            <thead>
+              <tr>
+                <th>{ I18n.t( "attribute" ) }</th>
+                <th>{ I18n.t( "value" ) }</th>
+                <th>{ I18n.t( "agree_" ) }</th>
+                <th>{ I18n.t( "disagree_" ) }</th>
+              </tr>
+            </thead>
+            <tbody>
+              { rows }
+            </tbody>
+          </table>
+        </Panel>
       </div>
     );
   }
@@ -266,7 +284,8 @@ Annotations.propTypes = {
   addAnnotation: PropTypes.func,
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
-  unvoteAnnotation: PropTypes.func
+  unvoteAnnotation: PropTypes.func,
+  updateSession: PropTypes.func
 };
 
 export default Annotations;
