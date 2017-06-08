@@ -187,7 +187,7 @@ class Emailer < ActionMailer::Base
     if site_uri = URI.parse( site_url )
       opts[:host] = site_uri.host
       if port = site_uri.port
-        opts[:port] = port if port != 80
+        opts[:port] = port unless [80, 443].include?( port )
       end
     end
     opts
