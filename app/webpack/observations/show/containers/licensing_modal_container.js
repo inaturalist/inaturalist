@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import LicensingModal from "../components/licensing_modal";
 import { setLicensingModalState } from "../ducks/licensing_modal";
-import { updateObservation } from "../ducks/observation";
+import { setAttributes, updateObservation } from "../ducks/observation";
 import { setConfig } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
@@ -15,6 +15,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     setConfig: attributes => { dispatch( setConfig( attributes ) ); },
+    setAttributes: attributes => { dispatch( setAttributes( attributes ) ); },
     updateObservation: attributes => { dispatch( updateObservation( attributes ) ); },
     setLicensingModalState: ( key, value ) => {
       dispatch( setLicensingModalState( key, value ) );

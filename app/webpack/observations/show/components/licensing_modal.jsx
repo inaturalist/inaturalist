@@ -16,7 +16,7 @@ class LicensingModal extends Component {
   }
 
   save( ) {
-    const selectedLicense = $( ".LicensingModal input:checked" ).attr( "value" );
+    const selectedLicense = $( ".LicensingModal input:checked" ).attr( "value" ) || "";
     const makeDefault = $( ".LicensingModal #make_default" ).is( ":checked" );
     const updatePast = $( ".LicensingModal #update_past" ).is( ":checked" );
     const obsAttrs = { license: selectedLicense };
@@ -27,6 +27,7 @@ class LicensingModal extends Component {
       obsAttrs.make_licenses_same = true;
     }
     this.props.updateObservation( obsAttrs );
+    this.props.setAttributes( { license_code: selectedLicense.toLowerCase( ) } );
     if ( makeDefault ) {
       const updatedUser = Object.assign( { }, this.props.config.currentUser, {
         preferred_observation_license: selectedLicense.toLowerCase( )
@@ -282,6 +283,7 @@ class LicensingModal extends Component {
 LicensingModal.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
+  setAttributes: PropTypes.func,
   setConfig: PropTypes.func,
   setLicensingModalState: PropTypes.func,
   updateObservation: PropTypes.func,
