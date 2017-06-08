@@ -174,7 +174,8 @@ namespace :inaturalist do
                  "add_life_stage_egg_annotation",
                  "add_sex_female_annotation",
                  "add_sex_male_annotation",
-                 "data_quality", "checklist", "misidentifications", "frequency"
+                 "data_quality", "checklist", "misidentifications",
+                 "frequency", "rg_observations"
                 ]
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|

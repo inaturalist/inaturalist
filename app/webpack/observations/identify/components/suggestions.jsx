@@ -200,8 +200,8 @@ class Suggestions extends React.Component {
                   label={ I18n.t( "source" ) }
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   chosen={ query.source }
-                  choices={["checklist", "observations", "misidentifications"]}
-                  defaultChoice="checklist"
+                  choices={["observations", "rg_observations", "checklist", "misidentifications"]}
+                  defaultChoice="observations"
                   preIconClass={ false }
                   postIconClass="fa fa-angle-down"
                   hideClear
@@ -236,9 +236,9 @@ class Suggestions extends React.Component {
               ) : null }
               { comprehensiveList ? (
                 <div className="comprehensive-list">
-                  Comprehensive List: <a target="_blank" href={`/lists/${comprehensiveList.id}`}>
+                  {I18n.t( "comprehensive_list" )}: <a target="_blank" href={`/lists/${comprehensiveList.id}`}>
                     { comprehensiveList.title } { comprehensiveList.source ? (
-                      <span>(Source: { comprehensiveList.source.in_text })</span>
+                      <span>({I18n.t( "source_" )} { comprehensiveList.source.in_text })</span>
                     ) : null }
                   </a>
                 </div>
@@ -263,7 +263,7 @@ class Suggestions extends React.Component {
                       return false;
                     } }
                   >
-                    <i className="fa fa-arrow-circle-left"></i> Back to suggestions
+                    <i className="fa fa-arrow-circle-left"></i> { I18n.t( "back_to_suggestions" ) }
                   </a>
                 </div>
                 { detailTaxon ? (
@@ -278,9 +278,9 @@ class Suggestions extends React.Component {
                       />
                     </div>
                     { detailTaxon.wikipedia_summary ?
-                      <UserText text={`${detailTaxon.wikipedia_summary} (Source: Wikipedia)`} /> : null
+                      <UserText text={`${detailTaxon.wikipedia_summary} (${I18n.t( "source_wikipedia" )})`} /> : null
                     }
-                    <h4>Map of Observations</h4>
+                    <h4>{ I18n.t( "observations_map" ) }</h4>
                     <TaxonMap
                       showAllLayer={false}
                       minZoom={2}
