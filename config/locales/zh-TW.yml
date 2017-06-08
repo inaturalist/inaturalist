@@ -195,6 +195,7 @@ zh-TW:
   add_taxa: 添加物種分類
   add_taxa_to_places: 添加物種分類到地方
   add_taxon_batch_to: 把物種分類添加到 %{list}
+  add_taxon_range: 添加物種分類範圍
   add_to: 新增至
   add_to_a_project: 添加至專案
   add_to_calendar: 加入日曆
@@ -227,6 +228,7 @@ zh-TW:
   agree_: 同意
   agree?: 同意嗎？
   agree_to_the_project_terms: 同意該專案條款
+  agree_with_current_taxon: 同意以目前物種分類
   agreeing: 同意中...
   aka: 也就是
   all: 所有
@@ -306,6 +308,7 @@ zh-TW:
       one: 1種其牠動物
       other: '%{count}種其牠動物'
   all_taxa_in_this_guide: 在此指南的所有物種分類
+  all_taxonomic_groups: '&laquo;所有物種分類群組'
   all_updates: 所有更新
   all_your_projects: 您所有的專案
   allow_any: 允許任何
@@ -316,6 +319,7 @@ zh-TW:
   alphabetical_order: 依字母排序
   amphibians: 兩棲類
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb 沒有關於此物種的任何訊息。
+  amphibiaweb_taxonomy: AmphibiaWeb 分類法
   an: 一個
   an_: 一個
   and: 和
@@ -334,7 +338,10 @@ zh-TW:
   are_you_sure_leave_this_project: 您確定要離開這個專案嗎？
   are_you_sure_remove_from_project: 您確定要從此專案移除 %{user} 嗎？
   are_you_sure_remove_photo: 您確定要移除此照片？
+  are_you_sure_remove_taxon_from_list: 您確定要從列表移除此物種分類？
   are_you_sure_unlink_picasa: 您確定要取消連結您的 Picasa 帳號？
+  are_you_sure_want_delete_taxon: 您確定要刪除此物種分類？%{msg}
+  are_you_sure_want_delete_taxon_link: 你確定要刪除此物種分類連結？
   are_you_sure_want_delete_this_name: 您確定要刪除此名稱？
   are_you_sure_want_delete_this_range: 您確定要刪除此範圍？
   are_you_sure_want_join: 你確定您想要加入
@@ -344,6 +351,7 @@ zh-TW:
   are_you_sure_you_want_to_delete_this_post: 您確定要刪除此發表內容？
   are_you_sure_you_want_to_remove_from_project: 您確定要從此專案移除 %{user} 嗎？
   are_you_sure_you_want_to_remove_this_invitation: 您確定要刪除此邀請？
+  are_you_sure_you_want_to_remove_this_taxon: 您確定要移除此物種分類？
   you_sure_delete_list: 您確定要刪除此列表？
   you_sure_delete_taxon_from_list?: 您確定要從此列表移除%{taxon}？
   asc: 升冪
@@ -421,6 +429,7 @@ zh-TW:
   calendar: 日曆
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
+  cant_merge_a_taxon_with_itself: 物種分類不能合併項目至本身。
   card: 卡片
   case_plural: s
   categories: 分類
@@ -563,9 +572,11 @@ zh-TW:
   create_a_guide: 建立一條指南
   create_a_list: 建立一個清單
   create_a_new_place: 建立一個新地點
+  create_a_new_taxon: 創建一個新物種分類
   create_a_query: 建立一項查詢
   create_an_account: 建立一個帳號
   create_an_atlas: 建立一個地圖集
+  create_new_taxon: 創建一個新物種分類
   create_observations: 建立觀察
   created: 已建建
   created_by: 建立由
@@ -735,6 +746,9 @@ zh-TW:
     one: 編輯 <span class="count">1</span> 個觀察：
     other: 編輯 <span class="count">%{count}</span> 個觀察：
   editing_project: 編輯%{project}
+  editing_taxon_link: 物種分類連結編輯中
+  editing_taxon_name: 物種分類名稱編輯中
+  editing_taxon_range: 物種分類範圍編輯中
   editing_this: 正編輯 %{elem}
   editing_x_in_y: 正編輯 %{x} 於 %{y}
   eg: 例如：
@@ -783,6 +797,7 @@ zh-TW:
   feedback: 意見回饋
   feedback_group: 意見回饋群組
   failed: 已失敗
+  file_should_be_in_the_following_format: 檔案應為以下格式：物種分類、描述
   filter: 過濾
   filter_by: 篩選依
   filter_by_curator_identification: 依策展人識別篩選
@@ -826,6 +841,7 @@ zh-TW:
   follow_user: 關注 %{user}
   follower: 關注者
   following: 關注中
+  for_a_taxon: 用於一個物種分類
   forgot_your_password: 忘記您的密碼？
   fri: 週五
   from: 來自
@@ -879,6 +895,8 @@ zh-TW:
   guide_was_successfully_created: 指南已成功創建。
   guide_was_successfully_published: 指南已成功發佈。
   guide_was_successfully_updated: 指南已成功更新。
+  has_already_been_flagged_by: 已被標記由
+  has_been: 已經
   has_photos: 擁有照片
   has_photos_or_sounds: 擁有照片和聲音
   has_sounds: 擁有聲音
@@ -901,6 +919,7 @@ zh-TW:
   icon: 圖示
   icon_size: 圖示大小
   icon_slash_photo: 圖示/照片
+  iconic_taxon: 圖像物種分類
   id: ID
   id_: ID
   id_please!: 需要 ID！
@@ -913,11 +932,13 @@ zh-TW:
   if_you_want_to_change_the_name: 如果您想要更改名稱
   ignore: 忽略
   ignore_times: 忽略次數
+  image_must_be_exactly: 圖片必須剛好是 950 像素寬度並且最高不超過 400 像素
   import: 匯入
   import_all_photos_as_observations: 匯入所有照片成為觀察
   import_as_an_observation: 匯入成為觀察
   import_as_another_observation: 匯入成為另一個觀察？
   import_from_csv: 從 CSV 匯入
+  import_from_other_photo_sites: 從其它照片網站匯入
   import_from_photos: 匯入自照片
   import_from_yahoo: 匯入自 Yahoo
   import_observations: 匯入自觀察
@@ -932,13 +953,18 @@ zh-TW:
   inaturalist_network_affiliation: iNaturalist 網路聯繫
   inbox: 收件匣
   including: 包含
+  in_taxon?: 在物種分類
   in_the_past: 在之前
+  in_the_past_week: 在過去一週
   inactive: 不活躍
   inactive_taxon: 不活躍的物種分類
   inappropriate: 不合適？
+  inappropriate_content: 不適當內容？
+  inat_account_action: '%{site_name} &#58;帳號&#58; %{action_name}'
   inat_user_profile: '%{site_name}： %{user}的個人資料'
   inaturalist_places: '%{site_name} 地點'
   info: 資訊
+  input_taxon: 輸入物種分類
   insects: 昆蟲
   insect_life_stage: 昆蟲生命階段
   interactions: 互動
@@ -976,10 +1002,12 @@ zh-TW:
   join_and: 加入及
   join_inat: 加入%{site_name}！
   join_project: 加入此專案
+  join_this_project: 加入此專案
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
   joining: 加入中…
   journal: 期刊
+  journal_archives_for: 期刊歸檔用於
   jpg_png_or_gif: JPG、PNG、或 GIF
   just_added!: 剛添加！
   keep_editing: 繼續編輯
@@ -987,6 +1015,7 @@ zh-TW:
   kml: KML
   kml_file_size_error: KML 大小必須小於 1 MB
   labels: 標籤
+  location_unknown: 位置不明
   language_slash_type: 語言/類型
   large: 大
   last_confirmed_observation: 最近提交的觀察
@@ -997,6 +1026,8 @@ zh-TW:
   latitude: 緯度
   latitude_in_decimals: 帶小數點的緯度，例如：38.123
   latitude_slash_y_coord_slash_northing: 緯度/y 軸/北距
+  layers: 圖層
+  layout: 佈局
   leaderboard_most:
     species: 在%{time}內的最多物種
     observations: 在%{time}內的最多觀察
@@ -1069,6 +1100,7 @@ zh-TW:
     plain: 純文字
     photo: 照片
   list_was_successfully_created: 列表成功創建。
+  listing_taxon_names: 物種分類名稱列出中
   lists: 列表
   lists_are_lists_of_species: 自定清單是物種(或其它物種分類)的列表，例如你可為您觀察到的鳥類或你喜好的有尾目動物自定一份清單。然而它們
     <em>並非</em>是觀察紀錄的清單。
@@ -1112,8 +1144,10 @@ zh-TW:
     zh-TW: 繁體中文
   location: 位置
   location_: 位置
+  location_is_accurate: 位置為精準
   location_is_exact: 位置精準
   location_is_public: 位置為公開的
+  location_is_obscured: 位置為隱蔽
   location_is_private: 位置為私有的
   log_in: 登入
   logged_in_as: 已登入為
@@ -1130,6 +1164,7 @@ zh-TW:
   lookup: 查詢
   lookup_user_rarr: 查詢用戶 &rarr;
   lowest_rank: 最低排名
+  made_a: 製作一個
   make_an_observation: 製作一個觀察
   main_content: 主要內容
   make_a_new_place: 建立一個新地點
@@ -1143,6 +1178,10 @@ zh-TW:
   manage_all_your_subscriptions: 管理您所有的訂閱
   manage_names: 管理名稱
   manage_subscriptions: 管理訂閱
+  managed: 已管理
+  manager: 管理者
+  managers: 管理者
+  manually_create_new_place: 手動創建一個新地點
   map: 地圖
   maps:
     overlays:
@@ -1213,6 +1252,11 @@ zh-TW:
     ubio: uBio
   names: 名稱
   names_for_taxon_html: 用於%{taxon}的名稱
+  near: 接近
+  near_threatened: 接近受威脅
+  nearby: 附近
+  nearby_observations: 附近的觀察
+  need_id_help?: 需要 ID 協助？
   needs_id: 需要 ID
   Needs_ID!: 需要 ID！
   needs_id_expandable_html: <span class='full'>需要</span> ID
@@ -1231,7 +1275,13 @@ zh-TW:
   new_password: 新密碼
   new_project: 新專案
   new_source: 新來源
+  new_taxon_change: 新物種分類更改
+  new_taxon_link: 新物種分類連結
+  new_taxon_name: 新物種分類名稱
+  new_taxon_name_for: 新物種分類名稱用於
+  new_taxon_range: 新物種分類範圍
   new_trip: 新旅程
+  new_user_rules: 新用戶規範
   new_users_week: 新用戶 / 週
   next_page: 下一頁
   "no": 否
@@ -1241,6 +1291,7 @@ zh-TW:
   no_curators_yet: 尚未有策展人！
   no_facebook_photos: 我們找不到任何來自於臉書的照片
   no_flags: 目前沒有標記
+  no_flickr_photos_tagged: 沒有 Flickr 的照片被標記！
   no_header_row: 沒有標題列
   no_link_flickr: 不，我不想要。
   no_matching_invitations: 沒有符合的邀請
@@ -1255,6 +1306,8 @@ zh-TW:
   no_more_updates: 沒有更多更新！
   no_new_messages: 沒有新訊息
   no_observations: 沒有觀察
+  no_observations_submitted: 沒有提交觀察！
+  no_observations_yet: 尚未有觀察
   no_photo: 沒有照片
   no_photos: 沒有照片
   no_places_available: 沒有可用的地點
@@ -1265,12 +1318,15 @@ zh-TW:
   no_results_found: 找不到任何結果
   no_results_for: 沒有結果用於
   no_results_matching: 沒有符合的結果
+  no_species_observed: 沒有觀察的物種
+  no_species_on_this_list: 在此列表上尚未有觀察的物種！
   no_summary_from_wikipedia: 未有來自於維基百科的摘要
   no_summary_has_been_set: 未有設定摘要。
   no_taxa: 沒有物種分類
   no_taxa_listed: 沒有列出物種分類
   no_taxa_selected: 沒有選擇物種分類！
   no_taxa_yet: 尚未有物種分類！
+  no_wikipedia_page_for_taxon: 沒有用於此物種分類的維基百科頁面。
   non_human?: 非人類？
   none: 無
   not_completed: 未完成
@@ -1287,12 +1343,18 @@ zh-TW:
   numeric_: 數字
   observation: 觀察
   observation_added: 觀察已添加
+  observation_added_to_the_project: 觀察已添加至專案「%{project}」
+  observation_aggregation: 觀察聚集
   observation_photo_uploader: 觀察照片上傳者
+  observations_by_user_on_date: 於 %{date} 由 %{user} 所做的觀察
   observations_by_you: 由您所做的觀察
   observations_by_you_on_date: 於 %{date} 由您所做的觀察
+  observation_calendar_for: 於 %{year} 裡 %{user} 的觀察行事曆
   observation_contest: 觀察競賽
+  observation_curation: 觀察策展
   observation_date: 日期
   observation_date?: 日期？
+  observation_removed_from_the_project: 觀察已從專案「%{project}」裡移除
   observation_rights_html: 觀察 %{rights}
   observation_rules: 觀察規則
   observation_was_deleted: 觀察已被刪除。
@@ -1302,6 +1364,7 @@ zh-TW:
   observations_by: 觀察由
   observations_by_everyone: 由任何人做的觀察
   observations_by_user: 由 %{user} 做的觀察
+  observations_confirmed: 觀察（已確認）
   observations_deleted: 觀察已刪除。
   observations_for: 觀察用於
   observations_for_project: 用於 %{project} 的觀察
@@ -1309,15 +1372,18 @@ zh-TW:
   observations_from_this_place: 來自此地點的觀察
   observations_from_this_project: 來自此專案的觀察
   observations_from_you: 由您所做的觀察
+  observations_it_may_take_a_few: 觀察。這可能需花費幾分鐘。
   observations_last500: 觀察（最近 500 項）
   observations_map: 觀察 / 地圖
   observation_must_dotdotdot: 觀察必須...
+  observations_of_taxon: '%{taxon_name}的觀察'
   observations_per_month: 觀察 / 月
   observations_saved: 觀察已儲存！
   observations_title: 由任何人做的觀察
   observations_total: 觀察總計
   observations_w: 觀察 w/
   observations_week: 觀察 / 週
+  observationcounts_refreshed: 觀察次數已重整
   observed: 已觀察
   observed_by: 已觀察由
   observed_on: 已觀察在
@@ -1332,9 +1398,12 @@ zh-TW:
     doubtful: 可疑
   of: 的
   official_blog: 官方部落格
+  offline_access_enabled: 離線存取已啟用
   old_observation_form: 舊式觀察表單（已廢棄使用）
   ok: 確定
+  on_: 在
   on_date: 於 %{date}
+  on_day: 在
   on_edit_date: 在 %{editdate}
   on_list?: 在列表
   on_submit_date: 在 %{submitdate}
@@ -1346,15 +1415,19 @@ zh-TW:
   one_of_your_lists: 您的列表之一...
   only_accepts_taxa: 僅接受物種分類
   only_project_curators_can_do_that: 僅專案策展人可做出此行為。
+  only_receive_updates_about_this_taxon: 僅接收有關此物種分類的更新
   only_show_active_taxa: 僅顯示有效的物種分類
   only_species: 僅物種
+  only_the_project_admin_can_delete_this_project: 僅專案管理者可刪除此專案。
   open: 開啟
   open_: 開啟
   opt_in_for_this_observation: 用於此觀察的選項
   optional: 可選
   or: 或
+  or_if_you_dont_want_email: 或者是您不想要接受任何電子郵件...
   or_invite_your_friends: 或邀請您的朋友
   or_invited: 或已邀請。
+  or_post_message_to_google_group: 或發佈訊息至我們在 Google 上的群組：
   or_upload: 或上傳
   or_you_can: 或您可以...
   or_you_can_: 或您可以
@@ -1374,6 +1447,7 @@ zh-TW:
   other_annimals: 其牠動物
   our_blog: 我們的部落格
   out_of_range: 超出範圍
+  output_taxon: 輸出物種分類
   owner: 擁有者
   password: 密碼
   password_confirmation: 密碼確認
@@ -1398,6 +1472,7 @@ zh-TW:
   photo_s: 照片
   photo_type: 相片類型
   photo_urls_repaired: 需要照片 URLs
+  photos_chosen_for_this_taxon: 挑選用於此物種分類的照片
   photos_from: 照片來自
   photos_of: 照片屬於
   photos_of_taxon_html: 屬於 %{taxon} 的照片
@@ -1579,21 +1654,35 @@ zh-TW:
   processing3p: 處理中...
   profile: 個人資料
   project: 專案
+  project_cover: 專案封面
+  project_created_on: 創建此專案於 %{date}
   project_curator_id: 專案策展人 ID
   project_curator_tools: 專案策展人工具
   project_curators: 專案策展人
   project_group_label: 群組
+  project_group_description: 歸類專案隸屬於
+  project_home: 專案首頁
   project_icon: 專案圖示
   project_invitations: 專案邀請
+  project_list: 專案列表
   project_curators_added_some_of_your_observations_html: <a href="%{url}">%{project}</a>策展人添加了一些您的觀察
   project_id: 專案 ID
   project_members: '%{project} 成員'
   project_name: 專案名稱
   project_observation_settings: 專案觀察設定
   project_observations: 專案觀察
+  project_rules: 專案規則
   project_settings: 專案設定
+  project_terms_and_rules: 專案條款&amp;規則
+  project_user_cannot_be_found: 找不到專案用戶
+  project_user_was_invalid: 專案用戶無效：%{project_user}
+  project_was_successfully_created: 專案創建成功。
+  project_was_successfully_updated: 專案更新成功。
   projects: 專案
+  projects_from_place: 來自於%{place}的專案
   projects_in_x: 在%{x}的專案
+  projects_you_admin: 您管理的專案
+  projects_youve_joined: 您已加入的專案
   protozoans: 原生動物
   public_domain: 公有領域
   publish: 發佈
@@ -1635,6 +1724,8 @@ zh-TW:
     leaves: 葉
   rare: 稀有
   ray_finned_fishes: 輻鰭魚類
+  re_order_photos: 重新排序照片&raquo;
+  read_the_full_wikipedia: 閱讀完整的維基百科描述
   real_time_stats: 即時統計
   real_time_discussions: 即時討論
   reason: 原因
@@ -1664,8 +1755,10 @@ zh-TW:
   remove: 移除
   remove_all_tags: 移除所有標籤
   remove_boundary: 移除邊界
+  remove_comma_separated_tags: 移除逗號分隔式標籤
   remove_from: 移除自
   remove_curator: 移除策展人
+  remove_curator_role: 移除策展人身份
   remove_curator_status: 移除策展人狀態
   remove_from_batch: 從批量移除
   remove_from_guide: 從指南移除
@@ -1677,17 +1770,24 @@ zh-TW:
     other: 移除 %{count} 個觀察？
   remove_place: 移除地點
   remove_project_user: 移除專案用戶
+  remove_selected: 移除已選
+  remove_tags: 移除標籤
   remove_your_existing_id?: 移除您的現有 ID？
   removed: 已移除
   removed!: 已移除！
   removed_project_user: 已移除的專案用戶
   removing: 正在移除...
+  repair_external_photos: 修復外界照片
   replace_boundary_with_kml: 替換帶有 KML 的邊界
   replace_parentesis: （取代）
   replacing: 正在替換
   reply: 回覆
   report_any_problems: 回報任何問題
   reptiles: 爬蟲類
+  request_failed: 請求失敗
+  request_id_help: 請求 ID 協助
+  request_password: 請求密碼
+  request_timed_out: 請求逾時！
   reset_search_filters: 重新設定搜尋過濾
   reset_your_password: 重設您的密碼
   resolve: 解決
@@ -1697,17 +1797,22 @@ zh-TW:
   results: 結果
   review_verb: 檢閱
   roadmap: 路線圖
+  role: 身份
   rotate_left: 向左旋轉
   rotate_right: 向右旋轉
   row_singular_or_plural: 橫行
+  rule_must_be: 規則必須是...
   rules_types:
     must_be_on_list: 必須在列表
     must_be_observed_in_place: 必須在地點裡被觀察
+    must_be_in: 必須在物種分類裡
   said: 說
   sat: 週六
   satellite: 衛星國家
   save: 儲存
   save_all: 儲存全部
+  save_and_add_another: 儲存並添加另一個
+  save_and_continue: 儲存&amp;繼續...
   save_changes: 儲存變更
   save_colors: 儲存色彩
   save_draft: 儲存草稿
@@ -1749,10 +1854,12 @@ zh-TW:
   select: 選擇
   select_one_or_more_photos: 選擇一張或更多照片
   select_none: 都不選擇
+  select_observations_to_edit: 選擇觀察來編輯...
   select_options: 選擇選項
   select_photos_to_display: 選擇照片來顯示
   selected: 已選擇
   selected_photos: 已選照片
+  selected_taxon: 已選物種分類
   send: 傳送
   send_invite: 寄送邀請
   send_invites_to: 寄送邀請給
@@ -1763,10 +1870,12 @@ zh-TW:
   september: 九月
   settings: 設定
   show: 顯示
+  show_default_taxon_photos: 顯示預設物種分類照片
   show_kml: 顯示 KML
   show_less: 顯示較少
   show_more: 顯示更多
   show_observation_photos: 顯示觀察照片
+  show_observations_from: 顯示觀察依照
   show_only: 僅顯示
   showing_one_to: 顯示 1 -
   showing_taxa_from_place: 進行顯示來自於%{place}的物種分類
@@ -1786,6 +1895,7 @@ zh-TW:
   skip_to_next_page: 跳至下一頁
   small: 小型
   site_name_place: '%{site_name} 地點'
+  site_taxon_page: '%{site_name} 物種分類頁面'
   some_agree: 部份同意
   some_people: 有些人們
   some_people_that: 有些人們
@@ -1794,7 +1904,9 @@ zh-TW:
   somewhere_on_earth: 在地球上某處
   somewhere: （某處...）
   sorry_flickr_isnt_responding_at_the_moment: 很抱歉，Flickr 目前沒有回應。
+  sorry_picasa_isnt_responding_at_the_moment: 很抱歉，Picasa 目前沒有回應。
   sorry_we_didnt_find_that_photo: 很抱歉，我們沒有找到那張照片。
+  sorry_x_is_not_responding: 很抱歉，%{x} 沒有回應，請稍後重試。
   sorry_you_can_only_add_1000_at_a_time: 很抱歉，您每一次只能添加 1000 個。
   sorry_you_cant_delete_your_own_life_list: 對不起，你是不能刪除個人生物清單的。
   sort: 排序
@@ -1843,14 +1955,19 @@ zh-TW:
   species_name_cap: 物種名稱
   species_names: 物種名稱
   species_search: 物種搜尋
+  species_taxon_name: 物種 / 物種分類名稱
   species_unknown: 不明物種
   standard: 標準
   start: 開始
   start_a_new_list: 開始一個新列表
   start_a_new_project: 開始一個新專案
+  start_a_project: 開始一個專案
+  start_adding_observations: 開始添加觀察
   start_new_account: 開始一個新帳號
   start_new_project: 開始一個新專案
   start_one: 開始一個
+  start_one_now: 現在來開始一個！
+  start_typing_taxon_name: 開始輸入物種分類名稱…
   states: 州
   stats: 統計
   stats_title: 網站統計
@@ -1862,12 +1979,15 @@ zh-TW:
   submit: 送出
   submit_comment: 提交評論
   submitted: 已送出
+  subscribe_to_a_taxon: 訂閱一個物種分類
   subscribe_to_this: 訂閱此
   subscribe_to_this_observation: 訂閱此觀察
   subscriptions: 訂閱
   successfully_changed_your_password: 您的密碼更改成功。
   summary: 摘要
+  siutable_observations: 合適的觀察
   sun: 週日
+  suspend_user: 停用用戶
   sw_lat: 西南緯度
   sw_lon: 西南經度
   sync: 同步？
@@ -1877,8 +1997,30 @@ zh-TW:
   take_me_flickr!: 是的，帶我前往 Flickr！
   take_me_back: 帶我返回
   taxa_all_species_html: 所有物種
+  taxon: 物種分類
+  taxon_: 物種分類
+  taxon_change: 物種分類更改
+  taxon_deleted: 物種分類已刪除。
+  taxon_doesnt_have_a_range: 物種分類沒有包含範圍
+  taxon_id: 物種分類 ID
+  taxon_ids: 物種分類 ID
   taxon_map:
     data_url: 資料URL
+  taxon_changes: 物種分類更改
+  taxon_change_settings: 物種分類更改設定
+  taxon_merge: 物種分類合併
+  taxon_name: 物種分類名稱
+  taxon_photos_updated: 物種分類照片已更新！
+  taxon_range: 物種分類範圍
+  taxon_removed_from_list: 物種分類已從列表之中移除。
+  taxon_search: 物種分類搜尋
+  taxon_split: 物種分類分割
+  taxon_subscription: 物種分類訂閱
+  taxon_to_delete: 要刪除的物種分類
+  taxon_to_keep: 要保有的物種分類
+  taxon_name_was_deleted: 物種分類名稱已刪除。
+  tell_everyone_a_little_about_you: 向大家介紹一些關於您的事
+  tell_the_world_a_little_about_yourself: 向我們介紹您自己
   tell_us_why: 告訴我們為什麼...
   terms: 條款
   terms_and_rules_html: 條款&amp;規範
@@ -1891,13 +2033,18 @@ zh-TW:
   that_photo_doesnt_exist: 照片不存在
   that_observation_doesnt_exist: 觀察不存在
   that_observation_doesnt_have_any_photos: 觀察沒有任何照片
+  that_observation_hasnt_been_added_this_project: 觀察尚未添加至此專案。
   that_observation_no_longer_exists: 觀察已不存在
   that_project_doesnt_exist: 該專案不存在。
   thats_not_a_real_date: 那不是一個實際日期！
   the_list: 列表
   the_project: 專案
+  the_user_x_has_been_suspended: 用戶 %{user} 已被停用
+  the_user_x_has_been_unsuspended: 用戶 %{user} 已被恢復使用
   the_world: 世界
+  there_is_no_wikipedia_page_matching: 沒有符合的維基百科頁面
   there_were_errors: 出現錯誤。
+  theres_also: 這裡也有
   third_person_possessive_singular: '%{object_phrase}的%{noun}'
   this: 此
   this_is_a: 這是一個
@@ -1906,11 +2053,14 @@ zh-TW:
   this_list_is_empty!: 此列表是空的！
   this_observation: 此觀察
   this_species: 此物種
+  this_taxon_has_no_default_photo: 此物種分類沒有預設照片！
   this_tool_is_experimental: 此工具為實驗性的，所以請
   this_user_has_been_suspended: 此用戶已被停用
+  threatened: 受威脅
   thu: 週四
   time_: 時間
   time_ago: '%{time} 前'
+  tired_of_testing_this_new_version: 對於測試此新版本感到厭倦？
   title: 標題
   title_and_description: 標題與描述
   to: 至
@@ -1924,6 +2074,7 @@ zh-TW:
   total_members: 會員總數
   total_observations: 觀察總數
   total_users: 用戶總計，
+  "true": 是
   trusted_project?: 可信任的專案？
   try_it_out: 試試看
   try_wikipedia: 試試看維基百科？
@@ -1936,6 +2087,7 @@ zh-TW:
   type_source_name: 輸入來源名稱
   type_source_title: 輸入來源標題
   type_species_name: 輸入物種名稱
+  type_taxon_name: 輸入物種分類名稱
   uicn_red_list_status: '國際自然保護聯盟瀕危物種(IUCN)紅色名錄現狀 :'
   unknown: 未知
   unknown_rank: （未知排名）
@@ -2043,6 +2195,7 @@ zh-TW:
   what: 什麼
   what_color_was_it: 它的顏色是什麼
   what_did_you_see: 您看到了什麼？
+  what_did_you_see?: 您看到了<em>什麼</em>？
   what_do_you_think: 您在想什麼？
   what_do_you_want_to_list: 您想要列出什麼？
   what_to_keep: 維持什麼
@@ -2052,6 +2205,8 @@ zh-TW:
   when_did_you_see_them?: 您在<em>何時</em>看到牠們？
   where: 哪裡
   where_did_you_see_it: 您在何處看到牠？
+  where_do_x_live: '%{taxa}存活於何處?'
+  where_does_x_live: '%{taxa}存活於何處?'
   where_were_they?: 牠們在何處？
   where_were_you?: 您在何處？
   white: 白色
@@ -2059,6 +2214,7 @@ zh-TW:
   wikipedia_entry: 維基百科項目
   with_errors: 帶有錯誤
   would_you_like_to: 您是否要
+  x_admin: '%{login} 管理'
   x_blog: '%{x}的部落格'
   x_deleted: '%{x}已刪除'
   x_does_not_exist: 「%{x}」不存在
@@ -2078,13 +2234,19 @@ zh-TW:
   yesterday: 昨天
   yesterday_at: ，在昨天下午 4 點
   you: 您
+  you_admin: 您管理
+  you_appear_offline_try_again: 您似乎已離線。請在您連接至網路時重試。
   you_are_now: 您現在
+  you_are_now_following_x: 您正在關注 %{friend_user}。
   you_are_no_longer_following_x: 您不再關注%{friend}。
   you_are_subscribed_to: 您訂閱了
   you_arent_a_member_of_that_project: 您不是該專案的成員。
   you_arent_following_that_person: 您沒有關注那名人。
   you_can_accept_invitations: 您可在此接受邀請
   you_can_change_your_new_passwd_after_logging_in: 登入後您可更改您的新密碼於此：
+  you_cant_delete_a_project_list: 您不能刪除專案列表
+  you_cant_remove_other_peoples_observations: 您不可移除其他人的觀察。
+  you_didnt_select_any_observations: 您沒有選擇任何觀察。
   you_dont: 您沒有
   you_dont_have_permission_to_do_that: 您沒有權限做那件事。
   you_dont_have_permission_to_edit_that_observation: 您沒有權限編輯該觀察。
@@ -2092,12 +2254,16 @@ zh-TW:
   you_have_to: 您必須
   you_havent: 您沒有
   you_joined_this_project: 您加入了此專案！
+  you_must_select_a_csv_file_to_upload: 您必須選擇一個 CSV 檔案來上傳。
+  you_must_select_a_place_to_merge_with: 您必須選擇一個地點來合併。
+  you_must_select_at_least_one_taxon: 您至少要選擇一個物種分類。
   you_must_select_dates_to_compare: 您必須選擇日期來做出比較
   you_must_specify_and_confirm_a_new_password: 您必須指定且確認一組新密碼。
   you_need_to_select_at_least_one_photo: 您需要至少選擇一張照片！
   you_need_to_select_some_observations_first: 首先您需要選擇一些觀察。
   you_sure_delete_project?: 您確定要刪除此專案？
   you_sure_delete_this_observation: 您確定要刪除此觀察？
+  you_sure_remove_taxon_from?: 您確定要從%{list}移除此物種分類？
   you_sure_remove_this_observation?: 您確定要移除此觀察？
   youll_need_to_link: 您將需要連結
   your: 您的
@@ -2126,6 +2292,7 @@ zh-TW:
   your_picasa_account: 您的 Picasa 帳號
   your_picasa_account_info: 您的 Picasa 帳號訊息
   your_profile_was_successfully_updated: 您的個人資料更新成功！
+  your_should_recognize: 您應該辨別其中一些照片
   your_site_account_has_been_created: 您的 %{site} 帳號已被創建。
   your_subscriptions: 您的訂閱
   your_sure_delete_list?: 您確定要刪除此列表？
@@ -2149,11 +2316,13 @@ zh-TW:
     help:
       index:
         what_is_inaturalist?: 什麼是 %{site_name}？
+        what_technologies_does_the_project_use?: 專案用了什麼技術和資料來源？
         what_can_i_do_to_help_inaturalist?: 我能為 %{site_name} 協助什麼
         how_do_i_contact_inaturalist?: 我要如何聯繫 %{site_name}
         you_can_contact_us_at_html: 您可以透過 <a href="mailto:%{help_email}">%{help_email}</a>
           聯絡我們
         what_are_admins_and_curators?: 什麼是管理和策展人？
+        what_is_considered_inappropriate_content?: 什麼會被認定是不當內容？
         what_is_an_observation?: 什麼是觀察？
         can_i_add_photos_without_a_flickr_account?: 我可以不必透過使用 Flickr 帳號來添加照片嗎？
         coordinates_are_obscured_for_all_taxa: |-
@@ -2169,11 +2338,14 @@ zh-TW:
         i_observed_a_species: 我觀察過的一個物種, 為何沒顯示在我的生物清單中?
     observations:
       community_id:
+        below_cutoff: 低於截止
+        cumulative_count: 累計次數
         score: 分數
         opt_in_for_this_observation: 用於此觀察的選項
         your_id_does_not_match: 您的 ID (<span class="bold">%{taxon_name}</span>) 與社群
           ID 不符合
       export:
+        receive_an_email_with_your_data: 接收一份帶有您的資料之電子郵件
         well_email_you: 好的，當就緒好時我們會寄送電子郵件給您。
       field_descriptions:
         time_zone: 觀察的時區
@@ -2193,12 +2365,18 @@ zh-TW:
       index:
         adding_new_places: 添加新地點中
         you_can_help_out_by: 您可協助改善我們的地點資料依
+      new:
+        map_instruction: 使用多邊形工具來描繪地點邊界。
     projects:
+      confirm_leave:
+        remove_observations_label: 從這專案移除您所有的觀察
       edit:
+        custom_project_fields_means: 自定義專案的頁面橫幅、添加側邊內容，以及編輯 CSS。
         rules:
           georeferenced: 有座標
           has_media: 擁有多媒體（照片和聲音）
           has_a_photo: 有一張照片
+          has_a_sound: 擁有一段聲音
         submission_models:
           any: 任一
           curators: 專案策展人
@@ -2221,16 +2399,21 @@ zh-TW:
           Insect life stage=pupa: 蛹
           Insect life stage=adult: 成體
     users:
+      dashboard:
+        cannot_update_your_content: '%{site_name} 無法在此更改自動更新您的內容。'
       edit:
         project_addition_preferences:
           any: 任何
           joined: 您已加入的專案
+          none: 不，僅有您可添加您的觀察至專案
       show:
         this_user_was_banned: 此用戶已被停用
     welcome:
       index:
         connect_with_nature: 與自然連接
         explore_and_share: 探索並分享您來自於大自然的觀察。
+        species_observed: 觀察的物種
+        people_signed_up: 註冊人員
         how_it_works: 它是如何運作
         record_your_observations: 記錄您的觀察
         contribute_to_science: 貢獻於科學
