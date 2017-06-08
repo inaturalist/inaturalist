@@ -103,6 +103,7 @@
           prefers_hide_obs_show_identifiers: <%= current_user.prefers_hide_obs_show_identifiers %>,
           prefers_hide_obs_show_copyright: <%= current_user.prefers_hide_obs_show_copyright %>,
           prefers_hide_obs_show_quality_metrics: <%= current_user.prefers_hide_obs_show_quality_metrics %>,
+          preferred_observation_license: "<%= current_user.preferred_observation_license.downcase %>",
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
         };
       <% end -%>

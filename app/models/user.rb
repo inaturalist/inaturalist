@@ -449,6 +449,14 @@ class User < ActiveRecord::Base
 
   def update_observation_sites
     observations.update_all(site_id: site_id)
+    index_observations
+  end
+
+  def index_observations_later
+    delay(priority: USER_INTEGRITY_PRIORITY).index_observations
+  end
+
+  def index_observations
     Observation.elastic_index!(scope: Observation.by(self))
   end
 

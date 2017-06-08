@@ -1814,6 +1814,7 @@ class Observation < ActiveRecord::Base
   def update_all_licenses
     return true unless make_licenses_same.yesish?
     Observation.where(user_id: user_id).update_all(license: license)
+    user.index_observations_later
     true
   end
 

@@ -15,6 +15,7 @@ import subscriptionsReducer from "./ducks/subscriptions";
 import flaggingModalReducer from "./ducks/flagging_modal";
 import confirmModalReducer from "./ducks/confirm_modal";
 import communityIDModalReducer from "./ducks/community_id_modal";
+import licensingModalReducer from "./ducks/licensing_modal";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 
 const rootReducer = combineReducers( {
@@ -28,7 +29,8 @@ const rootReducer = combineReducers( {
   subscriptions: subscriptionsReducer,
   flaggingModal: flaggingModalReducer,
   confirmModal: confirmModalReducer,
-  communityIDModal: communityIDModalReducer
+  communityIDModal: communityIDModalReducer,
+  licensingModal: licensingModalReducer
 } );
 
 const store = createStore(

@@ -445,8 +445,21 @@ a.UserImage {
       }
     }
   }
-  a.edit {
-    float: right;
+  .edit-button {
+    .btn-group {
+      float: right;
+      .dropdown-menu > li > a {
+        padding: 3px 10px;
+      }
+      .fa {
+        width: 25px;
+        text-align: center;
+        color: $inat-green;
+        &.fa-trash {
+          color: $fail-red;
+        }
+      }
+    }
   }
   .middle_left {
     padding-right: 40px;
@@ -457,6 +470,9 @@ a.UserImage {
     }
     h4 {
       margin-top: 15px;
+    }
+    .CommunityIdentification h4 {
+      margin-top: 30px;
     }
   }
   .ObservationTitle {
@@ -798,15 +814,15 @@ h3, h4 {
   span.taxon {
     display: inline-block;
   }
+  a.sciname {
+    color: #000;
+    font-size: 14px;
+  }
   a.display-name {
     color: #000;
     font-size: 20px;
     display: block;
     line-height: 24px;
-  }
-  a.sciname {
-    color: #000;
-    font-size: 14px;
   }
   .time {
     float: right;
@@ -1126,7 +1142,7 @@ h3, h4 {
 }
 
 .ResearchGradeProgress {
-  margin-top: 85px;
+  margin-top: 15px;
   .graphic {
     text-align: center;
     .checks {
@@ -1468,10 +1484,6 @@ h3, h4 {
 }
 
 .CommunityIdentification {
-  a.display-name {
-    color: #000;
-    font-weight: 700;
-  }
   .fa-info-circle {
     color: $other-link-color;
     cursor: pointer;
@@ -1500,10 +1512,14 @@ h3, h4 {
       text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
+      margin-bottom: 5px;
+      .display-name {
+        color: #000;
+        font-weight: 700;
+      }
     }
     .photo {
       float: right;
-      cursor: pointer;
       img {
         width: 40px;
         height: 40px;
@@ -1513,8 +1529,11 @@ h3, h4 {
         opacity: 0.9;
       }
     }
+    .TaxonSummaryPopover {
+      cursor: pointer;
+    }
     .graphic {
-      margin-top: 20px;
+      margin-top: 15px;
       position: relative;
       .for, .against {
         display: inline-block;
@@ -1772,7 +1791,7 @@ h3, h4 {
   }
 }
 
-.CommunityIDModal.modal {
+.LicensingModal.modal, .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
     height: 85%;
@@ -1789,6 +1808,41 @@ h3, h4 {
       overflow-x: auto;
       max-height: none;
     }
+  }
+}
+
+.LicensingModal.modal, .CommunityIDModal.modal {
+  .modal-dialog {
+    .modal-body {
+      .container {
+        width: 100%;
+      }
+    }
+    .license-col {
+      margin-bottom: 10px;
+      label span {
+        margin-left: 3px;
+      }
+    }
+    .preferred {
+      background-color: #E6EFC2;
+      padding: 3px;
+    }
+    .info {
+      margin-left: 15px;
+      color: #777;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      margin-right: 3px;
+    }
+    .buttons label {
+      margin-right: 20px;
+    }
+  }
+}
+
+.CommunityIDModal.modal {
+  .modal-dialog {
     h4:not(:first-child) {
       margin: 30px 0px 10px;
     }

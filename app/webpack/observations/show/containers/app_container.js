@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import App from "../components/app";
 import { leaveTestGroup } from "../ducks/users";
+import { deleteObservation } from "../ducks/observation";
+import { setLicensingModalState } from "../ducks/licensing_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -12,7 +14,11 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    leaveTestGroup: group => { dispatch( leaveTestGroup( group ) ); }
+    leaveTestGroup: group => { dispatch( leaveTestGroup( group ) ); },
+    deleteObservation: ( ) => { dispatch( deleteObservation( ) ); },
+    setLicensingModalState: ( key, value ) => {
+      dispatch( setLicensingModalState( key, value ) );
+    }
   };
 }
 

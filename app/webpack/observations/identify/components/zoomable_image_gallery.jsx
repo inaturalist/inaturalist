@@ -31,9 +31,7 @@ class ZoomableImageGallery extends ImageGallery {
     // close the zoomed image when mouse is out of the container
     easyZoomTarget.on( {
       "mouseleave.easyzoom touchend.easyzoom": () => {
-        console.log( "Asdfasdf" );
         _.each( easyZoomTarget, t => {
-          console.log( t );
           $( t ).data( "easyZoom" )._onLeave( );
         } );
       }

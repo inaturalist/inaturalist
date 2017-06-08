@@ -35,13 +35,9 @@ $(function() {
   d3.json("observation_weeks_json", function(error, data) {
     if (error) throw error;
 
-    console.log(data);
-
     data.forEach(function(d) {
       d.date = new Date(d.week);
     });
-
-    console.log(data);
 
     data.sort(function(a, b) {
       return a.date - b.date;

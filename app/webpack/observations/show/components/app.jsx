@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Grid, Row, Col, Button } from "react-bootstrap";
+import { Grid, Row, Col, Button, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
@@ -11,6 +11,7 @@ import EstablishmentMeansBadge from "../components/establishment_means_badge";
 import ActivityContainer from "../containers/activity_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import CommunityIDModalContainer from "../containers/community_id_modal_container";
+import LicensingModalContainer from "../containers/licensing_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
 import TagsContainer from "../containers/tags_container";
@@ -45,7 +46,9 @@ moment.locale( "en", {
   }
 } );
 
-const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
+const App = ( {
+  observation, config, controlledTerms, leaveTestGroup, deleteObservation, setLicensingModalState
+} ) => {
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -120,14 +123,38 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
               </div>
             </Col>
             { viewerIsObserver ? (
-              <Col xs={2}>
-                <Button
+              <Col xs={2} className="edit-button">
+                <SplitButton
                   bsStyle="primary"
                   className="edit"
                   href={ `/observations/${observation.id}/edit` }
+                  title={ I18n.t( "edit" ) }
+                  id="edit-dropdown"
+                  pullRight
+                  onSelect={ ( event, key ) => {
+                    if ( key === "delete" ) {
+                      deleteObservation( );
+                    } else if ( key === "license" ) {
+                      setLicensingModalState( { show: true } );
+                    }
+                  } }
                 >
-                  { I18n.t( "edit_observation" ) }
-                </Button>
+                  <MenuItem eventKey="delete">
+                    <i className="fa fa-trash" />
+                    Delete
+                  </MenuItem>
+                  <MenuItem
+                    eventKey="duplicate"
+                    href={ `/observations/new?copy=${observation.id}` }
+                  >
+                    <i className="fa fa-files-o" />
+                    Duplicate
+                  </MenuItem>
+                  <MenuItem eventKey="license">
+                    <i className="fa fa-copyright" />
+                    Edit Licensing
+                  </MenuItem>
+                </SplitButton>
               </Col> ) : ""
             }
           </Row>
@@ -245,6 +272,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
       <FlaggingModalContainer />
       <ConfirmModalContainer />
       <CommunityIDModalContainer />
+      <LicensingModalContainer />
       <div className="quiet box text-center opt-out">
         { I18n.t( "tired_of_testing_this_new_version" ) }
         <Button className="btn-sm" bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
@@ -259,7 +287,9 @@ App.propTypes = {
   config: PropTypes.object,
   controlledTerms: PropTypes.array,
   leaveTestGroup: PropTypes.func,
-  observation: PropTypes.object
+  observation: PropTypes.object,
+  deleteObservation: PropTypes.func,
+  setLicensingModalState: PropTypes.func
 };
 
 export default App;

@@ -90,55 +90,46 @@ class CommunityIDModal extends Component {
 
   render( ) {
     const observation = this.props.observation;
-    if ( !observation || !observation.taxon ) { return ( <div /> ); }
-    this.roots = { };
-    this.children = { };
-    this.currentIDs = [];
-    this.idTaxonCounts = { };
-    this.idTaxonAncestorCounts = { };
-    this.ancestorDisagreements = { };
-    const ancestorsUsed = { };
-    _.each( observation.identifications, i => {
-      if ( !i.current || !i.taxon ) { return; }
-      this.currentIDs.push( i );
-      this.idTaxonCounts[i.taxon.id] = this.idTaxonCounts[i.taxon.id] || 0;
-      this.idTaxonCounts[i.taxon.id] += 1;
-      const allAncestors = _.clone( i.taxon.ancestorTaxa || [] );
-      allAncestors.push( i.taxon );
-      _.each( ancestorsUsed, ( ancestorIDs, taxonID ) => {
-        if ( i.taxon.id !== Number( taxonID ) && _.includes( ancestorIDs, i.taxon.id ) ) {
-          this.ancestorDisagreements[taxonID] = this.ancestorDisagreements[taxonID] || 0;
-          this.ancestorDisagreements[taxonID] += 1;
-        }
+    if ( !observation ) { return ( <div /> ); }
+    let algorithmSummary;
+    if ( observation.taxon ) {
+      this.roots = { };
+      this.children = { };
+      this.currentIDs = [];
+      this.idTaxonCounts = { };
+      this.idTaxonAncestorCounts = { };
+      this.ancestorDisagreements = { };
+      const ancestorsUsed = { };
+      _.each( observation.identifications, i => {
+        if ( !i.current || !i.taxon ) { return; }
+        this.currentIDs.push( i );
+        this.idTaxonCounts[i.taxon.id] = this.idTaxonCounts[i.taxon.id] || 0;
+        this.idTaxonCounts[i.taxon.id] += 1;
+        const allAncestors = _.clone( i.taxon.ancestorTaxa || [] );
+        allAncestors.push( i.taxon );
+        _.each( ancestorsUsed, ( ancestorIDs, taxonID ) => {
+          if ( i.taxon.id !== Number( taxonID ) && _.includes( ancestorIDs, i.taxon.id ) ) {
+            this.ancestorDisagreements[taxonID] = this.ancestorDisagreements[taxonID] || 0;
+            this.ancestorDisagreements[taxonID] += 1;
+          }
+        } );
+        let lastTaxon;
+        _.each( allAncestors, t => {
+          this.idTaxonAncestorCounts[t.id] = this.idTaxonAncestorCounts[t.id] || 0;
+          this.idTaxonAncestorCounts[t.id] += 1;
+          ancestorsUsed[t.id] = t.ancestor_ids;
+          if ( !lastTaxon ) {
+            this.roots[t.id] = t;
+          } else {
+            this.children[lastTaxon.id] = this.children[lastTaxon.id] || {};
+            this.children[lastTaxon.id][t.id] = t;
+          }
+          lastTaxon = t;
+        } );
       } );
-      let lastTaxon;
-      _.each( allAncestors, t => {
-        this.idTaxonAncestorCounts[t.id] = this.idTaxonAncestorCounts[t.id] || 0;
-        this.idTaxonAncestorCounts[t.id] += 1;
-        ancestorsUsed[t.id] = t.ancestor_ids;
-        if ( !lastTaxon ) {
-          this.roots[t.id] = t;
-        } else {
-          this.children[lastTaxon.id] = this.children[lastTaxon.id] || {};
-          this.children[lastTaxon.id][t.id] = t;
-        }
-        lastTaxon = t;
-      } );
-    } );
-    this.children[LIFE_TAXON.id] = this.roots;
-    return (
-      <Modal
-        show={ this.props.show }
-        className="CommunityIDModal"
-        onHide={ this.close }
-      >
-        <Modal.Body>
-          <h4>{ I18n.t( "about_community_taxa" ) }</h4>
-          <div
-            dangerouslySetInnerHTML={ { __html:
-              I18n.t( "views.observations.show.community_taxon_desc_html", {
-                site_name: SITE.name } ) } }
-          />
+      this.children[LIFE_TAXON.id] = this.roots;
+      algorithmSummary = (
+        <span>
           <h4>{ I18n.t( "views.observations.community_id.algorithm_summary" ) }</h4>
           <table className="table">
             <thead>
@@ -179,6 +170,23 @@ class CommunityIDModal extends Component {
             <dt>{ I18n.t( "views.observations.community_id.score" ) }</dt>
             <dd>{ I18n.t( "views.observations.show.score_desc" ) }</dd>
           </dl>
+        </span>
+      );
+    }
+    return (
+      <Modal
+        show={ this.props.show }
+        className="CommunityIDModal"
+        onHide={ this.close }
+      >
+        <Modal.Body>
+          <h4>{ I18n.t( "about_community_taxa" ) }</h4>
+          <div
+            dangerouslySetInnerHTML={ { __html:
+              I18n.t( "views.observations.show.community_taxon_desc_html", {
+                site_name: SITE.name } ) } }
+          />
+          { algorithmSummary }
         </Modal.Body>
         <Modal.Footer>
          <div className="buttons">

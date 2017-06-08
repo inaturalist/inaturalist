@@ -232,6 +232,37 @@ export function updateObservation( attributes ) {
   };
 }
 
+export function deleteObservation( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !userIsObserver( state ) ) { return; }
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "you_sure_delete_this_observation" ),
+      confirmText: I18n.t( "yes" ),
+      onConfirm: ( ) => {
+        const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
+        const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
+        const deleteForm = $( "<form>", {
+          action: `/observations/${state.observation.id}`,
+          method: "post"
+        } );
+        $( "<input>" ).attr( {
+          type: "hidden",
+          name: csrfParam,
+          value: csrfToken
+        } ).appendTo( deleteForm );
+        $( "<input>" ).attr( {
+          type: "hidden",
+          name: "_method",
+          value: "delete"
+        } ).appendTo( deleteForm );
+        deleteForm.appendTo( "body" ).submit( );
+      }
+    } ) );
+  };
+}
+
 export function addTag( tag ) {
   return ( dispatch, getState ) => {
     const state = getState( );
@@ -307,7 +338,7 @@ export function confirmDeleteComment( id ) {
   return ( dispatch ) => {
     dispatch( setConfirmModalState( {
       show: true,
-      message: "Are you sure you want to delete this comment?",
+      message: I18n.t( "you_sure_delete_comment?" ),
       confirmText: "Yes",
       onConfirm: ( ) => {
         dispatch( deleteComment( id ) );
