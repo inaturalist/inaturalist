@@ -25,16 +25,16 @@ function mapStateToProps( state, ownProps ) {
 
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
-    addID: ( identification, options ) => {
-      if ( options.agreeWith ) {
+    addID: ( taxon, options ) => {
+      if ( options.agreedWith ) {
         const params = {
-          taxon_id: identification.taxon.id,
-          observation_id: identification.observation_id
+          taxon_id: options.agreedWith.taxon.id,
+          observation_id: options.agreedWith.observation_id
         };
-        dispatch( loadingDiscussionItem( identification ) );
+        dispatch( loadingDiscussionItem( options.agreedWith ) );
         dispatch( postIdentification( params ) )
           .catch( ( ) => {
-            dispatch( stopLoadingDiscussionItem( identification ) );
+            dispatch( stopLoadingDiscussionItem( options.agreedWith ) );
           } )
           .then( ( ) => {
             dispatch( fetchCurrentObservation( ) ).then( ( ) => {
@@ -44,9 +44,10 @@ function mapDispatchToProps( dispatch, ownProps ) {
             dispatch( fetchIdentifiers( ) );
           } );
       } else {
-        const ident = Object.assign( { }, identification, {
-          observation: ownProps.observation
-        } );
+        const ident = {
+          taxon_id: taxon.id,
+          observation_id: ownProps.observation.id
+        };
         dispatch( submitIdentificationWithConfirmation( ident, {
           confirmationText: options.confirmationText
         } ) );

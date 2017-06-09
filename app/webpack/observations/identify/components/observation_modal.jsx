@@ -358,13 +358,15 @@ class ObservationModal extends React.Component {
                       { taxonMap }
                       <ul className="details">
                         <li>
-                          <i className="icon-person"></i> { observation.user.login }
-                        </li>
-                        <li>
-                          <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
+                          <a href={`/people/${observation.user.login}`} target="_blank" className="user-link">
+                            <i className="icon-person"></i> <span className="login">{ observation.user.login }</span>
+                          </a>
                         </li>
                         <li>
                           <i className="fa fa-calendar"></i> { observation.observed_on ? moment( observation.observed_at ).format( "LLL" ) : I18n.t( "unknown" ) }
+                        </li>
+                        <li>
+                          <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
                         <li>
                           <a className="permalink" href={`/observations/${observation.id}`}>

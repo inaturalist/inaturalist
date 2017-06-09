@@ -36,6 +36,7 @@
 .obs-modal-header .SplitTaxon.taxon .display-name {
   font-size: 180%;
   display: block;
+  maring-bottom: 2px;
 }
 .ObservationModal .modal-dialog .modal-content .right-col {
   border-left: 2px solid #ddd;
@@ -66,13 +67,14 @@ $galleryHeightElements: "
 
 .ObservationModal {
   .TaxonMap {
-    height: 100px;
+    height: 120px;
+    border-radius: 2px;
+    border: 1px solid #DDD;
   }
   .TaxonMap.empty {
     text-align: center;
-    line-height: 100px;
+    line-height: 120px;
     background-color: #eee;
-    border: 1px solid #ccc;
     color: #999;
   }
 }
@@ -425,7 +427,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 }
 .ObservationModal .map-and-details .details {
   list-style: none;
-  padding-left: 10px;
+  padding-left: 20px;
 }
 .ObservationModal .map-and-details .details li {
   position: relative;
@@ -465,6 +467,12 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   }
   .QualityMetrics table {
     margin-top: 0px;
+  }
+  .user-link {
+    color: black;
+  }
+  .login {
+    font-weight: bold;
   }
 }
 
