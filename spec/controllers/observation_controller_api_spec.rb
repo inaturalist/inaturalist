@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should create" do
       expect {
         post :create, :format => :json, :observation => {:species_guess => "foo"}
