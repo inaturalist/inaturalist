@@ -2470,7 +2470,9 @@ class ObservationsController < ApplicationController
     reference_photo = @observation.try(:observation_photos).try(:first).try(:photo)
     reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
     unless params[:action] === "show" || params[:action] === "update"
-      reference_photo ||= current_user.photos.order("id ASC").last
+      if reference_obs = Observation.elastic_query( user_id: current_user.id, per_page: 1, has_photos: true ).first
+        reference_photo = reference_obs.photos.first
+      end
     end
     if reference_photo
       assoc_name = (reference_photo.subtype || reference_photo.class.to_s).
