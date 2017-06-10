@@ -113,12 +113,12 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   var preserveViewport = options.preserveViewport
   if ( options.minX ) {
     // Google really doesn't like 90 deg latitude all of a sudden
-    var minY = Math.max( options.minY, -89 );
-    var maxY = Math.min( options.maxY, 89 );
+    var minY = Math.max( options.minY || 0, -89 );
+    var maxY = Math.min( options.maxY || 0, 89 );
     map.fitBounds(
       new google.maps.LatLngBounds(
-        new google.maps.LatLng( minY, options.minX ),
-        new google.maps.LatLng( maxY, options.maxX )
+        new google.maps.LatLng( minY, options.minX || 0 ),
+        new google.maps.LatLng( maxY, options.maxX || 0 )
       )
     )
     preserveViewport = true;
