@@ -76,9 +76,3 @@ window.onpopstate = e => {
     store.dispatch( showNewObservation( e.state.observation, { skipSetState: true } ) );
   }
 };
-
-$( ( ) => {
-  setTimeout( ( ) => {
-    $( "p#flash" ).fadeOut( 1000 );
-  }, 3000 );
-} );

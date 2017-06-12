@@ -262,8 +262,7 @@ class ObservationsController < ApplicationController
             object: @observation, layout: false)
         elsif ( viewing_new_obs_show? )
           @skip_application_js = true
-          flash.now[:warning_title] = nil
-          flash.now[:warning] = nil
+          @flash_js = true
           render layout: "bootstrap", action: "show2"
           return
         end
@@ -3057,8 +3056,7 @@ class ObservationsController < ApplicationController
   end
 
   def viewing_new_obs_show?
-    logged_in? &&
-      current_user.in_test_group?("obs-show") && !params.key?("show1")
+    logged_in? && current_user.in_test_group?("obs-show") && !params.key?("show1")
   end
 
 end

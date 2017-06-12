@@ -15,8 +15,23 @@
     = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  - if logged_in?
+    - js_current_user = { id: current_user.id,
+      login: current_user.login,
+      icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
+      prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
+      prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
+      prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
+      prefers_hide_obs_show_tags: current_user.prefers_hide_obs_show_tags,
+      prefers_hide_obs_show_observation_fields: current_user.prefers_hide_obs_show_observation_fields,
+      prefers_hide_obs_show_identifiers: current_user.prefers_hide_obs_show_identifiers,
+      prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
+      prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
+      preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
+    }
   :javascript
     var INITIAL_OBSERVATION_ID = #{@observation.id};
+    var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
     var SITE = {
       name: "#{@site ? @site.name : CONFIG.site_name}",
       help_email: "#{CONFIG.help_email}",
@@ -38,7 +53,7 @@
       "Calflora": "#{ asset_url( "sites/calflora.png" ) }",
       "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
       "GloBI": "#{ asset_url( "sites/globi.png" ) }",
-    }
+    };
 - content_for :extracss do
   - # needed for tooltips
   = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"

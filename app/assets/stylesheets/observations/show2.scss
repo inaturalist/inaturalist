@@ -98,18 +98,34 @@ input.failed {
   font-weight: bold;
 }
 
-.container.flash-warning {
+.FlashMessage {
   .alert {
     margin-bottom: 10px;
-  }
-  .bold {
-    margin: 0px 5px;
   }
   a {
     color: $other-link-color;
     &.contact {
       color: #a94442;
       text-decoration: underline;
+    }
+  }
+  .message {
+    .bold {
+      margin-right: 3px;
+    }
+    .fa {
+      margin-right: 5px;
+    }
+    display: inline-block;
+    width: 95%;
+  }
+  .action {
+    display: inline-block;
+    float: right;
+    .fa {
+      font-size: 18px;
+      vertical-align: middle;
+      cursor: pointer;
     }
   }
 }
@@ -1811,6 +1827,17 @@ h3, h4 {
   }
 }
 
+.CommunityIDModal.no-taxon.modal {
+  .modal-dialog {
+    .modal-content {
+      max-height: none;
+      height: auto;
+      max-height: 100%;
+      padding-bottom: 0px;
+    }
+  }
+}
+
 .LicensingModal.modal, .CommunityIDModal.modal {
   .modal-dialog {
     .modal-body {
@@ -2041,8 +2068,13 @@ h3, h4 {
   }
 }
 
-.box.opt-out button {
-  margin-left: 10px;
+.box.opt-out {
+  background: #f8f8f8;
+  margin: 30px 0px 27px 0px;
+  font-size: 16px;
+  button {
+    margin-left: 10px;
+  }
 }
 
 

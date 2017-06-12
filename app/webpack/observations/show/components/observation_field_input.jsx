@@ -14,6 +14,7 @@ class ObservationFieldInput extends React.Component {
       observationFieldValue: this.props.observationFieldValue,
       observationFieldTaxon: this.props.observationFieldTaxon
     };
+    this.submitFieldValue = this.submitFieldValue.bind( this );
   }
 
   componentDidMount( ) {

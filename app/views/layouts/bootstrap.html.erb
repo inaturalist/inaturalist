@@ -37,11 +37,11 @@
         <% end %>
       <% end -%>
       
-      <% if flash[:notice] || flash[:alert] %>
+      <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
         <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
       <% end %>
       
-      <% if flash[:error] %>
+      <% if flash[:error] && !@flash_js %>
         <p id="flash" class="error"><%= raw flash[:error] %></p>
       <% end %>
 
@@ -53,7 +53,7 @@
             </div>
           </div>
         <% end -%>
-        <% if flash[:warning] -%>
+        <% if flash[:warning] && !@flash_js -%>
           <div class="container">
             <div class="alert alert-warning">
               <% if flash[:warning_title] -%>
@@ -95,18 +95,10 @@
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
-          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>,
-          prefers_hide_obs_show_annotations: <%= current_user.prefers_hide_obs_show_annotations %>,
-          prefers_hide_obs_show_projects: <%= current_user.prefers_hide_obs_show_projects %>,
-          prefers_hide_obs_show_tags: <%= current_user.prefers_hide_obs_show_tags %>,
-          prefers_hide_obs_show_observation_fields: <%= current_user.prefers_hide_obs_show_observation_fields %>,
-          prefers_hide_obs_show_identifiers: <%= current_user.prefers_hide_obs_show_identifiers %>,
-          prefers_hide_obs_show_copyright: <%= current_user.prefers_hide_obs_show_copyright %>,
-          prefers_hide_obs_show_quality_metrics: <%= current_user.prefers_hide_obs_show_quality_metrics %>,
-          preferred_observation_license: "<%= (current_user.preferred_observation_license || "").downcase %>",
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
         };
       <% end -%>
+      var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
     </script>
     <%= javascript_include_tag 'application_bundle' %>

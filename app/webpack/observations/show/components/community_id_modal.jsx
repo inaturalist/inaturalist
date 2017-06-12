@@ -176,7 +176,7 @@ class CommunityIDModal extends Component {
     return (
       <Modal
         show={ this.props.show }
-        className="CommunityIDModal"
+        className={ `CommunityIDModal ${observation.taxon ? "" : "no-taxon"}` }
         onHide={ this.close }
       >
         <Modal.Body>

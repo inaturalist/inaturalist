@@ -27,6 +27,8 @@ import ProjectsContainer from "../containers/projects_container";
 import ConfirmModalContainer from "../containers/confirm_modal_container";
 import CopyrightContainer from "../containers/copyright_container";
 import AssessmentContainer from "../containers/assessment_container";
+import FlashMessage from "../components/flash_message";
+/* global RAILS_FLASH */
 
 moment.locale( "en", {
   relativeTime: {
@@ -62,29 +64,49 @@ const App = ( {
     ( ( !observation.photos || observation.photos.length === 0 ) &&
     ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
-  let warning;
+  let flashes = [];
+  if ( !_.isEmpty( RAILS_FLASH ) ) {
+    const types = [
+      { flashType: "notice", bootstrapType: "success" },
+      { flashType: "alert", bootstrapType: "success" },
+      { flashType: "warning", bootstrapType: "warning" },
+      { flashType: "error", bootstrapType: "error" }
+    ];
+    _.each( types, type => {
+      if ( RAILS_FLASH[type.flashType] &&
+           RAILS_FLASH[`${[type.flashType]}_title`] !==
+             I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) ) {
+        flashes.push( <FlashMessage
+          key={ `flash_${type.flashType}`}
+          title={ RAILS_FLASH[`${[type.flashType]}_title`] }
+          message={ RAILS_FLASH[type.flashType] }
+          type={ type.bootstrapType }
+        /> );
+      }
+    } );
+  }
   if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
     /* global SITE */
-    warning = (
-      <div className="container flash-warning">
-        <div className="alert alert-danger">
-          <i className="fa fa-flag" />
-          <span className="bold">
-            { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }.
-          </span>
-          This observation has been flagged as spam and is no longer publicly visible.
-          You can see it because you created it, or you are a site curator.
-          If you think this is a mistake, please <a
-            href={ `mailto:${SITE.help_email}` }
-            className="contact"
-          >
-            contact us
-          </a>. <a href={ `/observations/${observation.id}/flags` }>
-            Manage flags
-          </a>
-        </div>
-      </div>
+    const message = (
+      <span>
+        This observation has been flagged as spam and is no longer
+        publicly visible. You can see it because you created it, or you are a
+        site curator. If you think this is a mistake, please <a
+          href={ `mailto:${SITE.help_email}` }
+          className="contact"
+        >
+          contact us
+        </a>. <a href={ `/observations/${observation.id}/flags` }>
+          Manage flags
+        </a>
+      </span>
     );
+    flashes.push( <FlashMessage
+      key="flash_flag"
+      title = { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }
+      message={ message }
+      type="flag"
+    /> );
   }
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
@@ -104,7 +126,7 @@ const App = ( {
     </Row> ) : "";
   return (
     <div id="ObservationShow">
-    { warning }
+    { flashes }
       <div className="upper">
         <Grid>
           <Row className="title_row">
@@ -275,7 +297,7 @@ const App = ( {
       <LicensingModalContainer />
       <div className="quiet box text-center opt-out">
         { I18n.t( "tired_of_testing_this_new_version" ) }
-        <Button className="btn-sm" bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
+        <Button bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
           { I18n.t( "take_me_back" ) }
         </Button>
       </div>

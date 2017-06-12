@@ -23,7 +23,7 @@ class Projects extends React.Component {
   }
 
   setUpProjectAutocomplete( ) {
-    const input = $( ".Projects .panel-collapse input" );
+    const input = $( ".Projects .form-group input" );
     if ( input.data( "uiAutocomplete" ) ) {
       input.autocomplete( "destroy" );
       input.removeData( "uiAutocomplete" );

@@ -5,6 +5,8 @@ import { Glyphicon, Panel } from "react-bootstrap";
 class Tags extends React.Component {
   constructor( props ) {
     super( props );
+    this.submitTag = this.submitTag.bind( this );
+    this.removeTag = this.removeTag.bind( this );
     const currentUser = props.config && props.config.currentUser;
     this.state = {
       open: currentUser ? !currentUser.prefers_hide_obs_show_tags : true
