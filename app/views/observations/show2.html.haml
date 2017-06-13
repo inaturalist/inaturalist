@@ -15,6 +15,12 @@
     = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+- content_for :extracss do
+  - # needed for tooltips
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+  = stylesheet_link_tag "observations/show2"
+- content_for :extrajs do
   - if logged_in?
     - js_current_user = { id: current_user.id,
       login: current_user.login,
@@ -54,12 +60,6 @@
       "GBIF": "#{ asset_url( "sites/gbif.png" ) }",
       "GloBI": "#{ asset_url( "sites/globi.png" ) }",
     };
-- content_for :extracss do
-  - # needed for tooltips
-  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-  = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  = stylesheet_link_tag "observations/show2"
-- content_for :extrajs do
   = javascript_include_tag "observations-show-webpack"
 
 #app
