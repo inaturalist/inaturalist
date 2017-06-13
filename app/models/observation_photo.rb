@@ -22,10 +22,10 @@ class ObservationPhoto < ActiveRecord::Base
     true
   end
   
-  # Might be better to do this with DJ...
   def set_observation_quality_grade
     return true unless observation
-    Observation.delay.set_quality_grade(observation.id)
+    return true if observation.new_record? # presumably this will happen when the obs is saved
+    Observation.set_quality_grade( observation.id )
     true
   end
 

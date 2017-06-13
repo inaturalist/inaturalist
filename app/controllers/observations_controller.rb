@@ -2741,6 +2741,7 @@ class ObservationsController < ApplicationController
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
+      observation.reload
       po = observation.project_observations.build(project: @project,
         tracking_code: tracking_code, user: current_user)
       unless po.save
