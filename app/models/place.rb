@@ -492,7 +492,7 @@ class Place < ActiveRecord::Base
       if geom.respond_to?(:area) && geom.area > 66.0
         errors.add(:place_geometry, :is_too_large_to_import)
         return
-      elsif Observation.where("ST_Intersects(private_geom, ?)", geom).count >= 500000
+      elsif Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count >= 500000
         errors.add(:place_geometry, :contains_too_many_observations)
         return
       end
