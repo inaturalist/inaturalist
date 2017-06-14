@@ -3550,7 +3550,6 @@ I18n.translations["en"] = {
   "select_none": "Select none",
   "select_observations_to_edit": "Select observations to edit...",
   "select_options": "Select options",
-  "select_this_taxon": "Select This Taxon",
   "selected_photos": "Selected photos",
   "show": "Show",
   "show_taxa_from_everywhere": "Show taxa from everywhere",

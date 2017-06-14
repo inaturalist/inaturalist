@@ -363,7 +363,12 @@ class ObservationModal extends React.Component {
                           </a>
                         </li>
                         <li>
-                          <i className="fa fa-calendar"></i> { observation.observed_on ? moment( observation.observed_at ).format( "LLL" ) : I18n.t( "unknown" ) }
+                          <i className="fa fa-calendar"></i> {
+                            observation.observed_on ?
+                              moment( observation.time_observed_at || observation.observed_on ).format( "LLL" )
+                              :
+                              I18n.t( "unknown" )
+                          }
                         </li>
                         <li>
                           <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }

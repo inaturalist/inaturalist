@@ -62,7 +62,7 @@ class Suggestions extends React.Component {
               that.props.chooseTaxon( taxon, { observation: that.props.observation } );
             } }
           >
-            { I18n.t( "select_this_taxon" ) }
+            { I18n.t( "select" ) }
           </Button>
         </h3>
         <LazyLoad height={150} offsetVertical={1000}>
