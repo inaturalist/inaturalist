@@ -1550,6 +1550,7 @@ class Observation < ActiveRecord::Base
   end
 
   def set_taxon_from_community_taxon
+    return if identifications.count == 0 && taxon_id
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
       community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
