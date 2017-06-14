@@ -96,18 +96,34 @@ input.failed {
   font-weight: bold;
 }
 
-.container.flash-warning {
+.FlashMessage {
   .alert {
     margin-bottom: 10px;
-  }
-  .bold {
-    margin: 0px 5px;
   }
   a {
     color: $other-link-color;
     &.contact {
       color: #a94442;
       text-decoration: underline;
+    }
+  }
+  .message {
+    .bold {
+      margin-right: 3px;
+    }
+    .fa {
+      margin-right: 5px;
+    }
+    display: inline-block;
+    width: 95%;
+  }
+  .action {
+    display: inline-block;
+    float: right;
+    .fa {
+      font-size: 18px;
+      vertical-align: middle;
+      cursor: pointer;
     }
   }
 }
@@ -231,24 +247,25 @@ a.UserImage {
     background: #fff;
     border: 1px solid $border-grey;
     & > div {
-      padding: 20px;
+      padding: 20px 20px 0px 20px;
     }
     .photos_column {
       border-right: 1px solid $border-grey;
+      min-height: 500px;
       .PhotoBrowser {
+        width: 100%;
         text-align: center;
-        height: 520px;
-        margin-bottom: -39px;
         .image-gallery, .image-gallery-content, .image-gallery-content div {
           height: 100%;
         }
         .image-gallery-slides .easyzoom-flyout {
-          height: 481px;
+          height: 441px;
         }
         .image-gallery-slides img {
           max-height: 480px;
           max-width: 100%;
           width: auto;
+          padding-bottom: 40px;
         }
         .image-gallery-slide {
           line-height: 480px;
@@ -302,7 +319,7 @@ a.UserImage {
         }
         .image-gallery-thumbnails {
           position: absolute;
-          bottom: 20px;
+          bottom: 39px;
           z-index: 1;
           width: 99%;
           background: rgba(255,255,255,0.52);
@@ -324,7 +341,7 @@ a.UserImage {
           color: #808080;
           text-align: left;
           i {
-            line-height: 450px;
+            line-height: 400px;
             display: block;
             text-align: center;
             font-size: 90px;
@@ -332,7 +349,7 @@ a.UserImage {
           }
           span {
             position: absolute;
-            top: 300px;
+            top: 280px;
             width: 100%;
             text-align: center;
             margin-left: -15px;
@@ -442,15 +459,34 @@ a.UserImage {
       }
     }
   }
-  a.edit {
-    float: right;
+  .edit-button {
+    .btn-group {
+      float: right;
+      .dropdown-menu > li > a {
+        padding: 3px 10px;
+      }
+      .fa {
+        width: 25px;
+        text-align: center;
+        color: $inat-green;
+        &.fa-trash {
+          color: $fail-red;
+        }
+      }
+    }
   }
   .middle_left {
     padding-right: 40px;
   }
   .opposite_activity {
     & > .row > .col-xs-12 > div {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+    }
+    h4 {
+      margin-top: 15px;
+    }
+    .CommunityIdentification h4 {
+      margin-top: 30px;
     }
   }
   .ObservationTitle {
@@ -511,6 +547,18 @@ a.UserImage {
     &.d1 {
       maxheight: 100px !important;
       line-height: 100px;
+    }
+  }
+}
+
+h3, h4 {
+  &.collapsable {
+    i.fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    &.collapsable {
+      cursor: pointer;
     }
   }
 }
@@ -713,7 +761,7 @@ a.UserImage {
   border-top: none;
 }
 
-.Tags, .Projects, .ObservationFields {
+.Tags, .Projects, .ObservationFields, .Annotations, .Identifiers, .Copyright, .QualityMetrics {
   .panel {
     background: none;
     border: 0;
@@ -795,7 +843,7 @@ a.UserImage {
 }
 
 .ResearchGradeProgress {
-  margin-top: 85px;
+  margin-top: 15px;
   .graphic {
     text-align: center;
     .checks {
@@ -1138,10 +1186,6 @@ a.UserImage {
 }
 
 .CommunityIdentification {
-  a.display-name {
-    color: #000;
-    font-weight: 700;
-  }
   .fa-info-circle {
     color: $other-link-color;
     cursor: pointer;
@@ -1170,10 +1214,14 @@ a.UserImage {
       text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
+      margin-bottom: 5px;
+      .display-name {
+        color: #000;
+        font-weight: 700;
+      }
     }
     .photo {
       float: right;
-      cursor: pointer;
       img {
         width: 40px;
         height: 40px;
@@ -1183,8 +1231,11 @@ a.UserImage {
         opacity: 0.9;
       }
     }
+    .TaxonSummaryPopover {
+      cursor: pointer;
+    }
     .graphic {
-      margin-top: 20px;
+      margin-top: 15px;
       position: relative;
       .for, .against {
         display: inline-block;
@@ -1442,7 +1493,7 @@ a.UserImage {
   }
 }
 
-.CommunityIDModal.modal {
+.LicensingModal.modal, .CommunityIDModal.modal {
   .modal-dialog {
     width: 90%;
     height: 85%;
@@ -1459,6 +1510,52 @@ a.UserImage {
       overflow-x: auto;
       max-height: none;
     }
+  }
+}
+
+.CommunityIDModal.no-taxon.modal {
+  .modal-dialog {
+    .modal-content {
+      max-height: none;
+      height: auto;
+      max-height: 100%;
+      padding-bottom: 0px;
+    }
+  }
+}
+
+.LicensingModal.modal, .CommunityIDModal.modal {
+  .modal-dialog {
+    .modal-body {
+      .container {
+        width: 100%;
+      }
+    }
+    .license-col {
+      margin-bottom: 10px;
+      label span {
+        margin-left: 3px;
+      }
+    }
+    .preferred {
+      background-color: #E6EFC2;
+      padding: 3px;
+    }
+    .info {
+      margin-left: 15px;
+      color: #777;
+    }
+    input[type="radio"], input[type="checkbox"] {
+      margin-right: 3px;
+    }
+    .buttons label {
+      margin-right: 20px;
+    }
+  }
+}
+
+.CommunityIDModal.modal {
+  .modal-dialog {
     h4:not(:first-child) {
       margin: 30px 0px 10px;
     }
@@ -1657,8 +1754,13 @@ a.UserImage {
   }
 }
 
-.box.opt-out button {
-  margin-left: 10px;
+.box.opt-out {
+  background: #f8f8f8;
+  margin: 30px 0px 27px 0px;
+  font-size: 16px;
+  button {
+    margin-left: 10px;
+  }
 }
 
 

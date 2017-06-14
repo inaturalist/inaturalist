@@ -11,9 +11,11 @@ Rails.application.routes.draw do
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
 
+  # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
+  get "/users/new.mobile", to: redirect( "/signup" )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]

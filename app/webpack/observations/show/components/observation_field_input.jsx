@@ -14,10 +14,7 @@ class ObservationFieldInput extends React.Component {
       observationFieldValue: this.props.observationFieldValue,
       observationFieldTaxon: this.props.observationFieldTaxon
     };
-    this.taxonInput = this.taxonInput.bind( this );
-    this.datetimeInput = this.datetimeInput.bind( this );
     this.submitFieldValue = this.submitFieldValue.bind( this );
-    this.setUpObservationFieldAutocomplete = this.setUpObservationFieldAutocomplete.bind( this );
   }
 
   componentDidMount( ) {
@@ -64,7 +61,6 @@ class ObservationFieldInput extends React.Component {
   submitFieldValue( e ) {
     e.preventDefault( );
     const value = $( e.target ).find( "[name='value']" );
-    const input = $( e.target ).find( "input.ofv-input" );
     if ( !this.state.observationField ) { return; }
     if ( !this.state.observationFieldValue && !value.val( ) ) {
       const valueInput = $( e.target ).find( "[name='value'], [name='taxon_name']" );
@@ -86,6 +82,13 @@ class ObservationFieldInput extends React.Component {
         value: value.val( )
       } );
     }
+    this.reset( );
+  }
+
+  reset( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    const value = $( domNode ).find( "[name='value']" );
+    const input = $( domNode ).find( "input.ofv-input" );
     this.setState( {
       observationField: null,
       observationFieldValue: null,
@@ -264,9 +267,9 @@ class ObservationFieldInput extends React.Component {
           <p className="help-block">{ field.description }</p>
           { submit } <span
             className="linky"
-            onClick={ ( ) => {
-              this.props.onCancel( );
-            } }
+            onClick={ ( ) => (
+              this.props.onCancel ? this.props.onCancel( ) : this.reset( )
+            ) }
           >{ I18n.t( "cancel" ) }</span>
         </div>
       );

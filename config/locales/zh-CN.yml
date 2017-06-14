@@ -68,6 +68,9 @@ zh-CN:
   x_observations_reviewed_html:
     one: <span class='count'>1</span>次观察已复核
     other: <span class='count'>%{count}</span> 次观察已复核
+  x_others:
+    one: 1个其他的
+    other: '%{count}个其他的'
   x_people:
     one: 1个人
     other: '%{count} 个人'
@@ -144,6 +147,7 @@ zh-CN:
   actions: 操作
   activate_user: 激活用户
   active: 激活
+  activity: 活跃
   activity_settings: 活跃设置
   adapted_by_name_from_a_work_by_original: 改编自由 %{original} 创作的作品 %{name}
   add: 添加
@@ -182,8 +186,10 @@ zh-CN:
   add_conservation_status: 添加保护状态
   add_countries: 添加国家
   add_custom_project_fields: 添加自定义项目字段
+  add_edit_flags: 添加/编辑标记
   add_edit_more_fields: 添加/编辑更多字段
   add_description: 添加 %{description_name}
+  add_field: 添加字段
   add_from_your_observations: 从您的观察中添加
   add_link: 添加链接
   add_listed_taxa_from_observations: 从观察中添加列出的分类群
@@ -215,6 +221,7 @@ zh-CN:
   add_several_observations_at_once: 马上添加几个观察。
   add_shape: 添加形状
   add_some_now: 现在添加一些
+  add_tag: 添加标签
   add_tags: 添加标签
   add_tags_to_selected_taxa: 添加标签至选定的分类群
   add_taxa: 添加分类
@@ -259,6 +266,7 @@ zh-CN:
   admin_any_projects: 管理任何项目
   admin_tools: 管理员工具
   agree: 同意
+  agree_: 同意
   agree?: 是否同意？
   agree_to_the_project_terms: 同意项目条款
   agree_with_current_taxon: 同意当前的分类单元
@@ -369,6 +377,7 @@ zh-CN:
     other: 以及其他 %{count} 个人！
   android: 安卓
   animals: 动物
+  annotations: 注释
   announcement_was_successfully_created: 已成功创建公告。
   announcement_was_successfully_updated: 公告已成功更新。
   announcements: 公告
@@ -447,6 +456,7 @@ zh-CN:
   at_any_time_change: 任何时间（<span class="button">更改</span>）
   at_time: 在 %{time}
   atom: 原子
+  attribute: 属性
   authority_list:
     iucn_red_list: IUCN红色名录
   authorize_permissions_from_provider: 来自%{provider}的授权权限
@@ -624,6 +634,7 @@ zh-CN:
   checklist_places_absent: 名录地点（缺如）
   checklist_places_confirmed: 名录地点（已确认）
   child_taxa: 子分类
+  choose_a_field: 选择字段
   choose_a_list_above: 在上方选择一个列表。
   choose_a_place: 选择一个地方
   choose_a_taxon: 选择一个分类单元（可选）
@@ -662,6 +673,7 @@ zh-CN:
   comma_separated_please: 请以逗号分隔
   comment_preview: 评论预览
   comment: 评论
+  comment_: 评论
   comment_feed: 评论订阅源
   comment_deleted: 评论已删除
   commented: 已评论
@@ -680,9 +692,11 @@ zh-CN:
   committing: 提交中……
   community_curated: 社区策划
   community_id: <strong>社区</strong>ID：
+  community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
+  compare: 比较
   compare_with: 比较
   comparing: 比较
   comparing_list_to_list: 比较 %{list1} 与 %{list2}
@@ -781,6 +795,7 @@ zh-CN:
   csv: CSV
   csv_file: CSV文件
   csv_should_not_contain_a_header_row: CSV不应该包含标题行
+  cumulative_ids: 累计ID：%{count}个，共%{total}个
   curate_observations: 助理观察
   curate_taxa: 助理分类群
   curate_users: 助理用户
@@ -792,6 +807,7 @@ zh-CN:
   curator: 馆长
   curators_changed_for_x_html: 为%{x}工作的馆长已更改
   curators: 馆长
+  current_flags: 当前标记
   current_password: 当前密码
   custom_field_values: 自定义字段值
   custom_project_fields: 自定义项目字段
@@ -847,6 +863,7 @@ zh-CN:
     dayNames: '[''星期日'', ''星期一'', ''星期二'', ''星期三'', ''星期四'', ''星期五'', ''星期六'']'
     dayNamesShort: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
     dayNamesMin: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
+  date_specified: 已指定日期
   date_time: 日期/时间
   dates: 日期
   datetime_: 日期/时间
@@ -898,6 +915,7 @@ zh-CN:
   did_you_mean: 您是不是要找
   did_you_photos_flickr?: 您在Flickr上放照片了么？
   disagree: 不同意
+  disagree_: 不同意
   disconnect_provider: 取消连接 %{provider}
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
   display_listings_from_place: 查看某一地点的列表
@@ -910,6 +928,7 @@ zh-CN:
   does_the_date_seem_accurate: 这里的日期准确吗？
   doesnt_have_default_photo: 尚无默认的照片。
   doh_something_went_wrong: 生气啊，发生了一些错误。
+  done: 完成
   dont_filter: 不要过滤
   dont_send_me_email: 不要向我发送任何电子邮件！
   dont_use_double_quotes: 不要在其他地方使用双引号
@@ -942,6 +961,7 @@ zh-CN:
   edit_multiple_locations: 编辑多个位置
   edit_multiple_species: 编辑多个物种
   edit_notes: 编辑注释
+  edit_observation: 编辑观察
   edit_photos: 编辑照片
   edit_photos_for_observation_id: 编辑%{obs_id}这一观察记录的照片
   edit_place: 编辑地点
@@ -1000,6 +1020,7 @@ zh-CN:
   enable_offline_access: 启用离线访问
   enable_offline_access_for_mobile: 为移动设备启用离线访问
   enlarge: 放大
+  encompassing_places: 包围的地方
   end: 结束
   endangered: 濒临灭绝
   endemic: 地方性
@@ -1064,6 +1085,7 @@ zh-CN:
   fave: 喜欢
   faves: 喜爱
   Family: 家庭
+  faved_this_observation: 标记此观察
   favorite_taxa: 已收藏的分类单元
   favorites: 喜爱
   fblocale: en_US
@@ -1115,6 +1137,7 @@ zh-CN:
   first_observer: 第一个观察者
   first_report: 第一份报告
   flag: 标记
+  flag_as_inappropriate: 标记不当内容
   flag_an_item: 标记一个项目
   flag_as_spammer: 标记为破坏者
   flag_as_non_spammer: 标记为非破坏者
@@ -1128,6 +1151,7 @@ zh-CN:
   flag_this_observation: 标记此观察
   flag_this_photo: 标记这张照片
   flagged: 已标记
+  flagged_: 已标记
   flagged_for_curation: 已标记管理
   flagged_thing_explanation: 用户已标记此 %{thing} 因为
   flagger: 标记者
@@ -1148,6 +1172,7 @@ zh-CN:
   flowering_phenology: 开花物候学
   fluid_layout: 流动布局
   fluid: 液体
+  follow: 关注
   follow_us: 关注我们在
   follow_us_on: 关注我们在
   follow_user: 关注%{user}
@@ -1235,6 +1260,7 @@ zh-CN:
   has_been: 已经
   has_one_or_more_faves: 有一个或更多喜爱
   has_photos: 有照片
+  has_photos_or_sounds: 有照片或声音
   has_sounds: 有声音
   hasnt_contributed_any_observations: 没有对这一项目贡献观察记录
   hate_me_facebook: 取消链接您的Facebook和 %{site_name} 账户
@@ -1324,6 +1350,7 @@ zh-CN:
   import_sounds: 导入声音
   import_tags_from_csv: 从CSV导入标签
   importing: 正在导入...
+  improving: 正在改进
   in: 于
   in_: 于
   in_n: 在 %{n}
@@ -1414,6 +1441,7 @@ zh-CN:
   kml: KML
   kml_file_size_error: KML 大小必须小于 1 MB
   labels: 标签
+  location_unknown: 位置未知
   language_slash_type: 语言/种类
   large: 大
   last_confirmed_observation: 最近确认的观察
@@ -1621,6 +1649,7 @@ zh-CN:
   mark_as_reviewed: 标记为已复核
   mark_all_as_reviewed: 全部标记为已复核
   mark_all_as_unreviewed: 全部标记为未复核
+  maverick: 未烙印动物
   maybe_your_signed_in_with: 也许您是使用您的 %{omniauth} 账户登录的？
   media: 媒体
   medium: 中
@@ -1656,7 +1685,7 @@ zh-CN:
       dd: '%dd'
       M: 1分钟
       MM: '%dm'
-      'y': 1y
+      "y": 1y
       yy: '%dy'
   mon: 一
   month: 月
@@ -1665,6 +1694,7 @@ zh-CN:
   more: 更多
   more_fields: 更多字段
   more_filters: 更多过滤器
+  more_from_x: 更多来自 %{x}
   more_import_options: 更多导入选项
   more_info: 更多信息
   more_info_title: 更多信息
@@ -1783,6 +1813,7 @@ zh-CN:
   no_observations: 没有观察
   no_observations_submitted: 没有提交观察！
   no_one_has_been_invited_yet: 还没有人被邀请
+  no_photo: 没有照片
   no_photos: 无照片
   no_places_available: 没有可用的地点
   no_places_selected: 没有选择地点。
@@ -1820,6 +1851,7 @@ zh-CN:
   not_linked_flickr: 您的%{site_name}账户并未链接至您的Flickr账户
   not_logged_in: 未登录
   not_on_this_list: 不在此列表中。
+  not_recorded: 未记录
   not_seeing_what_looking_for: 看不到您要寻找的东西么？
   not_yet: 尚未
   note: 注释
@@ -1839,6 +1871,7 @@ zh-CN:
   observation_date?: 日期？
   observation_field: 观察字段
   observation_fields: 观察字段
+  observation_flagged: 观察已标记
   observation_rights_html: 观察 %{rights}
   observation_without_photo: 没有照片的观察
   observation_would_like_some_help: '%{user}需要一些人帮助识别这个！'
@@ -1910,6 +1943,7 @@ zh-CN:
   only_species_and_subspecies: 只有种和亚种/变种
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
   open: 打开
+  open_: 打开
   open_description: 任何人可以查看观察，除非分类受到威胁。
   optional: 可选
   or: 或
@@ -2221,6 +2255,7 @@ zh-CN:
   publish: 发布
   purple: 紫色
   quality_grade: 质量等级
+  quality_grade_: 质量等级
   quality_grade_colon: 质量等级：
   queued: 已入队列
   query: 查询
@@ -2278,6 +2313,7 @@ zh-CN:
   redo_search_in_map: 在地图中重新搜索
   refresh: 刷新
   refreshing: 正在刷新
+  reject_the_community_id: 拒绝社群ID
   related_species: 相关物种
   reload_and_refresh: 重新加载和刷新列表
   remarks_optional: 摘要<span class="small description">（可选）</span>
@@ -2602,6 +2638,7 @@ zh-CN:
   taxonomic_status: 分类状态
   tell_everyone_a_little_about_you: 向大家介绍您自己
   tell_the_world_a_little_about_yourself: 告诉我们有关您自己
+  tell_us_why: 告诉我们为什么...
   terms: 条款
   terms_and_rules_html: 条款和规则
   terms_new_users: 如果您添加条款，新用户必须在加入该项目前同意这些条款。
@@ -2659,6 +2696,7 @@ zh-CN:
   this_is_a_life_list_from_place_html: 这是来自 %{place} 的生命清单
   this_job_failed_to_run: 此工作运行失败。请联络%{email}
   this_list_is_empty!: 此列表是空的！
+  this_observation: 此观察
   this_species: 此物种
   this_taxon_change_has_been_commited: <strong>此分类单元更改已经提交！</strong>请不要编辑分类群。可以编辑其他字段。
   this_tool_is_experimental: 本工具是实验性的，所以请
@@ -2703,6 +2741,7 @@ zh-CN:
   try_wikipedia: 尝试维基百科？
   tue: 二
   twitter: 推特
+  two_thirds: 第2/3个
   type: 类型
   type_a_name_and_click: 输入一个名字并点击查找
   type_a_place_name_and_click_search: 输入一个地名并点击搜索以搜索
@@ -2722,6 +2761,7 @@ zh-CN:
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
   unknown: 未知
   unknown_rank: （未知排名）
+  unfollow: 不关注
   unlink_your_picasa_account: 取消链接您的Picasa账户
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的订阅目前暂停'
@@ -2774,12 +2814,14 @@ zh-CN:
   user_added_an_x: '%{user} 添加了一个 %{x}'
   user_added_an_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
   user_added_a_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
-  user_follows: '%{user}关注'
+  user_commented: '%{user} 已评论'
+  user_follows: '%{user} 关注'
   user_hasnt: '%{user}没有'
   user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
   user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user} 的列表'
+  user_suggested_an_id: '%{user}建议了一个ID'
   username: 用户名
   username_or_email: 用户名或电子邮件
   username_or_user_id: 用户名或用户ID
@@ -2794,9 +2836,11 @@ zh-CN:
   using_a_license: 使用一份许可协议
   valid_interrogation: 有效么？
   valid_options_are: 有效选项是
+  value: 值
   verbing_x_of_y: '%{verb} %{y}的%{x}……'
   view: 查看
   view_all: 查看全部
+  view_all_from_x: 查看所有来自 %{x}
   view_all_members: 查看所有成员
   view_all_n: 查看所有%{n}
   view_all_observations: 查看所有观察
@@ -3201,6 +3245,15 @@ zh-CN:
           the observation.
         inat_users_can_also: '%{site_name}用户也可以添加额外的检查表至地点，但这些检查表不会更新。他们主要为人提供一种方式，以引入外部的数据来源，或只是列出基于他们自己经历的东西。'
     observations:
+      community_id:
+        agreement: 协议
+        below_cutoff: 低于截止
+        cumulative_count: 累计
+        disagreement: 不一致
+        identification_count: 识别计数
+        score: 分数
+        you_have_opted_out: 您已选择退出社区标识
+        your_id_does_not_match: 您的ID（<span class="bold">%{taxon_name}</span>）并不匹配社群ID
       captive_help_html: |-
         有机体<strong>已耕作</strong>或<strong>被俘虏</strong>了么？
         For example, was it in a <strong>garden,

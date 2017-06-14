@@ -262,8 +262,7 @@ class ObservationsController < ApplicationController
             object: @observation, layout: false)
         elsif ( viewing_new_obs_show? )
           @skip_application_js = true
-          flash.now[:warning_title] = nil
-          flash.now[:warning] = nil
+          @flash_js = true
           render layout: "bootstrap", action: "show2"
           return
         end
@@ -2470,7 +2469,9 @@ class ObservationsController < ApplicationController
     reference_photo = @observation.try(:observation_photos).try(:first).try(:photo)
     reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
     unless params[:action] === "show" || params[:action] === "update"
-      reference_photo ||= current_user.photos.order("id ASC").last
+      if reference_obs = Observation.elastic_query( user_id: current_user.id, per_page: 1, has_photos: true ).first
+        reference_photo = reference_obs.photos.first
+      end
     end
     if reference_photo
       assoc_name = (reference_photo.subtype || reference_photo.class.to_s).
@@ -2740,6 +2741,7 @@ class ObservationsController < ApplicationController
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
+      observation.reload
       po = observation.project_observations.build(project: @project,
         tracking_code: tracking_code, user: current_user)
       unless po.save
@@ -3055,8 +3057,7 @@ class ObservationsController < ApplicationController
   end
 
   def viewing_new_obs_show?
-    logged_in? && current_user.is_admin? &&
-      current_user.in_test_group?("obs-show") && !params.key?("show1")
+    logged_in? && current_user.in_test_group?("obs-show") && !params.key?("show1")
   end
 
 end

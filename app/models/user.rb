@@ -64,6 +64,13 @@ class User < ActiveRecord::Base
   preference :hide_comments_onboarding, default: false
   preference :hide_following_onboarding, default: false
   preference :taxon_page_place_id, :integer
+  preference :hide_obs_show_annotations, default: false
+  preference :hide_obs_show_projects, default: false
+  preference :hide_obs_show_tags, default: false
+  preference :hide_obs_show_observation_fields, default: false
+  preference :hide_obs_show_identifiers, default: false
+  preference :hide_obs_show_copyright, default: false
+  preference :hide_obs_show_quality_metrics, default: false
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -442,6 +449,14 @@ class User < ActiveRecord::Base
 
   def update_observation_sites
     observations.update_all(site_id: site_id)
+    index_observations
+  end
+
+  def index_observations_later
+    delay(priority: USER_INTEGRITY_PRIORITY).index_observations
+  end
+
+  def index_observations
     Observation.elastic_index!(scope: Observation.by(self))
   end
 

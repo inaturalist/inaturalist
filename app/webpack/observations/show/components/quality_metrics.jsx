@@ -215,7 +215,6 @@ class QualityMetrics extends React.Component {
       <div className="QualityMetrics">
         { this.props.tableOnly ? null : (
           <div>
-            <h3>{ I18n.t( "data_quality_assessment" ) }</h3>
             <div className="grade">
               { I18n.t( "quality_grade_" ) }:
               <span className={ `quality_grade ${observation.quality_grade} ` }>

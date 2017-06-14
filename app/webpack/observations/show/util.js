@@ -20,7 +20,7 @@ const util = class util {
           src={ taxon.defaultPhoto.photoUrl( options.size ) }
           className="taxon-image"
         /> );
-    } else if ( taxon.iconic_taxon_name ) {
+    } else if ( taxon && taxon.iconic_taxon_name ) {
       return (
         <i className={`taxon-image icon icon-iconic-${taxon.iconic_taxon_name.toLowerCase( )}`} />
       );

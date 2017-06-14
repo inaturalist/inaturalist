@@ -89,15 +89,19 @@ class Activity extends React.Component {
           <Button className="comment_id" bsSize="small" onClick={
             ( ) => {
               if ( $( ".comment_tab" ).is( ":visible" ) ) {
-                this.props.addComment( $( ".comment_tab textarea" ).val( ) );
-                $( ".comment_tab textarea" ).val( "" );
+                const comment = $( ".comment_tab textarea" ).val( );
+                if ( comment ) {
+                  this.props.addComment( $( ".comment_tab textarea" ).val( ) );
+                  $( ".comment_tab textarea" ).val( "" );
+                }
               } else {
-                const selectedTaxon = $( ".id_tab input[name='taxon_name']" ).
-                  data( "uiAutocomplete" ).selectedItem;
+                const input = $( ".id_tab input[name='taxon_name']" );
+                const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
                 if ( selectedTaxon ) {
                   this.props.addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                  $( ".id_tab input[name='taxon_name']" ).trigger( "resetSelection" );
-                  $( ".id_tab input[name='taxon_name']" ).val( "" );
+                  input.trigger( "resetSelection" );
+                  input.val( "" );
+                  input.data( "uiAutocomplete" ).selectedItem = null;
                   $( ".id_tab textarea" ).val( "" );
                 }
               }

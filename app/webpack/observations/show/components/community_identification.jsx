@@ -13,10 +13,6 @@ class CommunityIdentification extends React.Component {
   constructor( ) {
     super( );
     this.ownerID = null;
-    this.communityIDOptIn = this.communityIDOptIn.bind( this );
-    this.communityIDOptOut = this.communityIDOptOut.bind( this );
-    this.communityIDOverridePanel = this.communityIDOverridePanel.bind( this );
-    this.communityIDOverrideStatement = this.communityIDOverrideStatement.bind( this );
     this.showCommunityIDModal = this.showCommunityIDModal.bind( this );
   }
 
@@ -114,6 +110,7 @@ class CommunityIdentification extends React.Component {
     }
     return statement;
   }
+
   showCommunityIDModal( ) {
     this.props.setCommunityIDModalState( { show: true } );
   }
@@ -122,82 +119,70 @@ class CommunityIdentification extends React.Component {
     const { observation, config, addID } = this.props;
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
-    if ( !observation || !taxon ) {
+    if ( !observation ) {
       return ( <div /> );
     }
-    const compareTaxonID = taxon.rank_level <= 10 ?
-      taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
-    const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
-      i.current && i.user && i.user.id === config.currentUser.id
-    ) );
-    this.ownerID = _.findLast( observation.identifications, i => (
-      i.current && i.user && i.user.id === observation.user.id
-    ) );
+    let compareLink;
     let canAgree = true;
     let userAgreedToThis;
-    if ( currentUserID ) {
-      canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
-      userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
-    }
+    let stats;
+    let photo;
     const taxonImageTag = util.taxonImage( taxon );
     const votesFor = [];
     const votesAgainst = [];
-    const taxonAncestry = taxon.ancestry ? `${taxon.ancestry}/${taxon.id}` : `${taxon.id}`;
-    _.each( observation.identifications, i => {
-      if ( !i.current ) { return; }
-      const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
-      if ( taxonAncestry.includes( idAncestry ) || idAncestry.includes( taxonAncestry ) ) {
-        votesFor.push( i );
-      } else {
-        votesAgainst.push( i );
+    if ( taxon ) {
+      const tid = taxon.rank_level <= 10 ?
+      taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
+      compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=${tid}`;
+      const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
+        i.current && i.user && i.user.id === config.currentUser.id
+      ) );
+      this.ownerID = _.findLast( observation.identifications, i => (
+        i.current && i.user && i.user.id === observation.user.id
+      ) );
+      if ( currentUserID ) {
+        canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+        userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
       }
-    } );
-    const totalVotes = votesFor.length + votesAgainst.length;
-    const voteCells = [];
-    const width = `${_.round( 100 / totalVotes, 3 )}%`;
-    _.each( votesFor, v => {
-      voteCells.push( (
-        <CommunityIDPopover
-          key={ `community-id-${v.id}` }
-          keyPrefix="ids"
-          identification={ v }
-          communityIDTaxon={ taxon }
-          agreement
-          contents={ ( <div className="for" style={ { width } } /> ) }
-        />
-      ) );
-    } );
-    _.each( votesAgainst, v => {
-      voteCells.push( (
-        <CommunityIDPopover
-          key={ `community-id-${v.id}` }
-          keyPrefix="ids"
-          identification={ v }
-          communityID={ taxon }
-          agreement={ false }
-          contents={ ( <div className="against" style={ { width } } /> ) }
-        />
-      ) );
-    } );
-
-    return (
-      <div className="CommunityIdentification">
-        <h4>
-          { I18n.t( "community_id_heading" ) }
-          { this.communityIDOverrideStatement( ) }
-        </h4>
-        <div className="info">
-          <div className="photo">
-            <TaxonSummaryPopover
-              taxon={ taxon }
-              contents={ taxonImageTag }
-            />
-          </div>
-          <div className="badges">
-            <ConservationStatusBadge observation={ observation } />
-            <EstablishmentMeansBadge observation={ observation } />
-          </div>
-          <SplitTaxon taxon={observation.taxon} url={`/taxa/${taxon.id}`} />
+      const taxonAncestry = taxon.ancestry ? `${taxon.ancestry}/${taxon.id}` : `${taxon.id}`;
+      _.each( observation.identifications, i => {
+        if ( !i.current ) { return; }
+        const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
+        if ( taxonAncestry.includes( idAncestry ) || idAncestry.includes( taxonAncestry ) ) {
+          votesFor.push( i );
+        } else {
+          votesAgainst.push( i );
+        }
+      } );
+      const totalVotes = votesFor.length + votesAgainst.length;
+      const voteCells = [];
+      const width = `${_.round( 100 / totalVotes, 3 )}%`;
+      _.each( votesFor, v => {
+        voteCells.push( (
+          <CommunityIDPopover
+            key={ `community-id-${v.id}` }
+            keyPrefix="ids"
+            identification={ v }
+            communityIDTaxon={ taxon }
+            agreement
+            contents={ ( <div className="for" style={ { width } } /> ) }
+          />
+        ) );
+      } );
+      _.each( votesAgainst, v => {
+        voteCells.push( (
+          <CommunityIDPopover
+            key={ `community-id-${v.id}` }
+            keyPrefix="ids"
+            identification={ v }
+            communityID={ taxon }
+            agreement={ false }
+            contents={ ( <div className="against" style={ { width } } /> ) }
+          />
+        ) );
+      } );
+      stats = (
+        <span>
           <span className="cumulative">
             { I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) }
           </span>
@@ -212,6 +197,45 @@ class CommunityIdentification extends React.Component {
               <div className="last">{ voteCells.length }</div>
             </div>
           </div>
+        </span>
+      );
+      photo = (
+        <TaxonSummaryPopover
+          taxon={ taxon }
+          contents={ taxonImageTag }
+        />
+      );
+    } else {
+      compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=0`;
+      canAgree = false;
+      stats = (
+        <span>
+          <span className="cumulative">
+            No IDs have been suggested yet
+          </span>
+        </span>
+      );
+      photo = taxonImageTag;
+    }
+
+    return (
+      <div className="CommunityIdentification">
+        <h4>
+          { I18n.t( "community_id_heading" ) }
+          { this.communityIDOverrideStatement( ) }
+        </h4>
+        <div className="info">
+          <div className="photo">{ photo }</div>
+          <div className="badges">
+            <ConservationStatusBadge observation={ observation } />
+            <EstablishmentMeansBadge observation={ observation } />
+          </div>
+          <SplitTaxon
+            taxon={ taxon }
+            url={ taxon ? `/taxa/${taxon.id}` : null }
+            placeholder={ observation.species_guess }
+          />
+          { stats }
         </div>
         <div className="action">
           <div className="btn-space">
@@ -223,9 +247,7 @@ class CommunityIdentification extends React.Component {
             </button>
           </div>
           <div className="btn-space">
-            <a href={
-              `/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}` }
-            >
+            <a href={ compareLink }>
               <button className="btn btn-default">
                 <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
               </button>

@@ -1,10 +1,9 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Grid, Row, Col, Button } from "react-bootstrap";
+import { Grid, Row, Col, Button, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
-import ObservationAttribution from "../../../shared/components/observation_attribution";
 import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
 import ConservationStatusBadge from "../components/conservation_status_badge";
@@ -12,6 +11,7 @@ import EstablishmentMeansBadge from "../components/establishment_means_badge";
 import ActivityContainer from "../containers/activity_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import CommunityIDModalContainer from "../containers/community_id_modal_container";
+import LicensingModalContainer from "../containers/licensing_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
 import TagsContainer from "../containers/tags_container";
@@ -24,9 +24,11 @@ import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
 import SimilarContainer from "../containers/similar_container";
 import ProjectsContainer from "../containers/projects_container";
-import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
-import QualityMetricsContainer from "../containers/quality_metrics_container";
 import ConfirmModalContainer from "../containers/confirm_modal_container";
+import CopyrightContainer from "../containers/copyright_container";
+import AssessmentContainer from "../containers/assessment_container";
+import FlashMessage from "../components/flash_message";
+/* global RAILS_FLASH */
 
 moment.locale( "en", {
   relativeTime: {
@@ -46,7 +48,9 @@ moment.locale( "en", {
   }
 } );
 
-const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
+const App = ( {
+  observation, config, controlledTerms, leaveTestGroup, deleteObservation, setLicensingModalState
+} ) => {
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
       <div id="initial-loading" className="text-center">
@@ -60,29 +64,49 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
     ( ( !observation.photos || observation.photos.length === 0 ) &&
     ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
-  let warning;
+  let flashes = [];
+  if ( !_.isEmpty( RAILS_FLASH ) ) {
+    const types = [
+      { flashType: "notice", bootstrapType: "success" },
+      { flashType: "alert", bootstrapType: "success" },
+      { flashType: "warning", bootstrapType: "warning" },
+      { flashType: "error", bootstrapType: "error" }
+    ];
+    _.each( types, type => {
+      if ( RAILS_FLASH[type.flashType] &&
+           RAILS_FLASH[`${[type.flashType]}_title`] !==
+             I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) ) {
+        flashes.push( <FlashMessage
+          key={ `flash_${type.flashType}`}
+          title={ RAILS_FLASH[`${[type.flashType]}_title`] }
+          message={ RAILS_FLASH[type.flashType] }
+          type={ type.bootstrapType }
+        /> );
+      }
+    } );
+  }
   if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
     /* global SITE */
-    warning = (
-      <div className="container flash-warning">
-        <div className="alert alert-danger">
-          <i className="fa fa-flag" />
-          <span className="bold">
-            { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }.
-          </span>
-          This observation has been flagged as spam and is no longer publicly visible.
-          You can see it because you created it, or you are a site curator.
-          If you think this is a mistake, please <a
-            href={ `mailto:${SITE.help_email}` }
-            className="contact"
-          >
-            contact us
-          </a>. <a href={ `/observations/${observation.id}/flags` }>
-            Manage flags
-          </a>
-        </div>
-      </div>
+    const message = (
+      <span>
+        This observation has been flagged as spam and is no longer
+        publicly visible. You can see it because you created it, or you are a
+        site curator. If you think this is a mistake, please <a
+          href={ `mailto:${SITE.help_email}` }
+          className="contact"
+        >
+          contact us
+        </a>. <a href={ `/observations/${observation.id}/flags` }>
+          Manage flags
+        </a>
+      </span>
     );
+    flashes.push( <FlashMessage
+      key="flash_flag"
+      title = { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }
+      message={ message }
+      type="flag"
+    /> );
   }
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
@@ -102,13 +126,17 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
     </Row> ) : "";
   return (
     <div id="ObservationShow">
-    { warning }
+    { flashes }
       <div className="upper">
         <Grid>
           <Row className="title_row">
             <Col xs={ viewerIsObserver ? 10 : 12 }>
               <div className="ObservationTitle">
-                <SplitTaxon taxon={observation.taxon} url={taxonUrl} />
+                <SplitTaxon
+                  taxon={ observation.taxon }
+                  url={ taxonUrl }
+                  placeholder={observation.species_guess}
+                />
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
@@ -117,14 +145,38 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
               </div>
             </Col>
             { viewerIsObserver ? (
-              <Col xs={2}>
-                <Button
+              <Col xs={2} className="edit-button">
+                <SplitButton
                   bsStyle="primary"
                   className="edit"
                   href={ `/observations/${observation.id}/edit` }
+                  title={ I18n.t( "edit" ) }
+                  id="edit-dropdown"
+                  pullRight
+                  onSelect={ ( event, key ) => {
+                    if ( key === "delete" ) {
+                      deleteObservation( );
+                    } else if ( key === "license" ) {
+                      setLicensingModalState( { show: true } );
+                    }
+                  } }
                 >
-                  { I18n.t( "edit_observation" ) }
-                </Button>
+                  <MenuItem eventKey="delete">
+                    <i className="fa fa-trash" />
+                    Delete
+                  </MenuItem>
+                  <MenuItem
+                    eventKey="duplicate"
+                    href={ `/observations/new?copy=${observation.id}` }
+                  >
+                    <i className="fa fa-files-o" />
+                    Duplicate
+                  </MenuItem>
+                  <MenuItem eventKey="license">
+                    <i className="fa fa-copyright" />
+                    Edit Licensing
+                  </MenuItem>
+                </SplitButton>
               </Col> ) : ""
             }
           </Row>
@@ -140,7 +192,6 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                       { !viewerIsObserver ? ( <FollowButtonContainer /> ) : null }
                       <UserWithIcon user={ observation.user } />
                     </div>
-                    <MapContainer />
                     <Row className="date_row">
                       <Col xs={6}>
                         <span className="bold_label">{ I18n.t( "observed" ) }:</span>
@@ -156,20 +207,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
                         </span>
                       </Col>
                     </Row>
-                    <Row className="stats_row">
-                      <Col xs={4}>
-                        <i className="fa fa-comment" />
-                        { observation.comments_count }
-                      </Col>
-                      <Col xs={4}>
-                        <i className="fa fa-tag" />
-                        { observation.identifications.length }
-                      </Col>
-                      <Col xs={4}>
-                        <i className="fa fa-star" />
-                        { observation.faves.length }
-                      </Col>
-                    </Row>
+                    <MapContainer />
                     <Row className="faves_row">
                       <Col xs={12}>
                         <FavesContainer />
@@ -222,10 +260,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
               </Row>
               <Row>
                 <Col xs={12}>
-                  <div className="Copyright">
-                    <h4>Copyright Info</h4>
-                    <ObservationAttribution observation={ observation } />
-                  </div>
+                  <CopyrightContainer />
                 </Col>
               </Row>
             </Col>
@@ -233,16 +268,7 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
         </Grid>
       </div>
       <div className="data_quality_assessment">
-        <Grid>
-          <Row>
-            <Col xs={7}>
-              <QualityMetricsContainer />
-            </Col>
-            <Col xs={5}>
-              <ResearchGradeProgressContainer />
-            </Col>
-          </Row>
-        </Grid>
+        <AssessmentContainer />
       </div>
       <div className="more_from">
         <Grid>
@@ -268,9 +294,10 @@ const App = ( { observation, config, controlledTerms, leaveTestGroup } ) => {
       <FlaggingModalContainer />
       <ConfirmModalContainer />
       <CommunityIDModalContainer />
+      <LicensingModalContainer />
       <div className="quiet box text-center opt-out">
         { I18n.t( "tired_of_testing_this_new_version" ) }
-        <Button className="btn-sm" bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
+        <Button bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
           { I18n.t( "take_me_back" ) }
         </Button>
       </div>
@@ -282,7 +309,9 @@ App.propTypes = {
   config: PropTypes.object,
   controlledTerms: PropTypes.array,
   leaveTestGroup: PropTypes.func,
-  observation: PropTypes.object
+  observation: PropTypes.object,
+  deleteObservation: PropTypes.func,
+  setLicensingModalState: PropTypes.func
 };
 
 export default App;

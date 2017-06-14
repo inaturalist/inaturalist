@@ -78,7 +78,9 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     contents = (
       <div className="identification">
         <div className="taxon">
-          { taxonImageTag }
+          <a href={ `/taxa/${taxon.id}` }>
+            { taxonImageTag }
+          </a>
           <SplitTaxon
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }

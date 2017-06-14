@@ -88,9 +88,13 @@ var iNaturalist = window.iNaturalist = new function(){
 
   this.Licenses = <%= Hash[Shared::LicenseModule::LICENSE_INFO.map do |k,l|
     icon_name = "#{l[:code]}_small.png";
-    [ l[:code].downcase, l.merge({ icon:
-      Rails.application.assets.find_asset(icon_name) ?
-        asset_path( icon_name ) : nil }) ]
+    large_icon_name = "#{l[:code]}.png";
+    [ l[:code].downcase, l.merge({
+      icon: Rails.application.assets.find_asset(icon_name) ?
+        asset_path( icon_name ) : nil,
+      icon_large: Rails.application.assets.find_asset(large_icon_name) ?
+        asset_path( large_icon_name ) : nil
+    }) ]
   end].to_json %>;
 
 }; // end of the iNaturalist singleton

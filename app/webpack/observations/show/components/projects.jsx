@@ -4,10 +4,12 @@ import { Panel } from "react-bootstrap";
 import ProjectListing from "./project_listing";
 
 class Projects extends React.Component {
-  constructor( ) {
-    super( );
+
+  constructor( props ) {
+    super( props );
+    const currentUser = props.config && props.config.currentUser;
     this.state = {
-      open: false
+      open: currentUser ? !currentUser.prefers_hide_obs_show_projects : true
     };
     this.setUpProjectAutocomplete = this.setUpProjectAutocomplete.bind( this );
   }
@@ -21,7 +23,7 @@ class Projects extends React.Component {
   }
 
   setUpProjectAutocomplete( ) {
-    const input = $( ".Projects .panel-collapse input" );
+    const input = $( ".Projects .form-group input" );
     if ( input.data( "uiAutocomplete" ) ) {
       input.autocomplete( "destroy" );
       input.removeData( "uiAutocomplete" );
@@ -66,41 +68,45 @@ class Projects extends React.Component {
     if ( !observation ) {
       return ( <span /> );
     }
-    let addProjectLink;
     let addProjectInput;
     if ( loggedIn ) {
-      addProjectLink = (
-        <span
-          className="add"
-          onClick={ ( ) => this.setState( { open: !this.state.open } ) }
-        >{ I18n.t( "add_to_project" ) }</span>
-      );
       addProjectInput = (
-        <Panel collapsible expanded={ this.state.open }>
-          <form onSubmit={ this.chooseFirstProject }>
-            <div className="form-group">
-              <input
-                type="text"
-                className="form-control"
-                placeholder={ I18n.t( "add_to_a_project" ) }
-              />
-            </div>
-          </form>
-        </Panel>
+        <form onSubmit={ this.chooseFirstProject }>
+          <div className="form-group">
+            <input
+              type="text"
+              className="form-control"
+              placeholder={ I18n.t( "add_to_a_project" ) }
+            />
+          </div>
+        </form>
       );
     }
     const count = observation.project_observations.length;
     return (
       <div className="Projects">
-        <h4>{ I18n.t( "this_observation_is_in_x_projects", { count } ) } { addProjectLink }</h4>
-        { addProjectInput }
-        { observation.project_observations.map( po => (
-          <ProjectListing
-            key={ po.project.id }
-            projectObservation={ po }
-            { ...this.props }
-          />
-        ) ) }
+        <h4
+          className="collapsable"
+          onClick={ ( ) => {
+            if ( loggedIn ) {
+              this.props.updateSession( { prefers_hide_obs_show_projects: this.state.open } );
+            }
+            this.setState( { open: !this.state.open } );
+          } }
+        >
+          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
+          { I18n.t( "projects" ) } ({ count })
+        </h4>
+        <Panel collapsible expanded={ this.state.open }>
+          { addProjectInput }
+          { observation.project_observations.map( po => (
+            <ProjectListing
+              key={ po.project.id }
+              projectObservation={ po }
+              { ...this.props }
+            />
+          ) ) }
+        </Panel>
       </div>
     );
   }
@@ -113,7 +119,8 @@ Projects.propTypes = {
   removeFromProject: PropTypes.func,
   config: PropTypes.object,
   observation: PropTypes.object,
-  setErrorModalState: PropTypes.func
+  setErrorModalState: PropTypes.func,
+  updateSession: PropTypes.func
 };
 
 export default Projects;

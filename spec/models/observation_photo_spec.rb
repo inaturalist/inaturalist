@@ -1,20 +1,23 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationPhoto, "creation" do  
-  it "should queue a job to update observation quality grade" do
-    Delayed::Job.delete_all
-    stamp = Time.now
-    make_observation_photo
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
+  it "should update observation quality grade" do
+    o = Observation.make!( observed_on_string: "2017-02-01", latitude: 1, longitude: 1 )
+    expect( o.quality_grade ).to eq Observation::CASUAL
+    make_observation_photo( observation: o )
+    o.reload
+    expect( o.quality_grade ).to eq Observation::NEEDS_ID
   end
 
   it "should increment observation_photos_count on the observation" do
     o = Observation.make!
-    lambda {
+    expect {
       make_observation_photo(:observation => o)
       o.reload
-    }.should change(o, :observation_photos_count).by(1)
+    }.to change(o, :observation_photos_count).by(1)
   end
 
   it "should touch the observation" do
@@ -22,27 +25,29 @@ describe ObservationPhoto, "creation" do
     updated_at_was = o.updated_at
     op = make_observation_photo(:observation => o)
     o.reload
-    updated_at_was.should < o.updated_at
+    expect( updated_at_was ).to be < o.updated_at
   end
 end
 
 describe ObservationPhoto, "destruction" do
-  it "should queue a job to update observation quality grade" do
-    op = make_observation_photo
-    Delayed::Job.delete_all
-    stamp = Time.now
-    op.destroy
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    jobs.select{|j| j.handler =~ /Observation.*set_quality_grade/m}.should_not be_blank
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
+  it "should update observation quality grade" do
+    o = make_research_grade_observation
+    expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+    o.observation_photos.destroy_all
+    o.reload
+    expect( o.quality_grade ).to eq Observation::CASUAL
   end
 
   it "should decrement observation_photos_count on the observation" do
     op = make_observation_photo
     o = op.observation
-    o.observation_photos_count.should eq(1)
-    lambda {
+    expect( o.observation_photos_count ).to eq(1)
+    expect {
       op.destroy
       o.reload
-    }.should change(o, :observation_photos_count).by(-1)
+    }.to change(o, :observation_photos_count).by(-1)
   end
 end

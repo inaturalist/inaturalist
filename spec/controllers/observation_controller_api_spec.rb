@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should create" do
       expect {
         post :create, :format => :json, :observation => {:species_guess => "foo"}
@@ -1735,7 +1737,11 @@ describe ObservationsController, "oauth authentication" do
 end
 
 describe ObservationsController, "oauth authentication with param" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   let(:user) { User.make! }
+  
   it "should create" do
     app = OauthApplication.make!
     token = Doorkeeper::AccessToken.create(:application_id => app.id, :resource_owner_id => user.id)

@@ -41,6 +41,19 @@ if OPTS.user
 end
 
 if OPTS.observation
+  if ActiveRecord::Base.connection.current_database != OPTS.dbname
+    # if we're trying to extract data from a separate database AND we're specifying obs IDs, we need to look for them in that database
+    Observation.establish_connection( ActiveRecord::Base.connection_config.merge( database: OPTS.dbname ) )
+    begin
+      Observation.first
+    rescue PG::ConnectionBad
+      Observation.establish_connection( ActiveRecord::Base.connection_config.merge(
+        database: OPTS.dbname,
+        host: nil,
+        password: nil
+      ) )
+    end
+  end
   @observations = Observation.where(id: OPTS.observation.split(","))
   unless @observations.blank?
     @where << "observations.id IN (#{@observations.map(&:id).join(',')})"

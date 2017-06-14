@@ -92,7 +92,7 @@
   </div>
 <% end -%>
 
-<% if logged_in? && current_user.is_admin? %>
+<% if logged_in? %>
   <div class="last column span-24">
     <%= form_tag join_test_user_path( current_user, test: "obs-show" ),
         method: "put",
