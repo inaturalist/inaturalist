@@ -2643,6 +2643,18 @@ describe Observation do
       expect(o.taxon).to be_blank
     end
 
+    it "should not set the taxon if there are no identifications and the user chose a taxon" do
+      t = Taxon.make!
+      o = Observation.make( taxon: t )
+      expect( o.identifications.size ).to eq 0
+      expect( o.taxon ).to eq t
+      o.set_taxon_from_community_taxon
+      expect( o.taxon ).to eq t
+      o.save!
+      o.reload
+      expect( o.taxon ).to eq t
+    end
+
     it "should change the taxon to the owner's identication when observation opted out" do
       owner_taxon = Taxon.make!
       o = Observation.make!(:taxon => owner_taxon)
