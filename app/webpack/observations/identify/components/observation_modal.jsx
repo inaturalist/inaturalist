@@ -5,7 +5,8 @@ import {
   Button,
   OverlayTrigger,
   Popover,
-  Tooltip
+  Tooltip,
+  Overlay
 } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
@@ -65,7 +66,9 @@ class ObservationModal extends React.Component {
       chooseTab,
       controlledTerms,
       imagesCurrentIndex,
-      setImagesCurrentIndex
+      setImagesCurrentIndex,
+      keyboardShortcutsShown,
+      toggleKeyboardShortcuts
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -230,6 +233,7 @@ class ObservationModal extends React.Component {
               <SplitTaxon
                 taxon={observation.taxon}
                 url={`/observations/${observation.id}`}
+                target="_blank"
                 placeholder={observation.species_guess}
                 noParens
               />
@@ -239,71 +243,103 @@ class ObservationModal extends React.Component {
               { sounds }
             </div>
             <div className="tools">
-              <OverlayTrigger
-                trigger="hover"
-                placement="top"
-                overlay={
-                  <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
-                    <table>
-                      <tr className="keyboard-shortcuts">
-                        <td><code>z</code></td>
-                        <td>{ I18n.t( "organism_appears_captive_cultivated" ) }</td>
-                      </tr>
-                      <tr className="keyboard-shortcuts">
-                        <td><code>r</code></td>
-                        <td>{ I18n.t( "mark_as_reviewed" ) }</td>
-                      </tr>
-                      { blind ? null : (
-                        <tr className="keyboard-shortcuts">
-                          <td><code>c</code></td>
-                          <td>{ _.capitalize( I18n.t( "comment" ) ) }</td>
-                        </tr>
-                      ) }
-                      { blind ? null : (
-                        <tr className="keyboard-shortcuts">
-                          <td><code>a</code></td>
-                          <td>{ _.capitalize( I18n.t( "agree" ) ) }</td>
-                        </tr>
-                      ) }
-                      <tr className="keyboard-shortcuts">
-                        <td><code>i</code></td>
-                        <td>{ I18n.t( "add_id" ) }</td>
-                      </tr>
-                      <tr className="keyboard-shortcuts">
-                        <td><code>&larr;</code></td>
-                        <td>{ I18n.t( "previous" ) }</td>
-                      </tr>
-                      <tr className="keyboard-shortcuts">
-                        <td><code>&rarr;</code></td>
-                        <td>{ I18n.t( "next" ) }</td>
-                      </tr>
-                      {
-                        annoShortcuts.map( shortcut => {
-                          // If you add more controlled terms, you'll need to
-                          // add keys like
-                          // add_plant_phenology_flowering_annotation to
-                          // inaturalist.rake generate_translations_js
-                          const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
-                          return (
-                            <tr className="keyboard-shortcuts">
-                              <td>
-                                <code>{ shortcut.keys[0] }</code> {
-                                  I18n.t( "then_keybord_sequence" )
-                                } <code>{ shortcut.keys[1] }</code>
-                              </td>
-                              <td>{ I18n.t( labelKey ) }</td>
-                            </tr>
-                          );
-                        } )
-                      }
-                    </table>
-                  </Popover>
-                }
-              >
-                <Button bsStyle="link" className="btn-keyboard-shortcuts">
+              <div className="keyboard-shortcuts-container">
+                <Button
+                  bsStyle="link"
+                  className="btn-keyboard-shortcuts"
+                  onClick={ e => {
+                    toggleKeyboardShortcuts( keyboardShortcutsShown );
+                    e.preventDefault( );
+                    return false;
+                  }}
+                >
                   <i className="fa fa-keyboard-o"></i>
                 </Button>
-              </OverlayTrigger>
+                <Overlay
+                  placement="top"
+                  show={keyboardShortcutsShown}
+                  container={ $( ".ObservationModal" ).get( 0 ) }
+                  target={ ( ) => $( ".keyboard-shortcuts-container > .btn" ).get( 0 ) }
+                >
+                  <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
+                    <table>
+                      <tbody>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>z</code></td>
+                          <td>{ I18n.t( "organism_appears_captive_cultivated" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>r</code></td>
+                          <td>{ I18n.t( "mark_as_reviewed" ) }</td>
+                        </tr>
+                        { blind ? null : (
+                          <tr className="keyboard-shortcuts">
+                            <td><code>c</code></td>
+                            <td>{ _.capitalize( I18n.t( "comment" ) ) }</td>
+                          </tr>
+                        ) }
+                        { blind ? null : (
+                          <tr className="keyboard-shortcuts">
+                            <td><code>a</code></td>
+                            <td>{ _.capitalize( I18n.t( "agree" ) ) }</td>
+                          </tr>
+                        ) }
+                        <tr className="keyboard-shortcuts">
+                          <td><code>i</code></td>
+                          <td>{ I18n.t( "add_id" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>&larr;</code></td>
+                          <td>{ I18n.t( "previous_observation" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>&rarr;</code></td>
+                          <td>{ I18n.t( "next_observation" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>SHIFT</code> + <code>&larr;</code></td>
+                          <td>{ I18n.t( "previous_tab" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>SHIFT</code> + <code>&rarr;</code></td>
+                          <td>{ I18n.t( "next_tab" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>ALT/CMD</code> + <code>&larr;</code></td>
+                          <td>{ I18n.t( "previous_photo" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
+                          <td><code>ALT/CMD</code> + <code>&rarr;</code></td>
+                          <td>{ I18n.t( "next_photo" ) }</td>
+                        </tr>
+                        {
+                          annoShortcuts.map( shortcut => {
+                            // If you add more controlled terms, you'll need to
+                            // add keys like
+                            // add_plant_phenology_flowering_annotation to
+                            // inaturalist.rake generate_translations_js
+                            const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
+                            return (
+                              <tr className="keyboard-shortcuts">
+                                <td>
+                                  <code>{ shortcut.keys[0] }</code> {
+                                    I18n.t( "then_keybord_sequence" )
+                                  } <code>{ shortcut.keys[1] }</code>
+                                </td>
+                                <td>{ I18n.t( labelKey ) }</td>
+                              </tr>
+                            );
+                          } )
+                        }
+                        <tr className="keyboard-shortcuts">
+                          <td><code>?</code></td>
+                          <td>{ I18n.t( "show_keyboard_shortcuts" ) }</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </Popover>
+                </Overlay>
+              </div>
               <div>
                 <OverlayTrigger
                   placement="top"
@@ -374,7 +410,7 @@ class ObservationModal extends React.Component {
                           <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
                         <li>
-                          <a className="permalink" href={`/observations/${observation.id}`}>
+                          <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
                             <i className="icon-link-external"></i>
                             { I18n.t( "view_observation" ) }
                           </a>
@@ -384,7 +420,7 @@ class ObservationModal extends React.Component {
                     <UserText text={observation.description} truncate={100} className="stacked observation-description" />
                     <DiscussionListContainer observation={observation} />
                     <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
-                      <div className="loading_spinner" />
+                      <div className="big loading_spinner" />
                     </center>
                     <CommentFormContainer
                       observation={observation}
@@ -464,8 +500,11 @@ class ObservationModal extends React.Component {
                         agreeWithCurrentObservation( );
                       } }
                     >
-                      <i className={ agreeingWithObservation ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
-                      </i> { _.capitalize( I18n.t( "agree" ) ) }
+                      { agreeingWithObservation ? (
+                        <div className="loading_spinner" />
+                      ) : (
+                        <i className="fa fa-check"></i>
+                      ) } { _.capitalize( I18n.t( "agree" ) ) }
                     </Button>
                   </OverlayTrigger>
                   <Button
@@ -521,7 +560,9 @@ ObservationModal.propTypes = {
   tab: PropTypes.string,
   chooseTab: PropTypes.func,
   controlledTerms: PropTypes.array,
-  setImagesCurrentIndex: PropTypes.func
+  setImagesCurrentIndex: PropTypes.func,
+  keyboardShortcutsShown: PropTypes.bool,
+  toggleKeyboardShortcuts: PropTypes.func
 };
 
 ObservationModal.defaultProps = {

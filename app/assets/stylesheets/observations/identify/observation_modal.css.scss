@@ -157,6 +157,7 @@ $galleryHeightElements: "
   }
   .btn-keyboard-shortcuts {
     padding-left: 0;
+    padding-right: 0;
     i {
       color: #999;
     }
@@ -295,13 +296,13 @@ body > div > [role="dialog"] .btn-default.btn-checkbox.checked {
   color: white;
 }
 tr.keyboard-shortcuts td {
-  padding: 2px !important;
+  padding: 2px 10px 2px 0 !important;
 }
 .keyboard-shortcuts td:first-child {
-  text-align: center;
-  display: inline-block;
+  text-align: right;
   white-space: nowrap;
   font-weight: bold;
+  vertical-align: top;
 }
 
 .ObservationModal .photos.sounds .image-gallery {
@@ -480,6 +481,9 @@ body > div > [role="dialog"] .ObservationModal {
   }
   .login {
     font-weight: bold;
+  }
+  .keyboard-shortcuts-container {
+    position: relative;
   }
 }
 

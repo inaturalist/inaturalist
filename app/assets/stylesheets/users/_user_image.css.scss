@@ -1,4 +1,5 @@
-a.UserImage {
+a.UserImage,
+body > div > [role="dialog"] a.UserImage {
   display: inline-block;
   border-radius: 120px;
   width: 40px;
@@ -13,6 +14,7 @@ a.UserImage {
   border: 2px solid white;
   vertical-align: middle;
   color: white;
+  overflow: hidden;
 }
 .ObservationsGridItem .UserImage:hover,
 .ObservationsGridItem .UserImage:active {opacity: 1; color: #eee;}

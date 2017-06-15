@@ -19,7 +19,8 @@ function mapStateToProps( state, ownProps ) {
     config: state.config,
     currentUserID: ( ownProps.observation.identifications || [] ).find( ident =>
       ident.user.id === state.config.currentUser.id && ident.current ),
-    hideCompare: true
+    hideCompare: true,
+    linkTarget: "_blank"
   };
 }
 

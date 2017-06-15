@@ -64,6 +64,9 @@ function mapDispatchToProps( dispatch ) {
     },
     setImagesCurrentIndex: index => {
       dispatch( updateCurrentObservation( { imagesCurrentIndex: index } ) );
+    },
+    toggleKeyboardShortcuts: keyboardShortcutsShown => {
+      dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
     }
   };
 }

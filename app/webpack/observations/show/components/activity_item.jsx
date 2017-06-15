@@ -85,6 +85,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }
             noParens
+            target={linkTarget}
           />
         </div>
         { buttonDiv }

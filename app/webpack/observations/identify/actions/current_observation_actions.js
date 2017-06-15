@@ -177,6 +177,14 @@ function showPrevObservation( ) {
   };
 }
 
+function toggleKeyboardShortcuts( ) {
+  return ( dispatch, getState ) => {
+    dispatch( updateCurrentObservation( {
+      keyboardShortcutsShown: !getState( ).currentObservation.keyboardShortcutsShown
+    } ) );
+  };
+}
+
 function addIdentification( ) {
   return {
     type: ADD_IDENTIFICATION
@@ -599,5 +607,6 @@ export {
   toggleReviewed,
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
-  updateCurrentObservation
+  updateCurrentObservation,
+  toggleKeyboardShortcuts
 };

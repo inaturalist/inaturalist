@@ -52,7 +52,8 @@ const currentObservationReducer = ( state = { tab: "info" }, action ) => {
         captiveByCurrentUser: action.captiveByCurrentUser,
         reviewedByCurrentUser: action.reviewedByCurrentUser,
         loadingDiscussionItem: false,
-        currentUserIdentification: action.currentUserIdentification
+        currentUserIdentification: action.currentUserIdentification,
+        keyboardShortcutsShown: false
       } );
     }
     case UPDATE_CURRENT_OBSERVATION:

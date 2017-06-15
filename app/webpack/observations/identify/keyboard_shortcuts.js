@@ -12,7 +12,8 @@ import {
   showPrevPhoto,
   showNextPhoto,
   showPrevTab,
-  showNextTab
+  showNextTab,
+  toggleKeyboardShortcuts
 } from "./actions/";
 
 const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
@@ -31,8 +32,8 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
   bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "space", zoomCurrentPhoto, dispatch );
-  bindShortcut( "command+left", showPrevPhoto, dispatch );
-  bindShortcut( "command+right", showNextPhoto, dispatch );
+  bindShortcut( ["command+left", "alt+left"], showPrevPhoto, dispatch );
+  bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
   bindShortcut( "shift+left", showPrevTab, dispatch );
   bindShortcut( "shift+right", showNextTab, dispatch );
   // Works for now but it's brittle, and will be confusing for locales other
@@ -60,6 +61,7 @@ const setupKeyboardShortcuts = ( dispatch ) => {
     dispatch( addAnnotationFromKeyboard( "Sex", "Male" ) );
     return false;
   } );
+  bindShortcut( "?", toggleKeyboardShortcuts, dispatch );
 };
 
 export default setupKeyboardShortcuts;
