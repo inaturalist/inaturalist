@@ -3,7 +3,6 @@ import _ from "lodash";
 import ReactDOM from "react-dom";
 import ImageGallery from "react-image-gallery";
 import EasyZoom from "EasyZoom/dist/easyzoom";
-import _ from "lodash";
 
 class ZoomableImageGallery extends ImageGallery {
 

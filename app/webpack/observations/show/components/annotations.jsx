@@ -150,7 +150,19 @@ class Annotations extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    if ( !observation || _.isEmpty( controlledTerms ) ) { return ( <span /> ); }
+    if ( !observation || _.isEmpty( controlledTerms ) ) {
+      if (
+          this.props.showEmptyState &&
+          ( !this.props.controlledTerms || this.props.controlledTerms.length === 0 )
+      ) {
+        return (
+          <div className="noresults">
+            { I18n.t( "no_relevant_annotations" ) }
+          </div>
+        );
+      }
+      return ( <span /> );
+    }
     this.loggedIn = config && config.currentUser;
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
     const annotations = observation.annotations.filter( a =>
@@ -243,6 +255,30 @@ class Annotations extends React.Component {
       }
     } );
 
+    const table = (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>{ I18n.t( "attribute" ) }</th>
+            <th>{ I18n.t( "value" ) }</th>
+            <th>{ I18n.t( "agree_" ) }</th>
+            <th>{ I18n.t( "disagree_" ) }</th>
+          </tr>
+        </thead>
+        <tbody>
+          { rows }
+        </tbody>
+      </table>
+    );
+
+    if ( !this.props.collapsible ) {
+      return (
+        <div className="Annotations">
+          { table }
+        </div>
+      );
+    }
+
     return (
       <div className="Annotations">
         <h4
@@ -259,19 +295,7 @@ class Annotations extends React.Component {
           { I18n.t( "annotations" ) } ({ observation.annotations.length })
         </h4>
         <Panel collapsible expanded={ this.state.open }>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>{ I18n.t( "attribute" ) }</th>
-                <th>{ I18n.t( "value" ) }</th>
-                <th>{ I18n.t( "agree_" ) }</th>
-                <th>{ I18n.t( "disagree_" ) }</th>
-              </tr>
-            </thead>
-            <tbody>
-              { rows }
-            </tbody>
-          </table>
+          { table }
         </Panel>
       </div>
     );
@@ -286,7 +310,13 @@ Annotations.propTypes = {
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  collapsible: PropTypes.bool,
+  showEmptyState: PropTypes.bool
+};
+
+Annotations.defaultProps = {
+  collapsible: true
 };
 
 export default Annotations;

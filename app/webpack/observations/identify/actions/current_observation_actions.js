@@ -6,7 +6,7 @@ import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
 import { fetchSuggestions } from "../ducks/suggestions";
-import { fetchControlledTerms } from "../../show/ducks/controlled_terms";
+import { setControlledTerms, fetchControlledTerms } from "../../show/ducks/controlled_terms";
 import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
@@ -56,6 +56,7 @@ export function fetchDataForTab( options = { } ) {
     if ( s.currentObservation.tab === "suggestions" ) {
       dispatch( fetchSuggestions( ) );
     } else if ( s.currentObservation.tab === "annotations" ) {
+      dispatch( setControlledTerms( [] ) );
       dispatch( fetchControlledTerms( { observation } ) );
     } else if ( s.currentObservation.tab === "data-quality" ) {
       dispatch( fetchQualityMetrics( { observation } ) );

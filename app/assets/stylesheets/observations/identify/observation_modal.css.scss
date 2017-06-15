@@ -459,11 +459,18 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   visibility: hidden;
 }
 
-.ObservationModal {
+.ObservationModal,
+body > div > [role="dialog"] .ObservationModal {
   .QualityMetrics tr.improve,
   .QualityMetrics thead,
   .Annotations thead {
-    background: #dedede;
+    background: rgba(174,174,174, 0.09);
+  }
+  .Annotations {
+    .agree,
+    .disagree {
+      text-align: left;
+    }
   }
   .QualityMetrics table {
     margin-top: 0px;
@@ -493,5 +500,12 @@ body > div > [role="dialog"] .ActivityItem {
   }
   .panel {
     margin-left: 50px;
+  }
+  i.taxon-image.icon {
+    font-size: 38px;
+    line-height: 38px;
+    color: black;
+    text-align: center;
+    text-align: center;
   }
 }
