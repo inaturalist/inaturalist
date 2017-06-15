@@ -421,7 +421,7 @@ class ObservationModal extends React.Component {
                         </li>
                       </ul>
                     </div>
-                    <UserText text={observation.description} truncate={100} className="stacked observation-description" />
+                    <UserText text={observation.description} truncate={200} className="observation-description" />
                     <DiscussionListContainer observation={observation} />
                     <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                       <div className="big loading_spinner" />

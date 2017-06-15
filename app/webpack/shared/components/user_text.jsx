@@ -56,7 +56,7 @@ class UserText extends React.Component {
 
   render( ) {
     const { text, truncate, config } = this.props;
-    let { className } = Object.assign( { }, this.props );
+    const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
     }
@@ -70,9 +70,6 @@ class UserText extends React.Component {
     };
     if ( truncate && truncate > 0 && !this.state.more ) {
       truncatedHtml = htmlTruncate( html, truncate );
-      if ( truncatedHtml !== html ) {
-        className += " truncated";
-      }
     }
     let moreLink;
     if ( truncate && ( truncatedHtml !== html ) ) {
@@ -82,7 +79,7 @@ class UserText extends React.Component {
             this.toggle( );
             return false;
           } }
-          className={truncate && truncate > 0 ? "" : "collapse"}
+          className={truncate && truncate > 0 ? "more" : "collapse"}
         >
           { this.state.more ? I18n.t( "less" ) : I18n.t( "more" ) }
         </a>
@@ -90,13 +87,12 @@ class UserText extends React.Component {
     }
     return (
       <div className={`UserText ${className}`}>
-        <div
+        <span
           className="content"
           dangerouslySetInnerHTML={ { __html:
             sanitizeHtml( linkifyHtml( truncatedHtml || html ) ) } }
           style={style}
-        ></div>
-        { moreLink }
+        ></span> { moreLink }
       </div>
     );
   }

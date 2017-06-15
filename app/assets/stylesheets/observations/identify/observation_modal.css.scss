@@ -160,6 +160,8 @@ $galleryHeightElements: "
     padding-right: 0;
     i {
       color: #999;
+      font-size: 20px;
+      line-height: 0;
     }
   }
 }
@@ -322,20 +324,6 @@ tr.keyboard-shortcuts td {
   font-size: smaller;
 }
 
-.UserText .content:after {
-  content: " ";
-  display: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 20px;
-  width: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0), $light-grey);
-}
-.UserText.truncated .content:after {
-  display: block;
-}
-
 .ObservationModal .sidebar .test {
   position: relaitve;
   top: -20px;
@@ -433,6 +421,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 .ObservationModal .map-and-details .details li {
   position: relative;
   padding-left: 20px;
+  margin-bottom: 4px;
 }
 .ObservationModal .map-and-details .details i {
   position: absolute;
@@ -484,6 +473,13 @@ body > div > [role="dialog"] .ObservationModal {
   }
   .keyboard-shortcuts-container {
     position: relative;
+  }
+  .observation-description {
+    margin-bottom: 20px;
+    a.more,
+    a.collapse {
+      font-weight: bold;
+    }
   }
 }
 
