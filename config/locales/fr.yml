@@ -898,6 +898,8 @@ fr:
   community_id: 'ID de <strong>communauté</strong> :'
   community_id_heading: ID de communauté
   community_id_at_species_or_lower?: ID de la communauté pour l’espèce ou en-dessous ?
+  community_id_at_genus_level_or_lower: ID de la communauté au niveau duu genre ou
+    inférieur
   community_id_at_species_level_or_lower: ID de communauté au niveau espèce ou inférieur
   community_moderation_settings: Paramètres pour modérer la communauté
   community_supported_id: ID de communauté accepté?
@@ -973,6 +975,8 @@ fr:
     all_rights_reserved: (c) %{name}, tous droits réservés
     no_known_copyright_restrictions: '%{name}, aucune restriction de droit connue
       (%{license_name})'
+    no_known_copyright_restrictions_text: Aucune restriction connue sur les droits
+      d’auteur
     no_rights_reserved: aucun droits réservés
     no_rights_reserved_by: '%{name}, aucun droits réservés (%{license_name})'
     anonymous: anonyme
@@ -1322,6 +1326,7 @@ fr:
   events_only: Événements uniquement
   every_species_seen_by: Chaque espèce vue par
   everyone: tout le monde
+  everyone_: Tout le monde
   everyone_journal_posts: Notes de journal de tout le monde
   everywhere: partout
   exact_coordinates_obscured_for: Coordonnées exactes non affichées pour les espèces
@@ -1833,6 +1838,7 @@ fr:
     species: Le plus d'espèces en %{time}
     observations: Le plus d'observations en %{time}
     identifications: Le plus d'identifications en %{time}
+  leading: Principal
   learn!: Apprenez!
   learn_about_the_species_live_in: Apprenez-en davantage sur les espèces qui vivent
     dans
@@ -3072,11 +3078,13 @@ fr:
   rank_restrictions: Restrictions de rang
   ranks:
     kingdom: règne
+    subkingdom: sous-royaume
     phylum: embranchement
     subphylum: sous-embranchement
     superclass: super-classe
     class: classe
     subclass: sous-classe
+    infraclass: classe interne
     superorder: super-ordre
     order: ordre
     suborder: sous-ordre
@@ -3090,6 +3098,9 @@ fr:
     subtribe: sous-tribu
     genus: genre
     genushybrid: genre hybride
+    subgenus: sous-genre
+    section: section
+    subsection: sous-section
     species: espèce
     hybrid: hybride
     subspecies: sous-espèce
@@ -4332,6 +4343,7 @@ fr:
   yesterday: Hier
   yesterday_at: ', hier à 16 h'
   you: vous
+  you_: ' Vous'
   you_admin: que vous administrez
   you_appear_offline_try_again: Vous semblez être déconnecté. Veuillez réessayer une
     fois connecté à Internet.
@@ -5456,25 +5468,15 @@ fr:
           sauf si vous faites confiance aux superviseurs du projet.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Vous (<span class="notice status">meilleur choix pour contrôler
-          le partage des emplacements privés</span>)
-        any: |-
-          Membres du projet (<span class="success status">meilleur choix pour partager vos observations avec ce projet</span>)
-          Responsables du projet
-        none: Personne
-      curator_coordinate_access_label: Permettre au responsable du projet de voir
-        les coordonnées privées de vos observations lorsqu'elles sont ajoutées par
+        observer: Oui, mais seulement si je peux ajouter moi-même l'observation au
+          projet.
+        any: Oui, peu importe qui ajoute l’observation au projet.
+        none: Non.
+      curator_coordinate_access_label: Voulez-vous rendre visible aux responsables
+        de projets les coordonnées privées et semi-privées de vos observations ?
       curator_coordinate_access_note: |-
         Vous pouvez configurer individuellement les avis de chaque observations.
         Cette option sera appliquée automatiquement sur toutes les autres.
-      project_user_curator_coordinate_access_descriptions:
-        observer: Seuls les responsables du projet de voir uniquement les coordonnées
-          privées de vos observations ajoutées à ce projet.
-        any: Permettre aux responsables du projet de voir les coordonnées privées
-          de vos observations ajoutées à ce projet par vous ou d’autres membres du
-          projet.
-        none: Ne pas partager les coordonnées privées de vos observations avec les
-          responsables du projet
       project_terms_desc_html: |-
         Permettre aux superviseurs de ce projet d’utiliser vos observations d’après
         les <a href="%{url}">conditions du projet</a>.
@@ -6021,6 +6023,7 @@ fr:
           attributes:
             place_geometry:
               is_too_large_to_import: est trop gros pour être importé
+              contains_too_many_observations: contient trop d'observations à importer
         post:
           attributes:
             user:

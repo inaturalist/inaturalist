@@ -632,6 +632,7 @@ ko:
     some_rights_reserved_by: (c) %{name}, 일부 권리 보유 (%{license_short})
     all_rights_reserved: (c) %{name}, 모든 권리 보유
     no_known_copyright_restrictions: '%{name}, 알려진 저작권 제한 없음 (%{license_name})'
+    no_known_copyright_restrictions_text: 알려진 저작권 제한 없음
     no_rights_reserved: 저작권 보유 없음
     no_rights_reserved_by: '%{name}, 권리 보유하지 않음 (%{license_name})'
     anonymous: 익명
@@ -927,6 +928,7 @@ ko:
   events_only: 이벤트만
   every_species_seen_by: 관측된 모든 종들
   everyone: 모두
+  everyone_: 모두
   everyone_journal_posts: 모든 사람의 일지 포스트
   everywhere: 모든 곳
   exact_coordinates_obscured_for: 멸종 위기에 직면한 종들의 정확한 위치 좌표는 일반인에게는 비공개로 되어 있습니다.
@@ -1843,6 +1845,11 @@ ko:
   rank: 순위
   rank_position: 순위
   ranks:
+    subkingdom: 아계
+    infraclass: 하강
+    subgenus: 아종
+    section: 섹션
+    subsection: 아섹션
     species: 종
   real_time_discussions: 실시간 토론
   reason: 이유
@@ -2068,6 +2075,7 @@ ko:
   yes_license_my_observations_so_scientists_can_use: 네, 과학자들이 내 데이터를 사용할 수 있도록 내 사진,
     소리, 관찰을 라이선스하겠습니다!
   yesterday_at: 어제 오후 4시에
+  you_: 당신
   you_are_no_longer_following_x: 더 이상 %{friend}를 팔로우하지 않습니다.
   you_are_submitting_obs_without_photos_and_names: 사진과 분류군이 없는 관찰을 제출하고 있습니다. 이럴 경우
     정확하게 동정하기 매우 어렵습니다.
@@ -2142,7 +2150,7 @@ ko:
       confirm_leave:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
       project_user_curator_coordinate_access_labels:
-        none: 아무도 없음
+        none: 없음.
     taxa:
       show:
         frequency:
