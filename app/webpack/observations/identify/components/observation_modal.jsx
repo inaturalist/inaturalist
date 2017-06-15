@@ -289,6 +289,10 @@ class ObservationModal extends React.Component {
                           <td>{ I18n.t( "add_id" ) }</td>
                         </tr>
                         <tr className="keyboard-shortcuts">
+                          <td><code>SPACE</code></td>
+                          <td>{ I18n.t( "zoom_photo" ) }</td>
+                        </tr>
+                        <tr className="keyboard-shortcuts">
                           <td><code>&larr;</code></td>
                           <td>{ I18n.t( "previous_observation" ) }</td>
                         </tr>

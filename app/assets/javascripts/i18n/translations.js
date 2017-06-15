@@ -3939,7 +3939,8 @@ I18n.translations["en"] = {
   "your_observations": "Your observations",
   "yours": "Yours",
   "zoom_in": "Zoom In",
-  "zoom_out": "Zoom Out"
+  "zoom_out": "Zoom Out",
+  "zoom_photo": "Zoom Photo"
 };
 I18n.translations["en-GB"] = {
   "all_taxa": {
