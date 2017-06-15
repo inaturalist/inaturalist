@@ -17,7 +17,8 @@ class ComputerVisionDemoUploadsController < ApplicationController
   def score
     begin
       response = RestClient.post( CONFIG.node_api_url + "/computervision/score_image",
-        params.merge( image: File.new( @upload.photo.path( :thumbnail ) ) ) )
+        params.merge( image: File.new( @upload.photo.path( :thumbnail ) ) ),
+        authorization: JsonWebToken.applicationToken)
     rescue
     end
     if response && response.code == 200
