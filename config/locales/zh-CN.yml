@@ -849,6 +849,7 @@ zh-CN:
       october: 十月
       november: 十一月
       december: 十二月
+  date_is_accurate: 日期是精确的
   date_observed: 观察日期
   date_observed_on: 数据观察于
   date_picker:
@@ -1020,7 +1021,7 @@ zh-CN:
   enable_offline_access: 启用离线访问
   enable_offline_access_for_mobile: 为移动设备启用离线访问
   enlarge: 放大
-  encompassing_places: 包围的地方
+  encompassing_places: 包围地点
   end: 结束
   endangered: 濒临灭绝
   endemic: 地方性
@@ -1049,6 +1050,7 @@ zh-CN:
   events_only: 仅活动
   every_species_seen_by: 每个物种由该人发现
   everyone: 任何人
+  everyone_: 大家
   everyone_journal_posts: 每个人的日志
   everywhere: 任意地方
   exact_date: 具体日期
@@ -1460,6 +1462,7 @@ zh-CN:
     species: '%{time} 内的最多物种'
     observations: 在 %{time} 的多数观察
     identifications: '%{time}中的最多鉴定'
+  leading: 标题
   learn!: 学习！
   learn_about_the_species_live_in: 了解有关居住于此的物种
   learn_more: 了解更多
@@ -2264,11 +2267,13 @@ zh-CN:
   rank_position: 排名
   ranks:
     kingdom: 界
+    subkingdom: 亚界
     phylum: 门
     subphylum: 亚门
     superclass: 总纲
     class: 纲
     subclass: 亚纲
+    infraclass: 附纲
     superorder: 总目
     order: 目
     suborder: 亚目
@@ -2282,6 +2287,9 @@ zh-CN:
     subtribe: 亚族
     genus: 属
     genushybrid: 属间杂种
+    subgenus: 亚属
+    section: 节
+    subsection: 亚组
     species: 种
     hybrid: 杂种
     subspecies: 亚种
@@ -2998,6 +3006,7 @@ zh-CN:
   yesterday: 昨天
   yesterday_at: ，昨天在下午4点
   you: 您
+  you_: 您
   you_admin: 您管理
   you_appear_offline_try_again: 您似乎已离线。请在连接到互联网后重试。
   you_are_now: 您现在
@@ -3423,9 +3432,9 @@ zh-CN:
           unless you trust the project curators.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: 您（<span class="notice status">控制分享私有位置的最好选项</span>）
+        observer: 是的，但只在我自行添加观察至项目时。
         any: 项目成员（<span class="success status">与此项目分享您的观察的最好选项</span>）
-        none: 没有
+        none: 编号
       curator_coordinate_access_label: 允许项目馆长查看您观察中的私有坐标，当添加项目自
       show:
         no_journal_blurb_html: |-

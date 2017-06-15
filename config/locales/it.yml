@@ -161,9 +161,9 @@ it:
   accuracy_m: Precisione (m)
   accuracy_meters: Precisione di misura (in metri)
   accuracy_of_the_coordinates: Precisione delle coordinate in metri. È possibile modificare
-    questa operazione facendo clic sul link "modifica" qui sopra o cliccando sull'indicatore
-    di mappa e trascinando gli agganci. Prova a fare un cerchio grande abbastanza
-    per assicurarti di essere stato da qualche parte al suo interno.
+    questa operazione facendo clic sul collegamento "modifica" qui sopra o cliccando
+    sull'indicatore di mappa e trascinando gli agganci. Prova a fare un cerchio grande
+    abbastanza per assicurarti di essere stato da qualche parte al suo interno.
   acquaintances: conoscenti
   action: Azione
   actions: Azioni
@@ -855,6 +855,7 @@ it:
   community_id: 'ID della <strong>Community</strong>:'
   community_id_heading: ID della Comunità
   community_id_at_species_or_lower?: ID della community a livello di specie o inferiore?
+  community_id_at_genus_level_or_lower: ID della Comunità a livello di genere o inferiore
   community_id_at_species_level_or_lower: ID della Comunità a livello di specie o
     inferiore
   community_moderation_settings: Impostazioni della Moderazione da parte della Community
@@ -927,6 +928,7 @@ it:
     some_rights_reserved_by: (c) %{name}, alcuni diritti riservati (%{license_short})
     all_rights_reserved: (c) %{name}, tutti i diritti riservati
     no_known_copyright_restrictions: '%{name}, senza restrizioni del copyright (%{license_name})'
+    no_known_copyright_restrictions_text: senza restrizioni note di copyright
     no_rights_reserved: nessun diritto riservato
     no_rights_reserved_by: '%{name}, nessun diritto riservato (%{license_name})'
     anonymous: anonimo
@@ -1271,6 +1273,7 @@ it:
   events_only: Solo gli eventi
   every_species_seen_by: Tutte le specie osservate da
   everyone: tutti
+  everyone_: Tutti
   everyone_journal_posts: Tutti i post del Diario
   everywhere: ovunque
   exact_coordinates_obscured_for: Le coordinate esatte per le specie minacciate sono
@@ -1368,7 +1371,7 @@ it:
   find_species: Trova le Specie
   find_suitable_observations: Trova le osservazioni idonee
   find_unsuitable_observations: Trova le osservazioni non pertinenti
-  find_your_current_location: Trova la tua posizione corrente
+  find_your_current_location: Trova la tua posizione attuale
   finished: Finito
   finished_with_page: Terminato con la pagina
   first_confirmed_inat_observation: Primae osservazione di %{site_name} confermata
@@ -1474,7 +1477,7 @@ it:
   geoprivacy: Geoprivacy
   georeferenced: Georeferenziata?
   georeferenced?: georeferenziata
-  get_current_position: Ottieni la posizione corrente
+  get_current_position: Ottieni la posizione attuale
   get_started_raquo: Inizia &raquo;
   get_started: Inizia
   getting_started: Per iniziare
@@ -2991,6 +2994,7 @@ it:
   rank_restrictions: Restrizioni del rango
   ranks:
     kingdom: regno
+    subkingdom: sottodominio
     phylum: phylum
     subphylum: subphylum
     superclass: superclasse
@@ -3009,6 +3013,9 @@ it:
     subtribe: sottotribù
     genus: genere
     genushybrid: genereibrido
+    subgenus: sottogenere
+    section: sezione
+    subsection: sottosezione
     species: specie
     hybrid: ibrido
     subspecies: sottospecie
@@ -4227,6 +4234,7 @@ it:
   yesterday: Ieri
   yesterday_at: ', ieri alle 4 pm'
   you: te
+  you_: ' Tu'
   you_admin: tu amministri
   you_appear_offline_try_again: Sembra che tu sia offline. Prova di nuovo quando sarai
     connesso ad Internt.
@@ -5222,25 +5230,14 @@ it:
           Se sei preoccupato riguardo l'accesso alle coordinate precise, non unirti ai progetti a meno che tu non ti fidi dei curatori.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Tu (<span class="notice status">miglior opzione per il controllo
-          sulla condivisione delle coordinate private</span>)
-        any: Membri del progetto (<span class="success status">opzione migliore per
-          condividere le tue osservazioni con questo progetto</span>)
-        none: Nessuno
-      curator_coordinate_access_label: 'Permetti ai curatori del progetto di vedere
-        le coordinate private delle tue osservazioni quando queste sono aggiunte al
-        progetto da:'
+        observer: Sì, ma solo se ho aggiunto io stesso l'osservazione al progetto.
+        any: Sì, non importa chi aggiunge l'osservazione al progetto.
+        none: No.
+      curator_coordinate_access_label: Vuoi rendere visibili le coordinate private/oscurate
+        delle tue osservazioni ai curatori del progetto?
       curator_coordinate_access_note: Puoi anche scegliere di condividere le coordinate
         private delle osservazioni in questo progetto valutando caso per caso. Questi
         sono solo i valori predefiniti per le nuove osservazioni aggiunte al progetto.
-      project_user_curator_coordinate_access_descriptions:
-        observer: Permetti ai curatori del progetto di vedere le coordinate private
-          delle tue osservazioni solo se sono state aggiunte da te.
-        any: Permetti ai curatori del progetto di vedere le coordinate private delle
-          tue osservazioni, sia che queste siano state aggiunte da te, sia che siano
-          state aggiunte dagli altri membri del progetto.
-        none: Non condividere le coordinate private delle tue osservazioni con i curatori
-          del progetto
       project_terms_desc_html: Permetti ai curatori del progetto di usare le osservazioni
         in accordo con i <a href="%{url}">termini del progetto</a>.
       show:
@@ -5732,6 +5729,7 @@ it:
           attributes:
             place_geometry:
               is_too_large_to_import: è troppo grande per essere importato
+              contains_too_many_observations: contiene troppe osservazioni da importare
         post:
           attributes:
             user:

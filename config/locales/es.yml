@@ -299,6 +299,7 @@ es:
   all_colors: '&laquo; Todos los colores'
   all_comments: Todos los comentarios
   all_csv: Todos los CSV
+  all_flags_must_be_resolved: Se deben solucionar todos los indicadores
   all_life: Toda la vida
   all_names: Todos los nombres
   all_observations: Todas las observaciones
@@ -570,10 +571,14 @@ es:
   back_to_your_observations: Regresa a tus observaciones
   back_to_your_profile: Regresa a tu perfil
   back_to_your_projects: Regresa a tus proyectos
+  based_on_the_evidence_can_id_be_improved: ¿Basándose en la evidencia, el ID de la
+    comunidad puede ser confirmado o mejorado, todavía?
   batch: Grupo
   batch_edit: Modifica el grupo
   batch_edit_taxa_for_x_html: Edita datos de los taxones en lote para %{x}
   batch_operations: Operaciones por lote
+  be_the_first_to_fave_this_observation: Sea el primero en decir que le agrada esta
+    observación.
   beacuse_we_recently_changed_auth_system: Debido a que hace poco cambiamos nuestro
     sistema de autenticación de usuarios, fue necesario reinicializar tu contraseña.
   because: porque
@@ -840,7 +845,12 @@ es:
   committing: Guardando...
   community_curated: Supervisado por la Comunidad
   community_id: 'Identificación de la <strong>comunidad</strong>:'
+  community_id_heading: ID de la comunidad
   community_id_at_species_or_lower?: ¿La ID de la Comunidad es como especie o inferior?
+  community_id_at_genus_level_or_lower: ID de la comunidad a nivel de género o más
+    bajo
+  community_id_at_species_level_or_lower: ID de la comunidad a nivel de especie o
+    más bajo
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: ¿Identificador reconocido por la Comunidad?
   compare: Comparar
@@ -911,6 +921,8 @@ es:
     all_rights_reserved: (c) %{name}, todos los derechos reservados
     no_known_copyright_restrictions: '%{name}, sin restricciones conocidas de derechos
       (%{license_name})'
+    no_known_copyright_restrictions_text: no se conocen restricciones sobre derechos
+      de autor
     no_rights_reserved: no hay derechos reservados
     no_rights_reserved_by: '%{name}, no hay derechos reservados (%{license_name})'
     anonymous: anónimo
@@ -966,6 +978,7 @@ es:
   csv_file: Archivo CSV
   csv_should_not_contain_a_header_row: El CSV no debería contener ninguna cabecera
     de datos
+  cumulative_ids: 'Identificadores acumulados: %{count} de %{total}'
   curate_observations: Curar observaciones
   curate_taxa: Curar taxones
   curate_users: Curar usuarios
@@ -981,6 +994,7 @@ es:
     proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia).
     Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
   curator_identification: Identificación de curador
+  current_flags: Indicadores actuales
   current_password: Contraseña actual
   custom_field_values: Valores de campos personalizados
   custom_project_fields: Campos de proyecto personalizados
@@ -1217,6 +1231,7 @@ es:
   enable_offline_access: Habilitar el acceso sin conexión
   enable_offline_access_for_mobile: Habilitar el acceso sin conexión para móviles
   enlarge: Aumentar
+  encompassing_places: Lugares circundantes
   end: Final
   endangered: en peligro
   endemic: endémica
@@ -1246,6 +1261,7 @@ es:
   events_only: Solo eventos
   every_species_seen_by: Todas las especies vistas por
   everyone: todos
+  everyone_: Todos
   everyone_journal_posts: Articulos en todos los diarios
   everywhere: todas partes
   exact_coordinates_obscured_for: Coordenadas exactas ocultas para visualización pública
@@ -1290,6 +1306,7 @@ es:
   fave: favorito
   faves: Preferidos
   Family: Familia
+  faved_this_observation: diga que le agrada este observación
   favorite_taxa: taxones favoritos
   favorites: Favoritos
   fblocale: es_LA
@@ -1352,6 +1369,7 @@ es:
   first_observer: Primer observador
   first_report: primer informe
   flag: Marcar
+  flag_as_inappropriate: Marcar como inapropiado
   flag_an_item: Marcar un elemento
   flag_as_spammer: Marca como productor de spam
   flag_as_non_spammer: Marcar como no productor de spam
@@ -1366,6 +1384,7 @@ es:
   flag_this_observation: Marcar esta observación
   flag_this_photo: Marcar esta foto
   flagged: marcado
+  flagged_: Marcado
   flagged_for_curation: Marcado para curación
   flagged_thing_explanation: Los usuarios han marcado esta %{thing} porque
   flagger: Marcador
@@ -1487,6 +1506,7 @@ es:
   guidelines: Directrices
   has_already_been_flagged_by: ya ha sido marcada por
   has_been: ha sido
+  has_id_supported_by_two_or_more: Tiene ID apoyado por dos o más
   has_one_or_more_faves: Tiene uno o más favoritos
   has_photos: tiene fotos
   has_photos_or_sounds: Tiene fotos o sonidos
@@ -1607,6 +1627,7 @@ es:
   import_sounds: Importar sonidos
   import_tags_from_csv: Importar etiquetas de CSV
   importing: Importando...
+  improving: Mejorando
   in: en
   in_: de
   in_n: en %{n}
@@ -1686,6 +1707,8 @@ es:
     spam u ofensivo?
   is_this_place_a_duplicate: ¿Este lugar está duplicado?
   it: Este
+  it_can_now_be_used_for_research: Ahora puede utilizarse para propósitos de investigación
+    y presentarse en otros sitios web
   it_has: Tiene
   it_instead: en vez de eso.
   its_important_that_you: Es importante que haga click
@@ -1738,6 +1761,7 @@ es:
     species: La mayoría de las especies en %{time}
     observations: La mayoría de las observaciones en %{time}
     identifications: La mayoría de las identificaciones en %{time}
+  leading: Principal
   learn!: ¡Aprenda!
   learn_about_the_species_live_in: Aprenda sobre las especies que viven en
   learn_more: Aprenda más
@@ -2948,11 +2972,13 @@ es:
   rank_restrictions: Clasificar las restricciones
   ranks:
     kingdom: reino
+    subkingdom: subreino
     phylum: Filo
     subphylum: Subfilo
     superclass: superclase
     class: clase
     subclass: subclase
+    infraclass: infraclase
     superorder: Superorden
     order: Orden
     suborder: Suborden
@@ -2966,6 +2992,9 @@ es:
     subtribe: Subtribu
     genus: Género
     genushybrid: Género híbrido
+    subgenus: subgénero
+    section: sección
+    subsection: subsección
     species: Especies
     hybrid: Híbrido
     subspecies: Subespecies
@@ -3802,7 +3831,7 @@ es:
   type_a_place_name_and_click_search: Pon el nombre de un lugar
   type_authority: Pon el nombre de la autoridad...
   type_date_time_or_use_the_calendar: Pon la fecha/hora o usa el calendario
-  type_one_name_per_line: Escribe un nombre por línea
+  type_one_name_per_line: Escribe un nombre por renglón
   type_place_name: Digite el nombre del lugar
   type_project_name: Digite el nombre del proyecto...
   type_source_name: Nombre de la fuente
@@ -4169,6 +4198,7 @@ es:
   yesterday: Ayer
   yesterday_at: ', ayer a las 4pm'
   you: usted
+  you_: Tú
   you_admin: que usted administra
   you_appear_offline_try_again: Parece que no está conectado. Por favor vuelva a intentarlo
     cuando esté conectado a Internet.
@@ -5175,25 +5205,16 @@ es:
          a menos que confíes en los curadores de proyectos.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Tú (<span class="notice status">es la mejor opción para controlar
-          cómo se comparten las ubicaciones privadas</span>)
+        observer: Sí, pero sólo si yo mismo añado la observación al proyecto.
         any: Miembros del proyecto (<span class="success status">la mejor opción para
           compartir tus observaciones con este proyecto</span>)
-        none: Nadie
+        none: No.
       curator_coordinate_access_label: |-
         Permitir a los curadores de proyecto ver las coordenadas privadas de tus
         observaciones cuando se añadan al proyecto por
       curator_coordinate_access_note: También puede elegir el compartir las coordenadas
         privadas de observaciones en este proyecto, con base caso a caso. Serán, tan
         solo, valores base para nuevas observaciones añadidas al proyecto.
-      project_user_curator_coordinate_access_descriptions:
-        observer: Sólo permitir a los curadores de proyectos ver las coordenadas privadas
-          de tus observaciones que tu añades a este proyecto.
-        any: Permitir a los curadores de proyectos ver las coordenadas privadas de
-          tus observaciones añadidas a este proyecto por ti y por los otros miebros
-          del proyecto.
-        none: No compartir las coordenadas privadas de tus observaciones con los curadores
-          del proyecto
       project_terms_desc_html: Permite a los curadores de este proyecto usar tus observaciones
         de acuerdo a las <a href="%{url}">condiciones del proyecto</a>.
       show:
