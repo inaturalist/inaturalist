@@ -90,7 +90,8 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
   let statuses = [];
-  if ( item.flags && item.flags.length > 0 ) {
+  const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
+  if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
     statuses.push( ( <span key={ `flagged-${item.id}` } className="item-status">
       <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }

@@ -59,7 +59,8 @@ const ObservationModal = ( {
       "positional_accuracy",
       "geoprivacy",
       "taxon",
-      "user"
+      "user",
+      "map_scale"
     ] );
     obsForMap.coordinates_obscured = observation.obscured;
     const taxonLayer = {

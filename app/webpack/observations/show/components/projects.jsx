@@ -82,7 +82,8 @@ class Projects extends React.Component {
         </form>
       );
     }
-    const count = observation.project_observations.length;
+    const count = observation.project_observations.length > 0 ?
+      `(${observation.project_observations.length})` : "";
     return (
       <div className="Projects">
         <h4
@@ -95,7 +96,7 @@ class Projects extends React.Component {
           } }
         >
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "projects" ) } ({ count })
+          { I18n.t( "projects" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           { addProjectInput }

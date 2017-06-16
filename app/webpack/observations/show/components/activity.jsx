@@ -32,7 +32,10 @@ class Activity extends React.Component {
       concat( observation.comments ) );
     activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
     const tabs = (
-      <Tabs defaultActiveKey="comment">
+      <Tabs activeKey={ this.props.commentIDPanel.activeTab } onSelect={ key => {
+        this.props.setActiveTab( key );
+      } }
+      >
         <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
           <div className="form-group">
             <textarea
@@ -41,7 +44,7 @@ class Activity extends React.Component {
             />
           </div>
         </Tab>
-        <Tab eventKey="add_id" title={ I18n.t( "suggest_an_id" ) } className="id_tab">
+        <Tab eventKey="add_id" title={ I18n.t( "suggest_an_identification" ) } className="id_tab">
           <TaxonAutocomplete
             bootstrap
             searchExternal
@@ -118,6 +121,7 @@ class Activity extends React.Component {
 Activity.propTypes = {
   observation: PropTypes.object,
   config: PropTypes.object,
+  commentIDPanel: PropTypes.object,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
   deleteComment: PropTypes.func,
@@ -126,7 +130,8 @@ Activity.propTypes = {
   restoreID: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   createFlag: PropTypes.func,
-  deleteFlag: PropTypes.func
+  deleteFlag: PropTypes.func,
+  setActiveTab: PropTypes.func
 };
 
 export default Activity;

@@ -5,6 +5,7 @@ import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
 import AppContainer from "./containers/app_container";
+import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import observationReducer, { fetchObservation, showNewObservation } from "./ducks/observation";
 import observationPlacesReducer from "./ducks/observation_places";
 import identificationsReducer from "./ducks/identifications";
@@ -16,6 +17,7 @@ import flaggingModalReducer from "./ducks/flagging_modal";
 import confirmModalReducer from "./ducks/confirm_modal";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import licensingModalReducer from "./ducks/licensing_modal";
+import commentIDPanelReducer from "./ducks/comment_id_panel";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 
 const rootReducer = combineReducers( {
@@ -30,7 +32,8 @@ const rootReducer = combineReducers( {
   flaggingModal: flaggingModalReducer,
   confirmModal: confirmModalReducer,
   communityIDModal: communityIDModalReducer,
-  licensingModal: licensingModalReducer
+  licensingModal: licensingModalReducer,
+  commentIDPanel: commentIDPanelReducer
 } );
 
 const store = createStore(
@@ -70,6 +73,8 @@ store.dispatch( fetchObservation( INITIAL_OBSERVATION_ID, {
     );
   }
 } ) );
+
+setupKeyboardShortcuts( store.dispatch );
 
 window.onpopstate = e => {
   if ( e.state && e.state.observation ) {

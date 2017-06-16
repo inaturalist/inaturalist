@@ -11,10 +11,29 @@ class Copyright extends React.Component {
     };
   }
 
+
   render( ) {
     const { observation, config } = this.props;
     if ( !observation ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
+    let application;
+    if ( observation.application && observation.application.name ) {
+      application = ( <span className="app-info">
+        { I18n.t( "this_observation_was_created_using" ) }
+        <div className="application">
+          <a href={ observation.application.url }>
+            <span className="icon">
+              <img src={ observation.application.icon } />
+            </span>
+            <span className="name">
+              { observation.application.name }
+            </span>
+          </a>
+        </div>
+      </span> );
+    }
+    const panelTitle = application ?
+      I18n.t( "copyright_info_and_more" ) : I18n.t( "copyright_info" );
     return (
       <div className="Copyright">
         <h4
@@ -27,10 +46,11 @@ class Copyright extends React.Component {
           } }
         >
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          Copyright Info
+          { panelTitle }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           <ObservationAttribution observation={ observation } />
+          { application }
         </Panel>
       </div>
     );

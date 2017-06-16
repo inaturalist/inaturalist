@@ -55,6 +55,14 @@ a:focus {
   }
 }
 
+.gmapv3control.overlaycontrol {
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+  border-radius: 2px;
+  border: none;
+  padding: 5px 5px 0 5px;
+  margin-right: 4px;
+}
+
 #bodywrapper, #wrapper {
   background: #f8f8f8;
 }
@@ -264,7 +272,7 @@ a.UserImage {
           height: 441px;
         }
         .image-gallery-slides img {
-          max-height: 480px;
+          max-height: 479px;
           max-width: 100%;
           width: auto;
           padding-bottom: 40px;
@@ -553,6 +561,14 @@ a.UserImage {
   }
 }
 
+.more_from > .container > .row > .col-xs-12 {
+  padding: 0;
+}
+
+.other_observations > .container > .row > .col-xs-6 {
+  padding: 0;
+}
+
 h3, h4 {
   &.collapsable {
     i.fa {
@@ -610,6 +626,9 @@ h3, h4 {
   }
   .control-group {
     float: right;
+    .btn-group button .fa {
+      color: #999;
+    }
   }
   button.dropdown-toggle {
     border: none;
@@ -647,14 +666,18 @@ h3, h4 {
     height: 230px;
     width: 100%;
     background: #e3eaf6;
+    &.empty {
+      background: none;
+    }
   }
   .no_location {
     background: #f8f8f8;
-    height: 200px;
+    height: 230px;
     text-align: center;
     font-size: 18px;
     color: #999;
-    padding: 55px;
+    padding-top: 75px;
+    border-bottom: 1px solid $border-grey;;
     .fa {
       display: block;
       font-size: 60px;
@@ -664,6 +687,7 @@ h3, h4 {
   .map_details {
     padding: 10px;
     font-size: 14px;
+    height: 40px;
     .place-guess {
       display: inline-block;
       max-width: 80%;
@@ -1161,17 +1185,48 @@ h3, h4 {
   margin-top: 15px;
   .graphic {
     text-align: center;
-    .checks {
-      .check, .separator {
+    .separators {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      .left, .right {
+        margin: 0;
+      }
+      .left {
+        padding-left: 38px;
+      }
+      .right {
+        padding-right: 38px;
+      }
+      .separator {
         display: inline-block;
+        border: 2px solid $border-grey;
+        width: 100%;
+        margin: 1px;
+        border-style: dashed;
+        &.active {
+          border-style: solid;
+        }
+      }
+    }
+    .checks {
+      .col-xs-4 {
+        padding: 0;
       }
       .check {
+        display: inline-block;
         width: 20px;
         height: 20px;
         text-align: center;
         background: #DCDCDC;
         border-radius: 20px;
         font-size: 12px;
+        &.casual {
+          float: left;
+        }
+        &.research {
+          float: right;
+        }
         &.needs-id.active {
           background: #E0E000;
           color: #979797;
@@ -1188,29 +1243,22 @@ h3, h4 {
           line-height: 18px;
         }
       }
-      .separator {
-        border: 2px solid $border-grey;
-        width: 140px;
-        margin: 2px;
-        border-style: dashed;
-        &.active {
-          border-style: solid;
-        }
-      }
     }
     .labels {
-      margin-top: 10px;
       & > div {
         display: inline-block;
         width: 115px;
+        margin-top: 5px;
       }
       .active {
         font-weight: 600;
       }
       .casual {
+        float: left;
         text-align: left;
       }
       .research {
+        float: right;
         text-align: right;
       }
     }
@@ -1274,7 +1322,9 @@ h3, h4 {
 }
 
 .MoreFromUser {
+  display: inline-block;
   padding-bottom: 30px;
+  width: 100%;
   h3 {
     & > span a {
       font-weight: 700;
@@ -1291,13 +1341,20 @@ h3, h4 {
     }
   }
   .list {
+    display: inline-block;
     text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 100%;
+    .col-xs-2 {
+      padding-left: 10px;
+      padding-right: 10px;
+    }
   }
   .obs {
-    width: 140px;
+    width: 100%;
     display: inline-block;
     vertical-align: top;
-    margin: 0px 8px;
     border-radius: 2px;
     border: 1px solid #D0D0D0;
   }
@@ -1316,11 +1373,12 @@ h3, h4 {
         opacity: 1;
       }
     }
+
     .icon, .sound-icon {
       display: none;
       color: #aaa;
       opacity: 0.8;
-      font-size: 100px;
+      font-size: 105px;
       margin-top: 20px;
     }
     a.sound .sound-icon, a.iconic .icon {
@@ -1357,13 +1415,19 @@ h3, h4 {
     }
   }
   .list {
+    display: inline-block;
     text-align: center;
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    .col-xs-2 {
+      padding: 5px;
+    }
   }
   .photo {
-    width: 65px;
-    height: 65px;
+    width: 100%;
+    height: 68px;
     display: inline-block;
-    margin: 0px 5px;
     a {
       width: 100%;
       height: 100%;
@@ -1399,6 +1463,9 @@ h3, h4 {
         color: #fff;
         background: $inat-green;
       }
+    }
+    .btn.standalone {
+      margin-right: 10px;
     }
   }
   .panel {
@@ -2062,9 +2129,24 @@ h3, h4 {
   a {
     color: $bootstrap-link-color;
   }
-  img {
+  .ObservationAttribution img {
     display: block;
     margin-top: 5px;
+  }
+  .app-info {
+    display: inline-block;
+    margin-top: 25px;
+    .application {
+      .icon {
+        margin-right: 5px;
+        img {
+          border: 1px solid $border-grey;
+        }
+      }
+      .name {
+        vertical-align: middle;
+      }
+    }
   }
 }
 
@@ -2234,5 +2316,18 @@ body > div > [role="dialog"] .easyzoom > a > img {
 @media (max-width: 1000px) {
   .bootstrap .container {
     width: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .MoreFromUser .photo {
+    height: 171px;
+    .icon, .sound-icon {
+      font-size: 125px;
+      margin-top: 25px;
+    }
+  }
+  .ObservationsHighlight .photo {
+    height: 84px;
   }
 }

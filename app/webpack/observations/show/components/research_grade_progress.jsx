@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
+import { Col } from "react-bootstrap";
 /* global OUTLINK_SITE_ICONS */
 
 class ResearchGradeProgress extends React.Component {
@@ -43,7 +44,8 @@ class ResearchGradeProgress extends React.Component {
         passedCriteria[`metric-${metric}`] = true;
       }
     } );
-    remainingCriteria.flags = observation.flags.length > 0;
+    const unresolvedFlags = _.filter( observation.flags || [], f => !f.resolved );
+    remainingCriteria.flags = unresolvedFlags.length > 0;
     if ( observation.taxon && observation.taxon.rank_level === 20 ) {
       remainingCriteria.rank = false;
       if ( !passedCriteria["metric-needs_id"] ) {
@@ -166,8 +168,9 @@ class ResearchGradeProgress extends React.Component {
     if ( grade === "research" ) {
       description = (
         <span>
-          <span className="bold">{ I18n.t( "this_observation_is_research_grade" ) }</span>
-          { I18n.t( "it_can_now_be_used_for_research" ) }.
+          <span className="bold">
+            { I18n.t( "this_observation_is_research_grade" ) }
+          </span> { I18n.t( "it_can_now_be_used_for_research" ) }.
         </span>
       );
     } else {
@@ -204,18 +207,30 @@ class ResearchGradeProgress extends React.Component {
     return (
       <div className="ResearchGradeProgress">
         <div className="graphic">
+          <div className="separators">
+            <Col xs={ 6 } className="left">
+              <div className={ `separator ${needsIDActive ? "active" : "incomplete"}` } />
+            </Col>
+            <Col xs={ 6 } className="right">
+              <div className={ `separator ${grade === "research" ? "active" : "incomplete"}` } />
+            </Col>
+          </div>
           <div className="checks">
-            <div className="check active">
-              <i className="fa fa-check" />
-            </div>
-            <div className={ `separator ${needsIDActive ? "active" : "incomplete"}` } />
-            <div className={ `check needs-id ${needsIDActive ? "active" : "incomplete"}` }>
-              <i className="fa fa-check" />
-            </div>
-            <div className={ `separator ${grade === "research" ? "active" : "incomplete"}` } />
-            <div className={ `check research ${grade === "research" ? "active" : "incomplete"}` }>
-              <i className="fa fa-check" />
-            </div>
+            <Col xs={ 4 }>
+              <div className="check casual active">
+                <i className="fa fa-check" />
+              </div>
+            </Col>
+            <Col xs={ 4 }>
+              <div className={ `check needs-id ${needsIDActive ? "active" : "incomplete"}` }>
+                <i className="fa fa-check" />
+              </div>
+            </Col>
+            <Col xs={ 4 }>
+              <div className={ `check research ${grade === "research" ? "active" : "incomplete"}` }>
+                <i className="fa fa-check" />
+              </div>
+            </Col>
           </div>
           <div className="labels">
             <div className={ `casual ${grade === "casual" && "active"}` }>Casual Grade</div>

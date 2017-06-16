@@ -9,7 +9,7 @@ class ObservationPhotoAttribution extends React.Component {
     const userName = user.name || user.login;
     const intro = photo.license_code === "cc0" || photo.license_code === "pd" ?
       userName : `\u00A9 ${userName}`;
-    if ( !photo.license_code ) {
+    if ( !photo.license_code || photo.license_code.toLowerCase( ) === "c" ) {
       return ( <span>{ intro }, { I18n.t( "all_rights_reserved" ) }</span> );
     }
     if ( photo.license_code === "pd" ) {
@@ -23,8 +23,8 @@ class ObservationPhotoAttribution extends React.Component {
       I18n.t( "some_rights_reserved" );
     return (
       <span>
-        { intro }, <a href={ iNaturalist.Licenses[photo.license_code].url }>
-          { licenseText } ({ iNaturalist.Licenses[photo.license_code].code })
+        { intro }, <a href={ iNaturalist.Licenses[photo.license_code.toLowerCase( )].url }>
+          { licenseText } ({ iNaturalist.Licenses[photo.license_code.toLowerCase( )].code })
         </a>
       </span>
     );

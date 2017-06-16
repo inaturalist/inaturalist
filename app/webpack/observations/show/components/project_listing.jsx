@@ -96,6 +96,8 @@ class ProjectListing extends React.Component {
       config.currentUser.id === observation.user.id;
     const viewerIsAdder = config && config.currentUser &&
       config.currentUser.id === po.user_id;
+    const viewerIsCurator = config && config.currentUser &&
+      _.includes( config.currentUser.curator_project_ids, po.project.id );
     const fields = po.project.project_observation_fields;
     if ( fields && fields.length > 1 ) {
       const fieldIDs = po.project.project_observation_fields.
@@ -114,7 +116,11 @@ class ProjectListing extends React.Component {
         observationFields = (
           <Panel collapsible expanded={ this.state.fieldsPanelOpen }>
             { projectFieldValues.map( ofv => (
-              <ObservationFieldValue key={ ofv.uuid || ofv.observation_field.id } ofv={ ofv } />
+              <ObservationFieldValue
+                key={ `proj-field-${ofv.uuid || ofv.observation_field.id}` }
+                ofv={ ofv }
+                observation={ observation }
+              />
             ) ) }
           </Panel>
         );
@@ -136,7 +142,8 @@ class ProjectListing extends React.Component {
             </div>
             { observationFieldLink }
           </div>
-          { viewerIsObserver || viewerIsAdder ? this.settingsMenu( po ) : "" }
+          { viewerIsObserver || viewerIsAdder || viewerIsCurator ?
+            this.settingsMenu( po ) : "" }
         </div>
         { observationFields }
       </div>

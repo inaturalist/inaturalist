@@ -242,6 +242,8 @@ class Annotations extends React.Component {
       }
     } );
 
+    const count = observation.annotations.length > 0 ?
+      `(${observation.annotations.length})` : "";
     return (
       <div className="Annotations">
         <h4
@@ -255,7 +257,7 @@ class Annotations extends React.Component {
           } }
         >
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "annotations" ) } ({ observation.annotations.length })
+          { I18n.t( "annotations" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           <table className="table">

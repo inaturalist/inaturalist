@@ -3,11 +3,13 @@ import Activity from "../components/activity";
 import { addComment, confirmDeleteComment, addID, deleteID, restoreID } from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
+import { setActiveTab } from "../ducks/comment_id_panel";
 
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
-    config: state.config
+    config: state.config,
+    commentIDPanel: state.commentIDPanel
   };
 }
 
@@ -22,7 +24,8 @@ function mapDispatchToProps( dispatch ) {
     createFlag: ( className, id, flag, body ) => {
       dispatch( createFlag( className, id, flag, body ) );
     },
-    deleteFlag: id => { dispatch( deleteFlag( id ) ); }
+    deleteFlag: id => { dispatch( deleteFlag( id ) ); },
+    setActiveTab: activeTab => { dispatch( setActiveTab( activeTab ) ); }
   };
 }
 
