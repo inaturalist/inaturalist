@@ -112,7 +112,7 @@ class Suggestions extends React.Component {
           <div className="photo-meta">
             <OverlayTrigger
               container={ $( ".suggestions-detail" ).get( 0 ) }
-              placement="left"
+              placement="top"
               delayShow={ 500 }
               trigger="click"
               rootClose
@@ -124,7 +124,8 @@ class Suggestions extends React.Component {
             >
               { taxonPhoto.photo.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
                 ( <i className="fa fa-copyright license" /> ) }
-            </OverlayTrigger> <a href={`/photos/${taxonPhoto.photo.id}`} target="_blank">
+            </OverlayTrigger>
+            <a href={`/photos/${taxonPhoto.photo.id}`} target="_blank">
               <i className="fa fa-info-circle" />
             </a>
           </div>
@@ -159,18 +160,41 @@ class Suggestions extends React.Component {
     if ( query.place && query.place.ancestors ) {
       defaultPlaces = query.place.ancestors;
     }
+    let title = I18n.t( "no_suggestions_available" );
+    if ( loading ) {
+      title = I18n.t( "suggestions" );
+    } else if ( response.results.length > 0 ) {
+      title = I18n.t( "x_suggestions_filtered_by_colon", { count: response.results.length } );
+    }
     return (
       <div className="Suggestions">
         <div className={`suggestions-wrapper ${detailTaxon ? "with-detail" : null}`}>
           <div className="suggestions-list">
             <div className="suggestions-inner">
+              <ChooserPopover
+                label={ I18n.t( "order" ) }
+                className="pull-right"
+                container={ $( ".ObservationModal" ).get( 0 ) }
+                chosen={ query.order_by }
+                choices={["frequency", "taxonomy"]}
+                defaultChoice="frequency"
+                preIconClass={ false }
+                postIconClass="fa fa-angle-down"
+                hideClear
+                setChoice={ orderBy => {
+                  setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
+                } }
+                clearChoice={ ( ) => {
+                  setQuery( Object.assign( { }, query, { order_by: null } ) );
+                } }
+              />
               <div className="column-header">
-                { loading ? I18n.t( "suggestions" ) : I18n.t( "x_suggestions", { count: response.results.length } ) }
+                { title }
               </div>
               <div className="filters">
-                <label>{ I18n.t( "filters" ) }</label>
                 <PlaceChooserPopover
                   container={ $( ".ObservationModal" ).get( 0 ) }
+                  label={ I18n.t( "place" ) }
                   place={ query.place }
                   defaultPlace={ query.defaultPlace }
                   defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
@@ -185,6 +209,7 @@ class Suggestions extends React.Component {
                 />
                 <TaxonChooserPopover
                   container={ $( ".ObservationModal" ).get( 0 ) }
+                  label={ I18n.t( "taxon" ) }
                   taxon={ query.taxon }
                   defaultTaxon={ query.defaultTaxon }
                   preIconClass={false}
@@ -212,22 +237,6 @@ class Suggestions extends React.Component {
                     setQuery( Object.assign( { }, query, { source: null } ) );
                   } }
                 />
-                <ChooserPopover
-                  label={ I18n.t( "order" ) }
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  chosen={ query.order_by }
-                  choices={["frequency", "taxonomy"]}
-                  defaultChoice="frequency"
-                  preIconClass={ false }
-                  postIconClass="fa fa-angle-down"
-                  hideClear
-                  setChoice={ orderBy => {
-                    setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
-                  } }
-                  clearChoice={ ( ) => {
-                    setQuery( Object.assign( { }, query, { order_by: null } ) );
-                  } }
-                />
               </div>
               { loading ? (
                 <div className="text-center">
@@ -242,11 +251,6 @@ class Suggestions extends React.Component {
                       <span>({I18n.t( "source_" )} { comprehensiveList.source.in_text })</span>
                     ) : null }
                   </a>
-                </div>
-              ) : null }
-              { response.results.length === 0 && !loading ? (
-                <div className="noresults">
-                  { I18n.t( "no_results_found" ) }
                 </div>
               ) : null }
               { response.results.map( r => this.suggestionRowForTaxon( r.taxon ) ) }

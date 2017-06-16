@@ -66,7 +66,8 @@ class TaxonChooserPopover extends React.Component {
       setTaxon,
       clearTaxon,
       preIconClass,
-      postIconClass
+      postIconClass,
+      label
     } = this.props;
     return (
       <OverlayTrigger
@@ -131,6 +132,7 @@ class TaxonChooserPopover extends React.Component {
           className={`TaxonChooserPopoverTrigger RecordChooserPopoverTrigger ${taxon ? "chosen" : ""} ${className}`}
         >
           { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
+          { label ? ( <label>{ label }</label> ) : null }
           {
             taxon ?
               <SplitTaxon taxon={taxon} />
@@ -151,7 +153,8 @@ TaxonChooserPopover.propTypes = {
   setTaxon: PropTypes.func,
   clearTaxon: PropTypes.func,
   preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
-  postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] )
+  postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
+  label: PropTypes.string
 };
 
 TaxonChooserPopover.defaultProps = {

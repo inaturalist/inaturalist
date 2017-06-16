@@ -62,7 +62,7 @@ class TaxonAutocomplete extends React.Component {
           placeholder={ this.props.placeholder }
           autoComplete="off"
         />
-        <Input type="hidden" name="taxon_id" />
+        <input type="hidden" name="taxon_id" />
       </span>
     );
   }

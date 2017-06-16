@@ -174,7 +174,9 @@ class PlaceChooserPopover extends React.Component {
   }
 
   render( ) {
-    const { place, className, container, preIconClass, postIconClass, defaultPlace } = this.props;
+    const {
+      place, className, container, preIconClass, postIconClass, label
+    } = this.props;
     return (
       <OverlayTrigger
         trigger="click"
@@ -254,6 +256,7 @@ class PlaceChooserPopover extends React.Component {
           className={`PlaceChooserPopoverTrigger RecordChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
         >
           { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
+          { label ? ( <label>{ label }</label> ) : null }
           {
             place ?
               I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
@@ -275,7 +278,8 @@ PlaceChooserPopover.propTypes = {
   clearPlace: PropTypes.func,
   container: PropTypes.object,
   preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
-  postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] )
+  postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
+  label: PropTypes.string
 };
 
 PlaceChooserPopover.defaultProps = {

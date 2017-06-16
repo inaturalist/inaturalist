@@ -3338,6 +3338,7 @@ I18n.translations["en"] = {
   "no_results_found": "No results found",
   "no_sections_available": "No sections available.",
   "no_species_observed": "No species observed",
+  "no_suggestions_available": "No Suggestions Available",
   "no_summary_from_wikipedia": "No summary from Wikipedia",
   "none": "None",
   "not_evaluated": "not evaluated",
@@ -3916,9 +3917,9 @@ I18n.translations["en"] = {
     "one": "<a href='%{url}'>1 species</a>",
     "other": "<a href='%{url}'>%{count} species</a>"
   },
-  "x_suggestions": {
-    "one": "1 suggestion",
-    "other": "%{count} suggestions"
+  "x_suggestions_filtered_by_colon": {
+    "one": "1 Suggestion Filtered By:",
+    "other": "%{count} Suggestions Filtered By:"
   },
   "yellow": "yellow",
   "yes": "Yes",

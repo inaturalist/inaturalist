@@ -72,6 +72,8 @@
     color: $bootstrap-link-color;
     label {
       margin-right: 0.3em;
+      font-weight: normal;
+      color: black;
     }
     label:after {
       content: ':';
@@ -124,17 +126,20 @@
 
   .photo-meta {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    bottom: 70px;
+    width: 100%;
+    text-align: center;
     color: white;
     text-shadow: 0px 0px 20px black;
-    cursor: pointer;
     opacity: 0.5;
     a,
     a:active,
     a:hover {
       color: white;
-      margin-left: 5px;
+      cursor: pointer;
+    }
+    .license {
+      margin-right: 5px;
     }
   }
   .photo-meta:hover {
