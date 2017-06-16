@@ -31,6 +31,8 @@ class IdentificationsController < ApplicationController
     end
     if params[:for] == "others"
       search_params[:own_observation] = "false"
+    elsif params[:for] == "self"
+      search_params[:own_observation] = "true"
     end
     search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
     api_response = INatAPIService.identifications(search_params)

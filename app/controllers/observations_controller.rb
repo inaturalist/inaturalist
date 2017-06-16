@@ -260,7 +260,11 @@ class ObservationsController < ApplicationController
         if params[:partial] == "cached_component"
           return render(partial: "cached_component",
             object: @observation, layout: false)
-        elsif ( viewing_new_obs_show? )
+        end
+        
+        user_viewed_updates if logged_in?
+
+        if viewing_new_obs_show?
           @skip_application_js = true
           @flash_js = true
           render layout: "bootstrap", action: "show2"
@@ -359,10 +363,6 @@ class ObservationsController < ApplicationController
         end
         @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
         @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
-
-        if logged_in?
-          user_viewed_updates
-        end
 
         if params[:test] == "idcats" && logged_in?
           leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
