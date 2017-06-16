@@ -236,6 +236,7 @@ class Suggestions extends React.Component {
               ) : null }
               { comprehensiveList ? (
                 <div className="comprehensive-list">
+                  <i className="fa fa-list-ul"></i>
                   {I18n.t( "comprehensive_list" )}: <a target="_blank" href={`/lists/${comprehensiveList.id}`}>
                     { comprehensiveList.title } { comprehensiveList.source ? (
                       <span>({I18n.t( "source_" )} { comprehensiveList.source.in_text })</span>

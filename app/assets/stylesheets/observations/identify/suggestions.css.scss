@@ -142,10 +142,15 @@
   }
 
   .comprehensive-list {
-    padding: 10px;
-    background-color: #ddd;
-    font-size: smaller;
+    padding: 10px 15px;
+    background-color: #eee;
     margin-top: 10px;
+    border-radius: 2px;
+    border: 1px solid $border-grey;
+    i {
+      color: $inat-green;
+      margin-right: 5px;
+    }
   }
 }
 
