@@ -9,7 +9,7 @@ const bindShortcut = ( shortcut, callback ) => {
 };
 
 const focus = ( ) => {
-  $( ".comment_id_panel .active textarea" ).first( ).focus( );
+  $( ".comment_id_panel .active :input:visible" ).first( ).focus( );
 };
 
 const setupKeyboardShortcuts = dispatch => {
