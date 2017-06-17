@@ -581,6 +581,67 @@ export function showNextTab( ) {
   };
 }
 
+export function addObservationFieldValue( options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !options.observationField ) { return; }
+    const newOfvs = _.clone( state.currentObservation.observation.ofvs );
+    newOfvs.unshift( {
+      datatype: options.observationField.datatype,
+      name: options.observationField.name,
+      value: options.value,
+      observation_field: options.observationField,
+      api_status: "saving",
+      taxon: options.taxon
+    } );
+    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
+    const payload = {
+      observation_field_id: options.observationField.id,
+      observation_id: state.currentObservation.observation.id,
+      value: options.value
+    };
+    iNaturalistJS.observation_field_values.create( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function updateObservationFieldValue( id, options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !options.observationField ) { return; }
+    const newOfvs = state.currentObservation.observation.ofvs.map( ofv => (
+      ofv.uuid === id ? {
+        datatype: options.observationField.datatype,
+        name: options.observationField.name,
+        value: options.value,
+        observation_field: options.observationField,
+        api_status: "saving",
+        taxon: options.taxon
+      } : ofv ) );
+    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
+    const payload = {
+      id,
+      observation_field_id: options.observationField.id,
+      observation_id: state.currentObservation.observation.id,
+      value: options.value
+    };
+    iNaturalistJS.observation_field_values.update( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+
+export function removeObservationFieldValue( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newOfvs = state.currentObservation.observation.ofvs.map( ofv => (
+      ofv.uuid === id ? Object.assign( { }, ofv, { api_status: "deleting" } ) : ofv ) );
+    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
+    iNaturalistJS.observation_field_values.delete( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
 export {
   SHOW_CURRENT_OBSERVATION,
   HIDE_CURRENT_OBSERVATION,
@@ -608,5 +669,8 @@ export {
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
   updateCurrentObservation,
-  toggleKeyboardShortcuts
+  toggleKeyboardShortcuts,
+  addObservationFieldValue,
+  removeObservationFieldValue,
+  updateObservationFieldValue
 };

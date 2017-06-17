@@ -276,7 +276,7 @@ class ObservationFieldInput extends React.Component {
     }
     const fieldChooser = this.props.hideFieldChooser ? "" : (
       <input type="text"
-        placeholder={ I18n.t( "choose_a_field" ) }
+        placeholder={ this.props.placeholder }
         className="form-control ofv-field"
       /> );
     return (
@@ -296,7 +296,12 @@ ObservationFieldInput.propTypes = {
   hideFieldChooser: PropTypes.bool,
   notIDs: PropTypes.array,
   onSubmit: PropTypes.func,
-  onCancel: PropTypes.func
+  onCancel: PropTypes.func,
+  placeholder: PropTypes.string
+};
+
+ObservationFieldInput.defaultProps = {
+  placeholder: I18n.t( "choose_a_field" )
 };
 
 export default ObservationFieldInput;

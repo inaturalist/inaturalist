@@ -16,6 +16,7 @@ import IdentificationFormContainer from "../containers/identification_form_conta
 import SuggestionsContainer from "../containers/suggestions_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";
+import ObservationFieldsContainer from "../containers/observation_fields_container";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
@@ -527,7 +528,10 @@ class ObservationModal extends React.Component {
                 <SuggestionsContainer />
               </div>
               <div className={`inat-tab annotations-tab ${tab === "annotations" ? "active" : ""}`}>
+                <div className="column-header">{ I18n.t( "annotations" ) }</div>
                 <AnnotationsContainer />
+                <div className="column-header">{ I18n.t( "observation_fields" ) }</div>
+                <ObservationFieldsContainer />
               </div>
               <div className={`inat-tab data-quality-tab ${tab === "data-quality" ? "active" : ""}`}>
                 <QualityMetricsContainer />
