@@ -17783,7 +17783,6 @@ I18n.translations["zh-TW"] = {
   "blue_butterfly_etc": "藍色、蝴蝶、或其它。",
   "brown": "棕色",
   "browse": "瀏覽",
-  "by": "由",
   "by_user": "由 %{user}",
   "calendar": "日曆",
   "cancel": "取消",
@@ -17801,6 +17800,7 @@ I18n.translations["zh-TW"] = {
     "input_taxon_will_be_dropped_html": "%{input_taxon}將被去除",
     "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon}將被拆分成%{output_taxa}"
   },
+  "checklist": "檢查列表",
   "choose_a_field": "選擇欄位",
   "choose_photos": "挑選照片",
   "choose_photos_for_this_taxon": "挑選用於此分類的照片",
@@ -17812,6 +17812,7 @@ I18n.translations["zh-TW"] = {
   "community_curated": "社群策劃",
   "community_id_heading": "社群 ID",
   "compare": "比較",
+  "comprehensive_list": "綜合列表",
   "confirm": "確認",
   "confirmed": "已確認",
   "conservation_status": "保育狀態",
