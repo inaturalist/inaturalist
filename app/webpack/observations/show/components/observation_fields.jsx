@@ -101,6 +101,7 @@ class ObservationFields extends React.Component {
       );
     }
 
+    const count = sortedFieldValues.length > 0 ? `(${sortedFieldValues.length})` : "";
     return (
       <div className="ObservationFields">
         <h4
@@ -114,7 +115,7 @@ class ObservationFields extends React.Component {
           } }
         >
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "observation_fields" ) } ({ sortedFieldValues.length })
+          { I18n.t( "observation_fields" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           { panelContent }

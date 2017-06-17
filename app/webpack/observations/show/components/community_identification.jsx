@@ -13,7 +13,11 @@ class CommunityIdentification extends React.Component {
   constructor( ) {
     super( );
     this.ownerID = null;
+    this.communityIDOptIn = this.communityIDOptIn.bind( this );
+    this.communityIDOptOut = this.communityIDOptOut.bind( this );
     this.showCommunityIDModal = this.showCommunityIDModal.bind( this );
+    this.communityIDOverridePanel = this.communityIDOverridePanel.bind( this );
+    this.communityIDOverrideStatement = this.communityIDOverrideStatement.bind( this );
   }
 
   communityIDOptIn( e ) {
@@ -47,7 +51,9 @@ class CommunityIdentification extends React.Component {
     const observationOptedOut = ( observation.preferences &&
       observation.preferences.prefers_community_taxon === false );
     let panel;
-    if ( this.ownerID && ( observerOptedOut || observationOptedOut ) &&
+    if ( this.ownerID &&
+         ( observerOptedOut || observationOptedOut ||
+           this.ownerID.taxon.id !== observation.taxon.id ) &&
          loggedIn && config.currentUser.id === observation.user.id ) {
       if ( observationOptedOut ) {
         panel = ( <div className="override out">
@@ -65,7 +71,7 @@ class CommunityIdentification extends React.Component {
       } else {
         let dissimilarMessage;
         const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
-        if ( util.taxaDissimilar( this.ownerID.taxon, this.props.observation.taxon ) ) {
+        if ( this.ownerID.taxon.id !== this.props.observation.taxon.id ) {
           dissimilarMessage = ( <span className="something" dangerouslySetInnerHTML={ { __html:
             I18n.t( "views.observations.community_id.your_id_does_not_match", {
               taxon_name: idName } ) } }
@@ -181,13 +187,10 @@ class CommunityIdentification extends React.Component {
           />
         ) );
       } );
-      stats = (
-        <span>
-          <span className="cumulative">
-            { I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) }
-          </span>
-          <div className="graphic">
-            { voteCells }
+      let linesAndNumbers;
+      if ( voteCells.length > 1 ) {
+        linesAndNumbers = (
+          <span>
             <div className="lines">
               <div className="two-thirds">&nbsp;</div>
             </div>
@@ -196,6 +199,17 @@ class CommunityIdentification extends React.Component {
               <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
               <div className="last">{ voteCells.length }</div>
             </div>
+          </span>
+        );
+      }
+      stats = (
+        <span>
+          <span className="cumulative">
+            { I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) }
+          </span>
+          <div className="graphic">
+            { voteCells }
+            { linesAndNumbers }
           </div>
         </span>
       );

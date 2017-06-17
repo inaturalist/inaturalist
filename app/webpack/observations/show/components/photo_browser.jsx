@@ -69,7 +69,7 @@ class PhotoBrowser extends React.Component {
               <iframe
                 scrolling="no"
                 frameBorder="no"
-                src={ `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${sound.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false` }
+                src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
               ></iframe>
             </div>
             <div className="captions">

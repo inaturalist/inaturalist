@@ -161,9 +161,9 @@ class QualityMetrics extends React.Component {
 
   flaggingDiv( ) {
     const observation = this.props.observation;
-    const flags = observation.flags || [];
-    if ( flags.length > 0 ) {
-      const groupedFlags = _.groupBy( flags, f => ( f.flag ) );
+    const unresolvedFlags = _.filter( observation.flags || [], f => !f.resolved );
+    if ( unresolvedFlags.length > 0 ) {
+      const groupedFlags = _.groupBy( unresolvedFlags, f => ( f.flag ) );
       let flagQualifier;
       if ( groupedFlags.spam ) {
         flagQualifier = "spam";

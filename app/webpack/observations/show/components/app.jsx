@@ -85,7 +85,8 @@ const App = ( {
       }
     } );
   }
-  if ( _.find( observation.flags, f => f.flag === "spam" ) ) {
+  const unresolvedFlags = _.filter( observation.flags || [], f => !f.resolved );
+  if ( _.find( unresolvedFlags, f => f.flag === "spam" ) ) {
     /* global SITE */
     const message = (
       <span>

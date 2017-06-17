@@ -16,11 +16,14 @@ class Map extends React.Component {
     const observationPlaces = this.props.observationPlaces;
     if ( !observation || !observation.latitude ) {
       return ( <div className="Map">
-        <div className="no_location">
-          <i className="fa fa-map-marker" />
-          { observation.geoprivacy === "private" ?
-            I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+        <div className="TaxonMap empty">
+          <div className="no_location">
+            <i className="fa fa-map-marker" />
+            { observation.geoprivacy === "private" ?
+              I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+          </div>
         </div>
+        <div className="map_details" />
       </div> );
     }
     if ( observation.latitude ) {
@@ -35,7 +38,8 @@ class Map extends React.Component {
         "public_positional_accuracy",
         "geoprivacy",
         "taxon",
-        "user"
+        "user",
+        "map_scale"
       ] );
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
@@ -52,7 +56,7 @@ class Map extends React.Component {
           observations={[obsForMap]}
           zoomLevel={ observation.map_scale || 8 }
           showAccuracy
-          showAllLayer={false}
+          enableShowAllLayer={false}
           overlayMenu
           clickable={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}

@@ -34,7 +34,6 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'projects/show' %>
-  <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
   <% if @custom_project && !@custom_project.css.blank? -%>
     <style type="text/css" media="screen">
       <%= @custom_project.css %>

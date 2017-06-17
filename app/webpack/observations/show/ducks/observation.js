@@ -4,7 +4,8 @@ import moment from "moment";
 import { fetchObservationPlaces, setObservationPlaces } from "./observation_places";
 import { fetchControlledTerms, setControlledTerms } from "./controlled_terms";
 import { fetchMoreFromThisUser, fetchNearby, fetchMoreFromClade,
-  setMoreFromThisUser, setNearby, setMoreFromClade } from "./other_observations";
+  setEarlierUserObservations, setLaterUserObservations, setNearby,
+  setMoreFromClade } from "./other_observations";
 import { fetchQualityMetrics, setQualityMetrics } from "./quality_metrics";
 import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
@@ -96,7 +97,8 @@ export function resetStates( ) {
     dispatch( setObservationPlaces( [] ) );
     dispatch( setControlledTerms( [] ) );
     dispatch( setQualityMetrics( [] ) );
-    dispatch( setMoreFromThisUser( [] ) );
+    dispatch( setEarlierUserObservations( [] ) );
+    dispatch( setLaterUserObservations( [] ) );
     dispatch( setNearby( [] ) );
     dispatch( setMoreFromClade( [] ) );
     dispatch( setSubscriptions( [] ) );

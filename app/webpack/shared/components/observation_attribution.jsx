@@ -17,7 +17,7 @@ class ObservationAttribution extends React.Component {
       I18n.t( "copyright.no_rights_reserved" ) :
       I18n.t( "some_rights_reserved" );
     return (
-      <span>
+      <span className="ObservationAttribution">
         { I18n.t( "observation" ) } { intro } &middot; <a
           href={ iNaturalist.Licenses[observation.license_code].url }
         >

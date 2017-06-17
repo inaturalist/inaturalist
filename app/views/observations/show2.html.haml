@@ -15,6 +15,9 @@
     = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  :javascript
+    var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
+      only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
 - content_for :extracss do
   - # needed for tooltips
   = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -24,6 +27,7 @@
   - if logged_in?
     - js_current_user = { id: current_user.id,
       login: current_user.login,
+      curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
       icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
       prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
       prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
@@ -50,8 +54,6 @@
         square: "#{image_url("copyright-infringement-square.png")}"
       }
     };
-    var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
-      only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
       only: [ :id ], include: { default_name: { only: [ :name ] } } ) : "{ }" };
     var OUTLINK_SITE_ICONS = {

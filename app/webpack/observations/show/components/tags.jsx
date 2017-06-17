@@ -42,6 +42,7 @@ class Tags extends React.Component {
         </form>
       );
     }
+    const count = observation.tags.length > 0 ? `(${observation.tags.length})` : "";
     return (
       <div className="Tags">
         <h4
@@ -54,7 +55,7 @@ class Tags extends React.Component {
           } }
         >
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "tags" ) } ({ observation.tags.length })
+          { I18n.t( "tags" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           { addTagInput }

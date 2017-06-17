@@ -88,6 +88,30 @@ class StatsController < ApplicationController
     end
   end
 
+  def canada_150
+    project_slideshow_data( 12849,
+      umbrella_project_ids: [12849],
+      sub_project_ids: {
+        12849 => [10595, 12166, 11863, 11693, 11451, 11396, 12281, 12646, 12281]
+      },
+      title: "Bioblitz Canada 150"
+    ) do |all_project_data|
+      all_project_data[12849][:place_id] = 6712 if all_project_data[12849]
+    end
+  end
+
+  def parks_canada_2017
+    project_slideshow_data( 12851,
+      umbrella_project_ids: [12851],
+      sub_project_ids: {
+        12851 => [12719, 12720, 11348, 11728, 12637, 12038, 11360, 12231, 11487, 12085]
+      },
+      title: "Parks Canada Bioblitz 2017"
+    ) do |all_project_data|
+      all_project_data[12851][:place_id] = 6712 if all_project_data[12851]
+    end
+  end
+
   def cnc2017_taxa
     @projects = Project.where( id: [10931, 11013, 11053, 11126, 10768, 10769, 10752, 10764,
       11047, 11110, 10788, 10695, 10945, 10917, 10763, 11042] )
