@@ -172,7 +172,7 @@ class Suggestions extends React.Component {
           <div className="suggestions-list">
             <div className="suggestions-inner">
               <ChooserPopover
-                label={ I18n.t( "order" ) }
+                label={ I18n.t( "sort_by" ) }
                 className="pull-right"
                 container={ $( ".ObservationModal" ).get( 0 ) }
                 chosen={ query.order_by }
