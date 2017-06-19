@@ -4,30 +4,31 @@ import { Grid, Row, Col, Button, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
-import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
 import ConservationStatusBadge from "../components/conservation_status_badge";
 import EstablishmentMeansBadge from "../components/establishment_means_badge";
+import FlashMessage from "../components/flash_message";
 import ActivityContainer from "../containers/activity_container";
-import FlaggingModalContainer from "../containers/flagging_modal_container";
-import CommunityIDModalContainer from "../containers/community_id_modal_container";
-import LicensingModalContainer from "../containers/licensing_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
+import AssessmentContainer from "../containers/assessment_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
-import TagsContainer from "../containers/tags_container";
+import CommunityIDModalContainer from "../containers/community_id_modal_container";
+import ConfirmModalContainer from "../containers/confirm_modal_container";
+import CopyrightContainer from "../containers/copyright_container";
 import FavesContainer from "../containers/faves_container";
-import IdentifiersContainer from "../containers/identifiers_container";
+import FlaggingModalContainer from "../containers/flagging_modal_container";
 import FollowButtonContainer from "../containers/follow_button_container";
+import IdentifiersContainer from "../containers/identifiers_container";
+import LicensingModalContainer from "../containers/licensing_modal_container";
 import MapContainer from "../containers/map_container";
+import MediaViewerContainer from "../containers/media_viewer_container";
 import MoreFromUserContainer from "../containers/more_from_user_container";
 import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
-import SimilarContainer from "../containers/similar_container";
+import PhotoBrowserContainer from "../containers/photo_browser_container";
 import ProjectsContainer from "../containers/projects_container";
-import ConfirmModalContainer from "../containers/confirm_modal_container";
-import CopyrightContainer from "../containers/copyright_container";
-import AssessmentContainer from "../containers/assessment_container";
-import FlashMessage from "../components/flash_message";
+import SimilarContainer from "../containers/similar_container";
+import TagsContainer from "../containers/tags_container";
 /* global RAILS_FLASH */
 
 moment.locale( "en", {
@@ -186,7 +187,7 @@ const App = ( {
               <Grid className="top_container">
                 <Row className="top_row">
                   <Col xs={7} className={ `photos_column ${photosColClass}` }>
-                    <PhotoBrowser observation={observation} />
+                    <PhotoBrowserContainer />
                   </Col>
                   <Col xs={5} className="info_column">
                     <div className="user_info">
@@ -296,6 +297,7 @@ const App = ( {
       <ConfirmModalContainer />
       <CommunityIDModalContainer />
       <LicensingModalContainer />
+      <MediaViewerContainer />
       <div className="quiet box text-center opt-out">
         { I18n.t( "tired_of_testing_this_new_version" ) }
         <Button bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>

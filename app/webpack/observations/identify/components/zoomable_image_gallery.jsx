@@ -28,14 +28,6 @@ class ZoomableImageGallery extends ImageGallery {
       },
       loadingNotice: I18n.t( "loading" )
     } );
-    // close the zoomed image when mouse is out of the container
-    easyZoomTarget.on( {
-      "mouseleave.easyzoom touchend.easyzoom": () => {
-        _.each( easyZoomTarget, t => {
-          $( t ).data( "easyZoom" )._onLeave( );
-        } );
-      }
-    } );
   }
 }
 

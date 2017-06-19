@@ -18,6 +18,7 @@ import confirmModalReducer from "./ducks/confirm_modal";
 import communityIDModalReducer from "./ducks/community_id_modal";
 import licensingModalReducer from "./ducks/licensing_modal";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
+import mediaViewerReducer from "./ducks/media_viewer";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 
 const rootReducer = combineReducers( {
@@ -33,7 +34,8 @@ const rootReducer = combineReducers( {
   confirmModal: confirmModalReducer,
   communityIDModal: communityIDModalReducer,
   licensingModal: licensingModalReducer,
-  commentIDPanel: commentIDPanelReducer
+  commentIDPanel: commentIDPanelReducer,
+  mediaViewer: mediaViewerReducer
 } );
 
 const store = createStore(

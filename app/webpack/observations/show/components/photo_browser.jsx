@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
-import ZoomableImageGallery from "../../identify/components/zoomable_image_gallery";
+import ImageGallery from "react-image-gallery";
 import ObservationPhotoAttribution from "../../../shared/components/observation_photo_attribution";
 /* global SITE */
 
@@ -81,13 +81,27 @@ class PhotoBrowser extends React.Component {
     } );
     return (
       <div className="PhotoBrowser">
-        <ZoomableImageGallery
-          key={`media-for-${observation.id}`}
-          items={images}
-          showThumbnails={images && images.length > 1}
-          lazyLoad={false}
+        <ImageGallery
+          key={ `media-for-${observation.id}` }
+          ref="gallery"
+          items={ images }
+          showThumbnails={ images && images.length > 1 }
+          lazyLoad={ false }
           server
-          showNav={false}
+          showNav={ false }
+          onClick={ ( ) => {
+            const index = this.refs.gallery.state.currentIndex;
+            if ( images[index].thumbnail !== soundIcon ) {
+              this.props.setMediaViewerState( {
+                show: true,
+                activeIndex: index } );
+            }
+          }}
+          onSlide={ currentIndex => {
+            if ( images[currentIndex].thumbnail !== soundIcon ) {
+              this.props.setMediaViewerState( { activeIndex: currentIndex } );
+            }
+          }}
         />
       </div>
     );
@@ -95,7 +109,8 @@ class PhotoBrowser extends React.Component {
 }
 
 PhotoBrowser.propTypes = {
-  observation: PropTypes.object
+  observation: PropTypes.object,
+  setMediaViewerState: PropTypes.func
 };
 
 export default PhotoBrowser;

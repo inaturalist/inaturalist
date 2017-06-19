@@ -1,5 +1,6 @@
 import { bind } from "mousetrap";
 import { setActiveTab } from "./ducks/comment_id_panel";
+import { setMediaViewerState, toggleMediaViewer } from "./ducks/media_viewer";
 
 const bindShortcut = ( shortcut, callback ) => {
   bind( shortcut, ( ) => {
@@ -8,18 +9,23 @@ const bindShortcut = ( shortcut, callback ) => {
   } );
 };
 
-const focus = ( ) => {
+const focusCommentIDInput = ( ) => {
   $( ".comment_id_panel .active :input:visible" ).first( ).focus( );
 };
 
 const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "i", ( ) => {
+    dispatch( setMediaViewerState( { show: false } ) );
     dispatch( setActiveTab( "add_id" ) );
-    setTimeout( focus, 200 );
+    setTimeout( focusCommentIDInput, 200 );
   } );
   bindShortcut( "c", ( ) => {
+    dispatch( setMediaViewerState( { show: false } ) );
     dispatch( setActiveTab( "comment" ) );
-    setTimeout( focus, 200 );
+    setTimeout( focusCommentIDInput, 200 );
+  } );
+  bindShortcut( "p", ( ) => {
+    dispatch( toggleMediaViewer( ) );
   } );
 };
 
