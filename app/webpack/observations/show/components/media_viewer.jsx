@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from "react";
 import Lightbox from "react-images";
+import EasyZoom from "EasyZoom/dist/easyzoom";
 /* global SITE */
 
 class MediaViewer extends Component {
@@ -9,6 +10,39 @@ class MediaViewer extends Component {
     this.close = this.close.bind( this );
     this.next = this.next.bind( this );
     this.prev = this.prev.bind( this );
+  }
+
+  componentDidMount( ) {
+    setTimeout( ( ) => { this.easyzoom( ); }, 200 );
+  }
+
+  componentDidUpdate( ) {
+    setTimeout( ( ) => { this.easyzoom( ); }, 200 );
+  }
+
+  easyzoom( ) {
+    $( "#react-images-container .content--jss-0-1 img" ).wrap( function ( ) {
+      const matches = $( this ).attr( "srcset" ).match( /^(.*?) / );
+      const imgUrl = matches[1];
+      return `<div class="easyzoom"><a href="${imgUrl}"></a></div>`;
+    } );
+    const easyZoomTarget = $( "#react-images-container .easyzoom" );
+    easyZoomTarget.easyZoom( {
+      eventType: "click",
+      onShow( ) {
+        this.$link.addClass( "easyzoom-zoomed" );
+      },
+      onHide( ) {
+        this.$link.removeClass( "easyzoom-zoomed" );
+      },
+      loadingNotice: I18n.t( "loading" )
+    } );
+    $( "#react-images-container .easyzoom a" ).unbind( "click" );
+    $( "#react-images-container .easyzoom a" ).on( "click", e => {
+      if ( !$( e.target ).is( "img" ) ) {
+        this.close( );
+      }
+    } );
   }
 
   close( ) {
@@ -54,6 +88,7 @@ class MediaViewer extends Component {
         currentImage={ this.props.mediaViewer.activeIndex }
         onClose={ this.close }
         onClickShowNextImage={ false }
+        showImageCount={ false }
         images={ images }
         backdropClosesModal
         width={ 5000 }

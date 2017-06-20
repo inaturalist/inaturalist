@@ -9,6 +9,45 @@ $light-grey: #F7F7F7;
 $border-grey: #DDD;
 $fail-red: #D9534F;
 
+#react-images-container {
+  .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
+    height: 100%;
+  }
+  .content--jss-0-1 {
+    width: 100%;
+    img {
+      cursor: zoom-in !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    .easyzoom {
+      cursor: default;
+      & > a {
+        cursor: default;
+      }
+      .easyzoom-flyout {
+        z-index: 2001;
+        cursor: zoom-out !important;
+        img {
+          margin: 0px;
+        }
+        &.short img {
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+        &.narrow img {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+
 body {
   min-width: 980px;
 }
@@ -268,6 +307,9 @@ a.UserImage {
         .image-gallery, .image-gallery-content, .image-gallery-content div {
           height: 100%;
         }
+        .image-gallery {
+          cursor: pointer;
+        }
         .image-gallery-slides .easyzoom-flyout {
           height: 441px;
         }
@@ -339,12 +381,14 @@ a.UserImage {
         .image-gallery-thumbnail img {
           border: 3px solid transparent;
           width: 50px;
+          cursor: pointer;
         }
         .image-gallery-thumbnail.active img {
           border: 3px solid $inat-green;
         }
         .image-gallery-thumbnails-container {
           transform: none !important;
+          cursor: default;
         }
         &.empty {
           font-size: 36px;
@@ -1545,6 +1589,7 @@ h3, h4 {
     display: inline-block;
     margin-bottom: 15px;
     .UserWithIcon {
+      padding-right: 15px;
       .icon {
         margin-right: 5px;
       }
@@ -1553,6 +1598,9 @@ h3, h4 {
         line-height: 14px;
         padding-top: 8px;
         font-weight: 700;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
       }
       .subtitle {
         color: #808080;
