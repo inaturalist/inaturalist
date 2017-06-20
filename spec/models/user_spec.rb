@@ -435,8 +435,9 @@ describe User do
       expect(@place.check_list.listed_taxa.find_by_taxon_id(t.id)).not_to be_blank
       @user.sane_destroy
       Delayed::Worker.new.work_off
+      Delayed::Worker.new.work_off
       expect( Observation.find_by_id(o.id) ).to be_blank
-      expect(@place.check_list.listed_taxa.find_by_taxon_id(t.id)).to be_blank
+      expect( @place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).to be_blank
     end
 
     it "should queue jobs to refresh project lists" do
@@ -456,6 +457,7 @@ describe User do
       t = o.taxon
       expect(ListedTaxon.where(:place_id => @place, :taxon_id => t)).not_to be_blank
       @user.sane_destroy
+      Delayed::Worker.new.work_off
       Delayed::Worker.new.work_off
       expect(ListedTaxon.where(:place_id => @place, :taxon_id => t)).to be_blank
     end

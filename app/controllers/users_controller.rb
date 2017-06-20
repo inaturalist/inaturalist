@@ -452,7 +452,11 @@ class UsersController < ApplicationController
         scope = scope.where( site_id: nil )
         @announcements = scope.in_locale( I18n.locale )
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
-        @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
+        if @announcements.blank?
+          @announcements = base_scope.where( "site_id = ? AND locales IN (?)",  @site, [] )
+          @announcements << base_scope.in_locale( I18n.locale ).where( site_id: @site )
+          @announcements = @announcements.flatten
+        end
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           limit(5)
@@ -600,6 +604,15 @@ class UsersController < ApplicationController
       @display_user = User.find_by_id(params[:id].to_i)
       @display_user ||= User.find_by_login(params[:id])
       @display_user ||= User.find_by_email(params[:id])
+      @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
+      @display_user ||= User.elastic_paginate( query: {
+        bool: {
+          should: [
+            { match: { name: { query: params[:id], operator: "and" } } },
+            { match: { login: { query: params[:id], operator: "and" } } }
+          ]
+        }
+      } ).first
       if @display_user.blank?
         flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
@@ -734,7 +747,6 @@ protected
   end
   
   def counts_for_users
-    @observation_counts = Observation.where(user_id: @users.to_a).group(:user_id).count
     @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
       group(:user_id).count
     @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count
@@ -874,9 +886,10 @@ protected
   end
 
   def before_edit
-    @user = current_user
     @sites = Site.live.limit(100)
-    @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    if @user = current_user
+      @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    end
   end
 
 end

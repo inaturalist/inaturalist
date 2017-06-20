@@ -7,6 +7,8 @@ describe "Observation Index" do
     load_test_taxa
   end
   after( :all ) { Time.zone = @starting_time_zone }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
 
   it "as_indexed_json should return a hash" do
     o = Observation.make!
@@ -56,6 +58,7 @@ describe "Observation Index" do
     # these without a position will be last in order of creation
     make_observation_photo(photo: p4, observation: o)
     make_observation_photo(photo: p5, observation: o)
+    o.reload
     json = o.as_indexed_json
     expect( json[:photos][0][:id] ).to eq p1.id
     expect( json[:photos][1][:id] ).to eq p2.id
@@ -560,8 +563,8 @@ describe "Observation Index" do
       ofv_params = { whatever: { observation_field: of, value: "testvalue" } }
       expect( Observation.params_to_elastic_query({ ofv_params: ofv_params }) ).to include(
         filters: [ { nested: { path: "ofvs", query: { bool: { must: [
-          { match: { "ofvs.name" => of.name } },
-          { match: { "ofvs.value" => "testvalue" }}]}}}}])
+          { match: { "ofvs.name_ci" => of.name } },
+          { match: { "ofvs.value_ci" => "testvalue" }}]}}}}])
     end
 
     it "filters by conservation status" do

@@ -16,8 +16,8 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= t(:inaturalist_places, :site_name => SITE_NAME) %>"/> 
-  <meta property="og:image" content="<%= image_url('place_preview.jpg') %>"/> 
-  <meta property="twitter:image" content="<%= image_url('place_preview.jpg') %>"/> 
+  <meta property="og:image" content="<%= @shareable_image_url = image_url('place_preview.jpg') %>"/> 
+  <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>

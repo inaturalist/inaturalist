@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Photo do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   describe "creation" do
     it "should not allow native_realname to be too big" do
       txt = <<-TXT

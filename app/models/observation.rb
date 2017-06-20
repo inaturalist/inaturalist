@@ -35,13 +35,6 @@ class Observation < ActiveRecord::Base
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
-  WATCH_FIELDS_CHANGED_AT = {
-    geom: true,
-    observed_on: true,
-    place_guess: true,
-    positional_accuracy: true
-  }
-  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
@@ -299,6 +292,13 @@ class Observation < ActiveRecord::Base
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
+  validate do
+    # This should be a validation on cached_tag_list, but acts_as_taggable seems
+    # to set that after the validations run
+    if tag_list.join(", ").length > 750
+      errors.add( :tag_list, "must be under 750 characters total, no more than 256 characters per tag" )
+    end
+  end
   validate do
     unless coordinate_system.blank?
       begin
@@ -852,7 +852,13 @@ class Observation < ActiveRecord::Base
     date_string.gsub!(/\(.*\)/, '')
 
     # strip noon hour madness
-    date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?(a|p)\.?m\.?/i, '\\1')
+    # this is due to a weird, weird bug in Chronic
+    if date_string =~ /p\.?m\.?/i
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1')
+    elsif date_string =~ /a\.?m\.?/i
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
+      date_string.gsub!( / 12:/, " 00:" )
+    end
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -1550,6 +1556,7 @@ class Observation < ActiveRecord::Base
   end
 
   def set_taxon_from_community_taxon
+    return if identifications.count == 0 && taxon_id
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
       community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
@@ -1814,6 +1821,7 @@ class Observation < ActiveRecord::Base
   def update_all_licenses
     return true unless make_licenses_same.yesish?
     Observation.where(user_id: user_id).update_all(license: license)
+    user.index_observations_later
     true
   end
 
@@ -2062,7 +2070,7 @@ class Observation < ActiveRecord::Base
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p| 
+    all_places.select do |p|
       p.user_id.blank? && (
         [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
         p.place_type == Place::PLACE_TYPE_CODES['Open Space']
@@ -2073,6 +2081,11 @@ class Observation < ActiveRecord::Base
   # The places that are theoretically controlled by site admins
   def system_places(options = {})
     Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+  end
+
+  def public_system_places( options = {} )
+    Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+    public_places.select{|p| !p.admin_level.blank? }
   end
 
   def intersecting_places
@@ -2562,22 +2575,6 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
-  end
-
-  def last_changed(params={})
-    changes = field_changes_to_index
-    # only consider the fields requested
-    if params[:changed_fields] && fields = params[:changed_fields].split(",")
-      changes = changes.select{ |c| fields.include?(c[:field_name]) }
-    end
-    # ignore any projects other than those selected
-    if params[:change_project_id]
-      changes = changes.select do |c|
-        c[:project_id].blank? || c[:project_id] == params[:change_project_id]
-      end
-    end
-    # return the max of the remaining dates
-    field_changes_to_index.map{ |c| c[:changed_at] }.max
   end
 
   # Show count of all faves on this observation. cached_votes_total stores the

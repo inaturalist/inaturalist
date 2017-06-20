@@ -51,8 +51,8 @@
   <%- photo_observations = @observations.select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}[0..3] %>
   <% if photo_obs = photo_observations.last -%>
     <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
-      <meta property="og:image" content="<%= photo.medium_url %>"/> 
-      <meta property="twitter:image" content="<%= photo.medium_url %>"/> 
+      <meta property="og:image" content="<%= @shareable_image_url = photo.medium_url %>"/> 
+      <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
     <% end -%>
   <% end -%>
   <% if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>

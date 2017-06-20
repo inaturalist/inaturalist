@@ -161,6 +161,21 @@ module ObservationSearch
       @taxa.select{ |t| !ancestors[t.id] }.map(&:id)
     end
 
+    def elastic_taxon_leaf_counts(elastic_params = {})
+      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: { species: { "taxon.id": 150000 } })).response.aggregations
+      counts = Hash[distinct_taxa.species.buckets.map{ |b| [ b["key"], b["doc_count"] ] }]
+      @taxa = Taxon.where(id: counts.keys ).select(:id, :ancestry)
+      ancestors = { }
+      @taxa.each do |t|
+        t.ancestor_ids.each do |aid|
+          ancestors[aid] ||= 0
+          ancestors[aid] += 1
+        end
+      end
+      counts.reject{|k,v| ancestors[k] }
+    end
+
     # Takes a hash of query params like you'd get from an ActionController and
     # normalizes them for use in our search methods like query (database) or
     # elastic_query (ES)

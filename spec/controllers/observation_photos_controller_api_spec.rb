@@ -37,14 +37,35 @@ shared_examples_for "an ObservationPhotosController" do
     end
   end
 
-  it "should update" do
-    p = LocalPhoto.make!(:user => user)
-    op = make_observation_photo(:photo => p, :observation => observation)
-    expect(op.position).to be_blank
-    put :update, :format => :json, :id => op.id, :observation_photo => {:position => 1}
-    expect(response).to be_success
-    op.reload
-    expect(op.position).to eq(1)
+  describe "update" do
+    it "should work" do
+      p = LocalPhoto.make!(:user => user)
+      op = make_observation_photo(:photo => p, :observation => observation)
+      expect(op.position).to be_blank
+      put :update, :format => :json, :id => op.id, :observation_photo => {:position => 1}
+      expect(response).to be_success
+      op.reload
+      expect(op.position).to eq(1)
+    end
+    describe "when the observation photo does not exist" do
+      let(:file) { fixture_file_upload('files/cuthona_abronia-tagged.jpg', 'image/jpeg') }
+      it "should create an observation photo" do
+        o = Observation.make!( user: user )
+        expect( o.observation_photos.size ).to eq 0
+        put :update, format: :json, id: nil, observation_photo: { observation_id: o.id }, file: file
+        expect( response ).to be_success
+        o.reload
+        expect( o.observation_photos.size ).to eq 1
+      end
+      it "should not create an observation photo if the user does not own the observation" do
+        o = Observation.make!
+        expect( o.observation_photos.size ).to eq 0
+        put :update, format: :json, id: nil, observation_photo: { observation_id: o.id }, file: file
+        expect( response ).not_to be_success
+        o.reload
+        expect( o.observation_photos.size ).to eq 0
+      end
+    end
   end
 
   it "should destroy" do

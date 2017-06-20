@@ -6,8 +6,8 @@
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="<%= @project.title %>"/> 
   <% unless @project.icon.blank? -%>
-    <meta property="og:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
-    <meta property="twitter:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="og:image" content="<%= @shareable_image_url = uri_join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <% unless @fb_admin_ids.blank? -%>
@@ -34,7 +34,6 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'projects/show' %>
-  <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
   <% if @custom_project && !@custom_project.css.blank? -%>
     <style type="text/css" media="screen">
       <%= @custom_project.css %>

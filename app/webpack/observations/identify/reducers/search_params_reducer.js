@@ -15,13 +15,7 @@ const DEFAULT_PARAMS = {
   per_page: 30,
   iconic_taxa: [],
   order_by: "observations.id",
-  order: "desc",
-  // This is a hack to get around our node API's cache control settings, since
-  // it defaults to something, and we hit obs search repeatedly for stats. A
-  // better approach might be to have a separate endpoints that delivers these
-  // stats uncached, or disable cache-control when viewer_id is set or
-  // something.
-  ttl: -1
+  order: "desc"
 };
 
 const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];

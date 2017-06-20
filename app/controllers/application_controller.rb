@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   before_filter :sign_out_spammers
 
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 19
+  HEADER_VERSION = 21
   
   alias :logged_in? :user_signed_in?
 
@@ -264,6 +264,9 @@ class ApplicationController < ActionController::Base
       klass = Object.const_get(class_name)
     end
     record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
+    if !record && klass.respond_to?(:find_by_uuid)
+      record = klass.find_by_uuid(params[:id] || params["#{class_name}_id"])
+    end
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
   end

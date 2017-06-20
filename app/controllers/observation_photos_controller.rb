@@ -1,8 +1,8 @@
 class ObservationPhotosController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :show, :create, :update, :destroy ], :if => lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!, :unless => lambda { authenticated_with_oauth? }
-  before_filter :load_record, :only => [:update, :destroy]
-  before_filter :require_owner, :only => [:update, :destroy]
+  before_filter :load_record, :only => [:destroy]
+  before_filter :require_owner, :only => [:destroy]
   
   def show
     @observation_photo = ObservationPhoto.find_by_id(params[:id])
@@ -71,9 +71,16 @@ class ObservationPhotosController < ApplicationController
   end
   
   def update
+    unless @observation_photo = ObservationPhoto.find_by_id( params[:id] )
+      return create
+    end
+    require_owner
+
     @observation_photo.photo.file = params[:file] if params[:file]
     respond_to do |format|
       if @observation_photo.update_attributes(params[:observation_photo])
+          @observation_photo.observation.elastic_index!
+          Observation.refresh_es_index
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"

@@ -44,6 +44,8 @@ class ProjectUser < ActiveRecord::Base
     # check to make sure role status hasn't changed since queuing
     :if => Proc.new {|pu| ROLES.include?(pu.role) || pu.user_id == pu.project.user_id}
 
+  scope :curator_privilege, -> { where("role IN ('curator', 'manager')") }
+
   def to_s
     "<ProjectUser #{id} project: #{project_id} user: #{user_id} role: #{role}>"
   end
@@ -77,7 +79,9 @@ class ProjectUser < ActiveRecord::Base
   def update_project_observations_curator_coordinate_access
     project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
       po.set_curator_coordinate_access( force: true )
-      po.save!
+      unless po.save
+        Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+      end
     end
   end
 

@@ -431,17 +431,25 @@ class Project < ActiveRecord::Base
 
   def event_started?
     return nil if start_time.blank?
-    start_time < Time.now
+    if prefers_range_by_date?
+      start_time.to_date <= Date.today
+    else
+      start_time < Time.now
+    end
   end
 
   def event_ended?
     return nil if end_time.blank?
-    Time.now > end_time
+    if prefers_range_by_date?
+      Date.today > end_time.to_date
+    else
+      Time.now > end_time
+    end
   end
 
   def event_in_progress?
     return nil if end_time.blank? || start_time.blank?
-    start_time < Time.now && end_time > Time.now
+    event_started? && !event_ended?
   end
   
   def self.default_json_options
@@ -622,6 +630,7 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
+    return true if CONFIG.aggregator_exception_project_ids && CONFIG.aggregator_exception_project_ids.include?(id)
     return true if place && place.bbox_area.to_f < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?
     return true if project_observation_rules.where("operator IN (?)", %w(observed_in_place?)).map{ |r|
@@ -685,7 +694,7 @@ class Project < ActiveRecord::Base
           size: 0,
           aggregate: {
             user_taxa: {
-              terms: { field: "user.id", size: 1, order: { distinct_taxa: "desc" } },
+              terms: { field: "user.id", size: uids.length, order: { distinct_taxa: "desc" } },
               aggs: {
                 distinct_taxa: {
                   cardinality: {

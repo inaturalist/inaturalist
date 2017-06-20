@@ -97,24 +97,48 @@ module ActsAsElasticModel
           __elasticsearch__.refresh_index! if Rails.env.test?
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_search failed: #{ e }"
+          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        rescue Elasticsearch::Transport::Transport::Errors::Conflict => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
           Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
         end
       end
 
       def elastic_sync(options = {})
-        batch_size = options[:batch_size] || self::DEFAULT_ES_BATCH_SIZE || 1000
-        load_for_index.find_in_batches(batch_size: batch_size) do |batch|
+        options[:batch_size] ||=
+          defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
+        filter_scope = options.delete(:scope)
+        # this method will accept an existing scope
+        scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
+          filter_scope : self.all
+        # it also accepts an array of IDs to filter by
+        if filter_ids = options.delete(:ids)
+          filter_ids.compact!
+          if filter_ids.length > options[:batch_size]
+            # call again for each batch, then return
+            filter_ids.each_slice(options[:batch_size]) do |slice|
+              elastic_sync(options.merge(ids: slice))
+            end
+            return
+          end
+          scope = scope.where(id: filter_ids)
+        end
+        if self.respond_to?(:load_for_index)
+          scope = scope.load_for_index
+        end
+        scope.find_in_batches(options) do |batch|
           prepare_for_index(batch)
           Rails.logger.debug "[DEBUG] Processing from #{ batch.first.id }"
           results = elastic_search(
             sort: { id: :asc },
-            size: batch_size,
+            size: options[:batch_size],
             filters: [
-              { range: { id: { gte: batch.first.id } } },
-              { range: { id: { lte: batch.last.id } } }
+              { terms: { id: batch.map(&:id) } }
             ]
           ).group_by{ |r| r.id.to_i }
+          batchToIndex = [ ]
           batch.each do |obj|
             if result = results[ obj.id ]
               result = result.first._source
@@ -122,12 +146,15 @@ module ActsAsElasticModel
                 # it's OK
               else
                 Rails.logger.debug "[DEBUG] Object #{ obj } is out of sync"
-                obj.elastic_index!
+                batchToIndex << obj
               end
             else
               Rails.logger.debug "[DEBUG] Object #{ obj } is not in ES"
-              obj.elastic_index!
+              batchToIndex << obj
             end
+          end
+          unless batchToIndex.empty?
+            bulk_index(batchToIndex, skip_prepare_batch: true)
           end
           ids_only_in_es = results.keys - batch.map(&:id)
           unless ids_only_in_es.empty?
@@ -160,12 +187,12 @@ module ActsAsElasticModel
       private
 
       # standard wrapper for bulk indexing with Elasticsearch::Model
-      def bulk_index(batch)
+      def bulk_index(batch, options = { })
         begin
           __elasticsearch__.client.bulk({
             index: __elasticsearch__.index_name,
             type: __elasticsearch__.document_type,
-            body: prepare_for_index(batch)
+            body: prepare_for_index(batch, options)
           })
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
             where(id: batch).update_all(last_indexed_at: Time.now)
@@ -178,11 +205,11 @@ module ActsAsElasticModel
       end
 
       # map each instance into its indexable form with `as_indexed_json`
-      def prepare_for_index(batch)
+      def prepare_for_index(batch, options = { })
         # some models need some extra preparation for faster indexing.
         # I tried to just define a custom `prepare_for_index` in
         # Taxon, but this one from this module took precedence
-        if self.respond_to?(:prepare_batch_for_index)
+        if self.respond_to?(:prepare_batch_for_index) && !options[:skip_prepare_batch]
           prepare_batch_for_index(batch)
         end
         batch.map do |obj|

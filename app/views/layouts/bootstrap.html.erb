@@ -25,7 +25,7 @@
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
-    <% if @site %>
+    <% if @site && @shareable_image_url.blank? %>
       <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
     <% end %>
   </head>
@@ -37,11 +37,11 @@
         <% end %>
       <% end -%>
       
-      <% if flash[:notice] || flash[:alert] %>
+      <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
         <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
       <% end %>
       
-      <% if flash[:error] %>
+      <% if flash[:error] && !@flash_js %>
         <p id="flash" class="error"><%= raw flash[:error] %></p>
       <% end %>
 
@@ -53,7 +53,7 @@
             </div>
           </div>
         <% end -%>
-        <% if flash[:warning] -%>
+        <% if flash[:warning] && !@flash_js -%>
           <div class="container">
             <div class="alert alert-warning">
               <% if flash[:warning_title] -%>
@@ -94,10 +94,11 @@
         CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
-          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>,
+          icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
         };
       <% end -%>
+      var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
     </script>
     <%= javascript_include_tag 'application_bundle' %>

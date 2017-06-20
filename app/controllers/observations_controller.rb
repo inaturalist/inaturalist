@@ -2,7 +2,7 @@
 class ObservationsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: :index, if: :json_request?
   protect_from_forgery unless: -> { request.format.widget? } #, except: [:stats, :user_stags, :taxa]
-  before_filter :decide_if_skipping_preloading, only: [ :index ]
+  before_filter :decide_if_skipping_preloading, only: [ :index, :show, :taxon_summary ]
   before_filter :allow_external_iframes, only: [:stats, :user_stats, :taxa, :map]
   before_filter :allow_cors, only: [:index], 'if': -> { Rails.env.development? }
 
@@ -42,12 +42,15 @@ class ObservationsController < ApplicationController
                             :taxon_stats,
                             :user_stats,
                             :community_taxon_summary,
-                            :map]
+                            :map,
+                            :taxon_summary,
+                            :observation_links]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
-    :review ]
+    :review, :taxon_summary, :observation_links ]
   before_filter :load_observation, :only => load_only
-  blocks_spam :only => load_only, :instance => :observation
+  blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
+    :instance => :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -196,7 +199,45 @@ class ObservationsController < ApplicationController
       end
     end
   end
-  
+
+  def taxon_summary
+    Observation.preload_associations( @observation, { observations_places: :place } )
+    @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
+    @places = @coordinates_viewable ?
+      @observation.observations_places.map(&:place) : @observation.public_places
+    if @observation.taxon
+      unless @places.blank?
+        @listed_taxon = ListedTaxon.
+          joins(:place).
+          where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL",
+            @observation.taxon_id, @places ]).
+          order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").
+          first
+        @conservation_status = ConservationStatus.
+          where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
+          where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
+          includes(:place).first
+      end
+      @conservation_status ||= ConservationStatus.where(taxon_id: @observation.taxon).
+        where("place_id IS NULL").where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
+      if @listed_taxon
+        @conservation_status ||= @observation.taxon.
+          threatened_status(place_id: @listed_taxon.place_id)
+      end
+      @conservation_status ||= @observation.taxon.threatened_status
+    end
+    render json: {
+      conservation_status: @conservation_status ?
+        @conservation_status.as_json( methods: [ :status_name, :iucn_status, :iucn_status_code ],
+          include: { place: { only: [:id, :display_name] } } ) : nil,
+      listed_taxon: @listed_taxon && ( @listed_taxon.endemic? || @listed_taxon.introduced? ) ?
+        @listed_taxon.as_json(
+          methods: [ :establishment_means_label, :establishment_means_description ],
+          include: { place: { only: [:id, :display_name] } } ) : nil,
+      wikipedia_summary: @observation.taxon ? @observation.taxon.wikipedia_summary : nil
+    }
+  end
+
   # GET /observations/1
   # GET /observations/1.xml
   def show
@@ -219,6 +260,15 @@ class ObservationsController < ApplicationController
         if params[:partial] == "cached_component"
           return render(partial: "cached_component",
             object: @observation, layout: false)
+        end
+        
+        user_viewed_updates if logged_in?
+
+        if viewing_new_obs_show?
+          @skip_application_js = true
+          @flash_js = true
+          render layout: "bootstrap", action: "show2"
+          return
         end
 
         # always display the time in the zone in which is was observed
@@ -313,10 +363,6 @@ class ObservationsController < ApplicationController
         end
         @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
         @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
-
-        if logged_in?
-          user_viewed_updates
-        end
 
         if params[:test] == "idcats" && logged_in?
           leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
@@ -782,7 +828,7 @@ class ObservationsController < ApplicationController
     errors = false
     extra_msg = nil
     @observations.each_with_index do |observation,i|
-      fieldset_index = observation.id.to_s      
+      fieldset_index = observation.id.to_s
       
       # Update the flickr photos
       # Note: this ignore photos thing is a total hack and should only be
@@ -1587,7 +1633,7 @@ class ObservationsController < ApplicationController
         elastic_params = prepare_counts_elastic_query(search_params)
         # using 0 for the aggregation count to get all results
         distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-          aggregate: { species: { "taxon.id": 0 } })).response.aggregations
+          aggregate: { species: { "taxon.id": 120000 } })).response.aggregations
         @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
         # if `leaves` were requested, remove any taxon in another's ancestry
         if params[:rank] == "leaves"
@@ -2035,6 +2081,10 @@ class ObservationsController < ApplicationController
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end
 
+  def observation_links
+    render json: @observation.observation_links
+  end
+
 ## Protected / private actions ###############################################
   private
 
@@ -2419,7 +2469,9 @@ class ObservationsController < ApplicationController
     reference_photo = @observation.try(:observation_photos).try(:first).try(:photo)
     reference_photo ||= @observations.try(:first).try(:observation_photos).try(:first).try(:photo)
     unless params[:action] === "show" || params[:action] === "update"
-      reference_photo ||= current_user.photos.order("id ASC").last
+      if reference_obs = Observation.elastic_query( user_id: current_user.id, per_page: 1, has_photos: true ).first
+        reference_photo = reference_obs.photos.first
+      end
     end
     if reference_photo
       assoc_name = (reference_photo.subtype || reference_photo.class.to_s).
@@ -2689,6 +2741,7 @@ class ObservationsController < ApplicationController
     errors = []
     @observations.each do |observation|
       next if observation.new_record?
+      observation.reload
       po = observation.project_observations.build(project: @project,
         tracking_code: tracking_code, user: current_user)
       unless po.save
@@ -2968,7 +3021,11 @@ class ObservationsController < ApplicationController
   end
 
   def decide_if_skipping_preloading
-    @skipping_preloading = (params[:partial] == "cached_component")
+    @skipping_preloading =
+      ( params[:partial] == "cached_component" ) ||
+      ( action_name == "taxon_summary" ) ||
+      ( action_name == "observation_links" ) ||
+      ( action_name == "show" && viewing_new_obs_show? )
   end
 
   def observations_index_search(params)
@@ -2997,6 +3054,10 @@ class ObservationsController < ApplicationController
     { params: params,
       search_params: search_params,
       observations: observations }
+  end
+
+  def viewing_new_obs_show?
+    logged_in? && current_user.in_test_group?("obs-show") && !params.key?("show1")
   end
 
 end

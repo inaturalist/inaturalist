@@ -37,7 +37,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.zoomControl = (options.zoomControl !== false && $(elt).data('zoom-control') !== false);
   options.scrollwheel = (options.scrollwheel !== false && $(elt).data('scrollwheel') !== false);
   options.overlayMenu = (options.overlayMenu !== false && $(elt).data('overlay-menu') !== false);
-  options.enableShowAllLayer = $(elt).data('enable-show-all-layer');
+  options.enableShowAllLayer = (options.enableShowAllLayer !== false && $(elt).data('enable-show-all-layer') !== false);
   options.showAllLayer = options.showAllLayer != null ? options.showAllLayer : $(elt).data('show-all-layer');
   options.featuredLayerLabel = options.featuredLayerLabel || $(elt).data('featured-layer-label') || I18n.t("maps.overlays.featured_observations");
   options.featuredLayerDescription = options.featuredLayerDescription || $(elt).data('featured-layer-description');
@@ -113,12 +113,12 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   var preserveViewport = options.preserveViewport
   if ( options.minX ) {
     // Google really doesn't like 90 deg latitude all of a sudden
-    var minY = Math.max( options.minY, -89 );
-    var maxY = Math.min( options.maxY, 89 );
+    var minY = Math.max( options.minY || 0, -89 );
+    var maxY = Math.min( options.maxY || 0, 89 );
     map.fitBounds(
       new google.maps.LatLngBounds(
-        new google.maps.LatLng( minY, options.minX ),
-        new google.maps.LatLng( maxY, options.maxX )
+        new google.maps.LatLng( minY, options.minX || 0 ),
+        new google.maps.LatLng( maxY, options.maxX || 0 )
       )
     )
     preserveViewport = true;

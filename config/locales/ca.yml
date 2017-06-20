@@ -207,7 +207,7 @@ ca:
     de ser de Creative Commons!)
   add_new_place: Afegiu un nou lloc
   add_new_rule: Afegiu una regla nova
-  add_new_source: Afegiu una nova font...
+  add_new_source: Afegeix una font nova…
   add_new_taxon_name: Afegiu un nou nom de tàxon
   add_notes_about_this_taxon: Afegiu notes sobre aquest tàxon en aquest lloc, per
     exemple, on i quan hi és present.
@@ -851,7 +851,7 @@ ca:
     del vostre codi HTML. Podeu modificar el CSS lliurement.
   confirm: Confirmar
   confirm_membership: Confirmeu inscripció
-  confirm_new_password: Confirmeu la nova contrasenya
+  confirm_new_password: Confirmeu la contrasenya nova
   confirm_now: Confirmeu ara
   confirm_your_info: Confirmeu les vostres dades
   confirmed: confirmada
@@ -1141,7 +1141,7 @@ ca:
   edit_photos_for_observation_id: Modifica les fotos per a l'observació %{obs_id}
   edit_place: Modifica lloc
   edit_project: Modifica projecte
-  edit_range_raquo: Modifica rang »
+  edit_range_raquo: Modifica l’interval →
   edit_remove: Modificar/Treure
   edit_selected: Modifica els elements seleccionats
   edit_source: Modifica la font
@@ -1326,7 +1326,7 @@ ca:
   find_some_people_to_follow: Busqueu persones per seguir
   find_species: Busca espècies
   find_suitable_observations: Troba observacions adequades
-  find_unsuitable_observations: Trobar observacions adequades
+  find_unsuitable_observations: Trobar observacions incorporades
   find_your_current_location: Troba la vostra localització actual
   finished: Acabat
   finished_with_page: Acabat Amb Pàgina
@@ -1338,7 +1338,7 @@ ca:
   first_observation_by_date_added: Primera observació segons la data quan es va afegir
   first_observer: Primer observador
   first_report: primer informe
-  flag: Notifica
+  flag: Marca
   flag_an_item: Marca un contingut
   flag_as_spammer: Marca com a brossa
   flag_as_non_spammer: Marca com a no-brossa
@@ -2028,7 +2028,6 @@ ca:
     etc.
   mobile_app_for: Aplicació mòbil per a
   mobile_apps_for: Les aplicacions mòbils per a
-  mobile_view_available: Vista per a telèfon mòbil disponible
   mollusks: mol·luscs
   momentjs:
     shortRelativeTime:
@@ -2043,7 +2042,7 @@ ca:
       dd: '%dd'
       M: 1 mes
       MM: '%d mes'
-      1: 1a
+      "y": 1a
       yy: '%da'
   mon: Dl.
   month: Mes
@@ -2121,8 +2120,8 @@ ca:
   needs_id_expandable_html: <span class='full'>Necessita</span>ID
   needs_to_be_identified: Ha de ser identificat
   new_announcement: Nou anunci
-  new_assessment: Nova valoració
-  new_check_list: Nova llista de comprovació
+  new_assessment: Valoració nova
+  new_check_list: Llista de comprovació nova
   new_check_list_for: Crea una nova llista de verificació per a {place} »
   new_check_list_record: Si vol marcar aquesta llista com a exhaustiva, creeu-la,
     afegiu-hi els tàxons i després modifiqueu-la per poder marcar-la com a exhaustiva.
@@ -2132,7 +2131,7 @@ ca:
   new_flag_for: Nova marca per a
   new_guide: Guia nova
   new_journal_posts: Nou article de Revista
-  new_list: Nova llista
+  new_list: Llista nova
   new_members: Nous membres
   new_message: Nou missatge
   new_observation_field: Nou camp d'observació
@@ -2143,12 +2142,12 @@ ca:
   new_observations_may_take_up_to: Les noves observacions poden trigar al voltant
     de %{widget_expiration} minuts a aparèixer en el giny.
   new_observations_of_x_html: Noves observacions de %{x}
-  new_password: Nova contrasenya
-  new_post: Nova entrada
+  new_password: Contrasenya nova
+  new_post: Apunt nou
   new_project: Nou projecte
   new_project_asset: Nou arxiu del projecte
   new_project_asset_for: Nou arxiu del projecte per a
-  new_source: Nova font
+  new_source: Font nova
   new_taxon_change: Nou canvi taxonòmic
   new_taxon_link: Nou enllaç de tàxon
   new_taxon_name: Nou nom de tàxon
@@ -2181,7 +2180,7 @@ ca:
   no_facebook_photos: No trobem fotos a Facebook.
   no_flags: No hi ha marques
   no_flickr_photos_tagged: No hi ha fotos etiquetades amb Flickr!
-  no_header_row: No hi ha encapçalament de fila
+  no_header_row: No hi ha cap fila de capçalera
   no_identifications: Sense identificacions
   no_identifications_added:
     current_user: No heu afegit identificacions a les observacions de ningú.
@@ -2204,7 +2203,6 @@ ca:
   no_members_yet: Encara no hi ha membres
   no_messages_yet: Cap missatge encara
   no_misidentifications_yet: Cap errada d'identificacions encara
-  no_mobilized_version_of_that_view: No hi ha versió mòbil d'aquesta vista.
   no_more_mail_from_site: No vol rebre més correus d’%{site_name}? Editeu la configuració
     de correu a
   no_more_taxa_to_load: Ja no queden més tàxons per carregar!
@@ -2283,11 +2281,11 @@ ca:
   note: Nota
   note_you_can_modify_the_height_attribute: 'Nota: podeu modificar l''atribut ''alçada''
     per ajustar l''espai disponible a la vostra pàgina web.'
-  notify_me_of_mentions: Notifica'm les mencions (p.e. @username)
+  notify_me_of_mentions: Notifiqueu-me les mencions (p.e. @username)
   notify_me_about_redundant_identifications: Notifiqueu-me sobre identificacions confirmades
-  notify_me_about_redundant_identifications_desc: Rebre notificacions sobre identificacions
+  notify_me_about_redundant_identifications_desc: Rebeu notificacions sobre identificacions
     que coincideixin amb la vostra. Si ho desactiveu només rebreu notificacions sobre
-    identificacions de tàxons que no es corresponen exactament amb la vostra.
+    identificacions de tàxons que no es corresponguin exactament amb la vostra.
   number_of_observations: Nombre d'observacions
   number_selected: '# seleccionat'
   numeric_: numèric
@@ -2834,7 +2832,7 @@ ca:
   previous_page: Pàgina anterior
   print_in_browser: Imprimir des del navegador
   privacy: Política de privacitat
-  privacy_policy: Política de privacitat
+  privacy_policy: Política de privadesa
   private: privada
   private_description: Coordenades completament amagades als mapes públics. Les coordenades
     reals només les podeu veure vosaltres i els supervisors dels projectes als que
@@ -3354,7 +3352,7 @@ ca:
   src: Font
   standard: Estàndard
   start: Inici
-  start_a_new_list: Inicia una nova llista
+  start_a_new_list: Inicia una llista nova
   start_a_new_project: Inicia un nou projecte
   start_a_project: Inicia un projecte
   start_adding_observations: Comenceu a afegir observacions
@@ -3954,7 +3952,6 @@ ca:
   view_more_recent_observations: Mostra més observacions recents
   view_more_unreviewed: Veure més no revisats
   view_nbsp: Mostra  
-  view_non_mobile_site: Mostra la web no adaptada per a mòbils
   view_observation: Mostra observació
   view_observations: Mostra observacions
   view_observation_flags: Veure marques de l'observació
@@ -3987,7 +3984,7 @@ ca:
   view_terms: Mostra les condicions
   view_the: Mostra la %{action}&#59; %{link}
   view_the_observation: Mostra l'observació
-  view_the_range: Mostra el rang
+  view_the_range: Mostra l’interval
   view_unidentified_observations: Mostra observacions no identificades...
   view_user_observations: Mostra observacions de %{user}
   view_x_from_x: Mostra %{day_observations} de %{observed_on}
@@ -4704,7 +4701,7 @@ ca:
         id: Identificador únic de l'observació
         species_guess: Nom que va introduir l'observador pel tàxon observat
         scientific_name: Nom científic del tàxon observat, segons aquest lloc.
-        common_name: Nom vulgar en la llengua vernacle del tàxon observat, segons
+        common_name: Nom vulgar o en la llengua vernacle del tàxon observat segons
           aquest lloc
         iconic_taxon_name: Categoria taxonòmica de nivell superior del tàxon observat
         taxon_id: Identificador únic del tàxon observat
@@ -4725,6 +4722,9 @@ ca:
           mateix que precisa, una mala elecció de les paraules)
         private_latitude: Latitud privada, marcar si l'observació és privada o enfosquida
         private_longitude: Longitud privada, marcar si l'observació és privada o enfosquida
+        geoprivacy: Si l'observador ha escollit, o no, enfosquir o amagar les coordenades
+        coordinates_obscured: Si les coordenades han estat enfosquides, o no, a causa
+          d'una condició de geoprivacitat o per tractar-se d'un tàxon vulnerable
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució
           coneguda d'aquest tàxon, o no
         user_id: Identificador únic per a l'observador
@@ -4802,13 +4802,22 @@ ca:
           </ul>
           <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>
           <ul>
-            <li>la <strong>ubicació no és prou precisa</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
+            <li>la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
             <li>l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
            <li>l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.
             </li>
-            <li>l'observació <strong>no mostra evidències recents (~100 anys) d'organismes</strong> (e.g. fòssils, però sí que són correctes les pistes, excrements i fulles mortes)
+            <li>l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organismes</strong> (p.ex. fòssils, però sí s'accepten pistes, excrements i fulles mortes)
             </li>
             <li>l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
+          </ul>
+          <p>
+            I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
+          </ P>
+          <ul>
+            <li>
+              El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitut(municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a <strong>no</stron> salvatge/naturalitzat.
+            </li>
+          </ul>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
           de desacord + desacords en l'avantpassat )
       user_stats:
@@ -5029,23 +5038,14 @@ ca:
         Si esteu preocupat sobre la privacitat de les ubicacions, no hauríeu d'unir-vos a projectes amb supervisors en els que no confieu.
         </p>
       project_user_curator_coordinate_access_labels:
-        observer: Tu (<span class="notice status">és la millor opció per controlar
-          la compartició d'ubicacions privades</span>)
-        any: Membres del projecte (<span class="success status">la millor opció per
-          compartir les vostres observacions en aquest projecte</span>)
-        none: Ningú
-      curator_coordinate_access_label: Permet als supervisors del projecte veure les
-        coordenades privades de les vostres observacions, quan són afegides al projecte
+        observer: Sí, però només si soc jo qui afegeix l'observació al projecte.
+        any: Sí, no importa qui afegeixi l'observació al projecte.
+        none: No.
+      curator_coordinate_access_label: Voleu fer les coordenades privades/enfosquides
+        de la vostra observació visibles als responsables del projecte?
       curator_coordinate_access_note: També pots optar per compartir les coordenades
         privades de les observacions d'aquest projecte cas per cas. Aquests són només
         els valors per defecte per a les noves observacions afegides al projecte.
-      project_user_curator_coordinate_access_descriptions:
-        observer: Permet als supervisors del projecte veure les coordenades privades
-          de les observacions que afegiu al projecte.
-        any: Permet als supervisors del projecte veure les coordenades privades que
-          afegiu vosaltres o altres membres del projecte
-        none: No compartir les coordenades privades de les vostres observacions amb
-          els gestors del projecte
       project_terms_desc_html: Permetre que els supervisors d'aquest projecte utilitzin
         les vostres observacions segons les <a href="%{url}">condiciones del projecte</a>.
       show:
@@ -5531,6 +5531,7 @@ ca:
           attributes:
             place_geometry:
               is_too_large_to_import: és massa gran per a importar-ho
+              contains_too_many_observations: Conté massa observacions per importar
         post:
           attributes:
             user:

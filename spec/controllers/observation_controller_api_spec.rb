@@ -3,6 +3,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should create" do
       expect {
         post :create, :format => :json, :observation => {:species_guess => "foo"}
@@ -12,12 +14,41 @@ shared_examples_for "an ObservationsController" do
       expect(o.species_guess).to eq ("foo")
     end
 
-    it "should include private coordinates in create response" do
-      post :create, :format => :json, :observation => {:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE}
+    it "should include coordinates in create response when geoprivacy is obscured" do
+      post :create, format: :json, observation: {
+        latitude: 1.2345,
+        longitude: 1.2345,
+        geoprivacy: Observation::OBSCURED
+      }
       o = Observation.last
       expect(o).to be_coordinates_obscured
-      expect(response.body).to be =~ /#{o.private_latitude}/
-      expect(response.body).to be =~ /#{o.private_longitude}/
+      expect(response.body).to be =~ /#{o.latitude}/
+      expect(response.body).to be =~ /#{o.longitude}/
+    end
+
+    it "should include private coordinates in create response when geoprivacy is obscured" do
+      post :create, format: :json, observation: {
+        latitude: 1.2345,
+        longitude: 1.2345,
+        geoprivacy: Observation::OBSCURED
+      }
+      o = Observation.last
+      expect( o ).to be_coordinates_obscured
+      expect( response.body ).to be =~ /#{o.private_latitude}/
+      expect( response.body ).to be =~ /#{o.private_longitude}/
+    end
+
+    it "should include private coordinates in create response when geoprivacy is private" do
+      post :create, format: :json, observation: {
+        latitude: 1.2345,
+        longitude: 1.2345,
+        geoprivacy: Observation::PRIVATE
+      }
+      o = Observation.last
+      expect( o.latitude ).to be_blank
+      expect( o.private_latitude ).not_to be_blank
+      expect( response.body ).to be =~ /#{o.private_latitude}/
+      expect( response.body ).to be =~ /#{o.private_longitude}/
     end
 
     it "should not fail if species_guess is a question mark" do
@@ -1706,7 +1737,11 @@ describe ObservationsController, "oauth authentication" do
 end
 
 describe ObservationsController, "oauth authentication with param" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   let(:user) { User.make! }
+  
   it "should create" do
     app = OauthApplication.make!
     token = Doorkeeper::AccessToken.create(:application_id => app.id, :resource_owner_id => user.id)

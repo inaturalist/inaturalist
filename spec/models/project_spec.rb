@@ -238,6 +238,8 @@ describe Project do
   end
 
   describe "generate_csv" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include curator_coordinate_access" do
       path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
       po = make_project_observation
@@ -423,15 +425,44 @@ describe Project do
         longitude: project.place.longitude, user: pu.user, taxon: taxon)
       Observation.make!(latitude: project.place.latitude,
         longitude: project.place.longitude, user: pu.user, taxon: taxon)
+      pu2 = ProjectUser.make!(project: project)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: Taxon.make!(rank: "species"))
       expect( pu.observations_count ).to eq 0
       expect( pu.taxa_count ).to eq 0
+      expect( pu2.observations_count ).to eq 0
+      expect( pu2.taxa_count ).to eq 0
       expect( project.observations.count ).to eq 0
       project.aggregate_observations
       project.reload
       pu.reload
-      expect( project.observations.count ).to eq 2
+      pu2.reload
+      expect( project.observations.count ).to eq 5
       expect( pu.observations_count ).to eq 2
       expect( pu.taxa_count ).to eq 1
+      expect( pu2.observations_count ).to eq 3
+      expect( pu2.taxa_count ).to eq 2
+    end
+
+    it "should create project observations that allow curator coordinate access if the observer has joined and opted in" do
+      project.update_attributes( place: make_place_with_geom, trusted: true )
+      pu = ProjectUser.make!(
+        project: project,
+        preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
+      )
+      o = Observation.make!(
+        latitude: project.place.latitude,
+        longitude: project.place.longitude,
+        user: pu.user
+      )
+      project.aggregate_observations
+      o.reload
+      po = o.project_observations.first
+      expect( po ).to be_prefers_curator_coordinate_access
     end
   end
 
@@ -469,6 +500,15 @@ describe Project do
       por = ProjectObservationRule.make!(operator: 'on_list?', ruler: p)
       expect( por.ruler ).to be_aggregation_allowed
     end
+
+    it "should be true if fails the normal rules, but is in the exceptions" do
+      envelope_ewkt = "MULTIPOLYGON(((0 0,0 15,15 15,15 0,0 0)))"
+      p = Project.make!(place: make_place_with_geom(ewkt: envelope_ewkt), trusted: true)
+      CONFIG.aggregator_exception_project_ids = [ p.id ]
+      expect( p ).to be_aggregation_allowed
+      CONFIG.aggregator_exception_project_ids = nil
+    end
+
   end
 
   describe "slug" do

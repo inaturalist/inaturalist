@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react";
 import safeHtml from "safe-html";
 import htmlTruncate from "html-truncate";
+import linkifyHtml from "linkifyjs/html";
+import sanitizeHtml from "sanitize-html";
 
 const ALLOWED_TAGS = (
   "div a abbr acronym b blockquote br cite code dl dt em h1 h2 h3 h4 h5 h6 hr i"
@@ -58,7 +60,9 @@ class UserText extends React.Component {
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
     }
-    const html = safeHtml( this.hyperlinkMentions( text ), config || CONFIG );
+    let withBreaks = text.trim( ).replace( /\n\s*\n/g, "\n" );
+    withBreaks = withBreaks.replace( /\n/gm, "<br />" );
+    const html = safeHtml( this.hyperlinkMentions( withBreaks ), config || CONFIG );
     let truncatedHtml;
     const style = {
       transition: "height 2s",
@@ -88,7 +92,8 @@ class UserText extends React.Component {
       <div className={`UserText ${className}`}>
         <div
           className="content"
-          dangerouslySetInnerHTML={ { __html: ( truncatedHtml || html ) } }
+          dangerouslySetInnerHTML={ { __html:
+            sanitizeHtml( linkifyHtml( truncatedHtml || html ) ) } }
           style={style}
         ></div>
         { moreLink }

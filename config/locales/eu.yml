@@ -93,12 +93,14 @@ eu:
   accept: onartu
   accept_community_identifications: Komunitatearen identifikatzaileak onaru
   accuracy: Zehaztasuna
+  accuracy_m: Doitasuna (m)
   accuracy_meters: Zehaztasuna (metroak)
   accuracy_of_the_coordinates: Koordenatuen zehaztasuna metroetan. Modificar (aldatu)
     estekan klikatuta edo mapan zure kokapenaren puntuan klikatuta alda ditzakezu.
     Saiatu zirkulua markatutako eremuko lekuren batean zeundela ziurtatzeko bezain
     handia egiten.
   acquaintances: ezagunak
+  action: Ekintza
   actions: Ekintzak
   activate_user: Erabiltzailea aktibatu
   active: aktibo
@@ -145,7 +147,9 @@ eu:
   add_custom_project_fields: Pertsonalizatutako proiektu-eremuak gehitu
   add_edit_more_fields: Eremu gehiago gehitu/editatu
   add_description: '%{description_name} gehitu'
+  add_field: Gehitu eremua
   add_from_your_observations: Zure oharretatik gehitu
+  add_link: Gehitu lotura
   add_listed_taxa_from_observations: Ikuspenetatik jasotako taxoien zerrenda gehitu
   add_higher_level_taxon: 'Maila altuagoko taxona gehitu (adibidez: "xoriak")'
   add_id: Identifikadorea gehitu
@@ -172,12 +176,14 @@ eu:
     gehitu.  Garatzen, oraindik xehetasunetan lanean ari gara...
   add_observations_project: Oharrak gehitu proiektu honi
   add_one: Bat gehitu!
+  add_one_now: Gehitu bat orain
   add_photos: Argazkiak gehitu
   add_photos_to_this_observation: Argazkiak gehitu oharrari
   add_place: Lekua gehitu
   add_several_observations_at_once: Hainbat ohar gehitu aldi berean
   add_shape: Muga gehitu
   add_some_now: Batzuk orain gehitu
+  add_tag: Gehitu etiketa
   add_tags: Ekiketak gehitu
   add_tags_to_selected_taxa: Aukeratutako taxoiei etiketak gehitu
   add_taxa: Taxonak gehitu
@@ -300,6 +306,7 @@ eu:
       one: beste animalia 1
       other: '%{count} beste animalia batzuk'
   all_taxonomic_groups: « Talde Taxonomiko Guztiak
+  all_updates: Eguneratze guztiak
   all_your_observations_will_default_this_time_zone: Zure ohar guztiak ordu-zona honetan
     egingo dira, zuk kontrakoa zehaztu ezean.
   all_your_observations_will_default_to_this_time_zone: Zure ohar guztiak ordu-zona
@@ -343,6 +350,7 @@ eu:
   are_you_really_sure_want_delete_this_user: Ziur zaude erabiltzailea eta horren eduki
     guztia ezabatu nahi duzula?
   are_you_sure?: Ziur zaude?
+  are_you_sure_no_undo: Ziur zaude? Ekintza hau ezin da desegin.
   are_you_sure_delete_asset: Ziur zaude fitxategi hau ezabatu nahi duzula?
   are_you_sure_delete_post: Ziur zaude sarrera hau ezabatu nahi duzula?
   are_you_sure_delete_taxon_move_associates: Ziur zaude %{taxonname} (%{taxonid})
@@ -392,6 +400,7 @@ eu:
     duzula?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Ziur zaude espezie edo
     egiaztapen-zerrendako taldea %{place}-ndik ezabatu nahi duzula?
+  articles: Artikuluak
   associated_observations: Lotutako oharrak
   associated_taxa: Lotutako taxonak
   you_sure_delete_list: Ziur zaude zerrenda hau ezabatu nahi duzula?
@@ -694,6 +703,7 @@ eu:
   contain_all_descendants?: Egiaztapen-zerrenda honek hemen sortutako taxon honen
     ondorengo guztiak al ditu?
   contest: lehiaketa
+  continue: Jarraitu
   contributions: ekarpenak
   contributions_from: 'Hauek ekarpenak:'
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
@@ -800,6 +810,7 @@ eu:
       october: Urria
       november: Azaroa
       december: Abendua
+  date_is_accurate: Data zehatza da
   date_observed: Ikusitako data
   date_observed_on: behatu zen eguna
   date_picker:
@@ -1137,6 +1148,7 @@ eu:
   guide_taxon: Taxon gidaria
   has_already_been_flagged_by: 'honek dagoeneko jakinarazi du:'
   has_been: izan da
+  has_photos_or_sounds: Argazkiak edo soinuak ditu
   hasnt_contributed_any_observations: ez duzu oharrik gehitu proiektu honetara.
   hate_me_facebook: Facebook eta %{site_name} webguneko zure kontuak desestekatu
   hate_me_flickr: Flickr eta %{site_name} webguneko zure kontuak desestekatu
@@ -1217,6 +1229,7 @@ eu:
   if_your_search_comes_up: Zure bilaketak emaitzarik ematen ez badu, jarri xehetasun
     gehiago bilaketa-eremuetan izenen gure kanpoko hornitzaileen bidez bilaketa errepikatzeko
   ignore: Ezikusi
+  imperiled: Arriskuan
   import: Inportatu
   import_all_photos_as_observations: Argazki guztiak ohar gisa inportatu
   import_as_an_observation: Ohar gisa inportatu
@@ -1244,6 +1257,7 @@ eu:
     aldatutako espezie edo taldeak dira. Kontzeptu inaktiboak espeziearen edo taldearen
     historia eta beste leku batzuekin bateragarritasuna mantentzeko kontserbatzen
     dira.
+  inappropriate_content: Eduki ezegokia?
   inat_account_action: '%{site_name} : Kontua : %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} leku honetan taxonaren zerrenda
     osoa dela uste du.'
@@ -1317,6 +1331,7 @@ eu:
   labels: Etiketak
   label_to_group_a_batch_of_taxon_changes: Espezie edo talde aldaketak elkartzeko
     etiketaren izena
+  location_unknown: Kokapen ezezaguna
   large: handia
   last_confirmed_observation: Azken oharra baieztatuta
   last_inat_observation: Azken oharra %{site_name}
@@ -1485,6 +1500,7 @@ eu:
   localized_species_accounts: Espezieen kontuak lokalizatuta
   location: Herria
   location_: Kokapena
+  location_is_accurate: Kokapena zehatza da
   location_is_exact: kokapena zehatza da
   locked_taxa_will_not_allow_new: Blokeatutako taxonek ez dute taxon ondorengo gehiago
     gehitzen utziko. Esate baterako, zuk Amphibia blokeatu baduzu eta norbait <i>Lithobates
@@ -1558,7 +1574,6 @@ eu:
   misleading_or_illegal_content_html: Legez kontrako edukia, iruzurrezkoa, arrazista,
     xenofoboa eta abar.
   mobile_apps_for: 'Mugikorretako aplikazioak hauetarako:'
-  mobile_view_available: Telefono mugikorrerako ikuspegia eskuragarri
   mollusks: moluskuak
   mon: Ast
   month: Hilabetea
@@ -1697,6 +1712,7 @@ eu:
   no_one_has_added_any: Inork ez du oharrik gehitu leku honetarako
   no_one_posted_anything_yet: Oraindik ez da ezer sartu!
   no_ones_observed: Inork ez du behatu
+  no_photo: Ez dago argazkirik
   no_photos: Ez dago argazkirik
   no_places_selected: Ez da lekurik hautatu
   no_post_yet: Oraindik ez dago sarrerarik!
@@ -2646,6 +2662,7 @@ eu:
   taxonomic_tree_browser: Zuhaitz taxonomikoko arakatzailea
   tell_everyone_a_little_about_you: Hitz egin iezaguzu pixka bat zuri buruz
   tell_the_world_a_little_about_yourself: Hitz egin iezaguzu zuri buruz
+  tell_us_why: Esaguzu zergatia...
   terms: Baldintzak
   terms_and_rules_html: Baldintzak & Arauak
   terms_new_users: Erabiltzaile berriek baldintza hauek onartu behar dituzte proiektuarekin
@@ -2870,6 +2887,7 @@ eu:
   unique_observers_last_3_months: aparteko behatzaileak azken 3 hilabeteetan,
   unknown: Ezezaguna
   unknown_rank: (Sailkapen ezezaguna)
+  unfollow: Jarraitzeari utzi
   unlink_your_picasa_account: Picasa-ko zure kontua desestekatu
   updates_notification_email_subject: '%{prefix} Eguneraketa berriak %{date}'
   updating: Eguneratzen...
@@ -2979,7 +2997,6 @@ eu:
     <nobr>%{site_name} »</nobr>'
   view_more_recent_observations: Duela gutxiko behaketa gehiago ikusi
   view_nbsp: Ikusi  
-  view_non_mobile_site: Mugikorretarako egokitu gabeko webguneak ikusi
   view_observation: Behaketa ikusi
   view_observations: Behaketak ikusi
   view_observations_raquo: Behaketak ikusi »
@@ -3467,6 +3484,8 @@ eu:
           gehituko %{site_name} webguneak erabilitako izena ezagutzen ez badu. Ezagut
           ditzakegun izen alternatiboak erabiltzen saiatzea gomendatzen dizugu.
     observations:
+      community_id:
+        algorithm_summary: Algoritmoaren laburpena
       copy_tip: Behaketa berria gehitu behaketa honen data, lekua, argazkiak eta behaketa-eremuak
         kopiatuta.
       captive_help_html: Behatu zenuen organismoa <strong>landua</strong> edo <strong>gatibu</strong>

@@ -239,6 +239,9 @@ class Site < ActiveRecord::Base
   preference :custom_email_footer_leftside, :text
   preference :custom_email_footer_rightside, :text
 
+  # Whether this site prefers https
+  preference :ssl, :boolean
+
   def to_s
     "<Site #{id} #{url}>"
   end

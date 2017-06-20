@@ -7,6 +7,7 @@
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
+# Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: Pihlaviita
@@ -91,6 +92,7 @@ qqq:
   action: '{{Identical|Action}}'
   actions: '{{Identical|Action}}'
   active: '{{Identical|Active}}'
+  activity: '{{Identical|Activity}}'
   adapted_by_name_from_a_work_by_original: where name is the adaptor's name and original
     is the original author's name
   add: '{{Identical|Add}}'
@@ -109,6 +111,7 @@ qqq:
   adding: '{{Identical|Adding}}'
   admin: '{{Identical|Admin}}'
   agree: '{{Identical|Agree}}'
+  agree_: '{{Identical|Agree}}'
   agree?: '{{Identical|Agree}}'
   all: '{{Identical|All}}'
   all_rights_reserved: where name is the author name
@@ -134,6 +137,7 @@ qqq:
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
   animals: '{{Identical|Animal}}'
+  annotations: '{{Identical|Annotation}}'
   announcements: '{{Identical|Announcement}}'
   apply_darr: '{{Identical|Apply}}'
   appropriate?: '{{Identical|Appropriate}}'
@@ -166,8 +170,11 @@ qqq:
     where time is a time
     {{Identical|At}}
   atom: '{{Identical|Atom}}'
+  attribute: '{{Identical|Attribute}}'
   authorize_permissions_from_provider: where provider is an external provider like
     Facebook
+  automatically_id_new: '"ID sth." means identify something. That''s a common abbreviation
+    that naturalists use in online communities.'
   back: '{{Identical|Back}}'
   back_to_calendar: where user is the name of a user
   back_to_lists: where name is the possesive form of the name of a user
@@ -242,8 +249,10 @@ qqq:
   columns: '{{Identical|Column}}'
   comma_separated_list_of_tracking_codes: where the parameters are parts of a URL
   comment: '{{Identical|Comment}}'
+  comment_: '{{Identical|Comment}}'
   commented: '{{Identical|Commented}}'
   comments: '{{Identical|Comment}}'
+  compare: '{{Identical|Compare}}'
   comparing: '{{Identical|Comparing}}'
   comparing_list_to_list: where list1 and list2 are the name of lists
   comparing_versions_x_and_y: where x and y are versions of the wiki article
@@ -321,6 +330,8 @@ qqq:
   date_picker:
     closeText: '{{Identical|Close}}'
     currentText: '{{Identical|Today}}'
+    dayNamesShort: '''Sun'' is doubled in the code. I assume there should be a ''Fri''
+      instead of the second ''Sun''.'
   date_time: '{{Identical|Date}}'
   dates: '{{Identical|Date}}'
   datetime_: '{{Identical|Date}}'
@@ -336,7 +347,9 @@ qqq:
   details: '{{Identical|Detail}}'
   developers: '{{Identical|Developer}}'
   device: '{{Identical|Device}}'
+  disagree_: '{{Identical|Disagree}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
+  done: '{{Identical|Done}}'
   download: '{{Identical|Download}}'
   each_place_displays_all_species_inat_knows: where site_name is the name of the site
   edit: '{{Identical|Edit}}'
@@ -396,6 +409,7 @@ qqq:
   flag: '{{Identical|Flag}}'
   flag_reason: where record is an observation or other resource
   flagged: '{{Identical|Flagged}}'
+  flagged_: '{{Identical|Flagged}}'
   flags: '{{Identical|Flag}}'
   flags_explanation: where site_name is the name of the site and thing is a resource
     like an observation
@@ -403,6 +417,7 @@ qqq:
     was flagged
   flickr_needs_to_confirm: where site_name is the name of the site
   flickr_youre_all_set: where site_name is the name of the site
+  follow: '{{Identical|Follow}}'
   follow_user: where user is the name of a user
   for_a_widget_showing_recent_observations_from: where place_name is the name of a
     place
@@ -446,6 +461,7 @@ qqq:
   ignore: '{{Identical|Ignore}}'
   import: '{{Identical|Import}}'
   importing: '{{Identical|Importing}}'
+  improving: '{{Identical|Improving}}'
   inbox: '{{Identical|Inbox}}'
   inactive: '{{Identical|Inactive}}'
   inat_account_action: where site_name is the name of the site and action name is
@@ -495,6 +511,7 @@ qqq:
     french: '{{Identical|French}}'
     german: '{{Identical|German}}'
     italian: '{{Identical|Italian}}'
+    korean: '{{Identical|Korean}}'
     misima_paneati: Language of Papua New Guinea
     portuguese: '{{Identical|Portuguese}}'
   less: '{{Identical|Less}}'
@@ -664,6 +681,7 @@ qqq:
     where submitdate is a date
     {{Identical|On}}
   open: '{{Identical|Open}}'
+  open_: '{{Identical|Open}}'
   optional: '{{Identical|Optional}}'
   or: '{{Identical|Or}}'
   orange: |-
@@ -950,6 +968,7 @@ qqq:
   this_observation_lies_outside_the: where site_name is the name of a site
   this_taxon_is_inactive_this_means: where site_name is the name of a site
   thu: Abbreviation for Thursday, a day of the week.
+  time_: '{{Identical|Time}}'
   time_ago: |-
     where time is a time period like 4 hours
     {{Identical|Ago}}
@@ -970,6 +989,7 @@ qqq:
   type: '{{Identical|Type}}'
   type_authority: Authority as in literature
   unknown: '{{Identical|Unknown}}'
+  unfollow: '{{Identical|Unfollow}}'
   updates_notification_email_subject: where prefix is the name of the site and date
     is a date
   unreview: '{{Identical|Unreview}}'
@@ -1000,7 +1020,10 @@ qqq:
   user_added_x_observations_html: where user is the name of a user and x a number
   user_commented_on: where user is the name of a user and title is a resource like
     an observation and time is the time
-  user_follows: where user is the name of a user
+  user_commented: '{{Identical|Commented}}'
+  user_follows: |-
+    where user is the name of a user
+    {{Identical|Follow}}
   user_has_opted_out_of_community_ids: where user is the name of a user
   user_has_opted_out_of_community_ids_for_this_obs: where user is the name of a user
   user_hasnt: where user is the name of a user
@@ -1038,6 +1061,7 @@ qqq:
   users_profile: |-
     where user is the name of a user
     {{Identical|Profile}}
+  value: '{{Identical|Value}}'
   verbing_x_of_y: where verb is a verb like viewing and x and y are numbers
   view: '{{Identical|View}}'
   view_all: '{{Identical|View all}}'
@@ -1108,6 +1132,7 @@ qqq:
   year: '{{identical|Year}}'
   "yes": '{{Identical|Yes}}'
   yesterday: '{{Identical|Yesterday}}'
+  you_: '{{Identical|You}}'
   you_are_now_following_x: where friend_user is the name of a user
   you_are_now_role_for_project_html: where role is a role like curator and project
     is the name of a project
@@ -1180,11 +1205,16 @@ qqq:
         while_the_life_list_is_automatically_populated: where site_name is the site
           name
     observations:
+      community_id:
+        agreement: '{{Identical|Agreement}}'
+        score: '{{Identical|Score}}'
       show:
         community_taxon_desc_html: whre site_name is the site name
         flagged_photos_desc_html: where links is a URL
     photos:
       inviter:
+        automatically_id_the_new_obs_as: '"ID sth." means identify something. That''s
+          a common abbreviation that naturalists use in online communities.'
         invite_other_photographers_to_inat: where site_name is the site name
         invite_your_friends_description: where site_name is the site name
     projects:

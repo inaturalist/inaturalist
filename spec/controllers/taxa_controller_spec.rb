@@ -222,6 +222,8 @@ describe TaxaController do
   end
 
   describe "observation_photos" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include photos from observations" do
       o = make_research_grade_observation
       p = o.photos.first

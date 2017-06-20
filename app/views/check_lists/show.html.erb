@@ -19,9 +19,12 @@
     end
   -%>
   <% if @representative_photo -%>
-    <%- og_description += " &mdash; Photo: #{@representative_photo.attribution}" -%>
-    <meta property="og:image" content="<%= @representative_photo.medium_url %>"/> 
-    <meta property="twitter:image" content="<%= @representative_photo.medium_url %>"/> 
+    <%-
+      og_description += " &mdash; Photo: #{@representative_photo.attribution}"
+      @shareable_image_url = @representative_photo.medium_url
+    -%>
+    <meta property="og:image" content="<%= @shareable_image_url %>"/> 
+    <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
   <% elsif @representative_listed_taxon %>
     <meta property="og:image" content="<%= taxon_image_url(@representative_listed_taxon.taxon, :size => 'medium') %>"/> 
     <meta property="twitter:image" content="<%= taxon_image_url(@representative_listed_taxon.taxon, :size => 'medium') %>"/> 

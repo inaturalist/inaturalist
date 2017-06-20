@@ -1192,7 +1192,6 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
 .taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
 .taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
-.taxon .sciname .rank:after {content: ' ';}
 .taxon .altname { color: #aaa; }
 
 /* Users table */
@@ -1503,34 +1502,37 @@ abbr.date {border:0 transparent;}
   text-align: center;
 }
 
-.research_grade_notice, 
-.research_notice,
-.needs_id_notice, 
-.comprehensive_notice {
-  -webkit-border-radius:5px;
-  -moz-border-radius:5px;
-  border:0 transparent;
-  border-radius:10px;
-  padding:2px 5px; 
-  white-space: nowrap;
+body, .infowindow .observation {
+  .research_grade_notice,
+  .research_notice,
+  .needs_id_notice,
+  .comprehensive_notice {
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    border:0 transparent;
+    border-radius:10px;
+    padding:2px 5px;
+    white-space: nowrap;
+  }
+  .research_grade_notice,
+  .research_notice,
+  .comprehensive_notice {
+    background-color:#DCEAA3;
+    color:#529214;
+  }
+  a.research_grade_notice:hover,
+  a.research_notice:hover {
+    color:#326412;
+  }
+  .needs_id_notice {
+    background-color:#FFEE91;
+    color:#85743D;
+  }
+  a.needs_id_notice:hover {
+    color:#584925;
+  }
 }
-.research_grade_notice, 
-.research_notice,
-.comprehensive_notice {
-  background-color:#DCEAA3;
-  color:#529214;
-}
-a.research_grade_notice:hover,
-a.research_notice:hover {
-  color:#326412;
-}
-.needs_id_notice {
-  background-color:#FFEE91;
-  color:#85743D;
-}
-a.needs_id_notice:hover {
-  color:#584925;
-}
+
 
 .ui-tooltip, .qtip{ max-width: 500px; line-height: 1.5;}
 

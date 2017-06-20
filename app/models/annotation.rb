@@ -26,9 +26,9 @@ class Annotation < ActiveRecord::Base
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
-  after_create :index_observation_later
-  after_save :index_observation_later
-  after_destroy :index_observation_later
+  after_create :index_observation
+  after_save :index_observation
+  after_destroy :index_observation
 
   attr_accessor :skip_indexing
 
@@ -103,7 +103,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def votable_callback
-    index_observation_later
+    index_observation
   end
 
   def as_indexed_json(options={})
@@ -112,8 +112,18 @@ class Annotation < ActiveRecord::Base
       controlled_attribute_id: controlled_attribute_id,
       controlled_value_id: controlled_value_id,
       concatenated_attr_val: [controlled_attribute_id, controlled_value_id].join("|"),
-      vote_score: vote_score
+      vote_score: vote_score,
+      user_id: user_id,
+      votes: votes_for.map{ |v|
+        { user_id: v.voter_id, vote_flag: v.vote_flag }
+      }
     }
+  end
+
+  def index_observation
+    if resource.is_a?(Observation) && !skip_indexing
+      Observation.elastic_index!(ids: [resource.id])
+    end
   end
 
   def index_observation_later

@@ -6,7 +6,6 @@ $.fn.projectAutocomplete = function( options ) {
   options = options || { };
   if( !options.idEl ) { return; }
   var field = this;
-
   field.genericAutocomplete( _.extend( options, {
     menuClass: "projects",
     minLength: CURRENT_USER.id ? 0 : undefined,
@@ -20,7 +19,8 @@ $.fn.projectAutocomplete = function( options ) {
         data: {
           q: request.term,
           per_page: request.term ? 10 : 300,
-          member_id: CURRENT_USER.id
+          member_id: options.currentUsersProjects ? CURRENT_USER.id : null,
+          not_id: options.notIDs ? options.notIDs.join(",") : null
         },
         success: function( data ) {
           response( data.results );

@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Cgalindo
+# Author: Fitoschido
 # Author: Macofe
 # Author: MattiaMen
 ---
@@ -1839,7 +1840,6 @@ es-MX:
     etc.
   mobile_app_for: Aplicaciones móviles para
   mobile_apps_for: Aplicaciones móviles para
-  mobile_view_available: Vista para móvil disponible
   mollusks: Moluscos
   mon: Lun
   month: Mes
@@ -1978,7 +1978,6 @@ es-MX:
   no_matching_users: No hay usuarios que coincidan.
   no_members_yet: Todavía no hay miembros.
   no_messages_yet: Ningún mensaje aún
-  no_mobilized_version_of_that_view: No existe una versión móvil de esta vista.
   no_more_mail_from_site: ¿No quieres recibir correos del %{site_name}? Edita tu configuración
     de correo en
   no_more_taxa_to_load: ¡No hay mas especies o grupos a cargar!
@@ -2540,8 +2539,8 @@ es-MX:
   prev: Ant
   previous_page: Página previa
   print_in_browser: Imprimir desde el navegador
-  privacy: Política de privacidad
-  privacy_policy: Política de privacidad
+  privacy: Normativa de privacidad
+  privacy_policy: Normativa de privacidad
   private: Privada
   private_description: Las coordenadas están completamente escondidas de los mapas
     públicos. Solo tú y los curadores de los proyectos a los que añades observaciones
@@ -3576,7 +3575,6 @@ es-MX:
   view_more_recent_observations: Ver mas observaciones recientes
   view_more_unreviewed: Ver más sin revisar
   view_nbsp: Ver &nbsp;
-  view_non_mobile_site: Ver el sitio fijo
   view_observation: Ver observación
   view_observations: Ver observaciones
   view_observations_by_everyone: Ve las observaciones de todos
@@ -4634,14 +4632,6 @@ es-MX:
       curator_coordinate_access_note: "También puedes escoger compartir las coordenadas
         privadas de las \nobservaciones en este proyecto, una por una. Estas son las
         opciones \nbásicas para nuevas observaciones añadidas al proyecto."
-      project_user_curator_coordinate_access_descriptions:
-        observer: "Solo los curadores del proyecto pueden ver las coordenadas \nprivadas
-          de tus observaciones añadidas al proyecto."
-        any: "Solo los curadores del proyecto pueden ver las coordenadas \nprivadas
-          de tus observaciones añadidas al proyecto y las que \nellos añadan y sean
-          tuyas."
-        none: "No compartir las coordenadas privadas de los proyectos con \nlos curadores
-          del proyecto"
       project_terms_desc_html: "Permitir a los curadores del proyecto usar tus observaciones
         de \nacuerdo a los <a href=\"%{url}\">términos del proyecto.</a>."
       show:
