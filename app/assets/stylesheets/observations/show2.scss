@@ -1442,6 +1442,15 @@ h3, h4 {
     }
   }
 }
+.obs-highlight-link {
+  .SplitTaxon {
+    a.display-name,
+    .noname {
+      display: block;
+      color: white;
+    }
+  }
+}
 
 .ObservationFields {
   .observation-field {
