@@ -155,6 +155,13 @@ describe "Observation Index" do
       as_indexed_json(no_details: true)
   end
 
+  it "indexes owners_identification_from_vision" do
+    o = Observation.make!( taxon: Taxon.make!, owners_identification_from_vision: true )
+    expect( o.owners_identification_from_vision ).to be true
+    json = o.as_indexed_json
+    expect( json[:owners_identification_from_vision] ).to be true
+  end
+
   describe "params_to_elastic_query" do
     it "returns nil when ES can't handle the params" do
       expect( Observation.params_to_elastic_query(

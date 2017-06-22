@@ -193,6 +193,7 @@ class Observation < ActiveRecord::Base
           { user_id: v.voter_id, vote_flag: v.vote_flag, vote_scope: v.vote_scope }
         },
         outlinks: observation_links.map(&:as_indexed_json),
+        owners_identification_from_vision: owners_identification_from_vision
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]
