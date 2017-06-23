@@ -89,6 +89,9 @@ en:
   x_species_link_html:
     one: "<a href='%{url}'>1 species</a>"
     other: "<a href='%{url}'>%{count} species</a>"
+  x_suggestions_filtered_by_colon:
+    one: "1 Suggestion Filtered By:"
+    other: "%{count} Suggestions Filtered By:"
   x_taxa_observed_html:
     one: "<span class='count'>1</span> taxon observed"
     other: "<span class='count'>%{count}</span> taxa observed"
@@ -213,7 +216,17 @@ en:
   add_photos: Add photos
   add_photos_to_this_observation: Add photos to this observation
   add_place: Add place
+  add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
+  add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
+  add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
+  add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
+  add_life_stage_pupa_annotation: 'Add "Life Stage: Pupa" annotation'
+  add_life_stage_nymph_annotation: 'Add "Life Stage: Nymph" annotation'
+  add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
+  add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
   add_several_observations_at_once: Add several observations at once.
+  add_sex_female_annotation: 'Add "Sex: Female" annotation'
+  add_sex_male_annotation: 'Add "Sex: Male" annotation'
   add_shape: Add shape
   add_some_now: Add some now
   add_tag: Add tag
@@ -488,6 +501,7 @@ en:
   back_to_post: '&laquo; Back to post'
   back_to_projects: Back to projects
   back_to_shared_taxon: "Back to %{sharedtaxon}"
+  back_to_suggestions: Back to Suggestions
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_taxon_changes: "Back to taxon changes"
   back_to_this: "Back to %{place}"
@@ -644,6 +658,7 @@ en:
                        to your photos. You can choose a different license or remove the license
                        later, but this is the best license for sharing with researchers.
   checklist: Checklist
+  checklists: Checklists
   checklist_places: Checklist places
   checklist_places_absent: Checklist places (absent)
   checklist_places_confirmed: Checklist places (confirmed)
@@ -865,6 +880,7 @@ en:
   darr_apply_darr: "&darr; Apply &darr;"
   dashboard: Dashboard
   data_deficient: data deficient
+  data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
   datatype: Datatype
   date_: Date
@@ -1179,6 +1195,7 @@ en:
   filter_by: Filter by
   filter_by_curator_identification: Filter by curator identification
   filter_by_place: Filter by place
+  filter_by_taxon: Filter by taxon
   filter_by_place_taxon_and_color: Filter by place, taxon, and color using the controls.
   filter_list_by_this_taxon: Filter list by this taxon
   filtering: Filtering
@@ -1256,6 +1273,7 @@ en:
   for_a_widget_showing_recent_observations_from: For a widget showing recent observations from %{place_name}, check out the
   for_more_information: for more information.
   forgot_your_password: Forgot your password?
+  frequency: Frequency
   fri: Fri
   from: From
   from_a_place: from a place
@@ -1530,8 +1548,8 @@ en:
   kml_file_size_error: "KML must be less than 1 MB in size"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
-  location_private: Location private
-  location_unknown: Location unknown
+  location_private: Location Private
+  location_unknown: Location Unknown
   language_slash_type: Language / Type
   large: large
   last_confirmed_observation: Last confirmed observation
@@ -1687,6 +1705,7 @@ en:
     es: Spanish
     "es-ES": Spanish (Spain)
     "es-MX": Spanish (Mexico)
+    fi: Finnish
     fr: French
     eu: Basque
     gl: Galician
@@ -1694,6 +1713,7 @@ en:
     id: Indonesian
     it: Italian
     mk: Macedonian
+    oc: Occitan
     pt: Portuguese
     "pt-BR": Portuguese (Brazil)
     ja: Japanese
@@ -1804,11 +1824,12 @@ en:
   merging_places: Merging Places
   message: Message
   messages: Messages
-  mixed_licenses: mixed licenses
+  misidentifications: Misidentifications
   misleading_or_illegal_content_html: |
     Misleading or illegal content, racial or ethnic slurs, etc. For more on
     our definition of "appropriate," see the 
     <a href="/help#inappropriate">FAQ</a>.
+  mixed_licenses: mixed licenses
   mobile_app_for: Mobile app for
   mobile_apps_for: Mobile apps for
   mollusks: mollusks
@@ -1935,7 +1956,10 @@ en:
   new_user_rules: New User Rules
   new_users_week: New Users / Week
   next: Next
+  next_observation: Next Observation
   next_page: Next page
+  next_photo: Next Photo
+  next_tab: Next Tab
   'no': 'No'
   no_activity_in_the_past_week: No activity in the past week.  Time to 
   no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
@@ -2003,6 +2027,7 @@ en:
   no_range_data_available: No range data available.
   no_recent_activity: No recent activity
   no_recently_active: No recently active projects yet.
+  no_relevant_annotations: No Relevant Annotations
   no_reply_yet: No reply yet
   no_results_found: No results found
   no_results_for: 'No results for '
@@ -2017,6 +2042,7 @@ en:
     list, it will automatically be updated with species when you
     <a href="%{url}" class="nobr">add observations</a>.
   no_subject_parens: "(No subject)"
+  no_suggestions_available: No Suggestions Available
   no_summary_from_wikipedia: No summary from Wikipedia
   no_summary_has_been_set: No summary has been set.
   no_taxa: No taxa
@@ -2549,7 +2575,10 @@ en:
   previewing: "Previewing..."
   previous: Previous
   prev: Prev
+  previous_observation: Previous Observation
   previous_page: Previous page
+  previous_photo: Previous Photo
+  previous_tab: Previous Tab
   print_in_browser: Print in browser
   privacy: Privacy Policy
   privacy_policy: Privacy Policy
@@ -2775,6 +2804,7 @@ en:
   review_all: Review All
   review_verb: Review
   reviewed: Reviewed
+  rg_observations: RG Observations
   roadmap: roadmap
   role: Role
   rotate_left: Rotate left
@@ -2874,6 +2904,7 @@ en:
   selected: selected
   selected_photos: Selected photos
   selected_taxon: Selected Taxon
+  select_this_taxon: Select This Taxon
   send: send
   send_invite: Send invite
   send_invites_to: Send invites to
@@ -2893,6 +2924,7 @@ en:
   show_active_and_inactive_taxa: Show active and inactive taxa
   show_default_taxon_photos: show default taxon photos
   show_counts: Show counts based on the list.
+  show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_kml: Show KML
   show_less: Show less
   show_more: Show more
@@ -2983,6 +3015,7 @@ en:
     your_soundcloud_account: your SoundCloud account
   source: Source
   source_: 'Source:'
+  source_wikipedia: "Source: Wikipedia"
   source_list_: "Source List"
   source_list:
     ubio: uBio
@@ -3087,6 +3120,7 @@ en:
   suggest_an_id: Suggest an ID
   suggest_an_identification: Suggest an Identification
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
+  suggestions: Suggestions
   summary: Summary
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
@@ -3242,6 +3276,7 @@ en:
     The world is full of interesting places, each filled with weird and
     wonderful life forms. Some are on the other side of the world, while
     others are just down the street!
+  then_keybord_sequence: then
   there_are_x_synonyms_html:
     one: "There is <span class='count'>1</span> synonym</span>"
     other: "There are <span class='count'>%{count}</span> synonyms</span>"
@@ -3579,6 +3614,7 @@ en:
   view_observations: View observations
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
+  view_observations_of_this_taxon_by: View observations of this taxon by
   view_observations_raquo: "View observations &raquo;"
   view_on: View on
   view_on_amphibiaweb: View on AmphibiaWeb
@@ -3889,6 +3925,7 @@ en:
   youve_successfully_linked_your_provider_account: "You've successfully linked your %{provider} account"
   zoom_in: Zoom In
   zoom_out: Zoom Out
+  zoom_photo: Zoom Photo
   zoom_to_taxon_name: "Zoom to %{taxonname}"
   zoom_to_x: "zoom to %{x}"
   your_dashboard_helps_you: "Your dashboard helps you keep track of what people are doing on the site. To follow someone's updates, click the 'Follow [name]' link in the header when viewing their observations or profile."

@@ -19,9 +19,9 @@ export function setControlledTerms( terms ) {
   };
 }
 
-export function fetchControlledTerms( ) {
+export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const observation = options.observation || getState( ).observation;
     if ( !observation || !observation.taxon ) {
       return null;
     }

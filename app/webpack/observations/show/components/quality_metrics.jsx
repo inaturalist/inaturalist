@@ -215,13 +215,17 @@ class QualityMetrics extends React.Component {
       atLeastGenus : atLeastSpecies;
     return (
       <div className="QualityMetrics">
-        <div className="grade">
-          { I18n.t( "quality_grade_" ) }:
-          <span className={ `quality_grade ${observation.quality_grade} ` }>
-            { _.upperFirst( I18n.t( observation.quality_grade ) ) }
-          </span>
-        </div>
-        <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
+        { this.props.tableOnly ? null : (
+          <div>
+            <div className="grade">
+              { I18n.t( "quality_grade_" ) }:
+              <span className={ `quality_grade ${observation.quality_grade} ` }>
+                { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+              </span>
+            </div>
+            <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
+          </div>
+        ) }
         <table className="table">
           <thead>
             <tr>
@@ -332,7 +336,8 @@ QualityMetrics.propTypes = {
   qualityMetrics: PropTypes.object,
   voteMetric: PropTypes.func,
   unvoteMetric: PropTypes.func,
-  setFlaggingModalState: PropTypes.func
+  setFlaggingModalState: PropTypes.func,
+  tableOnly: PropTypes.bool
 };
 
 export default QualityMetrics;

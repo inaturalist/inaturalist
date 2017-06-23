@@ -34,6 +34,10 @@ import searchParams from "./search_params_reducer";
 import identifiers from "./identifiers_reducer";
 import finishedModal from "./finished_modal_reducer";
 import alert from "./alert_reducer";
+import suggestions from "../ducks/suggestions";
+import controlledTerms from "../../show/ducks/controlled_terms";
+import qualityMetrics from "../../show/ducks/quality_metrics";
+import flaggingModal from "../../show/ducks/flagging_modal";
 
 const rootReducer = combineReducers( {
   config,
@@ -43,7 +47,11 @@ const rootReducer = combineReducers( {
   searchParams,
   identifiers,
   finishedModal,
-  alert
+  alert,
+  suggestions,
+  controlledTerms,
+  qualityMetrics,
+  flaggingModal
 } );
 
 export default rootReducer;

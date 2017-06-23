@@ -14,7 +14,7 @@ const SplitTaxon = ( {
   onClick,
   noInactive
 } ) => {
-  const LinkElement = url ? "a" : "span";
+  const LinkElement = ( url || onClick ) ? "a" : "span";
   let title = "";
   if ( taxon ) {
     if ( taxon.rank && taxon.rank_level > 10 ) {

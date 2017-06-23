@@ -8,7 +8,9 @@ import {
   toggleReviewed,
   agreeWithCurrentObservation,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  updateCurrentObservation,
+  fetchDataForTab
 } from "../actions";
 
 function mapStateToProps( state ) {
@@ -16,12 +18,16 @@ function mapStateToProps( state ) {
   const observation = state.currentObservation.observation;
   if ( observation && observation.photos && observation.photos.length > 0 ) {
     images = observation.photos.map( ( photo ) => ( {
-      original: photo.photoUrl( "medium" ),
+      original: photo.photoUrl( "large" ),
       zoom: photo.photoUrl( "original" ),
       thumbnail: photo.photoUrl( "square" )
     } ) );
   }
-  return Object.assign( {}, { images, blind: state.config.blind }, state.currentObservation );
+  return Object.assign( {}, {
+    images,
+    blind: state.config.blind,
+    controlledTerms: state.controlledTerms
+  }, state.currentObservation );
 }
 
 function mapDispatchToProps( dispatch ) {
@@ -51,6 +57,16 @@ function mapDispatchToProps( dispatch ) {
     },
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
+    },
+    chooseTab: ( tab ) => {
+      dispatch( updateCurrentObservation( { tab } ) );
+      dispatch( fetchDataForTab( ) );
+    },
+    setImagesCurrentIndex: index => {
+      dispatch( updateCurrentObservation( { imagesCurrentIndex: index } ) );
+    },
+    toggleKeyboardShortcuts: keyboardShortcutsShown => {
+      dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
     }
   };
 }

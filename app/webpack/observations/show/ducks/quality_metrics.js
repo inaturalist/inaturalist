@@ -19,9 +19,9 @@ export function setQualityMetrics( metrics ) {
   };
 }
 
-export function fetchQualityMetrics( ) {
+export function fetchQualityMetrics( options = {} ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const observation = options.observation || getState( ).observation;
     if ( !observation ) { return null; }
     const params = { id: observation.id, ttl: -1 };
     return inatjs.observations.qualityMetrics( params ).then( response => {

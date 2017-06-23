@@ -151,12 +151,23 @@ class Annotations extends React.Component {
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
     if ( !observation || !observation.user || _.isEmpty( controlledTerms ) ) {
+      if (
+          this.props.showEmptyState &&
+          ( !this.props.controlledTerms || this.props.controlledTerms.length === 0 )
+      ) {
+        return (
+          <div className="noresults">
+            { I18n.t( "no_relevant_annotations" ) }
+          </div>
+        );
+      }
       return ( <span /> );
     }
     this.loggedIn = config && config.currentUser;
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
-    const groupedAnnotations = _.groupBy( observation.annotations, a => (
-      a.controlled_attribute.id ) );
+    const annotations = observation.annotations.filter( a =>
+      a.controlled_attribute && a.controlled_value );
+    const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
     let rows = [];
     _.each( controlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {
@@ -244,6 +255,30 @@ class Annotations extends React.Component {
       }
     } );
 
+    const table = (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>{ I18n.t( "attribute" ) }</th>
+            <th>{ I18n.t( "value" ) }</th>
+            <th>{ I18n.t( "agree_" ) }</th>
+            <th>{ I18n.t( "disagree_" ) }</th>
+          </tr>
+        </thead>
+        <tbody>
+          { rows }
+        </tbody>
+      </table>
+    );
+
+    if ( !this.props.collapsible ) {
+      return (
+        <div className="Annotations">
+          { table }
+        </div>
+      );
+    }
+
     const count = observation.annotations.length > 0 ?
       `(${observation.annotations.length})` : "";
     return (
@@ -262,19 +297,7 @@ class Annotations extends React.Component {
           { I18n.t( "annotations" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>{ I18n.t( "attribute" ) }</th>
-                <th>{ I18n.t( "value" ) }</th>
-                <th>{ I18n.t( "agree_" ) }</th>
-                <th>{ I18n.t( "disagree_" ) }</th>
-              </tr>
-            </thead>
-            <tbody>
-              { rows }
-            </tbody>
-          </table>
+          { table }
         </Panel>
       </div>
     );
@@ -289,7 +312,13 @@ Annotations.propTypes = {
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  collapsible: PropTypes.bool,
+  showEmptyState: PropTypes.bool
+};
+
+Annotations.defaultProps = {
+  collapsible: true
 };
 
 export default Annotations;

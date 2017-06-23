@@ -1,7 +1,9 @@
 import inatjs from "inaturalistjs";
 import {
   loadingDiscussionItem,
-  fetchCurrentObservation
+  stopLoadingDiscussionItem,
+  fetchCurrentObservation,
+  addIdentification
 } from "./current_observation_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
@@ -80,6 +82,37 @@ function agreeWithCurrentObservation( ) {
   };
 }
 
+function submitIdentificationWithConfirmation( identification, options = {} ) {
+  return dispatch => {
+    dispatch( loadingDiscussionItem( identification ) );
+    const boundPostIdentification = ( ) => {
+      dispatch( postIdentification( identification ) )
+      .catch( ( ) => {
+        dispatch( stopLoadingDiscussionItem( identification ) );
+      } )
+      .then( ( ) => {
+        dispatch( fetchCurrentObservation( identification.observation ) ).then( ( ) => {
+          $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+        } );
+        dispatch( fetchObservationsStats( ) );
+        dispatch( fetchIdentifiers( ) );
+      } );
+    };
+    if ( options.confirmationText ) {
+      dispatch( showAlert( options.confirmationText, {
+        title: I18n.t( "heads_up" ),
+        onConfirm: boundPostIdentification,
+        onCancel: ( ) => {
+          dispatch( stopLoadingDiscussionItem( identification ) );
+          dispatch( addIdentification( ) );
+        }
+      } ) );
+    } else {
+      boundPostIdentification( );
+    }
+  };
+}
+
 export {
   POST_IDENTIFICATION,
   AGREEING_WITH_OBSERVATION,
@@ -90,5 +123,6 @@ export {
   deleteIdentification,
   agreeingWithObservation,
   stopAgreeingWithObservation,
-  updateIdentification
+  updateIdentification,
+  submitIdentificationWithConfirmation
 };

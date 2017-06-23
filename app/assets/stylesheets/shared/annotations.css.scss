@@ -1,0 +1,113 @@
+@import "../colors";
+
+.Annotations,
+body > div > [role="dialog"] .Annotations {
+  table, .table {
+    margin-bottom: 0px;
+  }
+  thead {
+    background: rgba(174,174,174, 0.09);
+    th {
+      font-weight: 600;
+      border-bottom: 1px !important;
+    }
+  }
+  tbody td {
+    line-height: 22px !important;
+  }
+  .dropdown {
+    button {
+      margin: 0px 0px 2px 12px;
+      padding: 0;
+      border: none;
+      background: inherit !important;
+      -webkit-box-shadow: none !important;
+      box-shadow: none !important;
+      &:hover {
+        border: none;
+        background: inherit;
+      }
+    }
+    .dropdown-toggle {
+      color: $bootstrap-link-color;
+    }
+  }
+  .attribute {
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .value {
+    white-space: nowrap;
+  }
+  .UserImage {
+    min-width: 22px;
+    width: 22px;
+    height: 22px;
+    vertical-align: bottom;
+    line-height: 16px;
+    .icon-person {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+  .agree, .disagree {
+    text-align: center;
+  }
+
+  tr.disabled td {
+    opacity: 0.5;
+  }
+
+}
+
+.Annotations,
+.QualityMetrics,
+body > div > [role="dialog"] .Annotations,
+body > div > [role="dialog"] .QualityMetrics {
+  .glyphicon, .fa-thumbs-up, .fa-thumbs-down, .fa-thumbs-o-up, .fa-thumbs-o-down {
+    cursor: pointer;
+    color: #BBBBBB;
+  }
+  .glyphicon {
+    top: 3px;
+    margin-left: 3px;
+  }
+  .check, .count {
+    display: inline-block;
+    width: 20px;
+    text-align: center;
+  }
+  .agree, .disagree {
+    white-space: nowrap;
+  }
+  .agree .fa, .disagree .fa {
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+  }
+  .agree .check {
+    color: $inat-green;
+  }
+  .disagree .check {
+    color: $fail-red;
+  }
+  .count {
+    color: inherit;
+    text-align: center;
+  }
+  a.UserImage {
+    &:hover {
+      color: #fff;
+    }
+    display: inline-block;
+    margin-right: 5px;
+    background-size: cover;
+    background-position: center;
+    background-color: #aaa;
+    color: white;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+  }
+}

@@ -1,41 +1,92 @@
 @import "../../colors";
 @import "../../shared/user_text";
+@import "../../shared/annotations";
+@import "../../shared/observation_fields";
+@import "../../shared/quality_metrics";
+@import "../../shared/record_chooser_popover";
+@import "../../shared/activity_item";
 
-body > div > [role="dialog"] .modal-title {
-  line-height: 10px;
+.ObservationModal .modal-dialog {
+  width: 90% !important;
+  height: 90%;
+  display: flex;
 }
-body > div > [role="dialog"] .modal-header .close {
-  margin-top: 0;
+.ObservationModal .modal-dialog .modal-content,
+.ObservationModal .modal-dialog .modal-content .inner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
-.ObservationModal .modal-title .SplitTaxon {
-  line-height: 20px;
+.ObservationModal .modal-dialog .modal-content .inner {
+  border-radius: 6px;
+  overflow: hidden;
+}
+.ObservationModal .modal-dialog .modal-content .left-col,
+.ObservationModal .modal-dialog .modal-content .right-col {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+.ObservationModal .modal-dialog .modal-content .left-col {
+  padding: 15px 20px 10px;
+}
+.obs-modal-header .SplitTaxon.taxon,
+.obs-modal-header .quality_grade {
+  font-weight: bold;
+}
+.obs-modal-header .SplitTaxon.taxon .display-name {
+  font-size: 180%;
+  display: block;
+  maring-bottom: 2px;
+}
+.ObservationModal .modal-dialog .modal-content .right-col {
+  border-left: 2px solid #ddd;
+  background-color: $light-grey;
 }
 
-.bootstrap .ObservationModal .modal-footer .secondary-actions,
-body > div > [role="dialog"] .ObservationModal .modal-footer .secondary-actions {
-  text-align: left;
+$galleryHeightElements: "
+  .ObservationModal .image-gallery,
+  .ObservationModal .image-gallery-content,
+  .ObservationModal .image-gallery-content > div,
+  .ObservationModal .image-gallery-slides,
+  .ObservationModal .image-gallery-slide,
+  .ObservationModal .easyzoom,
+  .ObservationModal .easyzoom > a,
+  .ObservationModal .easyzoom > a img
+";
+ 
+#{$galleryHeightElements} {
+  display: block;
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
 
-.ObservationModal .TaxonMap {
-  height: 100px;
+.ObservationModal .easyzoom > a img {
+  object-position: 50% 50%;
 }
 
+.ObservationModal {
+  .TaxonMap {
+    height: 120px;
+    border-radius: 2px;
+    border: 1px solid #DDD;
+  }
+  .TaxonMap.empty {
+    text-align: center;
+    line-height: 120px;
+    background-color: #eee;
+    color: #999;
+  }
+}
 
-$image-gallery-height: 380px;
 .ObservationModal .image-gallery {
-  background-color: #eee;
   position: relative;
 }
 .ObservationModal .image-gallery-content {
   position: relative
 }
-.ObservationModal .image-gallery,
-.ObservationModal .image-gallery-content,
-.ObservationModal .sidebar {
-  height: $image-gallery-height;
-}
 .ObservationModal .image-gallery-content img {
-  height: $image-gallery-height;
   display: block;
   margin: 0 auto;
   width: auto;
@@ -44,7 +95,7 @@ $image-gallery-height: 380px;
   position: absolute;
   width: 100%;
   bottom: 0;
-  background-color: rgba(238,238,238,0.3);
+  background-color: rgba(255,255,255,0.3);
   padding: 5px;
   z-index: 1;
 }
@@ -55,28 +106,74 @@ $image-gallery-height: 380px;
 .image-gallery-slide {
   text-align: center;
 }
+.ObservationModal .media {
+  margin-bottom: 10px;
+  flex: 2;
+}
 .ObservationModal .sidebar {
   overflow-y: auto;
-  border-left: 1px solid #ddd;
+  display: flex;
+  flex: 2;
 }
-.ObservationModal .modal-title {
-  font-size: 16px;
+
+.ObservationModal .modal-dialog {
+  .btn-primary {
+    background-color: $inat-green;
+    border-color: $inat-green;
+  }
+  .btn-primary:hover,
+  .btn-primary:active,
+  .btn-primary:focus {
+    background-color: $inat-green;
+    border-color: $inat-green;
+  }
 }
-.ObservationModal .modal-title .titlebit {
-  color: #aaa;
-  margin-left: 10px;
-  font-size: 14px;
-  text-transform: uppercase;
+
+.ObservationModal .tools {
+  display: flex;
+  justify-content: space-between;
+  .form-group {
+    margin-bottom: 0;
+  }
+  .btn {
+    font-weight: bold;
+  }
+  .btn-link,
+  .btn-link:hover {
+    color: black;
+    text-decoration: none;
+  }
+  i {
+    color: $inat-green;
+  }
+  .link-btn:hover {
+    text-decoration: none;
+  }
+  .btn-checkbox {
+    text-align: left;
+    padding-left: 0;
+    text-transform: capitalize;
+    input {
+      margin-right: 5px;
+    }
+  }
+  .btn-keyboard-shortcuts {
+    padding-left: 0;
+    padding-right: 0;
+    i {
+      color: #999;
+      font-size: 20px;
+      line-height: 0;
+    }
+  }
 }
-.ObservationModal .modal-title .titlebit label {
-  margin-right: 5px;
-}
-.ObservationModal .modal-body {
+.ObservationModal .right-col .tools {
+  padding: 10px 20px;
   background-color: #eee;
-  min-height: $image-gallery-height + 30px;
 }
-.ObservationModal .modal-footer .form-group {
-  margin-bottom: 0;
+.ObservationModal .right-col .tools > * {
+  width: 100%;
+  margin: 2px;
 }
 .DiscussionListItem {
   padding: 10px;
@@ -120,18 +217,28 @@ $image-gallery-height: 380px;
   position: absolute;
   top: 50%;
   margin-top: -25px;
-  border-radius: 100px;
   font-size: 30px;
   font-weight: bold;
   width: 50px;
   height: 50px;
   line-height: 30px;
   text-align: center;
-  left: -100px;
+  left: -50px;
+  color: white;
+  background-color: transparent;
+  border: 0 transparent;
+}
+.ObservationModal .btn.nav-button:hover,
+.ObservationModal .btn.nav-button:active,
+.ObservationModal .btn.nav-button:focus,
+.ObservationModal .btn.nav-button:active:focus {
+  background-color: transparent;
+  border: 0 transparent;
+  color: white;
 }
 .ObservationModal .nav-button.next {
   left: auto;
-  right: -100px;
+  right: -50px;
 }
 
 
@@ -192,21 +299,14 @@ body > div > [role="dialog"] .btn-default.btn-checkbox.checked {
   background-color: $inat-green;
   color: white;
 }
-dl.keyboard-shortcuts,
-.keyboard-shortcuts dt,
-.keyboard-shortcuts dd { margin-bottom: 0px !important; }
-.keyboard-shortcuts dt {
-  width: 30px;
-  text-align: center;
-  display: inline-block;
+tr.keyboard-shortcuts td {
+  padding: 2px 10px 2px 0 !important;
 }
-.keyboard-shortcuts dd {
-  display: inline-block;
-}
-
-.captive-checkbox-wrapper {
-  display: inline-block;
-  margin-left: 10px;
+.keyboard-shortcuts td:first-child {
+  text-align: right;
+  white-space: nowrap;
+  font-weight: bold;
+  vertical-align: top;
 }
 
 .ObservationModal .photos.sounds .image-gallery {
@@ -226,16 +326,189 @@ dl.keyboard-shortcuts,
   font-size: smaller;
 }
 
-.UserText .content:after {
-  content: " ";
-  display: none;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 20px;
-  width: 100%;
-  background: linear-gradient(rgba(255, 255, 255, 0), #eee);
+.ObservationModal .sidebar .test {
+  position: relaitve;
+  top: -20px;
+  background-color: deeppink;
 }
-.UserText.truncated .content:after {
+
+body > div > [role="dialog"] .inat-tabs,
+.inat-tabs {
+  display: flex;
+  list-style: none;
+  padding: 0 20px;
+  margin: 0;
+  width: 100%;
+  background-color: #eee;
+}
+body > div > [role="dialog"] .inat-tabs li,
+.inat-tabs li {
+  text-align: center;
+  flex: 1;
+  display: flex;
+}
+body > div > [role="dialog"] .inat-tabs li a,
+.inat-tabs li a {
+  border: 0 transparent;
+  border-bottom: 3px solid transparent;
+  color: #555;
+  font-weight: bold;
+  text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
   display: block;
+  flex: 1;
+  line-height: 45px;
+}
+body > div > [role="dialog"] .inat-tabs li a:focus,
+.inat-tabs li a:focus {
+  text-decoration: none;
+}
+body > div > [role="dialog"] .inat-tabs li.active a,
+.inat-tabs li.active a {
+  border-bottom: 3px solid #74ac00;
+}
+
+
+body > div > [role="dialog"] .ObservationModal .modal-header {
+  min-height: 45px;
+  padding: 0;
+  display: flex;
+}
+.ObservationModal .modal-title {
+  width: 50%;
+}
+.ObservationModal .inat-tabs {
+  width: 50%;
+}
+
+.ObservationModal .inat-tab {
+  display: none;
+  padding: 20px;
+}
+.ObservationModal .inat-tab.active {
+  display: block;
+  width: 100%;
+}
+.ObservationModal .inat-tab.suggestions-tab,
+.ObservationModal .inat-tab.info-tab {
+  padding: 0;
+}
+.ObservationModal .inat-tab.active.info-tab {
+  display: flex;
+  flex-direction: column;
+}
+.ObservationModal .inat-tab.info-tab .info-tab-content {
+  flex: 2;
+  height: 100%;
+  overflow: auto;
+}
+
+.ObservationModal .inat-tab.info-tab .info-tab-inner {
+  padding: 20px;
+}
+
+.ObservationModal .map-and-details {
+  display: flex;
+  margin-bottom: 20px;
+}
+.ObservationModal .map-and-details .TaxonMap,
+.ObservationModal .map-and-details .details {
+  width: 50%;
+}
+.ObservationModal .map-and-details .details {
+  list-style: none;
+  padding-left: 20px;
+}
+.ObservationModal .map-and-details .details li {
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 4px;
+}
+.ObservationModal .map-and-details .details i {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  text-align: center;
+  display: block;
+  line-height: 16px;
+}
+
+.ObservationModal .column-header {
+  font-size: 18px;
+  margin-bottom: 10px;
+  text-transform: capitalize;
+
+  a {
+    color: black;
+  }
+  i {
+    color: $inat-green;
+  }
+}
+.ObservationModal .media .column-header {
+  visibility: hidden;
+}
+
+.ObservationModal,
+body > div > [role="dialog"] .ObservationModal {
+  .QualityMetrics tr.improve,
+  .QualityMetrics thead,
+  .Annotations thead {
+    background: rgba(174,174,174, 0.09);
+  }
+  .Annotations {
+    margin-bottom: 20px;
+    .agree,
+    .disagree {
+      text-align: left;
+    }
+  }
+  .QualityMetrics table {
+    margin-top: 0px;
+  }
+  .user-link {
+    color: black;
+  }
+  .login {
+    font-weight: bold;
+  }
+  .keyboard-shortcuts-container {
+    position: relative;
+  }
+  .observation-description {
+    margin-bottom: 20px;
+    a.more,
+    a.collapse {
+      font-weight: bold;
+    }
+  }
+}
+
+body > div > [role="dialog"] .ObservationModal .modal-body {
+  overflow: initial;
+}
+
+.ActivityItem,
+body > div > [role="dialog"] .ActivityItem {
+  .panel-heading {
+    padding: 7px 15px;
+  }
+  a.display-name {
+    font-size: 16px;
+  }
+  .has-com-name a.sciname {
+    font-size: 12px;
+  }
+  .panel {
+    margin-left: 50px;
+  }
+  i.taxon-image.icon {
+    font-size: 38px;
+    line-height: 38px;
+    color: black;
+    text-align: center;
+    text-align: center;
+  }
 }

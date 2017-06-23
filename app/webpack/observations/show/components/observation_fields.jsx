@@ -16,7 +16,7 @@ class ObservationFields extends React.Component {
   }
 
   render( ) {
-    const { observation, config } = this.props;
+    const { observation, config, placeholder } = this.props;
     const loggedIn = config && config.currentUser;
     if ( !observation || !observation.user || ( _.isEmpty( observation.ofvs ) && !loggedIn ) ) {
       return ( <span /> );
@@ -46,10 +46,61 @@ class ObservationFields extends React.Component {
             onSubmit={ r => {
               this.props.addObservationFieldValue( r );
             } }
+            placeholder={ placeholder }
           />
         </div>
       );
     }
+    const panelContent = (
+      <div>
+        { sortedFieldValues.map( ofv => {
+          if ( this.state.editingFieldValue && this.state.editingFieldValue.uuid === ofv.uuid ) {
+            return (
+              <ObservationFieldInput
+                observationField={ ofv.observation_field }
+                observationFieldValue={ ofv.value }
+                observationFieldTaxon={ ofv.taxon }
+                key={ `editing-field-value-${ofv.uuid}` }
+                setEditingFieldValue={ fieldValue => {
+                  this.setState( { editingFieldValue: fieldValue } );
+                }}
+                editing
+                hideFieldChooser
+                onCancel={ ( ) => {
+                  this.setState( { editingFieldValue: null } );
+                } }
+                onSubmit={ r => {
+                  if ( r.value !== ofv.value ) {
+                    this.props.updateObservationFieldValue( ofv.uuid, r );
+                  }
+                  this.setState( { editingFieldValue: null } );
+                } }
+              />
+            );
+          }
+          return (
+            <ObservationFieldValue
+              ofv={ ofv }
+              key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
+              setEditingFieldValue={ fieldValue => {
+                this.setState( { editingFieldValue: fieldValue } );
+              }}
+              { ...this.props }
+            />
+          );
+        } ) }
+        { addValueInput }
+      </div>
+    );
+
+    if ( !this.props.collapsible ) {
+      return (
+        <div className="ObservationFields">
+          { panelContent }
+        </div>
+      );
+    }
+
     const count = sortedFieldValues.length > 0 ? `(${sortedFieldValues.length})` : "";
     return (
       <div className="ObservationFields">
@@ -67,43 +118,7 @@ class ObservationFields extends React.Component {
           { I18n.t( "observation_fields" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
-          { addValueInput }
-          { sortedFieldValues.map( ofv => {
-            if ( this.state.editingFieldValue && this.state.editingFieldValue.uuid === ofv.uuid ) {
-              return (
-                <ObservationFieldInput
-                  observationField={ ofv.observation_field }
-                  observationFieldValue={ ofv.value }
-                  observationFieldTaxon={ ofv.taxon }
-                  key={ `editing-field-value-${ofv.uuid}` }
-                  setEditingFieldValue={ fieldValue => {
-                    this.setState( { editingFieldValue: fieldValue } );
-                  }}
-                  editing
-                  hideFieldChooser
-                  onCancel={ ( ) => {
-                    this.setState( { editingFieldValue: null } );
-                  } }
-                  onSubmit={ r => {
-                    if ( r.value !== ofv.value ) {
-                      this.props.updateObservationFieldValue( ofv.uuid, r );
-                    }
-                    this.setState( { editingFieldValue: null } );
-                  } }
-                />
-              );
-            }
-            return (
-              <ObservationFieldValue
-                ofv={ ofv }
-                key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
-                setEditingFieldValue={ fieldValue => {
-                  this.setState( { editingFieldValue: fieldValue } );
-                }}
-                { ...this.props }
-              />
-            );
-          } ) }
+          { panelContent }
         </Panel>
       </div>
     );
@@ -116,7 +131,13 @@ ObservationFields.propTypes = {
   addObservationFieldValue: PropTypes.func,
   removeObservationFieldValue: PropTypes.func,
   updateObservationFieldValue: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  collapsible: PropTypes.bool,
+  placeholder: PropTypes.string
+};
+
+ObservationFields.defaultProps = {
+  collapsible: true
 };
 
 export default ObservationFields;

@@ -1,9 +1,13 @@
 import iNaturalistJS from "inaturalistjs";
+import moment from "moment";
 import _ from "lodash";
 import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
+import { fetchSuggestions } from "../ducks/suggestions";
+import { setControlledTerms, fetchControlledTerms } from "../../show/ducks/controlled_terms";
+import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -16,6 +20,9 @@ const ADD_IDENTIFICATION = "add_identification";
 const ADD_COMMENT = "add_comment";
 const LOADING_DISCUSSION_ITEM = "loading_discussion_item";
 const STOP_LOADING_DISCUSSION_ITEM = "stop_loading_discussion_item";
+
+// order matters...
+const TABS = ["info", "suggestions", "annotations", "data-quality"];
 
 function showCurrentObservation( observation ) {
   return {
@@ -35,12 +42,26 @@ function receiveCurrentObservation( observation, others ) {
   } );
 }
 
-function updateCurrentObservation( observation, updates ) {
+function updateCurrentObservation( updates ) {
   return Object.assign( { }, {
     type: UPDATE_CURRENT_OBSERVATION,
-    observation,
     updates
   } );
+}
+
+export function fetchDataForTab( options = { } ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const observation = options.observation || s.currentObservation.observation;
+    if ( s.currentObservation.tab === "suggestions" ) {
+      dispatch( fetchSuggestions( ) );
+    } else if ( s.currentObservation.tab === "annotations" ) {
+      dispatch( setControlledTerms( [] ) );
+      dispatch( fetchControlledTerms( { observation } ) );
+    } else if ( s.currentObservation.tab === "data-quality" ) {
+      dispatch( fetchQualityMetrics( { observation } ) );
+    }
+  };
 }
 
 function fetchCurrentObservation( observation = null ) {
@@ -87,14 +108,28 @@ function fetchCurrentObservation( observation = null ) {
           currentState.currentObservation.observation &&
           currentState.currentObservation.observation.id === obs.id
         ) {
-          dispatch(
-            receiveCurrentObservation( newObs, {
-              captiveByCurrentUser,
-              reviewedByCurrentUser,
-              currentUserIdentification
-            } )
-          );
+          dispatch( receiveCurrentObservation( newObs, {
+            captiveByCurrentUser,
+            reviewedByCurrentUser,
+            currentUserIdentification
+          } ) );
         }
+        return newObs;
+      } )
+      .then( o => {
+        if ( o.place_ids && o.place_ids.length > 0 ) {
+          const placeIDs = _.take( o.place_ids, 100 );
+          return iNaturalistJS.places.fetch(
+            placeIDs, { per_page: 100, no_geom: true }
+          ).then( response => {
+            dispatch( updateCurrentObservation( { places: response.results } ) );
+            return Object.assign( o, { places: response.results } );
+          } );
+        }
+        return o;
+      } )
+      .then( finalObservation => {
+        dispatch( fetchDataForTab( { observation: finalObservation } ) );
       } );
   };
 }
@@ -142,6 +177,14 @@ function showPrevObservation( ) {
   };
 }
 
+function toggleKeyboardShortcuts( ) {
+  return ( dispatch, getState ) => {
+    dispatch( updateCurrentObservation( {
+      keyboardShortcutsShown: !getState( ).currentObservation.keyboardShortcutsShown
+    } ) );
+  };
+}
+
 function addIdentification( ) {
   return {
     type: ADD_IDENTIFICATION
@@ -182,7 +225,7 @@ function toggleCaptive( ) {
     const s = getState( );
     const observation = s.currentObservation.observation;
     const agree = observation.captiveByCurrentUser;
-    dispatch( updateCurrentObservation( observation, {
+    dispatch( updateCurrentObservation( {
       captiveByCurrentUser: !observation.captiveByCurrentUser,
       reviewedByCurrentUser: true
     } ) );
@@ -203,7 +246,7 @@ function toggleReviewed( optionalObs = null ) {
       s.currentObservation.observation &&
       observation.id === s.currentObservation.observation.id
     ) {
-      dispatch( updateCurrentObservation( observation, {
+      dispatch( updateCurrentObservation( {
         reviewedByCurrentUser: !reviewed
       } ) );
     }
@@ -228,10 +271,376 @@ function toggleReviewed( optionalObs = null ) {
 function loadingDiscussionItem( item ) {
   return { type: LOADING_DISCUSSION_ITEM, item };
 }
+
 function stopLoadingDiscussionItem( item ) {
   return { type: STOP_LOADING_DISCUSSION_ITEM, item };
 }
 
+export function addAnnotation( controlledAttribute, controlledValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = ( state.currentObservation.observation.annotations || [] ).concat( [{
+      controlled_attribute: controlledAttribute,
+      controlled_value: controlledValue,
+      user: state.config.currentUser,
+      api_status: "saving"
+    }] );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+
+    const payload = {
+      resource_type: "Observation",
+      resource_id: state.currentObservation.observation.id,
+      controlled_attribute_id: controlledAttribute.id,
+      controlled_value_id: controlledValue.id
+    };
+    // dispatch( callAPI( inatjs.annotations.create, payload ) );
+    iNaturalistJS.annotations.create( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function addAnnotationFromKeyboard( attributeLabel, valueLabel ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
+      return;
+    }
+    const attribute = s.controlledTerms.find( a => a.label === attributeLabel );
+    if ( !attribute ) { return; }
+    const value = attribute.values.find( v => v.label === valueLabel );
+    if ( !value ) { return; }
+    const existing = s.currentObservation.observation.annotations.find( a => {
+      return a.controlled_value && a.controlled_attribute &&
+        a.controlled_attribute.id === attribute.id &&
+        ( !a.controlled_attribute.multivalued || a.controlled_value.id === value.id );
+    } );
+    if ( !existing ) {
+      dispatch( addAnnotation( attribute, value ) );
+    }
+  };
+}
+
+export function deleteAnnotation( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
+      ( a.user.id === state.config.currentUser.id && a.uuid === id ) ?
+        Object.assign( { }, a, { api_status: "deleting" } ) : a
+    ) );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    // dispatch( callAPI( inatjs.annotations.delete, { id } ) );
+    iNaturalistJS.annotations.delete( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function voteAnnotation( id, voteValue ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
+      ( a.uuid === id ) ?
+        Object.assign( { }, a, {
+          api_status: "voting",
+          votes: ( a.votes || [] ).concat( [{
+            vote_flag: ( voteValue !== "bad" ),
+            user: state.config.currentUser,
+            api_status: "saving"
+          }] )
+        } ) : a
+    ) );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    // dispatch( callAPI( inatjs.annotations.vote, { id, vote: voteValue } ) );
+    iNaturalistJS.annotations.vote( { id, vote: voteValue } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function unvoteAnnotation( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    // if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
+      ( a.uuid === id ) ?
+        Object.assign( { }, a, {
+          api_status: "voting",
+          votes: _.map( a.votes, v => (
+            v.user.id === state.config.currentUser.id ?
+              Object.assign( { }, v, { api_status: "deleting" } ) : v
+          ) )
+        } ) : a
+    ) );
+    // dispatch( setAttributes( { annotations: newAnnotations } ) );
+    dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
+    iNaturalistJS.annotations.unvote( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function vote( scope, params = { } ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const payload = Object.assign( { }, { id: state.currentObservation.observation.id }, params );
+    if ( scope ) {
+      payload.scope = scope;
+      const newVotes = _.filter( state.currentObservation.observation.votes, v => (
+        !( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ) ).concat( [{
+          vote_flag: ( params.vote === "yes" ),
+          vote_scope: payload.scope,
+          user: state.config.currentUser,
+          api_status: "saving"
+        }] );
+      dispatch( updateCurrentObservation( { votes: newVotes } ) );
+    }
+    iNaturalistJS.observations.fave( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function unvote( scope ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const payload = { id: state.currentObservation.observation.id };
+    if ( scope ) {
+      payload.scope = scope;
+      const newVotes = _.map( state.currentObservation.observation.votes, v => (
+        ( v.user.id === state.config.currentUser.id && v.vote_scope === scope ) ?
+          Object.assign( { }, v, { api_status: "deleting" } ) : v
+      ) );
+      dispatch( updateCurrentObservation( { votes: newVotes } ) );
+    }
+    iNaturalistJS.observations.unfave( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function fave( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newFaves = state.currentObservation.observation.faves.concat( [{
+      votable_id: state.currentObservation.observation.id,
+      user: state.config.currentUser,
+      temporary: true
+    }] );
+    dispatch( updateCurrentObservation( { faves: newFaves } ) );
+    dispatch( vote( ) );
+  };
+}
+
+export function unfave( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newFaves = state.currentObservation.observation.faves.filter( f => (
+      f.user.id !== state.config.currentUser.id
+    ) );
+    dispatch( updateCurrentObservation( { faves: newFaves } ) );
+    dispatch( unvote( ) );
+  };
+}
+
+export function voteMetric( metric, params = { } ) {
+  if ( metric === "needs_id" ) {
+    return vote( "needs_id", { vote: ( params.agree === "false" ) ? "no" : "yes" } );
+  }
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newMetrics = _.filter( state.qualityMetrics, qm => (
+      !( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
+        observation_id: state.currentObservation.observation.id,
+        metric,
+        agree: ( params.agree !== "false" ),
+        created_at: moment( ).format( ),
+        user: state.config.currentUser,
+        api_status: "saving"
+      }] );
+    dispatch( setQualityMetrics( newMetrics ) );
+    const payload = Object.assign( { },
+      { id: state.currentObservation.observation.id, metric }, params );
+    iNaturalistJS.observations.setQualityMetric( payload, { fetchQualityMetrics: true } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function unvoteMetric( metric ) {
+  if ( metric === "needs_id" ) {
+    return unvote( "needs_id" );
+  }
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newMetrics = _.map( state.qualityMetrics, qm => (
+      ( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ?
+        Object.assign( { }, qm, { api_status: "deleting" } ) : qm
+    ) );
+    dispatch( setQualityMetrics( newMetrics ) );
+    const payload = { id: state.currentObservation.observation.id, metric };
+    iNaturalistJS.observations.deleteQualityMetric( payload, { fetchQualityMetrics: true } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function createFlag( className, id, flag, body ) {
+  return ( dispatch ) => {
+    const params = { flag: {
+      flaggable_type: className,
+      flaggable_id: id,
+      flag
+    }, flag_explanation: body };
+    iNaturalistJS.flags.create( params )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function deleteFlag( id ) {
+  return ( dispatch ) => {
+    iNaturalistJS.flags.delete( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function zoomCurrentPhoto( ) {
+  return ( ) => {
+    const div = $( ".image-gallery-slide.center .easyzoom" );
+    const easyZoom = div.data( "easyZoom" );
+    if ( !easyZoom ) { return; }
+    if ( easyZoom.isOpen ) {
+      easyZoom.hide( );
+    } else {
+      const e = new MouseEvent( "mouseover", {
+        clientX: div.offset( ).left + ( div.width( ) / 2 ),
+        clientY: div.offset( ).top + ( div.height( ) / 2 )
+      } );
+      easyZoom.show( e );
+    }
+  };
+}
+
+export function showPrevPhoto( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( ).currentObservation;
+    if (
+      !state.observation ||
+      !state.observation.photos ||
+      state.observation.photos.length <= 1
+    ) {
+      return;
+    }
+    let newCurrentIndex = state.imagesCurrentIndex || 0;
+    if ( newCurrentIndex > 0 ) {
+      newCurrentIndex = newCurrentIndex - 1;
+    }
+    dispatch( updateCurrentObservation( { imagesCurrentIndex: newCurrentIndex } ) );
+  };
+}
+
+export function showNextPhoto( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( ).currentObservation;
+    if (
+      !state.observation ||
+      !state.observation.photos ||
+      state.observation.photos.length <= 1
+    ) {
+      return;
+    }
+    let newCurrentIndex = state.imagesCurrentIndex || 0;
+    if ( newCurrentIndex < state.observation.photos.length - 1 ) {
+      newCurrentIndex = newCurrentIndex + 1;
+    }
+    dispatch( updateCurrentObservation( { imagesCurrentIndex: newCurrentIndex } ) );
+  };
+}
+
+export function showPrevTab( ) {
+  return ( dispatch, getState ) => {
+    let index = TABS.indexOf( getState( ).currentObservation.tab );
+    if ( index <= 0 ) {
+      index = 0;
+    } else {
+      index = index - 1;
+    }
+    dispatch( updateCurrentObservation( { tab: TABS[index] } ) );
+    dispatch( fetchDataForTab( ) );
+  };
+}
+
+export function showNextTab( ) {
+  return ( dispatch, getState ) => {
+    let index = TABS.indexOf( getState( ).currentObservation.tab );
+    if ( index < 0 ) {
+      index = 0;
+    } else if ( index < TABS.length - 1 ) {
+      index = index + 1;
+    }
+    dispatch( updateCurrentObservation( { tab: TABS[index] } ) );
+    dispatch( fetchDataForTab( ) );
+  };
+}
+
+export function addObservationFieldValue( options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !options.observationField ) { return; }
+    const newOfvs = _.clone( state.currentObservation.observation.ofvs );
+    newOfvs.unshift( {
+      datatype: options.observationField.datatype,
+      name: options.observationField.name,
+      value: options.value,
+      observation_field: options.observationField,
+      api_status: "saving",
+      taxon: options.taxon
+    } );
+    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
+    const payload = {
+      observation_field_id: options.observationField.id,
+      observation_id: state.currentObservation.observation.id,
+      value: options.value
+    };
+    iNaturalistJS.observation_field_values.create( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function updateObservationFieldValue( id, options ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !options.observationField ) { return; }
+    const newOfvs = state.currentObservation.observation.ofvs.map( ofv => (
+      ofv.uuid === id ? {
+        datatype: options.observationField.datatype,
+        name: options.observationField.name,
+        value: options.value,
+        observation_field: options.observationField,
+        api_status: "saving",
+        taxon: options.taxon
+      } : ofv ) );
+    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
+    const payload = {
+      id,
+      observation_field_id: options.observationField.id,
+      observation_id: state.currentObservation.observation.id,
+      value: options.value
+    };
+    iNaturalistJS.observation_field_values.update( payload )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+
+export function removeObservationFieldValue( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const newOfvs = state.currentObservation.observation.ofvs.map( ofv => (
+      ofv.uuid === id ? Object.assign( { }, ofv, { api_status: "deleting" } ) : ofv ) );
+    dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
+    iNaturalistJS.observation_field_values.delete( { id } )
+      .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
 
 export {
   SHOW_CURRENT_OBSERVATION,
@@ -245,6 +654,7 @@ export {
   ADD_IDENTIFICATION,
   LOADING_DISCUSSION_ITEM,
   STOP_LOADING_DISCUSSION_ITEM,
+  TABS,
   showCurrentObservation,
   hideCurrentObservation,
   fetchCurrentObservation,
@@ -258,5 +668,9 @@ export {
   toggleReviewed,
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
-  updateCurrentObservation
+  updateCurrentObservation,
+  toggleKeyboardShortcuts,
+  addObservationFieldValue,
+  removeObservationFieldValue,
+  updateObservationFieldValue
 };

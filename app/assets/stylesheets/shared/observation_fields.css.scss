@@ -1,0 +1,91 @@
+@import "../colors";
+.ObservationFields {
+  .observation-field {
+    margin-bottom: 20px;
+    textarea {
+      min-height: 125px;
+      border-radius: 3px;
+    }
+    .form-group {
+      margin-bottom: 10px;
+    }
+    .input-group-btn {
+      vertical-align: top;
+    }
+    &.editing {
+      background: #eef5e0;
+      padding: 10px;
+      button {
+        color: #fff;
+        background: $inat-green;
+      }
+    }
+  }
+  .panel {
+    .field-name {
+      margin: 15px 0px 10px;
+    }
+  }
+  .field-name {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+}
+
+.ObservationFieldValue {
+  margin-bottom: 10px;
+  .field {
+    font-weight: 600;
+    display: inline;
+    margin-right: 5px;
+    cursor: pointer;
+  }
+  .value {
+    display: inline;
+    .dna {
+      font-family: inherit;
+    }
+    .glyphicon-remove-circle {
+      cursor: pointer;
+    }
+  }
+}
+
+.ObservationFieldPopover.popover, .AnnotationPopover.popover {
+  padding: 0px !important;
+  max-width: 350px;
+  .popover-content {
+    padding: 0px;
+  }
+  .info, .edit {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e5e5e5;
+    .header {
+      font-size: 18px;
+      line-height: 28px;
+    }
+  }
+  .edit > div {
+    cursor: pointer;
+  }
+  .contents {
+    padding: 12px 14px;
+    .view {
+      color: #aaa;
+    }
+  }
+}
+
+.ObservationFieldPopover.popover {
+  .search {
+    line-height: 24px;
+    white-space: nowrap;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    a {
+      color: inherit;
+    }
+  }
+}

@@ -10,7 +10,8 @@ import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 
 const ActivityItem = ( { observation, item, config, deleteComment, deleteID, firstDisplay,
-                         restoreID, setFlaggingModalState, currentUserID, addID } ) => {
+                         restoreID, setFlaggingModalState, currentUserID, addID, linkTarget,
+                         hideCompare } ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
   const isID = !!taxon;
@@ -19,7 +20,13 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   let header;
   let className;
   const userLink = (
-    <a className="user" href={ `/people/${item.user.login}` }>{ item.user.login }</a>
+    <a
+      className="user"
+      href={ `/people/${item.user.login}` }
+      target={linkTarget}
+    >
+      { item.user.login }
+    </a>
   );
   if ( isID ) {
     let buttons = [];
@@ -33,7 +40,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         canAgree = true;
       }
     }
-    if ( firstDisplay ) {
+    if ( firstDisplay && !hideCompare ) {
       const compareTaxonID = taxon.rank_level <= 10 ?
         taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
       buttons.push( (
@@ -77,6 +84,8 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
           <SplitTaxon
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }
+            noParens
+            target={linkTarget}
           />
         </div>
         { buttonDiv }
@@ -117,13 +126,16 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   if ( item.taxon_change_id ) {
     const type = _.snakeCase( item.taxon_change_type );
     statuses.push( ( <span key={ `change-${item.id}` } className="item-status">
-      { I18n.t( "added_as_a_part_of" ) } <a href={ `/taxon_changes/${item.taxon_change_id}` }>
+      { I18n.t( "added_as_a_part_of" ) } <a
+        href={ `/taxon_changes/${item.taxon_change_id}` }
+        target={linkTarget}
+      >
         <i className="fa fa-refresh" /> { I18n.t( type ) }
       </a>
     </span> ) );
   }
   return (
-    <div className={ className }>
+    <div className={ `ActivityItem ${className} ${config.currentUser && item.user.id === config.currentUser.id ? "by-current-user" : "by-someone-else"}` }>
       <div className="icon">
         <UserImage user={ item.user } />
       </div>
@@ -137,6 +149,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             deleteID={ deleteID }
             restoreID={ restoreID }
             setFlaggingModalState={ setFlaggingModalState }
+            linkTarget={linkTarget}
           />
           <span className="time">
             { relativeTime }
@@ -161,7 +174,9 @@ ActivityItem.propTypes = {
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
   firstDisplay: PropTypes.bool,
-  setFlaggingModalState: PropTypes.func
+  setFlaggingModalState: PropTypes.func,
+  linkTarget: PropTypes.string,
+  hideCompare: PropTypes.bool
 };
 
 export default ActivityItem;

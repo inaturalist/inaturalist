@@ -102,6 +102,9 @@ es:
   x_species_link_html:
     one: <a href='%{url}'>1 especie</a>
     other: <a href='%{url}'>%{count} especies</a>
+  x_suggestions_filtered_by_colon:
+    one: "1 Sugerencias Filtrado por:"
+    other: "%{count} Sugerencias Filtrado por:"
   x_taxa_observed_html:
     one: <span class='count'>1</span> taxón observado</span>
     other: <span class='count'>%{count}</span> taxones observados</span>
@@ -208,7 +211,7 @@ es:
   add_link: Añadir enlace
   add_listed_taxa_from_observations: Añade taxones listados de las observaciones
   add_higher_level_taxon: Añade un taxón de más alto nivel (por ejemplo "aves")
-  add_id: Añade identificación
+  add_id: Añade ID
   add_it_to_place_raquo: Añádela a un lugar &raquo;
   add_more_photos: Añade más fotos
   add_new_lexicon: Añade léxico nuevo
@@ -556,6 +559,7 @@ es:
   back_to_post: '&laquo; De regreso a la nota'
   back_to_projects: Regresa a Proyectos
   back_to_shared_taxon: Regresa a %{sharedtaxon}
+  back_to_suggestions: Regresa a Sugerencias
   back_to_taxon: Regresa a %{defaulttaxon}
   back_to_taxon_changes: Volver a los cambios del taxón
   back_to_this: Regresa a %{place}
@@ -1004,6 +1008,7 @@ es:
   darr_apply_darr: '&darr; Aplicar &darr;'
   dashboard: Tablero
   data_deficient: datos insuficientes
+  data_quality: Calidad de Datos
   data_quality_assessment: Evaluación de la calidad de datos
   datatype: Tipo de datos
   date_: Fecha
@@ -1338,6 +1343,7 @@ es:
   filter_by: Filtrar por
   filter_by_curator_identification: Filtro por identificación del curador
   filter_by_place: Filtrar por lugar
+  filter_by_taxon: Filtrar por taxón
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando
     los controles.
   filter_list_by_this_taxon: Filtrar esta lista haciendo este taxón
@@ -1424,6 +1430,7 @@ es:
     recientes de %{place_name}, échale un ojo a
   for_more_information: para más información.
   forgot_your_password: ¿Olvidó su contraseña?
+  frequency: Frecuencia
   fri: vie
   from: de
   from_a_place: de un lugar
@@ -2064,6 +2071,7 @@ es:
   message: Mensaje
   messages: Mensajes
   mixed_licenses: Licencia combinada
+  misidentifications: Identificaciones Errónea
   misleading_or_illegal_content_html: "Contenido ilegal o engañoso, insultos raciales
     o étnicos, etc.\nMás información de nuestra definición de \"contenido apropriado\"
     en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>."
@@ -2202,7 +2210,10 @@ es:
   new_user_rules: Nuevas reglas de usuario
   new_users_week: Usuarios nuevos / Semana
   next: Siguiente
+  next_observation: Observación Siguiente
   next_page: Página siguiente
+  next_photo: Foto Siguiente
+  next_tab: Ficha Siguiente
   "no": "No"
   no_activity_in_the_past_week: No ha habido actividad en la semana anterior. !Es
     hora de
@@ -2228,6 +2239,7 @@ es:
     current_user: No has añadido identificaciones a ninguna observación.
     user: '%{user} no ha añadido identificaciones a ninguna observación.'
   no_interaction_data_available: Datos de interacción no disponibles
+  no_its_as_good_as_it_can_be: No, es tan bueno como puede ser
   no_favorites_added:
     current_user: No has añadido favoritos aún.
     user: '%{user} no ha añadido favoritos.'
@@ -2882,7 +2894,10 @@ es:
   previewing: Previzualizando...
   previous: Anterior
   prev: Anterior
+  previous_observation: Observación Anterior
   previous_page: Página anterior
+  previous_photo: Foto Anterior
+  previous_tab: Ficha Anterior
   print_in_browser: Imprimir desde el navegador
   privacy: Normativa de privacidad
   privacy_policy: Normativa de privacidad
@@ -3108,6 +3123,7 @@ es:
   research_grade_observations_have: Las observaciones de "grado de investigación"
     tienen una fecha, foto, coordenadas y una identificación apoyada por la comunidad.
     Haga clic para ver la evaluación de la calidad de LOS datos.
+  research_grade_qualification: Calificación de Grado de Investigación
   research_quality: Calidad de la investigación
   reset_search_filters: Restablecer los filtros de búsqueda
   reset_your_password: Restablecer su contraseña
@@ -3122,6 +3138,7 @@ es:
   review_all: Revisar todas
   review_verb: Revisar
   reviewed: Revisada
+  rg_observations: GI Observaciones
   roadmap: camino
   role: Permiso
   rotate_left: Girar a la izquierda
@@ -3226,6 +3243,7 @@ es:
   selected: seleccionado(s)
   selected_photos: Fotos seleccionada
   selected_taxon: Grupo o especie seleccionada
+  select_this_taxon: Seleccione Este Taxón
   send: enviada(s)
   send_invite: Enviar invitación
   send_invites_to: Enviar invitaciones a
@@ -3251,6 +3269,7 @@ es:
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
   show_counts: Mostrar conteos con base en la lista
+  show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_kml: Mostrar KML
   show_less: Mostrar menos
   show_more: Mostrar más
@@ -3475,6 +3494,7 @@ es:
   suggest_an_id: Sugerir un identificador
   suggest_or_require_that: Se sugiere o solicita que los contribuyentes llenen estos
     campos para las observaciones que añadan a tu proyecto.
+  suggestions: Sugerencias
   summary: Resumen
   suspicious_photos: Fotos sospechosas
   siutable_observations: observaciones que puedes invitar
@@ -3936,6 +3956,7 @@ es:
   user_added_an_x_to_noun_by_html: '%{user} añadió una %{x} a %{noun} de %{by}'
   user_added_a_x_to_noun_by_html: '%{user} añadió un %{x} a %{noun} de %{by}'
   user_added_x_observations_html: '%{user} agregó %{x} observaciones'
+  user_commented: "%{user} comentó"
   user_commented_on: '%{user} comentó sobre su %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} preferido %{noun} por %{owner}'
   user_follows: '%{user} sigue a'
@@ -3958,7 +3979,8 @@ es:
   user_is_a_naturalist: '%{user} es un naturalista!'
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
-  user_s_lists: '%Listas {user}'
+  user_s_lists: 'Listas %{user}'
+  user_suggested_an_id: '%{user} sugirió una identificación'
   user_thinks_yours_is: '%{user} %{noun} su observación %{observation} es'
   username: Nombre de usuario
   username_or_email: Nombre de usuario o email
@@ -4026,6 +4048,7 @@ es:
   view_observations: Ver observaciones
   view_observation_flags: Ver marcas de observación
   view_observations_by_everyone: Ver las observaciones de todos
+  view_observations_of_this_taxon_by: Ver observaciones de este taxón por
   view_observations_raquo: Ver observaciones &raquo;
   view_on: Ver en
   view_on_amphibiaweb: Ver en AmphibiaWeb
@@ -4398,6 +4421,7 @@ es:
     de %{provider}
   zoom_in: Acercar Zoom
   zoom_out: Alejar Zoom
+  zoom_photo: Ampliar Foto
   zoom_to_taxon_name: Acercar a %{taxonname}
   zoom_to_x: Ir a %{x}
   your_dashboard_helps_you: El tablero te ayuda a dar seguimiento a lo que está haciendo

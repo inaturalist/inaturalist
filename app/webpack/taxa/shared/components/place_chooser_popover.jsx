@@ -89,27 +89,50 @@ class PlaceChooserPopover extends React.Component {
   }
 
   setPlacesFromProps( props ) {
-    if ( props.defaultPlace ) {
+    const usableProps = Object.assign( { }, props, this.props );
+    if ( usableProps.defaultPlace ) {
       let newPlaces = this.state.places;
-      newPlaces = _.filter( newPlaces, p => p.id !== props.defaultPlace.id );
-      newPlaces.splice( 0, 0, props.defaultPlace );
+      newPlaces = _.filter( newPlaces, p => p.id !== usableProps.defaultPlace.id );
+      newPlaces.splice( 0, 0, usableProps.defaultPlace );
       this.setState( { places: newPlaces } );
+    }
+    if ( usableProps.defaultPlaces ) {
+      let newPlaces = usableProps.defaultPlaces;
+      if ( usableProps.defaultPlace ) {
+        newPlaces = _.filter( newPlaces, p => p.id !== usableProps.defaultPlace.id );
+        newPlaces.splice( 0, 0, usableProps.defaultPlace );
+        this.setState( { places: newPlaces } );
+      }
+      this.setState( { places: newPlaces } );
+    } else if (
+      usableProps.place &&
+      usableProps.place.ancestor_place_ids && usableProps.place.ancestor_place_ids.length > 0
+    ) {
+      this.fetchPlaces( usableProps.place.ancestor_place_ids );
     }
   }
 
-  fetchPlaces( text ) {
-    inatjs.places.autocomplete( { q: text } ).then( response => {
-      let newPlaces = response.results;
-      if (
-        this.props.defaultPlace &&
-        this.props.place &&
-        this.props.place.id !== this.props.defaultPlace.id
-      ) {
-        newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
-        newPlaces.splice( 0, 0, this.props.defaultPlace );
-      }
-      this.setState( { places: newPlaces } );
-    } );
+  handlePlacesResponse( response ) {
+    let newPlaces = response.results;
+    if (
+      this.props.defaultPlace &&
+      this.props.place &&
+      this.props.place.id !== this.props.defaultPlace.id
+    ) {
+      newPlaces = _.filter( newPlaces, p => p.id !== this.props.defaultPlace.id );
+      newPlaces.splice( 0, 0, this.props.defaultPlace );
+    }
+    this.setState( { places: newPlaces } );
+  }
+
+  searchPlaces( text ) {
+    const that = this;
+    inatjs.places.autocomplete( { q: text, geo: false } ).then( response => that.handlePlacesResponse( response ) );
+  }
+
+  fetchPlaces( ids ) {
+    const that = this;
+    inatjs.places.fetch( ids ).then( response => that.handlePlacesResponse( response ) );
   }
 
   highlightNext( ) {
@@ -151,12 +174,15 @@ class PlaceChooserPopover extends React.Component {
   }
 
   render( ) {
-    const { place, className } = this.props;
+    const {
+      place, className, container, preIconClass, postIconClass, label
+    } = this.props;
     return (
       <OverlayTrigger
         trigger="click"
         placement="bottom"
         rootClose
+        container={container}
         onEntered={( ) => {
           this.bindArrowKeys( );
           $( "input", ReactDOM.findDOMNode( this.refs.input ) ).focus( );
@@ -165,7 +191,7 @@ class PlaceChooserPopover extends React.Component {
           this.unbindArrowKeys( );
         }}
         overlay={
-          <Popover id="place-chooser" className="PlaceChooserPopover">
+          <Popover id="place-chooser" className="PlaceChooserPopover RecordChooserPopover">
             <Input
               type="text"
               placeholder={I18n.t( "search" )}
@@ -175,7 +201,7 @@ class PlaceChooserPopover extends React.Component {
                 if ( text.length === 0 ) {
                   this.setState( { places: [] } );
                 } else {
-                  this.fetchPlaces( text );
+                  this.searchPlaces( text );
                 }
               }}
             />
@@ -227,14 +253,16 @@ class PlaceChooserPopover extends React.Component {
         }
       >
         <div
-          className={`PlaceChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
+          className={`PlaceChooserPopoverTrigger RecordChooserPopoverTrigger ${place ? "chosen" : ""} ${className}`}
         >
-          <i className="fa fa-map-marker"></i>
+          { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
+          { label ? ( <label>{ label }</label> ) : null }
           {
             place ?
               I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
               :
               _.startCase( I18n.t( "filter_by_place" ) ) }
+          { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
         </div>
       </OverlayTrigger>
     );
@@ -244,9 +272,18 @@ class PlaceChooserPopover extends React.Component {
 PlaceChooserPopover.propTypes = {
   place: PropTypes.object,
   defaultPlace: PropTypes.object,
+  defaultPlaces: PropTypes.array,
   className: PropTypes.string,
   setPlace: PropTypes.func,
-  clearPlace: PropTypes.func
+  clearPlace: PropTypes.func,
+  container: PropTypes.object,
+  preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
+  postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
+  label: PropTypes.string
+};
+
+PlaceChooserPopover.defaultProps = {
+  preIconClass: "fa fa-map-marker"
 };
 
 export default PlaceChooserPopover;

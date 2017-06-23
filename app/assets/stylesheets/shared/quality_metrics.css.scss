@@ -1,0 +1,80 @@
+@import "../colors";
+
+.QualityMetrics {
+  margin-bottom: 40px;
+  .metric_title .fa {
+    font-size: 18px;
+    color: #999999;
+    padding: 0px 5px;
+    width: 35px;
+    text-align: center;
+  }
+  .grade {
+    font-size: 18px;
+    font-weight: 100;
+    margin: 25px 0px 25px;
+  }
+  .flag_link {
+    color: $other-link-color;
+    cursor: pointer;
+  }
+  .text {
+    font-size: 16px;
+  }
+  tr.flags.flagged {
+    background: #F2DEDE;
+    .metric_title .fa {
+      color: $fail-red;
+    }
+    a {
+      color: $other-link-color;
+      margin-left: 10px;
+    }
+  }
+  tr.improve {
+    background: $light-grey;
+    .inputs {
+      margin-left: 35px;
+      .yes, .no {
+        display: inline-block;
+      }
+      .yes {
+        width: 150px;
+      }
+      label {
+        margin-left: 5px;
+        font-weight: normal;
+        &.bold {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  h3 {
+    margin-top: 30px;
+  }
+  table {
+    margin-top: 15px;
+  }
+  thead {
+    background: $light-grey;
+    th {
+      font-weight: 600;
+      border-bottom: 1px !important;
+
+    }
+  }
+  .flagging {
+    &.alert {
+      font-weight: 600;
+    }
+    .fa {
+      margin-right: 5px;
+    }
+    a.view {
+      font-weight: normal;
+      float: right;
+      color: $bootstrap-link-color;
+    }
+  }
+}
