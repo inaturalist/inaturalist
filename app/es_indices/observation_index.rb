@@ -18,7 +18,7 @@ class Observation < ActiveRecord::Base
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user, :taxon ] },
+    { identifications: [ :user, :taxon, :stored_preferences ] },
     { comments: :user } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
