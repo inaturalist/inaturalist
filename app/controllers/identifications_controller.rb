@@ -174,7 +174,7 @@ class IdentificationsController < ApplicationController
           Observation.refresh_es_index
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(
-            :methods => [:html], 
+            :methods => [:html, :vision], 
             :include => {
               :observation => {:methods => [:iconic_taxon_name]}
             }

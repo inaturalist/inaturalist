@@ -53,6 +53,8 @@ class Identification < ActiveRecord::Base
   attr_accessor :html
   attr_accessor :captive_flag
 
+  preference :vision, :boolean, default: false
+
   %w(improving supporting leading maverick).each do |category|
     const_set category.upcase, category
     define_method "#{category}?" do
@@ -362,6 +364,14 @@ class Identification < ActiveRecord::Base
   def mentioned_users
     return [ ] unless body
     body.mentioned_users
+  end
+
+  def vision
+    prefers_vision?
+  end
+
+  def vision=( val )
+    self.preferred_vision = val
   end
 
   # Static ##################################################################

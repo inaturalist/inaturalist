@@ -47,7 +47,8 @@ class Identification < ActiveRecord::Base
       created_at_details: ElasticModel.date_details(created_at),
       body: body,
       category: category,
-      current: current
+      current: current,
+      vision: vision
     }
     if observation && taxon && !options[:no_details]
       json.merge!({
