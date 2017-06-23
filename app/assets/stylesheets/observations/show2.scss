@@ -5,6 +5,7 @@
 @import "../shared/quality_metrics";
 @import "../shared/loading_spinner";
 @import "../shared/activity_item";
+@import "../shared/taxon_autocomplete";
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 
@@ -203,32 +204,6 @@ input.failed {
     height: 40px;
     line-height: 40px;
     margin: 3px;
-  }
-}
-
-.TaxonAutocomplete {
-  .ui-autocomplete {
-    font-size: 1.0em;
-    li {
-      width: 100%;
-    }
-    li.ui-state-focus {
-      background: #f6f6f6;
-    }
-    .ac-label {
-      padding: 0px 9px;
-    }
-  }
-  .ac-select-thumb {
-    margin: 0;
-    padding: 0;
-    height: 34px;
-    width: 34px;
-    text-align: center;
-    .glyphicon-search {
-      top: 3px;
-      left: 1px;
-    }
   }
 }
 

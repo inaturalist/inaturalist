@@ -5,6 +5,7 @@
 @import "../../shared/quality_metrics";
 @import "../../shared/record_chooser_popover";
 @import "../../shared/activity_item";
+@import "../../shared/taxon_autocomplete";
 
 .ObservationModal .modal-dialog {
   width: 90% !important;
@@ -484,6 +485,11 @@ body > div > [role="dialog"] .ObservationModal {
       font-weight: bold;
     }
   }
+  .ObservationFields {
+    .observation-field {
+      margin-top: 20px;
+    }
+  }
 }
 
 body > div > [role="dialog"] .ObservationModal .modal-body {
@@ -510,5 +516,24 @@ body > div > [role="dialog"] .ActivityItem {
     color: black;
     text-align: center;
     text-align: center;
+  }
+}
+
+.ui-autocomplete {
+  .ac-result {
+    font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+    .ac-label {
+      padding: 7px 12px;
+      color: #555;
+      .title {
+        font-size: 1.0em;
+      }
+    }
+  }
+  .ac-thumb i.icon {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: 3px;
   }
 }
