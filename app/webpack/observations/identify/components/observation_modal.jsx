@@ -211,6 +211,11 @@ class ObservationModal extends React.Component {
       } );
     }
 
+    let tabs = TABS;
+    if ( blind ) {
+      tabs = [tabs[0]];
+    }
+
     return (
       <Modal
         show={visible}
@@ -377,7 +382,7 @@ class ObservationModal extends React.Component {
           </div>
           <div className="right-col">
             <ul className="inat-tabs">
-              {TABS.map( tabName => (
+              {tabs.map( tabName => (
                 <li className={tab === tabName ? "active" : ""}>
                   <a
                     href="#"
@@ -399,11 +404,13 @@ class ObservationModal extends React.Component {
                     <div className="map-and-details">
                       { taxonMap }
                       <ul className="details">
-                        <li>
-                          <a href={`/people/${observation.user.login}`} target="_blank" className="user-link">
-                            <i className="icon-person"></i> <span className="login">{ observation.user.login }</span>
-                          </a>
-                        </li>
+                        { blind ? null : (
+                          <li>
+                            <a href={`/people/${observation.user.login}`} target="_blank" className="user-link">
+                              <i className="icon-person"></i> <span className="login">{ observation.user.login }</span>
+                            </a>
+                          </li>
+                        ) }
                         <li>
                           <i className="fa fa-calendar"></i> {
                             observation.observed_on ?
@@ -415,15 +422,23 @@ class ObservationModal extends React.Component {
                         <li>
                           <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
-                        <li>
-                          <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
-                            <i className="icon-link-external"></i>
-                            { I18n.t( "view_observation" ) }
-                          </a>
-                        </li>
+                        { blind ? null : (
+                          <li>
+                            <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
+                              <i className="icon-link-external"></i>
+                              { I18n.t( "view_observation" ) }
+                            </a>
+                          </li>
+                        ) }
                       </ul>
                     </div>
-                    <UserText text={observation.description} truncate={200} className="observation-description" />
+                    { blind ? null : (
+                      <UserText
+                        text={observation.description}
+                        truncate={200}
+                        className="observation-description"
+                      />
+                    ) }
                     <DiscussionListContainer observation={observation} />
                     <center className={loadingDiscussionItem ? "loading" : "loading collapse"}>
                       <div className="big loading_spinner" />

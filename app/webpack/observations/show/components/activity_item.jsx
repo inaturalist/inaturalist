@@ -135,7 +135,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     </span> ) );
   }
   return (
-    <div className={ `ActivityItem ${className}` }>
+    <div className={ `ActivityItem ${className} ${config.currentUser && item.user.id === config.currentUser.id ? "by-current-user" : "by-someone-else"}` }>
       <div className="icon">
         <UserImage user={ item.user } />
       </div>
