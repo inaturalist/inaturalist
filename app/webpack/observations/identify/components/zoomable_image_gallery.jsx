@@ -29,17 +29,6 @@ class ZoomableImageGallery extends ImageGallery {
       },
       loadingNotice: I18n.t( "loading" )
     } );
-    // Close the zoomed image when mouse is out of the container. This solves an
-    // ipad problem in which the image would get stuck in the zoomed in mode,
-    // and a resolves a request that the image unzoom when you click outside of
-    // it. Maybe it should be optional?
-    easyZoomTarget.on( {
-      "mouseleave.easyzoom touchend.easyzoom": () => {
-        _.each( easyZoomTarget, t => {
-          $( t ).data( "easyZoom" )._onLeave( );
-        } );
-      }
-    } );
   }
 
   componentDidUpdate( prevProps ) {
