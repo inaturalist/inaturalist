@@ -1280,6 +1280,7 @@ ko:
   kml: KML
   kml_file_size_error: KML은 1MB보다 크기가 작아야 합니다.
   labels: 라벨
+  location_private: 위치 비공개
   location_unknown: 위치 알 수 없음
   language_slash_type: 언어 / 유형
   large: 크게
@@ -1668,6 +1669,7 @@ ko:
   obscured_description: 실제 좌표 반경 10KM 이내의 임의의 지점으로 표시된 공용 좌표입니다. 실제 좌표는 당신이 관찰을 추가한
     프로젝트의 당신과 큐레이터에게만 보입니다.
   observation: 관찰
+  observation_: 관찰
   observation_added: 관찰 추가함
   observation_added_to_the_project: '%{project}에 관찰 추가됨'
   observation_aggregation: 관찰 집합
@@ -1684,6 +1686,7 @@ ko:
   observation_fields: 관찰 필드
   observation_fields_are_additional: 관찰 필드는 관찰에 추가로 데이터 입력 필드를 더할 수 있는 필드입니다.
   observations: 관찰
+  observations_: 관찰
   observations_added_by_x_html: '%{x}에 의해 관찰이 추가되었습니다.'
   observations_by: '이 사용자의 관찰들:'
   observations_by_user: '%{user}의 관찰'
@@ -1818,6 +1821,7 @@ ko:
   previous_page: 이전 문서
   privacy: 개인정보 정책
   privacy_policy: 개인정보 정책
+  private_: 비공개
   private_description: 공개된 지도에서 좌표가 표시되지 않습니다. 실제 좌표는 본인과 관찰이 속해있는 프로젝트의 큐레이터만 볼 수
     있습니다. 사적인 좌표의 관찰이라도 장소 체크리스트를 확인하는 데에는 사용됩니다.
   processing3p: 처리 중...

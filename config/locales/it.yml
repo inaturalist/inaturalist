@@ -71,7 +71,9 @@ it:
     other: <span class="count">%{count}</span> taxa corrispondenti
   x_misidentifications_of_this_species:
     other: =1 identificazione errata di questa specie
-  x_observations: '{{PLURALE|one=1 osservazione|%{count} osservazioni}}'
+  x_observations:
+    one: 1 osservazione
+    other: '%{count} osservazioni'
   x_observations_:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -1755,6 +1757,7 @@ it:
   labels: Etichette
   label_to_group_a_batch_of_taxon_changes: Etichetta per raggruppare una serie di
     modifiche dei taxa
+  location_private: Posizione privata
   location_unknown: Posizione sconosciuta
   language_slash_type: Lingua / Tipo
   large: grande
@@ -2359,6 +2362,7 @@ it:
     punto casuale all'interno di un raggio di 10 Km dalle coordinate reali. Le coordinate
     vere sono visibili solo a te e ai curatori dei progetti a cui hai aggiunto l'osservazione.
   observation: Osservazione
+  observation_: osservazione
   observation_added: Osservazione aggiunta.
   observation_added_to_the_project: Osservazione aggiunta al progetto "%{project}"
   observation_aggregation: Aggregazione di osservazioni
@@ -2395,6 +2399,7 @@ it:
   observation_without_photo: Osservazione senza foto
   observation_would_like_some_help: '%{user} vorrebbe un aiuto per l''identificazione!'
   observations: Osservazioni
+  observations_: osservazioni
   observations_added_by_x_html: Osservazione aggiunta da %{x}
   observations_annotated_with_annotation: Osservazione annotata con %{annotation}
   observations_by: Le osservazioni di
@@ -2906,6 +2911,7 @@ it:
   privacy: Informativa sulla privacy
   privacy_policy: Informativa sulla privacy
   private: privata
+  private_: Privato
   private_description: Le coordinate sono completamente nascoste al pubblico, le coordinate
     reali sono visibili solo a te e ai curatori dei progetti a cui ha aggiunto l'osservazione.
     Le osservazioni con coordinate private saranno comunque usate per verificare le
