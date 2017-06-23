@@ -196,9 +196,13 @@ export function fetchSuggestions( query ) {
     }
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
-    return inatjs.taxa.suggest( sanitizeQuery( newQuery ) ).then( suggestions => {
+    const sanitizedQuery = sanitizeQuery( newQuery );
+    const queryWithLocale = Object.assign( {}, sanitizedQuery, {
+      locale: I18n.locale
+    } );
+    return inatjs.taxa.suggest( queryWithLocale ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
-      if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizeQuery( newQuery ) ) ) {
+      if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );
         dispatch( setSuggestions( suggestions ) );
       }

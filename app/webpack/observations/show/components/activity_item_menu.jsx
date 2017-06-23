@@ -88,7 +88,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     menuItems.push( ( <MenuItem divider key={ `id-menu-divider-${item.id}` } /> ) );
     menuItems.push( ( <div key={ `id-menu-links-${item.id}` } className="search-links">
       <div className="text-muted">
-        View observations of this taxon by:
+        { I18n.t( "view_observations_of_this_taxon_by" ) }:
       </div> { searchLinks }
     </div> ) );
   } else {
