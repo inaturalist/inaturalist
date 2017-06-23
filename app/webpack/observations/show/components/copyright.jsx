@@ -14,7 +14,7 @@ class Copyright extends React.Component {
 
   render( ) {
     const { observation, config } = this.props;
-    if ( !observation ) { return ( <span /> ); }
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
     let application;
     if ( observation.application && observation.application.name ) {

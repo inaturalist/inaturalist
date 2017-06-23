@@ -13,6 +13,9 @@ $fail-red: #D9534F;
   .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
     height: 100%;
   }
+  .figureShadow--jss-0-5 {
+    display: none;
+  }
   .content--jss-0-1 {
     width: 100%;
     img {
@@ -571,6 +574,7 @@ a.UserImage {
   }
   .FollowButton {
     float: right;
+    line-height: 32px;
     .unfollow {
       color: #468cc7;
       margin-left: 5px;
@@ -2205,6 +2209,40 @@ h3, h4 {
       .name {
         vertical-align: middle;
       }
+    }
+  }
+}
+
+.PreviousNextButtons {
+  float: right;
+  margin-top: 23px;
+  .previous {
+    float: left;
+    padding-right: 2px;
+  }
+  .next {
+    float: left;
+    padding-left: 2px;
+  }
+  .previous, .next {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: $inat-green;
+    border-radius: 15px;
+    cursor: pointer;
+    padding-top: 3px;
+    text-align: center;
+    &.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    &:not(:first-child) {
+      margin-left: 8px;
+    }
+    .fa {
+      font-size: 14px;
+      color: white;
     }
   }
 }

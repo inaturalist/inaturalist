@@ -26,6 +26,7 @@ import MoreFromUserContainer from "../containers/more_from_user_container";
 import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
 import PhotoBrowserContainer from "../containers/photo_browser_container";
+import PreviousNextButtonsContainer from "../containers/previous_next_buttons_container";
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
@@ -132,7 +133,7 @@ const App = ( {
       <div className="upper">
         <Grid>
           <Row className="title_row">
-            <Col xs={ viewerIsObserver ? 10 : 12 }>
+            <Col xs={ 10 }>
               <div className="ObservationTitle">
                 <SplitTaxon
                   taxon={ observation.taxon }
@@ -179,7 +180,7 @@ const App = ( {
                     Edit Licensing
                   </MenuItem>
                 </SplitButton>
-              </Col> ) : ""
+              </Col> ) : ( <FollowButtonContainer /> )
             }
           </Row>
           <Row>
@@ -191,7 +192,7 @@ const App = ( {
                   </Col>
                   <Col xs={5} className="info_column">
                     <div className="user_info">
-                      { !viewerIsObserver ? ( <FollowButtonContainer /> ) : null }
+                      <PreviousNextButtonsContainer />
                       <UserWithIcon user={ observation.user } />
                     </div>
                     <Row className="date_row">
@@ -313,8 +314,10 @@ App.propTypes = {
   controlledTerms: PropTypes.array,
   leaveTestGroup: PropTypes.func,
   observation: PropTypes.object,
+  otherObservations: PropTypes.object,
   deleteObservation: PropTypes.func,
-  setLicensingModalState: PropTypes.func
+  setLicensingModalState: PropTypes.func,
+  showNewObservation: PropTypes.func
 };
 
 export default App;

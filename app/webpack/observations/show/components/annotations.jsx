@@ -136,7 +136,7 @@ class Annotations extends React.Component {
         <td className="disagree">
           <span className="check">
             { mostDisagree ? (
-              <i className="fa fa-check" />
+              <i className="fa fa-times" />
             ) : null }
           </span>
           <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } />

@@ -61,6 +61,8 @@ class MediaViewer extends Component {
   }
 
   render( ) {
+    const { observation } = this.props;
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     let images = this.props.observation.photos.map( photo => {
       let original = photo.photoUrl( "original" );
       let large = photo.photoUrl( "large" );
