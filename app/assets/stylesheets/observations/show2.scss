@@ -8,6 +8,56 @@
 @import "../../../../node_modules/react-image-gallery/src/ImageGallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 
+$bootstrap-link-color: #428BCA;
+$other-link-color: #337AB7;
+$light-grey: #F7F7F7;
+$border-grey: #DDD;
+$fail-red: #D9534F;
+
+#react-images-container {
+  .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
+    height: 100%;
+  }
+  .figureShadow--jss-0-5 {
+    display: none;
+  }
+  .content--jss-0-1 {
+    width: 100%;
+    img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    .easyzoom {
+      cursor: default;
+      & > a {
+        cursor: default;
+        img {
+          cursor: zoom-in !important;
+        }
+      }
+      .easyzoom-flyout {
+        z-index: 2001;
+        cursor: zoom-out !important;
+        img {
+          margin: 0px;
+        }
+        &.short img {
+          margin-top: auto;
+          margin-bottom: auto;
+        }
+        &.narrow img {
+          margin-left: auto;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+
 body {
   min-width: 980px;
 }
@@ -267,6 +317,9 @@ a.UserImage {
         .image-gallery, .image-gallery-content, .image-gallery-content div {
           height: 100%;
         }
+        .image-gallery {
+          cursor: zoom-in;
+        }
         .image-gallery-slides .easyzoom-flyout {
           height: 441px;
         }
@@ -338,12 +391,14 @@ a.UserImage {
         .image-gallery-thumbnail img {
           border: 3px solid transparent;
           width: 50px;
+          cursor: pointer;
         }
         .image-gallery-thumbnail.active img {
           border: 3px solid $inat-green;
         }
         .image-gallery-thumbnails-container {
           transform: none !important;
+          cursor: default;
         }
         &.empty {
           font-size: 36px;
@@ -524,6 +579,7 @@ a.UserImage {
   }
   .FollowButton {
     float: right;
+    line-height: 32px;
     .unfollow {
       color: #468cc7;
       margin-left: 5px;
@@ -1243,6 +1299,7 @@ h3, h4 {
     display: inline-block;
     margin-bottom: 15px;
     .UserWithIcon {
+      padding-right: 15px;
       .icon {
         margin-right: 5px;
       }
@@ -1251,6 +1308,9 @@ h3, h4 {
         line-height: 14px;
         padding-top: 8px;
         font-weight: 700;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
       }
       .subtitle {
         color: #808080;
@@ -1844,6 +1904,40 @@ h3, h4 {
       .name {
         vertical-align: middle;
       }
+    }
+  }
+}
+
+.PreviousNextButtons {
+  float: right;
+  margin-top: 23px;
+  .previous {
+    float: left;
+    padding-right: 2px;
+  }
+  .next {
+    float: left;
+    padding-left: 2px;
+  }
+  .previous, .next {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background: $inat-green;
+    border-radius: 15px;
+    cursor: pointer;
+    padding-top: 3px;
+    text-align: center;
+    &.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    &:not(:first-child) {
+      margin-left: 8px;
+    }
+    .fa {
+      font-size: 14px;
+      color: white;
     }
   }
 }

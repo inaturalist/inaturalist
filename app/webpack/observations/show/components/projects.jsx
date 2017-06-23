@@ -65,7 +65,7 @@ class Projects extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
-    if ( !observation ) {
+    if ( !observation || !observation.user ) {
       return ( <span /> );
     }
     let addProjectInput;

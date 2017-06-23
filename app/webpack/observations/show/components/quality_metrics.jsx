@@ -22,7 +22,7 @@ class QualityMetrics extends React.Component {
       <span>
         <span className="check">
           { isMajority ? (
-            <i className="fa fa-check" />
+            <i className={ `fa ${isAgree ? "fa-check" : "fa-times"}` } />
           ) : null }
         </span>
         <i className={ `fa ${className}` } onClick={ () => {
@@ -195,7 +195,9 @@ class QualityMetrics extends React.Component {
 
   render( ) {
     const observation = this.props.observation;
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const checkIcon = ( <i className="fa fa-check check" /> );
+    const xIcon = ( <i className="fa fa-times check" /> );
     const hasMedia = ( observation.photos.length + observation.sounds.length ) > 0;
     const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );
     const atLeastGenus = ( observation.taxon && observation.taxon.rank_level <= 20 );
@@ -239,7 +241,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "date_specified" ) }
               </td>
               <td className="agree">{ observation.observed_on ? checkIcon : null }</td>
-              <td className="disagree">{ observation.observed_on ? null : checkIcon }</td>
+              <td className="disagree">{ observation.observed_on ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -247,7 +249,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "location_specified" ) }
               </td>
               <td className="agree">{ observation.location ? checkIcon : null }</td>
-              <td className="disagree">{ observation.location ? null : checkIcon }</td>
+              <td className="disagree">{ observation.location ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -255,7 +257,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "has_photos_or_sounds" ) }
               </td>
               <td className="agree">{ hasMedia ? checkIcon : null }</td>
-              <td className="disagree">{ hasMedia ? null : checkIcon }</td>
+              <td className="disagree">{ hasMedia ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -263,7 +265,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "has_id_supported_by_two_or_more" ) }
               </td>
               <td className="agree">{ mostAgree ? checkIcon : null }</td>
-              <td className="disagree">{ mostAgree ? null : checkIcon }</td>
+              <td className="disagree">{ mostAgree ? null : xIcon }</td>
             </tr>
             <tr className={ dateCells.loading ? "disabled" : "" }>
               <td className="metric_title">
@@ -311,7 +313,7 @@ class QualityMetrics extends React.Component {
                 { rankText }
               </td>
               <td className="agree">{ rankPassed ? checkIcon : null }</td>
-              <td className="disagree">{ rankPassed ? null : checkIcon }</td>
+              <td className="disagree">{ rankPassed ? null : xIcon }</td>
             </tr>
             <tr className="improve">
               <td className="metric_title" colSpan={ 3 }>

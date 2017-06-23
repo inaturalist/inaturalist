@@ -136,7 +136,7 @@ class Annotations extends React.Component {
         <td className="disagree">
           <span className="check">
             { mostDisagree ? (
-              <i className="fa fa-check" />
+              <i className="fa fa-times" />
             ) : null }
           </span>
           <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } />
@@ -150,7 +150,7 @@ class Annotations extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    if ( !observation || _.isEmpty( controlledTerms ) ) {
+    if ( !observation || !observation.user || _.isEmpty( controlledTerms ) ) {
       if (
           this.props.showEmptyState &&
           ( !this.props.controlledTerms || this.props.controlledTerms.length === 0 )

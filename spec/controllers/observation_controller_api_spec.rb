@@ -186,6 +186,21 @@ shared_examples_for "an ObservationsController" do
       expect( json["site_id"] ).to eq newsite.id
     end
 
+    describe "with owners_identification_from_vision" do
+      it "should set mark the owners identification as coming from vision" do
+        post :create, format: :json, observation: { taxon_id: Taxon.make!.id, owners_identification_from_vision: true }
+        json = JSON.parse( response.body )[0]
+        o = Observation.find( json["id"] )
+        expect( o.owners_identification_from_vision ).to be true
+        expect( o.owners_identification.vision ).to be true
+      end
+      it "should return the same attribute and value" do
+        post :create, format: :json, observation: { taxon_id: Taxon.make!.id, owners_identification_from_vision: true }
+        json = JSON.parse( response.body )[0]
+        expect( json["owners_identification_from_vision"] ).to be true
+      end
+    end
+
   end
 
   describe "destroy" do
@@ -621,6 +636,42 @@ shared_examples_for "an ObservationsController" do
         without_delay { put :update, format: :json, id: o.id, observation: { description: "foo" } }
         o.reload
         expect( o.observation_photos ).to be_blank
+      end
+    end
+
+    describe "with owners_identification_from_vision" do
+      let( :observation ) { Observation.make!( user: user, taxon: Taxon.make! ) }
+      it "should update if requested and taxon changed" do
+        expect( observation.owners_identification_from_vision ).to be false
+        put :update, format: :json, id: observation.id, observation: {
+          owners_identification_from_vision: true,
+          taxon_id: Taxon.make!.id
+        }
+        json = JSON.parse( response.body )[0]
+        expect( json["owners_identification_from_vision"] ).to be true
+        observation.reload
+        expect( observation.owners_identification_from_vision ).to be true
+      end
+      it "should not update if requested and taxon did not changed" do
+        put :update, format: :json, id: observation.id, observation: {
+          owners_identification_from_vision: true,
+          description: "this shouldn't update b/c the taxon didn't change so no ID was made"
+        }
+        json = JSON.parse( response.body )[0]
+        expect( json["owners_identification_from_vision"] ).to be false
+        observation.reload
+        expect( observation.owners_identification_from_vision ).to be false
+      end
+      it "should set the vision attribute on the corresponding identification if changed and taxon changed" do
+        old_owners_ident = observation.owners_identification
+        put :update, format: :json, id: observation.id, observation: {
+          owners_identification_from_vision: true,
+          taxon_id: Taxon.make!.id
+        }
+        observation.reload
+        new_owners_ident = observation.owners_identification
+        expect( new_owners_ident.id ).not_to eq old_owners_ident.id
+        expect( new_owners_ident.vision ).to be true
       end
     end
   end

@@ -55,6 +55,8 @@ class Observation < ActiveRecord::Base
   attr_accessor :coordinate_system
   attr_accessor :geo_x
   attr_accessor :geo_y
+
+  attr_accessor :owners_identification_from_vision_requested
   
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -740,7 +742,8 @@ class Observation < ActiveRecord::Base
       [options[:include]].flatten.compact
     end
     options[:methods] ||= []
-    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc, :faves_count]
+    options[:methods] += [:created_at_utc, :updated_at_utc,
+      :time_observed_at_utc, :faves_count, :owners_identification_from_vision]
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
@@ -953,7 +956,13 @@ class Observation < ActiveRecord::Base
     # If there's a taxon we need to make sure the owner's ident agrees
     if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
       # If the owner doesn't have an identification for this obs, make one
-      attrs = {:user => user, :taxon => taxon, :observation => self, :skip_observation => true}
+      attrs = {
+        user: user,
+        taxon: taxon,
+        observation: self,
+        skip_observation: true,
+        vision: owners_identification_from_vision_requested
+      }
       owners_ident = if new_record?
         self.identifications.build(attrs)
       else
@@ -2609,6 +2618,14 @@ class Observation < ActiveRecord::Base
     ratio = captive_stats[1].to_f / total
     # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
     total > 10 && ratio >= 0.8
+  end
+
+  def owners_identification_from_vision
+    owners_identification.try(:vision)
+  end
+
+  def owners_identification_from_vision=( val )
+    self.owners_identification_from_vision_requested = val
   end
 
   def self.dedupe_for_user(user, options = {})

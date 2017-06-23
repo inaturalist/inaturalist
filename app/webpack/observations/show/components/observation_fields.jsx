@@ -18,7 +18,7 @@ class ObservationFields extends React.Component {
   render( ) {
     const { observation, config, placeholder } = this.props;
     const loggedIn = config && config.currentUser;
-    if ( !observation || ( _.isEmpty( observation.ofvs ) && !loggedIn ) ) {
+    if ( !observation || !observation.user || ( _.isEmpty( observation.ofvs ) && !loggedIn ) ) {
       return ( <span /> );
     }
     // fieldIDs used by projects
