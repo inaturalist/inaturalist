@@ -29,7 +29,8 @@ class FlashMessage extends React.Component {
       glyph = "fa-flag";
     } else if ( alertClass === "success" ) {
       glyph = "fa-check-circle";
-    } else if ( alertClass === "danger" ) {
+    } else if ( alertClass === "error" ) {
+      alertClass = "danger";
       glyph = "fa-times-circle";
     }
     const title = this.props.title ?

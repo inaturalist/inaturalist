@@ -100,7 +100,7 @@ class CommunityIdentification extends React.Component {
   communityIDOverrideStatement( ) {
     const observation = this.props.observation;
     let statement;
-    if ( observation.preferences.prefers_community_taxon === false ) {
+    if ( observation.preferences && observation.preferences.prefers_community_taxon === false ) {
       statement = ( <span className="opted_out">
         ({ I18n.t( "user_has_opted_out_of_community_id" ) })
         <OverlayTrigger
@@ -125,7 +125,7 @@ class CommunityIdentification extends React.Component {
     const { observation, config, addID } = this.props;
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
-    if ( !observation ) {
+    if ( !observation || !observation.user ) {
       return ( <div /> );
     }
     let compareLink;

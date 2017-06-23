@@ -159,7 +159,7 @@ class ResearchGradeProgress extends React.Component {
 
   render( ) {
     const observation = this.props.observation;
-    if ( !observation ) { return ( <div /> ); }
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const grade = observation.quality_grade;
     const needsIDActive = ( grade === "needs_id" || grade === "research" );
     let description;

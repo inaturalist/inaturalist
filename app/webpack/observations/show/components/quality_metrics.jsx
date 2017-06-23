@@ -195,6 +195,7 @@ class QualityMetrics extends React.Component {
 
   render( ) {
     const observation = this.props.observation;
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const checkIcon = ( <i className="fa fa-check check" /> );
     const hasMedia = ( observation.photos.length + observation.sounds.length ) > 0;
     const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );

@@ -16,7 +16,6 @@ $fail-red: #D9534F;
   .content--jss-0-1 {
     width: 100%;
     img {
-      cursor: zoom-in !important;
       position: absolute;
       top: 0;
       left: 0;
@@ -28,6 +27,9 @@ $fail-red: #D9534F;
       cursor: default;
       & > a {
         cursor: default;
+        img {
+          cursor: zoom-in !important;
+        }
       }
       .easyzoom-flyout {
         z-index: 2001;
@@ -308,7 +310,7 @@ a.UserImage {
           height: 100%;
         }
         .image-gallery {
-          cursor: pointer;
+          cursor: zoom-in;
         }
         .image-gallery-slides .easyzoom-flyout {
           height: 441px;

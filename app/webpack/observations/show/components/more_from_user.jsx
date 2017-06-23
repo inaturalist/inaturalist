@@ -5,7 +5,7 @@ import { Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
 const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) => {
-  if ( !observation ||
+  if ( !observation || !observation.user ||
        ( _.isEmpty( otherObservations.earlierUserObservations ) &&
          _.isEmpty( otherObservations.laterUserObservations ) ) ) {
     return ( <div /> );
