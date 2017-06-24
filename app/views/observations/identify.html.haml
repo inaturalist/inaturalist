@@ -8,6 +8,21 @@
   = javascript_include_tag "observations-identify-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "observations/identify"
+  :css
+    /* a truly shameful hack for a truly shameful browser named safari */
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-content,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-content > div,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-slides,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-slide,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom > a,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom > a img {
+      flex: 2;
+    }
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom > a img {
+      max-height: 70%;
+    }
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
 #app
