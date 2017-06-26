@@ -17,8 +17,12 @@ function mapStateToProps( state ) {
   let images;
   const observation = state.currentObservation.observation;
   if ( observation && observation.photos && observation.photos.length > 0 ) {
+    let defaultPhotoSize = "medium";
+    if ( $( ".image-gallery" ).width( ) > 600 ) {
+      defaultPhotoSize = "large";
+    }
     images = observation.photos.map( ( photo ) => ( {
-      original: photo.photoUrl( "large" ),
+      original: photo.photoUrl( defaultPhotoSize ),
       zoom: photo.photoUrl( "original" ),
       thumbnail: photo.photoUrl( "square" )
     } ) );
