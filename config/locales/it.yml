@@ -113,6 +113,9 @@ it:
   x_species_link_html:
     one: <a href='%{url}'>1 specie</a>
     other: <a href='%{url}'>%{count} specie</a>
+  x_suggestions_filtered_by_colon:
+    one: '1 suggerimento filtrato per:'
+    other: '%{count} Suggerimenti filtrati per:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> taxon osservato
     other: <span class='count'>%{count}</span> taxa osservati
@@ -249,7 +252,19 @@ it:
   add_photos: Aggiungi foto
   add_photos_to_this_observation: Aggiungi foto a questa osservazione
   add_place: Aggiungi luogo
+  add_plant_phenology_flowering_annotation: 'Aggiungi nota "Fenologia della Pianta:
+    Fioritura"'
+  add_plant_phenology_fruiting_annotation: 'Aggiungi nota "Fenologia della Pianta:
+    Fruttificazione"'
+  add_life_stage_adult_annotation: 'Aggiungi nota "Stadio vitale: Adulto"'
+  add_life_stage_teneral_annotation: 'Aggiungi nota "Stadio vitale: immaturo"'
+  add_life_stage_pupa_annotation: 'Aggiungi nota "Stadio vitale: Pupa"'
+  add_life_stage_nymph_annotation: 'Aggiungi nota "Stadio vitale: Ninfa"'
+  add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
+  add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
   add_several_observations_at_once: Aggiungere più osservazioni in una sola volta.
+  add_sex_female_annotation: 'Aggiungi nota "Sesso: Femmina"'
+  add_sex_male_annotation: 'Aggiungi nota "Sesso: Maschio"'
   add_shape: Aggiungi una forma
   add_some_now: Aggiungine alcune ora
   add_tag: Aggiungi etichetta
@@ -568,6 +583,7 @@ it:
   back_to_post: '&laquo; Torna al post'
   back_to_projects: Torna ai Progetti
   back_to_shared_taxon: Torna a %{sharedtaxon}
+  back_to_suggestions: Torna ai suggerimenti
   back_to_taxon: Torna a %{defaulttaxon}
   back_to_taxon_changes: Torna ai cambiamenti di "taxon"
   back_to_this: Torna a %{place}
@@ -775,6 +791,7 @@ it:
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
     alle tue foto. Puoi scegliere un'altra licenza o rimuoverla successivamente, ma questa è la miglior licenza per la condivisione con gli altri ricercatori.
   checklist: Checklist
+  checklists: Checklist
   checklist_places: Luoghi con Checklist
   checklist_places_absent: Luoghi con checklist (assenti)
   checklist_places_confirmed: Luoghi con checklist (confermati)
@@ -947,6 +964,8 @@ it:
     attribution_noderivs_license: Licenza Attribuzione-Non Opere Derivate
     gnu_free_documentation_license: License GNU Free Documentation
   copyright_holder: Detentore del copyright
+  copyright_info: Informazione sul copyright
+  copyright_info_and_more: Informazione sul copyright ed altro
   copyright_infringement_desc: Viola la legge sul copyright o è stato creato da qualcuno
     che non è l'osservatore e manca l'attribuzione
   couldnt_change_your_password: 'Impossibile cambiare la password: %{e}'
@@ -1013,6 +1032,7 @@ it:
   darr_apply_darr: '&darr; Applica &darr;'
   dashboard: Bacheca
   data_deficient: Carente di Dati
+  data_quality: Qualità dei Dati
   data_quality_assessment: Valutazione della qualità dei dati
   datatype: Tipo di dati
   date_: Data
@@ -1353,6 +1373,7 @@ it:
   filter_by: Filtra per
   filter_by_curator_identification: Filtra in base all'identificazione dei curatori
   filter_by_place: Filtra per luogo
+  filter_by_taxon: Filtra per taxon
   filter_by_place_taxon_and_color: Filtra per luogo, taxon, e colore utilizzando i
     controlli.
   filter_list_by_this_taxon: Filtra la lista per questo taxon
@@ -1440,6 +1461,7 @@ it:
     osservazioni in %{place_name}, controlla il
   for_more_information: per ulteriori informazioni.
   forgot_your_password: Hai dimenticato la password?
+  frequency: Frequenza
   fri: Ven
   from: Da
   from_a_place: da un luogo
@@ -1778,6 +1800,7 @@ it:
     species: Con più specie in %{time}
     observations: Con più osservazioni in %{time}
     identifications: Con più identificazioni in %{time}
+  leading: Principale
   learn!: Impara!
   learn_about_the_species_live_in: Scopri le specie che vivono in
   learn_more: Scopri di più
@@ -1947,6 +1970,7 @@ it:
     es: Spagnolo
     es-ES: Spagnolo (Spagna)
     es-MX: Spagnolo (Messico)
+    fi: Finlandese
     fr: Francese
     eu: Basco
     gl: Galiziano
@@ -1954,6 +1978,7 @@ it:
     id: Indonesiano
     it: Italiano
     mk: Macedone
+    oc: Occitano
     pt: Portoghese
     pt-BR: Portoghese (Brasile)
     ja: Giapponese
@@ -2081,9 +2106,10 @@ it:
   merging_places: Unione dei luoghi in corso
   message: Messaggio
   messages: Messaggi
-  mixed_licenses: licenze miste
+  misidentifications: Identificazioni erronee
   misleading_or_illegal_content_html: Contenuto ingannevole o illegale, insulto etnico
     o raziale, etc.
+  mixed_licenses: licenze miste
   mobile_app_for: App per dispositivi mobili per
   mobile_apps_for: App per dispositivi mobili per
   mollusks: molluschi
@@ -2220,7 +2246,10 @@ it:
   new_user_rules: Nuove Regole degli Utenti
   new_users_week: Nuovi Utenti/Settimana
   next: Successivo
+  next_observation: Prossima osservazione
   next_page: Pagina successiva
+  next_photo: Prossima foto
+  next_tab: Scheda successiva
   "no": "No"
   no_activity_in_the_past_week: Nessuna attività la scorsa settimana. E' ora di
   no_administrator_knows_your_password: Nessun amministratore di %{sitename} conosce
@@ -2295,6 +2324,7 @@ it:
   no_range_data_available: Nessu dato di distribuzione disponibile.
   no_recent_activity: Nessuna attività recente
   no_recently_active: Ancora nessun progetto con attività recenti.
+  no_relevant_annotations: Non ci sono annotazioni rilevanti
   no_reply_yet: Ancora nessuna risposta
   no_results_found: Nessun risultato trovato
   no_results_for: Nessun risultato per
@@ -2310,6 +2340,7 @@ it:
     Puoi iniziare ad aggiungere le specie a questa lista direttamente, o, se questa è una Lista degli Esseri Viventi, sarà automaticamente aggiornata quando tu
     <a href="%{url}" class="nobr">aggiungi osservazioni</a>.
   no_subject_parens: (Nessun oggetto)
+  no_suggestions_available: Non ci sono suggerimenti disponibili
   no_summary_from_wikipedia: Nessun riassunto di Wikipedia
   no_summary_has_been_set: Nessun riassunto impostato
   no_taxa: Nessun taxa
@@ -2906,7 +2937,10 @@ it:
   previewing: Anteprima in corso...
   previous: Precedente
   prev: Prec
+  previous_observation: Osservazione Precedente
   previous_page: Pagina precedente
+  previous_photo: Foto Precedente
+  previous_tab: Scheda precedente
   print_in_browser: Stampa nel browser
   privacy: Informativa sulla privacy
   privacy_policy: Informativa sulla privacy
@@ -3006,6 +3040,7 @@ it:
     superclass: superclasse
     class: classe
     subclass: sottoclasse
+    infraclass: infraclasse
     superorder: superordine
     order: ordine
     suborder: sottordine
@@ -3152,6 +3187,7 @@ it:
   review_all: Controlla tutto
   review_verb: Revisiona
   reviewed: Revisionata
+  rg_observations: Osservazioni LR
   roadmap: roadmap
   role: Ruolo
   rotate_left: Ruota a sinistra
@@ -3254,6 +3290,7 @@ it:
   selected: selezionato
   selected_photos: foto selezionate
   selected_taxon: Taxon Selezionato
+  select_this_taxon: Seleziona Questo Taxon
   send: invia
   send_invite: Invia invito
   send_invites_to: Invia inviti a
@@ -3279,6 +3316,7 @@ it:
   show_active_and_inactive_taxa: Mostra taxa attivi e inattivi
   show_default_taxon_photos: mostra le foto predefinite del taxon
   show_counts: Mostra i conteggi un base alla lista.
+  show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_kml: Mostra il KML
   show_less: Mostra meno
   show_more: Mostra di più
@@ -3390,6 +3428,7 @@ it:
     your_soundcloud_account: il tuo account SoundCloud
   source: Fonte
   source_: 'Fonte:'
+  source_wikipedia: 'Fonte: Wikipedia'
   source_list_: Lista di origine
   source_list:
     ubio: uBio
@@ -3500,8 +3539,10 @@ it:
     senza confine.
   successfully_changed_your_password: Password cambiata con successo.
   suggest_an_id: Suggerisci una ID
+  suggest_an_identification: Suggerisci un'identificazione
   suggest_or_require_that: Suggerisci o richiedi che chi contribuisce riempia questi
     campi per le osservazioni che aggiunge al progetto.
+  suggestions: Suggerimenti
   summary: Riassunto
   suspicious_photos: Foto sospette
   siutable_observations: osservazioni idonee
@@ -3681,6 +3722,7 @@ it:
   the_world_is_full_of_interesting_places_short: Il mondo è pieno di posti interessanti,
     ognuno pieno di forme di vita strane e meravigliose. Alcune sono all'altro capo
     del mondo, altre appena sotto casa!
+  then_keybord_sequence: poi
   there_are_x_synonyms_html:
     one: C'è <span class='count'>1</span> sinonimo</span>
     other: Ci sono <span class='count'>%{count}</span> sinonimi</span>
@@ -3769,6 +3811,7 @@ it:
     che %{site_name} ha memorizzato per questa specie. Questo può significare che
     l'areale di %{site_name} è sbagliato, o che l'ID è sbagliata, oppure che si tratta
     di un individuo in dispersione, o ancora che l'areale è in espansione.
+  this_observation_was_created_using: 'Questa osservazione è stata creata usando:'
   this_photo_is_already_associated: Questa foto è già associata ad una delle tue osservazioni.
   this_place_has_no_check_list: Questa zona non ha una checklist, quindi non c'è nessuna
     guida.
@@ -4067,6 +4110,7 @@ it:
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni
   view_observations_by_everyone: Visualizza le osservazioni di tutti
+  view_observations_of_this_taxon_by: Visualizza osservazioni di questo taxon per
   view_observations_raquo: Visualizza le osservazioni &raquo;
   view_on: Visualizza su
   view_on_amphibiaweb: Visualizza su AmphibiaWeb
@@ -4446,6 +4490,7 @@ it:
     account %{provider}
   zoom_in: Zoom avanti
   zoom_out: Zoom indietro
+  zoom_photo: Zoom sulla foto
   zoom_to_taxon_name: Zoom su %{taxonname}
   zoom_to_x: Zoom su %{x}
   your_dashboard_helps_you: La tua bacheca ti permette di tenere sotto controllo cosa

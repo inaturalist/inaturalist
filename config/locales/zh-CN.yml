@@ -219,6 +219,7 @@ zh-CN:
   add_photos_to_this_observation: 添加照片至此观察
   add_place: 添加地点
   add_several_observations_at_once: 马上添加几个观察。
+  add_sex_male_annotation: 添加“性别：男”注释
   add_shape: 添加形状
   add_some_now: 现在添加一些
   add_tag: 添加标签
@@ -630,6 +631,7 @@ zh-CN:
   check_this_box_if: 如果您希望同意为您的照片使用<a href='http://creativecommons.org/licenses/by-nc/3.0/deed.zh'
     target='_blank'>知识共享 署名-非商业性使用</a>许可协议，请点选此框。您可以另选许可协议或稍后移除协议，但这是与研究人员分享时最好的协议。
   checklist: 检查表
+  checklists: 检查表
   checklist_places: 检查表地点
   checklist_places_absent: 名录地点（缺如）
   checklist_places_confirmed: 名录地点（已确认）
@@ -763,6 +765,7 @@ zh-CN:
     attribution_noderivs_license: 署名-禁止演绎许可协议
     gnu_free_documentation_license: GNU自由文档协议
   copyright_holder: 版权所有人
+  copyright_info: 版权信息
   couldnt_change_your_password: 无法更改您的密码：%{e}
   couldnt_find_a_user_matching_x_param: 找不到符合%{id}的用户
   couldnt_find_that_taxon: 找不到这个分类单元。
@@ -1114,6 +1117,7 @@ zh-CN:
   filter_by: 过滤方式
   filter_by_curator_identification: 按巡视员的鉴定进行筛选
   filter_by_place: 按地点筛选
+  filter_by_taxon: 按分类单元过滤
   filter_by_place_taxon_and_color: 按地点、分类单元和颜色标注进行筛选
   filter_list_by_this_taxon: 按这一分类单元筛选列表
   filtering: 过滤中
@@ -1185,6 +1189,7 @@ zh-CN:
   for_a_widget_showing_recent_observations_from: 要使用%{place_name}的最近观察记录小部件，请检查
   for_more_information: 获取更多信息。
   forgot_your_password: 忘记密码？
+  frequency: 频率
   fri: 五
   from: 来自
   from_a_place: 来自一个地方
@@ -1583,6 +1588,7 @@ zh-CN:
     es: 西班牙语
     es-ES: 西班牙语（西班牙）
     es-MX: 西班牙语（墨西哥）
+    fi: 芬兰语
     fr: 法语
     eu: 巴斯克语
     gl: 加利西亚语
@@ -1590,6 +1596,7 @@ zh-CN:
     id: 印尼语
     it: 意大利语
     mk: 马其顿语
+    oc: 奥克语
     pt: 葡萄牙语
     pt-BR: 葡萄牙语（巴西）
     ja: 日语
@@ -1671,8 +1678,9 @@ zh-CN:
   merging_places: 合并地点
   message: 消息
   messages: 消息
-  mixed_licenses: 混合许可协议
+  misidentifications: 错误识别
   misleading_or_illegal_content_html: 误导性或非法内容，种族歧视或民族蔑称等。有关我们对“适当”的更多定义，参见<a href="/help#inappropriate">常见问题</a>。
+  mixed_licenses: 混合许可协议
   mobile_app_for: 移动应用程序用于
   mobile_apps_for: 移动应用程序用于
   mollusks: 软体动物
@@ -1780,7 +1788,10 @@ zh-CN:
   new_user_rules: 新用户规则
   new_users_week: 新用户 / 周
   next: 下一个
+  next_observation: 下一观察
   next_page: 下一页
+  next_photo: 下一照片
+  next_tab: 下一标签
   "no": 否
   no_activity_in_the_past_week: 上周没有活跃。时间至
   no_colors_selected: 未选择颜色。
@@ -1837,6 +1848,7 @@ zh-CN:
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: （无主题）
+  no_suggestions_available: 没有可用建议
   no_summary_from_wikipedia: 没有来自维基百科的概要
   no_taxa: 无分类群
   no_taxa_yet: 尚无分类群！
@@ -2205,7 +2217,10 @@ zh-CN:
   previewing: 正在预览...
   previous: 上一步
   prev: 上一个
+  previous_observation: 上一观察
   previous_page: 上一页
+  previous_photo: 上一照片
+  previous_tab: 上一标签
   print_in_browser: 在浏览器中打印
   privacy: 隐私政策
   privacy_policy: 隐私政策
@@ -2377,6 +2392,7 @@ zh-CN:
   review_all: 复核全部
   review_verb: 复核
   reviewed: 已复核
+  rg_observations: RG观察
   roadmap: 路线图
   role: 角色
   rotate_left: 向左旋转
@@ -2522,6 +2538,7 @@ zh-CN:
     view_all_soundcount_sounds: 查看所有 %{sound_count} 声音
   source: 来源
   source_: 来源：
+  source_wikipedia: 来源：维基百科
   source_list_: 来源列表
   source_list:
     ubio: uBio
@@ -2602,6 +2619,7 @@ zh-CN:
   subscriptions: 订阅
   successfully_changed_your_password: 成功更改了您的密码。
   suggest_an_id: 建议ID
+  suggestions: 建议
   summary: 摘要
   suspicious_photos: 可疑照片
   sun: 日
@@ -2681,6 +2699,7 @@ zh-CN:
   the_world_is_full_of_interesting_places: 这个世界充满了有趣的地点，每一个地点都又充满了特别而奇妙的生命形态。有些生物在世界的另一侧，而有些就在街边！%{site_name}
     让您浏览整个星球上的生物！开始探索吧！
   the_world_is_full_of_interesting_places_short: 这个世界充满了有趣的地点，每个地点也充满了怪异而精彩的生命形态。有些生物在世界的另一侧，而有些就在街边！
+  then_keybord_sequence: 然后
   there_are_x_synonyms_html:
     one: 有<span class='count'>1</span>个同义词</span>
     other: 有 <span class='count'>%{count}</span> 个同义词</span>
@@ -3106,6 +3125,7 @@ zh-CN:
   youve_successfully_linked_your_provider_account: 您刚刚成功连接了您的 %{provider} 账户
   zoom_in: 放大
   zoom_out: 缩小
+  zoom_photo: 缩放照片
   zoom_to_taxon_name: 缩放到 %{taxonname}
   zoom_to_x: 缩放至 %{x}
   your_dashboard_helps_you: 您的控制面板帮助您保持追踪在此网站工作的人们。要关注一些人的更新，在查看他们的观察或个人资料时点击标题上的“关注[名字]”链接。
