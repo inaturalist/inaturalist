@@ -237,13 +237,15 @@ class ObservationModal extends React.Component {
               <div className={`quality_grade pull-right ${observation.quality_grade}`}>
                 { qualityGrade( ) }
               </div>
-              <SplitTaxon
-                taxon={observation.taxon}
-                url={`/observations/${observation.id}`}
-                target="_blank"
-                placeholder={observation.species_guess}
-                noParens
-              />
+              { blind ? null : (
+                <SplitTaxon
+                  taxon={observation.taxon}
+                  url={`/observations/${observation.id}`}
+                  target="_blank"
+                  placeholder={observation.species_guess}
+                  noParens
+                />
+              ) }
             </div>
             <div className={( photos && sounds ) ? "photos sounds" : "media"}>
               { photos }
