@@ -18,27 +18,32 @@
   display: flex;
   justify-content: space-between;
 }
-.ObservationModal .modal-dialog .modal-content .inner {
-  border-radius: 6px;
-  overflow: hidden;
+.ObservationModal .modal-dialog .modal-content {
+  .inner {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .left-col,
+  .right-col {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+  }
+  .left-col {
+    padding: 15px 20px 10px;
+  }
 }
-.ObservationModal .modal-dialog .modal-content .left-col,
-.ObservationModal .modal-dialog .modal-content .right-col {
-  width: 50%;
-  display: flex;
-  flex-direction: column;
-}
-.ObservationModal .modal-dialog .modal-content .left-col {
-  padding: 15px 20px 10px;
-}
-.obs-modal-header .SplitTaxon.taxon,
-.obs-modal-header .quality_grade {
-  font-weight: bold;
-}
-.obs-modal-header .SplitTaxon.taxon .display-name {
-  font-size: 180%;
-  display: block;
-  maring-bottom: 2px;
+.obs-modal-header {
+  height: 52px;
+  .SplitTaxon.taxon,
+  .quality_grade {
+    font-weight: bold;
+  }
+  .SplitTaxon.taxon .display-name {
+    font-size: 180%;
+    display: block;
+    maring-bottom: 2px;
+  }
 }
 .ObservationModal .modal-dialog .modal-content .right-col {
   border-left: 2px solid #ddd;
@@ -170,6 +175,10 @@ $galleryHeightElements: "
       line-height: 0;
     }
   }
+}
+.ObservationModal .left-col .tools {
+  height: 36px;
+  margin-top: 3px;
 }
 .ObservationModal .right-col .tools {
   padding: 10px 20px;
