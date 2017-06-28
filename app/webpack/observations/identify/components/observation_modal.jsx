@@ -75,7 +75,6 @@ class ObservationModal extends React.Component {
       return <div></div>;
     }
 
-    // skipping map until we can work out the memory issues
     let taxonMap;
     if ( observation.latitude ) {
       // Select a small set of attributes that won't change wildy as the
@@ -106,7 +105,9 @@ class ObservationModal extends React.Component {
           taxonLayers={ [taxonLayer] }
           observations={[obsForMap]}
           clickable={!blind}
-          zoomLevel={ observation.map_scale || 8 }
+          latitude={ obsForMap.latitude }
+          longitude={ obsForMap.longitude }
+          zoomLevel={ obsForMap.map_scale || 8 }
           mapTypeControl={false}
           showAccuracy
           showAllLayer={false}
@@ -247,7 +248,7 @@ class ObservationModal extends React.Component {
                 />
               ) }
             </div>
-            <div className={( photos && sounds ) ? "photos sounds" : "media"}>
+            <div className={( photos && sounds ) ? "photos sounds" : "obs-media"}>
               { photos }
               { sounds }
             </div>

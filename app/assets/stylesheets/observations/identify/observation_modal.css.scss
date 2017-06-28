@@ -108,7 +108,7 @@ $galleryHeightElements: "
 .image-gallery-slide {
   text-align: center;
 }
-.ObservationModal .media {
+.ObservationModal .obs-media {
   margin-bottom: 10px;
   flex: 2;
   display: flex;
@@ -451,7 +451,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
     color: $inat-green;
   }
 }
-.ObservationModal .media .column-header {
+.ObservationModal .obs-media .column-header {
   visibility: hidden;
 }
 
@@ -526,7 +526,6 @@ body > div > [role="dialog"] .ActivityItem {
   .ac-result {
     font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
-      padding: 7px 12px;
       color: #555;
       .title {
         font-size: 1.0em;

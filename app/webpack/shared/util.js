@@ -24,6 +24,8 @@ function objectToComparable( object = {} ) {
     const v = object[k];
     if ( typeof( v ) === "object" ) {
       return `(${k}-${objectToComparable( v )})`;
+    } else if ( _.isNil( v ) ) {
+      return `(${k}-)`;
     }
     return `(${k}-${v})`;
   } ).sort( ).join( "," );
