@@ -225,11 +225,14 @@ class ObservationModal extends React.Component {
         className={`ObservationModal ${blind ? "blind" : ""}`}
       >
         <div className="nav-buttons">
-          <Button className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
+          <Button alt={I18n.t( "previous" ) } className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
             &lsaquo;
           </Button>
-          <Button className="next nav-button" onClick={ function ( ) { showNextObservation( ); } }>
+          <Button alt={I18n.t( "next" ) } className="next nav-button" onClick={ function ( ) { showNextObservation( ); } }>
             &rsaquo;
+          </Button>
+          <Button alt={I18n.t( "close" ) } className="close-button nav-button" onClick={ onClose }>
+            &times;
           </Button>
         </div>
         <div className="inner">

@@ -225,35 +225,40 @@ $galleryHeightElements: "
 .DiscussionListItem .identification .actions {
   padding-top: 3px;
 }
-
-.ObservationModal .btn.nav-button {
-  position: absolute;
-  top: 50%;
-  margin-top: -25px;
-  font-size: 30px;
-  font-weight: bold;
-  width: 50px;
-  height: 50px;
-  line-height: 30px;
-  text-align: center;
-  left: -50px;
-  color: white;
-  background-color: transparent;
-  border: 0 transparent;
+.ObservationModal {
+  .btn.nav-button {
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    line-height: 30px;
+    text-align: center;
+    left: -50px;
+    color: white;
+    background-color: transparent;
+    border: 0 transparent;
+  }
+  .btn.nav-button:hover,
+  .btn.nav-button:active,
+  .btn.nav-button:focus,
+  .btn.nav-button:active:focus {
+    background-color: transparent;
+    border: 0 transparent;
+    color: white;
+  }
+  .nav-button.next {
+    left: auto;
+    right: -50px;
+  }
+  .nav-button.close-button {
+    top: -10px;
+    left: auto;
+    right: -50px;
+  }
 }
-.ObservationModal .btn.nav-button:hover,
-.ObservationModal .btn.nav-button:active,
-.ObservationModal .btn.nav-button:focus,
-.ObservationModal .btn.nav-button:active:focus {
-  background-color: transparent;
-  border: 0 transparent;
-  color: white;
-}
-.ObservationModal .nav-button.next {
-  left: auto;
-  right: -50px;
-}
-
 
 .ObservationModal .easyzoom-flyout {
   top: 0;
