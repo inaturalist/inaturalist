@@ -101,7 +101,9 @@ function fetchCurrentObservation( observation = null ) {
         dispatch( updateObservationInCollection( newObs, {
           captiveByCurrentUser,
           reviewedByCurrentUser,
-          currentUserAgrees: newObs.currentUserAgrees
+          currentUserAgrees: newObs.currentUserAgrees,
+          taxon: newObs.taxon,
+          quality_grade: newObs.quality_grade
         } ) );
         const currentState = getState();
         if (
