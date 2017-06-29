@@ -372,6 +372,7 @@ ko:
   back_to_post: '&laquo; 포스트로 돌아가기'
   back_to_projects: 프로젝트틀로 돌아가기
   back_to_shared_taxon: '%{sharedtaxon}(으)로 돌아가기'
+  back_to_suggestions: 제안으로 돌아가기
   back_to_taxon: '%{defaulttaxon}(으)로 돌아가기'
   back_to_taxon_changes: 분류군 변화들로 돌아가기
   back_to_this: '%{place}(으)로 돌아가기'
@@ -516,6 +517,7 @@ ko:
   check_out_what_the_observation: 동정하고자 하는 관찰대상의 생김새를 확인합니다.
   check_out_your_life_list: Life 목록을 확인하세요.
   checklist: 체크리스트
+  checklists: 체크리스트
   checklist_places: 체크리스트 장소
   checklist_places_absent: 체크리스트 장소 (부재)
   checklist_places_confirmed: 체크리스트 장소 (확인)
@@ -647,6 +649,8 @@ ko:
     attribution_noderivs_license: 저작권표시-비상업적 라이선스
     gnu_free_documentation_license: GNU 자유 문서 사용 허가서
   copyright_holder: 저작권자
+  copyright_info: 저작권 정보
+  copyright_info_and_more: 저작권 정보 및 추가 정보
   copyright_infringement_desc: 저작권법 위반 혹은 관찰자 외의 사람이 만든 후 저작권을 표시하지 않음
   couldnt_change_your_password: '비밀번호를 변경하지 못하였습니다: %{e}'
   couldnt_find_a_user_matching_x_param: '%{id}와(과) 일치하는 사용자를 찾을 수 없습니다'
@@ -703,6 +707,7 @@ ko:
   darr_apply_darr: '&darr; 적용 &darr;'
   dashboard: 대시보드
   data_deficient: 데이터 부족
+  data_quality: 데이터 품질
   data_quality_assessment: 데이터 품질 평가
   datatype: 데이터 유형
   date_: 날짜
@@ -988,6 +993,7 @@ ko:
   filter_by: 로 필터
   filter_by_curator_identification: 큐래이터 동정으로 필터
   filter_by_place: 장소로 필터
+  filter_by_taxon: 분류군별 필터
   filter_by_place_taxon_and_color: 제어 장치를 이용하여 장소, 분류군, 색으로 필터
   filter_list_by_this_taxon: 목록을 분류군으로 필터
   filtering: 필터링
@@ -1056,6 +1062,7 @@ ko:
   following: 팔로잉
   for: 위해
   forgot_your_password: 비밀번호를 잊으셨나요?
+  frequency: 주기
   fri: 금
   from: 보낸이
   from_a_place: 어떤 장소로부터
@@ -1390,6 +1397,7 @@ ko:
     es: 스페인어
     es-ES: 스페인어 (스페인)
     es-MX: 스페인어 (멕시코)
+    fi: 핀란드어
     fr: 프랑스어
     eu: 바스크어
     gl: 갈리시아어
@@ -1550,7 +1558,10 @@ ko:
   new_user_rules: 새로운 사용자 규칙
   new_users_week: 이 주의 새로운 사용자
   next: 다음
+  next_observation: 다음 관찰
   next_page: 다음 페이지
+  next_photo: 다음 사진
+  next_tab: 다음 탭
   "no": 아니오
   no_activity_in_the_past_week: 지난 한 주 활동이 없습니다. 시간이 되었습니다.
   no_administrator_knows_your_password: '%{sitename} 관리자들은 새로운 비밀번호를 알 수 없으며, 어떠한
@@ -1625,6 +1636,7 @@ ko:
   no_species_on_this_list_for_owner_html: 이 목록에 직접적으로 종을 추가할 수도 있고, Life 목록일 경우 <a
     href="%{url}" class="nobr">관찰</a>을 추가할 때 자동으로 업데이트됩니다.
   no_subject_parens: (제목 없음)
+  no_suggestions_available: 사용할 수 있는 제안이 없음
   no_summary_from_wikipedia: 위키백과에 요약이 없습니다.
   no_summary_has_been_set: 지정된 요약이 없습니다.
   no_taxa: 분류군 없음
@@ -1818,7 +1830,10 @@ ko:
   position: 위치
   previous: 이전
   prev: 이전
+  previous_observation: 이전 관찰
   previous_page: 이전 문서
+  previous_photo: 이전 사진
+  previous_tab: 이전 탭
   privacy: 개인정보 정책
   privacy_policy: 개인정보 정책
   private_: 비공개
@@ -1918,6 +1933,7 @@ ko:
   select_observations_to_edit: 편집할 관찰페이지 선택하기...
   selected: 삭제됨
   selected_photos: 선택된 사진들
+  select_this_taxon: 이 분류군 선택
   send: 보내기
   send_invite: 초대장 보내기
   sending: 보내는 중...
@@ -1927,6 +1943,7 @@ ko:
   set_license: 라이선스 설정
   settings: 설정
   show: 보이기
+  show_keyboard_shortcuts: 단축 키 표시
   show_kml: KML 보이기
   show_less: 덜 보기
   show_more: 더 보기
@@ -1953,6 +1970,7 @@ ko:
     sounds_size_sound: '%{sounds_size} 음원'
     sounds_size_sounds: '%{sounds_size} 음원들'
     your_soundcloud_account: SoundCloud 계정
+  source_wikipedia: '출처: 위키백과'
   source_list:
     inaturalist: iNaturalist
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
@@ -1965,6 +1983,7 @@ ko:
   submit_comment: 댓글 제출
   submitted: 제출됨
   subscriptions: 구독
+  suggestions: 제안
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
@@ -1975,10 +1994,12 @@ ko:
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   tell_us_why: 이유를 말해주세요...
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
+  then_keybord_sequence: 다음에
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
     발생했습니다 :'
   there_were_problems_importing_that_place_geometry: '위치 좌표를 가져오는데 문제가 있습니다: %{error}'
   these_observations_have_not_been_uploaded_yet: 아직 업로드되지 않은 관찰입니다.
+  this_observation_was_created_using: '이 관찰은 다음을 사용하여 만들어졌습니다:'
   this_photo_is_already_associated: 이 사진은 이미 관찰에 사용되었습니다.
   this_user_has_been_suspended: 이 사용자는 일시 중지되었습니다
   thu: 목요일
@@ -2102,6 +2123,7 @@ ko:
   youre_following: '팔로우 중:'
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong> 관찰을 보고
     있습니다.
+  zoom_photo: 사진 확대/축소
   views:
     guides:
       edit:
