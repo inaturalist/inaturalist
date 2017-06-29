@@ -22,7 +22,11 @@ import _ from "lodash";
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 moment.locale( I18n.locale, {
-  relativeTime: shortRelativeTime
+  relativeTime: Object.assign(
+    {},
+    I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+    shortRelativeTime
+  )
 } );
 
 const store = createStore(
