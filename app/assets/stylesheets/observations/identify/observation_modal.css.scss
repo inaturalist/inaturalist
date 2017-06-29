@@ -118,6 +118,7 @@ $galleryHeightElements: "
   flex: 2;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 .ObservationModal .sidebar {
   overflow-y: auto;
