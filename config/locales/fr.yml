@@ -256,6 +256,8 @@ fr:
   add_photos_to_this_observation: Ajouter des photos à cette observation
   add_place: Ajouter un lieu
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
+  add_sex_female_annotation: 'Ajouter l''annotation "Sex: Female"'
+  add_sex_male_annotation: 'Ajouter l''annotation "Sex: Male"'
   add_shape: Ajouter une forme
   add_some_now: Ajoutez-en maintenant
   add_tag: Ajouter une balise
@@ -993,6 +995,7 @@ fr:
     attribution_noderivs_license: Licence d’attribution – Pas de modifications
     gnu_free_documentation_license: Licence Documentation libre GNU
   copyright_holder: Détenteur des droits
+  copyright_info: Informations concernant les droits d'auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
   couldnt_change_your_password: 'Impossible de modifier votre mot de passe : %{e}'
@@ -1406,6 +1409,7 @@ fr:
   filter_by: Filtrer par
   filter_by_curator_identification: Filtrer par identification du chef de projet
   filter_by_place: Filtrer par lieu
+  filter_by_taxon: Filtrer par taxon
   filter_by_place_taxon_and_color: Filtrer par lieu, taxon et couleur au moyen des
     contrôles.
   filter_list_by_this_taxon: Filtrer la liste par ce taxon
@@ -2014,6 +2018,7 @@ fr:
     es: Espagnol
     es-ES: Espagnol (Espagne)
     es-MX: Espagnol (Mexique)
+    fi: Finnois
     fr: Français
     eu: Basque
     gl: Galicien
@@ -2021,6 +2026,7 @@ fr:
     id: Indonésien
     it: Italien
     mk: Macédonien
+    oc: Occitan
     pt: Portugais
     pt-BR: Portugais (Brésil)
     ja: Japonais
@@ -2150,6 +2156,7 @@ fr:
   merging_places: Fusion des lieux en cours
   message: Message
   messages: Messages
+  misidentifications: Identifications erronées
   misleading_or_illegal_content_html: Contenu trompeur ou illégal, insultes raciales
     ou ethniques, etc.
   mixed_licenses: licences mixtes
@@ -2289,7 +2296,10 @@ fr:
   new_user_rules: Nouvelles règles utilisateur
   new_users_week: Nouveaux utilisateurs/semaine
   next: Suivant
+  next_observation: Observation suivante
   next_page: Page suivante
+  next_photo: Photo suivante
+  next_tab: Onglet suivant
   "no": Non
   no_activity_in_the_past_week: Aucune activité la semaine passée. C’est le temps
     de
@@ -2367,6 +2377,7 @@ fr:
   no_range_data_available: Aucune donnée disponible sur l’aire de répartition.
   no_recent_activity: Aucune activité récente
   no_recently_active: Aucun projet récemment activé jusqu’à présent.
+  no_relevant_annotations: Pas d'annotations relatives
   no_reply_yet: Aucune réponse jusqu’à présent
   no_results_found: Aucun résultat trouvé
   no_results_for: Aucun résultat pour
@@ -2382,6 +2393,7 @@ fr:
     des êtres vivants, elle sera mise à jour automatiquement avec les espèces quand vous
     <a href="%{url}" class="nobr">ajouterez des observations</a>.
   no_subject_parens: (Aucun sujet)
+  no_suggestions_available: Aucune suggestion disponible
   no_summary_from_wikipedia: Aucun résumé de Wikipédia
   no_summary_has_been_set: Aucun résumé n’a été fourni.
   no_taxa: Aucun taxon
@@ -2988,7 +3000,10 @@ fr:
   previewing: Aperçu en cours…
   previous: Précédent
   prev: Préc
+  previous_observation: Observation précédente
   previous_page: Page précédente
+  previous_photo: Photo précédente
+  previous_tab: Onglet précédent
   print_in_browser: Imprimer dans l’explorateur
   privacy: Politique de confidentialité
   privacy_policy: Politique de confidentialité
@@ -3232,6 +3247,7 @@ fr:
   review_all: Relire tout
   review_verb: Relecture
   reviewed: Relu
+  rg_observations: Observations RG
   roadmap: feuille de route
   role: Rôle
   rotate_left: Pivoter vers la gauche
@@ -3592,6 +3608,7 @@ fr:
   suggest_an_id: Suggérer une identification
   suggest_or_require_that: Suggérez ou demandez que les collaborateurs remplissent
     ces champs pour les observations que vous avez ajoutées à votre projet.
+  suggestions: Suggestions
   summary: Résumé
   suspicious_photos: Photos suspectes
   siutable_observations: observations appropriées
@@ -3778,6 +3795,7 @@ fr:
   the_world_is_full_of_interesting_places_short: Le monde est plein de lieux intéressants,
     chacun rempli de formes de vie étranges et merveilleuses. Certaines sont à l’autre
     côté de la planète, tandis que d’autres sont juste au bout de la rue !
+  then_keybord_sequence: alors
   there_are_x_synonyms_html:
     one: Il y a <span class='count'>1</span> synonyme</span>
     other: Il y a <span class='count'>%{count}</span> synonymes</span>
@@ -4568,6 +4586,7 @@ fr:
     %{provider}
   zoom_in: Zoom avant
   zoom_out: Zoom arrière
+  zoom_photo: Élargir la photo
   zoom_to_taxon_name: Faites un zoom sur %{taxonname}
   zoom_to_x: faites un zoom sur %{x}
   your_dashboard_helps_you: Votre tableau de bord vous aide à suivre ce que font les
