@@ -169,6 +169,7 @@
 .ObservationModal .inat-tab.active.suggestions-tab {
   display: flex;
   flex: 2;
+  overflow: hidden; // firefox needs this
 }
 
 body > div > [role="dialog"] .TaxonChooserPopover .form-group {
