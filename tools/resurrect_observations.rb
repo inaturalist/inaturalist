@@ -128,11 +128,16 @@ has_many_reflections.each do |k, reflection|
   unless table_names.include?(reflection.table_name)
     system "test #{fname} || rm #{fname}"
   end
+  join_condition = "#{reflection.table_name}.#{reflection.foreign_key} = observations.id"
+  # if the reflection is polymorphic, we need to add an additional condition for the type column
+  if %w( comments taggings tag_taggings votes_for flags annotations ).include?( k.to_s ) && reflection.options[:as]
+    join_condition += " AND #{reflection.table_name}.#{reflection.options[:as]}_type = 'Observation'"
+  end
   sql = <<-SQL
     SELECT DISTINCT
       #{column_names.map{|cn| "#{reflection.table_name}.#{cn}"}.join( ", " )}
     FROM #{reflection.table_name}
-      JOIN observations ON #{reflection.table_name}.#{reflection.foreign_key} = observations.id
+      JOIN observations ON #{join_condition}
     WHERE #{@where.join(' AND ')}
   SQL
   cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"
