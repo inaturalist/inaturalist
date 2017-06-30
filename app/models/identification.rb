@@ -371,7 +371,7 @@ class Identification < ActiveRecord::Base
   end
 
   def vision=( val )
-    self.preferred_vision = val
+    self.preferred_vision = val.yesish?
   end
 
   # Static ##################################################################

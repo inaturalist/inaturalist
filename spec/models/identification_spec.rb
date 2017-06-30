@@ -378,6 +378,11 @@ describe Identification, "creation" do
     expect( i.previous_observation_taxon ).to eq previous_observation_taxon
   end
 
+  it "should not create a blank preference when vision is nil" do
+    i = Identification.make!( vision: nil )
+    expect( i.stored_preferences ).to be_blank
+  end
+
 end
 
 describe Identification, "updating" do
