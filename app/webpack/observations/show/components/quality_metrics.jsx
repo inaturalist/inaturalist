@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
+import { OverlayTrigger, Popover } from "react-bootstrap";
 import UsersPopover from "./users_popover";
+/* global SITE */
 
 class QualityMetrics extends React.Component {
   constructor( ) {
@@ -8,6 +10,23 @@ class QualityMetrics extends React.Component {
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
     this.openFlaggingModal = this.openFlaggingModal.bind( this );
     this.flaggingDiv = this.flaggingDiv.bind( this );
+  }
+
+  popover( ) {
+    return (
+      <Popover
+        className="DataQualityOverlay PopoverWithHeader"
+        id="popover-data-quality"
+      >
+        <div className="header">
+          { I18n.t( "data_quality_assessment" ) }
+        </div>
+        <div className="contents" dangerouslySetInnerHTML={ { __html:
+          I18n.t( "views.observations.show.quality_assessment_help_html", {
+            site_name: SITE.short_name } ) } }
+        />
+      </Popover>
+    );
   }
 
   voteCell( metric, isAgree, isMajority, className, usersChoice, voters, loading, disabled ) {
@@ -223,7 +242,21 @@ class QualityMetrics extends React.Component {
                 { _.upperFirst( I18n.t( observation.quality_grade ) ) }
               </span>
             </div>
-            <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
+            <div className="text">
+              { I18n.t( "the_" ) } <OverlayTrigger
+                trigger="click"
+                rootClose
+                placement="top"
+                containerPadding={ 20 }
+                overlay={ this.popover( ) }
+                className="cool"
+              >
+                <span>
+                  { I18n.t( "data_quality_assessment_" ) }
+                  <i className="fa fa-info-circle" />
+                </span>
+              </OverlayTrigger> { I18n.t( "is_an_evaluation" ) }
+            </div>
           </div>
         ) }
         <table className="table">

@@ -22,8 +22,11 @@ class MediaViewer extends Component {
 
   easyzoom( ) {
     $( "#react-images-container .content--jss-0-1 img" ).wrap( function ( ) {
-      const matches = $( this ).attr( "srcset" ).match( /^(.*?) / );
-      const imgUrl = matches[1];
+      let imgUrl = $( this ).attr( "src" );
+      if ( $( this ).attr( "srcset" ) ) {
+        const matches = $( this ).attr( "srcset" ).match( /^(.*?) / );
+        imgUrl = matches[1];
+      }
       return `<div class="easyzoom"><a href="${imgUrl}"></a></div>`;
     } );
     const easyZoomTarget = $( "#react-images-container .easyzoom" );

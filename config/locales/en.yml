@@ -883,6 +883,7 @@ en:
   data_deficient: data deficient
   data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
+  data_quality_assessment_: data quality assessment
   datatype: Datatype
   date_: Date
   date?: Date?
@@ -1396,6 +1397,17 @@ en:
   iconic_taxon: Iconic taxon
   id: ID
   id_: ID
+  id_categories:
+    tooltips:
+      leading: |
+        Taxon descends from the community taxon. This identification could be leading toward the
+        right answer.
+      improving: |
+        First suggestion of this taxon that the community subsequently agreed with. This helped
+        refine the community taxon.
+      maverick: |
+        Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not
+        agree with this taxon.
   id_more_in_id_please: ID more in ID Please
   id_please!: ID Please!
   id_please: ID Please
@@ -1418,6 +1430,11 @@ en:
   identotron_help: Identotron help
   ids: "IDs"
   ids_made_for_others: IDs made for others
+  if_for_some_reason_a_user_doesnt_agree: |
+    If for some reason a user doesn't agree with the community taxon, they can reject it,
+    which means their ID is the one used for linking to other observations, updating life lists,
+    etc. It also means their observation can only become research grade when the community agrees
+    with them.
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
   if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
@@ -1512,6 +1529,9 @@ en:
   iphone: iPhone
   is_a: 'is a'
   is_an: 'is an'
+  is_an_evaluation: |
+    is an evaluation of an observation’s accuracy.
+    Research Grade observations may be used by scientists for research. Cast your vote below:
   is_not_following_anyone: is not following anyone.
   is_now: is now
   is_the_organism_wild: "Is the organism wild/naturalized?"
@@ -2733,6 +2753,7 @@ en:
   refreshing: refreshing
   regenerate_url: Regenate URL
   register_for_this_event_at_x_html: "Register for this event at %{x}"
+  reject?: Reject?
   reject_the_community_id: reject the community ID
   related_species: Related Species
   reload_and_refresh: Reload and refresh list
@@ -3224,6 +3245,7 @@ en:
   thats_okay_we_forget: That's okay! We forget ours too. Send us the email address you used to create your account and we'll email you a link to reset your password.
   thats_not_a_real_date: That's not a real date!
   the: the
+  the_: The
   the_admin_is_the_person_who: |
     The admin is the person who created the project. They can do everything
     managers and curators can do, as well as delete the project.
@@ -3234,9 +3256,6 @@ en:
   the_community_must_feel_that: |
     The community must feel that the Community ID is the best it can be based on the evidence
   the_data_quality_assessment_is: The data quality assessment is a summary of an observation's accuracy. All observations start as <strong>"casual"</strong> grade, and achieve <strong>"research"</strong> grade when
-  the_data_quality_assessment_is_an_evaluation: |
-    The data quality assessment is an evaluation of an observation’s accuracy.
-    Research Grade observations may be used by scientists for research. Cast your vote below:
   the_following_lists: the following lists
   the_following_observations_could: "The following observations could not be added to %{link}"
   the_following_photos_have_been_tagged: "The following photos have been tagged:"
@@ -3324,6 +3343,7 @@ en:
   they_have_been_invited: ...they've already been invited
   third_person_possessive_singular: "%{object_phrase}'s %{noun}"
   this: this
+  this_id_was_added_due_to_a: This ID was added due to a
   this_is_a: This is a
   this_is_a_cached_summary_based_on: This is a cached summary of this taxon based on its
   this_is_a_life_list_of: This is a life list of
@@ -3758,6 +3778,7 @@ en:
   yes_find_them!: "Yes, find them!"
   yes_i_want_to_join: Yes, I want to join
   yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds & observations so scientists can use my data!
+  yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
   yesterday_at: ', yesterday at 4pm'

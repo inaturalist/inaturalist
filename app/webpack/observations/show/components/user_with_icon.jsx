@@ -13,7 +13,7 @@ const UserWithIcon = ( { user } ) => {
         <a href={ `/people/${user.login}` }>{ user.login }</a>
       </div>
       <div className="subtitle">
-        <a href={ `/observations?user_id=${user.login}` }>
+        <a href={ `/observations?user_id=${user.login}&place_id=any&verifiable=any` }>
           <i className="fa fa-binoculars" />
           { I18n.t( "x_observations", { count: user.observations_count.toLocaleString( ) } ) }
         </a>

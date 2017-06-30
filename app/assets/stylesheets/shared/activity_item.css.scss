@@ -71,6 +71,20 @@ body > div > [role="dialog"] .ActivityItem {
       color: $inat-green;
     }
   }
+  .panel-body {
+    padding: 0px;
+    .taxon-change {
+      padding: 7px 15px;
+      background: #FCF8E3;
+      color: #8A6D3B;
+      a {
+        color: $bootstrap-link-color;
+      }
+    }
+    .contents {
+      padding: 15px;
+    }
+  }
   .icon {
     float: left;
   }

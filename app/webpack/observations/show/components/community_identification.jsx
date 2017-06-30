@@ -13,11 +13,27 @@ class CommunityIdentification extends React.Component {
   constructor( ) {
     super( );
     this.ownerID = null;
+    this.setInstanceVars = this.setInstanceVars.bind( this );
     this.communityIDOptIn = this.communityIDOptIn.bind( this );
     this.communityIDOptOut = this.communityIDOptOut.bind( this );
     this.showCommunityIDModal = this.showCommunityIDModal.bind( this );
     this.communityIDOverridePanel = this.communityIDOverridePanel.bind( this );
     this.communityIDOverrideStatement = this.communityIDOverrideStatement.bind( this );
+    this.optOutPopoverClose = this.optOutPopoverClose.bind( this );
+  }
+
+  setInstanceVars( ) {
+    const { observation, config } = this.props;
+    this.loggedIn = config && config.currentUser;
+    this.observerOptedOut = ( observation.user.preferences &&
+      observation.user.preferences.prefers_community_taxa === false );
+    this.observationOptedIn = ( observation.preferences &&
+      observation.preferences.prefers_community_taxon === true );
+    this.observationOptedOut = ( observation.preferences &&
+      observation.preferences.prefers_community_taxon === false );
+    this.userIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
+    this.communityIDIsRejected = ( this.observationOptedOut ||
+      ( this.observerOptedOut && !this.observationOptedIn ) );
   }
 
   communityIDOptIn( e ) {
@@ -28,6 +44,11 @@ class CommunityIdentification extends React.Component {
   communityIDOptOut( e ) {
     e.preventDefault( );
     this.props.updateObservation( { prefers_community_taxon: false } );
+    this.optOutPopoverClose( );
+  }
+
+  optOutPopoverClose( ) {
+    this.refs["popover-trigger"].hide( );
   }
 
   communityIDInfoPopover( ) {
@@ -44,63 +65,28 @@ class CommunityIdentification extends React.Component {
   }
 
   communityIDOverridePanel( ) {
-    const { observation, config } = this.props;
-    const loggedIn = config && config.currentUser;
-    const observerOptedOut = ( observation.user.preferences &&
-      observation.user.preferences.prefers_community_taxa === false );
-    const observationOptedOut = ( observation.preferences &&
-      observation.preferences.prefers_community_taxon === false );
-    let panel;
-    if ( this.ownerID &&
-         ( observerOptedOut || observationOptedOut ||
-           this.ownerID.taxon.id !== observation.taxon.id ) &&
-         loggedIn && config.currentUser.id === observation.user.id ) {
-      if ( observationOptedOut ) {
-        panel = ( <div className="override out">
-          <span className="bold">
-            { I18n.t( "views.observations.community_id.you_have_opted_out" ) }.
-          </span>
-          <a href="#" onClick={ this.communityIDOptIn }>
-            { I18n.t( "views.observations.community_id.opt_in_for_this_observation" ) }
-          </a>
-          <span className="separator">·</span>
-          <a href="/users/edit">
-            { I18n.t( "edit_your_default_settings" ) }
-          </a>
-        </div> );
-      } else {
-        let dissimilarMessage;
-        const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
-        if ( this.ownerID.taxon.id !== this.props.observation.taxon.id ) {
-          dissimilarMessage = ( <span className="something" dangerouslySetInnerHTML={ { __html:
-            I18n.t( "views.observations.community_id.your_id_does_not_match", {
-              taxon_name: idName } ) } }
-          /> );
-        }
-        panel = ( <div className="override in">
-          { dissimilarMessage }
-          { I18n.t( "would_you_like_to" ) } <a href="#" onClick={ this.communityIDOptOut }>
-            { I18n.t( "reject_the_community_id" ) }
-          </a>?
-          <OverlayTrigger
-            trigger="click"
-            rootClose
-            placement="top"
-            containerPadding={ 20 }
-            overlay={ this.communityIDInfoPopover( ) }
-          >
-            <i className="fa fa-info-circle" />
-          </OverlayTrigger>
-        </div> );
-      }
+    if ( !( this.userIsObserver && this.ownerID && this.communityIDIsRejected ) ) {
+      return ( <div /> );
     }
-    return panel;
+    return (
+      <div className="override out">
+        <span className="bold">
+          { I18n.t( "views.observations.community_id.you_have_opted_out" ) }.
+        </span>
+        <a href="#" onClick={ this.communityIDOptIn }>
+          { I18n.t( "views.observations.community_id.opt_in_for_this_observation" ) }
+        </a>
+        <span className="separator">·</span>
+        <a href="/users/edit">
+          { I18n.t( "edit_your_default_settings" ) }
+        </a>
+      </div>
+    );
   }
 
   communityIDOverrideStatement( ) {
-    const observation = this.props.observation;
     let statement;
-    if ( observation.preferences && observation.preferences.prefers_community_taxon === false ) {
+    if ( this.communityIDIsRejected ) {
       statement = ( <span className="opted_out">
         ({ I18n.t( "user_has_opted_out_of_community_id" ) })
         <OverlayTrigger
@@ -117,6 +103,67 @@ class CommunityIdentification extends React.Component {
     return statement;
   }
 
+  optOutPopover( ) {
+    // must be observer, IDer, must not have opted out already
+    if ( !( this.userIsObserver && this.ownerID && !this.observationOptedOut ) ) {
+      return ( <div /> );
+    }
+    // the taxa must be different, or the user defaults to opt-out, but opted in here
+    if ( this.ownerID.taxon.id === this.props.observation.taxon.id &&
+         !( this.observerOptedOut && this.observationOptedIn ) ) {
+      return ( <div /> );
+    }
+    let dissimilarMessage;
+    const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
+    if ( this.ownerID.taxon.id !== this.props.observation.taxon.id ) {
+      dissimilarMessage = ( <span className="something" dangerouslySetInnerHTML={ { __html:
+        I18n.t( "views.observations.community_id.your_id_does_not_match", {
+          taxon_name: idName } ) } }
+      /> );
+    }
+    const popover = (
+      <Popover
+        className="OptOutPopover"
+        id="popover-opt-out"
+      >
+        <p>
+          { I18n.t( "if_for_some_reason_a_user_doesnt_agree" ) }
+        </p>
+        <p>
+          { dissimilarMessage }
+        </p>
+        <div className="action">
+          <button
+            className="btn btn-default reject"
+            onClick={ this.communityIDOptOut }
+          >
+            { I18n.t( "yes_reject_it" ) }
+          </button>
+          <div
+            className="cancel linky"
+            onClick={ this.optOutPopoverClose }
+          >
+            { I18n.t( "cancel" ) }
+          </div>
+        </div>
+      </Popover>
+    );
+    return (
+      <OverlayTrigger
+        trigger="click"
+        rootClose
+        placement="top"
+        containerPadding={ 20 }
+        overlay={ popover }
+        ref="popover-trigger"
+      >
+        <div className="reject linky">
+          { I18n.t( "reject?" ) }
+        </div>
+      </OverlayTrigger>
+    );
+  }
+
   showCommunityIDModal( ) {
     this.props.setCommunityIDModalState( { show: true } );
   }
@@ -128,6 +175,7 @@ class CommunityIdentification extends React.Component {
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
+    this.setInstanceVars( );
     let compareLink;
     let canAgree = true;
     let userAgreedToThis;
@@ -195,7 +243,7 @@ class CommunityIdentification extends React.Component {
               <div className="two-thirds">&nbsp;</div>
             </div>
             <div className="numbers">
-              <div className="first">1</div>
+              <div className="first">0</div>
               <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
               <div className="last">{ voteCells.length }</div>
             </div>
@@ -205,7 +253,8 @@ class CommunityIdentification extends React.Component {
       stats = (
         <span>
           <span className="cumulative">
-            { I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) }
+            { voteCells.length > 1 ?
+              I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
           </span>
           <div className="graphic">
             { voteCells }
@@ -237,7 +286,9 @@ class CommunityIdentification extends React.Component {
         <h4>
           { I18n.t( "community_id_heading" ) }
           { this.communityIDOverrideStatement( ) }
+          { this.optOutPopover( ) }
         </h4>
+        { this.communityIDOverridePanel( ) }
         <div className="info">
           <div className="photo">{ photo }</div>
           <div className="badges">
@@ -273,7 +324,6 @@ class CommunityIdentification extends React.Component {
             </button>
           </div>
         </div>
-        { this.communityIDOverridePanel( ) }
       </div>
     );
   }

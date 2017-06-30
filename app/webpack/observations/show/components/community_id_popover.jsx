@@ -36,7 +36,7 @@ class CommunityIDPopover extends React.Component {
     const taxa = ( identification.taxon.ancestors || [] ).concat( identification.taxon );
     const popover = (
       <Popover
-        className={ `CommunityIDPopoverOverlay ${agreement ? "agree" : "disagree"}` }
+        className={ `CommunityIDPopoverOverlay PopoverWithHeader ${agreement ? "agree" : "disagree"}` }
         id={ `popover-${identification.id}` }
       >
         <div className="header">

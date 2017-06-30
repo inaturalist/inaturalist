@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
-import { Panel } from "react-bootstrap";
+import { OverlayTrigger, Panel, Tooltip } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
@@ -98,44 +98,68 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
-  let statuses = [];
+  let status;
   const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
-    statuses.push( ( <span key={ `flagged-${item.id}` } className="item-status">
+    status = ( <span key={ `flagged-${item.id}` } className="item-status">
       <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
-    </span> ) );
+    </span> );
   } else if ( item.category && item.current ) {
+    let idCategory;
+    let idCategoryTooltipText;
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
-      statuses.push( ( <span key={ `maverick-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status">
         <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
-      </span> ) );
+      </span> );
+      idCategoryTooltipText = I18n.t( "id_categories.tooltips.maverick" );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
-      statuses.push( ( <span key={ `improving-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `improving-${item.id}` } className="item-status">
         <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
-      </span> ) );
+      </span> );
+      idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
     } else if ( item.category === "leading" ) {
       panelClass = "improving";
-      statuses.push( ( <span key={ `leading-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `leading-${item.id}` } className="item-status">
         <i className="fa fa-trophy" /> { I18n.t( "leading" ) }
-      </span> ) );
+      </span> );
+      idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
+    }
+    if ( idCategory ) {
+      status = (
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 200 }
+          overlay={ (
+            <Tooltip id={`tooltip-${item.id}`}>
+              { idCategoryTooltipText }
+            </Tooltip>
+          ) }
+        >
+          { idCategory }
+        </OverlayTrigger>
+      );
     }
   }
+  let taxonChange;
   if ( item.taxon_change_id ) {
     const type = _.snakeCase( item.taxon_change_type );
-    statuses.push( ( <span key={ `change-${item.id}` } className="item-status">
-      { I18n.t( "added_as_a_part_of" ) } <a
+    taxonChange = ( <div className="taxon-change">
+      <i className="fa fa-refresh" /> { I18n.t( "this_id_was_added_due_to_a" ) } <a
         href={ `/taxon_changes/${item.taxon_change_id}` }
         target={linkTarget}
+        className="linky"
       >
-        <i className="fa fa-refresh" /> { I18n.t( type ) }
+         { _.startCase( I18n.t( type ) ) }
       </a>
-    </span> ) );
+    </div> );
   }
+  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
+  const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
   return (
-    <div className={ `ActivityItem ${className} ${config.currentUser && item.user.id === config.currentUser.id ? "by-current-user" : "by-someone-else"}` }>
+    <div className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
         <UserImage user={ item.user } />
       </div>
@@ -154,11 +178,14 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
           <span className="time">
             { relativeTime }
           </span>
-          { statuses }
+          { status }
         </span>
         )}
       >
-        { contents }
+        { taxonChange }
+        <div className="contents">
+          { contents }
+        </div>
       </Panel>
     </div>
   );

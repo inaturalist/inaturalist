@@ -292,9 +292,6 @@ a.UserImage {
         .image-gallery, .image-gallery-content, .image-gallery-content div {
           height: 100%;
         }
-        .image-gallery {
-          cursor: zoom-in;
-        }
         .image-gallery-slides .easyzoom-flyout {
           height: 441px;
         }
@@ -302,7 +299,8 @@ a.UserImage {
           max-height: 479px;
           max-width: 100%;
           width: auto;
-          padding-bottom: 40px;
+          margin-bottom: 40px;
+          cursor: zoom-in;
         }
         .image-gallery-slide {
           line-height: 480px;
@@ -901,6 +899,25 @@ h3, h4 {
   }
 }
 
+.QualityMetrics {
+  margin-bottom: 30px;
+  padding-right: 25px;
+  .grade {
+    margin: 15px 0px 25px;
+  }
+  span[aria-describedby="popover-data-quality"] {
+    color: $bootstrap-link-color;
+    cursor: pointer;
+    i {
+      padding: 0px 2px;
+    }
+  }
+}
+
+.DataQualityOverlay {
+  max-width: 900px;
+}
+
 .ResearchGradeProgress {
   margin-top: 15px;
   .graphic {
@@ -1299,7 +1316,29 @@ h3, h4 {
   }
 }
 
+.OptOutPopover {
+  max-width: 530px;
+  width: 530px;
+  .popover-content {
+    display: inline-block;
+    padding: 15px !important;
+  }
+  .action {
+    .reject, .cancel {
+      float: left;
+    }
+    .cancel {
+      line-height: 34px;
+      margin-left: 20px;
+    }
+  }
+}
+
 .CommunityIdentification {
+  .reject {
+    float: right;
+    font-size: 14px;
+  }
   .fa-info-circle {
     color: $other-link-color;
     cursor: pointer;
@@ -1347,6 +1386,9 @@ h3, h4 {
     }
     .TaxonSummaryPopover {
       cursor: pointer;
+    }
+    .cumulative {
+      display: inline-block;
     }
     .graphic {
       margin-top: 15px;
@@ -1417,7 +1459,7 @@ h3, h4 {
   .override {
     border: 1px solid $border-grey;
     padding: 15px;
-    margin-top: 10px;
+    margin-bottom: 10px;
     text-align: center;
     a {
       color: $bootstrap-link-color;
@@ -1439,21 +1481,13 @@ h3, h4 {
   }
 }
 
-.CommunityIDPopoverOverlay {
-  padding: 0px !important;
+.CommunityIDPopoverOverlay.PopoverWithHeader {
   max-width: 600px;
   .arrow:after {
     border-top-color: #f8fbf2 !important;
   }
-  .popover-content {
-    padding: 0px !important;
-    display: inline-block;
-  }
   .header {
-    border-radius: 5px 5px 0px 0px;
     background: #eaf2da;
-    padding: 10px;
-      font-size: 16px;
     .UserImage {
       min-width: 26px;
       width: 26px;
@@ -1468,8 +1502,6 @@ h3, h4 {
     }
   }
   .contents {
-    padding: 10px 20px 10px 10px;
-    border-radius: 0px 0px 5px 5px;
     background: #f8fbf2;
     white-space: nowrap;
     display: inline-block;
@@ -2036,6 +2068,23 @@ body > div > [role="dialog"] .easyzoom > a > img {
 .quality_grade.research:after {
   border-color: $inat-green;
   border-right-color: transparent;
+}
+
+.PopoverWithHeader {
+  padding: 0px !important;
+  .popover-content {
+    padding: 0px !important;
+  }
+  .header {
+    padding: 9px 14px;
+    border-radius: 5px 5px 0px 0px;
+    background: #eee;
+    font-size: 16px;
+  }
+  .contents {
+    padding: 9px 14px;
+    border-radius: 0px 0px 5px 5px;
+  }
 }
 
 

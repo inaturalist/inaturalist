@@ -89,7 +89,8 @@ class PhotoBrowser extends React.Component {
           lazyLoad={ false }
           server
           showNav={ false }
-          onClick={ ( ) => {
+          onClick={ e => {
+            if ( !$( e.target ).is( "img" ) ) { return; }
             const index = this.refs.gallery.state.currentIndex;
             if ( images[index].thumbnail !== soundIcon ) {
               this.props.setMediaViewerState( {

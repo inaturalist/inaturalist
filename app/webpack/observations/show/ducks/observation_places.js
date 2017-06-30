@@ -26,8 +26,8 @@ export function fetchObservationPlaces( ) {
       return null;
     }
     const params = { lat: observation.latitude, lng: observation.longitude,
-      include_community_places: true };
-    return inatjs.places.containing( params ).then( response => {
+      no_geom: true, order_by: "admin_and_distance" };
+    return inatjs.places.fetch( observation.place_ids, params ).then( response => {
       dispatch( setObservationPlaces( response.results ) );
     } ).catch( e => { } );
   };

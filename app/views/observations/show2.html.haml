@@ -44,6 +44,7 @@
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
     var SITE = {
       name: "#{@site ? @site.name : CONFIG.site_name}",
+      short_name: "#{CONFIG.site_name_short}",
       help_email: "#{CONFIG.help_email}",
       logo_square: "#{@site.logo_square.url}",
       copyrighted_media_image_urls: {

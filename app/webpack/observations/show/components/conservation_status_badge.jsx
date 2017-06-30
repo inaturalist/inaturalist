@@ -24,9 +24,10 @@ class ConservationStatusBadge extends React.Component {
             { ` (${cs.authority})` }
           </span>
         </div>
-        <div className="summary">
-          { cs.description }
-        </div>
+        <div
+          className="summary"
+          dangerouslySetInnerHTML={ { __html: cs.description } }
+        />
       </Popover>
     );
     return (
