@@ -8,7 +8,7 @@ function mapStateToProps( state ) {
   return {
     observation: state.observation,
     config: state.config,
-    controlledTerms: state.controlledTerms
+    controlledTerms: state.controlledTerms.terms
   };
 }
 

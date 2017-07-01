@@ -16,6 +16,7 @@ import {
   updateSearchParamsFromPop,
   updateDefaultParams
 } from "./actions/";
+import { fetchAllControlledTerms } from "../show/ducks/controlled_terms";
 import AppContainer from "./containers/app_container";
 import _ from "lodash";
 
@@ -60,9 +61,6 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 setupKeyboardShortcuts( store.dispatch );
 
 window.onpopstate = ( e ) => {
-  if ( !e.state ) {
-    return;
-  }
   store.dispatch( updateSearchParamsFromPop( e.state ) );
   store.dispatch( fetchObservationsStats() );
 };
@@ -75,6 +73,7 @@ if ( urlParams.hasOwnProperty( "blind" ) ) {
   store.dispatch( setConfig( { blind: true } ) );
 }
 store.dispatch( updateSearchParams( newParams ) );
+store.dispatch( fetchAllControlledTerms( ) );
 
 // Somewhat magic, so be advised: binding a a couple actions to changes in
 // particular parts of the state. Might belong elsewhere, but this is where we

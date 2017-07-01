@@ -1,15 +1,21 @@
 import inatjs from "inaturalistjs";
 
 const SET_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_CONTROLLED_TERMS";
+const SET_ALL_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_ALL_CONTROLLED_TERMS";
 
-export default function reducer( state = [], action ) {
+export default function reducer( state = { terms: [], allTerms: [] }, action ) {
+  const newState = Object.assign( {}, state );
   switch ( action.type ) {
     case SET_CONTROLLED_TERMS:
-      return action.terms;
+      newState.terms = action.terms;
+      break;
+    case SET_ALL_CONTROLLED_TERMS:
+      newState.allTerms = action.terms;
+      break;
     default:
       // nothing to see here
   }
-  return state;
+  return newState;
 }
 
 export function setControlledTerms( terms ) {
@@ -18,6 +24,14 @@ export function setControlledTerms( terms ) {
     terms
   };
 }
+
+export function setAllControlledTerms( terms ) {
+  return {
+    type: SET_ALL_CONTROLLED_TERMS,
+    terms
+  };
+}
+
 
 export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
@@ -30,4 +44,11 @@ export function fetchControlledTerms( options = {} ) {
       dispatch( setControlledTerms( response.results ) );
     } ).catch( e => { } );
   };
+}
+
+export function fetchAllControlledTerms( ) {
+  return dispatch =>
+    inatjs.controlled_terms.search( ).then( response => {
+      dispatch( setAllControlledTerms( response.results ) );
+    } ).catch( e => { } );
 }

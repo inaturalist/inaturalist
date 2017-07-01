@@ -56,7 +56,6 @@ export function fetchDataForTab( options = { } ) {
     if ( s.currentObservation.tab === "suggestions" ) {
       dispatch( fetchSuggestions( ) );
     } else if ( s.currentObservation.tab === "annotations" ) {
-      dispatch( setControlledTerms( [] ) );
       dispatch( fetchControlledTerms( { observation } ) );
     } else if ( s.currentObservation.tab === "data-quality" ) {
       dispatch( fetchQualityMetrics( { observation } ) );
@@ -151,6 +150,7 @@ function showNextObservation( ) {
       nextObservation = currentObservation.observation || observations.results[0];
     }
     if ( nextObservation ) {
+      dispatch( setControlledTerms( [] ) );
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
     } else {
@@ -173,6 +173,7 @@ function showPrevObservation( ) {
     prevIndex -= 1;
     const prevObservation = observations.results[prevIndex];
     if ( prevObservation ) {
+      dispatch( setControlledTerms( [] ) );
       dispatch( showCurrentObservation( prevObservation ) );
       dispatch( fetchCurrentObservation( prevObservation ) );
     }
@@ -309,7 +310,7 @@ export function addAnnotationFromKeyboard( attributeLabel, valueLabel ) {
     if ( !s.currentObservation.observation || s.currentObservation.tab !== "annotations" ) {
       return;
     }
-    const attribute = s.controlledTerms.find( a => a.label === attributeLabel );
+    const attribute = s.controlledTerms.terms.find( a => a.label === attributeLabel );
     if ( !attribute ) { return; }
     const value = attribute.values.find( v => v.label === valueLabel );
     if ( !value ) { return; }

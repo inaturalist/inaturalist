@@ -186,3 +186,20 @@ $changed-color: #74ac00;
   font-weight: bold;
   font-size: 16px;
 }
+
+.FiltersButtonContainer {
+  select { max-width: none; }
+  .annotations-form-group {
+    select {
+      width: auto;
+      display: inline-block;
+    }
+    .term-value { display: inline-block; }
+    big {
+      margin: 0 10px;
+      position: relative;
+      top: 3px;
+      font-weight: bold;
+    }
+  }
+}

@@ -51,7 +51,13 @@ class FiltersButton extends React.Component {
   }
 
   render( ) {
-    const { params, updateSearchParams, replaceSearchParams, defaultParams } = this.props;
+    const {
+      params,
+      updateSearchParams,
+      replaceSearchParams,
+      defaultParams,
+      terms
+    } = this.props;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
@@ -368,6 +374,55 @@ class FiltersButton extends React.Component {
           <input type="hidden" name="not_matching_project_rules_for" />
           <input type="hidden" name="list_id" />
         </div>
+        <div className="form-group">
+          <label className="sectionlabel">
+            { _.capitalize( I18n.t( "photo_licensing" ) ) }
+          </label>
+          <select
+            className={`form-control ${params.photo_license ? "filter-changed" : ""}`}
+            value={ params.photo_license }
+            onChange={ e => updateSearchParams( { photo_license: e.target.value } ) }
+          >
+            <option value="">{ I18n.t( "all" ) }</option>
+            {licenses.map( ( code ) => (
+              <option key={`photo-licenses-${code}`} value={ code }>{ code }</option>
+            ) ) }
+          </select>
+        </div>
+        <label className="sectionlabel">
+          { I18n.t( "reviewed" ) }
+        </label>
+        <div className={`form-group ${params.reviewed ? "filter-changed" : ""}`}>
+          <label className="radio-inline">
+            <input
+              type="radio"
+              name="reviewed"
+              defaultChecked={params.reviewed === undefined || params.reviewed === null}
+              onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
+            />
+            { I18n.t( "any" ).toLowerCase( ) }
+          </label>
+          <label className="radio-inline">
+            <input
+              type="radio"
+              name="reviewed"
+              value="true"
+              defaultChecked={params.reviewed === true}
+              onClick={ ( ) => updateSearchParams( { reviewed: true } ) }
+            />
+            { I18n.t( "yes" ).toLowerCase( ) }
+          </label>
+          <label className="radio-inline">
+            <input
+              type="radio"
+              name="reviewed"
+              value="false"
+              defaultChecked={params.reviewed === false}
+              onClick={ ( ) => updateSearchParams( { reviewed: false } ) }
+            />
+            { I18n.t( "no" ).toLowerCase( ) }
+          </label>
+        </div>
       </Col>
     );
     const mainFilters = (
@@ -446,56 +501,91 @@ class FiltersButton extends React.Component {
         </div>
       </Col>
     );
+    const chosenTerm = terms.find( t => t.id === params.term_id );
+    const rejectedTerm = terms.find( t => t.id === params.without_term_id );
     const moreCenterCol = (
       <Col xs="4">
-        <div className="form-group">
-          <label className="sectionlabel">
-            { _.capitalize( I18n.t( "photo_licensing" ) ) }
-          </label>
+        <div className="form-group annotations-form-group">
+          <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
           <select
-            className={`form-control ${params.photo_license ? "filter-changed" : ""}`}
-            value={ params.photo_license }
-            onChange={ e => updateSearchParams( { photo_license: e.target.value } ) }
+            id="params-term-id"
+            className={`form-control ${params.term_id ? "filter-changed" : ""}`}
+            defaultValue={params.term_id}
+            onChange={ e => {
+              if ( _.isEmpty( e.target.value ) ) {
+                updateSearchParams( { term_id: "", term_value_id: "" } );
+              } else {
+                updateSearchParams( { term_id: e.target.value } );
+              }
+            } }
           >
-            <option value="">{ I18n.t( "all" ) }</option>
-            {licenses.map( ( code ) => (
-              <option key={`photo-licenses-${code}`} value={ code }>{ code }</option>
+            <option value="">
+              { _.capitalize( I18n.t( "none" ) ) }
+            </option>
+            { terms.map( t => (
+              <option value={ t.id } key={`with-term-id-${t.id}`}>
+                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+              </option>
             ) ) }
           </select>
+          { chosenTerm ? (
+            <div className="term-value">
+              <big>=</big>
+              <select
+                id="params-term-value-id"
+                className={`form-control ${params.term_value_id ? "filter-changed" : ""}`}
+                defaultValue={params.term_value_id}
+                onChange={ e => updateSearchParams( { term_value_id: e.target.value } ) }
+              >
+                <option value="">
+                  { _.capitalize( I18n.t( "any" ) ) }
+                </option>
+                { chosenTerm.values.map( t => (
+                  <option value={ t.id } key={`annotation-term-value-id-${t.id}`}>
+                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                  </option>
+                ) ) }
+              </select>
+            </div>
+          ) : null }
         </div>
-        <label className="sectionlabel">
-          { I18n.t( "reviewed" ) }
-        </label>
-        <div className={`form-group ${params.reviewed ? "filter-changed" : ""}`}>
-          <label className="radio-inline">
-            <input
-              type="radio"
-              name="reviewed"
-              defaultChecked={params.reviewed === undefined || params.reviewed === null}
-              onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
-            />
-            { I18n.t( "any" ).toLowerCase( ) }
-          </label>
-          <label className="radio-inline">
-            <input
-              type="radio"
-              name="reviewed"
-              value="true"
-              defaultChecked={params.reviewed === true}
-              onClick={ ( ) => updateSearchParams( { reviewed: true } ) }
-            />
-            { I18n.t( "yes" ).toLowerCase( ) }
-          </label>
-          <label className="radio-inline">
-            <input
-              type="radio"
-              name="reviewed"
-              value="false"
-              defaultChecked={params.reviewed === false}
-              onClick={ ( ) => updateSearchParams( { reviewed: false } ) }
-            />
-            { I18n.t( "no" ).toLowerCase( ) }
-          </label>
+        <div className="form-group annotations-form-group">
+          <label className="sectionlabel">{ I18n.t( "without_annotation" ) }</label>
+          <select
+            id="params-without-term-id"
+            className={`form-control ${params.without_term_id ? "filter-changed" : ""}`}
+            defaultValue={params.without_term_id}
+            onChange={ e => updateSearchParams( { without_term_id: e.target.value } ) }
+          >
+            <option value="">
+              { _.capitalize( I18n.t( "none" ) ) }
+            </option>
+            { terms.map( t => (
+              <option value={ t.id } key={`without-term-id-${t.id}`}>
+                { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+              </option>
+            ) ) }
+          </select>
+          { rejectedTerm ? (
+            <div className="term-value">
+              <big>=</big>
+              <select
+                id="params-term-value-id"
+                className={`form-control ${params.without_term_value_id ? "filter-changed" : ""}`}
+                defaultValue={params.without_term_value_id}
+                onChange={ e => updateSearchParams( { without_term_value_id: e.target.value } ) }
+              >
+                <option value="">
+                  { _.capitalize( I18n.t( "any" ) ) }
+                </option>
+                { rejectedTerm.values.map( t => (
+                  <option value={ t.id } key={`without-term-value-id-${t.id}`}>
+                    { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                  </option>
+                ) ) }
+              </select>
+            </div>
+          ) : null }
         </div>
       </Col>
     );
@@ -613,7 +703,12 @@ FiltersButton.propTypes = {
   params: PropTypes.object,
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
-  replaceSearchParams: PropTypes.func
+  replaceSearchParams: PropTypes.func,
+  terms: PropTypes.array
+};
+
+FiltersButton.defaultProps = {
+  terms: []
 };
 
 export default FiltersButton;

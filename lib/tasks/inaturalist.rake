@@ -177,6 +177,7 @@ namespace :inaturalist do
                  "data_quality", "checklist", "misidentifications",
                  "frequency", "rg_observations"
                 ]
+    all_keys += I18n.t( "controlled_term_labels" ).map{|k,v| "controlled_term_labels.#{k}" }
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
       # Ignore non-files
@@ -225,7 +226,7 @@ namespace :inaturalist do
             if value
               h[key] ||= value
             elsif Rails.env.development?
-              puts "WARNING: Failed to translate #{key}"
+              puts "WARNING: Failed to translate #{locale}.#{key}"
             end
           else
             h[key] ||= { }

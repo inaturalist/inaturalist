@@ -20,6 +20,8 @@ class SearchBar extends React.Component {
       )
       &&
       this.props.allReviewed === nextProps.allReviewed
+      &&
+      this.props.allControlledTerms === nextProps.allControlledTerms
     ) {
       // No change in underlying data series, don't update
       return false;
@@ -34,7 +36,8 @@ class SearchBar extends React.Component {
       replaceSearchParams,
       reviewAll,
       unreviewAll,
-      allReviewed
+      allReviewed,
+      allControlledTerms
     } = this.props;
     return (
       <form className="SearchBar form-inline">
@@ -72,6 +75,7 @@ class SearchBar extends React.Component {
           updateSearchParams={updateSearchParams}
           replaceSearchParams={replaceSearchParams}
           defaultParams={defaultParams}
+          terms={allControlledTerms}
         />
         <Input
           type="checkbox"
@@ -106,7 +110,8 @@ SearchBar.propTypes = {
   replaceSearchParams: PropTypes.func,
   reviewAll: PropTypes.func,
   unreviewAll: PropTypes.func,
-  allReviewed: PropTypes.bool
+  allReviewed: PropTypes.bool,
+  allControlledTerms: PropTypes.array
 };
 
 export default SearchBar;

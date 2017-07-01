@@ -10,6 +10,8 @@ I18n.translations["ar"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -75,6 +77,8 @@ I18n.translations["az"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -148,6 +152,7 @@ I18n.translations["bg"] = {
   "add_to_a_project": "Добавяне към проект",
   "added": "Добавен",
   "added!": "Добавено!",
+  "added_as_a_part_of": "Добавено като част от",
   "added_on": "Добавено на",
   "agree_": "Съгласен",
   "all_taxa": {
@@ -258,6 +263,8 @@ I18n.translations["bg"] = {
   "combine": "Обедини",
   "comment_": "Коментар",
   "conservation_status": "Природозащитен статут",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "някои права запазени",
     "some_rights_reserved_by": "(с) %{name}, някои права запазени (%{license_short})",
@@ -865,6 +872,7 @@ I18n.translations["br"] = {
   "add_to_a_project": "Ouzhpennañ d'ur raktres",
   "added": "Ouzhpennet",
   "added!": "Ouzhpennet!",
+  "added_as_a_part_of": "Ouzhpenn evel lodenn eus ur/un/ul",
   "added_on": "Ouzhpennet d'an",
   "additional_range": "Lijorenn ouzhpenn",
   "additional_range_data_from_an_unknown_source": "Pajennad roadennoù ouzhpenn adalek un tarzh dianav",
@@ -983,6 +991,8 @@ I18n.translations["br"] = {
   "comprehensive_list": "Roll klok",
   "confirm": "Kadarnaat",
   "confirmed": "kadarnaet",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "Gwirioù miret zo",
     "some_rights_reserved_by": "(c) %{name}, gwirioù miret zo (%{license_short})",
@@ -1389,6 +1399,8 @@ I18n.translations["bs"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -1468,6 +1480,7 @@ I18n.translations["ca"] = {
   "add_to_a_project": "Afegiu al projecte",
   "added": "Afegit",
   "added!": "Afegit!",
+  "added_as_a_part_of": "Afegit com a part d'un",
   "added_on": "Afegit el",
   "additional_range": "Distribució addicional",
   "additional_range_data_from_an_unknown_source": "Dades addicionals de distribució des de font desconeguda",
@@ -1626,6 +1639,8 @@ I18n.translations["ca"] = {
   "confirmed": "confirmada",
   "conservation_status": "Estat de conservació",
   "continue": "Continua",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "alguns drets reservats",
     "some_rights_reserved_by": "(c) %{name}, alguns drets reservats (%{license_short})",
@@ -2522,6 +2537,8 @@ I18n.translations["cs"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -2587,6 +2604,8 @@ I18n.translations["da"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -2654,6 +2673,8 @@ I18n.translations["de"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -2719,6 +2740,8 @@ I18n.translations["el"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -2812,6 +2835,7 @@ I18n.translations["en"] = {
   "add_to_a_project": "Add to a project",
   "added": "Added",
   "added!": "Added!",
+  "added_as_a_part_of": "Added as part of a",
   "added_on": "Added on",
   "additional_range": "Additional range",
   "additional_range_data_from_an_unknown_source": "Additional range data from an unknown source",
@@ -2984,6 +3008,22 @@ I18n.translations["en"] = {
   "confirmed": "confirmed",
   "conservation_status": "Conservation Status",
   "continue": "Continue",
+  "controlled_term_labels": {
+    "Female": "Female",
+    "adult": "Adult",
+    "egg": "Egg",
+    "flowering": "Flowering",
+    "fruiting": "Fruiting",
+    "juvenile": "Juvenile",
+    "larva": "Larva",
+    "life_stage": "Life Stage",
+    "male": "Male",
+    "nymph": "Nymph",
+    "plant_phenology": "Plant Phenology",
+    "pupa": "Pupa",
+    "sex": "Sex",
+    "teneral": "Teneral"
+  },
   "copyright": {
     "some_rights_reserved": "some rights reserved",
     "some_rights_reserved_by": "(c) %{name}, some rights reserved (%{license_short})",
@@ -3910,7 +3950,9 @@ I18n.translations["en"] = {
   "we_have_no_establishment_data_for_this_taxon": "We have no establishment data for this taxon",
   "white": "white",
   "wild": "wild",
+  "with_annotation": "With annotation",
   "withdraw": "Withdraw",
+  "without_annotation": "Without annotation",
   "x_comments": {
     "one": "1 comment",
     "other": "%{count} comments"
@@ -4006,6 +4048,8 @@ I18n.translations["en-GB"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -4071,6 +4115,8 @@ I18n.translations["en-US"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -4186,6 +4232,7 @@ I18n.translations["es"] = {
   "add_to_a_project": "Añade a un proyecto",
   "added": "Añadido",
   "added!": "¡Añadido!",
+  "added_as_a_part_of": "Añadido como parte de un",
   "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -4373,6 +4420,8 @@ I18n.translations["es"] = {
   "confirmed": "confirmadas",
   "conservation_status": "Categoría de riesgo",
   "continue": "Continuar",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "all_rights_reserved": "(c) %{name}, todos los derechos reservados",
     "anonymous": "anónimo",
@@ -5362,6 +5411,7 @@ I18n.translations["es-MX"] = {
   "add_to_a_project": "Añade a un proyecto",
   "added": "añadido",
   "added!": "¡Añadido!",
+  "added_as_a_part_of": "Añadido como parte de un",
   "added_on": "añadido en",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -5507,6 +5557,8 @@ I18n.translations["es-MX"] = {
   "confirmed": "registros de especies",
   "conservation_status": "Estado de conservación",
   "continue": "Continuar",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "Algunos derechos reservados",
     "some_rights_reserved_by": "(c) %{name}, algunos derechos reservados (%{license_short})",
@@ -6214,6 +6266,8 @@ I18n.translations["et"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -6289,6 +6343,7 @@ I18n.translations["eu"] = {
   "add_tags": "Ekiketak gehitu",
   "added": "Egun honetan gehitua:",
   "added!": "Gehituta!",
+  "added_as_a_part_of": "Honen zati gisa gehituta:",
   "added_on": "Egun honetan gehitua:",
   "additional_range": "Banaketa osagarria",
   "additional_range_data_from_an_unknown_source": "D\"Iturri ezezaguneko banaketa osagarriaren datuak\"",
@@ -6423,6 +6478,8 @@ I18n.translations["eu"] = {
   "confirmed": "baieztatuak",
   "conservation_status": "Arrisku maila",
   "continue": "Jarraitu",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved_by": "(c) %{name}, eskubide batzuk erreserbatuta (%{license_short})",
     "all_rights_reserved": "(c) %{name}, eskubide guztiak erreserbatuta",
@@ -6987,6 +7044,8 @@ I18n.translations["fa"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -7066,6 +7125,7 @@ I18n.translations["fi"] = {
   "add_to_a_project": "Lisää projektiin",
   "added": "Lisätty",
   "added!": "Lisätty!",
+  "added_as_a_part_of": "Lisätty osana",
   "added_on": "Lisätty",
   "additional_range": "Lisäalue",
   "additional_range_data_from_an_unknown_source": "Lisäalueen tietoja tuntemattomattomasta lähteestä",
@@ -7209,6 +7269,8 @@ I18n.translations["fi"] = {
   "confirmed": "vahvistettu",
   "conservation_status": "Uhanalaisuusluokitus",
   "continue": "Jatka",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "jotkut oikeudet pidätetään",
     "some_rights_reserved_by": "(c) %{name}, jotkut oikeudet pidätetään (%{license_short})",
@@ -7678,6 +7740,7 @@ I18n.translations["fr"] = {
   "add_to_a_project": "Ajouter à un projet",
   "added": "Ajouté",
   "added!": "Ajouté!",
+  "added_as_a_part_of": "Ajouté comme partie d’un",
   "added_on": "Ajouté le",
   "additional_range": "Aire de répartition supplémentaire",
   "additional_range_data_from_an_unknown_source": "Données supplémentaires sur l’aire de répartition d’une source inconnue",
@@ -7848,6 +7911,8 @@ I18n.translations["fr"] = {
   "confirmed": "confirmé(s)",
   "conservation_status": "Situation quant à la conservation",
   "continue": "Continuer",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "certains droits réservés",
     "some_rights_reserved_by": "(c) %{name}, certains droits réservés (%{license_short})",
@@ -8600,6 +8665,7 @@ I18n.translations["fr"] = {
   "that_was_the_last_observation_matching_the_current_filters": "C’était la dernière observation correspondant aux filtres actuels.",
   "the_below_items_are_needed_to_achieve": "Les éléments ci-dessous doivent atteindre le <span className=\"bold\">Niveau recherche :</span>",
   "the_community_must_feel_that": "La communauté doit sentir que l’ID de la communauté est le meilleur possible, d’après la preuve",
+  "the_data_quality_assessment_is_an_evaluation": "L’appréciation de la qualité des données est une évaluation de la pertinence d’une observation. Les observations de niveau Recherche peuvent être utilisées par les scientifiques pour des recherches. Donnez votre vote ci-dessous :",
   "the_world": "Le monde",
   "then_keybord_sequence": "alors",
   "there_were_problems_adding_taxa": "Il y a eu des problèmes durant l’ajout de ces taxons : %{errors}",
@@ -8847,6 +8913,7 @@ I18n.translations["gl"] = {
   "add_photos_to_this_observation": "Engadir fotos a esta observación",
   "added": "Engadido o",
   "added!": "¡Engadido!",
+  "added_as_a_part_of": "Engadido como parte dun",
   "added_on": "Engadido o",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fonte descoñecida",
@@ -8980,6 +9047,8 @@ I18n.translations["gl"] = {
   "comprehensive_list": "Lista completa",
   "confirmed": "Confirmadas",
   "conservation_status": "Categoría de risco",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved_by": "(c) %{name}, algúns dereitos reservados (%{license_short})",
     "all_rights_reserved": "(c) %{name}, todos os dereitos reservados",
@@ -9517,6 +9586,8 @@ I18n.translations["he"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -9583,6 +9654,8 @@ I18n.translations["hr"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -9648,6 +9721,8 @@ I18n.translations["hu"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -9726,6 +9801,7 @@ I18n.translations["id"] = {
   "add_to_a_project": "Tambahkan ke proyek",
   "added": "Ditambahkan",
   "added!": "Ditambahkan!",
+  "added_as_a_part_of": "Ditambahkan sebagai bagian dari",
   "added_on": "Ditambahkan",
   "additional_range": "Tambahan rentang",
   "additional_range_data_from_an_unknown_source": "Berbagai data tambahan dari sumber yang tidak diketahui",
@@ -9876,6 +9952,8 @@ I18n.translations["id"] = {
   "confirmed": "(telah dikonfirmasi)",
   "conservation_status": "Status konservasi",
   "continue": "Lanjutkan",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "beberapa hak dilindungi",
     "some_rights_reserved_by": "(c) %{name}, some rights reservebeberapa hak dilindung (%{license_short})",
@@ -10580,6 +10658,8 @@ I18n.translations["is"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -10672,6 +10752,7 @@ I18n.translations["it"] = {
   "add_to_a_project": "Aggiungi a un progetto",
   "added": "Aggiunte",
   "added!": "Aggiunto!",
+  "added_as_a_part_of": "Aggiunto come parte di un",
   "added_on": "Aggiunto il",
   "additional_range": "Areale aggiuntivo",
   "additional_range_data_from_an_unknown_source": "Ulteriori dati di distribuzione da fonte sconosciuta",
@@ -10843,6 +10924,8 @@ I18n.translations["it"] = {
   "confirmed": "confermato",
   "conservation_status": "Stato di conservazione",
   "continue": "Continua",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "Alcuni diritti riservati",
     "some_rights_reserved_by": "(c) %{name}, alcuni diritti riservati (%{license_short})",
@@ -11602,6 +11685,7 @@ I18n.translations["it"] = {
   "that_was_the_last_observation_matching_the_current_filters": "Questa era l'ultima osservazione corrispondente ai filtri impostati.",
   "the_below_items_are_needed_to_achieve": "Le osservazioni sottostanti hanno bisogno di raggiungere il <span className=\"bold\">Livello Ricerca:</span>",
   "the_community_must_feel_that": "La comunità deve poter percepire che l'ID della Comunità è la migliore che può avere in base alle evidenze",
+  "the_data_quality_assessment_is_an_evaluation": "La valutazione della qualità dei dati è una stima dell'accuratezza dell'osservazione. Le osservazioni con Livello Ricerca possono essere usate dagli scienziati per le ricerche. Vota qui sotto:",
   "the_world": "Il mondo",
   "then_keybord_sequence": "poi",
   "there_were_problems_adding_taxa": "Ci sono stati problemi nell'aggiunta di questi taxa: %{errors}",
@@ -11851,6 +11935,8 @@ I18n.translations["iw"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -11933,6 +12019,7 @@ I18n.translations["ja"] = {
   "add_to_a_project": "プロジェクトに追加",
   "added": "追加されました",
   "added!": "追加されました！",
+  "added_as_a_part_of": "追加先：",
   "added_on": "追加日付",
   "additional_range": "追加の分布範囲",
   "additional_range_data_from_an_unknown_source": "追加の分布範囲の提供先は不明",
@@ -12069,6 +12156,8 @@ I18n.translations["ja"] = {
   "confirmed": "確認済",
   "conservation_status": "保全状況",
   "continue": "続行",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "いくつかの権利を保有",
     "some_rights_reserved_by": "(c) %{name}, いくつかの権利を保有 (%{license_short})",
@@ -12881,6 +12970,7 @@ I18n.translations["ko"] = {
   "add_to_a_project": "프로젝트에 추가",
   "added": "추가됨",
   "added!": "추가되었습니다!",
+  "added_as_a_part_of": "일부분으로 추가됨",
   "added_on": "추가됨",
   "additional_range": "추가적인 범위",
   "additional_range_data_from_an_unknown_source": "알 수 없는 자료에서 추가적인 범위 데이터",
@@ -12982,6 +13072,8 @@ I18n.translations["ko"] = {
   "confirmed": "확인됨",
   "conservation_status": "보존 상태",
   "continue": "계속",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "일부 권리 보유",
     "some_rights_reserved_by": "(c) %{name}, 일부 권리 보유 (%{license_short})",
@@ -13528,6 +13620,8 @@ I18n.translations["lexicons"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -13594,6 +13688,8 @@ I18n.translations["lt"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -13659,6 +13755,8 @@ I18n.translations["lv"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -13730,6 +13828,7 @@ I18n.translations["mk"] = {
   "add_tags": "Додај ознаки",
   "added": "Додадено",
   "added!": "Додадено!",
+  "added_as_a_part_of": "Додадено како дел од",
   "added_on": "Додадено на",
   "additional_range": "Дополнителна распространетост",
   "agree": "се согласувам",
@@ -13847,6 +13946,8 @@ I18n.translations["mk"] = {
   "comprehensive_list": "Сеопфатен список",
   "confirmed": "потврдено",
   "conservation_status": "Заштитен статус",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "некои права задржани",
     "some_rights_reserved_by": "(c) %{name}, некои права задржани (%{license_short})",
@@ -14343,6 +14444,8 @@ I18n.translations["my"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -14408,6 +14511,8 @@ I18n.translations["nb"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -14475,6 +14580,8 @@ I18n.translations["nl"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -14540,6 +14647,8 @@ I18n.translations["no"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -14617,6 +14726,7 @@ I18n.translations["oc"] = {
   "add_to_a_project": "Apondre a un projècte",
   "added": "Apondut",
   "added!": "Apondut !",
+  "added_as_a_part_of": "Apondut coma part d’un",
   "added_on": "Apondut lo",
   "additional_range": "Plaja suplementària",
   "agree": "acceptar",
@@ -14748,6 +14858,8 @@ I18n.translations["oc"] = {
   "confirm": "Confirmar",
   "confirmed": "confirmat",
   "continue": "Contunhar",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "anonymous": "anonim",
     "public_domain": "domeni public",
@@ -15259,6 +15371,8 @@ I18n.translations["pl"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -15324,6 +15438,8 @@ I18n.translations["pt"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -15397,6 +15513,7 @@ I18n.translations["pt-BR"] = {
   "add_to_a_project": "Adicionar a um projeto",
   "added": "Adicionado",
   "added!": "Adicionado!",
+  "added_as_a_part_of": "Adicionado como parte de um",
   "added_on": "Adicionado em",
   "additional_range": "Distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Distribuição adicional para fontes desconhecidas",
@@ -15541,6 +15658,8 @@ I18n.translations["pt-BR"] = {
   "comprehensive_list": "Lista completa",
   "confirmed": "confirmado",
   "conservation_status": "Status de Conservação",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "alguns direitos reservados",
     "some_rights_reserved_by": "(c) %{name}, alguns direitos reservados (%{license_short})",
@@ -16156,6 +16275,8 @@ I18n.translations["ro"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -16221,6 +16342,8 @@ I18n.translations["ru"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -16288,6 +16411,8 @@ I18n.translations["sk"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -16353,6 +16478,8 @@ I18n.translations["sl"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -16420,6 +16547,8 @@ I18n.translations["sr"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -16485,6 +16614,8 @@ I18n.translations["sr-RS"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -16552,6 +16683,8 @@ I18n.translations["sv"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -16617,6 +16750,8 @@ I18n.translations["th"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -16684,6 +16819,8 @@ I18n.translations["tr"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -16750,6 +16887,8 @@ I18n.translations["uk"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -16815,6 +16954,8 @@ I18n.translations["vi"] = {
     }
   },
   "change_types": {
+  },
+  "controlled_term_labels": {
   },
   "copyright": {
   },
@@ -16903,6 +17044,7 @@ I18n.translations["zh-CN"] = {
   "add_to_a_project": "添加至一个项目",
   "added": "已添加",
   "added!": "已添加！",
+  "added_as_a_part_of": "已加入为一个",
   "added_on": "添加在",
   "additional_range": "额外范围",
   "agree": "同意",
@@ -17068,6 +17210,8 @@ I18n.translations["zh-CN"] = {
   "confirmed": "已确认",
   "conservation_status": "保护状态",
   "continue": "继续",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "保留部分权利",
     "some_rights_reserved_by": "(c) %{name}，保留部分权利（%{license_short}）",
@@ -17957,6 +18101,8 @@ I18n.translations["zh-HK"] = {
   },
   "change_types": {
   },
+  "controlled_term_labels": {
+  },
   "copyright": {
   },
   "date": {
@@ -18048,6 +18194,7 @@ I18n.translations["zh-TW"] = {
   "add_to_a_project": "添加至專案",
   "added": "已新增",
   "added!": "已新增!",
+  "added_as_a_part_of": "已添加成為部份",
   "added_on": "已添加在",
   "additional_range": "額外範圍",
   "additional_range_data_from_an_unknown_source": "來自不知名來源的額外範圍資料",
@@ -18206,6 +18353,8 @@ I18n.translations["zh-TW"] = {
   "confirmed": "已確認",
   "conservation_status": "保育狀態",
   "continue": "繼續",
+  "controlled_term_labels": {
+  },
   "copyright": {
     "some_rights_reserved": "保留部分權利",
     "some_rights_reserved_by": "(c) %{name}，保留部份權利%{license_short}",
