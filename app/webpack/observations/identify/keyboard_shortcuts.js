@@ -28,10 +28,10 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   bindShortcut( "left", showPrevObservation, dispatch );
   bindShortcut( "i", addIdentification, dispatch );
   bindShortcut( "c", addComment, dispatch );
-  bindShortcut( "z", toggleCaptive, dispatch, { eventType: "keyup" } );
+  bindShortcut( "x", toggleCaptive, dispatch, { eventType: "keyup" } );
   bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
   bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
-  bindShortcut( "space", zoomCurrentPhoto, dispatch );
+  bindShortcut( "z", zoomCurrentPhoto, dispatch );
   bindShortcut( ["command+left", "alt+left"], showPrevPhoto, dispatch );
   bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
   bindShortcut( "shift+left", showPrevTab, dispatch );

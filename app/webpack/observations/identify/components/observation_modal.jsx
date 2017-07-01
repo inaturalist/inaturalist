@@ -278,7 +278,7 @@ class ObservationModal extends React.Component {
                     <table>
                       <tbody>
                         <tr className="keyboard-shortcuts">
-                          <td><code>z</code></td>
+                          <td><code>x</code></td>
                           <td>{ I18n.t( "organism_appears_captive_cultivated" ) }</td>
                         </tr>
                         <tr className="keyboard-shortcuts">
@@ -302,7 +302,7 @@ class ObservationModal extends React.Component {
                           <td>{ I18n.t( "add_id" ) }</td>
                         </tr>
                         <tr className="keyboard-shortcuts">
-                          <td><code>SPACE</code></td>
+                          <td><code>z</code></td>
                           <td>{ I18n.t( "zoom_photo" ) }</td>
                         </tr>
                         <tr className="keyboard-shortcuts">

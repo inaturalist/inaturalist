@@ -3009,9 +3009,9 @@ I18n.translations["en"] = {
   "conservation_status": "Conservation Status",
   "continue": "Continue",
   "controlled_term_labels": {
-    "Female": "Female",
     "adult": "Adult",
     "egg": "Egg",
+    "female": "Female",
     "flowering": "Flowering",
     "fruiting": "Fruiting",
     "juvenile": "Juvenile",
