@@ -64,6 +64,7 @@ class Activity extends React.Component {
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
+    const reviewedByViewer = loggedIn && _.includes( observation.reviewed_by, config.currentUser.id );
     const taxonIDsDisplayed = { };
     return (
       <div className="Activity">
@@ -112,6 +113,24 @@ class Activity extends React.Component {
           >
             { I18n.t( "done" ) }
           </Button>
+          <div className="review">
+            <input
+              type="checkbox"
+              id="reviewed"
+              name="reviewed"
+              checked={ reviewedByViewer }
+              onChange={ ( ) => {
+                if ( $( "#reviewed" ).is( ":checked" ) ) {
+                  this.props.review( );
+                } else {
+                  this.props.unreview( );
+                }
+              }}
+            />
+            <label htmlFor="reviewed">
+              { I18n.t( "mark_as_reviewed" ) }
+            </label>
+          </div>
         </div>
       </div>
     );
@@ -124,14 +143,16 @@ Activity.propTypes = {
   commentIDPanel: PropTypes.object,
   observation_places: PropTypes.object,
   addComment: PropTypes.func,
-  deleteComment: PropTypes.func,
   addID: PropTypes.func,
+  createFlag: PropTypes.func,
+  deleteComment: PropTypes.func,
+  deleteFlag: PropTypes.func,
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
+  review: PropTypes.func,
+  setActiveTab: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
-  createFlag: PropTypes.func,
-  deleteFlag: PropTypes.func,
-  setActiveTab: PropTypes.func
+  unreview: PropTypes.func
 };
 
 export default Activity;

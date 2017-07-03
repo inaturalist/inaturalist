@@ -58,6 +58,7 @@ class Taxon < ActiveRecord::Base
           search_analyzer: "standard_analyzer"
         indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
         indexes :exact, type: "keyword"
+        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
       end
       indexes :statuses do
         indexes :authority, type: "keyword"

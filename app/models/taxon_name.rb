@@ -154,6 +154,7 @@ class TaxonName < ActiveRecord::Base
         json[:name_autocomplete_ja] = name
       end
       json[:exact] = name
+      json[:exact_ci] = name
     end
     json
   end

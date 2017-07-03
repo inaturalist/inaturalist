@@ -24,7 +24,7 @@ const setupKeyboardShortcuts = dispatch => {
     dispatch( setActiveTab( "comment" ) );
     setTimeout( focusCommentIDInput, 200 );
   } );
-  bindShortcut( "space", ( ) => {
+  bindShortcut( "z", ( ) => {
     dispatch( toggleMediaViewer( ) );
   } );
 };

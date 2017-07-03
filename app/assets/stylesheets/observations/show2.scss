@@ -866,6 +866,13 @@ h3, h4 {
   .comment_id {
     margin-left: 60px;
   }
+  .review {
+    float: right;
+    line-height: 34px;
+    input {
+      margin-right: 5px;
+    }
+  }
 }
 
 .UsersPopover {
@@ -900,7 +907,7 @@ h3, h4 {
 }
 
 .QualityMetrics {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   padding-right: 25px;
   .grade {
     margin: 15px 0px 25px;

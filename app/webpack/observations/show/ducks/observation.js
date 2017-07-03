@@ -302,6 +302,31 @@ export function removeTag( tag ) {
   };
 }
 
+export function review( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    dispatch( setAttributes( { reviewed_by: state.observation.reviewed_by.concat( [
+      state.config.currentUser.id
+    ] ) } ) );
+
+    const payload = { id: state.observation.id };
+    dispatch( callAPI( inatjs.observations.review, payload ) );
+  };
+}
+
+export function unreview( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const newReviewedBy = _.without( state.observation.reviewed_by, state.config.currentUser.id );
+    dispatch( setAttributes( { reviewed_by: newReviewedBy } ) );
+
+    const payload = { id: state.observation.id };
+    dispatch( callAPI( inatjs.observations.unreview, payload ) );
+  };
+}
+
 export function addComment( body ) {
   return ( dispatch, getState ) => {
     const state = getState( );
