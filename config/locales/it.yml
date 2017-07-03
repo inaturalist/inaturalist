@@ -836,6 +836,7 @@ it:
   click_on_the_map_to: Clicca sulla mappa per posizionare la tua osservazione
   click_the_map: <strong>Clicca sulla mappa</strong> per aggiungere una posizione.
   click_the_map_to_jump_new_place: Fai clic sulla cartina per spostarti
+  close: Chiudi
   code: Codice
   collapse_days: comprimi i giorni
   collapse_updates: comprimi gli aggiornamenti
@@ -933,6 +934,21 @@ it:
   contributions_from: Contributi da parte di
   contributor_cannot_be_found: Il collaboratore è introvabile
   contributors_to_project: Collaboratori al progetto %{project}
+  controlled_term_labels:
+    sex: Sesso
+    male: Maschio
+    female: Femmina
+    plant_phenology: Fenologia della pianta
+    flowering: Fioritura
+    fruiting: In frutto
+    life_stage: Stadio Vitale
+    adult: Adulto
+    teneral: Immaturo
+    pupa: Pupa
+    nymph: Ninfa
+    larva: Larva
+    egg: Uovo
+    juvenile: Giovane
   controls: Controlli
   coordinate_systems: Sistemi di coordinate
   coordinates: Coordinate
@@ -1034,6 +1050,7 @@ it:
   data_deficient: Carente di Dati
   data_quality: Qualità dei Dati
   data_quality_assessment: Valutazione della qualità dei dati
+  data_quality_assessment_: Valutazione della qualità dei dati
   datatype: Tipo di dati
   date_: Data
   date?: Data?
@@ -1601,6 +1618,15 @@ it:
   iconic_taxon: Icona del taxon
   id: ID
   id_: ID
+  id_categories:
+    tooltips:
+      leading: Il taxon discende dal taxon della comunità. Questa identificazione
+        può portare alla classificazione corretta.
+      improving: Il primo suggerimento per questo taxon che la comunità ha approvato
+        successivamente. Questo suggerimento ha aiutato ad affinare il taxon della
+        comunità.
+      maverick: Il taxon non è discendente o antenato del taxon della comunità, e.g.,
+        la comunità non concorda con questo taxon.
   id_more_in_id_please: Più identificazioni in "ID per favore"
   id_please!: ID per favore!
   id_please: ID per favore
@@ -1623,6 +1649,11 @@ it:
   identotron_help: Aiuto su Identotron
   ids: ID
   ids_made_for_others: ID fatte per altri
+  if_for_some_reason_a_user_doesnt_agree: Se per qualche ragione un utente non concorda
+    con il taxon della comunità, egli può rifiutarlo; significa che la sua ID è quella
+    usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa
+    anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando
+    la comunità è d'accordo con loro.
   if_matches_come_from_a_comprehensive_list: Se i risultati provengono da una lista
     esaustiva, qui verrà mostrata una barra verde.
   if_this_is_a_scientific_name: Se questo è un nome scientifico, è comunemente accettato?
@@ -1667,7 +1698,7 @@ it:
   import_sounds: Importa suoni
   import_tags_from_csv: Importare i tag da file CSV
   importing: Sto importando...
-  improving: Migliorando
+  improving: Il primo
   in: in
   in_: in
   in_n: in %{n}
@@ -1736,6 +1767,9 @@ it:
   iphone: iPhone
   is_a: è un
   is_an: è un
+  is_an_evaluation: |-
+    è una valutazione dell'accuratezza dell'osservazione.
+    Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
   is_not_following_anyone: non segue nessuno.
   is_now: è ora
   is_the_organism_wild: L'organismo è selvatico/naturalizzato?
@@ -3107,6 +3141,7 @@ it:
   refreshing: aggiornamento in corso...
   regenerate_url: Rigenera l'URL
   register_for_this_event_at_x_html: Registrati per questo evento in %{x}
+  reject?: Rifiuta?
   reject_the_community_id: rifiuta l'ID della Comunità
   related_species: Specie affini
   reload_and_refresh: Ricarica ed aggiorna la lista
@@ -3662,6 +3697,7 @@ it:
     per resettare la tua password.
   thats_not_a_real_date: Questa non è una data verosimile!
   the: l'
+  the_: Il
   the_admin_is_the_person_who: L'amministratore è la persona che ha creato il progetto.
     Possono fare le stesse code dei gestori e dei curatori, ma anche cancellare il
     progetto.
@@ -3679,9 +3715,6 @@ it:
     dell'accuratezza di un'osservazione. Tutte le osservazioni partono da un livello
     <strong>"casuale"</strong>, e raggiungono un livello <strong>"ricerca"</strong>
     quando
-  the_data_quality_assessment_is_an_evaluation: 'La valutazione della qualità dei
-    dati è una stima dell''accuratezza dell''osservazione. Le osservazioni con Livello
-    Ricerca possono essere usate dagli scienziati per le ricerche. Vota qui sotto:'
   the_following_lists: le liste seguenti
   the_following_observations_could: Le seguenti osservazioni non possono essere aggiunte
     a  %{link}
@@ -3778,6 +3811,7 @@ it:
   they_have_been_invited: '...sono già stati invitati'
   third_person_possessive_singular: '%{noun} di %{object_phrase}'
   this: questo
+  this_id_was_added_due_to_a: Questa ID è stata aggiunta per
   this_is_a: Questa è una
   this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon
     basato sul suo
@@ -4231,6 +4265,8 @@ it:
   which_projects_can_add_your_observations?: Quali progetti possono aggiungere le
     tue osservazioni?
   white: bianco
+  with_annotation: Con nota
+  without_annotation: Senza nota
   widget: Widget
   widget_code: Codice del Widget
   widget_for: Widget per
@@ -4280,6 +4316,7 @@ it:
   yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie
     foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire
     dei miei dati!
+  yes_reject_it: Si, rifiuta
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
   yesterday: Ieri
   yesterday_at: ', ieri alle 4 pm'

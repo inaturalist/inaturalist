@@ -244,7 +244,9 @@ qqq:
   clear: '{{Identical|Clear}}'
   click_add_an_observation_to_the_lower_right: where site_name_short is the name of
     a site
-  close: Close a window
+  close: |-
+    Close a window
+    {{Identical|Close}}
   code: '{{Identical|Code}}'
   colors: '{{Identical|Color}}'
   columns: '{{Identical|Column}}'
@@ -273,6 +275,9 @@ qqq:
   continue: '{{Identical|Continue}}'
   contributions: '{{Identical|Contribution}}'
   contributors_to_project: where project is the name of a project
+  controlled_term_labels:
+    male: '{{Identical|Male}}'
+    female: '{{Identical|Female}}'
   controls: '{{Identical|Control}}'
   coordinates: '{{Identical|Coordinate}}'
   copy: '{{Identical|Copy}}'

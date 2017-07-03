@@ -669,6 +669,7 @@ zh-CN:
   click_add_an_observation_to_the_lower_right: 欢迎来到 %{site_name_short}！在右下方点击“添加观察”。如果您尚未登录/注册的话，您将被提示这样做
   click_the_map: <strong>点击地图</strong>以增加一个地点。
   click_the_map_to_jump_new_place: 点击地图切换到新地点
+  close: 关闭
   code: 代码
   collapse_days: 折叠日子
   collapse_updates: 折叠更新
@@ -744,6 +745,19 @@ zh-CN:
   contributions_from: 贡献自
   contributor_cannot_be_found: 找不到贡献者
   contributors_to_project: 贡献至 %{project}
+  controlled_term_labels:
+    sex: 性别
+    male: 男
+    plant_phenology: 植物物候学
+    flowering: 开花
+    fruiting: 果实
+    adult: 成人
+    teneral: 幼体
+    pupa: 蛹
+    nymph: 仙女
+    larva: 幼虫
+    egg: 蛋
+    juvenile: 青少年
   controls: 控制
   coordinate_systems: 坐标系
   coordinates: 坐标
@@ -2347,6 +2361,7 @@ zh-CN:
   redo_search_in_map: 在地图中重新搜索
   refresh: 刷新
   refreshing: 正在刷新
+  reject?: 拒绝？
   reject_the_community_id: 拒绝社群ID
   related_species: 相关物种
   reload_and_refresh: 重新加载和刷新列表
@@ -2729,6 +2744,7 @@ zh-CN:
   these_are_taxa_that: 这些是由于某些原因，%{site} 网站不能自动加入到我们的分类树中的分类群。您可以通过编辑分类单元并选择一个父记录加入它们。例如现代人的父分类是人属。您也可能希望检查同义词分类群并合并它们。
   third_person_possessive_singular: '%{object_phrase} 的 %{noun}'
   this: 此
+  this_id_was_added_due_to_a: 此ID已加入，由于
   this_is_a: 这是一个
   this_is_a_cached_summary_based_on: 这是此分类单元的已缓存摘要，基于它的
   this_is_a_life_list_of: 这是生命清单，其属于
@@ -2995,6 +3011,8 @@ zh-CN:
   where_were_you?: 您在哪里？
   which_projects_can_add_your_observations?: 哪些项目可以添加您的观察？
   white: 白色
+  with_annotation: 带注释
+  without_annotation: 无注释
   widget: 挂件
   widget_code: 挂件代码
   widget_for: 挂件用于
@@ -3034,6 +3052,7 @@ zh-CN:
   yes_find_them!: 是的，找到他们！
   yes_i_want_to_join: 是的，我想加入
   yes_license_my_observations_so_scientists_can_use: 是的，授权我的图片、声音和观察，这样科学家可以使用我的数据！
+  yes_reject_it: 好的，拒绝它
   yesterday: 昨天
   yesterday_at: ，昨天在下午4点
   you: 您
