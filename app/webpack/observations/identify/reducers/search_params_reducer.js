@@ -199,11 +199,17 @@ const searchParamsReducer = ( state = {
       return state;
   }
   newState.params = normalizeParams( newState.params );
+  // if the states are equal there should be no reason to update the URL
   if ( _.isEqual( state.params, newState.params ) ) {
     return state;
   }
+  // if we're popping, the URL should already be updated
   if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
     return newState;
+  }
+  // if we're just setting the defaults, the URL does not need to update
+  if ( !_.isEqual( newState.params, newState.default ) ) {
+    setUrl( newState.params, newState.default );
   }
   setUrl( newState.params, newState.default );
   return newState;

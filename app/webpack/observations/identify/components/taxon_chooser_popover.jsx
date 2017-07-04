@@ -75,10 +75,6 @@ class TaxonChooserPopover extends React.Component {
         placement="bottom"
         rootClose
         container={container}
-        onEntered={ () => {
-          // This is a bit brittle but theoretically there should only be one TaxonChooserPopover open at a time
-          $( ".TaxonChooserPopover :input:visible:first" ).focus( );
-        } }
         overlay={
           <Popover className="TaxonChooserPopover RecordChooserPopover">
             <TaxonAutocomplete
