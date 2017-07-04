@@ -211,7 +211,6 @@ const searchParamsReducer = ( state = {
   if ( !_.isEqual( newState.params, newState.default ) ) {
     setUrl( newState.params, newState.default );
   }
-  setUrl( newState.params, newState.default );
   return newState;
 };
 
