@@ -1336,8 +1336,8 @@ it:
   extinct_in_the_wild: estinta in natura
   extra_properties: Proprietà aggiuntive
   extras: Extra
-  evidence_of_organism: Prova di organismo
-  evidence_of_organism?: Prova di organismo?
+  evidence_of_organism: Prova dell'organismo
+  evidence_of_organism?: C'è evidenza dell'organismo?
   facebook: Facebook
   facebook_account_information: Informazioni del tuo account Facebook
   facebook_account_not_linked: '%{user} ha scollegato l''account Facebook, pertanto
@@ -1698,7 +1698,7 @@ it:
   import_sounds: Importa suoni
   import_tags_from_csv: Importare i tag da file CSV
   importing: Sto importando...
-  improving: Il primo
+  improving: Primo suggerimento
   in: in
   in_: in
   in_n: in %{n}
@@ -3701,8 +3701,8 @@ it:
   the_admin_is_the_person_who: L'amministratore è la persona che ha creato il progetto.
     Possono fare le stesse code dei gestori e dei curatori, ma anche cancellare il
     progetto.
-  the_below_items_are_needed_to_achieve: Le osservazioni sottostanti hanno bisogno
-    di raggiungere il <span className="bold">Livello Ricerca:</span>
+  the_below_items_are_needed_to_achieve: Servono i requisiti sottostanti per raggiungere
+    il <span className="bold">Livello Ricerca:</span>
   the_community_agrees_location_doesnt: 'la community concorda che la <strong>posizione
     non sembra accurata</strong> (ad esempio: scimmie in mezzo all''oceano, ippopotami
     in ufficio, ecc.)'
@@ -4892,7 +4892,7 @@ it:
         score: Punteggio
         explanation: |-
           <p>
-            Se per qualche ragione un utente non è d'accordo con il taxon della Comunità, può rifiutarla, che significa che la sua ID è quella usata per collegarla alle altre ossrvazioni, aggiornate le liste, etc. Significa anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando la Comunità è d'accordo con lui.
+            Se per qualche ragione un utente non è d'accordo con il taxon della Comunità, può rifiutarla, che significa che la sua ID è quella usata per collegarla alle altre osservazioni, aggiornate le liste, etc. Significa anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando la Comunità è d'accordo con lui.
           </p>
           <p>
             Tuttavia, l'ID della comunità è comunque mostrata, così tutti possono vedere le ID differenti che sono state suggerite.
@@ -5008,7 +5008,7 @@ it:
           alla modalità in cui scegliamo il taxon della community, leggi le note sull'algoritmo
           qui sotto, ma in generale, proviamo a <strong>scegliere il taxon che mette
           d'accordo i 2/3 degli identificatori</strong>.\nAlcune volte ciò significa
-          scgliere un taxon di livello superiore che include un certo numero di taxa
+          scegliere un taxon di livello superiore che include un certo numero di taxa
           su cui non c'è accordo (e.g., tu pensi sia una vipera io penso che sia una
           coronella, così iNat sceglie il subordine Serpentes che contiene tutti i
           serpenti). L'algoritmo di solito favorisce l'eggermente chi è in disaccordo,
@@ -5020,7 +5020,7 @@ it:
           la tua ID sarà quella usata per condividere, raggruppare le osservazioni
           dello stesso taxon, aggiornare la tua lista degli esseri viventi, etc. Ciò
           significa anche che affinché la tua osservazione possa raggiungere il livello
-          'ricerca', la community dovra essere d'accodro con <em>te</em>.\nSe l'idea
+          'ricerca', la community dovrà essere d'accordo con <em>te</em>.\nSe l'idea
           della identificazione della community non ti piace, puoi disattivarla <a
           href=\"/users/edit\" target=\"_blank\">modificando le tue impostazioni</a>.\n</p>\n<p
           class=\"ui\">\n<strong>L'algoritmo:</strong> per tutti i taxa identificati
@@ -5077,16 +5077,16 @@ it:
               l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)
             </li>
             <li>
-              l'osservazione <strong>non presenta prove di un'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.
+              l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.
             </li>
             <li>
-              l'osservazione <strong>non presenta prove recenti (circa 100 anni) dell'organismo</strong> (ad esempio: fossili, ma le tracce, scat, e foglie morte sono ok)
+              l'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)
             </li>
             <li>
               l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a un livello superiore alla famiglia
             </li>
             <li>
-              l'osservatore ha rifiutato l'ID della community e il tazon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
+              l'osservatore ha rifiutato l'ID della community e il taxon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
             </li>
           </ul>
           <p>

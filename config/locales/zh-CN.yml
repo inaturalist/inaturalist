@@ -218,8 +218,10 @@ zh-CN:
   add_photos: 添加照片
   add_photos_to_this_observation: 添加照片至此观察
   add_place: 添加地点
+  add_plant_phenology_flowering_annotation: 添加“植物物候学：开花”注释
   add_plant_phenology_fruiting_annotation: 添加“植物物候学：结果”注释
   add_life_stage_adult_annotation: 添加“生命阶段：成人”注释
+  add_life_stage_teneral_annotation: 添加“生命阶段：幼虫”注释
   add_life_stage_pupa_annotation: 添加“生命阶段：蛹”注释
   add_several_observations_at_once: 马上添加几个观察。
   add_sex_female_annotation: 添加“性别：女”注释
@@ -748,9 +750,11 @@ zh-CN:
   controlled_term_labels:
     sex: 性别
     male: 男
+    female: 女
     plant_phenology: 植物物候学
     flowering: 开花
     fruiting: 果实
+    life_stage: 生命阶段
     adult: 成人
     teneral: 幼体
     pupa: 蛹
@@ -841,6 +845,7 @@ zh-CN:
   data_deficient: 数据有缺陷
   data_quality: 数据质量
   data_quality_assessment: 数据质量评价
+  data_quality_assessment_: 数据质量评价
   datatype: 数据类型
   date_: 日期
   date?: 日期？
@@ -1591,6 +1596,7 @@ zh-CN:
   load: 加载
   loading: 正在载入...
   loading_flickr_photos: 正在加载Flickr照片……
+  loading_full_description_html: 正在加载完整描述...
   loading_images: 正在加载图片...
   loading_map: 正在加载地图...
   loading_metadata: 正在加载元数据...
@@ -2513,6 +2519,7 @@ zh-CN:
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   show: 显示
   show_counts: 显示基于列表上的计数。
+  show_keyboard_shortcuts: 显示键盘快捷键
   show_kml: 显示KML
   show_less: 显示更少
   show_more: 显示更多
@@ -2642,6 +2649,7 @@ zh-CN:
   subscriptions: 订阅
   successfully_changed_your_password: 成功更改了您的密码。
   suggest_an_id: 建议ID
+  suggest_an_identification: 建议一次鉴定
   suggestions: 建议
   summary: 摘要
   suspicious_photos: 可疑照片
@@ -2707,6 +2715,7 @@ zh-CN:
   thats_okay_we_forget: 没关系！我们也忘记了自己。向我们发送您使用的电子邮件地址以创建您的账户，然后我们将通过邮件发送给您重置您密码的链接。
   thats_not_a_real_date: 那不是一个正确的日期！
   the: 这
+  the_: 该
   the_community_agrees_location_doesnt: 社区同意<strong>位置看起来不正确</strong>（例如大洋中的猴子，办公大楼中的河马等）。
   the_community_agrees_organism_isnt: 社区同意<strong>有机体不是野生的/自然的</strong>（例如：俘虏、人工种植或智能外星人）
   the_list: 列表
@@ -3331,6 +3340,7 @@ zh-CN:
         id: 用于观察的唯一标识符
         taxon_id: 用于观察到的分类的唯一标识符
         time_zone: 观察的时区
+        place_guess: 由观察者输入的所在地描述
         latitude: 公开可见纬度
         longitude: 公开可见经度
         user_id: 用于观察者的唯一标识符
