@@ -508,6 +508,17 @@ body > div > [role="dialog"] .ObservationModal {
       margin-top: 20px;
     }
   }
+  #keyboard-shortcuts-popover {
+    max-width: 800px;
+    .default-shortcuts {
+      border-right: 1px solid #eee;
+      padding-right: 20px;
+    }
+    .anno-shortcuts {
+      padding-left: 20px;
+    }
+    td { vertical-align: top; }
+  }
 }
 
 body > div > [role="dialog"] .ObservationModal .modal-body {
