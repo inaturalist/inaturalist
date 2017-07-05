@@ -531,7 +531,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
     var searchParams = _.extend( { }, processedParams, {
-      page: $scope.apiPage( ),
+      page: $scope.apiPage( ) || 1,
       per_page: $scope.pagination.perSection,
       return_bounds: true });
     // prevent slow searches from overwriting current results
@@ -616,7 +616,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.numberObserversShown += 20;
   };
   $scope.apiPage = function( ) {
-    return ( ( $scope.pagination.page - 1 ) * $scope.pagination.maxSections ) + $scope.pagination.section;
+    var page = ( ( $scope.pagination.page - 1 ) * $scope.pagination.maxSections ) + $scope.pagination.section;
+    return page || 1;
   };
   $scope.showMoreObservations = function( ) {
     $scope.pagination = $scope.pagination || { };
