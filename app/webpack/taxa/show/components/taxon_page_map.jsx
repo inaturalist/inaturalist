@@ -26,14 +26,10 @@ const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel } ) => {
           places: true,
           ranges: true
         }]}
-        // minX={ bounds ? bounds.swlng : null }
-        // minY={ bounds ? bounds.swlat : null }
-        // maxX={ bounds ? bounds.nelng : null }
-        // maxY={ bounds ? bounds.nelat : null }
-        minX={0}
-        minY={0}
-        maxX={1}
-        maxY={1}
+        minX={ bounds ? bounds.swlng : null }
+        minY={ bounds ? bounds.swlat : null }
+        maxX={ bounds ? bounds.nelng : null }
+        maxY={ bounds ? bounds.nelat : null }
         latitude={ latitude }
         longitude={ longitude }
         zoomLevel={ zoomLevel }
