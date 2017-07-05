@@ -171,7 +171,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           ($scope.processedParams.user_id == CURRENT_USER.login)
         );
       }
-      if( _.isEqual( newValue, oldValue ) ) { return; }
+      if( _.isEqual( newValue, oldValue ) ) {
+        return;
+      }
       // if any of the filters change we want to reset the page to 1.
       // when pagination, the page will change, so if the page doesn't
       // change, then the user is changing another filter, so go to page 1
@@ -181,7 +183,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }, true);
     // changes in processedParams are what initiate searches
     $scope.$watch( "processedParams", function( before, after ) {
-      if( _.isEqual( before, after ) ) { return; }
+      if( _.isEqual( before, after ) ) {
+        return;
+      }
       // when paginating we do want to set processedParams, but we don't
       // want to query for the stats again as they will stay the same
       if( $scope.skipParamChange ) {
@@ -493,7 +497,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.searchAndUpdateStats = function( options ) {
     if( $scope.searchDisabled ) { return true; }
     $scope.params.page = $scope.params.page || 1;
-    $scope.pagingInitialized = false;
     $scope.pagination = $scope.pagination || { };
     $scope.pagination.page = $scope.params.page;
     $scope.pagination.section = 1;
@@ -635,11 +638,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
   };
   $scope.$watch( "pagination.page", function( ) {
-    if( !$scope.pagingInitialized ) {
-      $scope.pagingInitialized = true;
-      return;
-    }
-    // if( !$scope.pagination ) { return; }
+    if( !$scope.pagination ) { return; }
     $anchorScroll( );
     $scope.skipParamChange = true;
     $scope.params.page = $scope.pagination.page;
