@@ -198,6 +198,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // restore some one-time search settings
       $scope.alignMapOnSearch = false;
       $scope.goingBack = false;
+      $scope.pagingInitialized = true;
     }, true);
   };
   $scope.toggleMoreFilters = function( ) {
@@ -497,6 +498,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.searchAndUpdateStats = function( options ) {
     if( $scope.searchDisabled ) { return true; }
     $scope.params.page = $scope.params.page || 1;
+    $scope.pagingInitialized = false;
     $scope.pagination = $scope.pagination || { };
     $scope.pagination.page = $scope.params.page;
     $scope.pagination.section = 1;
@@ -638,7 +640,10 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
   };
   $scope.$watch( "pagination.page", function( ) {
-    if( !$scope.pagination ) { return; }
+    if( !$scope.pagingInitialized ) {
+      $scope.pagingInitialized = true;
+      return;
+    }
     $anchorScroll( );
     $scope.skipParamChange = true;
     $scope.params.page = $scope.pagination.page;
