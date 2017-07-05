@@ -596,7 +596,7 @@ class TaxaController < ApplicationController
     )
     # attempt to fetch the best exact match, which will go first
     exact_results = Taxon.elastic_paginate(
-      filters: filters + [ { match: { "names.exact" => @q } } ],
+      filters: filters + [ { match: { "names.exact_ci" => @q } } ],
       sort: { observations_count: "desc" },
       per_page: 1,
       page: 1
