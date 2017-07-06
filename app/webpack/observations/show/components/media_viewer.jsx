@@ -75,6 +75,11 @@ class MediaViewer extends Component {
         large = SITE.copyrighted_media_image_urls.large;
         medium = SITE.copyrighted_media_image_urls.medium;
       }
+      if ( !photo.url ) {
+        original = SITE.processing_image_urls.small;
+        large = SITE.processing_image_urls.small;
+        medium = SITE.processing_image_urls.medium;
+      }
       return {
         src: large,
         srcset: [

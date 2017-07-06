@@ -1223,6 +1223,7 @@ class Observation < ActiveRecord::Base
   end
 
   def photos?
+    return true if photos && photos.any?
     observation_photos.loaded? ? ! observation_photos.empty? : observation_photos.exists?
   end
 

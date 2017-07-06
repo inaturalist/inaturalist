@@ -40,24 +40,36 @@ class PhotoBrowser extends React.Component {
       );
     }
 
-    let images = observation.photos.map( ( photo ) => ( {
-      original: photo.flaggedAsCopyrighted( ) ?
-        SITE.copyrighted_media_image_urls.large : photo.photoUrl( "large" ),
-      zoom: photo.flaggedAsCopyrighted( ) ?
-        SITE.copyrighted_media_image_urls.original : photo.photoUrl( "original" ),
-      thumbnail: photo.flaggedAsCopyrighted( ) ?
-        SITE.copyrighted_media_image_urls.square : photo.photoUrl( "square" ),
-      description: (
-        <div className="captions">
-          { this.attributionIcon( photo, "photo" ) }
-          <a href={ `/photos/${photo.id}` }>
-            <Badge>
-              <i className="fa fa-info" />
-            </Badge>
-          </a>
-        </div>
-      )
-    } ) );
+    let images = observation.photos.map( ( photo ) => {
+      let original = photo.photoUrl( "original" );
+      let large = photo.photoUrl( "large" );
+      let square = photo.photoUrl( "square" );
+      if ( photo.flaggedAsCopyrighted( ) ) {
+        original = SITE.copyrighted_media_image_urls.original;
+        large = SITE.copyrighted_media_image_urls.large;
+        square = SITE.copyrighted_media_image_urls.square;
+      }
+      if ( !photo.url ) {
+        original = SITE.processing_image_urls.small;
+        large = SITE.processing_image_urls.small;
+        square = SITE.processing_image_urls.square;
+      }
+      return {
+        original: large,
+        zoom: original,
+        thumbnail: square,
+        description: (
+          <div className="captions">
+            { this.attributionIcon( photo, "photo" ) }
+            <a href={ `/photos/${photo.id}` }>
+              <Badge>
+                <i className="fa fa-info" />
+              </Badge>
+            </a>
+          </div>
+        )
+      };
+    } );
     _.each( observation.sounds, sound => {
       images.push( {
         original: null,

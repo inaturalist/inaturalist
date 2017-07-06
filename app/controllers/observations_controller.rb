@@ -694,6 +694,8 @@ class ObservationsController < ApplicationController
       o.photos = photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
         Photo.local_photo_from_remote_photo(p) : p }
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
+      # make sure the obs get a falid observed_on, needed to determine research grade
+      o.munge_observed_on_with_chronic
       o
     end
     

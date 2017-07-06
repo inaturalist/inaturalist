@@ -53,6 +53,10 @@
         medium: "#{image_url("copyright-infringement-medium.png")}",
         small: "#{image_url("copyright-infringement-small.png")}",
         square: "#{image_url("copyright-infringement-square.png")}"
+      },
+      processing_image_urls: {
+        small: "#{image_url(LocalPhoto.new.file.url(:small))}",
+        square: "#{image_url(LocalPhoto.new.file.url(:square))}"
       }
     };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(
