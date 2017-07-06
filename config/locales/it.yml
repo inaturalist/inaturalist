@@ -836,6 +836,7 @@ it:
   click_on_the_map_to: Clicca sulla mappa per posizionare la tua osservazione
   click_the_map: <strong>Clicca sulla mappa</strong> per aggiungere una posizione.
   click_the_map_to_jump_new_place: Fai clic sulla cartina per spostarti
+  close: Chiudi
   code: Codice
   collapse_days: comprimi i giorni
   collapse_updates: comprimi gli aggiornamenti
@@ -933,6 +934,21 @@ it:
   contributions_from: Contributi da parte di
   contributor_cannot_be_found: Il collaboratore è introvabile
   contributors_to_project: Collaboratori al progetto %{project}
+  controlled_term_labels:
+    sex: Sesso
+    male: Maschio
+    female: Femmina
+    plant_phenology: Fenologia della pianta
+    flowering: Fioritura
+    fruiting: In frutto
+    life_stage: Stadio Vitale
+    adult: Adulto
+    teneral: Immaturo
+    pupa: Pupa
+    nymph: Ninfa
+    larva: Larva
+    egg: Uovo
+    juvenile: Giovane
   controls: Controlli
   coordinate_systems: Sistemi di coordinate
   coordinates: Coordinate
@@ -1034,6 +1050,7 @@ it:
   data_deficient: Carente di Dati
   data_quality: Qualità dei Dati
   data_quality_assessment: Valutazione della qualità dei dati
+  data_quality_assessment_: Valutazione della qualità dei dati
   datatype: Tipo di dati
   date_: Data
   date?: Data?
@@ -1319,8 +1336,8 @@ it:
   extinct_in_the_wild: estinta in natura
   extra_properties: Proprietà aggiuntive
   extras: Extra
-  evidence_of_organism: Prova di organismo
-  evidence_of_organism?: Prova di organismo?
+  evidence_of_organism: Prova dell'organismo
+  evidence_of_organism?: C'è evidenza dell'organismo?
   facebook: Facebook
   facebook_account_information: Informazioni del tuo account Facebook
   facebook_account_not_linked: '%{user} ha scollegato l''account Facebook, pertanto
@@ -1601,6 +1618,15 @@ it:
   iconic_taxon: Icona del taxon
   id: ID
   id_: ID
+  id_categories:
+    tooltips:
+      leading: Il taxon discende dal taxon della comunità. Questa identificazione
+        può portare alla classificazione corretta.
+      improving: Il primo suggerimento per questo taxon che la comunità ha approvato
+        successivamente. Questo suggerimento ha aiutato ad affinare il taxon della
+        comunità.
+      maverick: Il taxon non è discendente o antenato del taxon della comunità, e.g.,
+        la comunità non concorda con questo taxon.
   id_more_in_id_please: Più identificazioni in "ID per favore"
   id_please!: ID per favore!
   id_please: ID per favore
@@ -1623,6 +1649,11 @@ it:
   identotron_help: Aiuto su Identotron
   ids: ID
   ids_made_for_others: ID fatte per altri
+  if_for_some_reason_a_user_doesnt_agree: Se per qualche ragione un utente non concorda
+    con il taxon della comunità, egli può rifiutarlo; significa che la sua ID è quella
+    usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa
+    anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando
+    la comunità è d'accordo con loro.
   if_matches_come_from_a_comprehensive_list: Se i risultati provengono da una lista
     esaustiva, qui verrà mostrata una barra verde.
   if_this_is_a_scientific_name: Se questo è un nome scientifico, è comunemente accettato?
@@ -1667,7 +1698,7 @@ it:
   import_sounds: Importa suoni
   import_tags_from_csv: Importare i tag da file CSV
   importing: Sto importando...
-  improving: Migliorando
+  improving: Primo suggerimento
   in: in
   in_: in
   in_n: in %{n}
@@ -1736,6 +1767,9 @@ it:
   iphone: iPhone
   is_a: è un
   is_an: è un
+  is_an_evaluation: |-
+    è una valutazione dell'accuratezza dell'osservazione.
+    Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
   is_not_following_anyone: non segue nessuno.
   is_now: è ora
   is_the_organism_wild: L'organismo è selvatico/naturalizzato?
@@ -3107,6 +3141,7 @@ it:
   refreshing: aggiornamento in corso...
   regenerate_url: Rigenera l'URL
   register_for_this_event_at_x_html: Registrati per questo evento in %{x}
+  reject?: Rifiuta?
   reject_the_community_id: rifiuta l'ID della Comunità
   related_species: Specie affini
   reload_and_refresh: Ricarica ed aggiorna la lista
@@ -3662,11 +3697,12 @@ it:
     per resettare la tua password.
   thats_not_a_real_date: Questa non è una data verosimile!
   the: l'
+  the_: Il
   the_admin_is_the_person_who: L'amministratore è la persona che ha creato il progetto.
     Possono fare le stesse code dei gestori e dei curatori, ma anche cancellare il
     progetto.
-  the_below_items_are_needed_to_achieve: Le osservazioni sottostanti hanno bisogno
-    di raggiungere il <span className="bold">Livello Ricerca:</span>
+  the_below_items_are_needed_to_achieve: Servono i requisiti sottostanti per raggiungere
+    il <span className="bold">Livello Ricerca:</span>
   the_community_agrees_location_doesnt: 'la community concorda che la <strong>posizione
     non sembra accurata</strong> (ad esempio: scimmie in mezzo all''oceano, ippopotami
     in ufficio, ecc.)'
@@ -3679,9 +3715,6 @@ it:
     dell'accuratezza di un'osservazione. Tutte le osservazioni partono da un livello
     <strong>"casuale"</strong>, e raggiungono un livello <strong>"ricerca"</strong>
     quando
-  the_data_quality_assessment_is_an_evaluation: 'La valutazione della qualità dei
-    dati è una stima dell''accuratezza dell''osservazione. Le osservazioni con Livello
-    Ricerca possono essere usate dagli scienziati per le ricerche. Vota qui sotto:'
   the_following_lists: le liste seguenti
   the_following_observations_could: Le seguenti osservazioni non possono essere aggiunte
     a  %{link}
@@ -3778,6 +3811,7 @@ it:
   they_have_been_invited: '...sono già stati invitati'
   third_person_possessive_singular: '%{noun} di %{object_phrase}'
   this: questo
+  this_id_was_added_due_to_a: Questa ID è stata aggiunta per
   this_is_a: Questa è una
   this_is_a_cached_summary_based_on: Questo è un riassunto in cache di questo taxon
     basato sul suo
@@ -4231,6 +4265,8 @@ it:
   which_projects_can_add_your_observations?: Quali progetti possono aggiungere le
     tue osservazioni?
   white: bianco
+  with_annotation: Con nota
+  without_annotation: Senza nota
   widget: Widget
   widget_code: Codice del Widget
   widget_for: Widget per
@@ -4280,6 +4316,7 @@ it:
   yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie
     foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire
     dei miei dati!
+  yes_reject_it: Si, rifiuta
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
   yesterday: Ieri
   yesterday_at: ', ieri alle 4 pm'
@@ -4855,7 +4892,7 @@ it:
         score: Punteggio
         explanation: |-
           <p>
-            Se per qualche ragione un utente non è d'accordo con il taxon della Comunità, può rifiutarla, che significa che la sua ID è quella usata per collegarla alle altre ossrvazioni, aggiornate le liste, etc. Significa anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando la Comunità è d'accordo con lui.
+            Se per qualche ragione un utente non è d'accordo con il taxon della Comunità, può rifiutarla, che significa che la sua ID è quella usata per collegarla alle altre osservazioni, aggiornate le liste, etc. Significa anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando la Comunità è d'accordo con lui.
           </p>
           <p>
             Tuttavia, l'ID della comunità è comunque mostrata, così tutti possono vedere le ID differenti che sono state suggerite.
@@ -4971,7 +5008,7 @@ it:
           alla modalità in cui scegliamo il taxon della community, leggi le note sull'algoritmo
           qui sotto, ma in generale, proviamo a <strong>scegliere il taxon che mette
           d'accordo i 2/3 degli identificatori</strong>.\nAlcune volte ciò significa
-          scgliere un taxon di livello superiore che include un certo numero di taxa
+          scegliere un taxon di livello superiore che include un certo numero di taxa
           su cui non c'è accordo (e.g., tu pensi sia una vipera io penso che sia una
           coronella, così iNat sceglie il subordine Serpentes che contiene tutti i
           serpenti). L'algoritmo di solito favorisce l'eggermente chi è in disaccordo,
@@ -4983,7 +5020,7 @@ it:
           la tua ID sarà quella usata per condividere, raggruppare le osservazioni
           dello stesso taxon, aggiornare la tua lista degli esseri viventi, etc. Ciò
           significa anche che affinché la tua osservazione possa raggiungere il livello
-          'ricerca', la community dovra essere d'accodro con <em>te</em>.\nSe l'idea
+          'ricerca', la community dovrà essere d'accordo con <em>te</em>.\nSe l'idea
           della identificazione della community non ti piace, puoi disattivarla <a
           href=\"/users/edit\" target=\"_blank\">modificando le tue impostazioni</a>.\n</p>\n<p
           class=\"ui\">\n<strong>L'algoritmo:</strong> per tutti i taxa identificati
@@ -5040,16 +5077,16 @@ it:
               l'<strong>organismo non è selvatico/naturalizzato</strong> (ad esempio: in cattività o coltivato dall'uomo o da specie aliene intelligenti)
             </li>
             <li>
-              l'osservazione <strong>non presenta prove di un'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.
+              l'osservazione <strong>non ha prove della presenza dell'organismo</strong>, ad esempio: immagini di paesaggi, giochi d'acqua, rocce, ecc.
             </li>
             <li>
-              l'osservazione <strong>non presenta prove recenti (circa 100 anni) dell'organismo</strong> (ad esempio: fossili, ma le tracce, scat, e foglie morte sono ok)
+              l'osservazione <strong>non ha prove recenti (100 anni circa) dell'organismo</strong>, ad esempio, i fossili (ma invece le tracce, gli escrementi, e le foglie morte sono sufficienti)
             </li>
             <li>
               l'osservazione non ha più bisogno di ID <em>e</em> l'ID della comunità è a un livello superiore alla famiglia
             </li>
             <li>
-              l'osservatore ha rifiutato l'ID della community e il tazon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
+              l'osservatore ha rifiutato l'ID della community e il taxon identificato non è antenato o discendente del taxon associato con l'ID dell'osservatore
             </li>
           </ul>
           <p>

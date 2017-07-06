@@ -444,6 +444,7 @@ eu:
   back_to_post: « Oharrera itzuli
   back_to_projects: Proiektuetara itzuli/
   back_to_shared_taxon: 'Hona itzuli: %{sharedtaxon}'
+  back_to_suggestions: Bueltatu iradokizunetara
   back_to_taxon: 'Hona itzuli: %{defaulttaxon}'
   back_to_this: 'Hona itzuli: %{place}'
   back_to_viewing: <i>%{taxon}</i> berriro ikusi
@@ -600,6 +601,7 @@ eu:
     nahi baldin badiezu. Bestelako lizentzia hauta dezakezu edo gero kendu, baina
     hau da datuak ikertzaileekin partekatzeko lizentziarik onena.
   checklist: Egiaztatzeko zerrenda
+  checklists: Egiazta-zerrendak
   checklist_places: Egiaztapen-zerrenda duten lekuak
   checklist_places_absent: Egiaztapen-zerrenda duten lekuak (ez daude)
   checklist_places_confirmed: Egiaztapen-zerrenda duten lekuak (baieztatuak)
@@ -732,6 +734,8 @@ eu:
     attribution_sharealike_license: Esleipena - Lizentzia berarekin partekatu
     attribution_noderivs_license: Esleipena - Eratorritako obrarik gabe
     gnu_free_documentation_license: GNU dokumentazioaren doako lizentzia
+  copyright_info: Copyright-ari buruzko informazioa
+  copyright_info_and_more: Copyright informazioa eta gehiago
   couldnt_change_your_password: 'Zure pasahitza ezin izan da aldatu: %{e}'
   couldnt_find_a_user_matching_x_param: 'Ezin izan da parametro hauek dituen erabiltzailea
     topatu: %{id}'
@@ -778,6 +782,7 @@ eu:
   darr_apply_darr: ↓ Aplikatu ↓
   dashboard: Taula
   data_deficient: datuak ez dira nahikoak
+  data_quality: Data kalitatea
   data_quality_assessment: Datuen kalitatearen ebaluazioa
   datatype: Datu mota
   date_: Data
@@ -1026,6 +1031,7 @@ eu:
   filling_out_your_profile: zure profila osatu
   filter: Iragazkia
   filter_by: 'Honen arabera iragazi:'
+  filter_by_taxon: Taxioiei begira iragazi
   filter_by_place_taxon_and_color: Kontrolak erabilita iragazi leku, kolore, espezie
     edo taldearen arabera.
   filtering: Iragazten...
@@ -1093,6 +1099,7 @@ eu:
     erakusten dituen widget-erako, begirada bat eman honi:'
   for_more_information: informazio gehiagorako.
   forgot_your_password: Zure pasahitza ahaztu duzu?
+  frequency: Maiztasuna
   fri: Ost
   from: 'hemendik:'
   from_a_place: leku batekoa
@@ -1489,10 +1496,12 @@ eu:
     es: Espainiera
     es-ES: Espainiera (Espainia)
     es-MX: Espainiera (Mexiko)
+    fi: Amaitu
     fr: Frantsesa
     eu: Euskara
     gl: Galiziera
     mk: Mazedoniera
+    oc: Okzitaniera
     pt: Portugesa
     pt-BR: Portugesa (Brasil)
     ja: Japoniera
@@ -1662,7 +1671,9 @@ eu:
   new_user_rules: Erabiltzaile-arau berriak
   new_users_week: Erabiltzaile berriak / Astea
   next: Hurrengoa
+  next_observation: Hurrengo behaketa
   next_page: Hurrengo orrialdea
+  next_photo: Hurrengo argazkia
   "no": Ez
   no_activity_in_the_past_week: 'Ez da jarduerarik egon aurreko astean. Honetarako
     garaia da:'
@@ -1731,6 +1742,7 @@ eu:
     zaitezke, edo bizitza-zerrenda bada, automatikoki eguneratuko da espezieekin <a
     href="%{url}" class="nobr">behaketak gehitzen direnean</a>.
   no_subject_parens: (Gairik ez)
+  no_suggestions_available: Gomendiorik ezin da ikusi
   no_summary_from_wikipedia: No hay resumen de Wikipedia
   no_summary_has_been_set: Ez da laburpenik egin
   no_taxa: Ez dago taxonik
@@ -2158,6 +2170,7 @@ eu:
   prev: Aurrekoa
   previous_observation: Aurreko behaketa
   previous_page: Aurreko orrialdea
+  previous_photo: Aurreko argazkia
   privacy: Pribatutasun-politika
   privacy_policy: Pribatutasun-politika
   private: Pribatua
@@ -2400,6 +2413,7 @@ eu:
   selected: hautatua(k)
   selected_photos: Hautatutako argazkiak
   selected_taxon: Hautatutako taldea edo espeziea
+  select_this_taxon: Taxioi hau hautatu
   send: bidalitakoa(k)
   send_invite: Gonbidapena bidali
   send_invites_to: 'Gonbidapenak bidali hauei:'
@@ -2512,6 +2526,7 @@ eu:
     your_soundcloud_account: zure SoundCloud kontua
   source: Iturria
   source_: 'Jatorria:'
+  source_wikipedia: 'Iturria: Wikipedia'
   source_list:
     ubio: uBio
     catalogue_of_life: Bizitzako katalogoa
@@ -2595,8 +2610,10 @@ eu:
     gabe dituzten lekuetarako.'
   successfully_changed_your_password: Zure pasahitza behar bezala aldatu da.
   suggest_an_id: Identifikadorea iradoki
+  suggest_an_identification: Identifikazio bat gomendatu
   suggest_or_require_that: Zergadunek eremu hauek betetzea iradoki edo eskatzen da,
     zure proiektura gehitutako behaketetarako.
+  suggestions: Iradokizunak
   summary: Laburpena
   siutable_observations: gonbida ditzakezun behaketak
   sun: Iga
@@ -2799,6 +2816,7 @@ eu:
     honetarako duen mailatik at dago. Horrek hau esan nahiko du: %{site_name} webgunearen
     maila oker dagoela, identifikazioa oker dagoela, noragabeko agerraldia edo mailaren
     hedapena.'
+  this_observation_was_created_using: 'Behaketa hau honen bitartez sortu da:'
   this_photo_is_already_associated: Argazki hau dagoeneko zure behaketa batekin lotuta
     dago.
   this_place_has_no_check_list: Leku honek ez du egiaztapen-zerrendarik, beraz, ez
