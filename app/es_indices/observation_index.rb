@@ -168,7 +168,17 @@ class Observation < ActiveRecord::Base
           project_observations.select{ |po| po.curator_identification_id.nil? }.
             map(&:project_id)).compact.uniq,
         project_observations: (indexed_project_ids || project_observations).map{ |po|
-          { project_id: po[:project_id], user_id: po[:user_id], uuid: po[:uuid] } },
+          {
+            project_id: po[:project_id],
+            user_id: po[:user_id],
+            uuid: po[:uuid],
+            curator_coordinate_access:
+              po.respond_to?(:prefers_curator_coordinate_access?) ?
+                po.prefers_curator_coordinate_access?
+                :
+                po[:curator_coordinate_access]
+          }
+        },
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
@@ -240,12 +250,26 @@ class Observation < ActiveRecord::Base
     # fetch all project_ids store them in `indexed_project_ids`
     if options.blank? || options[:projects]
       connection.execute("
-        SELECT observation_id, project_id, curator_identification_id, uuid, user_id
+        SELECT
+          observation_id,
+          project_id,
+          curator_identification_id,
+          uuid,
+          user_id,
+          preferences.value AS curator_coordinate_access
         FROM project_observations
+          LEFT OUTER JOIN preferences ON
+            preferences.owner_type = 'ProjectObservation' AND
+            preferences.owner_id = project_observations.id AND
+            preferences.name = 'curator_coordinate_access'
         WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
         if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_project_ids << { project_id: r["project_id"].to_i,
-            uuid: r["uuid"], user_id: r["user_id"] }
+          o.indexed_project_ids << {
+            project_id: r["project_id"].to_i,
+            uuid: r["uuid"],
+            user_id: r["user_id"],
+            curator_coordinate_access: r["curator_coordinate_access"].yesish?
+          }
           # these are for the `pcid` search param
           if r["curator_identification_id"].nil?
             o.indexed_project_ids_without_curator_id << r["project_id"].to_i

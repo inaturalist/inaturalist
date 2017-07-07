@@ -162,6 +162,18 @@ describe "Observation Index" do
     expect( json[:owners_identification_from_vision] ).to be true
   end
 
+  it "indexes project observation curator_coordinate_access in bulk" do
+    po = ProjectObservation.make!( prefers_curator_coordinate_access: true )
+    json = po.observation.as_indexed_json
+    expect( json[:project_observations][0][:curator_coordinate_access] ).to be true
+    expect( json[:project_observations][0][:curator_coordinate_access] ).not_to be_nil
+  end
+
+  it "indexes project observation curator_coordinate_access in bulk" do
+    po = ProjectObservation.make!( prefers_curator_coordinate_access: true )
+    expect { Observation.elastic_index! }.not_to raise_error
+  end
+
   describe "params_to_elastic_query" do
     it "returns nil when ES can't handle the params" do
       expect( Observation.params_to_elastic_query(

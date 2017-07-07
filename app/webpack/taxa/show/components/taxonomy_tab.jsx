@@ -152,7 +152,7 @@ const TaxonomyTab = ( {
                 </li>
               </ul>
               <h4>{ I18n.t( "about_names" ) }</h4>
-              <UserText text={I18n.t( "views.taxa.show.about_names_desc" )} truncate={400} />
+              <UserText text={ I18n.t( "views.taxa.show.about_names_desc" ).replace( /\n+/gm, " " )} truncate={400} />
             </Col>
           </Row>
         </Col>
