@@ -186,10 +186,20 @@ class Annotations extends React.Component {
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
       }
       if ( observation.taxon ) {
-        availableValues = _.filter( availableValues, v => (
-          !v.valid_within_clade ||
-          _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
-        ) );
+        availableValues = _.filter( availableValues, v => {
+          // value applies to all taxa, keep it
+          if ( !v.taxon_ids || v.taxon_ids.length === 0 ) {
+            return true;
+          }
+          // remove things with exceptions that include this taxon
+          if (
+            v.excepted_taxon_ids &&
+            _.intersection( v.excepted_taxon_ids, observation.taxon.ancestor_ids ).length > 0
+          ) {
+            return false;
+          }
+          return v.taxon_ids && _.intersection( v.taxon_ids, observation.taxon.ancestor_ids ).length > 0;
+        } );
       }
       const termPopover = (
         <Popover
