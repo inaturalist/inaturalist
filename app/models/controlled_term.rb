@@ -15,7 +15,7 @@ class ControlledTerm < ActiveRecord::Base
   # belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
   #   class_name: "Taxon"
   belongs_to :user
-  has_many :controlled_term_taxa, inverse_of: :controlled_term
+  has_many :controlled_term_taxa, inverse_of: :controlled_term, dependent: :destroy
   has_many :taxa, -> { where ["controlled_term_taxa.exception = ?", false] }, through: :controlled_term_taxa
   has_many :excepted_taxa,
     -> { where ["controlled_term_taxa.exception = ?", true] },
