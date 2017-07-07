@@ -64,6 +64,11 @@ ControlledTermLabel.blueprint do
   definition { Faker::Lorem.paragraph }
 end
 
+ControlledTermTaxon.blueprint do
+  controlled_term { ControlledTerm.make! }
+  taxon { Taxon.make! }
+end
+
 ControlledTermValue.blueprint do
   controlled_attribute { ControlledTerm.make! }
   controlled_value { ControlledTerm.make!(is_value: true) }

@@ -12,9 +12,15 @@ class ControlledTerm < ActiveRecord::Base
   has_many :attrs, through: :controlled_term_value_attrs, source: :controlled_attribute
   has_many :value_annotations, class_name: "Annotation", foreign_key: :controlled_value_id
   has_many :attribute_annotations, class_name: "Annotation", foreign_key: :controlled_attribute_id
-  belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
-    class_name: "Taxon"
+  # belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
+  #   class_name: "Taxon"
   belongs_to :user
+  has_many :controlled_term_taxa, inverse_of: :controlled_term, dependent: :destroy
+  has_many :taxa, -> { where ["controlled_term_taxa.exception = ?", false] }, through: :controlled_term_taxa
+  has_many :excepted_taxa,
+    -> { where ["controlled_term_taxa.exception = ?", true] },
+    through: :controlled_term_taxa,
+    source: :taxon
 
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }
@@ -25,10 +31,12 @@ class ControlledTerm < ActiveRecord::Base
     where("ctv.id IS NULL")
   }
   scope :for_taxon, -> (taxon) {
-    joins("LEFT OUTER JOIN taxon_ancestors ta
-      ON controlled_terms.valid_within_clade = ta.ancestor_taxon_id").
-    where("controlled_terms.valid_within_clade IS NULL OR ta.taxon_id=?", taxon).distinct
+    joins( "LEFT OUTER JOIN controlled_term_taxa ctt ON ctt.controlled_term_id = controlled_terms.id" ).
+    joins( "LEFT OUTER JOIN taxon_ancestors ta ON ctt.taxon_id = ta.ancestor_taxon_id" ).
+    where( "ctt.taxon_id IS NULL OR ta.taxon_id = ?", taxon ).distinct
   }
+
+  accepts_nested_attributes_for :controlled_term_taxa, allow_destroy: true
 
   VALUES_TO_MIGRATE = {
     male: :sex,
@@ -93,10 +101,10 @@ class ControlledTerm < ActiveRecord::Base
     values - o.annotations.where(controlled_attribute: self).map{ |ct| ct.controlled_value }
   end
 
-  def applicable_to_taxon(t)
-    return false if t.blank? || !t.is_a?(Taxon)
-    return true unless valid_within_taxon
-    return true if t.has_ancestor_taxon_id(valid_within_taxon.id)
+  def applicable_to_taxon( candidate_taxon )
+    return false if candidate_taxon.blank? || !candidate_taxon.is_a?(Taxon)
+    return false if excepted_taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
+    return true if taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
     false
   end
 

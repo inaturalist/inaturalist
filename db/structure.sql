@@ -803,6 +803,37 @@ ALTER SEQUENCE controlled_term_labels_id_seq OWNED BY controlled_term_labels.id;
 
 
 --
+-- Name: controlled_term_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE controlled_term_taxa (
+    id integer NOT NULL,
+    controlled_term_id integer,
+    taxon_id integer,
+    exception boolean DEFAULT false
+);
+
+
+--
+-- Name: controlled_term_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE controlled_term_taxa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: controlled_term_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE controlled_term_taxa_id_seq OWNED BY controlled_term_taxa.id;
+
+
+--
 -- Name: controlled_term_values; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4653,6 +4684,13 @@ ALTER TABLE ONLY controlled_term_labels ALTER COLUMN id SET DEFAULT nextval('con
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY controlled_term_taxa ALTER COLUMN id SET DEFAULT nextval('controlled_term_taxa_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY controlled_term_values ALTER COLUMN id SET DEFAULT nextval('controlled_term_values_id_seq'::regclass);
 
 
@@ -5417,6 +5455,14 @@ ALTER TABLE ONLY conservation_statuses
 
 ALTER TABLE ONLY controlled_term_labels
     ADD CONSTRAINT controlled_term_labels_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: controlled_term_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY controlled_term_taxa
+    ADD CONSTRAINT controlled_term_taxa_pkey PRIMARY KEY (id);
 
 
 --
@@ -6379,6 +6425,20 @@ CREATE INDEX index_conservation_statuses_on_taxon_id ON conservation_statuses US
 --
 
 CREATE INDEX index_conservation_statuses_on_user_id ON conservation_statuses USING btree (user_id);
+
+
+--
+-- Name: index_controlled_term_taxa_on_controlled_term_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_controlled_term_taxa_on_controlled_term_id ON controlled_term_taxa USING btree (controlled_term_id);
+
+
+--
+-- Name: index_controlled_term_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_controlled_term_taxa_on_taxon_id ON controlled_term_taxa USING btree (taxon_id);
 
 
 --
@@ -8851,4 +8911,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170605234102');
 INSERT INTO schema_migrations (version) VALUES ('20170630200341');
 
 INSERT INTO schema_migrations (version) VALUES ('20170703152556');
+
+INSERT INTO schema_migrations (version) VALUES ('20170706180531');
 

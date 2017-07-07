@@ -56,6 +56,15 @@ class ControlledTerm < ActiveRecord::Base
         "updated_at"
       )
     }
+    controlled_term_taxa.each do |ctt|
+      if ctt.exception
+        json[:excepted_taxon_ids] ||= []
+        json[:excepted_taxon_ids] << ctt.taxon_id
+      else
+        json[:taxon_ids] ||= []
+        json[:taxon_ids] << ctt.taxon_id
+      end
+    end
     json
   end
 

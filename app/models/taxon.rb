@@ -66,6 +66,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
+  has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
