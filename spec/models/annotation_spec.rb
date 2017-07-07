@@ -44,7 +44,7 @@ describe Annotation do
     mammalia = Taxon.make!(name: "Mammalia", parent: animalia)
     AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
-    atr = ControlledTerm.make!(valid_within_taxon: mammalia)
+    atr = ControlledTermTaxon.make!( taxon: mammalia ).controlled_term
     ctv = ControlledTermValue.make!(controlled_attribute: atr)
     expect{
       Annotation.make!(
@@ -61,7 +61,8 @@ describe Annotation do
     AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
     atr = ControlledTerm.make!
-    val = ControlledTerm.make!(valid_within_taxon: mammalia, is_value: true)
+    val = ControlledTerm.make!( is_value: true )
+    ControlledTermTaxon.make!( taxon: mammalia, controlled_term: val )
     ctv = ControlledTermValue.make!(controlled_attribute: atr, controlled_value: val)
     expect{
       Annotation.make!(
