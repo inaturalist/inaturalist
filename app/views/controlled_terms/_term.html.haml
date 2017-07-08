@@ -1,9 +1,11 @@
 %li{ style: "font-weight: #{term.active ? 'bold' : 'normal'}" }
   - term_label = term.term_label
   = term_label.try(:label) ||term.try(:uri)
-  - if term.taxa.count > 0
-    [ within
-    =raw term.taxa.map{ |t| link_to( t.name, t) }.join( ", " )
+  - if term.controlled_term_taxa.count > 0
+    [
+    - if term.taxa.count > 0
+      within
+      =raw term.taxa.map{ |t| link_to( t.name, t) }.join( ", " )
     - if term.excepted_taxa.count > 0
       except
       =raw term.excepted_taxa.map{ |t| link_to( t.name, t) }.join( ", " )

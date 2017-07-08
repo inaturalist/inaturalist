@@ -2,7 +2,7 @@ class ControlledTerm < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes({ values: [ :values, :labels ] }, :labels) }
+  scope :load_for_index, -> { includes({ values: [ :values, :labels, :controlled_term_taxa ] }, :labels, :controlled_term_taxa) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
@@ -59,10 +59,10 @@ class ControlledTerm < ActiveRecord::Base
     controlled_term_taxa.each do |ctt|
       if ctt.exception
         json[:excepted_taxon_ids] ||= []
-        json[:excepted_taxon_ids] << ctt.taxon_id
+        json[:excepted_taxon_ids] << ctt.taxon_id unless json[:excepted_taxon_ids].include?( ctt.taxon_id )
       else
         json[:taxon_ids] ||= []
-        json[:taxon_ids] << ctt.taxon_id
+        json[:taxon_ids] << ctt.taxon_id unless json[:taxon_ids].include?( ctt.taxon_id )
       end
     end
     json

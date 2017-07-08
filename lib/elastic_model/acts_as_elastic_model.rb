@@ -52,6 +52,7 @@ module ActsAsElasticModel
       #   Place.elastic_index!(batch_size: 20)
       #   Place.elastic_index!(scope: Place.where(id: [1,2,3,...]), batch_size: 20)
       def elastic_index!(options = { })
+        Rails.logger.debug "[DEBUG] running elastic_index"
         options[:batch_size] ||=
           defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
         filter_scope = options.delete(:scope)

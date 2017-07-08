@@ -150,10 +150,28 @@ class Annotations extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    if ( !observation || !observation.user || _.isEmpty( controlledTerms ) ) {
+    const chooseAvailableControlledTerms = term => {
+      // value applies to all taxa without exceptions, keep it
+      if ( ( term.taxon_ids || [] ).length === 0 && ( term.excepted_taxon_ids || [] ).length === 0 ) {
+        return true;
+      }
+      // remove things with exceptions that include this taxon
+      if (
+        _.intersection( term.excepted_taxon_ids || [], observation.taxon.ancestor_ids ).length > 0
+      ) {
+        return false;
+      }
+      // no exceptions but applies to all taxa keep it
+      if ( ( term.taxon_ids || [] ).length === 0 ) {
+        return true;
+      }
+      return _.intersection( term.taxon_ids || [], observation.taxon.ancestor_ids ).length > 0;
+    };
+    const availableControlledTerms = _.filter( controlledTerms, chooseAvailableControlledTerms );
+    if ( !observation || !observation.user || _.isEmpty( availableControlledTerms ) ) {
       if (
           this.props.showEmptyState &&
-          ( !this.props.controlledTerms || this.props.controlledTerms.length === 0 )
+          ( !availableControlledTerms || availableControlledTerms.length === 0 )
       ) {
         return (
           <div className="noresults">
@@ -169,7 +187,7 @@ class Annotations extends React.Component {
       a.controlled_attribute && a.controlled_value );
     const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
     let rows = [];
-    _.each( controlledTerms, ct => {
+    _.each( availableControlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {
         const sorted = _.sortBy( groupedAnnotations[ct.id], a => (
           a.controlled_value.label
@@ -186,20 +204,7 @@ class Annotations extends React.Component {
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
       }
       if ( observation.taxon ) {
-        availableValues = _.filter( availableValues, v => {
-          // value applies to all taxa, keep it
-          if ( !v.taxon_ids || v.taxon_ids.length === 0 ) {
-            return true;
-          }
-          // remove things with exceptions that include this taxon
-          if (
-            v.excepted_taxon_ids &&
-            _.intersection( v.excepted_taxon_ids, observation.taxon.ancestor_ids ).length > 0
-          ) {
-            return false;
-          }
-          return v.taxon_ids && _.intersection( v.taxon_ids, observation.taxon.ancestor_ids ).length > 0;
-        } );
+        availableValues = _.filter( availableValues, chooseAvailableControlledTerms );
       }
       const termPopover = (
         <Popover

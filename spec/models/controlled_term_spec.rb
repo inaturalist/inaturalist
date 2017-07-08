@@ -1,6 +1,8 @@
 require "spec_helper.rb"
 
 describe ControlledTerm do
+  before(:each) { enable_elastic_indexing( ControlledTerm ) }
+  after(:each) { disable_elastic_indexing( ControlledTerm ) }
 
   describe "values" do
     it "returns all values for a term" do
