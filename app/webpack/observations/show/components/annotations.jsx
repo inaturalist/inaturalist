@@ -151,13 +151,14 @@ class Annotations extends React.Component {
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
     const chooseAvailableControlledTerms = term => {
+      const ancestorIds = observation && observation.taxon && observation.taxon.ancestor_ids ? observation.taxon.ancestor_ids : [];
       // value applies to all taxa without exceptions, keep it
       if ( ( term.taxon_ids || [] ).length === 0 && ( term.excepted_taxon_ids || [] ).length === 0 ) {
         return true;
       }
       // remove things with exceptions that include this taxon
       if (
-        _.intersection( term.excepted_taxon_ids || [], observation.taxon.ancestor_ids ).length > 0
+        _.intersection( term.excepted_taxon_ids || [], ancestorIds ).length > 0
       ) {
         return false;
       }
@@ -165,7 +166,7 @@ class Annotations extends React.Component {
       if ( ( term.taxon_ids || [] ).length === 0 ) {
         return true;
       }
-      return _.intersection( term.taxon_ids || [], observation.taxon.ancestor_ids ).length > 0;
+      return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
     };
     const availableControlledTerms = _.filter( controlledTerms, chooseAvailableControlledTerms );
     if ( !observation || !observation.user || _.isEmpty( availableControlledTerms ) ) {

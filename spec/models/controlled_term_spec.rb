@@ -59,6 +59,10 @@ describe ControlledTerm do
         ControlledTermTaxon.make!( taxon: mammalia, controlled_term: animalia_ct, exception: true )
         expect( animalia_ct.applicable_to_taxon( mammalia ) ).to be false
       end
+      it "should be true for any taxon if the term has no associated taxa" do
+        ct = ControlledTerm.make!
+        expect( ct.applicable_to_taxon( mammalia ) ).to be true
+      end
     end
   end
 
