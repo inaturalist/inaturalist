@@ -103,9 +103,10 @@ class ControlledTerm < ActiveRecord::Base
 
   def applicable_to_taxon( candidate_taxon )
     return false if candidate_taxon.blank? || !candidate_taxon.is_a?(Taxon)
+    return true if controlled_term_taxa.blank?
     return false if excepted_taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
-    return true if taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
-    true
+    return true if taxa.blank? || taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
+    false
   end
 
 end
