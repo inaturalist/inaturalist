@@ -48,7 +48,8 @@ class Comment < ActiveRecord::Base
       user: user.as_indexed_json(no_details: true),
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
-      body: body
+      body: body,
+      flags: flags.map(&:as_indexed_json)
     }
   end
 
@@ -84,6 +85,10 @@ class Comment < ActiveRecord::Base
     if parent && parent.respond_to?(:elastic_index!)
       parent.elastic_index!
     end
+  end
+
+  def flagged_with(flag, options)
+    index_parent
   end
 
 end

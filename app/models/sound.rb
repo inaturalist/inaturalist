@@ -107,7 +107,8 @@ class Sound < ActiveRecord::Base
       id: id,
       license_code: license_code,
       attribution: attribution,
-      native_sound_id: native_sound_id
+      native_sound_id: native_sound_id,
+      secret_token: secret_token
     }
   end
 

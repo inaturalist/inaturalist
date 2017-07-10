@@ -269,6 +269,13 @@ class Identification < ActiveRecord::Base
     true
   end
 
+  def flagged_with(flag, options)
+    elastic_index!
+    if observation
+      observation.elastic_index!
+    end
+  end
+
   # /Callbacks ##############################################################
   
   #

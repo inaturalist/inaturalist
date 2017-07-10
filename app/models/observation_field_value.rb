@@ -210,6 +210,7 @@ class ObservationFieldValue < ActiveRecord::Base
 
   def as_indexed_json(options={})
     json = {
+      id: id,
       uuid: uuid,
       field_id: observation_field.id,
       datatype: observation_field.datatype,

@@ -39,6 +39,8 @@ class ProjectObservationsController < ApplicationController
         @project_observation.assign_attributes( project_observation_params_for_update )
         set_curator_coordinate_access
         if @project_observation.save
+          @project_observation.observation.elastic_index!
+          Observation.refresh_es_index
           render json: @project_observation
         else
           render status: :unprocessable_entity, json: {errors: @project_observation.errors}

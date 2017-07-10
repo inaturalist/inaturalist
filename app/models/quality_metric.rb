@@ -64,6 +64,15 @@ class QualityMetric < ActiveRecord::Base
     true
   end
 
+  def as_indexed_json
+    {
+      id: id,
+      user_id: user_id,
+      metric: metric,
+      agree: agree
+    }
+  end
+
   def self.vote(user, observation, metric, agree)
     qm = observation.quality_metrics.find_or_initialize_by( metric: metric, user_id: user.try(:id) )
     qm.update_attributes( agree: agree )

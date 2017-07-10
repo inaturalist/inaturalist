@@ -35,6 +35,16 @@ module ActsAsVotable
       end
     end
 
+    def as_indexed_json
+      {
+        id: id,
+        vote_flag: vote_flag,
+        vote_scope: vote_scope,
+        user_id: user_id,
+        created_at: created_at
+      }
+    end
+
   end
 
   module Votable

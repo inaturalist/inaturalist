@@ -391,6 +391,16 @@ class ProjectObservation < ActiveRecord::Base
     end
   end
 
+  def as_indexed_json
+    {
+      id: id,
+      uuid: uuid,
+      project_id: project_id,
+      user_id: user_id,
+      preferences: preferences.map{ |p| { name: p[0], value: p[1] } }
+    }
+  end
+
   ##### Static ##############################################################
   def self.to_csv(project_observations, options = {})
     return nil if project_observations.blank?

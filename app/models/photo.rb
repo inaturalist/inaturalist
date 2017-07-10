@@ -182,6 +182,14 @@ class Photo < ActiveRecord::Base
     end
   end
 
+  def original_dimensions
+    return unless metadata && metadata[:dimensions] && metadata[:dimensions][:original]
+    {
+      height: metadata[:dimensions][:original][:height],
+      width: metadata[:dimensions][:original][:width]
+    }
+  end
+
   def self.repair_photos_for_user(user, type)
     count = 0
     user.photos.where(type: type).find_each do |photo|
@@ -313,7 +321,8 @@ class Photo < ActiveRecord::Base
       license_code: (license_code.blank? || license.blank? || license == 0) ?
         nil : license_code.downcase,
       attribution: attribution,
-      url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
+      url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url,
+      original_dimensions: original_dimensions
     }
     json[:native_page_url] = native_page_url if options[:native_page_url]
     json[:native_photo_id] = native_photo_id if options[:native_photo_id]
