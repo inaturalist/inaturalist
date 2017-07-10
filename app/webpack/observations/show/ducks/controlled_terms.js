@@ -35,8 +35,17 @@ export function setAllControlledTerms( terms ) {
 
 export function fetchControlledTerms( options = {} ) {
   return ( dispatch, getState ) => {
-    const observation = options.observation || getState( ).observation;
+    const state = getState( );
+    const observation = options.observation || state.observation;
     if ( !observation || !observation.taxon ) {
+      if ( state.controlledTerms.allTerms && state.controlledTerms.allTerms.length > 0 ) {
+        dispatch( setControlledTerms( state.controlledTerms.allTerms ) );
+      } else {
+        inatjs.controlled_terms.search( ).then( response => {
+          dispatch( setAllControlledTerms( response.results ) );
+          dispatch( setControlledTerms( response.results ) );
+        } );
+      }
       return null;
     }
     const params = { taxon_id: observation.taxon.ancestor_ids.join( "," ), ttl: -1 };

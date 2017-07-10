@@ -146,14 +146,19 @@ class Annotations extends React.Component {
     );
   }
 
-  render( ) {
-    const observation = this.props.observation;
-    const config = this.props.config;
-    const controlledTerms = this.props.controlledTerms;
-    const chooseAvailableControlledTerms = term => {
-      const ancestorIds = observation && observation.taxon && observation.taxon.ancestor_ids ? observation.taxon.ancestor_ids : [];
+  termsForTaxon( terms, taxon = null ) {
+    const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
+    const that = this;
+    return _.filter( terms, term => {
+      // reject if it has values and those values and none are availalble
+      if ( term.values && term.values.length > 0 && that.termsForTaxon( term.values, taxon ).length === 0 ) {
+        return false;
+      }
       // value applies to all taxa without exceptions, keep it
-      if ( ( term.taxon_ids || [] ).length === 0 && ( term.excepted_taxon_ids || [] ).length === 0 ) {
+      if (
+        ( term.taxon_ids || [] ).length === 0 &&
+        ( term.excepted_taxon_ids || [] ).length === 0
+      ) {
         return true;
       }
       // remove things with exceptions that include this taxon
@@ -167,8 +172,18 @@ class Annotations extends React.Component {
         return true;
       }
       return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
-    };
-    const availableControlledTerms = _.filter( controlledTerms, chooseAvailableControlledTerms );
+    } );
+  }
+
+  render( ) {
+    const observation = this.props.observation;
+    const config = this.props.config;
+    const controlledTerms = this.props.controlledTerms;
+    const that = this;
+    const availableControlledTerms = this.termsForTaxon(
+      controlledTerms,
+      observation ? observation.taxon : null
+    );
     if ( !observation || !observation.user || _.isEmpty( availableControlledTerms ) ) {
       if (
           this.props.showEmptyState &&
@@ -205,7 +220,7 @@ class Annotations extends React.Component {
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
       }
       if ( observation.taxon ) {
-        availableValues = _.filter( availableValues, chooseAvailableControlledTerms );
+        availableValues = that.termsForTaxon( availableValues, observation ? observation.taxon : null );
       }
       const termPopover = (
         <Popover
@@ -213,7 +228,7 @@ class Annotations extends React.Component {
           className="AnnotationPopover"
         >
           <div className="contents">
-            <div className="view">View:</div>
+            <div className="view">{ I18n.t( "view" ) }:</div>
             <div className="search">
               <a href={ `/observations?term_id=${ct.id}` }>
                 <i className="fa fa-arrow-circle-o-right" />
