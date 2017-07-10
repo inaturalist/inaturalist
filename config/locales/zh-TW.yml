@@ -2704,6 +2704,7 @@ zh-TW:
   suggest_an_identification: 提議一個鑑定
   suggestions: 建議
   summary: 摘要
+  suspicious_photos: 可移照片
   siutable_observations: 合適的觀察
   sun: 週日
   suspend_user: 停用用戶
@@ -2714,6 +2715,7 @@ zh-TW:
   sync_obs_with_photo_metadata: 同步觀察帶有照片中介資料？
   synonyms: 同種異名
   table: 表格
+  table_of_contents: 目錄
   tagging: 標記中...
   tags: 標籤
   take_me_facebook: 是的，帶我前往臉書！
@@ -2751,6 +2753,9 @@ zh-TW:
   taxon_to_delete: 要刪除的物種分類
   taxon_to_keep: 要保有的物種分類
   taxon_name_was_deleted: 物種分類名稱已刪除。
+  taxon_name_was_successfully_updated: 物種分類名稱已成功更新。
+  taxon_was_successfully_created: 物種分類已成功創建。
+  taxon_was_successfully_updated: 物種分類已成功更新。
   tell_everyone_a_little_about_you: 向大家介紹一些關於您的事
   tell_the_world_a_little_about_yourself: 向我們介紹您自己
   tell_us_why: 告訴我們為什麼...
@@ -2771,6 +2776,7 @@ zh-TW:
   that_role_doesnt_exist: 該身份不存在。
   thats_not_a_real_date: 那不是一個實際日期！
   the: 該
+  the_: 此
   the_admin_is_the_person_who: 管理員為創建專案的人員。他們可進行任何負責人及策展人所能做出的事項，包含刪除專案。
   the_following_lists: 以下列表
   the_following_observations_could: 以下觀察不能被添加至 %{link}
@@ -2784,6 +2790,9 @@ zh-TW:
   the_past: 過去
   the_people_of_inat: '%{site_name} 的人們'
   the_project: 專案
+  the_species_listed_below_were_not_found_in_the_site_database: 以下列出的物種未能在 %{site_name}
+    資料庫裡找出。
+  the_title_of_the_wikipedia_article_we_use: 我們使用維基百科條目標題來用於描述。如果維基百科的網址為 <code>http://zh.wikipedia.org/wiki/鳥</code>，那麼該值便會是<code>鳥</code>。如果為留空則會使用此物種分類的學名（通常這會是有效的）。
   the_user_x_has_been_suspended: 用戶 %{user} 已被停用
   the_user_x_has_been_unsuspended: 用戶 %{user} 已被恢復使用
   the_world: 世界
@@ -2803,6 +2812,8 @@ zh-TW:
   there_were_some_problems_saving_those_colors: 儲存這些色彩時出現問題：%{error}
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
   theres_also: 這裡也有
+  these_arent_necessarily_relevant_to: 這些不一定有相應此專案。請檢查
+  these_observations_have_not_been_uploaded_yet: 這些觀察尚未被上傳。
   they_already_have_iNat_accounts: '...他們已有 %{site_name} 帳號'
   they_have_been_invited: '...他們已經被邀請'
   third_person_possessive_singular: '%{object_phrase}的%{noun}'
