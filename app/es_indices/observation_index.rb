@@ -51,6 +51,14 @@ class Observation < ActiveRecord::Base
         indexes :resource_type, type: "keyword"
         indexes :concatenated_attr_val, type: "keyword"
       end
+      indexes :non_owner_ids, type: :nested do
+        indexes :uuid, type: "keyword"
+        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :category, type: "keyword"
+        indexes :user do
+          indexes :login, type: "keyword"
+        end
+      end
       indexes :identifications, type: :nested do
         indexes :uuid, type: "keyword"
         indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
