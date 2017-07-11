@@ -696,6 +696,7 @@ class ObservationsController < ApplicationController
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       # make sure the obs get a falid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
+      o.set_quality_grade
       o
     end
     
