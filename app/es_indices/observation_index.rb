@@ -184,6 +184,7 @@ class Observation < ActiveRecord::Base
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         map_scale: map_scale,
+        oauth_application_id: oauth_application_id,
         community_taxon_id: community_taxon_id,
         faves_count: cached_votes_total,
         cached_votes_total: cached_votes_total,
