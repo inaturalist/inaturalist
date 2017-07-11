@@ -104,6 +104,9 @@ class Observation < ActiveRecord::Base
         indexes :attribution, type: "keyword", index: false
         indexes :url, type: "keyword", index: false
         indexes :license_code, type: "keyword"
+        indexes :flags do
+          indexes :flag, type: "keyword"
+        end
       end
       indexes :votes, type: :nested do
         indexes :vote_scope, type: "keyword"

@@ -44,6 +44,15 @@ class AddToObservationsIndex < ActiveRecord::Migration
             }
           }
         },
+        photos: {
+          properties: {
+            flags: {
+              properties: {
+                flag: { type: "keyword" }
+              }
+            }
+          }
+        },
         preferences: {
           properties: {
             name: { type: "keyword", index: false },

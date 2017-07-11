@@ -322,7 +322,8 @@ class Photo < ActiveRecord::Base
         nil : license_code.downcase,
       attribution: attribution,
       url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url,
-      original_dimensions: original_dimensions
+      original_dimensions: original_dimensions,
+      flags: flags.map(&:as_indexed_json)
     }
     json[:native_page_url] = native_page_url if options[:native_page_url]
     json[:native_photo_id] = native_photo_id if options[:native_photo_id]
