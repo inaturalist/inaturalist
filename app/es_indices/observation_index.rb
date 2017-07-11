@@ -58,6 +58,7 @@ class Observation < ActiveRecord::Base
         indexes :user do
           indexes :login, type: "keyword"
         end
+        indexes :created_at, type: "date"
       end
       indexes :identifications, type: :nested do
         indexes :uuid, type: "keyword"
@@ -180,7 +181,6 @@ class Observation < ActiveRecord::Base
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         map_scale: map_scale,
-        oauth_application_id: oauth_application_id,
         community_taxon_id: community_taxon_id,
         faves_count: cached_votes_total,
         cached_votes_total: cached_votes_total,
