@@ -21,6 +21,7 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
+import FollowButtonContainer from "../containers/follow_button_container";
 
 import { TABS } from "../actions/current_observation_actions";
 
@@ -69,7 +70,8 @@ class ObservationModal extends React.Component {
       imagesCurrentIndex,
       setImagesCurrentIndex,
       keyboardShortcutsShown,
-      toggleKeyboardShortcuts
+      toggleKeyboardShortcuts,
+      currentUser
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -421,11 +423,17 @@ class ObservationModal extends React.Component {
                           <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
                         { blind ? null : (
-                          <li>
+                          <li className="view-follow">
                             <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
                               <i className="icon-link-external"></i>
-                              { I18n.t( "view_observation" ) }
+                              { I18n.t( "view" ) }
                             </a>
+                            { observation.user.id === currentUser.id ? null : (
+                              <div style={{ display: "inline-block" }}>
+                                &bull;
+                                <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
+                              </div>
+                            ) }
                           </li>
                         ) }
                       </ul>
@@ -584,7 +592,8 @@ ObservationModal.propTypes = {
   controlledTerms: PropTypes.array,
   setImagesCurrentIndex: PropTypes.func,
   keyboardShortcutsShown: PropTypes.bool,
-  toggleKeyboardShortcuts: PropTypes.func
+  toggleKeyboardShortcuts: PropTypes.func,
+  currentUser: PropTypes.object
 };
 
 ObservationModal.defaultProps = {

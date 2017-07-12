@@ -30,7 +30,8 @@ function mapStateToProps( state ) {
   return Object.assign( {}, {
     images,
     blind: state.config.blind,
-    controlledTerms: state.controlledTerms.terms
+    controlledTerms: state.controlledTerms.terms,
+    currentUser: state.config.currentUser
   }, state.currentObservation );
 }
 

@@ -8,6 +8,7 @@ import { showFinishedModal } from "./finished_modal_actions";
 import { fetchSuggestions } from "../ducks/suggestions";
 import { setControlledTerms, fetchControlledTerms } from "../../show/ducks/controlled_terms";
 import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
+import { fetchSubscriptions, setSubscriptions } from "../../show/ducks/subscriptions";
 
 const SHOW_CURRENT_OBSERVATION = "show_current_observation";
 const HIDE_CURRENT_OBSERVATION = "hide_current_observation";
@@ -59,6 +60,8 @@ export function fetchDataForTab( options = { } ) {
       dispatch( fetchControlledTerms( { observation } ) );
     } else if ( s.currentObservation.tab === "data-quality" ) {
       dispatch( fetchQualityMetrics( { observation } ) );
+    } else {
+      dispatch( fetchSubscriptions( { observation } ) );
     }
   };
 }
@@ -642,6 +645,81 @@ export function removeObservationFieldValue( id ) {
     dispatch( updateCurrentObservation( { ofvs: newOfvs } ) );
     iNaturalistJS.observation_field_values.delete( { id } )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
+  };
+}
+
+export function followUser( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.currentObservation.observation ) { return; }
+    if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
+      return;
+    }
+    const newSubscriptions = state.subscriptions.concat( [{
+      resource_type: "User",
+      resource_id: state.currentObservation.observation.user.id,
+      user_id: state.config.currentUser.id,
+      api_status: "saving"
+    }] );
+    dispatch( setSubscriptions( newSubscriptions ) );
+    const payload = { id: state.config.currentUser.id, friend_id: state.currentObservation.observation.user.id };
+    const observation = { id: state.currentObservation.observation.id };
+    iNaturalistJS.users.update( payload ).then( ( ) =>
+      dispatch( fetchSubscriptions( { observation } ) ) );
+  };
+}
+
+export function unfollowUser( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.currentObservation.observation ) { return; }
+    if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
+      return;
+    }
+    const newSubscriptions = _.map( state.subscriptions, s => (
+      s.resource_type === "User" && s.resource_id === state.currentObservation.observation.user.id ?
+        Object.assign( { }, s, { api_status: "deleting" } ) : s
+    ) );
+    dispatch( setSubscriptions( newSubscriptions ) );
+    const observation = { id: state.currentObservation.observation.id };
+    const payload = {
+      id: state.config.currentUser.id,
+      remove_friend_id: state.currentObservation.observation.user.id
+    };
+    iNaturalistJS.users.update( payload ).then( ( ) =>
+      dispatch( fetchSubscriptions( { observation } ) ) );
+  };
+}
+
+export function subscribe( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.currentObservation.observation ) { return; }
+    if ( state.currentObservation.observation.user.id === state.config.currentUser.id ) {
+      return;
+    }
+    const observation = { id: state.currentObservation.observation.id };
+    const obsSubscription = _.find( state.subscriptions, s => (
+      s.resource_type === "Observation" && s.resource_id === observation.id ) );
+    if ( obsSubscription ) {
+      const newSubscriptions = _.map( state.subscriptions, s => (
+        s.resource_type === "Observation" && s.resource_id === observation.id ?
+          Object.assign( { }, s, { api_status: "deleting" } ) : s
+      ) );
+      dispatch( setSubscriptions( newSubscriptions ) );
+    } else {
+      const newSubscriptions = state.subscriptions.concat( [{
+        resource_type: "Observation",
+        resource_id: observation.id,
+        user_id: state.config.currentUser.id,
+        api_status: "saving"
+      }] );
+      dispatch( setSubscriptions( newSubscriptions ) );
+    }
+    const payload = { id: observation.id };
+    iNaturalistJS.observations.subscribe( payload ).then( ( ) => {
+      dispatch( fetchSubscriptions( { observation } ) );
+    } );
   };
 }
 

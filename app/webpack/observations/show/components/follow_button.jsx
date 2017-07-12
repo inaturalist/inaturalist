@@ -17,7 +17,7 @@ class FollowButton extends React.Component {
 
   render( ) {
     const { observation, followUser, unfollowUser,
-      subscribe, subscriptions, config } = this.props;
+      subscribe, subscriptions, config, btnClassName } = this.props;
     const loggedIn = config && config.currentUser;
     if ( _.isEmpty( observation ) || !loggedIn ) { return ( <div /> ); }
     let followingUser;
@@ -40,7 +40,7 @@ class FollowButton extends React.Component {
           <Dropdown
             id="grouping-control"
           >
-            <Dropdown.Toggle className="btn-sm">
+            <Dropdown.Toggle className={ btnClassName }>
               { I18n.t( "follow" ) }
             </Dropdown.Toggle>
             <Dropdown.Menu className="dropdown-menu-right">
@@ -72,7 +72,12 @@ FollowButton.propTypes = {
   subscriptions: PropTypes.array,
   followUser: PropTypes.func,
   unfollowUser: PropTypes.func,
-  subscribe: PropTypes.func
+  subscribe: PropTypes.func,
+  btnClassName: PropTypes.string
+};
+
+FollowButton.defaultProps = {
+  btnClassName: "btn-sm"
 };
 
 export default FollowButton;

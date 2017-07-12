@@ -38,6 +38,7 @@ import suggestions from "../ducks/suggestions";
 import controlledTerms from "../../show/ducks/controlled_terms";
 import qualityMetrics from "../../show/ducks/quality_metrics";
 import flaggingModal from "../../show/ducks/flagging_modal";
+import subscriptions from "../../show/ducks/subscriptions";
 
 const rootReducer = combineReducers( {
   config,
@@ -51,7 +52,8 @@ const rootReducer = combineReducers( {
   suggestions,
   controlledTerms,
   qualityMetrics,
-  flaggingModal
+  flaggingModal,
+  subscriptions
 } );
 
 export default rootReducer;

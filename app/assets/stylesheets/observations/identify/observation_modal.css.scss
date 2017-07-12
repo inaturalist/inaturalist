@@ -427,33 +427,6 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
   padding: 20px;
 }
 
-.ObservationModal .map-and-details {
-  display: flex;
-  margin-bottom: 20px;
-}
-.ObservationModal .map-and-details .TaxonMap,
-.ObservationModal .map-and-details .details {
-  width: 50%;
-}
-.ObservationModal .map-and-details .details {
-  list-style: none;
-  padding-left: 20px;
-}
-.ObservationModal .map-and-details .details li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 4px;
-}
-.ObservationModal .map-and-details .details i {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 15px;
-  text-align: center;
-  display: block;
-  line-height: 16px;
-}
-
 .ObservationModal .column-header {
   font-size: 18px;
   margin-bottom: 10px;
@@ -472,6 +445,68 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 
 .ObservationModal,
 body > div > [role="dialog"] .ObservationModal {
+  .map-and-details {
+    display: flex;
+    margin-bottom: 20px;
+
+    .TaxonMap,
+    .details {
+      width: 50%;
+    }
+    .details {
+      list-style: none;
+      padding-left: 20px;
+
+      > li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 4px;
+      }
+      i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 15px;
+        text-align: center;
+        display: block;
+        line-height: 16px;
+      }
+      .view-follow {
+        color: #999;
+        .permalink,
+        .FollowButton button {
+          color: black;
+          font-weight: bold;
+        }
+        a.permalink:focus,
+        .FollowButton button:focus,
+        a.permalink:hover,
+        .FollowButton button:hover {
+          text-decoration: none
+        }
+      }
+      .permalink {
+        padding-right: 5px;
+      }
+      .FollowButton {
+        display: inline-block;
+        .btn {
+          padding: 0 5px;
+          border: 0;
+          position: relative;
+          top: -1px;
+        }
+        .open .dropdown-toggle.btn-default,
+        .dropdown-toggle.btn-default:focus {
+          background: none;
+        }
+        .unfollow {
+          color: #468cc7;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
   .QualityMetrics tr.improve,
   .QualityMetrics thead,
   .Annotations thead {
