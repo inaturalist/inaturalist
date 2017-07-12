@@ -45,7 +45,14 @@ class FollowButton extends React.Component {
             </Dropdown.Toggle>
             <Dropdown.Menu className="dropdown-menu-right">
               <li className={ followUserPending ? "disabled" : "" }>
-                <a href="#" onClick={ followUserAction }>
+                <a
+                  href="#"
+                  onClick={ e => {
+                    e.preventDefault( );
+                    followUserAction( );
+                    return false;
+                  } }
+                >
                   { observation.user.login }
                   { this.followStatus( followingUser ) }
                 </a>
@@ -53,7 +60,14 @@ class FollowButton extends React.Component {
               <li
                 className={ followObservationPending ? "disabled" : "" }
               >
-                <a href="#" onClick={ followObservationAction }>
+                <a
+                  href="#"
+                  onClick={ e => {
+                    e.preventDefault( );
+                    followObservationAction( );
+                    return false;
+                  } }
+                >
                   { I18n.t( "this_observation" ) }
                   { this.followStatus( followingObservation ) }
                 </a>
