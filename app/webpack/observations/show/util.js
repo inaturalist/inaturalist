@@ -28,6 +28,21 @@ const util = class util {
     return ( <i className="taxon-image icon icon-iconic-unknown" /> );
   }
 
+  static observationMissingRequiredProjectFields( observation, project ) {
+    if ( !project || _.isEmpty( project.project_observation_fields ) ) {
+      return false;
+    }
+    const requiredFields = _.filter( project.project_observation_fields, "required" );
+    const missingRequiredFields = [];
+    _.each( requiredFields, pf => {
+      if ( !_.find( observation.ofvs,
+           ofv => ofv.observation_field.id === pf.observation_field.id ) ) {
+        missingRequiredFields.push( pf );
+      }
+    } );
+    return missingRequiredFields;
+  }
+
 };
 
 export default util;

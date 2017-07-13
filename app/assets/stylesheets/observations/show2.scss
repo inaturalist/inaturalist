@@ -74,7 +74,7 @@ a:focus {
   font-weight: 700;
 }
 
-.input-group.date {
+.input-group.date, .input-group .input-group.date {
   display: none;
 }
 
@@ -295,7 +295,7 @@ a.UserImage {
           height: 441px;
         }
         .image-gallery-slides img {
-          max-height: 479px;
+          max-height: 439px;
           max-width: 100%;
           width: auto;
           margin-bottom: 40px;
@@ -1195,101 +1195,6 @@ h3, h4 {
   }
 }
 
-.ObservationFields {
-  .observation-field {
-    margin-bottom: 20px;
-    textarea {
-      min-height: 125px;
-      border-radius: 3px;
-    }
-    .form-group {
-      margin-bottom: 10px;
-    }
-    .input-group-btn {
-      vertical-align: top;
-    }
-    &.editing {
-      background: #eef5e0;
-      padding: 10px;
-      button {
-        color: #fff;
-        background: $inat-green;
-      }
-    }
-    .btn.standalone {
-      margin-right: 10px;
-    }
-  }
-  .panel {
-    .field-name {
-      margin: 15px 0px 10px;
-    }
-  }
-  .field-name {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-}
-
-.ObservationFieldValue {
-  margin-bottom: 10px;
-  .field {
-    font-weight: 600;
-    display: inline;
-    margin-right: 5px;
-    cursor: pointer;
-  }
-  .value {
-    display: inline;
-    .dna {
-      font-family: inherit;
-    }
-    .glyphicon-remove-circle {
-      cursor: pointer;
-    }
-  }
-}
-
-.ObservationFieldPopover.popover, .AnnotationPopover.popover {
-  padding: 0px !important;
-  max-width: 350px;
-  .popover-content {
-    padding: 0px;
-  }
-  .info, .edit {
-    padding: 12px 14px;
-    border-bottom: 1px solid #e5e5e5;
-    .header {
-      font-size: 18px;
-      line-height: 28px;
-    }
-  }
-  .edit > div {
-    cursor: pointer;
-  }
-  .contents {
-    padding: 12px 14px;
-    .view {
-      color: #aaa;
-    }
-  }
-}
-
-.ObservationFieldPopover.popover, .AnnotationPopover.popover, .ActivityItemMenu {
-  .search {
-    line-height: 24px;
-    white-space: nowrap;
-    .fa {
-      color: $inat-green;
-      margin-right: 5px;
-    }
-    a {
-      color: inherit;
-    }
-  }
-}
-
-
 .Identifiers {
   .identifier {
     height: 50px;
@@ -1645,7 +1550,7 @@ h3, h4 {
   }
 }
 
-.LicensingModal.modal, .CommunityIDModal.modal {
+.LicensingModal.modal, .CommunityIDModal.modal, .ProjectFieldsModal.modal {
   .modal-dialog {
     width: 90%;
     height: 85%;
@@ -1964,6 +1869,80 @@ h3, h4 {
   }
 }
 
+.ProjectFieldsModal.modal {
+  .required-missing .observation-field {
+    background: #fbeded;
+  }
+  .modal-dialog {
+    width: 600px;
+    min-width: 400px;
+    .modal-content {
+      padding-bottom: 120px;
+    }
+  }
+  .modal-header {
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    background: #337ab7;
+    .modal-title {
+      color: white;
+    }
+    .close {
+      color: white;
+      opacity: 0.6;
+      text-shadow: 0 1px 0 #333333;
+      &:hover {
+        color: white;
+        opacity: 1;
+      }
+    }
+  }
+  .modal-body {
+    .intro {
+      margin-bottom: 15px;
+      font-weight: 700;
+    }
+    .observation-field {
+      padding: 10px;
+      position: relative;
+      margin-bottom: 10px;
+      &.editing {
+        background: inherit;
+        button {
+          background-color: #5cb85c;
+          border-color: #4cae4c;
+          &:hover {
+            color: white;
+            background-color: #449d44;
+            border-color: #398439;
+          }
+        }
+      }
+      &:not(.dna-field) {
+        button.standalone {
+          position: absolute;
+          top: 34px;
+          right: 0px;
+        }
+      }
+      .form-group {
+        margin-bottom: 0px;
+      }
+      .field-name {
+        font-weight: 600;
+        font-size: 15px;
+        margin: 0px 0px 4px 0px;
+        .required {
+          margin-left: 5px;
+        }
+      }
+      .help-block {
+        margin-top: 8px;
+        margin-bottom: 0px;
+      }
+    }
+  }
+}
 
 
 

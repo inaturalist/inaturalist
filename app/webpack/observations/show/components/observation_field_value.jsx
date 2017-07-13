@@ -62,8 +62,8 @@ class ObservationFieldValue extends React.Component {
         className="ObservationFieldPopover"
       >
         { info }
-        { editOptions }
         { addedBy }
+        { editOptions }
         <div className="contents">
           <div className="view">View:</div>
           <div className="search">

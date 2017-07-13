@@ -22,7 +22,7 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
   const loadObservationCallback = ( e, o ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
-      showNewObservation( o );
+      showNewObservation( o, { useInstance: true } );
     }
   };
   const userLogin = observation.user.login;

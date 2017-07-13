@@ -11,7 +11,9 @@ import { fetchSubscriptions, setSubscriptions } from "./subscriptions";
 import { fetchIdentifiers, setIdentifiers } from "./identifications";
 import { setFlaggingModalState } from "./flagging_modal";
 import { setConfirmModalState, handleAPIError } from "./confirm_modal";
+import { setProjectFieldsModalState } from "./project_fields_modal";
 import { updateSession } from "./users";
+import util from "../util";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
@@ -117,6 +119,68 @@ export function fetchTaxonSummary( ) {
   };
 }
 
+export function renderObservation( observation, options = { } ) {
+  return ( dispatch, getState ) => {
+    if ( !observation || !observation.id ) {
+      console.log( "observation not found" );
+      return;
+    }
+    const s = getState( );
+    const originalObservation = s.observation;
+    const fetchAll = options.fetchAll;
+    const taxonUpdated = ( originalObservation &&
+      originalObservation.id === observation.id &&
+      ( ( !originalObservation.taxon && observation.taxon ) ||
+        ( originalObservation.taxon && !observation.taxon ) ||
+        ( originalObservation.taxon && observation.taxon &&
+          originalObservation.taxon.id !== observation.taxon.id ) ) );
+    dispatch( setObservation( observation ) );
+    if ( taxonUpdated ) {
+      dispatch( setIdentifiers( [] ) );
+      dispatch( setMoreFromClade( [] ) );
+    }
+    dispatch( fetchTaxonSummary( ) );
+    if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
+    if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
+    if ( fetchAll || options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
+    if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
+    if ( fetchAll || options.replaceState ) {
+      const ws = windowStateForObservation( observation );
+      history.replaceState( ws.state, ws.title, ws.url );
+    }
+    // delay these requests for a short while, unless the taxon has changed
+    // which is a user-initiated action that should have a quick re-render time
+    setTimeout( ( ) => {
+      if ( fetchAll || options.fetchOtherObservations ) {
+        dispatch( fetchMoreFromThisUser( ) );
+        dispatch( fetchNearby( ) );
+      }
+      if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
+        dispatch( fetchMoreFromClade( ) );
+      }
+      if ( ( fetchAll || options.fetchIdentifiers || taxonUpdated ) &&
+           observation.taxon && observation.taxon.rank_level <= 50 ) {
+        dispatch( fetchIdentifiers( {
+          taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
+      }
+      if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
+        dispatch( fetchControlledTerms( ) );
+      }
+    }, taxonUpdated ? 1 : 500 );
+    if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
+      const item = s.flaggingModal.item;
+      let newItem;
+      if ( observation.id === item.id ) { newItem = observation; }
+      newItem = newItem || _.find( observation.comments, c => c.id === item.id );
+      newItem = newItem || _.find( observation.identifications, c => c.id === item.id );
+      if ( newItem ) { dispatch( setFlaggingModalState( { item: newItem } ) ); }
+    }
+    if ( options.callback ) {
+      options.callback( );
+    }
+  };
+}
+
 export function fetchObservation( id, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
@@ -125,64 +189,8 @@ export function fetchObservation( id, options = { } ) {
       locale: I18n.locale,
       ttl: -1
     };
-    const originalObservation = s.observation;
-    const fetchAll = options.fetchAll;
     return inatjs.observations.fetch( id, params ).then( response => {
-      const observation = response.results[0];
-      if ( !observation ) {
-        console.log( "observation not found" );
-        return;
-      }
-      const taxonUpdated = ( originalObservation &&
-        originalObservation.id === observation.id &&
-        ( ( !originalObservation.taxon && observation.taxon ) ||
-          ( originalObservation.taxon && !observation.taxon ) ||
-          ( originalObservation.taxon && observation.taxon &&
-            originalObservation.taxon.id !== observation.taxon.id ) ) );
-      dispatch( setObservation( observation ) );
-      if ( taxonUpdated ) {
-        dispatch( setIdentifiers( [] ) );
-        dispatch( setMoreFromClade( [] ) );
-      }
-      dispatch( fetchTaxonSummary( ) );
-      if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
-      if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
-      if ( fetchAll || options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
-      if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
-      if ( fetchAll || options.replaceState ) {
-        const ws = windowStateForObservation( observation );
-        history.replaceState( ws.state, ws.title, ws.url );
-      }
-      // delay these requests for a short while, unless the taxon has changed
-      // which is a user-initiated action that should have a quick re-render time
-      setTimeout( ( ) => {
-        if ( fetchAll || options.fetchOtherObservations ) {
-          dispatch( fetchMoreFromThisUser( ) );
-          dispatch( fetchNearby( ) );
-        }
-        if ( fetchAll || options.fetchOtherObservations || taxonUpdated ) {
-          dispatch( fetchMoreFromClade( ) );
-        }
-        if ( ( fetchAll || options.fetchIdentifiers || taxonUpdated ) &&
-             observation.taxon && observation.taxon.rank_level <= 50 ) {
-          dispatch( fetchIdentifiers( {
-            taxon_id: observation.taxon.id, quality_grade: "research", per_page: 10 } ) );
-        }
-        if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
-          dispatch( fetchControlledTerms( ) );
-        }
-      }, taxonUpdated ? 1 : 500 );
-      if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {
-        const item = s.flaggingModal.item;
-        let newItem;
-        if ( id === item.id ) { newItem = observation; }
-        newItem = newItem || _.find( observation.comments, c => c.id === item.id );
-        newItem = newItem || _.find( observation.identifications, c => c.id === item.id );
-        if ( newItem ) { dispatch( setFlaggingModalState( { item: newItem } ) ); }
-      }
-      if ( options.callback ) {
-        options.callback( );
-      }
+      dispatch( renderObservation( response.results[0], options ) );
     } ).catch( e => console.log( e ) );
   };
 }
@@ -704,7 +712,7 @@ export function unvoteMetric( metric ) {
   };
 }
 
-export function addToProject( project ) {
+export function addToProjetSubmit( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
@@ -731,6 +739,29 @@ export function addToProject( project ) {
         }
       } ) );
     } );
+  };
+}
+
+export function addToProject( project ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !hasObsAndLoggedIn( state ) ) { return; }
+    const missingRequiredFields =
+      util.observationMissingRequiredProjectFields( state.observation, project );
+    if ( !_.isEmpty( missingRequiredFields ) ) {
+      // there are empty required project fields, so show the modal
+      dispatch( setProjectFieldsModalState( {
+        show: true,
+        project,
+        onSubmit: ( ) => {
+          dispatch( setProjectFieldsModalState( { show: false } ) );
+          dispatch( addToProject( project ) );
+        }
+      } ) );
+      return;
+    }
+    // there are no empty required fields, so proceed with adding
+    dispatch( addToProjetSubmit( project ) );
   };
 }
 
@@ -820,7 +851,7 @@ export function removeObservationFieldValue( id ) {
   };
 }
 
-export function showNewObservation( observation, options ) {
+export function showNewObservation( observation, options = { } ) {
   return dispatch => {
     window.scrollTo( 0, 0 );
     const s = windowStateForObservation( observation );
@@ -829,6 +860,10 @@ export function showNewObservation( observation, options ) {
     }
     document.title = s.title;
     dispatch( resetStates( ) );
-    dispatch( fetchObservation( observation.id, { fetchAll: true } ) );
+    if ( options.useInstance ) {
+      dispatch( renderObservation( observation, { fetchAll: true } ) );
+    } else {
+      dispatch( fetchObservation( observation.id, { fetchAll: true } ) );
+    }
   };
 }

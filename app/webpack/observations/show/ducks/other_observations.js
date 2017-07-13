@@ -63,7 +63,7 @@ export function fetchNearby( ) {
     const baseParams = { lat: observation.latitude, lng: observation.longitude, radius: 50,
       order_by: "observed_on" };
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.id, per_page: 6 } );
+      photos: true, not_id: observation.id, per_page: 6, details: "all" } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setNearby( { params: baseParams, observations: response.results } ) );
     } ).catch( e => { } );
@@ -79,7 +79,7 @@ export function fetchMoreFromClade( ) {
       observation.taxon.min_species_ancestry.split( "," ).reverse( )[1] || observation.taxon.id;
     const baseParams = { taxon_id: searchTaxon, order_by: "votes" };
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.id, per_page: 6 } );
+      photos: true, not_id: observation.id, per_page: 6, details: "all" } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setMoreFromClade( { params: baseParams, observations: response.results } ) );
     } ).catch( e => { } );
@@ -95,7 +95,7 @@ export function fetchMoreFromThisUser( ) {
       order: "desc", id_below: observation.id, per_page: 6 };
     return inatjs.observations.search( params ).then( responseBefore => {
       params = { user_id: observation.user.id, order_by: "id",
-        order: "asc", id_above: observation.id, per_page: 6 };
+        order: "asc", id_above: observation.id, per_page: 6, details: "all" };
       return inatjs.observations.search( params ).then( responseAfter => {
         dispatch( setEarlierUserObservations( responseBefore.results ) );
         dispatch( setLaterUserObservations( responseAfter.results ) );

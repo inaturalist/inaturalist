@@ -84,6 +84,10 @@ body > div > [role="dialog"] .ActivityItem {
     }
     .contents {
       padding: 15px;
+      .content {
+        display: block;
+        overflow: hidden;
+      }
     }
   }
   .icon {

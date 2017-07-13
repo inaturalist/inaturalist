@@ -11,7 +11,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showNewObservation: ( observation ) => { dispatch( showNewObservation( observation ) ); }
+    showNewObservation: ( observation, options ) => {
+      dispatch( showNewObservation( observation, options ) );
+    }
   };
 }
 

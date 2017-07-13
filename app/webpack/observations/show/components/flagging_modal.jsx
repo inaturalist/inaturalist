@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { Component, PropTypes } from "react";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
 
@@ -33,16 +34,20 @@ class FlaggingModal extends Component {
 
   render( ) {
     const item = this.props.state.item;
+    if ( !item ) {
+      return ( <div /> );
+    }
     const loggedInUser = this.props.config.currentUser;
     const otherTextarea = this.props.state.radioOption === "other" && (
       <textarea placeholder={ I18n.t( "specify_the_reason_youre_flagging" ) }
         className="form-control" ref="reason"
       /> );
-    const existingFlags = item && item.flags && item.flags.length > 0 && (
+    const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
+    const existingFlags = unresolvedFlags.length > 0 && (
       <div className="alert alert-warning">
         { I18n.t( "current_flags" ) }
         <ul>
-        { item.flags.map( flag => (
+        { unresolvedFlags.map( flag => (
           <li key={ `flag-${flag.id || flag.user.id}` }>
             { flag.flag } (
               <a href={ `/people/${flag.user.login}` }>{ flag.user.login }</a>)

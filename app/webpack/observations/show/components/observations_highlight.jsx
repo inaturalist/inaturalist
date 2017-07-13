@@ -9,7 +9,7 @@ const ObservationsHighlight = ( { title, observations, searchParams, showNewObse
   const loadObservationCallback = ( e, observation ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
-      showNewObservation( observation );
+      showNewObservation( observation, { useInstance: true } );
     }
   };
   return (

@@ -65,6 +65,7 @@ class ObservationFields extends React.Component {
                   this.setState( { editingFieldValue: fieldValue } );
                 }}
                 editing
+                originalOfv={ ofv }
                 hideFieldChooser
                 onCancel={ ( ) => {
                   this.setState( { editingFieldValue: null } );
