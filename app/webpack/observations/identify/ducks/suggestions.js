@@ -205,6 +205,17 @@ export function fetchSuggestions( query ) {
       if ( photo ) {
         queryWithLocale.image_url = photo.photoUrl( "medium" );
       }
+      if (
+        s.currentObservation.observation.geojson &&
+        ( !newQuery.place || ( newQuery.place.id === newQuery.defaultPlace.id ) )
+      ) {
+        queryWithLocale.lat = s.currentObservation.observation.geojson[1];
+        queryWithLocale.lng = s.currentObservation.observation.geojson[0];
+      } else if ( newQuery.place && newQuery.place.location ) {
+        const coords = newQuery.place.location.split( "," );
+        queryWithLocale.lat = coords[0];
+        queryWithLocale.lng = coords[1];
+      }
     }
     return inatjs.taxa.suggest( queryWithLocale ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;

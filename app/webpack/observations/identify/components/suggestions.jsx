@@ -37,7 +37,7 @@ class Suggestions extends React.Component {
       }, 100 );
     }
   }
-  suggestionRowForTaxon( taxon ) {
+  suggestionRowForTaxon( taxon, details = {} ) {
     const that = this;
     const taxonPhotos = _
       .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
@@ -54,16 +54,28 @@ class Suggestions extends React.Component {
               return false;
             } }
           />
-          <Button
-            bsSize="xs"
-            bsStyle="primary"
-            className="pull-right"
-            onClick={ ( ) => {
-              that.props.chooseTaxon( taxon, { observation: that.props.observation } );
-            } }
-          >
-            { I18n.t( "select" ) }
-          </Button>
+          <div className="btn-group pull-right">
+            { details && details.vision_score ? (
+              <div className="quiet btn btn-label btn-xs">
+                { I18n.t( "visually_similar" ) }
+                { details.frequency_score ? (
+                  <span>
+                    /
+                    { I18n.t( "seen_nearby" ) }
+                  </span>
+                ) : null}
+              </div>
+            ) : null }
+            <Button
+              bsSize="xs"
+              bsStyle="primary"
+              onClick={ ( ) => {
+                that.props.chooseTaxon( taxon, { observation: that.props.observation } );
+              } }
+            >
+              { I18n.t( "select" ) }
+            </Button>
+          </div>
         </h3>
         <LazyLoad height={150} offsetVertical={1000}>
           <div className="photos">
@@ -196,6 +208,7 @@ class Suggestions extends React.Component {
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   label={ I18n.t( "place" ) }
                   place={ query.place }
+                  withBoundaries
                   defaultPlace={ query.defaultPlace }
                   defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
                   preIconClass={false}
@@ -226,6 +239,7 @@ class Suggestions extends React.Component {
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   chosen={ query.source }
                   choices={["observations", "rg_observations", "checklist", "misidentifications", "visual"]}
+                  choiceLabels={{ visual: "visually_similar" }}
                   defaultChoice="observations"
                   preIconClass={ false }
                   postIconClass="fa fa-angle-down"
@@ -253,7 +267,7 @@ class Suggestions extends React.Component {
                   </a>
                 </div>
               ) : null }
-              { response.results.map( r => this.suggestionRowForTaxon( r.taxon ) ) }
+              { response.results.map( r => this.suggestionRowForTaxon( r.taxon, r.sourceDetails ) ) }
             </div>
           </div>
           <div className="suggestions-detail">

@@ -127,7 +127,7 @@ class PlaceChooserPopover extends React.Component {
 
   searchPlaces( text ) {
     const that = this;
-    inatjs.places.autocomplete( { q: text, geo: false } ).then( response => that.handlePlacesResponse( response ) );
+    inatjs.places.autocomplete( { q: text, geo: this.props.withBoundaries } ).then( response => that.handlePlacesResponse( response ) );
   }
 
   fetchPlaces( ids ) {
@@ -279,7 +279,8 @@ PlaceChooserPopover.propTypes = {
   container: PropTypes.object,
   preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
   postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
-  label: PropTypes.string
+  label: PropTypes.string,
+  withBoundaries: PropTypes.bool
 };
 
 PlaceChooserPopover.defaultProps = {
