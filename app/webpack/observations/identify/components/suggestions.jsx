@@ -225,7 +225,7 @@ class Suggestions extends React.Component {
                   label={ I18n.t( "source" ) }
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   chosen={ query.source }
-                  choices={["observations", "rg_observations", "checklist", "misidentifications"]}
+                  choices={["observations", "rg_observations", "checklist", "misidentifications", "visual"]}
                   defaultChoice="observations"
                   preIconClass={ false }
                   postIconClass="fa fa-angle-down"

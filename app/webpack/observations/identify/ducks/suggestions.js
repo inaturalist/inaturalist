@@ -200,12 +200,21 @@ export function fetchSuggestions( query ) {
     const queryWithLocale = Object.assign( {}, sanitizedQuery, {
       locale: I18n.locale
     } );
+    if ( queryWithLocale.source === "visual" ) {
+      const photo = s.currentObservation.observation.photos[0];
+      if ( photo ) {
+        queryWithLocale.image_url = photo.photoUrl( "medium" );
+      }
+    }
     return inatjs.taxa.suggest( queryWithLocale ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
       if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );
         dispatch( setSuggestions( suggestions ) );
       }
+    } ).catch( e => {
+      dispatch( stopLoading( ) );
+      alert( e );
     } );
   };
 }
