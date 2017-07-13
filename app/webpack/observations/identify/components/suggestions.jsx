@@ -55,12 +55,11 @@ class Suggestions extends React.Component {
             } }
           />
           <div className="btn-group pull-right">
-            { details && details.vision_score ? (
+            { details && ( details.vision_score || details.frequency_score ) ? (
               <div className="quiet btn btn-label btn-xs">
-                { I18n.t( "visually_similar" ) }
-                { details.frequency_score ? (
-                  <span> / { I18n.t( "seen_nearby" ) }</span>
-                ) : null}
+                { details.vision_score ? I18n.t( "visually_similar" ) : null }
+                { details.vision_score && details.frequency_score ? <span> / </span> : null }
+                { details.frequency_score ? I18n.t( "seen_nearby" ) : null }
               </div>
             ) : null }
             <Button
