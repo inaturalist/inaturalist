@@ -209,8 +209,8 @@ export function fetchSuggestions( query ) {
         s.currentObservation.observation.geojson &&
         ( !newQuery.place || ( newQuery.place.id === newQuery.defaultPlace.id ) )
       ) {
-        queryWithLocale.lat = s.currentObservation.observation.geojson[1];
-        queryWithLocale.lng = s.currentObservation.observation.geojson[0];
+        queryWithLocale.lat = s.currentObservation.observation.geojson.coordinates[1];
+        queryWithLocale.lng = s.currentObservation.observation.geojson.coordinates[0];
       } else if ( newQuery.place && newQuery.place.location ) {
         const coords = newQuery.place.location.split( "," );
         queryWithLocale.lat = coords[0];

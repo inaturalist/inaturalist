@@ -59,10 +59,7 @@ class Suggestions extends React.Component {
               <div className="quiet btn btn-label btn-xs">
                 { I18n.t( "visually_similar" ) }
                 { details.frequency_score ? (
-                  <span>
-                    /
-                    { I18n.t( "seen_nearby" ) }
-                  </span>
+                  <span> / { I18n.t( "seen_nearby" ) }</span>
                 ) : null}
               </div>
             ) : null }
