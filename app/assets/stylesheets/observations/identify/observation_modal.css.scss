@@ -506,6 +506,9 @@ body > div > [role="dialog"] .ObservationModal {
         }
       }
     }
+    .btn-label {
+      cursor: default;
+    }
   }
   .QualityMetrics tr.improve,
   .QualityMetrics thead,
