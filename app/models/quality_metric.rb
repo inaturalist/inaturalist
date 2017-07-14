@@ -32,6 +32,7 @@ class QualityMetric < ActiveRecord::Base
   
   def set_observation_quality_grade
     return true unless observation
+    observation.reload
     new_quality_grade = observation.get_quality_grade
     Observation.where(id: observation_id).update_all(quality_grade: new_quality_grade)
     CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
@@ -62,6 +63,15 @@ class QualityMetric < ActiveRecord::Base
     return true unless observation
     observation.reload.elastic_index!
     true
+  end
+
+  def as_indexed_json
+    {
+      id: id,
+      user_id: user_id,
+      metric: metric,
+      agree: agree
+    }
   end
 
   def self.vote(user, observation, metric, agree)

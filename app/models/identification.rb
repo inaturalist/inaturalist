@@ -269,6 +269,14 @@ class Identification < ActiveRecord::Base
     true
   end
 
+  def flagged_with(flag, options)
+    evaluate_new_flag_for_spam(flag)
+    elastic_index!
+    if observation
+      observation.elastic_index!
+    end
+  end
+
   # /Callbacks ##############################################################
   
   #
