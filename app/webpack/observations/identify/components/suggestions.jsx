@@ -44,7 +44,7 @@ class Suggestions extends React.Component {
       .slice( 0, 5 );
     return (
       <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
-        <h3>
+        <h3 className="clearfix">
           <SplitTaxon
             taxon={taxon}
             onClick={ e => {

@@ -103,6 +103,11 @@
     h3 {
       margin-top: 0;
       font-size: 16px;
+
+      > div {
+        position: relative;
+        top: -2px;
+      }
     }
     
     .btn-label {
