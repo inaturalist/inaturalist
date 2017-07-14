@@ -197,27 +197,29 @@ export function fetchSuggestions( query ) {
     dispatch( updateQuery( newQuery ) );
     dispatch( startLoading( ) );
     const sanitizedQuery = sanitizeQuery( newQuery );
-    const queryWithLocale = Object.assign( {}, sanitizedQuery, {
+    const payload = Object.assign( {}, sanitizedQuery, {
       locale: I18n.locale
     } );
-    if ( queryWithLocale.source === "visual" ) {
+    if ( payload.source === "visual" ) {
       const photo = s.currentObservation.observation.photos[0];
-      if ( photo ) {
-        queryWithLocale.image_url = photo.photoUrl( "medium" );
+      if ( !photo ) {
+        // can't get visual results without a photo
+        return null;
       }
+      payload.image_url = photo.photoUrl( "medium" );
       if (
         s.currentObservation.observation.geojson &&
-        ( !newQuery.place || ( newQuery.place.id === newQuery.defaultPlace.id ) )
+        newQuery.place && newQuery.place.id === newQuery.defaultPlace.id
       ) {
-        queryWithLocale.lat = s.currentObservation.observation.geojson.coordinates[1];
-        queryWithLocale.lng = s.currentObservation.observation.geojson.coordinates[0];
+        payload.lat = s.currentObservation.observation.geojson.coordinates[1];
+        payload.lng = s.currentObservation.observation.geojson.coordinates[0];
       } else if ( newQuery.place && newQuery.place.location ) {
         const coords = newQuery.place.location.split( "," );
-        queryWithLocale.lat = coords[0];
-        queryWithLocale.lng = coords[1];
+        payload.lat = coords[0];
+        payload.lng = coords[1];
       }
     }
-    return inatjs.taxa.suggest( queryWithLocale ).then( suggestions => {
+    return inatjs.taxa.suggest( payload ).then( suggestions => {
       const currentQuery = getState( ).suggestions.query;
       if ( _.isEqual( sanitizeQuery( currentQuery ), sanitizedQuery ) ) {
         dispatch( stopLoading( ) );
