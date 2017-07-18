@@ -128,6 +128,8 @@ const App = ( {
         <UserText text={ observation.description } />
       </Col>
     </Row> ) : "";
+  const qualityGrade = observation.quality_grade === "research" ?
+    "research_grade" : observation.quality_grade;
   return (
     <div id="ObservationShow">
     { flashes }
@@ -144,7 +146,7 @@ const App = ( {
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
-                  { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+                  { _.startCase( I18n.t( qualityGrade ) ) }
                 </span>
               </div>
             </Col>

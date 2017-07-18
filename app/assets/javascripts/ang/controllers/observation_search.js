@@ -353,7 +353,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.extendBrowserLocation = function( options ) {
     var params = _.extend( { }, $location.search( ), options );
     params = _.omit( params, function( value, key, object ) {
-      return _.isEmpty( value) && !_.isBoolean( value ) && !_.isNumber( value );
+      return _.isEmpty( value ) && !_.isBoolean( value ) && !_.isNumber( value );
     });
     return "?" + $.param( params );
   };

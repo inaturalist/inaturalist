@@ -10,7 +10,7 @@ class ZoomableImageGallery extends ImageGallery {
     super.componentDidMount( );
     const props = this.props;
     const domNode = ReactDOM.findDOMNode( this );
-    $( ".image-gallery-slide img", domNode ).wrap( function ( ) {
+    $( ".image-gallery-image > img", domNode ).wrap( function ( ) {
       const standardImgUrl = $( this ).attr( "src" );
       const image = props.items.find( ( i ) => ( i.original === standardImgUrl ) );
       if ( image ) {
@@ -18,7 +18,7 @@ class ZoomableImageGallery extends ImageGallery {
       }
       return null;
     } );
-    const easyZoomTarget = $( ".image-gallery-slide .easyzoom", domNode );
+    const easyZoomTarget = $( ".image-gallery-image .easyzoom", domNode );
     easyZoomTarget.easyZoom( {
       eventType: "click",
       onShow( ) {

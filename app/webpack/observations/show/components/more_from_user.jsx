@@ -79,7 +79,8 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
               <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
             );
           }
-          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ? o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ?
+            o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
           return (
             <Col xs={ 2 } key={ `more-obs-${o.id}` }>
               <div className="obs">

@@ -742,20 +742,21 @@ export function addToProjetSubmit( project ) {
   };
 }
 
-export function addToProject( project ) {
+export function addToProject( project, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const missingRequiredFields =
-      util.observationMissingRequiredProjectFields( state.observation, project );
-    if ( !_.isEmpty( missingRequiredFields ) ) {
+    const missingFields =
+      util.observationMissingProjectFields( state.observation, project );
+    if ( !_.isEmpty( missingFields ) && !options.ignoreMissing ) {
       // there are empty required project fields, so show the modal
       dispatch( setProjectFieldsModalState( {
         show: true,
         project,
         onSubmit: ( ) => {
           dispatch( setProjectFieldsModalState( { show: false } ) );
-          dispatch( addToProject( project ) );
+          // user may have chosen to leave some non-required fields empty
+          dispatch( addToProject( project, { ignoreMissing: true } ) );
         }
       } ) );
       return;
@@ -848,6 +849,32 @@ export function removeObservationFieldValue( id ) {
       ofv.uuid === id ? Object.assign( { }, ofv, { api_status: "deleting" } ) : ofv ) );
     dispatch( setAttributes( { ofvs: newOfvs } ) );
     dispatch( callAPI( inatjs.observation_field_values.delete, { id } ) );
+  };
+}
+
+export function onFileDrop( droppedFiles ) {
+  return ( dispatch, getState ) => {
+    const observation = getState( ).observation;
+    if ( !observation || droppedFiles.length === 0 ) { return; }
+    const newPhotos = [];
+    const promises = [];
+    droppedFiles.forEach( f => {
+      if ( f.type.match( /^image\// ) ) {
+        newPhotos.push( new inatjs.Photo( { preview: f.preview } ) );
+        const params = {
+          "observation_photo[observation_id]": observation.id,
+          file: f
+        };
+        promises.push( inatjs.observation_photos.create(
+          params, { same_origin: true } ) );
+      }
+    } );
+    dispatch( setAttributes( { photos: getState( ).observation.photos.concat( newPhotos ) } ) );
+    Promise.all( promises ).then( ( ) => {
+      dispatch( afterAPICall( { } ) );
+    } ).catch( e => {
+      dispatch( afterAPICall( { error: e } ) );
+    } );
   };
 }
 

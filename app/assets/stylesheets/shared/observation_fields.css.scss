@@ -15,6 +15,9 @@
     &.editing {
       background: #eef5e0;
       padding: 10px;
+      .field-name {
+        margin: 0px 0px 10px;
+      }
       button {
         color: #fff;
         background: $inat-green;

@@ -141,6 +141,9 @@ class Suggestions extends React.Component {
           lazyLoad={false}
           server
           showNav={false}
+          disableArrowKeys
+          showFullscreenButton={ false }
+          showPlayButton={ false }
           slideIndex={detailPhotoIndex}
           currentIndex={detailPhotoIndex}
         />

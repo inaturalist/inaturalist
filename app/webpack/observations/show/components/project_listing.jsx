@@ -190,6 +190,7 @@ ProjectListing.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   projectObservation: PropTypes.object,
+  removeObservationFieldValue: PropTypes.func,
   updateObservationFieldValue: PropTypes.func
 };
 

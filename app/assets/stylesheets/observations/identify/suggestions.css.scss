@@ -41,12 +41,13 @@
   $galleryHeightElements: "
     .image-gallery,
     .image-gallery-content,
-    .image-gallery-content > div,
+    .image-gallery-content > .image-gallery-slide-wrapper,
     .image-gallery-slides,
     .image-gallery-slide,
     .easyzoom,
     .easyzoom > a,
-    .easyzoom > a img
+    .easyzoom > a img,
+    .image-gallery-image > img
   ";
    
   #{$galleryHeightElements} {

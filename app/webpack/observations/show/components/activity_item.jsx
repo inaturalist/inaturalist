@@ -34,7 +34,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     let userAgreedToThis;
     if ( item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
-        canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+        canAgree = currentUserID.taxon.id !== taxon.id;
         userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
       } else {
         canAgree = true;

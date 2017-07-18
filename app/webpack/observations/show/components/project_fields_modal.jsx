@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes, Component } from "react";
+import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Modal, Button } from "react-bootstrap";
 import ObservationFieldInput from "./observation_field_input";
 
@@ -63,6 +64,30 @@ class ProjectFieldsModal extends Component {
         </div>
        );
     } );
+    let submit = (
+      <Button
+        bsStyle="success"
+        onClick={ requiredFieldsPopulated ? this.submit : null }
+        className={ !requiredFieldsPopulated ? "disabled" : "" }
+      >
+        { I18n.t( "add_to_project" ) }
+      </Button>
+    );
+    if ( !requiredFieldsPopulated ) {
+      submit = (
+        <OverlayTrigger
+          placement="top"
+          delayShow={ 20 }
+          overlay={ (
+            <Tooltip id="missing-required">
+              You must fill out the required fields
+            </Tooltip> ) }
+          key="missing-required-overlay"
+        >
+          { submit }
+        </OverlayTrigger>
+      );
+    }
     return (
       <Modal
         show={ this.props.show }
@@ -91,13 +116,7 @@ class ProjectFieldsModal extends Component {
             <Button bsStyle="default" onClick={ this.close }>
               { I18n.t( "cancel" ) }
             </Button>
-            <Button
-              bsStyle="success"
-              onClick={ this.submit }
-              disabled={ !requiredFieldsPopulated }
-            >
-              Add to Project
-            </Button>
+            { submit }
           </div>
         </Modal.Footer>
       </Modal>
