@@ -834,12 +834,21 @@ class User < ActiveRecord::Base
   def self.update_identifications_counter_cache(user_id)
     return unless user = User.find_by_id(user_id)
     result = Observation.elastic_search(
-      filters: [ { nested: {
-        path: "non_owner_ids",
-        query: { bool: { must: [
-          { term: { "non_owner_ids.user.id": user_id } }
-        ] } }
-      } } ],
+      filters: [ { bool: { should: [
+        { nested: {
+          path: "non_owner_ids",
+          query: { bool: { must: [
+            { term: { "non_owner_ids.user.id": user_id } }
+          ] } }
+        } },
+        { nested: {
+          path: "identifications",
+          query: { bool: { must: [
+            { term: { "identifications.user.id": user_id } },
+            { term: { "identifications.own_observation": false } }
+          ] } }
+        } }
+      ] } } ],
       size: 0
     )
     count = (result && result.response) ? result.response.hits.total : 0

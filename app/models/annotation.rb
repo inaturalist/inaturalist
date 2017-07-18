@@ -114,9 +114,7 @@ class Annotation < ActiveRecord::Base
       concatenated_attr_val: [controlled_attribute_id, controlled_value_id].join("|"),
       vote_score: vote_score,
       user_id: user_id,
-      votes: votes_for.map{ |v|
-        { user_id: v.voter_id, vote_flag: v.vote_flag }
-      }
+      votes: votes_for.map(&:as_indexed_json)
     }
   end
 

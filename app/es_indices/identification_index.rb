@@ -4,7 +4,8 @@ class Identification < ActiveRecord::Base
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  scope :load_for_index, -> { includes(:taxon,
+  scope :load_for_index, -> { includes(:taxon, :flags,
+    :stored_preferences, :taxon_change,
     { observation: [ :taxon, :user ] }, :user) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -34,6 +35,12 @@ class Identification < ActiveRecord::Base
       indexes :user do
         indexes :login, type: "keyword"
       end
+      indexes :taxon_change do
+        indexes :type, type: "keyword"
+      end
+      indexes :flags do
+        indexes :flag, type: "keyword"
+      end
     end
   end
 
@@ -48,11 +55,19 @@ class Identification < ActiveRecord::Base
       body: body,
       category: category,
       current: current,
+      flags: flags.map(&:as_indexed_json),
+      own_observation: observation ? (user_id == observation.user_id) : false,
+      taxon_change: taxon_change ? {
+        id: taxon_change.id,
+        type: taxon_change.type
+      } : nil,
       vision: vision
     }
+    if options[:no_details]
+      json[:taxon_id] = taxon_id
+    end
     if observation && taxon && !options[:no_details]
       json.merge!({
-        own_observation: (user_id == observation.user_id),
         current_taxon: (taxon_id == observation.taxon_id),
         taxon: taxon.as_indexed_json(no_details: true, for_identification: true),
         observation: observation.as_indexed_json(no_details: true, for_identification: true)

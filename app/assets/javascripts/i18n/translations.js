@@ -3723,6 +3723,7 @@ I18n.translations["en"] = {
   "search_remote": "Search remote",
   "search_species_": "Search species...",
   "seasonality": "Seasonality",
+  "seen_nearby": "Seen Nearby",
   "select": "Select",
   "select_all": "Select all",
   "select_none": "Select none",
@@ -3946,6 +3947,7 @@ I18n.translations["en"] = {
       }
     }
   },
+  "visually_similar": "Visually Similar",
   "vulnerable": "vulnerable",
   "we_have_no_conservation_status_for_this_taxon": "We have no conservation status for this taxon",
   "we_have_no_establishment_data_for_this_taxon": "We have no establishment data for this taxon",

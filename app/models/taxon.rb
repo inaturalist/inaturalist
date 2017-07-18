@@ -115,6 +115,8 @@ class Taxon < ActiveRecord::Base
     "order"        => 40,
     "suborder"     => 37,
     "infraorder"   => 35,
+    "zoosection"   => 34,
+    "zoosubsection" => 33.5,
     "superfamily"  => 33,
     "epifamily"    => 32,
     "family"       => 30,
@@ -131,7 +133,8 @@ class Taxon < ActiveRecord::Base
     "hybrid"       => 10,
     "subspecies"   => 5,
     "variety"      => 5,
-    "form"         => 5
+    "form"         => 5,
+    "infrahybrid" => 5
   }
   RANK_LEVELS.each do |rank, level|
     const_set rank.upcase, rank

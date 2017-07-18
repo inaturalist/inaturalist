@@ -92,7 +92,7 @@ class StatsController < ApplicationController
     project_slideshow_data( 12849,
       umbrella_project_ids: [12849],
       sub_project_ids: {
-        12849 => [10595, 12166, 11863, 11693, 11451, 11396, 12281, 12646, 12281]
+        12849 => [69928, 69916, 120328, 119922, 112622, 120033, 120524, 50748, 120678, 120636, 120586, 118830, 120674, 120600, 120299, 120618, 120896, 120294, 120913, 120229, 121055, 121053, 121054, 121052, 120544]
       },
       title: "Bioblitz Canada 150"
     ) do |all_project_data|
@@ -104,7 +104,7 @@ class StatsController < ApplicationController
     project_slideshow_data( 12851,
       umbrella_project_ids: [12851],
       sub_project_ids: {
-        12851 => [12719, 12720, 11348, 11728, 12637, 12038, 11360, 12231, 11487, 12085]
+        12851 => [120045, 77263, 112158, 71772, 120293, 120577, 120578, 120610, 81714, 68850, 120999, 120916, 112686, 112669, 121001, 117566, 112621, 112668, 55198, 66300, 112932, 6834, 120449]
       },
       title: "Parks Canada Bioblitz 2017"
     ) do |all_project_data|

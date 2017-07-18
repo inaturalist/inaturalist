@@ -41,7 +41,8 @@ class ChooserPopover extends React.Component {
       postIconClass,
       label,
       hideClear,
-      choiceIconClass
+      choiceIconClass,
+      choiceLabels
     } = this.props;
     return (
       <OverlayTrigger
@@ -79,7 +80,7 @@ class ChooserPopover extends React.Component {
                     { choiceIconClass ? <i className={`media-object ${choiceIconClass}`}></i> : null }
                   </div>
                   <div className="media-body">
-                    { I18n.t( s ) }
+                    { I18n.t( choiceLabels[s] || s ) }
                   </div>
                 </li>
               ) ) }
@@ -94,7 +95,7 @@ class ChooserPopover extends React.Component {
         >
           { preIconClass ? <i className={`${preIconClass} pre-icon`}></i> : null }
           { label ? ( <label>{ label }</label> ) : null }
-          { I18n.t( chosen || defaultChoice ) }
+          { I18n.t( choiceLabels[chosen] || chosen || choiceLabels[defaultChoice] || defaultChoice ) }
           { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
         </div>
       </OverlayTrigger>
@@ -106,6 +107,7 @@ ChooserPopover.propTypes = {
   container: PropTypes.object,
   chosen: PropTypes.string,
   choices: PropTypes.array,
+  choiceLabels: PropTypes.object,
   defaultChoice: PropTypes.object,
   className: PropTypes.string,
   setChoice: PropTypes.func,
@@ -119,7 +121,8 @@ ChooserPopover.propTypes = {
 
 ChooserPopover.defaultProps = {
   preIconClass: "fa fa-search",
-  choices: []
+  choices: [],
+  choiceLabels: {}
 };
 
 export default ChooserPopover;

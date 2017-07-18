@@ -4,22 +4,21 @@ class Observation < ActiveRecord::Base
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  attr_accessor :indexed_tag_names, :indexed_project_ids, :indexed_place_ids,
-    :indexed_places, :indexed_project_ids_with_curator_id,
-    :indexed_project_ids_without_curator_id
+  attr_accessor :indexed_place_ids, :indexed_places
 
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
-    :observation_links,
-    :votes_for,
+    :observation_links, :quality_metrics,
+    :votes_for, :stored_preferences,
+    { project_observations: :stored_preferences }, :tags,
     { annotations: :votes_for },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user, :taxon, :stored_preferences ] },
-    { comments: :user } ) }
+    { identifications: [ :user, :taxon, :stored_preferences, :flags, :taxon_change ] },
+    { comments: [ :user, :flags ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -59,6 +58,21 @@ class Observation < ActiveRecord::Base
         indexes :user do
           indexes :login, type: "keyword"
         end
+        indexes :created_at, type: "date"
+      end
+      indexes :identifications, type: :nested do
+        indexes :uuid, type: "keyword"
+        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :category, type: "keyword"
+        indexes :user do
+          indexes :login, type: "keyword"
+        end
+        indexes :taxon_change do
+          indexes :type, type: "keyword"
+        end
+        indexes :flags do
+          indexes :flag, type: "keyword"
+        end
       end
       indexes :comments do
         indexes :uuid, type: "keyword"
@@ -66,9 +80,19 @@ class Observation < ActiveRecord::Base
         indexes :user do
           indexes :login, type: "keyword"
         end
+        indexes :flags do
+          indexes :flag, type: "keyword"
+        end
+      end
+      indexes :flags do
+        indexes :flag, type: "keyword"
       end
       indexes :project_observations do
         indexes :uuid, type: "keyword"
+        indexes :preferences do
+          indexes :name, type: "keyword", index: false
+          indexes :value, type: "keyword", index: false
+        end
       end
       indexes :observation_photos do
         indexes :uuid, type: "keyword"
@@ -80,6 +104,9 @@ class Observation < ActiveRecord::Base
         indexes :attribution, type: "keyword", index: false
         indexes :url, type: "keyword", index: false
         indexes :license_code, type: "keyword"
+        indexes :flags do
+          indexes :flag, type: "keyword"
+        end
       end
       indexes :votes, type: :nested do
         indexes :vote_scope, type: "keyword"
@@ -88,6 +115,13 @@ class Observation < ActiveRecord::Base
         indexes :attribution, type: "keyword", index: false
         indexes :native_sound_id, type: "keyword"
         indexes :license_code, type: "keyword"
+      end
+      indexes :preferences do
+        indexes :name, type: "keyword", index: false
+        indexes :value, type: "keyword", index: false
+      end
+      indexes :quality_metrics do
+        indexes :metric, type: "keyword", index: false
       end
       indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
@@ -149,6 +183,9 @@ class Observation < ActiveRecord::Base
         out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
+        map_scale: map_scale,
+        oauth_application_id: oauth_application_id,
+        community_taxon_id: community_taxon_id,
         faves_count: cached_votes_total,
         cached_votes_total: cached_votes_total,
         num_identification_agreements: num_identification_agreements,
@@ -160,21 +197,18 @@ class Observation < ActiveRecord::Base
         identifications_most_disagree:
           (num_identification_agreements < num_identification_disagreements),
         place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq.sort,
-        project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
-        project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
-          project_observations.select{ |po| !po.curator_identification_id.nil? }.
-            map(&:project_id)).compact.uniq,
-        project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
-          project_observations.select{ |po| po.curator_identification_id.nil? }.
-            map(&:project_id)).compact.uniq,
-        project_observations: (indexed_project_ids || project_observations).map{ |po|
-          { project_id: po[:project_id], user_id: po[:user_id], uuid: po[:uuid] } },
+        project_ids: project_observations.map{ |po| po[:project_id] }.compact.uniq,
+        project_ids_with_curator_id: project_observations.
+          select{ |po| !po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
+        project_ids_without_curator_id: project_observations.
+          select{ |po| po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
+        project_observations: project_observations.map(&:as_indexed_json),
         reviewed_by: confirmed_reviews.map(&:user_id),
-        tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
+        tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
         annotations: annotations.map(&:as_indexed_json),
         sounds: sounds.map(&:as_indexed_json),
-        non_owner_ids: others_identifications.map{ |i| i.as_indexed_json(no_details: true) },
+        identifications: identifications.map{ |i| i.as_indexed_json(no_details: true) },
         identifications_count: num_identifications_by_others,
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,
@@ -189,11 +223,12 @@ class Observation < ActiveRecord::Base
           ElasticModel.point_geojson(latitude, longitude) : nil,
         private_geojson: (private_latitude && private_longitude) ?
           ElasticModel.point_geojson(private_latitude, private_longitude) : nil,
-        votes: votes_for.map{ |v|
-          { user_id: v.voter_id, vote_flag: v.vote_flag, vote_scope: v.vote_scope }
-        },
+        votes: votes_for.map(&:as_indexed_json),
         outlinks: observation_links.map(&:as_indexed_json),
-        owners_identification_from_vision: owners_identification_from_vision
+        owners_identification_from_vision: owners_identification_from_vision,
+        preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
+        flags: flags.map(&:as_indexed_json),
+        quality_metrics: quality_metrics.map(&:as_indexed_json)
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]
@@ -209,52 +244,16 @@ class Observation < ActiveRecord::Base
     json
   end
 
-  # to quickly fetch tag names and project_ids when bulk indexing
+  # to quickly fetch observation place_ids when bulk indexing
   def self.prepare_batch_for_index(observations, options = {})
     # make sure we default all caches to empty arrays
     # this prevents future lookups for instances with no results
     observations.each{ |o|
-      o.indexed_tag_names ||= [ ]
-      o.indexed_project_ids ||= [ ]
-      o.indexed_project_ids_with_curator_id ||= [ ]
-      o.indexed_project_ids_without_curator_id ||= [ ]
-      o.indexed_project_ids_with_curator_id ||= [ ]
       o.indexed_place_ids ||= [ ]
       o.indexed_places ||= [ ]
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
-    if options.blank? || options[:tags]
-      # fetch all tag names store them in `indexed_tag_names`
-      connection.execute("
-        SELECT ts.taggable_id, t.name
-        FROM taggings ts
-        JOIN tags t ON (ts.tag_id = t.id)
-        WHERE ts.taggable_type='Observation' AND
-        ts.taggable_id IN (#{ batch_ids_string })").to_a.each do |r|
-        if o = observations_by_id[ r["taggable_id"].to_i ]
-          o.indexed_tag_names << r["name"]
-        end
-      end
-    end
-    # fetch all project_ids store them in `indexed_project_ids`
-    if options.blank? || options[:projects]
-      connection.execute("
-        SELECT observation_id, project_id, curator_identification_id, uuid, user_id
-        FROM project_observations
-        WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-        if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_project_ids << { project_id: r["project_id"].to_i,
-            uuid: r["uuid"], user_id: r["user_id"] }
-          # these are for the `pcid` search param
-          if r["curator_identification_id"].nil?
-            o.indexed_project_ids_without_curator_id << r["project_id"].to_i
-          else
-            o.indexed_project_ids_with_curator_id << r["project_id"].to_i
-          end
-        end
-      end
-    end
     # fetch all place_ids store them in `indexed_place_ids`
     if options.blank? || options[:places]
       connection.execute("
