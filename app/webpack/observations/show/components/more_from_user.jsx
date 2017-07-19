@@ -76,7 +76,7 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
           let taxonJSX = I18n.t( "unknown" );
           if ( o.taxon && o.taxon !== null ) {
             taxonJSX = (
-              <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
+              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} />
             );
           }
           const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ?

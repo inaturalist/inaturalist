@@ -80,7 +80,7 @@ class ProjectFieldsModal extends Component {
           delayShow={ 20 }
           overlay={ (
             <Tooltip id="missing-required">
-              You must fill out the required fields
+              { I18n.t( "you_must_fill_out_the_required_fields" ) }
             </Tooltip> ) }
           key="missing-required-overlay"
         >
@@ -102,13 +102,13 @@ class ProjectFieldsModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <div className="intro">
-            Please complete the following to add this observation to the project:
+            { I18n.t( "please_complete_the_following_to_add_project" ) }
           </div>
           <div className="text">
             { fieldList }
           </div>
           <span className="required">
-            * Required
+            * { I18n.t( "required_" ) }
           </span>
         </Modal.Body>
         <Modal.Footer>

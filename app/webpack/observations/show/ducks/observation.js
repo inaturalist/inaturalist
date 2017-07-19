@@ -142,7 +142,9 @@ export function renderObservation( observation, options = { } ) {
     dispatch( fetchTaxonSummary( ) );
     if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
-    if ( fetchAll || options.fetchSubscriptions ) { dispatch( fetchSubscriptions( ) ); }
+    if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {
+      dispatch( fetchSubscriptions( ) );
+    }
     if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
     if ( fetchAll || options.replaceState ) {
       const ws = windowStateForObservation( observation );
@@ -712,7 +714,7 @@ export function unvoteMetric( metric ) {
   };
 }
 
-export function addToProjetSubmit( project ) {
+export function addToProjectSubmit( project ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
@@ -762,7 +764,7 @@ export function addToProject( project, options = { } ) {
       return;
     }
     // there are no empty required fields, so proceed with adding
-    dispatch( addToProjetSubmit( project ) );
+    dispatch( addToProjectSubmit( project ) );
   };
 }
 

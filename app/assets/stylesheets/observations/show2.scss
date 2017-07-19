@@ -336,9 +336,9 @@ a.UserImage {
           .add-photo-span {
             position: absolute;
             top: auto;
-            bottom: 13px;
+            bottom: 12px;
             .image-gallery-thumbnail {
-              width: 50px;
+              width: 38px;
               .fa-plus {
                 background: #eee;
               }
@@ -356,9 +356,12 @@ a.UserImage {
           width: 100%;
         }
         .image-gallery-slide {
-          display: table-cell;
+          display: none;
           vertical-align: middle;
           text-align: center;
+          &.center {
+            display: table-cell;
+          }
         }
         .image-gallery-slides img {
           max-height: 420px;
@@ -435,15 +438,26 @@ a.UserImage {
               height: 36px;
               .image-gallery-thumbnail {
                 border: 2px solid transparent;
-                width: 36px;
+                width: 34px;
+                height: 34px;
+                vertical-align: middle;
                 cursor: pointer;
                 transition: none;
                 img {
-                  height: 32px;
-                  width: 32px;
+                  height: 30px;
+                  width: 30px;
                 }
                 &.active {
                   border: 2px solid $inat-green;
+                }
+                & + .image-gallery-thumbnail {
+                  margin-left: 4px;
+                }
+                .loading_spinner {
+                  margin-left: 0;
+                  margin-top: 7px;
+                  height: 16px;
+                  width: 16px;
                 }
               }
             }
@@ -524,7 +538,13 @@ a.UserImage {
     .tab-content {
       background-color: #fff;
       border-top: 1px solid $border-grey;
-      padding: 10px;
+      padding: 10px 15px;
+      .log-in {
+        line-height: 60px;
+        a {
+          color: $bootstrap-link-color;
+        }
+      }
       .form-group {
         margin-bottom: 0px;
       }
@@ -2002,7 +2022,7 @@ h3, h4 {
 
 .add-photo {
   display: inline-block;
-  font-size: 26px;
+  font-size: 30px;
   vertical-align: middle;
   position: relative;
   i.fa {
@@ -2011,7 +2031,7 @@ h3, h4 {
       position: absolute;
       font-size: 14px;
       bottom: -6px;
-      right: -5px;
+      right: -9px;
       background: white;
       padding: 1px 2px;
       border-radius: 40px;

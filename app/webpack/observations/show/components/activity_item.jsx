@@ -32,7 +32,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     let buttons = [];
     let canAgree = false;
     let userAgreedToThis;
-    if ( item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
+    if ( loggedIn && item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
         canAgree = currentUserID.taxon.id !== taxon.id;
         userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
@@ -77,6 +77,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
       <div className="identification">
+        { buttonDiv }
         <div className="taxon">
           <a href={ `/taxa/${taxon.id}` }>
             { taxonImageTag }
@@ -86,9 +87,9 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             url={ `/taxa/${taxon.id}` }
             noParens
             target={linkTarget}
+            showMemberGroup
           />
         </div>
-        { buttonDiv }
         { item.body && ( <UserText text={ item.body } className="id_body" /> ) }
       </div>
     );

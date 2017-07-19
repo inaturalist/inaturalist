@@ -83,7 +83,7 @@ class PhotoBrowser extends React.Component {
         large = SITE.processing_image_urls.small;
         square = SITE.processing_image_urls.square;
       } else if ( !photo.url ) {
-        square = SITE.processing_image_urls.square;
+        square = null;
       }
       let description;
       if ( photo.id ) {
@@ -171,6 +171,23 @@ class PhotoBrowser extends React.Component {
             if ( images[currentIndex].thumbnail !== soundIcon ) {
               this.props.setMediaViewerState( { activeIndex: currentIndex } );
             }
+          }}
+          renderThumbInner={ item => {
+            if ( !item.thumbnail ) {
+              return ( <div className="loading_spinner" /> );
+            }
+            return (
+              <div>
+                <img
+                  src={item.thumbnail}
+                  alt={item.thumbnailAlt}
+                  title={item.thumbnailTitle}
+                />
+                <div className="image-gallery-thumbnail-label">
+                  {item.thumbnailLabel}
+                </div>
+              </div>
+            );
           }}
         />
       );

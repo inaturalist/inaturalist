@@ -263,10 +263,10 @@ class ApplicationController < ActionController::Base
       class_name = class_name.to_s.underscore.camelcase
       klass = Object.const_get(class_name)
     end
-    record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
-    if !record && klass.respond_to?(:find_by_uuid)
+    if klass.respond_to?(:find_by_uuid)
       record = klass.find_by_uuid(params[:id] || params["#{class_name}_id"])
     end
+    record ||= klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
   end

@@ -26,10 +26,10 @@ class ProjectListing extends React.Component {
           }}
         />
         <label htmlFor={ `project-allow-input-${po.project.id}` }>
-          Allow curator Access
+          { I18n.t( "allow_curator_access" ) }
         </label>
         <div className="text-muted">
-          Allow curator access to view the private coordinates of this observation
+          { I18n.t( "allow_project_curators_to_view_your_private_coordinates" ) }
         </div>
       </div> ) );
       menuItems.push( ( <MenuItem divider key="project-allow-divider" /> ) );

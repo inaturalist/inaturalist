@@ -1,3 +1,4 @@
+import _ from "lodash";
 import "babel-polyfill";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
@@ -51,13 +52,13 @@ const store = createStore(
   )
 );
 
-if ( CURRENT_USER !== undefined && CURRENT_USER !== null ) {
+if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
   } ) );
 }
 
-if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
+if ( !_.isEmpty( PREFERRED_PLACE ) ) {
   // we use this for requesting localized taoxn names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
