@@ -39,9 +39,9 @@ body > div > [role="dialog"] .ActivityItem {
     }
     .member-group {
       display: inline;
-      font-style: italic;
-      .rank {
-        font-style: italic;
+      font-style: normal;
+      .sciname {
+        font-style: normal;
       }
       .taxon {
         display: inline;
