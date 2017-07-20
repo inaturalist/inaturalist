@@ -2624,10 +2624,10 @@ class Observation < ActiveRecord::Base
   def application_id_to_index
     return oauth_application_id if oauth_application_id
     if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
-      return OauthApplication.inaturalist_iphone_app.id
+      return OauthApplication.inaturalist_iphone_app.try(:id)
     end
     if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
-      return OauthApplication.inaturalist_android_app.id
+      return OauthApplication.inaturalist_android_app.try(:id)
     end
   end
 
