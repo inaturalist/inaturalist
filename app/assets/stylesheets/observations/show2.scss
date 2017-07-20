@@ -2049,6 +2049,9 @@ h3, h4 {
     color: $bootstrap-link-color;
     cursor: pointer;
   }
+  img {
+    max-width: 100%;
+  }
 }
 
 

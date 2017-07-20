@@ -90,7 +90,7 @@ class UserText extends React.Component {
         <span
           className="content"
           dangerouslySetInnerHTML={ { __html:
-            sanitizeHtml( linkifyHtml( truncatedHtml || html ) ) } }
+            sanitizeHtml( linkifyHtml( truncatedHtml || html ), { allowedTags: ALLOWED_TAGS } ) } }
           style={style}
         ></span> { moreLink }
       </div>

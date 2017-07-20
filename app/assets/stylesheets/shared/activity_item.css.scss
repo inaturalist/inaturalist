@@ -113,6 +113,9 @@ body > div > [role="dialog"] .ActivityItem {
       }
       .UserText {
         line-height: 20px;
+        img {
+          max-width: 100%;
+        }
       }
     }
   }
