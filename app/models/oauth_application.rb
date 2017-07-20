@@ -14,11 +14,11 @@ class OauthApplication < Doorkeeper::Application
     :message => "must be JPG, PNG, or GIF"
 
   def self.inaturalist_android_app
-    OauthApplication.where(name: "iNaturalist Android App").first
+    @@inaturalist_android_app ||= OauthApplication.where(name: "iNaturalist Android App").first
   end
 
   def self.inaturalist_iphone_app
-    OauthApplication.where(name: "iNaturalist iPhone App").first
+    @@inaturalist_iphone_app ||= OauthApplication.where(name: "iNaturalist iPhone App").first
   end
 
 end

@@ -60,58 +60,36 @@ class IdentificationsController < ApplicationController
     block_if_spammer(@selected_user) && return
     params[:page] = params[:page].to_i
     params[:page] = 1 unless params[:page] > 0
-    user_filter = { term: { "non_owner_ids.user.id": @selected_user.id } }
-    new_user_filter = { term: { "identifications.user.id": @selected_user.id } }
-    new_ownership_filter = { term: { "identifications.own_observation": false } }
+    user_filter = { term: { "identifications.user.id": @selected_user.id } }
+    ownership_filter = { term: { "identifications.own_observation": false } }
     date_parts = Identification.conditions_for_date("col", params[:on])
     # only if conditions_for_date determines a valid range will it return
     # an array of [ condition_to_interpolate, min_date, max_date ]
     if date_parts.length == 3
       date_filters = [
-        { range: { "non_owner_ids.created_at": { gte: date_parts[1] } } },
-        { range: { "non_owner_ids.created_at": { lte: date_parts[2] } } }
-      ]
-      new_date_filters = [
         { range: { "identifications.created_at": { gte: date_parts[1] } } },
         { range: { "identifications.created_at": { lte: date_parts[2] } } }
       ]
     end
     result = Observation.elastic_search(
-      filters: [ { bool: { should: [
-        { nested: {
-          path: "non_owner_ids",
-          query: { bool: { must: [
-            user_filter, date_filters ].flatten.compact } }
-        } },
-        { nested: {
-          path: "identifications",
-          query: { bool: { must: [
-            new_user_filter, new_ownership_filter, new_date_filters ].flatten.compact } }
-        } }
-      ] } } ],
+      filters: [ { nested: {
+        path: "identifications",
+        query: { bool: { must: [ user_filter, date_filters, ownership_filter ].flatten.compact } }
+      } } ],
       size: limited_per_page,
       from: (params[:page] - 1) * limited_per_page,
-      sort: [
-        {
-          "non_owner_ids.created_at": {
-            order: "desc",
-            mode: "max",
-            nested_path: "non_owner_ids",
-            nested_filter: user_filter
-          }
-        }, {
-          "identifications.created_at": {
-            order: "desc",
-            mode: "max",
-            nested_path: "identifications",
-            nested_filter: new_user_filter
-          }
+      sort: {
+        "identifications.created_at": {
+          order: "desc",
+          mode: "max",
+          nested_path: "identifications",
+          nested_filter: user_filter
         }
-      ]
+      }
     )
     # pluck the proper Identification IDs from the obs results
     ids = result.response.hits.hits.map do |h|
-      ( h._source.non_owner_ids || h._source.identifications).detect{ |i|
+      ( h._source.identifications).detect{ |i|
         i.user.id == @selected_user.id
       }
     end.compact.map{ |i| i.id }
