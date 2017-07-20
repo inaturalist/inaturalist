@@ -2621,6 +2621,16 @@ class Observation < ActiveRecord::Base
     total > 10 && ratio >= 0.8
   end
 
+  def application_id_to_index
+    return oauth_application_id if oauth_application_id
+    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+      return OauthApplication.inaturalist_iphone_app.id
+    end
+    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
+      return OauthApplication.inaturalist_android_app.id
+    end
+  end
+
   def owners_identification_from_vision
     owners_identification.try(:vision)
   end

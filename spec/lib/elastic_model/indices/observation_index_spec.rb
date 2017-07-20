@@ -162,6 +162,19 @@ describe "Observation Index" do
     expect( json[:owners_identification_from_vision] ).to be true
   end
 
+  it "indexes applications based on user agent" do
+    OauthApplication.make!(name: "iNaturalist Android App")
+    OauthApplication.make!(name: "iNaturalist iPhone App")
+    o = Observation.make!( oauth_application_id: 11 )
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq 11
+    o.update_attributes( oauth_application_id: nil,
+      user_agent: "iNaturalist/1.5.1 (Build 195; Android 3.18..." )
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_android_app.id
+    o.update_attributes( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_iphone_app.id
+  end
+
+
   describe "params_to_elastic_query" do
     it "returns nil when ES can't handle the params" do
       expect( Observation.params_to_elastic_query(
