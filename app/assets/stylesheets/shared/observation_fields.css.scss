@@ -1,5 +1,5 @@
 @import "../colors";
-.ObservationFields {
+.ObservationFieldInput {
   .observation-field {
     margin-bottom: 20px;
     textarea {
@@ -15,20 +15,25 @@
     &.editing {
       background: #eef5e0;
       padding: 10px;
+      .field-name {
+        margin: 0px 0px 10px;
+      }
       button {
         color: #fff;
         background: $inat-green;
+        &:hover {
+          color: #fff;
+          background: $inat-green;
+        }
       }
     }
-  }
-  .panel {
-    .field-name {
-      margin: 15px 0px 10px;
+    .btn.standalone {
+      margin-right: 10px;
     }
   }
   .field-name {
     font-size: 16px;
-    margin-bottom: 10px;
+    margin: 15px 0px 10px;
   }
 }
 
@@ -57,7 +62,7 @@
   .popover-content {
     padding: 0px;
   }
-  .info, .edit {
+  .info, .edit, .added-by {
     padding: 12px 14px;
     border-bottom: 1px solid #e5e5e5;
     .header {
@@ -76,7 +81,7 @@
   }
 }
 
-.ObservationFieldPopover.popover {
+.ObservationFieldPopover.popover, .AnnotationPopover.popover, .ActivityItemMenu {
   .search {
     line-height: 24px;
     white-space: nowrap;
@@ -87,5 +92,9 @@
     a {
       color: inherit;
     }
+  }
+  .added-by .view {
+    float: left;
+    padding-right: 5px;
   }
 }

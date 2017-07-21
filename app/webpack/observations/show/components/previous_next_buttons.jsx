@@ -10,14 +10,14 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation } ) => {
   let nextAlt;
   if ( !previousDisabled ) {
     const previousObs = otherObservations.earlierUserObservations[0];
-    prevAction = ( ) => { showNewObservation( previousObs ); };
+    prevAction = ( ) => { showNewObservation( previousObs, { useInstance: true } ); };
     prevAlt = previousObs.taxon ?
       previousObs.taxon.preferred_common_name || previousObs.taxon.name :
       I18n.t( "unknown" );
   }
   if ( !nextDisabled ) {
     const nextObs = otherObservations.laterUserObservations[0];
-    nextAction = ( ) => { showNewObservation( nextObs ); };
+    nextAction = ( ) => { showNewObservation( nextObs, { useInstance: true } ); };
     nextAlt = nextObs.taxon ?
       nextObs.taxon.preferred_common_name || nextObs.taxon.name :
       I18n.t( "unknown" );

@@ -208,7 +208,7 @@ $.fn.genericAutocomplete = function( options ) {
     // set a small delay before showing the results menu
     setTimeout( function() {
       // don't redo the search if there are results being shown
-      if( genericAutocomplete.menuClosed( ) ) {
+      if( genericAutocomplete.menuClosed( ) && $(that).data( "uiAutocomplete" ) ) {
         $(that).autocomplete( "search", $(that).val( ));
       }
     }, 100);

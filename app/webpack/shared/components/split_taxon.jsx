@@ -12,7 +12,8 @@ const SplitTaxon = ( {
   showIcon,
   truncate,
   onClick,
-  noInactive
+  noInactive,
+  showMemberGroup
 } ) => {
   const LinkElement = ( url || onClick ) ? "a" : "span";
   let title = "";
@@ -49,9 +50,7 @@ const SplitTaxon = ( {
     } else {
       cssClass += " Unknown";
     }
-    if ( noParens ) {
-      cssClass += " no-parens";
-    }
+    cssClass += noParens ? " no-parens" : " parens";
     return cssClass;
   };
   const truncateText = text => (
@@ -174,9 +173,25 @@ const SplitTaxon = ( {
       </span>
     );
   };
+  let memberGroup;
+  if ( showMemberGroup && !_.isEmpty( taxon.ancestors ) ) {
+    const groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
+      a.preferred_common_name && a.rank_level > 20
+    ) ) ) );
+    if ( groupAncestor ) {
+      memberGroup = (
+        <span className="member-group">
+          { I18n.t( "a_member_of" ) } <SplitTaxon
+            taxon={ groupAncestor }
+            url={ `/taxa/${groupAncestor.id}` }
+          />
+        </span>
+      );
+    }
+  }
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) }
+      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) } { memberGroup }
     </span>
   );
 };
@@ -192,7 +207,8 @@ SplitTaxon.propTypes = {
   showIcon: PropTypes.bool,
   truncate: PropTypes.number,
   onClick: PropTypes.func,
-  noInactive: PropTypes.bool
+  noInactive: PropTypes.bool,
+  showMemberGroup: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

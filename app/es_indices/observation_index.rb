@@ -64,6 +64,7 @@ class Observation < ActiveRecord::Base
         indexes :flags do
           indexes :flag, type: "keyword"
         end
+        indexes :created_at, type: "date"
       end
       indexes :comments do
         indexes :uuid, type: "keyword"

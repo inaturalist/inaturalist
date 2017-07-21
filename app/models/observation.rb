@@ -1223,6 +1223,8 @@ class Observation < ActiveRecord::Base
   end
 
   def photos?
+    # new observations from the uploader may have .photos
+    # but may not yet have observation_p
     return true if photos && photos.any?
     observation_photos.loaded? ? ! observation_photos.empty? : observation_photos.exists?
   end

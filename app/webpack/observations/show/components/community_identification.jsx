@@ -274,13 +274,28 @@ class CommunityIdentification extends React.Component {
       stats = (
         <span>
           <span className="cumulative">
-            No IDs have been suggested yet
+            { I18n.t( "no_ids_have_been_suggested_yet" ) }
           </span>
         </span>
       );
       photo = taxonImageTag;
     }
-
+    const agreeButton = loggedIn ?
+      (
+        <button className="btn btn-default" disabled={ !canAgree }
+          onClick={ ( ) => { addID( taxon, { agreedTo: "communityID" } ); } }
+        >
+        { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
+          ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
+        </button>
+      ) : (
+        <a href="/login">
+          <button className="btn btn-default">
+            <i className="fa fa-check" />
+            { I18n.t( "agree_" ) }
+          </button>
+        </a>
+      );
     return (
       <div className="CommunityIdentification">
         <h4>
@@ -304,12 +319,7 @@ class CommunityIdentification extends React.Component {
         </div>
         <div className="action">
           <div className="btn-space">
-            <button className="btn btn-default" disabled={ !canAgree }
-              onClick={ ( ) => { addID( taxon, { agreedTo: "communityID" } ); } }
-            >
-            { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
-              ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
-            </button>
+            { agreeButton }
           </div>
           <div className="btn-space">
             <a href={ compareLink }>

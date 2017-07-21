@@ -110,6 +110,7 @@ en:
   a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
   a_flag_for_x: "a flag for %{x}"
   a_greasemonkey_script: a Greasemonkey script
+  a_member_of: "A member of"
   a_member_of_taxon_html: "a member of %{taxon}"
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
@@ -367,6 +368,7 @@ en:
   all_your_observations_will_default_to_this_time_zone: All your observations will default to this time zone unless you specify otherwise.
   all_your_projects: All your projects
   allow_any: allow any
+  allow_curator_access: Allow curator access
   allow_curator_coordinate_access: Allow curator coordinate access
   allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your private coordinates
   allowed_establish_means_values: Allowed establish means values
@@ -2015,6 +2017,7 @@ en:
   no_identifications_added:
     current_user: You haven't added identifications to anyone's observations.
     user: "%{user} hasn't added identifications to anyone's observations."
+  no_ids_have_been_suggested_yet: No IDs have been suggested yet
   no_interaction_data_available: No interaction data available
   no_its_as_good_as_it_can_be: No, it's as good as it can be
   no_favorites_added:
@@ -2091,6 +2094,7 @@ en:
   noble_curators: "%{site}'s Noble Curators"
   non_human?: Non-human?
   none: None
+  none_found: None found
   none_of_the_people_you_follow_have_updates: "None of the people you follow have made any updates yet!"
   normal: normal
   not_completed: Not Completed
@@ -2585,6 +2589,8 @@ en:
   please_be_careful_particulary_when: "Please be careful, particularly when deleting taxa. If a taxon has associated observations, ids, listed taxa, etc, please"
   please_check_for_you_confirmation_email: "Welcome to %{site_name}!  Please check for your confirmation email, but feel free to start cruising the site."
   please_cite_the_published_source_of_taxon: Please cite the published source of this taxon.
+  please_complete_the_following_to_add_project: |
+    Please complete the following to add this observation to the project:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
   please_confirm_your_account_html: 'Please take a second to <a href="%{url}">confirm your account</a>.'
   please_enter_a_new_pass: Please enter a new password and confirm it.
@@ -2819,6 +2825,7 @@ en:
   request_password: Request Password
   request_timed_out: Request timed out!
   required: required
+  required_: Required
   required_field: required field
   required_columns_in_order: Required columns in order
   research: research
@@ -2881,6 +2888,7 @@ en:
   save_photos: Save photos
   save_place: Save place
   save_trip: Save trip
+  saved: Saved
   saving: "Saving..."
   saving_num_of_count_observations:
     one: Saving observation...
@@ -3436,6 +3444,7 @@ en:
   to_configure_your_widget: to configure your widget.
   to_include_your_picassa_with_inat: "To include your Picasa photos with your %{site_name} observations, click the button to the right to link your two accounts. You'll be taken to Google, where you'll be asked to authorize this connection."
   to_recipient: to
+  to_suggest_an_identification: to suggest an identification
   to_tag_your_flickr_from_here: to tag your Flickr photos from here without cutting and pasting.
   to_the_bat_cave: To the Bat Cave!
   today: Today
@@ -3876,6 +3885,7 @@ en:
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
   you_must_be_project_manager_to_do_that: You must be project manager to do that
   you_must_choose_an_observation_field: You must choose an observation field
+  you_must_fill_out_the_required_fields: You must fill out the required fields
   you_must_have_a_header_row: You must have a header row
   you_must_select_a_csv_file_to_upload: You must select a CSV file to upload.
   you_must_select_a_place_to_merge_with: You must select a place to merge with.

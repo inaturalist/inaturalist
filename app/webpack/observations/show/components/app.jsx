@@ -27,6 +27,7 @@ import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
 import PhotoBrowserContainer from "../containers/photo_browser_container";
 import PreviousNextButtonsContainer from "../containers/previous_next_buttons_container";
+import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
@@ -127,6 +128,8 @@ const App = ( {
         <UserText text={ observation.description } />
       </Col>
     </Row> ) : "";
+  const qualityGrade = observation.quality_grade === "research" ?
+    "research_grade" : observation.quality_grade;
   return (
     <div id="ObservationShow">
     { flashes }
@@ -143,7 +146,7 @@ const App = ( {
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
-                  { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+                  { _.startCase( I18n.t( qualityGrade ) ) }
                 </span>
               </div>
             </Col>
@@ -299,6 +302,7 @@ const App = ( {
       <CommunityIDModalContainer />
       <LicensingModalContainer />
       <MediaViewerContainer />
+      <ProjectFieldsModalContainer />
       <div className="quiet box text-center opt-out">
         { I18n.t( "tired_of_testing_this_new_version" ) }
         <Button bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>

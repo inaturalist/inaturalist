@@ -22,7 +22,7 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
   const loadObservationCallback = ( e, o ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
-      showNewObservation( o );
+      showNewObservation( o, { useInstance: true } );
     }
   };
   const userLogin = observation.user.login;
@@ -76,10 +76,11 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
           let taxonJSX = I18n.t( "unknown" );
           if ( o.taxon && o.taxon !== null ) {
             taxonJSX = (
-              <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
+              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} />
             );
           }
-          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ? o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
+          const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ?
+            o.taxon.iconic_taxon_name.toLowerCase( ) : "unknown";
           return (
             <Col xs={ 2 } key={ `more-obs-${o.id}` }>
               <div className="obs">

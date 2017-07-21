@@ -56,6 +56,7 @@ class ObservationPhotosController < ApplicationController
     
     respond_to do |format|
       format.json do
+        Observation.refresh_es_index
         if @observation_photo.valid?
           render :json => @observation_photo.to_json(:include => [:photo])
         else

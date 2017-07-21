@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Dropdown, MenuItem, Panel } from "react-bootstrap";
 import ObservationFieldValue from "./observation_field_value";
+import ObservationFieldInput from "./observation_field_input";
 
 class ProjectListing extends React.Component {
   constructor( ) {
@@ -25,10 +26,10 @@ class ProjectListing extends React.Component {
           }}
         />
         <label htmlFor={ `project-allow-input-${po.project.id}` }>
-          Allow curator Access
+          { I18n.t( "allow_curator_access" ) }
         </label>
         <div className="text-muted">
-          Allow curator access to view the private coordinates of this observation
+          { I18n.t( "allow_project_curators_to_view_your_private_coordinates" ) }
         </div>
       </div> ) );
       menuItems.push( ( <MenuItem divider key="project-allow-divider" /> ) );
@@ -115,13 +116,44 @@ class ProjectListing extends React.Component {
         );
         observationFields = (
           <Panel collapsible expanded={ this.state.fieldsPanelOpen }>
-            { projectFieldValues.map( ofv => (
-              <ObservationFieldValue
-                key={ `proj-field-${ofv.uuid || ofv.observation_field.id}` }
-                ofv={ ofv }
-                observation={ observation }
-              />
-            ) ) }
+            { projectFieldValues.map( ofv => {
+              if ( this.state.editingFieldValue &&
+                   this.state.editingFieldValue.uuid === ofv.uuid ) {
+                return (
+                  <ObservationFieldInput
+                    observationField={ ofv.observation_field }
+                    observationFieldValue={ ofv.value }
+                    observationFieldTaxon={ ofv.taxon }
+                    key={ `editing-field-value-${ofv.uuid}` }
+                    setEditingFieldValue={ fieldValue => {
+                      this.setState( { editingFieldValue: fieldValue } );
+                    }}
+                    editing
+                    originalOfv={ ofv }
+                    hideFieldChooser
+                    onCancel={ ( ) => {
+                      this.setState( { editingFieldValue: null } );
+                    } }
+                    onSubmit={ r => {
+                      if ( r.value !== ofv.value ) {
+                        this.props.updateObservationFieldValue( ofv.uuid, r );
+                      }
+                      this.setState( { editingFieldValue: null } );
+                    } }
+                  />
+                );
+              }
+              return (
+                <ObservationFieldValue
+                  ofv={ ofv }
+                  key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
+                  setEditingFieldValue={ fieldValue => {
+                    this.setState( { editingFieldValue: fieldValue } );
+                  }}
+                  { ...this.props }
+                />
+              );
+            } ) }
           </Panel>
         );
       }
@@ -157,7 +189,9 @@ ProjectListing.propTypes = {
   updateCuratorAccess: PropTypes.func,
   config: PropTypes.object,
   observation: PropTypes.object,
-  projectObservation: PropTypes.object
+  projectObservation: PropTypes.object,
+  removeObservationFieldValue: PropTypes.func,
+  updateObservationFieldValue: PropTypes.func
 };
 
 export default ProjectListing;

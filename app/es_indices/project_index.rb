@@ -35,7 +35,7 @@ class Project < ActiveRecord::Base
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
       icon: icon ? icon.url(:span2) : nil,
-      project_observation_fields: project_observation_fields.map(&:as_indexed_json)
+      project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json)
     }
   end
 

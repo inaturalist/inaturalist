@@ -24,27 +24,96 @@ class Activity extends React.Component {
     $( ".comment_id_panel textarea" ).textcompleteUsers( );
   }
 
+  currentUserIcon( ) {
+    const config = this.props.config;
+    return config && config.currentUser ? (
+      <div className="icon">
+        <UserImage user={ config.currentUser } />
+      </div> ) : null;
+  }
+
+  doneButton( ) {
+    const config = this.props.config;
+    return config && config.currentUser ? (
+      <Button className="comment_id" bsSize="small" onClick={
+        ( ) => {
+          if ( $( ".comment_tab" ).is( ":visible" ) ) {
+            const comment = $( ".comment_tab textarea" ).val( );
+            if ( comment ) {
+              this.props.addComment( $( ".comment_tab textarea" ).val( ) );
+              $( ".comment_tab textarea" ).val( "" );
+            }
+          } else {
+            const input = $( ".id_tab input[name='taxon_name']" );
+            const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+            if ( selectedTaxon ) {
+              this.props.addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
+              input.trigger( "resetSelection" );
+              input.val( "" );
+              input.data( "uiAutocomplete" ).selectedItem = null;
+              $( ".id_tab textarea" ).val( "" );
+            }
+          }
+        } }
+      >
+        { I18n.t( "done" ) }
+      </Button> ) : null;
+  }
+
+  review( ) {
+    const { observation, config } = this.props;
+    return config && config.currentUser ? (
+      <div className="review">
+        <input
+          type="checkbox"
+          id="reviewed"
+          name="reviewed"
+          checked={ _.includes( observation.reviewed_by, config.currentUser.id ) }
+          onChange={ ( ) => {
+            if ( $( "#reviewed" ).is( ":checked" ) ) {
+              this.props.review( );
+            } else {
+              this.props.unreview( );
+            }
+          }}
+        />
+        <label htmlFor="reviewed">
+          { I18n.t( "mark_as_reviewed" ) }
+        </label>
+      </div> ) : null;
+  }
+
   render( ) {
     const observation = this.props.observation;
-    const config = this.props.config;
     if ( !observation ) { return ( <div /> ); }
+    const config = this.props.config;
+    const loggedIn = config && config.currentUser;
+    const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
+      i.current && i.user && i.user.id === config.currentUser.id
+    ) );
     let activity = _.compact( ( observation.identifications || [] ).
       concat( observation.comments ) );
     activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
-    const tabs = (
-      <Tabs activeKey={ this.props.commentIDPanel.activeTab } onSelect={ key => {
-        this.props.setActiveTab( key );
-      } }
-      >
-        <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
-          <div className="form-group">
-            <textarea
-              placeholder={ I18n.t( "leave_a_comment" ) }
-              className="form-control"
-            />
-          </div>
-        </Tab>
-        <Tab eventKey="add_id" title={ I18n.t( "suggest_an_identification" ) } className="id_tab">
+    const commentContent = loggedIn ?
+      (
+        <div className="form-group">
+          <textarea
+            placeholder={ I18n.t( "leave_a_comment" ) }
+            className="form-control"
+          />
+        </div>
+      ) : (
+        <span className="log-in">
+          <a href="/login">
+            { I18n.t( "log_in" ) }
+          </a> { I18n.t( "or" ) } <a href="/signup">
+            { I18n.t( "sign_up" ) }
+          </a> { I18n.t( "to_add_comments" ) }.
+        </span>
+      );
+    const idContent = loggedIn ?
+      (
+        <div>
           <TaxonAutocomplete
             bootstrap
             searchExternal
@@ -57,14 +126,29 @@ class Activity extends React.Component {
               className="form-control"
             />
           </div>
+        </div>
+      ) : (
+        <span className="log-in">
+          <a href="/login">
+            { I18n.t( "log_in" ) }
+          </a> { I18n.t( "or" ) } <a href="/signup">
+            { I18n.t( "sign_up" ) }
+          </a> { I18n.t( "to_suggest_an_identification" ) }.
+        </span>
+      );
+    const tabs = (
+      <Tabs activeKey={ this.props.commentIDPanel.activeTab } onSelect={ key => {
+        this.props.setActiveTab( key );
+      } }
+      >
+        <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
+          { commentContent }
+        </Tab>
+        <Tab eventKey="add_id" title={ I18n.t( "suggest_an_identification" ) } className="id_tab">
+          { idContent }
         </Tab>
       </Tabs>
     );
-    const loggedIn = config && config.currentUser;
-    const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
-      i.current && i.user && i.user.id === config.currentUser.id
-    ) );
-    const reviewedByViewer = loggedIn && _.includes( observation.reviewed_by, config.currentUser.id );
     const taxonIDsDisplayed = { };
     return (
       <div className="Activity">
@@ -84,53 +168,12 @@ class Activity extends React.Component {
               { ...this.props }
             /> );
           } ) }
-          <div className="icon">
-            <UserImage user={ config.currentUser } />
-          </div>
+          { this.currentUserIcon( ) }
           <div className="comment_id_panel">
             { tabs }
           </div>
-          <Button className="comment_id" bsSize="small" onClick={
-            ( ) => {
-              if ( $( ".comment_tab" ).is( ":visible" ) ) {
-                const comment = $( ".comment_tab textarea" ).val( );
-                if ( comment ) {
-                  this.props.addComment( $( ".comment_tab textarea" ).val( ) );
-                  $( ".comment_tab textarea" ).val( "" );
-                }
-              } else {
-                const input = $( ".id_tab input[name='taxon_name']" );
-                const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
-                if ( selectedTaxon ) {
-                  this.props.addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-                  input.trigger( "resetSelection" );
-                  input.val( "" );
-                  input.data( "uiAutocomplete" ).selectedItem = null;
-                  $( ".id_tab textarea" ).val( "" );
-                }
-              }
-            } }
-          >
-            { I18n.t( "done" ) }
-          </Button>
-          <div className="review">
-            <input
-              type="checkbox"
-              id="reviewed"
-              name="reviewed"
-              checked={ reviewedByViewer }
-              onChange={ ( ) => {
-                if ( $( "#reviewed" ).is( ":checked" ) ) {
-                  this.props.review( );
-                } else {
-                  this.props.unreview( );
-                }
-              }}
-            />
-            <label htmlFor="reviewed">
-              { I18n.t( "mark_as_reviewed" ) }
-            </label>
-          </div>
+          { this.doneButton( ) }
+          { this.review( ) }
         </div>
       </div>
     );
