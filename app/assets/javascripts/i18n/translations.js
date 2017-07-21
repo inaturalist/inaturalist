@@ -2811,6 +2811,7 @@ I18n.translations["el"] = {
   }
 };
 I18n.translations["en"] = {
+  "a_member_of": "A member of",
   "about": "About",
   "about_charts": "About Charts",
   "about_community_taxa": "About community taxa",
@@ -3373,7 +3374,6 @@ I18n.translations["en"] = {
   "mark_as_reviewed": "Mark as reviewed",
   "maverick": "Maverick",
   "media": "Media",
-  "member_of": "member of",
   "messages": "Messages",
   "misidentifications": "Misidentifications",
   "misleading_or_illegal_content_html": "Misleading or illegal content, racial or ethnic slurs, etc. For more on\nour definition of \"appropriate,\" see the \n<a href=\"/help#inappropriate\">FAQ</a>.\n",
@@ -3445,6 +3445,7 @@ I18n.translations["en"] = {
   "no_suggestions_available": "No Suggestions Available",
   "no_summary_from_wikipedia": "No summary from Wikipedia",
   "none": "None",
+  "none_found": "None found",
   "not_evaluated": "not evaluated",
   "not_recorded": "Not recorded",
   "number_selected": "# selected",

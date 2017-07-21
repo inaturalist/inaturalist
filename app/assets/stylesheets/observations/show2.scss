@@ -980,7 +980,7 @@ h3, h4 {
 
 .QualityMetrics {
   margin-bottom: 20px;
-  padding-right: 25px;
+  padding-right: 20px;
   .grade {
     margin: 15px 0px 25px;
   }
@@ -1223,6 +1223,7 @@ h3, h4 {
 
 .ObservationsHighlight {
   padding-bottom: 30px;
+  min-height: 140px;
   h3 {
     a {
       float: right;
@@ -1238,6 +1239,13 @@ h3, h4 {
     padding-right: 10px;
     .col-xs-2 {
       padding: 5px;
+    }
+    &.empty {
+      text-align: left;
+      color: #808080;
+      padding-left: 15px;
+      padding-top: 2px;
+      font-size: 16px;
     }
   }
   .photo {
@@ -1883,7 +1891,7 @@ h3, h4 {
     margin-top: 5px;
   }
   .app-info {
-    display: inline-block;
+    display: block;
     margin-top: 25px;
     .application {
       .icon {
@@ -2042,6 +2050,7 @@ h3, h4 {
 
 
 .UserText {
+  overflow: hidden;
   br {
     line-height: 35px;
   }

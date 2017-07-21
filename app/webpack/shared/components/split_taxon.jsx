@@ -181,7 +181,7 @@ const SplitTaxon = ( {
     if ( groupAncestor ) {
       memberGroup = (
         <span className="member-group">
-          { I18n.t( "member_of" ) } <SplitTaxon
+          { I18n.t( "a_member_of" ) } <SplitTaxon
             taxon={ groupAncestor }
             url={ `/taxa/${groupAncestor.id}` }
           />

@@ -66,7 +66,7 @@ class PhotoBrowser extends React.Component {
   render( ) {
     const config = this.props.config;
     const observation = this.props.observation;
-    if ( !observation ) { return ( <div /> ); }
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     this.viewerIsObserver = config && config.currentUser &&
       config.currentUser.id === observation.user.id;
     let images = observation.photos.map( ( photo ) => {
