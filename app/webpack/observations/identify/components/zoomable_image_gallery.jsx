@@ -6,13 +6,29 @@ import EasyZoom from "EasyZoom/dist/easyzoom";
 
 class ZoomableImageGallery extends ImageGallery {
 
+  constructor( props ) {
+    super( props );
+    this.setupEasyZoom = this.setupEasyZoom.bind( this );
+  }
+
   componentDidMount( ) {
     super.componentDidMount( );
-    const props = this.props;
+    this.setupEasyZoom( );
+  }
+
+  componentDidUpdate( prevProps ) {
+    if ( this.props.slideIndex !== prevProps.slideIndex ) {
+      this.slideToSlideIndex( );
+      this.setupEasyZoom( );
+    }
+  }
+
+  setupEasyZoom( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    const items = this.props.items;
     $( ".image-gallery-image > img", domNode ).wrap( function ( ) {
       const standardImgUrl = $( this ).attr( "src" );
-      const image = props.items.find( ( i ) => ( i.original === standardImgUrl ) );
+      const image = items.find( ( i ) => ( i.original === standardImgUrl ) );
       if ( image ) {
         return `<div class="easyzoom"><a href="${image.zoom || standardImgUrl}"></a></div>`;
       }
@@ -29,12 +45,6 @@ class ZoomableImageGallery extends ImageGallery {
       },
       loadingNotice: I18n.t( "loading" )
     } );
-  }
-
-  componentDidUpdate( prevProps ) {
-    if ( this.props.slideIndex !== prevProps.slideIndex ) {
-      this.slideToSlideIndex( );
-    }
   }
 
   slideToSlideIndex( ) {

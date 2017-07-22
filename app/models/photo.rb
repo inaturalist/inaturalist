@@ -321,7 +321,7 @@ class Photo < ActiveRecord::Base
       license_code: (license_code.blank? || license.blank? || license == 0) ?
         nil : license_code.downcase,
       attribution: attribution,
-      url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url,
+      url: (self.is_a?(LocalPhoto) && processing?) ? file.url(:square) : square_url,
       original_dimensions: original_dimensions,
       flags: flags.map(&:as_indexed_json)
     }

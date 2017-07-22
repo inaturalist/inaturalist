@@ -174,7 +174,8 @@ const SplitTaxon = ( {
     );
   };
   let memberGroup;
-  if ( showMemberGroup && !_.isEmpty( taxon.ancestors ) ) {
+  // show "is member of" if requested and there's no common name
+  if ( showMemberGroup && taxon && !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) {
     const groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
       a.preferred_common_name && a.rank_level > 20
     ) ) ) );
