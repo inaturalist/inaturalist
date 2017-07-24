@@ -242,6 +242,15 @@ es:
   add_photos: Añade fotos
   add_photos_to_this_observation: Añade fotos a esta observación
   add_place: Añadir lugar
+  add_plant_phenology_flowering_annotation: 'Añade nota "Fenología de la Planta: Floreciendo"'
+  add_plant_phenology_fruiting_annotation: 'Añade nota "Fenología de la Planta: Fructificando"
+    anotación'
+  add_life_stage_adult_annotation: 'Añade nota "Etapa de Vida: Adulto"'
+  add_life_stage_teneral_annotation: 'Añade nota "Etapa de Vida: Imago tierno"'
+  add_life_stage_pupa_annotation: 'Añade nota "Etapa de Vida: Pupa"'
+  add_life_stage_nymph_annotation: 'Añade nota "Etapa de Vida: Ninfa"'
+  add_life_stage_larva_annotation: 'Añade nota "Etapa de Vida: Larva"'
+  add_life_stage_egg_annotation: 'Añade nota "Etapa de Vida: Huevo"'
   add_several_observations_at_once: Añade varias observaciones de una sola vez
   add_sex_female_annotation: 'Agregar anotación "Género: Femenino"'
   add_sex_male_annotation: 'Agregar anotación "Género: Masculino"'
@@ -920,13 +929,17 @@ es:
     sex: Sexo
     male: Masculino
     female: Femenino
+    plant_phenology: Fenología de la planta
     flowering: Floración
     fruiting: Fructificacón
+    life_stage: Etapa de vida
     adult: Adulto
+    teneral: Imago tierno
     pupa: Pupa
     nymph: Ninfa
     larva: Larva
     egg: Huevo
+    juvenile: Juvenil
   controls: Controles
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
@@ -1029,6 +1042,7 @@ es:
   data_deficient: datos insuficientes
   data_quality: Calidad de Datos
   data_quality_assessment: Evaluación de la calidad de datos
+  data_quality_assessment_: evaluación de la calidad de datos
   datatype: Tipo de datos
   date_: Fecha
   date?: ¿Fecha?
@@ -1586,6 +1600,14 @@ es:
   iconic_taxon: Taxonómia del icono
   id: Identificación
   id_: identificación
+  id_categories:
+    tooltips:
+      leading: El taxón desciende del taxón taxon. Esta identificación te podría acercar
+        a la respuesta correcta.
+      improving: Primera sugerencia de este taxón con el que la comunidad ha estado
+        posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.
+      maverick: El taxón no desciende o es antepasado del taxón de la comunidad, p.e.
+        la comunidad no está de acuerdo con este taxón.
   id_more_in_id_please: ID más en "ID por favor"
   id_please!: ¡ayuda por favor!
   id_please: ID por favor
@@ -1608,6 +1630,11 @@ es:
   identotron_help: Ayuda con el identotrón
   ids: IDs
   ids_made_for_others: Identificaciones hechas por otros
+  if_for_some_reason_a_user_doesnt_agree: Si por alguna razón un usuario no está de
+    acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que
+    su Identificación será usada para enlazar con otras observaciones, actualizando
+    listas de vida, etc. También significa que la observación únicamente podrá ser
+    de grado de investigación si la comunidad está de acuerdo con ella.
   if_matches_come_from_a_comprehensive_list: Si los resultados provienen de una lista
     exhaustiva, una barra verde como esta se mostrará.
   if_this_is_a_scientific_name: Si este es un nombre científico, ¿está aceptado actualmente?
@@ -1724,6 +1751,9 @@ es:
   iphone: iPhone
   is_a: es un
   is_an: es un
+  is_an_evaluation: |-
+    es una evaluación de la exactitud de una observación.
+    Las observaciones de Grado de Investigación pueden ser usadas por científicos para su investigación. Vota aquí abajo:
   is_not_following_anyone: No esta siguiendo a nadie
   is_now: ahora es
   is_the_organism_wild: ¿Es el organismo salvaje?
@@ -2069,6 +2099,7 @@ es:
   matched_several_different_taxa: varios taxones distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
     El mapa mostrará un rango si %{place} tiene alguna de esas especies.
+  maverick: Maverick
   maybe_your_signed_in_with: ¿Tal vez usted ingresó con su cuenta %{omniauth}?
   media: Multimedia
   medium: medio
@@ -2400,6 +2431,7 @@ es:
   observation_date: Fecha
   observation_date?: ¿Fecha?
   observation_field: Campo de observación
+  observation_field_details: Detalles del campo de observación
   observation_fields: Campos de observación
   observation_fields_are_additional: Los campos de observación son campos de datos
     adicionales que se pueden agregar a las observaciones.
@@ -2407,6 +2439,8 @@ es:
     a las etiquetas, con la excepción de que cualquiera puede añadirlos a tu observación.
     Puedes cambiar esta opción si prefieres hacer los cambios solamente tú o los curadores
     del sitio.
+  observation_flagged: Observación marcada
+  observation_flagged_as_flag: Observación marcada como %{flag}
   observation_removed_from_the_project: La observación fue eliminada del proyecto
     %{project}
   observation_rights_html: Observación %{rights}
@@ -2422,6 +2456,7 @@ es:
   observations: Observaciones
   observations_: observaciones
   observations_added_by_x_html: Observaciones añadidas por %{x}
+  observations_annotated_with_annotation: Observación anotada con %{annotation}
   observations_by: Observaciones de
   observations_by_everyone: Observaciones de todos
   observations_by_user: Observaciones de %{user}
@@ -2479,6 +2514,8 @@ es:
   observations_widget: Observaciones del widget
   observations_will_revert_to_casual: Las observaciones volverán al grado "casual"
     si no se cumplen las condiciones anteriores o
+  observations_with_this_field: Observaciones con este campo
+  observations_with_this_field_and_value: Observaciones con este campo y valor
   observationcounts_refreshed: Condes de observación refrescados
   observed: Observado el
   observed_by: Observado por
@@ -2881,6 +2918,8 @@ es:
   please_add_a_citation_for_this_change: Añade una referencia para este cambio.
   please_add_this_observation_to: Añade esta observación a
   please_add_this_to_x_html: Añade esto a %{x}
+  please_allow_a_few_weeks_for_external_sites: Por favor, espere alguna semana para
+    que los sitios externos sincronicen los cambios en esta observación
   please_be_careful_particulary_when: Tenga cuidado, especialmente al eliminar taxones.
     Si un taxón tiene observaciones, identificadores, taxones listados, u otros asociados,
     por favor
@@ -2928,6 +2967,7 @@ es:
   privacy: Normativa de privacidad
   privacy_policy: Normativa de privacidad
   private: Privada
+  private_: Privado
   private_description: Coordenadas completamente ocultas en los mapas de uso público,
     las verdaderas coordenadas sólo son visibles para usted y los curadores de los
     proyectos a los que se agrega la observación. Las observaciones con coordenadas
@@ -3003,6 +3043,7 @@ es:
   publish: Publicar
   purple: púrpura
   quality_grade: Grado de calidad
+  quality_grade_: Grado de calidad
   quality_grade_colon: 'Grado de calidad:'
   queued: En espera
   query: Consulta
@@ -3088,6 +3129,7 @@ es:
   regenerate_url: Regenerar URL
   register_for_this_event_at_x_html: Registro para este evento en %{x}
   reject?: ¿Rechazar?
+  reject_the_community_id: Rehusar la identificación de la comunidad
   related_species: Especies relacionadas
   reload_and_refresh: Volver a cargar y refrescar lista
   reload_from_observations: Volver a cargar sus observaciones
@@ -3457,6 +3499,8 @@ es:
   species_search: Búsqueda de especies
   species_taxon_name: Especie / Nombre del taxón
   species_unknown: Especies desconocidas
+  specify_the_reason_youre_flagging: Especificar la razón por la que has marcado este
+    elemento
   src: Fuente
   standard: Estándar
   start: Inicio
@@ -3650,12 +3694,16 @@ es:
   the_admin_is_the_person_who: El administrador es la persona que creó este proyecto.
     Puede hacer las mismas actividades que un curador o gerente con la distinción
     de ser el único que puede eliminar el proyecto.
+  the_below_items_are_needed_to_achieve: 'Los elementos siguiente se necesitan para
+    conseguir el <span classname="bold">Grado de Investigación</span>:'
   the_community_agrees_location_doesnt: la comunidad considera que la <strong>ubicación
     no parece ser adecuada</strong> (p.ej. monos en medio del océano, hipopótamos
     en edificios, etc.)
   the_community_agrees_organism_isnt: la comunidad acuerda que el <strong>organismo
     no es salvaje/naturalizado</strong> (es decir, cautivo o cultivado por humanos
     o alienígenas espaciales inteligentes)
+  the_community_must_feel_that: La comunidad tiene que sentir que la Identificación
+    de la comunidad ID es la mejor si está basado en evidencias
   the_data_quality_assessment_is: La evaluación de la calidad de los datos es un resumen
     de la exactitud de una observación. Todas las observaciones comienzan con el grado
     de <strong>"casual"</strong> y alcanzan el grado de <strong>"investigación"</strong>
@@ -3757,6 +3805,7 @@ es:
   they_have_been_invited: '...ellos ya han sido invitados.'
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
   this: este
+  this_id_was_added_due_to_a: Esta Identificación se añadió debido a
   this_is_a: Esta es una
   this_is_a_cached_summary_based_on: Este es un resumen en caché de este taxón con
     base en su
@@ -3778,6 +3827,13 @@ es:
   this_observation: Esta observación
   this_observation_has_been_incorporated_into_the_following_external_websites: Esta
     observación ha sido incorporada a los siguientes sitios web
+  this_observation_is_featured_on_x_sites:
+    one: Esta observación se presenta en 1 sitio
+    other: Esta observación se presenta en %{count} sitios
+  this_observation_is_in_x_projects:
+    one: Esta observación está en 1 proyecto
+    other: Esta observación está en %{count} proyectos
+  this_observation_is_research_grade: Esta observación es de Grado de Investigación!
   this_observation_lies_outside_the: Esta observación está fuera del rango que %{site_name}
     tiene para esta especia. Esto podría significar que el rango de %{site_name} está
     equivocado, la identificación está equivocada, una ocurrencia errante o una expansión
@@ -3859,6 +3915,7 @@ es:
   top_contributors: Mayores contribuyentes
   top_identifier: Identificador superior
   top_identifiers: Top identificadores
+  top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer: Mayor observador
   top_species: Especie superior
   total: total
@@ -3992,6 +4049,8 @@ es:
   user_commented: '%{user} comentó'
   user_faved_a_noun_by_owner: '%{user} preferido %{noun} por %{owner}'
   user_follows: '%{user} sigue a'
+  user_has_opted_out_of_community_id: El usuario ha rechazado la Identificación de
+    la Comunidad
   user_has_opted_out_of_community_ids: '%{user} ha optado por mantener el control
     sobre los taxones asociados a sus observaciones'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} ha optado por mantener
@@ -4333,6 +4392,7 @@ es:
     proyecto.
   you_dont_have_permission_to_edit_those_photos: No tienes permisos para editar esas
     fotos.
+  you_faved_this: ¡Has marcado esto como favorito!
   you_have_left_x_project: Has abandonado al proyecto %{project}
   you_have_logget_out: Usted se ha desconectado, vuelva pronto
   you_have_to: Tienes que
@@ -4855,11 +4915,23 @@ es:
         agreement: Acuerdo
         algorithm_summary: Resumen del algoritmo
         ancestor_disagreements: Cantidad de identificaciones
+        below_cutoff: Por debajo del corte
         cumulative_count: Cantidad acumulada
         disagreement: Desacuerdo
         disagreement_count: Cantidad de desacuerdos
         identification_count: Cantidad de identificaciones
         score: Puntuación
+        explanation: |-
+          <p>
+            Si por algún motivo un usuario no está de acuerdo con el taxón comunitario, lo pueden rehusar, lo que significa que su Identificación será la usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa su observación únicamente puede pasar a ser de grado de investigación si la comunitario está de acuerdo.
+          </p>
+          <p>
+            Aun así, la identificación de la comunidad se seguirá mostrando, por lo que todos pueden ver que se ha sugerido una identificación diferente IDs.
+          </p>
+        you_have_opted_out: Decidió aceptar identificaciones comunitarias
+        opt_in_for_this_observation: Optar por esta observación
+        your_id_does_not_match: Tu identificación (%{taxon_name}) no se ajusta a la
+          de la comunidad
       copy_tip: Añadir una observación nueva copiando la fecha, el lugar, las fotos
         de esta observación y los campos de observación.
       captive_help_html: |-
@@ -5265,12 +5337,10 @@ es:
         </p>
       project_user_curator_coordinate_access_labels:
         observer: Sí, pero sólo si yo mismo añado la observación al proyecto.
-        any: Miembros del proyecto (<span class="success status">la mejor opción para
-          compartir tus observaciones con este proyecto</span>)
+        any: Sí, no importa quién añade la observación al proyecto.
         none: No.
-      curator_coordinate_access_label: |-
-        Permitir a los curadores de proyecto ver las coordenadas privadas de tus
-        observaciones cuando se añadan al proyecto por
+      curator_coordinate_access_label: ¿Quieres hacer que las coordenadas ocultas/privadas
+        de la observación sean visibles para el administrador del proyecto?
       curator_coordinate_access_note: También puede elegir el compartir las coordenadas
         privadas de observaciones en este proyecto, con base caso a caso. Serán, tan
         solo, valores base para nuevas observaciones añadidas al proyecto.
@@ -5750,6 +5820,8 @@ es:
           attributes:
             place_geometry:
               is_too_large_to_import: es demasiado grande para importar
+              contains_too_many_observations: contiene demasiadas observaciones para
+                importar
         post:
           attributes:
             user:

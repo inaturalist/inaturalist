@@ -730,6 +730,8 @@ zh-TW:
   connected_accounts: 已連接帳號
   connecting_flickr: 連接至 Flickr...
   connecting_to_facebook: 連接至臉書...
+  connecting_your_inat_account_to_accounts_other_sites: 連接您的 %{site_name} 帳號至其它網站帳號，將允許您使用您在這些網站的憑證來登入至
+    %{site_name}。
   conservation_status: 保育狀態
   conservation_status_descriptions:
     status: 狀態代碼、排名、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
@@ -1358,15 +1360,22 @@ zh-TW:
   identifications_by: 由 %{user} 做的鑑定
   identified?: 已鑑定
   identifiers: 鑑定人
+  identotron: Identotron
+  identotron_for: Identotron 用於
+  identotron_help: Identotron 幫助
   ids: ID
   ids_made_for_others: 用於其他的 ID
+  if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
   if_you_already_have_an_account: 如果您已經擁有 %{article} %{site_name} 帳號...
   if_you_dont_want_us_to_share_your_data: 如果您不希望我們分享您的資料
+  if_you_have_any_trouble_with_the_site_check_out: 若您有任何問題，請查看我們的<a href="%{help_url}">幫助章節</a>；或發佈訊息至我們的<a
+    href="%{feedback_url}">意見回饋群組</a>。
   if_you_have_trouble_with_the_site: 如果您在此網站上碰到任何問題，請查看我們的幫助章節：
   if_you_use: 如果您使用
   if_you_want_to_change_the_name: 如果您想要更改名稱
+  if_your_project_is: 若您的專案是在特定地點，請透過點擊地圖或手動輸入內容來設定座標。
   ignore: 忽略
   ignore_times: 忽略次數
   image_must_be_exactly: 圖片必須剛好是 950 像素寬度並且最高不超過 400 像素
@@ -1425,16 +1434,16 @@ zh-TW:
   invite_observations: 邀請觀察
   invite_people: 邀請人們
   invite_people_to_project: 邀請人們至%{project}
-  invite_photos_from_other_sites: 從其它網站來邀請照片
+  invite_photos_from_other_sites: 從其它網站來徵求照片
   invite_photos_to: 邀請照片至 %{site_name}
-  invite_photos_to_raquo_html: 邀請照片至<nobr>%{site_name} &raquo;</nobr>
+  invite_photos_to_raquo_html: 徵求照片至<nobr>%{site_name} &raquo;</nobr>
   invite_someone_to: 邀請一些人至%{name}！
-  invite_to_project: 邀請至專案
+  invite_to_project: 徵求至專案
   invite_your_friends: 邀請您的朋友
   invite_your_friends_description: 透過邀請您的朋友加入來協助讓 %{site_name} 成為更大、更好的社群！
   inviteonly: 僅邀請
   invited: 已邀請
-  invited_to_the_following_projects: 被邀請到以下專案：
+  invited_to_the_following_projects: 被徵求到以下專案：
   invited_x: 已邀請%{x}
   inviting: 邀請中...
   iphone: iPhone
@@ -1458,7 +1467,7 @@ zh-TW:
   join_inat: 加入%{site_name}！
   join_project: 加入此專案
   join_some_projects_and_invite_some_observations_html: 加入一些<a href='%{join_url}'>專案</a>並<a
-    href='%{invite_url}'>邀請一些觀察</a>
+    href='%{invite_url}'>徵求一些觀察</a>
   join_this_project: 加入此專案
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
@@ -2019,6 +2028,7 @@ zh-TW:
   observation_must_dotdotdot: 觀察必須...
   observations_needing_curation: 觀察需要策展
   observations_obscured: 觀察（隱蔽）
+  observations_observed_this_month: 在本月沒有添加<em>已觀察</em>內容。到外頭走走看看吧！
   observations_of_taxon: '%{taxon_name}的觀察'
   observations_per_month: 觀察 / 月
   observations_removed_from_the_project: 觀察已從專案「%{project}」裡移除
@@ -2049,6 +2059,7 @@ zh-TW:
     present: 現今
     common: 普遍
     uncommon: 罕見
+    irregular: 異常
     doubtful: 可疑
     absent: 缺失
   of: 的
@@ -2139,6 +2150,7 @@ zh-TW:
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
   owner: 擁有者
+  parent_name: 父名稱
   password: 密碼
   password_confirmation: 密碼確認
   paste: 貼上
@@ -3159,6 +3171,7 @@ zh-TW:
   updated_photo: 已更新照片
   upload: 上傳
   upload_a_csv_file: 上傳 CSV 檔案
+  upload_a_csv_file_with_observation: 上傳帶有觀察資料的 CVS 檔案。如果您擁有帶有您的資料之電子試算表或資料庫，這會是最常利用的方式。
   upload_photos: 上傳照片
   uploaded_by: 上傳由
   uploader:
@@ -3191,6 +3204,8 @@ zh-TW:
   user_commented: '%{user} 已評論'
   user_follows: '%{user}關注'
   user_hasnt: '%{user}沒有'
+  user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project}
+    專案。'
   user_invited_you_to_join_project: '%{user}邀請您加入%{project}'
   user_invited_you_to_join_html: '%{user}邀請您加入'
   user_invited_you_to_join_this_project_on_date_html: '%{user} 邀請您加入此專案於 %{date}'
@@ -3306,6 +3321,7 @@ zh-TW:
   wait_file_generation: 請等待檔案產生。較大的列表可能會花費數分鐘。
   want_to_add_one: 想添加一個？
   want_to_test_a_new_version_of_this_page: 想要測試此頁面的新版本嗎？
+  was_it_captive_cultivated?: 是被捕獲/栽培？
   we_can_only_understand_csv_in: 我們僅接受以下格式的 CSV
   we_care_privacy: 我們關心您的個人隱私！
   we_couldnt_find_a_user: 我們沒有找到帶此電子郵件的用戶。
@@ -3371,6 +3387,7 @@ zh-TW:
   x_hasnt: '%{login}沒有'
   x_journal: '%{user} 的日誌'
   x_journal_archives_for_y: '%{user} 的日誌 &middot; 歸檔用於'
+  x_journal_editing: '%{user} 的日誌&middot;編輯中'
   x_journal_middot: '%{user}的期刊 &middot;'
   x_journal_new_post: '%{user}的日誌&middot;新發表'
   x_observations_failed:
@@ -3408,6 +3425,8 @@ zh-TW:
   you_can_accept_invitations: 您可在此接受邀請
   you_can_change_your_new_passwd_after_logging_in: 登入後您可更改您的新密碼於此：
   you_can_choose_observations_associated: 您可挑選觀察來與此日誌發佈文章做關聯。
+  you_can_edit_this_default_check_list_because: 您可編輯此預設清單因為您是個管理員，但實際上不需要這麼做。
+  you_can_help_make_our: 您可協助透過添加資料來讓我們的物種頁面更有用！這裡有幾種您可協助的方式
   you_can_sign_free_at: 您可註冊一個免費 %{site_name} 帳號在
   you_cant_compare_a_list_with_nothing: 您不能比較沒有內容的列表！
   you_cant_delete_a_project_list: 您不能刪除專案列表
