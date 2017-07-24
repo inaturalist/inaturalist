@@ -56,6 +56,8 @@ eu:
   x_species_html:
     one: <span class='count'>1</span> espezie
     other: <span class='count'>%{count}</span> espezieak
+  x_suggestions_filtered_by_colon: '{{PLURALA|bat=1 Iradukizuna Hautatua:|%{count}
+    Iradokizunak Hautatuta:}}'
   x_taxa_observed_html:
     one: <span class='count'>1</span> behatutako taxona</span>
     other: <span class='count'>%{count}</span> behatutako taxonak</span>
@@ -181,7 +183,19 @@ eu:
   add_photos: Argazkiak gehitu
   add_photos_to_this_observation: Argazkiak gehitu oharrari
   add_place: Lekua gehitu
+  add_plant_phenology_flowering_annotation: 'Gehitu "Landare Fenologia: Loratzen"
+    oharra'
+  add_plant_phenology_fruiting_annotation: 'Gehitu "Landare Fenologia: Fruituak ematen"
+    oharra'
+  add_life_stage_adult_annotation: 'Gehitu "Bizi Aroa: Heldua" oharra'
+  add_life_stage_teneral_annotation: 'Gehitu "Bizi Aroa: teneral" oharra'
+  add_life_stage_pupa_annotation: 'Gehitu: "Bizi Aroa: Pupa" oharra'
+  add_life_stage_nymph_annotation: 'Gehitu "Bizi Aroa: Ninfa" oharra'
+  add_life_stage_larva_annotation: 'Gehitu "Bizi Aroa: Larba" oharra'
+  add_life_stage_egg_annotation: 'Gehitu: "Bizi aroa: Arrautza" oharra'
   add_several_observations_at_once: Hainbat ohar gehitu aldi berean
+  add_sex_female_annotation: 'Gehitu: "Sexua: Emakumezkoa" oharra'
+  add_sex_male_annotation: 'Gehitu: "Sexua: Gizonezkoa" oharra'
   add_shape: Muga gehitu
   add_some_now: Batzuk orain gehitu
   add_tag: Gehitu etiketa
@@ -642,6 +656,7 @@ eu:
   click_on_the_map_to: Klikatu mapan zure oharra kokatzeko
   click_the_map: <strong>Mapan klikatu</strong> kokapena gehitzeko.
   click_the_map_to_jump_new_place: Mapan klikatu beste leku batetara mugitzeko
+  close: Itxi
   code: HTML kodea
   collapse_days: egunak hartu
   collapse_updates: eguneraketak egin
@@ -711,6 +726,21 @@ eu:
   contributions_from: 'Hauek ekarpenak:'
   contributor_cannot_be_found: Ezin izan da proiektuko ekarlea topatu
   contributors_to_project: '%{project}proiektuko parte-hartzaileak: Proiektuko parte-hartzaileak'
+  controlled_term_labels:
+    sex: Sexua
+    male: Gizonezkoa
+    female: Emakumezkoa
+    plant_phenology: Fenologia Landarea
+    flowering: Loraldia
+    fruiting: Fruitu
+    life_stage: Bizi Aroa
+    adult: Heldua
+    teneral: Orokorra
+    pupa: Pupa
+    nymph: Ninfa
+    larva: Larba
+    egg: Arrautza
+    juvenile: Gaztea
   controls: Kontrolak
   coordinate_systems: Koordenatu sistemak
   coordinates: Koordenatuak
@@ -784,6 +814,7 @@ eu:
   data_deficient: datuak ez dira nahikoak
   data_quality: Data kalitatea
   data_quality_assessment: Datuen kalitatearen ebaluazioa
+  data_quality_assessment_: Datuen kalitatearen ebaluazioa
   datatype: Datu mota
   date_: Data
   date?: Data?
@@ -1199,6 +1230,12 @@ eu:
   iconic_taxon: Ikonoaren taxonomia
   id: Identifikazioa
   id_: identifikazioa
+  id_categories:
+    tooltips:
+      improving: "Komunitateak hitzartutako taxon honetako lehenengo iradokizuna.
+        \nHonek lagundu zuen\nkomunitateko taxona hobetzen."
+      maverick: Taxona ez da taxon komunitatearen arbaso edo ondorengoa, hots, komunitateak
+        ez du taxonekin bat egiten.
   id_please!: ID, mesedez!
   id_please: ID, mesedez
   id_please_expandable_html: ID,<span class='full'> mesedez!</span>
@@ -1215,6 +1252,11 @@ eu:
   identotron_help: Identotron-ekin laguntza
   ids: IDak
   ids_made_for_others: Beste batzuentzako egindako identifikazioak
+  if_for_some_reason_a_user_doesnt_agree: Edozein arrazoirengatik erabiltzaileren
+    bat ez badago ados komunitatearen taxonarekin, atzera bota dezakete, horrek esan
+    nahi du haien NAN-a beste meaketekin lotzeko, bizi zerrendak eguneratzeko... baino
+    ez dela erabiliko. Era berean, haien meaketa ezin daiteke kalitaterik onenenekoa
+    bilakatu komunitateak ez badu haiekin bat egiten.
   if_matches_come_from_a_comprehensive_list: ' Emaitzak zerrenda zehatz batetatik
     baldin badatoz, honelako barra berdea erakutsiko da.'
   if_this_is_a_scientific_name: Hau izen zientifikoa bada, gaur egun onartuta al dago?
@@ -1308,6 +1350,9 @@ eu:
   iphone: iPhone
   is_a: 'zera da:'
   is_an: 'zera da:'
+  is_an_evaluation: |-
+    zehaztasun meaketaren ebaluaketa da.
+    Ikerketa Graduaren oharrak zientzialariek erabili ditzakete ikertzeko. Eman zure botoa hemen:
   is_not_following_anyone: Ez zara inor jarraitzen ari
   is_the_organism_wild: Organismoa basatia al da?
   is_this_observation_offensive_html: Ohar hau <a href="/help#inappropriate">desegokia</a>,
@@ -1339,6 +1384,7 @@ eu:
   labels: Etiketak
   label_to_group_a_batch_of_taxon_changes: Espezie edo talde aldaketak elkartzeko
     etiketaren izena
+  location_private: Kokapen pribatua
   location_unknown: Kokapen ezezaguna
   large: handia
   last_confirmed_observation: Azken oharra baieztatuta
@@ -1580,6 +1626,7 @@ eu:
   merging_places: Lekuak konbinatu
   message: Mezua
   messages: Mezuak
+  misidentifications: Identifikatu gabekoak
   misleading_or_illegal_content_html: Legez kontrako edukia, iruzurrezkoa, arrazista,
     xenofoboa eta abar.
   mixed_licenses: Lizentzia konbinatua
@@ -1674,6 +1721,7 @@ eu:
   next_observation: Hurrengo behaketa
   next_page: Hurrengo orrialdea
   next_photo: Hurrengo argazkia
+  next_tab: Hurrengo fitxa
   "no": Ez
   no_activity_in_the_past_week: 'Ez da jarduerarik egon aurreko astean. Honetarako
     garaia da:'
@@ -1732,6 +1780,7 @@ eu:
   no_range_data_available: Ez dago datu mailarik eskuragarri
   no_recent_activity: Ez dago duela gutxiko ekintzarik
   no_recently_active: Oraindik ez dago proiektu aktiborik
+  no_relevant_annotations: Ez dago ohar aipagarririk.
   no_reply_yet: Oraindik ez du erantzun
   no_results_found: Ez da emaitzarik topatu.
   no_results_for: 'Emaitzarik ez honetarako:'
@@ -2171,6 +2220,7 @@ eu:
   previous_observation: Aurreko behaketa
   previous_page: Aurreko orrialdea
   previous_photo: Aurreko argazkia
+  previous_tab: Aurreko orrialdea
   privacy: Pribatutasun-politika
   privacy_policy: Pribatutasun-politika
   private: Pribatua
@@ -2270,6 +2320,7 @@ eu:
   redo_search_in_map_area: Egin berriz bilaketa mapako eremuan
   refresh: Freskatu
   regenerate_url: Esteka berriro sortu
+  reject?: Ukatu?
   reload_from_observations: Zure oharrak berriro kargatu
   reload_timed_out: Kargatzeko denbora amaitu da.  Mesedez, saiatu berriro tarte baten
     ostean.
@@ -2438,6 +2489,7 @@ eu:
   show_active_and_inactive_taxa: Espezie aktiboak eta inaktiboak erakutsi
   show_default_taxon_photos: Espezieen lehenetsitako argazkiak erakutsi
   show_counts: Zerrendan oinarritutako zenbaketak erakutsi
+  show_keyboard_shortcuts: Teklatuko Lasterbideak Erakutsi
   show_kml: KML erakutsi
   show_observation_photos: Behaketen argazkiak erakutsi
   show_observations_from: 'Honek egindako behaketak erakutsi:'
@@ -2706,6 +2758,7 @@ eu:
     kontua sortzeko erabili zenuen posta elektronikoa eta esteka bidaliko dizugu pasahitza
     berrezartzeko.
   the: -a
+  the_: a
   the_admin_is_the_person_who: Administratzailea proiektua sortu zuen pertsona da.
     Administratzaile edo kudeatzaile baten eginkizun berak bete ditzake, proiektua
     ezaba dezakeen bakarra izatearen salbuespenarekin.
@@ -2797,6 +2850,7 @@ eu:
   they_have_been_invited: '...haiek dagoeneko gonbidatuak izan dira.'
   third_person_possessive_singular: '%{object_phrase}-(r)en %{noun}'
   this: hau
+  this_id_was_added_due_to_a: NAN hau gehitu zen, izan ere
   this_is_a: 'Hau zera da:'
   this_is_a_cached_summary_based_on: 'Hau taxon honen cache-laburpena da, zure zera
     honetan oinarritua:'
@@ -3021,6 +3075,7 @@ eu:
   view_nbsp: Ikusi  
   view_observation: Behaketa ikusi
   view_observations: Behaketak ikusi
+  view_observations_of_this_taxon_by: Taxon honetako oharrak iksui
   view_observations_raquo: Behaketak ikusi »
   view_on: 'Hemen ikusi:'
   view_on_amphibiaweb: AmphibiaWeb gunean ikusi
@@ -3114,6 +3169,8 @@ eu:
   where_were_they?: <em>Non</em> zeuden?
   where_were_you?: <em>Non</em> zeunden zu?
   white: zuria
+  with_annotation: Oharrekin
+  without_annotation: Oharrik gabe
   widget: Widget-a
   widget_code: Widget-aren kodea
   widget_for: 'Widget-a honetarako:'
@@ -3154,6 +3211,7 @@ eu:
   yes_i_want_to_join: Bai, bat egin nahi dut
   yes_license_my_observations_so_scientists_can_use: Bai, nire argazkien eta behaketen
     lizentzia sortu zientzialariek nire datuak erabili ahal izateko!
+  yes_reject_it: Bai, ukatu
   yes_show_this_in_the_box: Bai, erakutsi hau taxonen gaineko laukian
   yesterday: Atzo
   yesterday_at: ', atzo, arratsaldeko lauretan'

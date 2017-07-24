@@ -127,10 +127,10 @@ fr:
     one: <span class='count'>1</span> observation de calibre recherche</span>
     other: <span class='count'>%{count}</span> observations de calibre recherche</span>
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span> observation de calibre recherche pour identifier
-      des espèces ou une catégorie inférieure</span>
-    other: <span class='count'>%{count}</span> observations de calibre recherche pour
-      identifier des espèces ou une catégorie inférieure</span>
+    one: <span class='count'>1</span> observation de calibre recherche identifiée
+      au rang d'espèce ou à un rang inférieur</span>
+    other: <span class='count'>%{count}</span> observations de calibre recherche identifiées
+      au rang d'espèce ou à un rang inférieur</span>
   x_taxa_matching_current_filters:
     one: 1 taxon correspondant aux filtres actuels
     other: '%{count} taxons correspondant aux filtres actuels'
@@ -662,8 +662,8 @@ fr:
   browse_observations: Voir les observations
   browse_people: Parcourir les personnes
   browse_projects: Explorer les projets
-  browse_species_that_occur_near_this_observation: Explorer les espèces qui se trouvent
-    près de cette observation.
+  browse_species_that_occur_near_this_observation: Explorer les espèces présentes
+    à proximité de cette observation.
   browse_your_observations: Explorer vos observations
   built_with_site_guides_html: Construit avec les <a href='%{url}'>guides d’%{site_name}</a>
   bulk_import_of_filename_is_complete: L’importation en vrac de %{filename} est terminée
@@ -809,7 +809,7 @@ fr:
     Les listes de contrôle doivent être associées à un lieu. Pour créer une
     nouvelle liste de contrôle, allez à la liste de contrôle par défaut d’un
     lieu et cliquer sur le lien 'Créer une nouvelle liste de contrôle'.
-  check_list_of_species_occuring_in: Liste de contrôle des espèces présentes à
+  check_list_of_species_occuring_in: Liste des espèces présentes à
   check_list_place: Liste de contrôle de %{place}
   check_list_updated: Liste de contrôle à jour!
   check_list_source: Source <span class="meta">(facultatif)</span>
@@ -878,9 +878,9 @@ fr:
   collapse_days: Réduire les jours
   collapse_updates: Réduire les mises à jour
   color_categories_for_this_species: 'Catégories de couleur pour cette espèce : catégorisez
-    comme si les espèces s’inséraient dans un guide de poche catégorisé par couleur.
+    comme si les espèces s’inséraient dans un guide de poche organisé par couleur.
     N’inscrivez pas toutes les couleurs de l’organisme, seulement les couleurs principales.
-    Pour les plantes à fleurs, utilisez la couleur de la fleur. Laissez en blanc lorsque
+    Pour les plantes à fleurs, utilisez la couleur de la fleur. Laissez vide lorsque
     la couleur n’est pas utile à la catégorisation, comme les mammifères bruns ou
     les fougères vertes.'
   colors: Couleurs
@@ -916,10 +916,12 @@ fr:
   community_curated: Communauté organisée
   community_id: 'ID de <strong>communauté</strong> :'
   community_id_heading: ID de communauté
-  community_id_at_species_or_lower?: ID de la communauté pour l’espèce ou en-dessous ?
+  community_id_at_species_or_lower?: ID de la communauté au rang d'espèce ou inférieur
+    ?
   community_id_at_genus_level_or_lower: ID de la communauté au niveau duu genre ou
     inférieur
-  community_id_at_species_level_or_lower: ID de communauté au niveau espèce ou inférieur
+  community_id_at_species_level_or_lower: ID de la communauté au rang d'espèce ou
+    inférieur
   community_moderation_settings: Paramètres pour modérer la communauté
   community_supported_id: ID de communauté accepté?
   compare: Comparer
@@ -1099,7 +1101,7 @@ fr:
   data_deficient: données insuffisantes
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
-  data_quality_assessment_: Evaluation de la qualité de la donnée
+  data_quality_assessment_: évaluation de la qualité de la donnée
   datatype: Type de données
   date_: Date
   date?: Date?
@@ -1243,11 +1245,11 @@ fr:
   drafts: Brouillons
   drag_and_drop_some_photos: Glisser & déposer quelques photos
   each_place_displays_all_species_inat_knows: Chaque page de lieu affiche toutes les
-    espèces dont %{site_name} est au courant dans ce lieu, y compris les informations
-    sur leur abondance, leur situation quant à la conservation et la personne qui
-    a été la première à observer cette espèce dans ce lieu selon %{site_name}. Vous
-    pouvez filtrer les espèces par groupe taxinomique, par couleur, par situation
-    quant à la conservation ou par recherche habituelle.
+    espèces dont %{site_name} a connaissance pour ce lieu, y compris les informations
+    sur leur abondance, leur statut de conservation et le nom de la première personne
+    ayant observé cette espèce dans ce lieu selon %{site_name}. Vous pouvez filtrer
+    les espèces par groupe taxinomique, par couleur, selon leur statut de conservation
+    ou par recherche habituelle.
   edit: Modifier
   edit_a_batch_of_observations: Modifier un lot d’observations
   edit_account_settings_and_profile: Modifier les paramètres &amp; profil d’un compte
@@ -1263,7 +1265,7 @@ fr:
   edit_multiple_dates: Modifier des dates multiples
   edit_multiple_descriptions: Modifier des descriptions multiples
   edit_multiple_locations: Modifier des emplacements multiples
-  edit_multiple_species: Modifier des espèces multiples
+  edit_multiple_species: Modifier plusieurs espèces
   edit_notes: Modifier les notes
   edit_observation: Modifier l’observation
   edit_photos: Modifier les photos
@@ -1790,8 +1792,8 @@ fr:
     trouvé dans des lieux particuliers.'
   info: Info
   input_taxon: Entrer un taxon
-  insects: Insectes
-  insect_life_stage: Étape de vie d’un insecte
+  insects: insectes
+  insect_life_stage: Stade de l'insecte
   inspired_by_the_flickr_group: Inspirée par le groupe Flickr <a href='http://flickr.com/groups/idplease/'>,
     Identification SVP</a> est un endroit où vous pouvez poster des observations sur
     des choses que vous ne connaissez pas et où vous pouvez aider les gens à identifier
@@ -3585,7 +3587,7 @@ fr:
   sourcing: Source
   spam: pourriel
   spanish: Espagnol
-  species: Espèce
+  species: Espèces
   species_from_around_the_world: Espèces du monde entier
   species_guess: devinez l’espèce
   species_guide: Guide des espèces
@@ -4285,7 +4287,7 @@ fr:
     <a href='%{url}'>Afficher votre tableau
     de bord</a> pour plus de mises à jour
   view_your_inbox: Afficher votre boîte de réception
-  view_your_life_list: Afficher votre liste des êtres vivantes
+  view_your_life_list: Afficher votre liste des êtres vivants
   view_your_calendar: Afficher votre calendrier
   view_your_observations: Afficher vos observations
   view_yours: Afficher la vôtre
