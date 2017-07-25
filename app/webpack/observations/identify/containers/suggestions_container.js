@@ -24,7 +24,8 @@ function mapDispatchToProps( dispatch ) {
     chooseTaxon: ( taxon, options = {} ) => {
       const ident = {
         observation_id: options.observation.id,
-        taxon_id: taxon.id
+        taxon_id: taxon.id,
+        vision: options.vision
       };
       dispatch( updateCurrentObservation( { tab: "info" } ) );
       dispatch( submitIdentificationWithConfirmation( ident, {

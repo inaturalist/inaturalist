@@ -66,7 +66,10 @@ class Suggestions extends React.Component {
               bsSize="xs"
               bsStyle="primary"
               onClick={ ( ) => {
-                that.props.chooseTaxon( taxon, { observation: that.props.observation } );
+                that.props.chooseTaxon( taxon, {
+                  observation: that.props.observation,
+                  vision: that.props.query.source === "visual"
+                } );
               } }
             >
               { I18n.t( "select" ) }
@@ -328,7 +331,10 @@ class Suggestions extends React.Component {
             </Button>
             <Button
               bsStyle="primary"
-              onClick={ ( ) => chooseTaxon( detailTaxon, { observation } ) }
+              onClick={ ( ) => chooseTaxon( detailTaxon, {
+                observation,
+                vision: query.source === "visual"
+              } ) }
             >
               { I18n.t( "select_this_taxon" ) }
             </Button>
