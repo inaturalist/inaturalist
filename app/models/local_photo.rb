@@ -59,7 +59,6 @@ class LocalPhoto < Photo
   # to pull the metadata from the true original, i.e. before
   # post_processing which creates thumbnails
   before_post_process :extract_metadata
-  after_post_process :set_skip_invalidation_if_delayed
   after_post_process :set_urls
   # ...but part of the metadata is the size of the thumbnails
   # so grab metadata twice (extract_metadata is purely additive)
@@ -352,15 +351,6 @@ class LocalPhoto < Photo
         end
       end
       sizes
-    end
-  end
-
-  def set_skip_invalidation_if_delayed
-    # the delayed job from process_in_background will have split_processing?
-    # be false. Therefore this is just the delayed bit of a save
-    # so never invalidate caches - it would have been done at save time
-    unless file.split_processing?
-      self.skip_cloudfront_invalidation = true
     end
   end
 

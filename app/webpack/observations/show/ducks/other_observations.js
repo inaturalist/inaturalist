@@ -92,7 +92,7 @@ export function fetchMoreFromThisUser( ) {
     if ( !observation || !observation.user ) { return null; }
     // TODO: this needs to be smarter
     let params = { user_id: observation.user.id, order_by: "id",
-      order: "desc", id_below: observation.id, per_page: 6 };
+      order: "desc", id_below: observation.id, per_page: 6, details: "all" };
     return inatjs.observations.search( params ).then( responseBefore => {
       params = { user_id: observation.user.id, order_by: "id",
         order: "asc", id_above: observation.id, per_page: 6, details: "all" };
