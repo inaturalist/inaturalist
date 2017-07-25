@@ -57,9 +57,11 @@ $galleryHeightElements: "
   .ObservationModal .image-gallery-slide-wrapper,
   .ObservationModal .image-gallery-slides,
   .ObservationModal .image-gallery-slide,
-  .ObservationModal .image-gallery-image,
-  .ObservationModal .image-gallery-image > img,
+  .ObservationModal .image-gallery-content .image-gallery-image,
+  .ObservationModal .image-gallery-content .image-gallery-image > img,
+  .ObservationModal .image-gallery-content .image-gallery-image .unzoomable > img,
   .ObservationModal .easyzoom,
+  .ObservationModal .unzoomable,
   .ObservationModal .easyzoom > a,
   .ObservationModal .easyzoom > a img
 ";
@@ -70,6 +72,7 @@ $galleryHeightElements: "
   object-fit: contain;
   width: 100%;
   height: 100%;
+  background-color: transparent;
 }
 
 .ObservationModal .image-gallery-image {
@@ -115,6 +118,7 @@ $galleryHeightElements: "
 }
 .ObservationModal .image-gallery-thumbnail {
   width: 50px;
+  margin: 0 5px;
 }
 .ObservationModal .image-gallery-thumbnail img {
   max-width: 50px !important;

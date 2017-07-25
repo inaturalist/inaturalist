@@ -21,10 +21,11 @@ function mapStateToProps( state ) {
     if ( $( ".image-gallery" ).width( ) > 600 ) {
       defaultPhotoSize = "large";
     }
-    images = observation.photos.map( ( photo ) => ( {
+    images = observation.photos.map( photo => ( {
       original: photo.photoUrl( defaultPhotoSize ),
       zoom: photo.photoUrl( "original" ),
-      thumbnail: photo.photoUrl( "square" )
+      thumbnail: photo.photoUrl( "square" ),
+      originalDimensions: photo.original_dimensions
     } ) );
   }
   return Object.assign( {}, {

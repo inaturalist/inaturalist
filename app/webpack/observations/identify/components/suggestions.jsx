@@ -113,8 +113,8 @@ class Suggestions extends React.Component {
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
       detailTaxonImages = detailTaxon.taxonPhotos.map( taxonPhoto => ( {
-        original: taxonPhoto.photo.photoUrl( "large" ),
-        zoom: taxonPhoto.photo.photoUrl( "original" ),
+        original: taxonPhoto.photo.photoUrl( "medium" ),
+        zoom: taxonPhoto.photo.photoUrl( "original" ) || taxonPhoto.photo.photoUrl( "large" ),
         thumbnail: taxonPhoto.photo.photoUrl( "square" ),
         description: (
           <div className="photo-meta">
@@ -285,7 +285,7 @@ class Suggestions extends React.Component {
                   </a>
                 </div>
                 { detailTaxon ? (
-                  <div>
+                  <div className={ detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo" }>
                     { detailPhotos }
                     <div className="obs-modal-header">
                       <SplitTaxon

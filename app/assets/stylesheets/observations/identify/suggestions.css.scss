@@ -136,7 +136,7 @@
 
   .photo-meta {
     position: absolute;
-    bottom: 70px;
+    bottom: 10px;
     width: 100%;
     text-align: center;
     color: white;
@@ -151,6 +151,9 @@
     .license {
       margin-right: 5px;
     }
+  }
+  .multiple-photos .photo-meta {
+    bottom: 70px;
   }
   .photo-meta:hover {
     opacity: 1;

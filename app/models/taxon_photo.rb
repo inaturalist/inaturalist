@@ -38,7 +38,7 @@ class TaxonPhoto < ActiveRecord::Base
     {
       taxon_id: taxon_id,
       photo: photo.as_indexed_json(
-        sizes: [:square, :small, :medium, :large],
+        sizes: [:square, :small, :medium, :large, :original],
         native_page_url: true,
         native_photo_id: true,
         type: true

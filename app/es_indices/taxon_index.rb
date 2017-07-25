@@ -24,6 +24,7 @@ class Taxon < ActiveRecord::Base
         indexes :photo do
           indexes :attribution, type: "keyword", index: false
           indexes :license_code, type: "keyword"
+          indexes :original_url, type: "keyword", index: false
           indexes :large_url, type: "keyword", index: false
           indexes :medium_url, type: "keyword", index: false
           indexes :small_url, type: "keyword", index: false
