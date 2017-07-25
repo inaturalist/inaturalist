@@ -130,8 +130,9 @@ class Annotations extends React.Component {
               <i className="fa fa-check" />
             ) : null }
           </span>
-          <i className={ `fa ${agreeClass}` } onClick={ voteAction } />
+          { this.loggedIn && <i className={ `fa ${agreeClass}` } onClick={ voteAction } /> }
           <span className="count">{ votesForCount }</span>
+          { !this.loggedIn && <span className="fa" /> }
         </td>
         <td className="disagree">
           <span className="check">
@@ -139,8 +140,9 @@ class Annotations extends React.Component {
               <i className="fa fa-times" />
             ) : null }
           </span>
-          <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } />
+          { this.loggedIn && <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } /> }
           <span className="count">{ votesAgainstCount }</span>
+          { !this.loggedIn && <span className="fa" /> }
         </td>
       </tr>
     );
@@ -148,10 +150,10 @@ class Annotations extends React.Component {
 
   termsForTaxon( terms, taxon = null ) {
     const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
-    const that = this;
     return _.filter( terms, term => {
       // reject if it has values and those values and none are availalble
-      if ( term.values && term.values.length > 0 && that.termsForTaxon( term.values, taxon ).length === 0 ) {
+      if ( term.values && term.values.length > 0 &&
+           this.termsForTaxon( term.values, taxon ).length === 0 ) {
         return false;
       }
       // value applies to all taxa without exceptions, keep it
@@ -179,7 +181,6 @@ class Annotations extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    const that = this;
     const availableControlledTerms = this.termsForTaxon(
       controlledTerms,
       observation ? observation.taxon : null
@@ -199,6 +200,9 @@ class Annotations extends React.Component {
     }
     this.loggedIn = config && config.currentUser;
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
+    if ( !this.loggedIn && _.isEmpty( observation.annotations ) ) {
+      return ( <span /> );
+    }
     const annotations = observation.annotations.filter( a =>
       a.controlled_attribute && a.controlled_value );
     const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
@@ -220,7 +224,7 @@ class Annotations extends React.Component {
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
       }
       if ( observation.taxon ) {
-        availableValues = that.termsForTaxon( availableValues, observation ? observation.taxon : null );
+        availableValues = this.termsForTaxon( availableValues, observation ? observation.taxon : null );
       }
       const termPopover = (
         <Popover
@@ -239,7 +243,8 @@ class Annotations extends React.Component {
         </Popover>
       );
       if ( availableValues.length > 0 &&
-           !( groupedAnnotations[ct.id] && !ct.multivalued ) ) {
+           !( groupedAnnotations[ct.id] && !ct.multivalued ) &&
+           ( this.loggedIn || !_.isEmpty( groupedAnnotations[ct.id] ) ) ) {
         rows.push( (
           <tr
             key={ `term-row-${ct.id}` }

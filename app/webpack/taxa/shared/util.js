@@ -1,7 +1,9 @@
 import _ from "lodash";
 import React from "react";
 
-const urlForTaxon = ( t ) => `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}`;
+const urlForTaxon = t => (
+  t ? `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}` : null
+);
 const urlForTaxonPhotos = ( t, params ) => {
   let url = `/taxa/${t.id}-${t.name.split( " " ).join( "-" )}/browse_photos`;
   if ( params ) {

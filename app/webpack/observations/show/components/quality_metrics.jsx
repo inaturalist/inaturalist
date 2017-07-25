@@ -10,7 +10,7 @@ class QualityMetrics extends React.Component {
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
     this.openFlaggingModal = this.openFlaggingModal.bind( this );
     this.flaggingDiv = this.flaggingDiv.bind( this );
-    this.needsIDInputs = this.needsIDInputs.bind( this );
+    this.needsIDRow = this.needsIDRow.bind( this );
   }
 
   popover( ) {
@@ -66,10 +66,15 @@ class QualityMetrics extends React.Component {
     );
   }
 
-  needsIDInputs( ) {
+  needsIDRow( ) {
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
     const needsIDInfo = this.infoForMetric( "needs_id" );
+    if ( !loggedIn &&
+          _.isEmpty( needsIDInfo.votersFor ) &&
+          _.isEmpty( needsIDInfo.votersAgainst ) ) {
+      return null;
+    }
     let votesForCount = needsIDInfo.voteForLoading ? (
       <div className="loading_spinner" /> ) : (
       <UsersPopover
@@ -109,20 +114,26 @@ class QualityMetrics extends React.Component {
         } }
       /> ) : null;
     return (
-      <div className="inputs">
-        <div className="yes">
-          { checkboxYes }
-          <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
-            { I18n.t( "yes" ) }
-          </label> { votesForCount }
-        </div>
-        <div className="no">
-          { checkboxNo }
-          <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
-            { I18n.t( "no_its_as_good_as_it_can_be" ) }
-          </label> { votesAgainstCount }
-        </div>
-      </div>
+      <tr className="improve">
+        <td className="metric_title" colSpan={ 3 }>
+          <i className="fa fa-gavel" />
+          { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
+          <div className="inputs">
+            <div className="yes">
+              { checkboxYes }
+              <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
+                { I18n.t( "yes" ) }
+              </label> { votesForCount }
+            </div>
+            <div className="no">
+              { checkboxNo }
+              <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
+                { I18n.t( "no_its_as_good_as_it_can_be" ) }
+              </label> { votesAgainstCount }
+            </div>
+          </div>
+        </td>
+      </tr>
     );
   }
 
@@ -367,13 +378,7 @@ class QualityMetrics extends React.Component {
               <td className="agree">{ rankPassed ? checkIcon : null }</td>
               <td className="disagree">{ rankPassed ? null : xIcon }</td>
             </tr>
-            <tr className="improve">
-              <td className="metric_title" colSpan={ 3 }>
-                <i className="fa fa-gavel" />
-                { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
-                { this.needsIDInputs( ) }
-              </td>
-            </tr>
+            { this.needsIDRow( ) }
           </tbody>
         </table>
         { this.flaggingDiv( ) }

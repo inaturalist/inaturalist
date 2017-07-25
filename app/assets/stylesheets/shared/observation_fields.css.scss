@@ -83,14 +83,22 @@
 
 .ObservationFieldPopover.popover, .AnnotationPopover.popover, .ActivityItemMenu {
   .search {
-    line-height: 24px;
-    white-space: nowrap;
+    line-height: 17px;
+    &:not(:first-child) {
+      margin-top: 6px;
+    }
     .fa {
       color: $inat-green;
       margin-right: 5px;
+      position: absolute;
     }
     a {
       color: inherit;
+      span {
+        padding-left: 17px;
+        display: inline-block;
+        vertical-align: top;
+      }
     }
   }
   .added-by .view {
