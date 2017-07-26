@@ -1,7 +1,7 @@
 import {
   UPDATE_SEARCH_PARAMS,
   RECEIVE_OBSERVATIONS,
-  UPDATE_SEARCH_PARAMS_FROM_POP,
+  UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY,
   UPDATE_DEFAULT_PARAMS,
   REPLACE_SEARCH_PARAMS
 } from "../actions";
@@ -167,15 +167,10 @@ const searchParamsReducer = ( state = {
       } );
       break;
     case UPDATE_SEARCH_PARAMS:
+    case UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY:
       newState = Object.assign( {}, {
         default: Object.assign( {}, state.default ),
         params: Object.assign( {}, state.params, action.params )
-      } );
-      break;
-    case UPDATE_SEARCH_PARAMS_FROM_POP:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.default, action.params )
       } );
       break;
     case RECEIVE_OBSERVATIONS:
@@ -203,14 +198,15 @@ const searchParamsReducer = ( state = {
   if ( _.isEqual( state.params, newState.params ) ) {
     return state;
   }
-  // if we're popping, the URL should already be updated
-  if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
+  // if we're popping or setting the initial state, the URL should already be updated
+  if ( action.type === UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY ) {
     return newState;
   }
   // if we're just setting the defaults, the URL does not need to update
-  if ( !_.isEqual( newState.params, newState.default ) ) {
-    setUrl( newState.params, newState.default );
+  if ( _.isEqual( newState.params, newState.default ) ) {
+    return newState;
   }
+  setUrl( newState.params, newState.default );
   return newState;
 };
 

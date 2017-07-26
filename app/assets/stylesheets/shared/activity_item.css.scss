@@ -11,6 +11,7 @@ body > div > [role="dialog"] .ActivityItem {
   }
   .taxon {
     display: flex;
+    overflow: hidden;
   }
   .taxon-image {
     width: 44px;

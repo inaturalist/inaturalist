@@ -12,8 +12,7 @@ import {
   fetchObservations,
   fetchObservationsStats,
   setConfig,
-  updateSearchParams,
-  updateSearchParamsFromPop,
+  updateSearchParamsWithoutHistory,
   updateDefaultParams
 } from "./actions/";
 import { fetchAllControlledTerms } from "../show/ducks/controlled_terms";
@@ -61,7 +60,7 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
 setupKeyboardShortcuts( store.dispatch );
 
 window.onpopstate = ( e ) => {
-  store.dispatch( updateSearchParamsFromPop( e.state ) );
+  store.dispatch( updateSearchParamsWithoutHistory( e.state ) );
   store.dispatch( fetchObservationsStats() );
 };
 
@@ -72,7 +71,7 @@ const newParams = normalizeParams( urlParams );
 if ( urlParams.hasOwnProperty( "blind" ) ) {
   store.dispatch( setConfig( { blind: true } ) );
 }
-store.dispatch( updateSearchParams( newParams ) );
+store.dispatch( updateSearchParamsWithoutHistory( newParams ) );
 store.dispatch( fetchAllControlledTerms( ) );
 
 // Somewhat magic, so be advised: binding a a couple actions to changes in
