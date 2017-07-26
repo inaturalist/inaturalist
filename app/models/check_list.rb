@@ -293,12 +293,12 @@ class CheckList < List
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
-      if Atlas.where( "taxon_id IN ( ? )", taxon_ids ).count > 0 ||
-        CompleteSet.where( "taxon_id IN ( ? ) AND place_id IN ( ? )", taxon_ids, current_place_ids ).any?
+      if Atlas.where( "is_active = ? AND taxon_id IN ( ? )", true, taxon_ids ).count > 0 ||
+        CompleteSet.where( "is_active =  ? AND taxon_id IN ( ? ) AND place_id IN ( ? )", true, taxon_ids, current_place_ids ).any?
         #if under atlas or complete set,
         #don't create listings for places of admin_level 0,1,2
         new_place_ids = Place.where( id: new_place_ids ).
-          where( "admin_level NOT IN (?)", [Place::COUNTRY_LEVEL ,Place::STATE_LEVEL ,Place::COUNTY_LEVEL] ).pluck( :id )
+          where( "admin_level IS NULL OR admin_level NOT IN (?)", [Place::COUNTRY_LEVEL ,Place::STATE_LEVEL ,Place::COUNTY_LEVEL] ).pluck( :id )
       end
       add_new_listed_taxa( observation.taxon, new_place_ids )
     end

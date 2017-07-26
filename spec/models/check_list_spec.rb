@@ -123,6 +123,32 @@ describe CheckList, "refresh_with_observation" do
     expect( @check_list.taxon_ids ).not_to include @taxon.id
   end
   
+  it "should add listed taxa descendant of admin_level 0 place if taxon atlased but not parent admin_level 0 place" do
+    @atlas_place = Place.make!(admin_level: 0)
+    @atlas_place.save_geom(
+      GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
+        "MULTIPOLYGON( ((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679 )))"
+      )
+    )
+    @descendant_place = Place.make!(parent: @atlas_place)
+    @descendant_place.save_geom(
+      GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
+        "MULTIPOLYGON( ((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679 )))"
+      )
+    )
+    @atlas = Atlas.make!(is_active: true, taxon: @taxon)
+    @atlas_place_check_list = List.find(@atlas_place.check_list_id)
+    @descendant_place_check_list = List.find(@descendant_place.check_list_id)
+    o = make_research_grade_observation( latitude: @descendant_place.latitude, longitude: @descendant_place.longitude, taxon: @taxon )
+    expect( @descendant_place_check_list.taxon_ids ).not_to include @taxon.id
+    expect( @atlas_place_check_list.taxon_ids ).not_to include @taxon.id
+    CheckList.refresh_with_observation( o )
+    @descendant_place_check_list.reload
+    @atlas_place_check_list.reload
+    expect( @descendant_place_check_list.taxon_ids ).to include @taxon.id
+    expect( @atlas_place_check_list.taxon_ids ).not_to include @taxon.id
+  end
+  
   it "should remove listed taxa if observation deleted" do
     o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
     expect( @place.place_geometry.geom ).not_to be_blank
