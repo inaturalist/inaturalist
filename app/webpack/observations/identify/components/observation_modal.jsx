@@ -226,7 +226,7 @@ class ObservationModal extends React.Component {
     const annoShortcuts = [];
     if ( tab === "annotations" ) {
       controlledTerms.forEach( ct => {
-        let availableValues = ct.values;
+        let availableValues = _.filter( ct.values, v => v.label );
         if ( observation.taxon ) {
           availableValues = _.filter( availableValues, v => (
             !v.valid_within_clade ||
