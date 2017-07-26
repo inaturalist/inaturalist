@@ -4,7 +4,7 @@ import { showNewObservation } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
-    title: "Nearby observations",
+    title: I18n.t( "nearby_observations_" ),
     observations: state.otherObservations.nearby.observations,
     searchParams: state.otherObservations.nearby.params
   };

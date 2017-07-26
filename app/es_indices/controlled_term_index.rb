@@ -42,7 +42,7 @@ class ControlledTerm < ActiveRecord::Base
     # splatten out the array with *
     json = self.attributes.except(*fields_to_remove)
     if values.length > 0
-      json[:values] = values.map{ |v| v.as_indexed_json(is_value: true) }
+      json[:values] = values.select(&:active).map{ |v| v.as_indexed_json(is_value: true) }
     end
     json[:labels] = labels.map{ |l|
       l.attributes.except(

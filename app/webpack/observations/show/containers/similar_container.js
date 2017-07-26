@@ -4,7 +4,7 @@ import { showNewObservation } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
-    title: "Observations of relatives",
+    title: I18n.t( "observations_of_relatives" ),
     observations: state.otherObservations.moreFromClade.observations,
     searchParams: state.otherObservations.moreFromClade.params
   };
