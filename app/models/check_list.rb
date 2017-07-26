@@ -293,14 +293,7 @@ class CheckList < List
     end
     if observation && observation.research_grade? && observation.taxon.species_or_lower?
       Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, adding new listed taxa"
-      if Atlas.where( "is_active = ? AND taxon_id IN ( ? )", true, taxon_ids ).count > 0 ||
-        CompleteSet.where( "is_active =  ? AND taxon_id IN ( ? ) AND place_id IN ( ? )", true, taxon_ids, current_place_ids ).any?
-        #if under atlas or complete set,
-        #don't create listings for places of admin_level 0,1,2
-        new_place_ids = Place.where( id: new_place_ids ).
-          where( "admin_level IS NULL OR admin_level NOT IN (?)", [Place::COUNTRY_LEVEL ,Place::STATE_LEVEL ,Place::COUNTY_LEVEL] ).pluck( :id )
-      end
-      add_new_listed_taxa( observation.taxon, new_place_ids )
+      add_new_listed_taxa( observation.taxon, new_place_ids, current_place_ids, taxon_ids )
     end
     Rails.logger.info "[INFO #{Time.now}] refresh_with_observation #{observation_id}, finished"
   end
@@ -353,11 +346,42 @@ class CheckList < List
     place_ids.compact.uniq
   end
   
-  def self.add_new_listed_taxa(taxon, new_place_ids)
-    CheckList.where(place_id: new_place_ids).
-      joins("JOIN places ON places.check_list_id = lists.id").each do |list|
-      list.add_taxon(taxon, :force_update_cache_columns => true)
-      list.add_taxon(taxon.species, :force_update_cache_columns => true) if taxon.rank_level < Taxon::SPECIES_LEVEL
+  def self.add_new_listed_taxa(taxon, new_place_ids, current_place_ids, taxon_ids)
+    check_lists = CheckList.where(place_id: new_place_ids).
+      joins("JOIN places ON places.check_list_id = lists.id")
+    atlases = Atlas.where( "is_active = ? AND taxon_id IN ( ? )", true, taxon_ids )
+    complete_sets = CompleteSet.where(
+      "is_active =  ? AND taxon_id IN ( ? ) AND place_id IN ( ? )",
+      true, taxon_ids, current_place_ids
+    )
+    check_lists.each do |list|
+      if [Place::COUNTRY_LEVEL ,Place::STATE_LEVEL ,Place::COUNTY_LEVEL].include?( list.place.admin_level )
+        if atlases.exists?
+          atlas_that_excludes_check_list_place = atlases.detect do |atlas|
+            # If an atlas's presence places do not overlap with the list's place
+            # and ancestor places, the atlas excludes the list's place
+            ( atlas.presence_places.pluck(:id) & list.place.self_and_ancestor_ids ).size == 0
+          end
+          if atlas_that_excludes_check_list_place
+            next
+          end
+        end
+        if complete_sets.exists?
+          complete_set_that_excludes_taxon = complete_sets.detect do |complete_set|
+            # A complete set implies that there are listed taxa for all species
+            # in the taxon for that place, so if there is no listed taxon for
+            # this taxon in the complete set place, it should be excluded
+            !ListedTaxon.where( place_id: complete_set.place_id, taxon_id: taxon.id ).exists?
+          end
+          if complete_set_that_excludes_taxon
+            next
+          end
+        end
+      end
+      list.add_taxon( taxon, force_update_cache_columns: true )
+      if taxon.rank_level < Taxon::SPECIES_LEVEL
+        list.add_taxon( taxon.species, force_update_cache_columns: true )
+      end
     end
   end
 

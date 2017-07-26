@@ -48,6 +48,13 @@ Comment.blueprint do
   parent { Observation.make! }
 end
 
+CompleteSet.blueprint do
+  taxon { Taxon.make! }
+  place { Place.make! }
+  user { User.make! }
+  is_active { true }
+end
+
 ConservationStatus.blueprint do
   user { User.make! }
   taxon { Taxon.make! }

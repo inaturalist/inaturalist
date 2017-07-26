@@ -667,6 +667,18 @@ describe Observation do
       o.update_attributes(:longitude => -200)
       expect(o).not_to be_valid
     end
+
+    it "should add the taxon to a check list for an enclosing place if the quality became research" do
+      t = Taxon.make!(:species)
+      p = without_delay { make_place_with_geom }
+      o = without_delay { make_research_grade_candidate_observation( latitude: p.latitude, longitude: p.longitude, taxon: t ) }
+      expect( p.check_list.taxa ).not_to include t
+      i = without_delay { Identification.make!( observation: o, taxon: t ) }
+      o.reload
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      p.reload
+      expect( p.check_list.taxa ).to include t
+    end
   
     describe "quality_grade" do
 
