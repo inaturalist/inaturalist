@@ -217,10 +217,12 @@ en:
   add_photos: Add photos
   add_photos_to_this_observation: Add photos to this observation
   add_place: Add place
+  add_plant_phenology_budding_annotation: 'Add "Plant Phenology: Budding" annotation'
   add_plant_phenology_flowering_annotation: 'Add "Plant Phenology: Flowering" annotation'
   add_plant_phenology_fruiting_annotation: 'Add "Plant Phenology: Fruiting" annotation'
   add_life_stage_adult_annotation: 'Add "Life Stage: Adult" annotation'
   add_life_stage_teneral_annotation: 'Add "Life Stage: teneral" annotation'
+  add_life_stage_subimago_annotation: 'Add "Life Stage: subimago" annotation'
   add_life_stage_pupa_annotation: 'Add "Life Stage: Pupa" annotation'
   add_life_stage_nymph_annotation: 'Add "Life Stage: Nymph" annotation'
   add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
@@ -794,11 +796,13 @@ en:
     male: Male
     female: Female
     plant_phenology: Plant Phenology
+    budding: Budding
     flowering: Flowering
     fruiting: Fruiting
     life_stage: Life Stage
     adult: Adult
     teneral: Teneral
+    subimago: Subimago
     pupa: Pupa
     nymph: Nymph
     larva: Larva
@@ -5006,6 +5010,7 @@ en:
           "Insect life stage=egg": Egg
           "Insect life stage=larva": Larva
           "Insect life stage=teneral": Teneral
+          "Insect life stage=subimago": Subimago
           "Insect life stage=nymph": Nymph
           "Insect life stage=pupa": Pupa
           "Insect life stage=adult": Adult
