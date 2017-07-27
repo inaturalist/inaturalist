@@ -871,7 +871,6 @@ CREATE TABLE controlled_terms (
     id integer NOT NULL,
     ontology_uri text,
     uri text,
-    valid_within_clade integer,
     is_value boolean DEFAULT false,
     active boolean DEFAULT false,
     multivalued boolean DEFAULT false,
@@ -8917,4 +8916,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170706180531');
 INSERT INTO schema_migrations (version) VALUES ('20170710150124');
 
 INSERT INTO schema_migrations (version) VALUES ('20170710211319');
+
+INSERT INTO schema_migrations (version) VALUES ('20170727000020');
 
