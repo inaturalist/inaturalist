@@ -39,11 +39,15 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   // Works for now but it's brittle, and will be confusing for locales other
   // than English. It might be wiser to move this logic to an action or a
   // reducer when the controlled terms get set
-  ["Adult", "Teneral", "Pupa", "Nymph", "Larva", "Egg", "Juvenile"].forEach( v => {
+  ["Adult", "Teneral", "Pupa", "Nymph", "Larva", "Subimago", "Egg", "Juvenile"].forEach( v => {
     bind( `l ${v[0].toLowerCase( )}`, ( ) => {
       dispatch( addAnnotationFromKeyboard( "Life Stage", v ) );
       return false;
     } );
+  } );
+  bind( "p u", ( ) => {
+    dispatch( addAnnotationFromKeyboard( "Plant Phenology", "Budding" ) );
+    return false;
   } );
   bind( "p l", ( ) => {
     dispatch( addAnnotationFromKeyboard( "Plant Phenology", "Flowering" ) );
