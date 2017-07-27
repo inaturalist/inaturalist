@@ -75,6 +75,7 @@ eu:
   a_few_points_to_make_things_clear: Gauzak apur bat hobeto argitzeko zenbait puntu
   a_flag_for_x: 'marka bat: %{x}'
   a_greasemonkey_script: Greasemonkey-ko script-a
+  a_member_of: ren kidea
   a_member_of_taxon_html: 'honetako kide bat: %{taxon}'
   able_to_connect_flickr: Oso ondo! Zure Flickr-eko kontua lotu ahal izan dugu.
   about: 'Honi buruz:'
@@ -1740,6 +1741,7 @@ eu:
   no_flags: Ez dago markarik
   no_flickr_photos_tagged: Ez dago Flickr-ekin etiketatutako argazkirik!
   no_header_row: Ez dago errenkada-goibururik
+  no_ids_have_been_suggested_yet: Oraindik ez da idenfifikaziorik iradoki
   no_journal_post_have_been: Proiektu honi ez zaio egunkariko oharrik gehitu.
   no_license_all_rights_reserved: Ez dago lizentziarik (eskubide guztiak erreserbatuta)
   no_link_flickr: Ez, nahiago dut ezetz.
@@ -1804,6 +1806,7 @@ eu:
   no_x_this_y: Ez dago %{y}honetako  %{x}-(r)ik
   noble_curators: 'Hemengo administratzaile aktiboak: %{site}'
   none: Bat ere ez
+  none_found: Ez da aurkitu
   none_of_the_people_you_follow_have_updates: Zuk jarraitzen dituzun pertsonek oraindik
     ez dute eguneraketarik egin!
   normal: normala
@@ -2187,6 +2190,8 @@ eu:
     baieztapena postan, baina ez egin zalantzarik eta arakatu webgunea.
   please_cite_the_published_source_of_taxon: Mesedez, aipatu taxon honen argitaratutako
     iturria.
+  please_complete_the_following_to_add_project: 'Ondokoa bete behaketa proiektua gehitzeko,
+    mesedez:'
   please_confirm_your_inat_username: 'Baieztatu zure erabiltzaile-izena honekin: %{site_name}'
   please_confirm_your_account_html: Hartu segundo bat  <a href=%{url}>zure kontua
     baieztatzeko</a>.
@@ -2365,6 +2370,7 @@ eu:
   request_password: Pasahitza eskatu
   request_timed_out: Eskaerak itxarote-denbora gainditu du
   required: nahitaezkoa
+  required_: Beharrezkoa
   required_field: Eskatutako eremua
   required_columns_in_order: Ordenan eskatutako zutabeak
   research: ikerketa
@@ -2414,6 +2420,7 @@ eu:
   save_observation: Behaketa gorde
   save_photos: Argazkiak gorde
   save_place: Lekua gorde
+  saved: Gordeta
   saving: Gordetzen...
   saving_verb: Gordetzen
   schemes: Eskemak
@@ -2920,6 +2927,7 @@ eu:
   to_include_your_picassa_with_inat: Picasa-ko zure argazkiak, zure %{site_name} behaketak
     dituzten argazkiak, gehitzeko klikatu eskuineko botoia bi kontuak lotzeko. Google-ra
     bidaliko dizute eta bertan konexioa baimentzen duzun galdetuko dizute
+  to_suggest_an_identification: Identifikazio bat gomendatu
   to_tag_your_flickr_from_here: zure Flickr-eko argazkiak ebaki eta itsatsi gabe hemendik
     etiketatzeko.
   to_the_bat_cave: Baticueva-ra!
@@ -3110,6 +3118,7 @@ eu:
   view_your_inbox: Zure postontzia ikusi
   view_your_calendar: Zure egutegia ikusi
   view_your_observations: Zure behaketak ikusi
+  visually_similar: Bisualki Antzekoa
   vulnerable: zaurgarria
   w00t_no_ungrafted_taxa: Aupa! Ez dago txertatu gabeko taxonik!
   w_photos_only: argazkiekin soilik
@@ -3279,6 +3288,7 @@ eu:
     du:'
   you_must_be_a_member_of_this_project_to_do_that: Proiektuko kide izan behar duzu
     hori egin ahal izateko.
+  you_must_fill_out_the_required_fields: Eskakizun atalak bete behar dituzu
   you_must_select_a_csv_file_to_upload: Igotzeko CSV fitxategia hautatu behar duzu.
   you_must_select_a_place_to_merge_with: Konbinatzeko leku bat hautatu behar duzu.
   you_must_select_dates_to_compare: Alderatu beharreko datak hautatu behar dituzu
