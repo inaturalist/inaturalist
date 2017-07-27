@@ -1881,7 +1881,6 @@ CREATE TABLE listed_taxa (
     last_observation_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    taxon_ancestor_ids character varying(255),
     place_id integer,
     description text,
     comments_count integer DEFAULT 0,
@@ -1891,7 +1890,6 @@ CREATE TABLE listed_taxa (
     establishment_means character varying(32),
     first_observation_id integer,
     observations_count integer DEFAULT 0,
-    observations_month_counts character varying(255),
     taxon_range_id integer,
     source_id integer,
     manually_added boolean DEFAULT false,
@@ -6784,13 +6782,6 @@ CREATE INDEX index_listed_taxa_on_last_observation_id_and_list_id ON listed_taxa
 
 
 --
--- Name: index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_listed_taxa_on_list_id_and_taxon_ancestor_ids_and_taxon_i ON listed_taxa USING btree (list_id, taxon_ancestor_ids, taxon_id);
-
-
---
 -- Name: index_listed_taxa_on_list_id_and_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -6823,13 +6814,6 @@ CREATE INDEX index_listed_taxa_on_place_id_and_taxon_id ON listed_taxa USING btr
 --
 
 CREATE INDEX index_listed_taxa_on_source_id ON listed_taxa USING btree (source_id);
-
-
---
--- Name: index_listed_taxa_on_taxon_ancestor_ids; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_listed_taxa_on_taxon_ancestor_ids ON listed_taxa USING btree (taxon_ancestor_ids);
 
 
 --
@@ -8918,4 +8902,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170710150124');
 INSERT INTO schema_migrations (version) VALUES ('20170710211319');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727000020');
+
+INSERT INTO schema_migrations (version) VALUES ('20170727000602');
 
