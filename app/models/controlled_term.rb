@@ -22,6 +22,7 @@ class ControlledTerm < ActiveRecord::Base
     through: :controlled_term_taxa,
     source: :taxon
 
+  after_commit :index_attributes
   scope :active, -> { where(active: true) }
   scope :attributes, -> { where(is_value: false) }
   scope :values, -> { where(is_value: true) }
@@ -107,6 +108,12 @@ class ControlledTerm < ActiveRecord::Base
     return false if excepted_taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
     return true if taxa.blank? || taxa.detect{ |taxon| candidate_taxon.has_ancestor_taxon_id( taxon.id ) }
     false
+  end
+
+  def index_attributes
+    return true unless attrs.exists?
+    ControlledTerm.elastic_index!( ids: attr_ids )
+    true
   end
 
 end
