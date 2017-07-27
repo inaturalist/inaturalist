@@ -876,7 +876,8 @@ CREATE TABLE controlled_terms (
     multivalued boolean DEFAULT false,
     user_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    blocking boolean DEFAULT false
 );
 
 
@@ -8904,4 +8905,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170710211319');
 INSERT INTO schema_migrations (version) VALUES ('20170727000020');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727000602');
+
+INSERT INTO schema_migrations (version) VALUES ('20170727193500');
 
