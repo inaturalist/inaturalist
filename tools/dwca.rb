@@ -65,6 +65,7 @@ EOS
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
+  opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
 end
 
 if opts.debug

@@ -58,6 +58,12 @@ module DarwinCore
       logger.debug "Archive: #{archive_path}"
       FileUtils.mv(archive_path, @opts[:path])
       logger.info "Archive generated: #{@opts[:path]}"
+      if @benchmarks
+        logger.info %w(BENCHMARK TOTAL AVG).map{|h| h.ljust( 30 )}.join( " " )
+        @benchmarks.each do |key, times|
+          logger.info [key, times.sum.round(5), (times.sum.to_f / times.size).round(5)].map{|h| h.to_s.ljust( 30 )}.join( " " )
+        end
+      end
       @opts[:path]
     end
 
@@ -133,6 +139,18 @@ module DarwinCore
       params
     end
 
+    def benchmark( key )
+      if @opts[:benchmark]
+        @benchmarks ||= {}
+        @benchmarks[key] ||= []
+        start = Time.now
+        yield
+        @benchmarks[key] << Time.now - start
+      else
+        yield
+      end
+    end
+
     def make_occurrence_data
       headers = DarwinCore::Occurrence::TERM_NAMES
       fname = "observations.csv"
@@ -151,9 +169,13 @@ module DarwinCore
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
-            o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
-            csv << DarwinCore::Occurrence::TERMS.map do |field, uri, default, method| 
-              o.send(method || field)
+            benchmark(:obs) do
+              o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
+              row = DarwinCore::Occurrence::TERMS.map do |field, uri, default, method|
+                key = method || field
+                benchmark( "obs_#{key}" ) { o.send( key ) }
+              end
+              benchmark(:obs_csv_row) { csv << row }
             end
           end
         end
