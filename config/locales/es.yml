@@ -127,6 +127,7 @@ es:
   a_few_points_to_make_things_clear: 'Algunos puntos para aclarar las cosas:'
   a_flag_for_x: una marca para %{x}
   a_greasemonkey_script: un script de Greasemonkey
+  a_member_of: Un miembro de
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
   about: Acerca de
@@ -2927,6 +2928,8 @@ es:
     la confirmación en tu correo, pero siéntete libre de explorar el sitio.
   please_cite_the_published_source_of_taxon: Por favor mencione la fuente publicada
     de este taxón.
+  please_complete_the_following_to_add_project: 'Completa lo siguiente para añadir
+    este observación al proyecto:'
   please_confirm_your_inat_username: Por favor confirme su nombre de usuario con %{site_name}
   please_confirm_your_account_html: Por favor tómate un segundo para <a href="%{url}">confirmar
     su cuenta</a>.
@@ -3183,6 +3186,7 @@ es:
   request_password: Solicitar contraseña
   request_timed_out: ¡La petición excedio el tiempo de espera!
   required: obligatorio
+  required_: Obligatorio
   required_field: Campo requerido
   required_columns_in_order: Columnas requeridas en orden
   research: investigación
@@ -3248,6 +3252,7 @@ es:
   save_photos: Guardar fotos
   save_place: Guardar lugar
   save_trip: Guarda el viaje
+  saved: Guardado
   saving: Guardando...
   saving_num_of_count_observations:
     one: Guardando observación...
@@ -3294,6 +3299,7 @@ es:
   second_person_possessive_singular_: Tu %{noun}
   see_something_wrong_with_taxon: ¿Vé algo malo con este taxón? Infórmelo a los curadores.
   seen_it?: ¿Lo has visto?
+  seen_nearby: Visto en la cercanías
   seen_one: ¿Ha visto uno?
   select_all: Seleccionar todo
   select_an_album: Seleccionar un álbum
@@ -3904,6 +3910,7 @@ es:
     observaciones %{site_name}, haga clic en el botón a la derecha para vincular ambas
     cuentas. Será dirigido a Google, donde se le preguntará si autoriza esta conexión
   to_recipient: a
+  to_suggest_an_identification: para sugerir una identificación
   to_tag_your_flickr_from_here: para etiqutar sus fotos de Flickr desde aquí sin cortar
     y pegar.
   to_the_bat_cave: A la Bati-cueva!
@@ -4183,6 +4190,7 @@ es:
   view_your_observations: Ver sus observaciones
   view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: Ver todas tus observaciones de %{x}
+  visually_similar: Similar visualmente
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: ¡No se aceptan taxones sin relaciones taxonómicas!
   w_photos_only: con fotos solamente
@@ -4408,6 +4416,7 @@ es:
   you_must_be_project_manager_to_do_that: Debes ser gerente de proyecto para poder
     hacer eso.
   you_must_choose_an_observation_field: Debes elegir un campo de observación
+  you_must_fill_out_the_required_fields: Debes completar los campos obligatorios
   you_must_have_a_header_row: Debes tener una fila de cabecera
   you_must_select_a_csv_file_to_upload: Debes seleccionar un archivo CSV para subir.
   you_must_select_a_place_to_merge_with: Debes seleccionar un lugar para combinar.
@@ -5340,7 +5349,7 @@ es:
         any: Sí, no importa quién añade la observación al proyecto.
         none: No.
       curator_coordinate_access_label: ¿Quieres hacer que las coordenadas ocultas/privadas
-        de la observación sean visibles para el administrador del proyecto?
+        de la observación sean visibles para los administradores del proyecto?
       curator_coordinate_access_note: También puede elegir el compartir las coordenadas
         privadas de observaciones en este proyecto, con base caso a caso. Serán, tan
         solo, valores base para nuevas observaciones añadidas al proyecto.
