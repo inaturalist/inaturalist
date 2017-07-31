@@ -26,8 +26,10 @@ class ConservationStatus < ActiveRecord::Base
     where("ST_Intersects(place_geometries.geom, ST_Point(?, ?))", lon, lat)
   }
 
+  AUTHORITIES = []
   ["IUCN Red List", "NatureServe", "Norma Oficial 059"].each do |authority|
     const_set authority.strip.gsub(/\s+/, '_').underscore.upcase, authority
+    AUTHORITIES << authority
   end
 
   def to_s
@@ -123,6 +125,7 @@ class ConservationStatus < ActiveRecord::Base
       source_id: source_id,
       authority: authority,
       status: status ? status.downcase : nil,
+      status_name: status_name,
       geoprivacy: geoprivacy,
       iucn: iucn
     }
