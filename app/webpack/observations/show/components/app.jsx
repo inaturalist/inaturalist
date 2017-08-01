@@ -249,11 +249,13 @@ const App = ( {
                   <ProjectsContainer />
                 </Col>
               </Row>
-              <Row>
-                <Col xs={12}>
-                  <TagsContainer />
-                </Col>
-              </Row>
+              { observation && observation.tags && observation.tags.length > 0 ? (
+                <Row>
+                  <Col xs={12}>
+                    <TagsContainer />
+                  </Col>
+                </Row>
+              ) : null }
               <Row>
                 <Col xs={12}>
                   <ObservationFieldsContainer />
