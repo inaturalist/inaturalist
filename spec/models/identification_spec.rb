@@ -776,14 +776,6 @@ describe Identification, "category" do
       i3.reload
       expect( i3.category ).to eq Identification::MAVERICK
     end
-    # it "is a higher-rank disagreement with the community taxon" do
-    #   i1 = Identification.make!( observation: o, taxon: child )
-    #   i2 = Identification.make!( observation: o, taxon: child )
-    #   i3 = Identification.make!( observation: o, taxon: child )
-    #   i4 = Identification.make!( observation: o, taxon: parent )
-    #   i4.reload
-    #   expect( i4.category ).to eq Identification::MAVERICK
-    # end
   end
   describe "should be leading when" do
     it "is the only ID" do
@@ -935,15 +927,23 @@ describe Identification, "category" do
       o.reload
       expect( o.community_taxon ).to eq @Calypte
     end
-    # it "should be supporting, maverick, improving" do
-    #   expect( @sequence[0].category ).to eq Identification::SUPPORTING
-    #   expect( @sequence[1].category ).to eq Identification::MAVERICK
-    #   expect( @sequence[2].category ).to eq Identification::IMPROVING
-    # end
     it "should be improving, leading, supporting" do
       expect( @sequence[0].category ).to eq Identification::IMPROVING
       expect( @sequence[1].category ).to eq Identification::LEADING
       expect( @sequence[2].category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "after taxon swap" do
+    let(:swap) { make_taxon_swap }
+    let(:o) { make_research_grade_observation( taxon: swap.input_taxon ) }
+    it "should be improving, supporting for acitve IDs" do
+      expect( o.identifications.sort_by(&:id)[0].category ).to eq Identification::IMPROVING
+      expect( o.identifications.sort_by(&:id)[1].category ).to eq Identification::SUPPORTING
+      swap.commit
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.sort_by(&:id)[2].category ).to eq Identification::IMPROVING
+      expect( o.identifications.sort_by(&:id)[3].category ).to eq Identification::SUPPORTING
     end
   end
 end
