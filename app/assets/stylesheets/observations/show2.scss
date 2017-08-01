@@ -309,6 +309,7 @@ a.UserImage {
       }
       .PhotoBrowser {
         display: block;
+        overflow: hidden;
         width: 100%;
         text-align: center;
         min-height: 500px;
