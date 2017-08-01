@@ -782,7 +782,7 @@ class ListedTaxon < ActiveRecord::Base
   def observed_in_place?
     p = place || list.place
     return false unless p
-    scope = Observation.in_place(p).of(taxon)
+    scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", p).of(taxon)
     if list.is_a?(LifeList)
       scope = scope.by(list.user)
     end
