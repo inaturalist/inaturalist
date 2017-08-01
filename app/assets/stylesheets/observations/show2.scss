@@ -789,10 +789,14 @@ h3, h4 {
   .map_details {
     padding: 10px;
     font-size: 14px;
-    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    .geoprivacy-icon {
+      line-height: 1.3;
+      margin-right: 5px;
+    }
     .place-guess {
-      display: inline-block;
-      max-width: 80%;
+      flex: 2;
       span, div {
         display: inline;
       }
@@ -813,7 +817,6 @@ h3, h4 {
       background: none !important;
     }
     .details_menu {
-      float: right;
       button {
         margin: 0px 0px 2px 12px;
         padding: 0;

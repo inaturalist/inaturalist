@@ -105,7 +105,7 @@ class CommunityIdentification extends React.Component {
 
   optOutPopover( ) {
     // must be observer, IDer, must not have opted out already
-    if ( !( this.userIsObserver && this.ownerID && !this.observationOptedOut ) ) {
+    if ( !( this.userIsObserver && this.ownerID && this.props.observation.taxon && !this.observationOptedOut ) ) {
       return ( <div /> );
     }
     // the taxa must be different, or the user defaults to opt-out, but opted in here
