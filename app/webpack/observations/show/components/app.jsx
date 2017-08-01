@@ -92,18 +92,15 @@ const App = ( {
   if ( _.find( unresolvedFlags, f => f.flag === "spam" ) ) {
     /* global SITE */
     const message = (
-      <span>
-        This observation has been flagged as spam and is no longer
-        publicly visible. You can see it because you created it, or you are a
-        site curator. If you think this is a mistake, please <a
-          href={ `mailto:${SITE.help_email}` }
-          className="contact"
-        >
-          contact us
-        </a>. <a href={ `/observations/${observation.id}/flags` }>
-          Manage flags
-        </a>
-      </span>
+      <span
+        dangerouslySetInnerHTML={ { __html: I18n.t(
+          "views.observations.show.observation_flagged_notice_html",
+          {
+            help_email: SITE.help_email,
+            observation_id: observation.id
+          }
+        ) } }
+      />
     );
     flashes.push( <FlashMessage
       key="flash_flag"
@@ -169,18 +166,18 @@ const App = ( {
                 >
                   <MenuItem eventKey="delete">
                     <i className="fa fa-trash" />
-                    Delete
+                    { I18n.t( "delete" ) }
                   </MenuItem>
                   <MenuItem
                     eventKey="duplicate"
                     href={ `/observations/new?copy=${observation.id}` }
                   >
                     <i className="fa fa-files-o" />
-                    Duplicate
+                    { I18n.t( "duplicate_verb" ) }
                   </MenuItem>
                   <MenuItem eventKey="license">
                     <i className="fa fa-copyright" />
-                    Edit Licensing
+                    { I18n.t( "edit_license" ) }
                   </MenuItem>
                 </SplitButton>
               </Col> ) : ( <FollowButtonContainer /> )
