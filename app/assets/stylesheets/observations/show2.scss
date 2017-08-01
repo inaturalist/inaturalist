@@ -396,6 +396,7 @@ a.UserImage {
           }
           .image-gallery-image {
             position: relative;
+            width: 100%; // needed for IE
           }
           .captions {
             line-height: 18px;
