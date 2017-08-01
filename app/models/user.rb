@@ -468,6 +468,7 @@ class User < ActiveRecord::Base
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
+    User.where( id: id ).update_all( observations_count: observations.count )
     LifeList.delay(priority: USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
     Observation.delay(priority: USER_INTEGRITY_PRIORITY).index_observations_for_user( id )
   end
