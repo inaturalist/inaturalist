@@ -4,7 +4,6 @@ describe ObservationsController do
   describe "create" do
     before(:each) { enable_elastic_indexing( Observation ) }
     after(:each) { disable_elastic_indexing( Observation ) }
-    render_views
     let(:user) { User.make! }
     before do
       sign_in user
