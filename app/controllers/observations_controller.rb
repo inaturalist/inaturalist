@@ -264,12 +264,14 @@ class ObservationsController < ApplicationController
         
         user_viewed_updates if logged_in?
 
-        if viewing_new_obs_show?
-          @skip_application_js = true
-          @flash_js = true
-          render layout: "bootstrap", action: "show2"
-          return
-        end
+        # if viewing_new_obs_show?
+        @skip_application_js = true
+        @flash_js = true
+        render layout: "bootstrap", action: "show2"
+        return
+        # end
+
+        # TODO remove the rest of this html block
 
         # always display the time in the zone in which is was observed
         Time.zone = @observation.user.time_zone

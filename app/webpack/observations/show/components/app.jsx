@@ -306,12 +306,6 @@ const App = ( {
       <LicensingModalContainer />
       <MediaViewerContainer />
       <ProjectFieldsModalContainer />
-      <div className="quiet box text-center opt-out">
-        { I18n.t( "tired_of_testing_this_new_version" ) }
-        <Button bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
-          { I18n.t( "take_me_back" ) }
-        </Button>
-      </div>
     </div>
   );
 };
