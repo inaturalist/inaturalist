@@ -246,7 +246,11 @@ const App = ( {
                   <ProjectsContainer />
                 </Col>
               </Row>
-              { observation && observation.tags && observation.tags.length > 0 ? (
+              { (
+                  ( config.currentUser && config.currentUser.id === observation.user.id )
+                  ||
+                  observation && observation.tags && observation.tags.length > 0
+                ) ? (
                 <Row>
                   <Col xs={12}>
                     <TagsContainer />

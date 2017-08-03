@@ -27,6 +27,7 @@
       login: current_user.login,
       curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
       icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
+      roles: current_user.roles.map(&:name),
       prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
       prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
       prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,

@@ -9,6 +9,9 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
   let menuItems = [];
   const loggedInUser = ( config && config.currentUser ) ? config.currentUser : null;
   const viewerIsActor = loggedInUser && loggedInUser.id === item.user.id;
+  const viewerIsCurator = loggedInUser && loggedInUser.roles && (
+    loggedInUser.roles.indexOf( "admin" ) >= 0 || loggedInUser.roles.indexOf( "curator" ) >= 0
+  );
   if ( isID ) {
     if ( viewerIsActor ) {
       menuItems.push( (
@@ -122,6 +125,16 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
           { I18n.t( "flag" ) }
         </MenuItem>
       ) );
+      if ( viewerIsCurator ) {
+        menuItems.push( (
+          <MenuItem
+            key={ `comment-delete-${item.id}` }
+            eventKey="delete"
+          >
+            { I18n.t( "delete" ) }
+          </MenuItem>
+        ) );
+      }
     }
   }
   return (

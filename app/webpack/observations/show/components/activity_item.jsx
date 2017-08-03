@@ -131,6 +131,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     if ( idCategory ) {
       status = (
         <OverlayTrigger
+          container={ $( "#wrapper.bootstrap" ).get( 0 ) }
           placement="top"
           delayShow={ 200 }
           overlay={ (
