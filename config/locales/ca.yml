@@ -120,6 +120,7 @@ ca:
   a_few_points_to_make_things_clear: Més informació per aclarir les coses
   a_flag_for_x: una marca de %{x}
   a_greasemonkey_script: un script de Greasemonkey
+  a_member_of: Un membre de
   a_member_of_taxon_html: un tipus de %{taxon}
   able_to_connect_flickr: Molt bé! L'hem pogut vincular al compte de Flickr.
   about: Quant a
@@ -393,6 +394,7 @@ ca:
     faran en aquesta zona horària tret que especifiqueu el contrari.
   all_your_projects: Tots els vostres projectes
   allow_any: permetre-li a qualsevol
+  allow_curator_access: Permeteu l'accés a l'administrador
   allow_curator_coordinate_access: Permeteu al supervisor coordinar l'accés
   allow_project_curators_to_view_your_private_coordinates: Permet als supervisors
     del projecte a visualitzar les vostres coordenades privades
@@ -1868,7 +1870,7 @@ ca:
     portuguese: Portuguès
     romanian: Romanès
     russian: Rus
-    spanish: Espanyol
+    spanish: Castellà
     swedish: Suec
     tagalog: Tagal
     tahitian: Tahitià
@@ -1990,9 +1992,9 @@ ca:
     ca: Català
     en: Anglès
     en-US: Anglès (Estats Units)
-    es: Espanyol
-    es-ES: Espanyol (Espanya)
-    es-MX: Espanyol (Mèxic)
+    es: Castellà
+    es-ES: Castellà (Espanya)
+    es-MX: Castellà (Mèxic)
     fi: Finlandès
     fr: Francès
     eu: Basc
@@ -2296,6 +2298,7 @@ ca:
   no_identifications_added:
     current_user: No heu afegit identificacions a les observacions de ningú.
     user: '%{user} no ha afegit identificacions a les observacions de ningú.'
+  no_ids_have_been_suggested_yet: Encara no s'ha suggerit cap identificació
   no_interaction_data_available: Sense dades d'interacció disponibles
   no_its_as_good_as_it_can_be: No, és tan bo com ho pot ser
   no_favorites_added:
@@ -2376,6 +2379,7 @@ ca:
   noble_curators: Supervisors actius d'%{site}
   non_human?: No humà?
   none: Cap
+  none_found: No s'ha trobat cap
   none_of_the_people_you_follow_have_updates: Les persones que seguiu encara no han
     fet cap actualització!
   normal: normal
@@ -2924,6 +2928,8 @@ ca:
     a explorar el lloc web.
   please_cite_the_published_source_of_taxon: Especifiqueu la font publicada d'aquest
     tàxon.
+  please_complete_the_following_to_add_project: 'Si us plau completeu el següent per
+    afegir aquesta observació al projecte:'
   please_confirm_your_inat_username: Confirmeu el nom d'usuari a %{site_name}
   please_confirm_your_account_html: <a href="%{url}">Confirmeu el vostre compte</a>.
   please_enter_a_new_pass: Introduïu una nova contrasenya i confirmeu-la.
@@ -3182,6 +3188,7 @@ ca:
   request_password: Sol·liciteu la contrasenya
   request_timed_out: La petició ha excedit el temps d'espera
   required: obligatori
+  required_: Requerit
   required_field: Camp requerit
   required_columns_in_order: Columnes requerides en ordre
   research: recerca
@@ -3247,6 +3254,7 @@ ca:
   save_photos: Desa fotos
   save_place: Desa lloc
   save_trip: Desa viatge
+  saved: Desat
   saving: Desant...
   saving_num_of_count_observations:
     one: Desant observació...
@@ -3292,6 +3300,7 @@ ca:
   second_person_possessive_singular_: El vostre %{noun}
   see_something_wrong_with_taxon: Aquest tàxon és incorrecte? Comuniqueu-ho als supervisors.
   seen_it?: L’heu vist?
+  seen_nearby: Vist a prop
   seen_one: Heu vist un?
   select_all: Selecciona-ho tot
   select_an_album: Selecciona un àlbum
@@ -3482,7 +3491,7 @@ ca:
   sources_and_credits: Fonts i Crèdits
   sourcing: Posant la font
   spam: contingut brossa
-  spanish: Espanyol
+  spanish: Castellà
   species: Espècies
   species_from_around_the_world: Espècies de tot el món
   species_guess: Estimació d'espècies
@@ -3897,6 +3906,7 @@ ca:
     observacions a %{site_name}, feu clic al botó de la dreta per vincular els dos
     comptes. Us enviarem a Google, on us preguntaran si autoritzeu aquesta connexió
   to_recipient: a
+  to_suggest_an_identification: per suggerir una identificació
   to_tag_your_flickr_from_here: per etiquetar les fotos de Flickr des d'aquí sense
     retallar i enganxar.
   to_the_bat_cave: A la Baticova!
@@ -4175,6 +4185,7 @@ ca:
   view_yours: Veure el vostre
   view_all_of_your_observations_from_x: Veure totes les vostres observacions des de
     %{x}
+  visually_similar: Visualment Semblant
   vulnerable: vulnerable
   w00t_no_ungrafted_taxa: Ep! No s'accepten taxons sense relacions taxonòmiques!
   w_photos_only: amb fotos
@@ -4399,6 +4410,7 @@ ca:
   you_must_be_project_manager_to_do_that: Heu de ser gestor d'un projecte per fer
     això
   you_must_choose_an_observation_field: Heu de triar un camp d'observació
+  you_must_fill_out_the_required_fields: Heu d'omplir els camps requerits
   you_must_have_a_header_row: Heu de tenir una fila de capçalera
   you_must_select_a_csv_file_to_upload: Heu de seleccionar un arxiu CSV per pujar.
   you_must_select_a_place_to_merge_with: Heu de seleccionar un lloc per combinar.
@@ -5289,7 +5301,7 @@ ca:
           <p>
            La majoria de les categories d'organismes tenen un "nom comú" en les llengües vivel. Aquests noms solen ser reconeixibles, fàcil de pronunciar, i estables en el temps, però molts organismes tenen diferents  noms en diferents llocs, fins i tot en el mateix idioma, el que pot fer que sigui difícil de referir-se a aquests organismes sense confusió.
            Els científics aborden aquest problema mitjançant l'ús d'un únic "nom científic" per a cada categoria d'organisme que s'ajusti a les normes de <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature">nomenclatura biològica</a>,
-           però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre l la història evolutiva de les relacions dels diferents organismes, reduint de nou la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
+           però aquests noms solen basar-se en el llatí, una llengua que ningú ja parla, per tant, no són tan fàcils de recordar per a moltes persones com els noms comuns. El nom científic també pot reflectir la ubicació taxonòmica d'un organisme, de manera que poden canviar quan els científics coneixen més sobre la història evolutiva de les relacions entre els diferents organismes, reduint novament la seva utilitat per a la comunicació, fins i tot entre les persones que coneixen el nom científic.
           </p>
           <p>
            El vell adagi, ho resumeix: "Els noms Comuns canvien a cada  lloc, el nom científic canvia en el temps."

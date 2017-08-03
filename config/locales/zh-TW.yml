@@ -728,6 +728,8 @@ zh-TW:
   comprehensive_list: 綜合列表
   concept_status: 概念狀態
   configure: 設置
+  configure_a_widget_to_show: 設定小工具來在您的網站、或部落格上顯示出 %{site_name} 的觀察。您可能會需要於您的 HTML
+    裡 <code>&lt;head&gt;</code> 來包含內嵌式 CSS。請隨意重新編寫 CSS 吧。
   confirm: 確認
   confirm_membership: 確認成員
   confirm_new_password: 確認新密碼
@@ -1427,6 +1429,7 @@ zh-TW:
   inat_believes_this_is_a_complete_listing: '%{site_name} 相信這是此地區物種分類的完整列表。'
   inat_user_profile: '%{site_name}： %{user}的個人資料'
   inat_will_be_back_on: '%{site_name} 將會返回它的足/翼/鰭/觸手/偽足'
+  inaturalist_is_an_online_community: '%{site_name} 線上的自然學友社群！透過添加您的照片，您可協助研究員學習更多有關'
   inaturalist_is_catching_some_zs: '%{site_name} 正在獲取一些 Zs'
   inaturalist_observations_by: '%{site_name} &#58;由 %{login} 作出的觀察'
   inaturalist_places: '%{site_name} 地點'
@@ -1591,9 +1594,16 @@ zh-TW:
   link_your_flickr_account_with_inat_so: 連接您的 Flickr 帳號至 %{site_name}；這樣您便可添加您觀察的照片。
   link_your_picasa_account: 連結您的 Picasa 帳號
   linked_facebook: 您的 %{site_name} 帳號目前已連結至您的臉書帳號。
+  linked_facebook_automaticaly: 另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name}
+    與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？
   linked_facebook_howto: 要將臉書連接到 %{site_name}，請點擊右方連結來登入到 Facebook.com。
+  linked_facebook_password: 我們不會詢問您的臉書密碼（但臉書也許會檢查按鍵所傳給您的 URL 來確認是屬於 Facebook.com）。我們也不會更改您在臉書上的資料，除非您要求我們這麼做。
   linked_flickr: 您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。
+  linked_flickr_automatically: 另外，請留意如果您經由 Flickr 登入至 %{site_name} 的話，我們會自動重新連結您的
+    %{site_name} 與 Flickr 帳號。若您有使用 Flickr；您應該會想要匯入在 Flickr 上的照片，很合理是吧？
   linked_flickr_hotwo: 您能以 %{site_name} 啟動您的 Flickr 帳號來透過點擊此連結添加照片。
+  linked_flickr_password_html: <strong>我們不會詢問您的 Flickr 密碼</strong>（但 Flickr 也許會檢查按鍵所傳給您的
+    URL 來確認是屬於 Flickr.com）。
   list: 清單
   list_deleted: 列表已刪除。
   list_saved: 列表已儲存。
@@ -1799,6 +1809,7 @@ zh-TW:
   most_agree: 最多同意
   most_disagree: 最多不同意
   most_observations: 最多觀察
+  most_recent_observation_by_date_observed: 依所觀察日期的近期可驗證觀察
   most_species: 最多物種
   most_observed_species: 最多被觀察的物種
   multiple: 多種
@@ -2007,6 +2018,7 @@ zh-TW:
   obscured_: 隱蔽
   obscured: 不清
   obscured_or_private: 隱蔽或私有
+  obscured_description: 公共座標隨機顯示於距實際座標的 10 公里範圍內。實際座標僅您、或您所添加觀察的專案之策展人可見。
   observation: 觀察
   observation_: 觀察
   observation_added: 觀察已添加
@@ -2110,6 +2122,7 @@ zh-TW:
     observe_panel_title: 讓我們來開始發佈一些觀察
     observe_panel_body_p1_local: 需要靈感？這裡有一些在附近被觀察到的生物...
     observe_panel_body_p1_global: 需要靈感？這裡有一些被觀察到的生物...
+    observe_panel_body_p3: 一旦您分享了您的觀察，此頁面將會顯示出來自於社群評論與鑑定的更新內容。
     follow_panel_title_local: 關注一些附近的自然學友
     follow_panel_title_global: 關注一些活躍的自然主義者
     follow_panel_body: 如果您查看了這些個人檔案且點擊以下按鍵，當他們發佈觀察時您將會被更新
@@ -2123,6 +2136,7 @@ zh-TW:
   only_administrators_may_access_that_page: 僅有管理員可存取該頁面
   only_accepts_taxa: 僅接受物種分類
   only_an_admin_can_remove_project_users: 僅有管理員可移除專案用戶
+  only_country_state_and_county: 僅國家、州、和目前所顯示的縣級地方。放大來查看較小的地方。
   only_curators_can_add_edit_scientific_names: 僅有策展人可添加/編輯學名。
   only_curators_can_access_that_page: 僅有策展人能存取該頁面。
   only_files_with_10000_rows_at_a_time: 檔案一次只能 10000 行，再麻煩了
@@ -2403,6 +2417,7 @@ zh-TW:
   please_add_this_observation_to: 請添加此觀察至
   please_add_this_to_x_html: 請添加此至%{x}
   please_allow_a_few_weeks_for_external_sites: 請允許幾週時間讓外部網站由此筆觀察做同步更改
+  please_be_careful_particulary_when: 請在刪除物種分類時特別小心。尤其如果物種分類有關聯的觀察、 ID，已列出分類等等。
   please_check_for_you_confirmation_email: 歡迎來到 %{site_name}！請檢查您的確認電子郵件，並請隨意來瀏覽此站台。
   please_cite_the_published_source_of_taxon: 請標註此物種分類的發佈來源。
   please_complete_the_following_to_add_project: 請完成以下內容來添加觀察至專案裡：
@@ -2575,6 +2590,7 @@ zh-TW:
   refresh: 重新整理
   refresh_listed_taxa: 重新整理列出的物種分類
   refreshing: 重新整理中
+  register_for_this_event_at_x_html: 在 %{x} 事件的註冊
   reject?: 拒絕？
   reject_the_community_id: 駁回社群 ID
   related_species: 相關物種
@@ -2811,6 +2827,7 @@ zh-TW:
   somewhere_on_earth: 在地球上某處
   somewhere: （某處...）
   sorry_flickr_isnt_responding_at_the_moment: 很抱歉，Flickr 目前沒有回應。
+  sorry_how_about_we_try_repeat: 很抱歉！要不要讓我們嘗試在其它物種名稱資料庫來重複您的搜尋呢？如果我們有發現事物，我們會儲存它以讓您可在下次找出。
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: 很抱歉，其中一張 Flickr 照片不存在或是您沒有權限來檢視它。
   sorry_picasa_isnt_responding_at_the_moment: 很抱歉，Picasa 目前沒有回應。
   sorry_that_photo_provider_isnt_responding: 很抱歉，此刻照片提供者沒有回應。請稍後再重試。
@@ -3109,6 +3126,8 @@ zh-TW:
     one: 此觀察存在 1 個專案裡
     other: 此觀察存在 %{count} 個專案裡
   this_observation_is_research_grade: 此觀察為研究評分！
+  this_observation_lies_outside_the: 此物種的觀察不在 %{site_name} 的範圍內。這代表著可能是 %{site_name}
+    的範圍有誤、ID 錯誤、內容不定，或是範圍擴大！
   this_observation_was_created_using: 此觀察被創建使用於：
   this_photo_is_already_associated: 此照片已分配至您的觀察之一了。
   this_place_has_no_check_list: 此地點沒有清單，因此沒有指南。
@@ -3140,6 +3159,8 @@ zh-TW:
   to_add_ids: 添加 ID
   to_an: 至一個
   to_configure_your_widget: 來設置您的小工具。
+  to_include_your_picassa_with_inat: 若要讓您的 %{site_name} 觀察包含著您的 Picasa 照片，點擊右側按鍵來連結您那兩個帳號。您將會跳到
+    Google 上來被請求授權此連接。
   to_recipient: 至
   to_suggest_an_identification: 提議一個鑑定
   to_tag_your_flickr_from_here: 來於此標記您的 Flickr 照片且不裁切並貼上。
@@ -3258,6 +3279,7 @@ zh-TW:
   user_added_x_observations_html: '%{user}添加%{x}個觀察'
   user_commented_on: '%{user} 已評論您的 %{title} %{time}'
   user_commented: '%{user} 已評論'
+  user_faved_a_noun_by_owner: '%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛'
   user_follows: '%{user}關注'
   user_hasnt: '%{user}沒有'
   user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project}
@@ -3747,6 +3769,10 @@ zh-TW:
       identify:
         review_all_tooltip: 標示頁面所有觀察為已檢閱。
         unreview_all_tooltip: 對在頁面上的所有觀察移除已檢閱狀態
+      import:
+        project_csv_template_notice_html: |-
+          這是一個用於此專案的模版檔案，它可能有助於您關於在 CSV 檔案結構方面。
+          <a href="%{url}">下載模版</a>
       show:
         allow_curator_coordinate_access_desc_html: 允許專案策展人來檢視此觀察的私有座標。
         identification_count_desc: '#的各別分類單元之鑑定'
@@ -3765,6 +3791,11 @@ zh-TW:
         dont_forget_the_invite_link_placeholder: 不要忘記 {{INVITE_LINK}} 位置標誌符
         invite_other_photographers_to_inat: 邀請其他攝影師到 %{site_name}
     places:
+      kml_field_desc: 地點邊界的 KML。您可以使用在 Google 地圖、Google 地球，或多數的 GIS 應用程式。另外內容必須至少要有一個多邊形且小於
+        1 MB（網站策展人可使用到 5 MB）。
+      edit:
+        complex_boundary_note_html: 此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a>
+          來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
       index:
         adding_new_places: 添加新地點中
         confirming_identifications: 依添加對應觀察的 ID 來提交鑑定
@@ -3811,6 +3842,8 @@ zh-TW:
         submission_models:
           any: 任一
           curators: 專案策展人
+      join:
+        invite_only_description: 此專案的成員資格僅限於有獲得邀請。若您想加入，請聯絡下列任一策展人來請求一份邀請。
       project_user_curator_coordinate_access_labels:
         observer: 是的，但僅在我自行添加觀察至專案。
         any: 是的，不論誰添加觀察至專案裡。
@@ -3861,6 +3894,7 @@ zh-TW:
           any: 任何
           joined: 您已加入的專案
           none: 不，僅有您可添加您的觀察至專案
+        project_settings_desc: 請記住，這並沒有給予專案能存取您的私有座標、或寄發給您更新內容的權限。您必須要加入專案才能授予權限、或依各個情況授予它們權限。
         place_help_html: 為地點網站自訂一些方面內容，例如通用名稱
       show:
         take_a_chance_to_review_html: 來試試看<a href="%{link}">我們的指南</a>。
