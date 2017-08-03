@@ -136,6 +136,7 @@ it:
   a_few_points_to_make_things_clear: 'Alcune note per chiarire le cose:'
   a_flag_for_x: un contrassegno per %{x}
   a_greasemonkey_script: uno script Greasemonkey
+  a_member_of: Un membro di
   a_member_of_taxon_html: un membro di %{taxon}
   able_to_connect_flickr: Grande! Siamo stati in grado di collegare il tuo account
     di Flickr.
@@ -409,6 +410,7 @@ it:
     saranno assegnate di default a questo fuso orario a meno che non specifichi diversamente
   all_your_projects: Tutti i tuoi progetti
   allow_any: consenti a tutti
+  allow_curator_access: Permetti l'accesso ai curatori
   allow_curator_coordinate_access: Consenti l'accesso alle coordinate ai curatori
   allow_project_curators_to_view_your_private_coordinates: Consenti ai curatori del
     progetto di vedere le tue coordinate private
@@ -1336,7 +1338,7 @@ it:
   extinct_in_the_wild: estinta in natura
   extra_properties: Proprietà aggiuntive
   extras: Extra
-  evidence_of_organism: Prova dell'organismo
+  evidence_of_organism: Evidenza della presenza dell'organismo
   evidence_of_organism?: C'è evidenza dell'organismo?
   facebook: Facebook
   facebook_account_information: Informazioni del tuo account Facebook
@@ -2307,6 +2309,7 @@ it:
   no_identifications_added:
     current_user: Non hai aggiunto identificazioni a nessuna delle osservazioni
     user: '%{user} non ha aggiunto nessuna identificazione a nessuna delle osservazioni'
+  no_ids_have_been_suggested_yet: Ancora nessuna ID suggerita
   no_interaction_data_available: Nessuna informazione di interazione disponibile
   no_its_as_good_as_it_can_be: No, è al meglio di quanto può essere
   no_favorites_added:
@@ -2388,6 +2391,7 @@ it:
   noble_curators: Curatori attivi di %{site}
   non_human?: Non umano?
   none: Nessuno
+  none_found: Non trovato
   none_of_the_people_you_follow_have_updates: Nessuna delle persone che segui ha ancora
     fatto aggiornamenti!
   normal: normale
@@ -2938,6 +2942,8 @@ it:
     il sito.
   please_cite_the_published_source_of_taxon: Per favore, cita la fonte per questo
     taxon.
+  please_complete_the_following_to_add_project: 'Per favore completa i campi seguenti
+    per aggiungere l''osservazione al progetto:'
   please_confirm_your_inat_username: Per favore, conferma il tuo nome utente %{site_name}
   please_confirm_your_account_html: Per favore, dedica qualche secondo a <a href="%{url}">confermare
     il tuo account</a>
@@ -3115,7 +3121,7 @@ it:
   recent_additions: Aggiunte recenti
   recent_comments_on_your_stuff: Ultimi commenti sui tuoi contenuti
   recent_evidence?: Prova recente?
-  recent_evidence_of_organism: Recenti prove di un organismo
+  recent_evidence_of_organism: Evidenze recenti della presenza dell'organismo
   recent_observations: Osservazioni recenti
   recent_post: Post recenti
   recent_atom_observations_by: Osservazioni recenti di %{login} (Atom)
@@ -3196,6 +3202,7 @@ it:
   request_password: Richiedi password
   request_timed_out: Richiesta scaduta!
   required: obbligatorio
+  required_: Obbligatorio
   required_field: campo obbligatorio
   required_columns_in_order: Colonne richieste in ordine
   research: ricerca
@@ -3263,6 +3270,7 @@ it:
   save_photos: Salva le foto
   save_place: Salva il luogo
   save_trip: Salva il viaggio
+  saved: Salvato
   saving: Salvataggio...
   saving_num_of_count_observations:
     one: Salvando l'osservazione...
@@ -3309,6 +3317,7 @@ it:
   see_something_wrong_with_taxon: Vedi qualcosa di sbagliato riguardo questo taxon?
     Informa i curatori.
   seen_it?: Lo hai visto?
+  seen_nearby: Visto nelle vicinanze
   seen_one: Ne hai visto uno?
   select_all: Seleziona tutto
   select_an_album: Seleziona un album
@@ -3911,6 +3920,7 @@ it:
     %{site_name}, clicca sul pulsante a destra per collegare i due account. Sarai
     inviato a Google, dove ti sarà chiesto di autoraizzare questa connessione.
   to_recipient: a
+  to_suggest_an_identification: per suggerire un'identificazione
   to_tag_your_flickr_from_here: per etichettare le tue foto Flickr da qui senza tagliare
     e incollare.
   to_the_bat_cave: Per la Bat Caverna!
@@ -4187,6 +4197,7 @@ it:
   view_your_observations: Visualizza le tue osservazioni
   view_yours: Visualizza le tue
   view_all_of_your_observations_from_x: Visualizza tutte le tue osservazioni da %{x}
+  visually_similar: Visivamente simili
   vulnerable: Vulnerabile
   w00t_no_ungrafted_taxa: Ops! Non si accettano taxa senza relazioni tassonomiche!
   w_photos_only: con foto
@@ -4415,6 +4426,7 @@ it:
   you_must_be_project_manager_to_do_that: Dovresti essere un gestore del progetto
     per poterlo fare
   you_must_choose_an_observation_field: Devi scegliere un campo dell'osservazione
+  you_must_fill_out_the_required_fields: Devi compilare i campi richiesti
   you_must_have_a_header_row: Devi avere una riga d'intestazione
   you_must_select_a_csv_file_to_upload: Devi selezionare un file CSV da caricare.
   you_must_select_a_place_to_merge_with: Devi selezionare un luogo da unire.

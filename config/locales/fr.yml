@@ -140,6 +140,7 @@ fr:
   a_few_points_to_make_things_clear: 'Quelques éclaircissements :'
   a_flag_for_x: un drapeau pour %{x}
   a_greasemonkey_script: un script Greasemonkey
+  a_member_of: Un membre de
   a_member_of_taxon_html: un membre de %{taxon}
   able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
   about: À propos
@@ -419,6 +420,7 @@ fr:
     vous le définissez autrement.
   all_your_projects: Tous vos projets
   allow_any: Autoriser tout
+  allow_curator_access: Autoriser l’accès au superviseur
   allow_curator_coordinate_access: Autoriser l’accès aux coordonnées par le superviseur
   allow_project_curators_to_view_your_private_coordinates: Autoriser les superviseurs
     du projet à voir vos coordonnées privées
@@ -2176,7 +2178,7 @@ fr:
       place_boundary: Frontière du lieu
       checklist_places: Lieux de la liste de contrôle
       checklist_places_description: Lieux où ce taxon a été répertorié
-      range: aire de répartition
+      range: Plage
   map_tooltip: Afficher la vue de la carte
   map_for: Carte de
   mark_as_reviewed: Mark tel que révisé
@@ -2380,6 +2382,7 @@ fr:
     current_user: Vous n'avez pas ajouté d'identification aux observations des autres.
     user: L'utilisateur %{user} n'a pas ajouté d'identification aux observations des
       autres.
+  no_ids_have_been_suggested_yet: Aucun ID n’a encore été suggéré
   no_interaction_data_available: Aucune donnée d’interaction disponible
   no_its_as_good_as_it_can_be: Non, c'est aussi bon que ça peut l'être
   no_favorites_added:
@@ -2461,6 +2464,7 @@ fr:
   noble_curators: Responsables éminents de l’organisation d’%{site}
   non_human?: Non-humain ?
   none: Aucun
+  none_found: Aucun trouvé
   none_of_the_people_you_follow_have_updates: Aucune des personnes que vous suivez
     n’a encore fait de mise à jour!
   normal: normal
@@ -3020,6 +3024,8 @@ fr:
     à commencer la visite du site.
   please_cite_the_published_source_of_taxon: Veuillez citer la source publiée de ce
     taxon.
+  please_complete_the_following_to_add_project: 'Veuillez compléter ce qui suit pour
+    ajouter cette observation au projet :'
   please_confirm_your_inat_username: Veuillez confirmer votre nom d’utilisateur sur
     %{site_name}
   please_confirm_your_account_html: Merci de prendre quelques instants pour <a href="%{url}">confirmer
@@ -3278,6 +3284,7 @@ fr:
   request_password: Demander un mot de passe
   request_timed_out: Le délai de demande s’est écoulé!
   required: obligatoire
+  required_: Obligatoire
   required_field: champ obligatoire
   required_columns_in_order: Colonnes obligatoires dans l’ordre
   research: recherche
@@ -3343,6 +3350,7 @@ fr:
   save_photos: Enregistrer les photos
   save_place: Enregistrer le lieu
   save_trip: Enregistrer le voyage
+  saved: Enregistré
   saving: Enregistrement en cours…
   saving_num_of_count_observations:
     one: Enregistrement de l’observation…
@@ -3391,6 +3399,7 @@ fr:
   see_something_wrong_with_taxon: Quelque chose ne va pas avec ce taxon? Faites-le
     savoir aux responsables de l’organisation.
   seen_it?: Déjà vu?
+  seen_nearby: Vu à proximité
   seen_one: Vous en avez vu un?
   select_all: Sélectionner tout
   select_an_album: Sélectionner un album
@@ -4011,6 +4020,7 @@ fr:
     sur %{site_name}, cliquez sur le bouton à droite pour lier vos deux comptes. Vous
     serez redirigé vers Google, où on vous demandera d’autoriser cette connexion.
   to_recipient: À
+  to_suggest_an_identification: pour suggérer une identification
   to_tag_your_flickr_from_here: pour étiquetter vos photos de Flickr à partir d’ici
     sans couper/coller.
   to_the_bat_cave: vers la caverne des chauves-souris!
@@ -4292,6 +4302,7 @@ fr:
   view_your_observations: Afficher vos observations
   view_yours: Afficher la vôtre
   view_all_of_your_observations_from_x: Afficher toutes vos observations depuis %{x}
+  visually_similar: Visuellement semblable
   vulnerable: vulnérable
   w00t_no_ungrafted_taxa: Oups! Pas de taxons non greffés!
   w_photos_only: avec photos
@@ -4528,6 +4539,7 @@ fr:
   you_must_be_project_manager_to_do_that: Vous devez être gestionnaire du projet pour
     exécuter cette action
   you_must_choose_an_observation_field: Vous devez choisir un champ d’observation
+  you_must_fill_out_the_required_fields: Vous devez remplir les champs obligatoires
   you_must_have_a_header_row: Vous devez avoir une ligne d’entête
   you_must_select_a_csv_file_to_upload: Vous devez sélectionner un fichier CSV à téléverser.
   you_must_select_a_place_to_merge_with: Vous devez sélectionner un lieu avec lequel
