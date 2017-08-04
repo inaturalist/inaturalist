@@ -76,9 +76,12 @@
 
     // Append a disabled source selector to match the photo selector
     var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>');
-    var sourceSelect = $('<select class="select" disabled="disabled" style="margin: 0 auto"></select>');
-    var option = $('<option value="soundcloud">SoundCloud</option>');
-    sourceSelect.append(option);
+    var sourceSelect = $('<select class="select" style="margin: 0 auto"></select>');
+    sourceSelect.change(function() {
+      $.fn.soundSelector.changeBaseUrl(wrapper, sourceSelect.val());
+    });
+    sourceSelect.append($('<option value="local">Your computer</option>'));
+    sourceSelect.append($('<option value="soundcloud">SoundCloud</option>'));
     $sourceWrapper.append(sourceSelect);
     controls.append($sourceWrapper);
 
@@ -114,6 +117,18 @@
     
     $(wrapper).append(controls);
   }
+  $.fn.soundSelector.changeBaseUrl = function(wrapper, source) {
+    var options = $(wrapper).data('soundSelectorOptions');
+    options.baseURL = "/sounds/local_sound_fields";
+    console.log( "[DEBUG] source: ", source );
+    if ( source === "soundcloud" ) {
+      options.baseURL = "/soundcloud_sounds";
+    }
+    console.log( "[DEBUG] options.baseURL: ", options.baseURL );
+    $(wrapper).data('soundSelectorOptions', options);
+    $.fn.soundSelector.querySounds(wrapper, options);
+  };
+
 
   // Hit the server for sounds
   $.fn.soundSelector.querySounds = function(wrapper, options) {
@@ -126,6 +141,8 @@
       $(wrapper).data('soundSelectorOptions'), 
       options
     )
+    console.log( "[DEBUG] $(wrapper).data('soundSelectorOptions'): ", $(wrapper).data('soundSelectorOptions') );
+    console.log( "[DEBUG] options: ", options );
     var params = {limit: options.limit, offset: options.offset, index: options.index}
     var baseURL = options.baseURL
     
@@ -187,7 +204,8 @@
   };
   
   $.fn.soundSelector.defaults = {
-    baseURL: '/soundcloud_sounds',
+    // baseURL: '/soundcloud_sounds',
+    baseURL: "/sounds/local_sound_fields",
     limit: 20,
     offset: 0,
     index: 0,

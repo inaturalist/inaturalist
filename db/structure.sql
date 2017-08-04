@@ -11,6 +11,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -876,7 +877,8 @@ CREATE TABLE controlled_terms (
     multivalued boolean DEFAULT false,
     user_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    blocking boolean DEFAULT false
 );
 
 
@@ -3600,7 +3602,11 @@ CREATE TABLE sounds (
     sound_url character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    native_response text
+    native_response text,
+    file_file_name character varying,
+    file_content_type character varying,
+    file_file_size integer,
+    file_updated_at timestamp without time zone
 );
 
 
@@ -8904,4 +8910,8 @@ INSERT INTO schema_migrations (version) VALUES ('20170710211319');
 INSERT INTO schema_migrations (version) VALUES ('20170727000020');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727000602');
+
+INSERT INTO schema_migrations (version) VALUES ('20170727193500');
+
+INSERT INTO schema_migrations (version) VALUES ('20170804212822');
 

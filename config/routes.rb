@@ -185,6 +185,7 @@ Rails.application.routes.draw do
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
+  resources :sounds, only: [:local_sound_fields]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'

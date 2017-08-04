@@ -109,18 +109,33 @@ class PhotoBrowser extends React.Component {
       };
     } );
     _.each( observation.sounds, sound => {
+      let player;
+      let containerClass = "sound-container-local";
+      if ( sound.file_url ) {
+        player = (
+          <audio controls preload="none">
+            <source src={ sound.file_url } type={ sound.file_content_type } />
+            Your browser does not support the audio element.
+          </audio>
+        );
+      } else {
+        containerClass = "sound-container-soundcloud";
+        player = (
+          <iframe
+            scrolling="no"
+            frameBorder="no"
+            src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
+          ></iframe>
+        );
+      }
       images.push( {
         original: null,
         zoom: null,
         thumbnail: soundIcon,
         description: (
-          <div>
+          <div className={`sound-container ${containerClass}`}>
             <div className="sound">
-              <iframe
-                scrolling="no"
-                frameBorder="no"
-                src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
-              ></iframe>
+              { player }
             </div>
             <div className="captions">
               <div className="captions-box">

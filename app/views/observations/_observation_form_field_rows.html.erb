@@ -192,19 +192,13 @@
               <%=t :'sounds.sounds' %>
             </a>
             <div id="sounds_<%= i %>" style="display: none" class="compactfieldcontent observation_sounds sound_list">
-              <% if sound_identity = @sound_identities.first -%>
-                <%= render :partial => "sounds/sound_list_form", :locals => { 
-                  :sounds => observation.sounds,
-                  :index => i,
-                  :checked => true,
-                  :sound_identity => current_user.soundcloud_identity
-                } %>
-              <% else %>
-                <div class="notice box">
-                  <%=t 'sounds.you_need_to_link_your_soundcloud_account' %>
-                  <%= link_to t('sounds.link_your_soundcloud_account'), "/auth/soundcloud", :class => "readmore", :target => "_new" %>
-                </div>
-              <% end -%>
+              <%= render :partial => "sounds/sound_list_form", :locals => { 
+                sounds: observation.sounds,
+                index: i,
+                checked: true,
+                sound_identity: current_user.soundcloud_identity,
+                local_sounds: true
+              } %>
             </div>
           </div>
         </div>

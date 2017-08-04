@@ -706,7 +706,7 @@ class ObservationsController < ApplicationController
       end
       o.photos = photos.compact
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
-      # make sure the obs get a falid observed_on, needed to determine research grade
+      # make sure the obs get a valid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
       o.set_quality_grade
       o
@@ -887,11 +887,11 @@ class ObservationsController < ApplicationController
       # Kind of like :ignore_photos, but :editing_sounds makes it opt-in rather than opt-out
       # If editing sounds and no sound parameters are present, assign to an empty array 
       # This way, sounds will be removed
-      if params[:editing_sounds]
+      # if params[:editing_sounds]
         params[:soundcloud_sounds] ||= {fieldset_index => []} 
         params[:soundcloud_sounds][fieldset_index] ||= []
         observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
-      end
+      # end
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
