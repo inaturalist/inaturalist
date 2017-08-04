@@ -30,6 +30,7 @@ class PhotoBrowser extends React.Component {
   attributionIcon( media, type ) {
     const observation = this.props.observation;
     return ( <OverlayTrigger
+      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
       placement="top"
       delayShow={ 500 }
       trigger="click"

@@ -4,7 +4,6 @@ describe ObservationsController do
   describe "create" do
     before(:each) { enable_elastic_indexing( Observation ) }
     after(:each) { disable_elastic_indexing( Observation ) }
-    render_views
     let(:user) { User.make! }
     before do
       sign_in user
@@ -157,7 +156,6 @@ describe ObservationsController do
   end
 
   describe "show" do
-    render_views
     it "should not include the place_guess when coordinates obscured" do
       original_place_guess = "Duluth, MN"
       o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
@@ -167,16 +165,6 @@ describe ObservationsController do
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
-    end
-  end
-
-  describe "show.mobile" do
-    render_views
-    it "should now include the place_guess when coordinates obscured" do
-      original_place_guess = "Duluth, MN"
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
-      get :show, format: "mobile", id: o.id
-      expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
   end
   
