@@ -693,8 +693,18 @@ class ObservationsController < ApplicationController
         o.taxon = photo_o.taxon if o.taxon.blank?
         o.species_guess = photo_o.species_guess if o.species_guess.blank?
       end
-      o.photos = photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
-        Photo.local_photo_from_remote_photo(p) : p }
+      # Ensure all photos are local photos
+      photos = photos.map do |photo|
+        if photo.is_a?( LocalPhoto )
+          photo
+        elsif photo.new_record?
+          Photo.local_photo_from_remote_photo( photo )
+        else
+          Photo.turn_remote_photo_into_local_photo( photo )
+          Photo.find_by_id( photo.id ) # ensure we have an object loaded with the right class
+        end
+      end
+      o.photos = photos.compact
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       # make sure the obs get a falid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
