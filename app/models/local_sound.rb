@@ -17,4 +17,10 @@ class LocalSound < Sound
   end
 
   validates_attachment_content_type :file, content_type: [/wav/i, /mp3/i], message: "must be a WAV or MP3"
+
+  def to_observation
+    o = Observation.new
+    o.sounds.build( self.attributes )
+    o
+  end
 end

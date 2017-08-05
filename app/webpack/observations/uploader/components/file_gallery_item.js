@@ -49,9 +49,24 @@ class FileGalleryItem extends Component {
   render( ) {
     let item;
     let zoom;
-    if ( !( this.props.file.uploadState === "failed" ) &&
-                ( ( this.props.file.preview && !this.props.file.photo ) ||
-                ( this.props.file.photo && this.props.file.uploadState !== "failed" ) ) ) {
+    const uploadFailed = ( this.props.file.uploadState === "failed" );
+    const previewAvailable = ( this.props.file.preview && !this.props.file.photo );
+    const photoAvailable = ( this.props.file.photo && this.props.file.uploadState !== "failed" );
+    const soundAvailable = ( this.props.file.sound && this.props.file.uploadState !== "failed" );
+    if ( !uploadFailed && soundAvailable ) {
+      item = (
+        <div>
+          <audio controls preload="none">
+            <source
+              src={ this.props.file.sound.file_url }
+              type={ this.props.file.sound.file_content_type }
+            />
+            Your browser does not support the audio element.
+          </audio>
+          { this.props.file.sound.file_file_name }
+        </div>
+      );
+    } else if ( !uploadFailed && ( previewAvailable || photoAvailable ) ) {
       // preview photo
       item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );

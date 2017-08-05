@@ -236,7 +236,7 @@ class DragDropZone extends Component {
           className={ className }
           activeClassName="hover"
           disableClick
-          accept="image/*"
+          accept="image/*,audio/mpeg,audio/x-wav,audio/wav,audio/wave"
         >
           <nav className="navbar navbar-default">
             <div className="container-fluid">

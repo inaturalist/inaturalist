@@ -499,6 +499,10 @@ ul.obs > li .card {
           bottom: 0px;
           right: 0px;
         }
+        audio {
+          vertical-align: middle;
+          max-width: 100%;
+        }
       }
       .item.next, .item.prev, .item.left, .item.right {
         .btn-close-photo, .btn-enlarge {
