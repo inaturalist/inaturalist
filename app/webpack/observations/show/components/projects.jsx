@@ -122,7 +122,8 @@ Projects.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   setErrorModalState: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  showProjectFieldsModal: PropTypes.func
 };
 
 export default Projects;

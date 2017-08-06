@@ -13,7 +13,7 @@ class ProjectFieldsModal extends Component {
   }
 
   close( ) {
-    this.props.setProjectFieldsModalState( { show: false } );
+    this.props.setProjectFieldsModalState( { show: false, alreadyInProject: false } );
   }
 
   submit( ) {
@@ -24,7 +24,7 @@ class ProjectFieldsModal extends Component {
   }
 
   render( ) {
-    const { observation, project } = this.props;
+    const { observation, project, alreadyInProject } = this.props;
     if ( !project || !observation || _.isEmpty( project.project_observation_fields ) ) {
       return ( <div /> );
     }
@@ -101,24 +101,30 @@ class ProjectFieldsModal extends Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <div className="intro">
-            { I18n.t( "please_complete_the_following_to_add_project" ) }
-          </div>
+          { alreadyInProject ? null : (
+            <div className="intro">
+              { I18n.t( "please_complete_the_following_to_add_project" ) }
+            </div>
+          ) }
           <div className="text">
             { fieldList }
           </div>
-          <span className="required">
-            * { I18n.t( "required_" ) }
-          </span>
+          { alreadyInProject ? null : (
+            <span className="required">
+              * { I18n.t( "required_" ) }
+            </span>
+          ) }
         </Modal.Body>
-        <Modal.Footer>
-          <div className="buttons">
-            <Button bsStyle="default" onClick={ this.close }>
-              { I18n.t( "cancel" ) }
-            </Button>
-            { submit }
-          </div>
-        </Modal.Footer>
+        { alreadyInProject ? null : (
+          <Modal.Footer>
+            <div className="buttons">
+              <Button bsStyle="default" onClick={ this.close }>
+                { I18n.t( "cancel" ) }
+              </Button>
+              { submit }
+            </div>
+          </Modal.Footer>
+        ) }
       </Modal>
     );
   }
@@ -132,7 +138,8 @@ ProjectFieldsModal.propTypes = {
   onSubmit: PropTypes.func,
   project: PropTypes.object,
   setProjectFieldsModalState: PropTypes.func,
-  show: PropTypes.bool
+  show: PropTypes.bool,
+  alreadyInProject: PropTypes.bool
 };
 
 export default ProjectFieldsModal;
