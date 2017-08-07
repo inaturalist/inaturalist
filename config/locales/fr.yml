@@ -260,15 +260,19 @@ fr:
   add_photos: Ajouter des photos
   add_photos_to_this_observation: Ajouter des photos à cette observation
   add_place: Ajouter un lieu
+  add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénélogie végétale
+    : Bourgeonnement »'
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie de
     plante : Floraison »'
   add_plant_phenology_fruiting_annotation: 'Ajouter l’annotation « Phénologie de plante
     : Fruits »'
   add_life_stage_adult_annotation: 'Ajoute l''annotation "Stade d''évolution : Adulte"'
   add_life_stage_teneral_annotation: 'Ajoute l''annotation "Stade d''évolution : Ténéral"'
+  add_life_stage_subimago_annotation: 'Ajouter l’annotation « Stade de vie : Subimago »'
   add_life_stage_pupa_annotation: 'Ajoute l''annotation "Stade d''évolution : Pupe"'
   add_life_stage_nymph_annotation: 'Ajoute l''annotation "Stade d''évolution : Nymphe"'
   add_life_stage_larva_annotation: 'Ajoute l''annotation "Stade d''évolution : Larve"'
+  add_life_stage_juvenile_annotation: 'Ajouter l’annotation « Stade de vie : Juvénile »'
   add_life_stage_egg_annotation: 'Ajoute l''annotation "Stade d''évolution : Oeuf"'
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_sex_female_annotation: 'Ajouter l''annotation "Sex: Female"'
@@ -988,11 +992,13 @@ fr:
     male: Mâle
     female: Femelle
     plant_phenology: Phénologie de la plante
+    budding: Bourgeonnement
     flowering: Floraison
     fruiting: Fructification
     life_stage: Stade
     adult: Adulte
     teneral: Ténéral
+    subimago: Subimago
     pupa: Chrysalide
     nymph: Nymphe
     larva: Larve
@@ -1246,6 +1252,7 @@ fr:
   draft_saved: Brouillon enregistré!
   drafts: Brouillons
   drag_and_drop_some_photos: Glisser & déposer quelques photos
+  duplicate_verb: Doublon
   each_place_displays_all_species_inat_knows: Chaque page de lieu affiche toutes les
     espèces dont %{site_name} a connaissance pour ce lieu, y compris les informations
     sur leur abondance, leur statut de conservation et le nom de la première personne
@@ -2304,6 +2311,7 @@ fr:
   near: près de
   near_threatened: quasi-menacée
   nearby: À proximité
+  nearby_observations_: Observations à proximité
   nearby_observations: Observations à proximité
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
@@ -2587,6 +2595,7 @@ fr:
   observations_obscured: Observations (masquées)
   observations_observed_this_month: Observations <em>observées</em> ce mois, mais
     non ajoutées ce mois. Sortez dehors!
+  observations_of_relatives: Observations de semblables
   observations_of_taxon: Observations de %{taxon_name}
   observations_on_inat_check_list: observations sur %{site_name}. Les lieux des listes
     de contrôle qui ont été confirmés ont au moins une observation confirmée à l’intérieur
@@ -5315,6 +5324,12 @@ fr:
             </li></ul>
         score_desc: pointage = nombre cumulé/(nombre cumulé + nombre en désaccord
           + désaccords sur les ancêtres)
+        observation_flagged_notice_html: |-
+          Cette observation a été marquée comme pourriel et n’est plus
+          visible publiquement. Vous pouvez la voir parce que vous l’avez créée, ou êtes un
+          superviseur du site. SI vous pensez que c’est une erreur, veuillez
+          <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
+          <a href="/observations/%{observation_id}/flags">Gérer les marques</a>
       user_stats:
         user_stats_desc: |-
           Les statistiques utilisateurs sont limitées aux 500 premières par nombre d’observations
@@ -5713,6 +5728,7 @@ fr:
           Insect life stage=egg: Oeuf
           Insect life stage=larva: Larve
           Insect life stage=teneral: Ténéral
+          Insect life stage=subimago: Subimago
           Insect life stage=nymph: Nymphe
           Insect life stage=pupa: Chrysalide
           Insect life stage=adult: Adulte
