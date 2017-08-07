@@ -246,8 +246,11 @@ describe Observation do
     end
   
     it "should increment the counter cache in users" do
+      Delayed::Worker.new.work_off
+      @observation.reload
       old_count = @observation.user.observations_count
       Observation.make!(:user => @observation.user)
+      Delayed::Worker.new.work_off
       @observation.reload
       expect(@observation.user.observations_count).to eq old_count+1
     end
@@ -1135,10 +1138,12 @@ describe Observation do
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
+      Delayed::Worker.new.work_off
       user = @observation.user
       user.reload
       old_count = user.observations_count
       @observation.destroy
+      Delayed::Worker.new.work_off
       user.reload
       expect(user.observations_count).to eq old_count - 1
     end

@@ -232,7 +232,7 @@ class Observation < ActiveRecord::Base
 
   preference :community_taxon, :boolean, :default => nil
   
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   belongs_to :taxon
   belongs_to :community_taxon, :class_name => 'Taxon'
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
@@ -359,9 +359,11 @@ class Observation < ActiveRecord::Base
              :update_observations_places,
              :set_taxon_photo,
              :create_observation_review
-  after_create :set_uri
+  after_create :set_uri, :update_user_counter_caches
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
+    :update_taxon_counter_caches, :create_deleted_observation,
+    :update_user_counter_caches
   
   ##
   # Named scopes
@@ -1837,6 +1839,12 @@ class Observation < ActiveRecord::Base
     unless taxon_ids.blank?
       Taxon.delay(:priority => INTEGRITY_PRIORITY).update_observation_counts(:taxon_ids => taxon_ids)
     end
+    true
+  end
+
+  def update_user_counter_caches
+    User.delay( unique_hash: { "User::update_observations_counter_cache": user_id } ).
+      update_observations_counter_cache( user_id )
     true
   end
 
