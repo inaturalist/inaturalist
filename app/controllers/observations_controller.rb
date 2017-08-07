@@ -693,18 +693,7 @@ class ObservationsController < ApplicationController
         o.taxon = photo_o.taxon if o.taxon.blank?
         o.species_guess = photo_o.species_guess if o.species_guess.blank?
       end
-      # Ensure all photos are local photos
-      photos = photos.map do |photo|
-        if photo.is_a?( LocalPhoto )
-          photo
-        elsif photo.new_record?
-          Photo.local_photo_from_remote_photo( photo )
-        else
-          Photo.turn_remote_photo_into_local_photo( photo )
-          Photo.find_by_id( photo.id ) # ensure we have an object loaded with the right class
-        end
-      end
-      o.photos = photos.compact
+      o.photos = ensure_photos_are_local_photos( photos )
       o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
       # make sure the obs get a falid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
@@ -865,8 +854,7 @@ class ObservationsController < ApplicationController
         if updated_photos.empty?
           observation.photos.clear
         else
-          observation.photos = updated_photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
-            Photo.local_photo_from_remote_photo(p) : p }
+          observation.photos = ensure_photos_are_local_photos( updated_photos )
         end
 
         Photo.subclasses.each do |klass|
@@ -3075,6 +3063,19 @@ class ObservationsController < ApplicationController
   def viewing_new_obs_show?
     ( logged_in? && current_user.in_test_group?("obs-show") && !params.key?("show1") ) ||
     ( !logged_in? && params.key?("show2") )
+  end
+
+  def ensure_photos_are_local_photos( photos )
+    photos.map { |photo|
+      if photo.is_a?( LocalPhoto )
+        photo
+      elsif photo.new_record?
+        Photo.local_photo_from_remote_photo( photo )
+      else
+        Photo.turn_remote_photo_into_local_photo( photo )
+        Photo.find_by_id( photo.id ) # || photo.becomes( LocalPhoto ) # ensure we have an object loaded with the right class
+      end
+    }.compact
   end
 
 end
