@@ -28,7 +28,7 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @title %>">
-  <meta property="og:url" content="<%= uri_join CONFIG.site_url, request.fullpath %>"/>
+  <meta property="og:url" content="<%= request.original_url %>"/>
   <%-
     desc = ""
     unless @iconic_taxon_counts.blank?

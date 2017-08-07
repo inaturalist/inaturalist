@@ -19,7 +19,7 @@ describe DarwinCore::Archive, "make_metadata" do
     archive = DarwinCore::Archive.new
     xml = Nokogiri::XML( open( archive.make_metadata ) )
     contact_elt = xml.at_xpath( "//contact" )
-    expect( contact_elt.to_s ).to match /#{ CONFIG.contact.first_name }/
+    expect( contact_elt.to_s ).to match /#{ Site.default.contact[:first_name] }/
   end
 end
 

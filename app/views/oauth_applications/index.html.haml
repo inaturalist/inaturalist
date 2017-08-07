@@ -1,5 +1,5 @@
 = content_for :title do
-  = @title = "3rd Party #{CONFIG.site_name_short} Applications"
+  = @title = "3rd Party #{@site.site_name_short} Applications"
 %header.page-header
   = link_to 'New Application', new_oauth_application_path, :class => "right button"
   %h2= @title

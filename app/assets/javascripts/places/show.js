@@ -54,7 +54,7 @@ $.fn.loadFlickrPlacePhotos = function(options) {
   extras = extras.join(',')
   var self = this
   var flickrOptions = {
-    api_key: FLICKR_API_KEY,
+    api_key: CONFIG.flickr.key,
     sort: 'interestingness-desc',
     page: 1,
     per_page: 7,

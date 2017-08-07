@@ -5,8 +5,8 @@
       - if @site && !@site.custom_logo.blank?
         =raw @site.custom_logo
       - else
-        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
-          = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.name}"}
+          = image_tag @site.logo.url, alt: @site.name
   %ul#mainnav.navtabs
     - unless @minimal_header
       %li.navtab.observationstab.menutab

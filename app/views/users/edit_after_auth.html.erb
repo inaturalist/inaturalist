@@ -2,13 +2,13 @@
   <%= t(:confirm_your_info) %>
 <%- end -%>
 <div class="column prepend-4 span-8">
-  <%= image_tag CONFIG.logo_icon_square_big, :width => 300  %>
+  <%= image_tag @site.logo_square.url, :width => 300  %>
 </div>
 <div class="column span-12 last">
 
   <%= form_for current_user, :builder => DefaultFormBuilder do |f| %>
     <%= error_messages_for :display_user %>
-    <%= f.text_field :login, :label => t(:please_confirm_your_inat_username, :site_name => SITE_NAME_SHORT), :class => "text", :required => true %>
+    <%= f.text_field :login, :label => t(:please_confirm_your_inat_username, :site_name => @site.preferred_site_name_short), :class => "text", :required => true %>
     <%= f.text_field :email, :class => "text", :required => true %>
     <%= hidden_field_tag 'from_edit_after_auth', true %>
     

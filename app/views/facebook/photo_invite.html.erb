@@ -4,9 +4,9 @@
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
 <% end %>
-<h2>Invite Facebook Photos to <%= CONFIG.site_name %></h2>
+<h2>Invite Facebook Photos to <%= @site.name %></h2>
 <p class="description">
-  You can make it super easy for people on Facebook to add their photos as <%= CONFIG.site_name_short %>
+  You can make it super easy for people on Facebook to add their photos as <%= @site.site_name_short %>
   observations. Just leave a comment including this special invite URL below.
   You can also pre-select a taxon and project for the new observation.
 </p>
@@ -28,7 +28,7 @@
   <div class='invite_comment'>
     <label>Add a comment (don't forget to include the {{INVITE_LINK}} placeholder):</label>
     <br />
-    <%= text_area_tag :comment, t(:default_invite_comment, :site_name => SITE_NAME), :class=>'text' %>
+    <%= text_area_tag :comment, t(:default_invite_comment, :site_name => @site.name), :class=>'text' %>
   </div>
   <%= submit_tag("Send invite", :class => 'default button') %>
 <% end -%>

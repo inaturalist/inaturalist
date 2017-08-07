@@ -64,13 +64,13 @@
         %dt iPhone
         %dd
           Created via the
-          = link_to "iNaturalist iPhone app", (@site ? @site.iphone_app_url : CONFIG.iphone_app_url)
+          = link_to "iNaturalist iPhone app", @site.iphone_app_url
     .col-md-6
       %dl.meta
         %dt Android
         %dd
           Created via the
-          = link_to "iNaturalist Android app", (@site ? @site.android_app_url : CONFIG.android_app_url)
+          = link_to "iNaturalist Android app", @site.android_app_url
         %dt Other
         %dd
           Created via other applications

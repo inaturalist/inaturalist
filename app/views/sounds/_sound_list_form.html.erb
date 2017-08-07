@@ -6,7 +6,7 @@
 -%>
 <% if @reauthorization_needed -%>
   <p class="notice ui">
-    <%= t(:soundcloud_needs_to_confirm, :site_name => SITE_NAME_SHORT) %>
+    <%= t(:soundcloud_needs_to_confirm, :site_name => @site.preferred_site_name_short) %>
     <%= link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['soundcloud'], :class => "readmore" %>
   </p>
 <% elsif @timeout %>

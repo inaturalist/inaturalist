@@ -60,7 +60,7 @@
           :project => @assessment.project,
           :before => before } %>
       <% else %>
-        <%= link_to "#{t(:view_on)} #{CONFIG.site_name}", assessment_path(@assessment), :class => 'edit-button' %>
+        <%= link_to "#{t(:view_on)} #{@site.name}", assessment_path(@assessment), :class => 'edit-button' %>
         <h3>
           <%= t(:assessment_x, :assessment => @assessment.display_name) %>
         </h3>

@@ -140,9 +140,6 @@ class TaxaController < ApplicationController
   end
 
   def show
-    # if params[:entry] == 'widget'
-    #   flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
-    # end
     if params[:id]
       begin
         @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
@@ -180,105 +177,6 @@ class TaxaController < ApplicationController
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
         render layout: "bootstrap", action: "show2"
-        return
-        # end
-
-        place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
-        place_id ||= current_user.place_id if logged_in?
-        place_id ||= CONFIG.place_id
-        @place = Place.find(place_id) rescue nil
-        @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
-          cs.place.blank? ? [0] : cs.place.self_and_ancestor_ids
-        end
-        if @place
-          @conservation_status = @conservation_statuses.detect do |cs|
-            @place.id == cs.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
-          end
-          @conservation_status ||= @conservation_statuses.detect do |cs|
-            @place.self_and_ancestor_ids.include?( cs.place_id ) && cs.iucn > Taxon::IUCN_LEAST_CONCERN
-          end
-        end
-        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
-        
-        if @place
-          @listed_taxon = @taxon.listed_taxa.includes(:place).
-            where(place_id: @place.id).
-            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).first
-          @listed_taxon ||= @taxon.listed_taxa.joins(:place).includes(:place).
-            where(place_id: @place.self_and_ancestor_ids).
-            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).
-            order("admin_level DESC, (places.ancestry || '/' || places.id) DESC, establishment_means").first
-        end
-        
-        @children = @taxon.children.where(:is_active => @taxon.is_active).
-          includes({ taxon_names: :place_taxon_names }).sort_by{ |c| c.name }
-        @ancestors = @taxon.ancestors.includes({ taxon_names: :place_taxon_names })
-        @iconic_taxa = Taxon::ICONIC_TAXA
-        
-        @check_listed_taxa = ListedTaxon.page(1).
-          select("
-            min(listed_taxa.id) AS id,
-            listed_taxa.place_id,
-            listed_taxa.taxon_id,
-            min(listed_taxa.list_id) AS list_id,
-            min(establishment_means) AS establishment_means,
-            max(occurrence_status_level) AS occurrence_status_level").
-          includes(:place, :list).
-          group(:place_id, :taxon_id).
-          where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
-        @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.try(:place_type) || 0}.reverse
-        @places = @check_listed_taxa.map{ |lt| lt.place }.compact.uniq{ |p| p.id }
-        @countries = @taxon.places.where(["place_type = ?", Place::PLACE_TYPE_CODES['Country']]).
-          select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
-        if @countries.size == 1 && @countries.first.code == 'US'
-          @us_states = @taxon.places.
-            where("admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, @countries.first.id).
-            select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
-        end
-
-        @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
-        @observations = Observation.page_of_results(
-          taxon_id: @taxon.id, per_page: 12, order_by: "id", order: "desc")
-        @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
-          @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
-        end
-        
-        if logged_in?
-          @listed_taxa = ListedTaxon.joins(:list).
-            where(taxon_id: @taxon, lists: { user_id: current_user })
-          @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
-          @current_user_lists = current_user.lists.includes(:rules).
-            where("(type IN ('LifeList', 'List') OR type IS NULL)").
-            order("lower( lists.title )").
-            limit(200).to_a
-          if life_list_index = @current_user_lists.index{|l| l.id == current_user.life_list_id}
-            @current_user_lists.insert(0, @current_user_lists.delete_at( life_list_index ) )
-          end
-          @lists_rejecting_taxon = @current_user_lists.select do |list|
-            if list.is_a?(LifeList) && (rule = list.rules.detect{|rule| rule.operator == "in_taxon?"})
-              !rule.validates?(@taxon)
-            else
-              false
-            end
-          end
-        end
-        
-        # @taxon_ranges = @taxon.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
-        # @taxon_range = if CONFIG.taxon_range_source_id
-        #   @taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
-        # end
-        # @taxon_range ||= @taxon_ranges.detect{|tr| !tr.range.blank?}
-        @taxon_ranges = @taxon.taxon_ranges_with_kml
-        @taxon_range = @taxon_ranges[0]
-        @additional_ranges = @taxon_ranges[1..-1]
-        @taxon_gbif = "#{@taxon.name.gsub(' ','+')}*"
-        @colors = @taxon.colors if @taxon.species_or_lower?
-        
-        unless @taxon.is_active?
-          @taxon_change = TaxonChange.taxon(@taxon).last
-        end
-        
-        render :action => 'show'
       end
       
       format.xml do
@@ -452,7 +350,7 @@ class TaxaController < ApplicationController
       per_page(per_page).page(page)
     # if there are no search results, and the search was performed with
     # a search ID filter, but one wasn't asked for. This will happen when
-    # CONFIG.site_only_observations is true and a search filter is
+    # rendering a partner site and a search filter is
     # set automatically. Re-run the search w/o the place filter
     if search_result.total_entries == 0 && params[:places].blank? && !@place_ids.blank?
       without_place_filters = filters.select{ |f| !( f[:terms] && f[:terms][:place_ids] ) }
@@ -919,7 +817,7 @@ class TaxaController < ApplicationController
     raise e unless e.message =~ /OAuthException/
     msg = t(
       :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: CONFIG.site_name_short
+      site_name_short: @site.site_name_short
     )
     respond_to do |format|
       format.json { render json: { error: msg }, status: :unprocessable_entity }
@@ -991,7 +889,7 @@ class TaxaController < ApplicationController
     raise e unless e.message =~ /OAuthException/
     msg = t(
       :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: CONFIG.site_name_short
+      site_name_short: @site.site_name_short
     )
     respond_to do |format|
       format.json { render json: { error: msg }, status: :unprocessable_entity }
@@ -1003,8 +901,8 @@ class TaxaController < ApplicationController
   end
   
   def describe
-    @describers = if CONFIG.taxon_describers
-      CONFIG.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
+    @describers = if @site.taxon_describers
+      @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
     elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
       [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
     else
@@ -1528,9 +1426,9 @@ class TaxaController < ApplicationController
     rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
-        flash[:error] = ("#{CONFIG.site_name_short} can't add tags to your photos until " + 
+        flash[:error] = ("#{@site.site_name_short} can't add tags to your photos until " +
           "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize #{CONFIG.site_name_short} to add tags</a>.").html_safe
+          "<a href=\"#{auth_url}\">Click here to authorize #{@site.site_name_short} to add tags</a>.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end

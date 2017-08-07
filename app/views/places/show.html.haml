@@ -15,15 +15,16 @@
   - if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank?
     %meta{:content => CONFIG.facebook.admin_ids.join(','), :property => "fb:admins"}
   %meta{:content => "#{t(:learn_about_the_species_live_in) + "#{@place.display_name}"}!", :name => "description", :property => "og:description"}
-  %meta{:content => ( @shareable_image_url = uri_join( root_url, path_to_image( CONFIG.logo_icon_square_big ) ) ), :property => "og:image"}
+  %meta{:content => ( @shareable_image_url = @site.logo_square.url ), :property => "og:image"}
   %meta{:content => @shareable_image_url, :property => "twitter:image"}
+-
 - content_for(:extrajs) do
   = google_maps_js
   :javascript
     var PLACE = #{json_escape @place.to_json.html_safe},
         SHOW_PLACE_GEOMETRY = true,
         WIKIPEDIA_DESCRIPTION_URL = #{url_for(:action => "wikipedia", :id => @place.wikipedia_name).inspect.html_safe},
-        FLICKR_API_KEY = #{FLICKR_API_KEY.inspect.html_safe},
+        FLICKR_API_KEY = #{CONFIG.flickr.key.inspect.html_safe},
         NEARBY_PLACES = #{json_escape @nearby_places.to_json.html_safe},
         INSIDE_PLACES = #{json_escape @inside_places.to_json.html_safe}
   = javascript_include_tag 'map_bundle',
@@ -169,7 +170,7 @@
 .clear
 .meta.stacked
   - if @place.user
-    = t(:place_added_to_inat_by, :site_name => SITE_NAME_SHORT)
+    = t(:place_added_to_inat_by, :site_name => @site.preferred_site_name_short)
     = link_to user_image(@place.user), @place.user
     = link_to you_or_login(@place.user), @place.user
     - date_format = @place.created_at.to_date.to_s(:long).split(" ")

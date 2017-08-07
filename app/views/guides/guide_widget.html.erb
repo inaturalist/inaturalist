@@ -55,7 +55,7 @@
   <%= google_maps_js %>
   <script type="text/javascript" charset="utf-8">
     var PLACE = <%=json_escape @place.to_json.html_safe %>,
-        FLICKR_API_KEY = <%= FLICKR_API_KEY.inspect.html_safe %>
+        FLICKR_API_KEY = <%= CONFIG.flickr.key.inspect.html_safe %>
     $(document).ready(function() {
       TaxonGuide.init('#taxa')
       $('#sidecol').addClass('floating').css({padding: 10, zIndex: 2, backgroundColor: 'white'}).hide()
@@ -113,5 +113,5 @@
 
 <div id="logo" class="small meta inlineblock">
   <%= t :powered_by %>
-  <%= link_to image_tag(image_url(CONFIG.logo), :style => "vertical-align:middle; height: 16px; position:relative; top: -2px;"), root_url %>
+  <%= link_to image_tag(image_url(@site.logo.url), :style => "vertical-align:middle; height: 16px; position:relative; top: -2px;"), root_url %>
 </div>

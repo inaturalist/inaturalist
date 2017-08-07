@@ -149,9 +149,9 @@ class ObservationsController < ApplicationController
       
       format.kml do
         render_observations_to_kml(
-          :snippet => "#{CONFIG.site_name} Feed for Everyone", 
-          :description => "#{CONFIG.site_name} Feed for Everyone", 
-          :name => "#{CONFIG.site_name} Feed for Everyone"
+          :snippet => "#{@site.name} Feed for Everyone",
+          :description => "#{@site.name} Feed for Everyone",
+          :name => "#{@site.name} Feed for Everyone"
         )
       end
       
@@ -350,10 +350,8 @@ class ObservationsController < ApplicationController
         else
           FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
         end
-        @shareable_title = if !@observation.species_guess.blank?
-          @observation.species_guess
-        elsif @observation.taxon
-          if comname = FakeView.common_taxon_name( @observation.taxon, place: @site.try(:place) ).try(:name)
+        @shareable_title = if @observation.taxon
+          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
             "#{comname} (#{@observation.taxon.name})"
           else
             @observation.taxon.name
@@ -1064,9 +1062,9 @@ class ObservationsController < ApplicationController
     FileUtils.mkdir_p File.dirname(path), :mode => 0755
     File.open(path, 'wb') { |f| f.write(params[:upload]['datafile'].read) }
 
-    unless CONFIG.coordinate_systems.blank? || params[:upload][:coordinate_system].blank?
-      if coordinate_system = CONFIG.coordinate_systems[params[:upload][:coordinate_system]]
-        proj4 = coordinate_system.proj4
+    unless params[:upload][:coordinate_system].blank? || @site.coordinate_systems.blank?
+      if coordinate_system = @site.coordinate_systems[params[:upload][:coordinate_system]]
+        proj4 = coordinate_system["proj4"]
       end
     end
 
@@ -1275,9 +1273,9 @@ class ObservationsController < ApplicationController
       
       format.kml do
         render_observations_to_kml(
-          :snippet => "#{CONFIG.site_name} Feed for User: #{@selected_user.login}",
-          :description => "#{CONFIG.site_name} Feed for User: #{@selected_user.login}",
-          :name => "#{CONFIG.site_name} Feed for User: #{@selected_user.login}"
+          :snippet => "#{@site.name} Feed for User: #{@selected_user.login}",
+          :description => "#{@site.name} Feed for User: #{@selected_user.login}",
+          :name => "#{@site.name} Feed for User: #{@selected_user.login}"
         )
       end
 
@@ -1406,7 +1404,7 @@ class ObservationsController < ApplicationController
       format.kml do
         render_observations_to_kml(
           :snippet => "#{@project.title.html_safe} Observations", 
-          :description => "Observations feed for the #{CONFIG.site_name} project '#{@project.title.html_safe}'", 
+          :description => "Observations feed for the #{@site.name} project '#{@project.title.html_safe}'",
           :name => "#{@project.title.html_safe} Observations"
         )
       end
@@ -2081,7 +2079,7 @@ class ObservationsController < ApplicationController
                     params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
     @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
-    @about_url = CONFIG.map_about_url ? CONFIG.map_about_url :
+    @about_url = @site.map_about_url ? @site.map_about_url :
       view_context.wiki_page_url('help', anchor: 'mapsymbols')
   end
 
@@ -2703,9 +2701,9 @@ class ObservationsController < ApplicationController
       @net_hash = {
         :id => "AllObs", 
         :link_id =>"AllObs", 
-        :snippet => "#{CONFIG.site_name} Feed for Everyone", 
-        :description => "#{CONFIG.site_name} Feed for Everyone", 
-        :name => "#{CONFIG.site_name} Feed for Everyone", 
+        :snippet => "#{@site.name} Feed for Everyone",
+        :description => "#{@site.name} Feed for Everyone",
+        :name => "#{@site.name} Feed for Everyone",
         :href => kml_href
       }
       render :layout => false, :action => 'network_link'
@@ -2966,8 +2964,8 @@ class ObservationsController < ApplicationController
       search_cache_params[k] = ElasticModel.id_or_object(v) }
     search_cache_params[:locale] ||= I18n.locale
     search_cache_params[:per_page] ||= search_params[:per_page]
-    search_cache_params[:site_name] ||= SITE_NAME if CONFIG.site_only_observations
-    search_cache_params[:bounds] ||= CONFIG.bounds.to_h if CONFIG.bounds
+    search_cache_params[:site_id] ||= @site.id
+    search_cache_params[:bounds] ||= @site.bounds.to_h if @site.bounds
     "obs_index_#{Digest::MD5.hexdigest(search_cache_params.sort.to_s)}"
   end
 

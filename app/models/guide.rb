@@ -35,7 +35,7 @@ class Guide < ActiveRecord::Base
   else
     has_attached_file :ngz,
       :path => ":rails_root/public/attachments/:class/:id.ngz",
-      :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.ngz",
+      :url => "/attachments/:class/:id.ngz",
       :default_url => ""
   end
 

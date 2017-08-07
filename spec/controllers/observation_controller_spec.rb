@@ -53,9 +53,9 @@ describe ObservationsController do
     
     it "should set the site" do
       @site = Site.make!
-      CONFIG.site_id = @site.id
-      post :create, :observation => {:species_guess => "Foo"}
-      expect(user.observations.last.site).to_not be_blank
+      post :create, observation: { species_guess: "Foo" }, site_id: @site.id
+      expect( user.observations.last.site ).to_not be_blank
+      expect( user.observations.last.site.id ).to eq @site.id
     end
 
     it "should survive submitting an invalid observation to a project" do
@@ -448,15 +448,15 @@ describe ObservationsController do
       Flag.make!(user: @curator, flaggable: Observation.make!)
       get :curation
       expect(response.body).to have_selector("table td", text: @curator.login)
-      expect(response.body).to_not have_selector("table td", text: CONFIG.site_name_short)
+      expect(response.body).to_not have_selector("table td", text: Site.default.site_name_short)
     end
 
-    it "should show CONFIG.site_name_short if there is no flagger" do
+    it "should show site.site_name_short if there is no flagger" do
       Flag.make!(flaggable: Observation.make!)
       Flag.last.update_column(:user_id, 0)
       get :curation
       expect(response.body).to_not have_selector("table td", text: @curator.login)
-      expect(response.body).to have_selector("table td", text: CONFIG.site_name_short)
+      expect(response.body).to have_selector("table td", text: Site.default.site_name_short)
     end
   end
 
@@ -636,17 +636,17 @@ describe ObservationsController, "new_bulk_csv" do
   end
 
   it "should create observations with custom coordinate systems" do
-    stub_config :coordinate_systems => {
-      :nztm2000 => {
-        :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
-        :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+    Site.default.update_attributes( coordinate_systems_json: '{
+      "nztm2000": {
+        "label": "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
+        "proj4": "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
       },
-      :nzmg => {
-        :label => "NZMG (New Zealand Map Grid), EPSG:27200",
-        :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+      "nzmg": {
+        "label": "NZMG (New Zealand Map Grid), EPSG:27200",
+        "proj4": "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
       }
-    }
-    expect(CONFIG.coordinate_systems).not_to be_blank
+    }' )
+    expect(Site.last.coordinate_systems).not_to be_blank
     Delayed::Job.delete_all
     Observation.by( user ).destroy_all
     expect( Observation.by( user ).count ).to eq 0

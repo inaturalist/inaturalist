@@ -18,10 +18,6 @@ class Site < ActiveRecord::Base
   preference :email_help, :string
   preference :email_info, :string
 
-  # preference :flickr_key, :string
-  # preference :flickr_shared_secret, :string
-  # preference :facebook_app_id, :string
-
   preference :contact_first_name, :string
   preference :contact_last_name, :string
   preference :contact_organization, :string
@@ -43,6 +39,9 @@ class Site < ActiveRecord::Base
   preference :geo_nelat, :string
   preference :geo_nelng, :string
 
+  preference :map_about_url, :string
+  preference :legacy_rest_auth_key, :string
+
   # default place ID for place filters. Presently only used on /places, but use may be expanded
   belongs_to :place, :inverse_of => :sites
 
@@ -56,13 +55,13 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo.:extension",
       :url => ":s3_alias_url",
-      :default_url => "/assets/logo-small.gif"
+      :default_url => "logo-small.gif"
     invalidate_cloudfront_caches :logo, "sites/:id-logo.*"
   else
     has_attached_file :logo,
       :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
-      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo.:extension",
-      :default_url => FakeView.image_url("logo-small.gif")
+      :url => "/attachments/sites/:id-logo.:extension",
+      :default_url => "logo-small.gif"
   end
   validates_attachment_content_type :logo, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -77,13 +76,13 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_square.:extension",
       :url => ":s3_alias_url",
-      :default_url => ->(i){ FakeView.image_url("bird.png") }
+      :default_url => "bird.png"
     invalidate_cloudfront_caches :logo_square, "sites/:id-logo_square.*"
   else
     has_attached_file :logo_square,
       :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
-      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo_square.:extension",
-      :default_url => FakeView.image_url("bird.png")
+      :url => "/attachments/sites/:id-logo_square.:extension",
+      :default_url => "bird.png"
   end
   validates_attachment_content_type :logo_square, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -98,13 +97,13 @@ class Site < ActiveRecord::Base
       :bucket => CONFIG.s3_bucket,
       :path => "sites/:id-logo_email_banner.:extension",
       :url => ":s3_alias_url",
-      :default_url => ->(i){ FakeView.image_url("inat_email_banner.png") }
+      :default_url => "inat_email_banner.png"
     invalidate_cloudfront_caches :logo_email_banner, "sites/:id-logo_email_banner.*"
   else
     has_attached_file :logo_email_banner,
       :path => ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
-      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-logo_email_banner.:extension",
-      :default_url => FakeView.image_url("inat_email_banner.png")
+      :url => "/attachments/sites/:id-logo_email_banner.:extension",
+      :default_url => "inat_email_banner.png"
   end
   validates_attachment_content_type :logo_email_banner, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], :message => "must be JPG, PNG, or GIF"
       
@@ -122,7 +121,7 @@ class Site < ActiveRecord::Base
   else
     has_attached_file :stylesheet,
       :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
-      :url => "#{ CONFIG.attachments_host }/attachments/sites/:id-stylesheet.css"
+      :url => "/attachments/sites/:id-stylesheet.css"
   end
 
   validates_attachment_content_type :stylesheet, content_type: [
@@ -137,22 +136,26 @@ class Site < ActiveRecord::Base
   preference :about_url, :string
 
   # URL where visitors can get help using the site
-  preference :help_url, :string, :default => FakeView.wiki_page_url("help")
+  preference :help_url, :string, :default => "/pages/help"
   
   # URL where visitors can get started using the site
-  preference :getting_started_url, :string, :default => FakeView.wiki_page_url("getting+started")
+  preference :getting_started_url, :string, :default => "/pages/getting+started"
 
   # URL where press can learn more about the site and get assets
   preference :press_url, :string
 
   preference :feedback_url, :string
-  preference :terms_url, :string, :default => FakeView.wiki_page_url("terms")
-  preference :privacy_url, :string, :default => FakeView.wiki_page_url("privacy")
-  preference :developers_url, :string, :default => FakeView.wiki_page_url("developers")
+  preference :terms_url, :string, :default => "/pages/terms"
+  preference :privacy_url, :string, :default => "/pages/privacy"
+  preference :developers_url, :string, :default => "pages/developers"
   preference :twitter_url, :string
-  preference :facebook_url, :string
   preference :iphone_app_url, :string
   preference :android_app_url, :string
+  preference :facebook_url, :string
+  preference :twitter_url, :string
+  preference :blog_url, :string
+
+  preference :twitter_username, :string
 
   # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
   preference :home_page_wiki_path, :string
@@ -170,7 +173,7 @@ class Site < ActiveRecord::Base
   end
   preference :site_observations_filter, :string, default: OBSERVATIONS_FILTERS_PLACE
 
-  # Like site_only_observations except for users. Used in places like /people
+  # Used in places like /people
   preference :site_only_users, :boolean, :default => false
 
   # iOS app ID. Used to display header notice about app in mobile views
@@ -178,7 +181,7 @@ class Site < ActiveRecord::Base
 
   # If you'd prefer the default taxon ranges to come from a particular Source, set the source ID here
   # taxon_range_source_id: 7538
-  belongs_to :taxon_range_source, :class_name => "Source"
+  belongs_to :taxon_range_source, class_name: "Source", foreign_key: "source_id"
 
   # google_analytics, http://www.google.com/analytics/
   preference :google_analytics_tracker_id, :string
@@ -186,53 +189,17 @@ class Site < ActiveRecord::Base
   # google webmaster tools, http://www.google.com/webmasters/tools/
   preference :google_webmaster_verification, :string
 
-  # uBio is a taxonomic information provider. http://www.ubio.org
-  preference :ubio_key, :string
-
-  # Yahoo Developers Network API provides place info
-  # https://developer.apps.yahoo.com/wsregapp/
-  preference :yahoo_developers_network_app_id, :string
-
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in
   # lib/taxon_describers/lib/taxon_describers
-  preference :taxon_describers, :string
-
-  # facebook
-  preference :facebook_app_id, :string
-  preference :facebook_app_secret, :string
-  # facebook user IDs of people who can admin pages on the site
-  preference :facebook_admin_ids, :string # array
-  preference :facebook_namespace, :string # your facebook app's namespace, used for open graph tags
-
-  # twitter
-  preference :twitter_key, :string
-  preference :twitter_secret, :string
-  preference :twitter_url, :string
-  preference :twitter_username, :string
-
-  preference :blog_url, :string
-
-  preference :cloudmade_key, :string
-
-  preference :bing_key, :string
-
-  # flickr, http://www.flickr.com/services/api/keys/apply/
-  preference :flickr_key, :string
-  preference :flickr_shared_secret, :string
-
-  # soundcloud, http://soundcloud.com/you/apps/new
-  preference :soundcloud_client_id, :string
-  preference :soundcloud_secret, :string
+  preference :taxon_describers_array, :string
 
   # Ratatosk is an internal library for looking up external taxonomy info.
   # By default it uses all registered name providers, but you can
   # configure it here to use a subset
-  # ratatosk:
-  preference :name_providers, :string #: [col, ubio]
+  preference :ratatosk_name_providers_array, :string
 
-  preference :natureserve_key, :string
   preference :custom_logo, :text
   preference :custom_footer, :text
   preference :custom_secondary_footer, :text
@@ -242,8 +209,28 @@ class Site < ActiveRecord::Base
   # Whether this site prefers https
   preference :ssl, :boolean
 
+  def self.default
+    Site.first
+  end
+
   def to_s
     "<Site #{id} #{url}>"
+  end
+
+  def contact
+    {
+      first_name: contact_first_name,
+      last_name: contact_last_name,
+      organization: contact_organization,
+      position: contact_position,
+      address: contact_address,
+      city: contact_city,
+      admin_area: contact_admin_area,
+      postal_code: contact_postal_code,
+      country: contact_country,
+      email: contact_email,
+      url: contact_url
+    }
   end
 
   def respond_to?(method, include_all=false)
@@ -260,9 +247,7 @@ class Site < ActiveRecord::Base
 
   def icon_url
     return nil unless logo_square.file?
-    url = logo_square.url
-    url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
-    url
+    logo_square.url
   end
 
   def home_page_wiki_path_by_locale( locale )
@@ -273,4 +258,33 @@ class Site < ActiveRecord::Base
     end
     path
   end
+
+  def coordinate_systems
+    return if coordinate_systems_json.blank?
+    systems = JSON.parse( coordinate_systems_json ) rescue { }
+    systems.blank? ? nil : systems
+  end
+
+  def bounds?
+    !geo_swlat.blank? && !geo_swlng.blank? &&
+    !geo_nelat.blank? && !geo_nelng.blank?
+  end
+
+  def bounds
+    return unless bounds?
+    { swlat: geo_swlat.to_f, swlng: geo_swlng.to_f,
+      nelat: geo_nelat.to_f, nelng: geo_nelng.to_f }
+  end
+
+  def ratatosk_name_providers
+    return if ratatosk_name_providers_array.blank?
+    ratatosk_name_providers_array.split( "," ).map( &:strip )
+  end
+
+
+  def taxon_describers
+    return if taxon_describers_array.blank?
+    taxon_describers_array.split( "," ).map( &:strip )
+  end
+
 end

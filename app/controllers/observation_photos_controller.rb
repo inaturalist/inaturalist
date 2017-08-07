@@ -27,8 +27,8 @@ class ObservationPhotosController < ApplicationController
       respond_to do |format|
         format.json do
           if params[:observation_photo] && params[:observation_photo][:observation_id]
-            Rails.logger.error "[ERROR #{Time.now}] Observation hasn't been added to #{CONFIG.site_name}"
-            render :json => {:errors => "Observation hasn't been added to #{CONFIG.site_name}"}, 
+            Rails.logger.error "[ERROR #{Time.now}] Observation hasn't been added to #{@site.name}"
+            render :json => {:errors => "Observation hasn't been added to #{@site.name}"},
               :status => :unprocessable_entity
           else
             Rails.logger.error "[ERROR #{Time.now}] No observation specified"

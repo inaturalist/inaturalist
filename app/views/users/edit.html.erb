@@ -122,14 +122,14 @@
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
           :label => t(:automatically_update_my_content_for_taxon_changes),
           :label_after => true,
-          :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
+          :description => t('views.users.edit.taxon_change_desc', :site_name => @site.preferred_site_name_short) %>
       </div>
       
       <h3><%= t :community_moderation_settings %></h3>
       <%= f.check_box "prefers_community_taxa", 
         :label => t(:accept_community_identifications), 
         :label_after => true,
-        :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => SITE_NAME_SHORT) %>
+        :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => @site.preferred_site_name_short) %>
       <%= f.select :preferred_observation_fields_by, [
           [t(:anyone), User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE],
           [t(:curators), User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS],
@@ -142,7 +142,7 @@
       <div id="licenses" class="stacked">
         <h3><%= t(:licensing) %></h3>
         <p class="ui description">
-          <%= t('views.users.edit.licensing_desc_html', :site_name => SITE_NAME_SHORT) %>
+          <%= t('views.users.edit.licensing_desc_html', :site_name => @site.preferred_site_name_short) %>
           <%= link_to_function t(:learn_what_these_licenses_mean), 
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
         </p>
@@ -155,7 +155,7 @@
               :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_observation_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
-            :description => t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+            :description => t(:you_retain_full_copyright_over_your_content, :site_name => @site.preferred_site_name_short) %>
           <%= f.check_box :make_observation_licenses_same, :label => t(:update_existing_observations_with_new_license), :label_after => true %>
         </div>
         
@@ -167,7 +167,7 @@
               :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_photo_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
-            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => @site.preferred_site_name_short) %>
           <%= f.check_box :make_photo_licenses_same, :label => t(:update_existing_photos_with_new_license), :label_after => true %>
         </div>
 
@@ -179,7 +179,7 @@
               :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_sound_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
-            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => @site.preferred_site_name_short) %>
           <%= f.check_box :make_sound_licenses_same, :label => t(:update_existing_sounds_with_new_license), :label_after => true %>
         </div>
         
@@ -259,7 +259,7 @@
       <% end %>
     </ul>
     <p class="ui description">
-      <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => SITE_NAME_SHORT) %>
+      <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => @site.preferred_site_name_short) %>
     </p>
   </div>
   

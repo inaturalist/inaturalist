@@ -213,7 +213,8 @@ class LocalPhoto < Photo
   end
 
   def source_title
-    self.subtype.blank? ? SITE_NAME :
+    site = @site || user.try(:site) || Site.default
+    self.subtype.blank? ? site.name :
       subtype.gsub(/Photo$/, '').underscore.humanize.titleize
   end
 

@@ -164,4 +164,4 @@
         = surround '(', ')' do
           = link_to @guide.license.sub('-', ' '), url_for_license(@guide.license)
     %p
-      =t :built_with_site_guides_html, :site_name => SITE_NAME, :url => guides_url
+      =t :built_with_site_guides_html, :site_name => @site.name, :url => guides_url

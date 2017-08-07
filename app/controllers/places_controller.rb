@@ -31,7 +31,7 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place = (Place.find(CONFIG.place_id) rescue nil) unless CONFIG.place_id.blank?
+        place = @site.place
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
           places = if place

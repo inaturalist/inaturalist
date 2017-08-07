@@ -142,7 +142,6 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv(options = {})
-    CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     controller = options[:controller] || FakeView.new
     attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
        last_observation url created_at updated_at taxon_common_name)

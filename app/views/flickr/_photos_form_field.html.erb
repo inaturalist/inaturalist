@@ -4,8 +4,7 @@
   <br/>
   <span><%=t :we_support_flickr %></span>
   <br/><br/>
-  <%= link_to  t(:linked_flickr_howto, :site_name => CONFIG.site_name),
-              auth_url_for('flickr') %>
+  <%= link_to t(:linked_flickr_howto, site_name: @site.name), auth_url_for('flickr') %>
 </div>
 <% else %>
 <%= 

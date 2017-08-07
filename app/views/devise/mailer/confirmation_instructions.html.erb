@@ -2,21 +2,13 @@
 
 <%-
   @user = @resource
-  if site = @resource.site || @site
-    logo_url = site.logo.url
-    logo_square_url = site.logo_square.url
-    site_url = site.url
-    site_name = site.name
-    help_url = site.help_url
-    feedback_url = site.feedback_url
-  else
-    logo_url = CONFIG.logo
-    logo_square_url = CONFIG.logo_icon_square_big
-    site_url = root_url
-    site_name = CONFIG.site_name
-    help_url = CONFIG.help_url
-    feedback_url = CONFIG.feedback_url
-  end
+  site = @resource.site || @site || Site.default
+  logo_url = site.logo.url
+  logo_square_url = site.logo_square.url
+  site_url = site.url
+  site_name = site.name
+  help_url = site.help_url
+  feedback_url = site.feedback_url
 -%>
 <h1>
 <%=raw t(:your_account_has_been_activated) %>

@@ -1,9 +1,9 @@
 <%-
   @url_options ||= {}
   msg = if @reauthorization_needed
-    t(:your_site_needs_your_to_authorize_more_permissions_from_provider, :provider => @provider.capitalize, :site_name => SITE_NAME_SHORT)
+    t(:your_site_needs_your_to_authorize_more_permissions_from_provider, :provider => @provider.capitalize, :site_name => @site.preferred_site_name_short)
   else
-    t(:first_connect_your_provider_account_to_your_site, :provider => @provider.capitalize, :site_name => SITE_NAME_SHORT)
+    t(:first_connect_your_provider_account_to_your_site, :provider => @provider.capitalize, :site_name => @site.preferred_site_name_short)
   end
 
   link_text = if @reauthorization_needed
@@ -21,6 +21,6 @@
     </li>
   </ul>
   <p class="ui description">
-    <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => SITE_NAME_SHORT) %>
+    <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => @site.preferred_site_name_short) %>
   </p>
 </div>

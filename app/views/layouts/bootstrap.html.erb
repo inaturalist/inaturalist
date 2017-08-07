@@ -13,15 +13,15 @@
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
     <% end -%>
-    <% if CONFIG.twitter && CONFIG.twitter.username -%>
-      <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
+    <% if !@site.twitter_username.blank? -%>
+      <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
-    <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <meta property="og:site_name" content="<%= @site.name %>"/>
+    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
+      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
     <% end %>
-    <% if !@headless && @site && @site.preferred_ios_app_id -%>
-      <meta name="apple-itunes-app" content="app-id=<%= @site.preferred_ios_app_id %>">
+    <% if !@headless && @site && !@site.ios_app_id.blank? -%>
+      <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>

@@ -46,6 +46,11 @@ RSpec.configure do |config|
 
   config.before(:each) do
     Delayed::Job.delete_all
+    Site.make!(
+      name: "iNaturalist",
+      preferred_site_name_short: "iNat",
+      preferred_email_noreply: "no-reply@inaturalist.org"
+    ) unless Site.any?
   end
 
   config.after(:each) do

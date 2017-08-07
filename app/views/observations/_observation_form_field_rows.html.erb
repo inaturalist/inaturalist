@@ -171,7 +171,7 @@
             </div>
             <div class="compactfieldcontent" style="display: none">
               <span><%=t :we_currently_support_flickr_for_image_hosting %></span>
-              <%= link_to t(:linked_flickr_hotwo, :site_name => SITE_NAME),
+              <%= link_to t(:linked_flickr_hotwo, :site_name => @site.name),
                           auth_url_for('flickr'),
                           :target => "_blank" %>
             </div>

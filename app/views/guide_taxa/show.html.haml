@@ -89,7 +89,7 @@
       %h3= t(:more_info_title, default: t(:more_info))
       %ul
         - if @guide_taxon.taxon
-          %li= link_to t(:site_taxon_page, :site_name => SITE_NAME_SHORT), @guide_taxon.taxon
+          %li= link_to t(:site_taxon_page, :site_name => @site.preferred_site_name_short), @guide_taxon.taxon
         - for tl in @taxon_links.sort_by{|tl| tl.site_title.downcase}
           - if @guide_taxon.eol_page_id && tl.url =~ /eol\.org/
             %li= link_to tl.site_title, "http://eol.org/pages/#{@guide_taxon.eol_page_id}"

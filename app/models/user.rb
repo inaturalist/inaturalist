@@ -152,7 +152,7 @@ class User < ActiveRecord::Base
   else
     has_attached_file :icon, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
-      url: "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+      url: "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
       default_url: "/attachment_defaults/:class/:attachment/defaults/:style.png"
     )
   end

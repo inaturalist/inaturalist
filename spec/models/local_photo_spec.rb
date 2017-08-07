@@ -240,7 +240,7 @@ end
 describe LocalPhoto do
   it "uses subtype for source_title if available" do
     lp = LocalPhoto.new
-    expect( lp.source_title ).to eq SITE_NAME
+    expect( lp.source_title ).to eq Site.default.name
     lp = LocalPhoto.new(subtype: "FlickrPhoto")
     expect( lp.source_title ).to eq "Flickr"
   end

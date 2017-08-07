@@ -9,6 +9,6 @@ class EmailerTest < ActionMailer::TestCase
     user = users(:ted)
     comment = Comment.create(:user => user, :body => "hey there", :parent => observation)
     mail = Emailer.deliver_comment_notification(comment)
-    assert_equal CONFIG.noreply_email, mail['reply-to'].to_s
+    assert_equal Site.default.noreply_email, mail['reply-to'].to_s
   end
 end
