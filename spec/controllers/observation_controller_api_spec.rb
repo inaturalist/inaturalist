@@ -1568,7 +1568,7 @@ shared_examples_for "an ObservationsController" do
   describe "viewed_updates" do
     before do
       enable_elastic_indexing(UpdateAction)
-      without_delay do
+      after_delayed_job_finishes do
         @o = Observation.make!(:user => user)
         @c = Comment.make!(:parent => @o)
         @i = Identification.make!(:observation => @o)
