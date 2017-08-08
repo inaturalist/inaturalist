@@ -16,7 +16,9 @@ class LocalSound < Sound
       url: "/attachments/:class/:attachment/:id.:content_type_extension"
   end
 
-  validates_attachment_content_type :file, content_type: [/wav/i, /mp3/i], message: "must be a WAV or MP3"
+  validates_attachment_content_type :file,
+    content_type: [/wav/i, /mpeg/i, /mp3/i],
+    message: "must be a WAV or MP3"
 
   def to_observation
     o = Observation.new

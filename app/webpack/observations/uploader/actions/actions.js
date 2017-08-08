@@ -242,15 +242,15 @@ const actions = class actions {
     };
   }
 
-  static newCardFromPhoto( photo ) {
+  static newCardFromMedia( media ) {
     return function ( dispatch ) {
       const time = new Date( ).getTime( );
       const obsCards = { [time]: new ObsCard( { id: time } ) };
       dispatch( actions.appendObsCards( obsCards ) );
-      dispatch( actions.updateFile( photo.file, { cardID: time, sort: time } ) );
+      dispatch( actions.updateFile( media.file, { cardID: time, sort: time } ) );
 
-      const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      delete fromCard.files[photo.file.id];
+      const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
+      delete fromCard.files[media.file.id];
       // the card from where the photo was move can be removed if it has no data
       // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
