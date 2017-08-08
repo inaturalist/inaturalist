@@ -116,6 +116,9 @@ const ObsCard = class ObsCard {
     const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
       f => ( f.photo ? f.photo.id : null ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
+    const soundIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
+      f => ( f.sound ? f.sound.id : null ) ) );
+    if ( soundIDs.length > 0 ) { params.local_sounds = { 0: soundIDs }; }
     inaturalistjs.observations.create( params, { same_origin: true } ).then( r => {
       dispatch( actions.updateObsCard( this, {
         saveState: "saved",

@@ -502,15 +502,18 @@ ul.obs > li .card {
         }
         .Sound {
           line-height: 1;
-          margin: 42px auto 0;
-          padding: 10px;
+          margin: 36px auto 0;
+          padding: 0px;
           box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
-          width: 190px;
+          width: 170px;
           background-color: white;
           audio {
             vertical-align: middle;
             max-width: 100%;
-            margin-bottom: 10px;
+          }
+          small {
+            display: block;
+            padding: 10px;
           }
         }
       }

@@ -127,7 +127,7 @@ class PhotoBrowser extends React.Component {
         player = (
           <audio controls preload="none">
             <source src={ sound.file_url } type={ sound.file_content_type } />
-            Your browser does not support the audio element.
+            { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
           </audio>
         );
       }

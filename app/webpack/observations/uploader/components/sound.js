@@ -30,20 +30,27 @@ class Sound extends Component {
          this.props.draggingProps.file.id === this.props.file.id ) {
       className += " drag";
     }
+    const source = this.props.file.sound ? (
+      <source
+        src={ this.props.file.sound.file_url }
+        type={ this.props.file.sound.file_content_type }
+      />
+    ) : (
+      <source
+        src={ this.props.file.preview }
+      />
+    );
     return (
       <div>
         { this.props.connectDragSource(
           <div className={ className }>
             <div className="Sound">
               <audio controls preload="none">
-                <source
-                  src={ this.props.file.sound.file_url }
-                  type={ this.props.file.sound.file_content_type }
-                />
-                Your browser does not support the audio element.
+                { source }
+                { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
               </audio>
               <small className="text-muted">
-                { this.props.file.sound.file_file_name }
+                { this.props.file.sound ? this.props.file.sound.file_file_name : null }
               </small>
             </div>
           </div>
