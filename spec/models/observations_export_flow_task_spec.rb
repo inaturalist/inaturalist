@@ -5,6 +5,7 @@ describe ObservationsExportFlowTask do
   after(:each) { disable_elastic_indexing( Observation ) }
   describe "run" do
     before(:all) do
+      # not sure why the before(:each) in spec_helper may not have run yet here
       make_default_site
       @o = Observation.make!
       @ft = ObservationsExportFlowTask.make

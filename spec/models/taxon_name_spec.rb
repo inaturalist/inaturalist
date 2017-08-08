@@ -185,7 +185,7 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_gl
   end
 
-  it "should pick names based on the site's place even when a place isn't requested explicitly" do
+  it "should pick names based on the site's place" do
     california = Place.make!
     oregon = Place.make!
     tn_gl = TaxonName.make!(name: "bay tree", lexicon: "English", taxon: t)
@@ -194,6 +194,6 @@ describe TaxonName, "choose_common_name" do
     ptn_or = PlaceTaxonName.make!(taxon_name: tn_or, place: oregon)
     t.reload
     Site.default.update_attributes( place: oregon )
-    expect(TaxonName.choose_common_name( t.taxon_names ) ).to eq tn_or
+    expect(TaxonName.choose_common_name( t.taxon_names, site: Site.default ) ).to eq tn_or
   end
 end
