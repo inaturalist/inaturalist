@@ -202,11 +202,11 @@ describe Project do
       allow(p).to receive(:icon_updated_at) { Time.now }
       expect(p.icon_url).not_to be_blank
     end
-    it "should be absolute" do
-      expect(p.icon_url).to match /^http/
+    it "should be relative" do
+      expect(p.icon_url).to match /^\/attachments/
     end
-    it "should not have two protocols" do
-      expect(p.icon_url.scan(/http/).size).to eq 1
+    it "should not have a protocol" do
+      expect(p.icon_url.scan(/http/).size).to eq 0
     end
   end
 

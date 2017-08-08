@@ -13,7 +13,7 @@ class FakeView < ActionView::Base
   include ObservationsHelper
 
   @@default_url_options = {
-    host: Site.default.url.sub( "http://", '' )
+    host: Site.default ? Site.default.url.sub( "http://", '' ) : "http://localhost"
   }
   
   def method_missing(method, *args)

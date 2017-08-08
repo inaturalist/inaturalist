@@ -46,11 +46,7 @@ RSpec.configure do |config|
 
   config.before(:each) do
     Delayed::Job.delete_all
-    Site.make!(
-      name: "iNaturalist",
-      preferred_site_name_short: "iNat",
-      preferred_email_noreply: "no-reply@inaturalist.org"
-    ) unless Site.any?
+    make_default_site
   end
 
   config.after(:each) do
@@ -193,4 +189,12 @@ def disable_elastic_indexing(*args)
     klass.send :skip_callback, :touch, :after, :elastic_index!
     klass.__elasticsearch__.delete_index!
   end
+end
+
+def make_default_site
+  Site.make!(
+    name: "iNaturalist",
+    preferred_site_name_short: "iNat",
+    preferred_email_noreply: "no-reply@inaturalist.org"
+  ) unless Site.any?
 end

@@ -193,8 +193,7 @@ describe TaxonName, "choose_common_name" do
     tn_or = TaxonName.make!(name: "Oregon myrtle", lexicon: "English", taxon: t)
     ptn_or = PlaceTaxonName.make!(taxon_name: tn_or, place: oregon)
     t.reload
-    site = Site.make!( place: oregon )
-    stub_config( site_id: site.id )
+    Site.default.update_attributes( place: oregon )
     expect(TaxonName.choose_common_name( t.taxon_names ) ).to eq tn_or
   end
 end

@@ -12,9 +12,9 @@ class Emailer < ActionMailer::Base
   def invite_user(address, params, user) 
     Invite.create(:user => user, :invite_address => address)
     @user = user
+    set_locale
     @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{@site.name}"
     @personal_message = params[:personal_message]
-    set_locale
     @sending_user = params[:sender_name]
     mail(set_site_specific_opts.merge(
       :to => address,
@@ -180,7 +180,7 @@ class Emailer < ActionMailer::Base
 
   private
   def default_url_options
-    opts = Rails.application.config.action_mailer.default_url_options.dup
+    opts = (Rails.application.config.action_mailer.default_url_options || {}).dup
     site = @user.try(:site) || @site || Site.default
     if site_uri = URI.parse( site.url )
       opts[:host] = site_uri.host
@@ -192,11 +192,8 @@ class Emailer < ActionMailer::Base
   end
 
   def subject_prefix
-    if site = @user.site
-      "[#{site.name}]"
-    else
-      "[#{@site.name}]"
-    end
+    site = @user.site || @site || Site.default
+    "[#{site.name}]"
   end
 
   def site_name

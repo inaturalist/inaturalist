@@ -53,7 +53,7 @@ describe ObservationsController do
     
     it "should set the site" do
       @site = Site.make!
-      post :create, observation: { species_guess: "Foo" }, site_id: @site.id
+      post :create, observation: { species_guess: "Foo" }, site_id: @site.id, inat_site_id: @site.id
       expect( user.observations.last.site ).to_not be_blank
       expect( user.observations.last.site.id ).to eq @site.id
     end

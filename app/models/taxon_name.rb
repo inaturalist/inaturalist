@@ -172,6 +172,7 @@ class TaxonName < ActiveRecord::Base
     place_id = options[:place_id] unless options[:place_id].blank?
     place_id ||= (options[:place].is_a?(Place) ? options[:place].id : options[:place]) unless options[:place].blank?
     place_id ||= options[:user].place_id unless options[:user].blank?
+    options[:site] ||= Site.default
     
     if place_id.blank? && options[:site]
       place_id ||= options[:site].place_id unless options[:site].place_id.blank?

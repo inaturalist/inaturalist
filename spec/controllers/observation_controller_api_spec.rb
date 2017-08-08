@@ -133,14 +133,14 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not duplicate observations with the same uuid" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       o = Observation.make!(:user => user, :uuid => uuid)
       post :create, :format => :json, :observation => {:uuid => uuid}
       expect(Observation.where(:uuid => uuid).count).to eq 1
     end
 
     it "should update attributes for an existing observation with the same uuid" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       o = Observation.make!(:user => user, :uuid => uuid)
       post :create, :format => :json, :observation => {:uuid => uuid, :description => "this is a WOAH"}
       expect(Observation.where(:uuid => uuid).count).to eq 1
@@ -149,7 +149,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should be invalid for observations with the same uuid if the existing was by a differnet user" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       o = Observation.make!( uuid: uuid )
       post :create, format: :json, observation: { uuid: uuid }
       expect( response.status ).to eq 422
@@ -163,23 +163,19 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not override a uuid in the request" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       post :create, format: :json, observation: { uuid: uuid }
       json = JSON.parse( response.body )[0]
       expect( json["uuid"] ).to eq uuid
     end
 
-    it "should default to using CONFIG.site_id" do
-      site =  Site.make!
-      CONFIG.site_id = site.id
+    it "should default to using Site.default" do
       post :create, format: :json, observation: { uuid: SecureRandom.uuid }
       json = JSON.parse( response.body )[0]
-      expect( json["site_id"] ).to eq site.id
+      expect( json["site_id"] ).to eq Site.default.id
     end
 
     it "should accept other site_ids" do
-      site =  Site.make!
-      CONFIG.site_id = site.id
       newsite = Site.make!
       post :create, format: :json, observation: { uuid: SecureRandom.uuid, site_id: newsite.id }
       json = JSON.parse( response.body )[0]
@@ -1377,7 +1373,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     describe "with site" do
-      let(:site) { Site.make! }
+      let(:site) { Site.default }
       before { stub_config site_id: site.id }
       it "should filter by place" do
         p = make_place_with_geom
