@@ -41,7 +41,7 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing
+    :bulk_import, :skip_indexing, :editing_user_id
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -2254,6 +2254,7 @@ class Observation < ActiveRecord::Base
   def create_observation_review
     return true unless taxon
     return true unless taxon_id_was.blank?
+    return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
   end

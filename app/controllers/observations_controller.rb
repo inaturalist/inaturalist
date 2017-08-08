@@ -652,6 +652,7 @@ class ObservationsController < ApplicationController
       o ||= Observation.new
       o.assign_attributes(observation_params(observation))
       o.user = current_user
+      o.editing_user_id = current_user.id
       o.user_agent = request.user_agent
       unless o.site_id
         o.site = @site || current_user.site
@@ -793,7 +794,6 @@ class ObservationsController < ApplicationController
     elsif params[:id] && params[:observations]
       params[:observations] = [[params[:id], params[:observations][0]]]
     end
-      
     
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
@@ -880,6 +880,8 @@ class ObservationsController < ApplicationController
         params[:soundcloud_sounds][fieldset_index] ||= []
         observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
       end
+
+      observation.editing_user_id = current_user.id
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true

@@ -77,6 +77,13 @@ describe ObservationsController do
       expect( o.longitude ).to eq 176.3574072522
     end
 
+    it "should mark the observation as reviewed by the observer if there was a taxon" do
+      taxon = Taxon.make!
+      post :create, observation: { taxon_id: taxon.id }
+      o = user.observations.last
+      expect( o ).to be_reviewed_by( o.user )
+    end
+
   end
   
   describe "update" do
