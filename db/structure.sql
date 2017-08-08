@@ -3606,7 +3606,8 @@ CREATE TABLE sounds (
     file_file_name character varying,
     file_content_type character varying,
     file_file_size integer,
-    file_updated_at timestamp without time zone
+    file_updated_at timestamp without time zone,
+    subtype character varying(255)
 );
 
 
@@ -8914,4 +8915,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170727000602');
 INSERT INTO schema_migrations (version) VALUES ('20170727193500');
 
 INSERT INTO schema_migrations (version) VALUES ('20170804212822');
+
+INSERT INTO schema_migrations (version) VALUES ('20170808184245');
 

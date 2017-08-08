@@ -71,12 +71,8 @@ class Sound < ActiveRecord::Base
       SoundcloudSound
       LocalSound
     end
-    Rails.logger.debug "[DEBUG] self.subclasses: #{self.subclasses}"
     (self.subclasses || []).each do |klass|
-      Rails.logger.debug "[DEBUG] klass: #{klass}"
       klass_key = klass.to_s.underscore.pluralize.to_sym
-      Rails.logger.debug "[DEBUG] params[klass_key]: #{params[klass_key]}"
-      Rails.logger.debug "[DEBUG] fieldset_index: #{fieldset_index}"
       if params[klass_key] && params[klass_key][fieldset_index.to_s]
         if klass == SoundcloudSound
           params[klass_key][fieldset_index.to_s].each do |sid|
@@ -87,16 +83,12 @@ class Sound < ActiveRecord::Base
           end
         else
           params[klass_key][fieldset_index.to_s].each do |file_or_id|
-            Rails.logger.debug "[DEBUG] file_or_id: #{file_or_id}"
             sound = if file_or_id.is_a?( ActionDispatch::Http::UploadedFile )
-              Rails.logger.debug "[DEBUG] file, making new LocalSound"
               LocalSound.new( file: file_or_id )
             else
-              Rails.logger.debug "[DEBUG] id, looking up existing sound"
               Sound.find_by_id( file_or_id )
             end
             next unless sound
-            # sound = klass.new_from_native_sound_id(sid, owner)
             sound.user = owner
             sound.native_realname = owner.name
             sounds << sound
@@ -104,7 +96,6 @@ class Sound < ActiveRecord::Base
         end
       end
     end
-    Rails.logger.debug "[DEBUG] sounds: #{sounds}"
     sounds
   end
 
@@ -137,7 +128,7 @@ class Sound < ActiveRecord::Base
       secret_token: try(:secret_token),
       file_url: is_a?( LocalSound ) ? FakeView.uri_join( FakeView.root_url, file.url ) : nil,
       file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
-      license_code: license_code
+      subtype: subtype
     }
   end
 

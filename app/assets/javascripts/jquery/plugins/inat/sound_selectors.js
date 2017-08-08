@@ -74,7 +74,7 @@
       $.fn.soundSelector.defaults.controlsCSS
     );
 
-    // Append a disabled source selector to match the photo selector
+    // Append a source selector to match the photo selector
     var $sourceWrapper = $('<span class="urlselect inter"><strong>'+I18n.t('source')+':</strong> </span>');
     var sourceSelect = $('<select class="select" style="margin: 0 auto"></select>');
     sourceSelect.change(function() {
@@ -82,6 +82,9 @@
     });
     sourceSelect.append($('<option value="local">Your computer</option>'));
     sourceSelect.append($('<option value="soundcloud">SoundCloud</option>'));
+    if ( options.baseURL.match( /soundcloud/ ) ) {
+      sourceSelect.val( "soundcloud" );
+    }
     $sourceWrapper.append(sourceSelect);
     controls.append($sourceWrapper);
 
@@ -120,11 +123,9 @@
   $.fn.soundSelector.changeBaseUrl = function(wrapper, source) {
     var options = $(wrapper).data('soundSelectorOptions');
     options.baseURL = "/sounds/local_sound_fields";
-    console.log( "[DEBUG] source: ", source );
     if ( source === "soundcloud" ) {
       options.baseURL = "/soundcloud_sounds";
     }
-    console.log( "[DEBUG] options.baseURL: ", options.baseURL );
     $(wrapper).data('soundSelectorOptions', options);
     $.fn.soundSelector.querySounds(wrapper, options);
   };
@@ -141,8 +142,6 @@
       $(wrapper).data('soundSelectorOptions'), 
       options
     )
-    console.log( "[DEBUG] $(wrapper).data('soundSelectorOptions'): ", $(wrapper).data('soundSelectorOptions') );
-    console.log( "[DEBUG] options: ", options );
     var params = {limit: options.limit, offset: options.offset, index: options.index}
     var baseURL = options.baseURL
     

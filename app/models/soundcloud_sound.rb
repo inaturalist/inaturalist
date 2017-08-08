@@ -86,4 +86,37 @@ class SoundcloudSound < Sound
     taxa.compact
   end
 
+  # Return a *new* record with this one's attributes and the attached file
+  def to_local_sound
+    local_sound = LocalSound.new( attributes.reject{ |k,v| %w(id type).include?( k ) } )
+    local_sound.subtype = self.class.name
+    local_sound.file = StringIO.new( download.body )
+    if filename = download.headers["content-disposition"][/\"(.+)\"/, 1]
+      local_sound.file_file_name = filename
+    end
+    local_sound
+  end
+
+  # Convert existing to local sound and save
+  def to_local_sound!
+    local_sound = becomes( LocalSound )
+    local_sound.subtype = self.class.name
+    local_sound.file = StringIO.new( download.body )
+    if filename = download.headers["content-disposition"][/\"(.+)\"/, 1]
+      local_sound.file_file_name = filename
+    end
+    local_sound.save!
+    Sound.where( id: id ).update_all( type: "LocalSound" )
+    Sound.where( id: id ).first
+  end
+
+  def download
+    unless @download_response
+      client = SoundcloudSound.client_for_user( user )
+      api_response = client.get( "/tracks/#{native_sound_id}" )
+      @download_response = client.get( api_response.download_url, allow_redirects: true )
+    end
+    @download_response
+  end
+
 end

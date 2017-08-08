@@ -41,8 +41,11 @@ class PhotoBrowser extends React.Component {
         </Tooltip> ) }
       key={ `${type}-${media.id}-license` }
     >
-      { media.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
-        ( <i className="fa fa-copyright license" /> ) }
+      { media.license_code && media.license_code !== "C" ? (
+        <i className="fa fa-creative-commons license" />
+      ) : (
+        <i className="fa fa-copyright license" />
+      ) }
     </OverlayTrigger> );
   }
 
@@ -111,14 +114,7 @@ class PhotoBrowser extends React.Component {
     _.each( observation.sounds, sound => {
       let player;
       let containerClass = "sound-container-local";
-      if ( sound.file_url ) {
-        player = (
-          <audio controls preload="none">
-            <source src={ sound.file_url } type={ sound.file_content_type } />
-            Your browser does not support the audio element.
-          </audio>
-        );
-      } else {
+      if ( sound.subtype === "SoundcloudSound" || !sound.file_url ) {
         containerClass = "sound-container-soundcloud";
         player = (
           <iframe
@@ -126,6 +122,13 @@ class PhotoBrowser extends React.Component {
             frameBorder="no"
             src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
           ></iframe>
+        );
+      } else {
+        player = (
+          <audio controls preload="none">
+            <source src={ sound.file_url } type={ sound.file_content_type } />
+            Your browser does not support the audio element.
+          </audio>
         );
       }
       images.push( {
