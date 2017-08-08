@@ -49,6 +49,19 @@ class ProjectListing extends React.Component {
       { I18n.t( "remove_from_project" ) }
     </MenuItem> ) );
     if ( po.current_user_is_member ) {
+      if (
+        po.project.project_observation_fields &&
+        po.project.project_observation_fields.length > 0
+      ) {
+        menuItems.push( (
+          <MenuItem
+            key="edit-project-observation-fields"
+            eventKey="edit-project-observation-fields"
+          >
+            { I18n.t( "fill_out_project_observation_fields" ) }
+          </MenuItem>
+        ) );
+      }
       menuItems.push( ( <MenuItem
         key={ `project-settings-${po.project.id}` }
         eventKey="projectSettings"
@@ -73,6 +86,8 @@ class ProjectListing extends React.Component {
               this.props.joinProject( po.project );
             } else if ( key === "delete" ) {
               this.props.removeFromProject( po.project );
+            } else if ( key === "edit-project-observation-fields" ) {
+              this.props.showProjectFieldsModal( po.project );
             }
           } }
         >
@@ -191,7 +206,8 @@ ProjectListing.propTypes = {
   observation: PropTypes.object,
   projectObservation: PropTypes.object,
   removeObservationFieldValue: PropTypes.func,
-  updateObservationFieldValue: PropTypes.func
+  updateObservationFieldValue: PropTypes.func,
+  showProjectFieldsModal: PropTypes.func
 };
 
 export default ProjectListing;

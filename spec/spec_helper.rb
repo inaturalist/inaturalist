@@ -88,6 +88,12 @@ def without_delay
   r
 end
 
+def after_delayed_job_finishes
+  r = yield
+  Delayed::Worker.new.work_off
+  r
+end
+
 # http://stackoverflow.com/questions/3768718/rails-rspec-make-tests-to-pass-with-http-basic-authentication
 def http_login(user)
   request.env['HTTP_AUTHORIZATION'] = ActionController::HttpAuthentication::Basic.encode_credentials(
