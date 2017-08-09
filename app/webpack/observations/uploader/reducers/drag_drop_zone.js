@@ -85,10 +85,20 @@ const dragDropZone = ( state = defaultState, action ) => {
       }
       const time = new Date( ).getTime( );
       let updatedState = update( state, {
-        files: { [action.file.id]: { $merge: action.attrs } }
+        files: {
+          [action.file.id]: { $merge: action.attrs }
+        }
       } );
       const cardID = updatedState.files[action.file.id].cardID;
       const card = updatedState.obsCards[cardID];
+      // if the file has been uploaded and we had a preview, ditch the preview to avoid memory leaks
+      if (
+        updatedState.files[action.file.id].uploadState === "uploaded" &&
+        updatedState.files[action.file.id].preview
+      ) {
+        window.URL.revokeObjectURL( updatedState.files[action.file.id].preview );
+        updatedState.files[action.file.id].preview = null;
+      }
       // the card the file is currently associated with
       if ( card ) {
         const cardUpdates = Object.assign( { updatedAt: time },
