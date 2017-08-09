@@ -32,9 +32,7 @@
   <body>
     <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
       <% unless @headless -%>
-        <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
-          <%= render :partial => 'shared/header' %>
-        <% end %>
+        <%= render :partial => 'shared/header' %>
       <% end -%>
       
       <% if (flash[:notice] || flash[:alert]) && !@flash_js %>

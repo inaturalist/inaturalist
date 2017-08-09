@@ -53,9 +53,10 @@ base: &base
     google_webmaster:
         verification: abiglongkey
 
-    s3_bucket: 'yourbucketname'
+    s3_bucket: yourbucketname
+    s3_protocol: https
 
-    memcached: 'localhost'
+    memcached: localhost
 
     # Key for spam filtering with akismet. See http://akismet.com/development/api/
     rakismet:
