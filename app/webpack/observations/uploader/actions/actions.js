@@ -445,6 +445,11 @@ const actions = class actions {
           uploadState: "uploaded", photo: r, serverMetadata } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
+          // if the file has been uploaded and we had a preview, ditch the preview to avoid memory leaks
+          if ( file.preview ) {
+            window.URL.revokeObjectURL( file.preview );
+            dispatch( actions.updateFile( file, { preview: null } ) );
+          }
         }, 100 );
       } ).catch( e => {
         console.log( "Upload failed:", e );
@@ -468,6 +473,8 @@ const actions = class actions {
         } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
+          // TODO figure out why calling window.URL.revokeObjectURL prevents the
+          // sound from playing via the URL in Safari and Firefox
         }, 100 );
       } ).catch( e => {
         console.log( "Upload failed:", e );
