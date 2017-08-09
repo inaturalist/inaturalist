@@ -2,6 +2,17 @@ import _ from "lodash";
 import fetch from "isomorphic-fetch";
 import moment from "moment-timezone";
 
+export const ACCEPTED_FILE_TYPES = [
+  "image/*",
+  "audio/x-wav",
+  "audio/wav",
+  "audio/wave",
+  "audio/mp3",
+  "audio/x-mp3",
+  "audio/mp4",
+  "audio/x-m4a"
+].join( ", " );
+
 const util = class util {
 
   static isOnline( callback ) {

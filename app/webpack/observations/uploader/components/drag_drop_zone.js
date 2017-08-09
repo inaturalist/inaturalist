@@ -14,6 +14,7 @@ import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
 import HeaderUserMenu from "./header_user_menu";
+import { ACCEPTED_FILE_TYPES } from "../models/util";
 
 const fileTarget = {
   drop( props, monitor, component ) {
@@ -236,7 +237,7 @@ class DragDropZone extends Component {
           className={ className }
           activeClassName="hover"
           disableClick
-          accept="image/*,audio/mpeg,audio/x-wav,audio/wav,audio/wave"
+          accept={ ACCEPTED_FILE_TYPES }
         >
           <nav className="navbar navbar-default">
             <div className="container-fluid">

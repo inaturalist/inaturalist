@@ -132,6 +132,10 @@ const actions = class actions {
           files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
           dispatch( actions.readFileExif( files[id] ) );
           i += 1;
+        } else if ( f.type.match( /^audio\// ) ) {
+          const id = ( startTime + i );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
+          i += 1;
         }
       } );
       if ( Object.keys( files ).length > 0 ) {

@@ -8,7 +8,7 @@ import _ from "lodash";
 import moment from "moment-timezone";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-import util from "../models/util";
+import util, { ACCEPTED_FILE_TYPES } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
@@ -182,7 +182,7 @@ class ObsCardComponent extends Component {
           onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
           onDragEnter={ this.onDragEnter }
           activeClassName="hover"
-          accept="image/*"
+          accept={ ACCEPTED_FILE_TYPES }
           key={ obsCard.id }
         >
           { captiveMarker }
