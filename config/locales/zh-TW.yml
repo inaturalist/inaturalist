@@ -144,7 +144,7 @@ zh-TW:
   accept_community_identifications: 接受社群的物種鑑定
   accuracy: 準確性
   accuracy_m: 精確度（公尺）
-  accuracy_meters: 精確度 (公尺)
+  accuracy_meters: 準確性 (公尺)
   accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方"編輯"連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
   acquaintances: 熟人
   action: 操作
@@ -165,7 +165,7 @@ zh-TW:
   add_a_link_raquo: 新增一個連結
   add_a_name: 加入名稱
   add_a_new_change_group: 新增一個新變更群組
-  add_a_new_observation_to_id_please!: 新增一個請求鑑定的新觀察紀錄
+  add_a_new_observation_to_id_please!: 新增一個需要鑑定的新觀察紀錄
   add_a_place_raquo: 新增一個地點 &raquo;
   add_a_single_observation: 添加單一項觀察紀錄
   add_a_taxon: 添加一項物種分類
@@ -254,7 +254,7 @@ zh-TW:
   add_to_calendar: 加入日曆
   add_to_checklist: 加入清單
   add_to_favorites: 加入最愛
-  add_to_id_please: 請添加至鑑定
+  add_to_id_please: 請添加至需要鑑定
   add_to_list: 新增至清單中
   add_to_project: 新增專案
   add_to_your_life_list: 新增到您的生物清單！
@@ -602,6 +602,8 @@ zh-TW:
     split: 舊物種分類拆分為多項新的物種分類
     merge: 數個舊物種分類合成一個新物種分類群
     swap: 一對一的名稱修改
+    drop: 在歷史用途或與合作者間兼容性的維護上；物種分類的概念完全無效
+    stage: 準備一個無效概念來作為更改群組時釋出的部份
   change_geoprivacy: 更改位置隱私
   change_group: 更改群組
   change_icon: 更改圖示
@@ -839,6 +841,8 @@ zh-TW:
   create_an_atlas: 建立一個地圖集
   create_new_taxon: 創建一個新物種分類
   create_observations: 建立觀察
+  create_observations_by_uploading_photos_to: 透過上傳照片至%{place}來創建觀察。當您上傳到%{place}後將會嘗試提取來自於照片的
+    GPS 座標與時間/日期。要開始進行，
   created: 已建建
   created_by: 建立由
   created_by_user_on_date: 由 %{user} 於 %{date} 所建立
@@ -1187,6 +1191,7 @@ zh-TW:
   filter_by_place_taxon_and_color: 依地點、物種分類、和色彩使用控制篩選。
   filter_list_by_this_taxon: 依此物種分類過濾列表
   filtering: 過濾中
+  filtering_observations_that_pass_the: 過濾觀察來通過專案規範、或是產生在尚未有貢獻的專案地點
   filters: 過濾
   find: 尋找
   find_a_guide: 尋找一個指南
@@ -1382,6 +1387,8 @@ zh-TW:
   id_categories:
     tooltips:
       leading: 來自於社群的物種分類。此鑑定有機會引導至正確解答。
+      improving: 首先建議此物種分類來讓社群後續同意。這有助於改進社群物種分類。
+      maverick: 不是社群物種分類的原型或後代，即代表著社群不同意此物種分類。
   id_more_in_id_please: 在鑑定請求裡頭有更多鑑定
   id_please!: 需要 ID！
   id_please: 需要鑑定
@@ -2112,7 +2119,9 @@ zh-TW:
   observations_needing_curation: 觀察需要策展
   observations_obscured: 觀察（隱蔽）
   observations_observed_this_month: 在本月沒有添加<em>已觀察</em>內容。到外頭走走看看吧！
+  observations_of_relatives: 親屬觀察
   observations_of_taxon: '%{taxon_name}的觀察'
+  observations_on_inat_check_list: 在 %{site_name} 的觀察。清單地點已被提交；且至少有 1 份提交的觀察帶有邊界。
   observations_per_month: 觀察 / 月
   observations_removed_from_the_project: 觀察已從專案「%{project}」裡移除
   observations_saved: 觀察已儲存！
@@ -2180,7 +2189,7 @@ zh-TW:
   only_administrators_may_access_that_page: 僅有管理員可存取該頁面
   only_accepts_taxa: 僅接受物種分類
   only_an_admin_can_remove_project_users: 僅有管理員可移除專案用戶
-  only_country_state_and_county: 僅國家、州、和目前所顯示的縣級地方。放大來查看較小的地方。
+  only_country_state_and_county: 僅國家、州、和目前所顯示的郡級地方。放大來查看較小的地方。
   only_curators_can_add_edit_scientific_names: 僅有策展人可添加/編輯學名。
   only_curators_can_access_that_page: 僅有策展人能存取該頁面。
   only_files_with_10000_rows_at_a_time: 檔案一次只能 10000 行，再麻煩了
@@ -2319,7 +2328,7 @@ zh-TW:
       continent: 洲
       Country: 國家
       country: 國家
-      County: 縣
+      County: 郡（縣）
       county: 縣
       District: 區
       district: 區
@@ -2331,7 +2340,7 @@ zh-TW:
       estate: 莊園
       Governorate: 行政區
       governorate: 行政區
-      Historical_County: 史實的縣
+      Historical_County: 史實的郡
       historical_county: 史實的縣
       Historical_State: 史實的州
       historical_state: 史實的州
@@ -2475,7 +2484,7 @@ zh-TW:
   please_hold_on_while_the_file_is_generated: 請等待檔案產生。較大的列表可能會花費數分鐘。
   popular: 熱門
   position: 位置
-  positional_accuracy: 位置精準度
+  positional_accuracy: 位置準確性
   possessive_user: '%{user} 的'
   post: 貼文
   post_published: 貼文已發佈！
@@ -2636,6 +2645,7 @@ zh-TW:
   refresh: 重新整理
   refresh_listed_taxa: 重新整理列出的物種分類
   refreshing: 重新整理中
+  regenerate_url: Regenate URL
   register_for_this_event_at_x_html: 在 %{x} 事件的註冊
   reject?: 拒絕？
   reject_the_community_id: 駁回社群鑑定
@@ -2656,7 +2666,7 @@ zh-TW:
   remove_curator_status: 移除策展人狀態
   remove_from_batch: 從批量移除
   remove_from_guide: 從指南移除
-  remove_from_id_please?: 從鑑定請求裡移除？
+  remove_from_id_please?: 從需要鑑定裡移除？
   remove_from_list: 從列表移除
   remove_from_project: 從專案移除
   remove_this_section: 移除此章節
@@ -2941,7 +2951,7 @@ zh-TW:
   source_identifier: 來源鑑定人
   source_unknown: 來源不明
   source_url: 來源 URL
-  source_of_coordinates: 座標來源和精準測量，自動設定。
+  source_of_coordinates: 座標來源和準確測量，自動設定。
   sources: 來源
   sources_youve_added: 您添加的來源
   sources_and_credits: 來源和製作群
@@ -3117,7 +3127,7 @@ zh-TW:
   the_community_agrees_location_doesnt: 社群同意<strong>位置看起來不正確</strong>（例如猴子出現在海洋裡，或河馬出現在辦公大樓等等）
   the_community_agrees_organism_isnt: 社群同意<strong>不是被野化/歸化的生物</strong>（例如被人類或外星智慧生命給捕獲或栽培）
   the_community_must_feel_that: 社群必須覺得社群鑑定是最能作為證據方面的
-  the_data_quality_assessment_is: 資料品質評估是一項觀察精準程度的摘要。所有觀察最低從「粗略」等級開始，而到達「研究」等級是當
+  the_data_quality_assessment_is: 資料品質評估是一項觀察準確程度的摘要。所有觀察最低從「粗略」等級開始，而到達「研究」等級是當
   the_following_lists: 以下列表
   the_following_observations_could: 以下觀察不能被添加至 %{link}
   the_following_photos_have_been_tagged: 以下照片已被標記為：
@@ -3219,6 +3229,7 @@ zh-TW:
   tired_of_testing_this_new_version: 對於測試此新版本感到厭倦？
   title: 標題
   title_and_description: 標題與描述
+  titled_favorites_and_the_most_recent_additions: 已賦予「我的最愛」；而最新添加內容將會出現在此空間裡。
   to: 至
   to_: 至
   to_add_comments: 添加評論
@@ -3257,6 +3268,7 @@ zh-TW:
   try_wikipedia: 試試看維基百科？
   tue: 週二
   twitter: Twitter
+  two_thirds: 第2/3個
   type: 類型
   type_a_name_and_click: 輸入一個名稱然後點擊「查找」
   type_a_place_name_and_click_search: 輸入一個地名然後點擊「搜尋」來搜尋
@@ -3337,7 +3349,9 @@ zh-TW:
   US_states: 美國州
   usage_stats: 使用量統計內容
   use_name_as_a_placeholder: 使用<span class='ac-placeholder'>"%{name}"</span>為位置標誌符
+  use_this_form_to_create_a_new: 使用此表單來創建一個新的分類更改草稿；來描述出稍後提交在所提議之有效物種分類群上作拆分、合併，或兌換的內容。
   use_unique_file_names_for_separate_uploads: 使用唯一檔案名稱來各自上傳
+  use_well_formed_csv: 使用良好格式的 CSV。這代表文字必須被包含在雙引號裡；並用逗號區隔。多數試算表應用程式都應以此格式來匯出 CSV。
   user: 使用者
   user_added_an_observation_html: '%{user} 添加一個觀察'
   user_added_a_x: '%{user}添加一個%{x}'
@@ -3496,7 +3510,7 @@ zh-TW:
   welcome_back: 歡迎回來
   welcome_comma: 歡迎，
   welcome_login: 歡迎，%{login}
-  welcome_message: 是個可讓您<strong>記錄</strong>您在自然裡所見事物、 what you see in nature, 與其他自然愛好者<strong>交流</strong>，以及<strong>學習</strong>關於自然世界的地方。
+  welcome_message: 是個可讓您<strong>記錄</strong>您在自然裡所見事物、與其他自然愛好者<strong>交流</strong>，以及<strong>學習</strong>關於自然世界的地方。
   welcome_to_inat: 歡迎來到 %{site_name}！
   welcome_to_guides: 歡迎來到 %{site_name} 指南！
   welcome_to_x_project: 歡迎來到%{project}
@@ -3764,17 +3778,22 @@ zh-TW:
         what_is_an_observation?: 什麼是觀察？
         why_doesnt_inaturalist_recognize_the_name_ive_entered?: 為什麼 %{site_name} 不識別我所輸入的名稱？
         how_can_i_get_help_identifying_what_i_saw?: 我要如何對我所見的東西協助鑑定？
+        check_the_id_please_checkbox_when_html: 當添加/編輯您的觀察時勾選「需要鑑定」勾選框；您的觀察將會出現於<a
+          href="%{url}">需要鑑定</a>。
         what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: 連結 %{site_name}
           至我的 Flickr 帳號代表著什麼意義？
         can_i_add_photos_without_a_flickr_account?: 我可以不必透過使用 Flickr 帳號來添加照片嗎？
         we_also_support_picasa_html: 我們也支援 Picasa：<a href="%{url}">設置您的 Picasa 帳號
           &raquo;</a>
+        we_also_support_uploading_photos: 我們也支援直接上傳照片至 %{site_name}；但處理時間會較久，因此我們只允許每次上傳一張照片。若您已使用過
+          Flickr 或 Picasa 這些服務的話，使用它們會可能是較快的方法。
         what_are_tags?: 什麼是標籤？
         can_i_include_my_observations_on_my_blog?: 我的 %{site_name} 觀察內容可以加在自己個人的網站或部落格裡頭嗎？
         sure_check_out_our_widget_html: 沒錯，請瞧瞧我們的<a href="%{url}" title="Observations
           Widget">觀察小工具</a>。
         what_kind_of_photos_should_i_attach: 我應該附加哪種照片到觀察裡？我可以附加不是我拍攝的照片嗎？
         what_is_geoprivacy?: 什麼是位置隱私？
+        geoprivacy_is_a_setting_you_can: 位置隱私是個可用於您觀察上的設定，它能控制空間座標（經度與緯度）如何顯示。這裡有相關選項：
         what_is_does_it_mean_for: 觀察變為隱蔽代表著什麼含意？
         coordinates_are_obscured_for_all_taxa: |-
           根據 IUCN 紅色名錄，所有屬於「接近受威脅」或者更糟情況的物種分類群，
@@ -3786,6 +3805,7 @@ zh-TW:
         automatically_updates_based_on_your_observations: 根據您的觀察紀錄自動更新。每位用戶在 %{site_name}
           都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察紀錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該紀錄，您手動添加到清單中的物種將不會被刪除。
         you_can_also_make_additional_life_lists: 您也可為指定的生命體組別製作一份生物列表，例如鳥類的生物列表，或乳草屬植物的生物列表等。
+        inat_users_can_also: '%{site_name} 用戶可添加額外清單至地點，但這些清單並不會自動更新。它們主要提供讓人們引進外部資源資料、或僅列出基於他們個人所體驗事物的方法。'
         is_a_list_of_every_species_that_you_have_seen: 一個生物列表是您看過的所有物種清單，每一個 %{site_name}
           的用戶都會擁有一個生物列表，新增 %{site_name} 的觀察紀錄會自動遷移入這些列表中。
         i_observed_a_species: 我觀察過的一個物種, 為何沒顯示在我的生物清單中?
@@ -3842,6 +3862,7 @@ zh-TW:
         place_guess: 由觀察者輸入的在地描述
         latitude: 公開可見緯度
         longitude: 公開可見經度
+        positional_accuracy: 座標精準度（沒錯沒錯，準確性「accuracy」不等於精準度「precision」；在名稱上能選擇的實在不多）
         private_latitude: 若觀察為私有或隱蔽，設定私有緯度
         private_longitude: 若觀察為私有或隱蔽，設定私有經度
         geoprivacy: 無論觀察者是否挑選隱蔽或隱藏座標
@@ -3869,11 +3890,12 @@ zh-TW:
           <a href="%{url}">下載模版</a>
       show:
         allow_curator_coordinate_access_desc_html: 允許專案策展人來檢視此觀察的私有座標。
-        ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的先祖，不過是在使用此物種分類的首次鑑定之後創建'
+        ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的原型，不過是在使用此物種分類的首次鑑定之後創建'
         cumulative_count_desc: '用於各別物種分類及其所有後代的 # 鑑定'
-        disagreement_count_desc: '# 已鑑定物種分類群不在物種分類的先祖之中'
+        disagreement_count_desc: '# 已鑑定物種分類群不在物種分類的原型之中'
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: 一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
+        score_desc: 分數 = 累積次數 /（累積次數 + 不同意次數 + 原型不同意次數）
     observation_fields:
       dna_help: 要啟用 BOLD DNA 條碼符合功能；請確定您的欄位名稱包含「COI」、「COX1」、「ITS」、 或「matK,」字詞來對應欄位目標的基因。
     emailer:
@@ -3896,6 +3918,7 @@ zh-TW:
       edit:
         complex_boundary_note_html: 此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a>
           來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
+        admin_level_desc: 應僅用於設定政治機構，以美國環境而言；0 = 國家、1 = 州、2 = 郡、3 = 鎮
       index:
         adding_new_places: 添加新地點中
         confirming_identifications: 依添加對應觀察的鑑定來提交鑑定
@@ -4003,6 +4026,7 @@ zh-TW:
         this_user_was_banned: 此用戶已被停用
     welcome:
       index:
+        welcome_message_html: 來到 %{image} 是個可讓您<strong>記錄</strong>您在自然裡所見事物、與其他自然愛好者<strong>交流</strong>，以及<strong>學習</strong>關於自然世界的地方。
         connect_with_nature: 與自然連接
         explore_and_share: 探索並分享您來自於大自然的觀察。
         observations_to_date: 觀察至今
@@ -4017,6 +4041,7 @@ zh-TW:
         keep_track: 保持追蹤
         record_your_encounters: 在雲端上記錄您與各種生物的相遇、以及維護生物列表，
         create_useful_data: 創建有用的資料
+        help_scientists: 協助科學家與資源管理者了解生物在何時及何處出現。
         crowdsource_identifications: 群眾外包鑑定
         connect_with_experts: 聯絡可以鑑定您所觀察到生物的專家。
         become_a_citizen_scientist: 成為一位市民科學家

@@ -403,10 +403,10 @@ pt-BR:
     como padrão este horário local a não ser que você especifique de outra maneira.
   all_your_projects: Todos os seus projetos
   allow_any: permita qualquer
-  allow_curator_access: Permitir o acesso do curador
-  allow_curator_coordinate_access: Permitir ao curador coordenar o acesso
-  allow_project_curators_to_view_your_private_coordinates: Permitir os curadores do
-    projeto verem suas coordenadas privadas
+  allow_curator_access: Permitir o acesso do administrador
+  allow_curator_coordinate_access: Permitir o acesso às coordenadas ao administrador
+  allow_project_curators_to_view_your_private_coordinates: Permitir o acesso as suas
+    coordenadas privadas pelos administradores do projeto
   allowed_establish_means_values: Permitir a configuração dos valores médios
   allowed_html: HTML permitido
   allowed_occurrence_status_values: Valores permitidos para status de ocorrência
@@ -1038,13 +1038,13 @@ pt-BR:
   curating: Em avaliação
   curation: Administração
   curator: Coordenador
-  curators_changed_for_x_html: Curadores mudaram para %{x}
+  curators_changed_for_x_html: Administradores mudaram para %{x}
   curators: Coordenadores
   curators_can_remove_observations_from: Coordenadores podem remover observações dos
     projetos e as identificações deles são apresentadas junto das observações dos
     projetos (em pontos específicos). Coordenadores também podem ver as coordenadas
     privadas ou contribuições ocultas neste projeto.
-  curator_identification: Identificação do Curador
+  curator_identification: Identificação do Administrador
   current_flags: Marcações Atuais
   current_password: Senha Atual
   custom_field_values: Valores de campo personalizados
@@ -1396,7 +1396,7 @@ pt-BR:
   filling_out_your_profile: preenchendo seu perfil
   filter: Filtrar
   filter_by: Filtrar por
-  filter_by_curator_identification: Filtrar pela identificação de curador
+  filter_by_curator_identification: Filtrar pela identificação do administrador
   filter_by_place: Filtrar por lugar
   filter_by_taxon: Filtrar por táxon
   filter_by_place_taxon_and_color: Filtrar por lugar, cor, especie ou grupo empregando
@@ -1809,8 +1809,8 @@ pt-BR:
   journal_post_deleted: Boletim informativo apagado.
   jpg_png_or_gif: JPG, PNG, ou GIF
   jump_to_letter: Pule para a carta
-  just_a_reminder: Apenas um lembrete, já que você permitiu o acesso de curadores
-    para visualizar suas coordenadas privadas neste projeto.
+  just_a_reminder: Apenas um lembrete, você acabou de permitir o acesso as suas coordenadas
+    de localização privadas pelos administradores deste projeto.
   just_added!: Recém adicionado!
   keep_editing: Continuar editando
   kelp_diatoms_and_allies: algas, diatomáceas e similares
@@ -2601,10 +2601,26 @@ pt-BR:
       para uma determinada espécie para acompanhar novas observações, fazer o mesmo
       para locais específicos.
     comments_panel_title: Super legal o tipo de discussão rolando agora em %{site_name}
+    comments_panel_body: '<p>%{site_name} tem tudo a ver com compartilhar e discutir
+      a observação de organismos vivos. Abaixo estão as discussões que ocorrem neste
+      exato momento. (Veja: Você é automaticamente inscrito a qualquer discussão em
+      que você contribua com comentários ou identificações. Configure estas notificações
+      na seção ''Inscrições''à direita.)</p>'
     updates_by_you_panel_title: Esta aba é uma maneira simples de filtrar apenas atualizações
       de seu próprio conteúdo.
+    updates_by_you_panel_body: Lembre-se, na aba 'Todas as suas notificações'você
+      terá acesso não apenas ao seu próprio conteúdo mas, também, ao conteúdo de pessoas
+      que você segue e, táxons ou lugares aos quais você se inscreveu utilizando a
+      ferramenta de inscrição à direita.
     youve_got_updates_panel_title: Viva! Você tem novas atualizações!
     youve_got_updates_panel_body_p1: Se mantenha atento as atualizações...
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li><strong>Seu Conteúdo:</strong> As atividades em suas observações tal como comentários, identificações, ou quando marcadas como favoritas da comunidade do %{site_name}. Você também receberá atualizações sempre que alguém adicionar suas observações à um projeto, ou incluir anotações nos campos adicionais.</li>
+        <li><strong>Pessoas:</strong> Novas posts ou observações de pessoas que você segue.</li>
+        <li><strong>Organismos, Projetos e Lugares:</strong> Novas observações de organismos ou locais específicos que você acompanha. Você pode também ingressar em projetos assim, você será atualizado sempre que houveram novos posts nos jornais destes projetos.</li>
+        <li><strong>Discussões em que você participa:</strong> Ao comentar ou adicionar identificações as observações de alguém você se inscreve, automaticamente, para receber notificações sobre qualquer atividade neste conteúdo. Utilize a ferramenta 'Administre suas inscrições' para interromper o recebimento de atualizações.</li>
+      </ul>
   one_by_one: Um por um
   one_of_your_lists: uma de suas listas
   only_a_project_manager_can_add: Apenas um moderador de projetos pode adicionar privilégios
@@ -2635,8 +2651,8 @@ pt-BR:
     variedades, entre outros.
   only_show_taxa_fom_this_list: Mostrar somente táxons desta lista
   only_showing_taxa_from: mostrar somente táxons desta lista
-  only_site_curators_can_turn_on_observation_aggregation: Apenas curadores podem ativar
-    a associação de projetos
+  only_site_curators_can_turn_on_observation_aggregation: A agregação de projetos
+    pode ser ativada apenas pelos administradores do site
   only_species: apenas espécies
   only_species_and_subspecies: apenas espécies e subespécies/variedades
   only_the_author_of_this_post_can_do_that: Somente o autor desta postagem pode fazer
@@ -3025,6 +3041,10 @@ pt-BR:
   project_settings: Configurações do Projeto
   project_terms_and_rules: Termos e regras &amp; do projeto
   project_that_does_not_contain_these_observations: Projeto que não inclui estas observações
+  project_type_description: Inventários e bioblitz são tipos especiais de projetos.
+    Inventários são uma forma de amostragem colaborativa em geral, para a avaliação
+    de um conjunto de espécies para, por exemplo, analisar sua importância na conservação.
+    Inventários rápidos são eventos com um período de começo e fim pré-estabelecidos.
   project_user_cannot_be_found: Usuário do projeto não pode ser encontrado
   project_user_was_invalid: 'Usuário do projeto é inválido: %{project_user}'
   project_was_successfully_created: Projeto foi criado com sucesso.
@@ -4335,6 +4355,11 @@ pt-BR:
     guia. <a href="/guides/new">Adicione uma</a>
   you_are_already_a_member_of_this_project: Você já é membro deste projeto!
   you_are_no_longer_following_x: Você não está mais seguindo %{friend}.
+  you_are_setting_this_project_to_aggregate: 'Você está configurando este projeto
+    para agregar todas as observações na plataforma que combinem com a seguinte regra:
+    %{rules} Gostaria de continuar?'
+  you_are_submitting_obs_without_photos_and_names: Você esta submetendo observações
+    sem fotos ou nomes de táxons. Observações assim são muito difíceis de se identificar.
   you_are_submitting_obs_with_no_date_or_no_location: Você esta submetendo observações
     sem datas ou localizações.
   you_are_subscribed_to: Você está inscrito em
@@ -4343,6 +4368,9 @@ pt-BR:
   you_can_accept_invitations: Você pode aceitar o convite aqui
   you_can_also_add_flickr: Você também pode adicionar marcações no Flickr enquanto
     edita uma observação, ou quando faz modificações em massa nas suas observações.
+  you_can_also_change_your_settings_for_this_project_or_change_your_global_settings_html: "Você
+    pode também <a href=\"%{project_settings_url}\">alterar suas configurações do
+    projeto</a> \nou <a href=\"/users/edit#projects\">alterar suas configurações globais</a>."
   you_can_alwais_add_new: Você sempre pode adicionar novas observações clicando na
     pequena seta na direita superior da página e utilizando o menu suspenso.
   you_can_change_your_new_passwd_after_logging_in: 'Você pode mudar sua nova senha
@@ -4446,6 +4474,9 @@ pt-BR:
     entre para continuar.
   your_activation_code_was_missing: Seu código de ativação está faltando. Por favor
     siga o endereço de URL que está no seu e-mail.
+  your_coarser_id: |-
+    Sua identificação ID para um nível inferior de <span class='taxon'>%{coarser_taxon_name}</span> implica em discordar de uma identificação atual mais refinada de <span class='taxon'>%{finer_taxon_name}</span>. Tem certeza de sua decisão?<br><br>
+    <a href='/pages/getting+started' target='_blank'>Entenda um pouco melhor sobre o funcionamento das identificações de organismo &raquo;</a>
   your_comment_was_saved: Seu conteúdo está salvo.
   your_content: Seu Conteúdo
   your_contributions_to_project: Suas contribuições para %{project_title}
@@ -4564,6 +4595,38 @@ pt-BR:
           quando realizarem buscas por localidade, e exibirá os limites de distribuição
           de espécies para %{site_name} nos mapas quando estes limites forem previamente
           estabelecidos.
+        import_tags_from_csv_help_html: |-
+          <p>
+            Carregue um arquivo CSV com marcações de táxons para este guia. Seu arquivo CSV deve ser exatamente como este:
+          </p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Nome</th>
+                <th>color</th>
+                <th>Número de mãos</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Homo sapiens</td>
+                <td></td>
+                <td>2</td>
+                <td>bípede</td>
+              </tr>
+              <tr>
+                <td>Vulpes vulpes</td>
+                <td>red|black</td>
+                <td>0</td>
+                <td>quadrúpedpe</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            A primeira linha começa com "Nome" seguida de marcações sobre características/categorias. Depois, cada uma das linhas seguintes começa com o nome do táxon, seguido por marcações que correspondam as características inseridas no topo da coluna. Neste exemplo, <i>Homo sapiens</i> recebe a marcação <code>bípedal</code> e <code>Número de mãos=2</code>,
+            e <i>Vulpes vulpes</i> recebe <code>quadrúpede</code>,
+            <code>color=vermelho</code>, <code>color=preto</code>, e
+            <code>Número de mãos=0</code>. Espaços em branco serão ignorados, e você poderá adicionar múltiplas linhas por táxon. Você poderá também adicionar múltiplos valores por célula separados por barra vertical (|).
+          </p>
         licensing_explanation: 'Atribuir licenças de uso para os seus registros e
           imagens disponibilizará a outros usuários a opção de copiar e modificar
           este conteúdo sem consentimento prévio. O que torna muito mais fácil compartilhar
@@ -4863,6 +4926,13 @@ pt-BR:
         disagreement_count: Quantidade de Desacordos
         identification_count: Contagem de Identificação
         score: Pontuação
+        explanation: |-
+          <p>
+            Se, por algum motivo, um usuário discordar da classificação da comunidade a nível de táxon, ele poderá rejeitar esta ID, o que significa que a sua identificação será aquela utilizada para se associar à outras observações, , atualizações de listas de vida, etc. Também significa que suas observações poderão receber o status de Nível de Pesquisa quando a comunidade concordar com sua identificação.
+          </p>
+          <p>
+            Entretanto, a identificação feita pela comunidade ainda, permanecerá visível, assim todos os membros da plataforma poderão visualizar as diferentes identificações sugeridas pelos usuários.
+          </p>
         you_have_opted_out: Você optou por rejeitar identificações da comunidade
         opt_in_for_this_observation: Opine sobre esta observação
         your_id_does_not_match: Sua identificação (<span class="bold">%{taxon_name}</span>)
@@ -5002,11 +5072,71 @@ pt-BR:
           táxon mais baixo.\n</p>"
         cumulative_count_desc: '# de identificações para um único táxon e todos os
           seus descendentes'
+        curator_coordinate_access_disabled_desc_html: Este projeto não permite a inclusão
+          de observações sem o acesso habilitado as coordenadas geográficas por seus
+          administradores. Caso não deseje compartilhar as coordenadas desta observação,
+          é preciso que a remova do projeto.
         disagreement_count_desc: '# de táxons identificados que não estão entre os
           ancestrais de um grupo ou espécie'
         identification_count_desc: '# de identificações para um único táxon'
         flagged_photos_desc_html: Algumas dessas fotos foram marcadas com um alerta
           de conteúdo inapropriado ou infrações de direitos. Para detalhes veja %{links}
+        join_project_desc_html: Ao inscrever no projeto você permitirá o acesso dos
+          administradores aos dados geográficos de suas observações, mesmo aquelas
+          ocultas ou, privadas. Ao se inscrever você aceita os termos de participação
+          <a href="%{url}" target="_blank">terms</a>.
+        quality_assessment_help_html: |-
+          <p>
+            A avaliação da qualidade dos dados é um resumos da acurácia (precisão) de uma observação. Todas as observações começam recebendo o status de Nível <strong>"Casual"</strong>, e são marcadas como
+            <strong>"Precisa de ID"</strong> quando
+          </p>
+
+          <ul>
+            <li>a observação <strong>possui data</strong></li>
+            <li>a observação <strong>é georeferenciada</strong> (exemplo, possui coordenadas de latitude e longitude)</li>
+            <li>a observação <strong>possui fotos ou sons</strong></li>
+            <li>a observação <strong>não é de um humano</strong></li>
+          </ul>
+          <p>
+            Observação recebem o status de <strong>"Nível de Pesquisa"</strong> quando
+          </p>
+          <ul>
+            <li>
+              a <strong>comunidade do %{site_name} concorda a nível de espécie sobre a identificação</strong>, exemplo,
+              quando mais de 2/3 dos que identificaram o item concordam sobre um táxon
+            </li>
+          </ul>
+          <p>
+            O status de uma observação será revertida para <strong>"casual"</strong> se as metas abaixo não forem atingidas ou há discordância em relação a ID por parte da comunidade
+          </p>
+          <ul>
+            <li>
+              a <strong>localização não parece precisa</strong> (exemplo, macacos voando no meio do oceano, hipopótamos dançando em meio a Avenida Paulista, etc.)
+            </li>
+            <li>
+              o <strong>organismo não é nativo ou, selvagem</strong> (exemplo, organismo em cativeiro ou cultivado por humanos, inteligência artificial ou alienígenas do espaço sideral)
+            </li>
+            <li>
+              a observação <strong>não apresenta evidência de um organismo</strong>, exemplo, imagens de paisagens, rochas, nascentes,etc.
+            </li>
+            <li>
+              a observação <strong>não apresenta uma evidência recente da existência do organismo (~100 anos) </strong> (exemplo, fósseis, mais pegadas, folhas mortas fossils e rastros são permitidos)
+            </li>
+            <li>
+              a observação não precisa mais de uma identificação <em>e</em> a identificação da comunidade está acima de família
+            </li>
+            <li>
+              o observador rejeitou a identificação da comunidade e, a identificação do táxon pela comunidade não é um ancestral ou decendente do táxon associado com a identificação do observador
+            </li>
+          </ul>
+          <p>
+            E se tudo isso já não fosse complicado o suficiente, existem situações onde o sistema opta por dar a sua opinião:
+          </p>
+          <ul>
+            <li>
+              O sistema opinará classificando uma observação como não sendo nativa/selvagem se houverem na plataforma ao menos 10 outras observações a nível de gênero ou abaixo em países, estados ou locais razoavelmente pequenos que possuam observações deste tipo e 80% ou mais destas observações já foram marcadas como não sendo nativas ou selvagens.
+            </li>
+          </ul>
         score_desc: pontos = conta cumulativa / (conta cumulativa + conta de desacordos
           + ancestrais em desacordo)
         observation_flagged_notice_html: |-
@@ -5131,6 +5261,11 @@ pt-BR:
           do projeto acessem suas coordenadas privadas.
       edit:
         aggregation_pending: Associação pendente
+        new_place_desc_html: Tente buscar entre <a href="%{places_url}" target="_blank">nossos
+          lugares existentes</a> e se certifique de inserir o nome correto na busca.
+          Caso realmente não consiga encontrar o local buscado, considere <a href="%{new_place_url}"
+          target="_blank">criar um novo local</a>, mas antes disso verifique cuidadosamente
+          que sua ação não duplicará um local já criado anteriormente.
         bioblitz_desc_html: "<p>\n  Bioblitz é um super evento onde os participantes
           tentam observar a maior quantidade \n  de espécies que podem em, um determinado
           local em, um determinado período de tempo. É uma maneira \n  divertida de,
@@ -5154,6 +5289,21 @@ pt-BR:
         no_curators: Ainda não existem administrador neste projeto. Se você decidir
           tornar um membro administrador, ele deverá primeiro inscrever-se no projeto
           e, somente depois poderá ser promovido.
+        observation_aggregation_desc_html: "<p class=\"description\">\n  A agregador
+          de observações irá automaticamente adicionar observações que se adequem
+          as suas normas ao seu projeto. Já que não existe uma forma de remover, de
+          uma só vez, um número elevado de observações de um projeto, utilizar este
+          recurso pode ser potencialmente perigoso, então por favor verifique com
+          cuidado e, seja preciso, ao escolher quais táxons e/ou lugares lhe interessam
+          ao criar as normas do seu projeto, ou você poderá acabar com centenas de
+          observações inadequadas que somente poderão ser removidas manualmente. \n</p>\n<p
+          class=\"description\">\n  O agregador apenas funcionará se a seguintes condições
+          forem cumpridas:\n</p>\n<ol>\n  <li class=\"readable description\">\n    Seu
+          projeto apresenta ao menos uma regra definindo que 'o registro deve ser
+          observado em uma localização' com área relativamente pequena (mais ou menos
+          com a área do estado de Minas Gerais)\n  </li>\n  <li class=\"readable description\">\n
+          \   Ou o seu projeto apresenta pelo menos uma regra 'especificando um táxon'
+          \n  </li>\n</ol>"
         project_assets_desc_html: |-
           <p class="description">Ativos de projetos são somente arquivos associados com seu projeto, com algumas regras especiais:</p>
           <ol class="description">
@@ -5201,6 +5351,13 @@ pt-BR:
         invite_only_description: A participação neste projeto como membro só pode
           ser feita através de convite. Se você deseja entrar no grupo. por favor
           contate um dos administradores abaixo e solicite um convite.
+      project_location_privacy_notice_html: |-
+        <p>
+          Por favor este ciente de que os administradores de projetos serão capazes de acessar todos seus dados de localização, sejam elas ocultas ou privadas, a não ser que você revogue esta permissão além disso, eles serão capazes de adicionar qualquer uma de suas observações aos seus projetos a não ser que você <a href="/users/edit">altere suas configurações</a>. Você também pode permitir ou revogar o acesso de administradores de projetos as suas observações configurando uma à uma.
+        </p>
+        <p>
+        Se você esta preocupado em relação a privacidade da localização de suas observações, não se inscreva em projetos a não que confie em seus administradores.
+        </p>
       project_user_curator_coordinate_access_labels:
         observer: Sim, mas somente se eu mesmo adicionar a observação ao projeto.
         any: Sim, independente de quem adicione a observação ao projeto.
@@ -5234,6 +5391,13 @@ pt-BR:
           \n  moderada do projeto, faça questão de garantir que seus participantes
           entrem no projeto \n  e adicionem as observações deles como fariam em um
           projeto normal.\n</p>"
+        no_journal_blurb_html: |-
+          <p>
+          O jornal do seu projeto é uma ferramenta específica para comunicação com todos os participantes de seus projeto. Você pode utilizá-lo para realizar anúncios, estabelecer prioridades ou compartilhar descobertas.
+          </p>
+          <p>
+            Para começar, <a href="%{url}" class="readmore">publique seu primeiro post</a>
+          </p>
         curated_checklist_desc: Esta é a lista de verificação moderada e a lista de
           contagem dos táxons de observações explicitas adicionadas à esta projeto,
           nem todas as observações foram gravadas neste local e neste período do evento.
@@ -5248,10 +5412,32 @@ pt-BR:
         this_has_been_flagged_as_spam: Sinalizado como SPAM
       not_found:
         sorry_that_doesnt_exist: Desculpe, isto não existe!
-        even_our_dedicated_search_mole_couldnt: Mesmo nosso dedicado tatu curioso
-          não encontrou nada!
+        even_our_dedicated_search_mole_couldnt: Desculpe, mesmo Milton, nossa toupeira
+          mais dedicada não conseguiu encontrar nada!
     taxa:
       show:
+        about_names_desc: "<p>\n  A grande maioria dos organismos vivos possuem \"nomes
+          comuns\" nas línguas faladas em seus locais de origem. Estes nomes são comumente,
+          popularmente conhecidos, mais fáceis de pronunciar e fixos ao longo do tempo,
+          mas muitos outros organismos possuem mais de um nome popular em diferentes
+          locais de uma mesma região, mesmo em uma mesma língua, o que pode tornar
+          muito difícil o processo de comunicar qual espécie é qual, causando confusão.
+          \  \n  Os cientistas solucionaram este problema criando o uso do \"nome
+          científico\" para nomear cada uma das espécies do mundo, seguindo regras
+          específicas conforme <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biological
+          nomenclature</a>,\n  mas este nomes são normalmente baseados no Latim, uma
+          língua que praticamente ninguém mais fala, então não são tão fáceis de memorizar
+          como os nomes comuns, ou populares. Nomes científicos pode também refletir
+          a posição taxonômica de um organismo, assim podem acabar sendo alterados
+          sempre que pesquisadoress com base em novas tecnologias ou, novos dados
+          desenvolvem novas teorias sobre a evolução de determinada espécie, o que
+          novamente reduz a facilidade do seu uso na comunicação diária, mesmo entre
+          especialistas.\n</p>\n<p>\n  Um velho ditado popular já dizia: \"Nomes comuns
+          se alteram de um local para o outro e, nomes científicos de tempos em tempos.\"\n</p>\n<p>\n
+          \ Por esse motivo tentamos resolver esta questão exibindo ambos os nomes
+          das espécies, tanto os comuns quanto os científicos sempre que possível
+          e, escolhendo os nomes comuns com base na localização e preferências geográficas
+          do usuário. </p>"
         about_conservation_status_desc: O Estado de Conservação sintetiza o risco
           de extinção para um determinado grupo de organismos.
         about_establishment_desc: '"Formas de estabelecimento" descrevem como espécies
@@ -5260,6 +5446,41 @@ pt-BR:
           se refere a organismo que ocorrem naturalmente em uma área. Já espécies
           endêmicas são aquelas que ocorrem em um local específico e em nenhum outro
           lugar.'
+        charts_help_seasonality: Este gráfico apresenta o número de observações deste
+          táxon agrupadas por mês. Tenha em mente que estes são números de observações,
+          então são influenciados tanto pelo melhor momento em que estes organismos
+          podem ser observados quanto pelo engajamento dos membros para observá-los.
+          Assim, uma ave pode aparentar estar mais ativa em Outubro, mas na verdade,
+          os dados podem apenas estar exibindo um maior número de Observadores de
+          Aves saindo para Passarinhar neste mês. Da mesma forma, se você ver um número
+          maior de libélulas em Junho do que em Janeiro, isto é, provavelmente, a
+          influência exercida por um número maior de observadores do hemisfério norte
+          do que, do hemisfério sul e não por que as libélulas sejam mais ativas em
+          Junho, então, sempre, lembre-se de checar os mapas quando avaliar estes
+          gráficos. É sempre uma boa ideia sr cético em relação a estes gráficos especialmente
+          quando os números de observações são baixos e/ou existem grandes discrepâncias
+          entre o número de observações "Verificáveis" e com "Nível de Pesquisa".
+        charts_help_history: Este gráfico exibe o número de observações desde táxon
+          por mês para os últimos dez anos. Lembre-se, pode ocorrer um desvio nos
+          dados devido a diferença no número de pessoas coletando informações, mas
+          irá exibir picos incomuns nas observações e, caso o gráfico aparente esta
+          achatado ou diminuindo, independente do número de observadores, isto pode
+          sugerir uma diferença na abundância das espécies.
+        charts_help_other: 'Nós também oferecemos gráficos de sazonalidade para as
+          anotações contidas nas observações. Anotações são um sistema novo para adicionar
+          metadados as observações utilizando termos específicos. Até o momento utilizamos
+          apenas "Estágio de Vida" e "Fenologia" (quando as plantas frutificam ou
+          florescem). Ainda não possuímos uma forma de adicionar estes dados diretamente,
+          então, por enquanto, convertemos dados destes campos em anotações. Se você
+          prefere não aguardar pelo nosso sistema automático, você pode optar por
+          contribuir com dados sobre "Estágios de Vida" adicionando as anotações de
+          campo palavras que se enquadrem em qualquer um destes termos: Adulto, Teneral,
+          Pupa, Ninfa, Larva, Ovo ou Juvenil. Assim para um "Estágio de Vida" em particular
+          para "EStágios de Vida de Insetos" os dados estarão completos. Da mesma
+          forma, os dados para "Fenologia de Plantas" podem ser encontrados pelo sistema
+          simplesmente ao se incluir a palavra "fenologia" e o ome do estágio atual
+          como "flor" ou "fruto", assim nossa plataforma será capaz de encontrar os
+          dados corretamente.'
         trending_desc: Táxons mais observados no último mês
         trending_in_place_desc_html: Táxons mais observados no último mês <a href="%{url}">%{place}</a>
         rare_desc: Táxons ameaçados menos observados
@@ -5324,6 +5545,14 @@ pt-BR:
           as coordenadas privadas e protegidas das observações que você adicionou
           neste projeto.
       edit:
+        inaturalist_network_affiliation_desc_html: O <a href="%{url}" target="_blank">iNaturalist
+          Network</a> é uma coleção de sites conectados a comunidade global do iNaturalist.
+          Você poderá alterar sua afiliação por uma ou outra plataforma, o que significa
+          que suas observações serão compartilhadas prioritariamente com uma plataforma
+          específica de sua escolha e que os administradores desta plataforma poderão
+          a qualquer momento realizar o download destes dados e visualizar todo o
+          seu conteúdo, assim como os administradores do iNaturalist. Se esta plataforma
+          local deixar a rede, todas as suas contas e dados irão com o site.
         project_addition_preferences:
           any: Qualquer
           joined: Projetos em que você participa
