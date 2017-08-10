@@ -4241,6 +4241,7 @@ I18n.translations["en"] = {
   "you_retain_full_copyright": "You retain full copyright over your content aside from those rights granted to %{site_name} in our Terms of Service.",
   "you_sure_delete_comment?": "Are you sure you want to delete this comment?",
   "you_sure_delete_this_observation": "Are you sure you want to delete this observation?",
+  "your_browser_does_not_support_the_audio_element": "Your browser does not support the audio element.",
   "your_coarser_id": "Your coarser ID of <span class='taxon'>%{coarser_taxon_name}</span> implies that you\ndisagree with the existing finer ID of\n<span class='taxon'>%{finer_taxon_name}</span>. Is this what you want to do?<br><br>\n<a href='/pages/getting+started' target='_blank'>Learn more about how identifications work &raquo;</a>\n",
   "your_default": "your default",
   "your_hard_drive": "your hard drive",

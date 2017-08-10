@@ -695,8 +695,9 @@ class ObservationsController < ApplicationController
         o.species_guess = photo_o.species_guess if o.species_guess.blank?
       end
       o.photos = ensure_photos_are_local_photos( photos )
-      o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
-      # make sure the obs get a falid observed_on, needed to determine research grade
+      new_sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+      o.sounds << ensure_sounds_are_local_sounds( new_sounds )
+      # make sure the obs get a valid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
       o.set_quality_grade
       o
@@ -871,16 +872,19 @@ class ObservationsController < ApplicationController
         end
       end
 
-
       # Kind of like :ignore_photos, but :editing_sounds makes it opt-in rather than opt-out
       # If editing sounds and no sound parameters are present, assign to an empty array 
       # This way, sounds will be removed
       if params[:editing_sounds]
         params[:soundcloud_sounds] ||= {fieldset_index => []} 
         params[:soundcloud_sounds][fieldset_index] ||= []
-        observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+        params[:local_sounds] ||= {fieldset_index => []} 
+        params[:local_sounds][fieldset_index] ||= []
+        sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+        ensured_sounds = ensure_sounds_are_local_sounds( sounds )
+        observation.sounds = ensured_sounds
       end
-
+      
       observation.editing_user_id = current_user.id
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
@@ -3076,6 +3080,18 @@ class ObservationsController < ApplicationController
       else
         Photo.turn_remote_photo_into_local_photo( photo )
         Photo.find_by_id( photo.id ) # || photo.becomes( LocalPhoto ) # ensure we have an object loaded with the right class
+      end
+    }.compact
+  end
+
+  def ensure_sounds_are_local_sounds( sounds )
+    sounds.map { |sound|
+      if sound.is_a?( LocalSound )
+        sound
+      elsif sound.new_record?
+        sound.to_local_sound
+      else
+        sound.to_local_sound!
       end
     }.compact
   end

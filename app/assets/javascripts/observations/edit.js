@@ -81,12 +81,16 @@ $(document).ready(function() {
     $(this).photoSelector(options)
   })
 
-  if (SOUNDCLOUD_IDENTITY) {
-    $('.observation_sounds').each(function(){
-      var index = (window.location.href.match(/\/observations\/(\d+)/) || [])[1] || 0
-      $(this).soundSelector({index: index});
-    })
-  }
+  $('.observation_sounds').each(function(){
+    var index = (window.location.href.match(/\/observations\/(\d+)/) || [])[1] || 0;
+    var opts = {
+      index: index
+    };
+    if ( $( ".sound", this ).data( "sound-class" ) === "soundcloud_sound" ) {
+      opts.baseURL = "/soundcloud_sounds";
+    }
+    $(this).soundSelector( opts );
+  })
 
   $('.ui-tabs').tabs();
   

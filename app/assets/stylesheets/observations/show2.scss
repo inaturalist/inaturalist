@@ -377,15 +377,23 @@ a.UserImage {
         }
         .image-gallery-slide {
           height: 420px;
+          .sound-container {
+            position: absolute;
+            width: 100%;
+            top: 50%; 
+          }
+          .sound-container.sound-container-soundcloud {
+            margin-top: -81px;
+          }
           .sound {
             pointer-events: auto;
-            position: absolute;
-            top: 0;
             width: 100%;
-            padding-right: 20px;
             & > iframe {
               width: 80%;
               height: 130px;
+            }
+            audio {
+              width: 100%;
             }
           }
           .image-gallery-description {
