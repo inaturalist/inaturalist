@@ -361,6 +361,8 @@ class Identification < ActiveRecord::Base
       next if idents.compact.blank?
       Identification.where( id: idents.map(&:id) ).update_all( category: category )
     end
+    idents.reload
+    Identification.elastic_index!( ids: idents.map(&:id) )
   end
 
   def update_categories
