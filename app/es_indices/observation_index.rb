@@ -159,7 +159,6 @@ class Observation < ActiveRecord::Base
     }
 
     unless options[:no_details]
-      identifications.reload # identitication categories may have changed in the db since this obs was loaded
       json.merge!({
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
         updated_at: updated_at.in_time_zone(timezone_object || "UTC"),

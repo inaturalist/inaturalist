@@ -930,20 +930,20 @@ describe Taxon, "grafting" do
       i.reload
       expect( i.taxon ).not_to be_grafted
       expect( i.category ).to eq Identification::MAVERICK
-      es_o = Observation.elastic_search( where: { id: o.id } ).results.results[0]
-      expect( es_o.identifications[0].category ).to eq Identification::IMPROVING
-      expect( es_o.identifications[1].category ).to eq Identification::SUPPORTING
-      expect( es_o.identifications[2].category ).to eq Identification::SUPPORTING
-      expect( es_o.identifications[3].category ).to eq Identification::MAVERICK
+      es_o_idents = Observation.elastic_search( where: { id: o.id } ).results.results[0].identifications.sort_by(&:id)
+      expect( es_o_idents[0].category ).to eq Identification::IMPROVING
+      expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
+      expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
+      expect( es_o_idents[3].category ).to eq Identification::MAVERICK
       without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
       i.reload
       expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
       expect( i.category ).to eq Identification::LEADING
-      es_o = Observation.elastic_search( where: { id: o.id } ).results.results[0]
-      expect( es_o.identifications[0].category ).to eq Identification::IMPROVING
-      expect( es_o.identifications[1].category ).to eq Identification::SUPPORTING
-      expect( es_o.identifications[2].category ).to eq Identification::SUPPORTING
-      expect( es_o.identifications[3].category ).to eq Identification::LEADING
+      es_o_idents = Observation.elastic_search( where: { id: o.id } ).results.results[0].identifications.sort_by(&:id)
+      expect( es_o_idents[0].category ).to eq Identification::IMPROVING
+      expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
+      expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
+      expect( es_o_idents[3].category ).to eq Identification::LEADING
     end
   end
 end
