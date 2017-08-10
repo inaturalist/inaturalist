@@ -918,6 +918,34 @@ describe Taxon, "grafting" do
     t.graft
     expect(t.parent).to eq(@Pseudacris)
   end
+
+  describe "indexing" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+
+    it "should re-index identifications in the observations index" do
+      o = make_research_grade_candidate_observation
+      3.times { Identification.make!( observation: o, taxon: @Pseudacris ) }
+      i = Identification.make!( observation: o )
+      i.reload
+      expect( i.taxon ).not_to be_grafted
+      expect( i.category ).to eq Identification::MAVERICK
+      es_o = Observation.elastic_search( where: { id: o.id } ).results.results[0]
+      expect( es_o.identifications[0].category ).to eq Identification::IMPROVING
+      expect( es_o.identifications[1].category ).to eq Identification::SUPPORTING
+      expect( es_o.identifications[2].category ).to eq Identification::SUPPORTING
+      expect( es_o.identifications[3].category ).to eq Identification::MAVERICK
+      without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
+      i.reload
+      expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
+      expect( i.category ).to eq Identification::LEADING
+      es_o = Observation.elastic_search( where: { id: o.id } ).results.results[0]
+      expect( es_o.identifications[0].category ).to eq Identification::IMPROVING
+      expect( es_o.identifications[1].category ).to eq Identification::SUPPORTING
+      expect( es_o.identifications[2].category ).to eq Identification::SUPPORTING
+      expect( es_o.identifications[3].category ).to eq Identification::LEADING
+    end
+  end
 end
 
 describe Taxon, "single_taxon_for_name" do
