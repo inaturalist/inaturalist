@@ -92,6 +92,48 @@ describe Annotation do
     }.to raise_error(ActiveRecord::RecordInvalid, /Controlled value has already been taken/)
   end
 
+  it "validates against presence of another annotation of a blocking value" do
+    obs = Observation.make!
+    atr = ControlledTerm.make!( multivalued: true )
+    val = ControlledTerm.make!( is_value: true )
+    atr.controlled_term_values.create( controlled_value: val )
+    blocking_val = ControlledTerm.make!( is_value: true, blocking: true )
+    atr.controlled_term_values.create( controlled_value: blocking_val )
+    blocking_annotation = Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: blocking_val,
+      resource: obs
+    )
+    expect {
+      Annotation.make!(
+        controlled_attribute: atr,
+        controlled_value: val,
+        resource: obs
+      )
+    }.to raise_error( ActiveRecord::RecordInvalid, /blocked by another value/ )
+  end
+
+  it "validates against presence of another annotation if this is a blocking value" do
+    obs = Observation.make!
+    atr = ControlledTerm.make!( multivalued: true )
+    val = ControlledTerm.make!( is_value: true )
+    atr.controlled_term_values.create( controlled_value: val )
+    blocking_val = ControlledTerm.make!( is_value: true, blocking: true )
+    atr.controlled_term_values.create( controlled_value: blocking_val )
+    Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: val,
+      resource: obs
+    )
+    expect {
+      Annotation.make!(
+        controlled_attribute: atr,
+        controlled_value: blocking_val,
+        resource: obs
+      )
+    }.to raise_error( ActiveRecord::RecordInvalid, /is blocking but another annotation already added/ )
+  end
+
   it "creates valid instances" do
     atr = ControlledTerm.make!
     val = ControlledTerm.make!(is_value: true)

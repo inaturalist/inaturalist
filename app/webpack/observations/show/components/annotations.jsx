@@ -216,12 +216,23 @@ class Annotations extends React.Component {
           rows.push( this.annotationRow( a, ct ) );
         } );
       }
-      // TODO: filter terms by taxon ID
       let availableValues = ct.values;
       if ( groupedAnnotations[ct.id] && ct.multivalued ) {
         const usedValues = { };
-        _.each( groupedAnnotations[ct.id], gt => { usedValues[gt.controlled_value.id] = true; } );
+        _.each( groupedAnnotations[ct.id], gt => { usedValues[gt.controlled_value.id] = gt.controlled_value; } );
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
+        // If values have already been used, we should not allow the addition of blocking values
+        if ( !_.isEmpty( usedValues ) ) {
+          const usedBlockingValue = _.find( usedValues, v => {
+            return v.blocking;
+          } );
+          // If there's already a blocking value, no other values should be allowed.
+          if ( usedBlockingValue ) {
+            availableValues = [];
+          } else {
+            availableValues = _.filter( availableValues, v => !v.blocking );
+          }
+        }
       }
       if ( observation.taxon ) {
         availableValues = this.termsForTaxon( availableValues, observation ? observation.taxon : null );
