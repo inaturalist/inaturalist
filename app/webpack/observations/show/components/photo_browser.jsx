@@ -30,6 +30,7 @@ class PhotoBrowser extends React.Component {
   attributionIcon( media, type ) {
     const observation = this.props.observation;
     return ( <OverlayTrigger
+      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
       placement="top"
       delayShow={ 500 }
       trigger="click"
@@ -40,8 +41,11 @@ class PhotoBrowser extends React.Component {
         </Tooltip> ) }
       key={ `${type}-${media.id}-license` }
     >
-      { media.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
-        ( <i className="fa fa-copyright license" /> ) }
+      { media.license_code && media.license_code !== "C" ? (
+        <i className="fa fa-creative-commons license" />
+      ) : (
+        <i className="fa fa-copyright license" />
+      ) }
     </OverlayTrigger> );
   }
 
@@ -108,18 +112,33 @@ class PhotoBrowser extends React.Component {
       };
     } );
     _.each( observation.sounds, sound => {
+      let player;
+      let containerClass = "sound-container-local";
+      if ( sound.subtype === "SoundcloudSound" || !sound.file_url ) {
+        containerClass = "sound-container-soundcloud";
+        player = (
+          <iframe
+            scrolling="no"
+            frameBorder="no"
+            src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
+          ></iframe>
+        );
+      } else {
+        player = (
+          <audio controls preload="none">
+            <source src={ sound.file_url } type={ sound.file_content_type } />
+            { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
+          </audio>
+        );
+      }
       images.push( {
         original: null,
         zoom: null,
         thumbnail: soundIcon,
         description: (
-          <div>
+          <div className={`sound-container ${containerClass}`}>
             <div className="sound">
-              <iframe
-                scrolling="no"
-                frameBorder="no"
-                src={ `https://w.soundcloud.com/player/?url=https%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F${sound.native_sound_id}&show_artwork=false&secret_token=${sound.secret_token}` }
-              ></iframe>
+              { player }
             </div>
             <div className="captions">
               <div className="captions-box">

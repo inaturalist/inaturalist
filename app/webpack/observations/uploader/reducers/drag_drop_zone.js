@@ -85,7 +85,9 @@ const dragDropZone = ( state = defaultState, action ) => {
       }
       const time = new Date( ).getTime( );
       let updatedState = update( state, {
-        files: { [action.file.id]: { $merge: action.attrs } }
+        files: {
+          [action.file.id]: { $merge: action.attrs }
+        }
       } );
       const cardID = updatedState.files[action.file.id].cardID;
       const card = updatedState.obsCards[cardID];

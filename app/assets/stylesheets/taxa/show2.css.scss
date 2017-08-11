@@ -570,6 +570,7 @@ h2, h3, h4, h5 {
 $leastConcernColor: #73AC13;
 $vulnerableColor: #817134;
 $endangeredColor: #D12F19;
+$extinctColor: #000000;
 .StatusHeader.iucn-least-concern {
   background-color: transparentize( $leastConcernColor, 0.90 );
   border-color: transparentize( $leastConcernColor, 0.80 );
@@ -587,6 +588,12 @@ $endangeredColor: #D12F19;
   border-color: transparentize( $endangeredColor, 0.80 );
   color: $endangeredColor;
 }
+.StatusHeader.iucn-extinct,
+.StatusHeader.iucn-extinct-in-the-wild {
+  background-color: transparentize( $extinctColor, 0.90 );
+  border-color: transparentize( $extinctColor, 0.80 );
+  color: $extinctColor;
+}
 .glyphicon-flag.endangered {
   color: $endangeredColor;
 }
@@ -595,6 +602,9 @@ $endangeredColor: #D12F19;
 }
 .glyphicon-flag.least-concern {
   color: $leastConcernColor;
+}
+.glyphicon-flag.extinct {
+  color: $extinctColor;
 }
 $endemicColor: darken( $inat-green, 10% );
 .EstablishmentHeader.establishment-endemic {

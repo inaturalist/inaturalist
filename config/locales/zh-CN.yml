@@ -113,6 +113,7 @@ zh-CN:
   a_few_points_to_make_things_clear: 一些能使这些事情变得清晰点的要点：
   a_flag_for_x: 用于%{x}的旗帜
   a_greasemonkey_script: 油猴脚本
+  a_member_of: 会员属于
   a_member_of_taxon_html: '%{taxon} 的成员'
   able_to_connect_flickr: 很棒！我们能够链接至您的Flickr账户。
   about: 关于
@@ -363,6 +364,7 @@ zh-CN:
   all_your_observations_will_default_to_this_time_zone: 如果您不进行另外的规定，那么您的全部观察记录都将默认按这一时区记录
   all_your_projects: 您所有的项目
   allow_any: 允许任何
+  allow_curator_access: 允许馆长访问
   allowed_html: 允许的HTML
   allowed_values: 允许的值
   alphabetical: 按字母排序
@@ -1833,6 +1835,7 @@ zh-CN:
   no_identifications_added:
     current_user: 您还没有对别人的观察添加过身份验证。
     user: '%{user}还没有对别人的观察添加过身份验证。'
+  no_ids_have_been_suggested_yet: 没有建议ID
   no_interaction_data_available: 没有可用的交互数据
   no_favorites_added:
     current_user: 您尚未添加收藏夹。
@@ -1884,6 +1887,7 @@ zh-CN:
   noble_curators: '%{site}的博物馆长'
   non_human?: 非人类？
   none: 无
+  none_found: 未找到
   normal: 一般
   not_completed: 未完成
   not_evaluated: 未评估
@@ -2222,6 +2226,7 @@ zh-CN:
   please_add_a_citation_for_this_change: 请为这次更改添加引用。
   please_add_this_observation_to: 请将这一观察添加至
   please_add_this_to_x_html: 请将此添加至 %{x}
+  please_complete_the_following_to_add_project: 请完成以下操作来添加此观察至项目：
   please_confirm_your_inat_username: 请确认您在%{site_name}的用户名
   please_confirm_your_account_html: 请花一秒钟<a href="%{url}">确认您的账户</a>。
   please_enter_a_new_pass: 请输入新密码并确认。
@@ -2403,6 +2408,7 @@ zh-CN:
   request_password: 请求密码
   request_timed_out: 请求超时！
   required: 必填
+  required_: 必选
   required_field: 必填字段
   research: 研究
   research_grade: 研究指导
@@ -2450,6 +2456,7 @@ zh-CN:
   save_photos: 保存照片
   save_place: 保存地点
   save_trip: 保存旅行
+  saved: 已保存
   saving: 正在保存...
   saving_num_of_count_observations:
     one: 正在保存观察...
@@ -2491,6 +2498,7 @@ zh-CN:
   second_person_possessive_singular_: 您的%{noun}
   see_something_wrong_with_taxon: 在此分类单元看到一些问题了么？请让馆长知道。
   seen_it?: 看见它了么？
+  seen_nearby: 已查看附近
   seen_one: 找到一个了么？
   select_all: 全选
   select_an_album: 选择一个相册
@@ -2782,6 +2790,7 @@ zh-CN:
   to_add_ids: 要添加ID
   to_an: 至一个
   to_recipient: 至
+  to_suggest_an_identification: 要建议一次鉴定
   today: 今天
   tools: 工具
   top_5_identifiers: 前5个标识符
@@ -2971,6 +2980,7 @@ zh-CN:
   view_your_calendar: 查看您的日历
   view_yours: 查看您的
   view_all_of_your_observations_from_x: 从 %{x} 查看您所有的观察
+  visually_similar: 视觉类似
   vulnerable: 易受攻击的
   w00t_no_ungrafted_taxa: 耶！没有未被嫁接的分类群！
   w_photos_only: w/ 照片
@@ -3099,6 +3109,7 @@ zh-CN:
   you_havent_linked_your_inaturalist_picasa_account: 您尚未连接您的%{site_name}账户和您的Picasa账户
   you_joined_this_project: 您加入了这个项目！
   you_must_be_a_member_of_this_project_to_do_that: 您必须是此项目的成员才能
+  you_must_fill_out_the_required_fields: 您必须填写所需字段
   you_must_have_a_header_row: 您必须有一个标题行
   you_must_select_a_csv_file_to_upload: 您必须选择一个要上传的CSV文件。
   you_must_select_a_place_to_merge_with: 您必须选择合并的目标位置。

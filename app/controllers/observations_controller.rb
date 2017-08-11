@@ -264,12 +264,14 @@ class ObservationsController < ApplicationController
         
         user_viewed_updates if logged_in?
 
-        if viewing_new_obs_show?
-          @skip_application_js = true
-          @flash_js = true
-          render layout: "bootstrap", action: "show2"
-          return
-        end
+        # if viewing_new_obs_show?
+        @skip_application_js = true
+        @flash_js = true
+        render layout: "bootstrap", action: "show2"
+        return
+        # end
+
+        # TODO remove the rest of this html block
 
         # always display the time in the zone in which is was observed
         Time.zone = @observation.user.time_zone
@@ -650,6 +652,7 @@ class ObservationsController < ApplicationController
       o ||= Observation.new
       o.assign_attributes(observation_params(observation))
       o.user = current_user
+      o.editing_user_id = current_user.id
       o.user_agent = request.user_agent
       unless o.site_id
         o.site = @site || current_user.site
@@ -691,10 +694,10 @@ class ObservationsController < ApplicationController
         o.taxon = photo_o.taxon if o.taxon.blank?
         o.species_guess = photo_o.species_guess if o.species_guess.blank?
       end
-      o.photos = photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
-        Photo.local_photo_from_remote_photo(p) : p }
-      o.sounds << Sound.from_observation_params(params, fieldset_index, current_user)
-      # make sure the obs get a falid observed_on, needed to determine research grade
+      o.photos = ensure_photos_are_local_photos( photos )
+      new_sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+      o.sounds << ensure_sounds_are_local_sounds( new_sounds )
+      # make sure the obs get a valid observed_on, needed to determine research grade
       o.munge_observed_on_with_chronic
       o.set_quality_grade
       o
@@ -792,7 +795,6 @@ class ObservationsController < ApplicationController
     elsif params[:id] && params[:observations]
       params[:observations] = [[params[:id], params[:observations][0]]]
     end
-      
     
     if params[:observations].blank? && params[:observation].blank?
       respond_to do |format|
@@ -853,8 +855,7 @@ class ObservationsController < ApplicationController
         if updated_photos.empty?
           observation.photos.clear
         else
-          observation.photos = updated_photos.map{ |p| p.new_record? && !p.is_a?(LocalPhoto) ?
-            Photo.local_photo_from_remote_photo(p) : p }
+          observation.photos = ensure_photos_are_local_photos( updated_photos )
         end
 
         Photo.subclasses.each do |klass|
@@ -871,15 +872,20 @@ class ObservationsController < ApplicationController
         end
       end
 
-
       # Kind of like :ignore_photos, but :editing_sounds makes it opt-in rather than opt-out
       # If editing sounds and no sound parameters are present, assign to an empty array 
       # This way, sounds will be removed
       if params[:editing_sounds]
         params[:soundcloud_sounds] ||= {fieldset_index => []} 
         params[:soundcloud_sounds][fieldset_index] ||= []
-        observation.sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+        params[:local_sounds] ||= {fieldset_index => []} 
+        params[:local_sounds][fieldset_index] ||= []
+        sounds = Sound.from_observation_params(params, fieldset_index, current_user)
+        ensured_sounds = ensure_sounds_are_local_sounds( sounds )
+        observation.sounds = ensured_sounds
       end
+      
+      observation.editing_user_id = current_user.id
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
@@ -3063,6 +3069,31 @@ class ObservationsController < ApplicationController
   def viewing_new_obs_show?
     ( logged_in? && current_user.in_test_group?("obs-show") && !params.key?("show1") ) ||
     ( !logged_in? && params.key?("show2") )
+  end
+
+  def ensure_photos_are_local_photos( photos )
+    photos.map { |photo|
+      if photo.is_a?( LocalPhoto )
+        photo
+      elsif photo.new_record?
+        Photo.local_photo_from_remote_photo( photo )
+      else
+        Photo.turn_remote_photo_into_local_photo( photo )
+        Photo.find_by_id( photo.id ) # || photo.becomes( LocalPhoto ) # ensure we have an object loaded with the right class
+      end
+    }.compact
+  end
+
+  def ensure_sounds_are_local_sounds( sounds )
+    sounds.map { |sound|
+      if sound.is_a?( LocalSound )
+        sound
+      elsif sound.new_record?
+        sound.to_local_sound
+      else
+        sound.to_local_sound!
+      end
+    }.compact
   end
 
 end

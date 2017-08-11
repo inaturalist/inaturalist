@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { PropTypes, Component } from "react";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import Photo from "./photo";
+import Sound from "./sound";
 
 class FileGalleryItem extends Component {
 
@@ -49,12 +50,19 @@ class FileGalleryItem extends Component {
   render( ) {
     let item;
     let zoom;
-    if ( !( this.props.file.uploadState === "failed" ) &&
-                ( ( this.props.file.preview && !this.props.file.photo ) ||
-                ( this.props.file.photo && this.props.file.uploadState !== "failed" ) ) ) {
+    let closeButton;
+    const uploadFailed = ( this.props.file.uploadState === "failed" );
+    const previewAvailable = ( this.props.file.preview && !this.props.file.photo );
+    const photoAvailable = ( this.props.file.photo && this.props.file.uploadState !== "failed" );
+    const soundAvailable = ( this.props.file.sound && this.props.file.uploadState !== "failed" );
+    const isSound = this.props.file.type.match( /audio/ );
+    if ( !uploadFailed && isSound ) {
+      item = ( <Sound { ...this.props } /> );
+    } else if ( !uploadFailed && ( previewAvailable || photoAvailable ) ) {
       // preview photo
       item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
       zoom = this.zoomButton( );
+      closeButton = this.closeButton( );
     } else {
       item = (
         <div className="failed" >
@@ -72,7 +80,7 @@ class FileGalleryItem extends Component {
     }
     return (
       <div className="gallery-item">
-        { this.closeButton( ) }
+        { closeButton }
         { item }
         { zoom }
       </div>

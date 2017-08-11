@@ -34,12 +34,16 @@ class ProjectObservation < ActiveRecord::Base
   include ActsAsUUIDable
 
   def notify_observer(association)
-    if UpdateAction.joins(:update_subscribers).
-         where(resource: project, notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).
-         where("update_subscribers.subscriber_id = ?", observation.user_id).
-         where("update_subscribers.viewed_at IS NULL").count >= 15
-      return
-    end
+    existing_project_updates = UpdateAction.elastic_paginate(
+      filters: [
+        { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
+        { term: { subscriber_ids: observation.user_id } }
+      ],
+      inverse_filters: [
+        { term: { viewed_subscriber_ids: observation.user_id } }
+      ],
+      per_page: 1 )
+    return if existing_project_updates && existing_project_updates.total_entries >= 15
     action_attrs = {
       resource: project,
       notifier: self,

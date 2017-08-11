@@ -468,6 +468,7 @@ class User < ActiveRecord::Base
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
+    User.where( id: id ).update_all( observations_count: observations.count )
     LifeList.delay(priority: USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
     Observation.delay(priority: USER_INTEGRITY_PRIORITY).index_observations_for_user( id )
   end
@@ -845,6 +846,22 @@ class User < ActiveRecord::Base
     )
     count = (result && result.response) ? result.response.hits.total : 0
     User.where(id: user_id).update_all(identifications_count: count)
+  end
+
+  def self.update_observations_counter_cache(user_id)
+    return unless user = User.find_by_id( user_id )
+    result = Observation.elastic_search(
+      filters: [
+        { bool: { must: [
+          { term: { "user.id": user_id } },
+        ] } }
+      ],
+      size: 0
+    )
+    count = (result && result.response) ? result.response.hits.total : 0
+    User.where( id: user_id ).update_all( observations_count: count )
+    user.reload
+    user.elastic_index!
   end
 
   def to_plain_s

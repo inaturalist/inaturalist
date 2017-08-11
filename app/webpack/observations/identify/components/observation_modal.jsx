@@ -110,7 +110,11 @@ class ObservationModal extends React.Component {
           latitude={ obsForMap.latitude }
           longitude={ obsForMap.longitude }
           zoomLevel={ obsForMap.map_scale || 8 }
-          mapTypeControl={false}
+          mapTypeControl
+          mapTypeControlOptions={{
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+            position: google.maps.ControlPosition.TOP_RIGHT
+          }}
           showAccuracy
           showAllLayer={false}
           overlayMenu={false}

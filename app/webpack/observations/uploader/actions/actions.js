@@ -104,12 +104,18 @@ const actions = class actions {
           obsCards[obsCard.id] = obsCard;
           dispatch( actions.readFileExif( files[id] ) );
           i += 1;
+        } else if ( f.type.match( /^audio\// ) ) {
+          const id = ( startTime + i );
+          const obsCard = new ObsCard( { id } );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
+          obsCards[obsCard.id] = obsCard;
+          i += 1;
         }
       } );
       if ( Object.keys( obsCards ).length > 0 ) {
         dispatch( actions.appendObsCards( obsCards ) );
         dispatch( actions.appendFiles( files ) );
-        dispatch( actions.uploadImages( ) );
+        dispatch( actions.uploadFiles( ) );
       }
     };
   }
@@ -126,11 +132,15 @@ const actions = class actions {
           files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
           dispatch( actions.readFileExif( files[id] ) );
           i += 1;
+        } else if ( f.type.match( /^audio\// ) ) {
+          const id = ( startTime + i );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
+          i += 1;
         }
       } );
       if ( Object.keys( files ).length > 0 ) {
         dispatch( actions.appendFiles( files ) );
-        dispatch( actions.uploadImages( ) );
+        dispatch( actions.uploadFiles( ) );
       }
     };
   }
@@ -236,15 +246,15 @@ const actions = class actions {
     };
   }
 
-  static newCardFromPhoto( photo ) {
+  static newCardFromMedia( media ) {
     return function ( dispatch ) {
       const time = new Date( ).getTime( );
       const obsCards = { [time]: new ObsCard( { id: time } ) };
       dispatch( actions.appendObsCards( obsCards ) );
-      dispatch( actions.updateFile( photo.file, { cardID: time, sort: time } ) );
+      dispatch( actions.updateFile( media.file, { cardID: time, sort: time } ) );
 
-      const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      delete fromCard.files[photo.file.id];
+      const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
+      delete fromCard.files[media.file.id];
       // the card from where the photo was move can be removed if it has no data
       // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
@@ -404,7 +414,7 @@ const actions = class actions {
     };
   }
 
-  static uploadImages( ) {
+  static uploadFiles( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       const stateCounts = { pending: 0, uploading: 0, uploaded: 0, failed: 0 };
@@ -417,7 +427,11 @@ const actions = class actions {
         }
       } );
       if ( nextToUpload && stateCounts.uploading < s.dragDropZone.maximumNumberOfUploads ) {
-        dispatch( actions.uploadImage( nextToUpload ) );
+        if ( nextToUpload.type.match( /audio/ ) ) {
+          dispatch( actions.uploadSound( nextToUpload ) );
+        } else {
+          dispatch( actions.uploadImage( nextToUpload ) );
+        }
       } else if ( nextToUpload ) {
         // waiting for existing uploads to finish
       } else {
@@ -434,13 +448,43 @@ const actions = class actions {
         dispatch( actions.updateFile( file, {
           uploadState: "uploaded", photo: r, serverMetadata } ) );
         setTimeout( ( ) => {
-          dispatch( actions.uploadImages( ) );
+          dispatch( actions.uploadFiles( ) );
+          // if the file has been uploaded and we had a preview, ditch the preview to avoid memory leaks
+          if ( file.preview ) {
+            window.URL.revokeObjectURL( file.preview );
+            dispatch( actions.updateFile( file, { preview: null } ) );
+          }
         }, 100 );
       } ).catch( e => {
         console.log( "Upload failed:", e );
         dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
         setTimeout( ( ) => {
-          dispatch( actions.uploadImages( ) );
+          dispatch( actions.uploadFiles( ) );
+        }, 100 );
+      } );
+    };
+  }
+
+  static uploadSound( file ) {
+    return function ( dispatch ) {
+      dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
+      inaturalistjs.sounds.create( { file: file.file }, { same_origin: true } ).then( r => {
+        // const serverMetadata = file.additionalPhotoMetadata( r );
+        dispatch( actions.updateFile( file, {
+          uploadState: "uploaded",
+          sound: r,
+          serverMetadata: {}
+        } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadFiles( ) );
+          // TODO figure out why calling window.URL.revokeObjectURL prevents the
+          // sound from playing via the URL in Safari and Firefox
+        }, 100 );
+      } ).catch( e => {
+        console.log( "Upload failed:", e );
+        dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadFiles( ) );
         }, 100 );
       } );
     };

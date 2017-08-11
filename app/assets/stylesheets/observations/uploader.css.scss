@@ -360,7 +360,8 @@ ul.obs > li .card {
   textarea {
     resize: none;
   }
-  .photoDrag {
+  .photoDrag,
+  .soundDrag {
     cursor: -webkit-grab; cursor: -moz-grab;
   }
   .caption {
@@ -498,6 +499,23 @@ ul.obs > li .card {
         .zoom {
           bottom: 0px;
           right: 0px;
+        }
+        .Sound {
+          line-height: 1;
+          margin: 36px auto 0;
+          padding: 0px;
+          box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+          width: 170px;
+          background-color: white;
+          audio {
+            vertical-align: middle;
+            width: 100%;
+            max-width: 100%;
+          }
+          small {
+            display: block;
+            padding: 10px;
+          }
         }
       }
       .item.next, .item.prev, .item.left, .item.right {

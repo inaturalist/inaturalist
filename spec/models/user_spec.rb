@@ -648,6 +648,18 @@ describe User do
       expect(o.user_id).to eq @keeper.id
     end
 
+    it "should update the observations_count" do
+      Observation.make!( user: @keeper )
+      Observation.make!( user: @reject )
+      Delayed::Worker.new.work_off
+      @keeper.reload
+      expect( @keeper.observations_count ).to eq 1
+      @keeper.merge( @reject )
+      @keeper.reload
+      expect( @keeper.observations.count ).to eq 2
+      expect( @keeper.observations_count ).to eq 2
+    end
+
     it "should merge life lists" do
       t = Taxon.make!
       @reject.life_list.add_taxon(t)

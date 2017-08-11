@@ -316,6 +316,12 @@ class TaxonChange < ActiveRecord::Base
     end
     if target_input_taxon.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == target_input_taxon.rank
       target_input_taxon.children.active.each do |child|
+        # If for some horrible reason people are swapping replacing taxa with
+        # their own children, at least don't get into some kind of invite
+        # change loop.
+        if input_taxa.include?( child ) || output_taxa.include?( child )
+          next
+        end
         tc = TaxonSwap.new(
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),

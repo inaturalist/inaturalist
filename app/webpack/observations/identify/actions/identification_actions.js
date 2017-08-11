@@ -74,7 +74,10 @@ function agreeWithCurrentObservation( ) {
   return function ( dispatch, getState ) {
     const s = getState( );
     if ( s.config.blind ) {
-      return;
+      return null;
+    }
+    if ( s.currentObservation.tab !== "info" ) {
+      return null;
     }
     const currentObservation = s.currentObservation.observation;
     if ( !currentObservation || !currentObservation.id || !currentObservation.taxon ) {

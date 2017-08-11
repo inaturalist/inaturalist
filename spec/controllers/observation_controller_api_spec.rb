@@ -958,8 +958,10 @@ shared_examples_for "an ObservationsController" do
 
     it "should filter by establishment means" do
       p = make_place_with_geom
-      lt1 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::INTRODUCED, :list => p.check_list, :place => p)}
-      lt2 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::NATIVE, :list => p.check_list, :place => p)}
+      Delayed::Worker.new.work_off
+      lt1 = ListedTaxon.make!(:establishment_means => ListedTaxon::INTRODUCED, :list => p.check_list, :place => p)
+      lt2 = ListedTaxon.make!(:establishment_means => ListedTaxon::NATIVE, :list => p.check_list, :place => p)
+      Delayed::Worker.new.work_off
       o1 = Observation.make!(:taxon => lt1.taxon, :latitude => p.latitude, :longitude => p.longitude)
       o2 = Observation.make!(:taxon => lt2.taxon, :latitude => p.latitude, :longitude => p.longitude)
       get :index, :format => :json, :establishment_means => lt1.establishment_means, :place_id => p.id
@@ -1566,7 +1568,7 @@ shared_examples_for "an ObservationsController" do
   describe "viewed_updates" do
     before do
       enable_elastic_indexing(UpdateAction)
-      without_delay do
+      after_delayed_job_finishes do
         @o = Observation.make!(:user => user)
         @c = Comment.make!(:parent => @o)
         @i = Identification.make!(:observation => @o)
