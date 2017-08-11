@@ -253,15 +253,19 @@ it:
   add_photos: Aggiungi foto
   add_photos_to_this_observation: Aggiungi foto a questa osservazione
   add_place: Aggiungi luogo
+  add_plant_phenology_budding_annotation: 'Aggiungi nota "Fenologia della Pianta:
+    Germinazione"'
   add_plant_phenology_flowering_annotation: 'Aggiungi nota "Fenologia della Pianta:
     Fioritura"'
   add_plant_phenology_fruiting_annotation: 'Aggiungi nota "Fenologia della Pianta:
     Fruttificazione"'
   add_life_stage_adult_annotation: 'Aggiungi nota "Stadio vitale: Adulto"'
   add_life_stage_teneral_annotation: 'Aggiungi nota "Stadio vitale: immaturo"'
+  add_life_stage_subimago_annotation: 'Aggiungi nota "Stadio vitale: Subimago"'
   add_life_stage_pupa_annotation: 'Aggiungi nota "Stadio vitale: Pupa"'
   add_life_stage_nymph_annotation: 'Aggiungi nota "Stadio vitale: Ninfa"'
   add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
+  add_life_stage_juvenile_annotation: 'Aggiungi nota "Stadio vitale: Giovane"'
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
   add_several_observations_at_once: Aggiungere più osservazioni in una sola volta.
   add_sex_female_annotation: 'Aggiungi nota "Sesso: Femmina"'
@@ -941,11 +945,13 @@ it:
     male: Maschio
     female: Femmina
     plant_phenology: Fenologia della pianta
+    budding: In germinazione
     flowering: Fioritura
     fruiting: In frutto
     life_stage: Stadio Vitale
     adult: Adulto
     teneral: Immaturo
+    subimago: Subimago
     pupa: Pupa
     nymph: Ninfa
     larva: Larva
@@ -1194,6 +1200,7 @@ it:
   draft_saved: Bozza salvata!
   drafts: Bozze
   drag_and_drop_some_photos: Clicca e trascina alcune foto
+  duplicate_verb: Duplica
   each_place_displays_all_species_inat_knows: Ogni pagina di in luogo mostra tutte
     le specie conosciute da %{site_name} per quel luogo, incluse le informazioni di
     abbondanza, dello stato di conservazione, e chi ha per privo osservato quella
@@ -2234,6 +2241,7 @@ it:
   near: vicino
   near_threatened: Quasi Minacciata
   nearby: Nelle vicinanze
+  nearby_observations_: Osservazioni nelle vicinanze
   nearby_observations: Osservazioni nelle vicinanze
   need_id_help?: Aiuto su "Seve ID"?
   needs_id: serve ID
@@ -2508,6 +2516,7 @@ it:
   observations_obscured: Osservazioni (oscurate)
   observations_observed_this_month: Si tratta delle osservazioni <em>fatte</em> questo
     mese, non di quelle inserite. Vai fuori e fai più osservazioni!
+  observations_of_relatives: Osservazioni di organismi imparentati
   observations_of_taxon: Osservazioni di %{taxon_name}
   observations_on_inat_check_list: osservazioni su %{site_name}. I luoghi con checklist
     per cui è stata confermata almeno 1 osservazione all'interno dei suoi confini.
@@ -5111,6 +5120,10 @@ it:
           </ul>
         score_desc: punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio
           dei non d'accordo + numero di disaccordi sugli antenati)
+        observation_flagged_notice_html: |-
+          Questa osservazione è stata contrassegnata come spam è non è più visibile al pubblico. Tu la puoi vedere o perchè l'hai creata, o perchè sei curatore del sito. Se pensi che sia un errore, per favore
+          <a href="mailto:%{help_email}" class="contact">contattaci</a>.
+          <a href="/observations/%{observation_id}/flags">Gestisci contrassegni</a>
       user_stats:
         user_stats_desc: Le statistiche degli utenti sono limitate ai top 500 per
           numero di osservazioni e numero di specie; il totale di solito è poco superiore
@@ -5436,6 +5449,7 @@ it:
           Insect life stage=egg: Uovo
           Insect life stage=larva: Larva
           Insect life stage=teneral: Muta
+          Insect life stage=subimago: Subimago
           Insect life stage=nymph: Ninfa
           Insect life stage=pupa: Pupa
           Insect life stage=adult: Adulto
