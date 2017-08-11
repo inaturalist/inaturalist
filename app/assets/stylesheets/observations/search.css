@@ -55,6 +55,8 @@
   background-position: center;
   margin: 0px auto;
   text-align: center;
+  background-color: #ccc;
+  position: relative;
 }
 .grid .photo .icon, 
 .grid .photo:hover .icon,
@@ -77,9 +79,18 @@
 .grid .photo .sound-icon { display: none; }
 .grid .photo.sound .sound-icon {
   display: inline-block;
-  color: #aaa;
-  opacity: 0.8;
+  color: #777;
   font-size: smaller;
+}
+.grid .photo.has-photo.sound .sound-icon {
+  color: white;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba( 0, 0, 0, 0.7 );
+  padding: 10px;
+  font-size: 24px;
 }
 .grid .photo {
   height: 120px;
@@ -97,6 +108,7 @@
   .grid .photo {
     height: 212.5px;
     font-size: 135px;
+    line-height: 200px;
   }
 }
 @media (min-width: 1200px) {
