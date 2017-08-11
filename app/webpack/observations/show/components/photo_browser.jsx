@@ -191,6 +191,9 @@ class PhotoBrowser extends React.Component {
             if ( images[currentIndex].thumbnail !== soundIcon ) {
               this.props.setMediaViewerState( { activeIndex: currentIndex } );
             }
+            $( ".PhotoBrowser audio" ).each( ( i, elt ) => {
+              elt.pause( );
+            } );
           }}
           renderThumbInner={ item => {
             if ( !item.thumbnail ) {
