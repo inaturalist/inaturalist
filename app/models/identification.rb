@@ -27,6 +27,7 @@ class Identification < ActiveRecord::Base
                :update_quality_metrics
   after_commit :skip_observation_indexing,
                  :update_categories,
+                 :update_observation,
                  :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
   
