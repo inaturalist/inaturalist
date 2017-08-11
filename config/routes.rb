@@ -183,6 +183,7 @@ Rails.application.routes.draw do
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
+  resources :observation_sounds, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
   resources :sounds, only: [:local_sound_fields, :create]
