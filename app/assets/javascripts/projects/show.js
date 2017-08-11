@@ -30,7 +30,7 @@ $(document).ready(function() {
         )
       }
       var headers = r.getAllResponseHeaders()
-      var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
+      var matches = headers.match(/X-Total-Entries: (\d+)/i) || [],
           totalEntries = matches[1];
       if( totalEntries ) {
         $('.totalcount .count a').text(totalEntries)
