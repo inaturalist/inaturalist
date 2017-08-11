@@ -25,7 +25,8 @@ class Identification < ActiveRecord::Base
   after_update :update_obs_stats, 
                :update_curator_identification,
                :update_quality_metrics
-  after_commit :update_categories,
+  after_commit :skip_observation_indexing,
+                 :update_categories,
                  :update_observation,
                  :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
@@ -329,7 +330,6 @@ class Identification < ActiveRecord::Base
       idents = o.identifications
     else
       idents = Identification.
-        select( "id, taxon_id, current" ).
         includes(:taxon).
         where( observation_id: o.id )
     end
@@ -361,11 +361,23 @@ class Identification < ActiveRecord::Base
       next if idents.compact.blank?
       Identification.where( id: idents.map(&:id) ).update_all( category: category )
     end
+    Identification.elastic_index!( ids: idents.map(&:id) )
+    o.reload
+    o.elastic_index!
   end
 
   def update_categories
     return true if skip_observation
     Identification.update_categories_for_observation( observation )
+    true
+  end
+
+  # Should only run after commit and should be the final thing to run before
+  # commit. If the observation attached to this instance is dirty for some
+  # reason, ignore those changes b/c they've probably already been set in the
+  # database in an obs callback
+  def skip_observation_indexing
+    observation.skip_indexing = true
     true
   end
 

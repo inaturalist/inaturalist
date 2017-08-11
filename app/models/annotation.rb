@@ -23,6 +23,8 @@ class Annotation < ActiveRecord::Base
   validate :attribute_belongs_to_taxon
   validate :value_belongs_to_taxon
   validate :multiple_values
+  validate :no_other_annotations_of_blocking_values
+  validate :no_other_annotations_if_this_is_blocking
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
@@ -81,6 +83,38 @@ class Annotation < ActiveRecord::Base
     if scope.count > 0
       errors.add(:controlled_attribute, "cannot have multiple values")
     end
+  end
+
+  def no_other_annotations_of_blocking_values
+    return true unless controlled_attribute
+    return true unless controlled_attribute.multivalued?
+    scope = Annotation.
+      where( controlled_attribute: controlled_attribute, resource: resource ).
+      joins( :controlled_value ).
+      where( "controlled_terms.blocking" )
+    unless new_record?
+      scope = scope.where( "id != ?", id )
+    end
+    if scope.count > 0
+      errors.add( :controlled_value, "blocked by another value" )
+    end
+    true
+  end
+
+  def no_other_annotations_if_this_is_blocking
+    return true unless controlled_attribute
+    return true unless controlled_attribute.multivalued?
+    return true unless controlled_value
+    return true unless controlled_value.blocking?
+    scope = Annotation.
+      where( controlled_attribute: controlled_attribute, resource: resource )
+    unless new_record?
+      scope = scope.where( "id != ?", id )
+    end
+    if scope.count > 0
+      errors.add( :controlled_value, "is blocking but another annotation already added" )
+    end
+    true
   end
 
   def taxon_id

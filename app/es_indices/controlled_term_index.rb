@@ -38,6 +38,8 @@ class ControlledTerm < ActiveRecord::Base
     end
     if is_value?
       fields_to_remove << "multivalued"
+    else
+      fields_to_remove << "blocking"
     end
     # splatten out the array with *
     json = self.attributes.except(*fields_to_remove)

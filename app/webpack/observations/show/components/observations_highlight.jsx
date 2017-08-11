@@ -17,6 +17,7 @@ const ObservationsHighlight = ( { title, observations, searchParams, showNewObse
       <Col xs={ 2 } key={ `highlight-${o.id}` }>
         <div className="photo">
           <OverlayTrigger
+            container={ $( "#wrapper.bootstrap" ).get( 0 ) }
             placement="top"
             delayShow={ 200 }
             overlay={ (

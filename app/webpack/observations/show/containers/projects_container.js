@@ -5,6 +5,7 @@ import { addToProject, confirmRemoveFromProject,
 import { joinProject } from "../ducks/projects";
 import { updateCuratorAccess } from "../ducks/project_observations";
 import { updateSession } from "../ducks/users";
+import { setProjectFieldsModalState } from "../ducks/project_fields_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -23,7 +24,14 @@ function mapDispatchToProps( dispatch ) {
     updateObservationFieldValue: ( id, options ) => {
       dispatch( updateObservationFieldValue( id, options ) );
     },
-    updateSession: params => { dispatch( updateSession( params ) ); }
+    updateSession: params => { dispatch( updateSession( params ) ); },
+    showProjectFieldsModal: project => {
+      dispatch( setProjectFieldsModalState( {
+        show: true,
+        alreadyInProject: true,
+        project
+      } ) );
+    }
   };
 }
 

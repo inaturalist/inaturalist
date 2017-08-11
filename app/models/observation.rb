@@ -41,7 +41,7 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing
+    :bulk_import, :skip_indexing, :editing_user_id
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -234,7 +234,7 @@ class Observation < ActiveRecord::Base
 
   preference :community_taxon, :boolean, :default => nil
   
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   belongs_to :taxon
   belongs_to :community_taxon, :class_name => 'Taxon'
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
@@ -361,9 +361,11 @@ class Observation < ActiveRecord::Base
              :update_observations_places,
              :set_taxon_photo,
              :create_observation_review
-  after_create :set_uri
+  after_create :set_uri, :update_user_counter_caches
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
+    :update_taxon_counter_caches, :create_deleted_observation,
+    :update_user_counter_caches
   
   ##
   # Named scopes
@@ -1838,6 +1840,12 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def update_user_counter_caches
+    User.delay( unique_hash: { "User::update_observations_counter_cache": user_id } ).
+      update_observations_counter_cache( user_id )
+    true
+  end
+
   def update_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
@@ -2246,6 +2254,7 @@ class Observation < ActiveRecord::Base
   def create_observation_review
     return true unless taxon
     return true unless taxon_id_was.blank?
+    return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
   end

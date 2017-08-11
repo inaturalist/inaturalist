@@ -1039,6 +1039,7 @@ en:
   draft_saved: Draft saved!
   drafts: Drafts
   drag_and_drop_some_photos: Drag & drop some photos
+  duplicate_verb: Duplicate
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
@@ -3928,6 +3929,7 @@ en:
   your_account_has_been_activated: Your account has been activated!
   your_account_has_been_verified: "Your %{site_name} account has been verified! Please sign in to continue."
   your_activation_code_was_missing: "Your activation code was missing.  Please follow the URL from your email."
+  your_browser_does_not_support_the_audio_element: Your browser does not support the audio element.
   your_coarser_id: |
     Your coarser ID of <span class='taxon'>%{coarser_taxon_name}</span> implies that you
     disagree with the existing finer ID of
@@ -4612,6 +4614,12 @@ en:
             </li>
           </ul>
         score_desc: "score = cumulative count / (cumulative count + disagreement count + ancestor disagreements)"
+        observation_flagged_notice_html: |
+          This observation has been flagged as spam and is no longer
+          publicly visible. You can see it because you created it, or you are a
+          site curator. If you think this is a mistake, please
+          <a href="mailto:%{help_email}" class="contact">contact us</a>.
+          <a href="/observations/%{observation_id}/flags">Manage flags</a>
       user_stats:
         user_stats_desc: |
           User stats are limited to a max of the top 500 by observation count
