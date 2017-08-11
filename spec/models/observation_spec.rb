@@ -246,8 +246,11 @@ describe Observation do
     end
   
     it "should increment the counter cache in users" do
+      Delayed::Worker.new.work_off
+      @observation.reload
       old_count = @observation.user.observations_count
       Observation.make!(:user => @observation.user)
+      Delayed::Worker.new.work_off
       @observation.reload
       expect(@observation.user.observations_count).to eq old_count+1
     end
@@ -451,7 +454,8 @@ describe Observation do
     end
 
     it "should create an observation review for the observer if there's a taxon" do
-      o = Observation.make!( taxon: Taxon.make! )
+      user = User.make!
+      o = Observation.make!( taxon: Taxon.make!, editing_user_id: user.id, user: user )
       o.reload
       expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 1
     end
@@ -472,12 +476,28 @@ describe Observation do
         :time_zone => 'UTC')
     end
 
-    it "should create an obs review if taxon set but was blank" do
+    it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
-      o.update_attributes( taxon: Taxon.make! )
+      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       o.reload
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
+    it "should create an obs review identified by the observer" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      after_delayed_job_finishes { Identification.make!( observation: o, user: o.user )}
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
+    it "should not create an obs review identified by someone else" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      after_delayed_job_finishes { Identification.make!( observation: o )}
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
     end
 
     it "should not destroy the owner's old identification if the taxon has changed" do
@@ -1135,10 +1155,12 @@ describe Observation do
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
+      Delayed::Worker.new.work_off
       user = @observation.user
       user.reload
       old_count = user.observations_count
       @observation.destroy
+      Delayed::Worker.new.work_off
       user.reload
       expect(user.observations_count).to eq old_count - 1
     end

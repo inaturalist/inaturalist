@@ -12,8 +12,6 @@ class ControlledTerm < ActiveRecord::Base
   has_many :attrs, through: :controlled_term_value_attrs, source: :controlled_attribute
   has_many :value_annotations, class_name: "Annotation", foreign_key: :controlled_value_id
   has_many :attribute_annotations, class_name: "Annotation", foreign_key: :controlled_attribute_id
-  # belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
-  #   class_name: "Taxon"
   belongs_to :user
   has_many :controlled_term_taxa, inverse_of: :controlled_term, dependent: :destroy
   has_many :taxa, -> { where ["controlled_term_taxa.exception = ?", false] }, through: :controlled_term_taxa

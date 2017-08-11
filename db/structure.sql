@@ -876,7 +876,8 @@ CREATE TABLE controlled_terms (
     multivalued boolean DEFAULT false,
     user_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    blocking boolean DEFAULT false
 );
 
 
@@ -2358,7 +2359,10 @@ ALTER SEQUENCE observation_reviews_id_seq OWNED BY observation_reviews.id;
 CREATE TABLE observation_sounds (
     id integer NOT NULL,
     observation_id integer,
-    sound_id integer
+    sound_id integer,
+    uuid uuid DEFAULT uuid_generate_v4(),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -3600,7 +3604,12 @@ CREATE TABLE sounds (
     sound_url character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    native_response text
+    native_response text,
+    file_file_name character varying,
+    file_content_type character varying,
+    file_file_size integer,
+    file_updated_at timestamp without time zone,
+    subtype character varying(255)
 );
 
 
@@ -7055,6 +7064,13 @@ CREATE INDEX index_observation_reviews_on_user_id ON observation_reviews USING b
 
 
 --
+-- Name: index_observation_sounds_on_uuid; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_sounds_on_uuid ON observation_sounds USING btree (uuid);
+
+
+--
 -- Name: index_observation_zooms_10_on_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8904,4 +8920,12 @@ INSERT INTO schema_migrations (version) VALUES ('20170710211319');
 INSERT INTO schema_migrations (version) VALUES ('20170727000020');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727000602');
+
+INSERT INTO schema_migrations (version) VALUES ('20170727193500');
+
+INSERT INTO schema_migrations (version) VALUES ('20170804212822');
+
+INSERT INTO schema_migrations (version) VALUES ('20170808184245');
+
+INSERT INTO schema_migrations (version) VALUES ('20170811032109');
 

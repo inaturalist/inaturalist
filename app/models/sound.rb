@@ -67,15 +67,32 @@ class Sound < ActiveRecord::Base
 
   def self.from_observation_params(params, fieldset_index, owner)
     sounds = []
-    
+    unless Rails.env.production?
+      SoundcloudSound
+      LocalSound
+    end
     (self.subclasses || []).each do |klass|
       klass_key = klass.to_s.underscore.pluralize.to_sym
       if params[klass_key] && params[klass_key][fieldset_index.to_s]
-        params[klass_key][fieldset_index.to_s].each do |sid|
-          sound = klass.new_from_native_sound_id(sid, owner)
-          sound.user = owner
-          sound.native_realname = owner.soundcloud_identity.native_realname if klass == SoundcloudSound
-          sounds << sound
+        if klass == SoundcloudSound
+          params[klass_key][fieldset_index.to_s].each do |sid|
+            sound = klass.new_from_native_sound_id(sid, owner)
+            sound.user = owner
+            sound.native_realname = owner.soundcloud_identity.native_realname
+            sounds << sound
+          end
+        else
+          params[klass_key][fieldset_index.to_s].each do |file_or_id|
+            sound = if file_or_id.is_a?( ActionDispatch::Http::UploadedFile )
+              LocalSound.new( file: file_or_id )
+            else
+              Sound.find_by_id( file_or_id )
+            end
+            next unless sound
+            sound.user = owner
+            sound.native_realname = owner.name
+            sounds << sound
+          end
         end
       end
     end
@@ -108,7 +125,10 @@ class Sound < ActiveRecord::Base
       license_code: license_code,
       attribution: attribution,
       native_sound_id: native_sound_id,
-      secret_token: try(:secret_token)
+      secret_token: try(:secret_token),
+      file_url: is_a?( LocalSound ) ? FakeView.uri_join( FakeView.root_url, file.url ) : nil,
+      file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
+      subtype: subtype
     }
   end
 

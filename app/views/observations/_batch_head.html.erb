@@ -16,9 +16,14 @@
             if ($(this).hasClass('soundSelector')) {
               return
             }
-            var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name')
-            var index = $.string(index_str).gsub(/[^\d]*/, '').str
-            $(this).soundSelector({index: index})
+            var index_str = $(this).parents('.observation:first').find('input:visible:first').attr('name');
+            var opts = {
+              index: $.string(index_str).gsub(/[^\d]*/, '').str
+            };
+            if ( $( ".sound", this ).data( "sound-class" ) === "soundcloud_sound" ) {
+              opts.baseURL = "/soundcloud_sounds";
+            }
+            $( this ).soundSelector( opts );
         })
       }
       $('.observation_photos').bind('show', function() {

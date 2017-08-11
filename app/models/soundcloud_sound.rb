@@ -42,48 +42,81 @@ class SoundcloudSound < Sound
   end
   
   def to_observation
-      # Setup the observation
-      observation = Observation.new
-      observation.user = self.user if self.user
-      observation.sounds.build(self.attributes)
-      observation.description = self.native_response["description"]
-      if d = Chronic.parse(native_response['created_at'])
-        observation.observed_on_string = d.in_time_zone(observation.user.time_zone || Time.zone).iso8601
-      else
-        observation.observed_on_string = self.native_response["created_at"]
-      end
-      observation.munge_observed_on_with_chronic
-      observation.time_zone = observation.user.time_zone if observation.user
-      
-      # Try to get a taxon
-      observation.taxon = to_taxon
-      if t = observation.taxon
-        observation.species_guess = t.common_name.try(:name) || t.name
-      end
-
-      observation
+    # Setup the observation
+    observation = Observation.new
+    observation.user = self.user if self.user
+    observation.sounds.build(self.attributes)
+    observation.description = self.native_response["description"]
+    if d = Chronic.parse(native_response['created_at'])
+      observation.observed_on_string = d.in_time_zone(observation.user.time_zone || Time.zone).iso8601
+    else
+      observation.observed_on_string = self.native_response["created_at"]
+    end
+    observation.munge_observed_on_with_chronic
+    observation.time_zone = observation.user.time_zone if observation.user
+    
+    # Try to get a taxon
+    observation.taxon = to_taxon
+    if t = observation.taxon
+      observation.species_guess = t.common_name.try(:name) || t.name
     end
 
-    def to_taxa(options = {})
-      return [] unless self.native_response && (tags_string = self.native_response["tag_list"]).present?
+    observation
+  end
 
-      # convert tag_string to an array of strings and handle multiword tags (which soundcloud puts in quotes)
-      multiword_tags = tags_string.scan(/"[^"]+"/)
-      multiword_tags.map do |t| 
-        tags_string.gsub!(t, '') #remove from original set
-        t.gsub!("\"",'') #clean up the quotes
-      end
-      tags = tags_string.split(' ') + multiword_tags
+  def to_taxa(options = {})
+    return [] unless self.native_response && (tags_string = self.native_response["tag_list"]).present?
 
-      tags << self.native_response["title"]
-
-      # First try to find taxa matching taxonomic machine tags, then default 
-      # to all tags
-      machine_tags = tags.select{|t| t =~ /taxonomy\:/}
-      taxa = Taxon.tags_to_taxa(machine_tags, options) unless machine_tags.blank?
-      taxa ||= Taxon.tags_to_taxa(tags, options)
-      taxa
-      taxa.compact
+    # convert tag_string to an array of strings and handle multiword tags (which soundcloud puts in quotes)
+    multiword_tags = tags_string.scan(/"[^"]+"/)
+    multiword_tags.map do |t| 
+      tags_string.gsub!(t, '') #remove from original set
+      t.gsub!("\"",'') #clean up the quotes
     end
+    tags = tags_string.split(' ') + multiword_tags
+
+    tags << self.native_response["title"]
+
+    # First try to find taxa matching taxonomic machine tags, then default 
+    # to all tags
+    machine_tags = tags.select{|t| t =~ /taxonomy\:/}
+    taxa = Taxon.tags_to_taxa(machine_tags, options) unless machine_tags.blank?
+    taxa ||= Taxon.tags_to_taxa(tags, options)
+    taxa
+    taxa.compact
+  end
+
+  # Return a *new* record with this one's attributes and the attached file
+  def to_local_sound
+    local_sound = LocalSound.new( attributes.reject{ |k,v| %w(id type).include?( k ) } )
+    local_sound.subtype = self.class.name
+    local_sound.file = StringIO.new( download.body )
+    if filename = download.headers["content-disposition"][/\"(.+)\"/, 1]
+      local_sound.file_file_name = filename
+    end
+    local_sound
+  end
+
+  # Convert existing to local sound and save
+  def to_local_sound!
+    local_sound = becomes( LocalSound )
+    local_sound.subtype = self.class.name
+    local_sound.file = StringIO.new( download.body )
+    if filename = download.headers["content-disposition"][/\"(.+)\"/, 1]
+      local_sound.file_file_name = filename
+    end
+    local_sound.save!
+    Sound.where( id: id ).update_all( type: "LocalSound" )
+    Sound.where( id: id ).first
+  end
+
+  def download
+    unless @download_response
+      client = SoundcloudSound.client_for_user( user )
+      api_response = client.get( "/tracks/#{native_sound_id}" )
+      @download_response = client.get( api_response.download_url, allow_redirects: true )
+    end
+    @download_response
+  end
 
 end

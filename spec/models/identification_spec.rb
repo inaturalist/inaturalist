@@ -946,4 +946,15 @@ describe Identification, "category" do
       expect( o.identifications.sort_by(&:id)[3].category ).to eq Identification::SUPPORTING
     end
   end
+  describe "indexing" do
+    it "should happen for other idents after new one added" do
+      i1 = Identification.make!
+      expect( i1.category ).to eq Identification::LEADING
+      i2 = Identification.make!( observation: i1.observation, taxon: i1.taxon )
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+      es_i1 = Identification.elastic_search( where: { id: i1.id } ).results.results[0]
+      expect( es_i1.category ).to eq Identification::IMPROVING
+    end
+  end
 end

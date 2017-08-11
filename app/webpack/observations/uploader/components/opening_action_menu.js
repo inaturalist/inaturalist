@@ -8,10 +8,10 @@ class OpeningActionMenu extends Component {
       <div className="intro">
         <div className="start">
           <div className="drag_or_choose">
-            <h1>{ I18n.t( "drag_and_drop_some_photos" ) }</h1>
+            <h1>{ I18n.t( "drag_and_drop_some_photos_or_sounds" ) }</h1>
             <p>{ I18n.t( "or" ) }</p>
             <Button bsStyle="primary" bsSize="large" onClick={ this.props.fileChooser }>
-              { I18n.t( "choose_photos" ) }
+              { I18n.t( "choose_files" ) }
               <Glyphicon glyph="upload" />
             </Button>
           </div>

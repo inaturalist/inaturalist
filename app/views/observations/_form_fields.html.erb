@@ -203,26 +203,16 @@
         </div>
 
         <div id="add_sounds_<%= i %>">
-          <% if @sound_identities.blank? %>
-            <div class="nosounds">
-              <p class="ui">
-                <%=t 'sounds.you_need_to_link_your_soundcloud_account' %>
-              </p>
-              <div class="clear inline buttons">
-                <%= link_to t(:'sounds.link_your_soundcloud_account'), "/auth/soundcloud", :class => "button" %>
-              </div>
-            </div>
-          <% else %>
-            <div id="sounds_<%= i %>" class="observation_sounds">
-              <%= render :partial => "sounds/sound_list_form", :locals => { 
-                :sounds => observation.sounds, 
-                :index => i,
-                :checked => true,
-                :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
-                :sound_identity => @sound_identities.first,
-              } %>
-            </div>
-          <% end %>
+          <div id="sounds_<%= i %>" class="observation_sounds">
+            <%= render :partial => "sounds/sound_list_form", :locals => { 
+              sounds: observation.sounds,
+              index: i,
+              checked: true,
+              # synclink_base: observation.new_record? ? new_observation_path : edit_observation_path(observation),
+              sound_identity: @sound_identities.first,
+              local_sounds: true
+            } %>
+          </div>
         </div>
       </div>
     </div>

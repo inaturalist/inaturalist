@@ -859,6 +859,7 @@ export function onFileDrop( droppedFiles ) {
     const observation = getState( ).observation;
     if ( !observation || droppedFiles.length === 0 ) { return; }
     const newPhotos = [];
+    const newSounds = [];
     const promises = [];
     droppedFiles.forEach( f => {
       if ( f.type.match( /^image\// ) ) {
@@ -869,9 +870,22 @@ export function onFileDrop( droppedFiles ) {
         };
         promises.push( inatjs.observation_photos.create(
           params, { same_origin: true } ) );
+      } else if ( f.type.match( /^audio\// ) ) {
+        newSounds.push( { file_url: f.preview } );
+        const params = {
+          "observation_sound[observation_id]": observation.id,
+          file: f
+        };
+        promises.push( inatjs.observation_sounds.create(
+          params, { same_origin: true } ) );
       }
     } );
-    dispatch( setAttributes( { photos: getState( ).observation.photos.concat( newPhotos ) } ) );
+    if ( newPhotos.length > 0 ) {
+      dispatch( setAttributes( { photos: getState( ).observation.photos.concat( newPhotos ) } ) );
+    }
+    if ( newSounds.length > 0 ) {
+      dispatch( setAttributes( { sounds: getState( ).observation.sounds.concat( newSounds ) } ) );
+    }
     Promise.all( promises ).then( ( ) => {
       dispatch( afterAPICall( { } ) );
     } ).catch( e => {

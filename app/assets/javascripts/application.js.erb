@@ -450,7 +450,7 @@ function autoPopover() {
 }
 
 function autoTip() {
-  if ($(this).attr('data-tip').match(/^#/)) {
+  if ($(this).attr('data-tip').match(/^#\w+/)) {
     content = $($(this).attr('data-tip')).html()
   } else {
     content = $(this).attr('data-tip')

@@ -104,7 +104,13 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
     status = ( <span key={ `flagged-${item.id}` } className="item-status">
-      <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
+      <a
+        href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
+        rel="nofollow"
+        target="_blank"
+      >
+        <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
+      </a>
     </span> );
   } else if ( item.category && item.current ) {
     let idCategory;
