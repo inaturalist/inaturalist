@@ -54,7 +54,7 @@ class MetaService
     begin
       MetaService.fetch_request_uri(args.merge(request_uri: request_uri, timeout: @timeout,
         api_endpoint: api_endpoint,
-        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}"))
+        user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}"))
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
@@ -73,7 +73,7 @@ class MetaService
   def self.fetch_request_uri(options = {})
     return unless options[:request_uri]
     options[:timeout] ||= 5
-    options[:user_agent] ||= CONFIG.site_name
+    options[:user_agent] ||= Site.default.name
     if options[:api_endpoint]
       api_endpoint_cache = ApiEndpointCache.find_or_create_by(
         api_endpoint: options[:api_endpoint],

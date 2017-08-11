@@ -417,7 +417,6 @@ describe ObservationsController do
 
     it "should set the site based on config" do
       @site = Site.make!
-      stub_config(site_id: @site.id)
       post :photo, :format => :json, :files => [ file ]
       expect(@user.observations.last.site).to_not be_blank
     end

@@ -37,7 +37,7 @@ def ratatosk(options = {})
     if providers.include?(src.to_s.downcase)
       Ratatosk::Ratatosk.new(:name_providers => [src])
     else
-      @ratatosk ||= Ratatosk::Ratatosk.new( name_providers: providers )
+      Ratatosk::Ratatosk.new( name_providers: providers )
     end
   else
     Ratatosk

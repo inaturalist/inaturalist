@@ -1376,7 +1376,6 @@ shared_examples_for "an ObservationsController" do
 
     describe "with site" do
       let(:site) { Site.default }
-      before { stub_config site_id: site.id }
       it "should filter by place" do
         p = make_place_with_geom
         site.update_attributes(place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE)

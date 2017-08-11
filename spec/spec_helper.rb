@@ -165,13 +165,6 @@ class LocalPhoto
   end
 end
 
-def stub_config(options = {})
-  options.each do |k,v|
-    CONFIG.send("#{ k }=",
-      (v.is_a?(Hash) ? OpenStruct.new_recursive(v) : v))
-  end
-end
-
 # Turn on elastic indexing for certain models. We do this selectively b/c
 # updating ES slows down the specs.
 def enable_elastic_indexing(*args)
