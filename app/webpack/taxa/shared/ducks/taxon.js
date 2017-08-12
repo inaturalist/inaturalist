@@ -18,6 +18,7 @@ const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
 const SET_FIELD_VALUES = "taxa-show/taxon/SET_FIELD_VALUES";
+const SET_SPECIES = "taxa-show/taxon/SET_SPECIES";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -66,6 +67,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_FIELD_VALUES:
       newState.fieldValues = action.fieldValues;
+      break;
+    case SET_SPECIES:
+      newState.species = action.response;
       break;
     default:
       // nothing to see here
@@ -175,6 +179,25 @@ export function fetchTerms( callback ) {
         _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
       if ( callback ) { callback( ); }
     } ).catch( e => { console.log( e ); } );
+  };
+}
+
+export function setSpecies( response ) {
+  return { type: SET_SPECIES, response };
+}
+
+export function fetchSpecies( taxon, options = { } ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
+    const params = Object.assign( { }, options, {
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale,
+      taxon_id: t.id
+    } );
+    return inatjs.observations.speciesCounts( params ).then( response => {
+      dispatch( setSpecies( response ) );
+    } );
   };
 }
 

@@ -1148,3 +1148,49 @@ describe "rank helpers" do
     end
   end
 end
+
+describe "complete" do
+  it "should reindex all descendants when changed"
+end
+
+describe "complete_species_count" do
+  describe "when taxon is not complete" do
+    it "should be nil if no complete ancestor" do
+      t = Taxon.make!
+      expect( t.complete_species_count ).to be_nil
+    end
+    it "should be set if complete ancestor exists" do
+      ancestor = Taxon.make!( complete: true, rank: Taxon::FAMILY )
+      t = Taxon.make!( parent: ancestor )
+      expect( t.complete_species_count ).not_to be_nil
+      expect( t.complete_species_count ).to eq 0
+    end
+  end
+  describe "when taxon is complete" do
+    let(:complete_taxon) { Taxon.make!( complete: true, rank: Taxon::FAMILY ) }
+    it "should count species" do
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon )
+      expect( complete_taxon.complete_species_count ).to eq 1
+    end
+    it "should not count genera" do
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: complete_taxon )
+      expect( complete_taxon.complete_species_count ).to eq 0
+    end
+    it "should not count hybrids" do
+      hybrid = Taxon.make!( rank: Taxon::HYBRID, parent: complete_taxon )
+      expect( complete_taxon.complete_species_count ).to eq 0
+    end
+    it "should not count extinct species" do
+      extinct_species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon )
+      ConservationStatus.make!( taxon: extinct_species, iucn: Taxon::IUCN_EXTINCT, status: "extinct" )
+      extinct_species.reload
+      expect( extinct_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_EXTINCT
+      expect( extinct_species.conservation_statuses.first.place ).to be_blank
+      expect( complete_taxon.complete_species_count ).to eq 0
+    end
+    it "should not count inactive taxa" do
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, is_active: false )
+      expect( complete_taxon.complete_species_count ).to eq 0
+    end
+  end
+end

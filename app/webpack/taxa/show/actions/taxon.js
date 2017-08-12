@@ -3,7 +3,8 @@ import {
   setCount,
   fetchTaxonChange,
   fetchNames,
-  fetchTerms
+  fetchTerms,
+  fetchSpecies
 } from "../../shared/ducks/taxon";
 import {
   fetchMonthFrequency,
@@ -35,6 +36,9 @@ export function fetchTaxonAssociates( t ) {
         } );
       } ) );
     } );
+    if ( taxon.complete_species_count ) {
+      dispatch( fetchSpecies( ) );
+    }
   };
 }
 
