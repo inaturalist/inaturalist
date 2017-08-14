@@ -180,8 +180,6 @@ shared_examples_for "a TaxaController" do
     end
 
     describe "with default photo" do
-      before(:each) { enable_elastic_indexing( Observation ) }
-      after(:each) { disable_elastic_indexing( Observation ) }
       let(:photo) { 
         Photo.make!(
           "id" => 1576,
