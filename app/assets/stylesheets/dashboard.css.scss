@@ -675,9 +675,26 @@ h3 .glyphicon {
 h3 .glyphicon.info-link {
   font-size: 14px;
 }
+a.icon_container,
 .icon_container {
   display: block;
   text-align: center;
+  line-height: 149px;
+  background-color: #ccc;
+}
+.icon_container i.fa,
+.icon_container i.icon,
+.scaledimg i.icon {
+   vertical-align: middle;
+   font-size: 80px;
+   color: white;
+}
+.has-sound .icon_container i.fa {
+  color: #777;
+}
+.has-sound.has-photo .icon_container i.fa {
+  color: white;
+  opacity: 0.8;
 }
 
 .thumbnail > a > .scaledimg {
@@ -689,9 +706,12 @@ h3 .glyphicon.info-link {
 .media-left > a > .scaledimg {
  width: 120px;
  height: 120px;
+ line-height: 120px;
+ background-color: #ccc;
  margin-right: 5px;
  background-size: cover;
  background-position: center;
+ text-align: center;
 }
 
 .list-group-item {

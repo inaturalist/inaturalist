@@ -219,11 +219,14 @@ zh-CN:
   add_photos: 添加照片
   add_photos_to_this_observation: 添加照片至此观察
   add_place: 添加地点
+  add_plant_phenology_budding_annotation: 添加“植物物候学：发芽”注释
   add_plant_phenology_flowering_annotation: 添加“植物物候学：开花”注释
   add_plant_phenology_fruiting_annotation: 添加“植物物候学：结果”注释
   add_life_stage_adult_annotation: 添加“生命阶段：成人”注释
   add_life_stage_teneral_annotation: 添加“生命阶段：幼虫”注释
+  add_life_stage_subimago_annotation: 添加“生命阶段：亚成虫”注释
   add_life_stage_pupa_annotation: 添加“生命阶段：蛹”注释
+  add_life_stage_juvenile_annotation: 添加“生命阶段：青少年”注释
   add_several_observations_at_once: 马上添加几个观察。
   add_sex_female_annotation: 添加“性别：女”注释
   add_sex_male_annotation: 添加“性别：男”注释
@@ -754,11 +757,13 @@ zh-CN:
     male: 男
     female: 女
     plant_phenology: 植物物候学
+    budding: 发芽
     flowering: 开花
     fruiting: 果实
     life_stage: 生命阶段
     adult: 成人
     teneral: 幼体
+    subimago: 亚成虫
     pupa: 蛹
     nymph: 仙女
     larva: 幼虫
@@ -976,6 +981,7 @@ zh-CN:
   draft_saved: 草稿已保存！
   drafts: 草稿
   drag_and_drop_some_photos: 拖放一些图片
+  duplicate_verb: 复制
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
   edit_account_settings_and_profile: 编辑账户设置和详细信息
@@ -1785,6 +1791,7 @@ zh-CN:
   ne_lon: 东北经度
   near: 近似于
   nearby: 附近
+  nearby_observations_: 附近观察
   need_id_help?: 需要ID帮助？
   needs_id: 需要ID
   Needs_ID!: 需要ID！
@@ -1937,6 +1944,7 @@ zh-CN:
   observations_have_had_their_coordinates: 他们的观察中的坐标已转移至相距 %{km} 千米外的随机点上，既因为分类单元受到威胁，又因为观察者选择模糊坐标。
   observations_map: 观察 / 地图
   observation_must_dotdotdot: 观察必须...
+  observations_of_relatives: 亲属的观察
   observations_of_taxon: '%{taxon_name} 的观察'
   observations_per_month: 观察 / 月
   observations_saved: 观察报告已保存！
@@ -3537,6 +3545,7 @@ zh-CN:
           Insect life stage=egg: 蛋
           Insect life stage=larva: 幼虫
           Insect life stage=teneral: 幼体
+          Insect life stage=subimago: 亚成虫
           Insect life stage=nymph: 仙女
           Insect life stage=pupa: 蛹
           Insect life stage=adult: 成人

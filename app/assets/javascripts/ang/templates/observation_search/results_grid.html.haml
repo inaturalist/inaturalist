@@ -2,7 +2,7 @@
   .row
     .col-xs-3{ "ng-repeat": "o in observations" }
       .thumbnail.borderless
-        %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.hasMedia( ) ? '' : 'iconic' }} {{ o.hasSound( ) ? 'sound' : '' }}" }
+        %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.hasMedia( ) ? '' : 'iconic' }} {{ o.hasSound( ) ? 'sound' : '' }}  {{ o.photo( ) ? 'has-photo' : '' }}" }
           %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }
           %i{ :class => "sound-icon fa fa-volume-up" }
         .caption

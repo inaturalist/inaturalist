@@ -29,7 +29,7 @@
       refresh: window.location.toString().match(/refresh=true/) ? 30*1000 : null,
       success: function(r, data) {
         var headers = r.getAllResponseHeaders()
-        var matches = headers.match(/X-Total-Entries: (\d+)/) || [],
+        var matches = headers.match(/X-Total-Entries: (\d+)/i) || [],
             totalEntries = matches[1]
         if (totalEntries) {
           $('.totalcount .count').html(totalEntries)

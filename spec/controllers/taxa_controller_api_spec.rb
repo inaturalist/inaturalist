@@ -39,8 +39,8 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "search" do
-    before(:each) { enable_elastic_indexing([ Observation, Taxon, Place ]) }
-    after(:each) { disable_elastic_indexing([ Observation, Taxon, Place ]) }
+    before(:each) { enable_elastic_indexing( Observation, Taxon, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Taxon, Place ) }
 
     it "should filter by place_id" do
       taxon_not_in_place = Taxon.make!
@@ -180,6 +180,8 @@ shared_examples_for "a TaxaController" do
     end
 
     describe "with default photo" do
+      before(:each) { enable_elastic_indexing( Observation ) }
+      after(:each) { disable_elastic_indexing( Observation ) }
       let(:photo) { 
         Photo.make!(
           "id" => 1576,

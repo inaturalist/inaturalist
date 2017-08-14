@@ -12,6 +12,7 @@
 # Author: Isabelgg22
 # Author: Josecurioso
 # Author: Loarie
+# Author: Luisangelrg
 # Author: Macofe
 # Author: Ncontinanza
 # Author: Tusca
@@ -799,7 +800,8 @@ es:
     <em>muestren características de diagnóstico</em> y <em>se vean bien como
     íconos</em>.  La <em>primera aparece por defecto</em>.
   chose_columns: Elige columnas
-  choose_files_from_your_computer: selecciona el archivo de tu computadora.
+  choose_files: Selecciona el archivo
+  choose_files_from_your_computer: Selecciona el archivo de tu computadora
   choose_from_your_lists: Seleccionar de sus listas
   choose_good_default_photos: seleccionar buenas fotos por defecto del grupo de fotos
     de Creative Commons en Flickr
@@ -1183,6 +1185,8 @@ es:
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
   drag_and_drop_some_photos: Arrastra y suelta algunas fotos
+  duplicate_verb: Duplicado
+  drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las
     especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia,
     estado de conservación y quién observó esa especie por primera vez en ese lugar
@@ -2217,6 +2221,7 @@ es:
   near: cerca
   near_threatened: casi amenazado
   nearby: Cercanos
+  nearby_observations_: Observaciones cercanas
   nearby_observations: Observaciones cercanas
   need_id_help?: ¿Necesita ayuda en la ID?
   needs_id: necesita identificador
@@ -2292,6 +2297,7 @@ es:
   no_identifications_added:
     current_user: No has añadido identificaciones a ninguna observación.
     user: '%{user} no ha añadido identificaciones a ninguna observación.'
+  no_ids_have_been_suggested_yet: Aún no se ha sugerido ningún ID
   no_interaction_data_available: Datos de interacción no disponibles
   no_its_as_good_as_it_can_be: No, es tan bueno como puede ser
   no_favorites_added:
@@ -2375,6 +2381,7 @@ es:
   noble_curators: Curadores activos de %{site}
   non_human?: ¿No humano?
   none: Ninguno
+  none_found: No se encontró ninguno
   none_of_the_people_you_follow_have_updates: ¡Ninguna de las personas que usted sigue
     ha hecho actualizaciones todavía!
   normal: normal
@@ -2451,7 +2458,7 @@ es:
     ser Réptil", entonces el proyecto aceptará observaciones de
     reptiles O anfibios.
   observation_was_deleted: La observación fue borrada.
-  observation_without_photo: Observación sin foto
+  observation_without_media: Observación sin medios
   observation_would_like_some_help: ¡A %{user} le gustaría un poco de ayuda para identificar
     esto!
   observations: Observaciones
@@ -2494,6 +2501,7 @@ es:
   observations_obscured: Observaciones (ocultas)
   observations_observed_this_month: Observaciones <em>hechas</em> este mes, no se
     añaden al mes en curso. ¡Sal y haz más observaciones!
+  observations_of_relatives: Observaciones de parientes
   observations_of_taxon: Observaciones de %{taxon_name}
   observations_on_inat_check_list: observaciones en %{site_name}. Los lugares con
     lista de verificación que han sido confirmados tienen al menos 1 observación confirmada
@@ -2734,6 +2742,7 @@ es:
   photos_from: Fotos de
   photos_of: Fotos de
   photos_of_taxon_html: Fotos de %{taxon}
+  photos_or_sounds: Fotos o sonidos
   photos_or_sounds?: ¿Fotos o sonidos?
   photos_size:
     small: pequeño
@@ -5106,6 +5115,9 @@ es:
           </ul>
         score_desc: puntuación = número acumulado / (conteo acumulado + conteo de
           desacuerdos  + desacuerdos de ancestros)
+        observation_flagged_notice_html: |-
+          Esta observación ha sido maracada como spam y ya no se ecuentra visible de forma pública. Usted puede visualizarla porque la ha creado, o es un moderador del sitio. Si cree que esto es un error, por favor <a href="mailto:%{help_email}" class="contact">contáctenos</a>.
+          <a href="/observations/%{observation_id}/flags">Administrar marcas</a>
       user_stats:
         user_stats_desc: Las estadísticas de usuarios están limitadas a un máximo
           de los 500 primeros usando el conteo de observaciones o el conteo de especies,
@@ -5398,7 +5410,7 @@ es:
     taxa:
       show:
         about_names_desc: |-
-          <p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>
+          <p>La mayoría de las categorías de organismos tienen nombres comunes en los distintos idiomas. Estos nombres suelen ser reconocibles, fáciles de pronunciar y estables en el tiempo, pero muchos organismos tienen nombres distintos en diferentes lugares, incluso en el mismo idioma, lo que puede dificultar referirse a ellos sin ocasionar confusión. Los científicos solventan este problema usando un nombre científico único para cada categoría de organismo, conforme con las reglas de la <a href="https://es.wikipedia.org/wiki/Nomenclatura_binominal">nomenclatura binomial</a>, normalmente dos palabras en latín, una lengua que nadie habla, por lo que son más difíciles de memorizar que los nombres comunes. Además, los nombres científicos pueden aludir a la clasificación taxonómica de un organismo, por lo que pueden cambiar si los científicos elaboran teorías más precisas sobre las relaciones evolutivas entre organismos, de nuevo reduciendo la utilidad comunicativa, incluso entre quienes conocen los nombres científicos.</p>
           <p>Como resume el antiguo dicho: «Los nombre comunes cambian de sitio en sitio, los científicos de cuando en cuando».</p>
           <p>Afrontamos esta cuestión citando los nombres comunes y científicos si es posible, y eligiendo los nombres comunes de acuedo con el idioma y las preferencias geográficas del lector.</p>
         about_conservation_status_desc: El estado de conservación sintetiza el riesgo
@@ -5445,6 +5457,7 @@ es:
           Insect life stage=egg: Huevo
           Insect life stage=larva: Larva
           Insect life stage=teneral: Muda
+          Insect life stage=subimago: Subimago
           Insect life stage=nymph: Ninfa
           Insect life stage=pupa: Pupa
           Insect life stage=adult: Adulto

@@ -39,9 +39,9 @@ class TopMenu extends Component {
             overlay={ ( <Tooltip id="add-tip">{ I18n.t( "uploader.tooltips.add" ) }</Tooltip> ) }
           >
             <NavDropdown title={ dropdownToggle } id="add_photos">
-              <MenuItem onClick={ fileChooser }>{ I18n.t( "photo_s" ) }</MenuItem>
+              <MenuItem onClick={ fileChooser }>{ I18n.t( "photos_or_sounds" ) }</MenuItem>
               <MenuItem onClick={ createBlankObsCard }>
-                { I18n.t( "observation_without_photo" ) }
+                { I18n.t( "observation_without_media" ) }
               </MenuItem>
             </NavDropdown>
           </OverlayTrigger>
