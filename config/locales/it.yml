@@ -9,7 +9,9 @@
 # Author: Federico Mugnaini
 # Author: Fitoschido
 # Author: Fringio
+# Author: G.garatti
 # Author: Gianfranco
+# Author: Greis
 # Author: JackLantern
 # Author: LauraCri
 # Author: Macofe
@@ -298,7 +300,7 @@ it:
     osservazioni da parte della community. Se preferisci non condividerla, torna presto
     a fare un controllo!
   add_your_own_observations_at: Aggiungi le tue osservazioni a %{site_name}
-  add_your_photo: Aggiungi una foto
+  add_your_photo: Aggiungi una tua foto
   add_your_photo_to: Aggiungi la tua foto a %{project}
   added: Aggiunte
   added!: Aggiunto!
@@ -814,6 +816,7 @@ it:
     immagini che <em>mostrano caratteri diagnostici</em> e <em>si prestano bene ad
     essere utilizzate come icone </em>.  La <em>prima e quella predefinita</em>.
   chose_columns: Scegli colonne
+  choose_files: Seleziona i file
   choose_files_from_your_computer: scegli dei file dal tuo computer
   choose_from_your_lists: Scegli tra le tue liste
   choose_good_default_photos: sceglie le foto predefinite più rappresentative dal
@@ -1199,7 +1202,7 @@ it:
   draft_: Bozza
   draft_saved: Bozza salvata!
   drafts: Bozze
-  drag_and_drop_some_photos: Clicca e trascina alcune foto
+  drag_and_drop_some_photos_or_sounds: Trascina e rilascia alcune foto o suoni
   duplicate_verb: Duplica
   each_place_displays_all_species_inat_knows: Ogni pagina di in luogo mostra tutte
     le specie conosciute da %{site_name} per quel luogo, incluse le informazioni di
@@ -1270,7 +1273,7 @@ it:
   editing_this: Modifica %{elem} in corso
   editing_x_in_y: Modifica di %{x} in %{y} in corso
   eg: ad es.
-  either: Sia
+  either: Qualsiasi
   either_that_user_doesnt_exist_or: Sia che l'utente non esista o tu li stia già seguendo.
   eligible_for_research_grade: Qualificate per il Livello Ricerca
   email: Email
@@ -2473,7 +2476,7 @@ it:
     "deve essere nel taxon Amphibia" e "deve essere nel taxon Reptilia", allora il
     progetto accetterà osservazioni sia di rettili che di anfibi.
   observation_was_deleted: L'osservazione è stata eliminata.
-  observation_without_photo: Osservazione senza foto
+  observation_without_media: Osservazione senza mezzi
   observation_would_like_some_help: '%{user} vorrebbe un aiuto per l''identificazione!'
   observations: Osservazioni
   observations_: osservazioni
@@ -2749,13 +2752,13 @@ it:
   photo_hosting_accounts: Account di hosting per le foto
   photo_integration: Integrazione della foto
   photo_licensing: Licenza delle foto
-  photo_s: Foto
   photo_type: Tipo di foto
   photo_urls_repaired: URL della foto riparati
   photos_chosen_for_this_taxon: Foto scelte per questo taxon
   photos_from: Foto da
   photos_of: Foto di
   photos_of_taxon_html: Foto di %{taxon}
+  photos_or_sounds: Foto o suoni
   photos_or_sounds?: Foto o suoni?
   photos_size:
     small: piccola
@@ -4479,6 +4482,8 @@ it:
     Effettua l'accesso per continuare.
   your_activation_code_was_missing: Manca il tuo codice di attivazione. Per favore
     vai al link presente sulla tua email.
+  your_browser_does_not_support_the_audio_element: Il tuo browser non supporta l'elemento
+    audio.
   your_coarser_id: |-
     La tua scelta del nome generico <span class='taxon'>%{coarser_taxon_name}</span> implica che tu non sia d'accordo con l'uso del nome più preciso
     <span class='taxon'>%{finer_taxon_name}</span>. Vuoi confermare questa scelta?<br><br>
@@ -5121,7 +5126,7 @@ it:
         score_desc: punteggio = conteggio cumulativo / (conteggio cumulativo + conteggio
           dei non d'accordo + numero di disaccordi sugli antenati)
         observation_flagged_notice_html: |-
-          Questa osservazione è stata contrassegnata come spam è non è più visibile al pubblico. Tu la puoi vedere o perchè l'hai creata, o perchè sei curatore del sito. Se pensi che sia un errore, per favore
+          Questa osservazione è stata contrassegnata come spam e non è più visibile al pubblico. Tu la puoi vedere perchè l'hai creata o perchè sei curatore del sito. Se pensi che sia un errore, per favore
           <a href="mailto:%{help_email}" class="contact">contattaci</a>.
           <a href="/observations/%{observation_id}/flags">Gestisci contrassegni</a>
       user_stats:
