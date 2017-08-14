@@ -64,7 +64,7 @@
     <% sound_file_field = capture do %>
       <%- uid = serial_id -%>
       <div class="sound_file_field clear quiet box stacked">
-        <%= file_field_tag("local_sounds[#{index}][]", :accept => ".mp3,.wav", :multiple => "") %>
+        <%= file_field_tag("local_sounds[#{index}][]", :accept => ".mp3,.wav,.m4a,.aac", :multiple => "") %>
         <div class="clear">
           <%= link_to_function t(:clear), "$(this).siblings('input[type=file]').val('')", :class => "right" %>
           <% if synclink_base %>
