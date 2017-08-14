@@ -16,7 +16,7 @@
   </script>
 <%- end -%>
 <div class="column prepend-2 span-8">
-  <%= image_tag @site && @site.logo_square? ? @site.logo_square.url : CONFIG.logo_icon_square_big, :width => 300  %>
+  <%= image_tag @site.logo_square.url, :width => 300  %>
   <div style="margin: 20px 0 0 80px">
     <div style="margin-bottom: 0.5em;">
       <label><%= t :or_you_can %></label>
@@ -29,6 +29,6 @@
   </div>
 </div>
 <div class="column span-12 append-2 last">
-  <h2><%= t :join %> <%= SITE_NAME %>!</h2>
+  <h2><%= t :join %> <%= @site.name %>!</h2>
   <%= render :partial => 'users/new_form' %>
 </div>

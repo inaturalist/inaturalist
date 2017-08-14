@@ -50,37 +50,31 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    @site ||= CONFIG.site unless Rails.env.test?
-    if ( !@site || !@site.is_a?( Site ) ) && CONFIG.site_id
-      @site = Site.find_by_id(CONFIG.site_id)
-      CONFIG.site = @site unless Rails.env.test?
+    if params[:inat_site_id]
+      @site ||= Site.find( params[:inat_site_id] )
     end
-    @site ||= Site.where("url LIKE '%#{request.host}%'").first
+    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
+    @site ||= Site.default
   end
 
   def set_ga_trackers
     return true unless request.format.blank? || request.format.html?
-    trackers = []
-    if CONFIG.google_analytics
-      if CONFIG.google_analytics.trackers
-        trackers += CONFIG.google_analytics.trackers
-      elsif CONFIG.google_analytics.tracker_id
-        trackers << ['default', CONFIG.google_analytics.tracker_id]
-      end
+    trackers = [ ]
+    if Site.default && !Site.default.google_analytics_tracker_id.blank?
+      trackers << [ "default", Site.default.google_analytics_tracker_id ]
     end
-    if @site && !@site.google_analytics_tracker_id.blank?
-      trackers << [@site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id]
+    if @site && @site != Site.default && !@site.google_analytics_tracker_id.blank?
+      trackers << [ @site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id ]
     end
-    request.env['inat_ga_trackers'] = trackers unless trackers.blank?
+    request.env[ "inat_ga_trackers" ] = trackers unless trackers.blank?
   end
 
   def set_request_locale
     # use params[:locale] for single-request locale settings,
-    # otherwise use the session, user's preferred, or site default locale
+    # otherwise use the session, user's preferred, or site default,
+    # or application default locale
     I18n.locale = params[:locale] || session[:locale] ||
-      current_user.try(:locale) || I18n.default_locale
-    I18n.locale = current_user.try(:locale) if I18n.locale.blank?
-    I18n.locale = I18n.default_locale if I18n.locale.blank?
+      current_user.try(:locale) || @site.locale || I18n.default_locale
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
     end
@@ -533,7 +527,7 @@ class ApplicationController < ActionController::Base
         @error_msg = if current_user.is_admin?
           @job.last_error
         else
-          t(:this_job_failed_to_run, :email => CONFIG.help_email)
+          t(:this_job_failed_to_run, email: @site.email_help)
         end
       elsif @job
         @status = "working"

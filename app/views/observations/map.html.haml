@@ -12,7 +12,7 @@
 
       // getting the coordinates from the URL and the site default BOUNDS
       // we want to use the site default unless there URL specifies something else
-      var BOUNDS = #{ CONFIG.bounds ? raw(CONFIG.bounds.to_h.to_json) : "false" };
+      var BOUNDS = #{ @site.bounds ? raw(@site.bounds.to_h.to_json) : "false" };
       if( window.location.search === "" && !BOUNDS ) {
         coord = { lat: 10, lng: 20, zoom: 2 };
       }
@@ -25,7 +25,7 @@
       }
       
       // add the site logo to the bottom of the map
-      var largeLogoURL = "#{ CONFIG.logo_large ? asset_path(CONFIG.logo_large) : nil }";
+      var largeLogoURL = "#{ @site.logo.url }";
       if (largeLogoURL) {
         var logoLink = document.createElement("a");
         logoLink.style.padding = "5px";
@@ -34,7 +34,7 @@
         logoImage.style.width = "200px";
         logoLink.appendChild(logoImage);
         $(logoLink).css("cursor", "pointer").click(function() {
-          window.location = "#{ root_url }";
+          window.location = "#{ @site.url }";
         });
         logoLink.index = 1;
         window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(logoLink);

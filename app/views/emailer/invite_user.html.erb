@@ -1,11 +1,11 @@
 <%-
-  blog_url = @site ? @site.blog_url : CONFIG.blog_url
-  twitter_url = @site ? @site.twitter_url : CONFIG.twitter_url
-  facebook_url = @site ? @site.facebook_url : CONFIG.facebook_url
-  android_app_url = @site ? @site.android_app_url : CONFIG.android_app_url
-  iphone_app_url = @site ? @site.iphone_app_url : CONFIG.iphone_app_url
-  custom_email_footer_leftside = @site ? @site.custom_email_footer_leftside : CONFIG.custom_email_footer_leftside
-  custom_email_footer_rightside = @site ? @site.custom_email_footer_rightside : CONFIG.custom_email_footer_rightside
+  blog_url = @site.blog_url
+  twitter_url = @site.twitter_url
+  facebook_url = @site.facebook_url
+  android_app_url = @site.android_app_url
+  iphone_app_url = @site.iphone_app_url
+  custom_email_footer_leftside = @site.custom_email_footer_leftside
+  custom_email_footer_rightside = @site.custom_email_footer_rightside
 -%>
 
 <%= render 'header' %>
@@ -18,12 +18,12 @@
   <% if @personal_message and @personal_message != "" -%>
     <%= @personal_message %>
   <% else -%>
-    <%= t(:preview_personal_message, :site=>  CONFIG.site_name ) %>
+    <%= t(:preview_personal_message, :site=>  @site.name ) %>
   <% end -%>
 </p>
 
 <p>
-<%=t :you_can_sign_free_at, :site_name => SITE_NAME %>
+<%=t :you_can_sign_free_at, :site_name => @site.name %>
 </p>
 <p>
 <%= signup_url %>
@@ -124,7 +124,7 @@
                               <br>
                               <em><%= t(:email_copyright, :x => Time.now.year).html_safe %>.</em>
                               <br>
-                              <%= t(:mail_disclaimer, :site => CONFIG.info_email, :site_name => CONFIG.site_name) %>
+                              <%= t(:mail_disclaimer, :site => @site.email_info, :site_name => @site.name) %>
                             </td>
                           </tr>
                         </table>

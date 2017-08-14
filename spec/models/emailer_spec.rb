@@ -10,8 +10,6 @@ describe Emailer, "updates_notification" do
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }
     @user = @observation.user
-    Inaturalist::Application.config.action_mailer.default_url_options[:host] =
-      CONFIG.site_url =~ /localhost:3000/ ? "localhost:3000" : URI.parse(CONFIG.site_url).host
     enable_elastic_indexing( UpdateAction, Taxon )
   end
   after(:each) { disable_elastic_indexing( UpdateAction, Taxon ) }
@@ -44,7 +42,7 @@ describe Emailer, "updates_notification" do
       @user.update_attributes(locale: loc)
       mail = Emailer.updates_notification(@user, [@user.update_subscriber_actions.last])
       expect(mail.body).to include I18n.t(:user_added_an_observation_field_html,
-        user: FakeView.link_to(@ofv.user.login, FakeView.person_url(@ofv.user)),
+        user: FakeView.link_to(@ofv.user.login, FakeView.person_url(@ofv.user, host: Site.default.url)),
         field_name: @ofv.observation_field.name.truncate(30),
         owner: @user.login,
         locale: loc)

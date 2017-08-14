@@ -62,8 +62,7 @@ shared_examples_for "a TaxaController" do
       without_delay do
         p.check_list.add_taxon(taxon_in_place)
       end
-      site = Site.make!(place: p)
-      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      Site.default.update_attributes(place_id: p.id)
       get :search, format: :json, q: "disco"
       json = JSON.parse(response.body)
       expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).to be_blank
@@ -74,8 +73,7 @@ shared_examples_for "a TaxaController" do
       taxon_not_in_place = Taxon.make!(name: "nonsense")
       taxon2_not_in_place = Taxon.make!(name: "nonsense")
       p = Place.make!
-      site = Site.make!(place: p)
-      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      Site.default.update_attributes(place_id: p.id)
       get :search, format: :json, q: "nonsense"
       json = JSON.parse(response.body)
       expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).not_to be_blank
@@ -141,8 +139,8 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "autocomplete" do
-    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
-    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+    before(:each) { enable_elastic_indexing([ Observation, Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Observation, Taxon, Place ]) }
 
     it "filters by is_active=true" do
       active = Taxon.make!(name: "test", is_active: true)
@@ -172,6 +170,8 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include range kml url" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")
       get :show, :format => :json, :id => tr.taxon_id
@@ -180,8 +180,6 @@ shared_examples_for "a TaxaController" do
     end
 
     describe "with default photo" do
-      before(:each) { enable_elastic_indexing( Observation ) }
-      after(:each) { disable_elastic_indexing( Observation ) }
       let(:photo) { 
         Photo.make!(
           "id" => 1576,

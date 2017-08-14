@@ -18,7 +18,7 @@
   <div id="pageheader" class="column span-24">
     <% if logged_in? -%>
       <div class="right inline smallbuttons buttonrow">
-        <%= link_to t(:invite_someone_to, :name => SITE_NAME_SHORT), emailer_invite_path, :class => "inter" %>
+        <%= link_to t(:invite_someone_to, :name => @site.preferred_site_name_short), emailer_invite_path, :class => "inter" %>
         <span class="meta inter"><%= t :or %></span>
         <%= form_tag(search_people_path, :method => :get, :class => "last") do %>
           <%= text_field_tag :q, @q, :class => 'text', :placeholder => t(:search_by_name_or_email), :style => "width: 150px;" %>
@@ -26,7 +26,7 @@
         <% end %>
       </div>
     <% end -%>
-    <h2><%= t(:the_people_of_inat, :site_name => SITE_NAME) %></h2>
+    <h2><%= t(:the_people_of_inat, :site_name => @site.name) %></h2>
   </div>
 
   <div id="recent" class="column span-24 stacked">
@@ -162,7 +162,7 @@
 
   <% cache @curators_key, :expires_in => 1.day do %>
     <div id="curators" class="column span-24">
-      <h3><%= t :noble_curators, :site => CONFIG.site_name_short %></h3>
+      <h3><%= t :noble_curators, :site => @site.site_name_short %></h3>
       <p><%= t :these_folks_kindly_volunteer_to %></p>
       <% if !@curators.blank? %>
         <% @curators.each_with_index do |user, i| %>

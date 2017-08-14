@@ -39,9 +39,6 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def run(run_options = {})
-    # site will be looked up tons of times in TaxonName.choose_common_name,
-    # so store it in CONFIG
-    CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     @logger = run_options[:logger] if run_options[:logger]
     @debug = run_options[:debug]
     update_attributes(finished_at: nil, error: nil, exception: nil)
@@ -78,12 +75,12 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def preloads
-    includes = [ :user ]
+    includes = [ :user, { identifications: :stored_preferences } ]
     if export_columns.detect{|c| c == "common_name"}
       includes << { taxon: { taxon_names: :place_taxon_names } }
     end
     includes << { observation_field_values: :observation_field }
-    includes << :photos if export_columns.detect{ |c| c == 'image_url' }
+    includes << { photos: :user } if export_columns.detect{ |c| c == 'image_url' }
     includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
     includes
   end
@@ -96,6 +93,7 @@ class ObservationsExportFlowTask < FlowTask
   def json_archive
     json_path = File.join(work_path, "#{basename}.json")
     json_opts = { only: export_columns, include: [ :observation_field_values, :photos ] }
+    site = user.site || Site.default
     FileUtils.mkdir_p(File.dirname(json_path), mode: 0755)
     open(json_path, "w") do |f|
       f << "["
@@ -104,6 +102,8 @@ class ObservationsExportFlowTask < FlowTask
         Observation.preload_associations(batch, preloads)
         batch.each do |observation|
           f << ',' unless first
+          observation.localize_locale = user.locale || site.locale
+          observation.localize_place = user.place || site.place
           first = false
           json = observation.to_json(json_opts).sub(/^\[/, "").sub(/\]$/, "")
           f << json
@@ -122,6 +122,7 @@ class ObservationsExportFlowTask < FlowTask
     fpath = csv_path
     FileUtils.mkdir_p(File.dirname(fpath), mode: 0755)
     columns = export_columns
+    site = user.site || Site.default
     CSV.open(fpath, "w") do |csv|
       csv << columns
       batch_i = 0
@@ -135,6 +136,8 @@ class ObservationsExportFlowTask < FlowTask
         Observation.preload_associations(batch, preloads)
         batch.each do |observation|
           logger.info "Obs #{obs_i} (#{observation.id})" if @debug
+          observation.localize_locale = user.locale || site.locale
+          observation.localize_place = user.place || site.place
           csv << columns.map do |c|
             c = "cached_tag_list" if c == "tag_list"
             if c =~ /^private_/ && !observation.coordinates_viewable_by?( user )

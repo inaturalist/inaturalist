@@ -15,13 +15,13 @@
 <%- end -%>
 
 <%- content_for(:extrahead) do -%>
-  <meta property="og:title" content="<%= t(:inaturalist_places, :site_name => SITE_NAME) %>"/> 
+  <meta property="og:title" content="<%= t(:inaturalist_places, :site_name => @site.name) %>"/> 
   <meta property="og:image" content="<%= @shareable_image_url = image_url('place_preview.jpg') %>"/> 
   <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>
   <% end -%>
-  <meta property="og:description" name="description" content="<%= t(:the_world_is_full_of_interesting_places, :site_name => SITE_NAME) %>"/> 
+  <meta property="og:description" name="description" content="<%= t(:the_world_is_full_of_interesting_places, :site_name => @site.name) %>"/>
 <%- end -%>
 
 <%- content_for(:extrajs) do -%>
@@ -30,7 +30,7 @@
 
   <script type="text/javascript" charset="utf-8">
     var places = <%=json_escape @places.to_json.html_safe %>,
-        BOUNDS = <%= CONFIG.bounds ? raw(CONFIG.bounds.to_h.to_json) : "false" %>
+        BOUNDS = <%= @site.bounds ? raw(@site.bounds.to_h.to_json) : "false" %>
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
         lat: 0, 
@@ -107,7 +107,7 @@
     </p>
 
     <p>
-      <%= t(:inaturalist_places_are_way_record_what_lives_where, :site_name => SITE_NAME) %>
+      <%= t(:inaturalist_places_are_way_record_what_lives_where, :site_name => @site.name) %>
     </p>
     
     <div class="column span-5">
@@ -116,14 +116,14 @@
     <div class="last column span-11">
       <h3> <%= t(:species_from_around_the_world) %> </h3>
       <p>
-      	<%= t(:each_place_displays_all_species_inat_knows, :site_name => SITE_NAME) %>
+        <%= t(:each_place_displays_all_species_inat_knows, :site_name => @site.name) %>
       </p>
     </div>
     
     <div class="column span-11">
       <h3> <%= t(:localized_species_accounts) %> </h3>
       <p>
-      	<%= t(:view_photos_ranges_observations_more, :site_name => SITE_NAME_SHORT) %>
+        <%= t(:view_photos_ranges_observations_more, :site_name => @site.preferred_site_name_short) %>
       </p>
     </div>
     <div class="last column span-5">

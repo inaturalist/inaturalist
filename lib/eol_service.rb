@@ -27,7 +27,7 @@ class EolService
     begin
       MetaService.fetch_request_uri(request_uri: request_uri, timeout: @timeout,
         api_endpoint: api_endpoint,
-        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}")
+        user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}")
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end

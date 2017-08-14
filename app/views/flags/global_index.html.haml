@@ -22,7 +22,7 @@
   #pageheader.column
     %h2= @title
   .description
-    %p= t(:flags_explanation, site_name: CONFIG.site_name)
+    %p= t(:flags_explanation, site_name: @site.name)
   #ul
     = render :partial => "flag_list", locals: { flags: @flags }
   - if @flags.respond_to?(:total_pages)

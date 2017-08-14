@@ -57,6 +57,8 @@ class Observation < ActiveRecord::Base
   attr_accessor :geo_y
 
   attr_accessor :owners_identification_from_vision_requested
+  attr_accessor :localize_locale
+  attr_accessor :localize_place
   
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -1141,11 +1143,7 @@ class Observation < ActiveRecord::Base
   def set_captive
     update_column(:captive, captive_cultivated)
   end
-  
-  def lsid
-    "lsid:#{URI.parse(CONFIG.site_url).host}:observations:#{id}"
-  end
-  
+
   def component_cache_key(options = {})
     Observation.component_cache_key(id, options)
   end
@@ -1910,8 +1908,10 @@ class Observation < ActiveRecord::Base
     taxon.scientific_name.name if taxon && taxon.scientific_name
   end
   
-  def common_name
-    taxon.common_name.name if taxon && taxon.common_name
+  def common_name(options = {})
+    options[:locale] ||= localize_locale
+    options[:place] ||= localize_place
+    taxon.common_name(options).name if taxon && taxon.common_name(options)
   end
   
   def url

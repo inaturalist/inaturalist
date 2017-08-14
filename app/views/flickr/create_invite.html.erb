@@ -1,9 +1,9 @@
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
 <% end %>
-<h2><%=t :invite_flickr_photos, :site_name => SITE_NAME %></h2>
+<h2><%=t :invite_flickr_photos, :site_name => @site.name %></h2>
 <p class="description">
-  <%=t :invite_your_friends_description, :site_name => SITE_NAME %>
+  <%=t :invite_your_friends_description, :site_name => @site.name %>
 </p>
 
 <div class="stacked">

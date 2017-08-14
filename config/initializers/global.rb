@@ -31,11 +31,13 @@ end
 
 def ratatosk(options = {})
   src = options[:src]
-  if CONFIG.ratatosk && CONFIG.ratatosk.name_providers
-    if CONFIG.ratatosk.name_providers.include?(src.to_s.downcase)
+  site = options[:site] || Site.default
+  providers = ( options[:site] && options[:site].ratatosk_name_providers ) || [ "col", "eol" ]
+  if !providers.blank?
+    if providers.include?(src.to_s.downcase)
       Ratatosk::Ratatosk.new(:name_providers => [src])
     else
-      @ratatosk ||= Ratatosk::Ratatosk.new(:name_providers => CONFIG.ratatosk.name_providers)
+      Ratatosk::Ratatosk.new( name_providers: providers )
     end
   else
     Ratatosk

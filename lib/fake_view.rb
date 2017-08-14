@@ -12,7 +12,9 @@ class FakeView < ActionView::Base
   include GuidesHelper
   include ObservationsHelper
 
-  @@default_url_options = {:host => CONFIG.site_url.sub("http://", '')}
+  @@default_url_options = {
+    host: Site.default ? Site.default.url.sub( "http://", '' ) : "http://localhost"
+  }
   
   def method_missing(method, *args)
     # hack around those pesky protected url methods

@@ -1,7 +1,7 @@
 class Users::SessionsController < Devise::SessionsController
   def create
     # attempt straight db auth first, then warden auth
-    resource = legacy_authenticate if CONFIG.legacy && CONFIG.legacy.rest_auth
+    resource = legacy_authenticate if @site.legacy_rest_auth_key
     resource ||= User.authenticate(params[:login], params[:password]) if params[:login] && params[:password]
     resource ||= warden.authenticate!(auth_options)
     throw(:warden) unless resource
@@ -57,8 +57,7 @@ class Users::SessionsController < Devise::SessionsController
 
   # Sign a user in using legacy auth information if present
   def legacy_authenticate
-    unless CONFIG.legacy && CONFIG.legacy.rest_auth && 
-        CONFIG.legacy.rest_auth.REST_AUTH_SITE_KEY && CONFIG.legacy.rest_auth.REST_AUTH_DIGEST_STRETCHES
+    unless @site.legacy_rest_auth_key
       return false
     end
     login = params[:login]
@@ -70,8 +69,8 @@ class Users::SessionsController < Devise::SessionsController
     user = User.find_by_login(login)
     user ||= User.find_by_email(login)
     return false unless user
-    pepper = CONFIG.legacy.rest_auth.REST_AUTH_SITE_KEY
-    stretches = CONFIG.legacy.rest_auth.REST_AUTH_DIGEST_STRETCHES
+    pepper = @site.legacy_rest_auth_key
+    stretches = 10
     digest = Devise::Encryptable::Encryptors::RestfulAuthenticationSha1.digest(password, stretches, user.password_salt, pepper)
     if Devise.secure_compare(digest, user.encrypted_password)
       @legacy_authentication_successful = true

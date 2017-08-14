@@ -91,7 +91,7 @@
         <%= form_tag({:action => 'import_photos'}) do %>
         
           <div class="readable description">
-            <%=t :select_photos_from_your_photo_stream, :site_name => SITE_NAME %>
+            <%=t :select_photos_from_your_photo_stream, :site_name => @site.name %>
           </div>
           <div id="photos" class="clear stacked"></div>
           <%= submit_tag(t(:import_photos), :class => 'default button', "data-loading-click" => t(:importing)) %>
@@ -153,7 +153,7 @@
               <%= select 'upload', :project_id, @projects.collect { |p| [p.title, p.id] }, { :include_blank => t(:none), :selected => (params[:project_id].to_i > 0 ? params[:project_id] : nil) } %>
             </div>
           </div>
-          <% if CONFIG.coordinate_systems -%>
+          <% if @site.coordinate_systems -%>
             <div class="column field span-23 quiet box">
               <div class="column span-4">
                 <label><%=t :coordinate_systems %></label>
@@ -161,7 +161,7 @@
               <div class="last column span-12">
                 <%= select 'upload', :coordinate_system, coordinate_system_select_options( names: true ) %>
                 <span class="coords_tip_target helptip" rel="#coords_tip"></span><div id="coords_tip" style="display:none">
-                  <%=t 'views.observations.import.coordinate_systems_help', :site_name => SITE_NAME %>
+                  <%=t 'views.observations.import.coordinate_systems_help', :site_name => @site.name %>
                 </div>
               </div>
             </div>
@@ -183,7 +183,7 @@
           <li><%=t :only_files_with_10000_rows_at_a_time %></li>
           <li><%=t :use_well_formed_csv %> </li>
           <li><%=t :dont_use_double_quotes %> </li>
-          <% if CONFIG.coordinate_systems -%>
+          <% if @site.coordinate_systems -%>
             <li><%=t :only_one_coordinate_system_per_file %></li>
           <% end -%>
           <li><%=t :use_unique_file_names_for_separate_uploads %> </li>

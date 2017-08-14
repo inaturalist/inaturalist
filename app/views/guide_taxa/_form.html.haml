@@ -77,7 +77,7 @@
         %ul.nav.nav-tabs.stacked
           %li.active= link_to t(:eol), "#eol_sections", "data-toggle" => "tab"
           %li= link_to t(:wikipedia), "#wikipedia_sections", "data-toggle" => "tab"
-          %li= link_to SITE_NAME, "#inat_sections", "data-toggle" => "tab"
+          %li= link_to @site.name, "#inat_sections", "data-toggle" => "tab"
         .tab-content
           #eol_sections.tab-pane.active.fade.in
             = loading
@@ -113,7 +113,7 @@
         .container-fluid
           %ul.nav.nav-tabs
             %li.active= link_to t(:flickr), "#flickr_photos", :data => {:toggle => "tab", :provider => "flickr"}
-            %li= link_to t(:licensed_site_photos, :site_name => SITE_NAME_SHORT), "#site_photos", :data => {:toggle => "tab", :provider => "site"}
+            %li= link_to t(:licensed_site_photos, :site_name => @site.preferred_site_name_short), "#site_photos", :data => {:toggle => "tab", :provider => "site"}
             %li= link_to t(:eol), "#eol_photos", :data => {:toggle => "tab", :provider => "eol"}
             %li= link_to t(:wikimedia_commons), "#wikimedia_commons_photos", :data => {:toggle => "tab", :provider => "wikimedia_commons"}
           .tab-content

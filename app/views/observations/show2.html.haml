@@ -42,10 +42,10 @@
     var INITIAL_OBSERVATION_ID = #{@observation.id};
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
     var SITE = {
-      name: "#{@site ? @site.name : CONFIG.site_name}",
-      short_name: "#{CONFIG.site_name_short}",
-      help_email: "#{CONFIG.help_email}",
-      logo_square: "#{@site ? @site.logo_square.url : nil}",
+      name: "#{@site.name}",
+      short_name: "#{@site.site_name_short}",
+      help_email: "#{@site.email_help}",
+      logo_square: "#{@site.logo_square.url}",
       copyrighted_media_image_urls: {
         original: "#{image_url("copyright-infringement-original.png")}",
         large: "#{image_url("copyright-infringement-large.png")}",

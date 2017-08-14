@@ -851,10 +851,6 @@ class Taxon < ActiveRecord::Base
     true
   end
   
-  def lsid
-    "lsid:#{URI.parse(CONFIG.site_url).host}:taxa:#{id}"
-  end
-  
   def update_unique_name(options = {})
     reload # there's a chance taxon names have been created since load
     return true unless default_name
@@ -1307,15 +1303,6 @@ class Taxon < ActiveRecord::Base
     return nil unless ranges = taxon_ranges_without_geom
     tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
     tr ? tr.kml_url : nil
-  end
-
-  def taxon_ranges_with_kml
-    taxon_ranges = self.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
-    taxon_range = if CONFIG.taxon_range_source_id
-      taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
-    end
-    taxon_range ||= taxon_ranges.detect{|tr| !tr.range.blank?}
-    [taxon_range, taxon_ranges - [taxon_range]].flatten
   end
 
   def all_names

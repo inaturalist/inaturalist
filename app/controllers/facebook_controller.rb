@@ -29,7 +29,7 @@ class FacebookController < ApplicationController
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       flash[:error] = "Ack! Something went horribly wrong, like a giant " +
                        "squid ate your Facebook info.  You can contact us at " +
-                       "#{CONFIG.help_email} if you still can't get this " +
+                       "#{@site.email_help} if you still can't get this " +
                        "working.  Error: #{e.message}"
     end
   end

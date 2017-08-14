@@ -28,13 +28,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   if CONFIG.twitter
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
-    # TODO
-    # provider :twitter, :setup => lambda {|env|
-    #   request = Rack::Request.new(env)
-    #   site = Site.where("url LIKE '%#{request.host}%'").first
-    #   env['omniauth.strategy'].options[:consumer_key] = site.preferred_twitter_key # CONFIG.twitter.key
-    #   env['omniauth.strategy'].options[:consumer_secret] = site.preferred_twitter_secret # CONFIG.twitter.secret
-    # }
   end
   if fb_cfg = CONFIG.facebook
     opts = {:scope => 'email,user_location,user_photos'}
@@ -43,14 +36,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   if CONFIG.soundcloud
     opts = { scope: "non-expiring" }
-    if CONFIG.ca_path || CONFIG.ca_file
-      opts[:client_options] = {
-        ssl: {
-          ca_file: CONFIG.ca_file,
-          ca_path: CONFIG.ca_path
-        }
-      }
-    elsif File.exists?( "/etc/ssl/certs" )
+    if File.exists?( "/etc/ssl/certs" )
       opts[:client_options] = { ssl: { ca_path: "/etc/ssl/certs" } }
     end
     provider :soundcloud, CONFIG.soundcloud.client_id, CONFIG.soundcloud.secret, opts
@@ -64,7 +50,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       env['omniauth.strategy'].options[:scope] = scope
       env['rack.session']["omniauth_flickr_scope"] = scope
     end
-    provider :flickr, FLICKR_API_KEY, FLICKR_SHARED_SECRET, :setup => FLICKR_SETUP
+    provider :flickr, CONFIG.flickr.key, CONFIG.flickr.shared_secret, :setup => FLICKR_SETUP
   end
   provider :open_id, :store => OpenID::Store::Filesystem.new('/tmp')
   provider :open_id, :name => 'yahoo', :identifier => 'https://me.yahoo.com'
@@ -75,14 +61,6 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :prompt => "consent",
       :access_type => "offline"
     }
-    if CONFIG.ca_path || CONFIG.ca_file
-      opts[:client_options] = {
-        ssl: {
-          ca_file: CONFIG.ca_file,
-          ca_path: CONFIG.ca_path
-        }
-      }
-    end
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
   end
 

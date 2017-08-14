@@ -15,7 +15,6 @@
   :javascript
     var PLACE = #{json_escape @place.to_json.html_safe},
         NPOINTS = #{@npoints.to_i},
-        CLOUDMADE_KEY = #{CONFIG.cloudmade ? raw(CONFIG.cloudmade.try(:key).to_json) : "null"},
         BING_KEY = #{CONFIG.bing ? CONFIG.bing.key.inspect : "null"}
     $(document).ready(function() {
       $('#place_parent_id').chooser({
@@ -33,12 +32,7 @@
       }
       var d = new Date()
       var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
-      if (CLOUDMADE_KEY) {
-        map.addLayer(osm);
-        map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
-      } else {
-        map.addLayer(bing)
-      }
+      map.addLayer(bing);
       var fullScreen = new L.Control.FullScreen();
       // add fullscreen control to the map
       map.addControl(fullScreen)

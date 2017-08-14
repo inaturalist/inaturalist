@@ -26,7 +26,7 @@
           %blockquote= truncate(strip_tags(user.description), length: 100, escape: false)
         - if user.id == current_user.id && project.user_id == current_user.id
           .notice.status.box
-            =t "views.users.dashboard.new_project_admin_html", site_name: SITE_NAME_SHORT, help_email: CONFIG.help_email
+            =t "views.users.dashboard.new_project_admin_html", site_name: @site.preferred_site_name_short, help_email: @site.email_help
   %p.alert.alert-info
     =t :just_a_reminder
   

@@ -5,117 +5,12 @@
 
 base: &base
 
-    # url of the site
-    site_url: http://www.yoursite.com
-
-    # name of the site, used extensively within the app
-    site_name: YourSite
-
-    # shortened version of the name
-    site_name_short: YS
-
-    # Email addresses
-    admin_email: admin@yoursite.com
-    noreply_email: no-reply@yoursite.com
-    help_email: help@yoursite.com
-    info_email: info@yoursite.com
-
-    # site contact, mainly just used for GBIF archive generation
-    # contact:
-    #     first_name: Your
-    #     last_name: Name
-    #     organization: YourSite
-    #     position: co-director
-    #     address: 4 Privet Dr.
-    #     city: Little Whinging
-    #     admin_area: Surrey
-    #     postal_code: 94618
-    #     country: UK
-    #     phone: xxx-xxx-xxx
-    #     email: you@yoursite.com
-    #     url: http://www.yoursite.com
-
-    # header logo, should be 118x22
-    logo: logo-small.gif
-
-    # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
-    logo_icon_square_big: bird.png
-
     priority_zones:
       - US
       - Arizona
       - Indiana
       - Hawaii
       - Alaska
-
-    # Proj4 settings can be found at http://spatialreference.org/
-    # coordinate_systems:
-    #  nztm2000:
-    #    label: "NZTM2000 (NZ Transverse Mercator), EPSG:2193"
-    #    proj4: "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
-    #  nzmg:
-    #    label: "NZMG (New Zealand Map Grid), EPSG:27200"
-    #    proj4: "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
-
-    # default bounds for most maps, including /observations/new and the home page. Defaults to the whole world
-    # bounds:
-    #     swlat: 13.667338
-    #     swlng: -117.773438
-    #     nelat: 32.916485
-    #     nelng: -86.484375
-
-    # default place ID for place filters. Presently only used on /places, but use may be expanded
-    # place_id: 6793
-
-    # URL where visitors can learn more about the site
-    about_url: /pages/about
-
-    # URL where visitors can get help using the site
-    help_url: /pages/help
-
-    feedback_url: http://groups.google.com/group/inaturalist
-
-    terms_url: http://inaturalist.org/terms.html
-
-    privacy_url: http://inaturalist.org/privacy.html
-
-    developers_url: /pages/developers
-
-    # twitter_url: http://twitter.com/inaturalist
-    # facebook_url: http://www.facebook.com/pages/iNaturalistorg/63336575498
-    # iphone_app_url: http://itunes.apple.com/us/app/inaturalist/id421397028?mt=8
-    # android_app_url: https://market.android.com/details?id=org.inaturalist.android
-
-    # Specify additional footer HTML content below the row of links
-    # custom_footer: |
-    #     This is a custom footer
-
-    # Title of wiki page to use as the home page. Default will be the normal view in app/views/welcome/index
-    # home_page_wiki_path: naturewatch-home
-    # home_page_wiki_path_by_locale:
-    #   es: naturalista+home
-
-    # filter observations in public places to ones contributed by this site
-    # this filters by the uri column in observations, which in turns uses the
-    # URL of the observation, which should be unique to each site instance. If
-    # your URL is foo.inaturalist.org, then your observations will be fitlered
-    # to URIs like http://foo.inaturalist.org/%
-    # site_only_observations: true
-
-    # Like site_only_observations except for users. Used in places like /people
-    # site_only_users: true
-
-    # iOS app ID. Used to display header notice about app in mobile views
-    # ios_app_id: 421397028
-
-    # Configure taxon description callbacks. taxa/show will try to show
-    # species descriptions from these sources in this order, trying the next
-    # if one fails. You can see all the available describers in
-    # lib/taxon_describers/lib/taxon_describers
-    # taxon_describers: [conabio, wikipediaes, wikipedia, eol]
-
-    # If you'd prefer the default taxon ranges to come from a particular Source, set the source ID here
-    # taxon_range_source_id: 7538
 
     rest_auth:
         # See vendor/plugins/restful_authentication/notes/Tradeoffs.txt for more info
@@ -158,12 +53,15 @@ base: &base
     google_webmaster:
         verification: abiglongkey
 
-    s3_bucket: 'yourbucketname'
+    s3_bucket: yourbucketname
+    s3_protocol: https
 
-    memcached: 'localhost'
+    memcached: localhost
 
     # Key for spam filtering with akismet. See http://akismet.com/development/api/
-    rakismet_key: abc123
+    rakismet:
+      key: abc123
+      site_url: http://www.yoursite.com
 
     # facebook:
     #     app_id: 00000000000
@@ -175,7 +73,6 @@ base: &base
     # twitter:
     #     key: 09af09af09af09af09af09af09af09af09af09af
     #     secret: 09af09af09af09af09af09af09af09af09af09af
-    #     url: http://twitter.com/your_twitter_username
     #     username: your_twitter_username
 
     # cloudmade:
@@ -198,13 +95,6 @@ base: &base
     google:
         # https://developers.google.com/maps/documentation/javascript/get-api-key#get-an-api-key
         browser_api_key: 09af09af09af09af09af09af09af09af
-
-    # Ratatosk is an internal library for looking up external taxonomy info.
-    # By default it uses all registered name providers, but you can
-    # configure it here to use a subset
-    # ratatosk:
-    #     name_providers: [col, ubio]
-
 
     metadata_provider:
 
