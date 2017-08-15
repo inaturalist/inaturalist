@@ -139,8 +139,11 @@ body > div > [role="dialog"] .ActivityItem {
     line-height: 36px;
   }
   i.taxon-image.icon {
-    font-size: 44px;
+    font-size: 36px;
+    line-height: 38px;
     opacity: 0.9;
+    text-align: center;
+    padding-left: 1px
   }
   .panel {
     margin-left: 60px;

@@ -114,7 +114,7 @@ a:focus {
 }
 
 #bodywrapper, #wrapper {
-  background: #f8f8f8;
+  background: $page-background-grey;
 }
 
 #bodywrapper:after {
@@ -206,7 +206,7 @@ input.failed, textarea.failed {
   }
 }
 
-a.UserImage {
+.UserImage {
   &:hover {
     color: #fff;
   }
@@ -531,7 +531,7 @@ a.UserImage {
     margin-bottom: 15px;
     ul.nav-tabs {
       background-color: #f5f5f5;
-      margin-bottom: -1px;
+      margin-bottom: -5px;
       padding-top: 5px;
       border-bottom: 0px;
       li:first-child {
@@ -596,6 +596,9 @@ a.UserImage {
   }
   .middle_left {
     padding-right: 40px;
+    h3 {
+      margin-bottom: 20px;
+    }
   }
   .opposite_activity {
     & > .row > .col-xs-12 > div {
@@ -713,6 +716,9 @@ h3, h4 {
   .projectEntry, .project, .projectFields {
     display: inline-block;
     width: 100%;
+  }
+  .project .squareIcon {
+    margin-right: 8px;
   }
   .projectEntry + .projectEntry {
     margin-top: 15px;
@@ -945,8 +951,36 @@ h3, h4 {
 }
 
 .Activity {
-  .icon {
+  > .icon {
     float: left;
+  }
+  $activity-line-width: 4px;
+  .UserImage {
+    border-width: $activity-line-width;
+    width: 52px;
+    height: 52px;
+    border: $activity-line-width solid $page-background-grey;
+    position: relative;
+    top: -$activity-line-width;
+  }
+  .activity {
+    position: relative;
+    overflow: hidden;
+    .icon {
+      position: relative;
+      z-index: 1;
+    }
+  }
+  .activity:before {
+    position: absolute;
+    content: "foo";
+    display: block;
+    border-left: $activity-line-width solid $border-grey;
+    width: $activity-line-width;
+    height: 100%;
+    left: 24px;
+    top: 0;
+    z-index: 0;
   }
   .comment_id {
     margin-left: 60px;
@@ -957,6 +991,10 @@ h3, h4 {
     input {
       margin-right: 5px;
     }
+  }
+  .ac-select-thumb i {
+    vertical-align: auto;
+    line-height: 31px;
   }
 }
 
@@ -1385,8 +1423,15 @@ h3, h4 {
         height: 40px;
       }
       i.taxon-image.icon {
+        display: inline-block;
         font-size: 36px;
+        line-height: 38px;
+        text-align: center;
         opacity: 0.9;
+        border: 1px solid $border-grey;
+        border-radius: 2px;
+        width: 44px;
+        height: 44px;
       }
     }
     .TaxonSummaryPopover {
@@ -1925,7 +1970,7 @@ h3, h4 {
   margin-top: 23px;
   .previous {
     float: left;
-    padding-right: 2px;
+    padding-right: 3px;
   }
   .next {
     float: left;
