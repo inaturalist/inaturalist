@@ -977,9 +977,12 @@ h3, h4 {
       margin-bottom: 0;
     }
   }
+  .activity.empty {
+    padding-bottom: 0px;
+  }
   .activity:before {
     position: absolute;
-    content: "foo";
+    content: " ";
     display: block;
     border-left: $activity-line-width solid $border-grey;
     width: $activity-line-width;
