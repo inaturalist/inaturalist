@@ -82,7 +82,7 @@ def natureServeStatus2iNatStatus(status_node, taxon, name, url, place = nil)
   iucn = rank2iucn(status_node.at('roundedRank/code').text)
   existing = ConservationStatus.where(:taxon_id => taxon, :authority => "NatureServe", :place_id => place).first
 
-  if place && iucn != Taxon::IUCN_EXTINCT && !ListedTaxon.where(:taxon_id => taxon.id, :place_id => place.id).exists?
+  if place && place.check_list && iucn != Taxon::IUCN_EXTINCT && !ListedTaxon.where(:taxon_id => taxon.id, :place_id => place.id).exists?
     # lt = ListedTaxon.new(:taxon => taxon, :place => place, :source => SOURCE)
     lt = place.check_list.add_taxon(taxon, :source => SOURCE)
     if lt.save
