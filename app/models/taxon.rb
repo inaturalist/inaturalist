@@ -430,7 +430,7 @@ class Taxon < ActiveRecord::Base
       joins(:taxon).
       where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, Taxon::SPECIES ).
       joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
-      where( "cs.id IS NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", IUCN_EXTINCT )
+      where( "cs.id IS NULL OR cs.place_id IS NOT NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", Taxon::IUCN_EXTINCT )
     scope.count
   end
 

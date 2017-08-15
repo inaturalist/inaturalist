@@ -1150,7 +1150,19 @@ describe "rank helpers" do
 end
 
 describe "complete" do
-  it "should reindex all descendants when changed"
+  it "should reindex all descendants when changed" do
+    family = Taxon.make!( rank: Taxon::FAMILY )
+    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+    Delayed::Worker.new.work_off
+    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
+    expect( es_genus.complete_species_count ).to be_nil
+    without_delay { family.update_attributes!( complete: true ) }
+    genus.reload
+    expect( genus.complete_species_count ).to eq 1
+    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
+    expect( es_genus.complete_species_count ).to eq 1
+  end
 end
 
 describe "complete_species_count" do
@@ -1187,6 +1199,14 @@ describe "complete_species_count" do
       expect( extinct_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_EXTINCT
       expect( extinct_species.conservation_statuses.first.place ).to be_blank
       expect( complete_taxon.complete_species_count ).to eq 0
+    end
+    it "should count species with place-specific non-extinct conservation statuses" do
+      cs_species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon )
+      ConservationStatus.make!( taxon: cs_species, iucn: Taxon::IUCN_VULNERABLE, status: "VU" )
+      cs_species.reload
+      expect( cs_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_VULNERABLE
+      expect( cs_species.conservation_statuses.first.place ).to be_blank
+      expect( complete_taxon.complete_species_count ).to eq 1
     end
     it "should not count inactive taxa" do
       species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, is_active: false )
