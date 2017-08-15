@@ -1,6 +1,7 @@
 @import "../colors";
 
 .Annotations,
+.bootstrap .Annotations,
 body > div > [role="dialog"] .Annotations {
   table, .table {
     margin-bottom: 0px;
