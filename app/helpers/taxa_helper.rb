@@ -152,10 +152,11 @@ module TaxaHelper
     else
       @user
     end
-    place = options[:place] || user.try(:place)
+    site = options[:site] || @site
     TaxonName.choose_common_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names,
-      place: place
+      place: options[:place] || user.try(:place) || site.try(:place),
+      locale: options[:locale] || user.try(:locale) || site.try(:locale)
     )
   end
   

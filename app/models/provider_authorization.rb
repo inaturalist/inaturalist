@@ -157,10 +157,6 @@ class ProviderAuthorization < ActiveRecord::Base
        'Content-Type' => 'application/x-www-form-urlencoded'
      }
     }
-    if CONFIG.ca_path || CONFIG.ca_file
-      options[:ssl_ca_file] = CONFIG.ca_file
-      options[:ssl_ca_path] = CONFIG.ca_path
-    end
     response = HTTParty.post('https://accounts.google.com/o/oauth2/token', options)
     if response.code == 200
       update_attribute(:token, response.parsed_response['access_token'])

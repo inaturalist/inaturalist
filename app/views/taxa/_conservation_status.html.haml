@@ -26,7 +26,7 @@
       = succeed ':' do
         =t :source
       - if cs.authority.blank?
-        = SITE_NAME
+        = @site.name
       - elsif !url.blank?
         = link_to t("authority_list.#{(cs.authority).gsub('&','and').gsub(' ','_').downcase}", :default => cs.authority), url
       - else

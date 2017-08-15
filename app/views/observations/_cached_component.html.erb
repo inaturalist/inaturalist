@@ -2,8 +2,6 @@
   cached_component ||= nil
   observation ||= cached_component
   return unless observation
-  site_id = @site.try(:id) || CONFIG.site_id
-  site_id ||= current_user.site_id if current_user
 -%>
 <%= render :partial => 'observations/observation_component',
            :locals => {:observation => observation} %>

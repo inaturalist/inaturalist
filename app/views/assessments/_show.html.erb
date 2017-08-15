@@ -38,7 +38,7 @@
     <% if params[:iframe].blank? %>
       <%= render :partial => "shared/by_project_header", :locals => { :model_name => "Assessment", :project => @assessment.project} %>
     <% else %>
-      <%= link_to "View on #{CONFIG.site_name}", assessment_path(@assessment), :class => 'edit-button' %>
+      <%= link_to "View on #{@site.name}", assessment_path(@assessment), :class => 'edit-button' %>
       <h3>
         <%= @assessment.display_name %>
         Assessment

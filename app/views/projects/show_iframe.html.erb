@@ -60,8 +60,8 @@
         <% end -%>
       </li>
       <li id="logoitem" class="item inlineblock">
-        <a href="<%= root_url %>" title="<%= CONFIG.site_name %>" class="logolink">
-          <img src="<%= asset_path("inat-logo-pb.png") %>" alt="Powered by <%= CONFIG.site_name %>" />
+        <a href="<%= root_url %>" title="<%= @site.name %>" class="logolink">
+          <img src="<%= asset_path("inat-logo-pb.png") %>" alt="Powered by <%= @site.name %>" />
         </a>
       </li>
     </ul>

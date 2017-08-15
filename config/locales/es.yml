@@ -1,6 +1,7 @@
 # Messages for Spanish (español)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Alcorman
 # Author: Asierog
 # Author: Cgalindo
 # Author: Cruzan
@@ -244,14 +245,17 @@ es:
   add_photos: Añade fotos
   add_photos_to_this_observation: Añade fotos a esta observación
   add_place: Añadir lugar
+  add_plant_phenology_budding_annotation: Añadir anotación "fenologia de la planta:incipiente"
   add_plant_phenology_flowering_annotation: 'Añade nota "Fenología de la Planta: Floreciendo"'
   add_plant_phenology_fruiting_annotation: 'Añade nota "Fenología de la Planta: Fructificando"
     anotación'
   add_life_stage_adult_annotation: 'Añade nota "Etapa de Vida: Adulto"'
   add_life_stage_teneral_annotation: 'Añade nota "Etapa de Vida: Imago tierno"'
+  add_life_stage_subimago_annotation: Añadir anotación "Etapa vital:sub-imago"
   add_life_stage_pupa_annotation: 'Añade nota "Etapa de Vida: Pupa"'
   add_life_stage_nymph_annotation: 'Añade nota "Etapa de Vida: Ninfa"'
   add_life_stage_larva_annotation: 'Añade nota "Etapa de Vida: Larva"'
+  add_life_stage_juvenile_annotation: Añadir anotación "Etapa vital:juvenil"
   add_life_stage_egg_annotation: 'Añade nota "Etapa de Vida: Huevo"'
   add_several_observations_at_once: Añade varias observaciones de una sola vez
   add_sex_female_annotation: 'Agregar anotación "Género: Femenino"'
@@ -400,6 +404,7 @@ es:
     harán en esta zona horaria a menos que especifiques lo contrario.
   all_your_projects: Todos tus proyectos
   allow_any: permitir a cualquiera
+  allow_curator_access: Permitir acceso al conservador
   allow_curator_coordinate_access: Permitir al curador coordinar el acceso
   allow_project_curators_to_view_your_private_coordinates: Permite a los curadores
     del proyecto ver tus coordenadas privadas
@@ -933,11 +938,13 @@ es:
     male: Masculino
     female: Femenino
     plant_phenology: Fenología de la planta
+    budding: Cuajado
     flowering: Floración
     fruiting: Fructificacón
     life_stage: Etapa de vida
     adult: Adulto
     teneral: Imago tierno
+    subimago: Sub-imago
     pupa: Pupa
     nymph: Ninfa
     larva: Larva
@@ -1184,9 +1191,8 @@ es:
   draft_: Borrador
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
-  drag_and_drop_some_photos: Arrastra y suelta algunas fotos
-  duplicate_verb: Duplicado
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
+  duplicate_verb: Duplicado
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las
     especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia,
     estado de conservación y quién observó esa especie por primera vez en ese lugar
@@ -2735,7 +2741,6 @@ es:
   photo_hosting_accounts: Cuentas de alojamiento de fotos
   photo_integration: Integración de fotos
   photo_licensing: Licencia de la foto
-  photo_s: Foto(s)
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
   photos_chosen_for_this_taxon: Fotos elegidas para este taxón

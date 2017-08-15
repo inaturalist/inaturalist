@@ -244,7 +244,7 @@
         <% else %>
           <div id="link_flickr_message">
             <%= t(:you_need_to_have_linked_flickr_account) %>
-            <%= link_to t(:link_your_flickr_account_with_inat, :site_name => SITE_NAME_SHORT),
+            <%= link_to t(:link_your_flickr_account_with_inat, :site_name => @site.preferred_site_name_short),
                         auth_url_for('flickr'),
                         :class => 'button' %>
           </div>

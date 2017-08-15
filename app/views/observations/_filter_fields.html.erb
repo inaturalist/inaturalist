@@ -429,20 +429,6 @@
 <input type="hidden" name="filters_open" id="filters_open" value="<%= @filters_open == false ? 'false' : 'true' %>"/>
 <input type="hidden" name="view" id="view_input" value="<%= @view %>"/>
 
-<% if CONFIG.site_only_observations -%>
-  <div class="right buttonrow">
-    <div class="inter">
-      <% if @site_uri == "any" -%>
-        <%=t :youre_viewing_all_observations %>.
-        <%= link_to t(:view_site_name_observations_html, :site_name => SITE_NAME), url_for_params(:site => CONFIG.site_url) %>
-      <% else %>
-        <%=t :youre_viewing_site_name_observations_html, :site_name => SITE_NAME  %>.
-        <%= link_to t(:view_all_observations), url_for_params(:site => "any") %>
-      <% end -%>
-    </div>
-  </div>
-<% end -%>
-
 <% unless hide_buttons -%>
   <div class="inline buttonrow upstacked">
     <input id="submit_filters_button" type="submit" value="<%=t :search %>" class="default inline button" data-loading-click="<%=t :searching %>"/>

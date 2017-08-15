@@ -26,10 +26,13 @@ class Activity extends React.Component {
 
   currentUserIcon( ) {
     const config = this.props.config;
-    return config && config.currentUser ? (
+    return config ? (
       <div className="icon">
         <UserImage user={ config.currentUser } />
-      </div> ) : null;
+      </div>
+    ) : (
+      <div className="icon"><div className="UserImage" /></div>
+    );
   }
 
   doneButton( ) {
@@ -168,13 +171,13 @@ class Activity extends React.Component {
               { ...this.props }
             /> );
           } ) }
-          { this.currentUserIcon( ) }
-          <div className="comment_id_panel">
-            { tabs }
-          </div>
-          { this.doneButton( ) }
-          { this.review( ) }
         </div>
+        { this.currentUserIcon( ) }
+        <div className="comment_id_panel">
+          { tabs }
+        </div>
+        { this.doneButton( ) }
+        { this.review( ) }
       </div>
     );
   }

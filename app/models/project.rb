@@ -63,7 +63,7 @@ class Project < ActiveRecord::Base
   validates_length_of :title, :within => 1..100
   validates_presence_of :user
   validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
-    :message => "should look like a URL, e.g. #{CONFIG.site_url}",
+    :message => "should look like a URL, e.g. #{Site.default.try(:url) || 'http://www.inaturalist.org'}",
     :allow_blank => true
   validates_presence_of :start_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
   validates_presence_of :end_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
@@ -107,7 +107,7 @@ class Project < ActiveRecord::Base
   has_attached_file :icon, 
     :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
     :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    :url => "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id/:style/:basename.:extension",
+    :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
     :default_url => "/attachment_defaults/general/:style.png"
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
@@ -116,8 +116,8 @@ class Project < ActiveRecord::Base
     has_attached_file :cover,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_protocol => "https",
-      :s3_host_alias => CONFIG.s3_bucket,
+      :s3_protocol => CONFIG.s3_protocol || "https",
+      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
       :bucket => CONFIG.s3_bucket,
       :path => "projects/:id-cover.:extension",
       :url => ":s3_alias_url",
@@ -249,9 +249,7 @@ class Project < ActiveRecord::Base
   
   def icon_url
     return nil unless icon.file?
-    url = icon.url(:span2)
-    url = URI.join(CONFIG.site_url, url).to_s unless url =~ /^http/
-    url
+    icon.url( :span2 )
   end
   
   def project_observation_rule_terms

@@ -7,7 +7,7 @@
   <% if flag.user -%>
     <%= link_to flag.user.login, flag.user %>
   <% else %>
-    <%= CONFIG.site_name_short %>
+    <%= @site.site_name_short %>
   <% end -%>
   <%= link_to t(:flagged), flag, :action=>"show" %>
   <%= 

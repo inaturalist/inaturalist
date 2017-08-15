@@ -31,5 +31,5 @@
           %div= link_to t(:view_more_about_x, :x => user.login), person_url(user), :class => "readmore"
         - if user.id == viewing_user.id && project.user_id == viewing_user.id
           %p
-            %em=t 'views.users.dashboard.new_project_admin_html', :site_name => SITE_NAME_SHORT, :help_email => CONFIG.help_email
+            %em=t 'views.users.dashboard.new_project_admin_html', :site_name => @site.preferred_site_name_short, :help_email => @site.email_help
 %p.ui= t 'views.users.dashboard.curators_can_see'

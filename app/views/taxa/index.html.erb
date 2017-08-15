@@ -252,7 +252,7 @@
   <% end %>
 </div>
 
-<%- cache("taxa/index/iconic_taxa_#{I18n.locale}_#{SITE_NAME}", :expires_in => 24.hours) do %>
+<%- cache("taxa/index/iconic_taxa_#{I18n.locale}_#{@site.name}", :expires_in => 24.hours) do %>
   <div id="iconic_taxa" class="column span-19">
     <% for iconic_taxon in @iconic_taxa %>
     <div id="<%= iconic_taxon.name %>" class="iconic_taxon clear column span-6 <%= cycle('first', '', 'last', :name => 'rowpos') %>">

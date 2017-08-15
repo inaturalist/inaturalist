@@ -2,12 +2,12 @@
   - unless @google_webmaster_verification.blank?
     %meta{content: @google_webmaster_verification, name: "google-site-verification"}
   %meta{content: "website", property: "og:type"}
-  %meta{content: SITE_NAME, property: "og:title"}
+  %meta{content: @site.name, property: "og:title"}
   - if @site
     %meta{content: image_url(@site.logo_square.url), property: "og:image"}
     %meta{content: image_url(@site.logo_square.url), property: "twitter:image"}
   %meta{content: root_url, property: "og:url"}
-  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: SITE_NAME), property: "og:description"}
+  %meta{content: t(:x_site_is_a_social_network_for_naturalist, site: @site.name), property: "og:description"}
 - content_for(:title) do
   = t(:a_community_for_naturalist)
 - if announcement = @announcements.detect{|a| a.placement == "welcome/index"}

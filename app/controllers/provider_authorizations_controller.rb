@@ -76,7 +76,7 @@ class ProviderAuthorizationsController < ApplicationController
       invite_params = session[:invite_params]
       session[:invite_params] = nil
       if @provider_authorization && @provider_authorization.valid? && @provider_authorization.created_at > 15.minutes.ago
-        flash[:notice] = "Welcome to #{CONFIG.site_name}! If these options look good, " + 
+        flash[:notice] = "Welcome to #{@site.name}! If these options look good, " +
           "click \"Save observation\" below and you'll be good to go!"
         invite_params.merge!(:welcome => true)
       end
@@ -142,7 +142,7 @@ class ProviderAuthorizationsController < ApplicationController
     @provider_authorization.touch
     flash[:notice] = t(:welcome_back)
     if get_session_omniauth_scope.to_s == 'write' && @provider_authorization.scope != 'write'
-      flash[:notice] = "You just authorized #{CONFIG.site_name_short} to write to your account " +
+      flash[:notice] = "You just authorized #{@site.site_name_short} to write to your account " +
         "on #{@provider_authorization.provider}. Thanks! Please try " +
         "what you were doing again.  We promise to be careful!"
     end

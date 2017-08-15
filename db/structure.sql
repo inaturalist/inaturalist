@@ -3533,7 +3533,9 @@ CREATE TABLE sites (
     logo_email_banner_file_name character varying,
     logo_email_banner_content_type character varying,
     logo_email_banner_file_size integer,
-    logo_email_banner_updated_at timestamp without time zone
+    logo_email_banner_updated_at timestamp without time zone,
+    domain character varying(255),
+    coordinate_systems_json text
 );
 
 
@@ -8922,6 +8924,8 @@ INSERT INTO schema_migrations (version) VALUES ('20170710211319');
 INSERT INTO schema_migrations (version) VALUES ('20170727000020');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727000602');
+
+INSERT INTO schema_migrations (version) VALUES ('20170801022454');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727193500');
 

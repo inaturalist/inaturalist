@@ -46,7 +46,7 @@
   </span>
   <h2><%=t :invite_your_friends %></h2>
   <p class="description">
-    <%=t :invite_your_friends_description, :site_name => SITE_NAME %>
+    <%=t :invite_your_friends_description, :site_name => @site.name %>
   </p>
 </div>
 
@@ -85,11 +85,11 @@
     <p><%=t :hi %></p>
     
     <p id="preview_personal_message">
-      <%= t(:preview_personal_message, :site=> CONFIG.site_name ) %>
+      <%= t(:preview_personal_message, :site=> @site.name ) %>
     </p>
    
     <p>
-      <%=t :you_can_sign_free_at, :site_name => SITE_NAME %>
+      <%=t :you_can_sign_free_at, :site_name => @site.name %>
     </p>
     
     <p>

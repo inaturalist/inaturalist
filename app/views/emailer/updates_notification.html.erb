@@ -1,6 +1,6 @@
 <%= render 'header' %>
 
-<%=t :new_updates_in_the_last_24_hours_from, :site_name => @user.site.try(:name) || CONFIG.site_name %>
+<%=t :new_updates_in_the_last_24_hours_from, :site_name => ( @user.site || Site.default ).try(:name) %>
 
 <%= render :partial => 'shared/updates_table' %>
 

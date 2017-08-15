@@ -50,7 +50,6 @@ class UpdateAction < ActiveRecord::Base
 
   def self.email_updates
     # site will be looked up tons of times, so store it in CONFIG
-    CONFIG.site = Site.find_by_id(CONFIG.site_id)
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
     email_count = 0

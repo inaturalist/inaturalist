@@ -16,7 +16,6 @@ Inaturalist::Application.configure do
   config.action_controller.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :test
 
   # # Uncomment to test mail delivery
@@ -25,17 +24,14 @@ Inaturalist::Application.configure do
   # config.action_mailer.delivery_method = :smtp  
 
   # Uncomment these to test caching
-  # config.action_controller.perform_caching             = true
-  # config.action_view.cache_template_loading            = true
-  # config.cache_classes = true
+  config.action_controller.perform_caching             = true
+  config.action_view.cache_template_loading            = true
+  config.cache_classes = true
   config.cache_store = :dalli_store, CONFIG.memcached,
     { compress: true, value_max_bytes: 1024 * 1024 * 3 }
 
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
-
-  # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = CONFIG.site_url
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large

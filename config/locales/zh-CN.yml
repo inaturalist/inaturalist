@@ -655,6 +655,7 @@ zh-CN:
   choose_cc_licensed_photos_html: 从其他网站选择<a href="http://creativecommons.org/">开放</a>授权的照片，或从
     %{site_name} 的观察中挑选一个。尝试选择<em>展示诊断特性</em>并且<em>看起来适合图标</em>的照片。<em>第一个为默认照片</em>。
   chose_columns: 选择列
+  choose_files: 选择文件
   choose_files_from_your_computer: 从您的电脑中选择文件
   choose_from_your_lists: 从您的列表中选择
   choose_good_default_photos: 从Flickr上的知识共享图片池中选择良好的默认照片
@@ -980,7 +981,7 @@ zh-CN:
   draft_: 草稿
   draft_saved: 草稿已保存！
   drafts: 草稿
-  drag_and_drop_some_photos: 拖放一些图片
+  drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
   duplicate_verb: 复制
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
@@ -1928,7 +1929,7 @@ zh-CN:
   observation_fields: 观察字段
   observation_flagged: 观察已标记
   observation_rights_html: 观察 %{rights}
-  observation_without_photo: 没有照片的观察
+  observation_without_media: 没有媒体的观察
   observation_would_like_some_help: '%{user}需要一些人帮助识别这个！'
   observations: 观察
   observations_: 观察
@@ -2061,12 +2062,12 @@ zh-CN:
   photo_destroyed_because_it_was_deleted_from: 图片已损坏，因为它在外部来源网站上被删除或%{site_name}不再拥有查看它的权限
   photo_hosting_accounts: 照片托管账户
   photo_licensing: 照片许可协议
-  photo_s: 照片
   photo_type: 照片类型
   photos_chosen_for_this_taxon: 为此分类单元选择的照片
   photos_from: 照片来自
   photos_of: 照片属于
   photos_of_taxon_html: '%{taxon}的照片'
+  photos_or_sounds: 照片或音
   photos_size:
     small: 小
     medium: 中

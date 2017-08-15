@@ -212,7 +212,7 @@ class PostsController < ApplicationController
 
   def for_user
     site_id = current_user.site_id if logged_in?
-    site_id ||= @site.try(:id) || CONFIG.site_id
+    site_id ||= @site.id
     from_sql = "posts"
     where_sql = "(posts.parent_type = 'Site' AND posts.parent_id = #{site_id})"
     if logged_in?

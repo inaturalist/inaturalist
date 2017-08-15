@@ -11,22 +11,22 @@
       <% end -%>
     </p>
     <p>
-      <%=t :linked_facebook, :site_name => SITE_NAME %>
+      <%=t :linked_facebook, :site_name => @site.name %>
     </p>
     <p>
-      <%=t :linked_facebook_description, :site_name => SITE_NAME %>
+      <%=t :linked_facebook_description, :site_name => @site.name %>
     </p>
   <% else -%>
-    <h3><%=t :not_linked_facebook, :site_name => SITE_NAME_SHORT %></h3>
+    <h3><%=t :not_linked_facebook, :site_name => @site.preferred_site_name_short %></h3>
     <p class="description">
-      <%=t :linked_facebook_howto, :site_name => SITE_NAME_SHORT %>
+      <%=t :linked_facebook_howto, :site_name => @site.preferred_site_name_short %>
     </p>
     <p class="description">
       <%=t :linked_facebook_password %>
     </p>
 
     <p class="description">
-      <%=t :linked_facebook_automaticaly, :site_name => SITE_NAME_SHORT %>
+      <%=t :linked_facebook_automaticaly, :site_name => @site.preferred_site_name_short %>
     </p>
   <% end -%>
 
@@ -37,7 +37,7 @@
 <div class="column span-10 last">
   <p>
   <% if current_user.facebook_identity %>
-    <%= link_to t(:hate_me_facebook, :site_name => SITE_NAME), 
+    <%= link_to t(:hate_me_facebook, :site_name => @site.name),
       omniauth_disconnect_path('facebook'), :class => 'delete button', :method => 'delete' %>
   <% else %>
     <%= link_to t(:take_me_facebook), "/auth/facebook", 

@@ -131,7 +131,7 @@
         <%= f.text_field :longitude, :label => t(:longitude)%>
         <%= f.select :map_type, Project::MAP_TYPES.map{|type| [t(type, default: type).downcase, type]} %>
         <%= f.text_field :zoom_level %>
-        <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => SITE_NAME) %>
+        <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :label => t(:site_name_place, :site_name => @site.name) %>
         <% if @place -%>
           <%= link_to t(:view_place), @place, :class => "readmore", :target => "_blank" %>
         <% end -%>
@@ -174,7 +174,7 @@
   <fieldset class="observationrules">
     <legend><%= t(:observation_rules).titleize %></legend>
     <p class="description">
-      <%= raw t(:observation_rules_description, :site_name => SITE_NAME_SHORT) %>
+      <%= raw t(:observation_rules_description, :site_name => @site.preferred_site_name_short) %>
     </p>
 
     <ul>

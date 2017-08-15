@@ -1,7 +1,7 @@
 = render "header"
 
 %div{:style => "color: #777;"}
-  =t :x_sent_you_a_new_message_on_y_html, :x => link_to_user(@message.from_user), :y => @user.site.try(:name) || SITE_NAME
+  =t :x_sent_you_a_new_message_on_y_html, :x => link_to_user(@message.from_user), :y => @user.site.try(:name) || @site.name
 %table{:cellpadding => 10}
   %tr
     %td.nobr.from{:valign => "top"}

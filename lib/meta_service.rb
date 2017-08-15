@@ -54,7 +54,7 @@ class MetaService
     begin
       MetaService.fetch_request_uri(args.merge(request_uri: request_uri, timeout: @timeout,
         api_endpoint: api_endpoint,
-        user_agent: "#{CONFIG.site_name}/#{self.class}/#{SERVICE_VERSION}"))
+        user_agent: "#{Site.default.name}/#{self.class}/#{SERVICE_VERSION}"))
     rescue Timeout::Error
       raise Timeout::Error, "#{@service_name} didn't respond within #{@timeout} seconds."
     end
@@ -73,7 +73,7 @@ class MetaService
   def self.fetch_request_uri(options = {})
     return unless options[:request_uri]
     options[:timeout] ||= 5
-    options[:user_agent] ||= CONFIG.site_name
+    options[:user_agent] ||= Site.default.name
     if options[:api_endpoint]
       api_endpoint_cache = ApiEndpointCache.find_or_create_by(
         api_endpoint: options[:api_endpoint],
@@ -113,10 +113,6 @@ class MetaService
     http = Net::HTTP.new(options[:request_uri].host, options[:request_uri].port)
     # using SSL if we have an https URL
     http.use_ssl = (options[:request_uri].scheme == "https")
-    if CONFIG.ca_path || CONFIG.ca_file
-      http.ca_file = CONFIG.ca_file
-      http.ca_path = CONFIG.ca_path
-    end
     response = http.get("#{options[:request_uri].path}?#{options[:request_uri].query}",
       "User-Agent" => options[:user_agent])
     # following redirects if we haven't followed too many already

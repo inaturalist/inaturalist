@@ -27,7 +27,7 @@
               <% if qm.user %>
                 <%= link_to user_image(qm.user, title: qm.user.login, alt: qm.user.login), person_by_login_path(qm.user.login) %>
               <% else %>
-                <%= image_tag @site.logo_square.url, style: "height: 16px", title: SITE_NAME %>
+                <%= image_tag @site.logo_square.url, style: "height: 16px", title: @site.name %>
               <% end %>
             <% end %>
           </td>
@@ -46,7 +46,7 @@
               <% if qm.user %>
                 <%= link_to user_image(qm.user, :title => qm.user.login, :alt => qm.user.login), person_by_login_path(qm.user.login) %>
               <% else %>
-                <%= image_tag @site.logo_square.url, style: "height: 16px", title: SITE_NAME %>
+                <%= image_tag @site.logo_square.url, style: "height: 16px", title: @site.name %>
               <% end %>
             <% end %>
           </td>

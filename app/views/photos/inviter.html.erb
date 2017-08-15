@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t('views.photos.inviter.invite_other_photographers_to_inat', :site_name => SITE_NAME) %>  
+  <%= @title = t('views.photos.inviter.invite_other_photographers_to_inat', :site_name => @site.name) %>
 <%- end -%>
 <% content_for(:extrajs) do %>
   <%= javascript_include_tag "jquery/plugins/inat/photo_selectors.js" %>
@@ -12,7 +12,7 @@
 
 <h2><%= @title %></h2>
 <p class="description">
-  <%=t "views.photos.inviter.invite_your_friends_description", :site_name => SITE_NAME_SHORT %>
+  <%=t "views.photos.inviter.invite_your_friends_description", :site_name => @site.preferred_site_name_short %>
 </p>
 
 <%= form_tag(url_for, {:method => :post, :class => "photo_inviter_form"}) do %>
@@ -26,7 +26,7 @@
   <div class='invite_comment'>
     <label><%=t 'add_a_comment' %> (<%=t 'views.photos.inviter.dont_forget_the_invite_link_placeholder' %>):</label>
     <br />
-    <%= text_area_tag :comment, t(:default_invite_comment, :site_name => SITE_NAME), :class=>'text' %>
+    <%= text_area_tag :comment, t(:default_invite_comment, :site_name => @site.name), :class=>'text' %>
   </div>
   <%= submit_tag(t(:send_invite), :class => 'default button', "data-loading-click" => t(:sending)) %>
 <% end -%>

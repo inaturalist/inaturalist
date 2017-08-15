@@ -42,7 +42,7 @@
       <% if @flag.user -%>
         <%= link_to h(@flag.user.login), @flag.user %>
       <% else %>
-        <%= CONFIG.site_name_short %>
+        <%= @site.site_name_short %>
       <% end -%>
     </td>
     <td><%= h @flag.flag %></td>
