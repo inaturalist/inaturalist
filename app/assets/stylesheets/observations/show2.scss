@@ -206,7 +206,8 @@ input.failed, textarea.failed {
   }
 }
 
-.UserImage {
+.bootstrap .UserImage,
+.bootstrap a.UserImage {
   &:hover {
     color: #fff;
   }
@@ -950,7 +951,7 @@ h3, h4 {
   }
 }
 
-.Activity {
+.bootstrap .Activity {
   > .icon {
     float: left;
   }
