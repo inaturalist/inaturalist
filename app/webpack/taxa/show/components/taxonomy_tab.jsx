@@ -10,7 +10,9 @@ const TaxonomyTab = ( {
   taxonChangesCount,
   taxonSchemesCount,
   names,
-  showNewTaxon
+  showNewTaxon,
+  allChildrenShown,
+  toggleAllChildrenShown
 } ) => {
   const currentTaxon = Object.assign( { }, taxon );
   const tree = [];
@@ -35,27 +37,77 @@ const TaxonomyTab = ( {
         let className = "";
         const isRoot = t.id === tree[0].id;
         const isTaxon = t.id === taxon.id;
+        const isDescendant = t.ancestor_ids.indexOf( taxon.id ) >= 0;
         const shouldLinkToTaxon = !isRoot && !isTaxon;
+        const isComplete = isTaxon && _.isNumber( t.complete_species_count );
+        const isHidable = isDescendant && ( t.rank === "hybrid" || !t.is_active || t.extinct );
+        const numChildren = ( t.children || [] ).length;
+        const numHidableChildren = _.filter( t.children || [], c => (
+          c.rank === "hybrid" || !c.is_active || c.extinct
+        ) ).length;
         if ( isTaxon ) {
           className += "current";
         }
         if ( isRoot ) {
           className += " root";
         }
+        if ( isComplete ) {
+          className += " complete";
+        }
+        if ( isHidable ) {
+          className += " hidable";
+        }
+        if ( numChildren <= 1 || allChildrenShown ) {
+          className += " all-shown";
+        }
+        const tabular = false;
         return (
           <li key={`taxonomy-${t.id}`} className={ className }>
-            <SplitTaxon
-              taxon={t}
-              url={shouldLinkToTaxon ? urlForTaxon( t ) : null}
-              forceRank
-              onClick={ e => {
-                if ( !shouldLinkToTaxon ) return true;
-                if ( e.metaKey || e.ctrlKey ) return true;
-                e.preventDefault( );
-                showNewTaxon( t, { skipScrollTop: true } );
-                return false;
-              } }
-            />
+            <div className="row-content">
+              <div className="name-row">
+                <SplitTaxon
+                  taxon={t}
+                  url={shouldLinkToTaxon ? urlForTaxon( t ) : null}
+                  forceRank
+                  onClick={ e => {
+                    if ( !shouldLinkToTaxon ) return true;
+                    if ( e.metaKey || e.ctrlKey ) return true;
+                    e.preventDefault( );
+                    showNewTaxon( t, { skipScrollTop: true } );
+                    return false;
+                  } }
+                />
+                { isComplete ? (
+                  <div className="inlineblock">
+                    <div className="label-complete">
+                      { I18n.t( "all_species_added_to_the_database" ) }
+                    </div>
+                    { numChildren <= 1 || numHidableChildren === 0 ? null : (
+                      <button
+                        className="btn btn-default btn-xs"
+                        onClick={ ( ) => {
+                          toggleAllChildrenShown( );
+                        }}
+                      >
+                        { allChildrenShown ? I18n.t( "hide_uncountable_species" ) : I18n.t( "show_uncountable_species" ) }
+                      </button>
+                    ) }
+                  </div>
+                ) : null }
+              </div>
+              { tabular && isTaxon ? (
+                <div style={ { whiteSpace: "nowrap" } }>
+                  { I18n.t( "observations" ) }
+                </div>
+              ) : null }
+              { tabular && isDescendant ? (
+                <div className={`text-${t.observations_count === 0 ? "default" : "success"} label-obs-count`}>
+                  { t.observations_count === 0 ? t.observations_count : (
+                    <a href={`/observations?taxon_id=${t.id}&place_id=any`}>{ t.observations_count }</a>
+                  ) }
+                </div>
+              ) : null }
+            </div>
             { t.children && t.children.length > 0 ? renderTaxonomy( t.children ) : null }
           </li>
         );
@@ -166,13 +218,16 @@ TaxonomyTab.propTypes = {
   taxonChangesCount: PropTypes.number,
   taxonSchemesCount: PropTypes.number,
   names: PropTypes.array,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  allChildrenShown: PropTypes.bool,
+  toggleAllChildrenShown: PropTypes.func
 };
 
 TaxonomyTab.defaultProps = {
   names: [],
   taxonChangesCount: 0,
-  taxonSchemesCount: 0
+  taxonSchemesCount: 0,
+  allChildrenShown: false
 };
 
 export default TaxonomyTab;

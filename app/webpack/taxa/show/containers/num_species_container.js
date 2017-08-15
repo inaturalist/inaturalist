@@ -28,7 +28,7 @@ function mapStateToProps( state ) {
   if ( state.taxon.species ) {
     count = state.taxon.species.total_results;
   }
-  if ( !count ) {
+  if ( count === null || count === undefined ) {
     return props;
   }
   const linkParams = Object.assign( { }, defaultObservationParams( state ), {

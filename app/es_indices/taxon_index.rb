@@ -121,6 +121,7 @@ class Taxon < ActiveRecord::Base
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
+      json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]

@@ -458,53 +458,110 @@ $photoPreviewThumbGutterTop: 3px;
 .CoverImage.loaded {
   opacity: 1;
 }
+.TaxonomyTab {
+  .taxonomy {
+    list-style: none;
+    li {
+      margin-left: 15px;
+      margin-top: 5px;
+    }
+    .name-row {
+      display: inline-block;
+    }
+    li.tabular {
+      .row-content {
+        display: table-row;
+        padding: 3px 0px 5px 5px;
+        .name-row {
+          width: 100%;
+        }
+      }
+      .row-content > * {
+        display: table-cell;
+        padding: 3px 5px 5px 5px;
+      }
+      li.current .row-content > * {
+        border-bottom: 1px solid #efefef;
+      }
+    }
+    .label-complete {
+      display: inline-block;
+      background-color: $inat-green;
+      padding: 2px 0px 1px 10px;
+      position: relative;
+      font-size: 12px !important;
+      line-height: 17px !important;
+      z-index: 1;
+      margin: 0 20px 0 10px;
+      color: white
+    }
+    .label-complete:before {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      border: 10px solid transparent;
+      border-right-width: 5px;
+      border-right-color: $inat-green;
+      left: -15px;
+      z-index: -1;
+    }
+    .label-complete:after {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      border: 10px solid $inat-green;
+      border-right-width: 5px;
+      border-right-color: white;
+      right: -15px;
+      z-index: -1;
+    }
 
-.TaxonomyTab .taxonomy {
-  list-style: none;
-}
-.TaxonomyTab .taxonomy li {
-  margin-left: 15px;
-  margin-top: 5px;
-}
-.TaxonomyTab .taxonomy li:before,
-.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname {
-  content: '\21B3';
-  color: #999;
-}
-.TaxonomyTab .taxonomy li.root {
-  margin-left: 0;
-}
-.TaxonomyTab .taxonomy li.root:before {
-  content: '';
-}
-.TaxonomyTab .taxonomy .taxon {
-  margin-left: 3px;
-}
-.TaxonomyTab .taxonomy .taxon a {
-  color: #333;
-}
-.TaxonomyTab .taxonomy .taxon a:hover {
-  color: #23527c;
-}
-
-.TaxonomyTab .taxonomy li.current > .SplitTaxon {
-  font-weight: 800;
-}
-
-.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname,
-.TaxonomyTab .taxonomy i {
-  font-size: smaller;
-}
-
-.TaxonomyTab .sciname.species,
-.TaxonomyTab .sciname.subspecies,
-.TaxonomyTab .sciname.variety,
-.TaxonomyTab .sciname.hybrid {
-  font-style: italic;
-}
-
-.TaxonomyTab .outdated .sciname {
-  text-decoration: line-through;
+    .row-content:before,
+    .SplitTaxon.has-com-name .sciname {
+      content: '\21B3';
+      color: #999;
+    }
+    li.root {
+      margin-left: 0;
+    }
+    li.root:before {
+      content: '';
+    }
+    .taxon {
+      margin-left: 3px;
+      a {
+        color: #333;
+      }
+      a:hover {
+        color: #23527c;
+      }
+    }
+    li.current > .row-content > .SplitTaxon {
+      font-weight: 800;
+    }
+    .SplitTaxon.has-com-name .sciname,
+    i {
+      font-size: smaller;
+    }
+  }
+  .sciname.species,
+  .sciname.subspecies,
+  .sciname.variety,
+  .sciname.hybrid {
+    font-style: italic;
+  }
+  .outdated .sciname {
+    text-decoration: line-through;
+  }
+  .complete .hidable {
+    display: none;
+    opacity: 0.5;
+  }
+  .complete.all-shown .hidable {
+    display: block;
+  }
 }
 
 .tab-section > [class*="col-"] {

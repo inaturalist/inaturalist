@@ -427,6 +427,7 @@ class Taxon < ActiveRecord::Base
       return nil
     end
     scope = taxon_ancestors_as_ancestor.
+      select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
       where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, Taxon::SPECIES ).
       joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
