@@ -4204,6 +4204,7 @@ I18n.translations["en"] = {
     "one": "<span class='count'>1</span> observation reviewed",
     "other": "<span class='count'>%{count}</span> observations reviewed"
   },
+  "x_of_y": "%{x} of %{y}",
   "x_others": {
     "one": "1 other",
     "other": "%{count} others"

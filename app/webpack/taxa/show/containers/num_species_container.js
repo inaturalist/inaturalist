@@ -11,7 +11,7 @@ function mapStateToProps( state ) {
     iconClassName: `icon icon-iconic-${state.taxon.taxon.iconicTaxonName( ).toLowerCase( )}`,
     className: "NumSpecies",
     label: I18n.t( "total_species_observed" ),
-    name: `? / ${state.taxon.taxon.complete_species_count}`,
+    name: I18n.t( "x_of_y", { x: "?", y: state.taxon.taxon.complete_species_count } ),
     linkText: _.startCase( I18n.t( "view_all" ) ),
     noContent: true
   };
@@ -37,7 +37,10 @@ function mapStateToProps( state ) {
   }
   const linkParams = Object.assign( { }, defaultObservationParams( state ), baseParams );
   return Object.assign( props, {
-    name: `${I18n.toNumber( count, { precision: 0 } )} / ${I18n.toNumber( state.taxon.taxon.complete_species_count, { precision: 0 } )}`,
+    name: I18n.t( "x_of_y", {
+      x: I18n.toNumber( count, { precision: 0 } ),
+      y: I18n.toNumber( state.taxon.taxon.complete_species_count, { precision: 0 } )
+    } ),
     linkUrl: `/observations?${stringify( linkParams )}`,
     noContent: false
   } );

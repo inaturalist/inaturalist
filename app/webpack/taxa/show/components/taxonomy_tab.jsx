@@ -45,6 +45,7 @@ const TaxonomyTab = ( {
         const numHidableChildren = _.filter( t.children || [], c => (
           c.rank === "hybrid" || !c.is_active || c.extinct
         ) ).length;
+        const tabular = false;
         if ( isTaxon ) {
           className += "current";
         }
@@ -60,7 +61,9 @@ const TaxonomyTab = ( {
         if ( numChildren <= 1 || allChildrenShown ) {
           className += " all-shown";
         }
-        const tabular = false;
+        if ( tabular ) {
+          className += " tabular";
+        }
         return (
           <li key={`taxonomy-${t.id}`} className={ className }>
             <div className="row-content">
