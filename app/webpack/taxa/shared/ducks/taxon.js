@@ -194,7 +194,8 @@ export function fetchSpecies( taxon, options = { } ) {
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       taxon_id: t.id,
-      rank: "species"
+      rank: "species",
+      verifiable: true
     } );
     return inatjs.observations.speciesCounts( params ).then( response => {
       dispatch( setSpecies( response ) );

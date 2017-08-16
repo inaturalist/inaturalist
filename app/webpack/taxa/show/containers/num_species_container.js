@@ -15,13 +15,17 @@ function mapStateToProps( state ) {
     linkText: _.startCase( I18n.t( "view_all" ) ),
     noContent: true
   };
+  const baseParams = {
+    view: "species",
+    rank: "species",
+    place_id: "any",
+    verifiable: true
+  };
   if ( state.config.currentUser && state.config.currentUser.login ) {
     props.extraLinkText = I18n.t( "view_yours" );
     props.extraLinkTextShort = I18n.t( "yours" );
-    const params = Object.assign( { }, defaultObservationParams( state ), {
-      user_id: state.config.currentUser.login,
-      view: "species",
-      place_id: "any"
+    const params = Object.assign( { }, defaultObservationParams( state ), baseParams, {
+      user_id: state.config.currentUser.login
     } );
     props.extraLinkUrl = `/observations?${stringify( params )}`;
   }
@@ -31,10 +35,7 @@ function mapStateToProps( state ) {
   if ( count === null || count === undefined ) {
     return props;
   }
-  const linkParams = Object.assign( { }, defaultObservationParams( state ), {
-    view: "species",
-    place_id: "any"
-  } );
+  const linkParams = Object.assign( { }, defaultObservationParams( state ), baseParams );
   return Object.assign( props, {
     name: `${I18n.toNumber( count, { precision: 0 } )} / ${I18n.toNumber( state.taxon.taxon.complete_species_count, { precision: 0 } )}`,
     linkUrl: `/observations?${stringify( linkParams )}`,
