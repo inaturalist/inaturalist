@@ -181,7 +181,7 @@ zh-TW:
   add_another_photo: 加入其他圖片
   add_another_section: 加入其他部份
   add_another_subscription: 添加其他訂閱
-  add_asset: 添加項目
+  add_asset: 添加可用物件
   add_batch: 添加批量
   add_colors: 添加顏色
   add_comma_separated_tags: 添加以逗號分隔式標籤
@@ -394,6 +394,8 @@ zh-TW:
   and_make_some_new: 並產生一些新的
   and_other_taxa: '&amp;其它物種分類'
   and_un_license_all_your_observations: 並取消您所有觀察的許可協議
+  and_you_havent_linked: '...而且您還沒有連結這些外部帳號之一，您應該先通過 %{site_name} 作登入，然後編輯您的個人檔案並從此處來連結您的帳號。否則
+    %{site_name} 可能無法確定兩個帳號是互相連接的；反而還會嘗試替您另外新建帳號！'
   and_x_more_people!:
     one: 以及其他 1 個人！
     other: 以及其他 %{count} 個人！
@@ -417,7 +419,7 @@ zh-TW:
   are_you_really_sure_want_delete_this_user: 您真的、真的確定要刪除此用戶和所有其內容嗎？
   are_you_sure?: 您確定嗎？
   are_you_sure_no_undo: 您確定嗎？這將無法恢復。
-  are_you_sure_delete_asset: 您確定要刪除此項目？
+  are_you_sure_delete_asset: 您確定要刪除此可用物件？
   are_you_sure_delete_observation_from_project: 您確定要從 %{project} 移除此觀察？
   are_you_sure_delete_post: 您確定要刪除此發表內容？
   are_you_sure_delete_taxon_move_associates: 您確定您要刪除%{taxonname}（%{taxonid}）並移動所有相關項目嗎？
@@ -581,7 +583,7 @@ zh-TW:
   categories: 分類
   cc_0_description: 此許可協議出您的作品至公用領域，因此其他人可以複製、更改、發佈和行使您的作品，即使在用於商業的目的下，而所有的行為皆不必請求許可或註明於您。這是最通融的許可提供，推薦用於大規模傳播和授權資料方面的使用。
   cc_0_name: 無著作權 (CC0)
-  cc_attribution_license: 創用CC 姓名標示協議
+  cc_attribution_license: 創用 CC 姓名標示協議
   cc_by_description: 此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作，甚至用於商業目的下，只要他們有註明於您在原作品上。
   cc_by_name: 姓名標示
   cc_by_nc_description: 此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作在以非商業目的下，雖然他們的新作品必須在非商業目的下致謝於您，但他們的衍生作品可以不必依同樣使用條款來作為許可。
@@ -594,7 +596,7 @@ zh-TW:
   cc_by_nd_name: 姓名標示-禁止改作
   cc_by_sa_description: 此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作，甚至用於商業目的下，，只要他們註明於您並且以同樣條款在他們的新作品上。所有基於您原作的新作品將使用同樣許可協議，因此任何衍生作品也允許商業目的使用。
   cc_by_sa_name: 姓名標示-相同方式分享
-  cc_used_under_a: 創用CC，用於
+  cc_used_under_a: 創用 CC，用於
   change: 更改
   change_admin: 更改管理員
   change_cover: 更改封面
@@ -654,7 +656,7 @@ zh-TW:
   check_out_what_the_observation: 瞧瞧您想嘗試鑑定物種的類型。
   check_out_your_life_list: 退出及儲存您的生物清單
   check_this_box_if: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/3.0/tw/'
-    target='_blank'>創用CC姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
+    target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
   checklist: 檢查列表
   checklists: 清單
   checklist_places: 檢查列表地點
@@ -849,8 +851,8 @@ zh-TW:
   created_by_user_on_date: 由 %{user} 於 %{date} 所建立
   created_on: 創立於
   creating_your_account: 建立您的帳號中…
-  creative_commons_flickr_tagged: 創用CC 的 Flickr 照片已標記
-  creative_commons_unless_otherwise_noted: 創用CC；除非另有聲明。
+  creative_commons_flickr_tagged: 創用 CC 的 Flickr 照片已標記
+  creative_commons_unless_otherwise_noted: 創用 CC；除非另有聲明。
   critically_endangered: 極度瀕危
   critically_imperiled: 嚴重瀕絕
   css_description: 這將會在頁面上有所有其它 CSS 才包含。
@@ -869,6 +871,7 @@ zh-TW:
   curator: 策展人
   curators_changed_for_x_html: '%{x} 的策展人已更改'
   curators: 策展人
+  curators_can_remove_observations_from: 策展人可移除來自於專案的觀察，以及在專案物種檢視裡顯示於觀察的鑑定。策展人也可查看私有座標的實際內容，和專案的隱蔽貢獻。
   curator_identification: 策展人鑑定
   current_flags: 目前標記
   current_password: 目前密碼
@@ -1066,7 +1069,7 @@ zh-TW:
     one: 編輯 <span class="count">1</span> 個觀察：
     other: 編輯 <span class="count">%{count}</span> 個觀察：
   editing_project: 編輯%{project}
-  editing_project_asset: 編輯專案項目用於
+  editing_project_asset: 編輯專案可用物件用於
   editing_subscription_to_x_html: 編輯對%{x}的訂閱
   editing_taxon_link: 物種分類連結編輯中
   editing_taxon_name: 物種分類名稱編輯中
@@ -1636,6 +1639,9 @@ zh-TW:
   linked_facebook: 您的 %{site_name} 帳號目前已連結至您的臉書帳號。
   linked_facebook_automaticaly: 另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name}
     與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？
+  linked_facebook_description: 保持您的 %{site_name} 帳號連結至您的臉書帳號，來允許您能添加多張照片至您的觀察。當然假設您想要讓
+    %{site_name} 與臉書之間的連結中斷，我們也不會制止您，這樣做頂多讓您無法添加照片而已。有時最好的方法；就是您另外建立一個專門連結至 %{site_name}
+    的新臉書帳號。
   linked_facebook_howto: 要將臉書連接到 %{site_name}，請點擊右方連結來登入到 Facebook.com。
   linked_facebook_password: 我們不會詢問您的臉書密碼（但臉書也許會檢查按鍵所傳給您的 URL 來確認是屬於 Facebook.com）。我們也不會更改您在臉書上的資料，除非您要求我們這麼做。
   linked_flickr: 您的 %{site_name} 帳號目前已連結至您的 Flickr 帳號。
@@ -1932,7 +1938,7 @@ zh-TW:
   new_post: 新發佈文章
   new_project: 新專案
   new_project_asset: 新專案_項目
-  new_project_asset_for: 新專案項目用於
+  new_project_asset_for: 新專案可用物件用於
   new_source: 新來源
   new_taxon_change: 新物種分類更改
   new_taxon_link: 新物種分類連結
@@ -2340,7 +2346,7 @@ zh-TW:
       continent: 洲
       Country: 國家
       country: 國家
-      County: 郡（縣）
+      County: 縣（郡）
       county: 縣
       District: 區
       district: 區
@@ -2524,6 +2530,7 @@ zh-TW:
   privacy_policy: 隱私政策
   private: 私有
   private_: 私人的
+  private_description: 座標已完全從公開地圖裡隱藏，實際的座標僅對於您、以及您所添加觀察的專案之策展人可見。帶有私有座標的觀察仍可用於驗證地點清單。
   proceed: 繼續
   processing: 處理中
   processing3p: 處理中...
@@ -2531,7 +2538,7 @@ zh-TW:
   project: 專案
   project_aggregator_filter_error: 專案無法啟動自動觀察聚集，除非專案關聯於適中大小的地點、或僅允許特定物種分類群觀察、或是在列表上物種分類群的觀察
   project_assessments: 專案評估
-  project_assets: 專案項目
+  project_assets: 專案可用物件
   project_cover: 專案封面
   project_created_on: 創建此專案於 %{date}
   project_curator_id: 專案策展人 ID
@@ -2666,6 +2673,7 @@ zh-TW:
   reload_from_observations: 從觀察來重新載入
   reload_timed_out: 重新載入時間逾時，請再重試。
   remarks_optional: 備考<span class="small description">（可選）</span>
+  remember_its_a_lot_easier_to_id: 請記住；若您能提供用於描述的訊息越多，就越容易來鑑定。最重要的是請提供出<strong>地點</strong>、<strong>日期/時間</strong>，以及一些有關<strong>大小</strong>的訊息。
   remember_me: 記住我
   remove: 移除
   remove_all_tags: 移除所有標籤
@@ -2716,6 +2724,7 @@ zh-TW:
   research_grade: 研究評分
   research_grade_expandable_html: <span class='full'>研究</span><span class='full'>評分</span>
   research_grade_short_html: <span class='full'>研究</span><span class='full'>評分</span>
+  research_grade_observations_have: 「研究等級」觀察擁有日期、照片、座標，以及社群支援的鑑定內容。點擊來查看資料品質評估。
   research_grade_qualification: 研究評分資格
   research_quality: 研究品質
   reset_search_filters: 重新設定搜尋過濾
@@ -3413,6 +3422,7 @@ zh-TW:
   users_observations: '%{user}的觀察'
   users_profile: '%{user}的個人檔案'
   using_a_license: 使用一份許可
+  using_cc_license_makes_easier_use_your_data: 使用<strong>創用 CC 姓名標示</strong>協議可讓研究員能更容易使用您的資料。您可以在註冊後挑選您所要的協議。
   valid_interrogation: 有效？
   valid_options_are: 有效選項為
   value: 值
@@ -3468,6 +3478,7 @@ zh-TW:
   view_original_by: 查看由 %{by} 在 %{photo} 上的原始版
   view_original_ccD_photo: 檢視由 %{owner} 創作的原始版創用CC照片
   view_other_taxa: 檢視其它<nobr> %{taxon_name} &raquo; </nobr>
+  view_photos_ranges_observations_more: 檢視照片、物種範圍、%{site_name} 觀察以及其它更多！我們收集了來自多樣不同來源的訊息，並將這些結合成在各地點裡各不同物種的快速摘要。
   view_place: 檢視地點
   view_post: 檢視發佈文章
   view_projects_from_place: 檢視來自於%{place}的專案
@@ -3516,6 +3527,10 @@ zh-TW:
   we_had_trouble_saving_comment: 我們在儲存評論時出現問題：
   we_have_no_conservation_status_for_this_taxon: 我們對於此物種分類沒有保護狀態
   we_have_no_establishment_data_for_this_taxon: 我們對於此物種分類沒有建置資料
+  we_import_our_taxonomic_data: 我們從來自於一些外部分類資料庫匯入至我們的分類資料，包含像是物種目錄（Catalogue of Life）與
+    uBio。我們的一些物種分類群當中是被手動輸入，並且任何用戶皆可添加用於物種分類群的新名稱。如果您查無某個物種分類或是名稱，請嘗試
+  we_know_is_inconvenience_but_will_allow_grow: 我們了解這樣會有所不便，但我們的新授權系統將允許讓 %{sitename}
+    在未來成長茁壯，並且為您提供一些額外的安全性。
   we_support_flickr: 我們目前支援 Flickr 的圖片託管；並努力在短期內添加其它照片託管。
   we_tried_to_process_your_upload_named_filename: |-
     我們嘗試處理您所上傳名為 %{filename} 的檔案；但沒有成功。
@@ -3671,7 +3686,7 @@ zh-TW:
   you_need_to_select_some_observations_first: 首先您需要選擇一些觀察。
   you_retain_full_copyright: 除了由我們的使用條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。
   you_retain_full_copyright_over_your_content: 除了由我們的使用條款授予給 %{site_name} 的這些權限外，您保留了您內容的完整版權。
-  you_sure_delete_asset?: 您確定要刪除此項目？
+  you_sure_delete_asset?: 您確定要刪除此可用物件？
   you_sure_delete_check_list: 您確定您要刪除此列表？一些人可能有投入大量內容在上面...
   you_sure_delete_comment?: 您確定要刪除此評論？
   you_sure_delete_custom_field?: 您確定要刪除這些自定義欄位嗎？
@@ -3761,6 +3776,7 @@ zh-TW:
         eol_collection_desc_html: <a href="http://eol.org/" target="_blank">生命大百科（EOL）</a>是個貯藏有關地球上生物資訊的地方。在生命大百科上您可創建有關物種的<a
           href="http://eol.org/info/252" target="_blank">收藏</a>。如果您想要匯入來自於生命大百科的物種，請在此貼上該收藏的
           URL 位置。
+        places_note: 註：不是所有地點都具有物種分類群清單。如果您在找尋帶有物種分類群地點時遇到困難，請試著挑選更大行政邊界的區域，像是國家、州、省，或縣。
         replace_existing_eol_desc: 在從生命大百科匯入之前；刪除現有內容
         place_choose_taxon_note: 若您想要縮小您的搜尋，請挑選物種分類來過濾，例如：「植物」
       eolupdate_notice: 從生命大百科匯入內容會花費一到兩分鐘，請耐心等待。
@@ -3793,6 +3809,9 @@ zh-TW:
         who_is_behind_inaturalist?: 誰在 %{site_name} 之下？
         what_technologies_does_the_project_use?: 專案用了什麼技術和資料來源？
         who_is_behind_inaturalist: 誰在 %{site_name} 之下？
+        inaturalist_was_originally_the_masters_final_html: '%{site_name} 最初是 Nathan
+          Agrin、Jessica Kline，與 Ken-ichi Ueda 在加州大學柏克萊分校之<a href="http://www.ischool.berkeley.edu">學院訊息</a>上的碩士畢業專題。請查看<a
+          href="/about">關於頁面</a>來獲得更多目前管理此網站的人員訊息。'
         inaturalist_is_built_using_html: |-
           %{site_name} 軟體在建置上使用了 <a
           href="http://www.rubyonrails.org/">Ruby on Rails</a>、<a
@@ -3822,6 +3841,8 @@ zh-TW:
         we_also_support_uploading_photos: 我們也支援直接上傳照片至 %{site_name}；但處理時間會較久，因此我們只允許每次上傳一張照片。若您已使用過
           Flickr 或 Picasa 這些服務的話，使用它們會可能是較快的方法。
         what_are_tags?: 什麼是標籤？
+        tags_are_keywords_you_can_add_to_an_html: 標籤是可讓您添加至觀察裡；來使觀察更容易被查找的關鍵字。例如：如果您在土克凱可群島一旁的海洋裡潛水時，有條梭魚尾隨著您。您可將此觀察標記為
+          &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;。
         can_i_include_my_observations_on_my_blog?: 我的 %{site_name} 觀察內容可以加在自己個人的網站或部落格裡頭嗎？
         sure_check_out_our_widget_html: 沒錯，請瞧瞧我們的<a href="%{url}" title="Observations
           Widget">觀察小工具</a>。
@@ -3833,6 +3854,8 @@ zh-TW:
           根據 IUCN 紅色名錄，所有屬於「接近受威脅」或者更糟情況的物種分類群，
           部份根據其他法定機構宣布受威脅，與及部份被 %{site_name} 網站策展人
           認定值得保護的物種分類群，其存在位置座標將會被遮閉。
+        you_can_also_obscure_the_coordinates_html: 您也可以隱蔽您所擁有觀察的座標；無論是屬於何種物種分類。請參見上方的<a
+          href="#geoprivacy">位置隱私</a>。
         what_is_the_quality_assessment: 什麼是品質評估以及如何讓觀察品質成為有「研究」的等級？
         what_is_a_life_list?: 甚麼是生物清單呢?
         just_a_simple_list: 純為簡單的物種分類群列表而無特別功能。
@@ -3843,6 +3866,8 @@ zh-TW:
         is_a_list_of_every_species_that_you_have_seen: 一個生物列表是您看過的所有物種清單，每一個 %{site_name}
           的用戶都會擁有一個生物列表，新增 %{site_name} 的觀察紀錄會自動遷移入這些列表中。
         i_observed_a_species: 我觀察過的一個物種, 為何沒顯示在我的生物清單中?
+        while_the_life_list_is_automatically_populated: 當生物列表從所添加的觀察來作自動填入時，若 %{site_name}
+          無法識別出您所使用的名稱；物種將不會被加入至列表。我們推薦採用可讓我們識別出的其它別名。
     listed_taxa:
       establishment_field:
         confirmation: 您確定嗎？這將會更改所有列出隸屬此地點的物種分類群之確立方式。而您需要花費一番功夫才能回復內容。
@@ -3852,6 +3877,8 @@ zh-TW:
     lists:
       new:
         place_desc: 自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
+      show:
+        project_list_desc: 專案列表列出了由專案策展人所手動添加；以及代表著在專案裡研究級觀察記錄的物種分類群。
     observations:
       community_id:
         agreement: 一致
@@ -3930,6 +3957,8 @@ zh-TW:
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: 一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
         score_desc: 分數 = 累積次數 /（累積次數 + 不同意次數 + 原型不同意次數）
+        observation_flagged_notice_html: 此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a
+          href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>
       user_stats:
         user_stats_desc: 用戶統計被限制依觀察計數、或物種計數的最多前 500 個，因此所列出總數通常會略多於 500，這是因為兩份列表不一定包含相同用戶。被標註為「*」代表著這並沒有出現在前
           500 個裡。
@@ -3941,12 +3970,16 @@ zh-TW:
         your_observations_export_failed_html: 您的觀察匯出失敗。請查看您所匯出列表的<a href="%{url}">觀察匯出頁面</a>。
       bulk_import_success:
         success_message: 您的 %{filename} 大量匯入已成功。您的觀察現正在處理並不久後便會出現在網站上。
+      users_updates_suspended:
+        message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
     photos:
       inviter:
         automatically_add_to_project: 自動添加至專案
         automatically_id_the_new_obs_as: 自動鑑定新觀察為
         dont_forget_the_invite_link_placeholder: 不要忘記 {{INVITE_LINK}} 位置標誌符
         invite_other_photographers_to_inat: 邀請其他攝影師到 %{site_name}
+        invite_your_friends_description: 您能讓在臉書和 Flickr 上的人們更容易添加他們的照片作為 %{site_name}
+          觀察，只要留下包含著下列特殊邀請 URL 位址的評論即可。您也可替新的觀察預先選擇物種分類與專案。
       show:
         view_original_html: 您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
@@ -3989,6 +4022,12 @@ zh-TW:
         icon_desc: 將會被切成正方形
         last_aggregated_at_desc: 添加觀察至此專案的最後聚集結束時間
         no_curators: 這裡沒有專案策展人，如果您想要分配新人來作為管理員，他們必須先加入此專案並且您要讓他們成為策展人。
+        project_assets_desc_html: |-
+          <p class="description">專案可用物件是與您專案相關聯的檔案，並需符合一些特殊規則：</p>
+          <ol class="description">
+            <li>以「.logo.jpg」、「.logo.png」等等作為結尾的檔案，會被用來取代專案頁面上的圖示來作為標誌</li>
+            <li>KML 與 KMZ 檔案會被添加在專案頁面上的地圖</li>
+          </ol>
         project_list_desc_html: |-
           <p class="description">
             您可創建自定義物種分類專案列表並連結至您的專案。
