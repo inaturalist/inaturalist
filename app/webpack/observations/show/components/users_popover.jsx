@@ -1,7 +1,7 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 /* global SITE */
 
 const UsersPopover = ( { keyPrefix, users, contents } ) => {

@@ -9,6 +9,7 @@ import {
   fetchInteractions,
   fetchTrending,
   fetchRare,
+  fetchRecent,
   fetchSimilar,
   showPhotoChooser
 } from "../../shared/ducks/taxon";
@@ -46,6 +47,7 @@ function mapDispatchToProps( dispatch ) {
       case "highlights":
         dispatch( fetchTrending( ) );
         dispatch( fetchRare( ) );
+        dispatch( fetchRecent( ) );
         break;
       case "similar":
         dispatch( fetchSimilar( ) );

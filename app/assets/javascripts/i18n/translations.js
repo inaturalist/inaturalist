@@ -2599,7 +2599,6 @@ I18n.translations["ca"] = {
           "Insect life stage=pupa": "Pupa",
           "Insect life stage=adult": "Adult"
         },
-        "no_trending_desc": "No s'ha observat aquest tàxon el darrer mes",
         "photo_chooser_modal_desc": "Arrossegueu les fotografies aquí des de l'esquerra, o arrossegueu les fotografies aquí per tornar a organitzar.",
         "photo_chooser_modal_explanation": "Tingueu en compte que la pàgina del tàxon mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies escollides per aquest tàxon es mostraran les primeres. La primera foto serà la imatge que s'utilitzi per defecte de tot el lloc.",
         "rare_desc": "Tàxon amenaçat menys observat",
@@ -3325,6 +3324,7 @@ I18n.translations["en"] = {
   "details": "Details",
   "did_you_mean": "Did you mean",
   "disagree_": "Disagree",
+  "discoveries": "Discoveries",
   "do_not_show_this_message_again": "Do not show this message again",
   "doh_something_went_wrong": "D'oh, something went wrong.",
   "done": "Done",
@@ -4121,6 +4121,7 @@ I18n.translations["en"] = {
         "charts_help_history": "This chart shows the number of observations of this taxon by month for\nthe last ten years. Again, it is biased by the number of people\nobserving, but it will show you unusual spikes in observations, and if\nit seems flat or decreasing despite an increasing number of observers,\nthat might suggest a change in abundance.\n",
         "charts_help_other": "We also show seasonality charts for observation annotations.\nAnnotations are a new system for adding metadata to observations using\na controlled vocabulary of terms. So far we are only using \"Life\nStage\" and \"Plant Phenology\" (when the plant is flowering or\nfruiting). We do not yet have a way to add annotations directly, so\nfor now we are converting data from observation fields to annotations.\nIf you can't wait for us to build our annotating system, you can\ncontribute to \"Life Stage\" annotations by adding observation field\nvalues that have any of the following values: Adult, Teneral, Pupa,\nNymph, Larva, Egg, or Juvenile. So in particular, the \"Life Stage\" and\n\"Insect Life Stage\" fields are good. For \"Plant Phenology,\" we're\nlooking at any field with the word \"phenology\" in its name and\n\"flower\" or \"fruit\" in the value, so the \"Flowering Phenology\" field\nis a good one to use.\n",
         "charts_help_seasonality": "This chart shows the number of observations of this taxon grouped by\nmonth. Keep in mind that these are numbers of observations, so they\nare influenced both by when the organism can be observed and when\npeople bother to observe them. So a bird might seem to be very active\nin May, but that could also be due to more people birding in May who\ntend to ignore that species in later months. Similarly, if you see\nmore dragonflies in June than in January, that's probably because we\nhave more people observing in the northern hemisphere than in the\nsouthern hemisphere and not because dragonflies are more active in\nJune, so check the map when considering these charts. It's always a\ngood idea to be skeptical of these charts when there are low numbers\nof observations and/or large discrepancies between the number of\n\"Verifiable\" and \"Research Grade\" observations.\n",
+        "discoveries_desc": "Most recent newly-observed species",
         "frequency": {
           "research": "Research Grade",
           "verifiable": "Verifiable",
@@ -4136,7 +4137,6 @@ I18n.translations["en"] = {
           "Insect life stage=pupa": "Pupa",
           "Insect life stage=adult": "Adult"
         },
-        "no_trending_desc": "Nothing below this taxon observed in the last month",
         "photo_chooser_modal_desc": "Drag photos here from the left, or drag photos here to re-arrange.\n",
         "photo_chooser_modal_explanation": "Note that the taxon page will show photos of this taxon\nand its descendants. The photos chosen for this\ntaxon will show first, though. The first photo will be\nthe default image used across the site.\n",
         "rare_desc": "Least-observed threatened taxa",
@@ -5579,7 +5579,6 @@ I18n.translations["es"] = {
           "Insect life stage=pupa": "Pupa",
           "Insect life stage=adult": "Adulto"
         },
-        "no_trending_desc": "Ninguna observación bajo este taxón en el último mes",
         "photo_chooser_modal_desc": "Arrastre las fotos aquí desde la izquierda, o arrastre las fotos aquí para volver a organizar.",
         "photo_chooser_modal_explanation": "Tenga en cuenta que en la página del taxón se muestran las fotos de este taxón y los de taxones inferiores. Las fotos elegidas para este taxón muestran en primer lugar. La primera foto es \nla imagen por defecto utilizada en todo el sitio.",
         "rare_desc": "Taxones amenazados menos observados",
@@ -9228,7 +9227,6 @@ I18n.translations["fr"] = {
           "Insect life stage=pupa": "Chrysalide",
           "Insect life stage=adult": "Adulte"
         },
-        "no_trending_desc": "Rien d’observé dans le dernier mois concernant ce taxon",
         "photo_chooser_modal_desc": "Faire glisser les photos d’ici vers la gauche, ou les faire glisser ici pour les réarranger.",
         "photo_chooser_modal_explanation": "À noter que la page du taxon affichera les photos de ce taxon\net de ses descendants. Les photos choisies pour ce\ntaxon seront cependant affichées en premier. La première photo sera\ncelle par défaut utilisée sur le site.",
         "rare_desc": "Taxons menacés les moins observés",
@@ -12309,7 +12307,6 @@ I18n.translations["it"] = {
           "Insect life stage=pupa": "Pupa",
           "Insect life stage=adult": "Adulto"
         },
-        "no_trending_desc": "Nulla al di sotto di questo taxon è stato osservato nell'ultimo mese",
         "photo_chooser_modal_desc": "Trascina qui le foto da sinistra, oppure trascinale qui per riordinarle.",
         "photo_chooser_modal_explanation": "Nota che la pagina del taxon mostra le foto di questo taxon\ne dei suoi discendenti. La foto scelta per questo\ntaxon sarà mostrata per prima. La prima foto sarà\nl'immagine predefinita per tutto il sito.",
         "rare_desc": "Taxa minacciati osservati meno frequentemente",
@@ -17151,7 +17148,6 @@ I18n.translations["pt-BR"] = {
           "Insect life stage=pupa": "Pupa",
           "Insect life stage=adult": "Adulto"
         },
-        "no_trending_desc": "Nada abaixo deste táxon foi observado no último mês",
         "photo_chooser_modal_desc": "Arraste as fotos aqui da esquerda, ou arraste as fotos aqui para rearranjar.",
         "photo_chooser_modal_explanation": "Perceba que a página de táxons exibirá fotos deste táxon e de seus descendentes. As fotos escolhidas para este táxon serão exibidas primeiro. A primeira foto registrada será exibida como padrão em todo o site.",
         "rare_desc": "Táxons ameaçados menos observados",
@@ -20338,7 +20334,6 @@ I18n.translations["zh-TW"] = {
           "Insect life stage=pupa": "蛹",
           "Insect life stage=adult": "成體"
         },
-        "no_trending_desc": "在上個月裡此物種分類之下沒有被觀察到的事物",
         "photo_chooser_modal_desc": "從左方拖拉照片於此，或拖拉照片於此來重新排列。",
         "rare_desc": "最少被觀察到生存受威脅的物種分類",
         "rare_in_place_desc_html": "在<a href=\"%{url}\">%{place}</a>最少被觀察到生存受威脅的物種分類群",

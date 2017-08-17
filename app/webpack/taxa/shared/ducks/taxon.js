@@ -13,6 +13,7 @@ const SET_NAMES = "taxa-show/taxon/SET_NAMES";
 const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 const SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 const SET_RARE = "taxa-show/taxon/SET_RARE";
+const SET_RECENT = "taxa-show/taxon/SET_RECENT";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
@@ -52,6 +53,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_RARE:
       newState.rare = action.taxa;
+      break;
+    case SET_RECENT:
+      newState.recent = action.response;
       break;
     case SET_SIMILAR:
       newState.similar = action.results;
@@ -133,6 +137,13 @@ export function setRare( taxa ) {
   return {
     type: SET_RARE,
     taxa
+  };
+}
+
+export function setRecent( response ) {
+  return {
+    type: SET_RECENT,
+    response
   };
 }
 
@@ -318,6 +329,22 @@ export function fetchRare( ) {
     inatjs.observations.speciesCounts( params ).then(
       response =>
         dispatch( setRare( response.results.map( r => r.taxon ) ) ),
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchRecent( ) {
+  return ( dispatch, getState ) => {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      quality_grade: "needs_id,research",
+      rank: "species",
+      category: "improving,leading"
+    } );
+    inatjs.identifications.recent_taxa( params ).then(
+      response => dispatch( setRecent( response ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
       }

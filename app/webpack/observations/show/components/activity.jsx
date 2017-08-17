@@ -3,7 +3,7 @@ import React, { PropTypes } from "react";
 import { Button, Tabs, Tab } from "react-bootstrap";
 import moment from "moment-timezone";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 import ActivityItem from "./activity_item";
 
 class Activity extends React.Component {

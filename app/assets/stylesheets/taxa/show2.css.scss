@@ -4,6 +4,7 @@
 @import "../shared/split_taxon";
 @import "../shared/taxon_photo";
 @import "../shared/record_chooser_popover";
+@import "../shared/observations_grid_item";
 
 #app {
   min-height: 600px;
@@ -1159,4 +1160,12 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 }
 .PlaceChooserPopoverTrigger {
   margin-top: 20px;
+}
+.ObservationsGridItem {
+  .photo {
+    height: 200px;
+  }
+  .controls {
+    text-align: right;
+  }
 }

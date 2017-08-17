@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
 class CommunityIDPopover extends React.Component {

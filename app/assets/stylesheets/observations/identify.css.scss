@@ -1,10 +1,10 @@
-@import "identify/observations_grid_item";
 @import "identify/observation_modal";
 @import "identify/progress_chart";
 @import "identify/filters_button";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 @import "../colors";
+@import "../shared/observations_grid_item";
 @import "../shared/split_taxon";
 @import "../shared/taxon_photo";
 @import "../shared/loading_spinner";
