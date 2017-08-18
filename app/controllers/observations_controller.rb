@@ -3084,13 +3084,14 @@ class ObservationsController < ApplicationController
 
   def ensure_sounds_are_local_sounds( sounds )
     sounds.map { |sound|
-      if sound.is_a?( LocalSound )
+      local_sound = if sound.is_a?( LocalSound )
         sound
       elsif sound.new_record?
-        sound.to_local_sound
+        local_sound = sound.to_local_sound
       else
-        sound.to_local_sound!
+        local_sound = sound.to_local_sound!
       end
+      local_sound.valid? ? local_sound : sound
     }.compact
   end
 
