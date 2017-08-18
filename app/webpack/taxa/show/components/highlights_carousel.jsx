@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react";
 import _ from "lodash";
-import moment from "moment";
 import { Row, Col } from "react-bootstrap";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import Carousel from "./carousel";
@@ -12,7 +11,10 @@ const HiglightsCarousel = ( {
   url,
   taxa,
   observations,
-  showNewTaxon
+  showNewTaxon,
+  captionForTaxon,
+  captionForObservation,
+  urlForTaxon
 } ) => {
   const photosPerSlide = 4;
   const columnWidth = 3;
@@ -41,11 +43,11 @@ const HiglightsCarousel = ( {
         <Row key={`${keyBase}-${i}`}>
           {
             chunk.map( taxon => (
-              <Col xs={columnWidth} key={`${keyBase}-item-${taxon.id}`}>
+              <Col xs={ columnWidth } key={ `${keyBase}-item-${taxon.id}` }>
                 <TaxonThumbnail
-                  taxon={taxon}
-                  height={thumbnailHeight}
-                  truncate={thumbnailTruncation}
+                  taxon={ taxon }
+                  height={ thumbnailHeight }
+                  truncate={ thumbnailTruncation }
                   onClick={ e => {
                     if ( !showNewTaxon ) return true;
                     if ( e.metaKey || e.ctrlKey ) return true;
@@ -53,6 +55,8 @@ const HiglightsCarousel = ( {
                     showNewTaxon( taxon );
                     return false;
                   } }
+                  captionForTaxon={ captionForTaxon }
+                  urlForTaxon={ urlForTaxon }
                 />
               </Col>
             ) )
@@ -69,9 +73,7 @@ const HiglightsCarousel = ( {
               <Col xs={columnWidth} key={`${keyBase}-item-${obs.id}`}>
                 <ObservationsGridItem
                   observation={ obs }
-                  controls={
-                    <span className="text-muted">{ moment( obs.created_at ).fromNow( ) }</span>
-                  }
+                  controls={ captionForObservation ? captionForObservation( obs ) : null }
                 />
               </Col>
             ) )
@@ -97,7 +99,10 @@ HiglightsCarousel.propTypes = {
   url: PropTypes.string,
   taxa: PropTypes.array,
   observations: PropTypes.array,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  captionForObservation: PropTypes.func,
+  captionForTaxon: PropTypes.func,
+  urlForTaxon: PropTypes.func
 };
 
 export default HiglightsCarousel;

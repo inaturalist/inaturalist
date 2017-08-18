@@ -945,6 +945,21 @@ $nav-btn-dim: 40px;
   cursor: pointer;
 }
 
+.TaxonThumbnail {
+  .SplitTaxon {
+    display: block;
+    min-height: 42px;
+    margin-bottom: 10px;
+  }
+  .discovery-caption {
+    display: block;
+    text-align: right;
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
 }

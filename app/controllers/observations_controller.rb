@@ -348,7 +348,7 @@ class ObservationsController < ApplicationController
 
         @observer_provider_authorizations = @observation.user.provider_authorizations
         @shareable_image_url = if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/}
-          FakeView.image_url(photo.best_url(:original))
+          FakeView.image_url(photo.best_url(:large))
         else
           FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
         end

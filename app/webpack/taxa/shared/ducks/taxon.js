@@ -341,7 +341,8 @@ export function fetchRecent( ) {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
       quality_grade: "needs_id,research",
       rank: "species",
-      category: "improving,leading"
+      category: "improving,leading",
+      per_page: 12
     } );
     inatjs.identifications.recent_taxa( params ).then(
       response => dispatch( setRecent( response ) ),
