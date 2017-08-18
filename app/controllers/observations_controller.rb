@@ -263,6 +263,23 @@ class ObservationsController < ApplicationController
         end
         
         user_viewed_updates if logged_in?
+        @observer_provider_authorizations = @observation.user.provider_authorizations
+        @shareable_image_url = if !@observation.photos.blank? && photo = @observation.photos.detect{ |p| p.medium_url =~ /^http/ }
+          FakeView.image_url( photo.best_url(:original) )
+        else
+          FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
+        end
+        @shareable_title = if @observation.taxon
+          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
+            "#{comname} (#{@observation.taxon.name})"
+          else
+            @observation.taxon.name
+          end
+        else
+          I18n.t( "something" )
+        end
+        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
+        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
 
         # if viewing_new_obs_show?
         @skip_application_js = true
@@ -345,24 +362,6 @@ class ObservationsController < ApplicationController
           @conservation_status ||= ConservationStatus.where(:taxon_id => @observation.taxon).where("place_id IS NULL").
             where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
         end
-
-        @observer_provider_authorizations = @observation.user.provider_authorizations
-        @shareable_image_url = if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/}
-          FakeView.image_url(photo.best_url(:original))
-        else
-          FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
-        end
-        @shareable_title = if @observation.taxon
-          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
-            "#{comname} (#{@observation.taxon.name})"
-          else
-            @observation.taxon.name
-          end
-        else
-          I18n.t( "something" )
-        end
-        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
-        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
 
         if params[:test] == "idcats" && logged_in?
           leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
