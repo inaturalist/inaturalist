@@ -8,7 +8,7 @@ import {
   fetchNames,
   fetchInteractions,
   fetchTrending,
-  fetchRare,
+  fetchWanted,
   fetchRecent,
   fetchSimilar,
   showPhotoChooser
@@ -46,7 +46,7 @@ function mapDispatchToProps( dispatch ) {
         break;
       case "highlights":
         dispatch( fetchTrending( ) );
-        dispatch( fetchRare( ) );
+        dispatch( fetchWanted( ) );
         dispatch( fetchRecent( ) );
         break;
       case "similar":

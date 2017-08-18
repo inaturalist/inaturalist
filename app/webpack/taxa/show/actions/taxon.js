@@ -9,7 +9,7 @@ import {
   fetchLinks,
   fetchInteractions,
   fetchTrending,
-  fetchRare,
+  fetchWanted,
   fetchRecent,
   fetchSimilar
 } from "../../shared/ducks/taxon";
@@ -60,7 +60,8 @@ export function fetchTaxonAssociates( t ) {
         break;
       case "highlights":
         dispatch( fetchTrending( ) );
-        dispatch( fetchRare( ) );
+        // dispatch( fetchRare( ) );
+        dispatch( fetchWanted( ) );
         dispatch( fetchRecent( ) );
         break;
       case "similar":

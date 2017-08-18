@@ -6,7 +6,7 @@ import HighlightsCarousel from "./highlights_carousel";
 
 const HighlightsTab = ( {
   trendingTaxa,
-  rareTaxa,
+  wantedTaxa,
   discoveries,
   trendingUrl,
   placeName,
@@ -32,23 +32,6 @@ const HighlightsTab = ( {
           }
           taxa={ trendingTaxa }
         />
-        { rareTaxa && rareTaxa.length > 0 ? (
-          <HighlightsCarousel
-            title={ I18n.t( "rare" ) }
-            description={
-              placeName ?
-                <span
-                  dangerouslySetInnerHTML={{ __html: I18n.t(
-                    "views.taxa.show.rare_in_place_desc_html",
-                    { place: placeName, url: placeUrl }
-                  ) }}
-                ></span>
-                :
-                I18n.t( "views.taxa.show.rare_desc" )
-            }
-            taxa={ rareTaxa }
-          />
-        ) : null }
         <HighlightsCarousel
           title={ I18n.t( "discoveries" ) }
           taxa={ discoveries ? discoveries.map( d => d.taxon ) : null }
@@ -86,6 +69,11 @@ const HighlightsTab = ( {
             return `/observations/${discovery.identification.observation.id}`;
           } }
         />
+        <HighlightsCarousel
+          title={ I18n.t( "wanted" ) }
+          description={ I18n.t( "views.taxa.show.wanted_desc" ) }
+          taxa={ wantedTaxa }
+        />
       </Col>
     </Row>
   </Grid>
@@ -95,7 +83,7 @@ HighlightsTab.propTypes = {
   placeName: PropTypes.string,
   placeUrl: PropTypes.string,
   trendingTaxa: PropTypes.array,
-  rareTaxa: PropTypes.array,
+  wantedTaxa: PropTypes.array,
   discoveries: PropTypes.array,
   trendingUrl: PropTypes.string,
   showNewTaxon: PropTypes.func

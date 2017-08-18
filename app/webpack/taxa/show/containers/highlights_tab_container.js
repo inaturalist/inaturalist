@@ -20,7 +20,7 @@ function mapStateToProps( state ) {
   }
   return {
     trendingTaxa: state.taxon.trending ? state.taxon.trending.slice( 0, 20 ) : null,
-    rareTaxa: state.taxon.rare ? state.taxon.rare.slice( 0, 20 ) : null,
+    wantedTaxa: state.taxon.wanted ? state.taxon.wanted.slice( 0, 20 ) : null,
     discoveries,
     trendingUrl: `/observations?${querystring.stringify( trendingParams )}`,
     placeName: state.config.chosenPlace ? state.config.chosenPlace.display_name : null,

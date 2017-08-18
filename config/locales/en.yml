@@ -3722,6 +3722,7 @@ en:
   want_to_add_one: Want to add one?
   want_to_show_off_some_of_your_favorite_taxa: Want to show off some of your favorite taxa here?
   want_to_test_a_new_version_of_this_page: Want to test a new version of this page?
+  wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_care_privacy: We Care About Your Privacy!
@@ -5011,11 +5012,12 @@ en:
           looking at any field with the word "phenology" in its name and
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
-        discoveries_desc: "Species that have been identified for the first time on this site."
+        discoveries_desc: "Most recent newly-identified species in this taxon"
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
         rare_desc: Least-observed threatened taxa
         rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
+        wanted_desc: Species in this taxon that have not been observed yet.
         no_trending_desc: Nothing below this taxon observed in the last month
         frequency:
           research: Research Grade

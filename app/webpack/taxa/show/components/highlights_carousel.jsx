@@ -19,13 +19,16 @@ const HiglightsCarousel = ( {
   const photosPerSlide = 4;
   const columnWidth = 3;
   const thumbnailHeight = 200;
-  const thumbnailTruncation = 50;
+  const thumbnailTruncation = 27;
   const keyBase = _.snakeCase( title );
   if ( !taxa && !observations ) {
     return (
-      <p className="text-muted text-center">
-        <i className="fa fa-refresh fa-spin"></i> { I18n.t( "loading" ) }
-      </p>
+      <div>
+        <h2>{ title }</h2>
+        <p className="text-muted text-center">
+          <i className="fa fa-refresh fa-spin"></i> { I18n.t( "loading" ) }
+        </p>
+      </div>
     );
   }
   let items;

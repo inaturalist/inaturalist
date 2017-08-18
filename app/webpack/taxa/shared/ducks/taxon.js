@@ -14,6 +14,7 @@ const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 const SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 const SET_RARE = "taxa-show/taxon/SET_RARE";
 const SET_RECENT = "taxa-show/taxon/SET_RECENT";
+const SET_WANTED = "taxa-show/taxon/SET_WANTED";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
@@ -59,6 +60,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_SIMILAR:
       newState.similar = action.results;
+      break;
+    case SET_WANTED:
+      newState.wanted = action.taxa;
       break;
     case SHOW_PHOTO_CHOOSER:
       newState.photoChooserVisible = true;
@@ -144,6 +148,13 @@ export function setRecent( response ) {
   return {
     type: SET_RECENT,
     response
+  };
+}
+
+export function setWanted( taxa ) {
+  return {
+    type: SET_WANTED,
+    taxa
   };
 }
 
@@ -346,6 +357,21 @@ export function fetchRecent( ) {
     } );
     inatjs.identifications.recent_taxa( params ).then(
       response => dispatch( setRecent( response ) ),
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchWanted( ) {
+  return ( dispatch, getState ) => {
+    const params = {
+      id: getState( ).taxon.taxon.id,
+      per_page: 12
+    };
+    inatjs.taxa.wanted( params ).then(
+      response => dispatch( setWanted( response.results ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
       }

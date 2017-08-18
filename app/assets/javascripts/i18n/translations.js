@@ -2344,7 +2344,6 @@ I18n.translations["ca"] = {
     "form": "forma",
     "leaves": "fulles"
   },
-  "rare": "Rar",
   "ray_finned_fishes": "peixos ossis",
   "recent_evidence_of_organism": "Evidència recent d'un organisme",
   "recent_observations": "Observacions recents",
@@ -2601,8 +2600,6 @@ I18n.translations["ca"] = {
         },
         "photo_chooser_modal_desc": "Arrossegueu les fotografies aquí des de l'esquerra, o arrossegueu les fotografies aquí per tornar a organitzar.",
         "photo_chooser_modal_explanation": "Tingueu en compte que la pàgina del tàxon mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies escollides per aquest tàxon es mostraran les primeres. La primera foto serà la imatge que s'utilitzi per defecte de tot el lloc.",
-        "rare_desc": "Tàxon amenaçat menys observat",
-        "rare_in_place_desc_html": "Tàxon amenaçat menys observa a <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Tàxons més observats el darrer mes",
         "trending_in_place_desc_html": "Tàxom més observat el darrer mes a <a href=\"%{url}\">%{place}</a>"
       }
@@ -3877,7 +3874,6 @@ I18n.translations["en"] = {
     "form": "form",
     "leaves": "leaves"
   },
-  "rare": "Rare",
   "ray_finned_fishes": "ray-finned fishes",
   "recent_evidence_of_organism": "Recent evidence of an organism",
   "recent_observations": "Recent observations",
@@ -4121,7 +4117,7 @@ I18n.translations["en"] = {
         "charts_help_history": "This chart shows the number of observations of this taxon by month for\nthe last ten years. Again, it is biased by the number of people\nobserving, but it will show you unusual spikes in observations, and if\nit seems flat or decreasing despite an increasing number of observers,\nthat might suggest a change in abundance.\n",
         "charts_help_other": "We also show seasonality charts for observation annotations.\nAnnotations are a new system for adding metadata to observations using\na controlled vocabulary of terms. So far we are only using \"Life\nStage\" and \"Plant Phenology\" (when the plant is flowering or\nfruiting). We do not yet have a way to add annotations directly, so\nfor now we are converting data from observation fields to annotations.\nIf you can't wait for us to build our annotating system, you can\ncontribute to \"Life Stage\" annotations by adding observation field\nvalues that have any of the following values: Adult, Teneral, Pupa,\nNymph, Larva, Egg, or Juvenile. So in particular, the \"Life Stage\" and\n\"Insect Life Stage\" fields are good. For \"Plant Phenology,\" we're\nlooking at any field with the word \"phenology\" in its name and\n\"flower\" or \"fruit\" in the value, so the \"Flowering Phenology\" field\nis a good one to use.\n",
         "charts_help_seasonality": "This chart shows the number of observations of this taxon grouped by\nmonth. Keep in mind that these are numbers of observations, so they\nare influenced both by when the organism can be observed and when\npeople bother to observe them. So a bird might seem to be very active\nin May, but that could also be due to more people birding in May who\ntend to ignore that species in later months. Similarly, if you see\nmore dragonflies in June than in January, that's probably because we\nhave more people observing in the northern hemisphere than in the\nsouthern hemisphere and not because dragonflies are more active in\nJune, so check the map when considering these charts. It's always a\ngood idea to be skeptical of these charts when there are low numbers\nof observations and/or large discrepancies between the number of\n\"Verifiable\" and \"Research Grade\" observations.\n",
-        "discoveries_desc": "Species that have been identified for the first time on this site.",
+        "discoveries_desc": "Most recent newly-identified species in this taxon",
         "frequency": {
           "research": "Research Grade",
           "verifiable": "Verifiable",
@@ -4139,10 +4135,9 @@ I18n.translations["en"] = {
         },
         "photo_chooser_modal_desc": "Drag photos here from the left, or drag photos here to re-arrange.\n",
         "photo_chooser_modal_explanation": "Note that the taxon page will show photos of this taxon\nand its descendants. The photos chosen for this\ntaxon will show first, though. The first photo will be\nthe default image used across the site.\n",
-        "rare_desc": "Least-observed threatened taxa",
-        "rare_in_place_desc_html": "Least-observed threatened taxa in <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Most-observed taxa in the last month",
-        "trending_in_place_desc_html": "Most-observed taxa in the last month in <a href=\"%{url}\">%{place}</a>"
+        "trending_in_place_desc_html": "Most-observed taxa in the last month in <a href=\"%{url}\">%{place}</a>",
+        "wanted_desc": "Species in this taxon that have not been observed yet."
       }
     },
     "users": {
@@ -4153,6 +4148,7 @@ I18n.translations["en"] = {
   },
   "visually_similar": "Visually Similar",
   "vulnerable": "vulnerable",
+  "wanted": "Wanted",
   "we_have_no_conservation_status_for_this_taxon": "We have no conservation status for this taxon",
   "we_have_no_establishment_data_for_this_taxon": "We have no establishment data for this taxon",
   "white": "white",
@@ -5322,7 +5318,6 @@ I18n.translations["es"] = {
     "subsection": "subsección",
     "leaves": "hojas"
   },
-  "rare": "Escaso",
   "ray_finned_fishes": "peces con aletas radiadas",
   "recent_evidence_of_organism": "Evidencia reciente de un organismo",
   "recent_observations": "Observaciones recientes",
@@ -5581,8 +5576,6 @@ I18n.translations["es"] = {
         },
         "photo_chooser_modal_desc": "Arrastre las fotos aquí desde la izquierda, o arrastre las fotos aquí para volver a organizar.",
         "photo_chooser_modal_explanation": "Tenga en cuenta que en la página del taxón se muestran las fotos de este taxón y los de taxones inferiores. Las fotos elegidas para este taxón muestran en primer lugar. La primera foto es \nla imagen por defecto utilizada en todo el sitio.",
-        "rare_desc": "Taxones amenazados menos observados",
-        "rare_in_place_desc_html": "Taxones amenazados menos observados en <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Taxones más observados en el último mes",
         "trending_in_place_desc_html": "Taxones más observados en el último mes en <a href=\"%{url}\">%{place}</a>"
       }
@@ -7959,7 +7952,6 @@ I18n.translations["fi"] = {
     "form": "muoto",
     "leaves": "lehdet"
   },
-  "rare": "Harvinainen",
   "ray_finned_fishes": "viuhkaeväiset",
   "red": "punainen",
   "remove_from_project": "Poista projektista",
@@ -8970,7 +8962,6 @@ I18n.translations["fr"] = {
     "form": "forme",
     "leaves": "feuilles"
   },
-  "rare": "Rare",
   "ray_finned_fishes": "poissons à nageoires rayonnées",
   "recent_evidence_of_organism": "Preuve récente d’un organisme",
   "recent_observations": "Observations récentes",
@@ -9229,8 +9220,6 @@ I18n.translations["fr"] = {
         },
         "photo_chooser_modal_desc": "Faire glisser les photos d’ici vers la gauche, ou les faire glisser ici pour les réarranger.",
         "photo_chooser_modal_explanation": "À noter que la page du taxon affichera les photos de ce taxon\net de ses descendants. Les photos choisies pour ce\ntaxon seront cependant affichées en premier. La première photo sera\ncelle par défaut utilisée sur le site.",
-        "rare_desc": "Taxons menacés les moins observés",
-        "rare_in_place_desc_html": "Taxons menacés les moins observés à <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Taxons les plus observés lors du dernier mois",
         "trending_in_place_desc_html": "Taxons les plus observés dans le dernier mois à <a href=\"%{url}\">%{place}</a>"
       }
@@ -10920,7 +10909,6 @@ I18n.translations["id"] = {
     "form": "bentuk",
     "leaves": "meninggalkan"
   },
-  "rare": "Langka",
   "ray_finned_fishes": "ikan bersirip cahaya",
   "recent_observations": "Pengamatan yang baru",
   "red": "merah",
@@ -12050,7 +12038,6 @@ I18n.translations["it"] = {
     "form": "forma",
     "leaves": "foglie"
   },
-  "rare": "Raro",
   "ray_finned_fishes": "Attinopterigi",
   "recent_evidence_of_organism": "Evidenze recenti della presenza dell'organismo",
   "recent_observations": "Osservazioni recenti",
@@ -12309,8 +12296,6 @@ I18n.translations["it"] = {
         },
         "photo_chooser_modal_desc": "Trascina qui le foto da sinistra, oppure trascinale qui per riordinarle.",
         "photo_chooser_modal_explanation": "Nota che la pagina del taxon mostra le foto di questo taxon\ne dei suoi discendenti. La foto scelta per questo\ntaxon sarà mostrata per prima. La prima foto sarà\nl'immagine predefinita per tutto il sito.",
-        "rare_desc": "Taxa minacciati osservati meno frequentemente",
-        "rare_in_place_desc_html": "Taxa minacciati osservati meno frequentemente in <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Taxa più osservati nell'ultimo mese",
         "trending_in_place_desc_html": "Taxa più osservati nell'ultimo mese in <a href=\"%{url}\">%{place}</a>"
       }
@@ -13209,7 +13194,6 @@ I18n.translations["ja"] = {
     "form": "品種",
     "leaves": "末端ノード"
   },
-  "rare": "珍しい",
   "ray_finned_fishes": "条鰭綱",
   "recent_observations": "最新の観察記録",
   "red": "赤",
@@ -16891,7 +16875,6 @@ I18n.translations["pt-BR"] = {
     "form": "Formulário",
     "leaves": "folhas"
   },
-  "rare": "Raro",
   "ray_finned_fishes": "Actinopterygii, grupo de peixes de barbatanas com raios.",
   "recent_evidence_of_organism": "Evidência recente de um organismo",
   "recent_observations": "Observações recentes",
@@ -17150,8 +17133,6 @@ I18n.translations["pt-BR"] = {
         },
         "photo_chooser_modal_desc": "Arraste as fotos aqui da esquerda, ou arraste as fotos aqui para rearranjar.",
         "photo_chooser_modal_explanation": "Perceba que a página de táxons exibirá fotos deste táxon e de seus descendentes. As fotos escolhidas para este táxon serão exibidas primeiro. A primeira foto registrada será exibida como padrão em todo o site.",
-        "rare_desc": "Táxons ameaçados menos observados",
-        "rare_in_place_desc_html": "Táxons ameaçados menos observados <a href=\"%{url}\">%{place}</a>",
         "trending_desc": "Táxons mais observados no último mês",
         "trending_in_place_desc_html": "Táxons mais observados no último mês <a href=\"%{url}\">%{place}</a>"
       }
@@ -18839,7 +18820,6 @@ I18n.translations["zh-CN"] = {
     "form": "型",
     "leaves": "叶片"
   },
-  "rare": "罕见",
   "recent_observations": "最新观察",
   "red": "红色",
   "redo_search_in_map": "在地图中重新搜索",
@@ -20085,7 +20065,6 @@ I18n.translations["zh-TW"] = {
     "form": "型",
     "leaves": "葉"
   },
-  "rare": "稀有",
   "ray_finned_fishes": "輻鰭魚類",
   "recent_evidence_of_organism": "近期的生物證據",
   "recent_observations": "最近觀察",
@@ -20335,8 +20314,6 @@ I18n.translations["zh-TW"] = {
           "Insect life stage=adult": "成體"
         },
         "photo_chooser_modal_desc": "從左方拖拉照片於此，或拖拉照片於此來重新排列。",
-        "rare_desc": "最少被觀察到生存受威脅的物種分類",
-        "rare_in_place_desc_html": "在<a href=\"%{url}\">%{place}</a>最少被觀察到生存受威脅的物種分類群",
         "trending_desc": "在最近一個月的最多觀察物種分類群",
         "trending_in_place_desc_html": "上個月在<a href=\"%{url}\">%{place}</a>最多觀察到物種分類"
       }
