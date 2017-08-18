@@ -126,7 +126,7 @@ class Sound < ActiveRecord::Base
       attribution: attribution,
       native_sound_id: native_sound_id,
       secret_token: try(:secret_token),
-      file_url: is_a?( LocalSound ) ? FakeView.uri_join( FakeView.root_url, file.url ) : nil,
+      file_url: is_a?( LocalSound ) ? FakeView.uri_join( Site.default.url, file.url ) : nil,
       file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
       subtype: subtype
     }

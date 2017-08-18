@@ -155,15 +155,30 @@ class ObservationModal extends React.Component {
     }
     let sounds = null;
     if ( observation.sounds && observation.sounds.length > 0 ) {
-      sounds = observation.sounds.map( s => (
-        <iframe
-          width="100%"
-          height="100"
-          scrolling="no"
-          frameBorder="no"
-          src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
-        ></iframe>
-      ) );
+      sounds = observation.sounds.map( s => {
+        if ( s.subtype === "SoundcloudSound" || !s.file_url ) {
+          return (
+            <iframe
+              width="100%"
+              height="100"
+              scrolling="no"
+              frameBorder="no"
+              src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
+            ></iframe>
+          );
+        }
+        return (
+          <audio controls preload="none">
+            <source src={ s.file_url } type={ s.file_content_type } />
+            { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
+          </audio>
+        );
+      } );
+      sounds = (
+        <div className="sounds">
+          { sounds }
+        </div>
+      );
     }
 
     const scrollSidebarToForm = ( form ) => {
@@ -293,7 +308,7 @@ class ObservationModal extends React.Component {
                 />
               ) }
             </div>
-            <div className={( photos && sounds ) ? "photos sounds" : "obs-media"}>
+            <div className="obs-media">
               { photos }
               { sounds }
             </div>
