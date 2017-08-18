@@ -4,7 +4,14 @@ import {
   fetchTaxonChange,
   fetchNames,
   fetchTerms,
-  fetchSpecies
+  fetchSpecies,
+  fetchDescription,
+  fetchLinks,
+  fetchInteractions,
+  fetchTrending,
+  fetchRare,
+  fetchRecent,
+  fetchSimilar
 } from "../../shared/ducks/taxon";
 import {
   fetchMonthFrequency,
@@ -18,7 +25,8 @@ export function fetchTaxonAssociates( t ) {
   return ( dispatch, getState ) => {
     dispatch( resetLeadersState( ) );
     dispatch( resetObservationsState( ) );
-    const taxon = t || getState( ).taxon.taxon;
+    const s = getState( );
+    const taxon = t || s.taxon.taxon;
     if ( taxon.taxon_changes_count ) {
       dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
       if ( taxon.taxon_changes_count > 0 ) {
@@ -38,6 +46,28 @@ export function fetchTaxonAssociates( t ) {
     } );
     if ( taxon.complete_species_count ) {
       dispatch( fetchSpecies( ) );
+    }
+    switch ( s.config.chosenTab ) {
+      case "articles":
+        dispatch( fetchDescription( ) );
+        dispatch( fetchLinks( ) );
+        break;
+      case "taxonomy":
+        dispatch( fetchNames( ) );
+        break;
+      case "interactions":
+        dispatch( fetchInteractions( ) );
+        break;
+      case "highlights":
+        dispatch( fetchTrending( ) );
+        dispatch( fetchRare( ) );
+        dispatch( fetchRecent( ) );
+        break;
+      case "similar":
+        dispatch( fetchSimilar( ) );
+        break;
+      default:
+        // it's cool, you probably have what you need
     }
   };
 }

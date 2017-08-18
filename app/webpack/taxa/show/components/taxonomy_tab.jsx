@@ -33,7 +33,7 @@ const TaxonomyTab = ( {
   }
   const renderTaxonomy = taxa => (
     <ul className="plain taxonomy">
-      { _.sortBy( taxa, t => t.name ).map( t => {
+      { ( _.sortBy( taxa, t => t.name ) || [] ).map( t => {
         let className = "";
         const isRoot = t.id === tree[0].id;
         const isTaxon = t.id === taxon.id;

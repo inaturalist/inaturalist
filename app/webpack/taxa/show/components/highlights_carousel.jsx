@@ -93,7 +93,7 @@ const HiglightsCarousel = ( {
 
 HiglightsCarousel.propTypes = {
   title: PropTypes.string,
-  description: PropTypes.string,
+  description: PropTypes.oneOfType( [PropTypes.string, PropTypes.element] ),
   url: PropTypes.string,
   taxa: PropTypes.array,
   observations: PropTypes.array,

@@ -17,7 +17,6 @@ class TaxonPageTabs extends React.Component {
     $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
       this.props.choseTab( e.target.hash.match( /\#(.+)\-tab/ )[1] );
     } );
-    this.props.loadDataForTab( this.props.chosenTab );
   }
   componentDidUpdate( prevProps ) {
     const prevTaxonId = prevProps.taxon ? prevProps.taxon.id : null;
