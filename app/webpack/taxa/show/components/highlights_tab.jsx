@@ -60,7 +60,6 @@ const HighlightsTab = ( {
             );
           } }
           description={ I18n.t( "views.taxa.show.discoveries_desc" ) }
-          showNewTaxon={ showNewTaxon }
           urlForTaxon={ taxon => {
             const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
             if ( !discoveries ) {
