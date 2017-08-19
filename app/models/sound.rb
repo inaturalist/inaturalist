@@ -128,6 +128,7 @@ class Sound < ActiveRecord::Base
       secret_token: try(:secret_token),
       file_url: is_a?( LocalSound ) ? FakeView.uri_join( Site.default.url, file.url ) : nil,
       file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
+      play_local: is_a?( LocalSound ) && ( subtype.blank? || ( native_response && native_response["sharing"] == "private") ),
       subtype: subtype
     }
   end
