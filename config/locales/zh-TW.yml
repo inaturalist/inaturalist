@@ -548,6 +548,8 @@ zh-TW:
   body: 正文
   bounding_box: 邊框
   breadcrumbs: 麵包屑導航
+  breadcrumbs_description: 這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要；請確認有包含到，另外請記住所允許的最大寬度是
+    950 像素
   brief_caption: 簡要說明
   brief_description_on_what_you_observed: 您所觀察到的簡要描述
   brief_description_of_what_you_saw: 您所看到的簡要描述
@@ -952,6 +954,8 @@ zh-TW:
   delete_photo: 刪除照片
   delete_project: 刪除此專案
   delete_selected: 刪除所選
+  delete_taxon_and_merge_most_data_html: 刪除<i>%{taxon}</i>和合併資料多數內容至其它物種分類。使用此工具在<strong>移除重複內容物種分類群</strong>上。若您想要移除過時的同種異名，請先創建一個物種分類對換。<strong>請留意！</strong>刪除物種分類群可能會造成嚴重後果，請查看<a
+    href="%{curator_url}">策展人指南</a>來獲得更多訊息。
   delete_this_name: 刪除此名稱
   delete_user: 刪除用戶
   delete_your_account: 刪除您的帳號
@@ -1472,6 +1476,7 @@ zh-TW:
   inaturalist_is_catching_some_zs: '%{site_name} 正在獲取一些 Zs'
   inaturalist_observations_by: '%{site_name} &#58;由 %{login} 作出的觀察'
   inaturalist_places: '%{site_name} 地點'
+  inaturalist_places_are_way_record_what_lives_where: '%{site_name} 是個用來記錄生物居於何處的地方。如果您正尋找著某個特定物種，您將會了解要在何處搜尋。任一地點皆擁有清單；來記錄出現於該地點的所有物種，這在您查找特定地點裡的事物時很有幫助。'
   info: 資訊
   input_taxon: 輸入物種分類
   insects: 昆蟲
@@ -2442,6 +2447,7 @@ zh-TW:
   place_name: 地名
   place_notes: 地點註釋
   place_subscription: 地點訂閱
+  place_too_big_for_check_list: 此地點對於清單來說過大。因為計算清單狀態相當花代價，除非是由網站管理員所添加；不然我們不允許用在較大的地點上。然而您仍可使用此地點在專案邊界以及觀察查詢上。
   place_type_name: 地點類型名稱
   place_updated: 地點已更新！
   placement: 佈置
@@ -3821,6 +3827,8 @@ zh-TW:
         reuse_desc: 您可以複製此物種分類至其它指南。若您是此指南的編者之一則可複製任何內容；若不是則僅能複製具授權的內容。
     help:
       index:
+        welcome_message_html: 嗨。如果您剛開始使用 %{site_name}，請查看我們的<a href="%{url}">%{getting_started}</a>指南來觀看網站功能。如果您有關於網站方面的問題，請詳見下方的常見問題。若您還是有不了解的地方，請<a
+          href="%{feedback_url}">發佈問題到我們的意見回饋群組</a>。
         what_is_inaturalist?: 什麼是 %{site_name}？
         who_is_behind_inaturalist?: 誰在 %{site_name} 之下？
         what_technologies_does_the_project_use?: 專案用了什麼技術和資料來源？
