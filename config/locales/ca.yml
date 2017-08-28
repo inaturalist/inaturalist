@@ -237,15 +237,18 @@ ca:
   add_photos: Afegiu fotos
   add_photos_to_this_observation: Afegiu fotos a aquesta observació
   add_place: Afegiu un lloc
+  add_plant_phenology_budding_annotation: 'Afegiu nota "Fenologia de la planta: Gemmació"'
   add_plant_phenology_flowering_annotation: 'Afegiu nota "Fenologia de la planta:
     Floració"'
   add_plant_phenology_fruiting_annotation: 'Afegiu nota "Fenologia de la planta: Fructificació"'
   add_life_stage_adult_annotation: 'Afegiu nota "Estat del Cicle biològic: Adult"'
   add_life_stage_teneral_annotation: 'Afegiu nota "Estat del Cicle biològic: Imago
     tendre"'
+  add_life_stage_subimago_annotation: 'Afegiu nota "Estat del Cicle biològic: Subimago"'
   add_life_stage_pupa_annotation: 'Afegiu nota "Estat del Cicle biològic: Pupa"'
   add_life_stage_nymph_annotation: 'Afegiu nota "Estat del Cicle biològic: Nimfa"'
   add_life_stage_larva_annotation: 'Afegiu nota "Estat del Cicle biològic: Larva"'
+  add_life_stage_juvenile_annotation: 'Afegiu nota "Estat del Cicle biològic: Juvenil"'
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
   add_sex_female_annotation: 'Afegiu nota "Sexe: Femella"'
@@ -800,6 +803,7 @@ ca:
     de seleccionar imatges que <em>mostrin característiques de diagnòstic</em> i <em>
     que es vegin bé com a icones</em>.  La <em>primera apareix per defecte</em>.
   chose_columns: Escolliu les columnes
+  choose_files: Escolliu arxius
   choose_files_from_your_computer: seleccioneu l'arxiu al vostre ordinador.
   choose_from_your_lists: Seleccioneu de les vostres llistes
   choose_good_default_photos: seleccioneu bones fotos per defecte del grup de fotos
@@ -932,11 +936,13 @@ ca:
     male: Mascle
     female: Femella
     plant_phenology: Fenologia de la planta
+    budding: Gemmació
     flowering: Floració
     fruiting: Fructificació
     life_stage: Etapa biològica
     adult: Adult
     teneral: Imago tendre
+    subimago: Subimago
     pupa: Pupa
     nymph: Nimfa
     larva: Larva
@@ -1182,6 +1188,8 @@ ca:
   draft_: Esborrany
   draft_saved: Esborrany desat!
   drafts: Esborranys
+  drag_and_drop_some_photos_or_sounds: Arrossegueu i deseu algunes fotos o sons
+  duplicate_verb: Duplicat
   each_place_displays_all_species_inat_knows: Cada pàgina de lloc mostra totes les
     espècies que %{site_name} coneix d'aquest lloc, i inclou informació de l’abundància,
     l’estat de conservació i especifica qui la va observar per primera vegada en aquest
@@ -2222,6 +2230,7 @@ ca:
   near: a prop
   near_threatened: gairebé amenaçat
   nearby: Propera
+  nearby_observations_: Observacions properes
   nearby_observations: Observacions properes
   need_id_help?: Necessiteu ajuda amb la ID?
   needs_id: necessita ID
@@ -2450,6 +2459,7 @@ ca:
     "ha de ser amfibi" i "ha de ser rèptil", el projecte acceptarà les observacions
     d'amfibis O rèptils.
   observation_was_deleted: L'observació es va esborrar.
+  observation_without_media: Observació sense imatges o sons
   observation_would_like_some_help: '%{user} necessita una mica d''ajuda per identificar
     aquest element!'
   observations: Observacions
@@ -2491,6 +2501,7 @@ ca:
   observations_obscured: Observacions (enfosquides)
   observations_observed_this_month: Les observacions <em>realitzades</em> aquest mes
     no s'afegeixen al mes en curs. Sortiu i feu més observacions!
+  observations_of_relatives: Observacions de relacionats
   observations_of_taxon: Observacions de %{taxon_name}
   observations_on_inat_check_list: observacions a %{site_name}. Els llocs amb llista
     de comprovació que han estat confirmats tenen almenys 1 observació confirmada
@@ -4454,6 +4465,8 @@ ca:
     Si us plau, ingresseu per continuar.
   your_activation_code_was_missing: El vostre codi d'activació s'ha perdut. Si us
     plau, accediu a l'enllaç des del correu electrònic
+  your_browser_does_not_support_the_audio_element: El vostre navegador no suporta
+    l'element d'àudio.
   your_coarser_id: |-
     Una IDentificació menys precisa de <span class="taxon">%{coarser_taxon_name}</span> implica que no esteu
     d'acord amb la IDentificació detallada de
@@ -5033,6 +5046,10 @@ ca:
           </ul>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
           de desacord + desacords en l'avantpassat )
+        observation_flagged_notice_html: |-
+          Aquesta observació ha estat marcada com spam i ja no és visible al públic. La podeu veure perquè el vau crear, o sou un Administrador del lloc. Si penseu que això és una equivocació, si us plau
+          <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
+          <a href="/observations/%{observation_id}/flags">Gestioneu marques</a>
       user_stats:
         user_stats_desc: |-
           Les estadístiques d'usuari estan limitades als primers 500 tant pel nombre d'observacions com d'espècies, per tant el total que apareix és normalment lleugerament superior a 500, donat que les dues llistes probablement no contenen els mateixos usuaris.
@@ -5350,6 +5367,7 @@ ca:
           Insect life stage=egg: Ou
           Insect life stage=larva: Larva
           Insect life stage=teneral: Muda
+          Insect life stage=subimago: Subimago
           Insect life stage=nymph: Nimfa
           Insect life stage=pupa: Pupa
           Insect life stage=adult: Adult

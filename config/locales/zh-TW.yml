@@ -706,6 +706,8 @@ zh-TW:
   colors: 色彩
   columns: 欄位
   combine: 結合
+  comma_separated_list_of_tracking_codes: 以逗號分隔的追蹤代碼列表。當您以新觀察表格傳送人們時想附加追蹤代碼；請添加它，例如：%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可使用此追蹤來自不同來源的參與。您可在當下載您的專案觀察成
+    CSV 檔案時來存取這些代碼。
   comma_separated_please: 請以逗號分隔
   comment_preview: 評論預覽
   comment: 評論
@@ -1020,6 +1022,8 @@ zh-TW:
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
   duplicate_verb: 重複
+  each_place_displays_all_species_inat_knows: 任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在
+    %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態或一般搜尋來過濾物種。
   edit: 編輯
   edit_a_batch_of_observations: 編輯批量觀察
   edit_account_settings_and_profile: 編輯帳號設定&amp;個人檔案
@@ -2577,6 +2581,7 @@ zh-TW:
   project_observation_settings: 專案觀察設定
   project_observations: 專案觀察
   project_post: 專案發佈文章
+  project_preferred_count_description: 您想要用於您專案上描述為物種、或任何物種分類，或是僅在分類樹裡「葉子」部份的物種分類群總數？
   project_rules: 專案規則
   project_settings: 專案設定
   project_terms_and_rules: 專案條款&amp;規則
@@ -3874,6 +3879,7 @@ zh-TW:
         sure_check_out_our_widget_html: 沒錯，請瞧瞧我們的<a href="%{url}" title="Observations
           Widget">觀察小工具</a>。
         what_kind_of_photos_should_i_attach: 我應該附加哪種照片到觀察裡？我可以附加不是我拍攝的照片嗎？
+        please_do_not_upload_pictures_you_didnt_take_html: 請<em>不要上傳不是您拍攝的圖片</em>；除非您獲得來自攝影者的許可。在未經作品創建者許可之下發佈版權作品是非法行為，且默認下所有攝影師都擁有他們所拍攝照片的完整版權。如果照片內容與您的觀察項目有關聯，而且您也獲得拍攝一方的許可來做發佈，請您在觀察描述裡註明攝影師的名稱。
         what_is_geoprivacy?: 什麼是位置隱私？
         geoprivacy_is_a_setting_you_can: 位置隱私是個可用於您觀察上的設定，它能控制空間座標（經度與緯度）如何顯示。這裡有相關選項：
         note_that_curators_of: 注意：無論您如何設定位置隱私，各專案策展人仍可查看其座標。因此若您在乎是誰存取了您的座標內容，您應得確定您自己可信任所參與專案的策展人。
@@ -3924,6 +3930,7 @@ zh-TW:
       copy_tip: 透過複製此觀察的資料、地點、照片，以及觀察欄位來添加新的觀察。
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
+        create_a_query_desc_html: 創建一份觀察查詢；就像您會前往到網站的某處。您可剪貼來自於其它網站裡的觀察 URL。您必須指明出<strong>物種分類</strong>、<strong>地點</strong>、<strong>用戶</strong>、<strong>專案</strong>，或是<strong>搜尋查詢</strong>。
         query_placeholder: 挑選以下查詢參數或貼在一個觀察 URL 上
         taxon_extras_help_html: 附註：這些欄位將會減緩您匯出所產生的內容
         be_patient: 這會花費數分鐘，請耐心等待。如果有花費過長時間情況，您可以
@@ -3981,6 +3988,7 @@ zh-TW:
         allow_curator_coordinate_access_desc_html: 允許專案策展人來檢視此觀察的私有座標。
         ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的原型，不過是在使用此物種分類的首次鑑定之後創建'
         cumulative_count_desc: '用於各別物種分類及其所有後代的 # 鑑定'
+        curator_coordinate_access_disabled_desc_html: 此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
         disagreement_count_desc: '# 已鑑定物種分類群不在物種分類的原型之中'
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: 一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
@@ -4137,6 +4145,8 @@ zh-TW:
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其後代。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
     taxon_names:
+      form:
+        places_help_html: 替地點添加名稱時；請以網站或來自於該地點的用戶作為優先考慮。如果地點擁有多種名稱您可以<a href="%{url}">此</a>為優先。請<strong>不要</strong>為地點添加已使用的名稱，除非該地點與其它地點有撞名情況。
       taxon:
         about_html: 物種分類群可以會有很多通用名稱。我們支援一個預設的全域通用名稱，並且可透過拖拉名稱至列表頂端的方式來更改。您也可在編輯名稱與添加地點時；以不同地點為條件來指定預設名稱，但請注意這只在當不同地點有名稱衝突的情況下才做出。
     users:
