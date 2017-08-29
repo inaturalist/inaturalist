@@ -2,11 +2,11 @@
 #header.clear
   %ul#logonav
     %li.navtab
-      - if @site && !@site.custom_logo.blank?
-        =raw @site.custom_logo
-      - else
-        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.name}"}
-          = image_tag @site.logo.url, alt: @site.name
+      - if site && !site.custom_logo.blank?
+        =raw site.custom_logo
+      - elsif site && site.logo
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
+          = image_tag site.logo.url, alt: site.name
   %ul#mainnav.navtabs
     - unless @minimal_header
       %li.navtab.observationstab.menutab
