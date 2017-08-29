@@ -609,7 +609,7 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body {
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
 }
-ul.timeline_observation > li.last > .timeline-panel > .timeline-body {
+ul.timeline_observation > li:last-child > .timeline-panel > .timeline-body {
   border-bottom: 1px transparent;
   padding-bottom: 0px;
 }
