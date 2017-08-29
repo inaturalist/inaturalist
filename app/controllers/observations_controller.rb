@@ -1156,7 +1156,16 @@ class ObservationsController < ApplicationController
       retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
         :user => current_user, :photo_class => klass)
     end.flatten.compact
-    @observations = photos.map{|p| p.to_observation}
+    @observations = photos.map do |p|
+      # Sometimes Google doesn't return all the metadata for undetermined
+      # reasons. See https://github.com/inaturalist/inaturalist/issues/1408
+      google_photo_obs = p.to_observation
+      if google_photo_obs.latitude.blank?
+        Photo.local_photo_from_remote_photo( p ).to_observation
+      else
+        google_photo_obs
+      end
+    end
     @observation_photos = ObservationPhoto.joins(:photo, :observation).
       where("photos.native_photo_id IN (?)", photos.map(&:native_photo_id))
     @step = 2
