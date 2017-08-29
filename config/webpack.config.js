@@ -26,8 +26,7 @@ var config = {
   //   jquery: 'var jQuery'
   // },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    root: path.resolve(webpack_assets_path)
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [
