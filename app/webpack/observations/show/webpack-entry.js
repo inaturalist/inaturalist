@@ -5,6 +5,7 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import moment from "moment";
 import AppContainer from "./containers/app_container";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
 import communityIDModalReducer from "./ducks/community_id_modal";
@@ -22,6 +23,16 @@ import projectFieldsModalReducer from "./ducks/project_fields_modal";
 import qualityMetricsReducer from "./ducks/quality_metrics";
 import subscriptionsReducer from "./ducks/subscriptions";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
+
+// Use custom relative times for moment
+const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
+const relativeTime = Object.assign(
+  {},
+  I18n.t( "momentjs", { locale: "en" } ).shortRelativeTime,
+  shortRelativeTime
+);
+moment.locale( I18n.locale );
+moment.updateLocale( moment.locale(), { relativeTime } );
 
 const rootReducer = combineReducers( {
   commentIDPanel: commentIDPanelReducer,

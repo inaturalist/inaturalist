@@ -273,7 +273,6 @@ class ObservationModal extends React.Component {
     if ( blind ) {
       tabs = [tabs[0]];
     }
-
     return (
       <Modal
         show={visible}
