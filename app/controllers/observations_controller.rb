@@ -2522,18 +2522,22 @@ class ObservationsController < ApplicationController
     
     @default_photo_identity_url = nil
     @photo_identity_urls = @photo_identities.map do |identity|
-      provider_name = if identity.is_a?(ProviderAuthorization)
+      provider_name = nil
+      provider_type = nil
+      if identity.is_a?(ProviderAuthorization)
         if identity.provider_name =~ /google/i
-          "picasa"
+          provider_type = "picasa"
+          provider_name = "Google Photos"
         else
-          identity.provider_name
+          provider_type = identity.provider_name
         end
       else
-        identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
+        provider_type = identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
       end
-      url = "/#{provider_name.downcase}/photo_fields?context=user"
+      provider_name ||= provider_type
+      url = "/#{provider_type.downcase}/photo_fields?context=user"
       @default_photo_identity_url = url if identity == @default_photo_identity
-      "{title: '#{provider_name.capitalize}', url: '#{url}'}"
+      "{title: '#{provider_name.titleize}', url: '#{url}'}"
     end
     @photo_sources = @photo_identities.inject({}) do |memo, ident| 
       if ident.respond_to?(:source_options)
@@ -2549,7 +2553,7 @@ class ObservationsController < ApplicationController
           }
         elsif ident.provider_name =~ /google/
           memo[:picasa] = {
-            :title => 'Picasa', 
+            :title => 'Google Photos', 
             :url => '/picasa/photo_fields', 
             :contexts => [
               ["Your photos", 'user', {:searchable => true}]

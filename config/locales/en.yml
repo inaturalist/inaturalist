@@ -11,7 +11,7 @@ en:
     in a comment.
   we_also_support: |
     We also support <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, and
+    <a href="http://photos.google.com">Google Photos</a>, and
     <a href="http://facebook.com">Facebook</a>
     for image hosting.
   a_default_taxon_name_will_automatically_created: |
@@ -430,7 +430,6 @@ en:
   are_you_sure_remove_taxon_from_place: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
     Are you sure? This will reload the page you may lose some of your changes.
-  are_you_sure_unlink_picasa: Are you sure you want to unlink your Picasa account?
   are_you_sure_want_activate_account: Are you sure you want to activate this account?
   are_you_sure_want_delete_account: "Are you sure you want to delete your account?  This will delete all your data and cannot be undone, and we'll be sorry to see you go."
   are_you_sure_want_delete_taxon: "Are you sure you want to delete this taxon? %{msg}"
@@ -1683,12 +1682,12 @@ en:
   link: Link
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
-  link_or_unlink_your_picasa_account: Link or unlink your Picasa account
+  link_or_unlink_your_google_account: Link or unlink your Google account
   link_your_facebook_account: Link your Facebook account
   link_your_flickr_account: Link your Flickr account
   link_your_flickr_account_with_inat: "Link your Flickr account with %{site_name}"
   link_your_flickr_account_with_inat_so: "Link your Flickr account with %{site_name} so you can add photos of your observations."
-  link_your_picasa_account: Link your Picasa account
+  link_your_google_account: Link your Google account
   linked_facebook: "Your %{site_name} account is currently linked to your Facebook account."
   linked_facebook_automaticaly: "Also, keep in mind that if you log in to %{site_name} via Facebook, we will automatically re-link your %{site_name} and Facebook accounts. Seems reasonable that if you use Facebook you'll want to be able to import Facebook photos, right?"
   linked_facebook_description: "Keeping your %{site_name} account linked to your Facebook account allows you to add multiple photos to your observations.  Of course, if you ever want %{site_name} and Facebook to break up, we won't stop you, you just won't be able to add photos. Sometimes this might be for the best, like if you create a new Facebook account that you want to link %{site_name} to."
@@ -2419,7 +2418,7 @@ en:
   photos_size_photos: "%{photos_size} photos"
   photos_size_photo: "%{photos_size} photo"
   photos_updated: Photos updated.
-  picasa_account_not_linked: "%{user} doesn't have a linked Picasa account anymore, so %{site_name} doesn't have permission to access this photo."
+  google_account_not_linked: "%{user} doesn't have a linked Google account anymore, so %{site_name} doesn't have permission to access this photo."
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
   pink: pink
@@ -3031,7 +3030,7 @@ en:
   sorry_flickr_isnt_responding_at_the_moment: "Sorry, Flickr isn't responding at the moment."
   sorry_how_about_we_try_repeat: "Sorry! How about we try and repeat your search in some other databases of species names? If we find something, we'll save it so you can find it next time."
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: "Sorry, one of those Flickr photos either doesn't exist or you don't have permission to view it."
-  sorry_picasa_isnt_responding_at_the_moment: "Sorry, Picasa isn't responding at the moment."
+  sorry_google_isnt_responding_at_the_moment: "Sorry, Google isn't responding at the moment."
   sorry_that_photo_provider_isnt_responding: "Sorry, that photo provider isn't responding at the moment. Please try again later."
   sorry_that_service_is_not_responding: "Sorry, that sercice is not responding. Please try again later."
   sorry_there_were_problems_with_your_request: "Sorry, there were problems with your request: %{project_user}"
@@ -3451,7 +3450,7 @@ en:
   to_add_ids: to add IDs
   to_an: to an
   to_configure_your_widget: to configure your widget.
-  to_include_your_picassa_with_inat: "To include your Picasa photos with your %{site_name} observations, click the button to the right to link your two accounts. You'll be taken to Google, where you'll be asked to authorize this connection."
+  to_include_your_google_with_inat: "to include your Google account with %{site_name}"
   to_recipient: to
   to_suggest_an_identification: to suggest an identification
   to_tag_your_flickr_from_here: to tag your Flickr photos from here without cutting and pasting.
@@ -3506,7 +3505,7 @@ en:
   unknown: Unknown
   unknown_rank: '(Unknown Rank)'
   unfollow: Unfollow
-  unlink_your_picasa_account: Unlink Your Picasa Account
+  unlink_your_google_account: Unlink Your Google Account
   unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"
   updates_suspension_email_subject: "%{prefix} Your subscriptions are on hold"
@@ -3888,7 +3887,7 @@ en:
   you_have_to: You have to
   you_havent: You haven't
   you_havent_left_any_comments_recently: You haven't left any comments recently.  Go leave someone a note!
-  you_havent_linked_your_inaturalist_picasa_account: "You haven't linked your %{site_name} account and your Picasa account yet"
+  you_havent_linked_your_inaturalist_google_account: "You haven't linked your %{site_name} account and your Google account yet"
   you_joined_this_project: You joined this project!
   you_may_have: you may have. It will probably only work in modern, standards-compliant browsers like
   you_must_be_a_member_of_this_project_to_do_that: You must be a member of this project to do that
@@ -3959,8 +3958,8 @@ en:
   your_observations: Your observations
   your_observations_couldnt_be_added_to_that_project: "Your observations couldn't be added to that project: %{errors}"
   your_photos_have_been_tagged: Your photos have been tagged!
-  your_picasa_account: your Picasa sccount
-  your_picasa_account_info: Your Picasa Account Information
+  your_google_account: your Google sccount
+  your_google_account_info: Your Google Account Information
   your_profile_was_successfully_updated: Your profile was successfully updated!
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
@@ -3979,7 +3978,7 @@ en:
   youre_viewing_all_observations: You're viewing all observations
   youre_viewing_site_name_observations_html: "You're viewing <strong>%{site_name}</strong> observations"
   youve_already_added_an_identification: You've already added an identification, and you can only add one
-  youve_linked_your_inaturalist_picasa_account: "You've linked your %{site_name} account and your Picasa account. This will allow you to associate your Picasa photos with your %{site_name} observations."
+  youve_linked_your_inaturalist_google_account: "You've linked your %{site_name} account and your Google account. This will allow you to associate your Google photos with your %{site_name} observations."
   youve_opted_out_of_community_ids: "You've opted out of community identifications"
   youve_opted_out_of_community_ids_for_this_obs: "You've opted out of community identifications for this observation"
   youve_seen_it_want_to: "You've seen it! Want to"
@@ -4255,10 +4254,10 @@ en:
           you are not forsaking your copyright nor giving us the ability
           to use any of your photos in ways that you do not want.
         can_i_add_photos_without_a_flickr_account?: Can I add photos without a Flickr account?
-        we_also_support_picasa_html:  'We also support Picasa: <a href="%{url}">Configure your Picasa account &raquo;</a>'
+        we_also_support_google_html:  'We also support Google Photos: <a href="%{url}">Configure your Google account &raquo;</a>'
         we_also_support_uploading_photos: |
                 We also support uploading photos directly to %{site_name}, but it can be a bit
-                slow, so we only allow one upload at a time. Using Flickr or Picasa is
+                slow, so we only allow one upload at a time. Using Flickr or Google is
                 probably faster if you already use those services.
         what_are_tags?:  What are tags?
         tags_are_keywords_you_can_add_to_an_html: |
