@@ -156,7 +156,7 @@ class Activity extends React.Component {
     return (
       <div className="Activity">
         <h3>{ I18n.t( "activity" ) }</h3>
-        <div className="activity">
+        <div className={`activity ${activity.length === 0 ? "empty" : ""}`}>
           { activity.map( item => {
             let firstDisplay;
             if ( item.taxon && item.current ) {

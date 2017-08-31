@@ -263,6 +263,23 @@ class ObservationsController < ApplicationController
         end
         
         user_viewed_updates if logged_in?
+        @observer_provider_authorizations = @observation.user.provider_authorizations
+        @shareable_image_url = if !@observation.photos.blank? && photo = @observation.photos.detect{ |p| p.medium_url =~ /^http/ }
+          FakeView.image_url( photo.best_url(:original) )
+        else
+          FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
+        end
+        @shareable_title = if @observation.taxon
+          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
+            "#{comname} (#{@observation.taxon.name})"
+          else
+            @observation.taxon.name
+          end
+        else
+          I18n.t( "something" )
+        end
+        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
+        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
 
         # if viewing_new_obs_show?
         @skip_application_js = true
@@ -345,24 +362,6 @@ class ObservationsController < ApplicationController
           @conservation_status ||= ConservationStatus.where(:taxon_id => @observation.taxon).where("place_id IS NULL").
             where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
         end
-
-        @observer_provider_authorizations = @observation.user.provider_authorizations
-        @shareable_image_url = if !@photos.blank? && photo = @photos.detect{|p| p.medium_url =~ /^http/}
-          FakeView.image_url(photo.best_url(:large))
-        else
-          FakeView.iconic_taxon_image_url(@observation.taxon, :size => 200)
-        end
-        @shareable_title = if @observation.taxon
-          if comname = FakeView.common_taxon_name( @observation.taxon, user: current_user, site: @site ).try(:name)
-            "#{comname} (#{@observation.taxon.name})"
-          else
-            @observation.taxon.name
-          end
-        else
-          I18n.t( "something" )
-        end
-        @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
-        @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
 
         if params[:test] == "idcats" && logged_in?
           leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
@@ -1157,7 +1156,19 @@ class ObservationsController < ApplicationController
       retrieve_photos(params[klass.to_s.underscore.pluralize.to_sym], 
         :user => current_user, :photo_class => klass)
     end.flatten.compact
-    @observations = photos.map{|p| p.to_observation}
+    @observations = photos.map do |p|
+      photo_obs = p.to_observation
+      if p.is_a?( PicasaPhoto )
+        # Sometimes Google doesn't return all the metadata for undetermined
+        # reasons. See https://github.com/inaturalist/inaturalist/issues/1408
+        if photo_obs.observed_on.blank? || photo_obs.latitude.blank?
+          local_photo = Photo.local_photo_from_remote_photo( p )
+          photo_obs = local_photo.to_observation
+          photo_obs.observation_photos.build( photo: p )
+        end
+      end
+      photo_obs
+    end
     @observation_photos = ObservationPhoto.joins(:photo, :observation).
       where("photos.native_photo_id IN (?)", photos.map(&:native_photo_id))
     @step = 2
@@ -2511,18 +2522,22 @@ class ObservationsController < ApplicationController
     
     @default_photo_identity_url = nil
     @photo_identity_urls = @photo_identities.map do |identity|
-      provider_name = if identity.is_a?(ProviderAuthorization)
+      provider_name = nil
+      provider_type = nil
+      if identity.is_a?(ProviderAuthorization)
         if identity.provider_name =~ /google/i
-          "picasa"
+          provider_type = "picasa"
+          provider_name = "Google Photos"
         else
-          identity.provider_name
+          provider_type = identity.provider_name
         end
       else
-        identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
+        provider_type = identity.class.to_s.underscore.split('_').first # e.g. FlickrIdentity=>'flickr'
       end
-      url = "/#{provider_name.downcase}/photo_fields?context=user"
+      provider_name ||= provider_type
+      url = "/#{provider_type.downcase}/photo_fields?context=user"
       @default_photo_identity_url = url if identity == @default_photo_identity
-      "{title: '#{provider_name.capitalize}', url: '#{url}'}"
+      "{title: '#{provider_name.titleize}', url: '#{url}'}"
     end
     @photo_sources = @photo_identities.inject({}) do |memo, ident| 
       if ident.respond_to?(:source_options)
@@ -2538,7 +2553,7 @@ class ObservationsController < ApplicationController
           }
         elsif ident.provider_name =~ /google/
           memo[:picasa] = {
-            :title => 'Picasa', 
+            :title => 'Google Photos', 
             :url => '/picasa/photo_fields', 
             :contexts => [
               ["Your photos", 'user', {:searchable => true}]
@@ -3084,13 +3099,14 @@ class ObservationsController < ApplicationController
 
   def ensure_sounds_are_local_sounds( sounds )
     sounds.map { |sound|
-      if sound.is_a?( LocalSound )
+      local_sound = if sound.is_a?( LocalSound )
         sound
       elsif sound.new_record?
-        sound.to_local_sound
+        local_sound = sound.to_local_sound
       else
-        sound.to_local_sound!
+        local_sound = sound.to_local_sound!
       end
+      local_sound.valid? ? local_sound : sound
     }.compact
   end
 

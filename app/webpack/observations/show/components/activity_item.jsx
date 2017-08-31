@@ -183,9 +183,13 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             setFlaggingModalState={ setFlaggingModalState }
             linkTarget={linkTarget}
           />
-          <span className="time">
+          <time
+            className="time"
+            dateTime={ item.created_at }
+            title={ moment( item.created_at ).format( "LLL" ) }
+          >
             { relativeTime }
-          </span>
+          </time>
           { status }
         </span>
         )}

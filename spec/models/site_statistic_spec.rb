@@ -3,9 +3,13 @@ require File.expand_path("../../spec_helper", __FILE__)
 describe SiteStatistic do
 
   before :all do
+    make_default_site
     OauthApplication.make!(name: "iNaturalist Android App")
     OauthApplication.make!(name: "iNaturalist iPhone App")
   end
+
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
 
   describe "stats_generated_for_day?" do
     it "should know when stats were generated today" do

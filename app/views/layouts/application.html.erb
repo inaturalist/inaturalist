@@ -34,10 +34,12 @@
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
-    <% if !@site.twitter_username.blank? -%>
+    <% if @site && !@site.twitter_username.blank? -%>
       <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= @site.name %>"/>
+    <% if @site %>
+      <meta property="og:site_name" content="<%= @site.name %>"/>
+    <% end %>
     <% if CONFIG.facebook && !CONFIG.facebook.app_id.blank? -%>
       <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
     <% end -%>

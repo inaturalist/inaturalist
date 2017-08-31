@@ -206,6 +206,8 @@ input.failed, textarea.failed {
   }
 }
 
+.UserImage,
+a.UserImage,
 .bootstrap .UserImage,
 .bootstrap a.UserImage {
   &:hover {
@@ -966,15 +968,21 @@ h3, h4 {
   }
   .activity {
     position: relative;
-    overflow: hidden;
+    padding-bottom: 20px;
     .icon {
       position: relative;
       z-index: 1;
     }
+    .ActivityItem:last-child .panel {
+      margin-bottom: 0;
+    }
+  }
+  .activity.empty {
+    padding-bottom: 0px;
   }
   .activity:before {
     position: absolute;
-    content: "foo";
+    content: " ";
     display: block;
     border-left: $activity-line-width solid $border-grey;
     width: $activity-line-width;

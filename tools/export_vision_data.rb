@@ -388,6 +388,7 @@ unless OPTS.skip_augmented
       non_target_test_sql = <<-SQL
         SELECT
           op.photo_id,
+          o.quality_grade,
           taa.id AS species_id,
           o.taxon_id AS taxon_id,
           COALESCE(o.community_taxon_id, o.taxon_id) AS joinable_taxon_id,

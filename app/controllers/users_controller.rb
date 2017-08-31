@@ -177,7 +177,7 @@ class UsersController < ApplicationController
   # Methods below here are added by iNaturalist
   
   def index
-    @recently_active_key = "recently_active_#{I18n.locale}_#{@site.name}"
+    @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
     unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
@@ -816,12 +816,14 @@ protected
       }}}
     end
 
+    # This is brittle and will continue to cause problems for individual sites
+    # as we grow and their top users fall out of the global top 500.
     result = Identification.elastic_search(
       filters: filters,
       size: 0,
       aggregate: {
         obs: {
-          terms: { field: "user.id", size: site_filter ? 200 : 20 }
+          terms: { field: "user.id", size: site_filter ? 500 : 20 }
         }
       }
     )

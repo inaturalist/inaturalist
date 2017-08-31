@@ -15,6 +15,22 @@
     = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ property: "og:title", content: @shareable_title }
+  %meta{ property: "twitter:title", content: t( :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title ) } 
+  - if !@observation.photos.blank? && photo = @observation.photos.detect{|p| p.medium_url =~ /^http/}
+    %meta{ property: "og:image", content: @shareable_image_url } 
+    %meta{ property: "twitter:image", content: @shareable_image_url }
+    %meta{ name: "twitter:card", content: "photo" }
+  - elsif @observation.taxon
+    %meta{ name: "twitter:card", content: "summary" }
+  %meta{ property: "og:determiner", content: "auto" }
+  %meta{ property: "og:url", content: observation_url(@observation) }
+  %meta{ property: "og:description", content: html_attributize( @shareable_description ) }
+  - if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"}
+    %meta{ property: "twitter:creator:id", content: twitter_pa.provider_uid }
+  - unless @observation_links.blank?
+    - for ol in @observation_links
+      %link{ rel: ol.rel, href: ol.href }
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };

@@ -115,7 +115,7 @@ class PhotoBrowser extends React.Component {
     _.each( observation.sounds, sound => {
       let player;
       let containerClass = "sound-container-local";
-      if ( sound.subtype === "SoundcloudSound" || !sound.file_url ) {
+      if ( !sound.play_local && ( sound.subtype === "SoundcloudSound" || !sound.file_url ) ) {
         containerClass = "sound-container-soundcloud";
         player = (
           <iframe

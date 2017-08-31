@@ -135,6 +135,15 @@ $galleryHeightElements: "
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  align-items: center;
+  .sounds {
+    width: 100%;
+    audio {
+      width: 100%;
+      display: block;
+      margin-top: 10px;
+    }
+  }
 }
 .ObservationModal .sidebar {
   overflow-y: auto;
@@ -342,15 +351,6 @@ tr.keyboard-shortcuts td {
   white-space: nowrap;
   font-weight: bold;
   vertical-align: top;
-}
-
-.ObservationModal .photos.sounds .image-gallery {
-  margin-bottom: 10px;
-}
-.ObservationModal .photos.sounds .image-gallery,
-.ObservationModal .photos.sounds .image-gallery-content,
-.ObservationModal .photos.sounds .image-gallery-content img {
-  height: 260px;
 }
 .ObservationModal .place {
   background-color: #DDDDDD;

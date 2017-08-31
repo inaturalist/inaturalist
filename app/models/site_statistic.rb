@@ -175,33 +175,69 @@ class SiteStatistic < ActiveRecord::Base
 
   def self.platforms_stats(at_time = Time.now)
     at_time = at_time.utc
-    { web: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where("oauth_application_id IS NULL").count,
-      iphone: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_iphone_app.id).count,
-      android: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_android_app.id).count,
-      other: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where("oauth_application_id IS NOT NULL").
-        where("oauth_application_id NOT IN (?,?)",
-          OauthApplication.inaturalist_iphone_app.id,
-          OauthApplication.inaturalist_android_app.id).count
+    date_filter = { range: { created_at: { gte: at_time - 1.day, lt: at_time } } }
+    { web: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { bool: { must_not: { exists: { field: "oauth_application_id" } } } }
+        ]}).total_entries,
+      iphone: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: OauthApplication.inaturalist_iphone_app.id } }
+        ]}).total_entries,
+      android: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: OauthApplication.inaturalist_android_app.id } }
+        ]}).total_entries,
+      other: Observation.elastic_search({
+        filters: [
+          date_filter,
+          {
+            bool: {
+              must: { exists: { field: "oauth_application_id" } },
+              must_not: { terms: { oauth_application_id: [
+                OauthApplication.inaturalist_iphone_app.id,
+                OauthApplication.inaturalist_android_app.id
+              ] } }
+            }
+          }
+        ]}).total_entries
     }
   end
 
   def self.platforms_cumulative_stats(at_time = Time.now)
     at_time = at_time.utc
-    { web: Observation.where("created_at <= ?", at_time).
-        where("oauth_application_id IS NULL").count,
-      iphone: Observation.where("created_at <= ?", at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_iphone_app.id).count,
-      android: Observation.where("created_at <= ?", at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_android_app.id).count,
-      other: Observation.where("created_at <= ?", at_time).
-        where("oauth_application_id IS NOT NULL").
-        where("oauth_application_id NOT IN (?,?)",
-          OauthApplication.inaturalist_iphone_app.id,
-          OauthApplication.inaturalist_android_app.id).count
+    date_filter = { range: { created_at: { lte: at_time } } }
+    { web: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { bool: { must_not: { exists: { field: "oauth_application_id" } } } }
+        ]}).total_entries,
+      iphone: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: OauthApplication.inaturalist_iphone_app.id } }
+        ]}).total_entries,
+      android: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: OauthApplication.inaturalist_android_app.id } }
+        ]}).total_entries,
+      other: Observation.elastic_search({
+        filters: [
+          date_filter,
+          {
+            bool: {
+              must: { exists: { field: "oauth_application_id" } },
+              must_not: { terms: { oauth_application_id: [
+                OauthApplication.inaturalist_iphone_app.id,
+                OauthApplication.inaturalist_android_app.id
+              ] } }
+            }
+          }
+        ]}).total_entries
     }
   end
 

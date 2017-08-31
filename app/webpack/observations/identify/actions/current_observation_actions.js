@@ -750,8 +750,5 @@ export {
   loadingDiscussionItem,
   stopLoadingDiscussionItem,
   updateCurrentObservation,
-  toggleKeyboardShortcuts,
-  addObservationFieldValue,
-  removeObservationFieldValue,
-  updateObservationFieldValue
+  toggleKeyboardShortcuts
 };
