@@ -1424,6 +1424,7 @@ zh-TW:
   identotron_help: Identotron 幫助
   ids: ID
   ids_made_for_others: 用於其他的 ID
+  if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因用戶不同意社群物種分類；他們可以拒絕，這代表著他們的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表他們的觀察，僅能在社群認可後才能成為研究等級的內容。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
@@ -2086,6 +2087,7 @@ zh-TW:
   note_you_can_modify_the_height_attribute: 註：您可以調整「高度」屬性來符合您的網頁可用空間。
   notify_me_of_mentions: 通知提及到我的（例如：@username）
   notify_me_about_redundant_identifications: 通知我有關確認鑑定
+  notify_me_about_redundant_identifications_desc: 接收符合所屬您鑑定的通知。若您選擇停用此功能；您僅會收到有關不在您鑑定裡的物種分類群之鑑定通知。
   number_of_observations: 觀察數目
   number_selected: '# 已選擇'
   numeric_: 數字
@@ -2586,12 +2588,15 @@ zh-TW:
   project_settings: 專案設定
   project_terms_and_rules: 專案條款&amp;規則
   project_that_does_not_contain_these_observations: 專案沒有包含這些觀察
+  project_type_description: 評估與 bioblitzes 是專案裡的特殊類別。評估用於在協作物種集合上，通常用來衡量保育的重要性。Bioblitzes
+    則是擁有特定起始和結束的事件活動。
   project_user_cannot_be_found: 找不到專案用戶
   project_user_was_invalid: 專案用戶無效：%{project_user}
   project_was_successfully_created: 專案創建成功。
   project_was_successfully_updated: 專案更新成功。
   project_x_was_delete: '%{project}已刪除（請允許花費幾分鐘來從網站移除）'
   projects: 專案
+  projects_description: 專案是在 %{site_name} 上讓您的觀察與其他人有所交集的方式。無論您是有意舉行公眾科學專案，或是僅對與您當地賞鳥俱樂部一同在鄰近公園賞鳥感興趣，專案都會是可採用的方法。
   projects_from_place: 來自於%{place}的專案
   projects_in_x: 在%{x}的專案
   projects_you_admin: 您管理的專案
@@ -3081,6 +3086,10 @@ zh-TW:
   tagging: 標記中...
   tags: 標籤
   tags_are_a_way: 標籤是個可組織您觀察的方式。舉例來說您可以標記您所有潮池方面的觀察為「潮池」；這樣可讓它們事後更容易被找尋。
+  tags_like_taxonomy_binomial: 標籤是就像<code>taxonomy:binomial=Pseudacris crucifer</code>
+    are <a href="http://www.flickr.com/help/tags#613430">機器標籤</a>的東西。它們可幫助工程師程序化地來理解您的標籤，並被像是<a
+    href="http://www.flickr.com/groups/encyclopedia_of_life/">生命大百科圖片</a>這類的 Flickr
+    群組所需求。
   take_me_facebook: 是的，帶我前往臉書！
   take_me_flickr!: 是的，帶我前往 Flickr！
   take_me_back: 帶我返回
@@ -3212,6 +3221,7 @@ zh-TW:
   there_were_some_problems_with: 在您的 CSV 檔案裡有一些問題。請重新修改失效的行列。當然問題也會可能是出在我們這裡，若真是如此的話；請讓我們知道。
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
   theres_also: 這裡也有
+  these_are_taxa_that: 出於某些原因； %{site} 的物種分類群不能自動添加至我們的分類樹。您可透過編輯物種分類且選擇父級記錄來添加它們。例如智人的父分類會是人屬。您也可檢查同義的物種分類群來合併它們。
   these_arent_necessarily_relevant_to: 這些不一定有相應此專案。請檢查
   these_folks_kindly_volunteer_to: 這些友善人們志願來維護我們的物種分類法內容，並處理其它問題。
   these_observations_have_not_been_uploaded_yet: 這些觀察尚未被上傳。
@@ -3638,6 +3648,8 @@ zh-TW:
   you_: 您
   you_admin: 您管理
   you_appear_offline_try_again: 您似乎已離線。請在您連接至網路時重試。
+  youre_a_site_curator_which_means: 您是個網站策展人；代表著您自願來協助策展我們的資料及監控內容。請不要為處理問題感到擔心，若您願意花費時間來查看一些項目，我們都會對所能得到的幫助有所感激。如果您有策展內容方面問題、或是不知該如何當名策展人，請透過電子郵件地址
+    %{email} 聯絡我們。
   you_are_over_your_invites_quota: '...您已超出使用您每月共 60 次邀請的額度'
   you_are_now: 您現在
   you_are_now_following_x: 您正在關注 %{friend_user}。
@@ -3794,9 +3806,15 @@ zh-TW:
       index:
         funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
           提供
+        welcome_message_html: 指南協助您學習有關世界上的生物多樣性。不論您現正在探索坦尚尼亞的塞倫蓋提、或是在您當地的公園裡（我們猜比較可能是在塞倫蓋提），指南可協助您理解我們星球上令人驚豔的多樣生物。
       edit:
         add_eol_content: 以批量來添加生命大百科內容至所選物種分類群會花費一段時間，因此請耐心等候。
         add_color_tags_help: 從所選物種分類的相關色彩來添加色彩標籤。
+        add_rank_tags_help_html: |-
+          基於我們的分類法來添加物種分類排名標籤，例如：
+          <code>family=Laridae</code>
+          或
+          <code>family=Gulls and Allies</code>
         coordinates_desc: 給予您的指南座標，將可幫助到人們在依位置搜尋時來找出。
         eol_collection_desc_html: <a href="http://eol.org/" target="_blank">生命大百科（EOL）</a>是個貯藏有關地球上生物資訊的地方。在生命大百科上您可創建有關物種的<a
           href="http://eol.org/info/252" target="_blank">收藏</a>。如果您想要匯入來自於生命大百科的物種，請在此貼上該收藏的
@@ -3820,6 +3838,8 @@ zh-TW:
         journal: 分割頁面讓物種訊息在左側，註解內容在右側。物種訊息會在為了合乎頁面排版情況下被截斷。
         book: 完整的指南包含照片與描述，並且橫跨多個頁面。
       pdf_generation_notice: 產生較大 PDF 檔案會花費一到兩分鐘，請耐心等待。
+      tags_help_html: 標籤是在您指南裡像是用來替物種作分類的東西，除此之外多項物種可以擁有同一個標籤。以逗號作為分隔來輸入標籤，例如：<code>small,
+        furry</code>。要添加已命名的分類，使用像是 <code>分類名稱=分類值</code> 的方式，例如：<code>color=yellow</code>。
       sorts:
         default: 指南順序
         alphaname: 按學名拼音
@@ -3992,6 +4012,8 @@ zh-TW:
         disagreement_count_desc: '# 已鑑定物種分類群不在物種分類的原型之中'
         identification_count_desc: '#的各別分類單元之鑑定'
         flagged_photos_desc_html: 一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
+        join_project_desc_html: 加入專案將會給予專案策展人可查看任何在專案裡觀察之隱藏座標的權限，並意味著您同意專案的<a href="%{url}"
+          target="_blank">條款</a>。
         score_desc: 分數 = 累積次數 /（累積次數 + 不同意次數 + 原型不同意次數）
         observation_flagged_notice_html: 此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a
           href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>
@@ -4452,6 +4474,10 @@ zh-TW:
             place_geometry:
               is_too_large_to_import: 太大而無法匯入
               contains_too_many_observations: 包含太多觀察而無法匯入
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: 必須註冊超過 24 小時才可發佈。這是我們面對到大量破壞者的將就應付方式。如果您在註冊那天裡有使用我們的網站，您仍可將內容存儲成草稿來用於發佈。
         project_observation:
           attributes:
             user_id:
