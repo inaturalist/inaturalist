@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import _ from "lodash";
 import { urlForTaxon } from "../../shared/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -37,7 +37,7 @@ const TaxonomyTab = ( {
         let className = "";
         const isRoot = t.id === tree[0].id;
         const isTaxon = t.id === taxon.id;
-        const isDescendant = t.ancestor_ids.indexOf( taxon.id ) >= 0;
+        const isDescendant = t.ancestor_ids && t.ancestor_ids.indexOf( taxon.id ) >= 0;
         const shouldLinkToTaxon = !isRoot && !isTaxon;
         const isComplete = isTaxon && _.isNumber( t.complete_species_count );
         const isHidable = isDescendant && ( t.rank === "hybrid" || !t.is_active || t.extinct );
@@ -81,19 +81,49 @@ const TaxonomyTab = ( {
                   } }
                 />
                 { isComplete ? (
-                  <div className="inlineblock">
+                  <div className="inlineblock taxonomy-complete-notice">
                     <div className="label-complete">
                       { I18n.t( "all_species_added_to_the_database" ) }
                     </div>
-                    { numChildren <= 1 || numHidableChildren === 0 ? null : (
-                      <button
-                        className="btn btn-default btn-xs"
-                        onClick={ ( ) => {
-                          toggleAllChildrenShown( );
+                    <OverlayTrigger
+                      trigger="click"
+                      rootClose
+                      placement="top"
+                      animation={false}
+                      overlay={
+                        <Popover
+                          id={ `complete-taxon-popover-${t.id}` }
+                          className="complete-taxon-popover"
+                          title={ I18n.t( "about_complete_taxa" ) }
+                        >
+                          { I18n.t( "views.taxa.show.complete_taxon_desc" ) }
+                        </Popover>
+                      }
+                    >
+                      <a
+                        href={ urlForTaxon( t ) }
+                        onClick={ e => {
+                          e.preventDefault( );
+                          return false;
                         }}
                       >
-                        { allChildrenShown ? I18n.t( "hide_uncountable_species" ) : I18n.t( "show_uncountable_species" ) }
-                      </button>
+                        <i className="fa fa-info-circle"></i> { I18n.t( "info" ) }
+                      </a>
+                    </OverlayTrigger>
+                    { numChildren <= 1 || numHidableChildren === 0 ? null : (
+                      <span>
+                        <span className="text-muted">&bull;</span>
+                        <a
+                          href="#"
+                          onClick={ e => {
+                            e.preventDefault( );
+                            toggleAllChildrenShown( );
+                            return false;
+                          }}
+                        >
+                          { allChildrenShown ? I18n.t( "hide_uncountable_species" ) : I18n.t( "show_uncountable_species" ) }
+                        </a>
+                      </span>
                     ) }
                   </div>
                 ) : null }

@@ -31,26 +31,31 @@ const HighlightsTab = ( {
               I18n.t( "views.taxa.show.trending_desc" )
           }
           taxa={ trendingTaxa }
+          showNewTaxon={ showNewTaxon }
         />
         <HighlightsCarousel
           title={ I18n.t( "discoveries" ) }
           taxa={ discoveries ? discoveries.map( d => d.taxon ) : null }
+          showNewTaxon={ showNewTaxon }
           captionForTaxon={ taxon => {
             const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
             if ( !discoveries ) {
               return <span></span>;
             }
-            let icon;
-            if ( discovery.identification.category === "leading" ) {
-              icon = <i className="fa fa-bullhorn" />;
-            } else if ( discovery.identification.category === "improving" ) {
-              icon = <i className="fa fa-trophy" />;
-            }
+            // let icon;
+            // if ( discovery.identification.category === "leading" ) {
+            //   icon = <i className="fa fa-bullhorn" />;
+            // } else if ( discovery.identification.category === "improving" ) {
+            //   icon = <i className="fa fa-trophy" />;
+            // }
             return (
               <div className="discovery-caption">
-                <span className={ `ident-${discovery.identification.category} pull-left` }>
-                  { icon } { I18n.t( discovery.identification.category ) }
-                </span> <a
+                { /*
+                  <span className={ `ident-${discovery.identification.category} pull-left` }>
+                    { icon } { I18n.t( discovery.identification.category ) }
+                  </span>
+                */ }
+                <a
                   href={ `/observations/${discovery.identification.observation.id}`}
                   className="text-muted"
                 >
@@ -68,11 +73,14 @@ const HighlightsTab = ( {
             return `/observations/${discovery.identification.observation.id}`;
           } }
         />
-        <HighlightsCarousel
-          title={ I18n.t( "wanted" ) }
-          description={ I18n.t( "views.taxa.show.wanted_desc" ) }
-          taxa={ wantedTaxa }
-        />
+        { wantedTaxa && wantedTaxa.length > 0 ? (
+          <HighlightsCarousel
+            title={ I18n.t( "wanted" ) }
+            description={ I18n.t( "views.taxa.show.wanted_desc" ) }
+            taxa={ wantedTaxa }
+            showNewTaxon={ showNewTaxon }
+          />
+        ) : null }
       </Col>
     </Row>
   </Grid>

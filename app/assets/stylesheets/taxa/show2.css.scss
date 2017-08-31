@@ -493,7 +493,7 @@ $photoPreviewThumbGutterTop: 3px;
       font-size: 12px !important;
       line-height: 17px !important;
       z-index: 1;
-      margin: 0 20px 0 10px;
+      margin: 0 30px 0 10px;
       color: white
     }
     .label-complete:before {
@@ -518,7 +518,9 @@ $photoPreviewThumbGutterTop: 3px;
       right: -15px;
       z-index: -1;
     }
-
+    .taxonomy-complete-notice .text-muted {
+      margin: 0 5px;
+    }
     .row-content:before,
     .SplitTaxon.has-com-name .sciname {
       content: '\21B3';
@@ -1183,4 +1185,7 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   .controls {
     text-align: right;
   }
+}
+.complete-taxon-popover {
+  max-width: 400px;
 }

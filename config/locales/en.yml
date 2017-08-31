@@ -117,6 +117,7 @@ en:
   about_bioblitz_results: About bioblitz results
   about_charts: About Charts
   about_community_taxa: About community taxa
+  about_complete_taxa: About Complete Taxa
   about_conservation_status: About Conservation Status
   about_establishment_means: About Establishment Means
   about_external_links: About External Links
@@ -5011,6 +5012,13 @@ en:
           looking at any field with the word "phenology" in its name and
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
+        complete_taxon_desc: |
+          "Complete" taxa have all of their descendant, extant species present in
+          the site's database. When a taxon is complete, we can say how many of
+          its species have been observed and how many still need to be observed.
+          Counts of species for "complete" taxa do not include "uncountable"
+          species like extinct species or inactive species concepts, and they
+          only include species, not infraspecic taxa.
         discoveries_desc: "Most recent newly-identified species in this taxon"
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
