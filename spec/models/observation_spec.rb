@@ -788,6 +788,22 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::CASUAL
       end
 
+      it "should be casual if the community taxon is Homo" do
+        t = Taxon.make!( name: "Homo", rank: Taxon::GENUS )
+        o = Observation.make!( taxon: t )
+        i = Identification.make!( observation: o, taxon: t )
+        expect( o.community_taxon ).to eq t
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be casual if the taxon is Homo" do
+        t = Taxon.make!( name: "Homo", rank: Taxon::GENUS )
+        o = make_research_grade_candidate_observation( taxon: t )
+        expect( o.community_taxon ).to be_blank
+        expect( o.taxon ).to eq t
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
       it "should be casual if flagged" do
         o = make_research_grade_observation
         Flag.make!(:flaggable => o, :flag => Flag::SPAM)

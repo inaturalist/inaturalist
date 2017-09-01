@@ -1211,7 +1211,7 @@ class Observation < ActiveRecord::Base
   
   def human?
     t = community_taxon || taxon
-    t && t.name =~ /^Homo /
+    t && ( t.name =~ /^Homo / || t.name == "Homo" )
   end
   
   def research_grade?
