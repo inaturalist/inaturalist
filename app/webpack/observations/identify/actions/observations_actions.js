@@ -81,7 +81,7 @@ function reviewAll( ) {
     // updating the stats after each request, so this might not last, but now
     // I know how to do this
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.review( o ) )
+      getState( ).observations.results.map( o => iNaturalistJS.observations.review( { id: o.id } ) )
     )
       .catch( ( ) => dispatch( showAlert(
         I18n.t( "failed_to_save_record" ),
@@ -96,7 +96,7 @@ function unreviewAll( ) {
     dispatch( setConfig( { allReviewed: false } ) );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( o ) )
+      getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( { id: o.id } ) )
     )
       .catch( ( ) => dispatch( showAlert(
         I18n.t( "failed_to_save_record" ),
