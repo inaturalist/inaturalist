@@ -60,8 +60,7 @@ class UserText extends React.Component {
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
     }
-    let withBreaks = text.trim( ).replace( /\n\s*\n/g, "\n" );
-    withBreaks = withBreaks.replace( /\n/gm, "<br />" );
+    const withBreaks = text.trim( ).replace( /\n/gm, "<br />" );
     const html = safeHtml( this.hyperlinkMentions( withBreaks ), config || CONFIG );
     let truncatedHtml;
     const style = {
@@ -90,7 +89,8 @@ class UserText extends React.Component {
         <span
           className="content"
           dangerouslySetInnerHTML={ { __html:
-            sanitizeHtml( linkifyHtml( truncatedHtml || html ), { allowedTags: ALLOWED_TAGS } ) } }
+            sanitizeHtml( linkifyHtml( truncatedHtml || html ), { allowedTags: ALLOWED_TAGS } )
+          } }
           style={style}
         ></span> { moreLink }
       </div>
