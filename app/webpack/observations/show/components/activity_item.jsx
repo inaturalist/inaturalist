@@ -152,11 +152,11 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     }
   }
   let taxonChange;
-  if ( item.taxon_change_id ) {
-    const type = _.snakeCase( item.taxon_change_type );
+  if ( item.taxon_change ) {
+    const type = _.snakeCase( item.taxon_change.type );
     taxonChange = ( <div className="taxon-change">
       <i className="fa fa-refresh" /> { I18n.t( "this_id_was_added_due_to_a" ) } <a
-        href={ `/taxon_changes/${item.taxon_change_id}` }
+        href={ `/taxon_changes/${item.taxon_change.id}` }
         target={linkTarget}
         className="linky"
       >
