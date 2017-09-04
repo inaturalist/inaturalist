@@ -433,7 +433,6 @@ zh-TW:
   are_you_sure_remove_taxon_from_list: 您確定要從列表移除此物種分類？
   are_you_sure_remove_taxon_from_place: 您確定要從%{place}的清單移除此物種分類？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 您確定嗎？這將會重新載入頁面而您會遺失您更改的內容。
-  are_you_sure_unlink_picasa: 您確定要取消連結您的 Picasa 帳號？
   are_you_sure_want_activate_account: 你確定要啟用此帳號嗎？
   are_you_sure_want_delete_account: 您確定您要刪除您自己的帳號？這將會刪除您所有的資料並且無法回復，另外我們對於您的退出深感遺憾。
   are_you_sure_want_delete_taxon: 您確定要刪除此物種分類？%{msg}
@@ -1643,12 +1642,10 @@ zh-TW:
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
   link_or_unlink_your_flickr_account: 連結或取消連結至您的 Flickr 帳號
-  link_or_unlink_your_picasa_account: 連結或取消連結至您的 Picasa 帳號
   link_your_facebook_account: 連結您的臉書帳號
   link_your_flickr_account: 連結您的 Flickr 帳號
   link_your_flickr_account_with_inat: 連結至您的 Flickr 帳號與 %{site_name}
   link_your_flickr_account_with_inat_so: 連接您的 Flickr 帳號至 %{site_name}；這樣您便可添加您觀察的照片。
-  link_your_picasa_account: 連結您的 Picasa 帳號
   linked_facebook: 您的 %{site_name} 帳號目前已連結至您的臉書帳號。
   linked_facebook_automaticaly: 另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name}
     與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？
@@ -2339,7 +2336,6 @@ zh-TW:
   photos_size_photos: '%{photos_size} 張照片'
   photos_size_photo: '%{photos_size} 張照片'
   photos_updated: 照片已更新
-  picasa_account_not_linked: '%{user}不再有連結 Picasa 的帳號，因此%{site_name}沒有權限來使用此照片。'
   picasa_identity: Picasa 身份
   pick_a_username: 挑選一個用戶名稱
   pink: 粉紅色
@@ -2934,7 +2930,6 @@ zh-TW:
   sorry_flickr_isnt_responding_at_the_moment: 很抱歉，Flickr 目前沒有回應。
   sorry_how_about_we_try_repeat: 很抱歉！要不要讓我們嘗試在其它物種名稱資料庫來重複您的搜尋呢？如果我們有發現事物，我們會儲存它以讓您可在下次找出。
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: 很抱歉，其中一張 Flickr 照片不存在或是您沒有權限來檢視它。
-  sorry_picasa_isnt_responding_at_the_moment: 很抱歉，Picasa 目前沒有回應。
   sorry_that_photo_provider_isnt_responding: 很抱歉，此刻照片提供者沒有回應。請稍後再重試。
   sorry_that_service_is_not_responding: 很抱歉，服務沒有回應，請稍後重試。
   sorry_there_were_problems_with_your_request: 很抱歉，您的請求出現了一些問題：%{project_user}
@@ -3292,8 +3287,6 @@ zh-TW:
   to_add_ids: 添加鑑定
   to_an: 至一個
   to_configure_your_widget: 來設置您的小工具。
-  to_include_your_picassa_with_inat: 若要讓您的 %{site_name} 觀察包含著您的 Picasa 照片，點擊右側按鍵來連結您那兩個帳號。您將會跳到
-    Google 上來被請求授權此連接。
   to_recipient: 至
   to_suggest_an_identification: 提議一個鑑定
   to_tag_your_flickr_from_here: 來於此標記您的 Flickr 照片且不裁切並貼上。
@@ -3348,7 +3341,6 @@ zh-TW:
   unknown: 未知
   unknown_rank: （未知排名）
   unfollow: 未關注
-  unlink_your_picasa_account: 取消連結您的 Picasa 帳號
   unobserved_listings: 不可觀察列表
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的訂閱目前暫停'
@@ -3698,8 +3690,6 @@ zh-TW:
   you_have_to: 您必須
   you_havent: 您沒有
   you_havent_left_any_comments_recently: 您最近沒有留下任何評論。來給其他人一些留言吧！
-  you_havent_linked_your_inaturalist_picasa_account: 您尚未連結您的 %{site_name} 帳號和您的 Picasa
-    帳號
   you_joined_this_project: 您加入了此專案！
   you_may_have: 您可能已擁有。這僅能運作在相容近代標準的瀏覽器像是
   you_must_be_a_member_of_this_project_to_do_that: 您必須是此專案成員之一才能做出
@@ -3763,8 +3753,6 @@ zh-TW:
   your_observations: 您的觀察
   your_observations_couldnt_be_added_to_that_project: 您的觀察無法添加至該專案：%{errors}
   your_photos_have_been_tagged: 您的照片已被標記！
-  your_picasa_account: 您的 Picasa 帳號
-  your_picasa_account_info: 您的 Picasa 帳號訊息
   your_profile_was_successfully_updated: 您的個人資料更新成功！
   your_should_recognize: 您應該辨別其中一些照片
   your_site_account_has_been_created: 您的 %{site} 帳號已被創建。
@@ -3781,8 +3769,6 @@ zh-TW:
   youre_viewing_all_observations: 您正檢視所有觀察
   youre_viewing_site_name_observations_html: 您正檢視 <strong>%{site_name}</strong> 的觀察
   youve_already_added_an_identification: 您僅能添加一項鑑定，而您已添加過了
-  youve_linked_your_inaturalist_picasa_account: 您已連結您的 %{site_name} 帳號與您的 Picasa 帳號。這可允許您讓您的
-    Picasa 照片與您的 %{site_name} 觀察作關連。
   youve_opted_out_of_community_ids: 您已選擇退出社群鑑定
   youve_opted_out_of_community_ids_for_this_obs: 您已選擇讓此觀察退出社群鑑定
   youve_seen_it_want_to: 您已看見了它！想要
@@ -3888,8 +3874,6 @@ zh-TW:
         what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: 連結 %{site_name}
           至我的 Flickr 帳號代表著什麼意義？
         can_i_add_photos_without_a_flickr_account?: 我可以不必透過使用 Flickr 帳號來添加照片嗎？
-        we_also_support_picasa_html: 我們也支援 Picasa：<a href="%{url}">設置您的 Picasa 帳號
-          &raquo;</a>
         we_also_support_uploading_photos: 我們也支援直接上傳照片至 %{site_name}；但處理時間會較久，因此我們只允許每次上傳一張照片。若您已使用過
           Flickr 或 Picasa 這些服務的話，使用它們會可能是較快的方法。
         what_are_tags?: 什麼是標籤？

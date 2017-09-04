@@ -342,7 +342,6 @@ ja:
   are_you_sure_remove_taxon_from_list: リストからこの分類群を削除して本当によろしいですか？
   are_you_sure_remove_taxon_from_place: この分類群を%{place}のチェックリストから取り除いて本当によろしいですか？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
-  are_you_sure_unlink_picasa: Picasaアカウントとの連携を解除して本当によろしいですか？
   are_you_sure_want_activate_account: このアカウントを有効にして本当によろしいですか?
   are_you_sure_want_delete_account: アカウントを削除して本当によろしいですか？全てのユーザーデータが失われ、取り消しができません。仲間がいなくなるのもさみしいです。
   are_you_sure_want_delete_taxon: この分類群を削除して本当によろしいですか？%{msg}
@@ -1350,12 +1349,10 @@ ja:
   link: リンク
   link_or_unlink_your_facebook_account: Facebookアカウントとのリンク開始・解除
   link_or_unlink_your_flickr_account: Flickrアカウントとのリンク開始・解除
-  link_or_unlink_your_picasa_account: Picasaアカウントとのリンク開始・解除
   link_your_facebook_account: Facebookアカウントと連携させる
   link_your_flickr_account: Flickrアカウントと連携させる
   link_your_flickr_account_with_inat: '%{site_name}とFlickrアカウントを連携させる'
   link_your_flickr_account_with_inat_so: 観測記録の写真を追加できるように、%{site_name}とFlickrアカウントを連携させましょう
-  link_your_picasa_account: Picasaアカウントと連携させる
   linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている
   linked_facebook_howto: Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。
   linked_facebook_password: 我々は、あなたのFacebookのパスワードを聞くことは絶対にありません。（しかし、Facebookから聞かれることがあるかもしれませんので、URL先のアドレスが本当にFacebookかどうか必ず確認してください）。また、希望しない限り、あなたのFacebookの情報を変えることもありません。
@@ -1913,7 +1910,6 @@ ja:
   photos_size_photos: '%{photos_size}枚の写真'
   photos_size_photo: '%{photos_size}枚の写真'
   photos_updated: 写真は更新されました
-  picasa_account_not_linked: '%{user}のアカウントはもうPicasaとリンクされていないため、%{site_name}に写真のアクセス権限がありません。'
   picasa_identity: Picasaアイデンティティー
   pick_a_username: ユーザー名
   pink: 桃
@@ -2440,7 +2436,6 @@ ja:
   something_went_wrong_updating: リスト更新する際に問題が発生しました
   somewhere_on_earth: 地球のどこかで
   sorry_flickr_isnt_responding_at_the_moment: 申し訳ありません。現在Flickrから応答がありません。
-  sorry_picasa_isnt_responding_at_the_moment: 申し訳ありません。現在Picasaから応答がありません。
   sorry_that_service_is_not_responding: 申し訳ありません。サービスの応答がありません。しばらくしてからもう一度お試しください。
   sorry_we_didnt_find_that_photo: 申し訳ありません、お探しの写真が見つかりません。
   sorry_we_dont_have_any_metadata_for_that_photo: 申し訳ありません。写真に観察記録にインポートできるメタデータが見つかりませんでした。
@@ -2761,7 +2756,6 @@ ja:
   uninvite: 招待を取り消す
   unknown: 不明
   unknown_rank: (階級不明）
-  unlink_your_picasa_account: Picasaアカウントとの同期を解除
   updates_notification_email_subject: '%{prefix}新着情報%{date}'
   updating: 更新中...
   unprocessable: 処理不可
@@ -3057,8 +3051,6 @@ ja:
   your_observations: あなたの観察記録
   your_observations_couldnt_be_added_to_that_project: 指定のプロジェクトに観察記録を追加できません：%{errors}
   your_photos_have_been_tagged: あなたの写真はタグ付けされました！
-  your_picasa_account: あなたのPicasaアカウント
-  your_picasa_account_info: あなたのPicasaアカウント情報
   your_profile_was_successfully_updated: プロフィールは無事更新されました
   your_should_recognize: こちらの写真のうち、いくつか見覚えありませんか
   your_site_account_has_been_created: あなたの%{site}アカウントは無事作成することができました。

@@ -400,7 +400,6 @@ es-MX:
     o grupo de la lista de comprobación de  %{place}
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: ¿Estás seguro?
     Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
-  are_you_sure_unlink_picasa: ¿Estas seguro que quieres desenlazar tu cuenta de Picasa?
   are_you_sure_want_activate_account: ¿Estás seguro que quieres activad esta cuenta?
   are_you_sure_want_delete_account: ¿Estás seguro que quieres borrar tu cuenta? Esto
     borraría todos tus datos y no se pueden reponer y además, nos daría mucha pena
@@ -1642,13 +1641,11 @@ es-MX:
   link: Enlace
   link_or_unlink_your_facebook_account: Enlaza o desenlaza tu cuenta de Facebook
   link_or_unlink_your_flickr_account: Enlaza o desenlaza tu cuenta Flickr
-  link_or_unlink_your_picasa_account: Enlaza o desenlaza tu cuenta Picasa
   link_your_facebook_account: Enlaza tu cuenta de Facebook
   link_your_flickr_account: Enlaza tu cuenta de Flickr
   link_your_flickr_account_with_inat: Enlaza tu cuenta de Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Enlaza tu cuenta Flickr con %{site_name}
     para que puedas añadir fotos de tus observaciones.
-  link_your_picasa_account: Enlaza tu cuenta de Picasa
   linked_facebook: Tu cuenta %{site_name} está enlazada con tu cuenta de Facebook.
   linked_facebook_automaticaly: También ten en cuenta que cuando entras a %{site_name}
     via Facebook, automáticamente re-enlazaremos tus cuentas de  %{site_name} y de
@@ -2351,8 +2348,6 @@ es-MX:
   photos_size_photos: '%{photos_size} fotos'
   photos_size_photo: '%{photos_size} foto'
   photos_updated: Fotos actualizadas.
-  picasa_account_not_linked: El %{user} ya no tiene vinculada la cuenta de facebook,
-    para %{site_name} por lo que no tiene permiso para acceder a esta foto.
   picasa_identity: Identificación de Picasa
   pick_a_username: Escoge un nombre de usuario
   pink: Rosa
@@ -2919,8 +2914,6 @@ es-MX:
     para que lo encuentres la próxima vez.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Lo sentimos, alguna de
     esas fotos de Flickr no existen o no tienes permisos para verlas.
-  sorry_picasa_isnt_responding_at_the_moment: Lo sentimos, Picasa de momento no esta
-    respondiendo.
   sorry_that_photo_provider_isnt_responding: Lo sentimos, esa foto de momento no esta
     respondiendo. Por favor inténtalo más tarde.
   sorry_that_service_is_not_responding: Lo sentimos, ese servicio no responde. Por
@@ -3368,9 +3361,6 @@ es-MX:
   to_add_ids: para agregar identificaciones
   to_an: a una
   to_configure_your_widget: para configurar tu widget.
-  to_include_your_picassa_with_inat: Para incluir tus fotos de Picasa con tus observaciones
-    de %{site_name}, selecciona el botón a la derecha para enlazar tu dos cuentas.
-    Pasarás a Google, donde te pedirán que autorices esta conexión.
   to_tag_your_flickr_from_here: para etiquetar tus fotos de Flickr desde aquí sin
     cortar y pegar
   to_the_bat_cave: ¡A la baticueva!
@@ -3419,7 +3409,6 @@ es-MX:
   unique_observers_last_3_months: Observaciones únicas en los pasados 3 meses,
   unknown: Desconocido
   unknown_rank: (Clasificación desconocida)
-  unlink_your_picasa_account: Desenlaza tu cuenta Picasa
   unobserved_listings: Listados no observados
   updates_notification_email_subject: '%{prefix} Nuevas actualizaciones %{date}'
   updating: Actualizando
@@ -3808,8 +3797,6 @@ es-MX:
   you_havent: No te has
   you_havent_left_any_comments_recently: No has dejado comentarios recientemente.
     ¡Déjale una nota a alguien!
-  you_havent_linked_your_inaturalist_picasa_account: Todavía no has enlazado tu cuenta
-    de %{site_name} a tu cuenta de  Picasa
   you_joined_this_project: ¡Te uniste a este proyecto!
   you_may_have: 'que puedas tener. Probablemente solo funcione en buscadores modernos:'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto
@@ -3892,8 +3879,6 @@ es-MX:
   your_observations_couldnt_be_added_to_that_project: 'Tus observaciones no pueden
     ser añadidas a este proyecto: %{errors}'
   your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
-  your_picasa_account: Tu cuenta de Picasa
-  your_picasa_account_info: La información de tu cuenta de Picasa
   your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_should_recognize: Deberías reconocer algunas de estas fotos
   your_site_account_has_been_created: Tu cuenta %{site} ha sido creada.
@@ -3912,9 +3897,6 @@ es-MX:
   youre_viewing_site_name_observations_html: Estás viendo las observaciones de <strong>%{site_name}</strong>
   youve_already_added_an_identification: Ya has añadido una identificación y solo
     puedes añadir una.
-  youve_linked_your_inaturalist_picasa_account: Has enlazado tu cuenta de %{site_name}
-    con tu cuenta de Picasa. Esto te permitirá asociar tus fotos de Picasa con tus
-    observaciones de  %{site_name}.
   youve_opted_out_of_community_ids: Decidiste evitar identificaciones comunitarias
   youve_opted_out_of_community_ids_for_this_obs: Optaste evitar la identificación
     de la comunidad para esta observación
@@ -4163,8 +4145,6 @@ es-MX:
           permitiéndonos usar tus fotos de formas que no quieras."
         can_i_add_photos_without_a_flickr_account?: ¿Puedo añadir fotos sin tener
           una cuenta en Flicker?
-        we_also_support_picasa_html: 'También utilizamos Picasa:  <a href="%{url}">Configura
-          tu cuenta de Picasa &raquo;</a>'
         we_also_support_uploading_photos: "También puede subir fotos directamente
           a %{site_name}, pero puede ser un poco lento,\nasí que solo permitimos una
           a la vez. Usando Usando Flickr o Picasa es más rápido \nsi ya estás utilizando
