@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 
-const UserImage = ( { user } ) => {
+const UserImage = ( { user, linkTarget } ) => {
   const icon = (
     <i
       className="icon-person"
@@ -19,7 +19,7 @@ const UserImage = ( { user } ) => {
         href={`/people/${user.login || user.id}`}
         title={user.login}
         style={ style }
-        target="_self"
+        target={ linkTarget }
       >
         { icon }
       </a>
@@ -29,7 +29,12 @@ const UserImage = ( { user } ) => {
 };
 
 UserImage.propTypes = {
-  user: PropTypes.object
+  user: PropTypes.object,
+  linkTarget: PropTypes.string
+};
+
+UserImage.defaultProps = {
+  linkTarget: "_self"
 };
 
 export default UserImage;

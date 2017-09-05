@@ -62,6 +62,7 @@ const ObservationsGridItemForIdentify = ( {
       toggleReviewed={ toggleReviewed }
       before={ before }
       controls={ controls }
+      linkTarget="_blank"
     />
   );
 };

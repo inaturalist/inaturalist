@@ -23,7 +23,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     <a
       className="user"
       href={ `/people/${item.user.login}` }
-      target={linkTarget}
+      target={ linkTarget }
     >
       { item.user.login }
     </a>
@@ -79,14 +79,14 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       <div className="identification">
         { buttonDiv }
         <div className="taxon">
-          <a href={ `/taxa/${taxon.id}` }>
+          <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
             { taxonImageTag }
           </a>
           <SplitTaxon
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }
             noParens
-            target={linkTarget}
+            target={ linkTarget }
             showMemberGroup
           />
         </div>
@@ -157,7 +157,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     taxonChange = ( <div className="taxon-change">
       <i className="fa fa-refresh" /> { I18n.t( "this_id_was_added_due_to_a" ) } <a
         href={ `/taxon_changes/${item.taxon_change.id}` }
-        target={linkTarget}
+        target={ linkTarget }
         className="linky"
       >
          { _.startCase( I18n.t( type ) ) }
@@ -169,7 +169,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   return (
     <div className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
-        <UserImage user={ item.user } />
+        <UserImage user={ item.user } linkTarget={ linkTarget } />
       </div>
       <Panel className={ panelClass } header={(
         <span>

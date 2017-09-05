@@ -7,12 +7,13 @@ const ObservationsGridItem = ( {
   onObservationClick,
   before,
   controls,
-  showMagnifier
+  showMagnifier,
+  linkTarget
 } ) => {
   let taxonJSX = I18n.t( "unknown" );
   if ( o.taxon && o.taxon !== null ) {
     taxonJSX = (
-      <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} />
+      <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} target={ linkTarget } />
     );
   }
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
@@ -27,7 +28,7 @@ const ObservationsGridItem = ( {
         style={ {
           backgroundImage: o.photo( ) ? `url( '${o.photo( "medium" )}' )` : ""
         } }
-        target="_self"
+        target={ linkTarget }
         className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
         onClick={function ( e ) {
           if ( typeof( onObservationClick ) !== "function" ) {
@@ -47,7 +48,7 @@ const ObservationsGridItem = ( {
         ) : null }
       </a>
       <div className="caption">
-        <UserImage user={ o.user } />
+        <UserImage user={ o.user } linkTarget={ linkTarget } />
         { taxonJSX }
         <div className="controls">
           { controls }
@@ -62,7 +63,12 @@ ObservationsGridItem.propTypes = {
   onObservationClick: PropTypes.func,
   before: PropTypes.element,
   controls: PropTypes.element,
-  showMagnifier: PropTypes.bool
+  showMagnifier: PropTypes.bool,
+  linkTarget: PropTypes.string
+};
+
+ObservationsGridItem.defaultProps = {
+  linkTarget: "_self"
 };
 
 export default ObservationsGridItem;
