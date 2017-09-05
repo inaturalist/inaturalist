@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Panel } from "react-bootstrap";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 
 class Identifiers extends React.Component {
   constructor( props ) {

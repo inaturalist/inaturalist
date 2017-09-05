@@ -18,8 +18,10 @@ module Shared::SweepersModule
     ctrl = ActionController::Base.new
     ctrl.expire_fragment(FakeView.url_for(:controller => 'taxa', :action => 'photos', :id => taxon.id, :partial => "photo"))
     I18N_SUPPORTED_LOCALES.each do |locale|
-      ctrl.send(:expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.id, locale: locale))
-      ctrl.send(:expire_action, FakeView.url_for(controller: 'taxa', action: 'show', id: taxon.to_param, locale: locale))
+      [true, false].each do |ssl|
+        ctrl.send( :expire_action, FakeView.url_for( controller: "taxa", action: "show", id: taxon.id, locale: locale, ssl: ssl ) )
+        ctrl.send( :expire_action, FakeView.url_for( controller: "taxa", action: "show", id: taxon.to_param, locale: locale, ssl: ssl ) )
+      end
     end
     Rails.cache.delete( taxon.photos_cache_key )
     Rails.cache.delete( taxon.photos_with_external_cache_key )

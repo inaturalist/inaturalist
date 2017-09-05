@@ -173,6 +173,18 @@ const SplitTaxon = ( {
       </span>
     );
   };
+  const extinct = ( ) => {
+    if ( !taxon || !taxon.extinct ) {
+      return null;
+    }
+    return (
+      <span className="extinct">
+        [
+          { I18n.t( "extinct" ) }
+        ]
+      </span>
+    );
+  };
   let memberGroup;
   // show "is member of" if requested and there's no common name
   if ( showMemberGroup && taxon && !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) {
@@ -192,7 +204,7 @@ const SplitTaxon = ( {
   }
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) } { memberGroup }
+      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) } { extinct( ) } { memberGroup }
     </span>
   );
 };

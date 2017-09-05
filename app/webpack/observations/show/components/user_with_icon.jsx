@@ -1,6 +1,5 @@
 import React, { PropTypes } from "react";
-import UserImage from "../../identify/components/user_image.jsx";
-
+import UserImage from "../../../shared/components/user_image";
 
 const UserWithIcon = ( { user } ) => {
   if ( !user ) { return ( <div /> ); }

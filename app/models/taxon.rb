@@ -76,9 +76,11 @@ class Taxon < ActiveRecord::Base
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
               :capitalize_name
+  after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
-             :handle_after_move
+             :handle_after_move,
+             :handle_change_in_completeness
   after_commit :index_observations
 
   validates_presence_of :name, :rank
@@ -388,7 +390,8 @@ class Taxon < ActiveRecord::Base
   # Callbacks ###############################################################
   
   def handle_after_move
-    set_iconic_taxon if ancestry_changed?
+    return true unless ancestry_changed?
+    set_iconic_taxon
     return true if skip_after_move
     denormalize_ancestry
     return true if id_changed?
@@ -405,6 +408,31 @@ class Taxon < ActiveRecord::Base
     elastic_index!
     Taxon.refresh_es_index
     true
+  end
+
+  def handle_change_in_completeness
+    return true unless complete_changed?
+    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
+  end
+
+  def self.reindex_descendants_of( taxon )
+    Taxon.elastic_index!( scope: Taxon.joins(:taxon_ancestors).where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ) )
+  end
+
+  def complete_species_count
+    if rank_level.to_i <= SPECIES_LEVEL
+      return nil
+    end
+    if !complete? && !ancestors.where( "complete" ).exists?
+      return nil
+    end
+    scope = taxon_ancestors_as_ancestor.
+      select("distinct taxon_ancestors.taxon_id").
+      joins(:taxon).
+      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, Taxon::SPECIES ).
+      joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
+      where( "cs.id IS NULL OR cs.place_id IS NOT NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", Taxon::IUCN_EXTINCT )
+    scope.count
   end
 
   def denormalize_ancestry

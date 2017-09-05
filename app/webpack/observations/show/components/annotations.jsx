@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel } from "react-bootstrap";
 import UsersPopover from "./users_popover";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 
 class Annotations extends React.Component {
 

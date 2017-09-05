@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import { Row, Col } from "react-bootstrap";
-import ObservationsGridItem from "./observations_grid_item";
+import ObservationsGridItemForIdentify from "./observations_grid_item_for_identify";
 
 const ObservationsGrid = ( {
   observations,
@@ -22,12 +22,13 @@ const ObservationsGrid = ( {
       <Col xs={12}>
         { noObservationsNotice }
         { observations.map( ( observation ) => (
-          <ObservationsGridItem
+          <ObservationsGridItemForIdentify
             key={observation.id}
             observation={observation}
             onObservationClick={onObservationClick}
             toggleReviewed={toggleReviewed}
             onAgree={onAgree}
+            showMagnifier
           />
         ) ) }
       </Col>

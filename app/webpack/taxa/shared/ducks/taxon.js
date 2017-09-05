@@ -13,11 +13,14 @@ const SET_NAMES = "taxa-show/taxon/SET_NAMES";
 const SET_INTERACTIONS = "taxa-show/taxon/SET_INTERACTIONS";
 const SET_TRENDING = "taxa-show/taxon/SET_TRENDING";
 const SET_RARE = "taxa-show/taxon/SET_RARE";
+const SET_RECENT = "taxa-show/taxon/SET_RECENT";
+const SET_WANTED = "taxa-show/taxon/SET_WANTED";
 const SET_SIMILAR = "taxa-show/taxon/SET_SIMILAR";
 const SHOW_PHOTO_CHOOSER = "taxa-show/taxon/SHOW_PHOTO_CHOOSER";
 const HIDE_PHOTO_CHOOSER = "taxa-show/taxon/HIDE_PHOTO_CHOOSER";
 const SET_TAXON_CHANGE = "taxa-show/taxon/SET_TAXON_CHANGE";
 const SET_FIELD_VALUES = "taxa-show/taxon/SET_FIELD_VALUES";
+const SET_SPECIES = "taxa-show/taxon/SET_SPECIES";
 
 export default function reducer( state = { counts: {} }, action ) {
   const newState = Object.assign( { }, state );
@@ -52,8 +55,14 @@ export default function reducer( state = { counts: {} }, action ) {
     case SET_RARE:
       newState.rare = action.taxa;
       break;
+    case SET_RECENT:
+      newState.recent = action.response;
+      break;
     case SET_SIMILAR:
       newState.similar = action.results;
+      break;
+    case SET_WANTED:
+      newState.wanted = action.taxa;
       break;
     case SHOW_PHOTO_CHOOSER:
       newState.photoChooserVisible = true;
@@ -66,6 +75,9 @@ export default function reducer( state = { counts: {} }, action ) {
       break;
     case SET_FIELD_VALUES:
       newState.fieldValues = action.fieldValues;
+      break;
+    case SET_SPECIES:
+      newState.species = action.response;
       break;
     default:
       // nothing to see here
@@ -132,6 +144,20 @@ export function setRare( taxa ) {
   };
 }
 
+export function setRecent( response ) {
+  return {
+    type: SET_RECENT,
+    response
+  };
+}
+
+export function setWanted( taxa ) {
+  return {
+    type: SET_WANTED,
+    taxa
+  };
+}
+
 export function setSimilar( results ) {
   return {
     type: SET_SIMILAR,
@@ -175,6 +201,27 @@ export function fetchTerms( callback ) {
         _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
       if ( callback ) { callback( ); }
     } ).catch( e => { console.log( e ); } );
+  };
+}
+
+export function setSpecies( response ) {
+  return { type: SET_SPECIES, response };
+}
+
+export function fetchSpecies( taxon, options = { } ) {
+  return ( dispatch, getState ) => {
+    const s = getState( );
+    const t = taxon || s.taxon.taxon;
+    const params = Object.assign( { }, options, {
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale,
+      taxon_id: t.id,
+      rank: "species",
+      verifiable: true
+    } );
+    return inatjs.observations.speciesCounts( params ).then( response => {
+      dispatch( setSpecies( response ) );
+    } );
   };
 }
 
@@ -293,6 +340,38 @@ export function fetchRare( ) {
     inatjs.observations.speciesCounts( params ).then(
       response =>
         dispatch( setRare( response.results.map( r => r.taxon ) ) ),
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchRecent( ) {
+  return ( dispatch, getState ) => {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      quality_grade: "needs_id,research",
+      rank: "species",
+      category: "improving,leading",
+      per_page: 12
+    } );
+    inatjs.identifications.recent_taxa( params ).then(
+      response => dispatch( setRecent( response ) ),
+      error => {
+        console.log( "[DEBUG] error: ", error );
+      }
+    );
+  };
+}
+
+export function fetchWanted( ) {
+  return ( dispatch, getState ) => {
+    const params = {
+      id: getState( ).taxon.taxon.id,
+      per_page: 12
+    };
+    inatjs.taxa.wanted( params ).then(
+      response => dispatch( setWanted( response.results ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
       }

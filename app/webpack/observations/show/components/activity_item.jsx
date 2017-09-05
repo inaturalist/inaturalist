@@ -5,7 +5,7 @@ import { OverlayTrigger, Panel, Tooltip } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 

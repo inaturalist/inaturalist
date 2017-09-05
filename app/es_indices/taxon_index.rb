@@ -121,6 +121,7 @@ class Taxon < ActiveRecord::Base
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
+      json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
@@ -139,7 +140,8 @@ class Taxon < ActiveRecord::Base
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
-        atlas_id: atlas.try( :id )
+        atlas_id: atlas.try( :id ),
+        complete_species_count: complete_species_count
       })
     end
     json

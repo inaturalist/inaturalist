@@ -117,6 +117,7 @@ en:
   about_bioblitz_results: About bioblitz results
   about_charts: About Charts
   about_community_taxa: About community taxa
+  about_complete_taxa: About Complete Taxa
   about_conservation_status: About Conservation Status
   about_establishment_means: About Establishment Means
   about_external_links: About External Links
@@ -299,6 +300,7 @@ en:
   all_projects: All Projects
   all_rights_reserved: all rights reserved
   all_species: All Species
+  all_species_added_to_the_database: All species added to the database
   all_taxa:
     rank:
       kingdom: Kingdom
@@ -1003,6 +1005,7 @@ en:
         suspended: Your account has been suspended
   developers: Developers
   device: Device
+  discoveries: Discoveries
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
@@ -1405,6 +1408,7 @@ en:
   hi_user: "Hi %{user}"
   hide: Hide
   hide_details: Hide details
+  hide_uncountable_species: Hide uncountable species
   high: high
   highest_rank: Highest rank
   highlights: Highlights
@@ -2994,6 +2998,7 @@ en:
   show_taxa_from_place: "Show taxa from %{place}"
   showing_taxa_from_everywhere: "Showing taxa from everywhere"
   show_taxa_from_everywhere: "Show taxa from everywhere"
+  show_uncountable_species: Show uncountable species
   shown_publicly_as: Shown publicly as
   sign_in: Sign in
   sign_in_with_provider: "Sign in with %{provider}"
@@ -3469,6 +3474,7 @@ en:
   totals: totals
   total_members: Total members
   total_observations: Total observations
+  total_species_observed: Total Species Observed
   total_unique_observers: Total unique observers
   total_users: "total users,"
   'true': 'True'
@@ -3716,6 +3722,7 @@ en:
   want_to_add_one: Want to add one?
   want_to_show_off_some_of_your_favorite_taxa: Want to show off some of your favorite taxa here?
   want_to_test_a_new_version_of_this_page: Want to test a new version of this page?
+  wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_care_privacy: We Care About Your Privacy!
@@ -3795,6 +3802,7 @@ en:
   x_observations_failed:
     one: "1 observation failed"
     other: "%{count} observations failed"
+  x_of_y: "%{x} of %{y}"
   x_project_journal: "%{project}'s %{name}"
   x_project_stats: "%{project} Stats"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
@@ -5004,10 +5012,19 @@ en:
           looking at any field with the word "phenology" in its name and
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
+        complete_taxon_desc: |
+          "Complete" taxa have all of their descendant, extant species present in
+          the site's database. When a taxon is complete, we can say how many of
+          its species have been observed and how many still need to be observed.
+          Counts of species for "complete" taxa do not include "uncountable"
+          species like extinct species or inactive species concepts, and they
+          only include species, not infraspecic taxa.
+        discoveries_desc: "Most recent newly-identified species in this taxon"
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
         rare_desc: Least-observed threatened taxa
         rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
+        wanted_desc: Species in this taxon that have not been observed yet.
         no_trending_desc: Nothing below this taxon observed in the last month
         frequency:
           research: Research Grade

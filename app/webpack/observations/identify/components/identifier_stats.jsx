@@ -1,5 +1,5 @@
 import React, { PropTypes } from "react";
-import UserImage from "./user_image";
+import UserImage from "../../../shared/components/user_image";
 
 const IdentifierStats = ( {
   loading,

@@ -62,6 +62,24 @@
         <%= t(:locked_taxa_will_not_allow_new) %>
       </p>
     </div>
+
+    <% if
+        is_admin? &&
+        taxon.rank_level &&
+        taxon.rank_level > Taxon::SPECIES_LEVEL &&
+        !taxon.ancestors.where( "complete" ).exists?
+    %>
+      <div class="column span-23">
+        <div class="admin">
+          <%= f.check_box :complete, :label_after => true %>
+          <p class="description ui">
+            A "complete" taxon contains <em>all</em> known descendant taxa that
+            comply with iNaturalist's taxon curation policies, whether or not
+            they've been observed.
+          </p>
+        </div>
+      </div>
+    <% end %>
   </fieldset>
   
   <fieldset class="column span-24">

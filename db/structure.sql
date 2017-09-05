@@ -11,6 +11,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -3533,7 +3534,7 @@ CREATE TABLE sites (
     logo_email_banner_content_type character varying,
     logo_email_banner_file_size integer,
     logo_email_banner_updated_at timestamp without time zone,
-    domain character varying(255),
+    domain character varying,
     coordinate_systems_json text
 );
 
@@ -3834,7 +3835,8 @@ CREATE TABLE taxa (
     conservation_status_source_id integer,
     locked boolean DEFAULT false NOT NULL,
     conservation_status_source_identifier integer,
-    is_active boolean DEFAULT true NOT NULL
+    is_active boolean DEFAULT true NOT NULL,
+    complete boolean
 );
 
 
@@ -8923,13 +8925,15 @@ INSERT INTO schema_migrations (version) VALUES ('20170727000020');
 
 INSERT INTO schema_migrations (version) VALUES ('20170727000602');
 
-INSERT INTO schema_migrations (version) VALUES ('20170801022454');
-
 INSERT INTO schema_migrations (version) VALUES ('20170727193500');
+
+INSERT INTO schema_migrations (version) VALUES ('20170801022454');
 
 INSERT INTO schema_migrations (version) VALUES ('20170804212822');
 
 INSERT INTO schema_migrations (version) VALUES ('20170808184245');
 
 INSERT INTO schema_migrations (version) VALUES ('20170811032109');
+
+INSERT INTO schema_migrations (version) VALUES ('20170811232802');
 
