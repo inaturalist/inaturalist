@@ -1173,7 +1173,7 @@ describe "complete_species_count" do
     end
     it "should be set if complete ancestor exists" do
       ancestor = Taxon.make!( complete: true, rank: Taxon::FAMILY )
-      t = Taxon.make!( parent: ancestor )
+      t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS )
       expect( t.complete_species_count ).not_to be_nil
       expect( t.complete_species_count ).to eq 0
     end

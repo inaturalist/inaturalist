@@ -11,7 +11,9 @@ const HighlightsTab = ( {
   trendingUrl,
   placeName,
   placeUrl,
-  showNewTaxon
+  showNewTaxon,
+  wantedShown,
+  discoveriesShown
 } ) => (
   <Grid className="HighlightsTab">
     <Row>
@@ -33,47 +35,49 @@ const HighlightsTab = ( {
           taxa={ trendingTaxa }
           showNewTaxon={ showNewTaxon }
         />
-        <HighlightsCarousel
-          title={ I18n.t( "discoveries" ) }
-          taxa={ discoveries ? discoveries.map( d => d.taxon ) : null }
-          showNewTaxon={ showNewTaxon }
-          captionForTaxon={ taxon => {
-            const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
-            if ( !discoveries ) {
-              return <span></span>;
-            }
-            // let icon;
-            // if ( discovery.identification.category === "leading" ) {
-            //   icon = <i className="fa fa-bullhorn" />;
-            // } else if ( discovery.identification.category === "improving" ) {
-            //   icon = <i className="fa fa-trophy" />;
-            // }
-            return (
-              <div className="discovery-caption">
-                { /*
-                  <span className={ `ident-${discovery.identification.category} pull-left` }>
-                    { icon } { I18n.t( discovery.identification.category ) }
-                  </span>
-                */ }
-                <a
-                  href={ `/observations/${discovery.identification.observation.id}`}
-                  className="text-muted"
-                >
-                  { moment( discovery.identification.created_at ).fromNow( ) }
-                </a>
-              </div>
-            );
-          } }
-          description={ I18n.t( "views.taxa.show.discoveries_desc" ) }
-          urlForTaxon={ taxon => {
-            const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
-            if ( !discoveries ) {
-              return null;
-            }
-            return `/observations/${discovery.identification.observation.id}`;
-          } }
-        />
-        { wantedTaxa && wantedTaxa.length > 0 ? (
+        { discoveriesShown ? (
+          <HighlightsCarousel
+            title={ I18n.t( "discoveries" ) }
+            taxa={ discoveries ? discoveries.map( d => d.taxon ) : null }
+            showNewTaxon={ showNewTaxon }
+            captionForTaxon={ taxon => {
+              const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
+              if ( !discoveries ) {
+                return <span></span>;
+              }
+              // let icon;
+              // if ( discovery.identification.category === "leading" ) {
+              //   icon = <i className="fa fa-bullhorn" />;
+              // } else if ( discovery.identification.category === "improving" ) {
+              //   icon = <i className="fa fa-trophy" />;
+              // }
+              return (
+                <div className="discovery-caption">
+                  { /*
+                    <span className={ `ident-${discovery.identification.category} pull-left` }>
+                      { icon } { I18n.t( discovery.identification.category ) }
+                    </span>
+                  */ }
+                  <a
+                    href={ `/observations/${discovery.identification.observation.id}`}
+                    className="text-muted"
+                  >
+                    { moment( discovery.identification.created_at ).fromNow( ) }
+                  </a>
+                </div>
+              );
+            } }
+            description={ I18n.t( "views.taxa.show.discoveries_desc" ) }
+            urlForTaxon={ taxon => {
+              const discovery = _.find( discoveries, d => d.taxon.id === taxon.id );
+              if ( !discoveries ) {
+                return null;
+              }
+              return `/observations/${discovery.identification.observation.id}`;
+            } }
+          />
+        ) : null }
+        { wantedShown && wantedTaxa && wantedTaxa.length > 0 ? (
           <HighlightsCarousel
             title={ I18n.t( "wanted" ) }
             description={ I18n.t( "views.taxa.show.wanted_desc" ) }
@@ -93,7 +97,9 @@ HighlightsTab.propTypes = {
   wantedTaxa: PropTypes.array,
   discoveries: PropTypes.array,
   trendingUrl: PropTypes.string,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  discoveriesShown: PropTypes.bool,
+  wantedShown: PropTypes.bool
 };
 
 export default HighlightsTab;
