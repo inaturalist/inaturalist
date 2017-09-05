@@ -34,13 +34,6 @@ const HiglightsCarousel = ( {
   let items;
   if ( taxa ) {
     const chunkedTaxa = _.chunk( taxa, photosPerSlide );
-    if (
-      chunkedTaxa &&
-      chunkedTaxa[chunkedTaxa.length - 1] &&
-      chunkedTaxa[chunkedTaxa.length - 1].length === photosPerSlide
-    ) {
-      chunkedTaxa[chunkedTaxa.length - 1].pop( );
-    }
     items = (
       _.map( chunkedTaxa, ( chunk, i ) => (
         <Row key={`${keyBase}-${i}`}>
