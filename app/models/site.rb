@@ -147,7 +147,7 @@ class Site < ActiveRecord::Base
   preference :feedback_url, :string
   preference :terms_url, :string, :default => "/pages/terms"
   preference :privacy_url, :string, :default => "/pages/privacy"
-  preference :developers_url, :string, :default => "pages/developers"
+  preference :developers_url, :string, :default => "/pages/developers"
   preference :twitter_url, :string
   preference :iphone_app_url, :string
   preference :android_app_url, :string
