@@ -17,7 +17,7 @@ function mapStateToProps( state ) {
   };
   const baseParams = {
     view: "species",
-    rank: "species",
+    rank: "species,subspecies,variety",
     place_id: "any",
     verifiable: true
   };
