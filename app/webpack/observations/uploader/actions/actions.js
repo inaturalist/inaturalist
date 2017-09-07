@@ -334,6 +334,7 @@ const actions = class actions {
   static submitObservations( ) {
     return function ( dispatch ) {
       dispatch( { type: types.SET_STATE, attrs: { saveStatus: "saving" } } );
+      dispatch( actions.selectObsCards( { } ) );
       dispatch( actions.saveObservations( ) );
     };
   }
@@ -358,12 +359,12 @@ const actions = class actions {
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
-        dispatch( actions.finalizeSave( ) );
+        dispatch( actions.checkProjectErrors( ) );
       }
     };
   }
 
-  static finalizeSave( ) {
+  static checkProjectErrors( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       const missingProjects = { };
@@ -405,13 +406,48 @@ const actions = class actions {
             </div>
           ),
           onConfirm: () => {
-            window.location = `/observations/${CURRENT_USER.login}`;
+            dispatch( actions.checkFailedUploads( ) );
           }
         } } ) );
       } else {
-        window.location = `/observations/${CURRENT_USER.login}`;
+        dispatch( actions.checkFailedUploads( ) );
       }
     };
+  }
+
+  static checkFailedUploads( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const failedCards = _.filter( s.dragDropZone.obsCards, c => c.saveState === "failed" );
+      const remaining = _.pick( s.dragDropZone.obsCards, _.map( failedCards, "id" ) );
+      if ( s.dragDropZone.saveCounts.failed > 0 && _.size( remaining ) > 0 ) {
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          confirmText: "Stay and try again",
+          cancelText: "Ignore and continue",
+          message: `${_.size( remaining )} observation(s) failed to upload. Sometimes this means ` +
+            "there was a problem on our end, and they may upload successfully when saved again.",
+          onConfirm: ( ) => {
+            dispatch( actions.setState( { obsCards: remaining, saveStatus: null } ) );
+            _.each( remaining, c => {
+              dispatch( actions.updateObsCard( c, { saveState: "pending" } ) );
+            } );
+          },
+          onCancel: ( ) => {
+            _.each( remaining, c => {
+              dispatch( actions.updateObsCard( c, { saveState: "saved" } ) );
+            } );
+            actions.loadUsersObservationsPage( );
+          }
+        } } ) );
+      } else {
+        actions.loadUsersObservationsPage( );
+      }
+    };
+  }
+
+  static loadUsersObservationsPage( ) {
+    window.location = `/observations/${CURRENT_USER.login}`;
   }
 
   static uploadFiles( ) {
@@ -449,7 +485,8 @@ const actions = class actions {
           uploadState: "uploaded", photo: r, serverMetadata } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
-          // if the file has been uploaded and we had a preview, ditch the preview to avoid memory leaks
+          // if the file has been uploaded and we had a preview,
+          // ditch the preview to avoid memory leaks
           if ( file.preview ) {
             window.URL.revokeObjectURL( file.preview );
             dispatch( actions.updateFile( file, { preview: null } ) );

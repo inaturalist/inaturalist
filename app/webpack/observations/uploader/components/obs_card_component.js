@@ -98,6 +98,7 @@ class ObsCardComponent extends Component {
       this.props.cardIsOver !== nextProps.cardIsOver ||
       this.props.obsCard.galleryIndex !== nextProps.obsCard.galleryIndex ||
       this.props.selected_species_guess !== nextProps.selected_species_guess ||
+      this.props.obsCard.saveState !== nextProps.obsCard.saveState ||
       _.size( this.props.obsCard.files ) !==
         _.size( nextProps.obsCard.files ) ||
       !_.isMatch( this.props.obsCard, nextProps.obsCard ) );
@@ -147,6 +148,9 @@ class ObsCardComponent extends Component {
     if ( cardIsDragging ) { className += " dragging"; }
     if ( cardIsOver || fileIsOver ) { className += " dragOver"; }
     if ( obsCard.selected ) { className += " selected ui-selecting"; }
+    if ( obsCard.saveState === "saving" ) { className += " saving"; }
+    if ( obsCard.saveState === "saved" ) { className += " saved"; }
+    if ( obsCard.saveState === "failed" ) { className += " failed"; }
     let locationText = obsCard.locality_notes ||
       ( obsCard.latitude &&
       `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` );

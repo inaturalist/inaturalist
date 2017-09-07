@@ -7,7 +7,7 @@ const defaultState = {
   obsCards: { },
   files: { },
   numberOfUploads: 0,
-  maximumNumberOfUploads: 4,
+  maximumNumberOfUploads: 3,
   saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 },
   locationChooser: { show: false },
   removeModal: { show: false },
