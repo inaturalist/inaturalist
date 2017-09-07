@@ -11,7 +11,8 @@ const ObservationsGridItemForIdentify = ( {
   observation,
   onObservationClick,
   onAgree,
-  toggleReviewed
+  toggleReviewed,
+  currentUser
 } ) => {
   const agreeButton = (
     <OverlayTrigger
@@ -39,7 +40,10 @@ const ObservationsGridItemForIdentify = ( {
       </Button>
     </OverlayTrigger>
   );
-  const showAgree = observation.taxon && observation.taxon.rank_level <= 10 && observation.taxon.is_active;
+  let showAgree = observation.taxon && observation.taxon.rank_level <= 10 && observation.taxon.is_active;
+  if ( currentUser && currentUser.id === observation.user.id ) {
+    showAgree = false;
+  }
   const controls = showAgree ? agreeButton : null;
   const before = (
     <div className={`reviewed-notice ${observation.reviewedByCurrentUser ? "reviewed" : ""}`}>
@@ -71,7 +75,8 @@ ObservationsGridItemForIdentify.propTypes = {
   observation: PropTypes.object.isRequired,
   onObservationClick: PropTypes.func,
   onAgree: PropTypes.func,
-  toggleReviewed: PropTypes.func
+  toggleReviewed: PropTypes.func,
+  currentUser: PropTypes.object
 };
 
 export default ObservationsGridItemForIdentify;

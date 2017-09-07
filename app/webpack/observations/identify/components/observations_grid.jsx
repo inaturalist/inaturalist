@@ -7,7 +7,8 @@ const ObservationsGrid = ( {
   onObservationClick,
   toggleReviewed,
   onAgree,
-  grid
+  grid,
+  currentUser
 } ) => {
   let noObservationsNotice;
   if ( observations.length === 0 ) {
@@ -23,12 +24,13 @@ const ObservationsGrid = ( {
         { noObservationsNotice }
         { observations.map( ( observation ) => (
           <ObservationsGridItemForIdentify
-            key={observation.id}
-            observation={observation}
-            onObservationClick={onObservationClick}
-            toggleReviewed={toggleReviewed}
-            onAgree={onAgree}
+            key={ observation.id }
+            observation={ observation }
+            onObservationClick={ onObservationClick }
+            toggleReviewed={ toggleReviewed }
+            onAgree={ onAgree }
             showMagnifier
+            currentUser={ currentUser }
           />
         ) ) }
       </Col>
@@ -46,7 +48,8 @@ ObservationsGrid.propTypes = {
   onObservationClick: PropTypes.func,
   onAgree: PropTypes.func,
   toggleReviewed: PropTypes.func,
-  grid: PropTypes.bool
+  grid: PropTypes.bool,
+  currentUser: PropTypes.object
 };
 
 export default ObservationsGrid;
