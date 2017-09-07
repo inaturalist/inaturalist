@@ -3316,7 +3316,7 @@ zh-TW:
   "true": 是
   trending: 趨勢
   trends: 趨勢
-  trusted_project?: 可信任的專案？
+  trusted_project?: 託付的專案？
   try_adding_species_form: 嘗試使用此頁面上的表單來添加一些物種。
   try_it_out: 試試看
   try_wikipedia: 試試看維基百科？
@@ -4116,6 +4116,8 @@ zh-TW:
         submission_models:
           any: 任一
           curators: 專案策展人
+        trusted_project_means: 託付一個專案代表著專案負責人可以為專案添加可用物件以及自定義專案屬性（例如：橫幅的 HTML 內容、CSS）。存取自定義專案屬性代表著專案負責人有可能會添加惡意的
+          Javascript 內容，因此僅託付專案給具備責任感以及技術能力的負責人。
       join:
         invite_only_description: 此專案的成員資格僅限於有獲得邀請。若您想加入，請聯絡下列任一策展人來請求一份邀請。
       project_user_curator_coordinate_access_labels:
@@ -4176,6 +4178,8 @@ zh-TW:
         about_html: 物種分類群可以會有很多通用名稱。我們支援一個預設的全域通用名稱，並且可透過拖拉名稱至列表頂端的方式來更改。您也可在編輯名稱與添加地點時；以不同地點為條件來指定預設名稱，但請注意這只在當不同地點有名稱衝突的情況下才做出。
     users:
       dashboard:
+        taxon_change_desc: 物種分類更改代表著 %{site_name} 的分類法更改。大部份情況下當這些內容更改時；%{site_name}
+          會自動將您的內容更新（除非您選擇不需要這樣做），而我們仍想讓您了解您的資料是在何時以及如何的方式下作出更改。
         your_content_will_be_updated: 您所相關這些物件分類群的內容將會自動更新。
         you_may_want_to_update: 您有一些內容相關這些物種分類群；而您可能需要更新。
         cannot_update_your_content: '%{site_name} 無法在此更改自動更新您的內容。'
