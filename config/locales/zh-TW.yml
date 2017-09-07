@@ -16,8 +16,8 @@ zh-TW:
     href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
   you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、參與資料質素評審或在評論欄中詳述不符點。
   we_also_support: |-
-    我們亦支援 <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, 及
+    我們亦支援 <a href="http://flickr.com">Flickr</a>、
+    <a href="http://photos.google.com">Google 照片</a>，及
     <a href="http://facebook.com">Facebook</a>
     作為圖片託管。
   a_default_taxon_name_will_automatically_created: |-
@@ -1642,10 +1642,12 @@ zh-TW:
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
   link_or_unlink_your_flickr_account: 連結或取消連結至您的 Flickr 帳號
+  link_or_unlink_your_google_account: 連結或取消連結至您的 Google 帳號
   link_your_facebook_account: 連結您的臉書帳號
   link_your_flickr_account: 連結您的 Flickr 帳號
   link_your_flickr_account_with_inat: 連結至您的 Flickr 帳號與 %{site_name}
   link_your_flickr_account_with_inat_so: 連接您的 Flickr 帳號至 %{site_name}；這樣您便可添加您觀察的照片。
+  link_your_google_account: 連結您的 Google 帳號
   linked_facebook: 您的 %{site_name} 帳號目前已連結至您的臉書帳號。
   linked_facebook_automaticaly: 另外，請留意如果您經由臉書登入至 %{site_name} 的話，我們會自動重新連結您的 %{site_name}
     與臉書帳號。若您有使用臉書；您應該會想要匯入在臉書上的照片，很合理是吧？
@@ -2336,6 +2338,7 @@ zh-TW:
   photos_size_photos: '%{photos_size} 張照片'
   photos_size_photo: '%{photos_size} 張照片'
   photos_updated: 照片已更新
+  google_account_not_linked: '%{user}不再有連結 Google 的帳號，因此 %{site_name} 沒有權限來使用此照片。'
   picasa_identity: Picasa 身份
   pick_a_username: 挑選一個用戶名稱
   pink: 粉紅色
@@ -2930,6 +2933,7 @@ zh-TW:
   sorry_flickr_isnt_responding_at_the_moment: 很抱歉，Flickr 目前沒有回應。
   sorry_how_about_we_try_repeat: 很抱歉！要不要讓我們嘗試在其它物種名稱資料庫來重複您的搜尋呢？如果我們有發現事物，我們會儲存它以讓您可在下次找出。
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: 很抱歉，其中一張 Flickr 照片不存在或是您沒有權限來檢視它。
+  sorry_google_isnt_responding_at_the_moment: 很抱歉，Google 目前沒有回應。
   sorry_that_photo_provider_isnt_responding: 很抱歉，此刻照片提供者沒有回應。請稍後再重試。
   sorry_that_service_is_not_responding: 很抱歉，服務沒有回應，請稍後重試。
   sorry_there_were_problems_with_your_request: 很抱歉，您的請求出現了一些問題：%{project_user}
@@ -3267,6 +3271,7 @@ zh-TW:
   this_user_has_been_suspended_message: 如果這是您的帳號且您認為是有問題的，請<a href="mailto:%{email}">聯絡我們</a>。
   this_will_add_listed_taxa: 這將會從觀察來添加已列出物種分類群。因為會花費一段時間；所以請謹慎使用並儘量用在小清單上
   this_will_refresh_listed_taxa: 這將會在此列表上重新整理已列出物種分類群。因為會花費一段時間；所以請謹慎使用並儘量用在小清單上
+  this_will_re_apply_all_list_rules: 這將會重新套用所有列表規則至已列出物種分類群並更新所關聯的統計狀態，例如：不在列出物種分類裡或不在所選排名的所被拒絕物種分類群。這不會添加任何新的物種分類群，並且會花上幾分鐘處理。
   this_will_refresh_without_reload: 這將會立即重新整理觀察統計。因為會花費一段時間所以請謹慎使用。
   this_will_reload_and_refresh: 這將會立即添加來自於觀察的所列出物種分類群；並重新整理觀察統計。因為會花費一段時間所以請謹慎使用。
   this_will_try_to_add_tags_to_your_flickr: 這將會嘗試添加標籤至您的 Flickr 照片，要繼續嗎？
@@ -3287,6 +3292,7 @@ zh-TW:
   to_add_ids: 添加鑑定
   to_an: 至一個
   to_configure_your_widget: 來設置您的小工具。
+  to_include_your_google_with_inat: 來與 %{site_name} 包含您的 Google 帳號
   to_recipient: 至
   to_suggest_an_identification: 提議一個鑑定
   to_tag_your_flickr_from_here: 來於此標記您的 Flickr 照片且不裁切並貼上。
@@ -3341,6 +3347,7 @@ zh-TW:
   unknown: 未知
   unknown_rank: （未知排名）
   unfollow: 未關注
+  unlink_your_google_account: 取消連結您的 Google 帳號
   unobserved_listings: 不可觀察列表
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的訂閱目前暫停'
@@ -3690,6 +3697,8 @@ zh-TW:
   you_have_to: 您必須
   you_havent: 您沒有
   you_havent_left_any_comments_recently: 您最近沒有留下任何評論。來給其他人一些留言吧！
+  you_havent_linked_your_inaturalist_google_account: 您尚未連結您的 %{site_name} 帳號和您的 Google
+    帳號
   you_joined_this_project: 您加入了此專案！
   you_may_have: 您可能已擁有。這僅能運作在相容近代標準的瀏覽器像是
   you_must_be_a_member_of_this_project_to_do_that: 您必須是此專案成員之一才能做出
@@ -3753,6 +3762,8 @@ zh-TW:
   your_observations: 您的觀察
   your_observations_couldnt_be_added_to_that_project: 您的觀察無法添加至該專案：%{errors}
   your_photos_have_been_tagged: 您的照片已被標記！
+  your_google_account: 您的 Google 帳號
+  your_google_account_info: 您的 Google 帳號訊息
   your_profile_was_successfully_updated: 您的個人資料更新成功！
   your_should_recognize: 您應該辨別其中一些照片
   your_site_account_has_been_created: 您的 %{site} 帳號已被創建。
@@ -3769,6 +3780,8 @@ zh-TW:
   youre_viewing_all_observations: 您正檢視所有觀察
   youre_viewing_site_name_observations_html: 您正檢視 <strong>%{site_name}</strong> 的觀察
   youve_already_added_an_identification: 您僅能添加一項鑑定，而您已添加過了
+  youve_linked_your_inaturalist_google_account: 您已連結您的 %{site_name} 帳號與您的 Google 帳號。這可允許您讓您的
+    Google 照片與您的 %{site_name} 觀察作關連。
   youve_opted_out_of_community_ids: 您已選擇退出社群鑑定
   youve_opted_out_of_community_ids_for_this_obs: 您已選擇讓此觀察退出社群鑑定
   youve_seen_it_want_to: 您已看見了它！想要
@@ -3873,9 +3886,14 @@ zh-TW:
           href="%{url}">需要鑑定</a>。
         what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: 連結 %{site_name}
           至我的 Flickr 帳號代表著什麼意義？
+        inaturalist_can_link_directly_to_the_flickr_photo_service: '%{site_name} 能直接連結至
+          Flickr 照片服務，因此您可添加您的 Flickr 照片至您的觀察。當您同意連結您的 Flickr 帳號時，僅會將兩邊的帳號作連結，我們並不會去存取您在
+          Flickr 上的密碼，並且不會去除您所使用的版權，以及不會授予我們用您不願意的方式來使用您的照片。'
         can_i_add_photos_without_a_flickr_account?: 我可以不必透過使用 Flickr 帳號來添加照片嗎？
+        we_also_support_google_html: 我們也支援 Google 照片：<a href="%{url}">設置您的 Google
+          帳號 &raquo;</a>
         we_also_support_uploading_photos: 我們也支援直接上傳照片至 %{site_name}；但處理時間會較久，因此我們只允許每次上傳一張照片。若您已使用過
-          Flickr 或 Picasa 這些服務的話，使用它們會可能是較快的方法。
+          Flickr 或 Google 這些服務的話，使用它們會可能是較快的方法。
         what_are_tags?: 什麼是標籤？
         tags_are_keywords_you_can_add_to_an_html: 標籤是可讓您添加至觀察裡；來使觀察更容易被查找的關鍵字。例如：如果您在土克凱可群島一旁的海洋裡潛水時，有條梭魚尾隨著您。您可將此觀察標記為
           &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;。
@@ -3883,6 +3901,7 @@ zh-TW:
         sure_check_out_our_widget_html: 沒錯，請瞧瞧我們的<a href="%{url}" title="Observations
           Widget">觀察小工具</a>。
         what_kind_of_photos_should_i_attach: 我應該附加哪種照片到觀察裡？我可以附加不是我拍攝的照片嗎？
+        photos_attached_to_observations_should_be: 附加到觀察的照片；應要能代表著在觀察時段裡的各別觀察。如果您記錄了一個關於樹的觀察；但在過了一天才對那棵樹拍攝照片的情況下，請重新替該張照片添加一個新觀察，因為若不這樣做會呈現出錯誤的對應時間點。
         please_do_not_upload_pictures_you_didnt_take_html: 請<em>不要上傳不是您拍攝的圖片</em>；除非您獲得來自攝影者的許可。在未經作品創建者許可之下發佈版權作品是非法行為，且默認下所有攝影師都擁有他們所拍攝照片的完整版權。如果照片內容與您的觀察項目有關聯，而且您也獲得拍攝一方的許可來做發佈，請您在觀察描述裡註明攝影師的名稱。
         what_is_geoprivacy?: 什麼是位置隱私？
         geoprivacy_is_a_setting_you_can: 位置隱私是個可用於您觀察上的設定，它能控制空間座標（經度與緯度）如何顯示。這裡有相關選項：
