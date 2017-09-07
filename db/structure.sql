@@ -6371,7 +6371,7 @@ CREATE INDEX index_comments_on_user_id ON comments USING btree (user_id);
 -- Name: index_comments_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_comments_on_uuid ON comments USING btree (uuid);
+CREATE UNIQUE INDEX index_comments_on_uuid ON comments USING btree (uuid);
 
 
 --
@@ -6763,7 +6763,7 @@ CREATE INDEX index_identifications_on_user_id_and_current ON identifications USI
 -- Name: index_identifications_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_identifications_on_uuid ON identifications USING btree (uuid);
+CREATE UNIQUE INDEX index_identifications_on_uuid ON identifications USING btree (uuid);
 
 
 --
@@ -7008,7 +7008,7 @@ CREATE INDEX index_observation_field_values_on_user_id ON observation_field_valu
 -- Name: index_observation_field_values_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
+CREATE UNIQUE INDEX index_observation_field_values_on_uuid ON observation_field_values USING btree (uuid);
 
 
 --
@@ -7050,7 +7050,7 @@ CREATE INDEX index_observation_photos_on_photo_id ON observation_photos USING bt
 -- Name: index_observation_photos_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_observation_photos_on_uuid ON observation_photos USING btree (uuid);
+CREATE UNIQUE INDEX index_observation_photos_on_uuid ON observation_photos USING btree (uuid);
 
 
 --
@@ -7071,7 +7071,7 @@ CREATE INDEX index_observation_reviews_on_user_id ON observation_reviews USING b
 -- Name: index_observation_sounds_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_observation_sounds_on_uuid ON observation_sounds USING btree (uuid);
+CREATE UNIQUE INDEX index_observation_sounds_on_uuid ON observation_sounds USING btree (uuid);
 
 
 --
@@ -7337,7 +7337,7 @@ CREATE INDEX index_observations_on_user_id ON observations USING btree (user_id)
 -- Name: index_observations_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_observations_on_uuid ON observations USING btree (uuid);
+CREATE UNIQUE INDEX index_observations_on_uuid ON observations USING btree (uuid);
 
 
 --
@@ -7596,7 +7596,7 @@ CREATE INDEX index_project_observations_on_user_id ON project_observations USING
 -- Name: index_project_observations_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_project_observations_on_uuid ON project_observations USING btree (uuid);
+CREATE UNIQUE INDEX index_project_observations_on_uuid ON project_observations USING btree (uuid);
 
 
 --
@@ -8936,4 +8936,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170808184245');
 INSERT INTO schema_migrations (version) VALUES ('20170811032109');
 
 INSERT INTO schema_migrations (version) VALUES ('20170811232802');
+
+INSERT INTO schema_migrations (version) VALUES ('20170907221848');
 
