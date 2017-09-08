@@ -2236,17 +2236,23 @@ class Observation < ActiveRecord::Base
     super
   end
 
-  def merge(reject)
-    mutable_columns = self.class.column_names - %w(id created_at updated_at)
+  def merge(reject, options = {})
+    mutable_columns = self.class.column_names - %w(id created_at updated_at uuid)
     mutable_columns.each do |column|
       self.send("#{column}=", reject.send(column)) if send(column).blank?
     end
-    reject.identifications.update_all("current = false")
+    if options[:skip_identifications]
+      reject.identifications.delete_all
+    else
+      reject.identifications.update_all("current = false")
+    end
     merge_has_many_associations(reject)
     reject.destroy
-    identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
-      c = idents.sort_by(&:id).last
-      c.update_attributes(:current => true)
+    unless options[:skip_identifications]
+      identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
+        c = idents.sort_by(&:id).last
+        c.update_attributes(:current => true)
+      end
     end
     save!
   end

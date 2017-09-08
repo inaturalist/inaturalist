@@ -2578,19 +2578,24 @@ class ObservationsController < ApplicationController
   
   def load_observation
     scope = Observation.where(id: params[:id] || params[:observation_id])
-    unless @skipping_preloading
-      scope = scope.includes([ :quality_metrics,
-       :flags,
-       { photos: :flags },
-       :identifications,
-       :projects,
-       { taxon: :taxon_names }])
-    end
+    includes = [ :quality_metrics,
+      :flags,
+      { photos: :flags },
+      :identifications,
+      :projects,
+      { taxon: :taxon_names }
+    ]
+    scope = scope.includes( includes ) unless @skipping_preloading
     @observation = begin
       scope.first
     rescue RangeError => e
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       nil
+    end
+    unless @observation
+      uuid_scope = Observation.where( uuid: params[:id] )
+      uuid_scope = uuid_scope.includes( includes ) unless @skipping_preloading
+      @observation = uuid_scope.first
     end
     render_404 unless @observation
   end
