@@ -4,6 +4,13 @@ $(document).ready(function( ) {
   Stats.loadCharts( );
 });
 
+Stats.dateForStat = function( stat ) {
+  var date = new Date( stat.created_at );
+  var timezoneOffsetInMilliseconds = date.getTimezoneOffset( ) * 60 * 1000;
+  var startOfLocalDay = new Date( date.getTime() + timezoneOffsetInMilliseconds );
+  return startOfLocalDay
+}
+
 Stats.loadCharts = function( ) {
   var prefetched_stats;
   try { prefetched_stats = STATS_JSON; }
@@ -48,7 +55,7 @@ Stats.loadObsSpark = function ( json ) {
       { label: "Today" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.observations.today ]
+      return [ Stats.dateForStat( stat ), stat.data.observations.today ]
     })
   }));
 }
@@ -61,9 +68,9 @@ Stats.loadPercentIdSpark = function ( json ) {
     ],
     data: _.map( json, function( stat ) {
       if (stat.data.identifier) {
-        return [ new Date(stat.created_at), stat.data.identifier.percent_id]
+        return [ Stats.dateForStat( stat ), stat.data.identifier.percent_id]
       } else {
-        return [ new Date(stat.created_at), 0]
+        return [ Stats.dateForStat( stat ), 0]
       }
     })
   }));
@@ -77,9 +84,9 @@ Stats.loadPercentCIDToGenusSpark = function ( json ) {
     ],
     data: _.map( json, function( stat ) {
       if (stat.data.identifier) {
-        return [ new Date(stat.created_at), stat.data.identifier.percent_cid_to_genus ]
+        return [ Stats.dateForStat( stat ), stat.data.identifier.percent_cid_to_genus ]
       } else {
-        return [ new Date(stat.created_at), 0 ]
+        return [ Stats.dateForStat( stat ), 0 ]
       }
     })
   }));
@@ -91,7 +98,7 @@ Stats.loadActiveUsersSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.users.active ]
+      return [ Stats.dateForStat( stat ), stat.data.users.active ]
     })
   }));
 }
@@ -102,7 +109,7 @@ Stats.loadNewUsersSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.users.last_7_days ]
+      return [ Stats.dateForStat( stat ), stat.data.users.last_7_days ]
     })
   }));
 }
@@ -113,7 +120,7 @@ Stats.load7ObsUsersSpark = function ( json ) {
       { label: "% ID" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.users.recent_7_obs ]
+      return [ Stats.dateForStat( stat ), stat.data.users.recent_7_obs ]
     })
   }));
 }
@@ -128,7 +135,7 @@ Stats.loadObservations = function( json ) {
     data: _.map( json, function( stat ) {
       stat.data.platforms_cumulative = stat.data.platforms_cumulative || { };
       return [
-        new Date(stat.created_at),
+        Stats.dateForStat( stat ),
         stat.data.observations.count,
         stat.data.observations.research_grade
       ];
@@ -149,7 +156,7 @@ Stats.loadCumulativePlatforms = function( json ) {
     data: _.map( json, function( stat ) {
       stat.data.platforms_cumulative = stat.data.platforms_cumulative || { };
       return [
-        new Date(stat.created_at),
+        Stats.dateForStat( stat ),
         stat.data.platforms_cumulative.web,
         stat.data.platforms_cumulative.iphone,
         stat.data.platforms_cumulative.android,
@@ -173,7 +180,7 @@ Stats.loadObservations7Days = function( json ) {
     ],
     data: _.map( json, function( stat ) {
       return [
-        new Date(stat.created_at),
+        Stats.dateForStat( stat ),
         stat.data.observations.last_7_days,
         stat.data.observations.identified,
         stat.data.observations.community_identified,
@@ -198,7 +205,7 @@ Stats.loadPlatforms = function( json ) {
     data: _.map( json, function( stat ) {
       stat.data.platforms = stat.data.platforms || { };
       return [
-        new Date(stat.created_at),
+        Stats.dateForStat( stat ),
         stat.data.platforms.web,
         stat.data.platforms.iphone,
         stat.data.platforms.android,
@@ -225,14 +232,14 @@ Stats.loadTTID = function( json ) {
     data: _.map( json, function( stat ) {
       if (stat.data.identifier) {
         return [
-          new Date(stat.created_at),
+          Stats.dateForStat( stat ),
           stat.data.identifier.med_ttid / 60,
           stat.data.identifier.avg_ttid / 60,
           stat.data.identifier.med_ttcid / 60,
           stat.data.identifier.avg_ttcid / 60
         ];
       } else {
-        return [ new Date(stat.created_at), null, null, null, null];
+        return [ Stats.dateForStat( stat ), null, null, null, null];
       }
     }),
     chartOptions: {
@@ -252,7 +259,7 @@ Stats.loadProjects = function( json ) {
     element_id: "projects",
     series: [ { label: "Total" } ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.projects.count ]
+      return [ Stats.dateForStat( stat ), stat.data.projects.count ]
     })
   }));
 };
@@ -267,7 +274,7 @@ Stats.loadCumulativeUsers = function( json ) {
       { label: "Admins" }
     ],
     data: _.map( json, function( stat ) {
-      return [ new Date(stat.created_at), stat.data.users.count, stat.data.users.active, stat.data.users.curators, stat.data.users.admins ];
+      return [ Stats.dateForStat( stat ), stat.data.users.count, stat.data.users.active, stat.data.users.curators, stat.data.users.admins ];
     })
   }));
 };
@@ -286,7 +293,7 @@ Stats.loadUsers = function( json ) {
     ],
     data: _.map( json, function( stat ) {
       return [
-        new Date(stat.created_at),
+        Stats.dateForStat( stat ),
         stat.data.users.active,
         stat.data.users.today,
         stat.data.users.identifiers,
@@ -309,7 +316,7 @@ Stats.loadRanks = function( json ) {
       var values = _.map( ranks, function( rank ) {
         return _.detect(stat.data.taxa.count_by_rank, function(v, k) { return k === rank });
       });
-      values.unshift( new Date(stat.created_at) );
+      values.unshift( Stats.dateForStat( stat ) );
       return values;
     }),
     chartOptions: { isStacked: true }
