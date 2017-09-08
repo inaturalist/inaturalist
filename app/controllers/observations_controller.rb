@@ -657,7 +657,17 @@ class ObservationsController < ApplicationController
       end
       if doorkeeper_token && (a = doorkeeper_token.application)
         o.oauth_application = a.becomes(OauthApplication)
+      elsif ( auth_header = request.headers["Authorization"] ) && ( token = auth_header.split(" ").last )
+        jwt_claims = begin
+          ::JsonWebToken.decode(token)
+        rescue JWT::DecodeError => e
+          nil
+        end
+        if jwt_claims && ( oauth_application_id = jwt_claims.fetch( "oauth_application_id" ) )
+          o.oauth_application_id = oauth_application_id
+        end
       end
+
       # Get photos
       photos = []
       Photo.subclasses.each do |klass|

@@ -658,7 +658,11 @@ class UsersController < ApplicationController
   end
 
   def api_token
-    render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
+    payload = { user_id: current_user.id }
+    if doorkeeper_token && (a = doorkeeper_token.application)
+      payload[:oauth_application_id] = a.becomes( OauthApplication ).id
+    end
+    render json: { api_token: JsonWebToken.encode( payload ) }
   end
 
   def join_test
