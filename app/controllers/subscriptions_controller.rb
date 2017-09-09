@@ -80,8 +80,12 @@ class SubscriptionsController < ApplicationController
           flash[:notice] = "Subscription updated."
           return redirect_back_or_default(@subscription.resource)
         end
+        format.json { render json: @subscription }
       else
         format.html { render :action => :edit }
+        format.json do
+          render :status => :unprocessable_entity, json: { error: @subscription.errors.full_messages.to_sentence }
+        end
       end
     end
   end

@@ -988,8 +988,7 @@ $.fn.subscriptionSettings = function() {
     if ( $( this ).data( "remote" ) === false ) {
       thisOptions.content.ajax.success = function( data, status ) {
         this.set('content.text', data);
-        $('.taxonchooser', this.elements.content).simpleTaxonSelector({
-          afterSelect: function(wrapper, taxon, options) {
+        var handleAction = function(wrapper, taxon, options) {
             var form = $(wrapper).parents('form:first'),
                 data = form.serialize() + '&format=json'
             $.ajax({
@@ -997,7 +996,10 @@ $.fn.subscriptionSettings = function() {
               type: 'post',
               data: data
             })
-          }
+          };
+        $('.taxonchooser', this.elements.content).simpleTaxonSelector({
+          afterSelect: handleAction,
+          afterUnselect: handleAction
         })
       }
     }

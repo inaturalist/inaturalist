@@ -131,7 +131,7 @@
   function handleTaxa(wrapper, taxa, options) {
     var options = $.extend({}, options),
         input = $(wrapper).find('input[type=text]:first'),
-        q = $(input).attr('value')
+        q = $(input).val();
     var searchExternalLink = $('<a href="#">'+I18n.t('search_external_name_providers')+' &raquo;</a>').css({
       'font-weight': 'bold'
     }).click(function() {
@@ -258,8 +258,8 @@
   $.fn.simpleTaxonSelector.lookup = function(wrapper, options) {
     var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options),
         input = $(wrapper).find('input[type=text]:first'),
-        q = $(input).attr('value'),
-        url = '/taxa/search.json?per_page=10&q='+q
+        q = $(input).val(),
+        url = '/taxa/search.json?per_page=10&q='+q;
     if (options.includeExternal) { url += '&include_external=1' }
     if (options.forceExternal) { url += '&force_external=1' }
     if (options.isActive) { url += "&is_active=" + String(options.isActive) }
@@ -322,7 +322,7 @@
   $.fn.simpleTaxonSelector.selectTaxon = function(wrapper, taxon, options) {
     var options = $.extend({}, $(wrapper).data('simpleTaxonSelectorOptions'), options)
     var input = $(wrapper).find('input[type=text]:first')
-    var q = $(input).attr('value')
+    var q = $(input).val()
     
     // Fire beforeSelect callback
     if (typeof(options.beforeSelect) == 'function') {
