@@ -230,8 +230,8 @@ $.fn.genericAutocomplete = function( options ) {
     var id = parseInt( options.idEl.val( ) );
     if( id && id > 0 ) {
       options.idEl.val( null );
-      if( options.afterUnselect ) { options.afterUnselect( ); }
     }
+    if( options.afterUnselect ) { options.afterUnselect( ); }
     field.selection = null;
   });
   field.bind( "resetAll", function( e ) {
