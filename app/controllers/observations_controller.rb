@@ -663,7 +663,7 @@ class ObservationsController < ApplicationController
         rescue JWT::DecodeError => e
           nil
         end
-        if jwt_claims && ( oauth_application_id = jwt_claims.fetch( "oauth_application_id" ) )
+        if jwt_claims && ( oauth_application_id = jwt_claims["oauth_application_id"] )
           o.oauth_application_id = oauth_application_id
         end
       end
