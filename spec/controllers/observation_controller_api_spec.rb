@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-shared_examples_for "an ObservationsController" do
+shared_examples_for "ObservationsController basics" do
 
   describe "create" do
     before(:each) { enable_elastic_indexing( Observation ) }
@@ -13,6 +13,42 @@ shared_examples_for "an ObservationsController" do
       expect(o.user_id).to eq(user.id)
       expect(o.species_guess).to eq ("foo")
     end
+
+    describe "destroy" do
+      it "should destroy" do
+        o = Observation.make!(:user => user)
+        delete :destroy, :format => :json, :id => o.id
+        expect(Observation.find_by_id(o.id)).to be_blank
+      end
+    end
+  end
+
+  describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+    it "should not provide private coordinates for another user's observation" do
+      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      expect(response.body).not_to be =~ /#{o.private_latitude}/
+      expect(response.body).not_to be =~ /#{o.private_longitude}/
+    end
+  end
+
+  describe "update" do
+    let( :o ) { Observation.make!( user: user ) }
+    it "should update" do
+      put :update, format: :json, id: o.id, observation: { species_guess: "i am so updated" }
+      o.reload
+      expect( o.species_guess ).to eq "i am so updated"
+    end
+  end
+end
+
+shared_examples_for "an ObservationsController" do
+
+  describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
 
     it "should include coordinates in create response when geoprivacy is obscured" do
       post :create, format: :json, observation: {
@@ -200,12 +236,6 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "destroy" do
-    it "should destroy" do
-      o = Observation.make!(:user => user)
-      delete :destroy, :format => :json, :id => o.id
-      expect(Observation.find_by_id(o.id)).to be_blank
-    end
-
     it "should not destory other people's observations" do
       o = Observation.make!
       delete :destroy, :format => :json, :id => o.id
@@ -222,13 +252,6 @@ shared_examples_for "an ObservationsController" do
       get :show, :format => :json, :id => o.id
       expect(response.body).to be =~ /#{o.private_latitude}/
       expect(response.body).to be =~ /#{o.private_longitude}/
-    end
-
-    it "should not provide private coordinates for another user's observation" do
-      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-      get :show, :format => :json, :id => o.id
-      expect(response.body).not_to be =~ /#{o.private_latitude}/
-      expect(response.body).not_to be =~ /#{o.private_longitude}/
     end
 
     it "should not include photo metadata" do
@@ -379,12 +402,6 @@ shared_examples_for "an ObservationsController" do
   describe "update" do
     before do
       @o = Observation.make!(:user => user)
-    end
-
-    it "should update" do
-      put :update, :format => :json, :id => @o.id, :observation => {:species_guess => "i am so updated"}
-      @o.reload
-      expect(@o.species_guess).to eq("i am so updated")
     end
 
     it "should accept nested observation_field_values" do
@@ -1781,6 +1798,7 @@ describe ObservationsController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
+  it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController"
 end
 
@@ -1804,7 +1822,15 @@ describe ObservationsController, "devise authentication" do
   before do
     http_login(user)
   end
-  it_behaves_like "an ObservationsController"
+  it_behaves_like "ObservationsController basics"
+end
+
+describe ObservationsController, "jwt authentication" do
+  let(:user) { User.make! }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode(user_id: user.id)
+  end
+  it_behaves_like "ObservationsController basics"
 end
 
 describe ObservationsController, "without authentication" do
