@@ -639,11 +639,12 @@ class TaxaController < ApplicationController
   
   def observation_photos
     @taxon = Taxon.includes(:taxon_names).where( id: params[:id].to_i ).first
+    @taxon ||= Taxon.single_taxon_for_name( params[:q] )
     licensed = %w(t any true).include?(params[:licensed].to_s)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
-    observations = if @taxon && params[:q].blank?
+    observations = if @taxon
       obs = Observation.of(@taxon).
         joins(:photos).
         where("photos.id IS NOT NULL AND photos.user_id IS NOT NULL AND photos.license IS NOT NULL").
