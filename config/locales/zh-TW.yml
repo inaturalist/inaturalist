@@ -702,6 +702,7 @@ zh-TW:
   code: 代碼
   collapse_days: 摺疊日子
   collapse_updates: 摺疊更新
+  color_categories_for_this_species: 用於此物種的色彩分類，這就像您將此放置在依色彩排序的實地指南裡。請不要列出在該生物上所有的色彩，只要列出顯著具代表性的即可。用於在會開花植物上，請使用花朵的顏色。若色彩對於分類是無幫助的情況下；請將其留空，例如棕色的哺乳類動物或綠色的蕨類植物。
   colors: 色彩
   columns: 欄位
   combine: 結合
@@ -730,7 +731,7 @@ zh-TW:
   community_id: <strong>社群</strong> ID：
   community_id_heading: 社群 ID
   community_id_at_species_or_lower?: 社群鑑定在物種裡或在較低階？
-  community_id_at_genus_level_or_lower: 在物種屬層級或較低階的社群 ID
+  community_id_at_genus_level_or_lower: 在屬層級或較低階的社群鑑定
   community_id_at_species_level_or_lower: 社群鑑定在物種層級裡或在較低階
   community_moderation_settings: 社群管制設定
   community_supported_id: 社群支援的 ID？
@@ -1330,6 +1331,7 @@ zh-TW:
   got_your_data_somewhere_else?: 在別的地方找到您的資料？我們可以協助。
   graft: 轉移
   grafting: 轉移中...
+  grafting_attemps_to_insert_this_taxon: 目前轉移嘗試插入此物種分類至我們的分類樹，找尋現有的父級物種分類、或創建在此之間全部所需的物種分類群，來附加到現有的更高階物種分類。
   grant_role: '%{grant} %{role}身份'
   gray: 灰色
   green: 綠色
@@ -1365,7 +1367,7 @@ zh-TW:
   heads_up_this_observation_has_been_flagged: 注意：此觀察已被標記。
   heads_up_this_photo_has_been_flagged: 注意：此照片已被標記。
   heads_up_this_photo_is_already_associated_with: 注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>
-  heads_up_this_taxon_locked_users_cant_add_descendants: <strong>注意：</strong>此物種分類已被鎖定，這代表多數用戶無法透過匯入物種分類群來添加新後代物種分類。雖然策展人仍可透過編輯物種分類群或挑選父物種分類來操作，但請優先考慮合併物種分類群。
+  heads_up_this_taxon_locked_users_cant_add_descendants: <strong>注意：</strong>此物種分類已被鎖定，這代表多數用戶無法透過匯入物種分類群來添加新後代物種分類。雖然策展人仍可透過編輯物種分類群或挑選父級物種分類來操作，但請優先考慮合併物種分類群。
   heads_up_you_have_multiple: 注意：您有多個用於鑑定排名的分類標籤。它們的色彩代碼是依照以下作排名。
   hello: <test>
   help: 幫助
@@ -1514,6 +1516,9 @@ zh-TW:
   iphone: iPhone
   is_a: 是一個
   is_an: 是一個
+  is_an_evaluation: |-
+    是對觀察準確的評估。
+    研究等級觀察有機會被科學家用於研究上。請在下方投下您的一票：
   is_not_following_anyone: 沒關注任何人。
   is_now: 現已
   is_the_organism_wild: 是野生/歸化的生物？
@@ -1635,8 +1640,8 @@ zh-TW:
   life_list: '%{user}的生物清單'
   life_list_updated: 已更新生物清單!
   life_list_updated_we_also_saved_a: 生物清單已更新！我們還儲存一個空白觀察紀錄到這個物種分類中。
-  life_lists_automatically_fill: 你觀察到的每個新物種分類群會自動添加到生物清單內，他們會受你訂立的上層物種分類群所約束。例如，一個鴉科(Family
-    Corvidae)的分類清單會列該科的鳥類。
+  life_lists_automatically_fill: 你觀察到的每個新物種分類群會自動添加到生物清單內，他們會受你訂立的較高階父級物種分類群所約束。例如，一個鴉科（Family
+    Corvidae）的分類清單會列該科的鳥類。
   life_list_first: 首次加入生命清單
   life_list_firsts: 首次加入生物清單
   link: 連結
@@ -2130,6 +2135,7 @@ zh-TW:
   observations_by: 觀察由
   observations_by_everyone: 由任何人做的觀察
   observations_by_user: 由 %{user} 做的觀察
+  observations_circle_have_their_radii_scaled: 觀察圈擁有它們依位置準確度縮放的半徑比例。不帶有位置準確度資料的觀察會以最小尺寸來顯示出。
   observations_confirmed: 觀察（已確認）
   observations_deleted: 觀察已刪除。
   observations_fields_are: 專案欄位是與觀察所相關資料的額外資料部份，像是個體所觀察的數目、棲息地描述，或是其它您所想要的內容！專案也可指定出希望您能夠填寫的欄位。
@@ -2215,6 +2221,7 @@ zh-TW:
     following_panel_title: 維持對於人物、物種分類和地點的追蹤
     following_panel_body: 在 %{site_name} 上您可以關注人們並追蹤他們所發佈過的觀察。您也可以對一些物種、或地點作出訂閱，來讓頁籤維持在這些對象的新觀察。
     comments_panel_title: 對於 %{site_name} 上正在討論什麼感到好奇嗎？
+    comments_panel_body: <p>%{site_name} 是用來分享及討論有關生物方面的觀察。下列是目前正在進行的討論。（註：會自動訂閱由您所貢獻出的評論、鑑定方面的討論。要管理這些內容的更新，請在右側的「訂閱」部份。）</p>
     updates_by_you_panel_title: 此頁籤是過濾出僅在您內容上更新的快速方法。
     updates_by_you_panel_body: 請記住，在「所有更新」頁籤裡您除了會收到包含您所持有內容的更新外，還會收到來自於您透過右側工具所訂閱的專注人物、物種分類群或地點方面的更新項目。
     youve_got_updates_panel_title: 您獲得了更新！
@@ -2285,7 +2292,7 @@ zh-TW:
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
   owner: 擁有者
-  parent: 父
+  parent: 父級
   parent_name: 父名稱
   password: 密碼
   password_confirmation: 密碼確認
@@ -3100,6 +3107,7 @@ zh-TW:
   taxon: 物種分類
   taxonomy: 分類法
   taxon_: 物種分類
+  taxon_assessments_are: 物種分類評估是評估物種目前狀態的文獻，通常是保育狀態。例如；區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之物種分類群狀態的意見回饋。
   taxon_change: 物種分類更改
   taxon_deleted: 物種分類已刪除。
   taxon_doesnt_have_a_range: 物種分類沒有包含範圍
@@ -3220,7 +3228,7 @@ zh-TW:
   there_were_some_problems_with: 在您的 CSV 檔案裡有一些問題。請重新修改失效的行列。當然問題也會可能是出在我們這裡，若真是如此的話；請讓我們知道。
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
   theres_also: 這裡也有
-  these_are_taxa_that: 出於某些原因； %{site} 的物種分類群不能自動添加至我們的分類樹。您可透過編輯物種分類且選擇父級記錄來添加它們。例如智人的父分類會是人屬。您也可檢查同義的物種分類群來合併它們。
+  these_are_taxa_that: 出於某些原因； %{site} 的物種分類群不能自動添加至我們的分類樹。您可透過編輯物種分類且選擇父級記錄來添加它們。例如智人的父級分類會是人屬。您也可檢查同義的物種分類群來合併它們。
   these_arent_necessarily_relevant_to: 這些不一定有相應此專案。請檢查
   these_folks_kindly_volunteer_to: 這些友善人們志願來維護我們的物種分類法內容，並處理其它問題。
   these_observations_have_not_been_uploaded_yet: 這些觀察尚未被上傳。
@@ -3234,7 +3242,7 @@ zh-TW:
   this_is_a_life_list_of: 這生物清單屬於
   this_is_a_life_list_from_place_html: 這是來自%{place}的生物列表
   this_is_a_life_list_of_taxon_in_place: 這是一個在 %{place} 的 %{taxon} 物種分類中的生物清單
-  this_is_more_convenient_way_find_parent: 此為找尋父鑑定的更簡便方法。這是實際被儲存的父鑑定。
+  this_is_more_convenient_way_find_parent: 此為找尋父級鑑定的更簡便方法。這是實際被儲存的父級鑑定。
   this_is_a_more_convenient_way_to_find_a_taxon_id: 此為找尋物種分類鑑定的更簡便方法。這是實際被儲存的物種分類鑑定。這僅在可用的物種分類之下能被有效搜尋。
   this_is_taking_forever: 這會一直進行下去。請稍後重試。
   this_job_failed_to_run: 任務運作失敗。請聯絡 %{email}
@@ -3404,6 +3412,8 @@ zh-TW:
   usage_stats: 使用量統計內容
   use_name_as_a_placeholder: 使用<span class='ac-placeholder'>"%{name}"</span>為位置標誌符
   use_this_form_to_create_a_new: 使用此表單來創建一個新的分類更改草稿；來描述出稍後提交在所提議之有效物種分類群上作拆分、合併，或兌換的內容。
+  use_this_if_the_url_needs_genus_species_separated: 使用此當 URL 需要以特定方式來將屬和物種作區分。若物種分類不是物種或次物種，任何在[屬]與[物種]之間內容會以物種分類名稱所替代，因此請謹慎使用。<br/><br/>
+    <strong>例如：</strong><br/>
   use_unique_file_names_for_separate_uploads: 使用唯一檔案名稱來各自上傳
   use_well_formed_csv: 使用良好格式的 CSV。這代表文字必須被包含在雙引號裡；並用逗號區隔。多數試算表應用程式都應以此格式來匯出 CSV。
   user: 使用者
@@ -3820,6 +3830,8 @@ zh-TW:
           URL 位置。
         guide_place_desc: 將您的指南與地點做關聯，來讓人們搜尋地點時能找到您的觀察。若設定了邊界（例如：「卡片」檢視、物種分類頁面等等）將會在
           %{site_name} 上的地圖顯示時一同出現地點邊界。
+        paste_note_html: 每行最多可貼上 500 個物種名稱。%{site_name} 將會試著把通用名稱與物種概念之間作相符，但為了避免模凌兩可的情況最好使用學名。若您想同時使用兩者，請用逗號分隔學名和通用名稱，例如像是
+          <code>Homo sapiens,Human</code>。
         places_note: 註：不是所有地點都具有物種分類群清單。如果您在找尋帶有物種分類群地點時遇到困難，請試著挑選更大行政邊界的區域，像是國家、州、省，或縣。
         replace_existing_eol_desc: 在從生命大百科匯入之前；刪除現有內容
         place_choose_taxon_note: 若您想要縮小您的搜尋，請挑選物種分類來過濾，例如：「植物」
@@ -3870,6 +3882,10 @@ zh-TW:
           href="http://www.catalogueoflife.org">物種目錄</a>和
           <a href="http://ubio.org/">uBio</a> 來作為物種分類資料的資料來源。
         what_can_i_do_to_help_inaturalist?: 我能為 %{site_name} 協助什麼
+        you_can_help_inaturalist_by_giving_us_your_feedback_html: 您可以透過給予我們您的意見回饋來協助
+          %{site_name}：請加入我們的<a href="%{feedback_url}">意見回饋群組</a> 來回報程式錯誤以及請求新功能。您也可以透過添加您的觀察、或幫助我們的社羣成員鑑定他們的未鑑定觀察來協助
+          %{site_name}。如果您了解如何進行程式編碼；並且想要協助開發一些新功能，請在 <a href="http://github.com/inaturalist/inaturalist"
+          title="inaturalist at master - GitHub">GitHub</a> 上 fork 我們的專案！
         how_do_i_contact_inaturalist?: 我要如何聯繫 %{site_name}
         you_can_contact_us_at_html: 您可以透過 <a href="mailto:%{help_email}">%{help_email}</a>
           聯絡我們
@@ -3919,6 +3935,7 @@ zh-TW:
         automatically_updates_based_on_your_observations: 根據您的觀察紀錄自動更新。每位用戶在 %{site_name}
           都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察紀錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該紀錄，您手動添加到清單中的物種將不會被刪除。
         you_can_also_make_additional_life_lists: 您也可為指定的生命體組別製作一份生物列表，例如鳥類的生物列表，或乳草屬植物的生物列表等。
+        a_project_list_belongs: 專案列表隸屬於某一專案，並列出由專案成員們所觀察出的物種分類群。專案列表也可由該專案管理員來手動加入內容，也可對於在列表上物種分類群的專案貢獻做出限制。
         inat_users_can_also: '%{site_name} 用戶可添加額外清單至地點，但這些清單並不會自動更新。它們主要提供讓人們引進外部資源資料、或僅列出基於他們個人所體驗事物的方法。'
         is_a_list_of_every_species_that_you_have_seen: 一個生物列表是您看過的所有物種清單，每一個 %{site_name}
           的用戶都會擁有一個生物列表，新增 %{site_name} 的觀察紀錄會自動遷移入這些列表中。
@@ -4025,12 +4042,17 @@ zh-TW:
           500 個裡。
     observation_fields:
       dna_help: 要啟用 BOLD DNA 條碼符合功能；請確定您的欄位名稱包含「COI」、「COX1」、「ITS」、 或「matK,」字詞來對應欄位目標的基因。
+      merge:
+        warning_html: 請尊重其他人的資料，並在合併觀察欄位前<strong>通知創建者</strong>。此工具將會消去被合併的觀察欄位，以及移動所有觀察至保有者。<strong>此處理過程無法復原</strong>，因此請小心。
     emailer:
       observations_export_notification:
         your_observations_export_is_ready_html: 您的觀察匯出已就緒。此電子郵件有夾帶副本，或是您可<a href="%{url}">下載您的匯出</a>。
         your_observations_export_failed_html: 您的觀察匯出失敗。請查看您所匯出列表的<a href="%{url}">觀察匯出頁面</a>。
       bulk_import_success:
         success_message: 您的 %{filename} 大量匯入已成功。您的觀察現正在處理並不久後便會出現在網站上。
+      bulk_import_error:
+        taxon_spelling_notice_html: 請檢查個項目的拼寫。若您拼寫正確，請在 %{search_taxa_url} 搜尋物種。若名稱尚未存在
+          %{site_name} 資料庫裡。您會需要添加此名稱才能讓大量上傳成功運作。使用在搜尋頁面下方的方框來匯入新名稱。若名稱已提供但套用在多項有效物種分類群裡，請嘗試使用更多或更少的特定名稱；來符合單一的物種分類。
       users_updates_suspended:
         message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
     photos:
@@ -4085,6 +4107,8 @@ zh-TW:
         cover_desc: 選用的頁面橫幅圖片會出現在您專案頁面的頂端。其中寬度必須符合 950 像素、高度則需小於 400 像素。
         custom_project_fields_means: 自定義專案的頁面橫幅、添加側邊內容，以及編輯 CSS。
         end_time_desc: 您 bioblitz 的結束時間。所晚於起始時間的範圍必須小於一年內。
+        event_url_desc: 用於您的 bioblitz 的事件註冊服務 URL。如果這是一個 Eventbrite 的 URL 會包含數字 ID，在您的
+          bioblitz 開始之前；我們會在您的專案頁面上包含一個註冊用小工具。
         icon_desc: 將會被切成正方形
         last_aggregated_at_desc: 添加觀察至此專案的最後聚集結束時間
         no_curators: 這裡沒有專案策展人，如果您想要分配新人來作為管理員，他們必須先加入此專案並且您要讓他們成為策展人。
@@ -4150,6 +4174,7 @@ zh-TW:
       show:
         about_conservation_status_desc: 保護狀態總結出一群生物的滅絕風險。
         about_establishment_desc: 「確立方式」描述著目前出現的物種如何發生在此處。引入代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
+        charts_help_history: 此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加；但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。
         trending_desc: 在最近一個月的最多觀察物種分類群
         trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
         rare_desc: 最少被觀察到生存受威脅的物種分類
@@ -4534,7 +4559,7 @@ zh-TW:
         latitude: 緯度
         longitude: 經度
         name: 名稱
-        parent_id: 父
+        parent_id: 父級
         place_type: 地點類型
         prefers_check_lists: 允許的清單？
         woeid: WOEID
@@ -4549,7 +4574,7 @@ zh-TW:
       taxon:
         name: 名稱
         rank: 排名
-        parent_id: 父鑑定
+        parent_id: 父級鑑定
         locked: 已鎖定
         auto_photos: 自動照片
         auto_description: 自動描述
