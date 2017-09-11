@@ -392,10 +392,10 @@ const actions = class actions {
           confirmText: I18n.t( "continue" ),
           message: (
             <div>
-              { I18n.t( "some_observations_failed" ) }
-              <div className="projects">
+              { I18n.t( "some_observations_failed_to_be_added" ) }
+              <div className="confirm-list">
                 { _.map( missingProjects, mp => (
-                  <div className="project" key={ mp.project.id }>
+                  <div className="confirm-list-item" key={ mp.project.id }>
                     <span className="title">{ mp.project.title }</span>
                     <span className="count">
                       { I18n.t( "x_observations_failed", { count: mp.count } ) }
@@ -421,12 +421,32 @@ const actions = class actions {
       const failedCards = _.filter( s.dragDropZone.obsCards, c => c.saveState === "failed" );
       const remaining = _.pick( s.dragDropZone.obsCards, _.map( failedCards, "id" ) );
       if ( s.dragDropZone.saveCounts.failed > 0 && _.size( remaining ) > 0 ) {
+        const grouped = { };
+        _.each( remaining, r => {
+          _.each( r.saveErrors, err => {
+            grouped[err] = grouped[err] || 0;
+            grouped[err] += 1;
+          } );
+        } );
         dispatch( actions.setState( { confirmModal: {
           show: true,
-          confirmText: "Stay and try again",
-          cancelText: "Ignore and continue",
-          message: `${_.size( remaining )} observation(s) failed to upload. Sometimes this means ` +
-            "there was a problem on our end, and they may upload successfully when saved again.",
+          confirmText: I18n.t( "stay_and_try_again" ),
+          cancelText: I18n.t( "ignore_and_continue" ),
+          message: (
+            <div>
+              { I18n.t( "some_observations_failed_to_save" ) }
+              <div className="confirm-list">
+                { _.map( grouped, ( count, err ) => (
+                  <div className="confirm-list-item" key={ err }>
+                    <span className="title">{ err }</span>
+                    <span className="count">
+                      { I18n.t( "x_observations_failed", { count } ) }
+                    </span>
+                  </div>
+                ) ) }
+              </div>
+            </div>
+          ),
           onConfirm: ( ) => {
             dispatch( actions.setState( { obsCards: remaining, saveStatus: null } ) );
             _.each( remaining, c => {

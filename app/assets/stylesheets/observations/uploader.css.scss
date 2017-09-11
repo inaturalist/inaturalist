@@ -633,15 +633,24 @@ ul.obs > li .card {
         margin: 0px 10px;
       }
     }
-    .projects {
+    .confirm-list {
       margin: 10px 20px;
       font-size: 0.9em;
+      line-height: 20px;
+      .title {
+        line-height: 20px;
+      }
       .count {
         display: block;
-        margin: 0px 20px 10px;
+        margin: 5px 20px 10px;
         font-size: 0.9em;
         line-height: 1;
         color: #666;
+      }
+      .confirm-list-item:last-child {
+        .count {
+          margin: 5px 20px 0px;
+        }
       }
     }
   }
