@@ -704,11 +704,6 @@ class ObservationsController < ApplicationController
     create_project_observations
     update_user_account
 
-    # TODO: temporary to allow testing failed observation creation
-    if params[:observations][0][1][:description] === "testing"
-      @observations[0].errors.add(:base, "test error")
-    end
-
     # check for errors
     errors = false
     if params[:uploader]
