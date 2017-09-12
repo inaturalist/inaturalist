@@ -334,6 +334,7 @@ const actions = class actions {
   static submitObservations( ) {
     return function ( dispatch ) {
       dispatch( { type: types.SET_STATE, attrs: { saveStatus: "saving" } } );
+      dispatch( actions.selectObsCards( { } ) );
       dispatch( actions.saveObservations( ) );
     };
   }
@@ -358,12 +359,12 @@ const actions = class actions {
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
-        dispatch( actions.finalizeSave( ) );
+        dispatch( actions.checkProjectErrors( ) );
       }
     };
   }
 
-  static finalizeSave( ) {
+  static checkProjectErrors( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       const missingProjects = { };
@@ -391,10 +392,10 @@ const actions = class actions {
           confirmText: I18n.t( "continue" ),
           message: (
             <div>
-              { I18n.t( "some_observations_failed" ) }
-              <div className="projects">
+              { I18n.t( "some_observations_failed_to_be_added" ) }
+              <div className="confirm-list">
                 { _.map( missingProjects, mp => (
-                  <div className="project" key={ mp.project.id }>
+                  <div className="confirm-list-item" key={ mp.project.id }>
                     <span className="title">{ mp.project.title }</span>
                     <span className="count">
                       { I18n.t( "x_observations_failed", { count: mp.count } ) }
@@ -405,13 +406,68 @@ const actions = class actions {
             </div>
           ),
           onConfirm: () => {
-            window.location = `/observations/${CURRENT_USER.login}`;
+            dispatch( actions.checkFailedUploads( ) );
           }
         } } ) );
       } else {
-        window.location = `/observations/${CURRENT_USER.login}`;
+        dispatch( actions.checkFailedUploads( ) );
       }
     };
+  }
+
+  static checkFailedUploads( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const failedCards = _.filter( s.dragDropZone.obsCards, c => c.saveState === "failed" );
+      const remaining = _.pick( s.dragDropZone.obsCards, _.map( failedCards, "id" ) );
+      if ( s.dragDropZone.saveCounts.failed > 0 && _.size( remaining ) > 0 ) {
+        const grouped = { };
+        _.each( remaining, r => {
+          _.each( r.saveErrors, err => {
+            grouped[err] = grouped[err] || 0;
+            grouped[err] += 1;
+          } );
+        } );
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          confirmText: I18n.t( "stay_and_try_again" ),
+          cancelText: I18n.t( "ignore_and_continue" ),
+          message: (
+            <div>
+              { I18n.t( "some_observations_failed_to_save" ) }
+              <div className="confirm-list">
+                { _.map( grouped, ( count, err ) => (
+                  <div className="confirm-list-item" key={ err }>
+                    <span className="title">{ err }</span>
+                    <span className="count">
+                      { I18n.t( "x_observations_failed", { count } ) }
+                    </span>
+                  </div>
+                ) ) }
+              </div>
+            </div>
+          ),
+          onConfirm: ( ) => {
+            dispatch( actions.setState( { obsCards: remaining, saveStatus: null } ) );
+            _.each( remaining, c => {
+              dispatch( actions.updateObsCard( c, { saveState: "pending" } ) );
+            } );
+          },
+          onCancel: ( ) => {
+            _.each( remaining, c => {
+              dispatch( actions.updateObsCard( c, { saveState: "saved" } ) );
+            } );
+            actions.loadUsersObservationsPage( );
+          }
+        } } ) );
+      } else {
+        actions.loadUsersObservationsPage( );
+      }
+    };
+  }
+
+  static loadUsersObservationsPage( ) {
+    window.location = `/observations/${CURRENT_USER.login}`;
   }
 
   static uploadFiles( ) {
@@ -449,7 +505,8 @@ const actions = class actions {
           uploadState: "uploaded", photo: r, serverMetadata } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
-          // if the file has been uploaded and we had a preview, ditch the preview to avoid memory leaks
+          // if the file has been uploaded and we had a preview,
+          // ditch the preview to avoid memory leaks
           if ( file.preview ) {
             window.URL.revokeObjectURL( file.preview );
             dispatch( actions.updateFile( file, { preview: null } ) );

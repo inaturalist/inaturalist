@@ -713,7 +713,7 @@ class ObservationsController < ApplicationController
     current_user.observations << @observations.compact
     create_project_observations
     update_user_account
-    
+
     # check for errors
     errors = false
     if params[:uploader]

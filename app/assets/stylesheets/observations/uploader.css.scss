@@ -348,14 +348,17 @@ ul.obs > li .card {
   &.selected {
     box-shadow: 0 0 0 3px rgba(116, 172, 0, 1);
   }
-  &.dragging {
+  &.dragging, &.saved {
     box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
   }
   &.hover, &.dragOver {
     box-shadow: 0 0 0 5px rgba(116, 172, 0, 1);
   }
-  &.dragOver.dragging {
+  &.dragOver.dragging, &.failed {
     box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.8);
+  }
+  &.saving {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
   }
   textarea {
     resize: none;
@@ -630,15 +633,24 @@ ul.obs > li .card {
         margin: 0px 10px;
       }
     }
-    .projects {
+    .confirm-list {
       margin: 10px 20px;
       font-size: 0.9em;
+      line-height: 20px;
+      .title {
+        line-height: 20px;
+      }
       .count {
         display: block;
-        margin: 0px 20px 10px;
+        margin: 5px 20px 10px;
         font-size: 0.9em;
         line-height: 1;
         color: #666;
+      }
+      .confirm-list-item:last-child {
+        .count {
+          margin: 5px 20px 0px;
+        }
       }
     }
   }

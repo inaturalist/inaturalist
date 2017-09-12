@@ -88,6 +88,15 @@ const util = class util {
     return invalidDate;
   }
 
+  static errorJSON( text ) {
+    try {
+      const json = JSON.parse( text );
+      return json;
+    } catch ( e ) {
+      return null;
+    }
+  }
+
 };
 
 export default util;

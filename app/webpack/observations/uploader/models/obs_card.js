@@ -125,8 +125,15 @@ const ObsCard = class ObsCard {
         serverResponse: r && r[0]
       } ) );
     } ).catch( e => {
+      let errors;
+      const err = util.errorJSON( e.message );
+      if ( err && err.errors && err.errors[0] ) {
+        errors = err.errors[0];
+      } else {
+        errors = [I18n.t( "unknown_error" )];
+      }
       console.log( "Save failed:", e );
-      dispatch( actions.updateObsCard( this, { saveState: "failed" } ) );
+      dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
     } );
   }
 };
