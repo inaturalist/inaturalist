@@ -24,10 +24,6 @@ class ObservationFieldInput extends React.Component {
     this.setUpObservationFieldAutocomplete( );
   }
 
-  componentDidUpdate( ) {
-    this.setUpObservationFieldAutocomplete( );
-  }
-
   onChangeHandler( e ) {
     let modified = true;
     if ( _.isObject( e ) && e.target ) {
@@ -43,7 +39,6 @@ class ObservationFieldInput extends React.Component {
   setUpObservationFieldAutocomplete( ) {
     const domNode = ReactDOM.findDOMNode( this );
     const input = $( domNode ).find( ".ofv-field" );
-    if ( !input.is( ":visible" ) ) { return; }
     if ( input.data( "uiAutocomplete" ) ) {
       input.autocomplete( "destroy" );
       input.removeData( "uiAutocomplete" );
