@@ -115,6 +115,7 @@ class Project < ActiveRecord::Base
       path: "projects/:id-icon-:style.:extension",
       url: ":s3_alias_url",
       default_url: "/attachment_defaults/general/:style.png"
+    invalidate_cloudfront_caches :icon, "projects/:id-icon-*"
   else
     has_attached_file :icon,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
