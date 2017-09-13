@@ -380,6 +380,13 @@ describe User do
       other_p.reload
       expect( other_p.native_realname ).to eq other_u.name
     end
+
+    it "should remove oauth access tokens" do
+      token = Doorkeeper::AccessToken.create!( resource_owner_id: @user.id, application: OauthApplication.make! )
+      expect( token ).to be_persisted
+      @user.destroy
+      expect( Doorkeeper::AccessToken.where( id: token.id ).first ).to be_blank
+    end
   end
 
   describe "sane_destroy" do

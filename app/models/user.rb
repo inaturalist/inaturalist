@@ -185,6 +185,7 @@ class User < ActiveRecord::Base
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
+  after_destroy :remove_oauth_access_tokens
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -733,6 +734,12 @@ class User < ActiveRecord::Base
       :user_updated_at => updated_at,
       :observations_count => observations_count
     )
+    true
+  end
+
+  def remove_oauth_access_tokens
+    return true unless frozen?
+    Doorkeeper::AccessToken.where( resource_owner_id: id ).delete_all
     true
   end
 
