@@ -14,6 +14,12 @@ class GoogleStreetViewPhoto < Photo
     true
   end
 
+  def repair( options = {} )
+    repair_photo = GoogleStreetViewPhoto.new( GoogleStreetViewPhoto.get_api_response( native_photo_id ) )
+    update_attributes( repair_photo.attributes )
+    [self, {}]
+  end
+
   def self.get_api_response(native_photo_id, options = {})
     q = native_photo_id.to_s.split('?').last
     Rack::Utils.parse_nested_query(q).symbolize_keys

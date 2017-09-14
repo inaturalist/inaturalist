@@ -166,7 +166,7 @@ class LocalPhoto < Photo
     # there so we can skip this file reset business.
     return if interpolated_original_url =~ /localhost/
 
-    # If the original file is there under the current path, no need to do anythign
+    # If the original file is there under the current path, no need to do anything
     return if Photo.valid_remote_photo_url?( interpolated_original_url )
     
     # If it's not, check the old path
