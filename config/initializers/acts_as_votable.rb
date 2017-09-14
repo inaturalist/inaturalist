@@ -10,7 +10,7 @@ module ActsAsVotable
       foreign_key: "votable_id"
 
     notifies_owner_of :votable, notification: "activity",
-      queue_if: lambda { |record| record.vote_scope.blank? }
+      queue_if: lambda { |record| record.vote_scope.blank? && record.user_id != record.votable.try(:user_id) }
 
     auto_subscribes :user, to: :votable
 
