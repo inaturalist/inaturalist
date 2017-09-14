@@ -1,6 +1,7 @@
 # Messages for Catalan (català)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abella
 # Author: Cgalindo
 # Author: Eduardo Martinez
 # Author: Fitoschido
@@ -20,7 +21,7 @@ ca:
     ID, participeu en l'avaluació de la qualitat de les dades, o descriu la inexactitud amb un comentari.
   we_also_support: |-
     També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, i
+    <a href="http://photos.google.com">Fotografies de Google</a> i
     <a href="http://facebook.com">Facebook</a>.
   a_default_taxon_name_will_automatically_created: |-
     Es crearà automàticament un nom per defecte del tàxon a partir de l'atribut del seu nom científic.
@@ -237,18 +238,19 @@ ca:
   add_photos: Afegiu fotos
   add_photos_to_this_observation: Afegiu fotos a aquesta observació
   add_place: Afegiu un lloc
-  add_plant_phenology_budding_annotation: 'Afegiu nota "Fenologia de la planta: Gemmació"'
+  add_plant_phenology_budding_annotation: 'Afegir l''anotació «Fenologia de la planta:
+    gemmació»'
   add_plant_phenology_flowering_annotation: 'Afegiu nota "Fenologia de la planta:
     Floració"'
   add_plant_phenology_fruiting_annotation: 'Afegiu nota "Fenologia de la planta: Fructificació"'
   add_life_stage_adult_annotation: 'Afegiu nota "Estat del Cicle biològic: Adult"'
   add_life_stage_teneral_annotation: 'Afegiu nota "Estat del Cicle biològic: Imago
     tendre"'
-  add_life_stage_subimago_annotation: 'Afegiu nota "Estat del Cicle biològic: Subimago"'
+  add_life_stage_subimago_annotation: 'Afegir l''anotació «Etapa de la vida: subimago»'
   add_life_stage_pupa_annotation: 'Afegiu nota "Estat del Cicle biològic: Pupa"'
   add_life_stage_nymph_annotation: 'Afegiu nota "Estat del Cicle biològic: Nimfa"'
   add_life_stage_larva_annotation: 'Afegiu nota "Estat del Cicle biològic: Larva"'
-  add_life_stage_juvenile_annotation: 'Afegiu nota "Estat del Cicle biològic: Juvenil"'
+  add_life_stage_juvenile_annotation: 'Afegir l''anotació «Etapa de la vida: juvenil»'
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
   add_sex_female_annotation: 'Afegiu nota "Sexe: Femella"'
@@ -802,7 +804,7 @@ ca:
     de seleccionar imatges que <em>mostrin característiques de diagnòstic</em> i <em>
     que es vegin bé com a icones</em>.  La <em>primera apareix per defecte</em>.
   chose_columns: Escolliu les columnes
-  choose_files: Escolliu arxius
+  choose_files: Escolliu els fitxers
   choose_files_from_your_computer: seleccioneu l'arxiu al vostre ordinador.
   choose_from_your_lists: Seleccioneu de les vostres llistes
   choose_good_default_photos: seleccioneu bones fotos per defecte del grup de fotos
@@ -1906,11 +1908,13 @@ ca:
   link: Vincle
   link_or_unlink_your_facebook_account: Vinculeu o desvinculeu el compte de Facebook
   link_or_unlink_your_flickr_account: Vinculeu o desvinculeu el compte de Flickr
+  link_or_unlink_your_google_account: Vinculeu o desvinculeu el compte de Google
   link_your_facebook_account: Vinculeu el compte de Facebook
   link_your_flickr_account: Vinculeu el compte de Flickr
   link_your_flickr_account_with_inat: Vinculeu el compte de Flickr amb %{site_name}
   link_your_flickr_account_with_inat_so: Vinculeu el compte de Flickr amb %{site_name}
     per poder afegir fotos de les vostres observacions.
+  link_your_google_account: Vinculeu el compte de Google
   linked_facebook: El vostre compte d’%{site_name} actualment està vinculat amb el
     compte de Facebook.
   linked_facebook_automaticaly: Tingueu en compte també que, si obriu la sessió a
@@ -2456,7 +2460,7 @@ ca:
     "ha de ser amfibi" i "ha de ser rèptil", el projecte acceptarà les observacions
     d'amfibis O rèptils.
   observation_was_deleted: L'observació es va esborrar.
-  observation_without_media: Observació sense imatges o sons
+  observation_without_media: Observació sense suport multimèdia
   observation_would_like_some_help: '%{user} necessita una mica d''ajuda per identificar
     aquest element!'
   observations: Observacions
@@ -2738,7 +2742,7 @@ ca:
   photos_from: Fotos de
   photos_of: Fotos de
   photos_of_taxon_html: Fotos de %{taxon}
-  photos_or_sounds: Fotos o sons
+  photos_or_sounds: Fotografies o sons
   photos_or_sounds?: Fotos o sons?
   photos_size:
     small: petit
@@ -2748,6 +2752,8 @@ ca:
   photos_size_photos: fotos de %{photos_size}
   photos_size_photo: foto %{photos_size}
   photos_updated: Fotos actualitzades.
+  google_account_not_linked: L'usuari %{user} ja no està vinculat amb un compte de
+    Google, per tant %{site_name} no té permís per accedir a aquesta fotografia.
   picasa_identity: Usuari de Picasa
   pick_a_username: Trieu nom d'usuari
   pink: rosa
@@ -3408,6 +3414,7 @@ ca:
     el desarem perquè el pugueu localitzar la pròxima vegada.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Ho sentim, alguna d'aquestes
     fotos de Flickr no existeix o bé no teniu permís per veure-la.
+  sorry_google_isnt_responding_at_the_moment: Ho sentim, ara mateix Google no respon.
   sorry_that_photo_provider_isnt_responding: Ho sentim, aquest proveïdor de la foto
     de moment no està responent. Si us plau, intenteu-lo més tard.
   sorry_that_service_is_not_responding: Ho sentim, el servei no està responent. Si
@@ -3423,7 +3430,7 @@ ca:
   sorry_you_cant_delete_your_own_life_list: Ho sentim, no podeu esborrar la vostra
     llista de vida.
   sorry_you_need_to_be_signed_in_and: Ho sentim, heu d’entrar al sistema i tenir un
-    compte enllaçat de Flickr per poder publicar etiquetes directament des de Flickr.
+    compte vinculat de Flickr per poder publicar etiquetes directament des de Flickr.
   sort: Ordenar
   sort_by: Ordena per
   sorting_by: Ordenant per
@@ -3905,6 +3912,7 @@ ca:
   to_add_ids: per afegir ID
   to_an: a una
   to_configure_your_widget: per configurar el vostre giny.
+  to_include_your_google_with_inat: per incloure el vostre compte de Google amb %{site_name}
   to_recipient: a
   to_suggest_an_identification: per suggerir una identificació
   to_tag_your_flickr_from_here: per etiquetar les fotos de Flickr des d'aquí sense
@@ -3963,6 +3971,7 @@ ca:
   unknown: Desconegut
   unknown_rank: (Classificació desconeguda)
   unfollow: Deixeu de seguir
+  unlink_your_google_account: Desvinculeu el vostre compte de Google
   unobserved_listings: Llistats de No observats
   updates_notification_email_subject: '%{prefix} Noves actualitzacions %{date}'
   updates_suspension_email_subject: '%{prefix} La vostra subscripció està en espera'
@@ -4400,6 +4409,8 @@ ca:
   you_havent: No heu de
   you_havent_left_any_comments_recently: No heu afegit comentaris recentment. Deixeu
     una nota a algú!
+  you_havent_linked_your_inaturalist_google_account: Encara no heu vinculat el compte
+    de %{site_name} amb el vostre compte de Google.
   you_joined_this_project: Us heu unit a aquest projecte!
   you_may_have: 'que pugueu tenir. Probablement només funcionarà en cercadors moderns:'
   you_must_be_a_member_of_this_project_to_do_that: Heu de ser un membre del projecte
@@ -4453,8 +4464,8 @@ ca:
     Si us plau, ingresseu per continuar.
   your_activation_code_was_missing: El vostre codi d'activació s'ha perdut. Si us
     plau, accediu a l'enllaç des del correu electrònic
-  your_browser_does_not_support_the_audio_element: El vostre navegador no suporta
-    l'element d'àudio.
+  your_browser_does_not_support_the_audio_element: El vostre navegador no admet l'element
+    d'àudio.
   your_coarser_id: |-
     Una IDentificació menys precisa de <span class="taxon">%{coarser_taxon_name}</span> implica que no esteu
     d'acord amb la IDentificació detallada de
@@ -4478,15 +4489,20 @@ ca:
   your_month_observations: Les vostres observacions de %{month}
   your_name_was_saved: El vostre nom s’ha desat.
   your_new_password_is: La vostra nova contrasenya és
-  your_observation_will_get_shared_html: Si no desmarqueu aquestes caselles, la vostra
-    observació es compartirà a les xarxes socials. Podeu canviar per <a href='%{url}'
-    target='_blank'>edita la vostra configuració</a>.
+  your_observation_will_get_shared_html: La vostra observació serà compartida a xarxes
+    socials si deixeu aquestes caixes marcades. Podeu canviar les vostres preferències
+    per defecte <a href="%{url}">editant la vostra configuració del compte.</a> Si
+    vau vincular el vostre compte de Facebook o Twitter abans que aquesta característica
+    s'afegís, podeu necessitar revincular el compte a Twitter o Facebook de nou per
+    aconseguir que aixó funcioni.
   your_observation_wont_get: La vostra observació no s’associarà amb altres observacions
     d'aquesta espècie i la vostra llista de vida no s’actualitzarà.
   your_observations: Les vostres observacions
   your_observations_couldnt_be_added_to_that_project: 'No es poden afegir les vostres
     observacions a aquest projecte: %{errors}'
   your_photos_have_been_tagged: Les vostres fotos s’han etiquetat!
+  your_google_account: el vostre compte de Google
+  your_google_account_info: Informació del vostre compte de Google
   your_profile_was_successfully_updated: El vostre perfil s’ha actualitzat satisfactòriament.
   your_should_recognize: Hauríeu de reconèixer algunes d'aquestes fotos
   your_site_account_has_been_created: S’ha creat el vostre compte de %{site}.
@@ -4506,6 +4522,9 @@ ca:
   youre_viewing_site_name_observations_html: Esteu veient les observacions de <strong>%{site_name}</strong>
   youve_already_added_an_identification: ja heu afegit una identificació, i només
     podeu afegir-ne una
+  youve_linked_your_inaturalist_google_account: Heu vinculat el vostre compte de %{site_name}
+    amb el compte de Google. Aquesta acció us permetrà associar les fotografies de
+    Google amb les vostres observacions a %{site_name}.
   youve_opted_out_of_community_ids: Heu optat per acceptar les IDentificacions de
     la Comunitat
   youve_opted_out_of_community_ids_for_this_obs: Heu decidit acceptar les IDentificacions
@@ -4742,8 +4761,10 @@ ca:
           fotos e cap forma que no ho desitgi.'
         can_i_add_photos_without_a_flickr_account?: Puc afegir fotos sense tenir compte
           de Flickr?
+        we_also_support_google_html: 'També podeu utilitzar Fotografies de Google:
+          <a href="%{url}">Configureu el compte de Google&raquo; </a>'
         we_also_support_uploading_photos: |-
-          També podeu pujar fotos directament a %{site_name}, però pot resultar una mica lent, així que només permetem pujar una foto alhora.  Utilitzar Flickr o Picasa és
+          També podeu pujar fotografies directament a %{site_name}, però pot resultar una mica lent, així que només permetem pujar una fotografia alhora.  Utilitzar Flickr o Google és
           probablement molt més ràpid si ja utilitzeu els seus serveis.
         what_are_tags?: Què són les etiquetes?
         tags_are_keywords_you_can_add_to_an_html: Les etiquetes són paraules clau
@@ -5027,10 +5048,12 @@ ca:
           </ul>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
           de desacord + desacords en l'avantpassat )
-        observation_flagged_notice_html: |-
-          Aquesta observació ha estat marcada com spam i ja no és visible al públic. La podeu veure perquè el vau crear, o sou un Administrador del lloc. Si penseu que això és una equivocació, si us plau
-          <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
-          <a href="/observations/%{observation_id}/flags">Gestioneu marques</a>
+        observation_flagged_notice_html: "Aquesta observació ha estat marcada com
+          a brossa \ni ja no és públicament visible. La podeu veure perquè \nla vareu
+          crear o sou un moderador del lloc. Si penseu \nque es tracta d'una equivocació,
+          si us plau, <a href=\"mailto:%{help_email}\" class=\"contact\">contacteu
+          amb nosaltres</a>.\n<a href=\"/observations/%{observation_id}/flags\">Gestionar
+          les marques</a>"
       user_stats:
         user_stats_desc: |-
           Les estadístiques d'usuari estan limitades als primers 500 tant pel nombre d'observacions com d'espècies, per tant el total que apareix és normalment lleugerament superior a 500, donat que les dues llistes probablement no contenen els mateixos usuaris.
