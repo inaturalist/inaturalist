@@ -16,6 +16,7 @@
 # Author: Luisangelrg
 # Author: Macofe
 # Author: Ncontinanza
+# Author: PoLuX124
 # Author: Tusca
 # Author: Yllelder
 ---
@@ -28,7 +29,7 @@ es:
     en un comentario.
   we_also_support: |-
     También admitimos <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a> y
+    <a href="http://photos.google.com">Google Photos</a> y
     <a href="http://facebook.com">Facebook</a>
     para alojamiento de imágenes.
   a_default_taxon_name_will_automatically_created: Se creará un nombre por defecto
@@ -481,7 +482,6 @@ es:
     de la lista de verificación de %{place}?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: ¿Estás seguro?
     Esto volverá a cargar la página y es posible que pierdas algunos de sus cambios.
-  are_you_sure_unlink_picasa: ¿Estás seguro que deseas desvincular tu cuenta de Picasa?
   are_you_sure_want_activate_account: ¿Estás seguro que deseas activar esta cuenta?
   are_you_sure_want_delete_account: ¿Estás seguro que deseas eliminar tu cuenta? Esto
     eliminará todos tus datos y no se puede deshacer. Sentimos que te vayas.
@@ -1904,13 +1904,13 @@ es:
   link: Vínculo
   link_or_unlink_your_facebook_account: Vincular o desvincular su cuenta de Facebook
   link_or_unlink_your_flickr_account: Vincular o desvincular su cuenta de Flickr
-  link_or_unlink_your_picasa_account: Vincular o desvincular su cuenta de Picasa
+  link_or_unlink_your_google_account: Enlazar o desenlazar tu cuenta de Google
   link_your_facebook_account: Vincule su cuenta de Facebook
   link_your_flickr_account: Vincule su cuenta de Flickr
   link_your_flickr_account_with_inat: Vincule su cuenta de Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Vincule su cuenta de Flickr con %{site_name}
     para poder agregar fotos de sus observaciones.
-  link_your_picasa_account: Vincule su cuenta de Picasa
+  link_your_google_account: Enlazar tu cuenta de Google
   linked_facebook: Su cuenta de %{site_name} está actualmente ligada con su cuenta
     de Facebook.
   linked_facebook_automaticaly: También, ten en cuenta que si inicias sesión en %{site_name}
@@ -2262,7 +2262,7 @@ es:
   new_project: Proyecto nuevo
   new_project_asset: Nueva posesión del Proyecto
   new_project_asset_for: Nueva posesión del proyecto para
-  new_source: Nueva fuente
+  new_source: Fuente nueva
   new_taxon_change: Nuevo cambio taxonómico
   new_taxon_link: Nuevo vínculo de taxón
   new_taxon_name: Nuevo nombre de taxón
@@ -2757,8 +2757,8 @@ es:
   photos_size_photos: '%{photos_size} fotos'
   photos_size_photo: '%{photos_size} foto'
   photos_updated: Fotos actualizadas.
-  picasa_account_not_linked: El %{user} ya no tiene vinculada una cuenta de Picasa,
-    así que  %{site_name} no tiene permiso para acceder a esta foto.
+  google_account_not_linked: Como %{user} ya no tiene ninguna cuenta de Google enlazada,
+    %{site_name} no tiene permisos para acceder a esta fotografía.
   picasa_identity: Identidad de Picasa
   pick_a_username: Elegir nombre de usuario
   pink: rosa
@@ -3418,8 +3418,7 @@ es:
     lo guardaremos para que pueda encontrarlo la próxima vez.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Lo sentimos, alguna de
     esas fotos de Flickr no existen o no tienes permisos para verlas.
-  sorry_picasa_isnt_responding_at_the_moment: Lo sentimos, Picasa de momento no esta
-    respondiendo.
+  sorry_google_isnt_responding_at_the_moment: Google no responde en este momento.
   sorry_that_photo_provider_isnt_responding: Lo sentimos, esa foto de momento no esta
     respondiendo. Por favor inténtalo más tarde.
   sorry_that_service_is_not_responding: Lo sentimos, ese servicio no responde. Por
@@ -3792,7 +3791,7 @@ es:
     esa observación a este proyecto:'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
     %{place_error}'
-  there_were_problems_importing_that_place_geometry: 'Han habido problemas al importar
+  there_were_problems_importing_that_place_geometry: 'Ha habido problemas al importar
     la geometría del lugar: %{error}'
   there_were_some_problems_saving_this_observation: Hubo algunos problemas al guardar
     esta observación
@@ -3920,9 +3919,7 @@ es:
   to_add_ids: para agregar identificaciones
   to_an: a una
   to_configure_your_widget: para configurar tu widget.
-  to_include_your_picassa_with_inat: Para incluir sus fotos de Picasa fotos con sus
-    observaciones %{site_name}, haga clic en el botón a la derecha para vincular ambas
-    cuentas. Será dirigido a Google, donde se le preguntará si autoriza esta conexión
+  to_include_your_google_with_inat: para incluir tu cuenta de Google con %{site_name}
   to_recipient: a
   to_suggest_an_identification: para sugerir una identificación
   to_tag_your_flickr_from_here: para etiqutar sus fotos de Flickr desde aquí sin cortar
@@ -3981,7 +3978,7 @@ es:
   unknown: Desconocido
   unknown_rank: (Clasificación desconocida)
   unfollow: Dejar de seguir
-  unlink_your_picasa_account: Desvincular su cuenta de Picasa
+  unlink_your_google_account: Desenlazar tu cuenta de Google
   unobserved_listings: Listados no observados
   updates_notification_email_subject: '%{prefix} Nuevas actualizaciones %{date}'
   updates_suspension_email_subject: '%{prefix} Sus suscripciones están en espera'
@@ -4421,8 +4418,8 @@ es:
   you_havent: Usted no ha
   you_havent_left_any_comments_recently: No ha dejado comentarios recientemente. ¡Déjele
     una nota a alguien!
-  you_havent_linked_your_inaturalist_picasa_account: Usted no ha vinculado su cuenta
-    de %{site_name} con su cuenta de Picasa account todavía
+  you_havent_linked_your_inaturalist_google_account: Aún no has enlazado tus cuentas
+    de %{site_name} y de Google
   you_joined_this_project: ¡Te uniste a este proyecto!
   you_may_have: 'que puedas tener. Probablemente solo funcione en buscadores modernos:'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto
@@ -4509,8 +4506,8 @@ es:
   your_observations_couldnt_be_added_to_that_project: 'Tus observaciones no pueden
     ser añadidas a este proyecto: %{errors}'
   your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
-  your_picasa_account: Su cuenta Picasa
-  your_picasa_account_info: Información de su cuenta Picasa
+  your_google_account: tu cuenta de Google
+  your_google_account_info: Información de tu cuenta de Google
   your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_should_recognize: Usted debería reconocer algunas de estas fotos
   your_site_account_has_been_created: Su cuenta de %{site} ha sido creada.
@@ -4530,9 +4527,9 @@ es:
   youre_viewing_site_name_observations_html: Estás viendo las observaciones de <strong>%{site_name}</strong>
   youve_already_added_an_identification: ya agregó una identificación, y sólo puede
     agregar una
-  youve_linked_your_inaturalist_picasa_account: Usted ha vinculado su cuenta de %{site_name}
-    con su cuenta de Picasa. Esto le permitirá asociar sus fotos de Picasa con sus
-    observaciones de %{site_name}.
+  youve_linked_your_inaturalist_google_account: Has enlazado tus cuentas de %{site_name}
+    y de Google. Esto te permitirá asociar tus fotografías de Google con tus observaciones
+    en %{site_name}.
   youve_opted_out_of_community_ids: Decidió aceptar identificaciones comunitarias
   youve_opted_out_of_community_ids_for_this_obs: Decidió aceptar identificaciones
     comunitarias para esta observación
@@ -4812,11 +4809,11 @@ es:
           en cosas que no quieres."
         can_i_add_photos_without_a_flickr_account?: ¿Puedo agregar fotos sin tener
           cuenta de Flickr?
-        we_also_support_picasa_html: 'También puedes usar Picasa: <a href="%{url}">Configura
-          tu cuenta en Picasa &raquo; </a>'
+        we_also_support_google_html: 'También admitimos Google Fotos: <a href="%{url}">Configura
+          tu cuenta de Google &rarr;</a>'
         we_also_support_uploading_photos: "También puedes subir tus fotos directamente
           a %{site_name}, pero puede resultar un poco lento,\nasí que solamente permitimos
-          subir una foto a la vez.  Usar Flickr o Picasa es \nprobablemente mucho
+          subir una foto a la vez.  Usar Flickr o Google \nprobablemente sea mucho
           más rápido si ya utilizas sus servicios."
         what_are_tags?: ¿Qué son las etiquetas?
         tags_are_keywords_you_can_add_to_an_html: "Las etiquetas son palabras clave

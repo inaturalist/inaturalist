@@ -24,8 +24,8 @@ ko:
     Biodiversity Information Facility</a>(GBIF)와 같은 데이터 파트너와 공유합니다.
   you_think_observation_inacurate: 이 관찰이 정확하지 않다고 생각할 경우 아이디를 추가한 후 위 평가서를 작성하거나 문제점을
     댓글로 달아주세요.
-  we_also_support: "저희는 <a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://picasaweb.google.com\">피카사</a>,
-    \n<a href=\"http://facebook.com\">페이스북</a>\n의 이미지 호스팅 또한 지원합니다."
+  we_also_support: "저희는 <a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
+    포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 이미지 호스팅 또한 지원합니다."
   a_default_taxon_name_will_automatically_created: 학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을
     저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   x_comments:
@@ -296,7 +296,6 @@ ko:
   are_you_sure_remove_taxon_from_place: 이 분류군을 %{place}의 체크리스트에서 제거하겠습니까?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 확실한가요? 이것은 페이지를
     새로 불러오기 때문에 변경사항을 일부 잃을 수 있습니다.
-  are_you_sure_unlink_picasa: 정말 Picasa 계정의 연결을 해제하고 싶으십니까?
   are_you_sure_want_activate_account: 정말로 이 계정을 활성화하겠습니까?
   are_you_sure_want_delete_account: 정말 계정을 삭제할 건가요? 모든 정보도 함께 삭제되고 되돌릴 수 없습니다. 삭제한다면
     아쉬울 거에요.
@@ -1343,13 +1342,13 @@ ko:
   link: 링크
   link_or_unlink_your_facebook_account: 페이스북 계정을 연결하거나 연결을 끊는다
   link_or_unlink_your_flickr_account: Flickr 계정을 연결하거나 연결을 끊는다
-  link_or_unlink_your_picasa_account: Picasa 계정을 연결하거나 연결을 끊는다
+  link_or_unlink_your_google_account: 구글 계정을 연결하거나 연결을 끊습니다
   link_your_facebook_account: 페이스북 계정을 연결한다
   link_your_flickr_account: Flickr 계정을 연결한다
   link_your_flickr_account_with_inat: Flickr 계정을 %{site_name}와 연결한다
   link_your_flickr_account_with_inat_so: Flickr 계정을 %{site_name}와 연결하여 관찰의 사진들을 추가할
     수 있게 한다.
-  link_your_picasa_account: Picasa 계정을 연결한다
+  link_your_google_account: 구글 계정을 연결합니다
   linked_facebook: 당신의 %{site_name} 계정은 페이스북 계정과 연결되어 있습니다.
   linked_facebook_automaticaly: 그리고, %{site_name}에 페이스북 계정으로 로그인하면, 자동적으로 페이스북과 %{site_name}
     계정이 연동된다는 것을 유의해주십시오. 페이스북을 사용한다면 페이스북 사진을 들여오기 더 용이하게 하기 위함입니다.
@@ -1757,6 +1756,8 @@ ko:
     small: 작게
     medium: 보통
     large: 크게
+  google_account_not_linked: '%{user}님이 더 이상 연결된 구글 계정이 없기 때문에 %{site_name}이(가) 이
+    사진을 접근할 권한이 없습니다.'
   pink: 핑크
   place: 장소
   place_deleted: 장소 삭제됨.
@@ -1964,6 +1965,7 @@ ko:
   similar_species: 비슷한 종
   sizes: 크기
   small: 작게
+  sorry_google_isnt_responding_at_the_moment: 죄송합니다. 구글이 지금 응답하지 않습니다.
   sort_by: 정렬 기준
   sounds:
     add_sounds: 음원 추가
@@ -2017,6 +2019,7 @@ ko:
   tue: 화요일
   twitter: 트위터
   unfollow: 팔로우 해제
+  unlink_your_google_account: 구글 계정의 연결을 끊습니다
   unsubscribe: 구독 해지
   update: 갱신
   update_photos: 사진 갱신
@@ -2123,12 +2126,16 @@ ko:
   you_cant_remove_other_peoples_observations: 다른 사람의 관찰을 삭제할 수 없습니다.
   you_didnt_select_any_observations: 관찰을 선택하지 않았습니다.
   you_havent_left_any_comments_recently: 최근에 댓글 단 것이 없습니다. 댓글을 달아주세요.
+  you_havent_linked_your_inaturalist_google_account: '%{site_name} 계정과 구글 계정을 아직 연결하지
+    않았습니다'
   you_must_fill_out_the_required_fields: 필수 칸은 채워야 합니다
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
   your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
   your_month_observations: '%{month}월의 내 관찰'
   your_observations_couldnt_be_added_to_that_project: 관찰이 프로젝트에 추가되지 못했습니다.%{errors}
+  your_google_account: 내 구글 계정
+  your_google_account_info: 구글 계정 정보
   your_subscriptions: 당신의 구독 목록
   your_sure_delete_list?: 이 목록을 삭제하겠습니까?
   youre_following: '팔로우 중:'

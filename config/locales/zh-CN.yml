@@ -18,7 +18,7 @@ zh-CN:
     href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
   you_think_observation_inacurate: 如果您认为这条观察记录不准确，请添加您的鉴定、在上方参与质量评估、或在评论中描述不准确之处。
   we_also_support: |-
-    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://picasaweb.google.com">Picasa</a>和<a
+    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://photos.google.com">Google照片</a>和<a
     href="http://facebook.com">Facebook</a>用于图片存储。
   a_default_taxon_name_will_automatically_created: |-
     一个来自归属于此分类的学名的默认分类名称将被创建。
@@ -420,7 +420,6 @@ zh-CN:
   are_you_sure_remove_taxon_from_list: 您确定要从列表中移除这个分类单元吗？
   are_you_sure_remove_taxon_from_place: 您确定要从%{place}的名录中移除这个分类单元吗？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 您确定么？这将重新加载页面，您可能会丢失您的一些更改。
-  are_you_sure_unlink_picasa: 您确定要取消链接您的Picasa账户？
   are_you_sure_want_activate_account: 您确定要激活这个账户？
   are_you_sure_want_delete_account: 您确定要删除您的账户？这将删除您所有的数据并且不可撤销，并且我们很遗憾看到您要离开。
   are_you_sure_want_delete_taxon: 您确定要删除这个分类单元吗？%{msg}
@@ -1566,12 +1565,12 @@ zh-CN:
   link: 链接
   link_or_unlink_your_facebook_account: 链接或取消链接您的Facebook账户
   link_or_unlink_your_flickr_account: 链接或取消链接您的Flickr账户
-  link_or_unlink_your_picasa_account: 链接或取消链接您的Picasa账户
+  link_or_unlink_your_google_account: 链接或取消链接您的Google账户
   link_your_facebook_account: 链接您的Facebook账户
   link_your_flickr_account: 链接您的Flickr账户
   link_your_flickr_account_with_inat: 将您的Flickr账户与 %{site_name} 链接
   link_your_flickr_account_with_inat_so: 将您的Flickr账户连接到%{site_name}，这样您可以添加您观察的照片。
-  link_your_picasa_account: 链接您的Picasa账户
+  link_your_google_account: 链接您的Google账户
   linked_facebook: 您的%{site_name}账户目前已链接到您的Facebook账户。
   linked_facebook_automaticaly: 另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name}
     账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？
@@ -2076,7 +2075,7 @@ zh-CN:
   photos_size_photos: '%{photos_size} 张照片'
   photos_size_photo: '%{photos_size} 张照片'
   photos_updated: 照片已更新。
-  picasa_account_not_linked: '%{user}不再有一个链接Picasa的账户，因此%{site_name}并无权限访问此照片。'
+  google_account_not_linked: '%{user}不再有一个链接Google的账户，因此%{site_name}并无权限访问此照片。'
   pick_a_username: 选择用户名
   pink: 粉色
   place: 地方
@@ -2563,6 +2562,7 @@ zh-CN:
   somewhere: （某处...）
   sorry_flickr_isnt_responding_at_the_moment: 抱歉，Flickr目前没有响应。
   sorry_how_about_we_try_repeat: 对不起！您认为我们如何尝试并重复您在一些其他的物种名称数据库的搜索？如果我们找到一些方法，我们将保存它，这样您可以在下次找到它。
+  sorry_google_isnt_responding_at_the_moment: 抱歉，Google目前没有响应。
   sorry_you_can_only_add_1000_at_a_time: 对不起，您每次只可以添加1000个。
   sort: 排序
   sort_by: 排序方式
@@ -2798,6 +2798,7 @@ zh-CN:
   to_add_identifications: 要添加鉴定
   to_add_ids: 要添加ID
   to_an: 至一个
+  to_include_your_google_with_inat: 来包含您的Google账户与%{site_name}
   to_recipient: 至
   to_suggest_an_identification: 要建议一次鉴定
   today: 今天
@@ -2844,7 +2845,7 @@ zh-CN:
   unknown: 未知
   unknown_rank: （未知排名）
   unfollow: 不关注
-  unlink_your_picasa_account: 取消链接您的Picasa账户
+  unlink_your_google_account: 取消链接您的Google账户
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的订阅目前暂停'
   updating: 正在更新...
@@ -3115,7 +3116,7 @@ zh-CN:
   you_have_to: 您不得不
   you_havent: 您没有
   you_havent_left_any_comments_recently: 您最近没有做出任何评论。去给一个人做出提醒吧！
-  you_havent_linked_your_inaturalist_picasa_account: 您尚未连接您的%{site_name}账户和您的Picasa账户
+  you_havent_linked_your_inaturalist_google_account: 您尚未连接您的%{site_name}账户和您的Google账户
   you_joined_this_project: 您加入了这个项目！
   you_must_be_a_member_of_this_project_to_do_that: 您必须是此项目的成员才能
   you_must_fill_out_the_required_fields: 您必须填写所需字段
@@ -3162,8 +3163,8 @@ zh-CN:
   your_observation_will_get_shared_html: 如果您勾选这些框的话，您的观察将被社交网络分享。您可通过<a href='%{url}'
     target='_blank'>编辑您的账户设置</a>更改您的默认值。如果您在此功能添加前连接了您的Facebook或Twitter账户，您可能需要重新连接您的账户与Twitter或Facebook以使其工作。
   your_photos_have_been_tagged: 您的照片已被标记！
-  your_picasa_account: 您的Picasa账户
-  your_picasa_account_info: 您的Picasa账户信息
+  your_google_account: 您的Google账户
+  your_google_account_info: 您的Google账户信息
   your_profile_was_successfully_updated: 您的个人资料已成功更新！
   your_site_account_has_been_created: 您的%{site}账户已创建。
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -3178,6 +3179,7 @@ zh-CN:
     href="%{people_path}">新人</a>吧。
   youre_viewing_site_name_observations_html: 您正在查看 <strong>%{site_name}</strong> 的观察
   youve_already_added_an_identification: 您已经添加了一个标识，您只能添加一个
+  youve_linked_your_inaturalist_google_account: 您已链接您的%{site_name}账户与您的Google账户。这将允许您关联您的Google照片与您的%{site_name}观察。
   youve_seen_it_want_to: 您看见了它！想要
   youve_successfully_linked_your_provider_account: 您刚刚成功连接了您的 %{provider} 账户
   zoom_in: 放大
@@ -3307,8 +3309,8 @@ zh-CN:
         inaturalist_has_name_information_for_mammals: '%{site_name} 有用于哺乳类、鸟类、爬行类和两栖动物的名称信息，并持续添加新的物种名称至我们的数据库。如果我们不承认某一特定名称，尝试其他我们可能承认的名称，并添加原始名称至标签或描述字段。'
         how_can_i_get_help_identifying_what_i_saw?: 我如何帮助您识别我看见的东西？
         can_i_add_photos_without_a_flickr_account?: 我可以不用Flickr账户就添加图片么？
-        we_also_support_picasa_html: 我们也支持Picasa：<a href="%{url}">配置您的Picasa账户&raquo;</a>
-        we_also_support_uploading_photos: 我们也支持直接上传照片至 %{site_name}，但它可能有点慢，所以我们每次只允许上传一个照片。如果您已经使用这些设备的话，使用Flickr或Picasa可能会更快。
+        we_also_support_google_html: 我们也支持Google照片：<a href="%{url}">配置您的Google账户&raquo;</a>
+        we_also_support_uploading_photos: 我们也支持直接上传照片至 %{site_name}，但它可能有点慢，所以我们每次只允许上传一个照片。如果您已经使用这些设备的话，使用Flickr或Google可能会更快。
         what_are_tags?: 标签在哪？
         can_i_include_my_observations_on_my_blog?: 我可以在我自己的博客网站上包含我的 %{site_name}
           观察么？

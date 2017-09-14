@@ -18,10 +18,12 @@
 # Author: Macofe
 # Author: Nicolapps
 # Author: Orikrin1998
+# Author: Pamputt
 # Author: Robby
 # Author: Spasmedevivre
 # Author: Thibaut120094
 # Author: Urhixidur
+# Author: Verdy p
 # Author: Wladek92
 # Author: Yasten
 ---
@@ -37,7 +39,7 @@ fr:
     décrivez les erreurs dans un commentaire.
   we_also_support: |-
     Nous acceptons aussi <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a> et
+    <a href="http://photos.google.com">Google Photos</a> et
     <a href="http://facebook.com">Facebook</a>
     pour l’hébergement d’images.
   a_default_taxon_name_will_automatically_created: |-
@@ -501,8 +503,6 @@ fr:
     de la liste de contrôle de %{place}?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: Êtes-vous certain
     ? La page sera rechargée et vous pourriez perdre certaines de vos modifications.
-  are_you_sure_unlink_picasa: Êtes-vous certain de vouloir supprimer le lien vers
-    votre compte Picasa ?
   are_you_sure_want_activate_account: Êtes-vous certain de vouloir activer ce compte
     ?
   are_you_sure_want_delete_account: Êtes-vous certain de vouloir supprimer votre compte
@@ -1986,13 +1986,13 @@ fr:
   link: Lien
   link_or_unlink_your_facebook_account: Lier ou dissocier votre compte Facebook
   link_or_unlink_your_flickr_account: Lier ou dissocier votre compte Flickr
-  link_or_unlink_your_picasa_account: Lier ou dissocier votre compte Picasa
+  link_or_unlink_your_google_account: Lier ou dissocier votre compte Google
   link_your_facebook_account: Lier votre compte Facebook
   link_your_flickr_account: Lier votre compte Flickr
   link_your_flickr_account_with_inat: Lier votre compte Flickr à %{site_name}
   link_your_flickr_account_with_inat_so: Lier votre compte Flickr à %{site_name} afin
     de pouvoir ajouter des photos de vos observations.
-  link_your_picasa_account: Lier votre compte Picasa
+  link_your_google_account: Lier votre compte Google
   linked_facebook: Votre compte %{site_name} est déjà lié à votre compte Facebook.
   linked_facebook_automaticaly: N’oubliez pas que si vous vous connectez sur %{site_name}
     au moyen de Facebook, nous relierons automatiquement vos comptes %{site_name}
@@ -2849,8 +2849,8 @@ fr:
   photos_size_photos: photos de %{photos_size}
   photos_size_photo: photos de %{photos_size}
   photos_updated: Photos à jour.
-  picasa_account_not_linked: Le compte Picasa de %{user} n’est plus lié. %{site_name}
-    n’a donc pas le droit d’accéder à cette photo.
+  google_account_not_linked: '%{user} n’a plus de compte Google lié, donc %{site_name}
+    n’a pas le droit d’accéder à cette photo.'
   picasa_identity: Identité Picasa
   pick_a_username: Choisissez un nom d’utilisateur
   pink: rose
@@ -3517,7 +3517,7 @@ fr:
     chose, nous l’enregistrerons pour que vous puissiez le trouver la prochaine fois.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Désolé, une de ces photos
     de Flickr n’existe pas, ou vous n’avez pas le droit de la voir.
-  sorry_picasa_isnt_responding_at_the_moment: Désolé, Picasa ne répond pas pour le
+  sorry_google_isnt_responding_at_the_moment: Désolé, Google ne répond pas pour le
     moment.
   sorry_that_photo_provider_isnt_responding: Désolé, ce fournisseur de photos ne répond
     pas pour le moment. Veuillez réessayer plus tard.
@@ -4026,9 +4026,7 @@ fr:
   to_add_ids: pour ajouter des ID
   to_an: pour un
   to_configure_your_widget: pour configurer votre widget.
-  to_include_your_picassa_with_inat: Pour inclure vos photos Picasa avec vos observations
-    sur %{site_name}, cliquez sur le bouton à droite pour lier vos deux comptes. Vous
-    serez redirigé vers Google, où on vous demandera d’autoriser cette connexion.
+  to_include_your_google_with_inat: pour inclure votre compte Google avec %{site_name}
   to_recipient: À
   to_suggest_an_identification: pour suggérer une identification
   to_tag_your_flickr_from_here: pour étiquetter vos photos de Flickr à partir d’ici
@@ -4088,7 +4086,7 @@ fr:
   unknown: Inconnu
   unknown_rank: (Rang inconnu)
   unfollow: Ne plus suivre
-  unlink_your_picasa_account: Déconnecter votre compte Picasa
+  unlink_your_google_account: Supprimer le lien de votre compte Google
   unobserved_listings: Listes non observées
   updates_notification_email_subject: '%{prefix} Nouvelles mises à jour du %{date}'
   updates_suspension_email_subject: '%{prefix} Vos abonnements sont en attente'
@@ -4539,8 +4537,8 @@ fr:
   you_havent: Vous n'avez pas
   you_havent_left_any_comments_recently: Vous n’avez pas laissé de commentaires récemment.
     Laissez une note à quelqu’un!
-  you_havent_linked_your_inaturalist_picasa_account: Vous n’avez pas encore lié votre
-    compte %{site_name} à votre compte Picasa
+  you_havent_linked_your_inaturalist_google_account: Vous n’avez pas encore lié votre
+    compte %{site_name} avec votre compte Google
   you_joined_this_project: Vous avez joint ce projet!
   you_may_have: vous pourriez avoir. Ça pourrait ne fonctionner qu’avec des explorateurs
     modernes et conformes comme
@@ -4637,8 +4635,8 @@ fr:
   your_observations_couldnt_be_added_to_that_project: 'Vos observations n''ont pas
     pu être ajoutées à ce projet : %{errors}'
   your_photos_have_been_tagged: Vos photos ont été étiquetées!
-  your_picasa_account: votre compte Picasa
-  your_picasa_account_info: Les informations de votre compte Picasa
+  your_google_account: votre compte Google
+  your_google_account_info: Les informations de votre compte Google
   your_profile_was_successfully_updated: Votre profil a bien été mis à jour!
   your_should_recognize: Vous devriez reconnaître certaines de ces photos
   your_site_account_has_been_created: Votre compte %{site} a été créé.
@@ -4661,9 +4659,9 @@ fr:
   youre_viewing_site_name_observations_html: Vous regardez les observations de <strong>%{site_name}</strong>
   youve_already_added_an_identification: Vous avez déjà ajouté une identification,
     et vous ne pouvez en ajouter qu'une seule
-  youve_linked_your_inaturalist_picasa_account: Vous avez lié votre compte %{site_name}
-    et votre compte Picasa. Cette action permettra de lier vos photos Picasa avec
-    vos observations d’%{site_name}.
+  youve_linked_your_inaturalist_google_account: Vous êtes en train de lier votre compte
+    %{site_name} avec votre compte Google. Cela vous permettra d’associer vos photos
+    Google avec vos observations sur %{site_name}.
   youve_opted_out_of_community_ids: Vous avez choisi de ne pas recevoir d’identifications
     par la communauté
   youve_opted_out_of_community_ids_for_this_obs: Vous avez choisi de ne pas recevoir
@@ -4944,12 +4942,11 @@ fr:
           que vous ne souhaitez pas.
         can_i_add_photos_without_a_flickr_account?: Puis-je ajouter des photos sans
           avoir de compte Flickr?
-        we_also_support_picasa_html: 'Nous acceptons également Picasa: <a href="%{url}">Configurez
-          votre compte Picasa &raquo;</a>'
+        we_also_support_google_html: 'Nous acceptons aussi Google Photos : <a href="%{url}">Configurer
+          votre compte Google ›</a>'
         we_also_support_uploading_photos: |-
-          Nous acceptons aussi le téléversement direct de photo sur %{site_name}, mais il peut être un peu
-          lent, donc nous n’autorisons qu’un seul téléversement à la fois. L’utilisation de Flickr ou de Picasa est
-          sans doute plus rapide si vous utilisez déjà ces services.
+          Nous acceptons aussi le téléchargement direct de photo sur %{site_name}, mais il peut être un peu lent, donc nous n’autorisons qu’un seul téléchargement à la fois.
+          L’utilisation de Flickr ou de Google est sans doute plus rapide si vous utilisez déjà ces services.
         what_are_tags?: Que sont les étiquettes?
         tags_are_keywords_you_can_add_to_an_html: "Les étiquettes sont des mots-clés
           que vous pouvez ajouter à une observation pour les rendre plus faciles à
