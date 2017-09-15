@@ -152,7 +152,7 @@ module Logstasher
         end_time: args[2],
         controller_action: payload[:controller] + "::" + payload[:action],
         method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
-        params_string: saved_params.to_json,
+        params_string: saved_params.any? ? saved_params.to_json : nil,
         param_keys: saved_params.keys,
         format: format,
         view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : 0.0,
@@ -161,6 +161,9 @@ module Logstasher
         # all the other times are in milliseconds
         total_time: ((args[2] - args[1]) * 1000).round(4)
       })
+      # params are stored as a string in `params_string`,
+      # so don't also store them as an object
+      payload.delete(:params)
       payload[:remainder_time] = (payload[:total_time] - payload[:db_runtime] -
         payload[:view_runtime] - payload[:elasticsearch_runtime]).round(4)
       Logstasher.write_hash(payload)
