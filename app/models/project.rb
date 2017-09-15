@@ -104,11 +104,26 @@ class Project < ActiveRecord::Base
     end
   }
 
-  has_attached_file :icon, 
-    :styles => { :thumb => "48x48#", :mini => "16x16#", :span1 => "30x30#", :span2 => "70x70#", :original => "1024x1024>" },
-    :path => ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    :url => "/attachments/:class/:attachment/:id/:style/:basename.:extension",
-    :default_url => "/attachment_defaults/general/:style.png"
+  if Rails.env.production?
+    has_attached_file :icon,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
+      path: "projects/:id-icon-:style.:extension",
+      url: ":s3_alias_url",
+      default_url: "/attachment_defaults/general/:style.png"
+    invalidate_cloudfront_caches :icon, "projects/:id-icon-*"
+  else
+    has_attached_file :icon,
+      styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
+      path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:extension",
+      url: "/attachments/:class/:attachment/:id/:style/:basename.:extension",
+      default_url: "/attachment_defaults/general/:style.png"
+  end
+  
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
