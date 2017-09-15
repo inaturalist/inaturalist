@@ -16,7 +16,7 @@ class GoogleStreetViewPhoto < Photo
 
   def repair( options = {} )
     repair_photo = GoogleStreetViewPhoto.new_from_api_response( GoogleStreetViewPhoto.get_api_response( native_photo_id ) )
-    p.update_attributes(
+    update_attributes(
       thumb_url: repair_photo.thumb_url,
       square_url: repair_photo.square_url,
       small_url: repair_photo.small_url,
