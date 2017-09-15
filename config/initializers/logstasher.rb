@@ -91,14 +91,14 @@ module Logstasher
     hash
   end
 
-  def self.write_hash(hash)
+  def self.write_hash(hash_to_write)
     return if Rails.env.test?
-    hash[:subtype] ||= "Custom"
-    Logstasher.replace_known_types!(hash)
+    hash_to_write[:subtype] ||= "Custom"
+    Logstasher.replace_known_types!(hash_to_write)
     begin
       stash_hash = { end_time: Time.now, version: 1,
         pid: $$, hostname: Logstasher.hostname }.
-        delete_if{ |k,v| v.blank? }.merge(hash)
+        delete_if{ |k,v| v.blank? }.merge(hash_to_write)
       Logstasher.logger.debug(stash_hash.to_json)
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_hash failed: #{e}"
@@ -152,7 +152,7 @@ module Logstasher
         end_time: args[2],
         controller_action: payload[:controller] + "::" + payload[:action],
         method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
-        params: saved_params,
+        params_string: saved_params.to_json,
         param_keys: saved_params.keys,
         format: format,
         view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : 0.0,
