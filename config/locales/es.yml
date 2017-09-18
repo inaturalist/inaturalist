@@ -331,6 +331,8 @@ es:
   all_projects: Todos los proyectos
   all_rights_reserved: todos los derechos reservados
   all_species: Todas las especies
+  all_species_added_to_the_database: Todas las especies se añadieron a la base de
+    datos
   all_taxa:
     rank:
       kingdom: Reino
@@ -1670,6 +1672,7 @@ es:
     de búsqueda para repetir la búsqueda a través de nuestros proveedores externos
     de nombres
   ignore: Ignorar
+  ignore_and_continue: Ignorar y continuar
   ignore_times: Ignora los tiempos
   image_must_be_exactly: del proyecto debe ser exactamente de 950px ancho y a lo más
     de 400px de altura
@@ -3396,7 +3399,7 @@ es:
   site_taxon_page: '%{site_name} página del taxón'
   so_meta!: ¡Autoreferencia!
   some_agree: Algunos la apoyan
-  some_observations_failed: Algunas observaciones no fueron añadidas a los proyectos.
+  some_observations_failed_to_save: Algunas observaciones no se guardaron
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
   some_other_reason: Otra razón que puedes explicar después.
@@ -3976,6 +3979,7 @@ es:
   unique_observers: observadores únicos
   unique_observers_last_3_months: observadores únicos en los últimos 3 meses,
   unknown: Desconocido
+  unknown_error: Error desconocido
   unknown_rank: (Clasificación desconocida)
   unfollow: Dejar de seguir
   unlink_your_google_account: Desenlazar tu cuenta de Google
@@ -4213,6 +4217,7 @@ es:
     favoritos aquí?
   want_to_test_a_new_version_of_this_page: ¿Quieres probar una nueva versión de esta
     página?
+  wanted: Requerido
   was_it_captive_cultivated?: ¿Fue cautiva / cultivado?
   we_can_only_understand_csv_in: Sólo podemos entender CSV en el siguiente formato
   we_care_privacy: ¡Nos importa su privacidad!
@@ -4309,6 +4314,7 @@ es:
   x_observations_failed:
     one: 1 observación falló
     other: '%{count} observaciones fallaron'
+  x_of_y: '%{x} de %{y}'
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadísticas de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} le envió un nuevo mensaje en %{y}'

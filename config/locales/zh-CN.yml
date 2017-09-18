@@ -120,6 +120,7 @@ zh-CN:
   about_bioblitz_results: 关于生物限时搜索
   about_charts: 关于图表
   about_community_taxa: 关于社区分类群
+  about_complete_taxa: 关于比较分类群
   about_conservation_status: 保护状态
   about_establishment_means: 关于确立意思
   about_external_links: 关于外部链接
@@ -295,6 +296,7 @@ zh-CN:
   all_projects: 所有项目
   all_rights_reserved: 保留所有权利
   all_species: 所有物种
+  all_species_added_to_the_database: 所有物种已添加到数据库
   all_taxa:
     rank:
       kingdom: 界
@@ -948,6 +950,7 @@ zh-CN:
         suspended: 您的账户已被停用
   developers: 开发人员
   device: 设备
+  discoveries: 发现
   did_not_send_invitations_because: 未向以下地址发送邀请，因为...
   did_you_mean: 您是不是要找
   did_you_photos_flickr?: 您在Flickr上放照片了么？
@@ -1327,6 +1330,7 @@ zh-CN:
   hi_user: 您好，%{user}
   hide: 隐藏
   hide_details: 隐藏详情
+  hide_uncountable_species: 隐藏无法计数的物种
   high: 高
   highest_rank: 最高等级
   highlights: 高亮
@@ -1373,6 +1377,7 @@ zh-CN:
   if_your_project_is: 如果您的项目有关特定地点，请通过点击地图或手动输入设置坐标。
   if_your_search_comes_up: 如果您的搜索结果为空，您可以通过搜索选项在我们的外部物种名称提供者那里进行同样的搜索：
   ignore: 忽略
+  ignore_and_continue: 忽略并继续
   ignore_times: 忽略时间
   image_must_be_exactly: 图片必须恰好是950px宽，并且最高400px
   imperiled: 危及
@@ -2541,6 +2546,7 @@ zh-CN:
   show_more: 显示更多
   show_only: 仅显示
   showing_one_to: 显示1~
+  show_uncountable_species: 显示无法计数的物种
   sign_in: 登录
   sign_out: 退出
   sign_up!: 注册！
@@ -2555,6 +2561,7 @@ zh-CN:
   small: 小
   so_meta!: 所以元！
   some_agree: 部分同意
+  some_observations_failed_to_save: 部分观察保存失败
   some_other_reason: 您可以在下方说明其他一些原因。
   some_people: 有些人
   something: 一些事
@@ -2641,6 +2648,7 @@ zh-CN:
   status: 状态
   status_globally: '%{status} 全球'
   status_in_place: '%{status} 在 %{place}'
+  stay_and_try_again: 停留并重试
   still_no_luck?: 仍然不高兴？
   still_needs_id?: 社群可以确认/改进ID么？
   still_working_on_classifying_taxon: 仍致力于归类此分类单元。稍后查阅
@@ -2813,6 +2821,7 @@ zh-CN:
   totals: 总计
   total_members: 成员总数
   total_observations: 总计观察
+  total_species_observed: 总计观察物种
   total_unique_observers: 总计独立观察者
   total_users: 总用户，
   "true": 真
@@ -2843,6 +2852,7 @@ zh-CN:
   uninvite: 未被邀请
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
   unknown: 未知
+  unknown_error: 未知错误
   unknown_rank: （未知排名）
   unfollow: 不关注
   unlink_your_google_account: 取消链接您的Google账户
@@ -2998,6 +3008,7 @@ zh-CN:
   wait_file_generation: 请等待文件生成。较大的列表可能需要几分钟。
   want_to_add_one: 想加入一个？
   want_to_test_a_new_version_of_this_page: 想要测试此页面的新版本么？
+  wanted: 希望的
   we_care_privacy: 我们关心您的隐私！
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_currently_support_flickr_for_image_hosting: 我们目前支持Flickr用于图片存储。
@@ -3068,6 +3079,7 @@ zh-CN:
   x_observations_failed:
     one: 1次观察已失败
     other: '%{count} 次观察已失败'
+  x_of_y: '%{y}的%{x}'
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}状态'
   x_sent_you_a_new_message_on_y_html: '%{x} 在 %{y} 给您发送了一条新消息：'
@@ -3539,6 +3551,7 @@ zh-CN:
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     taxa:
       show:
+        discoveries_desc: 此分类单元中最新被鉴定的物种
         frequency:
           research: 研究指导
           verifiable: 可证实
@@ -3560,6 +3573,10 @@ zh-CN:
             <li>尝试添加已在别处使用的名称。请不要臆造新名称。</li>
             <li>不要添加重复的名称，例如请不要将很多种鹰都命名叫“鹰”</li>
             <li>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</li>
+            <li>
+             Don't add information that is not the name, e.g. paranthetical
+             information about how you think the name should be used
+            </li>
           </ul>
       taxon:
         about_html: 分类群可以有很多常用名。我们全域支持一个默认的常用名，它可在此处通过拖动名字至列表顶部更改。您也可以通过编辑名字和添加地点指定不同地点的默认名，但请只当不同地点有冲突名字时这样做。
