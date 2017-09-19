@@ -168,4 +168,36 @@ describe ObservationsExportFlowTask do
       expect(ft.export_columns).to be_blank
     end
   end
+
+  describe "ident_by columns" do
+    it "should get taxon name by user login" do
+      i = Identification.make!
+      ft = ObservationsExportFlowTask.make( options: { columns: ["id", "ident_by_#{i.user.login}:taxon_name"] } )
+      ft.inputs.build( extra: { query: "taxon_id=#{i.taxon_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[1][1] ).to eq i.taxon.name
+    end
+  end
+
+  describe "ident_user_id filter" do
+    it "should only include obs identified by the user" do
+      i = Identification.make!
+      Observation.make!( taxon: i.taxon )
+      ident_column = "ident_by_#{i.user.login}:taxon_name"
+      ft = ObservationsExportFlowTask.make(
+        options: { columns: ["id", ident_column] }
+      )
+      ft.inputs.build( extra: { query: "taxon_id=#{i.taxon_id}&ident_user_id=#{i.user_id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      expect( csv.size ).to eq 2
+      expect( csv[0][1] ).to eq ident_column
+      expect( csv[1][0].to_i ).to eq i.observation_id
+      expect( csv[1][1] ).to eq i.taxon.name
+    end
+  end
 end

@@ -8,6 +8,7 @@
   show_project_field ||= !@projects.blank?
   show_multiple_taxa_field ||= !@observations_taxon_ids.blank?
   show_extra_date_fields ||= false
+  show_ident_user_field ||= !@ident_user.blank?
 %>
 <div id="search_filter" class="row">
   <label class="label" for="q">
@@ -358,6 +359,17 @@
     <div class="label"><strong><%=t :user %></strong></div>
     <div class="left">
       <input type="text" name="user_id" id="user_id_input" value="<%= @selected_user.try(:id) %>" class="smalltext text"/>
+      <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
+      <div class="small"><%= t :username_or_user_id %></div>
+    </div>
+  </div>
+<% end -%>
+
+<% if show_ident_user_field -%>
+  <div class="clear row upstacked">
+    <div class="label"><strong><%=t :identification_user_short %></strong></div>
+    <div class="left">
+      <input type="text" name="ident_user_id" id="ident_user_id_input" value="<%= @ident_user.try(:id) %>" class="smalltext text"/>
       <%= link_to_function t(:clear), "$(this).siblings(':input').val(null).change()", :class => "small" %>
       <div class="small"><%= t :username_or_user_id %></div>
     </div>

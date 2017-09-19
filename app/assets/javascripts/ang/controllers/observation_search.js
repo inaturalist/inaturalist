@@ -59,7 +59,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
   $scope.possibleFields = [ "iconic_taxa", "month", "swlat", "swlng",
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
-    "locale", "preferred_place_id" ];
+    "locale", "preferred_place_id", "ident_user_id" ];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $rootScope.mapType = "map";

@@ -2206,7 +2206,7 @@ class Observation < ActiveRecord::Base
   end
 
   def method_missing(method, *args, &block)
-    return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
+    return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/ || method.to_s =~ /^ident_by_/
     if method.to_s =~ /^field:/
       of_name = method.to_s.split(':').last
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
@@ -2215,6 +2215,18 @@ class Observation < ActiveRecord::Base
       end
     elsif method.to_s =~ /^taxon_/ && !self.class.instance_methods.include?(method) && taxon
       return taxon.send(method.to_s.gsub(/^taxon_/, ''))
+    elsif method.to_s =~ /^ident_by_/ && !self.class.instance_methods.include?( method )
+      user_id = method.to_s[/ident_by_([^\:]+)/, 1]
+      return unless user_id
+      ident = if user_id.to_i > 0
+        identifications.detect{|i| i.current && i.user_id == user_id.to_i }
+      else
+        identifications.detect{|i| i.current && i.user.login == user_id }
+      end
+      return unless ident
+      ident_method = method.to_s[/ident_by_([^\:]+)\:(.+)/, 2]
+      return unless ident_method
+      return ident.send( ident_method )
     end
     super
   end

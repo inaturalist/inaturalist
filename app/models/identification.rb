@@ -394,6 +394,14 @@ class Identification < ActiveRecord::Base
     self.preferred_vision = val.yesish?
   end
 
+  def taxon_name
+    taxon.try(:name)
+  end
+
+  def taxon_rank
+    taxon.try(:rank)
+  end
+
   # Static ##################################################################
   
   def self.run_update_curator_identification(ident)

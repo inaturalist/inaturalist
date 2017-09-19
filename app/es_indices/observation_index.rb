@@ -591,6 +591,26 @@ class Observation < ActiveRecord::Base
         search_filters << nested_query
       end
     end
+
+    if p[:ident_user_id]
+      vals = p[:ident_user_id].to_s.split( "," )
+      if vals[0].to_i > 0
+        term_filter = { terms: { "identifications.user.id" => vals } }
+      else
+        term_filter = { terms: { "identifications.user.login" => vals } }
+      end
+      search_filters << {
+        nested: {
+          path: "identifications",
+          query: {
+            bool: {
+              filter: term_filter
+            }
+          }
+        }
+      }
+    end
+
     # conservation status
     unless p[:cs].blank?
       values = [ p[:cs] ].flatten.map(&:downcase)

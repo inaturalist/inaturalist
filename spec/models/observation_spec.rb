@@ -3373,3 +3373,29 @@ describe Observation, "probably_captive?" do
     end
   end
 end
+
+describe "ident getters" do
+  it "should return taxon_id for a particular user by login" do
+    u = User.make!( login: "balthazar_salazar" )
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send("ident_by_balthazar_salazar:taxon_id" ) ).to eq i.taxon_id
+  end
+
+  it "should return taxon name for a particular user by login" do
+    u = User.make!( login: "balthazar_salazar" )
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send( "ident_by_balthazar_salazar:taxon_name" ) ).to eq i.taxon.name
+  end
+
+  it "should return taxon_id for a particular user by id" do
+    u = User.make!
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send( "ident_by_#{u.id}:taxon_id" ) ).to eq i.taxon_id
+  end
+end

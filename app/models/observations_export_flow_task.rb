@@ -75,9 +75,12 @@ class ObservationsExportFlowTask < FlowTask
   end
 
   def preloads
-    includes = [ :user, { identifications: :stored_preferences } ]
+    includes = [ :user, { identifications: [:stored_preferences] } ]
     if export_columns.detect{|c| c == "common_name"}
       includes << { taxon: { taxon_names: :place_taxon_names } }
+    end
+    if export_columns.detect{|c| c =~ /^ident_by_/}
+      includes[1][:identifications] = [:stored_preferences, :user]
     end
     includes << { observation_field_values: :observation_field }
     includes << { photos: :user } if export_columns.detect{ |c| c == 'image_url' }
@@ -184,7 +187,8 @@ class ObservationsExportFlowTask < FlowTask
     exp_columns = exp_columns.select{|k,v| v == "1"}.keys if exp_columns.is_a?(Hash)
     exp_columns = Observation::CSV_COLUMNS if exp_columns.blank?
     ofv_columns = exp_columns.select{|c| c.index("field:")}
-    exp_columns = (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns
+    ident_columns = exp_columns.select{|c| c.index("ident_by_" )}
+    exp_columns = (exp_columns & Observation::ALL_EXPORT_COLUMNS) + ofv_columns + ident_columns
     viewer_curates_project = if projects = params[:projects]
       if projects.size == 1
         project = Project.find(projects[0]) rescue nil

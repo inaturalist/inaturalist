@@ -1207,6 +1207,9 @@ class ObservationsController < ApplicationController
       where(user_id: current_user).order(id: :desc).limit(20)
     @observation_fields = ObservationField.recently_used_by(current_user).limit(50).sort_by{|of| of.name.downcase}
     set_up_instance_variables(Observation.get_search_params(params, current_user: current_user, site: @site))
+    @identification_fields = if @ident_user
+      %w(taxon_id taxon_name taxon_rank category).map{|a| "ident_by_#{@ident_user.login}:#{a}"}
+    end
     respond_to do |format|
       format.html
     end
@@ -2293,6 +2296,10 @@ class ObservationsController < ApplicationController
     else
       search_params[:d1] = nil
       search_params[:d2] = nil
+    end
+    unless search_params[:ident_user_id].blank?
+      @ident_user = User.find_by_id( search_params[:ident_user_id] )
+      @ident_user ||= User.find_by_login( search_params[:ident_user_id] )
     end
     
     @filters_open = 
