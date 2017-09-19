@@ -110,8 +110,10 @@
 .ui-widget-content .ui-state-focus {
   border: none;
 }
-.ui-autocomplete li.ac-result:not(:first-child) {
-  border-top: 1px solid #D8D8D8;
+.ui-autocomplete {
+  li.ac-result + li.ac-result {
+    border-top: 1px solid #D8D8D8;
+  }
 }
 .ui-autocomplete .ac-result .ac a {
   padding: 0px;

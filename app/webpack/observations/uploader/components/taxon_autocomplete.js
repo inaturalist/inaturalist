@@ -5,6 +5,7 @@ import ReactDOMServer from "react-dom/server";
 import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
 var searchInProgress;
+/* global iNatModels */
 
 class TaxonAutocomplete extends React.Component {
 
@@ -34,7 +35,32 @@ class TaxonAutocomplete extends React.Component {
       select: this.select,
       template: this.template,
       // ensure the AC menu scrolls with the input
-      appendTo: this.idElement( ).parent( )
+      appendTo: this.idElement( ).parent( ),
+      minLength: 0,
+      renderMenu: function( ul, items ) {
+        ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
+        ul.addClass( "ac-menu" );
+        const isVisionResults = items[0] && items[0].isVisionResult;
+        const hasCommonAncestor = items[0] && items[0].isCommonAncestor;
+        $.each( items, ( index, item ) => {
+          if ( isVisionResults ) {
+            if ( item.isCommonAncestor ) {
+              ul.append(
+                `<li class='category ancestor'>We're pretty sure this is in this ${item.rank}:</li>` );
+            } else if ( !hasCommonAncestor && index === 0 ) {
+              ul.append(
+                "<li class='category ancestor'>Here are our top species suggestions:</li>" );
+            }
+            this._renderItemData( ul, item );
+            if ( item.isCommonAncestor ) {
+              ul.append(
+                "<li class='category species'>Here are our top species suggestions:</li>" );
+            }
+          } else {
+            this._renderItemData( ul, item );
+          }
+        } );
+      }
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
@@ -65,8 +91,9 @@ class TaxonAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialTaxonID &&
-         this.props.initialTaxonID !== prevProps.initialTaxonID ) {
+    if ( ( this.props.initialTaxonID &&
+           this.props.initialTaxonID !== prevProps.initialTaxonID ) ||
+         this.props.visionResponse !== prevProps.visionResponse ) {
       this.fetchTaxon( );
     }
   }
@@ -151,31 +178,48 @@ class TaxonAutocomplete extends React.Component {
   }
 
   source( request, response ) {
-    inaturalistjs.taxa.autocomplete( {
-      q: request.term,
-      per_page: this.props.perPage || 10,
-      locale: I18n.locale,
-      preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
-    } ).then( r => {
-      const results = r.results || [];
-      // show as the last item an option to search external name providers
-      if ( this.props.searchExternal !== false ) {
-        results.push( {
-          type: "search_external",
-          title: I18n.t( "search_external_name_providers" )
-        } );
+    if ( !request.term && this.props.visionResponse ) {
+      const visionTaxa = _.map( this.props.visionResponse.results, r => {
+        const taxon = new iNatModels.Taxon( r.taxon );
+        taxon.isVisionResult = true;
+        taxon.visionScore = r.vision_score;
+        taxon.frequencyScore = r.frequency_score;
+        return taxon;
+      } );
+      if ( this.props.visionResponse.common_ancestor ) {
+        const taxon = new iNatModels.Taxon( this.props.visionResponse.common_ancestor.taxon );
+        taxon.isVisionResult = true;
+        taxon.isCommonAncestor = true;
+        visionTaxa.unshift( taxon );
       }
-      if ( this.props.showPlaceholder &&
-          !this.idElement( ).val( ) &&
-          this.inputValue( ) ) {
-        results.unshift( {
-          id: 0,
-          type: "placeholder",
-          title: this.inputValue( )
-        } );
-      }
-      response( _.map( results, t => new iNatModels.Taxon( t ) ) );
-    } );
+      response( visionTaxa );
+    } else if ( request.term ) {
+      inaturalistjs.taxa.autocomplete( {
+        q: request.term,
+        per_page: this.props.perPage || 10,
+        locale: I18n.locale,
+        preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+      } ).then( r => {
+        const results = r.results || [];
+        // show as the last item an option to search external name providers
+        if ( this.props.searchExternal !== false ) {
+          results.push( {
+            type: "search_external",
+            title: I18n.t( "search_external_name_providers" )
+          } );
+        }
+        if ( this.props.showPlaceholder &&
+            !this.idElement( ).val( ) &&
+            this.inputValue( ) ) {
+          results.unshift( {
+            id: 0,
+            type: "placeholder",
+            title: this.inputValue( )
+          } );
+        }
+        response( _.map( results, t => new iNatModels.Taxon( t ) ) );
+      } );
+    }
   }
 
   select( e, ui ) {
@@ -276,14 +320,28 @@ class TaxonAutocomplete extends React.Component {
       return this.searchExternalTemplate( );
     }
     let photo = this.itemPhoto( r ) || this.itemIcon( r );
+    let className = "ac";
+    let extraSubtitle;
+    if ( r.isVisionResult ) {
+      className += " vision";
+      const subtitles = [];
+      if ( r.visionScore ) {
+        subtitles.push( "Visually similar" );
+      }
+      if ( r.frequencyScore ) {
+        subtitles.push( "Seen Nearby" );
+      }
+      extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
+    }
     return ReactDOMServer.renderToString(
-      <div className="ac" data-taxon-id={ r.id }>
+      <div className={ className } data-taxon-id={ r.id }>
         <div className="ac-thumb has-photo">
           { photo }
         </div>
         <div className="ac-label">
           <span className="title">{ r.title }</span>
           <span className="subtitle">{ r.subtitle }</span>
+          { extraSubtitle }
         </div>
         <a target="_blank" href={ `/taxa/${r.id}` }>
           <div className="ac-view">{ I18n.t( "view" ) }</div>
@@ -388,6 +446,7 @@ TaxonAutocomplete.propTypes = {
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   value: PropTypes.string,
+  visionResponse: PropTypes.object,
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
   perPage: PropTypes.number

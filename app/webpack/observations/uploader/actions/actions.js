@@ -5,6 +5,7 @@ import inaturalistjs from "inaturalistjs";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
+import { resizeUpload } from "../../../shared/util";
 
 const actions = class actions {
 
@@ -83,6 +84,23 @@ const actions = class actions {
     return function ( dispatch ) {
       file.readExif( ).then( metadata => {
         dispatch( actions.updateFile( file, { metadata } ) );
+        dispatch( actions.fetchVisionResponse( file, metadata ) );
+      } );
+    };
+  }
+
+  static fetchVisionResponse( file, metadata ) {
+    return function ( dispatch ) {
+      resizeUpload( file.file, { blob: true }, resizedFile => {
+        const params = { image: resizedFile };
+        if ( metadata.latitude ) { params.lat = metadata.latitude; }
+        if ( metadata.longitude ) { params.lng = metadata.longitude; }
+        if ( metadata.date ) { params.observed_on = metadata.date; }
+        inaturalistjs.computervision.score_image( params ).then( r => {
+          dispatch( actions.updateFile( file, { visionResponse: r } ) );
+        } ).catch( e => {
+          console.log( ["Error fetching vision response", e] );
+        } );
       } );
     };
   }
@@ -499,6 +517,7 @@ const actions = class actions {
   static uploadImage( file ) {
     return function ( dispatch ) {
       dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
+
       inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
         const serverMetadata = file.additionalPhotoMetadata( r );
         dispatch( actions.updateFile( file, {

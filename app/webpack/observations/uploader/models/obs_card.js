@@ -69,6 +69,10 @@ const ObsCard = class ObsCard {
     return undefined;
   }
 
+  visionResponse( ) {
+    return _.first( _.compact( _.map( this.files, f => f.visionResponse ) ) );
+  }
+
   // usually called when a card acquires a new photo, this will return
   // all fields with metadata attached to the photo, where the corresponding
   // field on the card is currently blank

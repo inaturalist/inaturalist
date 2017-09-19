@@ -4,6 +4,7 @@ import moment from "moment-timezone";
 import update from "react-addons-update";
 import DroppedFile from "../../observations/uploader/models/dropped_file";
 import ObsCard from "../../observations/uploader/models/obs_card";
+import { resizeUpload } from "../../shared/util";
 
 const RESET_STATE = "computer_vision_demo/RESET_STATE";
 const SET_LOCATION_CHOOSER = "computer_vision_demo/SET_LOCATION_CHOOSER";
@@ -153,42 +154,9 @@ export function dataURLToBlob( dataURL ) {
   return new Blob( [uInt8Array], { type: contentType } );
 }
 
-export function resizeUpload( file, callback ) {
-  const reader = new FileReader( );
-  reader.onload = readerEvent => {
-    const image = new Image();
-    image.onload = ( ) => {
-      // Resize the image
-      const canvas = document.createElement( "canvas" );
-      const maxDimension = 400;
-      let width = image.width;
-      let height = image.height;
-      if ( width > height ) {
-        if ( width > maxDimension ) {
-          height *= maxDimension / width;
-          width = maxDimension;
-        }
-      } else {
-        if ( height > maxDimension ) {
-          width *= maxDimension / height;
-          height = maxDimension;
-        }
-      }
-      canvas.width = width * 2;
-      canvas.height = height * 2;
-      const context = canvas.getContext( "2d" );
-      context.scale( 2, 2 );
-      context.drawImage( image, 0, 0, width, height );
-      callback( canvas.toDataURL( "image/jpeg" ) );
-    };
-    image.src = readerEvent.target.result;
-  };
-  reader.readAsDataURL( file );
-}
-
 export function uploadImage( obsCard ) {
   return function ( dispatch ) {
-    resizeUpload( obsCard.uploadedFile.file, resizedBlob => {
+    resizeUpload( obsCard.uploadedFile.file, { }, resizedBlob => {
       const headers = { };
       const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
       const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
