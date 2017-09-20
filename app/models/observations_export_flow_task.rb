@@ -43,6 +43,7 @@ class ObservationsExportFlowTask < FlowTask
     @debug = run_options[:debug]
     update_attributes(finished_at: nil, error: nil, exception: nil)
     outputs.each(&:destroy)
+    outputs.reload
     query = inputs.first.extra[:query]
     format = options[:format]
     archive_path = case format
