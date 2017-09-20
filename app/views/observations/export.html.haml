@@ -107,7 +107,7 @@
           - if @ident_user && !@identification_fields.blank?
             .column.span-24
               %h4
-                =t :identification_fields
+                =t :identification_by_user, user: @ident_user.login
                 %span.small.meta.ui
                   = surround '(',')' do
                     = link_to_function t(:all), "$('#identification_field_columns :checkbox').prop('checked', true)"
@@ -115,8 +115,7 @@
                       |
                     = link_to_function t(:none), "$('#identification_field_columns :checkbox').prop('checked', false)"
               %p.meta.ui
-                Columns for the current identification by
-                = link_to_user @ident_user
+                =t "views.observations.export.ident_by_user_desc_html", user: link_to_user( @ident_user )
               %table#identification_field_columns
                 - for grp in @identification_fields.in_groups_of(4)
                   %tr

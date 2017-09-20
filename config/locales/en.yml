@@ -1443,6 +1443,7 @@ en:
   identify_observations: "Identify observations"
   identify_title: "Identify"
   identification: identification
+  identification_by_user: Identification by %{user}
   identification_deleted: Identification deleted.
   identification_saved: "Identification saved!"
   identification_summary: Identification Summary
@@ -4432,6 +4433,8 @@ en:
           part of the site. You must specify a
           <strong>taxon</strong>, <strong>place</strong>, <strong>user</strong>, 
           <strong>project</strong>, or <strong>search query</strong>.
+        ident_by_user_desc_html: |
+          Columns for the current identification by %{user}
         query_placeholder: "Choose query parameters below or paste in an observations URL"
         taxon_extras_help_html: "Note: these columns will slow down the generation of your export"
         geo_help_html: |
