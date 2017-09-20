@@ -189,10 +189,10 @@ input.failed, textarea.failed {
 }
 
 .ui-autocomplete {
-  .ac-result {
+  .ac-result, .category {
     font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
     .ac-label {
-      color: #555;
+      color: #333;
     }
   }
   .ac-thumb i.icon {
@@ -558,8 +558,13 @@ a.UserImage,
       .form-group {
         margin-bottom: 0px;
       }
-      .ui-autocomplete .ac-label {
-        min-width: 320px;
+      .ui-autocomplete {
+        .ac-label {
+          min-width: 320px;
+        }
+        .ac.vision .ac-label {
+          min-width: 300px;
+        }
       }
       textarea {
         min-height: 125px;

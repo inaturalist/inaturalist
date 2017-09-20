@@ -28,6 +28,29 @@ class TaxonAutocomplete extends React.Component {
   }
 
   componentDidMount( ) {
+    const renderMenuWithCategories = function ( ul, items ) {
+      ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
+      ul.addClass( "ac-menu" );
+      if ( items.length === 1 && items[0].label === "loadingSuggestions" ) {
+        ul.append( `<li class="category">${I18n.t( "loading_suggestions" )}</li>` );
+        return;
+      }
+      const isVisionResults = items[0] && items[0].isVisionResult;
+      let speciesCategoryShown = false;
+      $.each( items, ( index, item ) => {
+        if ( isVisionResults ) {
+          if ( item.isCommonAncestor ) {
+            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", { rank: item.rank } );
+            ul.append( `<li class='category'>${label}:</li>` );
+          } else if ( !speciesCategoryShown ) {
+            const label = I18n.t( "here_are_our_top_species_suggestions" );
+            ul.append( `<li class='category'>${label}:</li>` );
+            speciesCategoryShown = true;
+          }
+        }
+        this._renderItemData( ul, item );
+      } );
+    };
     const opts = Object.assign( { }, this.props, {
       extraClass: "taxon",
       idEl: this.idElement( ),
@@ -37,30 +60,7 @@ class TaxonAutocomplete extends React.Component {
       // ensure the AC menu scrolls with the input
       appendTo: this.idElement( ).parent( ),
       minLength: 0,
-      renderMenu: function( ul, items ) {
-        ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
-        ul.addClass( "ac-menu" );
-        const isVisionResults = items[0] && items[0].isVisionResult;
-        const hasCommonAncestor = items[0] && items[0].isCommonAncestor;
-        $.each( items, ( index, item ) => {
-          if ( isVisionResults ) {
-            if ( item.isCommonAncestor ) {
-              ul.append(
-                `<li class='category ancestor'>We're pretty sure this is in this ${item.rank}:</li>` );
-            } else if ( !hasCommonAncestor && index === 0 ) {
-              ul.append(
-                "<li class='category ancestor'>Here are our top species suggestions:</li>" );
-            }
-            this._renderItemData( ul, item );
-            if ( item.isCommonAncestor ) {
-              ul.append(
-                "<li class='category species'>Here are our top species suggestions:</li>" );
-            }
-          } else {
-            this._renderItemData( ul, item );
-          }
-        } );
-      }
+      renderMenu: renderMenuWithCategories
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
@@ -91,10 +91,12 @@ class TaxonAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( ( this.props.initialTaxonID &&
-           this.props.initialTaxonID !== prevProps.initialTaxonID ) ||
-         this.props.visionResponse !== prevProps.visionResponse ) {
+    if ( this.props.initialTaxonID &&
+         this.props.initialTaxonID !== prevProps.initialTaxonID ) {
       this.fetchTaxon( );
+    }
+    if ( !_.isEqual( this.props.visionParams, prevProps.visionParams ) ) {
+      this.cachedVisionResponse = null;
     }
   }
 
@@ -177,48 +179,83 @@ class TaxonAutocomplete extends React.Component {
     if ( this.props.afterSelect ) { this.props.afterSelect( { item } ); }
   }
 
-  source( request, response ) {
-    if ( !request.term && this.props.visionResponse ) {
-      const visionTaxa = _.map( this.props.visionResponse.results, r => {
-        const taxon = new iNatModels.Taxon( r.taxon );
-        taxon.isVisionResult = true;
-        taxon.visionScore = r.vision_score;
-        taxon.frequencyScore = r.frequency_score;
-        return taxon;
-      } );
-      if ( this.props.visionResponse.common_ancestor ) {
-        const taxon = new iNatModels.Taxon( this.props.visionResponse.common_ancestor.taxon );
-        taxon.isVisionResult = true;
-        taxon.isCommonAncestor = true;
-        visionTaxa.unshift( taxon );
+  returnVisionResults( response, callback ) {
+    const visionTaxa = _.map( response.results.slice( 0, 8 ), r => {
+      const taxon = new iNatModels.Taxon( r.taxon );
+      taxon.isVisionResult = true;
+      taxon.visionScore = r.vision_score;
+      taxon.frequencyScore = r.frequency_score;
+      return taxon;
+    } );
+    if ( response.common_ancestor ) {
+      const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
+      taxon.isVisionResult = true;
+      taxon.isCommonAncestor = true;
+      visionTaxa.unshift( taxon );
+    }
+    callback( visionTaxa );
+  }
+
+  visionAutocompleteSource( callback ) {
+    if ( this.cachedVisionResponse ) {
+      this.returnVisionResults( this.cachedVisionResponse, callback );
+    } else if ( this.props.visionParams ) {
+      if ( this.props.visionParams.image ) {
+        inaturalistjs.computervision.score_image( this.props.visionParams ).then( r => {
+          this.cachedVisionResponse = r;
+          this.returnVisionResults( r, callback );
+        } ).catch( e => {
+          console.log( ["Error fetching vision response for photo", e] );
+        } );
+        callback( ["loadingSuggestions"] );
+      } else if ( this.props.visionParams.observationID ) {
+        const params = { id: this.props.visionParams.observationID };
+        this.fetchingVision = true;
+        inaturalistjs.computervision.score_observation( params ).then( r => {
+          this.cachedVisionResponse = r;
+          this.fetchingVision = false;
+          this.returnVisionResults( r, callback );
+        } ).catch( e => {
+          console.log( ["Error fetching vision response for observation", e] );
+        } );
+        callback( ["loadingSuggestions"] );
       }
-      response( visionTaxa );
+    }
+  }
+
+  taxonAutocompleteSource( request, callback ) {
+    inaturalistjs.taxa.autocomplete( {
+      q: request.term,
+      per_page: this.props.perPage || 10,
+      locale: I18n.locale,
+      preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+    } ).then( r => {
+      const results = r.results || [];
+      // show as the last item an option to search external name providers
+      if ( this.props.searchExternal !== false ) {
+        results.push( {
+          type: "search_external",
+          title: I18n.t( "search_external_name_providers" )
+        } );
+      }
+      if ( this.props.showPlaceholder &&
+          !this.idElement( ).val( ) &&
+          this.inputValue( ) ) {
+        results.unshift( {
+          id: 0,
+          type: "placeholder",
+          title: this.inputValue( )
+        } );
+      }
+      callback( _.map( results, t => new iNatModels.Taxon( t ) ) );
+    } );
+  }
+
+  source( request, callback ) {
+    if ( !request.term ) {
+      this.visionAutocompleteSource( callback );
     } else if ( request.term ) {
-      inaturalistjs.taxa.autocomplete( {
-        q: request.term,
-        per_page: this.props.perPage || 10,
-        locale: I18n.locale,
-        preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
-      } ).then( r => {
-        const results = r.results || [];
-        // show as the last item an option to search external name providers
-        if ( this.props.searchExternal !== false ) {
-          results.push( {
-            type: "search_external",
-            title: I18n.t( "search_external_name_providers" )
-          } );
-        }
-        if ( this.props.showPlaceholder &&
-            !this.idElement( ).val( ) &&
-            this.inputValue( ) ) {
-          results.unshift( {
-            id: 0,
-            type: "placeholder",
-            title: this.inputValue( )
-          } );
-        }
-        response( _.map( results, t => new iNatModels.Taxon( t ) ) );
-      } );
+      this.taxonAutocompleteSource( request, callback );
     }
   }
 
@@ -326,10 +363,10 @@ class TaxonAutocomplete extends React.Component {
       className += " vision";
       const subtitles = [];
       if ( r.visionScore ) {
-        subtitles.push( "Visually similar" );
+        subtitles.push( I18n.t( "visually_similar" ) );
       }
       if ( r.frequencyScore ) {
-        subtitles.push( "Seen Nearby" );
+        subtitles.push( I18n.t( "seen_nearby" ) );
       }
       extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
     }
@@ -446,7 +483,7 @@ TaxonAutocomplete.propTypes = {
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   value: PropTypes.string,
-  visionResponse: PropTypes.object,
+  visionParams: PropTypes.object,
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
   perPage: PropTypes.number

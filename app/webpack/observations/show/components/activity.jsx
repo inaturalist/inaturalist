@@ -122,6 +122,7 @@ class Activity extends React.Component {
             searchExternal
             perPage={ 6 }
             resetOnChange={ false }
+            visionParams={ { observationID: observation.id } }
           />
           <div className="form-group">
             <textarea

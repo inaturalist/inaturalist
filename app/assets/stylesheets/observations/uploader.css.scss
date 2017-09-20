@@ -702,44 +702,12 @@ ul.obs > li .card {
   -moz-transition: opacity 0.2s;
   -webkit-transition: opacity 0.2s;
   -o-transition: opacity 0.2s;
+  min-width: 300px;
   &.open {
     opacity: 1;
   }
   .ac-result {
     font-size: 0.9em;
-    &.ui-state-focus {
-      background: white;
-      &:hover {
-        background: #f6f6f6;
-      }
-    }
-    .vision {
-      .ac-thumb {
-        width: 55px;
-        img {
-          width: 50px;
-          height: 50px;
-        }
-      }
-      .ac-label {
-        padding: 4px;
-        .subtitle.vision {
-          color: #74ac00;
-        }
-      }
-      .ac-view {
-        line-height: 56px;
-      }
-    }
-  }
-  .category {
-    background: white;
-    cursor: default;
-    list-style: none;
-    padding-left: 10px;
-    color: #727272;
-    line-height: 32px;
-    background: #eee;
   }
 }
 .bootstrap-datetimepicker-widget.dropdown-menu.pull-right {

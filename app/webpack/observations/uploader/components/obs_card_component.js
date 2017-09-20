@@ -101,7 +101,6 @@ class ObsCardComponent extends Component {
       this.props.obsCard.saveState !== nextProps.obsCard.saveState ||
       _.size( this.props.obsCard.files ) !==
         _.size( nextProps.obsCard.files ) ||
-      this.props.obsCard.visionResponse !== nextProps.obsCard.visionResponse ||
       !_.isMatch( this.props.obsCard, nextProps.obsCard ) );
     return b;
   }
@@ -220,7 +219,7 @@ class ObsCardComponent extends Component {
               searchExternal
               showPlaceholder
               perPage={ 6 }
-              visionResponse={ obsCard.visionResponse( ) }
+              visionParams={ obsCard.visionParams( ) }
               initialSelection={ obsCard.selected_taxon }
               initialTaxonID={ obsCard.taxon_id }
               resetOnChange={ false }

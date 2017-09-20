@@ -69,8 +69,15 @@ const ObsCard = class ObsCard {
     return undefined;
   }
 
-  visionResponse( ) {
-    return _.first( _.compact( _.map( this.files, f => f.visionResponse ) ) );
+  visionParams( ) {
+    const firstThumbnail = _.first( _.compact(
+      _.map( _.sortBy( this.files, "sort" ), f => f.visionThumbnail ) ) );
+    if ( !firstThumbnail ) { return null; }
+    const params = { image: firstThumbnail };
+    if ( this.latitude ) { params.lat = this.latitude; }
+    if ( this.longitude ) { params.lng = this.longitude; }
+    if ( this.date ) { params.observed_on = this.date; }
+    return params;
   }
 
   // usually called when a card acquires a new photo, this will return

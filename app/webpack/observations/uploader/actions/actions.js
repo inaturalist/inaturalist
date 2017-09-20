@@ -80,27 +80,25 @@ const actions = class actions {
     };
   }
 
+  static processNewImage( file ) {
+    return function ( dispatch ) {
+      dispatch( actions.createVisionThumbnail( file ) );
+      dispatch( actions.readFileExif( file ) );
+    };
+  }
+
   static readFileExif( file ) {
     return function ( dispatch ) {
       file.readExif( ).then( metadata => {
         dispatch( actions.updateFile( file, { metadata } ) );
-        dispatch( actions.fetchVisionResponse( file, metadata ) );
       } );
     };
   }
 
-  static fetchVisionResponse( file, metadata ) {
+  static createVisionThumbnail( file ) {
     return function ( dispatch ) {
       resizeUpload( file.file, { blob: true }, resizedFile => {
-        const params = { image: resizedFile };
-        if ( metadata.latitude ) { params.lat = metadata.latitude; }
-        if ( metadata.longitude ) { params.lng = metadata.longitude; }
-        if ( metadata.date ) { params.observed_on = metadata.date; }
-        inaturalistjs.computervision.score_image( params ).then( r => {
-          dispatch( actions.updateFile( file, { visionResponse: r } ) );
-        } ).catch( e => {
-          console.log( ["Error fetching vision response", e] );
-        } );
+        dispatch( actions.updateFile( file, { visionThumbnail: resizedFile } ) );
       } );
     };
   }
@@ -120,7 +118,7 @@ const actions = class actions {
           const obsCard = new ObsCard( { id } );
           files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
           obsCards[obsCard.id] = obsCard;
-          dispatch( actions.readFileExif( files[id] ) );
+          dispatch( actions.processNewImage( files[id] ) );
           i += 1;
         } else if ( f.type.match( /^audio\// ) ) {
           const id = ( startTime + i );
@@ -148,7 +146,7 @@ const actions = class actions {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
-          dispatch( actions.readFileExif( files[id] ) );
+          dispatch( actions.processNewImage( files[id] ) );
           i += 1;
         } else if ( f.type.match( /^audio\// ) ) {
           const id = ( startTime + i );
