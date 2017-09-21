@@ -1991,6 +1991,7 @@ ko:
   start_adding_observations: 관찰 추가를 시작하기
   start_one_now: 지금 당장 시작해보세요!
   status: 상태
+  stay_and_try_again: 동일 장소에서 다시 시도하세요
   stop_editing: 그만 편집하기
   stop_following_user: '%{user}를 그만 팔로우하기'
   submit: 제출
@@ -2172,6 +2173,9 @@ ko:
     help:
       index:
         what_is_considered_inappropriate_content?: 무엇이 부적절한 내용으로 간주됩니까?
+        we_also_support_google_html: '구글 포토도 지원합니다: <a href="%{url}">구글 계정 구성하기 &raquo;</a>'
+        we_also_support_uploading_photos: '%{site_name}에 직접 사진들을 업로드하는 것을 지원하지만 다소
+          느릴 수 있으므로 한 번에 하나의 업로드만 허용합니다. 플리커나 구글을 이미 사용하고 계시다면 이것들을 사용하는 것이 더 빠릅니다.'
         geoprivacy_is_a_setting_you_can: |-
           위치보호는 관찰에 대한 공간 좌표(위도와 경도)의 표시 방식을
           설정합니다. 옵션은 다음과 같습니다:
