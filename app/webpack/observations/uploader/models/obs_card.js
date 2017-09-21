@@ -124,6 +124,9 @@ const ObsCard = class ObsCard {
     if ( this.date && !util.dateInvalid( this.date ) ) {
       params.observation.observed_on_string = this.date;
     }
+    if ( this.selected_taxon && this.selected_taxon.isVisionResult ) {
+      params.observation.owners_identification_from_vision_requested = true;
+    }
     const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
       f => ( f.photo ? f.photo.id : null ) ) );
     if ( photoIDs.length > 0 ) { params.local_photos = { 0: photoIDs }; }
