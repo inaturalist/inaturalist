@@ -69,6 +69,17 @@ const ObsCard = class ObsCard {
     return undefined;
   }
 
+  visionParams( ) {
+    const firstThumbnail = _.first( _.compact(
+      _.map( _.sortBy( this.files, "sort" ), f => f.visionThumbnail ) ) );
+    if ( !firstThumbnail ) { return null; }
+    const params = { image: firstThumbnail };
+    if ( this.latitude ) { params.lat = this.latitude; }
+    if ( this.longitude ) { params.lng = this.longitude; }
+    if ( this.date ) { params.observed_on = this.date; }
+    return params;
+  }
+
   // usually called when a card acquires a new photo, this will return
   // all fields with metadata attached to the photo, where the corresponding
   // field on the card is currently blank
@@ -112,6 +123,9 @@ const ObsCard = class ObsCard {
     if ( this.species_guess ) { params.observation.species_guess = this.species_guess; }
     if ( this.date && !util.dateInvalid( this.date ) ) {
       params.observation.observed_on_string = this.date;
+    }
+    if ( this.selected_taxon && this.selected_taxon.isVisionResult ) {
+      params.observation.owners_identification_from_vision_requested = true;
     }
     const photoIDs = _.compact( _.map( _.sortBy( this.files, "sort" ),
       f => ( f.photo ? f.photo.id : null ) ) );

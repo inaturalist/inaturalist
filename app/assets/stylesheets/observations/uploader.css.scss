@@ -702,6 +702,7 @@ ul.obs > li .card {
   -moz-transition: opacity 0.2s;
   -webkit-transition: opacity 0.2s;
   -o-transition: opacity 0.2s;
+  min-width: 300px;
   &.open {
     opacity: 1;
   }

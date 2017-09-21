@@ -1908,6 +1908,7 @@ class ObservationsController < ApplicationController
       :zic_time_zone,
       :site_id,
       :owners_identification_from_vision,
+      :owners_identification_from_vision_requested,
       observation_field_values_attributes: [ :_destroy, :id, :observation_field_id, :value ]
     )
   end
