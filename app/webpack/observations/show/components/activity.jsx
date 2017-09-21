@@ -97,6 +97,16 @@ class Activity extends React.Component {
     let activity = _.compact( ( observation.identifications || [] ).
       concat( observation.comments ) );
     activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
+    // attempting to match the logic in the computervision/score_observation endpoint
+    // so we don't attempt to fetch vision results for obs which will have no results
+    const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
+      if ( !p.url || p.preview ) { return null; }
+      const mediumUrl = p.photoUrl( "medium" );
+      if ( mediumUrl && mediumUrl.match( /static\.inaturalist.*\/medium\.jpe?g[\?$]/i ) ) {
+        return p;
+      }
+      return null;
+    } ) );
     const commentContent = loggedIn ?
       (
         <div className="form-group">
@@ -122,7 +132,8 @@ class Activity extends React.Component {
             searchExternal
             perPage={ 6 }
             resetOnChange={ false }
-            visionParams={ { observationID: observation.id } }
+            visionParams={ visionEligiblePhotos.length > 0 ?
+              { observationID: observation.id } : null }
           />
           <div className="form-group">
             <textarea
