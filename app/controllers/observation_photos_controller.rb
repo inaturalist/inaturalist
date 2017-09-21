@@ -16,6 +16,13 @@ class ObservationPhotosController < ApplicationController
   end
   
   def create
+    unless params[:observation_photo].is_a?( Hash )
+      respond_to do |format|
+        format.json do
+          render json: { errors: "No observation_photo specified" }, status: :unprocessable_entity
+        end
+      end
+    end
     @observation_photo = if !params[:observation_photo].blank? && !params[:observation_photo][:uuid].blank?
       ObservationPhoto.joins(:observation).
         where("observations.user_id = ? AND observation_photos.uuid = ?", current_user, params[:observation_photo][:uuid]).
