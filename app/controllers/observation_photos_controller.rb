@@ -52,7 +52,12 @@ class ObservationPhotosController < ApplicationController
       return
     end
     
-    @observation_photo.save
+    begin
+      @observation_photo.save
+    rescue PG::UniqueViolation => e
+      raise e unless e.message =~ /index_observation_photos_on_uuid/
+      @observation_photo.errors.add( :uuid, :taken )
+    end
     
     respond_to do |format|
       format.json do
