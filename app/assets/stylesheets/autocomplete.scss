@@ -75,10 +75,7 @@
 .ui-autocomplete .ac-result {
   list-style: none;
   &.ui-state-focus {
-    background: white;
-    &:hover {
-      background: #f6f6f6;
-    }
+    background: #f6f6f6;
   }
   .vision {
     .ac-thumb {
@@ -103,8 +100,8 @@
   background: #F2F2F2;
 }
 .ac-result .ac-label {
-  padding: 7px;
-  line-height: 16px;
+  padding: 2px 0 0 7px;
+  line-height: 18px;
 }
 .ac-result.taxon .ac-label {
   display: inline-block;
@@ -134,11 +131,15 @@
 .ui-autocomplete .ac-label .title, .ui-autocomplete .ac-label .chooseritem {
   font-size: 1.1em;
   display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .ui-autocomplete .ac-label .subtitle {
   font-size: 0.9em;
   display: block;
   color: #727272;
+  line-height: 17px;
 }
 .ui-widget-content .ui-state-focus {
   border: none;
