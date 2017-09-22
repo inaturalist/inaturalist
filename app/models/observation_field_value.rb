@@ -1,4 +1,7 @@
 class ObservationFieldValue < ActiveRecord::Base
+
+  blockable_by lambda {|ofv| ofv.observation.try(:user) }
+  
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user

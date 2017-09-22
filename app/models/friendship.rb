@@ -6,6 +6,8 @@ class Friendship < ActiveRecord::Base
   validate :no_self_love
   
   auto_subscribes :user, :to => :friend
+  blockable_by lambda {|friendship| friendship.user }
+  blockable_by lambda {|friendship| friendship.friend }
   
   def no_self_love
     errors[:base] << "Cannot be a friend of yourself. Hopefully you already are." unless friend_id != user_id

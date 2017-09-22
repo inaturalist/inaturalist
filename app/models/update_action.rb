@@ -24,7 +24,12 @@ class UpdateAction < ActiveRecord::Base
   end
 
   def bulk_insert_subscribers(subscriber_ids)
-    values = subscriber_ids.map{ |id| "(#{self.id},#{id})" }
+    potential_subscriber_ids = subscriber_ids
+    if notifier_user = notifier.try(:user)
+      blocking_user_ids = UserBlock.where( blocked_user_id: notifier_user.id ).pluck(:user_id)
+      potential_subscriber_ids = potential_subscriber_ids - blocking_user_ids
+    end
+    values = potential_subscriber_ids.map{ |id| "(#{self.id},#{id})" }
     return if values.blank?
     sql = "INSERT INTO update_subscribers (update_action_id, subscriber_id) " +
           "VALUES #{ values.join(",") }"

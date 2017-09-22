@@ -479,5 +479,10 @@ User.blueprint do
   time_zone { "Pacific Time (US & Canada)" }
 end
 
+UserBlock.blueprint do
+  user { User.make! }
+  blocked_user { User.make! }
+end
+
 WikiPage.blueprint do
 end

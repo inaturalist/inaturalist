@@ -540,6 +540,7 @@ en:
   bioblitz: Bioblitz
   birds: birds
   black: black
+  block_removed: Block removed
   blog_widget: Blog widget
   blue: blue
   blue_butterfly_etc: "blue, butterfly, etc."
@@ -3507,6 +3508,7 @@ en:
   type_taxon_name_and_click_lookup: "Type taxon name and click lookup"
   uicn_red_list_status: "IUCN Red List status:"
   un_license_this_observation: un-license this observation
+  unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
   uninvite: uninvite
@@ -3598,6 +3600,7 @@ en:
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
   user_added_x_observations_html: "%{user} added %{x} observations"
+  user_blocked: User blocked
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_commented: "%{user} commented"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
@@ -3876,6 +3879,7 @@ en:
     admin, but there shouldn't really be a need to do so.
   you_can_help_make_our: You can help make our species pages more useful by adding data!  Here are a couple ways you can help
   you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created, and you cannot destroy taxa that are being used in taxon changes."
+  you_can_only_block_three_users: You can only block three users
   you_can_see_these_coordinates_because: You can see these coordinates because you curate one of the projects to which this observation has been added.
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
@@ -5101,6 +5105,31 @@ en:
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.
       edit:
+        blocking_desc_html: |
+          <p>
+            Blocking a user prevents them from messaging you, commenting on your
+            observations, identifying your observations, and otherwise interacting
+            with you on %{site_name}. It also removes their observations from your
+            search results and removes your observations from their search
+            results. However, it does not make you invisible to them. They can
+            still find your observations and view your profile, they just can't
+            interact with you.
+          </p>
+          <p>
+            Blocking is for situations where  you just can't get along with
+            someone and they won't leave you alone, despite your best efforts to
+            settle disputes in a civilized manner. It isn't a way to hide from
+            people, to prevent identifications from people whose opinions you
+            don't trust, or to opt out of the community ID (there's another
+            settings for that).
+          </p>
+          <p>
+            If someone is harassing or stalking you on %{site_name},
+            <a href="mailto:%{help_email}">please let us know</a>. If
+            this represents a violation of our Terms of Service or represents
+            other behavior we deem inappropriate for our site, we will
+            investigate.
+          </p>
         inaturalist_network_affiliation_desc_html: |
           The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
           collection of localized websites connected to the global iNaturalist
@@ -5145,6 +5174,7 @@ en:
           community opinion won't be favored over yours. This means your
           observations will not be eligible for research grade unless you
           agree with the community.
+        youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended

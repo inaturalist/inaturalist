@@ -125,6 +125,8 @@ class User < ActiveRecord::Base
   has_many :created_guide_sections, :class_name => "GuideSection", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
   has_many :updated_guide_sections, :class_name => "GuideSection", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
   has_many :atlases, :inverse_of => :user, :dependent => :nullify
+  has_many :user_blocks, inverse_of: :user, dependent: :destroy
+  has_many :blockage, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],

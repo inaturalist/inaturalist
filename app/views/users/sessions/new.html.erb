@@ -48,8 +48,8 @@
   </div>
   
   <%= link_to_toggle t(:if_you_already_have_an_account, 
-    :article => %w(a e i o u).include?(@site.preferred_site_name_short[0]) ? t(:an) : t(:a),
-    :site_name => @site.preferred_site_name_short), "#already" %>
+    :article => %w(a e i o u).include?(( @site.preferred_site_name_short || @site.name )[0]) ? t(:an) : t(:a),
+    :site_name => ( @site.preferred_site_name_short || @site.name ) ), "#already" %>
   <p id="already" class="ui description" style="display: none;">
     <%= t(:and_you_havent_linked, :site_name => @site.preferred_site_name_short) %>
   </p>

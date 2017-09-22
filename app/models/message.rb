@@ -2,6 +2,8 @@ class Message < ActiveRecord::Base
   acts_as_spammable fields: [ :subject, :body ],
     user: :from_user
 
+  blockable_by lambda { |message| message.to_user }
+  
   belongs_to :user
   belongs_to :from_user, :class_name => "User"
   belongs_to :to_user, :class_name => "User"

@@ -5,6 +5,7 @@
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
+  #user_block_blocked_user_id { width: 200px; }
 </style>
 <!--[if lt IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie' %>
@@ -271,6 +272,42 @@
   </ul>
   
   <%= separator %>
+
+  <div class="clear quiet box">
+    <%= link_to_toggle t(:blocked_users), "#blocked-users", class: "ui" %>
+    <div id="blocked-users" style="display:none">
+      <% unless @user.user_blocks.blank? %>
+        <ul>
+          <% @user.user_blocks.each do |user_block| %>
+            <%-
+              blocked_user_name = user_block.blocked_user.login
+              unless user_block.blocked_user.name.blank?
+                blocked_user_name = "#{blocked_user_name} (#{user_block.blocked_user.name})"
+              end
+            -%>
+            <li>
+              <%= link_to blocked_user_name, person_by_login_path( user_block.blocked_user.login ) %>
+              <span class="button"><%= link_to I18n.t( :unblock ), user_block, method: :delete %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if @user.user_blocks.count < 3 %>
+        <%= form_for UserBlock.new( user: @user ), builder: DefaultFormBuilder, html: { class: "clear" } do |f| %>
+          <%= f.hidden_field :user_id %>
+          <%= f.text_field :blocked_user_id, label: false, placeholder: I18n.t( :start_typing_someones_name ) %>
+          <%= f.submit t(:block_user, default: "Block User" ), class: "glaucous button" %>
+        <% end %>
+      <% else %>
+        <p class="ui meta">
+          <%=t "views.users.edit.youve_used_all_of_your_blocks" %>
+        </p>
+      <% end %>
+      <%= link_to_tip t(:about_blocking) do %>
+        <%=t "views.users.edit.blocking_desc_html", site_name: @site.name, help_email: @site.email_help %>
+      <% end %>
+    </div>
+  </div>
   
   <div class="clear box">
     <%= link_to_toggle @user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>

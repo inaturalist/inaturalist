@@ -1,4 +1,6 @@
 class ProjectObservation < ActiveRecord::Base
+  blockable_by lambda {|po| po.observation.user }
+
   belongs_to :project
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"

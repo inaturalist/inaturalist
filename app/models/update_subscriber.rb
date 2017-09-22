@@ -5,4 +5,6 @@ class UpdateSubscriber < ActiveRecord::Base
 
   validates_presence_of :subscriber
 
+  blockable_by lambda {|user| update_action.resource_owner }
+
 end
