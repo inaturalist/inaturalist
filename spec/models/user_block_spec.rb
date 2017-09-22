@@ -57,6 +57,14 @@ describe UserBlock do
         it "with a project" do
           expect( ProjectObservation.make( user: blocked_user, observation: o ) ).not_to be_valid
         end
+        it "with a fave vote" do
+          o.vote_by voter: blocked_user, vote: true
+          expect( o.cached_votes_total ).to eq 0
+        end
+        it "with a needs_id vote" do
+          o.vote_by voter: blocked_user, vote: true, scope: "needs_id"
+          expect( o.cached_votes_total ).to eq 0
+        end
       end
     end
     it "notifications for the user when the blocked user comments on an observation the user is following" do

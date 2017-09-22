@@ -1,6 +1,6 @@
 class QualityMetric < ActiveRecord::Base
 
-  blockable_by lambda {|qm| qm.observation.user }
+  blockable_by lambda {|qm| qm.observation.user_id }
 
   belongs_to :user
   belongs_to :observation

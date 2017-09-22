@@ -3,6 +3,7 @@ module ActsAsVotable
 
   class Vote
     include HasSubscribers
+    blockable_by lambda {|vote| vote.votable.try(:user) }
 
     belongs_to :observation, ->(vote) { where(vote.votable_type == "Observation" ? "true" : "false") },
       foreign_key: "votable_id"

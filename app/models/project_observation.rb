@@ -1,5 +1,5 @@
 class ProjectObservation < ActiveRecord::Base
-  blockable_by lambda {|po| po.observation.user }
+  blockable_by lambda {|po| po.observation.try(:user_id) }
 
   belongs_to :project
   belongs_to :observation

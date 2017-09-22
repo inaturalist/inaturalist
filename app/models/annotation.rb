@@ -2,7 +2,7 @@
 class Annotation < ActiveRecord::Base
 
   acts_as_votable
-  blockable_by lambda {|annotation| annotation.resource.try(:user) }
+  blockable_by lambda {|annotation| annotation.resource.try(:user_id) }
 
   # acts_as_votable automatically includes `has_subscribers` but
   # we don't want people to subscribe to annotations. Without this,
