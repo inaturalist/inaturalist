@@ -85,25 +85,37 @@ describe UserBlock do
         end
       end
     end
-    it "notifications for the user when the blocked user comments on an observation the user is following" do
-      o = Observation.make!
-      Subscription.make!( user: user, resource: o )
-      c = Comment.make!( user: blocked_user, parent: o )
-      Delayed::Worker.new.work_off
-      update_action = UpdateAction.where( resource: o, notifier: c ).first
-      expect( update_action ).not_to be_blank
-      update_subscriber = UpdateSubscriber.where( update_action: update_action, subscriber: user ).first
-      expect( update_subscriber ).to be_blank
-    end
-    it "notifications for the user when the blocked user identifies an observation the user is following" do
-      o = Observation.make!
-      Subscription.make!( user: user, resource: o )
-      i = Identification.make!( user: blocked_user, observation: o )
-      Delayed::Worker.new.work_off
-      update_action = UpdateAction.where( resource: o, notifier: i ).first
-      expect( update_action ).not_to be_blank
-      update_subscriber = UpdateSubscriber.where( update_action: update_action, subscriber: user ).first
-      expect( update_subscriber ).to be_blank
+    describe "notifications for the user" do
+      it "when the blocked user mentions the user" do
+        o = Observation.make!( user: blocked_user, description: "hey @#{user.login}" )
+        Delayed::Worker.new.work_off
+        update_action = UpdateAction.where( resource: o, notifier: c ).first
+        expect( update_action ).not_to be_blank
+        update_subscriber = UpdateSubscriber.where( update_action: update_action, subscriber: user ).first
+        expect( update_subscriber ).to be_blank
+      end
+      describe "notifications for the user for an observation the user is following when the blocked user adds" do
+        let(:o) { Observation.make! }
+        before do
+          Subscription.make!( user: user, resource: o )
+        end
+        it "a comment" do
+          c = Comment.make!( user: blocked_user, parent: o )
+          Delayed::Worker.new.work_off
+          update_action = UpdateAction.where( resource: o, notifier: c ).first
+          expect( update_action ).not_to be_blank
+          update_subscriber = UpdateSubscriber.where( update_action: update_action, subscriber: user ).first
+          expect( update_subscriber ).to be_blank
+        end
+        it "an identification" do
+          i = Identification.make!( user: blocked_user, observation: o )
+          Delayed::Worker.new.work_off
+          update_action = UpdateAction.where( resource: o, notifier: i ).first
+          expect( update_action ).not_to be_blank
+          update_subscriber = UpdateSubscriber.where( update_action: update_action, subscriber: user ).first
+          expect( update_subscriber ).to be_blank
+        end
+      end
     end
   end
 end
