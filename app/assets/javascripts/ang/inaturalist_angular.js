@@ -4,9 +4,21 @@ iNatAPI.factory( "shared", [ "$http", "$rootScope", "$filter",
 function( $http, $rootScope, $filter ) {
   var basicGet = function( url, options ) {
     options = options || { };
-    if( options.cache !== true) { options.cache = false; }
-    // 20 second timeout
-    return $http.get( url, { cache: options.cache, timeout: 20000 } ).then(
+    if( options.cache !== true ) { options.cache = false; }
+    var config = {
+      cache: options.cache,
+      timeout: 20000 // 20 second timeout
+    };
+    var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
+    if ( apiURL && url.indexOf( apiURL ) >= 0 ) {
+      var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+      if ( apiToken ) {
+        config.headers = {
+          Authorization: apiToken
+        }
+      }
+    }
+    return $http.get( url, config ).then(
       function( response ) {
         return response;
       }, function( errorResponse ) {

@@ -15,7 +15,6 @@
 - content_for :extracss do
   = stylesheet_link_tag "c3", "taxa/show2"
 - content_for :extrahead do
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   - if CONFIG.facebook && !CONFIG.facebook.namespace.blank?
     %meta{ property: "og:type", content: "#{CONFIG.facebook.namespace}:taxon"}
   %meta{ property: "og:title", content: @taxon.to_plain_s( verb: true, no_time: true ) }

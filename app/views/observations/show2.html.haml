@@ -19,7 +19,6 @@
     = t :on_
     = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   %meta{ property: "og:title", content: @shareable_title }
   %meta{ property: "twitter:title", content: t( :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title ) } 
   - if !@observation.photos.blank? && photo = @observation.photos.detect{|p| p.medium_url =~ /^http/}
