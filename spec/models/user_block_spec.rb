@@ -37,7 +37,7 @@ describe UserBlock do
       it "messaging the user" do
         expect( Message.make( user: user, from_user: blocked_user, to_user: user ) ).not_to be_valid
       end
-      describe "touching the user's observation" do
+      describe "affecting the user's observation" do
         let( :o ) { Observation.make!( user: user ) }
         it "with a commment" do
           expect( Comment.make( user: blocked_user, parent: o ) ).not_to be_valid
@@ -64,6 +64,24 @@ describe UserBlock do
         it "with a needs_id vote" do
           o.vote_by voter: blocked_user, vote: true, scope: "needs_id"
           expect( o.cached_votes_total ).to eq 0
+        end
+        it "with a subscription" do
+          expect( Subscription.make( user: blocked_user, resource: o ) ).not_to be_valid
+        end
+        it "with a flag" do
+          expect( Flag.make( user: blocked_user, flaggable: o ) ).not_to be_valid
+        end
+      end
+      describe "affecting the user's journal post" do
+        let( :post ) { Post.make!( parent: user, user: user ) }
+        it "with a comment" do
+          expect( Comment.make( user: blocked_user, parent: post ) ).not_to be_valid
+        end
+        it "with a subscription" do
+          expect( Subscription.make( user: blocked_user, resource: post ) ).not_to be_valid
+        end
+        it "with a flag" do
+          expect( Flag.make( user: blocked_user, flaggable: post ) ).not_to be_valid
         end
       end
     end

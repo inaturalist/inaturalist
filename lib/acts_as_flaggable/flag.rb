@@ -16,6 +16,8 @@ class Flag < ActiveRecord::Base
     record.resolved_changed? && !record.resolver.blank? && 
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
+
+  blockable_by lambda {|flag| flag.flaggable.user_id }
   
   # NOTE: Flags belong to a user
   belongs_to :user
