@@ -25,9 +25,12 @@ class UpdateAction < ActiveRecord::Base
 
   def bulk_insert_subscribers(subscriber_ids)
     potential_subscriber_ids = subscriber_ids
-    if notifier_user = notifier.try(:user)
+    notifier_user = notifier if notifier.is_a?( User )
+    notifier_user ||= notifier.try(:user)
+    if notifier_user
       blocking_user_ids = UserBlock.where( blocked_user_id: notifier_user.id ).pluck(:user_id)
-      potential_subscriber_ids = potential_subscriber_ids - blocking_user_ids
+      blocking_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
+      potential_subscriber_ids = potential_subscriber_ids - blocking_user_ids.uniq
     end
     values = potential_subscriber_ids.map{ |id| "(#{self.id},#{id})" }
     return if values.blank?

@@ -9,7 +9,7 @@ $(document).ready(function() {
     collectionUrl: '/places/autocomplete.json',
     resourceUrl: '/places/{{id}}.json?partial=autocomplete_item'
   } );
-  $('#user_block_blocked_user_id').chooser({
+  $('#user_block_blocked_user_id, #user_mute_muted_user_id').chooser({
     queryParam: 'q',
     collectionUrl: '/people/search.json',
     resourceUrl: '/people/{{id}}.json'

@@ -540,6 +540,7 @@ en:
   bioblitz: Bioblitz
   birds: birds
   black: black
+  block_user: Block User
   block_removed: Block removed
   blog_widget: Blog widget
   blue: blue
@@ -1933,6 +1934,8 @@ en:
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
   must_have_x: "must have %{x}"
+  mute_user: Mute User
+  mute_removed: Mute removed
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -3520,6 +3523,7 @@ en:
   unknown_rank: '(Unknown Rank)'
   unfollow: Unfollow
   unlink_your_google_account: Unlink Your Google Account
+  unmute: Unmute
   unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"
   updates_suspension_email_subject: "%{prefix} Your subscriptions are on hold"
@@ -5107,7 +5111,7 @@ en:
       edit:
         blocking_desc_html: |
           <p>
-            Blocking a user prevents them from messaging you, commenting on your
+            Blocking someone prevents them from messaging you, commenting on your
             observations, identifying your observations, and otherwise interacting
             with you on %{site_name}. It also removes their observations from your
             search results and removes your observations from their search
@@ -5139,6 +5143,18 @@ en:
           view all your data just like the iNaturalist site admins can. If
           that site leaves the network, all your account and data will go with
           that site.
+        muting_desc_html: |
+          <p>
+            Muting someone prevents you from receiving notifications about things
+            they do, including commenting on your observations, messaging you,
+            mentioning you, etc. Muting helps you ignore someone without
+            preventing them from doing anything.
+          </p>
+          <p>
+            You can mute as many people as you want, but keep in mind that
+            you'll be missing out on potentially important notifications, like
+            identifications that shift the Community ID on your observations.
+          </p>
         project_addition_preferences:
           any: Any
           joined: Projects you've joined

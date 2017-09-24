@@ -50,7 +50,7 @@ class Message < ActiveRecord::Base
   end
 
   def set_read_at
-    if user_id == from_user_id
+    if user_id == from_user_id || UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
       self.read_at = Time.now
     end
     true
@@ -82,6 +82,7 @@ class Message < ActiveRecord::Base
   def deliver_email
     return true if user_id == from_user_id
     return true if skip_email
+    return true if UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
   end

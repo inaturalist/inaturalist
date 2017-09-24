@@ -8,7 +8,7 @@ describe UserBlock do
     2.times { UserBlock.make!( user: user ) }
     expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).to be_valid
   end
-  it "should not be balid if there are 3 existing blocks for this user" do
+  it "should not be valid if there are 3 existing blocks for this user" do
     3.times { UserBlock.make!( user: user ) }
     expect( UserBlock.make( user: user, blocked_user: blocked_user ) ).not_to be_valid
   end
@@ -89,7 +89,7 @@ describe UserBlock do
       it "when the blocked user mentions the user" do
         o = Observation.make!( user: blocked_user, description: "hey @#{user.login}" )
         Delayed::Worker.new.work_off
-        update_action = UpdateAction.where( resource: o, notifier: c ).first
+        update_action = UpdateAction.where( resource: o ).first
         expect( update_action ).not_to be_blank
         update_subscriber = UpdateSubscriber.where( update_action: update_action, subscriber: user ).first
         expect( update_subscriber ).to be_blank

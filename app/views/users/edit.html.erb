@@ -5,7 +5,7 @@
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
-  #user_block_blocked_user_id { width: 200px; }
+  #user_block_blocked_user_id, #user_mute_muted_user_id { width: 200px; }
 </style>
 <!--[if lt IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie' %>
@@ -305,6 +305,36 @@
       <% end %>
       <%= link_to_tip t(:about_blocking) do %>
         <%=t "views.users.edit.blocking_desc_html", site_name: @site.name, help_email: @site.email_help %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="clear quiet box">
+    <%= link_to_toggle t(:muted_users), "#muted-users", class: "ui" %>
+    <div id="muted-users" style="display:none">
+      <% unless @user.user_mutes.blank? %>
+        <ul>
+          <% @user.user_mutes.each do |user_mute| %>
+            <%-
+              muted_user_name = user_mute.muted_user.login
+              unless user_mute.muted_user.name.blank?
+                muted_user_name = "#{muted_user_name} (#{user_mute.muted_user.name})"
+              end
+            -%>
+            <li>
+              <%= link_to muted_user_name, person_by_login_path( user_mute.muted_user.login ) %>
+              <span class="button"><%= link_to I18n.t( :unmute ), user_mute, method: :delete %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_for UserMute.new( user: @user ), builder: DefaultFormBuilder, html: { class: "clear" } do |f| %>
+        <%= f.hidden_field :user_id %>
+        <%= f.text_field :muted_user_id, label: false, placeholder: I18n.t( :start_typing_someones_name ) %>
+        <%= f.submit t(:mute_user, default: "Mute User" ), class: "glaucous button" %>
+      <% end %>
+      <%= link_to_tip t(:about_muting) do %>
+        <%=t "views.users.edit.muting_desc_html" %>
       <% end %>
     </div>
   </div>

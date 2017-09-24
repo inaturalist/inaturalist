@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :annotations
 
   resources :user_blocks, only: [:create, :destroy]
+  resources :user_mutes, only: [:create, :destroy]
   resources :guide_users
 
   resources :guide_sections do

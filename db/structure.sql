@@ -4411,6 +4411,38 @@ ALTER SEQUENCE user_blocks_id_seq OWNED BY user_blocks.id;
 
 
 --
+-- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_mutes (
+    id integer NOT NULL,
+    user_id integer,
+    muted_user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_mutes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_mutes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_mutes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_mutes_id_seq OWNED BY user_mutes.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5361,6 +5393,13 @@ ALTER TABLE ONLY user_blocks ALTER COLUMN id SET DEFAULT nextval('user_blocks_id
 
 
 --
+-- Name: user_mutes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_mutes ALTER COLUMN id SET DEFAULT nextval('user_mutes_id_seq'::regclass);
+
+
+--
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6233,6 +6272,14 @@ ALTER TABLE ONLY update_subscribers
 
 ALTER TABLE ONLY user_blocks
     ADD CONSTRAINT user_blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_mutes user_mutes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_mutes
+    ADD CONSTRAINT user_mutes_pkey PRIMARY KEY (id);
 
 
 --
@@ -8152,6 +8199,20 @@ CREATE INDEX index_user_blocks_on_user_id ON user_blocks USING btree (user_id);
 
 
 --
+-- Name: index_user_mutes_on_muted_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_mutes_on_muted_user_id ON user_mutes USING btree (muted_user_id);
+
+
+--
+-- Name: index_user_mutes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_mutes_on_user_id ON user_mutes USING btree (user_id);
+
+
+--
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9002,4 +9063,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170811232802');
 INSERT INTO schema_migrations (version) VALUES ('20170907221848');
 
 INSERT INTO schema_migrations (version) VALUES ('20170920185103');
+
+INSERT INTO schema_migrations (version) VALUES ('20170923232400');
 
