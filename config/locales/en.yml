@@ -3596,17 +3596,18 @@ en:
     double-quotes. Most spreadsheet applications should export CSV in this
     format.
   user: User
-  user_added_an_observation_html: "%{user} added an observation"
   user_added_a_x: "%{user} added a %{x}"
-  user_added_an_x: "%{user} added an %{x}"
-  user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
-  user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
-  user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
+  user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
+  user_added_an_observation_html: "%{user} added an observation"
+  user_added_an_x: "%{user} added an %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
   user_blocked: User blocked
-  user_commented_on: "%{user} commented on your %{title} %{time}"
   user_commented: "%{user} commented"
+  user_commented_on: "%{user} commented on your %{title} %{time}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
@@ -3614,14 +3615,13 @@ en:
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
-  user_invited_you_to_join_project: "%{user} invited you to join %{project}"
   user_invited_you_to_join_html: "%{user} invited you to join"
-  user_invited_you_to_join_this_project_on_date_html: |
-    %{user} invited you to join this project on %{date}
+  user_invited_you_to_join_project: "%{user} invited you to join %{project}"
+  user_invited_you_to_join_this_project_on_date_html: "%{user} invited you to join this project on %{date}"
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
-  user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_is_a_naturalist: "%{user} is a naturalist!"
+  user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
+  user_muted: User muted
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user} Lists"
@@ -3631,12 +3631,11 @@ en:
   username_or_email: Username or email
   username_or_user_id: Username or user ID
   users: Users
-  users_contributions_to_project_html: |
-    <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
+  users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_id: "%{user}'s ID"
   users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
   users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
-  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
