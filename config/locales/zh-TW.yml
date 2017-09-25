@@ -1234,8 +1234,8 @@ zh-TW:
   flag: 旗號標記
   flag_as_inappropriate: 標記為不適當
   flag_an_item: 標記一個項目
-  flag_as_spammer: 標記為垃圾訊息發送者
-  flag_as_non_spammer: 標記為非垃圾訊息發送者
+  flag_as_spammer: 標記為濫發垃圾訊息者
+  flag_as_non_spammer: 標記為非濫發垃圾訊息者
   flag_description: 為此內容加上旗號標記，讓管理員知道當中存在誤差。
   flag_for_curation: 標記為策展
   flag_it!: 加上旗號標記！
@@ -2179,7 +2179,7 @@ zh-TW:
   observations_was_successfully_updated: 觀察已成功更新。
   observations_week: 觀察 / 週
   observations_widget: 觀察小工具
-  observations_will_revert_to_casual: 觀察將被列為「粗略」等級；在不符合以上條件情況或
+  observations_will_revert_to_casual: 觀察會被列為「粗略」等級；是在不符合以上條件情況或
   observations_with_this_field: 帶有此欄位的觀察
   observations_with_this_field_and_value: 帶有此欄位與內容值的觀察
   observationcounts_refreshed: 觀察次數已重整
@@ -3202,10 +3202,10 @@ zh-TW:
   the_: 此
   the_admin_is_the_person_who: 管理員為創建專案的人員。他們可進行任何負責人及策展人所能做出的事項，包含刪除專案。
   the_below_items_are_needed_to_achieve: 以下項目需達到<span className="bold">研究等級：</span>
-  the_community_agrees_location_doesnt: 社群同意<strong>位置看起來不正確</strong>（例如猴子出現在海洋裡，或河馬出現在辦公大樓等等）
-  the_community_agrees_organism_isnt: 社群同意<strong>不是被野化/歸化的生物</strong>（例如被人類或外星智慧生命給捕獲或培育）
+  the_community_agrees_location_doesnt: 社群認為<strong>位置看起來不正確</strong>（例如猴子出現在海洋裡，或是河馬出現在辦公大樓等等）
+  the_community_agrees_organism_isnt: 社群認為<strong>不是被野化/歸化的生物</strong>（例如是被人類、或外星智慧生命給捕獲或培育）
   the_community_must_feel_that: 社群必須覺得社群鑑定是最能作為證據方面的
-  the_data_quality_assessment_is: 資料品質評估是一項觀察準確程度的摘要。所有觀察最低從「粗略」等級開始，而到達「研究」等級是當
+  the_data_quality_assessment_is: 資料品質評估是一項觀察準確程度的摘要。所有觀察最初從「粗略」等級開始，而到達「研究」等級是當
   the_following_lists: 以下列表
   the_following_observations_could: 以下觀察不能被添加至 %{link}
   the_following_photos_have_been_tagged: 以下照片已被標記為：
@@ -3395,7 +3395,7 @@ zh-TW:
   unsubscribe_from_this: 取消訂閱自此
   unsuspend_user: 取消暫停用戶
   unverifiable: 不可證實
-  upcoming_bioblitzes: 即將的 bioblitzes
+  upcoming_bioblitzes: 即將到來的 bioblitzes
   update: 更新
   update_existing_observations_with_new_license: 以新挑選的許可協議來更新現有觀察
   update_existing_photos_with_new_license: 以新挑選的許可協議來更新現有照片
@@ -3863,6 +3863,35 @@ zh-TW:
           URL 位置。
         guide_place_desc: 將您的指南與地點做關聯，來讓人們搜尋地點時能找到您的觀察。若設定了邊界（例如：「卡片」檢視、物種分類頁面等等）將會在
           %{site_name} 上的地圖顯示時一同出現地點邊界。
+        import_tags_from_csv_help_html: |-
+          <p>
+            上傳包含指南裡物種分類標籤的 CSV 檔案。您的 CSV 檔案應該要像是：
+          </p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>color</th>
+                <th>Number of hands</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Homo sapiens</td>
+                <td></td>
+                <td>2</td>
+                <td>bipedal</td>
+              </tr>
+              <tr>
+                <td>Vulpes vulpes</td>
+                <td>red|black</td>
+                <td>0</td>
+                <td>quadripedal</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            第一行以「Name」（名稱）開頭；後續接上標籤謂詞/分類。第二行之後都以物種分類名稱為開頭，之後接上對應到上方第一行欄位謂詞的標籤。在此範例中，<i>Homo sapiens</i>（智人）這一行有著標籤<code>bipedal</code>（雙足動物）與<code>Number of hands=2</code>（手數目=2），下一行中<i>Vulpes vulpes</i>（赤狐）有著<code>quadripedal</code>（四足動物）、<code>color=red</code>（色彩=紅色）、<code>color=black</code>（色彩=黑色），以及<code>Number of hands=0</code>（手數目=0）。在空白部份方面會自動忽略。您可替各物種分類添加多行內容，也可以在儲存格裡添加透過豎線字元分隔的多項內容值。
+          </p>
         licensing_explanation: 授權您的內容給予其他人擁有權利來複製及更改；而不必需向您請求許可。這樣做可以更容易來分享您的成果，而且如果當您想合併來自於其它使用姓名標示-相同方式分享授權條款的來源（例如像是維基百科）之第三方內容，您有法律義務要使用類似的授權條款。以下有全部創用CC授權條款的概要與含義：
         paste_note_html: 每行最多可貼上 500 個物種名稱。%{site_name} 將會試著把通用名稱與物種概念之間作相符，但為了避免模凌兩可的情況最好使用學名。若您想同時使用兩者，請用逗號分隔學名和通用名稱，例如像是
           <code>Homo sapiens,Human</code>。
@@ -4094,6 +4123,28 @@ zh-TW:
       show:
         allow_curator_coordinate_access_desc_html: 允許專案策展人來檢視此觀察的私有座標。
         ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的原型，不過是在使用此物種分類的首次鑑定之後創建'
+        community_taxon_desc_html: |-
+          <p class="ui">
+            社群物種分類（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。
+            若您對於我們如何挑選社群物種分類方面有興趣，請查看下方演算法的備註，不過通常我們是
+            採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到一個有著部份不被
+            認同的物種分類群之更高層級物種分類（例如：您認為對象應是王蛇；但我認為是響尾蛇，因此
+            iNat 最後會挑選包含所有蛇類的亞目）。演算法在意見分歧時有著好處，因為我們發現在過往
+            異議者通常會是對的。
+          </p>
+          <p class="ui">
+            社群物種分類是我們在分享觀察給資料合作者、連結在網站上同名稱物種分類觀察、更新您的
+            生物列表等等情況時所用的物種分類。若基於某些原因您不願意認同社群物種分類，您可以選擇
+            退出，這代表著您只能用您的鑑定來連結至其它觀察、更新生物列表等等。這也代表著您的觀察
+            內容在社群認同<em>您</em>之前；無法成為研究等級。若您不喜歡社群物種分類群的想法，
+            您可以透過<a href="/users/edit" target="_blank">編輯您的設定</a>來完全退出。
+          </p>
+          <p class="ui">
+            <strong>演算法：</strong>用於所有已鑑定、以及有包含前著的物種分類群（例如：<i>人</i>屬包含著<i>智人</i>），
+            以比例方式向任一物種分類超過累積鑑定總和的累積鑑定數量之間計分，更謹慎的鑑定數量添加在物種分類
+            首個鑑定之後，並且鑑定數量完全不同（註：物種分類群鑑定不包含被積分的物種分類群）。對於已鑑定且
+            積分有超過 2/3 ；以及至少 2 個鑑定的物種分類群，請挑選最低排名的物種分類。
+          </p>
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: 此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
         disagreement_count_desc: '# 已鑑定物種分類群不在物種分類的原型之中'
@@ -4101,6 +4152,58 @@ zh-TW:
         flagged_photos_desc_html: 一些照片已被標記為內容不適當或侵犯版權。詳細內容請見 %{links}
         join_project_desc_html: 加入專案將會給予專案策展人可查看任何在專案裡觀察之隱藏座標的權限，並意味著您同意專案的<a href="%{url}"
           target="_blank">條款</a>。
+        quality_assessment_help_html: |-
+          <p>
+            資料品質評估是一項觀察準確程度的摘要。所有觀察
+            最初是從<strong>「粗略」</strong>等級開始，而成為<strong>「需要鑑定」</strong>的狀態是當
+          </p>
+
+          <ul>
+            <li>觀察<strong>擁有日期</strong></li>
+            <li>觀察<strong>為地理參考</strong>（註：擁有經/緯度）</li>
+            <li>觀察<strong>擁有照片或聲音</strong></li>
+            <li>觀察<strong>內容不是人類</strong></li>
+          </ul>
+          <p>
+            觀察要成為<strong>「研究等級」</strong>是當
+          </p>
+          <ul>
+            <li>
+               %{site_name} <strong>社群認同物種級別或以下級別鑑定</strong>, 註：當超過三分之二鑑定人同意一項物種分類
+            </li>
+          </ul>
+          <p>
+            觀察將會被列為<strong>「粗略」</strong>；是當不符合以上條件情況或是社群認為
+          </p>
+          <ul>
+            <li>
+              <strong>位置不精準</strong>（例如：例如猴子出現在海洋裡，或是河馬出現在辦公大樓等等）
+            </li>
+            <li>
+              <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給捕獲或培育）
+            </li>
+            <li>
+              觀察內容<strong>沒有呈現出是生物的證明</strong>，例如：僅是風景、水景、岩石之類的圖片。
+            </li>
+            <li>
+              觀察內容<strong>沒有呈現出是近代（大約一百年內）生物的證明</strong> （例如：化石，但如果是痕跡、排泄物、或枯葉是可以的）
+            </li>
+            <li>
+              觀察已不需要鑑定<em>並且</em>社群鑑定是在科級別以上
+            </li>
+            <li>
+              觀察者退出社群鑑定，並且社群鑑定不屬於關連到觀察者鑑定的物種分類之原型或派生
+            </li>
+          </ul>
+          <p>
+            而如果不夠深入，會有系統投票的情況：
+          </p>
+          <ul>
+            <li>
+              若在最小的郡、州裡有至少十個屬級別或以下級別的其它觀察；或是與同等於國家層級地點包含著此觀察與
+          80% 或以上的這些觀察，有被標記為非野生/歸化的情況，系統將會投票觀察是否非野生/歸化的生物。
+            </li>
+          </ul>
         score_desc: 分數 = 累積次數 /（累積次數 + 不同意次數 + 原型不同意次數）
         observation_flagged_notice_html: 此觀察已被標記為垃圾訊息並不再對外公開。若您還能看見該觀察是因為您是它的創建者、或是網站的策展人。如果您認為這是個誤會，請<a
           href="mailto:%{help_email}" class="contact">聯絡我們</a>。<a href="/observations/%{observation_id}/flags">管理標籤</a>
@@ -4272,6 +4375,20 @@ zh-TW:
       curator_coordinate_access_note: 您也可採用依逐個專案來分享觀察裡的私有座標。這些是當添加新觀察至專案時的預設內容。
       project_terms_desc_html: 允許此專案策展人依據<a href="%{url}">專案項目</a>來使用您的觀察。
       show:
+        bioblitz_results_desc_html: |-
+          <p>
+            不同於一般常規專案，bioblitzes 顯示來自於<em>所有</em>帶有地點與時間期間的
+            觀察之事件狀態，而非純粹是人們有意添加至專案的觀察。這是移除當添加觀察至專案時
+            驅動即時統計的障礙。請注意若專案團隊以及參與者沒有像是在參與專案般地積極添加相關
+            觀察，觀察內容將不適用於匯出；或顯示於像是成員在網站上的貢獻、行動應用程式上的
+            專案觀察搜尋之類多項專案檢視。
+          </p>
+          <p>
+            請注意；當此類型專案的統計狀況裡顯示出有觀察並未有意要被添加至專案時，這些觀察會
+            不允許策展人來查看它們私有或隱蔽座標、也代表著觀察者未同意專案的條款。若您是專案
+            策展人且您需要存取私有座標，您需要您的參與者同意專案條款；或是您想要觀察計入策展
+            專案清單時，請確定您的參與者有加入專案且願意添加他們的觀察。
+          </p>
         no_journal_blurb_html: |-
           <p>
             您的專案發佈文章是與其它專案成員一同交流的工具。您可用來
@@ -4292,6 +4409,22 @@ zh-TW:
         even_our_dedicated_search_mole_couldnt: 甚至我們專用的搜尋鼬鼠工具也找不到任何東西！
     taxa:
       show:
+        about_names_desc: |-
+          <p>
+            多數生物的分類在語言裡擁有「通用名稱」。這些名稱通常是易於辨別、容易唸出、長期下識用，
+            但多數生物在不同地點裡各擁有不同名稱；即使是在使用同一種語言的情形下。這些在溝通有關
+            這些生物時產生困難。科學家透過採取符合<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95">二名法</a>的單一「學名」在任一生物分類上來處理問題，
+            但這些名稱通常是建立於多數人不會講的拉丁文上，因此對於多數人這些不像通用名稱那般好記。
+            學名能反應出生物在分類法上的對應位置，因此它們能在科學家推導出有關不同生物之演化關係上
+            更精準的理論時做出更改，但也因此降低在溝通上的實用性；即使是在了解學名的人士上。
+          </p>
+          <p>
+            古老的格言總結出：「通用名稱的變更來自於地點，學名的變更來自於時間。」
+          </p>
+          <p>
+            我們嘗試以透過同時顯示通用名稱與學名來解決這些情況，並基於所使用的語言和視圖上的地理資料
+            偏好設定來挑選出通用名稱。
+          </p>
         about_conservation_status_desc: 保護狀態總結出一群生物的滅絕風險。
         about_establishment_desc: 「確立方式」描述著目前出現的物種如何發生在此處。引入代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
         charts_help_seasonality: 此圖表顯示出物種分類依月份區分的觀察次數。請記住這些是觀察次數，因此會被當生物可被觀察的期間、以及被人們有前來觀察它們的行為所影響。因此某隻鳥在五月裡的觀察次數看似很活躍，但有可能是人們剛好一同在五月觀察；而將其它月份給忽略掉。相同地，如果您發現蜻蜓在六月的次數比一月多，這可能是因為在北半球有比南半球較多人口；而並非蜻蜓是剛好在六月比較活躍，因此在考量這些圖表時可以先查看地圖。當圖表上「可驗證」與「研究等級」觀察次數之間，有出現較低觀察次數以及/或是較大差異時，對這些情況做出疑慮是正確的。

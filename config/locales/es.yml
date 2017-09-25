@@ -16,6 +16,7 @@
 # Author: Luisangelrg
 # Author: Macofe
 # Author: Ncontinanza
+# Author: Pato
 # Author: PoLuX124
 # Author: Tusca
 # Author: Yllelder
@@ -1153,6 +1154,7 @@ es:
         suspended: Tu cuenta ha sido suspendida
   developers: Desarrolladores
   device: Dispositivo
+  discoveries: Descubrimientos
   did_not_send_invitations_because: 'No les enviamos invitaciones a tus amigos y amigas
     pues:'
   did_you_mean: ¿Te refieres a
@@ -3378,6 +3380,7 @@ es:
   show_taxa_from_place: Mostrar taxones de %{place}
   showing_taxa_from_everywhere: Mostrando taxones de todas partes
   show_taxa_from_everywhere: Mostrar taxones de todas partes
+  show_uncountable_species: Mostrar especies incontables
   shown_publicly_as: Mostrar públicamente como
   sign_in: Ingrese
   sign_in_with_provider: Ingrese con %{provider}
@@ -3399,6 +3402,8 @@ es:
   site_taxon_page: '%{site_name} página del taxón'
   so_meta!: ¡Autoreferencia!
   some_agree: Algunos la apoyan
+  some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse
+    a los proyectos
   some_observations_failed_to_save: Algunas observaciones no se guardaron
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
@@ -5456,6 +5461,7 @@ es:
           href="%{url}">%{place}</a>
         rare_desc: Taxones amenazados menos observados
         rare_in_place_desc_html: Taxones amenazados menos observados en <a href="%{url}">%{place}</a>
+        wanted_desc: Especies en este taxón que aún no se han observado.
         no_trending_desc: Ninguna observación bajo este taxón en el último mes
         frequency:
           research: Grado de investigación
