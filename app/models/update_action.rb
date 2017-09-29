@@ -28,9 +28,11 @@ class UpdateAction < ActiveRecord::Base
     notifier_user = notifier if notifier.is_a?( User )
     notifier_user ||= notifier.try(:user)
     if notifier_user
-      blocking_user_ids = UserBlock.where( blocked_user_id: notifier_user.id ).pluck(:user_id)
-      blocking_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
-      potential_subscriber_ids = potential_subscriber_ids - blocking_user_ids.uniq
+      excepted_user_ids = UserBlock.
+        where( "user_id = ? OR blocked_user_id = ?", notifier_user.id, notifier_user.id ).
+        pluck(:user_id, :blocked_user_id).flatten.uniq
+      excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
+      potential_subscriber_ids = potential_subscriber_ids - excepted_user_ids.uniq
     end
     values = potential_subscriber_ids.map{ |id| "(#{self.id},#{id})" }
     return if values.blank?

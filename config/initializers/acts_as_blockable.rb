@@ -14,7 +14,7 @@ module ActsAsBlockable
         end
         if !blockable_user_id || !blocking_user_id
           true
-        elsif UserBlock.where( user_id: blocking_user_id, blocked_user_id: blockable_user_id ).exists?
+        elsif UserBlock.where( user_id: [blocking_user_id, blockable_user_id], blocked_user_id: [blocking_user_id, blockable_user_id] ).exists?
           errors.add( :base, I18n.t( :you_dont_have_permission_to_do_that ) )
         end
         true

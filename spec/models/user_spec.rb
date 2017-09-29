@@ -388,8 +388,16 @@ describe User do
       expect( Doorkeeper::AccessToken.where( id: token.id ).first ).to be_blank
     end
 
-    it "should remove blocks this user has made"
-    it "should remove blocks against this user"
+    it "should remove blocks this user has made" do
+      user_block = UserBlock.make!( user: @user )
+      @user.destroy
+      expect( UserBlock.where( user_id: user_block.id ).first ).to be_blank
+    end
+    it "should remove blocks against this user" do
+      user_block = UserBlock.make!( blocked_user: @user )
+      @user.destroy
+      expect( UserBlock.where( blocked_user_id: user_block.id ).first ).to be_blank
+    end
   end
 
   describe "sane_destroy" do
