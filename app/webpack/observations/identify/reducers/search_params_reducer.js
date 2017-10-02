@@ -194,6 +194,7 @@ const searchParamsReducer = ( state = {
       return state;
   }
   newState.params = normalizeParams( newState.params );
+
   // if the states are equal there should be no reason to update the URL
   if ( _.isEqual( state.params, newState.params ) ) {
     return state;
@@ -203,7 +204,10 @@ const searchParamsReducer = ( state = {
     return newState;
   }
   // if we're just setting the defaults, the URL does not need to update
-  if ( _.isEqual( newState.params, newState.default ) ) {
+  if (
+    _.isEqual( newState.params, newState.default ) &&
+    _.isEqual( state.params, newState.default )
+  ) {
     return newState;
   }
   setUrl( newState.params, newState.default );

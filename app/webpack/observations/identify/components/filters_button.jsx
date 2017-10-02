@@ -555,7 +555,13 @@ class FiltersButton extends React.Component {
             id="params-without-term-id"
             className={`form-control ${params.without_term_id ? "filter-changed" : ""}`}
             defaultValue={params.without_term_id}
-            onChange={ e => updateSearchParams( { without_term_id: e.target.value } ) }
+            onChange={ e => {
+              if ( _.isEmpty( e.target.value ) ) {
+                updateSearchParams( { without_term_id: "", without_term_value_id: "" } );
+              } else {
+                updateSearchParams( { without_term_id: e.target.value } );
+              }
+            } }
           >
             <option value="">
               { _.capitalize( I18n.t( "none" ) ) }
