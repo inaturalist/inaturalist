@@ -112,6 +112,13 @@ $changed-color: #74ac00;
   background-color: #ddd;
   padding: 10px 0;
 }
+#quality-filters .checkbox {
+  display: inline-block;
+  margin-left: 10px;
+}
+#quality-filters .checkbox:first-child {
+  margin-left: 0;
+}
 #filters-footer .btn {margin-left: 12px;}
 #filters-footer .btn:first-child {margin-left: 0px;}
 #filters-footer .btn-default { border-color: #aaa; }

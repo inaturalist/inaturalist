@@ -6,6 +6,7 @@ import PlaceAutocomplete from "./place_autocomplete";
 import ProjectAutocomplete from "./project_autocomplete";
 import UserAutocomplete from "./user_autocomplete";
 import DateFilters from "./date_filters";
+import { isBlank } from "../../../shared/util";
 
 class FiltersButton extends React.Component {
   constructor( props ) {
@@ -69,24 +70,37 @@ class FiltersButton extends React.Component {
       return diffs.length > 0 ? diffs.length.toString() : "";
     };
     const filterCheckbox = ( checkbox ) => {
-      const checkedVal = ( checkbox.checked || true );
+      const checkedVal = ( checkbox.checked || true ).toString( );
+      const vals = params[checkbox.param] ? params[checkbox.param].toString( ).split( "," ) : [];
+      let cssClass = "checkbox";
+      if ( params[checkbox.param] !== defaultParams[checkbox.param] ) {
+        cssClass += " filter-changed";
+      }
+      let disabled = false;
+      if ( checkbox.noBlank && vals.length === 1 && vals[0] === checkedVal ) {
+        disabled = true;
+      }
       return (
         <div
-          className={
-            `checkbox ${params[checkbox.param] && params[checkbox.param] === checkedVal ? "filter-changed" : ""}`
-          }
+          className={ cssClass }
           key={`filters-${checkbox.param}-${checkbox.label}`}
         >
           <label>
             <input
               type="checkbox"
-              checked={ params[checkbox.param] === checkedVal }
+              checked={ vals.indexOf( checkedVal ) >= 0 }
+              disabled={ disabled }
               onChange={ ( e ) => {
                 let newVal = checkbox.unchecked;
+                let newVals = _.map( vals );
                 if ( e.target.checked ) newVal = checkedVal;
-                updateSearchParams( {
-                  [checkbox.param]: newVal
-                } );
+                if ( isBlank( newVal ) ) {
+                  newVals = _.filter( vals, v => v !== checkedVal );
+                  updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
+                } else if ( vals.indexOf( newVal ) < 0 ) {
+                  newVals.push( newVal );
+                  updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
+                }
               }}
             /> { _.capitalize( I18n.t( checkbox.label || checkbox.param ) ) }
           </label>
@@ -171,6 +185,35 @@ class FiltersButton extends React.Component {
         <Row>
           <Col xs="12">
             <label className="sectionlabel">
+              { _.capitalize( I18n.t( "quality_grade" ) ) }
+            </label>
+          </Col>
+        </Row>
+        <Row>
+          <Col id="quality-filters" xs="12">
+            { filterCheckbox( {
+              param: "quality_grade",
+              label: "casual",
+              checked: "casual",
+              noBlank: true
+            } ) }
+            { filterCheckbox( {
+              param: "quality_grade",
+              label: "needs_id",
+              checked: "needs_id",
+              noBlank: true
+            } ) }
+            { filterCheckbox( {
+              param: "quality_grade",
+              label: "research_grade",
+              checked: "research",
+              noBlank: true
+            } ) }
+          </Col>
+        </Row>
+        <Row>
+          <Col xs="12">
+            <label className="sectionlabel">
               { _.capitalize( I18n.t( "show" ) ) }
             </label>
           </Col>
@@ -179,15 +222,13 @@ class FiltersButton extends React.Component {
           <Col id="filters-left-col" xs="6">
             { [
               { param: "wild" },
-              { param: "verifiable", label: "verifiable", unchecked: "any" },
-              { param: "quality_grade", label: "research_grade", checked: "research", unchecked: "any" },
-              { param: "quality_grade", label: "needs_id", checked: "needs_id", unchecked: "any" },
-              { param: "threatened" }
+              { param: "captive" },
+              { param: "threatened" },
+              { param: "introduced" }
             ].map( filterCheckbox ) }
           </Col>
           <Col id="filters-left-col" xs="6">
             { [
-              { param: "introduced" },
               { param: "popular" },
               { param: "sounds", label: "has_sounds" },
               { param: "photos", label: "has_photos" },
@@ -249,7 +290,7 @@ class FiltersButton extends React.Component {
             </label>
           </Col>
         </Row>
-        <Row id="filters-ranks">
+        <Row id="filters-ranks" className="form-group">
           <Col xs="6">
             <select
               id="params-hrank"
@@ -292,7 +333,7 @@ class FiltersButton extends React.Component {
             </label>
           </Col>
         </Row>
-        <Row>
+        <Row className="form-group">
           <Col xs="6">
             <select
               id="params-order-by"
@@ -397,7 +438,9 @@ class FiltersButton extends React.Component {
             <input
               type="radio"
               name="reviewed"
-              defaultChecked={params.reviewed === undefined || params.reviewed === null}
+              defaultChecked={
+                params.reviewed === undefined || params.reviewed === null || params.reviewed === "any"
+              }
               onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
             />
             { I18n.t( "any" ).toLowerCase( ) }

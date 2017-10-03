@@ -70,9 +70,14 @@ function resizeUpload( file, opts, callback ) {
   reader.readAsDataURL( file );
 }
 
+function isBlank( val ) {
+  return _.isNumber( val ) ? !_.isFinite( val ) : _.isEmpty( val );
+}
+
 export {
   fetch,
   updateSession,
   objectToComparable,
-  resizeUpload
+  resizeUpload,
+  isBlank
 };

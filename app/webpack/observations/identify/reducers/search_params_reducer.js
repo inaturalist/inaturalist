@@ -9,7 +9,6 @@ import _ from "lodash";
 
 const DEFAULT_PARAMS = {
   reviewed: false,
-  verifiable: true,
   quality_grade: "needs_id",
   page: 1,
   per_page: 30,
