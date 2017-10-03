@@ -28,7 +28,7 @@ const DateFilters = ( {
         <input
           type="radio"
           name={`${prefix}-date-type`}
-          defaultChecked={ !params[dateTypeField] }
+          checked={ !params[dateTypeField] || params[dateTypeField] === "any" }
           onChange={ ( ) => {
             updateSearchParams( { [dateTypeField]: "any" } );
           } }
@@ -40,7 +40,7 @@ const DateFilters = ( {
           type="radio"
           name={`${prefix}-date-type`}
           value="exact"
-          defaultChecked={ params[dateTypeField] === "exact" }
+          checked={ params[dateTypeField] === "exact" }
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-exact">
@@ -68,7 +68,7 @@ const DateFilters = ( {
           type="radio"
           name={`${prefix}-date-type`}
           value="range"
-          defaultChecked={ params[dateTypeField] === "range" }
+          checked={ params[dateTypeField] === "range" }
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-range">
@@ -112,7 +112,7 @@ const DateFilters = ( {
           type="radio"
           name={`${prefix}-date-type`}
           value="month"
-          defaultChecked={ params[dateTypeField] === "month" }
+          checked={ params[dateTypeField] === "month" }
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-month">

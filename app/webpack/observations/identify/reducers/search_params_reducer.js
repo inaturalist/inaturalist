@@ -14,7 +14,9 @@ const DEFAULT_PARAMS = {
   per_page: 30,
   iconic_taxa: [],
   order_by: "observations.id",
-  order: "desc"
+  order: "desc",
+  dateType: "any",
+  createdDateType: "any"
 };
 
 const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];

@@ -126,7 +126,7 @@ $changed-color: #74ac00;
 #feeds .btn:hover { text-decoration: none; }
 #feeds .btn:hover span { text-decoration: underline; }
 
-#filters-center-col {
+.filters-center-col {
   border-left: 1px solid #ccc;
   border-right: 1px solid #ccc;
 }
@@ -198,7 +198,7 @@ $changed-color: #74ac00;
   select { max-width: none; }
   .annotations-form-group {
     select {
-      width: auto;
+      width: 118px;
       display: inline-block;
     }
     .term-value { display: inline-block; }
@@ -208,5 +208,8 @@ $changed-color: #74ac00;
       top: 3px;
       font-weight: bold;
     }
+  }
+  .filters-row {
+    display: flex;
   }
 }

@@ -257,7 +257,7 @@ class FiltersButton extends React.Component {
       </Col>
     );
     const mainCenterCol = (
-      <Col xs="4" id="filters-center-col">
+      <Col xs="4" className="filters-center-col">
         <Row>
           <Col xs="12">
             <label className="sectionlabel">
@@ -469,7 +469,7 @@ class FiltersButton extends React.Component {
       </Col>
     );
     const mainFilters = (
-      <Row>
+      <Row className="filters-row">
         { mainLeftCol }
         { mainCenterCol}
         { mainRightCol }
@@ -547,7 +547,7 @@ class FiltersButton extends React.Component {
     const chosenTerm = terms.find( t => t.id === params.term_id );
     const rejectedTerm = terms.find( t => t.id === params.without_term_id );
     const moreCenterCol = (
-      <Col xs="4">
+      <Col xs="4" className="filters-center-col">
         <div className="form-group annotations-form-group">
           <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
           <select
@@ -648,7 +648,7 @@ class FiltersButton extends React.Component {
     );
     const moreFilters = (
       <div id="more-filters" className={this.state.moreFiltersHidden ? "hidden" : ""}>
-        <Row>
+        <Row className="filters-row">
           { moreLeftCol }
           { moreCenterCol }
           { moreRightCol }
