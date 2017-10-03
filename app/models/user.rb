@@ -182,6 +182,7 @@ class User < ActiveRecord::Base
   after_save :destroy_messages_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
   after_update :update_photo_properties
+  after_update :update_life_list
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
@@ -767,6 +768,13 @@ class User < ActiveRecord::Base
   def set_community_taxa_if_pref_changed
     if prefers_community_taxa_changed? && ! id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+    end
+    true
+  end
+
+  def update_life_list
+    if login_changed? && life_list
+      life_list.update_attributes( title: life_list.title.gsub( /#{login_was}/, login ) )
     end
     true
   end

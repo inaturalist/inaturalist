@@ -165,6 +165,15 @@ describe User do
       expect( p.native_username ).to eq new_login
     end
 
+    it "should update the life list title if the login changed" do
+      u = User.make!
+      expect( u.life_list.title ).to eq "#{u.login}'s Life List"
+      new_login = "zolophon"
+      without_delay { u.update_attributes( login: new_login ) }
+      u.reload
+      expect( u.life_list.title ).to eq "#{new_login}'s Life List"
+    end
+
     it "should not update photos by other users when the name changes" do
       target_o = make_research_grade_observation
       target_u = target_o.user
