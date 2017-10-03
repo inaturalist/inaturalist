@@ -2712,6 +2712,13 @@ class ObservationsController < ApplicationController
       if @observations.respond_to?(:scoped)
         Observation.preload_associations(@observations, [ {:observation_photos => { :photo => :user } }, :photos, :iconic_taxon ])
       end
+      @observations.each do |o|
+        if o.taxon && current_user
+          o.taxon.current_user = current_user
+        end
+        o.localize_place = current_user.try(:place) || @site.place
+        o.localize_locale = current_user.try(:locale) || @site.locale
+      end
       render :json => @observations.to_json(opts)
     end
   end
