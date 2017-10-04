@@ -43,21 +43,23 @@
   = stylesheet_link_tag "observations/show2"
 - content_for :extrajs do
   - if logged_in?
-    - js_current_user = { id: current_user.id,
-      login: current_user.login,
-      curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
-      icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
-      roles: current_user.roles.map(&:name),
-      prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
-      prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
-      prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
-      prefers_hide_obs_show_tags: current_user.prefers_hide_obs_show_tags,
-      prefers_hide_obs_show_observation_fields: current_user.prefers_hide_obs_show_observation_fields,
-      prefers_hide_obs_show_identifiers: current_user.prefers_hide_obs_show_identifiers,
-      prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
-      prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
-      preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
-    }
+    :ruby
+      js_current_user = { id: current_user.id,
+        login: current_user.login,
+        curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
+        icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
+        roles: current_user.roles.map(&:name),
+        prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
+        prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
+        prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
+        prefers_hide_obs_show_tags: current_user.prefers_hide_obs_show_tags,
+        prefers_hide_obs_show_observation_fields: current_user.prefers_hide_obs_show_observation_fields,
+        prefers_hide_obs_show_identifiers: current_user.prefers_hide_obs_show_identifiers,
+        prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
+        prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
+        preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
+        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
+      }
   :javascript
     var INITIAL_OBSERVATION_ID = #{@observation.id};
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };

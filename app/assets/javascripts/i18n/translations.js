@@ -54,6 +54,8 @@ I18n.translations["ar"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -122,6 +124,8 @@ I18n.translations["az"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -153,6 +157,7 @@ I18n.translations["bg"] = {
   "add_to_project": "Добави към проект",
   "added": "Добавен",
   "added!": "Добавено!",
+  "added_as_a_part_of": "Добавено като част от",
   "added_on": "Добавено на",
   "agree_": "Съгласен",
   "all_taxa": {
@@ -790,6 +795,8 @@ I18n.translations["bg"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Това е маркирано като спам"
       }
@@ -875,6 +882,7 @@ I18n.translations["br"] = {
   "add_to_project": "Ouzhpennañ d'ar raktres",
   "added": "Ouzhpennet",
   "added!": "Ouzhpennet!",
+  "added_as_a_part_of": "Ouzhpenn evel lodenn eus ur/un/ul",
   "added_on": "Ouzhpennet d'an",
   "additional_range": "Lijorenn ouzhpenn",
   "additional_range_data_from_an_unknown_source": "Pajennad roadennoù ouzhpenn adalek un tarzh dianav",
@@ -1342,6 +1350,8 @@ I18n.translations["br"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -1446,6 +1456,8 @@ I18n.translations["bs"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -1498,6 +1510,7 @@ I18n.translations["ca"] = {
   "add_to_project": "Afegiu al projecte",
   "added": "Afegit",
   "added!": "Afegit!",
+  "added_as_a_part_of": "Afegit com a part d'un",
   "added_on": "Afegit el",
   "additional_range": "Distribució addicional",
   "additional_range_data_from_an_unknown_source": "Dades addicionals de distribució des de font desconeguda",
@@ -1653,7 +1666,7 @@ I18n.translations["ca"] = {
   },
   "checklist": "Llista de comprovació",
   "choose_a_field": "Escolliu un camp",
-  "choose_files": "Escolliu arxius",
+  "choose_files": "Escolliu els fitxers",
   "choose_photos_for_this_taxon": "Seleccioneu fotos per a aquest tàxon",
   "clear": "Neteja",
   "close": "Tanca",
@@ -2108,7 +2121,7 @@ I18n.translations["ca"] = {
   "observation_fields": "Camps d'observació",
   "observation_flagged": "Observació marcada",
   "observation_flagged_as_flag": "Observació marcada com a %{flag}",
-  "observation_without_media": "Observació sense imatges o sons",
+  "observation_without_media": "Observació sense suport multimèdia",
   "observations": "Observacions",
   "observations_": "observacion",
   "observations_annotated_with_annotation": "Observacions anotades amb %{annotation}",
@@ -2141,7 +2154,7 @@ I18n.translations["ca"] = {
   "photos_chosen_for_this_taxon": "Fotos escollides per a aquest tàxon",
   "photos_from": "Fotos de",
   "photos_of": "Fotos de",
-  "photos_or_sounds": "Fotos o sons",
+  "photos_or_sounds": "Fotografies o sons",
   "pink": "rosa",
   "place": "Lloc",
   "place_geo": {
@@ -2572,12 +2585,14 @@ I18n.translations["ca"] = {
         "cumulative_count_desc": "# d'identificacions per a un tàxon individual i els seus descendents",
         "disagreement_count_desc": "# dels tàxons identificats que no estan entre els ancestres del tàxon",
         "identification_count_desc": "# de les identificacions per a un tàxon individual",
-        "observation_flagged_notice_html": "Aquesta observació ha estat marcada com spam i ja no és visible al públic. La podeu veure perquè el vau crear, o sou un Administrador del lloc. Si penseu que això és una equivocació, si us plau\n<a href=\"mailto:%{help_email}\" class=\"contact\">contacteu amb nosaltres</a>.\n<a href=\"/observations/%{observation_id}/flags\">Gestioneu marques</a>",
+        "observation_flagged_notice_html": "Aquesta observació ha estat marcada com a brossa \ni ja no és públicament visible. La podeu veure perquè \nla vareu crear o sou un moderador del lloc. Si penseu \nque es tracta d'una equivocació, si us plau, <a href=\"mailto:%{help_email}\" class=\"contact\">contacteu amb nosaltres</a>.\n<a href=\"/observations/%{observation_id}/flags\">Gestionar les marques</a>",
         "quality_assessment_help_html": "<p>L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>\"casual\"</strong>, i es classifiquen com <strong>\"necessita ID\"</strong> quan</p>\n<ul>\n   <li>l'observació <strong>té una data</​strong></li>\n   <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>\n   <li>l'observació <strong>s'acompanya de fotos o sons</ strong></li>\n<li>l'observació <strong>no és d'un humà</strong></li>\n</ul>\n<p>Les observacions en transformen en <strong> \"grau de recerca\"</strong> quan</p>\n<ul>\n  <li>la comunitat de %{site_name} <strong>està d'acord amb la ID donada a nivell específic o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acuerdo amb el taxon</li>\n</ul>\n<p>Les observacions tornaran a ser <strong>\"casual\"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>\n<ul>\n  <li>la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>\n  <li>l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>\n <li>l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.\n  </li>\n  <li>l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organismes</strong> (p.ex. fòssils, però sí s'accepten pistes, excrements i fulles mortes)\n  </li>\n  <li>l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>\n</ul>\n<p>\n  I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:\n</ P>\n<ul>\n  <li>\n    El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitut(municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a <strong>no</stron> salvatge/naturalitzat.\n  </li>\n</ul>",
         "score_desc": "puntuació = recompte acumulat / (recompte acumulat + recomptes de desacord + desacords en l'avantpassat )"
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Això ha estat marcat com brossa"
       }
@@ -2702,7 +2717,7 @@ I18n.translations["ca"] = {
   "you_retain_full_copyright": "Tal com indiquen les nostres condicions de servei, sou el titular de tots els drets d'autor pel que fa al vostre contingut, a part d'aquells drets concedits a %{site_name}.",
   "you_sure_delete_comment?": "Esteu segur que voleu esborrar el comentari?",
   "you_sure_delete_this_observation": "Esteu segur que voleu eliminar aquesta observació?",
-  "your_browser_does_not_support_the_audio_element": "El vostre navegador no suporta l'element d'àudio.",
+  "your_browser_does_not_support_the_audio_element": "El vostre navegador no admet l'element d'àudio.",
   "your_coarser_id": "Una IDentificació menys precisa de <span class=\"taxon\">%{coarser_taxon_name}</span> implica que no esteu\nd'acord amb la IDentificació detallada de\n<span class=\"taxon\">%{finer_taxon_name}</span>. És realment això el que voleu fer?<br><br>\n<a href=\"/pages/getting+started\" target=\"_blank\">Coneix més sobre com actuen les identificacions\"</a>",
   "your_default": "els vostres valors per defecte",
   "your_hard_drive": "El vostre disc dur",
@@ -2767,6 +2782,8 @@ I18n.translations["cs"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2835,6 +2852,8 @@ I18n.translations["da"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2903,6 +2922,8 @@ I18n.translations["de"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2971,6 +2992,8 @@ I18n.translations["el"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -3024,6 +3047,7 @@ I18n.translations["en"] = {
   "add_to_project": "Add to project",
   "added": "Added",
   "added!": "Added!",
+  "added_as_a_part_of": "Added as part of a",
   "added_on": "Added on",
   "additional_range": "Additional range",
   "additional_range_data_from_an_unknown_source": "Additional range data from an unknown source",
@@ -4117,6 +4141,10 @@ I18n.translations["en"] = {
       }
     },
     "shared": {
+      "blocked": {
+        "youve_been_blocked": "You've Been Blocked",
+        "youve_been_blocked_desc": "The owner of this resource has blocked you, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n"
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "This has been flagged as spam"
       }
@@ -4125,7 +4153,7 @@ I18n.translations["en"] = {
       "show": {
         "about_conservation_status_desc": "The conservation status summarizes the risk of extinction for a group of organisms.\n",
         "about_establishment_desc": "\"Establishment means\" describes how a species arrived where it\ncurrently occurs. Introduced means it arrived because of human\nactivity, while native means it arrived without human assistance.\nEndemic species only occur in a specific place and nowhere else.\n",
-        "about_names_desc": "<p>\n  Most categories of organisms have \"common names\" in spoken\n  languages. These names are usually recognizable, easy to pronounce,\n  and stable over time, but many organisms have several different\n  names in different places, even in the same language, which can make\n  it difficult to communicate about these organisms without confusion.\n  Scientists address this problem by using a single \"scientific name\"\n  for each category of organism that conforms to the rules of\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biological nomenclature</a>,\n  but these names tend to be based on Latin, a language nobody\n  speaks, so they are not as memorable as common names for many\n  people. Scientific names can also reflect an organism's taxonomic\n  placement, so they can change when scientists develop more\n  accurate theories about the evolutionary relationships between\n  different organisms, again reducing their usefullness in\n  commuinication, even among people who know scientific names.\n</p>\n<p>\n  The old adage sums it up: \"Common names change from place to\n  place, and scientific names change from time to time.\"\n</p>\n<p>\n  We try to address these shortcomings by showing both common\n  and scientific names wherever possible, and choosing common names\n  based on the language and geographic preferences of the viewer.\n</p>\n",
+        "about_names_desc": "<p>\n  Most categories of organisms have \"common names\" in spoken\n  languages. These names are usually recognizable, easy to pronounce,\n  and stable over time, but many organisms have several different\n  names in different places, even in the same language, which can make\n  it difficult to communicate about these organisms without confusion.\n  Scientists address this problem by using a single \"scientific name\"\n  for each category of organism that conforms to the rules of\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biological nomenclature</a>,\n  but these names tend to be based on Latin, a language nobody\n  speaks, so they are not as memorable as common names for many\n  people. Scientific names can also reflect an organism's taxonomic\n  placement, so they can change when scientists develop more\n  accurate theories about the evolutionary relationships between\n  different organisms, again reducing their usefulness in\n  communication, even among people who know scientific names.\n</p>\n<p>\n  The old adage sums it up: \"Common names change from place to\n  place, and scientific names change from time to time.\"\n</p>\n<p>\n  We try to address these shortcomings by showing both common\n  and scientific names wherever possible, and choosing common names\n  based on the language and geographic preferences of the viewer.\n</p>\n",
         "charts_help_history": "This chart shows the number of observations of this taxon by month for\nthe last ten years. Again, it is biased by the number of people\nobserving, but it will show you unusual spikes in observations, and if\nit seems flat or decreasing despite an increasing number of observers,\nthat might suggest a change in abundance.\n",
         "charts_help_other": "We also show seasonality charts for observation annotations.\nAnnotations are a new system for adding metadata to observations using\na controlled vocabulary of terms. So far we are only using \"Life\nStage\" and \"Plant Phenology\" (when the plant is flowering or\nfruiting). We do not yet have a way to add annotations directly, so\nfor now we are converting data from observation fields to annotations.\nIf you can't wait for us to build our annotating system, you can\ncontribute to \"Life Stage\" annotations by adding observation field\nvalues that have any of the following values: Adult, Teneral, Pupa,\nNymph, Larva, Egg, or Juvenile. So in particular, the \"Life Stage\" and\n\"Insect Life Stage\" fields are good. For \"Plant Phenology,\" we're\nlooking at any field with the word \"phenology\" in its name and\n\"flower\" or \"fruit\" in the value, so the \"Flowering Phenology\" field\nis a good one to use.\n",
         "charts_help_seasonality": "This chart shows the number of observations of this taxon grouped by\nmonth. Keep in mind that these are numbers of observations, so they\nare influenced both by when the organism can be observed and when\npeople bother to observe them. So a bird might seem to be very active\nin May, but that could also be due to more people birding in May who\ntend to ignore that species in later months. Similarly, if you see\nmore dragonflies in June than in January, that's probably because we\nhave more people observing in the northern hemisphere than in the\nsouthern hemisphere and not because dragonflies are more active in\nJune, so check the map when considering these charts. It's always a\ngood idea to be skeptical of these charts when there are low numbers\nof observations and/or large discrepancies between the number of\n\"Verifiable\" and \"Research Grade\" observations.\n",
@@ -4311,6 +4339,8 @@ I18n.translations["en-GB"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -4409,6 +4439,8 @@ I18n.translations["en-US"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -4461,6 +4493,7 @@ I18n.translations["es"] = {
   "add_to_project": "Añade al proyecto",
   "added": "Añadido",
   "added!": "¡Añadido!",
+  "added_as_a_part_of": "Añadido como parte de un",
   "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -5558,6 +5591,8 @@ I18n.translations["es"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto se marcó como spam"
       }
@@ -5709,6 +5744,7 @@ I18n.translations["es-MX"] = {
   "add_to_project": "Añade al proyecto",
   "added": "añadido",
   "added!": "¡Añadido!",
+  "added_as_a_part_of": "Añadido como parte de un",
   "added_on": "añadido en",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -6487,6 +6523,8 @@ I18n.translations["es-MX"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto ha sido marcado con una advertencia como spam"
       }
@@ -6608,6 +6646,8 @@ I18n.translations["et"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -6653,6 +6693,7 @@ I18n.translations["eu"] = {
   "add_to_project": "Proiektura gehitu",
   "added": "Egun honetan gehitua:",
   "added!": "Gehituta!",
+  "added_as_a_part_of": "Honen zati gisa gehituta:",
   "added_on": "Egun honetan gehitua:",
   "additional_range": "Banaketa osagarria",
   "additional_range_data_from_an_unknown_source": "D\"Iturri ezezaguneko banaketa osagarriaren datuak\"",
@@ -7363,6 +7404,8 @@ I18n.translations["eu"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -7461,6 +7504,8 @@ I18n.translations["fa"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -7499,6 +7544,7 @@ I18n.translations["fi"] = {
   "add_to_project": "Lisää projektiin",
   "added": "Lisätty",
   "added!": "Lisätty!",
+  "added_as_a_part_of": "Lisätty osana",
   "added_on": "Lisätty",
   "additional_range": "Lisäalue",
   "additional_range_data_from_an_unknown_source": "Lisäalueen tietoja tuntemattomattomasta lähteestä",
@@ -8014,6 +8060,8 @@ I18n.translations["fi"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -8123,6 +8171,7 @@ I18n.translations["fr"] = {
   "add_to_project": "Ajouter au projet",
   "added": "Ajouté",
   "added!": "Ajouté!",
+  "added_as_a_part_of": "Ajouté comme partie d’un",
   "added_on": "Ajouté le",
   "additional_range": "Aire de répartition supplémentaire",
   "additional_range_data_from_an_unknown_source": "Données supplémentaires sur l’aire de répartition d’une source inconnue",
@@ -9203,6 +9252,8 @@ I18n.translations["fr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Signalé comme pourriel"
       }
@@ -9352,6 +9403,7 @@ I18n.translations["gl"] = {
   "add_to_project": "Engadir ao proxecto",
   "added": "Engadido o",
   "added!": "¡Engadido!",
+  "added_as_a_part_of": "Engadido como parte dun",
   "added_on": "Engadido o",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fonte descoñecida",
@@ -9981,6 +10033,8 @@ I18n.translations["gl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10071,6 +10125,8 @@ I18n.translations["he"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10139,6 +10195,8 @@ I18n.translations["hr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10207,6 +10265,8 @@ I18n.translations["hu"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10243,6 +10303,7 @@ I18n.translations["id"] = {
   "add_to_project": "Tambahkan ke proyek",
   "added": "Ditambahkan",
   "added!": "Ditambahkan!",
+  "added_as_a_part_of": "Ditambahkan sebagai bagian dari",
   "added_on": "Ditambahkan",
   "additional_range": "Tambahan rentang",
   "additional_range_data_from_an_unknown_source": "Berbagai data tambahan dari sumber yang tidak diketahui",
@@ -11029,6 +11090,8 @@ I18n.translations["id"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Ini telah menjadi ditandai sebagai spam"
       }
@@ -11144,6 +11207,8 @@ I18n.translations["is"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -11196,6 +11261,7 @@ I18n.translations["it"] = {
   "add_to_project": "Aggiungi al progetto",
   "added": "Aggiunte",
   "added!": "Aggiunto!",
+  "added_as_a_part_of": "Aggiunto come parte di un",
   "added_on": "Aggiunto il",
   "additional_range": "Areale aggiuntivo",
   "additional_range_data_from_an_unknown_source": "Ulteriori dati di distribuzione da fonte sconosciuta",
@@ -12276,6 +12342,8 @@ I18n.translations["it"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Questo è stato contrassegnato come spam"
       }
@@ -12468,6 +12536,8 @@ I18n.translations["iw"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -12505,6 +12575,7 @@ I18n.translations["ja"] = {
   "add_to_project": "プロジェクトに追加",
   "added": "追加されました",
   "added!": "追加されました！",
+  "added_as_a_part_of": "追加先：",
   "added_on": "追加日付",
   "additional_range": "追加の分布範囲",
   "additional_range_data_from_an_unknown_source": "追加の分布範囲の提供先は不明",
@@ -13353,6 +13424,8 @@ I18n.translations["ja"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "スパムとしてフラグ付けられました"
       }
@@ -13454,6 +13527,7 @@ I18n.translations["ko"] = {
   "add_to_project": "프로젝트에 추가하기",
   "added": "추가됨",
   "added!": "추가되었습니다!",
+  "added_as_a_part_of": "일부분으로 추가됨",
   "added_on": "추가됨",
   "additional_range": "추가적인 범위",
   "additional_range_data_from_an_unknown_source": "알 수 없는 자료에서 추가적인 범위 데이터",
@@ -13770,7 +13844,7 @@ I18n.translations["ko"] = {
     "creole_french": "creole (French)",
     "davawenyo": "Davawenyo",
     "dutch": "Nederlands",
-    "english": "انگلیسی",
+    "english": "영어",
     "french": "français",
     "gela": "Gela",
     "german": "Deutsch",
@@ -14076,6 +14150,8 @@ I18n.translations["ko"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14160,6 +14236,8 @@ I18n.translations["lexicons"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14228,6 +14306,8 @@ I18n.translations["lt"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14296,6 +14376,8 @@ I18n.translations["lv"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14325,6 +14407,7 @@ I18n.translations["mk"] = {
   "add_to_project": "Додај во проект",
   "added": "Додадено",
   "added!": "Додадено!",
+  "added_as_a_part_of": "Додадено како дел од",
   "added_on": "Додадено на",
   "additional_range": "Дополнителна распространетост",
   "agree": "се согласувам",
@@ -14889,6 +14972,8 @@ I18n.translations["mk"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14986,6 +15071,8 @@ I18n.translations["my"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15054,6 +15141,8 @@ I18n.translations["nb"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15122,6 +15211,8 @@ I18n.translations["nl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15190,6 +15281,8 @@ I18n.translations["no"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15225,6 +15318,7 @@ I18n.translations["oc"] = {
   "add_to_project": "Apondre al projècte",
   "added": "Apondut",
   "added!": "Apondut !",
+  "added_as_a_part_of": "Apondut coma part d’un",
   "added_on": "Apondut lo",
   "additional_range": "Plaja suplementària",
   "agree": "acceptar",
@@ -15809,6 +15903,8 @@ I18n.translations["oc"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15914,6 +16010,8 @@ I18n.translations["pl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15982,6 +16080,8 @@ I18n.translations["pt"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -16034,6 +16134,7 @@ I18n.translations["pt-BR"] = {
   "add_to_project": "Adicione ao projeto",
   "added": "Adicionado",
   "added!": "Adicionado!",
+  "added_as_a_part_of": "Adicionado como parte de um",
   "added_on": "Adicionado em",
   "additional_range": "Distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Distribuição adicional para fontes desconhecidas",
@@ -17110,6 +17211,8 @@ I18n.translations["pt-BR"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Sinalizado como SPAM"
       }
@@ -17298,6 +17401,8 @@ I18n.translations["ro"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17366,6 +17471,8 @@ I18n.translations["ru"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17434,6 +17541,8 @@ I18n.translations["sk"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17502,6 +17611,8 @@ I18n.translations["sl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17570,6 +17681,8 @@ I18n.translations["sr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17638,6 +17751,8 @@ I18n.translations["sr-RS"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17706,6 +17821,8 @@ I18n.translations["sv"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17774,6 +17891,8 @@ I18n.translations["th"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17842,6 +17961,8 @@ I18n.translations["tr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17910,6 +18031,8 @@ I18n.translations["uk"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17978,6 +18101,8 @@ I18n.translations["vi"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -18027,6 +18152,7 @@ I18n.translations["zh-CN"] = {
   "add_to_project": "添加至项目",
   "added": "已添加",
   "added!": "已添加！",
+  "added_as_a_part_of": "已加入为一个",
   "added_on": "添加在",
   "additional_range": "额外范围",
   "agree": "同意",
@@ -19002,6 +19128,8 @@ I18n.translations["zh-CN"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "这已经被标记为垃圾信息"
       }
@@ -19168,6 +19296,8 @@ I18n.translations["zh-HK"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -19220,6 +19350,7 @@ I18n.translations["zh-TW"] = {
   "add_to_project": "新增專案",
   "added": "已新增",
   "added!": "已新增!",
+  "added_as_a_part_of": "已添加成為部份",
   "added_on": "已添加在",
   "additional_range": "額外範圍",
   "additional_range_data_from_an_unknown_source": "來自不知名來源的額外範圍資料",
@@ -19385,7 +19516,7 @@ I18n.translations["zh-TW"] = {
   "comment_": "評論",
   "commercial_solicitation": "商業招攬，不連結至任何位置等等。",
   "community_curated": "社群策劃",
-  "community_id_at_genus_level_or_lower": "在物種屬層級或較低階的社群 ID",
+  "community_id_at_genus_level_or_lower": "在屬層級或較低階的社群鑑定",
   "community_id_at_species_level_or_lower": "社群鑑定在物種層級裡或在較低階",
   "community_id_heading": "社群 ID",
   "compare": "比較",
@@ -19641,6 +19772,7 @@ I18n.translations["zh-TW"] = {
   "interactions": "互動",
   "introduced": "引進",
   "introduced_in_place": "在%{place}引進",
+  "is_an_evaluation": "是對觀察準確的評估。\n研究等級觀察有機會被科學家用於研究上。請在下方投下您的一票：",
   "it_can_now_be_used_for_research": "現在可被用於在其它網站的研究和功能",
   "join_project": "加入此專案",
   "join_this_project": "加入此專案",
@@ -20090,7 +20222,7 @@ I18n.translations["zh-TW"] = {
   "request_failed": "請求失敗",
   "required_": "必要",
   "research": "研究",
-  "research_grade": "研究評分",
+  "research_grade": "研究等級",
   "research_grade_qualification": "研究評分資格",
   "reset_search_filters": "重新設定搜尋過濾",
   "restore": "還原",
@@ -20175,7 +20307,7 @@ I18n.translations["zh-TW"] = {
   },
   "taxon_merge": "物種分類合併",
   "taxon_schemes": "物種分類綱要",
-  "taxon_split": "物種分類分割",
+  "taxon_split": "物種分類拆分",
   "taxon_stage": "物種分類階段",
   "taxon_swap": "物種分類對換",
   "taxonomic": "物種分類",
@@ -20185,7 +20317,7 @@ I18n.translations["zh-TW"] = {
   "terrain": "地形",
   "that_was_the_last_observation_matching_the_current_filters": "那是最後符合目前過濾條件的觀察。",
   "the_": "此",
-  "the_below_items_are_needed_to_achieve": "以下項目需達到<span className=\"bold\">研究評分：</span>",
+  "the_below_items_are_needed_to_achieve": "以下項目需達到<span className=\"bold\">研究等級：</span>",
   "the_community_must_feel_that": "社群必須覺得社群鑑定是最能作為證據方面的",
   "the_world": "世界",
   "then_keybord_sequence": "接著",
@@ -20197,7 +20329,7 @@ I18n.translations["zh-TW"] = {
     "one": "此觀察已展示在 1 個網站",
     "other": "此觀察已展示在 %{count} 個網站"
   },
-  "this_observation_is_research_grade": "此觀察為研究評分！",
+  "this_observation_is_research_grade": "此觀察為研究等級！",
   "this_observation_was_created_using": "此觀察被創建使用於：",
   "this_taxon_concept_is_inactive": "此物種分類概念是無作用的",
   "this_taxon_has_no_default_photo": "此物種分類沒有預設照片！",
@@ -20296,6 +20428,8 @@ I18n.translations["zh-TW"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "此已被標記為垃圾訊息"
       }
@@ -20304,8 +20438,9 @@ I18n.translations["zh-TW"] = {
       "show": {
         "about_conservation_status_desc": "保護狀態總結出一群生物的滅絕風險。",
         "about_establishment_desc": "「確立方式」描述著目前出現的物種如何發生在此處。引入代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。",
+        "charts_help_history": "此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加；但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。",
         "frequency": {
-          "research": "研究評分",
+          "research": "研究等級",
           "verifiable": "可證實",
           "Flowering Phenology=bare": "沒有開花",
           "Flowering Phenology=budding": "發芽",
@@ -20416,6 +20551,7 @@ I18n.translations["zh-TW"] = {
   "you_sure_delete_comment?": "您確定要刪除此評論？",
   "you_sure_delete_this_observation": "您確定要刪除此觀察？",
   "your_browser_does_not_support_the_audio_element": "您的瀏覽器不支援音效元素。",
+  "your_coarser_id": "您的<span class='taxon'>%{coarser_taxon_name}</span>粗略鑑定，反應出您並不認同<span class='taxon'>%{finer_taxon_name}</span>上的較佳鑑定。您確實有想這樣做嗎？<br><br>\n<a href='/pages/getting+started' target='_blank'>了解更多如何進行鑑定&raquo;</a>",
   "your_default": "您的預設",
   "your_hard_drive": "您的磁碟機",
   "your_observations": "您的觀察",
