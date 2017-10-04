@@ -359,10 +359,10 @@ class FiltersButton extends React.Component {
               onChange={ e => updateSearchParams( { order: e.target.value } ) }
             >
               <option value="asc">
-                { I18n.t( "asc" ) }
+                { _.capitalize( I18n.t( "ascending" ) ) }
               </option>
               <option value="desc">
-                { I18n.t( "desc" ) }
+                { _.capitalize( I18n.t( "descending" ) ) }
               </option>
             </select>
           </Col>
@@ -442,12 +442,12 @@ class FiltersButton extends React.Component {
             <input
               type="radio"
               name="reviewed"
-              defaultChecked={
+              checked={
                 params.reviewed === undefined || params.reviewed === null || params.reviewed === "any"
               }
               onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
             />
-            { I18n.t( "any" ).toLowerCase( ) }
+            { _.capitalize( I18n.t( "any" ) ) }
           </label>
           <label
             className={ `radio-inline ${params.reviewed === true ? "filter-changed" : ""}` }
@@ -456,20 +456,20 @@ class FiltersButton extends React.Component {
               type="radio"
               name="reviewed"
               value="true"
-              defaultChecked={params.reviewed === true}
+              checked={params.reviewed === true}
               onClick={ ( ) => updateSearchParams( { reviewed: true } ) }
             />
-            { I18n.t( "yes" ).toLowerCase( ) }
+            { _.capitalize( I18n.t( "yes" ) ) }
           </label>
           <label className="radio-inline">
             <input
               type="radio"
               name="reviewed"
               value="false"
-              defaultChecked={params.reviewed === false}
+              checked={params.reviewed === false}
               onClick={ ( ) => updateSearchParams( { reviewed: false } ) }
             />
-            { I18n.t( "no" ).toLowerCase( ) }
+            { _.capitalize( I18n.t( "no" ) ) }
           </label>
         </div>
       </Col>
