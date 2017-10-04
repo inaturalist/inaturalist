@@ -209,6 +209,7 @@ ko:
   all_projects: 모든 프로젝트
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_species: 모든 종
+  all_species_added_to_the_database: 데이터베이스에 추가된 모든 종
   all_taxa:
     rank:
       kingdom: 계
@@ -1152,6 +1153,7 @@ ko:
   hi_user: '%{user}님, 안녕하세요.'
   hide: 숨기기
   hide_details: 자세한 내용 숨기기
+  hide_uncountable_species: 셀 수 없는 종을 숨기기
   high: 높음
   highest_rank: 가장 높은 랭크
   history: 역사
@@ -1193,6 +1195,7 @@ ko:
   if_you_want_to_change_the_name: 이름을 바꾸고 싶다면
   if_your_project_is: 프로젝트가 특정한 장소에 대한 것이라면 지도를 클릭하여 좌표를 설정하거나 직접 입력해주세요.
   ignore: 무시
+  ignore_and_continue: 무시하고 계속하기
   ignore_times: 시간 무시
   image_must_be_exactly: 그림은 너비의 경우 정확히 950px, 높이는 최대 400px이어야 합니다.
   import: 가져오기
@@ -1956,6 +1959,7 @@ ko:
   show_kml: KML 보이기
   show_less: 덜 보기
   show_more: 더 보기
+  show_uncountable_species: 셀 수 없는 종을 표시
   sign_in: 로그인
   sign_in_with_provider: '%{provider}(으)로 로그인'
   sign_out: 로그아웃
@@ -1987,6 +1991,7 @@ ko:
   start_adding_observations: 관찰 추가를 시작하기
   start_one_now: 지금 당장 시작해보세요!
   status: 상태
+  stay_and_try_again: 동일 장소에서 다시 시도하세요
   stop_editing: 그만 편집하기
   stop_following_user: '%{user}를 그만 팔로우하기'
   submit: 제출
@@ -2018,6 +2023,7 @@ ko:
   total_observations: 총 관찰
   tue: 화요일
   twitter: 트위터
+  unknown_error: 알 수 없는 오류
   unfollow: 팔로우 해제
   unlink_your_google_account: 구글 계정의 연결을 끊습니다
   unsubscribe: 구독 해지
@@ -2167,6 +2173,9 @@ ko:
     help:
       index:
         what_is_considered_inappropriate_content?: 무엇이 부적절한 내용으로 간주됩니까?
+        we_also_support_google_html: '구글 포토도 지원합니다: <a href="%{url}">구글 계정 구성하기 &raquo;</a>'
+        we_also_support_uploading_photos: '%{site_name}에 직접 사진들을 업로드하는 것을 지원하지만 다소
+          느릴 수 있으므로 한 번에 하나의 업로드만 허용합니다. 플리커나 구글을 이미 사용하고 계시다면 이것들을 사용하는 것이 더 빠릅니다.'
         geoprivacy_is_a_setting_you_can: |-
           위치보호는 관찰에 대한 공간 좌표(위도와 경도)의 표시 방식을
           설정합니다. 옵션은 다음과 같습니다:

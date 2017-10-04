@@ -149,6 +149,7 @@ fr:
   about_bioblitz_results: À propos des résultats de bioblitz
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
+  about_complete_taxa: À propos des taxons complets
   about_conservation_status: À propos de l’état de conservation
   about_establishment_means: À propos des moyens d’implantation
   about_external_links: À propos des liens externes
@@ -350,6 +351,8 @@ fr:
   all_projects: Tous les projets
   all_rights_reserved: tous droits réservés
   all_species: Toutes les Espèces
+  all_species_added_to_the_database: Toutes les espèces ont été ajoutées dans la base
+    de données
   all_taxa:
     rank:
       kingdom: Règne
@@ -1210,6 +1213,7 @@ fr:
         suspended: Votre compte a été suspendu
   developers: Développeurs
   device: Appareil
+  discoveries: Découvertes
   did_not_send_invitations_because: Nous n’avons pas envoyé d’invitations aux personnes
     suivantes parce que…
   did_you_mean: Voulez-vous dire
@@ -1668,6 +1672,7 @@ fr:
   hi_user: Bonjour %{user}
   hide: Masquer
   hide_details: Masquer les détails
+  hide_uncountable_species: Masquer les espèces indénombrables
   high: haut
   highest_rank: Rang le plus elevé
   highlights: Mise en évidence
@@ -1744,6 +1749,7 @@ fr:
     de recherche devraient s’afficher pour que vous puissiez chercher parmi nos fournisseurs
     externes de noms :'
   ignore: ignorer
+  ignore_and_continue: Ignorer et continuer
   ignore_times: Ignorer le nombre de fois
   image_must_be_exactly: la largeur de l’image doit être exactement 950px et la hauteur
     d’un maximum de 400px
@@ -3471,6 +3477,7 @@ fr:
   show_taxa_from_place: Afficher les taxons de %{place}
   showing_taxa_from_everywhere: Affichage des taxons de partout
   show_taxa_from_everywhere: Afficher les taxons de partout
+  show_uncountable_species: Afficher les espèces indénombrables
   shown_publicly_as: Affiché publiquement comme
   sign_in: Connectez-vous
   sign_in_with_provider: vous connecter avec %{provider}
@@ -3493,7 +3500,9 @@ fr:
   site_taxon_page: Page de taxon d’%{site_name}
   so_meta!: méta!
   some_agree: quelques personnes sont d’accord
-  some_observations_failed: Quelques observations n’ont pas pu être ajoutées aux projets
+  some_observations_failed_to_be_added: Certaines observations n’ont pas pu être ajoutées
+    aux projets
+  some_observations_failed_to_save: Certaines observations n’ont pas pu être sauvegardées
   some_of_those_photos_couldnt_be_saved: 'Certaines de ces photos n’ont pas pu être
     enregistrées : %{error}'
   some_other_reason: Une autre raison que vous pouvez expliquer ci-dessous.
@@ -3640,6 +3649,7 @@ fr:
   status: État
   status_globally: '%{status} globalement'
   status_in_place: '%{status} dans %{place}'
+  stay_and_try_again: Rester et réessayer
   still_no_luck?: Toujours pas de chance?
   still_needs_id?: La communauté peut-elle confirmer/améliorer une ID ?
   still_working_on_classifying_taxon: Travail encore en cours pour classifier ce taxon.
@@ -4047,6 +4057,7 @@ fr:
   totals: totaux
   total_members: Total des membres
   total_observations: Total des observations
+  total_species_observed: Nombre total d’espèces observées
   total_unique_observers: Total des observateurs uniques
   total_users: total des utilisateurs,
   "true": Oui
@@ -4084,6 +4095,7 @@ fr:
   unique_observers: observateurs uniques
   unique_observers_last_3_months: observateurs uniques dans les 3 derniers mois
   unknown: Inconnu
+  unknown_error: Erreur inconnue
   unknown_rank: (Rang inconnu)
   unfollow: Ne plus suivre
   unlink_your_google_account: Supprimer le lien de votre compte Google
@@ -4322,6 +4334,7 @@ fr:
     vos taxons favoris ?
   want_to_test_a_new_version_of_this_page: Envie de tester une nouvelle version de
     cette page ?
+  wanted: Recherché
   was_it_captive_cultivated?: Était-il captif/cultivé?
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format
     suivant
@@ -4422,6 +4435,7 @@ fr:
   x_observations_failed:
     one: 1 observation en échec
     other: '%{count} observations en échec'
+  x_of_y: '%{x} sur %{y}'
   x_project_journal: '%{name} de %{project}'
   x_project_stats: Stats de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} vous a envoyé un nouveau message sur %{y}:'
@@ -5712,11 +5726,21 @@ fr:
           chefchons n’importe quel champ contenant le mot « phénologie » dans son nom et
           « fleur » ou « fruit » dans la valeur ; ainsi, le champ « Phénologie de floraison »
           est un bon candidat à utiliser.
+        complete_taxon_desc: Les taxons « complets » ont toutes leurs espèces descendantes
+          encore en vie présentes dans la base de données du site. Quand un taxon
+          est complet, nous pouvons dire combien de ses espèces ont été observées
+          et combien doivent encore l’être. Le nombre des espèces pour les taxons
+          « complets » ne comprend pas les espèces « indénombrables » comme les espèces
+          éteintes ou les concepts d’espèce inactifs, et incluent seulement les espèces,
+          non les taxons de niveau inférieur.
+        discoveries_desc: Espèces nouvellement identifiées les plus récentes dans
+          ce taxon
         trending_desc: Taxons les plus observés lors du dernier mois
         trending_in_place_desc_html: Taxons les plus observés dans le dernier mois
           à <a href="%{url}">%{place}</a>
         rare_desc: Taxons menacés les moins observés
         rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
+        wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
         no_trending_desc: Rien d’observé dans le dernier mois concernant ce taxon
         frequency:
           research: Niveau de recherche
@@ -5746,6 +5770,10 @@ fr:
             <li>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</li>
             <li>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</li>
             <li>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</li>
+            <li>
+              N’ajoutez pas d’information qui ne soit pas le nom, par ex. des informations
+              entre parenthèses sur comment vous pensez que le nom devrait être utilisé
+            </li>
           </ul>
         places_help_html: |-
           Ajoutez un nom à un lieu pour lui donner priorité pour les sites et les utilisateurs de

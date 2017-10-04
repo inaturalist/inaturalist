@@ -21,6 +21,7 @@
 # Author: MattiaMen
 # Author: Nemo bis
 # Author: Oggioniale
+# Author: Pierpao
 # Author: Rippitippi
 # Author: Saracrovetto
 # Author: Statix64
@@ -146,6 +147,7 @@ it:
   about_bioblitz_results: A proposito dei risultati bioblitz
   about_charts: Sui Grafici
   about_community_taxa: A proposito dei taxa della community
+  about_complete_taxa: A proposito dei taxa completi
   about_conservation_status: A proposito dello stato di conservazione
   about_establishment_means: A proposito dell'origine del popolamento
   about_external_links: A proposito dei Collegamenti Esterni
@@ -342,6 +344,7 @@ it:
   all_projects: Tutti i progetti
   all_rights_reserved: Tutti i diritti riservati
   all_species: Tutte le specie
+  all_species_added_to_the_database: Tutte le specie aggiunte al database
   all_taxa:
     rank:
       kingdom: Regno
@@ -1162,6 +1165,7 @@ it:
         suspended: Il tuo account è stato sospeso
   developers: Sviluppatori
   device: Dispositivo
+  discoveries: Scoperte
   did_not_send_invitations_because: Non abbiamo mandato inviti alle persone seguenti
     perché...
   did_you_mean: Forse cercavi
@@ -1614,6 +1618,7 @@ it:
   hi_user: Ciao %{user}
   hide: Nascondi
   hide_details: Nascondi i dettagli
+  hide_uncountable_species: Nascondi le specie non conteggiabili
   high: superiore
   highest_rank: Il rango più alto
   highlights: In evidenza
@@ -1688,6 +1693,7 @@ it:
     alcune informazioni nei campi di ricerca per ripetere la ricerca attraverso le
     nostre fonti esterne di nomi:'
   ignore: ignora
+  ignore_and_continue: Ignora e continua
   ignore_times: Ignora il numero di volte
   image_must_be_exactly: l'immagine deve essere esattamente larga 950px e alta al
     massimo 400px
@@ -3388,6 +3394,7 @@ it:
   show_taxa_from_place: Mostra i taxa in %{place}
   showing_taxa_from_everywhere: Visualizzazione dei taxa di tutto il mondo
   show_taxa_from_everywhere: Visualizza i taxa di tutto il mondo
+  show_uncountable_species: Mostra le specie non conteggiabili
   shown_publicly_as: Mostrato pubblicamente come
   sign_in: Accedi
   sign_in_with_provider: Accedi con %{provider}
@@ -3408,7 +3415,9 @@ it:
   site_taxon_page: pagina %{site_name} del taxon
   so_meta!: così autoreferenziale!
   some_agree: alcuni concordano
-  some_observations_failed: Alcune osservazioni non sono state aggiunte ai progetti
+  some_observations_failed_to_be_added: Alcune osservazioni non sono state aggiunte
+    al progetto
+  some_observations_failed_to_save: Alcune osservazioni non sono state salvate
   some_of_those_photos_couldnt_be_saved: 'Alcune foto non sono state salvate: %{error}'
   some_other_reason: Qualche altro motivo che puoi spiegare qui sotto.
   some_people: Alcune persone
@@ -3552,6 +3561,7 @@ it:
   status: Stato
   status_globally: '%{status} a livello Globale'
   status_in_place: '%{status} in %{place}'
+  stay_and_try_again: Rimani e prova ancora
   still_no_luck?: Ancora sfortunato?
   still_needs_id?: La comunità può confermare/migliorare ID?
   still_working_on_classifying_taxon: Stiamo ancora lavorando nella classificazione
@@ -3948,6 +3958,7 @@ it:
   totals: totali
   total_members: Totale membri
   total_observations: Totale osservazioni
+  total_species_observed: Totale specie osservate
   total_unique_observers: Totale osservatori unici
   total_users: totale utenti,
   "true": Vero
@@ -3984,6 +3995,7 @@ it:
   unique_observers: osservatori unici
   unique_observers_last_3_months: osservatori unici negli ultimi tre mesi
   unknown: Sconosciuto
+  unknown_error: Errore sconosciuto
   unknown_rank: (Rango Sconosciuto)
   unfollow: Smetti di seguire
   unlink_your_google_account: Scollega il tuo account Google
@@ -4218,6 +4230,7 @@ it:
     preferiti?
   want_to_test_a_new_version_of_this_page: Vuoi provare una nuova versione di questa
     pagina?
+  wanted: Richiesto
   was_it_captive_cultivated?: Era in cattività / coltivato?
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente
     formattazione
@@ -4316,6 +4329,7 @@ it:
   x_observations_failed:
     one: 1 osservazione fallita
     other: '%{count} osservazioni fallite'
+  x_of_y: '%{x} di %{y}'
   x_project_journal: '%{name} del progetto %{project}'
   x_project_stats: Statistiche di %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} ti ha mandato un nuovo messaggio su %{y}:'
@@ -5434,11 +5448,20 @@ it:
           Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi
           cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto"
           come valore; un campo adatto è ad esempio "Fenologia della fioritura".'
+        complete_taxon_desc: I taxa "completi" hanno elencati tutti i discendenti
+          o tutte le specie esistenti nel database del sito. Quando un taxon è completo,
+          è possibile stabilire quante specie di quel taxon sono state osservate e
+          quante ancora lo devono ancora essere. I conteggi delle specie per i taxa
+          "completi" non includono le specie "non conteggiabili" come quelle estinte
+          o i concetti di specie inattivi, e includono solo le specie, non i taxa
+          intraspecifici.
+        discoveries_desc: Le specie identificate più recentemente in questo taxon
         trending_desc: Taxa più osservati nell'ultimo mese
         trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
         rare_desc: Taxa minacciati osservati meno frequentemente
         rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in
           <a href="%{url}">%{place}</a>
+        wanted_desc: Le specie in questo taxon che non sono ancora state osservate.
         no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
           mese
         frequency:
@@ -5469,6 +5492,7 @@ it:
             <li>Cerca di aggiungere nomi già utilizzati altrove. Per favore non inventare nuovi nomi.</li>
             <li>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</li>
             <li>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</li>
+            <li>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato</li>
           </ul>
         places_help_html: Aggiungi un nome per un luogo al fine di dargli una priorità
           per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso
