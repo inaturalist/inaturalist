@@ -1,3 +1,12 @@
+<% content_for :extracss do %>
+  <style type="text/css">
+    #new_announcement textarea,
+    .edit_announcement textarea {
+      width: 100%;
+      min-height: 300px;
+    }
+  </style>
+<% end %>
 <%= form_for @announcement, :builder => DefaultFormBuilder do |f| %>
   <%= f.error_messages %>
   <%= f.select :placement, Announcement::PLACEMENTS %>
