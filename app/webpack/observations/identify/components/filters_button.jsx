@@ -73,7 +73,10 @@ class FiltersButton extends React.Component {
       const checkedVal = ( checkbox.checked || true ).toString( );
       const vals = params[checkbox.param] ? params[checkbox.param].toString( ).split( "," ) : [];
       let cssClass = "checkbox";
-      if ( params[checkbox.param] !== defaultParams[checkbox.param] ) {
+      if (
+        checkbox.param !== "quality_grade" &&
+        params[checkbox.param] !== defaultParams[checkbox.param]
+      ) {
         cssClass += " filter-changed";
       }
       let disabled = false;
@@ -185,7 +188,9 @@ class FiltersButton extends React.Component {
         <Row>
           <Col xs="12">
             <label className="sectionlabel">
-              { _.capitalize( I18n.t( "quality_grade" ) ) }
+              {
+                _.capitalize( I18n.t( "quality_grade" ) )
+              } <small className="text-muted">({ I18n.t( "select_at_least_one" ) })</small>
             </label>
           </Col>
         </Row>
