@@ -72,11 +72,9 @@ class FiltersButton extends React.Component {
     const filterCheckbox = ( checkbox ) => {
       const checkedVal = ( checkbox.checked || true ).toString( );
       const vals = params[checkbox.param] ? params[checkbox.param].toString( ).split( "," ) : [];
+      const thisValChecked = vals.indexOf( checkedVal ) >= 0;
       let cssClass = "checkbox";
-      if (
-        checkbox.param !== "quality_grade" &&
-        params[checkbox.param] !== defaultParams[checkbox.param]
-      ) {
+      if ( params[checkbox.param] !== defaultParams[checkbox.param] && thisValChecked ) {
         cssClass += " filter-changed";
       }
       let disabled = false;
@@ -91,7 +89,7 @@ class FiltersButton extends React.Component {
           <label>
             <input
               type="checkbox"
-              checked={ vals.indexOf( checkedVal ) >= 0 }
+              checked={ thisValChecked }
               disabled={ disabled }
               onChange={ ( e ) => {
                 let newVal = checkbox.unchecked;
@@ -100,7 +98,7 @@ class FiltersButton extends React.Component {
                 if ( isBlank( newVal ) ) {
                   newVals = _.filter( vals, v => v !== checkedVal );
                   updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
-                } else if ( vals.indexOf( newVal ) < 0 ) {
+                } else if ( !thisValChecked ) {
                   newVals.push( newVal );
                   updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
                 }
@@ -195,7 +193,7 @@ class FiltersButton extends React.Component {
           </Col>
         </Row>
         <Row>
-          <Col id="quality-filters" xs="12">
+          <Col className="quality-filters" xs="12">
             { filterCheckbox( {
               param: "quality_grade",
               label: "casual",
@@ -223,8 +221,8 @@ class FiltersButton extends React.Component {
             </label>
           </Col>
         </Row>
-        <Row id="show-filters">
-          <Col id="filters-left-col" xs="6">
+        <Row className="show-filters">
+          <Col className="filters-left-col" xs="6">
             { [
               { param: "wild" },
               { param: "captive" },
@@ -232,7 +230,7 @@ class FiltersButton extends React.Component {
               { param: "introduced" }
             ].map( filterCheckbox ) }
           </Col>
-          <Col id="filters-left-col" xs="6">
+          <Col className="filters-left-col" xs="6">
             { [
               { param: "popular" },
               { param: "sounds", label: "has_sounds" },
@@ -248,8 +246,7 @@ class FiltersButton extends React.Component {
                 { I18n.t( "description_slash_tags" ) }
               </label>
               <input
-                id="params-q"
-                className="form-control"
+                className="params-q form-control"
                 placeholder={ I18n.t( "blue_butterfly_etc" ) }
                 value={ params.q }
                 onChange={ ( e ) => {
@@ -263,12 +260,12 @@ class FiltersButton extends React.Component {
     );
     const mainCenterCol = (
       <Col xs="4" className="filters-center-col">
-        <Row>
+        <Row className="form-group">
           <Col xs="12">
             <label className="sectionlabel">
               { _.capitalize( I18n.t( "categories" ) ) }
             </label>
-            <div id="filters-categories" className="btn-group">
+            <div className="filters-categories btn-group">
               { [
                 { name: "Aves", label: "birds" },
                 { name: "Amphibia", label: "amphibians" },
@@ -295,11 +292,10 @@ class FiltersButton extends React.Component {
             </label>
           </Col>
         </Row>
-        <Row id="filters-ranks" className="form-group">
+        <Row className="filters-ranks form-group">
           <Col xs="6">
             <select
-              id="params-hrank"
-              className={`form-control ${params.hrank ? "filter-changed" : ""}`}
+              className={`params-hrank form-control ${params.hrank ? "filter-changed" : ""}`}
               defaultValue={params.hrank}
               onChange={ e => updateSearchParams( { hrank: e.target.value } ) }
             >
@@ -315,8 +311,7 @@ class FiltersButton extends React.Component {
           </Col>
           <Col xs="6">
             <select
-              id="params-lrank"
-              className={`form-control ${params.lrank ? "filter-changed" : ""}`}
+              className={`params-lrank form-control ${params.lrank ? "filter-changed" : ""}`}
               defaultValue={params.lrank}
               onChange={ e => updateSearchParams( { lrank: e.target.value } ) }
             >
@@ -341,9 +336,8 @@ class FiltersButton extends React.Component {
         <Row className="form-group">
           <Col xs="6">
             <select
-              id="params-order-by"
               className={
-                "form-control" +
+                "params-order-by form-control" +
                 ` ${params.order_by !== defaultParams.order_by ? "filter-changed" : ""}`
               }
               onChange={ e => updateSearchParams( { order_by: e.target.value } ) }
@@ -357,10 +351,9 @@ class FiltersButton extends React.Component {
           </Col>
           <Col xs="6">
             <select
-              id="params-order"
               defaultValue="desc"
               className={
-                "form-control" +
+                "params-order form-control" +
                 ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
               }
               onChange={ e => updateSearchParams( { order: e.target.value } ) }
@@ -377,14 +370,16 @@ class FiltersButton extends React.Component {
       </Col>
     );
     const mainRightCol = (
-      <Col xs="4" id="filters-right-col">
+      <Col xs="4" className="filters-right-col">
         <label className="sectionlabel">
           { _.capitalize( I18n.t( "date_observed" ) ) }
         </label>
-        <DateFilters params={params} updateSearchParams={updateSearchParams} />
+        <DateFilters
+          params={ params }
+          updateSearchParams={ updateSearchParams }
+        />
         <div
-          id="filters-observation-fields"
-          className={ canShowObservationFields( ) ? "" : "collapse" }
+          className={ canShowObservationFields( ) ? "filters-observation-fields" : "filters-observation-fields collapse" }
         >
           <label className="sectionlabel">
             { I18n.t( "observation_fields" ) }
@@ -438,8 +433,12 @@ class FiltersButton extends React.Component {
         <label className="sectionlabel">
           { I18n.t( "reviewed" ) }
         </label>
-        <div className={`form-group ${params.reviewed ? "filter-changed" : ""}`}>
-          <label className="radio-inline">
+        <div className="form-group">
+          <label
+            className={
+              `radio-inline ${params.reviewed === undefined || params.reviewed === null || params.reviewed === "any" ? "filter-changed" : ""}`
+            }
+          >
             <input
               type="radio"
               name="reviewed"
@@ -450,7 +449,9 @@ class FiltersButton extends React.Component {
             />
             { I18n.t( "any" ).toLowerCase( ) }
           </label>
-          <label className="radio-inline">
+          <label
+            className={ `radio-inline ${params.reviewed === true ? "filter-changed" : ""}` }
+          >
             <input
               type="radio"
               name="reviewed"
@@ -648,7 +649,11 @@ class FiltersButton extends React.Component {
         <label className="sectionlabel">
           { _.capitalize( I18n.t( "date_added" ) ) }
         </label>
-        <DateFilters params={params} updateSearchParams={updateSearchParams} prefix="created" />
+        <DateFilters
+          params={ params }
+          updateSearchParams={ updateSearchParams }
+          prefix="created"
+        />
       </Col>
     );
     const moreFilters = (
@@ -662,14 +667,13 @@ class FiltersButton extends React.Component {
     );
     const popover = (
       <Grid className="FiltersButtonContainer">
-        <div id="filters-body">
+        <div className="filters-body">
           { mainFilters }
           <Row>
             <Col xs="12">
               <Button
-                id="filters-more-btn"
                 bsStyle="link"
-                className={this.state.moreFiltersHidden ? "collapsed" : ""}
+                className={ `filters-more-btn ${this.state.moreFiltersHidden ? "collapsed" : ""}` }
                 onClick={ ( ) => {
                   this.setState( { moreFiltersHidden: !this.state.moreFiltersHidden } );
                 }}
@@ -683,7 +687,7 @@ class FiltersButton extends React.Component {
             </Col>
           </Row>
         </div>
-        <Row id="filters-footer" className="FiltersButtonFooter">
+        <Row className="filters-footer FiltersButtonFooter">
           <Col xs="12">
             <Button bsStyle="primary" onClick={ () => closeFilters( ) }>
               { _.capitalize( I18n.t( "update_search" ) ) }
@@ -691,7 +695,7 @@ class FiltersButton extends React.Component {
             <Button onClick={ ( ) => resetParams( ) }>
               { _.capitalize( I18n.t( "reset_search_filters" ) ) }
             </Button>
-            <div id="feeds" className="feeds pull-right">
+            <div className="feeds" className="feeds pull-right">
               <a
                 className="btn btn-link" href={`/observations.atom?${paramsForUrl( )}`}
                 target="_self"
@@ -741,7 +745,7 @@ class FiltersButton extends React.Component {
           target={ ( ) => ReactDOM.findDOMNode( this.refs.target ) }
         >
           <Popover
-            id="FiltersButtonPopover"
+            className="FiltersButtonPopover"
             className="FiltersButtonPopover"
             placement="bottom"
           >
