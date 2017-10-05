@@ -28,7 +28,7 @@ module DarwinCore
       @taxon = if @opts[:taxon].is_a?(::Taxon)
         @opts[:taxon]
       else
-        ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.find_by_name(@opts[:taxon])
+        ::Taxon.find_by_id(@opts[:taxon].to_i) || ::Taxon.active.find_by_name(@opts[:taxon])
       end
       logger.debug "Found taxon: #{@taxon}"
       @project = if @opts[:project].is_a?(::Project)
