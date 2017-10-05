@@ -1380,6 +1380,7 @@ zh-TW:
   help_out!: 幫個忙！
   helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前；他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
+  here_are_our_top_species_suggestions: 這是我們熱門的物種建議
   here_are_some_things_you_can_do_meantime: 此期間有一些事情可讓您來做：
   heres_a_litle_about: 這裡有一些關於
   hex_color_eg: 16 進位色彩碼，例如：65644F
@@ -1416,10 +1417,12 @@ zh-TW:
   identify_observations: 鑑定觀察
   identify_title: 鑑定
   identification: 鑑定
+  identification_by_user: 由 %{user} 做的鑑定
   identification_deleted: 鑑定已刪除
   identification_saved: 鑑定已儲存！
   identification_summary: 鑑定摘要
   identification_updated: 鑑定已更新！
+  identification_user_short: 識別用戶
   identification_withdrawn: 鑑定撤回
   identifications: 鑑定
   identifications_by: 由 %{user} 做的鑑定
@@ -1714,6 +1717,7 @@ zh-TW:
   loading_more_photos: 正在載入更多照片…
   loading_observations: 正在載入觀察…
   loading_preview_and_code: 正在載入預覽和代碼…
+  loading_suggestions: 正在載入建議…
   loading_tags: 正在載入標籤…
   loading_taxa_from_your: 正在自您的觀察載入物種分類群…
   loading_wikipedia_description: 正在載入維基百科描述…
@@ -2870,10 +2874,11 @@ zh-TW:
   see_something_wrong_with_taxon: 在此物種分類發現到問題了嗎？請讓策展人知悉。
   seen_it?: 看到它了嗎？
   seen_nearby: 已看過附近
-  seen_one: 看到一個了嗎？
+  seen_one: 看到一個了嗎？]
+  select: 選擇
   select_all: 選擇全部
   select_an_album: 選擇一個相簿
-  select: 選擇
+  select_at_least_one: 選擇至少一個
   select_how_unobserved_listings_are_displayed: 選擇從專案列表裡的未觀察列表要如何顯示方式
   select_one_or_more_photos: 選擇一張或更多照片
   select_none: 都不選擇
@@ -3613,6 +3618,7 @@ zh-TW:
   welcome_to_guides: 歡迎來到 %{site_name} 指南！
   welcome_to_x_project: 歡迎來到%{project}
   were_currently_down_for: 我們目前停止系統因為
+  were_pretty_sure_this_is_in_the_rank: 我們認為應是在 %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: 很抱歉，您的%{filename}大量匯入失敗。
   what: 什麼
   what_color_was_it: 它的顏色是什麼
@@ -4064,6 +4070,7 @@ zh-TW:
       export:
         choose_columns_desc: 選擇您所想要匯出的欄位
         create_a_query_desc_html: 創建一份觀察查詢；就像您會前往到網站的某處。您可剪貼來自於其它網站裡的觀察 URL。您必須指明出<strong>物種分類</strong>、<strong>地點</strong>、<strong>用戶</strong>、<strong>專案</strong>，或是<strong>搜尋查詢</strong>。
+        ident_by_user_desc_html: 目前由 %{user} 所做鑑定的欄位
         query_placeholder: 挑選以下查詢參數或貼在一個觀察 URL 上
         taxon_extras_help_html: 附註：這些欄位將會減緩您匯出所產生的內容
         geo_help_html: 鎮、郡、州、國家欄位基於座標。類似行政層級將會使用在地點類型不適用上述的觀察。「私有_*」之類的欄位僅在當使用到用戶過濾並且您是該用戶、或是使用專案過濾並且您策展該專案時才會包含到。
