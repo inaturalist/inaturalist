@@ -6,11 +6,11 @@
       %li.active= @record.name
     .col-md-4
       .meta.small.stacked{:style => "text-transform: uppercase;"}= t(:logo_square)
-      = image_tag @record.logo_square.url
+      = image_tag @record.logo_square.url, class: "img-responsive stacked"
       .meta.small.stacked{:style => "text-transform: uppercase;"}= t('logo.logo')
-      = image_tag @record.logo.url
+      = image_tag @record.logo.url, class: "img-responsive stacked"
       .meta.small.stacked{:style => "text-transform: uppercase;"}= t(:logo_email_banner)
-      = image_tag @record.logo_email_banner.url, :class => 'img-responsive'
+      = image_tag @record.logo_email_banner.url, class: "img-responsive"
     .col-md-8
       %h2= @record.name
       = link_to t(:edit), edit_site_path(@record), :class => "btn btn-default"
