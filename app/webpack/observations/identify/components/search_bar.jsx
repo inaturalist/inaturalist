@@ -39,6 +39,7 @@ class SearchBar extends React.Component {
       allReviewed,
       allControlledTerms
     } = this.props;
+    const taxonId = params.taxon_id;
     return (
       <form className="SearchBar form-inline">
         <TaxonAutocomplete
@@ -50,7 +51,9 @@ class SearchBar extends React.Component {
             updateSearchParams( { taxon_id: result.item.id } );
           } }
           afterUnselect={ function ( ) {
-            updateSearchParams( { taxon_id: null } );
+            if ( taxonId ) {
+              updateSearchParams( { taxon_id: null } );
+            }
           } }
         />
         <span className="form-group">
