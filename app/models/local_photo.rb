@@ -5,13 +5,13 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.rotation.blank? ? "-auto-orient -strip" : "-strip"
+    record.rotation.blank? ? "-auto-orient" : nil
   }
   
   file_options = {
     preserve_files: true,
     styles: {
-      original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator ] },
+      original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator, :metadata_filter ] },
       large:    { geometry: "1024x1024>", auto_orient: false },
       medium:   { geometry: "500x500>",   auto_orient: false },
       small:    { geometry: "240x240>",   auto_orient: false, processors: [ :deanimator ] },

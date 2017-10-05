@@ -1,7 +1,7 @@
 .container
   .row
     .col-xs-12
-      %h1= t :listing_announcements
+      %h1= t :announcements
       %table.table
         %thead
           %tr
@@ -13,9 +13,9 @@
           - @announcements.each do |announcement|
             %tr
               %td= h announcement.placement
-              %td= h announcement.start
-              %td= h announcement.end
-              %td= h announcement.body
+              %td.nobr= h announcement.start
+              %td.nobr= h announcement.end
+              %td=raw announcement.body
               %td= link_to t(:show), announcement
               %td= link_to t(:edit), edit_announcement_path(announcement)
               %td= link_to t(:destroy), announcement, :data => {:confirm => t(:are_you_sure?)}, :method => :delete
