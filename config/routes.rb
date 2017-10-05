@@ -113,7 +113,7 @@ Rails.application.routes.draw do
     get "logout", :to => "users/sessions#destroy"
     post "session", :to => "users/sessions#create"
     get "signup", :to => "users/registrations#new"
-    get "users/new", :to => "users/registrations#new", :as => "new_user"
+    get "users/new", to: redirect( "signup" ), as: "new_user"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
     put "users/update_session", :to => "users#update_session"
   end

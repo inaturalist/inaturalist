@@ -28,7 +28,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
             if session[:return_to_for_new_user]
               redirect_to session[:return_to_for_new_user]
             else
-              redirect_to home_path
+              redirect_to home_path( new_user: true )
             end
           end
           format.json do
