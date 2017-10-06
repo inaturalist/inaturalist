@@ -466,6 +466,28 @@ describe Observation do
       expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 0
     end
 
+    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
+      expect(o.coordinates_obscured?).to be true
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
+    end
+
+    it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
+      lat, lon = [ 1.1, 2.2 ]
+      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
+        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
+    end
+
+    it "should set public accuracy to accuracy" do
+      expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
+    end
+
+    it "should set public accuracy to nil if accuracy is nil" do
+      expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
+    end
+
   end
 
   describe "updating" do
@@ -3008,28 +3030,6 @@ describe Observation do
       expect(o.mappable?).to be false
     end
 
-    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
-      expect(o.coordinates_obscured?).to be true
-      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
-    end
-
-    it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
-      lat, lon = [ 1.1, 2.2 ]
-      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
-        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
-      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
-    end
-
-    it "should set public accuracy to accuracy" do
-      expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
-    end
-
-    it "should set public accuracy to nil if accuracy is nil" do
-      expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
-    end
-
     it "should be mappable for obscured" do
       o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
       expect( o ).to be_mappable
@@ -3061,6 +3061,17 @@ describe Observation do
       Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
       o.reload
       expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if community disagrees with taxon" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      u = User.make!( prefers_community_taxa: false )
+      o = make_research_grade_observation( user: u )
+      5.times { Identification.make!( observation: o, taxon: t ) }
+      o.reload
+      expect( o.taxon ).not_to eq t
+      expect( o.community_taxon ).to eq t
+      expect( o.mappable? ).to be false
     end
 
   end
