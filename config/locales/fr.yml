@@ -1664,6 +1664,8 @@ fr:
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales
     (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
+  here_are_our_top_species_suggestions: Voici les suggestions concernant nos espèces
+    favorites
   here_are_some_things_you_can_do_meantime: Voici certaines choses que vous pouvez
     faire pendant ce temps
   heres_a_litle_about: Voici un petit sujet
@@ -1711,6 +1713,7 @@ fr:
   identification_saved: Identification enregistrée!
   identification_summary: Résumé de l’identification
   identification_updated: Identification mise à jour!
+  identification_user_short: Identifiant. utilisateur
   identification_withdrawn: Identification retirée.
   identifications: Identifications
   identifications_by: Identifications de %{user}
@@ -4386,6 +4389,8 @@ fr:
   welcome_to_guides: Bienvenue aux guides d’%{site_name}!
   welcome_to_x_project: Bienvenue sur %{project}
   were_currently_down_for: Nous sommes fermés pour l’instant pour
+  were_pretty_sure_this_is_in_the_rank: Nous sommes quasiment sûrs qu'il se trouve
+    dans les %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: Nous sommes désolés, mais
     votre importation en vrac de %{filename} a échoué.
   what: Quoi
@@ -5127,6 +5132,7 @@ fr:
           URL d’observation à partir d’un autre\nendroit du site. Vous devez spécifier
           un\n<strong>taxon</strong>, un <strong>lieu</strong>, un <strong>utilisateur</strong>,
           \nun <strong>projet</strong> ou une <strong>requête de recherche</strong>."
+        ident_by_user_desc_html: Colonnes pour l'identification actuelle par %{user}
         query_placeholder: Choisissez les paramètres de requête ci-dessous ou coller
           une URL d’observations
         taxon_extras_help_html: 'Remarque : ces colonnes ralentiront la génération
