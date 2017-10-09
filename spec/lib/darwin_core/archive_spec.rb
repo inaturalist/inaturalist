@@ -92,6 +92,15 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
     end
   end
 
+  it "should include CC0-licensed photos by default" do
+    without_delay { p.update_attributes( license: Photo::CC0 ) }
+    expect( p.license ).to eq Photo::CC0
+    expect( Photo.count ).to eq 1
+    archive = DarwinCore::Archive.new(extensions: %w(SimpleMultimedia))
+    csv = CSV.read(archive.make_simple_multimedia_data)
+    expect( csv.size ).to eq 2 # including the header
+  end
+
   it "should not include unlicensed photos by default" do
     expect( p.license ).not_to eq Photo::COPYRIGHT
     without_delay { p.update_attributes( license: Photo::COPYRIGHT ) }

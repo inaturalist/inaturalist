@@ -61,7 +61,7 @@ EOS
   opt :photo_licenses, "
     Photo licenses. Set to 'ignore' to include unlicensed observations, 'any'
     to include all licensed observations.
-  ".strip.gsub( /\s+/m, " " ), type: :strings, default: ["CC-BY", "CC-BY-NC", "CC-BY-SA", "CC-BY-ND", "CC-BY-NC-SA", "CC-BY-NC-ND"]
+  ".strip.gsub( /\s+/m, " " ), type: :strings
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
