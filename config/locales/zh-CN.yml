@@ -7,6 +7,7 @@
 # Author: Jiang123aa
 # Author: Jiangche
 # Author: Liuxinyu970226
+# Author: NeverBehave
 # Author: Peishanxu
 # Author: Shizhao
 # Author: Yfdyh000
@@ -2035,7 +2036,7 @@ zh-CN:
   other_annimals: 其他动物
   our_blog: 我们的博客
   out_of_range: 超出范围
-  owner: 所有人
+  owner: 所有者
   parent: 父
   parent_name: 父名称
   password: 密码
@@ -2566,7 +2567,7 @@ zh-CN:
   small: 小
   so_meta!: 所以元！
   some_agree: 部分同意
-  some_observations_failed_to_be_added: 添加一些观察到项目失败
+  some_observations_failed_to_be_added: 一些观察无法添加到项目中
   some_observations_failed_to_save: 部分观察保存失败
   some_other_reason: 您可以在下方说明其他一些原因。
   some_people: 有些人
@@ -3037,6 +3038,7 @@ zh-CN:
   welcome_to_guides: 欢迎来到%{site_name}指南！
   welcome_to_x_project: 欢迎来到 %{project}
   were_currently_down_for: 我们目前已停机，因为
+  were_pretty_sure_this_is_in_the_rank: 我们很确定这个的排名是在%{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: 我们很抱歉，但您的 %{filename} 的大量导入工作已失败。
   what: 什么
   what_color_was_it: 它的颜色是什么？
@@ -3373,6 +3375,7 @@ zh-CN:
         when things are not wild / naturalized.
       export:
         choose_columns_desc: 选择您想要导出的列
+        ident_by_user_desc_html: 用于当前由%{user}做出鉴定的列
         be_patient: 请耐心等待，这可能需要几分钟时间。如果耗时过长，您可以
         check_back: 如果您在几分钟内重新加载此页面，您的输出应出现在页面下方的列表中。
         well_email_you: 好的，我们会在它就绪时给您发邮件。
@@ -3557,6 +3560,16 @@ zh-CN:
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     taxa:
       show:
+        about_names_desc: |-
+          <p>
+          大多数类型的生物在口语中都有“常见名称”。这些名字通常是可识别的，容易发音，并且随着时间的推移而变得稳定，但即使是在同一个语言中，许多生物在不同的地方会有几个不同名字，这给讨论这些生物体而不混淆带来了困难。对于符合<a href="https://zh.wikipedia.org/wiki/二名法">生物命名规则</a>的每一类生物 ，科学家通过使用单一的“科学名称”处理这个问题，但这些名字往往是以拉丁语（一种没人说的语言）为基础的，所以他们不像许多人用的常见名字那么好记。科学名称同时也会反映生物的分类，所以当科学家研究出不同的生物体之间更准确的进化理论的时候，这些名字会改变，并降低了名字在交流中的可用性，甚至在那些科学名称的人之间也是如此。
+          </p>
+          <p>
+          一句老格言总结：“常见名字随地方改变而改变，科学名称随时间改变而改变。”
+          </p>
+          <p>
+          我们试图通过在任何地方通过同时展示常见名字和科学名字来解决这些缺点，并基于观众的语言和地理偏好来选择性展示常见名称。
+          </p>
         discoveries_desc: 此分类单元中最新被鉴定的物种
         frequency:
           research: 研究指导
