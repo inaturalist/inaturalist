@@ -45,7 +45,6 @@ class Identification < ActiveRecord::Base
   end
 
   def as_indexed_json(options={})
-    created = created_at.in_time_zone((observation && observation.timezone_object) || "UTC")
     json = {
       id: id,
       uuid: uuid,

@@ -1,8 +1,5 @@
 # Inaturalist::Application.routes.draw do
 Rails.application.routes.draw do
-  resources :guide_users
-
-
   apipie
 
   resources :sites
@@ -21,6 +18,10 @@ Rails.application.routes.draw do
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
   resources :annotations
+
+  resources :user_blocks, only: [:create, :destroy]
+  resources :user_mutes, only: [:create, :destroy]
+  resources :guide_users
 
   resources :guide_sections do
     collection do

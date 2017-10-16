@@ -540,6 +540,8 @@ en:
   bioblitz: Bioblitz
   birds: birds
   black: black
+  block_user: Block User
+  block_removed: Block removed
   blog_widget: Blog widget
   blue: blue
   blue_butterfly_etc: "blue, butterfly, etc."
@@ -1934,6 +1936,8 @@ en:
   must_be_less_than_x_MB: "Must be less than %{x} MB"
   must_have_observation_field: "must have observation field '%{operand}' filled out"
   must_have_x: "must have %{x}"
+  mute_user: Mute User
+  mute_removed: Mute removed
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -3510,6 +3514,7 @@ en:
   type_taxon_name_and_click_lookup: "Type taxon name and click lookup"
   uicn_red_list_status: "IUCN Red List status:"
   un_license_this_observation: un-license this observation
+  unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
   uninvite: uninvite
@@ -3521,6 +3526,7 @@ en:
   unknown_rank: '(Unknown Rank)'
   unfollow: Unfollow
   unlink_your_google_account: Unlink Your Google Account
+  unmute: Unmute
   unobserved_listings: Unobserved Listings
   updates_notification_email_subject: "%{prefix} New updates %{date}"
   updates_suspension_email_subject: "%{prefix} Your subscriptions are on hold"
@@ -3593,16 +3599,18 @@ en:
     double-quotes. Most spreadsheet applications should export CSV in this
     format.
   user: User
-  user_added_an_observation_html: "%{user} added an observation"
   user_added_a_x: "%{user} added a %{x}"
-  user_added_an_x: "%{user} added an %{x}"
-  user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
-  user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
-  user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
+  user_added_a_x_to_noun_html: "%{user} added a %{x} to %{noun}"
+  user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
+  user_added_an_observation_html: "%{user} added an observation"
+  user_added_an_x: "%{user} added an %{x}"
+  user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
+  user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
-  user_commented_on: "%{user} commented on your %{title} %{time}"
+  user_blocked: User blocked
   user_commented: "%{user} commented"
+  user_commented_on: "%{user} commented on your %{title} %{time}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
@@ -3610,14 +3618,13 @@ en:
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"
   user_hasnt:  "%{user} hasnt"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
-  user_invited_you_to_join_project: "%{user} invited you to join %{project}"
   user_invited_you_to_join_html: "%{user} invited you to join"
-  user_invited_you_to_join_this_project_on_date_html: |
-    %{user} invited you to join this project on %{date}
+  user_invited_you_to_join_project: "%{user} invited you to join %{project}"
+  user_invited_you_to_join_this_project_on_date_html: "%{user} invited you to join this project on %{date}"
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
-  user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
-  user_added_an_observation_field_html: '%{user} added a value for "%{field_name}" to an observation by %{owner}'
   user_is_a_naturalist: "%{user} is a naturalist!"
+  user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
+  user_muted: User muted
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user} Lists"
@@ -3627,12 +3634,11 @@ en:
   username_or_email: Username or email
   username_or_user_id: Username or user ID
   users: Users
-  users_contributions_to_project_html: |
-    <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
+  users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
   users_id: "%{user}'s ID"
   users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
   users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
-  users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
@@ -3880,6 +3886,7 @@ en:
     admin, but there shouldn't really be a need to do so.
   you_can_help_make_our: You can help make our species pages more useful by adding data!  Here are a couple ways you can help
   you_can_only_destroy_taxa_you_created: "You can only destroy taxa you created, and you cannot destroy taxa that are being used in taxon changes."
+  you_can_only_block_three_users: You can only block three users
   you_can_see_these_coordinates_because: You can see these coordinates because you curate one of the projects to which this observation has been added.
   you_can_show_the_boundary_of: You can show the boundary of the place on your project page if the place has a boundary.
   you_can_sign_free_at: "You can sign up for a free %{site_name} account at"
@@ -4943,6 +4950,12 @@ en:
         Receive updates about this project on your dashboard and in the daily
         updates email.
     shared:
+      blocked:
+        youve_been_blocked: You've Been Blocked
+        youve_been_blocked_desc: |
+          The owner of this resource has blocked you, which prevents you from
+          communicating with them. Most interactive features on this page will
+          not work.
       spam:
         message_for_owner_and_curators_html: |
           This record has been flagged as spam and is no longer publicly
@@ -5105,6 +5118,35 @@ en:
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.
       edit:
+        blocking_desc_html: |
+          <p>
+            Blocking someone prevents them from messaging you, commenting on your
+            observations, identifying your observations, and otherwise interacting
+            with you on %{site_name}. It also removes their observations from your
+            search results and removes your observations from their search
+            results. However, it does not make you invisible to them. They can
+            still find your observations and view your profile, they just can't
+            interact with you.
+          </p>
+          <p>
+            Blocking is for situations where you just can't get along with
+            someone and they won't leave you alone, despite your best efforts to
+            settle disputes in a civilized manner. It is not a way to hide from
+            people, to prevent identifications from people whose opinions you
+            don't trust, or to opt out of the community ID (there's another
+            settings for that). Thus, blocking works both ways: if you block
+            someone, they can't interact with you, but you also can't interact
+            with them. If you misuse it to prevent someone from identifying your
+            observations, you also prevent yourself from identifying their
+            observations.
+          </p>
+          <p>
+            If someone is harassing or stalking you on %{site_name},
+            <a href="mailto:%{help_email}">please let us know</a>. If
+            this represents a violation of our Terms of Service or represents
+            other behavior we deem inappropriate for our site, we will
+            investigate.
+          </p>
         inaturalist_network_affiliation_desc_html: |
           The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
           collection of localized websites connected to the global iNaturalist
@@ -5114,6 +5156,18 @@ en:
           view all your data just like the iNaturalist site admins can. If
           that site leaves the network, all your account and data will go with
           that site.
+        muting_desc_html: |
+          <p>
+            Muting someone prevents you from receiving notifications about things
+            they do, including commenting on your observations, messaging you,
+            mentioning you, etc. Muting helps you ignore someone without
+            preventing them from doing anything.
+          </p>
+          <p>
+            You can mute as many people as you want, but keep in mind that
+            you'll be missing out on potentially important notifications, like
+            identifications that shift the Community ID on your observations.
+          </p>
         project_addition_preferences:
           any: Any
           joined: Projects you've joined
@@ -5149,6 +5203,7 @@ en:
           community opinion won't be favored over yours. This means your
           observations will not be eligible for research grade unless you
           agree with the community.
+        youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended

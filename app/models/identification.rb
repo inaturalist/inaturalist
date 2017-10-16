@@ -5,6 +5,7 @@ class Identification < ActiveRecord::Base
                     comment_type: "item-description",
                     automated: false
 
+  blockable_by lambda {|identification| identification.observation.try(:user_id) }
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon

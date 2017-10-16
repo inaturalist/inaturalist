@@ -18,6 +18,7 @@ class Comment < ActiveRecord::Base
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
   notifies_users :mentioned_users, on: :save, notification: "mention"
   auto_subscribes :user, to: :parent
+  blockable_by lambda {|comment| comment.parent.try(:user_id) }
 
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
   scope :for_observer, lambda {|user| 

@@ -125,6 +125,10 @@ class User < ActiveRecord::Base
   has_many :created_guide_sections, :class_name => "GuideSection", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
   has_many :updated_guide_sections, :class_name => "GuideSection", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
   has_many :atlases, :inverse_of => :user, :dependent => :nullify
+  has_many :user_blocks, inverse_of: :user, dependent: :destroy
+  has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
+  has_many :user_mutes, inverse_of: :user, dependent: :destroy
+  has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -815,6 +819,10 @@ class User < ActiveRecord::Base
       inverse_filters: options[:inverse_filters],
       per_page: options[:per_page],
       sort: { id: :desc })
+  end
+
+  def blocked_by?( user )
+    user_blocks_as_blocked_user.where( user_id: user ).exists?
   end
 
   def self.default_json_options

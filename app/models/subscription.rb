@@ -3,6 +3,8 @@ class Subscription < ActiveRecord::Base
   belongs_to :user
   belongs_to :taxon # in case this subscription has taxonomic specifity
 
+  blockable_by lambda {|subscription| subscription.resource.try(:user_id) }
+
   after_save :clear_caches
   after_destroy :clear_caches
   

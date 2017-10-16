@@ -54,6 +54,8 @@ I18n.translations["ar"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -122,6 +124,8 @@ I18n.translations["az"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -793,6 +797,8 @@ I18n.translations["bg"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Това е маркирано като спам"
       }
@@ -1348,6 +1354,8 @@ I18n.translations["br"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -1452,6 +1460,8 @@ I18n.translations["bs"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2587,6 +2597,8 @@ I18n.translations["ca"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Això ha estat marcat com brossa"
       }
@@ -2776,6 +2788,8 @@ I18n.translations["cs"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2844,6 +2858,8 @@ I18n.translations["da"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2912,6 +2928,8 @@ I18n.translations["de"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -2980,6 +2998,8 @@ I18n.translations["el"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -4132,6 +4152,10 @@ I18n.translations["en"] = {
       }
     },
     "shared": {
+      "blocked": {
+        "youve_been_blocked": "You've Been Blocked",
+        "youve_been_blocked_desc": "The owner of this resource has blocked you, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n"
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "This has been flagged as spam"
       }
@@ -4327,6 +4351,8 @@ I18n.translations["en-GB"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -4425,6 +4451,8 @@ I18n.translations["en-US"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -5585,6 +5613,8 @@ I18n.translations["es"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto se marcó como spam"
       }
@@ -6520,6 +6550,8 @@ I18n.translations["es-MX"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto ha sido marcado con una advertencia como spam"
       }
@@ -6641,6 +6673,8 @@ I18n.translations["et"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -7399,6 +7433,8 @@ I18n.translations["eu"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -7497,6 +7533,8 @@ I18n.translations["fa"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -8053,6 +8091,8 @@ I18n.translations["fi"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -9256,6 +9296,8 @@ I18n.translations["fr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Signalé comme pourriel"
       }
@@ -10042,6 +10084,8 @@ I18n.translations["gl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10132,6 +10176,8 @@ I18n.translations["he"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10200,6 +10246,8 @@ I18n.translations["hr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -10268,6 +10316,8 @@ I18n.translations["hu"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -11093,6 +11143,8 @@ I18n.translations["id"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Ini telah menjadi ditandai sebagai spam"
       }
@@ -11208,6 +11260,8 @@ I18n.translations["is"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -12354,6 +12408,8 @@ I18n.translations["it"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Questo è stato contrassegnato come spam"
       }
@@ -12551,6 +12607,8 @@ I18n.translations["iw"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -13440,6 +13498,8 @@ I18n.translations["ja"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "スパムとしてフラグ付けられました"
       }
@@ -14172,6 +14232,8 @@ I18n.translations["ko"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14256,6 +14318,8 @@ I18n.translations["lexicons"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14324,6 +14388,8 @@ I18n.translations["lt"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14392,6 +14458,8 @@ I18n.translations["lv"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -14988,6 +15056,8 @@ I18n.translations["mk"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15085,6 +15155,8 @@ I18n.translations["my"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15153,6 +15225,8 @@ I18n.translations["nb"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15221,6 +15295,8 @@ I18n.translations["nl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15289,6 +15365,8 @@ I18n.translations["no"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -15911,6 +15989,8 @@ I18n.translations["oc"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -16016,6 +16096,8 @@ I18n.translations["pl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -16084,6 +16166,8 @@ I18n.translations["pt"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17215,6 +17299,8 @@ I18n.translations["pt-BR"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "Sinalizado como SPAM"
       }
@@ -17403,6 +17489,8 @@ I18n.translations["ro"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17471,6 +17559,8 @@ I18n.translations["ru"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17539,6 +17629,8 @@ I18n.translations["sk"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17607,6 +17699,8 @@ I18n.translations["sl"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17675,6 +17769,8 @@ I18n.translations["sr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17743,6 +17839,8 @@ I18n.translations["sr-RS"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17811,6 +17909,8 @@ I18n.translations["sv"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17879,6 +17979,8 @@ I18n.translations["th"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -17947,6 +18049,8 @@ I18n.translations["tr"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -18015,6 +18119,8 @@ I18n.translations["uk"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -18083,6 +18189,8 @@ I18n.translations["vi"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -19121,6 +19229,8 @@ I18n.translations["zh-CN"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "这已经被标记为垃圾信息"
       }
@@ -19290,6 +19400,8 @@ I18n.translations["zh-HK"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
       }
     },
@@ -20436,6 +20548,8 @@ I18n.translations["zh-TW"] = {
       }
     },
     "shared": {
+      "blocked": {
+      },
       "spam": {
         "this_has_been_flagged_as_spam": "此已被標記為垃圾訊息"
       }

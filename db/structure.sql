@@ -2,11 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -4378,6 +4379,70 @@ ALTER SEQUENCE update_subscribers_id_seq OWNED BY update_subscribers.id;
 
 
 --
+-- Name: user_blocks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_blocks (
+    id integer NOT NULL,
+    user_id integer,
+    blocked_user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_blocks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_blocks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_blocks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_blocks_id_seq OWNED BY user_blocks.id;
+
+
+--
+-- Name: user_mutes; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE user_mutes (
+    id integer NOT NULL,
+    user_id integer,
+    muted_user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: user_mutes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE user_mutes_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_mutes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE user_mutes_id_seq OWNED BY user_mutes.id;
+
+
+--
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4593,770 +4658,784 @@ ALTER SEQUENCE wiki_pages_id_seq OWNED BY wiki_pages.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: annotations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY annotations ALTER COLUMN id SET DEFAULT nextval('annotations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: announcements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY announcements ALTER COLUMN id SET DEFAULT nextval('announcements_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: api_endpoint_caches id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY api_endpoint_caches ALTER COLUMN id SET DEFAULT nextval('api_endpoint_caches_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: api_endpoints id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY api_endpoints ALTER COLUMN id SET DEFAULT nextval('api_endpoints_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assessment_sections id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessment_sections ALTER COLUMN id SET DEFAULT nextval('assessment_sections_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: atlas_alterations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY atlas_alterations ALTER COLUMN id SET DEFAULT nextval('atlas_alterations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: atlases id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY atlases ALTER COLUMN id SET DEFAULT nextval('atlases_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: colors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY colors ALTER COLUMN id SET DEFAULT nextval('colors_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: complete_sets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY complete_sets ALTER COLUMN id SET DEFAULT nextval('complete_sets_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: computer_vision_demo_uploads id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY computer_vision_demo_uploads ALTER COLUMN id SET DEFAULT nextval('computer_vision_demo_uploads_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: conservation_statuses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conservation_statuses ALTER COLUMN id SET DEFAULT nextval('conservation_statuses_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: controlled_term_labels id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_term_labels ALTER COLUMN id SET DEFAULT nextval('controlled_term_labels_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: controlled_term_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_term_taxa ALTER COLUMN id SET DEFAULT nextval('controlled_term_taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: controlled_term_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_term_values ALTER COLUMN id SET DEFAULT nextval('controlled_term_values_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: controlled_terms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_terms ALTER COLUMN id SET DEFAULT nextval('controlled_terms_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: counties_simplified_01 id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY counties_simplified_01 ALTER COLUMN id SET DEFAULT nextval('counties_simplified_01_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: countries_simplified_1 id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY countries_simplified_1 ALTER COLUMN id SET DEFAULT nextval('countries_simplified_1_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: custom_projects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY custom_projects ALTER COLUMN id SET DEFAULT nextval('custom_projects_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: delayed_jobs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY delayed_jobs ALTER COLUMN id SET DEFAULT nextval('delayed_jobs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: deleted_observations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deleted_observations ALTER COLUMN id SET DEFAULT nextval('deleted_observations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: deleted_photos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deleted_photos ALTER COLUMN id SET DEFAULT nextval('deleted_photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: deleted_users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deleted_users ALTER COLUMN id SET DEFAULT nextval('deleted_users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: exploded_atlas_places id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('exploded_atlas_places_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: flags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flags ALTER COLUMN id SET DEFAULT nextval('flags_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: flickr_identities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flickr_identities ALTER COLUMN id SET DEFAULT nextval('flickr_identities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: flow_task_resources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flow_task_resources ALTER COLUMN id SET DEFAULT nextval('flow_task_resources_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: flow_tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flow_tasks ALTER COLUMN id SET DEFAULT nextval('flow_tasks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: friendly_id_slugs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY friendly_id_slugs ALTER COLUMN id SET DEFAULT nextval('friendly_id_slugs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: friendships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY friendships ALTER COLUMN id SET DEFAULT nextval('friendships_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: goal_contributions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goal_contributions ALTER COLUMN id SET DEFAULT nextval('goal_contributions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: goal_participants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goal_participants ALTER COLUMN id SET DEFAULT nextval('goal_participants_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: goal_rules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goal_rules ALTER COLUMN id SET DEFAULT nextval('goal_rules_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: goals id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goals ALTER COLUMN id SET DEFAULT nextval('goals_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: guide_photos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_photos ALTER COLUMN id SET DEFAULT nextval('guide_photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: guide_ranges id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_ranges ALTER COLUMN id SET DEFAULT nextval('guide_ranges_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: guide_sections id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_sections ALTER COLUMN id SET DEFAULT nextval('guide_sections_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: guide_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_taxa ALTER COLUMN id SET DEFAULT nextval('guide_taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: guide_users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_users ALTER COLUMN id SET DEFAULT nextval('guide_users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: guides id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guides ALTER COLUMN id SET DEFAULT nextval('guides_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: identifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY identifications ALTER COLUMN id SET DEFAULT nextval('identifications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: invites id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY invites ALTER COLUMN id SET DEFAULT nextval('invites_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: list_rules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY list_rules ALTER COLUMN id SET DEFAULT nextval('list_rules_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: listed_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY listed_taxa ALTER COLUMN id SET DEFAULT nextval('listed_taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: listed_taxon_alterations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY listed_taxon_alterations ALTER COLUMN id SET DEFAULT nextval('listed_taxon_alterations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: lists id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lists ALTER COLUMN id SET DEFAULT nextval('lists_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: messages id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY messages ALTER COLUMN id SET DEFAULT nextval('messages_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: model_attribute_changes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY model_attribute_changes ALTER COLUMN id SET DEFAULT nextval('model_attribute_changes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: oauth_access_grants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oauth_access_grants ALTER COLUMN id SET DEFAULT nextval('oauth_access_grants_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: oauth_access_tokens id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oauth_access_tokens ALTER COLUMN id SET DEFAULT nextval('oauth_access_tokens_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: oauth_applications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oauth_applications ALTER COLUMN id SET DEFAULT nextval('oauth_applications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observation_field_values id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_field_values ALTER COLUMN id SET DEFAULT nextval('observation_field_values_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observation_fields id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_fields ALTER COLUMN id SET DEFAULT nextval('observation_fields_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observation_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_links ALTER COLUMN id SET DEFAULT nextval('observation_links_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observation_photos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_photos ALTER COLUMN id SET DEFAULT nextval('observation_photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observation_reviews id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_reviews ALTER COLUMN id SET DEFAULT nextval('observation_reviews_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observation_sounds id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_sounds ALTER COLUMN id SET DEFAULT nextval('observation_sounds_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observations ALTER COLUMN id SET DEFAULT nextval('observations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: observations_places id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observations_places ALTER COLUMN id SET DEFAULT nextval('observations_places_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: passwords id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY passwords ALTER COLUMN id SET DEFAULT nextval('passwords_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: photos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY photos ALTER COLUMN id SET DEFAULT nextval('photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: picasa_identities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY picasa_identities ALTER COLUMN id SET DEFAULT nextval('picasa_identities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: place_geometries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY place_geometries ALTER COLUMN id SET DEFAULT nextval('place_geometries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: place_taxon_names id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY place_taxon_names ALTER COLUMN id SET DEFAULT nextval('place_taxon_names_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: places id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY places ALTER COLUMN id SET DEFAULT nextval('places_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: posts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY posts ALTER COLUMN id SET DEFAULT nextval('posts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: preferences id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY preferences ALTER COLUMN id SET DEFAULT nextval('preferences_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: project_assets id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_assets ALTER COLUMN id SET DEFAULT nextval('project_assets_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: project_invitations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_invitations ALTER COLUMN id SET DEFAULT nextval('project_invitations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: project_observation_fields id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_observation_fields ALTER COLUMN id SET DEFAULT nextval('project_observation_fields_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: project_observations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_observations ALTER COLUMN id SET DEFAULT nextval('project_observations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: project_user_invitations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_user_invitations ALTER COLUMN id SET DEFAULT nextval('project_user_invitations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: project_users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_users ALTER COLUMN id SET DEFAULT nextval('project_users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: projects id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: provider_authorizations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY provider_authorizations ALTER COLUMN id SET DEFAULT nextval('provider_authorizations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: quality_metrics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY quality_metrics ALTER COLUMN id SET DEFAULT nextval('quality_metrics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: roles id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: rules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: site_admins id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY site_admins ALTER COLUMN id SET DEFAULT nextval('site_admins_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: site_statistics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY site_statistics ALTER COLUMN id SET DEFAULT nextval('site_statistics_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sites id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sites ALTER COLUMN id SET DEFAULT nextval('sites_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: soundcloud_identities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY soundcloud_identities ALTER COLUMN id SET DEFAULT nextval('soundcloud_identities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sounds id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sounds ALTER COLUMN id SET DEFAULT nextval('sounds_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: sources id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sources ALTER COLUMN id SET DEFAULT nextval('sources_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: states_simplified_1 id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY states_simplified_1 ALTER COLUMN id SET DEFAULT nextval('states_simplified_1_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: subscriptions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY subscriptions ALTER COLUMN id SET DEFAULT nextval('subscriptions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taggings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: tags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxa ALTER COLUMN id SET DEFAULT nextval('taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_change_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_change_taxa ALTER COLUMN id SET DEFAULT nextval('taxon_change_taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_changes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_changes ALTER COLUMN id SET DEFAULT nextval('taxon_changes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_descriptions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_descriptions ALTER COLUMN id SET DEFAULT nextval('taxon_descriptions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_links ALTER COLUMN id SET DEFAULT nextval('taxon_links_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_names id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_names ALTER COLUMN id SET DEFAULT nextval('taxon_names_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_photos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_photos ALTER COLUMN id SET DEFAULT nextval('taxon_photos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_ranges id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_ranges ALTER COLUMN id SET DEFAULT nextval('taxon_ranges_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_scheme_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_scheme_taxa ALTER COLUMN id SET DEFAULT nextval('taxon_scheme_taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_schemes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_schemes ALTER COLUMN id SET DEFAULT nextval('taxon_schemes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: taxon_versions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_versions ALTER COLUMN id SET DEFAULT nextval('taxon_versions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: trip_purposes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY trip_purposes ALTER COLUMN id SET DEFAULT nextval('trip_purposes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: trip_taxa id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY trip_taxa ALTER COLUMN id SET DEFAULT nextval('trip_taxa_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: update_actions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY update_actions ALTER COLUMN id SET DEFAULT nextval('update_actions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: update_subscribers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY update_subscribers ALTER COLUMN id SET DEFAULT nextval('update_subscribers_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: user_blocks id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_blocks ALTER COLUMN id SET DEFAULT nextval('user_blocks_id_seq'::regclass);
+
+
+--
+-- Name: user_mutes id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_mutes ALTER COLUMN id SET DEFAULT nextval('user_mutes_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: votes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY votes ALTER COLUMN id SET DEFAULT nextval('votes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: wiki_page_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wiki_page_attachments ALTER COLUMN id SET DEFAULT nextval('wiki_page_attachments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: wiki_page_versions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('wiki_page_versions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: wiki_pages id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_seq'::regclass);
 
 
 --
--- Name: annotations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: annotations annotations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY annotations
@@ -5364,7 +5443,7 @@ ALTER TABLE ONLY annotations
 
 
 --
--- Name: announcements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: announcements announcements_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY announcements
@@ -5372,7 +5451,7 @@ ALTER TABLE ONLY announcements
 
 
 --
--- Name: api_endpoint_caches_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: api_endpoint_caches api_endpoint_caches_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY api_endpoint_caches
@@ -5380,7 +5459,7 @@ ALTER TABLE ONLY api_endpoint_caches
 
 
 --
--- Name: api_endpoints_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: api_endpoints api_endpoints_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY api_endpoints
@@ -5388,7 +5467,7 @@ ALTER TABLE ONLY api_endpoints
 
 
 --
--- Name: assessment_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assessment_sections assessment_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessment_sections
@@ -5396,7 +5475,7 @@ ALTER TABLE ONLY assessment_sections
 
 
 --
--- Name: assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assessments assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessments
@@ -5404,7 +5483,7 @@ ALTER TABLE ONLY assessments
 
 
 --
--- Name: atlas_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: atlas_alterations atlas_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY atlas_alterations
@@ -5412,7 +5491,7 @@ ALTER TABLE ONLY atlas_alterations
 
 
 --
--- Name: atlases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: atlases atlases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY atlases
@@ -5420,7 +5499,7 @@ ALTER TABLE ONLY atlases
 
 
 --
--- Name: colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: colors colors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY colors
@@ -5428,7 +5507,7 @@ ALTER TABLE ONLY colors
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
@@ -5436,7 +5515,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: complete_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: complete_sets complete_sets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY complete_sets
@@ -5444,7 +5523,7 @@ ALTER TABLE ONLY complete_sets
 
 
 --
--- Name: computer_vision_demo_uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: computer_vision_demo_uploads computer_vision_demo_uploads_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY computer_vision_demo_uploads
@@ -5452,7 +5531,7 @@ ALTER TABLE ONLY computer_vision_demo_uploads
 
 
 --
--- Name: conservation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: conservation_statuses conservation_statuses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY conservation_statuses
@@ -5460,7 +5539,7 @@ ALTER TABLE ONLY conservation_statuses
 
 
 --
--- Name: controlled_term_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: controlled_term_labels controlled_term_labels_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_term_labels
@@ -5468,7 +5547,7 @@ ALTER TABLE ONLY controlled_term_labels
 
 
 --
--- Name: controlled_term_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: controlled_term_taxa controlled_term_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_term_taxa
@@ -5476,7 +5555,7 @@ ALTER TABLE ONLY controlled_term_taxa
 
 
 --
--- Name: controlled_term_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: controlled_term_values controlled_term_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_term_values
@@ -5484,7 +5563,7 @@ ALTER TABLE ONLY controlled_term_values
 
 
 --
--- Name: controlled_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: controlled_terms controlled_terms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY controlled_terms
@@ -5492,7 +5571,7 @@ ALTER TABLE ONLY controlled_terms
 
 
 --
--- Name: counties_simplified_01_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: counties_simplified_01 counties_simplified_01_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY counties_simplified_01
@@ -5500,7 +5579,7 @@ ALTER TABLE ONLY counties_simplified_01
 
 
 --
--- Name: countries_simplified_1_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: countries_simplified_1 countries_simplified_1_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY countries_simplified_1
@@ -5508,7 +5587,7 @@ ALTER TABLE ONLY countries_simplified_1
 
 
 --
--- Name: custom_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: custom_projects custom_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY custom_projects
@@ -5516,7 +5595,7 @@ ALTER TABLE ONLY custom_projects
 
 
 --
--- Name: delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: delayed_jobs delayed_jobs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY delayed_jobs
@@ -5524,7 +5603,7 @@ ALTER TABLE ONLY delayed_jobs
 
 
 --
--- Name: deleted_observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: deleted_observations deleted_observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deleted_observations
@@ -5532,7 +5611,7 @@ ALTER TABLE ONLY deleted_observations
 
 
 --
--- Name: deleted_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: deleted_photos deleted_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deleted_photos
@@ -5540,7 +5619,7 @@ ALTER TABLE ONLY deleted_photos
 
 
 --
--- Name: deleted_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: deleted_users deleted_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deleted_users
@@ -5548,7 +5627,7 @@ ALTER TABLE ONLY deleted_users
 
 
 --
--- Name: exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: exploded_atlas_places exploded_atlas_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY exploded_atlas_places
@@ -5556,7 +5635,7 @@ ALTER TABLE ONLY exploded_atlas_places
 
 
 --
--- Name: flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: flags flags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flags
@@ -5564,7 +5643,7 @@ ALTER TABLE ONLY flags
 
 
 --
--- Name: flickr_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: flickr_identities flickr_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flickr_identities
@@ -5572,7 +5651,7 @@ ALTER TABLE ONLY flickr_identities
 
 
 --
--- Name: flow_task_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: flow_task_resources flow_task_resources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flow_task_resources
@@ -5580,7 +5659,7 @@ ALTER TABLE ONLY flow_task_resources
 
 
 --
--- Name: flow_tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: flow_tasks flow_tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY flow_tasks
@@ -5588,7 +5667,7 @@ ALTER TABLE ONLY flow_tasks
 
 
 --
--- Name: friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: friendly_id_slugs friendly_id_slugs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY friendly_id_slugs
@@ -5596,7 +5675,7 @@ ALTER TABLE ONLY friendly_id_slugs
 
 
 --
--- Name: friendships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: friendships friendships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY friendships
@@ -5604,7 +5683,7 @@ ALTER TABLE ONLY friendships
 
 
 --
--- Name: goal_contributions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: goal_contributions goal_contributions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goal_contributions
@@ -5612,7 +5691,7 @@ ALTER TABLE ONLY goal_contributions
 
 
 --
--- Name: goal_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: goal_participants goal_participants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goal_participants
@@ -5620,7 +5699,7 @@ ALTER TABLE ONLY goal_participants
 
 
 --
--- Name: goal_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: goal_rules goal_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goal_rules
@@ -5628,7 +5707,7 @@ ALTER TABLE ONLY goal_rules
 
 
 --
--- Name: goals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: goals goals_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY goals
@@ -5636,7 +5715,7 @@ ALTER TABLE ONLY goals
 
 
 --
--- Name: guide_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: guide_photos guide_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_photos
@@ -5644,7 +5723,7 @@ ALTER TABLE ONLY guide_photos
 
 
 --
--- Name: guide_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: guide_ranges guide_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_ranges
@@ -5652,7 +5731,7 @@ ALTER TABLE ONLY guide_ranges
 
 
 --
--- Name: guide_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: guide_sections guide_sections_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_sections
@@ -5660,7 +5739,7 @@ ALTER TABLE ONLY guide_sections
 
 
 --
--- Name: guide_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: guide_taxa guide_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_taxa
@@ -5668,7 +5747,7 @@ ALTER TABLE ONLY guide_taxa
 
 
 --
--- Name: guide_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: guide_users guide_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guide_users
@@ -5676,7 +5755,7 @@ ALTER TABLE ONLY guide_users
 
 
 --
--- Name: guides_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: guides guides_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY guides
@@ -5684,7 +5763,7 @@ ALTER TABLE ONLY guides
 
 
 --
--- Name: identifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: identifications identifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY identifications
@@ -5692,7 +5771,7 @@ ALTER TABLE ONLY identifications
 
 
 --
--- Name: invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: invites invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY invites
@@ -5700,7 +5779,7 @@ ALTER TABLE ONLY invites
 
 
 --
--- Name: list_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: list_rules list_rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY list_rules
@@ -5708,7 +5787,7 @@ ALTER TABLE ONLY list_rules
 
 
 --
--- Name: listed_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: listed_taxa listed_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY listed_taxa
@@ -5716,7 +5795,7 @@ ALTER TABLE ONLY listed_taxa
 
 
 --
--- Name: listed_taxon_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: listed_taxon_alterations listed_taxon_alterations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY listed_taxon_alterations
@@ -5724,7 +5803,7 @@ ALTER TABLE ONLY listed_taxon_alterations
 
 
 --
--- Name: lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: lists lists_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY lists
@@ -5732,7 +5811,7 @@ ALTER TABLE ONLY lists
 
 
 --
--- Name: messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: messages messages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY messages
@@ -5740,7 +5819,7 @@ ALTER TABLE ONLY messages
 
 
 --
--- Name: model_attribute_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: model_attribute_changes model_attribute_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY model_attribute_changes
@@ -5748,7 +5827,7 @@ ALTER TABLE ONLY model_attribute_changes
 
 
 --
--- Name: oauth_access_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: oauth_access_grants oauth_access_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oauth_access_grants
@@ -5756,7 +5835,7 @@ ALTER TABLE ONLY oauth_access_grants
 
 
 --
--- Name: oauth_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: oauth_access_tokens oauth_access_tokens_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oauth_access_tokens
@@ -5764,7 +5843,7 @@ ALTER TABLE ONLY oauth_access_tokens
 
 
 --
--- Name: oauth_applications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: oauth_applications oauth_applications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY oauth_applications
@@ -5772,7 +5851,7 @@ ALTER TABLE ONLY oauth_applications
 
 
 --
--- Name: observation_field_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observation_field_values observation_field_values_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_field_values
@@ -5780,7 +5859,7 @@ ALTER TABLE ONLY observation_field_values
 
 
 --
--- Name: observation_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observation_fields observation_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_fields
@@ -5788,7 +5867,7 @@ ALTER TABLE ONLY observation_fields
 
 
 --
--- Name: observation_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observation_links observation_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_links
@@ -5796,7 +5875,7 @@ ALTER TABLE ONLY observation_links
 
 
 --
--- Name: observation_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observation_photos observation_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_photos
@@ -5804,7 +5883,7 @@ ALTER TABLE ONLY observation_photos
 
 
 --
--- Name: observation_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observation_reviews observation_reviews_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_reviews
@@ -5812,7 +5891,7 @@ ALTER TABLE ONLY observation_reviews
 
 
 --
--- Name: observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observations observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observations
@@ -5820,7 +5899,7 @@ ALTER TABLE ONLY observations
 
 
 --
--- Name: observations_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observations_places observations_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observations_places
@@ -5828,7 +5907,7 @@ ALTER TABLE ONLY observations_places
 
 
 --
--- Name: observations_sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: observation_sounds observations_sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY observation_sounds
@@ -5836,7 +5915,7 @@ ALTER TABLE ONLY observation_sounds
 
 
 --
--- Name: passwords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: passwords passwords_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY passwords
@@ -5844,7 +5923,7 @@ ALTER TABLE ONLY passwords
 
 
 --
--- Name: photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: photos photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY photos
@@ -5852,7 +5931,7 @@ ALTER TABLE ONLY photos
 
 
 --
--- Name: picasa_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: picasa_identities picasa_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY picasa_identities
@@ -5860,7 +5939,7 @@ ALTER TABLE ONLY picasa_identities
 
 
 --
--- Name: place_geometries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: place_geometries place_geometries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY place_geometries
@@ -5868,7 +5947,7 @@ ALTER TABLE ONLY place_geometries
 
 
 --
--- Name: place_taxon_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: place_taxon_names place_taxon_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY place_taxon_names
@@ -5876,7 +5955,7 @@ ALTER TABLE ONLY place_taxon_names
 
 
 --
--- Name: places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: places places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY places
@@ -5884,7 +5963,7 @@ ALTER TABLE ONLY places
 
 
 --
--- Name: posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: posts posts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY posts
@@ -5892,7 +5971,7 @@ ALTER TABLE ONLY posts
 
 
 --
--- Name: preferences_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: preferences preferences_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY preferences
@@ -5900,7 +5979,7 @@ ALTER TABLE ONLY preferences
 
 
 --
--- Name: project_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: project_assets project_assets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_assets
@@ -5908,7 +5987,7 @@ ALTER TABLE ONLY project_assets
 
 
 --
--- Name: project_invitations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: project_invitations project_invitations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_invitations
@@ -5916,7 +5995,7 @@ ALTER TABLE ONLY project_invitations
 
 
 --
--- Name: project_observation_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: project_observation_fields project_observation_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_observation_fields
@@ -5924,7 +6003,7 @@ ALTER TABLE ONLY project_observation_fields
 
 
 --
--- Name: project_observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: project_observations project_observations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_observations
@@ -5932,7 +6011,7 @@ ALTER TABLE ONLY project_observations
 
 
 --
--- Name: project_user_invitations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: project_user_invitations project_user_invitations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_user_invitations
@@ -5940,7 +6019,7 @@ ALTER TABLE ONLY project_user_invitations
 
 
 --
--- Name: project_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: project_users project_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY project_users
@@ -5948,7 +6027,7 @@ ALTER TABLE ONLY project_users
 
 
 --
--- Name: projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: projects projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY projects
@@ -5956,7 +6035,7 @@ ALTER TABLE ONLY projects
 
 
 --
--- Name: provider_authorizations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: provider_authorizations provider_authorizations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY provider_authorizations
@@ -5964,7 +6043,7 @@ ALTER TABLE ONLY provider_authorizations
 
 
 --
--- Name: quality_metrics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: quality_metrics quality_metrics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY quality_metrics
@@ -5972,7 +6051,7 @@ ALTER TABLE ONLY quality_metrics
 
 
 --
--- Name: roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: roles roles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY roles
@@ -5980,7 +6059,7 @@ ALTER TABLE ONLY roles
 
 
 --
--- Name: rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: rules rules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY rules
@@ -5988,7 +6067,7 @@ ALTER TABLE ONLY rules
 
 
 --
--- Name: site_admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: site_admins site_admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY site_admins
@@ -5996,7 +6075,7 @@ ALTER TABLE ONLY site_admins
 
 
 --
--- Name: site_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: site_statistics site_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY site_statistics
@@ -6004,7 +6083,7 @@ ALTER TABLE ONLY site_statistics
 
 
 --
--- Name: sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sites sites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sites
@@ -6012,7 +6091,7 @@ ALTER TABLE ONLY sites
 
 
 --
--- Name: soundcloud_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: soundcloud_identities soundcloud_identities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY soundcloud_identities
@@ -6020,7 +6099,7 @@ ALTER TABLE ONLY soundcloud_identities
 
 
 --
--- Name: sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sounds sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sounds
@@ -6028,7 +6107,7 @@ ALTER TABLE ONLY sounds
 
 
 --
--- Name: sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: sources sources_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY sources
@@ -6036,7 +6115,7 @@ ALTER TABLE ONLY sources
 
 
 --
--- Name: states_simplified_1_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: states_simplified_1 states_simplified_1_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY states_simplified_1
@@ -6044,7 +6123,7 @@ ALTER TABLE ONLY states_simplified_1
 
 
 --
--- Name: subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: subscriptions subscriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY subscriptions
@@ -6052,7 +6131,7 @@ ALTER TABLE ONLY subscriptions
 
 
 --
--- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taggings taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taggings
@@ -6060,7 +6139,7 @@ ALTER TABLE ONLY taggings
 
 
 --
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: tags tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tags
@@ -6068,7 +6147,7 @@ ALTER TABLE ONLY tags
 
 
 --
--- Name: taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxa taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxa
@@ -6076,7 +6155,7 @@ ALTER TABLE ONLY taxa
 
 
 --
--- Name: taxon_change_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_change_taxa taxon_change_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_change_taxa
@@ -6084,7 +6163,7 @@ ALTER TABLE ONLY taxon_change_taxa
 
 
 --
--- Name: taxon_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_changes taxon_changes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_changes
@@ -6092,7 +6171,7 @@ ALTER TABLE ONLY taxon_changes
 
 
 --
--- Name: taxon_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_descriptions taxon_descriptions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_descriptions
@@ -6100,7 +6179,7 @@ ALTER TABLE ONLY taxon_descriptions
 
 
 --
--- Name: taxon_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_links taxon_links_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_links
@@ -6108,7 +6187,7 @@ ALTER TABLE ONLY taxon_links
 
 
 --
--- Name: taxon_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_names taxon_names_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_names
@@ -6116,7 +6195,7 @@ ALTER TABLE ONLY taxon_names
 
 
 --
--- Name: taxon_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_photos taxon_photos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_photos
@@ -6124,7 +6203,7 @@ ALTER TABLE ONLY taxon_photos
 
 
 --
--- Name: taxon_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_ranges taxon_ranges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_ranges
@@ -6132,7 +6211,7 @@ ALTER TABLE ONLY taxon_ranges
 
 
 --
--- Name: taxon_scheme_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_scheme_taxa taxon_scheme_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_scheme_taxa
@@ -6140,7 +6219,7 @@ ALTER TABLE ONLY taxon_scheme_taxa
 
 
 --
--- Name: taxon_schemes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_schemes taxon_schemes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_schemes
@@ -6148,7 +6227,7 @@ ALTER TABLE ONLY taxon_schemes
 
 
 --
--- Name: taxon_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: taxon_versions taxon_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY taxon_versions
@@ -6156,7 +6235,7 @@ ALTER TABLE ONLY taxon_versions
 
 
 --
--- Name: trip_purposes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: trip_purposes trip_purposes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY trip_purposes
@@ -6164,7 +6243,7 @@ ALTER TABLE ONLY trip_purposes
 
 
 --
--- Name: trip_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: trip_taxa trip_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY trip_taxa
@@ -6172,7 +6251,7 @@ ALTER TABLE ONLY trip_taxa
 
 
 --
--- Name: update_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: update_actions update_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY update_actions
@@ -6180,7 +6259,7 @@ ALTER TABLE ONLY update_actions
 
 
 --
--- Name: update_subscribers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: update_subscribers update_subscribers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY update_subscribers
@@ -6188,7 +6267,23 @@ ALTER TABLE ONLY update_subscribers
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: user_blocks user_blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_blocks
+    ADD CONSTRAINT user_blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_mutes user_mutes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY user_mutes
+    ADD CONSTRAINT user_mutes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -6196,7 +6291,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: votes votes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY votes
@@ -6204,7 +6299,7 @@ ALTER TABLE ONLY votes
 
 
 --
--- Name: wiki_page_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: wiki_page_attachments wiki_page_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wiki_page_attachments
@@ -6212,7 +6307,7 @@ ALTER TABLE ONLY wiki_page_attachments
 
 
 --
--- Name: wiki_page_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: wiki_page_versions wiki_page_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wiki_page_versions
@@ -6220,7 +6315,7 @@ ALTER TABLE ONLY wiki_page_versions
 
 
 --
--- Name: wiki_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: wiki_pages wiki_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY wiki_pages
@@ -8090,6 +8185,34 @@ CREATE INDEX index_update_subscribers_on_update_action_id ON update_subscribers 
 
 
 --
+-- Name: index_user_blocks_on_blocked_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_blocks_on_blocked_user_id ON user_blocks USING btree (blocked_user_id);
+
+
+--
+-- Name: index_user_blocks_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_blocks_on_user_id ON user_blocks USING btree (user_id);
+
+
+--
+-- Name: index_user_mutes_on_muted_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_mutes_on_muted_user_id ON user_mutes USING btree (muted_user_id);
+
+
+--
+-- Name: index_user_mutes_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_mutes_on_user_id ON user_mutes USING btree (user_id);
+
+
+--
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8938,4 +9061,8 @@ INSERT INTO schema_migrations (version) VALUES ('20170811032109');
 INSERT INTO schema_migrations (version) VALUES ('20170811232802');
 
 INSERT INTO schema_migrations (version) VALUES ('20170907221848');
+
+INSERT INTO schema_migrations (version) VALUES ('20170920185103');
+
+INSERT INTO schema_migrations (version) VALUES ('20170923232400');
 

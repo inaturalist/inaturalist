@@ -11,6 +11,7 @@
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
     <% if logged_in? -%>
+      <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
     <% end -%>
     <% if !@site.twitter_username.blank? -%>

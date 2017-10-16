@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Grid, Row, Col, Button, SplitButton, MenuItem } from "react-bootstrap";
+import { Grid, Row, Col, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
@@ -31,6 +31,7 @@ import ProjectFieldsModalContainer from "../containers/project_fields_modal_cont
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
+import MD5 from "md5.js";
 /* global RAILS_FLASH */
 
 moment.locale( "en", {
@@ -52,7 +53,7 @@ moment.locale( "en", {
 } );
 
 const App = ( {
-  observation, config, controlledTerms, leaveTestGroup, deleteObservation, setLicensingModalState
+  observation, config, controlledTerms, deleteObservation, setLicensingModalState
 } ) => {
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
@@ -109,6 +110,17 @@ const App = ( {
       type="flag"
     /> );
   }
+  if (
+    config.currentUser &&
+    _.find( config.currentUser.blockedByUserHashes, h => new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h )
+  ) {
+    flashes.push( <FlashMessage
+      key="flash_blocked"
+      title = { I18n.t( "views.shared.blocked.youve_been_blocked" ) }
+      message={ I18n.t( "views.shared.blocked.youve_been_blocked_desc" ) }
+      type="warning"
+    /> );
+  }
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
     formattedDateObserved = moment.tz( observation.time_observed_at,
@@ -129,7 +141,7 @@ const App = ( {
     "research_grade" : observation.quality_grade;
   return (
     <div id="ObservationShow">
-    { flashes }
+      { flashes }
       <div className="upper">
         <Grid>
           <Row className="title_row">

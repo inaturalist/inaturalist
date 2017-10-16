@@ -1,4 +1,17 @@
 module MakeHelpers
+  def make_annotation( options = {} )
+    attribute = ControlledTerm.make!
+    value = ControlledTerm.make!( is_value: true )  
+    attribute.controlled_term_values << ControlledTermValue.new(
+      controlled_attribute: attribute,
+      controlled_value: value
+    )
+    Annotation.make( options.merge(
+      controlled_attribute: attribute,
+      controlled_value: value  
+    ) )
+  end
+
   def make_curator(opts = {})
     make_user_with_role(:curator, opts)
   end
