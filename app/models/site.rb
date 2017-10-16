@@ -63,8 +63,8 @@ class Site < ActiveRecord::Base
       :url => "/attachments/sites/:id-logo.:extension",
       :default_url => "logo-small.gif"
   end
-  validates_attachment_content_type :logo, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
-    :message => "must be JPG, PNG, or GIF"
+  validates_attachment_content_type :logo, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+    :message => "must be JPG, PNG, SVG, or GIF"
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if Rails.env.production?

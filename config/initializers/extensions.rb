@@ -40,6 +40,12 @@ class Array
       end
     end
   end
+
+  def median
+    sorted = dup.sort
+    len = sorted.length
+    (sorted[(len - 1) / 2] + sorted[len / 2]) / 2.0
+  end
 end
 
 class OpenStruct
@@ -58,6 +64,7 @@ class String
   def with_fixed_https
     self.gsub(/http:\/\/(www|static)\.inaturalist\.org/, "https://\\1.inaturalist.org").
       gsub(/http:\/\/(farm[1-9])\.static/, "https://\\1.static").
-      gsub(/http:\/\/upload\.wikimedia/, "https://upload.wikimedia")
+      gsub(/http:\/\/upload\.wikimedia/, "https://upload.wikimedia").
+      gsub(/http:\/\/media\.eol\.org/, "https://media.eol.org")
   end
 end

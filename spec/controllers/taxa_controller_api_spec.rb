@@ -212,6 +212,17 @@ shared_examples_for "a TaxaController" do
         expect(response_taxon['default_photo']['license_url']).to eq photo.license_url
       end
     end
+
+    it "should return names specific to the user's place" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      ptn = PlaceTaxonName.make!( taxon_name: tn_place )
+      user.update_attributes( place_id: ptn.place_id )
+      get :show, format: :json, id: t.id
+      json = JSON.parse( response.body )
+      expect( json["common_name"]["name"] ).to eq tn_place.name
+    end
   end
 
   describe "children" do

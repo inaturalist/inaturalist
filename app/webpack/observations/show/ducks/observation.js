@@ -408,7 +408,8 @@ export function doAddID( taxon, confirmForm, options = { } ) {
     const payload = {
       observation_id: state.observation.id,
       taxon_id: taxon.id,
-      body: options.body
+      body: options.body,
+      vision: !!taxon.isVisionResult
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
   };

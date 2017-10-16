@@ -1,5 +1,5 @@
 class Announcement < ActiveRecord::Base
-  PLACEMENTS = %w(welcome/index users/dashboard users/dashboard#sidebar)
+  PLACEMENTS = %w(users/dashboard users/dashboard#sidebar welcome/index)
   belongs_to :site, inverse_of: :announcements
   validates_presence_of :placement, :start, :end, :body
 

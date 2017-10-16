@@ -23,7 +23,9 @@
 </style>
 <div class="inat-widget">
   <% if @logo != "none" -%>
-    <div class="inat-widget-header"><%= link_to image_tag(image_url(@site.logo.url), :alt => @site.name), @site.url %></div>
+    <div class="inat-widget-header">
+      <%= link_to image_tag(image_url( @logo ), alt: @site.name ), @site.url %>  
+    </div>
   <% end -%>
   <script type="text/javascript" charset="utf-8" src="<%= widget_url %>"></script>
   <table class="inat-footer">

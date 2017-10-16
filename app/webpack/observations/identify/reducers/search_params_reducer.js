@@ -9,13 +9,14 @@ import _ from "lodash";
 
 const DEFAULT_PARAMS = {
   reviewed: false,
-  verifiable: true,
   quality_grade: "needs_id",
   page: 1,
   per_page: 30,
   iconic_taxa: [],
   order_by: "observations.id",
-  order: "desc"
+  order: "desc",
+  dateType: "any",
+  createdDateType: "any"
 };
 
 const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];
@@ -131,6 +132,7 @@ const paramsForSearch = ( params ) => {
 const setUrl = ( newParams, defaultParams ) => {
   // don't put defaults in the URL
   const urlState = {};
+  const oldUrlState = $.deparam.querystring( );
   _.forEach( paramsForSearch( newParams ), ( v, k ) => {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
@@ -143,6 +145,9 @@ const setUrl = ( newParams, defaultParams ) => {
   } );
   if ( !newParams.place_id && defaultParams.place_id ) {
     urlState.place_id = "any";
+  }
+  if ( _.isEqual( oldUrlState, urlState ) ) {
+    return;
   }
   const title = `Identify: ${$.param( urlState )}`;
   const newUrl = [
@@ -194,6 +199,7 @@ const searchParamsReducer = ( state = {
       return state;
   }
   newState.params = normalizeParams( newState.params );
+
   // if the states are equal there should be no reason to update the URL
   if ( _.isEqual( state.params, newState.params ) ) {
     return state;
@@ -202,8 +208,8 @@ const searchParamsReducer = ( state = {
   if ( action.type === UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY ) {
     return newState;
   }
-  // if we're just setting the defaults, the URL does not need to update
-  if ( _.isEqual( newState.params, newState.default ) ) {
+  // if we're setting defaults there's no need to update the URL
+  if ( action.type === UPDATE_DEFAULT_PARAMS ) {
     return newState;
   }
   setUrl( newState.params, newState.default );

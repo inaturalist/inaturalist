@@ -1,5 +1,14 @@
 var genericAutocomplete = { };
 
+// allow <li class="category"> to be included in the results
+// but do not consider them selectable items
+$.widget( "ui.autocomplete", $.ui.autocomplete, {
+  _create: function( ) {
+    this._super( );
+    this.widget( ).menu( "option", "items", "> :not(.category)" );
+  }
+});
+
 genericAutocomplete.createWrappingDiv = function( field, options ) {
   if( !field.parent().hasClass( "ac-chooser" ) ) {
     var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );

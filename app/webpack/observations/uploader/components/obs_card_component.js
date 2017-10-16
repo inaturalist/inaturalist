@@ -219,6 +219,7 @@ class ObsCardComponent extends Component {
               searchExternal
               showPlaceholder
               perPage={ 6 }
+              visionParams={ obsCard.visionParams( ) }
               initialSelection={ obsCard.selected_taxon }
               initialTaxonID={ obsCard.taxon_id }
               resetOnChange={ false }

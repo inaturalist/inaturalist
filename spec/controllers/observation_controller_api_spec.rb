@@ -776,6 +776,19 @@ shared_examples_for "an ObservationsController" do
       expect(json_obs).not_to be_blank
       expect(json_obs['private_latitude']).to eq o.private_latitude.to_s
     end
+
+    it "should return names specific to the user's place" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      ptn = PlaceTaxonName.make!( taxon_name: tn_place )
+      user.update_attributes( place_id: ptn.place_id )
+      o = Observation.make!( user: user, taxon: t )
+      get :by_login, format: :json, login: user.login, taxon_id: t.id
+      json = JSON.parse( response.body )
+      json_obs = json.detect{|jo| jo["id"] == o.id }
+      expect( json_obs["taxon"]["common_name"]["name"] ).to eq tn_place.name
+    end
   end
 
   describe "index" do

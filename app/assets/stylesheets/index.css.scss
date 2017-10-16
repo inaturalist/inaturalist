@@ -369,6 +369,9 @@ form .field .description { margin-bottom: 0.5em;}
   flex-order: 1;
   order: 1;
 }
+#header #logonav img {
+  max-height: 42px;
+}
 #header #mainnav {
   white-space: nowrap;
   -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */

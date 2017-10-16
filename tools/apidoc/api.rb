@@ -148,14 +148,27 @@ LICENSE_PARAMS["CC-BY-NC-ND"]  = "Creative Commons Attribution-NonCommercial-NoD
 
 api "iNaturalist API" do
   desc <<-EOT
-The iNat API is a set of REST endpoints that can be used to read data from
-iNat and write data back on the behalf of users. Data can be retrieved in
-different formats by appending
-<code>.[format]</code> to the endpoint, e.g. <code>/observations.json</code>
-to retrieve observations as JSON. Read-only endpoints generally do not require
-authentication, but if you want to access data like unobscured coordinates on
-behalf of users or write data to iNat, you will need to make authenticated
-requests (see below).
+<p>
+  The iNat API is a set of REST endpoints that can be used to read data from
+  iNat and write data back on the behalf of users. Data can be retrieved in
+  different formats by appending
+  <code>.[format]</code> to the endpoint, e.g. <code>/observations.json</code>
+  to retrieve observations as JSON. Read-only endpoints generally do not require
+  authentication, but if you want to access data like unobscured coordinates on
+  behalf of users or write data to iNat, you will need to make authenticated
+  requests (see below).
+</p>
+<p>
+  Note that endpoints that receive binary data must have the
+  <code>Content-Type: multipart-formdata</code> header and parts that are not
+  binary should be simple form data, even if you're requesting JSON data.
+</p>
+<p>
+  If you're mainly focusing on read-only operations that don't require auth,
+  you might want to check out
+  <a href="https://api.inaturalist.org">api.inaturalist.org</a>, a faster and
+  more consistent iNaturalist API.
+</p>
 EOT
   post "/comments", auth_required: true do
     desc "Create comments. Comments are automatically associated with the signed in user."
@@ -254,7 +267,6 @@ EOT
     "positional_accuracy": 354,
     "coordinates_obscured": false,
     "taxon_id": 42048,
-    "id_please": false,
     "id": 2281,
     "iconic_taxon": {
         "name": "Mammalia",
@@ -343,7 +355,6 @@ EOT
       vals = ActiveSupport::OrderedHash.new
       vals[:photos] = "only show observations with photos"
       vals[:geo] = "only show georeferenced observations"
-      vals[:id_please] = "only show observations in need of ID help"
       values vals
     end
     
@@ -474,11 +485,6 @@ EOT
         for this taxon will automatically be added for the user."
       EOT
       values "valid iNat taxon ID"
-    end
-
-    param "observation[id_please]" do
-      desc "Whether or not the user needs ID help"
-      values [0,1]
     end
 
     param "observation[observed_on_string]" do
@@ -754,7 +760,6 @@ EOT
         /observations.json?
           observation[species_guess]=Northern+Cardinal&
           observation[taxon_id]=9083&
-          observation[id_please]=0&
           observation[observed_on_string]=2013-01-03&
           observation[time_zone]=Eastern+Time+(US+%26+Canada)&
           observation[description]=what+a+cardinal&
@@ -779,7 +784,6 @@ EOT
             "geoprivacy": "obscured",
             "iconic_taxon_id": 3,
             "id": 3281,
-            "id_please": false,
             "latitude": "41.2995543746",
             "license": "CC-BY",
             "location_is_exact": false,
@@ -920,7 +924,6 @@ EOT
   "geoprivacy": "private",
   "iconic_taxon_id": 47126,
   "id": 297867,
-  "id_please": false,
   "latitude": null,
   "license": "CC-BY",
   "location_is_exact": false,
@@ -1229,11 +1232,16 @@ EOT
     desc <<-EOT
       Add photos to observations. This is only for iNat-hosted photos. For
       adding photos hosted on other services, see POST /observations and PUT
-      /observations/:id.
+      /observations/:id. This should be a multipart request.
     EOT
 
     param "observation_photo[observation_id]" do
-      desc "ID of the observation receiving this photo."
+      desc <<-EOT
+        ID of the observation receiving this photo. This part of the multipart
+        should appear as regular form data, not JSON, so
+        <code>Content-Disposition: form-data;</code> and no
+        <code>Content-Type</code>
+      EOT
       values "Valid iNat observation ID"
     end
     param "file" do

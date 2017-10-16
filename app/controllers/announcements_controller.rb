@@ -9,7 +9,7 @@ class AnnouncementsController < ApplicationController
   # GET /announcements
   # GET /announcements.xml
   def index
-    @announcements = Announcement.paginate(:page => params[:page])
+    @announcements = Announcement.order( "id desc" ).page( params[:page] )
   end
   
   def show

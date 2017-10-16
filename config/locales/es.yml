@@ -16,6 +16,7 @@
 # Author: Luisangelrg
 # Author: Macofe
 # Author: Ncontinanza
+# Author: Pato
 # Author: PoLuX124
 # Author: Tusca
 # Author: Yllelder
@@ -129,7 +130,7 @@ es:
   a_community_for_naturalist: Una comunidad para naturalistas
   a_few_points_to_make_things_clear: 'Algunos puntos para aclarar las cosas:'
   a_flag_for_x: una marca para %{x}
-  a_greasemonkey_script: un script de Greasemonkey
+  a_greasemonkey_script: una secuencia de órdenes de Greasemonkey
   a_member_of: Un miembro de
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
@@ -269,7 +270,7 @@ es:
   add_taxa: Añade taxones
   add_taxa_to_places: añade taxones a lugares
   add_taxon_batch_to: Añade un grupo de taxones a %{list}
-  add_taxon_range: Añade rango de taxón
+  add_taxon_range: Añadir área del taxón
   add_taxonomic_tags_to: Añade etiquetas taxonómicas a fotos seleccionadas de Flickr
     &raquo;
   add_taxonomic_tags_to_the_fickr_photos: Añade etiquetas taxonómicas a las fotos
@@ -331,6 +332,8 @@ es:
   all_projects: Todos los proyectos
   all_rights_reserved: todos los derechos reservados
   all_species: Todas las especies
+  all_species_added_to_the_database: Todas las especies se añadieron a la base de
+    datos
   all_taxa:
     rank:
       kingdom: Reino
@@ -400,9 +403,9 @@ es:
   all_taxonomic_groups: '&laquo; Todos los grupos taxonómicos'
   all_updates: Todas las Actualizaciones
   all_your_observations_will_default_this_time_zone: Todas tus observaciones se harán
-    en esta zona horaria a menos que especifiques lo contrario.
+    en este huso horario a menos que especifiques lo contrario.
   all_your_observations_will_default_to_this_time_zone: Todas tus observaciones se
-    harán en esta zona horaria a menos que especifiques lo contrario.
+    harán en este huso horario a menos que especifiques lo contrario.
   all_your_projects: Todos tus proyectos
   allow_any: permitir a cualquiera
   allow_curator_access: Permitir acceso al conservador
@@ -458,79 +461,78 @@ es:
   archives: Archivos
   are_you_really_sure_want_delete_this_user: ¿Estás verdaderamente seguro que deseas
     eliminar a este usuario y todo su contenido?
-  are_you_sure?: ¿Estás seguro?
+  are_you_sure?: ¿Lo confirmas?
   are_you_sure_no_undo: ¿Estás seguro? Esto no se puede deshacer.
-  are_you_sure_delete_asset: ¿Estás seguro que deseas eliminar esta posesión?
+  are_you_sure_delete_asset: ¿Confirmas que quieres eliminar esta posesión?
   are_you_sure_delete_observation_from_project: ¿Confirma que quiere borrar esta observación
     de %{project}?
-  are_you_sure_delete_post: ¿Estás seguro que deseas eliminar este ingreso?
+  are_you_sure_delete_post: ¿Confirmas que quieres eliminar esta publicación?
   are_you_sure_delete_taxon_move_associates: ¿Estás seguro que deseas eliminar %{taxonname}
     (%{taxonid}) y mover a todos sus asociados?
   are_you_sure_delete_this: ¿Estás seguro ques desea eliminar esto? Tal vez deberías
     revisar primero si tiene observaciones o taxones.
-  are_you_sure_delete_this_place: ¿Estás seguro que deseas eliminar este lugar?
-  are_you_sure_leave_this_project: ¿Estás seguro que deseas salir de este proyecto?
+  are_you_sure_delete_this_place: ¿Confirmas que quieres eliminar este lugar?
+  are_you_sure_leave_this_project: ¿Confirmas que quieres abandonar este proyecto?
   are_you_sure_merge_these_places: ¿Estás seguro que deseas combinar estos lugares?  Esto
     no podrá deshacerse.
-  are_you_sure_remove_curator: ¿Estás seguro que deseas quitar a %{user} como curador?
-  are_you_sure_remove_from_project: ¿Estás seguro que deseas eliminar a %{user} de
-    este proyecto?
+  are_you_sure_remove_curator: ¿Confirmas que quieres quitar a %{user} como curador?
+  are_you_sure_remove_from_project: ¿Confirmas que quieres quitar a %{user} de este
+    proyecto?
   are_you_sure_remove_photo: ¿Estás seguro de que quieres eliminar esta foto?
-  are_you_sure_remove_taxon_from_list: ¿Estás seguro que deseas quitar este taxón
+  are_you_sure_remove_taxon_from_list: ¿Confirmas que quieres quitar a este taxón
     de la lista?
   are_you_sure_remove_taxon_from_place: ¿Estás seguro que deseas quitar este taxón
     de la lista de verificación de %{place}?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: ¿Estás seguro?
     Esto volverá a cargar la página y es posible que pierdas algunos de sus cambios.
-  are_you_sure_want_activate_account: ¿Estás seguro que deseas activar esta cuenta?
+  are_you_sure_want_activate_account: ¿Confirmas que quieres activar esta cuenta?
   are_you_sure_want_delete_account: ¿Estás seguro que deseas eliminar tu cuenta? Esto
     eliminará todos tus datos y no se puede deshacer. Sentimos que te vayas.
-  are_you_sure_want_delete_taxon: ¿Estás seguro que deseas eliminar este taxón?  %{msg}
-  are_you_sure_want_delete_taxon_link: ¿Estás seguro que deseas eliminar este vínculo
+  are_you_sure_want_delete_taxon: ¿Confirmas que quieres eliminar este taxón? %{msg}
+  are_you_sure_want_delete_taxon_link: ¿Confirmas que quieres eliminar este enlace
     del taxón?
-  are_you_sure_want_delete_this_name: ¿Estás seguro que deseas eliminar este nombre?
-  are_you_sure_want_delete_this_range: ¿Estás seguro de que deseas eliminar este intervalo?
-  are_you_sure_want_join: ¿Estás seguro que deseas unirte a
+  are_you_sure_want_delete_this_name: ¿Confirmas que quieres eliminar este nombre?
+  are_you_sure_want_delete_this_range: ¿Confirmas que quieres eliminar este intervalo?
+  are_you_sure_want_join: ¿Confirmas que quieres unirte a
   are_you_sure_you_want_sync_this: ¿Estás seguro que deseas sincronizar los datos
     de esta observación con esta foto de Flickr ? Perderás los cambios que hayas hecho
     a este formulario, pero podrás regresar a tu copia guardada.
   are_you_sure_you_want_to_commit_this_change: ¿Estás seguro de querer guardar este
     cambio? Esta acción no puede ser revertida.
-  are_you_sure_you_want_to_delete_this: ¿Estás seguro que quieres borrar esto?
-  are_you_sure_you_want_to_delete_this_assessment?: ¿Estás seguro que deseas eliminar
-    esta evaluación?
-  are_you_sure_you_want_to_delete_this_photo?: ¿Estás seguro de que quieres eliminar
-    esta foto?
-  are_you_sure_you_want_to_delete_this_post: ¿Estás seguro que quieres borrar esta
-    nota?
-  are_you_sure_you_want_to_delete_this_taxon_change: ¿Estás seguro que quiere borrar
+  are_you_sure_you_want_to_delete_this: ¿Confirmas que quieres eliminar esto?
+  are_you_sure_you_want_to_delete_this_assessment?: ¿Confirmas que quieres eliminar
+    la evaluación?
+  are_you_sure_you_want_to_delete_this_photo?: ¿Confirmas que quieres eliminar esta
+    foto?
+  are_you_sure_you_want_to_delete_this_post: ¿Confirmas que quieres eliminar esta
+    publicación?
+  are_you_sure_you_want_to_delete_this_taxon_change: ¿Confirmas que quieres eliminar
     este cambio en el taxón?
-  are_you_sure_you_want_to_remove_all_tags: ¿Estás seguro que deseas eliminar todas
-    las etiquetas?
-  are_you_sure_you_want_to_remove_curator: ¿Estás seguro que deseas quitar a %{user}
-    de curador?
-  are_you_sure_you_want_to_remove_from_project: ¿Estás seguro que deseas eliminar
-    a %{user} del proyecto?
-  are_you_sure_you_want_to_remove_manager: ¿Estás seguro que deseas quitar a %{user}
-    de gerente?
+  are_you_sure_you_want_to_remove_all_tags: ¿Confirmas que quieres quitar todas las
+    etiquetas?
+  are_you_sure_you_want_to_remove_curator: ¿Confirmas que quieres quitar a %{user}
+    como curador?
+  are_you_sure_you_want_to_remove_from_project: ¿Confirmas que quieres quitar a %{user}
+    del proyecto?
+  are_you_sure_you_want_to_remove_manager: ¿Confirmas que quieres quitar a %{user}
+    como gerente?
   are_you_sure_you_want_to_remove_spammer: |-
     Estás seguro que consideras a este usuario honorable?
     Cualquier advertencia de spam su contenido será resuelto.
-  are_you_sure_you_want_to_remove_these_x_taxa?: ¿Estás seguro de que quieres quitar
-    estos %{x} taxones?
-  are_you_sure_you_want_to_remove_this_invitation: ¿Está seguro que deseas cancelar
+  are_you_sure_you_want_to_remove_these_x_taxa?: ¿Confirmas que quieres quitar estos
+    %{x} taxones?
+  are_you_sure_you_want_to_remove_this_invitation: ¿Confirmas que quieres cancelar
     la invitación?
-  are_you_sure_you_want_to_remove_this_taxon: ¿Estás seguro de que quieres quitar
-    este taxón?
+  are_you_sure_you_want_to_remove_this_taxon: ¿Confirmas que quieres quitar este taxón?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: ¿Estás seguro que deseas
     quitar a esta especie o grupo de la lista de comprobación de %{place}?
   articles: Artículos
   associated_observations: Observaciones asociadas
   associated_taxa: Taxones asociados
   attention: Atención
-  you_sure_delete_list: ¿Está seguro que desea eliminar esta lista?
-  you_sure_delete_taxon_from_list?: ¿Está seguro que desea eliminar al %{taxon} de
-    esta lista?
+  you_sure_delete_list: ¿Confirmas que quieres eliminar esta lista?
+  you_sure_delete_taxon_from_list?: ¿Confirmas que quieres quitar al %{taxon} de esta
+    lista?
   asc: asc
   ascending: ascendente
   aside_from_extraordinary_circumstances: Aparte de circunstancias extraordinarias,
@@ -1151,6 +1153,7 @@ es:
         suspended: Tu cuenta ha sido suspendida
   developers: Desarrolladores
   device: Dispositivo
+  discoveries: Descubrimientos
   did_not_send_invitations_because: 'No les enviamos invitaciones a tus amigos y amigas
     pues:'
   did_you_mean: ¿Te refieres a
@@ -1220,7 +1223,7 @@ es:
   edit_photos_for_observation_id: Modificar fotos para la observación %{obs_id}
   edit_place: modificar lugar
   edit_project: Modificar proyecto
-  edit_range_raquo: Modificar rango &raquo;
+  edit_range_raquo: Modificar área &rarr;
   edit_remove: Modificar/Quitar
   edit_selected: Modificar seleccionados
   edit_source: Modificar fuente
@@ -1228,7 +1231,7 @@ es:
   edit_taxon: Editar taxón
   edit_taxon_change: Modifica los cambios a la especie o grupo
   edit_taxon_link: Modificar vínculo del Taxón
-  edit_taxon_range: Modificar rango del taxón
+  edit_taxon_range: Modificar área del taxón
   edit_the_observation: Modificar la observación
   edit_this_link: Modificar este vínculo
   edit_your_account: modificar tu cuenta
@@ -1256,7 +1259,7 @@ es:
   editing_subscription_to_x_html: Editando suscripción para %{x}
   editing_taxon_link: Modificando vínculo del Taxón
   editing_taxon_name: Modificar nombre del Taxón
-  editing_taxon_range: Modificar rango de taxón
+  editing_taxon_range: Modificar área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: Editando %{x} en%{y}
   eg: ej.
@@ -1415,7 +1418,7 @@ es:
     %{provider} a %{site_name}:'
   first_inat_observation: Primera observación %{site_name}
   first_observation: Primera observación
-  first_observation_by_date_added: Primera observación por fecha de agregación
+  first_observation_by_date_added: Primera observación por fecha de adición
   first_observer: Primer observador
   first_report: primer informe
   flag: Marcar
@@ -1627,6 +1630,7 @@ es:
   identify_observations: Identificar observaciones
   identify_title: Identificar
   identification: identificación
+  identification_by_user: Identificación por %{user}
   identification_deleted: Identificación eliminada.
   identification_saved: ¡Identificación guardada!
   identification_summary: Resumen de la identificación
@@ -1670,6 +1674,7 @@ es:
     de búsqueda para repetir la búsqueda a través de nuestros proveedores externos
     de nombres
   ignore: Ignorar
+  ignore_and_continue: Ignorar y continuar
   ignore_times: Ignora los tiempos
   image_must_be_exactly: del proyecto debe ser exactamente de 950px ancho y a lo más
     de 400px de altura
@@ -1984,6 +1989,7 @@ es:
   loading_more_photos: Cargando más fotos...
   loading_observations: Cargando observaciones...
   loading_preview_and_code: Cargando el código...
+  loading_suggestions: Cargando las sugerencias…
   loading_tags: Cargando etiquetas...
   loading_taxa_from_your: Cargando taxones de sus observaciones...
   loading_wikipedia_description: Cargando descripción de Wikipedia...
@@ -2267,7 +2273,7 @@ es:
   new_taxon_link: Nuevo vínculo de taxón
   new_taxon_name: Nuevo nombre de taxón
   new_taxon_name_for: Nuevo nombre de taxón para
-  new_taxon_range: Nuevo Rango de Taxón
+  new_taxon_range: Área de taxón nueva
   new_taxonomic_change: Nuevo cambio taxonómico (borrador)
   new_trip: Nuevo viaje
   new_updates_in_the_last_24_hours_from: Nuevas actualizaciones en las últimas 24
@@ -2828,8 +2834,8 @@ es:
       parish: Distrito
       Prefecture_City: Ciudad prefectura
       prefecture_city: ciudad prefectura
-      Point_of_Interest: Punto de Interes
-      point_of_interest: punto de interes
+      Point_of_Interest: Punto de interés
+      point_of_interest: punto de interés
       Postal_Code: Código postal
       postal_code: código postal
       Province: Provincia
@@ -3315,9 +3321,10 @@ es:
   seen_it?: ¿Lo has visto?
   seen_nearby: Visto en la cercanías
   seen_one: ¿Ha visto uno?
+  select: Selecciona
   select_all: Seleccionar todo
   select_an_album: Seleccionar un álbum
-  select: Selecciona
+  select_at_least_one: Selecciona por lo menos un elemento
   select_how_unobserved_listings_are_displayed: Selecciona como mostrar los listados
     de especies no observadas en la lista del proyecto
   select_one_or_more_photos: Selecciona una o más fotos
@@ -3375,6 +3382,7 @@ es:
   show_taxa_from_place: Mostrar taxones de %{place}
   showing_taxa_from_everywhere: Mostrando taxones de todas partes
   show_taxa_from_everywhere: Mostrar taxones de todas partes
+  show_uncountable_species: Mostrar especies incontables
   shown_publicly_as: Mostrar públicamente como
   sign_in: Ingrese
   sign_in_with_provider: Ingrese con %{provider}
@@ -3396,7 +3404,9 @@ es:
   site_taxon_page: '%{site_name} página del taxón'
   so_meta!: ¡Autoreferencia!
   some_agree: Algunos la apoyan
-  some_observations_failed: Algunas observaciones no fueron añadidas a los proyectos.
+  some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse
+    a los proyectos
+  some_observations_failed_to_save: Algunas observaciones no se guardaron
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
   some_other_reason: Otra razón que puedes explicar después.
@@ -3541,6 +3551,7 @@ es:
   status: Estado
   status_globally: '%{status} Globalmente'
   status_in_place: '%{status} en %{place}'
+  stay_and_try_again: Permanecer e intentar de nuevo
   still_no_luck?: ¿Sigues sin encontrarlo?
   still_needs_id?: ¿La comunidad puede confirmar/mejorar la ID?
   still_working_on_classifying_taxon: Todavía trabajamos en la clasificación de este
@@ -3629,7 +3640,7 @@ es:
     en la región.
   taxon_change: cambio de taxón
   taxon_deleted: Taxon fue borrado.
-  taxon_doesnt_have_a_range: El taxon no tiene un rango
+  taxon_doesnt_have_a_range: El taxón no tiene una área
   taxon_drop: dejar de taxón
   taxon_id: Identificador de la especie o grupo
   taxon_ids: ID de Taxón
@@ -3647,7 +3658,7 @@ es:
     coincidir con un taxón existente en la base de datos.
   taxon_observed_by_user: '%{taxon} observado por %{user}'
   taxon_photos_updated: ¡Las fotos del taxón fueron actualizadas!
-  taxon_range: Rango de taxón
+  taxon_range: Área del taxón
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente.
     Por favor, espere unos minutos para que aparezca en los mapas.
   taxon_range_updated_notice: El área de distribución del taxón se ha actualizado
@@ -3976,6 +3987,7 @@ es:
   unique_observers: observadores únicos
   unique_observers_last_3_months: observadores únicos en los últimos 3 meses,
   unknown: Desconocido
+  unknown_error: Error desconocido
   unknown_rank: (Clasificación desconocida)
   unfollow: Dejar de seguir
   unlink_your_google_account: Desenlazar tu cuenta de Google
@@ -4187,7 +4199,7 @@ es:
   view_terms: Ver los términos
   view_the: Ver la %{action}
   view_the_observation: Ver la observación
-  view_the_range: Ver el rango
+  view_the_range: Ver el área
   view_unidentified_observations: Ver observaciones no identificadas...
   view_user_observations: Ver observaciones de %{user}
   view_x_from_x: Ver %{day_observations} de %{observed_on}
@@ -4213,6 +4225,7 @@ es:
     favoritos aquí?
   want_to_test_a_new_version_of_this_page: ¿Quieres probar una nueva versión de esta
     página?
+  wanted: Requerido
   was_it_captive_cultivated?: ¿Fue cautiva / cultivado?
   we_can_only_understand_csv_in: Sólo podemos entender CSV en el siguiente formato
   we_care_privacy: ¡Nos importa su privacidad!
@@ -4309,6 +4322,7 @@ es:
   x_observations_failed:
     one: 1 observación falló
     other: '%{count} observaciones fallaron'
+  x_of_y: '%{x} de %{y}'
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadísticas de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} le envió un nuevo mensaje en %{y}'
@@ -4446,15 +4460,15 @@ es:
   you_retain_full_copyright_over_your_content: Usted retiene derechos de autor totales
     sobre su contenido aparte de aquellos derechos otorgados a %{site_name} en nuestros
     Términos de Servicio.
-  you_sure_delete_asset?: ¿Está seguro que desea eliminar este activo?
+  you_sure_delete_asset?: ¿Confirmas que quieres eliminar este activo?
   you_sure_delete_check_list: ¿Está seguro que desea eliminar esta lista? Algunas
     personas podrían haber aportado mucho trabajo a ella...
-  you_sure_delete_comment?: ¿Está seguro de que quiere borrar el comentario?
-  you_sure_delete_custom_field?: ¿Está seguro de que desea eliminar estos campos personalizados?
+  you_sure_delete_comment?: ¿Confirmas que quieres eliminar el comentario?
+  you_sure_delete_custom_field?: ¿Confirmas que quieres eliminar estos campos personalizados?
   you_sure_delete_flag?: ¿Estás seguro de querer eliminar esta marca?
-  you_sure_delete_project?: ¿Estás seguro de que quieres eliminar este proyecto?
+  you_sure_delete_project?: ¿Confirmas que quieres eliminar este proyecto?
   you_sure_delete_this_observation: ¿Confirma que quiere borrar esta observación?
-  you_sure_remove_taxon_from?: ¿Está seguro que desea quitar este taxón de %{list}?
+  you_sure_remove_taxon_from?: ¿Confirmas que quieres quitar este taxón de %{list}?
   you_sure_remove_this_invitation?: ¿Confirma que quiere quitar esta invitación?
   you_sure_remove_this_observation?: ¿Confirma que quiere quitar esta observación?
   you_tried_to_do_something_you_shouldnt: |-
@@ -4514,8 +4528,8 @@ es:
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
     necesita que autorice más permisos de %{provider} que proceden:'
   your_subscriptions: Tus suscripciones
-  your_sure_delete_list?: ¿Está seguro que desea eliminar esta lista?
-  your_sure_delete_taxon_from_list?: ¿Está seguro que desea eliminar %{taxon} de esta
+  your_sure_delete_list?: ¿Confirmas que quieres eliminar esta lista?
+  your_sure_delete_taxon_from_list?: ¿Confirmas que quieres eliminar %{taxon} de esta
     lista?
   your_world!: ¡Tu mundo!
   yours: Tuyos
@@ -5450,6 +5464,7 @@ es:
           href="%{url}">%{place}</a>
         rare_desc: Taxones amenazados menos observados
         rare_in_place_desc_html: Taxones amenazados menos observados en <a href="%{url}">%{place}</a>
+        wanted_desc: Especies en este taxón que aún no se han observado.
         no_trending_desc: Ninguna observación bajo este taxón en el último mes
         frequency:
           research: Grado de investigación
