@@ -1,7 +1,7 @@
 <%- 
   parent ||= comments
   hide_form ||= false
-  hide_form = true if current_user.blocked_by?( parent.try(:user) )
+  hide_form = true if current_user && current_user.blocked_by?( parent.try(:user) )
   remote ||= nil 
   header_tag ||= "h3"
 -%>
