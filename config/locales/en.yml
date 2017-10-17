@@ -4972,6 +4972,13 @@ en:
         sorry_that_doesnt_exist: Sorry, that doesn't exist!
         even_our_dedicated_search_mole_couldnt: Even our dedicated search mole couldn't find anything!
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: |
+          Adding a conservation status for a higher level taxon affects
+          observations of all the species in this taxon. Please do not add
+          statuses for taxa that contain species that have no status because
+          that will incorrectly obscure coordinates for observations of those
+          species.
       show:
         about_names_desc: |
           <p>
