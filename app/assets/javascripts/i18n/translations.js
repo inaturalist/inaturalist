@@ -4156,7 +4156,9 @@ I18n.translations["en"] = {
     "shared": {
       "blocked": {
         "youve_been_blocked": "You've Been Blocked",
-        "youve_been_blocked_desc": "The owner of this resource has blocked you, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n"
+        "youve_been_blocked_desc": "The owner of this resource has blocked you, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n",
+        "youve_blocked": "You've Blocked This Person",
+        "youve_blocked_desc": "You have blocked the owner of this resource, which prevents you from\ncommunicating with them. Most interactive features on this page will\nnot work.\n"
       },
       "spam": {
         "this_has_been_flagged_as_spam": "This has been flagged as spam"

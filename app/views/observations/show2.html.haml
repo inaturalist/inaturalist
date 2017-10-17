@@ -58,6 +58,7 @@
         prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
         prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
         preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
+        blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
         blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
       }
   :javascript
