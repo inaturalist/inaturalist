@@ -199,13 +199,13 @@ const TaxonomyTab = ( {
                   { sortedNames.map( n => (
                     <tr
                       key={`taxon-names-${n.id}`}
-                      className={!n.is_valid && n.lexicon === "Scientific Names" ? "outdated" : ""}
+                      className={ n.is_valid ? "" : "outdated" }
                     >
                       <td>
                         { I18n.t( `lexicons.${_.snakeCase( n.lexicon )}`, { defaultValue: n.lexicon } ) }
                       </td>
                       <td
-                        className={ n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : null }
+                        className={ n.lexicon && _.snakeCase( n.lexicon ).match( /scientific/ ) ? "sciname" : "comname" }
                       >
                         { n.name }
                       </td>
