@@ -1342,14 +1342,15 @@ class Taxon < ActiveRecord::Base
     skip_grafting = options.delete(:skip_grafting)
     name = normalize_name(name)
     ancestor = options.delete(:ancestor)
+    ratatosk_instance = options.delete(:ratatosk) || ratatosk
     external_names = begin
-      ratatosk.find(name)
+      ratatosk_instance.find(name)
     rescue Timeout::Error => e
       []
     end
     external_names.select!{|en| en.name.downcase == name.downcase} if options[:exact]
     return nil if external_names.blank?
-    external_names.each do |en| 
+    external_names.each do |en|
       if en.save && !skip_grafting && !en.taxon.grafted? && en.taxon.persisted?
         en.taxon.graft_silently
       end
