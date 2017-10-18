@@ -710,7 +710,10 @@ class ObservationsController < ApplicationController
       o
     end
     
-    current_user.observations << @observations.compact
+    @observations.compact.each do |o|
+      o.user = current_user
+      o.save
+    end
     create_project_observations
     update_user_account
 

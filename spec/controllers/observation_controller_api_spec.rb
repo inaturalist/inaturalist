@@ -50,6 +50,19 @@ shared_examples_for "an ObservationsController" do
     before(:each) { enable_elastic_indexing( Observation ) }
     after(:each) { disable_elastic_indexing( Observation ) }
 
+    it "should create with an existing photo ID" do
+      p = LocalPhoto.make!( user: user )
+      3.times do
+        post :create, format: :json, observation: {
+          taxon_id: Taxon.make!.id,
+          latitude: 1.2345,
+          longitude: 1.2345,
+        }, local_photos: { "0" => p.id }
+      end
+      o = user.observations.last
+      expect( o.photos ).to include p
+    end
+
     it "should include coordinates in create response when geoprivacy is obscured" do
       post :create, format: :json, observation: {
         latitude: 1.2345,

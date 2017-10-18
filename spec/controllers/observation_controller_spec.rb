@@ -404,6 +404,8 @@ describe ObservationsController do
   end
   
   describe "photo" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
     before do
       @user = User.make!
