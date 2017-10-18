@@ -194,7 +194,6 @@ Rails.application.routes.draw do
     get 'community_taxon_summary'
     collection do
       get :upload
-      post :photo
       get :stats
       get :taxa
       get :taxon_stats

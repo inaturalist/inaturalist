@@ -402,36 +402,6 @@ describe ObservationsController do
       expect(response.body).not_to be =~ /#{po.observation.private_latitude}/
     end
   end
-  
-  describe "photo" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
-    let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
-    before do
-      @user = User.make!
-      sign_in @user
-    end
-    it "should generate an error if no files specified" do
-      post :photo, :format => :json
-      json = JSON.parse(response.body)
-      expect(json['error']).to_not be_blank
-    end
-
-    it "should set the site based on config" do
-      @site = Site.make!
-      post :photo, :format => :json, :files => [ file ]
-      expect(@user.observations.last.site).to_not be_blank
-    end
-
-    it "should set the site based on user's site" do
-      @user.update_attribute(:site_id, Site.make!.id)
-      post :photo, :format => :json, :files => [ file ]
-      expect(@user.observations.last.site).to_not be_blank
-    end
-
-    # ugh, how to test uploads...
-    it "should generate an error if single file makes invalid photo"
-  end
 
   describe "curation" do
     render_views

@@ -1593,58 +1593,6 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def photo
-    @observations = []
-    @errors = []
-    if params[:files].blank?
-      respond_to do |format|
-        format.json do
-          render :status => :unprocessable_entity, :json => {
-            :error => "You must include files to convert to observations."
-          }
-        end
-      end
-      return
-    end
-    params[:files].each_with_index do |file, i|
-      lp = LocalPhoto.new(:file => file, :user => current_user)
-      o = lp.to_observation
-      if params[:observations] && obs_params = params[:observations][i]
-        obs_params.each do |k,v|
-          o.send("#{k}=", v) unless v.blank?
-        end
-      end
-      o.site ||= @site || current_user.site
-      if o.save
-        @observations << o
-      else
-        @errors << o.errors
-      end
-    end
-    respond_to do |format|
-      format.json do
-        unless @errors.blank?
-          render :status => :unprocessable_entity, json: {errors: @errors.map{|e| e.full_messages.to_sentence}}
-          return
-        end
-        render_observations_to_json(:include => {
-          :taxon => {
-            :only => [:name, :id, :rank, :rank_level, :is_iconic], 
-            :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
-            :include => {
-              :iconic_taxon => {
-                :only => [:id, :name]
-              },
-              :taxon_names => {
-                :only => [:id, :name, :lexicon]
-              }
-            }
-          }
-        })
-      end
-    end
-  end
-
   def stats
     @headless = @footless = true
     stats_adequately_scoped?
