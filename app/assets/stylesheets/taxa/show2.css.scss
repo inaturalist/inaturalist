@@ -555,7 +555,8 @@ $photoPreviewThumbGutterTop: 3px;
   .sciname.hybrid {
     font-style: italic;
   }
-  .outdated .sciname {
+  .outdated .sciname,
+  .outdated .comname {
     text-decoration: line-through;
   }
   .complete .hidable {

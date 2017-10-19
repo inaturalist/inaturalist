@@ -3,7 +3,7 @@ class ObservationPhoto < ActiveRecord::Base
   belongs_to :photo
 
   validates_associated :photo
-  validates_uniqueness_of :photo_id, :scope => :observation_id
+  validates_uniqueness_of :photo_id, scope: :observation_id
   validate :observer_owns_photo
   
   after_create :set_observation_quality_grade,

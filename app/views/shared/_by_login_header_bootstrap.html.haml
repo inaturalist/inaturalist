@@ -19,7 +19,7 @@
     = link_to(image_tag(@selected_user.icon.url(:thumb), :class => 'parenticon usericon'), person_by_login_path(@selected_user.login))
     -if controller.controller_name=="users" && ( controller.action_name=="show" || controller.action_name=="dashboard" )
       = @selected_user.login
-      - if logged_in? && is_not_me?(@selected_user) && !current_user.blocked_by?( @selected_user )
+      - if logged_in? && is_not_me?( @selected_user ) && !current_user.blocked_by?( @selected_user ) && !@selected_user.blocked_by?( current_user )
         = link_to new_message_path(:to => @selected_user.login), :class => 'btn btn-primary btn-xs' do
           %span.glyphicon.glyphicon-envelope
           =t :message

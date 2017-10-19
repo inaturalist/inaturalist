@@ -164,6 +164,7 @@ namespace :inaturalist do
                  "lexicons", "places_name", "copyright", "taxon_merge", "taxon_swap",
                  "taxon_split", "taxon_stage", "taxon_drop",
                  "lexicons", "places_name",
+                 "add_plant_phenology_budding_annotation",
                  "add_plant_phenology_flowering_annotation",
                  "add_plant_phenology_fruiting_annotation",
                  "add_life_stage_adult_annotation",

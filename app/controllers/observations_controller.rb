@@ -710,7 +710,10 @@ class ObservationsController < ApplicationController
       o
     end
     
-    current_user.observations << @observations.compact
+    @observations.compact.each do |o|
+      o.user = current_user
+      o.save
+    end
     create_project_observations
     update_user_account
 
@@ -1590,58 +1593,6 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def photo
-    @observations = []
-    @errors = []
-    if params[:files].blank?
-      respond_to do |format|
-        format.json do
-          render :status => :unprocessable_entity, :json => {
-            :error => "You must include files to convert to observations."
-          }
-        end
-      end
-      return
-    end
-    params[:files].each_with_index do |file, i|
-      lp = LocalPhoto.new(:file => file, :user => current_user)
-      o = lp.to_observation
-      if params[:observations] && obs_params = params[:observations][i]
-        obs_params.each do |k,v|
-          o.send("#{k}=", v) unless v.blank?
-        end
-      end
-      o.site ||= @site || current_user.site
-      if o.save
-        @observations << o
-      else
-        @errors << o.errors
-      end
-    end
-    respond_to do |format|
-      format.json do
-        unless @errors.blank?
-          render :status => :unprocessable_entity, json: {errors: @errors.map{|e| e.full_messages.to_sentence}}
-          return
-        end
-        render_observations_to_json(:include => {
-          :taxon => {
-            :only => [:name, :id, :rank, :rank_level, :is_iconic], 
-            :methods => [:default_name, :image_url, :iconic_taxon_name, :conservation_status_name],
-            :include => {
-              :iconic_taxon => {
-                :only => [:id, :name]
-              },
-              :taxon_names => {
-                :only => [:id, :name, :lexicon]
-              }
-            }
-          }
-        })
-      end
-    end
-  end
-
   def stats
     @headless = @footless = true
     stats_adequately_scoped?
@@ -1861,10 +1812,10 @@ class ObservationsController < ApplicationController
 
   def moimport
     if @api_key = params[:api_key]
-      mot = MushroomObserverImportFlowTask.new
-      @mo_user_id = mot.mo_user_id( @api_key )
-      @mo_user_name = mot.mo_user_name( @api_key )
-      @results = mot.get_results_xml( api_key: @api_key ).map{ |r| [r, mot.observation_from_result( r, skip_images: true )] }
+      @mo_import_task = MushroomObserverImportFlowTask.new
+      @mo_user_id = @mo_import_task.mo_user_id( @api_key )
+      @mo_user_name = @mo_import_task.mo_user_name( @api_key )
+      @results = @mo_import_task.get_results_xml( api_key: @api_key ).map{ |r| [r, @mo_import_task.observation_from_result( r, skip_images: true )] }
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }

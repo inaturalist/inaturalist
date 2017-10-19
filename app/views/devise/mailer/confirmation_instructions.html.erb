@@ -9,6 +9,7 @@
   site_name = site.name
   help_url = site.help_url
   feedback_url = site.feedback_url
+  community_guidelines_url = site.community_guidelines_url
 -%>
 <h1>
 <%=raw t(:your_account_has_been_activated) %>
@@ -25,10 +26,20 @@
     <%= t(:or) %>
     <%= link_to t(:invite_your_friends).downcase, emailer_invite_url %>
   </li>
+  <li><%= t( "views.devise.mailer.confirmation_instructions.community_guidelines_html", url: community_guidelines_url ) %></li>
 </ul>
 
 <p>
   <%=raw t(:if_you_have_any_trouble_with_the_site_check_out, :help_url => help_url, :feedback_url => feedback_url).capitalize %>
+</p>
+
+<strong>
+  <i>
+    <%= t( "views.devise.mailer.confirmation_instructions.are_you_planning_on_using_in_the_classroom", site_name: site_name ) %>
+  </i>
+</strong>
+<p>
+  <%= t( "views.devise.mailer.confirmation_instructions.please_read_the_teachers_guide_html", url: "/pages/teacher's+guide", site_name: site_name ) %>
 </p>
 
 <%= render 'emailer/footer' %>

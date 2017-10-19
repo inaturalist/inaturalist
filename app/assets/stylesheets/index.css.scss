@@ -916,11 +916,10 @@ ul.leafylist li li:first-child {
 }
 #inatnotice { color: #aaa; background-color: #666; padding-top: 20px; padding-bottom: 20px; }
 #inatnotice a {
-  font-weight: bold;
-  color: #74AC00;
+  color: white;
 }
 #inatnotice a:first-child {
-  color: white;
+  font-weight: bold;
 }
 
 #mobiletogglelink {font-size: 400%;margin-bottom:10%;}

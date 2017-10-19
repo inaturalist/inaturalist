@@ -113,7 +113,7 @@
     
   </div>
   <% if photo -%>
-    <div id="<%= dom_id(photo, "attribution") %>" class="meta attribution <%= photo.license_short.gsub(/\W/, ' ').strip.gsub(/\s+/, '_') %>" style="<%= 'display: none' unless include_image_attribution %>">
+    <div id="<%= dom_id(photo, "attribution") %>" class="meta attribution <%= photo.license_short.to_s.gsub(/\W/, ' ').strip.gsub(/\s+/, '_') %>" style="<%= 'display: none' unless include_image_attribution %>">
       <%= t(:photo) %> <%= link_to photo.attribution, photo.native_page_url %>
     </div>
   <% end -%>

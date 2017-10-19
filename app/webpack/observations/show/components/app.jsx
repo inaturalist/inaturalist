@@ -112,12 +112,28 @@ const App = ( {
   }
   if (
     config.currentUser &&
-    _.find( config.currentUser.blockedByUserHashes, h => new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h )
+    _.find(
+      config.currentUser.blockedByUserHashes, h =>
+        new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h
+    )
   ) {
     flashes.push( <FlashMessage
       key="flash_blocked"
       title = { I18n.t( "views.shared.blocked.youve_been_blocked" ) }
       message={ I18n.t( "views.shared.blocked.youve_been_blocked_desc" ) }
+      type="warning"
+    /> );
+  } else if (
+    config.currentUser &&
+    _.find(
+      config.currentUser.blockedUserHashes, h =>
+        new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h
+    )
+  ) {
+    flashes.push( <FlashMessage
+      key="flash_blocked"
+      title = { I18n.t( "views.shared.blocked.youve_blocked" ) }
+      message={ I18n.t( "views.shared.blocked.youve_blocked_desc" ) }
       type="warning"
     /> );
   }
