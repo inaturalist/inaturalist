@@ -13,6 +13,7 @@ class PlaceGeometry < ActiveRecord::Base
   after_destroy :update_observations_places_later
 
   validates_presence_of :geom
+  validates_uniqueness_of :place_id
   validate :validate_geometry
 
   def to_s

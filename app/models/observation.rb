@@ -992,6 +992,7 @@ class Observation < ActiveRecord::Base
   # specified
   def observation_field_values_attributes=(attributes)
     attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    return unless attr_array
     attr_array.each_with_index do |v,i|
       if v["id"].blank?
         existing = observation_field_values.where(:observation_field_id => v["observation_field_id"]).first unless v["observation_field_id"].blank?
@@ -2489,7 +2490,7 @@ class Observation < ActiveRecord::Base
         connection.execute("DELETE FROM observations_places
           WHERE observation_id IN (#{ ids.join(',') })")
         connection.execute("INSERT INTO observations_places (observation_id, place_id)
-          SELECT o.id, pg.place_id FROM observations o
+          SELECT DISTINCT o.id, pg.place_id FROM observations o
           JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
           WHERE o.id IN (#{ ids.join(',') })
           AND pg.place_id IS NOT NULL

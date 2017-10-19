@@ -124,6 +124,14 @@ shared_examples_for "an ObservationsController" do
       expect(o.observation_field_values.last.value).to eq("foo")
     end
 
+    it "should survive blank observation_field_values_attributes" do
+      expect {
+        post :create, format: :json, observation: {
+          observation_field_values_attributes: ""
+        }
+      }.not_to raise_error
+    end
+
     it "should allow Google Street View photos" do
       url = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=37.903042,-122.24697600000002&heading=-73.33342317239405&pitch=28.839156732145224&fov=180&sensor=false"
       post :create, :format => :json, :observation => {:species_guess => "tree"}, :google_street_view_photos => {
