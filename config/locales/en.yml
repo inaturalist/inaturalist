@@ -1017,6 +1017,7 @@ en:
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
   dna_: DNA
+  documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
   do_you_know_where_this_species_lives: Do you know where this species lives?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
@@ -4026,6 +4027,16 @@ en:
           can seriously damage the layout of the page and potentially allow
           malware to affect people viewing the page. If you don't know what a
           particular piece of code does, please don't add it.
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Are you planning to use %{site_name} in the classroom?
+          community_guidelines_html: |
+            <a href="%{url}">Check out the Community Guidelines</a> for tips
+            on keeping iNaturalist a friendly and welcoming place to be.
+          please_read_the_teachers_guide_html: |
+            If so, please read our <a href="%{url}">Teacher's Guide</a> for
+            tips on using %{site_name} with students.
     guides:
       index:
         funding_html: |
