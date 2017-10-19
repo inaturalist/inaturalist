@@ -353,7 +353,6 @@ qqq:
     is a URL
   delete: '{{Identical|Delete}}'
   delete_taxon_and_merge_most_data_html: where taxon is the name of a taxon
-  dna_: '{{Identical|DNA}}'
   description: '{{Identical|Description}}'
   desription: '{{Identical|Description}}'
   details: '{{Identical|Detail}}'
@@ -361,6 +360,7 @@ qqq:
   device: '{{Identical|Device}}'
   disagree_: '{{Identical|Disagree}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
+  dna_: '{{Identical|DNA}}'
   done: '{{Identical|Done}}'
   download: '{{Identical|Download}}'
   each_place_displays_all_species_inat_knows: where site_name is the name of the site
@@ -1086,21 +1086,23 @@ qqq:
   use_name_as_a_placeholder: where name is the name of a new taxon not yet in our
     database
   user: '{{Identical|User}}'
-  user_added_an_observation_html: where user is the name of a user
-  user_added_an_x_to_noun_html: where user is the name of a user and x is a resource
-    like an observation and nown is a resource like a project
-  user_added_a_x_to_noun_html: where user is the name of a user and x is a resource
-    like an observation and nown is a resource like a project
-  user_added_an_x_to_noun_by_html: |-
-    where user is the name of a user and x is a resource like an observation
-    and nown is a resource like a project and by is the owner of that resource
   user_added_a_x_to_noun_by_html: |-
     where user is the name of a user and x is a resource like an observation
     and nown is a resource like a project and by is the owner of that resource
+  user_added_a_x_to_noun_html: where user is the name of a user and x is a resource
+    like an observation and nown is a resource like a project
+  user_added_an_observation_field_html: where user and owner are names of users and
+    field_name is the name of a field like eating
+  user_added_an_observation_html: where user is the name of a user
+  user_added_an_x_to_noun_by_html: |-
+    where user is the name of a user and x is a resource like an observation
+    and nown is a resource like a project and by is the owner of that resource
+  user_added_an_x_to_noun_html: where user is the name of a user and x is a resource
+    like an observation and nown is a resource like a project
   user_added_x_observations_html: where user is the name of a user and x a number
+  user_commented: '{{Identical|Commented}}'
   user_commented_on: where user is the name of a user and title is a resource like
     an observation and time is the time
-  user_commented: '{{Identical|Commented}}'
   user_follows: |-
     where user is the name of a user
     {{Identical|Follow}}
@@ -1109,18 +1111,16 @@ qqq:
   user_hasnt: where user is the name of a user
   user_invite_observation_to_project: where user is the name of a user and project
     and observation are names of the project and observation
+  user_invited_you_to_join_html: where user is the name of a user
   user_invited_you_to_join_project: where user is the name of a user and project is
     the name of a project
-  user_invited_you_to_join_html: where user is the name of a user
   user_invited_you_to_join_this_project_on_date_html: where user is the name of a
     user and date is a date
   user_invited_your_x_to_a_project_html: where user is the name of a user and x is
     a resource like an observation
+  user_is_a_naturalist: where user is the name of a user
   user_is_now_role_for_project_html: where user is the name of a user role is a role
     like curator and project is the name of a project
-  user_added_an_observation_field_html: where user and owner are names of users and
-    field_name is the name of a field like eating
-  user_is_a_naturalist: where user is the name of a user
   user_s: where user is the name of a user
   user_s_id: where user is the name of a user
   user_s_lists: |-

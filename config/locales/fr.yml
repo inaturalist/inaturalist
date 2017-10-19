@@ -646,6 +646,8 @@ fr:
   bioblitz: Bioblitz
   birds: oiseaux
   black: noir
+  block_user: Bloquer l’utilisateur
+  block_removed: Blocage supprimé
   blog_widget: Widget de blogue
   blue: bleu
   blue_butterfly_etc: bleu, papillon, etc.
@@ -1195,7 +1197,6 @@ fr:
   deleting: Suppression en cours…
   deleting_verb: Suppression
   desc: décroissant
-  dna_: ADN
   descendant_taxa: taxons descendants
   descending: descendant
   describe_purpose: Décrivez le but de ce projet.
@@ -1226,7 +1227,7 @@ fr:
   display_listings_added_by_curators: Afficher les listes ajoutées par les responsables
     de l’organisation
   display_listings_from_place: Afficher les listes du lieu
-  drop_it: Le déposer
+  dna_: ADN
   do_not_show_this_message_again: Ne plus afficher ce message
   do_you_know_where_this_species_lives: Savez-vous où vivent ces espèces?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Étudiez-vous les nématodes
@@ -1243,6 +1244,7 @@ fr:
   dont_filter: Ne pas filtrer
   dont_send_me_email: Ne m’envoyez pas de courriel !
   dont_use_double_quotes: N’utilisez pas de guillemets ailleurs
+  drop_it: Le déposer
   double_click_to_finish: (double cliquez pour finir)
   download: Télécharger
   download_bulk_import_template_html: |-
@@ -2287,6 +2289,8 @@ fr:
   must_be_less_than_x_MB: Doit être de moins de %{x} Mo
   must_have_observation_field: le champ '%{operand}' de l’observation doit être rempli
   must_have_x: doit avoir %{x}
+  mute_user: Réduire l’utilisateur au silence
+  mute_removed: Mise au silence supprimée
   n_ago: il y a %{n}
   n_people_agrees: '%{amount} des gens sont d’accord'
   n_people_disagrees: '%{amount} des gens ne sont pas d’accord'
@@ -4093,6 +4097,7 @@ fr:
   type_taxon_name_and_click_lookup: Saisissez un nom de taxon et cliquez sur recherchez
   uicn_red_list_status: 'Situation selon la liste rouge de UICN :'
   un_license_this_observation: supprimer la licence de cette observation
+  unblock: Débloquer
   unclassified: Non classifié
   ungrafted_taxa: Taxons non greffés
   uninvite: désinviter
@@ -4105,6 +4110,7 @@ fr:
   unknown_rank: (Rang inconnu)
   unfollow: Ne plus suivre
   unlink_your_google_account: Supprimer le lien de votre compte Google
+  unmute: Supprimer la mise en silence
   unobserved_listings: Listes non observées
   updates_notification_email_subject: '%{prefix} Nouvelles mises à jour du %{date}'
   updates_suspension_email_subject: '%{prefix} Vos abonnements sont en attente'
@@ -4181,16 +4187,19 @@ fr:
     avec des virgules doit être inclus dans des guillemets. La plupart des applications
     de tableur exportent le CSV dans ce format.
   user: Utilisateur
-  user_added_an_observation_html: '%{user} a ajouté une observation'
   user_added_a_x: '%{user} a ajouté un %{x}'
-  user_added_an_x: '%{user} a ajouté un %{x}'
-  user_added_an_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
-  user_added_a_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} de %{by}'
   user_added_a_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} de %{by}'
+  user_added_a_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
+  user_added_an_observation_field_html: '%{user} a ajouté une valeur à « %{field_name} »
+    pour une observation de %{owner}'
+  user_added_an_observation_html: '%{user} a ajouté une observation'
+  user_added_an_x: '%{user} a ajouté un %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} de %{by}'
+  user_added_an_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
   user_added_x_observations_html: '%{user} a ajouté %{x} observations'
-  user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
+  user_blocked: Utilisateur bloqué
   user_commented: '%{user} a commenté'
+  user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
   user_faved_a_noun_by_owner: '%{user} a mis en favori %{noun} par %{owner}'
   user_follows: '%{user} suit'
   user_has_opted_out_of_community_id: L’utilisateur a refusé l’ID de la communauté
@@ -4201,16 +4210,15 @@ fr:
   user_hasnt: '%{user} n’a pas'
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation
     « %{observation} » dans le projet %{project}.'
-  user_invited_you_to_join_project: '%{user} vous a invité à vvous joindre à %{project}'
   user_invited_you_to_join_html: '%{user} vous a invité à vous joindre'
+  user_invited_you_to_join_project: '%{user} vous a invité à vvous joindre à %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} vous a invité à vous
     joindre à ce projet le %{date}'
   user_invited_your_x_to_a_project_html: '%{user} aimerait votre %{x} dans un projet'
+  user_is_a_naturalist: '%{user} est un naturaliste!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> est désormais %{role}
     pour %{project}
-  user_added_an_observation_field_html: '%{user} a ajouté une valeur à « %{field_name} »
-    pour une observation de %{owner}'
-  user_is_a_naturalist: '%{user} est un naturaliste!'
+  user_muted: Utilisateur réduit au silence
   user_s: de %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listes de %{user}
@@ -4220,12 +4228,12 @@ fr:
   username_or_email: Nom d’utilisateur ou adresse électronique
   username_or_user_id: Nom d’utilisateur ou ID utilisateur
   users: Utilisateurs
+  users_comment_html: commentaire de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a>
     à %{project_title}
   users_id: ID de %{user}
   users_identification_html: identification de <a href='%{url}'>%{user}</a>
   users_identification_short_html: ID de <a href='%{url}'>%{user}</a>
-  users_comment_html: commentaire de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: dernières observations de %{user} sur %{site}
   users_observations: observations de %{user}
   users_profile: Profil de %{user}
@@ -4521,6 +4529,7 @@ fr:
   you_can_only_destroy_taxa_you_created: Vous ne pouvez détruire que les taxons que
     vous avez créés, et vous ne pouvez pas détruire des taxons qui sont utilisés dans
     des modifications de taxon.
+  you_can_only_block_three_users: Vous ne pouvez bloquer que trois utilisateurs
   you_can_see_these_coordinates_because: Vous pouvez voir ces coordonnées parce que
     vous organisez un des projets auxquels cette observation a été ajoutée.
   you_can_show_the_boundary_of: Vous pouvez afficher la frontière du lieu sur votre
@@ -5653,6 +5662,11 @@ fr:
       updates_desc: Recevoir des notifications pour ce projet sur votre tableau de
         bord et dans le courriel quotidien
     shared:
+      blocked:
+        youve_been_blocked: Vous avez été bloqué
+        youve_been_blocked_desc: Le propriétaire de cette ressource vous a bloqué,
+          ce qui vous empêche de communiquer avec elle. La plupart des fonctionnalités
+          interactives de cette page ne seront pas opérationnelles.
       spam:
         message_for_owner_and_curators_html: |-
           Cet enregistrement a été signalé comme pourriel et n’est plus visible
@@ -5823,6 +5837,32 @@ fr:
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
       edit:
+        blocking_desc_html: "<p>\n  Bloquer quelqu'un l'empêche de vous envoyer des
+          messages, de commenter vos\n  observations, d'identifier vos observations
+          et d'interagir autrement\n  avec vous sur %{site_name}. Cela supprime également
+          ses observations de vos\n  résultats de recherche et supprime vos observations
+          ses résultats de \n  recherche. Cependant, cela ne vous rend pas invisible
+          pour lui. Il peut toujours \n  trouver vos observations et regardez votre
+          profil, il ne peut tout simplement pas\n  interagir avec vous.\n</ p>\n<p>\n
+          \ Le blocage est pour des situations où vous ne pouvez simplement pas vous
+          entendre\n  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+          pour\n  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+          pour se cacher de\n  personnes, pour empêcher les identifications de personnes
+          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+          de la communauté (il y en a un autre moyen \n  de régler cela). Ainsi, le
+          blocage fonctionne dans les deux sens: si vous bloquez\n  quelqu'un, ils
+          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir\n
+          \ avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+          vos\n  observations, vous vous empêchez également d'identifier ses\n  observations.\n</
+          p>\n<p>\n  Vous ne pouvez bloquer que trois personnes. Nous pensons que
+          c'est un nombre raisonnable\n  qui accueille les personnes qui ont besoin
+          de bloquer et\n  prévenir les abus de blocage. Si vous sentez que vous devez
+          bloquer plus\n  <a href=\"mailto:%{help_email}\"> contactez-nous </a>.\n</
+          p>\n<p>\n  Si quelqu'un vous harcèle ou vous traque sur %{site_name},\n
+          \ <a href=\"mailto:%{help_email}\"> merci de nous le faire savoir </a>.
+          Si\n  cela représente une violation de nos conditions d'utilisation ou représente\n
+          \ autre comportement que nous considérons inapproprié pour notre site, nous\n
+          \ enquêterons.\n</ p>"
         inaturalist_network_affiliation_desc_html: |-
           Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
           sites Web localisés liés à la communauté mondiale de iNaturalist.
@@ -5832,6 +5872,18 @@ fr:
           droit de télécharger et visualiser toutes vos données, tout comme
           les administrateurs du site peuvent iNaturalist. Si ce site quitte
           le réseau, toute votre compte et les données vont avec ce site.
+        muting_desc_html: |-
+          <p>
+            Imposer silence à quelqu’un vous évite de recevoir des notifications au sujet de choses
+            qu’il fait, y compris commenter vos observations, vous envoyer des messages,
+            vous mentionner, etc... Réduire quelqu'un au silence vous aide à l'ignorer sans
+            les empêcher de faire quoi que ce soit.
+          </p>
+          <p>
+            Vous pouvez réduire au silence autant de personnes que vous le souhaitez, mais gardez à l’esprit que
+            vous pourrez manquer des notifications importantes, comme
+            des identifications qui modifient l’ID de la communauté sur vos observations.
+          </p>
         project_addition_preferences:
           any: Tout
           joined: Projets que vous avez rejoint
@@ -5870,6 +5922,8 @@ fr:
           l’opinion de la communauté ne sera pas favorisée par rapport à la vôtre, ce qui veut dire que vos
           observations ne seront pas admissibles au calibre recherche, à moins que vous
           ne soyez d’accord avec la communauté.
+        youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
+          un blocage pour en ajouter un autre.
       show:
         take_a_chance_to_review_html: Prenez le temps de revoir <a href="%{link}">nos
           lignes directrices</a>.

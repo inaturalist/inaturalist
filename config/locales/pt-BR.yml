@@ -1142,7 +1142,6 @@ pt-BR:
   deleting: Excluindo...
   deleting_verb: Excluindo
   desc: Desc
-  dna_: DNA
   descendant_taxa: taxóns descendentes
   descending: Descendente
   describe_purpose: Descreva o objetivo deste projeto.
@@ -1170,7 +1169,7 @@ pt-BR:
   display_link_to_checklist: Mostra link para a lista do projeto a partir da página
   display_listings_added_by_curators: Mostre listas adicionadas pelos coordenadores
   display_listings_from_place: Mostre listas por lugar
-  drop_it: Solte
+  dna_: DNA
   do_not_show_this_message_again: Não mostrar esta mensagem novamente
   do_you_know_where_this_species_lives: Você sabe onde esta espécie vive?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Você estuda nematóides?
@@ -1187,6 +1186,7 @@ pt-BR:
   dont_filter: Não filtrar
   dont_send_me_email: Não me envie qualquer e-mail
   dont_use_double_quotes: Não utilize aspas em nenhum outro lugar
+  drop_it: Solte
   double_click_to_finish: (clique duas vezes para encerrar)
   download: Baixar
   download_bulk_import_template_html: <a href="%{url}">Baixar template</a> para uso
@@ -4045,16 +4045,18 @@ pt-BR:
     vírgulas deve estar entre aspas. A maioria dos aplicativos de planilhas devem
     exportar CSV neste formato.
   user: Usuário
-  user_added_an_observation_html: '%{user} adicionou uma observação'
   user_added_a_x: '%{user} adicionar uma %{x}'
-  user_added_an_x: '%{user} adicionar um %{x}'
-  user_added_an_x_to_noun_html: '%{user} adicionou uma %{x} a %{noun}'
-  user_added_a_x_to_noun_html: '%{user} adicionou um %{x} a %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} adicionou uma %{x} a %{noun} de %{by}'
   user_added_a_x_to_noun_by_html: '%{user} adicionou um %{x} a %{noun} de %{by}'
+  user_added_a_x_to_noun_html: '%{user} adicionou um %{x} a %{noun}'
+  user_added_an_observation_field_html: '%{user} adicionou um valor para "%{field_name}"
+    em uma observação de %{owner}'
+  user_added_an_observation_html: '%{user} adicionou uma observação'
+  user_added_an_x: '%{user} adicionar um %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} adicionou uma %{x} a %{noun} de %{by}'
+  user_added_an_x_to_noun_html: '%{user} adicionou uma %{x} a %{noun}'
   user_added_x_observations_html: '%{user} adicionou %{x} observações'
-  user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
   user_commented: '%{user} comentado'
+  user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: O usuário rejeitou a identificação da comunidade
@@ -4065,15 +4067,13 @@ pt-BR:
   user_hasnt: '%{user} não fez'
   user_invite_observation_to_project: '%{user} gostaria de convidar sua observação
     "%{observation}" para o projeto %{project}.'
-  user_invited_you_to_join_project: '%{user} convidou você a fazer parte de %{project}'
   user_invited_you_to_join_html: '%{user} convidou você para fazer parte'
+  user_invited_you_to_join_project: '%{user} convidou você a fazer parte de %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} convidou você para
     fazer parte deste projeto em %{date}'
   user_invited_your_x_to_a_project_html: '%{user} convidou você para %{x} um projeto'
-  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
-  user_added_an_observation_field_html: '%{user} adicionou um valor para "%{field_name}"
-    em uma observação de %{owner}'
   user_is_a_naturalist: '%{user} é um naturalista!'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
   user_s: Do %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas de %{user}
@@ -4083,12 +4083,12 @@ pt-BR:
   username_or_email: Nome de usuário ou email
   username_or_user_id: Nome de usuário ou identificação do usuário
   users: Usuários
+  users_comment_html: Comentário de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: Contribuições de <a href="%{url}">%{login}</a>
     a %{project_title}
   users_id: Identificação de %{user}
   users_identification_html: Identificação de <a href='%{url}'>%{user}</a>
   users_identification_short_html: Identificador de <a href='%{url}'>%{user}</a>
-  users_comment_html: Comentário de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Últimas observações de %{user} em %{site}
   users_observations: Observações de %{user}
   users_profile: Perfil de %{user}

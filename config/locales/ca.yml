@@ -1132,7 +1132,6 @@ ca:
   deleting: Esborrant...
   deleting_verb: Eliminant
   desc: desc
-  dna_: ADN
   descendant_taxa: tàxons descendents
   descending: descendent
   describe_purpose: Descriu l'objectiu d'aquest projecte
@@ -1160,7 +1159,7 @@ ca:
     pàgina del projecte
   display_listings_added_by_curators: Mostrar llistats afegits pels supervisors
   display_listings_from_place: Mostrar llistes del lloc
-  drop_it: Desar-la
+  dna_: ADN
   do_not_show_this_message_again: No tornar a mostrar aquest missatge
   do_you_know_where_this_species_lives: Sabeu on viu aquesta espècie?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Estudieu els nematodes?
@@ -1176,6 +1175,7 @@ ca:
   dont_filter: No filtreu
   dont_send_me_email: No m'envieu cap correu electrònic!
   dont_use_double_quotes: No utilitzeu cometes dobles en cap altre lloc
+  drop_it: Desar-la
   double_click_to_finish: (doble clic per acabar)
   download: 'Descarrega:'
   download_bulk_import_template_html: <a href="%{url}">Descarregueu la plantilla</a>
@@ -4047,16 +4047,18 @@ ca:
     entre comes ha d'estar tancat entre dobles cometes. La major part de les aplicacions
     de fulla de càlcul haurien de permetre-us exportar a CSV amb aquest format.
   user: Usuari
-  user_added_an_observation_html: '%{user} ha afegit una observació'
   user_added_a_x: '%{user} ha afegit una %{x}'
-  user_added_an_x: '%{user} ha afegit una %{x}'
-  user_added_an_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
-  user_added_a_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
   user_added_a_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
+  user_added_a_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
+  user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}"
+    a una observació de %{owner}'
+  user_added_an_observation_html: '%{user} ha afegit una observació'
+  user_added_an_x: '%{user} ha afegit una %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
+  user_added_an_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} ha afegit %{x} observacions'
-  user_commented_on: '%{user} ha comentat el teu %{title} %{time}'
   user_commented: '%{user} ha comentat'
+  user_commented_on: '%{user} ha comentat el teu %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} preferit %{noun} per %{owner}'
   user_follows: '%{user} segueix'
   user_has_opted_out_of_community_id: L'usuari ha refusat la identificació de la Comunitat
@@ -4067,16 +4069,14 @@ ca:
   user_hasnt: '%{user} no ha'
   user_invite_observation_to_project: '%{user} vol compartir la vostra observació
     "%{observation}" al projecte %{project}.'
-  user_invited_you_to_join_project: '%{user} us ha convidat a unir-vos a %{project}'
   user_invited_you_to_join_html: '%{user} us ha convidat a unir-vos'
+  user_invited_you_to_join_project: '%{user} us ha convidat a unir-vos a %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} us ha invitat a unir-vos
     a aquesta projecte en data %{date}'
   user_invited_your_x_to_a_project_html: '%{user} ha compartit la vostra %{x} a un
     projecte'
-  user_is_now_role_for_project_html: <strong>%{user}</strong> és ara %{role} de %{project}
-  user_added_an_observation_field_html: '%{user} ha afegit un valor per a "%{field_name}"
-    a una observació de %{owner}'
   user_is_a_naturalist: '%{user} és naturalista!'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> és ara %{role} de %{project}
   user_s: de %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Llistes de %{user}
@@ -4086,12 +4086,12 @@ ca:
   username_or_email: Nom d'usuari o correu electrònic
   username_or_user_id: Nom o identificador de l'usuari
   users: Usuaris
+  users_comment_html: comentari de <a href="%{url}">%{user}</a>
   users_contributions_to_project_html: Contribucions de <a href="%{url}">%{login}</a>
     al projecte %{project_title}
   users_id: ID de %{user}
   users_identification_html: identificació de <a href="%{url}">%{user}</a>
   users_identification_short_html: Identificació de <a href='%{url}'>%{user}</a>
-  users_comment_html: comentari de <a href="%{url}">%{user}</a>
   users_latest_observations_on_site: Últimes observacions de %{user} a %{site}
   users_observations: Observacions de %{user}
   users_profile: Perfil de %{user}

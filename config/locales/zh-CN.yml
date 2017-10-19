@@ -528,6 +528,8 @@ zh-CN:
   bioblitz: Bioblitz
   birds: 鸟
   black: 黑色
+  block_user: 封禁用户
+  block_removed: 封禁已移除
   blog_widget: 博客小部件
   blue: 蓝色
   blue_butterfly_etc: 蓝色、蝴蝶等
@@ -933,7 +935,6 @@ zh-CN:
   deleting: 删除中……
   deleting_verb: 删除中
   desc: 描述
-  dna_: DNA
   descendant_taxa: 后代分类群
   descending: 降序
   describe_purpose: 描述此项目的目的。
@@ -960,7 +961,7 @@ zh-CN:
   disconnect_provider: 取消连接 %{provider}
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
   display_listings_from_place: 查看某一地点的列表
-  drop_it: 放弃它
+  dna_: DNA
   do_not_show_this_message_again: 不要再次显示这条消息
   do_you_know_where_this_species_lives: 您知道这个物种住在哪里吗？
   do_you_study_nematodes_worlds_foremost_expert_barnacle: 您是线虫研究者吗？您是世界上顶尖的藤壶分类专家吗？您喜欢观察美丽的花朵吗？您可以在您的个人档案中写一些您的个人情况，您在帮助别人进行物种鉴定时，这帮助人们确定您的可信性。
@@ -973,6 +974,7 @@ zh-CN:
   dont_filter: 不要过滤
   dont_send_me_email: 不要向我发送任何电子邮件！
   dont_use_double_quotes: 不要在其他地方使用双引号
+  drop_it: 放弃它
   double_click_to_finish: （双击以完成）
   download: 下载
   download_bulk_import_template_html: <a href="%{url}">下载模板</a>用于<a href="/observations/import#csv_import">大量上传</a>
@@ -1769,6 +1771,8 @@ zh-CN:
   must_be_observed_before: 必须在 %{operand} 之前被观察
   must_be_less_than_x_MB: 必须小于 %{x} MB
   must_have_x: 必须有 %{x}
+  mute_user: 禁言用户
+  mute_removed: 禁言已移除
   n_ago: '%{n}前'
   n_people_agrees: '%{amount} 个人同意'
   n_people_disagrees: '%{amount} 个人不同意'
@@ -2855,6 +2859,7 @@ zh-CN:
   type_taxon_name: 输入分类名称
   type_taxon_name_and_click_lookup: 输入分类名称并点击查找
   uicn_red_list_status: IUCN红色名录状态：
+  unblock: 解封
   unclassified: 未分类
   uninvite: 未被邀请
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
@@ -2863,6 +2868,7 @@ zh-CN:
   unknown_rank: （未知排名）
   unfollow: 不关注
   unlink_your_google_account: 取消链接您的Google账户
+  unmute: 取消禁言
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的订阅目前暂停'
   updating: 正在更新...
@@ -2911,13 +2917,15 @@ zh-CN:
   use_unique_file_names_for_separate_uploads: 为各自上传使用唯一的文件名
   user: 用户
   user_added_a_x: '%{user} 添加了一个 %{x}'
+  user_added_a_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
+  user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
   user_added_an_x: '%{user} 添加了一个 %{x}'
   user_added_an_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
-  user_added_a_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
+  user_blocked: 用户已封禁
   user_commented: '%{user} 已评论'
   user_follows: '%{user} 关注'
   user_hasnt: '%{user}没有'
-  user_added_an_observation_field_html: '%{user}为“%{field_name}”添加了一个值至由%{owner}制作的观察'
+  user_muted: 用户已禁言
   user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user} 的列表'
@@ -2926,11 +2934,11 @@ zh-CN:
   username_or_email: 用户名或电子邮件
   username_or_user_id: 用户名或用户ID
   users: 用户
+  users_comment_html: <a href='%{url}'>%{user}</a> 的评论
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>对%{project_title}的贡献
   users_id: '%{user} 的ID'
   users_identification_html: <a href='%{url}'>%{user}</a>的身份证明
   users_identification_short_html: <a href='%{url}'>%{user}</a>的ID
-  users_comment_html: <a href='%{url}'>%{user}</a> 的评论
   users_observations: '%{user}的观察'
   users_profile: '%{user}的详细信息'
   using_a_license: 使用一份许可协议
@@ -3121,6 +3129,7 @@ zh-CN:
   you_can_also_add_flickr: 当您编辑一个观察，或当批量编辑您的观察时，您也可以添加Flickr标签。
   you_can_alwais_add_new: 您总是可以通过点击页面右上方的小箭头，以及使用下拉菜单添加新的观察。
   you_can_edit_this_default_check_list_because: 您可以编辑这个默认的检查列表，因为您是一位管理员，但真的不应该需要这样做。
+  you_can_only_block_three_users: 您只可以封禁3位用户
   you_can_see_these_coordinates_because: 您可以看见这些坐标，因为您助理着此观察添加进的项目之一。
   you_can_sign_free_at: 您可以免费注册一个%{site_name}账户在
   you_cant_flag_that: 您不能标记那个
@@ -3551,6 +3560,9 @@ zh-CN:
           </p>
       updates_desc: 在您的控制面板与每日更新邮件中接收有关此项目的更新。
     shared:
+      blocked:
+        youve_been_blocked: 您已被封禁
+        youve_been_blocked_desc: 这个资源的所有者屏蔽了您，这导致您无法联系他们。这个页面上所有的交互特性将不会工作。
       spam:
         message_for_owner_and_curators_html: 此记录已被标示为破坏并且不再公开可见。您可以看见它是因为您创建了它，或您是网站的监护人。如果您认为这是错误，请<a
           href="mailto:%{email}">联络我们</a>。
@@ -3605,7 +3617,27 @@ zh-CN:
           href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 只是提醒一下，项目馆长可以查看您添加至此项目的观察中私有和被掩盖的坐标。
       edit:
+        blocking_desc_html: |-
+          <p>
+          屏蔽某人以阻止他们发信息给您，评论您的观察，辨别您的观察结果，以及在您在％{site_name}%{site_name}上的其他交互。这个操作也把他们的观察从您的观察搜索结果中移出，同时也将您的观察从他们的搜索结果中删除。但是，它不会让您对他们不可见。他们仍然能找到您的观察并查看您的个人资料，他们只是不能与您互动
+          </p>
+          <p>
+          屏蔽是为了解决您不能和某些人相处，尽管您尽了最大的努力以文明的方式解决争端，他们也还是会纠缠您。这不是一种隐藏身份，以防止您的身份被人您不信任的人识别或注销社区 ID（有另一个设置专门做这个的）。因此，屏蔽工作方式如下：如果您屏蔽了某人他们不能与您互动，但您也不能和他们互动。如果您误用它来防止别人识别您的观察，您也将阻止您自己识别别人的观察。
+          </p>
+          <p>
+          您只能屏蔽三个人。我们认为这是合理的：符合屏蔽的需要，同时防止滥用屏蔽。如果您觉得需要屏蔽更多人请<a href="mailto:%{help_email}">与我们联系</a>。
+          </p>
+          <p>
+          如果有人在%{site_name}上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。如果这是违反我们的服务条款或是表现出其他对我们网站的不合适行为，我们将会进行调查。
+          </p>
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
+        muting_desc_html: |-
+          <p>
+          禁言某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
+          </p>
+          <p>
+          您可以根据实际需要，尽可能地禁言一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
+          </p>
         project_addition_preferences:
           any: 任何
           joined: 您加入的项目
@@ -3616,6 +3648,7 @@ zh-CN:
           ambiguous (e.g. a split), you will receive an update about the
           change linking to a tool you can use to manually update your content
           if you choose.
+        youve_used_all_of_your_blocks: 您使用了您所有的封禁权利。移除一个封禁行为来添加另一个。
       show:
         take_a_chance_to_review_html: 抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。
         this_user_was_banned: 此用户已被停用

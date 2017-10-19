@@ -890,7 +890,6 @@ eu:
   deleting: Ezabatzen...
   deleting_verb: Ezabatzen
   desc: beher.
-  dna_: DNA
   descendant_taxa: taxon ondorengoak
   descending: beheranzkoa
   describe_purpose: Deskribatu proiektu honen helburua
@@ -910,6 +909,7 @@ eu:
   did_you_photos_flickr?: Argazkiak jarri dituzu Flickr-en?
   disagree: desadostasunean
   disconnect_provider: 'Hemendik deskonektatu: %{provider}'
+  dna_: DNA
   do_you_know_where_this_species_lives: Ba al dakizu non bizi den espezie hau?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Nematodoak aztertzen al
     dituzu? Lanpernen taxonomian munduko adituena al zara? Lore politei soilik gustatzen
@@ -3013,11 +3013,11 @@ eu:
     bat ez baldin bada, [GENEROA] eta [ESPEZIEA] arteko guztia taxonaren izenarekin
     ordezkatuko denez, neurrian erabili. <br/><br/> <strong>Adibidea.</strong><br/>
   user: Erabiltzailea
-  user_added_an_observation_html: 'Honek behaketa gehitu zuen: %{user}'
-  user_added_an_x_to_noun_html: '%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra'
-  user_added_a_x_to_noun_html: '%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra'
-  user_added_an_x_to_noun_by_html: '%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra'
   user_added_a_x_to_noun_by_html: '%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra'
+  user_added_a_x_to_noun_html: '%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra'
+  user_added_an_observation_html: 'Honek behaketa gehitu zuen: %{user}'
+  user_added_an_x_to_noun_by_html: '%{user}-(e)k %{by}-(r)en %{x} gehitu zuen %{noun}-(e)ra'
+  user_added_an_x_to_noun_html: '%{user}-(e)k %{x} gehitu zuen %{noun}-(e)ra'
   user_added_x_observations_html: '%{user}-(e)k %{x} behaketa gehitu zituen'
   user_commented_on: '%{user}-(e)k aipatu zuen: %{title} %{time}'
   user_follows: '%{user}-(e)k honi jarraitzen dio:'
@@ -3026,9 +3026,9 @@ eu:
     %{project} proiektura gonbidatu nahi du.'
   user_invited_your_x_to_a_project_html: '%{user}-(e)k proiektu batetara gonbidatu
     zuen bere %{x}'
+  user_is_a_naturalist: '%{user} naturalista da!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> orain da %{project}-(e)ko
     %{role}
-  user_is_a_naturalist: '%{user} naturalista da!'
   user_s: '%{user}-(r)en %{model_name}'
   user_s_id: '%{user}-(r)en %{id}'
   user_s_lists: '%Zerrendak {user}'
