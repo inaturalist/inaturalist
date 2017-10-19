@@ -1812,10 +1812,10 @@ class ObservationsController < ApplicationController
 
   def moimport
     if @api_key = params[:api_key]
-      mot = MushroomObserverImportFlowTask.new
-      @mo_user_id = mot.mo_user_id( @api_key )
-      @mo_user_name = mot.mo_user_name( @api_key )
-      @results = mot.get_results_xml( api_key: @api_key ).map{ |r| [r, mot.observation_from_result( r, skip_images: true )] }
+      @mo_import_task = MushroomObserverImportFlowTask.new
+      @mo_user_id = @mo_import_task.mo_user_id( @api_key )
+      @mo_user_name = @mo_import_task.mo_user_name( @api_key )
+      @results = @mo_import_task.get_results_xml( api_key: @api_key ).map{ |r| [r, @mo_import_task.observation_from_result( r, skip_images: true )] }
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }

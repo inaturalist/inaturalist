@@ -84,6 +84,11 @@ class MushroomObserverImportFlowTask < FlowTask
     @warnings.delete url
   end
 
+  def images_from_result( result )
+    primary_image = result.at( "primary_image" )
+    [primary_image, result.search( "> images image" )].compact.flatten
+  end
+
   def observation_from_result( result, options = {} )
     log "working on result #{result[:url]}"
     if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
@@ -139,8 +144,8 @@ class MushroomObserverImportFlowTask < FlowTask
         o.description = notes.text
       end
     end
-    if !options[:skip_images] && ( primary_image = result.at( "primary_image" ) )
-      [primary_image, result.search( "image" )].flatten.each do |image|
+    if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
+      images.each do |image|
         image_url = "http://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
         lp = LocalPhoto.new( user: user )
         begin

@@ -45,8 +45,9 @@
             - @results.each do |result, observation|
               %tr
                 %td
-                  - if img = result.at( "primary_image" )
-                    %img{ src: "http://images.mushroomobserver.org/thumb/#{img[:id]}.jpg" }
+                  - if ( images = @mo_import_task.images_from_result( result ) ) && images.size > 0
+                    - images.each do |img|
+                      %img{ src: "http://images.mushroomobserver.org/thumb/#{img[:id]}.jpg" }
                   - else
                     = iconic_taxon_image( observation.taxon )
                 %td
