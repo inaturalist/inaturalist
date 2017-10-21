@@ -168,6 +168,128 @@ class CommunityIdentification extends React.Component {
     this.props.setCommunityIDModalState( { show: true } );
   }
 
+  dataForTaxon( taxon ) {
+    const { observation, config } = this.props;
+    const loggedIn = config && config.currentUser;
+    const votesFor = [];
+    const votesAgainst = [];
+    let userAgreedToThis;
+    let canAgree = true;
+    const taxonImageTag = util.taxonImage( taxon );
+    const tid = taxon.rank_level <= 10 ? taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
+    const compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=${tid}`;
+    const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
+      i.current && i.user && i.user.id === config.currentUser.id
+    ) );
+    this.ownerID = _.findLast( observation.identifications, i => (
+      i.current && i.user && i.user.id === observation.user.id
+    ) );
+    if ( currentUserID ) {
+      canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+      userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
+    }
+    const obsTaxonAncestry = observation.taxon.ancestry ? `${observation.taxon.ancestry}/${observation.taxon.id}` : `${observation.taxon.id}`;
+    const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
+    const taxonIsMaverick = (
+      !obsTaxonAncestry.includes( taxonAncestry ) && !taxonAncestry.includes( obsTaxonAncestry )
+    );
+    // const sortedIdents = _.sortBy( observation.identifications, i => `${i.taxon.ancestry}/${i.taxon.id}` );
+    // const sortedIdents = observation.identifications;
+    const sortedIdents = _.sortBy( observation.identifications, i => i.created_at );
+    _.each( sortedIdents, i => {
+      if ( !i.current ) { return; }
+      const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
+      if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
+        votesFor.push( i );
+      } else {
+        votesAgainst.push( i );
+      }
+    } );
+    const totalVotes = votesFor.length + votesAgainst.length;
+    let voteCells = [];
+    const width = `${_.round( 100 / totalVotes, 3 )}%`;
+    let taxaSeen = [];
+    _.each( votesFor, v => {
+      if ( taxaSeen.indexOf( v.taxon.id ) < 0 ) {
+        taxaSeen.push( v.taxon.id );
+      }
+      let voteCellClassName = `for taxon-${taxaSeen.indexOf( v.taxon.id )} ${taxon.id === v.taxon.id ? "exact" : "not-exact"}`;
+      voteCells.push( (
+        <CommunityIDPopover
+          className={ taxon.id === v.taxon.id ? "exact" : "not-exact" }
+          key={ `community-id-${v.id}` }
+          keyPrefix="ids"
+          identification={ v }
+          communityIDTaxon={ observation.taxon }
+          agreement
+          style={ { width } }
+          contents={ ( <div className={ voteCellClassName } /> ) }
+        />
+      ) );
+    } );
+    taxaSeen = [];
+    _.each( votesAgainst, v => {
+      if ( taxaSeen.indexOf( v.taxon.id ) < 0 ) {
+        taxaSeen.push( v.taxon.id );
+      }
+      let voteCellClassName = `against taxon-${taxaSeen.indexOf( v.taxon.id )} ${taxon.id === v.taxon.id ? "exact" : "not-exact"}`;
+      voteCells.push( (
+        <CommunityIDPopover
+          className={ taxon.id === v.taxon.id ? "exact" : "not-exact" }
+          key={ `community-id-${v.id}` }
+          keyPrefix="ids"
+          identification={ v }
+          communityID={ observation.taxon }
+          agreement={ false }
+          style={ { width } }
+          contents={ ( <div className={ voteCellClassName } /> ) }
+        />
+      ) );
+    } );
+    let linesAndNumbers;
+    if ( voteCells.length > 1 ) {
+      linesAndNumbers = (
+        <span>
+          <div className="lines">
+            <div className="two-thirds">&nbsp;</div>
+          </div>
+          <div className="numbers">
+            <div className="first">0</div>
+            <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
+            <div className="last">{ voteCells.length }</div>
+          </div>
+        </span>
+      );
+    }
+    const stats = (
+      <span>
+        <span className="cumulative">
+          { voteCells.length > 1 ?
+            I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
+        </span>
+        <div className="graphic">
+          { voteCells }
+          { linesAndNumbers }
+        </div>
+      </span>
+    );
+    const photo = (
+      <TaxonSummaryPopover
+        taxon={ taxon }
+        contents={ taxonImageTag }
+      />
+    );
+    return {
+      taxon,
+      compareLink,
+      stats,
+      photo,
+      canAgree,
+      userAgreedToThis,
+      taxonIsMaverick
+    };
+  }
+
   render( ) {
     const { observation, config, addID } = this.props;
     const loggedIn = config && config.currentUser;
@@ -182,92 +304,8 @@ class CommunityIdentification extends React.Component {
     let stats;
     let photo;
     const taxonImageTag = util.taxonImage( taxon );
-    const votesFor = [];
-    const votesAgainst = [];
     if ( taxon ) {
-      const tid = taxon.rank_level <= 10 ?
-      taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
-      compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=${tid}`;
-      const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
-        i.current && i.user && i.user.id === config.currentUser.id
-      ) );
-      this.ownerID = _.findLast( observation.identifications, i => (
-        i.current && i.user && i.user.id === observation.user.id
-      ) );
-      if ( currentUserID ) {
-        canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
-        userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
-      }
-      const taxonAncestry = taxon.ancestry ? `${taxon.ancestry}/${taxon.id}` : `${taxon.id}`;
-      _.each( observation.identifications, i => {
-        if ( !i.current ) { return; }
-        const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
-        if ( taxonAncestry.includes( idAncestry ) || idAncestry.includes( taxonAncestry ) ) {
-          votesFor.push( i );
-        } else {
-          votesAgainst.push( i );
-        }
-      } );
-      const totalVotes = votesFor.length + votesAgainst.length;
-      const voteCells = [];
-      const width = `${_.round( 100 / totalVotes, 3 )}%`;
-      _.each( votesFor, v => {
-        voteCells.push( (
-          <CommunityIDPopover
-            key={ `community-id-${v.id}` }
-            keyPrefix="ids"
-            identification={ v }
-            communityIDTaxon={ taxon }
-            agreement
-            contents={ ( <div className="for" style={ { width } } /> ) }
-          />
-        ) );
-      } );
-      _.each( votesAgainst, v => {
-        voteCells.push( (
-          <CommunityIDPopover
-            key={ `community-id-${v.id}` }
-            keyPrefix="ids"
-            identification={ v }
-            communityID={ taxon }
-            agreement={ false }
-            contents={ ( <div className="against" style={ { width } } /> ) }
-          />
-        ) );
-      } );
-      let linesAndNumbers;
-      if ( voteCells.length > 1 ) {
-        linesAndNumbers = (
-          <span>
-            <div className="lines">
-              <div className="two-thirds">&nbsp;</div>
-            </div>
-            <div className="numbers">
-              <div className="first">0</div>
-              <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
-              <div className="last">{ voteCells.length }</div>
-            </div>
-          </span>
-        );
-      }
-      stats = (
-        <span>
-          <span className="cumulative">
-            { voteCells.length > 1 ?
-              I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
-          </span>
-          <div className="graphic">
-            { voteCells }
-            { linesAndNumbers }
-          </div>
-        </span>
-      );
-      photo = (
-        <TaxonSummaryPopover
-          taxon={ taxon }
-          contents={ taxonImageTag }
-        />
-      );
+      ( { compareLink, stats, photo, canAgree, userAgreedToThis } = this.dataForTaxon( taxon ) );
     } else {
       compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=0`;
       canAgree = false;
@@ -296,14 +334,73 @@ class CommunityIdentification extends React.Component {
           </button>
         </a>
       );
-    return (
-      <div className="CommunityIdentification">
-        <h4>
-          { I18n.t( "community_id_heading" ) }
-          { this.communityIDOverrideStatement( ) }
-          { this.optOutPopover( ) }
-        </h4>
-        { this.communityIDOverridePanel( ) }
+    const test = $.deparam.querystring().test;
+    const proposedTaxa = {};
+    const proposedTaxonItems = [];
+    const currentIdents = _.filter( observation.identifications, i => i.current );
+    if ( currentIdents.length > 1 ) {
+      for ( let i = 0; i < currentIdents.length; i++ ) {
+        const ident = currentIdents[i];
+        if ( !proposedTaxa[ident.taxon.id] ) {
+          proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
+          proposedTaxa[ident.taxon.id] = ident.taxon.id;
+        }
+      }
+    }
+    const numIdentifiers = currentIdents.length;
+
+    let visualization;
+    if ( test === "cid-vis3" || test === "cid-vis4" ) {
+      visualization = (
+        <div className="cid-extended">
+          <div className="info">
+            <div className="about stacked">
+              Over 2/3 of <strong>{ numIdentifiers } people</strong> agree it is:
+              <a href={ compareLink } className="pull-right compare-link">
+                <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+              </a>
+            </div>
+            <div className="inner">
+              <div className="photo">{ photo }</div>
+              <div className="stats-and-name">
+                <div className="badges">
+                  <ConservationStatusBadge observation={ observation } />
+                  <EstablishmentMeansBadge observation={ observation } />
+                </div>
+                <SplitTaxon
+                  taxon={ taxon }
+                  url={ taxon ? `/taxa/${taxon.id}` : null }
+                  placeholder={ observation.species_guess }
+                />
+                { stats }
+              </div>
+            </div>
+          </div>
+          <div className="proposed-taxa">
+            { _.map( proposedTaxonItems, proposedTaxonData => (
+              <div className="info">
+                { proposedTaxonData.taxonIsMaverick ? (
+                  <div className="about stacked maverick">
+                    <i className="fa fa-bolt" /> { I18n.t( "maverick" ) } Suggestion:
+                  </div>
+                ) : null }
+                <div className="inner">
+                  <div className="photo">{ proposedTaxonData.photo }</div>
+                  <div className="stats-and-name">
+                    <SplitTaxon
+                      taxon={ proposedTaxonData.taxon }
+                      url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                    />
+                    { proposedTaxonData.stats }
+                  </div>
+                </div>
+              </div>
+            ) ) }
+          </div>
+        </div>
+      );
+    } else {
+      visualization = (
         <div className="info">
           <div className="photo">{ photo }</div>
           <div className="badges">
@@ -317,6 +414,18 @@ class CommunityIdentification extends React.Component {
           />
           { stats }
         </div>
+      );
+    }
+
+    return (
+      <div className={ `CommunityIdentification ${test}` }>
+        <h4>
+          { I18n.t( "community_id_heading" ) }
+          { this.communityIDOverrideStatement( ) }
+          { this.optOutPopover( ) }
+        </h4>
+        { this.communityIDOverridePanel( ) }
+        { visualization }
         <div className="action">
           <div className="btn-space">
             { agreeButton }

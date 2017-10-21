@@ -57,7 +57,7 @@ class CommunityIDPopover extends React.Component {
         overlay={popover}
         containerPadding={ 20 }
       >
-        <span className="CommunityIDPopover">
+        <span className={ `CommunityIDPopover ${this.props.className}`} style={ this.props.style }>
           { contents }
         </span>
       </OverlayTrigger>
@@ -70,7 +70,9 @@ CommunityIDPopover.propTypes = {
   keyPrefix: PropTypes.string,
   contents: PropTypes.object,
   identification: PropTypes.object,
-  communityIDTaxon: PropTypes.object
+  communityIDTaxon: PropTypes.object,
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 export default CommunityIDPopover;

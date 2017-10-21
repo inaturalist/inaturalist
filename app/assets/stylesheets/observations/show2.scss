@@ -14,6 +14,7 @@ $other-link-color: #337AB7;
 $light-grey: #F7F7F7;
 $border-grey: #DDD;
 $fail-red: #D9534F;
+$fail-red-light: #D98582;
 
 #react-images-container {
   .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
@@ -1448,6 +1449,12 @@ h3, h4 {
     .TaxonSummaryPopover {
       cursor: pointer;
     }
+    .CommunityIDPopover {
+      display: inline-block;
+      .for, .against {
+        width: 100%;
+      }
+    }
     .cumulative {
       display: inline-block;
     }
@@ -1538,6 +1545,166 @@ h3, h4 {
       .separator {
         margin: 0px 5px;
       }
+    }
+  }
+}
+
+.CommunityIdentification.cid-vis1 {
+  .taxon-0 { opacity: 1; }
+  .taxon-1 { opacity: 0.7; }
+  .taxon-2 { opacity: 0.4; }
+  .taxon-3 { opacity: 0.1; }
+  .taxon-4 { opacity: 0.8; }
+  .taxon-5 { opacity: 0.5; }
+  .taxon-6 { opacity: 0.2; }
+  .taxon-7 { opacity: 0.9; }
+  .taxon-8 { opacity: 0.6; }
+  .taxon-9 { opacity: 0.3; }
+  .info {
+    .graphic {
+      .against {
+        background: repeating-linear-gradient(
+          -45deg,
+          $fail-red,
+          $fail-red 5px,
+          $fail-red-light 5px,
+          $fail-red-light 10px
+        );
+      }
+    }
+  }
+}
+
+.CommunityIdentification.cid-vis2 {
+  .info {
+    .graphic {
+      .for {
+        &.taxon-0 { background: #1561A7; }
+        &.taxon-1 { background: #9DBAE4; }
+        &.taxon-2 { background: #FD690D; }
+        &.taxon-3 { background: #FEAE60; }
+        &.taxon-4 { background: #229419; }
+        &.taxon-5 { background: #86DE74; }
+        &.taxon-6 { background: #CD0C18; }
+        &.taxon-7 { background: #FD8282; }
+        &.taxon-8 { background: #824BB1; }
+        &.taxon-9 { background: #B99DCD; }
+      }
+      .against {
+        background: repeating-linear-gradient(
+          -45deg,
+          #333,
+          #333 5px,
+          lighten(#333, 10%) 5px,
+          lighten(#333, 10%) 10px
+        );
+        &.taxon-0 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #333,
+            #333 5px,
+            lighten(#333, 10%) 5px,
+            lighten(#333, 10%) 10px
+          );
+        }
+        &.taxon-1 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #444,
+            #444 5px,
+            lighten(#444, 10%) 5px,
+            lighten(#444, 10%) 10px
+          );
+        }
+        &.taxon-1 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #555,
+            #555 5px,
+            lighten(#555, 10%) 5px,
+            lighten(#555, 10%) 10px
+          );
+        }
+        &.taxon-2 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #666,
+            #666 5px,
+            lighten(#666, 10%) 5px,
+            lighten(#666, 10%) 10px
+          );
+        }
+      }
+    }
+  }
+}
+
+.CommunityIdentification.cid-vis3,
+.CommunityIdentification.cid-vis4 {
+  .numbers,
+  .cumulative {
+    display: none;
+  }
+  .info {
+    .about {
+      width: 100%;
+      &.maverick {
+        color: $fail-red;
+      }
+    }
+    .inner {
+      display: flex;
+    }
+    .compare-link {
+      font-weight: bold;
+      i {
+        color: $inat-green;
+      }
+    }
+    .stats-and-name {
+      flex: 2;
+    }
+    .taxon {
+      white-space: normal;
+      font-size: 14px;
+    }
+    .photo {
+      float: none;
+      margin-right: 10px;
+    }
+    .graphic {
+      margin-top: 0px;
+
+      .against {
+        background: repeating-linear-gradient(
+          -45deg,
+          $fail-red,
+          $fail-red 5px,
+          $fail-red-light 5px,
+          $fail-red-light 10px
+        );
+      }
+    }
+  }
+  .proposed-taxa {
+    .info {
+      border-top: 0px;
+      background-color: #f8f8f8;
+    }
+    .for.not-exact, .against.not-exact {
+      opacity: 0.1;
+    }
+    .two-thirds {
+      display: none !important;
+    }
+  }
+}
+.CommunityIdentification.cid-vis4 {
+  .info {
+    .graphic {
+      display: flex;
+      .exact { order: 0; }
+      .not-exact { order: 1; }
     }
   }
 }
