@@ -383,6 +383,25 @@ describe Identification, "creation" do
     expect( i.stored_preferences ).to be_blank
   end
 
+  describe "with an inactive taxon" do
+    it "should replace the taxon with its active equivalent" do
+      taxon_change = make_taxon_swap
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      expect( Identification.make!( taxon: taxon_change.input_taxon ).taxon ).to eq taxon_change.output_taxon
+    end
+    it "should not replace the taxon if there is no active equivalent" do
+      inactive_taxon = Taxon.make!( is_active: false )
+      expect( Identification.make!( taxon: inactive_taxon ).taxon ).to eq inactive_taxon
+    end
+    it "should not replace the taxon if there are multiple active equivalents" do
+      taxon_change = make_taxon_split
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      expect( Identification.make!( taxon: taxon_change.input_taxon ).taxon ).to eq taxon_change.input_taxon
+    end
+  end
+
 end
 
 describe Identification, "updating" do
