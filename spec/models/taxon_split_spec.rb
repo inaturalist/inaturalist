@@ -223,15 +223,37 @@ describe TaxonSplit, "commit_records" do
         end
       end
       describe "observations" do
-        it "should change the taxon if coordinates are in a non-overlapping presence place" do
-          o = Observation.make!(
-            latitude: presence_place1.latitude,
-            longitude: presence_place1.longitude,
-            taxon: @split.input_taxon
-          )
-          @split.commit_records
-          o.reload
-          expect( o.taxon ).to eq @split.output_taxa[0]
+        describe "where coordinates are in a non-overlapping presence place" do
+          let(:o) {
+            Observation.make!(
+              latitude: presence_place1.latitude,
+              longitude: presence_place1.longitude,
+              taxon: @split.input_taxon
+            )
+          }
+          it "should change the taxon" do
+            expect( o.taxon ).to eq @split.input_taxon
+            @split.commit_records
+            o.reload
+            expect( o.taxon ).to eq @split.output_taxa[0]
+          end
+          it "should update the iconic taxon" do
+            input_iconic_taxon = Taxon.make!( is_iconic: true )
+            output_iconic_taxon = Taxon.make!( is_iconic: true )
+            @input_taxon.update_attributes( parent: input_iconic_taxon, iconic_taxon: input_iconic_taxon )
+            @output_taxon1.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
+            @output_taxon2.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
+            @split.reload
+            expect( @split.input_taxon.iconic_taxon ).to eq input_iconic_taxon
+            @split.output_taxa.each do |t|
+              expect( t.iconic_taxon ).to eq output_iconic_taxon
+            end
+            expect( o.iconic_taxon ).to eq input_iconic_taxon
+            @split.commit_records
+            Delayed::Worker.new.work_off
+            o.reload
+            expect( o.iconic_taxon ).to eq output_iconic_taxon
+          end
         end
         it "should not change the taxon if the obs is of a competely different taxon" do
           t = Taxon.make!
