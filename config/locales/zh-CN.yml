@@ -962,6 +962,7 @@ zh-CN:
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
   display_listings_from_place: 查看某一地点的列表
   dna_: DNA
+  documentation_for_developers_html: 面向<a href="/pages/developers">开发者</a>的文档
   do_not_show_this_message_again: 不要再次显示这条消息
   do_you_know_where_this_species_lives: 您知道这个物种住在哪里吗？
   do_you_study_nematodes_worlds_foremost_expert_barnacle: 您是线虫研究者吗？您是世界上顶尖的藤壶分类专家吗？您喜欢观察美丽的花朵吗？您可以在您的个人档案中写一些您的个人情况，您在帮助别人进行物种鉴定时，这帮助人们确定您的可信性。
@@ -3223,6 +3224,14 @@ zh-CN:
     custom_projects:
       edit:
         custom_project_fields_warning: 请小心：添加Javascript和CSS至您的项目页面可能严重破坏页面布局，并可能允许恶意软件影响人们查看页面。如果您不知道哪一段特殊代码会造成影响，请不要添加它。
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: 您打算在教室中使用%{site_name}么？
+          community_guidelines_html: <a href="%{url}">查阅社区指南</a> 获得让 iNaturalist 持续成为一个友好并受欢迎的地方的提示。
+          please_read_the_teachers_guide_html: |-
+            如果是，请阅读我们的 <a href="%{url}">教师指南</a> 获得与
+            学生使用 %{site_name} 的提示。
     guides:
       index:
         funding_html: 指南开发的资金由<a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>提供
@@ -3563,6 +3572,8 @@ zh-CN:
       blocked:
         youve_been_blocked: 您已被封禁
         youve_been_blocked_desc: 这个资源的所有者屏蔽了您，这导致您无法联系他们。这个页面上所有的交互特性将不会工作。
+        youve_blocked: 您已封禁该人
+        youve_blocked_desc: 您已经屏蔽了此资源的所有者，这阻止了您的使用与他们沟通。 此页面上的大多数交互特性将不能工作。
       spam:
         message_for_owner_and_curators_html: 此记录已被标示为破坏并且不再公开可见。您可以看见它是因为您创建了它，或您是网站的监护人。如果您认为这是错误，请<a
           href="mailto:%{email}">联络我们</a>。
@@ -3571,6 +3582,9 @@ zh-CN:
         sorry_that_doesnt_exist: 抱歉，它不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: 给更高级别的类单位添加保护状态会影响该类群中所有物种的观察。
+          请不要给类群添加含有没有状态的物种，因为这将不正确地掩盖这些物种的观察坐标。
       show:
         about_names_desc: |-
           <p>
@@ -3633,10 +3647,10 @@ zh-CN:
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         muting_desc_html: |-
           <p>
-          禁言某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
+          静音某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
           </p>
           <p>
-          您可以根据实际需要，尽可能地禁言一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
+          您可以根据实际需要，尽可能地静音一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
           </p>
         project_addition_preferences:
           any: 任何

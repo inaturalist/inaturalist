@@ -1228,6 +1228,8 @@ fr:
     de l’organisation
   display_listings_from_place: Afficher les listes du lieu
   dna_: ADN
+  documentation_for_developers_html: Documentation pour <a href="/pages/developers">les
+    développeurs</a>
   do_not_show_this_message_again: Ne plus afficher ce message
   do_you_know_where_this_species_lives: Savez-vous où vivent ces espèces?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Étudiez-vous les nématodes
@@ -4722,6 +4724,17 @@ fr:
           peut gravement endommager l’aspect de la page et potentiellement permettre
           à des logiciels malveillants de nuire aux personnes regardant la page. Si vous ne savez pas ce que
           fait un code précis, ne l’ajoutez pas.
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Prévoyez-vous d’utiliser %{site_name}
+            dans la salle de classe ?
+          community_guidelines_html: <a href="%{url}">Regardez les lignes directrices
+            de la communauté</a> pour des conseils sur la manière de garder iNaturalist
+            comme un endroit amical et convivial.
+          please_read_the_teachers_guide_html: Si c’est le cas, veuillez lire notre
+            <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation
+            de %{site_name} avec des étudiants.
     guides:
       index:
         funding_html: |-
@@ -5667,6 +5680,10 @@ fr:
         youve_been_blocked_desc: Le propriétaire de cette ressource vous a bloqué,
           ce qui vous empêche de communiquer avec elle. La plupart des fonctionnalités
           interactives de cette page ne seront pas opérationnelles.
+        youve_blocked: Vous avez bloqué cette personne
+        youve_blocked_desc: Vous avez bloqué le propriétaire de cette ressource, ce
+          qui vous empêche de communiquer avec lui. D’autres fonctionnalités interactives
+          sur cette page ne fonctionneront pas.
       spam:
         message_for_owner_and_curators_html: |-
           Cet enregistrement a été signalé comme pourriel et n’est plus visible
@@ -5679,6 +5696,12 @@ fr:
         even_our_dedicated_search_mole_couldnt: Même notre taupe de recherche n’a
           rien pu trouver !
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: Ajouter un état de conservation
+          pour un taxon de haut niveau affecte les observations de toutes les espèces
+          dans ce taxon. Veuillez ne pas ajouter d’états pour des taxons qui contiennent
+          des espèces qui n’en ont pas, car cela masquerait de façon inappropriée
+          les coordonnées des observations pour ces espèces.
       show:
         about_names_desc: |-
           <p>

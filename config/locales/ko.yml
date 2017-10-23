@@ -813,6 +813,7 @@ ko:
   display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
   display_listings_from_place: 장소로부터 목록 표시
   dna_: DNA
+  documentation_for_developers_html: <a href="/pages/developers">개발자</a>를 위한 문서
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
   do_you_know_where_this_species_lives: 이 종이 어디 사는지 아시나요?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: 프로필을 채우는 것은 개성을 주고, 동정을
@@ -2160,6 +2161,10 @@ ko:
     있습니다.
   zoom_photo: 사진 확대/축소
   views:
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
     guides:
       edit:
         add_rank_tags_help_html: |-
@@ -2218,6 +2223,11 @@ ko:
     shared:
       blocked:
         youve_been_blocked: 당신은 차단되었습니다
+        youve_blocked: 이 사람을 차단했습니다
+        youve_blocked_desc: |-
+          이 자원의 소유자를 차단했기 때문에 이들과 통신하는 것은
+          불가능합니다. 이 문서의 상호작용 기능들 대부분은 동작하지
+          않습니다.
     taxa:
       show:
         frequency:
