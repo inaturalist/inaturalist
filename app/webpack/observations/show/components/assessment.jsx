@@ -18,7 +18,7 @@ class Assessment extends React.Component {
     const loggedIn = config && config.currentUser;
     return (
       <Grid>
-        <div className="QualityMetrics">
+        <div className="QualityMetrics collapsible-section">
           <h3
             className="collapsible"
             onClick={ ( ) => {

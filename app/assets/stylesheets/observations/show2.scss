@@ -1656,7 +1656,14 @@ h3, h4 {
   .info {
     .about {
       width: 100%;
-      &.maverick {
+      .SplitTaxon {
+        display: inline;
+        margin: 0;
+      }
+      &.supporting i {
+        color: $inat-green;
+      }
+      &.maverick i {
         color: $fail-red;
       }
     }
@@ -1719,9 +1726,9 @@ h3, h4 {
         .exact { order: 0; }
         .not-exact { order: 1; }
       }
-      .numbers {
-        .first, .last { visibility: hidden; }
-      }
+      // .numbers {
+      //   .first, .last { visibility: hidden; }
+      // }
     }
   }
   .proposed-taxa {

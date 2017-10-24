@@ -172,6 +172,15 @@ class CommunityIdentification extends React.Component {
     this.props.setCommunityIDModalState( { show: true } );
   }
 
+  sortedIdents( ) {
+    const { observation } = this.props;
+    const currentIdents = _.filter( observation.identifications, i => i.current );
+    const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
+    // const sortedIdents = _.sortBy( currentIdents, i =>
+    //   [taxonCounts[i.taxon.id] * -1, i.created_at] );
+    return _.sortBy( currentIdents, i => taxonCounts[i.taxon.id] * -1 );
+  }
+
   dataForTaxon( taxon ) {
     const { observation, config } = this.props;
     const loggedIn = config && config.currentUser;
@@ -192,27 +201,28 @@ class CommunityIdentification extends React.Component {
       canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
       userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
     }
-    let obsTaxonAncestry = `${observation.communityTaxon.id}`;
-    if ( observation.communityTaxon.ancestry ) {
-      obsTaxonAncestry = `${observation.communityTaxon.ancestry}/${observation.communityTaxon.id}`;
-    }
-    const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
-    const taxonIsMaverick = (
-      !obsTaxonAncestry.includes( taxonAncestry ) && !taxonAncestry.includes( obsTaxonAncestry )
-    );
-    const currentIdents = _.filter( observation.identifications, i => i.current );
-    const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
-    // const sortedIdents = _.sortBy( currentIdents, i =>
-    //   [taxonCounts[i.taxon.id] * -1, i.created_at] );
-    const sortedIdents = _.sortBy( currentIdents, i => taxonCounts[i.taxon.id] * -1 );
-    _.each( sortedIdents, i => {
-      const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
-      if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
-        votesFor.push( i );
-      } else {
-        votesAgainst.push( i );
+    const sortedIdents = this.sortedIdents( );
+    let taxonIsMaverick = false;
+    if ( sortedIdents.length === 1 ) {
+      votesFor.push( sortedIdents[0] );
+    } else if ( observation.communityTaxon ) {
+      let obsTaxonAncestry = `${observation.communityTaxon.id}`;
+      if ( observation.communityTaxon.ancestry ) {
+        obsTaxonAncestry = `${observation.communityTaxon.ancestry}/${observation.communityTaxon.id}`;
       }
-    } );
+      const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
+      taxonIsMaverick = (
+        !obsTaxonAncestry.includes( taxonAncestry ) && !taxonAncestry.includes( obsTaxonAncestry )
+      );
+      _.each( sortedIdents, i => {
+        const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
+        if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
+          votesFor.push( i );
+        } else {
+          votesAgainst.push( i );
+        }
+      } );
+    }
     const totalVotes = votesFor.length + votesAgainst.length;
     let voteCells = [];
     const width = `${_.round( 100 / totalVotes, 3 )}%`;
@@ -299,14 +309,15 @@ class CommunityIdentification extends React.Component {
       canAgree,
       userAgreedToThis,
       taxonIsMaverick,
-      sortedIdents
+      sortedIdents,
+      votesFor
     };
   }
 
   render( ) {
     const { observation, config, addID } = this.props;
     const loggedIn = config && config.currentUser;
-    const taxon = observation.communityTaxon;
+    const communityTaxon = observation.communityTaxon;
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -316,9 +327,10 @@ class CommunityIdentification extends React.Component {
     let userAgreedToThis;
     let stats;
     let photo;
-    let sortedIdents;
-    const taxonImageTag = util.taxonImage( taxon );
-    if ( taxon ) {
+    let sortedIdents = [];
+    let votesFor = [];
+    const taxonImageTag = util.taxonImage( communityTaxon );
+    if ( communityTaxon ) {
       (
         {
           compareLink,
@@ -326,16 +338,18 @@ class CommunityIdentification extends React.Component {
           photo,
           canAgree,
           userAgreedToThis,
-          sortedIdents
-        } = this.dataForTaxon( taxon )
+          sortedIdents,
+          votesFor
+        } = this.dataForTaxon( communityTaxon )
       );
     } else {
+      sortedIdents = this.sortedIdents( );
       compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=0`;
       canAgree = false;
       stats = (
         <span>
           <span className="cumulative">
-            { I18n.t( "no_ids_have_been_suggested_yet" ) }
+            Not enough IDs have been suggested yet.
           </span>
         </span>
       );
@@ -344,7 +358,7 @@ class CommunityIdentification extends React.Component {
     const agreeButton = loggedIn ?
       (
         <button className="btn btn-default" disabled={ !canAgree }
-          onClick={ ( ) => { addID( taxon, { agreedTo: "communityID" } ); } }
+          onClick={ ( ) => { addID( communityTaxon, { agreedTo: "communityID" } ); } }
         >
         { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
           ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
@@ -358,67 +372,100 @@ class CommunityIdentification extends React.Component {
         </a>
       );
     const test = $.deparam.querystring().test;
+    const numIdentifiers = sortedIdents.length;
+    let visualization;
+    let maverickEncountered;
+    let supportingEncountered;
     const proposedTaxa = {};
     const proposedTaxonItems = [];
-    if ( sortedIdents.length > 1 ) {
-      for ( let i = 0; i < sortedIdents.length; i++ ) {
-        const ident = sortedIdents[i];
-        if ( !proposedTaxa[ident.taxon.id] ) {
-          proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
-          proposedTaxa[ident.taxon.id] = ident.taxon.id;
+    if ( test === "cid-vis3" || test === "cid-vis4" ) {
+      if ( sortedIdents.length > 1 ) {
+        for ( let i = 0; i < sortedIdents.length; i++ ) {
+          const ident = sortedIdents[i];
+          if ( !proposedTaxa[ident.taxon.id] ) {
+            proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
+            proposedTaxa[ident.taxon.id] = ident.taxon.id;
+          }
         }
       }
-    }
-    const numIdentifiers = sortedIdents.length;
-
-    let visualization;
-    if ( test === "cid-vis3" || test === "cid-vis4" ) {
       visualization = (
         <div className="cid-extended">
           <div className="info">
-            <div className="about stacked">
-              Over 2/3 of <strong>{ numIdentifiers } people</strong> agree it is:
-              <a href={ compareLink } className="pull-right compare-link">
-                <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
-              </a>
-            </div>
-            <div className="inner">
-              <div className="photo">{ photo }</div>
-              <div className="stats-and-name">
-                <div className="badges">
-                  <ConservationStatusBadge observation={ observation } />
-                  <EstablishmentMeansBadge observation={ observation } />
-                </div>
-                <SplitTaxon
-                  taxon={ taxon }
-                  url={ taxon ? `/taxa/${taxon.id}` : null }
-                  placeholder={ observation.species_guess }
-                />
-                { stats }
+            { communityTaxon ? (
+              <div className="about stacked">
+                { votesFor.length } of { numIdentifiers } people (over 2/3) agree it is:
+                <a href={ compareLink } className="pull-right compare-link">
+                  <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                </a>
               </div>
-            </div>
+            ) : (
+              <div className="about">
+                The Community ID requires at least two identifications.
+              </div>
+            )}
+            { communityTaxon ? (
+              <div className="inner">
+                <div className="photo">{ photo }</div>
+                <div className="stats-and-name">
+                  <div className="badges">
+                    <ConservationStatusBadge observation={ observation } />
+                    <EstablishmentMeansBadge observation={ observation } />
+                  </div>
+                  <SplitTaxon
+                    taxon={ communityTaxon }
+                    url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+                  />
+                  { stats }
+                </div>
+              </div>
+            ) : null }
           </div>
           <Panel collapsible expanded={ this.state.open }>
             <div className="proposed-taxa">
-              { _.map( proposedTaxonItems, proposedTaxonData => (
-                <div className="info">
-                  { proposedTaxonData.taxonIsMaverick ? (
+              { _.map( proposedTaxonItems, proposedTaxonData => {
+                let about;
+                if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
+                  about = (
                     <div className="about stacked maverick">
-                      <i className="fa fa-bolt" /> { I18n.t( "maverick" ) } Suggestion:
-                    </div>
-                  ) : null }
-                  <div className="inner">
-                    <div className="photo">{ proposedTaxonData.photo }</div>
-                    <div className="stats-and-name">
+                      <i className="fa fa-bolt" /> Proposed taxa that fall outside of
                       <SplitTaxon
-                        taxon={ proposedTaxonData.taxon }
-                        url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                        taxon={ communityTaxon }
+                        url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
                       />
-                      { proposedTaxonData.stats }
+                    </div>
+                  );
+                  maverickEncountered = true;
+                } else if ( !supportingEncountered ) {
+                  about = (
+                    <div className="about supporting stacked">
+                      The majority agrees this is an observation of
+                      <SplitTaxon
+                        taxon={ communityTaxon }
+                        url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+                      />
+                      because it matches or is
+                      the common ancestor of all of
+                      these taxa:
+                    </div>
+                  );
+                  supportingEncountered = true;
+                }
+                return (
+                  <div className="info">
+                    { about }
+                    <div className="inner">
+                      <div className="photo">{ proposedTaxonData.photo }</div>
+                      <div className="stats-and-name">
+                        <SplitTaxon
+                          taxon={ proposedTaxonData.taxon }
+                          url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                        />
+                        { proposedTaxonData.stats }
+                      </div>
                     </div>
                   </div>
-                </div>
-              ) ) }
+                );
+              } ) }
             </div>
           </Panel>
         </div>
@@ -432,9 +479,8 @@ class CommunityIdentification extends React.Component {
             <EstablishmentMeansBadge observation={ observation } />
           </div>
           <SplitTaxon
-            taxon={ taxon }
-            url={ taxon ? `/taxa/${taxon.id}` : null }
-            placeholder={ observation.species_guess }
+            taxon={ communityTaxon }
+            url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
           />
           { stats }
         </div>
@@ -444,15 +490,20 @@ class CommunityIdentification extends React.Component {
     return (
       <div className={ `CommunityIdentification collapsible-section ${test}` }>
         <h4
-          className="collapsible"
+          className={ proposedTaxonItems.length === 0 ? "" : "collapsible"}
           onClick={ ( ) => {
+            if ( proposedTaxonItems.length === 0 ) {
+              return;
+            }
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_expanded_cid: this.state.open } );
             }
             this.setState( { open: !this.state.open } );
           } }
         >
-          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
+          { proposedTaxonItems.length === 0 ? null : (
+            <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
+          ) }
           { I18n.t( "community_id_heading" ) }
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
@@ -464,7 +515,7 @@ class CommunityIdentification extends React.Component {
         { this.communityIDOverrideStatement( ) }
         { this.communityIDOverridePanel( ) }
         { visualization }
-        { test === "cid-vis4" ? null : (
+        { test === "cid-vis4" || !communityTaxon ? null : (
           <div className="action">
             <div className="btn-space">
               { agreeButton }
