@@ -18,9 +18,9 @@ class Identifiers extends React.Component {
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
     return (
-      <div className="Identifiers">
+      <div className="Identifiers collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_identifiers: this.state.open } );

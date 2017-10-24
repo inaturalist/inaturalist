@@ -1,6 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Popover, OverlayTrigger } from "react-bootstrap";
+import { Popover, OverlayTrigger, Panel } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import CommunityIDPopover from "./community_id_popover";
 import TaxonSummaryPopover from "./taxon_summary_popover";
@@ -10,8 +10,8 @@ import util from "../util";
 
 class CommunityIdentification extends React.Component {
 
-  constructor( ) {
-    super( );
+  constructor( props ) {
+    super( props );
     this.ownerID = null;
     this.setInstanceVars = this.setInstanceVars.bind( this );
     this.communityIDOptIn = this.communityIDOptIn.bind( this );
@@ -20,6 +20,10 @@ class CommunityIdentification extends React.Component {
     this.communityIDOverridePanel = this.communityIDOverridePanel.bind( this );
     this.communityIDOverrideStatement = this.communityIDOverrideStatement.bind( this );
     this.optOutPopoverClose = this.optOutPopoverClose.bind( this );
+    const currentUser = props.config && props.config.currentUser;
+    this.state = {
+      open: currentUser ? !currentUser.prefers_hide_obs_show_expanded_cid : false
+    };
   }
 
   setInstanceVars( ) {
@@ -56,7 +60,6 @@ class CommunityIdentification extends React.Component {
       <Popover
         className="CommunityIDInfoOverlay"
         id="popover-community-id-info"
-        width={ 500 }
       >
         <div dangerouslySetInnerHTML={ { __html:
           I18n.t( "views.observations.community_id.explanation" ) } }
@@ -395,27 +398,29 @@ class CommunityIdentification extends React.Component {
               </div>
             </div>
           </div>
-          <div className="proposed-taxa">
-            { _.map( proposedTaxonItems, proposedTaxonData => (
-              <div className="info">
-                { proposedTaxonData.taxonIsMaverick ? (
-                  <div className="about stacked maverick">
-                    <i className="fa fa-bolt" /> { I18n.t( "maverick" ) } Suggestion:
-                  </div>
-                ) : null }
-                <div className="inner">
-                  <div className="photo">{ proposedTaxonData.photo }</div>
-                  <div className="stats-and-name">
-                    <SplitTaxon
-                      taxon={ proposedTaxonData.taxon }
-                      url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
-                    />
-                    { proposedTaxonData.stats }
+          <Panel collapsible expanded={ this.state.open }>
+            <div className="proposed-taxa">
+              { _.map( proposedTaxonItems, proposedTaxonData => (
+                <div className="info">
+                  { proposedTaxonData.taxonIsMaverick ? (
+                    <div className="about stacked maverick">
+                      <i className="fa fa-bolt" /> { I18n.t( "maverick" ) } Suggestion:
+                    </div>
+                  ) : null }
+                  <div className="inner">
+                    <div className="photo">{ proposedTaxonData.photo }</div>
+                    <div className="stats-and-name">
+                      <SplitTaxon
+                        taxon={ proposedTaxonData.taxon }
+                        url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                      />
+                      { proposedTaxonData.stats }
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) ) }
-          </div>
+              ) ) }
+            </div>
+          </Panel>
         </div>
       );
     } else {
@@ -437,8 +442,17 @@ class CommunityIdentification extends React.Component {
     }
 
     return (
-      <div className={ `CommunityIdentification ${test}` }>
-        <h4>
+      <div className={ `CommunityIdentification collapsible-section ${test}` }>
+        <h4
+          className="collapsible"
+          onClick={ ( ) => {
+            if ( loggedIn ) {
+              this.props.updateSession( { prefers_hide_obs_show_expanded_cid: this.state.open } );
+            }
+            this.setState( { open: !this.state.open } );
+          } }
+        >
+          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "community_id_heading" ) }
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
@@ -479,7 +493,8 @@ CommunityIdentification.propTypes = {
   observation: PropTypes.object,
   addID: PropTypes.func,
   setCommunityIDModalState: PropTypes.func,
-  updateObservation: PropTypes.func
+  updateObservation: PropTypes.func,
+  updateSession: PropTypes.func
 };
 
 export default CommunityIdentification;

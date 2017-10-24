@@ -3,6 +3,7 @@ import CommunityIdentification from "../components/community_identification";
 import { addID } from "../ducks/observation";
 import { updateObservation } from "../ducks/observation";
 import { setCommunityIDModalState } from "../ducks/community_id_modal";
+import { updateSession } from "../ducks/users";
 
 function mapStateToProps( state ) {
   return {
@@ -17,7 +18,8 @@ function mapDispatchToProps( dispatch ) {
     updateObservation: ( attributes ) => { dispatch( updateObservation( attributes ) ); },
     setCommunityIDModalState: ( key, value ) => {
       dispatch( setCommunityIDModalState( key, value ) );
-    }
+    },
+    updateSession: params => { dispatch( updateSession( params ) ); }
   };
 }
 

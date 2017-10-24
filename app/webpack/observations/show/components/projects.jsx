@@ -86,9 +86,9 @@ class Projects extends React.Component {
     const count = observation.project_observations.length > 0 ?
       `(${observation.project_observations.length})` : "";
     return (
-      <div className="Projects">
+      <div className="Projects collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_projects: this.state.open } );

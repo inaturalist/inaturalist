@@ -689,12 +689,12 @@ a.UserImage,
 }
 
 h3, h4 {
-  &.collapsable {
+  &.collapsible {
     i.fa {
       color: $inat-green;
       margin-right: 5px;
     }
-    &.collapsable {
+    &.collapsible {
       cursor: pointer;
     }
   }
@@ -912,7 +912,7 @@ h3, h4 {
   border-top: none;
 }
 
-.Tags, .Projects, .ObservationFields, .Annotations, .Identifiers, .Copyright, .QualityMetrics {
+.collapsible-section {
   .panel {
     background: none;
     border: 0;

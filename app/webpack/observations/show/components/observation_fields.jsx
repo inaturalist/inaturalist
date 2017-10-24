@@ -104,9 +104,9 @@ class ObservationFields extends React.Component {
 
     const count = sortedFieldValues.length > 0 ? `(${sortedFieldValues.length})` : "";
     return (
-      <div className="ObservationFields">
+      <div className="ObservationFields collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( {

@@ -20,7 +20,7 @@ class Assessment extends React.Component {
       <Grid>
         <div className="QualityMetrics">
           <h3
-            className="collapsable"
+            className="collapsible"
             onClick={ ( ) => {
               if ( loggedIn ) {
                 this.props.updateSession( { prefers_hide_obs_show_quality_metrics: this.state.open } );

@@ -263,7 +263,7 @@ class QualityMetrics extends React.Component {
     const rankPassed = needsIDInfo.mostDisagree ?
       atLeastGenus : atLeastSpecies;
     return (
-      <div className="QualityMetrics">
+      <div className="QualityMetrics collapsible-section">
         { this.props.tableOnly ? null : (
           <div>
             <div className="grade">
