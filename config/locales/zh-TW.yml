@@ -7,6 +7,7 @@
 # Author: Kly
 # Author: LNDDYL
 # Author: Liuxinyu970226
+# Author: Mutolisp
 # Author: Sunny Chan
 # Author: 一個正常人
 # Author: 아라
@@ -145,18 +146,18 @@ zh-TW:
   accept_community_identifications: 接受社群的物種鑑定
   accuracy: 準確性
   accuracy_m: 精確度（公尺）
-  accuracy_meters: 準確性 (公尺)
+  accuracy_meters: 精確度 (公尺)
   accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方"編輯"連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
   acquaintances: 同伴
   action: 操作
   actions: 操作
-  activate_user: 激活使用者
+  activate_user: 啟用使用者
   active: 有效
   activity: 活躍
   activity_settings: 活躍設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
   add: 新增
-  add_a: 添加一個
+  add_a: 新增一個
   add_a_batch_of_observations: 新增一批觀察紀錄
   add_a_batch_of_observations_by_csv: 以CSV檔案新增一批觀察紀錄
   add_a_batch_of_taxa: 新增一批物種分類
@@ -168,59 +169,59 @@ zh-TW:
   add_a_new_change_group: 新增一個新變更群組
   add_a_new_observation_to_id_please!: 新增一個需要鑑定的新觀察紀錄
   add_a_place_raquo: 新增一個地點 &raquo;
-  add_a_single_observation: 添加單一項觀察紀錄
-  add_a_taxon: 添加一項物種分類
-  add_all_your_matching_obs_of_this_taxon: 把這物種分類中所有匹配的觀察紀錄添加到此專案
-  add_all_your_matching_obs_to_this_project: 把所有匹配的觀察紀錄添加到此專案
+  add_a_single_observation: 新增單一項觀察紀錄
+  add_a_taxon: 新增一個分類群
+  add_all_your_matching_obs_of_this_taxon: 把這分類群中所有符合的觀察紀錄添加到此專案
+  add_all_your_matching_obs_to_this_project: 把所有符合的觀察紀錄新增到此專案
   add_an_assessment: 新增一個評估
-  add_an_identification: 添加一個物種鑑定
+  add_an_identification: 新增一個物種鑑定
   add_an_observation: 添加一項觀察紀錄
-  add_an_observation?: 添加一項觀察紀錄?
-  add_an_observation_of: 添加一筆 %{taxon} 的觀察紀錄
-  add_another: 添加其他紀錄
+  add_an_observation?: 新增一項觀察紀錄?
+  add_an_observation_of: 新增一筆 %{taxon} 的觀察紀錄
+  add_another: 新增其他紀錄
   add_another_flag: 新增其他旗號標記
   add_another_photo: 加入其他圖片
   add_another_section: 加入其他部份
-  add_another_subscription: 添加其他訂閱
+  add_another_subscription: 新增其他訂閱
   add_asset: 添加可用物件
-  add_batch: 添加批量
-  add_colors: 添加顏色
-  add_comma_separated_tags: 添加以逗號分隔式標籤
+  add_batch: 批次新增
+  add_colors: 新增顏色
+  add_comma_separated_tags: 新增以逗號分隔式標籤
   add_comment: 新增一條評論
-  add_common_names_for: 替存在的物種分類添加通用名稱
+  add_common_names_for: 替既有之分類群新增俗名
   add_conservation_status: 新增保育狀態
-  add_countries: 添加國家
-  add_custom_project_fields: 添加自定義專案項目
-  add_edit_flags: 添加/編輯標記
+  add_countries: 新增國家
+  add_custom_project_fields: 新增自定專案欄位
+  add_edit_flags: 新增/編輯標記
   add_edit_more_fields: 新增/編輯更多項目
   add_description: 添加 %{description_name}
-  add_field: 添加欄位
-  add_from_your_observations: 從你的觀察紀錄中添加
-  add_link: 添加連結
+  add_field: 新增欄位
+  add_from_your_observations: 從您的觀察紀錄中新增
+  add_link: 新增連結
   add_listed_taxa_from_observations: 從觀察紀錄中加入列出的物種分類群
-  add_higher_level_taxon: 添加一個更高級的物種分類 (例如:"鳥類")
+  add_higher_level_taxon: 新增一個更高級的物種分類 (例如:"鳥類")
   add_id: 添加物種鑒定
-  add_it_to_place_raquo: 把本項添加到地點 &raquo;
-  add_more_photos: 添加更多圖片
-  add_new_lexicon: 添加新的詞彙
+  add_it_to_place_raquo: 把本項新增至地點 &raquo;
+  add_more_photos: 新增更多圖片
+  add_new_lexicon: 新增新的詞彙
   add_new_observations: 新增多個觀察紀錄
   add_new_photos_by_their_ids: 從其Flickr身份中加入新圖片 (必須被Creative Commons認可的!)
   add_new_place: 新增一處新地點
   add_new_rule: 新增一條新規則
-  add_new_source: 添加新的來源....
-  add_new_taxon_name: 添加新的物種分類名稱
-  add_notes_about_this_taxon: 為本地中本物種分類添加註解, 例如在那裡及何時發生。
-  add_obs_from_a_link: '從生物清單中添加觀察紀錄: %{link}'
-  add_obs_from_a_list: 從一個生物清單中添加觀察紀錄
+  add_new_source: 新增新的來源....
+  add_new_taxon_name: 新增一個新的分類群
+  add_notes_about_this_taxon: 為本地中本物種分類新增註解，例如在那裡及何時發生。
+  add_obs_from_a_link: '從生物清單中新增觀察紀錄: %{link}'
+  add_obs_from_a_list: 從一個生物清單中新增觀察紀錄
   add_observation: 新增觀察紀錄
   add_observations!: 新增多個觀察紀錄
   add_observations: 新增多個觀察紀錄。
-  add_observations_by_checking_off: 為生物清單中揀選物種添加觀察紀錄。
-  add_observations_from_list: 從一個生物清單中添加觀察紀錄
-  add_observations_of_taxa_youve_added: 為你已加入到一個生物清單中的物種分類群添加觀察紀錄。此功能尚在開發中,仍待修正部份錯誤....
+  add_observations_by_checking_off: 為生物清單中揀選物種新增觀察紀錄。
+  add_observations_from_list: 從一個生物清單中新增觀察紀錄
+  add_observations_of_taxa_youve_added: 為你已加入到一個生物清單中的物種分類群新增觀察紀錄。此功能尚在開發中，仍待修正部份錯誤...
   add_observations_project: 新增多個觀察紀錄到本專案
   add_one: 新增一項!
-  add_one_now: 現在添加一個
+  add_one_now: 現在新增一個
   add_photos: 新增相片
   add_photos_to_this_observation: 新增相片到觀察紀錄中
   add_place: 加入地點
@@ -542,6 +543,8 @@ zh-TW:
   bioblitz: Bioblitz
   birds: 鳥類
   black: 黑色
+  block_user: 封鎖使用者
+  block_removed: 封鎖已移除
   blog_widget: 部落格小工具
   blue: 藍色
   blue_butterfly_etc: 藍色、蝴蝶、或其它。
@@ -970,7 +973,6 @@ zh-TW:
   deleting: 刪除中…
   deleting_verb: 刪除中
   desc: 降冪
-  dna_: DNA
   descendant_taxa: 派生物種分類
   descending: 降冪
   describe_purpose: 描述此專案的目的。
@@ -998,7 +1000,8 @@ zh-TW:
   display_link_to_checklist: 顯示連至來自於專案頁面之專案列表的連結
   display_listings_added_by_curators: 顯示由策展人添加的列表
   display_listings_from_place: 顯示來自於地點的列表
-  drop_it: 去除
+  dna_: DNA
+  documentation_for_developers_html: <a href="/pages/developers">開發者</a>文件
   do_not_show_this_message_again: 不要再顯示此訊息
   do_you_know_where_this_species_lives: 您知道此物種存活於何處嗎？
   do_you_study_nematodes_worlds_foremost_expert_barnacle: 您在研究線蟲嗎？您是世界上最有名的藤壺分類專家嗎？您喜歡觀賞美麗的花朵嗎？請在您的個人檔案裡填寫一些個人介紹，這可當為別人協助鑑定時建立起您的信譽。
@@ -1011,6 +1014,7 @@ zh-TW:
   dont_filter: 不用過濾
   dont_send_me_email: 不要替我寄送任何電子郵件！
   dont_use_double_quotes: 不要在任何其它地方使用雙引號
+  drop_it: 去除
   double_click_to_finish: （快按兩下來完成）
   download: 下載
   download_bulk_import_template_html: |-
@@ -1904,6 +1908,8 @@ zh-TW:
   must_be_less_than_x_MB: 必須小於 %{x} MB
   must_have_observation_field: 必須在觀察欄位「%{operand}」填寫內容
   must_have_x: 必須要有 %{x}
+  mute_user: 禁言使用者
+  mute_removed: 禁言已移除
   n_ago: '%{n} 前'
   n_people_agrees: '%{amount} 個人同意'
   n_people_disagrees: '%{amount} 個人不同意'
@@ -3382,6 +3388,7 @@ zh-TW:
   type_taxon_name_and_click_lookup: 輸入物種分類名稱然後點擊查找
   uicn_red_list_status: '國際自然保護聯盟瀕危物種(IUCN)紅色名錄現狀 :'
   un_license_this_observation: 取消此觀察許可協議
+  unblock: 解除封鎖
   unclassified: 未分類
   ungrafted_taxa: 未移接的物種分類
   uninvite: 未邀請
@@ -3393,6 +3400,7 @@ zh-TW:
   unknown_rank: （未知排名）
   unfollow: 未關注
   unlink_your_google_account: 取消連結您的 Google 帳號
+  unmute: 取消禁言
   unobserved_listings: 不可觀察列表
   updates_notification_email_subject: '%{prefix} 新的更新 %{date}'
   updates_suspension_email_subject: '%{prefix} 您的訂閱目前暫停'
@@ -3454,16 +3462,18 @@ zh-TW:
   use_unique_file_names_for_separate_uploads: 使用唯一檔案名稱來各自上傳
   use_well_formed_csv: 使用良好格式的 CSV。這代表文字必須被包含在雙引號裡；並用逗號區隔。多數試算表應用程式都應以此格式來匯出 CSV。
   user: 使用者
-  user_added_an_observation_html: '%{user} 添加一個觀察'
   user_added_a_x: '%{user}添加一個%{x}'
-  user_added_an_x: '%{user}添加一個%{x}'
-  user_added_an_x_to_noun_html: '%{user}添加一個%{x}至%{noun}'
-  user_added_a_x_to_noun_html: '%{user}添加一個%{x}至%{noun}'
-  user_added_an_x_to_noun_by_html: '%{user}添加一個%{x}至由%{by}的%{noun}'
   user_added_a_x_to_noun_by_html: '%{user}添加一個%{x}至由%{by}的%{noun}'
+  user_added_a_x_to_noun_html: '%{user}添加一個%{x}至%{noun}'
+  user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
+  user_added_an_observation_html: '%{user} 添加一個觀察'
+  user_added_an_x: '%{user}添加一個%{x}'
+  user_added_an_x_to_noun_by_html: '%{user}添加一個%{x}至由%{by}的%{noun}'
+  user_added_an_x_to_noun_html: '%{user}添加一個%{x}至%{noun}'
   user_added_x_observations_html: '%{user}添加%{x}個觀察'
-  user_commented_on: '%{user} 已評論您的 %{title} %{time}'
+  user_blocked: 使用者已被封鎖
   user_commented: '%{user} 已評論'
+  user_commented_on: '%{user} 已評論您的 %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛'
   user_follows: '%{user}關注'
   user_has_opted_out_of_community_id: 用戶已選擇退出社群鑑定
@@ -3472,13 +3482,13 @@ zh-TW:
   user_hasnt: '%{user}沒有'
   user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project}
     專案。'
-  user_invited_you_to_join_project: '%{user}邀請您加入%{project}'
   user_invited_you_to_join_html: '%{user}邀請您加入'
+  user_invited_you_to_join_project: '%{user}邀請您加入%{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} 邀請您加入此專案於 %{date}'
   user_invited_your_x_to_a_project_html: '%{user} 邀請您%{x}一個專案'
-  user_is_now_role_for_project_html: <strong>%{user}</strong>現在是 %{project} 的%{role}了
-  user_added_an_observation_field_html: '%{user} 已在由 %{owner} 所做出觀察裡添加用於欄位「%{field_name}」的內容'
   user_is_a_naturalist: '%{user} 是個博物學友！'
+  user_is_now_role_for_project_html: <strong>%{user}</strong>現在是 %{project} 的%{role}了
+  user_muted: 使用者已禁言
   user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user}的列表'
@@ -3488,11 +3498,11 @@ zh-TW:
   username_or_email: 用戶名稱或電子郵件
   username_or_user_id: 用戶名稱或用戶 ID
   users: 使用者
+  users_comment_html: <a href='%{url}'>%{user}</a> 的評論
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>對於%{project_title}的貢獻
   users_id: '%{user} 的鑑定'
   users_identification_html: <a href='%{url}'>%{user}</a> 的鑑定
   users_identification_short_html: <a href='%{url}'>%{user}</a>的鑑定
-  users_comment_html: <a href='%{url}'>%{user}</a> 的評論
   users_latest_observations_on_site: '%{user} 在 %{site} 的最新觀察'
   users_observations: '%{user}的觀察'
   users_profile: '%{user}的個人檔案'
@@ -3722,6 +3732,7 @@ zh-TW:
   you_can_edit_this_default_check_list_because: 您可編輯此預設清單因為您是個管理員，但實際上不需要這麼做。
   you_can_help_make_our: 您可協助透過添加資料來讓我們的物種頁面更有用！這裡有幾種您可協助的方式
   you_can_only_destroy_taxa_you_created: 您僅能銷毀您所創建的物種分類群，另外您不能夠銷毀已被用於變更裡的物種分類群。
+  you_can_only_block_three_users: 您只可以封鎖三位使用者
   you_can_see_these_coordinates_because: 因為您策展了此觀察所被添加的專案之一，所以您可查看這些座標。
   you_can_show_the_boundary_of: 若地點有邊界，您可在您的專案頁面上將地點邊界顯示出。
   you_can_sign_free_at: 您可註冊一個免費 %{site_name} 帳號在
@@ -3854,6 +3865,14 @@ zh-TW:
     custom_projects:
       edit:
         custom_project_fields_warning: 請注意：添加 Javascript 和 CSS 在您的專案頁面可能會嚴重破壞頁面佈局；並潛在允許惡意軟體在人們觀看此頁面時造成影響。如果您不曉得那些是特定的程式代碼段落，請不要添加它。
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: 您有打算在教室裡使用 %{site_name} 嗎？
+          community_guidelines_html: <a href="%{url}">查看社群指南</a>取得提示來維持 iNaturalist
+            是個友善且熱情的地方。
+          please_read_the_teachers_guide_html: 若是如此；在與學生使用 %{site_name} 時，請閱讀我們的<a
+            href="%{url}">教師指南</a>來取得提示。
     guides:
       index:
         funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
@@ -4412,6 +4431,11 @@ zh-TW:
         curated_checklist_desc: 此為來自於明確添加至此專案之觀察的物種分類群計數、以及策展清單，並非來自所有記錄於地點和此事件時刻的觀察。
       updates_desc: 在您的控制面板與每日更新電郵裡接收有關此專案之更新。
     shared:
+      blocked:
+        youve_been_blocked: 您已被封鎖
+        youve_been_blocked_desc: 此資源的擁有者已封鎖了您，這會使您無法與他們聯繫。在此頁面上的多數互動功能將無法運作。
+        youve_blocked: 您已封鎖過此人
+        youve_blocked_desc: 您已封鎖了此資源的擁有者，這會使您無法與他們聯繫。在此頁面上的多數互動功能將無法運作。
       spam:
         message_for_owner_and_curators_html: 此記錄已被標記為垃圾訊息並且不公開顯示。若您仍可看見是因為您是此內容創建者、或是身份為網站的策展人。如果您覺得這是一場誤會，請<a
           href="mailto:%{email}">聯絡我們</a>。
@@ -4420,6 +4444,8 @@ zh-TW:
         sorry_that_doesnt_exist: 很抱歉，那不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我們專用的搜尋鼬鼠工具也找不到任何東西！
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: 為更高層級物種分類添加保育狀態，來對此物種分類上的所有物種觀察生效。請不要在有物種未包含狀態的物種分類群上添加狀態，因為這會對那些物種的觀察不正確地隱蔽座標。
       show:
         about_names_desc: |-
           <p>
@@ -4491,9 +4517,27 @@ zh-TW:
           %{site_name} 將權限分配給您。若您不想成為專案管理者，請聯絡 <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: 作個提醒一下；專案策展人可查看您添加在專案裡觀察的私有和隱蔽座標。
       edit:
+        blocking_desc_html: "<p>\n  封鎖某人可以防止他們傳送訊息給您、對您的觀察做出評論或鑑定、\n  或是在 %{site_name}
+          上與您互動。這也會讓您與對方在進行搜尋時，\n  處理結果不會顯示出彼此的觀察。然而；這並不代表您對於他們是\n  無法察覺的，他們仍可以有辦法找出您的觀察、以及檢視您的個人檔案，\n
+          \ 只是無法與您做出互動。\n</p>\n<p>\n  封鎖是為了儘管您已經盡力以文明方式來解決爭議，但對方仍不罷休且\n  無法相處情形下的解決方式。這不是一種用來隱藏自己、防止來自於您\n
+          \ 所不信任人們的鑑定、或是選擇退出社群鑑定（有其它設定可以這樣做）\n  的方式。因此封鎖是運作在：若您封鎖了某人，對方會無法對您互動，\n
+          \ 而您也無法與他互動的如此結果。如果您不小心誤用此功能，會讓某人\n  無法鑑定您的觀察，也會出現您無法向對方的觀察做出鑑定之情況。 \n</p>\n<p>\n
+          \ 您最多僅可封鎖三名使用者，這是我們評估能符合需求；且避免濫用此功能\n  最適宜的數量。若認為有需要封禁更多人的情況，請<a href=\"mailto:%{help_email}\">聯絡我們</a>。\n</p>\n<p>\n
+          \ 如果有人在 %{site_name} 網站上對您做出騷擾或是跟蹤的跡象，<a href=\"mailto:%{help_email}\">請讓我們知道</a>。\n
+          \ 若有出現違反我們的服務條款、或是其它不適合在我們網站上所做出的行為，\n  我們將會進行調查。\n</p>"
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist
           網路</a>將本地網站連結至全球 iNaturalist 社群的聚集。您可以更改您的主要網站隸屬，這代表您的內容在網站上會俱有優先權，但也代表著網站擁有者能擁有下載及檢視您所有資料的權利；就像
           iNaturalist 網站管理員能做的事情。如果網站離開了 iNaturalist 網路，所有您的帳號與資料也會一同跟著網站離開。
+        muting_desc_html: |-
+          <p>
+            禁言某人會防止您接受到到對方的通知，包含評論您的觀察、
+            傳遞給您的訊息、或是有提及到您的等等內容。禁言可協助
+            您忽略某人，但不會阻止他們做出其它行動。
+          </p>
+          <p>
+            禁言人數多寡可依您所需來決定，但請留意您可能會因此錯失
+            重要通知，比如鑑定內容有切換社群鑑定在您的觀察上。
+          </p>
         project_addition_preferences:
           any: 任何
           joined: 您已加入的專案
@@ -4504,6 +4548,7 @@ zh-TW:
           CC 授權內容；來與像是<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）；一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。
         place_help_html: 為地點網站自訂一些方面內容，例如通用名稱
         prefers_community_taxa_desc: '%{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇退出。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。'
+        youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
       show:
         take_a_chance_to_review_html: 來試試看<a href="%{link}">我們的指南</a>。
         this_user_was_banned: 此用戶已被停用

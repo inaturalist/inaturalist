@@ -402,6 +402,8 @@ ko:
   bioblitz: 바이오블릿츠
   birds: 조류
   black: 검정
+  block_user: 사용자 차단
+  block_removed: 차단 제거됨
   blog_widget: 블로그 위젯
   blue: 파랑
   blue_butterfly_etc: 파랑, 나비 등.
@@ -784,7 +786,6 @@ ko:
   deleting: 삭제 중...
   deleting_verb: 삭제 중
   desc: 내림차순
-  dna_: DNA
   descendant_taxa: 하위 분류군
   descending: 내림차순
   describe_purpose: 이 프로젝트 목적을 설명하세요.
@@ -811,7 +812,8 @@ ko:
   display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
   display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
   display_listings_from_place: 장소로부터 목록 표시
-  drop_it: 버리기
+  dna_: DNA
+  documentation_for_developers_html: <a href="/pages/developers">개발자</a>를 위한 문서
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
   do_you_know_where_this_species_lives: 이 종이 어디 사는지 아시나요?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: 프로필을 채우는 것은 개성을 주고, 동정을
@@ -825,6 +827,7 @@ ko:
   dont_filter: 필터 제거
   dont_send_me_email: 메일 수신 거부
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
+  drop_it: 버리기
   double_click_to_finish: 더블 클릭하면 완료됩니다.
   download: 다운로드
   download_csv: CSV 다운로드
@@ -1510,6 +1513,8 @@ ko:
   more_photos: 더 많은 사진들
   most_observations: 가장 많은 관찰
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
+  mute_user: 사용자를 알림에서 제외
+  mute_removed: 알림 제외를 제거함
   n_ago: '%{n}전'
   name: 이름
   name_entered: 이름 입력됨
@@ -2025,9 +2030,11 @@ ko:
   total_observations: 총 관찰
   tue: 화요일
   twitter: 트위터
+  unblock: 차단 해제
   unknown_error: 알 수 없는 오류
   unfollow: 팔로우 해제
   unlink_your_google_account: 구글 계정의 연결을 끊습니다
+  unmute: 알림 제외를 해제
   unsubscribe: 구독 해지
   update: 갱신
   update_photos: 사진 갱신
@@ -2050,7 +2057,9 @@ ko:
   user_added_a_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_an_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
+  user_blocked: 사용자가 차단됨
   user_commented: '%{user}님이 댓글을 남겼습니다'
+  user_muted: 사용자를 알림에서 제외함
   user_suggested_an_id: '%{user}님이 ID를 제시했습니다'
   username: 사용자 이름
   username_or_email: 사용자 이름이나 이메일
@@ -2131,6 +2140,7 @@ ko:
   you_can_alwais_add_new: 문서의 오른쪽 위에 있는 작은 화살표를 클릭하고 하단 메뉴를 이용하면 언제든지 새로운 관찰을 추가할
     수 있습니다.
   you_can_choose_observations_associated: 이 일기에 연결할 관찰을 선택할 수 있습니다.
+  you_can_only_block_three_users: 3명의 사용자만 차단할 수 있습니다
   you_cant_remove_other_peoples_observations: 다른 사람의 관찰을 삭제할 수 없습니다.
   you_didnt_select_any_observations: 관찰을 선택하지 않았습니다.
   you_havent_left_any_comments_recently: 최근에 댓글 단 것이 없습니다. 댓글을 달아주세요.
@@ -2151,6 +2161,10 @@ ko:
     있습니다.
   zoom_photo: 사진 확대/축소
   views:
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
     guides:
       edit:
         add_rank_tags_help_html: |-
@@ -2206,6 +2220,14 @@ ko:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
       project_user_curator_coordinate_access_labels:
         none: 없음.
+    shared:
+      blocked:
+        youve_been_blocked: 당신은 차단되었습니다
+        youve_blocked: 이 사람을 차단했습니다
+        youve_blocked_desc: |-
+          이 자원의 소유자를 차단했기 때문에 이들과 통신하는 것은
+          불가능합니다. 이 문서의 상호작용 기능들 대부분은 동작하지
+          않습니다.
     taxa:
       show:
         frequency:
