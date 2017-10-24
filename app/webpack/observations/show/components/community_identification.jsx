@@ -56,6 +56,7 @@ class CommunityIdentification extends React.Component {
       <Popover
         className="CommunityIDInfoOverlay"
         id="popover-community-id-info"
+        width={ 500 }
       >
         <div dangerouslySetInnerHTML={ { __html:
           I18n.t( "views.observations.community_id.explanation" ) } }
@@ -87,8 +88,8 @@ class CommunityIdentification extends React.Component {
   communityIDOverrideStatement( ) {
     let statement;
     if ( this.communityIDIsRejected ) {
-      statement = ( <span className="opted_out">
-        ({ I18n.t( "user_has_opted_out_of_community_id" ) })
+      statement = ( <div className="opted_out stacked">
+        { I18n.t( "user_has_opted_out_of_community_id" ) }
         <OverlayTrigger
           trigger="click"
           rootClose
@@ -96,9 +97,9 @@ class CommunityIdentification extends React.Component {
           overlay={ this.communityIDInfoPopover( ) }
           containerPadding={ 20 }
         >
-          <i className="fa fa-info-circle" />
+          <i className="fa fa-question-circle" />
         </OverlayTrigger>
-      </span> );
+      </div> );
     }
     return statement;
   }
@@ -106,12 +107,12 @@ class CommunityIdentification extends React.Component {
   optOutPopover( ) {
     // must be observer, IDer, must not have opted out already
     if ( !( this.userIsObserver && this.ownerID && this.props.observation.taxon && !this.observationOptedOut ) ) {
-      return ( <div /> );
+      return null;
     }
     // the taxa must be different, or the user defaults to opt-out, but opted in here
     if ( this.ownerID.taxon.id === this.props.observation.taxon.id &&
          !( this.observerOptedOut && this.observationOptedIn ) ) {
-      return ( <div /> );
+      return null;
     }
     let dissimilarMessage;
     const idName = this.ownerID.taxon.preferred_common_name || this.ownerID.taxon.name;
@@ -188,16 +189,20 @@ class CommunityIdentification extends React.Component {
       canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
       userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo === "communityID";
     }
-    const obsTaxonAncestry = observation.taxon.ancestry ? `${observation.taxon.ancestry}/${observation.taxon.id}` : `${observation.taxon.id}`;
+    let obsTaxonAncestry = `${observation.communityTaxon.id}`;
+    if ( observation.communityTaxon.ancestry ) {
+      obsTaxonAncestry = `${observation.communityTaxon.ancestry}/${observation.communityTaxon.id}`;
+    }
     const taxonAncestry = `${taxon.ancestry}/${taxon.id}`;
     const taxonIsMaverick = (
       !obsTaxonAncestry.includes( taxonAncestry ) && !taxonAncestry.includes( obsTaxonAncestry )
     );
-    // const sortedIdents = _.sortBy( observation.identifications, i => `${i.taxon.ancestry}/${i.taxon.id}` );
-    // const sortedIdents = observation.identifications;
-    const sortedIdents = _.sortBy( observation.identifications, i => i.created_at );
+    const currentIdents = _.filter( observation.identifications, i => i.current );
+    const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
+    // const sortedIdents = _.sortBy( currentIdents, i =>
+    //   [taxonCounts[i.taxon.id] * -1, i.created_at] );
+    const sortedIdents = _.sortBy( currentIdents, i => taxonCounts[i.taxon.id] * -1 );
     _.each( sortedIdents, i => {
-      if ( !i.current ) { return; }
       const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
       if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
         votesFor.push( i );
@@ -220,7 +225,7 @@ class CommunityIdentification extends React.Component {
           key={ `community-id-${v.id}` }
           keyPrefix="ids"
           identification={ v }
-          communityIDTaxon={ observation.taxon }
+          communityIDTaxon={ observation.communityTaxon }
           agreement
           style={ { width } }
           contents={ ( <div className={ voteCellClassName } /> ) }
@@ -239,26 +244,27 @@ class CommunityIdentification extends React.Component {
           key={ `community-id-${v.id}` }
           keyPrefix="ids"
           identification={ v }
-          communityID={ observation.taxon }
+          communityID={ observation.communityTaxon }
           agreement={ false }
           style={ { width } }
           contents={ ( <div className={ voteCellClassName } /> ) }
         />
       ) );
     } );
-    let linesAndNumbers;
+    let lines;
+    let numbers;
     if ( voteCells.length > 1 ) {
-      linesAndNumbers = (
-        <span>
-          <div className="lines">
-            <div className="two-thirds">&nbsp;</div>
-          </div>
-          <div className="numbers">
-            <div className="first">0</div>
-            <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
-            <div className="last">{ voteCells.length }</div>
-          </div>
-        </span>
+      lines = (
+        <div className="lines">
+          <div className="two-thirds">&nbsp;</div>
+        </div>
+      );
+      numbers = (
+        <div className="numbers">
+          <div className="first">0</div>
+          <div className="two-thirds">{ I18n.t( "two_thirds" ) }</div>
+          <div className="last">{ voteCells.length }</div>
+        </div>
       );
     }
     const stats = (
@@ -268,8 +274,11 @@ class CommunityIdentification extends React.Component {
             I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
         </span>
         <div className="graphic">
-          { voteCells }
-          { linesAndNumbers }
+          <div className="vote-cells">
+            { voteCells }
+          </div>
+          { lines }
+          { numbers }
         </div>
       </span>
     );
@@ -286,14 +295,15 @@ class CommunityIdentification extends React.Component {
       photo,
       canAgree,
       userAgreedToThis,
-      taxonIsMaverick
+      taxonIsMaverick,
+      sortedIdents
     };
   }
 
   render( ) {
     const { observation, config, addID } = this.props;
     const loggedIn = config && config.currentUser;
-    const taxon = observation.taxon;
+    const taxon = observation.communityTaxon;
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -303,9 +313,19 @@ class CommunityIdentification extends React.Component {
     let userAgreedToThis;
     let stats;
     let photo;
+    let sortedIdents;
     const taxonImageTag = util.taxonImage( taxon );
     if ( taxon ) {
-      ( { compareLink, stats, photo, canAgree, userAgreedToThis } = this.dataForTaxon( taxon ) );
+      (
+        {
+          compareLink,
+          stats,
+          photo,
+          canAgree,
+          userAgreedToThis,
+          sortedIdents
+        } = this.dataForTaxon( taxon )
+      );
     } else {
       compareLink = `/observations/identotron?observation_id=${observation.id}&taxon=0`;
       canAgree = false;
@@ -337,17 +357,16 @@ class CommunityIdentification extends React.Component {
     const test = $.deparam.querystring().test;
     const proposedTaxa = {};
     const proposedTaxonItems = [];
-    const currentIdents = _.filter( observation.identifications, i => i.current );
-    if ( currentIdents.length > 1 ) {
-      for ( let i = 0; i < currentIdents.length; i++ ) {
-        const ident = currentIdents[i];
+    if ( sortedIdents.length > 1 ) {
+      for ( let i = 0; i < sortedIdents.length; i++ ) {
+        const ident = sortedIdents[i];
         if ( !proposedTaxa[ident.taxon.id] ) {
           proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
           proposedTaxa[ident.taxon.id] = ident.taxon.id;
         }
       }
     }
-    const numIdentifiers = currentIdents.length;
+    const numIdentifiers = sortedIdents.length;
 
     let visualization;
     if ( test === "cid-vis3" || test === "cid-vis4" ) {
@@ -421,28 +440,35 @@ class CommunityIdentification extends React.Component {
       <div className={ `CommunityIdentification ${test}` }>
         <h4>
           { I18n.t( "community_id_heading" ) }
-          { this.communityIDOverrideStatement( ) }
-          { this.optOutPopover( ) }
+          <span className="header-actions pull-right">
+            { this.optOutPopover( ) }
+            <div className="linky" onClick={ this.showCommunityIDModal }>
+              { I18n.t( "whats_this?" ) }
+            </div>
+          </span>
         </h4>
+        { this.communityIDOverrideStatement( ) }
         { this.communityIDOverridePanel( ) }
         { visualization }
-        <div className="action">
-          <div className="btn-space">
-            { agreeButton }
-          </div>
-          <div className="btn-space">
-            <a href={ compareLink }>
-              <button className="btn btn-default">
-                <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+        { test === "cid-vis4" ? null : (
+          <div className="action">
+            <div className="btn-space">
+              { agreeButton }
+            </div>
+            <div className="btn-space">
+              <a href={ compareLink }>
+                <button className="btn btn-default">
+                  <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                </button>
+              </a>
+            </div>
+            <div className="btn-space">
+              <button className="btn btn-default" onClick={ this.showCommunityIDModal }>
+                <i className="fa fa-info-circle" /> { I18n.t( "about" ) }
               </button>
-            </a>
+            </div>
           </div>
-          <div className="btn-space">
-            <button className="btn btn-default" onClick={ this.showCommunityIDModal }>
-              <i className="fa fa-info-circle" /> { I18n.t( "about" ) }
-            </button>
-          </div>
-        </div>
+        ) }
       </div>
     );
   }

@@ -1394,14 +1394,25 @@ h3, h4 {
     float: right;
     font-size: 14px;
   }
-  .fa-info-circle {
+  .fa-question-circle {
     color: $other-link-color;
     cursor: pointer;
     margin-left: 4px;
   }
+  .header-actions {
+    font-size: 14px;
+    display: flex;
+    >:before {
+      content: '•';
+      margin: 0 5px;
+    }
+    >:first-child:before {
+      content: '';
+      margin: 0;
+    }
+  }
   .opted_out {
     font-size: 14px;
-    padding-left: 5px;
   }
   .info {
     border: 1px solid $border-grey;
@@ -1549,7 +1560,8 @@ h3, h4 {
   }
 }
 
-.CommunityIdentification.cid-vis1 {
+.CommunityIdentification.cid-vis1,
+.CommunityIdentification.cid-vis4 {
   .taxon-0 { opacity: 1; }
   .taxon-1 { opacity: 0.7; }
   .taxon-2 { opacity: 0.4; }
@@ -1641,10 +1653,6 @@ h3, h4 {
 
 .CommunityIdentification.cid-vis3,
 .CommunityIdentification.cid-vis4 {
-  .numbers,
-  .cumulative {
-    display: none;
-  }
   .info {
     .about {
       width: 100%;
@@ -1694,17 +1702,36 @@ h3, h4 {
     .for.not-exact, .against.not-exact {
       opacity: 0.1;
     }
-    .two-thirds {
+    .numbers {
       display: none !important;
     }
   }
 }
 .CommunityIdentification.cid-vis4 {
   .info {
+    .cumulative {
+      display: none;
+    }
     .graphic {
-      display: flex;
-      .exact { order: 0; }
-      .not-exact { order: 1; }
+      // display: flex;
+      .vote-cells {
+        display: flex;
+        .exact { order: 0; }
+        .not-exact { order: 1; }
+      }
+      .numbers {
+        .first, .last { visibility: hidden; }
+      }
+    }
+  }
+  .proposed-taxa {
+    .info {
+      .graphic {
+        .for.not-exact {
+          opacity: 1;
+          background: #eee;
+        }
+      }
     }
   }
 }
@@ -1769,7 +1796,7 @@ h3, h4 {
 }
 
 .CommunityIDInfoOverlay {
-  min-width: 400px;
+  max-width: 400px;
   p:last-child {
     margin-bottom: 0px;
   }

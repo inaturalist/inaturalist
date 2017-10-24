@@ -4208,6 +4208,7 @@ I18n.translations["en"] = {
   "we_have_no_conservation_status_for_this_taxon": "We have no conservation status for this taxon",
   "we_have_no_establishment_data_for_this_taxon": "We have no establishment data for this taxon",
   "were_pretty_sure_this_is_in_the_rank": "We're pretty sure this is in the %{rank}",
+  "whats_this?": "What's this?",
   "white": "white",
   "wild": "wild",
   "with_annotation": "With annotation",
