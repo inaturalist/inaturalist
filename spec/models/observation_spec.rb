@@ -488,6 +488,16 @@ describe Observation do
       expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
     end
 
+    it "should replace an inactive taxon with its active equivalent" do
+      taxon_change = make_taxon_swap
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      o = Observation.make!( taxon: taxon_change.input_taxon )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.taxon ).to eq taxon_change.output_taxon
+    end
+
   end
 
   describe "updating" do

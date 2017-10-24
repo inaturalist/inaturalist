@@ -1489,6 +1489,12 @@ class Taxon < ActiveRecord::Base
     @cached_atlas_presence_places ||= atlas.presence_places if atlas
   end
 
+  def current_synonymous_taxon
+    return nil if is_active?
+    TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
+      input_taxon( self ).order(:id).last.try(:output_taxon)
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)

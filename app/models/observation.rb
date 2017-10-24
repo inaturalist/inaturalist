@@ -327,6 +327,7 @@ class Observation < ActiveRecord::Base
                     :set_time_in_time_zone,
                     :set_coordinates
 
+  before_create :replace_inactive_taxon
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
               :set_taxon_from_taxon_name,
@@ -1097,6 +1098,13 @@ class Observation < ActiveRecord::Base
     else
       self.iconic_taxon_id = nil
     end
+    true
+  end
+
+  def replace_inactive_taxon
+    return true if taxon.blank? || ( taxon && taxon.is_active? )
+    return true unless candidate = taxon.current_synonymous_taxon
+    self.taxon = candidate
     true
   end
 
