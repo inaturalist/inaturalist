@@ -1891,7 +1891,9 @@ zh-TW:
   most_observations: 最多觀察
   most_recent_observation_by_date_observed: 依所觀察日期的近期可驗證觀察
   most_species: 最多物種
-  most_observed_species: 最多被觀察的物種
+  most_observed_species: 記錄次數最多的物種
+  most_observed_introduced_species: 記錄次數最多的瀕危物種
+  most_observed_threatened_species: 記錄次數最多的外來物種
   multiple: 多種
   multiple_select_option: -- 多種 --
   multiple_taxa_for_taxon_change: 多項物種分類群（輸入用於對換/合併方面，輸出用於拆分方面）
@@ -2118,6 +2120,7 @@ zh-TW:
   observation_added_to_the_project: 觀察已添加至專案「%{project}」
   observation_aggregation: 觀察聚集
   observation_photo_uploader: 觀察照片上傳者
+  observations_by_category: 觀察記錄分類
   observations_by_user_on_date: 於 %{date} 由 %{user} 所做的觀察
   observations_by_you: 由您所做的觀察
   observations_by_you_on_date: 於 %{date} 由您所做的觀察
@@ -3034,6 +3037,7 @@ zh-TW:
   spam: 垃圾訊息
   spanish: 西班牙語
   species: 物種
+  species_by_category: 物種數量分類
   species_from_around_the_world: 來自世界各地的物種
   species_guess: 物種推測
   species_guide: 物種指南
@@ -3344,6 +3348,7 @@ zh-TW:
   top_identifiers: 熱門鑑定人
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer: 頂尖觀察者
+  top_observers: 領先觀察者
   top_species: 熱門物種
   total: 總計
   totals: 總計

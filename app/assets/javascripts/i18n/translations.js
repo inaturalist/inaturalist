@@ -157,7 +157,6 @@ I18n.translations["bg"] = {
   "add_to_project": "Добави към проект",
   "added": "Добавен",
   "added!": "Добавено!",
-  "added_as_a_part_of": "Добавено като част от",
   "added_on": "Добавено на",
   "agree_": "Съгласен",
   "all_taxa": {
@@ -409,6 +408,7 @@ I18n.translations["bg"] = {
     }
   },
   "identifications": "Разпознавания",
+  "identifiers": "Разпознавачи",
   "identify_title": "Разпознай",
   "info": "Информация",
   "insects": "насекоми",
@@ -510,6 +510,7 @@ I18n.translations["bg"] = {
   "more": "Още",
   "more_filters": "Още филтри",
   "more_import_options": "Още възможности за импорт",
+  "most_observed_species": "Най-наблюдавани видове",
   "name_or_slug": "Име или (част от) уебадрес",
   "near_threatened": "почти застрашен",
   "needs_id": "нуждае се от ID",
@@ -528,6 +529,7 @@ I18n.translations["bg"] = {
   "observations_map": "Наблюдения / Карта",
   "observed": "Наблюдавано",
   "observed_on": "Наблюдаван на",
+  "observers": "Наблюдатели",
   "open": "отвори",
   "open_": "Отваряне",
   "or": "или",
@@ -615,6 +617,7 @@ I18n.translations["bg"] = {
       "zone": "зона"
     }
   },
+  "places": "Места",
   "places_added_by_members_of_the_community": "Места добавени от потребителите на общността",
   "places_maintained_by_site_admins": "Места поддържани от администраторите на сайта",
   "places_name": {
@@ -884,7 +887,6 @@ I18n.translations["br"] = {
   "add_to_project": "Ouzhpennañ d'ar raktres",
   "added": "Ouzhpennet",
   "added!": "Ouzhpennet!",
-  "added_as_a_part_of": "Ouzhpenn evel lodenn eus ur/un/ul",
   "added_on": "Ouzhpennet d'an",
   "additional_range": "Lijorenn ouzhpenn",
   "additional_range_data_from_an_unknown_source": "Pajennad roadennoù ouzhpenn adalek un tarzh dianav",
@@ -1286,6 +1288,7 @@ I18n.translations["br"] = {
       "zone": "takad"
     }
   },
+  "places": "Lec'hioù",
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrika",
@@ -1515,7 +1518,6 @@ I18n.translations["ca"] = {
   "add_to_project": "Afegiu al projecte",
   "added": "Afegit",
   "added!": "Afegit!",
-  "added_as_a_part_of": "Afegit com a part d'un",
   "added_on": "Afegit el",
   "additional_range": "Distribució addicional",
   "additional_range_data_from_an_unknown_source": "Dades addicionals de distribució des de font desconeguda",
@@ -1925,6 +1927,7 @@ I18n.translations["ca"] = {
     }
   },
   "identifications": "Identificacions",
+  "identifiers": "Identificadors",
   "identify_title": "Identificar",
   "if_for_some_reason_a_user_doesnt_agree": "Si per algun motiu un usuari no està d'acord amb el tàxon de la comunitat, el poden refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que l'observació només pot ser de grau de recerca si la comunitat està d'acord amb ella.",
   "import": "Importa",
@@ -2072,6 +2075,7 @@ I18n.translations["ca"] = {
   "more_import_options": "Més opcions d'importació",
   "more_info": "Més informació",
   "more_photos": "Més Fotos",
+  "most_observed_species": "La majoria d'espècies observades",
   "most_recent_observation_by_date_observed": "Observació més recents verificable per data",
   "multiple": "múltiples",
   "multiple_select_option": "-- múltiple --",
@@ -2139,6 +2143,7 @@ I18n.translations["ca"] = {
   "observations_with_this_field_and_value": "Observacions amb aquest camp i valor",
   "observed": "Observat el",
   "observed_on": "Observat el",
+  "observers": "Observadors",
   "of": "de",
   "offensive_inappropriate": "ofensiu/inadequat",
   "ok": "D’acord",
@@ -2267,6 +2272,7 @@ I18n.translations["ca"] = {
     }
   },
   "placeholder": "Posició",
+  "places": "Llocs",
   "places_added_by_members_of_the_community": "Llocs afegits per membres de la comunitat",
   "places_maintained_by_site_admins": "Llocs mantinguts per administradors del lloc",
   "places_name": {
@@ -3055,7 +3061,6 @@ I18n.translations["en"] = {
   "add_to_project": "Add to project",
   "added": "Added",
   "added!": "Added!",
-  "added_as_a_part_of": "Added as part of a",
   "added_on": "Added on",
   "additional_range": "Additional range",
   "additional_range_data_from_an_unknown_source": "Additional range data from an unknown source",
@@ -3471,6 +3476,7 @@ I18n.translations["en"] = {
     }
   },
   "identifications": "Identifications",
+  "identifiers": "Identifiers",
   "identify_title": "Identify",
   "if_for_some_reason_a_user_doesnt_agree": "If for some reason a user doesn't agree with the community taxon, they can reject it,\nwhich means their ID is the one used for linking to other observations, updating life lists,\netc. It also means their observation can only become research grade when the community agrees\nwith them.\n",
   "ignore_and_continue": "Ignore and continue",
@@ -3621,6 +3627,9 @@ I18n.translations["en"] = {
   "more_import_options": "More import options",
   "more_info": "More info",
   "more_photos": "More Photos",
+  "most_observed_introduced_species": "Most observed introduced species",
+  "most_observed_species": "Most observed species",
+  "most_observed_threatened_species": "Most observed threatened species",
   "most_recent_observation_by_date_observed": "Most recent verifiable observation by date observed",
   "multiple": "multiple",
   "multiple_select_option": "-- multiple --",
@@ -3681,6 +3690,7 @@ I18n.translations["en"] = {
   "observations": "Observations",
   "observations_": "observations",
   "observations_annotated_with_annotation": "Observations annotated with %{annotation}",
+  "observations_by_category": "Observations by category",
   "observations_map": "Observations / Map",
   "observations_of_relatives": "Observations of relatives",
   "observations_total": "Observations Total",
@@ -3688,6 +3698,7 @@ I18n.translations["en"] = {
   "observations_with_this_field_and_value": "Observations with this field and value",
   "observed": "Observed",
   "observed_on": "Observed on",
+  "observers": "Observers",
   "of": "of",
   "offensive_inappropriate": "offensive / inappropriate",
   "ok": "OK",
@@ -3816,6 +3827,7 @@ I18n.translations["en"] = {
     }
   },
   "placeholder": "Placeholder",
+  "places": "Places",
   "places_added_by_members_of_the_community": "Places added by members of the community",
   "places_maintained_by_site_admins": "Places maintained by site admins",
   "places_name": {
@@ -4000,6 +4012,7 @@ I18n.translations["en"] = {
   "source_wikipedia": "Source: Wikipedia",
   "spam": "spam",
   "species": "Species",
+  "species_by_category": "species by category",
   "species_name_cap": "Species name",
   "species_unknown": "Species unknown",
   "specify_the_reason_youre_flagging": "Specify the reason you're flagging this item",
@@ -4062,6 +4075,7 @@ I18n.translations["en"] = {
   "top_identifiers": "Top Identifiers",
   "top_identifiers_of_taxon": "Top Identifiers of %{taxon}",
   "top_observer": "Top Observer",
+  "top_observers": "Top Observers",
   "top_species": "Top Species",
   "total_observations": "Total observations",
   "total_species_observed": "Total Species Observed",
@@ -4510,7 +4524,6 @@ I18n.translations["es"] = {
   "add_to_project": "Añade al proyecto",
   "added": "Añadido",
   "added!": "¡Añadido!",
-  "added_as_a_part_of": "Añadido como parte de un",
   "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -4938,6 +4951,7 @@ I18n.translations["es"] = {
     }
   },
   "identifications": "Identificaciones",
+  "identifiers": "Identificadores",
   "identify_title": "Identificar",
   "if_for_some_reason_a_user_doesnt_agree": "Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizando listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.",
   "ignore_and_continue": "Ignorar y continuar",
@@ -5088,6 +5102,7 @@ I18n.translations["es"] = {
   "more_import_options": "Más opciones de importación",
   "more_info": "Más información",
   "more_photos": "Más fotos",
+  "most_observed_species": "Especies más observadas",
   "most_recent_observation_by_date_observed": "Observación comprobable más reciente por fecha de observación",
   "multiple": "Múltiple",
   "multiple_select_option": "-- múltiples --",
@@ -5155,6 +5170,7 @@ I18n.translations["es"] = {
   "observations_with_this_field_and_value": "Observaciones con este campo y valor",
   "observed": "Observado el",
   "observed_on": "Observado el",
+  "observers": "Observadores",
   "of": "de",
   "offensive_inappropriate": "ofensivo / inapropiado",
   "ok": "Aceptar",
@@ -5283,6 +5299,7 @@ I18n.translations["es"] = {
     }
   },
   "placeholder": "Posición",
+  "places": "Lugares",
   "places_added_by_members_of_the_community": "Lugares añadidos por miembros de la comunidad",
   "places_maintained_by_site_admins": "Lugares mantenidos por administradores del sitio",
   "places_name": {
@@ -5776,7 +5793,6 @@ I18n.translations["es-MX"] = {
   "add_to_project": "Añade al proyecto",
   "added": "añadido",
   "added!": "¡Añadido!",
-  "added_as_a_part_of": "Añadido como parte de un",
   "added_on": "añadido en",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -6198,6 +6214,7 @@ I18n.translations["es-MX"] = {
   "more_filters": "Más filtros",
   "more_import_options": "Más opciones de importación",
   "more_info": "Más información",
+  "most_observed_species": "Especies más observadas",
   "multiple": "Múltiple",
   "multiple_select_option": "--- Múltiple ---",
   "name": "Nombre",
@@ -6232,6 +6249,7 @@ I18n.translations["es-MX"] = {
   "observations_map": "Observaciones / Mapa",
   "observed": "Observado",
   "observed_on": "Observado en",
+  "observers": "Observadores",
   "of": "de",
   "offensive_inappropriate": "ofensivo / inapropiado",
   "old_observation_form": "Antiguó registro de observaciones",
@@ -6321,6 +6339,7 @@ I18n.translations["es-MX"] = {
       "zone": "zona"
     }
   },
+  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -6727,7 +6746,6 @@ I18n.translations["eu"] = {
   "add_to_project": "Proiektura gehitu",
   "added": "Egun honetan gehitua:",
   "added!": "Gehituta!",
-  "added_as_a_part_of": "Honen zati gisa gehituta:",
   "added_on": "Egun honetan gehitua:",
   "additional_range": "Banaketa osagarria",
   "additional_range_data_from_an_unknown_source": "D\"Iturri ezezaguneko banaketa osagarriaren datuak\"",
@@ -7152,6 +7170,7 @@ I18n.translations["eu"] = {
   "observations_map": "Behaketak / Mapa",
   "observed": "Hau behatuta:",
   "observed_on": "Hau behatuta:",
+  "observers": "Begiraleak",
   "of": "hemendik:",
   "offensive_inappropriate": "iraingarria/desegokia",
   "open": "Transparente",
@@ -7243,6 +7262,7 @@ I18n.translations["eu"] = {
       "zone": "eremua"
     }
   },
+  "places": "Tokiak",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrika",
@@ -7580,7 +7600,6 @@ I18n.translations["fi"] = {
   "add_to_project": "Lisää projektiin",
   "added": "Lisätty",
   "added!": "Lisätty!",
-  "added_as_a_part_of": "Lisätty osana",
   "added_on": "Lisätty",
   "additional_range": "Lisäalue",
   "additional_range_data_from_an_unknown_source": "Lisäalueen tietoja tuntemattomattomasta lähteestä",
@@ -7949,6 +7968,7 @@ I18n.translations["fi"] = {
   "messages": "Viestit",
   "mollusks": "nilviäiset",
   "months": "Kuukausi",
+  "most_observed_species": "Useimmin havaitut lajit",
   "name": "Nimi",
   "names": "Nimet",
   "native": "kotoperäinen",
@@ -7958,6 +7978,7 @@ I18n.translations["fi"] = {
   "not_evaluated": "arvioimatta jätetty",
   "observation": "Havainto",
   "observations": "Havainnot",
+  "observers": "Havainnoijat",
   "offensive_inappropriate": "loukkaava / sopimaton",
   "other_species_commonly_misidentified_as_this_species": "Lajeja, jotka usein määritetään virheellisesti täksi lajiksi",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Lajeja, jotka usein määritetään virheellisesti täksi lajiksi <a href=\"%{url}\">%{place}</a>",
@@ -7979,6 +8000,7 @@ I18n.translations["fi"] = {
       "unknown": "tuntematon"
     }
   },
+  "places": "Paikat",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrikka",
@@ -8211,7 +8233,6 @@ I18n.translations["fr"] = {
   "add_to_project": "Ajouter au projet",
   "added": "Ajouté",
   "added!": "Ajouté!",
-  "added_as_a_part_of": "Ajouté comme partie d’un",
   "added_on": "Ajouté le",
   "additional_range": "Aire de répartition supplémentaire",
   "additional_range_data_from_an_unknown_source": "Données supplémentaires sur l’aire de répartition d’une source inconnue",
@@ -8625,6 +8646,7 @@ I18n.translations["fr"] = {
     }
   },
   "identifications": "Identifications",
+  "identifiers": "Identificateurs",
   "identify_title": "Identifier",
   "if_for_some_reason_a_user_doesnt_agree": "Si, pour une raison quelconque, un utilisateur n’est pas d’accord avec le taxon de la communauté, il peut le rejeter, ce qui signifie que son ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. cela veut aussi dire que son observation ne peut devenir de niveau recherche que quand la communauté sera\nd’accord avec lui.",
   "ignore_and_continue": "Ignorer et continuer",
@@ -8774,6 +8796,7 @@ I18n.translations["fr"] = {
   "more_import_options": "Plus options d’importation",
   "more_info": "Plus d’informations",
   "more_photos": "Plus de photos",
+  "most_observed_species": "Espèces les plus observées",
   "most_recent_observation_by_date_observed": "Observation vérifiable la plus récente observée par date",
   "multiple": "multiple",
   "multiple_select_option": "-- multiple --",
@@ -8841,6 +8864,7 @@ I18n.translations["fr"] = {
   "observations_with_this_field_and_value": "Observations avec ce champ et cette valeur",
   "observed": "Observé",
   "observed_on": "Observé le",
+  "observers": "Observateurs",
   "of": "de",
   "offensive_inappropriate": "injurieux/inapproprié",
   "ok": "OK",
@@ -8969,6 +8993,7 @@ I18n.translations["fr"] = {
     }
   },
   "placeholder": "Signet (élément de substitution)",
+  "places": "Lieux",
   "places_added_by_members_of_the_community": "Lieux ajoutés par des membres de la communauté",
   "places_maintained_by_site_admins": "Lieux entretenus par les administrateurs du site",
   "places_name": {
@@ -9464,7 +9489,6 @@ I18n.translations["gl"] = {
   "add_to_project": "Engadir ao proxecto",
   "added": "Engadido o",
   "added!": "¡Engadido!",
-  "added_as_a_part_of": "Engadido como parte dun",
   "added_on": "Engadido o",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fonte descoñecida",
@@ -9926,6 +9950,7 @@ I18n.translations["gl"] = {
       "zone": "Zona"
     }
   },
+  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -10366,7 +10391,6 @@ I18n.translations["id"] = {
   "add_to_project": "Tambahkan ke proyek",
   "added": "Ditambahkan",
   "added!": "Ditambahkan!",
-  "added_as_a_part_of": "Ditambahkan sebagai bagian dari",
   "added_on": "Ditambahkan",
   "additional_range": "Tambahan rentang",
   "additional_range_data_from_an_unknown_source": "Berbagai data tambahan dari sumber yang tidak diketahui",
@@ -10695,6 +10719,7 @@ I18n.translations["id"] = {
     }
   },
   "identifications": "Mengidentifikasi",
+  "identifiers": "yang mengidentifikasi",
   "identify_title": "Mengenali",
   "import": "Masukkan",
   "inactive_taxon": "takson yang tidak aktif",
@@ -10822,6 +10847,7 @@ I18n.translations["id"] = {
   "more_filters": "Penyaringan lain",
   "more_info": "Info lainnya",
   "more_photos": "Lebih Banyak Foto",
+  "most_observed_species": "sebagian besar spesies yang diamati",
   "name": "Nama",
   "names": "Nama",
   "native": "asli",
@@ -10855,6 +10881,7 @@ I18n.translations["id"] = {
   "observations_map": "Pengamatan / Peta",
   "observed": "Diamati",
   "observed_on": "Diamati pada",
+  "observers": "Pengamat",
   "of": "dari",
   "offensive_inappropriate": "ofensif / tidak pantas",
   "ok": "Oke",
@@ -10956,6 +10983,7 @@ I18n.translations["id"] = {
       "zone": "zona"
     }
   },
+  "places": "Tempat",
   "places_added_by_members_of_the_community": "Tempat ditambahkan oleh anggota dari komunitas",
   "places_maintained_by_site_admins": "Tempat diatur oleh situs admin",
   "places_name": {
@@ -11328,7 +11356,6 @@ I18n.translations["it"] = {
   "add_to_project": "Aggiungi al progetto",
   "added": "Aggiunte",
   "added!": "Aggiunto!",
-  "added_as_a_part_of": "Aggiunto come parte di un",
   "added_on": "Aggiunto il",
   "additional_range": "Areale aggiuntivo",
   "additional_range_data_from_an_unknown_source": "Ulteriori dati di distribuzione da fonte sconosciuta",
@@ -11741,6 +11768,7 @@ I18n.translations["it"] = {
     }
   },
   "identifications": "Identificazioni",
+  "identifiers": "Identificatori",
   "identify_title": "Identifica",
   "if_for_some_reason_a_user_doesnt_agree": "Se per qualche ragione un utente non concorda con il taxon della comunità, egli può rifiutarlo; significa che la sua ID è quella usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa anche che le sue osservazioni possono raggiungere il Livello Ricerca solo quando la comunità è d'accordo con loro.",
   "ignore_and_continue": "Ignora e continua",
@@ -11889,6 +11917,7 @@ I18n.translations["it"] = {
   "more_import_options": "Più opzioni di importazione",
   "more_info": "Più info",
   "more_photos": "Più Foto",
+  "most_observed_species": "Le specie più osservate",
   "most_recent_observation_by_date_observed": "Le osservazioni verificabili più recenti per data",
   "multiple": "Più di uno",
   "multiple_select_option": "-- più --",
@@ -11956,6 +11985,7 @@ I18n.translations["it"] = {
   "observations_with_this_field_and_value": "Osservazioni con questo stesso campo e valore",
   "observed": "Osservata",
   "observed_on": "Osservata il",
+  "observers": "Osservatori",
   "of": "di",
   "offensive_inappropriate": "offensivo / inappropriato",
   "ok": "OK",
@@ -12084,6 +12114,7 @@ I18n.translations["it"] = {
     }
   },
   "placeholder": "Segnaposto",
+  "places": "Luoghi",
   "places_added_by_members_of_the_community": "Luogo aggiunto dai membri della community",
   "places_maintained_by_site_admins": "Luoghi mantenuti dagli amministratori",
   "places_name": {
@@ -12660,7 +12691,6 @@ I18n.translations["ja"] = {
   "add_to_project": "プロジェクトに追加",
   "added": "追加されました",
   "added!": "追加されました！",
-  "added_as_a_part_of": "追加先：",
   "added_on": "追加日付",
   "additional_range": "追加の分布範囲",
   "additional_range_data_from_an_unknown_source": "追加の分布範囲の提供先は不明",
@@ -12977,6 +13007,7 @@ I18n.translations["ja"] = {
     }
   },
   "identifications": "同定",
+  "identifiers": "ID判定者",
   "identify_title": "ID判定",
   "import": "インポート",
   "inactive_taxon": "無効な分類群",
@@ -13108,6 +13139,7 @@ I18n.translations["ja"] = {
   "more_import_options": "その他のインポート方法",
   "more_info": "詳細情報",
   "more_photos": "写真をもっと表示",
+  "most_observed_species": "最も多くの種を観察した",
   "multiple": "複数",
   "multiple_select_option": "--複数--",
   "name": "名称",
@@ -13149,6 +13181,7 @@ I18n.translations["ja"] = {
   "observations_total": "観察記録合計",
   "observed": "観察済",
   "observed_on": "観測日時",
+  "observers": "観察者",
   "of": "の",
   "offensive_inappropriate": "不快／不適切",
   "ok": "OK",
@@ -13270,6 +13303,7 @@ I18n.translations["ja"] = {
     }
   },
   "placeholder": "プレースホルダー",
+  "places": "場所",
   "places_added_by_members_of_the_community": "コミュニティーメンバーによって追加された場所",
   "places_maintained_by_site_admins": "サイト管理者によって管理されている場所",
   "places_name": {
@@ -13615,7 +13649,6 @@ I18n.translations["ko"] = {
   "add_to_project": "프로젝트에 추가하기",
   "added": "추가됨",
   "added!": "추가되었습니다!",
-  "added_as_a_part_of": "일부분으로 추가됨",
   "added_on": "추가됨",
   "additional_range": "추가적인 범위",
   "additional_range_data_from_an_unknown_source": "알 수 없는 자료에서 추가적인 범위 데이터",
@@ -13904,6 +13937,7 @@ I18n.translations["ko"] = {
     }
   },
   "identifications": "동정",
+  "identifiers": "동정한 사용자들",
   "identify_title": "동정함",
   "ignore_and_continue": "무시하고 계속하기",
   "import": "가져오기",
@@ -14093,6 +14127,7 @@ I18n.translations["ko"] = {
       "unknown": "알 수 없음"
     }
   },
+  "places": "장소",
   "places_name": {
     "afghanistan": "아프가니스탄",
     "africa": "아프리카",
@@ -14505,7 +14540,6 @@ I18n.translations["mk"] = {
   "add_to_project": "Додај во проект",
   "added": "Додадено",
   "added!": "Додадено!",
-  "added_as_a_part_of": "Додадено како дел од",
   "added_on": "Додадено на",
   "additional_range": "Дополнителна распространетост",
   "agree": "се согласувам",
@@ -14816,6 +14850,7 @@ I18n.translations["mk"] = {
   "mollusks": "мекотелци",
   "more": "Повеќе",
   "more_info": "Повеќе инфо",
+  "most_observed_species": "Највеќе набљудувани видови",
   "name": "Име",
   "names": "Имиња",
   "native": "домороден",
@@ -14922,6 +14957,7 @@ I18n.translations["mk"] = {
       "zone": "подрачје"
     }
   },
+  "places": "Места",
   "places_name": {
     "afghanistan": "Авганистан",
     "africa": "Африка",
@@ -15418,7 +15454,6 @@ I18n.translations["oc"] = {
   "add_to_project": "Apondre al projècte",
   "added": "Apondut",
   "added!": "Apondut !",
-  "added_as_a_part_of": "Apondut coma part d’un",
   "added_on": "Apondut lo",
   "additional_range": "Plaja suplementària",
   "agree": "acceptar",
@@ -15666,6 +15701,7 @@ I18n.translations["oc"] = {
     }
   },
   "identifications": "Identificacions",
+  "identifiers": "Identificants",
   "identify_title": "Identificar",
   "import": "Importar",
   "inactive_taxon": "taxon inactiu",
@@ -15869,6 +15905,7 @@ I18n.translations["oc"] = {
       "zone": "zòna"
     }
   },
+  "places": "Luòcs",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Africa",
@@ -16237,7 +16274,6 @@ I18n.translations["pt-BR"] = {
   "add_to_project": "Adicione ao projeto",
   "added": "Adicionado",
   "added!": "Adicionado!",
-  "added_as_a_part_of": "Adicionado como parte de um",
   "added_on": "Adicionado em",
   "additional_range": "Distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Distribuição adicional para fontes desconhecidas",
@@ -16645,6 +16681,7 @@ I18n.translations["pt-BR"] = {
     }
   },
   "identifications": "Identificações",
+  "identifiers": "Identificadores",
   "identify_title": "Identificar",
   "if_for_some_reason_a_user_doesnt_agree": "Se por alguma razão um usuário não concorda com o táxon da comunidade, ele rejeitá-la, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.",
   "import": "Importar",
@@ -16792,6 +16829,7 @@ I18n.translations["pt-BR"] = {
   "more_import_options": "Mais opções de importação",
   "more_info": "Mais informações",
   "more_photos": "Mais Fotos",
+  "most_observed_species": "Espécies mais observadas",
   "most_recent_observation_by_date_observed": "Observação mais recente já verificada por data de observação",
   "multiple": "múltiplo",
   "multiple_select_option": "-- múltiplo --",
@@ -16858,6 +16896,7 @@ I18n.translations["pt-BR"] = {
   "observations_with_this_field_and_value": "Observações com este campo e valor",
   "observed": "Observado",
   "observed_on": "Observado em",
+  "observers": "Observadores",
   "of": "de",
   "offensive_inappropriate": "ofensivo / inapropriado",
   "ok": "OK",
@@ -16985,6 +17024,7 @@ I18n.translations["pt-BR"] = {
     }
   },
   "placeholder": "Posição",
+  "places": "Lugares",
   "places_added_by_members_of_the_community": "Locais adicionados por membros da comunidade",
   "places_maintained_by_site_admins": "Locais mantidos por administradores",
   "places_name": {
@@ -18260,7 +18300,6 @@ I18n.translations["zh-CN"] = {
   "add_to_project": "添加至项目",
   "added": "已添加",
   "added!": "已添加！",
-  "added_as_a_part_of": "已加入为一个",
   "added_on": "添加在",
   "additional_range": "额外范围",
   "agree": "同意",
@@ -18656,6 +18695,7 @@ I18n.translations["zh-CN"] = {
     }
   },
   "identifications": "身份证明",
+  "identifiers": "标识符",
   "identify_title": "鉴定",
   "ignore_and_continue": "忽略并继续",
   "import": "导入",
@@ -18798,6 +18838,7 @@ I18n.translations["zh-CN"] = {
   "more_import_options": "更多导入选项",
   "more_info": "更多信息",
   "more_photos": "更多照片",
+  "most_observed_species": "最多观察的物种",
   "multiple": "多重",
   "multiple_select_option": "-- 多重 --",
   "must_be_observed_after": "必须在 %{operand} 之后被观察",
@@ -18852,6 +18893,7 @@ I18n.translations["zh-CN"] = {
   "observations_total": "观察总计",
   "observed": "已观察",
   "observed_on": "观察于",
+  "observers": "观察者",
   "of": "的",
   "ok": "确定",
   "old_observation_form": "旧观察表单（已弃用）",
@@ -18966,6 +19008,7 @@ I18n.translations["zh-CN"] = {
     }
   },
   "placeholder": "占位符",
+  "places": "地方",
   "places_added_by_members_of_the_community": "由社群成员添加的地点",
   "places_maintained_by_site_admins": "由网站管理员维护的地点",
   "places_name": {
@@ -19480,7 +19523,6 @@ I18n.translations["zh-TW"] = {
   "add_to_project": "新增專案",
   "added": "已新增",
   "added!": "已新增!",
-  "added_as_a_part_of": "已添加成為部份",
   "added_on": "已添加在",
   "additional_range": "額外範圍",
   "additional_range_data_from_an_unknown_source": "來自不知名來源的額外範圍資料",
@@ -19894,6 +19936,7 @@ I18n.translations["zh-TW"] = {
     }
   },
   "identifications": "鑑定",
+  "identifiers": "鑑定人",
   "identify_title": "鑑定",
   "if_for_some_reason_a_user_doesnt_agree": "若出自於某種原因用戶不同意社群物種分類；他們可以拒絕，這代表著他們的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表他們的觀察，僅能在社群認可後才能成為研究等級的內容。",
   "ignore_and_continue": "忽略並繼續",
@@ -20043,6 +20086,9 @@ I18n.translations["zh-TW"] = {
   "more_import_options": "更多匯入選項",
   "more_info": "更多資訊",
   "more_photos": "更多照片",
+  "most_observed_introduced_species": "記錄次數最多的瀕危物種",
+  "most_observed_species": "記錄次數最多的物種",
+  "most_observed_threatened_species": "記錄次數最多的外來物種",
   "most_recent_observation_by_date_observed": "依所觀察日期的近期可驗證觀察",
   "multiple": "多種",
   "multiple_select_option": "-- 多種 --",
@@ -20103,6 +20149,7 @@ I18n.translations["zh-TW"] = {
   "observations": "觀察",
   "observations_": "觀察",
   "observations_annotated_with_annotation": "觀察帶有%{annotation}註解",
+  "observations_by_category": "觀察記錄分類",
   "observations_map": "觀察 / 地圖",
   "observations_of_relatives": "親屬觀察",
   "observations_total": "觀察總計",
@@ -20110,6 +20157,7 @@ I18n.translations["zh-TW"] = {
   "observations_with_this_field_and_value": "帶有此欄位與內容值的觀察",
   "observed": "已觀察",
   "observed_on": "已觀察在",
+  "observers": "觀察者",
   "of": "的",
   "offensive_inappropriate": "冒犯/不適當",
   "ok": "確定",
@@ -20238,6 +20286,7 @@ I18n.translations["zh-TW"] = {
     }
   },
   "placeholder": "位置標誌符",
+  "places": "地點",
   "places_added_by_members_of_the_community": "由社群成員添加的地點",
   "places_maintained_by_site_admins": "由網站管理員維護的地點",
   "places_name": {
@@ -20422,6 +20471,7 @@ I18n.translations["zh-TW"] = {
   "source_wikipedia": "來源：維基百科",
   "spam": "垃圾訊息",
   "species": "物種",
+  "species_by_category": "物種數量分類",
   "species_name_cap": "物種名稱",
   "species_unknown": "不明物種",
   "specify_the_reason_youre_flagging": "指名您標記此項目的原因",
@@ -20484,6 +20534,7 @@ I18n.translations["zh-TW"] = {
   "top_identifiers": "熱門鑑定人",
   "top_identifiers_of_taxon": "%{taxon}的熱門鑑定人",
   "top_observer": "頂尖觀察者",
+  "top_observers": "領先觀察者",
   "top_species": "熱門物種",
   "total_observations": "觀察總數",
   "total_species_observed": "觀察物種總計",
