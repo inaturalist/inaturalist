@@ -490,9 +490,20 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_with_oauth?
+    # Don't want OAuth if we're already authenticated
     return false if !session.blank? && !session['warden.user.user.key'].blank?
     return false if request.authorization.to_s =~ /^Basic /
+    # Need an access token for OAuth
     return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
+    # If the bearer token is a JWT with a user we don't want to go through
+    # Doorkeeper's OAuth-based flow
+    token = request.authorization.to_s.split( /\s+/ ).last
+    jwt_claims = begin
+      ::JsonWebToken.decode( token )
+    rescue JWT::DecodeError => e
+      nil
+    end
+    return false if jwt_claims && jwt_claims.fetch( "user_id" )
     @doorkeeper_for_called = true
   end
 

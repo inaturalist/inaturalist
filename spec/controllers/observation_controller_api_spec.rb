@@ -1867,6 +1867,14 @@ describe ObservationsController, "jwt authentication" do
   it_behaves_like "ObservationsController basics"
 end
 
+describe ObservationsController, "jwt bearer authentication" do
+  let(:user) { User.make! }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer #{JsonWebToken.encode(user_id: user.id)}"
+  end
+  it_behaves_like "ObservationsController basics"
+end
+
 describe ObservationsController, "without authentication" do
   describe "index" do
     before(:each) { enable_elastic_indexing([ Observation ]) }
