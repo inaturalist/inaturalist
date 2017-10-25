@@ -775,7 +775,6 @@ ja:
   deleting: 削除しています...
   deleting_verb: 削除しています
   desc: 降順
-  dna_: DNA
   descendant_taxa: 子孫の分類群
   descending: 降順
   describe_purpose: このプロジェクトの目的を説明してください
@@ -801,6 +800,7 @@ ja:
   display_link_to_checklist: プロジェクトページにプロジェクトリストのリンクを表示
   display_listings_added_by_curators: キュレーター管理者によって追加された記載を表示
   display_listings_from_place: 場所からリストを表示
+  dna_: DNA
   do_not_show_this_message_again: 今後このメッセージを表示しない
   do_you_know_where_this_species_lives: この種の生息場所がわかりますか？
   do_you_want_to_proceed: 進みますか？
@@ -2799,23 +2799,23 @@ ja:
   usage_stats: 利用状況
   use_unique_file_names_for_separate_uploads: 個別のアップロードの場合、一意のファイル名をご使用ください
   user: ユーザー
-  user_added_an_observation_html: '%{user}が観察記録を追加しました'
   user_added_a_x: '%{user}が%{x}を追加しました'
-  user_added_an_x: '%{user}が%{x}を追加しました'
-  user_added_an_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
-  user_added_a_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
-  user_added_an_x_to_noun_by_html: リストを表示
   user_added_a_x_to_noun_by_html: '%{user}は%{by}の%{noun}に%{x}を追加しました'
+  user_added_a_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
+  user_added_an_observation_html: '%{user}が観察記録を追加しました'
+  user_added_an_x: '%{user}が%{x}を追加しました'
+  user_added_an_x_to_noun_by_html: リストを表示
+  user_added_an_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
   user_added_x_observations_html: '%{user}は%{x}件の観察記録を追加しました。'
   user_commented_on: '%{user}はあなたの%{title}にコメントしました（%{time}）'
   user_faved_a_noun_by_owner: '%{user}が%{owner}の%{noun}をお気に入りに追加しました'
   user_follows: '%{user}がフォローしているユーザー'
   user_hasnt: '%{user}はまだ次のことをしていません：'
-  user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
   user_invited_you_to_join_html: '%{user}から招待が届いています：'
+  user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
   user_invited_your_x_to_a_project_html: '%{user}があなたの%{x}をプロジェクトに招待しました'
-  user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
   user_is_a_naturalist: '%{user}はナチュラリストです！'
+  user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
   user_s: '%{user}の'
   user_s_id: '%{user}の%{id}'
   user_s_lists: '%{user}のリスト'
@@ -2823,8 +2823,8 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名もしくユーザーID
   users: ユーザー
-  users_id: '%{user}さんのID'
   users_comment_html: <a href='%{url}'>%{user}</a>のコメント
+  users_id: '%{user}さんのID'
   users_latest_observations_on_site: '%{site}における%{user}の最新観察記録'
   users_observations: '%{user}の観測記録'
   users_profile: '%{user}のプロフィール'

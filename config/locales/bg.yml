@@ -467,7 +467,6 @@ bg:
   delete_your_account: Изтриване на акаунта
   deleting: Изтриване...
   desc: низх.
-  dna_: ДНК
   descending: низходящо
   describe_purpose: Опишете целите на проекта.
   describe_your_interest_in_nature: Опишете Вашия интерес към природата!
@@ -483,7 +482,7 @@ bg:
   developers: Разработчици
   device: Устройство
   disconnect_provider: Откачи %{provider}
-  drop_it: Пусни го тук
+  dna_: ДНК
   do_not_show_this_message_again: Не показвай това събщение повече
   do_you_know_where_this_species_lives: Знаете ли къде живее този вид?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Може би изучавате нематодите?
@@ -498,6 +497,7 @@ bg:
   done: Готово
   dont_filter: Не филтрирай
   dont_send_me_email: Не ми изпращайте никакви писма!
+  drop_it: Пусни го тук
   double_click_to_finish: (двойно щракване за да приключите)
   download: Изтегли
   download_bulk_import_template_html: |-
@@ -1642,13 +1642,15 @@ bg:
       select_all: Избери всички наблюдения
   usage_stats: Статистика на използването
   user: Потребител
-  user_added_an_observation_html: '%{user} добави наблюдение'
   user_added_a_x: '%{user} добави %{x}'
-  user_added_an_x: '%{user} добави %{x}'
-  user_added_an_x_to_noun_html: '%{user} добави %{x} към %{noun}'
-  user_added_a_x_to_noun_html: '%{user} добави %{x} към %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} добави %{x} към %{noun} на %{by}'
   user_added_a_x_to_noun_by_html: '%{user} добави %{x} към %{noun} на %{by}'
+  user_added_a_x_to_noun_html: '%{user} добави %{x} към %{noun}'
+  user_added_an_observation_field_html: '%{user} добави стойност на %{field_name}
+    към наблюдение от %{owner}'
+  user_added_an_observation_html: '%{user} добави наблюдение'
+  user_added_an_x: '%{user} добави %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} добави %{x} към %{noun} на %{by}'
+  user_added_an_x_to_noun_html: '%{user} добави %{x} към %{noun}'
   user_added_x_observations_html: '%{user} добави %{x} наблюдения'
   user_commented_on: '%{user} коментира Ваш(а/е) %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} хареса %{noun} на %{owner}'
@@ -1659,15 +1661,13 @@ bg:
     над таксоните свързани с това наблюдение.'
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение
     "%{observation}" към проекта %{project}.'
-  user_invited_you_to_join_project: '%{user} Ви покани да се включите в %{project}'
   user_invited_you_to_join_html: '%{user} Ви покани да се включите'
+  user_invited_you_to_join_project: '%{user} Ви покани да се включите в %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} Ви покани да се включите
     в проекта на %{date}'
   user_invited_your_x_to_a_project_html: '%{user} покани Ваш(а/е) %{x} в проект'
-  user_is_now_role_for_project_html: <strong>%{user}</strong> вече е %{role} на %{project}
-  user_added_an_observation_field_html: '%{user} добави стойност на %{field_name}
-    към наблюдение от %{owner}'
   user_is_a_naturalist: '%{user} е естествоизпитател!'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> вече е %{role} на %{project}
   username: Потребителско име
   username_or_email: Потребителско име или имейл
   username_or_user_id: Потребителско име или идентификатор

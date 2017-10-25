@@ -629,6 +629,8 @@ it:
   bioblitz: Bioblitz
   birds: uccelli
   black: nero
+  block_user: Blocca utente
+  block_removed: Blocco rimosso
   blog_widget: Blog widget
   blue: blu
   blue_butterfly_etc: blu, farfalla, etc.
@@ -1147,7 +1149,6 @@ it:
   deleting: Eliminazione in corso...
   deleting_verb: Eliminazione in corso
   desc: decr
-  dna_: DNA
   descendant_taxa: taxa discendenti
   descending: decrescente
   describe_purpose: Descrivi lo scopo di questo progetto.
@@ -1177,7 +1178,7 @@ it:
     del progetto
   display_listings_added_by_curators: Mostra le liste aggiunte dai curatori
   display_listings_from_place: Mostra le liste del luogo
-  drop_it: Trascina qua
+  dna_: DNA
   do_not_show_this_message_again: Non mostrare più questo messaggio
   do_you_know_where_this_species_lives: Sai dove vive questa specie?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Studi i nematodi? Sei il
@@ -1193,6 +1194,7 @@ it:
   dont_filter: Non filtrare
   dont_send_me_email: Non inviarmi nessuna e-mail!
   dont_use_double_quotes: Non utilizzare le virgolette da nessun'altra parte
+  drop_it: Trascina qua
   double_click_to_finish: (doppio clic per terminare)
   download: Scarica
   download_bulk_import_template_html: <a href="%{url}">Scarica il modello</a> da usare
@@ -3988,6 +3990,7 @@ it:
   type_taxon_name_and_click_lookup: Scrivi il nome del taxon e clicca ricerca
   uicn_red_list_status: 'Stato della IUCN Red List:'
   un_license_this_observation: togli la licenza a questa osservazione
+  unblock: Sblocca
   unclassified: Non classificato
   ungrafted_taxa: Taxa senza relazioni tassonomiche
   uninvite: revoca invito
@@ -4073,16 +4076,19 @@ it:
     devono essere compresi tra virgolette. La maggior parte delle applicazioni di
     calcolo dovrebbero esportare i CSV in questo formato.
   user: Utente
-  user_added_an_observation_html: '%{user} ha aggiunto una osservazione'
   user_added_a_x: '%{user} ha aggiunto una %{x}'
-  user_added_an_x: '%{user} aggiunto una %{x}'
-  user_added_an_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
-  user_added_a_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
   user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
+  user_added_a_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
+  user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}"
+    ad un''osservazione di %{owner}'
+  user_added_an_observation_html: '%{user} ha aggiunto una osservazione'
+  user_added_an_x: '%{user} aggiunto una %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
+  user_added_an_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} ha aggiunto %{x} osservazioni'
-  user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
+  user_blocked: Utente bloccato
   user_commented: '%{user} ha commentato'
+  user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
   user_faved_a_noun_by_owner: '%{user} ha messo nei preferiti %{noun} di %{owner}'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: L'utente ha deselezionato l'ID della comunità
@@ -4093,18 +4099,16 @@ it:
   user_hasnt: '%{user} non ha'
   user_invite_observation_to_project: '%{user} avrebbe piacere di invitare la tua
     osservazione "%{observation}" al project %{project}.'
+  user_invited_you_to_join_html: '%{user} ti ha invitato ad unirti'
   user_invited_you_to_join_project: '%{user} ti ha invitato ad unirti al progetto
     %{project}'
-  user_invited_you_to_join_html: '%{user} ti ha invitato ad unirti'
   user_invited_you_to_join_this_project_on_date_html: '%{user} ti ha invitato ad unirti
     a questo progetto in data %{date}'
   user_invited_your_x_to_a_project_html: '%{user} ti ha invitato ad aggiungere la
     tua %{x} a un progetto'
+  user_is_a_naturalist: '%{user} è un naturalista!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> è ora %{role} del progetto
     %{project}
-  user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}"
-    ad un''osservazione di %{owner}'
-  user_is_a_naturalist: '%{user} è un naturalista!'
   user_s: di %{user}
   user_s_id: '%{id} di %{user}'
   user_s_lists: Elenchi di %{user}
@@ -4114,12 +4118,12 @@ it:
   username_or_email: Nome utente o email
   username_or_user_id: Nome utente o ID utente
   users: Utenti
+  users_comment_html: commento di <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a>
     al progetto %{project_title}
   users_id: ID di %{user}
   users_identification_html: identificazione di <a href='%{url}'>%{user}</a>
   users_identification_short_html: ID <a href='%{url}'>%{user}</a>
-  users_comment_html: commento di <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Le osservazioni più recenti di %{user} su %{site}
   users_observations: Le osservazioni di %{user}
   users_profile: Il profilo di %{user}
@@ -5392,6 +5396,9 @@ it:
       updates_desc: Ricevi gli aggiornamenti relativi a questo progetto sulla tua
         bacheca e tramite gli aggiornamenti email giornalieri.
     shared:
+      blocked:
+        youve_been_blocked: Sei stato bloccato
+        youve_blocked: Hai bloccato questa persona
       spam:
         message_for_owner_and_curators_html: |-
           Questo contenuto è stato contrassegnato come spam e non è più pubblicamente visibile. Tu puoi vederlo perché l'hai creato tu stesso o perché sei un curatore del sito. Se pensi che sia un errore, per favore

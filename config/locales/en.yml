@@ -1925,6 +1925,8 @@ en:
   most_recent_observation_by_date_observed: Most recent verifiable observation by date observed
   most_species: Most species
   most_observed_species: Most observed species
+  most_observed_introduced_species: Most observed introduced species
+  most_observed_threatened_species: Most observed threatened species
   multiple: multiple
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
@@ -2156,6 +2158,7 @@ en:
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
   observation_photo_uploader: Observation Photo Uploader
+  observations_by_category: "Observations by category"
   observations_by_user_on_date: "Observations by %{user} on %{date}"
   observations_by_you: "Observations by you"
   observations_by_you_on_date: "Observations by you on %{date}"
@@ -3120,6 +3123,7 @@ en:
   spam: spam
   spanish: Spanish
   species: Species
+  species_by_category: species by category
   species_from_around_the_world: Species from around the world
   species_guess: species guess
   species_guide: Species Guide
@@ -3485,6 +3489,7 @@ en:
   top_identifiers: Top Identifiers
   top_identifiers_of_taxon: Top Identifiers of %{taxon}
   top_observer: Top Observer
+  top_observers: Top Observers
   top_species: Top Species
   total: total
   totals: totals

@@ -16,6 +16,7 @@ class Identification < ActiveRecord::Base
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
   
+  before_create :replace_inactive_taxon
   before_save :update_other_identifications,
               :set_previous_observation_taxon
   after_create :update_observation,
@@ -125,6 +126,13 @@ class Identification < ActiveRecord::Base
   end
   
   # Callbacks ###############################################################
+
+  def replace_inactive_taxon
+    return true if taxon && taxon.is_active?
+    return true unless candidate = taxon.current_synonymous_taxon
+    self.taxon = candidate
+    true
+  end
 
   def update_other_identifications
     return true unless ( current_changed? || new_record? ) && current?

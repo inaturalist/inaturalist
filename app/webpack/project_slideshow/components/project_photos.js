@@ -23,7 +23,7 @@ class ProjectPhotos extends Component {
     /* eslint no-console: 0 */
     Util.nodeApiFetch(
       `observations/?per_page=15&project_id=${this.props.project.id}` +
-      "&photos=true&sounds=false&order_by=votes&ttl=600" ).
+      "&photos=true&sounds=false&order_by=votes&ttl=600&locale=" + I18n.locale ).
       then( json => {
         this.props.setState( { photos: json } );
       } ).catch( e => console.log( e ) );
