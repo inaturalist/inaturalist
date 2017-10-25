@@ -1453,8 +1453,8 @@ h3, h4 {
         opacity: 0.9;
         border: 1px solid $border-grey;
         border-radius: 2px;
-        width: 44px;
-        height: 44px;
+        width: 40px;
+        height: 40px;
       }
     }
     .TaxonSummaryPopover {
@@ -1562,18 +1562,13 @@ h3, h4 {
 
 .CommunityIdentification.cid-vis1,
 .CommunityIdentification.cid-vis4 {
-  .taxon-0 { opacity: 1; }
-  .taxon-1 { opacity: 0.7; }
-  .taxon-2 { opacity: 0.4; }
-  .taxon-3 { opacity: 0.1; }
-  .taxon-4 { opacity: 0.8; }
-  .taxon-5 { opacity: 0.5; }
-  .taxon-6 { opacity: 0.2; }
-  .taxon-7 { opacity: 0.9; }
-  .taxon-8 { opacity: 0.6; }
-  .taxon-9 { opacity: 0.3; }
   .info {
     .graphic {
+      .for.taxon-0 { background: $inat-green; }
+      .for.taxon-1 { background: lighten( $inat-green, 10% ); }
+      .for.taxon-2 { background: darken( $inat-green, 10% ); }
+      .for.taxon-3 { opacity: 0.7; }
+      .for.taxon-4 { opacity: 0.4; }
       .against {
         background: repeating-linear-gradient(
           -45deg,
@@ -1582,6 +1577,15 @@ h3, h4 {
           $fail-red-light 5px,
           $fail-red-light 10px
         );
+        &.exact.taxon-1 { opacity: 0.7; }
+        &.exact.taxon-2 { opacity: 0.4; }
+        &.exact.taxon-3 { opacity: 0.1; }
+        &.exact.taxon-4 { opacity: 0.8; }
+        &.exact.taxon-5 { opacity: 0.5; }
+        &.exact.taxon-6 { opacity: 0.2; }
+        &.exact.taxon-7 { opacity: 0.9; }
+        &.exact.taxon-8 { opacity: 0.6; }
+        &.exact.taxon-9 { opacity: 0.3; }
       }
     }
   }
