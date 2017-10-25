@@ -316,8 +316,12 @@ class CommunityIdentification extends React.Component {
 
   render( ) {
     const { observation, config, addID } = this.props;
+    const test = $.deparam.querystring( ).test;
     const loggedIn = config && config.currentUser;
-    const communityTaxon = observation.communityTaxon;
+    let communityTaxon = observation.taxon;
+    if ( test && test.match( /cid-vis/ ) ) {
+      communityTaxon = observation.communityTaxon;
+    }
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -349,7 +353,7 @@ class CommunityIdentification extends React.Component {
       stats = (
         <span>
           <span className="cumulative">
-            Not enough IDs have been suggested yet.
+            { I18n.t( "no_ids_have_been_suggested_yet" ) }
           </span>
         </span>
       );
@@ -371,7 +375,6 @@ class CommunityIdentification extends React.Component {
           </button>
         </a>
       );
-    const test = $.deparam.querystring().test;
     const numIdentifiers = sortedIdents.length;
     let visualization;
     let maverickEncountered;
@@ -393,14 +396,17 @@ class CommunityIdentification extends React.Component {
           <div className="info">
             { communityTaxon ? (
               <div className="about stacked">
-                { votesFor.length } of { numIdentifiers } people (over 2/3) agree it is:
+                { I18n.t( "x_of_y_people_over_two_thirds_agree_it_is", {
+                  x: votesFor.length,
+                  y: numIdentifiers
+                } ) }
                 <a href={ compareLink } className="pull-right compare-link">
                   <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
                 </a>
               </div>
             ) : (
               <div className="about">
-                The Community ID requires at least two identifications.
+                { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
               </div>
             )}
             { communityTaxon ? (
@@ -427,25 +433,14 @@ class CommunityIdentification extends React.Component {
                 if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
                   about = (
                     <div className="about stacked maverick">
-                      <i className="fa fa-bolt" /> Proposed taxa that fall outside of
-                      <SplitTaxon
-                        taxon={ communityTaxon }
-                        url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
-                      />
+                      <i className="fa fa-bolt" /> { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }:
                     </div>
                   );
                   maverickEncountered = true;
                 } else if ( !supportingEncountered ) {
                   about = (
                     <div className="about supporting stacked">
-                      The majority agrees this is an observation of
-                      <SplitTaxon
-                        taxon={ communityTaxon }
-                        url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
-                      />
-                      because it matches or is
-                      the common ancestor of all of
-                      these taxa:
+                      { I18n.t( "proposed_taxa_that_support_the_community_id" ) }:
                     </div>
                   );
                   supportingEncountered = true;

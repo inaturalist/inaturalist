@@ -1699,8 +1699,8 @@ h3, h4 {
           -45deg,
           $fail-red,
           $fail-red 5px,
-          $fail-red-light 5px,
-          $fail-red-light 10px
+          lighten( $fail-red, 15% ) 5px,
+          lighten( $fail-red, 15% ) 10px
         );
       }
     }
@@ -1711,7 +1711,7 @@ h3, h4 {
       background-color: #f8f8f8;
     }
     .for.not-exact, .against.not-exact {
-      opacity: 0.1 !important;
+      opacity: 0.1;
     }
     .numbers {
       display: none !important;
@@ -1724,15 +1724,17 @@ h3, h4 {
       display: none;
     }
     .graphic {
-      // display: flex;
+      .CommunityIDPopover {
+        margin: 0 1px;
+      }
+      .for, .against {
+        border: 0 transparent;
+      }
       .vote-cells {
         display: flex;
         .exact { order: 0; }
         .not-exact { order: 1; }
       }
-      // .numbers {
-      //   .first, .last { visibility: hidden; }
-      // }
     }
   }
   .proposed-taxa {
@@ -1741,6 +1743,16 @@ h3, h4 {
         .for.not-exact {
           opacity: 1;
           background: #eee;
+        }
+        .against.not-exact {
+          opacity: 1;
+          background: repeating-linear-gradient(
+            -45deg,
+            #eee,
+            #eee 5px,
+            lighten( #eee, 2% ) 5px,
+            lighten( #eee, 2% ) 10px
+          );
         }
       }
     }

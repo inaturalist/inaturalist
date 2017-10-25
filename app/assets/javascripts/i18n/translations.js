@@ -3472,7 +3472,7 @@ I18n.translations["en"] = {
   },
   "identifications": "Identifications",
   "identify_title": "Identify",
-  "if_for_some_reason_a_user_doesnt_agree": "If for some reason a user doesn't agree with the community taxon, they can reject it,\nwhich means their ID is the one used for linking to other observations, updating life lists,\netc. It also means their observation can only become research grade when the community agrees\nwith them.\n",
+  "if_for_some_reason_a_user_doesnt_agree": "If for some reason you don't agree with the community taxon, you can reject it,\nwhich means your ID is the one used for linking to other observations, updating life lists,\netc. It also means your observation can only become research grade when the community agrees\nwith you.\n",
   "ignore_and_continue": "Ignore and continue",
   "import": "Import",
   "improving": "Improving",
@@ -3878,6 +3878,8 @@ I18n.translations["en"] = {
   "profile": "Profile",
   "project": "Project",
   "projects": "Projects",
+  "proposed_taxa_that_contradict_the_community_id": "Proposed taxa that contradict the Community ID",
+  "proposed_taxa_that_support_the_community_id": "Proposed taxa that support the Community ID",
   "protozoans": "protozoans",
   "public_domain": "Public Domain",
   "purple": "purple",
@@ -4039,6 +4041,7 @@ I18n.translations["en"] = {
   "that_was_the_last_observation_matching_the_current_filters": "That was the last observation matching the current filters.",
   "the_": "The",
   "the_below_items_are_needed_to_achieve": "The below items are needed to achieve <span className=\"bold\">Research Grade:</span>\n",
+  "the_community_id_requires_at_least_two_identifications": "The Community ID requires at least two identifications.",
   "the_community_must_feel_that": "The community must feel that the Community ID is the best it can be based on the evidence\n",
   "the_world": "The World",
   "then_keybord_sequence": "then",
@@ -4259,6 +4262,7 @@ I18n.translations["en"] = {
     "other": "<span class='count'>%{count}</span> observations reviewed"
   },
   "x_of_y": "%{x} of %{y}",
+  "x_of_y_people_over_two_thirds_agree_it_is": "%{x} of %{y} people (over 2/3) agree it is",
   "x_others": {
     "one": "1 other",
     "other": "%{count} others"
