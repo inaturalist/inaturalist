@@ -14,7 +14,6 @@ $other-link-color: #337AB7;
 $light-grey: #F7F7F7;
 $border-grey: #DDD;
 $fail-red: #D9534F;
-$fail-red-light: #D98582;
 
 #react-images-container {
   .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
@@ -1574,8 +1573,8 @@ h3, h4 {
           -45deg,
           $fail-red,
           $fail-red 5px,
-          $fail-red-light 5px,
-          $fail-red-light 10px
+          lighten( $fail-red, 15% ) 5px,
+          lighten( $fail-red, 15% ) 10px
         );
         &.taxon-1 { opacity: 0.7; }
         &.taxon-2 { opacity: 0.4; }
