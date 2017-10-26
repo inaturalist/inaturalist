@@ -329,9 +329,9 @@ class Annotations extends React.Component {
     const count = observation.annotations.length > 0 ?
       `(${observation.annotations.length})` : "";
     return (
-      <div className="Annotations">
+      <div className="Annotations collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( this.loggedIn ) {
               this.props.updateSession( {

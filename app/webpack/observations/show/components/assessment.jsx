@@ -18,9 +18,9 @@ class Assessment extends React.Component {
     const loggedIn = config && config.currentUser;
     return (
       <Grid>
-        <div className="QualityMetrics">
+        <div className="QualityMetrics collapsible-section">
           <h3
-            className="collapsable"
+            className="collapsible"
             onClick={ ( ) => {
               if ( loggedIn ) {
                 this.props.updateSession( { prefers_hide_obs_show_quality_metrics: this.state.open } );

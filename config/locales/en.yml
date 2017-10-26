@@ -1464,10 +1464,10 @@ en:
   ids: "IDs"
   ids_made_for_others: IDs made for others
   if_for_some_reason_a_user_doesnt_agree: |
-    If for some reason a user doesn't agree with the community taxon, they can reject it,
-    which means their ID is the one used for linking to other observations, updating life lists,
-    etc. It also means their observation can only become research grade when the community agrees
-    with them.
+    If for some reason you don't agree with the community taxon, you can reject it,
+    which means your ID is the one used for linking to other observations, updating life lists,
+    etc. It also means your observation can only become research grade when the community agrees
+    with you.
   if_matches_come_from_a_comprehensive_list:  If matches come from a comprehensive list a green bar will show here.
   if_this_is_a_scientific_name: If this is a scientific name, is it currently accepted?
   if_this_link_will_apply_to_descendant: If this link will apply to descendent taxa, you can use template tags to fill in the taxon name in the URL
@@ -2710,6 +2710,8 @@ en:
   projects_in_x: "Projects in %{x}"
   projects_you_admin: Projects You Admin
   projects_youve_joined: Projects You've Joined
+  proposed_taxa_that_contradict_the_community_id: Proposed taxa that contradict the Community ID
+  proposed_taxa_that_support_the_community_id: Proposed taxa that support the Community ID
   protozoans: protozoans
   provider_authorizations: Provider Authorizations
   public_coordinates_obscured_by: "Public coordinates obscured by %{distance} km"
@@ -3307,6 +3309,7 @@ en:
     The below items are needed to achieve <span className="bold">Research Grade:</span>
   the_community_agrees_location_doesnt: the community agrees the <strong>location doesn't look accurate</strong> (e.g. monkeys in the middle of the ocean, hippos in office buildings, etc.)
   the_community_agrees_organism_isnt: the community agrees the <strong>organism isn't wild/naturalized</strong> (e.g. captive or cultivated by humans or intelligent space aliens)
+  the_community_id_requires_at_least_two_identifications: The Community ID requires at least two identifications.
   the_community_must_feel_that: |
     The community must feel that the Community ID is the best it can be based on the evidence
   the_data_quality_assessment_is: The data quality assessment is a summary of an observation's accuracy. All observations start as <strong>"casual"</strong> grade, and achieve <strong>"research"</strong> grade when
@@ -3783,6 +3786,7 @@ en:
   what_do_you_want_to_list: What do you want to list?
   what_to_keep: What to keep
   what_want_to_list?: What do you want to list? 
+  whats_this?: What's this?
   when: When
   when_did_you_see_it?: When did you see it?
   when_did_you_see_them?: <em>When</em> did you see them?
@@ -3825,6 +3829,7 @@ en:
     one: "1 observation failed"
     other: "%{count} observations failed"
   x_of_y: "%{x} of %{y}"
+  x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} people (over 2/3) agree it is"
   x_project_journal: "%{project}'s %{name}"
   x_project_stats: "%{project} Stats"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "
