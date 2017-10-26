@@ -118,12 +118,16 @@
     </div>
 
     <div class="last column span-9 stacked">
-      <h3><%= t :taxon_change_settings %></h3>
+      <h3><%= t :taxonomy_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
           :label => t(:automatically_update_my_content_for_taxon_changes),
           :label_after => true,
           :description => t('views.users.edit.taxon_change_desc', :site_name => @site.preferred_site_name_short) %>
+        <%= f.check_box "prefers_common_names",
+          label: t(:show_common_names),
+          label_after: true,
+          description: t( "views.users.edit.common_names_desc" ) %>
       </div>
       
       <h3><%= t :community_moderation_settings %></h3>

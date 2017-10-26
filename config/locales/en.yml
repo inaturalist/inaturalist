@@ -3240,7 +3240,6 @@ en:
       data_url: Data URL
       overlays: Overlays
   taxon_changes: Taxon Changes
-  taxon_change_settings: Taxon change settings
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
@@ -3275,6 +3274,7 @@ en:
   taxonomic_status: Taxonomic status
   taxonomic_tags_for_flickr: Taxonomic Tags for Flickr
   taxonomic_tree_browser: Taxonomic Tree Browser
+  taxonomy_settings: Taxonomy Settings
   tell_everyone_a_little_about_you: Tell everyone a little about yourself
   tell_the_world_a_little_about_yourself: Tell us about yourself
   tell_us_why: Tell us why...
@@ -5181,6 +5181,10 @@ en:
             other behavior we deem inappropriate for our site, we will
             investigate.
           </p>
+        common_names_desc: |
+          Show common names. Disable if you only want to view scientific names.
+          Note that you can control which common names you see by changing your
+          locale and place settings.
         inaturalist_network_affiliation_desc_html: |
           The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
           collection of localized websites connected to the global iNaturalist
