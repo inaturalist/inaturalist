@@ -885,6 +885,7 @@ protected
       :prefers_location_details,
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
+      :prefers_common_names,
       :site_id,
       :test_groups,
       :time_zone

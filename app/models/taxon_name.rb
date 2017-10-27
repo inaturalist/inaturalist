@@ -167,6 +167,9 @@ class TaxonName < ActiveRecord::Base
   
   def self.choose_common_name(taxon_names, options = {})
     return nil if taxon_names.blank?
+    if options[:user] && !options[:user].prefers_common_names?
+      return nil
+    end
     common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
     place_id = options[:place_id] unless options[:place_id].blank?

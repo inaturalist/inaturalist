@@ -3368,6 +3368,7 @@ es:
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
+  show_common_names: Mostrar nombres comunes
   show_counts: Mostrar conteos con base en la lista
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_kml: Mostrar KML
@@ -5546,6 +5547,10 @@ es:
           ver la privada y oculta \ncoordenadas de las observaciones que se agregan
           a este proyecto."
       edit:
+        common_names_desc: |
+          Mostrar nombres comunes Deshabilítelo si solo desea ver nombres
+          científicos. Tenga en cuenta que puede controlar qué nombres comunes
+          puede ver al cambiar su configuración de lugar y lugar.
         inaturalist_network_affiliation_desc_html: |-
           La <a href="%{url}" target="_blank">Red iNaturalist</a> es una
           colección de sitios web localizados conectados a la comunidad

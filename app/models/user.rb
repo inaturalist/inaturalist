@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
   preference :hide_obs_show_copyright, default: false
   preference :hide_obs_show_quality_metrics, default: false
   preference :hide_obs_show_expanded_cid, default: true
+  preference :common_names, :boolean, default: true 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 

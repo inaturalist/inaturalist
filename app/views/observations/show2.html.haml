@@ -2,8 +2,8 @@
   - if @observation.taxon
     :ruby
       common_name = [
-        common_taxon_name(@observation.taxon, place: current_user.try(:place) || @site.try(:place)).try(:name),
-        @observation.taxon.common_name.try(:name)
+        common_taxon_name( @observation.taxon, place: current_user.try(:place) || @site.try(:place) ).try(:name),
+        common_taxon_name( @observation.taxon ).try(:name)
       ].detect{|n| !n.blank?}
     = raw common_name ? "#{common_name} (#{@observation.taxon.name})" : @observation.taxon.name
   - elsif !@observation.species_guess.blank?

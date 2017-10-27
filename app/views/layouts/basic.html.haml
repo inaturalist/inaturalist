@@ -6,7 +6,7 @@
       = @site.try(:name)
     = favicon_link_tag
     = csrf_meta_tag
-    - if logged_in?
+    - if current_user
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
     = yield :extrahead
   %body

@@ -12,6 +12,10 @@
     {}
   end
   data_attrs.delete_if{|k,v| k == 'data-current-user-observed-count'} if @filter_params.blank?
+  json_opts = {}
+  if current_user && current_user.prefers_common_names?
+    json_opts[:methods] = [:common_name]
+  end
 -%>
 
 <%- compact do %>
@@ -40,7 +44,7 @@
     <%# NOTE this is a lame kludge to get some JSON in here such that infinite scroll won't nix it %>
     <% unless @taxa_by_taxon_id.blank? -%>
       <code class="json listed_taxon" style="display:none;">
-        <%=json_escape @taxa_by_taxon_id.to_json(:methods => [:common_name]).html_safe %>
+        <%=json_escape @taxa_by_taxon_id.to_json( json_opts ).html_safe %>
       </code>
     <% end -%>
   </div>
