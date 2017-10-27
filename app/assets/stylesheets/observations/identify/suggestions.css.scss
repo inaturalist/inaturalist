@@ -32,6 +32,33 @@
     overflow-y: auto;
     overflow-x: hidden;
   }
+
+  .suggestions-detail {
+    .detail-taxon.will-change-for-next {
+      opacity: 0;
+      transform: translateX( 100% );
+    }
+    .detail-taxon.will-change-for-prev {
+      opacity: 0;
+      transform: translateX( -100% );
+    }
+    .detail-taxon.changed {
+      transition: 0.2s;
+      opacity: 1;
+      transform: translateX( 0% );
+    }
+    .prevnext {
+      .btn {
+        background-color: transparent;
+        padding: 0;
+        border: 0 transparent;
+        font-weight: bold;
+      }
+      .next {
+        margin-left: 10px;
+      }
+    }
+  }
   .photos {
     margin: -2.5px;
     line-height: 0;
