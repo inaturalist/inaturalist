@@ -139,7 +139,7 @@ class Observation < ActiveRecord::Base
     preload_for_elastic_index unless options[:no_details]
     # some timezones are invalid
     created = created_at.in_time_zone(timezone_object || "UTC")
-    t = taxon || community_taxon
+    t = taxon
     json = {
         id: id,
         uuid: uuid,

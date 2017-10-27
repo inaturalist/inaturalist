@@ -428,39 +428,41 @@ class CommunityIdentification extends React.Component {
           </div>
           <Panel collapsible expanded={ this.state.open }>
             <div className="proposed-taxa">
-              { _.map( proposedTaxonItems, proposedTaxonData => {
-                let about;
-                if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
-                  about = (
-                    <div className="about stacked maverick">
-                      <i className="fa fa-bolt" /> { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }:
-                    </div>
-                  );
-                  maverickEncountered = true;
-                } else if ( !supportingEncountered ) {
-                  about = (
-                    <div className="about supporting stacked">
-                      { I18n.t( "proposed_taxa_that_support_the_community_id" ) }:
-                    </div>
-                  );
-                  supportingEncountered = true;
-                }
-                return (
-                  <div className="info">
-                    { about }
-                    <div className="inner">
-                      <div className="photo">{ proposedTaxonData.photo }</div>
-                      <div className="stats-and-name">
-                        <SplitTaxon
-                          taxon={ proposedTaxonData.taxon }
-                          url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
-                        />
-                        { proposedTaxonData.stats }
+              { proposedTaxonItems.length <= 1 ? null : (
+                _.map( proposedTaxonItems, proposedTaxonData => {
+                  let about;
+                  if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
+                    about = (
+                      <div className="about stacked maverick">
+                        <i className="fa fa-bolt" /> { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }:
+                      </div>
+                    );
+                    maverickEncountered = true;
+                  } else if ( !supportingEncountered ) {
+                    about = (
+                      <div className="about supporting stacked">
+                        { I18n.t( "proposed_taxa_that_support_the_community_id" ) }:
+                      </div>
+                    );
+                    supportingEncountered = true;
+                  }
+                  return (
+                    <div className="info" key={ `proposed-taxon-${proposedTaxonData.taxon.id}` }>
+                      { about }
+                      <div className="inner">
+                        <div className="photo">{ proposedTaxonData.photo }</div>
+                        <div className="stats-and-name">
+                          <SplitTaxon
+                            taxon={ proposedTaxonData.taxon }
+                            url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                          />
+                          { proposedTaxonData.stats }
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              } ) }
+                  );
+                } )
+              ) }
             </div>
           </Panel>
         </div>
@@ -487,7 +489,7 @@ class CommunityIdentification extends React.Component {
         <h4
           className={ proposedTaxonItems.length === 0 ? "" : "collapsible"}
           onClick={ ( ) => {
-            if ( proposedTaxonItems.length === 0 ) {
+            if ( proposedTaxonItems.length <= 1 ) {
               return;
             }
             if ( loggedIn ) {
@@ -496,7 +498,7 @@ class CommunityIdentification extends React.Component {
             this.setState( { open: !this.state.open } );
           } }
         >
-          { proposedTaxonItems.length === 0 ? null : (
+          { proposedTaxonItems.length <= 1 ? null : (
             <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           ) }
           { I18n.t( "community_id_heading" ) }

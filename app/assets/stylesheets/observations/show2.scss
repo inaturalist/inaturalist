@@ -1731,14 +1731,16 @@ h3, h4 {
       }
       .vote-cells {
         display: flex;
-        .exact { order: 0; }
-        .not-exact { order: 1; }
       }
     }
   }
   .proposed-taxa {
     .info {
       .graphic {
+        .vote-cells {
+          .exact { order: 0; }
+          .not-exact { order: 1; }
+        }
         .for.not-exact {
           opacity: 1;
           background: #eee;
