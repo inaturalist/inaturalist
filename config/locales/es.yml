@@ -2446,6 +2446,7 @@ es:
   observation_added_to_the_project: Observación añadida al proyecto %{project}
   observation_aggregation: Agregado de observación
   observation_photo_uploader: Sube observaciones por medio de una foto
+  observations_by_category: Observaciones por categoría
   observations_by_user_on_date: Observaciones de %{user} en %{date}
   observations_by_you: Tus observaciones
   observations_by_you_on_date: Observaciones de usted en %{date}
@@ -3522,6 +3523,7 @@ es:
   spam: spam
   spanish: Español
   species: Especies
+  species_by_category: especies por categoría
   species_from_around_the_world: Especies de todo el mundo
   species_guess: Estimación especial
   species_guide: Guía de especies
@@ -3656,7 +3658,6 @@ es:
     data_url: Enlace de datos
     overlays: Capas
   taxon_changes: Cambios de taxón
-  taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_merge: fusión de taxón
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
@@ -4366,8 +4367,7 @@ es:
     Por favor no te sientas obligado con todo lo que esto implica, pero si tienes
     tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna
     duda, comentario o simplemente ya no quieres ser un curador, contáctanos en %{email}
-  you_are_over_your_invites_quota: '...ya has enviado más de 60 invitaciones este
-    mes.'
+  you_are_over_your_invites_quota: … ya has enviado más de 60 invitaciones este mes
   you_are_now: Estas
   you_are_now_following_x: Estas siguiendo a %{friend_user}.
   you_are_now_role_for_project_html: <strong>Ahora</strong> %{role} de %{project}
@@ -5547,7 +5547,7 @@ es:
           ver la privada y oculta \ncoordenadas de las observaciones que se agregan
           a este proyecto."
       edit:
-        common_names_desc: |
+        common_names_desc: |-
           Mostrar nombres comunes Deshabilítelo si solo desea ver nombres
           científicos. Tenga en cuenta que puede controlar qué nombres comunes
           puede ver al cambiar su configuración de lugar y lugar.
