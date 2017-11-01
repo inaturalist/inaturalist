@@ -920,6 +920,8 @@ describe Taxon, "grafting" do
   end
 
   describe "indexing" do
+    before(:each) { enable_elastic_indexing( Identification ) }
+    after(:each) { disable_elastic_indexing( Identification ) }
     before(:all) { DatabaseCleaner.strategy = :truncation }
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
