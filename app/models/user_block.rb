@@ -2,6 +2,8 @@ class UserBlock < ActiveRecord::Base
   belongs_to :user
   belongs_to :blocked_user, class_name: "User"
 
+  validates_presence_of :user
+  validates_presence_of :blocked_user
   validate :only_three_per_user, on: :create
   validate :cant_block_yourself
   validates_uniqueness_of :blocked_user_id, scope: :user_id, message: "already blocked"
