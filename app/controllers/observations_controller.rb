@@ -25,7 +25,7 @@ class ObservationsController < ApplicationController
     if: lambda { authenticate_with_oauth? }
   
   before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
-  before_filter :return_here, :only => [:index, :by_login, :show, 
+  after_filter :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
                 :unless => lambda { authenticated_with_oauth? },
