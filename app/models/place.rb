@@ -256,6 +256,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
+  scope :with_check_list, -> { joins(:check_list).where("lists.id IS NOT NULL") }
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
 
   def self.north_america

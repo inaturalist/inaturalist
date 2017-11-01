@@ -51,7 +51,8 @@ class Place < ActiveRecord::Base
       bounding_box_geojson: ( place_geometry && place_geometry.persisted? && !index_without_geometry ) ?
         ElasticModel.geom_geojson( place_geometry.bounding_box_geom ) : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
-      point_geojson: ElasticModel.point_geojson(latitude, longitude)
+      point_geojson: ElasticModel.point_geojson(latitude, longitude),
+      without_check_list: check_list_id.blank? ? true : nil
     }
   end
 

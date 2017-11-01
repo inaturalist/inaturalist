@@ -281,6 +281,7 @@ class PlacesController < ApplicationController
         Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
       scope = scope.with_geom if params[:with_geom]
+      scope = scope.with_check_list if params[:with_check_list]
       @places = scope.includes(:place_geometry_without_geom).limit(params[:per_page]).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
@@ -290,11 +291,19 @@ class PlacesController < ApplicationController
         { match: { display_name_autocomplete: @q } },
         { match: { display_name: { query: @q, operator: "and" } } }
       ] } } ]
+      inverse_filters = []
       if site_place
         filters << { term: { ancestor_place_ids: site_place.id } }
       end
+      if params[:with_geom]
+        filters << { exists: { field: :geometry_geojson } }
+      end
+      if params[:with_check_list]
+        inverse_filters << { exists: { field: :without_check_list } }
+      end
       @places = Place.elastic_paginate(
         filters: filters,
+        inverse_filters: inverse_filters,
         sort: { bbox_area: "desc" },
         per_page: params[:per_page])
       Place.preload_associations(@places, :place_geometry_without_geom)
