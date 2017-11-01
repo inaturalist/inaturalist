@@ -62,7 +62,7 @@
         CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
     $(document).ready(function() {
       window.importMap = iNaturalist.Map.createMap({div: 'importMap'})
-      window.map = L.map('drawingMap').setView([0,0], 1)
+      window.map = L.map('drawingMap', { minZoom: 1 }).setView([0,0], 1)
       var d = new Date()
       var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
       map.addLayer(bing);
