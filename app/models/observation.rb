@@ -41,7 +41,7 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing, :editing_user_id
+    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -367,6 +367,8 @@ class Observation < ActiveRecord::Base
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
     :update_taxon_counter_caches, :create_deleted_observation,
     :update_user_counter_caches
+
+  after_commit :reindex_identifications
   
   ##
   # Named scopes
@@ -1183,7 +1185,7 @@ class Observation < ActiveRecord::Base
   
   def quality_metric_score(metric)
     quality_metrics.all unless quality_metrics.loaded?
-    metrics = quality_metrics.select{|qm| qm.metric == metric}
+    metrics = quality_metrics.select{|qm| !qm.frozen? && qm.metric == metric}
     return nil if metrics.blank?
     metrics.select{|qm| qm.agree?}.size.to_f / metrics.size
   end
@@ -1856,6 +1858,7 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
+    return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && force_quality_metrics
@@ -2676,6 +2679,10 @@ class Observation < ActiveRecord::Base
 
   def owners_identification_from_vision=( val )
     self.owners_identification_from_vision_requested = val
+  end
+
+  def reindex_identifications
+    Identification.elastic_index!( ids: identification_ids )
   end
 
   def self.dedupe_for_user(user, options = {})

@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe QualityMetric, "creation" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
   it "should update observation quality_grade" do
     o = make_research_grade_observation
     expect(o.quality_grade).to eq Observation::RESEARCH_GRADE
@@ -12,6 +12,8 @@ describe QualityMetric, "creation" do
   end
 
   describe "elastic index" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
     it "should get the updated quality_grade" do
       o = without_delay { make_research_grade_observation }
       o.elastic_index!
@@ -23,6 +25,19 @@ describe QualityMetric, "creation" do
       end
       eo = Observation.elastic_search( where: { id: o.id } ).results[0]
       expect( eo.quality_grade ).to eq Observation::CASUAL
+    end
+    it "should re-index the observations in the identifications index" do
+      o = without_delay { make_research_grade_observation }
+      i = o.identifications.first
+      o.elastic_index!
+      ei = Identification.elastic_search( where: { id: i.id } ).first
+      expect( ei.id.to_i ).to eq i.id
+      expect( ei.observation.quality_grade ).to eq Observation::RESEARCH_GRADE
+      without_delay do
+        QualityMetric.make!( observation: o, metric: QualityMetric::METRICS.first, agree: false )
+      end
+      ei = Identification.elastic_search( where: { id: i.id } ).first
+      expect( ei.observation.quality_grade ).to eq Observation::CASUAL
     end
   end
 end

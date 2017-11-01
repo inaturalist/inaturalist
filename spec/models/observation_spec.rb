@@ -3021,6 +3021,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+      o.reload
       expect(o.mappable?).to be true
     end
 
@@ -3028,6 +3029,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       q = QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+      o.reload
       expect(o.mappable?).to be false
       q.destroy
       expect(o.reload.mappable?).to be true
@@ -3037,6 +3039,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+      o.reload
       expect(o.mappable?).to be false
     end
 
@@ -3054,6 +3057,7 @@ describe Observation do
       o = make_research_grade_observation
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::EVIDENCE, agree: false)
+      o.reload
       expect(o.mappable?).to be false
     end
 
