@@ -57,10 +57,12 @@ describe ProjectUser, "creation" do
 end
 
 describe ProjectUser do
-  before(:each) { enable_elastic_indexing(Observation, Taxon) }
-  after(:each) { disable_elastic_indexing(Observation, Taxon) }
+  before(:each) { enable_elastic_indexing(Observation, Taxon, Identification) }
+  after(:each) { disable_elastic_indexing(Observation, Taxon, Identification) }
 
   describe "updating curator_coordinate_access" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
     it "should update past project observations from this project" do
       pu = ProjectUser.make!
       expect( pu.project.user ).not_to eq pu.user
@@ -92,6 +94,22 @@ describe ProjectUser do
       o.reload
       expect( o ).to be_coordinates_viewable_by pu.project.user
       expect( other_o ).not_to be_coordinates_viewable_by pu.project.user
+    end
+    it "should reindex observations added to this project" do
+      pu = ProjectUser.make!
+      o = Observation.make!( user: pu.user )
+      po = ProjectObservation.make!( observation: o, project: pu.project )
+      expect( po ).not_to be_prefers_curator_coordinate_access
+      eo = Observation.elastic_search( where: { id: o.id } ).results[0]
+      eo_pref = eo.project_observations.first.preferences.detect{|p| p.name == "curator_coordinate_access" }
+      expect( eo_pref.value ).to be_nil
+      pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
+      Delayed::Worker.new.work_off
+      po.reload
+      expect( po ).to be_prefers_curator_coordinate_access
+      eo = Observation.elastic_search( where: { id: o.id } ).results[0]
+      eo_pref = eo.project_observations.first.preferences.detect{|p| p.name == "curator_coordinate_access" }
+      expect( eo_pref.value ).to be true
     end
   end
 

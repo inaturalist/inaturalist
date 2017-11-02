@@ -100,6 +100,7 @@ class ProjectObservation < ActiveRecord::Base
   after_create :revisit_curator_identifications_later
 
   after_save :update_project_list_if_curator_ident_changed
+  after_commit :reindex_observation, on: :update # after create and destroy should be handled by TouchesObservationModule
 
   include Shared::TouchesObservationModule
 
@@ -128,6 +129,10 @@ class ProjectObservation < ActiveRecord::Base
         :project_id => project_id
      )
     true
+  end
+
+  def reindex_observation
+    Observation.elastic_index!( ids: [observation_id] ) if observation
   end
   
   def update_curator_identification
