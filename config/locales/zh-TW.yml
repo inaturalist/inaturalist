@@ -23,7 +23,7 @@ zh-TW:
     作為圖片託管。
   a_default_taxon_name_will_automatically_created: |-
     拉丁文學名會自動成為此物種分類的預設分類學名稱。
-    當你儲存這個分類學名稱後，你將可為這個物種加上其他名稱(例如通用名字、或過時的學名等)。
+    當你儲存這個分類學名稱後，你將可為這個物種加上其他名稱(例如通用名稱、或過時的學名等)。
   x_comments:
     one: 1 個評論
     other: '%{count} 個評論'
@@ -188,7 +188,7 @@ zh-TW:
   add_colors: 新增顏色
   add_comma_separated_tags: 新增以逗號分隔式標籤
   add_comment: 新增一條評論
-  add_common_names_for: 替既有之分類群新增俗名
+  add_common_names_for: 替既有之分類群新增通用名稱
   add_conservation_status: 新增保育狀態
   add_countries: 新增國家
   add_custom_project_fields: 新增自定專案欄位
@@ -669,7 +669,7 @@ zh-TW:
   checklist_places: 檢查列表地點
   checklist_places_absent: 清單地點（缺少）
   checklist_places_confirmed: 清單地點（已確認）
-  checklist_places_introduced: 清單地點（引入）
+  checklist_places_introduced: 清單地點（引進）
   cheklist_places_are_places_with_contain_taxon: 「清單地點」是帶有包含此物種分類清單的地點。
   child_taxa: 子物種分類
   choose_a_field: 選擇欄位
@@ -1122,7 +1122,7 @@ zh-TW:
     establishment: 確立
     native: 本地
     endemic: 特有
-    introduced: 引入
+    introduced: 引進
     naturalised: 歸化
     invasive: 侵入
     managed: 已管理
@@ -1437,7 +1437,7 @@ zh-TW:
   identotron_help: Identotron 幫助
   ids: ID
   ids_made_for_others: 用於其他的 ID
-  if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因用戶不同意社群物種分類；他們可以拒絕，這代表著他們的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表他們的觀察，僅能在社群認可後才能成為研究等級的內容。
+  if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因您不同意社群物種分類；您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
@@ -1895,9 +1895,9 @@ zh-TW:
   most_observations: 最多觀察
   most_recent_observation_by_date_observed: 依所觀察日期的近期可驗證觀察
   most_species: 最多物種
-  most_observed_species: 記錄次數最多的物種
-  most_observed_introduced_species: 記錄次數最多的瀕危物種
-  most_observed_threatened_species: 記錄次數最多的外來物種
+  most_observed_species: 被觀察最多次的物種
+  most_observed_introduced_species: 被觀察最多次的引進物種
+  most_observed_threatened_species: 被觀察最多次的受威脅物種
   multiple: 多種
   multiple_select_option: -- 多種 --
   multiple_taxa_for_taxon_change: 多項物種分類群（輸入用於對換/合併方面，輸出用於拆分方面）
@@ -2126,7 +2126,7 @@ zh-TW:
   observation_added_to_the_project: 觀察已添加至專案「%{project}」
   observation_aggregation: 觀察聚集
   observation_photo_uploader: 觀察照片上傳者
-  observations_by_category: 觀察記錄分類
+  observations_by_category: 依分類區分觀察
   observations_by_user_on_date: 於 %{date} 由 %{user} 所做的觀察
   observations_by_you: 由您所做的觀察
   observations_by_you_on_date: 於 %{date} 由您所做的觀察
@@ -2636,6 +2636,8 @@ zh-TW:
   projects_in_x: 在%{x}的專案
   projects_you_admin: 您管理的專案
   projects_youve_joined: 您已加入的專案
+  proposed_taxa_that_contradict_the_community_id: 所提出物種分類群否決社群鑑定
+  proposed_taxa_that_support_the_community_id: 所提出物種分類群贊同社群鑑定
   protozoans: 原生動物
   provider_authorizations: 提供方授權
   public_coordinates_obscured_by: 公共座標距 %{distance} 公里被隱蔽
@@ -2917,6 +2919,7 @@ zh-TW:
   show: 顯示
   show_active_and_inactive_taxa: 顯示有效和無作用的物種分類
   show_default_taxon_photos: 顯示預設物種分類照片
+  show_common_names: 顯示通用名稱
   show_counts: 顯示基於列表的次數。
   show_keyboard_shortcuts: 顯示鍵盤快捷鍵
   show_kml: 顯示 KML
@@ -3043,7 +3046,7 @@ zh-TW:
   spam: 垃圾訊息
   spanish: 西班牙語
   species: 物種
-  species_by_category: 物種數量分類
+  species_by_category: 依分類區分物種
   species_from_around_the_world: 來自世界各地的物種
   species_guess: 物種推測
   species_guide: 物種指南
@@ -3155,7 +3158,6 @@ zh-TW:
     data_url: 資料URL
     overlays: 覆蓋物
   taxon_changes: 物種分類更改
-  taxon_change_settings: 物種分類更改設定
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
@@ -3190,6 +3192,7 @@ zh-TW:
   taxonomic_status: 物種分類狀態
   taxonomic_tags_for_flickr: 用於 Flickr 的物種分類標籤
   taxonomic_tree_browser: 樹狀物種分類瀏覽器
+  taxonomy_settings: 分類法設定
   tell_everyone_a_little_about_you: 向大家介紹一些關於您的事
   tell_the_world_a_little_about_yourself: 向我們介紹您自己
   tell_us_why: 告訴我們為什麼...
@@ -3219,6 +3222,7 @@ zh-TW:
   the_below_items_are_needed_to_achieve: 以下項目需達到<span className="bold">研究等級：</span>
   the_community_agrees_location_doesnt: 社群認為<strong>位置看起來不正確</strong>（例如猴子出現在海洋裡，或是河馬出現在辦公大樓等等）
   the_community_agrees_organism_isnt: 社群認為<strong>不是被野化/歸化的生物</strong>（例如是被人類、或外星智慧生命給捕獲或培育）
+  the_community_id_requires_at_least_two_identifications: 社群鑑定至少要有兩份鑑定。
   the_community_must_feel_that: 社群必須覺得社群鑑定是最能作為證據方面的
   the_data_quality_assessment_is: 資料品質評估是一項觀察準確程度的摘要。所有觀察最初從「粗略」等級開始，而到達「研究」等級是當
   the_following_lists: 以下列表
@@ -3353,8 +3357,8 @@ zh-TW:
   top_identifier: 熱門鑑定人
   top_identifiers: 熱門鑑定人
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
-  top_observer: 頂尖觀察者
-  top_observers: 領先觀察者
+  top_observer: 熱門觀察者
+  top_observers: 熱門觀察者
   top_species: 熱門物種
   total: 總計
   totals: 總計
@@ -3643,6 +3647,7 @@ zh-TW:
   what_do_you_want_to_list: 您想要列出什麼？
   what_to_keep: 維持什麼
   what_want_to_list?: 您想要列出什麼？
+  whats_this?: 這是什麼？
   when: 何時
   when_did_you_see_it?: 您何時看到它？
   when_did_you_see_them?: 您在<em>何時</em>看到它們？
@@ -3685,6 +3690,7 @@ zh-TW:
     one: 1 個觀察失敗
     other: '%{count} 個觀察失敗'
   x_of_y: '%{y}中的%{x}'
+  x_of_y_people_over_two_thirds_agree_it_is: 在 %{y} 人之中有 %{x} 人（超過 2/3）同意此是
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}統計'
   x_sent_you_a_new_message_on_y_html: '%{x} 寄送您一份新訊息於 %{y}：'
@@ -4058,7 +4064,7 @@ zh-TW:
         confirmation: 您確定嗎？這將會更改所有列出隸屬此地點的物種分類群之確立方式。而您需要花費一番功夫才能回復內容。
         description_html: |-
           這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類列表之確認方式成為<strong>"%{establishment_means}"</strong>. 僅策展人可使用此工具。更改確認方式
-          為「引入」會有大致相同的效果，但不會更改現有內容值；僅是填為空白。
+          為「引進」會有大致相同的效果，但不會更改現有內容值；僅是填為空白。
     lists:
       new:
         place_desc: 自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
@@ -4464,7 +4470,7 @@ zh-TW:
             偏好設定來挑選出通用名稱。
           </p>
         about_conservation_status_desc: 保護狀態總結出一群生物的滅絕風險。
-        about_establishment_desc: 「確立方式」描述著目前出現的物種如何發生在此處。引入代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
+        about_establishment_desc: 「確立方式」描述著目前出現的物種如何發生在此處。引進代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
         charts_help_seasonality: 此圖表顯示出物種分類依月份區分的觀察次數。請記住這些是觀察次數，因此會被當生物可被觀察的期間、以及被人們有前來觀察它們的行為所影響。因此某隻鳥在五月裡的觀察次數看似很活躍，但有可能是人們剛好一同在五月觀察；而將其它月份給忽略掉。相同地，如果您發現蜻蜓在六月的次數比一月多，這可能是因為在北半球有比南半球較多人口；而並非蜻蜓是剛好在六月比較活躍，因此在考量這些圖表時可以先查看地圖。當圖表上「可驗證」與「研究等級」觀察次數之間，有出現較低觀察次數以及/或是較大差異時，對這些情況做出疑慮是正確的。
         charts_help_history: 此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加；但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。
         charts_help_other: 我們也另外顯示出用於觀察註解的季節性圖表。註解是用在替觀察添加詮釋資料的採用控制詞彙項目之新系統。就目前為止我們僅使用「生命階段」與「植物物候」（植物開花或結果時期）。我們目前沒有直接添加註解的方式，因此現在我們正試著將來自於觀察欄位的資料轉換至註解。如果您已等不及我們建置好註解系統，您可以透過添加俱有下列值之一的觀察欄位值來貢獻到「生命階段」註解：成體、初羽化、蛹、若蟲、幼蟲、卵，或亞成體。所以特別的是；「生命階段」與「昆蟲生命階段」的欄位都是可行的。對於「植物物候」；我們正查看任何欄位名稱有著字詞「物候」並帶著「開花」或是「結果」，因此「開花物候」欄位也是可使用的。
@@ -4525,6 +4531,9 @@ zh-TW:
           \ 您最多僅可封鎖三名使用者，這是我們評估能符合需求；且避免濫用此功能\n  最適宜的數量。若認為有需要封禁更多人的情況，請<a href=\"mailto:%{help_email}\">聯絡我們</a>。\n</p>\n<p>\n
           \ 如果有人在 %{site_name} 網站上對您做出騷擾或是跟蹤的跡象，<a href=\"mailto:%{help_email}\">請讓我們知道</a>。\n
           \ 若有出現違反我們的服務條款、或是其它不適合在我們網站上所做出的行為，\n  我們將會進行調查。\n</p>"
+        common_names_desc: |-
+          顯示通用名稱。若您想要檢視學名的話請停用。
+          請注意您可以透過更改您的在地化與地點設定，來控制要查看何種通用名稱。
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist
           網路</a>將本地網站連結至全球 iNaturalist 社群的聚集。您可以更改您的主要網站隸屬，這代表您的內容在網站上會俱有優先權，但也代表著網站擁有者能擁有下載及檢視您所有資料的權利；就像
           iNaturalist 網站管理員能做的事情。如果網站離開了 iNaturalist 網路，所有您的帳號與資料也會一同跟著網站離開。

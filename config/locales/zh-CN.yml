@@ -214,7 +214,7 @@ zh-CN:
   add_observations!: 添加观察！
   add_observations: 添加观察
   add_observations_from_list: 从列表中添加观察
-  add_observations_of_taxa_youve_added: 对已经加入列表的分类单元添加观察记录。正在开发中，还在捉bug……
+  add_observations_of_taxa_youve_added: 对已经加入列表的分类单元添加观察记录。正在开发中，仍在查找软件错误...
   add_observations_project: 在该项目中添加观察
   add_one: 添加一个！
   add_one_now: 现在添加一个
@@ -1734,7 +1734,7 @@ zh-CN:
   mollusks: 软体动物
   momentjs:
     shortRelativeTime:
-      future: 在 %s
+      future: 在%s
       past: '%s'
       s: 1秒
       m: 1分钟
@@ -1766,6 +1766,8 @@ zh-CN:
   most_disagree: 多数不同意
   most_species: 最多物种
   most_observed_species: 最多观察的物种
+  most_observed_introduced_species: 最多观察的引进物种
+  most_observed_threatened_species: 最多观察的受威胁物种
   multiple: 多重
   multiple_select_option: -- 多重 --
   must_be_observed_after: 必须在 %{operand} 之后被观察
@@ -1937,6 +1939,7 @@ zh-CN:
   observation: 观察
   observation_: 观察
   observation_added: 观察已添加。
+  observations_by_category: 按分类排序观察
   observation_date: 日期
   observation_date?: 日期？
   observation_field: 观察字段
@@ -2550,6 +2553,7 @@ zh-CN:
   settings: 设置
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   show: 显示
+  show_common_names: 显示常用名
   show_counts: 显示基于列表上的计数。
   show_keyboard_shortcuts: 显示键盘快捷键
   show_kml: 显示KML
@@ -2634,6 +2638,7 @@ zh-CN:
   spam: 垃圾邮件
   spanish: 西班牙语
   species: 物种
+  species_by_category: 按分类排序物种
   species_guess: 物种猜测
   species_guide: 物种指南
   species_header: 物种
@@ -2720,7 +2725,6 @@ zh-CN:
     data_url: 数据URL
     overlays: 覆盖图
   taxon_changes: 分类单元更改
-  taxon_change_settings: 分类单元更改设置
   taxon_name: 分类单元名称
   taxon_observed_by_user: '%{taxon}，由 %{user} 观察到'
   taxon_schemes: 分类方案
@@ -2734,6 +2738,7 @@ zh-CN:
   taxonomic: 分类学
   taxonomic_order: 分类排序
   taxonomic_status: 分类状态
+  taxonomy_settings: 分类学设置
   tell_everyone_a_little_about_you: 向大家介绍您自己
   tell_the_world_a_little_about_yourself: 告诉我们有关您自己
   tell_us_why: 告诉我们为什么...
@@ -2828,6 +2833,7 @@ zh-CN:
   top_identifier: 最多标识符
   top_identifiers: 顶端标识符
   top_observer: 最多观察者
+  top_observers: 最多观察者
   top_species: 最多物种
   total: 总计
   totals: 总计
@@ -3057,6 +3063,7 @@ zh-CN:
   what_do_you_want_to_list: 您想列出什么？
   what_to_keep: 保持什么
   what_want_to_list?: 您想列出什么？
+  whats_this?: 这是什么？
   when: 何时
   when_did_you_see_it?: 您何时看见的它？
   when_did_you_see_them?: 您<em>在哪</em>发现的它们？
@@ -3097,6 +3104,7 @@ zh-CN:
     one: 1次观察已失败
     other: '%{count} 次观察已失败'
   x_of_y: '%{y}的%{x}'
+  x_of_y_people_over_two_thirds_agree_it_is: 在%{y}人中，有%{x}人（超过2/3）同意这个
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}状态'
   x_sent_you_a_new_message_on_y_html: '%{x} 在 %{y} 给您发送了一条新消息：'
@@ -3228,10 +3236,8 @@ zh-CN:
       mailer:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: 您打算在教室中使用%{site_name}么？
-          community_guidelines_html: <a href="%{url}">查阅社区指南</a> 获得让 iNaturalist 持续成为一个友好并受欢迎的地方的提示。
-          please_read_the_teachers_guide_html: |-
-            如果是，请阅读我们的 <a href="%{url}">教师指南</a> 获得与
-            学生使用 %{site_name} 的提示。
+          community_guidelines_html: <a href="%{url}">查阅社区指南</a>获得让iNaturalist持续成为一个友好并受欢迎的地方的提示。
+          please_read_the_teachers_guide_html: 如果可以，请阅读我们的<a href="%{url}">教师指南</a>获得与学生使用%{site_name}的提示。
     guides:
       index:
         funding_html: 指南开发的资金由<a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>提供
@@ -3573,7 +3579,7 @@ zh-CN:
         youve_been_blocked: 您已被封禁
         youve_been_blocked_desc: 这个资源的所有者屏蔽了您，这导致您无法联系他们。这个页面上所有的交互特性将不会工作。
         youve_blocked: 您已封禁该人
-        youve_blocked_desc: 您已经屏蔽了此资源的所有者，这阻止了您的使用与他们沟通。 此页面上的大多数交互特性将不能工作。
+        youve_blocked_desc: 您已经屏蔽了此资源的所有者，这阻止了您的使用与他们沟通。此页面上的大多数交互特性将不能工作。
       spam:
         message_for_owner_and_curators_html: 此记录已被标示为破坏并且不再公开可见。您可以看见它是因为您创建了它，或您是网站的监护人。如果您认为这是错误，请<a
           href="mailto:%{email}">联络我们</a>。
@@ -3583,8 +3589,7 @@ zh-CN:
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     taxa:
       edit:
-        high_status_conservation_status_notice_html: 给更高级别的类单位添加保护状态会影响该类群中所有物种的观察。
-          请不要给类群添加含有没有状态的物种，因为这将不正确地掩盖这些物种的观察坐标。
+        high_status_conservation_status_notice_html: 给更高级别的类单位添加保护状态会影响该类群中所有物种的观察。请不要给类群添加含有没有状态的物种，因为这将不正确地掩盖这些物种的观察坐标。
       show:
         about_names_desc: |-
           <p>
@@ -3644,13 +3649,14 @@ zh-CN:
           <p>
           如果有人在%{site_name}上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。如果这是违反我们的服务条款或是表现出其他对我们网站的不合适行为，我们将会进行调查。
           </p>
+        common_names_desc: 显示常用名。如果您只希望查看学名则可以禁用。注意您可以通过更改您的地域和地点设置，控制您想看到的常用名。
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         muting_desc_html: |-
           <p>
-          静音某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
+          禁言某人以阻止您收到有关他们做的事情，包括评论你的观察、发信息、提到您等等。禁言有助于您忽略某人但是不阻止他们做任何事情。
           </p>
           <p>
-          您可以根据实际需要，尽可能地静音一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
+          您可以根据实际需要，尽可能地禁言一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
           </p>
         project_addition_preferences:
           any: 任何

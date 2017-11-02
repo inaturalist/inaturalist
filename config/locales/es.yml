@@ -479,7 +479,7 @@ es:
   are_you_sure_remove_curator: ¿Confirmas que quieres quitar a %{user} como curador?
   are_you_sure_remove_from_project: ¿Confirmas que quieres quitar a %{user} de este
     proyecto?
-  are_you_sure_remove_photo: ¿Estás seguro de que quieres eliminar esta foto?
+  are_you_sure_remove_photo: ¿Confirmas que quieres eliminar esta foto?
   are_you_sure_remove_taxon_from_list: ¿Confirmas que quieres quitar a este taxón
     de la lista?
   are_you_sure_remove_taxon_from_place: ¿Estás seguro que deseas quitar este taxón
@@ -2287,7 +2287,7 @@ es:
   next: Siguiente
   next_observation: Siguiente observación
   next_page: Página siguiente
-  next_photo: Siguiente foto
+  next_photo: Foto siguiente
   next_tab: Siguiente pestaña
   "no": "No"
   no_activity_in_the_past_week: No ha habido actividad en la semana anterior. !Es
@@ -2446,6 +2446,7 @@ es:
   observation_added_to_the_project: Observación añadida al proyecto %{project}
   observation_aggregation: Agregado de observación
   observation_photo_uploader: Sube observaciones por medio de una foto
+  observations_by_category: Observaciones por categoría
   observations_by_user_on_date: Observaciones de %{user} en %{date}
   observations_by_you: Tus observaciones
   observations_by_you_on_date: Observaciones de usted en %{date}
@@ -2988,7 +2989,7 @@ es:
   prev: Anterior
   previous_observation: Observación Anterior
   previous_page: Página anterior
-  previous_photo: Foto Anterior
+  previous_photo: Foto anterior
   previous_tab: Pestaña anterior
   print_in_browser: Imprimir desde el navegador
   privacy: Normativa de privacidad
@@ -3522,6 +3523,7 @@ es:
   spam: spam
   spanish: Español
   species: Especies
+  species_by_category: especies por categoría
   species_from_around_the_world: Especies de todo el mundo
   species_guess: Estimación especial
   species_guide: Guía de especies
@@ -3656,7 +3658,6 @@ es:
     data_url: Enlace de datos
     overlays: Capas
   taxon_changes: Cambios de taxón
-  taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_merge: fusión de taxón
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
@@ -3695,6 +3696,7 @@ es:
   taxonomic_status: Estado de la taxonomía
   taxonomic_tags_for_flickr: Etiquetas Taxonómicas para Flickr
   taxonomic_tree_browser: Explorador del Árbol Taxonómico
+  taxonomy_settings: Configuración taxonómica
   tell_everyone_a_little_about_you: Cuénteles a todos un poco sobre usted
   tell_the_world_a_little_about_yourself: Cuéntanos acerca de ti
   tell_us_why: Dinos por qué...
@@ -3737,6 +3739,8 @@ es:
   the_community_agrees_organism_isnt: la comunidad acuerda que el <strong>organismo
     no es salvaje/naturalizado</strong> (es decir, cautivo o cultivado por humanos
     o alienígenas espaciales inteligentes)
+  the_community_id_requires_at_least_two_identifications: El id. comunitario necesita
+    dos identificaciones por lo menos.
   the_community_must_feel_that: La comunidad tiene que sentir que la Identificación
     de la comunidad ID es la mejor si está basado en evidencias
   the_data_quality_assessment_is: La evaluación de la calidad de los datos es un resumen
@@ -4288,6 +4292,7 @@ es:
   what_do_you_want_to_list: ¿Qué quieres listar?
   what_to_keep: Qué mantener
   what_want_to_list?: ¿Qué desea colocar en la lista?
+  whats_this?: ¿Qué es esto?
   when: Cuando
   when_did_you_see_it?: ¿Cuándo lo viste?
   when_did_you_see_them?: <em>¿Cuándo</em> los viste?
@@ -4366,8 +4371,7 @@ es:
     Por favor no te sientas obligado con todo lo que esto implica, pero si tienes
     tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna
     duda, comentario o simplemente ya no quieres ser un curador, contáctanos en %{email}
-  you_are_over_your_invites_quota: '...ya has enviado más de 60 invitaciones este
-    mes.'
+  you_are_over_your_invites_quota: … ya has enviado más de 60 invitaciones este mes
   you_are_now: Estas
   you_are_now_following_x: Estas siguiendo a %{friend_user}.
   you_are_now_role_for_project_html: <strong>Ahora</strong> %{role} de %{project}
@@ -4562,7 +4566,7 @@ es:
     de %{provider}
   zoom_in: Acercar Zoom
   zoom_out: Alejar Zoom
-  zoom_photo: Ampliar Foto
+  zoom_photo: Ampliar foto
   zoom_to_taxon_name: Acercar a %{taxonname}
   zoom_to_x: Ir a %{x}
   your_dashboard_helps_you: El tablero te ayuda a dar seguimiento a lo que está haciendo
@@ -5547,10 +5551,9 @@ es:
           ver la privada y oculta \ncoordenadas de las observaciones que se agregan
           a este proyecto."
       edit:
-        common_names_desc: |
-          Mostrar nombres comunes Deshabilítelo si solo desea ver nombres
-          científicos. Tenga en cuenta que puede controlar qué nombres comunes
-          puede ver al cambiar su configuración de lugar y lugar.
+        common_names_desc: |-
+          Mostrar nombres comunes. Desactiva la opción si quieres ver únicamente los científicos.
+          Observa que puedes controlar cuáles nombres comunes ves mediante la configuración de idioma y región.
         inaturalist_network_affiliation_desc_html: |-
           La <a href="%{url}" target="_blank">Red iNaturalist</a> es una
           colección de sitios web localizados conectados a la comunidad

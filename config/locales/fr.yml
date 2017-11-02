@@ -10,6 +10,7 @@
 # Author: Element303
 # Author: Eric.LEWIN
 # Author: Gomoko
+# Author: Hellotheworld
 # Author: Hercule
 # Author: Hydros
 # Author: Jujurenoult
@@ -1729,8 +1730,8 @@ fr:
   ids: IDs
   ids_made_for_others: Identifications faites pour d’autres
   if_for_some_reason_a_user_doesnt_agree: |-
-    Si, pour une raison quelconque, un utilisateur n’est pas d’accord avec le taxon de la communauté, il peut le rejeter, ce qui signifie que son ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. cela veut aussi dire que son observation ne peut devenir de niveau recherche que quand la communauté sera
-    d’accord avec lui.
+    Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est
+    d’accord avec vous.
   if_matches_come_from_a_comprehensive_list: Si la correspondance vient d’une liste
     complète, une barre verte sera affichée.
   if_this_is_a_scientific_name: Si c’est un nom scientifique, est-il actuellement
@@ -2279,6 +2280,8 @@ fr:
     observée par date
   most_species: Le plus d'espèces
   most_observed_species: Espèces les plus observées
+  most_observed_introduced_species: Espèces introduites les plus observées
+  most_observed_threatened_species: Espèces menacées les plus observées
   multiple: multiple
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: Taxons multiples (entrée aux fins d’échange/fusion,
@@ -2536,6 +2539,7 @@ fr:
   observation_added_to_the_project: Observation ajoutée au projet « %{project} »
   observation_aggregation: Agrégation d’observations
   observation_photo_uploader: Téléverseur de photos d’observation
+  observations_by_category: Observations par catégorie
   observations_by_user_on_date: Observations de %{user} le %{date}
   observations_by_you: Observations de vous
   observations_by_you_on_date: Observations de vous le %{date}
@@ -3166,6 +3170,10 @@ fr:
   projects_in_x: Projets dans %{x}
   projects_you_admin: Projets que vous administrez
   projects_youve_joined: Projets que vous avez rejoints
+  proposed_taxa_that_contradict_the_community_id: Taxons proposés qui sont en contradiction
+    avec l’ID de la communauté
+  proposed_taxa_that_support_the_community_id: Taxons proposés qui supportent l’ID
+    de la communauté
   protozoans: protozoaires
   provider_authorizations: Autorisations des fournisseurs
   public_coordinates_obscured_by: Coordonnées publiques masquées sur %{distance}km
@@ -3471,6 +3479,7 @@ fr:
   show: Afficher
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
   show_default_taxon_photos: afficher les photos de taxon par défaut
+  show_common_names: Afficher les noms communs
   show_counts: Afficher le nombre en fonction de la liste.
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_kml: Afficher en format KML
@@ -3628,6 +3637,7 @@ fr:
   spam: pourriel
   spanish: Espagnol
   species: Espèces
+  species_by_category: espèces par catégorie
   species_from_around_the_world: Espèces du monde entier
   species_guess: devinez l’espèce
   species_guide: Guide des espèces
@@ -3761,7 +3771,6 @@ fr:
     data_url: URL des données
     overlays: Superpositions
   taxon_changes: Modifications de taxon
-  taxon_change_settings: Paramètres de modification de taxon
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
@@ -3799,6 +3808,7 @@ fr:
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
   taxonomic_tree_browser: Explorateur de l’arborescence taxinomique
+  taxonomy_settings: Configuration de Taxonomy
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
   tell_us_why: Dites-nous pourquoi...
@@ -3842,6 +3852,8 @@ fr:
   the_community_agrees_organism_isnt: la communauté s’accorde sur le fait que l’<strong>organisme
     n’est pas sauvage/acclimaté</strong> (par ex. captif ou cultivé par des hommes
     ou des extra-terrestres intelligents)
+  the_community_id_requires_at_least_two_identifications: L’ID de la communauté nécessite
+    au moins deux identifications.
   the_community_must_feel_that: La communauté doit sentir que l’ID de la communauté
     est le meilleur possible, d’après la preuve
   the_data_quality_assessment_is: L’évaluation de la qualité des données est un résumé
@@ -4064,6 +4076,7 @@ fr:
   top_identifiers: Meilleurs Identificateurs
   top_identifiers_of_taxon: Meilleurs identifieurs de %{taxon}
   top_observer: Meilleurs observateurs
+  top_observers: Meilleurs observateurs
   top_species: Espèces favorites
   total: total
   totals: totaux
@@ -4411,6 +4424,7 @@ fr:
   what_do_you_want_to_list: Que voulez-vous lister ?
   what_to_keep: Ce qu’il faut conserver
   what_want_to_list?: Que voulez-vous répertorier?
+  whats_this?: Qu’est-ce que c’est ?
   when: Quand
   when_did_you_see_it?: Quand l’avez-vous vu?
   when_did_you_see_them?: <em>Quand</em> les avez-vous vus?
@@ -4454,6 +4468,8 @@ fr:
     one: 1 observation en échec
     other: '%{count} observations en échec'
   x_of_y: '%{x} sur %{y}'
+  x_of_y_people_over_two_thirds_agree_it_is: '%{x} sur %{y} personnes (plus de 2/3)
+    sont d’accord que c’est'
   x_project_journal: '%{name} de %{project}'
   x_project_stats: Stats de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} vous a envoyé un nouveau message sur %{y}:'
@@ -5886,6 +5902,9 @@ fr:
           Si\n  cela représente une violation de nos conditions d'utilisation ou représente\n
           \ autre comportement que nous considérons inapproprié pour notre site, nous\n
           \ enquêterons.\n</ p>"
+        common_names_desc: |-
+          Afficher les noms comuns. A désactiver si vous ne voulez voir que les noms scientifiques.
+          Notez que vous pouvez controler le type de noms communs que vous voyez en changeant vos paramètres régionnaux et votre localisation.
         inaturalist_network_affiliation_desc_html: |-
           Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
           sites Web localisés liés à la communauté mondiale de iNaturalist.

@@ -2112,6 +2112,7 @@ ko:
   welcome_to_x_project: '%{project}에 오신 것을 환영합니다.'
   were_currently_down_for: '현재 다음과 같은 문제로 서비스를 중지했습니다:'
   what_color_was_it: 무슨 색깔 인가요?
+  whats_this?: 이것은 무엇입니까?
   when: 날짜
   when_did_you_see_it?: 언제 봤나요?
   when_did_you_see_them?: <em>언제</em> 그것을 봤나요?
@@ -2223,6 +2224,9 @@ ko:
     shared:
       blocked:
         youve_been_blocked: 당신은 차단되었습니다
+        youve_been_blocked_desc: |-
+          이 자원의 소유자가 당신을 차단했기 때문에 통신이 불가능합니다.
+          이 문서의 상호작용 기능 대부분은 동작하지 않습니다.
         youve_blocked: 이 사람을 차단했습니다
         youve_blocked_desc: |-
           이 자원의 소유자를 차단했기 때문에 이들과 통신하는 것은
