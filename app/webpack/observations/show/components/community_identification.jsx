@@ -281,13 +281,19 @@ class CommunityIdentification extends React.Component {
       );
     }
     const stats = (
-      <div className="graphic">
-        <div className="vote-cells">
-          { voteCells }
+      <span>
+        <span className="cumulative">
+          { voteCells.length > 1 ?
+            I18n.t( "cumulative_ids", { count: votesFor.length, total: voteCells.length } ) : "" }
+        </span>
+        <div className="graphic">
+          <div className="vote-cells">
+            { voteCells }
+          </div>
+          { lines }
+          { numbers }
         </div>
-        { lines }
-        { numbers }
-      </div>
+      </span>
     );
     const photo = (
       <TaxonSummaryPopover
@@ -310,8 +316,12 @@ class CommunityIdentification extends React.Component {
 
   render( ) {
     const { observation, config, addID } = this.props;
+    const test = $.deparam.querystring( ).test;
     const loggedIn = config && config.currentUser;
-    const communityTaxon = observation.communityTaxon;
+    let communityTaxon = observation.taxon;
+    if ( test && test.match( /cid-vis/ ) ) {
+      communityTaxon = observation.communityTaxon;
+    }
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -371,94 +381,111 @@ class CommunityIdentification extends React.Component {
     let supportingEncountered;
     const proposedTaxa = {};
     const proposedTaxonItems = [];
-    if ( sortedIdents.length > 1 ) {
-      for ( let i = 0; i < sortedIdents.length; i++ ) {
-        const ident = sortedIdents[i];
-        if ( !proposedTaxa[ident.taxon.id] ) {
-          proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
-          proposedTaxa[ident.taxon.id] = ident.taxon.id;
+    if ( test === "cid-vis3" || test === "cid-vis4" ) {
+      if ( sortedIdents.length > 1 ) {
+        for ( let i = 0; i < sortedIdents.length; i++ ) {
+          const ident = sortedIdents[i];
+          if ( !proposedTaxa[ident.taxon.id] ) {
+            proposedTaxonItems.push( this.dataForTaxon( ident.taxon ) );
+            proposedTaxa[ident.taxon.id] = ident.taxon.id;
+          }
         }
       }
-    }
-    visualization = (
-      <div className="cid-extended">
-        <div className="info">
-          { communityTaxon ? (
-            <div className="about stacked">
-              { I18n.t( "x_of_y_people_over_two_thirds_agree_it_is", {
-                x: votesFor.length,
-                y: numIdentifiers
-              } ) }
-              <a href={ compareLink } className="pull-right compare-link">
-                <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
-              </a>
-            </div>
-          ) : (
-            <div className="about">
-              { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
-            </div>
-          )}
-          { communityTaxon ? (
-            <div className="inner">
-              <div className="photo">{ photo }</div>
-              <div className="stats-and-name">
-                <div className="badges">
-                  <ConservationStatusBadge observation={ observation } />
-                  <EstablishmentMeansBadge observation={ observation } />
-                </div>
-                <SplitTaxon
-                  taxon={ communityTaxon }
-                  url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
-                />
-                { stats }
+      visualization = (
+        <div className="cid-extended">
+          <div className="info">
+            { communityTaxon ? (
+              <div className="about stacked">
+                { I18n.t( "x_of_y_people_over_two_thirds_agree_it_is", {
+                  x: votesFor.length,
+                  y: numIdentifiers
+                } ) }
+                <a href={ compareLink } className="pull-right compare-link">
+                  <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                </a>
               </div>
-            </div>
-          ) : null }
-        </div>
-        <Panel collapsible expanded={ this.state.open }>
-          <div className="proposed-taxa">
-            { proposedTaxonItems.length <= 1 ? null : (
-              _.map( proposedTaxonItems, proposedTaxonData => {
-                let about;
-                if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
-                  about = (
-                    <div className="about stacked maverick">
-                      <i className="fa fa-bolt" /> { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }:
-                    </div>
-                  );
-                  maverickEncountered = true;
-                } else if ( !supportingEncountered ) {
-                  about = (
-                    <div className="about supporting stacked">
-                      { I18n.t( "proposed_taxa_that_support_the_community_id" ) }:
-                    </div>
-                  );
-                  supportingEncountered = true;
-                }
-                return (
-                  <div className="info" key={ `proposed-taxon-${proposedTaxonData.taxon.id}` }>
-                    { about }
-                    <div className="inner">
-                      <div className="photo">{ proposedTaxonData.photo }</div>
-                      <div className="stats-and-name">
-                        <SplitTaxon
-                          taxon={ proposedTaxonData.taxon }
-                          url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
-                        />
-                        { proposedTaxonData.stats }
+            ) : (
+              <div className="about">
+                { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
+              </div>
+            )}
+            { communityTaxon ? (
+              <div className="inner">
+                <div className="photo">{ photo }</div>
+                <div className="stats-and-name">
+                  <div className="badges">
+                    <ConservationStatusBadge observation={ observation } />
+                    <EstablishmentMeansBadge observation={ observation } />
+                  </div>
+                  <SplitTaxon
+                    taxon={ communityTaxon }
+                    url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+                  />
+                  { stats }
+                </div>
+              </div>
+            ) : null }
+          </div>
+          <Panel collapsible expanded={ this.state.open }>
+            <div className="proposed-taxa">
+              { proposedTaxonItems.length <= 1 ? null : (
+                _.map( proposedTaxonItems, proposedTaxonData => {
+                  let about;
+                  if ( proposedTaxonData.taxonIsMaverick && !maverickEncountered ) {
+                    about = (
+                      <div className="about stacked maverick">
+                        <i className="fa fa-bolt" /> { I18n.t( "proposed_taxa_that_contradict_the_community_id" ) }:
+                      </div>
+                    );
+                    maverickEncountered = true;
+                  } else if ( !supportingEncountered ) {
+                    about = (
+                      <div className="about supporting stacked">
+                        { I18n.t( "proposed_taxa_that_support_the_community_id" ) }:
+                      </div>
+                    );
+                    supportingEncountered = true;
+                  }
+                  return (
+                    <div className="info" key={ `proposed-taxon-${proposedTaxonData.taxon.id}` }>
+                      { about }
+                      <div className="inner">
+                        <div className="photo">{ proposedTaxonData.photo }</div>
+                        <div className="stats-and-name">
+                          <SplitTaxon
+                            taxon={ proposedTaxonData.taxon }
+                            url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                          />
+                          { proposedTaxonData.stats }
+                        </div>
                       </div>
                     </div>
-                  </div>
-                );
-              } )
-            ) }
+                  );
+                } )
+              ) }
+            </div>
+          </Panel>
+        </div>
+      );
+    } else {
+      visualization = (
+        <div className="info">
+          <div className="photo">{ photo }</div>
+          <div className="badges">
+            <ConservationStatusBadge observation={ observation } />
+            <EstablishmentMeansBadge observation={ observation } />
           </div>
-        </Panel>
-      </div>
-    );
+          <SplitTaxon
+            taxon={ communityTaxon }
+            url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+          />
+          { stats }
+        </div>
+      );
+    }
 
     return (
-      <div className="CommunityIdentification collapsible-section">
+      <div className={ `CommunityIdentification collapsible-section ${test}` }>
         <h4
           className={ proposedTaxonItems.length === 0 ? "" : "collapsible"}
           onClick={ ( ) => {
@@ -485,6 +512,25 @@ class CommunityIdentification extends React.Component {
         { this.communityIDOverrideStatement( ) }
         { this.communityIDOverridePanel( ) }
         { visualization }
+        { test === "cid-vis4" || !communityTaxon ? null : (
+          <div className="action">
+            <div className="btn-space">
+              { agreeButton }
+            </div>
+            <div className="btn-space">
+              <a href={ compareLink }>
+                <button className="btn btn-default">
+                  <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                </button>
+              </a>
+            </div>
+            <div className="btn-space">
+              <button className="btn btn-default" onClick={ this.showCommunityIDModal }>
+                <i className="fa fa-info-circle" /> { I18n.t( "about" ) }
+              </button>
+            </div>
+          </div>
+        ) }
       </div>
     );
   }
