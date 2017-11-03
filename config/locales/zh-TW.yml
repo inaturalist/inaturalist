@@ -31,11 +31,11 @@ zh-TW:
     one: '1 追隨者 '
     other: '%{count} 追隨者'
   x_identifications:
-    one: 1 物種鑑定
-    other: '%{count} 物種鑑定'
+    one: 1 項辨認結果
+    other: '%{count} 項辨認結果'
   x_identifications_:
-    one: 1 次鑑定
-    other: '%{count} 次鑑定'
+    one: 1 項辨認結果
+    other: '%{count} 項辨認結果'
   x_ids:
     one: 1個鑑定
     other: '%{count}個鑑定'
@@ -55,11 +55,11 @@ zh-TW:
     one: 此物種有 1 個錯誤鑑定
     other: '%{count} 此物種有 %{count} 個錯誤鑑定'
   x_observations:
-    one: 1 觀察紀錄
-    other: '%{count} 觀察紀錄'
+    one: 1 項觀察記錄
+    other: '%{count} 項觀察記錄'
   x_observations_:
-    one: 1 個觀察
-    other: '%{count} 個觀察'
+    one: 1 項觀察記錄
+    other: '%{count} 項觀察記錄'
   x_observations_html:
     one: <span class='count'>1</span> 觀察紀錄
     other: <span class='count'>%{count}</span> 觀察紀錄
@@ -1479,6 +1479,7 @@ zh-TW:
   inbox: 收件匣
   including: 包含
   in_order_to_login_and_using_site_visit_url: 為了登入並開始使用網站，您必須訪問此 URL 來啟用您的帳號：
+  in_progress: 任務進行中
   in_taxon?: 在物種分類
   in_the_past: 在之前
   in_the_past_week: 在過去一週
@@ -2218,6 +2219,11 @@ zh-TW:
   of: 的
   of_it_and_its_descendants: 它和它的後代
   of_least_concern: 最不重要的
+  of_observations: 項觀察記錄
+  of_species: 種物種
+  of_observers: 個觀察者
+  of_identifiers: 個辨認者
+  of_places: 個地點
   offensive_inappropriate: 冒犯/不適當
   official_blog: 官方部落格
   offline_access_enabled: 離線存取已啟用
@@ -3355,7 +3361,7 @@ zh-TW:
   top_5_identifiers: 前5位熱門鑑定人
   top_contributors: 頂尖貢獻者
   top_identifier: 熱門鑑定人
-  top_identifiers: 熱門鑑定人
+  top_identifiers: 熱門辨認者
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer: 熱門觀察者
   top_observers: 熱門觀察者

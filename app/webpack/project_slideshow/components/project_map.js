@@ -105,7 +105,7 @@ class ProjectMap extends Component {
           <div className="value">
             { parksCount }
           </div>
-          <div className="stat">{ I18n.t("places") }</div>
+          <div className="stat">{ I18n.t("of_places") }</div>
         </div>
       );
     }
@@ -118,25 +118,25 @@ class ProjectMap extends Component {
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.observations ) }
               </div>
-              <div className="stat">{ I18n.t("observations") }</div>
+              <div className="stat">{ I18n.t("of_observations") }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.species ) }
               </div>
-              <div className="stat">{ I18n.t("species") }</div>
+              <div className="stat">{ I18n.t("of_species") }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.identifiers ) }
               </div>
-              <div className="stat">{ I18n.t("identifiers") }</div>
+              <div className="stat">{ I18n.t("of_identifiers") }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.observers ) }
               </div>
-              <div className="stat">{ I18n.t("observers") }</div>
+              <div className="stat">{ I18n.t("of_observers") }</div>
             </div>
             { parksStat }
           </div>
