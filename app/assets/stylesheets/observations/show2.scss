@@ -1425,20 +1425,21 @@ h3, h4 {
       }
     }
     .taxon {
+      font-size: 16px;
       display: block;
+      white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
       color: #aaa;
       margin-right: 45px;
       margin-bottom: 5px;
-      font-size: 14px;
       .display-name {
         color: #000;
         font-weight: 700;
       }
     }
     .photo {
-      margin-right: 10px;
+      float: right;
       img {
         width: 40px;
         height: 40px;
@@ -1468,15 +1469,20 @@ h3, h4 {
       display: inline-block;
     }
     .graphic {
+      margin-top: 15px;
       position: relative;
       .for, .against {
         display: inline-block;
         height: 8px;
+        border-left: 1px solid #fff;
+        border-right: 1px solid #fff;
         cursor: pointer;
-        border: 0 transparent;
       }
       .for {
         background: $inat-green;
+      }
+      .against {
+        background: $fail-red;
       }
       .lines {
         width: 100%;
@@ -1510,60 +1516,6 @@ h3, h4 {
           display: inline-block;
         }
       }
-      .for.taxon-0 { background: $inat-green; }
-      .for.taxon-1 { background: lighten( $inat-green, 10% ); }
-      .for.taxon-2 { background: darken( $inat-green, 10% ); }
-      .for.taxon-3 { opacity: 0.7; }
-      .for.taxon-4 { opacity: 0.4; }
-      .against {
-        background: repeating-linear-gradient(
-          -45deg,
-          $fail-red,
-          $fail-red 5px,
-          lighten( $fail-red, 15% ) 5px,
-          lighten( $fail-red, 15% ) 10px
-        );
-        &.taxon-1 { opacity: 0.7; }
-        &.taxon-2 { opacity: 0.4; }
-        &.taxon-3 { opacity: 0.1; }
-        &.taxon-4 { opacity: 0.8; }
-        &.taxon-5 { opacity: 0.5; }
-        &.taxon-6 { opacity: 0.2; }
-        &.taxon-7 { opacity: 0.9; }
-        &.taxon-8 { opacity: 0.6; }
-        &.taxon-9 { opacity: 0.3; }
-      }
-      .CommunityIDPopover {
-        margin: 0 1px;
-      }
-      .vote-cells {
-        display: flex;
-      }
-    }
-    .about {
-      width: 100%;
-      .SplitTaxon {
-        display: inline;
-        margin: 0;
-      }
-      &.supporting i {
-        color: $inat-green;
-      }
-      &.maverick i {
-        color: $fail-red;
-      }
-    }
-    .inner {
-      display: flex;
-    }
-    .compare-link {
-      font-weight: bold;
-      i {
-        color: $inat-green;
-      }
-    }
-    .stats-and-name {
-      flex: 2;
     }
   }
   .action {
@@ -1605,6 +1557,153 @@ h3, h4 {
       }
     }
   }
+}
+
+.CommunityIdentification.cid-vis1,
+.CommunityIdentification.cid-vis4 {
+  .info {
+    .graphic {
+      .for.taxon-0 { background: $inat-green; }
+      .for.taxon-1 { background: lighten( $inat-green, 10% ); }
+      .for.taxon-2 { background: darken( $inat-green, 10% ); }
+      .for.taxon-3 { opacity: 0.7; }
+      .for.taxon-4 { opacity: 0.4; }
+      .against {
+        background: repeating-linear-gradient(
+          -45deg,
+          $fail-red,
+          $fail-red 5px,
+          lighten( $fail-red, 15% ) 5px,
+          lighten( $fail-red, 15% ) 10px
+        );
+        &.taxon-1 { opacity: 0.7; }
+        &.taxon-2 { opacity: 0.4; }
+        &.taxon-3 { opacity: 0.1; }
+        &.taxon-4 { opacity: 0.8; }
+        &.taxon-5 { opacity: 0.5; }
+        &.taxon-6 { opacity: 0.2; }
+        &.taxon-7 { opacity: 0.9; }
+        &.taxon-8 { opacity: 0.6; }
+        &.taxon-9 { opacity: 0.3; }
+      }
+    }
+  }
+}
+
+.CommunityIdentification.cid-vis2 {
+  .info {
+    .graphic {
+      .for {
+        &.taxon-0 { background: #1561A7; }
+        &.taxon-1 { background: #9DBAE4; }
+        &.taxon-2 { background: #FD690D; }
+        &.taxon-3 { background: #FEAE60; }
+        &.taxon-4 { background: #229419; }
+        &.taxon-5 { background: #86DE74; }
+        &.taxon-6 { background: #CD0C18; }
+        &.taxon-7 { background: #FD8282; }
+        &.taxon-8 { background: #824BB1; }
+        &.taxon-9 { background: #B99DCD; }
+      }
+      .against {
+        background: repeating-linear-gradient(
+          -45deg,
+          #333,
+          #333 5px,
+          lighten(#333, 10%) 5px,
+          lighten(#333, 10%) 10px
+        );
+        &.taxon-0 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #333,
+            #333 5px,
+            lighten(#333, 10%) 5px,
+            lighten(#333, 10%) 10px
+          );
+        }
+        &.taxon-1 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #444,
+            #444 5px,
+            lighten(#444, 10%) 5px,
+            lighten(#444, 10%) 10px
+          );
+        }
+        &.taxon-1 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #555,
+            #555 5px,
+            lighten(#555, 10%) 5px,
+            lighten(#555, 10%) 10px
+          );
+        }
+        &.taxon-2 {
+          background: repeating-linear-gradient(
+            -45deg,
+            #666,
+            #666 5px,
+            lighten(#666, 10%) 5px,
+            lighten(#666, 10%) 10px
+          );
+        }
+      }
+    }
+  }
+}
+
+.CommunityIdentification.cid-vis3,
+.CommunityIdentification.cid-vis4 {
+  .info {
+    .about {
+      width: 100%;
+      .SplitTaxon {
+        display: inline;
+        margin: 0;
+      }
+      &.supporting i {
+        color: $inat-green;
+      }
+      &.maverick i {
+        color: $fail-red;
+      }
+    }
+    .inner {
+      display: flex;
+    }
+    .compare-link {
+      font-weight: bold;
+      i {
+        color: $inat-green;
+      }
+    }
+    .stats-and-name {
+      flex: 2;
+    }
+    .taxon {
+      white-space: normal;
+      font-size: 14px;
+    }
+    .photo {
+      float: none;
+      margin-right: 10px;
+    }
+    .graphic {
+      margin-top: 0px;
+
+      .against {
+        background: repeating-linear-gradient(
+          -45deg,
+          $fail-red,
+          $fail-red 5px,
+          lighten( $fail-red, 15% ) 5px,
+          lighten( $fail-red, 15% ) 10px
+        );
+      }
+    }
+  }
   .proposed-taxa {
     .info {
       border-top: 0px;
@@ -1615,6 +1714,24 @@ h3, h4 {
     }
     .numbers {
       display: none !important;
+    }
+  }
+}
+.CommunityIdentification.cid-vis4 {
+  .info {
+    .cumulative {
+      display: none;
+    }
+    .graphic {
+      .CommunityIDPopover {
+        margin: 0 1px;
+      }
+      .for, .against {
+        border: 0 transparent;
+      }
+      .vote-cells {
+        display: flex;
+      }
     }
   }
   .proposed-taxa {
