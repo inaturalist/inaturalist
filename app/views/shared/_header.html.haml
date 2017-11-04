@@ -1,14 +1,16 @@
 - site = @site || CONFIG
-#header.clear
-  %ul#logonav
-    %li.navtab
-      - if site && !site.custom_logo.blank?
-        =raw site.custom_logo
-      - elsif site && site.logo
-        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
-          = image_tag site.logo.url, alt: site.name
-  %ul#mainnav.navtabs
-    - unless @minimal_header
+- if current_user && current_user.is_admin? && params[:test] == "header"
+  #header.clear
+    %ul#logonav
+      %li.navtab
+        - if site && !site.custom_logo.blank?
+          =raw site.custom_logo
+        - elsif site && site.logo
+          %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
+            = image_tag site.logo.url, alt: site.name
+    .search.navtab
+      %input{ type: "text", placeholder: "Type stuff" }
+    %ul#mainnav.navtabs
       %li.navtab.observationstab.menutab
         .innertab
           = link_to t(:observations).capitalize, observations_path
@@ -27,97 +29,174 @@
             - if logged_in?
               %li= link_to t(:by_you), observations_by_login_path(current_user.login)
             %li= link_to t(:identify_title), identify_observations_path
-      %li.navtab.menutab
-        .innertab
-          = link_to t(:species_header, default: t(:species).capitalize), taxa_path
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-            %i.fa.fa-angle-down
-        .subnav{:style => "display: none"}
-          %ul.taxon_links
-            %li
-              = form_tag({:controller => 'taxa', :action => 'search'}, :method => :get) do
-                .clear.inline.buttonrow
-                  = search_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '', |
-                    :placeholder => t(:search_taxa)                                                         |
-                  %button.default.button
-                    %i.fa.fa-search
-            - for taxon in Taxon::ICONIC_TAXA
+    %ul#usernav.navtabs
+      - unless logged_in?
+        %li.navtab.signedout
+          .innertab
+            = link_to t(:log_in), login_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
+            = t :or
+            = link_to t(:sign_up), signup_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
+      - else
+        - unless @minimal_header
+          %li#messagesnav.notices.navtab
+            .innertab
+              = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
+                %i.fa.fa-envelope
+                %span.count 0
+            #messagessubnav.subnav.rightsubnav{style: "display:none;"}
+              .loadingwrapper= loading
+          %li#updatesnav.notices.navtab
+            .innertab
+              = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
+                %i.fa.fa-comment
+                %span.count 0
+            #updatessubnav.subnav.rightsubnav{style: "display:none;"}
+              .loadingwrapper= loading
+        %li.navtab.user.menutab
+          .innertab
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              = user_image(current_user, :size => 'thumb', :class => "inlineblock")
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              = truncate current_user.login, length: 20
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              %i.fa.fa-angle-down
+          #usersubnav.subnav.rightsubnav{style: "display: none;"}
+            %ul
+              %li= link_to t(:dashboard), home_path
               %li
-                = link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon_path(taxon), :class => "taxon #{taxon.name}"
-      %li.navtab.projectstab.menutab
-        .innertab
-          = link_to t(:projects), projects_path
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-            %i.fa.fa-angle-down
-        .subnav{:style => "display: none"}
-          %ul
-            %li.formwrapper
-              = form_tag({:controller => 'projects', :action => 'search'}, :method => :get) do
-                .clear.inline.buttonrow
-                  = text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '', |
-                    :placeholder => t(:search_projects)                                                         |
-                  %button.default.button
-                    %i.fa.fa-search
-            - if logged_in?
-              - for project in current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
-                %li
-                  = link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil
+                = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
+                %ul
+                  %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
+                  %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
+                  %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
+              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
+              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
+              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
               %li
-                = link_to t(:all_your_projects), projects_by_login_url(current_user.login)
+                = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
+              %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'
+              %li= link_to t(:account), edit_person_path(current_user), :class => 'profile_link'
+              %li.signout= link_to t(:sign_out), logout_path
+- else
+  #header.clear
+    %ul#logonav
       %li.navtab
-        .innertab
-          = link_to t(:places), places_path
-      %li.navtab
-        .innertab
-          = link_to t(:guides), guides_path
-      %li.navtab
-        .innertab
-          = link_to t(:people), people_path
-  %ul#usernav.navtabs
-    - unless logged_in?
-      %li.navtab.signedout
-        .innertab
-          = link_to t(:log_in), login_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
-          = t :or
-          = link_to t(:sign_up), signup_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
-    - else
+        - if site && !site.custom_logo.blank?
+          =raw site.custom_logo
+        - elsif site && site.logo
+          %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
+            = image_tag site.logo.url, alt: site.name
+    %ul#mainnav.navtabs
       - unless @minimal_header
-        %li#messagesnav.notices.navtab
+        %li.navtab.observationstab.menutab
           .innertab
-            = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
-              %i.fa.fa-envelope
-              %span.count 0
-          #messagessubnav.subnav.rightsubnav{style: "display:none;"}
-            .loadingwrapper= loading
-        %li#updatesnav.notices.navtab
+            = link_to t(:observations).capitalize, observations_path
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              %i.fa.fa-angle-down
+          .subnav{:style => "display: none"}
+            %ul
+              %li
+                = form_tag(observations_path, method: :get, enforce_utf8: false) do
+                  .clear.inline.buttonrow
+                    = text_field_tag 'taxon_name', params[:taxon_name], |
+                      :id => 'header_observations_q', :class => 'text', |
+                      :placeholder => t(:search_obs)                    |
+                    %button.default.button
+                      %i.fa.fa-search
+              - if logged_in?
+                %li= link_to t(:by_you), observations_by_login_path(current_user.login)
+              %li= link_to t(:identify_title), identify_observations_path
+        %li.navtab.menutab
           .innertab
-            = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
-              %i.fa.fa-comment
-              %span.count 0
-          #updatessubnav.subnav.rightsubnav{style: "display:none;"}
-            .loadingwrapper= loading
-      %li.navtab.user.menutab
-        .innertab
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-            = user_image(current_user, :size => 'thumb', :class => "inlineblock")
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-            = truncate current_user.login, length: 20
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-            %i.fa.fa-angle-down
-        #usersubnav.subnav.rightsubnav{style: "display: none;"}
-          %ul
-            %li= link_to t(:dashboard), home_path
-            %li
-              = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
-              %ul
-                %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
-                %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
-                %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
-            %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
-            %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
-            %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
-            %li
-              = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
-            %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'
-            %li= link_to t(:account), edit_person_path(current_user), :class => 'profile_link'
-            %li.signout= link_to t(:sign_out), logout_path
+            = link_to t(:species_header, default: t(:species).capitalize), taxa_path
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              %i.fa.fa-angle-down
+          .subnav{:style => "display: none"}
+            %ul.taxon_links
+              %li
+                = form_tag({:controller => 'taxa', :action => 'search'}, :method => :get) do
+                  .clear.inline.buttonrow
+                    = search_field_tag 'q', params[:q], :id => 'header_taxa_q', :class => 'text', :value => '', |
+                      :placeholder => t(:search_taxa)                                                         |
+                    %button.default.button
+                      %i.fa.fa-search
+              - for taxon in Taxon::ICONIC_TAXA
+                %li
+                  = link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon_path(taxon), :class => "taxon #{taxon.name}"
+        %li.navtab.projectstab.menutab
+          .innertab
+            = link_to t(:projects), projects_path
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              %i.fa.fa-angle-down
+          .subnav{:style => "display: none"}
+            %ul
+              %li.formwrapper
+                = form_tag({:controller => 'projects', :action => 'search'}, :method => :get) do
+                  .clear.inline.buttonrow
+                    = text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '', |
+                      :placeholder => t(:search_projects)                                                         |
+                    %button.default.button
+                      %i.fa.fa-search
+              - if logged_in?
+                - for project in current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
+                  %li
+                    = link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil
+                %li
+                  = link_to t(:all_your_projects), projects_by_login_url(current_user.login)
+        %li.navtab
+          .innertab
+            = link_to t(:places), places_path
+        %li.navtab
+          .innertab
+            = link_to t(:guides), guides_path
+        %li.navtab
+          .innertab
+            = link_to t(:people), people_path
+    %ul#usernav.navtabs
+      - unless logged_in?
+        %li.navtab.signedout
+          .innertab
+            = link_to t(:log_in), login_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
+            = t :or
+            = link_to t(:sign_up), signup_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
+      - else
+        - unless @minimal_header
+          %li#messagesnav.notices.navtab
+            .innertab
+              = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
+                %i.fa.fa-envelope
+                %span.count 0
+            #messagessubnav.subnav.rightsubnav{style: "display:none;"}
+              .loadingwrapper= loading
+          %li#updatesnav.notices.navtab
+            .innertab
+              = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
+                %i.fa.fa-comment
+                %span.count 0
+            #updatessubnav.subnav.rightsubnav{style: "display:none;"}
+              .loadingwrapper= loading
+        %li.navtab.user.menutab
+          .innertab
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              = user_image(current_user, :size => 'thumb', :class => "inlineblock")
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              = truncate current_user.login, length: 20
+            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+              %i.fa.fa-angle-down
+          #usersubnav.subnav.rightsubnav{style: "display: none;"}
+            %ul
+              %li= link_to t(:dashboard), home_path
+              %li
+                = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
+                %ul
+                  %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
+                  %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
+                  %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
+              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
+              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
+              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
+              %li
+                = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
+              %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'
+              %li= link_to t(:account), edit_person_path(current_user), :class => 'profile_link'
+              %li.signout= link_to t(:sign_out), logout_path

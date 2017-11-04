@@ -329,138 +329,180 @@ form .field .description { margin-bottom: 0.5em;}
 
 /* Site Header */
 
+#header,
+#header #usernav,
+#header #logonav {
+  background-color: #eee;
+  z-index: 11;
+}
 #header {
   color: #999;
   position: relative;
   margin-bottom: 20px;
   min-width: 980px;
   border-bottom: 1px solid #ddd;
-}
-#header, #header #usernav, #header #logonav { background-color: #eee; z-index: 11; }
 
-#header .innertab a, #header .count { color: #333; }
-#header .innertab .hasupdates, #header .hasupdates .count {color: #cd0a0a;}
-
-#header .innertab a:hover { color: #039; }
-#header ul { list-style: none; padding: 0; margin: 0; }
-#header .innertab { 
-  display: inline-block;
-  position: relative; 
-  top: 50%; 
-  -ms-transform: translateY(-50%);
-  -webkit-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
-// Thanks, https://css-tricks.com/using-flexbox/
-#header {
+  // Thanks, https://css-tricks.com/using-flexbox/
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
   display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
   display: -ms-flexbox;      /* TWEENER - IE 10 */
   display: -webkit-flex;     /* NEW - Chrome */
   display: flex;             /* New - everyone else */
-}
-#header #logonav {
-  width: 170px;
-  text-align: center;
-  -webkit-flex-order: 1;
-  -webkit-order: 1;
-  -ms-flex-order: 1;
-  flex-order: 1;
-  order: 1;
-}
-#header #logonav img {
-  max-height: 42px;
-}
-#header #mainnav {
-  white-space: nowrap;
-  -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
-  -moz-box-flex: 2;         /* OLD - Firefox 19- */
-  width: 40%;               /* For old syntax, otherwise collapses. */
-  -webkit-flex: 2;          /* Chrome */
-  -ms-flex: 2;              /* IE 10 */
-  flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
-  min-width: 515px;
-  
-  -webkit-flex-order: 2;
-  -webkit-order: 2;
-  -ms-flex-order: 2;
-  flex-order: 2;
-  order: 2;
-}
-#header #usernav {
-  white-space: nowrap;
-  text-align: right;
-  -webkit-flex-order: 3;
-  -webkit-order: 3;
-  -ms-flex-order: 3;
-  flex-order: 3;
-  order: 3;
-}
-#header #mainnav { 
-  text-align: center; 
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .innertab { 
+    display: inline-block;
+    position: relative; 
+    top: 50%; 
+    -ms-transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    a,
+    .count {
+      color: #333;
+    }
+    .hasupdates,
+    .hasupdates .count {
+      color: #cd0a0a;
+    }
+    a:hover {
+      color: #039;
+    }
+  }
+
+  #logonav {
+    width: 170px;
+    text-align: center;
+    -webkit-flex-order: 1;
+    -webkit-order: 1;
+    -ms-flex-order: 1;
+    flex-order: 1;
+    order: 1;
+    img {
+      max-height: 42px;
+    }
+  }
+
+  #mainnav {
+    white-space: nowrap;
+    -webkit-box-flex: 2;      /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 2;         /* OLD - Firefox 19- */
+    width: 40%;               /* For old syntax, otherwise collapses. */
+    -webkit-flex: 2;          /* Chrome */
+    -ms-flex: 2;              /* IE 10 */
+    flex: 2;                  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    min-width: 515px;
+    
+    -webkit-flex-order: 2;
+    -webkit-order: 2;
+    -ms-flex-order: 2;
+    flex-order: 2;
+    order: 2;
+
+    text-align: center; 
+  }
+  #usernav {
+    white-space: nowrap;
+    text-align: right;
+    -webkit-flex-order: 3;
+    -webkit-order: 3;
+    -ms-flex-order: 3;
+    flex-order: 3;
+    order: 3;
+  }
+
+  li, .search {
+    &.navtab {
+      position: relative;
+      z-index: 10;
+      font-size: 120%;
+      display: inline-block;
+      padding: 10px;
+      height: 35px;
+    }
+    &.open {
+      background-color: white;
+    }
+  }
+  #mainnav.navtabs li.navtab {
+    padding: 10px 12px;
+  }
+  #usernav {
+    &.navtabs li.navtab.user {
+      padding: 10px;
+      height: 35px;
+      vertical-align: top;
+    }
+    .user img {
+      border-radius: 100px;
+      width: 33px;
+    }
+    .signout {
+      margin-top: 20px;
+    }
+  }
+
+  .subnav {
+    z-index: 1000;
+    text-align: left;
+    background-color: white;
+    position: absolute;
+    top: 55px; 
+    left: -2px; 
+    padding: 10px;
+    padding-left: 12px;
+    border-right: 2px solid #eee;
+    border-left: 2px solid #eee;
+    border-bottom: 2px solid #eee;
+    line-height: 1.5;
+
+    &.rightsubnav {
+      left: auto;
+      right: 0px;
+      border-right: 0px;
+      padding-left: 10px;
+      padding-right: 12px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+    ul ul {
+      margin: 10px 0 0 20px;
+      padding:0;
+    }
+  }
+
+  .navtabs {
+    .observationstab .subnav a,
+    .projectstab .subnav a {
+      background-image: image-url('logo-eee-15px.png');
+      background-position: 0px center;
+      background-repeat: no-repeat;
+      padding-left: 20px;
+      white-space: nowrap;
+    }
+  }
+
+  .search {
+    order: 2;
+    input {
+      padding: 5px 10px;
+      width: 300px;
+      height: 21px;
+      line-height: 21px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      outline: none !important;
+    }
+  }
 }
 
-#header .navtabs li.navtab {
-  position: relative;
-  z-index: 10;
-}
-#header .navtabs li.open {
-  background-color: white;
-}
-#header li.navtab {font-size: 120%;}
-#header li.navtab,
-#header li.navtab {
-  display: inline-block;
-  padding: 10px;
-  height: 35px;
-}
-
-#header #mainnav.navtabs li.navtab {padding: 10px 12px;}
-#header #usernav.navtabs li.navtab.user {
-  padding: 10px;
-  height: 35px;
-  vertical-align: top;
-}
-#usernav .user img { border-radius: 100px; width: 33px; }
-
-#header .subnav {
-  z-index: 1000;
-  text-align: left;
-  background-color: white;
-  position: absolute;
-  top: 55px; 
-  left: -2px; 
-  padding: 10px;
-  padding-left: 12px;
-  border-right: 2px solid #eee;
-  border-left: 2px solid #eee;
-  border-bottom: 2px solid #eee;
-  line-height: 1.5;
-}
-#header .subnav li {
-  margin-bottom: 10px;
-}
-#header .subnav.rightsubnav {
-  left: auto;
-  right: 0px;
-  border-right: 0px;
-  padding-left: 10px;
-  padding-right: 12px;
-}
-#header #usernav .signout { margin-top: 20px; }
-#header .navtabs .observationstab .subnav a,
-#header .navtabs .projectstab .subnav a {
-  background-image: image-url('logo-eee-15px.png');
-  background-position: 0px center;
-  background-repeat: no-repeat;
-  padding-left: 20px;
-  white-space: nowrap;
-}
-#header .subnav ul ul {
-  margin: 10px 0 0 20px;
-  padding:0;
-}
 #usersubnav li a {
   display: block;
   width: auto;
