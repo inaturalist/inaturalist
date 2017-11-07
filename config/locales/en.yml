@@ -5001,6 +5001,14 @@ en:
           statuses for taxa that contain species that have no status because
           that will incorrectly obscure coordinates for observations of those
           species.
+        complete_desc_html: |
+          A "complete" taxon contains <em>all</em> known descendant taxa at a
+          specified rank that comply with iNaturalist's taxon curation
+          policies, whether or not they've been observed.
+        complete_rank_desc_html: |
+          Rank at which this taxon is complete, e.g. if this family contains
+          all its genera but not all its species, this would be set to "genus."
+          Default is species.
       show:
         about_names_desc: |
           <p>

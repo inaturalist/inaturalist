@@ -18,7 +18,7 @@
     </div>
     <div class="column span-8">
       <%= f.select :rank, Taxon::RANK_LEVELS.keys.reject {|r| r === "root" },
-        { allow_blank: true }, { class: "text", required: true } %>
+        { }, { class: "text", required: true } %>
     </div>
     
     <div class="last column span-8">
@@ -71,12 +71,16 @@
     %>
       <div class="column span-23">
         <div class="admin">
-          <%= f.check_box :complete, :label_after => true %>
-          <p class="description ui">
-            A "complete" taxon contains <em>all</em> known descendant taxa that
-            comply with iNaturalist's taxon curation policies, whether or not
-            they've been observed.
-          </p>
+          <%= f.check_box :complete, label_after: true, description: t("views.taxa.edit.complete_desc_html") %>
+          <%= f.select :complete_rank, Taxon::RANK_LEVELS.reject {|rank, level| rank === "root" || level >= taxon.rank_level.to_i }.keys,
+            {
+              include_blank: true
+            },
+            {
+              class: "text",
+              description: t("views.taxa.edit.complete_rank_desc_html"),
+              wrapper: { style: taxon.complete ? "display: block;" : "display:none;" }
+            } %>
         </div>
       </div>
     <% end %>

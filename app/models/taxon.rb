@@ -92,6 +92,10 @@ class Taxon < ActiveRecord::Base
   #                         :scope => [:source_id],
   #                         :message => "already exists",
   #                         :allow_blank => true
+  validate :taxon_cant_be_its_own_ancestor
+  validate :can_only_be_featured_if_photos
+  validate :validate_locked
+  validate :complete_rank_below_rank
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -412,7 +416,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def handle_change_in_completeness
-    return true unless complete_changed?
+    return true unless complete_changed? || complete_rank_changed?
     Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
   end
 
@@ -420,17 +424,25 @@ class Taxon < ActiveRecord::Base
     Taxon.elastic_index!( scope: Taxon.joins(:taxon_ancestors).where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ) )
   end
 
+  def complete_rank_level
+    RANK_LEVELS[complete_rank]
+  end
+
   def complete_species_count
     if rank_level.to_i <= SPECIES_LEVEL
       return nil
     end
-    if !complete? && !ancestors.where( "complete" ).exists?
+    complete_ancestor = ancestors.where( "complete" ).order( "rank_level ASC" ).first
+    if !complete? && !complete_ancestor
+      return nil
+    end
+    if ( RANK_LEVELS[complete_rank || complete_ancestor.try(:complete_rank)] ).to_i >= rank_level
       return nil
     end
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
-      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, Taxon::SPECIES ).
+      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, SPECIES ).
       joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
       where( "cs.id IS NULL OR cs.place_id IS NOT NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", Taxon::IUCN_EXTINCT )
     scope.count
@@ -825,10 +837,6 @@ class Taxon < ActiveRecord::Base
   def phylum
     ancestors.where(rank: "phylum").first
   end
-  
-  validate :taxon_cant_be_its_own_ancestor
-  validate :can_only_be_featured_if_photos
-  validate :validate_locked
 
   def taxon_cant_be_its_own_ancestor
     if ancestor_ids.include?(id)
@@ -848,6 +856,13 @@ class Taxon < ActiveRecord::Base
         "so this cannot be added as a descendent.  Either unlock the " + 
         "locked taxon or merge this taxon with an existing one.")
     end
+  end
+
+  def complete_rank_below_rank
+    if complete_rank_level.to_i > rank_level.to_i
+      errors.add( :complete_rank, "must be below the rank" )
+    end
+    true
   end
   
   #

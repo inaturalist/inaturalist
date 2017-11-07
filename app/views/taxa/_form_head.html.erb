@@ -33,7 +33,7 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
             function() {TaxonBrowser.ajaxify()});
         }
       }
-    })
+    });
 
     $('#conservation_statuses .conservation_status').conservationStatus()
     $('#conservation_statuses').bind('cocoon:before-remove', function(e, item) {
@@ -45,7 +45,7 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
       $(item).slideDown(function() {
         $(item).conservationStatus()
       })
-    })
+    });
     $("#conservation_statuses a.add_fields").
       data("association-insertion-method", 'before').
       data("association-insertion-node", 'this');
@@ -60,8 +60,16 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
           $('input[name*="position"]', this).val($selection.index(this) + 1)
         })
       }
-    })
-  })
+    });
+
+    $('#taxon_complete').change(function() {
+      if ( $(this).get(0).checked ) {
+        $('.field.complete_rank_field').show( );
+      } else {
+        $('.field.complete_rank_field').hide( );
+      }
+    });
+  });
 
   $.fn.conservationStatus = function() {
     this.each(function() {

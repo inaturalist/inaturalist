@@ -1167,6 +1167,31 @@ describe "complete" do
   end
 end
 
+describe "complete_rank" do
+  it "should reindex all descendants when changed" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily )
+    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+    without_delay { superfamily.update_attributes!( complete: true ) }
+    Delayed::Worker.new.work_off
+    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
+    es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
+    expect( es_genus.complete_species_count ).to eq 1
+    without_delay { superfamily.update_attributes!( complete_rank: Taxon::GENUS ) }
+    genus.reload
+    family.reload
+    expect( genus.complete_species_count ).to be_nil
+    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
+    es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
+    expect( es_genus.complete_species_count ).to be_nil
+  end
+  it "should not be above the rank of the taxon" do
+    t = Taxon.make( rank: Taxon::FAMILY, complete_rank: Taxon::SUPERFAMILY )
+    expect( t ).not_to be_valid
+  end
+end
+
 describe "complete_species_count" do
   describe "when taxon is not complete" do
     it "should be nil if no complete ancestor" do
@@ -1178,6 +1203,13 @@ describe "complete_species_count" do
       t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS )
       expect( t.complete_species_count ).not_to be_nil
       expect( t.complete_species_count ).to eq 0
+    end
+    it "should be nil if complete ancestor exists but it is complete at a higher rank" do
+      superfamily = Taxon.make!( complete: true, rank: Taxon::SUPERFAMILY, complete_rank: Taxon::GENUS )
+      family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      expect( genus.complete_species_count ).to be_nil
     end
   end
   describe "when taxon is complete" do

@@ -3837,7 +3837,8 @@ CREATE TABLE taxa (
     locked boolean DEFAULT false NOT NULL,
     conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
-    complete boolean
+    complete boolean,
+    complete_rank character varying
 );
 
 
@@ -9065,4 +9066,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170907221848');
 INSERT INTO schema_migrations (version) VALUES ('20170920185103');
 
 INSERT INTO schema_migrations (version) VALUES ('20170923232400');
+
+INSERT INTO schema_migrations (version) VALUES ('20171107200722');
 
