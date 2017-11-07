@@ -63,12 +63,7 @@
       </p>
     </div>
 
-    <% if
-        is_admin? &&
-        taxon.rank_level &&
-        taxon.rank_level > Taxon::SPECIES_LEVEL &&
-        !taxon.ancestors.where( "complete" ).exists?
-    %>
+    <% if is_admin? && taxon.rank_level && taxon.rank_level > Taxon::SPECIES_LEVEL %>
       <div class="column span-23">
         <div class="admin">
           <%= f.check_box :complete, label_after: true, description: t("views.taxa.edit.complete_desc_html") %>
