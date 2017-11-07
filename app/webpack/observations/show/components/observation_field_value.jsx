@@ -1,6 +1,7 @@
 import React, { PropTypes } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import ObservationFieldText from "../../../shared/components/observation_field_text";
 
 class ObservationFieldValue extends React.Component {
   render( ) {
@@ -14,6 +15,8 @@ class ObservationFieldValue extends React.Component {
     }
     if ( ofv.datatype === "dna" ) {
       value = ( <div className="dna">{ ofv.value } { loading }</div> );
+    } else if ( ofv.datatype === "text" ) {
+      value = ( <ObservationFieldText text={ofv.value} /> );
     } else {
       if ( ofv.datatype === "taxon" && ofv.taxon ) {
         value = ( <SplitTaxon
