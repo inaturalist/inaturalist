@@ -600,16 +600,6 @@ class ApplicationController < ActionController::Base
     head(:ok) if request.request_method == "OPTIONS"
   end
 
-  # adding extra info to the payload sent to ActiveSupport::Notifications
-  # used in metrics collecting libraries like the Logstasher
-  def append_info_to_payload(payload)
-    super
-    payload.merge!(Logstasher.payload_from_request( request ))
-    payload.merge!(Logstasher.payload_from_session( session ))
-    if logged_in?
-      payload.merge!(Logstasher.payload_from_user( current_user ))
-    end
-  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins
