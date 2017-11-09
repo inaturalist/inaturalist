@@ -12,6 +12,7 @@
 # Author: Fortega
 # Author: Isabelgg22
 # Author: Josecurioso
+# Author: KATRINE1992
 # Author: Loarie
 # Author: Luisangelrg
 # Author: Macofe
@@ -2860,7 +2861,7 @@ es:
       republic: República
       Shire: Condado
       shire: condado
-      Sports_Team: Equipo Deportivo
+      Sports_Team: Equipo deportivo
       sports_team: equipo deportivo
       State: Estado
       state: estado
@@ -3073,6 +3074,9 @@ es:
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que usted administra
   projects_youve_joined: Proyectos a los que se ha unido
+  proposed_taxa_that_contradict_the_community_id: Taxa propuesto que contra la ID
+    de Comunidad
+  proposed_taxa_that_support_the_community_id: Taxa propuesto que apoya la ID de Comunidad
   protozoans: protozoarios
   provider_authorizations: Autorizaciones de proveedores
   public_coordinates_obscured_by: Coordenadas públicas ocultas por %{distance}KM
@@ -3964,6 +3968,7 @@ es:
   top_identifiers: Top identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer: Mayor observador
+  top_observers: Observadores Top
   top_species: Especie superior
   total: total
   totals: totales
@@ -4347,6 +4352,8 @@ es:
     one: 1 observación falló
     other: '%{count} observaciones fallaron'
   x_of_y: '%{x} de %{y}'
+  x_of_y_people_over_two_thirds_agree_it_is: '%{x} of %{y} gente (mas de 2/3) estan
+    de acuerdo con esto'
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadísticas de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} le envió un nuevo mensaje en %{y}'
