@@ -67,6 +67,7 @@ class Taxon < ActiveRecord::Base
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
@@ -96,6 +97,7 @@ class Taxon < ActiveRecord::Base
   validate :can_only_be_featured_if_photos
   validate :validate_locked
   validate :complete_rank_below_rank
+  validate :graftable_if_complete
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -418,6 +420,13 @@ class Taxon < ActiveRecord::Base
   def handle_change_in_completeness
     return true unless complete_changed? || complete_rank_changed?
     Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
+    taxon_curators.destroy_all if !complete && complete_was
+    TaxonCurator.
+      joins( taxon: :taxon_ancestors ).
+      where( "taxon_ancestors.ancestor_taxon_id = ?", id ).
+      where( "taxa.rank_level < ?", complete_rank_level.to_i ).
+      destroy_all
+    true
   end
 
   def self.reindex_descendants_of( taxon )
@@ -860,6 +869,26 @@ class Taxon < ActiveRecord::Base
   def complete_rank_below_rank
     if complete_rank_level.to_i > rank_level.to_i
       errors.add( :complete_rank, "must be below the rank" )
+    end
+    true
+  end
+
+  def complete_taxon
+    return self if complete?
+    return @complete_taxon if @complete_taxon
+    @complete_taxon = ancestors.where( "complete" ).order( "rank_level ASC" ).first
+    if @complete_taxon && ( @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i )
+      @complete_taxon
+    else
+      @complete_taxon = nil
+    end
+  end
+
+  def graftable_if_complete
+    return true unless ancestry_changed?
+    ct = complete_taxon
+    if ct && ( current_user.blank? || !ct.editable_by?( current_user ) )
+      errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
@@ -1383,6 +1412,9 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
+    if complete_taxon
+      return complete_taxon.taxon_curators.where( user: user ).exists?
+    end
     user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 

@@ -1,0 +1,28 @@
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function() {
+      $( "#taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_curator_taxon_id" ) } );
+      $( "#user_name" ).userAutocomplete( {
+        idEl: $( "#taxon_curator_user_id" ),
+        afterSelect: function( ui ) {
+          $( "#taxon_curator_user_id" ).val( ui.item.user_id );
+        }
+      } );
+    } );
+= form_for @taxon_curator, builder: BootstrapFormBuilder do |f|
+  - if @taxon_curator.errors.any?
+    #error_explanation
+      %h3
+        = pluralize(@taxon_curator.error.count, "error")
+        prohibited this taxon_curator from being saved:
+      %ul
+        - @taxon_curator.errors.full_messages.each do |message|
+          %li= message
+  = f.form_field :taxon do
+    = text_field_tag :taxon_name, "", class: "form-control", placeholder: t(:start_typing_taxon_name)
+    = f.hidden_field :taxon_id, value: f.object.taxon_id || params[:taxon_id]
+  = f.form_field :user do
+    = text_field_tag :user_name, "", class: "form-control", placeholder: t(:start_typing_someones_name)
+    = f.hidden_field :user_id, value: f.object.user_id || params[:user_id]
+  .stacked
+    = f.submit t(:save), class: "btn btn-primary"

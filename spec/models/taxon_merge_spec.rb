@@ -27,6 +27,7 @@ end
 describe TaxonMerge, "commit" do
   before(:each) do
     setup_taxon_merge
+    @merge.committer = @merge.user
   end
 
   it "should not duplicate conservation status" do

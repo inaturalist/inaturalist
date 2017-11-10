@@ -3942,6 +3942,38 @@ ALTER SEQUENCE taxon_changes_id_seq OWNED BY taxon_changes.id;
 
 
 --
+-- Name: taxon_curators; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE taxon_curators (
+    id integer NOT NULL,
+    taxon_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: taxon_curators_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE taxon_curators_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_curators_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE taxon_curators_id_seq OWNED BY taxon_curators.id;
+
+
+--
 -- Name: taxon_descriptions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5303,6 +5335,13 @@ ALTER TABLE ONLY taxon_changes ALTER COLUMN id SET DEFAULT nextval('taxon_change
 
 
 --
+-- Name: taxon_curators id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taxon_curators ALTER COLUMN id SET DEFAULT nextval('taxon_curators_id_seq'::regclass);
+
+
+--
 -- Name: taxon_descriptions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6169,6 +6208,14 @@ ALTER TABLE ONLY taxon_change_taxa
 
 ALTER TABLE ONLY taxon_changes
     ADD CONSTRAINT taxon_changes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxon_curators taxon_curators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taxon_curators
+    ADD CONSTRAINT taxon_curators_pkey PRIMARY KEY (id);
 
 
 --
@@ -9068,4 +9115,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170920185103');
 INSERT INTO schema_migrations (version) VALUES ('20170923232400');
 
 INSERT INTO schema_migrations (version) VALUES ('20171107200722');
+
+INSERT INTO schema_migrations (version) VALUES ('20171108223540');
 

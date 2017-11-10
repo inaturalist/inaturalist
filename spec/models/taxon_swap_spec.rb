@@ -43,6 +43,23 @@ describe TaxonSwap, "creation" do
     expect(swap).to be_valid
   end
 
+  it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the input taxon" do
+    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
+    tc = TaxonCurator.make!( taxon: genus )
+    swap = TaxonSwap.make
+    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
+    swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
+    expect( swap ).to be_valid
+  end
+  it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the output taxon" do
+    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
+    tc = TaxonCurator.make!( taxon: genus )
+    swap = TaxonSwap.make
+    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
+    swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
+    expect( swap ).to be_valid
+  end
+
 end
 
 describe TaxonSwap, "destruction" do
@@ -53,7 +70,8 @@ describe TaxonSwap, "destruction" do
   after(:each) { disable_elastic_indexing( Observation, UpdateAction, Taxon, Identification ) }
 
   it "should destroy updates" do
-    Observation.make!(:taxon => @input_taxon)
+    Observation.make!( taxon: @input_taxon )
+    @swap.committer = @swap.user
     without_delay do
       @swap.commit
     end
@@ -61,7 +79,7 @@ describe TaxonSwap, "destruction" do
     expect( @swap.update_actions.to_a ).not_to be_blank
     old_id = @swap.id
     @swap.destroy
-    expect(UpdateAction.where(resource_type: "TaxonSwap", resource_id: old_id).to_a).to be_blank
+    expect( UpdateAction.where( resource_type: "TaxonSwap", resource_id: old_id ).to_a ).to be_blank
   end
 
   it "should destroy subscriptions" do
@@ -75,6 +93,7 @@ end
 describe TaxonSwap, "commit" do
   before(:each) do
     prepare_swap
+    @swap.committer = @swap.user
   end
 
   it "should duplicate conservation status" do
@@ -235,6 +254,23 @@ describe TaxonSwap, "commit" do
       expect( child.parent ).to eq @input_taxon
       expect( child.taxon_change_taxa ).to be_blank
     end
+  end
+
+  it "should raise an error if commiter is not a taxon curator of a complete ancestor of the input taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
+    tc = TaxonCurator.make!( taxon: superfamily )
+    @swap.input_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::PermissionError
+  end
+  it "should raise an error if commiter is not a taxon curator of a complete ancestor of the output taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
+    tc = TaxonCurator.make!( taxon: superfamily )
+    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::PermissionError
   end
 
 end
@@ -461,6 +497,7 @@ describe "move_input_children_to_output" do
     @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
     [@input_taxon, @output_taxon, child].each(&:reload)
+    @swap.committer = @swap.user
     @swap.commit
     [@input_taxon, @output_taxon, child].each(&:reload)
     @swap.move_input_children_to_output( @input_taxon )
