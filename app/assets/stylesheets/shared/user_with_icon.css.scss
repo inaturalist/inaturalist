@@ -1,0 +1,23 @@
+.UserWithIcon {
+  .icon {
+    float: left;
+  }
+  .title {
+    a {
+      color: #000;
+    }
+  }
+  .subtitle {
+    margin-top: 5px;
+    line-height: 18px;
+    font-size: 15px;
+    i.fa {
+      font-size: 12px;
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    span {
+      vertical-align: text-top;
+    }
+  }
+}
