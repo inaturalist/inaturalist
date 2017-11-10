@@ -3243,6 +3243,7 @@ en:
       data_url: Data URL
       overlays: Overlays
   taxon_changes: Taxon Changes
+  taxon_curators: Taxon Curators
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
@@ -5044,6 +5045,10 @@ en:
           currently occurs. Introduced means it arrived because of human
           activity, while native means it arrived without human assistance.
           Endemic species only occur in a specific place and nowhere else.
+        about_taxon_curators_desc: |
+          These people manage the part of the taxonomic tree that includes
+          this taxon. If you want to make changes, please flag this taxon or
+          contact one of these people.
         charts_help_seasonality: |
           This chart shows the number of observations of this taxon grouped by
           month. Keep in mind that these are numbers of observations, so they

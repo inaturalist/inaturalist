@@ -90,14 +90,10 @@ class TaxonChange < ActiveRecord::Base
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
-    uneditable_input_taxon = input_taxa.detect do |t|
-      t.complete_taxon && !t.editable_by?( u )
-    end
+    uneditable_input_taxon = input_taxa.detect{ |t| !t.editable_by?( u ) }
     uneditable_output_taxon = nil
     unless uneditable_input_taxon
-      uneditable_output_taxon = output_taxa.detect do |t|
-        t.complete_taxon && !t.editable_by?( u )
-      end
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.editable_by?( u ) }
     end
     uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
   end

@@ -6,6 +6,7 @@
 @import "../shared/loading_spinner";
 @import "../shared/activity_item";
 @import "../shared/taxon_autocomplete";
+@import "../shared/user_with_icon";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
 
@@ -239,32 +240,6 @@ a.UserImage,
     width: 40px;
     height: 40px;
     border: 1px solid #B3B2B7;
-  }
-}
-
-.UserWithIcon {
-  .icon {
-    float: left;
-  }
-  .title {
-    font-size: 20px;
-    line-height: 22px;
-    a {
-      color: #000;
-    }
-  }
-  .subtitle {
-    margin-top: 5px;
-    line-height: 18px;
-    font-size: 15px;
-    i.fa-binoculars {
-      font-size: 12px;
-      color: $inat-green;
-      margin-right: 5px;
-    }
-    span {
-      vertical-align: text-top;
-    }
   }
 }
 
@@ -2463,6 +2438,12 @@ body > div > [role="dialog"] .easyzoom > a > img {
   }
 }
 
+.UserWithIcon {
+  .title {
+    font-size: 20px;
+    line-height: 22px;
+  }
+}
 
 
 .loading_spinner {
@@ -2501,8 +2482,6 @@ body > div > [role="dialog"] .easyzoom > a > img {
 .observations.infowindow .observation {
   width: 245px;
 }
-
-
 
 
 @media (max-width: 1000px) {

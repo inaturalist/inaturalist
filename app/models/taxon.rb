@@ -440,11 +440,8 @@ class Taxon < ActiveRecord::Base
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
     return nil if complete_rank && complete_rank_level.to_i > SPECIES_LEVEL
-    complete_ancestor = ancestors.where( "complete" ).order( "rank_level ASC" ).first
-    if !complete? && !complete_ancestor
-      return nil
-    end
-    if RANK_LEVELS[complete_ancestor.try(:complete_rank)].to_i >= SPECIES_LEVEL
+    return nil unless complete_taxon
+    if RANK_LEVELS[complete_taxon.try(:complete_rank)].to_i >= SPECIES_LEVEL
       return nil
     end
     scope = taxon_ancestors_as_ancestor.
@@ -876,7 +873,7 @@ class Taxon < ActiveRecord::Base
   def complete_taxon
     return self if complete?
     return @complete_taxon if @complete_taxon
-    @complete_taxon = ancestors.where( "complete" ).order( "rank_level ASC" ).first
+    @complete_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
     if @complete_taxon && ( @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i )
       @complete_taxon
     else

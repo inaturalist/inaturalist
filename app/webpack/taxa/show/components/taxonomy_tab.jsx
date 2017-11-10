@@ -4,6 +4,7 @@ import _ from "lodash";
 import { urlForTaxon } from "../../shared/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
+import UserWithIcon from "../../../observations/show/components/user_with_icon";
 
 const TaxonomyTab = ( {
   taxon,
@@ -148,6 +149,16 @@ const TaxonomyTab = ( {
     </ul>
   );
   const sortedNames = _.sortBy( names, n => [n.lexicon, n.name] );
+  let taxonCurators;
+  if ( taxon.taxonCurators && taxon.taxonCurators.length > 0 ) {
+    taxonCurators = (
+      <div>
+        <h4>{ I18n.t( "taxon_curators" ) }</h4>
+        <UserText text={ I18n.t( "views.taxa.show.about_taxon_curators_desc" ).replace( /\n+/gm, " " )} truncate={400} />
+        { _.map( taxon.taxonCurators, tc => <UserWithIcon user={ tc.user } key={ `taxon-curators-${tc.user.id}` } /> ) }
+      </div>
+    );
+  }
   return (
     <Grid className="TaxonomyTab">
       <Row className="tab-section">
@@ -178,6 +189,7 @@ const TaxonomyTab = ( {
                   </a>
                 </li>
               </ul>
+              { taxonCurators }
             </Col>
           </Row>
         </Col>
