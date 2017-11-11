@@ -1975,10 +1975,19 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  def self.update_stats_for_observations_of(taxon)
+  def self.update_stats_for_observations_of( taxon )
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    descendant_conditions = taxon.descendant_conditions.to_a
+    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", taxon.id]
+    obs_exist = Observation.
+      joins( "INNER JOIN taxon_ancestors ON taxon_ancestors.taxon_id = observations.taxon_id" ).
+      where( "observations.created_at > ?", taxon.created_at ).
+      where( conditions ).exists?
+    idents_exist = Identification.
+      joins( "INNER JOIN taxon_ancestors ON taxon_ancestors.taxon_id = identifications.taxon_id" ).
+      where( "identifications.created_at > ?", taxon.created_at ).
+      where( conditions ).exists?
+    return unless obs_exist || idents_exist
     result = Identification.elastic_search(
       filters: [ { bool: { should: [
         { term: { "taxon.ancestor_ids": taxon.id } },
