@@ -490,6 +490,7 @@ describe Observation do
 
     it "should replace an inactive taxon with its active equivalent" do
       taxon_change = make_taxon_swap
+      taxon_change.committer = taxon_change.user
       taxon_change.commit
       expect( taxon_change.input_taxon ).not_to be_is_active
       o = Observation.make!( taxon: taxon_change.input_taxon )
