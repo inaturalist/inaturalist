@@ -28,6 +28,10 @@ module INatAPIService
     return INatAPIService.get("/observations/popular_field_values", params)
   end
 
+  def self.geoip_lookup(params={})
+    return INatAPIService.get("/geoip_lookup", params)
+  end
+
   def self.get_json( path, params = {}, retries = 3 )
     url = INatAPIService::ENDPOINT + path;
     headers = {}
