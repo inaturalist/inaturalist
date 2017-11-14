@@ -128,8 +128,9 @@ module Logstasher
       format = "all" if format == "*/*"
       saved_params = Hash[
         payload[:params].delete_if{ |k,v|
-          # remove the blank and common or otherwise indexed params
+          # remove bank params, binary data params, and common or otherwise indexed params
           v.blank? ||
+          v.match( /^data:/ ) ||
           [ :controller, :action, :utf8, :authenticity_token ].include?(k.to_sym)
         }.map{ |k,v|
           # flatten out nested object and complex params like uploads

@@ -288,7 +288,7 @@ describe Project do
     end
   end
 
-  describe "aggregate_observations class method" do
+  describe "queue_project_aggregations class method" do
     before(:each) { enable_elastic_indexing(Observation, Place) }
     after(:each) { disable_elastic_indexing(Observation, Place) }
     it "should touch projects that prefer aggregation" do
