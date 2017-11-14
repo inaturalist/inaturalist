@@ -79,8 +79,11 @@ module ActsAsElasticModel
           result_ids = scope.select(:id).order(:id).map(&:id)
           return unless result_ids.any?
           id_hash = Digest::MD5.hexdigest( result_ids.join( "," ) )
-          return self.delay(unique_hash: { "#{self.name}::delayed_index": id_hash }).
-            elastic_index!(options.merge(ids: result_ids))
+          queue = result_ids.size > 100 ? "slow" : nil
+          return self.delay(
+            unique_hash: { "#{self.name}::delayed_index": id_hash },
+            queue: queue
+          ).elastic_index!( options.merge( ids: result_ids ) )
         end
         # now we can preload all associations needed for efficient indexing
         if self.respond_to?(:load_for_index)

@@ -398,14 +398,9 @@ class Taxon < ActiveRecord::Base
     return true if id_changed?
     update_life_lists
     update_obs_iconic_taxa
-    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
-    obs_exist = Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
-    idents_exist = Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
-    if ( obs_exist || idents_exist )
-      Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "Observation::update_stats_for_observations_of": id }).
-        update_stats_for_observations_of(id)
-    end
+    Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Observation::update_stats_for_observations_of": id }).
+      update_stats_for_observations_of(id)
     elastic_index!
     Taxon.refresh_es_index
     true
