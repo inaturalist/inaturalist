@@ -39,16 +39,7 @@ class ProjectsController < ApplicationController
         if @site && (@site_place = @site.place)
           @place = @site.place unless params[:everywhere].yesish?
         end
-        project_observations = ProjectObservation.
-          select("MAX(project_observations.id) AS id, project_id").
-          order("id DESC").
-          limit(9).
-          group('project_id')
-        if @place
-          project_observations = project_observations.joins(:project => :place).where(@place.self_and_descendant_conditions)
-        end
-        @projects = Project.where("projects.id IN (?)",
-          project_observations.map(&:project_id)).not_flagged_as_spam
+        @projects = Project.recently_added_to(place: @place)
         @created = Project.not_flagged_as_spam.order("projects.id desc").limit(9)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
         @featured = Project.featured

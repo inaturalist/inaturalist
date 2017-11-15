@@ -11,17 +11,6 @@ describe "Logstasher" do
     expect( Logstasher.logger ).to be_a Logger
   end
 
-  it "caches the hostname" do
-    expect( Socket ).to receive(:gethostname).exactly(:once).and_return(@test_host)
-    expect( Logstasher.hostname )
-    expect( Logstasher.hostname )
-    expect( Logstasher.hostname )
-  end
-
-  it "creates a hostname" do
-    expect( Logstasher.hostname ).to eq @test_host
-  end
-
   it "identified bots given a user agent" do
     bots = [
       "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",

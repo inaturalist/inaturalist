@@ -34,7 +34,7 @@ class UpdateAction < ActiveRecord::Base
       excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
       potential_subscriber_ids = potential_subscriber_ids - excepted_user_ids.uniq
     end
-    values = potential_subscriber_ids.map{ |id| "(#{self.id},#{id})" }
+    values = potential_subscriber_ids.compact.map{ |id| "(#{self.id},#{id})" }
     return if values.blank?
     sql = "INSERT INTO update_subscribers (update_action_id, subscriber_id) " +
           "VALUES #{ values.join(",") }"
