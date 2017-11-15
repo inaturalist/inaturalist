@@ -811,4 +811,40 @@ class Project < ActiveRecord::Base
     (response && response.total_results) || 0
   end
 
+  def self.recently_added_to_ids( options = { } )
+    options[:limit] ||= 9
+    project_observations = ProjectObservation.select( "project_id" )
+    # add place filter
+    if options[:place] && options[:place].is_a?( Place )
+      project_observations = project_observations.
+        joins( project: :place ).
+        where( options[:place].self_and_descendant_conditions )
+    end
+    # ignore projects previously included
+    if options[:not_project_ids]
+      project_observations = project_observations.
+        where("project_observations.project_id NOT IN (?)", options[:not_project_ids] )
+    end
+    ids = project_observations.
+      order( "project_observations.id DESC" ).
+      limit( options[:limit] ).
+      pluck(:project_id).uniq
+    # there are no more recent projects
+    return if ids.empty?
+    # if there might be more results, and we are short of the requested limit
+    if ids.length < options[:limit]
+      # fetch the remaining projects
+      ignore_project_ids = options[:not_project_ids] ? options[:not_project_ids].dup : []
+      more_ids = Project.recently_added_to_ids( options.merge(
+        limit: options[:limit] - ids.length,
+        not_project_ids: ids + ignore_project_ids ) )
+      ids += more_ids if more_ids
+    end
+    ids
+  end
+
+  def self.recently_added_to( options = { } )
+    Project.where( id: Project.recently_added_to_ids( options ) ).not_flagged_as_spam
+  end
+
 end
