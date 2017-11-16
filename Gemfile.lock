@@ -34,6 +34,16 @@ GIT
       i18n (~> 0.6, >= 0.6.6)
 
 GIT
+  remote: https://github.com/gaslight/angular-rails4-templates
+  revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
+  ref: v0.1.5
+  specs:
+    angular-rails-templates (0.1.5)
+      railties (>= 3.1)
+      sprockets (~> 2)
+      tilt
+
+GIT
   remote: https://github.com/hugueslamy/delayed_job_active_record.git
   revision: 7dcacc2459ad47c948153cc3bab78bc822191718
   ref: 7dcacc2459ad47c948153cc3bab78bc822191718
@@ -685,6 +695,7 @@ DEPENDENCIES
   addressable
   airbrake
   ancestry
+  angular-rails-templates!
   apipie-rails
   aws-sdk
   better_errors
