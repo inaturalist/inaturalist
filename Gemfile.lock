@@ -1,13 +1,13 @@
 GIT
-  remote: git://github.com/JayTeeSF/translate.git
+  remote: https://github.com/JayTeeSF/translate.git
   revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
   specs:
     translate-rails3 (0.2.3)
       ya2yaml (~> 0.30)
 
 GIT
-  remote: git://github.com/Programatica/irwi.git
-  revision: 323b3c89d74c2b0aec41b7b7a0c32fe1f569c9f2
+  remote: https://github.com/Programatica/irwi.git
+  revision: ca970bca1ccd07e9a7ac8782c7a892d1ec0f06d1
   specs:
     irwi (0.4.2)
       actionpack (>= 3.0.0)
@@ -17,34 +17,24 @@ GIT
       rails_autolink (>= 1.0)
 
 GIT
-  remote: git://github.com/elasticsearch/elasticsearch-rails.git
-  revision: 2f2c0fb7a25ece68fd3a9eec7b9026848e66fa4f
+  remote: https://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 64f31b41c073f05eac7d089aeea07c4366b7adca
   specs:
-    elasticsearch-model (0.1.6)
+    elasticsearch-model (6.0.0.alpha1)
       activesupport (> 3)
-      elasticsearch (> 0.4)
+      elasticsearch (> 1)
       hashie
-    elasticsearch-rails (0.1.6)
+    elasticsearch-rails (6.0.0.alpha1)
 
 GIT
-  remote: git://github.com/fnando/i18n-js.git
-  revision: 1a1cea7dbb264b7b345606c103051ea8eb49c44b
+  remote: https://github.com/fnando/i18n-js.git
+  revision: c37eba5e337e4e000a9a8f2cbba7a81d59d0f53f
   specs:
-    i18n-js (3.0.0.rc8)
-      i18n (~> 0.6)
+    i18n-js (3.0.2)
+      i18n (~> 0.6, >= 0.6.6)
 
 GIT
-  remote: git://github.com/gaslight/angular-rails4-templates
-  revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
-  ref: v0.1.5
-  specs:
-    angular-rails-templates (0.1.5)
-      railties (>= 3.1)
-      sprockets (~> 2)
-      tilt
-
-GIT
-  remote: git://github.com/hugueslamy/delayed_job_active_record.git
+  remote: https://github.com/hugueslamy/delayed_job_active_record.git
   revision: 7dcacc2459ad47c948153cc3bab78bc822191718
   ref: 7dcacc2459ad47c948153cc3bab78bc822191718
   specs:
@@ -53,7 +43,7 @@ GIT
       delayed_job (>= 3.0, < 5)
 
 GIT
-  remote: git://github.com/inaturalist/riparian.git
+  remote: https://github.com/inaturalist/riparian.git
   revision: 083846b15272cb8f4979d2bd331140fe868735cb
   specs:
     riparian (0.4.0)
@@ -64,7 +54,7 @@ GIT
       rdoc
 
 GIT
-  remote: git://github.com/jrgifford/delayed_paperclip.git
+  remote: https://github.com/jrgifford/delayed_paperclip.git
   revision: 8f11882ee945bf56affe8df4f591e5171581aac3
   ref: 8f11882ee945bf56affe8df4f591e5171581aac3
   specs:
@@ -72,7 +62,7 @@ GIT
       paperclip (>= 3.3)
 
 GIT
-  remote: git://github.com/kueda/activerecord-postgis-adapter.git
+  remote: https://github.com/kueda/activerecord-postgis-adapter.git
   revision: 4d7c4c91720e4824582fb3b1b271ba85ac06a391
   branch: activerecord42
   specs:
@@ -81,7 +71,7 @@ GIT
       rgeo-activerecord (~> 2.0)
 
 GIT
-  remote: git://github.com/kueda/bugguide.git
+  remote: https://github.com/kueda/bugguide.git
   revision: 970be508a4bce380cf8aa455d370a3cdd5719e10
   specs:
     bugguide (0.1.2)
@@ -90,26 +80,26 @@ GIT
       nokogiri (~> 1.6)
 
 GIT
-  remote: git://github.com/kueda/flickraw.git
+  remote: https://github.com/kueda/flickraw.git
   revision: 35cc21b0f1b6b1af3d10b19d53ea46dd2e5316ea
   branch: ssl-cert
   specs:
     flickraw (0.9.8)
 
 GIT
-  remote: git://github.com/kueda/georuby.git
+  remote: https://github.com/kueda/georuby.git
   revision: 00a95123977726492a4049eb1c36f98c372cd714
   specs:
     georuby (2.0.0)
 
 GIT
-  remote: git://github.com/kueda/preferences.git
+  remote: https://github.com/kueda/preferences.git
   revision: e96644efae320870938d611cfbe6cb77a81b926f
   specs:
     preferences (0.4.2)
 
 GIT
-  remote: git://github.com/kueda/rack-google-analytics.git
+  remote: https://github.com/kueda/rack-google-analytics.git
   revision: 92f9fe2f699a429b194a4c0ed18a5089e03454f8
   branch: eval-blocks-per-request
   specs:
@@ -118,20 +108,20 @@ GIT
       activesupport
 
 GIT
-  remote: git://github.com/kueda/xmp.git
+  remote: https://github.com/kueda/xmp.git
   revision: 3bf755b906fc6d8edbde68a29f264108c0c4a4ae
   specs:
     xmp (0.2.0)
       nokogiri (~> 1.6.0)
 
 GIT
-  remote: git://github.com/pleary/gdata.git
+  remote: https://github.com/pleary/gdata.git
   revision: 85805f4f077357ceafce89c34073fa163944d7d4
   specs:
     gdata (1.1.2)
 
 GIT
-  remote: git://github.com/ratafire/omniauth-soundcloud.git
+  remote: https://github.com/ratafire/omniauth-soundcloud.git
   revision: 34e7e48919dadc66a27ee2a135e54a5d82df91ee
   specs:
     omniauth-soundcloud (1.0.2)
@@ -274,7 +264,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     columnize (0.9.0)
-    commander (4.3.5)
+    commander (4.4.3)
       highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
     crack (0.4.3)
@@ -545,7 +535,7 @@ GEM
       netrc (~> 0.7)
     retriable (1.4.1)
     rgeo (0.5.3)
-    rgeo-activerecord (2.0.0)
+    rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
     rgeo-geojson (0.3.1)
@@ -695,7 +685,6 @@ DEPENDENCIES
   addressable
   airbrake
   ancestry
-  angular-rails-templates!
   apipie-rails
   aws-sdk
   better_errors
@@ -809,4 +798,4 @@ DEPENDENCIES
   yui-compressor
 
 BUNDLED WITH
-   1.15.1
+   1.16.0
