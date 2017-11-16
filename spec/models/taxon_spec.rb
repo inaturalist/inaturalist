@@ -789,15 +789,6 @@ describe Taxon, "moving" do
     expect( jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m} ).not_to be_blank
   end
 
-  it "should not queue a job to update observation stats if there are no observations" do
-    Delayed::Job.delete_all
-    stamp = Time.now
-    expect(Observation.of(@Calypte).count).to eq(0)
-    @Calypte.update_attributes(:parent => @Hylidae)
-    jobs = Delayed::Job.where("created_at >= ?", stamp)
-    expect(jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m}).to be_blank
-  end
-
   it "should update community taxa" do
     fam = Taxon.make!(:rank => "family")
     subfam = Taxon.make!(:rank => "subfamily", :parent => fam)

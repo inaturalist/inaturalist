@@ -726,7 +726,7 @@ class Project < ActiveRecord::Base
   class ProjectAggregatorAlreadyRunning < StandardError; end
 
   def aggregate_observations(options = {})
-    return false unless aggregation_allowed?
+    return false unless aggregation_allowed? && prefers_aggregation?
     logger = options[:logger] || Rails.logger
     start_time = Time.now
     added = 0
@@ -786,52 +786,17 @@ class Project < ActiveRecord::Base
     logger.info "[INFO #{Time.now}] Finished aggregation for #{self} in #{Time.now - start_time}s, #{added} observations added, #{fails} failures"
   end
 
-  def self.aggregate_observations(options = {})
-    # PID file stuff inspired by 
-    # http://stackoverflow.com/questions/3983883/how-to-ensure-a-rake-task-only-running-a-process-at-a-time and 
-    # http://codeincomplete.com/posts/2014/9/15/ruby_daemons/#separation-of-concerns
-    pidfile = File.join(Rails.root, "tmp", "pids", "project_aggregator.pid")
-    if File.exists? pidfile
-      f = File.open(pidfile, 'r')
-      pid = f.read.to_s.strip.to_i
-      f.close
-      begin
-        # send signal 0 to check process status
-        Process.kill(0, pid)
-        msg = "Project aggegator #{pid} is already running, quitting (this pid: #{Process.pid})"
-        Rails.logger.error "[ERROR #{Time.now}] #{msg}"
-        raise ProjectAggregatorAlreadyRunning, msg
-      rescue Errno::EPERM
-        msg = "Project aggegator #{pid} is already running but not owned, quitting (this pid: #{Process.pid})"
-        Rails.logger.error "[ERROR #{Time.now}] #{msg}"
-        raise ProjectAggregatorAlreadyRunning, msg
-      rescue Errno::ESRCH
-        # Process is not running even though pidfile is there, so delete it
-        Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} b/c process #{pid} is not running"
-        File.delete pidfile
-      end
-    end
-    File.open(pidfile, 'w') {|f| f.puts Process.pid}
-    logger = options[:logger] || Rails.logger
-    start_time = Time.now
-    num_projects = 0
-    logger.info "[INFO #{Time.now}] Starting Project.aggregate_observations"
+  def self.aggregate_observations_for(project_id)
+    return unless project = Project.find_by_id(project_id)
+    project.aggregate_observations
+  end
+
+  def self.queue_project_aggregations(options = {})
     Project.joins(:stored_preferences).where("preferences.name = 'aggregation' AND preferences.value = 't'").find_each do |p|
       next unless p.aggregation_allowed? && p.prefers_aggregation?
-      begin
-        p.aggregate_observations(logger: logger, pidfile: pidfile)
-      rescue => e
-        Rails.logger.error "[ERROR #{Time.now}] Failed to aggregate project #{p.id} after error: #{e}"
-      end
-      num_projects += 1
+      Project.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "Project::aggregate_observations_for": p.id }).aggregate_observations_for( p.id )
     end
-    logger.info "[INFO #{Time.now}] Finished Project.aggregate_observations in #{Time.now - start_time}s, #{num_projects} projects"
-    Rails.logger.info "[INFO #{Time.now}] Deleting #{pidfile} after complete aggregation"
-    File.delete(pidfile) if File.exists?(pidfile)
-  rescue => e
-    File.delete(pidfile) if File.exists?(pidfile) && !e.is_a?(ProjectAggregatorAlreadyRunning)
-    Rails.logger.error "[ERROR #{Time.now}] Deleting #{pidfile} after error: #{e}"
-    raise e
   end
 
   def sane_destroy
@@ -844,6 +809,42 @@ class Project < ActiveRecord::Base
     response = INatAPIService.observations_species_counts(
       project_id: self.id, per_page: 0, ttl: 300)
     (response && response.total_results) || 0
+  end
+
+  def self.recently_added_to_ids( options = { } )
+    options[:limit] ||= 9
+    project_observations = ProjectObservation.select( "project_id" )
+    # add place filter
+    if options[:place] && options[:place].is_a?( Place )
+      project_observations = project_observations.
+        joins( project: :place ).
+        where( options[:place].self_and_descendant_conditions )
+    end
+    # ignore projects previously included
+    if options[:not_project_ids]
+      project_observations = project_observations.
+        where("project_observations.project_id NOT IN (?)", options[:not_project_ids] )
+    end
+    ids = project_observations.
+      order( "project_observations.id DESC" ).
+      limit( options[:limit] ).
+      pluck(:project_id).uniq
+    # there are no more recent projects
+    return if ids.empty?
+    # if there might be more results, and we are short of the requested limit
+    if ids.length < options[:limit]
+      # fetch the remaining projects
+      ignore_project_ids = options[:not_project_ids] ? options[:not_project_ids].dup : []
+      more_ids = Project.recently_added_to_ids( options.merge(
+        limit: options[:limit] - ids.length,
+        not_project_ids: ids + ignore_project_ids ) )
+      ids += more_ids if more_ids
+    end
+    ids
+  end
+
+  def self.recently_added_to( options = { } )
+    Project.where( id: Project.recently_added_to_ids( options ) ).not_flagged_as_spam
   end
 
 end

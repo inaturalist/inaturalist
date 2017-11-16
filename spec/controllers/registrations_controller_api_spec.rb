@@ -3,7 +3,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Users::RegistrationsController, "create" do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
+    stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+      to_return(status: 200, body: "{ }",
+        headers: { "Content-Type" => "application/json" })
   end
+
   it "should create a user" do
     u = User.make
     expect {

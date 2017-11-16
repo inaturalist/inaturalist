@@ -35,6 +35,10 @@ class PostsController < ApplicationController
           user: {
             only: [:id, :login], 
             methods: [:user_icon_url, :medium_user_icon_url]
+          },
+          parent: {
+            only: [ :id, :title, :name ],
+            methods: [ :icon_url, :site_name_short ]
           }
         }
       end

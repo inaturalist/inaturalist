@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_site
+  before_filter :draft_site_requires_login
+  before_filter :draft_site_requires_admin
   before_filter :set_ga_trackers
   before_filter :set_request_locale
   before_filter :sign_out_spammers
@@ -55,6 +57,25 @@ class ApplicationController < ActionController::Base
     end
     @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
     @site ||= Site.default
+  end
+
+  def draft_site_requires_login
+    return unless @site && @site.draft?
+    return if [ login_path, user_session_path, session_path ].include?( request.path )
+    doorkeeper_authorize! if authenticate_with_oauth?
+    authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
+  end
+
+  def draft_site_requires_admin
+    return unless @site && @site.draft?
+    return if [ login_path, user_session_path, session_path ].include?( request.path )
+    return redirect_to login_path if !current_user
+    unless current_user.is_admin? ||
+        ( @site && @site.site_admins.where( user_id: current_user ).first )
+      sign_out current_user
+      flash[:error] = t(:only_administrators_may_access_that_page)
+      redirect_to login_path
+    end
   end
 
   def set_ga_trackers
@@ -579,16 +600,6 @@ class ApplicationController < ActionController::Base
     head(:ok) if request.request_method == "OPTIONS"
   end
 
-  # adding extra info to the payload sent to ActiveSupport::Notifications
-  # used in metrics collecting libraries like the Logstasher
-  def append_info_to_payload(payload)
-    super
-    payload.merge!(Logstasher.payload_from_request( request ))
-    payload.merge!(Logstasher.payload_from_session( session ))
-    if logged_in?
-      payload.merge!(Logstasher.payload_from_user( current_user ))
-    end
-  end
 end
 
 # Override the Google Analytics insertion code so it won't track admins

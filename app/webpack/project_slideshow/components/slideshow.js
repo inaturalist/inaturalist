@@ -15,7 +15,7 @@ class Slideshow extends Component {
     }
     if ( this.props.project.start_time && this.props.project.end_time ) {
       if ( this.props.project.in_progress ) {
-        dateRange = "In progress ";
+        dateRange = I18n.t("in_progress");
       }
       const start = moment( this.props.project.start_time ).format( "M/D/YY" );
       const end = moment( this.props.project.end_time ).format( "M/D/YY" );

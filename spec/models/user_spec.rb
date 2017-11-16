@@ -103,10 +103,22 @@ describe User do
     end
     
     it "should set latitude and longitude" do
-      u = User.make(:last_ip => "12.189.20.126")
+      stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+        to_return(status: 200, body: '{
+          "results": {
+            "country": "US",
+            "city": "Fairhaven",
+            "ll": [
+              41.6318,
+              -70.8801
+            ]
+          }
+        }', headers: { "Content-Type" => "application/json" })
+      u = User.make(:last_ip => "128.128.128.128")
       u.save
-      expect(u.latitude).to_not be_blank
-      expect(u.longitude).to_not be_blank
+      expect(u.latitude).to eq 41.6318
+      expect(u.longitude).to eq -70.8801
+      expect(u.lat_lon_acc_admin_level).to eq 2
     end
 
     it "should validate email address domains" do
