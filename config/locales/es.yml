@@ -1286,7 +1286,7 @@ es:
   embed_place_widget: integrar widget de lugar
   embed_this_assessment: Incrusta esta evaluación
   embed_widget_project: Insertar un widget para este proyecto en su página web
-  enable_offline_access: Habilitar el acceso sin conexión
+  enable_offline_access: Activar acceso sin conexión
   enable_offline_access_for_mobile: Habilitar el acceso sin conexión para móviles
   enlarge: Aumentar
   encompassing_places: Lugares circundantes
@@ -2580,7 +2580,7 @@ es:
   of_least_concern: De preocupación menor
   offensive_inappropriate: ofensivo / inapropiado
   official_blog: Blog oficial
-  offline_access_enabled: El acceso sin conexión habilitada
+  offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguó registro de observaciones
   ok: Aceptar
   on_: en
@@ -3968,7 +3968,7 @@ es:
   top_identifiers: Top identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer: Mayor observador
-  top_observers: Observadores Top
+  top_observers: Mejores observadores
   top_species: Especie superior
   total: total
   totals: totales
@@ -4605,6 +4605,11 @@ es:
           potencialmente, permitir software malicioso a afectar a las personas
           que visualizan la página. Si usted no sabe lo que es un en
           particular trozo de código no, por favor no agregarlo.
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: ¿Planeas utilizar %{site_name}
+            en el aula?
     guides:
       index:
         funding_html: "Los fondos para el desarrollo de Guías fue proporcionada por
@@ -5452,6 +5457,7 @@ es:
         youve_been_blocked_desc: La persona propietaria de este recurso te ha bloqueado,
           lo que evita que te comuniques con él o ella. La mayoría de las funciones
           interactivas de esta página no funcionará.
+        youve_blocked: Has bloqueado a esta persona
       spam:
         message_for_owner_and_curators_html: Este registro ha sido marcado como spam
           y ya no es visible públicamente. Lo puedes ver debido a que tu lo creaste,
