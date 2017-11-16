@@ -298,9 +298,36 @@ en:
   all_photos: All photos
   all_places: "All Places"
   all_projects: All Projects
+  all_rank_added_to_the_database:
+    phylum: All phyla added to the database
+    subphylum: All subphyla added to the database
+    superclass: All superclasses added to the database
+    class: All classes added to the database
+    subclass: All subclasses added to the database
+    infraclass: All infraclasses added to the database
+    superorder: All superorders added to the database
+    order: All orders added to the database
+    suborder: All suborders added to the database
+    infraorder: All infraorders added to the database
+    superfamily: All superfamilies added to the database
+    epifamily: All epifamilies added to the database
+    family: All families added to the database
+    subfamily: All subfamilies added to the database
+    supertribe: All supertribes added to the database
+    tribe: All tribes added to the database
+    subtribe: All subtribes added to the database
+    genus: All genera added to the database
+    genushybrid: All genushybrids added to the database
+    subgenus: All subgenera added to the database
+    section: All sections added to the database
+    subsection: All subsections added to the database
+    species: All species added to the database
+    hybrid: All hybrids added to the database
+    subspecies: All subspecies added to the database
+    variety: All varieties added to the database
+    form: All forms added to the database
   all_rights_reserved: all rights reserved
   all_species: All Species
-  all_species_added_to_the_database: All species added to the database
   all_taxa:
     rank:
       kingdom: Kingdom
@@ -5085,12 +5112,14 @@ en:
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
         complete_taxon_desc: |
-          "Complete" taxa have all of their descendant, extant species present in
-          the site's database. When a taxon is complete, we can say how many of
-          its species have been observed and how many still need to be observed.
-          Counts of species for "complete" taxa do not include "uncountable"
-          species like extinct species or inactive species concepts, and they
-          only include species, not infraspecic taxa.
+          "Complete" taxa have all of their descendant, extant taxa of a
+          specific rank present in the site's database. When a taxon is
+          complete to species, for example, we can say how many of its species
+          have been observed and how many still need to be observed. Counts of
+          species for "complete" taxa complete to species do not include
+          "uncountable" species like extinct species or inactive species
+          concepts, and they only include species, not infraspecific taxa like
+          subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>

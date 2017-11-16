@@ -1,5 +1,7 @@
 I18n.translations || (I18n.translations = {});
 I18n.translations["ar"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -70,6 +72,8 @@ I18n.translations["ar"] = {
   }
 };
 I18n.translations["az"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -160,6 +164,8 @@ I18n.translations["bg"] = {
   "added_as_a_part_of": "Добавено като част от",
   "added_on": "Добавено на",
   "agree_": "Съгласен",
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "rank": {
       "kingdom": "Царство",
@@ -895,6 +901,8 @@ I18n.translations["br"] = {
   "agree": "Degemer",
   "aka": "alias",
   "all": "An holl",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "Pep gwir miret strizh",
   "all_taxa": {
     "rank": {
@@ -1411,6 +1419,8 @@ I18n.translations["br"] = {
   }
 };
 I18n.translations["bs"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -1530,6 +1540,8 @@ I18n.translations["ca"] = {
   "aka": "alies",
   "all": "Tots",
   "all_flags_must_be_resolved": "Cal completar totes les etiquetes",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "tots els drets reservats",
   "all_taxa": {
     "rank": {
@@ -2744,6 +2756,8 @@ I18n.translations["ca"] = {
   "zoom_photo": "Zoom de la Foto"
 };
 I18n.translations["cs"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2814,6 +2828,8 @@ I18n.translations["cs"] = {
   }
 };
 I18n.translations["da"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2884,6 +2900,8 @@ I18n.translations["da"] = {
   }
 };
 I18n.translations["de"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -2954,6 +2972,8 @@ I18n.translations["de"] = {
   }
 };
 I18n.translations["el"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -3074,8 +3094,36 @@ I18n.translations["en"] = {
   "aka": "aka",
   "all": "All",
   "all_flags_must_be_resolved": "All flags must be resolved",
+  "all_rank_added_to_the_database": {
+    "class": "All classes added to the database",
+    "epifamily": "All epifamilies added to the database",
+    "family": "All families added to the database",
+    "form": "All forms added to the database",
+    "genus": "All genera added to the database",
+    "genushybrid": "All genushybrids added to the database",
+    "hybrid": "All hybrids added to the database",
+    "infraclass": "All infraclasses added to the database",
+    "infraorder": "All infraorders added to the database",
+    "order": "All orders added to the database",
+    "phylum": "All phyla added to the database",
+    "section": "All sections added to the database",
+    "species": "All species added to the database",
+    "subclass": "All subclasses added to the database",
+    "subfamily": "All subfamilies added to the database",
+    "subgenus": "All subgenera added to the database",
+    "suborder": "All suborders added to the database",
+    "subphylum": "All subphyla added to the database",
+    "subsection": "All subsections added to the database",
+    "subspecies": "All subspecies added to the database",
+    "subtribe": "All subtribes added to the database",
+    "superclass": "All superclasses added to the database",
+    "superfamily": "All superfamilies added to the database",
+    "superorder": "All superorders added to the database",
+    "supertribe": "All supertribes added to the database",
+    "tribe": "All tribes added to the database",
+    "variety": "All varieties added to the database"
+  },
   "all_rights_reserved": "all rights reserved",
-  "all_species_added_to_the_database": "All species added to the database",
   "all_taxa": {
     "rank": {
       "kingdom": "Kingdom",
@@ -4195,7 +4243,7 @@ I18n.translations["en"] = {
         "charts_help_history": "This chart shows the number of observations of this taxon by month for\nthe last ten years. Again, it is biased by the number of people\nobserving, but it will show you unusual spikes in observations, and if\nit seems flat or decreasing despite an increasing number of observers,\nthat might suggest a change in abundance.\n",
         "charts_help_other": "We also show seasonality charts for observation annotations.\nAnnotations are a new system for adding metadata to observations using\na controlled vocabulary of terms. So far we are only using \"Life\nStage\" and \"Plant Phenology\" (when the plant is flowering or\nfruiting). We do not yet have a way to add annotations directly, so\nfor now we are converting data from observation fields to annotations.\nIf you can't wait for us to build our annotating system, you can\ncontribute to \"Life Stage\" annotations by adding observation field\nvalues that have any of the following values: Adult, Teneral, Pupa,\nNymph, Larva, Egg, or Juvenile. So in particular, the \"Life Stage\" and\n\"Insect Life Stage\" fields are good. For \"Plant Phenology,\" we're\nlooking at any field with the word \"phenology\" in its name and\n\"flower\" or \"fruit\" in the value, so the \"Flowering Phenology\" field\nis a good one to use.\n",
         "charts_help_seasonality": "This chart shows the number of observations of this taxon grouped by\nmonth. Keep in mind that these are numbers of observations, so they\nare influenced both by when the organism can be observed and when\npeople bother to observe them. So a bird might seem to be very active\nin May, but that could also be due to more people birding in May who\ntend to ignore that species in later months. Similarly, if you see\nmore dragonflies in June than in January, that's probably because we\nhave more people observing in the northern hemisphere than in the\nsouthern hemisphere and not because dragonflies are more active in\nJune, so check the map when considering these charts. It's always a\ngood idea to be skeptical of these charts when there are low numbers\nof observations and/or large discrepancies between the number of\n\"Verifiable\" and \"Research Grade\" observations.\n",
-        "complete_taxon_desc": "\"Complete\" taxa have all of their descendant, extant species present in\nthe site's database. When a taxon is complete, we can say how many of\nits species have been observed and how many still need to be observed.\nCounts of species for \"complete\" taxa do not include \"uncountable\"\nspecies like extinct species or inactive species concepts, and they\nonly include species, not infraspecic taxa.\n",
+        "complete_taxon_desc": "\"Complete\" taxa have all of their descendant, extant taxa of a\nspecific rank present in the site's database. When a taxon is\ncomplete to species, for example, we can say how many of its species\nhave been observed and how many still need to be observed. Counts of\nspecies for \"complete\" taxa complete to species do not include\n\"uncountable\" species like extinct species or inactive species\nconcepts, and they only include species, not infraspecific taxa like\nsubspecies or varieties.\n",
         "discoveries_desc": "Most recent newly-identified species in this taxon",
         "frequency": {
           "research": "Research Grade",
@@ -4326,6 +4374,8 @@ I18n.translations["en"] = {
   "zoom_photo": "Zoom Photo"
 };
 I18n.translations["en-GB"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -4396,6 +4446,8 @@ I18n.translations["en-GB"] = {
   }
 };
 I18n.translations["en-US"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -4545,8 +4597,9 @@ I18n.translations["es"] = {
   "aka": "alias",
   "all": "Todos",
   "all_flags_must_be_resolved": "Se deben solucionar todos los indicadores",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "todos los derechos reservados",
-  "all_species_added_to_the_database": "Todas las especies se añadieron a la base de datos",
   "all_taxa": {
     "amphibians": "Anfibios",
     "animals": "Animales",
@@ -5821,6 +5874,8 @@ I18n.translations["es-MX"] = {
   "agree_with_current_taxon": "De acuerdo con la especie o grupo",
   "aka": "Alias",
   "all": "Todo",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "Todos los derechos reservados",
   "all_taxa": {
     "rank": {
@@ -6666,6 +6721,8 @@ I18n.translations["es-MX"] = {
   "your_observations": "Tus observaciones"
 };
 I18n.translations["et"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -6774,6 +6831,8 @@ I18n.translations["eu"] = {
   "agree": "ados",
   "aka": "Honela ezagutzen da:",
   "all": "Guztiak",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "eskubide guztiak erreserbatuta",
   "all_taxa": {
     "rank": {
@@ -7528,6 +7587,8 @@ I18n.translations["eu"] = {
   "zoom_photo": "Argazkia handitu"
 };
 I18n.translations["fa"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -7630,6 +7691,8 @@ I18n.translations["fi"] = {
   "agree_with_current_taxon": "Samaa mieltä nykyisen taksonin suhteen",
   "aka": "tunnetaan myös nimellä",
   "all": "Kaikki",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "Kaikki oikeudet pidätetään",
   "all_taxa": {
     "rank": {
@@ -8266,8 +8329,9 @@ I18n.translations["fr"] = {
   "aka": "alias",
   "all": "Tous",
   "all_flags_must_be_resolved": "Toutes les étiquettes doivent être résolues",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "tous droits réservés",
-  "all_species_added_to_the_database": "Toutes les espèces ont été ajoutées dans la base de données",
   "all_taxa": {
     "rank": {
       "kingdom": "Règne",
@@ -9534,6 +9598,8 @@ I18n.translations["gl"] = {
   "agree": "de acordo",
   "aka": "Coñecido como",
   "all": "Todos",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "Todos os dereitos reservados",
   "all_taxa": {
     "rank": {
@@ -10198,6 +10264,8 @@ I18n.translations["gl"] = {
   "your_observations": "As túas observacións"
 };
 I18n.translations["he"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -10268,6 +10336,8 @@ I18n.translations["he"] = {
   }
 };
 I18n.translations["hr"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -10338,6 +10408,8 @@ I18n.translations["hr"] = {
   }
 };
 I18n.translations["hu"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -10438,6 +10510,8 @@ I18n.translations["id"] = {
   "agree_with_current_taxon": "Setuju dengan takson saat ini",
   "aka": "alias",
   "all": "Semua",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "Hak cipta dilindungi undang-undang",
   "all_taxa": {
     "rank": {
@@ -11286,6 +11360,8 @@ I18n.translations["id"] = {
   "zoom_out": "Perjauh"
 };
 I18n.translations["is"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -11406,8 +11482,9 @@ I18n.translations["it"] = {
   "aka": "aka",
   "all": "Tutto",
   "all_flags_must_be_resolved": "Tutte le segnalazioni devo essere risolte",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "Tutti i diritti riservati",
-  "all_species_added_to_the_database": "Tutte le specie aggiunte al database",
   "all_taxa": {
     "rank": {
       "kingdom": "Regno",
@@ -12652,6 +12729,8 @@ I18n.translations["it"] = {
   "zoom_photo": "Zoom sulla foto"
 };
 I18n.translations["iw"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -12757,6 +12836,8 @@ I18n.translations["ja"] = {
   "agree_with_current_taxon": "現在の分類群に賛成",
   "aka": "別名",
   "all": "すべて",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "著作権を全て留保する",
   "all_taxa": {
     "rank": {
@@ -13717,8 +13798,9 @@ I18n.translations["ko"] = {
   "agree_with_current_taxon": "현재 분류군에 동의",
   "aka": "다른 말로",
   "all": "모두",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "모든 권리는 저작권자에게 있습니다.",
-  "all_species_added_to_the_database": "데이터베이스에 추가된 모든 종",
   "all_taxa": {
     "rank": {
       "kingdom": "계",
@@ -14380,6 +14462,8 @@ I18n.translations["ko"] = {
   "zoom_photo": "사진 확대/축소"
 };
 I18n.translations["lexicons"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -14450,6 +14534,8 @@ I18n.translations["lexicons"] = {
   }
 };
 I18n.translations["lt"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -14520,6 +14606,8 @@ I18n.translations["lt"] = {
   }
 };
 I18n.translations["lv"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -14611,6 +14699,8 @@ I18n.translations["mk"] = {
   "agree": "се согласувам",
   "aka": "наречен и",
   "all": "Сите",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "сите права задржани",
   "all_taxa": {
     "rank": {
@@ -15219,6 +15309,8 @@ I18n.translations["mk"] = {
   "your_observations": "Ваши набљудувања"
 };
 I18n.translations["my"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -15289,6 +15381,8 @@ I18n.translations["my"] = {
   }
 };
 I18n.translations["nb"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -15359,6 +15453,8 @@ I18n.translations["nb"] = {
   }
 };
 I18n.translations["nl"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -15429,6 +15525,8 @@ I18n.translations["nl"] = {
   }
 };
 I18n.translations["no"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -15526,6 +15624,8 @@ I18n.translations["oc"] = {
   "agree": "acceptar",
   "aka": "aliàs",
   "all": "Totes",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "totes los dreits reservats",
   "all_taxa": {
     "rank": {
@@ -16162,6 +16262,8 @@ I18n.translations["oc"] = {
   }
 };
 I18n.translations["pl"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -16232,6 +16334,8 @@ I18n.translations["pl"] = {
   }
 };
 I18n.translations["pt"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -16351,6 +16455,8 @@ I18n.translations["pt-BR"] = {
   "aka": "também conhecido como",
   "all": "Todas",
   "all_flags_must_be_resolved": "Todos os destaques devem ser identificados",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "todos os direitos reservados",
   "all_taxa": {
     "rank": {
@@ -17561,6 +17667,8 @@ I18n.translations["pt-BR"] = {
   "zoom_photo": "Ampliar Foto"
 };
 I18n.translations["ro"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -17631,6 +17739,8 @@ I18n.translations["ro"] = {
   }
 };
 I18n.translations["ru"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -17701,6 +17811,8 @@ I18n.translations["ru"] = {
   }
 };
 I18n.translations["sk"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -17771,6 +17883,8 @@ I18n.translations["sk"] = {
   }
 };
 I18n.translations["sl"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -17841,6 +17955,8 @@ I18n.translations["sl"] = {
   }
 };
 I18n.translations["sr"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -17911,6 +18027,8 @@ I18n.translations["sr"] = {
   }
 };
 I18n.translations["sr-RS"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -17981,6 +18099,8 @@ I18n.translations["sr-RS"] = {
   }
 };
 I18n.translations["sv"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -18051,6 +18171,8 @@ I18n.translations["sv"] = {
   }
 };
 I18n.translations["th"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -18121,6 +18243,8 @@ I18n.translations["th"] = {
   }
 };
 I18n.translations["tr"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -18191,6 +18315,8 @@ I18n.translations["tr"] = {
   }
 };
 I18n.translations["uk"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -18261,6 +18387,8 @@ I18n.translations["uk"] = {
   }
 };
 I18n.translations["vi"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -18376,8 +18504,9 @@ I18n.translations["zh-CN"] = {
   "agree_with_current_taxon": "同意当前的分类单元",
   "aka": "也就是",
   "all": "全部",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "保留所有权利",
-  "all_species_added_to_the_database": "所有物种已添加到数据库",
   "all_taxa": {
     "rank": {
       "kingdom": "界",
@@ -19493,6 +19622,8 @@ I18n.translations["zh-CN"] = {
   "zoom_photo": "缩放照片"
 };
 I18n.translations["zh-HK"] = {
+  "all_rank_added_to_the_database": {
+  },
   "all_taxa": {
     "common_name(locale: :en)": {
       "name": {
@@ -19613,8 +19744,9 @@ I18n.translations["zh-TW"] = {
   "aka": "也就是",
   "all": "所有",
   "all_flags_must_be_resolved": "所有標籤需要被解決",
+  "all_rank_added_to_the_database": {
+  },
   "all_rights_reserved": "保留所有權利",
-  "all_species_added_to_the_database": "所有添加在資料庫的物種",
   "all_taxa": {
     "rank": {
       "kingdom": "界",
