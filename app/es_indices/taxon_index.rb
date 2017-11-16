@@ -141,9 +141,12 @@ class Taxon < ActiveRecord::Base
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
         atlas_id: atlas.try( :id ),
-        complete_species_count: complete_species_count,
-        complete_rank: complete_taxon.try(:complete_rank)
+        complete_species_count: complete_species_count
       })
+      if complete_taxon
+        json[:complete_rank] = complete_taxon.complete_rank
+        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      end
     end
     json
   end
