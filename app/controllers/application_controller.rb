@@ -95,11 +95,28 @@ class ApplicationController < ActionController::Base
     # otherwise use the session, user's preferred, or site default,
     # or application default locale
     I18n.locale = params[:locale] || session[:locale] ||
-      current_user.try(:locale) || @site.locale || I18n.default_locale
+      current_user.try(:locale) || @site.locale || locale_from_header ||
+      I18n.default_locale
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
     end
     true
+  end
+
+  def locale_from_header
+    return if request.env["HTTP_ACCEPT_LANGUAGE"].blank?
+    http_locale = request.env["HTTP_ACCEPT_LANGUAGE"].
+      split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
+    return if http_locale.blank?
+    lang, region = http_locale.split( "-" )
+    return lang if region.blank?
+    region = "MX" if region.downcase == "xl"
+    locale = "#{lang.downcase}-#{region.upcase}"
+    if I18N_SUPPORTED_LOCALES.include?( locale )
+      locale
+    elsif I18N_SUPPORTED_LOCALES.include?( lang )
+      lang
+    end
   end
 
   def sign_out_spammers
