@@ -21,7 +21,10 @@ describe TaxonSplit, "validation" do
 end
 
 describe TaxonSplit, "commit" do
-  before(:each) { prepare_split }
+  before(:each) do
+    prepare_split
+    @split.committer = @split.user
+  end
 
   it "should generate updates for observers of the old taxon"
   it "should generate updates for identifiers of the old taxon"

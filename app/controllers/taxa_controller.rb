@@ -235,6 +235,7 @@ class TaxaController < ApplicationController
     return unless presave
     @taxon.attributes = params[:taxon]
     @taxon.creator = current_user
+    @taxon.current_user = current_user
     if @taxon.save
       Taxon.refresh_es_index
       flash[:notice] = t(:taxon_was_successfully_created)
@@ -264,6 +265,7 @@ class TaxaController < ApplicationController
 
   def update
     return unless presave
+    @taxon.current_user = current_user
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = t(:taxon_was_successfully_updated)
       if locked_ancestor = @taxon.ancestors.is_locked.first
@@ -1527,7 +1529,7 @@ class TaxaController < ApplicationController
 
   def taxon_curator_required
     unless @taxon.editable_by?( current_user )
-      flash[:notice] = t(:only_administrators_may_access_that_page)
+      flash[:notice] = t(:you_dont_have_permission_to_edit_that_taxon)
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else

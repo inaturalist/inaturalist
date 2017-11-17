@@ -3,6 +3,7 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 describe TaxonDrop, "commit" do
   before(:each) do
     prepare_drop
+    @drop.committer = @drop.user
   end
 
   it "should mark input taxon as active" do

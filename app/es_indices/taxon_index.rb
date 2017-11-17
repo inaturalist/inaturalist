@@ -143,6 +143,10 @@ class Taxon < ActiveRecord::Base
         atlas_id: atlas.try( :id ),
         complete_species_count: complete_species_count
       })
+      if complete_taxon
+        json[:complete_rank] = complete_taxon.complete_rank
+        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      end
     end
     json
   end

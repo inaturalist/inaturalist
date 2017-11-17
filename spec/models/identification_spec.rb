@@ -386,6 +386,7 @@ describe Identification, "creation" do
   describe "with an inactive taxon" do
     it "should replace the taxon with its active equivalent" do
       taxon_change = make_taxon_swap
+      taxon_change.committer = taxon_change.user
       taxon_change.commit
       expect( taxon_change.input_taxon ).not_to be_is_active
       expect( Identification.make!( taxon: taxon_change.input_taxon ).taxon ).to eq taxon_change.output_taxon
@@ -396,6 +397,7 @@ describe Identification, "creation" do
     end
     it "should not replace the taxon if there are multiple active equivalents" do
       taxon_change = make_taxon_split
+      taxon_change.committer = taxon_change.user
       taxon_change.commit
       expect( taxon_change.input_taxon ).not_to be_is_active
       expect( Identification.make!( taxon: taxon_change.input_taxon ).taxon ).to eq taxon_change.input_taxon
@@ -958,6 +960,7 @@ describe Identification, "category" do
     it "should be improving, supporting for acitve IDs" do
       expect( o.identifications.sort_by(&:id)[0].category ).to eq Identification::IMPROVING
       expect( o.identifications.sort_by(&:id)[1].category ).to eq Identification::SUPPORTING
+      swap.committer = swap.user
       swap.commit
       Delayed::Worker.new.work_off
       o.reload

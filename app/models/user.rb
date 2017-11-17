@@ -131,6 +131,7 @@ class User < ActiveRecord::Base
   has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
   has_many :user_mutes, inverse_of: :user, dependent: :destroy
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
