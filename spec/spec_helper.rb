@@ -149,20 +149,15 @@ end
 
 class FlickrCache
   class << self
-    alias :real_fetch :fetch
-    def fetch(flickraw, type, method, params={})
+    alias :real_request :request
+    def request( flickraw, type, method, params )
       fname = "flickr.#{ type }.#{ method }(#{ params })".gsub( /\W+/, "_" )
       fixture_path = File.expand_path( File.dirname( __FILE__ ) + "/fixtures/flickr_cache/#{fname}" )
       if File.exists?( fixture_path )
         # puts "[DEBUG] Loading FlickrCache for #{fname}: #{fixture_path}"
         return open( fixture_path ).read
       else
-        # cmd = "wget -O \"#{fixture_path}\" \"#{uri}\""
-        # puts "[DEBUG] Couldn't find EOL response fixture, you should probably do this:\n #{cmd}"
-        # puts "Caching API response, running #{cmd}"
-        # system cmd
-        # real_request(method, *args)
-        response = real_fetch( flickraw, type, method, params )
+        response = real_request( flickraw, type, method, params )
         open( fixture_path, "w" ) do |f|
           f << response
           puts "Cached #{fixture_path}. Check it in to prevent this happening in the future."
