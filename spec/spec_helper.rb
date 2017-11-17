@@ -14,6 +14,7 @@ require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/make_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/helpers/example_helpers")
 require File.expand_path(File.dirname(__FILE__) + "/../lib/eol_service.rb")
+require File.expand_path(File.dirname(__FILE__) + "/../lib/meta_service.rb")
 require File.expand_path(File.dirname(__FILE__) + "/../lib/flickr_cache.rb")
 
 include MakeHelpers
@@ -101,7 +102,7 @@ def http_login(user)
     user.login, "monkey")
 end
 
-# inject a fixture check into CoL service wrapper.  Need to stop making HTTP requests in tests
+# inject a fixture check into API wrappers.  Need to stop making HTTP requests in tests
 class EolService
   alias :real_request :request
   def request(method, *args)
@@ -117,6 +118,31 @@ class EolService
       puts "Caching API response, running #{cmd}"
       system cmd
       real_request(method, *args)
+    end
+  end
+end
+
+class MetaService
+  class << self
+    alias :real_fetch_with_redirects :fetch_with_redirects
+    def fetch_with_redirects( options, attempts = 3 )
+      uri = options[:request_uri]
+      fname = uri.to_s.parameterize
+      fixture_path = File.expand_path( File.dirname( __FILE__ ) + "/fixtures/#{name.underscore}/#{fname}" )
+      if File.exists?( fixture_path )
+        # puts "[DEBUG] Loading cached API response for #{uri}: #{fixture_path}"
+        # Nokogiri::XML(open(fixture_path))
+        # OpenStruct.new(body: open(fixture_path).read )
+        open( fixture_path ) do |f|
+          return OpenStruct.new( body: f.read )
+        end
+      else
+        cmd = "wget -O \"#{fixture_path}\" \"#{uri}\""
+        # puts "[DEBUG] Couldn't find API response fixture, you should probably do this:\n #{cmd}"
+        puts "Caching API response, running #{cmd}"
+        system cmd
+        real_fetch_with_redirects( options, attempts )
+      end
     end
   end
 end
