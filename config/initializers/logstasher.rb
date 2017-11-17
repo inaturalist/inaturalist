@@ -49,6 +49,7 @@ module Logstasher
     payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
     # this can be overwritten by merging Logstasher.payload_from_user
     payload[:logged_in] = false
+    payload[:i18n_locale] = I18n.locale.to_s.downcase
     payload
   end
 
