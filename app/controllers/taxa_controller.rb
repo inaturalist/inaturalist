@@ -1529,7 +1529,7 @@ class TaxaController < ApplicationController
 
   def taxon_curator_required
     unless @taxon.editable_by?( current_user )
-      flash[:notice] = t(:only_administrators_may_access_that_page)
+      flash[:notice] = t(:you_dont_have_permission_to_edit_that_taxon)
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else

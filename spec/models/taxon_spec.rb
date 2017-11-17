@@ -1195,13 +1195,14 @@ describe "complete" do
     expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
   end
   describe "when current_user" do
-    let(:family) { Taxon.make!( rank: Taxon::FAMILY, complete: true ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: family ) }
+    let(:superfamily) { Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true ) }
+    let(:taxon_curator) { TaxonCurator.make!( taxon: superfamily ) }
+    let(:family) { Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user ) }
     let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user ) }
     let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user ) }
     describe "is blank" do
       it "should prevent grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: family )
+        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily )
         expect( t ).not_to be_valid
       end
       it "should prevent grafting to a descendant" do
@@ -1209,37 +1210,61 @@ describe "complete" do
         expect( t ).not_to be_valid
       end
       it "should allow grafting to taxa beyond the complete_rank" do
-        family.update_attributes( complete_rank: Taxon::GENUS )
+        superfamily.update_attributes( complete_rank: Taxon::GENUS )
         expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species ) ).to be_valid
       end
     end
     describe "is not a TaxonCurator" do
       let(:current_user) { User.make! }
       it "should prevent grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: family, current_user: current_user )
+        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily, current_user: current_user )
         expect( t ).not_to be_valid
       end
       it "should prevent grafting to a descendant" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: current_user )
         expect( t ).not_to be_valid
       end
-      it "should allow grafting to taxa beyond the complete_rank" do
-        family.update_attributes( complete_rank: Taxon::GENUS )
-        expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: current_user ) ).to be_valid
+      describe "and complete taxon has a complete_rank" do
+        before do
+          superfamily.update_attributes( complete_rank: Taxon::GENUS )
+        end
+        it "should allow grafting to taxa beyond the complete_rank" do
+          expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: current_user ) ).to be_valid
+        end
+        it "should not allow grafting taxa beyond the complete_rank to the complete taxon" do
+          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: current_user, parent: superfamily )
+          expect( poorly_grafted_species ).not_to be_valid
+        end
+        it "should not allow grafting taxa beyond the complete_rank to the taxa before the complete_rank" do
+          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: current_user, parent: family )
+          expect( poorly_grafted_species ).not_to be_valid
+        end
       end
     end
     describe "is a TaxonCurator" do
       it "should allow grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
+        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily, current_user: taxon_curator.user )
         expect( t ).to be_valid
       end
       it "should allow grafting to a descendant" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
         expect( t ).to be_valid
       end
-      it "should allow grafting to taxa beyond the complete_rank" do
-        family.update_attributes( complete_rank: Taxon::GENUS )
-        expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: taxon_curator.user ) ).to be_valid
+      describe "and complete taxon has a complete_rank" do
+        before do
+          superfamily.update_attributes( complete_rank: Taxon::GENUS )
+        end
+        it "should allow grafting to taxa beyond the complete_rank" do
+          expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: taxon_curator.user ) ).to be_valid
+        end
+        it "should allow grafting taxa beyond the complete_rank to the complete taxon" do
+          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: taxon_curator.user, parent: superfamily )
+          expect( poorly_grafted_species ).to be_valid
+        end
+        it "should allow grafting taxa beyond the complete_rank to the taxa before the complete_rank" do
+          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: taxon_curator.user, parent: family )
+          expect( poorly_grafted_species ).to be_valid
+        end
       end
     end
   end

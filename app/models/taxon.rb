@@ -868,12 +868,17 @@ class Taxon < ActiveRecord::Base
   def complete_taxon
     return self if complete?
     return @complete_taxon if @complete_taxon
-    @complete_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
-    if @complete_taxon && ( @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i )
-      @complete_taxon
-    else
-      @complete_taxon = nil
+    unless @complete_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
+      return nil
     end
+    if level_within_complete_range = @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i
+      return @complete_taxon
+    end
+    parent_inside_complete_range = parent.rank_level.to_i > @complete_taxon.complete_rank_level.to_i
+    if parent_inside_complete_range
+      return @complete_taxon
+    end
+    @complete_taxon = nil
   end
 
   def graftable_if_complete
