@@ -59,50 +59,16 @@ class UpdateAction < ActiveRecord::Base
 
 
   def self.email_updates
-    # site will be looked up tons of times, so store it in CONFIG
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
-    email_count = 0
     user_ids = UpdateAction.joins(:update_subscribers).
       where(["created_at BETWEEN ? AND ?", start_time, end_time]).
       select("DISTINCT subscriber_id").map{|u| u.subscriber_id}.compact.uniq.sort
-    delivery_times = []
-    process_start_time = Time.now
-    msg = "[INFO #{Time.now}] start daily updates emailer, #{user_ids.size} users"
-    Rails.logger.info msg
-    puts msg
     user_ids.each do |subscriber_id|
-      delivery_start_time = Time.now
-      msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
-      Rails.logger.info msg
-      puts msg
-      email_sent = begin
+      UpdateAction.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "UpdateAction::email_updates_to_user": subscriber_id }).
         email_updates_to_user(subscriber_id, start_time, end_time)
-      rescue Net::SMTPServerBusy => e
-        sleep(5)
-        begin
-          email_updates_to_user(subscriber_id, start_time, end_time)
-        rescue Net::SMTPServerBusy => e
-          msg =  "[ERROR #{Time.now}] daily updates emailer couldn't deliver to #{subscriber_id} (Net::SMTPServerBusy): #{e.message}"
-          Rails.logger.error msg
-          puts msg
-          next
-        end
-      rescue
-        Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} failed"
-      end
-      if email_sent
-        msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} sent"
-        Rails.logger.info msg
-        puts msg
-        delivery_times << (Time.now - delivery_start_time)
-        email_count += 1
-      end
     end
-    avg_time = delivery_times.size == 0 ? 0 : delivery_times.sum / delivery_times.size
-    msg = "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - process_start_time} s, avg: #{avg_time}"
-    Rails.logger.info msg
-    puts msg
   end
 
   def self.email_updates_to_user(subscriber, start_time, end_time)
@@ -111,6 +77,7 @@ class UpdateAction < ActiveRecord::Base
     user ||= User.find_by_login(subscriber)
     return unless user.is_a?(User)
     return if user.email.blank?
+    User.preload_associations(user, :stored_preferences)
     return if user.prefers_no_email
     return unless user.active? # email verified
     updates = UpdateAction.elastic_paginate(

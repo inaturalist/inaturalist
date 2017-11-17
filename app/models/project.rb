@@ -745,6 +745,8 @@ class Project < ActiveRecord::Base
     last_observation_id = 0
     search_params = Observation.get_search_params(params)
     while true
+      # stop if the project was deleted since the job started
+      return unless Project.where(id: id).exists?
       if options[:pidfile]
         unless File.exists?(options[:pidfile])
           msg = "Project aggregator running without a PID file at #{options[:pidfile]}"
