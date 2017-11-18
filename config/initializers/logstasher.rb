@@ -50,6 +50,10 @@ module Logstasher
     # this can be overwritten by merging Logstasher.payload_from_user
     payload[:logged_in] = false
     payload[:i18n_locale] = I18n.locale.to_s.downcase
+    payload[:http_locale_matches_i18n] = payload[:i18n_locale] == payload[:http_languages]
+    payload[:http_lang_matches_i18n] = payload[:i18n_locale] &&
+      payload[:http_languages] &&
+      payload[:i18n_locale].split( "-" )[0] == payload[:http_languages].split( "-" )[0]
     payload
   end
 
