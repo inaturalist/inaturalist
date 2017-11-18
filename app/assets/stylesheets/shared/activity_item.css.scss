@@ -95,11 +95,13 @@ body > div > [role="dialog"] .ActivityItem {
     }
   }
   .panel.leading .panel-heading {
-    i {
-      margin-right: 2px;
-    }
     .item-status {
       color: $inat-green;
+      i {
+        margin-right: 2px;
+        position: relative;
+        bottom: 2px;
+      }
     }
   }
   .panel-body {
