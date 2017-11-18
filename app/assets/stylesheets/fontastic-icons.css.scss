@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "inaturalisticons";
-  src:url("inaturalisticons.eot");
-  src:url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
-    url("inaturalisticons.woff") format("woff"),
-    url("inaturalisticons.ttf") format("truetype"),
-    url("inaturalisticons.svg#inaturalisticons") format("svg");
+  src:asset-data-url("inaturalisticons.eot");
+  src:asset-url("inaturalisticons.eot?#iefix") format("embedded-opentype"),
+    asset-data-url("inaturalisticons.woff") format("woff"),
+    asset-data-url("inaturalisticons.ttf") format("truetype"),
+    asset-url("inaturalisticons.svg#inaturalisticons") format("svg");
   font-weight: normal;
   font-style: normal;
 
