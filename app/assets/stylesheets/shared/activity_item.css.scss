@@ -94,6 +94,14 @@ body > div > [role="dialog"] .ActivityItem {
       color: $inat-green;
     }
   }
+  .panel.leading .panel-heading {
+    i {
+      margin-right: 2px;
+    }
+    .item-status {
+      color: $inat-green;
+    }
+  }
   .panel-body {
     padding: 0px;
     line-height: 1;
