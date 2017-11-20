@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 4.2.6"
+gem 'rails', "~> 4.2.7.1"
 
 gem 'apipie-rails'
 gem 'aasm'
@@ -37,7 +37,7 @@ gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'devise_suspendable'
 gem 'diffy'
-gem 'doorkeeper'
+gem 'doorkeeper', "~> 4.2.0"
 gem 'dynamic_form'
 gem 'exifr'
 gem 'fastimage'
@@ -70,7 +70,7 @@ gem "omniauth-google-oauth2", "~> 0.4.1"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem "paperclip", "4.2.1"
+gem "paperclip", "4.2.2"
 gem 'delayed_paperclip', git: 'https://github.com/jrgifford/delayed_paperclip.git',
   ref: '8f11882ee945bf56affe8df4f591e5171581aac3'
 gem 'pg'
@@ -132,8 +132,5 @@ group :test do
   gem "rspec", "~> 3.4.0"
   gem "rspec-rails", "~> 3.4.2"
   gem "rspec-html-matchers"
-  gem 'cucumber-rails', require: false
-  gem 'selenium-webdriver'
-  gem "chromedriver-helper"
   gem "webmock"
 end

@@ -93,7 +93,8 @@ class SiteStatistic < ActiveRecord::Base
     at_time = at_time.utc
     { species_counts: Taxon.of_rank_equiv_or_lower(10).joins(:observations).
         where("observations.created_at <= ?", at_time).
-        count(:id, distinct: true),
+        distinct.
+        count(:id),
       species_counts_by_site: Hash[ Taxon.joins(observations: :site).
         where("observations.created_at <= ?", at_time).
         select("sites.name, count(distinct taxa.id) as count").
