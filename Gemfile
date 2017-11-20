@@ -55,7 +55,7 @@ gem 'i18n-inflector-rails'
 gem 'i18n-js', :git => 'https://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'https://github.com/Programatica/irwi.git'
 gem 'json'
-gem 'jquery-rails'
+gem 'jquery-rails', "~> 4.0.4"
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
