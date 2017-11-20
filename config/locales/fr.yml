@@ -352,8 +352,6 @@ fr:
   all_projects: Tous les projets
   all_rights_reserved: tous droits réservés
   all_species: Toutes les Espèces
-  all_species_added_to_the_database: Toutes les espèces ont été ajoutées dans la base
-    de données
   all_taxa:
     rank:
       kingdom: Règne
@@ -1821,9 +1819,9 @@ fr:
   insects: insectes
   insect_life_stage: Stade de l'insecte
   inspired_by_the_flickr_group: Inspirée par le groupe Flickr <a href='http://flickr.com/groups/idplease/'>,
-    Identification SVP</a> est un endroit où vous pouvez poster des observations sur
-    des choses que vous ne connaissez pas et où vous pouvez aider les gens à identifier
-    des créatures mystérieuses!
+    Identification SVP</a> est un endroit où vous pouvez publier des observations
+    sur des choses que vous ne connaissez pas et où vous pouvez aider les gens à identifier
+    des créatures mystérieuses !
   interactions: Interactions
   internal_server_error: Erreur interne du serveur
   introduced: Introduite
@@ -2700,7 +2698,7 @@ fr:
     follow_panel_title_local: Suivre quelques naturalistes proches
     follow_panel_title_global: Suivre quelques naturalistes actifs
     follow_panel_body: Si vous visitez ces profils et cliquez sur le bouton de suivi,
-      vous allez être informé lorsqu'ils posteront des observations
+      vous allez être informé lorsqu’ils publieront des observations
     following_panel_title: Garder la trace des gens, des taxons et des lieux
     following_panel_body: |-
       Sur %{site_name}, vous pouvez suivre les gens pour garder trace des
@@ -2788,7 +2786,8 @@ fr:
   or_if_you_dont_want_email: Ou si vous ne voulez juste pas de courriels...
   or_invite_your_friends: ou inviter vos amis
   or_invited: ou invité.
-  or_post_message_to_google_group: 'ou postez un message à notre groupe Google :'
+  or_post_message_to_google_group: 'ou publiez un message sur notre groupe Google
+    :'
   or_upload: Ou téléverser un
   or_you_can: Ou vous pouvez...
   or_you_can_: ou vous pouvez
@@ -3178,7 +3177,7 @@ fr:
   projects_youve_joined: Projets que vous avez rejoints
   proposed_taxa_that_contradict_the_community_id: Taxons proposés qui sont en contradiction
     avec l’ID de la communauté
-  proposed_taxa_that_support_the_community_id: Taxons proposés qui supportent l’ID
+  proposed_taxa_that_support_the_community_id: Taxons proposés qui confirment l’ID
     de la communauté
   protozoans: protozoaires
   provider_authorizations: Autorisations des fournisseurs
@@ -3485,7 +3484,7 @@ fr:
   show: Afficher
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
   show_default_taxon_photos: afficher les photos de taxon par défaut
-  show_common_names: Afficher les noms communs
+  show_common_names: Afficher les noms vulgaires
   show_counts: Afficher le nombre en fonction de la liste.
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_kml: Afficher en format KML
@@ -3814,7 +3813,7 @@ fr:
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
   taxonomic_tree_browser: Explorateur de l’arborescence taxinomique
-  taxonomy_settings: Configuration de Taxonomy
+  taxonomy_settings: Configuration de taxinomie
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
   tell_us_why: Dites-nous pourquoi...
@@ -5011,7 +5010,7 @@ fr:
         we_also_support_google_html: 'Nous acceptons aussi Google Photos : <a href="%{url}">Configurer
           votre compte Google ›</a>'
         we_also_support_uploading_photos: |-
-          Nous acceptons aussi le téléchargement direct de photo sur %{site_name}, mais il peut être un peu lent, donc nous n’autorisons qu’un seul téléchargement à la fois.
+          Nous acceptons aussi le téléversement direct de photos sur %{site_name}, mais il peut être un peu lent, donc nous n’autorisons qu’un seul téléversement à la fois.
           L’utilisation de Flickr ou de Google est sans doute plus rapide si vous utilisez déjà ces services.
         what_are_tags?: Que sont les étiquettes?
         tags_are_keywords_you_can_add_to_an_html: "Les étiquettes sont des mots-clés
@@ -5909,8 +5908,8 @@ fr:
           \ autre comportement que nous considérons inapproprié pour notre site, nous\n
           \ enquêterons.\n</ p>"
         common_names_desc: |-
-          Afficher les noms comuns. A désactiver si vous ne voulez voir que les noms scientifiques.
-          Notez que vous pouvez controler le type de noms communs que vous voyez en changeant vos paramètres régionnaux et votre localisation.
+          Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
+          Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
         inaturalist_network_affiliation_desc_html: |-
           Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
           sites Web localisés liés à la communauté mondiale de iNaturalist.
@@ -6356,12 +6355,12 @@ fr:
         auto_description: Description automatique
         wikipedia_title: Titre Wikipédia
         wikipedia_summary: Résumé Wikipédia
-        source_identifier: Identifieur source
+        source_identifier: Identifiant source
         source_url: URL source
       taxon_name:
         name_provider: Fournisseur de nom
         source_url: URL source
-        source_identifier: Identifieur source
+        source_identifier: Identifiant source
       source:
         title: Titre
         in_text: Dans le texte
