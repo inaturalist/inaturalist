@@ -94,9 +94,13 @@ class ApplicationController < ActionController::Base
     # use params[:locale] for single-request locale settings,
     # otherwise use the session, user's preferred, or site default,
     # or application default locale
-    I18n.locale = params[:locale] || session[:locale] ||
-      current_user.try(:locale) || @site.locale || locale_from_header ||
-      I18n.default_locale
+    locale = params[:locale]
+    locale = session[:locale] if locale.blank?
+    locale = current_user.try(:locale) if locale.blank?
+    locale = @site.locale if locale.blank?
+    locale = locale_from_header if locale.blank?
+    locale = I18n.default_locale if locale.blank?
+    I18n.locale = locale
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
     end
