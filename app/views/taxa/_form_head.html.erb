@@ -25,7 +25,11 @@ var CONSERVATION_STATUS_AUTHORITIES = <%=json_escape @conservation_status_author
     );
 
     $('#taxonchooser').jqm({
+      overlay: 30,
       onShow: function(h) {
+        if (h.c.overlay > 0) {
+          h.o.prependTo('body');
+        }
         h.w.fadeIn(500);
         if (h.w.find('#taxon_browser > .loading').length == 1) {
           h.w.find('#taxon_browser').load(

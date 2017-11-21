@@ -60,9 +60,12 @@ var iNaturalist = window.iNaturalist = new function(){
     }
   };
   
-  this.modalShow = function(o) {
-    iNaturalist.modalCenter(o.w)
-    o.w.show()
+  this.modalShow = function(hash) {
+    iNaturalist.modalCenter(hash.w)
+    hash.w.show()
+    if (hash.c.overlay > 0) {
+      hash.o.prependTo('body');
+    }
   }
   
   this.modalCenter = function(elt) {
