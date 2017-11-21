@@ -949,6 +949,8 @@ ul.leafylist li li:first-child {
     }
     .caret {
       margin-left: 2px;
+      position: relative;
+      bottom: 1px;
     }
   }
 }
