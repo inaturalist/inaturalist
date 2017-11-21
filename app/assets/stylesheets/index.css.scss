@@ -939,11 +939,16 @@ ul.leafylist li li:first-child {
     margin-top: 3px;
     i {
       color: $inat-green;
-      font-size: 16px;
-      margin-top: -5px;
-      line-height: 0px;
+      font-size: 20px;
+      line-height: 0;
+      float: left;
+      margin-right: 2px;
       position: relative;
-      top: -2px;
+      top: -1px;
+      left: -2px;
+    }
+    .caret {
+      margin-left: 2px;
     }
   }
 }
