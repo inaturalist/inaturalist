@@ -2,30 +2,6 @@
 #footer.bootstrap
   .container
     .row
-      .col-xs-12
-        #locale-chooser.clearfix
-          %ul.list-inline
-            :ruby
-              target_locales = %w(en es es-ES es-MX fr it ko ja pt-BR zh-CN zh-TW)
-              non_target_locales = I18n.t( "locales", locale: :en ).keys.compact.map(&:to_s) - target_locales
-              target_locales.unshift( target_locales.delete( I18n.locale.to_s ) || non_target_locales.delete( I18n.locale.to_s ) )
-            - target_locales.sort.each do |locale|
-              %li
-                - if I18n.locale.to_s == locale
-                  = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale ), class: "btn btn-link", disabled: "disabled"
-                - else
-                  = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale ), class: "btn btn-link"
-          .btn-group.dropup
-            %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
-              = I18n.t( "other" ).capitalize
-              %span.caret
-              %span.sr-only=t :toggle_dropdown, default: "Toggle Dropdown"
-            %ul.dropdown-menu
-              - non_target_locales.each do |locale|
-                %li
-                  = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale )
-  .container
-    .row
       .col-xs-2
         %p
           %a{ href: site.about_url }=t :about
@@ -59,11 +35,22 @@
   .container
     .row
       .col-xs-12
-        =t :member_of_the_inaturalist_network_html, url: "/pages/network"
-        &nbsp;
-        |
-        &nbsp;
-        =t :powered_by_inaturalist_open_source_software_html
-        |
-        &nbsp;
-        =t :documentation_for_developers_html
+        .links.inlineblock
+          =t :member_of_the_inaturalist_network_html, url: "/pages/network"
+          &nbsp;
+          |
+          &nbsp;
+          =t :powered_by_inaturalist_open_source_software_html
+          |
+          &nbsp;
+          =t :documentation_for_developers_html
+        .btn-group.dropup.pull-right
+          %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
+            %i.icon-ios-world
+            = I18n.t( "locales.#{I18n.locale}" )
+            %span.caret
+            %span.sr-only=t :toggle_dropdown, default: "Toggle Dropdown"
+          %ul.dropdown-menu
+            - I18n.t( "locales", locale: :en ).keys.each do |locale|
+              %li
+                = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale )

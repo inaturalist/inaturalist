@@ -7,6 +7,7 @@
 *= require flickr_photos
 *= require projects
 */
+@import "colors";
 body {
   margin: 0;
   padding: 0;
@@ -872,25 +873,11 @@ ul.leafylist li li:first-child {
 /* Footer */
 #footer {
   background-color: #eee;
-  padding: 0 0 60px 0;
+  padding: 60px 0;
   font-size: 100%;
   color: #999;
   width: 100%;
   min-width: 980px;
-
-  #locale-chooser {
-    border-bottom: 1px solid #ccc;
-    margin: 15px 0 20px;
-    ul, .btn-group {
-      float: left;
-    }
-    .btn.btn-link {
-      padding-left: 0;
-    }
-    .btn.btn-link:hover {
-      text-decoration: none;
-    }
-  }
 }
 #footer a { color: #333; }
 #footer a:hover { font-weight: 600; }
@@ -928,12 +915,37 @@ ul.leafylist li li:first-child {
 #footer .social-media-link.facebook:before {
   content: "\f09a";
 }
-#inatnotice { color: #aaa; background-color: #666; padding-top: 20px; padding-bottom: 20px; }
-#inatnotice a {
-  color: white;
-}
-#inatnotice a:first-child {
-  font-weight: bold;
+#inatnotice {
+  color: #aaa;
+  background-color: #666;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 0px;
+
+  .links {
+    line-height: 1.42857143;
+    padding: 10px 0px;
+    a {
+      color: white;
+    }
+    a:first-child {
+      font-weight: bold;
+    }
+  }
+  .btn {
+    background-color: #484848;
+    color: white;
+    border-color: #aaa;
+    margin-top: 3px;
+    i {
+      color: $inat-green;
+      font-size: 16px;
+      margin-top: -5px;
+      line-height: 0px;
+      position: relative;
+      top: -2px;
+    }
+  }
 }
 
 #mobiletogglelink {font-size: 400%;margin-bottom:10%;}
