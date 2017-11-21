@@ -65,8 +65,9 @@ class ProviderOauthController < ApplicationController
       first
     if client.trusted?
       access_token ||= Doorkeeper::AccessToken.create!(
-        :application_id    => client.id,
-        :resource_owner_id => current_user.id,
+        application_id: client.id,
+        resource_owner_id: current_user.id,
+        scopes: Doorkeeper.configuration.default_scopes.to_s
       )
     end
 
@@ -137,8 +138,9 @@ class ProviderOauthController < ApplicationController
       first
     if client.trusted?
       access_token ||= Doorkeeper::AccessToken.create!(
-        :application_id    => client.id,
-        :resource_owner_id => user.id,
+        application_id: client.id,
+        resource_owner_id: user.id,
+        scopes: Doorkeeper.configuration.default_scopes.to_s
       )
     end
     access_token
@@ -214,8 +216,9 @@ class ProviderOauthController < ApplicationController
       first
     if client.trusted?
       access_token ||= Doorkeeper::AccessToken.create!(
-        :application_id    => client.id,
-        :resource_owner_id => user.id,
+        application_id: client.id,
+        resource_owner_id: user.id,
+        scopes: Doorkeeper.configuration.default_scopes.to_s
       )
     end
     access_token
