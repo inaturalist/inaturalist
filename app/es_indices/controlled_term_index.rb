@@ -2,7 +2,7 @@ class ControlledTerm < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes({ values: [ :values, :labels, :controlled_term_taxa ] }, :labels, :controlled_term_taxa) }
+  scope :load_for_index, -> { includes({ values: [ :values, :labels, :controlled_term_taxa ] }, :labels, :controlled_term_taxa, :attrs) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
