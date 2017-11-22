@@ -33,6 +33,7 @@ const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel } ) => {
         latitude={ latitude }
         longitude={ longitude }
         zoomLevel={ zoomLevel }
+        gestureHandling="auto"
       />
     );
   } else {

@@ -424,6 +424,7 @@ iNaturalist.Map.MapTypes.light_no_labels = new google.maps.StyledMapType([
 // static functions
 iNaturalist.Map.createMap = function(options) {
   options = options || {}
+  console.log( "[DEBUG] createMap received options: ", options );
   options = $.extend({}, {
     div: 'map',
     center: new google.maps.LatLng(options.lat || 0, options.lng || 0),
@@ -431,8 +432,11 @@ iNaturalist.Map.createMap = function(options) {
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
-    clickableIcons: false
+    clickableIcons: false,
+    gestureHandling: "greedy"
   }, options);
+
+  console.log( "[DEBUG] createMap final options: ", options );
   
   var map;
   
