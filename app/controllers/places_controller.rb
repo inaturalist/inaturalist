@@ -449,9 +449,8 @@ class PlacesController < ApplicationController
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
       @comprehensive_list = @place.check_lists.where(taxon_id: ancestor_ids, comprehensive: "t").first
     end
-    @listed_taxa_count = @scope.count("taxa.id", distinct: true)
-    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").
-      count("taxa.id", distinct: true)
+    @listed_taxa_count = @scope.distinct.count( "taxa.id" )
+    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").distinct.count( "taxa.id" )
     @listed_taxa = @place.listed_taxa
                          .where(taxon_id: @taxa, primary_listing: true)
                          .includes([ :place, { :first_observation => :user } ])

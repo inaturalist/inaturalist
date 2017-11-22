@@ -1,7 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonStage, "commit" do
-  before(:each) { prepare_stage }
+  before(:each) do
+    prepare_stage
+    @stage.committer = @stage.user
+  end
 
   it "should mark output taxon as active" do
     @output_taxon.should_not be_is_active

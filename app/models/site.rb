@@ -31,7 +31,7 @@ class Site < ActiveRecord::Base
   preference :contact_email, :string
   preference :contact_url, :string
 
-  preference :locale, :string, :default => "en"
+  preference :locale, :string
 
   # default bounds for most maps, including /observations/new and the home page. Defaults to the whole world
   preference :geo_swlat, :string

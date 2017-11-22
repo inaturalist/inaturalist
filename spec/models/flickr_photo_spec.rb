@@ -145,9 +145,6 @@ def setup_flickr_stuff
     "media"=>"photo"
   }
   begin
-    FlickRaw.api_key = CONFIG.flickr.key
-    FlickRaw.shared_secret = CONFIG.flickr.shared_secret
-    @flickr = flickr
     @user = User.make!
     @fi = FlickrIdentity.make!(:user => @user, :flickr_user_id => "18024068@N00")
 

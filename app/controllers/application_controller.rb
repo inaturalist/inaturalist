@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_site
+  before_filter :draft_site_requires_login
+  before_filter :draft_site_requires_admin
   before_filter :set_ga_trackers
   before_filter :set_request_locale
   before_filter :sign_out_spammers
@@ -57,6 +59,25 @@ class ApplicationController < ActionController::Base
     @site ||= Site.default
   end
 
+  def draft_site_requires_login
+    return unless @site && @site.draft?
+    return if [ login_path, user_session_path, session_path ].include?( request.path )
+    doorkeeper_authorize! if authenticate_with_oauth?
+    authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
+  end
+
+  def draft_site_requires_admin
+    return unless @site && @site.draft?
+    return if [ login_path, user_session_path, session_path ].include?( request.path )
+    return redirect_to login_path if !current_user
+    unless current_user.is_admin? ||
+        ( @site && @site.site_admins.where( user_id: current_user ).first )
+      sign_out current_user
+      flash[:error] = t(:only_administrators_may_access_that_page)
+      redirect_to login_path
+    end
+  end
+
   def set_ga_trackers
     return true unless request.format.blank? || request.format.html?
     trackers = [ ]
@@ -73,12 +94,43 @@ class ApplicationController < ActionController::Base
     # use params[:locale] for single-request locale settings,
     # otherwise use the session, user's preferred, or site default,
     # or application default locale
-    I18n.locale = params[:locale] || session[:locale] ||
-      current_user.try(:locale) || @site.locale || I18n.default_locale
+    locale = params[:locale]
+    locale = session[:locale] if locale.blank?
+    locale = current_user.try(:locale) if locale.blank?
+    locale = @site.locale if locale.blank?
+    locale = locale_from_header if locale.blank?
+    locale = I18n.default_locale if locale.blank?
+    I18n.locale = locale
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
     end
     true
+  end
+
+  def locale_from_header
+    return if request.env["HTTP_ACCEPT_LANGUAGE"].blank?
+    http_locale = request.env["HTTP_ACCEPT_LANGUAGE"].
+      split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
+    return if http_locale.blank?
+    lang, region = http_locale.split( "-" ).map(&:downcase)
+    return lang if region.blank?
+    # These re-mappings will cause problem if these regions ever get
+    # translated, so be warned. Showing zh-TW for people in Hong Kong is
+    # *probably* fine, but Brazilian Portuguese for people in Portugal might
+    # be a bigger problem.
+    if lang == "es" && region == "xl"
+      region = "mx"
+    elsif lang == "zh" && region == "hk"
+      region = "tw"
+    elsif lang == "pt" && region == "pt"
+      region = "br"
+    end
+    locale = "#{lang.downcase}-#{region.upcase}"
+    if I18N_SUPPORTED_LOCALES.include?( locale )
+      locale
+    elsif I18N_SUPPORTED_LOCALES.include?( lang )
+      lang
+    end
   end
 
   def sign_out_spammers
@@ -579,6 +631,10 @@ class ApplicationController < ActionController::Base
     head(:ok) if request.request_method == "OPTIONS"
   end
 
+  # NOTE: this is called as part of ActionController::Instrumentation, and not
+  # referenced elsewhere within this codebase. The payload data will be used
+  # by config/initializers/logstasher.rb
+  #
   # adding extra info to the payload sent to ActiveSupport::Notifications
   # used in metrics collecting libraries like the Logstasher
   def append_info_to_payload(payload)
@@ -589,6 +645,7 @@ class ApplicationController < ActionController::Base
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
   end
+
 end
 
 # Override the Google Analytics insertion code so it won't track admins

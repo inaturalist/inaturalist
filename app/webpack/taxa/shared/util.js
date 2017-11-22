@@ -119,6 +119,43 @@ const windowStateForTaxon = taxon => {
   };
 };
 
+const RANK_LEVELS = {
+  root: 100,
+  kingdom: 70,
+  subkingdom: 67,
+  phylum: 60,
+  subphylum: 57,
+  superclass: 53,
+  class: 50,
+  subclass: 47,
+  infraclass: 45,
+  superorder: 43,
+  order: 40,
+  suborder: 37,
+  infraorder: 35,
+  parvorder: 34.5,
+  zoosection: 34,
+  zoosubsection: 33.5,
+  superfamily: 33,
+  epifamily: 32,
+  family: 30,
+  subfamily: 27,
+  supertribe: 26,
+  tribe: 25,
+  subtribe: 24,
+  genus: 20,
+  genushybrid: 20,
+  subgenus: 15,
+  section: 13,
+  subsection: 12,
+  species: 10,
+  hybrid: 10,
+  subspecies: 5,
+  variety: 5,
+  form: 5,
+  infrahybrid: 5
+};
+
 export {
   urlForTaxon,
   urlForTaxonPhotos,
@@ -127,5 +164,6 @@ export {
   defaultObservationParams,
   localizedPhotoAttribution,
   commasAnd,
-  windowStateForTaxon
+  windowStateForTaxon,
+  RANK_LEVELS
 };

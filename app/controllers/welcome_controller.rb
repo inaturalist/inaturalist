@@ -19,7 +19,7 @@ class WelcomeController < ApplicationController
         end
         @google_webmaster_verification = @site.google_webmaster_verification if @site
         
-        if logged_in?
+        if logged_in? && !@site.draft?
           redirect_to home_path
         elsif !@page
           render layout: 'bootstrap'

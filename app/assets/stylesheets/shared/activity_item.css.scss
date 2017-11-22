@@ -94,6 +94,16 @@ body > div > [role="dialog"] .ActivityItem {
       color: $inat-green;
     }
   }
+  .panel.leading .panel-heading {
+    .item-status {
+      color: $inat-green;
+      i {
+        margin-right: 2px;
+        position: relative;
+        bottom: 2px;
+      }
+    }
+  }
   .panel-body {
     padding: 0px;
     line-height: 1;
@@ -133,10 +143,6 @@ body > div > [role="dialog"] .ActivityItem {
   }
   button.comment_id {
     margin-left: 60px;
-  }
-  .icon-person {
-    font-size: 36px;
-    line-height: 36px;
   }
   i.taxon-image.icon {
     font-size: 36px;

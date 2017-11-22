@@ -7,6 +7,7 @@
 *= require flickr_photos
 *= require projects
 */
+@import "colors";
 body {
   margin: 0;
   padding: 0;
@@ -956,12 +957,44 @@ ul.leafylist li li:first-child {
 #footer .social-media-link.facebook:before {
   content: "\f09a";
 }
-#inatnotice { color: #aaa; background-color: #666; padding-top: 20px; padding-bottom: 20px; }
-#inatnotice a {
-  color: white;
-}
-#inatnotice a:first-child {
-  font-weight: bold;
+#inatnotice {
+  color: #aaa;
+  background-color: #666;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  line-height: 0px;
+
+  .links {
+    line-height: 1.42857143;
+    padding: 10px 0px;
+    a {
+      color: white;
+    }
+    a:first-child {
+      font-weight: bold;
+    }
+  }
+  .btn {
+    background-color: #484848;
+    color: white;
+    border-color: #aaa;
+    margin-top: 3px;
+    i {
+      color: $inat-green;
+      font-size: 20px;
+      line-height: 0;
+      float: left;
+      margin-right: 2px;
+      position: relative;
+      top: -1px;
+      left: -2px;
+    }
+    .caret {
+      margin-left: 2px;
+      position: relative;
+      bottom: 1px;
+    }
+  }
 }
 
 #mobiletogglelink {font-size: 400%;margin-bottom:10%;}

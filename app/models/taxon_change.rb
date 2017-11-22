@@ -87,6 +87,17 @@ class TaxonChange < ActiveRecord::Base
     !committed_on.blank?
   end
 
+  def committable_by?( u )
+    return false unless u
+    return false unless u.is_curator?
+    uneditable_input_taxon = input_taxa.detect{ |t| !t.editable_by?( u ) }
+    uneditable_output_taxon = nil
+    unless uneditable_input_taxon
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.editable_by?( u ) }
+    end
+    uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
+  end
+
   # Override in subclasses that use self.taxon_change_taxa as the input
   def add_input_taxon(taxon)
     self.taxon = taxon
@@ -109,8 +120,13 @@ class TaxonChange < ActiveRecord::Base
     "#{self.class.name.underscore.split('_')[1..-1].join(' ').downcase}"
   end
 
+  class PermissionError < StandardError; end
+
   # Override in subclasses
   def commit
+    unless committable_by?( committer )
+      raise PermissionError, "Committing user doesn't have permission to commit"
+    end
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
     output_taxa.each {|t| t.update_attribute(:is_active, true)}
     update_attribute(:committed_on, Time.now)
@@ -345,6 +361,7 @@ class TaxonChange < ActiveRecord::Base
         end
         tc.add_output_taxon( output_child )
         tc.save!
+        tc.committer = committer
         tc.commit
       end
     else

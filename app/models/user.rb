@@ -131,6 +131,7 @@ class User < ActiveRecord::Base
   has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
   has_many :user_mutes, inverse_of: :user, dependent: :destroy
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -500,57 +501,27 @@ class User < ActiveRecord::Base
     
   def get_lat_lon_from_ip
     return true if last_ip.nil?
-    url = URI.parse('http://geoip.inaturalist.org/')
-    http = Net::HTTP.new(url.host, url.port)
-    http.read_timeout = 0.5
-    http.open_timeout = 0.5
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    begin
-      resp = http.start() {|http| http.get("/?ip=#{last_ip}") }
-      data = resp.body
-      begin
-        result = JSON.parse(data)
-        if result["results"]["country"] == ""
-          lat_lon_acc_admin_level = nil #no idea where
-          latitude = nil
-          longitude = nil          
-        else #know the country at least
-          ll = result["results"]["ll"]
-          latitude = ll[0]
-          longitude = ll[1]
-          if result["results"]["city"] == ""
-            if result["results"]["region"] == ""
-              lat_lon_acc_admin_level = 0  #probably just know the country
-            else
-              lat_lon_acc_admin_level = 1 #also probably know the state
-            end
-          else
-            lat_lon_acc_admin_level = 2 #also probably know the county
-          end
+    geoip_response = INatAPIService.geoip_lookup({ ip: last_ip })
+    if geoip_response && geoip_response.results
+      # don't set any location if the country is unknown
+      if geoip_response.results.country
+        ll = geoip_response.results.ll
+        latitude = ll[0]
+        longitude = ll[1]
+        if geoip_response.results.city
+          # also probably know the county
+          lat_lon_acc_admin_level = 2
+        elsif geoip_response.results.region
+          # also probably know the state
+          lat_lon_acc_admin_level = 1
+        else
+          # probably just know the country
+          lat_lon_acc_admin_level = 0
         end
-      rescue
-        latitude = nil
-        longitude = nil
-        lat_lon_acc_admin_level = nil
-        Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
-    rescue SocketError
-      latitude = nil
-      longitude = nil
-      lat_lon_acc_admin_level = nil
-      Rails.logger.info "[INFO #{Time.now}] geoip unrecognized due to dropped connection"
-    rescue Timeout::Error => e
-      latitude = nil
-      longitude = nil
-      lat_lon_acc_admin_level = nil
-      Rails.logger.info "[INFO #{Time.now}] geoip timeout"
-    rescue SocketError => e
-      latitude = nil
-      longitude = nil
-      lat_lon_acc_admin_level = nil
-      Rails.logger.info "[INFO #{Time.now}] geoip socket error: #{e}"
     end
     self.latitude = latitude
     self.longitude = longitude

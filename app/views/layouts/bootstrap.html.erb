@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="<%= I18n.locale %>"
+      lang="<%= I18n.locale %>"
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
+    <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=980">
     <%= render :partial => 'shared/common_stylesheets'%>

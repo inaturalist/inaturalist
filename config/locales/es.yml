@@ -12,10 +12,12 @@
 # Author: Fortega
 # Author: Isabelgg22
 # Author: Josecurioso
+# Author: KATRINE1992
 # Author: Loarie
 # Author: Luisangelrg
 # Author: Macofe
 # Author: Ncontinanza
+# Author: Ohlila
 # Author: Pato
 # Author: PoLuX124
 # Author: RicardoSGZ
@@ -619,6 +621,7 @@ es:
   birds: aves
   black: negro
   block_user: Bloquear usuario
+  block_removed: Bloque eliminado
   blog_widget: Widget del blog
   blue: azul
   blue_butterfly_etc: azul, mariposa, etc.
@@ -1167,6 +1170,7 @@ es:
   display_listings_added_by_curators: Mostrar listados añadidos por los curadores
   display_listings_from_place: Mostrar listados de lugar
   dna_: ADN
+  documentation_for_developers_html: Documentación para <a href="/pages/developers">desarrolladores</a>
   do_not_show_this_message_again: No volver a mostrar este mensaje
   do_you_know_where_this_species_lives: ¿Sabe usted dónde vive esta especie?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: ¿Usted estudia nemátodos?
@@ -1282,7 +1286,7 @@ es:
   embed_place_widget: integrar widget de lugar
   embed_this_assessment: Incrusta esta evaluación
   embed_widget_project: Insertar un widget para este proyecto en su página web
-  enable_offline_access: Habilitar el acceso sin conexión
+  enable_offline_access: Activar acceso sin conexión
   enable_offline_access_for_mobile: Habilitar el acceso sin conexión para móviles
   enlarge: Aumentar
   encompassing_places: Lugares circundantes
@@ -1603,6 +1607,7 @@ es:
   hi_user: Hola, %{user}
   hide: Ocultar
   hide_details: Ocultar detalles
+  hide_uncountable_species: Esconder especies incontables
   high: alta
   highest_rank: Rango más alto
   highlights: Destacado
@@ -1639,6 +1644,7 @@ es:
   identification_saved: ¡Identificación guardada!
   identification_summary: Resumen de la identificación
   identification_updated: ¡Identificación actualizada!
+  identification_user_short: Usuario ident.
   identification_withdrawn: Identificación retirada.
   identifications: Identificaciones
   identifications_by: Identificaciones de %{user}
@@ -1651,7 +1657,7 @@ es:
   ids_made_for_others: Identificaciones hechas por otros
   if_for_some_reason_a_user_doesnt_agree: Si por alguna razón un usuario no está de
     acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que
-    su Identificación será usada para enlazar con otras observaciones, actualizando
+    su Identificación será usada para enlazar con otras observaciones, actualizar
     listas de vida, etc. También significa que la observación únicamente podrá ser
     de grado de investigación si la comunidad está de acuerdo con ella.
   if_matches_come_from_a_comprehensive_list: Si los resultados provienen de una lista
@@ -2189,6 +2195,8 @@ es:
     fecha de observación
   most_species: La mayoría de las especies
   most_observed_species: Especies más observadas
+  most_observed_introduced_species: Especies introducidas más observadas
+  most_observed_threatened_species: Especies amenazadas más observadas
   multiple: Múltiple
   multiple_select_option: -- múltiples --
   multiple_taxa_for_taxon_change: Más de una especie o grupo (entrada de datos para
@@ -2201,6 +2209,8 @@ es:
   must_be_less_than_x_MB: Debe ser menor que %{x} MB
   must_have_observation_field: debe completar el campo '%{operand}' en la observación
   must_have_x: debe tener %{x}
+  mute_user: Silenciar usuario
+  mute_removed: Silenciamiento eliminado
   n_ago: hace %{n}
   n_people_agrees: '%{amount} personas concuerdan'
   n_people_disagrees: '%{amount} personas no concuerdan'
@@ -2570,7 +2580,7 @@ es:
   of_least_concern: De preocupación menor
   offensive_inappropriate: ofensivo / inapropiado
   official_blog: Blog oficial
-  offline_access_enabled: El acceso sin conexión habilitada
+  offline_access_enabled: Acceso sin conexión activado
   old_observation_form: Antiguó registro de observaciones
   ok: Aceptar
   on_: en
@@ -2851,7 +2861,7 @@ es:
       republic: República
       Shire: Condado
       shire: condado
-      Sports_Team: Equipo Deportivo
+      Sports_Team: Equipo deportivo
       sports_team: equipo deportivo
       State: Estado
       state: estado
@@ -3064,6 +3074,9 @@ es:
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que usted administra
   projects_youve_joined: Proyectos a los que se ha unido
+  proposed_taxa_that_contradict_the_community_id: Taxa propuesto que contra la ID
+    de Comunidad
+  proposed_taxa_that_support_the_community_id: Taxa propuesto que apoya la ID de Comunidad
   protozoans: protozoarios
   provider_authorizations: Autorizaciones de proveedores
   public_coordinates_obscured_by: Coordenadas públicas ocultas por %{distance}KM
@@ -3955,6 +3968,7 @@ es:
   top_identifiers: Top identificadores
   top_identifiers_of_taxon: Identificadores principales de %{taxon}
   top_observer: Mayor observador
+  top_observers: Mejores observadores
   top_species: Especie superior
   total: total
   totals: totales
@@ -4109,6 +4123,7 @@ es:
   user_is_a_naturalist: '%{user} es un naturalista!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
+  user_muted: Usuario silenciado
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
@@ -4337,6 +4352,8 @@ es:
     one: 1 observación falló
     other: '%{count} observaciones fallaron'
   x_of_y: '%{x} de %{y}'
+  x_of_y_people_over_two_thirds_agree_it_is: '%{x} of %{y} gente (mas de 2/3) estan
+    de acuerdo con esto'
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadísticas de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} le envió un nuevo mensaje en %{y}'
@@ -4588,6 +4605,11 @@ es:
           potencialmente, permitir software malicioso a afectar a las personas
           que visualizan la página. Si usted no sabe lo que es un en
           particular trozo de código no, por favor no agregarlo.
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: ¿Planeas utilizar %{site_name}
+            en el aula?
     guides:
       index:
         funding_html: "Los fondos para el desarrollo de Guías fue proporcionada por
@@ -5435,6 +5457,7 @@ es:
         youve_been_blocked_desc: La persona propietaria de este recurso te ha bloqueado,
           lo que evita que te comuniques con él o ella. La mayoría de las funciones
           interactivas de esta página no funcionará.
+        youve_blocked: Has bloqueado a esta persona
       spam:
         message_for_owner_and_curators_html: Este registro ha sido marcado como spam
           y ya no es visible públicamente. Lo puedes ver debido a que tu lo creaste,

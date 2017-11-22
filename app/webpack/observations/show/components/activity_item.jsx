@@ -128,9 +128,9 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
     } else if ( item.category === "leading" ) {
-      panelClass = "improving";
+      panelClass = "leading";
       idCategory = ( <span key={ `leading-${item.id}` } className="item-status">
-        <i className="fa fa-trophy" /> { I18n.t( "leading" ) }
+        <i className="icon-icn-leading-id" /> { I18n.t( "leading" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
     }

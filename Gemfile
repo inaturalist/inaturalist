@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', "~> 4.2.6"
+gem 'rails', "~> 4.2.7.1"
 
 gem 'apipie-rails'
 gem 'aasm'
@@ -11,11 +11,11 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
 gem 'ancestry'
-gem 'angular-rails-templates', git: "git://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
+gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
 gem 'aws-sdk'
 gem 'biodiversity'
 gem 'bluecloth'
-gem 'bugguide', git: 'git://github.com/kueda/bugguide.git'
+gem 'bugguide', git: 'https://github.com/kueda/bugguide.git'
 gem 'capistrano3-delayed-job', '~> 1.0'
 gem 'capistrano', '~> 3.3'
 gem 'capistrano-rvm', '~> 0.1'
@@ -30,32 +30,32 @@ gem 'daemon-spawn'
 gem 'dbf'
 gem 'delayed_job', '~> 4.0.1'
 gem 'delayed_job_active_record',
-  git: 'git://github.com/hugueslamy/delayed_job_active_record.git',
+  git: 'https://github.com/hugueslamy/delayed_job_active_record.git',
   ref: '7dcacc2459ad47c948153cc3bab78bc822191718'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'devise_suspendable'
 gem 'diffy'
-gem 'doorkeeper'
+gem 'doorkeeper', "~> 4.2.0"
 gem 'dynamic_form'
 gem 'exifr'
 gem 'fastimage'
-gem 'flickraw', "~> 0.9.8", :git => 'git://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
+gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "friendly_id", "~> 5.1.0"
-gem 'gdata', :git => 'git://github.com/pleary/gdata.git'
+gem 'gdata', :git => 'https://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
 gem 'google-api-client', "=0.8.6"
-gem 'georuby', :git => 'git://github.com/kueda/georuby.git'
+gem 'georuby', :git => 'https://github.com/kueda/georuby.git'
 gem 'haml'
 gem 'htmlentities'
 gem 'icalendar', :require => ['icalendar', 'icalendar/tzinfo']
 gem 'i18n-inflector-rails'
-gem 'i18n-js', :git => 'git://github.com/fnando/i18n-js.git'
-gem 'irwi', :git => 'git://github.com/Programatica/irwi.git'
+gem 'i18n-js', :git => 'https://github.com/fnando/i18n-js.git'
+gem 'irwi', :git => 'https://github.com/Programatica/irwi.git'
 gem 'json'
-gem 'jquery-rails'
+gem 'jquery-rails', "~> 4.0.4"
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
@@ -67,32 +67,31 @@ gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
 gem "omniauth-google-oauth2", "~> 0.4.1"
-gem 'omniauth-soundcloud', git: "git://github.com/ratafire/omniauth-soundcloud.git"
+gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem "paperclip", "4.2.1"
-gem 'delayed_paperclip', git: 'git://github.com/jrgifford/delayed_paperclip.git',
+gem "paperclip", "4.2.2"
+gem 'delayed_paperclip', git: 'https://github.com/jrgifford/delayed_paperclip.git',
   ref: '8f11882ee945bf56affe8df4f591e5171581aac3'
 gem 'pg'
-gem 'preferences', :git => 'git://github.com/kueda/preferences.git'
-gem 'rack-google-analytics', :git => 'git://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
+gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
+gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
 gem "rack-mobile-detect"
 gem 'rails-observers'
 gem 'rakismet'
 gem 'RedCloth'
 gem 'rest-client', :require => 'rest_client'
 gem 'rinku', :require => 'rails_rinku'
-gem 'riparian', :git => 'git://github.com/inaturalist/riparian.git'
+gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails', '=5.0.1'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.8'
-gem 'translate-rails3', :require => 'translate', :git => 'git://github.com/JayTeeSF/translate.git'
+gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
 gem 'trollop'
 gem 'twitter'
 gem 'uglifier'
-gem 'useragent'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
 gem 'wicked_pdf'
@@ -100,17 +99,17 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
-gem 'xmp', :git => 'git://github.com/kueda/xmp.git'
+gem 'xmp', :git => 'https://github.com/kueda/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
 # these need to be loaded after will_paginate
-gem 'elasticsearch-model', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'git://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch', '~> 5.0'
 gem 'elasticsearch-api', '~> 5.0'
 
 gem 'rgeo'
 gem 'rgeo-geojson'
-gem 'activerecord-postgis-adapter', :git => 'git://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
+gem 'activerecord-postgis-adapter', :git => 'https://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
   gem 'newrelic_rpm', '~> 3.15.0'
@@ -133,8 +132,5 @@ group :test do
   gem "rspec", "~> 3.4.0"
   gem "rspec-rails", "~> 3.4.2"
   gem "rspec-html-matchers"
-  gem 'cucumber-rails', require: false
-  gem 'selenium-webdriver'
-  gem "chromedriver-helper"
   gem "webmock"
 end

@@ -4,17 +4,11 @@ $(document).ready(function() {
     $('#controls .modal_link').removeClass('selected')
     $(this).addClass('selected')
     showTableView()
-    if (!(jQuery.browser.msie && parseInt(jQuery.browser.version.substr(0,1)) < 7)) {
-      return false
-    }
   })
   $('#maplink').click(function() {
     $('#controls .modal_link').removeClass('selected')
     $(this).addClass('selected')
     showMapView()
-    if (!(jQuery.browser.msie && parseInt(jQuery.browser.version.substr(0,1)) < 7)) {
-      return false
-    }
   })
   
   // Filter behavior

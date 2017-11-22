@@ -7,11 +7,6 @@
     if (typeof(options.inputWidth) == "undefined") {
       options.inputWidth = $(this).outerWidth();
     }
-    if (jQuery.browser.mozilla) {
-      options.inputHeight = $(this).height();
-    } else {
-      options.inputHeight = $(this).outerHeight();
-    }
 
     options.placeName = options.placeName || (typeof(SITE_PLACE) == 'object' && SITE_PLACE ? SITE_PLACE.name : null)
     

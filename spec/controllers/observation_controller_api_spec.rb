@@ -1843,10 +1843,13 @@ describe ObservationsController, "oauth authentication with param" do
   let(:user) { User.make! }
   
   it "should create" do
-    app = OauthApplication.make!
-    token = Doorkeeper::AccessToken.create(:application_id => app.id, :resource_owner_id => user.id)
+    token = Doorkeeper::AccessToken.create(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
     expect {
-      post :create, :format => :json, :access_token => token.token, :observation => {:species_guess => "foo"}
+      post :create, format: :json, access_token: token.token, observation: { species_guess: "foo" }
     }.to change(Observation, :count).by(1)
   end
 end

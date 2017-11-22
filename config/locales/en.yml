@@ -298,9 +298,36 @@ en:
   all_photos: All photos
   all_places: "All Places"
   all_projects: All Projects
+  all_rank_added_to_the_database:
+    phylum: All phyla added to the database
+    subphylum: All subphyla added to the database
+    superclass: All superclasses added to the database
+    class: All classes added to the database
+    subclass: All subclasses added to the database
+    infraclass: All infraclasses added to the database
+    superorder: All superorders added to the database
+    order: All orders added to the database
+    suborder: All suborders added to the database
+    infraorder: All infraorders added to the database
+    superfamily: All superfamilies added to the database
+    epifamily: All epifamilies added to the database
+    family: All families added to the database
+    subfamily: All subfamilies added to the database
+    supertribe: All supertribes added to the database
+    tribe: All tribes added to the database
+    subtribe: All subtribes added to the database
+    genus: All genera added to the database
+    genushybrid: All genushybrids added to the database
+    subgenus: All subgenera added to the database
+    section: All sections added to the database
+    subsection: All subsections added to the database
+    species: All species added to the database
+    hybrid: All hybrids added to the database
+    subspecies: All subspecies added to the database
+    variety: All varieties added to the database
+    form: All forms added to the database
   all_rights_reserved: all rights reserved
   all_species: All Species
-  all_species_added_to_the_database: All species added to the database
   all_taxa:
     rank:
       kingdom: Kingdom
@@ -1511,6 +1538,7 @@ en:
   inbox: inbox
   including: including
   in_order_to_login_and_using_site_visit_url: "In order to login and start using the site you must visit this url to activate your account:"
+  in_progress: in progress
   in_taxon?: in taxon
   in_the_past: in the past
   in_the_past_week: in the past week
@@ -1770,7 +1798,6 @@ en:
     it: Italian
     mk: Macedonian
     oc: Occitan
-    pt: Portuguese
     "pt-BR": Portuguese (Brazil)
     ja: Japanese
     "zh-CN": Chinese (simplified)
@@ -2273,6 +2300,11 @@ en:
   of: of
   of_it_and_its_descendants: of it and its descendants
   of_least_concern: Of least concern
+  of_observations: observations
+  of_species: species
+  of_observers: observers
+  of_identifiers: identifiers
+  of_places: places
   offensive_inappropriate: offensive / inappropriate
   official_blog: Official Blog
   offline_access_enabled: Offline access enabled
@@ -2959,7 +2991,7 @@ en:
   see_something_wrong_with_taxon: See something wrong with this taxon?  Let the curators know.
   seen_it?: Seen it?
   seen_nearby: Seen Nearby
-  seen_one: Seen one?]
+  seen_one: Seen one?
   select: Select
   select_all: Select all
   select_an_album: Select an album
@@ -3243,6 +3275,7 @@ en:
       data_url: Data URL
       overlays: Overlays
   taxon_changes: Taxon Changes
+  taxon_curators: Taxon Curators
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
@@ -3917,6 +3950,9 @@ en:
   you_dont_have_permission_to_do_that: You don't have permission to do that.
   you_dont_have_permission_to_edit_that_observation: "You don't have permission to edit that observation."
   you_dont_have_permission_to_edit_that_project: You don't have permission to edit that project.
+  you_dont_have_permission_to_edit_that_taxon: |
+    You don't have permission to edit that taxon. Please contact one of the
+    taxon's curators or flag the taxon to request changes.
   you_dont_have_permission_to_edit_those_photos: You don't have permission to edit those photos.
   you_faved_this: You faved this!
   you_have_left_x_project: "You have left %{project}"
@@ -5001,6 +5037,14 @@ en:
           statuses for taxa that contain species that have no status because
           that will incorrectly obscure coordinates for observations of those
           species.
+        complete_desc_html: |
+          A "complete" taxon contains <em>all</em> known descendant taxa at a
+          specified rank that comply with iNaturalist's taxon curation
+          policies, whether or not they've been observed.
+        complete_rank_desc_html: |
+          Rank at which this taxon is complete, e.g. if this family contains
+          all its genera but not all its species, this would be set to "genus."
+          Default is species.
       show:
         about_names_desc: |
           <p>
@@ -5036,6 +5080,10 @@ en:
           currently occurs. Introduced means it arrived because of human
           activity, while native means it arrived without human assistance.
           Endemic species only occur in a specific place and nowhere else.
+        about_taxon_curators_desc: |
+          These people manage the part of the taxonomic tree that includes
+          this taxon. If you want to make changes, please flag this taxon or
+          contact one of these people.
         charts_help_seasonality: |
           This chart shows the number of observations of this taxon grouped by
           month. Keep in mind that these are numbers of observations, so they
@@ -5072,12 +5120,14 @@ en:
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
         complete_taxon_desc: |
-          "Complete" taxa have all of their descendant, extant species present in
-          the site's database. When a taxon is complete, we can say how many of
-          its species have been observed and how many still need to be observed.
-          Counts of species for "complete" taxa do not include "uncountable"
-          species like extinct species or inactive species concepts, and they
-          only include species, not infraspecic taxa.
+          "Complete" taxa have all of their descendant, extant taxa of a
+          specific rank present in the site's database. When a taxon is
+          complete to species, for example, we can say how many of its species
+          have been observed and how many still need to be observed. Counts of
+          species for "complete" taxa complete to species do not include
+          "uncountable" species like extinct species or inactive species
+          concepts, and they only include species, not infraspecific taxa like
+          subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
         trending_desc: Most-observed taxa in the last month
         trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>

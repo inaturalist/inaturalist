@@ -67,6 +67,7 @@ class Taxon < ActiveRecord::Base
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
@@ -92,6 +93,11 @@ class Taxon < ActiveRecord::Base
   #                         :scope => [:source_id],
   #                         :message => "already exists",
   #                         :allow_blank => true
+  validate :taxon_cant_be_its_own_ancestor
+  validate :can_only_be_featured_if_photos
+  validate :validate_locked
+  validate :complete_rank_below_rank
+  validate :graftable_if_complete
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -398,39 +404,45 @@ class Taxon < ActiveRecord::Base
     return true if id_changed?
     update_life_lists
     update_obs_iconic_taxa
-    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", id]
-    obs_exist = Observation.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
-    idents_exist = Identification.joins( taxon: :taxon_ancestors ).where( conditions ).exists?
-    if ( obs_exist || idents_exist )
-      Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-        unique_hash: { "Observation::update_stats_for_observations_of": id }).
-        update_stats_for_observations_of(id)
-    end
+    Observation.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Observation::update_stats_for_observations_of": id }).
+      update_stats_for_observations_of(id)
     elastic_index!
     Taxon.refresh_es_index
     true
   end
 
   def handle_change_in_completeness
-    return true unless complete_changed?
+    return true unless complete_changed? || complete_rank_changed?
     Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
+    taxon_curators.destroy_all if !complete && complete_was
+    TaxonCurator.
+      joins( taxon: :taxon_ancestors ).
+      where( "taxon_ancestors.ancestor_taxon_id = ?", id ).
+      where( "taxa.rank_level < ?", complete_rank_level.to_i ).
+      destroy_all
+    true
   end
 
   def self.reindex_descendants_of( taxon )
     Taxon.elastic_index!( scope: Taxon.joins(:taxon_ancestors).where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ) )
   end
 
+  def complete_rank_level
+    RANK_LEVELS[complete_rank]
+  end
+
   def complete_species_count
-    if rank_level.to_i <= SPECIES_LEVEL
-      return nil
-    end
-    if !complete? && !ancestors.where( "complete" ).exists?
+    return nil if rank_level.to_i <= SPECIES_LEVEL
+    return nil if complete_rank && complete_rank_level.to_i > SPECIES_LEVEL
+    return nil unless complete_taxon
+    if RANK_LEVELS[complete_taxon.try(:complete_rank)].to_i > SPECIES_LEVEL
       return nil
     end
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
-      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, Taxon::SPECIES ).
+      where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, SPECIES ).
       joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
       where( "cs.id IS NULL OR cs.place_id IS NOT NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", Taxon::IUCN_EXTINCT )
     scope.count
@@ -825,10 +837,6 @@ class Taxon < ActiveRecord::Base
   def phylum
     ancestors.where(rank: "phylum").first
   end
-  
-  validate :taxon_cant_be_its_own_ancestor
-  validate :can_only_be_featured_if_photos
-  validate :validate_locked
 
   def taxon_cant_be_its_own_ancestor
     if ancestor_ids.include?(id)
@@ -848,6 +856,38 @@ class Taxon < ActiveRecord::Base
         "so this cannot be added as a descendent.  Either unlock the " + 
         "locked taxon or merge this taxon with an existing one.")
     end
+  end
+
+  def complete_rank_below_rank
+    if complete_rank_level.to_i > rank_level.to_i
+      errors.add( :complete_rank, "must be below the rank" )
+    end
+    true
+  end
+
+  def complete_taxon
+    return self if complete?
+    return @complete_taxon if @complete_taxon
+    unless @complete_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
+      return nil
+    end
+    if level_within_complete_range = @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i
+      return @complete_taxon
+    end
+    parent_inside_complete_range = parent.rank_level.to_i > @complete_taxon.complete_rank_level.to_i
+    if parent_inside_complete_range
+      return @complete_taxon
+    end
+    @complete_taxon = nil
+  end
+
+  def graftable_if_complete
+    return true unless ancestry_changed?
+    ct = complete_taxon
+    if ct && ( current_user.blank? || !ct.editable_by?( current_user ) )
+      errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
+    end
+    true
   end
   
   #
@@ -1369,6 +1409,9 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
+    if complete_taxon
+      return complete_taxon.taxon_curators.where( user: user ).exists?
+    end
     user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 

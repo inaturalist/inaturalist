@@ -529,6 +529,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     if( processedParams.place_id || processedParams.swlat ) {
       $scope.hideRedoSearch = true;
     }
+    if( _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+      processedParams.ttl = 3600;
+    }
     var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
     var searchParams = _.extend( { }, processedParams, {
       page: $scope.apiPage( ) || 1,

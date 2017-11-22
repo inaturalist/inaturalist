@@ -33,4 +33,19 @@ $.fn.userAutocomplete = function( options ) {
       });
     }
   }));
+
+  if ( $( options.idEl ).val( ) ) {
+    $.ajax( {
+      url: "/users/" + $( options.idEl ).val( ) + ".json",
+      dataType: "json",
+      data: {
+        locale: I18n.locale,
+        preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+      },
+      success: function( data ) {
+        data.title = data.login;
+        field.trigger( "assignSelection", data );
+      }
+    } );
+  }
 };

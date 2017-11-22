@@ -5,6 +5,7 @@
 @import "../shared/taxon_photo";
 @import "../shared/record_chooser_popover";
 @import "../shared/observations_grid_item";
+@import "../shared/user_with_icon";
 
 #app {
   min-height: 600px;
@@ -1189,4 +1190,26 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 }
 .complete-taxon-popover {
   max-width: 400px;
+}
+
+.UserWithIcon {
+  width: 50%;
+  float: left;
+  margin-top: 10px;
+
+  .icon {
+    margin-right: 10px;
+    .UserImage {
+      width: 48px;
+      height: 48px;
+      line-height: 39px;
+    }
+  }
+  .title {
+    font-weight: bold;
+    line-height: 48px;
+  }
+  .subtitle {
+    display: none
+  }
 }

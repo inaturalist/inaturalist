@@ -5,13 +5,11 @@ describe "TaxonDescribers" do
 
     before(:all) do
       @animalia = Taxon.make!(name: "Animalia")
-      @wikipedia_response = OpenStruct.new(body: "<rsp>OK</rsp>")
       @wikipedia = TaxonDescribers::Wikipedia.new
     end
 
     it "creates the endpoint" do
       expect(ApiEndpoint.count).to eq 0
-      expect_any_instance_of(Net::HTTP).to receive(:get).and_return(@wikipedia_response)
       @wikipedia.describe(@animalia)
       expect(ApiEndpoint.count).to eq 1
       endpoint = ApiEndpoint.first
@@ -24,7 +22,6 @@ describe "TaxonDescribers" do
 
     it "creates the endpoint based on locale" do
       I18n.locale = "fr"
-      expect_any_instance_of(Net::HTTP).to receive(:get).and_return(@wikipedia_response)
       @wikipedia.describe(@animalia)
       expect(ApiEndpoint.first.title).to eq "Wikipedia (FR)"
       I18n.locale = "en"
@@ -32,19 +29,16 @@ describe "TaxonDescribers" do
 
     it "caches the result" do
       expect(ApiEndpointCache.count).to eq 0
-      expect_any_instance_of(Net::HTTP).to receive(:get).and_return(@wikipedia_response)
       @wikipedia.describe(@animalia)
       expect(ApiEndpointCache.count).to eq 1
       cache = ApiEndpointCache.first
       expect(cache.request_url).to eq(
         "http://en.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml")
-      expect(cache.response).to eq @wikipedia_response.body
       expect(cache.cached?).to be true
     end
 
     it "caches the result based on locale" do
       I18n.locale = "fr"
-      expect_any_instance_of(Net::HTTP).to receive(:get).and_return(@wikipedia_response)
       @wikipedia.describe(@animalia)
       expect(ApiEndpointCache.first.request_url).to eq(
         "http://fr.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml")

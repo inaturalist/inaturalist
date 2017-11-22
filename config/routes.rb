@@ -1,4 +1,3 @@
-# Inaturalist::Application.routes.draw do
 Rails.application.routes.draw do
   apipie
 
@@ -22,6 +21,7 @@ Rails.application.routes.draw do
   resources :user_blocks, only: [:create, :destroy]
   resources :user_mutes, only: [:create, :destroy]
   resources :guide_users
+  resources :taxon_curators, except: [:show, :index]
 
   resources :guide_sections do
     collection do
