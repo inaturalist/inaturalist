@@ -342,6 +342,34 @@ it:
   all_photos: Tutte le foto
   all_places: Tutti i Luoghi
   all_projects: Tutti i progetti
+  all_rank_added_to_the_database:
+    phylum: Tutti i phyla aggiunti al database
+    subphylum: Tutti i subphyla aggiunti al database
+    superclass: Tutte le superclassi aggiunte al database
+    class: Tutte le classi aggiunte al database
+    subclass: Tutte le subclassi aggiunte al database
+    infraclass: Tutte le infraclassi aggiunte al database
+    superorder: Tutti i superordini aggiunti al database
+    order: Tutti gli ordini aggiunti al database
+    suborder: Tutti i subordini aggiunti al database
+    infraorder: Tutti gli infraordini aggiunti al database
+    superfamily: Tutte le superfamiglie aggiunte al database
+    epifamily: Tutte le epifamiglie aggiunte al database
+    family: Tutte le famiglie aggiunte al database
+    subfamily: Tutte le subfamiglie aggiunte al database
+    supertribe: Tutte le supertribù aggiunte al database
+    tribe: Tutte le tribù aggiunte al database
+    subtribe: Tutte le subtribù aggiunte al database
+    genus: Tutti i generi aggiunti al database
+    genushybrid: Tutti i generi-ibridi aggiunti al database
+    subgenus: Tutti i subgeneri aggiunti al database
+    section: Tutte le sezioni aggiunte al database
+    subsection: Tutte le subsezioni aggiunte al database
+    species: Tutte le specie aggiunte al database
+    hybrid: Tutti gli ibridi aggiunti al database
+    subspecies: Tutte le sottospecie aggiunte al database
+    variety: Tutte le varietà aggiunte al database
+    form: Tutte le forme aggiunte al database
   all_rights_reserved: Tutti i diritti riservati
   all_species: Tutte le specie
   all_taxa:
@@ -1730,6 +1758,7 @@ it:
   including: incluso
   in_order_to_login_and_using_site_visit_url: 'Per loggarti ed iniziare ad usare il
     sito devi visitare questo url per attivare il tuo account:'
+  in_progress: in corso
   in_taxon?: nel taxon
   in_the_past: in passato
   in_the_past_week: la scorsa settimana
@@ -2584,6 +2613,11 @@ it:
   of: di
   of_it_and_its_descendants: suo e dei suoi discendenti
   of_least_concern: Minor Preoccupazione
+  of_observations: osservazioni
+  of_species: specie
+  of_observers: osservatori
+  of_identifiers: identificatori
+  of_places: luoghi
   offensive_inappropriate: offensivo / inappropriato
   official_blog: Blog Ufficiale
   offline_access_enabled: Accesso offline abilitato
@@ -3677,6 +3711,7 @@ it:
     data_url: URL dei dati
     overlays: Livelli
   taxon_changes: Modifiche del taxon
+  taxon_curators: Curatori del taxon
   taxon_merge: unione del taxon
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve

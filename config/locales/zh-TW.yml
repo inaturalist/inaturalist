@@ -31,11 +31,11 @@ zh-TW:
     one: '1 追隨者 '
     other: '%{count} 追隨者'
   x_identifications:
-    one: 1 項辨認結果
-    other: '%{count} 項辨認結果'
+    one: 1 項鑑定
+    other: '%{count} 項鑑定'
   x_identifications_:
-    one: 1 項辨認結果
-    other: '%{count} 項辨認結果'
+    one: 1 項鑑定
+    other: '%{count} 項鑑定'
   x_ids:
     one: 1個鑑定
     other: '%{count}個鑑定'
@@ -302,6 +302,34 @@ zh-TW:
   all_photos: 所有相片
   all_places: 所有地點
   all_projects: 所有專案
+  all_rank_added_to_the_database:
+    phylum: 所有添加在資料庫的門
+    subphylum: 所有添加在資料庫的亞門
+    superclass: 所有添加在資料庫的總綱
+    class: 所有添加在資料庫的綱
+    subclass: 所有添加在資料庫的亞綱
+    infraclass: 所有添加在資料庫的下綱
+    superorder: 所有添加在資料庫的總目
+    order: 所有添加在資料庫的目
+    suborder: 所有添加在資料庫的亞目
+    infraorder: 所有添加在資料庫的下目
+    superfamily: 所有添加在資料庫的總科
+    epifamily: 所有添加在資料庫的領科
+    family: 所有添加在資料庫的科
+    subfamily: 所有添加在資料庫的亞科
+    supertribe: 所有添加在資料庫的總族
+    tribe: 所有添加在資料庫的族
+    subtribe: 所有添加在資料庫的亞族
+    genus: 所有添加在資料庫的屬
+    genushybrid: 所有添加在資料庫的屬間雜種
+    subgenus: 所有添加在資料庫的亞屬
+    section: 所有添加在資料庫的組
+    subsection: 所有添加在資料庫的亞組
+    species: 所有添加在資料庫的物種
+    hybrid: 所有添加在資料庫的雜種
+    subspecies: 所有添加在資料庫的亞種
+    variety: 所有添加在資料庫的變種
+    form: 所有添加在資料庫的表單
   all_rights_reserved: 保留所有權利
   all_species: 所有物種
   all_taxa:
@@ -772,7 +800,7 @@ zh-TW:
     %{site_name}。
   conservation_status: 保育狀態
   conservation_status_descriptions:
-    status: 狀態代碼、排名、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
+    status: 狀態代碼、級別、其它。如果存在像「E」、「CR」這類的短代碼，請使用它；如果沒有，請使用像「瀕危」、「極度瀕危」這類的完整狀態。
     description: 簡單描述為何這被列出。
     authority: 宣佈此狀態的組織。若*您*想被列為權威可信；您可忽略此。
     place: 狀態被限制的地點。
@@ -1144,10 +1172,10 @@ zh-TW:
   exact_coordinates_obscured_for: 隱蔽公開檢視裡受威脅物種的準確座標。
   exact_date: 精確日期
   exact_location: 精確位置
-  exact_rank: 精確排名
+  exact_rank: 精確級別
   existing_flags: 精確標記
   exit_full_screen: 退出全螢幕
-  examples_of_ranking_organizations: 組織排名範例
+  examples_of_ranking_organizations: 有機體級別範例
   expand_days: 展開日期
   expand_updates: 擴充更新
   explore!: 探索！
@@ -1375,7 +1403,7 @@ zh-TW:
   heads_up_this_photo_has_been_flagged: 注意：此照片已被標記。
   heads_up_this_photo_is_already_associated_with: 注意：此照片已關聯於<a target='_blank' href='%{url}'>其它觀察</a>
   heads_up_this_taxon_locked_users_cant_add_descendants: <strong>注意：</strong>此物種分類已被鎖定，這代表多數用戶無法透過匯入物種分類群來添加新派生物種分類。雖然策展人仍可透過編輯物種分類群或挑選父級物種分類來操作，但請優先考慮合併物種分類群。
-  heads_up_you_have_multiple: 注意：您有多個用於鑑定排名的分類標籤。它們的色彩代碼是依照以下作排名。
+  heads_up_you_have_multiple: 注意：您有多個用於鑑定級別的分類標籤。它們的色彩代碼是依照以下作排名。
   hello: <test>
   help: 幫助
   help_confirm_observations!: 幫助確認觀察！
@@ -1393,7 +1421,7 @@ zh-TW:
   hide_details: 隱藏詳細資料
   hide_uncountable_species: 隱藏無法計數的物種
   high: 高
-  highest_rank: 最高排名
+  highest_rank: 最高級別
   highlights: 標示
   history: 歷史
   home: 首頁
@@ -1483,7 +1511,7 @@ zh-TW:
   in_the_past: 在之前
   in_the_past_week: 在過去一週
   inactive: 無作用
-  inactive_taxon: 不活躍的物種分類
+  inactive_taxon: 不作用的物種分類
   inactive_taxon_concepts_are: 無作用物種分類概念代表著分類方式過時、或是正處於在物種分類更改的階段上。過時概念會保留在維護歷史裡；並兼容於其它合作者的網站
   inappropriate: 不適當？
   inappropriate_content: 不適當內容？
@@ -1780,7 +1808,7 @@ zh-TW:
   lookup: 查詢
   lookup_user_rarr: 查詢用戶 &rarr;
   low: 低
-  lowest_rank: 最低排名
+  lowest_rank: 最低級別
   made_a: 製作一個
   make_admin: 作為管理員
   make_an_observation: 製作一個觀察
@@ -2656,9 +2684,9 @@ zh-TW:
   query: 查詢
   range: 範圍
   range_from: 範圍來自
-  rank: 排名
-  rank_position: 排名
-  rank_restrictions: 排名限制
+  rank: 級別
+  rank_position: 級別
+  rank_restrictions: 級別限制
   ranks:
     kingdom: 界
     subkingdom: 亞界
@@ -3163,6 +3191,7 @@ zh-TW:
     data_url: 資料URL
     overlays: 覆蓋物
   taxon_changes: 物種分類更改
+  taxon_curators: 物種分類策展人
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
@@ -3327,7 +3356,7 @@ zh-TW:
   this_user_has_been_suspended_message: 如果這是您的帳號且您認為是有問題的，請<a href="mailto:%{email}">聯絡我們</a>。
   this_will_add_listed_taxa: 這將會從觀察來添加已列出物種分類群。因為會花費一段時間；所以請謹慎使用並儘量用在小清單上
   this_will_refresh_listed_taxa: 這將會在此列表上重新整理已列出物種分類群。因為會花費一段時間；所以請謹慎使用並儘量用在小清單上
-  this_will_re_apply_all_list_rules: 這將會重新套用所有列表規則至已列出物種分類群並更新所關聯的統計狀態，例如：不在列出物種分類裡或不在所選排名的所被拒絕物種分類群。這不會添加任何新的物種分類群，並且會花上幾分鐘處理。
+  this_will_re_apply_all_list_rules: 這將會重新套用所有列表規則至已列出物種分類群並更新所關聯的統計狀態，例如：不在列出物種分類裡或不在所選級別的所被拒絕物種分類群。這不會添加任何新的物種分類群，並且會花上幾分鐘處理。
   this_will_refresh_without_reload: 這將會立即重新整理觀察統計。因為會花費一段時間所以請謹慎使用。
   this_will_reload_and_refresh: 這將會立即添加來自於觀察的所列出物種分類群；並重新整理觀察統計。因為會花費一段時間所以請謹慎使用。
   this_will_try_to_add_tags_to_your_flickr: 這將會嘗試添加標籤至您的 Flickr 照片，要繼續嗎？
@@ -3360,7 +3389,7 @@ zh-TW:
   top_5_identifiers: 前5位熱門鑑定人
   top_contributors: 頂尖貢獻者
   top_identifier: 熱門鑑定人
-  top_identifiers: 熱門辨認者
+  top_identifiers: 熱門鑑定人
   top_identifiers_of_taxon: '%{taxon}的熱門鑑定人'
   top_observer: 熱門觀察者
   top_observers: 熱門觀察者
@@ -3406,7 +3435,7 @@ zh-TW:
   unique_observers_last_3_months: 在過去 3 個月的唯一觀察者
   unknown: 未知
   unknown_error: 不明錯誤
-  unknown_rank: （未知排名）
+  unknown_rank: （未知級別）
   unfollow: 未關注
   unlink_your_google_account: 取消連結您的 Google 帳號
   unmute: 取消禁言
@@ -3762,6 +3791,7 @@ zh-TW:
   you_dont_have_permission_to_do_that: 您沒有權限做那件事。
   you_dont_have_permission_to_edit_that_observation: 您沒有權限編輯該觀察。
   you_dont_have_permission_to_edit_that_project: 您沒有權限編輯該專案。
+  you_dont_have_permission_to_edit_that_taxon: 您還沒有可以編輯此物種分類的權限。請聯絡物種分類策展人、或標記此物種分類來請求更改。
   you_dont_have_permission_to_edit_those_photos: 您沒有權限編輯這些照片。
   you_faved_this: 您已加為最愛！
   you_have_left_x_project: 您已離開 %{project}
@@ -3893,7 +3923,7 @@ zh-TW:
         add_eol_content: 以批量來添加生命大百科內容至所選物種分類群會花費一段時間，因此請耐心等候。
         add_color_tags_help: 從所選物種分類的相關色彩來添加色彩標籤。
         add_rank_tags_help_html: |-
-          基於我們的分類法來添加物種分類排名標籤，例如：
+          基於我們的分類法來添加物種分類級別標籤，例如：
           <code>family=Laridae</code>
           或
           <code>family=Gulls and Allies</code>
@@ -4185,7 +4215,7 @@ zh-TW:
             <strong>演算法：</strong>用於所有已鑑定、以及有包含前著的物種分類群（例如：<i>人</i>屬包含著<i>智人</i>），
             以比例方式向任一物種分類超過累積鑑定總和的累積鑑定數量之間計分，更謹慎的鑑定數量添加在物種分類
             首個鑑定之後，並且鑑定數量完全不同（註：物種分類群鑑定不包含被積分的物種分類群）。對於已鑑定且
-            積分有超過 2/3 ；以及至少 2 個鑑定的物種分類群，請挑選最低排名的物種分類。
+            積分有超過 2/3 ；以及至少 2 個鑑定的物種分類群，請挑選最低級別的物種分類。
           </p>
         cumulative_count_desc: '用於各別物種分類及其所有派生的 # 鑑定'
         curator_coordinate_access_disabled_desc_html: 此專案不允許帶有座標的觀察可讓專案策展人查看。如果您不想與此專案策展人分享該觀察的座標，您必須將它們從專案裡移除。
@@ -4457,6 +4487,8 @@ zh-TW:
     taxa:
       edit:
         high_status_conservation_status_notice_html: 為更高層級物種分類添加保育狀態，來對此物種分類上的所有物種觀察生效。請不要在有物種未包含狀態的物種分類群上添加狀態，因為這會對那些物種的觀察不正確地隱蔽座標。
+        complete_desc_html: 一個「完整」物種分類包含<em>所有</em>在符合 iNaturalist 物種分類策展方針指定排名裡的已知派生物種分類群；無論它們是否已被觀察。
+        complete_rank_desc_html: 在此完成的物種分類級別，例如：假如科有包含到所有的屬；但不在所有物種裡，預設物種這將會設定「屬」。
       show:
         about_names_desc: |-
           <p>
@@ -4476,10 +4508,11 @@ zh-TW:
           </p>
         about_conservation_status_desc: 保護狀態總結出一群生物的滅絕風險。
         about_establishment_desc: 「確立方式」描述著目前出現的物種如何發生在此處。引進代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
+        about_taxon_curators_desc: 這些人們管理著包含物種分類的分類樹之內容。如果您想要產生更改，請標記此物種分類、或聯絡那些人們。
         charts_help_seasonality: 此圖表顯示出物種分類依月份區分的觀察次數。請記住這些是觀察次數，因此會被當生物可被觀察的期間、以及被人們有前來觀察它們的行為所影響。因此某隻鳥在五月裡的觀察次數看似很活躍，但有可能是人們剛好一同在五月觀察；而將其它月份給忽略掉。相同地，如果您發現蜻蜓在六月的次數比一月多，這可能是因為在北半球有比南半球較多人口；而並非蜻蜓是剛好在六月比較活躍，因此在考量這些圖表時可以先查看地圖。當圖表上「可驗證」與「研究等級」觀察次數之間，有出現較低觀察次數以及/或是較大差異時，對這些情況做出疑慮是正確的。
         charts_help_history: 此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加；但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。
         charts_help_other: 我們也另外顯示出用於觀察註解的季節性圖表。註解是用在替觀察添加詮釋資料的採用控制詞彙項目之新系統。就目前為止我們僅使用「生命階段」與「植物物候」（植物開花或結果時期）。我們目前沒有直接添加註解的方式，因此現在我們正試著將來自於觀察欄位的資料轉換至註解。如果您已等不及我們建置好註解系統，您可以透過添加俱有下列值之一的觀察欄位值來貢獻到「生命階段」註解：成體、初羽化、蛹、若蟲、幼蟲、卵，或亞成體。所以特別的是；「生命階段」與「昆蟲生命階段」的欄位都是可行的。對於「植物物候」；我們正查看任何欄位名稱有著字詞「物候」並帶著「開花」或是「結果」，因此「開花物候」欄位也是可使用的。
-        complete_taxon_desc: 「完整」物種分類群擁有全部派生、目前在網站資料庫裡的現存物種。當有物種分類完成時，能代表著有多少個物種已被觀察；以及有多少個需要被觀察。「完整」物種分類群的物種計數不包含「無法計數」物種，如已滅絕或是非活性物種概念，而它們僅能包含物種，不能是種下分類群。
+        complete_taxon_desc: 「完整」物種分類群擁有全部派生、目前在網站資料庫裡的現存具體物種分類群級別。例如：能代表著有多少個物種已被觀察；以及有多少個需要被觀察，就是當對於物種的物種分類完成時。對於物種是完整的「完整」物種分類群；其物種計數不包含「無法計數」物種，如已滅絕或是無作用的物種概念，而它們僅能包含物種，不能像是亞種、或變種的種下分類群。
         discoveries_desc: 此物種分類中最新被鑑定的物種
         trending_desc: 在最近一個月的最多觀察物種分類群
         trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
@@ -4918,7 +4951,7 @@ zh-TW:
         value: 值
       taxon:
         name: 名稱
-        rank: 排名
+        rank: 級別
         parent_id: 父級鑑定
         locked: 已鎖定
         auto_photos: 自動照片

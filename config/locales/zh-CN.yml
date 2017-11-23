@@ -298,6 +298,9 @@ zh-CN:
   all_photos: 所有照片
   all_places: 所有地点
   all_projects: 所有项目
+  all_rank_added_to_the_database:
+    genus: 所有属已添加到数据库
+    species: 所有物种已添加到数据库
   all_rights_reserved: 保留所有权利
   all_species: 所有物种
   all_taxa:
@@ -1413,6 +1416,7 @@ zh-CN:
   inbox: 收件箱
   including: 包括
   in_order_to_login_and_using_site_visit_url: 如果要登录站点并开始使用，您首先应当访问这一地址来激活您的账户：
+  in_progress: 进行中
   in_taxon?: 在分类单元
   in_the_past: 在过去
   in_the_past_week: 在上周
@@ -1994,6 +1998,11 @@ zh-CN:
     doubtful: 可疑
     absent: 缺席
   of: 的
+  of_observations: 观察
+  of_species: 种
+  of_observers: 观察者
+  of_identifiers: 标识符
+  of_places: 地点
   official_blog: 官方博客
   old_observation_form: 旧观察表单（已弃用）
   ok: 确定
@@ -2730,6 +2739,7 @@ zh-CN:
     data_url: 数据URL
     overlays: 覆盖图
   taxon_changes: 分类单元更改
+  taxon_curators: 物种馆长
   taxon_name: 分类单元名称
   taxon_observed_by_user: '%{taxon}，由 %{user} 观察到'
   taxon_schemes: 分类方案
