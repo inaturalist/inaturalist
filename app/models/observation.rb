@@ -2021,22 +2021,22 @@ class Observation < ActiveRecord::Base
     precision = 10**5.0
     range = ((-1 * precision)..precision)
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
-    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
-    [ base_lat + ((rand(range) / precision) * half_cell),
-      base_lon + ((rand(range) / precision) * half_cell)]
+    center_lat, center_lon = uncertainty_cell_center_latlon( lat, lon )
+    [ center_lat + ((rand(range) / precision) * half_cell),
+      center_lon + ((rand(range) / precision) * half_cell)]
   end
 
   # 
   # Coordinates of the southwest corner of the uncertainty cell for any given coordinates
   # 
-  def self.uncertainty_cell_southwest_latlon( lat, lon )
+  def self.uncertainty_cell_center_latlon( lat, lon )
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
     # how many significant digits in the obscured coordinates (e.g. 5)
     # doing a floor with intervals of 0.2, then adding 0.1
     # so our origin is the center of a 0.2 square
-    base_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
-    base_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
-    [base_lat, base_lon]
+    center_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    center_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    [center_lat, center_lon]
   end
 
   #
@@ -2044,12 +2044,13 @@ class Observation < ActiveRecord::Base
   # for the given coordinates.
   #
   def self.uncertainty_cell_diagonal_meters( lat, lon )
-    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
+    half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+    center_lat, center_lon = uncertainty_cell_center_latlon( lat, lon )
     lat_lon_distance_in_meters( 
-      base_lat, 
-      base_lon, 
-      base_lat + COORDINATE_UNCERTAINTY_CELL_SIZE,
-      base_lon + COORDINATE_UNCERTAINTY_CELL_SIZE
+      center_lat - half_cell, 
+      center_lon - half_cell, 
+      center_lat + half_cell,
+      center_lon + half_cell
     ).ceil
   end
 
