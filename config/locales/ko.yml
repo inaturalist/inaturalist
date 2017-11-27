@@ -208,7 +208,11 @@ ko:
   all_places: 모든 장소
   all_projects: 모든 프로젝트
   all_rank_added_to_the_database:
+    superclass: 데이터베이스에 추가된 모든 상강
+    class: 데이터베이스에 추가된 모든 강
+    order: 데이터베이스에 추가된 모든 목
     suborder: 데이터베이스에 추가된 모든 아목
+    family: 데이터베이스에 추가된 모든 과
     subfamily: 데이터베이스에 추가된 모든 아과
     genus: 데이터베이스에 추가된 모든 속
     species: 데이터베이스에 추가된 모든 종
@@ -1741,6 +1745,7 @@ ko:
   observations_w_field: 필드가 있는 관찰
   observations_week: 관찰/주
   observations_will_revert_to_casual: 관찰은 위 조건이 맞지 않을 경우 비공식적으로 표시됩니다.
+  of_species: 종
   of_identifiers: 식별자
   of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
