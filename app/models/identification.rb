@@ -235,12 +235,13 @@ class Identification < ActiveRecord::Base
   # Update the counter cache in users.  That cache ONLY tracks observations 
   # made for others.
   def update_user_counter_cache
-    return unless self.user && self.observation
-    return if user.destroyed?
+    return true unless self.user && self.observation
+    return true if user.destroyed?
     if self.user_id != self.observation.user_id
       User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
         update_identifications_counter_cache(user_id)
     end
+    true
   end
 
   def set_last_identification_as_current
