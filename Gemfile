@@ -79,7 +79,6 @@ gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analy
 gem "rack-mobile-detect"
 gem 'rails-observers'
 gem 'rakismet'
-gem 'RedCloth'
 gem 'rest-client', :require => 'rest_client'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
