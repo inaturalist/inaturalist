@@ -261,11 +261,13 @@ class TaxaController < ApplicationController
       Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
+    unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
+      flash.now[:notice] ||= "This taxon is complete or descends from a complete taxon, so some taxonomic attributes can only be editable by curators of that complete taxon."
+    end
   end
 
   def update
     return unless presave
-    @taxon.current_user = current_user
     if @taxon.update_attributes(params[:taxon])
       flash[:notice] = t(:taxon_was_successfully_updated)
       if locked_ancestor = @taxon.ancestors.is_locked.first
@@ -1401,6 +1403,7 @@ class TaxaController < ApplicationController
       render_404
       return
     end
+    @taxon.current_user = current_user
   end
   
   def do_external_lookups

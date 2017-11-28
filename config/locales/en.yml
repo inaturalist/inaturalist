@@ -5040,7 +5040,8 @@ en:
         complete_desc_html: |
           A "complete" taxon contains <em>all</em> known descendant taxa at a
           specified rank that comply with iNaturalist's taxon curation
-          policies, whether or not they've been observed.
+          policies, whether or not they've been observed. Only site admins can
+          declare taxa complete at present.
         complete_rank_desc_html: |
           Rank at which this taxon is complete, e.g. if this family contains
           all its genera but not all its species, this would be set to "genus."
@@ -5678,6 +5679,26 @@ en:
                 must be observed after %{time}
               must_be_observed_before: |
                 must be observed before %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
   i18n:
     inflections:
       :@vow_or_con:

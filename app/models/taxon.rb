@@ -97,7 +97,8 @@ class Taxon < ActiveRecord::Base
   validate :can_only_be_featured_if_photos
   validate :validate_locked
   validate :complete_rank_below_rank
-  validate :graftable_if_complete
+  validate :graftable_if_complete, on: :create
+  validate :user_can_edit_attributes, on: :update
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -271,6 +272,15 @@ class Taxon < ActiveRecord::Base
     'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton', 
     'arizona']
   
+  PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
+    ancestry
+    is_active
+    rank
+    rank_level
+    complete
+    complete_rank
+  )
+
   scope :observed_by, lambda {|user|
     sql = <<-SQL
       JOIN (
@@ -883,11 +893,41 @@ class Taxon < ActiveRecord::Base
 
   def graftable_if_complete
     return true unless ancestry_changed?
+    return true if current_user.blank?
     ct = complete_taxon
-    if ct && ( current_user.blank? || !ct.editable_by?( current_user ) )
+    if ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true
+  end
+
+  def user_can_edit_attributes
+    return true if current_user.blank?
+    current_user_curates_taxon = protected_attributes_editable_by?( current_user )
+    PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA.each do |a|
+      if changes[a] && !current_user_curates_taxon
+        errors.add( a, :can_only_be_changed_by_a_curator_of_this_taxon )
+      end
+    end
+    true
+  end
+
+  def protected_attributes_editable_by?( user )
+    # Rails.logger.debug "[DEBUG] user.is_admin?: #{user.is_admin?}"
+    return true if user && user.is_admin?
+    ct = if complete_changed? && complete_was
+      self
+    else
+      complete_taxon
+    end
+    # Rails.logger.debug "[DEBUG] ct: #{ct}"
+    return true unless ct
+    current_user_curates_taxon = false
+    # Rails.logger.debug "[DEBUG] t.taxon_curators.where( user: user ).exists?: #{t.taxon_curators.where( user: user ).exists?}"
+    if user
+      current_user_curates_taxon = ct.taxon_curators.where( user: user ).exists?
+    end
+    current_user_curates_taxon
   end
   
   #
@@ -1409,9 +1449,6 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    if complete_taxon
-      return complete_taxon.taxon_curators.where( user: user ).exists?
-    end
     user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 

@@ -1103,32 +1103,9 @@ describe Taxon, "editable_by?" do
       tc = TaxonCurator.make!( taxon: taxon )
       expect( taxon ).to be_editable_by( tc.user )
     end
-    it "should not be editable by other site curators" do
-      tc = TaxonCurator.make!( taxon: taxon )
-      expect( taxon ).not_to be_editable_by( curator )
-    end
-  end
-  describe "descendants of complete taxa" do
-    let(:family) { Taxon.make!( rank: Taxon::FAMILY, complete: true ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: family ) }
-    let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user ) }
-    it "should be editable by taxon curators of complete taxon" do
-      expect( genus ).to be_editable_by( taxon_curator.user )
-    end
-    it "should not be editable by other site curators" do
-      expect( genus ).not_to be_editable_by( curator )
-    end
-  end
-  describe "incomplete descendants of complete taxa" do
-    let(:family) { Taxon.make!( rank: Taxon::FAMILY, complete: true, complete_rank: Taxon::GENUS ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: family ) }
-    let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user ) }
-    let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
-    it "should be editable by taxon curators of complete taxon" do
-      expect( species ).to be_editable_by( taxon_curator.user )
-    end
     it "should be editable by other site curators" do
-      expect( species ).to be_editable_by( curator )
+      tc = TaxonCurator.make!( taxon: taxon )
+      expect( taxon ).to be_editable_by( curator )
     end
   end
 end
@@ -1182,16 +1159,16 @@ describe "complete" do
     Delayed::Worker.new.work_off
     es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
     expect( es_genus.complete_species_count ).to be_nil
-    without_delay { family.update_attributes!( complete: true ) }
+    without_delay { family.update_attributes!( complete: true, current_user: make_admin ) }
     genus.reload
     expect( genus.complete_species_count ).to eq 1
     es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
     expect( es_genus.complete_species_count ).to eq 1
   end
   it "should destroy TaxonCurators when set to false" do
-    t = Taxon.make!( complete: true )
+    t = Taxon.make!( complete: true, current_user: make_admin )
     tc = TaxonCurator.make!( taxon: t )
-    t.update_attributes( complete: false )
+    t.update_attributes( complete: false, current_user: make_admin )
     expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
   end
   describe "when current_user" do
@@ -1200,17 +1177,20 @@ describe "complete" do
     let(:family) { Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user ) }
     let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user ) }
     let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user ) }
+    # Assume that it can only be blank if this is not happening in a
+    # controller... not the safest assumption, but assigning a user for every
+    # script that alters taxa is going to be tedious
     describe "is blank" do
       it "should prevent grafting to this taxon" do
         t = Taxon.make( rank: Taxon::GENUS, parent: superfamily )
-        expect( t ).not_to be_valid
+        expect( t ).to be_valid
       end
       it "should prevent grafting to a descendant" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: genus )
-        expect( t ).not_to be_valid
+        expect( t ).to be_valid
       end
       it "should allow grafting to taxa beyond the complete_rank" do
-        superfamily.update_attributes( complete_rank: Taxon::GENUS )
+        superfamily.update_attributes( complete_rank: Taxon::GENUS, current_user: make_admin )
         expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species ) ).to be_valid
       end
     end
@@ -1223,6 +1203,22 @@ describe "complete" do
       it "should prevent grafting to a descendant" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: current_user )
         expect( t ).not_to be_valid
+      end
+      it "should prevent editing rank" do
+        superfamily.update_attributes( rank: "superduperfamily", current_user: current_user )
+        expect( superfamily ).not_to be_valid
+      end
+      it "should prevent editing is_active" do
+        superfamily.update_attributes( is_active: false, current_user: current_user )
+        expect( superfamily ).not_to be_valid
+      end
+      it "should prevent editing complete" do
+        superfamily.update_attributes( complete: false, current_user: current_user )
+        expect( superfamily ).not_to be_valid
+      end
+      it "should prevent editing complete_rank" do
+        superfamily.update_attributes( complete_rank: Taxon::SUBFAMILY, current_user: current_user )
+        expect( superfamily ).not_to be_valid
       end
       describe "and complete taxon has a complete_rank" do
         before do
@@ -1249,6 +1245,22 @@ describe "complete" do
       it "should allow grafting to a descendant" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
         expect( t ).to be_valid
+      end
+      it "should allow editing rank" do
+        superfamily.update_attributes( rank: "superduperfamily", current_user: taxon_curator.user )
+        expect( superfamily ).to be_valid
+      end
+      it "should allow editing is_active" do
+        superfamily.update_attributes( is_active: false, current_user: taxon_curator.user )
+        expect( superfamily ).to be_valid
+      end
+      it "should allow editing complete" do
+        superfamily.update_attributes( complete: false, current_user: taxon_curator.user )
+        expect( superfamily ).to be_valid
+      end
+      it "should allow editing complete_rank" do
+        superfamily.update_attributes( complete_rank: "subfamily", current_user: taxon_curator.user )
+        expect( superfamily ).to be_valid
       end
       describe "and complete taxon has a complete_rank" do
         before do
