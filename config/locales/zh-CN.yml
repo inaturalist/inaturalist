@@ -96,6 +96,9 @@ zh-CN:
   x_species_link_html:
     one: <a href='%{url}'>1种物种</a>
     other: <a href='%{url}'>%{count} 种物种</a>
+  x_suggestions_filtered_by_colon:
+    one: 1个建议过滤者：
+    other: '%{count}个建议过滤者：'
   x_taxa_observed_html:
     one: <span class='count'>1</span>个分类单元已观察
     other: <span class='count'>%{count}</span> 个分类群已观察
@@ -295,9 +298,12 @@ zh-CN:
   all_photos: 所有照片
   all_places: 所有地点
   all_projects: 所有项目
+  all_rank_added_to_the_database:
+    genus: 所有属已添加到数据库
+    subsection: 所有亚组已添加到数据库
+    species: 所有物种已添加到数据库
   all_rights_reserved: 保留所有权利
   all_species: 所有物种
-  all_species_added_to_the_database: 所有物种已添加到数据库
   all_taxa:
     rank:
       kingdom: 界
@@ -1411,6 +1417,7 @@ zh-CN:
   inbox: 收件箱
   including: 包括
   in_order_to_login_and_using_site_visit_url: 如果要登录站点并开始使用，您首先应当访问这一地址来激活您的账户：
+  in_progress: 进行中
   in_taxon?: 在分类单元
   in_the_past: 在过去
   in_the_past_week: 在上周
@@ -1674,10 +1681,12 @@ zh-CN:
   lookup: 查找
   lookup_user_rarr: 查找用户 &rarr;
   low: 低
+  lowest_rank: 最低级
   made_a: 做一个
   make_admin: 做为管理员
   make_an_observation: 制作一个观察
   main_content: 主内容
+  make_a_new_place: 做出一个新地点
   make_one: 制作一个？
   make_this_your_default_license: 将其作为您的默认 %{type} 许可协议
   mammals: 哺乳类
@@ -1790,6 +1799,7 @@ zh-CN:
   name_providers:
     col: 生命目录（Catalogue of Life）
     ubio: uBio
+    nzor: 新西兰生物注册
   named_based_url_might_change: 基于名称的URL可能会更改，但这个不会。
   names: 名称
   names_for_taxon_html: 用于 %{taxon} 的名称
@@ -1989,6 +1999,11 @@ zh-CN:
     doubtful: 可疑
     absent: 缺席
   of: 的
+  of_observations: 观察
+  of_species: 种
+  of_observers: 观察者
+  of_identifiers: 标识符
+  of_places: 地点
   official_blog: 官方博客
   old_observation_form: 旧观察表单（已弃用）
   ok: 确定
@@ -2725,6 +2740,7 @@ zh-CN:
     data_url: 数据URL
     overlays: 覆盖图
   taxon_changes: 分类单元更改
+  taxon_curators: 物种馆长
   taxon_name: 分类单元名称
   taxon_observed_by_user: '%{taxon}，由 %{user} 观察到'
   taxon_schemes: 分类方案

@@ -207,9 +207,18 @@ ko:
   all_photos: 모든 사진
   all_places: 모든 장소
   all_projects: 모든 프로젝트
+  all_rank_added_to_the_database:
+    superclass: 데이터베이스에 추가된 모든 상강
+    class: 데이터베이스에 추가된 모든 강
+    order: 데이터베이스에 추가된 모든 목
+    suborder: 데이터베이스에 추가된 모든 아목
+    family: 데이터베이스에 추가된 모든 과
+    subfamily: 데이터베이스에 추가된 모든 아과
+    genus: 데이터베이스에 추가된 모든 속
+    species: 데이터베이스에 추가된 모든 종
+    subspecies: 데이터베이스에 추가된 모든 아종
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_species: 모든 종
-  all_species_added_to_the_database: 데이터베이스에 추가된 모든 종
   all_taxa:
     rank:
       kingdom: 계
@@ -1218,6 +1227,7 @@ ko:
   importing: 가져오는 중...
   improving: 개선 중
   inbox: 받은 쪽지함
+  in_progress: 진행 중
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
   inactive_taxon: 비활성 분류군
@@ -1735,6 +1745,9 @@ ko:
   observations_w_field: 필드가 있는 관찰
   observations_week: 관찰/주
   observations_will_revert_to_casual: 관찰은 위 조건이 맞지 않을 경우 비공식적으로 표시됩니다.
+  of_species: 종
+  of_identifiers: 식별자
+  of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
   official_blog: 공식 블로그
   ok: 확인
