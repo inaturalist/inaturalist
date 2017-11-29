@@ -227,7 +227,8 @@ class TaxaController < ApplicationController
   end
 
   def new
-    @taxon = Taxon.new(:name => params[:name])
+    @taxon = Taxon.new( name: params[:name] )
+    @protected_attributes_editable = true
   end
 
   def create
