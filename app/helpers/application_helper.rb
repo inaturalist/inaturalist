@@ -944,7 +944,7 @@ module ApplicationHelper
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag("#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+      image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"
       image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
     else

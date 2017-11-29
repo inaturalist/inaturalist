@@ -23,7 +23,7 @@
       <tr>
         <td valign="top" style="padding-right:10px;">
           <%- if notifier.user && !no_thumb %>
-            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32) %>
+            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32, style: "border-radius: 32px;") %>
           <%- end %>
         </td>
         <td valign="top">
