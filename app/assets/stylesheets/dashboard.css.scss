@@ -220,7 +220,7 @@ h2.timeline-title { /* fix - added h2 */
   font-size: 75%;
 }
 
-.timeline-title > .subscriptionsettings {
+.timeline-title > .update-settings {
   padding-left: 10px;
   border-left: 1px solid #ddd;
   margin-left: 10px;
@@ -580,7 +580,7 @@ ul.timeline_observation > li > .timeline-panel > .timeline-heading > h2.timeline
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > .timeline-title > .time {
   border-right: 0;
 }
-.timeline-panel a.subscriptionsettings {
+.timeline-panel a.update-settings {
   margin-top:-2px;
   color: gray;
 }
@@ -718,7 +718,7 @@ a.icon_container,
   overflow: hidden;
 }
 
-.list-group-item .subscriptionsettings {
+.list-group-item .update-settings {
   margin-top: 1px;
 }
 
