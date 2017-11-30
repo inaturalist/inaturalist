@@ -1773,7 +1773,6 @@ zh-TW:
     it: 義大利語
     mk: 馬其頓語
     oc: 奧克語
-    pt: 葡萄牙語
     pt-BR: 葡萄牙語 (巴西)
     ja: 日語
     zh-CN: 簡體中文
@@ -2918,7 +2917,7 @@ zh-TW:
   see_something_wrong_with_taxon: 在此物種分類發現到問題了嗎？請讓策展人知悉。
   seen_it?: 看到它了嗎？
   seen_nearby: 已看過附近
-  seen_one: 看到一個了嗎？]
+  seen_one: 看到一個了嗎？
   select: 選擇
   select_all: 選擇全部
   select_an_album: 選擇一個相簿
@@ -4487,7 +4486,7 @@ zh-TW:
     taxa:
       edit:
         high_status_conservation_status_notice_html: 為更高層級物種分類添加保育狀態，來對此物種分類上的所有物種觀察生效。請不要在有物種未包含狀態的物種分類群上添加狀態，因為這會對那些物種的觀察不正確地隱蔽座標。
-        complete_desc_html: 一個「完整」物種分類包含<em>所有</em>在符合 iNaturalist 物種分類策展方針指定排名裡的已知派生物種分類群；無論它們是否已被觀察。
+        complete_desc_html: 一個「完整」物種分類包含<em>所有</em>在符合 iNaturalist 物種分類策展方針指定排名裡的已知派生物種分類群；無論它們是否已被觀察。僅有網站管理員可以宣告目前完整的物種分類群。
         complete_rank_desc_html: 在此完成的物種分類級別，例如：假如科有包含到所有的屬；但不在所有物種裡，預設物種這將會設定「屬」。
       show:
         about_names_desc: |-
@@ -4895,6 +4894,20 @@ zh-TW:
             observation_id:
               must_be_observed_after: 必須在 %{time} 之後觀察
               must_be_observed_before: 必須在 %{time} 之前觀察
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
     attributes:
       assessment:
         description: 描述
