@@ -28,8 +28,16 @@ module INatAPIService
     return INatAPIService.get("/observations/popular_field_values", params)
   end
 
+  def self.geoip_lookup(params={})
+    return INatAPIService.get("/geoip_lookup", params)
+  end
+
   def self.get_json( path, params = {}, retries = 3 )
     url = INatAPIService::ENDPOINT + path;
+    headers = {}
+    if api_token = params.delete(:api_token)
+      headers["Authorization"] = api_token
+    end
     unless params.blank? || !params.is_a?(Hash)
       url += "?" + params.map{|k,v| "#{k}=#{[v].flatten.join(',')}"}.join("&")
     end
@@ -39,7 +47,7 @@ module INatAPIService
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true if uri.scheme == "https"
         # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        response = http.get(uri.request_uri)
+        response = http.get( uri.request_uri, headers )
         if response.code == "200"
           return response.body.force_encoding( "utf-8" )
         end
@@ -54,6 +62,8 @@ module INatAPIService
   end
 
   def self.get( path, params = {}, retries = 3 )
-    OpenStruct.new_recursive( JSON.parse( get_json( path, params, retries ) ) || {} )
+    json = get_json( path, params, retries )
+    return unless json
+    OpenStruct.new_recursive( JSON.parse( json ) || {} )
   end
 end

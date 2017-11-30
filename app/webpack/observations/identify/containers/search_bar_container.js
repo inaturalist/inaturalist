@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
   return {
     params: state.searchParams.params,
     defaultParams: state.searchParams.default,
-    allReviewed: state.config.allReviewed
+    allReviewed: state.config.allReviewed,
+    allControlledTerms: state.controlledTerms.allTerms
   };
 }
 

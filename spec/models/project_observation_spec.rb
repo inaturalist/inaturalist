@@ -573,10 +573,12 @@ describe ProjectObservation, "elastic indexing" do
   before(:all) do
     DatabaseCleaner.strategy = :truncation
     Observation.__elasticsearch__.create_index!
+    Identification.__elasticsearch__.create_index!
   end
   after(:all) do
     DatabaseCleaner.strategy = :transaction
     Observation.__elasticsearch__.delete_index!
+    Identification.__elasticsearch__.delete_index!
   end
 
   it "should update projects for observations" do

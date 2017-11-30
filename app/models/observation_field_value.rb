@@ -1,4 +1,7 @@
 class ObservationFieldValue < ActiveRecord::Base
+
+  blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
+  
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
@@ -210,6 +213,7 @@ class ObservationFieldValue < ActiveRecord::Base
 
   def as_indexed_json(options={})
     json = {
+      id: id,
       uuid: uuid,
       field_id: observation_field.id,
       datatype: observation_field.datatype,

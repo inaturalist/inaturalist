@@ -14,7 +14,7 @@ class Copyright extends React.Component {
 
   render( ) {
     const { observation, config } = this.props;
-    if ( !observation ) { return ( <span /> ); }
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
     let application;
     if ( observation.application && observation.application.name ) {
@@ -35,9 +35,9 @@ class Copyright extends React.Component {
     const panelTitle = application ?
       I18n.t( "copyright_info_and_more" ) : I18n.t( "copyright_info" );
     return (
-      <div className="Copyright">
+      <div className="Copyright collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_copyright: this.state.open } );

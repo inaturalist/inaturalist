@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import _ from "lodash";
 import IdentificationForm from "../components/identification_form";
+import { submitIdentificationWithConfirmation } from "../actions";
 import {
   postIdentification,
   fetchCurrentObservation,
@@ -26,15 +27,21 @@ function mapStateToProps( state, ownProps ) {
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
     onSubmitIdentification: ( identification, options = {} ) => {
-      dispatch( loadingDiscussionItem( identification ) );
+      const ident = Object.assign( { }, identification, {
+        observation: ownProps.observation
+      } );
+      // dispatch( submitIdentificationWithConfirmation( ident, {
+      //   confirmationText: options.confirmationText
+      // } ) );
+      dispatch( loadingDiscussionItem( ident ) );
       const boundPostIdentification = ( disagreement ) => {
-        const params = Object.assign( { }, identification );
-        if ( _.isNil( identification.disagreement ) ) {
+        const params = Object.assign( { }, ident );
+        if ( _.isNil( ident.disagreement ) ) {
           params.disagreement = disagreement;
         }
         dispatch( postIdentification( params ) )
         .catch( ( ) => {
-          dispatch( stopLoadingDiscussionItem( identification ) );
+          dispatch( stopLoadingDiscussionItem( ident ) );
         } )
         .then( ( ) => {
           dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
@@ -49,7 +56,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
           title: I18n.t( "heads_up" ),
           onConfirm: boundPostIdentification,
           onCancel: ( ) => {
-            dispatch( stopLoadingDiscussionItem( identification ) );
+            dispatch( stopLoadingDiscussionItem( ident ) );
             dispatch( addIdentification( ) );
           }
         } ) );
@@ -60,7 +67,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
           },
           onBestGuess: boundPostIdentification,
           onCancel: ( ) => {
-            dispatch( stopLoadingDiscussionItem( identification ) );
+            dispatch( stopLoadingDiscussionItem( ident ) );
             dispatch( addIdentification( ) );
           },
           oldTaxon: options.observation.taxon

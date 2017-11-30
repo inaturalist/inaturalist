@@ -46,7 +46,7 @@ module ActionController
 
         define_method(:set_spam_flash_error) do
           flash.now[:warning_title] = t("views.shared.spam.this_has_been_flagged_as_spam")
-          flash.now[:warning] = t("views.shared.spam.message_for_owner_and_curators_html", email: CONFIG.help_email)
+          flash.now[:warning] = t("views.shared.spam.message_for_owner_and_curators_html", email: @site.email_help)
         end
 
         define_method(:if_spammer_set_flash_message) do |user_to_check|

@@ -73,12 +73,20 @@ class TaxonMap extends React.Component {
     this.setMapFromProps( );
   }
   componentDidUpdate( prevProps ) {
-    if ( !this.props.static &&
-         objectToComparable( this.props.reloadKey || this.props ) !==
-           objectToComparable( prevProps.reloadKey || prevProps ) ) {
-      this.setMapFromProps( );
-      google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
+    if ( this.props.static ) {
+      // no need to re-render a static map
+      return;
     }
+    if (
+      objectToComparable( this.props.reloadKey || this.props )
+      ===
+      objectToComparable( prevProps.reloadKey || prevProps )
+    ) {
+      // props didn't change, don't re-render
+      return;
+    }
+    this.setMapFromProps( );
+    google.maps.event.trigger( $( ReactDOM.findDOMNode( this ) ).data( "taxonMap" ), "resize" );
   }
   setMapFromProps( ) {
     $( ReactDOM.findDOMNode( this ) ).taxonMap( this.props );

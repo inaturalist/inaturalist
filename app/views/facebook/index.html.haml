@@ -50,7 +50,7 @@
   - else
     =t :recent_observations 
   = t(:from).downcase
-  = link_to image_tag(CONFIG.logo, :alt => SITE_NAME), root_url, :title => CONFIG.site_name
+  = link_to image_tag(@site.logo.url, :alt => @site.name), root_url, :title => @site.name
 
 .observationcontrols.stacked
 .observations.medium.grid

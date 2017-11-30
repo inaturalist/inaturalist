@@ -24,6 +24,7 @@ class Taxon < ActiveRecord::Base
         indexes :photo do
           indexes :attribution, type: "keyword", index: false
           indexes :license_code, type: "keyword"
+          indexes :original_url, type: "keyword", index: false
           indexes :large_url, type: "keyword", index: false
           indexes :medium_url, type: "keyword", index: false
           indexes :small_url, type: "keyword", index: false
@@ -58,6 +59,7 @@ class Taxon < ActiveRecord::Base
           search_analyzer: "standard_analyzer"
         indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
         indexes :exact, type: "keyword"
+        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
       end
       indexes :statuses do
         indexes :authority, type: "keyword"
@@ -119,6 +121,7 @@ class Taxon < ActiveRecord::Base
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
+      json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
@@ -137,8 +140,13 @@ class Taxon < ActiveRecord::Base
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
-        atlas_id: atlas.try( :id )
+        atlas_id: atlas.try( :id ),
+        complete_species_count: complete_species_count
       })
+      if complete_taxon
+        json[:complete_rank] = complete_taxon.complete_rank
+        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      end
     end
     json
   end

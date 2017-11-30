@@ -9,4 +9,20 @@ $( function( ) {
       initialSelection: $( this ).data( "initial-taxon" )
     });
   });
+
+  function autocompleteForControlledTermTaxon( input ) {
+    var id = $( input ).parents( ".nested-fields:first" ).find( "[name*=taxon_id]" );
+    $( input ).taxonAutocomplete({
+      searchExternal: false,
+      bootstrapClear: false,
+      idEl: id,
+      initialSelection: $( input ).data( "initial-taxon" )
+    });
+  }
+  $( "input.taxon-autocomplete" ).each( function ( ) {
+    autocompleteForControlledTermTaxon( this );
+  } );
+  $( ".controlled_term_taxa" ).bind( "cocoon:after-insert", function( e, item ) {
+    autocompleteForControlledTermTaxon( $( ":input:visible:first", item ) );
+  })
 });

@@ -71,6 +71,8 @@ class User < ActiveRecord::Base
   preference :hide_obs_show_identifiers, default: false
   preference :hide_obs_show_copyright, default: false
   preference :hide_obs_show_quality_metrics, default: false
+  preference :hide_obs_show_expanded_cid, default: true
+  preference :common_names, :boolean, default: true 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
@@ -125,6 +127,11 @@ class User < ActiveRecord::Base
   has_many :created_guide_sections, :class_name => "GuideSection", :foreign_key => "creator_id", :inverse_of => :creator, :dependent => :nullify
   has_many :updated_guide_sections, :class_name => "GuideSection", :foreign_key => "updater_id", :inverse_of => :updater, :dependent => :nullify
   has_many :atlases, :inverse_of => :user, :dependent => :nullify
+  has_many :user_blocks, inverse_of: :user, dependent: :destroy
+  has_many :user_blocks_as_blocked_user, class_name: "UserBlock", foreign_key: "blocked_user_id", inverse_of: :blocked_user, dependent: :destroy
+  has_many :user_mutes, inverse_of: :user, dependent: :destroy
+  has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -141,8 +148,8 @@ class User < ActiveRecord::Base
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
-      s3_protocol: "https",
-      s3_host_alias: CONFIG.s3_bucket,
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       path: "/attachments/users/icons/:id/:style.:icon_type_extension",
       default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
@@ -152,7 +159,7 @@ class User < ActiveRecord::Base
   else
     has_attached_file :icon, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
-      url: "#{ CONFIG.attachments_host }/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+      url: "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
       default_url: "/attachment_defaults/:class/:attachment/defaults/:style.png"
     )
   end
@@ -182,9 +189,11 @@ class User < ActiveRecord::Base
   after_save :destroy_messages_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
   after_update :update_photo_properties
+  after_update :update_life_list
   after_create :create_default_life_list
   after_create :set_uri
   after_destroy :create_deleted_user
+  after_destroy :remove_oauth_access_tokens
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -468,6 +477,7 @@ class User < ActiveRecord::Base
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
+    User.where( id: id ).update_all( observations_count: observations.count )
     LifeList.delay(priority: USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
     Observation.delay(priority: USER_INTEGRITY_PRIORITY).index_observations_for_user( id )
   end
@@ -491,57 +501,27 @@ class User < ActiveRecord::Base
     
   def get_lat_lon_from_ip
     return true if last_ip.nil?
-    url = URI.parse('http://geoip.inaturalist.org/')
-    http = Net::HTTP.new(url.host, url.port)
-    http.read_timeout = 0.5
-    http.open_timeout = 0.5
     latitude = nil
     longitude = nil
     lat_lon_acc_admin_level = nil
-    begin
-      resp = http.start() {|http| http.get("/?ip=#{last_ip}") }
-      data = resp.body
-      begin
-        result = JSON.parse(data)
-        if result["results"]["country"] == ""
-          lat_lon_acc_admin_level = nil #no idea where
-          latitude = nil
-          longitude = nil          
-        else #know the country at least
-          ll = result["results"]["ll"]
-          latitude = ll[0]
-          longitude = ll[1]
-          if result["results"]["city"] == ""
-            if result["results"]["region"] == ""
-              lat_lon_acc_admin_level = 0  #probably just know the country
-            else
-              lat_lon_acc_admin_level = 1 #also probably know the state
-            end
-          else
-            lat_lon_acc_admin_level = 2 #also probably know the county
-          end
+    geoip_response = INatAPIService.geoip_lookup({ ip: last_ip })
+    if geoip_response && geoip_response.results
+      # don't set any location if the country is unknown
+      if geoip_response.results.country
+        ll = geoip_response.results.ll
+        latitude = ll[0]
+        longitude = ll[1]
+        if geoip_response.results.city
+          # also probably know the county
+          lat_lon_acc_admin_level = 2
+        elsif geoip_response.results.region
+          # also probably know the state
+          lat_lon_acc_admin_level = 1
+        else
+          # probably just know the country
+          lat_lon_acc_admin_level = 0
         end
-      rescue
-        latitude = nil
-        longitude = nil
-        lat_lon_acc_admin_level = nil
-        Rails.logger.info "[INFO #{Time.now}] geoip unrecognized ip"
       end
-    rescue SocketError
-      latitude = nil
-      longitude = nil
-      lat_lon_acc_admin_level = nil
-      Rails.logger.info "[INFO #{Time.now}] geoip unrecognized due to dropped connection"
-    rescue Timeout::Error => e
-      latitude = nil
-      longitude = nil
-      lat_lon_acc_admin_level = nil
-      Rails.logger.info "[INFO #{Time.now}] geoip timeout"
-    rescue SocketError => e
-      latitude = nil
-      longitude = nil
-      lat_lon_acc_admin_level = nil
-      Rails.logger.info "[INFO #{Time.now}] geoip socket error: #{e}"
     end
     self.latitude = latitude
     self.longitude = longitude
@@ -735,6 +715,12 @@ class User < ActiveRecord::Base
     true
   end
 
+  def remove_oauth_access_tokens
+    return true unless frozen?
+    Doorkeeper::AccessToken.where( resource_owner_id: id ).delete_all
+    true
+  end
+
   def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
@@ -759,6 +745,13 @@ class User < ActiveRecord::Base
   def set_community_taxa_if_pref_changed
     if prefers_community_taxa_changed? && ! id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+    end
+    true
+  end
+
+  def update_life_list
+    if login_changed? && life_list
+      life_list.update_attributes( title: life_list.title.gsub( /#{login_was}/, login ) )
     end
     true
   end
@@ -801,6 +794,10 @@ class User < ActiveRecord::Base
       sort: { id: :desc })
   end
 
+  def blocked_by?( user )
+    user_blocks_as_blocked_user.where( user_id: user ).exists?
+  end
+
   def self.default_json_options
     {
       :except => [:crypted_password, :salt, :old_preferences, :activation_code, :remember_token, :last_ip,
@@ -835,15 +832,32 @@ class User < ActiveRecord::Base
     return unless user = User.find_by_id(user_id)
     result = Observation.elastic_search(
       filters: [ { nested: {
-        path: "non_owner_ids",
+        path: "identifications",
         query: { bool: { must: [
-          { term: { "non_owner_ids.user.id": user_id } }
+          { term: { "identifications.user.id": user_id } },
+          { term: { "identifications.own_observation": false } }
         ] } }
       } } ],
       size: 0
     )
     count = (result && result.response) ? result.response.hits.total : 0
     User.where(id: user_id).update_all(identifications_count: count)
+  end
+
+  def self.update_observations_counter_cache(user_id)
+    return unless user = User.find_by_id( user_id )
+    result = Observation.elastic_search(
+      filters: [
+        { bool: { must: [
+          { term: { "user.id": user_id } },
+        ] } }
+      ],
+      size: 0
+    )
+    count = (result && result.response) ? result.response.hits.total : 0
+    User.where( id: user_id ).update_all( observations_count: count )
+    user.reload
+    user.elastic_index!
   end
 
   def to_plain_s

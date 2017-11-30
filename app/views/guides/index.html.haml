@@ -10,7 +10,7 @@
     })
 .container
   #guidesheader.jumbotron.clear{:class => logged_in? ? 'logged_in' : nil}
-    %h1= link_to t(:welcome_to_guides, :site_name => SITE_NAME), guides_path
+    %h1= link_to t(:welcome_to_guides, :site_name => @site.name), guides_path
     %p
       =t 'views.guides.index.welcome_message_html'
     .text

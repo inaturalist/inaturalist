@@ -5,7 +5,7 @@ class OauthApplication < Doorkeeper::Application
     :default_url => "/attachment_defaults/:class/:style.png",
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :s3_host_alias => CONFIG.s3_bucket,
+    :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
     :bucket => CONFIG.s3_bucket,
     :path => "oauth_applications/:id-:style.:extension",
     :url => ":s3_alias_url"
@@ -14,11 +14,11 @@ class OauthApplication < Doorkeeper::Application
     :message => "must be JPG, PNG, or GIF"
 
   def self.inaturalist_android_app
-    OauthApplication.where(name: "iNaturalist Android App").first
+    @@inaturalist_android_app ||= OauthApplication.where(name: "iNaturalist Android App").first
   end
 
   def self.inaturalist_iphone_app
-    OauthApplication.where(name: "iNaturalist iPhone App").first
+    @@inaturalist_iphone_app ||= OauthApplication.where(name: "iNaturalist iPhone App").first
   end
 
 end

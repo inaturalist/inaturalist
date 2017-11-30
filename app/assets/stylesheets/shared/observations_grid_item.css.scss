@@ -1,4 +1,4 @@
-@import "../../users/_user_image";
+@import "../users/_user_image";
 .ObservationsGridItem {
   position: relative;
 }
@@ -10,13 +10,12 @@
 }
 .ObservationsGridItem .thumbnail {
   margin-bottom: 30px;
-}
-.ObservationsGridItem .thumbnail {
   position: relative;
 }
 .ObservationsGridItem .photo {
   display: block;
   width: 100%;
+  min-height: 20px;
   background-size: cover;
   background-position: center;
   margin: 0px auto;
@@ -148,6 +147,7 @@ $flowedDim: 150px;
 .ObservationsGridItem .controls {
   position: absolute;
   left: 10px;
+  right: 10px;
   bottom: 10px;
 }
 
@@ -196,4 +196,16 @@ $flowedDim: 150px;
 }
 .ObservationsGridItem .photo:hover .magnifier {
   display: block;
+}
+.ObservationsGridItem {
+  .taxon .display-name {
+    color: black;
+    display: block;
+    font-size: 120%;
+    font-weight: bold;
+  }
+
+  .taxon .sciname {
+    white-space: normal;
+  }
 }

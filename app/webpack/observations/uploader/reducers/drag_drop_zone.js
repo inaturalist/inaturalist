@@ -7,7 +7,7 @@ const defaultState = {
   obsCards: { },
   files: { },
   numberOfUploads: 0,
-  maximumNumberOfUploads: 4,
+  maximumNumberOfUploads: 3,
   saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 },
   locationChooser: { show: false },
   removeModal: { show: false },
@@ -85,7 +85,9 @@ const dragDropZone = ( state = defaultState, action ) => {
       }
       const time = new Date( ).getTime( );
       let updatedState = update( state, {
-        files: { [action.file.id]: { $merge: action.attrs } }
+        files: {
+          [action.file.id]: { $merge: action.attrs }
+        }
       } );
       const cardID = updatedState.files[action.file.id].cardID;
       const card = updatedState.obsCards[cardID];

@@ -23,7 +23,7 @@
       <tr>
         <td valign="top" style="padding-right:10px;">
           <%- if notifier.user && !no_thumb %>
-            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32) %>
+            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32, style: "border-radius: 32px;") %>
           <%- end %>
         </td>
         <td valign="top">
@@ -49,7 +49,7 @@
                   username = if notifier.resolver
                     notifier.resolver.login
                   elsif notifier.resolver_id.blank?
-                    SITE_NAME_SHORT
+                    @site.preferred_site_name_short
                   else
                     t(:deleted_user)
                   end

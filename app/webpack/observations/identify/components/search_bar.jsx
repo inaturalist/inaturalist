@@ -20,6 +20,8 @@ class SearchBar extends React.Component {
       )
       &&
       this.props.allReviewed === nextProps.allReviewed
+      &&
+      this.props.allControlledTerms === nextProps.allControlledTerms
     ) {
       // No change in underlying data series, don't update
       return false;
@@ -34,7 +36,8 @@ class SearchBar extends React.Component {
       replaceSearchParams,
       reviewAll,
       unreviewAll,
-      allReviewed
+      allReviewed,
+      allControlledTerms
     } = this.props;
     return (
       <form className="SearchBar form-inline">
@@ -46,8 +49,15 @@ class SearchBar extends React.Component {
           afterSelect={ function ( result ) {
             updateSearchParams( { taxon_id: result.item.id } );
           } }
-          afterUnselect={ function ( ) {
-            updateSearchParams( { taxon_id: null } );
+          afterUnselect={ idWas => {
+            // Our autocompletes seem to fire afterUnselect for mysterious
+            // reasons sometimes, even when the selected ID was null, leading to
+            // annoying flickering effects and unnecessary requests. In theory
+            // this shouldn't happen, but if it does, this should prevent
+            // updating search params when there wasn't really a change.
+            if ( idWas ) {
+              updateSearchParams( { taxon_id: null } );
+            }
           } }
         />
         <span className="form-group">
@@ -60,8 +70,10 @@ class SearchBar extends React.Component {
             afterSelect={ function ( result ) {
               updateSearchParams( { place_id: result.item.id } );
             } }
-            afterUnselect={ function ( ) {
-              updateSearchParams( { place_id: null } );
+            afterUnselect={ idWas => {
+              if ( idWas ) {
+                updateSearchParams( { place_id: null } );
+              }
             } }
           />
         </span>
@@ -72,6 +84,7 @@ class SearchBar extends React.Component {
           updateSearchParams={updateSearchParams}
           replaceSearchParams={replaceSearchParams}
           defaultParams={defaultParams}
+          terms={allControlledTerms}
         />
         <Input
           type="checkbox"
@@ -106,7 +119,8 @@ SearchBar.propTypes = {
   replaceSearchParams: PropTypes.func,
   reviewAll: PropTypes.func,
   unreviewAll: PropTypes.func,
-  allReviewed: PropTypes.bool
+  allReviewed: PropTypes.bool,
+  allControlledTerms: PropTypes.array
 };
 
 export default SearchBar;

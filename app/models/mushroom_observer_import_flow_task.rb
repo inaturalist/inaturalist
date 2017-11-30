@@ -84,6 +84,11 @@ class MushroomObserverImportFlowTask < FlowTask
     @warnings.delete url
   end
 
+  def images_from_result( result )
+    primary_image = result.at( "primary_image" )
+    [primary_image, result.search( "> images image" )].compact.flatten
+  end
+
   def observation_from_result( result, options = {} )
     log "working on result #{result[:url]}"
     if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
@@ -99,7 +104,7 @@ class MushroomObserverImportFlowTask < FlowTask
     return existing if existing
     o = Observation.new( user: user )
     o.observation_field_values.build( observation_field: mo_url_observation_field, value: result[:url] )
-    if location = result.at( "location" )
+    if location = result.at_css( "> location" )
       o.place_guess = location.at( "name" ).text
       swlat = location.at( "latitude_south" ).text.to_f
       swlng = location.at( "longitude_west" ).text.to_f
@@ -129,14 +134,18 @@ class MushroomObserverImportFlowTask < FlowTask
         consensus_name.at( "author" ).try(:text)
       ].compact.join(" ") )
     end
-    if date = result.at( "date" )
+    if date = result.at_css( "> date" )
       o.observed_on_string = date.text
     end
-    if notes = result.at( "notes" )
-      o.description = notes.text
+    if notes = result.at_css( "> notes" )
+      if notes.text =~ /\:Other/
+        o.description = notes.text[/&gt;&quot;(.+)&quot;\}/, 1]
+      elsif notes.text != "<p>{}</p>"
+        o.description = notes.text
+      end
     end
-    if !options[:skip_images] && ( primary_image = result.at( "primary_image" ) )
-      [primary_image, result.search( "image" )].flatten.each do |image|
+    if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
+      images.each do |image|
         image_url = "http://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
         lp = LocalPhoto.new( user: user )
         begin

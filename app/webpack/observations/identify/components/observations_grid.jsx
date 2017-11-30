@@ -1,13 +1,14 @@
 import React, { PropTypes } from "react";
 import { Row, Col } from "react-bootstrap";
-import ObservationsGridItem from "./observations_grid_item";
+import ObservationsGridItemForIdentify from "./observations_grid_item_for_identify";
 
 const ObservationsGrid = ( {
   observations,
   onObservationClick,
   toggleReviewed,
   onAgree,
-  grid
+  grid,
+  currentUser
 } ) => {
   let noObservationsNotice;
   if ( observations.length === 0 ) {
@@ -22,12 +23,14 @@ const ObservationsGrid = ( {
       <Col xs={12}>
         { noObservationsNotice }
         { observations.map( ( observation ) => (
-          <ObservationsGridItem
-            key={observation.id}
-            observation={observation}
-            onObservationClick={onObservationClick}
-            toggleReviewed={toggleReviewed}
-            onAgree={onAgree}
+          <ObservationsGridItemForIdentify
+            key={ observation.id }
+            observation={ observation }
+            onObservationClick={ onObservationClick }
+            toggleReviewed={ toggleReviewed }
+            onAgree={ onAgree }
+            showMagnifier
+            currentUser={ currentUser }
           />
         ) ) }
       </Col>
@@ -45,7 +48,8 @@ ObservationsGrid.propTypes = {
   onObservationClick: PropTypes.func,
   onAgree: PropTypes.func,
   toggleReviewed: PropTypes.func,
-  grid: PropTypes.bool
+  grid: PropTypes.bool,
+  currentUser: PropTypes.object
 };
 
 export default ObservationsGrid;

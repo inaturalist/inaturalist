@@ -88,7 +88,7 @@ es-MX:
   a_community_for_naturalist: Una comunidad para naturalistas
   a_few_points_to_make_things_clear: Algunos puntos para aclarar las cosas
   a_flag_for_x: una alerta para %{x}
-  a_greasemonkey_script: Un guión (script) de Greasemonkey
+  a_greasemonkey_script: una secuencia de órdenes de Greasemonkey
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Excelente! Pudimos enlazar tu cuenta de Flickr.
   about: Acerca
@@ -165,7 +165,7 @@ es-MX:
   add_listed_taxa_from_observations: Añade a los taxa de la lista a partir de las
     observaciones
   add_higher_level_taxon: Añade un grupo de nivel superior (por ejemplo, "aves")
-  add_id: Añade identificación
+  add_id: Añade ID
   add_it_to_place_raquo: Añádelo a un lugar  &raquo;
   add_more_photos: Añade más fotos
   add_new_lexicon: Añade nuevo lexicón
@@ -400,7 +400,6 @@ es-MX:
     o grupo de la lista de comprobación de  %{place}
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: ¿Estás seguro?
     Esto volverá a cargar la página y es posible que pierdas algunos de tus cambios.
-  are_you_sure_unlink_picasa: ¿Estas seguro que quieres desenlazar tu cuenta de Picasa?
   are_you_sure_want_activate_account: ¿Estás seguro que quieres activad esta cuenta?
   are_you_sure_want_delete_account: ¿Estás seguro que quieres borrar tu cuenta? Esto
     borraría todos tus datos y no se pueden reponer y además, nos daría mucha pena
@@ -714,6 +713,7 @@ es-MX:
   click_on_the_map_to: Selecciona el mapa para poner tu observación
   click_the_map: <strong>Selecciona el mapa </strong>para añadir una localización.
   click_the_map_to_jump_new_place: Selecciona el mapa para moverte a un lugar nuevo
+  close: Cerrar
   code: Código HTML
   collapse_days: Colapsa los días
   collapse_updates: Colapsa las actualizaciones
@@ -987,7 +987,6 @@ es-MX:
   disconnect_provider: Desconecta  %{provider}
   display_listings_added_by_curators: Mostrar listados añadidos por curadores
   display_listings_from_place: Mostrar listados del Lugar
-  drop_it: ¡Suéltalo!
   do_you_know_where_this_species_lives: ¿Sabes en donde vive esta especie?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: ¿Estudiaste a los nemátodos?
     ¿Eres uno de los expertos mundiales en la taxonomía de los percebes? ¿Te gusta
@@ -1000,6 +999,7 @@ es-MX:
   dont_filter: No filtrar
   dont_send_me_email: ¡No me envíen correo electrónico!
   dont_use_double_quotes: No uses "entre comillas" en ningún lado
+  drop_it: ¡Suéltalo!
   double_click_to_finish: (Con doble clic termina tu forma)
   download: Descargar
   download_bulk_import_template_html: |-
@@ -1012,7 +1012,6 @@ es-MX:
   draft_: Borrador
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
-  drag_and_drop_some_photos: Arrastra y suelta algunas fotos
   each_place_displays_all_species_inat_knows: Cada página de Lugares muestra todas
     las especies que %{site_name} conoce de ese lugar, incluyendo información de su
     abundancia, estado de conservación y quién observó esa especie por primera vez
@@ -1642,13 +1641,11 @@ es-MX:
   link: Enlace
   link_or_unlink_your_facebook_account: Enlaza o desenlaza tu cuenta de Facebook
   link_or_unlink_your_flickr_account: Enlaza o desenlaza tu cuenta Flickr
-  link_or_unlink_your_picasa_account: Enlaza o desenlaza tu cuenta Picasa
   link_your_facebook_account: Enlaza tu cuenta de Facebook
   link_your_flickr_account: Enlaza tu cuenta de Flickr
   link_your_flickr_account_with_inat: Enlaza tu cuenta de Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Enlaza tu cuenta Flickr con %{site_name}
     para que puedas añadir fotos de tus observaciones.
-  link_your_picasa_account: Enlaza tu cuenta de Picasa
   linked_facebook: Tu cuenta %{site_name} está enlazada con tu cuenta de Facebook.
   linked_facebook_automaticaly: También ten en cuenta que cuando entras a %{site_name}
     via Facebook, automáticamente re-enlazaremos tus cuentas de  %{site_name} y de
@@ -1835,9 +1832,9 @@ es-MX:
   merging_places: Combinando Lugares
   message: Mensaje
   messages: Mensajes
-  mixed_licenses: Licencia combinada
   misleading_or_illegal_content_html: Contenido ilegal, engañoso, racial, étnico,
     etc.
+  mixed_licenses: Licencia combinada
   mobile_app_for: Aplicaciones móviles para
   mobile_apps_for: Aplicaciones móviles para
   mollusks: Moluscos
@@ -2094,7 +2091,6 @@ es-MX:
     limitación de lugares solo abarca los lugares de %{site_name}, y solo se pueden
     limitar las observaciones de acuerdo a los límites que rodean el lugar.
   observation_was_deleted: La observación fue borrada.
-  observation_without_photo: Observación sin foto
   observation_would_like_some_help: A %{user} agradecería su ayuda para identificar
     esto!
   observations: Observaciones
@@ -2341,7 +2337,6 @@ es-MX:
   photo_hosting_accounts: Cuentas que contienen fotos
   photo_integration: Integración de foto
   photo_licensing: Licencia de la foto
-  photo_s: Foto(s)
   photo_type: Tipo de foto
   photo_urls_repaired: La URL de la foto fue reparada.
   photos_or_sounds?: ¿Fotos o sonidos?
@@ -2353,8 +2348,6 @@ es-MX:
   photos_size_photos: '%{photos_size} fotos'
   photos_size_photo: '%{photos_size} foto'
   photos_updated: Fotos actualizadas.
-  picasa_account_not_linked: El %{user} ya no tiene vinculada la cuenta de facebook,
-    para %{site_name} por lo que no tiene permiso para acceder a esta foto.
   picasa_identity: Identificación de Picasa
   pick_a_username: Escoge un nombre de usuario
   pink: Rosa
@@ -2822,9 +2815,9 @@ es-MX:
     una advertencia a los curadores ahora.
   seen_it?: ¿Lo han visto?
   seen_one: ¿Han visto uno?
+  select: Selecciona
   select_all: Marca todos
   select_an_album: Selecciona un álbum
-  select: Selecciona
   select_how_unobserved_listings_are_displayed: Selecciona como mostrar los listados
     de especies no observadas
   select_one_or_more_photos: Selecciona una o mas fotos
@@ -2898,7 +2891,6 @@ es-MX:
   site_taxon_page: '%{site_name} página del taxón'
   so_meta!: so meta!
   some_agree: Algunos están de acuerdo
-  some_observations_failed: Algunas observaciones no fueron añadidas a los proyectos.
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
   some_other_reason: Otra razón que puedes explicar.
@@ -2921,8 +2913,6 @@ es-MX:
     para que lo encuentres la próxima vez.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Lo sentimos, alguna de
     esas fotos de Flickr no existen o no tienes permisos para verlas.
-  sorry_picasa_isnt_responding_at_the_moment: Lo sentimos, Picasa de momento no esta
-    respondiendo.
   sorry_that_photo_provider_isnt_responding: Lo sentimos, esa foto de momento no esta
     respondiendo. Por favor inténtalo más tarde.
   sorry_that_service_is_not_responding: Lo sentimos, ese servicio no responde. Por
@@ -3122,7 +3112,6 @@ es-MX:
     data_url: Enlace de datos
     overlays: Capas
   taxon_changes: Cambios a especies o grupos
-  taxon_change_settings: Configuración del cambio de especies y grupos
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
   taxon_photos_updated: ¡Las fotos de la especie o grupo fueron actualizadas!
@@ -3370,9 +3359,6 @@ es-MX:
   to_add_ids: para agregar identificaciones
   to_an: a una
   to_configure_your_widget: para configurar tu widget.
-  to_include_your_picassa_with_inat: Para incluir tus fotos de Picasa con tus observaciones
-    de %{site_name}, selecciona el botón a la derecha para enlazar tu dos cuentas.
-    Pasarás a Google, donde te pedirán que autorices esta conexión.
   to_tag_your_flickr_from_here: para etiquetar tus fotos de Flickr desde aquí sin
     cortar y pegar
   to_the_bat_cave: ¡A la baticueva!
@@ -3421,7 +3407,6 @@ es-MX:
   unique_observers_last_3_months: Observaciones únicas en los pasados 3 meses,
   unknown: Desconocido
   unknown_rank: (Clasificación desconocida)
-  unlink_your_picasa_account: Desenlaza tu cuenta Picasa
   unobserved_listings: Listados no observados
   updates_notification_email_subject: '%{prefix} Nuevas actualizaciones %{date}'
   updating: Actualizando
@@ -3487,11 +3472,13 @@ es-MX:
     con comas debe estar encerrado con dobles comillas. La mayoría de las hojas de
     cálculo deben exportar CSV en este formato.
   user: Usuario
-  user_added_an_observation_html: '%{user} añadió una observación'
-  user_added_an_x_to_noun_html: '%{user} añadió una %{x} a %{noun}'
-  user_added_a_x_to_noun_html: '%{user} añadió un %{x} a %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} añadió una %{x} a %{noun} hecha por %{by}'
   user_added_a_x_to_noun_by_html: '%{user} añadió un %{x} a %{noun} hecha por %{by}'
+  user_added_a_x_to_noun_html: '%{user} añadió un %{x} a %{noun}'
+  user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}"
+    a una observación de %{owner}'
+  user_added_an_observation_html: '%{user} añadió una observación'
+  user_added_an_x_to_noun_by_html: '%{user} añadió una %{x} a %{noun} hecha por %{by}'
+  user_added_an_x_to_noun_html: '%{user} añadió una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} añadió %{x} observaciones'
   user_commented_on: El %{user} comentó sobre tu %{title} %{time}
   user_follows: '%{user} sigue:'
@@ -3502,16 +3489,14 @@ es-MX:
   user_hasnt: El %{user} no ha
   user_invite_observation_to_project: A %{user} le gustaría invitar tu observación  "%{observation}"
     al proyecto %{project}.
-  user_invited_you_to_join_project: '%{user} te invitó a unirte a %{project}'
   user_invited_you_to_join_html: '%{user} te invito a unirte'
+  user_invited_you_to_join_project: '%{user} te invitó a unirte a %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} te invitó a unirte
     a este proyecto el %{date}'
   user_invited_your_x_to_a_project_html: '%{user} invitó su %{x} a un proyecto'
+  user_is_a_naturalist: ¡%{user} es un naturalista!
   user_is_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
-  user_added_an_observation_field_html: '%{user} añadió un valor para "%{field_name}"
-    a una observación de %{owner}'
-  user_is_a_naturalist: ¡%{user} es un naturalista!
   user_s: del %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
@@ -3520,11 +3505,11 @@ es-MX:
   username_or_email: Nombre de usuario o correo electónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
+  users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: <a href="%{url}">%{login}</a> contribuciones
     de %{project_title}
   users_id: de %{user}
   users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
-  users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Últimas observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}
   users_profile: Perfil de %{user}
@@ -3741,7 +3726,7 @@ es-MX:
     Por favor no te sientas obligado con todo lo que esto implica, pero si tienes
     tiempo de revisar algunos contenidos de antemano lo apreciamos. Si tienes alguna
     duda, comentario o simplemente ya no quieres ser un curador, contáctanos a
-  you_are_over_your_invites_quota: '...te pasaste de tu cuota mensual de 60 invitados'
+  you_are_over_your_invites_quota: … has superado el límite mensual de 60 invitaciones
   you_are_now_following_x: Estas siguiendo a %{friend_user}.
   you_are_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
@@ -3810,8 +3795,6 @@ es-MX:
   you_havent: No te has
   you_havent_left_any_comments_recently: No has dejado comentarios recientemente.
     ¡Déjale una nota a alguien!
-  you_havent_linked_your_inaturalist_picasa_account: Todavía no has enlazado tu cuenta
-    de %{site_name} a tu cuenta de  Picasa
   you_joined_this_project: ¡Te uniste a este proyecto!
   you_may_have: 'que puedas tener. Probablemente solo funcione en buscadores modernos:'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un miembro del proyecto
@@ -3894,8 +3877,6 @@ es-MX:
   your_observations_couldnt_be_added_to_that_project: 'Tus observaciones no pueden
     ser añadidas a este proyecto: %{errors}'
   your_photos_have_been_tagged: ¡Tus fotos han sido etiquetadas!
-  your_picasa_account: Tu cuenta de Picasa
-  your_picasa_account_info: La información de tu cuenta de Picasa
   your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_should_recognize: Deberías reconocer algunas de estas fotos
   your_site_account_has_been_created: Tu cuenta %{site} ha sido creada.
@@ -3914,9 +3895,6 @@ es-MX:
   youre_viewing_site_name_observations_html: Estás viendo las observaciones de <strong>%{site_name}</strong>
   youve_already_added_an_identification: Ya has añadido una identificación y solo
     puedes añadir una.
-  youve_linked_your_inaturalist_picasa_account: Has enlazado tu cuenta de %{site_name}
-    con tu cuenta de Picasa. Esto te permitirá asociar tus fotos de Picasa con tus
-    observaciones de  %{site_name}.
   youve_opted_out_of_community_ids: Decidiste evitar identificaciones comunitarias
   youve_opted_out_of_community_ids_for_this_obs: Optaste evitar la identificación
     de la comunidad para esta observación
@@ -4165,8 +4143,6 @@ es-MX:
           permitiéndonos usar tus fotos de formas que no quieras."
         can_i_add_photos_without_a_flickr_account?: ¿Puedo añadir fotos sin tener
           una cuenta en Flicker?
-        we_also_support_picasa_html: 'También utilizamos Picasa:  <a href="%{url}">Configura
-          tu cuenta de Picasa &raquo;</a>'
         we_also_support_uploading_photos: "También puede subir fotos directamente
           a %{site_name}, pero puede ser un poco lento,\nasí que solo permitimos una
           a la vez. Usando Usando Flickr o Picasa es más rápido \nsi ya estás utilizando

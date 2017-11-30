@@ -123,24 +123,21 @@ $.fn.taxonAutocomplete = function( options ) {
   var field = this;
   field.template = autocompleter.taxonTemplate;
   var source = function( request, response ) {
-    var jsonpCallback = "taxonAutocompleteCallback";
-    // try to make jsonp callback unique to handle multiple taxon autocompletes on a page
-    if ( options.idEl.id && options.idEl.id != "" ) {
-      jsonpCallback = jsonpCallback + options.idEl.id;
-    } else {
-      jsonpCallback = jsonpCallback + Math.round( Math.random( ) * 1000000 ).toString( );
+    var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+    var headers = {};
+    if ( apiToken) {
+      headers["Authorization"] = apiToken;
     }
     $.ajax({
       url: "<%= CONFIG.node_api_url %>/taxa/autocomplete",
-      dataType: "jsonp",
       cache: true,
+      headers: headers,
       data: {
         q: request.term,
         per_page: options.perPage || 10,
         locale: I18n.locale,
         preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
       },
-      jsonpCallback: jsonpCallback,
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers

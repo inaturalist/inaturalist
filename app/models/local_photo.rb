@@ -5,13 +5,13 @@ class LocalPhoto < Photo
   
   # only perform EXIF-based rotation on mobile app contributions
   image_convert_options = Proc.new {|record|
-    record.rotation.blank? ? "-auto-orient -strip" : "-strip"
+    record.rotation.blank? ? "-auto-orient" : nil
   }
   
   file_options = {
     preserve_files: true,
     styles: {
-      original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator ] },
+      original: { geometry: "2048x2048>", auto_orient: false, processors: [ :rotator, :metadata_filter ] },
       large:    { geometry: "1024x1024>", auto_orient: false },
       medium:   { geometry: "500x500>",   auto_orient: false },
       small:    { geometry: "240x240>",   auto_orient: false, processors: [ :deanimator ] },
@@ -33,8 +33,8 @@ class LocalPhoto < Photo
     has_attached_file :file, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
-      s3_protocol: "https",
-      s3_host_alias: CONFIG.s3_bucket,
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
       bucket: CONFIG.s3_bucket,
       #
       #  NOTE: the path used to be "photos/:id/:style.:extension" as of
@@ -46,26 +46,19 @@ class LocalPhoto < Photo
       #
       path: "photos/:id/:style.:content_type_extension",
       url: ":s3_alias_url",
-      only_process: [ :original, :large ]
     )
     invalidate_cloudfront_caches :file, "photos/:id/*"
   else
     has_attached_file :file, file_options.merge(
       path: ":rails_root/public/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
       url: "/attachments/:class/:attachment/:id/:style/:basename.:content_type_extension",
-      only_process: [ :original, :large ]
     )
   end
-
-  process_in_background :file,
-    only_process: [ :medium, :small, :thumb, :square ],
-    processing_image_url: :processing_image_fallback
 
   # we want to grab metadata from remote photos so make sure
   # to pull the metadata from the true original, i.e. before
   # post_processing which creates thumbnails
   before_post_process :extract_metadata
-  after_post_process :set_skip_invalidation_if_delayed
   after_post_process :set_urls
   # ...but part of the metadata is the size of the thumbnails
   # so grab metadata twice (extract_metadata is purely additive)
@@ -151,9 +144,9 @@ class LocalPhoto < Photo
     # the original_url will be blank when initially saving any file
     # by URL (cached remote photos). We want them to have placeholder
     # photos, so use a dummy LocalPhoto for initial photo URLs
-    reference_file = original_url.blank? ? LocalPhoto.new.file : file
+    blank_file = LocalPhoto.new.file
     updates += styles.map do |s|
-      url = reference_file.url(s)
+      url = file.queued_for_write[s].blank? ? file.url(s) : blank_file.url(s)
       url =~ /http/ ? url : FakeView.uri_join(FakeView.root_url, url).to_s
     end
     unless new_record?
@@ -173,7 +166,7 @@ class LocalPhoto < Photo
     # there so we can skip this file reset business.
     return if interpolated_original_url =~ /localhost/
 
-    # If the original file is there under the current path, no need to do anythign
+    # If the original file is there under the current path, no need to do anything
     return if Photo.valid_remote_photo_url?( interpolated_original_url )
     
     # If it's not, check the old path
@@ -220,7 +213,8 @@ class LocalPhoto < Photo
   end
 
   def source_title
-    self.subtype.blank? ? SITE_NAME :
+    site = @site || user.try(:site) || Site.default
+    self.subtype.blank? ? site.name :
       subtype.gsub(/Photo$/, '').underscore.humanize.titleize
   end
 
@@ -358,15 +352,6 @@ class LocalPhoto < Photo
         end
       end
       sizes
-    end
-  end
-
-  def set_skip_invalidation_if_delayed
-    # the delayed job from process_in_background will have split_processing?
-    # be false. Therefore this is just the delayed bit of a save
-    # so never invalidate caches - it would have been done at save time
-    unless file.split_processing?
-      self.skip_cloudfront_invalidation = true
     end
   end
 

@@ -18,9 +18,9 @@ export function setSubscriptions( subscriptions ) {
   };
 }
 
-export function fetchSubscriptions( ) {
+export function fetchSubscriptions( options = {} ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const observation = options.observation || getState( ).observation;
     if ( !observation ) { return null; }
     const params = { id: observation.id };
     return inatjs.observations.subscriptions( params ).then( response => {

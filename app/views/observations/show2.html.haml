@@ -1,6 +1,11 @@
 - content_for :title do
   - if @observation.taxon
-    = raw [@observation.taxon.common_name.try(:name), @observation.taxon.name].detect{|n| !n.blank?}
+    :ruby
+      common_name = [
+        common_taxon_name( @observation.taxon, place: current_user.try(:place) || @site.try(:place) ).try(:name),
+        common_taxon_name( @observation.taxon ).try(:name)
+      ].detect{|n| !n.blank?}
+    = raw common_name ? "#{common_name} (#{@observation.taxon.name})" : @observation.taxon.name
   - elsif !@observation.species_guess.blank?
     = @observation.species_guess
   - else
@@ -14,37 +19,56 @@
     = t :on_
     = t("date_format.date_long.#{date_format.first.downcase}", day: date_format[1], year:date_format.last)
 - content_for :extrahead do
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  %meta{ property: "og:title", content: @shareable_title }
+  %meta{ property: "twitter:title", content: t( :taxon_observed_by_user, taxon: @shareable_title, user: @observation.user.try_methods(:name, :login), default: @shareable_title ) } 
+  - if !@observation.photos.blank? && photo = @observation.photos.detect{|p| p.medium_url =~ /^http/}
+    %meta{ property: "og:image", content: @shareable_image_url } 
+    %meta{ property: "twitter:image", content: @shareable_image_url }
+    %meta{ name: "twitter:card", content: "photo" }
+  - elsif @observation.taxon
+    %meta{ name: "twitter:card", content: "summary" }
+  %meta{ property: "og:determiner", content: "auto" }
+  %meta{ property: "og:url", content: observation_url(@observation) }
+  %meta{ property: "og:description", content: html_attributize( @shareable_description ) }
+  - if twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"}
+    %meta{ property: "twitter:creator:id", content: twitter_pa.provider_uid }
+  - unless @observation_links.blank?
+    - for ol in @observation_links
+      %link{ rel: ol.rel, href: ol.href }
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
       only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
 - content_for :extracss do
-  - # needed for tooltips
-  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
   = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
   = stylesheet_link_tag "observations/show2"
 - content_for :extrajs do
   - if logged_in?
-    - js_current_user = { id: current_user.id,
-      login: current_user.login,
-      curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
-      icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
-      prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
-      prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
-      prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
-      prefers_hide_obs_show_tags: current_user.prefers_hide_obs_show_tags,
-      prefers_hide_obs_show_observation_fields: current_user.prefers_hide_obs_show_observation_fields,
-      prefers_hide_obs_show_identifiers: current_user.prefers_hide_obs_show_identifiers,
-      prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
-      prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
-      preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
-    }
+    :ruby
+      js_current_user = { id: current_user.id,
+        login: current_user.login,
+        curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
+        icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
+        roles: current_user.roles.map(&:name),
+        prefers_skip_coarer_id_modal: current_user.prefers_skip_coarer_id_modal,
+        prefers_hide_obs_show_annotations: current_user.prefers_hide_obs_show_annotations,
+        prefers_hide_obs_show_projects: current_user.prefers_hide_obs_show_projects,
+        prefers_hide_obs_show_tags: current_user.prefers_hide_obs_show_tags,
+        prefers_hide_obs_show_observation_fields: current_user.prefers_hide_obs_show_observation_fields,
+        prefers_hide_obs_show_identifiers: current_user.prefers_hide_obs_show_identifiers,
+        prefers_hide_obs_show_copyright: current_user.prefers_hide_obs_show_copyright,
+        prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
+        prefers_hide_obs_show_expanded_cid: current_user.prefers_hide_obs_show_expanded_cid,
+        preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
+        blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
+        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
+      }
   :javascript
     var INITIAL_OBSERVATION_ID = #{@observation.id};
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
     var SITE = {
-      name: "#{@site ? @site.name : CONFIG.site_name}",
-      help_email: "#{CONFIG.help_email}",
+      name: "#{@site.name}",
+      short_name: "#{@site.site_name_short}",
+      help_email: "#{@site.email_help}",
       logo_square: "#{@site.logo_square.url}",
       copyrighted_media_image_urls: {
         original: "#{image_url("copyright-infringement-original.png")}",
@@ -52,6 +76,10 @@
         medium: "#{image_url("copyright-infringement-medium.png")}",
         small: "#{image_url("copyright-infringement-small.png")}",
         square: "#{image_url("copyright-infringement-square.png")}"
+      },
+      processing_image_urls: {
+        small: "#{image_url(LocalPhoto.new.file.url(:small))}",
+        square: "#{image_url(LocalPhoto.new.file.url(:square))}"
       }
     };
     var LIFE_TAXON = #{ Taxon::LIFE ? Taxon::LIFE.to_json(

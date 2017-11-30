@@ -67,7 +67,7 @@ class UsersController < ApplicationController
     @user.register! if @user && @user.valid?
     success = @user && @user.valid?
     if success && @user.errors.empty?
-      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => CONFIG.site_name)
+      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => @site.name)
       self.current_user = @user
       redirect_back_or_default(dashboard_path)
     else
@@ -85,7 +85,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
-      flash[:notice] = t(:your_account_has_been_verified, :site_name => CONFIG.site_name)
+      flash[:notice] = t(:your_account_has_been_verified, :site_name => @site.name)
       if logged_in? && current_user.is_admin?
         redirect_back_or_default('/')
       else
@@ -153,7 +153,7 @@ class UsersController < ApplicationController
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)
-    flash[:notice] = "#{@user.login} has been removed from #{CONFIG.site_name} " + 
+    flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
       "(it may take up to an hour to completely delete all associated content)"
     redirect_to root_path
   end
@@ -177,7 +177,7 @@ class UsersController < ApplicationController
   # Methods below here are added by iNaturalist
   
   def index
-    @recently_active_key = "recently_active_#{I18n.locale}_#{SITE_NAME}"
+    @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
     unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
@@ -204,7 +204,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_4"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{@site.name}_4"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -214,7 +214,7 @@ class UsersController < ApplicationController
       @most_identifications_year = most_identifications(:per => 'year')
     end
 
-    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
+    @curators_key = "users_index_curators_#{I18n.locale}_#{@site.name}_4"
     unless fragment_exist?(@curators_key)
       @curators = User.curators.limit(500).includes(:roles)
       @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
@@ -234,7 +234,7 @@ class UsersController < ApplicationController
     @month = params[:month].to_i unless params[:month].blank?
     @date = Date.parse("#{@year}-#{@month || '01'}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{@site.name}_#{@year}_#{@month}"
     unless fragment_exist?(@leaderboard_key)
       if params[:month].blank?
         @most_observations = most_observations(:per => 'year', :year => @year)
@@ -658,7 +658,11 @@ class UsersController < ApplicationController
   end
 
   def api_token
-    render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
+    payload = { user_id: current_user.id }
+    if doorkeeper_token && (a = doorkeeper_token.application)
+      payload[:oauth_application_id] = a.becomes( OauthApplication ).id
+    end
+    render json: { api_token: JsonWebToken.encode( payload ) }
   end
 
   def join_test
@@ -816,12 +820,14 @@ protected
       }}}
     end
 
+    # This is brittle and will continue to cause problems for individual sites
+    # as we grow and their top users fall out of the global top 500.
     result = Identification.elastic_search(
       filters: filters,
       size: 0,
       aggregate: {
         obs: {
-          terms: { field: "user.id", size: site_filter ? 200 : 20 }
+          terms: { field: "user.id", size: site_filter ? 500 : 20 }
         }
       }
     )
@@ -879,6 +885,7 @@ protected
       :prefers_location_details,
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
+      :prefers_common_names,
       :site_id,
       :test_groups,
       :time_zone

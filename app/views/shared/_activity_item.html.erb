@@ -55,7 +55,7 @@
             username = if (u = item.resolver)
               link_to_user(u)
             elsif item.resolver_id.blank?
-              SITE_NAME_SHORT
+              @site.preferred_site_name_short
             else
               t(:deleted_user)
             end

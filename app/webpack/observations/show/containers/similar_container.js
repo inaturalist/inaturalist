@@ -4,7 +4,7 @@ import { showNewObservation } from "../ducks/observation";
 
 function mapStateToProps( state ) {
   return {
-    title: "Observations of relatives",
+    title: I18n.t( "observations_of_relatives" ),
     observations: state.otherObservations.moreFromClade.observations,
     searchParams: state.otherObservations.moreFromClade.params
   };
@@ -12,7 +12,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    showNewObservation: ( observation ) => { dispatch( showNewObservation( observation ) ); }
+    showNewObservation: ( observation, options ) => {
+      dispatch( showNewObservation( observation, options ) );
+    }
   };
 }
 

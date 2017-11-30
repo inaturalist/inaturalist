@@ -28,10 +28,9 @@ class Tags extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const viewerIsObserver = loggedIn && config.currentUser.id === observation.user.id;
-    if ( !observation || ( _.isEmpty( observation.tags ) && !viewerIsObserver ) ) {
-      return ( <span /> );
-    }
+    if ( _.isEmpty( observation.tags ) && !viewerIsObserver ) { return ( <div /> ); }
     let addTagInput;
     if ( viewerIsObserver ) {
       addTagInput = (
@@ -44,9 +43,9 @@ class Tags extends React.Component {
     }
     const count = observation.tags.length > 0 ? `(${observation.tags.length})` : "";
     return (
-      <div className="Tags">
+      <div className="Tags collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_tags: this.state.open } );

@@ -39,7 +39,8 @@ class LicensingModal extends Component {
 
   render( ) {
     const { observation, config } = this.props;
-    if ( !observation || !config.currentUser || config.currentUser.id !== observation.user.id ) {
+    if ( !observation || !observation.user || !config.currentUser ||
+         config.currentUser.id !== observation.user.id ) {
       return ( <div /> );
     }
     const preferred = config.currentUser.preferred_observation_license;

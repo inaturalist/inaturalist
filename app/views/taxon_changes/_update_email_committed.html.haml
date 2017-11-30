@@ -25,14 +25,14 @@
 = taxon_change.description
 
 %p
-  =t 'views.users.dashboard.taxon_change_desc', :site_name => SITE_NAME
+  =t 'views.users.dashboard.taxon_change_desc', :site_name => @site.name
   - if taxon_change.automatable?
     - if user.prefers_automatic_taxonomic_changes?
       =t 'views.users.dashboard.your_content_will_be_updated'
     - else
       =t 'views.users.dashboard.you_may_want_to_update'
   - else
-    =t 'views.users.dashboard.cannot_update_your_content', :site_name => SITE_NAME
+    =t 'views.users.dashboard.cannot_update_your_content', :site_name => @site.name
 = link_to t(:view_details), taxon_change_url(taxon_change), :class => "readmore"
 - if !taxon_change.automatable? || !user.prefers_automatic_taxonomic_changes?
   &nbsp;

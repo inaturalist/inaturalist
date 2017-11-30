@@ -378,6 +378,32 @@ describe Identification, "creation" do
     expect( i.previous_observation_taxon ).to eq previous_observation_taxon
   end
 
+  it "should not create a blank preference when vision is nil" do
+    i = Identification.make!( vision: nil )
+    expect( i.stored_preferences ).to be_blank
+  end
+
+  describe "with an inactive taxon" do
+    it "should replace the taxon with its active equivalent" do
+      taxon_change = make_taxon_swap
+      taxon_change.committer = taxon_change.user
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      expect( Identification.make!( taxon: taxon_change.input_taxon ).taxon ).to eq taxon_change.output_taxon
+    end
+    it "should not replace the taxon if there is no active equivalent" do
+      inactive_taxon = Taxon.make!( is_active: false )
+      expect( Identification.make!( taxon: inactive_taxon ).taxon ).to eq inactive_taxon
+    end
+    it "should not replace the taxon if there are multiple active equivalents" do
+      taxon_change = make_taxon_split
+      taxon_change.committer = taxon_change.user
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      expect( Identification.make!( taxon: taxon_change.input_taxon ).taxon ).to eq taxon_change.input_taxon
+    end
+  end
+
 end
 
 describe Identification, "updating" do
@@ -771,14 +797,6 @@ describe Identification, "category" do
       i3.reload
       expect( i3.category ).to eq Identification::MAVERICK
     end
-    # it "is a higher-rank disagreement with the community taxon" do
-    #   i1 = Identification.make!( observation: o, taxon: child )
-    #   i2 = Identification.make!( observation: o, taxon: child )
-    #   i3 = Identification.make!( observation: o, taxon: child )
-    #   i4 = Identification.make!( observation: o, taxon: parent )
-    #   i4.reload
-    #   expect( i4.category ).to eq Identification::MAVERICK
-    # end
   end
   describe "should be leading when" do
     it "is the only ID" do
@@ -930,15 +948,35 @@ describe Identification, "category" do
       o.reload
       expect( o.community_taxon ).to eq @Calypte
     end
-    # it "should be supporting, maverick, improving" do
-    #   expect( @sequence[0].category ).to eq Identification::SUPPORTING
-    #   expect( @sequence[1].category ).to eq Identification::MAVERICK
-    #   expect( @sequence[2].category ).to eq Identification::IMPROVING
-    # end
     it "should be improving, leading, supporting" do
       expect( @sequence[0].category ).to eq Identification::IMPROVING
       expect( @sequence[1].category ).to eq Identification::LEADING
       expect( @sequence[2].category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "after taxon swap" do
+    let(:swap) { make_taxon_swap }
+    let(:o) { make_research_grade_observation( taxon: swap.input_taxon ) }
+    it "should be improving, supporting for acitve IDs" do
+      expect( o.identifications.sort_by(&:id)[0].category ).to eq Identification::IMPROVING
+      expect( o.identifications.sort_by(&:id)[1].category ).to eq Identification::SUPPORTING
+      swap.committer = swap.user
+      swap.commit
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.sort_by(&:id)[2].category ).to eq Identification::IMPROVING
+      expect( o.identifications.sort_by(&:id)[3].category ).to eq Identification::SUPPORTING
+    end
+  end
+  describe "indexing" do
+    it "should happen for other idents after new one added" do
+      i1 = Identification.make!
+      expect( i1.category ).to eq Identification::LEADING
+      i2 = Identification.make!( observation: i1.observation, taxon: i1.taxon )
+      i1.reload
+      expect( i1.category ).to eq Identification::IMPROVING
+      es_i1 = Identification.elastic_search( where: { id: i1.id } ).results.results[0]
+      expect( es_i1.category ).to eq Identification::IMPROVING
     end
   end
 end

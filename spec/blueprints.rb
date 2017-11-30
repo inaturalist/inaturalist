@@ -48,6 +48,13 @@ Comment.blueprint do
   parent { Observation.make! }
 end
 
+CompleteSet.blueprint do
+  taxon { Taxon.make! }
+  place { Place.make! }
+  user { User.make! }
+  is_active { true }
+end
+
 ConservationStatus.blueprint do
   user { User.make! }
   taxon { Taxon.make! }
@@ -62,6 +69,11 @@ end
 ControlledTermLabel.blueprint do
   label { Faker::Lorem.word }
   definition { Faker::Lorem.paragraph }
+end
+
+ControlledTermTaxon.blueprint do
+  controlled_term { ControlledTerm.make! }
+  taxon { Taxon.make! }
 end
 
 ControlledTermValue.blueprint do
@@ -366,12 +378,17 @@ end
 
 TaxonChange.blueprint do
   source { Source.make! }
-  user { User.make! }
+  user { make_curator }
+end
+
+TaxonCurator.blueprint do
+  taxon { Taxon.make! }
+  user { make_curator }
 end
 
 TaxonDrop.blueprint do
   source { Source.make! }
-  user { User.make! }
+  user { make_curator }
 end
 
 TaxonLink.blueprint do
@@ -388,7 +405,7 @@ end
 
 TaxonMerge.blueprint do
   source { Source.make! }
-  user { User.make! }
+  user { make_curator }
 end
 
 TaxonName.blueprint do
@@ -414,17 +431,17 @@ end
 
 TaxonSplit.blueprint do
   source { Source.make! }
-  user { User.make! }
+  user { make_curator }
 end
 
 TaxonStage.blueprint do
   source { Source.make! }
-  user { User.make! }
+  user { make_curator }
 end
 
 TaxonSwap.blueprint do
   source { Source.make! }
-  user { User.make! }
+  user { make_curator }
 end
 
 Trip.blueprint do
@@ -465,6 +482,11 @@ User.blueprint do
   created_at { 5.days.ago.to_s(:db) }
   state { "active" }
   time_zone { "Pacific Time (US & Canada)" }
+end
+
+UserBlock.blueprint do
+  user { User.make! }
+  blocked_user { User.make! }
 end
 
 WikiPage.blueprint do

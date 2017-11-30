@@ -2,11 +2,11 @@
 #header.clear
   %ul#logonav
     %li.navtab
-      - if @site && !@site.custom_logo.blank?
-        =raw @site.custom_logo
-      - else
-        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || SITE_NAME}"}
-          = image_tag @site && @site.logo? ? @site.logo.url : CONFIG.logo, :alt => SITE_NAME
+      - if site && !site.custom_logo.blank?
+        =raw site.custom_logo
+      - elsif site && site.logo
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
+          = image_tag site.logo.url, alt: site.name
   %ul#mainnav.navtabs
     - unless @minimal_header
       %li.navtab.observationstab.menutab
@@ -77,9 +77,9 @@
     - unless logged_in?
       %li.navtab.signedout
         .innertab
-          = link_to t(:log_in), login_url( protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
+          = link_to t(:log_in), login_path, class: "signin_link"
           = t :or
-          = link_to t(:sign_up), signup_url( protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
+          = link_to t(:sign_up), signup_url, class: "signup_link"
     - else
       - unless @minimal_header
         %li#messagesnav.notices.navtab

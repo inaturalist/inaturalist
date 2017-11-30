@@ -1,16 +1,17 @@
 import React, { PropTypes } from "react";
 import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
-import { Panel } from "react-bootstrap";
+import { OverlayTrigger, Panel, Tooltip } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 
 const ActivityItem = ( { observation, item, config, deleteComment, deleteID, firstDisplay,
-                         restoreID, setFlaggingModalState, currentUserID, addID } ) => {
+                         restoreID, setFlaggingModalState, currentUserID, addID, linkTarget,
+                         hideCompare } ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
   const isID = !!taxon;
@@ -19,21 +20,27 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   let header;
   let className;
   const userLink = (
-    <a className="user" href={ `/people/${item.user.login}` }>{ item.user.login }</a>
+    <a
+      className="user"
+      href={ `/people/${item.user.login}` }
+      target={ linkTarget }
+    >
+      { item.user.login }
+    </a>
   );
   if ( isID ) {
     let buttons = [];
     let canAgree = false;
     let userAgreedToThis;
-    if ( item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
+    if ( loggedIn && item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
-        canAgree = util.taxaDissimilar( currentUserID.taxon, taxon );
+        canAgree = currentUserID.taxon.id !== taxon.id;
         userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
       } else {
         canAgree = true;
       }
     }
-    if ( firstDisplay ) {
+    if ( firstDisplay && !hideCompare ) {
       const compareTaxonID = taxon.rank_level <= 10 ?
         taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
       buttons.push( (
@@ -70,16 +77,19 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
       <div className="identification">
+        { buttonDiv }
         <div className="taxon">
-          <a href={ `/taxa/${taxon.id}` }>
+          <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
             { taxonImageTag }
           </a>
           <SplitTaxon
             taxon={ taxon }
             url={ `/taxa/${taxon.id}` }
+            noParens
+            target={ linkTarget }
+            showMemberGroup
           />
         </div>
-        { buttonDiv }
         { item.body && ( <UserText text={ item.body } className="id_body" /> ) }
       </div>
     );
@@ -89,43 +99,77 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
-  let statuses = [];
+  let status;
   const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
-    statuses.push( ( <span key={ `flagged-${item.id}` } className="item-status">
-      <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
-    </span> ) );
+    status = ( <span key={ `flagged-${item.id}` } className="item-status">
+      <a
+        href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
+        rel="nofollow"
+        target="_blank"
+      >
+        <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
+      </a>
+    </span> );
   } else if ( item.category && item.current ) {
+    let idCategory;
+    let idCategoryTooltipText;
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
-      statuses.push( ( <span key={ `maverick-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status">
         <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
-      </span> ) );
+      </span> );
+      idCategoryTooltipText = I18n.t( "id_categories.tooltips.maverick" );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
-      statuses.push( ( <span key={ `improving-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `improving-${item.id}` } className="item-status">
         <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
-      </span> ) );
+      </span> );
+      idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
     } else if ( item.category === "leading" ) {
-      panelClass = "improving";
-      statuses.push( ( <span key={ `leading-${item.id}` } className="item-status">
-        <i className="fa fa-trophy" /> { I18n.t( "leading" ) }
-      </span> ) );
+      panelClass = "leading";
+      idCategory = ( <span key={ `leading-${item.id}` } className="item-status">
+        <i className="icon-icn-leading-id" /> { I18n.t( "leading" ) }
+      </span> );
+      idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
+    }
+    if ( idCategory ) {
+      status = (
+        <OverlayTrigger
+          container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+          placement="top"
+          delayShow={ 200 }
+          overlay={ (
+            <Tooltip id={`tooltip-${item.id}`}>
+              { idCategoryTooltipText }
+            </Tooltip>
+          ) }
+        >
+          { idCategory }
+        </OverlayTrigger>
+      );
     }
   }
-  if ( item.taxon_change_id ) {
-    const type = _.snakeCase( item.taxon_change_type );
-    statuses.push( ( <span key={ `change-${item.id}` } className="item-status">
-      { I18n.t( "added_as_a_part_of" ) } <a href={ `/taxon_changes/${item.taxon_change_id}` }>
-        <i className="fa fa-refresh" /> { I18n.t( type ) }
+  let taxonChange;
+  if ( item.taxon_change ) {
+    const type = _.snakeCase( item.taxon_change.type );
+    taxonChange = ( <div className="taxon-change">
+      <i className="fa fa-refresh" /> { I18n.t( "this_id_was_added_due_to_a" ) } <a
+        href={ `/taxon_changes/${item.taxon_change.id}` }
+        target={ linkTarget }
+        className="linky"
+      >
+         { _.startCase( I18n.t( type ) ) }
       </a>
-    </span> ) );
+    </div> );
   }
+  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
+  const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
   return (
-    <div className={ className }>
+    <div className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
-        <UserImage user={ item.user } />
+        <UserImage user={ item.user } linkTarget={ linkTarget } />
       </div>
       <Panel className={ panelClass } header={(
         <span>
@@ -137,15 +181,23 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             deleteID={ deleteID }
             restoreID={ restoreID }
             setFlaggingModalState={ setFlaggingModalState }
+            linkTarget={linkTarget}
           />
-          <span className="time">
+          <time
+            className="time"
+            dateTime={ item.created_at }
+            title={ moment( item.created_at ).format( "LLL" ) }
+          >
             { relativeTime }
-          </span>
-          { statuses }
+          </time>
+          { status }
         </span>
         )}
       >
-        { contents }
+        { taxonChange }
+        <div className="contents">
+          { contents }
+        </div>
       </Panel>
     </div>
   );
@@ -161,7 +213,9 @@ ActivityItem.propTypes = {
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
   firstDisplay: PropTypes.bool,
-  setFlaggingModalState: PropTypes.func
+  setFlaggingModalState: PropTypes.func,
+  linkTarget: PropTypes.string,
+  hideCompare: PropTypes.bool
 };
 
 export default ActivityItem;

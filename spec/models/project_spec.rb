@@ -202,11 +202,11 @@ describe Project do
       allow(p).to receive(:icon_updated_at) { Time.now }
       expect(p.icon_url).not_to be_blank
     end
-    it "should be absolute" do
-      expect(p.icon_url).to match /^http/
+    it "should be relative" do
+      expect(p.icon_url).to match /^\/attachments/
     end
-    it "should not have two protocols" do
-      expect(p.icon_url.scan(/http/).size).to eq 1
+    it "should not have a protocol" do
+      expect(p.icon_url.scan(/http/).size).to eq 0
     end
   end
 
@@ -288,30 +288,32 @@ describe Project do
     end
   end
 
-  describe "aggregate_observations class method" do
+  describe "queue_project_aggregations class method" do
     before(:each) { enable_elastic_indexing(Observation, Place) }
     after(:each) { disable_elastic_indexing(Observation, Place) }
     it "should touch projects that prefer aggregation" do
       p = Project.make!(prefers_aggregation: true, place: make_place_with_geom, trusted: true)
-      expect( p.last_aggregated_at ).to be_nil
-      Project.aggregate_observations
+      Delayed::Job.destroy_all
+      expect( Delayed::Job.count ).to eq 0
+      Project.queue_project_aggregations
       p.reload
-      expect( p.last_aggregated_at ).not_to be_nil
+      expect( Delayed::Job.count ).to eq 1
     end
 
     it "should not touch projects that do not prefer aggregation" do
       p = Project.make!(prefers_aggregation: false, place: make_place_with_geom, trusted: true)
-      expect( p.last_aggregated_at ).to be_nil
-      Project.aggregate_observations
+      Delayed::Job.destroy_all
+      expect( Delayed::Job.count ).to eq 0
+      Project.queue_project_aggregations
       p.reload
-      expect( p.last_aggregated_at ).to be_nil
+      expect( Delayed::Job.count ).to eq 0
     end
   end
 
   describe "aggregate_observations" do
     before(:each) { enable_elastic_indexing(Observation, Place) }
     after(:each) { disable_elastic_indexing(Observation, Place) }
-    let(:project) { Project.make! }
+    let(:project) { Project.make!(prefers_aggregation: true, place: make_place_with_geom) }
     it "should add observations matching the project observation scope" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
@@ -336,6 +338,7 @@ describe Project do
     end
 
     it "should not happen if aggregation is not allowed" do
+      project = Project.make!
       expect( project ).not_to be_aggregation_allowed
       o = Observation.make!(latitude: 1, longitude: 1)
       project.aggregate_observations

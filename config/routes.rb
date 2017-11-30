@@ -1,8 +1,4 @@
-# Inaturalist::Application.routes.draw do
 Rails.application.routes.draw do
-  resources :guide_users
-
-
   apipie
 
   resources :sites
@@ -21,6 +17,11 @@ Rails.application.routes.draw do
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
   resources :annotations
+
+  resources :user_blocks, only: [:create, :destroy]
+  resources :user_mutes, only: [:create, :destroy]
+  resources :guide_users
+  resources :taxon_curators, except: [:show, :index]
 
   resources :guide_sections do
     collection do
@@ -113,7 +114,7 @@ Rails.application.routes.draw do
     get "logout", :to => "users/sessions#destroy"
     post "session", :to => "users/sessions#create"
     get "signup", :to => "users/registrations#new"
-    get "users/new", :to => "users/registrations#new", :as => "new_user"
+    get "users/new", to: redirect( "signup" ), as: "new_user"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
     put "users/update_session", :to => "users#update_session"
   end
@@ -183,15 +184,16 @@ Rails.application.routes.draw do
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
+  resources :observation_sounds, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
+  resources :sounds, only: [:local_sound_fields, :create]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
     get 'community_taxon_summary'
     collection do
       get :upload
-      post :photo
       get :stats
       get :taxa
       get :taxon_stats

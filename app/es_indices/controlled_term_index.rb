@@ -2,7 +2,7 @@ class ControlledTerm < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes({ values: [ :values, :labels ] }, :labels) }
+  scope :load_for_index, -> { includes({ values: [ :values, :labels, :controlled_term_taxa ] }, :labels, :controlled_term_taxa, :attrs) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
@@ -38,11 +38,13 @@ class ControlledTerm < ActiveRecord::Base
     end
     if is_value?
       fields_to_remove << "multivalued"
+    else
+      fields_to_remove << "blocking"
     end
     # splatten out the array with *
     json = self.attributes.except(*fields_to_remove)
     if values.length > 0
-      json[:values] = values.map{ |v| v.as_indexed_json(is_value: true) }
+      json[:values] = values.select(&:active).map{ |v| v.as_indexed_json(is_value: true) }
     end
     json[:labels] = labels.map{ |l|
       l.attributes.except(
@@ -56,6 +58,15 @@ class ControlledTerm < ActiveRecord::Base
         "updated_at"
       )
     }
+    controlled_term_taxa.each do |ctt|
+      if ctt.exception
+        json[:excepted_taxon_ids] ||= []
+        json[:excepted_taxon_ids] << ctt.taxon_id unless json[:excepted_taxon_ids].include?( ctt.taxon_id )
+      else
+        json[:taxon_ids] ||= []
+        json[:taxon_ids] << ctt.taxon_id unless json[:taxon_ids].include?( ctt.taxon_id )
+      end
+    end
     json
   end
 

@@ -42,10 +42,12 @@ const TaxonPhoto = ( {
       );
     }
   }
+  const style = { width, maxWidth: 2 * width };
   return (
     <div
       className={`TaxonPhoto ${className}`}
-      style={{ width, maxWidth: 2 * width }}
+      style={ style }
+      key={`TaxonPhoto-taxon-${taxon.id}-photo-${photo.id}`}
     >
       <div className="photo-hover">
         <button

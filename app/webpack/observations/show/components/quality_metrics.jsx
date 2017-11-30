@@ -1,6 +1,8 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
+import { OverlayTrigger, Popover } from "react-bootstrap";
 import UsersPopover from "./users_popover";
+/* global SITE */
 
 class QualityMetrics extends React.Component {
   constructor( ) {
@@ -8,9 +10,28 @@ class QualityMetrics extends React.Component {
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
     this.openFlaggingModal = this.openFlaggingModal.bind( this );
     this.flaggingDiv = this.flaggingDiv.bind( this );
+    this.needsIDRow = this.needsIDRow.bind( this );
+  }
+
+  popover( ) {
+    return (
+      <Popover
+        className="DataQualityOverlay PopoverWithHeader"
+        id="popover-data-quality"
+      >
+        <div className="header">
+          { I18n.t( "data_quality_assessment" ) }
+        </div>
+        <div className="contents" dangerouslySetInnerHTML={ { __html:
+          I18n.t( "views.observations.show.quality_assessment_help_html", {
+            site_name: SITE.short_name } ) } }
+        />
+      </Popover>
+    );
   }
 
   voteCell( metric, isAgree, isMajority, className, usersChoice, voters, loading, disabled ) {
+    const config = this.props.config;
     let votesCount = loading ? (
       <div className="loading_spinner" /> ) : (
       <UsersPopover
@@ -18,33 +39,42 @@ class QualityMetrics extends React.Component {
         keyPrefix={ `metric-${metric}` }
         contents={ ( <span>{voters.length}</span> ) }
       /> );
+    const thumb = config && config.currentUser ? (
+      <i className={ `fa ${className}` } onClick={ () => {
+        if ( disabled ) { return; }
+        if ( usersChoice ) {
+          this.props.unvoteMetric( metric );
+        } else {
+          if ( isAgree ) {
+            this.props.voteMetric( metric );
+          } else {
+            this.props.voteMetric( metric, { agree: "false" } );
+          }
+        }
+      } }
+      /> ) : null;
     return (
       <span>
         <span className="check">
           { isMajority ? (
-            <i className="fa fa-check" />
+            <i className={ `fa ${isAgree ? "fa-check" : "fa-times"}` } />
           ) : null }
         </span>
-        <i className={ `fa ${className}` } onClick={ () => {
-          if ( disabled ) { return; }
-          if ( usersChoice ) {
-            this.props.unvoteMetric( metric );
-          } else {
-            if ( isAgree ) {
-              this.props.voteMetric( metric );
-            } else {
-              this.props.voteMetric( metric, { agree: "false" } );
-            }
-          }
-        } }
-        />
+        { thumb }
         <span className="count">{ votesCount }</span>
       </span>
     );
   }
 
-  needsIDInputs( ) {
+  needsIDRow( ) {
+    const config = this.props.config;
+    const loggedIn = config && config.currentUser;
     const needsIDInfo = this.infoForMetric( "needs_id" );
+    if ( !loggedIn &&
+          _.isEmpty( needsIDInfo.votersFor ) &&
+          _.isEmpty( needsIDInfo.votersAgainst ) ) {
+      return null;
+    }
     let votesForCount = needsIDInfo.voteForLoading ? (
       <div className="loading_spinner" /> ) : (
       <UsersPopover
@@ -59,41 +89,51 @@ class QualityMetrics extends React.Component {
         keyPrefix="metric-needs_id-disagree"
         contents={ <span>({needsIDInfo.votersAgainst.length})</span> }
       /> );
+    let checkboxYes = loggedIn ? (
+      <input type="checkbox" id="improveYes"
+        disabled={ needsIDInfo.loading }
+        checked={ needsIDInfo.userVotedFor }
+        onChange={ () => {
+          if ( needsIDInfo.userVotedFor ) {
+            this.props.unvoteMetric( "needs_id" );
+          } else {
+            this.props.voteMetric( "needs_id" );
+          }
+        } }
+      /> ) : null;
+    let checkboxNo = loggedIn ? (
+      <input type="checkbox" id="improveNo"
+        disabled={ needsIDInfo.loading }
+        checked={ needsIDInfo.userVotedAgainst }
+        onChange={ () => {
+          if ( needsIDInfo.userVotedAgainst ) {
+            this.props.unvoteMetric( "needs_id" );
+          } else {
+            this.props.voteMetric( "needs_id", { agree: "false" } );
+          }
+        } }
+      /> ) : null;
     return (
-      <div className="inputs">
-        <div className="yes">
-          <input type="checkbox" id="improveYes"
-            disabled={ needsIDInfo.loading }
-            checked={ needsIDInfo.userVotedFor }
-            onChange={ () => {
-              if ( needsIDInfo.userVotedFor ) {
-                this.props.unvoteMetric( "needs_id" );
-              } else {
-                this.props.voteMetric( "needs_id" );
-              }
-            } }
-          />
-          <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
-            { I18n.t( "yes" ) }
-          </label> { votesForCount }
-        </div>
-        <div className="no">
-          <input type="checkbox" id="improveNo"
-            disabled={ needsIDInfo.loading }
-            checked={ needsIDInfo.userVotedAgainst }
-            onChange={ () => {
-              if ( needsIDInfo.userVotedAgainst ) {
-                this.props.unvoteMetric( "needs_id" );
-              } else {
-                this.props.voteMetric( "needs_id", { agree: "false" } );
-              }
-            } }
-          />
-          <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
-            { I18n.t( "no_its_as_good_as_it_can_be" ) }
-          </label> { votesAgainstCount }
-        </div>
-      </div>
+      <tr className="improve">
+        <td className="metric_title" colSpan={ 3 }>
+          <i className="fa fa-gavel" />
+          { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
+          <div className="inputs">
+            <div className="yes">
+              { checkboxYes }
+              <label htmlFor="improveYes" className={ needsIDInfo.mostAgree ? "bold" : "" }>
+                { I18n.t( "yes" ) }
+              </label> { votesForCount }
+            </div>
+            <div className="no">
+              { checkboxNo }
+              <label htmlFor="improveNo" className={ needsIDInfo.mostDisagree ? "bold" : "" }>
+                { I18n.t( "no_its_as_good_as_it_can_be" ) }
+              </label> { votesAgainstCount }
+            </div>
+          </div>
+        </td>
+      </tr>
     );
   }
 
@@ -160,7 +200,8 @@ class QualityMetrics extends React.Component {
   }
 
   flaggingDiv( ) {
-    const observation = this.props.observation;
+    const { observation, config } = this.props;
+    const loggedIn = config && config.currentUser;
     const unresolvedFlags = _.filter( observation.flags || [], f => !f.resolved );
     if ( unresolvedFlags.length > 0 ) {
       const groupedFlags = _.groupBy( unresolvedFlags, f => ( f.flag ) );
@@ -170,32 +211,42 @@ class QualityMetrics extends React.Component {
       } else if ( groupedFlags.inappropriate ) {
         flagQualifier = "inappropriate";
       }
+      const editLink = loggedIn ? (
+        <a href={ `/observations/${observation.id}/flags` } className="view">
+          { I18n.t( "add_edit_flags" ) }
+        </a> ) : null;
       return (
         <div className="flagging alert alert-danger">
           <i className="fa fa-flag" />
           { flagQualifier ?
             I18n.t( "observation_flagged_as_flag", { flag: flagQualifier } ) :
             I18n.t( "observation_flagged" ) }
-          <a href={ `/observations/${observation.id}/flags` } className="view">
-            { I18n.t( "add_edit_flags" ) }
-          </a>
+          { editLink }
         </div>
       );
     }
-    return (
-      <div className="flagging">
-        { I18n.t( "inappropriate_content" ) } <span
-          className="flag_link" onClick={ this.openFlaggingModal }
-        >
+    const addFlagLink = loggedIn ?
+      (
+        <span className="flag_link" onClick={ this.openFlaggingModal } >
           { I18n.t( "flag_as_inappropriate" ) }
         </span>
+      ) : (
+        <a href="/login">
+          { I18n.t( "flag_as_inappropriate" ) }
+        </a>
+      );
+    return (
+      <div className="flagging">
+        { I18n.t( "inappropriate_content" ) } { addFlagLink }
       </div>
     );
   }
 
   render( ) {
     const observation = this.props.observation;
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const checkIcon = ( <i className="fa fa-check check" /> );
+    const xIcon = ( <i className="fa fa-times check" /> );
     const hasMedia = ( observation.photos.length + observation.sounds.length ) > 0;
     const atLeastSpecies = ( observation.taxon && observation.taxon.rank_level <= 10 );
     const atLeastGenus = ( observation.taxon && observation.taxon.rank_level <= 20 );
@@ -213,13 +264,31 @@ class QualityMetrics extends React.Component {
       atLeastGenus : atLeastSpecies;
     return (
       <div className="QualityMetrics">
-        <div className="grade">
-          { I18n.t( "quality_grade_" ) }:
-          <span className={ `quality_grade ${observation.quality_grade} ` }>
-            { _.upperFirst( I18n.t( observation.quality_grade ) ) }
-          </span>
-        </div>
-        <div className="text">{ I18n.t( "the_data_quality_assessment_is_an_evaluation" ) }</div>
+        { this.props.tableOnly ? null : (
+          <div>
+            <div className="grade">
+              { I18n.t( "quality_grade_" ) }:
+              <span className={ `quality_grade ${observation.quality_grade} ` }>
+                { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+              </span>
+            </div>
+            <div className="text">
+              { I18n.t( "the_" ) } <OverlayTrigger
+                trigger="click"
+                rootClose
+                placement="top"
+                containerPadding={ 20 }
+                overlay={ this.popover( ) }
+                className="cool"
+              >
+                <span>
+                  { I18n.t( "data_quality_assessment_" ) }
+                  <i className="fa fa-info-circle" />
+                </span>
+              </OverlayTrigger> { I18n.t( "is_an_evaluation" ) }
+            </div>
+          </div>
+        ) }
         <table className="table">
           <thead>
             <tr>
@@ -235,7 +304,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "date_specified" ) }
               </td>
               <td className="agree">{ observation.observed_on ? checkIcon : null }</td>
-              <td className="disagree">{ observation.observed_on ? null : checkIcon }</td>
+              <td className="disagree">{ observation.observed_on ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -243,7 +312,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "location_specified" ) }
               </td>
               <td className="agree">{ observation.location ? checkIcon : null }</td>
-              <td className="disagree">{ observation.location ? null : checkIcon }</td>
+              <td className="disagree">{ observation.location ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -251,7 +320,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "has_photos_or_sounds" ) }
               </td>
               <td className="agree">{ hasMedia ? checkIcon : null }</td>
-              <td className="disagree">{ hasMedia ? null : checkIcon }</td>
+              <td className="disagree">{ hasMedia ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">
@@ -259,7 +328,7 @@ class QualityMetrics extends React.Component {
                 { I18n.t( "has_id_supported_by_two_or_more" ) }
               </td>
               <td className="agree">{ mostAgree ? checkIcon : null }</td>
-              <td className="disagree">{ mostAgree ? null : checkIcon }</td>
+              <td className="disagree">{ mostAgree ? null : xIcon }</td>
             </tr>
             <tr className={ dateCells.loading ? "disabled" : "" }>
               <td className="metric_title">
@@ -307,15 +376,9 @@ class QualityMetrics extends React.Component {
                 { rankText }
               </td>
               <td className="agree">{ rankPassed ? checkIcon : null }</td>
-              <td className="disagree">{ rankPassed ? null : checkIcon }</td>
+              <td className="disagree">{ rankPassed ? null : xIcon }</td>
             </tr>
-            <tr className="improve">
-              <td className="metric_title" colSpan={ 3 }>
-                <i className="fa fa-gavel" />
-                { I18n.t( "based_on_the_evidence_can_id_be_improved" ) }
-                { this.needsIDInputs( ) }
-              </td>
-            </tr>
+            { this.needsIDRow( ) }
           </tbody>
         </table>
         { this.flaggingDiv( ) }
@@ -330,7 +393,8 @@ QualityMetrics.propTypes = {
   qualityMetrics: PropTypes.object,
   voteMetric: PropTypes.func,
   unvoteMetric: PropTypes.func,
-  setFlaggingModalState: PropTypes.func
+  setFlaggingModalState: PropTypes.func,
+  tableOnly: PropTypes.bool
 };
 
 export default QualityMetrics;

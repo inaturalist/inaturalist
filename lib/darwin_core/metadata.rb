@@ -2,9 +2,9 @@ module DarwinCore
   class Metadata < FakeView
     def initialize(options = {})
       super()
-      @contact = CONFIG.contact || {}
-      @creator = CONFIG.creator || @contact || {}
-      @metadata_provider = CONFIG.metadata_provider || @contact || {}
+      @contact = ( options[:site] || Site.default ).contact || {}
+      @creator = @contact || {}
+      @metadata_provider = @contact || {}
       scope = Observation.all
       if options[:quality] == "research"
         scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)

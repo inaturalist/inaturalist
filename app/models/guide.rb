@@ -15,8 +15,8 @@ class Guide < ActiveRecord::Base
     :default_url => "/attachment_defaults/:class/icons/:style.png",
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :s3_protocol => "https",
-    :s3_host_alias => CONFIG.s3_bucket,
+    :s3_protocol => CONFIG.s3_protocol || "https",
+    :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
     :bucket => CONFIG.s3_bucket,
     :path => "guides/:id-:style.:extension",
     :url => ":s3_alias_url"
@@ -26,7 +26,7 @@ class Guide < ActiveRecord::Base
     has_attached_file :ngz,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_host_alias => CONFIG.s3_bucket,
+      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
       :bucket => CONFIG.s3_bucket,
       :path => "guides/:id.ngz",
       :url => ":s3_alias_url",
@@ -35,7 +35,7 @@ class Guide < ActiveRecord::Base
   else
     has_attached_file :ngz,
       :path => ":rails_root/public/attachments/:class/:id.ngz",
-      :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.ngz",
+      :url => "/attachments/:class/:id.ngz",
       :default_url => ""
   end
 

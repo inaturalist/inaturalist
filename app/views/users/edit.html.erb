@@ -5,6 +5,7 @@
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
+  #user_block_blocked_user_id, #user_mute_muted_user_id { width: 200px; }
 </style>
 <!--[if lt IE 7]>
   <%= stylesheet_link_tag 'blueprint/ie' %>
@@ -87,6 +88,7 @@
           :label_after => true %>
       </div>
 
+      <a name="activity-settings"></a>
       <h3><%= t :activity_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_receive_mentions",
@@ -117,19 +119,23 @@
     </div>
 
     <div class="last column span-9 stacked">
-      <h3><%= t :taxon_change_settings %></h3>
+      <h3><%= t :taxonomy_settings %></h3>
       <div class="stacked">
         <%= f.check_box "prefers_automatic_taxonomic_changes", 
           :label => t(:automatically_update_my_content_for_taxon_changes),
           :label_after => true,
-          :description => t('views.users.edit.taxon_change_desc', :site_name => SITE_NAME_SHORT) %>
+          :description => t('views.users.edit.taxon_change_desc', :site_name => @site.preferred_site_name_short) %>
+        <%= f.check_box "prefers_common_names",
+          label: t(:show_common_names),
+          label_after: true,
+          description: t( "views.users.edit.common_names_desc" ) %>
       </div>
       
       <h3><%= t :community_moderation_settings %></h3>
       <%= f.check_box "prefers_community_taxa", 
         :label => t(:accept_community_identifications), 
         :label_after => true,
-        :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => SITE_NAME_SHORT) %>
+        :description => t('views.users.edit.prefers_community_taxa_desc', :site_name => @site.preferred_site_name_short) %>
       <%= f.select :preferred_observation_fields_by, [
           [t(:anyone), User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE],
           [t(:curators), User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS],
@@ -142,7 +148,7 @@
       <div id="licenses" class="stacked">
         <h3><%= t(:licensing) %></h3>
         <p class="ui description">
-          <%= t('views.users.edit.licensing_desc_html', :site_name => SITE_NAME_SHORT) %>
+          <%= t('views.users.edit.licensing_desc_html', :site_name => @site.preferred_site_name_short) %>
           <%= link_to_function t(:learn_what_these_licenses_mean), 
             "$('#aboutlicenses').dialog({width:'auto', modal:true, title: '#{t(:about_the_cc_licenses)}'})" %>
         </p>
@@ -155,7 +161,7 @@
               :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_observation_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
-            :description => t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+            :description => t(:you_retain_full_copyright_over_your_content, :site_name => @site.preferred_site_name_short) %>
           <%= f.check_box :make_observation_licenses_same, :label => t(:update_existing_observations_with_new_license), :label_after => true %>
         </div>
         
@@ -167,7 +173,7 @@
               :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_photo_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
-            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => @site.preferred_site_name_short) %>
           <%= f.check_box :make_photo_licenses_same, :label => t(:update_existing_photos_with_new_license), :label_after => true %>
         </div>
 
@@ -179,7 +185,7 @@
               :label => "#{image_tag("#{code}.png")} #{t(name)}", :label_after => true %>
           <% end %>
           <%= f.radio_button :preferred_sound_license, nil, :label => t(:no_license_all_rights_reserved), :label_after => true,
-            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => SITE_NAME_SHORT) %>
+            :description =>t(:you_retain_full_copyright_over_your_content, :site_name => @site.preferred_site_name_short) %>
           <%= f.check_box :make_sound_licenses_same, :label => t(:update_existing_sounds_with_new_license), :label_after => true %>
         </div>
         
@@ -259,18 +265,84 @@
       <% end %>
     </ul>
     <p class="ui description">
-      <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => SITE_NAME_SHORT) %>
+      <%= t(:connecting_your_inat_account_to_accounts_other_sites, :site_name => @site.preferred_site_name_short) %>
     </p>
   </div>
   
   <h3><%= t(:photo_hosting_accounts) %></h3>
   <ul>
     <li><%= link_to t(:link_or_unlink_your_flickr_account), {:controller => "flickr", :action => 'options'}, :class => 'readmore' %></li>
-    <li><%= link_to t(:link_or_unlink_your_picasa_account), {:controller => "picasa", :action => 'options'}, :class => 'readmore' %></li>
+    <li><%= link_to t(:link_or_unlink_your_google_account), {:controller => "picasa", :action => 'options'}, :class => 'readmore' %></li>
     <li><%= link_to t(:link_or_unlink_your_facebook_account), {:controller => "facebook", :action => 'options'}, :class => 'readmore' %></li>
   </ul>
   
   <%= separator %>
+
+  <div class="clear quiet box">
+    <%= link_to_toggle t(:blocked_users), "#blocked-users", class: "ui" %>
+    <div id="blocked-users" style="display:none">
+      <% unless @user.user_blocks.blank? %>
+        <ul>
+          <% @user.user_blocks.each do |user_block| %>
+            <%-
+              blocked_user_name = user_block.blocked_user.login
+              unless user_block.blocked_user.name.blank?
+                blocked_user_name = "#{blocked_user_name} (#{user_block.blocked_user.name})"
+              end
+            -%>
+            <li>
+              <%= link_to blocked_user_name, person_by_login_path( user_block.blocked_user.login ) %>
+              <span class="button"><%= link_to I18n.t( :unblock ), user_block, method: :delete %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <% if @user.user_blocks.count < 3 %>
+        <%= form_for UserBlock.new( user: @user ), builder: DefaultFormBuilder, html: { class: "clear" } do |f| %>
+          <%= f.hidden_field :user_id %>
+          <%= f.text_field :blocked_user_id, label: false, placeholder: I18n.t( :start_typing_someones_name ) %>
+          <%= f.submit t(:block_user, default: "Block User" ), class: "glaucous button" %>
+        <% end %>
+      <% else %>
+        <p class="ui meta">
+          <%=t "views.users.edit.youve_used_all_of_your_blocks" %>
+        </p>
+      <% end %>
+      <%= link_to_tip t(:about_blocking) do %>
+        <%=t "views.users.edit.blocking_desc_html", site_name: @site.name, help_email: @site.email_help %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="clear quiet box">
+    <%= link_to_toggle t(:muted_users), "#muted-users", class: "ui" %>
+    <div id="muted-users" style="display:none">
+      <% unless @user.user_mutes.blank? %>
+        <ul>
+          <% @user.user_mutes.each do |user_mute| %>
+            <%-
+              muted_user_name = user_mute.muted_user.login
+              unless user_mute.muted_user.name.blank?
+                muted_user_name = "#{muted_user_name} (#{user_mute.muted_user.name})"
+              end
+            -%>
+            <li>
+              <%= link_to muted_user_name, person_by_login_path( user_mute.muted_user.login ) %>
+              <span class="button"><%= link_to I18n.t( :unmute ), user_mute, method: :delete %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_for UserMute.new( user: @user ), builder: DefaultFormBuilder, html: { class: "clear" } do |f| %>
+        <%= f.hidden_field :user_id %>
+        <%= f.text_field :muted_user_id, label: false, placeholder: I18n.t( :start_typing_someones_name ) %>
+        <%= f.submit t(:mute_user, default: "Mute User" ), class: "glaucous button" %>
+      <% end %>
+      <%= link_to_tip t(:about_muting) do %>
+        <%=t "views.users.edit.muting_desc_html" %>
+      <% end %>
+    </div>
+  </div>
   
   <div class="clear box">
     <%= link_to_toggle @user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>

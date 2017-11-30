@@ -1,6 +1,6 @@
 import React, { PropTypes } from "react";
 import { Popover, OverlayTrigger } from "react-bootstrap";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
 class CommunityIDPopover extends React.Component {
@@ -36,7 +36,7 @@ class CommunityIDPopover extends React.Component {
     const taxa = ( identification.taxon.ancestors || [] ).concat( identification.taxon );
     const popover = (
       <Popover
-        className={ `CommunityIDPopoverOverlay ${agreement ? "agree" : "disagree"}` }
+        className={ `CommunityIDPopoverOverlay PopoverWithHeader ${agreement ? "agree" : "disagree"}` }
         id={ `popover-${identification.id}` }
       >
         <div className="header">
@@ -57,7 +57,7 @@ class CommunityIDPopover extends React.Component {
         overlay={popover}
         containerPadding={ 20 }
       >
-        <span className="CommunityIDPopover">
+        <span className={ `CommunityIDPopover ${this.props.className}`} style={ this.props.style }>
           { contents }
         </span>
       </OverlayTrigger>
@@ -70,7 +70,9 @@ CommunityIDPopover.propTypes = {
   keyPrefix: PropTypes.string,
   contents: PropTypes.object,
   identification: PropTypes.object,
-  communityIDTaxon: PropTypes.object
+  communityIDTaxon: PropTypes.object,
+  style: PropTypes.object,
+  className: PropTypes.string
 };
 
 export default CommunityIDPopover;

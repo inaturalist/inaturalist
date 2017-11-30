@@ -68,6 +68,7 @@ class ObservationFieldValuesController < ApplicationController
     ofv_params = observation_field_value_params
     ofv_params.delete(:id) # why does rails even allow this...
     @observation_field_value = ObservationFieldValue.new(ofv_params)
+    @observation_field_value.user = current_user
     if !@observation_field_value.valid?
       if existing = ObservationFieldValue.where(
           "observation_field_id = ? AND observation_id = ?", 

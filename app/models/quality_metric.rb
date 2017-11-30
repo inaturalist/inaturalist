@@ -1,5 +1,7 @@
 class QualityMetric < ActiveRecord::Base
 
+  blockable_by lambda {|qm| qm.observation.user_id }
+
   belongs_to :user
   belongs_to :observation
   
@@ -15,12 +17,8 @@ class QualityMetric < ActiveRecord::Base
     const_set metric.upcase, metric
   end
   
-  after_save :set_observation_quality_grade, :set_observation_captive,
-    :set_observation_public_positional_accuracy, :set_observation_mappable,
-    :elastic_index_observation
-  after_destroy :set_observation_quality_grade, :set_observation_captive,
-    :set_observation_public_positional_accuracy, :set_observation_mappable,
-    :elastic_index_observation
+  after_save :update_observation
+  after_destroy :update_observation
   
   validates_presence_of :observation
   validates_inclusion_of :metric, :in => METRICS
@@ -29,39 +27,23 @@ class QualityMetric < ActiveRecord::Base
   def to_s
     "<QualityMetric #{id} metric: #{metric}, user_id: #{user_id}, agree: #{agree}>"
   end
-  
-  def set_observation_quality_grade
-    return true unless observation
-    new_quality_grade = observation.get_quality_grade
-    Observation.where(id: observation_id).update_all(quality_grade: new_quality_grade)
-    CheckList.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "CheckList::refresh_with_observation": observation.id}).
-      refresh_with_observation(observation.id, :taxon_id => observation.taxon_id)
+
+  def update_observation
+    return unless observation
+    if o = Observation.find_by_id( observation_id )
+      o.skip_quality_metrics = true
+      o.save
+    end
     true
   end
 
-  def set_observation_captive
-    return true unless observation
-    observation.reload.set_captive
-    true
-  end
-
-  def set_observation_public_positional_accuracy
-    return true unless observation
-    observation.reload.update_public_positional_accuracy
-    true
-  end
-
-  def set_observation_mappable
-    return true unless observation
-    observation.reload.update_mappable
-    true
-  end
-
-  def elastic_index_observation
-    return true unless observation
-    observation.reload.elastic_index!
-    true
+  def as_indexed_json
+    {
+      id: id,
+      user_id: user_id,
+      metric: metric,
+      agree: agree
+    }
   end
 
   def self.vote(user, observation, metric, agree)

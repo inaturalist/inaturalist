@@ -1,27 +1,31 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="<%= I18n.locale %>"
+      lang="<%= I18n.locale %>"
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
+    <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=980">
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
     <% if logged_in? -%>
       <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
     <% end -%>
-    <% if CONFIG.twitter && CONFIG.twitter.username -%>
-      <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
+    <% if !@site.twitter_username.blank? -%>
+      <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
-    <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <meta property="og:site_name" content="<%= @site.name %>"/>
+    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
+      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
     <% end %>
-    <% if !@headless && @site && @site.preferred_ios_app_id -%>
-      <meta name="apple-itunes-app" content="app-id=<%= @site.preferred_ios_app_id %>">
+    <% if !@headless && @site && !@site.ios_app_id.blank? -%>
+      <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
@@ -32,9 +36,7 @@
   <body>
     <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
       <% unless @headless -%>
-        <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
-          <%= render :partial => 'shared/header' %>
-        <% end %>
+        <%= render :partial => 'shared/header' %>
       <% end -%>
       
       <% if (flash[:notice] || flash[:alert]) && !@flash_js %>

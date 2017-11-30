@@ -97,12 +97,12 @@
         <%= o.text_field(:positioning_method, :class => 'positioning_method text inlineblock', :disabled => true) %>
         <%= o.hidden_field(:positioning_device, :class => 'positioning_device', :disabled => true) %>
 
-        <% if CONFIG.coordinate_systems -%>
+        <% if @site.coordinate_systems -%>
           <%= link_to_toggle_box t(:other_coordinate_systems) do %>
             <%= o.label(:coordinate_system, t(:coordinate_system)) %>
             <%= o.select :coordinate_system, coordinate_system_select_options(:skip_lat_lon => true), :class => "select" %>
             <% helptip_for :the_coordinate_systems do %>
-              <%=t 'views.observations.import.coordinate_systems_help', :site_name => SITE_NAME %>
+              <%=t 'views.observations.import.coordinate_systems_help', :site_name => @site.name %>
             <% end -%>
             <div>
               <%= o.label(:geo_x, t(:x_coord)) %>
@@ -178,7 +178,7 @@
             <div class="clear buttons">
               <%= link_to t(:link_your_flickr_account),
                 {:controller => 'flickr', :action => 'options'}, :class => "button" %>
-              <%= link_to t(:link_your_picasa_account),
+              <%= link_to t(:link_your_google_account),
                 {:controller => 'picasa', :action => 'options'}, :class => "button" %>
               <%= link_to t(:link_your_facebook_account), "/auth/facebook", :class => "button" %>
             </div>
@@ -203,26 +203,16 @@
         </div>
 
         <div id="add_sounds_<%= i %>">
-          <% if @sound_identities.blank? %>
-            <div class="nosounds">
-              <p class="ui">
-                <%=t 'sounds.you_need_to_link_your_soundcloud_account' %>
-              </p>
-              <div class="clear inline buttons">
-                <%= link_to t(:'sounds.link_your_soundcloud_account'), "/auth/soundcloud", :class => "button" %>
-              </div>
-            </div>
-          <% else %>
-            <div id="sounds_<%= i %>" class="observation_sounds">
-              <%= render :partial => "sounds/sound_list_form", :locals => { 
-                :sounds => observation.sounds, 
-                :index => i,
-                :checked => true,
-                :synclink_base => observation.new_record? ? new_observation_path : edit_observation_path(observation),
-                :sound_identity => @sound_identities.first,
-              } %>
-            </div>
-          <% end %>
+          <div id="sounds_<%= i %>" class="observation_sounds">
+            <%= render :partial => "sounds/sound_list_form", :locals => { 
+              sounds: observation.sounds,
+              index: i,
+              checked: true,
+              # synclink_base: observation.new_record? ? new_observation_path : edit_observation_path(observation),
+              sound_identity: @sound_identities.first,
+              local_sounds: true
+            } %>
+          </div>
         </div>
       </div>
     </div>

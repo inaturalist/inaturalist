@@ -246,8 +246,11 @@ describe Observation do
     end
   
     it "should increment the counter cache in users" do
+      Delayed::Worker.new.work_off
+      @observation.reload
       old_count = @observation.user.observations_count
       Observation.make!(:user => @observation.user)
+      Delayed::Worker.new.work_off
       @observation.reload
       expect(@observation.user.observations_count).to eq old_count+1
     end
@@ -451,7 +454,8 @@ describe Observation do
     end
 
     it "should create an observation review for the observer if there's a taxon" do
-      o = Observation.make!( taxon: Taxon.make! )
+      user = User.make!
+      o = Observation.make!( taxon: Taxon.make!, editing_user_id: user.id, user: user )
       o.reload
       expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 1
     end
@@ -460,6 +464,52 @@ describe Observation do
       o = Observation.make!
       o.reload
       expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 0
+    end
+
+    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
+      expect(o.coordinates_obscured?).to be true
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
+    end
+
+    it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
+      lat, lon = [ 1.1, 2.2 ]
+      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
+        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
+    end
+
+    it "should set public accuracy to accuracy" do
+      expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
+    end
+
+    it "should set public accuracy to nil if accuracy is nil" do
+      expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
+    end
+
+    it "should replace an inactive taxon with its active equivalent" do
+      taxon_change = make_taxon_swap
+      taxon_change.committer = taxon_change.user
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      o = Observation.make!( taxon: taxon_change.input_taxon )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.taxon ).to eq taxon_change.output_taxon
+    end
+
+    describe "identification category" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      
+      it "should be set" do
+        t = Taxon.make!
+        o = Observation.make!( taxon: t )
+        Delayed::Worker.new.work_off
+        expect( o.identifications.first.taxon ).to eq t
+        expect( o.identifications.first.category ).to eq Identification::LEADING
+      end
     end
 
   end
@@ -472,12 +522,28 @@ describe Observation do
         :time_zone => 'UTC')
     end
 
-    it "should create an obs review if taxon set but was blank" do
+    it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
-      o.update_attributes( taxon: Taxon.make! )
+      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       o.reload
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
+    it "should create an obs review identified by the observer" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      after_delayed_job_finishes { Identification.make!( observation: o, user: o.user )}
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
+    it "should not create an obs review identified by someone else" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      after_delayed_job_finishes { Identification.make!( observation: o )}
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
     end
 
     it "should not destroy the owner's old identification if the taxon has changed" do
@@ -667,6 +733,18 @@ describe Observation do
       o.update_attributes(:longitude => -200)
       expect(o).not_to be_valid
     end
+
+    it "should add the taxon to a check list for an enclosing place if the quality became research" do
+      t = Taxon.make!(:species)
+      p = without_delay { make_place_with_geom }
+      o = without_delay { make_research_grade_candidate_observation( latitude: p.latitude, longitude: p.longitude, taxon: t ) }
+      expect( p.check_list.taxa ).not_to include t
+      i = without_delay { Identification.make!( observation: o, taxon: t ) }
+      o.reload
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      p.reload
+      expect( p.check_list.taxa ).to include t
+    end
   
     describe "quality_grade" do
 
@@ -753,6 +831,22 @@ describe Observation do
         t = Taxon.make!( name: "Homo sapiens", rank: Taxon::SPECIES )
         o = make_research_grade_observation( taxon: t )
         expect( o.community_taxon ).to eq t
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be casual if the community taxon is Homo" do
+        t = Taxon.make!( name: "Homo", rank: Taxon::GENUS )
+        o = Observation.make!( taxon: t )
+        i = Identification.make!( observation: o, taxon: t )
+        expect( o.community_taxon ).to eq t
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be casual if the taxon is Homo" do
+        t = Taxon.make!( name: "Homo", rank: Taxon::GENUS )
+        o = make_research_grade_candidate_observation( taxon: t )
+        expect( o.community_taxon ).to be_blank
+        expect( o.taxon ).to eq t
         expect( o.quality_grade ).to eq Observation::CASUAL
       end
 
@@ -1123,10 +1217,12 @@ describe Observation do
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
+      Delayed::Worker.new.work_off
       user = @observation.user
       user.reload
       old_count = user.observations_count
       @observation.destroy
+      Delayed::Worker.new.work_off
       user.reload
       expect(user.observations_count).to eq old_count - 1
     end
@@ -2956,6 +3052,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+      o.reload
       expect(o.mappable?).to be true
     end
 
@@ -2963,6 +3060,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       q = QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+      o.reload
       expect(o.mappable?).to be false
       q.destroy
       expect(o.reload.mappable?).to be true
@@ -2972,29 +3070,8 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+      o.reload
       expect(o.mappable?).to be false
-    end
-
-    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
-      expect(o.coordinates_obscured?).to be true
-      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
-    end
-
-    it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
-      lat, lon = [ 1.1, 2.2 ]
-      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
-        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
-      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
-    end
-
-    it "should set public accuracy to accuracy" do
-      expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
-    end
-
-    it "should set public accuracy to nil if accuracy is nil" do
-      expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
     end
 
     it "should be mappable for obscured" do
@@ -3011,6 +3088,7 @@ describe Observation do
       o = make_research_grade_observation
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::EVIDENCE, agree: false)
+      o.reload
       expect(o.mappable?).to be false
     end
 
@@ -3028,6 +3106,17 @@ describe Observation do
       Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
       o.reload
       expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if community disagrees with taxon" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      u = User.make!( prefers_community_taxa: false )
+      o = make_research_grade_observation( user: u )
+      5.times { Identification.make!( observation: o, taxon: t ) }
+      o.reload
+      expect( o.taxon ).not_to eq t
+      expect( o.community_taxon ).to eq t
+      expect( o.mappable? ).to be false
     end
 
   end
@@ -3338,5 +3427,31 @@ describe Observation, "probably_captive?" do
         o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
       ).to be_blank
     end
+  end
+end
+
+describe "ident getters" do
+  it "should return taxon_id for a particular user by login" do
+    u = User.make!( login: "balthazar_salazar" )
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send("ident_by_balthazar_salazar:taxon_id" ) ).to eq i.taxon_id
+  end
+
+  it "should return taxon name for a particular user by login" do
+    u = User.make!( login: "balthazar_salazar" )
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send( "ident_by_balthazar_salazar:taxon_name" ) ).to eq i.taxon.name
+  end
+
+  it "should return taxon_id for a particular user by id" do
+    u = User.make!
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send( "ident_by_#{u.id}:taxon_id" ) ).to eq i.taxon_id
   end
 end

@@ -1,4 +1,17 @@
 module MakeHelpers
+  def make_annotation( options = {} )
+    attribute = ControlledTerm.make!
+    value = ControlledTerm.make!( is_value: true )  
+    attribute.controlled_term_values << ControlledTermValue.new(
+      controlled_attribute: attribute,
+      controlled_value: value
+    )
+    Annotation.make( options.merge(
+      controlled_attribute: attribute,
+      controlled_value: value  
+    ) )
+  end
+
   def make_curator(opts = {})
     make_user_with_role(:curator, opts)
   end
@@ -131,6 +144,21 @@ module MakeHelpers
     swap.add_output_taxon(output_taxon)
     swap.save!
     swap
+  end
+
+  def make_taxon_split( options = {} )
+    input_taxon = options.delete(:input_taxon) || Taxon.make!( rank: Taxon::SPECIES )
+    output_taxa = options.delete(:output_taxa) || [
+      Taxon.make!( rank: Taxon::SPECIES ),
+      Taxon.make!( rank: Taxon::SPECIES )
+    ]
+    split = TaxonSplit.make( options )
+    split.add_input_taxon( input_taxon )
+    output_taxa.each do |t|
+      split.add_output_taxon( t )
+    end
+    split.save!
+    split
   end
 
   def make_published_guide(options = {})

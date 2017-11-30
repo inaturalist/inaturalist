@@ -15,14 +15,25 @@ class ObservationFieldInput extends React.Component {
       observationFieldTaxon: this.props.observationFieldTaxon
     };
     this.submitFieldValue = this.submitFieldValue.bind( this );
+    this.onChangeHandler = this.onChangeHandler.bind( this );
+    this.saveLabel = this.saveLabel.bind( this );
+    this.saveDisabled = this.saveDisabled.bind( this );
   }
 
   componentDidMount( ) {
     this.setUpObservationFieldAutocomplete( );
   }
 
-  componentDidUpdate( ) {
-    this.setUpObservationFieldAutocomplete( );
+  onChangeHandler( e ) {
+    let modified = true;
+    if ( _.isObject( e ) && e.target ) {
+      modified = this.props.originalOfv ?
+        !this.sameValue( $( e.target ).val( ), this.props.originalOfv.value ) : true;
+    } else {
+      modified = this.props.originalOfv ?
+        !this.sameValue( e, this.props.originalOfv.value ) : true;
+    }
+    this.setState( { modified } );
   }
 
   setUpObservationFieldAutocomplete( ) {
@@ -58,11 +69,18 @@ class ObservationFieldInput extends React.Component {
     } );
   }
 
+  sameValue( v1, v2 ) {
+    /* eslint eqeqeq: 0 */
+    // using == here instead of === or _.isEquals so we can compare
+    // ints to strings, e.g. 10 == "10" is true
+    return v1 == v2;
+  }
+
   submitFieldValue( e ) {
     e.preventDefault( );
-    const value = $( e.target ).find( "[name='value']" );
     if ( !this.state.observationField ) { return; }
-    if ( !this.state.observationFieldValue && !value.val( ) ) {
+    const valuesToSubmit = this.valuesToSubmit( );
+    if ( !valuesToSubmit.value && valuesToSubmit.value !== 0 ) {
       const valueInput = $( e.target ).find( "[name='value'], [name='taxon_name']" );
       valueInput.addClass( "failed" );
       setTimeout( () => {
@@ -70,19 +88,41 @@ class ObservationFieldInput extends React.Component {
       }, 1000 );
       return;
     }
-    if ( this.state.observationField.datatype === "taxon" ) {
-      this.props.onSubmit( {
-        observationField: this.state.observationField,
-        value: this.state.observationFieldValue,
-        taxon: this.state.observationFieldTaxon
-      } );
-    } else if ( value ) {
-      this.props.onSubmit( {
-        observationField: this.state.observationField,
-        value: value.val( )
+    this.props.onSubmit( valuesToSubmit );
+    if ( !this.props.noReset ) {
+      this.reset( );
+    } else {
+      this.setState( {
+        modified: false
       } );
     }
-    this.reset( );
+  }
+
+  valuesToSubmit( options = { } ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    const value = $( domNode ).find( "[name='value']" );
+    if ( !this.state.observationField ) { return { }; }
+    if ( ( !this.state.observationFieldValue && !value.val( ) ) ||
+         ( this.state.observationField.datatype !== "taxon" && !value ) ) {
+      return {
+        observationField: this.state.observationField,
+        value: null,
+        initial: !!options.initial
+      };
+    }
+    if ( this.state.observationField.datatype === "taxon" ) {
+      return {
+        observationField: this.state.observationField,
+        value: this.state.observationFieldValue,
+        taxon: this.state.observationFieldTaxon,
+        initial: !!options.initial
+      };
+    }
+    return {
+      observationField: this.state.observationField,
+      value: value.val( ),
+      initial: !!options.initial
+    };
   }
 
   reset( ) {
@@ -98,9 +138,26 @@ class ObservationFieldInput extends React.Component {
     input.val( "" ).blur( );
   }
 
+  saveLabel( ) {
+    let label = I18n.t( "add" );
+    if ( this.props.editing ) {
+      label = this.state.modified ? I18n.t( "save" ) : I18n.t( "saved" );
+    }
+    return label;
+  }
+
+  saveDisabled( ) {
+    return this.props.editing && !this.state.modified;
+  }
+
   selectInput( field ) {
     return (
-      <Input type="select" name="value" defaultValue={ this.state.observationFieldValue }>
+      <Input
+        type="select"
+        name="value"
+        defaultValue={ this.state.observationFieldValue }
+        onChange={ this.onChangeHandler }
+      >
         { _.map( field.allowed_values.split( "|" ), f => (
           <option value={ f } key={ f }>{ f }</option>
         ) ) }
@@ -109,6 +166,17 @@ class ObservationFieldInput extends React.Component {
   }
 
   taxonInput( ) {
+    const add = this.props.noAdd ? "" : (
+      <span className="input-group-btn">
+        <button
+          className="btn btn-default"
+          type="submit"
+          disabled={ this.saveDisabled( ) }
+        >
+          { this.saveLabel( ) }
+        </button>
+      </span>
+    );
     return (
       <div className="input-group">
         <TaxonAutocomplete
@@ -122,23 +190,18 @@ class ObservationFieldInput extends React.Component {
               observationFieldTaxon: r.item,
               observationFieldValue: r.item.id
             } );
+            this.onChangeHandler( r.item.id );
           } }
           afterUnselect={ ( ) => {
             this.setState( {
               observationFieldTaxon: null,
               observationFieldValue: null
             } );
+            this.onChangeHandler( null );
           } }
           placeholder={ I18n.t( "species_name_cap" ) }
         />
-        <span className="input-group-btn">
-          <button
-            className="btn btn-default"
-            type="submit"
-          >
-            { this.props.editing ? I18n.t( "save" ) : I18n.t( "add" ) }
-          </button>
-        </span>
+        { add }
       </div>
     );
   }
@@ -157,6 +220,17 @@ class ObservationFieldInput extends React.Component {
     } else if ( datatype === "date" ) {
       format = "YYYY/MM/DD";
     }
+    const add = this.props.noAdd ? "" : (
+      <span className="input-group-btn">
+        <button
+          className="btn btn-default"
+          type="submit"
+          disabled={ this.saveDisabled( ) }
+        >
+          { this.saveLabel( ) }
+        </button>
+      </span>
+    );
     return (
       <div className="input-group">
         <DateTimeFieldWrapper
@@ -166,14 +240,17 @@ class ObservationFieldInput extends React.Component {
           mode={ mode }
           inputFormat={ format }
           timeZone={ TIMEZONE }
-          onChange={ dateString =>
-            this.setState( { observationFieldValue: dateString } ) }
-          onSelection={ dateString =>
+          onChange={ dateString => {
+            this.setState( { observationFieldValue: dateString } );
+            this.onChangeHandler( dateString );
+          } }
+          onSelection={ dateString => {
             this.setState( {
               observationFieldValue: dateString,
               observationFieldSelectedDate: dateString
-            } )
-          }
+            } );
+            this.onChangeHandler( dateString );
+          } }
         />
         <input
           type="text"
@@ -193,14 +270,7 @@ class ObservationFieldInput extends React.Component {
           } }
           placeholder={ I18n.t( "date_time" ) }
         />
-        <span className="input-group-btn">
-          <button
-            className="btn btn-default"
-            type="submit"
-          >
-            { this.props.editing ? I18n.t( "save" ) : I18n.t( "add" ) }
-          </button>
-        </span>
+        { add }
       </div>
     );
   }
@@ -210,10 +280,22 @@ class ObservationFieldInput extends React.Component {
       name="value"
       className="form-control"
       defaultValue={ this.state.observationFieldValue }
+      onChange={ this.onChangeHandler }
     /> );
   }
 
   defaultInput( ) {
+    const add = this.props.noAdd ? "" : (
+      <span className="input-group-btn">
+        <button
+          className="btn btn-default"
+          type="submit"
+          disabled={ this.saveDisabled( ) }
+        >
+          { this.saveLabel( ) }
+        </button>
+      </span>
+    );
     return (
       <div className="input-group">
         <input
@@ -221,15 +303,9 @@ class ObservationFieldInput extends React.Component {
           name="value"
           defaultValue={ this.state.observationFieldValue }
           className="form-control"
+          onChange={ this.onChangeHandler }
         />
-        <span className="input-group-btn">
-          <button
-            className="btn btn-default"
-            type="submit"
-          >
-            { this.props.editing ? I18n.t( "save" ) : I18n.t( "add" ) }
-          </button>
-        </span>
+        { add }
       </div>
     );
   }
@@ -240,9 +316,9 @@ class ObservationFieldInput extends React.Component {
     if ( field ) {
       let input;
       let submit;
-      const standaloneSubmit = (
-        <Button className="standalone" type="submit">
-          { this.props.editing ? I18n.t( "save" ) : I18n.t( "add" ) }
+      const standaloneSubmit = this.props.noAdd ? "" : (
+        <Button className="standalone" type="submit" disabled={ this.saveDisabled( ) }>
+          { this.saveLabel( ) }
         </Button>
       );
       if ( field.allowed_values ) {
@@ -260,27 +336,34 @@ class ObservationFieldInput extends React.Component {
       } else {
         input = this.defaultInput( );
       }
+      const cancel = this.props.noCancel ? "" : (
+        <span
+          className="linky"
+          onClick={ ( ) => (
+            this.props.onCancel ? this.props.onCancel( ) : this.reset( )
+          ) }
+        >{ I18n.t( "cancel" ) }</span>
+      );
+      const editingClass = this.props.editing ? "editing" : "";
       observationFieldInput = (
-        <div className={ `observation-field ${this.props.editing ? "editing" : ""}` }>
-          <div className="field-name">{ field.name }</div>
+        <div className={ `observation-field ${field.datatype}-field ${editingClass}` }>
+          <div className="field-name">
+            { field.name }
+            { this.props.required ? ( <span className="required">*</span> ) : "" }
+          </div>
           { input }
           <p className="help-block">{ field.description }</p>
-          { submit } <span
-            className="linky"
-            onClick={ ( ) => (
-              this.props.onCancel ? this.props.onCancel( ) : this.reset( )
-            ) }
-          >{ I18n.t( "cancel" ) }</span>
+          { submit } { cancel }
         </div>
       );
     }
     const fieldChooser = this.props.hideFieldChooser ? "" : (
       <input type="text"
-        placeholder={ I18n.t( "choose_a_field" ) }
+        placeholder={ this.props.placeholder }
         className="form-control ofv-field"
       /> );
     return (
-      <form onSubmit={ this.submitFieldValue }>
+      <form onSubmit={ this.submitFieldValue } className="ObservationFieldInput">
         { fieldChooser }
         { observationFieldInput }
       </form>
@@ -294,9 +377,19 @@ ObservationFieldInput.propTypes = {
   observationFieldValue: PropTypes.any,
   editing: PropTypes.bool,
   hideFieldChooser: PropTypes.bool,
+  noAdd: PropTypes.bool,
+  noCancel: PropTypes.bool,
+  noReset: PropTypes.bool,
   notIDs: PropTypes.array,
+  onCancel: PropTypes.func,
   onSubmit: PropTypes.func,
-  onCancel: PropTypes.func
+  originalOfv: PropTypes.object,
+  required: PropTypes.bool,
+  placeholder: PropTypes.string
+};
+
+ObservationFieldInput.defaultProps = {
+  placeholder: I18n.t( "choose_a_field" )
 };
 
 export default ObservationFieldInput;

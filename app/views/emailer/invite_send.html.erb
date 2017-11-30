@@ -16,7 +16,7 @@
   <h3><%=t :did_not_send_invitations_because %></h3>
   
   <% if @existing_users.size > 0 -%>
-    <h4><%=t :they_already_have_iNat_accounts, :site_name => SITE_NAME_SHORT %></h4>
+    <h4><%=t :they_already_have_iNat_accounts, :site_name => @site.preferred_site_name_short %></h4>
     <div class="box clear">
       <% for user in @existing_users %>
         <div class="column span-7">

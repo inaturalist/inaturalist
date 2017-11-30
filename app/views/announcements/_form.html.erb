@@ -1,3 +1,12 @@
+<% content_for :extracss do %>
+  <style type="text/css">
+    #new_announcement textarea,
+    .edit_announcement textarea {
+      width: 100%;
+      min-height: 300px;
+    }
+  </style>
+<% end %>
 <%= form_for @announcement, :builder => DefaultFormBuilder do |f| %>
   <%= f.error_messages %>
   <%= f.select :placement, Announcement::PLACEMENTS %>
@@ -6,7 +15,7 @@
   <%= f.select :site_id, @sites.map{ |s| [s.name, s.id] }, include_blank: t(:all) %>
   <%= f.select :locales, I18N_SUPPORTED_LOCALES, {}, {
     multiple: true,
-    description: "CMD- or SHIFT-click to select multiple. Not selecting any will show the announcement for all users regardless of locale."
+    description: t( "views.announcements.locales_desc" )
   } %>
   <%= f.text_area :body %>
   

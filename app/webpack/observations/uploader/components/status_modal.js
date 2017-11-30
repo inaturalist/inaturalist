@@ -20,13 +20,17 @@ class StatusModal extends Component {
          <div className="buttons">
             <Button
               bsStyle={ "primary" }
-              onClick={ () => this.props.setState( { saveStatus: null } ) }>
+              onClick={ () => this.props.setState( { saveStatus: null } ) }
+            >
               { I18n.t( "keep_editing" ) }
             </Button>
           </div>
         </Modal.Footer>
       );
     } else if ( ( saveCounts.pending + saveCounts.saving ) === 0 && savingCount !== 0 ) {
+      if ( saveCounts.failed > 0 ) {
+        return null;
+      }
       modalMessage = I18n.t( "going_to_your_observations" );
     } else {
       modalMessage = I18n.t( "saving_num_of_count_observations",

@@ -3,9 +3,11 @@
 #
 class PostScrubber < Rails::Html::PermitScrubber
   def initialize( options )
+    super()
     self.tags = options[:tags] if options[:tags]
     self.attributes = options[:attributes] if options[:attributes]
   end
+
   def scrub_css_attribute(node)
     # Do nothing, default is too agressive and removes positioning styles  
   end

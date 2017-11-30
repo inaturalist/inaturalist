@@ -8,7 +8,7 @@ import _ from "lodash";
 import moment from "moment-timezone";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import FileGallery from "./file_gallery";
-import util from "../models/util";
+import util, { ACCEPTED_FILE_TYPES } from "../models/util";
 
 const cardSource = {
   canDrag( props ) {
@@ -47,7 +47,7 @@ const cardTarget = {
   }
 };
 
-const photoTarget = {
+const fileTarget = {
   // don't define canDrop. When a photo is dropped on its own card
   // the action is caught below in drop, and will not fire on drop
   // in the containing div, preventing a new card from being created
@@ -77,10 +77,10 @@ class ObsCardComponent extends Component {
     };
   }
 
-  static collectPhotoDrop( connect, monitor ) {
+  static collectFileDrop( connect, monitor ) {
     return {
-      photoDropTarget: connect.dropTarget( ),
-      photoIsOver: monitor.isOver( )
+      fileDropTarget: connect.dropTarget( ),
+      fileIsOver: monitor.isOver( )
     };
   }
 
@@ -93,11 +93,12 @@ class ObsCardComponent extends Component {
 
   shouldComponentUpdate( nextProps ) {
     const b = (
-      this.props.photoIsOver !== nextProps.photoIsOver ||
+      this.props.fileIsOver !== nextProps.fileIsOver ||
       this.props.cardIsDragging !== nextProps.cardIsDragging ||
       this.props.cardIsOver !== nextProps.cardIsOver ||
       this.props.obsCard.galleryIndex !== nextProps.obsCard.galleryIndex ||
       this.props.selected_species_guess !== nextProps.selected_species_guess ||
+      this.props.obsCard.saveState !== nextProps.obsCard.saveState ||
       _.size( this.props.obsCard.files ) !==
         _.size( nextProps.obsCard.files ) ||
       !_.isMatch( this.props.obsCard, nextProps.obsCard ) );
@@ -142,11 +143,14 @@ class ObsCardComponent extends Component {
   render( ) {
     const { obsCard, cardDropTarget, onCardDrop, cardIsDragging, draggingProps,
       cardIsOver, confirmRemoveObsCard, updateObsCard, setState, selectCard,
-      photoDropTarget, cardDragSource, confirmRemoveFile, photoIsOver } = this.props;
+      fileDropTarget, cardDragSource, confirmRemoveFile, fileIsOver } = this.props;
     let className = "cellDropzone thumbnail card ui-selectee";
     if ( cardIsDragging ) { className += " dragging"; }
-    if ( cardIsOver || photoIsOver ) { className += " dragOver"; }
+    if ( cardIsOver || fileIsOver ) { className += " dragOver"; }
     if ( obsCard.selected ) { className += " selected ui-selecting"; }
+    if ( obsCard.saveState === "saving" ) { className += " saving"; }
+    if ( obsCard.saveState === "saved" ) { className += " saved"; }
+    if ( obsCard.saveState === "failed" ) { className += " failed"; }
     let locationText = obsCard.locality_notes ||
       ( obsCard.latitude &&
       `${_.round( obsCard.latitude, 4 )},${_.round( obsCard.longitude, 4 )}` );
@@ -172,7 +176,7 @@ class ObsCardComponent extends Component {
     }
     const invalidDate = util.dateInvalid( obsCard.date );
 
-    return cardDropTarget( photoDropTarget( cardDragSource(
+    return cardDropTarget( fileDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
         <Dropzone
           ref="dropzone"
@@ -182,7 +186,7 @@ class ObsCardComponent extends Component {
           onDrop={ ( f, e ) => onCardDrop( f, e, obsCard ) }
           onDragEnter={ this.onDragEnter }
           activeClassName="hover"
-          accept="image/*"
+          accept={ ACCEPTED_FILE_TYPES }
           key={ obsCard.id }
         >
           { captiveMarker }
@@ -215,6 +219,7 @@ class ObsCardComponent extends Component {
               searchExternal
               showPlaceholder
               perPage={ 6 }
+              visionParams={ obsCard.visionParams( ) }
               initialSelection={ obsCard.selected_taxon }
               initialTaxonID={ obsCard.taxon_id }
               resetOnChange={ false }
@@ -313,8 +318,8 @@ ObsCardComponent.propTypes = {
   movePhoto: PropTypes.func,
   obsCard: PropTypes.object,
   onCardDrop: PropTypes.func,
-  photoDropTarget: PropTypes.func,
-  photoIsOver: PropTypes.bool,
+  fileDropTarget: PropTypes.func,
+  fileIsOver: PropTypes.bool,
   selectCard: PropTypes.func,
   selected_species_guess: PropTypes.string,
   selectedObsCards: PropTypes.object,
@@ -327,5 +332,5 @@ ObsCardComponent.propTypes = {
 export default pipe(
   DragSource( "ObsCard", cardSource, ObsCardComponent.collectCard ),
   DropTarget( "ObsCard", cardTarget, ObsCardComponent.collectCardDrop ),
-  DropTarget( "Photo", photoTarget, ObsCardComponent.collectPhotoDrop )
+  DropTarget( ["Photo", "Sound"], fileTarget, ObsCardComponent.collectFileDrop )
 )( ObsCardComponent );

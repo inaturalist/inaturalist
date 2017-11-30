@@ -103,7 +103,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                         </a>
                       </div>
                       <div className="media-right">
-                        <a href={`/places/${status.place ? status.place.id : null}`}>
+                        <a href={ status.url }>
                           <i className="glyphicon glyphicon-new-window"></i>
                         </a>
                       </div>

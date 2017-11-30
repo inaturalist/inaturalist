@@ -28,7 +28,7 @@ const DateFilters = ( {
         <input
           type="radio"
           name={`${prefix}-date-type`}
-          defaultChecked={ !params[dateTypeField] }
+          checked={ !params[dateTypeField] || params[dateTypeField] === "any" }
           onChange={ ( ) => {
             updateSearchParams( { [dateTypeField]: "any" } );
           } }
@@ -40,21 +40,23 @@ const DateFilters = ( {
           type="radio"
           name={`${prefix}-date-type`}
           value="exact"
-          defaultChecked={ params[dateTypeField] === "exact" }
+          checked={ params[dateTypeField] === "exact" }
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-exact">
           { I18n.t( "exact_date" ) }
           <div
             style={ { position: "relative" }}
-            className={ params[dateTypeField] === "exact" ? "" : "collapse"}
+            className={
+              `${params[dateTypeField] === "exact" ? "" : "collapse"}` +
+              `${params[onField] ? " filter-changed" : ""}`
+            }
           >
             <DateTimeFieldWrapper
               mode="date"
-              className={
-                "filters-dates-exact form-control input-sm date-picker" +
-                `${params[onField] ? "filter-changed" : ""}`
-              }
+              inputProps={{
+                className: "filters-dates-exact form-control input-sm date-picker"
+              }}
               inputFormat="YYYY-MM-DD"
               defaultText={ params[onField] || "YYYY-MM-DD" }
               onClick={ ( ) => updateSearchParams( { [dateTypeField]: "exact" } ) }
@@ -68,39 +70,43 @@ const DateFilters = ( {
           type="radio"
           name={`${prefix}-date-type`}
           value="range"
-          defaultChecked={ params[dateTypeField] === "range" }
+          checked={ params[dateTypeField] === "range" }
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-range">
           { I18n.t( "range" ) }
           <div
             style={ { position: "relative" } }
-            className={ `stacked ${params[dateTypeField] === "range" ? "" : "collapse"}` }
+            className={
+              `stacked ${params[dateTypeField] === "range" ? "" : "collapse"}` +
+              `${params[d1Field] ? " filter-changed" : ""}`
+            }
           >
             <DateTimeFieldWrapper
               mode="date"
-              className={
-                "filters-dates-exact form-control input-sm date-picker" +
-                `${params[d1Field] ? "filter-changed" : ""}`
-              }
+              inputProps={{
+                className: "filters-dates-exact form-control input-sm date-picker"
+              }}
               inputFormat="YYYY-MM-DD"
-              defaultText={ I18n.t( "start" ) }
+              defaultText={ params[d1Field] || I18n.t( "start" ) }
               onClick={ ( ) => updateSearchParams( { [dateTypeField]: "exact" } ) }
               onChange={ date => updateSearchParams( { [d1Field]: date } ) }
             />
           </div>
           <div
             style={ { position: "relative" } }
-            className={ params[dateTypeField] === "range" ? "" : "collapse"}
+            className={
+              ( params[dateTypeField] === "range" ? "" : "collapse" ) +
+              `${params[d2Field] ? " filter-changed" : ""}`
+            }
           >
             <DateTimeFieldWrapper
               mode="date"
-              className={
-                "filters-dates-exact form-control input-sm date-picker" +
-                `${params[d2Field] ? "filter-changed" : ""}`
-              }
+              inputProps={{
+                className: "filters-dates-exact form-control input-sm date-picker"
+              }}
               inputFormat="YYYY-MM-DD"
-              defaultText={ I18n.t( "end" ) }
+              defaultText={ params[d2Field] || I18n.t( "end" ) }
               onClick={ ( ) => updateSearchParams( { [dateTypeField]: "exact" } ) }
               onChange={ date => updateSearchParams( { [d2Field]: date } ) }
             />
@@ -112,14 +118,17 @@ const DateFilters = ( {
           type="radio"
           name={`${prefix}-date-type`}
           value="month"
-          defaultChecked={ params[dateTypeField] === "month" }
+          checked={ params[dateTypeField] === "month" }
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-month">
           { I18n.t( "months" ) }
           <div
             style={ { position: "relative" } }
-            className={ params[dateTypeField] === "month" ? "" : "collapse"}
+            className={
+              ( params[dateTypeField] === "month" ? "" : "collapse" ) +
+              `${params[monthField] ? " filter-changed" : ""}`
+            }
           >
             <JQueryUIMultiselect
               className={`form-control input-sm ${params[monthField] ? "filter-changed" : ""}`}

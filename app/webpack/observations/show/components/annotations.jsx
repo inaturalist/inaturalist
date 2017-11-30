@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel } from "react-bootstrap";
 import UsersPopover from "./users_popover";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 
 class Annotations extends React.Component {
 
@@ -130,33 +130,84 @@ class Annotations extends React.Component {
               <i className="fa fa-check" />
             ) : null }
           </span>
-          <i className={ `fa ${agreeClass}` } onClick={ voteAction } />
+          { this.loggedIn && <i className={ `fa ${agreeClass}` } onClick={ voteAction } /> }
           <span className="count">{ votesForCount }</span>
+          { !this.loggedIn && <span className="fa" /> }
         </td>
         <td className="disagree">
           <span className="check">
             { mostDisagree ? (
-              <i className="fa fa-check" />
+              <i className="fa fa-times" />
             ) : null }
           </span>
-          <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } />
+          { this.loggedIn && <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } /> }
           <span className="count">{ votesAgainstCount }</span>
+          { !this.loggedIn && <span className="fa" /> }
         </td>
       </tr>
     );
+  }
+
+  termsForTaxon( terms, taxon = null ) {
+    const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
+    return _.filter( terms, term => {
+      // reject if it has values and those values and none are availalble
+      if ( term.values && term.values.length > 0 &&
+           this.termsForTaxon( term.values, taxon ).length === 0 ) {
+        return false;
+      }
+      // value applies to all taxa without exceptions, keep it
+      if (
+        ( term.taxon_ids || [] ).length === 0 &&
+        ( term.excepted_taxon_ids || [] ).length === 0
+      ) {
+        return true;
+      }
+      // remove things with exceptions that include this taxon
+      if (
+        _.intersection( term.excepted_taxon_ids || [], ancestorIds ).length > 0
+      ) {
+        return false;
+      }
+      // no exceptions but applies to all taxa keep it
+      if ( ( term.taxon_ids || [] ).length === 0 ) {
+        return true;
+      }
+      return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
+    } );
   }
 
   render( ) {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    if ( !observation || _.isEmpty( controlledTerms ) ) { return ( <span /> ); }
+    const availableControlledTerms = this.termsForTaxon(
+      controlledTerms,
+      observation ? observation.taxon : null
+    );
+    if ( !observation || !observation.user || _.isEmpty( availableControlledTerms ) ) {
+      if (
+          this.props.showEmptyState &&
+          ( !availableControlledTerms || availableControlledTerms.length === 0 )
+      ) {
+        return (
+          <div className="noresults">
+            { I18n.t( "no_relevant_annotations" ) }
+          </div>
+        );
+      }
+      return ( <span /> );
+    }
     this.loggedIn = config && config.currentUser;
     this.viewerIsObserver = this.loggedIn && config.currentUser.id === observation.user.id;
-    const groupedAnnotations = _.groupBy( observation.annotations, a => (
-      a.controlled_attribute.id ) );
+    if ( !this.loggedIn && _.isEmpty( observation.annotations ) ) {
+      return ( <span /> );
+    }
+    const annotations = observation.annotations.filter( a =>
+      a.controlled_attribute && a.controlled_value );
+    const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
     let rows = [];
-    _.each( controlledTerms, ct => {
+    _.each( availableControlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {
         const sorted = _.sortBy( groupedAnnotations[ct.id], a => (
           a.controlled_value.label
@@ -165,18 +216,26 @@ class Annotations extends React.Component {
           rows.push( this.annotationRow( a, ct ) );
         } );
       }
-      // TODO: filter terms by taxon ID
       let availableValues = ct.values;
       if ( groupedAnnotations[ct.id] && ct.multivalued ) {
         const usedValues = { };
-        _.each( groupedAnnotations[ct.id], gt => { usedValues[gt.controlled_value.id] = true; } );
+        _.each( groupedAnnotations[ct.id], gt => { usedValues[gt.controlled_value.id] = gt.controlled_value; } );
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
+        // If values have already been used, we should not allow the addition of blocking values
+        if ( !_.isEmpty( usedValues ) ) {
+          const usedBlockingValue = _.find( usedValues, v => {
+            return v.blocking;
+          } );
+          // If there's already a blocking value, no other values should be allowed.
+          if ( usedBlockingValue ) {
+            availableValues = [];
+          } else {
+            availableValues = _.filter( availableValues, v => !v.blocking );
+          }
+        }
       }
       if ( observation.taxon ) {
-        availableValues = _.filter( availableValues, v => (
-          !v.valid_within_clade ||
-          _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
-        ) );
+        availableValues = this.termsForTaxon( availableValues, observation ? observation.taxon : null );
       }
       const termPopover = (
         <Popover
@@ -184,7 +243,7 @@ class Annotations extends React.Component {
           className="AnnotationPopover"
         >
           <div className="contents">
-            <div className="view">View:</div>
+            <div className="view">{ I18n.t( "view" ) }:</div>
             <div className="search">
               <a href={ `/observations?term_id=${ct.id}` }>
                 <i className="fa fa-arrow-circle-o-right" />
@@ -195,7 +254,8 @@ class Annotations extends React.Component {
         </Popover>
       );
       if ( availableValues.length > 0 &&
-           !( groupedAnnotations[ct.id] && !ct.multivalued ) ) {
+           !( groupedAnnotations[ct.id] && !ct.multivalued ) &&
+           ( this.loggedIn || !_.isEmpty( groupedAnnotations[ct.id] ) ) ) {
         rows.push( (
           <tr
             key={ `term-row-${ct.id}` }
@@ -242,12 +302,36 @@ class Annotations extends React.Component {
       }
     } );
 
+    const table = (
+      <table className="table">
+        <thead>
+          <tr>
+            <th>{ I18n.t( "attribute" ) }</th>
+            <th>{ I18n.t( "value" ) }</th>
+            <th>{ I18n.t( "agree_" ) }</th>
+            <th>{ I18n.t( "disagree_" ) }</th>
+          </tr>
+        </thead>
+        <tbody>
+          { rows }
+        </tbody>
+      </table>
+    );
+
+    if ( !this.props.collapsible ) {
+      return (
+        <div className="Annotations">
+          { table }
+        </div>
+      );
+    }
+
     const count = observation.annotations.length > 0 ?
       `(${observation.annotations.length})` : "";
     return (
-      <div className="Annotations">
+      <div className="Annotations collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( this.loggedIn ) {
               this.props.updateSession( {
@@ -260,19 +344,7 @@ class Annotations extends React.Component {
           { I18n.t( "annotations" ) } { count }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
-          <table className="table">
-            <thead>
-              <tr>
-                <th>{ I18n.t( "attribute" ) }</th>
-                <th>{ I18n.t( "value" ) }</th>
-                <th>{ I18n.t( "agree_" ) }</th>
-                <th>{ I18n.t( "disagree_" ) }</th>
-              </tr>
-            </thead>
-            <tbody>
-              { rows }
-            </tbody>
-          </table>
+          { table }
         </Panel>
       </div>
     );
@@ -287,7 +359,13 @@ Annotations.propTypes = {
   deleteAnnotation: PropTypes.func,
   voteAnnotation: PropTypes.func,
   unvoteAnnotation: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  collapsible: PropTypes.bool,
+  showEmptyState: PropTypes.bool
+};
+
+Annotations.defaultProps = {
+  collapsible: true
 };
 
 export default Annotations;

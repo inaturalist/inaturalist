@@ -63,8 +63,54 @@ describe ApplicationController do
         # subscriptions are unsuspended
         expect( user.subscriptions_suspended_at ).to be_nil
       end
-
     end
+
+    describe "draft sites" do
+      let(:site) { Site.make!(draft: true) }
+      let(:basic_user) { User.make! }
+      let(:admin_user) { make_admin }
+      let(:site_admin_user) {
+        u = User.make!
+        SiteAdmin.create(site: site, user: u)
+        u
+      }
+
+      it "does not redirect users on the main site" do
+        get :index
+        expect(response.response_code).to eq 200
+        expect(response).to_not be_redirect
+      end
+
+      it "redirects logged-out users to log in" do
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 302
+        expect(response).to be_redirect
+        expect(response).to redirect_to(new_user_session_url)
+      end
+
+      it "redirects basic users to log in" do
+        http_login(basic_user)
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 302
+        expect(response).to be_redirect
+        expect(response).to redirect_to(login_url)
+      end
+
+      it "does not redirect admins" do
+        http_login(admin_user)
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 200
+        expect(response).to_not be_redirect
+      end
+
+      it "does not redirect site admins" do
+        http_login(site_admin_user)
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 200
+        expect(response).to_not be_redirect
+      end
+    end
+
   end
 
 end

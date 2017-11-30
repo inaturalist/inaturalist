@@ -14,7 +14,7 @@
     $(document).ready(function() {
       $('#species_guess').simpleTaxonSelector()
       $('#taxon_link_place_id').chooser({
-        collectionUrl: '/places/autocomplete.json',
+        collectionUrl: '/places/autocomplete.json?with_check_list=true',
         resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: PLACE
       })

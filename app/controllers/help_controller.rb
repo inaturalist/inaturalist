@@ -1,6 +1,6 @@
 class HelpController < ApplicationController
   def index
-    redirect_to CONFIG.help_url
+    redirect_to @site.help_url
   end
   
   def getting_started

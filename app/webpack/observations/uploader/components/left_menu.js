@@ -39,6 +39,8 @@ class LeftMenu extends SelectionBasedComponent {
 
   details( ) {
     const { updateSelectedObsCards } = this.props;
+    const count = _.keys( this.props.selectedObsCards ).length;
+    const singleObservation = count === 1 ? _.values( this.props.selectedObsCards )[0] : null;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
     const commonSelectedTaxon = this.commonValue( "selected_taxon" );
@@ -62,6 +64,7 @@ class LeftMenu extends SelectionBasedComponent {
           searchExternal
           showPlaceholder
           perPage={ 6 }
+          visionParams={ singleObservation ? singleObservation.visionParams( ) : null }
           initialSelection={ commonSelectedTaxon }
           afterSelect={ r => {
             if ( !commonSelectedTaxon || r.item.id !== commonSelectedTaxon.id ) {

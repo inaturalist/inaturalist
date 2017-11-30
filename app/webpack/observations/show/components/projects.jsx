@@ -65,7 +65,8 @@ class Projects extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
-    if ( !observation ) {
+    if ( !observation || !observation.user ||
+         ( !loggedIn && observation.project_observations.length === 0 ) ) {
       return ( <span /> );
     }
     let addProjectInput;
@@ -85,9 +86,9 @@ class Projects extends React.Component {
     const count = observation.project_observations.length > 0 ?
       `(${observation.project_observations.length})` : "";
     return (
-      <div className="Projects">
+      <div className="Projects collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_projects: this.state.open } );
@@ -121,7 +122,8 @@ Projects.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   setErrorModalState: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  showProjectFieldsModal: PropTypes.func
 };
 
 export default Projects;

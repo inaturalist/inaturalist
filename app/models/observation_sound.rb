@@ -5,11 +5,22 @@ class ObservationSound < ActiveRecord::Base
   after_destroy :set_observation_sounds_count
 
   include Shared::TouchesObservationModule
+  include ActsAsUUIDable
 
   def set_observation_sounds_count
     return true unless observation_id
     Observation.where(id: observation_id).update_all(
       observation_sounds_count: ObservationSound.where(observation_id: observation_id).count)
     true
+  end
+
+  def serializable_hash( opts = nil )
+    {
+      id: id,
+      uuid: uuid,
+      created_at: created_at,
+      updated_at: updated_at,
+      sound: sound.as_indexed_json
+    }
   end
 end

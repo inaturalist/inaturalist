@@ -417,8 +417,6 @@ id:
     dari daftar %{place}?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: Apa kamu yakin?
     Ini akan memuat ulang halaman. Anda mungkin kehilangan beberapa perubahan.
-  are_you_sure_unlink_picasa: Apakah Anda yakin ingin menghapus tautan akun Picasa
-    Anda?
   are_you_sure_want_activate_account: Apakah Anda yakin ingin mengaktifkan akun ini?
   are_you_sure_want_delete_account: Apakah Anda yakin ingin menghapus akun Anda? Ini
     akan menghapus semua data dan tidak dapat dibatalkan, dan kami akan sedih melihat
@@ -1005,7 +1003,6 @@ id:
   deleting: Menghapus...
   deleting_verb: Menghapus
   desc: turun
-  dna_: DNA
   descendant_taxa: Taksa keturunan
   descending: Menurun
   describe_purpose: Jelaskan tujuan proyek ini.
@@ -1032,7 +1029,7 @@ id:
   display_link_to_checklist: Tampilkan tautan ke daftar proyek dari halaman proyek
   display_listings_added_by_curators: Daftar layar ditambahkan oleh kurator
   display_listings_from_place: Daftar tampilan dari tempat
-  drop_it: Jatuhkan
+  dna_: DNA
   do_not_show_this_message_again: Jangan tampilkan pesan ini lagi
   do_you_know_where_this_species_lives: Apakah anda mengetahui dimana spesies tersebut
     hidup?
@@ -1048,6 +1045,7 @@ id:
   dont_filter: Jangan menyaring
   dont_send_me_email: Jangan mengirim saya email!
   dont_use_double_quotes: Jangan menggunakan tanda kutip ganda di tempat lain
+  drop_it: Jatuhkan
   double_click_to_finish: (klik dua kali untuk menyelesaikan)
   download: Unduh
   download_bulk_import_template_html: |-
@@ -1061,7 +1059,6 @@ id:
   draft_: Rancangan
   draft_saved: Rancangan tersimpan!
   drafts: Rancangan
-  drag_and_drop_some_photos: Drag & drop beberapa foto
   edit: Ubah
   edit_a_batch_of_observations: Menrubah sejumlah observasi
   edit_account_settings_and_profile: Rubah pengaturan akun &amp; profil
@@ -1690,13 +1687,11 @@ id:
   link: Tautan
   link_or_unlink_your_facebook_account: Tautkan atau non-tautkan akun Facebook anda
   link_or_unlink_your_flickr_account: Tautkan atau non-tautkan akun Flickr anda
-  link_or_unlink_your_picasa_account: Tautkan atau non-tautkan akun Picasa anda
   link_your_facebook_account: Tautkan akun Facebook anda
   link_your_flickr_account: Tautkan akun Flickr anda
   link_your_flickr_account_with_inat: Tautkan akun Flickr Anda dengan %{site_name}
   link_your_flickr_account_with_inat_so: Tautkan akun Flickr Anda dengan %{site_name}
     sehingga Anda dapat menambahkan foto dari pengamatan Anda.
-  link_your_picasa_account: Tautkan akun Picasa anda
   linked_facebook: Akun %{site_name} Anda saat ini terkait dengan akun Facebook Anda.
   linked_facebook_automaticaly: Perlu diingat bahwa jika Anda masuk ke %{site_name}
     melalui Facebook, kami akan secara otomatis kembali menghubungkan %{site_name}
@@ -2323,7 +2318,6 @@ id:
   photo_hosting_accounts: Akun foto tuan rumah
   photo_integration: Integrasi Foto
   photo_licensing: lisensi foto
-  photo_s: Foto
   photo_type: Tipe foto
   photo_urls_repaired: URL foto diperbaiki
   photos_from: Foto dari
@@ -2336,8 +2330,6 @@ id:
   photos_size_photos: '%{photos_size} foto'
   photos_size_photo: '%{photos_size} foto'
   photos_updated: Foto diperbarui.
-  picasa_account_not_linked: '%{user} tidak memiliki akun Picasa terkait lagi, jadi
-    %{site_name} tidak memiliki izin untuk mengakses foto ini.'
   picasa_identity: Identitas Picasa
   pick_a_username: Ambil nama pengguna
   pink: merah muda
@@ -2813,9 +2805,9 @@ id:
     kurator mengetahuinya.
   seen_it?: Telah melihatnya?
   seen_one: Melihat satu?
+  select: Pilih
   select_all: Pilih semua
   select_an_album: Pilih album
-  select: Pilih
   select_how_unobserved_listings_are_displayed: Pilih bagaimana daftar teramati dari
     daftar proyek yang ditampilkan
   select_one_or_more_photos: Pilih satu atau lebih foto
@@ -2908,8 +2900,6 @@ id:
     sesuatu, kami akan memilikinya sehingga Anda dapat menemukannya waktu berikutnya.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Maaf, salah satu foto Flickr
     baik tidak ada atau Anda tidak memiliki izin untuk melihatnya.
-  sorry_picasa_isnt_responding_at_the_moment: Maaf, Picasa tidak bereaksi pada saat
-    ini.
   sorry_that_photo_provider_isnt_responding: Maaf, bahwa penyedia foto tidak merespons
     saat ini. Silakan coba lagi nanti.
   sorry_that_service_is_not_responding: Maaf, layanan yang tidak menanggapi. Silakan
@@ -3088,7 +3078,6 @@ id:
       data ini, dengan asumsi GBIF memiliki apapun.
     data_url: Data URL
     overlays: Hamparan
-  taxon_change_settings: PEngaturan perubahan takson
   taxon_merge: gabungan takson
   taxon_name: Nama takson
   taxon_photos_updated: Foto takson diperbarui!
@@ -3321,7 +3310,6 @@ id:
   unique_observers_last_3_months: Pengamat unik dalam 3 bulan terakhir
   unknown: Tidak diketahui
   unknown_rank: (Peringkat Tidak diketahui)
-  unlink_your_picasa_account: Tidak Tautkan akun Picasa Anda
   unobserved_listings: daftar tidak diamati
   updating: Memperbarui...
   unprocessable: Tidak diproses
@@ -3630,8 +3618,6 @@ id:
     perbaruan.
   your_observations: Pengamatan anda
   your_photos_have_been_tagged: Foto anda telah di tag!
-  your_picasa_account: Akun Picasa anda
-  your_picasa_account_info: Informasi akun Picasa anda
   your_profile_was_successfully_updated: Profil anda telah berhasil diperbarui!
   your_should_recognize: Anda harus mengenali beberapa foto-foto ini
   your_subscriptions: Langganan anda

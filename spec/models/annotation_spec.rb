@@ -1,6 +1,8 @@
 require "spec_helper.rb"
 
 describe Annotation do
+  before(:each) { enable_elastic_indexing( ControlledTerm ) }
+  after(:each) { disable_elastic_indexing( ControlledTerm ) }
 
   it "validates presence of resource" do
     expect{ Annotation.make!(resource: nil) }.to raise_error(
@@ -44,7 +46,7 @@ describe Annotation do
     mammalia = Taxon.make!(name: "Mammalia", parent: animalia)
     AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
-    atr = ControlledTerm.make!(valid_within_taxon: mammalia)
+    atr = ControlledTermTaxon.make!( taxon: mammalia ).controlled_term
     ctv = ControlledTermValue.make!(controlled_attribute: atr)
     expect{
       Annotation.make!(
@@ -61,7 +63,8 @@ describe Annotation do
     AncestryDenormalizer.denormalize
     obs = Observation.make!(taxon: animalia)
     atr = ControlledTerm.make!
-    val = ControlledTerm.make!(valid_within_taxon: mammalia, is_value: true)
+    val = ControlledTerm.make!( is_value: true )
+    ControlledTermTaxon.make!( taxon: mammalia, controlled_term: val )
     ctv = ControlledTermValue.make!(controlled_attribute: atr, controlled_value: val)
     expect{
       Annotation.make!(
@@ -87,6 +90,48 @@ describe Annotation do
         controlled_value: val
       )
     }.to raise_error(ActiveRecord::RecordInvalid, /Controlled value has already been taken/)
+  end
+
+  it "validates against presence of another annotation of a blocking value" do
+    obs = Observation.make!
+    atr = ControlledTerm.make!( multivalued: true )
+    val = ControlledTerm.make!( is_value: true )
+    atr.controlled_term_values.create( controlled_value: val )
+    blocking_val = ControlledTerm.make!( is_value: true, blocking: true )
+    atr.controlled_term_values.create( controlled_value: blocking_val )
+    blocking_annotation = Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: blocking_val,
+      resource: obs
+    )
+    expect {
+      Annotation.make!(
+        controlled_attribute: atr,
+        controlled_value: val,
+        resource: obs
+      )
+    }.to raise_error( ActiveRecord::RecordInvalid, /blocked by another value/ )
+  end
+
+  it "validates against presence of another annotation if this is a blocking value" do
+    obs = Observation.make!
+    atr = ControlledTerm.make!( multivalued: true )
+    val = ControlledTerm.make!( is_value: true )
+    atr.controlled_term_values.create( controlled_value: val )
+    blocking_val = ControlledTerm.make!( is_value: true, blocking: true )
+    atr.controlled_term_values.create( controlled_value: blocking_val )
+    Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: val,
+      resource: obs
+    )
+    expect {
+      Annotation.make!(
+        controlled_attribute: atr,
+        controlled_value: blocking_val,
+        resource: obs
+      )
+    }.to raise_error( ActiveRecord::RecordInvalid, /is blocking but another annotation already added/ )
   end
 
   it "creates valid instances" do

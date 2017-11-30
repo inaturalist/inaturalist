@@ -1,12 +1,13 @@
 !!! 5
-%html
+%html{ lang: I18n.locale }
   %head
     %title
       = content_for(:title) ? "#{content_for(:title)} · " : ""
       = @site.try(:name)
     = favicon_link_tag
     = csrf_meta_tag
-    - if logged_in?
+    %meta{ http_equiv: "Content-Language", content: I18n.locale }
+    - if current_user
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
     = yield :extrahead
   %body

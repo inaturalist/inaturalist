@@ -3,9 +3,19 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../shared/util";
+import { urlForTaxon as utilUrlForTaxon } from "../../shared/util";
 
-const TaxonThumbnail = ( { taxon, key, badgeText, badgeTip, height, truncate, onClick } ) => {
+const TaxonThumbnail = ( {
+  taxon,
+  key,
+  badgeText,
+  badgeTip,
+  height,
+  truncate,
+  onClick,
+  captionForTaxon,
+  urlForTaxon
+} ) => {
   const img = taxon.defaultPhoto ? (
     <CoverImage
       src={taxon.defaultPhoto.photoUrl( "medium" )}
@@ -55,6 +65,7 @@ const TaxonThumbnail = ( { taxon, key, badgeText, badgeTip, height, truncate, on
           truncate={truncate}
           onClick={onClick}
         />
+        { captionForTaxon ? captionForTaxon( taxon ) : null }
       </div>
     </div>
   );
@@ -70,12 +81,15 @@ TaxonThumbnail.propTypes = {
   badgeTip: PropTypes.string,
   height: PropTypes.number,
   truncate: PropTypes.number,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  captionForTaxon: PropTypes.func,
+  urlForTaxon: PropTypes.func
 };
 
 TaxonThumbnail.defaultProps = {
   height: 130,
-  truncate: 15
+  truncate: 15,
+  urlForTaxon: utilUrlForTaxon
 };
 
 export default TaxonThumbnail;

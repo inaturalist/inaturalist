@@ -1,33 +1,37 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Grid, Row, Col, Button, SplitButton, MenuItem } from "react-bootstrap";
+import { Grid, Row, Col, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
-import PhotoBrowser from "./photo_browser";
 import UserWithIcon from "./user_with_icon";
 import ConservationStatusBadge from "../components/conservation_status_badge";
 import EstablishmentMeansBadge from "../components/establishment_means_badge";
+import FlashMessage from "../components/flash_message";
 import ActivityContainer from "../containers/activity_container";
-import FlaggingModalContainer from "../containers/flagging_modal_container";
-import CommunityIDModalContainer from "../containers/community_id_modal_container";
-import LicensingModalContainer from "../containers/licensing_modal_container";
 import AnnotationsContainer from "../containers/annotations_container";
+import AssessmentContainer from "../containers/assessment_container";
 import CommunityIdentificationContainer from "../containers/community_identification_container";
-import TagsContainer from "../containers/tags_container";
+import CommunityIDModalContainer from "../containers/community_id_modal_container";
+import ConfirmModalContainer from "../containers/confirm_modal_container";
+import CopyrightContainer from "../containers/copyright_container";
 import FavesContainer from "../containers/faves_container";
-import IdentifiersContainer from "../containers/identifiers_container";
+import FlaggingModalContainer from "../containers/flagging_modal_container";
 import FollowButtonContainer from "../containers/follow_button_container";
+import IdentifiersContainer from "../containers/identifiers_container";
+import LicensingModalContainer from "../containers/licensing_modal_container";
 import MapContainer from "../containers/map_container";
+import MediaViewerContainer from "../containers/media_viewer_container";
 import MoreFromUserContainer from "../containers/more_from_user_container";
 import NearbyContainer from "../containers/nearby_container";
 import ObservationFieldsContainer from "../containers/observation_fields_container";
-import SimilarContainer from "../containers/similar_container";
+import PhotoBrowserContainer from "../containers/photo_browser_container";
+import PreviousNextButtonsContainer from "../containers/previous_next_buttons_container";
+import ProjectFieldsModalContainer from "../containers/project_fields_modal_container";
 import ProjectsContainer from "../containers/projects_container";
-import ConfirmModalContainer from "../containers/confirm_modal_container";
-import CopyrightContainer from "../containers/copyright_container";
-import AssessmentContainer from "../containers/assessment_container";
-import FlashMessage from "../components/flash_message";
+import SimilarContainer from "../containers/similar_container";
+import TagsContainer from "../containers/tags_container";
+import MD5 from "md5.js";
 /* global RAILS_FLASH */
 
 moment.locale( "en", {
@@ -49,7 +53,7 @@ moment.locale( "en", {
 } );
 
 const App = ( {
-  observation, config, controlledTerms, leaveTestGroup, deleteObservation, setLicensingModalState
+  observation, config, controlledTerms, deleteObservation, setLicensingModalState
 } ) => {
   if ( _.isEmpty( observation ) || _.isEmpty( observation.user ) ) {
     return (
@@ -89,24 +93,48 @@ const App = ( {
   if ( _.find( unresolvedFlags, f => f.flag === "spam" ) ) {
     /* global SITE */
     const message = (
-      <span>
-        This observation has been flagged as spam and is no longer
-        publicly visible. You can see it because you created it, or you are a
-        site curator. If you think this is a mistake, please <a
-          href={ `mailto:${SITE.help_email}` }
-          className="contact"
-        >
-          contact us
-        </a>. <a href={ `/observations/${observation.id}/flags` }>
-          Manage flags
-        </a>
-      </span>
+      <span
+        dangerouslySetInnerHTML={ { __html: I18n.t(
+          "views.observations.show.observation_flagged_notice_html",
+          {
+            help_email: SITE.help_email,
+            observation_id: observation.id
+          }
+        ) } }
+      />
     );
     flashes.push( <FlashMessage
       key="flash_flag"
       title = { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }
       message={ message }
       type="flag"
+    /> );
+  }
+  if (
+    config.currentUser &&
+    _.find(
+      config.currentUser.blockedByUserHashes, h =>
+        new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h
+    )
+  ) {
+    flashes.push( <FlashMessage
+      key="flash_blocked"
+      title = { I18n.t( "views.shared.blocked.youve_been_blocked" ) }
+      message={ I18n.t( "views.shared.blocked.youve_been_blocked_desc" ) }
+      type="warning"
+    /> );
+  } else if (
+    config.currentUser &&
+    _.find(
+      config.currentUser.blockedUserHashes, h =>
+        new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h
+    )
+  ) {
+    flashes.push( <FlashMessage
+      key="flash_blocked"
+      title = { I18n.t( "views.shared.blocked.youve_blocked" ) }
+      message={ I18n.t( "views.shared.blocked.youve_blocked_desc" ) }
+      type="warning"
     /> );
   }
   let formattedDateObserved;
@@ -125,13 +153,15 @@ const App = ( {
         <UserText text={ observation.description } />
       </Col>
     </Row> ) : "";
+  const qualityGrade = observation.quality_grade === "research" ?
+    "research_grade" : observation.quality_grade;
   return (
     <div id="ObservationShow">
-    { flashes }
+      { flashes }
       <div className="upper">
         <Grid>
           <Row className="title_row">
-            <Col xs={ viewerIsObserver ? 10 : 12 }>
+            <Col xs={ 10 }>
               <div className="ObservationTitle">
                 <SplitTaxon
                   taxon={ observation.taxon }
@@ -141,7 +171,7 @@ const App = ( {
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
-                  { _.upperFirst( I18n.t( observation.quality_grade ) ) }
+                  { _.startCase( I18n.t( qualityGrade ) ) }
                 </span>
               </div>
             </Col>
@@ -164,21 +194,21 @@ const App = ( {
                 >
                   <MenuItem eventKey="delete">
                     <i className="fa fa-trash" />
-                    Delete
+                    { I18n.t( "delete" ) }
                   </MenuItem>
                   <MenuItem
                     eventKey="duplicate"
                     href={ `/observations/new?copy=${observation.id}` }
                   >
                     <i className="fa fa-files-o" />
-                    Duplicate
+                    { I18n.t( "duplicate_verb" ) }
                   </MenuItem>
                   <MenuItem eventKey="license">
                     <i className="fa fa-copyright" />
-                    Edit Licensing
+                    { I18n.t( "edit_license" ) }
                   </MenuItem>
                 </SplitButton>
-              </Col> ) : ""
+              </Col> ) : ( <FollowButtonContainer /> )
             }
           </Row>
           <Row>
@@ -186,11 +216,11 @@ const App = ( {
               <Grid className="top_container">
                 <Row className="top_row">
                   <Col xs={7} className={ `photos_column ${photosColClass}` }>
-                    <PhotoBrowser observation={observation} />
+                    <PhotoBrowserContainer />
                   </Col>
                   <Col xs={5} className="info_column">
                     <div className="user_info">
-                      { !viewerIsObserver ? ( <FollowButtonContainer /> ) : null }
+                      <PreviousNextButtonsContainer />
                       <UserWithIcon user={ observation.user } />
                     </div>
                     <Row className="date_row">
@@ -244,11 +274,17 @@ const App = ( {
                   <ProjectsContainer />
                 </Col>
               </Row>
-              <Row>
-                <Col xs={12}>
-                  <TagsContainer />
-                </Col>
-              </Row>
+              { (
+                  ( config.currentUser && config.currentUser.id === observation.user.id )
+                  ||
+                  observation && observation.tags && observation.tags.length > 0
+                ) ? (
+                <Row>
+                  <Col xs={12}>
+                    <TagsContainer />
+                  </Col>
+                </Row>
+              ) : null }
               <Row>
                 <Col xs={12}>
                   <ObservationFieldsContainer />
@@ -296,12 +332,8 @@ const App = ( {
       <ConfirmModalContainer />
       <CommunityIDModalContainer />
       <LicensingModalContainer />
-      <div className="quiet box text-center opt-out">
-        { I18n.t( "tired_of_testing_this_new_version" ) }
-        <Button bsStyle="primary" onClick={ () => leaveTestGroup( "obs-show" ) }>
-          { I18n.t( "take_me_back" ) }
-        </Button>
-      </div>
+      <MediaViewerContainer />
+      <ProjectFieldsModalContainer />
     </div>
   );
 };
@@ -311,8 +343,10 @@ App.propTypes = {
   controlledTerms: PropTypes.array,
   leaveTestGroup: PropTypes.func,
   observation: PropTypes.object,
+  otherObservations: PropTypes.object,
   deleteObservation: PropTypes.func,
-  setLicensingModalState: PropTypes.func
+  setLicensingModalState: PropTypes.func,
+  showNewObservation: PropTypes.func
 };
 
 export default App;

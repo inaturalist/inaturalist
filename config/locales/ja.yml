@@ -11,7 +11,7 @@
 ja:
   we_also_support: |-
     画像ホスティングサービスの<a href="http://flickr.com">Flickr</a>、
-    <a href="http://picasaweb.google.com">Picasa</a>及び
+    <a href="http://photos.google.com">Google フォト</a>及び
     <a href="http://facebook.com">Facebook</a>にも対応しています。
   a_default_taxon_name_will_automatically_created: 当分類群の学名がデフォルト名となります。保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   x_followers:
@@ -342,7 +342,6 @@ ja:
   are_you_sure_remove_taxon_from_list: リストからこの分類群を削除して本当によろしいですか？
   are_you_sure_remove_taxon_from_place: この分類群を%{place}のチェックリストから取り除いて本当によろしいですか？
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: 本当によろしいですか？ページを再読み込みし、変更が失われる可能性があります。
-  are_you_sure_unlink_picasa: Picasaアカウントとの連携を解除して本当によろしいですか？
   are_you_sure_want_activate_account: このアカウントを有効にして本当によろしいですか?
   are_you_sure_want_delete_account: アカウントを削除して本当によろしいですか？全てのユーザーデータが失われ、取り消しができません。仲間がいなくなるのもさみしいです。
   are_you_sure_want_delete_taxon: この分類群を削除して本当によろしいですか？%{msg}
@@ -776,7 +775,6 @@ ja:
   deleting: 削除しています...
   deleting_verb: 削除しています
   desc: 降順
-  dna_: DNA
   descendant_taxa: 子孫の分類群
   descending: 降順
   describe_purpose: このプロジェクトの目的を説明してください
@@ -802,6 +800,7 @@ ja:
   display_link_to_checklist: プロジェクトページにプロジェクトリストのリンクを表示
   display_listings_added_by_curators: キュレーター管理者によって追加された記載を表示
   display_listings_from_place: 場所からリストを表示
+  dna_: DNA
   do_not_show_this_message_again: 今後このメッセージを表示しない
   do_you_know_where_this_species_lives: この種の生息場所がわかりますか？
   do_you_want_to_proceed: 進みますか？
@@ -822,7 +821,6 @@ ja:
   draft_: 下書き
   draft_saved: 下書きが保存されました
   drafts: 下書き
-  drag_and_drop_some_photos: 複数の写真をドラグ＆ドロップして下さい
   edit: 編集
   edit_a_batch_of_observations: 観察記録の一括編集
   edit_account_settings_and_profile: アカウント設定・プロフィール編集
@@ -1351,12 +1349,10 @@ ja:
   link: リンク
   link_or_unlink_your_facebook_account: Facebookアカウントとのリンク開始・解除
   link_or_unlink_your_flickr_account: Flickrアカウントとのリンク開始・解除
-  link_or_unlink_your_picasa_account: Picasaアカウントとのリンク開始・解除
   link_your_facebook_account: Facebookアカウントと連携させる
   link_your_flickr_account: Flickrアカウントと連携させる
   link_your_flickr_account_with_inat: '%{site_name}とFlickrアカウントを連携させる'
   link_your_flickr_account_with_inat_so: 観測記録の写真を追加できるように、%{site_name}とFlickrアカウントを連携させましょう
-  link_your_picasa_account: Picasaアカウントと連携させる
   linked_facebook: 現在あなたの%{site_name}アカウントはFacebookアカウントと連携されている
   linked_facebook_howto: Facebookと%{site_name}を同期したければ、右のリンクをクリックして、Facebook.comにログインしてください。
   linked_facebook_password: 我々は、あなたのFacebookのパスワードを聞くことは絶対にありません。（しかし、Facebookから聞かれることがあるかもしれませんので、URL先のアドレスが本当にFacebookかどうか必ず確認してください）。また、希望しない限り、あなたのFacebookの情報を変えることもありません。
@@ -1504,8 +1500,8 @@ ja:
   merging_places: 場所を統合しています
   message: メッセージ
   messages: メッセージ
-  mixed_licenses: 混合ライセンス
   misleading_or_illegal_content_html: 紛らわしいまたは違法な内容、人種及び民族に対する差別的な内容、など
+  mixed_licenses: 混合ライセンス
   mobile_app_for: モバイルアプリ版の
   mobile_apps_for: モバイルアプリ版の
   mollusks: 軟体動物
@@ -1750,7 +1746,6 @@ ja:
   observation_rights_html: 観察記録 %{rights}
   observation_rules: 観測記録ルール
   observation_was_deleted: 観察記録が削除されました
-  observation_without_photo: 写真なしの観察記録
   observation_would_like_some_help: '%{user}はID協力を依頼しています'
   observations: 観察記録
   observations_added_by_x_html: '%{x}によって追加された観察記録'
@@ -1902,7 +1897,6 @@ ja:
   photo_by_id_attribution: 写真 %{id}, %{attribution}
   photo_deleted: 写真が削除されました
   photo_licensing: 写真ライセンス
-  photo_s: 写真
   photo_type: 写真の種類
   photo_urls_repaired: 写真のURLは復元できました
   photos_of: 次の分類群の写真：
@@ -1916,7 +1910,6 @@ ja:
   photos_size_photos: '%{photos_size}枚の写真'
   photos_size_photo: '%{photos_size}枚の写真'
   photos_updated: 写真は更新されました
-  picasa_account_not_linked: '%{user}のアカウントはもうPicasaとリンクされていないため、%{site_name}に写真のアクセス権限がありません。'
   picasa_identity: Picasaアイデンティティー
   pick_a_username: ユーザー名
   pink: 桃
@@ -2378,9 +2371,9 @@ ja:
   see_something_wrong_with_taxon: この分類群に間違いありますか？キュレーター管理者にお知らせください
   seen_it?: 見た？
   seen_one: 見ていませんか？
+  select: 選択
   select_all: すべて選択
   select_an_album: アルバムを選択
-  select: 選択
   select_one_or_more_photos: 1枚以上の写真を選択
   select_none: すべて選択解除
   select_observations_to_edit: 編集する観察記録を選択
@@ -2433,7 +2426,6 @@ ja:
   site_taxon_page: '%{site_name}分類群ページ'
   so_meta!: とてもメタです！
   some_agree: 多少賛成
-  some_observations_failed: 一部の観察記録は、プロジェクトに追加できませんでした
   some_of_those_photos_couldnt_be_saved: いくつかの写真は保存できませんでした：%{error}
   some_rights_reserved: いくつかの権利を保有
   something: 何か
@@ -2443,7 +2435,6 @@ ja:
   something_went_wrong_updating: リスト更新する際に問題が発生しました
   somewhere_on_earth: 地球のどこかで
   sorry_flickr_isnt_responding_at_the_moment: 申し訳ありません。現在Flickrから応答がありません。
-  sorry_picasa_isnt_responding_at_the_moment: 申し訳ありません。現在Picasaから応答がありません。
   sorry_that_service_is_not_responding: 申し訳ありません。サービスの応答がありません。しばらくしてからもう一度お試しください。
   sorry_we_didnt_find_that_photo: 申し訳ありません、お探しの写真が見つかりません。
   sorry_we_dont_have_any_metadata_for_that_photo: 申し訳ありません。写真に観察記録にインポートできるメタデータが見つかりませんでした。
@@ -2597,7 +2588,6 @@ ja:
     gbif_occurrences: GBIF分布記録
     data_url: データURL
   taxon_changes: 分類群の変更
-  taxon_change_settings: 分類群変更の設定
   taxon_merge: 分類群の統合
   taxon_name: 分類群名称
   taxon_photos_updated: 分類群写真が更新されました！
@@ -2763,8 +2753,8 @@ ja:
   ungrafted_taxa: 未融合の分類群
   uninvite: 招待を取り消す
   unknown: 不明
+  unknown_error: 不明なエラー
   unknown_rank: (階級不明）
-  unlink_your_picasa_account: Picasaアカウントとの同期を解除
   updates_notification_email_subject: '%{prefix}新着情報%{date}'
   updating: 更新中...
   unprocessable: 処理不可
@@ -2808,23 +2798,23 @@ ja:
   usage_stats: 利用状況
   use_unique_file_names_for_separate_uploads: 個別のアップロードの場合、一意のファイル名をご使用ください
   user: ユーザー
-  user_added_an_observation_html: '%{user}が観察記録を追加しました'
   user_added_a_x: '%{user}が%{x}を追加しました'
-  user_added_an_x: '%{user}が%{x}を追加しました'
-  user_added_an_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
-  user_added_a_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
-  user_added_an_x_to_noun_by_html: リストを表示
   user_added_a_x_to_noun_by_html: '%{user}は%{by}の%{noun}に%{x}を追加しました'
+  user_added_a_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
+  user_added_an_observation_html: '%{user}が観察記録を追加しました'
+  user_added_an_x: '%{user}が%{x}を追加しました'
+  user_added_an_x_to_noun_by_html: リストを表示
+  user_added_an_x_to_noun_html: '%{user}が%{noun}に%{x}を追加しました'
   user_added_x_observations_html: '%{user}は%{x}件の観察記録を追加しました。'
   user_commented_on: '%{user}はあなたの%{title}にコメントしました（%{time}）'
   user_faved_a_noun_by_owner: '%{user}が%{owner}の%{noun}をお気に入りに追加しました'
   user_follows: '%{user}がフォローしているユーザー'
   user_hasnt: '%{user}はまだ次のことをしていません：'
-  user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
   user_invited_you_to_join_html: '%{user}から招待が届いています：'
+  user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
   user_invited_your_x_to_a_project_html: '%{user}があなたの%{x}をプロジェクトに招待しました'
-  user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
   user_is_a_naturalist: '%{user}はナチュラリストです！'
+  user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
   user_s: '%{user}の'
   user_s_id: '%{user}の%{id}'
   user_s_lists: '%{user}のリスト'
@@ -2832,8 +2822,8 @@ ja:
   username_or_email: ユーザー名またはメールアドレス
   username_or_user_id: ユーザー名もしくユーザーID
   users: ユーザー
-  users_id: '%{user}さんのID'
   users_comment_html: <a href='%{url}'>%{user}</a>のコメント
+  users_id: '%{user}さんのID'
   users_latest_observations_on_site: '%{site}における%{user}の最新観察記録'
   users_observations: '%{user}の観測記録'
   users_profile: '%{user}のプロフィール'
@@ -3060,8 +3050,6 @@ ja:
   your_observations: あなたの観察記録
   your_observations_couldnt_be_added_to_that_project: 指定のプロジェクトに観察記録を追加できません：%{errors}
   your_photos_have_been_tagged: あなたの写真はタグ付けされました！
-  your_picasa_account: あなたのPicasaアカウント
-  your_picasa_account_info: あなたのPicasaアカウント情報
   your_profile_was_successfully_updated: プロフィールは無事更新されました
   your_should_recognize: こちらの写真のうち、いくつか見覚えありませんか
   your_site_account_has_been_created: あなたの%{site}アカウントは無事作成することができました。

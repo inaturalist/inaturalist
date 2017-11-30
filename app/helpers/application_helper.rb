@@ -354,12 +354,7 @@ module ApplicationHelper
     css_class += " usericon" if %w(mini small thumb).include?(size.to_s) || size.blank?
     options[:alt] ||= user.login
     options[:title] ||= user.login
-    url = if defined? root_url
-      uri_join(root_url, user.icon.url(size || :mini))
-    else
-      url_join(CONFIG.site_url, user.icon.url(size || :mini))
-    end
-    image_tag(url, options.merge(:style => style, :class => css_class))
+    image_tag( user.icon.url( size || :mini ), options.merge( style: style, class: css_class ) )
   end
 
   def user_seen_announcement?(announcement)
@@ -455,7 +450,7 @@ module ApplicationHelper
      abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
     end
     abs_path
-  rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+  rescue Exception => e
     nil
   end
   
@@ -949,7 +944,7 @@ module ApplicationHelper
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag("#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+      image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"
       image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
     else
@@ -1135,15 +1130,7 @@ module ApplicationHelper
   end
   
   def url_for_resource_with_host(resource)
-    base_url = if (u = @user) && u.site
-      u.site.url
-    end
-    base_url ||= CONFIG.site_url || root_url
-    if url_for(resource) =~ /^http/
-      URI.join(base_url, URI.parse(url_for(resource)).path).to_s
-    else
-      URI.join(base_url, url_for(resource)).to_s
-    end
+    polymorphic_url(resource)
   end
   
   def commas_and(list, options = {})

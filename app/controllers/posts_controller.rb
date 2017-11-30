@@ -35,6 +35,10 @@ class PostsController < ApplicationController
           user: {
             only: [:id, :login], 
             methods: [:user_icon_url, :medium_user_icon_url]
+          },
+          parent: {
+            only: [ :id, :title, :name ],
+            methods: [ :icon_url, :site_name_short ]
           }
         }
       end
@@ -212,7 +216,7 @@ class PostsController < ApplicationController
 
   def for_user
     site_id = current_user.site_id if logged_in?
-    site_id ||= @site.try(:id) || CONFIG.site_id
+    site_id ||= @site.id
     from_sql = "posts"
     where_sql = "(posts.parent_type = 'Site' AND posts.parent_id = #{site_id})"
     if logged_in?

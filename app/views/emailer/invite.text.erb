@@ -4,9 +4,9 @@
 <%= @personal_message %>
 
 <% end -%>
-<%= t(:preview_personal_message, :site=>  CONFIG.site_name ) %>
+<%= t(:preview_personal_message, :site=>  @site.name ) %>
 
-<%=t :you_can_sign_free_at, :site_name => SITE_NAME %>
+<%=t :you_can_sign_free_at, :site_name => @site.name %>
 
 <%= signup_url %>
 
@@ -15,4 +15,4 @@
 - <%= @sending_user %>
 
 ============
-<%= t(:mail_disclaimer, :site => CONFIG.info_email, :site_name => CONFIG.site_name) %>
+<%= t(:mail_disclaimer, :site => @site.email_info, :site_name => @site.name) %>

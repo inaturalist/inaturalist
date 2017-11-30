@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Panel } from "react-bootstrap";
-import UserImage from "../../identify/components/user_image";
+import UserImage from "../../../shared/components/user_image";
 
 class Identifiers extends React.Component {
   constructor( props ) {
@@ -18,9 +18,9 @@ class Identifiers extends React.Component {
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
     return (
-      <div className="Identifiers">
+      <div className="Identifiers collapsible-section">
         <h4
-          className="collapsable"
+          className="collapsible"
           onClick={ ( ) => {
             if ( loggedIn ) {
               this.props.updateSession( { prefers_hide_obs_show_identifiers: this.state.open } );

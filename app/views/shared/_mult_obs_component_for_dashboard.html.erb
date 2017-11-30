@@ -1,12 +1,14 @@
-<%- first ||= false -%>
+<%-
+  first ||= false
+  photo_count, sound_count, link_text =
+    observation.observation_photos_finished_processing.size,
+    observation.observation_sounds_count, []
+%>
 <li class="col-md-3 col-sm-3 col-xs-3">
-  <div class="thumbnail<%= " first" if first %>">
-    <% photo_count, sound_count, link_text =
-      observation.observation_photos_finished_processing.size,
-      observation.observation_sounds_count, [] %>
+  <div class="thumbnail<%= " first" if first %> <%= "has-photo" if photo_count > 0 %> <%= "has-sound" if sound_count > 0 %>">
     <% if photo_count == 0 && sound_count == 0 -%>
       <%= link_to observation_path(observation), :class => "icon_container" do %>
-        <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>" style="vertical-align: middle;font-size: 105px; color:rgb(238,238,238);"></i>
+        <i class="icon icon-iconic-<%= observation.iconic_taxon.nil? ? 'unknown' : observation.iconic_taxon.name.downcase %>"></i>
       <% end -%>
     <% else %>
       <% if photo_count > 0 %>
@@ -20,7 +22,7 @@
           <% if sound_count > 0 %>
             <%= link_to observation_path(observation) do %>
               <div class="scaledimg icon_container" style="background-image: url('<%= "#{photo.small_url}" %>')">
-                <i class="fa fa-volume-up fa-4x" style="vertical-align: middle;font-size: 105px;color:rgb(238,238,238);"></i>
+                <i class="fa fa-volume-up fa-4x"></i>
               </div>
             <% end %>
           <% else %>
@@ -31,7 +33,7 @@
         <% end %>
       <% else -%>
         <%= link_to observation_path(observation), :class => "icon_container" do %>
-          <i class="fa fa-volume-up" style="line-height: 150px;vertical-align: middle;font-size: 105px;color:rgb(238,238,238);"></i>
+          <i class="fa fa-volume-up"></i>
         <% end -%>
       <% end %>
     <% end -%>

@@ -1,12 +1,14 @@
 <%- 
   index ||= @i
+  Rails.logger.debug "[DEBUG] in partial, index: #{index}"
   checked ||= false
   synclink_base ||= nil
   sound_identity ||= nil
+  local_sounds ||= false
 -%>
 <% if @reauthorization_needed -%>
   <p class="notice ui">
-    <%= t(:soundcloud_needs_to_confirm, :site_name => SITE_NAME_SHORT) %>
+    <%= t(:soundcloud_needs_to_confirm, :site_name => @site.preferred_site_name_short) %>
     <%= link_to t(:confirm_now), ProviderAuthorization::AUTH_URLS['soundcloud'], :class => "readmore" %>
   </p>
 <% elsif @timeout %>
@@ -17,52 +19,65 @@
   <p class="error ui">
     <%=t 'sounds.soundcloud_replied_with_an_error' %>
   </p>
-<% elsif sounds.blank? %>
-  <div class="description" style="clear: both">
-    <br />
-    <%= t(:'sounds.we_didnt_find_any_sounds') %>
-  </div>
 <% else %>
   <h4><%= t :'sounds.select_one_or_more_sounds' %></h4>
   <%= hidden_field_tag :editing_sounds, true %>
   <% sounds.each do |sound| %>
-    <%- 
-      unique_id = serial_id
-      input_name = "soundcloud_sounds#{"["+index.to_s+"]" if index}[]"
-      input_id = "soundcloud_sound#{"_"+index.to_s if index}#{sound.native_sound_id}_#{unique_id}"
-    -%>
-    <div class="sound" data-sound-class="soundcloud_sound">
-      <%= check_box_tag input_name, 
-        sound.native_sound_id, 
-        checked, 
-        {:id => input_id, :class => "checkbox"} %>
-
-<!-- TODO -->
-      <% if false && synclink_base && (synclink_uri = URI.parse(synclink_base) rescue nil) %>
-        <% 
-          if synclink_uri.query.blank?
-            synclink_uri.query = "#{prefix}_id=#{native_photo_id}"
-          else
-            synclink_uri.query.gsub!(/\&?#{prefix}_id=[^\&]+/, '')
-            synclink_uri.query += "&#{prefix}_id=#{native_photo_id}"
-          end
-          synclink_uri.query += "&sync_photo=t"
-          synclink_url = synclink_uri.to_s
-        -%>
-        <%= link_to t(:sync), synclink_url, :class => "small synclink", 
-          :title => t(:import_date_time_location_taxonomic),
-          :data => {
-            :confirm => "Are you sure you want to sync this " + 
-              "observation's data with this #{photo.is_a?(LocalPhoto) ? 'photo' : photo.class.name.underscore.humanize}? " + 
-              "You will lose changes you've made to this form, but you will be able to " +
-              "revert to your saved copy."
-          } %>
-      <% end %>
-
-      <label for="<%= input_id %>">
-        <%= sound.native_response['title'] %>
-      </label>
-      <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.native_page_url, :target => '_blank') %></span>
-    </div>
+    <% if sound.is_a?( SoundcloudSound ) %>
+      <%- 
+        unique_id = serial_id
+        input_name = "soundcloud_sounds#{"["+index.to_s+"]" if index}[]"
+        input_id = "soundcloud_sound#{"_"+index.to_s if index}#{sound.native_sound_id}_#{unique_id}"
+      -%>
+      <div class="sound" data-sound-class="soundcloud_sound">
+        <%= check_box_tag input_name, 
+          sound.native_sound_id, 
+          checked, 
+          {:id => input_id, :class => "checkbox"} %>
+        <label for="<%= input_id %>">
+          <%= sound.native_response['title'] %>
+        </label>
+        <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.native_page_url, :target => '_blank') %></span>
+      </div>
+    <% else %>
+      <%- 
+        unique_id = serial_id
+        input_name = "local_sounds#{"["+index.to_s+"]" if index}[]"
+        input_id = "local_sound#{"_"+index.to_s if index}#{sound.id}_#{unique_id}"
+      -%>
+      <div class="sound" data-sound-class="local_sound">
+        <%= check_box_tag input_name, 
+          sound.id, 
+          checked, 
+          {:id => input_id, :class => "checkbox"} %>
+        <label for="<%= input_id %>">
+          <%= sound.file_file_name %>
+        </label>
+        <span class='small view_sound'><%= link_to(t(:'sounds.listen'), sound.file.url, :target => '_blank') %></span>
+      </div>
+    <% end %>
   <% end %>
 <% end %>
+
+<% if local_sounds -%>
+  <div class="clear local_sounds">
+    <% sound_file_field = capture do %>
+      <%- uid = serial_id -%>
+      <div class="sound_file_field clear quiet box stacked">
+        <%= file_field_tag("local_sounds[#{index}][]", :accept => ".mp3,.wav,.m4a,.aac", :multiple => "") %>
+        <div class="clear">
+          <%= link_to_function t(:clear), "$(this).siblings('input[type=file]').val('')", :class => "right" %>
+          <% if synclink_base %>
+            <nobr title="<%= t(:import_date_time_location_taxonomic) %>">
+              <%= check_box_tag "local_sounds_to_sync[#{index}][]", 1, false, :class => "sync_check",
+                :id => "local_sounds_to_sync_#{uid}" %>
+              <label for="local_sounds_to_sync_<%= uid %>"><%=t :sync_obs_with_sound_metadata %></label>
+            </nobr>
+          <% end -%>
+        </div>
+      </div>
+    <% end %>
+    <%= sound_file_field %>
+    <%#= link_to_function t(:add_another_sound), "$(this).before('#{escape_javascript(sound_file_field)}')" %>
+  </div>
+<% end -%>

@@ -90,7 +90,7 @@
 
   <% if listed_taxon.first_observation -%>
     <p class="ui description">
-      <%=t :first_inat_observation, :site_name => SITE_NAME_SHORT %>
+      <%=t :first_inat_observation, :site_name => @site.preferred_site_name_short %>
       <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
       <% if @list.is_a?(CheckList) -%>
         <%= t(:by).downcase %>

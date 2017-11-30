@@ -39,16 +39,7 @@ class ProjectsController < ApplicationController
         if @site && (@site_place = @site.place)
           @place = @site.place unless params[:everywhere].yesish?
         end
-        project_observations = ProjectObservation.
-          select("MAX(project_observations.id) AS id, project_id").
-          order("id DESC").
-          limit(9).
-          group('project_id')
-        if @place
-          project_observations = project_observations.joins(:project => :place).where(@place.self_and_descendant_conditions)
-        end
-        @projects = Project.where("projects.id IN (?)",
-          project_observations.map(&:project_id)).not_flagged_as_spam
+        @projects = Project.recently_added_to(place: @place)
         @created = Project.not_flagged_as_spam.order("projects.id desc").limit(9)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
         @featured = Project.featured
@@ -558,21 +549,71 @@ class ProjectsController < ApplicationController
   end
   
   def stats
-    @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
-    @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
-    @unique_observer_stats = @project.project_observations.joins(:observation).
-      select("DISTINCT observations.user_id").
-      group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
-      count
+    @project_user_stats = Hash[
+      @project.project_users.
+        group("date_trunc('month', created_at)").
+        count.map{|k,v| [k.to_s[/\d{4}-\d{2}/, 0], v]}
+    ]
+    @project_observation_stats = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { project_ids: [@project.id] } }
+      ],
+      aggregate: {
+        year_months: {
+          date_histogram: {
+            field: "created_at",
+            interval: "month",
+            format: "yyyy-MM",
+            keyed: true
+          }
+        }
+      }
+    ).response.aggregations.year_months.buckets
+    @project_observation_stats = Hash[@project_observation_stats.map{|year_month, bucket| [year_month, bucket.doc_count]}]
+    @unique_observer_stats = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { project_ids: [@project.id] } }
+      ],
+      aggregate: {
+        year_months: {
+          date_histogram: {
+            field: "created_at",
+            interval: "month",
+            format: "yyyy-MM",
+            keyed: true
+          },
+          aggs: {
+            distinct_users: {
+              cardinality: {
+                field: "user.id"
+              }
+            }
+          }
+        }
+      }
+    ).response.aggregations.year_months.buckets
+    @unique_observer_stats = Hash[@unique_observer_stats.map{|year_month, bucket| [year_month, bucket.distinct_users.value]}]
     @total_project_users = @project.project_users.count
-    @total_project_observations = @project.project_observations.count
-    @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
-    
+    @total_project_observations = @project_observation_stats.values.sum
+    @total_unique_observers = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { project_ids: [@project.id] } }
+      ],
+      aggregate: {
+        distinct_users: {
+          cardinality: {
+            field: "user.id"
+          }
+        }
+      }
+    ).response.aggregations.distinct_users.value
     @headers = [t(:year_month), t(:new_members), t(:new_observations), t(:unique_observers)]
     @data = []
     (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
-      display_key = key.gsub(/\-(\d)$/, "-0\\1")
-      @data << [display_key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
     end
     @data.sort_by!(&:first).reverse!
     

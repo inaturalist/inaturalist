@@ -31,7 +31,7 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place = (Place.find(CONFIG.place_id) rescue nil) unless CONFIG.place_id.blank?
+        place = @site.place
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
           places = if place
@@ -281,6 +281,7 @@ class PlacesController < ApplicationController
         Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
       scope = scope.with_geom if params[:with_geom]
+      scope = scope.with_check_list if params[:with_check_list]
       @places = scope.includes(:place_geometry_without_geom).limit(params[:per_page]).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
@@ -290,11 +291,19 @@ class PlacesController < ApplicationController
         { match: { display_name_autocomplete: @q } },
         { match: { display_name: { query: @q, operator: "and" } } }
       ] } } ]
+      inverse_filters = []
       if site_place
         filters << { term: { ancestor_place_ids: site_place.id } }
       end
+      if params[:with_geom]
+        filters << { exists: { field: :geometry_geojson } }
+      end
+      if params[:with_check_list]
+        inverse_filters << { exists: { field: :without_check_list } }
+      end
       @places = Place.elastic_paginate(
         filters: filters,
+        inverse_filters: inverse_filters,
         sort: { bbox_area: "desc" },
         per_page: params[:per_page])
       Place.preload_associations(@places, :place_geometry_without_geom)
@@ -440,9 +449,8 @@ class PlacesController < ApplicationController
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
       @comprehensive_list = @place.check_lists.where(taxon_id: ancestor_ids, comprehensive: "t").first
     end
-    @listed_taxa_count = @scope.count("taxa.id", distinct: true)
-    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").
-      count("taxa.id", distinct: true)
+    @listed_taxa_count = @scope.distinct.count( "taxa.id" )
+    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").distinct.count( "taxa.id" )
     @listed_taxa = @place.listed_taxa
                          .where(taxon_id: @taxa, primary_listing: true)
                          .includes([ :place, { :first_observation => :user } ])

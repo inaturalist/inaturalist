@@ -93,6 +93,11 @@ class FlagsController < ApplicationController
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
 
+    if @object.is_a?(Identification) || @object.is_a?(Observation) ||
+       @object.is_a?(Comment) || @object.is_a?(Photo)
+      Observation.refresh_es_index
+    end
+
     respond_to do |format|
       format.html do
         if @object.is_a?(Comment)
@@ -126,6 +131,10 @@ class FlagsController < ApplicationController
       else
         flash[:notice] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence)
       end
+      if @object.is_a?(Identification) || @object.is_a?(Observation) ||
+         @object.is_a?(Comment) || @object.is_a?(Photo)
+        Observation.refresh_es_index
+      end
       format.html do 
         redirect_back_or_default(@flag)
       end
@@ -134,7 +143,12 @@ class FlagsController < ApplicationController
   end
   
   def destroy
+    @object = @flag.flaggable
     @flag.destroy
+    if @object.is_a?(Identification) || @object.is_a?(Observation) ||
+       @object.is_a?(Comment) || @object.is_a?(Photo)
+      Observation.refresh_es_index
+    end
     respond_to do |format|
       format.html { redirect_back_or_default(admin_path) }
       format.json do

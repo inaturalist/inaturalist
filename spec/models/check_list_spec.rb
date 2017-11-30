@@ -49,6 +49,19 @@ describe CheckList do
   end
 end
 
+describe CheckList, "creation" do
+  before( :each ) { enable_elastic_indexing( Observation, Place ) }
+  after( :each ) { disable_elastic_indexing( Observation, Place ) }
+  it "should populate with taxa from RG observations within place boundary" do
+    obs = make_research_grade_observation( latitude: 0.5, longitude: 0.5 )
+    place = Place.make!
+    without_delay do
+      place.save_geom( GeoRuby::SimpleFeatures::Geometry.from_ewkt( "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))" ) )
+    end
+    expect( place.check_list.taxa ).to include obs.taxon
+  end
+end
+
 describe CheckList, "refresh_with_observation" do
   
   before( :all ) do
@@ -119,21 +132,6 @@ describe CheckList, "refresh_with_observation" do
     o = Observation.make!( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
     expect( @check_list.taxon_ids ).not_to include @taxon.id
     CheckList.refresh_with_observation( o )
-    @check_list.reload
-    expect( @check_list.taxon_ids ).not_to include @taxon.id
-  end
-  
-  it "should remove listed taxa if observation deleted" do
-    o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
-    expect( @place.place_geometry.geom ).not_to be_blank
-    expect( o.geom ).not_to be_blank
-    @check_list.add_taxon( @taxon )
-    without_delay { CheckList.refresh_with_observation( o ) }
-    @check_list.reload
-    expect( @check_list.taxon_ids ).to include @taxon.id
-    observation_id = o.id
-    o.destroy
-    without_delay { CheckList.refresh_with_observation( observation_id, taxon_id: @taxon.id ) }
     @check_list.reload
     expect( @check_list.taxon_ids ).not_to include @taxon.id
   end
@@ -350,6 +348,122 @@ describe CheckList, "refresh_with_observation" do
     CheckList.refresh_with_observation( o )
     @place.reload
     expect( @place.taxon_ids ).to include( species.id )
+  end
+
+  describe "with atlases and complete sets" do
+    let( :country ) { make_place_with_geom( name: "Westeros", admin_level: Place::COUNTRY_LEVEL, wkt: "MULTIPOLYGON(((0 0,0 5,5 5,5 0,0 0)))" ) }
+    let( :state ) { make_place_with_geom( name: "The North", admin_level: Place::STATE_LEVEL, parent: country, wkt: "MULTIPOLYGON(((1 1,1 3,3 3,3 1,1 1)))" ) }
+    let( :genus ) { Taxon.make!( rank: Taxon::GENUS ) }
+    let( :species ) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+
+    it "should add listed taxa descendant of admin_level 0 place if taxon atlased but not parent admin_level 0 place" do
+      @atlas_place = Place.make!(admin_level: 0)
+      @atlas_place.save_geom(
+        GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
+          "MULTIPOLYGON( ((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679 )))"
+        )
+      )
+      @descendant_place = Place.make!(parent: @atlas_place)
+      @descendant_place.save_geom(
+        GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt(
+          "MULTIPOLYGON( ((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679 )))"
+        )
+      )
+      @atlas = Atlas.make!(is_active: true, taxon: @taxon)
+      @atlas_place_check_list = List.find(@atlas_place.check_list_id)
+      @descendant_place_check_list = List.find(@descendant_place.check_list_id)
+      o = make_research_grade_observation( latitude: @descendant_place.latitude, longitude: @descendant_place.longitude, taxon: @taxon )
+      expect( @descendant_place_check_list.taxon_ids ).not_to include @taxon.id
+      expect( @atlas_place_check_list.taxon_ids ).not_to include @taxon.id
+      CheckList.refresh_with_observation( o )
+      @descendant_place_check_list.reload
+      @atlas_place_check_list.reload
+      expect( @descendant_place_check_list.taxon_ids ).to include @taxon.id
+      expect( @atlas_place_check_list.taxon_ids ).not_to include @taxon.id
+    end
+    
+    it "should remove listed taxa if observation deleted" do
+      o = make_research_grade_observation( latitude: @place.latitude, longitude: @place.longitude, taxon: @taxon )
+      expect( @place.place_geometry.geom ).not_to be_blank
+      expect( o.geom ).not_to be_blank
+      @check_list.add_taxon( @taxon )
+      without_delay { CheckList.refresh_with_observation( o ) }
+      @check_list.reload
+      expect( @check_list.taxon_ids ).to include @taxon.id
+      observation_id = o.id
+      o.destroy
+      without_delay { CheckList.refresh_with_observation( observation_id, taxon_id: @taxon.id ) }
+      @check_list.reload
+      expect( @check_list.taxon_ids ).not_to include @taxon.id
+    end
+
+    it "should add a listed taxon if there is an inactive atlas of the observed taxon" do
+      atlas = make_atlas_with_presence( is_active: false, place: country, taxon: species )
+      expect( state.check_list.taxa ).not_to include species
+      o = make_research_grade_observation( taxon: species, latitude: 2, longitude: 2 )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).to include species
+    end
+    it "should add a listed taxon if there is an inactive atlas of an ancestor of the observed taxon" do
+      atlas = make_atlas_with_presence( is_active: false, place: country, taxon: genus )
+      expect( state.check_list.taxa ).not_to include species
+      o = make_research_grade_observation( taxon: species, latitude: 2, longitude: 2 )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).to include species
+    end
+    it "should not add listed taxa for places outside of an active atlas of the observed taxon" do
+      atlas = make_atlas_with_presence( taxon: species )
+      expect( state.check_list.taxa ).not_to include species
+      o = make_research_grade_observation( taxon: species, latitude: 2, longitude: 2 )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).not_to include species
+    end
+    it "should add a listed taxon for a place that descends from a place in an active atlas of the observed taxon" do
+      atlas = make_atlas_with_presence( place: country, taxon: species )
+      expect( state.check_list.taxa ).not_to include species
+      o = make_research_grade_observation( taxon: species, latitude: 2, longitude: 2 )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).to include species
+    end
+    it "should add a listed taxon if there is an inactive complete set for the observed taxon" do
+      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
+      complete_set = CompleteSet.make!( is_active: false, taxon: species )
+      expect( state.check_list.taxa ).not_to include( species )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).to include( species )
+    end
+    it "should add a listed taxon if there is an inactive complete set for an ancestor of the observed taxon" do
+      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
+      complete_set = CompleteSet.make!( is_active: false, taxon: genus )
+      expect( state.check_list.taxa ).not_to include( species )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).to include( species )
+    end
+    it "should not add listed taxa if there is an active complete set for an ancestor of the observed taxon that does not contain the observed taxon" do
+      complete_set = CompleteSet.make!( is_active: true, taxon: genus, place: country )
+      expect( complete_set.get_taxa_for_place_taxon ).not_to include species
+      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
+      expect( state.check_list.taxa ).not_to include( species )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).not_to include( species )
+    end
+    it "should add a listed taxon for a place that descends from a place with an active complete set for an ancestor of the observed taxon that includes the observed taxon" do
+      ListedTaxon.make!( list: country.check_list, taxon: species )
+      complete_set = CompleteSet.make!( is_active: true, taxon: genus, place: country )
+      expect( complete_set.get_taxa_for_place_taxon ).to include species
+      o = make_research_grade_observation( taxon: species, latitude: state.latitude, longitude: state.longitude )
+      expect( state.check_list.taxa ).not_to include( species )
+      CheckList.refresh_with_observation( o )
+      state.reload
+      expect( state.check_list.taxa ).to include( species )
+    end
   end
 
 end

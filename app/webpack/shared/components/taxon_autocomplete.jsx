@@ -28,14 +28,14 @@ class TaxonAutocomplete extends React.Component {
   }
 
   fetchTaxon( ) {
-    if ( this.props.initialTaxonID ) {
+    if ( this.props.initialTaxonID && !this.props.initialSelection ) {
       inaturalistjs.taxa.fetch( this.props.initialTaxonID ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateTaxon( { taxon: r.results[0] } );
         }
       } );
     } else {
-      this.updateTaxon( { taxon: null } );
+      this.updateTaxon( { taxon: this.props.initialSelection } );
     }
   }
 
@@ -62,7 +62,7 @@ class TaxonAutocomplete extends React.Component {
           placeholder={ this.props.placeholder }
           autoComplete="off"
         />
-        <Input type="hidden" name="taxon_id" />
+        <input type="hidden" name="taxon_id" />
       </span>
     );
   }

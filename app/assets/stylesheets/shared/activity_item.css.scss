@@ -1,0 +1,223 @@
+@import "../colors";
+
+.ActivityItem,
+body > div > [role="dialog"] .ActivityItem {
+  .identification {
+    display: inline-block;
+    width: 100%;
+  }
+  .buttons {
+    float: right;
+  }
+  .taxon {
+    display: flex;
+    overflow: hidden;
+  }
+  .taxon-image {
+    width: 44px;
+    height: 44px;
+    border: 1px solid $border-grey;
+    border-radius: 2px;
+    float: left;
+    margin-right: 15px;
+    display: inline-block;
+  }
+  span.taxon {
+    display: inline-block;
+    a.sciname {
+      color: #000;
+      font-size: 14px;
+      line-height: 16px;
+    }
+    & > a.display-name {
+      color: #000;
+      font-size: 20px;
+      display: block;
+      line-height: 25px;
+    }
+    &.has-com-name .member-group:before {
+      content: " - ";
+    }
+    .member-group {
+      display: inline;
+      font-style: normal;
+      .sciname {
+        font-style: normal;
+      }
+      .taxon {
+        display: inline;
+      }
+      a.display-name {
+        color: #000;
+        font-size: 14px;
+        font-weight: normal;
+        display: inline;
+        line-height: 14px;
+      }
+    }
+  }
+  .time {
+    float: right;
+    margin-right: 12px;
+    color: #999999;
+  }
+  .panel-title {
+    font-size: 14px;
+    a.user {
+      font-weight: bold;
+      color: black;
+    }
+    .item-status {
+      float: right;
+      margin-right: 15px;
+     .fa {
+        width: 20px;
+        text-align: center;
+      }
+    }
+  }
+  .panel.flagged .panel-heading {
+    background: #fcf8e3;
+    .item-status {
+      color: #8a6d3b;
+    }
+  }
+  .panel.maverick .panel-heading {
+    background: rgba(216, 84, 79, 0.05);
+    .item-status {
+      color: $fail-red;
+    }
+  }
+  .panel.improving .panel-heading {
+    background: rgba(116, 173, 0, 0.05);
+    .item-status {
+      color: $inat-green;
+    }
+  }
+  .panel.leading .panel-heading {
+    .item-status {
+      color: $inat-green;
+      i {
+        margin-right: 2px;
+        position: relative;
+        bottom: 2px;
+      }
+    }
+  }
+  .panel-body {
+    padding: 0px;
+    line-height: 1;
+    .taxon-change {
+      padding: 7px 15px;
+      background: #FCF8E3;
+      color: #8A6D3B;
+      a {
+        color: $bootstrap-link-color;
+      }
+    }
+    .contents {
+      padding: 15px;
+      line-height: 1;
+      .content {
+        display: block;
+        overflow: hidden;
+      }
+      .UserText {
+        line-height: 20px;
+        img {
+          max-width: 100%;
+        }
+      }
+    }
+  }
+  .icon {
+    float: left;
+  }
+  .buttons {
+    button {
+      margin-left: 10px;
+      .fa {
+        color: $inat-green;
+      }
+    }
+  }
+  button.comment_id {
+    margin-left: 60px;
+  }
+  i.taxon-image.icon {
+    font-size: 36px;
+    line-height: 38px;
+    opacity: 0.9;
+    text-align: center;
+    padding-left: 1px
+  }
+  .panel {
+    margin-left: 60px;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+  }
+  .id_body {
+    margin-top: 15px;
+  }
+}
+
+.ActivityItem.withdrawn,
+body > div > [role="dialog"] .ActivityItem.withdrawn {
+  .title_text, .time {
+    opacity: 0.5;
+  }
+  .title_text {
+    text-decoration: line-through;
+  }
+  .panel-body {
+    background-color: #f8f8f8;
+    .taxon-image, .taxon, .taxon a {
+      opacity: 0.5;
+    }
+    .taxon {
+      text-decoration: line-through;
+    }
+  }
+}
+
+.ActivityItemMenu,
+body > div > [role="dialog"] .ActivityItemMenu {
+  float: right;
+  border-left: 1px solid $border-grey;
+  .search {
+    line-height: 24px;
+    white-space: nowrap;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+    a {
+      color: inherit;
+    }
+  }
+  .control-group {
+    .dropdown.btn-group {
+      button {
+        margin: 0px 0px 2px 12px;
+        padding: 0;
+        border: none !important;
+        background: none !important;
+        box-shadow: none !important;
+        &[disabled] {
+          opacity: 0.5;
+        }
+      }
+      .btn-group.open .dropdown-toggle {
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .dropdown-menu {
+        margin-right: -10px;
+        .search-links {
+          padding: 3px 20px 5px 20px;
+          min-width: 200px;
+        }
+      }
+    }
+  }
+}

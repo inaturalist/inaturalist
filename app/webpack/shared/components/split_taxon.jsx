@@ -12,9 +12,10 @@ const SplitTaxon = ( {
   showIcon,
   truncate,
   onClick,
-  noInactive
+  noInactive,
+  showMemberGroup
 } ) => {
-  const LinkElement = url ? "a" : "span";
+  const LinkElement = ( url || onClick ) ? "a" : "span";
   let title = "";
   if ( taxon ) {
     if ( taxon.rank && taxon.rank_level > 10 ) {
@@ -49,9 +50,7 @@ const SplitTaxon = ( {
     } else {
       cssClass += " Unknown";
     }
-    if ( noParens ) {
-      cssClass += " no-parens";
-    }
+    cssClass += noParens ? " no-parens" : " parens";
     return cssClass;
   };
   const truncateText = text => (
@@ -174,9 +173,38 @@ const SplitTaxon = ( {
       </span>
     );
   };
+  const extinct = ( ) => {
+    if ( !taxon || !taxon.extinct ) {
+      return null;
+    }
+    return (
+      <span className="extinct">
+        [
+          { I18n.t( "extinct" ) }
+        ]
+      </span>
+    );
+  };
+  let memberGroup;
+  // show "is member of" if requested and there's no common name
+  if ( showMemberGroup && taxon && !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) {
+    const groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
+      a.preferred_common_name && a.rank_level > 20
+    ) ) ) );
+    if ( groupAncestor ) {
+      memberGroup = (
+        <span className="member-group">
+          { I18n.t( "a_member_of" ) } <SplitTaxon
+            taxon={ groupAncestor }
+            url={ `/taxa/${groupAncestor.id}` }
+          />
+        </span>
+      );
+    }
+  }
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) }
+      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) } { extinct( ) } { memberGroup }
     </span>
   );
 };
@@ -192,7 +220,8 @@ SplitTaxon.propTypes = {
   showIcon: PropTypes.bool,
   truncate: PropTypes.number,
   onClick: PropTypes.func,
-  noInactive: PropTypes.bool
+  noInactive: PropTypes.bool,
+  showMemberGroup: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

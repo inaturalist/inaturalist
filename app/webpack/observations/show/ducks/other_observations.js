@@ -58,12 +58,20 @@ export function setMoreFromClade( data ) {
 
 export function fetchNearby( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const s = getState( );
+    const observation = s.observation;
     if ( !observation || !observation.latitude || !observation.longitude ) { return null; }
-    const baseParams = { lat: observation.latitude, lng: observation.longitude, radius: 50,
-      order_by: "observed_on" };
+    const baseParams = {
+      lat: observation.latitude,
+      lng: observation.longitude,
+      radius: 50,
+      order_by: "observed_on",
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale,
+      ttl: -1
+    };
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.id, per_page: 6 } );
+      photos: true, not_id: observation.id, per_page: 6, details: "all" } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setNearby( { params: baseParams, observations: response.results } ) );
     } ).catch( e => { } );
@@ -72,14 +80,21 @@ export function fetchNearby( ) {
 
 export function fetchMoreFromClade( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const s = getState( );
+    const observation = s.observation;
     if ( !observation || !observation.latitude || !observation.longitude ||
          !observation.taxon ) { return null; }
     const searchTaxon =
       observation.taxon.min_species_ancestry.split( "," ).reverse( )[1] || observation.taxon.id;
-    const baseParams = { taxon_id: searchTaxon, order_by: "votes" };
+    const baseParams = {
+      taxon_id: searchTaxon,
+      order_by: "votes",
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale,
+      ttl: -1
+    };
     const fetchParams = Object.assign( { }, baseParams, {
-      photos: true, not_id: observation.id, per_page: 6 } );
+      photos: true, not_id: observation.id, per_page: 6, details: "all" } );
     return inatjs.observations.search( fetchParams ).then( response => {
       dispatch( setMoreFromClade( { params: baseParams, observations: response.results } ) );
     } ).catch( e => { } );
@@ -88,14 +103,33 @@ export function fetchMoreFromClade( ) {
 
 export function fetchMoreFromThisUser( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const s = getState( );
+    const observation = s.observation;
     if ( !observation || !observation.user ) { return null; }
     // TODO: this needs to be smarter
-    let params = { user_id: observation.user.id, order_by: "id",
-      order: "desc", id_below: observation.id, per_page: 6 };
+    let params = {
+      user_id: observation.user.id,
+      order_by: "id",
+      order: "desc",
+      id_below: observation.id,
+      per_page: 6,
+      details: "all",
+      preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+      locale: I18n.locale,
+      ttl: -1
+    };
     return inatjs.observations.search( params ).then( responseBefore => {
-      params = { user_id: observation.user.id, order_by: "id",
-        order: "asc", id_above: observation.id, per_page: 6 };
+      params = {
+        user_id: observation.user.id,
+        order_by: "id",
+        order: "asc",
+        id_above: observation.id,
+        per_page: 6,
+        details: "all",
+        preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
+        locale: I18n.locale,
+        ttl: -1
+      };
       return inatjs.observations.search( params ).then( responseAfter => {
         dispatch( setEarlierUserObservations( responseBefore.results ) );
         dispatch( setLaterUserObservations( responseAfter.results ) );

@@ -14,6 +14,20 @@ class GoogleStreetViewPhoto < Photo
     true
   end
 
+  def repair( options = {} )
+    repair_photo = GoogleStreetViewPhoto.new_from_api_response( GoogleStreetViewPhoto.get_api_response( native_photo_id ) )
+    self.thumb_url = repair_photo.thumb_url,
+    self.square_url = repair_photo.square_url,
+    self.small_url = repair_photo.small_url,
+    self.medium_url = repair_photo.medium_url,
+    self.large_url = repair_photo.large_url,
+    self.original_url = repair_photo.original_url,
+    self.native_realname = repair_photo.native_realname,
+    self.native_page_url = repair_photo.native_page_url
+    save unless options[:no_save]
+    [self, {}]
+  end
+
   def self.get_api_response(native_photo_id, options = {})
     q = native_photo_id.to_s.split('?').last
     Rack::Utils.parse_nested_query(q).symbolize_keys

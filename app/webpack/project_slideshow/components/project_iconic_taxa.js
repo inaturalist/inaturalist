@@ -22,7 +22,7 @@ class ProjectIconicTaxa extends Component {
   reloadData( ) {
     /* eslint no-console: 0 */
     Util.nodeApiFetch(
-      `observations/iconic_taxa_counts?per_page=10&project_id=${this.props.project.id}&ttl=600` ).
+      `observations/iconic_taxa_counts?per_page=10&project_id=${this.props.project.id}&ttl=600&locale=${I18n.locale}` ).
       then( json => {
         this.props.setState( { iconicTaxaCounts: json } );
       } ).catch( e => console.log( e ) );
@@ -40,9 +40,6 @@ class ProjectIconicTaxa extends Component {
           { _.map( categories, r => {
             const height = ( r.count / maxValue ) * 75;
             let name = r.taxon.preferred_common_name;
-            if ( r.taxon.id === 47170 ) { name = "Fungi"; }
-            if ( r.taxon.id === 47178 ) { name = "Fishes"; }
-            if ( r.taxon.id === 48222 ) { name = "Chromista"; }
             return (
               <div key={ r.taxon.id } style={ { width: `${width}%` } }>
                 <span className="taxon">{ name }</span>
@@ -58,7 +55,7 @@ class ProjectIconicTaxa extends Component {
     return (
       <div className="slide vertical-barchart iconic-taxa-slide">
         { graph }
-        <h2>Observations by category</h2>
+        <h2>{ I18n.t("observations_by_category") }</h2>
       </div>
     );
   }

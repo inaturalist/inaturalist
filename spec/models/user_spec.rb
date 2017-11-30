@@ -103,10 +103,22 @@ describe User do
     end
     
     it "should set latitude and longitude" do
-      u = User.make(:last_ip => "12.189.20.126")
+      stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+        to_return(status: 200, body: '{
+          "results": {
+            "country": "US",
+            "city": "Fairhaven",
+            "ll": [
+              41.6318,
+              -70.8801
+            ]
+          }
+        }', headers: { "Content-Type" => "application/json" })
+      u = User.make(:last_ip => "128.128.128.128")
       u.save
-      expect(u.latitude).to_not be_blank
-      expect(u.longitude).to_not be_blank
+      expect(u.latitude).to eq 41.6318
+      expect(u.longitude).to eq -70.8801
+      expect(u.lat_lon_acc_admin_level).to eq 2
     end
 
     it "should validate email address domains" do
@@ -163,6 +175,15 @@ describe User do
       without_delay { u.update_attributes( login: new_login ) }
       p.reload
       expect( p.native_username ).to eq new_login
+    end
+
+    it "should update the life list title if the login changed" do
+      u = User.make!
+      expect( u.life_list.title ).to eq "#{u.login}'s Life List"
+      new_login = "zolophon"
+      without_delay { u.update_attributes( login: new_login ) }
+      u.reload
+      expect( u.life_list.title ).to eq "#{new_login}'s Life List"
     end
 
     it "should not update photos by other users when the name changes" do
@@ -379,6 +400,24 @@ describe User do
       without_delay { target_u.destroy }
       other_p.reload
       expect( other_p.native_realname ).to eq other_u.name
+    end
+
+    it "should remove oauth access tokens" do
+      token = Doorkeeper::AccessToken.create!( resource_owner_id: @user.id, application: OauthApplication.make! )
+      expect( token ).to be_persisted
+      @user.destroy
+      expect( Doorkeeper::AccessToken.where( id: token.id ).first ).to be_blank
+    end
+
+    it "should remove blocks this user has made" do
+      user_block = UserBlock.make!( user: @user )
+      @user.destroy
+      expect( UserBlock.where( user_id: user_block.id ).first ).to be_blank
+    end
+    it "should remove blocks against this user" do
+      user_block = UserBlock.make!( blocked_user: @user )
+      @user.destroy
+      expect( UserBlock.where( blocked_user_id: user_block.id ).first ).to be_blank
     end
   end
 
@@ -646,6 +685,18 @@ describe User do
       end
       o.reload
       expect(o.user_id).to eq @keeper.id
+    end
+
+    it "should update the observations_count" do
+      Observation.make!( user: @keeper )
+      Observation.make!( user: @reject )
+      Delayed::Worker.new.work_off
+      @keeper.reload
+      expect( @keeper.observations_count ).to eq 1
+      @keeper.merge( @reject )
+      @keeper.reload
+      expect( @keeper.observations.count ).to eq 2
+      expect( @keeper.observations_count ).to eq 2
     end
 
     it "should merge life lists" do

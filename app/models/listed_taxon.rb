@@ -782,7 +782,7 @@ class ListedTaxon < ActiveRecord::Base
   def observed_in_place?
     p = place || list.place
     return false unless p
-    scope = Observation.in_place(p).of(taxon)
+    scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", p).of(taxon)
     if list.is_a?(LifeList)
       scope = scope.by(list.user)
     end
@@ -790,6 +790,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def self.merge_duplicates(options = {})
+    debug = options.delete(:debug)
     where = options.map{|k,v| "#{k} = #{v}"}.join(' AND ') unless options.blank?
     sql = <<-SQL
       SELECT list_id, taxon_id, array_agg(id) AS ids, count(*) 
@@ -797,16 +798,23 @@ class ListedTaxon < ActiveRecord::Base
       #{"WHERE #{where}" if where}
       GROUP BY list_id, taxon_id HAVING count(*) > 1
     SQL
+    puts "Finding listed taxa WHERE #{where}" if debug
     connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
+      puts "lt: #{lt}, merging #{to_merge_ids}" if debug
       rejects = ListedTaxon.where(id: to_merge_ids[1..-1])
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
       ListedTaxon.where(id: rejects).update_all(list_id: nil)
       
       rejects.each do |reject|
-        lt.merge(reject)
+        begin
+          lt.merge( reject )
+        rescue ActiveRecord::RecordInvalid
+          puts "Validation error on #{reject}, skipping merge and deleting" if debug
+          reject.destroy
+        end
       end
     end
   end

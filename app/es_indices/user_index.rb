@@ -28,7 +28,9 @@ class User < ActiveRecord::Base
         observations_count: observations_count,
         identifications_count: identifications_count,
         journal_posts_count: journal_posts_count,
-        activity_count: observations_count + identifications_count + journal_posts_count
+        activity_count: observations_count + identifications_count + journal_posts_count,
+        roles: roles.map(&:name),
+        site_id: site_id
       })
     end
     json

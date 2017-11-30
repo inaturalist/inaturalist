@@ -13,9 +13,10 @@
             - @record.errors.full_messages.each do |msg|
               %li= msg
   .row
-    .col-md-4= f.text_field :name, :required => true
-    .col-md-4= f.text_field :url, :required => true
-    .col-md-4= f.check_box :draft
+    .col-md-3= f.text_field :name, :required => true
+    .col-md-3= f.text_field :url, :required => true
+    .col-md-3= f.text_field :domain, :required => true
+    .col-md-3= f.check_box :draft
   %fieldset
     %legend=t :assets
     .row
@@ -34,6 +35,9 @@
     .row
       .col-md-12
         = f.text_area :homepage_data
+    .row
+      .col-md-12
+        = f.text_area :coordinate_systems_json
   - for grp, prefs in @pref_groups
     %fieldset
       %legend= grp.capitalize

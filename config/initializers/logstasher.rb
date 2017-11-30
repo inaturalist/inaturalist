@@ -25,11 +25,6 @@ module Logstasher
     @logger
   end
 
-  def self.hostname
-    # cache the nodename so we don't incur the overhead more than once
-    @hostname ||= Socket.gethostname.gsub(/\./,'-')
-  end
-
   def self.payload_from_request(request)
     return { } unless request.is_a?(ActionDispatch::Request)
     payload = { }
@@ -51,13 +46,14 @@ module Logstasher
         split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.map(&:downcase).first
     end
     payload[:ssl] = request.ssl?.to_s
-    parsed_user_agent = UserAgent.parse(request.user_agent)
-    payload[:browser] = parsed_user_agent ? parsed_user_agent.browser : nil
-    payload[:browser_version] = parsed_user_agent ? parsed_user_agent.version.to_s : nil
-    payload[:platform] = parsed_user_agent ? parsed_user_agent.platform : nil
     payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
     # this can be overwritten by merging Logstasher.payload_from_user
     payload[:logged_in] = false
+    payload[:i18n_locale] = I18n.locale.to_s.downcase
+    payload[:http_locale_matches_i18n] = payload[:i18n_locale] == payload[:http_languages]
+    payload[:http_lang_matches_i18n] = payload[:i18n_locale] &&
+      payload[:http_languages] &&
+      payload[:i18n_locale].split( "-" )[0] == payload[:http_languages].split( "-" )[0]
     payload
   end
 
@@ -91,14 +87,13 @@ module Logstasher
     hash
   end
 
-  def self.write_hash(hash)
+  def self.write_hash(hash_to_write)
     return if Rails.env.test?
-    hash[:subtype] ||= "Custom"
-    Logstasher.replace_known_types!(hash)
+    hash_to_write[:subtype] ||= "Custom"
+    Logstasher.replace_known_types!(hash_to_write)
     begin
-      stash_hash = { end_time: Time.now, version: 1,
-        pid: $$, hostname: Logstasher.hostname }.
-        delete_if{ |k,v| v.blank? }.merge(hash)
+      stash_hash = { end_time: Time.now, pid: $$ }.
+        delete_if{ |k,v| v.blank? }.merge(hash_to_write)
       Logstasher.logger.debug(stash_hash.to_json)
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_hash failed: #{e}"
@@ -138,8 +133,9 @@ module Logstasher
       format = "all" if format == "*/*"
       saved_params = Hash[
         payload[:params].delete_if{ |k,v|
-          # remove the blank and common or otherwise indexed params
+          # remove bank params, binary data params, and common or otherwise indexed params
           v.blank? ||
+          v.match( /^data:/ ) ||
           [ :controller, :action, :utf8, :authenticity_token ].include?(k.to_sym)
         }.map{ |k,v|
           # flatten out nested object and complex params like uploads
@@ -148,19 +144,23 @@ module Logstasher
       payload.merge!({
         "@timestamp": args[1],
         subtype: "ActionController",
-        start_time: args[1],
         end_time: args[2],
         controller_action: payload[:controller] + "::" + payload[:action],
         method: (payload[:method] || payload[:params][:_method] || "GET").upcase,
-        params: saved_params,
+        params_string: saved_params.any? ? saved_params.to_json : nil,
         param_keys: saved_params.keys,
         format: format,
         view_runtime: payload[:view_runtime] ? payload[:view_runtime].round(4) : 0.0,
         db_runtime: payload[:db_runtime] ? payload[:db_runtime].round(4) : 0.0,
         elasticsearch_runtime: payload[:elasticsearch_runtime] ? payload[:elasticsearch_runtime].round(4) : 0.0,
         # all the other times are in milliseconds
-        total_time: ((args[2] - args[1]) * 1000).round(4)
+        total_time: ((args[2] - args[1]) * 1000).round(4),
+        status_code: payload[:status]
       })
+      # params are stored as a string in `params_string`,
+      # so don't also store them as an object
+      payload.delete(:status)
+      payload.delete(:params)
       payload[:remainder_time] = (payload[:total_time] - payload[:db_runtime] -
         payload[:view_runtime] - payload[:elasticsearch_runtime]).round(4)
       Logstasher.write_hash(payload)

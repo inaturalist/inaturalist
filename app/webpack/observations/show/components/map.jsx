@@ -19,7 +19,7 @@ class Map extends React.Component {
         <div className="TaxonMap empty">
           <div className="no_location">
             <i className="fa fa-map-marker" />
-            { observation.geoprivacy === "private" ?
+            { observation.obscured && observation.geoprivacy === "private" ?
               I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
           </div>
         </div>
@@ -87,10 +87,26 @@ class Map extends React.Component {
         </div>
       );
     }
+    let geoprivacyIconClass = "fa fa-map-marker";
+    let geoprivacyTitle = I18n.t( "location_is_public" );
+    if ( observation.obscured && !observation.latitude && !observation.private_geojson ) {
+      geoprivacyIconClass = "icon-no-location";
+    } else if ( observation.geoprivacy === "private" ) {
+      geoprivacyIconClass = "icon-icn-location-private";
+      geoprivacyTitle = I18n.t( "location_is_private" );
+    } else if ( observation.obscured ) {
+      geoprivacyIconClass = "icon-icn-location-obscured";
+      geoprivacyTitle = I18n.t( "location_is_obscured" );
+    }
     return (
       <div className="Map">
         { taxonMap }
         <div className="map_details">
+          <i
+            className={ `geoprivacy-icon ${geoprivacyIconClass}` }
+            title={ geoprivacyTitle }
+            alt={ geoprivacyTitle }
+          />
           <div className="place-guess">
             { placeGuessElement }
           </div>

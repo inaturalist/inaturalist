@@ -35,39 +35,4 @@ describe SiteConfig do
     expect{ SiteConfig.load }.to raise_error("Config missing environment `test`")
   end
 
-  it "can fetch values with dynamic methods" do
-    expect(SiteConfig.site_url).to be_a String
-  end
-
-  describe "given site config" do
-    before :each do
-      allow(File).to receive(:exist?).with(@config_path).and_return(true)
-      allow(File).to receive(:open).with(@config_path).and_return("
-        test:
-          value: itsdefault
-        sites:
-          inaturalist:
-            test:
-              value: itsinaturalist
-          conabio:
-            test:
-              value: itsconabio")
-    end
-    after(:each) { ENV["INATURALIST_SITE_NAME"] = nil }
-
-    it "uses the inaturalist site by default" do
-      expect(SiteConfig.load.value).to eq "itsinaturalist"
-    end
-
-    it "can set site with ENV variables" do
-      ENV["INATURALIST_SITE_NAME"] = "conabio"
-      expect(SiteConfig.load.value).to eq "itsconabio"
-    end
-
-    it "uses default values for unknown sites" do
-      ENV["INATURALIST_SITE_NAME"] = "naturewatch"
-      expect(SiteConfig.load.value).to eq "itsdefault"
-    end
-  end
-
 end

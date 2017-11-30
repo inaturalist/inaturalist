@@ -3,8 +3,8 @@ class EmailerController < ApplicationController
   before_filter :authenticate_user!
 
   def invite
-    from = "#{CONFIG.site_name} <#{CONFIG.noreply_email}>"
-    subject = "#REAL NAME wants you to join them on #{CONFIG.site_name}"
+    from = "#{@site.name} <#{@site.email_noreply}>"
+    subject = "#REAL NAME wants you to join them on #{@site.name}"
     @sending_user = current_user
     @sending_user_real_name = current_user.name.blank? ? current_user.login : current_user.name
     @observations = Observation.by(current_user.id).first(10)

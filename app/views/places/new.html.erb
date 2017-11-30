@@ -57,25 +57,15 @@
   <%= javascript_include_tag "shramov-leaflet-plugins/Bing" %>
   <%= javascript_include_tag "leaflet.fullscreen/Control.FullScreen.js" %>
   <script type="text/javascript" charset="utf-8">
-    var CLOUDMADE_KEY = <%= CONFIG.cloudmade ? raw(CONFIG.cloudmade.try(:key).to_json) : "null" %>,
-        BING_KEY = <%=CONFIG.bing ? raw(CONFIG.bing.key.inspect) : "null" %>,
+    var BING_KEY = <%=CONFIG.bing ? raw(CONFIG.bing.key.inspect) : "null" %>,
         PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
         CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
     $(document).ready(function() {
       window.importMap = iNaturalist.Map.createMap({div: 'importMap'})
-      window.map = L.map('drawingMap').setView([0,0], 1)
+      window.map = L.map('drawingMap', { minZoom: 1 }).setView([0,0], 1)
       var d = new Date()
       var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});
-      if (CLOUDMADE_KEY) {
-        var osm = L.tileLayer('http://{s}.tile.cloudmade.com/{key}/22677/256/{z}/{x}/{y}.png', {
-          attribution: 'Map data &copy; '+d.getFullYear()+' OpenStreetMap contributors, Imagery &copy; '+d.getFullYear()+' CloudMade',
-          key: CLOUDMADE_KEY
-        })
-        map.addLayer(osm);
-        map.addControl(new L.Control.Layers({'Map (OSM)':osm, "Satellite (Bing)":bing}, {}));
-      } else {
-        map.addLayer(bing)
-      }
+      map.addLayer(bing);
       var fullScreen = new L.Control.FullScreen();
       map.addControl(fullScreen)
       window.drawnItems = new L.FeatureGroup()

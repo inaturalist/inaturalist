@@ -388,7 +388,7 @@ mk:
   choose_a_list_above: Одберете список погоре.
   choose_a_place: Одберете место
   choose_a_taxon: Одберете таксон (незадол.)
-  chose_columns: Одберете колони
+  chose_columns: Одберете столбови
   choose_files_from_your_computer: Одберете податотеки од вашиот сметач
   choose_from_your_lists: Одберете од вашите списоци
   choose_good_default_photos: одберете добри стандардни слики од фондот на слики Flickr
@@ -875,7 +875,6 @@ mk:
   link_your_flickr_account_with_inat: Поврзете си ја сметката на Flickr со %{site_name}
   link_your_flickr_account_with_inat_so: Поврзете си ја сметката на Flickr со %{site_name}
     за да можете да им ставате слики на вашите набљудувања.
-  link_your_picasa_account: Поврзете си ја сметката на Picasa
   linked_facebook: Вашата сметка на %{site_name} е врзана со вашата сметка на Facebook.
   list: Список
   list_deleted: Списокот е избришан.
@@ -957,9 +956,9 @@ mk:
   merging_places: Спојување на места
   message: Порака
   messages: Пораки
-  mixed_licenses: мешовити лиценци
   misleading_or_illegal_content_html: Заблудна или противзаконска содржина, расни
     или етнички навреди и тн.
+  mixed_licenses: мешовити лиценци
   mobile_app_for: Мобилен прог. за
   mobile_apps_for: 'Мобилни верзии:'
   mollusks: мекотелци
@@ -1472,9 +1471,9 @@ mk:
   search_ubio_raquo: Пребарај го uBio &raquo;
   search_your_photos: Пребарајте по вашите слики
   searching: Пребарувам...
+  select: Избери
   select_all: Избери сè
   select_an_album: Избери албум
-  select: Избери
   select_one_or_more_photos: Изерете една или повеќе слики
   select_none: Ниедно
   send: испрати
@@ -1684,11 +1683,11 @@ mk:
     таксономска промена. Притоа опишете го предложеното одвојување, спојување или
     замена на активните таксони што треба подоцна да се спроведе.
   user: Корисник
-  user_added_an_observation_html: '%{user} додаде набљудување'
-  user_added_an_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
-  user_added_a_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} додаде %{x} во %{noun} од %{by}'
   user_added_a_x_to_noun_by_html: '%{user} додаде %{x} во %{noun} од %{by}'
+  user_added_a_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
+  user_added_an_observation_html: '%{user} додаде набљудување'
+  user_added_an_x_to_noun_by_html: '%{user} додаде %{x} во %{noun} од %{by}'
+  user_added_an_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
   user_added_x_observations_html: '%{user} додаде %{x} набљудувања'
   user_commented_on: '%{user} искоментира на вашето %{title} %{time}'
   user_follows: '%{user} следи'
@@ -1863,8 +1862,6 @@ mk:
           Штиклирајте го кутивчето „Препознајте“ кога додавате / менувате ваше
           набљудување и набљудувањето ќе се појави во
           „<a href="%{url}">Препознајте</a>“.
-        we_also_support_picasa_html: 'Ја поддржуваме и Picasa: <a href="%{url}">Нагодете
-          си ја сметката на Picasa &raquo;</a>'
     projects:
       edit:
         start_time_desc: Почетно време на вашиот биоблиц

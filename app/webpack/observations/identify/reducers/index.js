@@ -34,6 +34,11 @@ import searchParams from "./search_params_reducer";
 import identifiers from "./identifiers_reducer";
 import finishedModal from "./finished_modal_reducer";
 import alert from "./alert_reducer";
+import suggestions from "../ducks/suggestions";
+import controlledTerms from "../../show/ducks/controlled_terms";
+import qualityMetrics from "../../show/ducks/quality_metrics";
+import flaggingModal from "../../show/ducks/flagging_modal";
+import subscriptions from "../../show/ducks/subscriptions";
 import disagreementAlert from "../ducks/disagreement_alert";
 
 const rootReducer = combineReducers( {
@@ -45,6 +50,11 @@ const rootReducer = combineReducers( {
   identifiers,
   finishedModal,
   alert,
+  suggestions,
+  controlledTerms,
+  qualityMetrics,
+  flaggingModal,
+  subscriptions,
   disagreementAlert
 } );
 

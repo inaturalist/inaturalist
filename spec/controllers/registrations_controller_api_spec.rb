@@ -3,7 +3,11 @@ require File.dirname(__FILE__) + '/../spec_helper'
 describe Users::RegistrationsController, "create" do
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
+    stub_request(:get, /#{INatAPIService::ENDPOINT}/).
+      to_return(status: 200, body: "{ }",
+        headers: { "Content-Type" => "application/json" })
   end
+
   it "should create a user" do
     u = User.make
     expect {
@@ -19,9 +23,9 @@ describe Users::RegistrationsController, "create" do
       :password_confirmation => "zomgbar", 
       :email => u.email
     }
-    lambda {
+    expect {
       json = JSON.parse(response.body)
-    }.should_not raise_error
+    }.not_to raise_error
   end
 
   it "should not return the password" do
@@ -32,7 +36,7 @@ describe Users::RegistrationsController, "create" do
       :password_confirmation => "zomgbar", 
       :email => u.email
     }
-    response.body.should_not =~ /zomgbar/
+    expect( response.body ).not_to be =~ /zomgbar/
   end
 
   it "should show errors when invalid" do
@@ -41,7 +45,7 @@ describe Users::RegistrationsController, "create" do
       :password_confirmation => "zomgbar"
     }
     json = JSON.parse(response.body)
-    json['errors'].should_not be_blank
+    expect( json['errors'] ).not_to be_blank
   end
 
   it "should not have duplicate email errors when email taken" do
@@ -54,14 +58,14 @@ describe Users::RegistrationsController, "create" do
       :password_confirmation => "zomgbar"
     }
     json = JSON.parse(response.body)
-    json['errors'].uniq.size.should eq json['errors'].size
+    expect( json['errors'].uniq.size ).to eq json['errors'].size
   end
 
   it "should assign a user to a site" do
     @site = Site.make!(:url => "test.host") # hoping the test host is the same across platforms...
     u = User.make
     post :create, :user => {:login => u.login, :password => "zomgbar", :password_confirmation => "zomgbar", :email => u.email}
-    User.find_by_login(u.login).site.should eq @site
+    expect( User.find_by_login(u.login).site ).to eq @site
   end
 
   it "should accept time_zone" do

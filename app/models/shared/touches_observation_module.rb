@@ -7,4 +7,5 @@ module Shared::TouchesObservationModule
   def touch_observation
     observation.touch if observation
   end
+
 end

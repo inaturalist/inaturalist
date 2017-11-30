@@ -297,6 +297,7 @@ bg:
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието
     ми при промяна на таксон
   back: Назад
+  back_to_suggestions: Назад към предложенията
   back_to_x: Обратно към %{noun}
   back_to_x_history: Обратно към историята на %{x}
   back_to_x_journal: Обратно към дневника на %{user}
@@ -466,7 +467,6 @@ bg:
   delete_your_account: Изтриване на акаунта
   deleting: Изтриване...
   desc: низх.
-  dna_: ДНК
   descending: низходящо
   describe_purpose: Опишете целите на проекта.
   describe_your_interest_in_nature: Опишете Вашия интерес към природата!
@@ -482,7 +482,7 @@ bg:
   developers: Разработчици
   device: Устройство
   disconnect_provider: Откачи %{provider}
-  drop_it: Пусни го тук
+  dna_: ДНК
   do_not_show_this_message_again: Не показвай това събщение повече
   do_you_know_where_this_species_lives: Знаете ли къде живее този вид?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: Може би изучавате нематодите?
@@ -497,6 +497,7 @@ bg:
   done: Готово
   dont_filter: Не филтрирай
   dont_send_me_email: Не ми изпращайте никакви писма!
+  drop_it: Пусни го тук
   double_click_to_finish: (двойно щракване за да приключите)
   download: Изтегли
   download_bulk_import_template_html: |-
@@ -510,7 +511,6 @@ bg:
   draft_: Чернова
   draft_saved: Черновата е запазена!
   drafts: Чернови
-  drag_and_drop_some_photos: Влачи и пусни снимки
   each_place_displays_all_species_inat_knows: Страницата на всяко място показва всички
     видове от това място за които %{site_name} знае, както и информация за тяхното
     изобилие, природозащитен статут и кой е бил първият наблюдател на дадения вид
@@ -618,6 +618,7 @@ bg:
     него!
   follower: последовател
   forgot_your_password: Забравена парола?
+  frequency: Честота
   fri: пт
   from: От
   from_flickr_facebook_etc: От Flickr, Facebook и др.
@@ -768,13 +769,11 @@ bg:
     от семейство Вранови (Corvidae).
   link_or_unlink_your_facebook_account: Свържи или не своя Facebook акаунт
   link_or_unlink_your_flickr_account: Свържи или не своя Flickr акаунт
-  link_or_unlink_your_picasa_account: Свържи или не своя Picasa акаунт
   link_your_facebook_account: Свържете Вашия акаунт на Фейсбук
   link_your_flickr_account: Свържете Вашия акаунт на Flickr
   link_your_flickr_account_with_inat: Свържете Вашия акаунт на Flickr с %{site_name}
   link_your_flickr_account_with_inat_so: Свържете Вашия акаунт на Flickr с %{site_name},
     за да можете да добавяте снимки към Вашите наблюдения.
-  link_your_picasa_account: Свържете Вашия акаунт на Picasa
   linked_facebook: Вашият акаунт на %{site_name} е свързан с акаунта Ви на Фейсбук.
   linked_flickr: Вашият акаунт на %{site_name} е свързан с акаунта Ви на Flickr.
   linked_flickr_description: Когато акаунтите Ви на %{site_name} и Flickr са свързани,
@@ -820,6 +819,7 @@ bg:
     es: испански
     es-ES: испански (Испания)
     es-MX: испански (Мексико)
+    fi: Приключване
     fr: френски
     eu: баски
     gl: галисийски
@@ -984,7 +984,6 @@ bg:
   observation_removed_from_the_project: Наблюдението е премахнато от проекта %{project}
   observation_rights_html: Наблюдение %{rights}
   observation_was_deleted: Наблюдението е изтрито.
-  observation_without_photo: Наблюдение без снимка
   observations: Наблюдения
   observations_added_by_x_html: Наблюдения добавени от %{x}
   observations_by: Наблюдения от
@@ -1127,7 +1126,6 @@ bg:
     от външния сайт, или защото %{site_name} няма достъп до нея
   photo_hosting_accounts: Акаунти за съхранение на снимки
   photo_licensing: Лиценз на снимката
-  photo_s: Снимки
   photos_or_sounds?: Снимки или звуци?
   photos_size:
     small: малка
@@ -1495,6 +1493,7 @@ bg:
   sorting_by: Сортиране по
   sounds:
     photos_sounds: Снимки / звуци
+  source_wikipedia: 'Източник: Уикипедия'
   source_list:
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
@@ -1544,10 +1543,10 @@ bg:
   suggest_an_id: Предложи определение
   suggest_or_require_that: Предложи или изисквай участниците да попълват тези полета
     за наблюдения които добавят към твоя проект.
+  suggestions: Предложения
   summary: Резюме
   suspicious_photos: Съмнителни снимки
   sun: нед
-  taxon_change_settings: Настройки за промяна на таксон
   taxon_removed_from_list: Таксонът е премахнат от списъка.
   taxon_was_successfully_created: Таксонът беше създаден успешно.
   taxon_was_successfully_updated: Таксонът беше обновен успешно.
@@ -1598,9 +1597,6 @@ bg:
   title_and_description: Заглавие и описание
   titled_favorites_and_the_most_recent_additions: със заглавие "Favorites" и най-новите
     попълнения в него ще се появяват тук.
-  to_include_your_picassa_with_inat: За да добавяте снимките си от Picasa към наблюденията
-    си на %{site_name}, щракнете бутона вдясно за да свържете двата акаунта. Ще бъдете
-    отведени до Google, където ще трябва да потвърдите свързването.
   to_recipient: до
   today: Днес
   tools: Инструменти
@@ -1645,13 +1641,15 @@ bg:
       select_all: Избери всички наблюдения
   usage_stats: Статистика на използването
   user: Потребител
-  user_added_an_observation_html: '%{user} добави наблюдение'
   user_added_a_x: '%{user} добави %{x}'
-  user_added_an_x: '%{user} добави %{x}'
-  user_added_an_x_to_noun_html: '%{user} добави %{x} към %{noun}'
-  user_added_a_x_to_noun_html: '%{user} добави %{x} към %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} добави %{x} към %{noun} на %{by}'
   user_added_a_x_to_noun_by_html: '%{user} добави %{x} към %{noun} на %{by}'
+  user_added_a_x_to_noun_html: '%{user} добави %{x} към %{noun}'
+  user_added_an_observation_field_html: '%{user} добави стойност на %{field_name}
+    към наблюдение от %{owner}'
+  user_added_an_observation_html: '%{user} добави наблюдение'
+  user_added_an_x: '%{user} добави %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} добави %{x} към %{noun} на %{by}'
+  user_added_an_x_to_noun_html: '%{user} добави %{x} към %{noun}'
   user_added_x_observations_html: '%{user} добави %{x} наблюдения'
   user_commented_on: '%{user} коментира Ваш(а/е) %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} хареса %{noun} на %{owner}'
@@ -1662,15 +1660,13 @@ bg:
     над таксоните свързани с това наблюдение.'
   user_invite_observation_to_project: '%{user} би искал да покани Вашето наблюдение
     "%{observation}" към проекта %{project}.'
-  user_invited_you_to_join_project: '%{user} Ви покани да се включите в %{project}'
   user_invited_you_to_join_html: '%{user} Ви покани да се включите'
+  user_invited_you_to_join_project: '%{user} Ви покани да се включите в %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} Ви покани да се включите
     в проекта на %{date}'
   user_invited_your_x_to_a_project_html: '%{user} покани Ваш(а/е) %{x} в проект'
-  user_is_now_role_for_project_html: <strong>%{user}</strong> вече е %{role} на %{project}
-  user_added_an_observation_field_html: '%{user} добави стойност на %{field_name}
-    към наблюдение от %{owner}'
   user_is_a_naturalist: '%{user} е естествоизпитател!'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> вече е %{role} на %{project}
   username: Потребителско име
   username_or_email: Потребителско име или имейл
   username_or_user_id: Потребителско име или идентификатор
@@ -1752,8 +1748,6 @@ bg:
   you_cant_do_that_for_the_default_check_list_place: Не можете да правите това за
     подразбиращия се видов списък на място!
   you_dont_have_any: Нямате никакви абонаменти за място или таксон.
-  you_havent_linked_your_inaturalist_picasa_account: Все още не сте свързали Вашият
-    акаунт на %{site_name} с акаунта Ви на Picasa
   you_joined_this_project: Вие се включихте в проекта!
   your_contributions_to_project: Вашите приноси към %{project_title}
   your_default_time_zone: Вашата часова зона по подразбиране
@@ -1769,8 +1763,6 @@ bg:
   your_observations_couldnt_be_added_to_that_project: 'Вашите наблюдения не можеха
     да бъдат добавени към този проект: %{errors}'
   your_photos_have_been_tagged: Снимките Ви бяха тагнати!
-  your_picasa_account: Вашият Picasa акаунт
-  your_picasa_account_info: Информация за Вашия акаунт на Picasa
   your_profile_was_successfully_updated: Вашият профил беше успешно обновен!
   your_site_account_has_been_created: Вашият акаунт на %{site} е създаден.
   your_subscriptions: Вашите абонаменти

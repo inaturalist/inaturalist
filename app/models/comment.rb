@@ -18,6 +18,7 @@ class Comment < ActiveRecord::Base
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
   notifies_users :mentioned_users, on: :save, notification: "mention"
   auto_subscribes :user, to: :parent
+  blockable_by lambda {|comment| comment.parent.try(:user_id) }
 
   scope :by, lambda {|user| where("comments.user_id = ?", user)}
   scope :for_observer, lambda {|user| 
@@ -48,7 +49,8 @@ class Comment < ActiveRecord::Base
       user: user.as_indexed_json(no_details: true),
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
-      body: body
+      body: body,
+      flags: flags.map(&:as_indexed_json)
     }
   end
 
@@ -84,6 +86,11 @@ class Comment < ActiveRecord::Base
     if parent && parent.respond_to?(:elastic_index!)
       parent.elastic_index!
     end
+  end
+
+  def flagged_with(flag, options)
+    evaluate_new_flag_for_spam(flag)
+    index_parent
   end
 
 end

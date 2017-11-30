@@ -15,7 +15,7 @@ module Ratatosk
                               :REJECTED_CLASSIFICATIONS
 
       def initialize(api_key=nil)
-        api_key ||= UBIO_KEY
+        api_key ||= CONFIG.ubio.key
         @service = ::UBioService.new(api_key)
         
         # List of classifications from uBio we like. To fetch an updated list
@@ -222,7 +222,7 @@ module Ratatosk
 
       def initialize(hxml, params = {})
         @np = params.delete(:np)
-        @service = @np.service rescue ::UBioService.new(UBIO_KEY)
+        @service = @np.service rescue ::UBioService.new(CONFIG.ubio.key)
         @adaptee = Taxon.new(params)
         @hxml = hxml
         taxon.name = get_name
@@ -280,7 +280,7 @@ module Ratatosk
         raise TaxonNameAdapterError, "XML response cannot be blank" if hxml.blank?
         raise TaxonNameAdapterError, "XML response has no elements" if hxml.elements.blank?
         @np = params.delete(:np)
-        @service = @np.service rescue ::UBioService.new(UBIO_KEY)
+        @service = @np.service rescue ::UBioService.new(CONFIG.ubio.key)
         @hxml = hxml
         @adaptee = TaxonName.new(params)
         

@@ -44,9 +44,9 @@
               %a{"data-parent" => "#guide_accordion", "data-toggle" => "collapse", :href => "#location"}
                 =t :location
             #location.panel-body.collapse
-              = f.form_field(:place, label: t(:site_name_place, :site_name => SITE_NAME)) do
+              = f.form_field(:place, label: t(:site_name_place, :site_name => @site.name)) do
                 %input#guide_place_id{name: 'guide[place_id]', type: 'text', placeholder: t(:start_typing_place_name)}
-              .meta.stacked=t 'views.guides.edit.guide_place_desc', :site_name => SITE_NAME_SHORT
+              .meta.stacked=t 'views.guides.edit.guide_place_desc', :site_name => @site.preferred_site_name_short
               %label=t :coordinates
               .stacked
                 = text_field_tag :map_search, "", :placeholder => t(:search_the_map), :class => "text"
@@ -176,7 +176,7 @@
             .row
               .col-xs-12
                 %textarea.form-control{:placeholder => t(:paste_in_a_bunch_of_names)}
-                .text-muted.status=t 'views.guides.edit.paste_note_html', :site_name => SITE_NAME_SHORT
+                .text-muted.status=t 'views.guides.edit.paste_note_html', :site_name => @site.preferred_site_name_short
           #addtaxa-eol.tab-pane
             %p=t 'views.guides.edit.eol_collection_desc_html'
             %input.form-control{:type => "text", :name => "eol_collection_url", :placeholder => t(:eol_collection_url), :value => @guide.source_url.to_s =~ /eol\.org/ ? @guide.source_url : nil}

@@ -154,6 +154,7 @@ class TaxonName < ActiveRecord::Base
         json[:name_autocomplete_ja] = name
       end
       json[:exact] = name
+      json[:exact_ci] = name
     end
     json
   end
@@ -166,13 +167,17 @@ class TaxonName < ActiveRecord::Base
   
   def self.choose_common_name(taxon_names, options = {})
     return nil if taxon_names.blank?
+    if options[:user] && !options[:user].prefers_common_names?
+      return nil
+    end
     common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
     place_id = options[:place_id] unless options[:place_id].blank?
     place_id ||= (options[:place].is_a?(Place) ? options[:place].id : options[:place]) unless options[:place].blank?
     place_id ||= options[:user].place_id unless options[:user].blank?
-    if place_id.blank? && ( site = CONFIG.site || Site.find_by_id( CONFIG.site_id ) )
-      place_id ||= site.place_id unless site.place_id.blank?
+    
+    if place_id.blank? && options[:site]
+      place_id ||= options[:site].place_id unless options[:site].place_id.blank?
     end
     place = (options[:place].is_a?(Place) ? options[:place] : Place.find_by_id(place_id)) unless place_id.blank?
     common_names = common_names.sort_by{|tn| [tn.position, tn.id]}
@@ -192,7 +197,8 @@ class TaxonName < ActiveRecord::Base
     else
       place_names = []
     end
-    language_name = language_for_locale( options[:locale] || I18n.locale ) || 'english'
+    language_name = language_for_locale(
+      options[:locale] || options[:site].try(:locale) || I18n.locale ) || "english"
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
     engnames = common_names.select {|n| n.is_english? }
     unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }

@@ -348,19 +348,23 @@ ul.obs > li .card {
   &.selected {
     box-shadow: 0 0 0 3px rgba(116, 172, 0, 1);
   }
-  &.dragging {
+  &.dragging, &.saved {
     box-shadow: 0 0 0 2px rgba(116, 172, 0, 1);
   }
   &.hover, &.dragOver {
     box-shadow: 0 0 0 5px rgba(116, 172, 0, 1);
   }
-  &.dragOver.dragging {
+  &.dragOver.dragging, &.failed {
     box-shadow: 0 0 0 2px rgba(255, 0, 0, 0.8);
+  }
+  &.saving {
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.2);
   }
   textarea {
     resize: none;
   }
-  .photoDrag {
+  .photoDrag,
+  .soundDrag {
     cursor: -webkit-grab; cursor: -moz-grab;
   }
   .caption {
@@ -499,6 +503,23 @@ ul.obs > li .card {
           bottom: 0px;
           right: 0px;
         }
+        .Sound {
+          line-height: 1;
+          margin: 36px auto 0;
+          padding: 0px;
+          box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
+          width: 170px;
+          background-color: white;
+          audio {
+            vertical-align: middle;
+            width: 100%;
+            max-width: 100%;
+          }
+          small {
+            display: block;
+            padding: 10px;
+          }
+        }
       }
       .item.next, .item.prev, .item.left, .item.right {
         .btn-close-photo, .btn-enlarge {
@@ -612,15 +633,24 @@ ul.obs > li .card {
         margin: 0px 10px;
       }
     }
-    .projects {
+    .confirm-list {
       margin: 10px 20px;
       font-size: 0.9em;
+      line-height: 20px;
+      .title {
+        line-height: 20px;
+      }
       .count {
         display: block;
-        margin: 0px 20px 10px;
+        margin: 5px 20px 10px;
         font-size: 0.9em;
         line-height: 1;
         color: #666;
+      }
+      .confirm-list-item:last-child {
+        .count {
+          margin: 5px 20px 0px;
+        }
       }
     }
   }
@@ -672,6 +702,7 @@ ul.obs > li .card {
   -moz-transition: opacity 0.2s;
   -webkit-transition: opacity 0.2s;
   -o-transition: opacity 0.2s;
+  min-width: 300px;
   &.open {
     opacity: 1;
   }

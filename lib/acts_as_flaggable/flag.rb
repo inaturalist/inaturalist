@@ -16,6 +16,8 @@ class Flag < ActiveRecord::Base
     record.resolved_changed? && !record.resolver.blank? && 
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
+
+  blockable_by lambda {|flag| flag.flaggable.try(:user_id) }
   
   # NOTE: Flags belong to a user
   belongs_to :user
@@ -60,7 +62,20 @@ class Flag < ActiveRecord::Base
     end
     true
   end
-  
+
+  def as_indexed_json
+    {
+      id: id,
+      flag: flag,
+      comment: comment,
+      user_id: user_id,
+      resolver_id: user_id,
+      resolved: resolved,
+      created_at: created_at,
+      updated_at: updated_at
+    }
+  end
+
   # Helper class method to lookup all flags assigned
   # to all flaggable types for a given user.
   def self.find_flags_by_user(user)

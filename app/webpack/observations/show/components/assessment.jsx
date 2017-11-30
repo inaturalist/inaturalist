@@ -8,7 +8,7 @@ class Assessment extends React.Component {
     super( props );
     const currentUser = props.config && props.config.currentUser;
     this.state = {
-      open: currentUser ? !currentUser.prefers_hide_obs_show_copyright : true
+      open: currentUser ? !currentUser.prefers_hide_obs_show_quality_metrics : true
     };
   }
 
@@ -18,12 +18,12 @@ class Assessment extends React.Component {
     const loggedIn = config && config.currentUser;
     return (
       <Grid>
-        <div className="QualityMetrics">
+        <div className="QualityMetrics collapsible-section">
           <h3
-            className="collapsable"
+            className="collapsible"
             onClick={ ( ) => {
               if ( loggedIn ) {
-                this.props.updateSession( { prefers_hide_obs_show_copyright: this.state.open } );
+                this.props.updateSession( { prefers_hide_obs_show_quality_metrics: this.state.open } );
               }
               this.setState( { open: !this.state.open } );
             } }

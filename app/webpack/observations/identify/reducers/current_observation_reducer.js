@@ -27,7 +27,7 @@ const updateLoadingForItemInObs = ( item, observation, isLoading ) => {
   return obs;
 };
 
-const currentObservationReducer = ( state = {}, action ) => {
+const currentObservationReducer = ( state = { tab: "info" }, action ) => {
   switch ( action.type ) {
     case SHOW_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
@@ -36,7 +36,8 @@ const currentObservationReducer = ( state = {}, action ) => {
         commentFormVisible: false,
         identificationFormVisible: false,
         captiveByCurrentUser: action.observation.captiveByCurrentUser,
-        reviewedByCurrentUser: action.observation.reviewedByCurrentUser
+        reviewedByCurrentUser: action.observation.reviewedByCurrentUser,
+        imagesCurrentIndex: 0
       } );
     case HIDE_CURRENT_OBSERVATION:
       return Object.assign( {}, state, {
@@ -51,7 +52,8 @@ const currentObservationReducer = ( state = {}, action ) => {
         captiveByCurrentUser: action.captiveByCurrentUser,
         reviewedByCurrentUser: action.reviewedByCurrentUser,
         loadingDiscussionItem: false,
-        currentUserIdentification: action.currentUserIdentification
+        currentUserIdentification: action.currentUserIdentification,
+        keyboardShortcutsShown: false
       } );
     }
     case UPDATE_CURRENT_OBSERVATION:
