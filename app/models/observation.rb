@@ -958,10 +958,10 @@ class Observation < ActiveRecord::Base
   def update_identifications
     return true if @skip_identifications
     return true unless taxon_id_changed?
-    owners_ident = identifications.where(:user_id => user_id).order("id asc").last
+    owners_ident = identifications.where( user_id: user_id ).order( "id asc" ).last
     
     # If there's a taxon we need to make sure the owner's ident agrees
-    if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
+    if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
       # If the owner doesn't have an identification for this obs, make one
       attrs = {
         user: user,
@@ -971,20 +971,20 @@ class Observation < ActiveRecord::Base
         vision: owners_identification_from_vision_requested
       }
       owners_ident = if new_record?
-        self.identifications.build(attrs)
+        self.identifications.build( attrs )
       else
-        self.identifications.create(attrs)
+        self.identifications.create( attrs )
       end
     elsif taxon.blank? && owners_ident && owners_ident.current?
-      if identifications.where(:user_id => user_id).count > 1
-        owners_ident.update_attributes(:current => false, :skip_observation => true)
+      if identifications.where( user_id: user_id ).count > 1
+        owners_ident.update_attributes( current: false, skip_observation: true )
       else
         owners_ident.skip_observation = true
         owners_ident.destroy
       end
     end
     
-    update_stats(:skip_save => true)
+    update_stats( skip_save: true )
     
     true
   end

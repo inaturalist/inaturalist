@@ -377,8 +377,11 @@ class Identification < ActiveRecord::Base
   end
 
   def update_categories
-    return true if skip_observation
-    Identification.update_categories_for_observation( observation )
+    if skip_observation
+      Identification.delay.update_categories_for_observation( observation_id )
+    else
+      Identification.update_categories_for_observation( observation )
+    end
     true
   end
 

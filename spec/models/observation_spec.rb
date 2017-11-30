@@ -499,6 +499,19 @@ describe Observation do
       expect( o.taxon ).to eq taxon_change.output_taxon
     end
 
+    describe "identification category" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      
+      it "should be set" do
+        t = Taxon.make!
+        o = Observation.make!( taxon: t )
+        Delayed::Worker.new.work_off
+        expect( o.identifications.first.taxon ).to eq t
+        expect( o.identifications.first.category ).to eq Identification::LEADING
+      end
+    end
+
   end
 
   describe "updating" do
