@@ -4,7 +4,6 @@ class Announcement < ActiveRecord::Base
   validates_presence_of :placement, :start, :end, :body
 
   scope :in_locale, lambda {|locale|
-    Rails.logger.debug "[DEBUG] locale: #{locale}"
     where("(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale)
   }
 

@@ -4067,6 +4067,14 @@ en:
   verifiable: verifiable
   views:
     views: 'Views'
+    announcements:
+      locales_desc: |
+        CMD- or SHIFT-click to select multiple. Not selecting any will show the
+        announcement for all users regardless of locale. Choosing a language
+        locale without a region will *not* target locales with regions, e.g. if
+        you chose en it will not appear for people who have chosen en-US. If you
+        want to target both, choose both. If you want to show an announcement
+        for all members of a site, just leave this blank.
     custom_projects:
       edit:
         custom_project_fields_warning: |
