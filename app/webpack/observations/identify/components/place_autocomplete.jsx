@@ -6,7 +6,8 @@ class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     const opts = Object.assign( {}, this.props, {
-      idEl: $( "input[name='place_id']", domNode )
+      idEl: $( "input[name='place_id']", domNode ),
+      react: true
     } );
     $( "input[name='place_name']", domNode ).placeAutocomplete( opts );
     this.fetchPlace( );

@@ -240,7 +240,7 @@ $.fn.genericAutocomplete = function( options ) {
     if( id && id > 0 ) {
       options.idEl.val( null );
     }
-    if( options.afterUnselect ) { options.afterUnselect( ); }
+    if( options.afterUnselect ) { options.afterUnselect( id ); }
     field.selection = null;
   });
   field.bind( "resetAll", function( e ) {

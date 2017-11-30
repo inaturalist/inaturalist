@@ -39,7 +39,6 @@ class SearchBar extends React.Component {
       allReviewed,
       allControlledTerms
     } = this.props;
-    const taxonId = params.taxon_id;
     return (
       <form className="SearchBar form-inline">
         <TaxonAutocomplete
@@ -50,8 +49,13 @@ class SearchBar extends React.Component {
           afterSelect={ function ( result ) {
             updateSearchParams( { taxon_id: result.item.id } );
           } }
-          afterUnselect={ function ( ) {
-            if ( taxonId ) {
+          afterUnselect={ idWas => {
+            // Our autocompletes seem to fire afterUnselect for mysterious
+            // reasons sometimes, even when the selected ID was null, leading to
+            // annoying flickering effects and unnecessary requests. In theory
+            // this shouldn't happen, but if it does, this should prevent
+            // updating search params when there wasn't really a change.
+            if ( idWas ) {
               updateSearchParams( { taxon_id: null } );
             }
           } }
@@ -66,8 +70,10 @@ class SearchBar extends React.Component {
             afterSelect={ function ( result ) {
               updateSearchParams( { place_id: result.item.id } );
             } }
-            afterUnselect={ function ( ) {
-              updateSearchParams( { place_id: null } );
+            afterUnselect={ idWas => {
+              if ( idWas ) {
+                updateSearchParams( { place_id: null } );
+              }
             } }
           />
         </span>
