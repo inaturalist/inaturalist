@@ -438,7 +438,8 @@ describe ObservationsController do
 
     it "should include https image urls in widget response" do
       make_research_grade_observation
-      get :index, protocol: :https, format: :widget
+      request.env['HTTPS'] = 'on'
+      get :index, format: :widget
       expect( response.body ).to match /s3.amazonaws.com/
     end
   end
