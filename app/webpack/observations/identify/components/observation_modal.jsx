@@ -248,8 +248,8 @@ class ObservationModal extends React.Component {
         let availableValues = _.filter( ct.values, v => v.label );
         if ( observation.taxon ) {
           availableValues = _.filter( availableValues, v => (
-            !v.valid_within_clade ||
-            _.includes( observation.taxon.ancestor_ids, v.valid_within_clade )
+            !v.taxon_ids ||
+            _.intersection( observation.taxon.ancestor_ids, v.taxon_ids ).length > 0
           ) );
         }
         let valueKeyPosition = 0;
