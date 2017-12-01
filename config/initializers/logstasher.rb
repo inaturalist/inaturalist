@@ -135,7 +135,7 @@ module Logstasher
         payload[:params].delete_if{ |k,v|
           # remove bank params, binary data params, and common or otherwise indexed params
           v.blank? ||
-          v.match( /^data:/ ) ||
+          v.to_s.match( /^data:/ ) ||
           [ :controller, :action, :utf8, :authenticity_token ].include?(k.to_sym)
         }.map{ |k,v|
           # flatten out nested object and complex params like uploads
