@@ -415,7 +415,7 @@ I18n.translations["bg"] = {
     }
   },
   "identifications": "Разпознавания",
-  "identifiers": "Разпознавачи",
+  "identify_observations": "Разпознай наблюдения",
   "identify_title": "Разпознай",
   "info": "Информация",
   "insects": "насекоми",
@@ -536,7 +536,6 @@ I18n.translations["bg"] = {
   "observations_map": "Наблюдения / Карта",
   "observed": "Наблюдавано",
   "observed_on": "Наблюдаван на",
-  "observers": "Наблюдатели",
   "open": "отвори",
   "open_": "Отваряне",
   "or": "или",
@@ -624,7 +623,6 @@ I18n.translations["bg"] = {
       "zone": "зона"
     }
   },
-  "places": "Места",
   "places_added_by_members_of_the_community": "Места добавени от потребителите на общността",
   "places_maintained_by_site_admins": "Места поддържани от администраторите на сайта",
   "places_name": {
@@ -1298,7 +1296,6 @@ I18n.translations["br"] = {
       "zone": "takad"
     }
   },
-  "places": "Lec'hioù",
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrika",
@@ -1942,7 +1939,7 @@ I18n.translations["ca"] = {
     }
   },
   "identifications": "Identificacions",
-  "identifiers": "Identificadors",
+  "identify_observations": "Identifiqueu observacions",
   "identify_title": "Identificar",
   "if_for_some_reason_a_user_doesnt_agree": "Si per algun motiu un usuari no està d'acord amb el tàxon de la comunitat, el poden refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que l'observació només pot ser de grau de recerca si la comunitat està d'acord amb ella.",
   "import": "Importa",
@@ -2158,7 +2155,6 @@ I18n.translations["ca"] = {
   "observations_with_this_field_and_value": "Observacions amb aquest camp i valor",
   "observed": "Observat el",
   "observed_on": "Observat el",
-  "observers": "Observadors",
   "of": "de",
   "offensive_inappropriate": "ofensiu/inadequat",
   "ok": "D’acord",
@@ -2287,7 +2283,6 @@ I18n.translations["ca"] = {
     }
   },
   "placeholder": "Posició",
-  "places": "Llocs",
   "places_added_by_members_of_the_community": "Llocs afegits per membres de la comunitat",
   "places_maintained_by_site_admins": "Llocs mantinguts per administradors del lloc",
   "places_name": {
@@ -3528,12 +3523,13 @@ I18n.translations["en"] = {
     }
   },
   "identifications": "Identifications",
-  "identifiers": "Identifiers",
+  "identify_observations": "Identify observations",
   "identify_title": "Identify",
   "if_for_some_reason_a_user_doesnt_agree": "If for some reason you don't agree with the community taxon, you can reject it,\nwhich means your ID is the one used for linking to other observations, updating life lists,\netc. It also means your observation can only become research grade when the community agrees\nwith you.\n",
   "ignore_and_continue": "Ignore and continue",
   "import": "Import",
   "improving": "Improving",
+  "in_progress": "in progress",
   "inactive_taxon": "inactive taxon",
   "inappropriate_content": "Inappropriate content?",
   "including": "including",
@@ -3750,8 +3746,13 @@ I18n.translations["en"] = {
   "observations_with_this_field_and_value": "Observations with this field and value",
   "observed": "Observed",
   "observed_on": "Observed on",
-  "observers": "Observers",
   "of": "of",
+  "of_identifiers": "identifiers",
+  "of_observations": "observations",
+  "of_observers": "observers",
+  "of_places": "places",
+  "of_species": "species",
+  "of_this_taxon": "of this taxon",
   "offensive_inappropriate": "offensive / inappropriate",
   "ok": "OK",
   "old_observation_form": "Old observation form (deprecated)",
@@ -3879,7 +3880,6 @@ I18n.translations["en"] = {
     }
   },
   "placeholder": "Placeholder",
-  "places": "Places",
   "places_added_by_members_of_the_community": "Places added by members of the community",
   "places_maintained_by_site_admins": "Places maintained by site admins",
   "places_name": {
@@ -4598,6 +4598,16 @@ I18n.translations["es"] = {
   "all": "Todos",
   "all_flags_must_be_resolved": "Se deben solucionar todos los indicadores",
   "all_rank_added_to_the_database": {
+    "class": "Se añadieron todas las clases a la base de datos",
+    "family": "Se añadieron todas las familias a la base de datos",
+    "form": "Se añadieron todas las formas a la base de datos",
+    "infraclass": "Se añadieron todas las infraclases a la base de datos",
+    "section": "Se añadieron todas las secciones a la base de datos",
+    "species": "Se añadieron todas las especies a la base de datos",
+    "subfamily": "Se añadieron todas las subfamilias a la base de datos",
+    "subphylum": "Se añadieron todos los subfilos a la base de datos",
+    "superclass": "Se añadieron todas las superclases a la base de datos",
+    "tribe": "Se añadieron todas las tribus a la base de datos"
   },
   "all_rights_reserved": "todos los derechos reservados",
   "all_taxa": {
@@ -5007,6 +5017,7 @@ I18n.translations["es"] = {
   "has_sounds": "tiene sonidos",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Éstas son nuestras sugerencias principales de especies",
+  "hide_uncountable_species": "Esconder especies incontables",
   "high": "alta",
   "history": "Historial",
   "id_categories": {
@@ -5017,12 +5028,13 @@ I18n.translations["es"] = {
     }
   },
   "identifications": "Identificaciones",
-  "identifiers": "Identificadores",
+  "identify_observations": "Identificar observaciones",
   "identify_title": "Identificar",
-  "if_for_some_reason_a_user_doesnt_agree": "Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizando listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.",
+  "if_for_some_reason_a_user_doesnt_agree": "Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.",
   "ignore_and_continue": "Ignorar y continuar",
   "import": "Importar",
   "improving": "Mejorando",
+  "in_progress": "en curso",
   "inactive_taxon": "Especie o grupo inactivo",
   "inappropriate_content": "¿Contenido inapropiado?",
   "including": "incluyendo",
@@ -5168,7 +5180,9 @@ I18n.translations["es"] = {
   "more_import_options": "Más opciones de importación",
   "more_info": "Más información",
   "more_photos": "Más fotos",
+  "most_observed_introduced_species": "Especies introducidas más observadas",
   "most_observed_species": "Especies más observadas",
+  "most_observed_threatened_species": "Especies amenazadas más observadas",
   "most_recent_observation_by_date_observed": "Observación comprobable más reciente por fecha de observación",
   "multiple": "Múltiple",
   "multiple_select_option": "-- múltiples --",
@@ -5237,8 +5251,10 @@ I18n.translations["es"] = {
   "observations_with_this_field_and_value": "Observaciones con este campo y valor",
   "observed": "Observado el",
   "observed_on": "Observado el",
-  "observers": "Observadores",
   "of": "de",
+  "of_identifiers": "identificadores",
+  "of_observations": "observaciones",
+  "of_places": "lugares",
   "offensive_inappropriate": "ofensivo / inapropiado",
   "ok": "Aceptar",
   "old_observation_form": "Antiguó registro de observaciones",
@@ -5289,7 +5305,7 @@ I18n.translations["es"] = {
       "Point_of_Interest": "Punto de interés",
       "Postal_Code": "Código postal",
       "Region": "Región",
-      "Sports_Team": "Equipo Deportivo",
+      "Sports_Team": "Equipo deportivo",
       "State": "Estado",
       "Street": "Calle",
       "Street_Segment": "Segmento de Calle",
@@ -5366,7 +5382,6 @@ I18n.translations["es"] = {
     }
   },
   "placeholder": "Posición",
-  "places": "Lugares",
   "places_added_by_members_of_the_community": "Lugares añadidos por miembros de la comunidad",
   "places_maintained_by_site_admins": "Lugares mantenidos por administradores del sitio",
   "places_name": {
@@ -5429,6 +5444,8 @@ I18n.translations["es"] = {
   "profile": "Perfil",
   "project": "Proyecto",
   "projects": "Proyectos",
+  "proposed_taxa_that_contradict_the_community_id": "Taxa propuesto que contra la ID de Comunidad",
+  "proposed_taxa_that_support_the_community_id": "Taxa propuesto que apoya la ID de Comunidad",
   "protozoans": "protozoarios",
   "public_domain": "Dominio público",
   "purple": "púrpura",
@@ -5615,6 +5632,7 @@ I18n.translations["es"] = {
   "top_identifiers": "Top identificadores",
   "top_identifiers_of_taxon": "Identificadores principales de %{taxon}",
   "top_observer": "Mayor observador",
+  "top_observers": "Mejores observadores",
   "top_species": "Especie superior",
   "total_observations": "Total de observaciones",
   "trending": "Tendencias",
@@ -5708,7 +5726,8 @@ I18n.translations["es"] = {
     "shared": {
       "blocked": {
         "youve_been_blocked": "Te han bloqueado",
-        "youve_been_blocked_desc": "La persona propietaria de este recurso te ha bloqueado, lo que evita que te comuniques con él o ella. La mayoría de las funciones interactivas de esta página no funcionará."
+        "youve_been_blocked_desc": "La persona propietaria de este recurso te ha bloqueado, lo que evita que te comuniques con él o ella. La mayoría de las funciones interactivas de esta página no funcionará.",
+        "youve_blocked": "Has bloqueado a esta persona"
       },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto se marcó como spam"
@@ -5806,6 +5825,7 @@ I18n.translations["es"] = {
     "other": "<span class='count'>%{count}</span> observaciones revisadas"
   },
   "x_of_y": "%{x} de %{y}",
+  "x_of_y_people_over_two_thirds_agree_it_is": "%{x} of %{y} gente (mas de 2/3) estan de acuerdo con esto",
   "x_others": {
     "one": "1 más",
     "other": "%{count} más"
@@ -6325,7 +6345,6 @@ I18n.translations["es-MX"] = {
   "observations_map": "Observaciones / Mapa",
   "observed": "Observado",
   "observed_on": "Observado en",
-  "observers": "Observadores",
   "of": "de",
   "offensive_inappropriate": "ofensivo / inapropiado",
   "old_observation_form": "Antiguó registro de observaciones",
@@ -6415,7 +6434,6 @@ I18n.translations["es-MX"] = {
       "zone": "zona"
     }
   },
-  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -7251,7 +7269,6 @@ I18n.translations["eu"] = {
   "observations_map": "Behaketak / Mapa",
   "observed": "Hau behatuta:",
   "observed_on": "Hau behatuta:",
-  "observers": "Begiraleak",
   "of": "hemendik:",
   "offensive_inappropriate": "iraingarria/desegokia",
   "open": "Transparente",
@@ -7343,7 +7360,6 @@ I18n.translations["eu"] = {
       "zone": "eremua"
     }
   },
-  "places": "Tokiak",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrika",
@@ -8064,7 +8080,6 @@ I18n.translations["fi"] = {
   "not_evaluated": "arvioimatta jätetty",
   "observation": "Havainto",
   "observations": "Havainnot",
-  "observers": "Havainnoijat",
   "offensive_inappropriate": "loukkaava / sopimaton",
   "other_species_commonly_misidentified_as_this_species": "Lajeja, jotka usein määritetään virheellisesti täksi lajiksi",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Lajeja, jotka usein määritetään virheellisesti täksi lajiksi <a href=\"%{url}\">%{place}</a>",
@@ -8086,7 +8101,6 @@ I18n.translations["fi"] = {
       "unknown": "tuntematon"
     }
   },
-  "places": "Paikat",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrikka",
@@ -8734,12 +8748,13 @@ I18n.translations["fr"] = {
     }
   },
   "identifications": "Identifications",
-  "identifiers": "Identificateurs",
+  "identify_observations": "Identifier les observations",
   "identify_title": "Identifier",
   "if_for_some_reason_a_user_doesnt_agree": "Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est\nd’accord avec vous.",
   "ignore_and_continue": "Ignorer et continuer",
   "import": "Importer",
   "improving": "Amélioration",
+  "in_progress": "en cours",
   "inactive_taxon": "taxon inactif",
   "inappropriate_content": "Contenu inapproprié ?",
   "including": "y compris",
@@ -8955,8 +8970,12 @@ I18n.translations["fr"] = {
   "observations_with_this_field_and_value": "Observations avec ce champ et cette valeur",
   "observed": "Observé",
   "observed_on": "Observé le",
-  "observers": "Observateurs",
   "of": "de",
+  "of_identifiers": "identificateurs",
+  "of_observations": "observations",
+  "of_observers": "observateurs",
+  "of_places": "lieux",
+  "of_species": "espèce",
   "offensive_inappropriate": "injurieux/inapproprié",
   "ok": "OK",
   "old_observation_form": "Ancien formulaire d’observation (désuet)",
@@ -9084,7 +9103,6 @@ I18n.translations["fr"] = {
     }
   },
   "placeholder": "Signet (élément de substitution)",
-  "places": "Lieux",
   "places_added_by_members_of_the_community": "Lieux ajoutés par des membres de la communauté",
   "places_maintained_by_site_admins": "Lieux entretenus par les administrateurs du site",
   "places_name": {
@@ -9148,7 +9166,7 @@ I18n.translations["fr"] = {
   "project": "Projet",
   "projects": "Projets",
   "proposed_taxa_that_contradict_the_community_id": "Taxons proposés qui sont en contradiction avec l’ID de la communauté",
-  "proposed_taxa_that_support_the_community_id": "Taxons proposés qui supportent l’ID de la communauté",
+  "proposed_taxa_that_support_the_community_id": "Taxons proposés qui confirment l’ID de la communauté",
   "protozoans": "protozoaires",
   "public_domain": "Domaine public",
   "purple": "pourpre",
@@ -10055,7 +10073,6 @@ I18n.translations["gl"] = {
       "zone": "Zona"
     }
   },
-  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -10833,7 +10850,7 @@ I18n.translations["id"] = {
     }
   },
   "identifications": "Mengidentifikasi",
-  "identifiers": "yang mengidentifikasi",
+  "identify_observations": "Mengidentifikasi pengamatan",
   "identify_title": "Mengenali",
   "import": "Masukkan",
   "inactive_taxon": "takson yang tidak aktif",
@@ -10995,7 +11012,6 @@ I18n.translations["id"] = {
   "observations_map": "Pengamatan / Peta",
   "observed": "Diamati",
   "observed_on": "Diamati pada",
-  "observers": "Pengamat",
   "of": "dari",
   "offensive_inappropriate": "ofensif / tidak pantas",
   "ok": "Oke",
@@ -11097,7 +11113,6 @@ I18n.translations["id"] = {
       "zone": "zona"
     }
   },
-  "places": "Tempat",
   "places_added_by_members_of_the_community": "Tempat ditambahkan oleh anggota dari komunitas",
   "places_maintained_by_site_admins": "Tempat diatur oleh situs admin",
   "places_name": {
@@ -11483,6 +11498,33 @@ I18n.translations["it"] = {
   "all": "Tutto",
   "all_flags_must_be_resolved": "Tutte le segnalazioni devo essere risolte",
   "all_rank_added_to_the_database": {
+    "class": "Tutte le classi aggiunte al database",
+    "epifamily": "Tutte le epifamiglie aggiunte al database",
+    "family": "Tutte le famiglie aggiunte al database",
+    "form": "Tutte le forme aggiunte al database",
+    "genus": "Tutti i generi aggiunti al database",
+    "genushybrid": "Tutti i generi-ibridi aggiunti al database",
+    "hybrid": "Tutti gli ibridi aggiunti al database",
+    "infraclass": "Tutte le infraclassi aggiunte al database",
+    "infraorder": "Tutti gli infraordini aggiunti al database",
+    "order": "Tutti gli ordini aggiunti al database",
+    "phylum": "Tutti i phyla aggiunti al database",
+    "section": "Tutte le sezioni aggiunte al database",
+    "species": "Tutte le specie aggiunte al database",
+    "subclass": "Tutte le subclassi aggiunte al database",
+    "subfamily": "Tutte le subfamiglie aggiunte al database",
+    "subgenus": "Tutti i subgeneri aggiunti al database",
+    "suborder": "Tutti i subordini aggiunti al database",
+    "subphylum": "Tutti i subphyla aggiunti al database",
+    "subsection": "Tutte le subsezioni aggiunte al database",
+    "subspecies": "Tutte le sottospecie aggiunte al database",
+    "subtribe": "Tutte le subtribù aggiunte al database",
+    "superclass": "Tutte le superclassi aggiunte al database",
+    "superfamily": "Tutte le superfamiglie aggiunte al database",
+    "superorder": "Tutti i superordini aggiunti al database",
+    "supertribe": "Tutte le supertribù aggiunte al database",
+    "tribe": "Tutte le tribù aggiunte al database",
+    "variety": "Tutte le varietà aggiunte al database"
   },
   "all_rights_reserved": "Tutti i diritti riservati",
   "all_taxa": {
@@ -11887,12 +11929,13 @@ I18n.translations["it"] = {
     }
   },
   "identifications": "Identificazioni",
-  "identifiers": "Identificatori",
+  "identify_observations": "Identifica osservazioni",
   "identify_title": "Identifica",
   "if_for_some_reason_a_user_doesnt_agree": "Se per qualche ragione non concordi con il taxon della comunità, puoi rifiutarlo; significa che la tua ID è quella usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa anche che le tue osservazioni possono raggiungere il Livello Ricerca solo quando la comunità è d'accordo con te.",
   "ignore_and_continue": "Ignora e continua",
   "import": "Importa",
   "improving": "Primo suggerimento",
+  "in_progress": "in corso",
   "inactive_taxon": "taxon inattivo",
   "inappropriate_content": "Contenuto inappropriato?",
   "including": "incluso",
@@ -12108,8 +12151,12 @@ I18n.translations["it"] = {
   "observations_with_this_field_and_value": "Osservazioni con questo stesso campo e valore",
   "observed": "Osservata",
   "observed_on": "Osservata il",
-  "observers": "Osservatori",
   "of": "di",
+  "of_identifiers": "identificatori",
+  "of_observations": "osservazioni",
+  "of_observers": "osservatori",
+  "of_places": "luoghi",
+  "of_species": "specie",
   "offensive_inappropriate": "offensivo / inappropriato",
   "ok": "OK",
   "old_observation_form": "Vecchio formulario dell'osservazione (obsoleto)",
@@ -12237,7 +12284,6 @@ I18n.translations["it"] = {
     }
   },
   "placeholder": "Segnaposto",
-  "places": "Luoghi",
   "places_added_by_members_of_the_community": "Luogo aggiunto dai membri della community",
   "places_maintained_by_site_admins": "Luoghi mantenuti dagli amministratori",
   "places_name": {
@@ -12447,6 +12493,7 @@ I18n.translations["it"] = {
   "tags": "Etichette",
   "taxon": "Taxon",
   "taxon_changes": "Modifiche del taxon",
+  "taxon_curators": "Curatori del taxon",
   "taxon_drop": "elimina taxon",
   "taxon_map": {
     "overlays": "Livelli"
@@ -13147,7 +13194,7 @@ I18n.translations["ja"] = {
     }
   },
   "identifications": "同定",
-  "identifiers": "ID判定者",
+  "identify_observations": "観察記録をID判定",
   "identify_title": "ID判定",
   "import": "インポート",
   "inactive_taxon": "無効な分類群",
@@ -13321,7 +13368,6 @@ I18n.translations["ja"] = {
   "observations_total": "観察記録合計",
   "observed": "観察済",
   "observed_on": "観測日時",
-  "observers": "観察者",
   "of": "の",
   "offensive_inappropriate": "不快／不適切",
   "ok": "OK",
@@ -13443,7 +13489,6 @@ I18n.translations["ja"] = {
     }
   },
   "placeholder": "プレースホルダー",
-  "places": "場所",
   "places_added_by_members_of_the_community": "コミュニティーメンバーによって追加された場所",
   "places_maintained_by_site_admins": "サイト管理者によって管理されている場所",
   "places_name": {
@@ -13799,6 +13844,15 @@ I18n.translations["ko"] = {
   "aka": "다른 말로",
   "all": "모두",
   "all_rank_added_to_the_database": {
+    "class": "데이터베이스에 추가된 모든 강",
+    "family": "데이터베이스에 추가된 모든 과",
+    "genus": "데이터베이스에 추가된 모든 속",
+    "order": "데이터베이스에 추가된 모든 목",
+    "species": "데이터베이스에 추가된 모든 종",
+    "subfamily": "데이터베이스에 추가된 모든 아과",
+    "suborder": "데이터베이스에 추가된 모든 아목",
+    "subspecies": "데이터베이스에 추가된 모든 아종",
+    "superclass": "데이터베이스에 추가된 모든 상강"
   },
   "all_rights_reserved": "모든 권리는 저작권자에게 있습니다.",
   "all_taxa": {
@@ -14079,11 +14133,11 @@ I18n.translations["ko"] = {
     }
   },
   "identifications": "동정",
-  "identifiers": "동정한 사용자들",
   "identify_title": "동정함",
   "ignore_and_continue": "무시하고 계속하기",
   "import": "가져오기",
   "improving": "개선 중",
+  "in_progress": "진행 중",
   "inactive_taxon": "비활성 분류군",
   "inappropriate_content": "내용이 부적절합니까?",
   "info": "정보",
@@ -14228,6 +14282,9 @@ I18n.translations["ko"] = {
   "observations": "관찰",
   "observations_": "관찰",
   "observations_map": "관찰/지도",
+  "of_identifiers": "식별자",
+  "of_places": "장소",
+  "of_species": "종",
   "offensive_inappropriate": "불쾌 / 부적절",
   "ok": "확인",
   "open": "열기",
@@ -14269,7 +14326,6 @@ I18n.translations["ko"] = {
       "unknown": "알 수 없음"
     }
   },
-  "places": "장소",
   "places_name": {
     "afghanistan": "아프가니스탄",
     "africa": "아프리카",
@@ -15113,7 +15169,6 @@ I18n.translations["mk"] = {
       "zone": "подрачје"
     }
   },
-  "places": "Места",
   "places_name": {
     "afghanistan": "Авганистан",
     "africa": "Африка",
@@ -15868,7 +15923,7 @@ I18n.translations["oc"] = {
     }
   },
   "identifications": "Identificacions",
-  "identifiers": "Identificants",
+  "identify_observations": "Identificar las observacions",
   "identify_title": "Identificar",
   "import": "Importar",
   "inactive_taxon": "taxon inactiu",
@@ -16072,7 +16127,6 @@ I18n.translations["oc"] = {
       "zone": "zòna"
     }
   },
-  "places": "Luòcs",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Africa",
@@ -16855,7 +16909,7 @@ I18n.translations["pt-BR"] = {
     }
   },
   "identifications": "Identificações",
-  "identifiers": "Identificadores",
+  "identify_observations": "Identifique observações",
   "identify_title": "Identificar",
   "if_for_some_reason_a_user_doesnt_agree": "Se por alguma razão um usuário não concorda com o táxon da comunidade, ele rejeitá-la, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.",
   "import": "Importar",
@@ -17070,7 +17124,6 @@ I18n.translations["pt-BR"] = {
   "observations_with_this_field_and_value": "Observações com este campo e valor",
   "observed": "Observado",
   "observed_on": "Observado em",
-  "observers": "Observadores",
   "of": "de",
   "offensive_inappropriate": "ofensivo / inapropriado",
   "ok": "OK",
@@ -17198,7 +17251,6 @@ I18n.translations["pt-BR"] = {
     }
   },
   "placeholder": "Posição",
-  "places": "Lugares",
   "places_added_by_members_of_the_community": "Locais adicionados por membros da comunidade",
   "places_maintained_by_site_admins": "Locais mantidos por administradores",
   "places_name": {
@@ -18505,6 +18557,9 @@ I18n.translations["zh-CN"] = {
   "aka": "也就是",
   "all": "全部",
   "all_rank_added_to_the_database": {
+    "genus": "所有属已添加到数据库",
+    "species": "所有物种已添加到数据库",
+    "subsection": "所有亚组已添加到数据库"
   },
   "all_rights_reserved": "保留所有权利",
   "all_taxa": {
@@ -18893,11 +18948,12 @@ I18n.translations["zh-CN"] = {
     }
   },
   "identifications": "身份证明",
-  "identifiers": "标识符",
+  "identify_observations": "对观察记录进行鉴定",
   "identify_title": "鉴定",
   "ignore_and_continue": "忽略并继续",
   "import": "导入",
   "improving": "正在改进",
+  "in_progress": "进行中",
   "inactive_taxon": "不活跃的分类单元",
   "including": "包括",
   "info": "信息",
@@ -19094,8 +19150,12 @@ I18n.translations["zh-CN"] = {
   "observations_total": "观察总计",
   "observed": "已观察",
   "observed_on": "观察于",
-  "observers": "观察者",
   "of": "的",
+  "of_identifiers": "标识符",
+  "of_observations": "观察",
+  "of_observers": "观察者",
+  "of_places": "地点",
+  "of_species": "种",
   "ok": "确定",
   "old_observation_form": "旧观察表单（已弃用）",
   "open": "打开",
@@ -19209,7 +19269,6 @@ I18n.translations["zh-CN"] = {
     }
   },
   "placeholder": "占位符",
-  "places": "地方",
   "places_added_by_members_of_the_community": "由社群成员添加的地点",
   "places_maintained_by_site_admins": "由网站管理员维护的地点",
   "places_name": {
@@ -19404,6 +19463,7 @@ I18n.translations["zh-CN"] = {
   "tags": "标签",
   "taxon": "类群",
   "taxon_changes": "分类单元更改",
+  "taxon_curators": "物种馆长",
   "taxon_map": {
     "overlays": "覆盖图"
   },
@@ -19601,6 +19661,10 @@ I18n.translations["zh-CN"] = {
     "one": "<a href='%{url}'>1种物种</a>",
     "other": "<a href='%{url}'>%{count} 种物种</a>"
   },
+  "x_suggestions_filtered_by_colon": {
+    "one": "1个建议过滤者：",
+    "other": "%{count}个建议过滤者："
+  },
   "yellow": "黄色",
   "yes": "是",
   "yes_reject_it": "好的，拒绝它",
@@ -19745,6 +19809,33 @@ I18n.translations["zh-TW"] = {
   "all": "所有",
   "all_flags_must_be_resolved": "所有標籤需要被解決",
   "all_rank_added_to_the_database": {
+    "class": "所有添加在資料庫的綱",
+    "epifamily": "所有添加在資料庫的領科",
+    "family": "所有添加在資料庫的科",
+    "form": "所有添加在資料庫的表單",
+    "genus": "所有添加在資料庫的屬",
+    "genushybrid": "所有添加在資料庫的屬間雜種",
+    "hybrid": "所有添加在資料庫的雜種",
+    "infraclass": "所有添加在資料庫的下綱",
+    "infraorder": "所有添加在資料庫的下目",
+    "order": "所有添加在資料庫的目",
+    "phylum": "所有添加在資料庫的門",
+    "section": "所有添加在資料庫的組",
+    "species": "所有添加在資料庫的物種",
+    "subclass": "所有添加在資料庫的亞綱",
+    "subfamily": "所有添加在資料庫的亞科",
+    "subgenus": "所有添加在資料庫的亞屬",
+    "suborder": "所有添加在資料庫的亞目",
+    "subphylum": "所有添加在資料庫的亞門",
+    "subsection": "所有添加在資料庫的亞組",
+    "subspecies": "所有添加在資料庫的亞種",
+    "subtribe": "所有添加在資料庫的亞族",
+    "superclass": "所有添加在資料庫的總綱",
+    "superfamily": "所有添加在資料庫的總科",
+    "superorder": "所有添加在資料庫的總目",
+    "supertribe": "所有添加在資料庫的總族",
+    "tribe": "所有添加在資料庫的族",
+    "variety": "所有添加在資料庫的變種"
   },
   "all_rights_reserved": "保留所有權利",
   "all_taxa": {
@@ -20076,7 +20167,7 @@ I18n.translations["zh-TW"] = {
   "evidence_of_organism": "生物證據",
   "exact_date": "精確日期",
   "exact_location": "精確位置",
-  "examples_of_ranking_organizations": "組織排名範例",
+  "examples_of_ranking_organizations": "有機體級別範例",
   "exit_full_screen": "退出全螢幕",
   "exporting": "匯出中...",
   "extinct": "絕種",
@@ -20149,13 +20240,14 @@ I18n.translations["zh-TW"] = {
     }
   },
   "identifications": "鑑定",
-  "identifiers": "鑑定人",
+  "identify_observations": "鑑定觀察",
   "identify_title": "鑑定",
   "if_for_some_reason_a_user_doesnt_agree": "若出自於某種原因您不同意社群物種分類；您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。",
   "ignore_and_continue": "忽略並繼續",
   "import": "匯入",
   "improving": "改進中",
-  "inactive_taxon": "不活躍的物種分類",
+  "in_progress": "任務進行中",
+  "inactive_taxon": "不作用的物種分類",
   "inappropriate_content": "不適當內容？",
   "including": "包含",
   "info": "資訊",
@@ -20370,8 +20462,12 @@ I18n.translations["zh-TW"] = {
   "observations_with_this_field_and_value": "帶有此欄位與內容值的觀察",
   "observed": "已觀察",
   "observed_on": "已觀察在",
-  "observers": "觀察者",
   "of": "的",
+  "of_identifiers": "個辨認者",
+  "of_observations": "項觀察記錄",
+  "of_observers": "個觀察者",
+  "of_places": "個地點",
+  "of_species": "種物種",
   "offensive_inappropriate": "冒犯/不適當",
   "ok": "確定",
   "old_observation_form": "舊式觀察表單（已廢棄使用）",
@@ -20499,7 +20595,6 @@ I18n.translations["zh-TW"] = {
     }
   },
   "placeholder": "位置標誌符",
-  "places": "地點",
   "places_added_by_members_of_the_community": "由社群成員添加的地點",
   "places_maintained_by_site_admins": "由網站管理員維護的地點",
   "places_name": {
@@ -20571,8 +20666,8 @@ I18n.translations["zh-TW"] = {
   "quality_grade_": "品質等級",
   "range": "範圍",
   "range_from": "範圍來自",
-  "rank": "排名",
-  "rank_position": "排名",
+  "rank": "級別",
+  "rank_position": "級別",
   "ranks": {
     "kingdom": "界",
     "subkingdom": "亞界",
@@ -20709,6 +20804,7 @@ I18n.translations["zh-TW"] = {
   "tags": "標籤",
   "taxon": "物種分類",
   "taxon_changes": "物種分類更改",
+  "taxon_curators": "物種分類策展人",
   "taxon_drop": "物種分類去除",
   "taxon_map": {
     "overlays": "覆蓋物"
@@ -20833,7 +20929,7 @@ I18n.translations["zh-TW"] = {
       },
       "show": {
         "ancestor_disagreements_desc": "# 已鑑定物種分類群來自於某一物種分類的原型，不過是在使用此物種分類的首次鑑定之後創建",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  社群物種分類（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。\n  若您對於我們如何挑選社群物種分類方面有興趣，請查看下方演算法的備註，不過通常我們是\n  採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到一個有著部份不被\n  認同的物種分類群之更高層級物種分類（例如：您認為對象應是王蛇；但我認為是響尾蛇，因此\n  iNat 最後會挑選包含所有蛇類的亞目）。演算法在意見分歧時有著好處，因為我們發現在過往\n  異議者通常會是對的。\n</p>\n<p class=\"ui\">\n  社群物種分類是我們在分享觀察給資料合作者、連結在網站上同名稱物種分類觀察、更新您的\n  生物列表等等情況時所用的物種分類。若基於某些原因您不願意認同社群物種分類，您可以選擇\n  退出，這代表著您只能用您的鑑定來連結至其它觀察、更新生物列表等等。這也代表著您的觀察\n  內容在社群認同<em>您</em>之前；無法成為研究等級。若您不喜歡社群物種分類群的想法，\n  您可以透過<a href=\"/users/edit\" target=\"_blank\">編輯您的設定</a>來完全退出。\n</p>\n<p class=\"ui\">\n  <strong>演算法：</strong>用於所有已鑑定、以及有包含前著的物種分類群（例如：<i>人</i>屬包含著<i>智人</i>），\n  以比例方式向任一物種分類超過累積鑑定總和的累積鑑定數量之間計分，更謹慎的鑑定數量添加在物種分類\n  首個鑑定之後，並且鑑定數量完全不同（註：物種分類群鑑定不包含被積分的物種分類群）。對於已鑑定且\n  積分有超過 2/3 ；以及至少 2 個鑑定的物種分類群，請挑選最低排名的物種分類。\n</p>",
+        "community_taxon_desc_html": "<p class=\"ui\">\n  社群物種分類（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。\n  若您對於我們如何挑選社群物種分類方面有興趣，請查看下方演算法的備註，不過通常我們是\n  採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到一個有著部份不被\n  認同的物種分類群之更高層級物種分類（例如：您認為對象應是王蛇；但我認為是響尾蛇，因此\n  iNat 最後會挑選包含所有蛇類的亞目）。演算法在意見分歧時有著好處，因為我們發現在過往\n  異議者通常會是對的。\n</p>\n<p class=\"ui\">\n  社群物種分類是我們在分享觀察給資料合作者、連結在網站上同名稱物種分類觀察、更新您的\n  生物列表等等情況時所用的物種分類。若基於某些原因您不願意認同社群物種分類，您可以選擇\n  退出，這代表著您只能用您的鑑定來連結至其它觀察、更新生物列表等等。這也代表著您的觀察\n  內容在社群認同<em>您</em>之前；無法成為研究等級。若您不喜歡社群物種分類群的想法，\n  您可以透過<a href=\"/users/edit\" target=\"_blank\">編輯您的設定</a>來完全退出。\n</p>\n<p class=\"ui\">\n  <strong>演算法：</strong>用於所有已鑑定、以及有包含前著的物種分類群（例如：<i>人</i>屬包含著<i>智人</i>），\n  以比例方式向任一物種分類超過累積鑑定總和的累積鑑定數量之間計分，更謹慎的鑑定數量添加在物種分類\n  首個鑑定之後，並且鑑定數量完全不同（註：物種分類群鑑定不包含被積分的物種分類群）。對於已鑑定且\n  積分有超過 2/3 ；以及至少 2 個鑑定的物種分類群，請挑選最低級別的物種分類。\n</p>",
         "cumulative_count_desc": "用於各別物種分類及其所有派生的 # 鑑定",
         "disagreement_count_desc": "# 已鑑定物種分類群不在物種分類的原型之中",
         "identification_count_desc": "#的各別分類單元之鑑定",
@@ -20858,10 +20954,11 @@ I18n.translations["zh-TW"] = {
         "about_conservation_status_desc": "保護狀態總結出一群生物的滅絕風險。",
         "about_establishment_desc": "「確立方式」描述著目前出現的物種如何發生在此處。引進代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。",
         "about_names_desc": "<p>\n  多數生物的分類在語言裡擁有「通用名稱」。這些名稱通常是易於辨別、容易唸出、長期下識用，\n  但多數生物在不同地點裡各擁有不同名稱；即使是在使用同一種語言的情形下。這些在溝通有關\n  這些生物時產生困難。科學家透過採取符合<a href=\"https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95\">二名法</a>的單一「學名」在任一生物分類上來處理問題，\n  但這些名稱通常是建立於多數人不會講的拉丁文上，因此對於多數人這些不像通用名稱那般好記。\n  學名能反應出生物在分類法上的對應位置，因此它們能在科學家推導出有關不同生物之演化關係上\n  更精準的理論時做出更改，但也因此降低在溝通上的實用性；即使是在了解學名的人士上。\n</p>\n<p>\n  古老的格言總結出：「通用名稱的變更來自於地點，學名的變更來自於時間。」\n</p>\n<p>\n  我們嘗試以透過同時顯示通用名稱與學名來解決這些情況，並基於所使用的語言和視圖上的地理資料\n  偏好設定來挑選出通用名稱。\n</p>",
+        "about_taxon_curators_desc": "這些人們管理著包含物種分類的分類樹之內容。如果您想要產生更改，請標記此物種分類、或聯絡那些人們。",
         "charts_help_history": "此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加；但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。",
         "charts_help_other": "我們也另外顯示出用於觀察註解的季節性圖表。註解是用在替觀察添加詮釋資料的採用控制詞彙項目之新系統。就目前為止我們僅使用「生命階段」與「植物物候」（植物開花或結果時期）。我們目前沒有直接添加註解的方式，因此現在我們正試著將來自於觀察欄位的資料轉換至註解。如果您已等不及我們建置好註解系統，您可以透過添加俱有下列值之一的觀察欄位值來貢獻到「生命階段」註解：成體、初羽化、蛹、若蟲、幼蟲、卵，或亞成體。所以特別的是；「生命階段」與「昆蟲生命階段」的欄位都是可行的。對於「植物物候」；我們正查看任何欄位名稱有著字詞「物候」並帶著「開花」或是「結果」，因此「開花物候」欄位也是可使用的。",
         "charts_help_seasonality": "此圖表顯示出物種分類依月份區分的觀察次數。請記住這些是觀察次數，因此會被當生物可被觀察的期間、以及被人們有前來觀察它們的行為所影響。因此某隻鳥在五月裡的觀察次數看似很活躍，但有可能是人們剛好一同在五月觀察；而將其它月份給忽略掉。相同地，如果您發現蜻蜓在六月的次數比一月多，這可能是因為在北半球有比南半球較多人口；而並非蜻蜓是剛好在六月比較活躍，因此在考量這些圖表時可以先查看地圖。當圖表上「可驗證」與「研究等級」觀察次數之間，有出現較低觀察次數以及/或是較大差異時，對這些情況做出疑慮是正確的。",
-        "complete_taxon_desc": "「完整」物種分類群擁有全部派生、目前在網站資料庫裡的現存物種。當有物種分類完成時，能代表著有多少個物種已被觀察；以及有多少個需要被觀察。「完整」物種分類群的物種計數不包含「無法計數」物種，如已滅絕或是非活性物種概念，而它們僅能包含物種，不能是種下分類群。",
+        "complete_taxon_desc": "「完整」物種分類群擁有全部派生、目前在網站資料庫裡的現存具體物種分類群級別。例如：能代表著有多少個物種已被觀察；以及有多少個需要被觀察，就是當對於物種的物種分類完成時。對於物種是完整的「完整」物種分類群；其物種計數不包含「無法計數」物種，如已滅絕或是無作用的物種概念，而它們僅能包含物種，不能像是亞種、或變種的種下分類群。",
         "discoveries_desc": "此物種分類中最新被鑑定的物種",
         "frequency": {
           "research": "研究等級",
@@ -20912,12 +21009,12 @@ I18n.translations["zh-TW"] = {
     "other": "%{count} 個最愛"
   },
   "x_identifications": {
-    "one": "1 物種鑑定",
-    "other": "%{count} 物種鑑定"
+    "one": "1 項鑑定",
+    "other": "%{count} 項鑑定"
   },
   "x_identifications_": {
-    "one": "1 次鑑定",
-    "other": "%{count} 次鑑定"
+    "one": "1 項鑑定",
+    "other": "%{count} 項鑑定"
   },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span>項 匹配的物種分類 ",
@@ -20928,12 +21025,12 @@ I18n.translations["zh-TW"] = {
     "other": "%{count} 此物種有 %{count} 個錯誤鑑定"
   },
   "x_observations": {
-    "one": "1 觀察紀錄",
-    "other": "%{count} 觀察紀錄"
+    "one": "1 項觀察記錄",
+    "other": "%{count} 項觀察記錄"
   },
   "x_observations_": {
-    "one": "1 個觀察",
-    "other": "%{count} 個觀察"
+    "one": "1 項觀察記錄",
+    "other": "%{count} 項觀察記錄"
   },
   "x_observations_failed": {
     "one": "1 個觀察失敗",
