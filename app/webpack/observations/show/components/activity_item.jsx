@@ -166,6 +166,14 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
+  let disagreement;
+  if ( item.disagreement ) {
+    disagreement = (
+      <span className="badge pull-right">
+        Disagreement with taxon { item.previous_observation_taxon_id }
+      </span>
+    );
+  }
   return (
     <div className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
@@ -191,6 +199,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             { relativeTime }
           </time>
           { status }
+          { disagreement }
         </span>
         )}
       >

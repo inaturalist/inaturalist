@@ -39,7 +39,7 @@ import controlledTerms from "../../show/ducks/controlled_terms";
 import qualityMetrics from "../../show/ducks/quality_metrics";
 import flaggingModal from "../../show/ducks/flagging_modal";
 import subscriptions from "../../show/ducks/subscriptions";
-import disagreementAlert from "../ducks/disagreement_alert";
+import disagreementAlert from "../../shared/ducks/disagreement_alert";
 
 const rootReducer = combineReducers( {
   config,

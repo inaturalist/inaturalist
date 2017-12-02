@@ -43,6 +43,7 @@ const IdentificationForm = ( {
       }
       onSubmitIdentification( params, {
         observation: o,
+        taxon: idTaxon,
         potentialDisagreement: !blind && isDisagreement( )
       } );
       // this doesn't feel right... somehow submitting an ID should alter

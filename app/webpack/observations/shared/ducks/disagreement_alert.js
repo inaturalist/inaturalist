@@ -10,8 +10,8 @@ const disagreementAlertReducer = ( state = { visible: false }, action ) => {
   return state;
 };
 
-function showDisagreementAlert( options = {} ) { return { type: SHOW_DISAGREEMENT_ALERT, options }; }
-function hideDisagreementAlert( ) { return { type: HIDE_DISAGREEMENT_ALERT }; }
+const showDisagreementAlert = ( options = {} ) => ( { type: SHOW_DISAGREEMENT_ALERT, options } );
+const hideDisagreementAlert = ( ) => ( { type: HIDE_DISAGREEMENT_ALERT } );
 
 export default disagreementAlertReducer;
 export {

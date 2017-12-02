@@ -1,0 +1,19 @@
+.DisagreementAlert {
+  .SplitTaxon {
+    display: inline;
+  }
+  .btn {
+    .SplitTaxon {
+      font-weight: bold;
+      color: white !important;
+      &.taxon.has-com-name .sciname,
+      &.taxon.has-com-name .display-name,
+      &.taxon.has-com-name .comname {
+        color: white !important;
+      }
+    }
+  }
+  .taxon.has-com-name .display-name {
+    white-space: normal;
+  }
+}

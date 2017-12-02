@@ -1,5 +1,6 @@
 import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
+import ReactDOMServer from "react-dom/server";
 import {
   Modal,
   Button
@@ -14,14 +15,17 @@ class DisagreementAlert extends React.Component {
       onBestGuess,
       onClose,
       onCancel,
-      oldTaxon
+      newTaxon,
+      oldTaxon,
+      backdrop
     } = this.props;
+    const newTaxonHTML = ReactDOMServer.renderToString( <SplitTaxon taxon={newTaxon} forceRank /> );
+    const oldTaxonHTML = ReactDOMServer.renderToString( <SplitTaxon taxon={oldTaxon} forceRank /> );
     return (
       <Modal
         show={visible}
         className="DisagreementAlert"
-        bsSize="small"
-        backdrop={false}
+        backdrop={backdrop}
         onHide={ ( ) => {
           onCancel( );
           onClose( );
@@ -41,37 +45,25 @@ class DisagreementAlert extends React.Component {
               dangerouslySetInnerHTML={ { __html: I18n.t( "do_you_think_this_could_be_html" ) } }
             ></span> <SplitTaxon taxon={oldTaxon} forceRank />?
           </p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            ref="cancel"
-            autoFocus
-            onClick={ ( ) => {
-              onCancel( );
-              onClose( );
-            } }
-          >
-            { I18n.t( "cancel" ) }
-          </Button>
-          <Button
-            bsStyle="danger"
-            onClick={ ( ) => {
-              onDisagree( );
-              onClose( );
-            } }
-          >
-            { I18n.t( "no" ) }
-          </Button>
           <Button
             bsStyle="success"
+            className="btn-block stacked"
             onClick={ ( ) => {
               onBestGuess( );
               onClose( );
             } }
-          >
-            { I18n.t( "yes" ) }
-          </Button>
-        </Modal.Footer>
+            dangerouslySetInnerHTML={ { __html: I18n.t( "i_dont_know_but_taxon_is_my_best_guess", { taxon: newTaxonHTML } ) } }
+          />
+          <Button
+            bsStyle="warning"
+            className="btn-block"
+            onClick={ ( ) => {
+              onDisagree( );
+              onClose( );
+            } }
+            dangerouslySetInnerHTML={ { __html: I18n.t( "i_am_sure_this_is_not_taxon", { taxon: oldTaxonHTML } ) } }
+          />
+        </Modal.Body>
       </Modal>
     );
   }
@@ -84,7 +76,12 @@ DisagreementAlert.propTypes = {
   onDisagree: PropTypes.func,
   onBestGuess: PropTypes.func,
   newTaxon: PropTypes.object,
-  oldTaxon: PropTypes.object
+  oldTaxon: PropTypes.object,
+  backdrop: PropTypes.bool
+};
+
+DisagreementAlert.defaultProps = {
+  onCancel: ( ) => ( true )
 };
 
 export default DisagreementAlert;

@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import _ from "lodash";
 import IdentificationForm from "../components/identification_form";
-import { submitIdentificationWithConfirmation } from "../actions";
 import {
   postIdentification,
   fetchCurrentObservation,
@@ -12,7 +11,7 @@ import {
   showAlert,
   addIdentification
 } from "../actions";
-import { showDisagreementAlert } from "../ducks/disagreement_alert";
+import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 
 // ownProps contains data passed in through the "tag", so in this case
 // <IdentificationFormContainer observation={foo} />
@@ -30,9 +29,6 @@ function mapDispatchToProps( dispatch, ownProps ) {
       const ident = Object.assign( { }, identification, {
         observation: ownProps.observation
       } );
-      // dispatch( submitIdentificationWithConfirmation( ident, {
-      //   confirmationText: options.confirmationText
-      // } ) );
       dispatch( loadingDiscussionItem( ident ) );
       const boundPostIdentification = ( disagreement ) => {
         const params = Object.assign( { }, ident );
@@ -70,7 +66,8 @@ function mapDispatchToProps( dispatch, ownProps ) {
             dispatch( stopLoadingDiscussionItem( ident ) );
             dispatch( addIdentification( ) );
           },
-          oldTaxon: options.observation.taxon
+          oldTaxon: options.observation.taxon,
+          newTaxon: options.taxon
         } ) );
       } else {
         boundPostIdentification( );

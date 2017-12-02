@@ -8,6 +8,7 @@
 @import "../shared/split_taxon";
 @import "../shared/taxon_photo";
 @import "../shared/loading_spinner";
+@import "../shared/disagreement_alert";
 @import "identify/blind";
 @import "identify/suggestions";
 
@@ -231,13 +232,6 @@ body > div > [role="dialog"] .AlertModal .modal-dialog,
 .bootstrap .DisagreementAlert .modal-dialog,
 body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
   margin: 170px auto;
-}
-
-.DisagreementAlert .SplitTaxon {
-  display: inline;
-}
-.DisagreementAlert .taxon.has-com-name .display-name {
-  white-space: normal;
 }
 
 .dropdown-menu.textcomplete-dropdown {
