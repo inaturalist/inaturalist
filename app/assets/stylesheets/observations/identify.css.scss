@@ -253,3 +253,11 @@ body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
   padding: 0;
   bottom: 0;
 }
+.disagreement-group {
+  label:first-child {
+    margin-right: 10px;
+  }
+  input[type="radio"] {
+    margin-right: 3px !important;
+  }
+}

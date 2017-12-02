@@ -38,8 +38,8 @@ const IdentificationForm = ( {
         body: e.target.elements.body.value,
         blind
       };
-      if ( blind && isDisagreement( ) && e.target.elements.dont_disagree ) {
-        params.disagreement = !$( e.target.elements.dont_disagree ).prop( "checked" );
+      if ( blind && isDisagreement( ) && e.target.elements.disagreement ) {
+        params.disagreement = e.target.elements.disagreement.value === "1";
       }
       onSubmitIdentification( params, {
         observation: o,
@@ -50,16 +50,23 @@ const IdentificationForm = ( {
       // the app state and this stuff should flow three here as props
       $( "input[name='taxon_name']", e.target ).trigger( "resetAll" );
       $( e.target.elements.body ).val( null );
-      $( e.target.elements.dont_disagree ).prop( "checked", false );
     }}
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
     <INatTextArea type="textarea" name="body" className="form-control" mentions />
     { blind ? (
-      <div className="form-group">
+      <div className="form-group disagreement-group">
         <label>
-          <input type="checkbox" name="dont_disagree" /> Others could potentially refine this ID
+          <input
+            type="radio"
+            name="disagreement"
+            value="0"
+            defaultChecked
+          /> Others could potentially refine this ID
+        </label>
+        <label>
+          <input type="radio" name="disagreement" value="1" /> This is the most specific ID the evidence justifies
         </label>
       </div>
     ) : null }
