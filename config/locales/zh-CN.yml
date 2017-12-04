@@ -3958,6 +3958,20 @@ zh-CN:
             observation_id:
               must_be_observed_after: 必须在 %{time} 之后被观察
               must_be_observed_before: 必须在 %{time} 之前被观察
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
     attributes:
       assessment:
         description: 描述

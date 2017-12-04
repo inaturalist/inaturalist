@@ -4495,6 +4495,9 @@ it:
     per modificare l'osservazione.
   you_dont_have_permission_to_edit_that_project: Non disponi dei permessi necessari
     per modificare il progetto.
+  you_dont_have_permission_to_edit_that_taxon: Non hai il permesso di modificare quel
+    taxon. Per favore contatta ono dei curatori del taxon o segnala che il taxon richiede
+    modifiche.
   you_dont_have_permission_to_edit_those_photos: Non disponi dei permessi necessari
     per modificare le foto.
   you_faved_this: L'hai aggiunta ai preferiti!
@@ -5981,6 +5984,26 @@ it:
             observation_id:
               must_be_observed_after: deve essere verificato dopo al %{time}
               must_be_observed_before: deve essere rispettato prima del %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
     attributes:
       assessment:
         description: Descrizione
