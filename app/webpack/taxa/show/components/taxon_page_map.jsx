@@ -21,7 +21,9 @@ const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel } ) => {
         gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
         taxonLayers={[{
           taxon: t,
-          observations: true,
+          observations: {
+            verifiable: true
+          },
           gbif: { disabled: true },
           places: true,
           ranges: true
