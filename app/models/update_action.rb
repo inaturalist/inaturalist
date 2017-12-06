@@ -91,8 +91,13 @@ class UpdateAction < ActiveRecord::Base
     updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
-      !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
-      !user.prefers_mention_email_notification? && u.notification == "mention"
+      !user.prefers_identification_email_notification? && u.notifier_type == "Identification" ||
+      !user.prefers_mention_email_notification? && u.notification == "mention" ||
+      !user.prefers_project_added_your_observation_email_notification? && u.notification == "your_observations_added" ||
+      !user.prefers_project_curator_change_email_notification? && u.notification == "curator_change" ||
+      !user.prefers_taxon_change_email_notification? && u.notification == "committed" ||
+      !user.prefers_user_observation_email_notification? && u.notification == "created_observations" ||
+      !user.prefers_taxon_or_place_observation_email_notification? && u.notification == "new_observations"
     end.compact
     return if updates.blank?
 

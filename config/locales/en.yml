@@ -2690,6 +2690,7 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_added_your_observations: Project added your observations
   project_aggregator_filter_error: |
     Projects cannot enable automatic observation aggregation unless the
     project is associated with a place of moderate size or it only allows
@@ -2698,6 +2699,7 @@ en:
   project_assets: Project Assets
   project_cover: Project cover
   project_created_on: created this project on %{date}
+  project_curator_changes: Project curator changes
   project_curator_id: Project curator ID
   project_curator_tools: Project curator tools
   project_curators: Project Curators
@@ -3281,6 +3283,7 @@ en:
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
   taxon_observed_by_user: "%{taxon} observed by %{user}"
+  taxon_or_place_observations: Taxon or place observations
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
   taxon_range_created_notice: Taxon range was successfully created. Please allow a few minutes for it to appear on the maps.
@@ -3669,6 +3672,7 @@ en:
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
+  user_observations: User observations
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user} Lists"
