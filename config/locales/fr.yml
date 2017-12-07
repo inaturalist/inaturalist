@@ -350,6 +350,34 @@ fr:
   all_photos: Toutes les photos
   all_places: Tous les lieux
   all_projects: Tous les projets
+  all_rank_added_to_the_database:
+    phylum: Tous les embranchements ajoutés à la base de données
+    subphylum: Tous les sous-embranchements ajoutés à la base de données
+    superclass: Toutes les super-classes ajoutées à la base de données
+    class: Toutes les classes ajoutées à la base de données
+    subclass: Toutes les sous-classes ajoutées à la base de données
+    infraclass: Toutes les infra-classes ajoutées à la base de données
+    superorder: Tous les super-ordres ajoutés à la base de données
+    order: Tous les ordres ajoutés à la base de données
+    suborder: Tous les sous-ordres ajoutés à la base de données
+    infraorder: Tous les infra-ordres ajoutés à la base de données
+    superfamily: Toutes les super-familles ajoutées à la base de données
+    epifamily: Toutes les épi-familles ajoutées à la base de données
+    family: Toutes les familles ajoutées à la base de données
+    subfamily: Toutes les sous-familles ajoutées à la base de données
+    supertribe: Toutes les super-tribus ajoutées à la base de données
+    tribe: Toutes les tribus ajoutées à la base de données
+    subtribe: Toutes les sous-tribus ajoutées à la base de données
+    genus: Tous les genres ajoutés à la base de données
+    genushybrid: Tous les genres hybrides ajoutés à la base de données
+    subgenus: Tous les sous-genres ajoutés à la base de données
+    section: Toutes les sections ajoutées à la base de données
+    subsection: Toutes les sous-sections ajoutées à la base de données
+    species: Toutes les espèces ajoutées à la base de données
+    hybrid: Tous les hybrides ajoutés à la base de données
+    subspecies: Toutes les sous-espèces ajoutées à la base de données
+    variety: Toutes les variétés ajoutées à la base de données
+    form: Toutes les formes ajoutées à la base de données
   all_rights_reserved: tous droits réservés
   all_species: Toutes les Espèces
   all_taxa:
@@ -2106,7 +2134,6 @@ fr:
     it: Italien
     mk: Macédonien
     oc: Occitan
-    pt: Portugais
     pt-BR: Portugais (Brésil)
     ja: Japonais
     zh-CN: Chinois (simplifié)
@@ -3083,8 +3110,8 @@ fr:
   posted_on: Publié le
   posts: Notes
   powered_by: Optimisé par
-  powered_by_inaturalist_open_source_software_html: Propulsé par le logiciel ouvert
-    <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
+  powered_by_inaturalist_open_source_software_html: Propulsé par le logiciel open
+    source <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
   present: présent
   preview: Aperçu
   preview_of_synced_observation: <strong>Aperçu</strong> de l’observation synchronisée.
@@ -3440,7 +3467,7 @@ fr:
     savoir aux responsables de l’organisation.
   seen_it?: Déjà vu?
   seen_nearby: Vu à proximité
-  seen_one: Vous en avez vu un?]
+  seen_one: Vous en avez vu un ?
   select: Sélectionner
   select_all: Sélectionner tout
   select_an_album: Sélectionner un album
@@ -3630,7 +3657,7 @@ fr:
     in_text: par ex. Green, 2000
     url: par ex. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'par ex. Greene, Harry W. Snakes: The Evolution of Mystery in Nature.
-      1re éd. Université of California Press, 1997. Imprimé.'
+      1re éd. University of California Press, 1997. Imprimé.'
   source_identifier: Identifiant de la source
   source_unknown: Source inconnue
   source_url: URL de la source
@@ -3776,6 +3803,7 @@ fr:
     data_url: URL des données
     overlays: Superpositions
   taxon_changes: Modifications de taxon
+  taxon_curators: Superviseurs des taxons
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
@@ -4582,6 +4610,9 @@ fr:
     cette observation.
   you_dont_have_permission_to_edit_that_project: Vous n’avez pas le droit de modifier
     ce projet.
+  you_dont_have_permission_to_edit_that_taxon: Vous n’avez pas le droit de modifier
+    ce taxon. Veuillez contacter un des superviseurs des taxons ou marquer le taxon
+    pour demander des modifications.
   you_dont_have_permission_to_edit_those_photos: Vous n’avez pas le droit de modifier
     ces photos.
   you_faved_this: Vous avez mis cela en favori !
@@ -5723,6 +5754,12 @@ fr:
           dans ce taxon. Veuillez ne pas ajouter d’états pour des taxons qui contiennent
           des espèces qui n’en ont pas, car cela masquerait de façon inappropriée
           les coordonnées des observations pour ces espèces.
+        complete_desc_html: |-
+          Un taxon « complet » contient <em>tous</em> les taxons descendants connus à un niveau spécifié qui correspond aux politiques de gestion des taxons, s’ils ont été ou non observés. Seuls les administrateurs du site peuvent
+          déclarer des taxons complets, actuellement.
+        complete_rank_desc_html: Rang auquel ce taxon est complet, par ex. si cette
+          famille contient tous ses genres, mais pas toutes ses espèces, cela serait
+          mis à « genre ». Par défaut, espèces.
       show:
         about_names_desc: |-
           <p>
@@ -5758,6 +5795,9 @@ fr:
           où elle se trouve actuellement. Implanté signifie qu’elle est arrivée par une activité
           humaine, alors qu’indigène signifie qu’elle est arrivée sans assistance humaine.
           Les espèces endémiques n’apparaissent qu’en un endroit spécifique, et nulle part ailleurs.
+        about_taxon_curators_desc: Ces personnes gèrent la partie de l’arbre taxonomique
+          qui inclut ce taxon. Si vous voulez faire des modifications, veuillez marquer
+          ce taxon ou contacter l'une de ces personnes.
         charts_help_seasonality: |-
           Ce graphique affiche le nombre d’observations de ce taxon, groupées par
           mois. Gardez à l’esprit que ce sont des nombres d’observations, donc ils
@@ -5793,13 +5833,15 @@ fr:
           chefchons n’importe quel champ contenant le mot « phénologie » dans son nom et
           « fleur » ou « fruit » dans la valeur ; ainsi, le champ « Phénologie de floraison »
           est un bon candidat à utiliser.
-        complete_taxon_desc: Les taxons « complets » ont toutes leurs espèces descendantes
-          encore en vie présentes dans la base de données du site. Quand un taxon
-          est complet, nous pouvons dire combien de ses espèces ont été observées
-          et combien doivent encore l’être. Le nombre des espèces pour les taxons
-          « complets » ne comprend pas les espèces « indénombrables » comme les espèces
-          éteintes ou les concepts d’espèce inactifs, et incluent seulement les espèces,
-          non les taxons de niveau inférieur.
+        complete_taxon_desc: Les taxons « complets » ont tous leurs taxons descendants
+          encore en vie à un rang particulier présents dans la base de données du
+          site. Quand un taxon est complet pour les espèces,par exemple, nous pouvons
+          dire combien de ses espèces ont été observées et combien doivent encore
+          l’être. Le nombre des espèces pour les taxons complets pour les espèces
+          ne comprend pas les espèces « indénombrables » comme les espèces éteintes
+          ou les concepts d’espèce inactifs, et incluent seulement les espèces, non
+          les taxons de niveau spécifique inférieur, comme les sous-espèces ou les
+          variétés.
         discoveries_desc: Espèces nouvellement identifiées les plus récentes dans
           ce taxon
         trending_desc: Taxons les plus observés lors du dernier mois
@@ -6292,6 +6334,26 @@ fr:
             observation_id:
               must_be_observed_after: doit être observé après %{time}
               must_be_observed_before: doit être observé avant %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
     attributes:
       assessment:
         description: Description

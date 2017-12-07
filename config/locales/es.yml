@@ -15,6 +15,7 @@
 # Author: KATRINE1992
 # Author: Loarie
 # Author: Luisangelrg
+# Author: Mack
 # Author: Macofe
 # Author: Ncontinanza
 # Author: Ohlila
@@ -1052,8 +1053,8 @@ es:
   curator: Curador
   curators_changed_for_x_html: Curadores cambiado para %{x}
   curators: Curadores
-  curators_can_remove_observations_from: Curadores pueden quitar observaciones del
-    proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia).
+  curators_can_remove_observations_from: Los curadores pueden quitar observaciones
+    del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia).
     Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
   curator_identification: Identificación de curador
   current_flags: Indicadores actuales
@@ -1139,7 +1140,7 @@ es:
   delete_taxon_and_merge_most_data_html: Eliminar <i>%{taxon}</i> y combinar la mayoría
     de sus datos con otro taxón. Utilice esta herramienta para eliminar taxones duplicados
     y sinónimos desactualizados. <strong>¡TENGA CUIDADO!</fuerte> Eliminar taxones
-    podría causar mucha destrucción.
+    puede ser muy destructivo.
   delete_this_name: Eliminar este nombre
   delete_user: Eliminar usuario
   delete_your_account: Eliminar su cuenta
@@ -1403,7 +1404,7 @@ es:
   filling_out_your_profile: completar su perfil
   filter: Filtro
   filter_by: Filtrar por
-  filter_by_curator_identification: Filtro por identificación del curador
+  filter_by_curator_identification: Filtrar por identificación del curador
   filter_by_place: Filtrar por lugar
   filter_by_taxon: Filtrar por taxón
   filter_by_place_taxon_and_color: Filtra por lugar, color, especie o grupo usuando
@@ -1822,8 +1823,8 @@ es:
   journal_post_deleted: La nota del diario ha sido borrada.
   jpg_png_or_gif: JPG, PNG, o GIF
   jump_to_letter: Saltar a letra
-  just_a_reminder: Ya que puede haber dado permisos curadores de proyectos para ver
-    las coordenadas privadas de sus observaciones en este proyecto .
+  just_a_reminder: Un recordatorio, ya que puede haberles dado permisos a los curadores
+    de proyectos para ver las coordenadas privadas de sus observaciones en este proyecto.
   just_added!: ¡Se acaba de agregar!
   keep_editing: Seguir editando
   kelp_diatoms_and_allies: algas, diatomeas, y aliados
@@ -2034,7 +2035,6 @@ es:
     it: Italiano
     mk: Macedonio
     oc: Occitano
-    pt: Portugués
     pt-BR: Portugués (Brasil)
     ja: Japonés
     zh-CN: Chino (simplificado)
@@ -2055,9 +2055,9 @@ es:
     taxón sería creado pero no podría clasificarse como un anfibio. Cuando esto sucede,
     los taxones agregados recientemente deberían marcarse para la atención de un curador.
     Esto solamente debería usarse para taxones para los cuales pensamos que tenemos
-    ya todos los descendientes. Un curator puede sobre escribir esto modificando los
-    taxones e ingresando identificadores padres directamente, pero en lugar de eso
-    trate de combinar los taxones nuevos con los ya existentes.
+    ya todos los descendientes. Un curador puede saltarse esto modificando los taxones
+    e ingresando identificadores padres directamente, pero en lugar de eso trate de
+    combinar los taxones nuevos con los ya existentes.
   log_in: Acceder
   logged_in_as: Inició sesión como
   login_slash_username: Registro / nombre de usuario
@@ -2106,9 +2106,9 @@ es:
   managed: gestionado
   manager: Gerente
   managers: Gerentes
-  managers_can_do: Los gerentes pueden hacer las mismas actividades que un curador
-    y adicionalmente pueden cambiar las propiedades del proyecto y escribir notas
-    en el diario del proyecto.
+  managers_can_do: Los gerentes pueden hacer lo mismo que un curador y adicionalmente
+    pueden cambiar las propiedades del proyecto y escribir notas en el diario del
+    proyecto.
   manually_create_new_place: Crear un Lugar nuevo manualmente
   map: Mapa
   map_legend: leyenda del mapa
@@ -2323,7 +2323,7 @@ es:
     en Flickr
   no_creative_commons_flickr_photos_tagged_x: No hay fotos en Flickr etiquetadas con
     Creative Commons para "%{x}"
-  no_curators_set: No hay curadores aún
+  no_curators_set: Aún no hay curadores
   no_curators_yet: ¡No hay curadores aún!
   no_facebook_photos: No podemos encontrar fotos en Facebook.
   no_flags: Sin marcas esta vez
@@ -2456,10 +2456,10 @@ es:
   obscured_: oculto
   obscured: Difusa
   obscured_or_private: oculta o privada
-  obscured_description: Coordenadas públicas se muestran como un punto al azar dentro
-    de un radio de 10Km de las coordenadas verdaderas . Las coordenadas reales sólo
-    son visibles para usted y los curadores de los proyectos a la que se agrega la
-    observación.
+  obscured_description: Las coordenadas públicas se muestran como un punto al azar
+    dentro de un radio de 10Km de las coordenadas verdaderas. Las coordenadas reales
+    sólo son visibles para usted y los curadores de los proyectos a los que se agrega
+    la observación.
   observation: Observación
   observation_: observación
   observation_added: Observation added
@@ -2649,8 +2649,8 @@ es:
       </ul>
   one_by_one: Uno por uno
   one_of_your_lists: una de sus listas...
-  only_a_project_manager_can_add: Solo un Gerente del proyecto puede darle una clasificación
-    a un curador de proyecto
+  only_a_project_manager_can_add: Solo un gerente del proyecto puede dar una clasificación
+    de curador de proyecto
   only_administrators_may_access_that_page: Solo los administradores pueden acceder
     a esa página
   only_accepts_taxa: solamente acepta taxones
@@ -3643,7 +3643,7 @@ es:
   sync_obs_with_photo_metadata: ¿Sinc obs. con metadatos foto?
   synonyms: Sinónimos
   table: Tabla
-  table_of_contents: Índice de contenido
+  table_of_contents: Sumario
   tagging: Etiquetando…
   tags: Etiquetas
   tags_are_a_way: Las etiquetas son palabras clave que puedes agregar a tus observaciones

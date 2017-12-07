@@ -2066,7 +2066,6 @@ it:
     it: Italiano
     mk: Macedone
     oc: Occitano
-    pt: Portoghese
     pt-BR: Portoghese (Brasile)
     ja: Giapponese
     zh-CN: Cinese (tradizionale)
@@ -3385,7 +3384,7 @@ it:
     Informa i curatori.
   seen_it?: Lo hai visto?
   seen_nearby: Visto nelle vicinanze
-  seen_one: Ne hai visto uno?]
+  seen_one: Ne hai visto uno?
   select: Seleziona
   select_all: Seleziona tutto
   select_an_album: Seleziona un album
@@ -4496,6 +4495,9 @@ it:
     per modificare l'osservazione.
   you_dont_have_permission_to_edit_that_project: Non disponi dei permessi necessari
     per modificare il progetto.
+  you_dont_have_permission_to_edit_that_taxon: Non hai il permesso di modificare quel
+    taxon. Per favore contatta ono dei curatori del taxon o segnala che il taxon richiede
+    modifiche.
   you_dont_have_permission_to_edit_those_photos: Non disponi dei permessi necessari
     per modificare le foto.
   you_faved_this: L'hai aggiunta ai preferiti!
@@ -5494,6 +5496,13 @@ it:
           in quel taxon. Per favore non aggiungere stati per i taxa che contengono
           specie che non hanno status, perchè questo oscurerà erroneamente le coordinate
           per le osservazioni di quelle specie.
+        complete_desc_html: Un taxon "completo" contiene <em>tutti</em> i taxa discendenti
+          conosciuti ad uno specifico livello in accordo con le politiche della curatela
+          dei taxa iNaturalist. Al momento solo gli amministratori del sito possono
+          definire i taxa completi.
+        complete_rank_desc_html: Livello al quale questo taxon è completo, e.g. se
+          questa famiglia contiene tutti i generi ma non tutte le specie, questo sarà
+          settato al "genere". Predefinito è il livello specie.
       show:
         about_names_desc: "<p>\n  La maggior parte degli organismi hanno \"nomi comuni\"
           nel   linguaggio parlato. Questi nomi sono spesso riconoscibili, facili
@@ -5519,6 +5528,9 @@ it:
           a causa di attività antropiche, mentre "Nativa" indica una presenza indipendente
           dall'uomo. le specie "Endemiche" sono presenti unicamente in un unico luogo
           e da nessuna altra parte.
+        about_taxon_curators_desc: Queste persone gestiscono la parte dell'albero
+          tassonomico che include questo taxon. Se vuoi fare cambiamenti, per favore
+          segnala questo taxon o contatta una di queste persone.
         charts_help_seasonality: |-
           Questo grafico mostra il numero di osservazione di questo taxon raggruppate per mese. Tieni a mente che rappresenta il numero di osservazioni, e quindi è influenzato sia da quando l'organismo può essere osservato, sia da quando le persone comunemente lo osservano. Per questo, ad esempio, una specie di uccello può sembrare molto attiva a Maggio, ma questo può essere dovuto al fatto che la maggior parte delle persone fa birdwatching a Maggio rispetto ai mesi successivi.
           Analogamente, se vedi più osservazioni di libellule in Giugno che in Gennaio, questo è dovuto al fatto che ci sono più persone attive nell'emisfero settentrionale che in quello meridionale, e non al fatto che le libellule sono più attive a Giugno: controlla la mappa quando esamini questi grafici! E' sempre una buona idea essere un po' scettici sui grafici qualora ci fossero poche osservazioni, e/o notevoli discrepanze tra il numero di osservazioni "Verificabili" e quelle "Livello Ricerca".
@@ -5542,12 +5554,13 @@ it:
           cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto"
           come valore; un campo adatto è ad esempio "Fenologia della fioritura".'
         complete_taxon_desc: I taxa "completi" hanno elencati tutti i discendenti
-          o tutte le specie esistenti nel database del sito. Quando un taxon è completo,
-          è possibile stabilire quante specie di quel taxon sono state osservate e
-          quante ancora lo devono ancora essere. I conteggi delle specie per i taxa
-          "completi" non includono le specie "non conteggiabili" come quelle estinte
-          o i concetti di specie inattivi, e includono solo le specie, non i taxa
-          intraspecifici.
+          o tutti i taxa di uno specifico livello esistenti nel database del sito.
+          Quando un taxon è completo a livello di specie, per esempio, è possibile
+          stabilire quante specie di quel taxon sono state osservate e quante ancora
+          lo devono ancora essere. I conteggi delle specie per i taxa "completi" a
+          livello di specie non includono le specie "non conteggiabili" come quelle
+          estinte o i concetti di specie inattivi, e includono solo le specie, non
+          i taxa intraspecifici come le sottospecie o le varietà.
         discoveries_desc: Le specie identificate più recentemente in questo taxon
         trending_desc: Taxa più osservati nell'ultimo mese
         trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
@@ -5982,6 +5995,26 @@ it:
             observation_id:
               must_be_observed_after: deve essere verificato dopo al %{time}
               must_be_observed_before: deve essere rispettato prima del %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
     attributes:
       assessment:
         description: Descrizione

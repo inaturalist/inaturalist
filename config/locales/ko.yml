@@ -208,15 +208,29 @@ ko:
   all_places: 모든 장소
   all_projects: 모든 프로젝트
   all_rank_added_to_the_database:
+    phylum: 데이터베이스에 추가된 모든 종족
+    subphylum: 데이터베이스에 추가된 모든 아문
     superclass: 데이터베이스에 추가된 모든 상강
     class: 데이터베이스에 추가된 모든 강
+    subclass: 데이터베이스에 추가된 모든 아강
+    infraclass: 데이터베이스에 추가된 모든 하강
+    superorder: 데이터베이스에 추가된 모든 상목
     order: 데이터베이스에 추가된 모든 목
     suborder: 데이터베이스에 추가된 모든 아목
+    infraorder: 데이터베이스에 추가된 모든 하목
+    superfamily: 데이터베이스에 추과된 모든 상과
     family: 데이터베이스에 추가된 모든 과
     subfamily: 데이터베이스에 추가된 모든 아과
+    supertribe: 데이터베이스에 추가된 모든 주족
+    tribe: 데이터베이스에 추가된 모든 족
+    subtribe: 데이터베이스에 추과된 모든 아족
     genus: 데이터베이스에 추가된 모든 속
+    genushybrid: 데이터베이스에 추가된 모든 속간 잡종
+    subgenus: 데이터베이스에 추가된 모든 아속
     species: 데이터베이스에 추가된 모든 종
+    hybrid: 데이터베이스에 추가된 모든 잡종
     subspecies: 데이터베이스에 추가된 모든 아종
+    variety: 데이터베이스에 추가된 모든 품종
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_species: 모든 종
   all_taxa:
@@ -1422,7 +1436,6 @@ ko:
     gl: 갈리시아어
     ko: 한국어
     mk: 마케도니아어
-    pt: 포루투갈어
     pt-BR: 포루투갈어 (브라질)
     ja: 일본어
     zh-CN: 중국어 (번체)
