@@ -23,17 +23,11 @@ body > div > [role="dialog"] .ActivityItem {
     display: inline-block;
   }
   span.taxon {
-    display: inline-block;
-    a.sciname {
-      color: #000;
-      font-size: 14px;
-      line-height: 16px;
-    }
     & > a.display-name {
       color: #000;
-      font-size: 20px;
-      display: block;
-      line-height: 25px;
+    }
+    a.sciname {
+      color: #000;
     }
     &.has-com-name .member-group:before {
       content: " - ";
@@ -44,15 +38,9 @@ body > div > [role="dialog"] .ActivityItem {
       .sciname {
         font-style: normal;
       }
-      .taxon {
-        display: inline;
-      }
       a.display-name {
         color: #000;
-        font-size: 14px;
         font-weight: normal;
-        display: inline;
-        line-height: 14px;
       }
     }
   }
@@ -128,6 +116,40 @@ body > div > [role="dialog"] .ActivityItem {
           max-width: 100%;
         }
       }
+    }
+    span.taxon {
+      display: inline-block;
+      a.sciname {
+        font-size: 14px;
+        line-height: 16px;
+      }
+      & > a.display-name {
+        font-size: 20px;
+        display: block;
+        line-height: 25px;
+      }
+      .member-group {
+        display: inline;
+        .taxon {
+          display: inline;
+        }
+        a.display-name {
+          font-size: 14px;
+          font-weight: normal;
+          display: inline;
+          line-height: 14px;
+        }
+      }
+    }
+  }
+  .panel-footer {
+    background-color: white;
+    a {
+      font-weight: bold;
+      color: black;
+    }
+    .SplitTaxon {
+      display: inline;
     }
   }
   .icon {

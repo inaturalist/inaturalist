@@ -4167,6 +4167,7 @@ I18n.translations["en"] = {
   "use_name_as_a_placeholder": "Use <span class='ac-placeholder'>\"%{name}\"</span> as a placeholder\n",
   "user": "User",
   "user_commented": "%{user} commented",
+  "user_disagrees_this_is_taxon": "%{user} disagrees this is %{taxon}",
   "user_has_opted_out_of_community_id": "User has opted-out of Community ID",
   "user_suggested_an_id": "%{user} suggested an ID",
   "username_or_user_id": "Username or user ID",
