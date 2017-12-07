@@ -154,15 +154,28 @@ class Identification < ActiveRecord::Base
   end
 
   def set_previous_observation_taxon
-    self.previous_observation_taxon_id = observation.taxon_id
+    self.previous_observation_taxon_id = if new_record?
+      observation.community_taxon_id || observation.taxon_id
+    elsif previous_community_taxon = observation.get_community_taxon( force: true, before: id )
+      previous_community_taxon.id
+    else
+      previous_ident = observation.identifications.select{|i| i.current && i.id < id }.last
+      previous_ident ||= observation.identifications.select{|i| i.id < id }.last
+      previous_ident.try(:taxon_id) || observation.taxon_id
+    end
     true
   end
 
-  def set_disagreement
-    return true if disagreement?
-    return true unless observation.community_taxon
-    ancestor_of_community_taxon = observation.community_taxon.self_and_ancestor_ids.include?( taxon_id )
-    descendant_of_community_taxon = taxon.self_and_ancestor_ids.include?( observation.community_taxon_id )
+  def set_disagreement( options = {} )
+    return true if disagreement? && !options[:force]
+    community_taxon = if new_record?
+      observation.community_taxon
+    else
+      observation.get_community_taxon( before: id, force: true )
+    end
+    return true unless community_taxon
+    ancestor_of_community_taxon = community_taxon.self_and_ancestor_ids.include?( taxon_id )
+    descendant_of_community_taxon = taxon.self_and_ancestor_ids.include?( community_taxon.id )
     self.disagreement = !ancestor_of_community_taxon && !descendant_of_community_taxon
     true
   end
@@ -315,13 +328,14 @@ class Identification < ActiveRecord::Base
     taxon.in_taxon? o.taxon_id
   end
   
-  def old_is_disagreement?(options = {})
-    return false if frozen?
-    o = options[:observation] || observation
-    return false if o.user_id == user_id
-    return false if o.identifications.count == 1
-    !is_agreement?(options)
-  end
+  # def old_is_disagreement?(options = {})
+  #   return false if frozen?
+  #   o = options[:observation] || observation
+  #   return false if o.user_id == user_id
+  #   return false if o.identifications.count == 1
+  #   prior_community_taxon = o.get_community_taxon( before: id, force: true )
+  #   !prior_community_taxon.self_and_ancestor_ids.include?( taxon.id ) && !taxon.self_and_ancestor_ids.include?( prior_community_taxon.id )
+  # end
 
   def is_disagreement?( options = {} )
     disagreement

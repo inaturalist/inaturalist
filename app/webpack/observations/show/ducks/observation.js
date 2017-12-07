@@ -423,9 +423,10 @@ export function addID( taxon, options = { } ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const observation = state.observation;
+    const observationTaxon = observation.communityTaxon || observation.taxon;
     if (
-      observation.taxon && taxon.id !== observation.taxon.id &&
-      _.includes( observation.taxon.ancestor_ids, taxon.id )
+      observationTaxon && taxon.id !== observationTaxon.id &&
+      _.includes( observationTaxon.ancestor_ids, taxon.id )
     ) {
       dispatch( showDisagreementAlert( {
         onDisagree: ( ) => {

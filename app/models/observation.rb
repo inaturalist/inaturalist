@@ -1494,6 +1494,11 @@ class Observation < ActiveRecord::Base
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
     working_idents = ids.sort_by(&:id)
+    if options[:before].to_i > 0
+      working_idents = working_idents.select{|i| i.id < options[:before].to_i }
+    elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
+      working_idents = working_idents.select{|i| i.created_at < options[:before] }
+    end
 
     # load all ancestor taxa implied by identifications
     ancestor_ids = working_idents.map{|i| i.taxon.ancestor_ids}.flatten.uniq.compact
@@ -1512,8 +1517,8 @@ class Observation < ActiveRecord::Base
       }.size
 
       # Count identifications that explicitly disagreed with an ancestor of this taxon
-      first_ident = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
-      conservative_disagreement_count = if first_ident
+      first_ident_of_taxon = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
+      conservative_disagreement_count = if first_ident_of_taxon
         working_idents.select {|i|
           if (
             i.disagreement? &&

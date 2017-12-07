@@ -27,10 +27,11 @@ const IdentificationForm = ( {
       confirmationText = confirmationText.replace( /<br>/g, "" );
       confirmationText = confirmationText.replace( /\s+/g, " " );
       const isDisagreement = ( ) => {
-        if ( !o || !o.taxon ) {
+        if ( !o || !( o.community_taxon || o.taxon ) ) {
           return false;
         }
-        return o.taxon.id !== idTaxon.id && o.taxon.ancestor_ids.indexOf( idTaxon.id ) > 0;
+        const observationTaxon = o.community_taxon || o.taxon;
+        return observationTaxon.id !== idTaxon.id && observationTaxon.ancestor_ids.indexOf( idTaxon.id ) > 0;
       };
       const params = {
         observation_id: o.id,
