@@ -13,6 +13,7 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
+  validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   # There are so many names that violate
   # validates_uniqueness_of :source_identifier,
   #                         :scope => [:taxon_id, :source_id],
@@ -217,7 +218,7 @@ class TaxonName < ActiveRecord::Base
     # subsequent records in an array
     options = opts ? opts.clone : { }
     options[:except] ||= []
-    options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :creator_id, :updater_id]
+    options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :updater_id]
     if options[:only]
       options[:except] = options[:except] - options[:only]
     end

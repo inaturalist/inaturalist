@@ -5173,13 +5173,23 @@ en:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <ul class="ui">
-            <li>Try to add names that have been used elsewhere. Please don't invent new names.</li>
-            <li>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</li>
-            <li>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</li>
+          <ul>
+            <li><p>Try to add names that have been used elsewhere. Please don't invent new names.</p></li>
+            <li><p>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</p></li>
+            <li><p>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</p></li>
             <li>
-              Don't add information that is not the name, e.g. paranthetical
-              information about how you think the name should be used
+              <p>
+                Don't add information that is not the name, e.g. paranthetical
+                information about how you think the name should be used
+              </p>
+            </li>
+            <li>
+              <p>
+                Lexicons should be in English. Please don't add translated
+                language names like "French, Français" because that will just make
+                it hard or impossible for us to show localized names for people
+                who use the site in different languages.
+              </p>
             </li>
           </ul>
         places_help_html: |
@@ -5712,6 +5722,10 @@ en:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 can only be changed by a curator of this taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: should not contain commas or slashes
   i18n:
     inflections:
       :@vow_or_con:

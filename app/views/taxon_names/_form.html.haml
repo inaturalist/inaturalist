@@ -60,10 +60,9 @@
             :data => {:confirm => t(:are_you_sure_want_delete_this_name)},
             :class => 'minor delete button'
     .col-xs-6
-      - if @taxon_name.new_record?
-        .box
-          %h3= t :guidelines
-          = t 'views.taxon_names.form.new_name_guidelines_html'
+      .box
+        %h3= t :guidelines
+        = t 'views.taxon_names.form.new_name_guidelines_html'
       - unless @taxon_name.source_identifier.blank?
         .clear.quiet.box
           %p.description
