@@ -17,7 +17,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     requestor_ip = Logstasher.ip_from_request_env(request.env)
     resource.last_ip = requestor_ip
 
-    if @site.using_recaptcha? && !is_mobile_app?
+    if @site.using_recaptcha? && !is_mobile_app? && !request.format.json?
       if !GoogleRecaptcha.verify_recaptcha( response: params["g-recaptcha-response"],
                                             remoteip: requestor_ip,
                                             secret: @site.google_recaptcha_secret )
