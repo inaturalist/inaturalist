@@ -205,6 +205,8 @@ class User < ActiveRecord::Base
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
+  after_save :revoke_access_tokens_by_suspended_user
+  after_save :restore_access_tokens_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
@@ -757,6 +759,25 @@ class User < ActiveRecord::Base
   def destroy_messages_by_suspended_user
     return true unless suspended?
     Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
+  end
+
+  def revoke_access_tokens_by_suspended_user
+    return true unless suspended?
+    Doorkeeper::AccessToken.where( resource_owner_id: id ).each(&:revoke)
+    true
+  end
+
+  def restore_access_tokens_by_suspended_user
+    return true if suspended?
+    if suspended_at_changed?
+      # This is not an ideal solution because there are reasons to revoke a
+      # token that are not related to suspension, like trying to deal with a
+      # oauth app that's behaving badly for some reason, or a user's token is
+      # stolen and someone else is using it, but I'm hoping those are rare
+      # situations that we can deal with by deleting tokens
+      Doorkeeper::AccessToken.where( resource_owner_id: id ).update_all( revoked_at: nil )
+    end
     true
   end
 

@@ -13,13 +13,26 @@ shared_examples_for "ObservationsController basics" do
       expect(o.user_id).to eq(user.id)
       expect(o.species_guess).to eq ("foo")
     end
+    it "should not create for a suspended user" do
+      user.suspend!
+      expect {
+        post :create, format: :json, observation: { species_guess: "foo" }
+      }.not_to change( Observation, :count )
+    end
+    it "should create for an unsuspended user" do
+      user.suspend!
+      user.unsuspend!
+      expect {
+        post :create, format: :json, observation: { species_guess: "foo" }
+      }.to change( Observation, :count )
+    end
+  end
 
-    describe "destroy" do
-      it "should destroy" do
-        o = Observation.make!(:user => user)
-        delete :destroy, :format => :json, :id => o.id
-        expect(Observation.find_by_id(o.id)).to be_blank
-      end
+  describe "destroy" do
+    it "should destroy" do
+      o = Observation.make!(:user => user)
+      delete :destroy, :format => :json, :id => o.id
+      expect(Observation.find_by_id(o.id)).to be_blank
     end
   end
 
@@ -1827,10 +1840,13 @@ end
 
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
-    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
+    token = Doorkeeper::AccessToken.create(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
+    request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
   end
   it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController"
