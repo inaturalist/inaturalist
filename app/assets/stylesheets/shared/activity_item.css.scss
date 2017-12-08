@@ -57,23 +57,30 @@ body > div > [role="dialog"] .ActivityItem {
     }
   }
   .time {
-    float: right;
     margin-right: 12px;
     color: #999999;
   }
   .panel-title {
+    display: flex;
+    align-items: flex-start;
     font-size: 14px;
+    .title_text {
+      flex: 2;
+      margin-right: 20px;
+    }
     a.user {
       font-weight: bold;
       color: black;
     }
     .item-status {
-      float: right;
       margin-right: 15px;
      .fa {
         width: 20px;
         text-align: center;
       }
+    }
+    .ident-inactive {
+      color: $bootstrap-link-color;
     }
   }
   .panel.flagged .panel-heading {
@@ -95,7 +102,7 @@ body > div > [role="dialog"] .ActivityItem {
     }
   }
   .panel.leading .panel-heading {
-    .item-status {
+    .item-status.ident-category {
       color: $inat-green;
       i {
         margin-right: 2px;
@@ -182,7 +189,6 @@ body > div > [role="dialog"] .ActivityItem.withdrawn {
 
 .ActivityItemMenu,
 body > div > [role="dialog"] .ActivityItemMenu {
-  float: right;
   border-left: 1px solid $border-grey;
   .search {
     line-height: 24px;
