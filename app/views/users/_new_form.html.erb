@@ -1,5 +1,5 @@
 <%- content_for(:extrahead) do -%>
-  <script src="https://www.google.com/recaptcha/api.js"></script>
+  <script src="https://www.google.com/recaptcha/api.js?hl=<%= I18n.locale %>"></script>
 <%- end if @site.using_recaptcha? -%>
 <%= error_messages_for :user, 
       :header_message => "Oops.",
