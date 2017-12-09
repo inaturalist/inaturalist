@@ -571,15 +571,14 @@ class User < ActiveRecord::Base
   
   def self.find_for_authentication(conditions = {})
     s = conditions[:email].to_s.downcase
-    active.where("lower(login) = ?", s).first ||
-      active.where("lower(email) = ?", s).first
+    where("lower(login) = ?", s).first || where("lower(email) = ?", s).first
   end
   
   # http://stackoverflow.com/questions/6724494
   def self.authenticate(login, password)
     user = User.find_for_authentication(:email => login)
     return nil if user.blank?
-    user.valid_password?(password) ? user : nil
+    user.valid_password?(password) && user.active? ? user : nil
   end
 
   # create a user using 3rd party provider credentials (via omniauth)
