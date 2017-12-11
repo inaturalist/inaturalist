@@ -2149,6 +2149,10 @@ ko:
   widget: 위젯
   widget_code: 위젯 코드
   x_blog: '%{x}의 블로그'
+  x_journal_archives_for_y: '%{user}님의 저널 • 아카이브 대상:'
+  x_journal_editing: '%{user}님의 저널 • 편집'
+  x_journal_middot: '%{user}님의 저널 •'
+  x_journal_new_post: '%{user}님의 저널 • 새 게시물'
   year: 년
   year_month: 년/월
   yellow: 노랑
@@ -2389,6 +2393,10 @@ ko:
             value:
               date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
                 \n당신이 관찰한 \"%{observation_field_name}\")"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
     attributes:
       assessment:
         description: 설명

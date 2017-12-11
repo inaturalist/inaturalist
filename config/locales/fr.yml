@@ -2696,6 +2696,7 @@ fr:
   of_observers: observateurs
   of_identifiers: identificateurs
   of_places: lieux
+  of_this_taxon: De ce taxon
   offensive_inappropriate: injurieux/inapproprié
   official_blog: Blogue officiel
   offline_access_enabled: Accès hors ligne activé
@@ -3142,6 +3143,7 @@ fr:
   processing3p: Traitement en cours…
   profile: Profil
   project: Projet
+  project_added_your_observations: Vos observations ont été ajoutées au projet
   project_aggregator_filter_error: Les projets ne peuvent pas activer l'agrégation
     automatique d'observations, à moins que le projet ne soit associé à un lieu de
     taille modérée, ou s'il ne permet les observations que de certains taxons particuliers,
@@ -3809,6 +3811,7 @@ fr:
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
     à un taxon existant dans notre base de données
   taxon_observed_by_user: '%{taxon} observé par %{user}'
+  taxon_or_place_observations: Observations de taxon ou de place
   taxon_photos_updated: Photos du taxon mises à jour!
   taxon_range: Aire de répartition du taxon
   taxon_range_created_notice: La gamme de taxons a bien été créée. Veuillez attendre
@@ -4267,6 +4270,7 @@ fr:
   user_is_now_role_for_project_html: <strong>%{user}</strong> est désormais %{role}
     pour %{project}
   user_muted: Utilisateur réduit au silence
+  user_observations: Observations utilisateur
   user_s: de %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listes de %{user}
@@ -4493,10 +4497,10 @@ fr:
   x_doesnt: '%{login} ne fait pas'
   x_hasnt: '%{login} n’a pas'
   x_journal: Journal de %{user}
-  x_journal_archives_for_y: Journal de %{user} &middot; Archives de
-  x_journal_editing: Journal de %{user} &middot; Modification
-  x_journal_middot: Journal de %{user} &middot;
-  x_journal_new_post: Journal de %{user} &middot; Nouvelle note
+  x_journal_archives_for_y: Journal de %{user} • Archives de
+  x_journal_editing: Journal de %{user} • Modification
+  x_journal_middot: Journal de %{user} •
+  x_journal_new_post: Journal de %{user} • Nouvelle note
   x_observations_failed:
     one: 1 observation en échec
     other: '%{count} observations en échec'
@@ -6354,6 +6358,11 @@ fr:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
                 par un superviseur de ce taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: ne doit pas contenir de virgules
+                ni de barres obliques
     attributes:
       assessment:
         description: Description
