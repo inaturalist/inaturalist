@@ -82,7 +82,7 @@ class PostsController < ApplicationController
         @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
         @trip = @post
         @observations = @post.observations.order_by('observed_on')
-        @shareable_image_url = @post.body[/img.+?src="(.+?)"/, 1] if @post.body
+        @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= if @post.parent_type == "Project"
           FakeView.image_url(@post.parent.icon.url(:original))
         else
