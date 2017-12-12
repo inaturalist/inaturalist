@@ -5016,6 +5016,7 @@ I18n.translations["es"] = {
       "maverick": "El taxón no desciende o es antepasado del taxón de la comunidad, p.e. la comunidad no está de acuerdo con este taxón."
     }
   },
+  "id_withdrawn": "ID Retirada",
   "identifications": "Identificaciones",
   "identify_observations": "Identificar observaciones",
   "identify_title": "Identificar",
