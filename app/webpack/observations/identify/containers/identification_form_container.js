@@ -57,6 +57,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
           }
         } ) );
       } else if ( options.potentialDisagreement ) {
+        const observationTaxon = options.observation.communityTaxon || options.observation.taxon;
         dispatch( showDisagreementAlert( {
           onDisagree: ( ) => {
             boundPostIdentification( true );
@@ -66,7 +67,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
             dispatch( stopLoadingDiscussionItem( ident ) );
             dispatch( addIdentification( ) );
           },
-          oldTaxon: options.observation.taxon,
+          oldTaxon: observationTaxon,
           newTaxon: options.taxon
         } ) );
       } else {

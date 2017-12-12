@@ -435,7 +435,7 @@ export function addID( taxon, options = { } ) {
         onBestGuess: ( ) => {
           dispatch( doAddID( taxon, { disagreement: false }, Object.assign( { disagreement: false }, options ) ) );
         },
-        oldTaxon: observation.taxon,
+        oldTaxon: observationTaxon,
         newTaxon: taxon
       } ) );
     } else {
