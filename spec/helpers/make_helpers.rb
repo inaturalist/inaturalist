@@ -136,12 +136,12 @@ module MakeHelpers
     m
   end
 
-  def make_taxon_swap(options = {})
+  def make_taxon_swap( options = {} )
     input_taxon = options.delete(:input_taxon) || Taxon.make!( rank: Taxon::SPECIES )
     output_taxon = options.delete(:output_taxon) || Taxon.make!( rank: Taxon::SPECIES )
-    swap = TaxonSwap.make(options)
-    swap.add_input_taxon(input_taxon)
-    swap.add_output_taxon(output_taxon)
+    swap = TaxonSwap.make( options )
+    swap.add_input_taxon( input_taxon )
+    swap.add_output_taxon( output_taxon )
     swap.save!
     swap
   end

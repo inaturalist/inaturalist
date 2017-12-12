@@ -737,7 +737,7 @@ class Project < ActiveRecord::Base
     unless last_aggregated_at.nil?
       params[:updated_since] = last_aggregated_at.to_s
       params[:aggregation_user_ids] = User.
-        where("users.updated_at >= ?", last_aggregated_at).map(&:id)
+        where("users.updated_at >= ?", last_aggregated_at).pluck(:id)
     end
     list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
@@ -747,19 +747,6 @@ class Project < ActiveRecord::Base
     while true
       # stop if the project was deleted since the job started
       return unless Project.where(id: id).exists?
-      if options[:pidfile]
-        unless File.exists?(options[:pidfile])
-          msg = "Project aggregator running without a PID file at #{options[:pidfile]}"
-          logger.error "[ERROR #{Time.now}] #{msg}"
-          raise ProjectAggregatorAlreadyRunning, msg
-        end
-        pid = open(options[:pidfile]).read.to_s.strip.to_i
-        unless pid == Process.pid
-          msg = "Another project aggregator (#{pid}) is already running (this pid: #{Process.id})"
-          logger.error "[ERROR #{Time.now}] #{msg}"
-          raise ProjectAggregatorAlreadyRunning, msg
-        end
-      end
       search_params.merge!({ min_id: last_observation_id + 1,
         order_by: "id", order: "asc" })
       observations = Observation.page_of_results(search_params)

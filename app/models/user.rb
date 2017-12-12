@@ -25,13 +25,22 @@ class User < ActiveRecord::Base
 
   attr_accessor :html
 
-  preference :project_journal_post_email_notification, :boolean, :default => true
-  preference :comment_email_notification, :boolean, :default => true
-  preference :identification_email_notification, :boolean, :default => true
-  preference :message_email_notification, :boolean, :default => true
-  preference :no_email, :boolean, :default => false
-  preference :project_invitation_email_notification, :boolean, :default => true
-  preference :mention_email_notification, :boolean, :default => true
+  preference :project_journal_post_email_notification, :boolean, default: true
+  preference :comment_email_notification, :boolean, default: true
+  preference :identification_email_notification, :boolean, default: true
+  preference :message_email_notification, :boolean, default: true
+  preference :no_email, :boolean, default: false
+  preference :project_invitation_email_notification, :boolean, default: true
+  preference :mention_email_notification, :boolean, default: true
+
+  preference :project_journal_post_email_notification, :boolean, default: true
+  preference :project_curator_change_email_notification, :boolean, default: true
+  preference :project_added_your_observation_email_notification, :boolean, default: true
+  preference :taxon_change_email_notification, :boolean, default: true
+  preference :user_observation_email_notification, :boolean, default: true
+  preference :taxon_or_place_observation_email_notification, :boolean, default: true
+
+
   preference :lists_by_login_sort, :string, :default => "id"
   preference :lists_by_login_order, :string, :default => "asc"
   preference :per_page, :integer, :default => 30
@@ -75,9 +84,18 @@ class User < ActiveRecord::Base
   preference :common_names, :boolean, default: true 
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
-  NOTIFICATION_PREFERENCES = %w(comment_email_notification identification_email_notification 
-    mention_email_notification message_email_notification
-    project_invitation_email_notification project_journal_post_email_notification)
+  NOTIFICATION_PREFERENCES = %w(
+    comment_email_notification
+    identification_email_notification 
+    mention_email_notification
+    message_email_notification
+    project_journal_post_email_notification
+    project_added_your_observation_email_notification
+    project_curator_change_email_notification
+    taxon_change_email_notification
+    user_observation_email_notification
+    taxon_or_place_observation_email_notification
+  )
   
   belongs_to :life_list, :dependent => :destroy
   has_many  :provider_authorizations, :dependent => :delete_all
@@ -144,7 +162,7 @@ class User < ActiveRecord::Base
     }
   }
 
-  if Rails.env.production? || Rails.env.prod_dev?
+  if Rails.env.production?
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -187,6 +205,8 @@ class User < ActiveRecord::Base
   after_save :update_sound_licenses
   after_save :update_observation_sites_later
   after_save :destroy_messages_by_suspended_user
+  after_save :revoke_access_tokens_by_suspended_user
+  after_save :restore_access_tokens_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
@@ -551,15 +571,14 @@ class User < ActiveRecord::Base
   
   def self.find_for_authentication(conditions = {})
     s = conditions[:email].to_s.downcase
-    active.where("lower(login) = ?", s).first ||
-      active.where("lower(email) = ?", s).first
+    where("lower(login) = ?", s).first || where("lower(email) = ?", s).first
   end
   
   # http://stackoverflow.com/questions/6724494
   def self.authenticate(login, password)
     user = User.find_for_authentication(:email => login)
     return nil if user.blank?
-    user.valid_password?(password) ? user : nil
+    user.valid_password?(password) && user.active? ? user : nil
   end
 
   # create a user using 3rd party provider credentials (via omniauth)
@@ -739,6 +758,25 @@ class User < ActiveRecord::Base
   def destroy_messages_by_suspended_user
     return true unless suspended?
     Message.inbox.unread.where(:from_user_id => id).destroy_all
+    true
+  end
+
+  def revoke_access_tokens_by_suspended_user
+    return true unless suspended?
+    Doorkeeper::AccessToken.where( resource_owner_id: id ).each(&:revoke)
+    true
+  end
+
+  def restore_access_tokens_by_suspended_user
+    return true if suspended?
+    if suspended_at_changed?
+      # This is not an ideal solution because there are reasons to revoke a
+      # token that are not related to suspension, like trying to deal with a
+      # oauth app that's behaving badly for some reason, or a user's token is
+      # stolen and someone else is using it, but I'm hoping those are rare
+      # situations that we can deal with by deleting tokens
+      Doorkeeper::AccessToken.where( resource_owner_id: id ).update_all( revoked_at: nil )
+    end
     true
   end
 

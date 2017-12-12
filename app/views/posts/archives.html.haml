@@ -1,5 +1,5 @@
 - content_for(:title) do
-  = t(:x_journal_archives_for_y, :user => @parent.try_methods(:login, :title))
+  = t( :x_journal_archives_for_y, user: @parent.try_methods( :login, :title, :name ) )
   = l @target_date, format: :month_year
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"

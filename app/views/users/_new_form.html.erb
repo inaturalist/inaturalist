@@ -1,3 +1,6 @@
+<%- content_for(:extrahead) do -%>
+  <script src="https://www.google.com/recaptcha/api.js?hl=<%= I18n.locale %>"></script>
+<%- end if @site.using_recaptcha? -%>
 <%= error_messages_for :user, 
       :header_message => "Oops.",
       :message => t(:there_were_some_problems_with_fields) %>
@@ -11,6 +14,8 @@
     :description => t(:all_your_observations_will_default_this_time_zone),
     :class => 'select'}) %>
   <%= render :partial => 'users/license_fields', :locals => {:builder => f} %>
-
-  <%= f.submit t(:sign_up), :class => "default button", "data-loading-click" => t(:creating_your_account) %>
+  <%- if @site.using_recaptcha? -%>
+    <div class="g-recaptcha" data-sitekey="<%= @site.google_recaptcha_key %>" data-callback="RecaptchaCallback"></div>
+  <%- end -%>
+  <%= f.submit t(:sign_up), :class => "default button", disabled: true, "data-loading-click" => t(:creating_your_account) %>
 <% end -%>

@@ -25,6 +25,14 @@ module Logstasher
     @logger
   end
 
+  def self.ip_from_request_env(request_env)
+    # try a few params for IP. Proxies will shuffle around requester IP
+    %w( HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR ).each do |param|
+      return request_env[ param ] unless request_env[ param ].blank?
+    end
+    nil
+  end
+
   def self.payload_from_request(request)
     return { } unless request.is_a?(ActionDispatch::Request)
     payload = { }
@@ -33,13 +41,7 @@ module Logstasher
       HTTP_PARAMS_TO_STASH.include?(k) && !v.blank? })
     # cleanup multiple IPs
     payload = Logstasher.split_multiple_ips(payload)
-    # try a few params for IP. Proxies will shuffle around requester IP
-    %w( HTTP_X_FORWARDED_FOR HTTP_X_CLUSTER_CLIENT_IP REMOTE_ADDR ).
-      each do |param|
-      next if payload[ param ].blank?
-      payload[:clientip] = payload[ param ]
-      break
-    end
+    payload[:clientip] = Logstasher.ip_from_request_env(payload)
     if request.env["HTTP_ACCEPT_LANGUAGE"]
       # there may be multiple variations of languages, plus other junk
       payload[:http_languages] = request.env["HTTP_ACCEPT_LANGUAGE"].
@@ -135,7 +137,7 @@ module Logstasher
         payload[:params].delete_if{ |k,v|
           # remove bank params, binary data params, and common or otherwise indexed params
           v.blank? ||
-          v.match( /^data:/ ) ||
+          v.to_s.match( /^data:/ ) ||
           [ :controller, :action, :utf8, :authenticity_token ].include?(k.to_sym)
         }.map{ |k,v|
           # flatten out nested object and complex params like uploads

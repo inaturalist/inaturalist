@@ -2313,6 +2313,7 @@ en:
   of_observers: observers
   of_identifiers: identifiers
   of_places: places
+  of_this_taxon: Of this taxon
   offensive_inappropriate: offensive / inappropriate
   official_blog: Official Blog
   offline_access_enabled: Offline access enabled
@@ -2698,6 +2699,7 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_added_your_observations: Project added your observations
   project_aggregator_filter_error: |
     Projects cannot enable automatic observation aggregation unless the
     project is associated with a place of moderate size or it only allows
@@ -2706,6 +2708,7 @@ en:
   project_assets: Project Assets
   project_cover: Project cover
   project_created_on: created this project on %{date}
+  project_curator_changes: Project curator changes
   project_curator_id: Project curator ID
   project_curator_tools: Project curator tools
   project_curators: Project Curators
@@ -2811,6 +2814,7 @@ en:
   real_time_discussions: Real Time Discussions
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
+  recaptcha_verification_failed: reCaptcha verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
   receive_updates_from_this_project: Receive updates from this project
   received: received
@@ -3289,6 +3293,7 @@ en:
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
   taxon_observed_by_user: "%{taxon} observed by %{user}"
+  taxon_or_place_observations: Taxon or place observations
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
   taxon_range_created_notice: Taxon range was successfully created. Please allow a few minutes for it to appear on the maps.
@@ -3678,6 +3683,7 @@ en:
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
+  user_observations: User observations
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user} Lists"
@@ -3865,10 +3871,10 @@ en:
   x_doesnt: "%{login} doesn't"
   x_hasnt: "%{login} hasn't"
   x_journal: "%{user}'s Journal"
-  x_journal_archives_for_y: "%{user}'s Journal &middot; Archives for"
-  x_journal_editing: "%{user}'s Journal &middot; Editing"
-  x_journal_middot: "%{user}'s Journal &middot;"
-  x_journal_new_post: "%{user}'s Journal &middot; New Post"
+  x_journal_archives_for_y: "%{user}'s Journal • Archives for"
+  x_journal_editing: "%{user}'s Journal • Editing"
+  x_journal_middot: "%{user}'s Journal •"
+  x_journal_new_post: "%{user}'s Journal • New Post"
   x_observations_failed:
     one: "1 observation failed"
     other: "%{count} observations failed"
@@ -5178,13 +5184,23 @@ en:
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <ul class="ui">
-            <li>Try to add names that have been used elsewhere. Please don't invent new names.</li>
-            <li>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</li>
-            <li>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</li>
+          <ul>
+            <li><p>Try to add names that have been used elsewhere. Please don't invent new names.</p></li>
+            <li><p>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</p></li>
+            <li><p>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</p></li>
             <li>
-              Don't add information that is not the name, e.g. paranthetical
-              information about how you think the name should be used
+              <p>
+                Don't add information that is not the name, e.g. paranthetical
+                information about how you think the name should be used
+              </p>
+            </li>
+            <li>
+              <p>
+                Lexicons should be in English. Please don't add translated
+                language names like "French, Français" because that will just make
+                it hard or impossible for us to show localized names for people
+                who use the site in different languages.
+              </p>
             </li>
           </ul>
         places_help_html: |
@@ -5717,6 +5733,10 @@ en:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 can only be changed by a curator of this taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: should not contain commas or slashes
   i18n:
     inflections:
       :@vow_or_con:

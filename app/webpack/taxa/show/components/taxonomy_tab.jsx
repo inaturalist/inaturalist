@@ -13,9 +13,13 @@ const TaxonomyTab = ( {
   names,
   showNewTaxon,
   allChildrenShown,
-  toggleAllChildrenShown
+  toggleAllChildrenShown,
+  currentUser
 } ) => {
   const currentTaxon = Object.assign( { }, taxon );
+  const viewerIsCurator = currentUser && currentUser.roles && (
+    currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
+  );
   const tree = [];
   if ( taxon ) {
     if ( taxon.ancestors ) {
@@ -204,7 +208,9 @@ const TaxonomyTab = ( {
                   <tr>
                     <th>{ I18n.t( "language_slash_type" ) }</th>
                     <th>{ I18n.t( "name" ) }</th>
-                    <th>{ I18n.t( "action" ) }</th>
+                    { currentUser ? (
+                      <th>{ I18n.t( "action" ) }</th>
+                    ) : null }
                   </tr>
                 </thead>
                 <tbody>
@@ -221,7 +227,13 @@ const TaxonomyTab = ( {
                       >
                         { n.name }
                       </td>
-                      <td><a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a></td>
+                      { currentUser ? (
+                        <td>
+                          { viewerIsCurator || n.creator_id === currentUser.id ? (
+                            <a href={`/taxon_names/${n.id}/edit`}>{ I18n.t( "edit" ) }</a>
+                          ) : null }
+                        </td>
+                      ) : null }
                     </tr>
                   ) ) }
                 </tbody>
@@ -265,7 +277,8 @@ TaxonomyTab.propTypes = {
   names: PropTypes.array,
   showNewTaxon: PropTypes.func,
   allChildrenShown: PropTypes.bool,
-  toggleAllChildrenShown: PropTypes.func
+  toggleAllChildrenShown: PropTypes.func,
+  currentUser: PropTypes.object
 };
 
 TaxonomyTab.defaultProps = {

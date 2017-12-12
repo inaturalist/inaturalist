@@ -79,8 +79,9 @@ Rails.application.routes.draw do
   get '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   get '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
-    controllers :applications => 'oauth_applications',
-                :authorizations => 'oauth_authorizations'
+    controllers applications: "oauth_applications",
+                authorizations: "oauth_authorizations",
+                tokens: "oauth_tokens"
   end
 
   wiki_root '/pages'

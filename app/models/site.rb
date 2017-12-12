@@ -190,6 +190,10 @@ class Site < ActiveRecord::Base
   # google webmaster tools, http://www.google.com/webmasters/tools/
   preference :google_webmaster_verification, :string
 
+  # google recaptcha, https://www.google.com/recaptcha
+  preference :google_recaptcha_key, :string
+  preference :google_recaptcha_secret, :string
+
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in
@@ -286,6 +290,10 @@ class Site < ActiveRecord::Base
   def taxon_describers
     return if taxon_describers_array.blank?
     taxon_describers_array.split( "," ).map( &:strip )
+  end
+
+  def using_recaptcha?
+    google_recaptcha_key && google_recaptcha_secret
   end
 
 end

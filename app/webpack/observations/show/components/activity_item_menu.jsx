@@ -91,11 +91,40 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
     if ( !_.isEmpty( menuItems ) ) {
       menuItems.push( ( <MenuItem divider key={ `id-menu-divider-${item.id}` } /> ) );
     }
-    menuItems.push( ( <div key={ `id-menu-links-${item.id}` } className="search-links">
-      <div className="text-muted">
-        { I18n.t( "view_observations_of_this_taxon_by" ) }:
-      </div> { searchLinks }
-    </div> ) );
+    menuItems.push(
+      <li key={ `id-menu-links-${item.id}` } className="search-links">
+        <div className="text-muted">
+          { I18n.t( "view_observations_of_this_taxon_by" ) }:
+        </div>
+        { searchLinks }
+      </li>
+    );
+    if ( loggedInUser ) {
+      menuItems.push( ( <MenuItem divider key={ `id-identify-menu-divider-${item.id}` } /> ) );
+      menuItems.push(
+        <li key={ `id-identify-menu-links-${item.id}` } className="search-links">
+          <div className="text-muted">
+            { I18n.t( "identify_observations" ) }:
+          </div>
+          <div className="search">
+            <a
+              href={ `/observations/identify?taxon_id=${item.taxon.id}` }
+              target={linkTarget}
+            >
+              <i className="fa fa-arrow-circle-o-right" />{ _.capitalize( I18n.t( "of_this_taxon" ) ) }
+            </a>
+          </div>
+          <div className="search">
+            <a
+              href={ `/observations/identify?user_id=${item.user.login}` }
+              target={linkTarget}
+            >
+              <i className="fa fa-arrow-circle-o-right" />{ _.capitalize( I18n.t( "by_user", { user: item.user.login } ) ) }
+            </a>
+          </div>
+        </li>
+      );
+    }
   } else {
     if ( viewerIsActor ) {
       menuItems.push( (

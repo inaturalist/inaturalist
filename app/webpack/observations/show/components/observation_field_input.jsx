@@ -24,6 +24,11 @@ class ObservationFieldInput extends React.Component {
     this.setUpObservationFieldAutocomplete( );
   }
 
+  componentDidUpdate( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".observation-field :input:visible:first", domNode ).focus( );
+  }
+
   onChangeHandler( e ) {
     let modified = true;
     if ( _.isObject( e ) && e.target ) {

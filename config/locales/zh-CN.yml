@@ -1652,7 +1652,6 @@ zh-CN:
     it: 意大利语
     mk: 马其顿语
     oc: 奥克语
-    pt: 葡萄牙语
     pt-BR: 葡萄牙语（巴西）
     ja: 日语
     zh-CN: 简体中文
@@ -2540,7 +2539,7 @@ zh-CN:
   see_something_wrong_with_taxon: 在此分类单元看到一些问题了么？请让馆长知道。
   seen_it?: 看见它了么？
   seen_nearby: 已查看附近
-  seen_one: 找到一个了么？]
+  seen_one: 看到一个了么？
   select: 选择
   select_all: 全选
   select_an_album: 选择一个相册
@@ -3959,6 +3958,20 @@ zh-CN:
             observation_id:
               must_be_observed_after: 必须在 %{time} 之后被观察
               must_be_observed_before: 必须在 %{time} 之前被观察
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
     attributes:
       assessment:
         description: 描述

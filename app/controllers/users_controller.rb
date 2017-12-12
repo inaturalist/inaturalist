@@ -48,34 +48,6 @@ class UsersController < ApplicationController
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
-  
-  def new
-    @user = User.new
-  end
- 
-  def create
-    logout_keeping_session!
-    @user = User.new(params[:user])
-    params[:user].each do |k,v|
-      if k =~ /^prefer/
-        params[:user].delete(k)
-      else
-        next
-      end
-      @user.send("#{k}=", v)
-    end
-    @user.register! if @user && @user.valid?
-    success = @user && @user.valid?
-    if success && @user.errors.empty?
-      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => @site.name)
-      self.current_user = @user
-      redirect_back_or_default(dashboard_path)
-    else
-      respond_to do |format|
-        format.html { render :action => 'new' }
-      end
-    end
-  end
 
   # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
   def activate
