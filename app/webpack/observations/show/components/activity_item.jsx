@@ -154,18 +154,6 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       );
     }
   }
-  if ( item.taxon && !item.taxon.is_active ) {
-    headerItems.push(
-      <a
-        key={ `ident-inactive-${item.id}` }
-        className="item-status ident-inactive"
-        target={ linkTarget }
-        href={ `/taxon_changes?taxon_id=${item.taxon.id}` }
-      >
-        <i className="fa fa-exclamation-circle"></i> { _.capitalize( I18n.t( "inactive_taxon" ) ) }
-      </a>
-    );
-  }
   if ( item.taxon && !item.current ) {
     headerItems.push(
       <span key={ `ident-withdrawn-${item.id}` } className="item-status">

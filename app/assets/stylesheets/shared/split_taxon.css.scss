@@ -13,3 +13,13 @@
 .taxon.has-com-name.parens .sciname:after { content: ')'; display: inline-block; }
 
 .taxon .altname { color: #aaa; }
+
+.SplitTaxon {
+  .inactive {
+    margin-left: 5px;
+    a {
+      color: red;
+      text-decoration: none;
+    }
+  }
+}

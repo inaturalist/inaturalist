@@ -178,11 +178,16 @@ body > div > [role="dialog"] .ActivityItem.withdrawn {
   }
   .panel-body {
     background-color: #f8f8f8;
-    .taxon-image, .taxon, .taxon a {
+    .taxon-image,
+    .taxon .sciname,
+    .taxon .comname {
       opacity: 0.5;
     }
     .taxon {
-      text-decoration: line-through;
+      .comname,
+      .sciname {
+        text-decoration: line-through;
+      }
     }
   }
 }

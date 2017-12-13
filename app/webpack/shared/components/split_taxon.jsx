@@ -162,14 +162,12 @@ const SplitTaxon = ( {
     }
     return (
       <span className="inactive">
-        [
-          <a
-            href={`/taxon_changes?taxon_id=${taxon.id}`}
-            target={ target }
-          >
-            { I18n.t( "inactive_taxon" ) }
-          </a>
-        ]
+        <a
+          href={`/taxon_changes?taxon_id=${taxon.id}`}
+          target={ target }
+        >
+          <i className="fa fa-exclamation-circle"></i> { _.startCase( I18n.t( "inactive_taxon" ) ) }
+        </a>
       </span>
     );
   };
