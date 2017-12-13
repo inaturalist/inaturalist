@@ -17,5 +17,5 @@
   <%- if @site.using_recaptcha? -%>
     <div class="g-recaptcha" data-sitekey="<%= @site.google_recaptcha_key %>" data-callback="RecaptchaCallback"></div>
   <%- end -%>
-  <%= f.submit t(:sign_up), :class => "default button", disabled: true, "data-loading-click" => t(:creating_your_account) %>
+  <%= f.submit t(:sign_up), :class => "default button", disabled: @site.using_recaptcha?, "data-loading-click" => t(:creating_your_account) %>
 <% end -%>
