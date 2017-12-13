@@ -25,21 +25,19 @@ class User < ActiveRecord::Base
 
   attr_accessor :html
 
-  preference :project_journal_post_email_notification, :boolean, default: true
+  # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
   preference :identification_email_notification, :boolean, default: true
   preference :message_email_notification, :boolean, default: true
   preference :no_email, :boolean, default: false
   preference :project_invitation_email_notification, :boolean, default: true
   preference :mention_email_notification, :boolean, default: true
-
   preference :project_journal_post_email_notification, :boolean, default: true
   preference :project_curator_change_email_notification, :boolean, default: true
   preference :project_added_your_observation_email_notification, :boolean, default: true
   preference :taxon_change_email_notification, :boolean, default: true
   preference :user_observation_email_notification, :boolean, default: true
   preference :taxon_or_place_observation_email_notification, :boolean, default: true
-
 
   preference :lists_by_login_sort, :string, :default => "id"
   preference :lists_by_login_order, :string, :default => "asc"
