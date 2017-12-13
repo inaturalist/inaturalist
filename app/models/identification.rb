@@ -87,7 +87,11 @@ class Identification < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    notification: "mention",
+    if: lambda {|u| u.prefers_receive_mentions? }
   
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)
@@ -397,6 +401,11 @@ class Identification < ActiveRecord::Base
   def mentioned_users
     return [ ] unless body
     body.mentioned_users
+  end
+
+  def previously_mentioned_users
+    return [ ] if body_was.blank?
+    body.mentioned_users & body_was.to_s.mentioned_users
   end
 
   def vision

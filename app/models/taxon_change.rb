@@ -20,7 +20,7 @@ class TaxonChange < ActiveRecord::Base
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
 
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :new_mentioned_users, on: :save, notification: "mention"
   
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",
@@ -377,6 +377,11 @@ class TaxonChange < ActiveRecord::Base
   def mentioned_users
     return [ ] if description.blank?
     description.mentioned_users
+  end
+
+  def new_mentioned_users
+    return [ ] unless description && description_changed?
+    description.mentioned_users - description_was.to_s.mentioned_users
   end
 
   def draft?
