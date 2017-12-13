@@ -588,4 +588,26 @@ describe Project do
       expect( Project.find_by_id( p.id ) ).to be_blank
     end
   end
+
+  describe "observations_url_params" do
+    it "should include taxon rules" do
+      p = Project.make!
+      taxon1 = Taxon.make!
+      taxon2 = Taxon.make!
+      ProjectObservationRule.make!(operator: 'in_taxon?', operand: taxon1, ruler: p)
+      ProjectObservationRule.make!(operator: 'in_taxon?', operand: taxon2, ruler: p)
+      expect( p.observations_url_params[:taxon_ids].sort ).to eq [taxon1.id, taxon2.id].sort
+    end
+
+    it "should concatenate IDs" do
+      p = Project.make!
+      taxon1 = Taxon.make!
+      taxon2 = Taxon.make!
+      ProjectObservationRule.make!(operator: 'in_taxon?', operand: taxon1, ruler: p)
+      ProjectObservationRule.make!(operator: 'in_taxon?', operand: taxon2, ruler: p)
+      expect( p.observations_url_params(concat_ids: true)[:taxon_ids] ).to eq [taxon1.id, taxon2.id].sort.join(",")
+    end
+
+  end
+
 end

@@ -306,7 +306,7 @@
     <ul id="projectnav" class="stacked curatorbox">
       <li><div class="curatorlabel"><%=t :project_curator_tools %></div></li>
       <% if !@project.observations_url_params.blank? -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params(concat_ids: true).merge(not_in_project: @project.slug)), :class => "navlink" %></li>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path(@observation_search_url_params.merge(not_matching_project_rules_for: @project.slug)), :class => "navlink" %></li>
       <% end -%>
       <li>
