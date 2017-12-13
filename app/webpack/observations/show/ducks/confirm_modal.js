@@ -21,12 +21,17 @@ export function handleAPIError( e, message, options = { } ) {
   if ( !e || !message ) { return null; }
   return dispatch => {
     if ( e.response && e.response.status ) {
-      e.response.text( ).then( text => {
-        const body = JSON.parse( text );
+      const handleErrorJson = body => {
         // these errors come from Rails and have their own usable error messages
         let railsErrors;
         if ( body && body.error && body.error.original && body.error.original.errors ) {
           railsErrors = body.error.original.errors;
+        } else if ( body && body.error ) {
+          if ( typeof( body.error ) === "string" ) {
+            railsErrors = JSON.parse( body.error ).errors;
+          } else if ( body.error.errors ) {
+            railsErrors = body.error.errors;
+          }
         }
         dispatch( setConfirmModalState( {
           show: true,
@@ -37,7 +42,14 @@ export function handleAPIError( e, message, options = { } ) {
           errors: railsErrors,
           onConfirm: options.onConfirm
         } ) );
-      } ).catch( e => { } );
+      };
+      if ( e.response.bodyUsed ) {
+        handleErrorJson( JSON.parse( e.message ) );
+      } else {
+        e.response.text( ).then( text => {
+          handleErrorJson( JSON.parse( text ) );
+        } ).catch( responseTextError => { } );
+      }
     }
   };
 }

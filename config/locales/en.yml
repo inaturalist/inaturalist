@@ -5682,6 +5682,9 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: user does not accept fields from others
+              user_only_accepts_fields_from_site_curators: user only accepts fields from site curators
         place:
           attributes:
             place_geometry:
