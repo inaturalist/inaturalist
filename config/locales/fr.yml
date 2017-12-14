@@ -366,7 +366,7 @@ fr:
     family: Toutes les familles ajoutées à la base de données
     subfamily: Toutes les sous-familles ajoutées à la base de données
     supertribe: Toutes les super-tribus ajoutées à la base de données
-    tribe: Toutes les tribus ajoutées à la base de données
+    tribe: Toutes les tribus ont été ajoutées à la base de données
     subtribe: Toutes les sous-tribus ajoutées à la base de données
     genus: Tous les genres ajoutés à la base de données
     genushybrid: Tous les genres hybrides ajoutés à la base de données
@@ -3152,6 +3152,7 @@ fr:
   project_assets: Biens du projet
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
+  project_curator_changes: Modifications de superviseur du projet
   project_curator_id: ID du responsable de l’organisation du projet
   project_curator_tools: Outils du chef de projet
   project_curators: Responsables de l’organisation du projet
@@ -4773,6 +4774,14 @@ fr:
   verifiable: vérifiable
   views:
     views: Vues
+    announcements:
+      locales_desc: "CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner
+        affichera \nl’avertissement pour tous les utilisateurs quelle que soit leur
+        localisation. Choisir une langue\nsans région ne ciblera *pas* les localisations
+        avec région, par ex. si\nvous choisissez en, elle n’apparaîtra pas pour les
+        personnes qui ont choisi en-US. Si vous\nvoulez cibler l’ensemble, choisissez
+        les deux. Si vous voulez afficher un avertissement\npour tous les membres
+        du site, laissez-le simplement vide."
     custom_projects:
       edit:
         custom_project_fields_warning: |-
@@ -5880,12 +5889,20 @@ fr:
       form:
         new_name_guidelines_html: |-
           <ul class="ui">
-            <li>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</li>
-            <li>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</li>
-            <li>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</li>
-            <li>
+            <li><p>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</p></li>
+            <li><p>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</p></li>
+            <li><p>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</p></li>
+            <li><p>
               N’ajoutez pas d’information qui ne soit pas le nom, par ex. des informations
               entre parenthèses sur comment vous pensez que le nom devrait être utilisé
+            </p></li>
+          <li>
+              <p>
+                Les lexiques doivent être en anglais. Veuillez ne pas ajouter de noms de langue
+                traduits comme « French, Français » parce que cela rendra simplement
+                plus difficile ou impossible pour nous d’afficher les noms localisés aux personnes
+                qui utilisent ce site dans différentes langues.
+              </p>
             </li>
           </ul>
         places_help_html: |-
