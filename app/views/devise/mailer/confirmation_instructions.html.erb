@@ -7,9 +7,21 @@
   logo_square_url = site.logo_square.url
   site_url = site.url
   site_name = site.name
-  help_url = site.help_url
-  feedback_url = site.feedback_url
-  community_guidelines_url = site.community_guidelines_url
+  help_url = if site.help_url.to_s =~ /http/
+    site.help_url
+  else
+    URI.join( site.url.to_s, site.help_url.to_s )
+  end
+  feedback_url = if site.feedback_url.to_s =~ /http/
+    site.feedback_url
+  else
+    URI.join( site.url.to_s, site.feedback_url.to_s )
+  end
+  community_guidelines_url = if site.community_guidelines_url =~ /http/
+    site.community_guidelines_url
+  else
+    URI.join( site.url.to_s, site.community_guidelines_url.to_s )
+  end
 -%>
 <h1>
 <%=raw t(:your_account_has_been_activated) %>
