@@ -275,7 +275,7 @@ class TaxonChange < ActiveRecord::Base
       identifications.find_each(&:destroy)
     end
     in_taxon = input_taxa.first if input_taxa.size == 1
-    if in_taxon
+    if in_taxon && !output_taxa.blank?
       listed_taxa_sql = <<-SQL
         UPDATE listed_taxa SET taxon_id = #{in_taxon.id} FROM places WHERE
           listed_taxa.taxon_id IN (#{output_taxa.map(&:id).join(',')})
