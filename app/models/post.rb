@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :body ],
-                    :comment_type => "item-description"
+                    :comment_type => "blog-post"
 
   has_subscribers
   notifies_subscribers_of :parent, {

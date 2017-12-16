@@ -214,8 +214,18 @@ class Site < ActiveRecord::Base
   # Whether this site prefers https
   preference :ssl, :boolean
 
-  def self.default
-    Site.first
+  def self.default(options={})
+    if options[:refresh]
+      Rails.cache.delete( "sites_default" )
+    end
+    if cached = Rails.cache.read( "sites_default" )
+      return cached
+    end
+    site = Site.includes( :stored_preferences ).first
+    return unless site
+    Rails.cache.fetch( "sites_default" ) do
+      site
+    end
   end
 
   def to_s

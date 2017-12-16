@@ -63,6 +63,10 @@ class Flag < ActiveRecord::Base
     true
   end
 
+  def is_akismet_spam_flag?
+    user_id == 0 && flag == Flag::SPAM
+  end
+
   def as_indexed_json
     {
       id: id,

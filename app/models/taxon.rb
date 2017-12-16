@@ -778,12 +778,12 @@ class Taxon < ActiveRecord::Base
     if taxon_photos.loaded?
       chosen_taxon_photos = taxon_photos.sort_by{|tp| tp.position || tp.id }[0...options[:limit]]
     else
-      chosen_taxon_photos = taxon_photos.includes(:photo).
+      chosen_taxon_photos = taxon_photos.includes({ photo: :flags }).
         order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
         limit(options[:limit])
     end
     if chosen_taxon_photos.size < options[:limit]
-      descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes(:photo).
+      descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes({ photo: :flags }).
         order( "taxon_photos.id ASC" ).
         limit( options[:limit] - chosen_taxon_photos.size ).
         where( "taxa.ancestry LIKE '#{ancestry}/#{id}%'" ).

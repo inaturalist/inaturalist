@@ -1,6 +1,7 @@
 class Comment < ActiveRecord::Base
 
-  acts_as_spammable fields: [ :body ]
+  acts_as_spammable fields: [ :body ],
+                    comment_type: "comment"
   acts_as_votable
   SUBSCRIBABLE = false
 
