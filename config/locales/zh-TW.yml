@@ -5,6 +5,7 @@
 # Author: Corainn
 # Author: Cwlin0416
 # Author: Kly
+# Author: Koala0090
 # Author: LNDDYL
 # Author: Liuxinyu970226
 # Author: Mutolisp
@@ -15,7 +16,7 @@
 zh-TW:
   licensing_your_content: 授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容；來與像是<a
     href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
-  you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、參與資料質素評審或在評論欄中詳述不符點。
+  you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、評估資訊品質，或在評論欄中詳述不符點。
   we_also_support: |-
     我們亦支援 <a href="http://flickr.com">Flickr</a>、
     <a href="http://photos.google.com">Google 照片</a>，及
@@ -43,14 +44,14 @@ zh-TW:
     one: 1 分類清單
     other: '%{count} 分類清單'
   x_journal_posts:
-    one: 1 篇日誌發佈文章
-    other: '%{count} 篇日誌發佈文章'
+    one: 1 篇日誌
+    other: '%{count} 篇日誌'
   x_matching_taxa:
     one: 1 項匹配的物種分類
     other: '%{count} 項匹配的物種分類'
   x_matching_taxa_html:
-    one: '<span class="count">1</span>項 匹配的物種分類 '
-    other: <span class="count">%{count}</span>項 匹配的物種分類
+    one: '<span class="count">1</span>項匹配的物種分類 '
+    other: <span class="count">%{count}</span>項匹配的物種分類
   x_misidentifications_of_this_species:
     one: 此物種有 1 個錯誤鑑定
     other: '%{count} 此物種有 %{count} 個錯誤鑑定'
@@ -128,15 +129,15 @@ zh-TW:
   about_conservation_status: 關於保育狀態
   about_establishment_means: 有關確立方式
   about_external_links: 關於外部連結
-  about_licenses: 關於許可
-  about_licensing: 關於許可協議
+  about_licenses: 關於授權
+  about_licensing: 關於授權協議
   about_life!: 關於生物!
   about_names: 關於名稱
   about_places: 關於地點
   about_taxon_changes: 關於分類更改
-  about_the_cc_licenses: 關於創用CC許可
+  about_the_cc_licenses: 關於創用CC授權
   about_the_taxobox_raquo: 關於分類盒
-  about_these_licenses: 關於這些允許協議
+  about_these_licenses: 關於這些授權協議
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
   about_x: 關於 %{x}
@@ -147,14 +148,14 @@ zh-TW:
   accuracy: 準確性
   accuracy_m: 精確度（公尺）
   accuracy_meters: 精確度 (公尺)
-  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方"編輯"連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
+  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方「編輯」連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
   acquaintances: 同伴
   action: 操作
   actions: 操作
   activate_user: 啟用使用者
   active: 有效
-  activity: 活躍
-  activity_settings: 活躍設定
+  activity: 動態
+  activity_settings: 動態設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
   add: 新增
   add_a: 新增一個
@@ -181,7 +182,7 @@ zh-TW:
   add_another: 新增其他紀錄
   add_another_flag: 新增其他旗號標記
   add_another_photo: 加入其他圖片
-  add_another_section: 加入其他部份
+  add_another_section: 加入其他資訊
   add_another_subscription: 新增其他訂閱
   add_asset: 添加可用物件
   add_batch: 批次新增
@@ -225,19 +226,19 @@ zh-TW:
   add_photos: 新增相片
   add_photos_to_this_observation: 新增相片到觀察紀錄中
   add_place: 加入地點
-  add_plant_phenology_budding_annotation: 新增「植物物候：發芽」註解
-  add_plant_phenology_flowering_annotation: 新增「植物物候學：開花」註解
+  add_plant_phenology_budding_annotation: 新增「植物物候：發芽」的註解
+  add_plant_phenology_flowering_annotation: 新增「植物物候學：開花」的註解
   add_plant_phenology_fruiting_annotation: 新增「植物物候：結果」註解
-  add_life_stage_adult_annotation: 新增「生命階段：成體」註解
-  add_life_stage_teneral_annotation: 新增「生命階段：初羽化」註解
+  add_life_stage_adult_annotation: 新增「生命階段：成體」的註解
+  add_life_stage_teneral_annotation: 新增「生命階段：初羽化」的註解
   add_life_stage_subimago_annotation: 新增「生命階段：亞成蟲」註解
-  add_life_stage_pupa_annotation: 新增「生命階段：蛹」註解
+  add_life_stage_pupa_annotation: 新增「生命階段：蛹」的註解
   add_life_stage_nymph_annotation: 新增「生命階段：若蟲」註解
   add_life_stage_larva_annotation: 新增「生命階段：幼蟲」註解
-  add_life_stage_juvenile_annotation: 新增「生命階段：亞成體」註解
+  add_life_stage_juvenile_annotation: 新增「生命階段：亞成體」的註解
   add_life_stage_egg_annotation: 新增「生命階段：卵」註解
   add_several_observations_at_once: 一次過添加多筆觀察紀錄。
-  add_sex_female_annotation: '新增"Sex: Female"註解'
+  add_sex_female_annotation: 新增「性别：雌」的註解
   add_sex_male_annotation: '新增"Sex: Male"註解'
   add_shape: 添加形狀
   add_some_now: 現在添加一些

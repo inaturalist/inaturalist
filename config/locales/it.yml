@@ -2617,6 +2617,7 @@ it:
   of_observers: osservatori
   of_identifiers: identificatori
   of_places: luoghi
+  of_this_taxon: Di questo taxon
   offensive_inappropriate: offensivo / inappropriato
   official_blog: Blog Ufficiale
   offline_access_enabled: Accesso offline abilitato
@@ -3057,6 +3058,7 @@ it:
   processing3p: Elaborazione...
   profile: Profilo
   project: Progetto
+  project_added_your_observations: Il Progetto ha aggiunto le tue osservazioni
   project_aggregator_filter_error: Nei progetti non è possibile attivare l'aggregazione
     automatica delle osservazioni, salvo che il progetto sia associato ad un luogo
     di moderata estensione o che permetta l'inserimento solo di specifici taxa elencati
@@ -3065,6 +3067,7 @@ it:
   project_assets: Risorse del Progetto
   project_cover: Copertina del progetto
   project_created_on: ha creato questo progetto in data %{date}
+  project_curator_changes: Sostituzioni dei curatori del progetto
   project_curator_id: ID del curatore del progetto
   project_curator_tools: Strumenti curatore progetto
   project_curators: Curatori del progetto
@@ -3716,6 +3719,7 @@ it:
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve
     corrispondere a uno di quelli del nostro database
   taxon_observed_by_user: '%{taxon} osservato da %{user}'
+  taxon_or_place_observations: Osservazioni del taxon o del luogo
   taxon_photos_updated: Foto del taxon aggiornate!
   taxon_range: Areale del taxon
   taxon_range_created_notice: L'areale del taxon è stato creato con successo. Attendi
@@ -4164,6 +4168,7 @@ it:
   user_is_now_role_for_project_html: <strong>%{user}</strong> è ora %{role} del progetto
     %{project}
   user_muted: Utente silenziato
+  user_observations: Osservazioni dell'utente
   user_s: di %{user}
   user_s_id: '%{id} di %{user}'
   user_s_lists: Elenchi di %{user}
@@ -6015,6 +6020,10 @@ it:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
                 solo da un curatore di questo taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: non deve contenere virgole o barre
     attributes:
       assessment:
         description: Descrizione
