@@ -1439,7 +1439,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     describe "with site" do
-      let(:site) { Site.default }
+      let(:site) { Site.default( refresh: true ) }
       it "should filter by place" do
         p = make_place_with_geom
         site.update_attributes(place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE)
@@ -1495,6 +1495,7 @@ shared_examples_for "an ObservationsController" do
 
     describe "should filter when quality_grade" do
       before do
+        Site.default( refresh: true )
         @research_grade = make_research_grade_observation
         @needs_id = make_research_grade_candidate_observation
         @casual = Observation.make!
@@ -1653,7 +1654,9 @@ shared_examples_for "an ObservationsController" do
       num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
         where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 3
-      put :viewed_updates, :format => :json, :id => @o.id
+      without_delay do
+        put :viewed_updates, :format => :json, :id => @o.id
+      end
       num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
         where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 1

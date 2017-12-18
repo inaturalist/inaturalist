@@ -214,6 +214,8 @@ class Site < ActiveRecord::Base
   # Whether this site prefers https
   preference :ssl, :boolean
 
+  after_save :refresh_default_site
+
   def self.default(options={})
     if options[:refresh]
       Rails.cache.delete( "sites_default" )
@@ -304,6 +306,12 @@ class Site < ActiveRecord::Base
 
   def using_recaptcha?
     google_recaptcha_key && google_recaptcha_secret
+  end
+
+  def refresh_default_site
+    if Site.default && self.id == Site.default.id
+      Site.default( refresh: true )
+    end
   end
 
 end
