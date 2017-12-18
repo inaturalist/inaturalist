@@ -217,4 +217,5 @@ def make_default_site
     preferred_site_name_short: "iNat",
     preferred_email_noreply: "no-reply@inaturalist.org"
   ) unless Site.any?
+  Site.default( refresh: true )
 end

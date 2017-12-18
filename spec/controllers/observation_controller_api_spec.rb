@@ -1495,7 +1495,6 @@ shared_examples_for "an ObservationsController" do
 
     describe "should filter when quality_grade" do
       before do
-        Site.default( refresh: true )
         @research_grade = make_research_grade_observation
         @needs_id = make_research_grade_candidate_observation
         @casual = Observation.make!
