@@ -17,12 +17,31 @@ const Observations = ( { data } ) => {
             xs: {
               weeks: "weeksX",
               days: "daysX"
+            },
+            colors: {
+              weeks: "#74ac00",
+              days: "#aaaaaa"
             }
           },
           axis: {
             x: {
               type: "timeseries"
+            },
+            y: {
+              min: 0,
+              show: true,
+              padding: {
+                left: 0,
+                bottom: 0
+              },
+              tick: {
+                outer: false,
+                format: d => I18n.toNumber( d, { precision: 0 } )
+              }
             }
+          },
+          point: {
+            r: 2
           }
         } }
       />
