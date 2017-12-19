@@ -5,6 +5,7 @@
 # Author: Corainn
 # Author: Cwlin0416
 # Author: Kly
+# Author: Koala0090
 # Author: LNDDYL
 # Author: Liuxinyu970226
 # Author: Mutolisp
@@ -15,7 +16,7 @@
 zh-TW:
   licensing_your_content: 授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容；來與像是<a
     href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
-  you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、參與資料質素評審或在評論欄中詳述不符點。
+  you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、評估資訊品質，或在評論欄中詳述不符點。
   we_also_support: |-
     我們亦支援 <a href="http://flickr.com">Flickr</a>、
     <a href="http://photos.google.com">Google 照片</a>，及
@@ -43,14 +44,14 @@ zh-TW:
     one: 1 分類清單
     other: '%{count} 分類清單'
   x_journal_posts:
-    one: 1 篇日誌發佈文章
-    other: '%{count} 篇日誌發佈文章'
+    one: 1 篇日誌
+    other: '%{count} 篇日誌'
   x_matching_taxa:
     one: 1 項匹配的物種分類
     other: '%{count} 項匹配的物種分類'
   x_matching_taxa_html:
-    one: '<span class="count">1</span>項 匹配的物種分類 '
-    other: <span class="count">%{count}</span>項 匹配的物種分類
+    one: '<span class="count">1</span>項匹配的物種分類 '
+    other: <span class="count">%{count}</span>項匹配的物種分類
   x_misidentifications_of_this_species:
     one: 此物種有 1 個錯誤鑑定
     other: '%{count} 此物種有 %{count} 個錯誤鑑定'
@@ -128,15 +129,15 @@ zh-TW:
   about_conservation_status: 關於保育狀態
   about_establishment_means: 有關確立方式
   about_external_links: 關於外部連結
-  about_licenses: 關於許可
-  about_licensing: 關於許可協議
+  about_licenses: 關於授權
+  about_licensing: 關於授權協議
   about_life!: 關於生物!
   about_names: 關於名稱
   about_places: 關於地點
   about_taxon_changes: 關於分類更改
-  about_the_cc_licenses: 關於創用CC許可
+  about_the_cc_licenses: 關於創用CC授權
   about_the_taxobox_raquo: 關於分類盒
-  about_these_licenses: 關於這些允許協議
+  about_these_licenses: 關於這些授權協議
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
   about_x: 關於 %{x}
@@ -147,14 +148,14 @@ zh-TW:
   accuracy: 準確性
   accuracy_m: 精確度（公尺）
   accuracy_meters: 精確度 (公尺)
-  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方"編輯"連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
+  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方「編輯」連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
   acquaintances: 同伴
   action: 操作
   actions: 操作
   activate_user: 啟用使用者
   active: 有效
-  activity: 活躍
-  activity_settings: 活躍設定
+  activity: 動態
+  activity_settings: 動態設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
   add: 新增
   add_a: 新增一個
@@ -181,7 +182,7 @@ zh-TW:
   add_another: 新增其他紀錄
   add_another_flag: 新增其他旗號標記
   add_another_photo: 加入其他圖片
-  add_another_section: 加入其他部份
+  add_another_section: 加入其他資訊
   add_another_subscription: 新增其他訂閱
   add_asset: 添加可用物件
   add_batch: 批次新增
@@ -225,19 +226,19 @@ zh-TW:
   add_photos: 新增相片
   add_photos_to_this_observation: 新增相片到觀察紀錄中
   add_place: 加入地點
-  add_plant_phenology_budding_annotation: 新增「植物物候：發芽」註解
-  add_plant_phenology_flowering_annotation: 新增「植物物候學：開花」註解
+  add_plant_phenology_budding_annotation: 新增「植物物候：發芽」的註解
+  add_plant_phenology_flowering_annotation: 新增「植物物候學：開花」的註解
   add_plant_phenology_fruiting_annotation: 新增「植物物候：結果」註解
-  add_life_stage_adult_annotation: 新增「生命階段：成體」註解
-  add_life_stage_teneral_annotation: 新增「生命階段：初羽化」註解
+  add_life_stage_adult_annotation: 新增「生命階段：成體」的註解
+  add_life_stage_teneral_annotation: 新增「生命階段：初羽化」的註解
   add_life_stage_subimago_annotation: 新增「生命階段：亞成蟲」註解
-  add_life_stage_pupa_annotation: 新增「生命階段：蛹」註解
+  add_life_stage_pupa_annotation: 新增「生命階段：蛹」的註解
   add_life_stage_nymph_annotation: 新增「生命階段：若蟲」註解
   add_life_stage_larva_annotation: 新增「生命階段：幼蟲」註解
-  add_life_stage_juvenile_annotation: 新增「生命階段：亞成體」註解
+  add_life_stage_juvenile_annotation: 新增「生命階段：亞成體」的註解
   add_life_stage_egg_annotation: 新增「生命階段：卵」註解
   add_several_observations_at_once: 一次過添加多筆觀察紀錄。
-  add_sex_female_annotation: '新增"Sex: Female"註解'
+  add_sex_female_annotation: 新增「性别：雌」的註解
   add_sex_male_annotation: '新增"Sex: Male"註解'
   add_shape: 添加形狀
   add_some_now: 現在添加一些
@@ -261,7 +262,7 @@ zh-TW:
   add_to_project: 新增專案
   add_to_your_life_list: 新增到您的生物清單！
   add_to_your_list: 新增到你的清單
-  add_your_email_to_get: 添加您的電子郵件；以讓您的觀察能獲得來自於社群的意見回饋。若您不想分享它請立即查驗！
+  add_your_email_to_get: 添加您的電子郵件，以讓您的觀察能獲得來自於社群的意見回饋。若您不想分享它請立即查驗！
   add_your_own_observations_at: 添加您所擁有的觀察在 %{site_name}
   add_your_photo: 加添你的圖片
   add_your_photo_to: 加添你的圖片至 %{project} 專案
@@ -425,7 +426,7 @@ zh-TW:
   and_other_taxa: '&amp;其它物種分類'
   and_un_license_all_your_observations: 並取消您所有觀察的許可協議
   and_you_havent_linked: '...而且您還沒有連結這些外部帳號之一，您應該先通過 %{site_name} 作登入，然後編輯您的個人檔案並從此處來連結您的帳號。否則
-    %{site_name} 可能無法確定兩個帳號是互相連接的；反而還會嘗試替您另外新建帳號！'
+    %{site_name} 可能無法確定兩個帳號是互相連接的，反而還會嘗試替您另外新建帳號！'
   and_x_more_people!:
     one: 以及其他 1 個人！
     other: 以及其他 %{count} 個人！
@@ -579,7 +580,7 @@ zh-TW:
   body: 正文
   bounding_box: 邊框
   breadcrumbs: 麵包屑導航
-  breadcrumbs_description: 這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要；請確認有包含到，另外請記住所允許的最大寬度是
+  breadcrumbs_description: 這將會取代掉 h1 並預設成起作用，因此如果它們對於專案相當重要，請確認有包含到，另外請記住所允許的最大寬度是
     950 像素
   brief_caption: 簡要說明
   brief_description_on_what_you_observed: 您所觀察到的簡要描述
@@ -621,7 +622,7 @@ zh-TW:
   cc_by_name: 姓名標示
   cc_by_nc_description: 此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作在以非商業目的下，雖然他們的新作品必須在非商業目的下致謝於您，但他們的衍生作品可以不必依同樣使用條款來作為許可。
   cc_by_nc_name: 姓名標示-非商業性
-  cc_by_nc_nd_description: 此許可協議是六種主要許可裡最多限制的，僅允許其他人在註明於您的情況中；下載您的作品或分享給另外其他人，並且不准以任何方式更改內容或用於商業目的。
+  cc_by_nc_nd_description: 此許可協議是六種主要許可裡最多限制的，僅允許其他人在註明於您的情況中，下載您的作品或分享給另外其他人，並且不准以任何方式更改內容或用於商業目的。
   cc_by_nc_nd_name: 姓名標示-非商業性-禁止改作
   cc_by_nc_sa_description: 此許可協議可讓其他人發佈、重製、調整，和以您的作品為基礎來創作在以非商業目的下，只要他們註明於您並且以同樣條款在他們的新作品上。
   cc_by_nc_sa_name: 姓名標示-非商業性-相同方式分享
@@ -637,7 +638,7 @@ zh-TW:
     split: 舊物種分類拆分為多項新的物種分類
     merge: 數個舊物種分類合成一個新物種分類群
     swap: 一對一的名稱修改
-    drop: 在歷史用途或與合作者間兼容性的維護上；物種分類的概念完全無效
+    drop: 在歷史用途或與合作者間兼容性的維護上，物種分類的概念完全無效
     stage: 準備一個無作用概念來作為更改群組時釋出的部份
   change_geoprivacy: 更改位置隱私
   change_group: 更改群組
@@ -672,8 +673,8 @@ zh-TW:
   change_your_matching: 更改您的比對
   change_your_password: 更改您的密碼
   changing_the_geoprivacy: 更改位置隱私會變動其他人如何查看您的觀察位置
-  check_here_to_autoload_description: 在此勾選來從維基百科自動載入描述。當某一物種分類的學名同為非學術字詞、或是常見的拼寫錯誤字詞時；例如「Parus」：，可能會讓您取消勾選。
-  check_here_to_autoload_photos: 在此勾選來從 Flickr 自動載入描述。當某一物種分類的學名同為非學術字詞、或是常見的拼寫錯誤字詞時；例如「Parus」：，可能會讓您取消勾選。
+  check_here_to_autoload_description: 在此勾選來從維基百科自動載入描述。當某一物種分類的學名同為非學術字詞、或是常見的拼寫錯誤字詞時，例如「Parus」：，可能會讓您取消勾選。
+  check_here_to_autoload_photos: 在此勾選來從 Flickr 自動載入描述。當某一物種分類的學名同為非學術字詞、或是常見的拼寫錯誤字詞時，例如「Parus」：，可能會讓您取消勾選。
   check_it_out: 瞧瞧看
   check_list: 檢查列表
   check_list_description: 請挑選您想要顯示在此列表的更高層級物種分類，像是將「鳥綱」用於鳥、「兩棲綱」用於兩棲動物。當設定好後，此列表將不允許不在此物種分類的物種分類群。例如您創建了鳥類列表後，您不能將青蛙類加在該列表裡。
@@ -685,7 +686,7 @@ zh-TW:
   check_list_updated: 檢查列表已更新！
   check_list_source: 來源<span class="meta">（可選）</span>
   check_lists_for: 用於%{place}的其它清單
-  check_out_my_observations_at: 若您有意願；您可以查看我的觀察在
+  check_out_my_observations_at: 若您有意願，您可以查看我的觀察在
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 瞧瞧您想嘗試鑑定物種的類型。
   check_out_your_life_list: 退出及儲存您的生物清單
@@ -735,11 +736,11 @@ zh-TW:
   code: 代碼
   collapse_days: 摺疊日子
   collapse_updates: 摺疊更新
-  color_categories_for_this_species: 用於此物種的色彩分類，這就像您將此放置在依色彩排序的實地指南裡。請不要列出在該生物上所有的色彩，只要列出顯著具代表性的即可。用於在會開花植物上，請使用花朵的顏色。若色彩對於分類是無幫助的情況下；請將其留空，例如棕色的哺乳類動物或綠色的蕨類植物。
+  color_categories_for_this_species: 用於此物種的色彩分類，這就像您將此放置在依色彩排序的實地指南裡。請不要列出在該生物上所有的色彩，只要列出顯著具代表性的即可。用於在會開花植物上，請使用花朵的顏色。若色彩對於分類是無幫助的情況下，請將其留空，例如棕色的哺乳類動物或綠色的蕨類植物。
   colors: 色彩
   columns: 欄位
   combine: 結合
-  comma_separated_list_of_tracking_codes: 以逗號分隔的追蹤代碼列表。當您以新觀察表格傳送人們時想附加追蹤代碼；請添加它，例如：%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可使用此追蹤來自不同來源的參與。您可在當下載您的專案觀察成
+  comma_separated_list_of_tracking_codes: 以逗號分隔的追蹤代碼列表。當您以新觀察表格傳送人們時想附加追蹤代碼，請添加它，例如：%{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123。您可使用此追蹤來自不同來源的參與。您可在當下載您的專案觀察成
     CSV 檔案時來存取這些代碼。
   comma_separated_please: 請以逗號分隔
   comment_preview: 評論預覽
@@ -889,7 +890,7 @@ zh-TW:
   created_on: 創立於
   creating_your_account: 建立您的帳號中…
   creative_commons_flickr_tagged: 創用 CC 的 Flickr 照片已標記
-  creative_commons_unless_otherwise_noted: 創用 CC；除非另有聲明。
+  creative_commons_unless_otherwise_noted: 創用 CC，除非另有聲明。
   critically_endangered: 極度瀕危
   critically_imperiled: 嚴重瀕絕
   css_description: 這將會在頁面上有所有其它 CSS 才包含。
@@ -1155,7 +1156,7 @@ zh-TW:
     managed: 已管理
   establishment_means: 確立方式
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: 本地物種；並且沒有出現在其它地方
+    native_and_occurs_nowhere_else: 本地物種，並且沒有出現在其它地方
     arrived_in_the_region_via_anthropogenic_means: 透過人類的活動行為來到達此區域
   establishment_means_describes_how: 確立方式描述著物種分類在地區上如何被確立。請查看達爾文核心集（Darwin Core）更多<a
     href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">關於術語</a>的訊息。
@@ -1409,7 +1410,7 @@ zh-TW:
   help_confirm_observations!: 幫助確認觀察！
   help_faq: 幫助 / 常見問題
   help_out!: 幫個忙！
-  helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前；他們所作出符合的）
+  helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_species_suggestions: 這是我們熱門的物種建議
   here_are_some_things_you_can_do_meantime: 此期間有一些事情可讓您來做：
@@ -1464,13 +1465,13 @@ zh-TW:
   identotron_help: Identotron 幫助
   ids: ID
   ids_made_for_others: 用於其他的 ID
-  if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因您不同意社群物種分類；您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
+  if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
   if_this_link_will_apply_to_descendant: 如果此連結將套用到後代物種分類，您可以使用模版標籤來填寫 URL 裡的物種分類名稱
   if_you_already_have_an_account: 如果您已經擁有 %{article} %{site_name} 帳號...
   if_you_dont_want_us_to_share_your_data: 如果您不希望我們分享您的資料
-  if_you_have_any_trouble_with_the_site_check_out: 若您有任何問題，請查看我們的<a href="%{help_url}">幫助章節</a>；或發佈訊息至我們的<a
+  if_you_have_any_trouble_with_the_site_check_out: 若您有任何問題，請查看我們的<a href="%{help_url}">幫助章節</a>，或發佈訊息至我們的<a
     href="%{feedback_url}">意見回饋群組</a>。
   if_you_have_trouble_with_the_site: 如果您在此網站上碰到任何問題，請查看我們的幫助章節：
   if_you_use: 如果您使用
@@ -2250,6 +2251,7 @@ zh-TW:
   of_observers: 個觀察者
   of_identifiers: 個辨認者
   of_places: 個地點
+  of_this_taxon: 這個的物種分類
   offensive_inappropriate: 冒犯/不適當
   official_blog: 官方部落格
   offline_access_enabled: 離線存取已啟用
@@ -2623,11 +2625,13 @@ zh-TW:
   processing3p: 處理中...
   profile: 個人資料
   project: 專案
+  project_added_your_observations: 專案已添加您的觀察
   project_aggregator_filter_error: 專案無法啟動自動觀察聚集，除非專案關聯於適中大小的地點、或僅允許特定物種分類群觀察、或是在列表上物種分類群的觀察
   project_assessments: 專案評估
   project_assets: 專案可用物件
   project_cover: 專案封面
   project_created_on: 創建此專案於 %{date}
+  project_curator_changes: 專案策展人更改
   project_curator_id: 專案策展人 ID
   project_curator_tools: 專案策展人工具
   project_curators: 專案策展人
@@ -3195,6 +3199,7 @@ zh-TW:
   taxon_name: 物種分類名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
   taxon_observed_by_user: 由 %{user} 觀察到的%{taxon}
+  taxon_or_place_observations: 物種分類或地點觀察
   taxon_photos_updated: 物種分類照片已更新！
   taxon_range: 物種分類範圍
   taxon_range_created_notice: 物種分類範圍已創建成功。請等待幾分鐘來讓內容呈現在地圖上。
@@ -3526,6 +3531,7 @@ zh-TW:
   user_is_a_naturalist: '%{user} 是個博物學友！'
   user_is_now_role_for_project_html: <strong>%{user}</strong>現在是 %{project} 的%{role}了
   user_muted: 使用者已禁言
+  user_observations: 用戶觀察
   user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user}的列表'
@@ -3715,10 +3721,10 @@ zh-TW:
   x_doesnt: '%{login}沒有'
   x_hasnt: '%{login}沒有'
   x_journal: '%{user} 的日誌'
-  x_journal_archives_for_y: '%{user} 的日誌 &middot; 歸檔用於'
-  x_journal_editing: '%{user} 的日誌&middot;編輯中'
-  x_journal_middot: '%{user}的期刊 &middot;'
-  x_journal_new_post: '%{user}的日誌&middot;新發表'
+  x_journal_archives_for_y: '%{user} 的日誌•歸檔用於'
+  x_journal_editing: '%{user} 的日誌•編輯中'
+  x_journal_middot: '%{user}的期刊•'
+  x_journal_new_post: '%{user}的日誌•新發表'
   x_observations_failed:
     one: 1 個觀察失敗
     other: '%{count} 個觀察失敗'
@@ -3902,6 +3908,9 @@ zh-TW:
   verifiable: 可證實
   views:
     views: 查看數
+    announcements:
+      locales_desc: 點擊 CMD 鍵或 SHIFT 鍵來選擇多個項目。若不作選擇；會忽略在地化條件直接向所有用戶顯示出公告。若挑選不帶區域的語言在地化，將
+        *不會* 針對帶有區域條件的在地化，例如：如果您挑選「en」；會無法呈現在挑選「en-US」的人們上。如果您想要針對兩方，就請兩邊都挑選。如果您想要向此網站上所有成員顯示公告，就請直接留空。
     custom_projects:
       edit:
         custom_project_fields_warning: 請注意：添加 Javascript 和 CSS 在您的專案頁面可能會嚴重破壞頁面佈局；並潛在允許惡意軟體在人們觀看此頁面時造成影響。如果您不曉得那些是特定的程式代碼段落，請不要添加它。
@@ -4539,11 +4548,19 @@ zh-TW:
       form:
         new_name_guidelines_html: |-
           <ul class="ui">
-            <li>嘗試添加有在其它地方被使用到的名稱。請不要自行原創新名稱。</li>
-            <li>請不要添加重複性質的名稱，例如：用複數的「老鷹們」來命名「老鷹」</li>
-            <li>對於更高層級的物種分類，嘗試使用能包含到所有派生的名稱，例如「鷺科動物」或「杜鵑花科」</li>
+            <li><P>嘗試添加有在其它地方被使用到的名稱。請不要自行原創新名稱。</P></li>
+            <li><P>請不要添加重複性質的名稱，例如：用複數的「老鷹們」來命名「老鷹」</P></li>
+            <li><P>對於更高層級的物種分類，嘗試使用能包含到所有派生的名稱，例如「鷺科動物」或「杜鵑花科」</P></li>
             <li>
+              <P>
               請不要添加無關名稱的訊息，例如：在名稱後面用圓括號備註您對於該名稱看法的訊息
+              </P>
+            </li>
+            <li>
+              <p>
+                詞彙應採用英文。請不要添加翻譯過的語言名稱；例如像「French, 法文」，
+                因為這會在使用不同語言的人們在利用此網站時，我們會很難或無法顯示在地化名稱。
+              </p>
             </li>
           </ul>
         places_help_html: 替地點添加名稱時；請以網站或來自於該地點的用戶作為優先考慮。如果地點擁有多種名稱您可以<a href="%{url}">此</a>為優先。請<strong>不要</strong>為地點添加已使用的名稱，除非該地點與其它地點有撞名情況。
@@ -4589,9 +4606,9 @@ zh-TW:
           joined: 您已加入的專案
           none: 不，僅有您可添加您的觀察至專案
         project_settings_desc: 請記住，這並沒有給予專案能存取您的私有座標、或寄發給您更新內容的權限。您必須要加入專案才能授予權限、或依各個情況授予它們權限。
-        taxon_change_desc: 當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等；將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
+        taxon_change_desc: 當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
         licensing_desc_html: 授權您的內容可讓其他遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。%{site_name} 使用您的創用
-          CC 授權內容；來與像是<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）；一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。
+          CC 授權內容，來與像是<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF），一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。
         place_help_html: 為地點網站自訂一些方面內容，例如通用名稱
         prefers_community_taxa_desc: '%{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇退出。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。'
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
@@ -4627,7 +4644,7 @@ zh-TW:
         run_a_bioblitz: 運作一個 Bioblitz
         hold_an_event: 在人們會盡可能來找尋物種的地點來舉行事件。
         works_on_all_your_devices: 在您的所有設備上運作
-        install_our_mobile_apps: 安裝我們的移動版應用程式；來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
+        install_our_mobile_apps: 安裝我們的移動版應用程式，來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
         who_uses_site_name: 誰使用 %{site_name}?
         what_are_you_waiting_for: 您在等待什麼？
         join_today: 今日加入
@@ -4908,6 +4925,10 @@ zh-TW:
               can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 不應包含逗號或斜線
     attributes:
       assessment:
         description: 描述

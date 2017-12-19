@@ -2003,6 +2003,7 @@ zh-CN:
   of_observers: 观察者
   of_identifiers: 标识符
   of_places: 地点
+  of_this_taxon: 属于此分类单元
   official_blog: 官方博客
   old_observation_form: 旧观察表单（已弃用）
   ok: 确定
@@ -2304,7 +2305,9 @@ zh-CN:
   processing3p: 处理中...
   profile: 个人信息
   project: 项目
+  project_added_your_observations: 项目添加了您的观察
   project_created_on: 于%{date}创建此项目
+  project_curator_changes: 项目馆长更改
   project_curator_tools: 项目馆长工具
   project_curators: 项目馆长
   project_group_label: 组
@@ -2742,6 +2745,7 @@ zh-CN:
   taxon_curators: 物种馆长
   taxon_name: 分类单元名称
   taxon_observed_by_user: '%{taxon}，由 %{user} 观察到'
+  taxon_or_place_observations: 分类单元或地点观察
   taxon_schemes: 分类方案
   taxon_search: 分类单元搜索
   taxon_search_results_for: 类群搜索结果：
@@ -2948,6 +2952,7 @@ zh-CN:
   user_follows: '%{user} 关注'
   user_hasnt: '%{user}没有'
   user_muted: 用户已禁言
+  user_observations: 用户观察
   user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user} 的列表'
@@ -3112,9 +3117,10 @@ zh-CN:
   x_doesnt: '%{login} 不会'
   x_hasnt: '%{login}没有'
   x_journal: '%{user}的杂志'
-  x_journal_editing: '%{user}的杂志 &middot; 编辑'
-  x_journal_middot: '%{user}的杂志 &middot;'
-  x_journal_new_post: '%{user}的杂志 &middot; 新刊文'
+  x_journal_archives_for_y: '%{user}的杂志 • 存档用于'
+  x_journal_editing: '%{user}的杂志 • 编辑'
+  x_journal_middot: '%{user}的杂志 •'
+  x_journal_new_post: '%{user}的杂志 • 新刊文'
   x_observations_failed:
     one: 1次观察已失败
     other: '%{count} 次观察已失败'
@@ -3972,6 +3978,10 @@ zh-CN:
               can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
     attributes:
       assessment:
         description: 描述

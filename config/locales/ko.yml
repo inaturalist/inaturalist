@@ -800,6 +800,10 @@ ko:
   delete_photo: 사진을 삭제하시겠습니까?
   delete_project: 이 프로젝트를 제거하시겠습니까?
   delete_selected: 선택한 것을 삭제
+  delete_taxon_and_merge_most_data_html: <i>%{taxon}</i> 삭제하고 그것의 대부분의 데이터를 다른 분류군
+    안으로 병합합니다. <strong>중복되는 분류군을 제거</strong>하기 위해 이 도구를 사용합니다. 오래된 동의어를 제거하고자 한다면,
+    분류군 교환을 만드시기 바랍니다. <strong>조심합니다!</strong> 분류군을 삭제하는 것은 매우 파괴적일 수 있습니다. 자세한 사항은
+    <a href="%{curator_url}">큐레이터 안내서</a>를 확인합니다.
   delete_this_name: 이 이름 삭제
   delete_user: 사용자 삭제
   delete_your_account: 계정 지우기
@@ -2149,6 +2153,10 @@ ko:
   widget: 위젯
   widget_code: 위젯 코드
   x_blog: '%{x}의 블로그'
+  x_journal_archives_for_y: '%{user}님의 저널 • 아카이브 대상:'
+  x_journal_editing: '%{user}님의 저널 • 편집'
+  x_journal_middot: '%{user}님의 저널 •'
+  x_journal_new_post: '%{user}님의 저널 • 새 게시물'
   year: 년
   year_month: 년/월
   yellow: 노랑
@@ -2389,6 +2397,10 @@ ko:
             value:
               date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
                 \n당신이 관찰한 \"%{observation_field_name}\")"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
     attributes:
       assessment:
         description: 설명

@@ -339,11 +339,18 @@ es:
     superclass: Se añadieron todas las superclases a la base de datos
     class: Se añadieron todas las clases a la base de datos
     infraclass: Se añadieron todas las infraclases a la base de datos
+    superorder: Se añadieron todos los superórdenes a la base de datos
+    infraorder: Se añadieron todos los infraórdenes a la base de datos
+    epifamily: Se añadieron todas las epifamilias a la base de datos
     family: Se añadieron todas las familias a la base de datos
     subfamily: Se añadieron todas las subfamilias a la base de datos
     tribe: Se añadieron todas las tribus a la base de datos
+    genus: Se añadieron todos los géneros a la base de datos
     section: Se añadieron todas las secciones a la base de datos
+    subsection: Se añadieron todas las subsecciones a la base de datos
     species: Se añadieron todas las especies a la base de datos
+    hybrid: Se añadieron todos los híbridos a la base de datos
+    variety: Se añadieron todas las variedades a la base de datos
     form: Se añadieron todas las formas a la base de datos
   all_rights_reserved: todos los derechos reservados
   all_species: Todas las especies
@@ -1190,7 +1197,7 @@ es:
   do_you_want_to_proceed: ¿Quieres continuar?
   does_the_location_seem_accurate: ¿El lugar parece correcto?
   does_the_date_seem_accurate: ¿La fecha parece correcto?
-  doesnt_have_default_photo: no tiene una foto por defecto todavía.
+  doesnt_have_default_photo: no tiene una foto predeterminada aún.
   doh_something_went_wrong: Algo salió mal.
   done: Hecho
   dont_filter: No filtrar
@@ -2096,7 +2103,7 @@ es:
     vea bien en tamaño grande.
   make_taxonomic_flickr_tags_for_taxon_raquo: Hacer etiquetas taxonómicas de Flickr
     para este taxón &raquo;
-  make_this_your_default_license: Hacer ésta %{type} su licencia por defecto
+  make_this_your_default_license: Hacer de esta tu licencia %{type} predeterminada
   make_this_the_primary_listing: Hacerlo la especies listado principal
   mammals: mamíferos
   manage: Administrar
@@ -2592,6 +2599,7 @@ es:
   of_observations: observaciones
   of_identifiers: identificadores
   of_places: lugares
+  of_this_taxon: De este taxón
   offensive_inappropriate: ofensivo / inapropiado
   official_blog: Blog oficial
   offline_access_enabled: Acceso sin conexión activado
@@ -3029,6 +3037,7 @@ es:
   processing3p: Procesando...
   profile: Perfil
   project: Proyecto
+  project_added_your_observations: Se añadió el proyecto a tus observaciones
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3690,6 +3699,7 @@ es:
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
     coincidir con un taxón existente en la base de datos.
   taxon_observed_by_user: '%{taxon} observado por %{user}'
+  taxon_or_place_observations: Observaciones de taxón o lugar
   taxon_photos_updated: ¡Las fotos del taxón fueron actualizadas!
   taxon_range: Área del taxón
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente.
@@ -3915,7 +3925,7 @@ es:
     o grupo ha sido guardado!</strong> Por favor no edites la especie o grupo. Puedes
     editar los demás campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
-  this_taxon_has_no_default_photo: ¡Este taxón no tiene foto por defecto!
+  this_taxon_has_no_default_photo: Este taxón no tiene ninguna foto predeterminada.
   this_taxon_is_inactive_this_means: Este taxón está <strong>inactivo</strong>. Esto
     significa que los curadores de %{site_name} lo han reemplazado por un concepto
     más actualizado taxonómicamente.
@@ -4138,6 +4148,7 @@ es:
   user_is_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
   user_muted: Usuario silenciado
+  user_observations: Observaciones del usuario
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
@@ -4358,10 +4369,10 @@ es:
   x_doesnt: '%{login} no'
   x_hasnt: '%{login} no ha'
   x_journal: Diario de %{user}
-  x_journal_archives_for_y: Diario de %{user} &middot; Archivos de
-  x_journal_editing: Diario de %{user} &middot; Modificar
-  x_journal_middot: Diario de %{user} &middot;
-  x_journal_new_post: Diario de %{user} &middot; Nuevo ingreso
+  x_journal_archives_for_y: Diario de %{user} • Archivos de
+  x_journal_editing: Diario de %{user} • Modificar
+  x_journal_middot: Diario de %{user} •
+  x_journal_new_post: Diario de %{user} • Entrada nueva
   x_observations_failed:
     one: 1 observación falló
     other: '%{count} observaciones fallaron'
@@ -4541,7 +4552,7 @@ es:
   your_comment_was_saved: Su comentario ha sido guardado.
   your_content: Su Contenido
   your_contributions_to_project: Tus contribuciones a %{project_title}
-  your_default: su defecto
+  your_default: tu valor predeterminado
   your_default_time_zone: Su zona horaria actual
   your_drafts: Sus borradores
   your_email_address: Tu dirección de correo electrónico
@@ -5937,6 +5948,10 @@ es:
             observation_id:
               must_be_observed_after: debe observarse después de %{time}
               must_be_observed_before: debe observarse antes de %{time}
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: no debe contener comas ni barras
     attributes:
       assessment:
         description: Descripción
