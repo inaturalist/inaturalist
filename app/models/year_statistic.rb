@@ -5,7 +5,8 @@ class YearStatistic < ActiveRecord::Base
     @year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" ).first_or_create
     json = {
       observations: {
-        histogram: JSON.parse( INatAPIService.get("/observations/histogram", { year: 2017, interval: "week_of_year" } ) )["results"]
+        week_histogram: JSON.parse( INatAPIService.get_json("/observations/histogram", { year: 2017, quality_grade: "research,needs_id", interval: "week" } ) )["results"],
+        day_histogram: JSON.parse( INatAPIService.get_json("/observations/histogram", { year: 2017, quality_grade: "research,needs_id", interval: "day" } ) )["results"]
       }
     }
     @year_statistic.update_attributes( data: json )
@@ -17,8 +18,8 @@ class YearStatistic < ActiveRecord::Base
     @year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
     json = {
       observations: {
-        week_histogram: JSON.parse( INatAPIService.get_json("/observations/histogram", { user_id: user.id, year: 2017, interval: "week" } ) )["results"],
-        day_histogram: JSON.parse( INatAPIService.get_json("/observations/histogram", { user_id: user.id, year: 2017, interval: "day" } ) )["results"]
+        week_histogram: JSON.parse( INatAPIService.get_json("/observations/histogram", { user_id: user.id, year: 2017, quality_grade: "research,needs_id", interval: "week" } ) )["results"],
+        day_histogram: JSON.parse( INatAPIService.get_json("/observations/histogram", { user_id: user.id, year: 2017, quality_grade: "research,needs_id", interval: "day" } ) )["results"]
       }
     }
     @year_statistic.update_attributes( data: json )
