@@ -8,6 +8,10 @@ const Observations = ( { data } ) => {
       <h2>{ I18n.t( "observations" ) }</h2>
       <DateHistogram
         series={ {
+          month: {
+            title: "Per Month",
+            data: _.map( data.month_histogram.month, ( value, date ) => ( { date, value } ) )
+          },
           week: {
             title: "Per Week",
             data: _.map( data.week_histogram.week, ( value, date ) => ( { date, value } ) ),
