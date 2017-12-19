@@ -1,0 +1,16 @@
+- @no_footer_gap = true
+- content_for :title do
+  - if @display_user
+    =t :users_year_on_site, user: @display_user.login, site: @site.name
+  - else
+    =t :year_on_site, site: @site.name
+- content_for :extrajs do
+  :javascript
+    YEAR_DATA = #{ @year_statistic.try(:data).to_json };
+    YEAR = #{ @year };
+    DISPLAY_USER = #{ @display_user.to_json };
+    SITE = #{ @site.to_json };
+  = javascript_include_tag "stats-year-webpack"
+- content_for :extracss do
+  = stylesheet_link_tag "stats/year"
+#app

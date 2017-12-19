@@ -4691,6 +4691,39 @@ ALTER SEQUENCE wiki_pages_id_seq OWNED BY wiki_pages.id;
 
 
 --
+-- Name: year_statistics; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE year_statistics (
+    id integer NOT NULL,
+    user_id integer,
+    year integer,
+    data json,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: year_statistics_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE year_statistics_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: year_statistics_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE year_statistics_id_seq OWNED BY year_statistics.id;
+
+
+--
 -- Name: annotations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5472,6 +5505,13 @@ ALTER TABLE ONLY wiki_page_versions ALTER COLUMN id SET DEFAULT nextval('wiki_pa
 --
 
 ALTER TABLE ONLY wiki_pages ALTER COLUMN id SET DEFAULT nextval('wiki_pages_id_seq'::regclass);
+
+
+--
+-- Name: year_statistics id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY year_statistics ALTER COLUMN id SET DEFAULT nextval('year_statistics_id_seq'::regclass);
 
 
 --
@@ -6368,6 +6408,14 @@ ALTER TABLE ONLY wiki_page_versions
 
 ALTER TABLE ONLY wiki_pages
     ADD CONSTRAINT wiki_pages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: year_statistics year_statistics_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY year_statistics
+    ADD CONSTRAINT year_statistics_pkey PRIMARY KEY (id);
 
 
 --
@@ -8394,6 +8442,13 @@ CREATE UNIQUE INDEX index_wiki_pages_on_path ON wiki_pages USING btree (path);
 
 
 --
+-- Name: index_year_statistics_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_year_statistics_on_user_id ON year_statistics USING btree (user_id);
+
+
+--
 -- Name: pof_projid_ofid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9117,4 +9172,6 @@ INSERT INTO schema_migrations (version) VALUES ('20170923232400');
 INSERT INTO schema_migrations (version) VALUES ('20171107200722');
 
 INSERT INTO schema_migrations (version) VALUES ('20171108223540');
+
+INSERT INTO schema_migrations (version) VALUES ('20171218191934');
 

@@ -1,14 +1,16 @@
 class StatsController < ApplicationController
 
   before_filter :set_time_zone_to_utc
-  before_filter :load_params
+  before_filter :load_params, except: [:year, :generate_year]
+  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
+  before_filter :allow_external_iframes, only: [:wed_bioblitz]
+  before_filter :admin_required, only: [:year, :generate_year]
+
   caches_action :summary, expires_in: 1.hour
   caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes
   caches_action :cnc2017, expires_in: 5.minutes
-  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats]
-  before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
   def index
     respond_to do |format|
@@ -46,6 +48,43 @@ class StatsController < ApplicationController
     }
     respond_to do |format|
       format.json { render json: @stats}
+    end
+  end
+
+  def year
+    @year = params[:year].to_i
+    if @year > Date.today.year || @year < 1950
+      return render_404
+    end
+    @display_user = User.find_by_login( params[:login] )
+    @year_statistic = if @display_user
+      YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
+    else
+      YearStatistic.where( "user_id IS NULL AND year = ?", @year ).first
+    end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def generate_year
+    @year = params[:year].to_i
+    if (@year > Date.today.year) || (@year < 1950)
+      return render_404
+    end
+    delayed_progress( "stats/generate_year?user_id=#{current_user.id}&year=#{@year}" ) do
+      @job = YearStatistic.delay.generate_for_user_year( current_user.id, @year )
+    end
+    respond_to do |format|
+      format.json do
+        status = case @status
+        when "done" then :ok
+        when "error" then :unprocessable_entity
+        else
+          202
+        end
+        render json: { status: status }, status: status
+      end
     end
   end
 
