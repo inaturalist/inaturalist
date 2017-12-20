@@ -121,7 +121,7 @@ class DateHistogram extends React.Component {
 
   render( ) {
     return (
-      <div className="Histogram">
+      <div className="DateHistogram">
         <div className="chart"></div>
       </div>
     );

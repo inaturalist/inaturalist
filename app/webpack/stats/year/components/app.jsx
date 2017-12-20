@@ -2,6 +2,7 @@ import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import GenerateStatsButton from "./generate_stats_button";
 import Observations from "./observations";
+import Identifications from "./identifications";
 
 const App = ( {
   year,
@@ -33,7 +34,10 @@ const App = ( {
     body = (
       <div>
         <Observations data={ data.observations } />
-        <GenerateStatsButton user={ user } text={ "Regenerate Stats" } />
+        <Identifications data={ data.identifications } />
+        { user && currentUser && user.id === currentUser.id ? (
+          <GenerateStatsButton user={ user } text={ "Regenerate Stats" } />
+        ) : null }
       </div>
     );
   }

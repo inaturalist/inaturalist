@@ -3,7 +3,10 @@ import _ from "lodash";
 import moment from "moment";
 import DateHistogram from "./date_histogram";
 
-const Observations = ( { data } ) => {
+const Identifications = ( { data } ) => {
+  if ( _.isEmpty( data ) ) {
+    return <div></div>;
+  }
   const series = {};
   if ( data.month_histogram ) {
     series.month = {
@@ -31,15 +34,15 @@ const Observations = ( { data } ) => {
     };
   }
   return (
-    <div className="Observations">
-      <h2>{ I18n.t( "observations" ) }</h2>
+    <div className="Identifications">
+      <h2>{ I18n.t( "identifications" ) }</h2>
       <DateHistogram series={ series } />
     </div>
   );
 };
 
-Observations.propTypes = {
+Identifications.propTypes = {
   data: React.PropTypes.object
 };
 
-export default Observations;
+export default Identifications;
