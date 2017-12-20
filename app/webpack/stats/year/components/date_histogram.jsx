@@ -23,7 +23,8 @@ class DateHistogram extends React.Component {
     _.forEach( this.props.series, ( s, seriesName ) => {
       series[seriesName] = _.map( s.data, d => ( {
         date: parseTime( d.date ),
-        value: d.value
+        value: d.value,
+        seriesName
       } ) );
     } );
     const x = d3.scaleTime( ).rangeRound( [0, width] );
@@ -49,36 +50,57 @@ class DateHistogram extends React.Component {
     const tip = d3tip()
       .attr( "class", "d3-tip" )
       .offset( [-10, 0] ).
-      html( d => `<strong>${dateFormatter( d.date )}</strong>: ${d.value}` );
+      html( d => {
+        if ( this.props.series[d.seriesName] && this.props.series[d.seriesName].label ) {
+          return this.props.series[d.seriesName].label( d );
+        }
+        return `<strong>${dateFormatter( d.date )}</strong>: ${d.value}`;
+      } );
     svg.call( tip );
 
     const color = d3.scaleOrdinal( d3.schemeCategory10 );
     const colorForSeries = seriesName => {
       if ( this.props.series[seriesName] && this.props.series[seriesName].color ) {
         return this.props.series[seriesName].color;
-      } else {
-        return color( seriesName );
       }
+      return color( seriesName );
     };
     _.forEach( series, ( seriesData, seriesName ) => {
       const seriesGroup = g.append( "g" );
       seriesGroup.classed( _.snakeCase( seriesName ), true );
-      seriesGroup.append( "path" ).datum( seriesData )
-          .attr( "fill", "none" )
-          .attr( "stroke", colorForSeries( seriesName ) )
-          .attr( "stroke-linejoin", "round" )
-          .attr( "stroke-linecap", "round" )
-          .attr( "stroke-width", 1.5 )
-          .attr( "d", line );
-      seriesGroup.selectAll( "path" ).data( seriesData )
-        .enter().append( "circle" )
-          .attr( "cx", d => x( d.date ) )
-          .attr( "cy", d => y( d.value ) )
-          .attr( "r", 2 )
-          .attr( "fill", "white" )
-          .style( "stroke", ( ) => colorForSeries( seriesName ) )
-          .on( "mouseover", tip.show )
-          .on( "mouseout", tip.hide );
+      if ( this.props.series[seriesName].style === "bar" ) {
+        seriesGroup.selectAll( "rect" ).data( seriesData )
+          .enter( ).append( "rect" )
+            .attr( "width", ( d, i ) => {
+              let nextX = width;
+              if ( seriesData[i + 1] ) {
+                nextX = x( seriesData[i + 1].date );
+              }
+              return nextX - x( d.date );
+            } )
+            .attr( "height", d => height - y( d.value ) )
+            .attr( "fill", colorForSeries( seriesName ) )
+            .attr( "transform", d => `translate( ${x( d.date )}, ${y( d.value )} )` )
+            .on( "mouseover", tip.show )
+            .on( "mouseout", tip.hide );
+      } else {
+        seriesGroup.append( "path" ).datum( seriesData )
+            .attr( "fill", "none" )
+            .attr( "stroke", colorForSeries( seriesName ) )
+            .attr( "stroke-linejoin", "round" )
+            .attr( "stroke-linecap", "round" )
+            .attr( "stroke-width", 1.5 )
+            .attr( "d", line );
+        seriesGroup.selectAll( "circle" ).data( seriesData )
+          .enter().append( "circle" )
+            .attr( "cx", d => x( d.date ) )
+            .attr( "cy", d => y( d.value ) )
+            .attr( "r", 2 )
+            .attr( "fill", "white" )
+            .style( "stroke", ( ) => colorForSeries( seriesName ) )
+            .on( "mouseover", tip.show )
+            .on( "mouseout", tip.hide );
+      }
     } );
 
     svg.append( "g" )
