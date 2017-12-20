@@ -3,8 +3,9 @@ import _ from "lodash";
 import moment from "moment";
 import { Row, Col } from "react-bootstrap";
 import DateHistogram from "./date_histogram";
+import TorqueMap from "./torque_map";
 
-const Observations = ( { data } ) => {
+const Observations = ( { data, user, year } ) => {
   const series = {};
   if ( data.month_histogram ) {
     series.month = {
@@ -56,11 +57,15 @@ const Observations = ( { data } ) => {
       <DateHistogram series={ series } />
       <h3>This Year vs. Last Year</h3>
       <DateHistogram series={ comparisonSeries } />
+      <h3>Animated Map</h3>
+      <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } />
     </div>
   );
 };
 
 Observations.propTypes = {
+  user: React.PropTypes.object,
+  year: React.PropTypes.number,
   data: React.PropTypes.object
 };
 

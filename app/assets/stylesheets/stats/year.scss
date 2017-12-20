@@ -98,5 +98,26 @@ $tip-opacity: 1;
       }
     }
   }
+}
 
+.TorqueMap {
+  position: relative;
+  .map {
+    height: 400px;
+  }
+  .legend {
+    position: absolute;
+    width: 100%;
+    bottom: 25px;
+    z-index: 1000;
+    .date {
+      background: white;
+      width: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
 }

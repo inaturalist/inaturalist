@@ -10,7 +10,10 @@
     YEAR = #{ @year };
     DISPLAY_USER = #{ @display_user.to_json };
     SITE = #{ @site.to_json };
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
+  = javascript_include_tag "torque.full.uncompressed"
   = javascript_include_tag "stats-year-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "stats/year"
+  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
 #app

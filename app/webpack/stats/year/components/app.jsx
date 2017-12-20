@@ -35,7 +35,7 @@ const App = ( {
     body = (
       <div>
         <Summary data={data} />
-        <Observations data={ data.observations } />
+        <Observations data={ data.observations } user={ user } year={ year } />
         <Identifications data={ data.identifications } />
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={ user } text={ "Regenerate Stats" } />
