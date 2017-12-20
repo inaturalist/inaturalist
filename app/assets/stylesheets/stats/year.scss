@@ -3,10 +3,13 @@
 
 .chart svg {
   width: 100%;
-  min-height: 300px;
+  min-height: 50px;
 }
 
 .DateHistogram {
+  .chart svg {
+    min-height: 300px;
+  }
   circle {
     fill: rgba( 0, 0, 0, 0 );
     stroke: rgba( 0, 0, 0, 0 ) !important;
@@ -70,17 +73,11 @@ $tip-opacity: 1;
 }
 
 .Summary {
-  .panel {
+  .chart svg {
+    min-height: 300px;
+  }
+  .summary-panel {
     width: 100%;
-    table {
-      td {
-        padding: 3px;
-        text-transform: capitalize;
-      }
-    }
-    td.count {
-      text-align: right;
-    }
     .count {
       color: $inat-green;
     }
