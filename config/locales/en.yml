@@ -26,6 +26,9 @@ en:
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_html:
+    one: '<span class="count">1</span> identification'
+    other: '<span class="count">%{count}</span> identifications'
   x_identifications_:
     one: '1 Identification'
     other: '%{count} Identifications'
@@ -3238,6 +3241,7 @@ en:
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   suggestions: Suggestions
   summary: Summary
+  supporting: Supporting
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun

@@ -40,7 +40,12 @@ const Observations = ( { data } ) => {
     };
     comparisonSeries.last_year = {
       title: "Last Year",
-      data: _.map( data.day_last_year_histogram, ( value, date ) => ( { date, value } ) ),
+      data: _.map( data.day_last_year_histogram, ( value, date ) => {
+        const year = parseInt( date.match( /\d{4}/ )[0], 0 );
+        const newYear = year + 1;
+        const newDate = date.replace( year, newYear );
+        return { date: newDate, value };
+      } ),
       color: "rgba( 80%, 80%, 80%, 1 )"
     };
   }

@@ -867,6 +867,10 @@ I18n.translations["bg"] = {
     "one": "1 вид",
     "other": "%{count} вида"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> вид",
+    "other": "<span class='count'>%{count}</span> вида"
+  },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 вид</a>",
     "other": "<a href='%{url}'>%{count} вида</a>"
@@ -1418,6 +1422,10 @@ I18n.translations["br"] = {
   "x_species": {
     "one": "1 spesad",
     "other": "%{count} spesad"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> spesad",
+    "other": "<span class='count'>%{count}</span> spesadoù"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1</a> spesad",
@@ -2725,6 +2733,10 @@ I18n.translations["ca"] = {
   "x_species": {
     "one": "1 espècie",
     "other": "%{count} espècies"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> espècie",
+    "other": "<span class='count'>%{count}</span> espècies"
   },
   "x_species_link_html": {
     "one": "<a href=\"%{url}\">1 espècie</a>",
@@ -4091,6 +4103,7 @@ I18n.translations["en"] = {
   "submitted": "Submitted",
   "suggest_an_identification": "Suggest an Identification",
   "suggestions": "Suggestions",
+  "supporting": "Supporting",
   "table": "Table",
   "tagging": "Tagging...",
   "tags": "Tags",
@@ -4310,6 +4323,10 @@ I18n.translations["en"] = {
     "one": "1 Identification",
     "other": "%{count} Identifications"
   },
+  "x_identifications_html": {
+    "one": "<span class=\"count\">1</span> identification",
+    "other": "<span class=\"count\">%{count}</span> identifications"
+  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> matching taxon",
     "other": "<span class=\"count\">%{count}</span> matching taxa"
@@ -4351,6 +4368,10 @@ I18n.translations["en"] = {
   "x_species": {
     "one": "1 species",
     "other": "%{count} species"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> species",
+    "other": "<span class='count'>%{count}</span> species"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 species</a>",
@@ -5858,6 +5879,10 @@ I18n.translations["es"] = {
     "one": "1 especie",
     "other": "%{count} especies"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> especie",
+    "other": "<span class='count'>%{count}</span> especies"
+  },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 especie</a>",
     "other": "<a href='%{url}'>%{count} especies</a>"
@@ -6750,6 +6775,10 @@ I18n.translations["es-MX"] = {
     "one": "Una especie",
     "other": "%{count} especies"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> especie",
+    "other": "<span class='count'>%{count}</span> especies"
+  },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1</a> especie",
     "other": "<a href='%{url}'>%{count}</a> especies"
@@ -7616,6 +7645,10 @@ I18n.translations["eu"] = {
     "one": "1 espezie",
     "other": "%{count} espezie"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> espezie",
+    "other": "<span class='count'>%{count}</span> espezieak"
+  },
   "x_suggestions_filtered_by_colon": "{{PLURALA|bat=1 Iradukizuna Hautatua:|%{count} Iradokizunak Hautatuta:}}",
   "yellow": "horia",
   "yes": "Bai",
@@ -8313,6 +8346,10 @@ I18n.translations["fi"] = {
   "x_species": {
     "one": "1 laji",
     "other": "%{count} lajia"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> laji",
+    "other": "<span class='count'>%{count}</span> lajia"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 laji</a>",
@@ -9623,6 +9660,10 @@ I18n.translations["fr"] = {
     "one": "1 espèce",
     "other": "%{count} espèces"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> espèce",
+    "other": "<span class='count'>%{count}</span> espèces"
+  },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 espèce</a>",
     "other": "<a href='%{url}'>%{count} espèces</a>"
@@ -10337,6 +10378,10 @@ I18n.translations["gl"] = {
   "x_species": {
     "one": "1 especie",
     "other": "%{count} especies"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> especie",
+    "other": "<span class='count'>%{count}</span> especies"
   },
   "yellow": "Amarelo",
   "yes": "Si",
@@ -11429,6 +11474,10 @@ I18n.translations["id"] = {
   "x_species": {
     "one": "1 species",
     "other": "%{count} species"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> species",
+    "other": "<span class='count'>%{count}</span> species"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 spesies</a>",
@@ -12815,6 +12864,10 @@ I18n.translations["it"] = {
   "x_species": {
     "one": "1 specie",
     "other": "%{count} specie"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> specie",
+    "other": "<span class='count'>%{count}</span> specie"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 specie</a>",
@@ -15452,6 +15505,10 @@ I18n.translations["mk"] = {
     "one": "1 вид",
     "other": "%{count} видови"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> вид",
+    "other": "<span class='count'>%{count}</span> видови"
+  },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1</a> вид",
     "other": "<a href='%{url}'>%{count}</a> видови"
@@ -16410,6 +16467,10 @@ I18n.translations["oc"] = {
   "x_species": {
     "one": "1 espècia",
     "other": "%{count} espècias"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> espècia",
+    "other": "<span class='count'>%{count}</span> espècias"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 espècia</a>",
@@ -17786,6 +17847,10 @@ I18n.translations["pt-BR"] = {
   "x_species": {
     "one": "1 espécie",
     "other": "%{count} espécies"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> espécies",
+    "other": "<span class='count'>%{count}</span> espécies"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 espécie</a>",
@@ -19763,6 +19828,10 @@ I18n.translations["zh-CN"] = {
     "one": "1种物种",
     "other": "%{count} 种物种"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span>种物种",
+    "other": "<span class='count'>%{count}</span> 种物种"
+  },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1种物种</a>",
     "other": "<a href='%{url}'>%{count} 种物种</a>"
@@ -21161,6 +21230,10 @@ I18n.translations["zh-TW"] = {
   "x_species": {
     "one": "1 物種",
     "other": "%{count} 物種"
+  },
+  "x_species_html": {
+    "one": "<span class='count'>1</span> 種物種",
+    "other": "<span class='count'>%{count}</span> 種物種"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1種物種",

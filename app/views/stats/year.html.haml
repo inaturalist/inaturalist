@@ -3,7 +3,7 @@
   - if @display_user
     =t :users_year_on_site, user: @display_user.login, site: @site.name, year: @year
   - else
-    =t :year_on_site, site: @site.name
+    =t :year_on_site, site: @site.name, year: @year
 - content_for :extrajs do
   :javascript
     YEAR_DATA = #{ @year_statistic.try(:data).to_json };

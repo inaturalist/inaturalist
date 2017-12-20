@@ -69,21 +69,34 @@ $tip-opacity: 1;
   left: 100%;
 }
 
-.summary {
-  width: 100%;
-  .count {
-    color: $inat-green;
-  }
-  .main {
-    text-align: center;
-    border-bottom: 2px solid $inat-green;
-    padding: 10px;
-    margin-bottom: 10px;
-    text-transform: uppercase;
+.Summary {
+  .panel {
+    width: 100%;
+    table {
+      td {
+        padding: 3px;
+        text-transform: capitalize;
+      }
+    }
+    td.count {
+      text-align: right;
+    }
     .count {
-      display: block;
-      font-size: 300%;
+      color: $inat-green;
+    }
+    .main {
+      text-align: center;
+      border-bottom: 3px solid $inat-green;
+      padding: 10px;
       margin-bottom: 10px;
+      text-transform: uppercase;
+      .count {
+        display: block;
+        font-size: 300%;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
     }
   }
+
 }
