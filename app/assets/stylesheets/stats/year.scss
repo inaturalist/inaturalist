@@ -7,7 +7,7 @@
 }
 
 .DateHistogram {
-  .day circle {
+  circle {
     fill: rgba( 0, 0, 0, 0 );
     stroke: rgba( 0, 0, 0, 0 ) !important;
   }
@@ -67,4 +67,23 @@ $tip-opacity: 1;
   margin: -4px 0 0 -1px;
   top: 50%;
   left: 100%;
+}
+
+.summary {
+  width: 100%;
+  .count {
+    color: $inat-green;
+  }
+  .main {
+    text-align: center;
+    border-bottom: 2px solid $inat-green;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    .count {
+      display: block;
+      font-size: 300%;
+      margin-bottom: 10px;
+    }
+  }
 }

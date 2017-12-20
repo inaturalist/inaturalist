@@ -1,7 +1,7 @@
 - @no_footer_gap = true
 - content_for :title do
   - if @display_user
-    =t :users_year_on_site, user: @display_user.login, site: @site.name
+    =t :users_year_on_site, user: @display_user.login, site: @site.name, year: @year
   - else
     =t :year_on_site, site: @site.name
 - content_for :extrajs do

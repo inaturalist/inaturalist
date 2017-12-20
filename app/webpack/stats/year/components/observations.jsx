@@ -1,6 +1,7 @@
 import React from "react";
 import _ from "lodash";
 import moment from "moment";
+import { Row, Col } from "react-bootstrap";
 import DateHistogram from "./date_histogram";
 
 const Observations = ( { data } ) => {
@@ -30,10 +31,26 @@ const Observations = ( { data } ) => {
       color: "#74ac00"
     };
   }
+  const comparisonSeries = {};
+  if ( data.day_histogram && data.day_last_year_histogram ) {
+    comparisonSeries.this_year = {
+      title: "This Year",
+      data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
+      color: "#74ac00"
+    };
+    comparisonSeries.last_year = {
+      title: "Last Year",
+      data: _.map( data.day_last_year_histogram, ( value, date ) => ( { date, value } ) ),
+      color: "rgba( 80%, 80%, 80%, 1 )"
+    };
+  }
   return (
     <div className="Observations">
       <h2>{ I18n.t( "observations" ) }</h2>
+      <h3>Verifiable Observations By Observation Date</h3>
       <DateHistogram series={ series } />
+      <h3>This Year vs. Last Year</h3>
+      <DateHistogram series={ comparisonSeries } />
     </div>
   );
 };

@@ -851,6 +851,10 @@ I18n.translations["bg"] = {
     "one": "1 Наблюдение",
     "other": "%{count} Наблюдения"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> наблюдение",
+    "other": "<span class='count'>%{count}</span> наблюдения"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 наблюдение</a>",
     "other": "<a href='%{url}'>%{count} наблюдения</a>"
@@ -1402,6 +1406,10 @@ I18n.translations["br"] = {
   "x_observations": {
     "one": "1 evezhiadenn",
     "other": "%{count} evezhiadennoù"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> evezhiadenn",
+    "other": "<span class='count'>%{count}</span> evezhiadennoù"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1</a> evezhiadenn",
@@ -2697,6 +2705,10 @@ I18n.translations["ca"] = {
   "x_observations_failed": {
     "one": "1 observació fallida",
     "other": "%{count} observacions fallides"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observació",
+    "other": "<span class='count'>%{count}</span> observacions"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observació</a>",
@@ -4168,7 +4180,7 @@ I18n.translations["en"] = {
   "username_or_user_id": "Username or user ID",
   "users_comment_html": "<a href='%{url}'>%{user}</a>'s comment",
   "users_identification_short_html": "<a href='%{url}'>%{user}</a>'s ID",
-  "users_year_on_site": "%{user}'s Year On %{site}",
+  "users_year_on_site": "%{user}'s Year On %{site}: %{year}",
   "value": "Value",
   "verbing_x_of_y": "%{verb} %{x} of %{y}...",
   "verifiable": "verifiable",
@@ -4318,6 +4330,10 @@ I18n.translations["en"] = {
     "one": "1 observation failed",
     "other": "%{count} observations failed"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observation",
+    "other": "<span class='count'>%{count}</span> observations"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observation</a>",
     "other": "<a href='%{url}'>%{count} observations</a>"
@@ -4344,7 +4360,7 @@ I18n.translations["en"] = {
     "one": "1 Suggestion Filtered By:",
     "other": "%{count} Suggestions Filtered By:"
   },
-  "year_on_site": "Year On %{site}",
+  "year_on_site": "Year On %{site} %{year}",
   "yellow": "yellow",
   "yes": "Yes",
   "yes_reject_it": "Yes, reject it",
@@ -5820,6 +5836,10 @@ I18n.translations["es"] = {
     "one": "1 observación falló",
     "other": "%{count} observaciones fallaron"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observación",
+    "other": "<span class='count'>%{count}</span> observaciones"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observación</a>",
     "other": "<a href='%{url}'>%{count} observaciones</a>"
@@ -6714,6 +6734,10 @@ I18n.translations["es-MX"] = {
     "one": "1 observación falló",
     "other": "%{count} observaciones fallaron"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observación",
+    "other": "<span class='count'>%{count}</span> observaciones"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1</a> observación",
     "other": "<a href='%{url}'>%{count}</a> observaciones"
@@ -7584,6 +7608,10 @@ I18n.translations["eu"] = {
     "one": "1 behaketa",
     "other": "%{count} behaketa"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> behaketa",
+    "other": "<span class='count'>%{count}</span> behaketak"
+  },
   "x_species": {
     "one": "1 espezie",
     "other": "%{count} espezie"
@@ -8269,6 +8297,10 @@ I18n.translations["fi"] = {
   "x_observations_": {
     "one": "1 havainto",
     "other": "%{count} havaintoa"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> havainto",
+    "other": "<span class='count'>%{count}</span> havaintoa"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 havainto</a>",
@@ -9569,6 +9601,10 @@ I18n.translations["fr"] = {
     "one": "1 observation en échec",
     "other": "%{count} observations en échec"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observation",
+    "other": "<span class='count'>%{count}</span> observations"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observation</a>",
     "other": "<a href='%{url}'>%{count} observations</a>"
@@ -10293,6 +10329,10 @@ I18n.translations["gl"] = {
   "x_observations": {
     "one": "1 observación",
     "other": "%{count} observacións"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observación",
+    "other": "<span class='count'>%{count}</span> observacións"
   },
   "x_species": {
     "one": "1 especie",
@@ -11377,6 +11417,10 @@ I18n.translations["id"] = {
   "x_observations": {
     "one": "1 observation",
     "other": "%{count} observations"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observation",
+    "other": "<span class='count'>%{count}</span> observations"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observasi</a>",
@@ -12749,6 +12793,10 @@ I18n.translations["it"] = {
   "x_observations_failed": {
     "one": "1 osservazione fallita",
     "other": "%{count} osservazioni fallite"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> osservazione",
+    "other": "<span class='count'>%{count}</span> osservazioni"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 osservazione</a>",
@@ -15392,6 +15440,10 @@ I18n.translations["mk"] = {
     "one": "1 набљудување",
     "other": "%{count} набљудувања"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> набљудување",
+    "other": "<span class='count'>%{count}</span> набљудувања"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1</a> набљудување",
     "other": "<a href='%{url}'>%{count}</a> набљудувања"
@@ -16346,6 +16398,10 @@ I18n.translations["oc"] = {
   "x_observations_": {
     "one": "1 observacion",
     "other": "%{count} observacions"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observacion",
+    "other": "<span class='count'>%{count}</span> observacions"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observacion</a>",
@@ -17710,6 +17766,10 @@ I18n.translations["pt-BR"] = {
   "x_observations_failed": {
     "one": "1 falha na observação",
     "other": "%{count} falha nas observações"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> observações",
+    "other": "<span class='count'>%{count}</span> observaçõess"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observação</a>",
@@ -19681,6 +19741,10 @@ I18n.translations["zh-CN"] = {
     "one": "1次观察已失败",
     "other": "%{count} 次观察已失败"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span>次观察",
+    "other": "<span class='count'>%{count}</span> 次观察"
+  },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1次观察</a>",
     "other": "<a href='%{url}'>%{count} 次观察</a>"
@@ -21075,6 +21139,10 @@ I18n.translations["zh-TW"] = {
   "x_observations_failed": {
     "one": "1 個觀察失敗",
     "other": "%{count} 個觀察失敗"
+  },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span> 觀察紀錄",
+    "other": "<span class='count'>%{count}</span> 觀察紀錄"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1個觀察紀錄",

@@ -5,9 +5,11 @@ class YearStatistic < ActiveRecord::Base
     @year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" ).first_or_create
     json = {
       observations: {
+        quality_grade_counts: obervation_counts_by_quality_grade( year ),
         month_histogram: observations_histogram( year, interval: "month" ),
         week_histogram: observations_histogram( year, interval: "week" ),
-        day_histogram: observations_histogram( year, interval: "day" )
+        day_histogram: observations_histogram( year, interval: "day" ),
+        day_last_year_histogram: observations_histogram( year - 1, interval: "day" )
       },
       identifications: {
         month_histogram: identifications_histogram( year, interval: "month" ),
@@ -24,9 +26,11 @@ class YearStatistic < ActiveRecord::Base
     @year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
     json = {
       observations: {
+        quality_grade_counts: obervation_counts_by_quality_grade( year, user: user ),
         month_histogram: observations_histogram( year, user: user, interval: "month" ),
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
+        day_last_year_histogram: observations_histogram( year - 1, interval: "day" )
       },
       identifications: {
         month_histogram: identifications_histogram( year, user: user, interval: "month" ),
@@ -72,5 +76,20 @@ class YearStatistic < ActiveRecord::Base
       histogram[b.key_as_string] = b.doc_count
     }
     histogram
+  end
+
+  def self.obervation_counts_by_quality_grade( year, options = {} )
+    params = { year: year }
+    params[:user_id] = options[:user].id if options[:user]
+    elastic_params = Observation.params_to_elastic_query( params )
+    Observation.elastic_search( elastic_params.merge(
+      size: 0,
+      aggregate: {
+        quality_grades: { terms: { field: "quality_grade" } }
+      }
+    ) ).response.aggregations.quality_grades.buckets.inject({}) do |memo, bucket|
+      memo[bucket["key"]] = bucket.doc_count
+      memo
+    end
   end
 end
