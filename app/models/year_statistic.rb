@@ -52,7 +52,8 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.observations_histogram( year, options = {} )
-    options[:year] = year
+    options[:d1] = "#{year}-01-01"
+    options[:d2] = "#{year}-12-31"
     options[:interval] ||= "day"
     options[:quality_grade] ||= "research,needs_id"
     if user = options.delete(:user)

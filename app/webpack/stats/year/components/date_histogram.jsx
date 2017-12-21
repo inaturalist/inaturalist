@@ -44,7 +44,9 @@ class DateHistogram extends React.Component {
               .remove();
 
     g.append( "g" )
-        .call( d3.axisLeft( y ) );
+        .call( d3.axisLeft( y ) )
+        .select( ".domain" )
+              .remove( );
 
     const dateFormatter = d3.timeFormat( "%d %b" );
     const tip = d3tip()

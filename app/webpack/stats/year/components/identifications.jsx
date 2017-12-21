@@ -8,12 +8,13 @@ const Identifications = ( { data } ) => {
     return <div></div>;
   }
   const series = {};
+  const grayColor = "rgba( 30%, 30%, 30%, 0.5 )";
   if ( data.month_histogram ) {
     series.month = {
       title: "Per Month",
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
-      color: "rgba( 80%, 80%, 80%, 0.5 )",
+      color: grayColor,
       label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${d.value}`
     };
   }
@@ -21,7 +22,7 @@ const Identifications = ( { data } ) => {
     series.week = {
       title: "Per Week",
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#a8cc09",
+      color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
       label: d => `<strong>Week of ${moment( d.date ).format( "LL" )}</strong>: ${d.value}`
     };
@@ -35,7 +36,7 @@ const Identifications = ( { data } ) => {
   }
   return (
     <div className="Identifications">
-      <h2>{ I18n.t( "identifications" ) }</h2>
+      <h3><span>{ I18n.t( "identifications" ) }</span></h3>
       <DateHistogram series={ series } />
     </div>
   );

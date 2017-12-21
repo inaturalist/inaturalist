@@ -26,10 +26,24 @@ class PieChart extends React.Component {
     const data = this.props.data;
 
     // Setup tips
+    const angleInBottomHalf = angle => ( angle > ( Math.PI / 2 ) && angle < ( 1.5 * Math.PI ) );
     const tip = d3tip()
       .attr( "class", "d3-tip" )
-      .offset( [-10, 0] ).
-      html( d => {
+      .offset( d => {
+        const midAngle = d.startAngle + ( d.endAngle - d.startAngle ) / 2;
+        if ( angleInBottomHalf( midAngle ) ) {
+          return [10, 0];
+        }
+        return [-10, 0];
+      } )
+      .direction( d => {
+        const midAngle = d.startAngle + ( d.endAngle - d.startAngle ) / 2;
+        if ( angleInBottomHalf( midAngle ) ) {
+          return "s";
+        }
+        return "n";
+      } )
+      .html( d => {
         if ( this.props.labelForDatum ) {
           return this.props.labelForDatum( d );
         }
@@ -45,7 +59,7 @@ class PieChart extends React.Component {
       .value( d => d.value );
     const path = d3.arc( )
       .outerRadius( radius - 10 )
-      .innerRadius( 0 );
+      .innerRadius( 50 );
     const arc = g.selectAll( ".arc" )
       .data( pie( data ) )
       .enter( ).append( "g" )

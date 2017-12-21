@@ -7,12 +7,13 @@ import TorqueMap from "./torque_map";
 
 const Observations = ( { data, user, year } ) => {
   const series = {};
+  const grayColor = "rgba( 30%, 30%, 30%, 0.5 )";
   if ( data.month_histogram ) {
     series.month = {
       title: "Per Month",
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
-      color: "rgba( 80%, 80%, 80%, 0.5 )",
+      color: grayColor,
       label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${d.value}`
     };
   }
@@ -20,7 +21,7 @@ const Observations = ( { data, user, year } ) => {
     series.week = {
       title: "Per Week",
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
-      color: "#a8cc09",
+      color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
       label: d => `<strong>Week of ${moment( d.date ).format( "LL" )}</strong>: ${d.value}`
     };
@@ -42,22 +43,21 @@ const Observations = ( { data, user, year } ) => {
     comparisonSeries.last_year = {
       title: "Last Year",
       data: _.map( data.day_last_year_histogram, ( value, date ) => {
-        const year = parseInt( date.match( /\d{4}/ )[0], 0 );
-        const newYear = year + 1;
-        const newDate = date.replace( year, newYear );
+        const lastYear = parseInt( date.match( /\d{4}/ )[0], 0 );
+        const newYear = lastYear + 1;
+        const newDate = date.replace( lastYear, newYear );
         return { date: newDate, value };
       } ),
-      color: "rgba( 80%, 80%, 80%, 1 )"
+      color: grayColor
     };
   }
   return (
     <div className="Observations">
-      <h2>{ I18n.t( "observations" ) }</h2>
-      <h3>Verifiable Observations By Observation Date</h3>
+      <h3><span>Verifiable Observations By Observation Date</span></h3>
       <DateHistogram series={ series } />
-      <h3>This Year vs. Last Year</h3>
+      <h3><span>Observations This Year vs. Last Year</span></h3>
       <DateHistogram series={ comparisonSeries } />
-      <h3>Animated Map</h3>
+      <h3><span>Animated Observations Map</span></h3>
       <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } />
     </div>
   );

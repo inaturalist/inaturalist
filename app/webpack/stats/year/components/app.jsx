@@ -1,5 +1,7 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
+import inatjs from "inaturalistjs";
+import UserImage from "../../../shared/components/user_image";
 import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
@@ -13,6 +15,7 @@ const App = ( {
   data
 } ) => {
   let body = "todo";
+  let inatUser = user ? new inatjs.User( user ) : null ;
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
@@ -43,8 +46,18 @@ const App = ( {
       </div>
     );
   }
+  console.log( "[DEBUG] site: ", site );
   return (
     <div id="YearStats">
+      <div className="banner">
+        { inatUser ? (
+          <UserImage user={ inatUser } />
+        ) : (
+          <div className="site-icon">
+            <img src={ site.icon_url } />
+          </div>
+        ) }
+      </div>
       <Grid>
         <Row>
           <Col xs={ 12 }>

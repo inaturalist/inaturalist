@@ -39,7 +39,7 @@ const Summary = ( { data } ) => {
                 {
                   label: _.upperFirst( I18n.t( "research" ) ),
                   value: data.observations.quality_grade_counts.research,
-                  color: COLORS.inatGreen
+                  color: COLORS.inatGreenLight
                 }
               ]}
               legendOrient="horizontal"
@@ -77,14 +77,14 @@ const Summary = ( { data } ) => {
                   color: COLORS.iconic.Protozoa
                 },
                 {
-                  label: _.capitalize( I18n.t( "plants" ) ),
-                  value: data.taxa.iconic_taxa_counts.Plantae,
-                  color: COLORS.iconic.Plantae
-                },
-                {
                   label: _.capitalize( I18n.t( "fungi", { count: 2 } ) ),
                   value: data.taxa.iconic_taxa_counts.Fungi,
                   color: COLORS.iconic.Fungi
+                },
+                {
+                  label: _.capitalize( I18n.t( "plants" ) ),
+                  value: data.taxa.iconic_taxa_counts.Plantae,
+                  color: COLORS.inatGreenLight
                 },
                 {
                   label: _.capitalize( I18n.t( "all_taxa.chromista" ) ),

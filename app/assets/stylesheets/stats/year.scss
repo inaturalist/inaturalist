@@ -1,5 +1,101 @@
 @import "../colors";
 @import "../c3";
+@import "../users/_user_image";
+
+#header {
+  margin-bottom: 0;
+}
+$background-color: #1A1A1A;
+#app {
+  background-color: $background-color;
+  color: white;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: white;
+    font-weight: 100;
+  }
+  text {
+    fill: white;
+  }
+  path.domain,
+  .tick line {
+    stroke: #999;
+  }
+  .tick text {
+    fill: #999;
+  }
+
+  h2, h3, h4 {
+    position: relative;
+    text-align: center;
+    z-index: 0;
+    span {
+      padding: 0 10px;
+      display: inline-block;
+      z-index: 1;
+      background-color: $background-color;
+    }
+  }
+  h2:after,
+  h3:after,
+  h4:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: block;
+    border-top: 1px solid #999;
+    opacity: 0.5;
+  }
+
+  .banner {
+    height: 300px;
+    position: relative;
+    background-color: #666;
+    $user-image-size: 200px;
+    $user-image-overhang: 0.5 * $user-image-size / 2;
+    margin-bottom: $user-image-overhang + 20;
+    .UserImage {
+      border: 5px solid white;
+      width: $user-image-size;
+      height: $user-image-size;
+      position: absolute;
+      bottom: $user-image-overhang * -1;
+      left: 50%;
+      margin-left: $user-image-size / -2;
+    }
+
+    .site-icon {
+      border: 5px solid white;
+      background-color: white;
+      border-radius: $user-image-size;
+      width: $user-image-size;
+      height: $user-image-size;
+      position: absolute;
+      bottom: $user-image-overhang * -1;
+      left: 50%;
+      margin-left: $user-image-size / -2;
+      overflow: hidden;
+      img {
+        width: $user-image-size * 0.8;
+        position: absolute;
+        left: 50%;
+        margin-left: ($user-image-size * 0.8) / -2;
+        top: 50%;
+        margin-top: ($user-image-size * 0.8) / -2;
+      }
+    }
+  }
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
+}
 
 .chart svg {
   width: 100%;
@@ -79,11 +175,11 @@ $tip-opacity: 1;
   .summary-panel {
     width: 100%;
     .count {
-      color: $inat-green;
+      color: $inat-green-light;
     }
     .main {
       text-align: center;
-      border-bottom: 3px solid $inat-green;
+      border-bottom: 3px solid $inat-green-light;
       padding: 10px;
       margin-bottom: 10px;
       text-transform: uppercase;

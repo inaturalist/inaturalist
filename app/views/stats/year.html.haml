@@ -8,8 +8,12 @@
   :javascript
     YEAR_DATA = #{ @year_statistic.try(:data).to_json };
     YEAR = #{ @year };
-    DISPLAY_USER = #{ @display_user.to_json };
-    SITE = #{ @site.to_json };
+    DISPLAY_USER = #{ @display_user ? 
+      @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url ).to_json
+      :
+      "null"
+    };
+    SITE = #{ @site.as_json( only: [:id, :name] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ) ).to_json };
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
   = javascript_include_tag "torque.full.uncompressed"
   = javascript_include_tag "stats-year-webpack"
