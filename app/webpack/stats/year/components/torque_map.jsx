@@ -137,6 +137,7 @@ class TorqueMap extends React.Component {
   render( ) {
     return (
       <div className="TorqueMap">
+        <h3><span>Animated Observations Map</span></h3>
         <div className="map" />
         <div className="legend">
           <div className="date">January</div>

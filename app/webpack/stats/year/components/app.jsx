@@ -6,6 +6,7 @@ import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
 import Identifications from "./identifications";
+import TaxaSunburst from "./taxa_sunburst";
 
 const App = ( {
   year,
@@ -40,6 +41,7 @@ const App = ( {
         <Summary data={data} />
         <Observations data={ data.observations } user={ user } year={ year } />
         <Identifications data={ data.identifications } />
+        { user && ( <TaxaSunburst data={ data.taxa ? data.taxa.tree_taxa : null } /> ) }
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={ user } text={ "Regenerate Stats" } />
         ) : null }

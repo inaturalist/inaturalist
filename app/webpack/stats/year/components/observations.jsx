@@ -57,8 +57,7 @@ const Observations = ( { data, user, year } ) => {
       <DateHistogram series={ series } />
       <h3><span>Observations This Year vs. Last Year</span></h3>
       <DateHistogram series={ comparisonSeries } />
-      <h3><span>Animated Observations Map</span></h3>
-      <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } />
+      { user && ( <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } /> ) }
     </div>
   );
 };

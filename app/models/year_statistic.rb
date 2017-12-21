@@ -45,10 +45,19 @@ class YearStatistic < ActiveRecord::Base
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
-        iconic_taxa_counts: iconic_taxa_counts( year, user: user )
+        iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
+        tree_taxa: tree_taxa( year, user: user )
       }
     }
     @year_statistic.update_attributes( data: json )
+  end
+
+  def self.tree_taxa( year, options = {} )
+    options[:year] = year
+    if user = options.delete(:user)
+      options[:user_id] = user.id
+    end
+    JSON.parse( INatAPIService.get_json("/observations/tree_taxa", options ) )["results"] rescue nil
   end
 
   def self.observations_histogram( year, options = {} )

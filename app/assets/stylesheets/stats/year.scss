@@ -205,6 +205,7 @@ $tip-opacity: 1;
     z-index: 1000;
     .date {
       background: white;
+      color: black;
       width: 150px;
       margin-left: auto;
       margin-right: auto;
@@ -212,5 +213,11 @@ $tip-opacity: 1;
       font-size: 18px;
       line-height: 30px;
     }
+  }
+}
+
+.TaxaSunburst {
+  .chart svg {
+    min-height: 500px;
   }
 }
