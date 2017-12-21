@@ -1360,6 +1360,7 @@ zh-CN:
   id_please!: 请添加ID！
   id_please: 请添加ID
   id_please_expandable_html: <span class='full'>请提供</span>ID！
+  id_withdrawn: ID撤回
   identify: 鉴定
   identify_observations: 对观察记录进行鉴定
   identify_title: 鉴定
@@ -2397,6 +2398,7 @@ zh-CN:
   real_time_discussions: 实时讨论
   reason: 原因
   reason_you_are_flagging_this_item: 您标记此项目的原因。
+  recaptcha_verification_failed: reCaptcha验证失败
   receive_email_notifications_when_people_leave_you: 接受电子邮件通知有关
   receive_updates_from_this_project: 从此项目接收更新
   received: 已收到
@@ -3951,6 +3953,9 @@ zh-CN:
               dna_only_atcg: 对于DNA，只能包含字符A、T、C或G
               date_format: 用于日期字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）的日期格式必须为YYYY-MM-DD
               time_format: 必须以hh:mm形式填写时间字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）
+            observation_id:
+              user_does_not_accept_fields_from_others: 用户不接受来自他人的字段
+              user_only_accepts_fields_from_site_curators: 用户只接受来自网站馆长的字段
         place:
           attributes:
             place_geometry:

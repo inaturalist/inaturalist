@@ -1735,6 +1735,7 @@ fr:
   id_please!: Identification,SVP!
   id_please: Identification SVP
   id_please_expandable_html: Identification<span class='full'> demandée</span> !
+  id_withdrawn: ID supprimé
   identify: Identifier
   identify_observations: Identifier les observations
   identify_title: Identifier
@@ -3267,6 +3268,7 @@ fr:
   real_time_discussions: Discussions en temps réel
   reason: Motif
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
+  recaptcha_verification_failed: échec de la vérification reCaptcha
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel
     sur
   receive_updates_from_this_project: Recevoir des avis pour ce projet
@@ -6334,6 +6336,11 @@ fr:
                 \ndans votre observation de « %{observation_species_guess} »)"
               time_format: "doit être au format hh:mm pour un champ d’heure (« %{observation_field_name} »
                 \ndans votre observation de « %{observation_species_guess} »)"
+            observation_id:
+              user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas
+                les champs des autres
+              user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement
+                les champs des superviseurs du site
         place:
           attributes:
             place_geometry:
