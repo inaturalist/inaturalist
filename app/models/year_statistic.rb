@@ -54,6 +54,16 @@ class YearStatistic < ActiveRecord::Base
     @year_statistic.update_attributes( data: json )
   end
 
+  def self.regenerate_existing
+    YearStatistic.find_each do |ys|
+      if ys.user
+        YearStatistic.generate_for_user_year( ys.user, ys.year )
+      else
+        YearStatistic.generate_for_year( ys.year )
+      end
+    end
+  end
+
   def self.tree_taxa( year, options = {} )
     options[:year] = year
     if user = options.delete(:user)
@@ -173,10 +183,10 @@ class YearStatistic < ActiveRecord::Base
       }
     )
     r = Observation.elastic_search( es_params_with_sort ).per_page( 200 ).response
-    # r.hits.hits.map{|h| { id: h._source.id, photos: h._source.photos } }.as_json
-    # r.hits.hits.map(&:_source).as_json
     ids = r.hits.hits.map{|h| h._source.id }
-    JSON.parse( INatAPIService.get_json( "/observations", id: ids, per_page: 200 ) )["results"]
+    JSON.
+      parse( INatAPIService.get_json( "/observations", id: ids, per_page: 200 ) )["results"].
+      sort_by{|o| (o["comments_count"].to_i + o["cached_votes_total"].to_i ) * -1 }
   end
 
 end
