@@ -184,8 +184,20 @@ class YearStatistic < ActiveRecord::Base
     )
     r = Observation.elastic_search( es_params_with_sort ).per_page( 200 ).response
     ids = r.hits.hits.map{|h| h._source.id }
+    api_params = {
+      id: ids,
+      per_page: 200
+    }
+    if user = User.find_by_id( options[:user_id] )
+      if place = user.place || user.site.try(:place)
+        api_params[:preferred_place_id] = place.id
+      end
+      if locale = user.locale || user.site.try(:locale)
+        api_params[:locale] = locale
+      end
+    end
     JSON.
-      parse( INatAPIService.get_json( "/observations", id: ids, per_page: 200 ) )["results"].
+      parse( INatAPIService.get_json( "/observations", api_params ) )["results"].
       sort_by{|o| (o["comments_count"].to_i + o["cached_votes_total"].to_i ) * -1 }
   end
 

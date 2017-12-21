@@ -137,10 +137,10 @@ class TorqueMap extends React.Component {
   render( ) {
     return (
       <div className="TorqueMap">
-        <h3><span>Animated Observations Map</span></h3>
+        <h3><span>{ I18n.t( "animated_observations_map" ) }</span></h3>
         <div className="map" />
         <div className="legend">
-          <div className="date">January</div>
+          <div className="date">{ I18n.t( "date_format.month.january" ) }</div>
         </div>
       </div>
     );

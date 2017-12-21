@@ -13,7 +13,6 @@ class GenerateStatsButton extends React.Component {
   generateStats( ) {
     this.setState( { loading: true } );
     const year = ( new Date( ) ).getYear( ) + 1900;
-    // Make a flow task
     const data = new FormData( );
     data.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
     data.append( "year", year );

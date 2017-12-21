@@ -50,7 +50,7 @@ class TaxaSunburst extends React.Component {
 
     const recurse = ( taxonID ) => {
       const thisData = {
-        name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : "Unknown",
+        name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : I18n.t( "unknown" ),
         iconicTaxonID: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.iconic_taxon_id : null
       };
       if ( children[taxonID] ) {
@@ -108,7 +108,7 @@ class TaxaSunburst extends React.Component {
   render( ) {
     return (
       <div className="TaxaSunburst">
-        <h3><span>Species Observed</span></h3>
+        <h3><span>{ I18n.t( "views.welcome.index.species_observed" ) }</span></h3>
         <div className="chart"></div>
       </div>
     );

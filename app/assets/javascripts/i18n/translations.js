@@ -68,6 +68,10 @@ I18n.translations["ar"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -139,6 +143,10 @@ I18n.translations["az"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -822,6 +830,11 @@ I18n.translations["bg"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Наблюдавани видове"
+      }
     }
   },
   "vulnerable": "уязвим",
@@ -1390,6 +1403,10 @@ I18n.translations["br"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "x_comments": {
@@ -1505,6 +1522,10 @@ I18n.translations["bs"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -2675,6 +2696,11 @@ I18n.translations["ca"] = {
       "edit": {
         "licensing_desc_html": "Llicenciar els continguts, confereix a altres persones el dret a utilitzar-los sense demanar permís si s'adhereixen a les condicions de la llicència. %{site_name} utilitza els vostres continguts amb llicencia Creative Commons per compartir les dades amb socis com ara el <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), una organització inter-governamental internacional que confecciona i distribueix informació sobre la biodiversitat arreu del món."
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Espècies Observades"
+      }
     }
   },
   "visually_similar": "Visualment Semblant",
@@ -2849,6 +2875,10 @@ I18n.translations["cs"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -2920,6 +2950,10 @@ I18n.translations["da"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -2993,6 +3027,10 @@ I18n.translations["de"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -3064,6 +3102,10 @@ I18n.translations["el"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -3237,6 +3279,7 @@ I18n.translations["en"] = {
   "amphibians": "amphibians",
   "and": "and",
   "animals": "Animals",
+  "animated_observations_map": "Animated Observations Map",
   "annotations": "Annotations",
   "any": "any",
   "arachnids": "arachnids",
@@ -3581,6 +3624,7 @@ I18n.translations["en"] = {
   "labels": "Labels",
   "language_slash_type": "Language / Type",
   "last_observation": "Last observation",
+  "last_year": "Last Year",
   "lat": "Lat",
   "latitude": "Latitude",
   "layers": "Layers",
@@ -3703,6 +3747,7 @@ I18n.translations["en"] = {
   "more_import_options": "More import options",
   "more_info": "More info",
   "more_photos": "More Photos",
+  "most_comments_and_faves": "Most Comments and Faves",
   "most_observed_introduced_species": "Most observed introduced species",
   "most_observed_species": "Most observed species",
   "most_observed_threatened_species": "Most observed threatened species",
@@ -3796,6 +3841,10 @@ I18n.translations["en"] = {
   "other_species_commonly_misidentified_as_this_species": "Other species commonly misidentified as this species",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Other species commonly misidentified as this species in <a href=\"%{url}\">%{place}</a>\n",
   "output_taxon": "Output taxon",
+  "overvations_this_year_vs_last_year": "Observations This Year vs. Last Year",
+  "per_day": "Per Day",
+  "per_month": "Per Month",
+  "per_week": "Per Week",
   "person": "person",
   "photo": "Photo",
   "photo_browser": "Photo Browser",
@@ -4103,6 +4152,7 @@ I18n.translations["en"] = {
   "standard": "Standard",
   "start": "Start",
   "start_typing_taxon_name": "Start typing taxon name...",
+  "stats_for_this_year_have_not_been_generated": "Stats for this year have not been generated.",
   "status": "Status",
   "status_globally": "%{status} Globally",
   "status_in_place": "%{status} in %{place}",
@@ -4155,6 +4205,7 @@ I18n.translations["en"] = {
   "this_observation_was_created_using": "This observation was created using:",
   "this_taxon_concept_is_inactive": "this taxon concept is inactive",
   "this_taxon_has_no_default_photo": "This taxon has no default photo!",
+  "this_year": "This Year",
   "threatened": "threatened",
   "to_add_comments": "to add comments",
   "to_suggest_an_identification": "to suggest an identification",
@@ -4208,6 +4259,7 @@ I18n.translations["en"] = {
   "value": "Value",
   "verbing_x_of_y": "%{verb} %{x} of %{y}...",
   "verifiable": "verifiable",
+  "verifiable_observations_by_observation_date": "Verifiable Observations By Observation Date",
   "view": "View",
   "view_all": "View all",
   "view_field_options": "View Field Options",
@@ -4304,6 +4356,11 @@ I18n.translations["en"] = {
       "edit": {
         "licensing_desc_html": "Licensing your content gives other people the legal right to use it\nwithout asking your permission if they stick to the terms of the\nlicense. %{site_name} uses your Creative Commons-licensed content to share\nwith data partners like the <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), an international,\ninter-governmental organization that compiles and distributes\nbiodiversity information from around the world.\n"
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Species Observed"
+      }
     }
   },
   "visually_similar": "Visually Similar",
@@ -4311,6 +4368,7 @@ I18n.translations["en"] = {
   "wanted": "Wanted",
   "we_have_no_conservation_status_for_this_taxon": "We have no conservation status for this taxon",
   "we_have_no_establishment_data_for_this_taxon": "We have no establishment data for this taxon",
+  "week_of_date": "Week of %{date}",
   "were_pretty_sure_this_is_in_the_rank": "We're pretty sure this is in the %{rank}",
   "whats_this?": "What's this?",
   "white": "white",
@@ -4392,7 +4450,7 @@ I18n.translations["en"] = {
     "one": "1 Suggestion Filtered By:",
     "other": "%{count} Suggestions Filtered By:"
   },
-  "year_in_review": "Year In Review",
+  "year_in_review": "Year In Review %{year}",
   "yellow": "yellow",
   "yes": "Yes",
   "yes_reject_it": "Yes, reject it",
@@ -4487,6 +4545,10 @@ I18n.translations["en-GB"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -4589,6 +4651,10 @@ I18n.translations["en-US"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -5822,6 +5888,11 @@ I18n.translations["es"] = {
       "edit": {
         "licensing_desc_html": "Obtención de la licencia de contenido da a otras personas el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative Commons-para compartir con los socios de datos como la \n<a href=\"http://www.gbif.org/\">Global Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional, organización\nintergubernamental que recopila y distribuye información sobre la\nbiodiversidad de todo el mundo."
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Especies observadas"
+      }
     }
   },
   "visually_similar": "Similar visualmente",
@@ -6751,6 +6822,10 @@ I18n.translations["es-MX"] = {
       "edit": {
         "licensing_desc_html": "La licencia de tu contenido permite a otra gente el uso legal sin\npedirte permiso siempre y cuando se apeguen a las condiciones de la licencia.\n%{site_name} utiliza tus licencias de  Creative Commons para compartir el contenido\ncon otros socios como <a href=\"http://www.gbif.org/\">Global \nBiodiversity Information Facility</a> (GBIF), una organización intergubernamental internacional, \nque reúne y distriuye información sobre biodiversidad en todo el mundo."
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "vulnerable": "vulnerable",
@@ -6881,6 +6956,10 @@ I18n.translations["et"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -7642,6 +7721,10 @@ I18n.translations["eu"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "visually_similar": "Bisualki Antzekoa",
@@ -7751,6 +7834,10 @@ I18n.translations["fa"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -8317,6 +8404,11 @@ I18n.translations["fi"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Havaitut Lajit"
       }
     }
   },
@@ -9612,6 +9704,11 @@ I18n.translations["fr"] = {
       "edit": {
         "licensing_desc_html": "En mettant votre contenu sous licence, vous donnerez aux autres le\ndroit de l÷’utiliser légalement sans demander votre permission s’ils\nrespectent les conditions de la licence. %{site_name} utilise votre\ncontenu sous licence Creative Commons pour l’échanger avec des\npartenaires d’échange de données comme le\n<a href=\"http://www.gbif.org/\">Système mondial d’informations sur la\nbiodiversité</a> (SMIB), une organisation internationale\nintergouvernementale qui compile et distribue des informations sur la\nbiodiversité dans le monde entier."
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Espèces Observées"
+      }
     }
   },
   "visually_similar": "Visuellement semblable",
@@ -10386,6 +10483,10 @@ I18n.translations["gl"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "vulnerable": "vulnerable",
@@ -10488,6 +10589,10 @@ I18n.translations["he"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -10560,6 +10665,10 @@ I18n.translations["hr"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -10631,6 +10740,10 @@ I18n.translations["hu"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -11468,6 +11581,11 @@ I18n.translations["id"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Spesies yang Diamati"
+      }
     }
   },
   "vulnerable": "rentan",
@@ -11593,6 +11711,10 @@ I18n.translations["is"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -12827,6 +12949,11 @@ I18n.translations["it"] = {
       "edit": {
         "licensing_desc_html": "Attribuendo una licenza ai tuoi contenuti darai alle altre persone il diritto legale di utilizzarlo senza chiederti il permesso se essi si attengono ai termini della licenza. %{site_name} utilizza i tuoi contenuti con licenza Creative Commons per condividerli con i partner come il <a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità in tutto il mondo."
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Specie Osservate"
+      }
     }
   },
   "visually_similar": "Visivamente simili",
@@ -13008,6 +13135,10 @@ I18n.translations["iw"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -13924,6 +14055,11 @@ I18n.translations["ja"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "観察された種"
+      }
     }
   },
   "vulnerable": "絶滅危惧II類",
@@ -14685,6 +14821,10 @@ I18n.translations["ko"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "whats_this?": "이것은 무엇입니까?",
@@ -14770,6 +14910,10 @@ I18n.translations["lexicons"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -14842,6 +14986,10 @@ I18n.translations["lt"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -14913,6 +15061,10 @@ I18n.translations["lv"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -15515,6 +15667,10 @@ I18n.translations["mk"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "vulnerable": "ранлив",
@@ -15624,6 +15780,10 @@ I18n.translations["my"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -15695,6 +15855,10 @@ I18n.translations["nb"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -15768,6 +15932,10 @@ I18n.translations["nl"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -15839,6 +16007,10 @@ I18n.translations["no"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -16470,6 +16642,10 @@ I18n.translations["oc"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   },
   "x_comments": {
@@ -16586,6 +16762,10 @@ I18n.translations["pl"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -16657,6 +16837,10 @@ I18n.translations["pt"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -17824,6 +18008,11 @@ I18n.translations["pt-BR"] = {
       "edit": {
         "licensing_desc_html": "Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href=\"http://www.gbif.org/\">Global\nBiodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo."
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "Espécies observadas"
+      }
     }
   },
   "visually_similar": "Visualmente Similar",
@@ -17997,6 +18186,10 @@ I18n.translations["ro"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -18068,6 +18261,10 @@ I18n.translations["ru"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -18141,6 +18338,10 @@ I18n.translations["sk"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -18212,6 +18413,10 @@ I18n.translations["sl"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -18285,6 +18490,10 @@ I18n.translations["sr"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -18356,6 +18565,10 @@ I18n.translations["sr-RS"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -18429,6 +18642,10 @@ I18n.translations["sv"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -18500,6 +18717,10 @@ I18n.translations["th"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -18573,6 +18794,10 @@ I18n.translations["tr"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -18645,6 +18870,10 @@ I18n.translations["uk"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+      }
     }
   }
 };
@@ -18716,6 +18945,10 @@ I18n.translations["vi"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -19804,6 +20037,11 @@ I18n.translations["zh-CN"] = {
     "users": {
       "edit": {
       }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "观察的物种"
+      }
     }
   },
   "visually_similar": "视觉类似",
@@ -19974,6 +20212,10 @@ I18n.translations["zh-HK"] = {
     },
     "users": {
       "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
       }
     }
   }
@@ -21207,6 +21449,11 @@ I18n.translations["zh-TW"] = {
     "users": {
       "edit": {
         "licensing_desc_html": "授權您的內容可讓其他遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與像是<a href=\"http://www.gbif.org/\">全球生物多樣性資訊機構</a>（GBIF），一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。"
+      }
+    },
+    "welcome": {
+      "index": {
+        "species_observed": "觀察的物種"
       }
     }
   },

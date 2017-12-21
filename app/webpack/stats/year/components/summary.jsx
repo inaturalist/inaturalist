@@ -8,6 +8,7 @@ import * as d3 from "d3";
 const Summary = ( { data } ) => {
   const pieMargin = { top: 0, bottom: 120, left: 0, right: 0 };
   const innerRadius = 90;
+  const nameForPieLabel = name => _.truncate( _.capitalize( name ), { length: 15 } );
   return (
     <Row className="Summary">
       <Col xs={ 4 }>
@@ -43,9 +44,7 @@ const Summary = ( { data } ) => {
                   color: COLORS.inatGreenLight
                 }
               ]}
-              legendOrient="horizontal"
-              legendColumnWidth={ 125 }
-              legendShapePadding={ 50 }
+              legendColumnWidth={ 50 }
               margin={ pieMargin }
               innerRadius={ innerRadius }
             />
@@ -69,52 +68,52 @@ const Summary = ( { data } ) => {
             <PieChart
               data={[
                 {
-                  label: _.capitalize( I18n.t( "unknown" ) ),
+                  label: nameForPieLabel( I18n.t( "unknown" ) ),
                   value: data.taxa.iconic_taxa_counts.Unknown,
                   color: COLORS.iconic.Unknown
                 },
                 {
-                  label: _.capitalize( I18n.t( "protozoans" ) ),
+                  label: nameForPieLabel( I18n.t( "protozoans" ) ),
                   value: data.taxa.iconic_taxa_counts.Protozoa,
                   color: COLORS.iconic.Protozoa
                 },
                 {
-                  label: _.capitalize( I18n.t( "fungi", { count: 2 } ) ),
+                  label: nameForPieLabel( I18n.t( "fungi", { count: 2 } ) ),
                   value: data.taxa.iconic_taxa_counts.Fungi,
                   color: COLORS.iconic.Fungi
                 },
                 {
-                  label: _.capitalize( I18n.t( "plants" ) ),
+                  label: nameForPieLabel( I18n.t( "plants" ) ),
                   value: data.taxa.iconic_taxa_counts.Plantae,
                   color: COLORS.inatGreenLight
                 },
                 {
-                  label: _.capitalize( I18n.t( "all_taxa.chromista" ) ),
+                  label: nameForPieLabel( I18n.t( "all_taxa.chromista" ) ),
                   value: data.taxa.iconic_taxa_counts.Chromista,
                   color: COLORS.iconic.Chromista
                 },
                 {
-                  label: _.capitalize( I18n.t( "mollusks" ) ),
+                  label: nameForPieLabel( I18n.t( "mollusks" ) ),
                   value: data.taxa.iconic_taxa_counts.Mollusca,
                   color: COLORS.iconic.Mollusca
                 },
                 {
-                  label: _.capitalize( I18n.t( "insects" ) ),
+                  label: nameForPieLabel( I18n.t( "insects" ) ),
                   value: data.taxa.iconic_taxa_counts.Insecta,
                   color: d3.color( COLORS.iconic.Insecta ).brighter( )
                 },
                 {
-                  label: _.capitalize( I18n.t( "arachnids" ) ),
+                  label: nameForPieLabel( I18n.t( "arachnids" ) ),
                   value: data.taxa.iconic_taxa_counts.Arachnida,
                   color: d3.color( COLORS.iconic.Arachnida ).brighter( ).brighter( )
                 },
                 {
-                  label: _.capitalize( I18n.t( "ray_finned_fishes" ) ),
+                  label: nameForPieLabel( I18n.t( "ray_finned_fishes" ) ),
                   value: data.taxa.iconic_taxa_counts.Actinopterygii,
                   color: COLORS.iconic.Actinopterygii
                 },
                 {
-                  label: _.capitalize( I18n.t( "amphibians" ) ),
+                  label: nameForPieLabel( I18n.t( "amphibians" ) ),
                   value: data.taxa.iconic_taxa_counts.Amphibia,
                   color: d3.color( COLORS.iconic.Amphibia ).brighter( 0.5 )
                 },
@@ -124,12 +123,12 @@ const Summary = ( { data } ) => {
                   color: d3.color( COLORS.iconic.Reptilia ).brighter( 0.5 ).brighter( 0.5 )
                 },
                 {
-                  label: _.capitalize( I18n.t( "birds" ) ),
+                  label: nameForPieLabel( I18n.t( "birds" ) ),
                   value: data.taxa.iconic_taxa_counts.Aves,
                   color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 )
                 },
                 {
-                  label: _.capitalize( I18n.t( "other_animals" ) ),
+                  label: nameForPieLabel( I18n.t( "other_animals" ) ),
                   value: data.taxa.iconic_taxa_counts.Animalia,
                   color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 )
                 }
@@ -195,7 +194,7 @@ const Summary = ( { data } ) => {
       </Col>
     </Row>
   );
-}
+};
 
 Summary.propTypes = {
   data: React.PropTypes.object

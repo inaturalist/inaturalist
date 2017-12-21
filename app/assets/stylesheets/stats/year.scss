@@ -374,7 +374,7 @@ $ribbon-border-width: 20px;
 }
 $obs-grid-photo-size: 210px;
 .ObservationsGridItem.borderless.thumbnail {
-  width: $obs-grid-photo-size;
+  width: 100%;
   border: 0 transparent;
   background-color: $dark-gray;
   border-radius: 0;
@@ -383,12 +383,18 @@ $obs-grid-photo-size: 210px;
       color: white;
       font-weight: 100;
     }
+    .sciname {
+      white-space: nowrap;
+    }
   }
   .photo {
     height: $obs-grid-photo-size;
   }
   .caption {
     color: $gray;
+    .controls {
+      white-space: nowrap;
+    }
     .activity {
       color: $inat-green;
       .stat {

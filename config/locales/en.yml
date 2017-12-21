@@ -429,6 +429,7 @@ en:
     other: "and %{count} more people!"
   android: Android
   animals: Animals
+  animated_observations_map: Animated Observations Map
   annotations: Annotations
   announcement_was_successfully_created: Announcement was successfully created.
   announcement_was_successfully_updated: Announcement was successfully updated.
@@ -1644,6 +1645,7 @@ en:
   last_inat_observation: "Last %{site_name} observation"
   last_observation: Last observation
   last_seen: Last seen
+  last_year: Last Year
   lat: Lat
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
@@ -1953,6 +1955,7 @@ en:
   most: Most
   most_agree: most agree
   most_disagree: most disagree
+  most_comments_and_faves: Most Comments and Faves
   most_observations: Most observations
   most_recent_observation_by_date_observed: Most recent verifiable observation by date observed
   most_species: Most species
@@ -2272,6 +2275,7 @@ en:
     Text searches may yield weird results when combined with other filters. If
     you want to find observation of a particular species, use the taxon
     filter.
+  overvations_this_year_vs_last_year: Observations This Year vs. Last Year
   observations_title: Observations by Everyone
   observations_total: Observations Total
   observations_w: Observations w/
@@ -2441,6 +2445,9 @@ en:
     comment:
       with_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link} by %{by_link}
       without_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link}
+  per_day: Per Day
+  per_month: Per Month
+  per_week: Per Week
   person: person
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
@@ -3197,6 +3204,7 @@ en:
   start_typing_someones_name: "Start typing someone's name..."
   states: States
   stats: Stats
+  stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   stats_title: Site Stats
   status: Status
   status_globally: "%{status} Globally"
@@ -3503,6 +3511,7 @@ en:
   this_will_reload_and_refresh: This will add listed taxa from observations and refresh observation stats immediately. It may take some time and please use sparingly.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
+  this_year: This Year
   those_are_the_basics_of: |
     Those are the basics of adding observations! There are plent of other
     things you can do, like searching and filtering your observations or
@@ -3708,6 +3717,7 @@ en:
   valid_options_are: Valid options are
   value: Value
   verbing_x_of_y: "%{verb} %{x} of %{y}..."
+  verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View all
   view_all_from_x: View all from %{x}
@@ -3816,6 +3826,7 @@ en:
     We tried to process your upload named %{filename} but it didn't work.
     Please fix the following problem(s) and try again.
   wed: Wed
+  week_of_date: "Week of %{date}"
   welcome!: Welcome!
   welcome_comma!: Welcome,
   welcome: welcome
@@ -3894,7 +3905,7 @@ en:
   x_wrote_a_new_post_html: "%{x} wrote a new post"
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
-  year_in_review: Year In Review
+  year_in_review: "Year In Review %{year}"
   year_month: year/month
   year_on_site: "Year On %{site} %{year}"
   yellow: yellow

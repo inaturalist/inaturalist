@@ -32,7 +32,7 @@ const App = ( {
     } else {
       body = (
         <p className="alert alert-warning">
-          Data for this year hasn't been generated yet.
+          { I18n.t( "stats_for_this_year_have_not_been_generated" ) }
         </p>
       );
     }
