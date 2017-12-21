@@ -57,11 +57,14 @@ class StatsController < ApplicationController
       return render_404
     end
     @display_user = User.find_by_login( params[:login] )
+    if !params[:login].blank? && !@display_user
+      return render_404
+    end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
-    else
-      YearStatistic.where( "user_id IS NULL AND year = ?", @year ).first
     end
+    @year_statistic ||= YearStatistic.where( site_id: @site, year: @year ).first
+    @year_statistic ||= YearStatistic.where( year: @year ).where( "user_id IS NULL AND site_id IS NULL" ).first
     @headless = @footless = true
     @shareable_image_url = if @display_user
       FakeView.image_url( @display_user.icon.url(:original) )
@@ -77,7 +80,7 @@ class StatsController < ApplicationController
       return render_404
     end
     delayed_progress( "stats/generate_year?user_id=#{current_user.id}&year=#{@year}" ) do
-      @job = YearStatistic.delay.generate_for_user_year( current_user.id, @year )
+      @job = YearStatistic.delay( priority: USER_PRIORITY ).generate_for_user_year( current_user.id, @year )
     end
     respond_to do |format|
       format.json do

@@ -4700,7 +4700,8 @@ CREATE TABLE year_statistics (
     year integer,
     data json,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    site_id integer
 );
 
 
@@ -8442,6 +8443,13 @@ CREATE UNIQUE INDEX index_wiki_pages_on_path ON wiki_pages USING btree (path);
 
 
 --
+-- Name: index_year_statistics_on_site_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_year_statistics_on_site_id ON year_statistics USING btree (site_id);
+
+
+--
 -- Name: index_year_statistics_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9174,4 +9182,6 @@ INSERT INTO schema_migrations (version) VALUES ('20171107200722');
 INSERT INTO schema_migrations (version) VALUES ('20171108223540');
 
 INSERT INTO schema_migrations (version) VALUES ('20171218191934');
+
+INSERT INTO schema_migrations (version) VALUES ('20171221220649');
 

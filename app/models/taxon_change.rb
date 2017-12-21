@@ -304,7 +304,7 @@ class TaxonChange < ActiveRecord::Base
 
   def commit_records_later
     return true unless committed_on_changed? && committed?
-    delay(:priority => USER_PRIORITY).commit_records
+    delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
     true
   end
 

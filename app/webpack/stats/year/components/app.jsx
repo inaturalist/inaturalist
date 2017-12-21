@@ -81,7 +81,7 @@ const App = ( {
     );
   }
   let montageObservations = [];
-  if ( data && data.observations && data.observations.popular ) {
+  if ( data && data.observations && data.observations.popular && data.observations.popular.length > 0 ) {
     montageObservations = _.filter( data.observations.popular, o => ( o.photos && o.photos.length > 0 ) );
     while ( montageObservations.length < 150 ) {
       montageObservations = montageObservations.concat( montageObservations );

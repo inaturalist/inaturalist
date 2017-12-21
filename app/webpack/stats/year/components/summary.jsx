@@ -18,9 +18,7 @@ const Summary = ( { data } ) => {
               className="main"
               dangerouslySetInnerHTML={ { __html: I18n.t( "x_observations_html", {
                 count: I18n.toNumber(
-                  (
-                    data.observations.quality_grade_counts.research + data.observations.quality_grade_counts.needs_id
-                  ),
+                  ( data.observations.quality_grade_counts.research || 0 ) + ( data.observations.quality_grade_counts.needs_id || 0 ),
                   { precision: 0 }
                 )
               } ) } }
