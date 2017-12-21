@@ -4,7 +4,7 @@ class StatsController < ApplicationController
   before_filter :load_params, except: [:year, :generate_year]
   before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
   before_filter :allow_external_iframes, only: [:wed_bioblitz]
-  before_filter :admin_required, only: [:year, :generate_year]
+  # before_filter :admin_required, only: [:year, :generate_year]
 
   caches_action :summary, expires_in: 1.hour
   caches_action :observation_weeks_json, expires_in: 1.day

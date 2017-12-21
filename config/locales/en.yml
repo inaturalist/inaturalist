@@ -3074,6 +3074,7 @@ en:
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
   site_taxon_page: "%{site_name} taxon page"
+  site_year_in_review: "%{site_name} Year In Review %{year}"
   so_meta!: so meta!
   some_agree: some agree
   some_observations_failed_to_be_added: Some observations failed to be added to projects
@@ -3696,7 +3697,7 @@ en:
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
-  users_year_on_site: "%{user}'s Year On %{site}: %{year}"
+  users_year_on_site: "%{user}'s Year On %{site} %{year}"
   using_a_license: using a license
   using_cc_license_makes_easier_use_your_data: Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like.
   valid_interrogation: Valid?

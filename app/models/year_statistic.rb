@@ -158,7 +158,7 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.popular_observations( year, options = {} )
-    params = options.merge( year: year, per_page: 200, has_photos: true )
+    params = options.merge( year: year, has_photos: true )
     es_params = Observation.params_to_elastic_query( params )
     es_params_with_sort = es_params.merge(
       sort: {
@@ -172,8 +172,8 @@ class YearStatistic < ActiveRecord::Base
         }
       }
     )
-    r = Observation.elastic_search( es_params_with_sort ).response
-    r.hits.hits.map{|h| { id: h._source.id, photos: h._source.photos } }.as_json
+    r = Observation.elastic_search( es_params_with_sort ).per_page( 200 ).response
+    # r.hits.hits.map{|h| { id: h._source.id, photos: h._source.photos } }.as_json
     r.hits.hits.map(&:_source).as_json
   end
 

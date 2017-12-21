@@ -49,7 +49,7 @@ class PieChart extends React.Component {
         }
         const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
         const percent = _.round( degrees / 360 * 100, 2 );
-        return `<strong>${d.data.label}</strong>: ${d.value} (${percent}%)`;
+        return `<strong>${d.data.label}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )} (${percent}%)`;
       } );
     svg.call( tip );
 
@@ -59,7 +59,7 @@ class PieChart extends React.Component {
       .value( d => d.value );
     const path = d3.arc( )
       .outerRadius( radius - 10 )
-      .innerRadius( 50 );
+      .innerRadius( this.props.innerRadius || 0 );
     const arc = g.selectAll( ".arc" )
       .data( pie( data ) )
       .enter( ).append( "g" )
@@ -120,7 +120,8 @@ PieChart.propTypes = {
   legendOrient: PropTypes.string,
   legendShapePadding: PropTypes.number,
   margin: PropTypes.object,
-  labelForDatum: PropTypes.func
+  labelForDatum: PropTypes.func,
+  innerRadius: PropTypes.number
 };
 
 PieChart.defaultProps = {

@@ -7,6 +7,7 @@ import * as d3 from "d3";
 
 const Summary = ( { data } ) => {
   const pieMargin = { top: 0, bottom: 120, left: 0, right: 0 };
+  const innerRadius = 90;
   return (
     <Row className="Summary">
       <Col xs={ 4 }>
@@ -46,6 +47,7 @@ const Summary = ( { data } ) => {
               legendColumnWidth={ 125 }
               legendShapePadding={ 50 }
               margin={ pieMargin }
+              innerRadius={ innerRadius }
             />
           </div>
         ) : null }
@@ -138,8 +140,12 @@ const Summary = ( { data } ) => {
               labelForDatum={ d => {
                 const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
                 const percent = _.round( degrees / 360 * 100, 2 );
-                return `<strong>${d.data.label}</strong>: ${I18n.t( "x_observations", { count: d.value } )} (${percent}%)`;
+                const value = I18n.t( "x_observations", {
+                  count: I18n.toNumber( d.value, { precision: 0 } )
+                } );
+                return `<strong>${d.data.label}</strong>: ${value} (${percent}%)`;
               }}
+              innerRadius={ innerRadius }
             />
           </div>
         ) : null }
@@ -182,6 +188,7 @@ const Summary = ( { data } ) => {
               legendColumns={ 2 }
               legendColumnWidth={ 100 }
               margin={ pieMargin }
+              innerRadius={ innerRadius }
             />
           </div>
         ) : null }

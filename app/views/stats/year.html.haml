@@ -1,7 +1,7 @@
 - @no_footer_gap = true
 - content_for :title do
   - if @display_user
-    =t :users_year_on_site, user: @display_user.login, site: @site.name, year: @year
+    =t :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year
   - else
     =t :year_on_site, site: @site.name, year: @year
 - content_for :extrajs do
@@ -13,7 +13,7 @@
       :
       "null"
     };
-    SITE = #{ @site.as_json( only: [:id, :name] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ) ).to_json };
+    SITE = #{ @site.as_json( only: [:id, :name, :site_name_short] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ) ).to_json };
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
   = javascript_include_tag "torque.full.uncompressed"
   = javascript_include_tag "stats-year-webpack"

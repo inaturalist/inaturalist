@@ -67,22 +67,42 @@ const App = ( {
           ) ) }
         </div>
         { inatUser ? (
-          <UserImage user={ inatUser } />
+          <div>
+            <UserImage user={ inatUser } />
+            <div className="ribbon-container">
+              <div className="ribbon">
+                <div className="ribbon-content">
+                  { inatUser.name || inatUser.login }
+                </div>
+              </div>
+            </div>
+          </div>
         ) : (
-          <div className="site-icon">
-            <img src={ site.icon_url } />
+          <div className="protector">
+            <div className="site-icon">
+              <img src={ site.icon_url } />
+            </div>
+            <div className="ribbon-container">
+              <div className="ribbon">
+                <div className="ribbon-content">
+                  { site.name }
+                </div>
+              </div>
+            </div>
           </div>
         ) }
+
       </div>
       <Grid>
         <Row>
           <Col xs={ 12 }>
             <h1>
-              { user ? (
-                I18n.t( "users_year_on_site", { user: user.login, site: site.name, year } )
-              ) : (
-                I18n.t( "year_on_site", { site: site.name, year } )
-              ) }
+              {
+                I18n.t( "site_year_in_review", {
+                  site_name: ( site.site_name_short || site.name ),
+                  year
+                } )
+              }
             </h1>
           </Col>
         </Row>

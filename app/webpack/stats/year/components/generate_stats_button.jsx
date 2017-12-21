@@ -21,7 +21,6 @@ class GenerateStatsButton extends React.Component {
       method: "POST",
       body: data
     } ).then( response => {
-      console.log( "[DEBUG] response.status: ", response.status );
       if ( response.status === 200 ) {
         window.location.reload( );
       } else if ( response.status === 202 ) {
