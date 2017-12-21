@@ -37,7 +37,7 @@ class YearStatistic < ActiveRecord::Base
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
         day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
-        popular: popular_observations( year, user: user )
+        popular: popular_observations( year, user_id: user.id )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ), 
@@ -174,7 +174,9 @@ class YearStatistic < ActiveRecord::Base
     )
     r = Observation.elastic_search( es_params_with_sort ).per_page( 200 ).response
     # r.hits.hits.map{|h| { id: h._source.id, photos: h._source.photos } }.as_json
-    r.hits.hits.map(&:_source).as_json
+    # r.hits.hits.map(&:_source).as_json
+    ids = r.hits.hits.map{|h| h._source.id }
+    JSON.parse( INatAPIService.get_json( "/observations", id: ids, per_page: 200 ) )["results"]
   end
 
 end

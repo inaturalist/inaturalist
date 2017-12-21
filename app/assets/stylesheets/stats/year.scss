@@ -1,12 +1,14 @@
 @import "../colors";
 @import "../c3";
 @import "../users/_user_image";
+@import "../shared/observations_grid_item";
 
 #header {
   margin-bottom: 0;
 }
 $background-color: #1A1A1A;
 $gray: #999999;
+$dark-gray: #333333;
 #app {
   background-color: $background-color;
   color: white;
@@ -63,9 +65,30 @@ $gray: #999999;
   }
 
   .btn {
-    background-color: black;
+    background-color: $background-color;
     color: white;
-    border: 1px solid #999;
+    border: 2px solid darken( $inat-green, 10% );
+    border-radius: 100px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    font-weight: 100;
+    // font-size: 18px;
+  }
+  .btn:hover {
+    border-color: $inat-green;
+  }
+
+  .btn-share {
+    margin-bottom: 20px;
+  }
+
+  #sharing {
+    margin-bottom: 20px;
+  }
+
+  .twitter-share-button {
+    vertical-align: top;
+    margin-left: 20px;
   }
 
   .banner {
@@ -111,18 +134,21 @@ $gray: #999999;
     }
 
     .montage {
-      display: flex;
-      flex-wrap: wrap;
       overflow: hidden;
       height: 260px;
-      width: 120%;
-      position: relative;
-      top: -2px;
-      z-index: 0;
-      img {
-        height: 50px;
-        opacity: 0.8;
-        margin: 1px;
+      .photos {
+        display: flex;
+        flex-wrap: wrap;
+        width: 120%;
+        position: relative;
+        top: -1px;
+        z-index: 0;
+        img {
+          // height: 50px;
+          opacity: 0.8;
+          margin: 1px;
+          flex-grow: 1;
+        }
       }
     }
   }
@@ -314,4 +340,41 @@ $ribbon-border-width: 20px;
 .ribbon .ribbon-content:after {
   right: 0;
   border-width: 12px 40px 0 0;
+}
+
+.popular {
+  display: flex;
+  justify-content: space-between;
+}
+.popular.for-user .UserImage {
+  display: none;
+}
+$obs-grid-photo-size: 210px;
+.ObservationsGridItem.borderless.thumbnail {
+  width: $obs-grid-photo-size;
+  border: 0 transparent;
+  background-color: $dark-gray;
+  border-radius: 0;
+  .taxon {
+    .display-name {
+      color: white;
+      font-weight: 100;
+    }
+  }
+  .photo {
+    height: $obs-grid-photo-size;
+  }
+  .caption {
+    color: $gray;
+    .activity {
+      color: $inat-green;
+      .stat {
+        margin-right: 8px;
+      }
+      .icon-chatbubble {
+        position: relative;
+        bottom: 2px;
+      }
+    }
+  }
 }
