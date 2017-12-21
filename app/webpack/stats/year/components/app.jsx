@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
+import _ from "lodash";
 import UserImage from "../../../shared/components/user_image";
 import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
@@ -16,7 +17,7 @@ const App = ( {
   data
 } ) => {
   let body = "todo";
-  let inatUser = user ? new inatjs.User( user ) : null ;
+  let inatUser = user ? new inatjs.User( user ) : null;
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
@@ -48,10 +49,23 @@ const App = ( {
       </div>
     );
   }
-  console.log( "[DEBUG] site: ", site );
+  let montageObservations = [];
+  if ( data && data.observations && data.observations.popular ) {
+    montageObservations = _.filter( data.observations.popular, o => ( o.photos && o.photos.length > 0 ) );
+    while ( montageObservations.length < 100 ) {
+      montageObservations = montageObservations.concat( montageObservations );
+    }
+  }
   return (
     <div id="YearStats">
       <div className="banner">
+        <div className="montage">
+          { _.map( montageObservations, ( o, i ) => (
+            <a href={ `/observations/${o.id}` } key={ `montage-obs-${i}` }>
+              <img src={ o.photos[0].url.replace( "square", "small" ) } />
+            </a>
+          ) ) }
+        </div>
         { inatUser ? (
           <UserImage user={ inatUser } />
         ) : (

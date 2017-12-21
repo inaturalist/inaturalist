@@ -9,6 +9,7 @@ $background-color: #1A1A1A;
 #app {
   background-color: $background-color;
   color: white;
+  padding-bottom: 50px;
   h1,
   h2,
   h3,
@@ -28,6 +29,10 @@ $background-color: #1A1A1A;
     fill: #999;
   }
 
+  h1 {
+    text-align: center;
+    text-transform: uppercase;
+  }
   h2, h3, h4 {
     position: relative;
     text-align: center;
@@ -53,11 +58,16 @@ $background-color: #1A1A1A;
     opacity: 0.5;
   }
 
+  .btn {
+    background-color: black;
+    color: white;
+    border: 1px solid #999;
+  }
+
   .banner {
-    height: 300px;
+    height: 260px;
     position: relative;
-    background-color: #666;
-    $user-image-size: 200px;
+    $user-image-size: 240px;
     $user-image-overhang: 0.5 * $user-image-size / 2;
     margin-bottom: $user-image-overhang + 20;
     .UserImage {
@@ -68,6 +78,9 @@ $background-color: #1A1A1A;
       bottom: $user-image-overhang * -1;
       left: 50%;
       margin-left: $user-image-size / -2;
+    }
+    .UserImage:hover {
+      opacity: 1;
     }
 
     .site-icon {
@@ -90,10 +103,27 @@ $background-color: #1A1A1A;
         margin-top: ($user-image-size * 0.8) / -2;
       }
     }
+
+    .montage {
+      display: flex;
+      flex-wrap: wrap;
+      overflow: hidden;
+      height: 260px;
+      width: 120%;
+      position: relative;
+      top: -2px;
+      z-index: 0;
+      img {
+        height: 50px;
+        opacity: 0.8;
+        margin: 1px;
+      }
+    }
   }
-  h1 {
-    text-align: center;
-    text-transform: uppercase;
+
+  .GenerateStatsButton.btn {
+    display: block;
+    margin: 0 auto;
   }
 }
 
@@ -221,3 +251,4 @@ $tip-opacity: 1;
     min-height: 500px;
   }
 }
+

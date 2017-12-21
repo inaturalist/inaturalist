@@ -9,7 +9,8 @@ class YearStatistic < ActiveRecord::Base
         month_histogram: observations_histogram( year, interval: "month" ),
         week_histogram: observations_histogram( year, interval: "week" ),
         day_histogram: observations_histogram( year, interval: "day" ),
-        day_last_year_histogram: observations_histogram( year - 1, interval: "day" )
+        day_last_year_histogram: observations_histogram( year - 1, interval: "day" ),
+        popular: popular_observations( year )
       },
       identifications: {
         category_counts: identification_counts_by_category( year ),
@@ -35,7 +36,8 @@ class YearStatistic < ActiveRecord::Base
         month_histogram: observations_histogram( year, user: user, interval: "month" ),
         week_histogram: observations_histogram( year, user: user, interval: "week" ),
         day_histogram: observations_histogram( year, user: user, interval: "day" ),
-        day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" )
+        day_last_year_histogram: observations_histogram( year - 1, user: user, interval: "day" ),
+        popular: popular_observations( year, user: user )
       },
       identifications: {
         category_counts: identification_counts_by_category( year, user: user ), 
@@ -153,6 +155,26 @@ class YearStatistic < ActiveRecord::Base
       memo[key] = bucket.doc_count
       memo
     end
+  end
+
+  def self.popular_observations( year, options = {} )
+    params = options.merge( year: year, per_page: 200, has_photos: true )
+    es_params = Observation.params_to_elastic_query( params )
+    es_params_with_sort = es_params.merge(
+      sort: {
+        "_script": {
+          "type": "number",
+          "script": {
+            "lang": "painless",
+            "inline": "doc['cached_votes_total'].value + doc['comments_count'].value"
+          },
+          "order": "desc"
+        }
+      }
+    )
+    r = Observation.elastic_search( es_params_with_sort ).response
+    r.hits.hits.map{|h| { id: h._source.id, photos: h._source.photos } }.as_json
+    r.hits.hits.map(&:_source).as_json
   end
 
 end
