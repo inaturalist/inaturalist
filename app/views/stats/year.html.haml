@@ -1,9 +1,12 @@
-- @no_footer_gap = true
+:ruby
+  @no_footer_gap = true
+  @title = if @display_user
+    t( :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year )
+  else
+    t( :year_on_site, site: @site.name, year: @year )
+  end
 - content_for :title do
-  - if @display_user
-    =t :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year
-  - else
-    =t :year_on_site, site: @site.name, year: @year
+  = @title
 - content_for :extrajs do
   :javascript
     YEAR_DATA = #{ @year_statistic.try(:data).to_json };
@@ -13,7 +16,7 @@
       :
       "null"
     };
-    SITE = #{ @site.as_json( only: [:id, :name, :site_name_short] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ) ).to_json };
+    SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json };
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
@@ -43,5 +46,17 @@
 - content_for :extracss do
   = stylesheet_link_tag "stats/year"
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
+- content_for :extrahead do
+  %meta{ property: "og:title", content: @title }
+  - if @display_user
+    %meta{ property: "og:description", content: html_attributize( I18n.t( :users_highlights_and_stats_from_year_on_site, user: (@display_user.name || @display_user.login), year: @year, site: @site.name ) ) }
+  - else
+    %meta{ property: "og:description", content: html_attributize( I18n.t( :highlights_and_stats_from_year_on_site, year: @year, site: @site.name ) ) }
 #fb-root
 #app
+  #initial-loading.text-center
+    .loading_spinner
+#logo
+  %p=t :thanks_from_all_of_us_here_at
+  = link_to @site.url do
+    = image_tag @site.logo.url, alt: @site.name

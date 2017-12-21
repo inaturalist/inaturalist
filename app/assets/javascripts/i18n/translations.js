@@ -4079,7 +4079,6 @@ I18n.translations["en"] = {
   "sign_out": "Sign out",
   "sign_up": "Sign up",
   "similar_species": "Similar species",
-  "site_year_in_review": "%{site_name} Year In Review %{year}",
   "skip_to_next_page": "Skip to next page",
   "some_observations_failed_to_be_added": "Some observations failed to be added to projects",
   "some_observations_failed_to_save": "Some observations failed to save",
@@ -4393,6 +4392,7 @@ I18n.translations["en"] = {
     "one": "1 Suggestion Filtered By:",
     "other": "%{count} Suggestions Filtered By:"
   },
+  "year_in_review": "Year In Review",
   "yellow": "yellow",
   "yes": "Yes",
   "yes_reject_it": "Yes, reject it",

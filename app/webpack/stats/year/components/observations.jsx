@@ -8,7 +8,7 @@ import TorqueMap from "./torque_map";
 
 const Observations = ( { data, user, year } ) => {
   const series = {};
-  const grayColor = "rgba( 30%, 30%, 30%, 0.5 )";
+  const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   if ( data.month_histogram ) {
     series.month = {
       title: "Per Month",

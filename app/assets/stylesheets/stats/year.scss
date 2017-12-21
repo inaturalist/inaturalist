@@ -2,17 +2,34 @@
 @import "../c3";
 @import "../users/_user_image";
 @import "../shared/observations_grid_item";
+@import "../shared/loading_spinner";
 
+$background-color: #1A1A1A;
+$gray: #999999;
+$medium-gray: #666666;
+$dark-gray: #333333;
+#logo {
+  text-align: center;
+  padding: 50px;
+}
+#bodywrapper:after {
+  height: 0;
+}
 #header {
   margin-bottom: 0;
 }
-$background-color: #1A1A1A;
-$gray: #999999;
-$dark-gray: #333333;
 #app {
   background-color: $background-color;
   color: white;
   padding-bottom: 50px;
+  box-shadow: 0 0 20px black;
+  min-height: 500px;
+  .loading_spinner {
+    border-right: 15px solid $medium-gray;
+    border-bottom: 15px solid $medium-gray;
+    border-left: 15px solid $medium-gray;
+    margin-top: 200px;
+  }
   h1,
   h2,
   h3,
@@ -156,6 +173,12 @@ $dark-gray: #333333;
   .GenerateStatsButton.btn {
     display: block;
     margin: 0 auto;
+  }
+
+  .site-link {
+    display: inline-block;
+    margin: 50px auto;
+
   }
 }
 

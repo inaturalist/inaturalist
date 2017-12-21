@@ -95,7 +95,7 @@ const App = ( {
             { _.map( montageObservations, ( o, i ) => (
               <a href={ `/observations/${o.id}` } key={ `montage-obs-${i}` }>
                 <img
-                  src={ o.photos[0].url.replace( "square", "small" ) }
+                  src={ o.photos[0].url.replace( "square", "thumb" ) }
                   width={ ( 50 / o.photos[0].original_dimensions.height ) * o.photos[0].original_dimensions.width }
                   height={ ( 50 / o.photos[0].original_dimensions.height ) * o.photos[0].original_dimensions.height }
                 />
@@ -135,8 +135,7 @@ const App = ( {
           <Col xs={ 12 }>
             <h1>
               {
-                I18n.t( "site_year_in_review", {
-                  site_name: ( site.site_name_short || site.name ),
+                I18n.t( "year_in_review", {
                   year
                 } )
               }

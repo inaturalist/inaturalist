@@ -62,6 +62,10 @@ class StatsController < ApplicationController
     else
       YearStatistic.where( "user_id IS NULL AND year = ?", @year ).first
     end
+    @headless = @footless = true
+    @shareable_image_url = if @display_user
+      FakeView.image_url( @display_user.icon.url(:original) )
+    end
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
