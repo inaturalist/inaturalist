@@ -397,7 +397,7 @@ class YearStatistic < ActiveRecord::Base
       user_site = user.site || Site.default
       locale = user.locale || user_site.locale || I18n.locale
       site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
-      I18n.t( :year_on_site, year: year, site: site_name )
+      I18n.t( :year_on_site, year: year, site: site_name, locale: locale )
     elsif site
       locale = site.locale || I18n.locale
       site_name = site.site_name_short.blank? ? site.name : site.site_name_short
@@ -417,7 +417,7 @@ class YearStatistic < ActiveRecord::Base
     if obs_count.to_i > 0
       locale = user.locale if user
       locale ||= site.locale if site
-      locale = I18n.locale
+      locale ||= I18n.locale
       obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).upcase
       system <<-BASH
         convert #{montage_with_icon_path} \
