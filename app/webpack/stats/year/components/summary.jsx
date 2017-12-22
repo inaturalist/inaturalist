@@ -7,7 +7,7 @@ import * as d3 from "d3";
 
 const Summary = ( { data } ) => {
   const pieMargin = { top: 0, bottom: 120, left: 0, right: 0 };
-  const innerRadius = 90;
+  const donutWidth = 30;
   const nameForPieLabel = name => _.truncate( _.capitalize( name ), { length: 15 } );
   return (
     <Row className="Summary">
@@ -44,7 +44,7 @@ const Summary = ( { data } ) => {
               ]}
               legendColumnWidth={ 50 }
               margin={ pieMargin }
-              innerRadius={ innerRadius }
+              donutWidth={ donutWidth }
             />
           </div>
         ) : null }
@@ -142,7 +142,7 @@ const Summary = ( { data } ) => {
                 } );
                 return `<strong>${d.data.label}</strong>: ${value} (${percent}%)`;
               }}
-              innerRadius={ innerRadius }
+              donutWidth={ donutWidth }
             />
           </div>
         ) : null }
@@ -185,7 +185,7 @@ const Summary = ( { data } ) => {
               legendColumns={ 2 }
               legendColumnWidth={ 100 }
               margin={ pieMargin }
-              innerRadius={ innerRadius }
+              donutWidth={ donutWidth }
             />
           </div>
         ) : null }

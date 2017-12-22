@@ -48,6 +48,7 @@
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
 - content_for :extrahead do
   %meta{ property: "og:title", content: @title }
+  %meta{ name: "twitter:card", content: "summary" }
   - if @display_user
     %meta{ property: "og:description", content: html_attributize( I18n.t( :users_highlights_and_stats_from_year_on_site, user: (@display_user.name || @display_user.login), year: @year, site: @site.name ) ) }
   - else

@@ -60,13 +60,20 @@ class PieChart extends React.Component {
       } );
     svg.call( tip );
 
+    let innerRadius = 0;
+    if ( this.props.innerRadius ) {
+      innerRadius = this.props.innerRadius;
+    } else if ( this.props.donutWidth ) {
+      innerRadius = radius - 10 - this.props.donutWidth;
+    }
+
     // Make the pie chart
     const pie = d3.pie( )
       .sort( null )
       .value( d => d.value );
     const path = d3.arc( )
       .outerRadius( radius - 10 )
-      .innerRadius( this.props.innerRadius || 0 );
+      .innerRadius( innerRadius );
     const arc = g.selectAll( ".arc" )
       .data( pie( data ) )
       .enter( ).append( "g" )
@@ -128,7 +135,8 @@ PieChart.propTypes = {
   legendShapePadding: PropTypes.number,
   margin: PropTypes.object,
   labelForDatum: PropTypes.func,
-  innerRadius: PropTypes.number
+  innerRadius: PropTypes.number,
+  donutWidth: PropTypes.number
 };
 
 PieChart.defaultProps = {
