@@ -56,34 +56,38 @@ const Observations = ( { data, user, year } ) => {
   let popular;
   if ( data.popular && data.popular.length > 0 ) {
     popular = (
-      <Row className={ `popular ${user ? "for-user" : ""}` }>
-        { data.popular.slice( 0, 4 ).map( o => (
-          <Col xs={3} key={ `popular-obs-${o.id}` }>
-            <ObservationsGridItem
-              observation={ new inatjs.Observation( o ) }
-              controls={
-                <div>
-                  <span className="activity">
-                    <span className="stat">
-                      <i className="icon-chatbubble"></i> { o.comments_count }
-                    </span>
-                    <span className="stat">
-                      <i className="fa fa-star"></i> { o.cached_votes_total }
-                    </span>
-                  </span>
-                  <time
-                    className="time pull-right"
-                    dateTime={ o.created_at }
-                    title={ moment( o.observed_on ).format( "LLL" ) }
-                  >
-                    { moment( o.observed_on ).format( "YY MMM" ) }
-                  </time>
-                </div>
-              }
-            />
-          </Col>
+      <div className={ `popular ${user ? "for-user" : ""}` }>
+        { _.map( _.chunk( data.popular.slice( 0, 8 ), 4 ), ( chunk, i ) => (
+          <Row key={ `popular-obs-chunk-${i}` }>
+            { chunk.map( o => (
+              <Col xs={3} key={ `popular-obs-${o.id}` }>
+                <ObservationsGridItem
+                  observation={ new inatjs.Observation( o ) }
+                  controls={
+                    <div>
+                      <span className="activity">
+                        <span className="stat">
+                          <i className="icon-chatbubble"></i> { o.comments_count }
+                        </span>
+                        <span className="stat">
+                          <i className="fa fa-star"></i> { o.cached_votes_total }
+                        </span>
+                      </span>
+                      <time
+                        className="time pull-right"
+                        dateTime={ o.created_at }
+                        title={ moment( o.observed_on ).format( "LLL" ) }
+                      >
+                        { moment( o.observed_on ).format( "YY MMM" ) }
+                      </time>
+                    </div>
+                  }
+                />
+              </Col>
+            ) ) }
+          </Row>
         ) ) }
-      </Row>
+      </div>
     );
   }
   return (

@@ -47,7 +47,7 @@ const App = ( {
         <Summary data={data} />
         <Observations data={ data.observations } user={ user } year={ year } />
         <Identifications data={ data.identifications } />
-        { user && ( <TaxaSunburst data={ data.taxa ? data.taxa.tree_taxa : null } /> ) }
+        { user && data.taxa && data.taxa.tree_taxa && ( <TaxaSunburst data={ data.taxa.tree_taxa } /> ) }
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={ user } text={ "Regenerate Stats" } />
         ) : null }
@@ -109,7 +109,7 @@ const App = ( {
             <div className="ribbon-container">
               <div className="ribbon">
                 <div className="ribbon-content">
-                  { inatUser.name || inatUser.login }
+                  { inatUser.name ? `${inatUser.name} (${inatUser.login})` : inatUser.login }
                 </div>
               </div>
             </div>

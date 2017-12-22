@@ -173,6 +173,9 @@ $dark-gray: #333333;
   .GenerateStatsButton.btn {
     display: block;
     margin: 0 auto;
+    i {
+      margin-right: 3px;
+    }
   }
 
   .site-link {
@@ -365,10 +368,6 @@ $ribbon-border-width: 20px;
   border-width: 12px 40px 0 0;
 }
 
-.popular {
-  display: flex;
-  justify-content: space-between;
-}
 .popular.for-user .UserImage {
   display: none;
 }

@@ -121,7 +121,7 @@ class YearStatistic < ActiveRecord::Base
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
     if site = options[:site]
-      es_params[:filters] << { terms: { "user.site_id": [site.id] } }
+      es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
     end
     histogram = {}
     Identification.elastic_search( es_params ).response.aggregations.histogram.buckets.each {|b|
@@ -145,7 +145,7 @@ class YearStatistic < ActiveRecord::Base
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
     if site = options[:site]
-      es_params[:filters] << { terms: { "user.site_id": [site.id] } }
+      es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
     end
     Identification.elastic_search( es_params ).response.aggregations.categories.buckets.inject({}) do |memo, bucket|
       memo[bucket["key"]] = bucket.doc_count
@@ -208,17 +208,23 @@ class YearStatistic < ActiveRecord::Base
       params[:site_id] = site.id
     end
     es_params = Observation.params_to_elastic_query( params )
+    # es_params_with_sort = es_params.merge(
+    #   sort: {
+    #     "_script": {
+    #       "type": "number",
+    #       "script": {
+    #         "lang": "painless",
+    #         "inline": "doc['cached_votes_total'].value + doc['comments_count'].value"
+    #       },
+    #       "order": "desc"
+    #     }
+    #   }
+    # )
     es_params_with_sort = es_params.merge(
-      sort: {
-        "_script": {
-          "type": "number",
-          "script": {
-            "lang": "painless",
-            "inline": "doc['cached_votes_total'].value + doc['comments_count'].value"
-          },
-          "order": "desc"
-        }
-      }
+      sort: [
+        { "cached_votes_total": "desc" },
+        { "comments_count": "desc" }
+      ]
     )
     r = Observation.elastic_search( es_params_with_sort ).per_page( 200 ).response
     ids = r.hits.hits.map{|h| h._source.id }

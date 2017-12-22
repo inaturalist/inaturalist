@@ -41,7 +41,8 @@ class GenerateStatsButton extends React.Component {
         onClick={ ( ) => this.generateStats( ) }
         disabled={ this.state.loading }
       >
-        <i className="fa fa-refresh"></i> { this.state.loading ? I18n.t( "loading" ) : this.props.text }
+        <i className={`fa fa-refresh ${this.state.loading ? "fa-spin" : ""}`}>
+        </i> { this.state.loading ? I18n.t( "loading" ) : this.props.text }
       </Button>
     );
   }
