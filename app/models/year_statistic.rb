@@ -51,7 +51,11 @@ class YearStatistic < ActiveRecord::Base
       }
     }
     year_statistic.update_attributes( data: json )
-    year_statistic.generate_shareable_image
+    begin
+      year_statistic.generate_shareable_image
+    rescue => e
+      Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    end
     year_statistic
   end
 
@@ -85,7 +89,11 @@ class YearStatistic < ActiveRecord::Base
       }
     }
     year_statistic.update_attributes( data: json )
-    year_statistic.generate_shareable_image
+    begin
+      year_statistic.generate_shareable_image
+    rescue => e
+      Rails.logger.error "[ERROR #{Time.now}] #{e}"
+    end
     year_statistic
   end
 
