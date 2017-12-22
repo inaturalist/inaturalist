@@ -13,6 +13,13 @@ class DateHistogram extends React.Component {
   renderHistogram( ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).append( "svg" );
+    const svgWidth = $( "svg", mountNode ).width( );
+    const svgHeight = $( "svg", mountNode ).height( );
+    svg
+      .attr( "width", svgWidth )
+      .attr( "height", svgHeight )
+      .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
+      .attr( "preserveAspectRatio", "xMidYMid meet" );
     const margin = { top: 20, right: 20, bottom: 30, left: 50 };
     const width = $( "svg", mountNode ).width( ) - margin.left - margin.right;
     const height = $( "svg", mountNode ).height( ) - margin.top - margin.bottom;

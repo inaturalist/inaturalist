@@ -17,6 +17,11 @@ class TaxaSunburst extends React.Component {
     let svg = d3.select( mountNode ).append( "svg" );
     const width = $( "svg", mountNode ).width( );
     const height = $( "svg", mountNode ).height( );
+    svg
+      .attr( "width", width )
+      .attr( "height", height )
+      .attr( "viewBox", `0 0 ${width} ${height}` )
+      .attr( "preserveAspectRatio", "xMidYMid meet" );
     const radius = ( Math.min( width, height ) / 2 ) - 10;
     const formatNumber = d3.format( ",d" );
     const x = d3.scaleLinear( ).range( [0, 2 * Math.PI] );

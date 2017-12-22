@@ -16,6 +16,13 @@ class PieChart extends React.Component {
     const margin = this.props.margin;
     const svgWidth = $( "svg", mountNode ).width( );
     const svgHeight = $( "svg", mountNode ).height( );
+    // Set viewBox and preserveAspectRatio so the SVG resizes with the window... kinda (not the height)
+    // https://stackoverflow.com/questions/9400615/whats-the-best-way-to-make-a-d3-js-visualisation-layout-responsive#9539361
+    svg
+      .attr( "width", svgWidth )
+      .attr( "height", svgHeight )
+      .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
+      .attr( "preserveAspectRatio", "xMidYMid meet" );
     const width = svgWidth - margin.left - margin.right;
     const height = svgHeight - margin.top - margin.bottom;
     const radius = Math.min( width, height ) / 2;

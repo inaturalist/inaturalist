@@ -67,6 +67,8 @@ class YearStatistic < ActiveRecord::Base
     YearStatistic.find_each do |ys|
       if ys.user
         YearStatistic.generate_for_user_year( ys.user, ys.year )
+      elsif ys.site
+        YearStatistic.generate_for_site_year( ys.site, ys.year )
       else
         YearStatistic.generate_for_year( ys.year )
       end
@@ -251,7 +253,7 @@ class YearStatistic < ActiveRecord::Base
       
     JSON.
         parse( INatAPIService.get_json( "/observations", api_params ) )["results"].
-        sort_by{|o| (o["comments_count"].to_i + o["cached_votes_total"].to_i ) * -1 }.
+        sort_by{|o| [0 - o["cached_votes_total"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
       if i < 10
         o.select{|k,v| %w(id taxon community_taxon user photos comments_count cached_votes_total).include?( k ) }

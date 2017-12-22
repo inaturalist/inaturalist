@@ -281,6 +281,11 @@ $tip-opacity: 1;
     }
   }
 }
+@media (max-width: 600px) {
+  .Summary .summary-panel .main {
+    top: 10px;
+  }
+}
 
 .TorqueMap {
   position: relative;
