@@ -145,6 +145,22 @@ const App = ( {
         <Row>
           <Col xs={ 12 }>
             { body }
+            <div id="view-stats-buttons">
+              { !currentUser || !user || ( user.id !== currentUser.id ) ? (
+                <div>
+                  <a href={ `/stats/${year}/you`} className="btn btn-default">
+                    <i className="fa fa-pie-chart"></i> { I18n.t( "view_your_year_stats", { year } ) }
+                  </a>
+                </div>
+              ) : null }
+              { user ? (
+                <div>
+                  <a href={ `/stats/${year}`} className="btn btn-default">
+                    <i className="fa fa-bar-chart-o"></i> { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
+                  </a>
+                </div>
+              ) : null }
+            </div>
           </Col>
         </Row>
       </Grid>

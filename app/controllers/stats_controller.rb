@@ -61,9 +61,10 @@ class StatsController < ApplicationController
     end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
+    else
+      @year_statistic = YearStatistic.where( site_id: @site, year: @year ).where( "user_id IS NULL" ).first
+      @year_statistic ||= YearStatistic.where( year: @year ).where( "user_id IS NULL AND site_id IS NULL" ).first
     end
-    @year_statistic ||= YearStatistic.where( site_id: @site, year: @year ).first
-    @year_statistic ||= YearStatistic.where( year: @year ).where( "user_id IS NULL AND site_id IS NULL" ).first
     @headless = @footless = true
     @shareable_image_url = if @year_statistic && @year_statistic.shareable_image?
       @year_statistic.shareable_image
@@ -74,6 +75,18 @@ class StatsController < ApplicationController
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def your_year
+    @year = params[:year].to_i
+    if @year > Date.today.year || @year < 1950
+      return render_404
+    end
+    if current_user
+      redirect_to user_year_stats_path( login: current_user.login, year: @year )
+    else
+      redirect_to login_path( return_to: your_year_stats_path( year: @year ) )
     end
   end
 

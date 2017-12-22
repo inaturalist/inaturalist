@@ -181,7 +181,14 @@ $dark-gray: #333333;
   .site-link {
     display: inline-block;
     margin: 50px auto;
+  }
 
+  #view-stats-buttons {
+    margin-top: 50px;
+    text-align: center;
+    .btn {
+      margin-bottom: 20px;
+    }
   }
 }
 
