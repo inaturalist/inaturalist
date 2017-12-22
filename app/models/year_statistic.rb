@@ -200,7 +200,6 @@ class YearStatistic < ActiveRecord::Base
   end
 
   def self.popular_observations( year, options = {} )
-    puts "options: #{options}"
     params = options.merge( year: year, has_photos: true, verifiable: true )
     if user = params.delete(:user)
       params[:user_id] = user.id
@@ -208,9 +207,7 @@ class YearStatistic < ActiveRecord::Base
     if site = params.delete(:site)
       params[:site_id] = site.id
     end
-    puts "params: #{params}"
     es_params = Observation.params_to_elastic_query( params )
-    puts "es_params: #{es_params}"
     es_params_with_sort = es_params.merge(
       sort: {
         "_script": {
@@ -252,13 +249,13 @@ class YearStatistic < ActiveRecord::Base
         each_with_index.map do |o,i|
       if i < 10
         o.select{|k,v| %w(id taxon community_taxon user photos comments_count cached_votes_total).include?( k ) }
-      else
+      elsif !o["photos"].blank?
         {
           "id": o["id"],
           "photos": [o["photos"][0].select{|k,v| %w(url original_dimensions).include?( k ) }]
         }
       end
-    end
+    end.compact
   end
 
 end
