@@ -7,7 +7,7 @@ import * as d3 from "d3";
 
 const Summary = ( { data } ) => {
   const pieMargin = { top: 0, bottom: 120, left: 0, right: 0 };
-  const donutWidth = 30;
+  const donutWidth = 20;
   const nameForPieLabel = name => _.truncate( _.capitalize( name ), { length: 15 } );
   return (
     <Row className="Summary">
@@ -67,66 +67,79 @@ const Summary = ( { data } ) => {
               data={[
                 {
                   label: nameForPieLabel( I18n.t( "unknown" ) ),
+                  fullLabel: _.capitalize( I18n.t( "unknown" ) ),
                   value: data.taxa.iconic_taxa_counts.Unknown,
                   color: COLORS.iconic.Unknown
                 },
                 {
                   label: nameForPieLabel( I18n.t( "protozoans" ) ),
+                  fullLabel: _.capitalize( I18n.t( "protozoans" ) ),
                   value: data.taxa.iconic_taxa_counts.Protozoa,
                   color: COLORS.iconic.Protozoa
                 },
                 {
                   label: nameForPieLabel( I18n.t( "fungi", { count: 2 } ) ),
+                  fullLabel: _.capitalize( I18n.t( "fungi", { count: 2 } ) ),
                   value: data.taxa.iconic_taxa_counts.Fungi,
                   color: COLORS.iconic.Fungi
                 },
                 {
                   label: nameForPieLabel( I18n.t( "plants" ) ),
+                  fullLabel: _.capitalize( I18n.t( "plants" ) ),
                   value: data.taxa.iconic_taxa_counts.Plantae,
                   color: COLORS.inatGreenLight
                 },
                 {
                   label: nameForPieLabel( I18n.t( "all_taxa.chromista" ) ),
+                  fullLabel: _.capitalize( I18n.t( "all_taxa.chromista" ) ),
                   value: data.taxa.iconic_taxa_counts.Chromista,
                   color: COLORS.iconic.Chromista
                 },
                 {
                   label: nameForPieLabel( I18n.t( "mollusks" ) ),
+                  fullLabel: _.capitalize( I18n.t( "mollusks" ) ),
                   value: data.taxa.iconic_taxa_counts.Mollusca,
                   color: COLORS.iconic.Mollusca
                 },
                 {
                   label: nameForPieLabel( I18n.t( "insects" ) ),
+                  fullLabel: _.capitalize( I18n.t( "insects" ) ),
                   value: data.taxa.iconic_taxa_counts.Insecta,
                   color: d3.color( COLORS.iconic.Insecta ).brighter( )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "arachnids" ) ),
+                  fullLabel: _.capitalize( I18n.t( "arachnids" ) ),
                   value: data.taxa.iconic_taxa_counts.Arachnida,
                   color: d3.color( COLORS.iconic.Arachnida ).brighter( ).brighter( )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "ray_finned_fishes" ) ),
+                  fullLabel: _.capitalize( I18n.t( "ray_finned_fishes" ) ),
                   value: data.taxa.iconic_taxa_counts.Actinopterygii,
                   color: COLORS.iconic.Actinopterygii
                 },
                 {
                   label: nameForPieLabel( I18n.t( "amphibians" ) ),
+                  fullLabel: _.capitalize( I18n.t( "amphibians" ) ),
                   value: data.taxa.iconic_taxa_counts.Amphibia,
                   color: d3.color( COLORS.iconic.Amphibia ).brighter( 0.5 )
                 },
                 {
-                  label: _.capitalize( I18n.t( "reptiles" ) ),
+                  label: nameForPieLabel( I18n.t( "reptiles" ) ),
+                  fullLabel: _.capitalize( I18n.t( "reptiles" ) ),
                   value: data.taxa.iconic_taxa_counts.Reptilia,
                   color: d3.color( COLORS.iconic.Reptilia ).brighter( 0.5 ).brighter( 0.5 )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "birds" ) ),
+                  fullLabel: _.capitalize( I18n.t( "birds" ) ),
                   value: data.taxa.iconic_taxa_counts.Aves,
                   color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "other_animals" ) ),
+                  fullLabel: _.capitalize( I18n.t( "other_animals" ) ),
                   value: data.taxa.iconic_taxa_counts.Animalia,
                   color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 )
                 }
@@ -140,7 +153,7 @@ const Summary = ( { data } ) => {
                 const value = I18n.t( "x_observations", {
                   count: I18n.toNumber( d.value, { precision: 0 } )
                 } );
-                return `<strong>${d.data.label}</strong>: ${value} (${percent}%)`;
+                return `<strong>${d.data.fullLabel}</strong>: ${value} (${percent}%)`;
               }}
               donutWidth={ donutWidth }
             />

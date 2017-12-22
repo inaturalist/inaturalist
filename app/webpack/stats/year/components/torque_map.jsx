@@ -46,7 +46,8 @@ class TorqueMap extends React.Component {
         10
       ],
       zoom: 2,
-      keyboard: false
+      keyboard: false,
+      scrollWheelZoom: false
     } );
     L.tileLayer( "https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}.png", {
       attribution: "CartoDB"

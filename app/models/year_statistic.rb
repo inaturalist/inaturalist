@@ -51,7 +51,7 @@ class YearStatistic < ActiveRecord::Base
       }
     }
     year_statistic.update_attributes( data: json )
-    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic.generate_shareable_image
     year_statistic
   end
 
@@ -85,7 +85,7 @@ class YearStatistic < ActiveRecord::Base
       }
     }
     year_statistic.update_attributes( data: json )
-    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic.generate_shareable_image
     year_statistic
   end
 
@@ -133,7 +133,13 @@ class YearStatistic < ActiveRecord::Base
     es_params = {
       size: 0,
       filters: [
-        { terms: { "created_at_details.year": [year] } }
+        { terms: { "created_at_details.year": [year] } },
+        { terms: { "own_observation": [false] } },
+        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
+        { terms: { "current": [true] } }
+      ],
+      inverse_filters: [
+        { exists: { field: "taxon_change_id" } }
       ],
       aggregate: {
         histogram: {
@@ -163,7 +169,12 @@ class YearStatistic < ActiveRecord::Base
       size: 0,
       filters: [
         { terms: { "created_at_details.year": [year] } },
-        { terms: { "own_observation": [false] } }
+        { terms: { "own_observation": [false] } },
+        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
+        { terms: { "current": [true] } }
+      ],
+      inverse_filters: [
+        { exists: { field: "taxon_change_id" } }
       ],
       aggregate: {
         categories: { terms: { field: "category" } }
@@ -205,7 +216,8 @@ class YearStatistic < ActiveRecord::Base
     if site = options[:site]
       params[:site_id] = site.id
     end
-    Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
+    # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
+    JSON.parse( INatAPIService.get_json( "/observations/species_counts", params ) )["total_results"].to_i
   end
 
   def self.iconic_taxa_counts( year, options = {} )
@@ -370,7 +382,7 @@ class YearStatistic < ActiveRecord::Base
     owner = if user
       user.name.blank? ? user.login : user.name
     else
-      s = ( site || Site.default_site )
+      s = ( site || Site.default )
       s.site_name_short.blank? ? s.name : s.site_name_short
     end
     title = if user
@@ -401,7 +413,7 @@ class YearStatistic < ActiveRecord::Base
       obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).upcase
       system <<-BASH
         convert #{montage_with_icon_path} \
-          -fill white -font /Users/kueda/projects/inaturalist/public/fonts/Whitney-Medium-Pro.otf -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
+          -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
           -fill white -font #{light_font_path} -pointsize 65 -gravity north -annotate 0x0+0+60 "#{title}" \
           -fill white -font #{medium_font_path} -pointsize 46 -gravity south -annotate 0x0+0+50 "#{obs_text}" \
           #{final_path}
@@ -409,7 +421,7 @@ class YearStatistic < ActiveRecord::Base
     else
       system <<-BASH
         convert #{montage_with_icon_path} \
-          -fill white -font /Users/kueda/projects/inaturalist/public/fonts/Whitney-Medium-Pro.otf -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
+          -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
           -fill white -font #{light_font_path} -pointsize 65 -gravity north -annotate 0x0+0+60 "#{title}" \
           #{final_path}
       BASH
