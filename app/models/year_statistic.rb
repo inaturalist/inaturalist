@@ -2,12 +2,34 @@ class YearStatistic < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
+  if Rails.env.production?
+    has_attached_file :shareable_image,
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "year_statistics/:id-share.:content_type_extension",
+      url: ":s3_alias_url"
+    invalidate_cloudfront_caches :shareable_image, "year_statistics/:id-*"
+  else
+    has_attached_file :shareable_image,
+      path: ":rails_root/public/attachments/:class/:id-share.:content_type_extension",
+      url: "/attachments/:class/:id-share.:content_type_extension"
+  end
+
+  validates_attachment_content_type :shareable_image,
+    content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
+    message: "must be JPG, PNG, or GIF"
+
   def self.generate_for_year( year, options = {} )
-    @year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" )
+    year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" )
     if options[:site]
-      @year_statistic = @year_statistic.where( site_id: options[:site] )
+      year_statistic = year_statistic.where( site_id: options[:site] )
+    else
+      year_statistic = year_statistic.where( "site_id IS NULL" )
     end
-    @year_statistic = @year_statistic.first_or_create
+    year_statistic = year_statistic.first_or_create
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
@@ -28,7 +50,9 @@ class YearStatistic < ActiveRecord::Base
         iconic_taxa_counts: iconic_taxa_counts( year, options )
       }
     }
-    @year_statistic.update_attributes( data: json )
+    year_statistic.update_attributes( data: json )
+    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic
   end
 
   def self.generate_for_site_year( site, year )
@@ -38,7 +62,7 @@ class YearStatistic < ActiveRecord::Base
   def self.generate_for_user_year( user, year )
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
-    @year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
+    year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, user: user ),
@@ -60,7 +84,9 @@ class YearStatistic < ActiveRecord::Base
         tree_taxa: tree_taxa( year, user: user )
       }
     }
-    @year_statistic.update_attributes( data: json )
+    year_statistic.update_attributes( data: json )
+    year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
+    year_statistic
   end
 
   def self.regenerate_existing
@@ -264,6 +290,133 @@ class YearStatistic < ActiveRecord::Base
         }
       end
     end.compact
+  end
+
+  def generate_shareable_image
+    return unless data && data["observations"] && data["observations"]["popular"]
+    return if data["observations"]["popular"].size == 0
+    work_path = File.join( Dir::tmpdir, "year-stat-#{id}-#{Time.now.to_i}" )
+    FileUtils.mkdir_p work_path, mode: 0755
+    image_urls = data["observations"]["popular"].map{|o| o["photos"].try(:[], 0).try(:[], "url")}.compact
+    return if image_urls.size == 0
+    target_size = 200
+    while image_urls.size < target_size
+      image_urls += image_urls
+    end
+    image_urls = image_urls[0...target_size]
+
+    # Make the montage
+    image_urls.each_with_index do |url, i|
+      ext = File.extname( URI.parse( url ).path )
+      outpath = File.join( work_path, "photo-#{i}#{ext}" )
+      system "curl -s -o #{outpath} #{url}"
+    end
+    inpaths = File.join( work_path, "photo-*" )
+    montage_path = File.join( work_path, "montage.jpg" )
+    system "montage #{inpaths} -tile 20x -geometry 50x50+0+0 #{montage_path}"
+
+    # Get the icon
+    icon_url = if user
+      "#{FakeView.image_url( user.icon.url(:large) )}".gsub(/([^\:])\/\//, '\\1/')
+    elsif site
+      "#{FakeView.image_url( site.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
+    else
+      "#{FakeView.image_url( "bird.png" )}".gsub(/([^\:])\/\//, '\\1/')
+    end
+    icon_ext = File.extname( URI.parse( icon_url ).path )
+    icon_path = File.join( work_path, "icon#{icon_ext}" )
+    system "curl -s -o #{icon_path} #{icon_url}"
+
+    # Resize icon to a 500x500 square
+    square_icon_path = File.join( work_path, "square_icon.jpg")
+    system <<-BASH
+      convert #{icon_path} -resize "500x500^" \
+                        -gravity Center  \
+                        -extent 500x500  \
+              #{square_icon_path}
+    BASH
+
+    # Apply circle mask and white border
+    circle_path = File.join( work_path, "circle.png" )
+    system "convert -size 500x500 xc:black -fill white -draw \"translate 250,250 circle 0,0 0,250\" -alpha off #{circle_path}"
+    circle_icon_path = File.join( work_path, "circle-user-icon.png" )
+    system <<-BASH
+      convert #{square_icon_path} #{circle_path} \
+        -alpha Off -compose CopyOpacity -composite \
+        -stroke white -strokewidth 20 -fill transparent -draw "translate 250,250 circle 0,0 0,240" \
+        -scale 50% \
+        #{circle_icon_path}
+    BASH
+
+    # Apply mask to the montage
+    ellipse_mask_path = File.join( work_path, "ellipse_mask.png" )
+    system "convert -size 1000x500 radial-gradient:\"#ccc\"-\"#111\" #{ellipse_mask_path}"
+    ellipse_montage_path = File.join( work_path, "ellipse_montage.jpg" )
+    system <<-BASH
+      convert #{montage_path} #{ellipse_mask_path} \
+        -alpha Off -compose multiply -composite\
+        #{ellipse_montage_path}
+    BASH
+
+    # Overlay the icon onto the montage
+    montage_with_icon_path = File.join( work_path, "montage_with_icon.jpg" )
+    system "composite -gravity center #{circle_icon_path} #{ellipse_montage_path} #{montage_with_icon_path}"
+
+    # Add the text
+    montage_with_icon_and_text_path = File.join( work_path, "montage_with_icon_and_text.jpg" )
+    light_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Light-Pro.otf" )
+    medium_font_path = File.join( Rails.root, "public", "fonts", "Whitney-Medium-Pro.otf" )
+    final_path = File.join( work_path, "final.jpg" )
+    owner = if user
+      user.name.blank? ? user.login : user.name
+    else
+      s = ( site || Site.default_site )
+      s.site_name_short.blank? ? s.name : s.site_name_short
+    end
+    title = if user
+      user_site = user.site || Site.default
+      locale = user.locale || user_site.locale || I18n.locale
+      site_name = user_site.site_name_short.blank? ? user_site.name : user_site.site_name_short
+      I18n.t( :year_on_site, year: year, site: site_name )
+    elsif site
+      locale = site.locale || I18n.locale
+      site_name = site.site_name_short.blank? ? site.name : site.site_name_short
+      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+    else
+      default_site = Site.default
+      locale = default_site.locale || I18n.locale
+      site_name = default_site.site_name_short.blank? ? default_site.name : default_site.site_name_short
+      I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
+    end
+    title = title.upcase
+    obs_count = begin
+      data["observations"]["quality_grade_counts"]["research"].to_i + data["observations"]["quality_grade_counts"]["needs_id"].to_i
+    rescue
+      nil
+    end
+    if obs_count.to_i > 0
+      locale = user.locale if user
+      locale ||= site.locale if site
+      locale = I18n.locale
+      obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).upcase
+      system <<-BASH
+        convert #{montage_with_icon_path} \
+          -fill white -font /Users/kueda/projects/inaturalist/public/fonts/Whitney-Medium-Pro.otf -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
+          -fill white -font #{light_font_path} -pointsize 65 -gravity north -annotate 0x0+0+60 "#{title}" \
+          -fill white -font #{medium_font_path} -pointsize 46 -gravity south -annotate 0x0+0+50 "#{obs_text}" \
+          #{final_path}
+      BASH
+    else
+      system <<-BASH
+        convert #{montage_with_icon_path} \
+          -fill white -font /Users/kueda/projects/inaturalist/public/fonts/Whitney-Medium-Pro.otf -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
+          -fill white -font #{light_font_path} -pointsize 65 -gravity north -annotate 0x0+0+60 "#{title}" \
+          #{final_path}
+      BASH
+    end
+
+    self.shareable_image = open( final_path )
+    save!
   end
 
 end

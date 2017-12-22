@@ -24,7 +24,7 @@ const App = ( {
         Not a valid year. Please choose a year between 1950 and { new Date().getYear() }.
       </p>
     );
-  } else if ( !data || !currentUser || !currentUser.roles || currentUser.roles.indexOf( "admin" ) < 0 ) {
+  } else if ( !data || !currentUser ) {
     if ( user && currentUser && user.id === currentUser.id ) {
       body = (
         <GenerateStatsButton user={ user } />

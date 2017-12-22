@@ -4,7 +4,6 @@ class StatsController < ApplicationController
   before_filter :load_params, except: [:year, :generate_year]
   before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
   before_filter :allow_external_iframes, only: [:wed_bioblitz]
-  before_filter :admin_required, only: [:generate_year]
 
   caches_action :summary, expires_in: 1.hour
   caches_action :observation_weeks_json, expires_in: 1.day
@@ -66,8 +65,12 @@ class StatsController < ApplicationController
     @year_statistic ||= YearStatistic.where( site_id: @site, year: @year ).first
     @year_statistic ||= YearStatistic.where( year: @year ).where( "user_id IS NULL AND site_id IS NULL" ).first
     @headless = @footless = true
-    @shareable_image_url = if @display_user
-      FakeView.image_url( @display_user.icon.url(:original) )
+    @shareable_image_url = if @year_statistic && @year_statistic.shareable_image?
+      @year_statistic.shareable_image
+    elsif @display_user && @display_user.icon?
+      @display_user.icon.url(:large)
+    else
+      @site.logo_square.url
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }

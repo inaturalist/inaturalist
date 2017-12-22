@@ -4701,7 +4701,11 @@ CREATE TABLE year_statistics (
     data json,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    site_id integer
+    site_id integer,
+    shareable_image_file_name character varying,
+    shareable_image_content_type character varying,
+    shareable_image_file_size integer,
+    shareable_image_updated_at timestamp without time zone
 );
 
 
@@ -9184,4 +9188,6 @@ INSERT INTO schema_migrations (version) VALUES ('20171108223540');
 INSERT INTO schema_migrations (version) VALUES ('20171218191934');
 
 INSERT INTO schema_migrations (version) VALUES ('20171221220649');
+
+INSERT INTO schema_migrations (version) VALUES ('20171222172131');
 
