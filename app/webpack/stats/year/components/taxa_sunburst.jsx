@@ -103,6 +103,7 @@ class TaxaSunburst extends React.Component {
     const rootData = recurse( this.props.rootTaxonID );
     const theRoot = d3.hierarchy( rootData );
     theRoot.sum( d => d.size );
+    const borderScale = d3.scaleLinear( ).domain( [theRoot.depth, theRoot.height] ).range( [3, 0.5] );
 
     const colorForDatum = d => {
       if ( d.data.iconicTaxonID && inaturalist.ICONIC_TAXA[d.data.iconicTaxonID] ) {
@@ -135,6 +136,7 @@ class TaxaSunburst extends React.Component {
       .enter( ).append( "path" )
         .attr( "d", arc )
         .style( "fill", colorForDatum )
+        .style( "stroke-width", d => borderScale( d.depth ) )
         .classed( "clickable", d => ( d.children && d.children.length > 0 ) )
         .classed( "sunburst-arc", true )
         .on( "click", click )
