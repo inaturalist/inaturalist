@@ -109,7 +109,7 @@ class YearStatistic < ActiveRecord::Base
     if site = options[:site]
       params[:site_id] = site.id
     end
-    JSON.parse( INatAPIService.get_json("/observations/tree_taxa", params ) )["results"] rescue nil
+    JSON.parse( INatAPIService.get_json("/observations/tree_taxa", params, 3, 30 ) )["results"] rescue nil
   end
 
   def self.observations_histogram( year, options = {} )
@@ -125,7 +125,7 @@ class YearStatistic < ActiveRecord::Base
     if site = options[:site]
       params[:site_id] = site.id
     end
-    JSON.parse( INatAPIService.get_json("/observations/histogram", params ) )["results"][params[:interval]]
+    JSON.parse( INatAPIService.get_json("/observations/histogram", params, 3, 30 ) )["results"][params[:interval]]
   end
 
   def self.identifications_histogram( year, options = {} )
@@ -217,7 +217,7 @@ class YearStatistic < ActiveRecord::Base
       params[:site_id] = site.id
     end
     # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
-    JSON.parse( INatAPIService.get_json( "/observations/species_counts", params ) )["total_results"].to_i
+    JSON.parse( INatAPIService.get_json( "/observations/species_counts", params, 3, 30 ) )["total_results"].to_i
   end
 
   def self.iconic_taxa_counts( year, options = {} )
@@ -290,7 +290,7 @@ class YearStatistic < ActiveRecord::Base
     return [] if ids.blank?
       
     JSON.
-        parse( INatAPIService.get_json( "/observations", api_params ) )["results"].
+        parse( INatAPIService.get_json( "/observations", api_params, 3, 30 ) )["results"].
         sort_by{|o| [0 - o["cached_votes_total"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
       if i < 10
@@ -400,7 +400,7 @@ class YearStatistic < ActiveRecord::Base
       site_name = default_site.site_name_short.blank? ? default_site.name : default_site.site_name_short
       I18n.t( :year_on_site, year: year, locale: locale, site: site_name )
     end
-    title = title.upcase
+    title = title.mb_chars.upcase
     obs_count = begin
       data["observations"]["quality_grade_counts"]["research"].to_i + data["observations"]["quality_grade_counts"]["needs_id"].to_i
     rescue
@@ -410,7 +410,7 @@ class YearStatistic < ActiveRecord::Base
       locale = user.locale if user
       locale ||= site.locale if site
       locale ||= I18n.locale
-      obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).upcase
+      obs_text = I18n.t( "x_observations", count: FakeView.number_with_delimiter( obs_count, locale: locale ), locale: locale ).mb_chars.upcase
       system <<-BASH
         convert #{montage_with_icon_path} \
           -fill white -font #{medium_font_path} -pointsize 24 -gravity north -annotate 0x0+0+30 "#{owner}" \
