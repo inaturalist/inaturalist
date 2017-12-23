@@ -5,6 +5,7 @@ import * as d3 from "d3";
 /* global inaturalist */
 /* global iNaturalist */
 
+// Based on https://bl.ocks.org/maybelinot/5552606564ef37b5de7e47ed2b7dc099
 class TaxaSunburst extends React.Component {
 
   componentDidMount( ) {
@@ -23,7 +24,6 @@ class TaxaSunburst extends React.Component {
       .attr( "viewBox", `0 0 ${width} ${height}` )
       .attr( "preserveAspectRatio", "xMidYMid meet" );
     const radius = ( Math.min( width, height ) / 2 ) - 10;
-    const formatNumber = d3.format( ",d" );
     const x = d3.scaleLinear( ).range( [0, 2 * Math.PI] );
     const y = d3.scaleSqrt( ).range( [0, radius] );
     const color = d3.scaleOrdinal( d3.schemeCategory20 );
@@ -33,43 +33,26 @@ class TaxaSunburst extends React.Component {
         .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
         .innerRadius( d => Math.max( 0, y( d.y0 ) ) )
         .outerRadius( d => Math.max( 0, y( d.y1 ) ) );
-
     svg = svg.attr( "width", width )
        .attr( "height", height )
        .append( "g" )
        .attr( "transform", `translate(${width / 2},${height / 2})` );
-    const taxaCounts = _.keyBy( this.props.data, r => r.taxon.id );
-    const children = { };
-    _.each( this.props.data, result => {
-      if ( !result.isLeaf ) { return; }
-      if ( result.taxon.ancestor_ids[0] !== 48460 ) { return; }
-      let lastAncestorID;
-      _.each( result.taxon.ancestor_ids, ancestorID => {
-        if ( ancestorID !== 48460 && ancestorID !== lastAncestorID ) {
-          children[lastAncestorID] = children[lastAncestorID] || { };
-          children[lastAncestorID][ancestorID] = true;
-        }
-        lastAncestorID = ancestorID;
-      } );
-    } );
 
-    const recurse = ( taxonID ) => {
-      const thisData = {
-        name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : I18n.t( "unknown" ),
-        iconicTaxonID: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.iconic_taxon_id : null
-      };
-      if ( children[taxonID] ) {
-        thisData.children = _.map( children[taxonID], ( v, childID ) => (
-          recurse( childID )
-        ) );
-      } else {
-        thisData.size = taxaCounts[taxonID] ? taxaCounts[taxonID].count : 0;
-      }
-      return thisData;
-    };
+    // Setup tooltips
+    const tooltip = d3.select( mountNode )
+        .style( "position", "relative" )
+      .append( "div" )
+        .attr( "class", "sunburst-tip" )
+        .style( "position", "absolute" )
+        .style( "z-index", "10" )
+        .style( "visibility", "hidden" )
+        .text( "Taxon" );
 
-
+    // Setup interactivity
     const click = d => {
+      if ( !d.children || d.children.length === 0 ) {
+        return;
+      }
       svg.transition( )
           .duration( 750 )
           .tween( "scale", ( ) => {
@@ -85,27 +68,89 @@ class TaxaSunburst extends React.Component {
           .attrTween( "d", dd => ( ) => arc( dd ) );
     };
 
-    const rootData = recurse( 48460 );
+    // Set up the hierarchy
+    const taxaCounts = _.keyBy( this.props.data, r => r.taxon.id );
+    const children = { };
+    _.each( this.props.data, result => {
+      if ( !result.isLeaf ) { return; }
+      if ( result.taxon.ancestor_ids[0] !== this.props.rootTaxonID ) { return; }
+      let lastAncestorID;
+      _.each( result.taxon.ancestor_ids, ancestorID => {
+        if ( ancestorID !== this.props.rootTaxonID && ancestorID !== lastAncestorID ) {
+          children[lastAncestorID] = children[lastAncestorID] || { };
+          children[lastAncestorID][ancestorID] = true;
+        }
+        lastAncestorID = ancestorID;
+      } );
+    } );
+    const recurse = ( taxonID ) => {
+      const thisData = {
+        id: taxonID,
+        name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : I18n.t( "unknown" ),
+        rank: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.rank : null,
+        preferred_common_name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.preferred_common_name : null,
+        iconicTaxonID: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.iconic_taxon_id : null
+      };
+      if ( children[taxonID] ) {
+        thisData.children = _.map( children[taxonID], ( v, childID ) => (
+          recurse( childID )
+        ) );
+      } else {
+        thisData.size = taxaCounts[taxonID] ? taxaCounts[taxonID].count : 0;
+      }
+      return thisData;
+    };
+    const rootData = recurse( this.props.rootTaxonID );
     const theRoot = d3.hierarchy( rootData );
     theRoot.sum( d => d.size );
+
+    const colorForDatum = d => {
+      if ( d.data.iconicTaxonID && inaturalist.ICONIC_TAXA[d.data.iconicTaxonID] ) {
+        const iconicTaxonColor = iNaturalist.Map.
+          ICONIC_TAXON_COLORS[inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name];
+        const c = d3.color( iconicTaxonColor );
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Mollusca" ) {
+          return c.brighter( );
+        }
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Arachnida" ) {
+          return c.brighter( 2 );
+        }
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Amphibia" ) {
+          return c.brighter( 0.5 );
+        }
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Reptilia" ) {
+          return c.brighter( 0.75 );
+        }
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Aves" ) {
+          return c.brighter( 1 );
+        }
+        return c;
+      }
+      return color( ( d.children ? d : d.parent ).data.name );
+    };
+
+    // Draw the visualization
     svg.selectAll( "path" )
         .data( partition( theRoot ).descendants( ) )
       .enter( ).append( "path" )
         .attr( "d", arc )
-        .style( "fill", d => {
-          if ( d.data.iconicTaxonID && inaturalist.ICONIC_TAXA[d.data.iconicTaxonID] ) {
-            const specialColor = iNaturalist.Map.
-              ICONIC_TAXON_COLORS[inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name];
-            const c = d3.color( specialColor ).
-              brighter( _.random( 0, 0.5 ) ).darker( _.random( 0, 0.5 ) );
-            c.opacity = _.random( 0.8, 1 );
-            return c;
-          }
-          return color( ( d.children ? d : d.parent ).data.name );
-        } )
+        .style( "fill", colorForDatum )
+        .classed( "clickable", d => ( d.children && d.children.length > 0 ) )
+        .classed( "sunburst-arc", true )
         .on( "click", click )
-      .append( "title" )
-        .text( d => `${d.data.name}\n${formatNumber( d.value )}` );
+        .on( "mouseover", d => {
+          if ( this.props.labelForDatum ) {
+            tooltip.html( this.props.labelForDatum( d ) );
+          } else {
+            tooltip.html( d.data.name );
+          }
+          tooltip.style( "background-color", d3.color( colorForDatum( d ) ).darker( 2 ) );
+          return tooltip.style( "visibility", "visible" );
+        } )
+        .on( "mousemove", ( ) => tooltip.style(
+          "top", `${event.offsetY - 10}px` ).style( "left", `${event.offsetX + 10}px`
+        ) )
+        .on( "mouseout", ( ) => tooltip.style( "visibility", "hidden" ) );
 
     d3.select( self.frameElement ).style( "height", `${height}px` );
   }
@@ -114,6 +159,10 @@ class TaxaSunburst extends React.Component {
     return (
       <div className="TaxaSunburst">
         <h3><span>{ I18n.t( "views.welcome.index.species_observed" ) }</span></h3>
+        <p
+          className="text-muted"
+          dangerouslySetInnerHTML={ { __html: I18n.t( "views.stats.year.sunburst_desc_html" ) } }
+        />
         <div className="chart"></div>
       </div>
     );
@@ -121,7 +170,9 @@ class TaxaSunburst extends React.Component {
 }
 
 TaxaSunburst.propTypes = {
-  data: PropTypes.array
+  data: PropTypes.array,
+  rootTaxonID: PropTypes.number.isRequired,
+  labelForDatum: PropTypes.func
 };
 
 export default TaxaSunburst;

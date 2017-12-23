@@ -109,6 +109,21 @@ class YearStatistic < ActiveRecord::Base
     if site = options[:site]
       params[:site_id] = site.id
     end
+    if user
+      if place = user.place || user.site.try(:place)
+        params[:preferred_place_id] = place.id
+      end
+      if locale = user.locale || user.site.try(:locale)
+        params[:locale] = locale
+      end
+    elsif site
+      if place = site.place
+        params[:preferred_place_id] = place.id
+      end
+      if locale = site.locale
+        params[:locale] = locale
+      end
+    end
     JSON.parse( INatAPIService.get_json("/observations/tree_taxa", params, 3, 30 ) )["results"] rescue nil
   end
 

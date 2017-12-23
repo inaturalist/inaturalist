@@ -61,6 +61,10 @@ I18n.translations["ar"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -135,6 +139,10 @@ I18n.translations["az"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -823,6 +831,10 @@ I18n.translations["bg"] = {
         "this_has_been_flagged_as_spam": "Това е маркирано като спам"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -1396,6 +1408,10 @@ I18n.translations["br"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -1514,6 +1530,10 @@ I18n.translations["bs"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -2663,6 +2683,10 @@ I18n.translations["ca"] = {
         "this_has_been_flagged_as_spam": "Això ha estat marcat com brossa"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.",
@@ -2868,6 +2892,10 @@ I18n.translations["cs"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -2942,6 +2970,10 @@ I18n.translations["da"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -3020,6 +3052,10 @@ I18n.translations["de"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -3094,6 +3130,10 @@ I18n.translations["el"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -4323,6 +4363,11 @@ I18n.translations["en"] = {
         "this_has_been_flagged_as_spam": "This has been flagged as spam"
       }
     },
+    "stats": {
+      "year": {
+        "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy at the center, starting with \"Life.\" <strong>Click an\narc to place that taxon at the center</strong> and its children around\nit, or <strong>click the center to move back up the\nhierarchy</strong>.\n"
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "The conservation status summarizes the risk of extinction for a group of organisms.\n",
@@ -4543,6 +4588,10 @@ I18n.translations["en-GB"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -4647,6 +4696,10 @@ I18n.translations["en-US"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -5180,6 +5233,7 @@ I18n.translations["es"] = {
   "labels": "Etiquetas",
   "language_slash_type": "Idioma / Tipo",
   "last_observation": "Última observación",
+  "last_year": "Año Pasado",
   "lat": "Latitud",
   "latitude": "Latitud",
   "layers": "Capas",
@@ -5757,6 +5811,7 @@ I18n.translations["es"] = {
   "this_observation_was_created_using": "Esta observación fue creada usando:",
   "this_taxon_concept_is_inactive": "esta especie o grupo esta inactiva",
   "this_taxon_has_no_default_photo": "Este taxón no tiene ninguna foto predeterminada.",
+  "this_year": "Este Año",
   "threatened": "amenazado",
   "to_add_comments": "para agregar comentarios.",
   "to_suggest_an_identification": "para sugerir una identificación",
@@ -5868,6 +5923,11 @@ I18n.translations["es"] = {
       },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto se marcó como spam"
+      }
+    },
+    "stats": {
+      "year": {
+        "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de\n\"resplandor solar\". La base de la jerarquía en el centro, comenzando\ncon \"Vida\". <strong>Haga clic en un arco para colocar ese taxón en el\ncentro</strong> y sus niños a su alrededor, y <strong>haga clic en el\ncentro para volver a subir la jerarquía</strong>.\n"
       }
     },
     "taxa": {
@@ -6831,6 +6891,10 @@ I18n.translations["es-MX"] = {
         "this_has_been_flagged_as_spam": "Esto ha sido marcado con una advertencia como spam"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -6965,6 +7029,10 @@ I18n.translations["et"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -7731,6 +7799,10 @@ I18n.translations["eu"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -7843,6 +7915,10 @@ I18n.translations["fa"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -8409,6 +8485,10 @@ I18n.translations["fi"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -9685,6 +9765,10 @@ I18n.translations["fr"] = {
         "this_has_been_flagged_as_spam": "Signalé comme pourriel"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "L’état de conservation synthétise le risque d’extinction d’un groupe d’organismes.",
@@ -10494,6 +10578,10 @@ I18n.translations["gl"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -10600,6 +10688,10 @@ I18n.translations["he"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -10676,6 +10768,10 @@ I18n.translations["hr"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -10750,6 +10846,10 @@ I18n.translations["hu"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -11592,6 +11692,10 @@ I18n.translations["id"] = {
         "this_has_been_flagged_as_spam": "Ini telah menjadi ditandai sebagai spam"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -11721,6 +11825,10 @@ I18n.translations["is"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -12931,6 +13039,10 @@ I18n.translations["it"] = {
         "this_has_been_flagged_as_spam": "Questo è stato contrassegnato come spam"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "Lo stato di conservazione riassume il rischio di estinzione per un gruppo di organismi.",
@@ -13146,6 +13258,10 @@ I18n.translations["iw"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -14055,6 +14171,10 @@ I18n.translations["ja"] = {
         "this_has_been_flagged_as_spam": "スパムとしてフラグ付けられました"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_establishment_desc": "「定着方法」とは、あるが種がどのように現在の場所で棲息することになったことを示します。「移入種」とは、人間の活動によりこの場所で棲息するようになった場合を指し、「在来種」とは、人間の活動に頼らず、以前から棲息していたことを示します。「固定種」とは、特定の場所にしか存在しないことを表します。",
@@ -14829,6 +14949,10 @@ I18n.translations["ko"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "frequency": {
@@ -14922,6 +15046,10 @@ I18n.translations["lexicons"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -14998,6 +15126,10 @@ I18n.translations["lt"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -15072,6 +15204,10 @@ I18n.translations["lv"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -15679,6 +15815,10 @@ I18n.translations["mk"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -15792,6 +15932,10 @@ I18n.translations["my"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -15866,6 +16010,10 @@ I18n.translations["nb"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -15944,6 +16092,10 @@ I18n.translations["nl"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -16018,6 +16170,10 @@ I18n.translations["no"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -16653,6 +16809,10 @@ I18n.translations["oc"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "L’estat de conservacion sintetisa la risca d’escantiment d’un grop d’organismes."
@@ -16774,6 +16934,10 @@ I18n.translations["pl"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -16848,6 +17012,10 @@ I18n.translations["pt"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -17994,6 +18162,10 @@ I18n.translations["pt-BR"] = {
         "this_has_been_flagged_as_spam": "Sinalizado como SPAM"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "O Estado de Conservação sintetiza o risco de extinção para um determinado grupo de organismos.",
@@ -18811,6 +18983,10 @@ I18n.translations["pt-PT"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -18951,6 +19127,10 @@ I18n.translations["ro"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19025,6 +19205,10 @@ I18n.translations["ru"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19103,6 +19287,10 @@ I18n.translations["sk"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19177,6 +19365,10 @@ I18n.translations["sl"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19255,6 +19447,10 @@ I18n.translations["sr"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19329,6 +19525,10 @@ I18n.translations["sr-RS"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19407,6 +19607,10 @@ I18n.translations["sv"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19481,6 +19685,10 @@ I18n.translations["th"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19559,6 +19767,10 @@ I18n.translations["tr"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19635,6 +19847,10 @@ I18n.translations["uk"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19709,6 +19925,10 @@ I18n.translations["vi"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -20786,6 +21006,10 @@ I18n.translations["zh-CN"] = {
         "this_has_been_flagged_as_spam": "这已经被标记为垃圾信息"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_names_desc": "<p>\n大多数类型的生物在口语中都有“常见名称”。这些名字通常是可识别的，容易发音，并且随着时间的推移而变得稳定，但即使是在同一个语言中，许多生物在不同的地方会有几个不同名字，这给讨论这些生物体而不混淆带来了困难。对于符合<a href=\"https://zh.wikipedia.org/wiki/二名法\">生物命名规则</a>的每一类生物 ，科学家通过使用单一的“科学名称”处理这个问题，但这些名字往往是以拉丁语（一种没人说的语言）为基础的，所以他们不像许多人用的常见名字那么好记。科学名称同时也会反映生物的分类，所以当科学家研究出不同的生物体之间更准确的进化理论的时候，这些名字会改变，并降低了名字在交流中的可用性，甚至在那些科学名称的人之间也是如此。\n</p>\n<p>\n一句老格言总结：“常见名字随地方改变而改变，科学名称随时间改变而改变。”\n</p>\n<p>\n我们试图通过在任何地方通过同时展示常见名字和科学名字来解决这些缺点，并基于观众的语言和地理偏好来选择性展示常见名称。\n</p>",
@@ -20977,6 +21201,10 @@ I18n.translations["zh-HK"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -22185,6 +22413,10 @@ I18n.translations["zh-TW"] = {
       },
       "spam": {
         "this_has_been_flagged_as_spam": "此已被標記為垃圾訊息"
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {

@@ -3759,7 +3759,7 @@ es:
   text_: texto
   thanks_for_signing_up: ¡Gracias por registrarse!
   thanks_for_using: Gracias por usar
-  thanks_from_all_of_us_here_at: Gracias de todos en
+  thanks_from_all_of_us_here_at: Gracias de parte de todos nosotros en
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: Esa observación no tiene ninguna foto.
@@ -5514,6 +5514,14 @@ es:
         sorry_that_doesnt_exist: ¡Eso no existe!
         even_our_dedicated_search_mole_couldnt: ¡Incluso nuestro dedicado topo buscador
           no pudo encontrar nada!
+    stats:
+      year:
+        sunburst_desc_html: |
+          Taxones observados dispuestos como un diagrama jerárquico de
+          "resplandor solar". La base de la jerarquía en el centro, comenzando
+          con "Vida". <strong>Haga clic en un arco para colocar ese taxón en el
+          centro</strong> y sus niños a su alrededor, y <strong>haga clic en el
+          centro para volver a subir la jerarquía</strong>.
     taxa:
       show:
         about_names_desc: |-

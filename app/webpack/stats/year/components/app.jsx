@@ -1,8 +1,10 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import { Grid, Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import UserImage from "../../../shared/components/user_image";
+import SplitTaxon from "../../../shared/components/split_taxon";
 import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
@@ -14,7 +16,8 @@ const App = ( {
   user,
   currentUser,
   site,
-  data
+  data,
+  rootTaxonID
 } ) => {
   let body = "todo";
   let inatUser = user ? new inatjs.User( user ) : null;
@@ -47,7 +50,22 @@ const App = ( {
         <Summary data={data} />
         <Observations data={ data.observations } user={ user } year={ year } />
         <Identifications data={ data.identifications } />
-        { user && data.taxa && data.taxa.tree_taxa && ( <TaxaSunburst data={ data.taxa.tree_taxa } /> ) }
+        { user && data.taxa && data.taxa.tree_taxa && rootTaxonID && (
+          <TaxaSunburst
+            data={ data.taxa.tree_taxa }
+            rootTaxonID={ rootTaxonID }
+            labelForDatum={ d => {
+              return ReactDOMServer.renderToString(
+                <div>
+                  <SplitTaxon taxon={ d.data } noInactive forceRank />
+                  <div className="text-muted small">
+                    { I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } ) }
+                  </div>
+                </div>
+              );
+            } }
+          />
+        ) }
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={ user } text={ I18n.t( "regenerate_stats" ) } />
         ) : null }
@@ -173,7 +191,8 @@ App.propTypes = {
   user: React.PropTypes.object,
   currentUser: React.PropTypes.object,
   data: React.PropTypes.object,
-  site: React.PropTypes.object
+  site: React.PropTypes.object,
+  rootTaxonID: React.PropTypes.number
 };
 
 export default App;

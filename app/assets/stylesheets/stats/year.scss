@@ -3,6 +3,7 @@
 @import "../users/_user_image";
 @import "../shared/observations_grid_item";
 @import "../shared/loading_spinner";
+@import "../shared/split_taxon";
 
 $background-color: #1A1A1A;
 $gray: #999999;
@@ -50,6 +51,12 @@ $dark-gray: #333333;
   }
   .alert {
     text-align: center;
+  }
+  .text-muted {
+    strong {
+      color: #eee;
+      font-weight: normal;
+    }
   }
 
   h1 {
@@ -319,7 +326,19 @@ $tip-opacity: 1;
 
 .TaxaSunburst {
   .chart svg {
-    min-height: 500px;
+    min-height: 700px;
+  }
+  .sunburst-tip {
+    background-color: $background-color;
+    padding: 5px 20px;
+    width: auto;
+    border-radius: 50px;
+  }
+  .clickable {
+    cursor: pointer;
+  }
+  .sunburst-arc {
+    stroke: $background-color;
   }
 }
 
