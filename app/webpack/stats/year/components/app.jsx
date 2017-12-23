@@ -49,7 +49,7 @@ const App = ( {
         <Identifications data={ data.identifications } />
         { user && data.taxa && data.taxa.tree_taxa && ( <TaxaSunburst data={ data.taxa.tree_taxa } /> ) }
         { user && currentUser && user.id === currentUser.id ? (
-          <GenerateStatsButton user={ user } text={ "Regenerate Stats" } />
+          <GenerateStatsButton user={ user } text={ I18n.t( "regenerate_stats" ) } />
         ) : null }
         <a name="sharing"></a>
         <h2 id="sharing"><span>{ I18n.t( "share" ) }</span></h2>

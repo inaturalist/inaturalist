@@ -54,7 +54,7 @@ GenerateStatsButton.propTypes = {
 };
 
 GenerateStatsButton.defaultProps = {
-  text: "Generate Your Stats"
+  text: I18n.t( "generate_your_stats" )
 };
 
 export default GenerateStatsButton;
