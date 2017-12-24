@@ -36,7 +36,7 @@ const Identifications = ( { data } ) => {
   }
   return (
     <div className="Identifications">
-      <h3><span>{ I18n.t( "identifications" ) }</span></h3>
+      <h3><span>{ I18n.t( "ids_made_for_others" ) }</span></h3>
       <DateHistogram series={ series } />
     </div>
   );

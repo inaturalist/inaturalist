@@ -25,7 +25,7 @@ class TaxaSunburst extends React.Component {
       .attr( "preserveAspectRatio", "xMidYMid meet" );
     const radius = ( Math.min( width, height ) / 2 ) - 10;
     const x = d3.scaleLinear( ).range( [0, 2 * Math.PI] );
-    const y = d3.scaleSqrt( ).range( [0, radius] );
+    const y = d3.scaleLinear( ).range( [0, radius] );
     const color = d3.scaleOrdinal( d3.schemeCategory20 );
     const partition = d3.partition( );
     const arc = d3.arc( )
@@ -37,6 +37,17 @@ class TaxaSunburst extends React.Component {
        .attr( "height", height )
        .append( "g" )
        .attr( "transform", `translate(${width / 2},${height / 2})` );
+
+    const arcLabelVisibility = d => {
+      const startAngle = Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) );
+      const endAngle = Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) );
+      const angle = endAngle - startAngle;
+      const arcRadius = Math.max( 0, y( d.y1 ) ) - ( Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) ) );
+      const arcWidth = arcRadius * angle;
+      const charWidth = 10;
+      const labelWidth = ( d.data.preferred_common_name || d.data.name ).length * charWidth;
+      return labelWidth < arcWidth ? "visible" : "hidden";
+    };
 
     // Setup tooltips
     const tooltip = d3.select( mountNode )
@@ -53,7 +64,7 @@ class TaxaSunburst extends React.Component {
       if ( !d.children || d.children.length === 0 ) {
         return;
       }
-      svg.transition( )
+      const tween = svg.transition( )
           .duration( 750 )
           .tween( "scale", ( ) => {
             const xd = d3.interpolate( x.domain( ), [d.x0, d.x1] );
@@ -63,9 +74,11 @@ class TaxaSunburst extends React.Component {
               x.domain( xd( t ) );
               y.domain( yd( t ) ).range( yr( t ) );
             };
-          } )
-        .selectAll( "path" )
-          .attrTween( "d", dd => ( ) => arc( dd ) );
+          } );
+      tween.selectAll( "path" )
+        .attrTween( "d", dd => ( ) => arc( dd ) );
+      tween.selectAll( "text" )
+        .styleTween( "visibility", dd => ( ) => arcLabelVisibility( dd ) );
     };
 
     // Set up the hierarchy
@@ -103,7 +116,6 @@ class TaxaSunburst extends React.Component {
     const rootData = recurse( this.props.rootTaxonID );
     const theRoot = d3.hierarchy( rootData );
     theRoot.sum( d => d.size );
-    const borderScale = d3.scaleLinear( ).domain( [theRoot.depth, theRoot.height] ).range( [3, 0.5] );
 
     const colorForDatum = d => {
       if ( d.data.iconicTaxonID && inaturalist.ICONIC_TAXA[d.data.iconicTaxonID] ) {
@@ -130,13 +142,13 @@ class TaxaSunburst extends React.Component {
       return color( ( d.children ? d : d.parent ).data.name );
     };
 
-    // Draw the visualization
+    // Draw the arcs
     svg.selectAll( "path" )
         .data( partition( theRoot ).descendants( ) )
       .enter( ).append( "path" )
         .attr( "d", arc )
+        .attr( "id", d => `taxon-path-${d.data.id}` )
         .style( "fill", colorForDatum )
-        .style( "stroke-width", d => borderScale( d.depth ) )
         .classed( "clickable", d => ( d.children && d.children.length > 0 ) )
         .classed( "sunburst-arc", true )
         .on( "click", click )
@@ -153,6 +165,26 @@ class TaxaSunburst extends React.Component {
           "top", `${event.offsetY - 10}px` ).style( "left", `${event.offsetX + 10}px`
         ) )
         .on( "mouseout", ( ) => tooltip.style( "visibility", "hidden" ) );
+
+    // Draw the labels
+    // https://www.visualcinnamon.com/2015/09/placing-text-on-arcs.html
+    svg.selectAll( "text" )
+        .data( partition( theRoot ).descendants( ) )
+      .enter( )
+        .append( "text" )
+          .attr( "x", 20 )
+          .attr( "dy", d => (
+            ( Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) ) ) / 3 * 2
+          ) )
+          .style( "letter-spacing", "0.2em" )
+          .style( "visibility", arcLabelVisibility )
+        .append( "textPath" )
+          .attr( "xlink:href", d => `#taxon-path-${d.data.id}` )
+          .style( "text-anchor", "left" )
+          .attr( "class", d => d.data.rank )
+          .classed( "sciname", d => !d.data.preferred_common_name )
+          .text( d => d.data.preferred_common_name || d.data.name );
+
 
     d3.select( self.frameElement ).style( "height", `${height}px` );
   }

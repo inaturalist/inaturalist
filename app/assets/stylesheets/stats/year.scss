@@ -339,6 +339,18 @@ $tip-opacity: 1;
   }
   .sunburst-arc {
     stroke: $background-color;
+    stroke-width: 0.25;
+  }
+  text {
+    pointer-events: none;
+  }
+  textPath.has-com-name {
+    &.genus,
+    &.species,
+    &.subspecies,
+    &.variety {
+      font-style: italic;
+    }
   }
 }
 
