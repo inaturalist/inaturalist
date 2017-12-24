@@ -25,7 +25,7 @@ class TaxaSunburst extends React.Component {
       .attr( "preserveAspectRatio", "xMidYMid meet" );
     const radius = ( Math.min( width, height ) / 2 ) - 10;
     const x = d3.scaleLinear( ).range( [0, 2 * Math.PI] );
-    const y = d3.scaleLinear( ).range( [0, radius] );
+    const y = d3.scaleSqrt( ).range( [0, radius] );
     const color = d3.scaleOrdinal( d3.schemeCategory20 );
     const partition = d3.partition( );
     const arc = d3.arc( )
@@ -44,7 +44,7 @@ class TaxaSunburst extends React.Component {
       const angle = endAngle - startAngle;
       const arcRadius = Math.max( 0, y( d.y1 ) ) - ( Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) ) );
       const arcWidth = arcRadius * angle;
-      const charWidth = 10;
+      const charWidth = 8;
       const labelWidth = ( d.data.preferred_common_name || d.data.name ).length * charWidth;
       return labelWidth < arcWidth ? "visible" : "hidden";
     };
@@ -76,7 +76,13 @@ class TaxaSunburst extends React.Component {
             };
           } );
       tween.selectAll( "path" )
-        .attrTween( "d", dd => ( ) => arc( dd ) );
+        .attrTween( "d", dd => ( ) => arc( dd ) )
+        .styleTween( "visibility", dd => ( ) => {
+          const startAngle = Math.max( 0, Math.min( 2 * Math.PI, x( dd.x0 ) ) );
+          const endAngle = Math.max( 0, Math.min( 2 * Math.PI, x( dd.x1 ) ) );
+          const angle = endAngle - startAngle;
+          return angle < 0.000000001 ? "hidden" : "visible";
+        } );
       tween.selectAll( "text" )
         .styleTween( "visibility", dd => ( ) => arcLabelVisibility( dd ) );
     };
@@ -173,9 +179,7 @@ class TaxaSunburst extends React.Component {
       .enter( )
         .append( "text" )
           .attr( "x", 20 )
-          .attr( "dy", d => (
-            ( Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) ) ) / 3 * 2
-          ) )
+          .attr( "dy", 23 )
           .style( "letter-spacing", "0.2em" )
           .style( "visibility", arcLabelVisibility )
         .append( "textPath" )
