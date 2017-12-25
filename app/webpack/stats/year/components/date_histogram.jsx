@@ -4,6 +4,7 @@ import _ from "lodash";
 import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
+// import moment from "moment";
 
 class DateHistogram extends React.Component {
   componentDidMount( ) {
@@ -11,6 +12,7 @@ class DateHistogram extends React.Component {
   }
 
   renderHistogram( ) {
+    // moment.locale( I18n.locale );
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).append( "svg" );
     const svgWidth = $( "svg", mountNode ).width( );
@@ -44,9 +46,14 @@ class DateHistogram extends React.Component {
     x.domain( d3.extent( combinedData, d => d.date ) );
     y.domain( d3.extent( combinedData, d => d.value ) );
 
+    let axisBottom = d3.axisBottom( x );
+    if ( this.props.tickFormatBottom ) {
+      axisBottom = axisBottom.tickFormat( this.props.tickFormatBottom );
+    }
+
     g.append( "g" )
         .attr( "transform", `translate(0,${height})` )
-        .call( d3.axisBottom( x ) )
+        .call( axisBottom )
         .select( ".domain" )
               .remove();
 
@@ -138,7 +145,8 @@ class DateHistogram extends React.Component {
 }
 
 DateHistogram.propTypes = {
-  series: PropTypes.object
+  series: PropTypes.object,
+  tickFormatBottom: PropTypes.func
 };
 
 DateHistogram.defaultProps = {

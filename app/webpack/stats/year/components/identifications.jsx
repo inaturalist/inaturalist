@@ -37,7 +37,10 @@ const Identifications = ( { data } ) => {
   return (
     <div className="Identifications">
       <h3><span>{ I18n.t( "ids_made_for_others" ) }</span></h3>
-      <DateHistogram series={ series } />
+      <DateHistogram
+        series={ series }
+        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
+      />
     </div>
   );
 };

@@ -90,12 +90,19 @@ const Observations = ( { data, user, year } ) => {
       </div>
     );
   }
+  moment.locale( I18n.locale );
   return (
     <div className="Observations">
       <h3><span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span></h3>
-      <DateHistogram series={ series } />
+      <DateHistogram
+        series={ series }
+        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
+      />
       <h3><span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span></h3>
-      <DateHistogram series={ comparisonSeries } />
+      <DateHistogram
+        series={ comparisonSeries }
+        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
+      />
       { user && ( <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } /> ) }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
       { popular }
