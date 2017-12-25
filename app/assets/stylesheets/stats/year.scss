@@ -345,6 +345,9 @@ $tip-opacity: 1;
     pointer-events: none;
     font-size: 8px;
   }
+  .center-arc {
+    pointer-events: none;
+  }
   textPath.has-com-name {
     &.genus,
     &.species,

@@ -28,16 +28,33 @@ class TaxaSunburst extends React.Component {
     const y = d3.scaleSqrt( ).range( [0, radius] );
     const color = d3.scaleOrdinal( d3.schemeCategory20 );
     const partition = d3.partition( );
+
+    // This draws the d attribute for the visible arcs
     const arc = d3.arc( )
         .startAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) ) )
         .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
         .innerRadius( d => Math.max( 0, y( d.y0 ) ) )
         .outerRadius( d => Math.max( 0, y( d.y1 ) ) );
+    
+    // These arcs are for the text labels in the center of the visible arcs
+    const centerArc = d3.arc( )
+        .startAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) ) )
+        .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
+        .innerRadius( d => {
+          const sectionWidth = Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) );
+          return Math.max( 0, y( d.y0 ) ) + sectionWidth / 2;
+        } )
+        .outerRadius( d => {
+          const sectionWidth = Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) );
+          return Math.max( 0, y( d.y0 ) ) + sectionWidth / 2;
+        } );
     svg = svg.attr( "width", width )
        .attr( "height", height )
        .append( "g" )
        .attr( "transform", `translate(${width / 2},${height / 2})` );
 
+    // This strategy seems to result in a bunch of zero-angle arcs for things
+    // that shouldn't be visible. This makes sure they're invisible
     const arcLabelVisibility = d => {
       const startAngle = Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) );
       const endAngle = Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) );
@@ -75,7 +92,7 @@ class TaxaSunburst extends React.Component {
               y.domain( yd( t ) ).range( yr( t ) );
             };
           } );
-      tween.selectAll( "path" )
+      tween.selectAll( "path.sunburst-arc" )
         .attrTween( "d", dd => ( ) => arc( dd ) )
         .styleTween( "visibility", dd => ( ) => {
           const startAngle = Math.max( 0, Math.min( 2 * Math.PI, x( dd.x0 ) ) );
@@ -83,6 +100,8 @@ class TaxaSunburst extends React.Component {
           const angle = endAngle - startAngle;
           return angle < 0.000000001 ? "hidden" : "visible";
         } );
+      tween.selectAll( "path.center-arc" )
+        .attrTween( "d", dd => ( ) => centerArc( dd ) );
       tween.selectAll( "text" )
         .styleTween( "visibility", dd => ( ) => arcLabelVisibility( dd ) );
     };
@@ -143,6 +162,9 @@ class TaxaSunburst extends React.Component {
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Aves" ) {
           return c.brighter( 1 );
         }
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Mammalia" ) {
+          return c.brighter( 1.25 );
+        }
         return c;
       }
       return color( ( d.children ? d : d.parent ).data.name );
@@ -153,7 +175,6 @@ class TaxaSunburst extends React.Component {
         .data( partition( theRoot ).descendants( ) )
       .enter( ).append( "path" )
         .attr( "d", arc )
-        .attr( "id", d => `taxon-path-${d.data.id}` )
         .style( "fill", colorForDatum )
         .classed( "clickable", d => ( d.children && d.children.length > 0 ) )
         .classed( "sunburst-arc", true )
@@ -172,14 +193,23 @@ class TaxaSunburst extends React.Component {
         ) )
         .on( "mouseout", ( ) => tooltip.style( "visibility", "hidden" ) );
 
+    const labels = svg.append( "g" );
+    labels.selectAll( "path" )
+        .data( partition( theRoot ).descendants( ) )
+      .enter( ).append( "path" )
+        .attr( "d", centerArc )
+        .attr( "class", "center-arc" )
+        // .style( "stroke", "red" )
+        .attr( "id", d => `taxon-path-${d.data.id}` );
+
     // Draw the labels
     // https://www.visualcinnamon.com/2015/09/placing-text-on-arcs.html
-    svg.selectAll( "text" )
+    labels.selectAll( "text" )
         .data( partition( theRoot ).descendants( ) )
       .enter( )
         .append( "text" )
           .attr( "x", 20 )
-          .attr( "dy", 23 )
+          .attr( "dy", 2 )
           .style( "letter-spacing", "0.2em" )
           .style( "visibility", arcLabelVisibility )
         .append( "textPath" )
@@ -188,7 +218,6 @@ class TaxaSunburst extends React.Component {
           .attr( "class", d => d.data.rank )
           .classed( "sciname", d => !d.data.preferred_common_name )
           .text( d => d.data.preferred_common_name || d.data.name );
-
 
     d3.select( self.frameElement ).style( "height", `${height}px` );
   }
