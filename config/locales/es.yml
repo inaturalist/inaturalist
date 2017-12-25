@@ -50,6 +50,9 @@ es:
   x_identifications:
     one: 1 identificación
     other: '%{count} identificaciones'
+  x_identifications_html:
+    one: <span class="count">1</span> identificación
+    other: <span class="count">%{count}</span> identificaciones
   x_identifications_:
     one: 1 identificación
     other: '%{count} identificaciones'
@@ -462,6 +465,7 @@ es:
     other: y %{count} personas más
   android: Android
   animals: Animales
+  animated_observations_map: Mapa de observaciones animado
   annotations: Anotaciones
   announcement_was_successfully_created: El aviso fue creado exitosamente.
   announcement_was_successfully_updated: El aviso fue actualizado exitosamente.
@@ -1629,7 +1633,8 @@ es:
   high: alta
   highest_rank: Rango más alto
   highlights: Destacado
-  highlights_and_stats_from_year_on_site: "Destacados y estadísticas a partir de %{year} en %{site}"
+  highlights_and_stats_from_year_on_site: Destacados y estadísticas a partir de %{year}
+    en %{site}
   history: Historial
   home: Inicio
   home_faq: PP. FF.
@@ -1654,7 +1659,7 @@ es:
   id_please!: ¡ayuda por favor!
   id_please: ID por favor
   id_please_expandable_html: Ayuda<span class='full'> por favor!</span>
-  id_withdrawn: ID Retirada
+  id_withdrawn: Id. retirada
   identify: Identificar
   identify_observations: Identificar observaciones
   identify_title: Identificar
@@ -1852,6 +1857,7 @@ es:
   last_inat_observation: Última observación %{site_name}
   last_observation: Última observación
   last_seen: Visto por última vez
+  last_year: Año pasado
   lat: Latitud
   latitude: Latitud
   latitude_in_decimals: Latitud en grados con decimales, ej. 38.123
@@ -2562,7 +2568,7 @@ es:
     Búsquedas de texto pueden producir resultados extraños cuando se combina
     con otros filtros. si usted quiere encontrar la observación de una especie
     en particular, utiliza el taxón filtrar.
-  observations_this_year_vs_last_year: Observaciones Este Año vs. Año Pasado
+  observations_this_year_vs_last_year: Observaciones de este año frente al año pasado
   observations_title: Observaciones de todos
   observations_total: Observaciones totales
   observations_w: Búsqueda de observaciones con
@@ -2771,9 +2777,9 @@ es:
     comment:
       with_by: comentó sobre @vow_or_con{vow:an|a} %{comment_subject_link} en %{by_link}
       without_by: comentó sobre @vow_or_con{vow:an|a} %{comment_subject_link}
-  per_day: Por Día
-  per_month: Por Mes
-  per_week: Por Semana
+  per_day: Por día
+  per_month: Por mes
+  per_week: Por semana
   person: persona
   personal_message: Mensaje personal
   personal_message_description: ¡A nadie le gusta recibir correos desde una máquina¿Por
@@ -3198,7 +3204,7 @@ es:
   refresh: Refrescar
   refresh_listed_taxa: refrescar taxones incluidos
   refreshing: refrescando
-  regenerate_stats: Regenerar Las Estadísticas
+  regenerate_stats: Regenerar estadísticas
   regenerate_url: Regenerar URL
   register_for_this_event_at_x_html: Registro para este evento en %{x}
   reject?: ¿Rechazar?
@@ -3406,7 +3412,7 @@ es:
     parte del mundo.
   set_license: Fijar licencia
   settings: Propiedades
-  share: Compartir
+  share: Comparte
   share_your_observation_with_researchers_by: Comparta su observación con investigadores
     por
   short_code_for_this_place: Código corto para el país, ej. MX para México
@@ -3454,6 +3460,7 @@ es:
   site_name_place: Lugares de %{site_name}
   site_observations_export_from_date: '%{site_name} observaciones exportas de %{date}'
   site_taxon_page: '%{site_name} página del taxón'
+  site_year_in_review: Resumen del año %{year} en %{site_name}
   so_meta!: ¡Autoreferencia!
   some_agree: Algunos la apoyan
   some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse
@@ -3600,7 +3607,8 @@ es:
   start_typing_someones_name: Comience a digitar el nombre de alguien…
   states: Estados
   stats: Estadísticas
-  stats_for_this_year_have_not_been_generated: Las estadísticas para este año no han sido generadas.
+  stats_for_this_year_have_not_been_generated: No se han generado las estadísticas
+    de este año.
   stats_title: Estadísticas del sitio
   status: Estado
   status_globally: '%{status} Globalmente'
@@ -3758,7 +3766,7 @@ es:
   text_: texto
   thanks_for_signing_up: ¡Gracias por registrarse!
   thanks_for_using: Gracias por usar
-  thanks_from_all_of_us_here_at: Gracias de todos en
+  thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: Esa observación no tiene ninguna foto.
@@ -3968,6 +3976,7 @@ es:
     fotos de fotos. ¿Desea continuar?
   this_will_update_all_last_observations: Esto actualizará todas las observaciones
     recientes y agregará nuevos taxones de
+  this_year: Este año
   those_are_the_basics_of: ¡Esas son las bases para agregar observacionesHay muchas
     otras cosas que puede hacer, como buscar y filtrar sus observaciones o modificarlas
     como un grupo, pero esto debería ser auto explicativo.
@@ -4173,14 +4182,15 @@ es:
   users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a>
     a %{project_title}
-  users_highlights_and_stats_from_year_on_site: "Destacados y estadísticas de %{user} de %{year} en %{site}"
+  users_highlights_and_stats_from_year_on_site: Destacados y estadísticas de %{user}
+    de %{year} en %{site}
   users_id: Identificación de %{user}
   users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
   users_identification_short_html: Identificador de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Lates observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}
   users_profile: Perfil de %{user}
-  users_year_on_site: "El año de %{user} en %{site} %{year}"
+  users_year_on_site: El año %{year} de %{user} en %{site}
   using_a_license: utilizando una licencia
   using_cc_license_makes_easier_use_your_data: Usar una licencia de <strong>Atribución
     de Creative Commons</fuerte> facilita que los investigadores usen sus datos. Usted
@@ -4189,7 +4199,8 @@ es:
   valid_options_are: Las opciones válidas son
   value: Valor
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
-  verifiable_observations_by_observation_date: Observaciones Verificables Por Fecha de Observación
+  verifiable_observations_by_observation_date: Observaciones Verificables Por Fecha
+    de Observación
   view: Ver
   view_all: Ver todo
   view_all_from_x: Ver todo de %{x}
@@ -4270,7 +4281,7 @@ es:
   view_user_observations: Ver observaciones de %{user}
   view_x_from_x: Ver %{day_observations} de %{observed_on}
   view_xs_journal: Ver el diario de %{x}
-  view_year_stats_for_site: "Ver %{year} Estadísticas de %{site}"
+  view_year_stats_for_site: Ver %{year} Estadísticas de %{site}
   view_your_dashboard: Ve tu tablero
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Ver su tablero</a> para
     más actualizaciones
@@ -4278,7 +4289,7 @@ es:
   view_your_life_list: Ve tu lista de vida
   view_your_calendar: Observa tu calendario
   view_your_observations: Ver sus observaciones
-  view_your_year_stats: "Ver Sus Estadísticas de %{year}"
+  view_your_year_stats: Ver Sus Estadísticas de %{year}
   view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: Ver todas tus observaciones de %{x}
   visually_similar: Similar visualmente
@@ -4324,6 +4335,7 @@ es:
     Hemos intentado procesar tu subida llamada %{filename}, pero no funcionó.
     Arregla los siguientes problemas y vuelve a intentarlo.
   wed: mié
+  week_of_date: Semana de %{date}
   welcome!: ¡Bienvenidos!
   welcome_comma!: ¡Bienvenido,
   welcome: Bienvenido
@@ -4409,9 +4421,9 @@ es:
   x_wrote_a_new_post_html: '%{x} escribió una nueva ingreso'
   x_wrote_y_new_posts_html: '%{x} escribió %{y} nuevas ingresos'
   year: Año
-  year_in_review: El Año en Revisión
+  year_in_review: Resumen del año %{year}
   year_month: año/mes
-  year_on_site: "El Año en %{site} %{year}"
+  year_on_site: El %{year} en %{site}
   yellow: amarillo
   "yes": Sí
   yes_find_them!: ¡Sí, encuéntrelas!
