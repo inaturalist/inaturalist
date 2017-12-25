@@ -153,18 +153,24 @@ class TaxaSunburst extends React.Component {
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Arachnida" ) {
           return c.brighter( 2 );
         }
+        if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Actinopterygii" ) {
+          return c.darker( 1 );
+        }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Amphibia" ) {
-          return c.brighter( 0.5 );
+          return c.darker( 0.5 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Reptilia" ) {
           return c.brighter( 0.75 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Aves" ) {
-          return c.brighter( 1 );
+          return c.brighter( 0.5 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Mammalia" ) {
-          return c.brighter( 1.25 );
+          return c.brighter( 1 );
         }
+        // if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Animalia" ) {
+        //   return c.brighter( 1.5 );
+        // }
         return c;
       }
       return color( ( d.children ? d : d.parent ).data.name );

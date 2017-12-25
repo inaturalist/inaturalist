@@ -117,31 +117,37 @@ const Summary = ( { data } ) => {
                   label: nameForPieLabel( I18n.t( "ray_finned_fishes" ) ),
                   fullLabel: _.capitalize( I18n.t( "ray_finned_fishes" ) ),
                   value: data.taxa.iconic_taxa_counts.Actinopterygii,
-                  color: COLORS.iconic.Actinopterygii
+                  color: d3.color( COLORS.iconic.Actinopterygii ).darker( 1 )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "amphibians" ) ),
                   fullLabel: _.capitalize( I18n.t( "amphibians" ) ),
                   value: data.taxa.iconic_taxa_counts.Amphibia,
-                  color: d3.color( COLORS.iconic.Amphibia ).brighter( 0.5 )
+                  color: d3.color( COLORS.iconic.Amphibia ).darker( 0.5 )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "reptiles" ) ),
                   fullLabel: _.capitalize( I18n.t( "reptiles" ) ),
                   value: data.taxa.iconic_taxa_counts.Reptilia,
-                  color: d3.color( COLORS.iconic.Reptilia ).brighter( 0.5 ).brighter( 0.5 )
+                  color: d3.color( COLORS.iconic.Reptilia )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "birds" ) ),
                   fullLabel: _.capitalize( I18n.t( "birds" ) ),
                   value: data.taxa.iconic_taxa_counts.Aves,
-                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 )
+                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 )
+                },
+                {
+                  label: nameForPieLabel( I18n.t( "mammals" ) ),
+                  fullLabel: _.capitalize( I18n.t( "mammals" ) ),
+                  value: data.taxa.iconic_taxa_counts.Mammalia,
+                  color: d3.color( COLORS.iconic.Aves ).brighter( 1 )
                 },
                 {
                   label: nameForPieLabel( I18n.t( "other_animals" ) ),
                   fullLabel: _.capitalize( I18n.t( "other_animals" ) ),
                   value: data.taxa.iconic_taxa_counts.Animalia,
-                  color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 ).brighter( 0.5 )
+                  color: d3.color( COLORS.iconic.Animalia )
                 }
               ]}
               legendColumns={ 2 }
