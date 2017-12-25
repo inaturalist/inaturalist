@@ -30,7 +30,7 @@ const App = ( {
   } else if ( !data || !currentUser ) {
     if ( user && currentUser && user.id === currentUser.id ) {
       body = (
-        <GenerateStatsButton user={ user } />
+        <GenerateStatsButton user={ user } year={ year } />
       );
     } else {
       body = (
@@ -67,7 +67,7 @@ const App = ( {
           />
         ) }
         { user && currentUser && user.id === currentUser.id ? (
-          <GenerateStatsButton user={ user } text={ I18n.t( "regenerate_stats" ) } />
+          <GenerateStatsButton user={ user } year={ year } text={ I18n.t( "regenerate_stats" ) } />
         ) : null }
         <a name="sharing"></a>
         <h2 id="sharing"><span>{ I18n.t( "share" ) }</span></h2>
