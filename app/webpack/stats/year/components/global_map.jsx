@@ -33,7 +33,8 @@ class GlobalMap extends React.Component {
       line_opacity: 0.3,
       scaled: true,
       width: 8,
-      comp_op: "src-over"
+      comp_op: "src-over",
+      ttl: 86400
     };
     if ( site && site.id !== DEFAULT_SITE_ID ) {
       baseOptions.site_id = site.id;
