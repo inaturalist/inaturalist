@@ -3,6 +3,7 @@
 @import "../users/_user_image";
 @import "../shared/observations_grid_item";
 @import "../shared/loading_spinner";
+@import "../shared/split_taxon";
 
 $background-color: #1A1A1A;
 $gray: #999999;
@@ -50,6 +51,12 @@ $dark-gray: #333333;
   }
   .alert {
     text-align: center;
+  }
+  .text-muted {
+    strong {
+      color: #eee;
+      font-weight: normal;
+    }
   }
 
   h1 {
@@ -113,7 +120,7 @@ $dark-gray: #333333;
     position: relative;
     $user-image-size: 240px;
     $user-image-overhang: 0.25 * $user-image-size / 2;
-    margin-bottom: $user-image-overhang + 30;
+    margin-bottom: $user-image-overhang + 40;
     .UserImage {
       line-height: $user-image-size * 0.8;
       font-size: $user-image-size * 0.8;
@@ -319,7 +326,35 @@ $tip-opacity: 1;
 
 .TaxaSunburst {
   .chart svg {
-    min-height: 500px;
+    min-height: 700px;
+  }
+  .sunburst-tip {
+    background-color: $background-color;
+    padding: 5px 20px;
+    width: auto;
+    border-radius: 50px;
+  }
+  .clickable {
+    cursor: pointer;
+  }
+  .sunburst-arc {
+    stroke: $background-color;
+    stroke-width: 0.25;
+  }
+  text {
+    pointer-events: none;
+    font-size: 8px;
+  }
+  .center-arc {
+    pointer-events: none;
+  }
+  textPath.has-com-name {
+    &.genus,
+    &.species,
+    &.subspecies,
+    &.variety {
+      font-style: italic;
+    }
   }
 }
 

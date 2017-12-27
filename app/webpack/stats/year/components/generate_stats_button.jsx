@@ -50,7 +50,8 @@ class GenerateStatsButton extends React.Component {
 
 GenerateStatsButton.propTypes = {
   user: React.PropTypes.object,
-  text: React.PropTypes.string
+  text: React.PropTypes.string,
+  year: React.PropTypes.number.isRequired
 };
 
 GenerateStatsButton.defaultProps = {

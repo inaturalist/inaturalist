@@ -61,6 +61,10 @@ I18n.translations["ar"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -135,6 +139,10 @@ I18n.translations["az"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -823,6 +831,10 @@ I18n.translations["bg"] = {
         "this_has_been_flagged_as_spam": "Това е маркирано като спам"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -1396,6 +1408,10 @@ I18n.translations["br"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -1514,6 +1530,10 @@ I18n.translations["bs"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -1981,6 +2001,7 @@ I18n.translations["ca"] = {
   "identifications": "Identificacions",
   "identify_observations": "Identifiqueu observacions",
   "identify_title": "Identificar",
+  "ids_made_for_others": "ID fetes per altres usuaris",
   "if_for_some_reason_a_user_doesnt_agree": "Si per algun motiu un usuari no està d'acord amb el tàxon de la comunitat, el poden refusar, el que significa que la seva Identificació és utilitzada per enllaçar a altres observacions, actualitzant llistes de vida, etc. També significa que l'observació només pot ser de grau de recerca si la comunitat està d'acord amb ella.",
   "import": "Importa",
   "improving": "Millorant",
@@ -2663,6 +2684,10 @@ I18n.translations["ca"] = {
         "this_has_been_flagged_as_spam": "Això ha estat marcat com brossa"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "L'estat de conservació resumeix el risc d'extinció per a un grup d'organismes.",
@@ -2868,6 +2893,10 @@ I18n.translations["cs"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -2942,6 +2971,10 @@ I18n.translations["da"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -3020,6 +3053,10 @@ I18n.translations["de"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -3094,6 +3131,10 @@ I18n.translations["el"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -3597,6 +3638,7 @@ I18n.translations["en"] = {
   "identifications": "Identifications",
   "identify_observations": "Identify observations",
   "identify_title": "Identify",
+  "ids_made_for_others": "IDs made for others",
   "if_for_some_reason_a_user_doesnt_agree": "If for some reason you don't agree with the community taxon, you can reject it,\nwhich means your ID is the one used for linking to other observations, updating life lists,\netc. It also means your observation can only become research grade when the community agrees\nwith you.\n",
   "ignore_and_continue": "Ignore and continue",
   "import": "Import",
@@ -4323,6 +4365,11 @@ I18n.translations["en"] = {
         "this_has_been_flagged_as_spam": "This has been flagged as spam"
       }
     },
+    "stats": {
+      "year": {
+        "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "The conservation status summarizes the risk of extinction for a group of organisms.\n",
@@ -4543,6 +4590,10 @@ I18n.translations["en-GB"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -4647,6 +4698,10 @@ I18n.translations["en-US"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -5152,6 +5207,7 @@ I18n.translations["es"] = {
   "identifications": "Identificaciones",
   "identify_observations": "Identificar observaciones",
   "identify_title": "Identificar",
+  "ids_made_for_others": "Identificaciones hechas por otros",
   "if_for_some_reason_a_user_doesnt_agree": "Si por alguna razón un usuario no está de acuerdo con el taxón de la comunidad, lo puede rechazar, lo que significará que su Identificación será usada para enlazar con otras observaciones, actualizar listas de vida, etc. También significa que la observación únicamente podrá ser de grado de investigación si la comunidad está de acuerdo con ella.",
   "ignore_and_continue": "Ignorar y continuar",
   "import": "Importar",
@@ -5180,6 +5236,7 @@ I18n.translations["es"] = {
   "labels": "Etiquetas",
   "language_slash_type": "Idioma / Tipo",
   "last_observation": "Última observación",
+  "last_year": "Año Pasado",
   "lat": "Latitud",
   "latitude": "Latitud",
   "layers": "Capas",
@@ -5757,6 +5814,7 @@ I18n.translations["es"] = {
   "this_observation_was_created_using": "Esta observación fue creada usando:",
   "this_taxon_concept_is_inactive": "esta especie o grupo esta inactiva",
   "this_taxon_has_no_default_photo": "Este taxón no tiene ninguna foto predeterminada.",
+  "this_year": "Este Año",
   "threatened": "amenazado",
   "to_add_comments": "para agregar comentarios.",
   "to_suggest_an_identification": "para sugerir una identificación",
@@ -5868,6 +5926,11 @@ I18n.translations["es"] = {
       },
       "spam": {
         "this_has_been_flagged_as_spam": "Esto se marcó como spam"
+      }
+    },
+    "stats": {
+      "year": {
+        "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de\n\"resplandor solar\". La base de la jerarquía en el centro, comenzando\ncon \"Vida\". <strong>Haga clic en un arco para colocar ese taxón en el\ncentro</strong> y sus niños a su alrededor, y <strong>haga clic en el\ncentro para volver a subir la jerarquía</strong>.\n"
       }
     },
     "taxa": {
@@ -6357,6 +6420,7 @@ I18n.translations["es-MX"] = {
   },
   "identifications": "Identificaciones",
   "identify_title": "Identificar",
+  "ids_made_for_others": "Identificaciones hechas para otros",
   "import": "Importa",
   "inactive_taxon": "Especie o grupo inactivo",
   "including": "incluyendo",
@@ -6831,6 +6895,10 @@ I18n.translations["es-MX"] = {
         "this_has_been_flagged_as_spam": "Esto ha sido marcado con una advertencia como spam"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -6965,6 +7033,10 @@ I18n.translations["et"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -7315,6 +7387,7 @@ I18n.translations["eu"] = {
     }
   },
   "identifications": "Identifikazioak",
+  "ids_made_for_others": "Beste batzuentzako egindako identifikazioak",
   "if_for_some_reason_a_user_doesnt_agree": "Edozein arrazoirengatik erabiltzaileren bat ez badago ados komunitatearen taxonarekin, atzera bota dezakete, horrek esan nahi du haien NAN-a beste meaketekin lotzeko, bizi zerrendak eguneratzeko... baino ez dela erabiliko. Era berean, haien meaketa ezin daiteke kalitaterik onenenekoa bilakatu komunitateak ez badu haiekin bat egiten.",
   "import": "Inportatu",
   "inactive_taxon": "Espeziea edo taldea inaktibo",
@@ -7731,6 +7804,10 @@ I18n.translations["eu"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -7843,6 +7920,10 @@ I18n.translations["fa"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -8411,6 +8492,10 @@ I18n.translations["fi"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "frequency": {
@@ -8974,6 +9059,7 @@ I18n.translations["fr"] = {
   "identifications": "Identifications",
   "identify_observations": "Identifier les observations",
   "identify_title": "Identifier",
+  "ids_made_for_others": "Identifications faites pour d’autres",
   "if_for_some_reason_a_user_doesnt_agree": "Si, pour une raison quelconque, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui signifie que votre ID est celui utilisé pour lier à d’autres observations, pour mettre à jour les listes de vie, etc. Cela veut aussi dire que votre observation ne peut devenir de niveau recherche que lorsque la communauté est\nd’accord avec vous.",
   "ignore_and_continue": "Ignorer et continuer",
   "import": "Importer",
@@ -9685,6 +9771,10 @@ I18n.translations["fr"] = {
         "this_has_been_flagged_as_spam": "Signalé comme pourriel"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "L’état de conservation synthétise le risque d’extinction d’un groupe d’organismes.",
@@ -10127,6 +10217,7 @@ I18n.translations["gl"] = {
     }
   },
   "identifications": "Identificacións",
+  "ids_made_for_others": "Identificacións feitas para outros",
   "import": "Importar",
   "inactive_taxon": "Especie ou grupo inactivo",
   "info": "Información",
@@ -10494,6 +10585,10 @@ I18n.translations["gl"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -10600,6 +10695,10 @@ I18n.translations["he"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -10676,6 +10775,10 @@ I18n.translations["hr"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -10750,6 +10853,10 @@ I18n.translations["hu"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -11123,6 +11230,7 @@ I18n.translations["id"] = {
   "identifications": "Mengidentifikasi",
   "identify_observations": "Mengidentifikasi pengamatan",
   "identify_title": "Mengenali",
+  "ids_made_for_others": "ID telah dibuat oleh yang lain",
   "import": "Masukkan",
   "inactive_taxon": "takson yang tidak aktif",
   "including": "termasuk",
@@ -11592,6 +11700,10 @@ I18n.translations["id"] = {
         "this_has_been_flagged_as_spam": "Ini telah menjadi ditandai sebagai spam"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -11721,6 +11833,10 @@ I18n.translations["is"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -12220,6 +12336,7 @@ I18n.translations["it"] = {
   "identifications": "Identificazioni",
   "identify_observations": "Identifica osservazioni",
   "identify_title": "Identifica",
+  "ids_made_for_others": "ID fatte per altri",
   "if_for_some_reason_a_user_doesnt_agree": "Se per qualche ragione non concordi con il taxon della comunità, puoi rifiutarlo; significa che la tua ID è quella usata per collegarlo alle altre osservazioni, aggiornare la checklist, etc. Significa anche che le tue osservazioni possono raggiungere il Livello Ricerca solo quando la comunità è d'accordo con te.",
   "ignore_and_continue": "Ignora e continua",
   "import": "Importa",
@@ -12931,6 +13048,10 @@ I18n.translations["it"] = {
         "this_has_been_flagged_as_spam": "Questo è stato contrassegnato come spam"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "Lo stato di conservazione riassume il rischio di estinzione per un gruppo di organismi.",
@@ -13146,6 +13267,10 @@ I18n.translations["iw"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -13508,6 +13633,7 @@ I18n.translations["ja"] = {
   "identifications": "同定",
   "identify_observations": "観察記録をID判定",
   "identify_title": "ID判定",
+  "ids_made_for_others": "他のユーザのためのID",
   "import": "インポート",
   "in_progress": "処理中",
   "inactive_taxon": "無効な分類群",
@@ -14053,6 +14179,10 @@ I18n.translations["ja"] = {
       },
       "spam": {
         "this_has_been_flagged_as_spam": "スパムとしてフラグ付けられました"
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -14829,6 +14959,10 @@ I18n.translations["ko"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "frequency": {
@@ -14922,6 +15056,10 @@ I18n.translations["lexicons"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -14998,6 +15136,10 @@ I18n.translations["lt"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -15072,6 +15214,10 @@ I18n.translations["lv"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -15345,6 +15491,7 @@ I18n.translations["mk"] = {
     }
   },
   "identifications": "Препознавања",
+  "ids_made_for_others": "Препознавања направени за други",
   "import": "Увези",
   "info": "Инфо",
   "input_taxon": "Влезен таксон",
@@ -15679,6 +15826,10 @@ I18n.translations["mk"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -15792,6 +15943,10 @@ I18n.translations["my"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -15866,6 +16021,10 @@ I18n.translations["nb"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -15944,6 +16103,10 @@ I18n.translations["nl"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -16018,6 +16181,10 @@ I18n.translations["no"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -16653,6 +16820,10 @@ I18n.translations["oc"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "L’estat de conservacion sintetisa la risca d’escantiment d’un grop d’organismes."
@@ -16774,6 +16945,10 @@ I18n.translations["pl"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -16848,6 +17023,10 @@ I18n.translations["pt"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -17313,6 +17492,7 @@ I18n.translations["pt-BR"] = {
   "identifications": "Identificações",
   "identify_observations": "Identifique observações",
   "identify_title": "Identificar",
+  "ids_made_for_others": "Identificações feitas por outros",
   "if_for_some_reason_a_user_doesnt_agree": "Se por alguma razão um usuário não concorda com o táxon da comunidade, ele rejeitá-la, o que significa que sua identificação será utilizada para se conectar a outras observações, atualizar listas de vida, etc. Também significa que sua observação apenas se tornará elegível ao 'Nível de Pesquisa' quando a comunidade concordar com ela.",
   "import": "Importar",
   "improving": "Melhorando",
@@ -17994,6 +18174,10 @@ I18n.translations["pt-BR"] = {
         "this_has_been_flagged_as_spam": "Sinalizado como SPAM"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_conservation_status_desc": "O Estado de Conservação sintetiza o risco de extinção para um determinado grupo de organismos.",
@@ -18585,6 +18769,7 @@ I18n.translations["pt-PT"] = {
   "identifications": "Identificações",
   "identify_observations": "Identificar as observações",
   "identify_title": "Identificar",
+  "ids_made_for_others": "Identificações feitas por outros",
   "ignore_and_continue": "Ignorar e continuar",
   "import": "Importar",
   "improving": "A melhorar",
@@ -18811,6 +18996,10 @@ I18n.translations["pt-PT"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -18951,6 +19140,10 @@ I18n.translations["ro"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19025,6 +19218,10 @@ I18n.translations["ru"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19103,6 +19300,10 @@ I18n.translations["sk"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19177,6 +19378,10 @@ I18n.translations["sl"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19255,6 +19460,10 @@ I18n.translations["sr"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19329,6 +19538,10 @@ I18n.translations["sr-RS"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19407,6 +19620,10 @@ I18n.translations["sv"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19481,6 +19698,10 @@ I18n.translations["th"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -19559,6 +19780,10 @@ I18n.translations["tr"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19635,6 +19860,10 @@ I18n.translations["uk"] = {
       "spam": {
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
       }
@@ -19709,6 +19938,10 @@ I18n.translations["vi"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -20165,6 +20398,7 @@ I18n.translations["zh-CN"] = {
   "identifications": "身份证明",
   "identify_observations": "对观察记录进行鉴定",
   "identify_title": "鉴定",
+  "ids_made_for_others": "由其他人做出的ID",
   "ignore_and_continue": "忽略并继续",
   "import": "导入",
   "improving": "正在改进",
@@ -20786,6 +21020,10 @@ I18n.translations["zh-CN"] = {
         "this_has_been_flagged_as_spam": "这已经被标记为垃圾信息"
       }
     },
+    "stats": {
+      "year": {
+      }
+    },
     "taxa": {
       "show": {
         "about_names_desc": "<p>\n大多数类型的生物在口语中都有“常见名称”。这些名字通常是可识别的，容易发音，并且随着时间的推移而变得稳定，但即使是在同一个语言中，许多生物在不同的地方会有几个不同名字，这给讨论这些生物体而不混淆带来了困难。对于符合<a href=\"https://zh.wikipedia.org/wiki/二名法\">生物命名规则</a>的每一类生物 ，科学家通过使用单一的“科学名称”处理这个问题，但这些名字往往是以拉丁语（一种没人说的语言）为基础的，所以他们不像许多人用的常见名字那么好记。科学名称同时也会反映生物的分类，所以当科学家研究出不同的生物体之间更准确的进化理论的时候，这些名字会改变，并降低了名字在交流中的可用性，甚至在那些科学名称的人之间也是如此。\n</p>\n<p>\n一句老格言总结：“常见名字随地方改变而改变，科学名称随时间改变而改变。”\n</p>\n<p>\n我们试图通过在任何地方通过同时展示常见名字和科学名字来解决这些缺点，并基于观众的语言和地理偏好来选择性展示常见名称。\n</p>",
@@ -20977,6 +21215,10 @@ I18n.translations["zh-HK"] = {
       "blocked": {
       },
       "spam": {
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {
@@ -21476,6 +21718,7 @@ I18n.translations["zh-TW"] = {
   "identifications": "鑑定",
   "identify_observations": "鑑定觀察",
   "identify_title": "鑑定",
+  "ids_made_for_others": "用於其他的 ID",
   "if_for_some_reason_a_user_doesnt_agree": "若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。",
   "ignore_and_continue": "忽略並繼續",
   "import": "匯入",
@@ -22185,6 +22428,10 @@ I18n.translations["zh-TW"] = {
       },
       "spam": {
         "this_has_been_flagged_as_spam": "此已被標記為垃圾訊息"
+      }
+    },
+    "stats": {
+      "year": {
       }
     },
     "taxa": {

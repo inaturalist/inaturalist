@@ -90,12 +90,42 @@ const Observations = ( { data, user, year } ) => {
       </div>
     );
   }
+  moment.locale( I18n.locale );
   return (
     <div className="Observations">
       <h3><span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span></h3>
-      <DateHistogram series={ series } />
+      <DateHistogram
+        series={ series }
+        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
+        onClick={ d => {
+          let url = "/observations?verifiable=true";
+          if ( d.seriesName === "month" ) {
+            url += `&year=${d.date.getFullYear( )}&month=${d.date.getMonth() + 1}`;
+          } else if ( d.seriesName === "week" ) {
+            const d1 = moment( d.date ).format( "YYYY-MM-DD" );
+            const d2 = moment( d.date ).add( 8, "days" ).format( "YYYY-MM-DD" );
+            url += `&d1=${d1}&d2=${d2}`;
+          } else {
+            url += `&on=${d.date.getFullYear( )}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
+          }
+          if ( user ) {
+            url += `&user_id=${user.login}`;
+          }
+          window.open( url, "_blank" );
+        } }
+      />
       <h3><span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span></h3>
-      <DateHistogram series={ comparisonSeries } />
+      <DateHistogram
+        series={ comparisonSeries }
+        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
+        onClick={ d => {
+          let url = `/observations?verifiable=true&on=${d.date.getFullYear( )}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
+          if ( user ) {
+            url += `&user_id=${user.login}`;
+          }
+          window.open( url, "_blank" );
+        } }
+      />
       { user && ( <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } /> ) }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
       { popular }

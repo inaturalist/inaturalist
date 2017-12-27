@@ -9,6 +9,7 @@
   = @title
 - content_for :extrajs do
   :javascript
+    ROOT_TAXON_ID = #{ Taxon::LIFE.id };
     YEAR_DATA = #{ @year_statistic.try(:data).to_json };
     YEAR = #{ @year };
     DISPLAY_USER = #{ @display_user ? 

@@ -9,6 +9,7 @@ render(
     currentUser={ CURRENT_USER }
     site={ SITE }
     data={ YEAR_DATA }
+    rootTaxonID={ ROOT_TAXON_ID }
   />,
   document.getElementById( "app" )
 );

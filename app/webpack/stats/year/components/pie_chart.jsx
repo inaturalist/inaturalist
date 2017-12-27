@@ -74,17 +74,19 @@ class PieChart extends React.Component {
     const path = d3.arc( )
       .outerRadius( radius - 10 )
       .innerRadius( innerRadius );
-    const arc = g.selectAll( ".arc" )
+    const arcGroup = g.selectAll( ".arc" )
       .data( pie( data ) )
       .enter( ).append( "g" )
         .attr( "class", "arc" );
-    arc.append( "path" )
+    const arc = arcGroup.append( "path" )
       .attr( "d", path )
       .attr( "class", d => d.data.label )
       .attr( "fill", d => colorForDatum( d.data ) )
       .on( "mouseover", tip.show )
       .on( "mouseout", tip.hide );
-
+    if ( this.props.onClick ) {
+      arc.on( "click", this.props.onClick ).style( "cursor", "pointer" );
+    }
 
     // Make the legend
     const legendColumnWidth = this.props.legendColumnWidth || svgWidth;
@@ -136,7 +138,8 @@ PieChart.propTypes = {
   margin: PropTypes.object,
   labelForDatum: PropTypes.func,
   innerRadius: PropTypes.number,
-  donutWidth: PropTypes.number
+  donutWidth: PropTypes.number,
+  onClick: PropTypes.func
 };
 
 PieChart.defaultProps = {

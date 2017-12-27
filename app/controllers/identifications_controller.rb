@@ -13,7 +13,14 @@ class IdentificationsController < ApplicationController
 
   def index
     per_page = 50
-    search_params = { order_by: "id", order: "desc", per_page: per_page, page: params[:page] || 1 }
+    search_params = {
+      order_by: "id",
+      order: "desc",
+      per_page: per_page,
+      page: params[:page] || 1,
+      d1: params[:d1],
+      d2: params[:d2]
+    }
     if Identification::CATEGORIES.include?( params[:category] )
       search_params[:category] = params[:category]
     end
