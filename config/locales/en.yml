@@ -5075,10 +5075,15 @@ en:
       year:
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
-          of the hierarchy at the center, starting with "Life." <strong>Click an
-          arc to place that taxon at the center</strong> and its children around
-          it, or <strong>click the center to move back up the
-          hierarchy</strong>.
+          of the hierarchy is at the center, starting with "Life" and ending
+          with species at the outer edges. The size of each arc is proportional
+          to the number of observations of that taxon, and colors rougly
+          correspond to our usual "iconic" taxon colors (green for plants,
+          orange for insects, blue for most other animals, etc.), so if you're
+          seeing a lot of green, that means you observed a lot of plants.
+          <strong>Click an arc to place that taxon at the center</strong> and
+          its children around it, or <strong>click the center to move back up
+          the hierarchy</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |

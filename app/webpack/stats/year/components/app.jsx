@@ -47,9 +47,9 @@ const App = ( {
             { I18n.t( "share" ) } <i className="fa fa-share-square-o"></i>
           </a>
         </center>
-        <Summary data={data} />
+        <Summary data={ data } user={ user } year={ year } />
         <Observations data={ data.observations } user={ user } year={ year } />
-        <Identifications data={ data.identifications } />
+        <Identifications data={ data.identifications } user={ user } />
         { user && data.taxa && data.taxa.tree_taxa && rootTaxonID && (
           <TaxaSunburst
             data={ data.taxa.tree_taxa }

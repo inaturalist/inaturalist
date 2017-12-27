@@ -3,7 +3,7 @@ import _ from "lodash";
 import moment from "moment";
 import DateHistogram from "./date_histogram";
 
-const Identifications = ( { data } ) => {
+const Identifications = ( { data, user } ) => {
   if ( _.isEmpty( data ) ) {
     return <div></div>;
   }
@@ -40,13 +40,31 @@ const Identifications = ( { data } ) => {
       <DateHistogram
         series={ series }
         tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
+        onClick={ d => {
+          let url = "/identifications?for=others&current=true";
+          const d1 = moment( d.date ).format( "YYYY-MM-DD" );
+          let d2;
+          if ( d.seriesName === "month" ) {
+            d2 = moment( d.date ).endOf( "month" ).add( 1, "day" ).format( "YYYY-MM-DD" );
+          } else if ( d.seriesName === "week" ) {
+            d2 = moment( d.date ).add( 8, "days" ).format( "YYYY-MM-DD" );
+          } else {
+            d2 = moment( d.date ).add( 1, "day" ).format( "YYYY-MM-DD" );
+          }
+          url += `&d1=${d1}&d2=${d2}`;
+          if ( user ) {
+            url += `&user_id=${user.login}`;
+          }
+          window.open( url, "_blank" );
+        } }
       />
     </div>
   );
 };
 
 Identifications.propTypes = {
-  data: React.PropTypes.object
+  data: React.PropTypes.object,
+  user: React.PropTypes.object
 };
 
 export default Identifications;

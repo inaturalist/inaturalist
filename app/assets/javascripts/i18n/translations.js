@@ -4367,7 +4367,7 @@ I18n.translations["en"] = {
     },
     "stats": {
       "year": {
-        "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy at the center, starting with \"Life.\" <strong>Click an\narc to place that taxon at the center</strong> and its children around\nit, or <strong>click the center to move back up the\nhierarchy</strong>.\n"
+        "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },
     "taxa": {

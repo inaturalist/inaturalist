@@ -85,7 +85,7 @@ class DateHistogram extends React.Component {
       const seriesGroup = g.append( "g" );
       seriesGroup.classed( _.snakeCase( seriesName ), true );
       if ( this.props.series[seriesName].style === "bar" ) {
-        seriesGroup.selectAll( "rect" ).data( seriesData )
+        const bars = seriesGroup.selectAll( "rect" ).data( seriesData )
           .enter( ).append( "rect" )
             .attr( "width", ( d, i ) => {
               let nextX = width;
@@ -99,6 +99,9 @@ class DateHistogram extends React.Component {
             .attr( "transform", d => `translate( ${x( d.date )}, ${y( d.value )} )` )
             .on( "mouseover", tip.show )
             .on( "mouseout", tip.hide );
+        if ( this.props.onClick ) {
+          bars.on( "click", this.props.onClick ).style( "cursor", "pointer" );
+        }
       } else {
         seriesGroup.append( "path" ).datum( seriesData )
             .attr( "fill", "none" )
@@ -107,7 +110,7 @@ class DateHistogram extends React.Component {
             .attr( "stroke-linecap", "round" )
             .attr( "stroke-width", 1.5 )
             .attr( "d", line );
-        seriesGroup.selectAll( "circle" ).data( seriesData )
+        const points = seriesGroup.selectAll( "circle" ).data( seriesData )
           .enter().append( "circle" )
             .attr( "cx", d => x( d.date ) )
             .attr( "cy", d => y( d.value ) )
@@ -116,6 +119,9 @@ class DateHistogram extends React.Component {
             .style( "stroke", ( ) => colorForSeries( seriesName ) )
             .on( "mouseover", tip.show )
             .on( "mouseout", tip.hide );
+        if ( this.props.onClick ) {
+          points.on( "click", this.props.onClick ).style( "cursor", "pointer" );
+        }
       }
     } );
 
@@ -146,7 +152,8 @@ class DateHistogram extends React.Component {
 
 DateHistogram.propTypes = {
   series: PropTypes.object,
-  tickFormatBottom: PropTypes.func
+  tickFormatBottom: PropTypes.func,
+  onClick: PropTypes.func
 };
 
 DateHistogram.defaultProps = {
