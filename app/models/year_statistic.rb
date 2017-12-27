@@ -347,6 +347,8 @@ class YearStatistic < ActiveRecord::Base
       "#{FakeView.image_url( user.icon.url(:large) )}".gsub(/([^\:])\/\//, '\\1/')
     elsif site
       "#{FakeView.image_url( site.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
+    elsif Site.default
+      "#{FakeView.image_url( Site.default.logo_square.url )}".gsub(/([^\:])\/\//, '\\1/')
     else
       "#{FakeView.image_url( "bird.png" )}".gsub(/([^\:])\/\//, '\\1/')
     end
@@ -397,8 +399,7 @@ class YearStatistic < ActiveRecord::Base
     owner = if user
       user.name.blank? ? user.login : user.name
     else
-      s = ( site || Site.default )
-      s.site_name_short.blank? ? s.name : s.site_name_short
+      ""
     end
     title = if user
       user_site = user.site || Site.default

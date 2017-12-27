@@ -54,13 +54,6 @@
   = stylesheet_link_tag "stats/year"
   = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
 - content_for :extrahead do
-  %meta{ property: "og:title", content: @title }
-  %meta{ property: "og:type", content: "website" }
-  %meta{ property: "og:url", content: request.url }
-  - if @display_user
-    %meta{ property: "og:description", content: html_attributize( I18n.t( :users_highlights_and_stats_from_year_on_site, user: (@display_user.name || @display_user.login), year: @year, site: @site.name ) ) }
-  - else
-    %meta{ property: "og:description", content: html_attributize( I18n.t( :highlights_and_stats_from_year_on_site, year: @year, site: @site.name ) ) }
   - if @shareable_image_url
     %meta{ name: "og:image", content: image_url( @shareable_image_url ) }
     %meta{ name: "twitter:image", content: image_url( @shareable_image_url ) }
@@ -73,6 +66,13 @@
     - if @display_user && @display_user.icon?
       %meta{ property: "og:image:width", content: "500" }
       %meta{ property: "og:image:height", content: "500" }
+  %meta{ property: "og:title", content: @title }
+  %meta{ property: "og:type", content: "website" }
+  %meta{ property: "og:url", content: request.url }
+  - if @display_user
+    %meta{ property: "og:description", content: html_attributize( I18n.t( :users_highlights_and_stats_from_year_on_site, user: (@display_user.name || @display_user.login), year: @year, site: @site.name ) ) }
+  - else
+    %meta{ property: "og:description", content: html_attributize( I18n.t( :highlights_and_stats_from_year_on_site, year: @year, site: @site.name ) ) }
 #fb-root
 #app
   #initial-loading.text-center
