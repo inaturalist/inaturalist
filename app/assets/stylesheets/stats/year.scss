@@ -322,6 +322,29 @@ $tip-opacity: 1;
       line-height: 30px;
     }
   }
+  .leaflet-container {
+    .leaflet-control-layers {
+      display: none;
+    }
+    .leaflet-control-layers-expanded {
+      padding: 10px 14px 8px 14px;
+      label {
+        font-size: 1.2em;
+        font-weight: normal;
+        input {
+          margin-top: 2px;
+          vertical-align: text-top;
+        }
+        span {
+          text-transform: capitalize;
+        }
+      }
+    }
+    .leaflet-control-layers-toggle {
+      cursor: pointer;
+      background-size: 20px 20px !important;
+    }
+  }
 }
 
 .TaxaSunburst {

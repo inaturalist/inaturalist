@@ -146,31 +146,33 @@ class TaxaSunburst extends React.Component {
       if ( d.data.iconicTaxonID && inaturalist.ICONIC_TAXA[d.data.iconicTaxonID] ) {
         const iconicTaxonColor = iNaturalist.Map.
           ICONIC_TAXON_COLORS[inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name];
-        const c = d3.color( iconicTaxonColor );
+        let c = d3.color( iconicTaxonColor );
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Mollusca" ) {
-          return c.brighter( );
+          c = c.brighter( );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Arachnida" ) {
-          return c.brighter( 2 );
+          c = c.brighter( 2 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Actinopterygii" ) {
-          return c.darker( 1 );
+          c = c.darker( 1 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Amphibia" ) {
-          return c.darker( 0.5 );
+          c = c.darker( 0.5 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Reptilia" ) {
-          return c.brighter( 0.75 );
+          c = c.brighter( 0.75 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Aves" ) {
-          return c.brighter( 0.5 );
+          c = c.brighter( 0.5 );
         }
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Mammalia" ) {
-          return c.brighter( 1 );
+          c = c.brighter( 1 );
         }
         // if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Animalia" ) {
         //   return c.brighter( 1.5 );
         // }
+        c = c.brighter( _.random( 0, 0.25 ) ).darker( _.random( 0, 0.25 ) );
+        c.opacity = _.random( 0.8, 1 );
         return c;
       }
       return color( ( d.children ? d : d.parent ).data.name );

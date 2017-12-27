@@ -85,7 +85,7 @@ class TorqueMap extends React.Component {
       tileJSON: `${apiURL}/tiles.json?${$.param( torqueLayerParams )}`,
       cartocss: CARTOCSS,
       blendmode: "overlay",
-      animationDuration: interval === "weekly" ? 30 : 12,
+      animationDuration: interval === "weekly" ? 26 : 12,
       zIndex: 10,
       map
     } );

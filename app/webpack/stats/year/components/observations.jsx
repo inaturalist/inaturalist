@@ -6,8 +6,9 @@ import inatjs from "inaturalistjs";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import DateHistogram from "./date_histogram";
 import TorqueMap from "./torque_map";
+import GlobalMap from "./global_map";
 
-const Observations = ( { data, user, year } ) => {
+const Observations = ( { data, site, user, year } ) => {
   const series = {};
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   if ( data.month_histogram ) {
@@ -131,7 +132,10 @@ const Observations = ( { data, user, year } ) => {
           window.open( url, "_blank" );
         } }
       />
-      { user && ( <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } /> ) }
+      { user ?
+        ( <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } /> ) :
+        ( <GlobalMap year={ year } site={ site } /> )
+      }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
       { popular }
     </div>
@@ -139,6 +143,7 @@ const Observations = ( { data, user, year } ) => {
 };
 
 Observations.propTypes = {
+  site: React.PropTypes.object,
   user: React.PropTypes.object,
   year: React.PropTypes.number,
   data: React.PropTypes.object

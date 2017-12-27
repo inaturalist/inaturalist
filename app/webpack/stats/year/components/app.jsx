@@ -48,7 +48,7 @@ const App = ( {
           </a>
         </center>
         <Summary data={ data } user={ user } year={ year } />
-        <Observations data={ data.observations } user={ user } year={ year } />
+        <Observations data={ data.observations } user={ user } year={ year } site={site} />
         <Identifications data={ data.identifications } user={ user } />
         { user && data.taxa && data.taxa.tree_taxa && rootTaxonID && (
           <TaxaSunburst

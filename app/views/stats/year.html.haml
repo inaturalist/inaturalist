@@ -18,6 +18,7 @@
       "null"
     };
     SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json };
+    DEFAULT_SITE_ID = #{ Site.default.id };
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
