@@ -1632,7 +1632,28 @@ pt-PT:
   inactive: inativo
   inactive_taxon: táxon inativo
   inappropriate: Inapropriado?
+  insects: insetos
+  interactions: Interações
+  internal_server_error: Erro interno do servidor
+  invitation: Convite
+  invitations: Convites
+  invite: convidar
+  invite_flickr_photos: Introduzir as fotografias do Flickr a %{site_name}
+  invite_more: Convidar mais
+  invite_observations: Convidar observações
+  invite_people: Convidar pessoas
+  invite_people_to_project: Convidar pessoas para %{project}
+  iphone: iPhone
+  is_a: é um
+  is_an: é uma
+  is_now: é agora
+  is_the_organism_wild: É um organismo silvestre/naturalizado?
+  is_this_observation_offensive_html: Esta observação é <a href="/help#inappropriate">inapropriada</a>,
+    invasiva, ou ofensiva?
   it: Este
+  it_has: Tem
+  it_instead: ao invés disso.
+  its_important_that_you: É importante que clique
   iucn_red_list_status: Estatuto na Lista Vermelha da IUCN
   january: janeiro
   join: Participe
@@ -1660,6 +1681,7 @@ pt-PT:
   labels: Etiquetas
   language_slash_type: Língua / Tipo
   large: grande
+  last_year: Ano passado
   lat: Latitude
   latitude: Latitude
   latitude_in_decimals: 'Latitude em graus decimais, ex: 38.123'
@@ -1669,6 +1691,8 @@ pt-PT:
   leaderboard: Colaboradores mais ativos
   leaderboard_for_x: Os colaboradores mais ativos de %{x}
   leaderboards: Colaboradores mais ativos
+  leaderboard_most:
+    species: A maioria das espécies em %{time}
   leading: Principal
   learn!: Aprenda!
   learn_about_the_species_live_in: Aprenda sobre as espécies que vivem em
@@ -1865,21 +1889,108 @@ pt-PT:
       hh: '%dh'
   months: Meses
   more_filters: Mais filtros
+  more_from_x: Mais de %{x}
   more_import_options: Mais opções de importação
+  more_info: Mais informações
+  more_info_title: Mais informações
+  more_observations: Mais observações
+  more_photos: Mais fotografias
+  most: A maioria
+  most_agree: a maioria concorda
+  most_disagree: a maioria discorda
+  most_observations: A maioria das observações
+  most_species: A maioria das espécies
+  most_observed_species: Espécies mais observadas
+  most_observed_introduced_species: Espécies introduzidas mais observadas
+  most_observed_threatened_species: Espécies ameaçadas mais observadas
+  multiple: múltiplo
+  multiple_select_option: -- múltiplo --
+  name: Nome
+  name_entered: Nome introduzido
+  name_llaves: '[NOME]'
+  name_or_username: Nome ou do utilizador
+  name_provider: Nome do provedor
+  name_providers:
+    col: Catálogo da Vida
+    ubio: uBio
+    nzor: Registo de Organismos da Nova Zelândia
+  names: Nomes
+  names_for_taxon_html: Nomes para %{taxon}
+  naturalised: naturalizado
+  naturalized: naturalizado
+  native: autóctone
+  native_to_place: Nativo de %{place}
+  nav: Nav
+  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+  ne_lat: LA. NE
+  ne_lon: Lon. NE
+  near: perto
+  near_threatened: quase ameaçado
   nearby: Nas redondezas
+  nearby_observations_: Observações próximas
+  nearby_observations: Observações próximas
+  need_id_help?: Precisa de ajuda com a identificação (ID)?
   Needs_ID!: Precissa ID!
   new_observations_from_place_html: Novas observações em %{place}
+  observed: Observado
+  observed_by: Observado por
+  observed_on: Observado em
+  observed_one: observado um(a)
+  observer: Observador
+  observers: Observadores
+  observer_short: Observador
+  observing: a observar
+  of: de
+  of_it_and_its_descendants: deste e dos seus descendentes
+  of_least_concern: De pouca importância
   of_observations: observações
   of_species: espécies
+  of_observers: observadores
   of_identifiers: identificadores
   of_places: sítios
+  of_this_taxon: Deste táxon
+  offensive_inappropriate: ofensivo / inapropriado
   official_blog: Blogue oficial
   ok: OK
+  on_: "no"
+  on_date: em %{date}
+  on_day: "no"
+  on_edit_date: em %{editdate}
+  on_list?: na lista
+  on_submit_date: em %{submitdate}
+  on_your_life_list: na sua lista de vida
   onboarding:
     observe_panel_body_p1_local: Precisa de inspiração? Eis alguns organismos a serem
       observados nas proximidades...
     youve_got_updates_panel_title: Tem atualizações!
   original: Original
+  other: outro
+  other_animals: outros animais
+  other_animals_plural:
+    one: outro animal
+    other: outros animais
+  other_annimals: Outros animais
+  other_listings_of_this_taxon_for_this_place: Outros registos deste táxon para este
+    local
+  other_species_commonly_misidentified_as_this_species: Outras espécies que costumam
+    ser confundidas com esta
+  our_blog: O nosso blogue
+  owner: Proprietário
+  password: Palavra-passe
+  pdf: PDF
+  pdf_slash_print: PDF / Imprimir
+  people: Pessoas
+  people_agree: pessoas concordam
+  person: pessoa
+  personal_message: Mensagem pessoal
+  permalink: Ligação permanente
+  photo: Fotografia
+  photo?: Fotografia?
   photo_licensing: Licença da fotografia
   photo_type: Tipo de fotografia
   place_geo:
@@ -1889,14 +2000,46 @@ pt-PT:
       District: Distrito
       district: Distrito
       Island: Ilha
+      island: ilha
       Local_Administrative_Area: Área Administrativa Local
       Municipality: Município
       municipality: Município
+      Nationality: Nacionalidade
+      nationality: nacionalidade
+      Parish: Freguesia
+      parish: freguesia
+      Prefecture_City: Cidade-prefeitura
+      prefecture_city: cidade-prefeitura
+      Point_of_Interest: Ponto de interesse
+      point_of_interest: ponto de interesse
       Postal_Code: Código postal
+      postal_code: código postal
+      Province: Província
+      province: província
+      Region: Região
+      region: região
+      Republic: República
       republic: República
+      Shire: Condado
+      shire: condado
+      Sports_Team: Equipa desportiva
+      sports_team: equipa desportiva
       State: Estado/distrito
+      state: estado
+      Street: Rua
+      street: rua
+      Subdivision: Subdivisão
+      subdivision: subdivisão
+      Territory: Território
+      territory: território
+      Time_Zone: Fuso horário
+      time_zone: fuso horário
+      Town: Cidade
+      town: cidade
       Unknown: Desconhecido
       unknown: Desconhecido
+      Zone: Zona
+      zone: zona
   places_name:
     afghanistan: Afeganistão
     africa: África
