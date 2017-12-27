@@ -398,6 +398,7 @@ zh-CN:
     other: 以及其他 %{count} 个人！
   android: 安卓
   animals: 动物
+  animated_observations_map: 动画化观察地图
   annotations: 注释
   announcement_was_successfully_created: 已成功创建公告。
   announcement_was_successfully_updated: 公告已成功更新。
@@ -1266,6 +1267,7 @@ zh-CN:
   generate_pdf: 生成 PDF
   generate_taxonomic_tags_for_flickr: 为您的Flickr照片生成分类学标签
   generate_widget: 生成小部件
+  generate_your_stats: 生成您的统计
   generating: 生成中……
   generating_mobile_archive: 生成移动存档
   Genus: 类
@@ -1510,6 +1512,7 @@ zh-CN:
   last_inat_observation: 最近 %{site_name} 观察
   last_observation: 最近观察
   last_seen: 上次看见
+  last_year: 去年
   lat: 纬度
   latitude: 纬度
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
@@ -1773,6 +1776,7 @@ zh-CN:
   most: 多数
   most_agree: 多数同意
   most_disagree: 多数不同意
+  most_comments_and_faves: 最多评论和喜爱
   most_species: 最多物种
   most_observed_species: 最多观察的物种
   most_observed_introduced_species: 最多观察的引进物种
@@ -1977,6 +1981,7 @@ zh-CN:
   observations_per_month: 观察 / 月
   observations_saved: 观察报告已保存！
   observations_text_search_warning: 当与其他过滤器结合使用时，文本搜索可能产生怪异结果。如果您希望查找特定物种的观察，请使用分类过滤器。
+  observations_this_year_vs_last_year: 今年观察vs.去年观察
   observations_title: 所有人的观察
   observations_total: 观察总计
   observations_w: 观察 w/
@@ -2081,6 +2086,9 @@ zh-CN:
     comment:
       with_by: 由 %{by_link} 评论于 @vow_or_con{vow:an|a} %{comment_subject_link}
       without_by: 评论于@vow_or_con{vow:an|a} %{comment_subject_link}
+  per_day: 每天
+  per_month: 每月
+  per_week: 每周
   person: 人
   personal_message: 个人消息
   personal_message_description: 没有人喜欢从一台机器获取电子邮件！为什么不让您的朋友知道您邀请他们的原因呢？
@@ -2417,6 +2425,7 @@ zh-CN:
   redo_search_in_map: 在地图中重新搜索
   refresh: 刷新
   refreshing: 正在刷新
+  regenerate_stats: 重新生成统计
   reject?: 拒绝？
   reject_the_community_id: 拒绝社群ID
   related_species: 相关物种
@@ -2570,6 +2579,7 @@ zh-CN:
   september: 九月
   set_license: 设置许可协议
   settings: 设置
+  share: 分享
   short_code_for_this_place: 此地点的简短代码，例如US对应美国
   show: 显示
   show_common_names: 显示常用名
@@ -2593,6 +2603,7 @@ zh-CN:
   sizes: 尺寸
   skip_to_next_page: 跳至下一页
   small: 小
+  site_year_in_review: '%{site_name}在%{year}年中的复核'
   so_meta!: 所以元！
   some_agree: 部分同意
   some_observations_failed_to_be_added: 一些观察无法添加到项目中
@@ -2680,6 +2691,7 @@ zh-CN:
   start_typing_taxon_name: 开始输入分类名称……
   states: 州
   stats: 统计
+  stats_for_this_year_have_not_been_generated: 该年的统计尚未生成。
   stats_title: 网站统计
   status: 状态
   status_globally: '%{status} 全球'
@@ -2713,6 +2725,7 @@ zh-CN:
   suggest_an_identification: 建议一次鉴定
   suggestions: 建议
   summary: 摘要
+  supporting: 支持
   suspicious_photos: 可疑照片
   sun: 日
   suspend_user: 停用用户
@@ -2831,6 +2844,7 @@ zh-CN:
   this_user_has_been_suspended_message: 如果这是您的账户，并且您认为这样做是错误的，请<a href="mailto:%{email}">联络我们</a>。
   this_will_re_apply_all_list_rules: 这将重新同意所有列表规则至列出的分类，并更新任何分配的统计，例如拒绝不在分类列表中的分类或不是选定排名的分类。它将不会添加任何新分类。这会消耗几分钟。
   this_will_reload_and_refresh: 这将从观察加入列出的分类，并立即刷新观察状态。这将花费一些时间，并请酌情使用。
+  this_year: 今年
   threatened: 受到威胁
   thu: 四
   time_: 时间
@@ -2970,6 +2984,7 @@ zh-CN:
   users_identification_short_html: <a href='%{url}'>%{user}</a>的ID
   users_observations: '%{user}的观察'
   users_profile: '%{user}的详细信息'
+  users_year_on_site: '%{site}在%{year}年中，%{user}的复核'
   using_a_license: 使用一份许可协议
   valid_interrogation: 有效么？
   valid_options_are: 有效选项是
@@ -3039,9 +3054,11 @@ zh-CN:
   view_the_observation: 查看观察
   view_user_observations: 查看 %{user} 的观察
   view_xs_journal: 查看 %{x} 的日记
+  view_year_stats_for_site: 查看用于%{site}的%{year}统计
   view_your_dashboard: 查看您的仪表板
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>查看您的控制面板</a>以获取更多更新
   view_your_calendar: 查看您的日历
+  view_your_year_stats: 查看您的%{year}统计
   view_yours: 查看您的
   view_all_of_your_observations_from_x: 从 %{x} 查看您所有的观察
   visually_similar: 视觉类似
@@ -3064,6 +3081,7 @@ zh-CN:
     我们尝试了处理您上传的名为 %{filename} 的文件，但未成功。
     请修复下列问题，然后重试。
   wed: 三
+  week_of_date: '%{date}的一周'
   welcome!: 欢迎！
   welcome_comma!: 欢迎，
   welcome: 欢迎
@@ -3135,7 +3153,9 @@ zh-CN:
   x_wrote_a_new_post_html: '%{x}写了一个新帖子'
   x_wrote_y_new_posts_html: '%{x}写了%{y}篇新贴子'
   year: 年
+  year_in_review: '%{year}年中的复核'
   year_month: 年/月
+  year_on_site: '%{site} %{year}一年'
   yellow: 黄色
   "yes": 是
   yes_find_them!: 是的，找到他们！
