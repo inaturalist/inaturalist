@@ -98,7 +98,7 @@ const Observations = ( { data, user, year } ) => {
         series={ series }
         tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
         onClick={ d => {
-          let url = "/observations?verifiable=true";
+          let url = "/observations?place_id=any&verifiable=true";
           if ( d.seriesName === "month" ) {
             url += `&year=${d.date.getFullYear( )}&month=${d.date.getMonth() + 1}`;
           } else if ( d.seriesName === "week" ) {
@@ -119,7 +119,12 @@ const Observations = ( { data, user, year } ) => {
         series={ comparisonSeries }
         tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
         onClick={ d => {
-          let url = `/observations?verifiable=true&on=${d.date.getFullYear( )}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
+          let url = "/observations?place_id=any&verifiable=true";
+          if ( d.seriesName === "last_year" ) {
+            url += `&on=${d.date.getFullYear( ) - 1}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
+          } else {
+            url += `&on=${d.date.getFullYear( )}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
+          }
           if ( user ) {
             url += `&user_id=${user.login}`;
           }

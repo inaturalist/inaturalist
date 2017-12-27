@@ -53,7 +53,7 @@ const Summary = ( {
               margin={ pieMargin }
               donutWidth={ donutWidth }
               onClick={ d => {
-                let url = `/observations?quality_grade=${d.data.qualityGrade}&${year}-01-01&d2=${year + 1}-01-01`;
+                let url = `/observations?place_id=any&quality_grade=${d.data.qualityGrade}&${year}-01-01&d2=${year + 1}-01-01`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
@@ -191,7 +191,7 @@ const Summary = ( {
               }}
               donutWidth={ donutWidth }
               onClick={ d => {
-                let url = `/observations?d1=${year}-01-01&d2=${year + 1}-01-01`;
+                let url = `/observations?place_id=any&d1=${year}-01-01&d2=${year + 1}-01-01`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }

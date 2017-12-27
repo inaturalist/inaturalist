@@ -4892,6 +4892,7 @@ I18n.translations["es"] = {
   "amphibians": "anfibios",
   "and": "y",
   "animals": "Animales",
+  "animated_observations_map": "Mapa de Observaciones Animadas",
   "annotations": "Anotaciones",
   "any": "cualquiera",
   "arachnids": "arácnidos",
@@ -5930,7 +5931,7 @@ I18n.translations["es"] = {
     },
     "stats": {
       "year": {
-        "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de\n\"resplandor solar\". La base de la jerarquía en el centro, comenzando\ncon \"Vida\". <strong>Haga clic en un arco para colocar ese taxón en el\ncentro</strong> y sus niños a su alrededor, y <strong>haga clic en el\ncentro para volver a subir la jerarquía</strong>.\n"
+        "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de\n\"resplandor solar\". La base de la jerarquía está en el centro,\ncomenzando con \"Vida\" y terminando con especies en los bordes\nexteriores. El tamaño de cada arco es proporcional al número de\nobservaciones de ese taxón, y los colores se corresponden con los\ncolores de nuestro taxón \"icónico\" habitual (verde para las plantas,\nnaranja para los insectos, azul para la mayoría de los otros animales,\netc.), así que si Veo mucho verde, eso significa que has observado\nmuchas plantas. <strong>Haga clic en un arco para colocar ese taxón en\nel centro</strong> y sus niños a su alrededor, o <strong>haga clic en\nel centro para volver a subir la jerarquía.</strong>\n"
       }
     },
     "taxa": {

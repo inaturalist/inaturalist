@@ -462,6 +462,7 @@ es:
     other: y %{count} personas más
   android: Android
   animals: Animales
+  animated_observations_map: Mapa de observaciones animado
   annotations: Anotaciones
   announcement_was_successfully_created: El aviso fue creado exitosamente.
   announcement_was_successfully_updated: El aviso fue actualizado exitosamente.
@@ -5518,10 +5519,16 @@ es:
       year:
         sunburst_desc_html: |
           Taxones observados dispuestos como un diagrama jerárquico de
-          "resplandor solar". La base de la jerarquía en el centro, comenzando
-          con "Vida". <strong>Haga clic en un arco para colocar ese taxón en el
-          centro</strong> y sus niños a su alrededor, y <strong>haga clic en el
-          centro para volver a subir la jerarquía</strong>.
+          "resplandor solar". La base de la jerarquía está en el centro,
+          comenzando con "Vida" y terminando con especies en los bordes
+          exteriores. El tamaño de cada arco es proporcional al número de
+          observaciones de ese taxón, y los colores se corresponden con los
+          colores de nuestro taxón "icónico" habitual (verde para las plantas,
+          naranja para los insectos, azul para la mayoría de los otros animales,
+          etc.), así que si Veo mucho verde, eso significa que has observado
+          muchas plantas. <strong>Haga clic en un arco para colocar ese taxón en
+          el centro</strong> y sus niños a su alrededor, o <strong>haga clic en
+          el centro para volver a subir la jerarquía.</strong>
     taxa:
       show:
         about_names_desc: |-
