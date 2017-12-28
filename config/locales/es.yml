@@ -1660,6 +1660,7 @@ es:
   id_please: ID por favor
   id_please_expandable_html: Ayuda<span class='full'> por favor!</span>
   id_withdrawn: Id. retirada
+  ids_by_taxon: IDs por Taxon
   identify: Identificar
   identify_observations: Identificar observaciones
   identify_title: Identificar
@@ -4373,8 +4374,8 @@ es:
   where_were_you?: <em>¿Dónde</em> estaba usted?
   which_projects_can_add_your_observations?: ¿Qué proyectos pueden añadir tus observaciones?
   white: blanco
-  who_helped_you_the_most: Quién te ayudó más
-  who_you_helped_the_most: A quien ayudaste más
+  who_helped_user_the_most: "Quién ayudó a %{user} más"
+  who_user_helped_the_most: "Quien %{user} ayudó más"
   with_annotation: Con anotación
   without_annotation: Sin anotación
   widget: Widget
@@ -4594,7 +4595,6 @@ es:
   your_hard_drive: Su disco duro
   your_home: Su página de inicio
   your_id: Su identificación
-  your_ids_by_taxon: Sus identificaciones por Taxon
   your_identification: Su identificación
   your_inat_account_has_been_activated: Su cuenta %{inat} ha sido activada.
   your_life_list: your life list!

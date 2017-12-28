@@ -65,12 +65,12 @@ const Identifications = ( { data, user } ) => {
           />
         </Col>
       </Row>
-      { data.users_helped || data.users_who_helped ? (
+      { user && ( data.users_helped || data.users_who_helped ) ? (
         <Row>
           <Col xs={ 4 }>
             { data.users_helped ? (
               <div className="idents-users-helped">
-                <h3><span>{ I18n.t( "who_you_helped_the_most" ) }</span></h3>
+                <h3><span>{ I18n.t( "who_user_helped_the_most", { user: user.login } ) }</span></h3>
                 { data.users_helped.map( d => (
                   <UserWithIcon
                     user={ Object.assign( {}, d.user, { icon_url: d.user.icon } ) }
@@ -83,7 +83,7 @@ const Identifications = ( { data, user } ) => {
             ) : null }
           </Col>
           <Col xs={ 4 }>
-            <h3><span>{ I18n.t( "your_ids_by_taxon" ) }</span></h3>
+            <h3><span>{ I18n.t( "ids_by_taxon" ) }</span></h3>
             <PieChartForIconicTaxonCounts
               data={ data.iconic_taxon_counts }
               donutWidth={ 20 }
@@ -100,7 +100,7 @@ const Identifications = ( { data, user } ) => {
           <Col xs={ 4 }>
             { data.users_who_helped ? (
               <div className="idents-users-who-helped">
-                <h3><span>{ I18n.t( "who_helped_you_the_most" ) }</span></h3>
+                <h3><span>{ I18n.t( "who_helped_user_the_most", { user: user.login } ) }</span></h3>
                 { data.users_who_helped.map( d => (
                   <UserWithIcon
                     user={ Object.assign( {}, d.user, { icon_url: d.user.icon } ) }
