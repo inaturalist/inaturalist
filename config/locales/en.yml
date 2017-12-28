@@ -3864,6 +3864,8 @@ en:
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which projects can add your observations?
   white: white
+  who_helped_you_the_most: Who HELPED You the Most
+  who_you_helped_the_most: Who YOU Helped the Most
   with_annotation: With annotation
   without_annotation: Without annotation
   widget: Widget
@@ -4054,6 +4056,7 @@ en:
   your_hard_drive: your hard drive
   your_home: Your Home
   your_id: Your ID
+  your_ids_by_taxon: Your IDs By Taxon
   your_identification: Your Identification
   your_inat_account_has_been_activated: "Your %{inat} account has been activated."
   your_life_list: your life list!
@@ -4489,7 +4492,7 @@ en:
           <a href="%{place_url}">%{place_name}</a> 
           to <strong>"%{establishment_means}"</strong>. Only
           curators can use this tool. Changing the establishment means to
-          "introduced" will have rougly the same effect, but it won't change
+          "introduced" will have roughly the same effect, but it won't change
           existing values, just fill in blank ones.
     lists:
       new:

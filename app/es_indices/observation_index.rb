@@ -141,21 +141,21 @@ class Observation < ActiveRecord::Base
     created = created_at.in_time_zone(timezone_object || "UTC")
     t = taxon
     json = {
-        id: id,
-        uuid: uuid,
-        site_id: site_id,
-        created_at: created,
-        created_at_details: ElasticModel.date_details(created),
-        observed_on: datetime.blank? ? nil : datetime.to_date,
-        observed_on_details: ElasticModel.date_details(datetime),
-        time_observed_at: time_observed_at_in_zone,
-        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
-        quality_grade: quality_grade,
-        captive: captive,
-        user: user ? user.as_indexed_json(no_details: true) : nil,
-        taxon: t ? t.as_indexed_json(for_observation: true,
-          no_details: options[:no_details],
-          for_identification: options[:for_identification]) : nil
+      id: id,
+      uuid: uuid,
+      site_id: site_id,
+      created_at: created,
+      created_at_details: ElasticModel.date_details(created),
+      observed_on: datetime.blank? ? nil : datetime.to_date,
+      observed_on_details: ElasticModel.date_details(datetime),
+      time_observed_at: time_observed_at_in_zone,
+      place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
+      quality_grade: quality_grade,
+      captive: captive,
+      user: user ? user.as_indexed_json(no_details: true) : nil,
+      taxon: t ? t.as_indexed_json(for_observation: true,
+        no_details: options[:no_details],
+        for_identification: options[:for_identification]) : nil
     }
 
     unless options[:no_details]

@@ -4,6 +4,7 @@
 @import "../shared/observations_grid_item";
 @import "../shared/loading_spinner";
 @import "../shared/split_taxon";
+@import "../shared/user_with_icon";
 
 $background-color: #1A1A1A;
 $gray: #999999;
@@ -195,6 +196,54 @@ $dark-gray: #333333;
     text-align: center;
     .btn {
       margin-bottom: 20px;
+    }
+  }
+
+  .Identifications {
+    .UserWithIcon {
+      margin-bottom: 10px;
+      .icon {
+        margin-right: 10px;
+      }
+      .title a {
+        color: white;
+        font-size: 120%;
+      }
+      .subtitle {
+        margin-top: 0;
+        font-size: 80%;
+        a {
+          color: $medium-gray;
+        }
+        i {
+          margin-right: 3px;
+        }
+        text-transform: uppercase;
+      }
+    }
+    .idents-users-helped {
+      text-align: right;
+      h3 {
+        text-align: right;
+        span {
+          padding-right: 0;
+        }
+      }
+      .UserWithIcon {
+        .icon {
+          margin-right: 0px;
+          margin-left: 10px;
+          float: right;
+        }
+      }
+    }
+    .idents-users-who-helped {
+      h3 {
+        text-align: left;
+        span {
+          padding-left: 0;
+        }
+      }
     }
   }
 }

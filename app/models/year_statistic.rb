@@ -76,7 +76,10 @@ class YearStatistic < ActiveRecord::Base
         category_counts: identification_counts_by_category( year, user: user ), 
         month_histogram: identifications_histogram( year, user: user, interval: "month" ),
         week_histogram: identifications_histogram( year, user: user, interval: "week" ),
-        day_histogram: identifications_histogram( year, user: user, interval: "day" )
+        day_histogram: identifications_histogram( year, user: user, interval: "day" ),
+        users_helped: users_helped( year, user ),
+        users_who_helped: users_who_helped( year, user ),
+        iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user )
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
@@ -207,6 +210,22 @@ class YearStatistic < ActiveRecord::Base
     end
   end
 
+  def self.identification_counts_by_iconic_taxon( year, user )
+    return unless user
+    es_params = identifications_es_base_params( year )
+    es_params[:filters] << { terms: { "user.id" => [user.id] } }
+    es_params[:aggregate] = {
+      iconic_taxa: { terms: { field: "taxon.iconic_taxon_id" } }
+    }
+    Identification.elastic_search( es_params ).response.aggregations.iconic_taxa.buckets.inject({}) do |memo, bucket|
+      # memo[bucket["key"]] = bucket.doc_count
+      # memo
+      key = Taxon::ICONIC_TAXA_BY_ID[bucket["key"].to_i].try(:name)
+      memo[key] = bucket.doc_count
+      memo
+    end
+  end
+
   def self.obervation_counts_by_quality_grade( year, options = {} )
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
@@ -316,6 +335,54 @@ class YearStatistic < ActiveRecord::Base
           "photos": [o["photos"][0].select{|k,v| %w(url original_dimensions).include?( k ) }]
         }
       end
+    end.compact
+  end
+
+  def self.users_helped( year, user )
+    return unless user
+    es_params = identifications_es_base_params( year )
+    es_params[:filters] << { terms: { "user.id" => [user.id] } }
+    es_params[:aggregate] = {
+      users_helped: { terms: { field: "observation.user.id" } }
+    }
+    Identification.
+        elastic_search( es_params ).
+        response.
+        aggregations.
+        users_helped.
+        buckets[0..2].
+        inject( [] ) do |memo, bucket|
+      helped_user = User.find_by_id( bucket["key"] )
+      next unless helped_user
+      memo << {
+        count: bucket.doc_count,
+        user: helped_user.as_indexed_json
+      }
+      memo
+    end.compact
+  end
+
+  def self.users_who_helped( year, user )
+    return unless user
+    es_params = identifications_es_base_params( year )
+    es_params[:filters] << { terms: { "observation.user.id" => [user.id] } }
+    es_params[:aggregate] = {
+      users_helped: { terms: { field: "user.id" } }
+    }
+    Identification.
+        elastic_search( es_params ).
+        response.
+        aggregations.
+        users_helped.
+        buckets[0..2].
+        inject( [] ) do |memo, bucket|
+      helped_user = User.find_by_id( bucket["key"] )
+      next unless helped_user
+      memo << {
+        count: bucket.doc_count,
+        user: helped_user.as_indexed_json
+      }
+      memo
     end.compact
   end
 
@@ -445,6 +512,22 @@ class YearStatistic < ActiveRecord::Base
 
     self.shareable_image = open( final_path )
     save!
+  end
+
+  private
+  def self.identifications_es_base_params( year )
+    {
+      size: 0,
+      filters: [
+        { terms: { "created_at_details.year": [year] } },
+        { terms: { "own_observation": [false] } },
+        { terms: { "observation.quality_grade": ["research", "needs_id"] } },
+        { terms: { "current": [true] } }
+      ],
+      inverse_filters: [
+        { exists: { field: "taxon_change_id" } }
+      ]
+    }
   end
 
 end
