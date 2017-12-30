@@ -105,6 +105,12 @@ module DarwinCore
               file_location: "project_observations.csv",
               terms: DarwinCore::ProjectObservations::TERMS
             }
+          when "User"
+            extensions << {
+              row_type: "http://www.inaturalist.org/user",
+              file_location: "users.csv",
+              terms: DarwinCore::User::TERMS
+            }
           end
         end
       end
@@ -270,7 +276,7 @@ module DarwinCore
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
-            observation.observation_photos.each do |op|
+            observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
               # If ES is out of sync with the DB, the photo might no longer exist
               next unless op && op.photo
               DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
@@ -332,6 +338,27 @@ module DarwinCore
               DarwinCore::ProjectObservations.adapt(po, core: @opts[:core])
               csv << DarwinCore::ProjectObservations::TERMS.map{|field, uri, default, method| po.send(method || field)}
             end
+          end
+        end
+      end
+      
+      tmp_path
+    end
+
+    def make_user_data
+      headers = DarwinCore::User::TERM_NAMES
+      fname = "users.csv"
+      tmp_path = File.join(@work_path, fname)
+      
+      params = observations_params
+      preloads = [ :user ]
+      
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+        CSV.open(tmp_path, 'w') do |csv|
+          csv << headers
+          observations_in_batches( params, preloads, label: "make_user_data") do |observation|
+            DarwinCore::User.adapt( observation.user, core: @opts[:core], observation: observation )
+            csv << DarwinCore::User::TERMS.map{|field, uri, default, method| observation.user.send(method || field)}
           end
         end
       end
