@@ -514,6 +514,64 @@ class YearStatistic < ActiveRecord::Base
     save!
   end
 
+  # [
+  #   {
+  #     month: "2017-01-01",
+  #     accumulated_taxa_count: 10,
+  #     novel_taxon_ids: [1,2,3,4]
+  #   }
+  # ]
+  def self.observed_taxa_accumulation( params = { interval: "month" } )
+    # params = { year: year }
+    interval = params.delete(:interval)
+    params[:user_id] = params[:user].id if params[:user]
+    if site = params[:site]
+      params[:site_id] = site.id
+    end
+    elastic_params = Observation.params_to_elastic_query( params )
+    histogram_buckets = Observation.elastic_search( elastic_params.merge(
+      size: 0,
+      aggs: {
+        histogram: {
+          date_histogram: {
+            field: "observed_on",
+            interval: interval,
+            format: "yyyy-MM-dd"
+          },
+          aggs: {
+            taxon_ids: {
+              terms: { field: "taxon.min_species_ancestry" }
+            }
+          }
+        }
+      }
+    ) ).response.aggregations.histogram.buckets
+
+    accumulation_with_all_taxon_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
+      bucket, i = pair
+      interval_taxon_ids = bucket.taxon_ids.buckets.map{|b| b["key"].split( "," ).map(&:to_i)}.flatten.uniq
+      accumulated_taxon_ids = if i > 0 && memo[i-1]
+        memo[i-1][:accumulated_taxon_ids]
+      else
+        []
+      end
+      novel_taxon_ids = interval_taxon_ids - accumulated_taxon_ids
+      memo << {
+        date: bucket["key_as_string"],
+        accumulated_taxon_ids: accumulated_taxon_ids + novel_taxon_ids,
+        novel_taxon_ids: novel_taxon_ids
+      }
+      memo
+    end
+    accumulation_with_all_taxon_ids.map do |interval|
+      {
+        date: interval[:date],
+        accumulated_taxa_count: interval[:accumulated_taxon_ids].size,
+        novel_taxon_ids: interval[:novel_taxon_ids]
+      }
+    end
+  end
+
   private
   def self.identifications_es_base_params( year )
     {
