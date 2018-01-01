@@ -516,14 +516,14 @@ class YearStatistic < ActiveRecord::Base
 
   # [
   #   {
-  #     month: "2017-01-01",
+  #     date: "2017-01-01",
   #     accumulated_taxa_count: 10,
   #     novel_taxon_ids: [1,2,3,4]
   #   }
   # ]
-  def self.observed_taxa_accumulation( params = { interval: "month" } )
+  def self.observed_taxa_accumulation( params = { } )
     # params = { year: year }
-    interval = params.delete(:interval)
+    interval = params.delete(:interval) || "month"
     params[:user_id] = params[:user].id if params[:user]
     if site = params[:site]
       params[:site_id] = site.id
@@ -540,7 +540,7 @@ class YearStatistic < ActiveRecord::Base
           },
           aggs: {
             taxon_ids: {
-              terms: { field: "taxon.min_species_ancestry" }
+              terms: { field: "taxon.min_species_ancestry", size: 100000 }
             }
           }
         }
