@@ -1687,6 +1687,7 @@ it:
   id_please: ID per favore
   id_please_expandable_html: ID<span class='full'> per favore</span>!
   id_withdrawn: ID ritirata
+  ids_by_taxon: ID per Taxon
   identify: Identifica
   identify_observations: Identifica osservazioni
   identify_title: Identifica
@@ -1757,7 +1758,7 @@ it:
   import_sounds: Importa suoni
   import_tags_from_csv: Importare i tag da file CSV
   importing: Sto importando...
-  improving: Primo suggerimento
+  improving: Miglioramento
   in: in
   in_: in
   in_n: in %{n}
@@ -1881,7 +1882,7 @@ it:
   last_inat_observation: Ultima osservazione %{site_name}
   last_observation: Ultima osservazione
   last_seen: Vista l'ultima volta
-  last_year: Anno scorso
+  last_year: L'anno scorso
   lat: Lat
   latitude: Latitudine
   latitude_in_decimals: Latitudine in gradi decimali, ad esempio, 38.123
@@ -2177,7 +2178,7 @@ it:
   matching_species_will_shown_up_here: Le specie che corrispondono saranno mostrati
     qui. Le mappe mostreranno un areale se il %{place} ne ha uno disponibile  per
     la specie.
-  maverick: Maverick
+  maverick: In disaccordo
   maybe_your_signed_in_with: Forse ti sei registrato con il tuo account %{omniauth}?
   media: File multimediali
   medium: medio
@@ -3685,7 +3686,7 @@ it:
     campi per le osservazioni che aggiunge al progetto.
   suggestions: Suggerimenti
   summary: Riassunto
-  supporting: Che sostengono
+  supporting: Di supporto
   suspicious_photos: Foto sospette
   siutable_observations: osservazioni idonee
   sun: Dom
@@ -4326,7 +4327,7 @@ it:
     preferiti?
   want_to_test_a_new_version_of_this_page: Vuoi provare una nuova versione di questa
     pagina?
-  wanted: Richiesto
+  wanted: Ricercate
   was_it_captive_cultivated?: Era in cattività / coltivato?
   we_can_only_understand_csv_in: Possiamo processare i file CSV solo se hanno la seguente
     formattazione
@@ -4397,6 +4398,8 @@ it:
   which_projects_can_add_your_observations?: Quali progetti possono aggiungere le
     tue osservazioni?
   white: bianco
+  who_helped_user_the_most: Chi ha aiutato maggiormente %{user}
+  who_user_helped_the_most: Chi %{user} ha aiutato di più
   with_annotation: Con nota
   without_annotation: Senza nota
   widget: Widget
@@ -4685,6 +4688,14 @@ it:
   verifiable: verificabile
   views:
     views: Visualizzazioni
+    announcements:
+      locales_desc: CMD- o SHIFT-click per selezione multipla. Non selezionando niente
+        verranno mostrate le notizie relative e tutti gli utenti indipendentemente
+        dalla posizione locale. Scegliendo una lingua locale senza una regione *non"
+        saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli
+        en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano
+        ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri
+        del sito, lascia vuoto.
     custom_projects:
       edit:
         custom_project_fields_warning: 'Stai attento: aggiungendo Javascript e CSS
@@ -5024,8 +5035,8 @@ it:
           <em>tutte</em> le liste di questo taxon per tutti i luoghi inclusi in <a
           href="%{place_url}">%{place_name}</a> in <strong>"%{establishment_means}"</strong>.
           Solo i curatori possono usare questo strumento. Modificando le media di
-          presenza in "introdotta" avrà lo stesso effetto, eccetto che non modificherà
-          i valori esistenti ma compilerà non presenti.
+          presenza in "introdotta" avrà all'incirca lo stesso effetto, eccetto che
+          non modificherà i valori esistenti ma compilerà quelli non presenti.
     lists:
       new:
         place_desc: Aggiorna questa lista elencando i taxa osservati in questo luogo.
@@ -5528,6 +5539,11 @@ it:
         sorry_that_doesnt_exist: Spiacente! Non esiste!
         even_our_dedicated_search_mole_couldnt: Anche la nostra talpa da ricerca non
           è riuscita a trovare niente!
+    stats:
+      year:
+        sunburst_desc_html: |-
+          Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia on "Organismo" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.
+          <strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: Aggiungere uno stato di conservazione
@@ -5592,8 +5608,8 @@ it:
           Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi
           cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto"
           come valore; un campo adatto è ad esempio "Fenologia della fioritura".'
-        complete_taxon_desc: I taxa "completi" hanno elencati tutti i discendenti
-          o tutti i taxa di uno specifico livello esistenti nel database del sito.
+        complete_taxon_desc: Per i taxa "completi" sono elencati nel database del
+          sito tutti i discendenti o tutti i taxa esistenti di uno specifico livello.
           Quando un taxon è completo a livello di specie, per esempio, è possibile
           stabilire quante specie di quel taxon sono state osservate e quante ancora
           lo devono ancora essere. I conteggi delle specie per i taxa "completi" a
@@ -5606,7 +5622,7 @@ it:
         rare_desc: Taxa minacciati osservati meno frequentemente
         rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in
           <a href="%{url}">%{place}</a>
-        wanted_desc: Le specie in questo taxon che non sono ancora state osservate.
+        wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
         no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
           mese
         frequency:
@@ -5634,10 +5650,11 @@ it:
       form:
         new_name_guidelines_html: |-
           <ul class="ui">
-            <li>Cerca di aggiungere nomi già utilizzati altrove. Per favore non inventare nuovi nomi.</li>
-            <li>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</li>
-            <li>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</li>
-            <li>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato</li>
+            <li><p>Cerca di aggiungere nomi già utilizzati altrove. Per favore non inventare nuovi nomi.</p></li>
+            <li><p>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</p></li>
+            <li><p>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</p></li>
+            <li>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato  </p></li>
+            <li><p>Il lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte "Francese" perchè ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali per le persone che usano il sito in lingue diverse.</p></li>
           </ul>
         places_help_html: Aggiungi un nome per un luogo al fine di dargli una priorità
           per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso
@@ -5672,6 +5689,19 @@ it:
           le coordinate private ed oscurate delle osservazioni che tu aggiungi al
           progetto.
       edit:
+        blocking_desc_html: |-
+          <p>
+          Se blocchi qualcuno gli impedisci di inviarti messaggi, commentare le tue osservazioni, identificare le tue osservazioni ed interagire con te su %{site_name}. Rimuove anche le loro osservazioni dai tuoi risultati di ricerca e le tue osservazioni dai loro. Tuttavia, non ti rende invisibile a loro. Essi possono ancora vedere le tue osservazioni e guardare il tuo profilo, ma non interagire con te.
+          </p>
+          <p>
+          Il blocco è per le situazioni in cui non è impossibile andare d'accordo con qualcuno e questo non ti lascia in pace, nonostante i tuoi migliori sforzi per  risolvere le controversie in modo civile. Non è un modo per nascondersi dalle persone, per impedire le identificazioni da parte di persone delle cui opinioni non ti fidi o disattivare l'ID della comunità (c'è un impostazione specifica per questo). Quindi, il blocco funziona in entrambi i sensi: se blocchi qualcuno, questo non può interagire con te, ma tu non puoi nemmeno interagire con lui. Se la usi impropriamente per impedire a qualcuno di identificare le tue osservazioni, ti impedisci anche di identificare le sue osservazioni.
+          </p>
+          <p>
+            Puoi bloccare solo tre persone. Pensiamo che sia un numero ragionevole che va incontro alle persone che hanno bisogno di bloccare qualcuno ma previene l'abuso del blocco. Se pensi d aver la necessità di bloccare più persone, per favore <a href="mailto:%{help_email}">contattaci</a>.
+          </p>
+          <p>
+          Se qualcuno ti sta molestando o ti sta stalkerando su %{site_name}, <a href="mailto:%{help_email}">faccelo sapere</a>. Se ciò rappresenta una violazione dei nostri Termini di servizio o altri comportamenti che riteniamo inappropriati per il nostro sito, investigheremo.
+          </p>
         common_names_desc: Mostra i nomi comuni. Disabilita se vuoi vedere i nomi
           scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando
           le impostazioni locali e quelle del luogo.
@@ -5682,6 +5712,13 @@ it:
           anche che i proprietari di quel sito hanno il diritto di scaricare e visualizzare
           i dati come fanno gli amministratori di iNaturalist. Se il sito da te scelto
           abbandona il network, tutti i tuoi dati lo seguiranno.
+        muting_desc_html: |-
+          <p>
+            Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.
+          </p>
+          <p>
+            Puoi silenziare tutte le persone che vuoi, ma ricordati che ti potrai perdere importanti notifiche, come identificazioni che spostano l'ID della Community delle tue osservazioni.
+          </p>
         project_addition_preferences:
           any: Qualsiasi
           joined: Progetti a cui ti sei unito

@@ -1537,7 +1537,7 @@ es:
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para sus fotos
     de Flickr.
   generate_widget: Genera el widget
-  generate_your_stats: Genera Tus Estadísticas
+  generate_your_stats: Genera tus estadísticas
   generating: Generando...
   generating_mobile_archive: Generando de archivos móviles
   Genus: Género
@@ -1660,7 +1660,7 @@ es:
   id_please: ID por favor
   id_please_expandable_html: Ayuda<span class='full'> por favor!</span>
   id_withdrawn: Id. retirada
-  ids_by_taxon: IDs por Taxon
+  ids_by_taxon: Ids. por taxón
   identify: Identificar
   identify_observations: Identificar observaciones
   identify_title: Identificar
@@ -2217,7 +2217,7 @@ es:
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
-  most_comments_and_faves: La Mayoría de Los Comentarios y Favoritos
+  most_comments_and_faves: Con más comentarios y favoritos
   most_observations: Con más observaciones
   most_recent_observation_by_date_observed: Observación comprobable más reciente por
     fecha de observación
@@ -3462,7 +3462,7 @@ es:
   site_observations_export_from_date: '%{site_name} observaciones exportas de %{date}'
   site_taxon_page: '%{site_name} página del taxón'
   site_year_in_review: Resumen del año %{year} en %{site_name}
-  so_meta!: ¡Autoreferencia!
+  so_meta!: ¡Autorreferencia!
   some_agree: Algunos la apoyan
   some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse
     a los proyectos
@@ -4200,8 +4200,8 @@ es:
   valid_options_are: Las opciones válidas son
   value: Valor
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
-  verifiable_observations_by_observation_date: Observaciones Verificables Por Fecha
-    de Observación
+  verifiable_observations_by_observation_date: Observaciones verificables por fecha
+    de observación
   view: Ver
   view_all: Ver todo
   view_all_from_x: Ver todo de %{x}
@@ -4282,7 +4282,7 @@ es:
   view_user_observations: Ver observaciones de %{user}
   view_x_from_x: Ver %{day_observations} de %{observed_on}
   view_xs_journal: Ver el diario de %{x}
-  view_year_stats_for_site: Ver %{year} Estadísticas de %{site}
+  view_year_stats_for_site: Ver las estadísticas de %{year} de %{site}
   view_your_dashboard: Ve tu tablero
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Ver su tablero</a> para
     más actualizaciones
@@ -4374,8 +4374,8 @@ es:
   where_were_you?: <em>¿Dónde</em> estaba usted?
   which_projects_can_add_your_observations?: ¿Qué proyectos pueden añadir tus observaciones?
   white: blanco
-  who_helped_user_the_most: "Quién ayudó a %{user} más"
-  who_user_helped_the_most: "Quien %{user} ayudó más"
+  who_helped_user_the_most: Quién ayudó a %{user} más
+  who_user_helped_the_most: Quien %{user} ayudó más
   with_annotation: Con anotación
   without_annotation: Sin anotación
   widget: Widget
@@ -4587,7 +4587,7 @@ es:
   your_content: Su Contenido
   your_contributions_to_project: Tus contribuciones a %{project_title}
   your_default: tu valor predeterminado
-  your_default_time_zone: Su zona horaria actual
+  your_default_time_zone: Tu huso horario predeterminado
   your_drafts: Sus borradores
   your_email_address: Tu dirección de correo electrónico
   your_flickr_account: su cuenta de Flickr
@@ -5334,7 +5334,7 @@ es:
         map_instruction: Utilice la herramienta de polígono para dibujar el contorno
           lugar.
     posts:
-      formatting_none_help: No HTML insertado, utiliza sólo las etiquetas que introduzcas.
+      formatting_none_help: No se inserta HTML; solo utiliza las etiquetas que proporciones.
       formatting_simple_help: Enlaza las URL automáticamente e inserta saltos de línea.
     projects:
       curator_coordinate_access_desc_html: |-
@@ -5529,7 +5529,7 @@ es:
           no pudo encontrar nada!
     stats:
       year:
-        sunburst_desc_html: |
+        sunburst_desc_html: |-
           Taxones observados dispuestos como un diagrama jerárquico de
           "resplandor solar". La base de la jerarquía está en el centro,
           comenzando con "Vida" y terminando con especies en los bordes
