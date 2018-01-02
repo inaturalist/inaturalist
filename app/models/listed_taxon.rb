@@ -224,6 +224,7 @@ class ListedTaxon < ActiveRecord::Base
   validate :list_rules_pass
   validate :taxon_matches_observation
   validate :check_list_editability
+  validate :establishment_means_allowed
 
   attr_accessor :skip_sync_with_parent,
                 :skip_species_for_infraspecies,
@@ -345,6 +346,14 @@ class ListedTaxon < ActiveRecord::Base
         errors.add(field, "can only be set for check lists") unless send(field).blank?
       end
     end
+  end
+
+  def establishment_means_allowed
+    return true unless endemic?
+    if place && ( ( place.admin_level && place.admin_level <= Place::CONTINENT_LEVEL ) || ( place.place_type == Place::CONTINENT ) )
+      errors.add( :establishment_means, "can't be endemic for continents" )
+    end
+    true
   end
   
   def set_old_list

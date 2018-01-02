@@ -25,21 +25,19 @@ class User < ActiveRecord::Base
 
   attr_accessor :html
 
-  preference :project_journal_post_email_notification, :boolean, default: true
+  # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
   preference :identification_email_notification, :boolean, default: true
   preference :message_email_notification, :boolean, default: true
   preference :no_email, :boolean, default: false
   preference :project_invitation_email_notification, :boolean, default: true
   preference :mention_email_notification, :boolean, default: true
-
   preference :project_journal_post_email_notification, :boolean, default: true
   preference :project_curator_change_email_notification, :boolean, default: true
   preference :project_added_your_observation_email_notification, :boolean, default: true
   preference :taxon_change_email_notification, :boolean, default: true
   preference :user_observation_email_notification, :boolean, default: true
   preference :taxon_or_place_observation_email_notification, :boolean, default: true
-
 
   preference :lists_by_login_sort, :string, :default => "id"
   preference :lists_by_login_order, :string, :default => "asc"
@@ -150,6 +148,7 @@ class User < ActiveRecord::Base
   has_many :user_mutes, inverse_of: :user, dependent: :destroy
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
+  has_many :taxon_changes, inverse_of: :user
   
   file_options = {
     processors: [:deanimator],

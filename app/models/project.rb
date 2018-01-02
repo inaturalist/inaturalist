@@ -360,6 +360,10 @@ class Project < ActiveRecord::Base
       params.merge!(taxon_ids: taxon_ids) unless taxon_ids.blank?
       params.merge!(place_id: place_ids) unless place_ids.blank?
     end
+    if options[:concat_ids]
+      params[:taxon_ids] = params[:taxon_ids].join(",") if params[:taxon_ids].try(:class) == Array
+      params[:place_id] = params[:place_id].join(",") if params[:place_id].try(:class) == Array
+    end
     params
   end
 

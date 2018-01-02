@@ -26,6 +26,9 @@ en:
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_html:
+    one: '<span class="count">1</span> identification'
+    other: '<span class="count">%{count}</span> identifications'
   x_identifications_:
     one: '1 Identification'
     other: '%{count} Identifications'
@@ -426,6 +429,7 @@ en:
     other: "and %{count} more people!"
   android: Android
   animals: Animals
+  animated_observations_map: Animated Observations Map
   annotations: Annotations
   announcement_was_successfully_created: Announcement was successfully created.
   announcement_was_successfully_updated: Announcement was successfully updated.
@@ -1367,6 +1371,7 @@ en:
   generate_pdf: Generate PDF
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
+  generate_your_stats: Generate Your Stats
   generating: "Generating..."
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
@@ -1448,6 +1453,7 @@ en:
   high: high
   highest_rank: Highest rank
   highlights: Highlights
+  highlights_and_stats_from_year_on_site: "Highlights and stats from %{year} on %{site}"
   history: History
   home: Home
   home_faq: FAQ
@@ -1478,6 +1484,8 @@ en:
   id_please!: ID Please!
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
+  id_withdrawn: ID Withdrawn
+  ids_by_taxon: IDs By Taxon
   identify: Identify
   identify_observations: "Identify observations"
   identify_title: "Identify"
@@ -1647,6 +1655,7 @@ en:
   last_inat_observation: "Last %{site_name} observation"
   last_observation: Last observation
   last_seen: Last seen
+  last_year: Last Year
   lat: Lat
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
@@ -1956,6 +1965,7 @@ en:
   most: Most
   most_agree: most agree
   most_disagree: most disagree
+  most_comments_and_faves: Most Comments and Faves
   most_observations: Most observations
   most_recent_observation_by_date_observed: Most recent verifiable observation by date observed
   most_species: Most species
@@ -2275,6 +2285,7 @@ en:
     Text searches may yield weird results when combined with other filters. If
     you want to find observation of a particular species, use the taxon
     filter.
+  observations_this_year_vs_last_year: Observations This Year vs. Last Year
   observations_title: Observations by Everyone
   observations_total: Observations Total
   observations_w: Observations w/
@@ -2444,6 +2455,9 @@ en:
     comment:
       with_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link} by %{by_link}
       without_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link}
+  per_day: Per Day
+  per_month: Per Month
+  per_week: Per Week
   person: person
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
@@ -2844,6 +2858,7 @@ en:
   refresh: Refresh
   refresh_listed_taxa: refresh listed taxa
   refreshing: refreshing
+  regenerate_stats: Regenerate Stats
   regenerate_url: Regenate URL
   register_for_this_event_at_x_html: "Register for this event at %{x}"
   reject?: Reject?
@@ -3036,6 +3051,7 @@ en:
   set_a_place_if_this_link_only_applies_to: Set a place if this link only applies to taxa from a certain place. Leave it blank if it applies to taxa all around the world.
   set_license: Set license
   settings: settings
+  share: Share
   share_your_observation_with_researchers_by: Share your observation with researchers by
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
@@ -3079,6 +3095,7 @@ en:
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
   site_taxon_page: "%{site_name} taxon page"
+  site_year_in_review: "%{site_name} Year In Review %{year}"
   so_meta!: so meta!
   some_agree: some agree
   some_observations_failed_to_be_added: Some observations failed to be added to projects
@@ -3199,6 +3216,7 @@ en:
   start_typing_someones_name: "Start typing someone's name..."
   states: States
   stats: Stats
+  stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   stats_title: Site Stats
   status: Status
   status_globally: "%{status} Globally"
@@ -3246,6 +3264,7 @@ en:
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   suggestions: Suggestions
   summary: Summary
+  supporting: Supporting
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun
@@ -3337,6 +3356,7 @@ en:
   text_: text
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
+  thanks_from_all_of_us_here_at: Thanks from all of us here at
   that_photo_doesnt_exist: That photo doesn't exist.
   that_observation_doesnt_exist: That observation doesn't exist.
   that_observation_doesnt_have_any_photos: "That observation doesn't have any photos."
@@ -3503,6 +3523,7 @@ en:
   this_will_reload_and_refresh: This will add listed taxa from observations and refresh observation stats immediately. It may take some time and please use sparingly.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
+  this_year: This Year
   those_are_the_basics_of: |
     Those are the basics of adding observations! There are plent of other
     things you can do, like searching and filtering your observations or
@@ -3695,18 +3716,21 @@ en:
   users: Users
   users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
   users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
   users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
+  users_year_on_site: "%{user}'s Year On %{site} %{year}"
   using_a_license: using a license
   using_cc_license_makes_easier_use_your_data: Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like.
   valid_interrogation: Valid?
   valid_options_are: Valid options are
   value: Value
   verbing_x_of_y: "%{verb} %{x} of %{y}..."
+  verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View all
   view_all_from_x: View all from %{x}
@@ -3779,12 +3803,14 @@ en:
   view_user_observations: "View %{user}'s observations"
   view_x_from_x: "View %{day_observations} from %{observed_on}"
   view_xs_journal: "View %{x}'s journal"
+  view_year_stats_for_site: "View %{year} Stats For %{site}"
   view_your_dashboard: View your dashboard
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>View your dashboard</a> for more updates"
   view_your_inbox: View your inbox
   view_your_life_list: View your life list
   view_your_calendar: View your calendar
   view_your_observations: View your observations
+  view_your_year_stats: "View Your %{year} Stats"
   view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   visually_similar: Visually Similar
@@ -3815,6 +3841,7 @@ en:
     We tried to process your upload named %{filename} but it didn't work.
     Please fix the following problem(s) and try again.
   wed: Wed
+  week_of_date: "Week of %{date}"
   welcome!: Welcome!
   welcome_comma!: Welcome,
   welcome: welcome
@@ -3848,6 +3875,8 @@ en:
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which projects can add your observations?
   white: white
+  who_helped_user_the_most: "Who Helped %{user} the Most"
+  who_user_helped_the_most: "Who %{user} Helped the Most"
   with_annotation: With annotation
   without_annotation: Without annotation
   widget: Widget
@@ -3893,7 +3922,9 @@ en:
   x_wrote_a_new_post_html: "%{x} wrote a new post"
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
+  year_in_review: "Year In Review %{year}"
   year_month: year/month
+  year_on_site: "Year On %{site} %{year}"
   yellow: yellow
   'yes': "Yes"
   yes_find_them!: "Yes, find them!"
@@ -4471,7 +4502,7 @@ en:
           <a href="%{place_url}">%{place_name}</a> 
           to <strong>"%{establishment_means}"</strong>. Only
           curators can use this tool. Changing the establishment means to
-          "introduced" will have rougly the same effect, but it won't change
+          "introduced" will have roughly the same effect, but it won't change
           existing values, just fill in blank ones.
     lists:
       new:
@@ -5053,6 +5084,19 @@ en:
       not_found:
         sorry_that_doesnt_exist: Sorry, that doesn't exist!
         even_our_dedicated_search_mole_couldnt: Even our dedicated search mole couldn't find anything!
+    stats:
+      year:
+        sunburst_desc_html: |
+          Observed taxa arranged as a hierarchical "sunburst" diagram. The base
+          of the hierarchy is at the center, starting with "Life" and ending
+          with species at the outer edges. The size of each arc is proportional
+          to the number of observations of that taxon, and colors rougly
+          correspond to our usual "iconic" taxon colors (green for plants,
+          orange for insects, blue for most other animals, etc.), so if you're
+          seeing a lot of green, that means you observed a lot of plants.
+          <strong>Click an arc to place that taxon at the center</strong> and
+          its children around it, or <strong>click the center to move back up
+          the hierarchy</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5691,6 +5735,9 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: user does not accept fields from others
+              user_only_accepts_fields_from_site_curators: user only accepts fields from site curators
         place:
           attributes:
             place_geometry:

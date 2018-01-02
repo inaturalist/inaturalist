@@ -63,4 +63,7 @@ describe DarwinCore::SimpleMultimedia do
     expect( p.rightsHolder ).not_to be_blank
     expect( p.rightsHolder ).to eq p.user.login
   end
+  it "should return photo ID as the catalogNumber" do
+    expect( p.catalogNumber ).to eq p.id
+  end
 end

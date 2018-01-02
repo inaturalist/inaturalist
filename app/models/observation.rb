@@ -29,7 +29,11 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    notification: "mention",
+    if: lambda {|u| u.prefers_receive_mentions? }
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],
@@ -2642,6 +2646,11 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  def previously_mentioned_users
+    return [ ] if description_was.blank?
+    description.mentioned_users & description_was.to_s.mentioned_users
   end
 
   # Show count of all faves on this observation. cached_votes_total stores the

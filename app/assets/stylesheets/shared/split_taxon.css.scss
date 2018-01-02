@@ -1,3 +1,5 @@
+@import "../colors";
+
 .SplitTaxon > *:first-child {
   content: '';
 }
@@ -13,3 +15,13 @@
 .taxon.has-com-name.parens .sciname:after { content: ')'; display: inline-block; }
 
 .taxon .altname { color: #aaa; }
+
+.SplitTaxon {
+  .inactive {
+    margin-left: 5px;
+    a {
+      color: $fail-red;
+      text-decoration: none;
+    }
+  }
+}

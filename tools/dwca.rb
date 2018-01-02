@@ -42,7 +42,7 @@ EOS
   opt :core,
     "Core type. Options: occurrence, taxon. Default: occurrence.",
     type: :string, short: "-c", default: "occurrence"
-  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations",
+  opt :extensions, "Extensions to include. Options: EolMedia, SimpleMultimedia, ObservationFields, ProjectObservations, User",
     type: :strings, short: "-x"
   opt :metadata, "
     Path to metadata template. Default: observations/gbif.eml.erb. \"skip\" will skip EML file generation.

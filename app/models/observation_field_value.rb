@@ -9,7 +9,7 @@ class ObservationFieldValue < ActiveRecord::Base
   has_one :annotation
   
   before_validation :strip_value
-  before_save :set_user
+  before_validation :set_user
   after_create :create_annotation
   after_destroy :destroy_annotation
   after_update :fix_annotation_after_update
@@ -20,10 +20,12 @@ class ObservationFieldValue < ActiveRecord::Base
   # validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
   validates_presence_of :observation
+  validates_presence_of :user
   validates_length_of :value, :maximum => 2048
   # validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
+  validate :observer_prefers_fields_by_user
 
   after_save :update_observation_field_counts, :index_observation
 
@@ -97,7 +99,7 @@ class ObservationFieldValue < ActiveRecord::Base
     if updater_user_id
       self.user_id ||= updater_user_id
       self.updater_id = updater_user_id
-    else
+    elsif observation
       self.user_id ||= observation.user_id
       self.updater_id ||= user_id
     end
@@ -156,6 +158,21 @@ class ObservationFieldValue < ActiveRecord::Base
       errors.add(:value, 
         "of #{observation_field.name} must be #{values[0..-2].map{|v| "#{v}, "}.join}or #{values.last}.")
     end
+  end
+
+  def observer_prefers_fields_by_user
+    return true unless user && observation
+    return true if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+    if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
+      if observation.user_id != user_id
+        errors.add(:observation_id, :user_does_not_accept_fields_from_others )
+      end
+    elsif observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
+      unless user.is_curator?
+        errors.add(:observation_id, :user_only_accepts_fields_from_site_curators )
+      end
+    end
+    true
   end
 
   def update_observation_field_counts

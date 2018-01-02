@@ -13,7 +13,7 @@ Doorkeeper.configure do
     if username && params[:password]
       user = User.find_for_authentication( email: username )
       user && user.valid_password?( params[:password] ) ? user : nil
-    else
+    elsif defined?( warden )
       warden.authenticate!(auth_options)
     end
   end

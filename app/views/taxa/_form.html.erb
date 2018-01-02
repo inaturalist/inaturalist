@@ -233,22 +233,20 @@
     <% end -%>
   </fieldset>
   
-  <% if @taxon.rank_level.to_i <= Taxon::FAMILY_LEVEL -%>
-    <fieldset class="column span-24 twocolform">
-      <legend><%= t :conservation_status %></legend>
-      <% if @taxon.rank_level.to_i > Taxon::SPECIES_LEVEL %>
-        <div class="notice box">
-          <%=t "views.taxa.edit.high_status_conservation_status_notice_html" %>
-        </div>
-      <% end %>
-      <div id="conservation_statuses">
-        <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
-          <%= render "conservation_status_fields", :f => cs %>
-        <% end -%>
-        <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
+  <fieldset class="column span-24 twocolform">
+    <legend><%= t :conservation_status %></legend>
+    <% if @taxon.rank_level.to_i > Taxon::SPECIES_LEVEL %>
+      <div class="notice box">
+        <%=t "views.taxa.edit.high_status_conservation_status_notice_html" %>
       </div>
-    </fieldset>
-  <% end -%>
+    <% end %>
+    <div id="conservation_statuses">
+      <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
+        <%= render "conservation_status_fields", :f => cs %>
+      <% end -%>
+      <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
+    </div>
+  </fieldset>
   
   <div class="clear buttonrow">
     <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>

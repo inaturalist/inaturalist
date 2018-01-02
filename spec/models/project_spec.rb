@@ -588,4 +588,44 @@ describe Project do
       expect( Project.find_by_id( p.id ) ).to be_blank
     end
   end
+
+  describe "observations_url_params" do
+    it "includes multiple taxon ids" do
+      p = Project.make!
+      taxon1 = Taxon.make!
+      taxon2 = Taxon.make!
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      expect( p.observations_url_params[:taxon_ids].sort ).to eq [taxon1.id, taxon2.id].sort
+    end
+
+    it "can concatenate taxon ids" do
+      p = Project.make!
+      taxon1 = Taxon.make!
+      taxon2 = Taxon.make!
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      expect( p.observations_url_params(concat_ids: true)[:taxon_ids] ).to eq [taxon1.id, taxon2.id].sort.join(",")
+    end
+
+    it "includes multiple place ids" do
+      p = Project.make!
+      place1 = Place.make!
+      place2 = Place.make!
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      expect( p.observations_url_params[:place_id].sort ).to eq [place1.id, place2.id].sort
+    end
+
+    it "can concatenate place ids" do
+      p = Project.make!
+      place1 = Place.make!
+      place2 = Place.make!
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")
+    end
+
+  end
+
 end

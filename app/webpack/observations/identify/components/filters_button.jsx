@@ -137,7 +137,8 @@ class FiltersButton extends React.Component {
     const orderByFields = [
       { value: "observations.id", default: "date added", key: "date_added" },
       { value: "observed_on", default: "date observed", key: "date_observed" },
-      { value: "votes", default: "faves", key: "faves" }
+      { value: "votes", default: "faves", key: "faves" },
+      { value: "random", default: "random", key: "random" }
     ];
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0

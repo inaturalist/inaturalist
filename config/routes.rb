@@ -502,6 +502,10 @@ Rails.application.routes.draw do
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
+      get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
+      get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
+      get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
+      post :generate_year
     end
   end
 

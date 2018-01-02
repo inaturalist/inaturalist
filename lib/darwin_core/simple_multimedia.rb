@@ -2,6 +2,7 @@ module DarwinCore
   class SimpleMultimedia
     include Helpers
 
+    # http://rs.gbif.org/terms/1.0/Multimedia
     TERMS = [
       ['id', 'id', nil, 'core_id'],
       ['type', 'http://purl.org/dc/terms/type', nil, 'dwc_type'],
@@ -12,7 +13,10 @@ module DarwinCore
       %w(creator http://purl.org/dc/terms/creator),
       %w(publisher http://purl.org/dc/terms/publisher),
       ['license', 'http://purl.org/dc/terms/license', nil, 'dwc_license'],
-      %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
+      %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
+      # Not technically a part of the Simple Multimedia extension, but serves
+      # as a place to store the photo ID
+      %w(catalogNumber http://rs.tdwg.org/dwc/terms/catalogNumber)
     ]
     TERM_NAMES = TERMS.map{|name, uri| name}
 
@@ -81,6 +85,10 @@ module DarwinCore
 
       def rightsHolder
         attribution_name
+      end
+
+      def catalogNumber
+        id
       end
 
     end

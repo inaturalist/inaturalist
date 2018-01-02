@@ -366,7 +366,7 @@ fr:
     family: Toutes les familles ajoutées à la base de données
     subfamily: Toutes les sous-familles ajoutées à la base de données
     supertribe: Toutes les super-tribus ajoutées à la base de données
-    tribe: Toutes les tribus ajoutées à la base de données
+    tribe: Toutes les tribus ont été ajoutées à la base de données
     subtribe: Toutes les sous-tribus ajoutées à la base de données
     genus: Tous les genres ajoutés à la base de données
     genushybrid: Tous les genres hybrides ajoutés à la base de données
@@ -1735,6 +1735,7 @@ fr:
   id_please!: Identification,SVP!
   id_please: Identification SVP
   id_please_expandable_html: Identification<span class='full'> demandée</span> !
+  id_withdrawn: ID supprimé
   identify: Identifier
   identify_observations: Identifier les observations
   identify_title: Identifier
@@ -2696,6 +2697,7 @@ fr:
   of_observers: observateurs
   of_identifiers: identificateurs
   of_places: lieux
+  of_this_taxon: De ce taxon
   offensive_inappropriate: injurieux/inapproprié
   official_blog: Blogue officiel
   offline_access_enabled: Accès hors ligne activé
@@ -3142,6 +3144,7 @@ fr:
   processing3p: Traitement en cours…
   profile: Profil
   project: Projet
+  project_added_your_observations: Vos observations ont été ajoutées au projet
   project_aggregator_filter_error: Les projets ne peuvent pas activer l'agrégation
     automatique d'observations, à moins que le projet ne soit associé à un lieu de
     taille modérée, ou s'il ne permet les observations que de certains taxons particuliers,
@@ -3150,6 +3153,7 @@ fr:
   project_assets: Biens du projet
   project_cover: Couverture du projet
   project_created_on: projet créé le %{date}
+  project_curator_changes: Modifications de superviseur du projet
   project_curator_id: ID du responsable de l’organisation du projet
   project_curator_tools: Outils du chef de projet
   project_curators: Responsables de l’organisation du projet
@@ -3264,6 +3268,7 @@ fr:
   real_time_discussions: Discussions en temps réel
   reason: Motif
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
+  recaptcha_verification_failed: échec de la vérification reCaptcha
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel
     sur
   receive_updates_from_this_project: Recevoir des avis pour ce projet
@@ -3809,6 +3814,7 @@ fr:
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
     à un taxon existant dans notre base de données
   taxon_observed_by_user: '%{taxon} observé par %{user}'
+  taxon_or_place_observations: Observations de taxon ou de place
   taxon_photos_updated: Photos du taxon mises à jour!
   taxon_range: Aire de répartition du taxon
   taxon_range_created_notice: La gamme de taxons a bien été créée. Veuillez attendre
@@ -4267,6 +4273,7 @@ fr:
   user_is_now_role_for_project_html: <strong>%{user}</strong> est désormais %{role}
     pour %{project}
   user_muted: Utilisateur réduit au silence
+  user_observations: Observations utilisateur
   user_s: de %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listes de %{user}
@@ -4493,10 +4500,10 @@ fr:
   x_doesnt: '%{login} ne fait pas'
   x_hasnt: '%{login} n’a pas'
   x_journal: Journal de %{user}
-  x_journal_archives_for_y: Journal de %{user} &middot; Archives de
-  x_journal_editing: Journal de %{user} &middot; Modification
-  x_journal_middot: Journal de %{user} &middot;
-  x_journal_new_post: Journal de %{user} &middot; Nouvelle note
+  x_journal_archives_for_y: Journal de %{user} • Archives de
+  x_journal_editing: Journal de %{user} • Modification
+  x_journal_middot: Journal de %{user} •
+  x_journal_new_post: Journal de %{user} • Nouvelle note
   x_observations_failed:
     one: 1 observation en échec
     other: '%{count} observations en échec'
@@ -4769,6 +4776,14 @@ fr:
   verifiable: vérifiable
   views:
     views: Vues
+    announcements:
+      locales_desc: "CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner
+        affichera \nl’avertissement pour tous les utilisateurs quelle que soit leur
+        localisation. Choisir une langue\nsans région ne ciblera *pas* les localisations
+        avec région, par ex. si\nvous choisissez en, elle n’apparaîtra pas pour les
+        personnes qui ont choisi en-US. Si vous\nvoulez cibler l’ensemble, choisissez
+        les deux. Si vous voulez afficher un avertissement\npour tous les membres
+        du site, laissez-le simplement vide."
     custom_projects:
       edit:
         custom_project_fields_warning: |-
@@ -5876,12 +5891,20 @@ fr:
       form:
         new_name_guidelines_html: |-
           <ul class="ui">
-            <li>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</li>
-            <li>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</li>
-            <li>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</li>
-            <li>
+            <li><p>Essayez d’ajouter des noms qui ont déjà été utilisés ailleurs. Veuillez ne pas inventer de nouveaux noms.</p></li>
+            <li><p>N’ajoutez pas de noms en double, par ex. n’appelez pas plusieurs faucons « faucon »</p></li>
+            <li><p>Pour les taxons de plus haut rang, essayez d’utiliser les noms qui englobent tous les descendants, comme « hérons et alliés » ou « famille de la bruyère »</p></li>
+            <li><p>
               N’ajoutez pas d’information qui ne soit pas le nom, par ex. des informations
               entre parenthèses sur comment vous pensez que le nom devrait être utilisé
+            </p></li>
+          <li>
+              <p>
+                Les lexiques doivent être en anglais. Veuillez ne pas ajouter de noms de langue
+                traduits comme « French, Français » parce que cela rendra simplement
+                plus difficile ou impossible pour nous d’afficher les noms localisés aux personnes
+                qui utilisent ce site dans différentes langues.
+              </p>
             </li>
           </ul>
         places_help_html: |-
@@ -6313,6 +6336,11 @@ fr:
                 \ndans votre observation de « %{observation_species_guess} »)"
               time_format: "doit être au format hh:mm pour un champ d’heure (« %{observation_field_name} »
                 \ndans votre observation de « %{observation_species_guess} »)"
+            observation_id:
+              user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas
+                les champs des autres
+              user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement
+                les champs des superviseurs du site
         place:
           attributes:
             place_geometry:
@@ -6354,6 +6382,11 @@ fr:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
                 par un superviseur de ce taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: ne doit pas contenir de virgules
+                ni de barres obliques
     attributes:
       assessment:
         description: Description

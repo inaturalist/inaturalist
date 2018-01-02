@@ -103,44 +103,47 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
-  let status;
+  const headerItems = [];
   const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
-    status = ( <span key={ `flagged-${item.id}` } className="item-status">
-      <a
-        href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
-        rel="nofollow"
-        target="_blank"
-      >
-        <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
-      </a>
-    </span> );
+    headerItems.push(
+      <span key={ `flagged-${item.id}` } className="item-status">
+        <a
+          href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
+          rel="nofollow"
+          target="_blank"
+        >
+          <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
+        </a>
+      </span>
+    );
   } else if ( item.category && item.current ) {
     let idCategory;
     let idCategoryTooltipText;
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
-      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status ident-category">
         <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.maverick" );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
-      idCategory = ( <span key={ `improving-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `improving-${item.id}` } className="item-status ident-category">
         <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
     } else if ( item.category === "leading" ) {
       panelClass = "leading";
-      idCategory = ( <span key={ `leading-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `leading-${item.id}` } className="item-status ident-category">
         <i className="icon-icn-leading-id" /> { I18n.t( "leading" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
     }
     if ( idCategory ) {
-      status = (
+      headerItems.push(
         <OverlayTrigger
+          key={ `ident-category-tooltip-${item.id}` }
           container={ $( "#wrapper.bootstrap" ).get( 0 ) }
           placement="top"
           delayShow={ 200 }
@@ -154,6 +157,13 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         </OverlayTrigger>
       );
     }
+  }
+  if ( item.taxon && !item.current ) {
+    headerItems.push(
+      <span key={ `ident-withdrawn-${item.id}` } className="item-status">
+        <i className="fa fa-ban"></i> { I18n.t( "id_withdrawn" ) }
+      </span>
+    );
   }
   let taxonChange;
   if ( item.taxon_change ) {
@@ -200,8 +210,16 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       <Panel
         className={ panelClass }
         header={(
-          <span>
+          <div>
             <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
+            { headerItems }
+            <time
+              className="time"
+              dateTime={ item.created_at }
+              title={ moment( item.created_at ).format( "LLL" ) }
+            >
+              { relativeTime }
+            </time>
             <ActivityItemMenu
               item={ item }
               config={ config }
@@ -211,15 +229,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
               setFlaggingModalState={ setFlaggingModalState }
               linkTarget={linkTarget}
             />
-            <time
-              className="time"
-              dateTime={ item.created_at }
-              title={ moment( item.created_at ).format( "LLL" ) }
-            >
-              { relativeTime }
-            </time>
-            { status }
-          </span>
+          </div>
         )}
         footer={ footer }
       >

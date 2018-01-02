@@ -50,6 +50,9 @@ es:
   x_identifications:
     one: 1 identificación
     other: '%{count} identificaciones'
+  x_identifications_html:
+    one: <span class="count">1</span> identificación
+    other: <span class="count">%{count}</span> identificaciones
   x_identifications_:
     one: 1 identificación
     other: '%{count} identificaciones'
@@ -339,11 +342,18 @@ es:
     superclass: Se añadieron todas las superclases a la base de datos
     class: Se añadieron todas las clases a la base de datos
     infraclass: Se añadieron todas las infraclases a la base de datos
+    superorder: Se añadieron todos los superórdenes a la base de datos
+    infraorder: Se añadieron todos los infraórdenes a la base de datos
+    epifamily: Se añadieron todas las epifamilias a la base de datos
     family: Se añadieron todas las familias a la base de datos
     subfamily: Se añadieron todas las subfamilias a la base de datos
     tribe: Se añadieron todas las tribus a la base de datos
+    genus: Se añadieron todos los géneros a la base de datos
     section: Se añadieron todas las secciones a la base de datos
+    subsection: Se añadieron todas las subsecciones a la base de datos
     species: Se añadieron todas las especies a la base de datos
+    hybrid: Se añadieron todos los híbridos a la base de datos
+    variety: Se añadieron todas las variedades a la base de datos
     form: Se añadieron todas las formas a la base de datos
   all_rights_reserved: todos los derechos reservados
   all_species: Todas las especies
@@ -455,6 +465,7 @@ es:
     other: y %{count} personas más
   android: Android
   animals: Animales
+  animated_observations_map: Mapa de observaciones animado
   annotations: Anotaciones
   announcement_was_successfully_created: El aviso fue creado exitosamente.
   announcement_was_successfully_updated: El aviso fue actualizado exitosamente.
@@ -1190,7 +1201,7 @@ es:
   do_you_want_to_proceed: ¿Quieres continuar?
   does_the_location_seem_accurate: ¿El lugar parece correcto?
   does_the_date_seem_accurate: ¿La fecha parece correcto?
-  doesnt_have_default_photo: no tiene una foto por defecto todavía.
+  doesnt_have_default_photo: no tiene una foto predeterminada aún.
   doh_something_went_wrong: Algo salió mal.
   done: Hecho
   dont_filter: No filtrar
@@ -1526,6 +1537,7 @@ es:
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para sus fotos
     de Flickr.
   generate_widget: Genera el widget
+  generate_your_stats: Genera Tus Estadísticas
   generating: Generando...
   generating_mobile_archive: Generando de archivos móviles
   Genus: Género
@@ -1621,6 +1633,8 @@ es:
   high: alta
   highest_rank: Rango más alto
   highlights: Destacado
+  highlights_and_stats_from_year_on_site: Destacados y estadísticas a partir de %{year}
+    en %{site}
   history: Historial
   home: Inicio
   home_faq: PP. FF.
@@ -1645,6 +1659,8 @@ es:
   id_please!: ¡ayuda por favor!
   id_please: ID por favor
   id_please_expandable_html: Ayuda<span class='full'> por favor!</span>
+  id_withdrawn: Id. retirada
+  ids_by_taxon: IDs por Taxon
   identify: Identificar
   identify_observations: Identificar observaciones
   identify_title: Identificar
@@ -1842,6 +1858,7 @@ es:
   last_inat_observation: Última observación %{site_name}
   last_observation: Última observación
   last_seen: Visto por última vez
+  last_year: Año pasado
   lat: Latitud
   latitude: Latitud
   latitude_in_decimals: Latitud en grados con decimales, ej. 38.123
@@ -2095,7 +2112,7 @@ es:
     vea bien en tamaño grande.
   make_taxonomic_flickr_tags_for_taxon_raquo: Hacer etiquetas taxonómicas de Flickr
     para este taxón &raquo;
-  make_this_your_default_license: Hacer ésta %{type} su licencia por defecto
+  make_this_your_default_license: Hacer de esta tu licencia %{type} predeterminada
   make_this_the_primary_listing: Hacerlo la especies listado principal
   mammals: mamíferos
   manage: Administrar
@@ -2200,6 +2217,7 @@ es:
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
+  most_comments_and_faves: La Mayoría de Los Comentarios y Favoritos
   most_observations: Con más observaciones
   most_recent_observation_by_date_observed: Observación comprobable más reciente por
     fecha de observación
@@ -2551,6 +2569,7 @@ es:
     Búsquedas de texto pueden producir resultados extraños cuando se combina
     con otros filtros. si usted quiere encontrar la observación de una especie
     en particular, utiliza el taxón filtrar.
+  observations_this_year_vs_last_year: Observaciones de este año frente al año pasado
   observations_title: Observaciones de todos
   observations_total: Observaciones totales
   observations_w: Búsqueda de observaciones con
@@ -2591,6 +2610,7 @@ es:
   of_observations: observaciones
   of_identifiers: identificadores
   of_places: lugares
+  of_this_taxon: De este taxón
   offensive_inappropriate: ofensivo / inapropiado
   official_blog: Blog oficial
   offline_access_enabled: Acceso sin conexión activado
@@ -2758,6 +2778,9 @@ es:
     comment:
       with_by: comentó sobre @vow_or_con{vow:an|a} %{comment_subject_link} en %{by_link}
       without_by: comentó sobre @vow_or_con{vow:an|a} %{comment_subject_link}
+  per_day: Por día
+  per_month: Por mes
+  per_week: Por semana
   person: persona
   personal_message: Mensaje personal
   personal_message_description: ¡A nadie le gusta recibir correos desde una máquina¿Por
@@ -3028,6 +3051,7 @@ es:
   processing3p: Procesando...
   profile: Perfil
   project: Proyecto
+  project_added_your_observations: Se añadió el proyecto a tus observaciones
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3148,6 +3172,7 @@ es:
   real_time_discussions: Discusiones en tiempo real
   reason: Razón
   reason_you_are_flagging_this_item: Razón por la cual estas marcando este elemento.
+  recaptcha_verification_failed: falló la verificación de reCaptcha
   receive_email_notifications_when_people_leave_you: Reciba notificaciones por correo
     cuando las personas lo dejen
   receive_updates_from_this_project: Recibir actualizaciones de este proyecto
@@ -3180,6 +3205,7 @@ es:
   refresh: Refrescar
   refresh_listed_taxa: refrescar taxones incluidos
   refreshing: refrescando
+  regenerate_stats: Regenerar estadísticas
   regenerate_url: Regenerar URL
   register_for_this_event_at_x_html: Registro para este evento en %{x}
   reject?: ¿Rechazar?
@@ -3387,6 +3413,7 @@ es:
     parte del mundo.
   set_license: Fijar licencia
   settings: Propiedades
+  share: Comparte
   share_your_observation_with_researchers_by: Comparta su observación con investigadores
     por
   short_code_for_this_place: Código corto para el país, ej. MX para México
@@ -3434,6 +3461,7 @@ es:
   site_name_place: Lugares de %{site_name}
   site_observations_export_from_date: '%{site_name} observaciones exportas de %{date}'
   site_taxon_page: '%{site_name} página del taxón'
+  site_year_in_review: Resumen del año %{year} en %{site_name}
   so_meta!: ¡Autoreferencia!
   some_agree: Algunos la apoyan
   some_observations_failed_to_be_added: Algunas observaciones no pudieron añadirse
@@ -3580,6 +3608,8 @@ es:
   start_typing_someones_name: Comience a digitar el nombre de alguien…
   states: Estados
   stats: Estadísticas
+  stats_for_this_year_have_not_been_generated: No se han generado las estadísticas
+    de este año.
   stats_title: Estadísticas del sitio
   status: Estado
   status_globally: '%{status} Globalmente'
@@ -3689,6 +3719,7 @@ es:
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
     coincidir con un taxón existente en la base de datos.
   taxon_observed_by_user: '%{taxon} observado por %{user}'
+  taxon_or_place_observations: Observaciones de taxón o lugar
   taxon_photos_updated: ¡Las fotos del taxón fueron actualizadas!
   taxon_range: Área del taxón
   taxon_range_created_notice: El área de distribución del taxón se ha creado correctamente.
@@ -3736,6 +3767,7 @@ es:
   text_: texto
   thanks_for_signing_up: ¡Gracias por registrarse!
   thanks_for_using: Gracias por usar
+  thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
   that_photo_doesnt_exist: Esa foto no existe.
   that_observation_doesnt_exist: Esa observación no existe.
   that_observation_doesnt_have_any_photos: Esa observación no tiene ninguna foto.
@@ -3914,7 +3946,7 @@ es:
     o grupo ha sido guardado!</strong> Por favor no edites la especie o grupo. Puedes
     editar los demás campos.
   this_taxon_concept_is_inactive: esta especie o grupo esta inactiva
-  this_taxon_has_no_default_photo: ¡Este taxón no tiene foto por defecto!
+  this_taxon_has_no_default_photo: Este taxón no tiene ninguna foto predeterminada.
   this_taxon_is_inactive_this_means: Este taxón está <strong>inactivo</strong>. Esto
     significa que los curadores de %{site_name} lo han reemplazado por un concepto
     más actualizado taxonómicamente.
@@ -3945,6 +3977,7 @@ es:
     fotos de fotos. ¿Desea continuar?
   this_will_update_all_last_observations: Esto actualizará todas las observaciones
     recientes y agregará nuevos taxones de
+  this_year: Este año
   those_are_the_basics_of: ¡Esas son las bases para agregar observacionesHay muchas
     otras cosas que puede hacer, como buscar y filtrar sus observaciones o modificarlas
     como un grupo, pero esto debería ser auto explicativo.
@@ -4137,6 +4170,7 @@ es:
   user_is_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
   user_muted: Usuario silenciado
+  user_observations: Observaciones del usuario
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
@@ -4149,12 +4183,15 @@ es:
   users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a>
     a %{project_title}
+  users_highlights_and_stats_from_year_on_site: Destacados y estadísticas de %{user}
+    de %{year} en %{site}
   users_id: Identificación de %{user}
   users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
   users_identification_short_html: Identificador de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: Lates observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}
   users_profile: Perfil de %{user}
+  users_year_on_site: El año %{year} de %{user} en %{site}
   using_a_license: utilizando una licencia
   using_cc_license_makes_easier_use_your_data: Usar una licencia de <strong>Atribución
     de Creative Commons</fuerte> facilita que los investigadores usen sus datos. Usted
@@ -4163,6 +4200,8 @@ es:
   valid_options_are: Las opciones válidas son
   value: Valor
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
+  verifiable_observations_by_observation_date: Observaciones Verificables Por Fecha
+    de Observación
   view: Ver
   view_all: Ver todo
   view_all_from_x: Ver todo de %{x}
@@ -4243,6 +4282,7 @@ es:
   view_user_observations: Ver observaciones de %{user}
   view_x_from_x: Ver %{day_observations} de %{observed_on}
   view_xs_journal: Ver el diario de %{x}
+  view_year_stats_for_site: Ver %{year} Estadísticas de %{site}
   view_your_dashboard: Ve tu tablero
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Ver su tablero</a> para
     más actualizaciones
@@ -4250,6 +4290,7 @@ es:
   view_your_life_list: Ve tu lista de vida
   view_your_calendar: Observa tu calendario
   view_your_observations: Ver sus observaciones
+  view_your_year_stats: Ver Sus Estadísticas de %{year}
   view_yours: Ver los tuyos
   view_all_of_your_observations_from_x: Ver todas tus observaciones de %{x}
   visually_similar: Similar visualmente
@@ -4295,6 +4336,7 @@ es:
     Hemos intentado procesar tu subida llamada %{filename}, pero no funcionó.
     Arregla los siguientes problemas y vuelve a intentarlo.
   wed: mié
+  week_of_date: Semana de %{date}
   welcome!: ¡Bienvenidos!
   welcome_comma!: ¡Bienvenido,
   welcome: Bienvenido
@@ -4332,6 +4374,8 @@ es:
   where_were_you?: <em>¿Dónde</em> estaba usted?
   which_projects_can_add_your_observations?: ¿Qué proyectos pueden añadir tus observaciones?
   white: blanco
+  who_helped_user_the_most: "Quién ayudó a %{user} más"
+  who_user_helped_the_most: "Quien %{user} ayudó más"
   with_annotation: Con anotación
   without_annotation: Sin anotación
   widget: Widget
@@ -4357,10 +4401,10 @@ es:
   x_doesnt: '%{login} no'
   x_hasnt: '%{login} no ha'
   x_journal: Diario de %{user}
-  x_journal_archives_for_y: Diario de %{user} &middot; Archivos de
-  x_journal_editing: Diario de %{user} &middot; Modificar
-  x_journal_middot: Diario de %{user} &middot;
-  x_journal_new_post: Diario de %{user} &middot; Nuevo ingreso
+  x_journal_archives_for_y: Diario de %{user} • Archivos de
+  x_journal_editing: Diario de %{user} • Modificar
+  x_journal_middot: Diario de %{user} •
+  x_journal_new_post: Diario de %{user} • Entrada nueva
   x_observations_failed:
     one: 1 observación falló
     other: '%{count} observaciones fallaron'
@@ -4380,7 +4424,9 @@ es:
   x_wrote_a_new_post_html: '%{x} escribió una nueva ingreso'
   x_wrote_y_new_posts_html: '%{x} escribió %{y} nuevas ingresos'
   year: Año
+  year_in_review: Resumen del año %{year}
   year_month: año/mes
+  year_on_site: El %{year} en %{site}
   yellow: amarillo
   "yes": Sí
   yes_find_them!: ¡Sí, encuéntrelas!
@@ -4540,7 +4586,7 @@ es:
   your_comment_was_saved: Su comentario ha sido guardado.
   your_content: Su Contenido
   your_contributions_to_project: Tus contribuciones a %{project_title}
-  your_default: su defecto
+  your_default: tu valor predeterminado
   your_default_time_zone: Su zona horaria actual
   your_drafts: Sus borradores
   your_email_address: Tu dirección de correo electrónico
@@ -5481,6 +5527,20 @@ es:
         sorry_that_doesnt_exist: ¡Eso no existe!
         even_our_dedicated_search_mole_couldnt: ¡Incluso nuestro dedicado topo buscador
           no pudo encontrar nada!
+    stats:
+      year:
+        sunburst_desc_html: |
+          Taxones observados dispuestos como un diagrama jerárquico de
+          "resplandor solar". La base de la jerarquía está en el centro,
+          comenzando con "Vida" y terminando con especies en los bordes
+          exteriores. El tamaño de cada arco es proporcional al número de
+          observaciones de ese taxón, y los colores se corresponden con los
+          colores de nuestro taxón "icónico" habitual (verde para las plantas,
+          naranja para los insectos, azul para la mayoría de los otros animales,
+          etc.), así que si Veo mucho verde, eso significa que has observado
+          muchas plantas. <strong>Haga clic en un arco para colocar ese taxón en
+          el centro</strong> y sus niños a su alrededor, o <strong>haga clic en
+          el centro para volver a subir la jerarquía.</strong>
     taxa:
       show:
         about_names_desc: |-
@@ -5916,6 +5976,11 @@ es:
                 ("%{observation_field_name}" en tu observación de "%{observation_species_guess}")
               time_format: debe estar en la forma hh:mm para un campo de hora ("%{observation_field_name}"
                 en tu observación de "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: el usuario no acepta campos
+                de otros
+              user_only_accepts_fields_from_site_curators: el usuario solo acepta
+                campos de los curadores del sitio
         place:
           attributes:
             place_geometry:
@@ -5936,6 +6001,10 @@ es:
             observation_id:
               must_be_observed_after: debe observarse después de %{time}
               must_be_observed_before: debe observarse antes de %{time}
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: no debe contener comas ni barras
     attributes:
       assessment:
         description: Descripción
