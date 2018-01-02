@@ -524,6 +524,7 @@ class YearStatistic < ActiveRecord::Base
   def self.observed_taxa_accumulation( params = { } )
     # params = { year: year }
     interval = params.delete(:interval) || "month"
+    date_field = params.delete(:date_field) || "observed_on"
     params[:user_id] = params[:user].id if params[:user]
     if site = params[:site]
       params[:site_id] = site.id
@@ -534,7 +535,7 @@ class YearStatistic < ActiveRecord::Base
       aggs: {
         histogram: {
           date_histogram: {
-            field: "observed_on",
+            field: date_field,
             interval: interval,
             format: "yyyy-MM-dd"
           },
