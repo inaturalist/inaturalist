@@ -61,6 +61,19 @@ module ActiveRecord
           self.description == self.default_description
         end
 
+        define_method(:has_spammable_content?) do
+          # when all the fields we care about are blank, we don't have spam
+          # and don't need to call the akismet API.
+          ! rakismet_fields.all?{ |f| self.send(f).blank? }
+        end
+
+        define_method(:spammable_fields_changed?) do
+          # if there is any overlap between the fields that could be spam
+          # and the fields that have been changed this time around
+          # & is the set intersection operator
+          ( self.changed.map(&:to_sym) & rakismet_fields ).any?
+        end
+
         # If any of the rakismet fields have been modified, then
         # call the akismet API and update the flags on this object.
         # Flags are made with user_id = 0, representing automated flags
@@ -73,15 +86,9 @@ module ActiveRecord
             Rakismet.disabled = Rails.env.test?
           end
           unless Rakismet.disabled
-            # if there is any overlap between the fields that could be spam
-            # and the fields that have been changed this time around
-            # & is the set intersection operator
-            if (self.changed.map(&:to_sym) & rakismet_fields).any?
-              # when all the fields we care about are blank, we don't have spam
-              # and don't need to call the akismet API. This is also the only
-              # place that the akismet API is called outside of specs
-              is_spam = (rakismet_fields.all?{ |f| self.send(f).blank? }) ?
-                false : spam?
+            if self.spammable_fields_changed?
+              # This is also the only place that the akismet API is called outside of specs
+              is_spam =  self.has_spammable_content? ? spam? : false
               if is_spam
                 self.add_flag( flag: "spam", user_id: 0 )
               elsif self.flagged_as_spam?
@@ -104,6 +111,17 @@ module ActiveRecord
           if flag.flag == Flag::SPAM
             if user_responsible
               user_responsible.update_spam_count
+            end
+            return unless has_spammable_content?
+            if flag.resolved? || flag.destroyed?
+              # akismet spam flag was resolved or deleted
+              # tell akismet this is ham
+              ham! if flag.is_akismet_spam_flag?
+            elsif !flag.is_akismet_spam_flag?
+              # non-akismet spam flag was created
+              # as long as there are no open akismet spam flags, tell akismet this is spam
+              akismet_unflagged = flags.select{ |f| f != flag && f.is_akismet_spam_flag? && !f.resolved }.empty?
+              spam! if akismet_unflagged
             end
           end
         end

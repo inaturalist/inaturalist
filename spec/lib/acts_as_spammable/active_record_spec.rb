@@ -49,6 +49,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
     f = Flag.make!(flaggable: o, flag: Flag::SPAM)
     expect(o.flagged_as_spam?).to be true
     Flag.last.update_attributes(resolved: true, resolver: @user)
+    o.flags.reload
     expect(o.flagged_as_spam?).to be false
   end
 
@@ -163,7 +164,6 @@ describe "ActsAsSpammable", "ActiveRecord" do
       "Validation failed: User cannot be spammer")
   end
 
-
   describe "User Exceptions" do
     it "checks users for spam when they have descriptions" do
       u = User.make!
@@ -191,7 +191,7 @@ describe "ActsAsSpammable", "ActiveRecord" do
     end
   end
 
-  describe "not_flagged_as_spam" do    
+  describe "not_flagged_as_spam" do
     it "includes records not flagged as spam" do
       o = Observation.make!
       expect( o ).not_to be_known_spam
@@ -223,4 +223,83 @@ describe "ActsAsSpammable", "ActiveRecord" do
       expect( Observation.not_flagged_as_spam ).not_to include o
     end
   end
+
+  describe "spam" do
+    it "tells akismet about spam" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("false")
+      expect(Rakismet).to receive(:akismet_call).with("submit-spam", anything).and_return("true")
+      c = Comment.make!
+      Flag.make!(flaggable: c, flag: Flag::SPAM)
+    end
+
+    it "does not tell akismet about spam if there is no content" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("false")
+      expect(Rakismet).to_not receive(:akismet_call).with("submit-spam", anything)
+      c = Comment.make!
+      c.update_column(:body, nil)
+      Flag.make!(flaggable: c, flag: Flag::SPAM)
+    end
+
+    it "does not tell akismet about spam if they already flagged it" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("true")
+      expect(Rakismet).to_not receive(:akismet_call).with("submit-spam", anything)
+      c = Comment.make!
+      Flag.make!(flaggable: c, flag: Flag::SPAM)
+    end
+
+    it "tells akismet when they did flag it, but that flag is resolved" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("true")
+      expect(Rakismet).to receive(:akismet_call).with("submit-spam", anything)
+      c = Comment.make!
+      Flag.update_all(resolved: true)
+      Flag.make!(flaggable: c, flag: Flag::SPAM)
+    end
+
+    it "does not tell akismet about spam flags they created" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("false")
+      expect(Rakismet).to_not receive(:akismet_call).with("submit-spam", anything)
+      c = Comment.make!
+      # need to set both user and user_id to get an instance user_id=0
+      Flag.make!(flaggable: c, flag: Flag::SPAM, user: nil, user_id: 0)
+    end
+  end
+
+  describe "ham" do
+    it "tells akismet about false positive ham on resolved akismet flags" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("true")
+      expect(Rakismet).to receive(:akismet_call).with("submit-ham", anything).and_return("true")
+      c = Comment.make!
+      c.flags.last.update_attributes(resolved: true)
+    end
+
+    it "tells akismet about ham on destroyed akismet flags" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("true")
+      expect(Rakismet).to receive(:akismet_call).with("submit-ham", anything).and_return("true")
+      c = Comment.make!
+      Flag.destroy_all
+    end
+
+    it "does not tell akismet about ham if there is no content" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("false")
+      expect(Rakismet).to_not receive(:akismet_call).with("submit-spam", anything)
+      expect(Rakismet).to_not receive(:akismet_call).with("submit-ham", anything)
+      c = Comment.make!
+      c.update_column(:body, nil)
+      Flag.make!(flaggable: c, flag: Flag::SPAM)
+      Flag.destroy_all
+    end
+
+    it "does not tell akismet about ham on resolved or destroyed user flags" do
+      expect(Rakismet).to receive(:akismet_call).with("comment-check", anything).and_return("false")
+      expect(Rakismet).to receive(:akismet_call).twice.with("submit-spam", anything).and_return("true")
+      expect(Rakismet).to_not receive(:akismet_call).with("submit-ham", anything)
+      c = Comment.make!
+      f = Flag.make!(flaggable: c, flag: Flag::SPAM)
+      f.update_attributes(resolved: true)
+      f = Flag.make!(flaggable: c, flag: Flag::SPAM)
+      f.destroy
+    end
+
+  end
+
 end

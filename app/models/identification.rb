@@ -2,7 +2,7 @@
 class Identification < ActiveRecord::Base
   include ActsAsElasticModel
   acts_as_spammable fields: [ :body ],
-                    comment_type: "item-description",
+                    comment_type: "comment",
                     automated: false
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }

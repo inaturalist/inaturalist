@@ -11,7 +11,7 @@ class Taxon < ActiveRecord::Base
     :taxon_change_taxa, :taxon_schemes, :taxon_changes,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
-    { taxon_photos: { photo: :user } },
+    { taxon_photos: { photo: [ :user, :flags ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do

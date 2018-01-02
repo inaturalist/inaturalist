@@ -262,7 +262,7 @@ class ObservationsController < ApplicationController
             object: @observation, layout: false)
         end
         
-        user_viewed_updates if logged_in?
+        user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
         @shareable_image_url = if !@observation.photos.blank? && photo = @observation.photos.detect{ |p| p.medium_url =~ /^http/ }
           FakeView.image_url( photo.best_url(:original) )
@@ -281,130 +281,9 @@ class ObservationsController < ApplicationController
         @shareable_description = @observation.to_plain_s( no_place_guess: !@coordinates_viewable )
         @shareable_description += ".\n\n#{@observation.description}" unless @observation.description.blank?
 
-        # if viewing_new_obs_show?
         @skip_application_js = true
         @flash_js = true
-        render layout: "bootstrap", action: "show2"
-        return
-        # end
-
-        # TODO remove the rest of this html block
-
-        # always display the time in the zone in which is was observed
-        Time.zone = @observation.user.time_zone
-
-        @identifications = @observation.identifications.includes(:user, :taxon => :photos)
-        @current_identifications = @identifications.select{|o| o.current?}
-        @owners_identification = @current_identifications.detect do |ident|
-          ident.user_id == @observation.user_id
-        end
-        @community_identification = if @observation.community_taxon
-          Identification.new(:taxon => @observation.community_taxon, :observation => @observation)
-        end
-
-        if logged_in?
-          @viewers_identification = @current_identifications.detect do |ident|
-            ident.user_id == current_user.id
-          end
-        end
-
-        @current_identifications_by_taxon = @current_identifications.select do |ident|
-          ident.user_id != ident.observation.user_id
-        end.group_by{|i| i.taxon}
-        @sorted_current_identifications_by_taxon = @current_identifications_by_taxon.sort_by do |row|
-          row.last.size
-        end.reverse
-        
-        if logged_in?
-          @projects = current_user.project_users.includes(:project).joins(:project).limit(1000).order("lower(projects.title)").map(&:project)
-          @project_addition_allowed = @observation.user_id == current_user.id
-          @project_addition_allowed ||= @observation.user.preferred_project_addition_by != User::PROJECT_ADDITION_BY_NONE
-        end
-        
-        @places = @coordinates_viewable ? @observation.places : @observation.public_places
-        
-        @project_observations = @observation.project_observations.joins(:project).limit(100).to_a
-        @project_observations_by_project_id = @project_observations.index_by(&:project_id)
-        
-        @comments_and_identifications = (@observation.comments.all + 
-          @identifications).sort_by{|r| r.created_at}
-        
-        @photos = @observation.observation_photos.includes(:photo => [:flags]).sort_by do |op| 
-          op.position || @observation.observation_photos.size + op.id.to_i
-        end.map{|op| op.photo}.compact
-        @flagged_photos = @photos.select{|p| p.flagged?}
-        @sounds = @observation.sounds.all
-        
-        if @observation.observed_on
-          @day_observations = Observation.by(@observation.user).on(@observation.observed_on)
-            .includes([ :photos, :user ])
-            .paginate(:page => 1, :per_page => 14)
-        end
-        
-        if logged_in?
-          @subscription = @observation.update_subscriptions.where(user: current_user).first
-        end
-        
-        @observation_links = @observation.observation_links.sort_by{|ol| ol.href}
-        @posts = @observation.posts.published.limit(50)
-
-        if @observation.taxon
-          unless @places.blank?
-            @listed_taxon = ListedTaxon.
-              joins(:place).
-              where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL", @observation.taxon_id, @places ]).
-              order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").first
-            @conservation_status = ConservationStatus.
-              where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
-              where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
-              includes(:place).first
-          end
-          @conservation_status ||= ConservationStatus.where(:taxon_id => @observation.taxon).where("place_id IS NULL").
-            where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
-        end
-
-        if params[:test] == "idcats" && logged_in?
-          leading_taxon_ids = @identifications.select(&:leading?).map(&:taxon_id)
-          if leading_taxon_ids.size > 0
-            sql = <<-SQL
-              SELECT
-                user_id, count(*) AS ident_count
-              FROM
-                identifications
-              WHERE
-                category = 'improving'
-                AND taxon_id IN (#{leading_taxon_ids.join( "," )})
-              GROUP BY
-                user_id
-              HAVING count(*) > 0
-              ORDER BY count(*) DESC
-              LIMIT 10
-            SQL
-            @users_who_can_help = User.joins( "JOIN (#{sql}) AS ident_users ON ident_users.user_id = users.id" ).order("ident_count DESC").limit(10)
-          elsif @observation.taxon && @observation.taxon.rank_level > Taxon::SPECIES_LEVEL
-            sql = <<-SQL
-              SELECT
-                user_id, count(*) AS ident_count
-              FROM
-                identifications
-                  LEFT OUTER JOIN taxon_ancestors ta ON ta.taxon_id = identifications.taxon_id 
-              WHERE
-                category = 'improving'
-                AND ta.ancestor_taxon_id = #{@observation.taxon_id}
-              GROUP BY
-                user_id
-              HAVING count(*) > 0
-              ORDER BY count(*) DESC
-              LIMIT 10
-            SQL
-            @users_who_can_help = User.joins( "JOIN (#{sql}) AS ident_users ON ident_users.user_id = users.id" ).order("ident_count DESC").limit(10)
-          end
-        end
-        
-        if params[:partial]
-          return render(:partial => params[:partial], :object => @observation,
-            :layout => false)
-        end
+        return render layout: "bootstrap", action: "show2"
       end
        
       format.xml { render :xml => @observation }
@@ -2072,12 +1951,13 @@ class ObservationsController < ApplicationController
 ## Protected / private actions ###############################################
   private
 
-  def user_viewed_updates
+  def user_viewed_updates(options={})
     return unless logged_in?
-    obs_updates = UpdateAction.joins(:update_subscribers).
-      where(resource: @observation).
-      where("update_subscribers.subscriber_id = ?", current_user.id)
-    UpdateAction.user_viewed_updates(obs_updates, current_user.id)
+    if options[:delay]
+      @observation.delay(priority: USER_PRIORITY).user_viewed_updates(current_user.id)
+    else
+      @observation.user_viewed_updates(current_user.id)
+    end
   end
 
   def user_reviewed
@@ -3029,7 +2909,7 @@ class ObservationsController < ApplicationController
       ( params[:partial] == "cached_component" ) ||
       ( action_name == "taxon_summary" ) ||
       ( action_name == "observation_links" ) ||
-      ( action_name == "show" && viewing_new_obs_show? )
+      ( action_name == "show" )
   end
 
   def observations_index_search(params)
@@ -3058,11 +2938,6 @@ class ObservationsController < ApplicationController
     { params: params,
       search_params: search_params,
       observations: observations }
-  end
-
-  def viewing_new_obs_show?
-    ( logged_in? && current_user.in_test_group?("obs-show") && !params.key?("show1") ) ||
-    ( !logged_in? && params.key?("show2") )
   end
 
   def ensure_photos_are_local_photos( photos )

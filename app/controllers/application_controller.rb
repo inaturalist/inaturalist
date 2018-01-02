@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
   around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
+  before_filter :preload_user_preferences
   before_filter :user_logging
   before_filter :check_user_last_active
   after_filter :user_request_logging
@@ -241,7 +242,13 @@ class ApplicationController < ActionController::Base
     return true if params[:return_to].blank?
     session[:return_to] = params[:return_to]
   end
-  
+
+  def preload_user_preferences
+    if logged_in?
+      User.preload_associations(current_user, :stored_preferences)
+    end
+  end
+
   def user_logging
     return true unless logged_in?
     Rails.logger.info "  User: #{current_user.login} #{current_user.id}"
