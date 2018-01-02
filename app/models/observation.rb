@@ -1531,6 +1531,8 @@ class Observation < ActiveRecord::Base
           )
             disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
             ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
+          elsif i.disagreement == nil
+            i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
           end
         }.size
       else

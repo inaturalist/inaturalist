@@ -2885,11 +2885,24 @@ describe Observation do
       end
 
       it "s1 s1 g1" do
-        Identification.make!(:observation => @o, :taxon => @s1)
-        Identification.make!(:observation => @o, :taxon => @s1)
-        Identification.make!(:observation => @o, :taxon => @g1)
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1 )
         @o.reload
         expect( @o.community_taxon ).to eq @s1
+        # expect( @o.community_taxon ).to eq @g1
+      end
+
+      it "s1 s1 g1.disagreement_nil" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        i = Identification.make!( observation: @o, taxon: @g1 )
+        i.update_attribute( :disagreement, nil )
+        i.reload
+        expect( i.disagreement ).to eq nil
+        @o.reload
+        @o.set_community_taxon( force: true )
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 g1.disagreement" do
@@ -2898,6 +2911,14 @@ describe Observation do
         Identification.make!( observation: @o, taxon: @g1, disagreement: true )
         @o.reload
         expect( @o.community_taxon ).to eq @g1
+      end
+
+      it "s1 s1 g1.disagreement_false" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: false )
+        @o.reload
+        expect( @o.community_taxon ).to eq @s1
       end
 
       it "s1 s1 s1 g1" do
