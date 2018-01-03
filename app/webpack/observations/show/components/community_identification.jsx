@@ -318,10 +318,7 @@ class CommunityIdentification extends React.Component {
     const { observation, config, addID } = this.props;
     const test = $.deparam.querystring( ).test;
     const loggedIn = config && config.currentUser;
-    let communityTaxon = observation.taxon;
-    if ( test && test.match( /cid-vis/ ) ) {
-      communityTaxon = observation.communityTaxon;
-    }
+    let communityTaxon = observation.communityTaxon;
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -468,7 +465,7 @@ class CommunityIdentification extends React.Component {
         </div>
       );
     } else {
-      visualization = (
+      visualization = communityTaxon ? (
         <div className="info">
           <div className="photo">{ photo }</div>
           <div className="badges">
@@ -480,6 +477,12 @@ class CommunityIdentification extends React.Component {
             url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
           />
           { stats }
+        </div>
+      ) : (
+        <div className="info">
+          <div className="about">
+            { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
+          </div>
         </div>
       );
     }

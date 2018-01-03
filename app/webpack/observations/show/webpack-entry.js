@@ -22,6 +22,7 @@ import otherObservationsReducer from "./ducks/other_observations";
 import projectFieldsModalReducer from "./ducks/project_fields_modal";
 import qualityMetricsReducer from "./ducks/quality_metrics";
 import subscriptionsReducer from "./ducks/subscriptions";
+import disagreementAlertReducer from "../shared/ducks/disagreement_alert";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
 
 // Use custom relative times for moment
@@ -49,7 +50,8 @@ const rootReducer = combineReducers( {
   otherObservations: otherObservationsReducer,
   projectFieldsModal: projectFieldsModalReducer,
   qualityMetrics: qualityMetricsReducer,
-  subscriptions: subscriptionsReducer
+  subscriptions: subscriptionsReducer,
+  disagreementAlert: disagreementAlertReducer
 } );
 
 const store = createStore(

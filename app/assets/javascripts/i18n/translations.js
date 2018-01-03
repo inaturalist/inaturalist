@@ -3528,6 +3528,7 @@ I18n.translations["en"] = {
   "disagree_": "Disagree",
   "discoveries": "Discoveries",
   "do_not_show_this_message_again": "Do not show this message again",
+  "do_you_think_this_could_be_html": "Do you think this <strong>could</strong> be",
   "doh_something_went_wrong": "D'oh, something went wrong.",
   "done": "Done",
   "download": "Download",
@@ -3628,6 +3629,8 @@ I18n.translations["en"] = {
   "hide_uncountable_species": "Hide uncountable species",
   "high": "high",
   "history": "History",
+  "i_am_sure_this_is_not_taxon": "I am sure this is not %{taxon}",
+  "i_dont_know_but_taxon_is_my_best_guess": "I don't know but %{taxon} is my best guess\n",
   "id_categories": {
     "tooltips": {
       "improving": "First suggestion of this taxon that the community subsequently agreed with. This helped\nrefine the community taxon.\n",
@@ -4054,6 +4057,7 @@ I18n.translations["en"] = {
   "please_allow_a_few_weeks_for_external_sites": "Please allow a few weeks for external sites to sync changes from this observation",
   "please_complete_the_following_to_add_project": "Please complete the following to add this observation to the project:\n",
   "popular": "popular",
+  "potential_disagreement": "Potential Disagreement",
   "prev": "Prev",
   "preview": "Preview",
   "previous": "Previous",
@@ -4297,6 +4301,7 @@ I18n.translations["en"] = {
   "use_name_as_a_placeholder": "Use <span class='ac-placeholder'>\"%{name}\"</span> as a placeholder\n",
   "user": "User",
   "user_commented": "%{user} commented",
+  "user_disagrees_this_is_taxon": "%{user} disagrees this is %{taxon}",
   "user_has_opted_out_of_community_id": "User has opted-out of Community ID",
   "user_suggested_an_id": "%{user} suggested an ID",
   "username_or_user_id": "Username or user ID",

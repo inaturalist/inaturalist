@@ -14,6 +14,7 @@ import { setConfirmModalState, handleAPIError } from "./confirm_modal";
 import { setProjectFieldsModalState } from "./project_fields_modal";
 import { updateSession } from "./users";
 import util from "../util";
+import { showDisagreementAlert } from "../../shared/ducks/disagreement_alert";
 
 const SET_OBSERVATION = "obs-show/observation/SET_OBSERVATION";
 const SET_ATTRIBUTES = "obs-show/observation/SET_ATTRIBUTES";
@@ -400,6 +401,7 @@ export function doAddID( taxon, confirmForm, options = { } ) {
       user: state.config.currentUser,
       body: options.body,
       agreedTo: options.agreedTo,
+      disagreement: options.disagreement,
       taxon,
       current: true,
       api_status: "saving"
@@ -409,7 +411,8 @@ export function doAddID( taxon, confirmForm, options = { } ) {
       observation_id: state.observation.id,
       taxon_id: taxon.id,
       body: options.body,
-      vision: !!taxon.isVisionResult
+      vision: !!taxon.isVisionResult,
+      disagreement: options.disagreement
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
   };
@@ -420,20 +423,20 @@ export function addID( taxon, options = { } ) {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
     const observation = state.observation;
-    const config = state.config;
-    const userPrefersSkip = config && config.currentUser &&
-      config.currentUser.prefers_skip_coarer_id_modal;
-    if ( !userPrefersSkip && observation.taxon && taxon.id !== observation.taxon.id &&
-         _.includes( observation.taxon.ancestor_ids, taxon.id ) ) {
-      dispatch( setConfirmModalState( {
-        show: true,
-        type: "coarserID",
-        idTaxon: taxon,
-        existingTaxon: observation.taxon,
-        confirmText: "Proceed",
-        onConfirm: ( confirmForm ) => {
-          dispatch( doAddID( taxon, confirmForm, options ) );
-        }
+    const observationTaxon = observation.communityTaxon || observation.taxon;
+    if (
+      observationTaxon && taxon.id !== observationTaxon.id &&
+      _.includes( observationTaxon.ancestor_ids, taxon.id )
+    ) {
+      dispatch( showDisagreementAlert( {
+        onDisagree: ( ) => {
+          dispatch( doAddID( taxon, { }, Object.assign( { disagreement: true }, options ) ) );
+        },
+        onBestGuess: ( ) => {
+          dispatch( doAddID( taxon, { disagreement: false }, Object.assign( { disagreement: false }, options ) ) );
+        },
+        oldTaxon: observationTaxon,
+        newTaxon: taxon
       } ) );
     } else {
       dispatch( doAddID( taxon, null, options ) );

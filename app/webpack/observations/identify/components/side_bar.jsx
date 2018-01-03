@@ -35,7 +35,8 @@ const SideBar = ( { blind } ) => (
             think no one could identify to species given the evidence, identify
             to the most specific level the evidence justifies, e.g. genus or
             family. If you think someone else could identify more specifically
-            than you can, please abstain and just mark as reviewed.
+            than you can, please check "Others could potentially refine this ID"
+            before saving your ID.
           </li>
           <li>
             <strong>If there are multiple species in the photos, please just abstain

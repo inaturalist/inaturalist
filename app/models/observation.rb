@@ -1498,6 +1498,11 @@ class Observation < ActiveRecord::Base
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
     working_idents = ids.sort_by(&:id)
+    if options[:before].to_i > 0
+      working_idents = working_idents.select{|i| i.id < options[:before].to_i }
+    elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
+      working_idents = working_idents.select{|i| i.created_at < options[:before] }
+    end
 
     # load all ancestor taxa implied by identifications
     ancestor_ids = working_idents.map{|i| i.taxon.ancestor_ids}.flatten.uniq.compact
@@ -1515,13 +1520,21 @@ class Observation < ActiveRecord::Base
        id_taxon.self_and_ancestor_ids.include?(i.taxon_id) || i.taxon.self_and_ancestor_ids.include?(id_taxon.id)
       }.size
 
-      # count identifications of taxa that are ancestors of this taxon but
-      # were made after the first identification of this taxon (i.e.
-      # conservative disagreements). Note that for genus1 > species1, an
-      # identification of species1 implies an identification of genus1
-      first_ident = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
-      conservative_disagreement_count = if first_ident
-        working_idents.select{|i| i.id > first_ident.id && id_taxon.ancestor_ids.include?(i.taxon_id)}.size
+      # Count identifications that explicitly disagreed with an ancestor of this taxon
+      first_ident_of_taxon = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
+      conservative_disagreement_count = if first_ident_of_taxon
+        working_idents.select {|i|
+          if (
+            i.disagreement? &&
+            i.previous_observation_taxon &&
+            ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
+          )
+            disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
+          elsif i.disagreement == nil
+            i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
+          end
+        }.size
       else
         0
       end

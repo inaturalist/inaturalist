@@ -1051,7 +1051,12 @@ en:
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
   do_you_know_where_this_species_lives: Do you know where this species lives?
-  do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |    
+    Do you study nematodes? Are you the world's foremost expert on barnacle
+    taxonomy? Do you just like looking at pretty flowers? Filling out your
+    profile adds some personality and helps establish your credibility when
+    helping people out with identifications.
+  do_you_think_this_could_be_html: "Do you think this <strong>could</strong> be"
   do_you_want_to_proceed: Do you want to proceed?
   does_the_location_seem_accurate: "Does the location seem accurate?"
   does_the_date_seem_accurate: "Does the date seem accurate?"
@@ -1455,6 +1460,9 @@ en:
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   hybrid: hybrid
   i_agree_to_the_project_terms: I agree to the project terms
+  i_am_sure_this_is_not_taxon: "I am sure this is not %{taxon}"
+  i_dont_know_but_taxon_is_my_best_guess: |
+    I don't know but %{taxon} is my best guess
   icon: Icon
   icon_size: Icon size
   icon_slash_photo: Icon / Photo
@@ -2679,6 +2687,7 @@ en:
   posted_by: Posted by
   posted_on: Posted on
   posts: Posts
+  potential_disagreement: Potential Disagreement
   powered_by: Powered by
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   present: present
@@ -3680,6 +3689,7 @@ en:
   user_blocked: User blocked
   user_commented: "%{user} commented"
   user_commented_on: "%{user} commented on your %{title} %{time}"
+  user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID

@@ -60,7 +60,9 @@ class Identification < ActiveRecord::Base
         id: taxon_change.id,
         type: taxon_change.type
       } : nil,
-      vision: vision
+      vision: vision,
+      disagreement: disagreement,
+      previous_observation_taxon_id: previous_observation_taxon_id
     }
     if options[:no_details]
       json[:taxon_id] = taxon_id

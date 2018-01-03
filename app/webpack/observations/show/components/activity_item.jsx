@@ -8,6 +8,7 @@ import UserText from "../../../shared/components/user_text";
 import UserImage from "../../../shared/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
+import { urlForTaxon } from "../../../taxa/shared/util";
 
 const ActivityItem = ( { observation, item, config, deleteComment, deleteID, firstDisplay,
                          restoreID, setFlaggingModalState, currentUserID, addID, linkTarget,
@@ -74,6 +75,9 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     </div> );
     const taxonImageTag = util.taxonImage( taxon );
     header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
+    if ( item.disagreement ) {
+      header += "*";
+    }
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
       <div className="identification">
@@ -176,6 +180,28 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
+  let footer;
+  if ( item.disagreement ) {
+    const previousTaxonLink = (
+      <SplitTaxon
+        taxon={ item.previous_observation_taxon }
+        url={ urlForTaxon( item.previous_observation_taxon ) }
+        target={ linkTarget }
+      />
+    );
+    const footerText = I18n.t( "user_disagrees_this_is_taxon", {
+      user: ReactDOMServer.renderToString( userLink ),
+      taxon: ReactDOMServer.renderToString( previousTaxonLink )
+    } );
+    footer = (
+      <span
+        className="title_text"
+        dangerouslySetInnerHTML={ {
+          __html: `* ${footerText}`
+        } }
+      />
+    );
+  }
   return (
     <div className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
@@ -205,6 +231,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             />
           </div>
         )}
+        footer={ footer }
       >
         { taxonChange }
         <div className="contents">

@@ -8,6 +8,7 @@
 @import "../shared/split_taxon";
 @import "../shared/taxon_photo";
 @import "../shared/loading_spinner";
+@import "../shared/disagreement_alert";
 @import "identify/blind";
 @import "identify/suggestions";
 
@@ -224,8 +225,10 @@ li.rc-pagination-item-active a {
   color: #333;
 }
 .bootstrap .AlertModal .modal-dialog,
-body > div > [role="dialog"] .AlertModal .modal-dialog {
-  margin: 100px auto;
+body > div > [role="dialog"] .AlertModal .modal-dialog,
+.bootstrap .DisagreementAlert .modal-dialog,
+body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
+  margin: 170px auto;
 }
 
 .dropdown-menu.textcomplete-dropdown {
@@ -246,4 +249,12 @@ body > div > [role="dialog"] .AlertModal .modal-dialog {
   position: relative;
   padding: 0;
   bottom: 0;
+}
+.disagreement-group {
+  label:first-child {
+    margin-right: 10px;
+  }
+  input[type="radio"] {
+    margin-right: 3px !important;
+  }
 }

@@ -8,7 +8,6 @@ const IdentificationForm = ( {
   observation: o,
   onSubmitIdentification,
   className,
-  currentUser,
   blind
 } ) => (
   <form
@@ -28,28 +27,25 @@ const IdentificationForm = ( {
       confirmationText = confirmationText.replace( /<br>/g, "" );
       confirmationText = confirmationText.replace( /\s+/g, " " );
       const isDisagreement = ( ) => {
-        if ( blind ) {
+        if ( !o || !( o.community_taxon || o.taxon ) ) {
           return false;
         }
-        if ( !o || !o.taxon || !o.taxon.rank_level || !o.taxon.rank_level ) {
-          return false;
-        }
-        return ( idTaxon && idTaxon.rank_level > o.taxon.rank_level );
+        const observationTaxon = o.community_taxon || o.taxon;
+        return observationTaxon.id !== idTaxon.id && observationTaxon.ancestor_ids.indexOf( idTaxon.id ) > 0;
       };
-      const currentUserSkippedConfirmation = (
-        false && // test to see if this bugs people, we get a lot of mistaken coarse IDs
-        currentUser &&
-        currentUser.prefers_skip_coarer_id_modal
-      );
-      onSubmitIdentification( {
+      const params = {
         observation_id: o.id,
         taxon_id: e.target.elements.taxon_id.value,
         body: e.target.elements.body.value,
         blind
-      }, {
-        confirmationText: (
-          ( isDisagreement( ) && !currentUserSkippedConfirmation ) ? confirmationText : null
-        )
+      };
+      if ( blind && isDisagreement( ) && e.target.elements.disagreement ) {
+        params.disagreement = e.target.elements.disagreement.value === "1";
+      }
+      onSubmitIdentification( params, {
+        observation: o,
+        taxon: idTaxon,
+        potentialDisagreement: !blind && isDisagreement( )
       } );
       // this doesn't feel right... somehow submitting an ID should alter
       // the app state and this stuff should flow three here as props
@@ -60,6 +56,21 @@ const IdentificationForm = ( {
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
     <INatTextArea type="textarea" name="body" className="form-control" mentions />
+    { blind ? (
+      <div className="form-group disagreement-group">
+        <label>
+          <input
+            type="radio"
+            name="disagreement"
+            value="0"
+            defaultChecked
+          /> Others could potentially refine this ID
+        </label>
+        <label>
+          <input type="radio" name="disagreement" value="1" /> This is the most specific ID the evidence justifies
+        </label>
+      </div>
+    ) : null }
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );

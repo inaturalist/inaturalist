@@ -980,3 +980,41 @@ describe Identification, "category" do
     end
   end
 end
+
+describe Identification, "disagreement" do
+  it "should be nil by default" do
+    expect( Identification.make! ).not_to be_disagreement
+  end
+  it "should automatically set to true on create if the taxon is not a descendant or ancestor of the community taxon" do
+    o = make_research_grade_observation
+    2.times { Identification.make!( observation: o, taxon: o.taxon ) }
+    i = Identification.make!( observation: o )
+    i.reload
+    expect( i ).to be_disagreement
+  end
+  it "should not be automatically set to true on update if the taxon is not a descendant or ancestor of the community taxon" do
+    o = make_research_grade_candidate_observation
+    i = Identification.make!( observation: o )
+    t = Taxon.make!
+    4.times { Identification.make!( observation: o, taxon: t ) }
+    i.reload
+    expect( i ).not_to be_disagreement
+  end
+end
+
+describe Identification, "set_previous_observation_taxon" do
+  it "should choose the community taxon by default" do
+    o = Observation.make!( taxon: Taxon.make!(:species), prefers_community_taxon: false )
+    t = Taxon.make!(:species)
+    3.times { Identification.make!( observation: o, taxon: t ) }
+    i = Identification.make!( observation: o )
+    o.reload
+    expect( i.previous_observation_taxon ).to eq o.community_taxon
+  end
+  it "should choose the observation taxon if the community taxon is blank because there's only one identification" do
+    t = Taxon.make!(:species)
+    o = Observation.make!( taxon: t )
+    i = Identification.make!( observation: o )
+    expect( i.previous_observation_taxon ).to eq t
+  end
+end
