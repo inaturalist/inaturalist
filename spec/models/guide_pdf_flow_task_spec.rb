@@ -5,9 +5,9 @@ describe GuidePdfFlowTask, "run" do
     gt = GuideTaxon.make!
     g = gt.guide
     gpft = GuidePdfFlowTask.new
-    gpft.inputs.build(:resource => g)
+    gpft.inputs.build( resource: g )
     gpft.save!
     gpft.run
-    gpft.outputs.should_not be_blank
+    expect( gpft.outputs ).not_to be_blank
   end
 end
