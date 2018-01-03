@@ -5725,6 +5725,10 @@ en:
           attributes:
             base:
               guide_has_too_many_taxa: "guide can only have 500 taxa"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "API key importing or queued for import"
         observation_field_value:
           attributes:
             value:

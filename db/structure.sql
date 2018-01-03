@@ -1303,7 +1303,8 @@ CREATE TABLE flow_tasks (
     redirect_url character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    exception text
+    exception text,
+    unique_hash character varying
 );
 
 
@@ -6781,6 +6782,13 @@ CREATE INDEX index_flow_task_resources_on_resource_type_and_resource_id ON flow_
 
 
 --
+-- Name: index_flow_tasks_on_unique_hash; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_flow_tasks_on_unique_hash ON flow_tasks USING btree (unique_hash);
+
+
+--
 -- Name: index_flow_tasks_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9190,4 +9198,6 @@ INSERT INTO schema_migrations (version) VALUES ('20171218191934');
 INSERT INTO schema_migrations (version) VALUES ('20171221220649');
 
 INSERT INTO schema_migrations (version) VALUES ('20171222172131');
+
+INSERT INTO schema_migrations (version) VALUES ('20180103194449');
 
