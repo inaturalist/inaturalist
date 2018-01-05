@@ -40,11 +40,9 @@ class DisagreementAlert extends React.Component {
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>
-            <span
-              dangerouslySetInnerHTML={ { __html: I18n.t( "do_you_think_this_could_be_html" ) } }
-            ></span> <SplitTaxon taxon={oldTaxon} forceRank />?
-          </p>
+          <p
+            dangerouslySetInnerHTML={ { __html: I18n.t( "does_the_evidence_provided_prove_that_this_is_taxon", { taxon: oldTaxonHTML } ) } }
+          />
           <Button
             bsStyle="success"
             className="btn-block stacked"
@@ -61,7 +59,7 @@ class DisagreementAlert extends React.Component {
               onDisagree( );
               onClose( );
             } }
-            dangerouslySetInnerHTML={ { __html: I18n.t( "i_am_sure_this_is_not_taxon", { taxon: oldTaxonHTML } ) } }
+            dangerouslySetInnerHTML={ { __html: I18n.t( "no_but_it_is_a_member_of_taxon", { taxon: newTaxonHTML } ) } }
           />
         </Modal.Body>
       </Modal>

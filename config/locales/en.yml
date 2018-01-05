@@ -1056,10 +1056,10 @@ en:
     taxonomy? Do you just like looking at pretty flowers? Filling out your
     profile adds some personality and helps establish your credibility when
     helping people out with identifications.
-  do_you_think_this_could_be_html: "Do you think this <strong>could</strong> be"
   do_you_want_to_proceed: Do you want to proceed?
   does_the_location_seem_accurate: "Does the location seem accurate?"
   does_the_date_seem_accurate: "Does the date seem accurate?"
+  does_the_evidence_provided_prove_that_this_is_taxon: Does the evidence provided prove that this is %{taxon}?
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
   done: Done
@@ -1460,7 +1460,6 @@ en:
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   hybrid: hybrid
   i_agree_to_the_project_terms: I agree to the project terms
-  i_am_sure_this_is_not_taxon: "I am sure this is not %{taxon}"
   i_dont_know_but_taxon_is_my_best_guess: |
     I don't know but %{taxon} is my best guess
   icon: Icon
@@ -2070,6 +2069,7 @@ en:
   no_activity_in_the_past_week: No activity in the past week.  Time to 
   no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
+  no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}."
   no_colors_selected: No colors selected.
   no_comments_yet: No comments yet.
   no_countries_added_yet: No countries added yet
