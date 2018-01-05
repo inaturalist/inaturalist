@@ -1480,17 +1480,20 @@ class Observation < ActiveRecord::Base
     node[:taxon]
   end
 
-  private
-  def print_community_taxon_nodes
+  def print_community_taxon_nodes( nodes )
     puts
     width = 15
     %w(taxon_id taxon_name cc acc cndc dc cdc score).each do |c|
-      print c.ljust(width)
+      if c == "taxon_name"
+        print c.ljust( width*2 )
+      else
+        print c.ljust( width )
+      end
     end
     puts
     nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
       print n[:taxon].id.to_s.ljust(width)
-      print n[:taxon].name.to_s.ljust(width)
+      print n[:taxon].name.to_s.ljust(width*2)
       print n[:cumulative_count].to_s.ljust(width)
       print n[:adjusted_cumulative_count].to_s.ljust(width)
       print n[:conservative_non_disagreement_count].to_s.ljust(width)
@@ -1500,7 +1503,6 @@ class Observation < ActiveRecord::Base
       puts
     end
   end
-  public
 
   def community_taxon_nodes(options = {})
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]

@@ -33,7 +33,7 @@ function mapDispatchToProps( dispatch, ownProps ) {
       const boundPostIdentification = ( disagreement ) => {
         const params = Object.assign( { }, ident );
         if ( _.isNil( ident.disagreement ) ) {
-          params.disagreement = disagreement;
+          params.disagreement = disagreement || false;
         }
         dispatch( postIdentification( params ) )
         .catch( ( ) => {
