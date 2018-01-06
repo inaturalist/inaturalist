@@ -2855,6 +2855,18 @@ describe Observation do
       expect(o).to be_coordinates_obscured
     end
 
+    it "should not consider identifications of inactive taxa" do
+      g1 = Taxon.make!( rank: Taxon::GENUS, name: "g1" )
+      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s1" )
+      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s2", is_active: false )
+      o = Observation.make!
+      Identification.make!( observation: o, taxon: s1 )
+      Identification.make!( observation: o, taxon: s1 )
+      Identification.make!( observation: o, taxon: s2 )
+      o.reload
+      expect( o.community_taxon ).to eq s1
+    end
+
     describe "test cases: " do
       before do
         # Tree:
