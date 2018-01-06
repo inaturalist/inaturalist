@@ -639,9 +639,7 @@ describe Observation do
       po = ProjectObservation.make!(:observation => o, :project => pu.project)
       Delayed::Job.delete_all
       stamp = Time.now
-      puts "o.taxon before: #{o.taxon}"
       o.update_attributes(:taxon => Taxon.make!)
-      puts "o.taxon after: #{o.taxon}"
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       # puts jobs.map(&:handler).inspect
       expect(jobs.select{|j| j.handler =~ /ProjectList.*refresh_with_observation/m}).not_to be_blank
@@ -3009,8 +3007,8 @@ describe Observation do
         Identification.make!( observation: @o, taxon: @s1 )
         i = Identification.make!( observation: @o, taxon: @g1 )
         i.update_attribute( :disagreement, nil )
-        @o.reload
-        expect( @o.probable_taxon ).to eq @g1
+        o = Observation.find( @o.id )
+        expect( o.probable_taxon ).to eq @g1
       end
       it "s1 g1.disagreement_false should be s1" do
         Identification.make!( observation: @o, taxon: @s1 )

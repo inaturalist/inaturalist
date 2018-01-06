@@ -1003,18 +1003,22 @@ describe Identification, "disagreement" do
 end
 
 describe Identification, "set_previous_observation_taxon" do
-  it "should choose the community taxon by default" do
+  it "should choose the observation taxon by default" do
+    o = Observation.make!( taxon: Taxon.make!(:species) )
+    t = Taxon.make!(:species)
+    3.times { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    previous_observation_taxon = o.taxon
+    i = Identification.make!( observation: o )
+    expect( i.previous_observation_taxon ).to eq previous_observation_taxon
+  end
+  it "should choose the probable taxon if the observer has opted out of the community taxon" do
     o = Observation.make!( taxon: Taxon.make!(:species), prefers_community_taxon: false )
     t = Taxon.make!(:species)
     3.times { Identification.make!( observation: o, taxon: t ) }
-    i = Identification.make!( observation: o )
     o.reload
-    expect( i.previous_observation_taxon ).to eq o.community_taxon
-  end
-  it "should choose the observation taxon if the community taxon is blank because there's only one identification" do
-    t = Taxon.make!(:species)
-    o = Observation.make!( taxon: t )
+    previous_observation_probable_taxon = o.probable_taxon
     i = Identification.make!( observation: o )
-    expect( i.previous_observation_taxon ).to eq t
+    expect( i.previous_observation_taxon ).to eq previous_observation_probable_taxon
   end
 end

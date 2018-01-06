@@ -159,9 +159,13 @@ class Identification < ActiveRecord::Base
 
   def set_previous_observation_taxon
     self.previous_observation_taxon_id = if new_record?
-      observation.community_taxon_id || observation.taxon_id
-    elsif previous_community_taxon = observation.get_community_taxon( force: true, before: id )
-      previous_community_taxon.id
+      observation.probable_taxon.try(:id)
+    elsif previous_probable_taxon = observation.probable_taxon( force: true, before: id )
+      if observation.prefers_community_taxon == false || !observation.user.prefers_community_taxa?
+        previous_probable_taxon.id
+      else
+        observation.taxon.try(:id)
+      end
     else
       previous_ident = observation.identifications.select{|i| i.current && i.id < id }.last
       previous_ident ||= observation.identifications.select{|i| i.id < id }.last
@@ -172,15 +176,10 @@ class Identification < ActiveRecord::Base
 
   def set_disagreement( options = {} )
     return true if disagreement? && !options[:force]
-    community_taxon = if new_record?
-      observation.community_taxon
-    else
-      observation.get_community_taxon( before: id, force: true )
-    end
-    return true unless community_taxon
-    ancestor_of_community_taxon = community_taxon.self_and_ancestor_ids.include?( taxon_id )
-    descendant_of_community_taxon = taxon.self_and_ancestor_ids.include?( community_taxon.id )
-    self.disagreement = !ancestor_of_community_taxon && !descendant_of_community_taxon
+    return true unless previous_observation_taxon
+    ancestor_of_previous_observation_taxon = previous_observation_taxon.self_and_ancestor_ids.include?( taxon_id )
+    descendant_of_previous_observation_taxon = taxon.self_and_ancestor_ids.include?( previous_observation_taxon.id )
+    self.disagreement = !ancestor_of_previous_observation_taxon && !descendant_of_previous_observation_taxon
     true
   end
   
