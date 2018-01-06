@@ -422,8 +422,11 @@ export function addID( taxon, options = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     if ( !hasObsAndLoggedIn( state ) ) { return; }
-    const observation = state.observation;
-    const observationTaxon = observation.communityTaxon || observation.taxon;
+    const o = state.observation;
+    let observationTaxon = o.taxon;
+    if ( o.preferences.prefers_community_taxon === false || o.user.preferences.prefers_community_taxa === false ) {
+      observationTaxon = o.community_taxon || o.taxon;
+    }
     if (
       observationTaxon && taxon.id !== observationTaxon.id &&
       _.includes( observationTaxon.ancestor_ids, taxon.id )

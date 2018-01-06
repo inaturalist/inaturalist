@@ -30,7 +30,10 @@ const IdentificationForm = ( {
         if ( !o || !( o.community_taxon || o.taxon ) ) {
           return false;
         }
-        const observationTaxon = o.community_taxon || o.taxon;
+        let observationTaxon = o.taxon;
+        if ( o.preferences.prefers_community_taxon === false || o.user.preferences.prefers_community_taxa === false ) {
+          observationTaxon = o.community_taxon || o.taxon;
+        }
         return observationTaxon.id !== idTaxon.id && observationTaxon.ancestor_ids.indexOf( idTaxon.id ) > 0;
       };
       const params = {
