@@ -3041,6 +3041,14 @@ describe Observation do
         @o.reload
         expect( @o.taxon ).to eq @g1
       end
+
+      it "g2 s1 should set taxon to f" do
+        Identification.make!( observation: @o, taxon: @g2 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        # @o.reload
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @f
+      end
     end
   end
 

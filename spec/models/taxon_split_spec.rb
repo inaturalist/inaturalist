@@ -241,8 +241,8 @@ describe TaxonSplit, "commit_records" do
             expect( o.taxon ).to eq @split.output_taxa[0]
           end
           it "should update the iconic taxon" do
-            input_iconic_taxon = Taxon.make!( is_iconic: true )
-            output_iconic_taxon = Taxon.make!( is_iconic: true )
+            input_iconic_taxon = Taxon.make!( is_iconic: true, name: "Input Iconic Taxon", rank: Taxon::ORDER )
+            output_iconic_taxon = Taxon.make!( is_iconic: true, name: "Output Iconic Taxon", rank: Taxon::ORDER )
             @input_taxon.update_attributes( parent: input_iconic_taxon, iconic_taxon: input_iconic_taxon )
             @output_taxon1.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
             @output_taxon2.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
@@ -255,6 +255,8 @@ describe TaxonSplit, "commit_records" do
             @split.commit_records
             Delayed::Worker.new.work_off
             o.reload
+            # puts "o.iconic_taxon: #{o.iconic_taxon}"
+            # puts "output_iconic_taxon: #{output_iconic_taxon}"
             expect( o.iconic_taxon ).to eq output_iconic_taxon
           end
         end
@@ -437,9 +439,9 @@ describe TaxonSplit, "commit_records" do
 end
 
 def prepare_split
-  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
-  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY )
-  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY )
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "Input Taxon" )
+  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon 1" )
+  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon 2" )
   @split = TaxonSplit.make
   @split.add_input_taxon(@input_taxon)
   @split.add_output_taxon(@output_taxon1)
