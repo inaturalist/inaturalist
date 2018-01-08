@@ -1572,7 +1572,8 @@ class Taxon < ActiveRecord::Base
   def current_synonymous_taxon
     return nil if is_active?
     TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
-      input_taxon( self ).order(:id).last.try(:output_taxon)
+      joins( :taxon_change_taxa ).
+      where( "taxon_change_taxa.taxon_id = ?", self ).order(:id).last.try(:output_taxon)
   end
 
   # Static ##################################################################
