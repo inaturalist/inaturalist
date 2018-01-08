@@ -1,6 +1,7 @@
 # Messages for Spanish (español)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: 2axterix2
 # Author: Alcorman
 # Author: Asierog
 # Author: Cgalindo
@@ -1633,8 +1634,7 @@ es:
   high: alta
   highest_rank: Rango más alto
   highlights: Destacado
-  highlights_and_stats_from_year_on_site: Destacados y estadísticas a partir de %{year}
-    en %{site}
+  highlights_and_stats_from_year_on_site: Destaques y estadísticas de %{year} en %{site}
   history: Historial
   home: Inicio
   home_faq: PP. FF.
@@ -3662,6 +3662,7 @@ es:
     campos para las observaciones que añadan a tu proyecto.
   suggestions: Sugerencias
   summary: Resumen
+  supporting: Apoyo a
   suspicious_photos: Fotos sospechosas
   siutable_observations: observaciones que puedes invitar
   sun: dom
@@ -4183,8 +4184,8 @@ es:
   users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: Contribuciones de <a href="%{url}">%{login}</a>
     a %{project_title}
-  users_highlights_and_stats_from_year_on_site: Destacados y estadísticas de %{user}
-    de %{year} en %{site}
+  users_highlights_and_stats_from_year_on_site: Destaques y estadísticas de %{user}
+    durante %{year} en %{site}
   users_id: Identificación de %{user}
   users_identification_html: Identificación de <a href='%{url}'>%{user}</a>
   users_identification_short_html: Identificador de <a href='%{url}'>%{user}</a>
@@ -5029,9 +5030,9 @@ es:
         description_html: "Esto cambiará los medios de establecimiento de <em>todos</em>
           los listados de este taxón en todos los descendientes de los lugares de
           \n<a href=\"%{place_url}\">%{place_name}</a> a <strong>\"%{establishment_means}\"</strong>.
-          Sólo los curadores pueden utilizar esta herramienta. Cambiar el medio de
+          Solo los curadores pueden utilizar esta herramienta. Cambiar el medio de
           establecimiento a \"introducido\" tendrá aproximadamente el mismo efecto,
-          pero no cambiará los valores existentes, sólo rellenará los vacíos."
+          pero no cambiará los valores existentes, solo rellenará los vacíos."
     lists:
       new:
         place_desc: |-
