@@ -115,7 +115,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def self.normalize_lexicon(lexicon)
-    LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize
+    ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
   end
   
   def normalize_lexicon
