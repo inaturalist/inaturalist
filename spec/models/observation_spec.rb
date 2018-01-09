@@ -2912,7 +2912,7 @@ describe Observation do
         expect( @o.community_taxon ).to eq @s1
       end
 
-      it "ss1 ss1 ss2 ss2" do
+      it "s1 s1 s2 s2" do
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @s2)
@@ -3016,6 +3016,12 @@ describe Observation do
         @o.reload
         expect( @o.probable_taxon ).to eq @s1
       end
+      it "ss1 s1.disagreement_false should be ss1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @ss1
+      end
       it "s1 g1.disagreement_false g1.disagreement_false should be s1" do
         Identification.make!( observation: @o, taxon: @s1 )
         Identification.make!( observation: @o, taxon: @g1, disagreement: false )
@@ -3041,13 +3047,18 @@ describe Observation do
         @o.reload
         expect( @o.taxon ).to eq @g1
       end
-
       it "g2 s1 should set taxon to f" do
         Identification.make!( observation: @o, taxon: @g2 )
         Identification.make!( observation: @o, taxon: @s1 )
         # @o.reload
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @f
+      end
+      it "ss1 s1.disagreement_false should set taxon to ss1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: false )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @ss1
       end
     end
   end
@@ -3550,12 +3561,12 @@ def setup_test_case_taxonomy
   #   /  \
   # ss1  ss2
 
-  @f = Taxon.make!(:rank => "family", :name => "f")
-  @g1 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g1")
-  @g2 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g2")
-  @s1 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s1")
-  @s2 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s2")
-  @ss1 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss1")
-  @ss2 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss2")
+  @f = Taxon.make!( rank: "family", name: "f" )
+  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "g1" )
+  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
+  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
+  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
+  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
+  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
   @o = Observation.make!
 end
