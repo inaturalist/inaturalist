@@ -1452,6 +1452,7 @@ zh-TW:
   id_please: 需要鑑定
   id_please_expandable_html: <span class='full'>需要</span> ID！
   id_withdrawn: 鑑定撤回
+  ids_by_taxon: 按物種分類的鑑定
   identify: 鑑定
   identify_observations: 鑑定觀察
   identify_title: 鑑定
@@ -3726,6 +3727,8 @@ zh-TW:
   where_were_you?: 您在何處？
   which_projects_can_add_your_observations?: 哪個專案可以添加您的觀察？
   white: 白色
+  who_helped_user_the_most: 誰協助過 %{user} 最多
+  who_user_helped_the_most: '%{user} 協助過最多次'
   with_annotation: 帶有註解
   without_annotation: 不帶註解
   widget: 小工具
@@ -4136,7 +4139,7 @@ zh-TW:
       establishment_field:
         confirmation: 您確定嗎？這將會更改所有列出隸屬此地點的物種分類群之確立方式。而您需要花費一番功夫才能回復內容。
         description_html: |-
-          這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類列表之確認方式成為<strong>"%{establishment_means}"</strong>. 僅策展人可使用此工具。更改確認方式
+          這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類列表之確認方式成為<strong>「%{establishment_means}」</strong>. 僅策展人可使用此工具。更改確認方式
           為「引進」會有大致相同的效果，但不會更改現有內容值，僅是填為空白。
     lists:
       new:
@@ -4522,6 +4525,11 @@ zh-TW:
       not_found:
         sorry_that_doesnt_exist: 很抱歉，那不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我們專用的搜尋鼬鼠工具也找不到任何東西！
+    stats:
+      year:
+        sunburst_desc_html: |-
+          已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。
+          <strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。
     taxa:
       edit:
         high_status_conservation_status_notice_html: 為更高層級物種分類添加保育狀態，來對此物種分類上的所有物種觀察生效。請不要在有物種未包含狀態的物種分類群上添加狀態，因為這會對那些物種的觀察不正確地隱蔽座標。
