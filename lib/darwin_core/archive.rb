@@ -45,6 +45,7 @@ module DarwinCore
     end
 
     def generate
+      @generate_started_at = Time.now
       unless @opts[:metadata].to_s.downcase == "skip"
         metadata_path = make_metadata
         logger.debug "Metadata: #{metadata_path}"
@@ -142,6 +143,7 @@ module DarwinCore
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality]
       params[:site_id] = @opts[:site_id]
+      params[:created_d2] = ( @generate_started_at || Time.now ).iso8601
       params
     end
 
