@@ -3393,7 +3393,7 @@ en:
      that is comprehensive, i.e. it lists <em>all</em> the representatives of
      its taxon in a place, the Identotron will show a notice.
   the_list: the list
-  the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.<br/><br/> <strong>Example:</strong><br/>  
+  the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.
   the_observation_form_looks: "The observation form looks like this:"
   the_observation_has_date: the observation <strong>has a date</strong>
   the_observation_has_photo: the observation <strong>has a photo</strong>
@@ -3670,7 +3670,7 @@ en:
     Use this if the URL needs to have the genus and species separated in a
     particular way. If the taxon is not a species or infraspecies, everything
     between [GENUS] and [SPECIES] will get replaced by the taxon name, so use
-    sparingly. <br/><br/> <strong>Example:</strong><br/>
+    sparingly.
   use_unique_file_names_for_separate_uploads: Use unique file names for separate uploads
   use_well_formed_csv: |
     Use well-formed CSV. This means text with commas must be enclosed with
@@ -5225,6 +5225,11 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+    taxon_links:
+      form:
+        name_with_rank_desc: |
+          The name of the taxon with the rank. For infraspecific ranks, rank
+          is inserted after the binomial.
     taxon_names:
       form:
         new_name_guidelines_html: |
