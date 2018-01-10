@@ -1,10 +1,10 @@
 require File.expand_path("../../spec_helper", __FILE__)
 
 describe ObservationsExportFlowTask do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
   describe "run" do
-    before(:all) do
+    before do
       # not sure why the before(:each) in spec_helper may not have run yet here
       make_default_site
       @o = Observation.make!

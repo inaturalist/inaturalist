@@ -174,7 +174,7 @@ class CommunityIdentification extends React.Component {
 
   sortedIdents( ) {
     const { observation } = this.props;
-    const currentIdents = _.filter( observation.identifications, i => i.current );
+    const currentIdents = _.filter( observation.identifications, i => ( i.current && i.taxon.is_active ) );
     const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
     // Mavericks last, then sort by counts desc
     return _.sortBy( currentIdents, i =>

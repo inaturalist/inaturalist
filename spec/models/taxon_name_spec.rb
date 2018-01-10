@@ -75,6 +75,10 @@ describe TaxonName, 'creation' do
     expect(tn.name).to eq 'Foo'
   end
 
+  it "should strip the lexicon" do
+    expect( TaxonName.make!( lexicon: " Foo" ).lexicon ).to eq "Foo"
+  end
+
   it "should set is_valid to true for common names by default" do
     tn = TaxonName.make!(:lexicon => TaxonName::LEXICONS[:ENGLISH])
     expect(tn.is_valid).to be true

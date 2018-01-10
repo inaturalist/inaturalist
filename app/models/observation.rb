@@ -1510,7 +1510,7 @@ class Observation < ActiveRecord::Base
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
-    working_idents = ids.sort_by(&:id)
+    working_idents = ids.select{|i| i.taxon.is_active }.sort_by(&:id)
     if options[:before].to_i > 0
       working_idents = working_idents.select{|i| i.id < options[:before].to_i }
     elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )

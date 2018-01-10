@@ -57,6 +57,9 @@ fr:
   x_identifications:
     one: 1 identification
     other: '%{count} identifications'
+  x_identifications_html:
+    one: <span class="count">1</span> identification
+    other: <span class="count">%{count}</span> identifications
   x_identifications_:
     one: 1 identification
     other: '%{count} identifications'
@@ -489,6 +492,7 @@ fr:
     other: et %{count} personnes de plus !
   android: Androïde
   animals: Animaux
+  animated_observations_map: Carte animée des observations
   annotations: Annotations
   announcement_was_successfully_created: L’annonce a bien été créée.
   announcement_was_successfully_updated: L’annonce a bien été mise à jour.
@@ -1612,6 +1616,7 @@ fr:
   generate_taxonomic_tags_for_flickr: Générer des étiquettes taxinomiques pour vos
     photos Flickr.
   generate_widget: Générer le widget
+  generate_your_stats: Générer vos statistiques
   generating: Génération en cours…
   generating_mobile_archive: Génération d’une archive mobile
   Genus: Genre
@@ -1709,6 +1714,8 @@ fr:
   high: haut
   highest_rank: Rang le plus elevé
   highlights: Mise en évidence
+  highlights_and_stats_from_year_on_site: Mises en évidence et statistiques pour %{year}
+    sur %{site}
   history: Historique
   home: Accueil
   home_faq: FAQ
@@ -1736,6 +1743,7 @@ fr:
   id_please: Identification SVP
   id_please_expandable_html: Identification<span class='full'> demandée</span> !
   id_withdrawn: ID supprimé
+  ids_by_taxon: IDs par taxon
   identify: Identifier
   identify_observations: Identifier les observations
   identify_title: Identifier
@@ -1937,6 +1945,7 @@ fr:
   last_inat_observation: Dernière observation %{site_name}
   last_observation: Dernière observation
   last_seen: Vu la dernière fois
+  last_year: Année dernière
   lat: Lat
   latitude: Latitude
   latitude_in_decimals: Latitude en degrés décimaux, par ex. 38,123
@@ -2302,6 +2311,7 @@ fr:
   most: Le plus
   most_agree: la plupart sont d’accord
   most_disagree: la plupart ne sont pas d’accord
+  most_comments_and_faves: La plupart des commentaires et favoris
   most_observations: Le plus d'observations
   most_recent_observation_by_date_observed: Observation vérifiable la plus récente
     observée par date
@@ -2656,6 +2666,7 @@ fr:
   observations_text_search_warning: Les recherches textuelles peuvent produire des
     résultats bizarres quand elles sont combinées avec d’autres filtres. Si vous voulez
     trouver l’observation d’une espèce particulière, utilisez le filtre de taxon.
+  observations_this_year_vs_last_year: Observations de cette année vs. l’année dernière
   observations_title: Observations de tout le monde
   observations_total: Total des observations
   observations_w: Observations w/
@@ -2871,6 +2882,9 @@ fr:
     comment:
       with_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link} par %{by_link}
       without_by: a commenté sur @{f:une|m:un|un(e)} %{comment_subject_link}
+  per_day: Par jour
+  per_month: Par mois
+  per_week: Par semaine
   person: personne
   personal_message: Message personnel
   personal_message_description: Personne n’aime recevoir des courriels d’une machine!
@@ -3299,6 +3313,7 @@ fr:
   refresh: Rafraîchir
   refresh_listed_taxa: rafraîchir les taxons réprtoriés
   refreshing: rafraîchissement en cours
+  regenerate_stats: Regénérer les statistiques
   regenerate_url: Régénérer l’URL
   register_for_this_event_at_x_html: Inscrivez-vous à cette activité à %{x}
   reject?: A refuser ?
@@ -3508,6 +3523,7 @@ fr:
     de partout au monde.
   set_license: Établir la licence
   settings: paramètres
+  share: Partager
   share_your_observation_with_researchers_by: Échangez vos observations avec les chercheurs
     en
   short_code_for_this_place: Abréviation pour ce lieu, par ex. É.-U. pour États-Unis
@@ -3556,6 +3572,7 @@ fr:
   site_observations_export_from_date: observations d’%{site_name} exportées depuis
     le %{date}
   site_taxon_page: Page de taxon d’%{site_name}
+  site_year_in_review: Année %{site_name} revue en %{year}
   so_meta!: méta!
   some_agree: quelques personnes sont d’accord
   some_observations_failed_to_be_added: Certaines observations n’ont pas pu être ajoutées
@@ -3704,6 +3721,8 @@ fr:
   start_typing_someones_name: Commencez à taper le nom de quelqu’un…
   states: États
   stats: Statistiques
+  stats_for_this_year_have_not_been_generated: Les statistiques pour cette année n’ont
+    pas été générées.
   stats_title: Statistiques du site
   status: État
   status_globally: '%{status} globalement'
@@ -3757,6 +3776,7 @@ fr:
     ces champs pour les observations que vous avez ajoutées à votre projet.
   suggestions: Suggestions
   summary: Résumé
+  supporting: Soutenir
   suspicious_photos: Photos suspectes
   siutable_observations: observations appropriées
   sun: Dim
@@ -3861,6 +3881,7 @@ fr:
   text_: texte
   thanks_for_signing_up: Merci de votre inscription!
   thanks_for_using: Merci d’utiliser
+  thanks_from_all_of_us_here_at: Merci de nous tous ici à
   that_photo_doesnt_exist: Cette photo n’existe pas.
   that_observation_doesnt_exist: Cette observation n’existe pas.
   that_observation_doesnt_have_any_photos: Cette observation n’a aucune photo.
@@ -4078,6 +4099,7 @@ fr:
     à vos photos Flickr. Voulez-vous continuer?
   this_will_update_all_last_observations: Cette mesure mettra à jour les dernières
     observations et ajoutera les nouveaux taxons à partir de
+  this_year: Cette année
   those_are_the_basics_of: Il s’agit de l’essentiel pour l’ajout d’observations! Il
     y a plein d’autres choses que vous pouvez faire, comme chercher et filtrer vos
     observations ou les modifier dans un lot, mais ces actions devraient se passer
@@ -4286,12 +4308,15 @@ fr:
   users_comment_html: commentaire de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a>
     à %{project_title}
+  users_highlights_and_stats_from_year_on_site: Mises en évidence et statistiques
+    de %{user} pour %{year} sur %{site}
   users_id: ID de %{user}
   users_identification_html: identification de <a href='%{url}'>%{user}</a>
   users_identification_short_html: ID de <a href='%{url}'>%{user}</a>
   users_latest_observations_on_site: dernières observations de %{user} sur %{site}
   users_observations: observations de %{user}
   users_profile: Profil de %{user}
+  users_year_on_site: Année de %{user} sur %{site} %{year}
   using_a_license: au moyen d’une licence
   using_cc_license_makes_easier_use_your_data: L’utilisation d’une licence <strong>d’attribution
     Creative Commons</strong> facilite l’utilisation de vos Données pour les chercheurs.
@@ -4300,6 +4325,7 @@ fr:
   valid_options_are: Les options valides sont
   value: Valeur
   verbing_x_of_y: '%{verb} %{x} de %{y}…'
+  verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
   view_all: Afficher tout
   view_all_from_x: Afficher tout de %{x}
@@ -4381,6 +4407,7 @@ fr:
   view_user_observations: Afficher les observations de %{user}
   view_x_from_x: Afficher %{day_observations} du %{observed_on}
   view_xs_journal: Afficher le journal de %{x}
+  view_year_stats_for_site: Afficher les statistiques de %{year} pour %{site}
   view_your_dashboard: Afficher votre tableau de bord
   view_your_dashboard_for_more_updates_html: |-
     <a href='%{url}'>Afficher votre tableau
@@ -4389,6 +4416,7 @@ fr:
   view_your_life_list: Afficher votre liste des êtres vivants
   view_your_calendar: Afficher votre calendrier
   view_your_observations: Afficher vos observations
+  view_your_year_stats: Afficher vos statistiques de %{year}
   view_yours: Afficher la vôtre
   view_all_of_your_observations_from_x: Afficher toutes vos observations depuis %{x}
   visually_similar: Visuellement semblable
@@ -4439,6 +4467,7 @@ fr:
     Nous avons essayé de traiter votre téléversement appelé %{filename}, mais cela n’a pas fonctionné.
     Veuillez résoudre le(s) problème(s) suivant(s) et réessayer.
   wed: Mer
+  week_of_date: Semaine de %{date}
   welcome!: Bienvenue!
   welcome_comma!: Bienvenue,
   welcome: bienvenue
@@ -4476,6 +4505,8 @@ fr:
   where_were_you?: Où étiez-vous?
   which_projects_can_add_your_observations?: Quels projets peuvent ajouter vos observations ?
   white: blanc
+  who_helped_user_the_most: Qui a le plus aidé %{user}
+  who_user_helped_the_most: Qui %{user} a le plus aidé
   with_annotation: Avec annotation
   without_annotation: Sans annotation
   widget: Widget
@@ -4522,7 +4553,9 @@ fr:
   x_wrote_a_new_post_html: '%{x} a écrit un nouveau message'
   x_wrote_y_new_posts_html: '%{x} a écrit %{y} nouveaux messages'
   year: Année
+  year_in_review: Année %{year} en revue
   year_month: année/mois
+  year_on_site: Année %{year} sur %{site}
   yellow: jaune
   "yes": Oui
   yes_find_them!: Oui, trouvez-les!
@@ -5762,6 +5795,19 @@ fr:
         sorry_that_doesnt_exist: Désolé, ça n'existe pas!
         even_our_dedicated_search_mole_couldnt: Même notre taupe de recherche n’a
           rien pu trouver !
+    stats:
+      year:
+        sunburst_desc_html: |-
+          Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base
+          de la hiérarchie est au centre, en commençant par « Vie » et en se terminant
+          par les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle
+          au nombre d’observations de ce taxon, et les couleurs correspondent
+          à peu près à nos couleurs de taxon « iconiques » habituelles (vert pour les plantes,
+          orange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous
+          voyez beaucoup de vert, cela veut dire que vous observez beaucoup de plantes.
+          <strong>Cliquez sur un arc pour placer ce taxon au centre</strong> et
+          ses enfants autour, ou <strong>cliquez sur le centre pour remonter dans
+          la hiérarchie</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: Ajouter un état de conservation
