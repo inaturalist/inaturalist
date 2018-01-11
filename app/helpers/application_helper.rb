@@ -1361,8 +1361,11 @@ module ApplicationHelper
 
   def hyperlink_mentions(text)
     linked_text = text.dup
-    linked_text.mentioned_users.each do |u|
-      linked_text.gsub!(/(\B)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+    # link the longer logins first, to prevent mistakes when
+    # one username is a substring of another username
+    linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
+      # link `@login` when @ is preceded by a word break but isn't preceded by ">
+      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
     end
     linked_text
   end

@@ -45,6 +45,7 @@ module DarwinCore
     end
 
     def generate
+      @generate_started_at = Time.now
       unless @opts[:metadata].to_s.downcase == "skip"
         metadata_path = make_metadata
         logger.debug "Metadata: #{metadata_path}"
@@ -142,6 +143,7 @@ module DarwinCore
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality]
       params[:site_id] = @opts[:site_id]
+      params[:created_d2] = ( @generate_started_at || Time.now ).iso8601
       params
     end
 
@@ -271,6 +273,8 @@ module DarwinCore
       end
       params[:has] = [params[:has], 'photos'].flatten.compact
       preloads = [{observation_photos: {photo: :user}}]
+
+      start_time = @generate_started_at || Time.now
       
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
         CSV.open(tmp_path, 'w') do |csv|
@@ -279,6 +283,7 @@ module DarwinCore
             observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
               # If ES is out of sync with the DB, the photo might no longer exist
               next unless op && op.photo
+              next unless op.created_at <= start_time
               DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
               csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
             end
@@ -296,6 +301,7 @@ module DarwinCore
       
       params = observations_params
       preloads = [ { observation_field_values: :observation_field } ]
+      start_time = @generate_started_at || Time.now
       
       # If ES goes down, wait a minute and try again. Repeat a few times then just raise the exception
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
@@ -303,6 +309,7 @@ module DarwinCore
           csv << headers
           observations_in_batches(params, preloads, label: 'make_observation_fields_data') do |observation|
             observation.observation_field_values.each do |ofv|
+              next unless ofv.created_at <= start_time
               DarwinCore::ObservationFields.adapt(ofv, observation: observation, core: @opts[:core])
               csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
             end
@@ -329,12 +336,14 @@ module DarwinCore
       
       params = observations_params
       preloads = [ { project_observations: :project } ]
+      start_time = @generate_started_at || Time.now
       
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
             observation.project_observations.each do |po|
+              next unless po.created_at <= start_time
               DarwinCore::ProjectObservations.adapt(po, core: @opts[:core])
               csv << DarwinCore::ProjectObservations::TERMS.map{|field, uri, default, method| po.send(method || field)}
             end

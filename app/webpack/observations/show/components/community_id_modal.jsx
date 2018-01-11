@@ -101,7 +101,7 @@ class CommunityIDModal extends Component {
       this.ancestorDisagreements = { };
       const ancestorsUsed = { };
       _.each( observation.identifications, i => {
-        if ( !i.current || !i.taxon ) { return; }
+        if ( !i.current || !i.taxon || !i.taxon.is_active ) { return; }
         this.currentIDs.push( i );
         this.idTaxonCounts[i.taxon.id] = this.idTaxonCounts[i.taxon.id] || 0;
         this.idTaxonCounts[i.taxon.id] += 1;

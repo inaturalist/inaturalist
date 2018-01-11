@@ -67,34 +67,34 @@
   <div id="help_field" class="description field" >
     <p class="ui"><%= t(:if_this_link_will_apply_to_descendant) %></p>
     <dl>
-      <dt><%= t(:name_llaves) %></dt>
+      <% # Note, these param names should *not* be translated. If you use [NOBMRE] in a taxon link URL nothing will happen. %>
+      <dt>[NAME]</dt>
       <dd>
-        <%= t(:the_name_of_the_taxon_including_space) %>
-        <strong>Example:</strong><br/>
+        <p class="ui"><%= t(:the_name_of_the_taxon_including_space) %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/[NAME]</code> -> 
         <code>http://site.com/Homo%20sapiens</code>
       </dd><br/>
 
-      <dt><%= t(:genus_slash_species) %></dt>
+      <dt>[GENUS] / [SPECIES]</dt>
       <dd>
-        <%= t(:use_this_if_the_url_needs_genus_species_separated) %>
-        <strong>Example:</strong><br/>
+        <p class="ui"><%= t(:use_this_if_the_url_needs_genus_species_separated) %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> -> 
         <code>http://site.com/?g=Homo&amp;s=sapiens</code>
       </dd><br/>
 
       <dt>[RANK]</dt>
       <dd>
-        The rank of the taxon, e.g. family, species, etc.<br/><br/>
-        <strong>Example:</strong><br/>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/[RANK]/[NAME]</code> -> 
         <code>http://site.com/species/Homo%20sapiens</code>
       </dd><br/>
 
       <dt>[NAME_WITH_RANK]</dt>
       <dd>
-        The name of the taxon with the rank. For infraspecific ranks, rank is inserted after the binomial.<br/><br/>
-        <strong>Example:</strong><br/>
+        <p class="ui"><%=t "views.taxon_links.form.name_with_rank_desc" %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/[NAME_WITH_RANK]</code> -> 
         <code>http://site.com/Homo%20sapiens%20ssp.%20inaturalensis</code>
       </dd>
