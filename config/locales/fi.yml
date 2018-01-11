@@ -292,7 +292,7 @@ fi:
   all_names: Kaikki Nimet
   all_observations: Kaikki havainnot
   all_photos: Kaikki kuvat
-  all_places: Kaikki Paikat
+  all_places: Kaikki paikat
   all_projects: Kaikki projektit
   all_rights_reserved: Kaikki oikeudet pidätetään
   all_species: Kaikki lajit
@@ -829,9 +829,9 @@ fi:
     currentText: Tänään
     prevText: edell.
     nextText: Seuraava
-    monthNames: '[''tammikuu'', ''helmikuu'', ''maaliskuu'', ''huhtikuu'', ''toukokuu'',
-      ''kesäkuu'', ''heinäkuu'', ''elokuu'', ''syyskuu'', ''lokakuu'', ''marraskuu'',
-      ''joulukuu'']'
+    monthNames: '[''Tammikuu'', ''Helmikuu'', ''Maaliskuu'', ''Huhtikuu'', ''Toukokuu'',
+      ''Kesäkuu'', ''Heinäkuu'', ''Elokuu'', ''Syyskuu'', ''Lokakuu'', ''Marraskuu'',
+      ''Joulukuu'']'
     monthNamesShort: '[''Tammi'',''Helmi'',''Maalis'',''Huhti'', ''Touko'',''Kesä'',''Heinä'',''Elo'',''Syys'',
       ''Loka'',''Marras'',''Joulu'']'
     dayNames: '[''Sunnuntai'', ''Maanantai'', ''Tiistai'', ''Keskiviikko'', ''Torstai'',
@@ -913,6 +913,7 @@ fi:
   drafts: Luonnokset
   edit: Muokkaa
   edit_a_batch_of_observations: Muokkaa Erä Havaintoja
+  edit_account_settings_and_profile: Muokkaa tiliasetuksia &amp; profiilia
   edit_atlas: Muokkaa Atlasta
   edit_colors: Muokkaa värejä
   edit_comment: Muokkaa kommenttiasi
@@ -1020,7 +1021,7 @@ fi:
   find_new_place_to_explore: Etsi uusi paikka tutkittavaksi!
   find_observations: Etsi havaintoja
   find_photos: Etsi Valokuvia
-  find_places: Etsi Paikkoja
+  find_places: Etsi paikkoja
   find_some_people_to_follow: Etsi seurattavia henkilöitä
   find_species: Etsi Lajeja
   find_suitable_observations: Hae sopivia havaintoja
@@ -1066,8 +1067,11 @@ fi:
   flickr_tagger: Flickr Tunnisteidenlisääjä
   flickr_tags: Flickr Tunnisteet
   follow: Seuraa
+  follow_us: 'Seuraa meitä:'
+  follow_user: Seuraa käyttäjää %{user}
   follower: seuraaja
   forgot_your_password: Unohditko salasanasi?
+  fri: Pe
   from_a_place: paikasta
   from_anywhere_change: mistä tahansa (<span class="button">muutos</span>)
   from_list: Luettelosta
@@ -1108,7 +1112,7 @@ fi:
   guidelines: Ohjeet
   hasnt_contributed_any_observations: ei ole avustanut yhdelläkään havainnolla tätä
     projektia.
-  help: Avustaja
+  help: Apua
   help_faq: Apua / UKK
   hi: Hei,
   hide: Piilota
@@ -1124,6 +1128,7 @@ fi:
   icon_size: Kuvakkeen koko
   icon_slash_photo: Kuvake / Kuva
   identify: Määrittää
+  identify_observations: Tunnista havaintoja
   identifications: Määritykset
   identifications_by: Käyttäjän %{user} tekemät määritykset
   if_you_already_have_an_account: Jos sinulla on jo %{site_name}-tili...
@@ -1153,6 +1158,7 @@ fi:
   invite_to_project: Kutsu projektiin
   invite_your_friends: Kutsu ystäviäsi
   invited: Kutsuttu
+  invited_to_the_following_projects: 'Kutsuttu seuraaviin projekteihin:'
   iphone: iPhone
   is_a: "on"
   is_an: "on"
@@ -1271,8 +1277,12 @@ fi:
   loading_wikipedia_description: Ladataan Wikipediakuvausta...
   locales:
     bg: Bulgarian kieli
+    en: Englanti
+    en-US: Englanti (Yhdysvallat)
+    fi: Suomi
     id: Indonesia
     it: Italia
+    pt-BR: Portugali (Brasilia)
   location: Sijainti
   location_: Sijainti
   location_is_exact: sijainti on tarkka
@@ -1351,6 +1361,7 @@ fi:
   observation_added: Havainto lisätty
   observation_added_to_the_project: Havainto lisätty projektiin "%{project}"
   observations_by_you: Sinun havaintosi
+  observation_calendar_for: Havainnointikalenteri käyttäjälle %{user} vuonna %{year}
   observation_fields_by_preferences_description: Havaintokentät muistuttavat tunnisteita.
     Kuka tahansa voi lisätä niitä havaintoosi. Jos haluat, että vain sinä tai vain
     sivuston kuraattorit voivat lisätä havaintokenttiä, sinun täytyy muuttaa oletusasetusta.
@@ -1378,6 +1389,7 @@ fi:
       jotakin luonnonvaraista ja ota selvä, täyskehyskuva. Jos sinulla on jo valokuva
       jostain luonnonvaraisesta, <a href="%{new_observation_path}">lisää se nyt</a>.
       Voit myös käyttää %{site_name} mobiilisovelluksia tallentaaksesi havaintoja.
+    follow_panel_title_local: Seuraa joitakin läheisiä luonnontieteilijöitä
     follow_panel_title_global: Seuraa joitakin aktiivisia luonnontieteilijöitä
   one_by_one: Yksi kerrallaan
   only_letters_numbers: Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella
@@ -1418,6 +1430,7 @@ fi:
       town: kaupunki
       Unknown: Tuntematon
       unknown: tuntematon
+  place_name: Paikan nimi
   places: Paikat
   places_name:
     afghanistan: Afganistan
@@ -1537,6 +1550,7 @@ fi:
     must_be_on_list: on oltava luettelossa
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin
       kuraattoreille mahdollisuus tarkastella koordinaatteja
+  sat: La
   satellite: satelliitti
   save: Tallenna
   save_all: Tallenna Kaikki
@@ -1606,11 +1620,14 @@ fi:
   start_a_project: Aloita projekti
   start_adding_observations: Aloita havaintojen lisääminen
   start_new_account: Aloita uusi tunnus
+  stop_following_user: Lopeta käyttäjän %{user} seuraaminen
   successfully_changed_your_password: Salasana vaihdettu onnistuneesti.
+  sun: Su
   tagging: Tunnisteita lisätään...
   take_me_facebook: Kyllä, vie minut Facebookiin!
   taxonomy: Taksonomia
   taxon_: taksoni
+  taxon_name: Taksonin nimi
   taxonomic_tags_for_flickr: Flickr'in Taksonomiset Tunnisteet
   tell_the_world_a_little_about_yourself: Kerro meille itsestäsi
   terms: Ehdot
@@ -1623,6 +1640,7 @@ fi:
     tähän projektiin epäonnistui:'
   this_will_add_listed_taxa: Tämä lisää havainnoista luetteloidut taksonit. Tämä vie
     jonkin aikaa joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  thu: To
   tired_of_testing_this_new_version: Kyllästynyt kokeilemaan tätä uutta versiota?
   top_contributors: Huippuavustajat
   top_identifier: Huippumäärittäjä
@@ -1633,6 +1651,7 @@ fi:
   totals: yhteensä
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
+  tue: Ti
   unblock: Poista esto
   unmute: Poista mykistys
   update: Päivitä
@@ -1656,10 +1675,15 @@ fi:
   view_check_list_page: Katso lajiluettelosivu
   view_leaderboard: Katso tulostaulukko
   view_leaderboard_from_last_year: Katso tulostaulukko viime vuodelta
+  view_more: Näytä lisää
+  view_more_observations: Näytä lisää havaintoja
+  view_more_recent_observations: Näytä lisää viimeaikaisia havaintoja
   we_care_privacy: Me välitämme yksityisyydestäsi!
+  wed: Ke
   welcome_back: Tervetuloa takaisin
   widget: Pienoisohjelma
   widget_for: Pienoisohjelma
+  x_project_journal: '%{project}n %{name}'
   year: Vuosi
   year_month: vuosi/kuukausi
   yellow: keltainen
@@ -1670,6 +1694,7 @@ fi:
   you: sinä
   you_are_now: Olet nyt
   you_are_now_following_x: Seuraat nyt ystävää %{friend_user}.
+  you_arent_following_that_person: Et seuraa tätä henkilöä.
   you_have_to: Sinun täytyy
   your_comment_was_saved: Sisältösi tallennettiin
   your_default_time_zone: Oletusaikavyöhykkeesi
@@ -1775,7 +1800,7 @@ fi:
     - Perjantai
     - Lauantai
     month_names:
-      1: tammikuu
+      1: Tammikuu
       2: helmikuu
       3: maaliskuu
       4: Huhtikuu
