@@ -6964,6 +6964,13 @@ CREATE INDEX index_identifications_on_user_id_and_current ON identifications USI
 
 
 --
+-- Name: index_identifications_on_user_id_and_observation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_identifications_on_user_id_and_observation_id ON identifications USING btree (user_id, observation_id) WHERE current;
+
+
+--
 -- Name: index_identifications_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9200,4 +9207,6 @@ INSERT INTO schema_migrations (version) VALUES ('20171221220649');
 INSERT INTO schema_migrations (version) VALUES ('20171222172131');
 
 INSERT INTO schema_migrations (version) VALUES ('20180103194449');
+
+INSERT INTO schema_migrations (version) VALUES ('20180109232530');
 
