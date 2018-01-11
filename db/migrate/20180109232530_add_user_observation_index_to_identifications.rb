@@ -28,7 +28,7 @@ class AddUserObservationIndexToIdentifications < ActiveRecord::Migration
         ids_to_update = idents.sort_by(&:id)[1..-2].map(&:id)
         Identification.where( id: ids_to_update ).update_all( current: false )
         Identification.elastic_index!( ids: idents.map(&:id) )
-        Observation.elastic_index!( id: row["observation_id"].to_i )
+        Observation.elastic_index!( ids: [row["observation_id"].to_i] )
       end
     end
     add_index :identifications, [ :user_id, :observation_id ], where: "current", unique: true
