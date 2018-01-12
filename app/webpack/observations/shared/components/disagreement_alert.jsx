@@ -41,7 +41,7 @@ class DisagreementAlert extends React.Component {
         </Modal.Header>
         <Modal.Body>
           <p
-            dangerouslySetInnerHTML={ { __html: I18n.t( "does_the_evidence_provided_prove_that_this_is_taxon", { taxon: oldTaxonHTML } ) } }
+            dangerouslySetInnerHTML={ { __html: I18n.t( "is_the_evidence_provided_enough_to_confirm_this_is_taxon", { taxon: oldTaxonHTML } ) } }
           />
           <Button
             bsStyle="success"
@@ -50,7 +50,7 @@ class DisagreementAlert extends React.Component {
               onBestGuess( );
               onClose( );
             } }
-            dangerouslySetInnerHTML={ { __html: I18n.t( "i_dont_know_but_taxon_is_my_best_guess", { taxon: newTaxonHTML } ) } }
+            dangerouslySetInnerHTML={ { __html: I18n.t( "i_dont_know_but_i_am_sure_this_is_taxon", { taxon: newTaxonHTML } ) } }
           />
           <Button
             bsStyle="warning"

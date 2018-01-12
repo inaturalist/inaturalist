@@ -1059,7 +1059,6 @@ en:
   do_you_want_to_proceed: Do you want to proceed?
   does_the_location_seem_accurate: "Does the location seem accurate?"
   does_the_date_seem_accurate: "Does the date seem accurate?"
-  does_the_evidence_provided_prove_that_this_is_taxon: Does the evidence provided prove that this is %{taxon}?
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
   done: Done
@@ -1460,8 +1459,7 @@ en:
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   hybrid: hybrid
   i_agree_to_the_project_terms: I agree to the project terms
-  i_dont_know_but_taxon_is_my_best_guess: |
-    I don't know but %{taxon} is my best guess
+  i_dont_know_but_i_am_sure_this_is_taxon: I don't know but I am sure this is %{taxon}
   icon: Icon
   icon_size: Icon size
   icon_slash_photo: Icon / Photo
@@ -1611,6 +1609,7 @@ en:
     Research Grade observations may be used by scientists for research. Cast your vote below:
   is_not_following_anyone: is not following anyone.
   is_now: is now
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
   is_the_organism_wild: "Is the organism wild/naturalized?"
   is_this_observation_offensive_html: 'Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
@@ -2069,7 +2068,7 @@ en:
   no_activity_in_the_past_week: No activity in the past week.  Time to 
   no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
-  no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}."
+  no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
   no_colors_selected: No colors selected.
   no_comments_yet: No comments yet.
   no_countries_added_yet: No countries added yet
