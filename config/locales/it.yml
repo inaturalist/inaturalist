@@ -1219,6 +1219,7 @@ it:
     più grande esperto mondiale sulla tassonomia dei Lepadomorpha? Semplicemente ti
     piacciono i bei fiori? Compilando il tuo profilo aggiungi in po' di personalità
     e permetti di valutare la tua credibilità quando aiuti gli altri con le identificazioni.
+  do_you_think_this_could_be_html: Pensi che questo <strong>possa</strong> essere
   do_you_want_to_proceed: Vuoi procedere?
   does_the_location_seem_accurate: La localizzazione sembra accurata?
   does_the_date_seem_accurate: La data sembra corretta?
@@ -1668,6 +1669,9 @@ it:
   however_there_were_some_issues: 'Tuttavia, ci sono stati alcuni problemi: %{issues}'
   hybrid: ibrido
   i_agree_to_the_project_terms: Accetto i termini del progetto
+  i_am_sure_this_is_not_taxon: Sono sicuro che questo non è %{taxon}
+  i_dont_know_but_taxon_is_my_best_guess: Non lo so ma %{taxon} è la mia migliore
+    ipotesi
   icon: Icona
   icon_size: Dimensione dell'icona
   icon_slash_photo: Icona / Foto
@@ -3043,6 +3047,7 @@ it:
   posted_by: Postato da
   posted_on: Postato il
   posts: Post
+  potential_disagreement: Potenzialmente In Disaccordo
   powered_by: Realizzato con
   powered_by_inaturalist_open_source_software_html: Offerto da <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalist open source software</a>
@@ -3197,7 +3202,7 @@ it:
   read_the_full_wikipedia: Leggi la descrizione completa di Wikipedia
   ready_to_get_started?: Pronto a iniziare?
   real_time_stats: Statistiche in tempo reale
-  real_time_discussions: Le Discussioni In Tempo Reale
+  real_time_discussions: Discussioni in tempo reale
   reason: Motivo
   reason_you_are_flagging_this_item: Motivo per cui stai segnalando questo elemento.
   recaptcha_verification_failed: verifica reCaptcha fallita
@@ -4173,6 +4178,7 @@ it:
   user_blocked: Utente bloccato
   user_commented: '%{user} ha commentato'
   user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
+  user_disagrees_this_is_taxon: '%{user} non concorda che sia %{taxon}'
   user_faved_a_noun_by_owner: '%{user} ha messo nei preferiti %{noun} di %{owner}'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: L'utente ha deselezionato l'ID della comunità
@@ -6044,6 +6050,10 @@ it:
           attributes:
             base:
               guide_has_too_many_taxa: la guida può avere al massimo 500 taxa
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: importando chiave API o accodato per l'importazione
         observation_field_value:
           attributes:
             value:

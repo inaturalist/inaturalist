@@ -151,7 +151,7 @@ es:
   about_external_links: Acerca de los enlaces externos
   about_licenses: Sobre las licencias
   about_licensing: Acerca de las licencias
-  about_life!: '!Sobre la vida!'
+  about_life!: ¡Sobre la vida!
   about_names: Acerca de los nombres
   about_places: Sobre Lugares
   about_taxon_changes: Acerca de los cambios taxonómicos
@@ -517,7 +517,7 @@ es:
   are_you_sure_want_delete_taxon_link: ¿Confirmas que quieres eliminar este enlace
     del taxón?
   are_you_sure_want_delete_this_name: ¿Confirmas que quieres eliminar este nombre?
-  are_you_sure_want_delete_this_range: ¿Confirmas que quieres eliminar este intervalo?
+  are_you_sure_want_delete_this_range: ¿Confirmas que quieres eliminar esta área?
   are_you_sure_want_join: ¿Confirmas que quieres unirte a
   are_you_sure_you_want_sync_this: ¿Estás seguro que deseas sincronizar los datos
     de esta observación con esta foto de Flickr ? Perderás los cambios que hayas hecho
@@ -2154,7 +2154,7 @@ es:
   mark_all_as_unreviewed: Marcar todas como no revisadas
   matched_several_different_taxa: varios taxones distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
-    El mapa mostrará un rango si %{place} tiene alguna de esas especies.
+    El mapa mostrará un área si %{place} tiene alguna de esas especies.
   maverick: Maverick
   maybe_your_signed_in_with: ¿Tal vez usted ingresó con su cuenta %{omniauth}?
   media: Multimedia
@@ -2405,7 +2405,7 @@ es:
   no_project_to_admin_current_user: No administras ningún proyecto
   no_project_to_admin_login: '%{login} no administra ningún proyecto'
   no_projects_yet: No hay proyectos todavía
-  no_range_data_available: No hay un rango de datos disponible
+  no_range_data_available: No hay ningún dato sobre áreas de distribución disponible.
   no_recent_activity: No hay actividad reciente
   no_recently_active: Todavía no hay proyectos activos
   no_relevant_annotations: No hay anotaciones relevantes
@@ -2754,7 +2754,7 @@ es:
   other_species_commonly_misidentified_as_this_species_in_place_html: Especies confundidas
     con esta en <a href="%{url}">%{place}</a>
   our_blog: Nuestro blog
-  out_of_range: Fuera del intervalo
+  out_of_range: Fuera del área
   output_taxon: Taxón de salida
   owner: Propietario
   parent: Padre
@@ -3129,7 +3129,7 @@ es:
   quality_grade_colon: 'Grado de calidad:'
   queued: En espera
   query: Consulta
-  range: Intervalo
+  range: Área
   range_from: Distribución de
   rank: Rango
   rank_position: Posición
@@ -4820,10 +4820,10 @@ es:
           sólo se copiará el contenido con licencia.
     help:
       index:
-        welcome_message_html: "Hola! Si apenas estas empezando a usar %{site_name},
-          te invitamos a revisar \nnuestra guía en: <a href=\"%{url}\">%{getting_started}</a>
-          para que conozcas algunas de las características\ny funciones de nuestra
-          página.  Si tienes alguna duda, por favor da click en \nPreguntas Frecuentes."
+        welcome_message_html: |-
+          ¿Qué tal? Si apenas estás empezando en %{site_name}, echa un vistazo a nuestra guía
+          <a href="%{url}">%{getting_started}</a>
+          para explorar las prestaciones del sitio. Si tienes alguna pregunta sobre el sitio, lee detenidamente las preguntas frecuentes que encontrarás a continuación. Si sigues en busca de respuestas, <a href="%{feedback_url}">publica tu pregunta en nuestro grupo de retroalimentación</a>.
         what_is_inaturalist?: ¿Qué es %{site_name}?
         who_is_behind_inaturalist?: ¿Quién está detrás de %{site_name}?
         what_technologies_does_the_project_use?: ¿En qué tecnologías y fuentes de
