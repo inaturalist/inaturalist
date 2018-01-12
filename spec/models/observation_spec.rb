@@ -3565,6 +3565,8 @@ end
 
 def setup_test_case_taxonomy
   # Tree:
+  #          sf
+  #          |
   #          f
   #       /     \
   #      g1     g2
@@ -3573,7 +3575,10 @@ def setup_test_case_taxonomy
   #   /  \
   # ss1  ss2
 
-  @f = Taxon.make!( rank: "family", name: "f" )
+  # Superfamily intentionally left unavailable. Since it has a blank ancestry,
+  # it will not really behave as expected in most tests
+  sf = Taxon.make!( rank: "superfamily", name: "sf" )
+  @f = Taxon.make!( rank: "family", parent: sf, name: "f" )
   @g1 = Taxon.make!( rank: "genus", parent: @f, name: "g1" )
   @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
   @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
