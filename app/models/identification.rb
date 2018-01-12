@@ -177,6 +177,8 @@ class Identification < ActiveRecord::Base
   def set_disagreement( options = {} )
     return true if disagreement? && !options[:force]
     return true unless previous_observation_taxon
+    return true unless previous_observation_taxon.grafted?
+    return true unless taxon.grafted?
     ancestor_of_previous_observation_taxon = previous_observation_taxon.self_and_ancestor_ids.include?( taxon_id )
     descendant_of_previous_observation_taxon = taxon.self_and_ancestor_ids.include?( previous_observation_taxon.id )
     self.disagreement = !ancestor_of_previous_observation_taxon && !descendant_of_previous_observation_taxon

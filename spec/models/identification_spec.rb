@@ -982,23 +982,47 @@ describe Identification, "category" do
 end
 
 describe Identification, "disagreement" do
+  before { load_test_taxa } # Not sure why but these don't seem to pass if I do before(:all)
   it "should be nil by default" do
     expect( Identification.make! ).not_to be_disagreement
   end
   it "should automatically set to true on create if the taxon is not a descendant or ancestor of the community taxon" do
-    o = make_research_grade_observation
+    o = make_research_grade_observation( taxon: @Calypte_anna)
     2.times { Identification.make!( observation: o, taxon: o.taxon ) }
-    i = Identification.make!( observation: o )
+    i = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
     i.reload
     expect( i ).to be_disagreement
   end
   it "should not be automatically set to true on update if the taxon is not a descendant or ancestor of the community taxon" do
     o = make_research_grade_candidate_observation
-    i = Identification.make!( observation: o )
-    t = Taxon.make!
-    4.times { Identification.make!( observation: o, taxon: t ) }
+    i = Identification.make!( observation: o, taxon: @Calypte_anna )
+    4.times { Identification.make!( observation: o, taxon: @Pseudacris_regilla ) }
     i.reload
     expect( i ).not_to be_disagreement
+  end
+
+  describe "implicit disagreement" do
+    it "should set disagreement to true" do
+      o = Observation.make!( taxon: @Calypte_anna )
+      Identification.make!( observation: o, taxon: @Calypte_anna )
+      i = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+      expect( i.disagreement ).to eq true
+    end
+    it "should not set disagreement previous obs taxon was ungrafted" do
+      s1 = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: s1 )
+      Identification.make!( observation: o, taxon: s1 )
+      i = Identification.make( observation: o, taxon: @Calypte_anna )
+      i.save!
+      expect( i.disagreement ).to be_nil
+    end
+    it "should not set disagreement if ident taxon is ungrafted" do
+      s1 = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: @Calypte_anna )
+      Identification.make!( observation: o, taxon: @Calypte_anna )
+      i = Identification.make!( observation: o, taxon: s1 )
+      expect( i.disagreement ).to be_nil
+    end
   end
 end
 
