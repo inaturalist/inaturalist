@@ -790,10 +790,10 @@ describe Taxon, "moving" do
   end
 
   it "should update community taxa" do
-    fam = Taxon.make!(:rank => "family")
-    subfam = Taxon.make!(:rank => "subfamily", :parent => fam)
-    gen = Taxon.make!(:rank => "genus", :parent => fam)
-    sp = Taxon.make!(:rank => "species", :parent => gen)
+    fam = Taxon.make!( name: "_fam 1", rank: "family")
+    subfam = Taxon.make!( name: "_subfam 1", rank: "subfamily", parent: fam )
+    gen = Taxon.make!( name: "_gen 1", rank: "genus", parent: fam )
+    sp = Taxon.make!( name: "_sp 1", rank: "species", parent: gen )
     o = Observation.make!
     i1 = Identification.make!(:observation => o, :taxon => subfam)
     i2 = Identification.make!(:observation => o, :taxon => sp)
@@ -805,7 +805,7 @@ describe Taxon, "moving" do
       gen.update_attributes(:parent => subfam)
     end
     o.reload
-    expect(o.taxon).to eq subfam
+    expect(o.taxon).to eq sp
   end
 
   it "should create TaxonAncestors" do

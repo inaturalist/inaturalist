@@ -343,7 +343,7 @@ class Observation < ActiveRecord::Base
               :trim_user_agent,
               :update_identifications,
               :set_community_taxon_before_save,
-              :set_taxon_from_community_taxon,
+              :set_taxon_from_probable_taxon,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
@@ -1461,10 +1461,13 @@ class Observation < ActiveRecord::Base
   ##### Community Taxon #########################################################
 
   def get_community_taxon(options = {})
-    return if (identifications.loaded? ?
+    return if (
+      identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
-      identifications.current).count <= 1
-    node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
+      identifications.current
+    ).count <= 1
+    nodes = community_taxon_nodes(options)
+    node = nodes.select{|n| n[:cumulative_count] > 1}.sort_by do |n|
       [
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
         0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
@@ -1472,23 +1475,33 @@ class Observation < ActiveRecord::Base
     end.last
     
     # # Visualizing this stuff is pretty useful for testing, so please leave this in
-    # puts
-    # width = 15
-    # %w(taxon_id taxon_name cc dc cdc score).each do |c|
-    #   print c.ljust(width)
-    # end
-    # puts
-    # community_taxon_nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
-    #   print n[:taxon].id.to_s.ljust(width)
-    #   print n[:taxon].name.to_s.ljust(width)
-    #   print n[:cumulative_count].to_s.ljust(width)
-    #   print n[:disagreement_count].to_s.ljust(width)
-    #   print n[:conservative_disagreement_count].to_s.ljust(width)
-    #   print n[:score].to_s.ljust(width)
-    #   puts
-    # end
+    # print_community_taxon_nodes( nodes )
     return unless node
     node[:taxon]
+  end
+
+  def print_community_taxon_nodes( nodes )
+    puts
+    width = 15
+    %w(taxon_id taxon_name cc acc cndc dc cdc score).each do |c|
+      if c == "taxon_name"
+        print c.ljust( width*2 )
+      else
+        print c.ljust( width )
+      end
+    end
+    puts
+    nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
+      print n[:taxon].id.to_s.ljust(width)
+      print n[:taxon].name.to_s.ljust(width*2)
+      print n[:cumulative_count].to_s.ljust(width)
+      print n[:adjusted_cumulative_count].to_s.ljust(width)
+      print n[:conservative_non_disagreement_count].to_s.ljust(width)
+      print n[:disagreement_count].to_s.ljust(width)
+      print n[:conservative_disagreement_count].to_s.ljust(width)
+      print n[:score].to_s.ljust(width)
+      puts
+    end
   end
 
   def community_taxon_nodes(options = {})
@@ -1529,7 +1542,13 @@ class Observation < ActiveRecord::Base
             i.previous_observation_taxon &&
             ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
           )
+            # If an identification of Homonidae is a disagreement with Homo
+            # sapiens, that implies disagreement with everything between
+            # Homonidae and Homo sapiens (i.e. genus Homo), otherwise they would
+            # have added an ID of genus Homo
             disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            # So if the taxon under consideration is any of the taxa this
+            # identification disagrees with, count it as a disagreement
             ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
           elsif i.disagreement == nil
             i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
@@ -1539,13 +1558,29 @@ class Observation < ActiveRecord::Base
         0
       end
 
+      conservative_non_disagreement_count = if first_ident_of_taxon
+        # working_idents.select {|i|
+        #   i.disagreement == false && i.taxon.self_and_ancestor_ids.include?( id_taxon.id )
+        # }.size
+        working_idents.select {|i|
+          # Does the taxon this identification *could* be disagreeing with include the taxon under consideration?
+          i.disagreement == false && i.previous_observation_taxon && i.previous_observation_taxon.ancestor_ids.include?( id_taxon.id )
+        }.size
+      else
+        0
+      end
+
+      adjusted_cumulative_count = cumulative_count - conservative_non_disagreement_count
+
       {
-        :taxon => id_taxon,
-        :ident_count => working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
-        :cumulative_count => cumulative_count,
-        :disagreement_count => disagreement_count,
-        :conservative_disagreement_count => conservative_disagreement_count,
-        :score => cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
+        taxon: id_taxon,
+        ident_count: working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
+        cumulative_count: cumulative_count,
+        adjusted_cumulative_count: adjusted_cumulative_count,
+        conservative_non_disagreement_count: conservative_non_disagreement_count,
+        disagreement_count: disagreement_count,
+        conservative_disagreement_count: conservative_disagreement_count,
+        score: adjusted_cumulative_count.to_f / (adjusted_cumulative_count + disagreement_count + conservative_disagreement_count)
       }
     end
   end
@@ -1589,20 +1624,35 @@ class Observation < ActiveRecord::Base
     (prefers_community_taxon == false || user.prefers_community_taxa == false)
   end
 
-  def set_taxon_from_community_taxon
+  # What the system thinks the organism probably is. Current combines the
+  # communal opinion with the preferences of individuals (disagreement / not
+  # disagreement), and may in the future incorporate modeled identifier skill
+  def probable_taxon( options = {} )
+    nodes = community_taxon_nodes( options )
+    # # Visualizing this stuff is pretty useful for testing, so please leave this in
+    # print_community_taxon_nodes( nodes )
+    node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
+      0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
+    }.last
+    return unless node
+    node[:taxon]
+  end
+
+  def set_taxon_from_probable_taxon
     return if identifications.count == 0 && taxon_id
+    prob_taxon = probable_taxon( force: true )
     # explicitly opted in
     self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     # obs opted out or user opted out
     elsif prefers_community_taxon == false || !user.prefers_community_taxa?
       owners_identification.try(:taxon_id)
     # implicitly opted in
     else
-      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
-      update_stats(:skip_save => true)
+      update_stats( skip_save: true )
       self.species_guess = if taxon
         taxon.common_name.try(:name) || taxon.name
       else
@@ -1958,8 +2008,9 @@ class Observation < ActiveRecord::Base
       num_agreements    = 0
       num_disagreements = 0
     else
-      if node = community_taxon_nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
-        num_agreements = node[:cumulative_count]
+      nodes = community_taxon_nodes
+      if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
+        num_agreements = node[:adjusted_cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
         num_agreements = 0 if current_idents.count <= 1

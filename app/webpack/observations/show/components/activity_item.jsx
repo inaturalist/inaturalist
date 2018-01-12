@@ -10,9 +10,23 @@ import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
 import { urlForTaxon } from "../../../taxa/shared/util";
 
-const ActivityItem = ( { observation, item, config, deleteComment, deleteID, firstDisplay,
-                         restoreID, setFlaggingModalState, currentUserID, addID, linkTarget,
-                         hideCompare } ) => {
+const ActivityItem = ( {
+  observation,
+  item,
+  config,
+  deleteComment,
+  deleteID,
+  firstDisplay,
+  restoreID,
+  setFlaggingModalState,
+  currentUserID,
+  addID,
+  linkTarget,
+  hideCompare,
+  hideDisagreement,
+  hideCategory,
+  noTaxonLink
+} ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
   const isID = !!taxon;
@@ -83,12 +97,14 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
       <div className="identification">
         { buttonDiv }
         <div className="taxon">
-          <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
-            { taxonImageTag }
-          </a>
+          { noTaxonLink ? taxonImageTag : (
+            <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
+              { taxonImageTag }
+            </a>
+          ) }
           <SplitTaxon
             taxon={ taxon }
-            url={ `/taxa/${taxon.id}` }
+            url={ noTaxonLink ? null : `/taxa/${taxon.id}` }
             noParens
             target={ linkTarget }
             showMemberGroup
@@ -118,7 +134,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         </a>
       </span>
     );
-  } else if ( item.category && item.current ) {
+  } else if ( item.category && item.current && !hideCategory ) {
     let idCategory;
     let idCategoryTooltipText;
     if ( item.category === "maverick" ) {
@@ -181,7 +197,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
   let footer;
-  if ( item.disagreement ) {
+  if ( item.disagreement && !hideDisagreement ) {
     const previousTaxonLink = (
       <SplitTaxon
         taxon={ item.previous_observation_taxon }
@@ -254,7 +270,10 @@ ActivityItem.propTypes = {
   firstDisplay: PropTypes.bool,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,
-  hideCompare: PropTypes.bool
+  hideCompare: PropTypes.bool,
+  hideDisagreement: PropTypes.bool,
+  hideCategory: PropTypes.bool,
+  noTaxonLink: PropTypes.bool
 };
 
 export default ActivityItem;
