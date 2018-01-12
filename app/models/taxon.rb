@@ -1576,6 +1576,20 @@ class Taxon < ActiveRecord::Base
       where( "taxon_change_taxa.taxon_id = ?", self ).order(:id).last.try(:output_taxon)
   end
 
+  def current_synonymous_taxa_from_split
+    Taxon.where(id: TaxonChange.where(taxon_id: self.id).
+      joins(:taxon_change_taxa).pluck("taxon_change_taxa.taxon_id"))
+  end
+
+  def current_synonymous_taxa
+    synonymous_taxa = current_synonymous_taxa_from_split
+    taxon_from_swaps_and_merge = current_synonymous_taxon
+    if taxon_from_swaps_and_merge
+      synonymous_taxa << taxon_from_swaps_and_merge
+    end
+    synonymous_taxa
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)
