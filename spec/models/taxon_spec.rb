@@ -1183,11 +1183,11 @@ describe "complete" do
     describe "is blank" do
       it "should prevent grafting to this taxon" do
         t = Taxon.make( rank: Taxon::GENUS, parent: superfamily )
-        expect( t ).to be_valid
+        expect( t ).not_to be_valid
       end
       it "should prevent grafting to a descendant" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: genus )
-        expect( t ).to be_valid
+        expect( t ).not_to be_valid
       end
       it "should allow grafting to taxa beyond the complete_rank" do
         superfamily.update_attributes( complete_rank: Taxon::GENUS, current_user: make_admin )

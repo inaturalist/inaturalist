@@ -97,7 +97,7 @@ class Taxon < ActiveRecord::Base
   validate :can_only_be_featured_if_photos
   validate :validate_locked
   validate :complete_rank_below_rank
-  validate :graftable_if_complete, on: :create
+  validate :graftable_if_complete
   validate :user_can_edit_attributes, on: :update
 
   has_subscribers :to => {
@@ -893,7 +893,6 @@ class Taxon < ActiveRecord::Base
 
   def graftable_if_complete
     return true unless ancestry_changed?
-    return true if current_user.blank?
     ct = complete_taxon
     if ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
