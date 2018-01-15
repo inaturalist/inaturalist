@@ -1219,7 +1219,6 @@ it:
     più grande esperto mondiale sulla tassonomia dei Lepadomorpha? Semplicemente ti
     piacciono i bei fiori? Compilando il tuo profilo aggiungi in po' di personalità
     e permetti di valutare la tua credibilità quando aiuti gli altri con le identificazioni.
-  do_you_think_this_could_be_html: Pensi che questo <strong>possa</strong> essere
   do_you_want_to_proceed: Vuoi procedere?
   does_the_location_seem_accurate: La localizzazione sembra accurata?
   does_the_date_seem_accurate: La data sembra corretta?
@@ -1669,9 +1668,7 @@ it:
   however_there_were_some_issues: 'Tuttavia, ci sono stati alcuni problemi: %{issues}'
   hybrid: ibrido
   i_agree_to_the_project_terms: Accetto i termini del progetto
-  i_am_sure_this_is_not_taxon: Sono sicuro che questo non è %{taxon}
-  i_dont_know_but_taxon_is_my_best_guess: Non lo so ma %{taxon} è la mia migliore
-    ipotesi
+  i_dont_know_but_i_am_sure_this_is_taxon: Non lo so ma sono sicuro che è %{taxon}
   icon: Icona
   icon_size: Dimensione dell'icona
   icon_slash_photo: Icona / Foto
@@ -1838,6 +1835,8 @@ it:
     Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
   is_not_following_anyone: non segue nessuno.
   is_now: è ora
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: La prova fornita è sufficiente
+    per confermare che questo è %{taxon}?
   is_the_organism_wild: L'organismo è selvatico/naturalizzato?
   is_this_observation_offensive_html: Questa osservazione è <a href="/help#inappropriate">inappropriata</a>,
     spam, o offensiva?
@@ -2363,6 +2362,7 @@ it:
     la tua nuova password e ha o ha avuto accesso alla tua password.
   no_assessments_have_been_added_to_this_project_yet: Nessuna valutazione è stata
     ancora aggiunta al progetto.
+  no_but_it_is_a_member_of_taxon: No, ma questo è un membro di %{taxon}
   no_colors_selected: Nessun colore selazionato.
   no_comments_yet: Ancora nessun commento.
   no_countries_added_yet: Ancora nessuno stato aggiunto
@@ -3846,8 +3846,8 @@ it:
     in aggiornamento, ma se ce n'è una che è esaustiva, che quindi comprende <em>tutti</em>
     i rappresentanti di quel taxon per quel luogo, l'Identotron mostrerà un messaggio.
   the_list: la lista
-  the_name_of_the_taxon_including_space: Il nome del taxon, compreso lo spazio per
-    specie e infraspecie.<br/><br/> <strong>Esempio:</strong><br/>
+  the_name_of_the_taxon_including_space: Il nome del taxon, includendo lo spazio per
+    specie e infraspecie.
   the_observation_form_looks: 'Il formulario dell''osservazione assomiglia a questo:'
   the_observation_has_date: l'osservazione <strong>ha una data</strong>
   the_observation_has_photo: l'osservazione <strong>ha una foto</strong>
@@ -4157,8 +4157,8 @@ it:
     attivi
   use_this_if_the_url_needs_genus_species_separated: Utilizza questo se l'URL deve
     avere genere e specie separate in un modo particolare. Se il taxon non è una specie
-    o una infraspecie, tutto tra  [GENERE] e [SPECIE] sara rimpiazzato dal nome del
-    taxon, perciò usalo con moderazione. <br/><br/> <strong>Esempioe:</strong><br/>
+    o una infraspecie, tutto tra [GENERE] e [SPECIE] sarà rimpiazzato dal nome del
+    taxon, perciò usalo con moderazione.
   use_unique_file_names_for_separate_uploads: Utilizza nomi di file univoci per caricamenti
     separati
   use_well_formed_csv: Usa CSV ben formattati. Ciò significa che i testi con virgole
@@ -5653,6 +5653,10 @@ it:
           e dei suoi discendenti. La foto scelta per questo
           taxon sarà mostrata per prima. La prima foto sarà
           l'immagine predefinita per tutto il sito.
+    taxon_links:
+      form:
+        name_with_rank_desc: Il nome dal taxon con il rango. Per ranghi infraspecifici,
+          il rango è inserito dopo il nome binomiale.
     taxon_names:
       form:
         new_name_guidelines_html: |-

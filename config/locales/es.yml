@@ -1810,7 +1810,8 @@ es:
     Las observaciones de Grado de Investigación pueden ser usadas por científicos para su investigación. Vota aquí abajo:
   is_not_following_anyone: No esta siguiendo a nadie
   is_now: ahora es
-  is_the_evidence_provided_enough_to_confirm_this_is_taxon: ¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: ¿La evidencia provista
+    es suficiente para confirmar que se trata de %{taxon}?
   is_the_organism_wild: ¿Es el organismo salvaje?
   is_this_observation_offensive_html: ¿Es esta observación <a href="/help#inappropriate">inapropiada</a>,
     spam u ofensiva?
@@ -2336,7 +2337,7 @@ es:
     su nueva contraseña ni ha tenido acceso a ella en ningún momento.
   no_assessments_have_been_added_to_this_project_yet: Todavía no se agregaron evaluaciones
     a este proyecto.
-  no_but_it_is_a_member_of_taxon: "No, pero es un miembro de %{taxon}"
+  no_but_it_is_a_member_of_taxon: No, pero es un miembro de %{taxon}
   no_colors_selected: No hay colores seleccionados.
   no_comments_yet: No hay comentarios todavía.
   no_countries_added_yet: No se han agregado países todavía
@@ -2454,7 +2455,7 @@ es:
     Facebook
   not_linked_flickr: Su cuenta de %{site_name} no está vinculada con su cuenta de
     Flickr
-  not_logged_in: No ha iniciado sesión
+  not_logged_in: No has accedido
   not_on_this_list: No está en esta lista.
   not_recorded: No grabado
   not_seeing_what_looking_for: ¿No ve lo que está buscando?
@@ -3023,10 +3024,10 @@ es:
   posted_by: Publicado por
   posted_on: Ingresado el
   posts: Ingresos
+  potential_disagreement: Posible desacuerdo
   powered_by: Desarrollado por
   powered_by_inaturalist_open_source_software_html: Desarrollado por <a href="https://github.com/inaturalist/inaturalist"
     target="_new">el software de código abierto iNaturalist</a>
-  potential_disagreement: Posible Desacuerdo
   present: nativo
   preview: Vista previa
   preview_of_synced_observation: <strong>Previo</strong> de la observación.  <a href="%{url}">¿Revertir?</a>
@@ -5972,6 +5973,10 @@ es:
           attributes:
             base:
               guide_has_too_many_taxa: la guía solo puede tener 500 taxones
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: Clave de API importándose o en espera de importación
         observation_field_value:
           attributes:
             value:

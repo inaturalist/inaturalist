@@ -301,7 +301,7 @@ fi:
       kingdom: Pääryhmä
       class: Luokka
       phylum: Pääjakso
-      species: Lajit
+      species: Laji
       order: Lahko
     amphibians: Sammakkoeläimet
     animals: Eläimet
@@ -650,6 +650,7 @@ fi:
   check_list_of_species_occuring_in: Lajiluettelo lajeista jotka esiintyvät
   check_list_place: '%{place} Lajiluettelo'
   check_list_updated: Lajiluettelo päivitetty!
+  check_list_source: Lähde <span class="meta">(valinnainen)</span>
   check_lists_for: Muut Lajiluettelot Paikalle %{place}
   check_out_our_blog: Tutustu blogiimme
   checklist: Lajiluettelo
@@ -662,6 +663,7 @@ fi:
   choose_a_place: Valitse paikka
   choose_a_taxon: Valitse taksoni (valinnainen)
   chose_columns: Valitse sarakkeet
+  choose_files: Valitse tiedostot
   choose_files_from_your_computer: valitse tiedostot omalta tietokoneeltasi
   choose_from_your_lists: Valitse luetteloistasi
   choose_photos: Valitse valokuvat
@@ -685,6 +687,7 @@ fi:
     paikan ympärille.
   click_on_the_map_to: Klikkaa karttaa sijoittaaksesi havaintosi
   click_the_map_to_jump_new_place: Klikkaa karttaa, jos haluat siirtyä uuteen paikkaan
+  close: Sulje
   code: Koodi
   collapse_days: tiivistä päivät
   collapse_updates: tiivistä päivitykset
@@ -728,11 +731,13 @@ fi:
   conservation_status_descriptions:
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
   continue: Jatka
+  contributions: muokkaukset
   controlled_term_labels:
     sex: Sukupuoli
     male: Mies
     female: Nainen
     adult: Aikuinen
+    egg: Muna
   coordinates: Koordinaatit
   copy: Kopioi
   copy_and_paste_this_into_your_own_html: Kopioi ja liitä tämä omaan HTML-koodiisi.
@@ -741,6 +746,7 @@ fi:
     some_rights_reserved_by: (c) %{name}, jotkut oikeudet pidätetään (%{license_short})
     all_rights_reserved: (c) %{name}, kaikki oikeudet pidätetään
     no_rights_reserved: Oikeuksia ei pidätetä
+    no_rights_reserved_by: '%{name}, oikeuksia ei pidätetä (%{license_name})'
     anonymous: Anonyymi
     public_domain: Vapaasti käytettävä
     copyright: tekijänoikeus
@@ -752,6 +758,7 @@ fi:
       Lisenssi
     gnu_free_documentation_license: GNU Free Documentation Lisenssi
   copyright_holder: Tekijänoikeuden omistaja
+  copyright_info: Tekijänoikeustiedot
   couldnt_change_your_password: 'Ei voinut vaihtaa salasanaasi: %{e}'
   couldnt_find_a_user_matching_x_param: Emme löytäneet käyttäjää %{id}
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
@@ -964,6 +971,7 @@ fi:
     aina 30 päivän välein.
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommentteja ja muuta
     palautetta varten
+  email_copyright: Copyright &copy; %{x}, kaikki oikeudet pidätetään
   email_settings: Sähköpostiasetukset
   enlarge: Suurenna
   end: Loppu
@@ -1131,7 +1139,8 @@ fi:
   identify_observations: Tunnista havaintoja
   identifications: Määritykset
   identifications_by: Käyttäjän %{user} tekemät määritykset
-  if_you_already_have_an_account: Jos sinulla on jo %{site_name}-tili...
+  if_you_already_have_an_account: Jos sinulla on jo %{site_name} -tili...
+  if_you_use: Jos käytät
   if_you_want_to_change_the_name: jos haluat muuttaa nimeä
   image_must_be_exactly: kuvan on oltava täsmälleen 950px leveä ja enintään 400px
     korkea
@@ -1199,6 +1208,7 @@ fi:
     observations: Eniten havaintoja %{time}
     identifications: Eniten määrityksiä %{time}
   learn!: Opi!
+  learn_more: Lue lisää
   least_concern: elinvoimainen
   leave_a_comment: Kommentoi tätä kirjoitusta
   leaves: lehdet
@@ -1323,6 +1333,7 @@ fi:
   month: Kuukausi
   months: Kuukausi
   months_ago: '%{text} kuukautta sitten'
+  more_from_x: Lisää käyttäjältä %{x}
   most: Eniten
   most_observations: Eniten havaintoja
   most_species: Useimmat lajit
@@ -1371,6 +1382,7 @@ fi:
   observations_deleted: Havainnot on poistettu.
   observations_from_you: Sinun havaintosi
   observations_widget: Pienoisohjelma Havaintoja Varten
+  observed: Havaittu
   observer: Havainnoija
   observers: Havainnoijat
   occurrence_status_levels:
@@ -1380,6 +1392,7 @@ fi:
     irregular: epäsäännöllinen
     doubtful: kyseenalainen
     absent: poissa
+  of_species: laji
   offensive_inappropriate: loukkaava / sopimaton
   onboarding:
     observe_panel_title: Aloitetaan lähettämällä joitain havaintoja
@@ -1393,6 +1406,7 @@ fi:
     follow_panel_title_global: Seuraa joitakin aktiivisia luonnontieteilijöitä
   one_by_one: Yksi kerrallaan
   only_letters_numbers: Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella
+  only_species: vain lajit
   or: tai
   or_invite_your_friends: tai kutsu ystäviäsi
   or_you_can: Tai voit...
@@ -1583,11 +1597,12 @@ fi:
   send: lähetä
   send_invite: Lähetä kutsu
   settings: asetukset
+  show: Näytä
   show_less: Näytä vähemmän
   show_more: Näytä enemmän
   show_only: Näytä vain
   sign_in: Kirjaudu sisään
-  sign_in_with_provider: Kirjaudu sisään %{provider} -tilillä
+  sign_in_with_provider: Kirjaudu sisään %{provider}-tilillä
   sign_out: Kirjaudu ulos
   sign_up!: Rekisteröidy!
   sign_up: Rekisteröidy
@@ -1597,6 +1612,7 @@ fi:
   skip_to_next_page: Siirry seuraavalle sivulle
   small: pieni
   some_agree: jotkut ovat samaa mieltä
+  some_rights_reserved: jotkut oikeudet pidätetään
   sounds:
     no_photos_sounds: Ei kuvia tai ääniä
   source_list:
@@ -1607,9 +1623,9 @@ fi:
       2012'
   sources: Lähteet
   spam: roskaposti
-  species: Laji
+  species: Lajit
   species_from_around_the_world: Lajeja ympäri maailmaa
-  species_header: Laji
+  species_header: Lajit
   species_name: lajinimi
   species_name_cap: Lajinimi
   species_names: lajinimet
@@ -1634,14 +1650,18 @@ fi:
   terms_new_users: Jos lisäät ehtoja, uusien käyttäjien on hyväksyttävä ne ennen tähän
     projektiin liittymistä.
   terms_of_service: Käyttöehdot
+  terms_service: Käyttöehdot
   thanks_for_signing_up: Kiitos rekisteröitymisestäsi!
+  thanks_from_all_of_us_here_at: Kiitos meistä täällä sivustolla
   the_following_photos_have_been_tagged: 'Seuraaviin kuviin on lisätty tunnisteet:'
   there_were_problems_adding_that_observation_to_this_project: 'Havainnon lisääminen
     tähän projektiin epäonnistui:'
+  this_species: tämä laji
   this_will_add_listed_taxa: Tämä lisää havainnoista luetteloidut taksonit. Tämä vie
     jonkin aikaa joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
   thu: To
   tired_of_testing_this_new_version: Kyllästynyt kokeilemaan tätä uutta versiota?
+  to_add_comments: lisätäksesi kommentteja
   top_contributors: Huippuavustajat
   top_identifier: Huippumäärittäjä
   top_identifiers: Huippumäärittäjät
@@ -1762,6 +1782,7 @@ fi:
         create_useful_data: Tuota käyttökelpoista tietoa
         help_scientists: Auta lisäämään tiedemiesten ja luonnonvaroista päättävien
           viranomaisten ymmärrystä eliöiden ajallisesta ja alueellisesta esiintymisestä.
+        crowdsource_identifications: Crowdsource-tunnistamiset
         connect_with_experts: Ole yhteydessä asiantuntijoihin, jotka voivat määrittää
           havaitsemasi eliölajin.
         become_a_citizen_scientist: Ryhdy amatööritutkijaksi
@@ -1773,6 +1794,8 @@ fi:
         hold_an_event: Järjestä tapahtuma, johon osallistuvat ihmiset yrittävät havaita
           mahdollisimman monta lajia.
         works_on_all_your_devices: Toimii kaikissa laitteissasi
+        install_our_mobile_apps: Asenna mobiilisovelluksemme, niin voit aina havannoida,
+          jopa ilman soluvastaanottoa tai wifiä.
         who_uses_site_name: Kuka käyttää %{site_name}a?
         what_are_you_waiting_for: Mitä vielä odotat?
         join_today: Liity tänään

@@ -1862,6 +1862,7 @@ zh-CN:
   next_tab: 下一标签
   "no": 否
   no_activity_in_the_past_week: 上周没有活跃。时间至
+  no_but_it_is_a_member_of_taxon: 不，但它是%{taxon}的成员之一
   no_colors_selected: 未选择颜色。
   no_comments_yet: 尚无评论。
   no_countries_added_yet: 尚未添加国家
@@ -2290,6 +2291,7 @@ zh-CN:
   posted_by: 发帖人：
   posted_on: 发帖时间：
   posts: 帖子
+  potential_disagreement: 潜在争论
   powered_by: 驱动方
   powered_by_inaturalist_open_source_software_html: 由<a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalist开源软件</a>驱动
@@ -2796,7 +2798,7 @@ zh-CN:
   the_community_agrees_location_doesnt: 社区同意<strong>位置看起来不正确</strong>（例如大洋中的猴子，办公大楼中的河马等）。
   the_community_agrees_organism_isnt: 社区同意<strong>有机体不是野生的/自然的</strong>（例如：俘虏、人工种植或智能外星人）
   the_list: 列表
-  the_name_of_the_taxon_including_space: 分类单元名称，包括物种和亚种的空间。<br/><br/> <strong>示例：</strong><br/>
+  the_name_of_the_taxon_including_space: 分类单元名称，包括物种和亚种的空间。
   the_past: 过去
   the_people_of_inat: '%{site_name}的人'
   the_project: 项目
@@ -2966,6 +2968,7 @@ zh-CN:
   user_added_an_x_to_noun_by_html: '%{user}将%{x}添加至由%{by}的%{noun}'
   user_blocked: 用户已封禁
   user_commented: '%{user} 已评论'
+  user_disagrees_this_is_taxon: '%{user}不同意这是%{taxon}'
   user_follows: '%{user} 关注'
   user_hasnt: '%{user}没有'
   user_muted: 用户已禁言
@@ -3662,6 +3665,9 @@ zh-CN:
           Insect life stage=nymph: 仙女
           Insect life stage=pupa: 蛹
           Insect life stage=adult: 成人
+    taxon_links:
+      form:
+        name_with_rank_desc: 分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
     taxon_names:
       form:
         new_name_guidelines_html: |-
@@ -3970,6 +3976,10 @@ zh-CN:
   activerecord:
     errors:
       models:
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: API关键字导入或用于导入的队列
         observation_field_value:
           attributes:
             value:

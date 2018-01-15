@@ -19,6 +19,7 @@
 # Author: Macofe
 # Author: Nicolapps
 # Author: Orikrin1998
+# Author: Oupsa
 # Author: Pamputt
 # Author: Robby
 # Author: Spasmedevivre
@@ -1722,6 +1723,8 @@ fr:
   however_there_were_some_issues: 'Cependant, il y a eu quelques problèmes : %{issues}'
   hybrid: hybride
   i_agree_to_the_project_terms: J’accepte les conditions du projet
+  i_dont_know_but_i_am_sure_this_is_taxon: Je ne sais pas, mais je suis sûr de que
+    c'est %{taxon}
   icon: Icône
   icon_size: Taille de l’icône
   icon_slash_photo: Icône/photo
@@ -1895,6 +1898,8 @@ fr:
     Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Donnez votre vote ci-dessous :
   is_not_following_anyone: ne suit personne.
   is_now: est maintenant
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Est-ce que l'évidence
+    est suffisammnt flagrante pour confirmer que ceci est %{taxon} ?
   is_the_organism_wild: Cet organisme est-il sauvage/acclimaté ?
   is_this_observation_offensive_html: Cette observation est-elle <a href="/help#inappropriate">inappropriée</a>,
     du pourriel ou injurieuse?
@@ -2430,6 +2435,7 @@ fr:
     mot de passe.
   no_assessments_have_been_added_to_this_project_yet: Aucune évaluation n’a encore
     été ajoutée à ce projet.
+  no_but_it_is_a_member_of_taxon: Non, mais c'est un membre de %{taxon}
   no_colors_selected: Aucune couleur sélectionnée.
   no_comments_yet: Aucun commentaire jusqu’à présent.
   no_countries_added_yet: Aucun pays n’a été ajouté jusqu’à présent
@@ -3125,6 +3131,7 @@ fr:
   posted_by: Publié par
   posted_on: Publié le
   posts: Notes
+  potential_disagreement: Désapprobation potentielle
   powered_by: Optimisé par
   powered_by_inaturalist_open_source_software_html: Propulsé par le logiciel open
     source <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
@@ -3935,7 +3942,7 @@ fr:
     affichera un conseil.
   the_list: la liste
   the_name_of_the_taxon_including_space: Le nom du taxon, y compris le champ pour
-    l’espèce et la sous-espèce.<br/><br/> <strong>Exemple :</strong><br/>
+    l’espèce et la sous-espèce.
   the_observation_form_looks: 'Le formulaire d’observation ressemble à ceci :'
   the_observation_has_date: l’observation <strong>a une date</strong>
   the_observation_has_photo: l’observation <strong>a une photo</strong>
@@ -4255,8 +4262,8 @@ fr:
   use_this_if_the_url_needs_genus_species_separated: |-
     Utilisez cette action si l’URL exige que le genre et l’espèce soient séparés d’une
     façon particulière. Si le taxon n’est pas une espèce ou une sous-espèce, tout ce qui se trouve
-    entre [GENRE] et [ESPÈCE] sera remplacé par ce nom de taxon. Utilisez cette action
-    avec modération. <br/><br/> <strong>Exemple :</strong><br/>
+    entre [GENRE] et [ESPÈCE] sera remplacé par le nom du taxon. Utilisez-donc cette action
+    avec modération.
   use_unique_file_names_for_separate_uploads: Utilisez des noms de fichier uniques
     pour les téléversements séparés
   use_well_formed_csv: Utilisez un format CSV bien formé, ce qui signifie que le texte
@@ -4276,6 +4283,7 @@ fr:
   user_blocked: Utilisateur bloqué
   user_commented: '%{user} a commenté'
   user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
+  user_disagrees_this_is_taxon: '%{user} désapprouve, ceci est %{taxon}'
   user_faved_a_noun_by_owner: '%{user} a mis en favori %{noun} par %{owner}'
   user_follows: '%{user} suit'
   user_has_opted_out_of_community_id: L’utilisateur a refusé l’ID de la communauté
@@ -5933,6 +5941,10 @@ fr:
           et de ses descendants. Les photos choisies pour ce
           taxon seront cependant affichées en premier. La première photo sera
           celle par défaut utilisée sur le site.
+    taxon_links:
+      form:
+        name_with_rank_desc: Le nom du tacon avec son rang. Pour des rangs infraspécifiques,
+          le rang est affiché après le binôme.
     taxon_names:
       form:
         new_name_guidelines_html: |-
@@ -6373,6 +6385,10 @@ fr:
           attributes:
             base:
               guide_has_too_many_taxa: le guide ne peut avoir que 500 taxons
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: Clef API en cours ou en attente d'importation
         observation_field_value:
           attributes:
             value:

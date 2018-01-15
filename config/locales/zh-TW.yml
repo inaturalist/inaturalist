@@ -1037,7 +1037,6 @@ zh-TW:
   do_not_show_this_message_again: 不要再顯示此訊息
   do_you_know_where_this_species_lives: 您知道此物種存活於何處嗎？
   do_you_study_nematodes_worlds_foremost_expert_barnacle: 您在研究線蟲嗎？您是世界上最有名的藤壺分類專家嗎？您喜歡觀賞美麗的花朵嗎？請在您的個人檔案裡填寫一些個人介紹，這可當為別人協助鑑定時建立起您的信譽。
-  do_you_think_this_could_be_html: 您認為這<strong>會</strong>是
   do_you_want_to_proceed: 您要繼續嗎？
   does_the_location_seem_accurate: 位置看起來精確嗎？
   does_the_date_seem_accurate: 日期看起來精確嗎？
@@ -1437,8 +1436,7 @@ zh-TW:
   however_there_were_some_issues: 然而，這裡有一些狀況：%{issues}
   hybrid: 雜種
   i_agree_to_the_project_terms: 我同意專案條款
-  i_am_sure_this_is_not_taxon: 我確定這不會是%{taxon}
-  i_dont_know_but_taxon_is_my_best_guess: 雖然不敢確定，但%{taxon}是我最有可能的猜測
+  i_dont_know_but_i_am_sure_this_is_taxon: 我不清楚，但我確定這是%{taxon}
   icon: 圖示
   icon_size: 圖示大小
   icon_slash_photo: 圖示/照片
@@ -1574,6 +1572,7 @@ zh-TW:
     研究等級觀察有機會被科學家用於研究上。請在下方投下您的一票：
   is_not_following_anyone: 沒關注任何人。
   is_now: 現已
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: 證據是否提供足夠的內容來確定這是%{taxon}？
   is_the_organism_wild: 是野生/歸化的生物？
   is_this_observation_offensive_html: 這是個<a href="/help#inappropriate">不適當</a>、濫發、或冒犯內容的觀察嗎？
   is_this_offensive_html: 這是個<a href="/help#inappropriate">不適當</a>、濫發、或冒犯的內容嗎？
@@ -2039,6 +2038,7 @@ zh-TW:
   no_activity_in_the_past_week: 上週沒有行動。時間至
   no_administrator_knows_your_password: 未有 %{sitename} 管理員知道您的新密碼，或有在其它時刻曾存取您的密碼。
   no_assessments_have_been_added_to_this_project_yet: 此專案尚未添加評估。
+  no_but_it_is_a_member_of_taxon: 不，但這是%{taxon}的成員之一
   no_colors_selected: 未選擇色彩。
   no_comments_yet: 尚無評論。
   no_countries_added_yet: 尚未添加國家
@@ -3294,7 +3294,7 @@ zh-TW:
   the_identotron_is_a_tool_to: Identotron 是用來協助您基於%{place}的清單資料來鑑定觀察之工具。所給予更高層級物種分類與地點（例如：印度的哺乳類）會讓%{place}查看在清單項目裡符合地點的物種，就像個包含整個星球事物的動態實地指南。雖然多數%{place}清單為進行中項目，但只要有一個就會是全面性的。註：此列出<em>所有</em>在地點裡的物種分類代表，而
     Identotron 會顯示出通知。
   the_list: 列表
-  the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。<strong>例如：</strong><br/>
+  the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。
   the_observation_form_looks: 觀察表單如下：
   the_observation_has_date: 觀察<strong>擁有日期</strong>
   the_observation_has_photo: 觀察<strong>擁有照片</strong>
@@ -3525,8 +3525,7 @@ zh-TW:
   usage_stats: 使用量統計內容
   use_name_as_a_placeholder: 使用<span class='ac-placeholder'>"%{name}"</span>為位置標誌符
   use_this_form_to_create_a_new: 使用此表單來創建一個新的分類更改草稿，來描述出稍後提交在所提議之有效物種分類群上作拆分、合併，或兌換的內容。
-  use_this_if_the_url_needs_genus_species_separated: 使用此當 URL 需要以特定方式來將屬和物種作區分。若物種分類不是物種或次物種，任何在[屬]與[物種]之間內容會以物種分類名稱所替代，因此請謹慎使用。<br/><br/>
-    <strong>例如：</strong><br/>
+  use_this_if_the_url_needs_genus_species_separated: 使用此當 URL 需要以特定方式來將屬和物種作區分。若物種分類不是物種或次物種，任何在[屬]與[物種]之間內容會以物種分類名稱所替代，因此請謹慎使用。
   use_unique_file_names_for_separate_uploads: 使用唯一檔案名稱來各自上傳
   use_well_formed_csv: 使用良好格式的 CSV。這代表文字必須被包含在雙引號裡，並用逗號區隔。多數試算表應用程式都應以此格式來匯出 CSV。
   user: 使用者
@@ -4587,6 +4586,9 @@ zh-TW:
           Insect life stage=adult: 成體
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
+    taxon_links:
+      form:
+        name_with_rank_desc: 此級別的物種分類名稱。對於特定的級別，是插入在雙名之後。
     taxon_names:
       form:
         new_name_guidelines_html: |-
