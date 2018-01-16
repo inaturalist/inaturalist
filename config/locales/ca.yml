@@ -1649,6 +1649,7 @@ ca:
   however_there_were_some_issues: 'Malgrat això, hi havia alguns problemes: %{issues}'
   hybrid: híbrid
   i_agree_to_the_project_terms: Estic d'acord amb les condicions del projecte
+  i_dont_know_but_i_am_sure_this_is_taxon: No ho sé segur, però segur que és%{taxon}
   icon: Icona
   icon_size: Mida de la icona
   icon_slash_photo: Icona/Foto
@@ -1816,6 +1817,8 @@ ca:
     Les observacions de Grau de Recerca poden ser utilitzades per científics a les seves recerques. Feu el vostre vot a sota:
   is_not_following_anyone: no segueix ningú
   is_now: és ara
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Aquesta evidència és suficient
+    per confirmar que és %{taxon}?
   is_the_organism_wild: És un organisme salvatge/naturalitzat?
   is_this_observation_offensive_html: Aquesta observació és <a href="/help#inappropriate">inadequada</a>,
     agressiva o ofensiva?
@@ -2344,6 +2347,7 @@ ca:
     la seva nova contrasenya ni hi ha tingut accés en cap moment.
   no_assessments_have_been_added_to_this_project_yet: Encara no s'ha afegit cap valoració
     a aquest projecte.
+  no_but_it_is_a_member_of_taxon: No, però es un membre de %{taxon}
   no_colors_selected: No hi ha colors seleccionats
   no_comments_yet: Encara no hi ha comentaris
   no_countries_added_yet: Encara no s'han afegit països
@@ -3023,6 +3027,7 @@ ca:
   posted_by: Publicat per
   posted_on: Introduït a
   posts: Publicacions
+  potential_disagreement: Potencialment en desacord
   powered_by: Desenvolupat per
   powered_by_inaturalist_open_source_software_html: Desenvolupat amb programari de
     codi obert <a href="https://github.com/inaturalist/inaturalist" target="_new">
@@ -3819,7 +3824,7 @@ ca:
     lloc, l'identotron mostrarà un avís.
   the_list: la llista
   the_name_of_the_taxon_including_space: El nom del tàxon, incloent-hi l'espai per
-    a les espècies i infraespècies.<br/><br/> <strong>Exemple. </strong><br/>
+    a les espècies i infraespècies.
   the_observation_form_looks: El formulari d'observació és així
   the_observation_has_date: l'observació <strong>té una data</strong>
   the_observation_has_photo: l'observació <strong>té una foto</strong>
@@ -4136,7 +4141,7 @@ ca:
   use_this_if_the_url_needs_genus_species_separated: Utilitzeu-lo si l’URL té els
     gèneres i les espècies separats de manera diferent. Si el tàxon no és una espècie
     o infraespècie, tot el que estigui entre [GÈNERE] i [ESPÈCIE] es reemplaçarà pel
-    nom del tàxon, així que feu-lo servir moderadament. <br/><br/> <strong>Exemple.</strong><br/>
+    nom del tàxon, així que feu-lo servir moderadament.
   use_unique_file_names_for_separate_uploads: Utilitza noms únics d'arxius per a separar
     les pujades
   use_well_formed_csv: Utilitza CSV amb format correcte, Això significa que el text
@@ -4156,6 +4161,7 @@ ca:
   user_blocked: Usuari blocat
   user_commented: '%{user} ha comentat'
   user_commented_on: '%{user} ha comentat el teu %{title} %{time}'
+  user_disagrees_this_is_taxon: '%{user} no creu que sigui %{taxon}'
   user_faved_a_noun_by_owner: '%{user} preferit %{noun} per %{owner}'
   user_follows: '%{user} segueix'
   user_has_opted_out_of_community_id: L'usuari ha refusat la identificació de la Comunitat
