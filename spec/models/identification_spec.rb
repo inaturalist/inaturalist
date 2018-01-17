@@ -303,7 +303,7 @@ describe Identification, "creation" do
     expect( t.photos.size ).to eq 1
   end
 
-  it "should update observation quality grade after disagreement" do
+  it "should update observation quality grade after disagreement when observer opts out of CID" do
     o = make_research_grade_observation(:prefers_community_taxon => false)
     expect(o).to be_research_grade
     i = Identification.make!(observation: o, taxon: Taxon.make!(:species))

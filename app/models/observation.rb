@@ -1270,10 +1270,10 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
-    elsif community_taxon_id && owners_identification && community_taxon_rejected?
-      if owners_identification.maverick?
+    elsif community_taxon_id && community_taxon_rejected?
+      if owners_identification.blank? || owners_identification.maverick?
         CASUAL
-      elsif owners_identification.taxon.species? && community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+      elsif owners_identification && owners_identification.taxon.species? && community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
         RESEARCH_GRADE
       else
         NEEDS_ID
@@ -2559,7 +2559,7 @@ class Observation < ActiveRecord::Base
 
   def set_taxon_photo
     return true unless research_grade? && quality_grade_changed?
-    unless taxon.photos.any?
+    if taxon && !taxon.photos.any?
       community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
     end
     true

@@ -1031,6 +1031,16 @@ describe Observation do
           expect( o.taxon ).to eq species
           expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
         end
+        it "should be casual if the observer has no ID and the CID is at species" do
+          o = make_research_grade_candidate_observation( prefers_community_taxon: false )
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          2.times { Identification.make!( observation: o, taxon: species ) }
+          o.reload
+          expect( o.owners_identification ).to be_blank
+          expect( o.community_taxon ).to eq species
+          expect( o.taxon ).to be_blank
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
       end
 
       describe "when observer opts out of CID for a single observation" do
