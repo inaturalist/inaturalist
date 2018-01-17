@@ -1270,8 +1270,14 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
-    elsif community_taxon_id && owners_identification && owners_identification.maverick? && community_taxon_rejected?
-      CASUAL
+    elsif community_taxon_id && owners_identification && community_taxon_rejected?
+      if owners_identification.maverick?
+        CASUAL
+      elsif owners_identification.taxon.species? && community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+        RESEARCH_GRADE
+      else
+        NEEDS_ID
+      end
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
     elsif voted_out_of_needs_id?
@@ -2637,15 +2643,15 @@ class Observation < ActiveRecord::Base
   end
 
   def community_taxon_at_species_or_lower?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
   end
 
   def community_taxon_at_family_or_lower?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
   end
 
   def community_taxon_below_family?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
   end
 
   def needs_id_upvotes_count
