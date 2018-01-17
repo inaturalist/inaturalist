@@ -57,7 +57,14 @@ function mapDispatchToProps( dispatch, ownProps ) {
           }
         } ) );
       } else if ( options.potentialDisagreement ) {
-        const observationTaxon = options.observation.communityTaxon || options.observation.taxon;
+        const o = options.observation;
+        let observationTaxon = o.taxon;
+        if (
+          o.preferences.prefers_community_taxon === false ||
+          o.user.preferences.prefers_community_taxa === false
+        ) {
+          observationTaxon = o.community_taxon || o.taxon;
+        }
         dispatch( showDisagreementAlert( {
           onDisagree: ( ) => {
             boundPostIdentification( true );
