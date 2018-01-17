@@ -4413,7 +4413,7 @@ I18n.translations["en"] = {
       "community_id": {
         "agreement": "Agreement",
         "algorithm_summary": "Algorithm Summary",
-        "ancestor_disagreements": "Identification Count",
+        "ancestor_disagreements": "Ancestor Disagreements",
         "below_cutoff": "Below Cutoff",
         "cumulative_count": "Cumulative Count",
         "disagreement": "Disagreement",
