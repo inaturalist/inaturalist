@@ -1641,14 +1641,14 @@ class Observation < ActiveRecord::Base
   def set_taxon_from_probable_taxon
     return if identifications.count == 0 && taxon_id
     prob_taxon = probable_taxon( force: true )
-    # explicitly opted in
-    self.taxon_id = if prefers_community_taxon
-      prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
-    # obs opted out or user opted out
-    elsif prefers_community_taxon == false || !user.prefers_community_taxa?
+    self.taxon_id = if ( !user.prefers_community_taxa? && prefers_community_taxon == nil ) || prefers_community_taxon == false
+      # obs opted out or user opted out
       owners_identification.try(:taxon_id)
-    # implicitly opted in
+    elsif ( ct = community_taxon ) && prob_taxon && prob_taxon.rank_level.to_i < Taxon::SPECIES_LEVEL && prob_taxon.ancestor_ids.include?( ct.id )
+      # prob_taxon was subspecific, using CID
+      ct.id
     else
+      # opted in
       prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)

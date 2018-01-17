@@ -2780,12 +2780,12 @@ describe Observation do
     end
 
     it "should set the taxon if observation is opted in but user is opted out" do
-      u = User.make!(:prefers_community_taxa => false)
-      o = Observation.make!(:prefers_community_taxon => true, :user => u)
-      i1 = Identification.make!(:observation => o)
-      i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      u = User.make!( prefers_community_taxa: false )
+      o = Observation.make!( prefers_community_taxon: true, user: u )
+      i1 = Identification.make!( observation: o, taxon: Taxon.make!(:species) )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
       o.reload
-      expect(o.taxon).to eq o.community_taxon
+      expect( o.taxon ).to eq o.community_taxon
     end
 
     it "should not be set if there is only one current identification" do
@@ -2824,10 +2824,6 @@ describe Observation do
       expect(o.community_taxon).not_to be_blank
       expect(o.identifications.count).to eq 2
     end
-    
-    # it "change should trigger change in observation stats" do
-
-    # end
 
     it "should obscure the observation if set to a threatened taxon if the owner has an ID but the community confirms a descendant" do
       p = Taxon.make!(:rank => "genus")
@@ -2884,7 +2880,6 @@ describe Observation do
         Identification.make!( observation: @o, taxon: @g1 )
         @o.reload
         expect( @o.community_taxon ).to eq @s1
-        # expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 g1.disagreement_nil" do
@@ -3062,15 +3057,21 @@ describe Observation do
       it "g2 s1 should set taxon to f" do
         Identification.make!( observation: @o, taxon: @g2 )
         Identification.make!( observation: @o, taxon: @s1 )
-        # @o.reload
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @f
       end
-      it "ss1 s1.disagreement_false should set taxon to ss1" do
+      it "s1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
         Identification.make!( observation: @o, taxon: @ss1 )
-        Identification.make!( observation: @o, taxon: @s1, disagreement: false )
         o = Observation.find( @o.id )
-        expect( o.taxon ).to eq @ss1
+        expect( o.taxon ).to eq @s1
+      end
+      it "s1 s1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
       end
     end
   end
