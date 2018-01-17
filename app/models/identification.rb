@@ -166,10 +166,12 @@ class Identification < ActiveRecord::Base
       else
         observation.taxon.try(:id)
       end
-    else
-      previous_ident = observation.identifications.select{|i| i.current && i.id < id }.last
-      previous_ident ||= observation.identifications.select{|i| i.id < id }.last
-      previous_ident.try(:taxon_id) || observation.taxon_id
+    end
+    unless previous_observation_taxon_id
+      working_created_at = created_at || Time.now
+      previous_ident = observation.identifications.select{|i| i.persisted? && i.current && i.created_at < working_created_at }.last
+      previous_ident ||= observation.identifications.select{|i| i.persisted? && i.created_at < working_created_at }.last
+      self.previous_observation_taxon_id = previous_ident.try(:taxon_id) || observation.taxon_id
     end
     true
   end

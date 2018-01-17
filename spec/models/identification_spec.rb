@@ -1045,4 +1045,14 @@ describe Identification, "set_previous_observation_taxon" do
     i = Identification.make!( observation: o )
     expect( i.previous_observation_taxon ).to eq previous_observation_probable_taxon
   end
+  it "should set it to the observer's previous identicication taxon if they are the only identifier" do
+    genus = Taxon.make!( rank: Taxon::GENUS )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+    o = Observation.make!( taxon: species )
+    i1 = o.identifications.first
+    o.reload
+    expect( i1 ).to be_persisted
+    i2 = Identification.make!( observation: o, taxon: genus, user: i1.user )
+    expect( i2.previous_observation_taxon ).to eq i1.taxon
+  end
 end
