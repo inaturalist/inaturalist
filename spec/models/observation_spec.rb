@@ -966,6 +966,13 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
 
+      it "should be needs_id when voted out of needs_id if no CID" do
+        o = make_research_grade_candidate_observation( taxon: Taxon.make!(:species) )
+        o.downvote_from User.make!, vote_scope: "needs_id"
+        expect( o.identifications.count ).to eq 1
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
       describe "when observer opts out of CID" do
         let(:u) { User.make!( prefers_community_taxa: false ) }
         it "should be casual if the taxon is in a different subtree from the CID taxon" do

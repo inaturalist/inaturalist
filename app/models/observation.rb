@@ -1280,7 +1280,7 @@ class Observation < ActiveRecord::Base
       end
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
-    elsif voted_out_of_needs_id?
+    elsif community_taxon_id && voted_out_of_needs_id?
       if community_taxon_below_family?
         RESEARCH_GRADE
       else
