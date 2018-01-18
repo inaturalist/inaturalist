@@ -568,6 +568,21 @@ class Identification < ActiveRecord::Base
       Observation.elastic_index!( ids: obs_ids )
     end
   end
+
+  def self.update_disagreement_identifications_for_taxon( taxon )
+    return unless taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    block = Proc.new{ |ident|
+      if ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id )
+        ident.update_attributes( disagreement: false )
+      end
+    }
+    Identification.
+        includes( :taxon ).
+        where( "disagreement" ).
+        joins( taxon: :taxon_ancestors ).
+        where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ).
+        find_each( &block )
+  end
   
   # /Static #################################################################
   

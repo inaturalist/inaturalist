@@ -1056,3 +1056,32 @@ describe Identification, "set_previous_observation_taxon" do
     expect( i2.previous_observation_taxon ).to eq i1.taxon
   end
 end
+
+describe Identification, "update_disagreement_identifications_for_taxon" do
+  let(:f) { Taxon.make!( rank: Taxon::FAMILY ) }
+  let(:g1) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }
+  let(:g2) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }
+  let(:s1) { Taxon.make!( rank: Taxon::SPECIES, parent: g1 ) }
+  describe "should set disagreement to false" do
+    it "when identification taxon becomes a descendant of the previous observation taxon" do
+      t = Taxon.make!( rank: Taxon::SPECIES, parent: g2 )
+      o = Observation.make!( taxon: g1 )
+      i = Identification.make!( taxon: t, observation: o )
+      expect( i.previous_observation_taxon ).to eq g1
+      expect( i ).to be_disagreement
+      without_delay { t.update_attributes( parent: g1 ) }
+      i.reload
+      expect( i ).not_to be_disagreement
+    end
+    it "when previous observation taxon becomes an ancestor of the identification taxon" do
+      t = Taxon.make!( rank: Taxon::GENUS, parent: f )
+      o = Observation.make!( taxon: t )
+      i = Identification.make!( taxon: s1, observation: o )
+      expect( i.previous_observation_taxon ).to eq t
+      expect( i ).to be_disagreement
+      without_delay { s1.update_attributes( parent: t ) }
+      i.reload
+      expect( i ).not_to be_disagreement
+    end
+  end
+end

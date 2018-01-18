@@ -419,6 +419,9 @@ class Taxon < ActiveRecord::Base
       update_stats_for_observations_of(id)
     elastic_index!
     Taxon.refresh_es_index
+    Identification.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Identification::update_disagreement_identifications_for_taxon": id }).
+      update_disagreement_identifications_for_taxon(id)
     true
   end
 
