@@ -283,6 +283,7 @@ module DarwinCore
             observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
               # If ES is out of sync with the DB, the photo might no longer exist
               next if op.nil?
+              next if op.created_at.nil?
               next if op.photo.nil?
               next unless op.created_at <= start_time
               DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
