@@ -396,6 +396,43 @@ describe TaxonSwap, "commit_records" do
     expect(ident.observation.identifications.by(ident.user).of(@output_taxon).count).to eq(1)
   end
 
+  it "should set a current identification's previous_observation_taxon if it is the input" do
+    o = Observation.make!( taxon: @input_taxon )
+    g = Taxon.make!( rank: Taxon::GENUS )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    ident = Identification.make!( observation: o, taxon: s )
+    expect( ident.previous_observation_taxon ).to eq @input_taxon
+    @swap.commit_records
+    ident.reload
+    expect( ident.previous_observation_taxon ).to eq @output_taxon
+  end
+  
+  it "should replace an inactive previous_observation_taxon with it's current active synonym" do
+    other_swap = TaxonSwap.make
+    other_swap.add_input_taxon( Taxon.make!( :species, is_active: false, name: "OtherInputSpecies" ) )
+    other_swap.add_output_taxon( Taxon.make!( :species, is_active: false, name: "OtherOutputSpecies" ) )
+    without_delay do
+      other_swap.committer = make_admin
+      other_swap.commit
+      other_swap.commit_records
+    end
+    g = Taxon.make!( rank: Taxon::GENUS )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    o = Observation.make!( taxon: s )
+    ident = Identification.make!( observation: o, taxon: @input_taxon )
+    ident.update_attributes(
+      skip_set_previous_observation_taxon: true,
+      previous_observation_taxon: other_swap.input_taxon
+    )
+    expect( ident ).to be_disagreement
+    expect( ident.previous_observation_taxon ).to eq other_swap.input_taxon
+    expect( ident.previous_observation_taxon ).not_to be_is_active
+    @swap.commit_records
+    o.reload
+    new_ident = o.identifications.current.where( user_id: ident.user_id ).first
+    expect( new_ident.previous_observation_taxon ).to eq other_swap.output_taxon
+  end
+
   it "should not queue job to generate updates for new identifications" do
     obs = Observation.make!(:taxon => @input_taxon)
     Delayed::Job.delete_all
@@ -503,11 +540,33 @@ describe "move_input_children_to_output" do
     @swap.move_input_children_to_output( @input_taxon )
     expect( Delayed::Job.all.select{ |j| j.handler =~ /commit_records/m }.size ).to eq 2
   end
+
+  it "should preserve disagreements with the input taxon" do
+    prepare_swap
+    family = Taxon.make!( rank: Taxon::FAMILY, name: "Canidae" )
+    @input_taxon.update_attributes( parent: family, rank: Taxon::GENUS, name: "Canis" )
+    @output_taxon.update_attributes( parent: family, rank: Taxon::GENUS, name: "Dogis" )
+    child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Canis lupus" )
+    @swap.committer = @swap.user
+    o = Observation.make!
+    i1 = Identification.make!( observation: o, taxon: child )
+    i2 = Identification.make!( observation: o, taxon: @input_taxon, disagreement: true )
+    expect( i2 ).to be_disagreement
+    expect( i2.previous_observation_taxon ).to eq child
+    @swap.commit
+    Delayed::Worker.new.work_off
+    o = Observation.find( o.id )
+    @output_taxon.reload
+    new_i2 = o.identifications.current.where( user_id: i2.user_id ).first
+    expect( new_i2 ).to be_disagreement
+    expect( new_i2.previous_observation_taxon ).to eq @output_taxon.children.first
+  end
 end
 
 def prepare_swap
-  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
-  @output_taxon = Taxon.make!( rank: Taxon::FAMILY )
+  superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: superfamily )
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: superfamily )
   @swap = TaxonSwap.make
   @swap.add_input_taxon(@input_taxon)
   @swap.add_output_taxon(@output_taxon)

@@ -56,6 +56,8 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
+  attr_accessor :skip_set_previous_observation_taxon
+  attr_accessor :skip_set_disagreement
 
   preference :vision, :boolean, default: false
 
@@ -158,6 +160,7 @@ class Identification < ActiveRecord::Base
   end
 
   def set_previous_observation_taxon
+    return true if skip_set_previous_observation_taxon
     self.previous_observation_taxon_id = if new_record?
       observation.probable_taxon.try(:id)
     elsif previous_probable_taxon = observation.probable_taxon( force: true, before: id )
@@ -178,6 +181,7 @@ class Identification < ActiveRecord::Base
 
   def set_disagreement( options = {} )
     return true if disagreement? && !options[:force]
+    return true if skip_set_disagreement
     return true unless previous_observation_taxon
     return true unless previous_observation_taxon.grafted?
     return true unless taxon.grafted?
@@ -539,12 +543,29 @@ class Identification < ActiveRecord::Base
         observation_id: ident.observation_id,
         taxon: output_taxon, 
         user_id: ident.user_id,
-        taxon_change: taxon_change
+        taxon_change: taxon_change,
+        disagreement: false,
+        skip_set_disagreement: true
       )
+      if ident.disagreement && ident.previous_observation_taxon && ( current_synonym = ident.previous_observation_taxon.current_synonymous_taxon )
+        new_ident.disagreement = true
+        new_ident.skip_set_previous_observation_taxon = true
+        new_ident.previous_observation_taxon = current_synonym
+      end
       new_ident.skip_observation = true
       new_ident.save
       observation_ids << ident.observation_id
       yield( new_ident ) if block_given?
+    end
+    Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
+      ident.skip_observation = true
+      if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
+        ident.update_attributes( skip_set_previous_observation_taxon: true, previous_observation_taxon: taxon_change.output_taxon )
+        observation_ids << ident.observation_id
+      elsif taxon_change.is_a?( TaxonSplit )
+        ident.update_attributes( disagreement: false )
+        observation_ids << ident.observation_id
+      end
     end
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
