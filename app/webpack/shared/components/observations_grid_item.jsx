@@ -8,12 +8,18 @@ const ObservationsGridItem = ( {
   before,
   controls,
   showMagnifier,
-  linkTarget
+  linkTarget,
+  splitTaxonOptions
 } ) => {
   let taxonJSX = I18n.t( "unknown" );
   if ( o.taxon && o.taxon !== null ) {
     taxonJSX = (
-      <SplitTaxon taxon={o.taxon} url={`/observations/${o.id}`} target={ linkTarget } />
+      <SplitTaxon
+        { ...splitTaxonOptions }
+        taxon={o.taxon}
+        url={`/observations/${o.id}`}
+        target={ linkTarget }
+      />
     );
   }
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
@@ -64,11 +70,13 @@ ObservationsGridItem.propTypes = {
   before: PropTypes.element,
   controls: PropTypes.element,
   showMagnifier: PropTypes.bool,
-  linkTarget: PropTypes.string
+  linkTarget: PropTypes.string,
+  splitTaxonOptions: PropTypes.object
 };
 
 ObservationsGridItem.defaultProps = {
-  linkTarget: "_self"
+  linkTarget: "_self",
+  splitTaxonOptions: {}
 };
 
 export default ObservationsGridItem;

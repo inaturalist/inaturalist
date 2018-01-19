@@ -5,13 +5,13 @@ body > div > [role="dialog"] .ActivityItem {
   .identification {
     display: inline-block;
     width: 100%;
+    > .taxon {
+      display: flex;
+      overflow: hidden;
+    }
   }
   .buttons {
     float: right;
-  }
-  .taxon {
-    display: flex;
-    overflow: hidden;
   }
   .taxon-image {
     width: 44px;

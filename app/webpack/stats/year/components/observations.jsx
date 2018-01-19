@@ -64,6 +64,7 @@ const Observations = ( { data, site, user, year } ) => {
               <Col xs={3} key={ `popular-obs-${o.id}` }>
                 <ObservationsGridItem
                   observation={ new inatjs.Observation( o ) }
+                  splitTaxonOptions={ { noParens: true } }
                   controls={
                     <div>
                       <span className="activity">
