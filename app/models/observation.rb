@@ -1486,7 +1486,8 @@ class Observation < ActiveRecord::Base
     node[:taxon]
   end
 
-  def print_community_taxon_nodes( nodes )
+  def print_community_taxon_nodes( nodes = nil )
+    nodes ||= community_taxon_nodes
     puts
     width = 15
     %w(taxon_id taxon_name cc acc cndc dc cdc score).each do |c|
