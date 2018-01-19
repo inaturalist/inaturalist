@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
+  get "/ping", to: "application#ping"
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
   get "/users/new.mobile", to: redirect( "/signup" )

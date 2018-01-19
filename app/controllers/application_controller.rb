@@ -26,6 +26,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_request_locale
   before_filter :sign_out_spammers
 
+  # /ping should skip all before filters and just render
+  skip_filter *_process_action_callbacks.map(&:filter), only: :ping
+
   PER_PAGES = [10,30,50,100,200]
   HEADER_VERSION = 21
   
@@ -41,6 +44,10 @@ class ApplicationController < ActionController::Base
       session[:locale] = params[:locale]
     end
     redirect_back_or_default( root_url )
+  end
+
+  def ping
+    render json: { status: "available" }
   end
 
   private

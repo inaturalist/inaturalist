@@ -49,6 +49,14 @@ describe ApplicationController do
     end
   end
 
+  describe "ping" do
+    it "returns json" do
+      get :ping
+      expect(response.response_code).to eq 200
+      expect(JSON.parse response.body).to eq( { "status" => "available" } )
+    end
+  end
+
   describe WelcomeController do
     describe "check_user_last_active" do
       it "re-activate inactive users" do
