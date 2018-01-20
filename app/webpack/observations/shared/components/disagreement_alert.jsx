@@ -17,10 +17,15 @@ class DisagreementAlert extends React.Component {
       onCancel,
       newTaxon,
       oldTaxon,
-      backdrop
+      backdrop,
+      config
     } = this.props;
-    const newTaxonHTML = ReactDOMServer.renderToString( <SplitTaxon taxon={newTaxon} forceRank /> );
-    const oldTaxonHTML = ReactDOMServer.renderToString( <SplitTaxon taxon={oldTaxon} forceRank /> );
+    const newTaxonHTML = ReactDOMServer.renderToString(
+      <SplitTaxon taxon={newTaxon} forceRank config={ config } />
+    );
+    const oldTaxonHTML = ReactDOMServer.renderToString(
+      <SplitTaxon taxon={oldTaxon} forceRank config={ config } />
+    );
     return (
       <Modal
         show={visible}
@@ -43,7 +48,7 @@ class DisagreementAlert extends React.Component {
           <p>
             <span
               dangerouslySetInnerHTML={ { __html: I18n.t( "do_you_think_this_could_be_html" ) } }
-            ></span> <SplitTaxon taxon={oldTaxon} forceRank />?
+            ></span> <SplitTaxon taxon={oldTaxon} forceRank config={ config } />?
           </p>
           <Button
             bsStyle="success"
@@ -77,11 +82,13 @@ DisagreementAlert.propTypes = {
   onBestGuess: PropTypes.func,
   newTaxon: PropTypes.object,
   oldTaxon: PropTypes.object,
-  backdrop: PropTypes.bool
+  backdrop: PropTypes.bool,
+  config: PropTypes.object
 };
 
 DisagreementAlert.defaultProps = {
-  onCancel: ( ) => ( true )
+  onCancel: ( ) => ( true ),
+  config: {}
 };
 
 export default DisagreementAlert;

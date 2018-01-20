@@ -17,7 +17,8 @@ function mapStateToProps( state ) {
     grouping: state.config.grouping,
     groupedPhotos: state.photos.groupedPhotos,
     params: state.photos.observationParams,
-    place: state.config.chosenPlace
+    place: state.config.chosenPlace,
+    config: state.config
   };
   props.terms = Object.assign( { }, state.taxon.fieldValues || { } );
   // set props for selected term/value

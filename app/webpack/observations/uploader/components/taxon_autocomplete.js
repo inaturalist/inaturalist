@@ -323,8 +323,17 @@ class TaxonAutocomplete extends React.Component {
   }
 
   resultTitle( result ) {
-    const name = result.preferred_common_name || result.english_common_name;
-    return name || result.name;
+    let name;
+    if (
+      this.props.config &&
+      this.props.config.currentUser &&
+      this.props.config.currentUser.prefers_scientific_name_first
+    ) {
+      name = result.name;
+    } else {
+      name = result.preferred_common_name || result.english_common_name || result.name;
+    }
+    return name;
   }
 
   differentMatchedTerm( result, fieldValue ) {
@@ -486,7 +495,8 @@ TaxonAutocomplete.propTypes = {
   visionParams: PropTypes.object,
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
-  perPage: PropTypes.number
+  perPage: PropTypes.number,
+  config: PropTypes.object
 };
 
 export default TaxonAutocomplete;

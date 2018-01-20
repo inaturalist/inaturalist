@@ -76,7 +76,7 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
           let taxonJSX = I18n.t( "unknown" );
           if ( o.taxon && o.taxon !== null ) {
             taxonJSX = (
-              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} />
+              <SplitTaxon noParens taxon={o.taxon} url={`/observations/${o.id}`} user={ config.currentUser } />
             );
           }
           const iconicTaxonName = o.taxon && o.taxon.iconic_taxon_name ?
@@ -112,7 +112,12 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) 
 MoreFromUser.propTypes = {
   observation: PropTypes.object,
   otherObservations: PropTypes.object,
-  showNewObservation: PropTypes.func
+  showNewObservation: PropTypes.func,
+  config: PropTypes.object
+};
+
+MoreFromUser.defaultProps = {
+  config: {}
 };
 
 export default MoreFromUser;

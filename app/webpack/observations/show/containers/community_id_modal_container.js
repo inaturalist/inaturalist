@@ -5,7 +5,8 @@ import { setCommunityIDModalState } from "../ducks/community_id_modal";
 function mapStateToProps( state ) {
   return {
     show: state.communityIDModal.show,
-    observation: state.observation
+    observation: state.observation,
+    config: state.config
   };
 }
 

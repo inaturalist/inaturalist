@@ -4,7 +4,13 @@ import { Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../../taxa/shared/util";
 
-const ObservationsHighlight = ( { title, observations, searchParams, showNewObservation } ) => {
+const ObservationsHighlight = ( {
+  title,
+  observations,
+  searchParams,
+  showNewObservation,
+  config
+} ) => {
   const loadObservationCallback = ( e, observation ) => {
     if ( !e.metaKey ) {
       e.preventDefault( );
@@ -22,7 +28,7 @@ const ObservationsHighlight = ( { title, observations, searchParams, showNewObse
             delayShow={ 200 }
             overlay={ (
               <Tooltip id={`highlight-link-${o.id}`} className="obs-highlight-link">
-                <SplitTaxon taxon={o.taxon} url={urlForTaxon( o.taxon )} noParens />
+                <SplitTaxon taxon={o.taxon} url={urlForTaxon( o.taxon )} noParens user={ config.currentUser } />
               </Tooltip>
             ) }
           >
@@ -59,7 +65,12 @@ ObservationsHighlight.propTypes = {
   title: PropTypes.string,
   searchParams: PropTypes.object,
   observations: PropTypes.array,
-  showNewObservation: PropTypes.func
+  showNewObservation: PropTypes.func,
+  config: PropTypes.object
+};
+
+ObservationsHighlight.defaultProps = {
+  config: {}
 };
 
 export default ObservationsHighlight;

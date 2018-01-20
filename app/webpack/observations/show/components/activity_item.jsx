@@ -91,6 +91,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
             url={ `/taxa/${taxon.id}` }
             noParens
             target={ linkTarget }
+            user={ config.currentUser }
             showMemberGroup
           />
         </div>
@@ -187,6 +188,7 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         taxon={ item.previous_observation_taxon }
         url={ urlForTaxon( item.previous_observation_taxon ) }
         target={ linkTarget }
+        user={ config.currentUser }
       />
     );
     const footerText = I18n.t( "user_disagrees_this_is_taxon", {

@@ -29,6 +29,7 @@
         CURRENT_USER = {                                |
           id: #{ current_user.id },                     |
           login: "#{ current_user.login }",             |
+          prefers_scientific_name_first: #{ current_user.prefers_scientific_name_first }, |
           icon: "#{ current_user.icon.url(:thumb) }" }; |
       var TIMEZONE = "#{ Time.zone.tzinfo.name }";
       var SITE = #{ @site.to_json(                      |

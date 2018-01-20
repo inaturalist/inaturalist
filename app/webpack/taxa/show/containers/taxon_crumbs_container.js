@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
     taxon,
     ancestors: taxon.ancestors,
     url: urlForTaxon( taxon ),
-    ancestorsShown: state.config.ancestorsShown
+    ancestorsShown: state.config.ancestorsShown,
+    config: state.config
   };
 }
 

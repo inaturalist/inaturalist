@@ -13,8 +13,10 @@ const SplitTaxon = ( {
   truncate,
   onClick,
   noInactive,
-  showMemberGroup
+  showMemberGroup,
+  user
 } ) => {
+  const showScinameFirst = user && user.prefers_scientific_name_first;
   const LinkElement = ( url || onClick ) ? "a" : "span";
   let title = "";
   if ( taxon ) {
@@ -56,11 +58,17 @@ const SplitTaxon = ( {
   const truncateText = text => (
     truncate ? _.truncate( text, { length: truncate } ) : text
   );
-  const displayName = ( ) => {
+  const comName = ( ) => {
+    let comNameClass = displayClassName || "";
     if ( taxon && taxon.preferred_common_name ) {
+      if ( showScinameFirst ) {
+        comNameClass = `secondary-name ${comNameClass}`;
+      } else {
+        comNameClass = `display-name ${comNameClass}`;
+      }
       return (
         <LinkElement
-          className={`comname display-name ${displayClassName || ""}`}
+          className={`comname ${comNameClass}`}
           href={ url }
           target={ target }
           onClick={ onClick }
@@ -69,11 +77,12 @@ const SplitTaxon = ( {
         </LinkElement>
       );
     } else if ( !taxon ) {
+      comNameClass = `noname display-name ${comNameClass}`;
       if ( placeholder ) {
         return (
           <span>
             <LinkElement
-              className={`noname display-name ${displayClassName || ""}`}
+              className={ comNameClass }
               href={ url }
               onClick={ onClick }
               target={ target }
@@ -87,7 +96,7 @@ const SplitTaxon = ( {
       }
       return (
         <LinkElement
-          className={`noname display-name ${displayClassName || ""}`}
+          className={ comNameClass }
           href={ url }
           onClick={ onClick }
           target={ target }
@@ -103,8 +112,10 @@ const SplitTaxon = ( {
       return null;
     }
     let sciNameClass = `sciname ${taxon.rank}`;
-    if ( !taxon.preferred_common_name ) {
+    if ( !taxon.preferred_common_name || showScinameFirst ) {
       sciNameClass += ` display-name ${displayClassName || ""}`;
+    } else {
+      sciNameClass += " secondary-name";
     }
     let name = taxon.name;
     if ( taxon.rank_level < 10 ) {
@@ -195,14 +206,24 @@ const SplitTaxon = ( {
           { I18n.t( "a_member_of" ) } <SplitTaxon
             taxon={ groupAncestor }
             url={ `/taxa/${groupAncestor.id}` }
+            user={ user }
           />
         </span>
       );
     }
   }
+  let firstName;
+  let secondName;
+  if ( showScinameFirst ) {
+    firstName = sciName( );
+    secondName = comName( );
+  } else {
+    firstName = comName( );
+    secondName = sciName( );
+  }
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) } { displayName( ) } { sciName( ) } { inactive( ) } { extinct( ) } { memberGroup }
+      { icon( ) } { firstName } { secondName } { inactive( ) } { extinct( ) } { memberGroup }
     </span>
   );
 };
@@ -219,7 +240,8 @@ SplitTaxon.propTypes = {
   truncate: PropTypes.number,
   onClick: PropTypes.func,
   noInactive: PropTypes.bool,
-  showMemberGroup: PropTypes.bool
+  showMemberGroup: PropTypes.bool,
+  user: PropTypes.object
 };
 SplitTaxon.defaultProps = {
   target: "_self"

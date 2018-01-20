@@ -129,6 +129,10 @@
           label: t(:show_common_names),
           label_after: true,
           description: t( "views.users.edit.common_names_desc" ) %>
+        <%= f.check_box "prefers_scientific_name_first",
+          label: t(:show_scientific_name_first),
+          label_after: true,
+          description: t( "views.users.edit.scientific_name_first_desc" ) %>
       </div>
       
       <h3><%= t :community_moderation_settings %></h3>

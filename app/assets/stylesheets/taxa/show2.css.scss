@@ -35,7 +35,7 @@
   color: black;
 }
 
-#TaxonHeader .has-com-name .sciname {
+#TaxonHeader .has-com-name .secondary-name {
   font-size: 20px;
 }
 
@@ -229,7 +229,7 @@
   display: none;
 }
 
-.TaxonCrumbs .has-com-name .sciname {
+.TaxonCrumbs .has-com-name .secondary-name {
   display: none;
 }
 
@@ -240,7 +240,7 @@
 .taxon-crumbs-children .taxon a {
   color: #333;
 }
-.taxon-crumbs-children .taxon.has-com-name .sciname {
+.taxon-crumbs-children .taxon.has-com-name .secondary-name {
   color: #aaa;
 }
 .taxon-crumbs-children .SplitTaxon:before {
@@ -523,7 +523,7 @@ $photoPreviewThumbGutterTop: 3px;
       margin: 0 5px;
     }
     .row-content:before,
-    .SplitTaxon.has-com-name .sciname {
+    .SplitTaxon.has-com-name .secondary-name {
       content: '\21B3';
       color: #999;
     }
@@ -545,7 +545,7 @@ $photoPreviewThumbGutterTop: 3px;
     li.current > .row-content > .SplitTaxon {
       font-weight: 800;
     }
-    .SplitTaxon.has-com-name .sciname,
+    .SplitTaxon.has-com-name .secondary-name,
     i {
       font-size: smaller;
     }
@@ -936,7 +936,7 @@ $nav-btn-dim: 40px;
   font-weight: bold;
 }
 
-.TaxonThumbnail .taxon .sciname {
+.TaxonThumbnail .taxon .secondary-name {
   white-space: normal;
 }
 

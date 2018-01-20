@@ -63,6 +63,7 @@ const DiscussionListItem = ( {
           url={`/taxa/${t.id}`}
           target="_blank"
           displayClassName="fadednowrap"
+          user={ currentUser }
         />
         { actions }
       </div>

@@ -8,7 +8,7 @@ import PhotoBrowserContainer from "../containers/photo_browser_container";
 import PhotoModalContainer from "../containers/photo_modal_container";
 import { urlForTaxon } from "../../shared/util";
 
-const App = ( { taxon } ) => (
+const App = ( { taxon, config } ) => (
   <div id="Photos">
     <Grid>
       <Row className="preheader">
@@ -40,6 +40,7 @@ const App = ( { taxon } ) => (
               { I18n.t( "photos_of" ) } <SplitTaxon
                 taxon={taxon}
                 forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
+                user={ config.currentUser }
               />
             </h1>
             <div>
@@ -61,7 +62,12 @@ const App = ( { taxon } ) => (
 );
 
 App.propTypes = {
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  config: PropTypes.object
+};
+
+App.defaultProps = {
+  config: {}
 };
 
 export default App;
