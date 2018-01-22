@@ -114,9 +114,12 @@ class ObservationsController < ApplicationController
         # one of the few things we do in Rails. Look up the taxon_name param
         unless params[:taxon_name].blank?
           sn = params[:taxon_name].to_s.strip.gsub(/[\s_]+/, ' ').downcase
-          if t = TaxonName.where("lower(name) = ?", sn).first.try(:taxon)
-            params[:taxon_id] = t.id
-          end
+          t = Taxon.active.where( name: sn ).first
+          t ||= Taxon.where( name: sn ).first
+          t ||= TaxonName.joins(:taxon).where("taxa.is_active AND lower(taxon_names.name) = ?", sn).first.try(:taxon)
+          t ||= TaxonName.where("lower(taxon_names.name) = ?", sn).first.try(:taxon)
+          t = t.current_synonymous_taxon unless t.is_active?
+          params[:taxon_id] = t.id if t
         end
         render layout: "bootstrap", locals: { params: params }
       end
