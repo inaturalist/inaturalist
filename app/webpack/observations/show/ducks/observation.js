@@ -120,6 +120,18 @@ export function fetchTaxonSummary( ) {
   };
 }
 
+export function fetchCommunityTaxonSummary( ) {
+  return ( dispatch, getState ) => {
+    const observation = getState( ).observation;
+    if ( !observation || !observation.communityTaxon ) { return null; }
+    const params = { id: observation.id, ttl: -1, community: true };
+    return inatjs.observations.taxonSummary( params ).then( response => {
+      dispatch( setAttributes( { communityTaxon:
+        Object.assign( { }, observation.communityTaxon, { taxon_summary: response } ) } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function renderObservation( observation, options = { } ) {
   return ( dispatch, getState ) => {
     if ( !observation || !observation.id ) {
@@ -141,6 +153,7 @@ export function renderObservation( observation, options = { } ) {
       dispatch( setMoreFromClade( [] ) );
     }
     dispatch( fetchTaxonSummary( ) );
+    dispatch( fetchCommunityTaxonSummary( ) );
     if ( fetchAll || options.fetchControlledTerms ) { dispatch( fetchControlledTerms( ) ); }
     if ( fetchAll || options.fetchQualityMetrics ) { dispatch( fetchQualityMetrics( ) ); }
     if ( hasObsAndLoggedIn( s ) && ( fetchAll || options.fetchSubscriptions ) ) {

@@ -415,8 +415,8 @@ class CommunityIdentification extends React.Component {
                 <div className="photo">{ photo }</div>
                 <div className="stats-and-name">
                   <div className="badges">
-                    <ConservationStatusBadge observation={ observation } />
-                    <EstablishmentMeansBadge observation={ observation } />
+                    <ConservationStatusBadge taxon={ communityTaxon } />
+                    <EstablishmentMeansBadge taxon={ communityTaxon } />
                   </div>
                   <SplitTaxon
                     taxon={ communityTaxon }
@@ -473,8 +473,8 @@ class CommunityIdentification extends React.Component {
         <div className="info">
           <div className="photo">{ photo }</div>
           <div className="badges">
-            <ConservationStatusBadge observation={ observation } />
-            <EstablishmentMeansBadge observation={ observation } />
+            <ConservationStatusBadge taxon={ communityTaxon } />
+            <EstablishmentMeansBadge taxon={ communityTaxon } />
           </div>
           <SplitTaxon
             taxon={ communityTaxon }

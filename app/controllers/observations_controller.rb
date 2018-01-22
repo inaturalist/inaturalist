@@ -205,26 +205,26 @@ class ObservationsController < ApplicationController
     @coordinates_viewable = @observation.coordinates_viewable_by?(current_user)
     @places = @coordinates_viewable ?
       @observation.observations_places.map(&:place) : @observation.public_places
-    if @observation.taxon
+    taxon = params[:community] ? @observation.community_taxon : @observation.taxon
+    if taxon
       unless @places.blank?
         @listed_taxon = ListedTaxon.
           joins(:place).
           where([ "taxon_id = ? AND place_id IN (?) AND establishment_means IS NOT NULL",
-            @observation.taxon_id, @places ]).
+            taxon.id, @places ]).
           order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").
           first
         @conservation_status = ConservationStatus.
-          where(:taxon_id => @observation.taxon).where("place_id IN (?)", @places).
+          where( taxon_id: taxon ).where("place_id IN (?)", @places).
           where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
           includes(:place).first
       end
-      @conservation_status ||= ConservationStatus.where(taxon_id: @observation.taxon).
+      @conservation_status ||= ConservationStatus.where( taxon_id: taxon ).
         where("place_id IS NULL").where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
       if @listed_taxon
-        @conservation_status ||= @observation.taxon.
-          threatened_status(place_id: @listed_taxon.place_id)
+        @conservation_status ||= taxon.threatened_status(place_id: @listed_taxon.place_id)
       end
-      @conservation_status ||= @observation.taxon.threatened_status
+      @conservation_status ||= taxon.threatened_status
     end
     render json: {
       conservation_status: @conservation_status ?
@@ -234,7 +234,7 @@ class ObservationsController < ApplicationController
         @listed_taxon.as_json(
           methods: [ :establishment_means_label, :establishment_means_description ],
           include: { place: { only: [:id, :display_name] } } ) : nil,
-      wikipedia_summary: @observation.taxon ? @observation.taxon.wikipedia_summary : nil
+      wikipedia_summary: taxon ? taxon.wikipedia_summary : nil
     }
   end
 
