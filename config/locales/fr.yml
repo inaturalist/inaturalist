@@ -2138,22 +2138,25 @@ fr:
     bg: Bulgare
     br: Breton
     ca: Catalan
-    en: Anglais
     en-US: Anglais (États-Unis)
-    es: Espagnol
+    en: Anglais
     es-ES: Espagnol (Espagne)
     es-MX: Espagnol (Mexique)
+    es: Espagnol
+    eu: Basque
     fi: Finnois
     fr: Français
-    eu: Basque
     gl: Galicien
-    ko: Coréen
     id: Indonésien
     it: Italien
+    ja: Japonais
+    ko: Coréen
+    lb: Luxembourgeois
     mk: Macédonien
     oc: Occitan
     pt-BR: Portugais (Brésil)
-    ja: Japonais
+    pt-PT: Portugais (du Portugal)
+    ru: Russe
     zh-CN: Chinois (simplifié)
     zh-TW: Chinois (traditionnel)
   locality_notes: Notes localisées
@@ -3265,6 +3268,9 @@ fr:
     order: ordre
     suborder: sous-ordre
     infraorder: sous-ordre
+    parvorder: parvorder
+    zoosection: zoosection
+    zoosubsection: zoosubsection
     superfamily: super-famille
     epifamily: épifamille
     family: famille
@@ -3282,6 +3288,7 @@ fr:
     subspecies: sous-espèce
     variety: variété
     form: forme
+    infrahybrid: sous-hybride
     leaves: feuilles
   rare: Rare
   ray_finned_fishes: poissons à nageoires rayonnées
@@ -5227,7 +5234,7 @@ fr:
       community_id:
         agreement: Accord
         algorithm_summary: Résumé de l’algorithme
-        ancestor_disagreements: Nombre d’identifications
+        ancestor_disagreements: Désaccords des ancêtres
         below_cutoff: Limite basse
         cumulative_count: Nombre cumulé
         disagreement: Désaccord

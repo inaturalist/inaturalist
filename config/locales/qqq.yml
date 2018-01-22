@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Andreas Plank
+# Author: Cellina
 # Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
@@ -116,6 +117,8 @@ qqq:
   agree_: '{{Identical|Agree}}'
   agree?: '{{Identical|Agree}}'
   all: '{{Identical|All}}'
+  all_rank_added_to_the_database:
+    supertribe: 'Tribe (en), biol.: Übersetzung Tribus (auch pl.) bei Leo https://dict.leo.org/englisch-deutsch/Tribus'
   all_rights_reserved: where name is the author name
   all_taxa:
     rank:
@@ -400,6 +403,7 @@ qqq:
   failed_to_repair_photo: where errors is a description of the error
   "false": '{{Identical|False}}'
   faq: '{{Identical|Frequently asked questions}}'
+  favorites: '{{Identical|Favorites}}'
   featured: '{{Identical|Featured}}'
   featured?: '{{Identical|Featured}}'
   featured_projects_from_place: where place is the name of the palce
@@ -621,8 +625,8 @@ qqq:
     en: '{{Identical|English}}'
     es: '{{Identical|Spanish}}'
     fr: '{{Identical|French}}'
-    ko: '{{Identical|Korean}}'
     it: '{{Identical|Italian}}'
+    ko: '{{Identical|Korean}}'
   localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
@@ -1521,8 +1525,19 @@ qqq:
           Translation of the word "vowel." If you translate any of the keys in
           the vow_or_con block, please do not make @ references to keys that
           have not been translated.
-        con: |-
-          Translation of the word "consonant"
+        con: Translation of the word "consonant"
+        a: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        e: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        i: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        o: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        u: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        default: Only customize if most letters are not consonants. Do not translate
+          if you have not translated "con" above.
       gender:
         m: '{{Identical|Male}}'
         f: '{{Identical|Female}}'
