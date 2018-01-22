@@ -1273,7 +1273,11 @@ class Observation < ActiveRecord::Base
     elsif community_taxon_id && community_taxon_rejected?
       if owners_identification.blank? || owners_identification.maverick?
         CASUAL
-      elsif owners_identification && owners_identification.taxon.species? && community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+      elsif (
+        owners_identification &&
+        owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+        community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+      )
         RESEARCH_GRADE
       else
         NEEDS_ID

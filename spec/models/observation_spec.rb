@@ -1038,6 +1038,14 @@ describe Observation do
           expect( o.taxon ).to eq species
           expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
         end
+        it "should be research if the taxon and CID taxon are both the same subspecies" do
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, parent: species )
+          o = make_research_grade_candidate_observation( taxon: subspecies, user: u )
+          Identification.make!( observation: o, taxon: subspecies )
+          o.reload
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
         it "should be casual if the observer has no ID and the CID is at species" do
           o = make_research_grade_candidate_observation( prefers_community_taxon: false )
           species = Taxon.make!( rank: Taxon::SPECIES )
