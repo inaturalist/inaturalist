@@ -17,6 +17,7 @@ class Guide < ActiveRecord::Base
     :s3_credentials => "#{Rails.root}/config/s3.yml",
     :s3_protocol => CONFIG.s3_protocol || "https",
     :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
+    :s3_region => CONFIG.s3_region,
     :bucket => CONFIG.s3_bucket,
     :path => "guides/:id-:style.:extension",
     :url => ":s3_alias_url"
@@ -27,6 +28,7 @@ class Guide < ActiveRecord::Base
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
       :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
+      :s3_region => CONFIG.s3_region,
       :bucket => CONFIG.s3_bucket,
       :path => "guides/:id.ngz",
       :url => ":s3_alias_url",

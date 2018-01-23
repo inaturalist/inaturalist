@@ -12,7 +12,8 @@ gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
-gem 'aws-sdk'
+# aws-sdk locked to pre 3.0; see https://github.com/thoughtbot/paperclip/issues/2484
+gem 'aws-sdk', '< 3.0'
 gem 'biodiversity'
 gem 'bluecloth'
 gem 'bugguide', git: 'https://github.com/kueda/bugguide.git'
@@ -70,9 +71,7 @@ gem "omniauth-google-oauth2", "~> 0.4.1"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem "paperclip", "4.2.2"
-gem 'delayed_paperclip', git: 'https://github.com/jrgifford/delayed_paperclip.git',
-  ref: '8f11882ee945bf56affe8df4f591e5171581aac3'
+gem "paperclip", "~> 5.1.0"
 gem 'pg'
 gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
