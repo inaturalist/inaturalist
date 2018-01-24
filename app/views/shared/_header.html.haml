@@ -43,7 +43,8 @@
                     %i.fa.fa-search
             - for taxon in Taxon::ICONIC_TAXA
               %li
-                = link_to t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", :default=>Taxon::ICONIC_TAXON_NAMES[taxon.name]), taxon_path(taxon), :class => "taxon #{taxon.name}"
+                - iconic_taxon_name = current_user && ( !current_user.prefers_common_names? || current_user.prefers_scientific_name_first? ) ? taxon.name : t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", default: Taxon::ICONIC_TAXON_NAMES[taxon.name])
+                = link_to iconic_taxon_name, taxon_path(taxon), :class => "taxon #{taxon.name}"
       %li.navtab.projectstab.menutab
         .innertab
           = link_to t(:projects), projects_path

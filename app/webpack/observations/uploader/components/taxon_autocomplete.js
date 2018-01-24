@@ -430,28 +430,42 @@ class TaxonAutocomplete extends React.Component {
     );
   }
 
-  template( r, fieldValue ) {
+  template( r, fieldValue, options = {} ) {
     const result = _.clone( r );
+    const scinameFirst = (
+      this.props.config &&
+      this.props.config.currentUser &&
+      this.props.config.currentUser.prefers_scientific_name_first
+    );
     if ( !result.title ) {
       result.title = this.resultTitle( result );
       r.title = result.title;
+      if ( scinameFirst && result.rank_level <= 20
+      ) {
+        result.title = ( <i>{ result.title }</i> );
+      }
     }
-    if ( result.title && result.name !== result.title ) {
-      if ( result.rank_level <= 10 ) {
-        result.subtitle = ( <i>{result.name}</i> );
-      } else {
-        result.subtitle = result.name;
+    if ( result.title ) {
+      if ( scinameFirst ) {
+        result.subtitle = result.preferred_common_name || result.english_common_name;
+      }
+      if ( !result.subtitle && result.name !== result.title ) {
+        if ( result.rank_level <= 20 ) {
+          result.subtitle = ( <i>{result.name}</i> );
+        } else {
+          result.subtitle = result.name;
+        }
       }
     }
     const addition = this.differentMatchedTerm( r, fieldValue );
     if ( addition ) {
-      result.title += ` ${addition}`;
+      result.title = <span>{ result.title } { addition }</span>;
     }
     if ( result.rank && ( result.rank_level > 10 || !result.subtitle ) ) {
       const rank = I18n.t( `ranks.${result.rank}`, { defaultValue: result.rank } );
-      result.subtitle = `${_.capitalize( rank )} ${_.capitalize( result.subtitle )}`;
+      result.subtitle = <span>{ _.capitalize( rank ) } { result.subtitle }</span>;
     }
-    return this.resultTemplate( result, fieldValue );
+    return this.resultTemplate( result, fieldValue, options );
   }
 
   render( ) {

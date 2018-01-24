@@ -4,7 +4,7 @@ import React, { PropTypes } from "react";
 import { Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 
-const MoreFromUser = ( { observation, otherObservations, showNewObservation } ) => {
+const MoreFromUser = ( { observation, otherObservations, showNewObservation, config } ) => {
   if ( !observation || !observation.user ||
        ( _.isEmpty( otherObservations.earlierUserObservations ) &&
          _.isEmpty( otherObservations.laterUserObservations ) ) ) {
