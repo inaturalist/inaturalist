@@ -9,8 +9,7 @@ const ObservationsGridItem = ( {
   controls,
   showMagnifier,
   linkTarget,
-  splitTaxonOptions
-  linkTarget,
+  splitTaxonOptions,
   user
 } ) => {
   let taxonJSX = I18n.t( "unknown" );
@@ -74,8 +73,7 @@ ObservationsGridItem.propTypes = {
   controls: PropTypes.element,
   showMagnifier: PropTypes.bool,
   linkTarget: PropTypes.string,
-  splitTaxonOptions: PropTypes.object
-  linkTarget: PropTypes.string,
+  splitTaxonOptions: PropTypes.object,
   user: PropTypes.object
 };
 
