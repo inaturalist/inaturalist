@@ -22,6 +22,7 @@ class CommunityIDPopover extends React.Component {
             taxon={taxon}
             url={ `/taxa/${taxon.id}` }
             forceRank
+            user={ this.props.config.currentUser }
           />
           { !lastTaxon && this.renderTaxonomy( taxa, false ) }
         </li>
@@ -72,7 +73,12 @@ CommunityIDPopover.propTypes = {
   identification: PropTypes.object,
   communityIDTaxon: PropTypes.object,
   style: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  config: PropTypes.object
+};
+
+CommunityIDPopover.defaultProps = {
+  config: {}
 };
 
 export default CommunityIDPopover;

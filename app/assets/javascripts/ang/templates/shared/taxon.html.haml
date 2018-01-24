@@ -1,10 +1,14 @@
-%span{:class => "taxon {{ taxon.rank }} {{ iconicTaxonNameForID(taxon.iconic_taxon_id) }} {{ taxon.preferred_common_name ? 'has-com-name' : ''}}"}
+%span{:class => "taxon {{ taxon.rank }} {{ iconicTaxonNameForID(taxon.iconic_taxon_id) }} {{ taxon.preferred_common_name ? 'has-com-name' : 'no-com-name'}}"}
   %a{:class => "icon icon-iconic-{{ iconicTaxonNameForID(taxon.iconic_taxon_id) | lowercase }}", href: "{{ url || '/taxa/'+taxon.id }}", target: "_self" }
   %a{:class => "noname {{ taxon.id ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "!taxon.id", target: "_self" }
     {{ shared.t('unknown') }}
-  %a{:class => "comname {{ taxon.preferred_common_name ? 'display-name' : ''}}", href: "{{ url }}", "ng-show": "taxon.preferred_common_name", target: "_self" }
-    {{ taxon.preferred_common_name }}
-  %a{:class => "sciname {{ taxon.rank }} {{ taxon.preferred_common_name ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "taxon.name", target: "_self" }><
-    %span.rank{"ng-show" => "taxon.preferred_common_name && taxon.rank_level > 10"}><
-      {{ taxon.rank | capitalize }}&nbsp;
-    {{ taxon.name }}
+  %a{ class: "display-name {{ !secondaryName || user.prefers_scientific_name_first ? 'sciname' : 'comname' }}", href: "{{ url }}", target: "_self", "ng-show" => "taxon.id" }
+    {{ displayName }}
+  %a{ class: "secondary-name", href: "{{ url }}", target: "_self", "ng-show" => "taxon.id && secondaryName" }
+    %span{ class: "comname", "ng-show" => "user.prefers_scientific_name_first" }><
+      {{ secondaryName }}
+    %span{ class: "sciname", "ng-show" => "!user.prefers_scientific_name_first" }><
+      %span.rank{"ng-show" => "taxon.preferred_common_name && taxon.rank_level > 10"}><
+        {{ taxon.rank | capitalize }}&nbsp;
+      {{ secondaryName }}
+

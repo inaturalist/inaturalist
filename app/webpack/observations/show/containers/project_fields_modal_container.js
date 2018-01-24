@@ -5,7 +5,10 @@ import { addObservationFieldValue,
 import { setProjectFieldsModalState } from "../ducks/project_fields_modal";
 
 function mapStateToProps( state ) {
-  return Object.assign( { }, state.projectFieldsModal, { observation: state.observation } );
+  return Object.assign( { }, state.projectFieldsModal, {
+    observation: state.observation,
+    config: state.config
+  } );
 }
 
 function mapDispatchToProps( dispatch ) {

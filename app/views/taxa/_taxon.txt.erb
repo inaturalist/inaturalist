@@ -7,4 +7,11 @@ if taxon.rank == 'species' or taxon.rank == 'infraspecies'
 else
   sciname = '%s %s' % [t("all_taxa.rank.#{taxon.rank}", :default => taxon.rank).capitalize, taxon.name]
 end
--%><%= (comname.nil? || no_common) ? sciname : "#{comname.name} (#{sciname})" -%>
+name = if comname.nil? || no_common
+  sciname
+elsif current_user && current_user.prefers_scientific_name_first?
+  "#{sciname} (#{comname.name})"
+else
+  "#{comname.name} (#{sciname})"
+end
+-%><%= name -%>

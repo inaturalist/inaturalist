@@ -5,7 +5,8 @@ import { showNewObservation } from "../ducks/observation";
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
-    otherObservations: state.otherObservations
+    otherObservations: state.otherObservations,
+    config: state.config
   };
 }
 

@@ -133,6 +133,10 @@
           label: t(:show_common_names),
           label_after: true,
           description: t( "views.users.edit.common_names_desc" ) %>
+        <%= f.check_box "prefers_scientific_name_first",
+          label: t(:show_scientific_name_first),
+          label_after: true,
+          description: t( "views.users.edit.scientific_name_first_desc" ) %>
         <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t( "views.users.edit.name_place_help_html" ), :class => "placechooser" %>
       </div>
 

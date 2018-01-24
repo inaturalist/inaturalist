@@ -39,7 +39,7 @@ genericAutocomplete.focus = function( e, ui ) {
 genericAutocomplete.renderItem = function( ul, item ) {
   var li = $( "<li/>" ).addClass( "ac-result" ).
     data( "item.autocomplete", item ).
-    append( genericAutocomplete.template( item ) ).appendTo( ul );
+    append( genericAutocomplete.template( item, null, options ) ).appendTo( ul );
   return li;
 };
 
@@ -84,7 +84,7 @@ $.fn.genericAutocomplete = function( options ) {
     return false;
   };
 
-  field.template = options.template || field.template || function( item ) {
+  field.template = options.template || field.template || function( item, val, options ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     labelDiv.append( $( "<span/>" ).addClass( "title" ).
@@ -95,7 +95,7 @@ $.fn.genericAutocomplete = function( options ) {
 
   field.renderItem = function( ul, item ) {
     var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
-      append( field.template( item, field.val( ))).
+      append( field.template( item, field.val( ), options ) ).
       appendTo( ul );
     if( options.extraClass ) {
       li.addClass( options.extraClass );

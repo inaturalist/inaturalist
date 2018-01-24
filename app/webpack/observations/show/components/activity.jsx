@@ -134,6 +134,7 @@ class Activity extends React.Component {
             resetOnChange={ false }
             visionParams={ visionEligiblePhotos.length > 0 ?
               { observationID: observation.id } : null }
+            config={ config }
           />
           <div className="form-group">
             <textarea

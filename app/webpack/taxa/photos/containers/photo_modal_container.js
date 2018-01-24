@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
     photo: state.photoModal.photo,
     taxon: state.photoModal.taxon,
     observation: state.photoModal.observation,
-    visible: state.photoModal.visible
+    visible: state.photoModal.visible,
+    config: state.config
   };
   if ( state.photoModal.observation ) {
     props.photoLinkUrl = `/observations/${state.photoModal.observation.id}`;

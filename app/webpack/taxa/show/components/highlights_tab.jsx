@@ -13,7 +13,8 @@ const HighlightsTab = ( {
   placeUrl,
   showNewTaxon,
   wantedShown,
-  discoveriesShown
+  discoveriesShown,
+  config
 } ) => (
   <Grid className="HighlightsTab">
     <Row>
@@ -34,6 +35,7 @@ const HighlightsTab = ( {
           }
           taxa={ trendingTaxa }
           showNewTaxon={ showNewTaxon }
+          config={ config }
         />
         { discoveriesShown ? (
           <HighlightsCarousel
@@ -75,6 +77,7 @@ const HighlightsTab = ( {
               }
               return `/observations/${discovery.identification.observation.id}`;
             } }
+            config={ config }
           />
         ) : null }
         { wantedShown && wantedTaxa && wantedTaxa.length > 0 ? (
@@ -83,6 +86,7 @@ const HighlightsTab = ( {
             description={ I18n.t( "views.taxa.show.wanted_desc" ) }
             taxa={ wantedTaxa }
             showNewTaxon={ showNewTaxon }
+            config={ config }
           />
         ) : null }
       </Col>
@@ -99,7 +103,8 @@ HighlightsTab.propTypes = {
   trendingUrl: PropTypes.string,
   showNewTaxon: PropTypes.func,
   discoveriesShown: PropTypes.bool,
-  wantedShown: PropTypes.bool
+  wantedShown: PropTypes.bool,
+  config: PropTypes.object
 };
 
 export default HighlightsTab;

@@ -421,6 +421,7 @@ class CommunityIdentification extends React.Component {
                   <SplitTaxon
                     taxon={ communityTaxon }
                     url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+                    user={ config.currentUser }
                   />
                   { stats }
                 </div>
@@ -456,6 +457,7 @@ class CommunityIdentification extends React.Component {
                           <SplitTaxon
                             taxon={ proposedTaxonData.taxon }
                             url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                            user={ config.currentUser }
                           />
                           { proposedTaxonData.stats }
                         </div>
@@ -479,6 +481,7 @@ class CommunityIdentification extends React.Component {
           <SplitTaxon
             taxon={ communityTaxon }
             url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+            user={ config.currentUser }
           />
           { stats }
         </div>
@@ -550,6 +553,10 @@ CommunityIdentification.propTypes = {
   setCommunityIDModalState: PropTypes.func,
   updateObservation: PropTypes.func,
   updateSession: PropTypes.func
+};
+
+CommunityIdentification.defaultProps = {
+  config: {}
 };
 
 export default CommunityIdentification;
