@@ -214,8 +214,15 @@ CSV.open( photos_path, "wb" ) do |csv|
     rows_by_species = run_with_timing( :query_photos ) do
       run_sql( sql ).group_by{ |r| r["species_id"].to_i }
     end
-    rows_by_species.each do |species_id, rows|
+    rows_by_species.each do |species_id, species_rows|
       species_group = taxon_batch_groups_by_taxon_id[species_id]
+      # Filter out rows that have no small or medium url
+      rows = []
+      species_rows.each do |row|
+        row["photo_url"] = row["medium_url"].blank? ? row["small_url"] : row["medium_url"]
+        next if row["photo_url"].blank?
+        rows << row
+      end
       log "Target Species #{species_id}, #{rows.size} photos total, Species Group: #{species_group}"
       # Randomly assign user_ids to sets, 2/5 in training, 2/5 in test, 1/5 in validation
       photosets = {
@@ -228,8 +235,11 @@ CSV.open( photos_path, "wb" ) do |csv|
       else
         rows.map{ |r| !r["community_taxon_id"].blank? ? r["user_id"].to_i : nil }.compact.uniq.size
       end
+      # if for some reason we're looking at a species with no RG or RG* observations, don't even bother including it
+      next if number_of_rg_users == 0
       number_of_users = rows.map{ |r| r["user_id"].to_i }.compact.uniq.size
-      log "  Number of RG users: #{number_of_rg_users}"
+      log "  Number of users:                      #{number_of_users}"
+      log "  Number of RG users:                   #{number_of_rg_users}"
       desired_number_of_test_users = case species_group
       when "A" then OPTS.test_a_users_cap.to_i
       when "B" then ( number_of_rg_users * 0.1 ).round
@@ -245,10 +255,11 @@ CSV.open( photos_path, "wb" ) do |csv|
       actual_number_of_test_users = 0
       actual_number_of_training_users = 0
       actual_number_of_validation_users = 0
+      num_nid_photos_discarded_from_test_users = 0
       # shuffle users so we assign them to sets randomly
       species_rows_by_user_id = rows.group_by{|r| r["user_id"].to_i }.to_a.shuffle
       species_rows_by_user_id.each do |user_id, rows|
-        # Assign users to sets until we meet our desired quotas Note that
+        # Assign users to sets until we meet our desired quotas. Note that
         # Grant's recommendation of 2017-02-15 was to stick to the quotas (I
         # think), but in order to avoid discarding photos we are just filling
         # the test quota and then dividing the rest between validation and
@@ -258,10 +269,10 @@ CSV.open( photos_path, "wb" ) do |csv|
         else
           rows.select{ |r| !r["community_taxon_id"].blank? }
         end
-        next if rg_rows.blank? # if for some reason we're looking at a species with no RG or RG* observations, don't even bother including it
         # Fill our test quota first
         if rg_rows.size > 0 && actual_number_of_test_users < desired_number_of_test_users
           photosets[:test] += rg_rows
+          num_nid_photos_discarded_from_test_users += ( rows.size - rg_rows.size )
           actual_number_of_test_users += 1
         # When test is filled, assign to validation
         elsif actual_number_of_validation_users < desired_number_of_validation_users # this fills the validation quota
@@ -273,11 +284,16 @@ CSV.open( photos_path, "wb" ) do |csv|
           actual_number_of_training_users += 1
         end
       end
-      log "  Test Users:        #{desired_number_of_test_users} desired, #{actual_number_of_test_users} actual"
-      log "  Validation Users:  #{desired_number_of_validation_users} desired, #{actual_number_of_validation_users} actual"
-      log "  Training Users:    infinite desired, #{actual_number_of_training_users} actual"
+      log "  Test Users:                           #{desired_number_of_test_users} desired, #{actual_number_of_test_users} actual"
+      log "  Validation Users:                     #{desired_number_of_validation_users} desired, #{actual_number_of_validation_users} actual"
+      log "  Training Users:                       infinite desired, #{actual_number_of_training_users} actual"
+      log "  NID photos discarded from test users: #{num_nid_photos_discarded_from_test_users}"
       photosets.each do |set, photos|
-        log "  #{"#{set.to_s.capitalize} Photos:".ljust( 18 )} #{photos.size}"
+        log "  #{"#{set.to_s.capitalize} Photos:".ljust( 37 )} #{photos.size}"
+      end
+      if actual_number_of_training_users == 0
+        log "  No training users chosen for taxon #{species_id}, skipping..."
+        next
       end
       target_species_ids << species_id
       photosets.each do |set, photos|
@@ -287,8 +303,6 @@ CSV.open( photos_path, "wb" ) do |csv|
           else
             target_rg_observation_ids << photo["observation_id"].to_i unless photo["community_taxon_id"].blank?
           end
-          photo_url = photo["medium_url"].blank? ? photo["small_url"] : photo["medium_url"]
-          next unless photo_url
           photo_license_url = Photo.license_url_for_number( photo["photo_license"] )
           obs_license_url = Photo.license_url_for_code( photo["obs_license"] )
           totals[set] += 1
@@ -300,7 +314,7 @@ CSV.open( photos_path, "wb" ) do |csv|
             photo["taxon_id"],
             photo["observation_id"],
             photo["user_id"],
-            photo_url,
+            photo["photo_url"],
             photo["quality_grade"],
             photo_license_url,
             obs_license_url,
