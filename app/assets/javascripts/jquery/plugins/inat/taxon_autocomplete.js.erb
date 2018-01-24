@@ -34,6 +34,7 @@ autocompleter.setTitle = function( result, options ) {
   } else {
     result.title = result.preferred_common_name || result.english_common_name || result.name;
   }
+  result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags( result.title ) );
 };
 
 autocompleter.setSubtitle = function( result, options ) {
@@ -48,6 +49,10 @@ autocompleter.setSubtitle = function( result, options ) {
       result.subtitle = result.name;
     }
   }
+}
+
+autocompleter.stripRank = function( txt ) {
+  return txt.replace( /^(Kingdom|Subkingdom|Phylum|Subphylum|Superclass|Class|Subclass|Infraclass|Superorder|Order|Suborder|Infraorder|Parvorder|Zoosection|Zoosubsection|Superfamily|Epifamily|Family|Subfamily|Supertribe|Tribe|Subtribe|Genus|Genushybrid|Subgenus|Section|Subsection)\s+(.+)/g, "$2" );
 }
 
 autocompleter.stringIncludes = function( string, test ) {
@@ -246,7 +251,7 @@ $.fn.taxonAutocomplete = function( options ) {
     }
     // show the best name in the search field
     if( ui.item.id ) {
-      field.val( ui.item.title || ui.item.name );
+      field.val( ui.item.textTitle || ui.item.title || ui.item.name );
     }
     // set the hidden taxon_id
     options.idEl.val( ui.item.id );
@@ -278,8 +283,8 @@ $.fn.taxonAutocomplete = function( options ) {
   if( !ac ) { return; }
   field.bind( "assignSelection", function( e, t ) {
     options.idEl.val( t.id );
-    t.title = t.preferred_common_name || t.name;
-    field.val( t.title );
+    autocompleter.setTitle( t, options );
+    field.val( t.textTitle || t.title );
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;

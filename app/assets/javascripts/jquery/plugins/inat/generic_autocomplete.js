@@ -52,6 +52,10 @@ genericAutocomplete.renderMenu = function( ul, items ) {
   });
 };
 
+genericAutocomplete.stripTags = function( txt ) {
+  return txt.replace( /<\w+>(.+)<\/\w+>/g, "$1" );
+}
+
 $.fn.genericAutocomplete = function( options ) {
   options = options || { };
   var field = this;
@@ -252,7 +256,7 @@ $.fn.genericAutocomplete = function( options ) {
   if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {
       if( options.resetOnChange === false && field.selection ) {
-        field.val( field.selection.title );
+        field.val( field.selection.textTitle || genericAutocomplete.stripTags( field.selection.title ) );
       }
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field
