@@ -192,6 +192,7 @@ class User < ActiveRecord::Base
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
   belongs_to :place, :inverse_of => :users
+  belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login

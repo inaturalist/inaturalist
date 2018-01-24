@@ -65,7 +65,7 @@
       <%= f.select :locale, 
         locales, 
         :include_blank => t(:default), :description => t(:locale_description) %>
-      <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t('views.users.edit.place_help_html'), :class => "placechooser" %>
+      <%= f.text_field :search_place_id, :placeholder => t(:start_typing_place_name), :description => t( "views.users.edit.search_place_help_html" ), :class => "placechooser" %>
     </div>
     <div class="last column span-18">
       <%= f.text_area(:description, :label => t(:tell_everyone_a_little_about_you)) %>
@@ -125,12 +125,17 @@
           :label => t(:automatically_update_my_content_for_taxon_changes),
           :label_after => true,
           :description => t('views.users.edit.taxon_change_desc', :site_name => @site.preferred_site_name_short) %>
+      </div>
+
+      <h3><%= t :names %></h3>
+      <div class="stacked">
         <%= f.check_box "prefers_common_names",
           label: t(:show_common_names),
           label_after: true,
           description: t( "views.users.edit.common_names_desc" ) %>
+        <%= f.text_field :place_id, :placeholder => t(:start_typing_place_name), :description => t( "views.users.edit.name_place_help_html" ), :class => "placechooser" %>
       </div>
-      
+
       <h3><%= t :community_moderation_settings %></h3>
       <%= f.check_box "prefers_community_taxa", 
         :label => t(:accept_community_identifications), 

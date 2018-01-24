@@ -82,13 +82,19 @@
       I18n.locale = "<%= I18n.locale %>";
       I18n.fallbacks = true;
       <% site_place = @site && @site.place
-         user_place = current_user && current_user.place -%>
+         user_place = current_user && current_user.place
+         user_search_place = current_user && current_user.search_place -%>
       <% if site_place -%>
         var SITE_PLACE = <%= json_escape site_place.to_json(only: [:id, :name]).html_safe %>
       <% end -%>
       var PREFERRED_PLACE;
       <% if place = (user_place || site_place) -%>
-      PREFERRED_PLACE = <%= json_escape (user_place || site_place).
+      PREFERRED_PLACE = <%= json_escape place.
+        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+      <% end -%>
+      var PREFERRED_SEARCH_PLACE;
+      <% if search_place = user_search_place || site_place -%>
+      PREFERRED_SEARCH_PLACE = <%= json_escape search_place.
         to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var CURRENT_USER;
