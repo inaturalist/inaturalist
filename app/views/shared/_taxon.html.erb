@@ -47,6 +47,7 @@
   truncate ||= false
   trunclength = truncate ? 23 : 500
   comname_html = singular ? truncate( comname.singularize, length: trunclength ) : truncate( comname, length: trunclength )
+  viewer ||= nil
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>
@@ -60,7 +61,7 @@
       </span>
     </span>
   <% end -%>
-<% elsif current_user && current_user.prefers_scientific_name_first? %>
+<% elsif viewer && viewer.prefers_scientific_name_first? %>
   <% if include_article %>
     <% if 'aeiou'.include? taxon.name.first.downcase %>
       an
