@@ -84,6 +84,7 @@ class LeftMenu extends SelectionBasedComponent {
           } }
           placeholder={ this.valuesOf( "selected_taxon" ).length > 1 ?
             I18n.t( "edit_multiple_species" ) : I18n.t( "species_name_cap" ) }
+          config={ this.props.config }
         />
         <DateTimeFieldWrapper
           ref="datetime"
@@ -257,7 +258,8 @@ LeftMenu.propTypes = {
   appendToSelectedObsCards: PropTypes.func,
   removeFromSelectedObsCards: PropTypes.func,
   setState: PropTypes.func,
-  reactKey: PropTypes.string
+  reactKey: PropTypes.string,
+  config: PropTypes.object
 };
 
 export default LeftMenu;

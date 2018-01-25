@@ -3,16 +3,21 @@
 .SplitTaxon > *:first-child {
   content: '';
 }
-.taxon.has-com-name .sciname {
+.taxon.has-com-name .secondary-name {
   color: #aaa;
   white-space: nowrap;
 }
-.taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
-.taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
-.taxon.has-com-name .sciname:before,
-.taxon.has-com-name.parens .sciname:before { content: '('; display: inline-block; }
-.taxon.has-com-name .sciname:after,
-.taxon.has-com-name.parens .sciname:after { content: ')'; display: inline-block; }
+
+.SplitTaxon.taxon.has-com-name {
+  .sciname:before { content: ''; display: inline-block; }
+  .sciname:after { content: ''; display: inline-block; }
+  &.no-parens .secondary-name:before { content: ''; display: inline-block; }
+  &.no-parens .secondary-name:after { content: ''; display: inline-block; }
+  .secondary-name:before,
+  &.parens .secondary-name:before { content: '('; display: inline-block; }
+  .secondary-name:after,
+  &.parens .secondary-name:after { content: ')'; display: inline-block; }
+}
 
 .taxon .altname { color: #aaa; }
 

@@ -19,6 +19,7 @@ class ObservationFieldValue extends React.Component {
         value = ( <SplitTaxon
           taxon={ ofv.taxon }
           url={ `/taxa/${ofv.taxon.id}` }
+          user={ config.currentUser }
         /> );
       }
       value = ( <div className="value">{ value } { loading }</div> );

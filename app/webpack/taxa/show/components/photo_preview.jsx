@@ -96,6 +96,7 @@ class PhotoPreview extends React.Component {
           showTaxonPhotoModal={showTaxonPhotoModal}
           height={currentPhotoHeight}
           backgroundSize={backgroundSize}
+          config={ this.props.config }
         />
       );
     }
@@ -121,6 +122,7 @@ class PhotoPreview extends React.Component {
                   showTaxon
                   linkTaxon={ tp.taxon.id !== this.props.taxon.id }
                   onClickTaxon={ taxon => this.props.showNewTaxon( taxon ) }
+                  config={ this.props.config }
                 />
               );
             } else {
@@ -170,9 +172,13 @@ PhotoPreview.propTypes = {
   layout: PropTypes.string,
   showTaxonPhotoModal: PropTypes.func,
   showPhotoChooserModal: PropTypes.func,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  config: PropTypes.object
 };
 
-PhotoPreview.defaultProps = { layout: "gallery" };
+PhotoPreview.defaultProps = {
+  config: {},
+  layout: "gallery"
+};
 
 export default PhotoPreview;

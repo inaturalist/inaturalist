@@ -67,6 +67,8 @@ const ObservationsGridItemForIdentify = ( {
       before={ before }
       controls={ controls }
       linkTarget="_blank"
+      user={ currentUser }
+      splitTaxonOptions={{ noParens: true }}
     />
   );
 };

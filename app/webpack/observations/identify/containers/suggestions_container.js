@@ -21,7 +21,8 @@ function mapStateToProps( state ) {
   return Object.assign( {}, state.suggestions, {
     observation: Object.assign( {}, state.currentObservation.observation ),
     prevTaxon,
-    nextTaxon
+    nextTaxon,
+    config: state.config
   } );
 }
 

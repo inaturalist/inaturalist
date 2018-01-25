@@ -15,7 +15,8 @@ const TaxonPhoto = ( {
   backgroundSize,
   showTaxon,
   linkTaxon,
-  onClickTaxon
+  onClickTaxon,
+  config
 } ) => {
   let photoTaxon;
   if ( showTaxon ) {
@@ -34,6 +35,7 @@ const TaxonPhoto = ( {
               onClickTaxon( taxon );
               return false;
             } }
+            user={ config.currentUser }
           />
           <a href={urlForTaxon( taxon )} className="btn btn-link info-link">
             <i className="fa fa-info-circle"></i>
@@ -84,11 +86,13 @@ TaxonPhoto.propTypes = {
   backgroundSize: PropTypes.string,
   showTaxon: PropTypes.bool,
   linkTaxon: PropTypes.bool,
-  onClickTaxon: PropTypes.func
+  onClickTaxon: PropTypes.func,
+  config: PropTypes.object
 };
 
 TaxonPhoto.defaultProps = {
-  size: "medium"
+  size: "medium",
+  config: {}
 };
 
 export default TaxonPhoto;

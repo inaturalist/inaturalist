@@ -17,6 +17,10 @@ class Identifiers extends React.Component {
     if ( !observation || !observation.taxon || _.isEmpty( identifiers ) ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
+    let singleName = taxon.preferred_common_name || taxon.name;
+    if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
+      singleName = taxon.name;
+    }
     return (
       <div className="Identifiers collapsible-section">
         <h4
@@ -30,7 +34,7 @@ class Identifiers extends React.Component {
         >
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "top_identifiers_of_taxon", {
-            taxon: taxon.preferred_common_name || taxon.name } ) }
+            taxon: singleName } ) }
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           { identifiers.map( i => (

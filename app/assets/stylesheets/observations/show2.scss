@@ -602,7 +602,7 @@ a.UserImage,
     }
     .SplitTaxon {
       white-space: normal;
-      a.sciname {
+      a.secondary-name {
         font-size: 20px;
         line-height: 24px;
         color: #747474;
@@ -613,6 +613,12 @@ a.UserImage,
         line-height: 36px;
         color: #000;
         white-space: normal;
+      }
+      &.genus .comname.secondary-name,
+      &.species .comname.secondary-name,
+      &.subspecies .comname.secondary-name,
+      &.variety .comname.secondary-name {
+        margin-left: 0.25em;
       }
     }
   }
@@ -1984,7 +1990,7 @@ h3, h4 {
       }
       td {
         padding: 2px 8px;
-        .sciname {
+        .secondary-name {
           font-size: 12px;
         }
         .display-name {

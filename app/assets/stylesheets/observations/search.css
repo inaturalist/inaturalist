@@ -37,7 +37,7 @@
   margin-top: 60px;
 }
 
-#obs-container .taxon.has-com-name .sciname { 
+#obs-container .taxon.has-com-name .secondary-name { 
   color: #333;
 }
 
@@ -173,7 +173,7 @@ inat-taxon.split-taxon .display-name {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-inat-taxon.split-taxon .sciname {
+inat-taxon.split-taxon .secondary-name {
   display: block;
   width: 100%;
   white-space: nowrap;
@@ -185,17 +185,16 @@ inat-taxon.split-taxon .sciname {
   font-size: 18px;
   line-height: 18px;
 }
-#result-grid inat-taxon.split-taxon .has-com-name .sciname {
+#result-grid inat-taxon.split-taxon .has-com-name .secondary-name {
   line-height: 26px;
 }
-#result-grid inat-taxon.split-taxon .sciname.display-name,
-#result-grid inat-taxon.split-taxon .noname.display-name {
+#result-grid inat-taxon.split-taxon .no-com-name .display-name {
   margin-bottom: 28px;
 }
-#result-table inat-taxon.split-taxon .sciname {
+#result-table inat-taxon.split-taxon .secondary-name {
   margin-bottom: 15px;
 }
-#result-table inat-taxon.split-taxon .sciname.display-name,
+#result-table inat-taxon.split-taxon .no-com-name .display-name,
 #result-table inat-taxon.split-taxon .noname.display-name {
   margin-bottom: 34px;
 }
@@ -468,7 +467,7 @@ inat-taxon.split-taxon .icon {display: none;}
 
 #obs-container .dateloc,
 #obs-container .observation .meta,
-#obs-container .observation .has-com-name .sciname {
+#obs-container .observation .has-com-name .secondary-name {
   font-size: 12px;
   line-height: 18px;
 }
@@ -541,7 +540,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 
 #obs-container inat-taxon.split-taxon .display-name,
-#obs-container inat-taxon.split-taxon .sciname {
+#obs-container inat-taxon.split-taxon .secondary-name {
   width: 100%;
 }
 #obs-container .userimage {
@@ -550,13 +549,13 @@ inat-taxon.split-taxon .icon {display: none;}
 
 @media (min-width: 768px) {
   #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .sciname {
+  #obs-container inat-taxon.split-taxon .secondary-name {
     width: 60%;
   }
 }
 @media (min-width: 992px) {
   #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .sciname {
+  #obs-container inat-taxon.split-taxon .secondary-name {
     width: 75%;
   }
   #obs-container .userimage {
@@ -565,7 +564,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 @media (min-width: 1200px) {
   #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .sciname {
+  #obs-container inat-taxon.split-taxon .secondary-name {
     width: 80%;
   }
 }

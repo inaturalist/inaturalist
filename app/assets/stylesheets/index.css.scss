@@ -1204,29 +1204,43 @@ a.csvlink{background-image:image-url('silk/table.png');}
 .taxon_links .taxon.Actinopterygii   { color: #1E90FF;  background-image: image-url('iconic_taxa/actinopterygii-15px.png'); }
 .taxon_links .taxon.Chromista        { color: #993300;  background-image: image-url('iconic_taxa/chromista-15px.png'); }
 
-.taxon.Unknown a          { color: #aaaaaa;  }
-.taxon.Protozoa a         { color: #691776;  }
-.taxon.Plantae a          { color: #73AC13;  }
-.taxon.Fungi a            { color: DeepPink; }
-.taxon.Animalia a         { color: #1E90FF;  }
-.taxon.Mollusca a         { color: #FF4500;  }
-.taxon.Arachnida a        { color: #FF4500;  }
-.taxon.Insecta a          { color: #FF4500;  }
-.taxon.Amphibia a         { color: #1E90FF;  }
-.taxon.Reptilia a         { color: #1E90FF;  }
-.taxon.Aves a             { color: #1E90FF;  }
-.taxon.Mammalia a         { color: #1E90FF;  }
-.taxon.Actinopterygii a   { color: #1E90FF;  }
-.taxon.Chromista a        { color: #993300;  }
+.taxon.Unknown a,
+.taxon.Unknown .display_name          { color: #aaaaaa;  }
+.taxon.Protozoa a,
+.taxon.Protozoa .display_name         { color: #691776;  }
+.taxon.Plantae a,
+.taxon.Plantae .display_name          { color: #73AC13;  }
+.taxon.Fungi a,
+.taxon.Fungi .display_name            { color: DeepPink; }
+.taxon.Animalia a,
+.taxon.Animalia .display_name         { color: #1E90FF;  }
+.taxon.Mollusca a,
+.taxon.Mollusca .display_name         { color: #FF4500;  }
+.taxon.Arachnida a,
+.taxon.Arachnida .display_name        { color: #FF4500;  }
+.taxon.Insecta a,
+.taxon.Insecta .display_name          { color: #FF4500;  }
+.taxon.Amphibia a,
+.taxon.Amphibia .display_name         { color: #1E90FF;  }
+.taxon.Reptilia a,
+.taxon.Reptilia .display_name         { color: #1E90FF;  }
+.taxon.Aves a,
+.taxon.Aves .display_name             { color: #1E90FF;  }
+.taxon.Mammalia a,
+.taxon.Mammalia .display_name         { color: #1E90FF;  }
+.taxon.Actinopterygii a,
+.taxon.Actinopterygii .display_name   { color: #1E90FF;  }
+.taxon.Chromista a,
+.taxon.Chromista .display_name        { color: #993300;  }
 
-.taxon.has-com-name .sciname { 
+.taxon.has-com-name .secondary-name { 
   color: #aaa;
   white-space: nowrap;
 }
-.taxon.has-com-name .sciname:before { content: '('; display: inline-block; }
-.taxon.has-com-name .sciname:after { content: ')'; display: inline-block; }
-.taxon.has-com-name.no-parens .sciname:before { content: ''; display: inline-block; }
-.taxon.has-com-name.no-parens .sciname:after { content: ''; display: inline-block; }
+.taxon.has-com-name .secondary-name:before { content: '('; display: inline-block; }
+.taxon.has-com-name .secondary-name:after { content: ')'; display: inline-block; }
+.taxon.has-com-name.no-parens .secondary-name:before { content: ''; display: inline-block; }
+.taxon.has-com-name.no-parens .secondary-name:after { content: ''; display: inline-block; }
 .taxon .altname { color: #aaa; }
 
 /* Users table */

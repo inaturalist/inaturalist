@@ -46,6 +46,8 @@
   end
   truncate ||= false
   trunclength = truncate ? 23 : 500
+  comname_html = singular ? truncate( comname.singularize, length: trunclength ) : truncate( comname, length: trunclength )
+  viewer ||= defined?( current_user ) ? current_user : nil
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>
@@ -59,6 +61,31 @@
       </span>
     </span>
   <% end -%>
+<% elsif viewer && viewer.prefers_scientific_name_first? %>
+  <% if include_article %>
+    <% if 'aeiou'.include? taxon.name.first.downcase %>
+      an
+    <% else %>
+      a
+    <% end %>
+  <% end -%>
+  <span class="<%= taxon_class %>">
+    <% if link_url %>
+      <%= link_to sciname.html_safe, link_url %>
+    <% else %>
+      <%= sciname.html_safe %>
+    <% end %>
+    <% if truncate %>
+      <br/>
+    <% end %>
+    <%- unless one_name %>
+      <span class="othernames">
+        <span class="comname <%= 'display_name' if named_ancestor %>">
+          <%- if include_parens -%>(<%- end -%><%= comname_html.html_safe -%><%- if include_parens -%>)<%- end -%>
+        </span>
+      </span>
+    <% end %>
+  </span>
 <% else %>
   <% if include_article %>
     <% if 'aeiou'.include? comname.first.downcase %>
@@ -70,9 +97,9 @@
   <span class="<%= taxon_class %>">
     <span class="comname <%= 'display_name' if named_ancestor %>">
       <% if link_url %>
-        <%= link_to(singular ? truncate(comname.singularize, length: trunclength) : truncate(comname, length: trunclength), link_url) %>
+        <%= link_to( comname_html.html_safe, link_url) %>
       <% else %>
-        <%= singular ? truncate(comname.singularize, length: trunclength) : truncate(comname, length: trunclength) %>
+        <%= comname_html.html_safe %>
       <% end %>
     </span>
     <% if truncate %>

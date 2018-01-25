@@ -9,7 +9,8 @@ const ObservationsGridItem = ( {
   controls,
   showMagnifier,
   linkTarget,
-  splitTaxonOptions
+  splitTaxonOptions,
+  user
 } ) => {
   let taxonJSX = I18n.t( "unknown" );
   if ( o.taxon && o.taxon !== null ) {
@@ -17,6 +18,7 @@ const ObservationsGridItem = ( {
       <SplitTaxon
         { ...splitTaxonOptions }
         taxon={o.taxon}
+        user={ user }
         url={`/observations/${o.id}`}
         target={ linkTarget }
       />
@@ -71,7 +73,8 @@ ObservationsGridItem.propTypes = {
   controls: PropTypes.element,
   showMagnifier: PropTypes.bool,
   linkTarget: PropTypes.string,
-  splitTaxonOptions: PropTypes.object
+  splitTaxonOptions: PropTypes.object,
+  user: PropTypes.object
 };
 
 ObservationsGridItem.defaultProps = {

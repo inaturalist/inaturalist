@@ -35,7 +35,8 @@ class PhotoModal extends React.Component {
       showNext,
       showPrev,
       photoLinkUrl,
-      linkToTaxon
+      linkToTaxon,
+      config
     } = this.props;
     let photoContent = (
       <div className="text-center text-muted">
@@ -93,6 +94,7 @@ class PhotoModal extends React.Component {
                 <SplitTaxon
                   taxon={ taxon }
                   url={ linkToTaxon ? urlForTaxon( taxon ) : null }
+                  user={ config.currentUser }
                 />
                 { linkToTaxon ? (
                   <a href={urlForTaxon( taxon )} className="taxon-link">
@@ -138,10 +140,12 @@ PhotoModal.propTypes = {
   showNext: PropTypes.func,
   showPrev: PropTypes.func,
   photoLinkUrl: PropTypes.string,
-  linkToTaxon: PropTypes.bool
+  linkToTaxon: PropTypes.bool,
+  config: PropTypes.object
 };
 
 PhotoModal.defaultProps = {
+  config: {},
   linkToTaxon: true
 };
 

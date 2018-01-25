@@ -5347,6 +5347,14 @@ en:
           view all your data just like the iNaturalist site admins can. If
           that site leaves the network, all your account and data will go with
           that site.
+        licensing_desc_html: |
+          Licensing your content gives other people the legal right to use it
+          without asking your permission if they stick to the terms of the
+          license. %{site_name} uses your Creative Commons-licensed content to share
+          with data partners like the <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF), an international,
+          inter-governmental organization that compiles and distributes
+          biodiversity information from around the world.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -5359,6 +5367,8 @@ en:
             you'll be missing out on potentially important notifications, like
             identifications that shift the Community ID on your observations.
           </p>
+        name_place_help_html: |
+          Prioritize common names for this place.
         project_addition_preferences:
           any: Any
           joined: Projects you've joined
@@ -5375,16 +5385,6 @@ en:
           ambiguous (e.g. a split), you will receive an update about the
           change linking to a tool you can use to manually update your content
           if you choose.
-        licensing_desc_html: |
-          Licensing your content gives other people the legal right to use it
-          without asking your permission if they stick to the terms of the
-          license. %{site_name} uses your Creative Commons-licensed content to share
-          with data partners like the <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a> (GBIF), an international,
-          inter-governmental organization that compiles and distributes
-          biodiversity information from around the world.
-        place_help_html: |
-          Customizes a few aspects of the site for a place, like common names.
         prefers_community_taxa_desc: |
           %{site_name} tracks what you think your observations are and what
           the community thinks they are. The identification we share with data
@@ -5394,6 +5394,10 @@ en:
           community opinion won't be favored over yours. This means your
           observations will not be eligible for research grade unless you
           agree with the community.
+        search_place_help_html: |
+          Default place for observation searches.
+        scientific_name_first_desc: |
+          Show scientific names before common names.
         youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'

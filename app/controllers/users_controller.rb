@@ -863,6 +863,8 @@ protected
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
       :prefers_common_names,
+      :prefers_scientific_name_first,
+      :search_place_id,
       :site_id,
       :test_groups,
       :time_zone
