@@ -220,7 +220,7 @@ fi:
   add_notes_about_this_taxon: Lisää muistiinpanoja tästä taksonista tässä paikassa,
     esim. missä ja milloin se tapahtuu.
   add_obs_from_a_link: 'Lisää havainto luettelosta: %{link}'
-  add_obs_from_a_list: Lisää Havainto Luettelosta
+  add_obs_from_a_list: Lisää havainto luettelosta
   add_observation: Lisää havainto
   add_observations!: Lisää havaintoja!
   add_observations: Lisää havaintoja
@@ -237,14 +237,14 @@ fi:
   add_several_observations_at_once: Lisää useita havaintoja kerralla.
   add_shape: Lisää muoto
   add_some_now: Lisää jotain nyt
-  add_tag: Lisää merkintä
+  add_tag: Lisää tunniste
   add_tags: Lisää tunnisteita
   add_tags_to_selected_taxa: Lisää tunnisteita valittuun taksoniin
   add_taxa: Lisää taksoni
   add_taxa_to_places: lisää taksoni paikkoihin
   add_taxon_batch_to: Lisää Taksoni Erään %{list}
   add_taxon_range: Lisää taksonin alue
-  add_taxonomic_tags_to: Lisää taksonomiset tunnisteet valittuihin Flickr kuviin &raquo;
+  add_taxonomic_tags_to: Lisää taksonomiset tunnisteet valittuihin Flickr-kuviin &raquo;
   add_taxonomic_tags_to_the_fickr_photos: Lisää taksonomisia tunnisteita Fickr kuviin,
     jotka liittyvät valittuihin havaintoja.
   add_to: Lisää
@@ -398,6 +398,7 @@ fi:
   and_un_license_all_your_observations: ja peru kaikkien havaintojesi lisenssit
   android: Android
   animals: Eläimet
+  animated_observations_map: Animoitu havaintokartta
   annotations: Merkinnät
   announcement_was_successfully_created: Ilmoituksen laatiminen onnistui.
   announcement_was_successfully_updated: Ilmoituksen päivittäminen onnistui.
@@ -405,6 +406,7 @@ fi:
   any: mikä tahansa
   apply_to_selected: Käytä valittuihin
   apply_geoprivacy: Käytä sijainnin tietosuojaa
+  apply_darr: Hyväksy &darr;
   apply_these_settings_to_all: Ota käyttöön nämä asetukset kaikissa alla olevissa
     havainnoissa
   appropriate?: Sopiva?
@@ -453,7 +455,8 @@ fi:
     kirjoituksen?
   are_you_sure_you_want_to_delete_this_taxon_change: Oletko varma, että haluat poistaa
     tämän taksonin muutoksen?
-  are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki tunnisteet?
+  are_you_sure_you_want_to_remove_all_tags: Oletko varma että haluat poistaa kaikki
+    tunnisteet?
   are_you_sure_you_want_to_remove_curator: Oletko varma että haluat poistaa käyttäjältä
     %{user} kuraattorin oikeudet?
   are_you_sure_you_want_to_remove_from_project: Oletko varma, että haluat poistaa
@@ -708,6 +711,9 @@ fi:
   clear_color_filters: Tyhjennä kaikki värisuodattimet
   clear_search: Tyhjennä haku
   clear_shapes: Tyhjennä muodot
+  click_add_an_observation_to_the_lower_right: Tervetuloa %{site_name_short}iin! Klikkaa
+    'Lisää havainto' painiketta oikesta alakulmasta. Sinua pyydetään kirjautumaan
+    sisään/rekisteröitymään jos et ole jo
   click_on_map_to_draw_shape_around_place: Klikkaa karttaa piirtääksesi alueen muoto
     paikan ympärille.
   click_on_the_map_to: Klikkaa karttaa sijoittaaksesi havaintosi
@@ -741,6 +747,7 @@ fi:
   community_guidelines: Yhteisön suuntaviivat
   compare_with: Vertaa
   comparing_list_to_list: Verrataan luetteloa %{list1} luetteloon %{list2}
+  comparing_versions_x_and_y: Vertaillaan versioita %{x} ja %{y}
   completed: Valmis
   comprehensive: kattava
   comprehensive?: Kattava?
@@ -780,6 +787,8 @@ fi:
   coordinate_systems: Koordinaattijärjestelmät
   coordinates: Koordinaatit
   copy: Kopioi
+  copy_and_paste_the_following_code_to: Kopioi ja liitä seuraava koodi upottaaksesi
+    tämän arvioinnin toiseen verkkosivuun.
   copy_and_paste_this_into_your_own_html: Kopioi ja liitä tämä omaan HTML-koodiisi.
   copyright:
     some_rights_reserved: jotkut oikeudet pidätetään
@@ -820,6 +829,9 @@ fi:
   create_an_atlas: Luo atlas
   create_new_taxon: Luo uusi taksoni
   create_observations: Luo havaintoja
+  create_observations_by_uploading_photos_to: Luo havaintoja lataamalla kuvia paikkaan
+    %{place}. Kun lataat, %{place} yrittää poimia GPS-koordinaatit ja päivämäärän/ajan
+    valokuvasta. Aloittaaksesi,
   created: Luotu
   created_by: Luonut
   created_by_user_on_date: Lisätty %{user} -käyttäjän toimesta %{date}
@@ -850,6 +862,7 @@ fi:
   darr_apply_darr: '&darr; Käytä &darr;'
   dashboard: Kojelauta
   data_deficient: puutteellisesti tunnettu
+  datatype: Tietotyyppi
   date_: Päivämäärä
   date?: Päivämäärä?
   date_format:
@@ -1063,6 +1076,7 @@ fi:
   evidence_of_organism?: Todiste eliöstä?
   facebook: Facebook
   facebook_account_information: Oman Facebook Tilisi Tiedot
+  facebook_options: Facebook-asetukset
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: 'Kuvan korjaus epäonnistui: %{errors}'
   faq: Usein Kysytyt Kysymykset
@@ -1195,6 +1209,7 @@ fi:
   has_photos_or_sounds: On kuvia tai ääniä
   hasnt_contributed_any_observations: ei ole avustanut yhdelläkään havainnolla tätä
     projektia.
+  hate_me_facebook: Pura linkitys Facebook ja %{site_name} tileihisi
   hello: <test>
   help: Apua
   help_faq: Apua / UKK
@@ -1247,6 +1262,7 @@ fi:
   import_observations: Tuo havaintoja
   import_photos: Tuo kuvia
   import_sounds: Tuo ääniä
+  import_tags_from_csv: Tuo tunnisteet CSV-tiedostosta
   importing: Tuodaan...
   inbox: saapuneet
   including: mukaan lukien
@@ -1260,6 +1276,8 @@ fi:
   inappropriate: Sopimaton?
   inappropriate_content: Sopimaton sisältö?
   inat_user_profile: '%{site_name}: Käyttäjän %{user} Profiili'
+  inaturalist_is_an_online_community: '%{site_name} on verkkoyhteisö luonnontieteilijöille.
+    Lisäämällä kuviasi, voit auttaa tutkijoita oppimaan lisää.'
   inaturalist_observations_by: '%{site_name} &#58; Havainnot käyttäjältä %{login}'
   inaturalist_places: '%{site_name} Paikat'
   info: Tiedot
@@ -1290,6 +1308,7 @@ fi:
   join_this_project: Liity tähän projektiin
   joining: Liitytään...
   journal: Päiväkirja
+  journal_post: Päiväkirjamerkintä
   journal_post_deleted: Päiväkirjamerkintä poistettu
   jpg_png_or_gif: JPG, PNG tai GIF
   jump_to_letter: Hypppää kirjeeseen
@@ -1437,6 +1456,7 @@ fi:
     transparent_png: läpinäkyvä PNG
     white_text_transparent_png: valkoinen teksti läpinäkyvä PNG
     none: ei mitään
+  looks_like_neither_have!: Näyttää siltä, ettei ole yhtään taksoneita!
   make_an_observation: tee havainto
   make_taxonomic_flickr_tags_for_taxon_raquo: Tee taksonomisia Flickr tunnisteita
     tähän taksoniin &raquo;
@@ -1479,6 +1499,7 @@ fi:
   most_observations: Eniten havaintoja
   most_species: Useimmat lajit
   most_observed_species: Useimmin havaitut lajit
+  n_people_agrees: '%{amount} ihmistä samaa mieltä'
   n_person_agrees: '%{amount} henkilöä on samaa mieltä'
   name: Nimi
   name_or_username: Nimi tai käyttäjätunnus
@@ -1494,7 +1515,7 @@ fi:
   new_check_list: Uusi lajiluettelo
   new_check_list_for: Luo uusi lajiluettelo paikalle %{place} &raquo;
   new_journal_posts: Uusi päiväkirjakirjoitus
-  new_list: Uusi Luettelo
+  new_list: Uusi luettelo
   new_message: Uusi viesti
   new_observations_may_take_up_to: Uusien havaintojen ilmestyminen pienoisohjelmaan
     voi kestää %{widget_expiration} minuuttia.
@@ -1508,7 +1529,8 @@ fi:
   no_creative_commons_flickr_photo: Yhtään tunnistetta ei ole lisätty Creative Commons
     Flickr valokuviin
   no_curators_yet: Ei vielä kuraattoreita!
-  no_flickr_photos_tagged: Yhtään tunnistetta ei ole lisätty Flickr valokuviin.
+  no_facebook_photos: Emme löydä yhtään kuvaa Facebookista.
+  no_flickr_photos_tagged: Yhtään tunnistetta ei ole lisätty Flickr-valokuviin.
   no_identifications: Ei määrittäjiä
   no_ids_have_been_suggested_yet: ID:itä ei ole vielä ehdotettu
   no_its_as_good_as_it_can_be: Ei, se on niin hyvä kuin se voi olla
@@ -1557,6 +1579,8 @@ fi:
   observations_added_by_x_html: Havainnon lisäsi %{x}
   observations_by_user: Käyttäjän %{user} havainnot
   observations_deleted: Havainnot on poistettu.
+  observations_from_people_taxa_and_places_youre_following: Havainnot ihmisistä, paikoista
+    ja taksoneista joita seuraat
   observations_from_this_place: Havainnot tästä paikasta
   observations_from_this_project: Havainnot tästä projektista
   observations_from_you: Havaintosi
@@ -1594,6 +1618,7 @@ fi:
       mobiilisovelluksia tallentaaksesi havaintoja.
     follow_panel_title_local: Seuraa joitakin läheisiä luonnontieteilijöitä
     follow_panel_title_global: Seuraa joitakin aktiivisia luonnontieteilijöitä
+    following_panel_title: Pidä kirjaa ihmisistä, taksoneista ja paikoista
   one_by_one: Yksi kerrallaan
   only_letters_numbers: Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella
   only_species: vain lajit
@@ -1602,6 +1627,7 @@ fi:
   open: avoin
   open_: Avaa
   or: tai
+  or_if_you_dont_want_email: Tai jos et vain halua mitään sähköpostia...
   or_invite_your_friends: tai kutsu ystäviäsi
   or_you_can: Tai voit...
   order: Lahko
@@ -1624,6 +1650,7 @@ fi:
   pdf: PDF
   pdf_slash_print: PDF / Tulosta
   people: Ihmiset
+  people_agree: ihmistä samaa mieltä
   people_following_user: Ihmiset jotka seuraavat käyttäjää %{user}
   per_day: Per päivä
   per_month: Per kuukausi
@@ -1714,6 +1741,7 @@ fi:
     republic_of_congo: Kongon tasavalta
     russia: Venäjä
     saudi_arabia: Saudi-Arabia
+    sao_tome_and_principe: São Tomé ja Príncipe
     south_america: Etelä-Amerikka
     spain: Espanja
     sweden: Ruotsi
@@ -1854,9 +1882,9 @@ fi:
   saving: Tallentaa...
   saving_verb: Tallennetaan
   scientific_names: Tieteelliset nimet
-  search: Etsi
+  search: Hae
   search_all_fields: etsi kaikista kentistä
-  search_by_name_or_email: Etsi nimellä tai sähköpostilla
+  search_by_name_or_email: Hae nimellä tai sähköpostilla
   search_creative_commons_photos_on_flickr: Etsi Creative Commons kuvia Flickrissä.
     Jos valitset yhden, ole kiltti ja jätä heille kiitos kommentti!
   search_obs: Etsi havaintoja...
@@ -1975,7 +2003,7 @@ fi:
   table: Taulukko
   table_of_contents: Sisällysluettelo
   tagging: Tunnisteita lisätään...
-  tags: Tagit
+  tags: Tunnisteet
   take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   take_me_back: Vie minut takaisin
@@ -2013,6 +2041,8 @@ fi:
   this_species: tämä laji
   this_will_add_listed_taxa: Tämä lisää havainnoista luetteloidut taksonit. Tämä vie
     jonkin aikaa joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä tunnisteita Flickr-valokuvillesi.
+    Jatketaan?
   thu: To
   time_: aika
   time_ago: '%{time} sitten'
@@ -2037,6 +2067,7 @@ fi:
   twitter: Twitter
   two_thirds: 2:nen/3:s
   type: Kirjoita
+  type_a_place_name_and_click_search: Kirjoita paikan nimi ja klikkaa HAE hakeaksesi
   unblock: Poista esto
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
@@ -2112,7 +2143,7 @@ fi:
   view_your_life_list: Näytä elämälistasi
   view_your_calendar: Näytä kalenterisi
   view_your_observations: Näytä havaintosi
-  view_your_year_stats: Näytä vuoden %{project} Stats tilastosi
+  view_your_year_stats: Näytä vuoden %{year} tilastosi
   view_yours: Näytä sinun
   we_care_privacy: Me välitämme yksityisyydestäsi!
   wed: Ke
@@ -2150,11 +2181,14 @@ fi:
   you_are_no_longer_following_x: Et enää seuraa ystävää %{friend}.
   you_arent_following_that_person: Et seuraa tätä henkilöä.
   you_cant_delete_a_project_list: Et voi poistaa projektiluetteloa
+  you_cant_remove_other_peoples_observations: Et voi poistaa muiden ihmisten havaintoja
   you_didnt_select_any_observations: Et valinnut yhtään havaintoa
   you_have_to: Sinun täytyy
   you_must_select_a_csv_file_to_upload: Sinun on valittava lähetettävä CSV-tiedosto.
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
   you_need_to_select_at_least_one_photo: Sinun täytyy valita ainakin yksi kuva!
+  you_sure_delete_check_list: Oletko varma että haluat poistaa tämän luettelon? Jotkut
+    ihmiset ovat saattaneet tehdä paljon työtä siihen ...
   your_comment_was_saved: Sisältösi tallennettiin
   your_default_time_zone: Oletusaikavyöhykkeesi
   your_email_address: Sähköpostiosoitteesi
@@ -2167,6 +2201,9 @@ fi:
   your_month_observations: '%{month}n havaintosi'
   your_new_password_is: Uusi salasanasi on
   youre_following: seuraat
+  youre_not_following_anyone: Et seuraa ketään. Muiden luonnontieteilijöiden seuraaminen
+    sallii sinun helposti seurata heidän viimeisimpiä havaintojaan. Selvitä mitä ihmiset
+    <a href="%{observations_path}">havainnoivat</a> ja tee joitain uusia <a href="%{people_path}">tuttavuuksia</a>.
   youre_viewing_all_observations: Olet katselemassa kaikkia havaintoja
   zoom_in: Lähennä
   zoom_out: Loitonna
@@ -2188,6 +2225,7 @@ fi:
     help:
       index:
         how_do_i_contact_inaturalist?: Kuinka otan yhteyttä %{site_name}iin
+        what_are_tags?: Mitä ovat tunnisteet?
         what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
         geoprivacy_is_a_setting_you_can: 'Sijainnin tietosuoja on asetus jota voit
           käyttää havainnoissasi kontrolloidaksesi miten havainnon kordinaatit (leveys-

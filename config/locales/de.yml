@@ -15,6 +15,7 @@
 # Author: Macofe
 # Author: Metalhead64
 # Author: Octycs
+# Author: Polvonrbaun
 # Author: Predatorix
 # Author: ThePiscin
 # Author: Thetruebrot
@@ -147,7 +148,7 @@ de:
   about_external_links: Über externe Links
   about_licenses: Über Lizenzen
   about_licensing: Über Lizenzierung
-  about_life!: Über Leben!
+  about_life!: Übers Leben!
   about_names: Über Namen
   about_places: Über Orte
   about_taxon_changes: Über Taxon-Änderungen
@@ -160,7 +161,7 @@ de:
   acc: Zuordnungsgenauigkeit (m)
   account: Benutzerkonto
   accept: akzeptieren
-  accept_community_identifications: Akzeptiere Identifikation über die Foren-Gemeinschaft
+  accept_community_identifications: Bestimmung der Gemeinschaft annehmen
   accuracy: Genauigkeit
   accuracy_m: Genauigkeit (m)
   accuracy_meters: Genauigkeit (Meter)
@@ -183,9 +184,9 @@ de:
   add_a_batch_of_observations_by_csv: Einen Datenstapel an Beobachtungen im CSV-Format
     hinzufügen
   add_a_batch_of_taxa: Einen Datenstapel an Taxa hinzufügen
-  add_a_comment: Einen Kommentar hinzufügen
-  add_a_field: Ein Feld hinzufügen
-  add_a_flag: Eine Markierung hinzufügen
+  add_a_comment: Kommentar hinzufügen
+  add_a_field: Feld hinzufügen
+  add_a_flag: Markierung hinzufügen
   add_a_link_raquo: Einen Link hinzufügen &raquo;
   add_a_name: Einen Namen hinzufügen
   add_a_new_change_group: Eine neue Änderungsgruppe hinzufügen
@@ -463,6 +464,7 @@ de:
     zu wachsen.
   and_make_some_new: und mache einige neue
   and_other_taxa: '&amp; Andere Taxa'
+  and_un_license_all_your_observations: Lizenzen all Ihrer Beobachtungen entfernen
   and_x_more_people!:
     one: und eine weitere Person!
     other: und %{count} weitere Personen!
@@ -633,18 +635,24 @@ de:
   batch_edit: Stapelbearbeitung
   batch_edit_taxa_for_x_html: Taxa-Stapelbearbeitung für %{x}
   batch_operations: Stapeloperationen
+  be_the_first_to_fave_this_observation: Seien Sie der erste, der diese Beobachtung
+    favt!
   beacuse_we_recently_changed_auth_system: Da wir kürzlich unser Nutzeranmeldesystem
     geändert haben, war es notwendig Ihr Kennwort zurückzusetzen.
   because: weil
+  because_of: weil
   before_importing_photos: vor dem importieren von Fotos
   before_you_can_contribute_your_observations: bevor Sie Ihre Beobachtungen beitragen
     können.
   belives_this_is_a_comprehensive_list_of: glaubt, dass dies eine umfassende Liste
     ist von
   bg_color: Hintergrundfarbe
+  bioblitz: Bioblitz
   birds: Vögel
   black: schwarz
   block_user: Benutzer sperren
+  block_removed: Sperre entfernt
+  blog_widget: Blog Widget
   blue: blau
   blue_butterfly_etc: blau, Schmetterling, etc.
   blue_icons_represent_political_units: Blaue Symbole stellen politische Einheiten,
@@ -652,6 +660,7 @@ de:
     Symbole verschiedene Arten offenen Geländes (Parks, Reservate) darstellen. Nach
     dem Vergrößern sieht man mehr und kleinere Orte.
   body: Körper
+  bounding_box: Rahmen
   breadcrumbs: Brotkrumen
   brief_caption: Kurzbeschriftung
   brief_description_on_what_you_observed: Kurze Beschreibung dessen, was Du beobachtet
@@ -683,6 +692,7 @@ de:
   cancel: Abbrechen
   cant_flag_an_object_that_doesnt_exist: Kann kein Objekt markieren, das nicht existiert
   cant_merge_a_taxon_with_itself: Kann kein Taxon mit sich selbst zusammenführen.
+  captive: in Gefangenschaft
   captive_cultivated: Gefangen / kultiviert
   card: Karte
   case_plural: s
@@ -749,6 +759,15 @@ de:
     replaced_by: ersetzt durch
     replace_with: ersetzen durch
     dropped: gelöscht
+    input_taxon_will_be_activated_soon_html: '%{input_taxon} wird bald aktiviert'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} wurde ersetzt durch
+      %{output_taxon}'
+    input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} wird ersetzt
+      durch %{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} wurden in %{output_taxon}
+      zusammengeführt'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} werden in %{output_taxon}
+      zusammengeführt'
   change_visibility_of: Sichtbarkeit von Geo-Koordinaten ändern?
   change_your_password: Ändern Sie Ihr Kennwort
   check_here_to_autoload_description: Wählen Sie dies aus, wenn die Beschreibung aus
@@ -847,6 +866,7 @@ de:
     grüne Farne.
   colors: Farben
   columns: Spalten
+  combine: Kombinieren
   comma_separated_list_of_tracking_codes: |-
     Komma-getrennte Liste von Nachverfolgungsschlüsseln. Fügen Sie dies hinzu, wenn Sie einen Nachverfolgungsschlüssel anhängen möchten während Sie Benutzer auf das Neue-Beobachtung-Formular weiterleiten, z.B. %{root_url}observations/new?project_id=%{project_id}&tracking_code=IhrSchluessel123.
     Sie können damit Beteiligungen von verschiedenen Quellen nachverfolgen. Sie können auf diese Schlüssel zugreifen, in dem Sie die Beobachtungen Ihres Projektes als CSV-Datei herunterladen.
@@ -906,6 +926,8 @@ de:
       gibt, bitte diesen verwenden, falls nicht, bitte den vollständigen Status angeben,
       z.B. gefährdet oder vom Aussterben bedroht.
     description: Kurze Erklärung, warum dies aufgelistet wurde.
+    iucn: Gleichwertiger Rote-Listen-Code der IUCN
+  conservation_summary: Unterhaltungszusammenfassung
   contest: Wettbewerb
   continue: Fortfahren
   contributions: Beiträge
@@ -935,9 +957,11 @@ de:
   copy: Kopieren
   copyright:
     some_rights_reserved: Einige Rechte vorbehalten
+    some_rights_reserved_by: (c) %{name}, einige Rechte vorbehalten (%{license_short})
     all_rights_reserved: (c) %{name}, Alle Rechte vorbehalten
     no_known_copyright_restrictions_text: Keine bekannten Urheberrechtsbeschränkungen
     no_rights_reserved: Keine Rechte vorbehalten
+    no_rights_reserved_by: '%{name}, keine Rechte vorbehalten (%{license_name})'
     anonymous: Anonym
     public_domain: Gemeinfreiheit
     copyright: Urheberrecht
@@ -969,16 +993,29 @@ de:
   created_on: Erstellt am
   creating_your_account: Benutzerkonto erstellen...
   critically_endangered: vom Aussterben bedroht
+  critically_imperiled: stark gefährdet
   csv: CSV
   csv_file: CSV-Datei
+  curate_observations: Beobachtungen kuratieren
+  curate_taxa: Taxa kuratieren
+  curate_users: Benutzer kuratieren
+  curated: kuratiert
+  curated_checklist: Kuratierte Prüfliste
+  curating: Kuratierung
+  curation: Kuration
   curator: Kurator
+  curators_changed_for_x_html: Kuratoren für %{x} geändert
   curators: Kuratoren
   curators_can_remove_observations_from: Kuratoren können Beobachtungen aus dem Projekt
     entfernen und ihre Identifizierungen werden neben den projektspezifischen Ansichten
     angezeigt. Desweiteren sehen Kuratoren die tatsächlichen Koordinaten von privaten
     und verdeckten Beiträgen zu diesem Projekt.
+  current_flags: Aktuelle Markierungen
   current_password: Aktuelles Passwort
+  custom_field_values: Benutzerdefinierte Feldwerte
+  custom_project_fields: Benutzerdefinierte Projektfelder
   customize_location: Standort anpassen
+  darr_apply_darr: '&darr; Anwenden &darr;'
   dashboard: Übersichtsseite
   data_quality: Datenqualität
   data_quality_assessment: Datenqualitätsbewertung
@@ -1015,6 +1052,7 @@ de:
       november: November
       december: Dezember
   date_is_accurate: Datum ist genau
+  date_observed: Beobachtungsdatum
   date_picker:
     closeText: Schließen
     currentText: Heute
@@ -1030,9 +1068,11 @@ de:
     dayNamesMin: '[''So'',''Mo'',''Di'',''Mi'',''Do'',''Fr'',''Sa'']'
   date_specified: Angegebenes Datum
   date_time: Datum/Zeit
+  dates: Daten
   datetime_: Datum/Zeit
   day: Tag
   default: Standard
+  default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
   delete: Löschen
   delete_all: Alle löschen
@@ -1047,19 +1087,35 @@ de:
   delete_your_account: Dein Benutzerkonto löschen
   deleted_synonyms: Gelöschte Synonyme
   deleted_user: gelöschter Benutzer
+  deleting: Löschen …
+  deleting_verb: Löschen
+  desc: Beschreibung
+  descending: absteigend
+  describe_your_interest_in_nature: Beschreiben Sie Ihr Interesse an der Natur!
   description: Beschreibung
   description_from: Beschreibung von
   description_slash_tags: Beschreibung / Markierungen
   description_tags_more: Beschreibung, Markierungen &amp; Mehr
+  desription: Beschreibung
+  destroy: Zerstören
   details: Einzelheiten
   developers: Entwickler
+  device: Gerät
+  discoveries: Entdeckungen
   did_you_mean: Meintest du
+  disagree: widersprechen
+  disagree_: Widersprechen
   disconnect_provider: '%{provider} trennen'
   display_listings_added_by_curators: Aufzählungen anzeigen, die von Kuratoren hinzugefügt
     wurden
+  dna_: DNA
   do_not_show_this_message_again: Diese Nachricht nicht erneut anzeigen
+  do_you_know_where_this_species_lives: Wissen Sie, wo diese Art lebt?
+  do_you_want_to_proceed: Möchten Sie fortfahren?
   done: Fertig
   dont_filter: Nicht filtern
+  dont_send_me_email: Senden Sie mir keine E-Mail!
+  double_click_to_finish: (doppelklicken um abzuschließen)
   download: Herunterladen
   download_csv: CSV herunterladen
   download_csv_template: CSV-Vorlage herunterladen
@@ -1070,20 +1126,27 @@ de:
   drafts: Entwürfe
   duplicate_verb: Duplikat
   edit: Bearbeiten
+  edit_a_batch_of_observations: Einen Stapel an Beobachtungen bearbeiten
   edit_atlas: Atlas bearbeiten
   edit_colors: Farben bearbeiten
   edit_comment: Deinen Kommentar bearbeiten
   edit_field: Feld bearbeiten
   edit_license: Lizenz bearbeiten
   edit_multiple_dates: Mehrere Daten bearbeiten
+  edit_multiple_descriptions: Mehrere Beschreibungen bearbeiten
+  edit_multiple_species: Mehrere Arten bearbeiten
+  edit_notes: Anmerkungen bearbeiten
+  edit_observation: Beobachtung bearbeiten
   edit_photos: Fotos bearbeiten
   edit_place: Ort bearbeiten
   edit_project: Projekt bearbeiten
+  edit_range_raquo: Bereich bearbeiten &raquo;
   edit_remove: Bearbeiten/Entfernen
   edit_selected: Ausgewählte bearbeiten
   edit_source: Quelle bearbeiten
   edit_taxa: Taxa bearbeiten
   edit_taxon: Taxon bearbeiten
+  edit_taxon_link: Taxonlink bearbeiten
   edit_the_observation: Die Beobachtung bearbeiten
   edit_this_link: Diesen Link bearbeiten
   edit_your_account: Dein Benutzerkonto bearbeiten
@@ -1092,32 +1155,59 @@ de:
   edited: Bearbeitet
   edited_by: Bearbeitet von
   edited_by_name_html: Bearbeitet von %{name}
+  editing: Bearbeiten
+  editing_announcement: Ankündigung bearbeiten
+  editing_project: '%{project} bearbeiten'
+  editing_taxon_name: Taxonnamen bearbeiten
   email: E-Mail
   email_settings: E-Mail-Einstellungen
   embed: Einbetten
   enlarge: Vergrößern
+  end: Ende
+  endemic: endemisch
   establishment:
     endemic: endemisch
+    introduced: eingeführt
+    naturalised: naturalisiert
     invasive: invasiv
+    managed: verwaltet
+  establishment_means: naturalisiert
   everyone_: Jeder
+  exact_date: Genaues Datum
   explore: Entdecken
+  export: Exportieren
+  export_observations: Beobachtung exportieren
+  export_with_private_coordinates: Mit privaten Koordinaten exportieren
+  exporting: Exportieren.....
   external_links: Externe Links
+  extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
   facebook: Facebook
   facebook_options: Facebook-Optionen
+  "false": Falsch
   faq: Häufig gestellte Fragen
   Family: Familie
+  favorite_taxa: bevorzugte Taxa
   favorites: Favoriten
+  failed: Fehlgeschlagen
+  fields: Felder
   fields_: Felder
   fields_can_only_be_edited_by_the_people_who: Felder bearbeiten dürfen nur diejenigen,
     die sie erstellt haben, sowie Kuratoren
+  fields_merged: Felder verbunden
   fill_out_your_profile: vervollständige dein Profil
   filter: Filtern
   filter_by: Filtern nach
   filter_by_curator_identification: Filtern nach Identifikation (Kurator)
   filter_by_place: nach Ort filtern
   filter_by_taxon: Nach Taxon filtern
+  filters: Filter
+  find: Finden
+  find_a_guide: Einen Führer finden
+  find_a_place: Einen Ort finden
+  find_guides: Führer finden
   find_photos: Fotos finden
+  find_species: Art finden
   first_observer: Erster Beobachter
   flowering_phenology: Blütenphänologie
   follow_us: Folge uns auf
@@ -1130,6 +1220,10 @@ de:
   go_back: Zurück gehen
   green: grün
   group: Gruppe
+  guide_colors: Führer Farbe
+  guide_deleted: Führer gelöscht
+  guide_taxon: Führer Taxon
+  guide_was_successfully_published: Der Führer wurde erfolgreich veröffentlicht
   has_photos: hat Fotos
   help_faq: Hilfe / FAQ
   hi: Hallo,
@@ -1164,6 +1258,8 @@ de:
     spanish: Spanisch
   locales:
     bg: Bulgarisch
+  looks_like_no_species_in_guide: Es sieht so aus,  als ob Sie noch keine Art in Ihrem
+    Führer haben.
   make_admin: Zum Administrator machen
   make_an_observation: eine Beobachtung machen
   map: Karte
@@ -1290,6 +1386,7 @@ de:
   save_comment: Kommentar speichern
   save_draft: Entwurf speichern
   save_fields: Felder speichern
+  save_guide_taxon: Führer Taxon speichern
   save_photos: Fotos speichern
   save_place: Ort speichern
   saved: Gespeichert

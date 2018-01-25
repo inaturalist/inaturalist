@@ -1,8 +1,10 @@
 # Messages for Luxembourgish (Lëtzebuergesch)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Cellina
 # Author: Cgalindo
 # Author: Les Meloures
+# Author: Polvonrbaun
 # Author: Robby
 ---
 lb:
@@ -30,6 +32,9 @@ lb:
   x_people_found_this_helpful:
     one: Eng Persoun huet dëst nëtzlech fonnt.
     other: '%{count} Persounen hunn dëst nëtzlech fonnt.'
+  x_species:
+    one: 1 Art
+    other: '%{count} Arten'
   a: ee(n)
   a_: ee(n)
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -229,6 +234,7 @@ lb:
   back_to_taxon: Zréck op %{defaulttaxon}
   back_to_this: Zréck op %{place}
   back_to_x: Zréck op %{noun}
+  back_to_x_blog: Zereck zum %{x} sengem Blog
   back_to_x_observations: Zréck op dem %{user}seng Observatiounen
   back_to_your_lists: Zréck op Är Lëschten
   back_to_your_observations: Zréck bei Är Observatiounen
@@ -242,11 +248,14 @@ lb:
   black: schwaarz
   block_user: Benotzer spären
   block_removed: Spär ewechgeholl
+  blog_widget: Blog Widget
   blue: blo
   blue_butterfly_etc: blo, Päiperlek, asw.
   breadcrumbs: Broutgrimmelen
   brief_description_of_what_you_saw: Kuerz Beschreiwung vun deem wat Dir gesinn hutt
   brown: brong
+  browse_all_projects: All Projeten duerchsichen
+  browse_projects: Projeten duerchsichen
   by: vum
   by_everyone: Vu jidderengem
   by_user: pro %{user}
@@ -272,6 +281,7 @@ lb:
     replace_with: ersetzen duerch
   change_your_password: Ännert Äert Passwuert
   check_it_out: Probéiert et aus
+  check_out_our_blog: Besicht onse Blog
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
   chose_columns: Kolonnen eraussichen
@@ -305,6 +315,10 @@ lb:
   comprehensive: verständlech
   comprehensive?: Verständlech?
   configure: Astellen
+  configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name}
+    Observatiounen ob ärem Blog oder ärer Websäit weist. Et ka sinn dass Dir embedded
+    CSS an den <code>&lt;head&gt;</code> vun ärem HTML musst afügen. Dir kennt gären
+    de CSS emschreiwen.
   confirm: Confirméieren
   confirm_new_password: Neit Passwuert confirméieren
   confirm_now: Elo confirméieren
@@ -754,7 +768,7 @@ lb:
   more: Méi
   more_fields: Méi Felder
   more_filters: Méi Filteren
-  more_from_x: Méi iwwer %%{x}
+  more_from_x: Méi iwwer %{x}
   more_import_options: Méi Optioune vum Import
   more_info: Méi Informatiounen
   more_info_title: Méi Informatiounen
@@ -808,6 +822,7 @@ lb:
   no_identifications: Keng Identifikatiounen
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
+  no_matching_projects: Keng passend Projeten
   no_members_yet: Nach keng Memberen
   no_messages_yet: Nach keng Messagen
   no_more_results_found: Net méi Resultater fonnt
@@ -823,8 +838,10 @@ lb:
   no_places_available: Keng Plazen disponibel.
   no_places_selected: Keng Plazen erausgesicht.
   no_project_selected: Kee Projet eruasgesicht
+  no_project_to_admin_current_user: Dir administréiert keng Projeten
   no_projects_yet: Nach keng Projeten
   no_recent_activity: Keng rezent Aktivitéit
+  no_recently_active: Är rezent aktiv Projekter
   no_relevant_annotations: Keng relevant Notizen
   no_reply_yet: Nach keng Äntwert
   no_results_found: Näischt fonnt
@@ -886,9 +903,14 @@ lb:
   of_observations: Observatiounen
   of_species: Spezien
   of_places: Plazen
+  official_blog: Offizielle Blog
   ok: OK
   onboarding:
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
+    following_panel_body: Hei %{site_name} kënnt der Leit auswielen fir ze déi vun
+      hinne geposten Observatiounen ze verfollegen. Dier kënnt iech och op verschidden
+      Arten abonnéieren fir nei Observatiounen vun desen Arten am Aa ze halen, oder
+      dat selwecht och mat Plaatze maachen.
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit
     kommen
@@ -909,6 +931,7 @@ lb:
     one: anert Déier
     other: aner Déieren
   other_annimals: Aner Déieren
+  our_blog: Onse Blog
   owner: Besëtzer
   password: Passwuert
   pdf: PDF
@@ -1033,7 +1056,9 @@ lb:
   project_members: '%{project} Memberen'
   project_name: Numm vum Projet
   project_settings: Astellunge vum Projet
+  projects: Projeten
   projects_from_place: Projete vu(n) %{place}
+  projects_you_admin: Projeten déi dir administréiert
   query: Ufro
   rank_position: Klassement
   ranks:
@@ -1049,6 +1074,8 @@ lb:
   recent_observations: Rezent Observatiounen
   recent_updates: Rezent Aktualisatiounen
   recently_active: Rezent aktiv
+  recently_active_projects_from_everywhere: Rezent aktiv Projete vun iwwerall
+  recently_created_projects_from_everywhere: Rezent kreéiert Projete vun iwwerall
   recently_finished: Rezent fäerdeg gemaach
   red: rout
   redo_search_in_map: Nach eng Kéier op der Kaart sichen
@@ -1085,6 +1112,7 @@ lb:
   save_observation: Observatioun späicheren
   save_photos: Fotoe späicheren
   saved: Gespäichert
+  search_projects: Projeten duerchsichen
   seen_nearby: Nobäi gesinn
   seen_one: Hutt dir ee gesinn?
   select: Eraussichen
@@ -1100,6 +1128,9 @@ lb:
   show_common_names: Populär Nimm weisen
   show_less: Manner weisen
   show_more: Méi weisen
+  show_observation_photos: Fotoe vun der Observatioun uweisen
+  show_off_your_recent_observations: Weist är rezent Observatiounen ob ärem Blog oder
+    ärer Websäit!
   simple: Einfach
   sign_in_exclamation: Schreift Iech an!
   sizes: Gréissten
@@ -1128,6 +1159,10 @@ lb:
   status_globally: '%{status} global'
   stay_and_try_again: Bleiwen an nach emol probéieren
   submit: Schécken
+  subscribe_to_a_taxon: Op een Taxon abonnéieren
+  subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Art oder ee
+    Grupp vum Organismen (z.B. Skorpiounen) abonnéieren.
+  subscribe_to_this_observation: Op des Observatioun abonnéieren
   subscriptions: Abonnementer
   suggestions: Virschléi
   summary: Resumé
@@ -1203,7 +1238,9 @@ lb:
   valid_interrogation: Valabel?
   value: Wäert
   view: Weisen
+  view_all_your_projects: All Projete kucken
   view_change: Ännerung weisen
+  view_projects_from_place: Projeten kucken aus %{place}
   view_stats: Statistike weisen
   view_year_stats_for_site: Weis %{year} Statistike fir %{site}
   view_your_year_stats: Weist Är %{year} Statistiken
@@ -1237,12 +1274,15 @@ lb:
   where_did_you_see_it: Wou hutt Dir et gesinn?
   where_were_they?: Wou waren se?
   where_were_you?: Wou sidd Dir?
+  which_projects_can_add_your_observations?: Wat fir Projete kennen är Observatiounen
+    dobäisetzen
   white: wäiss
   who_helped_user_the_most: Wien huet dem %{user} am Meeschte gehollef
   who_user_helped_the_most: Wien dem %{user} am Meeschte gehollef huet
   withdraw: Zréckzéien
   withdrawing: Zréckzéien...
   with_errors: Mat Feeler
+  x_blog: '%{x} säin Blog'
   x_deleted: '%{x} geläscht'
   x_does_not_exist: '"%{x}" gëtt et net'
   x_of_y: '%{x} vu(n) %{y}'
@@ -1262,6 +1302,7 @@ lb:
   you_: Dir
   you_are_now: Dir sidd elo
   you_are_already_a_member_of_this_project: Dir sidd scho Member vun dësem Projet!
+  you_are_subscribed_to: Dier sidd abonnéiert op
   you_arent_a_member_of_that_project: Dir sidd net Member vun deem Projet.
   you_can_accept_invitations: Dir kënnt d'Invitatioun hei unhuelen
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
@@ -1290,6 +1331,8 @@ lb:
   your_profile_was_successfully_updated: Äre Profil gouf aktualiséiert!
   your_world!: Är Welt!
   yours: Ären
+  youve_already_added_an_identification: Dier hutt schon eng Identificatioun derbäigesat,
+    der därft just eng derbäisetzen
   zoom_photo: Zoom Foto
   here_are_some_things_you_can_do_in_the_meantime: Hei sinn e puer Saachen déi Dir
     an der Tëschenzäit maache kënnt
@@ -1307,6 +1350,8 @@ lb:
         what_is_inaturalist?: Wat ass %{site_name}?
         who_is_behind_inaturalist?: Wien ass hannert %{site_name}?
         who_is_behind_inaturalist: Wien ass hannert %{site_name}?
+        can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen
+          ob mäin Blog oder meng Websäit bäisetzen?
     observations:
       community_id:
         score: Score
@@ -1342,6 +1387,11 @@ lb:
           Insect life stage=larva: Larve
           Insect life stage=nymph: Nymph
           Insect life stage=adult: Erwuessen
+    users:
+      edit:
+        project_addition_preferences:
+          joined: Projeten deenen dir bäigetrueden sidd
+          none: Keen, nëmmen dir kennt är Observatioun a Projete bäisetzen
     welcome:
       index:
         connect_with_nature: Mat der Natur verbannen

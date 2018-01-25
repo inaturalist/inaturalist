@@ -507,7 +507,9 @@ qqq:
   it: '{{Identical|It}}'
   january: '{{Identical|January}}'
   join: '{{Identical|Join}}'
-  join_inat: where site_name is the name of the site
+  join_inat: |-
+    where site_name is the name of the site
+    {{Identical|Join}}
   joined!: '{{Identical|Joined}}'
   journal: '{{Identical|Journal}}'
   labels: '{{Identical|Label}}'
