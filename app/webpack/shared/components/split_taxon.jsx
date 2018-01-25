@@ -27,7 +27,11 @@ const SplitTaxon = ( {
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
-      title = `${taxon.preferred_common_name} (${_.trim( title )})`;
+      if ( user && user.prefers_scientific_name_first ) {
+        title = `${title} (${_.trim( taxon.preferred_common_name )})`;
+      } else {
+        title = `${taxon.preferred_common_name} (${_.trim( title )})`;
+      }
     }
   }
   const icon = ( ) => {

@@ -92,7 +92,8 @@ TaxonThumbnail.propTypes = {
 TaxonThumbnail.defaultProps = {
   height: 130,
   truncate: 15,
-  urlForTaxon: utilUrlForTaxon
+  urlForTaxon: utilUrlForTaxon,
+  config: {}
 };
 
 export default TaxonThumbnail;
