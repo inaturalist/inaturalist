@@ -47,7 +47,7 @@
   truncate ||= false
   trunclength = truncate ? 23 : 500
   comname_html = singular ? truncate( comname.singularize, length: trunclength ) : truncate( comname, length: trunclength )
-  viewer ||= nil
+  viewer ||= defined?( current_user ) ? current_user : nil
 -%>
 <% if comname.nil? || no_common == true %>
   <% if include_article %>
