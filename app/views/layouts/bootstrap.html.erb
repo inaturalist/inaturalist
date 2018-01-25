@@ -47,6 +47,16 @@
         <p id="flash" class="error"><%= raw flash[:error] %></p>
       <% end %>
 
+      <% if current_user && session[:potential_place] %>
+        <div class="bootstrap">
+          <div id="full-width-notice" class="container-fluid bg-warning">
+            <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+            <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+            <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+          </div>
+        </div>
+      <% end %>
+
       <div id="wrapper" class="bootstrap">
         <% if @feature_test -%>
           <div class="container">

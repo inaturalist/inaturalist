@@ -24,6 +24,16 @@ html, body {height: 100%;}
 #bodywrapper:after { height: 260px; }
 #wrapper { min-height: 500px;}
 
+#full-width-notice {
+  padding: 10px;
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  .btn {
+    margin-top: -1px;
+  }
+}
+
 .gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
 .gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
   font-family: "Trebuchet MS", Arial, sans-serif;
