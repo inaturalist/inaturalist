@@ -24,8 +24,8 @@ const bindShortcut = ( shortcut, action, dispatch, options = { } ) => {
 };
 
 const setupKeyboardShortcuts = ( dispatch ) => {
-  bindShortcut( "right", showNextObservation, dispatch );
-  bindShortcut( "left", showPrevObservation, dispatch );
+  bindShortcut( "right", showNextObservation, dispatch, { eventType: "keyup" } );
+  bindShortcut( "left", showPrevObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "i", addIdentification, dispatch );
   bindShortcut( "c", addComment, dispatch );
   bindShortcut( "x", toggleCaptive, dispatch, { eventType: "keyup" } );
