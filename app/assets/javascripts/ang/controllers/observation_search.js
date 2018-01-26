@@ -1292,6 +1292,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.showRedoSearchButton( );
     var time = new Date( ).getTime( );
     $scope.lastMoveTime = time;
+    $scope.mapBounds = $scope.map.getBounds( );
     setTimeout( function( ) {
       // only perform one nearby place search, once
       // the map has stopped moving for a half second
