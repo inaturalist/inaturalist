@@ -47,7 +47,7 @@
         <p id="flash" class="error"><%= raw flash[:error] %></p>
       <% end %>
 
-      <% if current_user && session[:potential_place] %>
+      <% if current_user && session[:potential_place] && flash.empty? %>
         <div class="bootstrap">
           <div id="full-width-notice" class="container-fluid bg-warning">
             <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
