@@ -28,6 +28,8 @@ describe EolPhoto, "new_from_api_response" do
 end
 
 describe "repair" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should not fail" do
     api_response = EolPhoto.get_api_response('7bb5cb353799e2a96a6d55ac7f4cd789')
     p = EolPhoto.new_from_api_response(api_response)
@@ -38,6 +40,8 @@ describe "repair" do
 end
 
 describe EolPhoto, "sync" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   let(:api_response) { EolPhoto.get_api_response('7bb5cb353799e2a96a6d55ac7f4cd789') }
   let(:p) { EolPhoto.new_from_api_response(api_response) }
   it "should reset native_realname" do

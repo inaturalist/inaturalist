@@ -112,7 +112,9 @@ class EolPhoto < Photo
       send("#{a}=", p.send(a))
     end
     save unless options[:no_save]
-    [self, errors]
+    [self, {}]
+  rescue Timeout::Error
+    [self, { timeout: "EOL didn't respond" }]
   end
 
   private
