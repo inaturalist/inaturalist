@@ -38,7 +38,7 @@
         <%= f.text_field :parent_id, value: taxon.parent_id, class: "text", disabled: !@protected_attributes_editable %><br/>
 
         <%= label_tag t(:parent_name) %><br/>
-        <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
+        <%= text_field_tag :parent_name, ( parent = taxon.parent ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
         <% if @protected_attributes_editable %>
           <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
         <% end %>
