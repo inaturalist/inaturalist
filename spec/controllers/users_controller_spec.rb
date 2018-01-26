@@ -17,10 +17,6 @@ describe UsersController, "update" do
 
   it "changes updated_at when changing preferred_project_addition_by" do
     expect {
-      put :update, id: user.id, user: { preferred_photo_license: "CC-BY-NC-SA" }
-      user.reload
-    }.to_not change(user, :updated_at)
-    expect {
       put :update, id: user.id, user: { preferred_project_addition_by: "none" }
       user.reload
     }.to change(user, :updated_at)

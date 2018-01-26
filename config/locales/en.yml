@@ -2627,22 +2627,31 @@ en:
     afghanistan: Afghanistan
     africa: Africa
     antigua_and_barbuda: Antigua and Barbuda
+    australia: Australia
+    austria: Austria
     belgium: Belgium
     bosnia_and_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
     central_america: Central America
+    china: China
+    colombia: Colombia
+    denmark: Denmark
     egypt: Egypt
     equatorial_guinea: Equatorial Guinea
     europe: Europe
     france: France
     germany: Germany
     greece: Greece
+    hong_kong: Hong Kong
     hungary: Hungary
     italy: Italy
+    india: India
     iraq: Iraq
     japan: Japan
+    korea: Korea
     martinique: Martinique
     mexico: México
+    netherlands: Netherlands
     new_guinea: New Guinea
     new_zealand: New Zealand
     north_africa: North Africa
@@ -2651,13 +2660,17 @@ en:
     panama: Panama
     peru: Peru
     poland: Poland
+    portugal: Portugal
     republic_of_congo: Republic of Congo
     russia: Russia
     saudi_arabia: Saudi Arabia
     sao_tome_and_principe: Sao Tome and Principe
+    singapore: Singapore
+    south_africa: South Africa
     south_america: South America
     spain: Spain
     sweden: Sweden
+    switzerland: Switzerland
     syria: Syria
     thailand: Thailand
     trinidad_and_tobago: Trinidad and Tobago
@@ -3905,6 +3918,7 @@ en:
   within_inaturalist: "Within %{site_name}"
   wondering_what_to_do_next: Here's some next steps to get you on your way to observing and identifying the natural world
   would_you_like_to: Would you like to
+  would_you_prefer_to_view_common_names_used_in_place_html: Would you prefer to view common names used in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: would like some help identifying this
   x_admin: "%{login} admins"
   x_blog: "%{x}'s Blog"
@@ -5338,6 +5352,9 @@ en:
           Show common names. Disable if you only want to view scientific names.
           Note that you can control which common names you see by changing your
           locale and place settings.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          If you change your mind you can always
+          <a href='/users/edit'>edit your settings</a>.
         inaturalist_network_affiliation_desc_html: |
           The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
           collection of localized websites connected to the global iNaturalist
@@ -5369,6 +5386,9 @@ en:
           </p>
         name_place_help_html: |
           Prioritize common names for this place.
+        place_preference_changed_notice_html: |
+          Place preference changed. If you change your mind you can always
+          <a href='/users/edit'>edit your settings</a>.
         project_addition_preferences:
           any: Any
           joined: Projects you've joined
