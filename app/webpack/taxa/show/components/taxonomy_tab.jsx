@@ -77,6 +77,7 @@ const TaxonomyTab = ( {
                   taxon={t}
                   url={shouldLinkToTaxon ? urlForTaxon( t ) : null}
                   forceRank
+                  user={ currentUser }
                   onClick={ e => {
                     if ( !shouldLinkToTaxon ) return true;
                     if ( e.metaKey || e.ctrlKey ) return true;

@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const SimilarTab = ( { results, place, showNewTaxon } ) => {
+const SimilarTab = ( { results, place, showNewTaxon, config } ) => {
   let content;
   if ( results && results.length > 0 ) {
     content = (
@@ -22,6 +22,7 @@ const SimilarTab = ( { results, place, showNewTaxon } ) => {
               showNewTaxon( result.taxon );
               return false;
             } }
+            config={ config }
           />
         ) }
       </div>
@@ -60,7 +61,8 @@ const SimilarTab = ( { results, place, showNewTaxon } ) => {
 SimilarTab.propTypes = {
   results: PropTypes.array,
   place: PropTypes.object,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  config: PropTypes.object
 };
 
 export default SimilarTab;

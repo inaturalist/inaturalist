@@ -26,7 +26,8 @@ function mapStateToProps( state ) {
     discoveries,
     trendingUrl: `/observations?${querystring.stringify( trendingParams )}`,
     placeName: state.config.chosenPlace ? state.config.chosenPlace.display_name : null,
-    placeUrl: state.config.chosenPlace ? urlForPlace( state.config.chosenPlace ) : null
+    placeUrl: state.config.chosenPlace ? urlForPlace( state.config.chosenPlace ) : null,
+    config: state.config
   };
 }
 

@@ -35,6 +35,7 @@ class ObservationFields extends React.Component {
               this.props.addObservationFieldValue( r );
             } }
             placeholder={ placeholder }
+            config={ config }
           />
         </div>
       );

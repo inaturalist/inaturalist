@@ -228,11 +228,11 @@ class Photo < ActiveRecord::Base
       end
     end
     if photo.respond_to?(:repair)
-      photo.repair
-      if photo.user && !photo.is_a?( LocalPhoto )
-        Photo.turn_remote_photo_into_local_photo( photo )
+      repaired_photo, errors = photo.repair
+      if errors.blank? && repaired_photo.user && !repaired_photo.is_a?( LocalPhoto )
+        Photo.turn_remote_photo_into_local_photo( repaired_photo )
       end
-      photo
+      [repaired_photo, errors]
     end
   end
 

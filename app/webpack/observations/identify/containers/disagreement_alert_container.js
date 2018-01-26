@@ -5,7 +5,7 @@ import {
 } from "../../shared/ducks/disagreement_alert";
 
 function mapStateToProps( state ) {
-  return Object.assign( { backdrop: false }, state.disagreementAlert );
+  return Object.assign( { backdrop: false, config: state.config }, state.disagreementAlert );
 }
 
 function mapDispatchToProps( dispatch ) {

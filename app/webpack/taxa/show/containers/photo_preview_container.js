@@ -16,7 +16,8 @@ function mapStateToProps( state ) {
   return {
     taxon: state.taxon.taxon,
     taxonPhotos,
-    layout
+    layout,
+    config: state.config
   };
 }
 

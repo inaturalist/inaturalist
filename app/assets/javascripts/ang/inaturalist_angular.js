@@ -183,6 +183,27 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         }
       };
       scope.shared = shared;
+      scope.user = CURRENT_USER;
+      scope.displayName = function() {
+        var name;
+        if ( !scope.taxon ) { return; }
+        if ( scope.user && scope.user.prefers_scientific_name_first ) {
+          name = scope.taxon.name;
+        } else if ( scope.taxon.preferred_common_name ) {
+          name = scope.taxon.preferred_common_name;
+        }
+        return name || scope.taxon.name;
+      }
+      scope.secondaryName = function() {
+        var name;
+        if ( !scope.taxon ) { return; }
+        if ( scope.user && scope.user.prefers_scientific_name_first ) {
+          name = scope.taxon.preferred_common_name;
+        } else if ( scope.taxon.preferred_common_name ) {
+          name = scope.taxon.name;
+        }
+        return name;
+      }
     },
     templateUrl: 'ang/templates/shared/taxon.html'
   }

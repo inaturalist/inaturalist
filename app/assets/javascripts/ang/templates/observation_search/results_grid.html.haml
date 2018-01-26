@@ -8,7 +8,7 @@
         .caption
           %a.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
-          %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}"}
+          %inat-taxon.title.split-taxon{taxon: "o.taxon", url: "/observations/{{ o.id }}", user: "{{ currentUser }}"}
           .meta
             %span{:class => "quality_grade {{ o.quality_grade }}"}
               {{ o.qualityGrade( ) | capitalize:'title' }}

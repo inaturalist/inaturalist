@@ -31,7 +31,8 @@ const PhotoBrowser = ( {
   selectedTermValue,
   terms,
   showTaxonGrouping,
-  place
+  place,
+  config
 } ) => {
   let sortedGroupedPhotos;
   if ( grouping.param === "taxon_id" ) {
@@ -67,6 +68,7 @@ const PhotoBrowser = ( {
           ) }
           showTaxon
           linkTaxon
+          config={ config }
         />
       );
     } )
@@ -101,6 +103,7 @@ const PhotoBrowser = ( {
             { group.groupObject ?
               <SplitTaxon
                 taxon={group.groupObject}
+                user={ config.currentUser }
                 url={urlForTaxonPhotos(
                   group.groupObject,
                   $.deparam( window.location.search.replace( /^\?/, "" ) )
@@ -311,7 +314,8 @@ PhotoBrowser.propTypes = {
   params: PropTypes.object,
   setParam: PropTypes.func,
   showTaxonGrouping: PropTypes.bool,
-  place: PropTypes.object
+  place: PropTypes.object,
+  config: PropTypes.object
 };
 
 PhotoBrowser.defaultProps = {
@@ -319,7 +323,8 @@ PhotoBrowser.defaultProps = {
   terms: {},
   grouping: {},
   groupedPhotos: {},
-  showTaxonGrouping: true
+  showTaxonGrouping: true,
+  config: {}
 };
 
 export default PhotoBrowser;

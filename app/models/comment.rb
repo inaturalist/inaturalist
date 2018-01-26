@@ -20,6 +20,7 @@ class Comment < ActiveRecord::Base
   notifies_users :mentioned_users,
     except: :previously_mentioned_users,
     on: :save,
+    delay: false,
     notification: "mention",
     if: lambda {|u| u.prefers_receive_mentions? }
   auto_subscribes :user, to: :parent

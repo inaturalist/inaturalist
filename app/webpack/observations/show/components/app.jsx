@@ -168,6 +168,7 @@ const App = ( {
                   taxon={ observation.taxon }
                   url={ taxonUrl }
                   placeholder={observation.species_guess}
+                  user={ config.currentUser }
                 />
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />

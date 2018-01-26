@@ -4529,7 +4529,8 @@ CREATE TABLE users (
     icon_file_name character varying,
     icon_content_type character varying,
     icon_file_size integer,
-    icon_updated_at timestamp without time zone
+    icon_updated_at timestamp without time zone,
+    search_place_id integer
 );
 
 
@@ -9221,4 +9222,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180103194449');
 INSERT INTO schema_migrations (version) VALUES ('20180109232530');
 
 INSERT INTO schema_migrations (version) VALUES ('20180126155509');
+
+INSERT INTO schema_migrations (version) VALUES ('20180124192906');
 

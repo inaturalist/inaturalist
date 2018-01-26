@@ -14,7 +14,8 @@ const HiglightsCarousel = ( {
   showNewTaxon,
   captionForTaxon,
   captionForObservation,
-  urlForTaxon
+  urlForTaxon,
+  config
 } ) => {
   const photosPerSlide = 4;
   const columnWidth = 3;
@@ -53,6 +54,7 @@ const HiglightsCarousel = ( {
                   } }
                   captionForTaxon={ captionForTaxon }
                   urlForTaxon={ urlForTaxon }
+                  config={ config }
                 />
               </Col>
             ) )
@@ -70,6 +72,7 @@ const HiglightsCarousel = ( {
                 <ObservationsGridItem
                   observation={ obs }
                   controls={ captionForObservation ? captionForObservation( obs ) : null }
+                  user={ config.currentUser }
                 />
               </Col>
             ) )
@@ -98,7 +101,8 @@ HiglightsCarousel.propTypes = {
   showNewTaxon: PropTypes.func,
   captionForObservation: PropTypes.func,
   captionForTaxon: PropTypes.func,
-  urlForTaxon: PropTypes.func
+  urlForTaxon: PropTypes.func,
+  config: PropTypes.object
 };
 
 export default HiglightsCarousel;

@@ -24,6 +24,7 @@ class ApplicationController < ActionController::Base
   before_filter :draft_site_requires_admin
   before_filter :set_ga_trackers
   before_filter :set_request_locale
+  before_filter :check_preferred_place
   before_filter :sign_out_spammers
 
   # /ping should skip all before filters and just render
@@ -139,6 +140,26 @@ class ApplicationController < ActionController::Base
     elsif I18N_SUPPORTED_LOCALES.include?( lang )
       lang
     end
+  end
+
+  def check_preferred_place
+    return true unless params[:test] == "place-alert"
+    return true unless current_user
+    return true if current_user.prefers_no_place?
+    return true unless session[:potential_place].blank?
+    if current_user.latitude && current_user.longitude && current_user.place.blank?
+      potential_place = Place.
+        containing_lat_lng( current_user.latitude, current_user.longitude ).
+        where( admin_level: Place::COUNTRY_LEVEL ).first
+      if potential_place
+        place_name = t( "places_name.#{potential_place.name.to_s.parameterize.underscore}", default: potential_place.name )
+        session[:potential_place] = {
+          id: potential_place.id,
+          name: place_name == "United States" ? "the United States" : place_name
+        }
+      end
+    end
+    true
   end
 
   def sign_out_spammers
@@ -271,7 +292,9 @@ class ApplicationController < ActionController::Base
     if current_user
       # there is a current_user, so that user is active
       if current_user.last_active.nil? || current_user.last_active != Date.today
-        current_user.update_column(:last_active, Date.today)
+        current_user.last_active = Date.today
+        current_user.last_ip = Logstasher.ip_from_request_env( request.env )
+        current_user.save
       end
       # since they are active, unsuspend any stopped subscriptions
       if current_user.subscriptions_suspended_at

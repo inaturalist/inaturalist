@@ -525,6 +525,8 @@ class UsersController < ApplicationController
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
     @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    place_id_changed = @display_user.place_id_changed?
+    prefers_no_place_changed = @display_user.prefers_no_place_changed?
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -539,8 +541,20 @@ class UsersController < ApplicationController
             session[:locale] = @display_user.locale
           end
 
+          if place_id_changed
+            session.delete(:potential_place)
+            if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.place_preference_changed_notice_html" )
+            end
+          elsif prefers_no_place_changed
+            session.delete(:potential_place)
+            if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.if_you_change_your_mind_you_can_always_edit_your_settings_html" )
+            end
+          end
+
           if params[:from_edit_after_auth].blank?
-            flash[:notice] = t(:your_profile_was_successfully_updated)
+            flash[:notice] ||= t(:your_profile_was_successfully_updated)
             redirect_back_or_default(person_by_login_path(:login => current_user.login))
           else
             redirect_to(dashboard_path)
@@ -863,6 +877,9 @@ protected
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
       :prefers_common_names,
+      :prefers_scientific_name_first,
+      :prefers_no_place,
+      :search_place_id,
       :site_id,
       :test_groups,
       :time_zone

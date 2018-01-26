@@ -24,7 +24,7 @@ class ProjectFieldsModal extends Component {
   }
 
   render( ) {
-    const { observation, project, alreadyInProject } = this.props;
+    const { observation, project, alreadyInProject, config } = this.props;
     if ( !project || !observation || _.isEmpty( project.project_observation_fields ) ) {
       return ( <div /> );
     }
@@ -60,6 +60,7 @@ class ProjectFieldsModal extends Component {
                 this.props.addObservationFieldValue( r );
               }
             } }
+            config={ config }
           />
         </div>
        );
@@ -139,7 +140,8 @@ ProjectFieldsModal.propTypes = {
   project: PropTypes.object,
   setProjectFieldsModalState: PropTypes.func,
   show: PropTypes.bool,
-  alreadyInProject: PropTypes.bool
+  alreadyInProject: PropTypes.bool,
+  config: PropTypes.object
 };
 
 export default ProjectFieldsModal;

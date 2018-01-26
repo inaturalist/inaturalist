@@ -14,7 +14,8 @@ const TaxonThumbnail = ( {
   truncate,
   onClick,
   captionForTaxon,
-  urlForTaxon
+  urlForTaxon,
+  config
 } ) => {
   const img = taxon.defaultPhoto ? (
     <CoverImage
@@ -64,6 +65,7 @@ const TaxonThumbnail = ( {
           noParens
           truncate={truncate}
           onClick={onClick}
+          user={ config.currentUser }
         />
         { captionForTaxon ? captionForTaxon( taxon ) : null }
       </div>
@@ -83,13 +85,15 @@ TaxonThumbnail.propTypes = {
   truncate: PropTypes.number,
   onClick: PropTypes.func,
   captionForTaxon: PropTypes.func,
-  urlForTaxon: PropTypes.func
+  urlForTaxon: PropTypes.func,
+  config: PropTypes.object
 };
 
 TaxonThumbnail.defaultProps = {
   height: 130,
   truncate: 15,
-  urlForTaxon: utilUrlForTaxon
+  urlForTaxon: utilUrlForTaxon,
+  config: {}
 };
 
 export default TaxonThumbnail;

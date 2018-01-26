@@ -5,5 +5,7 @@ class UserSweeper < ActionController::Caching::Sweeper
     ctrl = ActionController::Base.new
     ctrl.send :expire_action, FakeView.home_url( user_id: user.id, ssl: true )
     ctrl.send :expire_action, FakeView.home_url( user_id: user.id, ssl: false )
+    ctrl.send :expire_action, FakeView.dashboard_updates_url( user_id: user.id, ssl: true )
+    ctrl.send :expire_action, FakeView.dashboard_updates_url( user_id: user.id, ssl: false )
   end
 end

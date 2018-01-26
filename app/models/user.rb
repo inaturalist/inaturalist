@@ -80,6 +80,8 @@ class User < ActiveRecord::Base
   preference :hide_obs_show_quality_metrics, default: false
   preference :hide_obs_show_expanded_cid, default: true
   preference :common_names, :boolean, default: true 
+  preference :scientific_name_first, :boolean, default: false
+  preference :no_place, :boolean, default: false
   
   SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(
@@ -192,6 +194,7 @@ class User < ActiveRecord::Base
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
   belongs_to :place, :inverse_of => :users
+  belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
 
   before_validation :download_remote_icon, :if => :icon_url_provided?
   before_validation :strip_name, :strip_login

@@ -271,8 +271,12 @@ module HasSubscribers
         send callback_type do |record|
           unless record.skip_updates || record.try(:unsubscribable?)
             if options[:queue_if].blank? || options[:queue_if].call(record)
-              record.delay(priority: options[:priority]).
-                send(callback_method, subscribable_association)
+              if options[:delay] == false
+                record.send(callback_method, subscribable_association)
+              else
+                record.delay(priority: options[:priority]).
+                  send(callback_method, subscribable_association)
+              end
             end
           end
           true

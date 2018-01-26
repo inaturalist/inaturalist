@@ -137,6 +137,7 @@ class LeftMenu extends SelectionBasedComponent {
               observationFieldValue: null } );
           } }
           placeholder={ I18n.t( "species_name_cap" ) }
+          config={ this.props.config }
         />
         <span className="input-group-btn">
           <button
@@ -282,9 +283,20 @@ class LeftMenu extends SelectionBasedComponent {
           <div className="taglist">
             { _.map( commonOfvs, ( t, i ) => {
               const key = `${t.observation_field.id}:${t.value}`;
-              let tooltip = `${t.observation_field.name}: ` +
-                `${( t.taxon && t.taxon.name ) ?
-                     ( t.taxon.preferred_common_name || t.taxon.name ) : t.value}`;
+              let singleName;
+              if ( t.taxon && t.taxon.name ) {
+                singleName = t.taxon.preferred_common_name || t.taxon.name;
+                if (
+                  this.props.config &&
+                  this.props.currentUser &&
+                  this.props.currentUser.prefers_scientific_name_first
+                ) {
+                  singleName = t.taxon.name;
+                }
+              } else {
+                singleName = t.value;
+              }
+              let tooltip = `${t.observation_field.name}: ${singleName}`;
               return (
                 <OverlayTrigger
                   placement="top"
@@ -295,8 +307,7 @@ class LeftMenu extends SelectionBasedComponent {
                   <Badge className="tag" key={ key }>
                     <span className="wrap">
                       <span className="field">{ `${t.observation_field.name}:` }</span>
-                      { `${( t.taxon && t.taxon.name ) ?
-                             ( t.taxon.preferred_common_name || t.taxon.name ) : t.value}` }
+                      { singleName }
                     </span>
                     <Glyphicon glyph="remove-circle" onClick={ () => {
                       this.removeFieldValue( t );
@@ -328,7 +339,8 @@ LeftMenu.propTypes = {
   observationFieldSelectedDate: PropTypes.string,
   appendToSelectedObsCards: PropTypes.func,
   removeFromSelectedObsCards: PropTypes.func,
-  setState: PropTypes.func
+  setState: PropTypes.func,
+  config: PropTypes.object
 };
 
 export default LeftMenu;
