@@ -341,6 +341,7 @@ class FiltersButton extends React.Component {
                 ` ${params.order_by !== defaultParams.order_by ? "filter-changed" : ""}`
               }
               onChange={ e => updateSearchParams( { order_by: e.target.value } ) }
+              value={ params.order_by }
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
