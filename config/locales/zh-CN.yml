@@ -1355,6 +1355,7 @@ zh-CN:
   however_there_were_some_issues: 然而，这里有一些问题：%{issues}
   hybrid: 混血
   i_agree_to_the_project_terms: 我同意项目条款
+  i_dont_know_but_i_am_sure_this_is_taxon: 我不知道，但我确信这是%{taxon}
   icon: 图标
   icon_size: 图标大小
   icon_slash_photo: 图标 / 照片
@@ -1475,6 +1476,7 @@ zh-CN:
   is_an: 是一个
   is_not_following_anyone: 未关注任何人。
   is_now: 现已
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
   is_the_organism_wild: 这个生物是野生或野化的吗？
   is_this_observation_offensive_html: 此观察是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性的么？
   is_this_offensive_html: 这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？
@@ -1646,22 +1648,25 @@ zh-CN:
     bg: 保加利亚语
     br: 布列塔尼语
     ca: 加泰罗尼亚语
-    en: 英语
     en-US: 英语（美国）
-    es: 西班牙语
+    en: 英语
     es-ES: 西班牙语（西班牙）
     es-MX: 西班牙语（墨西哥）
+    es: 西班牙语
+    eu: 巴斯克语
     fi: 芬兰语
     fr: 法语
-    eu: 巴斯克语
     gl: 加利西亚语
-    ko: 韩语
     id: 印尼语
     it: 意大利语
+    ja: 日语
+    ko: 韩语
+    lb: 卢森堡语
     mk: 马其顿语
     oc: 奥克语
     pt-BR: 葡萄牙语（巴西）
-    ja: 日语
+    pt-PT: 葡萄牙语（葡萄牙）
+    ru: 俄语
     zh-CN: 简体中文
     zh-TW: 繁体中文
   locality_notes: 位置注释
@@ -2389,6 +2394,9 @@ zh-CN:
     order: 目
     suborder: 亚目
     infraorder: 下目
+    parvorder: 小目
+    zoosection: 动物园区域
+    zoosubsection: 动物园子区域
     superfamily: 总科
     epifamily: 领科
     family: 科
@@ -2406,6 +2414,7 @@ zh-CN:
     subspecies: 亚种
     variety: 变种
     form: 型
+    infrahybrid: 种内杂种
     leaves: 叶片
   rare: 罕见
   re_apply_list_rules: 重新应用列表规则
@@ -3437,6 +3446,7 @@ zh-CN:
     observations:
       community_id:
         agreement: 协议
+        ancestor_disagreements: 祖先不一致
         below_cutoff: 低于截止
         cumulative_count: 累计
         disagreement: 不一致
