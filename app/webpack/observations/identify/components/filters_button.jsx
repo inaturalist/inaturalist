@@ -225,15 +225,14 @@ class FiltersButton extends React.Component {
         <Row className="show-filters">
           <Col className="filters-left-col" xs="6">
             { [
-              { param: "wild" },
               { param: "captive" },
               { param: "threatened" },
-              { param: "introduced" }
+              { param: "introduced" },
+              { param: "popular" }
             ].map( filterCheckbox ) }
           </Col>
           <Col className="filters-left-col" xs="6">
             { [
-              { param: "popular" },
               { param: "sounds", label: "has_sounds" },
               { param: "photos", label: "has_photos" },
               { param: "user_id", label: "your_observations", checked: CURRENT_USER.id }
