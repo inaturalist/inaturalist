@@ -33,6 +33,7 @@ class Observation < ActiveRecord::Base
     except: :previously_mentioned_users,
     on: :save,
     notification: "mention",
+    delay: false,
     if: lambda {|u| u.prefers_receive_mentions? }
   acts_as_taggable
   acts_as_votable

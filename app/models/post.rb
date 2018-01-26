@@ -26,6 +26,7 @@ class Post < ActiveRecord::Base
   notifies_users :mentioned_users,
     except: :previously_mentioned_users,
     on: :save,
+    delay: false,
     notification: "mention",
     if: lambda {|u| u.prefers_receive_mentions? }
   belongs_to :parent, :polymorphic => true
