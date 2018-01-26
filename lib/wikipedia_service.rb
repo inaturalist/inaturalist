@@ -19,17 +19,34 @@ class WikipediaService < MetaService
     "#{self.base_url}/wiki/#{title}"
   end
 
+  def page_details(title, options = {})
+    if parsed = parsed_response(title, options)
+      title = parsed.at("parse").attribute("title").value
+      pageid = parsed.at("parse").attribute("pageid").value
+      summary = summary_from_parsed( parsed )
+      { id: pageid, url: url_for_title( CGI.escape( title.tr(" ", "_") ) ), summary: summary }
+    end
+  end
+
   def summary(title, options = {})
-    summary = query_results = parsed = nil
-    parsed = parse(options.merge(page: title, redirects: true)).at('text').try(:inner_text)
-    return unless parsed
-    hxml = Nokogiri::HTML(HTMLEntities.new.decode(parsed))
+    if parsed = parsed_response(title, options)
+      summary_from_parsed(parsed)
+    end
+  end
+
+  def summary_from_parsed( parsed )
+    hxml = Nokogiri::HTML(HTMLEntities.new.decode(parsed.at( "text" ).try( :inner_text )))
     hxml.search('table').remove
     hxml.search("//comment()").remove
     summary = (hxml.at('p') || hxml).inner_html.to_s
     summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
     summary.gsub! /\[.*?\]/, ''
     summary
+  end
+
+  def parsed_response(title, options = {})
+    parsed = parse( options.merge( page: title, redirects: true ))
+    parsed.at("text").try(:inner_text) ? parsed : nil
   rescue Timeout::Error => e
     Rails.logger.info "[INFO] Wikipedia API call failed while setting taxon summary: #{e.message}"
     return

@@ -3982,7 +3982,10 @@ CREATE TABLE taxon_descriptions (
     id integer NOT NULL,
     taxon_id integer,
     locale character varying(255),
-    body text
+    body text,
+    provider character varying,
+    provider_taxon_id character varying,
+    url character varying
 );
 
 
@@ -8161,6 +8164,13 @@ CREATE INDEX index_taxon_changes_on_user_id ON taxon_changes USING btree (user_i
 
 
 --
+-- Name: index_taxon_descriptions_on_provider; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_descriptions_on_provider ON taxon_descriptions USING btree (provider);
+
+
+--
 -- Name: index_taxon_descriptions_on_taxon_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9209,4 +9219,6 @@ INSERT INTO schema_migrations (version) VALUES ('20171222172131');
 INSERT INTO schema_migrations (version) VALUES ('20180103194449');
 
 INSERT INTO schema_migrations (version) VALUES ('20180109232530');
+
+INSERT INTO schema_migrations (version) VALUES ('20180126155509');
 
