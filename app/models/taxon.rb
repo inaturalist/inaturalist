@@ -66,6 +66,9 @@ class Taxon < ActiveRecord::Base
   belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
+  has_one :en_wikipedia_description,
+    -> { where("locale='en' AND provider='Wikipedia'") },
+    class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
   
@@ -1004,28 +1007,36 @@ class Taxon < ActiveRecord::Base
     locale = options[:locale] || I18n.locale
     w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
+    provider = nil
     
-    if summary = w.summary(wname, options)
-      pre_trunc = summary
-      summary = summary.split[0..75].join(' ')
-      summary += '...' if pre_trunc > summary
+    if details = w.page_details(wname, options)
+      pre_trunc = details[:summary]
+      details[:summary] = details[:summary].split[0..75].join(' ')
+      details[:summary] += '...' if pre_trunc > details[:summary]
+      provider = "Wikipedia"
     end
     
     if locale.to_s =~ /^en-?/
-      if summary.blank?
+      if details.blank? || details[:summary].blank?
         Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
         return nil
       else
-        Taxon.where(id: self).update_all(wikipedia_summary: summary)
-      end
-    else
-      td = taxon_descriptions.where(:locale => locale).first
-      td ||= self.taxon_descriptions.build(:locale => locale)
-      if td
-        td.update_attributes(:body => summary)
+        Taxon.where(id: self).update_all(wikipedia_summary: details[:summary])
       end
     end
-    summary
+    td = taxon_descriptions.where(locale: locale).first
+    td ||= self.taxon_descriptions.build(locale: locale)
+    if td
+      td.update_attributes(
+        body: details[:summary],
+        provider_taxon_id: details[:id],
+        url: details[:url],
+        provider: provider || td.provider
+      )
+    end
+    # the update_all above skips callbacks, and the wikipedia URL may have changes
+    elastic_index!
+    details[:summary]
   end
 
   def auto_summary
