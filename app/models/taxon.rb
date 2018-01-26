@@ -66,6 +66,9 @@ class Taxon < ActiveRecord::Base
   belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
+  has_one :en_wikipedia_description,
+    -> { where("locale='en' AND provider='Wikipedia'") },
+    class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
   
@@ -1014,7 +1017,7 @@ class Taxon < ActiveRecord::Base
     end
     
     if locale.to_s =~ /^en-?/
-      if details[:summary].blank?
+      if details.blank? || details[:summary].blank?
         Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
         return nil
       else
@@ -1031,6 +1034,8 @@ class Taxon < ActiveRecord::Base
         provider: provider || td.provider
       )
     end
+    # the update_all above skips callbacks, and the wikipedia URL may have changes
+    elastic_index!
     details[:summary]
   end
 

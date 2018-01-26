@@ -24,7 +24,7 @@ class WikipediaService < MetaService
       title = parsed.at("parse").attribute("title").value
       pageid = parsed.at("parse").attribute("pageid").value
       summary = summary_from_parsed( parsed )
-      { id: pageid, url: url_for_title( CGI.escape( title.tr(" ", "_") ) ), summary: summary }
+      { id: pageid, url: url_for_title( title.tr(" ", "_") ), summary: summary }
     end
   end
 
