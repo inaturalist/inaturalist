@@ -2310,7 +2310,7 @@ class Observation < ActiveRecord::Base
   def method_missing(method, *args, &block)
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/ || method.to_s =~ /^ident_by_/
     if method.to_s =~ /^field:/
-      of_name = method.to_s.split(':').last
+      of_name = ObservationField.normalize_name( method.to_s.split(':').last )
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
       if ofv
         return ofv.taxon ? ofv.taxon.name : ofv.value
