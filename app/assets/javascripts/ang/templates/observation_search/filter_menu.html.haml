@@ -67,6 +67,7 @@
             #filters-categories.btn-group
               - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia' || t.name == 'Chromista'}.compact.sort_by(&:self_and_ancestor_ids).each_with_index do |t, i|
                 :ruby
+                  next unless t
                   button_attrs = {
                     type: "button",
                     class: "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}",

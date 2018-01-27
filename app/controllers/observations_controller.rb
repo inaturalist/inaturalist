@@ -118,8 +118,10 @@ class ObservationsController < ApplicationController
           t ||= Taxon.where( name: sn ).first
           t ||= TaxonName.joins(:taxon).where("taxa.is_active AND lower(taxon_names.name) = ?", sn).first.try(:taxon)
           t ||= TaxonName.where("lower(taxon_names.name) = ?", sn).first.try(:taxon)
-          t = t.current_synonymous_taxon unless t.is_active?
-          params[:taxon_id] = t.id if t
+          if t
+            t = t.current_synonymous_taxon unless t.is_active?
+            params[:taxon_id] = t.id
+          end
         end
         render layout: "bootstrap", locals: { params: params }
       end
