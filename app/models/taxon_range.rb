@@ -83,7 +83,7 @@ class TaxonRange < ActiveRecord::Base
       if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
         self.geom = geojsongeom.features.first.geometry.as_wkt
         if geom && geom.geometry_type == RGeo::Feature::Polygon
-          factory = RGeo::Geographic.simple_mercator_factory
+          factory = RGeo::Cartesian.simple_factory( srid: 0 )
           self.geom = factory.multi_polygon([geom])
         end
         self.save
