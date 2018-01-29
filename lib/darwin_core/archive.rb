@@ -46,6 +46,7 @@ module DarwinCore
 
     def generate
       @generate_started_at = Time.now
+      logger.debug "[DEBUG] Generating archive, options: #{@opts}"
       unless @opts[:metadata].to_s.downcase == "skip"
         metadata_path = make_metadata
         logger.debug "Metadata: #{metadata_path}"
@@ -318,15 +319,6 @@ module DarwinCore
           end
         end
       end
-
-      def try_and_try_again( exception, sleep_for = 60, tries = 3 )
-        begin
-          yield
-        rescue exception
-          sleep( sleep_for )
-          retry unless ( tries -= 1 ).zero?
-        end
-      end
       
       tmp_path
     end
@@ -387,8 +379,13 @@ module DarwinCore
           0
         end
         avg_observation_time = avg_batch_time / 500
-        logger.debug "Observation batch #{batch_times.size} #{"for #{options[:label]} " if options[:label]}(avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
-        Observation.preload_associations(batch, preloads)
+        msg = "Observation batch #{batch_times.size}"
+        msg += " for #{options[:label]}" if options[:label]
+        msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
+        logger.debug msg
+        try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid] ) do
+          Observation.preload_associations(batch, preloads)
+        end
         batch.each do |observation|
           yield observation
         end
