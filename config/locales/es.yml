@@ -1500,6 +1500,7 @@ es:
   follow_us_on: Síganos en
   follow_user: Seguir a %{user}
   follower: seguidor
+  followers: seguidores
   following: siguiendo
   for: para
   for_a_taxon: de un taxon
@@ -5677,6 +5678,13 @@ es:
           sitio tienen el derecho de descargar y ver todos sus datos al igual
           que los administradores del sitio iNaturalist puede. Si ese sitio
           deja la red, todos los datos de su cuenta y se van con ese sitio.
+        licensing_desc_html: "Obtención de la licencia de contenido da a otras personas
+          el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los
+          términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative
+          Commons-para compartir con los socios de datos como la \n<a href=\"http://www.gbif.org/\">Global
+          Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional,
+          organización\nintergubernamental que recopila y distribuye información sobre
+          la\nbiodiversidad de todo el mundo."
         project_addition_preferences:
           any: Cualquiera
           joined: Proyectos a los que te has unido
@@ -5687,16 +5695,6 @@ es:
         taxon_change_desc: |-
           Cuando se fusionan o cambian de nombre taxones en %{site_name}, sus observaciones, taxones incluidos, identificaciones, etc se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si se
           excluye o el cambio es ambiguo (por ejemplo, una fractura), recibirá una actualización sobre el cambio de la vinculación a una herramienta que puede utilizar para actualizar manualmente el contenido si usted elige.
-        licensing_desc_html: "Obtención de la licencia de contenido da a otras personas
-          el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los
-          términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative
-          Commons-para compartir con los socios de datos como la \n<a href=\"http://www.gbif.org/\">Global
-          Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional,
-          organización\nintergubernamental que recopila y distribuye información sobre
-          la\nbiodiversidad de todo el mundo."
-        place_help_html: |-
-          Personaliza unos pocos aspectos del sitio un lugar, al igual que los
-          nombres comunes.
         prefers_community_taxa_desc: '%{site_name} rastrea lo que usted piensa que
           son sus observaciones y lo que piensa la comunidad. La identificación que
           compartimos con los socios de datos es la de la comunidad, pero si usted
