@@ -6054,6 +6054,16 @@ fr:
           droit de télécharger et visualiser toutes vos données, tout comme
           les administrateurs du site peuvent iNaturalist. Si ce site quitte
           le réseau, toute votre compte et les données vont avec ce site.
+        licensing_desc_html: |-
+          En mettant votre contenu sous licence, vous donnerez aux autres le
+          droit de l÷’utiliser légalement sans demander votre permission s’ils
+          respectent les conditions de la licence. %{site_name} utilise votre
+          contenu sous licence Creative Commons pour l’échanger avec des
+          partenaires d’échange de données comme le
+          <a href="http://www.gbif.org/">Système mondial d’informations sur la
+          biodiversité</a> (SMIB), une organisation internationale
+          intergouvernementale qui compile et distribue des informations sur la
+          biodiversité dans le monde entier.
         muting_desc_html: |-
           <p>
             Imposer silence à quelqu’un vous évite de recevoir des notifications au sujet de choses
@@ -6083,18 +6093,6 @@ fr:
           vous recevrez une mise à jour sur le changement lié à un outil que
           vous pouvez utiliser pour mettre à jour votre contenu manuellement,
           si vous le voulez.
-        licensing_desc_html: |-
-          En mettant votre contenu sous licence, vous donnerez aux autres le
-          droit de l÷’utiliser légalement sans demander votre permission s’ils
-          respectent les conditions de la licence. %{site_name} utilise votre
-          contenu sous licence Creative Commons pour l’échanger avec des
-          partenaires d’échange de données comme le
-          <a href="http://www.gbif.org/">Système mondial d’informations sur la
-          biodiversité</a> (SMIB), une organisation internationale
-          intergouvernementale qui compile et distribue des informations sur la
-          biodiversité dans le monde entier.
-        place_help_html: Personnalise certains aspects du site pour un lieu, comme
-          les noms communs.
         prefers_community_taxa_desc: |-
           %{site_name} suit ce que vos identifications d’observations et les identifications de
           la communauté. L’identification que nous échangeons avec les partenaires

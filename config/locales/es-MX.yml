@@ -4683,13 +4683,6 @@ es-MX:
         you_may_want_to_update: Tienes algunos contenidos relacionados con estos taxa
           que es posible que desees actualizar.
       edit:
-        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
-          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
-          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
-          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
-          división de una especie en dos) recibirás\nuna actualización sobre el cambio
-          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
-          el contenido."
         licensing_desc_html: "La licencia de tu contenido permite a otra gente el
           uso legal sin\npedirte permiso siempre y cuando se apeguen a las condiciones
           de la licencia.\n%{site_name} utiliza tus licencias de  Creative Commons
@@ -4697,6 +4690,13 @@ es-MX:
           \nBiodiversity Information Facility</a> (GBIF), una organización intergubernamental
           internacional, \nque reúne y distriuye información sobre biodiversidad en
           todo el mundo."
+        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
+          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
+          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
+          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
+          división de una especie en dos) recibirás\nuna actualización sobre el cambio
+          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
+          el contenido."
     welcome:
       index:
         welcome_message_html: "%{image} te invita a utilizar este portal de información

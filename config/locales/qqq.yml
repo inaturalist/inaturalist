@@ -1336,8 +1336,8 @@ qqq:
         new_project_admin_html: where site_name is the site_name and help_email is
           an email address
       edit:
-        taxon_change_desc: where site_name is the site name
         licensing_desc_html: where site_name is the site name
+        taxon_change_desc: where site_name is the site name
         prefers_community_taxa_desc: where site_name is the site name
       show:
         take_a_chance_to_review_html: where link is a URL to the website help page
@@ -1528,6 +1528,18 @@ qqq:
           the vow_or_con block, please do not make @ references to keys that
           have not been translated.
         con: Translation of the word "consonant"
+        a: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        e: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        i: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        o: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        u: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        default: Only customize if most letters are not consonants. Do not translate
+          if you have not translated "con" above.
       gender:
         m: '{{Identical|Male}}'
         f: '{{Identical|Female}}'
