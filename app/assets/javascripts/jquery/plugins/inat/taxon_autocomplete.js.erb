@@ -258,6 +258,7 @@ $.fn.taxonAutocomplete = function( options ) {
     // set the selection's thumbnail image
     field.wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
     field.selection = ui.item;
+    field.data( 'autocomplete-item', ui.item );
     if( options.afterSelect ) { options.afterSelect( ui ); }
     return false;
   };
@@ -285,6 +286,7 @@ $.fn.taxonAutocomplete = function( options ) {
     options.idEl.val( t.id );
     autocompleter.setTitle( t, options );
     field.val( t.textTitle || t.title );
+    field.data('autocomplete-item', t);
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;

@@ -235,6 +235,7 @@ $.fn.genericAutocomplete = function( options ) {
   field.bind( "assignSelection", function( e, s, opts ) {
     opts = opts || { };
     options.idEl.val( s.id );
+    field.data( 'autocomplete-item', s );
     field.val( s.title );
     field.selection = s;
     if( field.searchClear ) { $(field.searchClear).show( ); }
