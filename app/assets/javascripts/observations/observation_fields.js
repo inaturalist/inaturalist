@@ -102,7 +102,7 @@ var ObservationFields = {
             'observation_field_values_attributes]['+index+']')
         $(this).attr('name', newName)
       })
-      $( '.visible-input', this ).remove()
+      $( '.visible-input', this ).not('.ofv_value_field').remove()
       $( '.ac-chooser', this ).remove()
       if (currentField.allowed_values && currentField.allowed_values != '') {
         var allowed_values = currentField.allowed_values.split('|')
