@@ -341,7 +341,14 @@ class TaxaController < ApplicationController
 
     filters = [ ]
     unless @q.blank?
-      filters << { match: { "names.name": { query: @q, operator: "and" } } }
+      filters << {
+        nested: {
+          path: "names",
+          query: {
+            match: { "names.name": { query: @q, operator: "and" } }
+          }
+        }
+      }
     end
     filters << { term: { is_active: true } } if @is_active === true
     filters << { term: { is_active: false } } if @is_active === false
@@ -502,7 +509,14 @@ class TaxaController < ApplicationController
     else
       params[:is_active]
     end
-    filters = [{ match: { "names.name_autocomplete": { query: @q, operator: "and" } } }]
+    filters = [{
+      nested: {
+        path: "names",
+        query: {
+          match: { "names.name_autocomplete": { query: @q, operator: "and" } }
+        }
+      }
+    }]
     filters << { term: { is_active: true } } if @is_active === true
     filters << { term: { is_active: false } } if @is_active === false
     @taxa = Taxon.elastic_paginate(
@@ -513,7 +527,14 @@ class TaxaController < ApplicationController
     )
     # attempt to fetch the best exact match, which will go first
     exact_results = Taxon.elastic_paginate(
-      filters: filters + [ { match: { "names.exact_ci" => @q } } ],
+      filters: filters + [ {
+        nested: {
+          path: "names",
+          query: {
+            match: { "names.exact_ci" => @q }
+          }
+        }
+      } ],
       sort: { observations_count: "desc" },
       per_page: 1,
       page: 1
