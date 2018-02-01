@@ -1528,6 +1528,18 @@ qqq:
           the vow_or_con block, please do not make @ references to keys that
           have not been translated.
         con: Translation of the word "consonant"
+        a: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        e: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        i: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        o: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        u: Only customize if these letters are not considered vowels. Do not translate
+          if you have not translated "vow" above.
+        default: Only customize if most letters are not consonants. Do not translate
+          if you have not translated "con" above.
       gender:
         m: '{{Identical|Male}}'
         f: '{{Identical|Female}}'
