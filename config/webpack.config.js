@@ -15,7 +15,8 @@ var config = {
     'observations-show': './observations/show/webpack-entry',
     'computer-vision': './computer_vision/webpack-entry',
     'search-slideshow': './search_slideshow/webpack-entry',
-    'stats-year': './stats/year/webpack-entry'
+    'stats-year': './stats/year/webpack-entry',
+    'projects-show': './projects/show/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js

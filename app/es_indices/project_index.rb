@@ -35,6 +35,7 @@ class Project < ActiveRecord::Base
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
       icon: icon ? FakeView.asset_url( icon.url(:span2), host: Site.default.url ) : nil,
+      header_image_url: cover ? FakeView.asset_url( cover.url, host: Site.default.url ) : nil,
       project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json)
     }
   end

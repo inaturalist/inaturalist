@@ -15,6 +15,7 @@ const TaxonThumbnail = ( {
   onClick,
   captionForTaxon,
   urlForTaxon,
+  overlay,
   config
 } ) => {
   const img = taxon.defaultPhoto ? (
@@ -54,10 +55,15 @@ const TaxonThumbnail = ( {
       badge = badgeSpan;
     }
   }
+  let overlayDiv;
+  if ( overlay ) {
+    overlayDiv = ( <div className="overlay">{ overlay }</div > );
+  }
   return (
     <div key={key} className="TaxonThumbnail thumbnail">
       { badge }
       <a href={urlForTaxon( taxon )} onClick={onClick}>{ img }</a>
+      { overlayDiv }
       <div className="caption">
         <SplitTaxon
           taxon={taxon}
@@ -86,6 +92,7 @@ TaxonThumbnail.propTypes = {
   onClick: PropTypes.func,
   captionForTaxon: PropTypes.func,
   urlForTaxon: PropTypes.func,
+  overlay: PropTypes.object,
   config: PropTypes.object
 };
 

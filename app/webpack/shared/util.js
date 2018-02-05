@@ -74,6 +74,11 @@ function isBlank( val ) {
   return _.isNumber( val ) ? !_.isFinite( val ) : _.isEmpty( val );
 }
 
+function numberWithCommas( num ) {
+  if ( !num && num !== 0 ) { return ""; }
+  return Number( num ).toLocaleString( );
+}
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -110,5 +115,6 @@ export {
   objectToComparable,
   resizeUpload,
   isBlank,
+  numberWithCommas,
   COLORS
 };

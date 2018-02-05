@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  scope :load_for_index, -> { includes( :roles ) }
+
+
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :icon, type: "keyword", index: false

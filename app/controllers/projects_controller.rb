@@ -89,6 +89,12 @@ class ProjectsController < ApplicationController
   end
   
   def show
+    projects_response = INatAPIService.get( "/projects/#{@project.id}" )
+    return render_404 unless projects_response
+    @projects_data = projects_response.results[0]
+    @current_tab = params[:tab] || "overview";
+    return render layout: "bootstrap", action: "show2"
+
     respond_to do |format|
 
       list_observed_and_total = @project.list_observed_and_total

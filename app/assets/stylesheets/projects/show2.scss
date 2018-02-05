@@ -1,0 +1,768 @@
+@import "../colors";
+@import "../shared/loading_spinner";
+@import "../users/user_image";
+@import "../shared/taxon_photo";
+
+body {
+  min-width: 980px;
+}
+
+.bootstrap {
+  a {
+    color: inherit;
+  }
+}
+#header {
+  margin-bottom: 0px;
+}
+#bodywrapper:after {
+  height: 196px;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.count, .count a {
+  color: inherit;
+}
+
+a.UserImage {
+  border: none;
+}
+
+.loading_spinner.huge {
+  display: block;
+  margin: 0px auto;
+  margin-top: 60px;
+}
+
+.bootstrap h2 {
+  font-size: 28px;
+}
+
+button.btn-green {
+  font-weight: 700;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 30px;
+  background: $inat-green;
+  border: none;
+}
+
+button.btn-white {
+  font-weight: 700;
+  padding: 5px 15px;
+  border-radius: 30px;
+  background: white;
+  border: 1px solid $border-grey;
+}
+
+.project-header {
+  height: 350px;
+  position: relative;
+  overflow: hidden;
+  .project-header-background {
+    position: absolute;
+    height: 350px;
+    width: 100%;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: "blur(20px)";
+  }
+  .header-grid {
+    margin-top: 25px;
+    & > .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .title-container {
+      height: 300px;
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position-x: center;
+      background-position-y: 20%;
+      display: flex;
+      .header-title {
+        background: rgba(0,0,0,0.7);
+        white-space: nowrap;
+        align-self: flex-end;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        max-width: 93%;
+        .title-icon {
+          height: 45px;
+          width: 45px;
+          background-size: cover;
+          float: left;
+        }
+        .title-text {
+          color: white;
+          font-size: 26px;
+          line-height: 45px;
+          padding: 0px 15px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+    .header-about {
+      height: 300px;
+      padding: 30px;
+      background-color: #28387d;
+      color: white;
+      .header-about-title {
+        font-size: 25px;
+        margin-top: 5px;
+      }
+      .header-about-follow {
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        button {
+          background: rgba(255, 255, 255, 0.2);
+          border-color: rgba(255, 255, 255, 0.3);
+          border-radius: 30px;
+          padding: 3px 20px 1px 20px;
+          font-size: 15px;
+          border-style: solid;
+        }
+      }
+      .header-about-text {
+        margin-top: 20px;
+        overflow: hidden;
+        white-space: pre-line;
+        text-overflow: ellipsis;
+        display: inline-block;
+        font-size: 16px;
+        line-height: 22px;
+      }
+      .header-about-read-more {
+        font-weight: 700;
+        font-size: 15px;
+        i {
+          font-size: 9px;
+          margin-left: 3px;
+          font-weight: 100;
+        }
+      }
+      .header-about-news {
+        position: absolute;
+        bottom: 25px;
+        right: 30px;
+        text-transform: uppercase;
+        font-size: 16px;
+        i {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+.StatsHeader {
+  border-bottom: 2px solid #eee;
+  height: 80px;
+  ul {
+    padding: 0;
+    li {
+      height: 80px;
+      float: left;
+      width: 16%;
+      list-style: none;
+      margin-right: 3px;
+    }
+  }
+  .overview-tab {
+    padding: 47px 0px 0px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    &.active, &:hover {
+      border-bottom: 3px solid $inat-green;
+    }
+  }
+  .stat-tab {
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 22px 0px 0px 20px;
+    cursor: pointer;
+    color: #888;
+    .stat {
+      display: block;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    &.active {
+      color: inherit;
+    }
+    &.active, &:hover {
+      border-bottom: 3px solid $inat-green;
+    }
+  }
+  .stats-tab {
+    button {
+      font-size: 20px;
+      padding: 10px 45px;
+      border: 1px solid $border-grey;
+      border-radius: 30px;
+      margin-top: 18px;
+      white-space: nowrap;
+      i {
+        color: $inat-green;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.Content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+  background: $page-background-grey;
+}
+
+.Identifiers, .Observers {
+  table {
+    width: 100%;
+    font-size: 16px;
+    margin-top: 40px;
+    thead {
+      tr {
+        border-bottom: 2px solid $border-grey;
+        height: 28px;
+        font-size: 15px;
+        th.clicky {
+          cursor: pointer;
+          text-align: center
+        }
+        i.fa-caret-down {
+          margin: 0px 12px 0px 4px;
+          color: #e1e1e1;
+        }
+      }
+    }
+    tr {
+      height: 57px;
+      &:not(:last-child) {
+        border-bottom: 1px solid $border-grey;
+      }
+      &.odd {
+        background: white;
+      }
+      th.rank, td.rank {
+        width: 70px;
+        text-align: center
+      }
+      td.count {
+        width: 120px;
+        max-width: 120px;
+        padding: 8px;
+        &.sorted {
+          background: $border-grey;
+        }
+      }
+      .UserImage {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.leaders-grid {
+  .no-padding + .no-padding {
+    .LeaderboardPanel {
+      border-left: none;
+    }
+  }
+  & > .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  margin-bottom: 20px;
+}
+
+.LeaderboardPanel {
+  border: 1px solid $border-grey;
+  padding: 20px;
+  background: white;
+  margin-top: 50px;
+  .taxon {
+    a {
+      color: inherit !important;
+      font-style: inherit;
+    }
+    .secondary-name {
+      display: none;
+    }
+  }
+  .leader {
+    margin-bottom: 5px;
+    height: 85px;
+    .taxon-image, .userimage {
+      width: 75px;
+      height: 75px;
+    }
+    .icon {
+      width: 90px;
+      float: left;
+    }
+    .leader-header {
+      font-size: 16px;
+      .leaderboard-title {
+        font-size: 22px;
+        padding: 10px 0px;
+      }
+      .leader-row {
+        display: flex;
+        justify-content: space-between;
+        .leader-label {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-right: 5px;
+        }
+        .leader-count {
+          padding-right: 8px;
+        }
+      }
+    }
+  }
+  table {
+    width: 100%;
+    border-top: 1px solid $border-grey;
+    margin-bottom: 15px;
+    tr {
+      border-bottom: 1px solid $border-grey;
+      height: 45px;
+      font-size: 16px;
+      td.leader-name {
+        padding-left: 8px;
+        .userimage, .taxon-image {
+          width: 30px;
+          height: 30px;
+          margin-right: 10px;
+          float: left;
+        }
+        .SplitTaxon, .userlink {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 28px;
+        }
+      }
+      td.leader-count {
+        text-align: right;
+        padding-right: 8px;
+      }
+    }
+  }
+  button {
+    margin-left: 10px;
+  }
+}
+
+.TaxonMap {
+  height: 500px;
+}
+
+.TopSpecies {
+  .results {
+    margin-left: -10px;
+    margin-right: -10px;
+    .result {
+      display: inline-block;
+      width: 20%;
+      padding: 0px 10px 20px 10px;
+      vertical-align: top;
+      .thumbnail {
+        padding: 0;
+        margin-bottom: 5px;
+        position: relative;
+        .overlay {
+          position: absolute;
+          background-color: rgba(0,0,0,0.3);
+          color: white;
+          width: 100%;
+          line-height: 30px;
+          padding: 0 9px;
+          margin-top: -30px;
+        }
+        .display-name {
+          display: block;
+          font-weight: 700;
+          color: inherit;
+          font-size: 16px;
+        }
+        .caption {
+          height: 58px;
+          .display-name, .secondary-name {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+      .CoverImage {
+        height: 210px;
+      }
+    }
+  }
+}
+
+.ObservationsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .ObservationPhoto {
+    flex-grow: 1;
+    padding: 2px;
+    min-width: 200px;
+    .photo {
+      background: #ccc;
+      text-align: center;
+      i {
+        color: white;
+        font-size: 180px;
+      }
+    }
+    .caption {
+      background: #464646;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      position: relative;
+      padding-right: 50px;
+      white-space: nowrap;
+      .display-name {
+        font-size: 17px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .secondary-name {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .UserImage {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        border: 2px solid white;
+        height: 45px;
+        width: 45px;
+        i.icon-person {
+          font-size: 36px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+// https://css-tricks.com/snippets/css/ribbon/
+.ribbon-container {
+  width: 75px;
+  position: relative;
+  z-index: 1;
+}
+.ribbon {
+  font-size: 12px;
+  line-height: 18px;
+  background: $inat-green;
+  color: #fff;
+  text-align: center;
+  margin-top: -28px;
+  font-weight: 600;
+}
+$ribbon-border-width: 9px;
+.ribbon:before, .ribbon:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: -5px;
+  border: $ribbon-border-width solid darken( $inat-green, 5% );
+  z-index: -1;
+}
+.ribbon:before {
+  left: -0.7em;
+  border-right-width: 16px;
+  border-left-color: transparent;
+  border-left-width: 4px
+}
+.ribbon:after {
+  right: -0.7em;
+  border-left-width: 16px;
+  border-right-color: transparent;
+  border-right-width: 4px
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: darken( $inat-green, 10% ) transparent transparent transparent;
+  bottom: -5px;
+}
+.ribbon .ribbon-content:before {
+  left: 0;
+  border-width: 5px 0 0 12px;
+}
+.ribbon .ribbon-content:after {
+  right: 0;
+  border-width: 5px 12px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+$nav-btn-dim: 40px;
+.nav-buttons .nav-btn {
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  padding: 0 !important;
+  border: 0 transparent !important;
+  margin: 0 0 10px 10px;
+}
+.nav-buttons .nav-btn:hover,
+.nav-buttons .nav-btn:focus,
+.nav-buttons .nav-btn:active {
+  background: none;
+}
+.nav-buttons .nav-btn:before {
+  display: block;
+  content: '\276E';
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  border-radius: 100px;
+  background-color: $inat-green;
+  color: white;
+  line-height: $nav-btn-dim * 1.05;
+  font-weight: bold;
+  font-size: $nav-btn-dim / 2;
+}
+❯
+.nav-buttons .nav-btn:hover:before {
+  background-color: $inat-green-light;
+}
+.nav-buttons .next-btn:before {
+  content: '\276F';
+}
+.Carousel .viewall, {
+  width: 100%;
+  height: 262px;
+  background-color: #333;
+  color: white;
+  display: block;
+  line-height: 262px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
+  color: white;
+}
+
+
+.RecentObservations { margin-top: 10px; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+[role="dialog"] .PhotoModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  opacity: 0.8;
+  z-index: 1;
+}
+[role="dialog"] .PhotoModal .close:hover {
+  color: white;
+  opacity: 0.5;
+}
+.PhotoModal .btn.nav-button {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 100px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  line-height: 30px;
+  text-align: center;
+  left: -100px;
+}
+.PhotoModal .nav-button.next {
+  left: auto;
+  right: -100px;
+}
+.PhotoModal .modal-dialog {
+  height: 100%;
+}
+.PhotoModal .modal-content {
+  height: 90%;
+  padding: 0px;
+}
+.PhotoModal .SplitTaxon {
+  font-size: 130%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.PhotoModal .SplitTaxon a {
+  color: black;
+}
+.PhotoModal .display-name {
+  font-size: 150%;
+}
+.PhotoModal .photo-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.PhotoModal .photo-modal-content:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: black;
+}
+.PhotoModal .photo-modal-content .photo-container {
+  flex-grow: 2;
+  padding: 20px;
+}
+.PhotoModal .photo-modal-content .photo-container:hover {
+  opacity: 1;
+}
+.PhotoModal .photo-modal-content .photo-attribution {
+  padding: 10px;
+  background-color: black;
+  color: #ccc;
+  text-align: center;
+  font-size: smaller;
+}
+.PhotoModal .photo-modal-content .photo-attribution a {
+  color: white;
+}
+.PhotoModal .photo-modal-content .photo-attribution > * {
+  border-left: 1px solid #666;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.PhotoModal .photo-modal-content .photo-attribution > *:first-child {
+  border: 0 transparent;
+  padding: 0;
+  margin: 0;
+}
+.PhotoModal .photo-modal-content .taxon-content {
+  width: 100%;
+  line-height: 1.2;
+  padding: 20px;
+}
+.PhotoModal .taxon-link i {
+  font-size: 200%;
+  color: $inat-green;
+}
+
+@media (max-width: 1000px) {
+  .bootstrap .container {
+    width: auto;
+  }
+}
