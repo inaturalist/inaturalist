@@ -1706,6 +1706,11 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def torquemap
+    @params = params.except(:controller, :action)
+    render layout: "bootstrap"
+  end
+
   private
 
   def observation_params(options = {})
