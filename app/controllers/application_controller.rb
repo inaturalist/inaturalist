@@ -143,7 +143,6 @@ class ApplicationController < ActionController::Base
   end
 
   def check_preferred_place
-    return true unless params[:test] == "place-alert"
     return true unless current_user
     return true if current_user.prefers_no_place?
     return true unless session[:potential_place].blank?
