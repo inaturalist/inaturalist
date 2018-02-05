@@ -1579,6 +1579,7 @@ fr:
   follow_us_on: Suivez-nous sur
   follow_user: Suivre %{user}
   follower: abonné
+  followers: Abonnés
   following: vous suivez
   for: pour
   for_a_taxon: pour un taxon
@@ -1931,6 +1932,7 @@ fr:
   journal_archives_for: Archives du journal de
   journal_post: Note du journal
   journal_post_deleted: Note de journal supprimée.
+  journal_posts: Publications du journal
   jpg_png_or_gif: JPG, PNG ou GIF
   jump_to_letter: Sauter à la lettre
   just_a_reminder: Juste un rappel, comme vous pouvez avoir donné des droits aux superviseurs
@@ -2135,9 +2137,11 @@ fr:
     de date.
   locales_: Paramètres régionaux
   locales:
+    ar: Arabe
     bg: Bulgare
     br: Breton
     ca: Catalan
+    de: Allemand
     en-US: Anglais (États-Unis)
     en: Anglais
     es-ES: Espagnol (Espagne)
@@ -3061,22 +3065,31 @@ fr:
     afghanistan: Afghanistan
     africa: Afrique
     antigua_and_barbuda: Antigua-et-Barbuda
+    australia: Australie
+    austria: Autriche
     belgium: Belgique
     bosnia_and_herzegovina: Bosnie-Herzégovine
     brazil: Brésil
     central_america: Amérique centrale
+    china: Chine
+    colombia: Colombie
+    denmark: Danemark
     egypt: Égypte
     equatorial_guinea: Guinée équatoriale
     europe: Europe
     france: France
     germany: Allemagne
     greece: Grèce
+    hong_kong: Hong-Kong
     hungary: Hongrie
     italy: Italie
+    india: Inde
     iraq: Iraq
     japan: Japon
+    korea: Corée
     martinique: Martinique
     mexico: Mexique
+    netherlands: Pays-Bas
     new_guinea: Nouvelle-Guinée
     new_zealand: Nouvelle-Zélande
     north_africa: Afrique du Nord
@@ -3085,13 +3098,17 @@ fr:
     panama: Panama
     peru: Pérou
     poland: Pologne
+    portugal: Portugal
     republic_of_congo: Congo
     russia: Russie
     saudi_arabia: Arabie saoudite
     sao_tome_and_principe: Sao Tomé-et-Principe
+    singapore: Singapour
+    south_africa: Afrique du Sud
     south_america: Amérique du Sud
     spain: Espagne
     sweden: Suède
+    switzerland: Suisse
     syria: Syrie
     thailand: Thaïlande
     trinidad_and_tobago: Trinité-et-Tobago
@@ -4295,7 +4312,7 @@ fr:
   user_blocked: Utilisateur bloqué
   user_commented: '%{user} a commenté'
   user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
-  user_disagrees_this_is_taxon: '%{user} désapprouve, ceci est %{taxon}'
+  user_disagrees_this_is_taxon: '%{user} ne pense pas que ce soit %{taxon}'
   user_faved_a_noun_by_owner: '%{user} a mis en favori %{noun} par %{owner}'
   user_follows: '%{user} suit'
   user_has_opted_out_of_community_id: L’utilisateur a refusé l’ID de la communauté
@@ -4543,6 +4560,8 @@ fr:
   wondering_what_to_do_next: Voici quelques étapes suivantes pour vous guider dans
     l’observation et l’identification du monde naturel
   would_you_like_to: Aimeriez-vous en
+  would_you_prefer_to_view_common_names_used_in_place_html: Préférez-vous voir les
+    noms communs utilisés à <strong>%{place}</strong> ?
   would_like_some_help_identifying_this: aimerait de l’aide pour identifier ceci
   x_admin: que %{login} administre
   x_blog: Blogue de %{x}
@@ -6045,6 +6064,9 @@ fr:
         common_names_desc: |-
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          Si vous changez d’avis, vous pouvez toujours
+          <a href='/users/edit'>modifier vos paramètres</a>.
         inaturalist_network_affiliation_desc_html: |-
           Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
           sites Web localisés liés à la communauté mondiale de iNaturalist.
@@ -6076,6 +6098,10 @@ fr:
             vous pourrez manquer des notifications importantes, comme
             des identifications qui modifient l’ID de la communauté sur vos observations.
           </p>
+        name_place_help_html: Prioriser les noms communs utilisés à cet endroit.
+        place_preference_changed_notice_html: |-
+          Préférence de lieu modifiée. Si vous changez d’avis, vous pouvez toujours
+          <a href='/users/edit'>modifier vos paramètres</a>.
         project_addition_preferences:
           any: Tout
           joined: Projets que vous avez rejoint
@@ -6102,6 +6128,9 @@ fr:
           l’opinion de la communauté ne sera pas favorisée par rapport à la vôtre, ce qui veut dire que vos
           observations ne seront pas admissibles au calibre recherche, à moins que vous
           ne soyez d’accord avec la communauté.
+        search_place_help_html: Endroit par défaut pour les recherches d’observation.
+        scientific_name_first_desc: Afficher les noms scientifiques avant les noms
+          communs.
         youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
           un blocage pour en ajouter un autre.
       show:

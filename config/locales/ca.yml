@@ -2051,9 +2051,11 @@ ca:
     de la data.
   locales_: Locals
   locales:
+    ar: Àrab
     bg: Búlgar
     br: Bretó
     ca: Català
+    de: Alemany
     en-US: Anglès (Estats Units)
     en: Anglès
     es-ES: Castellà (Espanya)
@@ -2958,22 +2960,31 @@ ca:
     afghanistan: Afganistan
     africa: Àfrica
     antigua_and_barbuda: Antigua i Barbuda
+    australia: Austràlia
+    austria: Àustria
     belgium: Bèlgica
     bosnia_and_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
     central_america: Amèrica Central
+    china: Xina
+    colombia: Colòmbia
+    denmark: Dinamarca
     egypt: Egipte
     equatorial_guinea: Guinea Equatorial
     europe: Europa
     france: França
     germany: Alemanya
     greece: Grècia
+    hong_kong: Hong Kong
     hungary: Hongria
     italy: Itàlia
+    india: Índia
     iraq: Iraq
     japan: Japó
+    korea: Corea
     martinique: Martinica
     mexico: Mèxic
+    netherlands: Països Baixos
     new_guinea: Nova Guinea
     new_zealand: Nova Zelanda
     north_africa: Àfrica del Nord
@@ -2982,13 +2993,17 @@ ca:
     panama: Panamà
     peru: Perú
     poland: Polònia
+    portugal: Portugal
     republic_of_congo: República del Congo
     russia: Rússia
     saudi_arabia: Aràbia Saudita
     sao_tome_and_principe: São Tomé i Principe
+    singapore: Singapur
+    south_africa: Sud-àfrica
     south_america: Amèrica del Sud
     spain: Espanya
     sweden: Suècia
+    switzerland: Suïssa
     syria: Síria
     thailand: Tailàndia
     trinidad_and_tobago: Trinidad i Tobago
@@ -5619,6 +5634,8 @@ ca:
           de la comunitat no tindrà prioritat sobre la vostra. Això significa que
           les vostres observacions únicament tindran el grau de recerca, quan coincideix
           la vostra opinió i la de la comunitat.'
+        search_place_help_html: Lloc per defecte per a les cerques d’observacions.
+        scientific_name_first_desc: Mostra els noms científics abans dels vernàculs.
         youve_used_all_of_your_blocks: Heu utilitzat tots els vostres bloquejos. Elimineu
           un bloqueix per afegir un altre.
       show:

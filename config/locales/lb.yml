@@ -691,9 +691,11 @@ lb:
   loading_map: Kaart gëtt gelueden…
   loading_suggestions: Virschléi gi gelueden...
   locales:
+    ar: Arabesch
     bg: Bulgaresch
     br: Bretonesch
     ca: Katalanesch
+    de: Däitsch
     en: Englesch
     es-ES: Spuenesch (Spuenien)
     es: Spuenesch
@@ -1009,29 +1011,41 @@ lb:
     afghanistan: Afghanistan
     africa: Afrika
     antigua_and_barbuda: Antigua a Barbuda
+    australia: Australien
+    austria: Éisträich
     belgium: Belsch
     brazil: Brasilien
     central_america: Zentralamerika
+    china: China
+    colombia: Kolumbien
+    denmark: Dänemark
     europe: Europa
     france: Frankräich
     germany: Däitschland
     greece: Griicheland
     hungary: Ungarn
     italy: Italien
+    india: Indien
     iraq: Irak
     japan: Japan
+    korea: Korea
     mexico: Mexiko
+    netherlands: Holland
     new_zealand: Neiséiland
     north_africa: Nordafrika
     north_america: Nordamerika
     panama: Panama
     peru: Peru
     poland: Polen
+    portugal: Portugal
     russia: Russland
     saudi_arabia: Saudi Arabien
+    singapore: Singapur
+    south_africa: Südafrika
     south_america: Südamerika
     spain: Spuenien
     sweden: Schweden
+    switzerland: Schwäiz
     syria: Syrien
     thailand: Thailand
     turkey: Tierkei
@@ -1389,9 +1403,12 @@ lb:
           Insect life stage=adult: Erwuessen
     users:
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: Wann Dir Är
+          Meenung ännert kënnt Dir ëmmer <a href='/users/edit'>Är Astellungen änneren</a>.
         project_addition_preferences:
           joined: Projeten deenen dir bäigetrueden sidd
           none: Keen, nëmmen dir kennt är Observatioun a Projete bäisetzen
+        scientific_name_first_desc: Déi wëssentlech Nimm virun de populären Nimm weisen.
     welcome:
       index:
         connect_with_nature: Mat der Natur verbannen
