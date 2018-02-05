@@ -7,7 +7,7 @@ import { showPhotoModal, setPhotoModal } from "../../../taxa/shared/ducks/photo_
 function mapStateToProps( state ) {
   return {
     observations: state.project.observations_loaded ?
-      _.filter( state.project.observations.results, r => r.photos.length > 0 ) : null,
+      _.filter( state.project.observations.results, r => r.taxon && r.photos.length > 0 ) : null,
     url: `/observations?${stringify( state.project.search_params )}`
   };
 }

@@ -13,7 +13,7 @@ const OverviewTab = ( { project, config } ) => {
   const instances = project.observations_loaded ? project.observations.results : [];
   if ( _.isEmpty( instances ) ) { return ( <span /> ); }
   return (
-    <div className="Overview">
+    <div className="OverviewTab">
       <Grid>
         <Row>
           <Col xs={ 12 }>

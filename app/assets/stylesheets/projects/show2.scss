@@ -225,6 +225,13 @@ button.btn-white {
   background: $page-background-grey;
 }
 
+.OverviewTab {
+  .ObservationsGrid {
+    height: 234px;
+    overflow: hidden
+  }
+}
+
 .Identifiers, .Observers {
   table {
     width: 100%;
