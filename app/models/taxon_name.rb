@@ -229,8 +229,10 @@ class TaxonName < ActiveRecord::Base
     else
       place_names = []
     end
-    language_name = language_for_locale(
-      options[:locale] || options[:site].try(:locale) || I18n.locale ) || "english"
+    locale = options[:locale]
+    locale = options[:site].try(:locale) if locale.blank?
+    locale = I18n.locale if locale.blank?
+    language_name = language_for_locale( locale ) || "english"
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
     engnames = common_names.select {|n| n.is_english? }
     unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }
