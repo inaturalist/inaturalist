@@ -1524,6 +1524,7 @@ it:
   follow_us_on: Seguici su
   follow_user: Segui %{user}
   follower: seguace
+  followers: Seguaci
   following: seguendo
   for: di
   for_a_taxon: per un taxon
@@ -1867,6 +1868,7 @@ it:
   journal_archives_for: Archivi dei diari per
   journal_post: Post del diario
   journal_post_deleted: Post del diario cancellato.
+  journal_posts: Post del diario
   jpg_png_or_gif: JPG, PNG, o GIF
   jump_to_letter: Vai alla lettera
   just_a_reminder: Solo un promemoria, dal momento che potresti aver garantito ai
@@ -4450,6 +4452,8 @@ it:
   wondering_what_to_do_next: Ecco alcuni altri passaggi per procedere ad osservare
     e identificare il mondo naturale
   would_you_like_to: Ti piacerebbe
+  would_you_prefer_to_view_common_names_used_in_place_html: Preferisci vedere i nomi
+    comuni usati in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: vorresti qualche aiuto per identificare questo
   x_admin: '%{login} amministra'
   x_blog: Il Blog di %{x}
@@ -5766,6 +5770,7 @@ it:
           <p>
             Puoi silenziare tutte le persone che vuoi, ma ricordati che ti potrai perdere importanti notifiche, come identificazioni che spostano l'ID della Community delle tue osservazioni.
           </p>
+        name_place_help_html: Dai priorità ai nomi comuni usati in questo luogo.
         place_preference_changed_notice_html: Preferenza luogo modificato. Se cambi
           idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         project_addition_preferences:
