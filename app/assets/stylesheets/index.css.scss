@@ -763,8 +763,12 @@ span.button {
   color: DeepPink;
 }
 
-.species .sciname,
 .genus .sciname,
+.species .sciname,
+.subspecies .sciname,
+.infraspecies .sciname,
+.variety .sciname,
+.hybrid .sciname,
 .sciname.genus,
 .sciname.species,
 .sciname.infraspecies,

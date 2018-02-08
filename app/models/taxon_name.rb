@@ -173,7 +173,7 @@ class TaxonName < ActiveRecord::Base
 
   def as_indexed_json(options={})
     json = {
-      name: name.blank? ? nil : name.slice(0,1).capitalize + name.slice(1..-1),
+      name: name.blank? ? nil : name,
       locale: locale_for_lexicon,
       position: position,
       place_taxon_names: place_taxon_names.map(&:as_indexed_json)
