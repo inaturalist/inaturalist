@@ -235,7 +235,7 @@
       <% for taxon in @taxa %>
         <div class="taxon_list_taxon">
           <% if @view == TaxaController::LIST_VIEW -%>
-            <%= link_to t(:search_this_taxon), url_for_params(:taxon_id => taxon.id, :without => :q), :rel => "nofollow", :class => "right", :rel => "nofollow" %>
+            <%= link_to t(:search_this_taxon), url_for_params( taxon_id: taxon.id, without: :q ), rel: "nofollow", class: "right" %>
             <h3>
               <%- 
                 link_txt = render(:partial => 'shared/taxon', :object => taxon)

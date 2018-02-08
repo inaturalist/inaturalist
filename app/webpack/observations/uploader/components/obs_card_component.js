@@ -240,6 +240,7 @@ class ObsCardComponent extends Component {
                       species_guess: null } );
                 }
               } }
+              config={ this.props.config }
             />
             <DateTimeFieldWrapper
               key={ `datetime${obsCard.selected_date}`}
@@ -326,7 +327,8 @@ ObsCardComponent.propTypes = {
   selectObsCards: PropTypes.func,
   setState: PropTypes.func,
   shiftKeyPressed: PropTypes.bool,
-  updateObsCard: PropTypes.func
+  updateObsCard: PropTypes.func,
+  config: PropTypes.object
 };
 
 export default pipe(

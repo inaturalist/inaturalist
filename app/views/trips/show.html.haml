@@ -13,7 +13,7 @@
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
-  %ul.breadcrumb
+  %ul.breadcrumb.clearfix
     %li
       - if @trip.parent.is_a?(Project)
         = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)

@@ -58,6 +58,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.gbifLayerHover = options.gbifLayerHover || $(elt).data('gbif-layer-hover') || I18n.t("maps.overlays.gbif_network_description");
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
+  options.gestureHandling = options.gestureHandling || $( elt ).data( "gesture-handling" );
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -92,6 +93,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         zoomControl: (options.zoomControl !== false),
         zoomControlOptions: options.zoomControlOptions,
         scrollwheel: (options.scrollwheel !== false),
+        gestureHandling: options.gestureHandling,
         styles: [
           {
             stylers: [

@@ -24,6 +24,11 @@ class ObservationFieldInput extends React.Component {
     this.setUpObservationFieldAutocomplete( );
   }
 
+  componentDidUpdate( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".observation-field :input:visible:first", domNode ).focus( );
+  }
+
   onChangeHandler( e ) {
     let modified = true;
     if ( _.isObject( e ) && e.target ) {
@@ -200,6 +205,7 @@ class ObservationFieldInput extends React.Component {
             this.onChangeHandler( null );
           } }
           placeholder={ I18n.t( "species_name_cap" ) }
+          config={ this.props.config }
         />
         { add }
       </div>
@@ -385,7 +391,8 @@ ObservationFieldInput.propTypes = {
   onSubmit: PropTypes.func,
   originalOfv: PropTypes.object,
   required: PropTypes.bool,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  config: PropTypes.object
 };
 
 ObservationFieldInput.defaultProps = {

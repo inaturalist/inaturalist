@@ -814,22 +814,21 @@ bg:
     bg: български
     br: бретонски
     ca: каталонски
-    en: английски
     en-US: английски (САЩ)
-    es: испански
+    en: английски
     es-ES: испански (Испания)
     es-MX: испански (Мексико)
+    es: испански
+    eu: баски
     fi: Приключване
     fr: френски
-    eu: баски
     gl: галисийски
-    ko: корейски
     id: индонезийски
     it: италиански
-    mk: македонски
-    pt: португалски
-    pt-BR: португалски (Бразилия)
     ja: японски
+    ko: корейски
+    mk: македонски
+    pt-BR: португалски (Бразилия)
     zh-CN: китайски (опростен)
     zh-TW: китайски (традиционен)
   locality_notes: Бележки за местността
@@ -1368,7 +1367,9 @@ bg:
   receive_email_notifications_when_people_leave_you: Получаване на известия по имейл
     за
   received: получени
+  recent: Последни
   recent_observations: Последни наблюдения
+  recent_updates: Последни промени
   recently_active: Последно активни
   recently_active_projects_from_everywhere: Последно активни проекти от всякъде
   recently_active_projects_from_place: Последно активни проекти от %{place}
@@ -1460,6 +1461,7 @@ bg:
   sent: изпратени
   september: септември
   settings: настройки
+  share: Споделяне
   show: Покажи
   show_active_and_inactive_taxa: Покажи активни и неактивни таксони
   show_default_taxon_photos: показвай снимките по подразбиране за таксоните
@@ -1485,6 +1487,7 @@ bg:
   sign_up: Регистриране
   sign_up_exclamation: Регистрирайте се!
   sign_in_exclamation: Влезте!
+  skip_to_next_page: Направо към следващата страница
   some_rights_reserved: някои права запазени
   sorry_you_cant_delete_your_own_life_list: Съжаляваме, не можете да изтриете собствения
     си житейски списък.
@@ -1726,10 +1729,10 @@ bg:
   which_projects_can_add_your_observations?: Кои проекти могат да добавят Ваши наблюдения?
   within_inaturalist: В %{site_name}
   x_journal: Дневникът на %{user}
-  x_journal_archives_for_y: Дневникът на %{user} &middot; Архиви за
-  x_journal_editing: Дневникът на %{user} &middot; Редактиране
-  x_journal_middot: Дневникът на %{user} &middot;
-  x_journal_new_post: Дневникът на %{user} &middot; Нова публикация
+  x_journal_archives_for_y: Дневникът на %{user} • Архиви за
+  x_journal_editing: Дневникът на %{user} • Редактиране
+  x_journal_middot: Дневникът на %{user} •;
+  x_journal_new_post: Дневникът на %{user} • Нова публикация
   x_wrote_a_new_post_html: '%{x} написа нова публикация'
   x_wrote_y_new_posts_html: '%{x} написа %{y} нови публикации'
   year: Година
@@ -1932,8 +1935,6 @@ bg:
           или ако промяната е двузначна (например разделяне на таксон), ще получите
           известие за промяната с препратка към инструмент, с който собственоръчно
           да обновите съдържанието си ако пожелаете.
-        place_help_html: Персонализира някои аспекти от сайта спрямо дадено място
-          - например местни названия.
         prefers_community_taxa_desc: '%{site_name} следи както Вашето мнение за това
           какво мислите, че сте наблюдавали, така и мнението на общността. Разпознатият
           таксон, който споделяме с информационните си партньори, винаги е този на

@@ -12,7 +12,8 @@ function mapStateToProps( state ) {
     photo: state.photoModal.photo,
     taxon: state.photoModal.taxon,
     observation: state.photoModal.observation,
-    visible: state.photoModal.visible
+    visible: state.photoModal.visible,
+    config: state.config
   };
   if ( state.taxon.taxon && state.photoModal.taxon &&
     state.taxon.taxon.id === state.photoModal.taxon.id

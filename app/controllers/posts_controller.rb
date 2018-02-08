@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :doorkeeper_authorize!, :only => [ :for_project_user, :for_user ], :if => lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, :except => [:index, :show, :browse, :for_user ], :unless => lambda { authenticated_with_oauth? }
+  before_filter :authenticate_user!, :except => [:index, :show, :browse, :for_user, :archives ], :unless => lambda { authenticated_with_oauth? }
   load_only = [ :show, :edit, :update, :destroy ]
   before_filter :load_post, :only => load_only
   blocks_spam :only => load_only, :instance => :post
@@ -17,8 +17,11 @@ class PostsController < ApplicationController
     elsif !@parent.is_a?(Site)
       block_if_spam(@parent) && return
     end
+    per_page = params[:per_page].to_i
+    per_page = 10 if per_page <= 0
+    per_page = 200 if per_page > 200
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
-      per_page(10).order("published_at DESC")
+      per_page( per_page ).order( "published_at DESC" )
     
     # Grab the monthly counts of all posts to show archives
     get_archives
@@ -26,6 +29,8 @@ class PostsController < ApplicationController
     if @parent == current_user || (@parent.respond_to?(:editable_by?) && @parent.editable_by?(current_user))
       @drafts = scope.unpublished.order("created_at DESC")
     end
+
+    pagination_headers_for( @posts )
     
     respond_to do |format|
       format.html
@@ -82,7 +87,7 @@ class PostsController < ApplicationController
         @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
         @trip = @post
         @observations = @post.observations.order_by('observed_on')
-        @shareable_image_url = @post.body[/img.+?src="(.+?)"/, 1] if @post.body
+        @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= if @post.parent_type == "Project"
           FakeView.image_url(@post.parent.icon.url(:original))
         else

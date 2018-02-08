@@ -5,13 +5,13 @@ body > div > [role="dialog"] .ActivityItem {
   .identification {
     display: inline-block;
     width: 100%;
+    > .taxon {
+      display: flex;
+      overflow: hidden;
+    }
   }
   .buttons {
     float: right;
-  }
-  .taxon {
-    display: flex;
-    overflow: hidden;
   }
   .taxon-image {
     width: 44px;
@@ -23,17 +23,13 @@ body > div > [role="dialog"] .ActivityItem {
     display: inline-block;
   }
   span.taxon {
-    display: inline-block;
-    a.sciname {
+    & > a.display-name,
+    & > .display-name {
       color: #000;
-      font-size: 14px;
-      line-height: 16px;
     }
-    & > a.display-name {
+    a.sciname,
+    .sciname {
       color: #000;
-      font-size: 20px;
-      display: block;
-      line-height: 25px;
     }
     &.has-com-name .member-group:before {
       content: " - ";
@@ -44,36 +40,38 @@ body > div > [role="dialog"] .ActivityItem {
       .sciname {
         font-style: normal;
       }
-      .taxon {
-        display: inline;
-      }
-      a.display-name {
+      a.display-name,
+      .display-name {
         color: #000;
-        font-size: 14px;
         font-weight: normal;
-        display: inline;
-        line-height: 14px;
       }
     }
   }
   .time {
-    float: right;
     margin-right: 12px;
     color: #999999;
   }
   .panel-title {
+    display: flex;
+    align-items: flex-start;
     font-size: 14px;
+    .title_text {
+      flex: 2;
+      margin-right: 20px;
+    }
     a.user {
       font-weight: bold;
       color: black;
     }
     .item-status {
-      float: right;
       margin-right: 15px;
      .fa {
         width: 20px;
         text-align: center;
       }
+    }
+    .ident-inactive {
+      color: $bootstrap-link-color;
     }
   }
   .panel.flagged .panel-heading {
@@ -95,7 +93,7 @@ body > div > [role="dialog"] .ActivityItem {
     }
   }
   .panel.leading .panel-heading {
-    .item-status {
+    .item-status.ident-category {
       color: $inat-green;
       i {
         margin-right: 2px;
@@ -128,6 +126,42 @@ body > div > [role="dialog"] .ActivityItem {
           max-width: 100%;
         }
       }
+    }
+    span.taxon {
+      display: inline-block;
+      a.sciname {
+        font-size: 14px;
+        line-height: 16px;
+      }
+      & > a.display-name,
+      & > .display-name {
+        font-size: 20px;
+        display: block;
+        line-height: 25px;
+      }
+      .member-group {
+        display: inline;
+        .taxon {
+          display: inline;
+        }
+        a.display-name,
+        .display-name {
+          font-size: 14px;
+          font-weight: normal;
+          display: inline;
+          line-height: 14px;
+        }
+      }
+    }
+  }
+  .panel-footer {
+    background-color: white;
+    a {
+      font-weight: bold;
+      color: black;
+    }
+    .SplitTaxon {
+      display: inline;
     }
   }
   .icon {
@@ -171,18 +205,22 @@ body > div > [role="dialog"] .ActivityItem.withdrawn {
   }
   .panel-body {
     background-color: #f8f8f8;
-    .taxon-image, .taxon, .taxon a {
+    .taxon-image,
+    .taxon .sciname,
+    .taxon .comname {
       opacity: 0.5;
     }
     .taxon {
-      text-decoration: line-through;
+      .comname,
+      .sciname {
+        text-decoration: line-through;
+      }
     }
   }
 }
 
 .ActivityItemMenu,
 body > div > [role="dialog"] .ActivityItemMenu {
-  float: right;
   border-left: 1px solid $border-grey;
   .search {
     line-height: 24px;

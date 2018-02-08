@@ -190,6 +190,10 @@ class Site < ActiveRecord::Base
   # google webmaster tools, http://www.google.com/webmasters/tools/
   preference :google_webmaster_verification, :string
 
+  # google recaptcha, https://www.google.com/recaptcha
+  preference :google_recaptcha_key, :string
+  preference :google_recaptcha_secret, :string
+
   # Configure taxon description callbacks. taxa/show will try to show
   # species descriptions from these sources in this order, trying the next
   # if one fails. You can see all the available describers in
@@ -210,8 +214,20 @@ class Site < ActiveRecord::Base
   # Whether this site prefers https
   preference :ssl, :boolean
 
-  def self.default
-    Site.first
+  after_save :refresh_default_site
+
+  def self.default(options={})
+    if options[:refresh]
+      Rails.cache.delete( "sites_default" )
+    end
+    if cached = Rails.cache.read( "sites_default" )
+      return cached
+    end
+    site = Site.includes( :stored_preferences ).first
+    return unless site
+    Rails.cache.fetch( "sites_default" ) do
+      site
+    end
   end
 
   def to_s
@@ -286,6 +302,16 @@ class Site < ActiveRecord::Base
   def taxon_describers
     return if taxon_describers_array.blank?
     taxon_describers_array.split( "," ).map( &:strip )
+  end
+
+  def using_recaptcha?
+    google_recaptcha_key && google_recaptcha_secret
+  end
+
+  def refresh_default_site
+    if Site.default && self.id == Site.default.id
+      Site.default( refresh: true )
+    end
   end
 
 end

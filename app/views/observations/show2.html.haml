@@ -59,6 +59,7 @@
         prefers_hide_obs_show_quality_metrics: current_user.prefers_hide_obs_show_quality_metrics,
         prefers_hide_obs_show_expanded_cid: current_user.prefers_hide_obs_show_expanded_cid,
         preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
+        prefers_scientific_name_first: current_user.prefers_scientific_name_first,
         blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
         blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
       }

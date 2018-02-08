@@ -164,19 +164,8 @@ namespace :inaturalist do
                  "lexicons", "places_name", "copyright", "taxon_merge", "taxon_swap",
                  "taxon_split", "taxon_stage", "taxon_drop",
                  "lexicons", "places_name",
-                 "add_plant_phenology_budding_annotation",
-                 "add_plant_phenology_flowering_annotation",
-                 "add_plant_phenology_fruiting_annotation",
-                 "add_life_stage_adult_annotation",
-                 "add_life_stage_teneral_annotation",
-                 "add_life_stage_pupa_annotation",
-                 "add_life_stage_nymph_annotation",
-                 "add_life_stage_larva_annotation",
-                 "add_life_stage_egg_annotation",
-                 "add_sex_female_annotation",
-                 "add_sex_male_annotation",
                  "data_quality", "checklist", "misidentifications",
-                 "frequency", "rg_observations"
+                 "frequency", "rg_observations", "supporting"
                 ]
     %w(
       all_taxa
@@ -185,6 +174,9 @@ namespace :inaturalist do
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end
+    all_keys += ControlledTerm.attributes.map{|a|
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+    }.flatten
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
       # Ignore non-files

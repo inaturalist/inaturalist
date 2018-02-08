@@ -303,7 +303,7 @@ describe Identification, "creation" do
     expect( t.photos.size ).to eq 1
   end
 
-  it "should update observation quality grade after disagreement" do
+  it "should update observation quality grade after disagreement when observer opts out of CID" do
     o = make_research_grade_observation(:prefers_community_taxon => false)
     expect(o).to be_research_grade
     i = Identification.make!(observation: o, taxon: Taxon.make!(:species))
@@ -728,7 +728,7 @@ describe Identification do
 
     it "generates mention updates" do
       u = User.make!
-      i = without_delay { Identification.make!(body: "hey @#{ u.login }") }
+      i = Identification.make!(body: "hey @#{ u.login }")
       expect( UpdateAction.where(notifier: i, notification: "mention").count ).to eq 1
       expect( UpdateAction.where(notifier: i, notification: "mention").first.
         update_subscribers.first.subscriber).to eq u
@@ -977,6 +977,111 @@ describe Identification, "category" do
       expect( i1.category ).to eq Identification::IMPROVING
       es_i1 = Identification.elastic_search( where: { id: i1.id } ).results.results[0]
       expect( es_i1.category ).to eq Identification::IMPROVING
+    end
+  end
+end
+
+describe Identification, "disagreement" do
+  before { load_test_taxa } # Not sure why but these don't seem to pass if I do before(:all)
+  it "should be nil by default" do
+    expect( Identification.make! ).not_to be_disagreement
+  end
+  it "should automatically set to true on create if the taxon is not a descendant or ancestor of the community taxon" do
+    o = make_research_grade_observation( taxon: @Calypte_anna)
+    2.times { Identification.make!( observation: o, taxon: o.taxon ) }
+    i = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+    i.reload
+    expect( i ).to be_disagreement
+  end
+  it "should not be automatically set to true on update if the taxon is not a descendant or ancestor of the community taxon" do
+    o = make_research_grade_candidate_observation
+    i = Identification.make!( observation: o, taxon: @Calypte_anna )
+    4.times { Identification.make!( observation: o, taxon: @Pseudacris_regilla ) }
+    i.reload
+    expect( i ).not_to be_disagreement
+  end
+
+  describe "implicit disagreement" do
+    it "should set disagreement to true" do
+      o = Observation.make!( taxon: @Calypte_anna )
+      Identification.make!( observation: o, taxon: @Calypte_anna )
+      i = Identification.make!( observation: o, taxon: @Pseudacris_regilla )
+      expect( i.disagreement ).to eq true
+    end
+    it "should not set disagreement previous obs taxon was ungrafted" do
+      s1 = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: s1 )
+      Identification.make!( observation: o, taxon: s1 )
+      i = Identification.make( observation: o, taxon: @Calypte_anna )
+      i.save!
+      expect( i.disagreement ).to be_nil
+    end
+    it "should not set disagreement if ident taxon is ungrafted" do
+      s1 = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: @Calypte_anna )
+      Identification.make!( observation: o, taxon: @Calypte_anna )
+      i = Identification.make!( observation: o, taxon: s1 )
+      expect( i.disagreement ).to be_nil
+    end
+  end
+end
+
+describe Identification, "set_previous_observation_taxon" do
+  it "should choose the observation taxon by default" do
+    o = Observation.make!( taxon: Taxon.make!(:species) )
+    t = Taxon.make!(:species)
+    3.times { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    previous_observation_taxon = o.taxon
+    i = Identification.make!( observation: o )
+    expect( i.previous_observation_taxon ).to eq previous_observation_taxon
+  end
+  it "should choose the probable taxon if the observer has opted out of the community taxon" do
+    o = Observation.make!( taxon: Taxon.make!(:species), prefers_community_taxon: false )
+    t = Taxon.make!(:species)
+    3.times { Identification.make!( observation: o, taxon: t ) }
+    o.reload
+    previous_observation_probable_taxon = o.probable_taxon
+    i = Identification.make!( observation: o )
+    expect( i.previous_observation_taxon ).to eq previous_observation_probable_taxon
+  end
+  it "should set it to the observer's previous identicication taxon if they are the only identifier" do
+    genus = Taxon.make!( rank: Taxon::GENUS )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+    o = Observation.make!( taxon: species )
+    i1 = o.identifications.first
+    o.reload
+    expect( i1 ).to be_persisted
+    i2 = Identification.make!( observation: o, taxon: genus, user: i1.user )
+    expect( i2.previous_observation_taxon ).to eq i1.taxon
+  end
+end
+
+describe Identification, "update_disagreement_identifications_for_taxon" do
+  let(:f) { Taxon.make!( rank: Taxon::FAMILY ) }
+  let(:g1) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }
+  let(:g2) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }
+  let(:s1) { Taxon.make!( rank: Taxon::SPECIES, parent: g1 ) }
+  describe "should set disagreement to false" do
+    it "when identification taxon becomes a descendant of the previous observation taxon" do
+      t = Taxon.make!( rank: Taxon::SPECIES, parent: g2 )
+      o = Observation.make!( taxon: g1 )
+      i = Identification.make!( taxon: t, observation: o )
+      expect( i.previous_observation_taxon ).to eq g1
+      expect( i ).to be_disagreement
+      without_delay { t.update_attributes( parent: g1 ) }
+      i.reload
+      expect( i ).not_to be_disagreement
+    end
+    it "when previous observation taxon becomes an ancestor of the identification taxon" do
+      t = Taxon.make!( rank: Taxon::GENUS, parent: f )
+      o = Observation.make!( taxon: t )
+      i = Identification.make!( taxon: s1, observation: o )
+      expect( i.previous_observation_taxon ).to eq t
+      expect( i ).to be_disagreement
+      without_delay { s1.update_attributes( parent: t ) }
+      i.reload
+      expect( i ).not_to be_disagreement
     end
   end
 end

@@ -1,5 +1,23 @@
 class MushroomObserverImportFlowTask < FlowTask
 
+  validate :validate_unique_hash
+  before_validation :set_unique_hash
+
+  def validate_unique_hash
+    return unless unique_hash && !finished_at
+    scope = MushroomObserverImportFlowTask.
+      where(finished_at: nil).
+      where(unique_hash: unique_hash)
+    scope = scope.where("id != ?", id) if id
+    return unless scope.count > 0
+    errors.add(:base, :api_key_in_use)
+  end
+
+  def set_unique_hash
+    return unless api_key
+    self.unique_hash = { api_key: api_key }
+  end
+
   def run
     update_attributes(finished_at: nil, error: nil, exception: nil)
     log "Importing observations from Mushroom Observer for #{user}"

@@ -64,14 +64,26 @@
             %ul
               %li= link_to t(:dashboard), home_path
               %li
-                = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
-                %ul
-                  %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
-                  %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
-                  %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
-              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
-              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
-              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
+                - iconic_taxon_name = current_user && ( !current_user.prefers_common_names? || current_user.prefers_scientific_name_first? ) ? taxon.name : t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", default: Taxon::ICONIC_TAXON_NAMES[taxon.name])
+                = link_to iconic_taxon_name, taxon_path(taxon), :class => "taxon #{taxon.name}"
+      %li.navtab.projectstab.menutab
+        .innertab
+          = link_to t(:projects), projects_path
+          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+            %i.fa.fa-angle-down
+        .subnav{:style => "display: none"}
+          %ul
+            %li.formwrapper
+              = form_tag({:controller => 'projects', :action => 'search'}, :method => :get) do
+                .clear.inline.buttonrow
+                  = text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '', |
+                    :placeholder => t(:search_projects)                                                         |
+                  %button.default.button
+                    %i.fa.fa-search
+            - if logged_in?
+              - for project in current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
+                %li
+                  = link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil
               %li
                 = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
               %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'

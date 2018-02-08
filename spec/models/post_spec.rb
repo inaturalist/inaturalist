@@ -133,7 +133,7 @@ describe Post do
       it "for published posts" do
         u = User.make!
         project = Project.make!
-        p = without_delay { Post.make!( body: "hey @#{ u.login }", parent: project ) }
+        p = Post.make!( body: "hey @#{ u.login }", parent: project )
         expect( p ).to be_published
         expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 1
         expect( UpdateAction.where( notifier: p, notification: "mention" ).first.
@@ -142,7 +142,7 @@ describe Post do
       it "but not for drafts" do
         u = User.make!
         project = Project.make!
-        p = without_delay { Post.make!( :draft, body: "hey @#{ u.login }", parent: project ) }
+        p = Post.make!( :draft, body: "hey @#{ u.login }", parent: project )
         expect( p ).not_to be_published
         expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 0
       end

@@ -1,0 +1,528 @@
+@import "../colors";
+@import "../c3";
+@import "../users/_user_image";
+@import "../shared/observations_grid_item";
+@import "../shared/loading_spinner";
+@import "../shared/split_taxon";
+@import "../shared/user_with_icon";
+
+$background-color: #1A1A1A;
+$gray: #999999;
+$medium-gray: #666666;
+$dark-gray: #333333;
+#logo {
+  text-align: center;
+  padding: 50px;
+}
+#bodywrapper:after {
+  height: 0;
+}
+#header {
+  margin-bottom: 0;
+}
+#app {
+  background-color: $background-color;
+  color: white;
+  padding-bottom: 50px;
+  box-shadow: 0 0 20px black;
+  min-height: 500px;
+  .loading_spinner {
+    border-right: 15px solid $medium-gray;
+    border-bottom: 15px solid $medium-gray;
+    border-left: 15px solid $medium-gray;
+    margin-top: 200px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: white;
+    font-weight: 100;
+  }
+  text {
+    fill: white;
+  }
+  path.domain,
+  .tick line {
+    stroke: $gray;
+  }
+  .tick text {
+    fill: $gray;
+  }
+  .alert {
+    text-align: center;
+  }
+  .text-muted {
+    strong {
+      color: #eee;
+      font-weight: normal;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 46px;
+  }
+  h2, h3, h4 {
+    position: relative;
+    text-align: center;
+    z-index: 0;
+    span {
+      padding: 0 10px;
+      display: inline-block;
+      z-index: 1;
+      background-color: $background-color;
+    }
+  }
+  h2:after,
+  h3:after,
+  h4:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    display: block;
+    border-top: 1px solid #999;
+    opacity: 0.5;
+  }
+
+  .btn {
+    background-color: $background-color;
+    color: white;
+    border: 2px solid darken( $inat-green, 10% );
+    border-radius: 100px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+    font-weight: 100;
+    // font-size: 18px;
+  }
+  .btn:hover {
+    border-color: $inat-green;
+  }
+
+  .btn-share {
+    margin-bottom: 20px;
+  }
+
+  #sharing {
+    margin-bottom: 20px;
+  }
+
+  .twitter-share-button {
+    vertical-align: top;
+    margin-left: 20px;
+  }
+
+  .banner {
+    height: 260px;
+    position: relative;
+    $user-image-size: 240px;
+    $user-image-overhang: 0.25 * $user-image-size / 2;
+    margin-bottom: $user-image-overhang + 40;
+    .UserImage {
+      line-height: $user-image-size * 0.8;
+      font-size: $user-image-size * 0.8;
+      border: 5px solid white;
+      width: $user-image-size;
+      height: $user-image-size;
+      position: absolute;
+      bottom: $user-image-overhang * -1;
+      left: 50%;
+      margin-left: $user-image-size / -2;
+    }
+    .UserImage:hover {
+      opacity: 1;
+    }
+
+    .site-icon {
+      border: 5px solid white;
+      background-color: white;
+      border-radius: $user-image-size;
+      width: $user-image-size;
+      height: $user-image-size;
+      position: absolute;
+      bottom: $user-image-overhang * -1;
+      left: 50%;
+      margin-left: $user-image-size / -2;
+      overflow: hidden;
+      img {
+        width: $user-image-size * 0.8;
+        position: absolute;
+        left: 50%;
+        margin-left: ($user-image-size * 0.8) / -2;
+        top: 50%;
+        margin-top: ($user-image-size * 0.8) / -2;
+      }
+    }
+
+    .montage {
+      overflow: hidden;
+      height: 260px;
+      .photos {
+        display: flex;
+        flex-wrap: wrap;
+        width: 120%;
+        position: relative;
+        top: -1px;
+        z-index: 0;
+        img {
+          // height: 50px;
+          opacity: 0.8;
+          margin: 1px;
+          flex-grow: 1;
+        }
+      }
+    }
+  }
+
+  .GenerateStatsButton.btn {
+    display: block;
+    margin: 0 auto;
+    i {
+      margin-right: 3px;
+    }
+  }
+
+  .site-link {
+    display: inline-block;
+    margin: 50px auto;
+  }
+
+  #view-stats-buttons {
+    margin-top: 50px;
+    text-align: center;
+    .btn {
+      margin-bottom: 20px;
+    }
+  }
+
+  .Identifications {
+    .UserWithIcon {
+      margin-bottom: 10px;
+      .icon {
+        margin-right: 10px;
+      }
+      .title a {
+        color: white;
+        font-size: 120%;
+      }
+      .subtitle {
+        margin-top: 0;
+        font-size: 80%;
+        a {
+          color: $medium-gray;
+        }
+        i {
+          margin-right: 3px;
+        }
+        text-transform: uppercase;
+      }
+    }
+    .idents-users-helped {
+      text-align: right;
+      h3 {
+        text-align: right;
+        span {
+          padding-right: 0;
+        }
+      }
+      .UserWithIcon {
+        .icon {
+          margin-right: 0px;
+          margin-left: 10px;
+          float: right;
+        }
+      }
+    }
+    .idents-users-who-helped {
+      h3 {
+        text-align: left;
+        span {
+          padding-left: 0;
+        }
+      }
+    }
+  }
+}
+
+.chart svg {
+  width: 100%;
+  min-height: 50px;
+}
+
+.DateHistogram {
+  .chart svg {
+    min-height: 300px;
+  }
+  circle {
+    fill: rgba( 0, 0, 0, 0 );
+    stroke: rgba( 0, 0, 0, 0 ) !important;
+  }
+}
+
+$tip-opacity: 1;
+.d3-tip {
+  line-height: 1;
+  padding: 5px;
+  background: rgba(0, 0, 0, $tip-opacity);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, $tip-opacity);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -2px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
+
+.Summary {
+  .chart svg {
+    min-height: 400px;
+  }
+  .summary-panel {
+    width: 100%;
+    position: relative;
+    .main {
+      width: 100%;
+      position: absolute;
+      text-align: center;
+      top: 120px;
+      text-transform: uppercase;
+      font-weight: 100;
+      color: $gray;
+      .count {
+        display: block;
+        font-size: 200%;
+        margin-bottom: 10px;
+        font-weight: bold;
+        color: white;
+      }
+    }
+  }
+}
+@media (max-width: 600px) {
+  .Summary .summary-panel .main {
+    top: 10px;
+  }
+}
+
+.TorqueMap {
+  position: relative;
+  .map {
+    height: 400px;
+  }
+  .legend {
+    position: absolute;
+    width: 100%;
+    bottom: 25px;
+    z-index: 1000;
+    .date {
+      background: white;
+      color: black;
+      width: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+  .leaflet-container {
+    .leaflet-control-layers {
+      display: none;
+    }
+    .leaflet-control-layers-expanded {
+      padding: 10px 14px 8px 14px;
+      label {
+        font-size: 1.2em;
+        font-weight: normal;
+        input {
+          margin-top: 2px;
+          vertical-align: text-top;
+        }
+        span {
+          text-transform: capitalize;
+        }
+      }
+    }
+    .leaflet-control-layers-toggle {
+      cursor: pointer;
+      background-size: 20px 20px !important;
+    }
+  }
+}
+
+.TaxaSunburst {
+  .chart svg {
+    min-height: 700px;
+  }
+  .sunburst-tip {
+    background-color: $background-color;
+    padding: 5px 20px;
+    width: auto;
+    border-radius: 50px;
+  }
+  .clickable {
+    cursor: pointer;
+  }
+  .sunburst-arc {
+    stroke: $background-color;
+    stroke-width: 0.25;
+  }
+  text {
+    pointer-events: none;
+    font-size: 8px;
+  }
+  .center-arc {
+    pointer-events: none;
+  }
+  textPath.has-com-name {
+    &.genus,
+    &.species,
+    &.subspecies,
+    &.variety {
+      font-style: italic;
+    }
+  }
+}
+
+
+// https://css-tricks.com/snippets/css/ribbon/
+.ribbon-container {
+  margin: 0 auto;
+  width: 600px;
+  position: relative;
+  z-index: 1;
+}
+.ribbon {
+  font-size: 16px !important;
+  width: 50%;
+  text-transform: uppercase;
+  position: relative;
+  background: $inat-green;
+  color: #fff;
+  text-align: center;
+  padding: 0.5em 1em;
+  margin: 10px auto 3em;
+}
+$ribbon-border-width: 20px;
+.ribbon:before, .ribbon:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: -12px;
+  border: $ribbon-border-width solid darken( $inat-green, 5% );
+  z-index: -1;
+}
+.ribbon:before {
+  left: -2em;
+  border-right-width: 59px;
+  border-left-color: transparent;
+  border-left-width: 12px
+}
+.ribbon:after {
+  right: -2em;
+  border-left-width: 59px;
+  border-right-color: transparent;
+  border-right-width: 12px
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: darken( $inat-green, 10% ) transparent transparent transparent;
+  bottom: -12px;
+}
+.ribbon .ribbon-content:before {
+  left: 0;
+  border-width: 12px 0 0 40px;
+}
+.ribbon .ribbon-content:after {
+  right: 0;
+  border-width: 12px 40px 0 0;
+}
+
+.popular.for-user .UserImage {
+  display: none;
+}
+$obs-grid-photo-size: 210px;
+.ObservationsGridItem.borderless.thumbnail {
+  width: 100%;
+  border: 0 transparent;
+  background-color: $dark-gray;
+  border-radius: 0;
+  .taxon {
+    .display-name {
+      color: white;
+      font-weight: 100;
+    }
+    .sciname {
+      white-space: nowrap;
+    }
+  }
+  .photo {
+    height: $obs-grid-photo-size;
+  }
+  .caption {
+    color: $gray;
+    .controls {
+      white-space: nowrap;
+    }
+    .activity {
+      color: $inat-green;
+      float: left;
+      .stat {
+        margin-right: 8px;
+      }
+      .icon-chatbubble {
+        position: relative;
+        bottom: 2px;
+      }
+    }
+  }
+}

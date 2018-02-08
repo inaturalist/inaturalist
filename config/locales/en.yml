@@ -26,6 +26,9 @@ en:
   x_identifications:
     one: '1 identification'
     other: '%{count} identifications'
+  x_identifications_html:
+    one: '<span class="count">1</span> identification'
+    other: '<span class="count">%{count}</span> identifications'
   x_identifications_:
     one: '1 Identification'
     other: '%{count} Identifications'
@@ -426,6 +429,7 @@ en:
     other: "and %{count} more people!"
   android: Android
   animals: Animals
+  animated_observations_map: Animated Observations Map
   annotations: Annotations
   announcement_was_successfully_created: Announcement was successfully created.
   announcement_was_successfully_updated: Announcement was successfully updated.
@@ -768,6 +772,7 @@ en:
   committed_on: Committed on %{date}
   committing: Committing...
   community_curated: Community Curated
+  community_guidelines: Community Guidelines
   community_id: '<strong>Community</strong> ID: '
   community_id_heading: Community ID
   community_id_at_species_or_lower?: Community ID at species or lower?
@@ -1047,7 +1052,11 @@ en:
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
   do_you_know_where_this_species_lives: Do you know where this species lives?
-  do_you_study_nematodes_worlds_foremost_expert_barnacle: Do you study nematodes? Are you the world's foremost expert on barnacle taxonomy? Do you just like looking at pretty flowers? Filling out your profile adds some personality and helps establish your credibility when helping people out with identifications.
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |    
+    Do you study nematodes? Are you the world's foremost expert on barnacle
+    taxonomy? Do you just like looking at pretty flowers? Filling out your
+    profile adds some personality and helps establish your credibility when
+    helping people out with identifications.
   do_you_want_to_proceed: Do you want to proceed?
   does_the_location_seem_accurate: "Does the location seem accurate?"
   does_the_date_seem_accurate: "Does the date seem accurate?"
@@ -1195,6 +1204,7 @@ en:
   expand_days: expand days
   expand_updates: expand updates
   explore!: Explore!
+  explore: Explore
   explore_everyones_observations: Explore everyone's observations
   export: Export
   export_observations: Export observations
@@ -1325,6 +1335,7 @@ en:
   follow_us_on: Follow us on
   follow_user: "Follow %{user}"
   follower: follower
+  followers: Followers
   following: following
   for: for
   for_a_taxon: for a taxon
@@ -1362,6 +1373,7 @@ en:
   generate_pdf: Generate PDF
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
+  generate_your_stats: Generate Your Stats
   generating: "Generating..."
   generating_mobile_archive: "Generating mobile archive"
   Genus: Genus
@@ -1443,12 +1455,14 @@ en:
   high: high
   highest_rank: Highest rank
   highlights: Highlights
+  highlights_and_stats_from_year_on_site: "Highlights and stats from %{year} on %{site}"
   history: History
   home: Home
   home_faq: FAQ
   however_there_were_some_issues: "However, there were some issues: %{issues}"
   hybrid: hybrid
   i_agree_to_the_project_terms: I agree to the project terms
+  i_dont_know_but_i_am_sure_this_is_taxon: I don't know but I am sure this is %{taxon}
   icon: Icon
   icon_size: Icon size
   icon_slash_photo: Icon / Photo
@@ -1470,6 +1484,8 @@ en:
   id_please!: ID Please!
   id_please: ID Please
   id_please_expandable_html: "ID<span class='full'> Please</span>!"
+  id_withdrawn: ID Withdrawn
+  ids_by_taxon: IDs By Taxon
   identify: Identify
   identify_observations: "Identify observations"
   identify_title: "Identify"
@@ -1596,6 +1612,7 @@ en:
     Research Grade observations may be used by scientists for research. Cast your vote below:
   is_not_following_anyone: is not following anyone.
   is_now: is now
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Is the evidence provided enough to confirm this is %{taxon}?
   is_the_organism_wild: "Is the organism wild/naturalized?"
   is_this_observation_offensive_html: 'Is this observation <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
   is_this_offensive_html: 'Is this <a href="/help#inappropriate">inappropriate</a>, spam, or offensive?'
@@ -1620,6 +1637,7 @@ en:
   journal_archives_for: Journal archives for
   journal_post: Journal post
   journal_post_deleted: Journal post deleted.
+  journal_posts: Journal Posts
   jpg_png_or_gif: "JPG, PNG, or GIF"
   jump_to_letter: Jump to letter
   just_a_reminder: Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
@@ -1639,6 +1657,7 @@ en:
   last_inat_observation: "Last %{site_name} observation"
   last_observation: Last observation
   last_seen: Last seen
+  last_year: Last Year
   lat: Lat
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
@@ -1654,6 +1673,7 @@ en:
     identifications: Most identifications in %{time}
   leading: Leading
   learn!: Learn!
+  learn: Learn
   learn_about_the_species_live_in: Learn about the species that live in
   learn_more: Learn More
   learn_more_raquo: "Learn more &raquo;"
@@ -1781,27 +1801,32 @@ en:
   locale_description: Locale sets your language and date formatting preferences.
   locales_: Locales
   locales:
+    ar: Arabic
     bg: Bulgarian
     br: Breton
     ca: Catalan
+    de: German
+    en-US: English (United States)
     en: English
-    "en-US": English (United States)
+    es-ES: Spanish (Spain)
+    es-MX: Spanish (Mexico)
     es: Spanish
-    "es-ES": Spanish (Spain)
-    "es-MX": Spanish (Mexico)
+    eu: Basque
     fi: Finnish
     fr: French
-    eu: Basque
     gl: Galician
-    ko: Korean
     id: Indonesian
     it: Italian
+    ja: Japanese
+    ko: Korean
+    lb: Luxembourgish
     mk: Macedonian
     oc: Occitan
-    "pt-BR": Portuguese (Brazil)
-    ja: Japanese
-    "zh-CN": Chinese (simplified)
-    "zh-TW": Chinese (traditional)
+    pt-BR: Portuguese (Brazil)
+    pt-PT: Portuguese (Portugal)
+    ru: Russian
+    zh-CN: Chinese (simplified)
+    zh-TW: Chinese (traditional)
   locality_notes: Locality notes
   localized_species_accounts: Localized species accounts
   location: Location
@@ -1889,6 +1914,7 @@ en:
   maybe_your_signed_in_with: "Maybe you signed in with your %{omniauth} account?"
   media: Media
   medium: medium
+  meet: Meet
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
   members: Members
@@ -1948,6 +1974,7 @@ en:
   most: Most
   most_agree: most agree
   most_disagree: most disagree
+  most_comments_and_faves: Most Comments and Faves
   most_observations: Most observations
   most_recent_observation_by_date_observed: Most recent verifiable observation by date observed
   most_species: Most species
@@ -2052,6 +2079,7 @@ en:
   no_activity_in_the_past_week: No activity in the past week.  Time to 
   no_administrator_knows_your_password: "No %{sitename} administrator knows your new password or at any point had or has access to your password."
   no_assessments_have_been_added_to_this_project_yet: No assessments have been added to this project yet.
+  no_but_it_is_a_member_of_taxon: "No, but it is a member of %{taxon}"
   no_colors_selected: No colors selected.
   no_comments_yet: No comments yet.
   no_countries_added_yet: No countries added yet
@@ -2267,6 +2295,7 @@ en:
     Text searches may yield weird results when combined with other filters. If
     you want to find observation of a particular species, use the taxon
     filter.
+  observations_this_year_vs_last_year: Observations This Year vs. Last Year
   observations_title: Observations by Everyone
   observations_total: Observations Total
   observations_w: Observations w/
@@ -2305,6 +2334,7 @@ en:
   of_observers: observers
   of_identifiers: identifiers
   of_places: places
+  of_this_taxon: Of this taxon
   offensive_inappropriate: offensive / inappropriate
   official_blog: Official Blog
   offline_access_enabled: Offline access enabled
@@ -2435,6 +2465,9 @@ en:
     comment:
       with_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link} by %{by_link}
       without_by: commented on @vow_or_con{vow:an|a} %{comment_subject_link}
+  per_day: Per Day
+  per_month: Per Month
+  per_week: Per Week
   person: person
   personal_message: Personal message
   personal_message_description: Nobody likes getting email from a machine! Why not let your friends know why you're inviting them?
@@ -2596,22 +2629,31 @@ en:
     afghanistan: Afghanistan
     africa: Africa
     antigua_and_barbuda: Antigua and Barbuda
+    australia: Australia
+    austria: Austria
     belgium: Belgium
     bosnia_and_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
     central_america: Central America
+    china: China
+    colombia: Colombia
+    denmark: Denmark
     egypt: Egypt
     equatorial_guinea: Equatorial Guinea
     europe: Europe
     france: France
     germany: Germany
     greece: Greece
+    hong_kong: Hong Kong
     hungary: Hungary
     italy: Italy
+    india: India
     iraq: Iraq
     japan: Japan
+    korea: Korea
     martinique: Martinique
     mexico: México
+    netherlands: Netherlands
     new_guinea: New Guinea
     new_zealand: New Zealand
     north_africa: North Africa
@@ -2620,13 +2662,17 @@ en:
     panama: Panama
     peru: Peru
     poland: Poland
+    portugal: Portugal
     republic_of_congo: Republic of Congo
     russia: Russia
     saudi_arabia: Saudi Arabia
     sao_tome_and_principe: Sao Tome and Principe
+    singapore: Singapore
+    south_africa: South Africa
     south_america: South America
     spain: Spain
     sweden: Sweden
+    switzerland: Switzerland
     syria: Syria
     thailand: Thailand
     trinidad_and_tobago: Trinidad and Tobago
@@ -2664,9 +2710,11 @@ en:
   posted_by: Posted by
   posted_on: Posted on
   posts: Posts
+  potential_disagreement: Potential Disagreement
   powered_by: Powered by
   powered_by_inaturalist_open_source_software_html: 'Powered by <a href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist open source software</a>'
   present: present
+  press: Press
   preview: Preview
   preview_of_synced_observation: "<strong>Preview</strong> of synced observation.  <a href=\"%{url}\">Undo?</a>"
   preview_personal_message:  "I'd like you to join me on %{site}, a website where you can record your observations of plants and animals, keep track of your life list, and learn about the natural world!"
@@ -2689,6 +2737,7 @@ en:
   processing3p: "Processing..."
   profile: Profile
   project: Project
+  project_added_your_observations: Project added your observations
   project_aggregator_filter_error: |
     Projects cannot enable automatic observation aggregation unless the
     project is associated with a place of moderate size or it only allows
@@ -2697,6 +2746,7 @@ en:
   project_assets: Project Assets
   project_cover: Project cover
   project_created_on: created this project on %{date}
+  project_curator_changes: Project curator changes
   project_curator_id: Project curator ID
   project_curator_tools: Project curator tools
   project_curators: Project Curators
@@ -2773,6 +2823,9 @@ en:
       order: order
       suborder: suborder
       infraorder: infraorder
+      parvorder: parvorder
+      zoosection: zoosection
+      zoosubsection: zoosubsection
       superfamily: superfamily
       epifamily: epifamily
       family: family
@@ -2790,6 +2843,7 @@ en:
       subspecies: subspecies
       variety: variety
       form: form
+      infrahybrid: infrahybrid
       leaves: leaves
   rare: Rare
   ray_finned_fishes: ray-finned fishes
@@ -2802,6 +2856,7 @@ en:
   real_time_discussions: Real Time Discussions
   reason: Reason
   reason_you_are_flagging_this_item: Reason you're flagging this item.
+  recaptcha_verification_failed: reCaptcha verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
   receive_updates_from_this_project: Receive updates from this project
   received: received
@@ -2831,6 +2886,7 @@ en:
   refresh: Refresh
   refresh_listed_taxa: refresh listed taxa
   refreshing: refreshing
+  regenerate_stats: Regenerate Stats
   regenerate_url: Regenate URL
   register_for_this_event_at_x_html: "Register for this event at %{x}"
   reject?: Reject?
@@ -3023,6 +3079,7 @@ en:
   set_a_place_if_this_link_only_applies_to: Set a place if this link only applies to taxa from a certain place. Leave it blank if it applies to taxa all around the world.
   set_license: Set license
   settings: settings
+  share: Share
   share_your_observation_with_researchers_by: Share your observation with researchers by
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
@@ -3066,6 +3123,7 @@ en:
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
   site_taxon_page: "%{site_name} taxon page"
+  site_year_in_review: "%{site_name} Year In Review %{year}"
   so_meta!: so meta!
   some_agree: some agree
   some_observations_failed_to_be_added: Some observations failed to be added to projects
@@ -3186,6 +3244,7 @@ en:
   start_typing_someones_name: "Start typing someone's name..."
   states: States
   stats: Stats
+  stats_for_this_year_have_not_been_generated: Stats for this year have not been generated.
   stats_title: Site Stats
   status: Status
   status_globally: "%{status} Globally"
@@ -3233,6 +3292,7 @@ en:
   suggest_or_require_that: Suggest or require that contributors fill out these fields for the observations they add to your project.
   suggestions: Suggestions
   summary: Summary
+  supporting: Supporting
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun
@@ -3280,6 +3340,7 @@ en:
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
   taxon_observed_by_user: "%{taxon} observed by %{user}"
+  taxon_or_place_observations: Taxon or place observations
   taxon_photos_updated: Taxon photos updated!
   taxon_range: Taxon range
   taxon_range_created_notice: Taxon range was successfully created. Please allow a few minutes for it to appear on the maps.
@@ -3323,6 +3384,7 @@ en:
   text_: text
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
+  thanks_from_all_of_us_here_at: Thanks from all of us here at
   that_photo_doesnt_exist: That photo doesn't exist.
   that_observation_doesnt_exist: That observation doesn't exist.
   that_observation_doesnt_have_any_photos: "That observation doesn't have any photos."
@@ -3359,7 +3421,7 @@ en:
      that is comprehensive, i.e. it lists <em>all</em> the representatives of
      its taxon in a place, the Identotron will show a notice.
   the_list: the list
-  the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.<br/><br/> <strong>Example:</strong><br/>  
+  the_name_of_the_taxon_including_space: The name of the taxon, including the space for species and infraspecies.
   the_observation_form_looks: "The observation form looks like this:"
   the_observation_has_date: the observation <strong>has a date</strong>
   the_observation_has_photo: the observation <strong>has a photo</strong>
@@ -3489,6 +3551,7 @@ en:
   this_will_reload_and_refresh: This will add listed taxa from observations and refresh observation stats immediately. It may take some time and please use sparingly.
   this_will_try_to_add_tags_to_your_flickr: This will try to add tags to your Flickr photos.  Continue?
   this_will_update_all_last_observations: This will update all last observations and add new taxa from 
+  this_year: This Year
   those_are_the_basics_of: |
     Those are the basics of adding observations! There are plent of other
     things you can do, like searching and filtering your observations or
@@ -3635,7 +3698,7 @@ en:
     Use this if the URL needs to have the genus and species separated in a
     particular way. If the taxon is not a species or infraspecies, everything
     between [GENUS] and [SPECIES] will get replaced by the taxon name, so use
-    sparingly. <br/><br/> <strong>Example:</strong><br/>
+    sparingly.
   use_unique_file_names_for_separate_uploads: Use unique file names for separate uploads
   use_well_formed_csv: |
     Use well-formed CSV. This means text with commas must be enclosed with
@@ -3654,6 +3717,7 @@ en:
   user_blocked: User blocked
   user_commented: "%{user} commented"
   user_commented_on: "%{user} commented on your %{title} %{time}"
+  user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
@@ -3668,6 +3732,7 @@ en:
   user_is_a_naturalist: "%{user} is a naturalist!"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
+  user_observations: User observations
   user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user} Lists"
@@ -3679,18 +3744,21 @@ en:
   users: Users
   users_comment_html: "<a href='%{url}'>%{user}</a>'s comment"
   users_contributions_to_project_html: <a href="%{url}">%{login}</a>'s contributions to %{project_title}
+  users_highlights_and_stats_from_year_on_site: "%{user}'s highlights and stats from %{year} on %{site}"
   users_id: "%{user}'s ID"
   users_identification_html: "<a href='%{url}'>%{user}</a>'s identification"
   users_identification_short_html: "<a href='%{url}'>%{user}</a>'s ID"
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
+  users_year_on_site: "%{user}'s Year On %{site} %{year}"
   using_a_license: using a license
   using_cc_license_makes_easier_use_your_data: Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like.
   valid_interrogation: Valid?
   valid_options_are: Valid options are
   value: Value
   verbing_x_of_y: "%{verb} %{x} of %{y}..."
+  verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View all
   view_all_from_x: View all from %{x}
@@ -3763,12 +3831,14 @@ en:
   view_user_observations: "View %{user}'s observations"
   view_x_from_x: "View %{day_observations} from %{observed_on}"
   view_xs_journal: "View %{x}'s journal"
+  view_year_stats_for_site: "View %{year} Stats For %{site}"
   view_your_dashboard: View your dashboard
   view_your_dashboard_for_more_updates_html: "<a href='%{url}'>View your dashboard</a> for more updates"
   view_your_inbox: View your inbox
   view_your_life_list: View your life list
   view_your_calendar: View your calendar
   view_your_observations: View your observations
+  view_your_year_stats: "View Your %{year} Stats"
   view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
   visually_similar: Visually Similar
@@ -3799,6 +3869,7 @@ en:
     We tried to process your upload named %{filename} but it didn't work.
     Please fix the following problem(s) and try again.
   wed: Wed
+  week_of_date: "Week of %{date}"
   welcome!: Welcome!
   welcome_comma!: Welcome,
   welcome: welcome
@@ -3832,6 +3903,8 @@ en:
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which projects can add your observations?
   white: white
+  who_helped_user_the_most: "Who Helped %{user} the Most"
+  who_user_helped_the_most: "Who %{user} Helped the Most"
   with_annotation: With annotation
   without_annotation: Without annotation
   widget: Widget
@@ -3847,6 +3920,7 @@ en:
   within_inaturalist: "Within %{site_name}"
   wondering_what_to_do_next: Here's some next steps to get you on your way to observing and identifying the natural world
   would_you_like_to: Would you like to
+  would_you_prefer_to_view_common_names_used_in_place_html: Would you prefer to view common names used in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: would like some help identifying this
   x_admin: "%{login} admins"
   x_blog: "%{x}'s Blog"
@@ -3855,10 +3929,10 @@ en:
   x_doesnt: "%{login} doesn't"
   x_hasnt: "%{login} hasn't"
   x_journal: "%{user}'s Journal"
-  x_journal_archives_for_y: "%{user}'s Journal &middot; Archives for"
-  x_journal_editing: "%{user}'s Journal &middot; Editing"
-  x_journal_middot: "%{user}'s Journal &middot;"
-  x_journal_new_post: "%{user}'s Journal &middot; New Post"
+  x_journal_archives_for_y: "%{user}'s Journal • Archives for"
+  x_journal_editing: "%{user}'s Journal • Editing"
+  x_journal_middot: "%{user}'s Journal •"
+  x_journal_new_post: "%{user}'s Journal • New Post"
   x_observations_failed:
     one: "1 observation failed"
     other: "%{count} observations failed"
@@ -3877,7 +3951,9 @@ en:
   x_wrote_a_new_post_html: "%{x} wrote a new post"
   x_wrote_y_new_posts_html: "%{x} wrote %{y} new posts"
   year: Year
+  year_in_review: "Year In Review %{year}"
   year_month: year/month
+  year_on_site: "Year On %{site} %{year}"
   yellow: yellow
   'yes': "Yes"
   yes_find_them!: "Yes, find them!"
@@ -4067,6 +4143,14 @@ en:
   verifiable: verifiable
   views:
     views: 'Views'
+    announcements:
+      locales_desc: |
+        CMD- or SHIFT-click to select multiple. Not selecting any will show the
+        announcement for all users regardless of locale. Choosing a language
+        locale without a region will *not* target locales with regions, e.g. if
+        you chose en it will not appear for people who have chosen en-US. If you
+        want to target both, choose both. If you want to show an announcement
+        for all members of a site, just leave this blank.
     custom_projects:
       edit:
         custom_project_fields_warning: |
@@ -4447,7 +4531,7 @@ en:
           <a href="%{place_url}">%{place_name}</a> 
           to <strong>"%{establishment_means}"</strong>. Only
           curators can use this tool. Changing the establishment means to
-          "introduced" will have rougly the same effect, but it won't change
+          "introduced" will have roughly the same effect, but it won't change
           existing values, just fill in blank ones.
     lists:
       new:
@@ -4462,7 +4546,7 @@ en:
       community_id:
         agreement: Agreement
         algorithm_summary: Algorithm Summary
-        ancestor_disagreements: Identification Count
+        ancestor_disagreements: Ancestor Disagreements
         below_cutoff: Below Cutoff
         cumulative_count: Cumulative Count
         disagreement: Disagreement
@@ -5029,6 +5113,19 @@ en:
       not_found:
         sorry_that_doesnt_exist: Sorry, that doesn't exist!
         even_our_dedicated_search_mole_couldnt: Even our dedicated search mole couldn't find anything!
+    stats:
+      year:
+        sunburst_desc_html: |
+          Observed taxa arranged as a hierarchical "sunburst" diagram. The base
+          of the hierarchy is at the center, starting with "Life" and ending
+          with species at the outer edges. The size of each arc is proportional
+          to the number of observations of that taxon, and colors rougly
+          correspond to our usual "iconic" taxon colors (green for plants,
+          orange for insects, blue for most other animals, etc.), so if you're
+          seeing a lot of green, that means you observed a lot of plants.
+          <strong>Click an arc to place that taxon at the center</strong> and
+          its children around it, or <strong>click the center to move back up
+          the hierarchy</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |
@@ -5040,7 +5137,8 @@ en:
         complete_desc_html: |
           A "complete" taxon contains <em>all</em> known descendant taxa at a
           specified rank that comply with iNaturalist's taxon curation
-          policies, whether or not they've been observed.
+          policies, whether or not they've been observed. Only site admins can
+          declare taxa complete at present.
         complete_rank_desc_html: |
           Rank at which this taxon is complete, e.g. if this family contains
           all its genera but not all its species, this would be set to "genus."
@@ -5156,16 +5254,31 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+    taxon_links:
+      form:
+        name_with_rank_desc: |
+          The name of the taxon with the rank. For infraspecific ranks, rank
+          is inserted after the binomial.
     taxon_names:
       form:
         new_name_guidelines_html: |
-          <ul class="ui">
-            <li>Try to add names that have been used elsewhere. Please don't invent new names.</li>
-            <li>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</li>
-            <li>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</li>
+          <ul>
+            <li><p>Try to add names that have been used elsewhere. Please don't invent new names.</p></li>
+            <li><p>Don't add duplicate names, e.g. don't name numerous hawks "hawk"</p></li>
+            <li><p>For higher level taxa, try to use names that include all descendants, like "herons and allies" or "heath family"</p></li>
             <li>
-              Don't add information that is not the name, e.g. paranthetical
-              information about how you think the name should be used
+              <p>
+                Don't add information that is not the name, e.g. paranthetical
+                information about how you think the name should be used
+              </p>
+            </li>
+            <li>
+              <p>
+                Lexicons should be in English. Please don't add translated
+                language names like "French, Français" because that will just make
+                it hard or impossible for us to show localized names for people
+                who use the site in different languages.
+              </p>
             </li>
           </ul>
         places_help_html: |
@@ -5241,6 +5354,9 @@ en:
           Show common names. Disable if you only want to view scientific names.
           Note that you can control which common names you see by changing your
           locale and place settings.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |
+          If you change your mind you can always
+          <a href='/users/edit'>edit your settings</a>.
         inaturalist_network_affiliation_desc_html: |
           The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
           collection of localized websites connected to the global iNaturalist
@@ -5250,6 +5366,14 @@ en:
           view all your data just like the iNaturalist site admins can. If
           that site leaves the network, all your account and data will go with
           that site.
+        licensing_desc_html: |
+          Licensing your content gives other people the legal right to use it
+          without asking your permission if they stick to the terms of the
+          license. %{site_name} uses your Creative Commons-licensed content to share
+          with data partners like the <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF), an international,
+          inter-governmental organization that compiles and distributes
+          biodiversity information from around the world.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -5262,6 +5386,11 @@ en:
             you'll be missing out on potentially important notifications, like
             identifications that shift the Community ID on your observations.
           </p>
+        name_place_help_html: |
+          Prioritize common names used in this place.
+        place_preference_changed_notice_html: |
+          Place preference changed. If you change your mind you can always
+          <a href='/users/edit'>edit your settings</a>.
         project_addition_preferences:
           any: Any
           joined: Projects you've joined
@@ -5278,16 +5407,6 @@ en:
           ambiguous (e.g. a split), you will receive an update about the
           change linking to a tool you can use to manually update your content
           if you choose.
-        licensing_desc_html: |
-          Licensing your content gives other people the legal right to use it
-          without asking your permission if they stick to the terms of the
-          license. %{site_name} uses your Creative Commons-licensed content to share
-          with data partners like the <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a> (GBIF), an international,
-          inter-governmental organization that compiles and distributes
-          biodiversity information from around the world.
-        place_help_html: |
-          Customizes a few aspects of the site for a place, like common names.
         prefers_community_taxa_desc: |
           %{site_name} tracks what you think your observations are and what
           the community thinks they are. The identification we share with data
@@ -5297,6 +5416,10 @@ en:
           community opinion won't be favored over yours. This means your
           observations will not be eligible for research grade unless you
           agree with the community.
+        search_place_help_html: |
+          Default place for observation searches.
+        scientific_name_first_desc: |
+          Show scientific names before common names.
         youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
@@ -5646,6 +5769,10 @@ en:
           attributes:
             base:
               guide_has_too_many_taxa: "guide can only have 500 taxa"
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: "API key importing or queued for import"
         observation_field_value:
           attributes:
             value:
@@ -5656,6 +5783,9 @@ en:
               time_format: |
                 must by in the form hh:mm for a time field ("%{observation_field_name}" 
                 in your observation of "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: user does not accept fields from others
+              user_only_accepts_fields_from_site_curators: user only accepts fields from site curators
         place:
           attributes:
             place_geometry:
@@ -5678,6 +5808,30 @@ en:
                 must be observed after %{time}
               must_be_observed_before: |
                 must be observed before %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: |
+                can only be changed by a curator of this taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: should not contain commas or slashes
   i18n:
     inflections:
       :@vow_or_con:

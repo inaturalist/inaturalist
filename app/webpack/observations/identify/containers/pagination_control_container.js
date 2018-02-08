@@ -4,7 +4,8 @@ import { updateSearchParams } from "../actions";
 
 function mapStateToProps( state ) {
   return {
-    visible: !state.searchParams.params.reviewed,
+    loadMoreVisible: !state.searchParams.params.reviewed,
+    paginationVisible: state.searchParams.params.order_by !== "random",
     totalResults: state.observations.totalResults,
     current: state.searchParams.params.page,
     perPage: state.searchParams.params.per_page

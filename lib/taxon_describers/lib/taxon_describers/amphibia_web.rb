@@ -12,7 +12,7 @@ module TaxonDescribers
 
     def data_for_name(name)
       genus_name, species_name = name.split
-      url = "http://amphibiaweb.org/cgi/amphib_ws?where-genus=#{genus_name}&where-species=#{species_name}&src=eol"
+      url = "https://amphibiaweb.org/cgi/amphib_ws?where-genus=#{genus_name}&where-species=#{species_name}&src=eol"
       xml = Nokogiri::XML(open(url))
       return nil if xml.blank? || xml.children.blank? || xml.at('error')
       [xml, genus_name, species_name]
@@ -20,7 +20,7 @@ module TaxonDescribers
 
     def page_url(taxon)
       genus_name, species_name = taxon.name.split
-      "http://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=#{genus_name}+#{species_name}"
+      "https://amphibiaweb.org/cgi-bin/amphib_query?where-scientific_name=#{genus_name}+#{species_name}"
     end
   end
 end

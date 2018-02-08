@@ -29,7 +29,12 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    notification: "mention",
+    delay: false,
+    if: lambda {|u| u.prefers_receive_mentions? }
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],
@@ -339,7 +344,7 @@ class Observation < ActiveRecord::Base
               :trim_user_agent,
               :update_identifications,
               :set_community_taxon_before_save,
-              :set_taxon_from_community_taxon,
+              :set_taxon_from_probable_taxon,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
@@ -958,10 +963,10 @@ class Observation < ActiveRecord::Base
   def update_identifications
     return true if @skip_identifications
     return true unless taxon_id_changed?
-    owners_ident = identifications.where(:user_id => user_id).order("id asc").last
+    owners_ident = identifications.where( user_id: user_id ).order( "id asc" ).last
     
     # If there's a taxon we need to make sure the owner's ident agrees
-    if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
+    if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
       # If the owner doesn't have an identification for this obs, make one
       attrs = {
         user: user,
@@ -971,20 +976,20 @@ class Observation < ActiveRecord::Base
         vision: owners_identification_from_vision_requested
       }
       owners_ident = if new_record?
-        self.identifications.build(attrs)
+        self.identifications.build( attrs )
       else
-        self.identifications.create(attrs)
+        self.identifications.create( attrs )
       end
     elsif taxon.blank? && owners_ident && owners_ident.current?
-      if identifications.where(:user_id => user_id).count > 1
-        owners_ident.update_attributes(:current => false, :skip_observation => true)
+      if identifications.where( user_id: user_id ).count > 1
+        owners_ident.update_attributes( current: false, skip_observation: true )
       else
         owners_ident.skip_observation = true
         owners_ident.destroy
       end
     end
     
-    update_stats(:skip_save => true)
+    update_stats( skip_save: true )
     
     true
   end
@@ -1266,11 +1271,21 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
-    elsif community_taxon_id && owners_identification && owners_identification.maverick? && community_taxon_rejected?
-      CASUAL
+    elsif community_taxon_id && community_taxon_rejected?
+      if owners_identification.blank? || owners_identification.maverick?
+        CASUAL
+      elsif (
+        owners_identification &&
+        owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+        community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+      )
+        RESEARCH_GRADE
+      else
+        NEEDS_ID
+      end
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
-    elsif voted_out_of_needs_id?
+    elsif community_taxon_id && voted_out_of_needs_id?
       if community_taxon_below_family?
         RESEARCH_GRADE
       else
@@ -1457,10 +1472,13 @@ class Observation < ActiveRecord::Base
   ##### Community Taxon #########################################################
 
   def get_community_taxon(options = {})
-    return if (identifications.loaded? ?
+    return if (
+      identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
-      identifications.current).count <= 1
-    node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
+      identifications.current
+    ).count <= 1
+    nodes = community_taxon_nodes(options)
+    node = nodes.select{|n| n[:cumulative_count] > 1}.sort_by do |n|
       [
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
         0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
@@ -1468,23 +1486,34 @@ class Observation < ActiveRecord::Base
     end.last
     
     # # Visualizing this stuff is pretty useful for testing, so please leave this in
-    # puts
-    # width = 15
-    # %w(taxon_id taxon_name cc dc cdc score).each do |c|
-    #   print c.ljust(width)
-    # end
-    # puts
-    # community_taxon_nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
-    #   print n[:taxon].id.to_s.ljust(width)
-    #   print n[:taxon].name.to_s.ljust(width)
-    #   print n[:cumulative_count].to_s.ljust(width)
-    #   print n[:disagreement_count].to_s.ljust(width)
-    #   print n[:conservative_disagreement_count].to_s.ljust(width)
-    #   print n[:score].to_s.ljust(width)
-    #   puts
-    # end
+    # print_community_taxon_nodes( nodes )
     return unless node
     node[:taxon]
+  end
+
+  def print_community_taxon_nodes( nodes = nil )
+    nodes ||= community_taxon_nodes
+    puts
+    width = 15
+    %w(taxon_id taxon_name cc acc cndc dc cdc score).each do |c|
+      if c == "taxon_name"
+        print c.ljust( width*2 )
+      else
+        print c.ljust( width )
+      end
+    end
+    puts
+    nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
+      print n[:taxon].id.to_s.ljust(width)
+      print n[:taxon].name.to_s.ljust(width*2)
+      print n[:cumulative_count].to_s.ljust(width)
+      print n[:adjusted_cumulative_count].to_s.ljust(width)
+      print n[:conservative_non_disagreement_count].to_s.ljust(width)
+      print n[:disagreement_count].to_s.ljust(width)
+      print n[:conservative_disagreement_count].to_s.ljust(width)
+      print n[:score].to_s.ljust(width)
+      puts
+    end
   end
 
   def community_taxon_nodes(options = {})
@@ -1493,7 +1522,12 @@ class Observation < ActiveRecord::Base
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
-    working_idents = ids.sort_by(&:id)
+    working_idents = ids.select{|i| i.taxon.is_active }.sort_by(&:id)
+    if options[:before].to_i > 0
+      working_idents = working_idents.select{|i| i.id < options[:before].to_i }
+    elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
+      working_idents = working_idents.select{|i| i.created_at < options[:before] }
+    end
 
     # load all ancestor taxa implied by identifications
     ancestor_ids = working_idents.map{|i| i.taxon.ancestor_ids}.flatten.uniq.compact
@@ -1511,24 +1545,54 @@ class Observation < ActiveRecord::Base
        id_taxon.self_and_ancestor_ids.include?(i.taxon_id) || i.taxon.self_and_ancestor_ids.include?(id_taxon.id)
       }.size
 
-      # count identifications of taxa that are ancestors of this taxon but
-      # were made after the first identification of this taxon (i.e.
-      # conservative disagreements). Note that for genus1 > species1, an
-      # identification of species1 implies an identification of genus1
-      first_ident = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
-      conservative_disagreement_count = if first_ident
-        working_idents.select{|i| i.id > first_ident.id && id_taxon.ancestor_ids.include?(i.taxon_id)}.size
+      # Count identifications that explicitly disagreed with an ancestor of this taxon
+      first_ident_of_taxon = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
+      conservative_disagreement_count = if first_ident_of_taxon
+        working_idents.select {|i|
+          if (
+            i.disagreement? &&
+            i.previous_observation_taxon &&
+            ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
+          )
+            # If an identification of Homonidae is a disagreement with Homo
+            # sapiens, that implies disagreement with everything between
+            # Homonidae and Homo sapiens (i.e. genus Homo), otherwise they would
+            # have added an ID of genus Homo
+            disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            # So if the taxon under consideration is any of the taxa this
+            # identification disagrees with, count it as a disagreement
+            ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
+          elsif i.disagreement == nil
+            i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
+          end
+        }.size
       else
         0
       end
 
+      conservative_non_disagreement_count = if first_ident_of_taxon
+        # working_idents.select {|i|
+        #   i.disagreement == false && i.taxon.self_and_ancestor_ids.include?( id_taxon.id )
+        # }.size
+        working_idents.select {|i|
+          # Does the taxon this identification *could* be disagreeing with include the taxon under consideration?
+          i.disagreement == false && i.previous_observation_taxon && i.previous_observation_taxon.ancestor_ids.include?( id_taxon.id )
+        }.size
+      else
+        0
+      end
+
+      adjusted_cumulative_count = cumulative_count - conservative_non_disagreement_count
+
       {
-        :taxon => id_taxon,
-        :ident_count => working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
-        :cumulative_count => cumulative_count,
-        :disagreement_count => disagreement_count,
-        :conservative_disagreement_count => conservative_disagreement_count,
-        :score => cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
+        taxon: id_taxon,
+        ident_count: working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
+        cumulative_count: cumulative_count,
+        adjusted_cumulative_count: adjusted_cumulative_count,
+        conservative_non_disagreement_count: conservative_non_disagreement_count,
+        disagreement_count: disagreement_count,
+        conservative_disagreement_count: conservative_disagreement_count,
+        score: adjusted_cumulative_count.to_f / (adjusted_cumulative_count + disagreement_count + conservative_disagreement_count)
       }
     end
   end
@@ -1572,20 +1636,35 @@ class Observation < ActiveRecord::Base
     (prefers_community_taxon == false || user.prefers_community_taxa == false)
   end
 
-  def set_taxon_from_community_taxon
+  # What the system thinks the organism probably is. Current combines the
+  # communal opinion with the preferences of individuals (disagreement / not
+  # disagreement), and may in the future incorporate modeled identifier skill
+  def probable_taxon( options = {} )
+    nodes = community_taxon_nodes( options )
+    # # Visualizing this stuff is pretty useful for testing, so please leave this in
+    # print_community_taxon_nodes( nodes )
+    node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
+      0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
+    }.last
+    return unless node
+    node[:taxon]
+  end
+
+  def set_taxon_from_probable_taxon
     return if identifications.count == 0 && taxon_id
-    # explicitly opted in
-    self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
-    # obs opted out or user opted out
-    elsif prefers_community_taxon == false || !user.prefers_community_taxa?
+    prob_taxon = probable_taxon( force: true )
+    self.taxon_id = if ( !user.prefers_community_taxa? && prefers_community_taxon == nil ) || prefers_community_taxon == false
+      # obs opted out or user opted out
       owners_identification.try(:taxon_id)
-    # implicitly opted in
+    elsif ( ct = community_taxon ) && prob_taxon && prob_taxon.rank_level.to_i < Taxon::SPECIES_LEVEL && prob_taxon.ancestor_ids.include?( ct.id )
+      # prob_taxon was subspecific, using CID
+      ct.id
     else
-      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      # opted in
+      prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
-      update_stats(:skip_save => true)
+      update_stats( skip_save: true )
       self.species_guess = if taxon
         taxon.common_name.try(:name) || taxon.name
       else
@@ -1941,8 +2020,9 @@ class Observation < ActiveRecord::Base
       num_agreements    = 0
       num_disagreements = 0
     else
-      if node = community_taxon_nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
-        num_agreements = node[:cumulative_count]
+      nodes = community_taxon_nodes
+      if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
+        num_agreements = node[:adjusted_cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
         num_agreements = 0 if current_idents.count <= 1
@@ -2021,22 +2101,22 @@ class Observation < ActiveRecord::Base
     precision = 10**5.0
     range = ((-1 * precision)..precision)
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
-    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
-    [ base_lat + ((rand(range) / precision) * half_cell),
-      base_lon + ((rand(range) / precision) * half_cell)]
+    center_lat, center_lon = uncertainty_cell_center_latlon( lat, lon )
+    [ center_lat + ((rand(range) / precision) * half_cell),
+      center_lon + ((rand(range) / precision) * half_cell)]
   end
 
   # 
   # Coordinates of the southwest corner of the uncertainty cell for any given coordinates
   # 
-  def self.uncertainty_cell_southwest_latlon( lat, lon )
+  def self.uncertainty_cell_center_latlon( lat, lon )
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
     # how many significant digits in the obscured coordinates (e.g. 5)
     # doing a floor with intervals of 0.2, then adding 0.1
     # so our origin is the center of a 0.2 square
-    base_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
-    base_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
-    [base_lat, base_lon]
+    center_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    center_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    [center_lat, center_lon]
   end
 
   #
@@ -2044,12 +2124,13 @@ class Observation < ActiveRecord::Base
   # for the given coordinates.
   #
   def self.uncertainty_cell_diagonal_meters( lat, lon )
-    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
+    half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+    center_lat, center_lon = uncertainty_cell_center_latlon( lat, lon )
     lat_lon_distance_in_meters( 
-      base_lat, 
-      base_lon, 
-      base_lat + COORDINATE_UNCERTAINTY_CELL_SIZE,
-      base_lon + COORDINATE_UNCERTAINTY_CELL_SIZE
+      center_lat - half_cell, 
+      center_lon - half_cell, 
+      center_lat + half_cell,
+      center_lon + half_cell
     ).ceil
   end
 
@@ -2229,7 +2310,7 @@ class Observation < ActiveRecord::Base
   def method_missing(method, *args, &block)
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/ || method.to_s =~ /^ident_by_/
     if method.to_s =~ /^field:/
-      of_name = method.to_s.split(':').last
+      of_name = ObservationField.normalize_name( method.to_s.split(':').last )
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
       if ofv
         return ofv.taxon ? ofv.taxon.name : ofv.value
@@ -2484,7 +2565,7 @@ class Observation < ActiveRecord::Base
 
   def set_taxon_photo
     return true unless research_grade? && quality_grade_changed?
-    unless taxon.photos.any?
+    if taxon && !taxon.photos.any?
       community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
     end
     true
@@ -2568,15 +2649,15 @@ class Observation < ActiveRecord::Base
   end
 
   def community_taxon_at_species_or_lower?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
   end
 
   def community_taxon_at_family_or_lower?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
   end
 
   def community_taxon_below_family?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
   end
 
   def needs_id_upvotes_count
@@ -2630,6 +2711,11 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
+  end
+
+  def previously_mentioned_users
+    return [ ] if description_was.blank?
+    description.mentioned_users & description_was.to_s.mentioned_users
   end
 
   # Show count of all faves on this observation. cached_votes_total stores the
@@ -2692,6 +2778,13 @@ class Observation < ActiveRecord::Base
 
   def reindex_identifications
     Identification.elastic_index!( ids: identification_ids )
+  end
+
+  def user_viewed_updates(user_id)
+    obs_updates = UpdateAction.joins(:update_subscribers).
+      where(resource: self).
+      where("update_subscribers.subscriber_id = ?", user_id)
+    UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 
   def self.dedupe_for_user(user, options = {})

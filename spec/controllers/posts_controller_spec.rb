@@ -175,3 +175,19 @@ describe PostsController, "for projects" do
     end
   end
 end
+
+describe PostsController, "show" do
+  let(:user) { User.make! }
+  it "should use the first image as the shareable_image_url regardless of quote style" do
+    single_quote_url = "https://www.inaturalist.org/img/single_quote.png"
+    double_quote_url = "https://www.inaturalist.org/img/double_quote.png"
+    body = <<-HTML
+      This is some text
+      <img src='#{single_quote_url}' />
+      <img src="#{double_quote_url}" />
+    HTML
+    post = Post.make!( parent: user, body: body )
+    get :show, id: post.id
+    expect( assigns(:shareable_image_url) ).to eq single_quote_url
+  end
+end

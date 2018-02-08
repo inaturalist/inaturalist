@@ -204,6 +204,22 @@ describe ListedTaxon do
       expect(lt).not_to be_valid
       expect(lt.errors[:occurrence_status_level]).not_to be_blank
     end
+
+    it "should not allow endemic taxa for continent-level places" do
+      place = make_place_with_geom( admin_level: Place::CONTINENT_LEVEL )
+      lt = ListedTaxon.make!( place: place, list: place.check_list )
+      lt.establishment_means = ListedTaxon::ENDEMIC
+      expect( lt ).not_to be_valid
+      expect( lt.errors[:establishment_means] ).not_to be_blank
+    end
+
+    it "should not allow endemic taxa for continents" do
+      place = make_place_with_geom( place_type: Place::CONTINENT )
+      lt = ListedTaxon.make!( place: place, list: place.check_list )
+      lt.establishment_means = ListedTaxon::ENDEMIC
+      expect( lt ).not_to be_valid
+      expect( lt.errors[:establishment_means] ).not_to be_blank
+    end
   end
   
   describe "check list user removal" do

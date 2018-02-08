@@ -41,7 +41,7 @@ class CommunityIDModal extends Component {
         ) ).length;
       const ancDisag = this.ancestorDisagreements[taxon.id] || 0;
       const taxonName = isLife ? LIFE_TAXON.default_name.name : (
-        <SplitTaxon taxon={ taxon } url={ `/taxa/${taxon.id}` } forceRank /> );
+        <SplitTaxon taxon={ taxon } url={ `/taxa/${taxon.id}` } forceRank user={ this.props.config.currentUser } /> );
       const denom = usages + disag + ancDisag;
       const score = _.round( usages / denom, 3 );
       let className;
@@ -101,7 +101,7 @@ class CommunityIDModal extends Component {
       this.ancestorDisagreements = { };
       const ancestorsUsed = { };
       _.each( observation.identifications, i => {
-        if ( !i.current || !i.taxon ) { return; }
+        if ( !i.current || !i.taxon || !i.taxon.is_active ) { return; }
         this.currentIDs.push( i );
         this.idTaxonCounts[i.taxon.id] = this.idTaxonCounts[i.taxon.id] || 0;
         this.idTaxonCounts[i.taxon.id] += 1;
@@ -203,7 +203,12 @@ class CommunityIDModal extends Component {
 CommunityIDModal.propTypes = {
   observation: PropTypes.object,
   setCommunityIDModalState: PropTypes.func,
-  show: PropTypes.bool
+  show: PropTypes.bool,
+  config: PropTypes.object
+};
+
+CommunityIDModal.defaultProps = {
+  config: {}
 };
 
 export default CommunityIDModal;

@@ -3,7 +3,8 @@ import { Button } from "react-bootstrap";
 import Pagination from "rc-pagination";
 
 const PaginationControl = ( {
-  visible,
+  loadMoreVisible,
+  paginationVisible,
   loadMore,
   loadPage,
   perPage,
@@ -15,10 +16,11 @@ const PaginationControl = ( {
       `PaginationControl text-center ${totalResults <= perPage ? "collapse" : ""}`
     }
   >
-    <Button onClick={loadMore} className={`stacked ${visible ? "" : "collapse"}`}>
+    <Button onClick={loadMore} className={`stacked ${loadMoreVisible ? "" : "collapse"}`}>
       { I18n.t( "view_more" ) }
     </Button>
     <Pagination
+      className={ paginationVisible ? "" : "collapse" }
       total={totalResults}
       current={current}
       pageSize={perPage}
@@ -32,7 +34,8 @@ const PaginationControl = ( {
 );
 
 PaginationControl.propTypes = {
-  visible: PropTypes.bool,
+  loadMoreVisible: PropTypes.bool,
+  paginationVisible: PropTypes.bool,
   loadMore: PropTypes.func,
   loadPage: PropTypes.func,
   totalResults: PropTypes.number,

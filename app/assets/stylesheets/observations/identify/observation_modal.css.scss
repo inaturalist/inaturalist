@@ -584,11 +584,13 @@ body > div > [role="dialog"] .ActivityItem {
   .panel-heading {
     padding: 7px 15px;
   }
-  a.display-name {
-    font-size: 16px;
-  }
-  .has-com-name a.sciname {
-    font-size: 12px;
+  .panel-body {
+    a.display-name {
+      font-size: 16px;
+    }
+    .has-com-name a.sciname {
+      font-size: 12px;
+    }
   }
   .panel {
     margin-left: 50px;

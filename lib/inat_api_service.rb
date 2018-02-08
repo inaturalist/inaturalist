@@ -32,7 +32,7 @@ module INatAPIService
     return INatAPIService.get("/geoip_lookup", params)
   end
 
-  def self.get_json( path, params = {}, retries = 3 )
+  def self.get_json( path, params = {}, retries = 3, timeout = INatAPIService::TIMEOUT )
     url = INatAPIService::ENDPOINT + path;
     headers = {}
     if api_token = params.delete(:api_token)
@@ -43,7 +43,7 @@ module INatAPIService
     end
     uri = URI(url)
     begin
-      timed_out = Timeout::timeout(INatAPIService::TIMEOUT) do
+      timed_out = Timeout::timeout( timeout ) do
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true if uri.scheme == "https"
         # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -53,7 +53,7 @@ module INatAPIService
         end
       end
     rescue => e
-      Rails.logger.debug "[DEBUG] INatAPIService.get_json failed: #{e}"
+      Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{retries}) failed: #{e}"
     end
     if retries.is_a?(Fixnum) && retries > 0
       return INatAPIService.get_json( path, params, retries - 1 )

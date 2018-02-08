@@ -9,7 +9,8 @@ function mapStateToProps( state ) {
     taxonChangesCount: state.taxon.counts.taxonChangesCount,
     taxonSchemesCount: state.taxon.counts.taxonSchemesCount,
     names: state.taxon.names,
-    allChildrenShown: state.config.allChildrenShown
+    allChildrenShown: state.config.allChildrenShown,
+    currentUser: state.config.currentUser
   };
 }
 

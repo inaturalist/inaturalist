@@ -8,10 +8,25 @@ import UserText from "../../../shared/components/user_text";
 import UserImage from "../../../shared/components/user_image";
 import ActivityItemMenu from "./activity_item_menu";
 import util from "../util";
+import { urlForTaxon } from "../../../taxa/shared/util";
 
-const ActivityItem = ( { observation, item, config, deleteComment, deleteID, firstDisplay,
-                         restoreID, setFlaggingModalState, currentUserID, addID, linkTarget,
-                         hideCompare } ) => {
+const ActivityItem = ( {
+  observation,
+  item,
+  config,
+  deleteComment,
+  deleteID,
+  firstDisplay,
+  restoreID,
+  setFlaggingModalState,
+  currentUserID,
+  addID,
+  linkTarget,
+  hideCompare,
+  hideDisagreement,
+  hideCategory,
+  noTaxonLink
+} ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
   const isID = !!taxon;
@@ -74,19 +89,25 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
     </div> );
     const taxonImageTag = util.taxonImage( taxon );
     header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
+    if ( item.disagreement ) {
+      header += "*";
+    }
     if ( !item.current ) { className = "withdrawn"; }
     contents = (
       <div className="identification">
         { buttonDiv }
         <div className="taxon">
-          <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
-            { taxonImageTag }
-          </a>
+          { noTaxonLink ? taxonImageTag : (
+            <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
+              { taxonImageTag }
+            </a>
+          ) }
           <SplitTaxon
             taxon={ taxon }
-            url={ `/taxa/${taxon.id}` }
+            url={ noTaxonLink ? null : `/taxa/${taxon.id}` }
             noParens
             target={ linkTarget }
+            user={ config.currentUser }
             showMemberGroup
           />
         </div>
@@ -99,44 +120,47 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
-  let status;
+  const headerItems = [];
   const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
-    status = ( <span key={ `flagged-${item.id}` } className="item-status">
-      <a
-        href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
-        rel="nofollow"
-        target="_blank"
-      >
-        <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
-      </a>
-    </span> );
-  } else if ( item.category && item.current ) {
+    headerItems.push(
+      <span key={ `flagged-${item.id}` } className="item-status">
+        <a
+          href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
+          rel="nofollow"
+          target="_blank"
+        >
+          <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
+        </a>
+      </span>
+    );
+  } else if ( item.category && item.current && !hideCategory ) {
     let idCategory;
     let idCategoryTooltipText;
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
-      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status ident-category">
         <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.maverick" );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
-      idCategory = ( <span key={ `improving-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `improving-${item.id}` } className="item-status ident-category">
         <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
     } else if ( item.category === "leading" ) {
       panelClass = "leading";
-      idCategory = ( <span key={ `leading-${item.id}` } className="item-status">
+      idCategory = ( <span key={ `leading-${item.id}` } className="item-status ident-category">
         <i className="icon-icn-leading-id" /> { I18n.t( "leading" ) }
       </span> );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
     }
     if ( idCategory ) {
-      status = (
+      headerItems.push(
         <OverlayTrigger
+          key={ `ident-category-tooltip-${item.id}` }
           container={ $( "#wrapper.bootstrap" ).get( 0 ) }
           placement="top"
           delayShow={ 200 }
@@ -150,6 +174,13 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
         </OverlayTrigger>
       );
     }
+  }
+  if ( item.taxon && !item.current ) {
+    headerItems.push(
+      <span key={ `ident-withdrawn-${item.id}` } className="item-status">
+        <i className="fa fa-ban"></i> { I18n.t( "id_withdrawn" ) }
+      </span>
+    );
   }
   let taxonChange;
   if ( item.taxon_change ) {
@@ -166,33 +197,59 @@ const ActivityItem = ( { observation, item, config, deleteComment, deleteID, fir
   }
   const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
+  let footer;
+  if ( item.disagreement && !hideDisagreement ) {
+    const previousTaxonLink = (
+      <SplitTaxon
+        taxon={ item.previous_observation_taxon }
+        url={ urlForTaxon( item.previous_observation_taxon ) }
+        target={ linkTarget }
+        user={ config.currentUser }
+      />
+    );
+    const footerText = I18n.t( "user_disagrees_this_is_taxon", {
+      user: ReactDOMServer.renderToString( userLink ),
+      taxon: ReactDOMServer.renderToString( previousTaxonLink )
+    } );
+    footer = (
+      <span
+        className="title_text"
+        dangerouslySetInnerHTML={ {
+          __html: `* ${footerText}`
+        } }
+      />
+    );
+  }
   return (
     <div className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
         <UserImage user={ item.user } linkTarget={ linkTarget } />
       </div>
-      <Panel className={ panelClass } header={(
-        <span>
-          <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
-          <ActivityItemMenu
-            item={ item }
-            config={ config }
-            deleteComment={ deleteComment }
-            deleteID={ deleteID }
-            restoreID={ restoreID }
-            setFlaggingModalState={ setFlaggingModalState }
-            linkTarget={linkTarget}
-          />
-          <time
-            className="time"
-            dateTime={ item.created_at }
-            title={ moment( item.created_at ).format( "LLL" ) }
-          >
-            { relativeTime }
-          </time>
-          { status }
-        </span>
+      <Panel
+        className={ panelClass }
+        header={(
+          <div>
+            <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
+            { headerItems }
+            <time
+              className="time"
+              dateTime={ item.created_at }
+              title={ moment( item.created_at ).format( "LLL" ) }
+            >
+              { relativeTime }
+            </time>
+            <ActivityItemMenu
+              item={ item }
+              config={ config }
+              deleteComment={ deleteComment }
+              deleteID={ deleteID }
+              restoreID={ restoreID }
+              setFlaggingModalState={ setFlaggingModalState }
+              linkTarget={linkTarget}
+            />
+          </div>
         )}
+        footer={ footer }
       >
         { taxonChange }
         <div className="contents">
@@ -215,7 +272,10 @@ ActivityItem.propTypes = {
   firstDisplay: PropTypes.bool,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,
-  hideCompare: PropTypes.bool
+  hideCompare: PropTypes.bool,
+  hideDisagreement: PropTypes.bool,
+  hideCategory: PropTypes.bool,
+  noTaxonLink: PropTypes.bool
 };
 
 export default ActivityItem;

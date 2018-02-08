@@ -52,9 +52,12 @@ if ( PREFERRED_PLACE !== undefined && PREFERRED_PLACE !== null ) {
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );
+}
+
+if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
   // this is the default place for all obs API requests
   store.dispatch( updateDefaultParams( {
-    place_id: PREFERRED_PLACE.id
+    place_id: PREFERRED_SEARCH_PLACE.id
   } ) );
 }
 

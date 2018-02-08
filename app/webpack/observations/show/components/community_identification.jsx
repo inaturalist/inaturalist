@@ -174,7 +174,7 @@ class CommunityIdentification extends React.Component {
 
   sortedIdents( ) {
     const { observation } = this.props;
-    const currentIdents = _.filter( observation.identifications, i => i.current );
+    const currentIdents = _.filter( observation.identifications, i => ( i.current && i.taxon.is_active ) );
     const taxonCounts = _.countBy( currentIdents, i => i.taxon.id );
     // Mavericks last, then sort by counts desc
     return _.sortBy( currentIdents, i =>
@@ -217,7 +217,11 @@ class CommunityIdentification extends React.Component {
       _.each( sortedIdents, i => {
         const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
         if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
-          votesFor.push( i );
+          if ( obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement ) {
+            votesAgainst.push( i );
+          } else {
+            votesFor.push( i );
+          }
         } else {
           votesAgainst.push( i );
         }
@@ -318,10 +322,7 @@ class CommunityIdentification extends React.Component {
     const { observation, config, addID } = this.props;
     const test = $.deparam.querystring( ).test;
     const loggedIn = config && config.currentUser;
-    let communityTaxon = observation.taxon;
-    if ( test && test.match( /cid-vis/ ) ) {
-      communityTaxon = observation.communityTaxon;
-    }
+    let communityTaxon = observation.communityTaxon;
     if ( !observation || !observation.user ) {
       return ( <div /> );
     }
@@ -414,12 +415,13 @@ class CommunityIdentification extends React.Component {
                 <div className="photo">{ photo }</div>
                 <div className="stats-and-name">
                   <div className="badges">
-                    <ConservationStatusBadge observation={ observation } />
-                    <EstablishmentMeansBadge observation={ observation } />
+                    <ConservationStatusBadge taxon={ communityTaxon } />
+                    <EstablishmentMeansBadge taxon={ communityTaxon } />
                   </div>
                   <SplitTaxon
                     taxon={ communityTaxon }
                     url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+                    user={ config.currentUser }
                   />
                   { stats }
                 </div>
@@ -455,6 +457,7 @@ class CommunityIdentification extends React.Component {
                           <SplitTaxon
                             taxon={ proposedTaxonData.taxon }
                             url={ proposedTaxonData.taxon ? `/taxa/${proposedTaxonData.taxon.id}` : null }
+                            user={ config.currentUser }
                           />
                           { proposedTaxonData.stats }
                         </div>
@@ -468,18 +471,25 @@ class CommunityIdentification extends React.Component {
         </div>
       );
     } else {
-      visualization = (
+      visualization = communityTaxon ? (
         <div className="info">
           <div className="photo">{ photo }</div>
           <div className="badges">
-            <ConservationStatusBadge observation={ observation } />
-            <EstablishmentMeansBadge observation={ observation } />
+            <ConservationStatusBadge taxon={ communityTaxon } />
+            <EstablishmentMeansBadge taxon={ communityTaxon } />
           </div>
           <SplitTaxon
             taxon={ communityTaxon }
             url={ communityTaxon ? `/taxa/${communityTaxon.id}` : null }
+            user={ config.currentUser }
           />
           { stats }
+        </div>
+      ) : (
+        <div className="info">
+          <div className="about">
+            { I18n.t( "the_community_id_requires_at_least_two_identifications" ) }
+          </div>
         </div>
       );
     }
@@ -543,6 +553,10 @@ CommunityIdentification.propTypes = {
   setCommunityIDModalState: PropTypes.func,
   updateObservation: PropTypes.func,
   updateSession: PropTypes.func
+};
+
+CommunityIdentification.defaultProps = {
+  config: {}
 };
 
 export default CommunityIdentification;

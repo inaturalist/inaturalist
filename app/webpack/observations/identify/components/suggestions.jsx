@@ -82,6 +82,7 @@ class Suggestions extends React.Component {
               this.props.setDetailTaxon( taxon );
               return false;
             } }
+            user={ this.props.config.currentUser }
           />
           <div className="btn-group pull-right">
             { details && ( details.vision_score || details.frequency_score ) ? (
@@ -142,7 +143,8 @@ class Suggestions extends React.Component {
       observation,
       chooseTaxon,
       prevTaxon,
-      nextTaxon
+      nextTaxon,
+      config
     } = this.props;
     let detailTaxonImages;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
@@ -289,6 +291,7 @@ class Suggestions extends React.Component {
                   clearTaxon={ ( ) => {
                     setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
                   } }
+                  config={ config }
                 />
                 <ChooserPopover
                   label={ I18n.t( "source" ) }
@@ -366,6 +369,7 @@ class Suggestions extends React.Component {
                         url={ urlForTaxon( detailTaxon ) }
                         target="_blank"
                         noParens
+                        user={ config.currentUser }
                       />
                     </div>
                     { detailTaxon.wikipedia_summary ?
@@ -426,7 +430,8 @@ Suggestions.propTypes = {
   observation: PropTypes.object,
   chooseTaxon: PropTypes.func,
   prevTaxon: PropTypes.object,
-  nextTaxon: PropTypes.object
+  nextTaxon: PropTypes.object,
+  config: PropTypes.object
 };
 
 Suggestions.defaultProps = {
@@ -434,7 +439,8 @@ Suggestions.defaultProps = {
   response: {
     results: []
   },
-  detailPhotoIndex: 0
+  detailPhotoIndex: 0,
+  config: {}
 };
 
 export default Suggestions;

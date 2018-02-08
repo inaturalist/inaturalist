@@ -22,6 +22,7 @@ class ObservationPhotosController < ApplicationController
           render json: { errors: "No observation_photo specified" }, status: :unprocessable_entity
         end
       end
+      return
     end
     @observation_photo = if !params[:observation_photo].blank? && !params[:observation_photo][:uuid].blank?
       ObservationPhoto.joins(:observation).

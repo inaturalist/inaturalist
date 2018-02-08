@@ -80,10 +80,12 @@ oc:
     mai claras :'
   a_flag_for_x: una marca per %{x}
   a_greasemonkey_script: un escript Greasemonkey
+  a_member_of: Un membre de
   a_member_of_taxon_html: un membre de %{taxon}
   able_to_connect_flickr: Plan ! Nos avèm pogut ligar amb vòstre compte Flickr.
   about: A prepaus
   about_bioblitz_results: A prepaus dels resultats de bioblitz
+  about_charts: A prepaus dels grafics
   about_community_taxa: A prepaus dels taxons de la comunautat
   about_external_links: A prepaus dels ligams extèrnes
   about_licenses: A prepaus de las licéncias
@@ -110,6 +112,7 @@ oc:
   actions: Accions
   activate_user: Activar l'utilizaire
   active: actiu
+  activity: Activitat
   activity_settings: Paramètres d’activitat
   adapted_by_name_from_a_work_by_original: Adaptat per %{name} d’aprèp un trabalh
     de %{original}
@@ -151,8 +154,11 @@ oc:
   add_common_names_for: apondre de noms comuns a de taxons existents
   add_conservation_status: apondre l’estat de conservacion
   add_countries: Apondre de païses
+  add_custom_project_fields: Apondètz de camps de projècte personalizats
+  add_edit_flags: Apondre / editar d'etiquetas
   add_edit_more_fields: Apondre/modificar mai de camps
   add_description: Apondre %{description_name}
+  add_field: Apondre un camp
   add_from_your_observations: Apondre a partir de vòstras observacions
   add_link: Apondre un ligam
   add_listed_taxa_from_observations: Apondre los taxons listats dempuèi las observacions
@@ -178,6 +184,7 @@ oc:
   add_several_observations_at_once: Apondre mantuna observacion a l'encòp.
   add_shape: Apondre una forma
   add_some_now: Apondre quicòm ara
+  add_tag: Apondre una balisa
   add_tags: Apondre de balisas
   add_tags_to_selected_taxa: Apondre de balisas als taxons seleccionats
   add_taxa: Apondre de taxons
@@ -216,6 +223,7 @@ oc:
   admin: Admin
   admin_tools: Aisinas d’administracion
   agree: acceptar
+  agree_: Acceptar
   agree?: Acceptat ?
   agree_to_the_project_terms: Acceptar las condicions del projècte
   agreeing: Acceptacion en cors…
@@ -318,6 +326,7 @@ oc:
     observacions
   android: Android
   animals: Animals
+  annotations: Anotacions
   announcements: Anoncis
   any: totes
   apply_to_selected: Aplicar a la seleccion
@@ -614,7 +623,6 @@ oc:
   deleting: Supression en cors…
   deleting_verb: Supression
   desc: desc
-  dna_: ADN
   descendant_taxa: taxons descendents
   descending: descendent
   description: Descripcion
@@ -629,8 +637,9 @@ oc:
   did_you_photos_flickr?: Avètz mes de fòtos sus Flickr ?
   disagree: pas d’acòrdi
   disconnect_provider: Desconnectar %{provider}
-  drop_it: Lo depausar
+  dna_: ADN
   dont_filter: Filtrar pas
+  drop_it: Lo depausar
   download: Telecargar
   download_csv: Telecargar lo CSV
   download_kml: Telecargar lo KML
@@ -968,21 +977,20 @@ oc:
   locales:
     br: Breton
     ca: Catalan
-    en: Anglés
     en-US: Anglés (Estats Units)
-    es: Espanhòl
+    en: Anglés
     es-ES: Espanhòl (Espanha)
     es-MX: Espanhòl (Mexic)
-    fr: Francés
+    es: Espanhòl
     eu: Basc
+    fr: Francés
     gl: Galician
-    ko: Corean
     id: Indonesian
     it: Italian
-    mk: Macedonian
-    pt: Portugués
-    pt-BR: Portugués (Brasil)
     ja: Japonés
+    ko: Corean
+    mk: Macedonian
+    pt-BR: Portugués (Brasil)
     zh-CN: Chinés (simplificat)
     zh-TW: Chinés (tradicional)
   locality_notes: Nòtas localizadas
@@ -1184,7 +1192,6 @@ oc:
   photo: Fòto
   photo?: Fòto ?
   photo_deleted: Fòto suprimida
-  photo_s: Fòto(s)
   photos_from: Fòtos de
   photos_size:
     small: pichon
@@ -1479,15 +1486,15 @@ oc:
   url_of_this_taxon_on_the_source_website: URL d'aqueste taxon sul site Web de la
     font
   user: Utilizaire
-  user_invited_you_to_join_project: '%{user} vos a convidat a vos jónher a %{project}'
   user_invited_you_to_join_html: '%{user} vos a convidat a vos jónher'
+  user_invited_you_to_join_project: '%{user} vos a convidat a vos jónher a %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} vos a convidat a vos
     jónher a aqueste projècte lo %{date}'
   user_s: de %{user}
   user_s_lists: Listas de %{user}
   username: Nom d'utilizaire
-  users_id: Identificant de %{user}
   users_comment_html: comentari de <a href='%{url}'>%{user}</a>
+  users_id: Identificant de %{user}
   view_all_n: Afichar totes los %{n}
   view_all_observations: Afichar totas las observacions
   view_all_photos_tagged_taxon_html: Afichar totas las fòtos etiquetadas « %{taxon} »
@@ -1530,8 +1537,6 @@ oc:
         journal: jornal
     help:
       index:
-        we_also_support_picasa_html: 'Acceptam tanben Picasa: <a href="%{url}">Configuratz
-          vòstre compte Picasa &raquo;</a>'
         you_can_also_obscure_the_coordinates_html: |-
           Tanben podètz amagar las coordenadas de vòstras pròprias observacions,
           qual que siá l’estat del taxon. Consultatz <a href="#geoprivacy">la geoconfidencialitat</a> çaisús.

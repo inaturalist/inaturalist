@@ -438,7 +438,8 @@ describe ObservationsController do
 
     it "should include https image urls in widget response" do
       make_research_grade_observation
-      get :index, protocol: :https, format: :widget
+      request.env['HTTPS'] = 'on'
+      get :index, format: :widget
       expect( response.body ).to match /s3.amazonaws.com/
     end
   end
@@ -612,7 +613,7 @@ describe ObservationsController, "new_bulk_csv" do
         "proj4": "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
       }
     }' )
-    expect(Site.last.coordinate_systems).not_to be_blank
+    expect(Site.default.coordinate_systems).not_to be_blank
     Delayed::Job.delete_all
     Observation.by( user ).destroy_all
     expect( Observation.by( user ).count ).to eq 0

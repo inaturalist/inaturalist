@@ -4,6 +4,7 @@
 # Author: An13sa
 # Author: Asierog
 # Author: Cgalindo
+# Author: Fitoschido
 # Author: Macofe
 # Author: Mikel Ibaiba
 # Author: Sator
@@ -1125,6 +1126,7 @@ eu:
   follow_us_on: 'Jarrai iezaguzu hemen:'
   follow_user: 'Honi jarraitu: %{user}'
   follower: jarraitzailea
+  followers: jarraitzaileak
   following: Jarraitzen
   for: 'honetarako:'
   for_a_taxon: taxon batena
@@ -1539,20 +1541,19 @@ eu:
     aukera ematen du.
   locales:
     ca: Katalana
-    en: Ingelesa
     en-US: Ingelesa (Ameriketako Estatu Batuak)
-    es: Espainiera
+    en: Ingelesa
     es-ES: Espainiera (Espainia)
     es-MX: Espainiera (Mexiko)
+    es: Espainiera
+    eu: Euskara
     fi: Amaitu
     fr: Frantsesa
-    eu: Euskara
     gl: Galiziera
+    ja: Japoniera
     mk: Mazedoniera
     oc: Okzitaniera
-    pt: Portugesa
     pt-BR: Portugesa (Brasil)
-    ja: Japoniera
     zh-CN: Txinera (sinplifikatua)
     zh-TW: Txinera (tradizionala)
   localized_species_accounts: Espezieen kontuak lokalizatuta
@@ -3198,7 +3199,7 @@ eu:
   x_journal: 'Honen egunkaria: %{user}'
   x_journal_archives_for_y: '%{user}-(r)en egunkaria · Fitxategiak:'
   x_journal_editing: '%{user}-(r)en egunkaria · Aldatu'
-  x_journal_middot: '%{user}-(r)en egunkaria ·'
+  x_journal_middot: '%{user}-(r)en egunkaria •'
   x_journal_new_post: '%{user}-(r)en egunkaria · Sarrera berria'
   x_project_journal: '%{project} proiektuaren %{name}'
   x_project_stats: '%{project} proiektuaren estatistikak'

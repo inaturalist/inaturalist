@@ -13,13 +13,26 @@ shared_examples_for "ObservationsController basics" do
       expect(o.user_id).to eq(user.id)
       expect(o.species_guess).to eq ("foo")
     end
+    it "should not create for a suspended user" do
+      user.suspend!
+      expect {
+        post :create, format: :json, observation: { species_guess: "foo" }
+      }.not_to change( Observation, :count )
+    end
+    it "should create for an unsuspended user" do
+      user.suspend!
+      user.unsuspend!
+      expect {
+        post :create, format: :json, observation: { species_guess: "foo" }
+      }.to change( Observation, :count )
+    end
+  end
 
-    describe "destroy" do
-      it "should destroy" do
-        o = Observation.make!(:user => user)
-        delete :destroy, :format => :json, :id => o.id
-        expect(Observation.find_by_id(o.id)).to be_blank
-      end
+  describe "destroy" do
+    it "should destroy" do
+      o = Observation.make!(:user => user)
+      delete :destroy, :format => :json, :id => o.id
+      expect(Observation.find_by_id(o.id)).to be_blank
     end
   end
 
@@ -1426,7 +1439,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     describe "with site" do
-      let(:site) { Site.default }
+      let(:site) { Site.default( refresh: true ) }
       it "should filter by place" do
         p = make_place_with_geom
         site.update_attributes(place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE)
@@ -1640,7 +1653,9 @@ shared_examples_for "an ObservationsController" do
       num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
         where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 3
-      put :viewed_updates, :format => :json, :id => @o.id
+      without_delay do
+        put :viewed_updates, :format => :json, :id => @o.id
+      end
       num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
         where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 1
@@ -1827,10 +1842,13 @@ end
 
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
-    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
+    token = Doorkeeper::AccessToken.create(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
+    request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
   end
   it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController"

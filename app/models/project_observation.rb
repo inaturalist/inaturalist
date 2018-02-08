@@ -246,9 +246,10 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def expire_caches
+    return true if project_id.blank?
     begin
       FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
-    rescue ActionController::RoutingError
+    rescue ActionController::RoutingError, ActionController::UrlGenerationError
       FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
     end
     true
@@ -287,7 +288,7 @@ class ProjectObservation < ActiveRecord::Base
         else
           nil
         end
-      elsif observation_field = p.observation_fields.detect{|of| of.name == column}
+      elsif observation_field = p.observation_fields.detect{|of| of.normalized_name == ObservationField.normalize_name( column )}
         observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)
       else
         observation.send(column) rescue send(column) rescue nil

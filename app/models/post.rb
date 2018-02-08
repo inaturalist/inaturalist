@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :body ],
-                    :comment_type => "item-description"
+                    :comment_type => "blog-post"
 
   has_subscribers
   notifies_subscribers_of :parent, {
@@ -23,7 +23,12 @@ class Post < ActiveRecord::Base
     :notification => "created_post",
     :include_notifier => true
   }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    delay: false,
+    notification: "mention",
+    if: lambda {|u| u.prefers_receive_mentions? }
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
@@ -104,6 +109,11 @@ class Post < ActiveRecord::Base
   def mentioned_users
     return [ ] unless published? && body
     body.mentioned_users
+  end
+
+  def previously_mentioned_users
+    return [ ] if !published? || body_was.blank?
+    body.mentioned_users & body_was.to_s.mentioned_users
   end
 
 end

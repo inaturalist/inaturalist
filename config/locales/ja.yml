@@ -1191,6 +1191,7 @@ ja:
   inaturalist_network_affiliation: iNaturalistネットワーク所属
   inbox: 受信箱
   including: 次を含む：
+  in_progress: 処理中
   in_taxon?: 次の分類群の中
   in_the_past: ここ
   in_the_past_week: ここ1週間以内
@@ -1399,21 +1400,21 @@ ja:
     bg: ブルガリア語
     br: ブルトン語
     ca: カタルーニャ語
-    en: 英語
     en-US: 英語（アメリカ）
-    es: スペイン語
+    en: 英語
     es-ES: スペイン語（スペイン）
     es-MX: スペイン語（メキシコ）
-    fr: フランス語
+    es: スペイン語
     eu: バスク語
+    fr: フランス語
     gl: ガリシア語
-    ko: 韓国語
     id: インドネシア語
     it: イタリア語
-    mk: マケドニア語
-    pt: ポルトガル語
-    pt-BR: ポルトガル語（ブラジル）
     ja: 日本語
+    ko: 韓国語
+    mk: マケドニア語
+    pt-BR: ポルトガル語（ブラジル）
+    ru: ロシア語
     zh-CN: 中国語 (簡体字)
     zh-TW: 中国語 (繁体字)
   locality_notes: 地域メモ
@@ -1799,6 +1800,8 @@ ja:
     absent: 不在
   of: の
   of_least_concern: 軽度懸念
+  of_species: 種
+  of_places: 場所
   offensive_inappropriate: 不快／不適切
   official_blog: 公式ブログ
   offline_access_enabled: オフラインアクセス対応
@@ -2370,7 +2373,7 @@ ja:
   second_person_possessive_singular_: あなたの%{noun}
   see_something_wrong_with_taxon: この分類群に間違いありますか？キュレーター管理者にお知らせください
   seen_it?: 見た？
-  seen_one: 見ていませんか？
+  seen_one: 見かけませんでしたか？
   select: 選択
   select_all: すべて選択
   select_an_album: アルバムを選択

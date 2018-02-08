@@ -8,10 +8,10 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
-    :taxon_change_taxa, :taxon_schemes, :taxon_changes,
+    :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
-    { taxon_photos: { photo: :user } },
+    { taxon_photos: { photo: [ :user, :flags ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
@@ -19,6 +19,7 @@ class Taxon < ActiveRecord::Base
       indexes :min_species_ancestry, type: "keyword"
       indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :rank, type: "keyword"
+      indexes :wikipedia_url, type: "keyword", index: false
       indexes :taxon_photos do
         indexes :license_code, type: "keyword"
         indexes :photo do
@@ -134,6 +135,7 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        current_synonymous_taxon_ids: is_active? ? nil : current_synonymous_taxa.map(&:id),
         # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
@@ -141,7 +143,8 @@ class Taxon < ActiveRecord::Base
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
         atlas_id: atlas.try( :id ),
-        complete_species_count: complete_species_count
+        complete_species_count: complete_species_count,
+        wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
       if complete_taxon
         json[:complete_rank] = complete_taxon.complete_rank

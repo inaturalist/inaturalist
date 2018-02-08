@@ -39,7 +39,7 @@ genericAutocomplete.focus = function( e, ui ) {
 genericAutocomplete.renderItem = function( ul, item ) {
   var li = $( "<li/>" ).addClass( "ac-result" ).
     data( "item.autocomplete", item ).
-    append( genericAutocomplete.template( item ) ).appendTo( ul );
+    append( genericAutocomplete.template( item, null, options ) ).appendTo( ul );
   return li;
 };
 
@@ -51,6 +51,10 @@ genericAutocomplete.renderMenu = function( ul, items ) {
     that._renderItemData( ul, item );
   });
 };
+
+genericAutocomplete.stripTags = function( txt ) {
+  return txt.replace( /<\w+>(.+)<\/\w+>/g, "$1" );
+}
 
 $.fn.genericAutocomplete = function( options ) {
   options = options || { };
@@ -86,7 +90,7 @@ $.fn.genericAutocomplete = function( options ) {
     return false;
   };
 
-  field.template = options.template || field.template || function( item ) {
+  field.template = options.template || field.template || function( item, val, options ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     labelDiv.append( $( "<span/>" ).addClass( "title" ).
@@ -97,7 +101,7 @@ $.fn.genericAutocomplete = function( options ) {
 
   field.renderItem = function( ul, item ) {
     var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
-      append( field.template( item, field.val( ))).
+      append( field.template( item, field.val( ), options ) ).
       appendTo( ul );
     if( options.extraClass ) {
       li.addClass( options.extraClass );
@@ -234,6 +238,7 @@ $.fn.genericAutocomplete = function( options ) {
     if ( !options.idEl ) { return; }
     opts = opts || { };
     options.idEl.val( s.id );
+    field.data( 'autocomplete-item', s );
     field.val( s.title );
     field.selection = s;
     if( field.searchClear ) { $(field.searchClear).show( ); }
@@ -244,7 +249,7 @@ $.fn.genericAutocomplete = function( options ) {
     if( id && id > 0 ) {
       options.idEl.val( null );
     }
-    if( options.afterUnselect ) { options.afterUnselect( ); }
+    if( options.afterUnselect ) { options.afterUnselect( id ); }
     field.selection = null;
   });
   field.bind( "resetAll", function( e ) {
@@ -257,7 +262,7 @@ $.fn.genericAutocomplete = function( options ) {
   if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {
       if( options.resetOnChange === false && field.selection ) {
-        field.val( field.selection.title );
+        field.val( field.selection.textTitle || genericAutocomplete.stripTags( field.selection.title ) );
       }
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field

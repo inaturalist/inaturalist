@@ -59,7 +59,7 @@ gem 'jquery-rails', "~> 4.0.4"
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
-gem 'nokogiri'
+gem "nokogiri", "~> 1.8.1"
 gem "non-stupid-digest-assets"
 gem "omniauth"
 gem "omniauth-oauth2", " 1.3.1"
@@ -79,7 +79,6 @@ gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analy
 gem "rack-mobile-detect"
 gem 'rails-observers'
 gem 'rakismet'
-gem 'RedCloth'
 gem 'rest-client', :require => 'rest_client'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
@@ -99,7 +98,7 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
-gem 'xmp', :git => 'https://github.com/kueda/xmp.git'
+gem 'xmp', "~> 0.2.1", git: 'https://github.com/kueda/xmp.git'
 gem 'statsd-ruby', :require => 'statsd'
 # these need to be loaded after will_paginate
 gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'

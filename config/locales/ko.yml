@@ -207,9 +207,32 @@ ko:
   all_photos: 모든 사진
   all_places: 모든 장소
   all_projects: 모든 프로젝트
+  all_rank_added_to_the_database:
+    phylum: 데이터베이스에 추가된 모든 종족
+    subphylum: 데이터베이스에 추가된 모든 아문
+    superclass: 데이터베이스에 추가된 모든 상강
+    class: 데이터베이스에 추가된 모든 강
+    subclass: 데이터베이스에 추가된 모든 아강
+    infraclass: 데이터베이스에 추가된 모든 하강
+    superorder: 데이터베이스에 추가된 모든 상목
+    order: 데이터베이스에 추가된 모든 목
+    suborder: 데이터베이스에 추가된 모든 아목
+    infraorder: 데이터베이스에 추가된 모든 하목
+    superfamily: 데이터베이스에 추과된 모든 상과
+    family: 데이터베이스에 추가된 모든 과
+    subfamily: 데이터베이스에 추가된 모든 아과
+    supertribe: 데이터베이스에 추가된 모든 주족
+    tribe: 데이터베이스에 추가된 모든 족
+    subtribe: 데이터베이스에 추과된 모든 아족
+    genus: 데이터베이스에 추가된 모든 속
+    genushybrid: 데이터베이스에 추가된 모든 속간 잡종
+    subgenus: 데이터베이스에 추가된 모든 아속
+    species: 데이터베이스에 추가된 모든 종
+    hybrid: 데이터베이스에 추가된 모든 잡종
+    subspecies: 데이터베이스에 추가된 모든 아종
+    variety: 데이터베이스에 추가된 모든 품종
   all_rights_reserved: 모든 권리는 저작권자에게 있습니다.
   all_species: 모든 종
-  all_species_added_to_the_database: 데이터베이스에 추가된 모든 종
   all_taxa:
     rank:
       kingdom: 계
@@ -578,6 +601,7 @@ ko:
   comments_on: 에 달린 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
   community_curated: 공동으로 큐래이션된
+  community_guidelines: 공동체 지침
   community_id: '<strong>공동체</strong> ID:'
   community_id_heading: 공동체 ID
   compare: 비교하기
@@ -777,6 +801,10 @@ ko:
   delete_photo: 사진을 삭제하시겠습니까?
   delete_project: 이 프로젝트를 제거하시겠습니까?
   delete_selected: 선택한 것을 삭제
+  delete_taxon_and_merge_most_data_html: <i>%{taxon}</i> 삭제하고 그것의 대부분의 데이터를 다른 분류군
+    안으로 병합합니다. <strong>중복되는 분류군을 제거</strong>하기 위해 이 도구를 사용합니다. 오래된 동의어를 제거하고자 한다면,
+    분류군 교환을 만드시기 바랍니다. <strong>조심합니다!</strong> 분류군을 삭제하는 것은 매우 파괴적일 수 있습니다. 자세한 사항은
+    <a href="%{curator_url}">큐레이터 안내서</a>를 확인합니다.
   delete_this_name: 이 이름 삭제
   delete_user: 사용자 삭제
   delete_your_account: 계정 지우기
@@ -1218,6 +1246,7 @@ ko:
   importing: 가져오는 중...
   improving: 개선 중
   inbox: 받은 쪽지함
+  in_progress: 진행 중
   in_the_past_week: 지난 한 주 동안
   inactive: 비활성
   inactive_taxon: 비활성 분류군
@@ -1301,6 +1330,7 @@ ko:
   large: 크게
   last_confirmed_observation: 마지막으로 확인된 관찰
   last_observation: 마지막 관찰
+  last_year: 지난 해
   lat: 위도
   latitude: 위도
   layout: 배치 (레이아웃)
@@ -1401,20 +1431,21 @@ ko:
   locales:
     bg: 불가리아어
     ca: Català
-    en: 영어
     en-US: 영어 (미국)
-    es: 스페인어
+    en: 영어
     es-ES: 스페인어 (스페인)
     es-MX: 스페인어 (멕시코)
+    es: 스페인어
+    eu: 바스크어
     fi: 핀란드어
     fr: 프랑스어
-    eu: 바스크어
     gl: 갈리시아어
+    ja: 일본어
     ko: 한국어
     mk: 마케도니아어
-    pt: 포루투갈어
     pt-BR: 포루투갈어 (브라질)
-    ja: 일본어
+    pt-PT: 포르투갈어 (포르투갈)
+    ru: 러시아어
     zh-CN: 중국어 (번체)
   location: 위치
   location_: 위치
@@ -1735,6 +1766,9 @@ ko:
   observations_w_field: 필드가 있는 관찰
   observations_week: 관찰/주
   observations_will_revert_to_casual: 관찰은 위 조건이 맞지 않을 경우 비공식적으로 표시됩니다.
+  of_species: 종
+  of_identifiers: 식별자
+  of_places: 장소
   offensive_inappropriate: 불쾌 / 부적절
   official_blog: 공식 블로그
   ok: 확인
@@ -1756,6 +1790,9 @@ ko:
   people_added:
     identification:
       without_observation: <strong>ID</strong> 추가됨
+  per_day: 매일
+  per_month: 매월
+  per_week: 매주
   photo: 사진
   photo_browser: 사진 탐색기
   photo_deleted: 사진 삭제됨
@@ -1888,6 +1925,7 @@ ko:
     species: 종
   real_time_discussions: 실시간 토론
   reason: 이유
+  recaptcha_verification_failed: reCaptcha 확인 실패
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
   recent_additions: 최근 추가 항목
   recent_evidence?: 최근의 증거가 있습니까?
@@ -1961,6 +1999,7 @@ ko:
   september: 9월
   set_license: 라이선스 설정
   settings: 설정
+  share: 공유
   show: 보이기
   show_keyboard_shortcuts: 단축 키 표시
   show_kml: KML 보이기
@@ -2025,6 +2064,7 @@ ko:
   this_observation_was_created_using: '이 관찰은 다음을 사용하여 만들어졌습니다:'
   this_photo_is_already_associated: 이 사진은 이미 관찰에 사용되었습니다.
   this_user_has_been_suspended: 이 사용자는 일시 중지되었습니다
+  this_year: 올해
   thu: 목요일
   title: 제목
   total_observations: 총 관찰
@@ -2123,6 +2163,10 @@ ko:
   widget: 위젯
   widget_code: 위젯 코드
   x_blog: '%{x}의 블로그'
+  x_journal_archives_for_y: '%{user}님의 저널 • 아카이브 대상:'
+  x_journal_editing: '%{user}님의 저널 • 편집'
+  x_journal_middot: '%{user}님의 저널 •'
+  x_journal_new_post: '%{user}님의 저널 • 새 게시물'
   year: 년
   year_month: 년/월
   yellow: 노랑
@@ -2363,6 +2407,10 @@ ko:
             value:
               date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
                 \n당신이 관찰한 \"%{observation_field_name}\")"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
     attributes:
       assessment:
         description: 설명

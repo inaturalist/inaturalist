@@ -123,6 +123,8 @@ module ElasticModel
           [ k, v ]
         end
       }]
+    elsif options[:aggs]
+      elastic_hash[:aggs] = options[:aggs]
     end
     elastic_hash
   end

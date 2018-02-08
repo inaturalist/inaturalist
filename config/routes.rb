@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
+  get "/ping", to: "application#ping"
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
   get "/users/new.mobile", to: redirect( "/signup" )
@@ -79,8 +80,9 @@ Rails.application.routes.draw do
   get '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   get '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
-    controllers :applications => 'oauth_applications',
-                :authorizations => 'oauth_authorizations'
+    controllers applications: "oauth_applications",
+                authorizations: "oauth_authorizations",
+                tokens: "oauth_tokens"
   end
 
   wiki_root '/pages'
@@ -205,6 +207,7 @@ Rails.application.routes.draw do
       get :identify
       get :moimport
       post :moimport
+      get :torquemap
     end
     member do
       get :taxon_summary
@@ -501,6 +504,10 @@ Rails.application.routes.draw do
       get :cnc2017_stats
       get :canada_150
       get :parks_canada_2017
+      get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
+      get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
+      get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
+      post :generate_year
     end
   end
 

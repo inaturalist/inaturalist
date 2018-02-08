@@ -66,6 +66,8 @@ describe Guide, "add_taxa_from_eol_collection" do
 end
 
 describe Guide, "to_ngz" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
   before(:all) do
     @guide = Guide.make!
     @guide_taxon = GuideTaxon.make!(:guide => @guide)

@@ -4,7 +4,8 @@ import { showNewTaxon } from "../actions/taxon";
 
 function mapStateToProps( state ) {
   return {
-    taxon: state.taxon.taxon
+    taxon: state.taxon.taxon,
+    config: state.config
   };
 }
 

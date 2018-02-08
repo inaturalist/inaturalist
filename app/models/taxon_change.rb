@@ -20,7 +20,7 @@ class TaxonChange < ActiveRecord::Base
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
 
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :new_mentioned_users, on: :save, notification: "mention"
   
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",
@@ -90,10 +90,10 @@ class TaxonChange < ActiveRecord::Base
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
-    uneditable_input_taxon = input_taxa.detect{ |t| !t.editable_by?( u ) }
+    uneditable_input_taxon = input_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
     uneditable_output_taxon = nil
     unless uneditable_input_taxon
-      uneditable_output_taxon = output_taxa.detect{ |t| !t.editable_by?( u ) }
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
     end
     uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
   end
@@ -275,7 +275,7 @@ class TaxonChange < ActiveRecord::Base
       identifications.find_each(&:destroy)
     end
     in_taxon = input_taxa.first if input_taxa.size == 1
-    if in_taxon
+    if in_taxon && !output_taxa.blank?
       listed_taxa_sql = <<-SQL
         UPDATE listed_taxa SET taxon_id = #{in_taxon.id} FROM places WHERE
           listed_taxa.taxon_id IN (#{output_taxa.map(&:id).join(',')})
@@ -304,7 +304,7 @@ class TaxonChange < ActiveRecord::Base
 
   def commit_records_later
     return true unless committed_on_changed? && committed?
-    delay(:priority => USER_PRIORITY).commit_records
+    delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
     true
   end
 
@@ -377,6 +377,11 @@ class TaxonChange < ActiveRecord::Base
   def mentioned_users
     return [ ] if description.blank?
     description.mentioned_users
+  end
+
+  def new_mentioned_users
+    return [ ] unless description && description_changed?
+    description.mentioned_users - description_was.to_s.mentioned_users
   end
 
   def draft?

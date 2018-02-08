@@ -1,14 +1,15 @@
 class StatsController < ApplicationController
 
   before_filter :set_time_zone_to_utc
-  before_filter :load_params
+  before_filter :load_params, except: [:year, :generate_year]
+  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats, :generate_year]
+  before_filter :allow_external_iframes, only: [:wed_bioblitz]
+
   caches_action :summary, expires_in: 1.hour
   caches_action :observation_weeks_json, expires_in: 1.day
   caches_action :nps_bioblitz, expires_in: 5.minutes
   caches_action :cnc2016, expires_in: 5.minutes
   caches_action :cnc2017, expires_in: 5.minutes
-  before_filter :authenticate_user!, only: [:cnc2017_taxa, :cnc2017_stats]
-  before_filter :allow_external_iframes, only: [:wed_bioblitz]
 
   def index
     respond_to do |format|
@@ -46,6 +47,67 @@ class StatsController < ApplicationController
     }
     respond_to do |format|
       format.json { render json: @stats}
+    end
+  end
+
+  def year
+    @year = params[:year].to_i
+    if @year > Date.today.year || @year < 1950
+      return render_404
+    end
+    @display_user = User.find_by_login( params[:login] )
+    if !params[:login].blank? && !@display_user
+      return render_404
+    end
+    @year_statistic = if @display_user
+      YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
+    else
+      @year_statistic = YearStatistic.where( site_id: @site, year: @year ).where( "user_id IS NULL" ).first
+      @year_statistic ||= YearStatistic.where( year: @year ).where( "user_id IS NULL AND site_id IS NULL" ).first
+    end
+    @headless = @footless = true
+    @shareable_image_url = if @year_statistic && @year_statistic.shareable_image?
+      @year_statistic.shareable_image
+    elsif @display_user && @display_user.icon?
+      @display_user.icon.url(:large)
+    else
+      @site.logo_square.url
+    end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def your_year
+    @year = params[:year].to_i
+    if @year > Date.today.year || @year < 1950
+      return render_404
+    end
+    if current_user
+      redirect_to user_year_stats_path( login: current_user.login, year: @year )
+    else
+      redirect_to login_path( return_to: your_year_stats_path( year: @year ) )
+    end
+  end
+
+  def generate_year
+    @year = params[:year].to_i
+    if (@year > Date.today.year) || (@year < 1950)
+      return render_404
+    end
+    delayed_progress( "stats/generate_year?user_id=#{current_user.id}&year=#{@year}" ) do
+      @job = YearStatistic.delay( priority: USER_PRIORITY ).generate_for_user_year( current_user.id, @year )
+    end
+    respond_to do |format|
+      format.json do
+        status = case @status
+        when "done" then :ok
+        when "error" then :unprocessable_entity
+        else
+          202
+        end
+        render json: { status: status }, status: status
+      end
     end
   end
 
@@ -92,7 +154,7 @@ class StatsController < ApplicationController
     project_slideshow_data( 12849,
       umbrella_project_ids: [12849],
       sub_project_ids: {
-        12849 => [15583, 14782, 14342, 11863, 12646, 12281, 11396, 11693, 10595, 12189, 12192, 12743, 12511, 12872, 12748, 11440, 12806, 13124, 12210, 13176, 12024, 13377, 13376, 13375, 13374, 12597, 12166, 11451]
+        12849 => [13474, 14980, 15583, 14782, 14342, 11863, 12646, 12281, 11396, 11693, 10595, 12189, 12192, 12743, 12511, 12872, 12748, 11440, 12806, 13124, 12210, 13176, 12024, 13377, 13376, 13375, 13374, 12597, 12166, 11451]
       },
       title: "Bioblitz Canada 150"
     ) do |all_project_data|

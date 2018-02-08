@@ -77,6 +77,8 @@ describe GuideTaxon, "new_from_eol_collection_item" do
 end
 
 describe GuideTaxon, "sync_site_content" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
   let(:t) {
     t = Taxon.make!(:wikipedia_summary => "Foo bar")
     6.times do
@@ -112,6 +114,8 @@ end
 
 describe GuideTaxon, "sync_eol" do
   let(:gt) { GuideTaxon.make! }
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
   before(:all) do
     eol = EolService.new(:timeout => 30)
     @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true)
@@ -183,6 +187,8 @@ end
 
 describe GuideTaxon, "sync_eol_photos" do
   let(:gt) { GuideTaxon.make! }
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
   before(:all) do
     eol = EolService.new(:timeout => 30)
     @mflagellum_page ||= eol.page(791500, :common_names => true, :images => 5, :details => true)

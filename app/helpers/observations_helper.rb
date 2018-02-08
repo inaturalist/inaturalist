@@ -8,7 +8,7 @@ module ObservationsHelper
     url = photo.best_url( size )
     return nil if !url
     # this assumes you're not using SSL *and* locally hosted attachments for observations
-    if params[:ssl] || ( defined? request && request && request.protocol =~ /https/ )
+    if params[:ssl] || ( defined?( request ) && request && request.protocol =~ /https/ )
       url = url.sub("http://", "https://s3.amazonaws.com/")
     end
     url

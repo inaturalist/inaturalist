@@ -22,19 +22,6 @@ class UsersController < ApplicationController
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
 
-  caches_action :dashboard,
-    expires_in: 15.minutes,
-    cache_path: Proc.new {|c|
-      c.send(
-        :home_url,
-        user_id: c.instance_variable_get("@current_user").id,
-        ssl: c.request.ssl?
-      )
-    },
-    if: Proc.new {|c|
-      (c.params.keys - %w(action controller format)).blank?
-    }
-
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|
@@ -48,34 +35,6 @@ class UsersController < ApplicationController
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
-  
-  def new
-    @user = User.new
-  end
- 
-  def create
-    logout_keeping_session!
-    @user = User.new(params[:user])
-    params[:user].each do |k,v|
-      if k =~ /^prefer/
-        params[:user].delete(k)
-      else
-        next
-      end
-      @user.send("#{k}=", v)
-    end
-    @user.register! if @user && @user.valid?
-    success = @user && @user.valid?
-    if success && @user.errors.empty?
-      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => @site.name)
-      self.current_user = @user
-      redirect_back_or_default(dashboard_path)
-    else
-      respond_to do |format|
-        format.html { render :action => 'new' }
-      end
-    end
-  end
 
   # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
   def activate
@@ -553,6 +512,8 @@ class UsersController < ApplicationController
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
     @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    place_id_changed = @display_user.place_id_changed?
+    prefers_no_place_changed = @display_user.prefers_no_place_changed?
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -567,8 +528,20 @@ class UsersController < ApplicationController
             session[:locale] = @display_user.locale
           end
 
+          if place_id_changed
+            session.delete(:potential_place)
+            if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.place_preference_changed_notice_html" )
+            end
+          elsif prefers_no_place_changed
+            session.delete(:potential_place)
+            if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.if_you_change_your_mind_you_can_always_edit_your_settings_html" )
+            end
+          end
+
           if params[:from_edit_after_auth].blank?
-            flash[:notice] = t(:your_profile_was_successfully_updated)
+            flash[:notice] ||= t(:your_profile_was_successfully_updated)
             redirect_back_or_default(person_by_login_path(:login => current_user.login))
           else
             redirect_to(dashboard_path)
@@ -875,8 +848,13 @@ protected
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
       :prefers_project_invitation_email_notification,
-      :prefers_project_journal_post_email_notification,
       :prefers_mention_email_notification,
+      :prefers_project_journal_post_email_notification,
+      :prefers_project_curator_change_email_notification,
+      :prefers_project_added_your_observation_email_notification,
+      :prefers_taxon_change_email_notification,
+      :prefers_user_observation_email_notification,
+      :prefers_taxon_or_place_observation_email_notification,
       :prefers_share_observations_on_facebook,
       :prefers_share_observations_on_twitter,
       :prefers_no_email,
@@ -886,6 +864,9 @@ protected
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
       :prefers_common_names,
+      :prefers_scientific_name_first,
+      :prefers_no_place,
+      :search_place_id,
       :site_id,
       :test_groups,
       :time_zone

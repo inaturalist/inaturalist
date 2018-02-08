@@ -66,6 +66,9 @@ class Taxon < ActiveRecord::Base
   belongs_to :conservation_status_source, :class_name => "Source"
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
+  has_one :en_wikipedia_description,
+    -> { where("locale='en' AND provider='Wikipedia'") },
+    class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
   has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
   
@@ -98,6 +101,7 @@ class Taxon < ActiveRecord::Base
   validate :validate_locked
   validate :complete_rank_below_rank
   validate :graftable_if_complete
+  validate :user_can_edit_attributes, on: :update
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -271,6 +275,15 @@ class Taxon < ActiveRecord::Base
     'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton', 
     'arizona']
   
+  PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
+    ancestry
+    is_active
+    rank
+    rank_level
+    complete
+    complete_rank
+  )
+
   scope :observed_by, lambda {|user|
     sql = <<-SQL
       JOIN (
@@ -409,6 +422,9 @@ class Taxon < ActiveRecord::Base
       update_stats_for_observations_of(id)
     elastic_index!
     Taxon.refresh_es_index
+    Identification.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+      unique_hash: { "Identification::update_disagreement_identifications_for_taxon": id }).
+      update_disagreement_identifications_for_taxon(id)
     true
   end
 
@@ -768,12 +784,12 @@ class Taxon < ActiveRecord::Base
     if taxon_photos.loaded?
       chosen_taxon_photos = taxon_photos.sort_by{|tp| tp.position || tp.id }[0...options[:limit]]
     else
-      chosen_taxon_photos = taxon_photos.includes(:photo).
+      chosen_taxon_photos = taxon_photos.includes({ photo: :flags }).
         order("taxon_photos.position ASC NULLS LAST, taxon_photos.id ASC").
         limit(options[:limit])
     end
     if chosen_taxon_photos.size < options[:limit]
-      descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes(:photo).
+      descendant_taxon_photos = TaxonPhoto.joins(:taxon).includes({ photo: :flags }).
         order( "taxon_photos.id ASC" ).
         limit( options[:limit] - chosen_taxon_photos.size ).
         where( "taxa.ancestry LIKE '#{ancestry}/#{id}%'" ).
@@ -884,10 +900,39 @@ class Taxon < ActiveRecord::Base
   def graftable_if_complete
     return true unless ancestry_changed?
     ct = complete_taxon
-    if ct && ( current_user.blank? || !ct.editable_by?( current_user ) )
+    if ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true
+  end
+
+  def user_can_edit_attributes
+    return true if current_user.blank?
+    current_user_curates_taxon = protected_attributes_editable_by?( current_user )
+    PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA.each do |a|
+      if changes[a] && !current_user_curates_taxon
+        errors.add( a, :can_only_be_changed_by_a_curator_of_this_taxon )
+      end
+    end
+    true
+  end
+
+  def protected_attributes_editable_by?( user )
+    # Rails.logger.debug "[DEBUG] user.is_admin?: #{user.is_admin?}"
+    return true if user && user.is_admin?
+    ct = if complete_changed? && complete_was
+      self
+    else
+      complete_taxon
+    end
+    # Rails.logger.debug "[DEBUG] ct: #{ct}"
+    return true unless ct
+    current_user_curates_taxon = false
+    # Rails.logger.debug "[DEBUG] t.taxon_curators.where( user: user ).exists?: #{t.taxon_curators.where( user: user ).exists?}"
+    if user
+      current_user_curates_taxon = ct.taxon_curators.where( user: user ).exists?
+    end
+    current_user_curates_taxon
   end
   
   #
@@ -962,28 +1007,36 @@ class Taxon < ActiveRecord::Base
     locale = options[:locale] || I18n.locale
     w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
+    provider = nil
     
-    if summary = w.summary(wname, options)
-      pre_trunc = summary
-      summary = summary.split[0..75].join(' ')
-      summary += '...' if pre_trunc > summary
+    if details = w.page_details(wname, options)
+      pre_trunc = details[:summary]
+      details[:summary] = details[:summary].split[0..75].join(' ')
+      details[:summary] += '...' if pre_trunc > details[:summary]
+      provider = "Wikipedia"
     end
     
     if locale.to_s =~ /^en-?/
-      if summary.blank?
+      if details.blank? || details[:summary].blank?
         Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
         return nil
       else
-        Taxon.where(id: self).update_all(wikipedia_summary: summary)
-      end
-    else
-      td = taxon_descriptions.where(:locale => locale).first
-      td ||= self.taxon_descriptions.build(:locale => locale)
-      if td
-        td.update_attributes(:body => summary)
+        Taxon.where(id: self).update_all(wikipedia_summary: details[:summary])
       end
     end
-    summary
+    td = taxon_descriptions.where(locale: locale).first
+    td ||= self.taxon_descriptions.build(locale: locale)
+    if td
+      td.update_attributes(
+        body: details[:summary],
+        provider_taxon_id: details[:id],
+        url: details[:url],
+        provider: provider || td.provider
+      )
+    end
+    # the update_all above skips callbacks, and the wikipedia URL may have changes
+    elastic_index!
+    details[:summary]
   end
 
   def auto_summary
@@ -1371,7 +1424,7 @@ class Taxon < ActiveRecord::Base
   def taxon_range_kml_url
     return nil unless ranges = taxon_ranges_without_geom
     tr = ranges.detect{|tr| !tr.range.blank?} || ranges.first
-    tr ? tr.kml_url : nil
+    tr ? FakeView.image_url( tr.kml_url ) : nil
   end
 
   def all_names
@@ -1409,9 +1462,6 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    if complete_taxon
-      return complete_taxon.taxon_curators.where( user: user ).exists?
-    end
     user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 
@@ -1535,7 +1585,22 @@ class Taxon < ActiveRecord::Base
   def current_synonymous_taxon
     return nil if is_active?
     TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
-      input_taxon( self ).order(:id).last.try(:output_taxon)
+      joins( :taxon_change_taxa ).
+      where( "taxon_change_taxa.taxon_id = ?", self ).order(:id).last.try(:output_taxon)
+  end
+
+  def current_synonymous_taxa_from_split
+    Taxon.where(id: TaxonChange.where(taxon_id: self.id).
+      joins(:taxon_change_taxa).pluck("taxon_change_taxa.taxon_id"))
+  end
+
+  def current_synonymous_taxa
+    synonymous_taxa = current_synonymous_taxa_from_split
+    taxon_from_swaps_and_merge = current_synonymous_taxon
+    if taxon_from_swaps_and_merge
+      synonymous_taxa << taxon_from_swaps_and_merge
+    end
+    synonymous_taxa
   end
 
   # Static ##################################################################

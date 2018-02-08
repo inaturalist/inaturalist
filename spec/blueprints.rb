@@ -188,6 +188,10 @@ Message.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+MushroomObserverImportFlowTask.blueprint do
+  user { User.make! }
+end
+
 OauthApplication.blueprint do
   name { Faker::Lorem.sentence }
   owner { User.make }

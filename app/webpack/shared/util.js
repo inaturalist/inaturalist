@@ -74,10 +74,41 @@ function isBlank( val ) {
   return _.isNumber( val ) ? !_.isFinite( val ) : _.isEmpty( val );
 }
 
+// Duplicating stylesheets/colors
+const COLORS = {
+  inatGreen: "#74ac00",
+  inatGreenLight: "#a8cc09",
+  needsIdYellow: "#FFEE91",
+  needsIdYellowLight: "#85743D",
+  bootstrapLinkColor: "#428BCA",
+  otherLinkColor: "#337AB7",
+  lightGrey: "#F7F7F7",
+  borderGrey: "#DDD",
+  failRed: "#D9534F",
+  pageBackgroundGrey: "#f8f8f8",
+  iconic: {
+    Unknown: "#aaaaaa",
+    Protozoa: "#691776",
+    Plantae: "#73AC13",
+    Fungi: "#ff1493",
+    Animalia: "#1E90FF",
+    Mollusca: "#FF4500",
+    Arachnida: "#FF4500",
+    Insecta: "#FF4500",
+    Amphibia: "#1E90FF",
+    Reptilia: "#1E90FF",
+    Aves: "#1E90FF",
+    Mammalia: "#1E90FF",
+    Actinopterygii: "#1E90FF",
+    Chromista: "#993300"
+  }
+};
+
 export {
   fetch,
   updateSession,
   objectToComparable,
   resizeUpload,
-  isBlank
+  isBlank,
+  COLORS
 };

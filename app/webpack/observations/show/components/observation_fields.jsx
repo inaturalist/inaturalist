@@ -21,19 +21,7 @@ class ObservationFields extends React.Component {
     if ( !observation || !observation.user || ( _.isEmpty( observation.ofvs ) && !loggedIn ) ) {
       return ( <span /> );
     }
-    // fieldIDs used by projects
-    const projectFieldIDs = _.compact( _.flatten( observation.project_observations.map( po => (
-      ( po.project.project_observation_fields || [] ).map( pof => (
-        pof.observation_field.id ) ) ) ) ) );
-    let nonProjectFieldValues = observation.ofvs;
-    if ( projectFieldIDs.length > 0 ) {
-      // remove any project fields from this presentation
-      nonProjectFieldValues = _.filter( observation.ofvs, ofv => ( (
-        !_.includes( projectFieldIDs, ofv.field_id )
-      ) ) );
-    }
-    if ( _.isEmpty( nonProjectFieldValues ) && !loggedIn ) { return ( <span /> ); }
-    const sortedFieldValues = _.sortBy( nonProjectFieldValues, ofv => (
+    const sortedFieldValues = _.sortBy( observation.ofvs, ofv => (
       `${ofv.value ? "a" : "z"}:${ofv.name}:${ofv.value}`
     ) );
     let addValueInput;
@@ -47,6 +35,7 @@ class ObservationFields extends React.Component {
               this.props.addObservationFieldValue( r );
             } }
             placeholder={ placeholder }
+            config={ config }
           />
         </div>
       );

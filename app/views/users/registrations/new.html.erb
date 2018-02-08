@@ -6,10 +6,21 @@
     #signup_form .formError {display: inline;}
     #signup_form input.text {width: 300px;}
     .providerlink, .button.providerlink { width: 140px; }
+    .button.default[disabled] {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .button.default[disabled]:hover {
+      background-color: #999;
+    }
   </style>
 <% end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
+    var RecaptchaCallback = function( response ) {
+      $( "#signup_form .button[type='submit']" ).prop( "disabled", false );
+    };
+
     $(document).ready(function() {
       $('.time_zone_select').selectLocalTimeZone();
     })

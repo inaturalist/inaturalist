@@ -170,22 +170,24 @@ module ActsAsElasticModel
       end
 
       def result_to_will_paginate_collection(result)
-        begin
-          records = result.records.to_a
-          elastic_ids = result.results.results.map{ |r| r.id.to_i }
-          elastic_ids_to_delete = elastic_ids - records.map(&:id)
-          unless elastic_ids_to_delete.blank?
-            elastic_delete!(where: { id: elastic_ids_to_delete })
+        try_and_try_again( PG::ConnectionBad, sleep_for: 20 ) do
+          begin
+            records = result.records.to_a
+            elastic_ids = result.results.results.map{ |r| r.id.to_i }
+            elastic_ids_to_delete = elastic_ids - records.map(&:id)
+            unless elastic_ids_to_delete.blank?
+              elastic_delete!(where: { id: elastic_ids_to_delete })
+            end
+            WillPaginate::Collection.create(result.current_page, result.per_page,
+              result.total_entries - elastic_ids_to_delete.count) do |pager|
+              pager.replace(records)
+            end
+          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+            Logstasher.write_exception(e)
+            Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
+            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+            WillPaginate::Collection.new(1, 30, 0)
           end
-          WillPaginate::Collection.create(result.current_page, result.per_page,
-            result.total_entries - elastic_ids_to_delete.count) do |pager|
-            pager.replace(records)
-          end
-        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] Elasticsearch query failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-          WillPaginate::Collection.new(1, 30, 0)
         end
       end
 
