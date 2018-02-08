@@ -27,7 +27,15 @@ class CheckListsController < ApplicationController
       # so we can search items in other checklists for this place
       if (@q = params[:q]) && !@q.blank?
         @search_taxon_ids = Taxon.elastic_search(
-          filters: [ { match: { "names.name": { query: @q, operator: "and" } } } ]).per_page(1000).map(&:id)
+          filters: [ {
+            nested: {
+              path: "names",
+              query: {
+                match: { "names.name": { query: @q, operator: "and" } }
+              }
+            }
+          } ]
+        ).per_page(1000).map(&:id)
         @unpaginated_listed_taxa = @unpaginated_listed_taxa.filter_by_taxa(@search_taxon_ids)
       end
     end
