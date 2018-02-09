@@ -7961,6 +7961,20 @@ CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
 
 
 --
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sessions_on_session_id ON sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_updated_at ON sessions USING btree (updated_at);
+
+
+--
 -- Name: index_site_admins_on_site_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9272,4 +9286,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180109232530');
 INSERT INTO schema_migrations (version) VALUES ('20180124192906');
 
 INSERT INTO schema_migrations (version) VALUES ('20180126155509');
+
+INSERT INTO schema_migrations (version) VALUES ('20180209020229');
 
