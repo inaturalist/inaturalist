@@ -49,7 +49,7 @@ class Taxon < ActiveRecord::Base
       indexes :listed_taxa do
         indexes :establishment_means, type: "keyword"
       end
-      indexes :names do
+      indexes :names, type: :nested do
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :locale, type: "keyword"
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
