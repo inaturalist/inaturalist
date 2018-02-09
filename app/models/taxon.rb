@@ -1485,24 +1485,6 @@ class Taxon < ActiveRecord::Base
     Taxon.match_descendants_of_id(id, taxon_hash)
   end
 
-  # get the extreme's of this taxon's observations as determined
-  # by our cache table for grids, at the highest zoom
-  def bounds
-    return @bounds if defined?(@bounds)
-    result = Taxon.connection.execute("SELECT
-      MIN(ST_YMIN(geom)) min_y, MAX(ST_YMAX(geom)) max_y,
-      MIN(ST_XMIN(geom)) min_x, MAX(ST_XMAX(geom)) max_x
-      FROM observation_zooms_2 WHERE taxon_id=#{ id }").first
-    @bounds = result['min_x'].nil? ?
-      { } :
-      {
-        min_x: [result['min_x'].to_f, -179.9].max,
-        min_y: [result['min_y'].to_f, -89.9].max,
-        max_x: [result['max_x'].to_f, 179.9].min,
-        max_y: [result['max_y'].to_f, 89.9].min
-      }
-  end
-
   # Used primarily in get_gbif_id. For that particular API, it is useful
   # to know the ancestor of a taxon that fits one of the major ranks, rather
   # than a sibtribe or infrafamily which may nto be as common. This

@@ -7,7 +7,7 @@
 job_type :nice_rake, "cd :path && RAILS_ENV=:environment nice bundle exec rake :task --silent :output"
 
 every 8.hours do
-  nice_rake "denormalize:windshaft"
+  nice_rake "denormalize:ancestries"
 end
 
 every :day, :at => "04:00" do
