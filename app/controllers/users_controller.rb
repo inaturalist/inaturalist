@@ -22,19 +22,6 @@ class UsersController < ApplicationController
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
 
-  caches_action :dashboard,
-    expires_in: 15.minutes,
-    cache_path: Proc.new {|c|
-      c.send(
-        :home_url,
-        user_id: c.instance_variable_get("@current_user").id,
-        ssl: c.request.ssl?
-      )
-    },
-    if: Proc.new {|c|
-      (c.params.keys - %w(action controller format)).blank?
-    }
-
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|

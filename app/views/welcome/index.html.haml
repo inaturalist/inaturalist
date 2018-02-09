@@ -1,6 +1,7 @@
 - content_for(:extrahead) do
   - unless @google_webmaster_verification.blank?
-    %meta{content: @google_webmaster_verification, name: "google-site-verification"}
+    - @google_webmaster_verification.split( ";" ).each do |verification|
+      %meta{content: verification.strip, name: "google-site-verification"}
   %meta{content: "website", property: "og:type"}
   %meta{content: @site.name, property: "og:title"}
   - if @site

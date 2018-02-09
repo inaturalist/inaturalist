@@ -92,6 +92,37 @@ class TaxonName < ActiveRecord::Base
     EOT
     const_set k.to_s.upcase, v
   end
+
+  LOCALES = {
+    "arabic"                => "ar",
+    "basque"                => "eu",
+    "breton"                => "br",
+    "bulgarian"             => "bg",
+    "catalan"               => "ca",
+    "chinese_traditional"   => "zh",
+    "dutch"                 => "nl",
+    "english"               => "en",
+    "french"                => "fr",
+    "galician"              => "gl",
+    "german"                => "de",
+    "finnish"               => "fi",
+    "hawaiian"              => "haw",
+    "hebrew"                => "iw",
+    "indonesian"            => "id",
+    "italian"               => "it",
+    "japanese"              => "ja",
+    "korean"                => "ko",
+    "luxembourgish"         => "lb",
+    "macedonian"            => "mk",
+    "maori"                 => "mi",
+    "maya"                  => "myn",
+    "occitan"               => "oc",
+    "portuguese"            => "pt",
+    "russian"               => "ru",
+    "scientific_names"      => "sci",
+    "spanish"               => "es"
+  }
+
   alias :is_scientific? :is_scientific_names?
   
   def to_s
@@ -198,8 +229,10 @@ class TaxonName < ActiveRecord::Base
     else
       place_names = []
     end
-    language_name = language_for_locale(
-      options[:locale] || options[:site].try(:locale) || I18n.locale ) || "english"
+    locale = options[:locale]
+    locale = options[:site].try(:locale) if locale.blank?
+    locale = I18n.locale if locale.blank?
+    language_name = language_for_locale( locale ) || "english"
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
     engnames = common_names.select {|n| n.is_english? }
     unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }
@@ -232,27 +265,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def locale_for_lexicon
-    case localizable_lexicon
-    when "catalan" then "ca"
-    when "chinese_traditional" then "zh"
-    when "dutch" then "nl"
-    when "english" then "en"
-    when "french" then "fr"
-    when "german" then "de"
-    when "hawaiian" then "haw"
-    when "hebrew" then "iw"
-    when "indonesian" then "id"
-    when "italian" then "it"
-    when "japanese" then "ja"
-    when "korean" then "ko"
-    when "maori" then "mi"
-    when "maya" then "myn"
-    when "portuguese" then "pt"
-    when "scientific_names" then "sci"
-    when "spanish" then "es"
-    else
-      "und"
-    end
+    LOCALES[localizable_lexicon] || "und"
   end
 
   def index_taxon
@@ -265,24 +278,9 @@ class TaxonName < ActiveRecord::Base
 
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
-    case locale.to_s
-    when /^ca/      then "catalan"
-    when /^en/      then "english"
-    when /^es/      then "spanish"
-    when /^fr/      then "french"
-    when /^haw/     then "hawaiian"
-    when /^id/      then "indonesian"
-    when /^it/      then "italian"
-    when /^iw/      then "hebrew"
-    when /^ja/      then "japanese"
-    when /^ko/      then "korean"
-    when /^mi/      then "maori"
-    when /^myn/     then "maya"
-    when /^nl/      then "dutch"
-    when /^pt/      then "portuguese"
-    when /^sci/     then "scientific_names"
-    when /zh.CN/i   then "chinese_simplified"
-    when /^zh/      then "chinese_traditional"
+    LOCALES.each do |language, language_locale|
+      return "chinese_simplified" if locale.to_s =~ /zh.CN/i
+      return language if locale.to_s =~ /^#{language_locale}/
     end
   end
 

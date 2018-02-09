@@ -44,7 +44,8 @@ class ObservationsController < ApplicationController
                             :community_taxon_summary,
                             :map,
                             :taxon_summary,
-                            :observation_links]
+                            :observation_links,
+                            :torquemap]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
@@ -1704,6 +1705,11 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
+  end
+
+  def torquemap
+    @params = params.except(:controller, :action)
+    render layout: "bootstrap"
   end
 
   private

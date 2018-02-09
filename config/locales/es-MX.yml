@@ -18,9 +18,10 @@ es-MX:
   we_also_support: "También tenemos conexión con <a href=\"http://flickr.com\">Flickr</a>,\n<a
     href=\"http://picasaweb.google.com\">Picasa</a>, y \n<a href=\"http://facebook.com\">Facebook</a>
     \npara tus imágenes."
-  a_default_taxon_name_will_automatically_created: |-
-    Del nombre científico atribuido a esta especie o grupo automáticamente se creará un nombre de especie o grupo predeterminado.
-    Cuando hayas salvado la nueva especie o grupo, podrás añadir otros nombres (nombres comunes, nombres científicos desactualizados, etc.).
+  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
+    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
+    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
+    obsoletos, etc.)
   x_followers:
     one: Un seguidor
     other: '%{count} seguidores'
@@ -3969,13 +3970,11 @@ es-MX:
           Creative Commons Compartir Igual (como Wikipedia), que son legall
           obligado a utilizar una licencia similar. He aquí un resumen de
           todas las licencias de Creative Commons y su significado:
-        paste_note_html: |-
-          Pegue en un máximo de 500 nombres de especies, uno por línea.
-          %{site_name} hará todo lo posible para que coincida con los nombres
-          comunes de la especie, sino para evitar la ambigüedad
-          es mejor usar los nombres científicos. Si desea especificar los
-          dos, separar el nombre científico del nombre común con una coma,
-          ejemplo: <code>Homo sapiens,humano</code>.
+        paste_note_html: 'Pega hasta 500 nombres de especie, uno por renglón. %{site_name}
+          hará lo posible por relacionar los nombres vernáculos con los conceptos
+          de las especies, pero es mejor utilizar los nombres científicos para evitar
+          ambigüedades. Si quieres especificar ambos, separa el nombre científico
+          del vernáculo con una coma: <code>Homo sapiens,Humano</code>.'
         places_note: |-
           Nota: no todos los lugares tienen listas de comprobación con taxones.
           Si estás teniendo problemas para encontrar un lugar con
@@ -4037,8 +4036,8 @@ es-MX:
         alphadisplay: Orden alfabético por nombre común
     guide_taxa:
       edit:
-        eol_explanation: Añadir un nombre común, hasta 5 imágenes, 1 sección de descripción
-          y 1 mapa de EOL.
+        eol_explanation: Añadir un nombre vernáculo, hasta 5 imágenes, 1 sección de
+          descripción y 1 mapa de EOL.
         site_explanation: Añade un nombre común, hasta 5 imágenes con licencia, y
           un resumen de Wikipedia %{site_name}.
       show:
@@ -4683,13 +4682,6 @@ es-MX:
         you_may_want_to_update: Tienes algunos contenidos relacionados con estos taxa
           que es posible que desees actualizar.
       edit:
-        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
-          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
-          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
-          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
-          división de una especie en dos) recibirás\nuna actualización sobre el cambio
-          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
-          el contenido."
         licensing_desc_html: "La licencia de tu contenido permite a otra gente el
           uso legal sin\npedirte permiso siempre y cuando se apeguen a las condiciones
           de la licencia.\n%{site_name} utiliza tus licencias de  Creative Commons
@@ -4697,6 +4689,13 @@ es-MX:
           \nBiodiversity Information Facility</a> (GBIF), una organización intergubernamental
           internacional, \nque reúne y distriuye información sobre biodiversidad en
           todo el mundo."
+        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
+          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
+          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
+          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
+          división de una especie en dos) recibirás\nuna actualización sobre el cambio
+          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
+          el contenido."
     welcome:
       index:
         welcome_message_html: "%{image} te invita a utilizar este portal de información

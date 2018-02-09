@@ -1233,6 +1233,7 @@ zh-CN:
   follow_us_on: 关注我们在
   follow_user: 关注%{user}
   follower: 关注者
+  followers: 关注者
   following: 关注中
   for: 用于
   for_a_taxon: 用于一个分类
@@ -1501,6 +1502,7 @@ zh-CN:
   journal_archives_for: 日记存档，用于
   journal_post: 日记发布
   journal_post_deleted: 日记帖子已删除。
+  journal_posts: 日记帖子
   jpg_png_or_gif: JPG、PNG或GIF
   jump_to_letter: 跳转至信件
   just_added!: 添加了！
@@ -1645,9 +1647,11 @@ zh-CN:
   locale_description: 区域设置您的语言和日期格式选项。
   locales_: 区域
   locales:
+    ar: 阿拉伯语
     bg: 保加利亚语
     br: 布列塔尼语
     ca: 加泰罗尼亚语
+    de: 德语
     en-US: 英语（美国）
     en: 英语
     es-ES: 西班牙语（西班牙）
@@ -2242,22 +2246,31 @@ zh-CN:
     afghanistan: 阿富汗
     africa: 非洲
     antigua_and_barbuda: 安提瓜和巴布达
+    australia: 澳大利亚
+    austria: 奥地利
     belgium: 比利时
     bosnia_and_herzegovina: 波斯尼亚和黑塞哥维那
     brazil: 巴西
     central_america: 中美洲
+    china: 中国
+    colombia: 哥伦比亚
+    denmark: 丹麦
     egypt: 埃及
     equatorial_guinea: 赤道几内亚
     europe: 欧洲
     france: 法国
     germany: 德国
     greece: 希腊
+    hong_kong: 香港
     hungary: 匈牙利
     italy: 意大利
+    india: 印度
     iraq: 伊拉克
     japan: 日本
+    korea: 韩国
     martinique: 马提尼克
     mexico: 墨西哥
+    netherlands: 荷兰
     new_guinea: 新几内亚
     new_zealand: 新西兰
     north_africa: 北非
@@ -2266,13 +2279,17 @@ zh-CN:
     panama: 巴拿马
     peru: 秘鲁
     poland: 波兰
+    portugal: 葡萄牙
     republic_of_congo: 刚果共和国
     russia: 俄罗斯
     saudi_arabia: 沙特阿拉伯
     sao_tome_and_principe: 圣多美和普林西比
+    singapore: 新加坡
+    south_africa: 南非
     south_america: 南美洲
     spain: 西班牙
     sweden: 瑞典
+    switzerland: 瑞士
     syria: 叙利亚
     thailand: 泰国
     trinidad_and_tobago: 特立尼达和多巴哥
@@ -3149,6 +3166,7 @@ zh-CN:
   with_errors: 带错误
   within_inaturalist: '%{site_name}之内'
   would_you_like_to: 您是否想
+  would_you_prefer_to_view_common_names_used_in_place_html: 您是否喜欢查看用于<strong>%{place}</strong>的常用名？
   would_like_some_help_identifying_this: 需要一些人帮助识别此
   x_admin: '%{login}管理'
   x_blog: '%{x} 的博客'
@@ -3717,6 +3735,8 @@ zh-CN:
           如果有人在%{site_name}上骚扰或跟踪您，<a href="mailto:%{help_email}">请告知我们</a>。如果这是违反我们的服务条款或是表现出其他对我们网站的不合适行为，我们将会进行调查。
           </p>
         common_names_desc: 显示常用名。如果您只希望查看学名则可以禁用。注意您可以通过更改您的地域和地点设置，控制您想看到的常用名。
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: 如果您改变主意，您总是可以<a
+          href='/users/edit'>编辑您的设置</a>。
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist网络</a>是连接至全球iNaturalist社群的本地化网站集合。您可以更改您的主网站归属，这意味着您的内容将在那个网站有优先权，但也意味着网站主有权下载并查看您所有的数据，就像iNaturalist网站管理员可以做的那样。如果那个网站离开了网络，您所有的账户和数据将随之而去。
         muting_desc_html: |-
           <p>
@@ -3725,6 +3745,8 @@ zh-CN:
           <p>
           您可以根据实际需要，尽可能地禁言一些人，但请注意您将错过可能重要的通知（例如将社区ID转移到您的观察上的身份）。
           </p>
+        name_place_help_html: 排序用于这一地区常用名的优先级。
+        place_preference_changed_notice_html: 地点参数设置已更改。如果您改变主意，您总是可以<a href='/users/edit'>编辑您的设置</a>。
         project_addition_preferences:
           any: 任何
           joined: 您加入的项目
@@ -3735,6 +3757,8 @@ zh-CN:
           ambiguous (e.g. a split), you will receive an update about the
           change linking to a tool you can use to manually update your content
           if you choose.
+        search_place_help_html: 默认观察搜索地点。
+        scientific_name_first_desc: 在常用名前显示学名。
         youve_used_all_of_your_blocks: 您使用了您所有的封禁权利。移除一个封禁行为来添加另一个。
       show:
         take_a_chance_to_review_html: 抓住机会，仔细阅读<a href="%{link}">我们的指南</a>。
