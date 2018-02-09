@@ -72,7 +72,7 @@ gem "omniauth-google-oauth2", "~> 0.4.1"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem "paperclip", "~> 5.1.0"
+gem "paperclip", "~> 5.2.1"
 gem 'pg'
 gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'

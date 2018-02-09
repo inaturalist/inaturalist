@@ -376,7 +376,7 @@ GEM
       multi_xml (>= 0.5.2)
     httpi (2.2.7)
       rack
-    i18n (0.9.3)
+    i18n (0.9.4)
       concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
       i18n (>= 0.4.1)
@@ -420,7 +420,7 @@ GEM
     mimemagic (0.3.2)
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
-    minitest (5.11.1)
+    minitest (5.11.3)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
     multi_json (1.12.2)
@@ -473,7 +473,7 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     os (0.9.6)
-    paperclip (5.1.0)
+    paperclip (5.2.1)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
       cocaine (~> 0.5.5)
@@ -630,7 +630,7 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-    tzinfo (1.2.4)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (2.7.0)
       execjs (>= 0.3.0)
@@ -746,7 +746,7 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud!
   omniauth-twitter
-  paperclip (~> 5.1.0)
+  paperclip (~> 5.2.1)
   pg
   preferences!
   puma
