@@ -26,7 +26,7 @@ class TaxonCrumbs extends React.Component {
   }
 
   render( ) {
-    const { taxon, ancestors, showAncestors, hideAncestors } = this.props;
+    const { taxon, ancestors, showAncestors, hideAncestors, config } = this.props;
     const children = _.sortBy( taxon.children || [], t => t.name );
     const ancestorTaxa = _.filter( ancestors, t => t.name !== "Life" && t.id !== taxon.id );
     let expandControl;
@@ -41,6 +41,7 @@ class TaxonCrumbs extends React.Component {
             taxon={fva}
             url={urlForTaxon( fva )}
             onClick={ e => this.clickedTaxonLink( e, fva ) }
+            user={ config.currentUser }
           />
         </li>
       );
@@ -52,6 +53,7 @@ class TaxonCrumbs extends React.Component {
               taxon={lva}
               url={urlForTaxon( lva )}
               onClick={ e => this.clickedTaxonLink( e, lva ) }
+              user={ config.currentUser }
             />
           </li>
         );
@@ -107,6 +109,7 @@ class TaxonCrumbs extends React.Component {
                       url={urlForTaxon( t )}
                       forceRank
                       onClick={ e => this.clickedTaxonLink( e, t ) }
+                      user={ config.currentUser }
                     />
                   </div>
                 ) ) }
@@ -121,7 +124,7 @@ class TaxonCrumbs extends React.Component {
       }
       return (
         <span>
-          <SplitTaxon taxon={targetTaxon} />
+          <SplitTaxon taxon={targetTaxon} user={ config.currentUser } />
           { descendants }
         </span>
       );
@@ -129,7 +132,7 @@ class TaxonCrumbs extends React.Component {
     return (
       <ul className={`TaxonCrumbs inline ${this.props.ancestorsShown ? "expanded" : "contracted"}`}>
         <li>
-          <SplitTaxon taxon={{ name: I18n.t( "life" ), is_active: true }} />
+          <SplitTaxon taxon={{ name: I18n.t( "life" ), is_active: true }} user={ config.currentUser } />
         </li>
         { firstVisibleAncestor }
         { expandControl }
@@ -139,6 +142,8 @@ class TaxonCrumbs extends React.Component {
               taxon={t}
               url={urlForTaxon( t )}
               onClick={ e => this.clickedTaxonLink( e, t ) }
+              user={ config.currentUser }
+
             />
           </li>
         ) ) }
@@ -149,6 +154,7 @@ class TaxonCrumbs extends React.Component {
               taxon={taxon}
               url={urlForTaxon( taxon )}
               onClick={ e => this.clickedTaxonLink( e, taxon ) }
+              user={ config.currentUser }
             />
           </li>
         ) : null }
@@ -175,9 +181,13 @@ TaxonCrumbs.propTypes = {
   ancestorsShown: PropTypes.bool,
   showAncestors: PropTypes.func,
   hideAncestors: PropTypes.func,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  config: PropTypes.object
 };
 
-TaxonCrumbs.defaultProps = { ancestors: [] };
+TaxonCrumbs.defaultProps = {
+  ancestors: [],
+  config: {}
+};
 
 export default TaxonCrumbs;

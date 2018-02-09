@@ -47,6 +47,16 @@
         <p id="flash" class="error"><%= raw flash[:error] %></p>
       <% end %>
 
+      <% if current_user && session[:potential_place] && flash.empty? %>
+        <div class="bootstrap">
+          <div id="full-width-notice" class="container-fluid bg-warning">
+            <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+            <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+            <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+          </div>
+        </div>
+      <% end %>
+
       <div id="wrapper" class="bootstrap">
         <% if @feature_test -%>
           <div class="container">
@@ -82,13 +92,19 @@
       I18n.locale = "<%= I18n.locale %>";
       I18n.fallbacks = true;
       <% site_place = @site && @site.place
-         user_place = current_user && current_user.place -%>
+         user_place = current_user && current_user.place
+         user_search_place = current_user && current_user.search_place -%>
       <% if site_place -%>
         var SITE_PLACE = <%= json_escape site_place.to_json(only: [:id, :name]).html_safe %>
       <% end -%>
       var PREFERRED_PLACE;
       <% if place = (user_place || site_place) -%>
-      PREFERRED_PLACE = <%= json_escape (user_place || site_place).
+      PREFERRED_PLACE = <%= json_escape place.
+        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+      <% end -%>
+      var PREFERRED_SEARCH_PLACE;
+      <% if search_place = user_search_place || site_place -%>
+      PREFERRED_SEARCH_PLACE = <%= json_escape search_place.
         to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var CURRENT_USER;
@@ -97,7 +113,8 @@
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
-          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
+          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
+          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;

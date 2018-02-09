@@ -5,7 +5,7 @@ import moment from "moment";
 import inatjs from "inaturalistjs";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import DateHistogram from "./date_histogram";
-import TorqueMap from "./torque_map";
+import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
 
 const Observations = ( { data, site, user, year } ) => {
@@ -133,8 +133,14 @@ const Observations = ( { data, site, user, year } ) => {
           window.open( url, "_blank" );
         } }
       />
-      { user ?
-        ( <TorqueMap user={ user } year={ year } interval={ user ? "weekly" : "monthly" } /> ) :
+      <h3><span>{ I18n.t( "animated_observations_map" ) }</span></h3>
+      { user ? (
+        <TorqueMap
+          params={ { user_id: user.id, year } }
+          interval={ user ? "weekly" : "monthly" }
+          basemap="dark_nolabels"
+          color="#74ac00"
+        /> ) :
         ( <GlobalMap year={ year } site={ site } /> )
       }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>

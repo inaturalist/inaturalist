@@ -84,8 +84,11 @@ export function fetchMoreFromClade( ) {
     const observation = s.observation;
     if ( !observation || !observation.latitude || !observation.longitude ||
          !observation.taxon ) { return null; }
-    const searchTaxon =
-      observation.taxon.min_species_ancestry.split( "," ).reverse( )[1] || observation.taxon.id;
+    let searchTaxon = observation.taxon.id;
+    if ( observation.taxon.rank_level <= 10 ) {
+      searchTaxon = observation.taxon.min_species_ancestry.split( "," ).reverse( )[1] ||
+        observation.taxon.id;
+    }
     const baseParams = {
       taxon_id: searchTaxon,
       order_by: "votes",

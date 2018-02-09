@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 
-const PreviousNextButtons = ( { otherObservations, showNewObservation } ) => {
+const PreviousNextButtons = ( { otherObservations, showNewObservation, config } ) => {
   const previousDisabled = _.isEmpty( otherObservations.earlierUserObservations );
   const nextDisabled = _.isEmpty( otherObservations.laterUserObservations );
   let prevAction = ( ) => { };
@@ -11,16 +11,28 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation } ) => {
   if ( !previousDisabled ) {
     const previousObs = otherObservations.earlierUserObservations[0];
     prevAction = ( ) => { showNewObservation( previousObs, { useInstance: true } ); };
-    prevAlt = previousObs.taxon ?
-      previousObs.taxon.preferred_common_name || previousObs.taxon.name :
-      I18n.t( "unknown" );
+    if ( previousObs.taxon ) {
+      if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
+        prevAlt = previousObs.taxon.name;
+      } else {
+        prevAlt = previousObs.taxon.preferred_common_name || previousObs.taxon.name;
+      }
+    } else {
+      prevAlt = I18n.t( "unknown" );
+    }
   }
   if ( !nextDisabled ) {
     const nextObs = otherObservations.laterUserObservations[0];
     nextAction = ( ) => { showNewObservation( nextObs, { useInstance: true } ); };
-    nextAlt = nextObs.taxon ?
-      nextObs.taxon.preferred_common_name || nextObs.taxon.name :
-      I18n.t( "unknown" );
+    if ( nextObs.taxon ) {
+      if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
+        nextAlt = nextObs.taxon.name;
+      } else {
+        nextAlt = nextObs.taxon.preferred_common_name || nextObs.taxon.name;
+      }
+    } else {
+      nextAlt = I18n.t( "unknown" );
+    }
   }
   return (
     <div className="PreviousNextButtons">
@@ -46,7 +58,8 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation } ) => {
 
 PreviousNextButtons.propTypes = {
   otherObservations: PropTypes.object,
-  showNewObservation: PropTypes.func
+  showNewObservation: PropTypes.func,
+  config: PropTypes.object
 };
 
 export default PreviousNextButtons;

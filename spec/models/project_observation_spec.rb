@@ -563,6 +563,18 @@ describe ProjectObservation, "to_csv" do
     ofv_index = rows[0].index(of.name)
     expect(rows[1][ofv_index]).to eq ofv.value
   end
+
+  it "should include values for project observation fields regardless of case" do
+    of = ObservationField.make!( name: "This IS %#!$ Capitalized" )
+    pof = ProjectObservationField.make!( observation_field: of )
+    p = pof.project
+    po = make_project_observation(:project => p)
+    ofv = ObservationFieldValue.make!(:observation => po.observation, :observation_field => of, :value => "foo")
+    csv = ProjectObservation.to_csv([po])
+    rows = CSV.parse(csv)
+    ofv_index = rows[0].index(of.name)
+    expect(rows[1][ofv_index]).to eq ofv.value
+  end
 end
 
 describe ProjectObservation, "elastic indexing" do

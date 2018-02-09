@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Andreas Plank
+# Author: Cellina
 # Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
@@ -116,6 +117,8 @@ qqq:
   agree_: '{{Identical|Agree}}'
   agree?: '{{Identical|Agree}}'
   all: '{{Identical|All}}'
+  all_rank_added_to_the_database:
+    supertribe: 'Tribe (en), biol.: Übersetzung Tribus (auch pl.) bei Leo https://dict.leo.org/englisch-deutsch/Tribus'
   all_rights_reserved: where name is the author name
   all_taxa:
     rank:
@@ -400,6 +403,7 @@ qqq:
   failed_to_repair_photo: where errors is a description of the error
   "false": '{{Identical|False}}'
   faq: '{{Identical|Frequently asked questions}}'
+  favorites: '{{Identical|Favorites}}'
   featured: '{{Identical|Featured}}'
   featured?: '{{Identical|Featured}}'
   featured_projects_from_place: where place is the name of the palce
@@ -503,7 +507,9 @@ qqq:
   it: '{{Identical|It}}'
   january: '{{Identical|January}}'
   join: '{{Identical|Join}}'
-  join_inat: where site_name is the name of the site
+  join_inat: |-
+    where site_name is the name of the site
+    {{Identical|Join}}
   joined!: '{{Identical|Joined}}'
   journal: '{{Identical|Journal}}'
   labels: '{{Identical|Label}}'
@@ -621,8 +627,8 @@ qqq:
     en: '{{Identical|English}}'
     es: '{{Identical|Spanish}}'
     fr: '{{Identical|French}}'
-    ko: '{{Identical|Korean}}'
     it: '{{Identical|Italian}}'
+    ko: '{{Identical|Korean}}'
   localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
@@ -1330,8 +1336,8 @@ qqq:
         new_project_admin_html: where site_name is the site_name and help_email is
           an email address
       edit:
-        taxon_change_desc: where site_name is the site name
         licensing_desc_html: where site_name is the site name
+        taxon_change_desc: where site_name is the site name
         prefers_community_taxa_desc: where site_name is the site name
       show:
         take_a_chance_to_review_html: where link is a URL to the website help page
@@ -1521,8 +1527,7 @@ qqq:
           Translation of the word "vowel." If you translate any of the keys in
           the vow_or_con block, please do not make @ references to keys that
           have not been translated.
-        con: |-
-          Translation of the word "consonant"
+        con: Translation of the word "consonant"
       gender:
         m: '{{Identical|Male}}'
         f: '{{Identical|Female}}'

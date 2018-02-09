@@ -46,6 +46,7 @@ module DarwinCore
 
     def generate
       @generate_started_at = Time.now
+      logger.debug "[DEBUG] Generating archive, options: #{@opts}"
       unless @opts[:metadata].to_s.downcase == "skip"
         metadata_path = make_metadata
         logger.debug "Metadata: #{metadata_path}"
@@ -173,7 +174,7 @@ module DarwinCore
         { observations_places: :place }
       ]
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
@@ -276,7 +277,7 @@ module DarwinCore
 
       start_time = @generate_started_at || Time.now
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
@@ -306,7 +307,7 @@ module DarwinCore
       start_time = @generate_started_at || Time.now
       
       # If ES goes down, wait a minute and try again. Repeat a few times then just raise the exception
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_observation_fields_data') do |observation|
@@ -316,15 +317,6 @@ module DarwinCore
               csv << DarwinCore::ObservationFields::TERMS.map{|field, uri, default, method| ofv.send(method || field)}
             end
           end
-        end
-      end
-
-      def try_and_try_again( exception, sleep_for = 60, tries = 3 )
-        begin
-          yield
-        rescue exception
-          sleep( sleep_for )
-          retry unless ( tries -= 1 ).zero?
         end
       end
       
@@ -340,7 +332,7 @@ module DarwinCore
       preloads = [ { project_observations: :project } ]
       start_time = @generate_started_at || Time.now
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
@@ -364,7 +356,7 @@ module DarwinCore
       params = observations_params
       preloads = [ :user ]
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches( params, preloads, label: "make_user_data") do |observation|
@@ -387,8 +379,13 @@ module DarwinCore
           0
         end
         avg_observation_time = avg_batch_time / 500
-        logger.debug "Observation batch #{batch_times.size} #{"for #{options[:label]} " if options[:label]}(avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
-        Observation.preload_associations(batch, preloads)
+        msg = "Observation batch #{batch_times.size}"
+        msg += " for #{options[:label]}" if options[:label]
+        msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
+        logger.debug msg
+        try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
+          Observation.preload_associations(batch, preloads)
+        end
         batch.each do |observation|
           yield observation
         end
@@ -402,25 +399,6 @@ module DarwinCore
       fnames = args.map{|f| File.basename(f)}
       system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
       tmp_path
-    end
-
-    # Helper to perform a long running task, catch an exception, and try again
-    # after sleeping for a while
-    def try_and_try_again( exceptions, options = { } )
-      exceptions = [exceptions].flatten
-      tries = options.delete( :tries ) || 3
-      sleep_for = options.delete( :sleep ) || 60
-      begin
-        yield
-      rescue *exceptions => e
-        if ( tries -= 1 ).zero?
-          raise e
-        else
-          logger.debug "Caught #{e.class}, sleeping for #{sleep_for} s before trying again..."
-          sleep( sleep_for )
-          retry
-        end
-      end
     end
   end
 end

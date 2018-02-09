@@ -2006,22 +2006,22 @@ pt-BR:
     bg: Húngaro
     br: Bretão
     ca: Catalão
-    en: Inglês
     en-US: Inglés (Estados Unidos)
-    es: Espanhol
+    en: Inglês
     es-ES: Espanhol (Espanha)
     es-MX: Espanhol (México)
+    es: Espanhol
+    eu: Basco
     fi: Finlandés
     fr: Francês
-    eu: Basco
     gl: Galego
-    ko: Coreano
     id: Indonesio
     it: Italiano
+    ja: Japonês
+    ko: Coreano
     mk: Macedônio
     oc: Occitano
     pt-BR: Português (Brasil)
-    ja: Japonês
     zh-CN: Chinês (Simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -5534,6 +5534,9 @@ pt-BR:
           a qualquer momento realizar o download destes dados e visualizar todo o
           seu conteúdo, assim como os administradores do iNaturalist. Se esta plataforma
           local deixar a rede, todas as suas contas e dados irão com o site.
+        licensing_desc_html: |-
+          Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
         project_addition_preferences:
           any: Qualquer
           joined: Projetos em que você participa
@@ -5545,11 +5548,6 @@ pt-BR:
         taxon_change_desc: Quando os táxons convergirem ou forem renomeados para %{site_name},
           suas observações, táxons registrados, identificações, entre outros serão
           automaticamente atualizados para o novo táxon se a mudança não for ambígua.
-        licensing_desc_html: |-
-          Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
-        place_help_html: Customiza alguns aspectos do site para um lugar, como por
-          exemplo os nomes populares.
         prefers_community_taxa_desc: '%{site_name} ratreia oque você acredita que
           suas observações são e o que a comunidade acredita. A identificação que
           dividimos com parceiros é a realizada pela comunidade, porém se você não

@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Athena in Wonderland
 # Author: Duartefrade
+# Author: Fitoschido
 # Author: Hamilton Abreu
 # Author: Imperadeiro90
 # Author: Jkb8
@@ -198,7 +199,7 @@ pt-PT:
   add_colors: Adicione cores
   add_comma_separated_tags: Adicione tags separadas por vírgulas
   add_comment: Adicionar um comentário
-  add_common_names_for: adicionar nomes comuns a taxa já existentes
+  add_common_names_for: adicionar nomes vulgares aos táxons já existentes
   add_conservation_status: adicionar estado de conservação
   add_countries: Adicionar Países
   add_custom_project_fields: Adicione campos de projecto personalizados
@@ -1795,22 +1796,25 @@ pt-PT:
     bg: Búlgaro
     br: Bretão
     ca: Catalão
-    en: Inglês
     en-US: Inglês (Estados Unidos)
-    es: Espanhol
+    en: Inglês
     es-ES: Espanhol (Espanha)
     es-MX: Espanhol (México)
+    es: Espanhol
+    eu: Basco
     fi: Finlandês
     fr: Francês
-    eu: Basco
     gl: Galego
-    ko: Coreano
     id: Indonésio
     it: Italiano
+    ja: Japonês
+    ko: Coreano
+    lb: Luxemburguês
     mk: Macedónio
     oc: Occitano
     pt-BR: Português (Brasil)
-    ja: Japonês
+    pt-PT: Português (Portugal)
+    ru: Russo
     zh-CN: Chinês (simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -2104,6 +2108,7 @@ pt-PT:
   real_time_discussions: Discussões em tempo real
   recent: Recentes
   restore: Restaurar
+  show_common_names: Mostrar os nomes vulgares
   show_less: Mostrar menos
   show_more: Mostrar mais
   sign_in_exclamation: Iniciar sessão
@@ -2132,6 +2137,9 @@ pt-PT:
           p.e. 2015-01-17
         created_on_help: As observações de data foram criadas, não observadas, i.e.
           2015-01-17, 2015-01, 2015
+    users:
+      edit:
+        scientific_name_first_desc: Mostrar os nomes científicos antes do que os vulgares.
   i18n:
     inflections:
       :@vow_or_con:

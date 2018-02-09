@@ -44,7 +44,8 @@ class ObservationsController < ApplicationController
                             :community_taxon_summary,
                             :map,
                             :taxon_summary,
-                            :observation_links]
+                            :observation_links,
+                            :torquemap]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
@@ -118,8 +119,10 @@ class ObservationsController < ApplicationController
           t ||= Taxon.where( name: sn ).first
           t ||= TaxonName.joins(:taxon).where("taxa.is_active AND lower(taxon_names.name) = ?", sn).first.try(:taxon)
           t ||= TaxonName.where("lower(taxon_names.name) = ?", sn).first.try(:taxon)
-          t = t.current_synonymous_taxon unless t.is_active?
-          params[:taxon_id] = t.id if t
+          if t
+            t = t.current_synonymous_taxon unless t.is_active?
+            params[:taxon_id] = t.id
+          end
         end
         render layout: "bootstrap", locals: { params: params }
       end
@@ -1702,6 +1705,11 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
+  end
+
+  def torquemap
+    @params = params.except(:controller, :action)
+    render layout: "bootstrap"
   end
 
   private

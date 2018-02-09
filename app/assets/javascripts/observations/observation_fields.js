@@ -84,8 +84,9 @@ var ObservationFields = {
       }
       
       $(this).addClass('fieldified')
-      var input = $('.ofv_input input.text', this)
+      var input = $('.ofv_input :input.ofv_value_field', this)
       var currentField = options.observationField || $.parseJSON($(input).attr('data-json'))
+      $(input).attr('data-json', JSON.stringify( currentField ) );
       if (!currentField) return
       currentField.recordId = currentField.recordId || currentField.id
       
@@ -101,9 +102,12 @@ var ObservationFields = {
             'observation_field_values_attributes]['+index+']')
         $(this).attr('name', newName)
       })
+      $( '.visible-input', this ).not('.ofv_value_field').remove()
+      $( '.ac-chooser', this ).remove()
       if (currentField.allowed_values && currentField.allowed_values != '') {
         var allowed_values = currentField.allowed_values.split('|')
         var select = $('<select></select>')
+        select.addClass('visible-input')
         for (var i=0; i < allowed_values.length; i++) {
           select.append($('<option>'+allowed_values[i]+'</option>'))
         }
@@ -114,6 +118,7 @@ var ObservationFields = {
         if (options.focus) { select.focus() }
       } else if (currentField.datatype == 'numeric') {
         var newInput = input.clone()
+        newInput.addClass('visible-input')
         newInput.attr('type', 'number')
         newInput.attr('step', 'any')
         input.after(newInput)
@@ -127,10 +132,11 @@ var ObservationFields = {
         if (options.focus) { input.focus() }
       } else if (currentField.datatype == 'taxon') {
         var newInput = input.clone()
+        newInput.addClass('visible-input')
         newInput.attr('name', 'taxon_name')
         input.after(newInput)
         input.hide()
-        $(newInput).removeClass('ofv_value_field')
+        $(newInput).removeClass('ofv_value_field').show()
         var taxon = input.data( "taxon" );
         if( taxon ) {
           newInput.val( taxon.leading_name );

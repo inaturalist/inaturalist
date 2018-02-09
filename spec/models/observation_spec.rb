@@ -3397,7 +3397,7 @@ describe Observation do
 
     it "generates mention updates" do
       u = User.make!
-      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      o = Observation.make!(description: "hey @#{ u.login }")
       expect( UpdateAction.where(notifier: o, notification: "mention").count ).to eq 1
       expect(
         UpdateAction.where(notifier: o, notification: "mention").first.update_subscribers.first.subscriber
@@ -3408,14 +3408,14 @@ describe Observation do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
       UpdateAction.where( notifier: o, notification: "mention" ).destroy_all
-      without_delay { o.update_attributes( description: "#{o.description} and some extra" ) }
+      o.update_attributes( description: "#{o.description} and some extra" )
       action = UpdateAction.where( notifier: o, notification: "mention" ).first
       expect( action.update_subscribers.count ).to eq 0
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey") }
-      without_delay { o.update_attributes( description: "#{o.description} @#{u.login}" ) }
+      o.update_attributes( description: "#{o.description} @#{u.login}" )
       action = UpdateAction.where( notifier: o, notification: "mention" ).first
       expect( action.update_subscribers.count ).to eq 1
     end

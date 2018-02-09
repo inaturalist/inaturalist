@@ -35,6 +35,15 @@
       PREFERRED_PLACE = <%= json_escape (user_place || site_place).
         to_json(only: [:id, :name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
+      <% if logged_in? -%>
+        var CURRENT_USER = {
+          id: <%= current_user.id %>,
+          login: '<%= current_user.login %>',
+          icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
+          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
+          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>
+        };
+      <% end -%>
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>

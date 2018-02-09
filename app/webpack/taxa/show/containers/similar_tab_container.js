@@ -5,7 +5,8 @@ import { showNewTaxon } from "../actions/taxon";
 function mapStateToProps( state ) {
   return {
     results: state.taxon.similar,
-    place: state.config.chosenPlace
+    place: state.config.chosenPlace,
+    config: state.config
   };
 }
 

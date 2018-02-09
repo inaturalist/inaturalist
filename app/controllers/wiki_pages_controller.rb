@@ -6,7 +6,7 @@ class WikiPagesController < ApplicationController
     return false unless logged_in?
     return true if current_user.is_admin?
     if !@site.home_page_wiki_path.blank? && @page.path == @site.home_page_wiki_path
-      return false unless current_user.uri =~ /#{@site.domain}/
+      return false unless current_user.site_id == @site.id
     end
     current_user.is_curator?
   end

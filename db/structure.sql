@@ -3445,6 +3445,39 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sessions (
+    id integer NOT NULL,
+    session_id character varying NOT NULL,
+    data text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sessions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sessions_id_seq OWNED BY sessions.id;
+
+
+--
 -- Name: site_admins; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3982,7 +4015,10 @@ CREATE TABLE taxon_descriptions (
     id integer NOT NULL,
     taxon_id integer,
     locale character varying(255),
-    body text
+    body text,
+    provider character varying,
+    provider_taxon_id character varying,
+    url character varying
 );
 
 
@@ -4526,7 +4562,8 @@ CREATE TABLE users (
     icon_file_name character varying,
     icon_content_type character varying,
     icon_file_size integer,
-    icon_updated_at timestamp without time zone
+    icon_updated_at timestamp without time zone,
+    search_place_id integer
 );
 
 
@@ -5280,6 +5317,13 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
+
+
+--
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq'::regclass);
 
 
 --
@@ -6150,6 +6194,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY rules
     ADD CONSTRAINT rules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -7909,6 +7961,20 @@ CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
 
 
 --
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sessions_on_session_id ON sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_updated_at ON sessions USING btree (updated_at);
+
+
+--
 -- Name: index_site_admins_on_site_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8158,6 +8224,13 @@ CREATE INDEX index_taxon_changes_on_taxon_id ON taxon_changes USING btree (taxon
 --
 
 CREATE INDEX index_taxon_changes_on_user_id ON taxon_changes USING btree (user_id);
+
+
+--
+-- Name: index_taxon_descriptions_on_provider; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_descriptions_on_provider ON taxon_descriptions USING btree (provider);
 
 
 --
@@ -9209,4 +9282,10 @@ INSERT INTO schema_migrations (version) VALUES ('20171222172131');
 INSERT INTO schema_migrations (version) VALUES ('20180103194449');
 
 INSERT INTO schema_migrations (version) VALUES ('20180109232530');
+
+INSERT INTO schema_migrations (version) VALUES ('20180124192906');
+
+INSERT INTO schema_migrations (version) VALUES ('20180126155509');
+
+INSERT INTO schema_migrations (version) VALUES ('20180209020229');
 

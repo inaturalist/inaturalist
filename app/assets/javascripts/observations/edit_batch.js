@@ -39,20 +39,27 @@ function batchObservationFields() {
       var existing = $('[data-observation-field-id='+fieldId+']', container).get(0)
       if (!existing) {
         $(container).append(newField)
+        newField.removeClass('fieldified');
+        ObservationFields.fieldify({focus: false})
         existing = newField
       }
       var val = $('.ofv_value_field', this).val()
       $('.ofv_value_field', existing).val(val)
       $('select', existing).val(val)
+      // Bending over backward to set the taxon. Ignoring date and time selectors, people can just edit those by hand
+      var autocompelteItem = $('.ui-autocomplete-input', this).data('autocomplete-item');
+      if (autocompelteItem) {
+        $('.ui-autocomplete-input', existing ).trigger( "assignSelection", autocompelteItem )
+      }
     })
 
-    var index = $(this).parents('.observation:first').find('.observed_on_string').attr('id').split('_')[1]
+    var obsIndex = $(this).parents('.observation:first').find('.observed_on_string').attr('id').split('_')[1]
     $(':input', this).each(function() {
       if ($(this).attr('id')) {
-        $(this).attr('id', $(this).attr('id').replace(/\d+_value/, index+'_value'))
+        $(this).attr('id', $(this).attr('id').replace(/\d+_value/, obsIndex+'_value'))
       }
       if ($(this).attr('name')) {
-        $(this).attr('name', $(this).attr('name').replace(/observation\[/, 'observations['+index+']['))
+        $(this).attr('name', $(this).attr('name').replace(/observation\[/, 'observations['+obsIndex+']['))
       }
     })
   })

@@ -50,7 +50,8 @@ class EolPhoto < Photo
   def self.new_from_api_response(api_response, options = {})
     api_response.remove_namespaces! if api_response.respond_to?(:remove_namespaces!)
     native_photo_id = api_response.at('dataObjectID').try(:content)
-    native_photo_id ||= api_response.at('dataObject identifier').content
+    native_photo_id ||= api_response.at('dataObject identifier').try(:content)
+    return unless native_photo_id
     if license = api_response.at('license')
       license_string = api_response.search('license').children.first.inner_text
       license_number = Photo::C
@@ -112,7 +113,9 @@ class EolPhoto < Photo
       send("#{a}=", p.send(a))
     end
     save unless options[:no_save]
-    [self, errors]
+    [self, {}]
+  rescue Timeout::Error
+    [self, { timeout: "EOL didn't respond" }]
   end
 
   private

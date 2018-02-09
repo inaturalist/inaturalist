@@ -8,7 +8,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
-    :taxon_change_taxa, :taxon_schemes, :taxon_changes,
+    :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
     { taxon_photos: { photo: [ :user, :flags ] } },
@@ -19,6 +19,7 @@ class Taxon < ActiveRecord::Base
       indexes :min_species_ancestry, type: "keyword"
       indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :rank, type: "keyword"
+      indexes :wikipedia_url, type: "keyword", index: false
       indexes :taxon_photos do
         indexes :license_code, type: "keyword"
         indexes :photo do
@@ -48,7 +49,7 @@ class Taxon < ActiveRecord::Base
       indexes :listed_taxa do
         indexes :establishment_means, type: "keyword"
       end
-      indexes :names do
+      indexes :names, type: :nested do
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :locale, type: "keyword"
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
@@ -142,7 +143,8 @@ class Taxon < ActiveRecord::Base
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
         atlas_id: atlas.try( :id ),
-        complete_species_count: complete_species_count
+        complete_species_count: complete_species_count,
+        wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
       if complete_taxon
         json[:complete_rank] = complete_taxon.complete_rank

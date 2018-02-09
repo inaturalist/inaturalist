@@ -303,6 +303,7 @@ class ObservationModal extends React.Component {
                   url={`/observations/${observation.id}`}
                   target="_blank"
                   placeholder={observation.species_guess}
+                  user={ currentUser }
                   noParens
                 />
               ) }

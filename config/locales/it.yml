@@ -2066,25 +2066,30 @@ it:
     e la formattazione della data.
   locales_: Localizzazioni
   locales:
+    ar: Arabo
     bg: Bulgaro
     br: Bretone
     ca: Catalano
-    en: Inglese
+    de: Tedesco
     en-US: Inglese (Stati Uniti)
-    es: Spagnolo
+    en: Inglese
     es-ES: Spagnolo (Spagna)
     es-MX: Spagnolo (Messico)
+    es: Spagnolo
+    eu: Basco
     fi: Finlandese
     fr: Francese
-    eu: Basco
     gl: Galiziano
-    ko: Coreano
     id: Indonesiano
     it: Italiano
+    ja: Giapponese
+    ko: Coreano
+    lb: Lussemburghese
     mk: Macedone
     oc: Occitano
     pt-BR: Portoghese (Brasile)
-    ja: Giapponese
+    pt-PT: Portoghese (Portogallo)
+    ru: Russo
     zh-CN: Cinese (tradizionale)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
@@ -2189,6 +2194,7 @@ it:
   maybe_your_signed_in_with: Forse ti sei registrato con il tuo account %{omniauth}?
   media: File multimediali
   medium: medio
+  meet: Incontra
   member_of_the_inaturalist_network_html: Membri di <a href="%{url}">iNaturalist Network</a>
   members: Membri
   mentioned_you_in_noun_html: '%{user} ti ha menzionato in %{noun}'
@@ -2973,22 +2979,31 @@ it:
     afghanistan: Afghanistan
     africa: Africa
     antigua_and_barbuda: Antigua e Barbuda
+    australia: Australia
+    austria: Austria
     belgium: Belgio
     bosnia_and_herzegovina: Bosnia-Erzegovina
     brazil: Brasile
     central_america: America Centrale
+    china: Cina
+    colombia: Colombia
+    denmark: Danimarca
     egypt: Egitto
     equatorial_guinea: Guinea Equatoriale
     europe: Europa
     france: Francia
     germany: Germania
     greece: Grecia
+    hong_kong: Hong Kong
     hungary: Ungheria
     italy: Italia
+    india: India
     iraq: Iraq
     japan: Giappone
+    korea: Corea
     martinique: Martinica
     mexico: Messico
+    netherlands: Paesi Bassi
     new_guinea: Nuova Guinea
     new_zealand: Nuova Zelanda
     north_africa: Nord Africa
@@ -2997,13 +3012,17 @@ it:
     panama: Panama
     peru: Perù
     poland: Polonia
+    portugal: Portogallo
     republic_of_congo: Repubblica del Congo
     russia: Russia
     saudi_arabia: Arabia Saudita
     sao_tome_and_principe: Sao Tome e Principe
+    singapore: Singapore
+    south_africa: Sud Africa
     south_america: Sud America
     spain: Spagna
     sweden: Svezia
+    switzerland: Svizzera
     syria: Siria
     thailand: Thailandia
     trinidad_and_tobago: Trinidad e Tobago
@@ -3055,6 +3074,7 @@ it:
   powered_by_inaturalist_open_source_software_html: Offerto da <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalist open source software</a>
   present: presente
+  press: Stampa
   preview: Anteprima
   preview_of_synced_observation: <strong>Anteprima</strong> dell'osservazione sincronizzata.
     <a href="%{url}">Annulla?</a>
@@ -3179,6 +3199,9 @@ it:
     order: ordine
     suborder: sottordine
     infraorder: infraordine
+    parvorder: parvordine
+    zoosection: zoosezione
+    zoosubsection: zoosottosezione
     superfamily: superfamiglia
     epifamily: epi-familia
     family: famiglia
@@ -3196,6 +3219,7 @@ it:
     subspecies: sottospecie
     variety: varietà
     form: forma
+    infrahybrid: infraibrido
     leaves: foglie
   rare: Raro
   ray_finned_fishes: Attinopterigi
@@ -5059,7 +5083,7 @@ it:
       community_id:
         agreement: Accordo
         algorithm_summary: Riassunto dell'algoritmo
-        ancestor_disagreements: Conteggio delle identificazioni
+        ancestor_disagreements: Disaccordi sull'antenato
         below_cutoff: Limite inferiore
         cumulative_count: Conteggio cumulativo
         disagreement: Disaccordo
@@ -5719,6 +5743,8 @@ it:
         common_names_desc: Mostra i nomi comuni. Disabilita se vuoi vedere i nomi
           scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando
           le impostazioni locali e quelle del luogo.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: Se cambi idea
+          puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: Il <a href="%{url}" target="_blank">Network
           di iNaturalist</a> è un gruppo di siti web locali connessi alla community
           di iNaturalist. Puoi modificare l'affiliazione principale; ciò significa
@@ -5726,6 +5752,13 @@ it:
           anche che i proprietari di quel sito hanno il diritto di scaricare e visualizzare
           i dati come fanno gli amministratori di iNaturalist. Se il sito da te scelto
           abbandona il network, tutti i tuoi dati lo seguiranno.
+        licensing_desc_html: Attribuendo una licenza ai tuoi contenuti darai alle
+          altre persone il diritto legale di utilizzarlo senza chiederti il permesso
+          se essi si attengono ai termini della licenza. %{site_name} utilizza i tuoi
+          contenuti con licenza Creative Commons per condividerli con i partner come
+          il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+          (GBIF), una organizzazione internazionale e intergovernativa che raccoglie
+          e distribuisce le informazioni sulla biodiversità in tutto il mondo.
         muting_desc_html: |-
           <p>
             Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.
@@ -5733,6 +5766,8 @@ it:
           <p>
             Puoi silenziare tutte le persone che vuoi, ma ricordati che ti potrai perdere importanti notifiche, come identificazioni che spostano l'ID della Community delle tue osservazioni.
           </p>
+        place_preference_changed_notice_html: Preferenza luogo modificato. Se cambi
+          idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         project_addition_preferences:
           any: Qualsiasi
           joined: Progetti a cui ti sei unito
@@ -5747,15 +5782,6 @@ it:
           opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai
           un aggiornamento sulla modifica, con un link ad uno strumento che potrai
           usare per aggiornare manualmente il tuo contenuto.
-        licensing_desc_html: Attribuendo una licenza ai tuoi contenuti darai alle
-          altre persone il diritto legale di utilizzarlo senza chiederti il permesso
-          se essi si attengono ai termini della licenza. %{site_name} utilizza i tuoi
-          contenuti con licenza Creative Commons per condividerli con i partner come
-          il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-          (GBIF), una organizzazione internazionale e intergovernativa che raccoglie
-          e distribuisce le informazioni sulla biodiversità in tutto il mondo.
-        place_help_html: Personalizza alcuni aspetti del sito per un determinato luogo,
-          come ad esempio i nomi comuni.
         prefers_community_taxa_desc: '%{site_name} tiene traccia di cosa tu pensi
           che sia ciò che hai osservato e di ciò che ne pensa la community. L''identificazione
           che condividiamo con i partner dei dati è l''identificazione della community,
@@ -5764,6 +5790,8 @@ it:
           in grado di aggiungere identificazioni, ma l''opinione della community non
           avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno
           il Livello Ricerca a me che non sia in accordo con l''ID della community.'
+        search_place_help_html: Luogo predefinito per le ricerche di osservazione.
+        scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
         youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
           un blocco per poterne aggiungere un altro.
       show:

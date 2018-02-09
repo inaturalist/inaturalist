@@ -67,6 +67,7 @@
             #filters-categories.btn-group
               - Taxon::ICONIC_TAXA.reject{|t| t.name == 'Animalia' || t.name == 'Chromista'}.compact.sort_by(&:self_and_ancestor_ids).each_with_index do |t, i|
                 :ruby
+                  next unless t
                   button_attrs = {
                     type: "button",
                     class: "btn btn-default iconic-taxon #{'last' if (i+1) % 6 == 0}",
@@ -170,6 +171,7 @@
           %input{ type: "hidden", name: "rank" }
           %input{ type: "hidden", name: "unobserved_by_user_id" }
           %input{ type: "hidden", name: "geo" }
+          %input{ type: "hidden", name: "oauth_application_id" }
     .row
       .col-xs-12
         %button#filters-more-btn.btn.btn-link{ type: 'button', "ng-class" => "{ 'collapsed': moreFiltersHidden }", "ng-click" => "toggleMoreFilters( )" }

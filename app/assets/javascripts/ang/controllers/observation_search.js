@@ -328,8 +328,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       ));
     }
     // set the default user or site place_id
-    if( PREFERRED_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
-      initialParams.place_id = PREFERRED_PLACE.id;
+    if( PREFERRED_SEARCH_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
+      initialParams.place_id = PREFERRED_SEARCH_PLACE.id;
     }
     if( PREFERRED_SUBVIEW && !initialParams.subview ) {
       $scope.currentSubview = PREFERRED_SUBVIEW;
@@ -1292,6 +1292,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.showRedoSearchButton( );
     var time = new Date( ).getTime( );
     $scope.lastMoveTime = time;
+    $scope.mapBounds = $scope.map.getBounds( );
     setTimeout( function( ) {
       // only perform one nearby place search, once
       // the map has stopped moving for a half second

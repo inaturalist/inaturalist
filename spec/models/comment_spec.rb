@@ -66,7 +66,7 @@ describe Comment do
 
     it "generates mention updates" do
       u = User.make!
-      c = without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      c = Comment.make!(body: "hey @#{ u.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.where(notifier: c, notification: "mention").first.
         update_subscribers.first.subscriber ).to eq u
@@ -77,20 +77,20 @@ describe Comment do
       u2 = User.make!
       c = without_delay { Comment.make!(body: "hey") }
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
-      without_delay { c.update_attributes(body: "hey @#{ u1.login }") }
+      c.update_attributes(body: "hey @#{ u1.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.where(notifier: c, notification: "mention").first.
         update_subscribers.first.subscriber ).to eq u1
-      without_delay { c.update_attributes(body: "hey @#{ u2.login }") }
+      c.update_attributes(body: "hey @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       expect( UpdateAction.where(notifier: c, notification: "mention").first.
         update_subscribers.first.subscriber ).to eq u2
-      without_delay { c.update_attributes(body: "hey @#{ u1.login }, @#{ u2.login }") }
+      c.update_attributes(body: "hey @#{ u1.login }, @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
       # shouldn't need to use uniq here - duplicate subscribers
       expect( UpdateAction.where(notifier: c, notification: "mention").first.
         update_subscribers.map(&:subscriber_id).uniq.sort ).to eq [ u1.id, u2.id ]
-      without_delay { c.update_attributes(body: "hey") }
+      c.update_attributes(body: "hey")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
     end
   end

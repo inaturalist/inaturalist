@@ -18,6 +18,7 @@
 # Author: Luisangelrg
 # Author: Mack
 # Author: Macofe
+# Author: MarcoAurelio
 # Author: Ncontinanza
 # Author: Ohlila
 # Author: Pato
@@ -38,10 +39,10 @@ es:
     <a href="http://photos.google.com">Google Photos</a> y
     <a href="http://facebook.com">Facebook</a>
     para alojamiento de imágenes.
-  a_default_taxon_name_will_automatically_created: Se creará un nombre por defecto
-    del taxón a partir del atributo del nombre científico de este taxón. Cuando hayas
-    guardado este taxón, podrás agregar otros nombres aquí (nombres comunes, nombres
-    científicos actualizados, etc.).
+  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
+    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
+    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
+    obsoletos, etc.)
   x_comments:
     one: 1 comentario
     other: '%{count} comentarios'
@@ -214,7 +215,7 @@ es:
   add_colors: Añade colores
   add_comma_separated_tags: Añade etiquetas separadas por comas
   add_comment: Añade un comentario
-  add_common_names_for: Añade nombres comunes a taxones existentes
+  add_common_names_for: añadir nombres vernáculos para taxones existentes
   add_conservation_status: Añade estado de conservación
   add_countries: Añade países
   add_custom_project_fields: Añade campos de proyecto personalizados
@@ -1500,6 +1501,7 @@ es:
   follow_us_on: Síganos en
   follow_user: Seguir a %{user}
   follower: seguidor
+  followers: seguidores
   following: siguiendo
   for: para
   for_a_taxon: de un taxon
@@ -2041,25 +2043,30 @@ es:
     de fecha.
   locales_: Locales
   locales:
+    ar: Árabe
     bg: Búlgaro
     br: Bretón
     ca: Catalán
-    en: Inglés
+    de: Alemán
     en-US: Inglés (Estados Unidos)
-    es: Español
+    en: Inglés
     es-ES: Español (España)
     es-MX: Español (México)
+    es: Español
+    eu: Euskera
     fi: Finlandés
     fr: Francés
-    eu: Euskera
     gl: Gallego
-    ko: Coreano
     id: Indonesio
     it: Italiano
+    ja: Japonés
+    ko: Coreano
+    lb: Luxemburgués
     mk: Macedonio
     oc: Occitano
     pt-BR: Portugués (Brasil)
-    ja: Japonés
+    pt-PT: Portugués (Portugal)
+    ru: Ruso
     zh-CN: Chino (simplificado)
     zh-TW: Chino (tradicional)
   locality_notes: Notas por localidad
@@ -2953,22 +2960,31 @@ es:
     afghanistan: Afganistán
     africa: África
     antigua_and_barbuda: Antigua y Barbuda
+    australia: Australia
+    austria: Austria
     belgium: Bélgica
     bosnia_and_herzegovina: Bosnia y Herzegovina
     brazil: Brasil
     central_america: América central
+    china: China
+    colombia: Colombia
+    denmark: Dinamarca
     egypt: Egipto
     equatorial_guinea: Guinea Ecuatorial
     europe: Europa
     france: Francia
     germany: Alemania
     greece: Grecia
+    hong_kong: Hong Kong
     hungary: Hungría
     italy: Italia
+    india: India
     iraq: Irak
     japan: Japón
+    korea: Corea
     martinique: Martinica
     mexico: México
+    netherlands: Países Bajos
     new_guinea: Nueva Guinea
     new_zealand: Nueva Zelanda
     north_africa: África del norte
@@ -2977,13 +2993,17 @@ es:
     panama: Panamá
     peru: Perú
     poland: Polonia
+    portugal: Portugal
     republic_of_congo: República del Congo
     russia: Rusia
     saudi_arabia: Arabia Saudita
     sao_tome_and_principe: Santo Tomé y Príncipe
+    singapore: Singapur
+    south_africa: Sudáfrica
     south_america: América del sur
     spain: España
     sweden: Suecia
+    switzerland: Suiza
     syria: Siria
     thailand: Tailandia
     trinidad_and_tobago: Trinidad y Tobago
@@ -3153,6 +3173,9 @@ es:
     order: Orden
     suborder: Suborden
     infraorder: infraorden
+    parvorder: parvorden
+    zoosection: zoosección
+    zoosubsection: zoosubsección
     superfamily: Superfamilia
     epifamily: epifamilia
     family: Familia
@@ -3170,6 +3193,7 @@ es:
     subspecies: Subespecies
     variety: Variedad
     form: Forma
+    infrahybrid: infrahíbrido
     leaves: hojas
   rare: Escaso
   ray_finned_fishes: peces con aletas radiadas
@@ -3432,7 +3456,7 @@ es:
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
-  show_common_names: Mostrar nombres comunes
+  show_common_names: Mostrar nombres vernáculos
   show_counts: Mostrar conteos con base en la lista
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_kml: Mostrar KML
@@ -4403,6 +4427,8 @@ es:
   wondering_what_to_do_next: He aquí algunos de los siguientes pasos que puedes dar
     para observar e identificación en el mundo natural
   would_you_like_to: . ¿Le gustaría
+  would_you_prefer_to_view_common_names_used_in_place_html: ¿Prefieres ver los nombres
+    vernáculos utilizados en <strong>%{place}</strong>?
   would_like_some_help_identifying_this: le agradaría recibir ayuda identificando
     esto
   x_admin: '%{login} Administrador'
@@ -4760,13 +4786,11 @@ es:
           Creative Commons Compartir Igual (como Wikipedia), que son legall
           obligado a utilizar una licencia similar. He aquí un resumen de
           todas las licencias de Creative Commons y su significado:
-        paste_note_html: |-
-          Pegue en un máximo de 500 nombres de especies, uno por línea.
-          %{site_name} hará todo lo posible para que coincida con los nombres
-          comunes de los conceptos de especie, sino para evitar la ambigüedad
-          que es mejor usar los nombres científicos. Si desea especificar los
-          dos, separar el nombre científico del nombre común con una coma,
-          como <code>Homo sapiens,humano</code>.
+        paste_note_html: 'Pega hasta 500 nombres de especie, uno por renglón. %{site_name}
+          hará lo posible por relacionar los nombres vernáculos con los conceptos
+          de las especies, pero es mejor utilizar los nombres científicos para evitar
+          ambigüedades. Si quieres especificar ambos, separa el nombre científico
+          del vernáculo con una coma: <code>Homo sapiens,Humano</code>.'
         places_note: |-
           Nota: no todos los lugares tienen listas de comprobación con taxones.
           Si usted está teniendo problemas para encontrar un lugar con
@@ -4815,8 +4839,8 @@ es:
         alphadisplay: Alfabético por nombre para mostrar
     guide_taxa:
       edit:
-        eol_explanation: Añadir un nombre común, hasta 5 imágenes, 1 sección de descripción
-          y 1 mapa de EOL.
+        eol_explanation: Añadir un nombre vernáculo, hasta 5 imágenes, 1 sección de
+          descripción y 1 mapa de EOL.
         site_explanation: Añadir un nombre común, hasta 5 imágenes con licencia, y
           un resumen de Wikipedia %{site_name}.
       show:
@@ -5629,13 +5653,12 @@ es:
           nombre</strong>, sólo para los lugares que entran en conflicto con
           otros lugares.
       taxon:
-        about_html: |-
-          Taxa puede tener muchos nombres comunes. Apoyamos un defecto nombre
-          común a nivel mundial, que se puede cambiar aquí arrastrando un
-          nombre a la parte superior de la lista. También puede especificar
-          nombres predeterminados en diferentes lugares editando el nombre y
-          añadir un lugar, pero por favor, sólo hacerlo cuando diferentes
-          lugares tienen nombres en conflicto.
+        about_html: Los taxones pueden tener muchos nombres vernáculos. Admitimos
+          un nombre vernáculo global predeterminado, el cual puede cambiarse aquí
+          arrastrando un nombre hacia la parte superior de la lista. También puedes
+          especificar nombres predeterminados para lugares distintos editando el nombre
+          y añadiéndole un lugar, pero utiliza este procedimiento únicamente cuando
+          haya discrepancias entre nombres entre varias regiones.
     users:
       dashboard:
         taxon_change_desc: |-
@@ -5659,8 +5682,11 @@ es:
           a este proyecto."
       edit:
         common_names_desc: |-
-          Mostrar nombres comunes. Desactiva la opción si quieres ver únicamente los científicos.
-          Observa que puedes controlar cuáles nombres comunes ves mediante la configuración de idioma y región.
+          Mostrar los nombres vernáculos. Desactiva la opción si quieres ver solo los científicos.
+          Observa que puedes controlar cuáles nombres vernáculos ves al modificar la configuración de idioma y región.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          Si cambias de opinión siempre puedes
+          <a href='/users/edit'>editar tus preferencias</a>.
         inaturalist_network_affiliation_desc_html: |-
           La <a href="%{url}" target="_blank">Red iNaturalist</a> es una
           colección de sitios web localizados conectados a la comunidad
@@ -5670,6 +5696,15 @@ es:
           sitio tienen el derecho de descargar y ver todos sus datos al igual
           que los administradores del sitio iNaturalist puede. Si ese sitio
           deja la red, todos los datos de su cuenta y se van con ese sitio.
+        licensing_desc_html: "Obtención de la licencia de contenido da a otras personas
+          el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los
+          términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative
+          Commons-para compartir con los socios de datos como la \n<a href=\"http://www.gbif.org/\">Global
+          Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional,
+          organización\nintergubernamental que recopila y distribuye información sobre
+          la\nbiodiversidad de todo el mundo."
+        name_place_help_html: Priorizar los nombres vernáculos utilizados en este
+          lugar.
         project_addition_preferences:
           any: Cualquiera
           joined: Proyectos a los que te has unido
@@ -5680,16 +5715,6 @@ es:
         taxon_change_desc: |-
           Cuando se fusionan o cambian de nombre taxones en %{site_name}, sus observaciones, taxones incluidos, identificaciones, etc se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco. Si se
           excluye o el cambio es ambiguo (por ejemplo, una fractura), recibirá una actualización sobre el cambio de la vinculación a una herramienta que puede utilizar para actualizar manualmente el contenido si usted elige.
-        licensing_desc_html: "Obtención de la licencia de contenido da a otras personas
-          el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los
-          términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative
-          Commons-para compartir con los socios de datos como la \n<a href=\"http://www.gbif.org/\">Global
-          Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional,
-          organización\nintergubernamental que recopila y distribuye información sobre
-          la\nbiodiversidad de todo el mundo."
-        place_help_html: |-
-          Personaliza unos pocos aspectos del sitio un lugar, al igual que los
-          nombres comunes.
         prefers_community_taxa_desc: '%{site_name} rastrea lo que usted piensa que
           son sus observaciones y lo que piensa la comunidad. La identificación que
           compartimos con los socios de datos es la de la comunidad, pero si usted
@@ -5698,6 +5723,7 @@ es:
           identificaciones, pero la opinión de la comunidad no serán priorizadas frente
           a la suya. Esto significa que sus observaciones sólo serán de grado de investigación,
           cuando usted esté de acuerdo con la comunidad.'
+        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
       show:
         take_a_chance_to_review_html: Aprovecha a revisar <a href="%{link}">nuestras
           directrices</a>.

@@ -1363,6 +1363,7 @@ ca:
   expand_days: expandeix dies
   expand_updates: expandeix actualitzacions
   explore!: Exploreu!
+  explore: Exploreu-ne
   explore_everyones_observations: Llegiu les observacions de tots els usuaris.
   export: Exportar
   export_observations: Exporta observacions
@@ -1506,6 +1507,7 @@ ca:
   follow_us_on: Seguiu-nos a
   follow_user: Segueix a %{user}
   follower: seguidor
+  followers: seguidors
   following: Seguint
   for: per a
   for_a_taxon: d'un tàxon
@@ -1885,6 +1887,7 @@ ca:
     identifications: La majoria de les identificacions a %{time}
   leading: Dirigint
   learn!: Apreneu!
+  learn: Apreneu-ne
   learn_about_the_species_live_in: Informeu-vos sobre les espècies que viuen a
   learn_more: Informeu-vos més
   learn_more_raquo: Per saber-ne més »
@@ -2048,25 +2051,30 @@ ca:
     de la data.
   locales_: Locals
   locales:
+    ar: Àrab
     bg: Búlgar
     br: Bretó
     ca: Català
-    en: Anglès
+    de: Alemany
     en-US: Anglès (Estats Units)
-    es: Castellà
+    en: Anglès
     es-ES: Castellà (Espanya)
     es-MX: Castellà (Mèxic)
+    es: Castellà
+    eu: Basc
     fi: Finlandès
     fr: Francès
-    eu: Basc
     gl: Gallec
-    ko: Coreà
     id: Indonesi
     it: Italià
+    ja: Japonès
+    ko: Coreà
+    lb: Luxemburguès
     mk: Macedònic
     oc: Occità
     pt-BR: Portuguès (Brasil)
-    ja: Japonès
+    pt-PT: Portuguès (Portugal)
+    ru: Rus
     zh-CN: Xinès (simplificat)
     zh-TW: Xinès (tradicional)
   locality_notes: Notes locals
@@ -2171,6 +2179,7 @@ ca:
   maybe_your_signed_in_with: És possible que hagueu iniciat sessió amb el compte %{omniauth}?
   media: Multimèdia
   medium: mitjà
+  meet: Conegueu-ne
   member_of_the_inaturalist_network_html: Membre de la <a href="%{url}">Xarxa iNaturalist</a>
   members: Membres
   mentioned_you_in_noun_html: '%{user} us ha esmentat a %{noun}'
@@ -2951,22 +2960,31 @@ ca:
     afghanistan: Afganistan
     africa: Àfrica
     antigua_and_barbuda: Antigua i Barbuda
+    australia: Austràlia
+    austria: Àustria
     belgium: Bèlgica
     bosnia_and_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
     central_america: Amèrica Central
+    china: Xina
+    colombia: Colòmbia
+    denmark: Dinamarca
     egypt: Egipte
     equatorial_guinea: Guinea Equatorial
     europe: Europa
     france: França
     germany: Alemanya
     greece: Grècia
+    hong_kong: Hong Kong
     hungary: Hongria
     italy: Itàlia
+    india: Índia
     iraq: Iraq
     japan: Japó
+    korea: Corea
     martinique: Martinica
     mexico: Mèxic
+    netherlands: Països Baixos
     new_guinea: Nova Guinea
     new_zealand: Nova Zelanda
     north_africa: Àfrica del Nord
@@ -2975,13 +2993,17 @@ ca:
     panama: Panamà
     peru: Perú
     poland: Polònia
+    portugal: Portugal
     republic_of_congo: República del Congo
     russia: Rússia
     saudi_arabia: Aràbia Saudita
     sao_tome_and_principe: São Tomé i Principe
+    singapore: Singapur
+    south_africa: Sud-àfrica
     south_america: Amèrica del Sud
     spain: Espanya
     sweden: Suècia
+    switzerland: Suïssa
     syria: Síria
     thailand: Tailàndia
     trinidad_and_tobago: Trinidad i Tobago
@@ -3033,6 +3055,7 @@ ca:
     codi obert <a href="https://github.com/inaturalist/inaturalist" target="_new">
     d'iNaturalist</a>"
   present: present
+  press: Premsa
   preview: Vista prèvia
   preview_of_synced_observation: <strong>Previsualització</strong> de l'observació
     sincronitzada.  <a href="%{url}">La voleu desfer?</a>
@@ -5583,6 +5606,13 @@ ca:
           i visualitzar de totes les vostres dades com ho tenen els administradors
           d'iNaturalist. Si aquest lloc surt de la xarxa el vostre compte, amb totes
           les vostres dades, s'anirien amb aquest lloc.
+        licensing_desc_html: Llicenciar els continguts, confereix a altres persones
+          el dret a utilitzar-los sense demanar permís si s'adhereixen a les condicions
+          de la llicència. %{site_name} utilitza els vostres continguts amb llicencia
+          Creative Commons per compartir les dades amb socis com ara el <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF), una organització inter-governamental
+          internacional que confecciona i distribueix informació sobre la biodiversitat
+          arreu del món.
         project_addition_preferences:
           any: Qualsevol
           joined: Projectes als que us heu unit
@@ -5596,15 +5626,6 @@ ca:
           pel contrari o el canvi és ambigu (per exemple, es tracta d'un separació
           de dos tàxons), rebreu una actualització sobre el canvi vinculat a una eina
           que, si ho voleu, podreu utilitzar per actualitzar manualment el contingut.
-        licensing_desc_html: Llicenciar els continguts, confereix a altres persones
-          el dret a utilitzar-los sense demanar permís si s'adhereixen a les condicions
-          de la llicència. %{site_name} utilitza els vostres continguts amb llicencia
-          Creative Commons per compartir les dades amb socis com ara el <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a> (GBIF), una organització inter-governamental
-          internacional que confecciona i distribueix informació sobre la biodiversitat
-          arreu del món.
-        place_help_html: Personalitza alguns aspectes d'aquesta web per a un lloc,
-          com els noms vulgars.
         prefers_community_taxa_desc: '%{site_name} rastreja el que penseu que són
           les vostres observacions i el que opina la comunitat. Les dades d''identificació
           que compartim amb els socis són les que ofereix la comunitat, però si no
@@ -5613,6 +5634,8 @@ ca:
           de la comunitat no tindrà prioritat sobre la vostra. Això significa que
           les vostres observacions únicament tindran el grau de recerca, quan coincideix
           la vostra opinió i la de la comunitat.'
+        search_place_help_html: Lloc per defecte per a les cerques d’observacions.
+        scientific_name_first_desc: Mostra els noms científics abans dels vernàculs.
         youve_used_all_of_your_blocks: Heu utilitzat tots els vostres bloquejos. Elimineu
           un bloqueix per afegir un altre.
       show:

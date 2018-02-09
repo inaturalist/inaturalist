@@ -67,7 +67,8 @@ class TaxonChooserPopover extends React.Component {
       clearTaxon,
       preIconClass,
       postIconClass,
-      label
+      label,
+      config
     } = this.props;
     return (
       <OverlayTrigger
@@ -121,7 +122,7 @@ class TaxonChooserPopover extends React.Component {
                     <i className={`media-object icon-iconic-${( t.iconic_taxon_name || "unknown" ).toLowerCase( )}`}></i>
                   </div>
                   <div className="media-body">
-                    <SplitTaxon taxon={t} forceRank />
+                    <SplitTaxon taxon={t} forceRank user={ config.currentUser } />
                   </div>
                 </li>
               ) ) }
@@ -136,7 +137,7 @@ class TaxonChooserPopover extends React.Component {
           { label ? ( <label>{ label }</label> ) : null }
           {
             taxon ?
-              <SplitTaxon taxon={taxon} />
+              <SplitTaxon taxon={taxon} user={ config.currentUser } />
               :
               _.startCase( I18n.t( "filter_by_taxon" ) ) }
           { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
@@ -155,11 +156,13 @@ TaxonChooserPopover.propTypes = {
   clearTaxon: PropTypes.func,
   preIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
   postIconClass: PropTypes.oneOfType( [PropTypes.string, PropTypes.bool] ),
-  label: PropTypes.string
+  label: PropTypes.string,
+  config: PropTypes.object
 };
 
 TaxonChooserPopover.defaultProps = {
-  preIconClass: "fa fa-search"
+  preIconClass: "fa fa-search",
+  config: {}
 };
 
 export default TaxonChooserPopover;
