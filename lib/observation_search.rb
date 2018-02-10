@@ -38,7 +38,9 @@ module ObservationSearch
       search_params.merge!({ min_id: 1, per_page: 500, preload: [ ],
         order_by: "id", order: "asc" })
       loop do
-        batch = Observation.page_of_results(search_params)
+        batch = try_and_try_again( PG::ConnectionBad, logger: options[:logger] ) do
+          Observation.page_of_results(search_params)
+        end
         break if batch.size == 0
         block.call(batch)
         search_params[:min_id] = batch.last.id + 1

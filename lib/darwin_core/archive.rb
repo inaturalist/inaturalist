@@ -371,7 +371,7 @@ module DarwinCore
 
     def observations_in_batches(params, preloads, options = {}, &block)
       batch_times = []
-      Observation.search_in_batches(params) do |batch|
+      Observation.search_in_batches( params, logger: logger ) do |batch|
         start = Time.now
         avg_batch_time = if batch_times.size > 0
           (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
