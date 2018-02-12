@@ -2299,8 +2299,15 @@ ko:
           Insect life stage=egg: 알
     users:
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          마음이 바뀌면 언제든지
+          <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
+        place_preference_changed_notice_html: |-
+          장소 설정이 변경되었습니다. 마음이 바뀌면 언제든지
+          <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
         project_addition_preferences:
           none: 없음, 프로젝트에 관찰만 추가할 수 있습니다
+        scientific_name_first_desc: 보통 명사 앞에 학명을 표시합니다.
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
