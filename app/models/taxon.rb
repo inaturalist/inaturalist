@@ -1828,8 +1828,8 @@ class Taxon < ActiveRecord::Base
     elsif sorted.select{|taxon| taxon.is_active?}.size == 1
       sorted.detect{|taxon| taxon.is_active?}
 
-    # if the names are synonymous and share the same parent, choose the first active concept
-    elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1
+    # if the names are synonymous and share the same parent and only one is active, choose the active concept
+    elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1 && taxa.select(&:is_active?).size == 1
       taxon = sorted.detect do |taxon|
         taxon.is_active? && taxon.taxon_names.detect{|tn| tn.name.downcase == name.downcase && tn.is_valid?}
       end
