@@ -3462,7 +3462,6 @@ CREATE TABLE sessions (
 --
 
 CREATE SEQUENCE sessions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE

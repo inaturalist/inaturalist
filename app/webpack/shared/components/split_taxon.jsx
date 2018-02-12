@@ -76,9 +76,9 @@ const SplitTaxon = ( {
           href={ url }
           target={ target }
           onClick={ onClick }
-        >
-          { truncateText( taxon.preferred_common_name ) }
-        </LinkElement>
+        >{
+          truncateText( taxon.preferred_common_name )
+        }</LinkElement>
       );
     } else if ( !taxon ) {
       comNameClass = `noname display-name ${comNameClass}`;
@@ -90,9 +90,9 @@ const SplitTaxon = ( {
               href={ url }
               onClick={ onClick }
               target={ target }
-            >
-              { I18n.t( "unknown" ) }
-            </LinkElement> <span className="altname">
+            >{
+              I18n.t( "unknown" )
+            }</LinkElement> <span className="altname">
               ({ I18n.t( "placeholder" ) }: { placeholder })
             </span>
           </span>
@@ -225,9 +225,17 @@ const SplitTaxon = ( {
     firstName = comName( );
     secondName = sciName( );
   }
+  const nodes = _.compact( [
+    icon( ),
+    firstName,
+    secondName,
+    inactive( ),
+    extinct( ),
+    memberGroup
+  ] );
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) } { firstName } { secondName } { inactive( ) } { extinct( ) } { memberGroup }
+      { _.flatten( _.map( nodes, ( n, i ) => ( i === 0 ? n : [" ", n] ) ) ) }
     </span>
   );
 };
