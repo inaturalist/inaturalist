@@ -146,7 +146,9 @@ const SplitTaxon = ( {
         );
       }
     }
-    if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
+    // Maybe we don't really need forceRank...
+    // if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
+    if ( taxon.rank && taxon.rank_level > 10 ) {
       return (
         <LinkElement
           className={sciNameClass}
@@ -200,15 +202,29 @@ const SplitTaxon = ( {
   };
   let memberGroup;
   // show "is member of" if requested and there's no common name
-  if ( showMemberGroup && taxon && !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) {
-    const groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
-      a.preferred_common_name && a.rank_level > 20
-    ) ) ) );
+  const isBetweenGenusAndSpecies = taxon && taxon.rank_level < 20 && taxon.rank_level > 10;
+  if (
+    showMemberGroup &&
+    taxon &&
+    (
+      ( !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) ||
+      isBetweenGenusAndSpecies
+    )
+  ) {
+    let groupAncestor;
+    if ( isBetweenGenusAndSpecies ) {
+      groupAncestor = _.find( taxon.ancestors, a => a.rank === "genus" );
+    } else {
+      groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
+        a.preferred_common_name && a.rank_level > 20
+      ) ) ) );
+    }
     if ( groupAncestor ) {
       memberGroup = (
         <span className="member-group">
           { I18n.t( "a_member_of" ) } <SplitTaxon
             taxon={ groupAncestor }
+            forceRank
             url={ `/taxa/${groupAncestor.id}` }
             user={ user }
           />

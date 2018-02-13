@@ -39,6 +39,15 @@ body > div > [role="dialog"] .ActivityItem {
       font-style: normal;
       .sciname {
         font-style: normal;
+        &.genus,
+        &.species,
+        &.subspecies,
+        &.hybrid
+        &.variety,
+        &.form,
+        &.infrahybrid {
+          font-style: italic;
+        }
       }
       a.display-name,
       .display-name {
@@ -145,7 +154,8 @@ body > div > [role="dialog"] .ActivityItem {
       }
       .member-group {
         display: table;
-        .taxon {
+        .taxon,
+        .secondary-name {
           display: inline;
         }
         a.display-name,
