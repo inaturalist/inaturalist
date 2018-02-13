@@ -104,7 +104,7 @@ class AtlasesController < ApplicationController
     end
 
     respond_to do |format|
-      format.json { render json: { place_name: place.name, place_id: @place_id, presence: @presence }, status: :ok }
+      format.json { render json: { place_name: place.try_methods( :display_name, :name ), place_id: @place_id, presence: @presence }, status: :ok }
     end
   end
 
@@ -138,7 +138,7 @@ class AtlasesController < ApplicationController
     taxon_id = params[:taxon_id]
     place_id = params[:place_id]
     lt = ListedTaxon.get_defaults_for_taxon_place( place_id, taxon_id, { limit: 10 } )
-    render json: lt, include: { taxon: { only: :name }, place: { only: :name } }, only: :id
+    render json: lt, include: { taxon: { only: :name }, place: { only: [:name, :display_name] } }, only: :id
   end
   
   def refresh_atlas

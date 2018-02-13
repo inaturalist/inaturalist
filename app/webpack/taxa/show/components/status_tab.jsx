@@ -149,7 +149,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                     { lt.place ?
                       <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
                         { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                          { defaultValue: lt.place.name } ) }
+                          { defaultValue: lt.place.display_name } ) }
                       </a>
                       :
                       _.capitalize( I18n.t( "globally" ) )

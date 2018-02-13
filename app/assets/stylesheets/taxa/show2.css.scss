@@ -604,17 +604,23 @@ $photoPreviewThumbGutterTop: 3px;
   margin-right: 10px;
 }
 
-.StatusTab .media-body {
-  width: auto;
-}
-
-.StatusTab .place-link {
-  color: black;
-}
-.StatusTab th {
-  font-weight: 600;
-  white-space: nowrap;
-  text-transform: capitalize;
+.StatusTab {
+  .media-body {
+    width: auto;
+  }
+  .place-link {
+    color: black;
+  }
+  th {
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: capitalize;
+  }
+  .UserText {
+    br {
+      display: none;
+    }
+  }
 }
 
 h2, h3, h4, h5 {
