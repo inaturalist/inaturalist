@@ -109,7 +109,7 @@ class ObservationModal extends React.Component {
           clickable={!blind}
           latitude={ obsForMap.latitude }
           longitude={ obsForMap.longitude }
-          zoomLevel={ obsForMap.map_scale || 8 }
+          zoomLevel={ 5 }
           mapTypeControl
           mapTypeControlOptions={{
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
@@ -273,6 +273,7 @@ class ObservationModal extends React.Component {
     if ( blind ) {
       tabs = [tabs[0]];
     }
+    const country = _.find( observation.places || [], p => p.admin_level === 0 );
     return (
       <Modal
         show={visible}
@@ -444,6 +445,13 @@ class ObservationModal extends React.Component {
                         <li>
                           <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
+                        { country ? (
+                          <li>
+                            <i className="fa fa-globe"></i> {
+                              I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "unknown" )
+                            }
+                          </li>
+                        ) : null }
                         { blind ? null : (
                           <li className="view-follow">
                             <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
