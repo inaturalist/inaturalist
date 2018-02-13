@@ -134,7 +134,7 @@
     <% if !@project.event_url.blank? && !@project.event_started? -%>
       <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
         <% if @project.eventbrite_id -%>
-          <iframe src="http://www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="300" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
+          <iframe src="//www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="300" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
         <% elsif (uri = URI.parse(@project.event_url) rescue nil) %>
           <div class="inline buttonrow centered quiet box unstacked">
             <%= link_to t(:register), @project.event_url, :class => "default button" %>
