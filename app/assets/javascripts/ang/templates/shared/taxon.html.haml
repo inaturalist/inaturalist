@@ -3,12 +3,14 @@
   %a{:class => "noname {{ taxon.id ? '' : 'display-name' }}", href: "{{ url }}", "ng-show": "!taxon.id", target: "_self" }
     {{ shared.t('unknown') }}
   %a{ class: "display-name {{ !secondaryName() || user.prefers_scientific_name_first ? 'sciname' : 'comname' }}", href: "{{ url }}", target: "_self", "ng-show" => "taxon.id" }
+    %span.rank{"ng-show" => "(!secondaryName() || user.prefers_scientific_name_first) && showRank()"}><
+      {{ taxon.rank | capitalize }}<span> </span>
     {{ displayName() }}
   %a{ class: "secondary-name", href: "{{ url }}", target: "_self", "ng-show" => "taxon.id && secondaryName" }
     %span{ class: "comname", "ng-show" => "user.prefers_scientific_name_first" }><
       {{ secondaryName() }}
     %span{ class: "sciname", "ng-show" => "!user.prefers_scientific_name_first" }><
-      %span.rank{"ng-show" => "taxon.preferred_common_name && taxon.rank_level > 10"}><
-        {{ taxon.rank | capitalize }}&nbsp;
+      %span.rank{"ng-show" => "taxon.preferred_common_name && showRank()"}><
+        {{ taxon.rank | capitalize }}<span> </span>
       {{ secondaryName() }}
 
