@@ -705,13 +705,6 @@ class FiltersButton extends React.Component {
                 <span>{ I18n.t( "atom" ) }</span>
               </a>
               <a
-                className="btn btn-link" href={`/observations.kml?${paramsForUrl( )}`}
-                target="_self"
-              >
-                <i className="fa fa-globe"></i>
-                <span>{ I18n.t( "kml" ) }</span>
-              </a>
-              <a
                 className="btn btn-link" href={`/observations/export?${paramsForUrl( )}`}
                 target="_self"
               >

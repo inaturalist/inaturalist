@@ -247,15 +247,9 @@
         feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_FEED_PARAMS.include?(key)
         end
-        kml_feed_params = request.query_parameters.reject do |key,value|
-          ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
-        end
-        kml_feed_params[:kml_type] = "network_link"
       -%>
       <%= link_to(t(:atom), observations_by_login_feed_path(@login, :format => :atom, :params => feed_params),
         :class => 'atomlink') %>
-      <%= link_to(t(:kml), observations_by_login_feed_path(@login, :format => :kml, :params => kml_feed_params),
-        :class => 'kmllink') %>
     </span>
 
     <% if is_me?(@selected_user) -%>
