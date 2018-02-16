@@ -4,7 +4,7 @@ class Observation < ActiveRecord::Base
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  attr_accessor :indexed_place_ids, :indexed_places
+  attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
@@ -149,7 +149,8 @@ class Observation < ActiveRecord::Base
       observed_on: datetime.blank? ? nil : datetime.to_date,
       observed_on_details: ElasticModel.date_details(datetime),
       time_observed_at: time_observed_at_in_zone,
-      place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
+      place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
+      private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
       quality_grade: quality_grade,
       captive: captive,
       user: user ? user.as_indexed_json(no_details: true) : nil,
@@ -188,7 +189,8 @@ class Observation < ActiveRecord::Base
           (num_identification_agreements > 0),
         identifications_most_disagree:
           (num_identification_agreements < num_identification_disagreements),
-        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq.sort,
+        place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
+        private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
         project_ids: project_observations.map{ |po| po[:project_id] }.compact.uniq,
         project_ids_with_curator_id: project_observations.
           select{ |po| !po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
@@ -242,7 +244,8 @@ class Observation < ActiveRecord::Base
     # this prevents future lookups for instances with no results
     observations.each{ |o|
       o.indexed_place_ids ||= [ ]
-      o.indexed_places ||= [ ]
+      o.indexed_private_place_ids ||= [ ]
+      o.indexed_private_places ||= [ ]
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
@@ -253,14 +256,22 @@ class Observation < ActiveRecord::Base
         FROM observations_places
         WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
         if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_place_ids << r["place_id"].to_i
+          o.indexed_private_place_ids << r["place_id"].to_i
         end
       end
-      place_ids = observations.map(&:indexed_place_ids).flatten.uniq.compact
-      places_by_id = Hash[ Place.where(id: place_ids).map{ |p| [ p.id, p ] } ]
+      private_place_ids = observations.map(&:indexed_private_place_ids).flatten.uniq.compact
+      private_places_by_id = Hash[ Place.where(id: private_place_ids).map{ |p| [ p.id, p ] } ]
       observations.each do |o|
-        unless o.indexed_place_ids.blank?
-          o.indexed_places = places_by_id.values_at(*o.indexed_place_ids).compact
+        unless o.indexed_private_place_ids.blank?
+          o.indexed_private_places = private_places_by_id.values_at(*o.indexed_private_place_ids).compact.select do |p|
+            p.bbox_privately_contains_observation?( o )
+          end
+          o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
+          unless o.geoprivacy == Observation::PRIVATE
+            o.indexed_place_ids = o.indexed_private_places.select do |p|
+              p.bbox_publicly_contains_observation?( o )
+            end
+          end
         end
       end
     end
@@ -715,7 +726,7 @@ class Observation < ActiveRecord::Base
       json[:taxon][:endemic] = false
       return
     end
-    places = indexed_places ||
+    places = indexed_private_places ||
       Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
     json[:taxon][:threatened] = t.threatened?(place: places)
     json[:taxon][:introduced] = t.establishment_means_in_place?(
