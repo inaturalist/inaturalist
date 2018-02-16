@@ -268,9 +268,9 @@ class Observation < ActiveRecord::Base
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
           unless o.geoprivacy == Observation::PRIVATE
-            o.indexed_place_ids = o.indexed_private_places.select do |p|
+            o.indexed_place_ids = o.indexed_private_places.select {|p|
               p.bbox_publicly_contains_observation?( o )
-            end
+            }.map(&:id)
           end
         end
       end
