@@ -1093,6 +1093,7 @@ ko:
   follow_us_on: 에서 팔로우해 주세요.
   follow_user: '%{user} 팔로우'
   follower: 팔로우하는 사용자들
+  followers: 팔로어
   following: 팔로잉
   for: 위해
   forgot_your_password: 비밀번호를 잊으셨나요?
@@ -1429,8 +1430,10 @@ ko:
   loading_wikipedia_description: 위키백과 설정 불러오는 중...
   locale_description: 로케일은 당신의 언어와 날짜 형식 설정을 정합니다.
   locales:
+    ar: 아랍어
     bg: 불가리아어
     ca: Català
+    de: 독일어
     en-US: 영어 (미국)
     en: 영어
     es-ES: 스페인어 (스페인)
@@ -1842,20 +1845,29 @@ ko:
   places_name:
     afghanistan: 아프가니스탄
     africa: 아프리카
+    australia: 오스트레일리아
+    austria: 오스트리아
     belgium: 벨기에
     brazil: 브라질
     central_america: 중앙 아메리카
+    china: 중국
+    colombia: 콜롬비아
+    denmark: 덴마크
     egypt: 이집트
     equatorial_guinea: 적도 기니
     europe: 유럽
     france: 프랑스
     germany: 독일
     greece: 그리스
+    hong_kong: 홍콩
     hungary: 헝가리
     italy: 이탈리아
+    india: 인도
     iraq: 이라크
     japan: 일본
+    korea: 한국
     mexico: 멕시코
+    netherlands: 네덜란드
     new_guinea: 뉴 기니
     new_zealand: 뉴질랜드
     north_africa: 북아프리카
@@ -1863,12 +1875,16 @@ ko:
     panama: 파나마
     peru: 페루
     poland: 폴란드
+    portugal: 포르투갈
     republic_of_congo: 콩고 민주 공화국
     russia: 러시아
     saudi_arabia: 사우디아라비아
+    singapore: 싱가포르
+    south_africa: 남아프리카
     south_america: 남아메리카
     spain: 스페인
     sweden: 스웨덴
+    switzerland: 스위스
     syria: 시리아
     thailand: 태국
     turkey: 터키
@@ -2283,8 +2299,15 @@ ko:
           Insect life stage=egg: 알
     users:
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          마음이 바뀌면 언제든지
+          <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
+        place_preference_changed_notice_html: |-
+          장소 설정이 변경되었습니다. 마음이 바뀌면 언제든지
+          <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
         project_addition_preferences:
           none: 없음, 프로젝트에 관찰만 추가할 수 있습니다
+        scientific_name_first_desc: 보통 명사 앞에 학명을 표시합니다.
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.

@@ -33,8 +33,8 @@ lb:
     one: Eng Persoun huet dëst nëtzlech fonnt.
     other: '%{count} Persounen hunn dëst nëtzlech fonnt.'
   x_species:
-    one: 1 Art
-    other: '%{count} Arten'
+    one: 1 Aart
+    other: '%{count} Aarten'
   a: ee(n)
   a_: ee(n)
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -234,7 +234,7 @@ lb:
   back_to_taxon: Zréck op %{defaulttaxon}
   back_to_this: Zréck op %{place}
   back_to_x: Zréck op %{noun}
-  back_to_x_blog: Zereck zum %{x} sengem Blog
+  back_to_x_blog: Zeréck op dem %{x} säi Blog
   back_to_x_observations: Zréck op dem %{user}seng Observatiounen
   back_to_your_lists: Zréck op Är Lëschten
   back_to_your_observations: Zréck bei Är Observatiounen
@@ -281,7 +281,7 @@ lb:
     replace_with: ersetzen duerch
   change_your_password: Ännert Äert Passwuert
   check_it_out: Probéiert et aus
-  check_out_our_blog: Besicht onse Blog
+  check_out_our_blog: Besicht eise Blog
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
   chose_columns: Kolonnen eraussichen
@@ -316,9 +316,9 @@ lb:
   comprehensive?: Verständlech?
   configure: Astellen
   configure_a_widget_to_show: Konfiguréiert de Widget esou, dass hien %{site_name}
-    Observatiounen ob ärem Blog oder ärer Websäit weist. Et ka sinn dass Dir embedded
-    CSS an den <code>&lt;head&gt;</code> vun ärem HTML musst afügen. Dir kennt gären
-    de CSS emschreiwen.
+    Observatiounen ob Ärem Blog oder Ärer Websäit weist. Et ka sinn dass Dir embedded
+    CSS an den <code>&lt;head&gt;</code> vun Ärem HTML musst drasetzen. Dir kënnt
+    gären den CSS ëmschreiwen.
   confirm: Confirméieren
   confirm_new_password: Neit Passwuert confirméieren
   confirm_now: Elo confirméieren
@@ -843,7 +843,7 @@ lb:
   no_project_to_admin_current_user: Dir administréiert keng Projeten
   no_projects_yet: Nach keng Projeten
   no_recent_activity: Keng rezent Aktivitéit
-  no_recently_active: Är rezent aktiv Projekter
+  no_recently_active: Nach keng rezent aktiv Projeten.
   no_relevant_annotations: Keng relevant Notizen
   no_reply_yet: Nach keng Äntwert
   no_results_found: Näischt fonnt
@@ -909,10 +909,10 @@ lb:
   ok: OK
   onboarding:
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
-    following_panel_body: Hei %{site_name} kënnt der Leit auswielen fir ze déi vun
-      hinne geposten Observatiounen ze verfollegen. Dier kënnt iech och op verschidden
-      Arten abonnéieren fir nei Observatiounen vun desen Arten am Aa ze halen, oder
-      dat selwecht och mat Plaatze maachen.
+    following_panel_body: Op %{site_name} kënnt Dir Leit auswielen deenen hir  geposten
+      Observatiounen Dir verfollege wëllt. Dir kënnt Iech och op verschidden Aarten
+      abonnéieren fir nei Observatiounen vun dësen Aarten am An ze halen, oder dat
+      selwecht och mat Plaze maachen.
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit
     kommen
@@ -933,7 +933,7 @@ lb:
     one: anert Déier
     other: aner Déieren
   other_annimals: Aner Déieren
-  our_blog: Onse Blog
+  our_blog: Eise Blog
   owner: Besëtzer
   password: Passwuert
   pdf: PDF
@@ -1023,6 +1023,7 @@ lb:
     france: Frankräich
     germany: Däitschland
     greece: Griicheland
+    hong_kong: Hong-Kong
     hungary: Ungarn
     italy: Italien
     india: Indien
@@ -1072,7 +1073,7 @@ lb:
   project_settings: Astellunge vum Projet
   projects: Projeten
   projects_from_place: Projete vu(n) %{place}
-  projects_you_admin: Projeten déi dir administréiert
+  projects_you_admin: Projeten déi Dir administréiert
   query: Ufro
   rank_position: Klassement
   ranks:
@@ -1142,9 +1143,9 @@ lb:
   show_common_names: Populär Nimm weisen
   show_less: Manner weisen
   show_more: Méi weisen
-  show_observation_photos: Fotoe vun der Observatioun uweisen
-  show_off_your_recent_observations: Weist är rezent Observatiounen ob ärem Blog oder
-    ärer Websäit!
+  show_observation_photos: Fotoe vun der Observatioun weisen
+  show_off_your_recent_observations: Weist Är rezent Observatiounen ob Ärem Blog oder
+    Ärer Websäit!
   simple: Einfach
   sign_in_exclamation: Schreift Iech an!
   sizes: Gréissten
@@ -1174,9 +1175,9 @@ lb:
   stay_and_try_again: Bleiwen an nach emol probéieren
   submit: Schécken
   subscribe_to_a_taxon: Op een Taxon abonnéieren
-  subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Art oder ee
-    Grupp vum Organismen (z.B. Skorpiounen) abonnéieren.
-  subscribe_to_this_observation: Op des Observatioun abonnéieren
+  subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder
+    ee Grupp vum Organismen (z.B. Skorpiounen) abonnéieren.
+  subscribe_to_this_observation: Op dës Observatioun abonnéieren
   subscriptions: Abonnementer
   suggestions: Virschléi
   summary: Resumé
@@ -1252,9 +1253,9 @@ lb:
   valid_interrogation: Valabel?
   value: Wäert
   view: Weisen
-  view_all_your_projects: All Projete kucken
+  view_all_your_projects: All Är Projete weisen
   view_change: Ännerung weisen
-  view_projects_from_place: Projeten kucken aus %{place}
+  view_projects_from_place: Projeten vu(n) %{place} weisen
   view_stats: Statistike weisen
   view_year_stats_for_site: Weis %{year} Statistike fir %{site}
   view_your_year_stats: Weist Är %{year} Statistiken
@@ -1288,15 +1289,15 @@ lb:
   where_did_you_see_it: Wou hutt Dir et gesinn?
   where_were_they?: Wou waren se?
   where_were_you?: Wou sidd Dir?
-  which_projects_can_add_your_observations?: Wat fir Projete kennen är Observatiounen
-    dobäisetzen
+  which_projects_can_add_your_observations?: Wat fir eng Projete kënnen Är Observatiounen
+    dobäisetzen?
   white: wäiss
   who_helped_user_the_most: Wien huet dem %{user} am Meeschte gehollef
   who_user_helped_the_most: Wien dem %{user} am Meeschte gehollef huet
   withdraw: Zréckzéien
   withdrawing: Zréckzéien...
   with_errors: Mat Feeler
-  x_blog: '%{x} säin Blog'
+  x_blog: '%{x} säi Blog'
   x_deleted: '%{x} geläscht'
   x_does_not_exist: '"%{x}" gëtt et net'
   x_of_y: '%{x} vu(n) %{y}'
@@ -1316,7 +1317,7 @@ lb:
   you_: Dir
   you_are_now: Dir sidd elo
   you_are_already_a_member_of_this_project: Dir sidd scho Member vun dësem Projet!
-  you_are_subscribed_to: Dier sidd abonnéiert op
+  you_are_subscribed_to: Dir sidd abonnéiert op
   you_arent_a_member_of_that_project: Dir sidd net Member vun deem Projet.
   you_can_accept_invitations: Dir kënnt d'Invitatioun hei unhuelen
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
@@ -1345,8 +1346,8 @@ lb:
   your_profile_was_successfully_updated: Äre Profil gouf aktualiséiert!
   your_world!: Är Welt!
   yours: Ären
-  youve_already_added_an_identification: Dier hutt schon eng Identificatioun derbäigesat,
-    der därft just eng derbäisetzen
+  youve_already_added_an_identification: Dier hutt schonn eng Identifikatioun dobäigesat,
+    Dir däerft just eng derbäisetzen
   zoom_photo: Zoom Foto
   here_are_some_things_you_can_do_in_the_meantime: Hei sinn e puer Saachen déi Dir
     an der Tëschenzäit maache kënnt
@@ -1365,7 +1366,7 @@ lb:
         who_is_behind_inaturalist?: Wien ass hannert %{site_name}?
         who_is_behind_inaturalist: Wien ass hannert %{site_name}?
         can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen
-          ob mäin Blog oder meng Websäit bäisetzen?
+          op mäi Blog oder meng Websäit bäisetzen?
     observations:
       community_id:
         score: Score
@@ -1406,8 +1407,8 @@ lb:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Wann Dir Är
           Meenung ännert kënnt Dir ëmmer <a href='/users/edit'>Är Astellungen änneren</a>.
         project_addition_preferences:
-          joined: Projeten deenen dir bäigetrueden sidd
-          none: Keen, nëmmen dir kennt är Observatioun a Projete bäisetzen
+          joined: Projeten deenen Dir bäigetruede sidd
+          none: Keen, nëmmen Dir kennt Är Observatiounen a Projete bäisetzen
         scientific_name_first_desc: Déi wëssentlech Nimm virun de populären Nimm weisen.
     welcome:
       index:
