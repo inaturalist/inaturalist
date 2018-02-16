@@ -205,7 +205,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         return name;
       }
       scope.showRank = function() {
-        return scope.taxon.rank_level > 10;
+        return scope.taxon && scope.taxon.rank_level > 10;
       }
     },
     templateUrl: 'ang/templates/shared/taxon.html'
