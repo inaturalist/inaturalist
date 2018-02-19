@@ -19,27 +19,29 @@
 # Author: محمد أحمد عبد الفتاح
 ---
 ar:
-  licensing_your_content: إصدار ترخيص محتواكم يمنح الغير الحق القانوني  في استخدام
-    هذا المحتوى في حالة تقيدهم بشروط الترخيص. %{site_name} يستخدم محتوى مرخص لإبداع
-    العموم للمشاركة مع شركاء البيانات  مثل <a href="http://www.gbif.org/">Global مرفق
-    معلومات التنوع البيولولجي العالمي </a> (م.م.ت.ب.ع).
-  you_think_observation_inacurate: إذا كنت تعتقد أن هذه الملاحظة غير دقيقة، رجاءً
-    أضف معرفا و شارك في تقييم الجودة أعلاه أو حددها في تعليق.
+  licensing_your_content: |-
+    إصدار ترخيص محتواكم يمنح الغير الحق القانوني في استخدام هذا المحتوى في حالة
+     تقيدهم بشروط الترخيص. %{site_name} يستخدم محتوى مرخص
+    بالمشاع الإبداعي للمشاركة مع شركاء البيانات مثل <a href="http://www.gbif.org/">مرفق معلومات التنوع البيولولجي العالمي </a> (GBIF).
+  you_think_observation_inacurate: |-
+    إذا كنت تعتقد أن هذه الملاحظة غير دقيقة، رجاءً أضف معرفا،
+    وشارك في تقييم الجودة أعلاه أو صف عدم الدقة
+    في تعليق.
   we_also_support: |-
     نحن ندعم أيضا <a href="http://flickr.com">فليكر</a>
-    و<a href="http://photos.google.com">جوجل صور</a> و<a href="http://facebook.com">فسيبوك</a>
+    و<a href="http://photos.google.com">جوجل صور</a> و<a href="http://facebook.com">فيسبوك</a>
     لمشاركة الصور
   a_default_taxon_name_will_automatically_created: |-
-    سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذا الصنف
-    عند حفظ هذا التصنيف الجديد، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
+    سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذه الأصنوفة
+    عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   x_comments:
-    one: '%{count} تعليق'
+    one: تعليق واحد
     other: '%{count} تعليقات'
   x_followers:
-    one: 1 متابع
+    one: متابع واحد
     other: '%{count} متابعين'
   x_identifications:
-    one: 1 تعريف
+    one: تعريف واحد
     other: '%{count} تعريفات'
   x_identifications_html:
     one: <span class="count">1</span> هوية
@@ -57,15 +59,13 @@ ar:
     one: 1 نشر الجريدة
     other: '%{count} نشر الجرائد'
   x_matching_taxa:
-    one: 1 صنف مطابق
-    other: '%{count} أصناف مطابقة'
+    one: أصنوفة مطابقة واحدة
+    other: '%{count} أصنوفة مطابقة'
   x_matching_taxa_html:
-    one: <span class="count">1</span> صنف مطابق
-    other: <span class="count">%{count}</span> أصناف مطابقة
+    one: <span class="count">1</span> أصنوفة مطابقة
+    other: <span class="count">%{count}</span> أصنوفة مطابقة
   x_misidentifications_of_this_species:
-    one: 1 عدم التعرف على هذا النوع
-    other: |
-      %{count} عدم التعرف على هذه الأنواع
+    other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -79,14 +79,14 @@ ar:
     one: <a href='%{url}'>1 ملاحظة</a>
     other: <a href='%{url}'>%{count} ملاحظات</a>
   x_observations_reviewed_html:
-    one: <span class='count'>1</span> ملاحظة تم مراجعتها
-    other: <span class='count'>%{count}</span> ملاحظات تم مراجعتها
+    one: <span class='count'>1</span> ملاحظة تمت مراجعتها
+    other: <span class='count'>%{count}</span> ملاحظات تمت مراجعتها
   x_others:
     one: 1 آخر
     other: '%{count} آخرون'
   x_people:
     one: 1 شخص
-    other: '%{count} شخص'
+    other: '%{count} أشخاص'
   x_people_found_this_helpful:
     one: شخص واحد وجد هذا مفيدا
     other: '%{count} أشخاص وجدوا هذا مفيدا'
@@ -100,35 +100,35 @@ ar:
     one: <span class="count">1</span> شخص يوافق
     other: <span class="count">%{count}</span> اشخاص يوافقون
   x_species:
-    one: 1 أصناف
-    other: '%{count} أصناف'
+    one: 1 نوع
+    other: '%{count} أنواع'
   x_species_html:
-    one: <span class='count'>1</span> أصناف
-    other: <span class='count'>%{count}</span> أصناف
+    one: <span class='count'>1</span> نوع
+    other: <span class='count'>%{count}</span> أنواع
   x_species_link_html:
-    one: <a href='%{url}'>1 أصناف</a>
-    other: <a href='%{url}'>%{count} أصناف</a>
+    one: <a href='%{url}'>1 نوع</a>
+    other: <a href='%{url}'>%{count} أنواع</a>
   x_suggestions_filtered_by_colon:
     one: '1  اقتراح تمت تصفيته بواسطة:'
     other: '%{count} اقتراحات تمت تصفيتها بواسطة:'
   x_taxa_observed_html:
-    one: <span class='count'>1</span> صنف ملاحظ
+    one: <span class='count'>1</span> أصنوفة ملاحظة
     other: <span class='count'>%{count}</span> أصناف ملحوظة
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> مراقبة درجة البحث</span>
-    other: <span class='count'>%{count}</span> مراقبة درجة البحوث</span>
+    one: <span class='count'>1</span> ملاحظة درجة بحث</span>
+    other: <span class='count'>%{count}</span> ملاحظات درجات لحوث</span>
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> معرف ملاحظة على مستوى البحث إلى نوع أو أقل</span>
     other: <span class='count'>%{count}</span>معرف ملاحظات على مستوى البحث إلى أنواع
       أو أقل</span>
   x_taxa_matching_current_filters:
-    one: 1 صنف مطابق لمرشحات البحث الحالي
+    one: 1 أصنوفة مطابقة لمرشحات البحث الحالي
     other: '%{count} أصناف مطابقة لمرشحات البحث الحالية'
   a: أ
   a_: أ
-  a_community_for_naturalist: تجمع لعالمي الطبيعة
-  a_few_points_to_make_things_clear: مزيد من النقاط لجعل الأمور أوضح
-  a_flag_for_x: علم خاص بـ%{x}
+  a_community_for_naturalist: تجمع لعلماء الطبيعة
+  a_few_points_to_make_things_clear: مزيد من النقاط لجعل الأمور أوضح قليلا
+  a_flag_for_x: علم ل%{x}
   a_greasemonkey_script: سكريبت غريسمونكي (Greasemonkey)
   a_member_of: عضو في
   a_member_of_taxon_html: عضو في %{taxon}
@@ -146,10 +146,10 @@ ar:
   about_life!: عن الحياة!
   about_names: حول الأسماء
   about_places: عن الأماكن
-  about_taxon_changes: معلومات حول تغييرات الصنف
+  about_taxon_changes: معلومات حول تغييرات الأصناف
   about_the_cc_licenses: عن رخص المشاع الإبداعي
   about_the_taxobox_raquo: معلومات حول مربع الصنف &raquo;
-  about_these_licenses: عن هذه الرخصة
+  about_these_licenses: عن هذه الرخص
   about_this_map: عن هذه الخريطة
   about_this_project: عن هذا المشروع
   about_x: عن %{x}
@@ -160,8 +160,8 @@ ar:
   accuracy: الدقة
   accuracy_m: الدقة (م)
   accuracy_meters: الدقة (أمتار)
-  accuracy_of_the_coordinates: دقة الإحداثيات هي بالأمتار. تستطيع التعديل عن طريق
-    ضغط رابط "تعديل" بالأعلى أو بالضغط على العلامة في الخريطه وسحب المقبض. حاول صنع
+  accuracy_of_the_coordinates: دقة الإحداثيات  بالأمتار. تستطيع التعديل عن طريق النقر
+    على رابط "تعديل" بالأعلى أو الضغط على العلامة في الخريطه وسحب المقبض، حاول صنع
     دائره كبيره بحيث تتأكد أنك في مكان ما بداخلها.
   acquaintances: المعارف
   action: فعل
@@ -174,25 +174,25 @@ ar:
   add: أضف
   add_a: أضف
   add_a_batch_of_observations: أضف دفعة من الملاحظات
-  add_a_batch_of_observations_by_csv: أضف دفعة من الملاحظات عبر إمتداد CSV
+  add_a_batch_of_observations_by_csv: أضف دفعة من الملاحظات عبر CSV
   add_a_batch_of_taxa: إضافة دفعة من الأصناف
   add_a_comment: إضافة تعليق
   add_a_field: أضف حقلاً
   add_a_flag: أضف وسماً
-  add_a_link_raquo: أضف رابط &raquo;
+  add_a_link_raquo: أضف رابطا &raquo;
   add_a_name: اضف اسماً
-  add_a_new_change_group: أضف تعديل جديد للمجموعة
-  add_a_new_observation_to_id_please!: رجاءًُ! أضف ملاحظة جديدة إلى المعرف
-  add_a_place_raquo: أضف موقع &raquo;
+  add_a_new_change_group: أضف تعديلا جديدا للمجموعة
+  add_a_new_observation_to_id_please!: الرجاء إضافة ملاحظة جديدة إلى المعرف!
+  add_a_place_raquo: أضف مكانا &raquo;
   add_a_single_observation: أضف ملاحظة واحدة
-  add_a_taxon: إضافة الأصنوفة
-  add_all_your_matching_obs_of_this_taxon: إضافة كل مطابقتك للملاحظات، من هذا الصنف
+  add_a_taxon: إضافة أصنوفة
+  add_all_your_matching_obs_of_this_taxon: إضافة كل مطابقتك للملاحظات، من هذه الأصنوفة
     لهذا المشروع
   add_all_your_matching_obs_to_this_project: إضافة كل مطابقتك للملاحظات لهذا المشروع
-  add_an_assessment: أضف تقييم
-  add_an_identification: أضف تعريف
+  add_an_assessment: أضف تقييما
+  add_an_identification: أضف تعريفا
   add_an_observation: أضف ملاحظة
-  add_an_observation?: أضف ملاحظة ؟
+  add_an_observation?: أضف ملاحظة؟
   add_an_observation_of: أضف ملاحظة حول %{taxon}
   add_another: إضافة آخر
   add_another_flag: إضافة علم آخر
@@ -5807,7 +5807,7 @@ ar:
         project_observation:
           attributes:
             user_id:
-              must_be_curator: يجب أن يكون أمينا لهذا المشروع
+              must_be_curator: يجب أن تكون أمينا لهذا المشروع
             observation_id:
               must_be_observed_after: تجب ملاحظته بعد %{time}
               must_be_observed_before: تجب ملاحظته قبل %{time}
