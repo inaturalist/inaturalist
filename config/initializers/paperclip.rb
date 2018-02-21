@@ -24,3 +24,4 @@ Paperclip.interpolates("root_url") do |attachment, style|
 end
 
 Paperclip::UploadedFileAdapter.content_type_detector = InatContentTypeDetector
+Paperclip::UriAdapter.register
