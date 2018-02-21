@@ -127,6 +127,7 @@ $.fn.genericAutocomplete = function( options ) {
     focus: options.focus || genericAutocomplete.focus,
     appendTo: options.appendTo,
     position: options.position,
+    classes: options.classes,
     open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) }
   }).data( "uiAutocomplete" );
   field.on( "autocompleteclose", function( e, ui ) {

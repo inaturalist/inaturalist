@@ -1,6 +1,6 @@
 - site = @site || CONFIG
 - if current_user && current_user.is_admin? && params[:test] == "header"
-  #header.clear
+  #header.clear.test-header
     %ul#logonav
       %li.navtab
         - if site && !site.custom_logo.blank?
@@ -8,27 +8,40 @@
         - elsif site && site.logo
           %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
             = image_tag site.logo.url, alt: site.name
-    .search.navtab
+    #headersearch.search.navtab
       %input{ type: "text", placeholder: "Type stuff" }
     %ul#mainnav.navtabs
-      %li.navtab.observationstab.menutab
+      %li.navtab.exploretab.menutab
         .innertab
-          = link_to t(:observations).capitalize, observations_path
+          = link_to t(:explore).capitalize, observations_path
           = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
             %i.fa.fa-angle-down
         .subnav{:style => "display: none"}
           %ul
-            %li
-              = form_tag(observations_path, method: :get, enforce_utf8: false) do
-                .clear.inline.buttonrow
-                  = text_field_tag 'taxon_name', params[:taxon_name], |
-                    :id => 'header_observations_q', :class => 'text', |
-                    :placeholder => t(:search_obs)                    |
-                  %button.default.button
-                    %i.fa.fa-search
+            %li= link_to t(:observations), observations_path
             - if logged_in?
-              %li= link_to t(:by_you), observations_by_login_path(current_user.login)
-            %li= link_to t(:identify_title), identify_observations_path
+              %li= link_to t(:your_observations), observations_by_login_path( current_user.login )
+      %li.navtab.communitytab.menutab
+        .innertab
+          = link_to t(:community).capitalize, people_path
+          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+            %i.fa.fa-angle-down
+        .subnav{:style => "display: none"}
+          %ul
+            %li= link_to t(:people), people_path
+            %li= link_to t(:projects), projects_path
+      %li.navtab.toolstab.menutab
+        .innertab
+          = link_to t(:tools).capitalize, people_path
+          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+            %i.fa.fa-angle-down
+        .subnav{:style => "display: none"}
+          %ul
+            %li= link_to t(:identify), identify_observations_path
+            %li= link_to t(:guides), guides_path
+            %li= link_to t(:species_browser), taxa_path
+            %li= link_to t(:places), places_path
+            %li= link_to t(:help), help_path
     %ul#usernav.navtabs
       - unless logged_in?
         %li.navtab.signedout
@@ -64,26 +77,14 @@
             %ul
               %li= link_to t(:dashboard), home_path
               %li
-                - iconic_taxon_name = current_user && ( !current_user.prefers_common_names? || current_user.prefers_scientific_name_first? ) ? taxon.name : t("all_taxa.#{Taxon::ICONIC_TAXON_NAMES[taxon.name].gsub(' ','_').gsub('-','_').downcase}", default: Taxon::ICONIC_TAXON_NAMES[taxon.name])
-                = link_to iconic_taxon_name, taxon_path(taxon), :class => "taxon #{taxon.name}"
-      %li.navtab.projectstab.menutab
-        .innertab
-          = link_to t(:projects), projects_path
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-            %i.fa.fa-angle-down
-        .subnav{:style => "display: none"}
-          %ul
-            %li.formwrapper
-              = form_tag({:controller => 'projects', :action => 'search'}, :method => :get) do
-                .clear.inline.buttonrow
-                  = text_field_tag 'q', params[:q], :id => 'header_projects_q', :class => 'text', :value => '', |
-                    :placeholder => t(:search_projects)                                                         |
-                  %button.default.button
-                    %i.fa.fa-search
-            - if logged_in?
-              - for project in current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
-                %li
-                  = link_to truncate(project.title), project, :style => project.icon.file? ? "background-image: url(#{project.icon.url(:mini)})" : nil
+                = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
+                %ul
+                  %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
+                  %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
+                  %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
+              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
+              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
+              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
               %li
                 = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
               %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'

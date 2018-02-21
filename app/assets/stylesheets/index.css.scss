@@ -2150,3 +2150,70 @@ user-icon .icon-person:before {
 .g-recaptcha {
   margin-bottom: 15px;
 }
+
+
+.ui-autocomplete, .ui-widget-content {
+  .ui-state-active {
+    border: 0 transparent;
+  }
+}
+.inat-universal-autocomplete {
+  border-radius: 5px;
+  border-color: #ddd;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.298039);
+  a {
+    color: $bootstrap-link-color;
+  }
+  &.ui-autocomplete li.ac-result + li.ac-result {
+    border-top: 0 transparent;
+  }
+  &.ui-autocomplete .ac {
+    display: flex;
+    background: white;
+    &.ui-state-active {
+      background: #efefef;
+    }
+    > div {
+      line-height: 46px;
+    }
+    .ac-thumb {
+      padding-left: 10px;
+      width: 30px;
+      line-height: 39px;
+      img {
+        width: auto;
+        height: 30px;
+        margin: 8px 0 0 0;
+      }
+    }
+    .ac-label {
+      padding: 0 10px;
+      flex: 2;
+      .secondary-name {
+        color: #aaa;
+      }
+      .secondary-name:before { content: '('; display: inline-block; }
+      .secondary-name:after { content: ')'; display: inline-block; }
+      .rank {
+        text-transform: capitalize;
+      }
+    }
+    .ac-view {
+      padding: 0 10px;
+      background: none;
+
+      &.view-observations {
+        padding-right: 0;
+        span {
+          border-right: 1px solid #ddd;
+          padding-right: 10px;
+        }
+      }
+    }
+  }
+}
+#header.test-header {
+  #mainnav {
+    text-align: left;
+  }
+}
