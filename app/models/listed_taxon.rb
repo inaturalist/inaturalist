@@ -418,7 +418,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
-    return true if @skip_sync_with_parent
+    return true if skip_sync_with_parent
     list.delay(priority: INTEGRITY_PRIORITY,
       unique_hash: { "CheckList::sync_with_parent": list_id }).
       sync_with_parent(:time_since_last_sync => updated_at)
@@ -426,7 +426,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def sync_species_if_infraspecies
-    return true if @skip_species_for_infraspecies
+    return true if skip_species_for_infraspecies
     return true unless list.is_a?(CheckList) && taxon
     return true unless taxon.infraspecies?
     ListedTaxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
@@ -444,8 +444,8 @@ class ListedTaxon < ActiveRecord::Base
   end
 
   def update_cache_columns
-    return true if @skip_update_cache_columns
-    return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
+    return true if skip_update_cache_columns
+    return true if list.is_a?(CheckList) && (!force_update_cache_columns || place_id.blank?)
     return true if list.is_a?(CheckList) && !primary_listing
     set_cache_columns
     true
@@ -460,10 +460,10 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def update_cache_columns_for_check_list
-    return true if @skip_update_cache_columns
+    return true if skip_update_cache_columns
     return true unless list.is_a?(CheckList)
     if primary_listing
-      unless @force_update_cache_columns
+      unless force_update_cache_columns
         ListedTaxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
           queue: "slow", unique_hash: { "ListedTaxon::update_cache_columns_for": id }).
           update_cache_columns_for(id)

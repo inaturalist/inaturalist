@@ -121,8 +121,14 @@ function fetchCurrentObservation( observation = null ) {
         return newObs;
       } )
       .then( o => {
-        if ( o.place_ids && o.place_ids.length > 0 ) {
-          const placeIDs = _.take( o.place_ids, 100 );
+        let placeIDs;
+        if ( o.private_place_ids && o.private_place_ids.length > 0 ) {
+          placeIDs = o.private_place_ids;
+        } else {
+          placeIDs = o.place_ids;
+        }
+        if ( placeIDs && placeIDs.length > 0 ) {
+          placeIDs = _.take( o.place_ids, 100 );
           return iNaturalistJS.places.fetch(
             placeIDs, { per_page: 100, no_geom: true }
           ).then( response => {
