@@ -631,7 +631,7 @@ class UsersController < ApplicationController
   end
 
   def api_token
-    payload = { user_id: current_user.id, user_login: current_user.login }
+    payload = { user_id: current_user.id }
     if doorkeeper_token && (a = doorkeeper_token.application)
       payload[:oauth_application_id] = a.becomes( OauthApplication ).id
     end
