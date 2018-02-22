@@ -12,28 +12,28 @@
     %ul#mainnav.navtabs
       %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index by_login show ).include?( controller.action_name ) || controller.class.name == "TaxaController" ? "active" : nil }
         .dropdown
-          .dropdown-toggle{ data: { toggle: "dropdown" } }
+          #header-explore-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
             = link_to t(:explore).capitalize, observations_path
             %i.fa.fa-angle-down
-          %ul.dropdown-menu
+          %ul.dropdown-menu{ aria: { labelledby: "header-explore-dropdown-toggle" } }
             %li= link_to t(:observations), observations_path
             - if logged_in?
               %li= link_to t(:your_observations), observations_by_login_path( current_user.login )
             %li= link_to t(:species), taxa_path
       %li.navtab.communitytab.menutab{ class: %w(UsersController ProjectsController PostsController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
-          .dropdown-toggle{ data: { toggle: "dropdown" } }
+          #header-community-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
             = link_to t(:community).capitalize, people_path
             %i.fa.fa-angle-down
-          %ul.dropdown-menu
+          %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
             %li= link_to t(:people), people_path
             %li= link_to t(:projects), projects_path
       %li.navtab.toolstab.menutab{ class: %w(ObservationsController).include?( controller.class.name ) && controller.action_name == "identify" || %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
-          .dropdown-toggle{ data: { toggle: "dropdown" } }
+          #header-tools-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
             = link_to t(:tools).capitalize, people_path
             %i.fa.fa-angle-down
-          %ul.dropdown-menu
+          %ul.dropdown-menu{ aria: { labelledby: "header-tools-dropdown-toggle" } }
             %li= link_to t(:identify), identify_observations_path
             %li= link_to t(:guides), guides_path
             %li= link_to t(:places), places_path
@@ -53,24 +53,24 @@
         - unless @minimal_header
           %li#messagesnav.navtab.messages
             .dropdown
-              .dropdown-toggle{ data: { toggle: "dropdown" } }
+              #header-messages-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
                 %i.fa.fa-envelope
                 %span.count 0
-              #messagessubnav.dropdown-menu.dropdown-menu-right
+              #messagessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-messages-dropdown-toggle" } }
                 .loadingwrapper= loading
           %li#updatesnav.navtab.updates
             .dropdown
-              .dropdown-toggle{ data: { toggle: "dropdown" } }
+              #header-updates-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
                 %i.fa.fa-comment
                 %span.count 0
-              #updatessubnav.dropdown-menu.dropdown-menu-right
+              #updatessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-updates-dropdown-toggle" } }
                 .loadingwrapper= loading
         %li.navtab.user.menutab
           .dropdown
-            .dropdown-toggle{ data: { toggle: "dropdown" } }
+            #header-user-menu-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
               = user_image(current_user, :size => 'thumb', :class => "inlineblock")
               %i.fa.fa-angle-down
-            %ul.dropdown-menu.dropdown-menu-right
+            %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
               %li= link_to t(:dashboard), home_path
               %li= link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
               %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
