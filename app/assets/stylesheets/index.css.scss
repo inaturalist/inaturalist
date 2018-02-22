@@ -2180,7 +2180,7 @@ user-icon .icon-person:before {
       padding-left: 10px;
       width: 30px;
       line-height: 39px;
-      img {
+      img, .fa {
         width: auto;
         height: 30px;
         margin: 8px 0 0 0;
@@ -2222,6 +2222,7 @@ $header-line-height: 34px;
   .navtabs {
     margin-right: 20px;
     padding: 10px 0px;
+    line-height: 27px;
     .navtab {
       margin-right: 20px;
       &:last-child {
@@ -2234,9 +2235,6 @@ $header-line-height: 34px;
     li.navtab {
       padding: 10px 10px;
       margin: 0;
-      i {
-        font-weight: bold;
-      }
     }
   }
   > ul {
@@ -2254,16 +2252,25 @@ $header-line-height: 34px;
       width: 300px;
     }
   }
+  .dropdown-toggle {
+    white-space: nowrap;
+    line-height: 32px;
+    border: 1px solid transparent;
+  }
   #mainnav {
     text-align: left;
     display: flex;
     flex-grow: 2;
+    .navtab.active {
+      border-bottom: 2px solid $inat-green;
+    }
   }
   #mainnav,
   .navtab.user {
-    .dropdown:hover .dropdown-menu {
-      display: block;
-      margin-top: 0;
+    .dropdown-toggle {
+      i {
+        font-weight: bold;
+      }
     }
   }
   #usernav {
@@ -2271,14 +2278,23 @@ $header-line-height: 34px;
     margin-right: 0;
     align-self: flex-end;
     .usericon {
-      width: $header-line-height;
-      height: $header-line-height;
+      width: $header-line-height - 2;
+      height: $header-line-height - 2;
+    }
+    .hasupdates {
+      color: $alert-red;
     }
     .dropdown-toggle {
-      cursor: pointer;
+      i {
+        margin-right: 2px;
+      }
     }
   }
-  a, .count {
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+  a,
+  .count {
     color: #333;
   }
 
@@ -2304,6 +2320,15 @@ $header-line-height: 34px;
           }
         }
       }
+    }
+  }
+  .add-obs {
+    .btn {
+      border-color: $inat-green;
+      i {
+        color: $inat-green;
+      }
+      background-color: transparentize( $inat-green, 0.9 );
     }
   }
 }
