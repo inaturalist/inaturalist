@@ -1,6 +1,7 @@
 %ul
   - if @messages.blank?
-    %li.meta.nobr="#{t(:no_new_messages)}."
+    %li.meta.nobr
+      %span=t :no_new_messages
   - for message in @messages
     %li
       %a{:href => url_for(message)}

@@ -1,94 +1,83 @@
 - site = @site || CONFIG
-- if current_user && current_user.is_admin? && params[:test] == "header"
-  #header.clear.test-header
-    %ul#logonav
-      %li.navtab
-        - if site && !site.custom_logo.blank?
-          =raw site.custom_logo
-        - elsif site && site.logo
-          %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
-            = image_tag site.logo.url, alt: site.name
-    #headersearch.search.navtab
-      %input{ type: "text", placeholder: "Type stuff" }
+- if current_user && current_user.in_test_group?( "header-2018" )
+  #test-header.test-header.bootstrap
+    .navtabs
+      - if site && !site.custom_logo.blank?
+        =raw site.custom_logo
+      - elsif site && site.logo
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
+          = image_tag site.logo.url, alt: site.name
+    #headersearch.search.navtabs.form-group
+      %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
     %ul#mainnav.navtabs
-      %li.navtab.exploretab.menutab
-        .innertab
-          = link_to t(:explore).capitalize, observations_path
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+      %li.navtab
+        .dropdown
+          .dropdown-toggle{ data: { toggle: "dropdown" } }
+            = link_to t(:explore).capitalize, observations_path
             %i.fa.fa-angle-down
-        .subnav{:style => "display: none"}
-          %ul
+          %ul.dropdown-menu
             %li= link_to t(:observations), observations_path
             - if logged_in?
               %li= link_to t(:your_observations), observations_by_login_path( current_user.login )
       %li.navtab.communitytab.menutab
-        .innertab
-          = link_to t(:community).capitalize, people_path
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+        .dropdown
+          .dropdown-toggle{ data: { toggle: "dropdown" } }
+            = link_to t(:community).capitalize, people_path
             %i.fa.fa-angle-down
-        .subnav{:style => "display: none"}
-          %ul
+          %ul.dropdown-menu
             %li= link_to t(:people), people_path
             %li= link_to t(:projects), projects_path
       %li.navtab.toolstab.menutab
-        .innertab
-          = link_to t(:tools).capitalize, people_path
-          = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+        .dropdown
+          .dropdown-toggle{ data: { toggle: "dropdown" } }
+            = link_to t(:tools).capitalize, people_path
             %i.fa.fa-angle-down
-        .subnav{:style => "display: none"}
-          %ul
+          %ul.dropdown-menu
             %li= link_to t(:identify), identify_observations_path
             %li= link_to t(:guides), guides_path
             %li= link_to t(:species_browser), taxa_path
             %li= link_to t(:places), places_path
+            %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
     %ul#usernav.navtabs
       - unless logged_in?
         %li.navtab.signedout
-          .innertab
-            = link_to t(:log_in), login_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
-            = t :or
-            = link_to t(:sign_up), signup_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
+          = link_to t(:log_in), login_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
+          = t :or
+          = link_to t(:sign_up), signup_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
       - else
         - unless @minimal_header
-          %li#messagesnav.notices.navtab
-            .innertab
-              = link_to messages_path, id: "headermessagesnotice", 'class': "messages headernotice" do
+          %li#messagesnav.navtab
+            .dropdown
+              .dropdown-toggle{ data: { toggle: "dropdown" } }
                 %i.fa.fa-envelope
                 %span.count 0
-            #messagessubnav.subnav.rightsubnav{style: "display:none;"}
-              .loadingwrapper= loading
-          %li#updatesnav.notices.navtab
-            .innertab
-              = link_to messages_path, id: "headerupdatesnotice", 'class': "updates headernotice" do
+              #messagessubnav.dropdown-menu.dropdown-menu-right
+                .loadingwrapper= loading
+          %li#updatesnav.navtab
+            .dropdown
+              .dropdown-toggle{ data: { toggle: "dropdown" } }
                 %i.fa.fa-comment
                 %span.count 0
-            #updatessubnav.subnav.rightsubnav{style: "display:none;"}
-              .loadingwrapper= loading
+              #updatessubnav.dropdown-menu.dropdown-menu-right
+                .loadingwrapper= loading
         %li.navtab.user.menutab
-          .innertab
-            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
+          .dropdown
+            .dropdown-toggle{ data: { toggle: "dropdown" } }
               = user_image(current_user, :size => 'thumb', :class => "inlineblock")
-            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
-              = truncate current_user.login, length: 20
-            = link_to "#", onclick: "toggleHeaderSubnav(this);return false;" do
               %i.fa.fa-angle-down
-          #usersubnav.subnav.rightsubnav{style: "display: none;"}
-            %ul
+            %ul.dropdown-menu.dropdown-menu-right
               %li= link_to t(:dashboard), home_path
-              %li
-                = link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
-                %ul
-                  %li= link_to t(:add), upload_observations_path, :class => 'subnavaction'
-                  %li= link_to t(:import), {:controller => 'observations', :action => 'import'}, :class => 'subnavaction'
-                  %li= link_to t(:calendar), calendar_path(login: current_user.login), :class => 'subnavaction'
+              %li= link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
               %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
               %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
               %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
               %li
                 = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
+              %li.divider{role: "separator"}
               %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'
               %li= link_to t(:account), edit_person_path(current_user), :class => 'profile_link'
+              %li.divider{role: "separator"}
               %li.signout= link_to t(:sign_out), logout_path
 - else
   #header.clear
