@@ -2184,8 +2184,10 @@ user-icon .icon-person:before {
       .ac-thumb {
         padding-left: 10px;
         width: 30px;
+        overflow: hidden;
         line-height: 39px;
-        img, .fa {
+        img,
+        .fa {
           width: auto;
           height: 30px;
           margin: 8px 0 0 0;
@@ -2230,9 +2232,11 @@ $header-line-height: 34px;
   background-color: #eee;
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
+  .logolink {
+    line-height: 29px;
+  }
   .logolink:hover {
     opacity: 1;
-    line-height: 29px;
   }
   .navtabs {
     margin-right: 20px;
