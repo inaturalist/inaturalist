@@ -301,7 +301,7 @@ class LocalPhoto < Photo
     self.rotation = degrees
     self.rotation -= 360 if self.rotation >= 360
     self.rotation += 360 if self.rotation <= -360
-    self.file.reprocess_without_delay!
+    self.file.reprocess!
     self.save
   end
 
