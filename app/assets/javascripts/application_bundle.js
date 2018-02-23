@@ -22,6 +22,7 @@
 //= require jquery/plugins/inat/user_autocomplete
 //= require jquery/plugins/inat/project_autocomplete
 //= require jquery/plugins/inat/observation_field_autocomplete
+//= require jquery/plugins/inat/universal_autocomplete
 //= require jquery/plugins/inat/datepicker
 //= require jquery.textcomplete
 //= require_tree ./ang/models

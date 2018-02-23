@@ -2157,57 +2157,64 @@ user-icon .icon-person:before {
     border: 0 transparent;
   }
 }
-.inat-universal-autocomplete {
-  border-radius: 5px;
-  border-color: #ddd;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.298039);
-  a {
-    color: $bootstrap-link-color;
-  }
-  &.ui-autocomplete li.ac-result + li.ac-result {
-    border-top: 0 transparent;
-  }
-  &.ui-autocomplete .ac {
-    display: flex;
-    background: white;
-    &.ui-state-active {
-      background: #efefef;
+#inat-universal-autocomplete {
+  .ui-autocomplete {
+    border-radius: 5px;
+    border-color: #ddd;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.298039);
+    a {
+      color: $bootstrap-link-color;
     }
-    > div {
-      line-height: 46px;
+    li.ac-result + li.ac-result {
+      border-top: 0 transparent;
     }
-    .ac-thumb {
-      padding-left: 10px;
-      width: 30px;
-      line-height: 39px;
-      img, .fa {
-        width: auto;
-        height: 30px;
-        margin: 8px 0 0 0;
+    .ac {
+      display: flex;
+      background: white;
+      &.ui-state-active {
+        background: #efefef;
       }
-    }
-    .ac-label {
-      padding: 0 10px;
-      flex: 2;
-      .secondary-name {
-        color: #aaa;
+      > div {
+        line-height: 46px;
       }
-      .secondary-name:before { content: '('; display: inline-block; }
-      .secondary-name:after { content: ')'; display: inline-block; }
-      .rank {
-        text-transform: capitalize;
-      }
-    }
-    .ac-view {
-      padding: 0 10px;
-      background: none;
-
-      &.view-observations {
-        padding-right: 0;
-        span {
-          border-right: 1px solid #ddd;
-          padding-right: 10px;
+      .ac-thumb {
+        padding-left: 10px;
+        width: 30px;
+        line-height: 39px;
+        img, .fa {
+          width: auto;
+          height: 30px;
+          margin: 8px 0 0 0;
         }
+      }
+      .ac-label {
+        padding: 0 10px;
+        flex: 2;
+        .secondary-name {
+          color: #aaa;
+        }
+        .secondary-name:before { content: '('; display: inline-block; }
+        .secondary-name:after { content: ')'; display: inline-block; }
+        .rank {
+          text-transform: capitalize;
+        }
+      }
+      .ac-view {
+        padding: 0 10px;
+        background: none;
+
+        &.view-observations {
+          padding-right: 0;
+          span {
+            border-right: 1px solid #ddd;
+            padding-right: 10px;
+          }
+        }
+      }
+    }
+    .ui-state-focus {
+      .ac {
+        background-color: #eee;
       }
     }
   }
@@ -2219,6 +2226,10 @@ $header-line-height: 34px;
   background-color: #eee;
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
+  .logolink:hover {
+    opacity: 1;
+    line-height: 29px;
+  }
   .navtabs {
     margin-right: 20px;
     padding: 10px 0px;
