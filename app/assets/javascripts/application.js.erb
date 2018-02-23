@@ -422,12 +422,23 @@ $(document).ready(function() {
 
   if ( $( "#test-header" ).length > 0 ) {
     $( "#test-header .search input" ).universalAutocomplete( );
+    function showHeaderSearch() {
+      $( "#headersearch" ).addClass( "open" );
+      $( "#headersearch input" ).focus( );
+      updateSession( { header_search_open: true } );
+    }
+    function hideHeaderSearch() {
+      $( "#headersearch" ).removeClass( "open" );
+      updateSession( { header_search_open: false } );
+    }
+    $( "#test-header .show-btn" ).click( showHeaderSearch );
+    $( "#test-header .hide-btn" ).click( hideHeaderSearch );
     $( document ).bind( "keyup", function( e ) {
       if ( e.which !== 191 ) { return true; }
       if ( e.target.type === "textarea" || e.target.type === "text" ) {
         return true;
       }
-      $( "#headersearch input" ).focus( );
+      showHeaderSearch( );
     } );
   }
 } );

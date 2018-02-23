@@ -7,8 +7,13 @@
       - elsif site && site.logo
         %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
           = image_tag site.logo.url, alt: site.name
-    #headersearch.search.navtabs.form-group
-      %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
+    #headersearch.search.navtabs.form-group{ class: session[:header_search_open] ? "open" : nil }
+      .searchwrapper
+        %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
+      %button.btn.btn-link.show-btn
+        %i.fa.fa-search
+      %button.btn.btn-link.hide-btn
+        %i.fa.fa-times-circle
     %ul#mainnav.navtabs
       %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index by_login show ).include?( controller.action_name ) || controller.class.name == "TaxaController" ? "active" : nil }
         .dropdown

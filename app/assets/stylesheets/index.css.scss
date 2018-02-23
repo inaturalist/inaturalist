@@ -2248,8 +2248,38 @@ $header-line-height: 34px;
   }
   .search {
     margin-bottom: 0;
+    margin-right: 0px;
     input {
       width: 300px;
+    }
+    .searchwrapper {
+      width: 0;
+      display: inline-block;
+      transition: width 0.5s ease;
+      overflow: hidden;
+    }
+    display: flex;
+    .btn {
+      font-size: 18px;
+      height: 34px;
+      line-height: 33px;
+      padding: 0 5px;
+      color: #777;
+    }
+    .hide-btn {
+      display: none;
+    }
+    &.open {
+      .searchwrapper {
+        width: 300px;
+        transition: width 0.5s ease;
+      }
+      .hide-btn {
+        display: inline-block;
+      }
+      .show-btn {
+        display: none;
+      }
     }
   }
   .dropdown-toggle {
