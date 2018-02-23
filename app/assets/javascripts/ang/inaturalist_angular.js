@@ -184,13 +184,47 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
       };
       scope.shared = shared;
       scope.user = CURRENT_USER;
+      function commonName( name ) {
+        if ( !name ) {
+          return name;
+        }
+        var uncapitalized = [
+          "à",
+          "and",
+          "con",
+          "da",
+          "dal",
+          "de",
+          "dei",
+          "del",
+          "des",
+          "di",
+          "du",
+          "e",
+          "la",
+          "o",
+          "of",
+          "the"
+        ];
+        return _.map( name.split( /\s+/ ), function( piece, i ) {
+          if (
+            ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
+            piece.match( /^d'/ )
+          ) {
+            return piece;
+          }
+          // return _.capitalize( piece );
+          return piece.charAt( 0 ).toUpperCase( ) + piece.substring( 1 ).toLowerCase( );
+        } ).join( " " );
+
+      }
       scope.displayName = function() {
         var name;
         if ( !scope.taxon ) { return; }
         if ( scope.user && scope.user.prefers_scientific_name_first ) {
           name = scope.taxon.name;
         } else if ( scope.taxon.preferred_common_name ) {
-          name = scope.taxon.preferred_common_name;
+          name = commonName( scope.taxon.preferred_common_name );
         }
         return name || scope.taxon.name;
       }
@@ -198,7 +232,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         var name;
         if ( !scope.taxon ) { return; }
         if ( scope.user && scope.user.prefers_scientific_name_first ) {
-          name = scope.taxon.preferred_common_name;
+          name = commonName( scope.taxon.preferred_common_name );
         } else if ( scope.taxon.preferred_common_name ) {
           name = scope.taxon.name;
         }

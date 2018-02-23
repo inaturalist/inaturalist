@@ -70,6 +70,37 @@ const SplitTaxon = ( {
       } else {
         comNameClass = `display-name ${comNameClass}`;
       }
+      let commonName = taxon.preferred_common_name;
+      // This may or may not be a scalable solution. An alternative would be get
+      // these from translation files and have translators add the words that
+      // are uncapitalized in their languages
+      const uncapitalized = [
+        "à",
+        "and",
+        "con",
+        "da",
+        "dal",
+        "de",
+        "dei",
+        "del",
+        "des",
+        "di",
+        "du",
+        "e",
+        "la",
+        "o",
+        "of",
+        "the"
+      ];
+      commonName = commonName.split( /\s+/ ).map( ( piece, i ) => {
+        if (
+          ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
+          piece.match( /^d'/ )
+        ) {
+          return piece;
+        }
+        return _.capitalize( piece );
+      } ).join( " " );
       return (
         <LinkElement
           className={`comname ${comNameClass}`}
@@ -77,7 +108,7 @@ const SplitTaxon = ( {
           target={ target }
           onClick={ onClick }
         >{
-          truncateText( taxon.preferred_common_name )
+          truncateText( commonName )
         }</LinkElement>
       );
     } else if ( !taxon ) {
