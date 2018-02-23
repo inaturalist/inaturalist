@@ -273,6 +273,47 @@ $(document).ready(function() {
     }
     return false
   })
+
+  $( "#test-header #messagesnav .dropdown" ).on( "show.bs.dropdown", function() {
+    if ( !$( "#messagessubnav" ).data( "loaded" ) ) {
+      $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
+        $( this ).html( data );
+        $( "#messagessubnav" ).data( "loaded", true );
+        setMessagesCount( 0, { skipAnimation: true } );
+      } );
+    }
+  } );
+
+  $( "#test-header #updatesnav .dropdown" ).on( "show.bs.dropdown", function() {
+    if ( !$("#updatessubnav" ).data( "loaded" ) ) {
+      $( "#updatessubnav" ).load( "/users/new_updates?notification=activity,mention", function( data ) {
+        $( this ).html( data );
+        $( "#updatessubnav" ).data( "loaded", true )
+        setUpdatesCount( 0, { skipAnimation: true } );
+        var tipOptions = $.extend( true, {}, QTIP_DEFAULTS, {
+          position: {
+            my: "right center",
+            at: "left center",
+            target: "event"
+          },
+          content: {
+            text: '<span class="loading status">' + I18n.t( "loading") + "</span>",
+            ajax: {
+              type: "GET",
+              data: { partial: "cached_component" }
+            }
+          }
+        } );
+        tipOptions.style.classes += " compact mini observations";
+        tipOptions.style.width = 250;
+        $( 'li a[href*="/observations/"]', this ).each( function() {
+          tipOptions.position.target = $( this ).parents( "li:first" );
+          tipOptions.content.ajax.url = $( this ).attr( "href" );
+          $( this ).qtip( tipOptions );
+        } );
+      } );
+    }
+  } );
   
   $('.commentpreviewbutton').click(function() {
     var button = this
@@ -378,7 +419,31 @@ $(document).ready(function() {
       $(".ui-autocomplete").hide( );
     }, 200, menuCloseInitiated );
   });
-})
+
+  if ( $( "#test-header" ).length > 0 ) {
+    $( "#test-header .search input" ).universalAutocomplete( );
+    function showHeaderSearch() {
+      $( "#headersearch" ).addClass( "open" );
+      $( "#headersearch input" ).focus( );
+      updateSession( { header_search_open: true } );
+    }
+    function hideHeaderSearch() {
+      $( "#headersearch" ).removeClass( "open" );
+      updateSession( { header_search_open: false } );
+    }
+    $( "#test-header .show-btn" ).click( showHeaderSearch );
+    $( "#test-header .hide-btn" ).click( hideHeaderSearch );
+    $( document ).bind( "keyup", function( e ) {
+      if ( e.which !== 191 ) { return true; }
+      if ( e.target.type === "textarea" || e.target.type === "text" ) {
+        return true;
+      }
+      showHeaderSearch( );
+    } );
+  }
+} );
+
+
 
 function checkFormForRequiredFields(e) {
   var inputs = $('input[required]:visible').filter(function() { return !$(this).val() })
@@ -866,18 +931,18 @@ function setUpdatesCount(count, options) {
   options = options || {}
   if (count > 0) {
     if (options.skipAnimation) {
-      $('#header .updates').addClass('hasupdates')
+      $('#header .updates, #test-header .updates').addClass('hasupdates')
     } else {
-      $('#header .updates').switchClass('', 'hasupdates')
+      $('#header .updates, #test-header .updates').switchClass('', 'hasupdates')
     }
-    $('#header .updates .count').html(count)
+    $('#header .updates .count, #test-header .updates .count').html(count)
   } else {
     if (options.skipAnimation) {
-      $('#header .updates').removeClass('hasupdates')
+      $('#header .updates, #test-header .updates').removeClass('hasupdates')
     } else {
-      $('#header .updates').switchClass('hasupdates', '')
+      $('#header .updates, #test-header .updates').switchClass('hasupdates', '')
     }
-    $('#header .updates .count').html(0)
+    $('#header .updates .count, #test-header .updates .count').html(0)
   }
 }
 
@@ -891,18 +956,18 @@ function setMessagesCount(count, options) {
   options = options || {}
   if (count > 0) {
     if (options.skipAnimation) {
-      $('#header .messages').addClass('hasupdates')
+      $('#header .messages, #test-header .messages').addClass('hasupdates')
     } else {
-      $('#header .messages').switchClass('', 'hasupdates')
+      $('#header .messages, #test-header .messages').switchClass('', 'hasupdates')
     }
-    $('#header .messages .count').html(count)
+    $('#header .messages .count, #test-header .messages .count').html(count)
   } else {
     if (options.skipAnimation) {
-      $('#header .messages').removeClass('hasupdates')
+      $('#header .messages, #test-header .messages').removeClass('hasupdates')
     } else {
-      $('#header .messages').switchClass('hasupdates', '')
+      $('#header .messages, #test-header .messages').switchClass('hasupdates', '')
     }
-    $('#header .messages .count').html(0)
+    $('#header .messages .count, #test-header .messages .count').html(0)
   }
 }
 
