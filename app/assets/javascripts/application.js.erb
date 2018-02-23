@@ -419,6 +419,17 @@ $(document).ready(function() {
       $(".ui-autocomplete").hide( );
     }, 200, menuCloseInitiated );
   });
+
+  if ( $( "#test-header" ).length > 0 ) {
+    $( "#test-header .search input" ).universalAutocomplete( );
+    $( document ).bind( "keyup", function( e ) {
+      if ( e.which !== 191 ) { return true; }
+      if ( e.target.type === "textarea" || e.target.type === "text" ) {
+        return true;
+      }
+      $( "#headersearch input" ).focus( );
+    } );
+  }
 } );
 
 $.fn.universalAutocomplete = function( options ) {
@@ -552,17 +563,6 @@ $.fn.universalAutocomplete = function( options ) {
     }
   }));
 };
-
-if ( $( "#test-header" ).length > 0 ) {
-  $( "#test-header .search input" ).universalAutocomplete( );
-  $( document ).bind( "keyup", function( e ) {
-    if ( e.which !== 191 ) { return true; }
-    if ( e.target.type === "textarea" || e.target.type === "text" ) {
-      return true;
-    }
-    $( "#headersearch input" ).focus( );
-  } );
-}
 
 function checkFormForRequiredFields(e) {
   var inputs = $('input[required]:visible').filter(function() { return !$(this).val() })
