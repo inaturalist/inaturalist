@@ -101,6 +101,41 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
   return this.conservationStatusName;
 };
 
+iNatModels.Taxon.titleCaseName = function( name ) {
+  if ( !name ) {
+    return name;
+  }
+  var uncapitalized = [
+    "à",
+    "and",
+    "con",
+    "da",
+    "dal",
+    "de",
+    "dei",
+    "del",
+    "des",
+    "di",
+    "du",
+    "e",
+    "la",
+    "o",
+    "of",
+    "the"
+  ];
+  return _.map( name.split( /\s+/ ), function( piece, i ) {
+    if (
+      ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
+      piece.match( /^d'/ )
+    ) {
+      return piece;
+    }
+    // return _.capitalize( piece );
+    return piece.charAt( 0 ).toUpperCase( ) + piece.substring( 1 ).toLowerCase( );
+  } ).join( " " );
+
+}
+
 iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
   options = options || { };
   options.locale = ( options.locale || "en" ).split( "-" )[0];
@@ -124,5 +159,5 @@ iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
       !nameInLocale && options.locale != "en" ) {
     return this.preferredCommonName( _.extend( { }, options, { locale: "en" } ) );
   }
-  return nameInLocale;
+  return iNatModels.Taxon.titleCaseName( nameInLocale );
 };
