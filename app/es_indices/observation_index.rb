@@ -250,7 +250,7 @@ class Observation < ActiveRecord::Base
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
     # fetch all place_ids store them in `indexed_place_ids`
-    if options.blank? || options[:places]
+    if !batch_ids_string.blank? && ( options.blank? || options[:places] )
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places

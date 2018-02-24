@@ -52,7 +52,7 @@
         - else
           = @guide_taxon.display_name
       - if @guide_taxon.display_name != @guide_taxon.name
-        - if @guide_taxon.taxon && @guide_taxon.taxon.name == @guide_taxon.name && @guide_taxon.taxon.rank_level <= Taxon::GENUS_LEVEL
+        - if @guide_taxon.taxon && @guide_taxon.taxon.name == @guide_taxon.name && @guide_taxon.taxon.rank_level.to_i <= Taxon::GENUS_LEVEL
           %em= @guide_taxon.name
         - else
           = @guide_taxon.name
