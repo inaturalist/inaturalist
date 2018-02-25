@@ -1712,6 +1712,10 @@ class ObservationsController < ApplicationController
     render layout: "bootstrap"
   end
 
+  def compare
+    render layout: "bootstrap"
+  end
+
   private
 
   def observation_params(options = {})

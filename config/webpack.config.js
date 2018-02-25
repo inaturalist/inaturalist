@@ -16,7 +16,8 @@ var config = {
     'observations-torque': './observations/torque/webpack-entry',
     'computer-vision': './computer_vision/webpack-entry',
     'search-slideshow': './search_slideshow/webpack-entry',
-    'stats-year': './stats/year/webpack-entry'
+    'stats-year': './stats/year/webpack-entry',
+    'observations-compare': './observations/compare/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js

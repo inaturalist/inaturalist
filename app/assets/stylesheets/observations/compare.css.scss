@@ -1,0 +1,38 @@
+#Compare {
+  .Queries {
+    .query {
+      margin-bottom: 10px;
+      display: flex;
+      .name {
+        width: 100px;
+        margin-right: 10px;
+      }
+      .params {
+        flex: 2;
+      }
+      .btn {
+        margin-left: 10px;
+      }
+    }
+  }
+  table {
+    th {
+      white-space: nowrap;
+    }
+    th.sortable {
+      cursor: pointer;
+    }
+    th.taxon {
+      width: 100%;
+    }
+    .sorted {
+      background-color: #eee;
+    }
+    .value {
+      text-align: right;
+    }
+    td.value {
+      font-family: "Lucida Console", Monaco, monospace, fixed-width;
+    }
+  }
+}
