@@ -5,7 +5,7 @@ import Tabs from "../components/tabs";
 
 function mapStateToProps( state ) {
   return {
-    chosenTab: state.config.chosenTab
+    chosenTab: state.compare.tab
   };
 }
 

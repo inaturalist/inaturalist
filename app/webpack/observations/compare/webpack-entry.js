@@ -4,8 +4,9 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import utf8 from "utf8";
 import configReducer from "../../shared/ducks/config";
-import compareReducer, { chooseTab } from "./ducks/compare";
+import compareReducer, { fetchDataForTab } from "./ducks/compare";
 import App from "./components/app";
 
 const rootReducer = combineReducers( {
@@ -13,8 +14,19 @@ const rootReducer = combineReducers( {
   config: configReducer
 } );
 
+const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
+let initialState;
+if ( urlParams && urlParams.s ) {
+  const encoded = atob( urlParams.s );
+  const json = utf8.decode( encoded );
+  initialState = JSON.parse( json );
+}
+
 const store = createStore(
   rootReducer,
+  {
+    compare: initialState
+  },
   compose(
     applyMiddleware(
       thunkMiddleware
@@ -24,7 +36,7 @@ const store = createStore(
   )
 );
 
-store.dispatch( chooseTab( "species" ) );
+store.dispatch( fetchDataForTab( ) );
 
 render(
   <Provider store={store}>

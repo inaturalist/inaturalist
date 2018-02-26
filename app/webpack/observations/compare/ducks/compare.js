@@ -1,8 +1,9 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
-import { setConfig } from "../../../shared/ducks/config";
+import utf8 from "utf8";
 
 const SET_QUERIES = "observations-compare/compare/SET_QUERIES";
+const SET_TAB = "observations-compare/compare/SET_TAB";
 const SET_TAXA = "observations-compare/compare/SET_TAXA";
 const SET_TAXON_FREQUENCIES = "observations-compare/compare/SET_TAXON_FREQUENCIES";
 const ADD_QUERY = "observations-compare/compare/ADD_QUERY";
@@ -10,6 +11,27 @@ const REMOVE_QUERY_AT_INDEX = "observations-compare/compare/REMOVE_QUERY_AT_INDE
 const UPDATE_QUERY_AT_INDEX = "observations-compare/compare/UPDATE_QUERY_AT_INDEX";
 const SORT_FREQUENCIES_BY_INDEX = "observations-compare/compare/SORT_FREQUENCIES_BY_INDEX";
 const SET_TAXON_FILTER = "observations-compare/compare/SET_TAXON_FILTER";
+
+const setUrl = state => {
+  const json = JSON.stringify( _.pick( state, [
+    "queries",
+    "tab",
+    "taxonFilter",
+    "taxonFrequenciesSortIndex",
+    "taxonFrequenciesSortOrder"
+  ] ) );
+  const bytes = utf8.encode( json );
+  const encoded = btoa( bytes );
+  const urlState = { s: encoded };
+  const title = `Compare ${encoded}`;
+  const newUrl = [
+    window.location.origin,
+    window.location.pathname,
+    "?",
+    $.param( urlState )
+  ].join( "" );
+  history.pushState( urlState, title, newUrl );
+};
 
 export default function reducer( state = {
   tab: "species",
@@ -28,14 +50,21 @@ export default function reducer( state = {
   taxonFrequenciesSortIndex: 0,
   taxonFrequenciesSortOrder: "asc",
   numTaxaInCommon: 0,
-  numTaxaDistinct: 0,
+  numTaxaNotInCommon: 0,
+  numTaxaUnique: 0,
   taxonFilter: "none"
 }, action ) {
   const newState = _.cloneDeep( state );
   switch ( action.type ) {
-    case SET_QUERIES:
-      newState.queries = action.queries;
+    case SET_TAB:
+      newState.tab = action.tab;
+      setUrl( newState );
       break;
+    case SET_QUERIES: {
+      newState.queries = action.queries;
+      setUrl( newState );
+      break;
+    }
     case SET_TAXA:
       newState.taxa = action.taxa;
       break;
@@ -47,19 +76,24 @@ export default function reducer( state = {
         name: `Query ${newState.queries.length + 1}`,
         params: "taxon_id=-1"
       } );
+      setUrl( newState );
       break;
     case REMOVE_QUERY_AT_INDEX:
       newState.queries = newState.queries.filter( ( q, i ) => i !== action.index );
+      setUrl( newState );
       break;
     case UPDATE_QUERY_AT_INDEX:
       newState.queries[action.index] = Object.assign( { }, newState.queries[action.index], action.updates );
+      setUrl( newState );
       break;
     case SORT_FREQUENCIES_BY_INDEX:
       newState.taxonFrequenciesSortIndex = action.index;
       newState.taxonFrequenciesSortOrder = action.order;
+      setUrl( newState );
       break;
     case SET_TAXON_FILTER:
       newState.taxonFilter = action.filter;
+      setUrl( newState );
       break;
     default:
       // nothing to see here
@@ -78,17 +112,28 @@ export default function reducer( state = {
     }
     return sortVal * -1;
   } );
-  newState.numTaxaDistinct = 0;
+  newState.numTaxaNotInCommon = 0;
   newState.numTaxaInCommon = 0;
+  newState.numTaxaUnique = 0;
   _.forEach( newState.taxonFrequencies, row => {
     const frequencies = row.slice( 1, row.length );
     if ( frequencies.indexOf( 0 ) >= 0 ) {
-      newState.numTaxaDistinct += 1;
+      newState.numTaxaNotInCommon += 1;
     } else {
       newState.numTaxaInCommon += 1;
     }
+    if ( _.filter( frequencies, f => f > 0 ).length === 1 ) {
+      newState.numTaxaUnique += 1;
+    }
   } );
   return newState;
+}
+
+export function setTab( tab ) {
+  return {
+    type: SET_TAB,
+    tab
+  };
 }
 
 export function setQueries( queries ) {
@@ -135,21 +180,23 @@ export function fetchTaxa( ) {
         } );
       } );
 
-      // not quite working, but trying to fill in values for higher level taxa
-      // when the leaf for a given a query is more specific, e.g. query 1 has
-      // Homo and query 2 as Homo sapiens, so they should both have Homo
-      // // for each row
-      // _.forEach( taxonFrequencies, ( values, taxonID ) => {
-      //   const taxon = taxa[taxonID];
-      //   const ancestorIDs = _.filter( taxon.ancestor_ids, aid => aid !== taxonID );
-      //   _.forEach( ancestorIDs, ancestorID => {
-      //     if ( taxonFrequencies[ancestorID] ) {
-      //       _.forEach( taxonFrequencies[ancestorID], ( ancestorVal, i ) => {
-      //         taxonFrequencies[ancestorID][i] = ancestorVal + values[i];
-      //       } );
-      //     }
-      //   } );
-      // } );
+      // Ffill in values for higher level taxa when the leaf for a given a query
+      // is more specific, e.g. query 1 has Homo and query 2 has Homo sapiens,
+      // so they should both have Homo. Unfortunately this does not work in
+      // situations where whery 2 has Homo AND Homo sapiens but ignores the Homo
+      // records b/c they're not leaves, i.e. it will still show commonality but
+      // counts will be off.
+      _.forEach( taxonFrequencies, ( values, taxonID ) => {
+        const taxon = taxa[taxonID];
+        const ancestorIDs = _.filter( taxon.ancestor_ids, aid => aid !== parseInt( taxonID, 0 ) );
+        _.forEach( ancestorIDs, ancestorID => {
+          if ( taxonFrequencies[ancestorID] ) {
+            _.forEach( taxonFrequencies[ancestorID], ( ancestorVal, i ) => {
+              taxonFrequencies[ancestorID][i] = ancestorVal + values[i];
+            } );
+          }
+        } );
+      } );
       
 
       dispatch( setTaxa( taxa ) );
@@ -183,7 +230,7 @@ export function updateQueryAtIndex( index, updates ) {
 export function fetchDataForTab( tab ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const chosenTab = tab || s.config.chosenTab;
+    const chosenTab = tab || s.compare.tab;
     if ( chosenTab === "species" ) {
       dispatch( fetchTaxa( ) );
     }
@@ -192,7 +239,7 @@ export function fetchDataForTab( tab ) {
 
 export function chooseTab( tab ) {
   return dispatch => {
-    dispatch( setConfig( { chosenTab: tab } ) );
+    dispatch( setTab( tab ) );
     dispatch( fetchDataForTab( tab ) );
   };
 }

@@ -9,8 +9,9 @@ function mapStateToProps( state ) {
     taxonFrequencies: state.compare.taxonFrequencies,
     taxonFrequenciesSortIndex: state.compare.taxonFrequenciesSortIndex,
     taxonFrequenciesSortOrder: state.compare.taxonFrequenciesSortOrder,
-    numTaxaDistinct: state.compare.numTaxaDistinct,
+    numTaxaNotInCommon: state.compare.numTaxaNotInCommon,
     numTaxaInCommon: state.compare.numTaxaInCommon,
+    numTaxaUnique: state.compare.numTaxaUnique,
     taxonFilter: state.compare.taxonFilter
   };
 }

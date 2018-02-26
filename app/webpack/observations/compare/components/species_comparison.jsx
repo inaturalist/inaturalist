@@ -10,17 +10,21 @@ const SpeciesComparison = ( {
   taxonFrequenciesSortIndex: sortIndex,
   taxonFrequenciesSortOrder: order,
   numTaxaInCommon,
-  numTaxaDistinct,
+  numTaxaNotInCommon,
+  numTaxaUnique,
   taxonFilter,
   setTaxonFilter
 } ) => {
   const filteredData = _.filter( taxonFrequencies, row => {
     const frequencies = row.slice( 1, row.length );
-    if ( taxonFilter === "common" ) {
+    if ( taxonFilter === "in_common" ) {
       return frequencies.indexOf( 0 ) === -1;
     }
-    if ( taxonFilter === "distinct" ) {
+    if ( taxonFilter === "not_in_common" ) {
       return frequencies.indexOf( 0 ) >= 0;
+    }
+    if ( taxonFilter === "unique" ) {
+      return _.filter( frequencies, f => f > 0 ).length === 1;
     }
     return true;
   } );
@@ -40,10 +44,16 @@ const SpeciesComparison = ( {
           { numTaxaInCommon } in common
         </button>
         <button
-          className={ `btn btn-${taxonFilter === "distinct" ? "primary" : "default"}` }
-          onClick={ ( ) => setTaxonFilter( "distinct" ) }
+          className={ `btn btn-${taxonFilter === "not_in_common" ? "primary" : "default"}` }
+          onClick={ ( ) => setTaxonFilter( "not_in_common" ) }
         >
-          { numTaxaDistinct } distinct
+          { numTaxaNotInCommon } not in common
+        </button>
+        <button
+          className={ `btn btn-${taxonFilter === "unique" ? "primary" : "default"}` }
+          onClick={ ( ) => setTaxonFilter( "unique" ) }
+        >
+          { numTaxaUnique } unique
         </button>
       </div>
       <table className="table">
@@ -89,14 +99,22 @@ const SpeciesComparison = ( {
                   <SplitTaxon taxon={ taxon } url={`/taxa/${taxon.id}`} />
                 </td>
                 {
-                  _.map( counts, ( count, j ) => (
-                    <td
-                      className={ `row-${row[0]}-${j}` }
-                      className={ `value ${allPresent ? "bg-success" : ""}` }
-                    >
-                      <a href={ `/observations?${( queries[j] || {} ).params}&taxon_id=${taxon.id}` }>{ count }</a>
-                    </td>
-                  ) )
+                  _.map( counts, ( count, j ) => {
+                    let countUrl = "/observations?";
+                    countUrl += $.param(
+                      Object.assign( $.deparam( ( queries[j] || {} ).params ),
+                        { taxon_id: taxon.id }
+                      )
+                    );
+                    return (
+                      <td
+                        key={ `row-${row[0]}-${j}` }
+                        className={ `value ${allPresent ? "bg-success" : ""}` }
+                      >
+                        <a href={ countUrl }>{ count }</a>
+                      </td>
+                    );
+                  } )
                 }
               </tr>
             );
@@ -105,7 +123,7 @@ const SpeciesComparison = ( {
       </table>
     </div>
   );
-}
+};
 
 SpeciesComparison.propTypes = {
   queries: PropTypes.array,
@@ -115,7 +133,8 @@ SpeciesComparison.propTypes = {
   taxonFrequenciesSortOrder: PropTypes.string,
   sortFrequenciesByIndex: PropTypes.func,
   numTaxaInCommon: PropTypes.number,
-  numTaxaDistinct: PropTypes.number,
+  numTaxaNotInCommon: PropTypes.number,
+  numTaxaUnique: PropTypes.number,
   setTaxonFilter: PropTypes.func,
   taxonFilter: PropTypes.string
 };
