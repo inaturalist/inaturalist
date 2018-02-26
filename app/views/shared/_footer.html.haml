@@ -1,4 +1,18 @@
 - site = @site || CONFIG
+- if logged_in? && current_user.is_admin?
+  .bootstrap
+    .container
+      .row
+        .col-xs-12
+          .box.text-center
+            - if current_user.in_test_group?( "header-2018" )
+              = form_tag leave_test_user_path( current_user, test: "header-2018" ), method: "put" do
+                %label Stop testing the new header?
+                = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
+            - else
+              = form_tag join_test_user_path( current_user, test: "header-2018" ), method: "put" do
+                %label Want to test a new version of the header?
+                = submit_tag t(:try_it_out), class: "btn btn-default btn-sm"
 #footer.bootstrap
   .container
     .row

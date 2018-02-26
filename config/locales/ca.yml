@@ -906,6 +906,7 @@ ca:
   committed_on: Validat el %{date}
   committing: Desant...
   community_curated: Supervisat per la Comunitat
+  community_guidelines: Directrius de la comunitat
   community_id: 'ID de la <strong>Comunitat</strong>:'
   community_id_heading: Identificació de la Comunitat
   community_id_at_species_or_lower?: ID de la Comunitat a nivell específic o inferior?
@@ -1849,6 +1850,7 @@ ca:
   journal_archives_for: Arxius de revistes de
   journal_post: Article a Revista
   journal_post_deleted: La nota de la Revista s’ha esborrat.
+  journal_posts: Article de Revista
   jpg_png_or_gif: JPG, PNG o GIF
   jump_to_letter: Salta a la lletra
   just_a_reminder: Només com a recordatori, doncs heu donat als administrador del
@@ -2055,6 +2057,7 @@ ca:
     bg: Búlgar
     br: Bretó
     ca: Català
+    da: Danès
     de: Alemany
     en-US: Anglès (Estats Units)
     en: Anglès
@@ -3177,6 +3180,9 @@ ca:
     order: ordre
     suborder: subordre
     infraorder: infra-ordre
+    parvorder: parvordre
+    zoosection: zoosecció
+    zoosubsection: zoosubsecció
     superfamily: superfamília
     epifamily: epifamília
     family: família
@@ -3194,6 +3200,7 @@ ca:
     subspecies: subespècies
     variety: varietat
     form: forma
+    infrahybrid: infrahíbrid
     leaves: fulles
   rare: Rar
   ray_finned_fishes: peixos ossis
@@ -4426,6 +4433,8 @@ ca:
   wondering_what_to_do_next: Aquí teniu alguns següents passos que podeu donar per
     seguir observant i identificant el món natural
   would_you_like_to: Us agradaria
+  would_you_prefer_to_view_common_names_used_in_place_html: Preferiu utilitzar els
+    noms comuns emprats a <strong>%{place}</strong>?
   would_like_some_help_identifying_this: voleu obtenir ajuda per identificar això
   x_admin: administra %{login}
   x_blog: Blog de %{x}
@@ -5032,7 +5041,7 @@ ca:
       community_id:
         agreement: Acord
         algorithm_summary: Resum de l'algoritme
-        ancestor_disagreements: Recompte d'identificacions
+        ancestor_disagreements: Desacords sobre l'avantpassat
         below_cutoff: Per sota del tall
         cumulative_count: Recompte acumulatiu
         disagreement: Desacord
@@ -5598,6 +5607,8 @@ ca:
           veure les coordenades privades i enfosquides de les observacions que s''agreguen
           a aquest projecte.'
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: Si canvieu
+          d'opinió sempre podreu <a href='/users/edit'>editar les vostres preferències</a>.
         inaturalist_network_affiliation_desc_html: La <a href="%{url}" target="_blank">Xarxa
           iNaturalist</a> és un conjunt de llocs web locals connectat a la comunitat
           global iNaturalist. Podeu canviar el lloc principal al que esteu afiliat,
@@ -5613,6 +5624,10 @@ ca:
           Biodiversity Information Facility</a> (GBIF), una organització inter-governamental
           internacional que confecciona i distribueix informació sobre la biodiversitat
           arreu del món.
+        name_place_help_html: Prioritza els noms comuns emprats a aquest lloc.
+        place_preference_changed_notice_html: Preferències sobre el lloc canviades.
+          Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar les vostres
+          preferències</a>.
         project_addition_preferences:
           any: Qualsevol
           joined: Projectes als que us heu unit

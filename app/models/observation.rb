@@ -11,6 +11,12 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations",
     :queue_if => lambda { |observation| !observation.bulk_import }
+  
+  # Why aren't we using after_save? Because we need this to run before the
+  # after_create created by notifiesi_subscribers_of :public_places runs
+  after_create :update_observations_places
+  after_update :update_observations_places
+  
   notifies_subscribers_of :public_places, :notification => "new_observations", 
     :on => :create,
     :queue_if => lambda {|observation|
@@ -364,7 +370,6 @@ class Observation < ActiveRecord::Base
              :update_public_positional_accuracy,
              :update_mappable,
              :set_captive,
-             :update_observations_places,
              :set_taxon_photo,
              :create_observation_review
   after_create :set_uri, :update_user_counter_caches
@@ -2134,6 +2139,58 @@ class Observation < ActiveRecord::Base
     ).ceil
   end
 
+  def private_sw_latlon
+    return nil unless georeferenced?
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    return [lat, lon] if positional_accuracy.blank?
+    positional_accuracy_degrees = positional_accuracy / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+    [
+      lat - positional_accuracy_degrees,
+      lon - positional_accuracy_degrees,
+    ]
+  end
+
+  def sw_latlon
+    return nil unless georeferenced?
+    if coordinates_obscured?
+      half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+      positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      return [
+        private_latitude - max_half_cell,
+        private_longitude - max_half_cell
+      ]
+    end
+    private_sw_latlon
+  end
+
+  def private_ne_latlon
+    return nil unless georeferenced?
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    return [lat, lon] if positional_accuracy.blank?
+    positional_accuracy_degrees = positional_accuracy / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+    [
+      lat + positional_accuracy_degrees,
+      lon + positional_accuracy_degrees,
+    ]
+  end
+
+  def ne_latlon
+    return nil unless georeferenced?
+    if coordinates_obscured?
+      half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+      positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      return [
+        private_latitude + max_half_cell,
+        private_longitude + max_half_cell
+      ]
+    end
+    private_ne_latlon
+  end
+
   #
   # Distance of a diagonal from corner to corner across the uncertainty cell
   # for this observation's coordinates.
@@ -2145,8 +2202,9 @@ class Observation < ActiveRecord::Base
     Observation.uncertainty_cell_diagonal_meters( lat, lon )
   end
 
-  def self.places_for_latlon( lat, lon, acc )
-    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
+  def self.places_for_latlon( lat, lon, acc, options = {} )
+    candidates = options[:candidates] || Place.containing_lat_lng( lat, lon )
+    candidates = candidates.sort_by{|p| p.bbox_area || 0}
 
     # At present we use PostGIS GEOMETRY types, which are a bit stupid about
     # things crossing the dateline, so we need to do an app-layer check.
@@ -2169,19 +2227,15 @@ class Observation < ActiveRecord::Base
   
   def places
     return [] unless georeferenced?
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = private_positional_accuracy || positional_accuracy
-    Observation.places_for_latlon( lat, lon, acc )
+    candidates = observations_places.map(&:place)
+    candidates.select{|p| p.bbox_privately_contains_observation?( self ) }
   end
   
   def public_places
     return [] unless georeferenced?
     return [] if geoprivacy == PRIVATE
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = public_positional_accuracy || positional_accuracy
-    Observation.places_for_latlon( lat, lon, acc )
+    candidates = observations_places.map(&:place).compact
+    candidates.select{|p| p.bbox_publicly_contains_observation?( self ) }
   end
 
   def self.system_places_for_latlon( lat, lon, options = {} )

@@ -100,6 +100,7 @@ class TaxonName < ActiveRecord::Base
     "bulgarian"             => "bg",
     "catalan"               => "ca",
     "chinese_traditional"   => "zh",
+    "danish"                => "da",
     "dutch"                 => "nl",
     "english"               => "en",
     "french"                => "fr",

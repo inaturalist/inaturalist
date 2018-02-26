@@ -236,7 +236,7 @@ export function fetchTaxon( taxon, options = { } ) {
     return inatjs.taxa.fetch( t.id, params ).then( response => {
       // make sure the charts revert back to the "Seasonality" tab
       // in case the incoming results have no data for the current tab
-      $( "a[href=#charts-seasonality]" ).tab( "show" );
+      $( "a[href='#charts-seasonality']" ).tab( "show" );
       dispatch( setTaxon( response.results[0] ) );
       dispatch( fetchTerms( ) );
     } );

@@ -112,7 +112,7 @@ class Post < ActiveRecord::Base
   end
 
   def previously_mentioned_users
-    return [ ] if !published? || body_was.blank?
+    return [ ] if !published? || body_was.blank? || ( published? && published_at_was.blank? )
     body.mentioned_users & body_was.to_s.mentioned_users
   end
 

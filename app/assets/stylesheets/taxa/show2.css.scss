@@ -983,42 +983,6 @@ $nav-btn-dim: 40px;
   width: 18.9%;
 }
 
-.btn.btn-inat {
-  border-radius: 100px;
-  background-color: #999;
-  border-color: #999;
-  color: white;
-  text-transform: capitalize;
-}
-.btn.btn-inat:hover,
-.btn.btn-inat:focus {
-  background-color: lighten(#999, 1%);
-  border-color: lighten(#999, 1%);
-  color: white;
-}
-.btn-primary.btn-inat {
-  background-color: $inat-green;
-  color: white;
-  border-color: $inat-green;
-}
-.btn-primary.btn-inat:hover,
-.btn-primary.btn-inat:focus {
-  background-color: lighten($inat-green, 1%);
-  border-color: lighten($inat-green, 1%);
-}
-.btn.btn-outline {
-  background-color: transparent;
-  color: black;
-  border-color: #999;
-}
-.btn.btn-outline:hover,
-.btn.btn-outline:focus {
-  background-color: transparent;
-  border-color: #999;
-  color: lighten(#000, 1%);
-  border-color: lighten(#999, 1%);
-}
-
 .DraggablePhoto {
   display: inline-block;
   position: relative;

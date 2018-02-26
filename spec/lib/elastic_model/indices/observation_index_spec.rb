@@ -174,6 +174,26 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_iphone_app.id
   end
 
+  it "private_place_ids should include places that contain the positional_accuracy" do
+    place = make_place_with_geom
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, positional_accuracy: 10 )
+    expect( o.as_indexed_json[:private_place_ids] ).to include place.id
+  end
+  it "private_place_ids should not include places that do not contain the positional_accuracy" do
+    place = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))" )
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, positional_accuracy: 99999 )
+    expect( o.as_indexed_json[:private_place_ids] ).not_to include place.id
+  end
+  it "place_ids should include places that contain the uncertainty cell" do
+    place = make_place_with_geom
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, geoprivacy: Observation::OBSCURED )
+    expect( o.as_indexed_json[:place_ids] ).to include place.id
+  end
+  it "place_ids should not include places that do not contain the uncertainty cell" do
+    place = make_place_with_geom
+    o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+    expect( o.as_indexed_json[:place_ids] ).not_to include place.id
+  end
 
   describe "params_to_elastic_query" do
     it "returns nil when ES can't handle the params" do

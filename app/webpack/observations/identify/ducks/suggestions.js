@@ -72,6 +72,12 @@ export default function reducer(
           newState.query.taxon_id = observation.taxon.id;
         }
       }
+      let placeIDs;
+      if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
+        placeIDs = observation.private_place_ids;
+      } else {
+        placeIDs = observation.place_ids;
+      }
       if ( observation.places ) {
         const place = _
           .sortBy( observation.places, p => p.bbox_area )
@@ -79,8 +85,8 @@ export default function reducer(
         newState.query.place_id = place.id;
         newState.query.place = place;
         newState.query.defaultPlace = place;
-      } else if ( observation.place_ids && observation.place_ids.length > 0 ) {
-        newState.query.place_id = observation.place_ids[observation.place_ids.length - 1];
+      } else if ( placeIDs && placeIDs.length > 0 ) {
+        newState.query.place_id = placeIDs[placeIDs.length - 1];
       }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;

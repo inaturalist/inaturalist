@@ -13,6 +13,14 @@ class OauthApplication < Doorkeeper::Application
   validates_attachment_content_type :image, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
+  validate :redirect_uri_has_no_params
+
+  def redirect_uri_has_no_params
+    if redirect_uri.to_s.split( "?" ).size > 1
+      errors.add( :redirect_uri, "cannot have a query string" )
+    end
+  end
+
   def self.inaturalist_android_app
     @@inaturalist_android_app ||= OauthApplication.where(name: "iNaturalist Android App").first
   end
