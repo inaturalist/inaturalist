@@ -74,7 +74,6 @@ $.fn.universalAutocomplete = function( options ) {
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     labelDiv.append( itemText ); //.append( " (" + I18n.t( item.type.toString().toLowerCase() ) + ")" );
     wrapperDiv.append( labelDiv );
-    itemUrl += "?test=header"
     wrapperDiv.append(
       $("<a></a>")
         .attr( "href", obsUrl )
@@ -106,7 +105,7 @@ $.fn.universalAutocomplete = function( options ) {
       });
     },
     select: function( e, ui ) {
-      var url = "/observations?test=header&"
+      var url = "/observations?";
       switch ( ui.item.type ) {
         case "Taxon":
           url += "taxon_id="+ui.item.record.id;
