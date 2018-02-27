@@ -2233,7 +2233,12 @@ $header-line-height: 34px;
   border-bottom: 1px solid #ddd;
   margin-bottom: 20px;
   .logolink {
-    line-height: 29px;
+    position: relative;
+    top: -3px;
+    line-height: $header-line-height;
+    img {
+      max-height: $header-line-height;
+    }
   }
   .logolink:hover {
     opacity: 1;

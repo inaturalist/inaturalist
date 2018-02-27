@@ -2234,7 +2234,7 @@ class Observation < ActiveRecord::Base
   def public_places
     return [] unless georeferenced?
     return [] if geoprivacy == PRIVATE
-    candidates = observations_places.map(&:place)
+    candidates = observations_places.map(&:place).compact
     candidates.select{|p| p.bbox_publicly_contains_observation?( self ) }
   end
 

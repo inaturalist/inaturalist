@@ -13,7 +13,7 @@ module GuidesHelper
       @taxon = nil if @taxon == @guide.taxon
     end
     @q = gparams[:q]
-    @tags = gparams[:tags] || []
+    @tags = ( gparams[:tags] || [] ).to_a.flatten
     @tags << gparams[:tag] unless gparams[:tag].blank?
 
     @sort = gparams[:sort]
