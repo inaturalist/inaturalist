@@ -125,7 +125,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
     "of",
     "the"
   ];
-  const commonNamePieces = name.split( /\s+/ );
+  var commonNamePieces = name.split( /\s+/ );
   return _.map( commonNamePieces, function( piece, i ) {
     if (
       ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
@@ -134,7 +134,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
       return piece.toLowerCase( );
     }
     if ( i === commonNamePieces.length - 1 ) {
-      return piece.split( "-" ).map( s => {
+      return piece.split( "-" ).map( function( s ) {
         if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
           return s.toLowerCase( );
         }
