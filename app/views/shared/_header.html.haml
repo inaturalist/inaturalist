@@ -167,9 +167,9 @@
       - unless logged_in?
         %li.navtab.signedout
           .innertab
-            = link_to t(:log_in), login_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signin_link"
+            = link_to t(:log_in), login_url, class: "signin_link"
             = t :or
-            = link_to t(:sign_up), signup_url( host: @site.url, protocol: @site && @site.prefers_ssl? ? "https" : request.protocol ), class: "signup_link"
+            = link_to t(:sign_up), signup_url, class: "signup_link"
       - else
         - unless @minimal_header
           %li#messagesnav.notices.navtab
