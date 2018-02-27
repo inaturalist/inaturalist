@@ -1,17 +1,18 @@
 <%- 
 place ||= @place
-comname = common_taxon_name(taxon, place: place || @site.try(:place))
+comname = common_taxon_name(taxon, place: place || @site.try(:place)).try(:name)
+comname = capitalize_name( comname ) if comname
 no_common ||= false
 if taxon.rank == 'species' or taxon.rank == 'infraspecies'
   sciname = '%s' % taxon.name
 else
   sciname = '%s %s' % [t("all_taxa.rank.#{taxon.rank}", :default => taxon.rank).capitalize, taxon.name]
 end
-name = if comname.nil? || no_common
+name = if comname.blank? || no_common
   sciname
 elsif current_user && current_user.prefers_scientific_name_first?
-  "#{sciname} (#{comname.name})"
+  "#{sciname} (#{comname})"
 else
-  "#{comname.name} (#{sciname})"
+  "#{comname} (#{sciname})"
 end
 -%><%= name -%>

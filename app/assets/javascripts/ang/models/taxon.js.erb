@@ -107,6 +107,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
   }
   var uncapitalized = [
     "à",
+    "a",
     "and",
     "con",
     "da",
@@ -118,19 +119,28 @@ iNatModels.Taxon.titleCaseName = function( name ) {
     "di",
     "du",
     "e",
+    "in",
     "la",
     "o",
     "of",
     "the"
   ];
-  return _.map( name.split( /\s+/ ), function( piece, i ) {
+  const commonNamePieces = name.split( /\s+/ );
+  return _.map( commonNamePieces, function( piece, i ) {
     if (
       ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
       piece.match( /^d'/ )
     ) {
-      return piece;
+      return piece.toLowerCase( );
     }
-    // return _.capitalize( piece );
+    if ( i === commonNamePieces.length - 1 ) {
+      return piece.split( "-" ).map( s => {
+        if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
+          return s.toLowerCase( );
+        }
+        return s.charAt( 0 ).toUpperCase( ) + s.substring( 1 ).toLowerCase( );
+      } ).join( "-" );
+    }
     return piece.charAt( 0 ).toUpperCase( ) + piece.substring( 1 ).toLowerCase( );
   } ).join( " " );
 

@@ -160,6 +160,42 @@ module TaxaHelper
       user: user
     )
   end
+
+  def capitalize_name( comname )
+    uncapitalized = [
+      "à",
+      "a",
+      "and",
+      "con",
+      "da",
+      "dal",
+      "de",
+      "dei",
+      "del",
+      "des",
+      "di",
+      "du",
+      "e",
+      "in",
+      "la",
+      "o",
+      "of",
+      "the"
+    ]
+    comname_pieces = comname.split( /\s+/ )
+    comname_pieces.each_with_index.map{ |piece, i|
+      if (
+        ( i > 0 && uncapitalized.include?( piece.downcase ) ) ||
+        piece =~ /^d'/
+      )
+        piece.downcase
+      elsif i == comname_pieces.size - 1
+        piece.split( "-" ).map{ |s| uncapitalized.include?( s.downcase ) ? s.downcase : s.capitalize }.join( "-" )
+      else
+        piece.capitalize
+      end
+    }.join( " " )
+  end
   
   def jit_taxon_node(taxon, options = {})
     options[:depth] ||= 1

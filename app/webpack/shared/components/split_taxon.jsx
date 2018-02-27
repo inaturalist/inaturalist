@@ -76,6 +76,7 @@ const SplitTaxon = ( {
       // are uncapitalized in their languages
       const uncapitalized = [
         "à",
+        "a",
         "and",
         "con",
         "da",
@@ -87,17 +88,27 @@ const SplitTaxon = ( {
         "di",
         "du",
         "e",
+        "in",
         "la",
         "o",
         "of",
         "the"
       ];
-      commonName = commonName.split( /\s+/ ).map( ( piece, i ) => {
+      const commonNamePieces = commonName.split( /\s+/ );
+      commonName = commonNamePieces.map( ( piece, i ) => {
         if (
           ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
           piece.match( /^d'/ )
         ) {
-          return piece;
+          return piece.toLowerCase( );
+        }
+        if ( i === commonNamePieces.length - 1 ) {
+          return piece.split( "-" ).map( s => {
+            if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
+              return s.toLowerCase( );
+            }
+            return _.capitalize( s );
+          } ).join( "-" );
         }
         return _.capitalize( piece );
       } ).join( " " );

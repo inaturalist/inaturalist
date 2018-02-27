@@ -7,36 +7,7 @@
   no_common ||= false
   place ||= nil
   comname ||= common_taxon_name(taxon, place: place || @site.try(:place)).try(:name) unless no_common
-  if comname
-    uncapitalized = [
-      "à",
-      "and",
-      "con",
-      "da",
-      "dal",
-      "de",
-      "dei",
-      "del",
-      "des",
-      "di",
-      "du",
-      "e",
-      "la",
-      "o",
-      "of",
-      "the"
-    ]
-    comname = comname.split( /\s+/ ).each_with_index.map{ |piece, i|
-      if (
-        ( i > 0 && uncapitalized.include?( piece.downcase ) ) ||
-        piece =~ /^d'/
-      )
-        piece
-      else
-        piece.capitalize
-      end
-    }.join( " " )
-  end
+  comname = capitalize_name( comname ) if comname
   if taxon.species_or_lower?
     pieces = taxon.name.split
     sciname = if taxon.variety? && pieces.size == 3
