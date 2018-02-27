@@ -44,7 +44,7 @@
             %li= link_to t(:places), places_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
-    .navtabs.add-obs
+    .navtabs.add-obs.hidden-xs
       = link_to upload_observations_path, class: "btn btn-default btn-inat btn-outline" do
         %i.fa.fa-plus-circle
         =t :observations
