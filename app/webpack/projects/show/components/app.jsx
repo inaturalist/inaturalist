@@ -1,15 +1,23 @@
+import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
+import convert from "color-convert";
+import tinycolor from "tinycolor2";
 import IdentifiersTabContainer from "../containers/identifiers_tab_container";
 import ObservationsTabContainer from "../containers/observations_tab_container";
 import ObserversTabContainer from "../containers/observers_tab_container";
+import UmbrellaOverviewTabContainer from "../containers/umbrella_overview_tab_container";
 import OverviewTabContainer from "../containers/overview_tab_container";
 import SpeciesTabContainer from "../containers/species_tab_container";
 import StatsHeaderContainer from "../containers/stats_header_container";
 
 const App = ( { config, project } ) => {
   let view;
-  switch ( config.selectedTab ) {
+  let tab = config.selectedTab;
+  if ( _.isEmpty( tab ) && project.project_type === "umbrella" ) {
+    tab = "umbrella_overview";
+  }
+  switch ( tab ) {
     case "observations":
       view = ( <ObservationsTabContainer /> );
       break;
@@ -22,9 +30,34 @@ const App = ( { config, project } ) => {
     case "species":
       view = ( <SpeciesTabContainer /> );
       break;
+    case "umbrella_overview":
+      view = ( <UmbrellaOverviewTabContainer /> );
+      break;
     default:
       view = ( <OverviewTabContainer /> );
   }
+  const userIsManager = config.currentUser &&
+    _.includes( project.manager_ids, config.currentUser.id );
+  const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
+  const headerButton = userIsManager ? (
+    <a href={ `/projects/${project.slug}/edit2` }>
+      <button>{ I18n.t( "edit" ) }</button>
+    </a> ) : (
+    <button>{ I18n.t( "follow" ) }</button>
+  );
+  const headerTitle = project.hide_title ? null : (
+    <div className="header-title">
+      { project.customIcon && project.customIcon( ) && (
+        <div
+          className="title-icon"
+          style={ { backgroundImage: `url( '${project.icon}' )` } }
+        />
+      ) }
+      <div className="title-text">
+        { project.title }
+      </div>
+    </div>
+  );
   return (
     <div id="ProjectsShow">
       <div className="project-header">
@@ -41,31 +74,29 @@ const App = ( { config, project } ) => {
               className="title-container"
               style={ project.header_image_url ? {
                 backgroundImage: `url( '${project.header_image_url}' )`
-              } : null }
+              } : {
+                background: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.2)`
+              } }
             >
-              <div className="header-title">
-                { project.icon && (
-                  <div
-                    className="title-icon"
-                    style={ { backgroundImage: `url( '${project.icon}' )` } }
-                  />
-                ) }
-                <div className="title-text">
-                  { project.title }
-                </div>
-              </div>
+              { headerTitle }
             </Col>
-            <Col xs={ 4 } className="header-about">
+            <Col
+              xs={ 4 }
+              className="header-about"
+              style={ {
+                background: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)`
+              } }
+            >
               <div>
                 <div className="header-about-title">
                   { I18n.t( "about" ) }
                 </div>
-                <div className="header-about-follow">
-                  <button>{ I18n.t( "follow" ) }</button>
+                <div className="header-about-button">
+                  { headerButton }
                 </div>
               </div>
               <div className="header-about-text">
-                { project.description.substring( 0, 240 ) }...
+                { ( project.description || "" ).substring( 0, 240 ) }...
               </div>
               <div className="header-about-read-more">
                 { I18n.t( "read_more" ) }

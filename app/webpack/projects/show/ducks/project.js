@@ -1,5 +1,7 @@
+import _ from "lodash";
 import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
+import Project from "../../shared/models/project";
 
 const SET_PROJECT = "projects-show/project/SET_PROJECT";
 const SET_ATTRIBUTES = "projects-show/project/SET_ATTRIBUTES";
@@ -9,7 +11,7 @@ export default function reducer( state = { }, action ) {
     case SET_PROJECT:
       return action.project;
     case SET_ATTRIBUTES:
-      return Object.assign( { }, state, action.attributes );
+      return new Project( Object.assign( { }, state, action.attributes ) );
     default:
   }
   return state;
@@ -18,12 +20,7 @@ export default function reducer( state = { }, action ) {
 export function setProject( project ) {
   return {
     type: SET_PROJECT,
-    project: Object.assign( { }, project, {
-      search_params: {
-        project_id: project.id,
-        ttl: 300
-      }
-    } )
+    project: new Project( project )
   };
 }
 
@@ -42,7 +39,8 @@ export function fetchObservations( ) {
       return_bounds: "true",
       order_by: "popular",
       order: "desc",
-      per_page: 100
+      per_page: 100,
+      ttl: "-1"
     } );
     return inatjs.observations.search( params ).then( response => {
       dispatch( setAttributes( {
@@ -136,8 +134,25 @@ export function fetchIdentifiers( ) {
   };
 }
 
+export function fetchUmbrellaStats( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project ) { return null; }
+    return inatjs.observations.umbrellaProjectStats( { project_id: project.id, ttl: "-1" } ).then( response => {
+      dispatch( setAttributes( {
+        umbrella_stats_loaded: true,
+        umbrella_stats: response
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function fetchOverviewData( ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( project.project_type === "umbrella" ) {
+      dispatch( fetchUmbrellaStats( ) );
+    }
     dispatch( fetchObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
@@ -147,7 +162,8 @@ export function fetchOverviewData( ) {
 }
 
 export function setSelectedTab( tab, options = { } ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
     const newConfigState = {
       selectedTab: tab,
       identifiersScrollIndex: null,
@@ -157,8 +173,15 @@ export function setSelectedTab( tab, options = { } ) {
     };
     const loc = window.location;
     let newURL = `${loc.href.split( /[#?]/ )[0]}`;
-    if ( tab !== "overview" ) {
-      newURL += `?tab=${tab}`;
+    const urlParams = { };
+    if ( tab && tab !== "overview" && tab !== "umbrella_overview" ) {
+      urlParams.tab = tab;
+    }
+    if ( project.collection_ids ) {
+      urlParams.collection_id = project.collection_ids.join( "," );
+    }
+    if ( !_.isEmpty( urlParams ) ) {
+      newURL += `?${$.param( urlParams )}`;
     }
     if ( !options.skipState ) {
       if ( options.replaceState ) {

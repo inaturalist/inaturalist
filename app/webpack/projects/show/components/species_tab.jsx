@@ -20,7 +20,7 @@ const SpeciesTab = ( { config, species, setConfig } ) => {
               className="results"
             >
               { _.map( species.slice( 0, scrollIndex ), s => (
-                <div className="result">
+                <div className="result" key={ `grid_taxon_${s.taxon.id}` }>
                   <TaxonThumbnail
                     taxon={ s.taxon }
                     config={ config }

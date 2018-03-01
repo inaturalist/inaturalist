@@ -288,6 +288,7 @@ Rails.application.routes.draw do
 
   resources :projects do
     member do
+      get :edit2
       get :invite, :as => :invite_to
       get :confirm_leave
       get :stats_slideshow
@@ -295,6 +296,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :calendar
+      get :new2
     end
     resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]

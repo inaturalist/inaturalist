@@ -16,6 +16,7 @@ var config = {
     'computer-vision': './computer_vision/webpack-entry',
     'search-slideshow': './search_slideshow/webpack-entry',
     'stats-year': './stats/year/webpack-entry',
+    'projects-form': './projects/form/webpack-entry',
     'projects-show': './projects/show/webpack-entry'
   },
   output: {

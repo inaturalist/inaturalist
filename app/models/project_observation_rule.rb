@@ -4,13 +4,17 @@ class ProjectObservationRule < Rule
     "in_taxon?" => "Taxon",
     "has_observation_field?" => "ObservationField",
     "observed_after?" => "Time",
-    "observed_before?" => "Time"
+    "observed_by_user?" => "User",
+    "observed_before?" => "Time",
+    "in_project?" => "Project"
   }
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
   before_save :clear_operand
   after_save :reset_last_aggregated_if_rules_changed
+  after_save :index_project
   after_destroy :reset_last_aggregated_if_rules_changed
+  after_destroy :index_project
   validate :operand_present
   validates_uniqueness_of :operator, :scope => [:ruler_type, :ruler_id, :operand_id]
 
@@ -55,4 +59,9 @@ class ProjectObservationRule < Rule
       ruler.update_columns(last_aggregated_at: nil)
     end
   end
+
+  def index_project
+    ruler.elastic_index! if ruler
+  end
+
 end

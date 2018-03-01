@@ -39,23 +39,31 @@ a.UserImage {
 
 .bootstrap h2 {
   font-size: 28px;
+  i.fa {
+    color: $inat-green;
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
 }
 
-button.btn-green {
-  font-weight: 700;
-  color: white;
-  padding: 5px 15px;
-  border-radius: 30px;
-  background: $inat-green;
-  border: none;
-}
-
-button.btn-white {
-  font-weight: 700;
-  padding: 5px 15px;
-  border-radius: 30px;
-  background: white;
-  border: 1px solid $border-grey;
+button {
+  outline: none;
+  &.btn-green {
+    font-weight: 700;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: $inat-green;
+    border: none;
+  }
+  &.btn-white {
+    font-weight: 700;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: white;
+    border: 1px solid $border-grey;
+  }
 }
 
 .project-header {
@@ -112,13 +120,13 @@ button.btn-white {
     .header-about {
       height: 300px;
       padding: 30px;
-      background-color: #28387d;
+      background: #28387d;
       color: white;
       .header-about-title {
         font-size: 25px;
         margin-top: 5px;
       }
-      .header-about-follow {
+      .header-about-button {
         position: absolute;
         top: 30px;
         right: 30px;
@@ -282,7 +290,7 @@ button.btn-white {
 .leaders-grid {
   .no-padding + .no-padding {
     .LeaderboardPanel {
-      border-left: none;
+      margin-left: -1px;
     }
   }
   & > .row {
@@ -316,6 +324,9 @@ button.btn-white {
     .icon {
       width: 90px;
       float: left;
+      i.icon-person {
+        font-size: 60px;
+      }
     }
     .leader-header {
       font-size: 16px;
@@ -429,6 +440,7 @@ button.btn-white {
     flex-grow: 1;
     padding: 2px;
     min-width: 200px;
+    margin: 0px auto;
     .photo {
       background: #ccc;
       text-align: center;
@@ -476,6 +488,82 @@ button.btn-white {
   }
 }
 
+.UmbrellaOverviewTab {
+  .UmbrellaLeaderboard {
+    h2, .sort {
+      display: inline-block;
+    }
+    .sort {
+      color: #888;
+      margin-left: 20px;
+      span {
+        padding: 0px 2px;
+      }
+      .sort-option {
+        cursor: pointer;
+      }
+      .active {
+        color: #333;
+        font-weight: 700;
+      }
+    }
+    .leaders-panel {
+      border: 1px solid $border-grey;
+      background: white;
+      table {
+        width: 100%;
+        margin: 20px 20px 10px 20px;
+        .leader-row {
+          height: 55px;
+          td.icon-cell {
+            width: 40px;
+            .leader-icon {
+              height: 30px;
+              width: 30px;
+              background-size: cover;
+              border: 1px solid $border-grey;
+            }
+          }
+          .leader-data {
+            line-height: 11px;
+            .leader-score {
+              display: flex;
+              margin-bottom: 4px;
+              .leader-bar {
+                height: 10px;
+                background: black;
+              }
+              .leader-count {
+                font-weight: 700;
+                margin-left: 5px;
+                line-height: 12px;
+                min-width: 80px;
+              }
+            }
+            .leader-title {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .show-more {
+        background: #f4f9ec;
+        line-height: 60px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        .fa {
+          color: $inat-green;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .map {
+    height: 500px;
+  }
+}
 
 
 
@@ -772,4 +860,54 @@ $nav-btn-dim: 40px;
   .bootstrap .container {
     width: auto;
   }
+}
+
+
+
+
+/* The location pointed to by the popup tip. */
+.popup-tip-anchor {
+  height: 0;
+  position: absolute;
+  /* The max width of the info window. */
+  width: 200px;
+}
+/* The bubble is anchored above the tip. */
+.popup-bubble-anchor {
+  position: absolute;
+  width: 100%;
+  bottom: /* TIP_HEIGHT= */ 12px;
+  left: 0;
+  background: inherit;
+  border-color: inherit;
+}
+/* Draw the tip. */
+.popup-bubble-anchor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Center the tip horizontally. */
+  /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+  width: 0;
+  height: 0;
+  /* The tip is 8px high, and 12px wide. */
+  border-right: 12px solid transparent !important;
+  border-top: /* TIP_HEIGHT= */ 12px solid;
+  border-color: inherit;
+}
+/* The popup bubble itself. */
+.popup-bubble-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -100%);
+  /* Style the info window. */
+  background: inherit;
+  padding: 6px 14px;
+  color: white;
+  font-size: 13px;
+  white-space: nowrap;
+  max-height: 60px;
+  box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2);
 }

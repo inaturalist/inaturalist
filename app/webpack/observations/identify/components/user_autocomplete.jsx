@@ -41,6 +41,11 @@ class UserAutocomplete extends React.Component {
     }
   }
 
+  inputElement( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    return $( "input[name='user_login']", domNode );
+  }
+
   render( ) {
     return (
       <span className="UserAutocomplete form-group">
@@ -48,7 +53,7 @@ class UserAutocomplete extends React.Component {
           type="search"
           name="user_login"
           className={`form-control ${this.props.className}`}
-          placeholder={ I18n.t( "username_or_user_id" ) }
+          placeholder={ this.props.placeholder || I18n.t( "username_or_user_id" ) }
         />
         <input type="hidden" name="user_id" />
       </span>
@@ -67,7 +72,8 @@ UserAutocomplete.propTypes = {
     React.PropTypes.string,
     React.PropTypes.number
   ] ),
-  className: PropTypes.string
+  className: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default UserAutocomplete;

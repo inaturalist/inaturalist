@@ -1232,7 +1232,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "key=#{CONFIG.google.browser_api_key}"
+    params = "key=#{CONFIG.google.browser_api_key}&v=3.31"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end

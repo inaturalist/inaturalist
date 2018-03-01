@@ -155,6 +155,10 @@ class TaxonAutocomplete extends React.Component {
   }
 
   updateWithSelection( item ) {
+    if ( this.props.onSelectReturn ) {
+      this.props.onSelectReturn( { item } );
+      return;
+    }
     // show the best name in the search field
     if ( item.id ) {
       this.inputElement( ).val( item.title || item.name );
@@ -505,6 +509,7 @@ TaxonAutocomplete.propTypes = {
   allowPlaceholders: PropTypes.bool,
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
+  onSelectReturn: PropTypes.func,
   value: PropTypes.string,
   visionParams: PropTypes.object,
   initialSelection: PropTypes.object,

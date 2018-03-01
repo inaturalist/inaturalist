@@ -9,15 +9,24 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_container";
 import Observation from "./observation";
 
-const OverviewTab = ( { project, config } ) => {
-  const instances = project.observations_loaded ? project.observations.results : [];
+const OverviewTab = ( { project, config, setSelectedTab } ) => {
+  if ( !project.observations_loaded ) {
+    return ( <div className="loading_spinner huge" /> );
+  }
+  const instances = project.observations.results;
   if ( _.isEmpty( instances ) ) { return ( <span /> ); }
   return (
     <div className="OverviewTab">
       <Grid>
         <Row>
           <Col xs={ 12 }>
-            <h2>Recent Observations</h2>
+            <h2>
+              Recent Observations
+              <i
+                className="fa fa-arrow-circle-right"
+                onClick={ ( ) => setSelectedTab( "observations" ) }
+              />
+            </h2>
             <div className="ObservationsGrid">
               { instances.slice( 0, 5 ).map( o => {
                 let itemDim = 170;
@@ -59,6 +68,7 @@ const OverviewTab = ( { project, config } ) => {
       <Grid>
         <Row>
           <Col xs={ 12 }>
+            <h2>Map of Observations</h2>
             <TaxonMap
               observationLayers={ [project.search_params] }
               showAccuracy

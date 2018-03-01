@@ -18,13 +18,13 @@ class ProjectsController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
+  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar, :new2 ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :by_login, :new2]
   before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :ensure_can_edit, :only => [:edit, :update]
+  before_filter :ensure_can_edit, :only => [:edit, :update, :edit2]
   before_filter :filter_params, :only => [:update, :create]
   
   ORDERS = %w(title created)
@@ -89,10 +89,10 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    projects_response = INatAPIService.get( "/projects/#{@project.id}" )
+    projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
     return render_404 unless projects_response
     @projects_data = projects_response.results[0]
-    @current_tab = params[:tab] || "overview";
+    @current_tab = @current_tab || params[:tab]
     return render layout: "bootstrap", action: "show2"
 
     respond_to do |format|
@@ -172,6 +172,17 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def new2
+    return render layout: "bootstrap"
+  end
+
+  def edit2
+    projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+    return render_404 unless projects_response
+    @project_json = projects_response.results[0]
+    return render layout: "bootstrap", action: "new2"
+  end
+
   def edit
     @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
@@ -192,9 +203,16 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_created)) }
+        format.json {
+          render :json => @project.to_json
+        }
       else
+        debugger
         format.html { render :action => "new" }
+        format.json { render :status => :unprocessable_entity,
+          :json => { :error => @project.errors.full_messages } }
       end
     end
   end
@@ -206,9 +224,13 @@ class ProjectsController < ApplicationController
     @project.cover = nil if params[:cover_delete]
     respond_to do |format|
       if @project.update_attributes(params[:project])
+        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
+        format.json { render json: @project }
       else
+        debugger
         format.html { render :action => "edit" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -946,7 +968,6 @@ class ProjectsController < ApplicationController
   
   def filter_params
     params[:project].delete(:featured_at) unless current_user.is_admin?
-    
     if current_user.is_admin?
       params[:project][:featured_at] = params[:project][:featured_at] == "1" ? Time.now : nil
     else

@@ -46,6 +46,11 @@ class PlaceAutocomplete extends React.Component {
     }
   }
 
+  inputElement( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    return $( "input[name='place_name']", domNode );
+  }
+
   render( ) {
     return (
       <span className="PlaceAutocomplete">
@@ -53,7 +58,7 @@ class PlaceAutocomplete extends React.Component {
           type="search"
           name="place_name"
           className={`form-control ${this.props.className}`}
-          placeholder={ I18n.t( "place" ) }
+          placeholder={ this.props.placeholder || I18n.t( "place" ) }
         />
         <input type="hidden" name="place_id" />
       </span>
@@ -70,7 +75,8 @@ PlaceAutocomplete.propTypes = {
   afterClear: PropTypes.func,
   initialSelection: PropTypes.object,
   initialPlaceID: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default PlaceAutocomplete;
