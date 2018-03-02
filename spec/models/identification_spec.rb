@@ -1036,6 +1036,7 @@ describe Identification, "set_previous_observation_taxon" do
     i = Identification.make!( observation: o )
     expect( i.previous_observation_taxon ).to eq previous_observation_taxon
   end
+
   it "should choose the probable taxon if the observer has opted out of the community taxon" do
     o = Observation.make!( taxon: Taxon.make!(:species), prefers_community_taxon: false )
     t = Taxon.make!(:species)
@@ -1045,6 +1046,7 @@ describe Identification, "set_previous_observation_taxon" do
     i = Identification.make!( observation: o )
     expect( i.previous_observation_taxon ).to eq previous_observation_probable_taxon
   end
+
   it "should set it to the observer's previous identicication taxon if they are the only identifier" do
     genus = Taxon.make!( rank: Taxon::GENUS )
     species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
@@ -1054,6 +1056,20 @@ describe Identification, "set_previous_observation_taxon" do
     expect( i1 ).to be_persisted
     i2 = Identification.make!( observation: o, taxon: genus, user: i1.user )
     expect( i2.previous_observation_taxon ).to eq i1.taxon
+  end
+
+  it "should not consider set a previous_observation_taxon to the identification taxon" do
+    family = Taxon.make!( rank: Taxon::FAMILY )
+    genus = Taxon.make!( rank: Taxon::GENUS, parent: family, name: "Homo" )
+    species = Taxon.make!(:species, parent: genus, name: "Homo sapiens" )
+    o = Observation.make!
+    i1 = Identification.make!( observation: o, taxon: genus )
+    i2 = Identification.make!( observation: o, taxon: species )
+    o.reload
+    expect( o.probable_taxon ).to eq species
+    o.reload
+    i3 = Identification.make!( observation: o, taxon: genus, user: i2.user, disagreement: true )
+    expect( i3.previous_observation_taxon ).to eq species
   end
 end
 

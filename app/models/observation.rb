@@ -1521,7 +1521,7 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def community_taxon_nodes(options = {})
+  def community_taxon_nodes( options = {} )
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
     # work on current identifications
     ids = identifications.loaded? ?
