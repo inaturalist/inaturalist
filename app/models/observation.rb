@@ -2227,7 +2227,7 @@ class Observation < ActiveRecord::Base
   
   def places
     return [] unless georeferenced?
-    candidates = observations_places.map(&:place)
+    candidates = observations_places.map(&:place).compact
     candidates.select{|p| p.bbox_privately_contains_observation?( self ) }
   end
   
