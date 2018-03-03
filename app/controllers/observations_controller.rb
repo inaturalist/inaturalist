@@ -173,6 +173,18 @@ class ObservationsController < ApplicationController
         end
       end
     end
+  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+    raise e unless e.message =~ /window is too large/
+    msg = "Too many results. Try using smaller searches or the id_above parameter."
+    response.headers["X-Error"] = msg
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_to( observations_path )
+      end
+      format.json { render json: { error: msg } }
+      format.all { @observations = [] }
+    end
   end
   
   def of
@@ -1211,6 +1223,18 @@ class ObservationsController < ApplicationController
         end
       end
       
+    end
+  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+    raise e unless e.message =~ /window is too large/
+    msg = "Too many results. Try using smaller searches or the id_above parameter."
+    response.headers["X-Error"] = msg
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_to observations_by_login_path( @selected_user.login )
+      end
+      format.json { render json: { error: msg } }
+      format.all { @observations = [] }
     end
   end
 
