@@ -26,13 +26,14 @@ limit = 1000
 skip = 0
 
 while true do
-  url = "http://api.globalbioticinteractions.org/interaction?accordingTo=#{according_to}&field=study_url&includeObservations=true&limit=#{limit}&skip=#{skip}"
+  url = "https://api.globalbioticinteractions.org/interaction?accordingTo=#{according_to}&field=study_url&includeObservations=true&limit=#{limit}&skip=#{skip}"
   puts
   puts url
   puts
   data = JSON.parse(open(url).read)
   records = data['data']
   break if records.size == 0
+  observation_ids = []
   records.each do |record|
     observation_id = record[0].to_s[/\/(\d+)$/, 1]
     observation = Observation.find_by_id(observation_id)
@@ -45,18 +46,30 @@ while true do
     if existing
       existing.touch unless opts[:debug]
       old_count += 1
-      puts "\tobservation link already exists, skipping"
+      puts "\tobservation link for obs #{observation.id} already exists, skipping"
     else
       ol = ObservationLink.new(:observation => observation, :href => href, :href_name => href_name, :rel => "alternate")
+      observation_ids << observation.id
       ol.save unless opts[:debug]
       new_count += 1
       puts "\tCreated #{ol}"
     end
   end
+  if observation_ids.size > 0
+    puts "Re-indexing #{observation_ids.size} observations..."
+    Observation.elastic_index!( ids: observation_ids ) unless opts[:debug]
+  end
   skip += 1000
 end
 
-delete_count = ObservationLink.where(href_name: href_name).where("updated_at < ?", start_time).count
-ObservationLink.where("href_name = ? AND updated_at < ?", href_name, start_time).delete_all unless opts[:debug]
+delete_scope = ObservationLink.where(href_name: href_name).where("updated_at < ?", start_time)
+delete_count = delete_scope.count
+puts "Deleting #{delete_count} ObservationLinks"
+if !opts[:debug] && delete_count > 0
+  observation_ids = delete_scope.pluck(:observation_id)
+  delete_scope.delete_all
+  puts "Re-indexing observations with deleted ObservationLinks"
+  Observation.elastic_index!( ids: observation_ids )
+end
 
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"
