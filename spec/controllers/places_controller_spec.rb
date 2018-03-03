@@ -30,14 +30,14 @@ describe PlacesController do
     it "does not allow non admins to create huge places" do
       user = User.make!
       sign_in user
+      place_count = Place.count
       post :create, place: {
         name: "Test non-admin geojson",
         latitude: 30,
         longitude: 30
       }, geojson: test_place_geojson(:huge)
-      p = Place.last
-      expect( p.name ).to eq "Test non-admin geojson"
-      expect( p.place_geometry ).to be_nil
+      expect( response ).not_to be_redirect
+      expect( Place.count ).to eq place_count
     end
 
     it "allows admins to create huge places" do
@@ -73,14 +73,14 @@ describe PlacesController do
       user = User.make!
       p = Place.make!(user: user)
       sign_in user
+      place_count = Place.count
       put :update, id: p.id, place: {
         name: "Test non-admin geojson",
         latitude: 30,
         longitude: 30
       }, geojson: test_place_geojson(:huge)
-      p = Place.last
-      expect( p.name ).to eq "Test non-admin geojson"
-      expect( p.place_geometry ).to be_nil
+      expect( response ).not_to be_redirect
+      expect( Place.count ).to eq place_count
     end
 
     it "allows admins to create huge places" do

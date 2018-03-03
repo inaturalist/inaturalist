@@ -4862,8 +4862,9 @@ en:
     places:
       kml_field_desc: |
         KML of the place boundary. You can make one using Google Maps, Google
-        Earth, or most GIS applications. Must have at least one polygon and be
-        under 1 MB (5 MB for site curators).
+        Earth, or most GIS applications. Must have at least one polygon be
+        under 1 MB (5 MB for site curators), and have an area smaller than the
+        US state of Texas.
       edit:
         complex_boundary_note_html: |
           This boundary is a bit too complex to edit on the web. However, you can
