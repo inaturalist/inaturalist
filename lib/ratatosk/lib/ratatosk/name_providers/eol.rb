@@ -211,7 +211,7 @@ module Ratatosk
         @adaptee.rank = @hxml.xpath('.//dwc:taxonRank').map(&:text).inject({}) {|memo,rank| 
           memo[rank] = memo[rank].to_i + 1
           memo
-        }.sort_by(&:last).last.try(:first)
+        }.sort_by(&:last).last.try(:first).try(:downcase)
         if @adaptee.rank.blank? && @adaptee.name.split.size == 2
           @adaptee.rank = ::Taxon::SPECIES
         end
