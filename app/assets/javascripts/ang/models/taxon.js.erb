@@ -101,10 +101,24 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
   return this.conservationStatusName;
 };
 
+iNatModels.Taxon.capitalize = function( s ) {
+  // var firstLetterIndex = _.findIndex( s, function( char ) { return char.match( /[A-z]/ ); } );
+  var firstLetterMatch = s.match( /[A-z]/ );
+  var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
+  var leadingContractionMatch = s.match( /^[a-z]'/ );
+  if ( leadingContractionMatch ) {
+    firstLetterIndex = 2;
+  }
+  return s.slice( 0, firstLetterIndex ) + s[firstLetterIndex].toUpperCase( ) + s.slice( firstLetterIndex + 1 );
+}
+
 iNatModels.Taxon.titleCaseName = function( name ) {
   if ( !name ) {
     return name;
   }
+  // This may or may not be a scalable solution. An alternative would be get
+  // these from translation files and have translators add the words that
+  // are uncapitalized in their languages
   var uncapitalized = [
     "à",
     "a",
@@ -127,10 +141,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
   ];
   var commonNamePieces = name.split( /\s+/ );
   return _.map( commonNamePieces, function( piece, i ) {
-    if (
-      ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
-      piece.match( /^d'/ )
-    ) {
+    if ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) {
       return piece.toLowerCase( );
     }
     if ( i === commonNamePieces.length - 1 ) {
@@ -138,10 +149,10 @@ iNatModels.Taxon.titleCaseName = function( name ) {
         if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
           return s.toLowerCase( );
         }
-        return s.charAt( 0 ).toUpperCase( ) + s.substring( 1 ).toLowerCase( );
+        return iNatModels.Taxon.capitalize( s );
       } ).join( "-" );
     }
-    return piece.charAt( 0 ).toUpperCase( ) + piece.substring( 1 ).toLowerCase( );
+    return iNatModels.Taxon.capitalize( piece );
   } ).join( " " );
 
 }

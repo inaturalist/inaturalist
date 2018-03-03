@@ -70,48 +70,7 @@ const SplitTaxon = ( {
       } else {
         comNameClass = `display-name ${comNameClass}`;
       }
-      let commonName = taxon.preferred_common_name;
-      // This may or may not be a scalable solution. An alternative would be get
-      // these from translation files and have translators add the words that
-      // are uncapitalized in their languages
-      const uncapitalized = [
-        "à",
-        "a",
-        "and",
-        "con",
-        "da",
-        "dal",
-        "de",
-        "dei",
-        "del",
-        "des",
-        "di",
-        "du",
-        "e",
-        "in",
-        "la",
-        "o",
-        "of",
-        "the"
-      ];
-      const commonNamePieces = commonName.split( /\s+/ );
-      commonName = commonNamePieces.map( ( piece, i ) => {
-        if (
-          ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) ||
-          piece.match( /^d'/ )
-        ) {
-          return piece.toLowerCase( );
-        }
-        if ( i === commonNamePieces.length - 1 ) {
-          return piece.split( "-" ).map( s => {
-            if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
-              return s.toLowerCase( );
-            }
-            return _.capitalize( s );
-          } ).join( "-" );
-        }
-        return _.capitalize( piece );
-      } ).join( " " );
+      const commonName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       return (
         <LinkElement
           className={`comname ${comNameClass}`}
