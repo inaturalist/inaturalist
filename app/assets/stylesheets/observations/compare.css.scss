@@ -15,15 +15,30 @@
       }
     }
   }
+  .alert-danger {
+    padding: 6px 12px;
+    margin: 0;
+  }
   table {
     th {
       white-space: nowrap;
     }
-    th.sortable {
-      cursor: pointer;
+    .headers {
+      th {
+        border-top: 0 transparent;
+      }
+      th.sortable {
+        cursor: pointer;
+      }
+      th.taxon {
+        width: 100%;
+      }
     }
-    th.taxon {
-      width: 100%;
+    .totals {
+      font-size: smaller;
+      th.total-label {
+        text-align: right;
+      }
     }
     .sorted {
       background-color: #eee;
@@ -40,3 +55,8 @@
     height: 500px;
   }
 }
+
+.compare-popover {
+  max-width: 400px;
+}
+

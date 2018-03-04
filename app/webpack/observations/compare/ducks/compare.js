@@ -12,6 +12,7 @@ const UPDATE_QUERY_AT_INDEX = "observations-compare/compare/UPDATE_QUERY_AT_INDE
 const SORT_FREQUENCIES_BY_INDEX = "observations-compare/compare/SORT_FREQUENCIES_BY_INDEX";
 const SET_TAXON_FILTER = "observations-compare/compare/SET_TAXON_FILTER";
 const SET_BOUNDS = "observations-compare/compare/SET_BOUNDS";
+const SET_TOTAL_TAXON_COUNTS = "observations-compare/compare/SET_TOTAL_TAXON_COUNTS";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -50,6 +51,7 @@ export const DEFAULT_STATE = {
   taxonFrequencies: [],
   taxonFrequenciesSortIndex: 0,
   taxonFrequenciesSortOrder: "asc",
+  totalTaxonCounts: [],
   numTaxaInCommon: 0,
   numTaxaNotInCommon: 0,
   numTaxaUnique: 0,
@@ -107,6 +109,9 @@ export default function reducer( state = DEFAULT_STATE, action ) {
     case SET_BOUNDS:
       newState.bounds = action.bounds;
       break;
+    case SET_TOTAL_TAXON_COUNTS:
+      newState.totalTaxonCounts = action.counts;
+      break;
     default:
       // nothing to see here
   }
@@ -118,7 +123,7 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       }
       return "";
     }
-    const sortVal = row[newState.taxonFrequenciesSortIndex] || 0;
+    const sortVal = parseInt( row[newState.taxonFrequenciesSortIndex], 0 );
     if ( newState.taxonFrequenciesSortOrder === "asc" ) {
       return sortVal;
     }
@@ -129,6 +134,9 @@ export default function reducer( state = DEFAULT_STATE, action ) {
   newState.numTaxaUnique = 0;
   _.forEach( newState.taxonFrequencies, row => {
     const frequencies = row.slice( 1, row.length );
+    if ( frequencies.indexOf( "?" ) >= 0 ) {
+      return;
+    }
     if ( frequencies.indexOf( 0 ) >= 0 ) {
       newState.numTaxaNotInCommon += 1;
     } else {
@@ -176,6 +184,13 @@ export function setBounds( bounds ) {
   };
 }
 
+export function setTotalTaxonCounts( counts ) {
+  return {
+    type: SET_TOTAL_TAXON_COUNTS,
+    counts
+  };
+}
+
 export function fetchTaxa( ) {
   return ( dispatch, getState ) => {
     const s = getState( ).compare;
@@ -189,12 +204,14 @@ export function fetchTaxa( ) {
     } ).then( responses => {
       const taxa = {};
       const taxonFrequencies = {};
+      const totalTaxonCounts = responses.map( r => r.total_results );
+      dispatch( setTotalTaxonCounts( totalTaxonCounts ) );
       _.forEach( responses, ( response, queryIndex ) => {
         _.forEach( response.results, result => {
           if ( !taxa[result.taxon.id] ) {
             taxa[result.taxon.id] = result.taxon;
           }
-          taxonFrequencies[result.taxon.id] = taxonFrequencies[result.taxon.id] || s.queries.map( ( ) => 0 );
+          taxonFrequencies[result.taxon.id] = taxonFrequencies[result.taxon.id] || s.queries.map( ( ) => "?" );
           taxonFrequencies[result.taxon.id][queryIndex] = result.count;
         } );
       } );
@@ -206,12 +223,17 @@ export function fetchTaxa( ) {
       // records b/c they're not leaves, i.e. it will still show commonality but
       // counts will be off.
       _.forEach( taxonFrequencies, ( values, taxonID ) => {
+        _.forEach( totalTaxonCounts, ( totalCount, queryIndex ) => {
+          if ( totalCount <= 500 && taxonFrequencies[taxonID][queryIndex] === "?" ) {
+            taxonFrequencies[taxonID][queryIndex] = 0;
+          }
+        } );
         const taxon = taxa[taxonID];
         const ancestorIDs = _.filter( taxon.ancestor_ids, aid => aid !== parseInt( taxonID, 0 ) );
         _.forEach( ancestorIDs, ancestorID => {
           if ( taxonFrequencies[ancestorID] ) {
             _.forEach( taxonFrequencies[ancestorID], ( ancestorVal, i ) => {
-              taxonFrequencies[ancestorID][i] = ancestorVal + values[i];
+              taxonFrequencies[ancestorID][i] = ( parseInt( ancestorVal, 0 ) || 0 ) + ( parseInt( values[i], 0 ) || 0 );
             } );
           }
         } );
@@ -284,14 +306,11 @@ export function fetchBounds( ) {
 
 export function fetchDataForTab( tab ) {
   return ( dispatch, getState ) => {
-    console.log( "[DEBUG] fetchDataForTab, tab: ", tab );
     const s = getState( );
     const chosenTab = tab || s.compare.tab;
-    console.log( "[DEBUG] chosenTab: ", chosenTab );
     if ( chosenTab === "species" ) {
       dispatch( fetchTaxa( ) );
     } else if ( chosenTab === "map" ) {
-      console.log( "[DEBUG] dispatch fetchBounds" );
       dispatch( fetchBounds( ) );
     }
   };

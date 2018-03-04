@@ -12,7 +12,8 @@ function mapStateToProps( state ) {
     numTaxaNotInCommon: state.compare.numTaxaNotInCommon,
     numTaxaInCommon: state.compare.numTaxaInCommon,
     numTaxaUnique: state.compare.numTaxaUnique,
-    taxonFilter: state.compare.taxonFilter
+    taxonFilter: state.compare.taxonFilter,
+    totalTaxonCounts: state.compare.totalTaxonCounts
   };
 }
 
