@@ -4,6 +4,9 @@ import * as d3 from "d3";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 
 function mapStateToProps( state ) {
+  if ( state.compare.tab !== "map" ) {
+    return {};
+  }
   const colorScale = d3.scaleOrdinal( d3.schemeCategory10 );
   const observationLayers = _.map( state.compare.queries, query => {
     const layer = $.deparam( query.params );
@@ -14,6 +17,10 @@ function mapStateToProps( state ) {
 
   return {
     showAllLayer: false,
+    minX: state.compare.bounds.swlng,
+    minY: state.compare.bounds.swlat,
+    maxX: state.compare.bounds.nelng,
+    maxY: state.compare.bounds.nelat,
     observationLayers
   };
 }

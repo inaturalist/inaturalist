@@ -17,7 +17,7 @@ const SpeciesComparison = ( {
 } ) => {
   const filteredData = _.filter( taxonFrequencies, row => {
     const frequencies = row.slice( 1, row.length );
-    if ( taxonFilter === "in_common" ) {
+    if ( taxonFilter === "common" ) {
       return frequencies.indexOf( 0 ) === -1;
     }
     if ( taxonFilter === "not_in_common" ) {
@@ -74,7 +74,7 @@ const SpeciesComparison = ( {
               }
               return (
                 <th
-                  key={ `query-${i}` }
+                  key={ `SpeciesComparison-query-${i}` }
                   className={ `sortable value ${sortIndex === queryCol ? "sorted" : ""}` }
                   onClick={ ( ) => sortFrequenciesByIndex( queryCol, sortIndex === queryCol && order === "asc" ? "desc" : "asc" ) }
                 >
@@ -90,7 +90,7 @@ const SpeciesComparison = ( {
             const allPresent = _.filter( counts, c => c > 0 ).length === counts.length;
             const taxon = taxa[row[0]];
             if ( !taxon ) {
-              return <tr></tr>;
+              return <tr key={ `row-${row[0]}` }></tr>;
             }
             return (
               <tr key={ `row-${row[0]}` }>
@@ -101,8 +101,11 @@ const SpeciesComparison = ( {
                 {
                   _.map( counts, ( count, j ) => {
                     let countUrl = "/observations?";
+                    if ( !queries[j] ) {
+                      return <td key={ `row-${row[0]}-${j}` }></td>;
+                    }
                     countUrl += $.param(
-                      Object.assign( $.deparam( ( queries[j] || {} ).params ),
+                      Object.assign( $.deparam( ( queries[j] ).params ),
                         { taxon_id: taxon.id }
                       )
                     );

@@ -11,6 +11,7 @@ const REMOVE_QUERY_AT_INDEX = "observations-compare/compare/REMOVE_QUERY_AT_INDE
 const UPDATE_QUERY_AT_INDEX = "observations-compare/compare/UPDATE_QUERY_AT_INDEX";
 const SORT_FREQUENCIES_BY_INDEX = "observations-compare/compare/SORT_FREQUENCIES_BY_INDEX";
 const SET_TAXON_FILTER = "observations-compare/compare/SET_TAXON_FILTER";
+const SET_BOUNDS = "observations-compare/compare/SET_BOUNDS";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -33,16 +34,16 @@ const setUrl = state => {
   history.pushState( urlState, title, newUrl );
 };
 
-export default function reducer( state = {
+export const DEFAULT_STATE = {
   tab: "species",
   queries: [
     {
       name: "Query 1",
-      params: "user_id=kueda"
+      params: `year=${( new Date( ) ).getYear( ) + 1900 - 1}`
     },
     {
       name: "Query 2",
-      params: "user_id=marceline"
+      params: `year=${( new Date( ) ).getYear( ) + 1900}`
     }
   ],
   taxa: {},
@@ -52,8 +53,16 @@ export default function reducer( state = {
   numTaxaInCommon: 0,
   numTaxaNotInCommon: 0,
   numTaxaUnique: 0,
-  taxonFilter: "none"
-}, action ) {
+  taxonFilter: "none",
+  bounds: {
+    swlat: -80,
+    swlng: -170,
+    nelat: 80,
+    nelng: 170
+  }
+};
+
+export default function reducer( state = DEFAULT_STATE, action ) {
   const newState = _.cloneDeep( state );
   switch ( action.type ) {
     case SET_TAB:
@@ -74,7 +83,7 @@ export default function reducer( state = {
     case ADD_QUERY:
       newState.queries.push( {
         name: `Query ${newState.queries.length + 1}`,
-        params: "taxon_id=-1"
+        params: `year=${( new Date( ) ).getYear( ) + 1900}`
       } );
       setUrl( newState );
       break;
@@ -94,6 +103,9 @@ export default function reducer( state = {
     case SET_TAXON_FILTER:
       newState.taxonFilter = action.filter;
       setUrl( newState );
+      break;
+    case SET_BOUNDS:
+      newState.bounds = action.bounds;
       break;
     default:
       // nothing to see here
@@ -154,6 +166,13 @@ export function setTaxonFrequencies( taxonFrequencies ) {
   return {
     type: SET_TAXON_FREQUENCIES,
     taxonFrequencies
+  };
+}
+
+export function setBounds( bounds ) {
+  return {
+    type: SET_BOUNDS,
+    bounds
   };
 }
 
@@ -227,12 +246,53 @@ export function updateQueryAtIndex( index, updates ) {
   };
 }
 
+export function fetchBounds( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( ).compare;
+    if ( !s.queries || s.queries.length === 0 ) {
+      return;
+    }
+    const promises = s.queries.map( query => {
+      const params = $.deparam( query.params );
+      params.per_page = 1;
+      params.return_bounds = true;
+      return inatjs.observations.search( params );
+    } );
+    Promise.all( promises ).catch( e => {
+      console.log( "[DEBUG] e: ", e );
+    } ).then( responses => {
+      const bounds = new google.maps.LatLngBounds( );
+      _.forEach( responses, response => {
+        bounds.extend( {
+          lat: response.total_bounds.swlat,
+          lng: response.total_bounds.swlng
+        } );
+        bounds.extend( {
+          lat: response.total_bounds.nelat,
+          lng: response.total_bounds.nelng
+        } );
+      } );
+      dispatch( setBounds( {
+        swlat: bounds.getSouthWest( ).lat( ),
+        swlng: bounds.getSouthWest( ).lng( ),
+        nelat: bounds.getNorthEast( ).lat( ),
+        nelng: bounds.getNorthEast( ).lng( )
+      } ) );
+    } );
+  };
+}
+
 export function fetchDataForTab( tab ) {
   return ( dispatch, getState ) => {
+    console.log( "[DEBUG] fetchDataForTab, tab: ", tab );
     const s = getState( );
     const chosenTab = tab || s.compare.tab;
+    console.log( "[DEBUG] chosenTab: ", chosenTab );
     if ( chosenTab === "species" ) {
       dispatch( fetchTaxa( ) );
+    } else if ( chosenTab === "map" ) {
+      console.log( "[DEBUG] dispatch fetchBounds" );
+      dispatch( fetchBounds( ) );
     }
   };
 }

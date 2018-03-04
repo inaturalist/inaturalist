@@ -12,6 +12,16 @@ class Tabs extends React.Component {
     } );
   }
 
+  componentDidUpdate( prevProps ) {
+    // very lame hack to make sure the map resizes correctly if it rendered when
+    // not visible
+    if ( this.props.chosenTab === "map" && prevProps.chosenTab !== "map" ) {
+      const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
+      google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
+      taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
+    }
+  }
+
   render( ) {
     const { chosenTab } = this.props;
     return (

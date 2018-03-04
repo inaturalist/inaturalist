@@ -15,7 +15,10 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    addQuery: ( ) => dispatch( addQuery( ) ),
+    addQuery: ( ) => {
+      dispatch( addQuery( ) );
+      dispatch( fetchDataForTab( ) );
+    },
     removeQueryAtIndex: i => {
       dispatch( removeQueryAtIndex( i ) );
       dispatch( fetchDataForTab( ) );

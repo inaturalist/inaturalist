@@ -8,7 +8,7 @@ const Queries = ( {
 } ) => (
   <div className="Queries form-horizontal">
     { queries.map( ( query, i ) => (
-      <div className="query">
+      <div className="query" key={ `query-${i}` }>
         <input
           type="text"
           defaultValue={ query.name }
