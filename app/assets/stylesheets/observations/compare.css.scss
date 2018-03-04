@@ -52,8 +52,41 @@
     }
   }
 
-  .TaxonMap {
-    height: 500px;
+  .maps-combined,
+  .maps-horizontal {
+    .TaxonMap {
+      height: 500px;
+    }
+  }
+  .maps-vertical,
+  .maps-horizontal {
+    display: flex;
+    align-items: stretch;
+
+  }
+  .maps-vertical {
+    flex-direction: column;
+    .TaxonMap {
+      height: 300px;
+    }
+    .map {
+      margin-bottom: 10px;
+    }
+  }
+  .maps-horizontal {
+    flex-direction: row;
+    h5 {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .map {
+      flex-grow: 1;
+      margin-left: 10px;
+      width: 100%;
+    }
+    map:first-child {
+      margin-left: 0;
+    }
   }
 }
 

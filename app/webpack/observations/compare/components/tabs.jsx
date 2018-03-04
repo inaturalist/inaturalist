@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import ReactDOM from "react-dom";
 import { Row, Col } from "react-bootstrap";
 import SpeciesComparisonContainer from "../containers/species_comparison_container";
-import MapContainer from "../containers/map_container";
+import MapComparisonContainer from "../containers/map_comparison_container";
 
 class Tabs extends React.Component {
   componentDidMount( ) {
@@ -53,7 +53,7 @@ class Tabs extends React.Component {
                 className={`tab-pane ${chosenTab === "map" ? "active" : ""}`}
                 id="map-tab"
               >
-                <MapContainer />
+                <MapComparisonContainer />
               </div>
             </div>
           </Col>

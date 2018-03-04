@@ -14,6 +14,7 @@ const SET_TAXON_FILTER = "observations-compare/compare/SET_TAXON_FILTER";
 const SET_BOUNDS = "observations-compare/compare/SET_BOUNDS";
 const SET_TOTAL_TAXON_COUNTS = "observations-compare/compare/SET_TOTAL_TAXON_COUNTS";
 const MOVE_QUERY = "observations-compare/compare/MOVE_QUERY";
+const SET_MAP_LAYOUT = "observations-compare/compare/SET_MAP_LAYOUT";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -21,7 +22,8 @@ const setUrl = state => {
     "tab",
     "taxonFilter",
     "taxonFrequenciesSortIndex",
-    "taxonFrequenciesSortOrder"
+    "taxonFrequenciesSortOrder",
+    "mapLayout"
   ] ) );
   const bytes = utf8.encode( json );
   const encoded = btoa( bytes );
@@ -62,7 +64,8 @@ export const DEFAULT_STATE = {
     swlng: -170,
     nelat: 80,
     nelng: 170
-  }
+  },
+  mapLayout: "combined"
 };
 
 export default function reducer( state = DEFAULT_STATE, action ) {
@@ -116,8 +119,13 @@ export default function reducer( state = DEFAULT_STATE, action ) {
     case MOVE_QUERY: {
       const query = newState.queries.splice( action.index, 1 )[0];
       newState.queries.splice( action.newIndex, 0, query );
+      setUrl( newState );
       break;
     }
+    case SET_MAP_LAYOUT:
+      newState.mapLayout = action.mapLayout;
+      setUrl( newState );
+      break;
     default:
       // nothing to see here
   }
@@ -202,6 +210,13 @@ export function moveQuery( index, newIndex ) {
     type: MOVE_QUERY,
     index,
     newIndex
+  };
+}
+
+export function setMapLayout( mapLayout ) {
+  return {
+    type: SET_MAP_LAYOUT,
+    mapLayout
   };
 }
 
