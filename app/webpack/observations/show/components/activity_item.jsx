@@ -56,8 +56,10 @@ const ActivityItem = ( {
       }
     }
     if ( firstDisplay && !hideCompare ) {
-      const compareTaxonID = taxon.rank_level <= 10 ?
-        taxon.ancestor_ids[taxon.ancestor_ids - 2] : taxon.id;
+      let compareTaxonID = taxon.id;
+      if ( taxon.rank_level <= 10 ) {
+        compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
+      }
       buttons.push( (
         <a
           key={ `id-compare-${item.id}` }

@@ -320,9 +320,12 @@ module Ratatosk
       end
       return nil if parent_name.blank?
       parent = if options[:ancestor]
-        Taxon.where(options[:ancestor].descendant_conditions).where("name = ?", parent_name).first
+        Taxon.where( options[:ancestor].descendant_conditions ).
+          where( "name = ?", parent_name ).
+          where( "rank IN (?)", [Taxon::GENUS, Taxon::SPECIES] ).first
       else
-        Taxon.find_by_name(parent_name)
+        Taxon.where( "rank IN (?)", [Taxon::GENUS, Taxon::SPECIES] ).
+          where( name: parent_name ).first
       end
       if parent.blank? && options[:external_parent]
         names = find(parent_name)

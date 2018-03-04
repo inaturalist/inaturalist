@@ -274,7 +274,47 @@ $(document).ready(function() {
     return false
   })
 
-  $( "#test-header #messagesnav .dropdown" ).on( "show.bs.dropdown", function() {
+  $( "#test-header #messagesnav .dropdown" ).on( "click", function( e ) {
+    if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
+      $( this ).toggleClass( "open" );
+      $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
+      $( "#test-header #updatesnav .dropdown" ).removeClass( "open" );
+      $( "#test-header #updatesnav .dropdown" ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "#test-header #updatesnav .dropdown" ).on( "click", function( e ) {
+    if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
+      $( this ).toggleClass( "open" );
+      $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
+      $( "#test-header #messagesnav .dropdown" ).removeClass( "open" );
+      $( "#test-header #messagesnav .dropdown" ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "body" ).on( "click", function ( e ) {
+    if (
+      !$( "#test-header #messagesnav .dropdown" ).is( e.target ) &&
+      $( "#test-header #messagesnav .dropdown" ).has( e.target ).length === 0 &&
+      $( ".open" ).has( e.target ).length === 0
+    ) {
+      $( "#test-header #messagesnav .dropdown" ).removeClass( "open" );
+      $( this ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "body" ).on( "click", function ( e ) {
+    if (
+      !$( "#test-header #updatesnav .dropdown" ).is( e.target ) &&
+      $( "#test-header #updatesnav .dropdown" ).has( e.target ).length === 0 &&
+      $( ".open" ).has( e.target ).length === 0
+    ) {
+      $( "#test-header #updatesnav .dropdown" ).removeClass( "open" );
+      $( this ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "#test-header #messagesnav .dropdown" ).on( "click", function( e ) {
     if ( !$( "#messagessubnav" ).data( "loaded" ) ) {
       $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
         $( this ).html( data );
@@ -284,8 +324,8 @@ $(document).ready(function() {
     }
   } );
 
-  $( "#test-header #updatesnav .dropdown" ).on( "show.bs.dropdown", function() {
-    if ( !$("#updatessubnav" ).data( "loaded" ) ) {
+  $( "#test-header #updatesnav .dropdown" ).on( "click", function( e ) {
+    if ( !$( "#updatessubnav" ).data( "loaded" ) ) {
       $( "#updatessubnav" ).load( "/users/new_updates?notification=activity,mention", function( data ) {
         $( this ).html( data );
         $( "#updatessubnav" ).data( "loaded", true )

@@ -656,7 +656,7 @@ class Taxon < ActiveRecord::Base
       parent_name = name.split(' ')[0..-2].join(' ')
       parent = Taxon.single_taxon_for_name(parent_name)
       parent ||= Taxon.import(parent_name, :exact => true)
-      if parent && rank_level && parent.rank_level && parent.rank_level > rank_level
+      if parent && rank_level && parent.rank_level && parent.rank_level > rank_level && [GENUS, SPECIES].include?( parent.rank )
         self.update_attributes(:parent => parent)
       end
     end

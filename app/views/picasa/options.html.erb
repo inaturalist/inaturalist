@@ -23,9 +23,7 @@
     </p>
   <% else %>
     <p class="ui">
-      <%= t(:you_havent_linked_your_inaturalist_google_account, :site_name => @site.preferred_site_name_short) %></p>
-    <p class="ui description">
-      <%= t(:to_include_your_google_with_inat, :site_name => @site.preferred_site_name_short) %>
+      <%= t(:you_havent_linked_your_inaturalist_google_account, :site_name => @site.preferred_site_name_short) %>  
     </p>
   <% end -%>
 </div>
@@ -38,7 +36,7 @@
     <%= link_to t(:link_your_google_account), auth_url_for('google_oauth2'), 
                 :onclick => "$('.picasa-button').toggle();", :class => 'picasa-button default button' %>
     <div class="picasa-button" style="display:none;">
-      <span class="loading status"><%=t :connecting_to_picasa %></span>
+      <span class="loading status"><%=t :loading %></span>
     </div>
   <% end %>
 </div>

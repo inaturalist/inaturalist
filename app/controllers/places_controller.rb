@@ -158,13 +158,14 @@ class PlacesController < ApplicationController
     else
       @place = Place.new(params[:place])
       @place.user = current_user
-      @place.save
       if params[:file]
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
+        @place.validate_with_geom( @geometry, user: current_user )
       end
       if @geometry && @place.valid?
+        @place.save
         @place.save_geom(@geometry, user: current_user)
         if @place.too_big_for_check_list?
           notice = t(:place_too_big_for_check_list)
@@ -205,7 +206,9 @@ class PlacesController < ApplicationController
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
-        @place.save_geom(@geometry, user: current_user) if @geometry
+        if @place.validate_with_geom( @geometry, user: current_user )
+          @place.save_geom(@geometry, user: current_user) if @geometry
+        end
       end
       if @place.errors.any?
         flash[:error] = t(:there_were_problems_importing_that_place_geometry,
@@ -574,7 +577,9 @@ class PlacesController < ApplicationController
       if @geometry
         @place.latitude = @geometry.envelope.center.y
         @place.longitude = @geometry.envelope.center.x
-        @place.save_geom(@geometry, user: current_user)
+        if @place.validate_with_geom( @geometry, user: current_user )
+          @place.save_geom(@geometry, user: current_user)
+        end
       else
         @place.add_custom_error(:base, "File was invalid or did not contain any polygons")
       end

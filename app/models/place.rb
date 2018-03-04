@@ -475,9 +475,8 @@ class Place < ActiveRecord::Base
     check_list.listed_taxa.delete_all
     check_list.destroy
   end
-  
-  # Update the associated place_geometry or create a new one
-  def save_geom( geom, other_attrs = {} )
+
+  def validate_with_geom( geom, other_attrs = {} )
     if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
@@ -487,18 +486,30 @@ class Place < ActiveRecord::Base
       # they looked like a multipolygon, possibly because of overlapping
       # polygons or other problems
       add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
-      return
+      return false
     end
     # 66 is roughly the size of Texas
     if other_attrs[:user] && !other_attrs[:user].is_admin?
+      if geom.respond_to?(:area)
+      end
       if geom.respond_to?(:area) && geom.area > 66.0
-        errors.add(:place_geometry, :is_too_large_to_import)
-        return
+        add_custom_error(:place_geometry, :is_too_large_to_import)
+        return false
       elsif Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count >= 500000
-        errors.add(:place_geometry, :contains_too_many_observations)
-        return
+        add_custom_error(:place_geometry, :contains_too_many_observations)
+        return false
       end
     end
+    true
+  end
+  
+  # Update the associated place_geometry or create a new one
+  def save_geom( geom, other_attrs = {} )
+    if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
+      georuby_geom = geom
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+    end
+    return unless validate_with_geom( geom )
     other_attrs.delete(:user)
     other_attrs.merge!(:geom => geom, :place => self)
     begin

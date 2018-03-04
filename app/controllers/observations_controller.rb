@@ -173,6 +173,18 @@ class ObservationsController < ApplicationController
         end
       end
     end
+  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+    raise e unless e.message =~ /window is too large/
+    msg = "Too many results. Try using smaller searches or the id_above parameter."
+    response.headers["X-Error"] = msg
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_to( observations_path )
+      end
+      format.json { render json: { error: msg } }
+      format.all { @observations = [] }
+    end
   end
   
   def of
@@ -1212,6 +1224,18 @@ class ObservationsController < ApplicationController
       end
       
     end
+  rescue Elasticsearch::Transport::Transport::Errors::InternalServerError => e
+    raise e unless e.message =~ /window is too large/
+    msg = "Too many results. Try using smaller searches or the id_above parameter."
+    response.headers["X-Error"] = msg
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_to observations_by_login_path( @selected_user.login )
+      end
+      format.json { render json: { error: msg } }
+      format.all { @observations = [] }
+    end
   end
 
   def by_login_all
@@ -1375,20 +1399,21 @@ class ObservationsController < ApplicationController
     @q = params[:q] unless params[:q].blank?
     if @observation
       @places = if @observation.coordinates_viewable_by?( current_user )
-        @observation.places.try(:reverse)
+        @observation.places
       else
-        @observation.public_places.try(:reverse)
+        @observation.public_places
       end
+      @places = @places.sort_by{|p| p.bbox_area }
       if @observation.taxon && @observation.taxon.species_or_lower?
         @taxon ||= @observation.taxon.genus
       else
         @taxon ||= @observation.taxon
       end
       if @taxon && @places
-        @place = @places.reverse.detect {|p| p.taxa.self_and_descendants_of(@taxon).exists?}
+        @place = @places.detect {|p| p.taxa.self_and_descendants_of(@taxon).exists?}
       end
     end
-    @place ||= (Place.find(params[:place_id]) rescue nil) || @places.try(:last)
+    @place ||= (Place.find(params[:place_id]) rescue nil) || @places.try(:first)
     @default_taxa = @taxon ? @taxon.ancestors : Taxon::ICONIC_TAXA
     @taxon ||= Taxon::LIFE
     @default_taxa = [@default_taxa, @taxon].flatten.compact
