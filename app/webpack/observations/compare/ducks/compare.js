@@ -13,6 +13,7 @@ const SORT_FREQUENCIES_BY_INDEX = "observations-compare/compare/SORT_FREQUENCIES
 const SET_TAXON_FILTER = "observations-compare/compare/SET_TAXON_FILTER";
 const SET_BOUNDS = "observations-compare/compare/SET_BOUNDS";
 const SET_TOTAL_TAXON_COUNTS = "observations-compare/compare/SET_TOTAL_TAXON_COUNTS";
+const MOVE_QUERY = "observations-compare/compare/MOVE_QUERY";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -112,6 +113,11 @@ export default function reducer( state = DEFAULT_STATE, action ) {
     case SET_TOTAL_TAXON_COUNTS:
       newState.totalTaxonCounts = action.counts;
       break;
+    case MOVE_QUERY: {
+      const query = newState.queries.splice( action.index, 1 )[0];
+      newState.queries.splice( action.newIndex, 0, query );
+      break;
+    }
     default:
       // nothing to see here
   }
@@ -119,7 +125,7 @@ export default function reducer( state = DEFAULT_STATE, action ) {
     if ( newState.taxonFrequenciesSortIndex === 0 ) {
       const taxon = newState.taxa[row[0]];
       if ( taxon ) {
-        return `${taxon.ancestor_ids.join( "/" )}/${taxon.name}`;
+        return `${taxon.ancestor_ids.join( "/" )}/0/${taxon.name}`;
       }
       return "";
     }
@@ -188,6 +194,14 @@ export function setTotalTaxonCounts( counts ) {
   return {
     type: SET_TOTAL_TAXON_COUNTS,
     counts
+  };
+}
+
+export function moveQuery( index, newIndex ) {
+  return {
+    type: MOVE_QUERY,
+    index,
+    newIndex
   };
 }
 

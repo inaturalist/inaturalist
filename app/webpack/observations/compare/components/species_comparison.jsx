@@ -65,18 +65,21 @@ const SpeciesComparison = ( {
         <button
           className={ `btn btn-${taxonFilter === "common" ? "primary" : "default"}` }
           onClick={ ( ) => setTaxonFilter( "common" ) }
+          title="Taxa observed in all queries"
         >
           { numTaxaInCommon } in common
         </button>
         <button
           className={ `btn btn-${taxonFilter === "not_in_common" ? "primary" : "default"}` }
           onClick={ ( ) => setTaxonFilter( "not_in_common" ) }
+          title="Taxa not observed in all queries"
         >
           { numTaxaNotInCommon } not in common
         </button>
         <button
           className={ `btn btn-${taxonFilter === "unique" ? "primary" : "default"}` }
           onClick={ ( ) => setTaxonFilter( "unique" ) }
+          title="Taxa observed in only one query"
         >
           { numTaxaUnique } unique
         </button>
@@ -154,10 +157,10 @@ const SpeciesComparison = ( {
             const allPresent = _.filter( counts, c => c > 0 ).length === counts.length;
             const taxon = taxa[row[0]];
             if ( !taxon ) {
-              return <tr key={ `row-${row[0]}` }></tr>;
+              return <tr key={ `row-${i}-${row[0]}` }></tr>;
             }
             return (
-              <tr key={ `row-${row[0]}` }>
+              <tr key={ `row-${i}-${row[0]}` }>
                 <td>{ i + 1 }</td>
                 <td>
                   <SplitTaxon taxon={ taxon } url={`/taxa/${taxon.id}`} />
@@ -178,6 +181,8 @@ const SpeciesComparison = ( {
                       cssClass += " bg-success";
                     } else if ( count === "?" ) {
                       cssClass += " bg-danger";
+                    } else if ( _.sum( counts ) === count ) {
+                      cssClass += " bg-warning";
                     }
                     return (
                       <td

@@ -17,6 +17,7 @@ function mapStateToProps( state ) {
 
   return {
     showAllLayer: false,
+    gestureHandling: "auto",
     minX: state.compare.bounds.swlng,
     minY: state.compare.bounds.swlat,
     maxX: state.compare.bounds.nelng,

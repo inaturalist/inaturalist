@@ -4,7 +4,8 @@ import {
   addQuery,
   removeQueryAtIndex,
   updateQueryAtIndex,
-  fetchDataForTab
+  fetchDataForTab,
+  moveQuery
 } from "../ducks/compare";
 
 function mapStateToProps( state ) {
@@ -26,6 +27,12 @@ function mapDispatchToProps( dispatch ) {
     updateQueryAtIndex: ( i, updates ) => {
       dispatch( updateQueryAtIndex( i, updates ) );
       dispatch( fetchDataForTab( ) );
+    },
+    moveQueryUp: i => {
+      dispatch( moveQuery( i, i - 1 ) );
+    },
+    moveQueryDown: i => {
+      dispatch( moveQuery( i, i + 1 ) );
     }
   };
 }
