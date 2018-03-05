@@ -347,7 +347,7 @@ fi:
       kingdom: Kunta
       class: Luokka
       phylum: Pääjakso
-      species: Laji
+      species: Lajit
       order: Lahko
     amphibians: Sammakkoeläimet
     animals: Eläimet
@@ -564,7 +564,8 @@ fi:
   back_to_taxon: Takaisin %{defaulttaxon}
   back_to_taxon_changes: Takaisin taksonin muutoksiin
   back_to_this: Takaisin paikkaan %{place}
-  back_to_viewing: Takaisin katsomaan taksonia %{taxon}
+  back_to_viewing: Takaisin katsomaan taksonia <i>%{taxon}</i>
+  back_to_x: Takaisin %{noun}
   back_to_x_assessment: Takaisin projektin %{project} arviointiin
   back_to_x_history: Takaisin artikkelin %{x} historiaan
   back_to_x_journal: Takaisin käyttäjän %{user} päiväkirjaan
@@ -786,7 +787,7 @@ fi:
     merkitystä, kutena ruskeat nisäkkäät ja vihreät saniaiset.
   colors: Värit
   columns: Sarakkeet
-  combine: Yhdistää
+  combine: Yhdistä
   comma_separated_please: Pilkulla erotettu, kiitos
   comment_preview: Kommentin esikatselu
   comment: kommentti
@@ -841,13 +842,13 @@ fi:
     plant_phenology: Kasvin fenologia
     budding: Orastava
     flowering: Kukinta
-    life_stage: Elämänvaiheet
+    life_stage: Elämänvaihe
     adult: Aikuinen
     pupa: Kotelo
     nymph: Nymfi
     larva: Toukka
     egg: Muna
-    juvenile: Alaikäinen
+    juvenile: Nuori
   controls: Ohjaimet
   coordinate_systems: Koordinaattijärjestelmät
   coordinates: Koordinaatit
@@ -1145,7 +1146,7 @@ fi:
   everywhere: kaikkialla
   exact_date: Tarkka päivämäärä
   exact_location: Tarkka_sijainti
-  exit_full_screen: Poistu koko näytön tilasta
+  exit_full_screen: Poistu kokoruututilasta
   explore!: Tutki!
   explore: Tutki
   export: Vie
@@ -1274,7 +1275,7 @@ fi:
   full_id_please: ID kiitos!
   full_id_please!: tunniste kiitos!
   full_id_please?: tunniste kiitos?
-  full_screen: Koko näyttö
+  full_screen: Koko ruutu
   fungi:
     one: sieni
     other: sientä
@@ -1304,6 +1305,7 @@ fi:
   grid: Ruudukko
   grid_tooltip: Näytä ruudukkonäkymä
   group: Ryhmä
+  grouping: Ryhmitys
   guides: Oppaat
   guide_deleted: Opas poistettu
   guide_was_successfully_created: Oppaan teko onnistui.
@@ -1416,7 +1418,7 @@ fi:
   info: Tiedot
   input_taxon: Syötä taksoni
   insects: hyönteiset
-  insect_life_stage: Hyönteisen elämänvaiheet
+  insect_life_stage: Hyönteisen elämänvaihe
   internal_server_error: Sisäinen palvelinvirhe
   introduced: esitelty
   introduced_in_place: Esitelty paikassa %{place}
@@ -1650,6 +1652,7 @@ fi:
   looks_like_neither_have!: Näyttää siltä, ettei ole yhtään taksoneita!
   looks_like_no_species_in_guide: Näyttää siltä, että sinulla ei ole vielä yhtään
     lajia oppaassasi.
+  lookup: Hae
   low: matala
   lowest_rank: Alhaisin arvo
   make_admin: Tee ylläpitäjä
@@ -1759,6 +1762,7 @@ fi:
   new_list: Uusi luettelo
   new_members: Uudet jäsenet
   new_message: Uusi viesti
+  new_observation_field: Uusi havaintokenttä
   new_observation_rules: Uudet havainnointisäännöt
   new_observations: Uudet havainnot
   new_observations_ellispsis: Uudet havainnot...
@@ -1863,6 +1867,7 @@ fi:
   note: Huomautus
   number_of_observations: Havaintojen lukumäärä
   number_selected: '# valittu'
+  numeric_: numeerinen
   noun_by_you: sinun %{noun}
   observation: Havainto
   observation_: havainto
@@ -1959,6 +1964,7 @@ fi:
   one_by_one: Yksi kerrallaan
   one_of_your_lists: yksi listoistasi...
   only_letters_numbers: Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella
+  only_receive_updates_about_this_taxon: Vastaanota päivityksiä vain tästä taksonista
   only_show_taxa_fom_this_list: Näytä vain taksonit tästä listasta
   only_species: vain lajit
   only_species_and_subspecies: vain lajit ja alalajit/lajikkeet
@@ -2027,6 +2033,7 @@ fi:
   photo_type: Kuvan tyyppi
   photos_chosen_for_this_taxon: Tälle taksonille valitut kuvat
   photos_from: Kuvat sivustolta
+  photos_of: Kuvia kohteesta
   photos_or_sounds: Kuvia tai ääniä
   photos_or_sounds?: Kuvia tai ääniä?
   photos_size:
@@ -2034,6 +2041,7 @@ fi:
     medium: keskikokoinen
     large: suuri
     original: alkuperäinen
+  photos_updated: Kuvat päivitetty.
   pick_a_username: Valitse käyttäjänimi
   pink: pinkki
   place: Paikka
@@ -2118,6 +2126,7 @@ fi:
       zone: vyöhyke
   place_imported: Paikka tuotu!
   place_name: Paikan nimi
+  place_subscription: paikan tilaus
   place_updated: Paikka pävitetty!
   placement: Sijoitus
   places: Paikat
@@ -2178,6 +2187,7 @@ fi:
     virgin_islands: Neitsytsaaret
     west_africa: Länsi-Afrikka
   places_of_interest: Mielenkiintoiset paikat
+  places_merged_successfully: Paikat yhdistettiin onnistuneesti!
   plants: kasvit
   please_allow_a_few_weeks_for_external_sites: Salli muutama viikko ulkopuolisille
     sivustoille synkronoida muutokset tästä havainnosta
@@ -2223,6 +2233,8 @@ fi:
   project_group_label: Ryhmä
   project_home: Projektikoti
   project_icon: Projektikuvake
+  project_id_or_url_slug: Projektin tunniste tai URL-slug, esim. 333 tai my-project
+  project_invitations: Projektikutsut
   project_journal_posts: Projektin päiväkirjamerkinnät
   project_list: Projektiluettelo
   project_list_defaults:
@@ -2292,6 +2304,7 @@ fi:
   reason: Syy
   receive_email_notifications_when_people_leave_you: Vastaanota sähköposti-ilmoituksia
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
+  received: vastaanotetut
   recent: Viimeaikainen
   recent_additions: Viimeaikaiset lisäykset
   recent_evidence?: Viimeaikaiset todisteet?
@@ -2393,6 +2406,7 @@ fi:
   search_by_taxon_name_or_flickr_photo_id: Hae taksonin nimellä tai Flick-kuvan tunnisteella
   search_creative_commons_photos_on_flickr: Etsi Creative Commons kuvia Flickrissä.
     Jos valitset yhden, ole kiltti ja jätä heille kiitos kommentti!
+  search_external_name_providers: Hae ulkoisia nimitarjoajia
   search_for_place_to_import_from_yahoo: Etsi paikka tuotavaksi Yahoo-palvelusta.
   search_list: Hae lista
   search_obs: Etsi havaintoja...
@@ -2494,6 +2508,7 @@ fi:
     selected_sounds: Valitut äänet
     sound: Ääni
     sounds: Äänet
+    view_all_soundcount_sounds: Näytä kaikki %{sound_count} ääntä
     your_soundcloud_account: sinun SoundCloud-tili
   source: Lähde
   source_: 'Lähde:'
@@ -2525,7 +2540,7 @@ fi:
   species_header: Lajit
   species_name: lajin nimi
   species_name_cap: Lajin nimi
-  species_names: lajinimet
+  species_names: lajien nimet
   species_search: Lajihaku
   species_taxon_name: Laji / Taksonin nimi
   src: Lähde
@@ -2598,7 +2613,9 @@ fi:
   taxon_or_place_observations: Taksoni- tai paikkahavainnot
   taxon_photos_updated: Taksonikuvat päivitetty
   taxon_search: Taksonihaku
+  taxon_subscription: taksonin tilaus
   taxon_to_delete: Poistettava taksoni
+  taxon_name_was_successfully_updated: Taksonin nimi päivitettiin onnistuneesti.
   taxon_was_successfully_created: Taksoni luotiin onnistuneesti.
   taxonomic: Taksonominen
   taxonomic_groups: Taksonomiset ryhmät
@@ -2690,6 +2707,7 @@ fi:
   twitter: Twitter
   two_thirds: 2:nen/3:s
   type: Kirjoita
+  type_a_name_and_click: Kirjoita nimi ja klikkaa HAE
   type_a_place_name_and_click_search: Kirjoita paikan nimi ja klikkaa HAE hakeaksesi
   type_place_name: Kirjoita paikan nimi
   type_project_name: Kirjoita projektin nimi
@@ -2697,6 +2715,7 @@ fi:
   type_source_title: Kirjoita lähdeotsikko
   type_species_name: Kirjoita lajin nimi
   type_taxon_name: Kirjoita taksonin nimi
+  type_taxon_name_and_click_lookup: Kirjoitan taksonin nimi ja klikkaa hae
   unblock: Poista esto
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
@@ -2714,11 +2733,15 @@ fi:
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot
     uusilla lisenssivaihtoehdoilla
+  update_existing_photos_with_new_license: Päivitä nykyiset kuvat uudella valitulla
+    lisenssillä
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
+  update_subscription: Päivitä tilaus
   update_your_content: Päivitä sisältösi
   updated: Päivitetty
+  updated_by: Päivittänyt
   updated_daily: Päivitetään päivittäin
   upload: Lataa
   upload_a_csv_file: Lataa CSV-tiedosto
@@ -2778,6 +2801,7 @@ fi:
   view_check_list_page: Katso lajiluettelosivu
   view_contributions: Näytä muokkaukset
   view_details: Näytä tiedot
+  view_field_options: Näytä kenttäasetukset
   view_flags: Näytä liput
   view_invitation: Näytä kutsu
   view_journal: Näytä päiväkirja
@@ -2789,10 +2813,13 @@ fi:
   view_more: Näytä lisää
   view_more_observations: Näytä lisää havaintoja
   view_more_observations_from: Näytä lisää havaintoja paikasta
+  view_more_observations_of_x_project: Näytä lisää havaintoja projektista %{project}
+    sivustolla <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Näytä lisää viimeaikaisia havaintoja
   view_nbsp: Näytä &nbsp;
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
+  view_observation_flags: Näytä havaintoliput
   view_observations_by_everyone: Näytä kaikkien havainnot
   view_observations_raquo: Näytä havainnot &raquo;
   view_on_amphibiaweb: Näytä AmphibiaWebissä
@@ -2804,18 +2831,23 @@ fi:
     ja paljon muuta! Olemme koonneet tietoja monista eri lähteistä ja yhdistäneet
     ne yhteen kunkin lajin nopeaan yhteenvetoon kussakin paikassa.
   view_place: Näytä paikka
-  view_projects_from_place: Näytä projektin paikasta %{place}
+  view_post: Näytä viesti
+  view_projects_from_place: Näytä projektit paikasta %{place}
+  view_site_name_observations_html: Näytä <strong>%{site_name}</strong> havainnot
   view_stats: Näytä tilastot
   view_taxon_change: Näytä taksonimuutos
   view_taxon_changes: Näytä taksonimuutokset
   view_taxon_page: Näytä taksonisivu
   view_taxon_page_for_this_x: Näytä taksonisivu kohteessa %{x}
+  view_taxonomic_changes: Näytä taksonomiset muutokset
   view_terms: Näytä ehdot
   view_the_observation: Näytä havainnot
   view_unidentified_observations: Näytä tunnistamattomat havainnot
   view_user_observations: Näytä käyttäjän %{user} havainnot
   view_xs_journal: Näytä käyttäjän %{x} päiväkirja
   view_your_dashboard: Näytä kojelautasi
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Tarkastele kojelaudaltasi</a>
+    lisää päivityksiä
   view_your_inbox: Näytä saapuneet-kansiosi
   view_your_life_list: Näytä elämäluettelosi
   view_your_calendar: Näytä kalenterisi
@@ -2945,6 +2977,7 @@ fi:
   your_observations_couldnt_be_added_to_that_project: 'Havaintojasi ei voitu lisätä
     tähän projektiin: %{errors}'
   your_google_account: Google-tilisi
+  your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
   your_should_recognize: Sinun pitäisi tunnistaa jotkin näistä valokuvista
   your_site_account_has_been_created: '%{site}-tilisi on luotu.'
   your_subscriptions: Tilauksesi
@@ -3050,6 +3083,9 @@ fi:
       field_descriptions:
         user_login: Havainnoijan käyttäjänimi
         tag_list: Pilkulla erotettu luettelo tunnisteista
+      show:
+        allow_curator_coordinate_access_desc_html: Salli projektin kuraattorien nähdä
+          yksityiset koordinaatit tälle havainnolle.
     photos:
       inviter:
         automatically_add_to_project: Lisää automaattisesti projektiin
@@ -3094,6 +3130,8 @@ fi:
     taxa:
       show:
         trending_desc: Eniten havaitut taksonit viime kuussa
+        trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa
+          <a href="%{url}">%{place}</a>
         frequency:
           research: Tutkimusaste
           verifiable: Todennettavissa
