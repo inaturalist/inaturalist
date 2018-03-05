@@ -68,20 +68,25 @@ class MapComparison extends React.Component {
         />
       );
     } else {
-      maps = _.map( queries, ( query, i ) => (
-        <div key={ `map-${query.params}-${mapLayout}-${i}` } className="map">
-          <h5>{ query.name }</h5>
-          <TaxonMap
-            showAllLayer={ false }
-            gestureHandling="auto"
-            minX={ bounds.swlng }
-            minY={ bounds.swlat }
-            maxX={ bounds.nelng }
-            maxY={ bounds.nelat }
-            observationLayers={ [layerForQuery( query )] }
-          />
-        </div>
-      ) );
+      maps = _.map( queries, ( query, i ) => {
+        const observationLayers = [layerForQuery( query )];
+        const reloadKey = `map-${query.params}-${mapLayout}-${i}`;
+        return (
+          <div key={ reloadKey } className="map">
+            <h5>{ query.name }</h5>
+            <TaxonMap
+              reloadKey={ reloadKey }
+              showAllLayer={ false }
+              gestureHandling="auto"
+              minX={ bounds.swlng }
+              minY={ bounds.swlat }
+              maxX={ bounds.nelng }
+              maxY={ bounds.nelat }
+              observationLayers={ observationLayers }
+            />
+          </div>
+        );
+      } );
     }
     return (
       <div className="MapComparison">

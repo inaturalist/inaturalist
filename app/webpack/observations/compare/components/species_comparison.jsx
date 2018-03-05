@@ -34,7 +34,7 @@ const SpeciesComparison = ( {
   return (
     <div className="SpeciesComparison">
       { _.filter( totalTaxonCounts, c => c > 500 ).length > 0 ? (
-        <div className="alert alert-danger pull-right">
+        <div className="alert alert-danger alert-sm pull-right">
           Some queries missing taxa. <OverlayTrigger
             trigger="click"
             rootClose

@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { Row, Col } from "react-bootstrap";
 import SpeciesComparisonContainer from "../containers/species_comparison_container";
 import MapComparisonContainer from "../containers/map_comparison_container";
+import HistoryComparisonContainer from "../containers/history_comparison_container";
 
 class Tabs extends React.Component {
   componentDidMount( ) {
@@ -35,6 +36,9 @@ class Tabs extends React.Component {
               <li role="presentation" className={ chosenTab === "map" ? "active" : "" }>
                 <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
               </li>
+              <li role="presentation" className={ chosenTab === "history" ? "active" : "" }>
+                <a href="#history-tab" role="tab" data-toggle="tab">{ I18n.t( "history" ) }</a>
+              </li>
             </ul>
           </Col>
         </Row>
@@ -54,6 +58,13 @@ class Tabs extends React.Component {
                 id="map-tab"
               >
                 <MapComparisonContainer />
+              </div>
+              <div
+                role="tabpanel"
+                className={`tab-pane ${chosenTab === "history" ? "active" : ""}`}
+                id="history-tab"
+              >
+                <HistoryComparisonContainer />
               </div>
             </div>
           </Col>

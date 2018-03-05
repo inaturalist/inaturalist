@@ -16,6 +16,13 @@ const App = ( ) => (
           <TabsContainer />
         </Col>
       </Row>
+      <Row>
+        <Col xs={12}>
+          <div className="alert alert-warning text-center">
+            This tool is experimental. It might be broken, and may be removed at any time.
+          </div>
+        </Col>
+      </Row>
     </Grid>
   </div>
 );

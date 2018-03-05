@@ -15,6 +15,9 @@ const SET_BOUNDS = "observations-compare/compare/SET_BOUNDS";
 const SET_TOTAL_TAXON_COUNTS = "observations-compare/compare/SET_TOTAL_TAXON_COUNTS";
 const MOVE_QUERY = "observations-compare/compare/MOVE_QUERY";
 const SET_MAP_LAYOUT = "observations-compare/compare/SET_MAP_LAYOUT";
+const SET_HISTORY_LAYOUT = "observations-compare/compare/SET_HISTORY_LAYOUT";
+const SET_HISTORIES = "observations-compare/compare/SET_HISTORIES";
+const SET_HISTORY_INTERVAL = "observations-compare/compare/SET_HISTORY_INTERVAL";
 
 const setUrl = state => {
   const json = JSON.stringify( _.pick( state, [
@@ -23,7 +26,9 @@ const setUrl = state => {
     "taxonFilter",
     "taxonFrequenciesSortIndex",
     "taxonFrequenciesSortOrder",
-    "mapLayout"
+    "mapLayout",
+    "historyLayout",
+    "historyInterval"
   ] ) );
   const bytes = utf8.encode( json );
   const encoded = btoa( bytes );
@@ -65,7 +70,10 @@ export const DEFAULT_STATE = {
     nelat: 80,
     nelng: 170
   },
-  mapLayout: "combined"
+  mapLayout: "combined",
+  historyLayout: "combined",
+  historyInterval: "week",
+  histories: []
 };
 
 export default function reducer( state = DEFAULT_STATE, action ) {
@@ -117,13 +125,26 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       newState.totalTaxonCounts = action.counts;
       break;
     case MOVE_QUERY: {
-      const query = newState.queries.splice( action.index, 1 )[0];
-      newState.queries.splice( action.newIndex, 0, query );
+      _.forEach( ["queries", "histories", "totalTaxonCounts"], arrKey => {
+        const item = newState[arrKey].splice( action.index, 1 )[0];
+        newState[arrKey].splice( action.newIndex, 0, item );
+      } );
       setUrl( newState );
       break;
     }
     case SET_MAP_LAYOUT:
       newState.mapLayout = action.mapLayout;
+      setUrl( newState );
+      break;
+    case SET_HISTORY_LAYOUT:
+      newState.historyLayout = action.historyLayout;
+      setUrl( newState );
+      break;
+    case SET_HISTORIES:
+      newState.histories = action.histories;
+      break;
+    case SET_HISTORY_INTERVAL:
+      newState.historyInterval = action.historyInterval;
       setUrl( newState );
       break;
     default:
@@ -335,6 +356,43 @@ export function fetchBounds( ) {
   };
 }
 
+export function setHistoryLayout( historyLayout ) {
+  return {
+    type: SET_HISTORY_LAYOUT,
+    historyLayout
+  };
+}
+
+export function setHistories( histories ) {
+  return {
+    type: SET_HISTORIES,
+    histories
+  };
+}
+
+export function setHistoryInterval( historyInterval ) {
+  return {
+    type: SET_HISTORY_INTERVAL,
+    historyInterval
+  };
+}
+
+export function fetchHistories( ) {
+  return ( dispatch, getState ) => {
+    const s = getState( ).compare;
+    const promises = s.queries.map( query => {
+      const params = $.deparam( query.params );
+      params.interval = s.historyInterval;
+      return inatjs.observations.histogram( params );
+    } );
+    Promise.all( promises ).catch( e => {
+      console.log( "[DEBUG] e: ", e );
+    } ).then( responses => {
+      dispatch( setHistories( responses.map( response => response.results[s.historyInterval] ) ) );
+    } );
+  };
+}
+
 export function fetchDataForTab( tab ) {
   return ( dispatch, getState ) => {
     const s = getState( );
@@ -343,6 +401,8 @@ export function fetchDataForTab( tab ) {
       dispatch( fetchTaxa( ) );
     } else if ( chosenTab === "map" ) {
       dispatch( fetchBounds( ) );
+    } else if ( chosenTab === "history" ) {
+      dispatch( fetchHistories( ) );
     }
   };
 }

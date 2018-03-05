@@ -15,14 +15,14 @@ const Queries = ( {
           type="text"
           defaultValue={ query.name }
           className="name form-control"
-          placeholder={ I18n.t( "name" ) }
+          placeholder="Label"
           onBlur={ e => {
             updateQueryAtIndex( i, { name: e.target.value } );
           } }
         />
         <input
           type="text"
-          placeholder="Parameters"
+          placeholder="Obs search URL params (everything after ?)"
           defaultValue={ query.params }
           className="params form-control"
           onBlur={ e => {

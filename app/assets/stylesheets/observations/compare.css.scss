@@ -16,7 +16,7 @@
       }
     }
   }
-  .alert-danger {
+  .alert-sm {
     padding: 6px 12px;
     margin: 0;
   }
@@ -86,6 +86,25 @@
     }
     .map:first-child {
       margin-left: 0;
+    }
+  }
+
+  .HistoryComparison {
+    .DateHistogram svg {
+      width: 100%;
+      min-height: 300px;
+    }
+    .charts-horizontal {
+      display: flex;
+      .DateHistogram {
+        flex-grow: 1;
+        width: 100%;
+      }
+    }
+    .form-inline {
+      label {
+        margin-right: 5px;
+      }
     }
   }
 }
