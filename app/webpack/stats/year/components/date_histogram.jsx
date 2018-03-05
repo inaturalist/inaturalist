@@ -4,16 +4,19 @@ import _ from "lodash";
 import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
-// import moment from "moment";
 
 class DateHistogram extends React.Component {
   componentDidMount( ) {
     this.renderHistogram( );
   }
 
+  componentDidUpdate( ) {
+    this.renderHistogram( );
+  }
+
   renderHistogram( ) {
-    // moment.locale( I18n.locale );
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    $( mountNode ).html( "" );
     const svg = d3.select( mountNode ).append( "svg" );
     const svgWidth = $( "svg", mountNode ).width( );
     const svgHeight = $( "svg", mountNode ).height( );
@@ -27,7 +30,7 @@ class DateHistogram extends React.Component {
     const height = $( "svg", mountNode ).height( ) - margin.top - margin.bottom;
     const g = svg.append( "g" ).attr( "transform", `translate(${margin.left}, ${margin.top})` );
 
-    const parseTime = d3.timeParse( "%Y-%m-%d" );
+    const parseTime = d3.isoParse;
     const series = {};
     _.forEach( this.props.series, ( s, seriesName ) => {
       series[seriesName] = _.map( s.data, d => ( {
@@ -39,12 +42,12 @@ class DateHistogram extends React.Component {
     const x = d3.scaleTime( ).rangeRound( [0, width] );
     const y = d3.scaleLinear( ).rangeRound( [height, 0] );
     const line = d3.line( )
-        .x( d => x( d.date ) )
-        .y( d => y( d.value ) );
+      .x( d => x( d.date ) )
+      .y( d => y( d.value ) );
 
     const combinedData = _.flatten( _.values( series ) );
-    x.domain( d3.extent( combinedData, d => d.date ) );
-    y.domain( d3.extent( combinedData, d => d.value ) );
+    x.domain( this.props.xExtent || d3.extent( combinedData, d => d.date ) );
+    y.domain( this.props.yExtent || d3.extent( combinedData, d => d.value ) );
 
     let axisBottom = d3.axisBottom( x );
     if ( this.props.tickFormatBottom ) {
@@ -52,15 +55,15 @@ class DateHistogram extends React.Component {
     }
 
     g.append( "g" )
-        .attr( "transform", `translate(0,${height})` )
-        .call( axisBottom )
-        .select( ".domain" )
-              .remove();
+      .attr( "transform", `translate(0,${height})` )
+      .call( axisBottom )
+      .select( ".domain" )
+        .remove();
 
     g.append( "g" )
-        .call( d3.axisLeft( y ) )
-        .select( ".domain" )
-              .remove( );
+      .call( d3.axisLeft( y ) )
+      .select( ".domain" )
+        .remove( );
 
     const dateFormatter = d3.timeFormat( "%d %b" );
     const tip = d3tip()
@@ -153,7 +156,9 @@ class DateHistogram extends React.Component {
 DateHistogram.propTypes = {
   series: PropTypes.object,
   tickFormatBottom: PropTypes.func,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  xExtent: PropTypes.array,
+  yExtent: PropTypes.array
 };
 
 DateHistogram.defaultProps = {

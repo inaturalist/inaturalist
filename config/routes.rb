@@ -209,6 +209,7 @@ Rails.application.routes.draw do
       get :moimport
       post :moimport
       get :torquemap
+      get :compare
     end
     member do
       get :taxon_summary
