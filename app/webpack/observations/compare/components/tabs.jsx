@@ -26,7 +26,7 @@ class Tabs extends React.Component {
   render( ) {
     const { chosenTab } = this.props;
     return (
-      <div className="Tabs">
+      <div className="Tabs stacked">
         <Row>
           <Col xs={12}>
             <ul id="main-tabs" className="nav nav-tabs" role="tablist">
