@@ -9,15 +9,18 @@ class MapComparison extends React.Component {
       this.bindMapMoveEvents( );
     }
   }
-  componentDidUpdate( prevProps ) {
-    if ( this.props.mapLayout !== prevProps.mapLayout && this.props.mapLayout !== "combined" ) {
+  componentDidUpdate( ) {
+    if ( this.props.mapLayout !== "combined" ) {
       this.bindMapMoveEvents( );
     }
   }
 
   bindMapMoveEvents( ) {
-    $( ".MapComparison .TaxonMap" ).each( ( i, elt ) => {
+    $( ".MapComparison .TaxonMap" ).not( ".map-move-bound" ).each( ( i, elt ) => {
       const map = $( elt ).data( "taxonMap" );
+      if ( !map ) {
+        return;
+      }
       map.addListener( "drag", ( ) => {
         $( ".MapComparison .TaxonMap" ).each( ( j, otherElt ) => {
           if ( i !== j ) {
@@ -26,12 +29,20 @@ class MapComparison extends React.Component {
         } );
       } );
       map.addListener( "zoom_changed", ( ) => {
+        const newZoom = map.getZoom( );
+        const newCenter = map.getCenter( );
         $( ".MapComparison .TaxonMap" ).each( ( j, otherElt ) => {
-          if ( i !== j && $( otherElt ).data( "taxonMap" ).getZoom( ) !== map.getZoom( ) ) {
-            $( otherElt ).data( "taxonMap" ).setZoom( map.getZoom( ) );
+          const otherMap = $( otherElt ).data( "taxonMap" );
+          if ( !otherMap ) {
+            return;
+          }
+          if ( i !== j && otherMap.getZoom( ) !== newZoom ) {
+            otherMap.setCenter( newCenter );
+            otherMap.setZoom( newZoom );
           }
         } );
       } );
+      $( elt ).addClass( "map-move-bound" );
     } );
   }
   render( ) {
@@ -57,8 +68,8 @@ class MapComparison extends React.Component {
         />
       );
     } else {
-      maps = _.map( queries, query => (
-        <div key={ `map-${query.params}-${mapLayout}` } className="map">
+      maps = _.map( queries, ( query, i ) => (
+        <div key={ `map-${query.params}-${mapLayout}-${i}` } className="map">
           <h5>{ query.name }</h5>
           <TaxonMap
             showAllLayer={ false }
@@ -107,6 +118,12 @@ MapComparison.propTypes = {
   setMapLayout: PropTypes.func,
   queries: PropTypes.array,
   bounds: PropTypes.object
+};
+
+MapComparison.defaultProps = {
+  mapLayout: "combined",
+  queries: [],
+  bounds: {}
 };
 
 export default MapComparison;

@@ -314,14 +314,16 @@ export function fetchBounds( ) {
     } ).then( responses => {
       const bounds = new google.maps.LatLngBounds( );
       _.forEach( responses, response => {
-        bounds.extend( {
-          lat: response.total_bounds.swlat,
-          lng: response.total_bounds.swlng
-        } );
-        bounds.extend( {
-          lat: response.total_bounds.nelat,
-          lng: response.total_bounds.nelng
-        } );
+        if ( response.total_bounds ) {
+          bounds.extend( {
+            lat: response.total_bounds.swlat,
+            lng: response.total_bounds.swlng
+          } );
+          bounds.extend( {
+            lat: response.total_bounds.nelat,
+            lng: response.total_bounds.nelng
+          } );
+        }
       } );
       dispatch( setBounds( {
         swlat: bounds.getSouthWest( ).lat( ),
