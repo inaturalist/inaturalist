@@ -3880,8 +3880,7 @@ pt-BR:
     de vicariância-dispersão or uma expansão da distribuição da espécie.
   this_observation_was_created_using: 'Esta observação foi criada com:'
   this_photo_is_already_associated: Esta foto já está associada com uma de suas observações.
-  this_place_has_no_check_list: Este local não possui lista de verificação, então
-    não existe um guia.
+  this_place_has_no_check_list: Este lugar não tem lista de verificação.
   this_species: esta espécie
   this_species_has_no_colors: Esta espécie não tem cores! Ajude a melhorar a procura
     por esta espécie contanto qual é a cor dela!
@@ -4204,6 +4203,7 @@ pt-BR:
   view_the_range: Exibir área de distribuição
   view_unidentified_observations: Ver as observações não identificadas...
   view_user_observations: Exibir as observações de %{user}
+  view_x: Ver %{x}
   view_x_from_x: Exibir %{day_observations} de %{observed_on}
   view_xs_journal: Veja o Boletim Informativo de %{x}
   view_your_dashboard: Exibir painel de controle
@@ -5215,9 +5215,11 @@ pt-BR:
           Por favor deixe um alerta de infração de direitos autorais como não resolvido
           se esta foto estar de fato infringindo direitos.
     places:
-      kml_field_desc: KML dos limites do lugar. Você pode criar um utilizando o Google
-        Maps, Google Earth, ou a maioria dos aplicativos GIS. Deve ter ao menos um
-        polígono e ser menos que 1MB (5MB para coordenadores do site).
+      kml_field_desc: |-
+        KML do limite do local. Você pode fazer um usando Google Maps, Google
+        Terra ou a maioria dos aplicativos GIS. Deve ter pelo menos um polígono
+        menos de 1 MB (5 MB para curadores do site), e tem uma área menor do que o
+        Estado dos EUA no Texas.
       edit:
         complex_boundary_note_html: Estes limites de fronteira são um pouco complexos
           para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download
