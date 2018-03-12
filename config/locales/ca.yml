@@ -905,6 +905,7 @@ ca:
   committed: Desa
   committed_on: Validat el %{date}
   committing: Desant...
+  community: Comunitat
   community_curated: Supervisat per la Comunitat
   community_guidelines: Directrius de la comunitat
   community_id: 'ID de la <strong>Comunitat</strong>:'
@@ -1672,7 +1673,7 @@ ca:
   id_please: ID, si us plau
   id_please_expandable_html: ID<span class='full'> si us plau</span>!
   id_withdrawn: ID retirat
-  ids_by_taxon: Ids. per taxó
+  ids_by_taxon: Ids. per tàxon
   identify: Identificar
   identify_observations: Identifiqueu observacions
   identify_title: Identificar
@@ -3973,8 +3974,7 @@ ca:
   this_observation_was_created_using: 'Aquesta observació va ser creada utilitzant:'
   this_photo_is_already_associated: Aquesta foto ja està associada amb una de les
     vostres observacions.
-  this_place_has_no_check_list: Aquest lloc no té llista de comprovació, per tant,
-    no hi ha cap guia
+  this_place_has_no_check_list: Aquest lloc no té cap llista de comprovació.
   this_species: aquesta espècie
   this_species_has_no_colors: Aquesta espècie no té colors! Ajudeu a millorar les
     cerques d'espècies dient-nos de quin color és l’espècie!
@@ -4320,6 +4320,7 @@ ca:
   view_the_range: Mostra l’interval
   view_unidentified_observations: Mostra observacions no identificades...
   view_user_observations: Mostra observacions de %{user}
+  view_x: Veure %{x}
   view_x_from_x: Mostra %{day_observations} de %{observed_on}
   view_xs_journal: Mostra el diari de %{x}
   view_year_stats_for_site: Veure estadístiques del %{year} a %{site}
@@ -4707,6 +4708,14 @@ ca:
   verifiable: verificable
   views:
     views: Vistes
+    announcements:
+      locales_desc: Premeu CMD- o SHIFT- per a seleccions múltiples. Si no seleccioneu
+        cap es mostrarà un avís a tots els usuaris, amb independència de la seva localització.
+        Si escolliu un idioma local, sense cap regió, *no* seleccionarà les regions
+        locals, per exemple, si escolliu en no li apareixerà a les persines que hagin
+        escollit en-US. Si voleu dirigir-ho a ambdues, cal que es escolliu ambdues.
+        Si voleu mostrar l'anunci per a tots els membres de un lloc, deixeu-lo en
+        blanc.
     custom_projects:
       edit:
         custom_project_fields_warning: 'Si us plau, aneu amb compte: Si afegiu Javascript
@@ -4779,7 +4788,7 @@ ca:
           </tr>
           </tbody>
           </table>
-          <p> La primera fila comença amb "Nom", seguit de les etiquetes de propietats/categories. A continuació, cada una de les següents files s'inicia amb el nom de taxó, seguida per les etiquetes corresponents a la propietat de la part superior de la columna. En aquest exemple, <i>Homo sapiens</i> té les etiquetes <code>bípeda</code> i <code>Nombre de mans=2</code> i <i>Vulpes vulpes</i> és <code>quadrúpeda</code>, <code>color=rojo</ code>, <code>color=negre</ code> i <code>Nombre de mans=0</code>. Els espais en blanc s'ignoren, i pot afegir diverses línies per cada taxó. També podeu afegir diversos valors per cel·la, separats pel caràcter de barra vertical (|).
+          <p> La primera fila comença amb "Nom", seguit de les etiquetes de propietats/categories. A continuació, cada una de les següents files s'inicia amb el nom de tàxon, seguida per les etiquetes corresponents a la propietat de la part superior de la columna. En aquest exemple, <i>Homo sapiens</i> té les etiquetes <code>bípeda</code> i <code>Nombre de mans=2</code> i <i>Vulpes vulpes</i> és <code>quadrúpeda</code>, <code>color=rojo</ code>, <code>color=negre</ code> i <code>Nombre de mans=0</code>. Els espais en blanc s'ignoren, i pot afegir diverses línies per cada tàxon. També podeu afegir diversos valors per cel·la, separats pel caràcter de barra vertical (|).
           </ul>
         licensing_explanation: 'Llicenciar el vostre contingut permet que altres persones
           tinguin dret a copiar-ho i modificar-ho sense demanar permís. Això fa que
@@ -4841,7 +4850,7 @@ ca:
         site_explanation: Afegir un nom vulgar, fins a 5 imatges llicenciades, i un
           resum de la Viquipèdia des de %{site_name}.
       show:
-        reuse_desc: Podeu copiar aquest taxó a una altra guia. Si sou un dels editors
+        reuse_desc: Podeu copiar aquest tàxon a una altra guia. Si sou un dels editors
           d'aquesta guia es copiarà tot, però si no ho sou només es copiarà el contingut
           amb llicència.
     help:
@@ -5285,7 +5294,8 @@ ca:
     places:
       kml_field_desc: KML dels límits del lloc. Podeu fer-ho amb Google Maps, Google,
         Google Earth o moltes altres aplicacions SIG. Ha de tractar-se, almenys, d'un
-        polígon i tenir menys d'1 MB (5 MB pels supervisors del lloc).
+        polígon de menys d'1 MB (5 MB pels supervisors del lloc), i una superfície
+        inferior a la de l'Estat americà de Texas.
       edit:
         complex_boundary_note_html: Aquest límit és massa complicat per editar-ho
           al web. Malgrat això podeu <a href="%{url}">descarregar l'arxiu KML</a>,
@@ -5392,7 +5402,7 @@ ca:
             Podeu crear una llista personalitzada de tàxons per aquest projecte i
             enllaçar-la. Això pot ser útil per restringir les observacions que
             s'afegeixen al vostre projecte a aquelles en que hi coincideix el
-            taxó amb la llista a través de la regla "ha de ser una espècie de la
+            tàxon amb la llista a través de la regla "ha de ser una espècie de la
             llista del projecte".
           </p>
         rules:
@@ -5495,6 +5505,11 @@ ca:
         even_our_dedicated_search_mole_couldnt: Fins i tot amb la nostra detallada
           cerca no ha estat possible trobar res de res!
     taxa:
+      edit:
+        complete_desc_html: Un tàxon "complet" inclou <em>tots</em> els tàxons descendents
+          conegut al rang especificat que compleix amb les polítiques de gestió d'iNaturalist,
+          hagin estat o no observats. Únicament els administradors poden declarar
+          un tàxon complert en l'actualitat.
       show:
         about_names_desc: |-
           <p>
@@ -5950,6 +5965,10 @@ ca:
           attributes:
             base:
               guide_has_too_many_taxa: La guia només pot tenir 500 tàxons
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: Clau API important-se o pendent d'importar
         observation_field_value:
           attributes:
             value:

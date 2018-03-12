@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: 2axterix2
 # Author: Alcorman
+# Author: Anitenn
 # Author: Asierog
 # Author: Caloonso
 # Author: Cgalindo
@@ -149,7 +150,7 @@ es:
   about_bioblitz_results: sobre los resultados del "bioblitz" (evaluación rápida)
   about_charts: Acerca de los gráficos
   about_community_taxa: Sobre los taxones comunitarios
-  about_complete_taxa: Sobre la taxa completa
+  about_complete_taxa: Acerca de los taxones completos
   about_conservation_status: Acerca del estado de conservación
   about_establishment_means: Acerca de los medios de establecimiento
   about_external_links: Acerca de los enlaces externos
@@ -347,14 +348,22 @@ es:
     subphylum: Se añadieron todos los subfilos a la base de datos
     superclass: Se añadieron todas las superclases a la base de datos
     class: Se añadieron todas las clases a la base de datos
+    subclass: Se añadieron todas las subclases a la base de datos
     infraclass: Se añadieron todas las infraclases a la base de datos
     superorder: Se añadieron todos los superórdenes a la base de datos
+    order: Se añadieron todos los órdenes a la base de datos
+    suborder: Se añadieron todos los subórdenes a la base de datos
     infraorder: Se añadieron todos los infraórdenes a la base de datos
+    superfamily: Se añadieron todas las superfamilias a la base de datos
     epifamily: Se añadieron todas las epifamilias a la base de datos
     family: Se añadieron todas las familias a la base de datos
     subfamily: Se añadieron todas las subfamilias a la base de datos
+    supertribe: Se añadieron todas las supertribus a la base de datos
     tribe: Se añadieron todas las tribus a la base de datos
+    subtribe: Se añadieron todas las subtribus a la base de datos
     genus: Se añadieron todos los géneros a la base de datos
+    genushybrid: Se añadieron todos los géneros híbridos a la base de datos
+    subgenus: Se añadieron todos los subgéneros a la base de datos
     section: Se añadieron todas las secciones a la base de datos
     subsection: Se añadieron todas las subsecciones a la base de datos
     species: Se añadieron todas las especies a la base de datos
@@ -904,6 +913,7 @@ es:
   committed: Guardar
   committed_on: Validado el %{date}
   committing: Guardando...
+  community: Comunidad
   community_curated: Supervisado por la Comunidad
   community_guidelines: Directrices comunitarias
   community_id: 'Identificación de la <strong>comunidad</strong>:'
@@ -3977,8 +3987,7 @@ es:
     del rango.
   this_observation_was_created_using: 'Esta observación fue creada usando:'
   this_photo_is_already_associated: Esta foto ya está asociada con una de sus observaciones.
-  this_place_has_no_check_list: Este lugar no tiene lista de comprobación. Por ende,
-    no hay guía.
+  this_place_has_no_check_list: Este lugar no tiene lista de comprobación.
   this_species: esta especie
   this_species_has_no_colors: ¡Esta especie no tiene colores¡Ayude a mejorar las búsquedas
     de especies informándonos de qué color es esta!
@@ -4320,6 +4329,7 @@ es:
   view_the_range: Ver el área
   view_unidentified_observations: Ver observaciones no identificadas...
   view_user_observations: Ver observaciones de %{user}
+  view_x: Ver %{x}
   view_x_from_x: Ver %{day_observations} de %{observed_on}
   view_xs_journal: Ver el diario de %{x}
   view_year_stats_for_site: Ver las estadísticas de %{year} de %{site}

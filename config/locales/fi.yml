@@ -207,7 +207,7 @@ fi:
   add_field: Lisää kenttä
   add_from_your_observations: Lisää havainnoistasi
   add_link: Lisää linkki
-  add_listed_taxa_from_observations: Lisää luetteloidut taksonit havainnoista
+  add_listed_taxa_from_observations: Lisää listatut taksonit havainnoista
   add_higher_level_taxon: Lisää korkeamman tason taksoni (esim. "linnut")
   add_id: Lisää tunniste
   add_it_to_place_raquo: Lisää se paikkaan &raquo;
@@ -222,15 +222,15 @@ fi:
   add_new_taxon_name: Lisätä uuden taksonin nimi
   add_notes_about_this_taxon: Lisää muistiinpanoja tästä taksonista tässä paikassa,
     esim. missä ja milloin se tapahtuu.
-  add_obs_from_a_link: 'Lisää havainto luettelosta: %{link}'
-  add_obs_from_a_list: Lisää havainto luettelosta
+  add_obs_from_a_link: 'Lisää havainto listasta: %{link}'
+  add_obs_from_a_list: Lisää havainto listasta
   add_observation: Lisää havainto
   add_observations!: Lisää havaintoja!
   add_observations: Lisää havaintoja
-  add_observations_by_checking_off: Lisää havaintoja ruksaamalla lajeja luettelosta.
-  add_observations_from_list: Lisää havaintoja luettelosta
+  add_observations_by_checking_off: Lisää havaintoja ruksaamalla lajeja listasta.
+  add_observations_from_list: Lisää havaintoja listasta
   add_observations_of_taxa_youve_added: Lisää havaintoja taksoneista, joita olet lisännyt
-    luetteloon. Tämä toiminto on vielä kehityksessä, poistamme virheitä...
+    listaan. Kehitteillä, poistamme vikoja...
   add_observations_project: Lisää havaintoja tähän projektiin
   add_one: Lisää yksi!
   add_one_now: Lisää yksi nyt
@@ -258,7 +258,7 @@ fi:
   add_tags_to_selected_taxa: Lisää tunnisteita valittuun taksoniin
   add_taxa: Lisää taksoni
   add_taxa_to_places: lisää taksoni paikkoihin
-  add_taxon_batch_to: Lisää taksonierä luetteloon %{list}
+  add_taxon_batch_to: Lisää taksonierä listaan %{list}
   add_taxon_range: Lisää taksonin alue
   add_taxonomic_tags_to: Lisää taksonomiset tunnisteet valittuihin Flickr-kuviin &raquo;
   add_taxonomic_tags_to_the_fickr_photos: Lisää taksonomisia tunnisteita Fickr kuviin,
@@ -272,8 +272,8 @@ fi:
   add_to_id_please: Lisää tunnisteeseen kiitos
   add_to_list: Lisää listaan
   add_to_project: Lisää projektiin
-  add_to_your_life_list: Lisää elämäluetteloosi!
-  add_to_your_list: Lisää luetteloosi
+  add_to_your_life_list: Lisää elämälistaasi!
+  add_to_your_list: Lisää listaasi
   add_your_email_to_get: |-
     Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
     Jos et halua jakaa sitä, seuraa tätä sivustoa säännöllisesti.
@@ -293,7 +293,7 @@ fi:
   added_to_favorites_html: Lisätty <a href="%{url}">suosikkeihin</a>
   adding: Lisätään...
   adding_observations: Lisätään havaintoja
-  adding_to_your_life_list: Lisätään elämäluetteloosi...
+  adding_to_your_life_list: Lisätään elämälistaasi...
   additional_range: Lisäalue
   additional_range_data_from_an_unknown_source: Lisäalueen tietoja tuntemattomattomasta
     lähteestä
@@ -425,13 +425,16 @@ fi:
     lajista.
   amphibiaweb_taxonomy: AmphibiaWeb Taksonomia
   and: ja
-  and_choose_a_matching_taxon: ja valitse yhteensopiva taksoni luettelosta. Ellet
-    päädy jonkinlaiseen
+  and_choose_a_matching_taxon: ja valitse yhteensopiva taksoni listasta. Ellet päädy
+    jonkinlaiseen
   and_help_the_inaturalist_community_grow: ja auton sivuston %{site_name} yhteisöä
     kasvamaan.
   and_make_some_new: ja tee muutama uusi
   and_other_taxa: '&amp; Muut Taksonit'
   and_un_license_all_your_observations: ja peru kaikkien havaintojesi lisenssit
+  and_x_more_people!:
+    one: ja 1 muu henkilö!
+    other: ja %{count} muuta henkilöä!
   android: Android
   animals: Eläimet
   animated_observations_map: Animoitu havaintokartta
@@ -515,9 +518,9 @@ fi:
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
   attention: Huomautus
-  you_sure_delete_list: Oletko varma, että haluat poistaa tämän luettelon?
+  you_sure_delete_list: Oletko varma, että haluat poistaa tämän listan?
   you_sure_delete_taxon_from_list?: Oletko varma, että haluat poistaa taksonin %{taxon}
-    luettelosta?
+    listasta?
   asc: nouseva
   ascending: nouseva
   aside_from_extraordinary_circumstances: Lukuunottamatta poikkeuksellisia olosuhteita,
@@ -571,7 +574,7 @@ fi:
   back_to_x_journal: Takaisin käyttäjän %{user} päiväkirjaan
   back_to_x_blog: Takaisin sivun %{x} blogiin
   back_to_x_observations: Takaisin käyttäjän %{user} havaintoihin
-  back_to_your_lists: Takaisin luetteloihisi
+  back_to_your_lists: Takaisin listoihisi
   back_to_your_journal: Takaisin päiväkirjaasi
   back_to_your_observations: Takaisin havaintoihisi
   back_to_your_profile: Takaisin profiiliisi
@@ -716,33 +719,33 @@ fi:
   check_it_out: Tarkista se
   check_list: Lajiluettelo
   check_list_description: Valitse ylemmän tason taksoni jonka haluat näyttää tässä
-    luettelossa, kuten "Aves" linnuille, tai "Amphibia" sammakkoeläimille. Kun olet
-    tehnyt sen, tämä luettelo ei salli taksoneita jotka eivät kuulu tähän taksoniin.
-    Esimerkiksi, jos luot luettelon linnuista, et voi lisätä siihen sammakoita.
-  check_list_for_individual_taxa_that: Lajiluettelot yksittäisistä taksoneista, joita
+    listassa, kuten "Aves" linnuille, tai "Amphibia" sammakkoeläimille. Kun olet tehnyt
+    sen, tämä lista ei salli taksoneita jotka eivät kuulu tähän taksoniin. Esimerkiksi,
+    jos luot listan linnuista, et voi lisätä siihen sammakoita.
+  check_list_for_individual_taxa_that: Lajilistat yksittäisistä taksoneista, joita
     täällä esiintyy, esim. "Paikan %{place}" linnut.
   check_list_individual_taxa: Lajiluettelot yksittäisistä taksoneista, joita täällä
     esiintyy, esim. "Paikan %{place}" linnut.
-  check_lists_must_belong_to_a_place: Lajiluetteloiden on kuuluttava paikkoihin. Luodaksesi
+  check_lists_must_belong_to_a_place: Lajilistojen on kuuluttava paikkoihin. Luodaksesi
     uuden lajiluettelon, mene paikan oletuslajiluetteloon ja klikkaa linkkiä  "Luo
     uusi lajiluettelo".
   check_list_of_species_occuring_in: Lajiluettelo lajeista jotka esiintyvät
   check_list_place: '%{place} Lajiluettelo'
   check_list_updated: Lajiluettelo päivitetty!
   check_list_source: Lähde <span class="meta">(valinnainen)</span>
-  check_lists_for: Muut Lajiluettelot Paikalle %{place}
+  check_lists_for: Muut lajilistat paikalle %{place}
   check_out_my_observations_at: Jos haluat, voit tarkastella havaintojani osoitteessa
   check_out_our_blog: Tutustu blogiimme
   check_out_what_the_observation: Katso, miltä havainnot, joita yrität tunnistaa,
     näyttävät
-  check_out_your_life_list: Tarkista elämäluettelosi
+  check_out_your_life_list: Tarkista elämälistasi
   checklist: Lajiluettelo
   checklists: Tarkistuslistat
   checklist_places: Lajiluetteloiden paikkoja
   checklist_places_absent: Lajiluetteloiden paikkoja (poissa)
   checklist_places_confirmed: Lajililuetteloiden paikkoja (vahvistettu)
-  cheklist_places_are_places_with_contain_taxon: '"Lajiluettelopaikat" ovat paikkoja
-    joilla on lajiluetteloita jotka sisältävät tämän taksonin.'
+  cheklist_places_are_places_with_contain_taxon: '"Lajilistapaikat" ovat paikkoja
+    joilla on lajilistoja,a jotka sisältävät tämän taksonin.'
   choose_a_field: Valitse kenttä
   choose_a_list_above: Valitse luettelo yläpuolelta.
   choose_a_place: Valitse paikka
@@ -750,7 +753,7 @@ fi:
   chose_columns: Valitse sarakkeet
   choose_files: Valitse tiedostot
   choose_files_from_your_computer: valitse tiedostot omalta tietokoneeltasi
-  choose_from_your_lists: Valitse luetteloistasi
+  choose_from_your_lists: Valitse listoistasi
   choose_photos: Valitse valokuvat
   choose_photos_for_this_taxon: Valitse kuvat tälle taksoninille
   choose_photos_to_tag_from_photostream: Valitse kuvia valokuvavirrastasi tunnisteiden
@@ -1120,6 +1123,7 @@ fi:
   email_copyright: Copyright &copy; %{x}, kaikki oikeudet pidätetään
   email_settings: Sähköpostiasetukset
   embed: Upota
+  embed_place_widget: Upota paikkapienoisohjelma
   enable_offline_access: Ota offline-yhteys käyttöön
   enable_offline_access_for_mobile: Ota offline-yhteys käyttöön mobiililaitteille
   enlarge: Suurenna
@@ -1128,7 +1132,7 @@ fi:
   endangered: uhanalainen
   endemic: endeeminen
   endemic_to_x: Endeeminen paikassa %{x}
-  eol: Encyclopedia of Life
+  eol: EOL
   eol_collection_url: EOL kokoelman URL
   error_updating_photo: Virhe %{photo_errors} päivitettäessä kuvaa
   establishment:
@@ -1266,7 +1270,7 @@ fi:
   from_anywhere_change: mistä tahansa (<span class="button">muutos</span>)
   from_eol_collection: EOL-kokoelmasta
   from_flickr_facebook_etc: Flickristä, Facebookista, yms.
-  from_list: Luettelosta
+  from_list: Listasta
   from_this: tästä
   from_photos: Kuvista
   from_place: Paikasta
@@ -1408,7 +1412,7 @@ fi:
   inappropriate_content: Sopimatonta sisältöä?
   inat_account_action: '%{site_name} &#58; Tili &#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} uskoo, että tämä on täydellinen
-    luettelo tästä taksonista tässä paikassa.'
+    lista tästä taksonista tässä paikassa.'
   inat_user_profile: '%{site_name}: Käyttäjän %{user} profiili'
   inat_will_be_back_on: '%{site_name} tulee pian olemaan jaloillaan /siivillään/evillään/lonkeroillaan/valejaloillaan'
   inaturalist_is_an_online_community: '%{site_name} on verkkoyhteisö luonnontieteilijöille.
@@ -1555,10 +1559,10 @@ fi:
     kuten
   life: Elämä
   life!: Elämä!
-  life_list: Käyttäjän %{user} elämäluettelo
+  life_list: Käyttäjän %{user} elämälista
   life_list_updated: Elämänlista päivitetty!
-  life_list_updated_we_also_saved_a: Elämäluettelo päivitetty! Säästimme myös tämän
-    taksonin tyhjän havainnon.
+  life_list_updated_we_also_saved_a: Elämälista päivitetty! Säästimme myös tämän taksonin
+    tyhjän havainnon.
   link: Linkki
   link_or_unlink_your_facebook_account: Linkitä Facebook-tilisi tai poista sen linkitys
   link_or_unlink_your_flickr_account: Linkitä Flickr-tilisi tai poista sen linkitys
@@ -1571,22 +1575,23 @@ fi:
   link_your_google_account: Linkitä Google-tilisi
   linked_facebook: '%{site_name}-tilisi on tällä hetkellä linkitetty Facebook-tiliisi.'
   linked_flickr: '%{site_name}-tilisi on tällä hetkellä linkitetty Flickr-tiliisi.'
-  list: Luettelo
-  list_deleted: Luettelo poistettu.
-  list_saved: Luettelo tallennettu.
-  list_tooltip: Näytä luettelona
-  list_updated: Luettelo päivitetty!
+  list: Lista
+  list_deleted: Lista poistettu.
+  list_saved: Lista tallennettu.
+  list_tooltip: Näytä listana
+  list_updated: Lista päivitetty!
   list_views:
     plain: selkeä
     taxonomic: taksonominen
     photo: valokuva
-  list_was_successfully_created: Luettelo luotiin onnistuneesti.
+  list_was_successfully_created: Lista luotiin onnistuneesti.
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
-  lists: Luettelot
+  lists: Listat
   lists_by_login:
     title:
-      current_user: Luettelosi
+      current_user: Listasi
+      login: Listat käyttäjältä %{login}
   load: Lataa
   loading: Ladataan...
   loading_flickr_photos: Ladataan Flickr kuvia...
@@ -1759,7 +1764,7 @@ fi:
     %{user_link}
   new_guide: Uusi opas
   new_journal_posts: Uusi päiväkirjakirjoitus
-  new_list: Uusi luettelo
+  new_list: Uusi lista
   new_members: Uudet jäsenet
   new_message: Uusi viesti
   new_observation_field: Uusi havaintokenttä
@@ -1944,7 +1949,7 @@ fi:
   on_edit_date: '%{editdate}'
   on_list?: listassa
   on_submit_date: '%{submitdate}'
-  on_your_life_list: elämäluettelossasi
+  on_your_life_list: elämälistassasi
   onboarding:
     observe_panel_title: Aloitetaan lähettämällä joitain havaintoja
     observe_panel_body_p1_local: Tarvitsetko inspiraatiota? Tässä on joitain lähellä
@@ -2329,7 +2334,7 @@ fi:
   remove_comma_separated_tags: Poista pilkulla erotellut tunnisteet
   remove_curator: Poista kuraattori
   remove_from_guide: Poista oppaasta
-  remove_from_list: Poista luettelosta
+  remove_from_list: Poista listasta
   remove_from_project: Poista projektista
   remove_observations:
     one: Poista 1 havainto?
@@ -2369,7 +2374,7 @@ fi:
   rules_for_becoming_memner: Jäseneksi Liittymisen Ohjeet
   rules_types:
     must_be_identified: on oltava tunnistettu
-    must_be_on_list: on oltava luettelossa
+    must_be_on_list: on oltava listassa
     must_be_coordinates_shareable_by_project_curators: havainnoijan on annettava projektin
       kuraattoreille mahdollisuus tarkistella koordinaatteja.
   said: sanoi
@@ -2466,6 +2471,7 @@ fi:
   show_only: Näytä vain
   show_total_listed_taxa: Näytä kaikki luetellut taksonit
   showing_one_to: Näytetään 1 -
+  showing_taxa_from_place: Näytetään taksonit paikasta %{place}
   sign_in: Kirjaudu sisään
   sign_in_with_provider: kirjautua sisään %{provider}-tilillä
   sign_out: Kirjaudu ulos
@@ -2492,7 +2498,7 @@ fi:
   sorry_google_isnt_responding_at_the_moment: Valitettavasti Google ei vastaa tällä
     hetkellä.
   sorry_you_can_only_add_1000_at_a_time: Valitettavasti voit lisätä vain 1000 kerrallaan.
-  sorry_you_cant_delete_your_own_life_list: Valitettavasti et voi poistaa omaa elämäluetteloasi.
+  sorry_you_cant_delete_your_own_life_list: Valitettavasti et voi poistaa omaa elämälistaasi.
   sort_by: Lajitteluperuste
   sounds:
     add_media: Lisää mediaa
@@ -2546,13 +2552,14 @@ fi:
   src: Lähde
   standard: Normaali
   start: Alku
-  start_a_new_list: Aloita uusi luettelo
+  start_a_new_list: Aloita uusi lista
   start_a_new_project: Aloita uusi projekti
   start_a_project: Aloita projekti
   start_adding_observations: Aloita havaintojen lisääminen
   start_new_account: Aloita uusi tili
   start_new_project: Aloita uusi projekti
   start_typing_field_name: Aloita näppäilemällä nimi kenttään...
+  start_typing_place_name: Aloita näppäilemällä paikan nimi...
   start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
   stats: Tilastot
   stats_title: Sivun tilastot
@@ -2656,6 +2663,9 @@ fi:
   third_person_possessive_singular: Käyttäjän %{object_phrase} %{noun}
   this: tämä
   this_is_a: Tämä on
+  this_is_a_life_list_from_place_html: Tämä on elämälista paikasta %{place}
+  this_is_a_life_list_of_taxon_in_place: Tämä on elämälista taksonista %{taxon} paikassa
+    %{place}
   this_is_taking_forever: Tämä vie ikuisuuden.  Yritä myöhemmin uudelleen.
   this_list_is_empty!: Tämä lista on tyhjä!
   this_observation: Tämä havainto
@@ -2670,8 +2680,8 @@ fi:
   this_taxon_change_has_been_commited: |-
     <strong>Tämä taksonimuutos on tehty!</strong>
     Älä muokkaa taksoneita.  Muiden kenttien muokkaaminen on ok.
-  this_will_add_listed_taxa: Tämä lisää havainnoista luetteloidut taksonit. Tämä vie
-    jonkin aikaa joten käytä tätä säästeliäästi ja vain pienissä lajiluetteloissa.
+  this_will_add_listed_taxa: Tämä lisää havainnoista listatut taksonit. Tämä vie jonkin
+    aikaa joten käytä tätä säästeliäästi ja vain pienissä lajilistoissa.
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä tunnisteita Flickr-valokuvillesi.
     Jatketaan?
   this_year: Tänä vuonna
@@ -2699,6 +2709,7 @@ fi:
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
   total_species_observed: Lajeja havaittu yhteensä
+  total_users: käyttäjää yhteensä,
   trending: Nousussa
   trends: Trendit
   trusted_project?: Luotettava projekti?
@@ -2717,6 +2728,8 @@ fi:
   type_taxon_name: Kirjoita taksonin nimi
   type_taxon_name_and_click_lookup: Kirjoitan taksonin nimi ja klikkaa hae
   unblock: Poista esto
+  unique_observers_last_3_months: ainutlaatuiset havainnoijat viimeisten 3 kuukauden
+    aikana
   unknown: Tuntematon
   unknown_error: Tuntematon virhe
   unknown_rank: (Tuntematon arvo)
@@ -2809,7 +2822,7 @@ fi:
   view_leaderboard_from_last_month: Näytä tulostaulukko viime kuulta
   view_leaderboard_from_last_year: Näytä tulostaulukko viime vuodelta
   view_license: Näytä lisenssi
-  view_lists: Näytä listat
+  view_lists: Näytä luettelot
   view_more: Näytä lisää
   view_more_observations: Näytä lisää havaintoja
   view_more_observations_from: Näytä lisää havaintoja paikasta
@@ -2849,7 +2862,7 @@ fi:
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Tarkastele kojelaudaltasi</a>
     lisää päivityksiä
   view_your_inbox: Näytä saapuneet-kansiosi
-  view_your_life_list: Näytä elämäluettelosi
+  view_your_life_list: Näytä elämälistasi
   view_your_calendar: Näytä kalenterisi
   view_your_observations: Näytä havaintosi
   view_your_year_stats: Näytä vuoden %{year} tilastosi
@@ -2901,6 +2914,7 @@ fi:
   x_journal_editing: Käyttäjän %{user} päiväkirja • Muokkaus
   x_journal_middot: Käyttäjän %{user} päiväkirja •
   x_journal_new_post: Käyttäjän %{user} päiväkirja • Uusi merkintä
+  x_of_y: '%{x}/%{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} %{y}stä ihmisestä (yli 2/3) on
     samaa mieltä että se on'
   x_project_journal: '%{project}n %{name}'
@@ -2943,6 +2957,8 @@ fi:
   you_havent_linked_your_inaturalist_google_account: Et ole vielä linkittänyt %{site_name}-tiliäsi
     ja Google-tiliäsi
   you_joined_this_project: Liityit tähän projektiin!
+  you_must_be_a_member_of_this_project_to_do_that: Sinun täytyy olla tämän projektin
+    jäsen tehdäksesi tuon
   you_must_select_a_csv_file_to_upload: Sinun on valittava lähetettävä CSV-tiedosto.
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
   you_need_to_select_at_least_one_photo: Sinun täytyy valita ainakin yksi kuva!
@@ -2981,9 +2997,9 @@ fi:
   your_should_recognize: Sinun pitäisi tunnistaa jotkin näistä valokuvista
   your_site_account_has_been_created: '%{site}-tilisi on luotu.'
   your_subscriptions: Tilauksesi
-  your_sure_delete_list?: Oletko varma, että haluat poistaa tämän luettelon?
+  your_sure_delete_list?: Oletko varma, että haluat poistaa tämän listan?
   your_sure_delete_taxon_from_list?: Oletko varma, että haluat poistaa taksonin %{taxon}
-    luettelosta?
+    listasta?
   your_world!: Maailmasi!
   yours: Sinun
   youre_following: seuraat
@@ -3082,7 +3098,7 @@ fi:
           01-2015, 2015
       field_descriptions:
         user_login: Havainnoijan käyttäjänimi
-        tag_list: Pilkulla erotettu luettelo tunnisteista
+        tag_list: Pilkulla erotettu lista tunnisteista
       show:
         allow_curator_coordinate_access_desc_html: Salli projektin kuraattorien nähdä
           yksityiset koordinaatit tälle havainnolle.
@@ -3097,7 +3113,7 @@ fi:
         filling_out_checklists: täyttämällä hyvien tuntemiesi paikkojen lajiluetteloita
         you_can_help_out_by: Voit auttaa parantamaan paikkatietojamme
       new:
-        check_list_note: Huom! Erittäin suurten paikkojen lajiluettelot on automaattisesti
+        check_list_note: Huom! Erittäin suurten paikkojen lajilistat on automaattisesti
           estetty.
     projects:
       confirm_leave:
@@ -3291,7 +3307,7 @@ fi:
   errors:
     messages:
       empty: ei voi olla tyhjä
-      inclusion: ei sisälly luetteloon
+      inclusion: ei sisälly listaan
       invalid: on virheellinen
       not_a_number: ei ole numero
   helpers:
@@ -3327,7 +3343,7 @@ fi:
     errors:
       messages:
         empty: ei voi olla tyhjä
-        inclusion: ei sisälly luetteloon
+        inclusion: ei sisälly listaan
         invalid: on virheellinen
         not_a_number: ei ole numero
         not_an_integer: on oltava kokonaisluku
@@ -3372,7 +3388,7 @@ fi:
         longitude: Pituusaste
         name: Nimi
         parent_id: emo
-        prefers_check_lists: Lajiluettelot sallittu?
+        prefers_check_lists: Lajilistat sallittu?
       flag:
         reason: Syy
         flag: Lippu

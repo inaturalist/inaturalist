@@ -3997,8 +3997,7 @@ it:
     di un individuo in dispersione, o ancora che l'areale è in espansione.
   this_observation_was_created_using: 'Questa osservazione è stata creata usando:'
   this_photo_is_already_associated: Questa foto è già associata ad una delle tue osservazioni.
-  this_place_has_no_check_list: Questa zona non ha una checklist, quindi non c'è nessuna
-    guida.
+  this_place_has_no_check_list: Questa zona non ha una checklist.
   this_species: questa specie
   this_species_has_no_colors: Questa specie non ha colori! Contribuisci a migliorare
     la ricerca delle specie comunicandoci di che colore è questa!
@@ -5375,7 +5374,9 @@ it:
     places:
       kml_field_desc: File KML del perimetro del luogo. Ne puoi fare uno usando Google
         Maps, Google Earth, o la maggior parte delle applicazioni GIS. Deve essere
-        formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori).
+        formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori
+        del sito) ed avere un'area più piccola di quella dello stato statunitense
+        del Texas.
       edit:
         complex_boundary_note_html: Questo perimetro è un po' troppo complesso per
           essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo
