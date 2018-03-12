@@ -3812,7 +3812,7 @@ ar:
     أو تشرد حدث أو توسع نطاق!
   this_observation_was_created_using: 'تم إنشاء هذه الملاحظة باستخدام:'
   this_photo_is_already_associated: هذه الصورة مقترنة بالفعل بإحدى ملاحظاتك.
-  this_place_has_no_check_list: هذا المكان ليست لديه قائمة فحص; لذلك ليس هناك دليل.
+  this_place_has_no_check_list: هذا المكان ليست لديه قائمة فحص.
   this_species: هذا النوع
   this_species_has_no_colors: هذا النوع ليس له ألوان! ساعد في تحسين البحث عن الأنواع
     من خلال إخبارنا ما هو لون هذا!
@@ -4141,6 +4141,7 @@ ar:
   view_the_range: عرض النطاق
   view_unidentified_observations: عرض الملاحظات غير المحددة...
   view_user_observations: عرض ملاحظات %{user}
+  view_x: عرض %{x}
   view_x_from_x: عرض %{day_observations} من %{observed_on}
   view_xs_journal: عرض مجلة %{x}
   view_year_stats_for_site: عرض إحصاءات %{year} ل%{site}
@@ -5065,7 +5066,8 @@ ar:
       kml_field_desc: |-
         KML حدود المكان، يمكنك إنشاء حساب باستخدام خرائط جوجل أو جوجل
         إيرث أو معظم تطبيقات نظم المعلومات الجغرافية، يجب أن يحتوي على مضلع واحد على الأقل ويكون
-        أقل من 1 ميغابايت (5 ميغابايت لأمناء الموقع).
+        أقل من 1 ميغابايت (5 ميغابايت لأمناء الموقع)، ولديه منطقة أصغر من
+        ولاية تكساس الأمريكية.
       edit:
         complex_boundary_note_html: |-
           هذه الحدود معقدة بعض الشيء لتعديلها على الويب، ومع ذلك، يمكنك <a href="%{url}"> تنزيل ملف KML</a> وتعديله في تطبيق GIS الذي تختاره و
