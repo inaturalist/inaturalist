@@ -161,6 +161,11 @@ module TaxaHelper
     )
   end
 
+  def capitalize_piece( piece )
+    bits = piece.match( /(.*?)([A-z])(.*)/ )
+    "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"
+  end
+
   def capitalize_name( comname )
     uncapitalized = [
       "à",
@@ -190,9 +195,9 @@ module TaxaHelper
       )
         piece.downcase
       elsif i == comname_pieces.size - 1
-        piece.split( "-" ).map{ |s| uncapitalized.include?( s.downcase ) ? s.downcase : s.capitalize }.join( "-" )
+        piece.split( "-" ).map{ |s| uncapitalized.include?( s.downcase ) ? s.downcase : capitalize_piece( s ) }.join( "-" )
       else
-        piece.capitalize
+        capitalize_piece( piece )
       end
     }.join( " " )
   end
