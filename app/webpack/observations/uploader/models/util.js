@@ -1,5 +1,5 @@
 import _ from "lodash";
-import fetch from "isomorphic-fetch";
+import fetch from "cross-fetch";
 import moment from "moment-timezone";
 
 export const ACCEPTED_FILE_TYPES = [
