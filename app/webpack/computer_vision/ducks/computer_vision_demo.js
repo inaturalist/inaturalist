@@ -1,5 +1,5 @@
 import _ from "lodash";
-import fetch from "isomorphic-fetch";
+import fetch from "cross-fetch";
 import moment from "moment-timezone";
 import update from "react-addons-update";
 import DroppedFile from "../../observations/uploader/models/dropped_file";
