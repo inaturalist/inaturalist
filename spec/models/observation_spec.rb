@@ -13,7 +13,7 @@ describe Observation do
 
     before(:each) do
       @taxon = Taxon.make!
-      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'yesterday at 1pm')
+      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'today at 1am')
     end
   
     it "should be in the past" do
@@ -28,8 +28,8 @@ describe Observation do
   
     it "should properly set date and time" do
       Time.use_zone(@observation.time_zone) do
-        expect(@observation.observed_on).to eq 1.day.ago.to_date
-        expect(@observation.time_observed_at.hour).to eq 13
+        expect(@observation.observed_on).to eq Date.today
+        expect(@observation.time_observed_at.hour).to eq 1
       end
     end
   
@@ -227,7 +227,7 @@ describe Observation do
       @observation.time_zone = 'Eastern Time (US & Canada)'
       @observation.save
       expect(@observation).to be_valid
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 13
+      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 1
     end
   
     it "should set the time zone to UTC if the user's time zone is blank" do

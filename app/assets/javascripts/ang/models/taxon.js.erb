@@ -101,6 +101,62 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
   return this.conservationStatusName;
 };
 
+iNatModels.Taxon.capitalize = function( s ) {
+  // var firstLetterIndex = _.findIndex( s, function( char ) { return char.match( /[A-z]/ ); } );
+  var firstLetterMatch = s.match( /[A-z]/ );
+  var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
+  var leadingContractionMatch = s.match( /^[a-z]'/ );
+  if ( leadingContractionMatch ) {
+    firstLetterIndex = 2;
+  }
+  return s.slice( 0, firstLetterIndex ) + s[firstLetterIndex].toUpperCase( ) + s.slice( firstLetterIndex + 1 );
+}
+
+iNatModels.Taxon.titleCaseName = function( name ) {
+  if ( !name ) {
+    return name;
+  }
+  // This may or may not be a scalable solution. An alternative would be get
+  // these from translation files and have translators add the words that
+  // are uncapitalized in their languages
+  var uncapitalized = [
+    "à",
+    "a",
+    "and",
+    "con",
+    "da",
+    "dal",
+    "de",
+    "dei",
+    "del",
+    "des",
+    "di",
+    "du",
+    "e",
+    "in",
+    "la",
+    "o",
+    "of",
+    "the"
+  ];
+  var commonNamePieces = name.split( /\s+/ );
+  return _.map( commonNamePieces, function( piece, i ) {
+    if ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) {
+      return piece.toLowerCase( );
+    }
+    if ( i === commonNamePieces.length - 1 ) {
+      return piece.split( "-" ).map( function( s ) {
+        if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
+          return s.toLowerCase( );
+        }
+        return iNatModels.Taxon.capitalize( s );
+      } ).join( "-" );
+    }
+    return iNatModels.Taxon.capitalize( piece );
+  } ).join( " " );
+
+}
+
 iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
   options = options || { };
   options.locale = ( options.locale || "en" ).split( "-" )[0];
@@ -124,5 +180,5 @@ iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
       !nameInLocale && options.locale != "en" ) {
     return this.preferredCommonName( _.extend( { }, options, { locale: "en" } ) );
   }
-  return nameInLocale;
+  return iNatModels.Taxon.titleCaseName( nameInLocale );
 };

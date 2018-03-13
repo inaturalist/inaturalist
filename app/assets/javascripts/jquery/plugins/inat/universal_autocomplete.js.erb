@@ -24,7 +24,7 @@ $.fn.universalAutocomplete = function( options ) {
         }
         if ( item.record.preferred_common_name ) {
           itemText.addClass( "has-com-name" );
-          itemText.append( $( "<span>" ).addClass( "display-name" ).html( item.record.preferred_common_name ) );
+          itemText.append( $( "<span>" ).addClass( "display-name" ).html( iNatModels.Taxon.titleCaseName( item.record.preferred_common_name ) ) );
           itemText.append( " " );
           itemText.append( $( "<span>" ).addClass( "secondary-name" ).addClass( "sciname" ).html( scinameWithRank ) );
         } else {

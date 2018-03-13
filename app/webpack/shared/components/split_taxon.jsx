@@ -70,6 +70,7 @@ const SplitTaxon = ( {
       } else {
         comNameClass = `display-name ${comNameClass}`;
       }
+      const commonName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       return (
         <LinkElement
           className={`comname ${comNameClass}`}
@@ -77,7 +78,7 @@ const SplitTaxon = ( {
           target={ target }
           onClick={ onClick }
         >{
-          truncateText( taxon.preferred_common_name )
+          truncateText( commonName )
         }</LinkElement>
       );
     } else if ( !taxon ) {

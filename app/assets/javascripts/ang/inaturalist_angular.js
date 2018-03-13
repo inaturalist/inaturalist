@@ -190,7 +190,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         if ( scope.user && scope.user.prefers_scientific_name_first ) {
           name = scope.taxon.name;
         } else if ( scope.taxon.preferred_common_name ) {
-          name = scope.taxon.preferred_common_name;
+          name = iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name );
         }
         return name || scope.taxon.name;
       }
@@ -198,7 +198,7 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         var name;
         if ( !scope.taxon ) { return; }
         if ( scope.user && scope.user.prefers_scientific_name_first ) {
-          name = scope.taxon.preferred_common_name;
+          name = iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name );
         } else if ( scope.taxon.preferred_common_name ) {
           name = scope.taxon.name;
         }
