@@ -81,7 +81,9 @@
   }
 }
 
-.ObservationFieldPopover.popover, .AnnotationPopover.popover, .ActivityItemMenu {
+.ObservationFieldPopover.popover,
+.AnnotationPopover.popover,
+.ActivityItemMenu {
   .search {
     line-height: 17px;
     &:not(:first-child) {
@@ -89,8 +91,6 @@
     }
     .fa {
       color: $inat-green;
-      margin-right: 5px;
-      margin-top: 4px;
       position: absolute;
     }
     a {

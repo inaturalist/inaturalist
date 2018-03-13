@@ -80,6 +80,15 @@ class Annotations extends React.Component {
       /> );
     const attr = a.controlled_attribute;
     const value = a.controlled_value;
+    const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}`, {
+      defaultValue: term.label
+    } );
+    const attrLabel = I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, {
+      defaultValue: attr.label
+    } );
+    const valueLabel = I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, {
+      defaultValue: value.label
+    } );
     const termPopover = (
       <Popover
         id={ `annotation-popover-${a.uuid}` }
@@ -91,13 +100,13 @@ class Annotations extends React.Component {
             <a href={ `/observations?term_id=${attr.id}&term_value_id=${value.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
               { I18n.t( "observations_annotated_with_annotation", { annotation:
-                `${attr.label}: ${value.label}` } ) }
+                `${attrLabel}: ${valueLabel}` } ) }
             </a>
           </div>
           <div className="search">
             <a href={ `/observations?term_id=${attr.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              { I18n.t( "observations_annotated_with_annotation", { annotation: attr.label } ) }
+              { I18n.t( "observations_annotated_with_annotation", { annotation: attrLabel } ) }
             </a>
           </div>
         </div>
@@ -116,12 +125,12 @@ class Annotations extends React.Component {
             animation={false}
             overlay={termPopover}
           >
-            <div>{ term.label }</div>
+            <div>{ termLabel }</div>
           </OverlayTrigger>
         </td>
         <td className="value">
           <UserImage user={ a.user } />
-          { value.label }
+          { valueLabel }
           { action }
         </td>
         <td className="agree">
@@ -210,7 +219,9 @@ class Annotations extends React.Component {
     _.each( availableControlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {
         const sorted = _.sortBy( groupedAnnotations[ct.id], a => (
-          a.controlled_value.label
+          I18n.t( `controlled_term_labels.${_.snakeCase( a.controlled_value.label )}`, {
+            defaultValue: a.controlled_value.label
+          } )
         ) );
         _.each( sorted, a => {
           rows.push( this.annotationRow( a, ct ) );
@@ -237,6 +248,9 @@ class Annotations extends React.Component {
       if ( observation.taxon ) {
         availableValues = this.termsForTaxon( availableValues, observation ? observation.taxon : null );
       }
+      const ctLabel = I18n.t( `controlled_term_labels.${_.snakeCase( ct.label )}`, {
+        defaultValue: ct.label
+      } );
       const termPopover = (
         <Popover
           id={ `annotation-popover-${ct.id}` }
@@ -247,7 +261,7 @@ class Annotations extends React.Component {
             <div className="search">
               <a href={ `/observations?term_id=${ct.id}` }>
                 <i className="fa fa-arrow-circle-o-right" />
-                { I18n.t( "observations_annotated_with_annotation", { annotation: ct.label } ) }
+                { I18n.t( "observations_annotated_with_annotation", { annotation: ctLabel } ) }
               </a>
             </div>
           </div>
@@ -268,7 +282,7 @@ class Annotations extends React.Component {
                 animation={false}
                 overlay={termPopover}
               >
-                <div>{ ct.label }</div>
+                <div>{ ctLabel }</div>
               </OverlayTrigger>
             </td>
             <td>
@@ -289,7 +303,13 @@ class Annotations extends React.Component {
                       <MenuItem
                         key={ `term-${v.id}` }
                         eventKey={ index }
-                      >{ v.label }</MenuItem>
+                      >
+                        {
+                          I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
+                            defaultValue: v.label
+                          } )
+                        }
+                      </MenuItem>
                     ) )
                   }
                 </Dropdown.Menu>
