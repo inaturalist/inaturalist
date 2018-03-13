@@ -105,22 +105,41 @@ $.fn.universalAutocomplete = function( options ) {
       });
     },
     select: function( e, ui ) {
-      var url = "/observations?";
-      switch ( ui.item.type ) {
-        case "Taxon":
-          url += "taxon_id="+ui.item.record.id;
-          break;
-        case "Place":
-          url += "place_id="+ui.item.record.id;
-          break;
-        case "Project":
-          url += "projects="+ui.item.record.id;
-          break;
-        case "User":
-          url += "user_id="+ui.item.record.login;
-          break;
+      console.log( "[DEBUG] fired select, e: ", e );
+      var url;
+      if ( e.ctrlKey || e.altKey || e.metaKey ) {
+        switch ( ui.item.type ) {
+          case "Taxon":
+            url = "/taxa/"+ui.item.record.id;
+            break;
+          case "Place":
+            url = "/places/"+ui.item.record.id;
+            break;
+          case "Project":
+            url = "/projects/" + ( ui.item.record.slug || ui.item.record.slug.id );
+            break;
+          case "User":
+            url = "/people/"+ui.item.record.login;
+            break;
+        }
+      } else {
+        url = "/observations?";
+        switch ( ui.item.type ) {
+          case "Taxon":
+            url += "taxon_id="+ui.item.record.id;
+            break;
+          case "Place":
+            url += "place_id="+ui.item.record.id;
+            break;
+          case "Project":
+            url += "projects="+ui.item.record.id;
+            break;
+          case "User":
+            url += "user_id="+ui.item.record.login;
+            break;
+        }
       }
       window.location = url;
     }
-  }));
+  } ) );
 };

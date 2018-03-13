@@ -957,6 +957,7 @@ fr:
   committed: Validé
   committed_on: Validé le %{date}
   committing: Validation en cours…
+  community: Communauté
   community_curated: Communauté organisée
   community_guidelines: Règles de la communauté
   community_id: 'ID de <strong>communauté</strong> :'
@@ -4095,8 +4096,7 @@ fr:
   this_observation_was_created_using: 'Cette observation a été créée en utilisant
     :'
   this_photo_is_already_associated: Cette photo est déjà associée à une de vos observations.
-  this_place_has_no_check_list: Ce lieu n’a pas de liste de contrôle, donc il n’y
-    a pas de guide.
+  this_place_has_no_check_list: Ce lieu n’a pas de liste de contrôle.
   this_species: cette espèce
   this_species_has_no_colors: Cette espèce n’a pas de couleur! Aidez à améliorer la
     recherche d’espèces en nous indiquant sa couleur!
@@ -4443,6 +4443,7 @@ fr:
   view_the_range: Afficher l’aire de répartition
   view_unidentified_observations: Afficher les observations non identifiées…
   view_user_observations: Afficher les observations de %{user}
+  view_x: Afficher %{x}
   view_x_from_x: Afficher %{day_observations} du %{observed_on}
   view_xs_journal: Afficher le journal de %{x}
   view_year_stats_for_site: Afficher les statistiques de %{year} pour %{site}
@@ -5582,7 +5583,8 @@ fr:
       kml_field_desc: |-
         KML de la frontière du lieu. Vous pouvez en faire un en utilisant Google Maps, Google
         Earth ou la plupart des applications du SIG. Doit contenir au moins un polygone et être
-        inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site).
+        inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une zone plus petite que
+        l’état du Texas.
       edit:
         complex_boundary_note_html: |-
           Cette frontière est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez

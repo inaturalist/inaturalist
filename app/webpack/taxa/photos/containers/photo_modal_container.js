@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import _ from "lodash";
 import PhotoModal from "../../shared/components/photo_modal";
 import {
   hidePhotoModal,
@@ -21,12 +22,26 @@ function mapStateToProps( state ) {
 }
 
 function mapDispatchToProps( dispatch ) {
-  const getPhotos = state => state.photos.observationPhotos.map( op => ( {
-    photo: op.photo,
-    observation: op.observation,
-    taxon: op.observation.taxon,
-    user: op.observation.user
-  } ) );
+  const getPhotos = state => {
+    let observationPhotos;
+    if ( state.photos.groupedPhotos ) {
+      const currentPhoto = state.photoModal.photo;
+      const currentGroup = _.find( state.photos.groupedPhotos, group => (
+        _.find( group.observationPhotos, op => op.photo.id === currentPhoto.id )
+      ) );
+      if ( currentGroup ) {
+        observationPhotos = currentGroup.observationPhotos;
+      }
+    } else {
+      observationPhotos = state.photos.observationPhotos;
+    }
+    return observationPhotos.map( op => ( {
+      photo: op.photo,
+      observation: op.observation,
+      taxon: op.observation.taxon,
+      user: op.observation.user
+    } ) );
+  };
   return {
     showNext: ( ) => {
       dispatch( showNextPhoto( getPhotos ) );

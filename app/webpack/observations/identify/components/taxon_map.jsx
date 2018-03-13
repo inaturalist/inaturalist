@@ -78,9 +78,9 @@ class TaxonMap extends React.Component {
       return;
     }
     if (
-      objectToComparable( this.props.reloadKey || this.props )
+      ( this.props.reloadKey || objectToComparable( this.props ) )
       ===
-      objectToComparable( prevProps.reloadKey || prevProps )
+      ( prevProps.reloadKey || objectToComparable( prevProps ) )
     ) {
       // props didn't change, don't re-render
       return;

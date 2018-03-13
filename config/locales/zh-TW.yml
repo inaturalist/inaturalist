@@ -765,6 +765,7 @@ zh-TW:
   committed: 已提交
   committed_on: 提交於 %{date}
   committing: 提交中…
+  community: 社群
   community_curated: 社群策劃
   community_guidelines: 社群指南
   community_id: <strong>社群</strong> ID：
@@ -1772,12 +1773,12 @@ zh-TW:
   locale_description: 在地化設定您的語言與日期格式偏好設置。
   locales_: 在地
   locales:
-    ar: العَرَبِيَّة‎
+    ar: 阿拉伯語
     bg: 保加利亞語
     br: 布列塔尼語
     ca: 加泰隆尼亞語
     da: 丹麥語
-    de: Deutsch
+    de: 德語
     en-US: 英語 (美國)
     en: 英語
     es-ES: 西班牙語 (西班牙)
@@ -1795,8 +1796,8 @@ zh-TW:
     mk: 馬其頓語
     oc: 奧克語
     pt-BR: 葡萄牙語 (巴西)
-    pt-PT: 葡萄牙語（葡萄牙）
-    ru: 俄羅斯語
+    pt-PT: 葡萄牙語 (葡萄牙)
+    ru: 俄語
     zh-CN: 簡體中文
     zh-TW: 繁體中文
   locality_notes: 位置註解
@@ -3397,7 +3398,7 @@ zh-TW:
     的範圍有誤、鑑定錯誤、內容不定，或是範圍擴大！
   this_observation_was_created_using: 此觀察被創建使用於：
   this_photo_is_already_associated: 此照片已分配至您的觀察之一了。
-  this_place_has_no_check_list: 此地點沒有清單，因此沒有指南。
+  this_place_has_no_check_list: 此地點沒有清單。
   this_species: 此物種
   this_species_has_no_colors: 此物種沒有顏色！請告訴我們是什麼顏色來協助改善物種搜尋！
   this_taxon_change_has_been_commited: |-
@@ -3684,6 +3685,7 @@ zh-TW:
   view_the_range: 檢視範圍
   view_unidentified_observations: 檢視未鑑定分類...
   view_user_observations: 檢視 %{user} 的觀察
+  view_x: 檢視 %{x}
   view_x_from_x: 檢視來自 %{observed_on} 的 %{day_observations} 個
   view_xs_journal: 檢視 %{x} 的日誌
   view_year_stats_for_site: 檢視 %{site} 在 %{year} 的統計內容
@@ -4380,7 +4382,7 @@ zh-TW:
         view_original_html: 您可在 <a href="%{url}">%{url}</a> 檢視原有內容。若此照片有版權侵犯情況請留下版權侵犯標籤。
     places:
       kml_field_desc: 地點邊界的 KML。您可以使用在 Google 地圖、Google 地球，或多數的 GIS 應用程式。另外內容必須至少要有一個多邊形且小於
-        1 MB（網站策展人可使用到 5 MB）。
+        1 MB（網站策展人可使用到 5 MB），而且是要比美國德州還要小的地區。
       edit:
         complex_boundary_note_html: 此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a>
           來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。

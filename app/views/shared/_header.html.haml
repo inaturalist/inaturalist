@@ -167,7 +167,7 @@
       - unless logged_in?
         %li.navtab.signedout
           .innertab
-            = link_to t(:log_in), login_url, class: "signin_link"
+            = link_to t(:log_in), login_path, class: "signin_link"
             = t :or
             = link_to t(:sign_up), signup_url, class: "signup_link"
       - else

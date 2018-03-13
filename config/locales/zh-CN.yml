@@ -216,6 +216,7 @@ zh-CN:
   add_observation: 添加观察
   add_observations!: 添加观察！
   add_observations: 添加观察
+  add_observations_by_checking_off: 通过检查来自列表的物种来添加观察。
   add_observations_from_list: 从列表中添加观察
   add_observations_of_taxa_youve_added: 对已经加入列表的分类单元添加观察记录。正在开发中，仍在查找软件错误...
   add_observations_project: 在该项目中添加观察
@@ -231,6 +232,8 @@ zh-CN:
   add_life_stage_teneral_annotation: 添加“生命阶段：幼虫”注释
   add_life_stage_subimago_annotation: 添加“生命阶段：亚成虫”注释
   add_life_stage_pupa_annotation: 添加“生命阶段：蛹”注释
+  add_life_stage_nymph_annotation: 添加“生活期：若虫”注解
+  add_life_stage_larva_annotation: 添加“生活期：幼虫”注解
   add_life_stage_juvenile_annotation: 添加“生命阶段：青少年”注释
   add_several_observations_at_once: 马上添加几个观察。
   add_sex_female_annotation: 添加“性别：女”注释
@@ -717,6 +720,7 @@ zh-CN:
   committed: 已提交
   committed_on: 提交于%{date}
   committing: 提交中……
+  community: 社区
   community_curated: 社区策划
   community_guidelines: 社群指引
   community_id: <strong>社区</strong>ID：
@@ -2872,6 +2876,7 @@ zh-CN:
   this_job_failed_to_run: 此工作运行失败。请联络%{email}
   this_list_is_empty!: 此列表是空的！
   this_observation: 此观察
+  this_place_has_no_check_list: 此低点没有监视列表。
   this_species: 此物种
   this_taxon_change_has_been_commited: <strong>此分类单元更改已经提交！</strong>请不要编辑分类群。可以编辑其他字段。
   this_tool_is_experimental: 本工具是实验性的，所以请
@@ -3089,6 +3094,7 @@ zh-CN:
   view_the: 查看%{action}&#59; %{link}
   view_the_observation: 查看观察
   view_user_observations: 查看 %{user} 的观察
+  view_x: 查看%{x}
   view_xs_journal: 查看 %{x} 的日记
   view_year_stats_for_site: 查看用于%{site}的%{year}统计
   view_your_dashboard: 查看您的仪表板
@@ -3563,6 +3569,8 @@ zh-CN:
         dont_forget_the_invite_link_placeholder: 不要忘记 {{INVITE_LINK}} 占位符
         invite_other_photographers_to_inat: 邀请其他摄影师到%{site_name}
     places:
+      kml_field_desc: 地点边界的KML。您可以使用Google地图、Google地球或大多数GIS应用程序制作。必须至少有一个1 MB以下（网站馆长则为5
+        MB）的多边形，并拥有比美国德克萨斯州更小的地区。
       edit:
         complex_boundary_note_html: 此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
       index:

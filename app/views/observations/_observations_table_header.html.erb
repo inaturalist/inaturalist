@@ -5,10 +5,8 @@
 <div class="headerrow" <% unless display.blank? %>style="display: <%= display %>"<% end %>>
   <div class="header icon"><%=t :icon %></div>
   <div class="header photos"><%=t :'sounds.photos_sounds' %></div>
-  <div class="header species_guess <%= "order_by #{@order}" if @order_by == 'species_guess' %>">
-    <% url = linkable_params.merge(:order_by => 'species_guess') %>
-    <% url[:order] = @order == 'desc' ? 'asc' : 'desc' if @order_by == 'species_guess' %>
-    <%= link_to t(:species_taxon_name), url %>
+  <div class="header species_guess">
+    <%= t(:species_taxon_name) %>
   </div>
   <div class="header user">
     <%= t(:observer) %>
