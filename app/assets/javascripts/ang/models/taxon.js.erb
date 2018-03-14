@@ -102,12 +102,11 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
 };
 
 iNatModels.Taxon.capitalize = function( s ) {
-  // var firstLetterIndex = _.findIndex( s, function( char ) { return char.match( /[A-z]/ ); } );
   var firstLetterMatch = s.match( /[A-z]/ );
   var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
-  var leadingContractionMatch = s.match( /^[a-z]'/ );
+  var leadingContractionMatch = s.match( /^[a-z]'(\w+)/ );
   if ( leadingContractionMatch ) {
-    firstLetterIndex = 2;
+    firstLetterIndex = s.indexOf( leadingContractionMatch[1] );
   }
   return s.slice( 0, firstLetterIndex ) + s[firstLetterIndex].toUpperCase( ) + s.slice( firstLetterIndex + 1 );
 }

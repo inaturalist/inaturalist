@@ -162,7 +162,11 @@ module TaxaHelper
   end
 
   def capitalize_piece( piece )
-    if bits = piece.match( /(.*?)([A-z])(.*)/ )
+    # \p{Word} matches any word in Unicode, \w does not, apparently
+    # https://stackoverflow.com/questions/3576232/how-to-match-unicode-words-with-ruby-1-9#3576559
+    if bits = piece.match( /^([a-z]')(\p{Word}+)/ )
+      "#{bits[1]}#{bits[2].capitalize}"
+    elsif bits = piece.match( /(.*?)(\p{Word}+)(.*)/ )
       "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"
     else
       piece
@@ -192,10 +196,7 @@ module TaxaHelper
     ]
     comname_pieces = comname.split( /\s+/ )
     comname_pieces.each_with_index.map{ |piece, i|
-      if (
-        ( i > 0 && uncapitalized.include?( piece.downcase ) ) ||
-        piece =~ /^d'/
-      )
+      if i > 0 && uncapitalized.include?( piece.downcase )
         piece.downcase
       elsif i == comname_pieces.size - 1
         piece.split( "-" ).map{ |s| uncapitalized.include?( s.downcase ) ? s.downcase : capitalize_piece( s ) }.join( "-" )
