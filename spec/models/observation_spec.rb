@@ -13,7 +13,7 @@ describe Observation do
 
     before(:each) do
       @taxon = Taxon.make!
-      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'today at 1am')
+      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'April 1st 1994 at 1am')
     end
   
     it "should be in the past" do
@@ -28,7 +28,9 @@ describe Observation do
   
     it "should properly set date and time" do
       Time.use_zone(@observation.time_zone) do
-        expect(@observation.observed_on).to eq Date.today
+        expect(@observation.observed_on.year).to eq 1994
+        expect(@observation.observed_on.month).to eq 4
+        expect(@observation.observed_on.day).to eq 1
         expect(@observation.time_observed_at.hour).to eq 1
       end
     end
