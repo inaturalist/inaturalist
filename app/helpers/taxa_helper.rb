@@ -162,8 +162,11 @@ module TaxaHelper
   end
 
   def capitalize_piece( piece )
-    bits = piece.match( /(.*?)([A-z])(.*)/ )
-    "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"
+    if bits = piece.match( /(.*?)([A-z])(.*)/ )
+      "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"
+    else
+      piece
+    end
   end
 
   def capitalize_name( comname )
