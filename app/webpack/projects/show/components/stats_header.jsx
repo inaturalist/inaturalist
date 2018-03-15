@@ -11,7 +11,7 @@ const StatsHeader = ( { config, project, setSelectedTab } ) => {
             <ul>
               <li
                 className={ `overview-tab ${config.selectedTab === "overview" && "active"}` }
-                onClick={ ( ) => setSelectedTab( "overview" ) }
+                onClick={ ( ) => setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" ) }
               >
                 { I18n.t( "overview" ) }
               </li>

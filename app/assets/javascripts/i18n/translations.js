@@ -1000,7 +1000,8 @@ I18n.translations["ar"] = {
   "something_went_wrong_adding": "حدث خطأ ما أثناء إضافة الأنواع إلى قائمتك",
   "sort_by": "رتب حسب",
   "sounds": {
-    "selected_sounds": "الأصوات المحددة"
+    "selected_sounds": "الأصوات المحددة",
+    "sounds": "أصوات"
   },
   "source": "المصدر",
   "source_": "المصدر:",
@@ -3636,7 +3637,8 @@ I18n.translations["ca"] = {
   "something_went_wrong_adding": "Alguna cosa no ha anat bé en afegir aquesta espècie a la vostra llista",
   "sort_by": "Ordena per",
   "sounds": {
-    "selected_sounds": "Sons seleccionats"
+    "selected_sounds": "Sons seleccionats",
+    "sounds": "Sons"
   },
   "source": "Font",
   "source_": "Font:",
@@ -5878,7 +5880,8 @@ I18n.translations["en"] = {
   "something_went_wrong_adding": "Something went wrong adding that species to your list",
   "sort_by": "Sort by",
   "sounds": {
-    "selected_sounds": "Selected sounds"
+    "selected_sounds": "Selected sounds",
+    "sounds": "Sounds"
   },
   "source": "Source",
   "source_": "Source:",
@@ -7453,7 +7456,8 @@ I18n.translations["es"] = {
   "something_went_wrong_adding": "Algo salió mal al agregar esa especie a su lista",
   "sort_by": "Ordenar por",
   "sounds": {
-    "selected_sounds": "Sonidos seleccionados"
+    "selected_sounds": "Sonidos seleccionados",
+    "sounds": "Sonidos"
   },
   "source": "Fuente",
   "source_": "Fuente:",
@@ -8503,7 +8507,8 @@ I18n.translations["es-MX"] = {
   "something_went_wrong_adding": "Algo incorrecto sucedió al añadir esta especie a tu lista",
   "sort_by": "Ordenar por",
   "sounds": {
-    "selected_sounds": "Sonidos seleccionados"
+    "selected_sounds": "Sonidos seleccionados",
+    "sounds": "Sonidos"
   },
   "source": "Fuente",
   "source_": "Fuente:",
@@ -9437,7 +9442,8 @@ I18n.translations["eu"] = {
   "something": "Zerbait",
   "something_went_wrong_adding": "Zerbait ez da ondo joan espezie hau zerrendara gehitzean",
   "sounds": {
-    "selected_sounds": "Hautatutako soinuak"
+    "selected_sounds": "Hautatutako soinuak",
+    "sounds": "Soinuak"
   },
   "source": "Iturria",
   "source_": "Jatorria:",
@@ -10382,6 +10388,7 @@ I18n.translations["fi"] = {
   "skip_to_next_page": "Siirry seuraavalle sivulle",
   "some_rights_reserved": "jotkut oikeudet pidätetään",
   "sounds": {
+    "sounds": "Äänet"
   },
   "source": "Lähde",
   "source_": "Lähde:",
@@ -11603,7 +11610,8 @@ I18n.translations["fr"] = {
   "something_went_wrong_adding": "Quelque chose s’est mal passé en ajoutant cette espèce à votre liste",
   "sort_by": "Trier par",
   "sounds": {
-    "selected_sounds": "Sons sélectionnés"
+    "selected_sounds": "Sons sélectionnés",
+    "sounds": "Sons"
   },
   "source": "Source",
   "source_": "Source :",
@@ -12549,7 +12557,8 @@ I18n.translations["gl"] = {
   "something_went_wrong_adding": "Algo non foi ben ao engadir esta especie á túa lista",
   "sort_by": "Ordenar por",
   "sounds": {
-    "selected_sounds": "Sons seleccionados"
+    "selected_sounds": "Sons seleccionados",
+    "sounds": "Sons"
   },
   "source": "Fonte",
   "spam": "Correo lixo",
@@ -13653,7 +13662,8 @@ I18n.translations["id"] = {
   "something_went_wrong_adding": "Ada yang tidak beres dalam menambahkan spesies itu ke daftar anda",
   "sort_by": "Urut berdasarkan",
   "sounds": {
-    "selected_sounds": "Suara dipilih"
+    "selected_sounds": "Suara dipilih",
+    "sounds": "Suara"
   },
   "source": "Sumber",
   "source_": "Sumber:",
@@ -14912,7 +14922,8 @@ I18n.translations["it"] = {
   "something_went_wrong_adding": "Qualcosa è andato storto aggiungendo la specie alla tua lista",
   "sort_by": "Ordina per",
   "sounds": {
-    "selected_sounds": "Suoni selezionati"
+    "selected_sounds": "Suoni selezionati",
+    "sounds": "Suoni"
   },
   "source": "Fonte",
   "source_": "Fonte:",
@@ -16137,7 +16148,8 @@ I18n.translations["ja"] = {
   "something_went_wrong_adding": "種をリストに追加する際に問題が発生しました",
   "sort_by": "並び順:",
   "sounds": {
-    "selected_sounds": "選択された音声データ"
+    "selected_sounds": "選択された音声データ",
+    "sounds": "音声"
   },
   "source": "ソース",
   "source_": "情報源:",
@@ -18487,7 +18499,8 @@ I18n.translations["mk"] = {
   "something": "Нешто",
   "sort_by": "Подреди по",
   "sounds": {
-    "selected_sounds": "Избрани звуци"
+    "selected_sounds": "Избрани звуци",
+    "sounds": "Звуци"
   },
   "source": "Извор",
   "source_": "Извор:",
@@ -19500,6 +19513,7 @@ I18n.translations["oc"] = {
   "some_other_reason": "Una autra rason que podètz explicar çaijós.",
   "something": "Quicòm",
   "sounds": {
+    "sounds": "Sons"
   },
   "source": "Font",
   "source_": "Font :",
@@ -20725,7 +20739,8 @@ I18n.translations["pt-BR"] = {
   "something_went_wrong_adding": "Houve um erro ao incluir esta espécie a sua lista",
   "sort_by": "Ordenar por",
   "sounds": {
-    "selected_sounds": "Selecione sons"
+    "selected_sounds": "Selecione sons",
+    "sounds": "Sons"
   },
   "source": "Fonte",
   "source_": "Fonte:",
@@ -23976,7 +23991,8 @@ I18n.translations["zh-CN"] = {
   "something": "一些事",
   "sort_by": "排序方式",
   "sounds": {
-    "selected_sounds": "已选择声音"
+    "selected_sounds": "已选择声音",
+    "sounds": "声音"
   },
   "source": "来源",
   "source_": "来源：",
@@ -25369,7 +25385,8 @@ I18n.translations["zh-TW"] = {
   "something_went_wrong_adding": "添加物種至您的列表時出現問題",
   "sort_by": "排序方式",
   "sounds": {
-    "selected_sounds": "已選聲音"
+    "selected_sounds": "已選聲音",
+    "sounds": "聲音"
   },
   "source": "來源",
   "source_": "來源：",

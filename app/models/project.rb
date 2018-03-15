@@ -26,7 +26,9 @@ class Project < ActiveRecord::Base
   before_save :remove_times_from_non_bioblitzes
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
-  
+  before_update :set_updated_at_if_preferences_changed
+
+
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
 
@@ -206,6 +208,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def is_new_project?
+    project_type === "umbrella" || project_type === "collection"
+  end
+
   def preferred_start_date_or_time
     return unless start_time
     time = start_time.in_time_zone(user.time_zone)
@@ -245,7 +251,13 @@ class Project < ActiveRecord::Base
     create_project_list(:project => self)
     true
   end
-  
+
+  def set_updated_at_if_preferences_changed
+    if preferences.keys.any?{ |p| send("prefers_#{p}_changed?") }
+      self.updated_at = Time.now
+    end
+  end
+
   def editable_by?(user)
     return false if user.blank?
     return true if user.id == user_id || user.is_admin?
@@ -434,7 +446,7 @@ class Project < ActiveRecord::Base
     end
     Project::RULE_PREFERENCES.each do |rule|
       rule_value = send( "prefers_#{rule}" )
-      unless rule_value.nil?
+      unless rule_value.nil? || rule_value == ""
         params[ rule.sub( "rule_", "" ) ] = rule_value
       end
     end

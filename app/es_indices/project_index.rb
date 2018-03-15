@@ -62,7 +62,7 @@ class Project < ActiveRecord::Base
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
       icon: icon ? FakeView.asset_url( icon.url(:span2), host: Site.default.url ) : nil,
-      header_image_url: cover ? FakeView.asset_url( cover.url, host: Site.default.url ) : nil,
+      header_image_url: cover.blank? ? nil : FakeView.asset_url( cover.url, host: Site.default.url ),
       project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json),
       search_parameters: search_parameters.map{ |field,value| {
         field: field,
@@ -79,7 +79,8 @@ class Project < ActiveRecord::Base
       } }.uniq,
       rule_preferences: preferences.
         select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !v.blank? }.
-        map{ |k,v| { field: k.sub("rule_",""), value: v } }
+        map{ |k,v| { field: k.sub("rule_",""), value: v } },
+      updated_at: updated_at
     }
   end
 

@@ -40,7 +40,7 @@ const App = ( { config, project } ) => {
     _.includes( project.manager_ids, config.currentUser.id );
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
   const headerButton = userIsManager ? (
-    <a href={ `/projects/${project.slug}/edit2` }>
+    <a href={ `/projects/${project.slug}/edit` }>
       <button>{ I18n.t( "edit" ) }</button>
     </a> ) : (
     <button>{ I18n.t( "follow" ) }</button>
@@ -103,8 +103,10 @@ const App = ( { config, project } ) => {
                 <i className="fa fa-chevron-right" />
               </div>
               <div className="header-about-news">
-                <i className="fa fa-bell" />
-                { I18n.t( "news" ) }
+                <a href={ `/projects/${project.slug}/journal` }>
+                  <i className="fa fa-bell" />
+                  { I18n.t( "news" ) }
+                </a>
               </div>
             </Col>
           </Row>

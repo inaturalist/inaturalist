@@ -89,11 +89,13 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
-    return render_404 unless projects_response
-    @projects_data = projects_response.results[0]
-    @current_tab = @current_tab || params[:tab]
-    return render layout: "bootstrap", action: "show2"
+    if @project.is_new_project?
+      projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+      return render_404 unless projects_response
+      @projects_data = projects_response.results[0]
+      @current_tab = @current_tab || params[:tab]
+      return render layout: "bootstrap", action: "show2"
+    end
 
     respond_to do |format|
 
@@ -176,14 +178,13 @@ class ProjectsController < ApplicationController
     return render layout: "bootstrap"
   end
 
-  def edit2
-    projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
-    return render_404 unless projects_response
-    @project_json = projects_response.results[0]
-    return render layout: "bootstrap", action: "new2"
-  end
-
   def edit
+    if @project.is_new_project?
+      projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+      return render_404 unless projects_response
+      @project_json = projects_response.results[0]
+      return render layout: "bootstrap", action: "new2"
+    end
     @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
@@ -209,7 +210,6 @@ class ProjectsController < ApplicationController
           render :json => @project.to_json
         }
       else
-        debugger
         format.html { render :action => "new" }
         format.json { render :status => :unprocessable_entity,
           :json => { :error => @project.errors.full_messages } }
@@ -228,7 +228,6 @@ class ProjectsController < ApplicationController
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
         format.json { render json: @project }
       else
-        debugger
         format.html { render :action => "edit" }
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end

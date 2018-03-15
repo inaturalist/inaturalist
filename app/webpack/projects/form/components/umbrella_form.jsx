@@ -18,10 +18,12 @@ class UmbrellaForm extends React.Component {
               <label>Projects</label>
               <ProjectAutocomplete
                 ref="ua"
+                key={ _.map( project.projectRules, rule => rule.project.id ).join( "," ) }
                 afterSelect={ e => {
                   addProjectRule( "in_project?", "Project", e.item );
                   this.refs.ua.inputElement( ).val( "" );
                 } }
+                notIDs={ _.map( project.projectRules, rule => rule.project.id ) }
                 bootstrapClear
               />
               { !_.isEmpty( project.projectRules ) && (

@@ -39,8 +39,7 @@ export function fetchObservations( ) {
       return_bounds: "true",
       order_by: "popular",
       order: "desc",
-      per_page: 100,
-      ttl: "-1"
+      per_page: 100
     } );
     return inatjs.observations.search( params ).then( response => {
       dispatch( setAttributes( {
@@ -134,11 +133,38 @@ export function fetchIdentifiers( ) {
   };
 }
 
+export function fetchPosts( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project ) { return null; }
+    return inatjs.projects.posts( { id: project.id, per_page: 3 } ).then( response => {
+      dispatch( setAttributes( {
+        posts_loaded: true,
+        posts: response
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
+export function fetchIconicTaxaCounts( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project ) { return null; }
+    return inatjs.observations.iconicTaxaSpeciesCounts( project.search_params ).then( response => {
+      dispatch( setAttributes( {
+        iconic_taxa_species_counts_loaded: true,
+        iconic_taxa_species_counts: response
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
     if ( !project ) { return null; }
-    return inatjs.observations.umbrellaProjectStats( { project_id: project.id, ttl: "-1" } ).then( response => {
+    const statsParams = { project_id: project.id };
+    return inatjs.observations.umbrellaProjectStats( statsParams ).then( response => {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
         umbrella_stats: response
@@ -158,6 +184,8 @@ export function fetchOverviewData( ) {
     dispatch( fetchObservers( ) );
     dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
+    dispatch( fetchPosts( ) );
+    dispatch( fetchIconicTaxaCounts( ) );
   };
 }
 

@@ -1,27 +1,32 @@
-import React, { PropTypes } from "react";
+import React, { Component, PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import UmbrellaLeaderboardContainer from "../containers/umbrella_leaderboard_container";
 import UmbrellaMapContainer from "../containers/umbrella_map_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
+import UmbrellaNews from "./umbrella_news";
 
-const UmbrellaOverviewTab = ( { project } ) => {
-  if ( !project.umbrella_stats_loaded ) {
-    return ( <div className="loading_spinner huge" /> );
+class UmbrellaOverviewTab extends Component {
+  render( ) {
+    const { project } = this.props;
+    if ( !project.umbrella_stats_loaded ) {
+      return ( <div className="loading_spinner huge" /> );
+    }
+    return (
+      <div className="UmbrellaOverviewTab">
+        <Grid>
+          <Row>
+            <Col xs={ 12 }>
+              <UmbrellaLeaderboardContainer />
+            </Col>
+          </Row>
+        </Grid>
+        <UmbrellaMapContainer />
+        <RecentObservationsContainer />
+        <UmbrellaNews { ...this.props } />
+      </div>
+    );
   }
-  return (
-    <div className="UmbrellaOverviewTab">
-      <Grid>
-        <Row>
-          <Col xs={ 12 }>
-            <UmbrellaLeaderboardContainer />
-          </Col>
-        </Row>
-      </Grid>
-      <UmbrellaMapContainer />
-      <RecentObservationsContainer />
-    </div>
-  );
-};
+}
 
 
 UmbrellaOverviewTab.propTypes = {

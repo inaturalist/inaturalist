@@ -1,5 +1,6 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
+import moment from "moment";
 
 const Project = class Project {
   constructor( attrs ) {
@@ -25,7 +26,11 @@ const Project = class Project {
     } );
     this.createSpecificRuleAttributes( );
     this.createRulePreferenceAttributes( );
-    this.search_params = { project_id: this.id, ttl: 300 };
+    this.search_params = {
+      project_id: this.id,
+      ttl: 600,
+      v: moment( this.updated_at ).format( "x" )
+    };
     // TODO don't hardcode default color
     this.banner_color = this.banner_color || "#28387d";
   }

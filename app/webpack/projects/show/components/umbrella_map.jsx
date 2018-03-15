@@ -11,7 +11,6 @@ class UmbrellaMap extends Component {
   componentDidMount( ) {
     setTimeout( ( ) => {
       const map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
-      console.log(map);
       const Popup = definePopupClass( );
       const colors = ["#127faa", "#75aa1f", "#1aaba3", "#aa17a3", "#f3474a", "#ce5abe", "#425cca"];
       _.each( this.props.project.projectRules, ( rule, index ) => {

@@ -2,6 +2,7 @@
 @import "../shared/loading_spinner";
 @import "../users/user_image";
 @import "../shared/taxon_photo";
+@import "../c3";
 
 body {
   min-width: 980px;
@@ -10,6 +11,9 @@ body {
 .bootstrap {
   a {
     color: inherit;
+    &:hover {
+      color: inherit;
+    }
   }
 }
 #header {
@@ -512,7 +516,7 @@ button {
       background: white;
       table {
         width: 100%;
-        margin: 20px 20px 10px 20px;
+        margin: 20px;
         .leader-row {
           height: 55px;
           td.icon-cell {
@@ -562,6 +566,79 @@ button {
   }
   .map {
     height: 500px;
+  }
+}
+
+.Requirements {
+  table {
+    width: 100%;
+    tr {
+      border-top: 1px solid $border-grey;
+      &:last-child {
+        border-bottom: 1px solid $border-grey;
+      }
+    }
+    td {
+      padding: 7px 0px;
+    }
+    td.param {
+      vertical-align: top;
+      white-space: nowrap;
+      padding-right: 20px;
+      width: 100px;
+      .fa {
+        color: $inat-green;
+        width: 25px;
+        text-align: center;
+        vertical-align: text-bottom;
+        font-size: 17px;
+      }
+    }
+    td.value {
+      .display-name {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.News {
+  .posts {
+    margin-bottom: 15px;
+    &.row {
+      margin-bottom: 0;
+    }
+    .date {
+      color: #888;
+      font-weight: 700;
+    }
+    .title {
+      font-weight: 700;
+    }
+    .post + .post {
+      margin-top: 10px;
+    }
+  }
+}
+
+.IconicTaxaPieChart {
+  position: relative;
+  .count-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    top: 135px;
+    font-size: 18px;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .PieChart {
+    svg {
+      height: 330px;
+      width: 100%;
+    }
   }
 }
 
@@ -860,6 +937,67 @@ $nav-btn-dim: 40px;
   .bootstrap .container {
     width: auto;
   }
+}
+
+
+
+
+
+
+$tip-opacity: 1;
+.d3-tip {
+  line-height: 1;
+  padding: 5px;
+  background: rgba(0, 0, 0, $tip-opacity);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, $tip-opacity);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -2px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
 }
 
 

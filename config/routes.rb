@@ -288,7 +288,6 @@ Rails.application.routes.draw do
 
   resources :projects do
     member do
-      get :edit2
       get :invite, :as => :invite_to
       get :confirm_leave
       get :stats_slideshow
