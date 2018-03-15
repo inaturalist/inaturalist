@@ -2310,6 +2310,7 @@ $header-line-height: 34px;
     white-space: nowrap;
     line-height: 32px;
     border: 1px solid transparent;
+    font-weight: bold;
   }
   #mainnav {
     text-align: left;
@@ -2317,6 +2318,9 @@ $header-line-height: 34px;
     flex-grow: 2;
     .navtab.active {
       border-bottom: 2px solid $inat-green;
+    }
+    .dropdown-menu {
+      margin-top: 0;
     }
   }
   #mainnav,

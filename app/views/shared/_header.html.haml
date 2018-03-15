@@ -1,5 +1,5 @@
 - site = @site || CONFIG
-- if current_user && current_user.in_test_group?( "header-2018" )
+- if ( current_user && current_user.in_test_group?( "header-2018" ) ) || params[:test] == "header"
   #test-header.test-header.bootstrap
     .navtabs
       - if site && !site.custom_logo.blank?
@@ -7,7 +7,7 @@
       - elsif site && site.logo
         %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
           = image_tag site.logo.url, alt: site.name
-    #headersearch.search.navtabs.form-group{ class: session[:header_search_open] ? "open" : nil }
+    #headersearch.search.navtabs.form-group
       .searchwrapper
         %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
       %button.btn.btn-link.show-btn
@@ -25,6 +25,8 @@
             - if logged_in?
               %li= link_to t(:your_observations), observations_by_login_path( current_user.login )
             %li= link_to t(:species), taxa_path
+            - if logged_in?
+              %li= link_to t(:identify), identify_observations_path
       %li.navtab.communitytab.menutab{ class: %w(UsersController ProjectsController PostsController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
           #header-community-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
@@ -33,15 +35,14 @@
           %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
             %li= link_to t(:people), people_path
             %li= link_to t(:projects), projects_path
-      %li.navtab.toolstab.menutab{ class: %w(ObservationsController).include?( controller.class.name ) && controller.action_name == "identify" || %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
+      %li.navtab.moretab.menutab{ class: %w(ObservationsController).include?( controller.class.name ) && controller.action_name == "identify" || %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
-          #header-tools-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
-            = link_to t(:tools).capitalize, people_path
+          #header-more-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+            = link_to t(:more).capitalize, places_path
             %i.fa.fa-angle-down
-          %ul.dropdown-menu{ aria: { labelledby: "header-tools-dropdown-toggle" } }
-            %li= link_to t(:identify), identify_observations_path
-            %li= link_to t(:guides), guides_path
+          %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
             %li= link_to t(:places), places_path
+            %li= link_to t(:guides), guides_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
     .navtabs.add-obs.hidden-xs
@@ -73,11 +74,12 @@
         %li.navtab.user.menutab
           .dropdown
             #header-user-menu-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
-              = user_image(current_user, :size => 'thumb', :class => "inlineblock")
+              = link_to home_path do
+                = user_image(current_user, :size => "thumb", class: "inlineblock" )
               %i.fa.fa-angle-down
             %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
               %li= link_to t(:dashboard), home_path
-              %li= link_to t(:observations), observations_by_login_path(current_user.login), :class => 'observations_link'
+              %li= link_to t(:your_observations), observations_by_login_path(current_user.login), :class => 'observations_link'
               %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
               %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
               %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'

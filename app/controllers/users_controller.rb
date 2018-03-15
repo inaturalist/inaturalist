@@ -612,8 +612,7 @@ class UsersController < ApplicationController
       /^show_quality_metrics$/,
       /^user-seen-ann*/,
       /^prefers_*/,
-      /^preferred_*/,
-      /^header_search_open$/
+      /^preferred_*/
     ]
     updates = params.select {|k,v|
       allowed_patterns.detect{|p| 

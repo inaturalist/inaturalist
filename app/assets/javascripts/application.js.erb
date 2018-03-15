@@ -274,6 +274,41 @@ $(document).ready(function() {
     return false
   })
 
+  // Clicks on main header items should go somewhere
+  $( "#test-header #mainnav .dropdown .dropdown-toggle a, #test-header #usernav .user .dropdown .dropdown-toggle a" ).on( "click", function( e ) {
+    if ( "ontouchstart" in document.documentElement ) {
+      return;
+    }
+    window.location = e.currentTarget.href;
+    return false;
+  } );
+
+  // Show main header nav items on hover for desktop browsers. Roughly adapted from the bootstrap js.
+  $( "#test-header #mainnav .dropdown, #test-header #usernav .user .dropdown" )
+    .on( "mouseover", function( e ) {
+      if ( "ontouchstart" in document.documentElement ) {
+        return;
+      }
+      var $dropdown = $( this );
+      if ( !$dropdown.is( ".dropdown" ) ) {
+        $dropdown = $dropdown.parents( ".dropdown:first" );
+      }
+      if ( $dropdown.is( ".disabled, :disabled" ) ) return;
+      $dropdown.addClass( "open" );
+      $dropdown.focus()
+      return false
+    } )
+    .on( "mouseout", function( e ) {
+      if ( "ontouchstart" in document.documentElement ) {
+        return;
+      }
+      var $dropdown = $( this );
+      if ( !$dropdown.is( ".dropdown" ) ) {
+        return;
+      }
+      $dropdown.removeClass( "open" );
+    } );
+
   $( "#test-header #messagesnav .dropdown" ).on( "click", function( e ) {
     if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
       $( this ).toggleClass( "open" );
@@ -465,11 +500,9 @@ $(document).ready(function() {
     function showHeaderSearch() {
       $( "#headersearch" ).addClass( "open" );
       $( "#headersearch input" ).focus( );
-      updateSession( { header_search_open: true } );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
-      updateSession( { header_search_open: false } );
     }
     $( "#test-header .show-btn" ).click( showHeaderSearch );
     $( "#test-header .hide-btn" ).click( hideHeaderSearch );
