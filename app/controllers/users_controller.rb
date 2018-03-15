@@ -855,8 +855,6 @@ protected
       :prefers_taxon_change_email_notification,
       :prefers_user_observation_email_notification,
       :prefers_taxon_or_place_observation_email_notification,
-      :prefers_share_observations_on_facebook,
-      :prefers_share_observations_on_twitter,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,

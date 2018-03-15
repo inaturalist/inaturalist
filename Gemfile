@@ -89,7 +89,6 @@ gem 'soundcloud'
 gem 'sprockets', '~> 2.8'
 gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
 gem 'trollop'
-gem 'twitter'
 gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"

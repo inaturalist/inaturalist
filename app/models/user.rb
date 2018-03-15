@@ -83,7 +83,6 @@ class User < ActiveRecord::Base
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   
-  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
     identification_email_notification 
