@@ -2319,12 +2319,12 @@ $header-line-height: 34px;
     .navtab.active {
       border-bottom: 2px solid $inat-green;
     }
-    .dropdown-menu {
-      margin-top: 0;
-    }
   }
   #mainnav,
   .navtab.user {
+    .dropdown-menu {
+      margin-top: 0;
+    }
     .dropdown-toggle {
       i {
         font-weight: bold;
