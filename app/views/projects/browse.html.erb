@@ -10,7 +10,7 @@
     <div class="clear right inline buttonrow smallbuttons">
       <%= form_tag url_for, :method => :get do %>
         <%= label :order, t(:order_by) %>
-        <%= select_tag :order, options_for_select(ProjectsController::ORDERS, @order), :onchange => "$(this).parents('form:first').submit()" %>
+        <%= select_tag :order, options_for_select(ProjectsController::ORDERS.map{|o| [t(o, default: o).downcase, o]}, @order), :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
       <%= link_to t(:start_a_new_project), new_project_path, :class => "button" %>
       <%= render :partial => 'projects/search_form', :locals => {:q => ''} %>

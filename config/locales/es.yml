@@ -5476,16 +5476,17 @@ es:
           </p>
         rules:
           captive: ser cautivo/cultivada
-          wild: ser salvaje/naturalizó
+          coordinates_shareable_by_project_curators: coordinables para ser compartidos por los curadores del proyecto
           georeferenced: tener coordenadas
-          has_media: tener medios (foto o sonido)
           has_a_photo: tener una foto
           has_a_sound: tener un sonido
+          has_media: tener medios (foto o sonido)
           identified: ser identificado
           in_taxon: estar en taxón
           observed_in_place: ser observado en su lugar
           on_list: ser de un taxón en la lista de proyectos
           verifiable: ser verificable
+          wild: ser salvaje/naturalizó
         start_time_desc: 'Hora de inicio para tu bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm'
         submission_models:
           any: cualquiera
@@ -6090,6 +6091,8 @@ es:
         terms: Términos
         map_type: Tipo de mapa
         zoom_level: Nivel de acercamiento
+        preferred_membership_model: Modelo preferido de membresía
+        preferred_submission_model: Modelo de envío preferido
         prefers_place_boundary_visible: Mostrar los límites del lugar en el mapa
         tracking_codes: Códigos de rastreo
         source_url: Dirección web de la fuente
