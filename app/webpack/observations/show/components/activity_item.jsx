@@ -222,8 +222,10 @@ const ActivityItem = ( {
       />
     );
   }
+  const elementID = isID ? `identification-${item.id}` : `comment-${item.id}`;
+  const itemURL = isID ? `/identifications/${item.id}` : `/comments/${item.id}`;
   return (
-    <div className={ `ActivityItem ${className} ${byClass}` }>
+    <div id={ elementID } className={ `ActivityItem ${className} ${byClass}` }>
       <div className="icon">
         <UserImage user={ item.user } linkTarget={ linkTarget } />
       </div>
@@ -238,7 +240,7 @@ const ActivityItem = ( {
               dateTime={ item.created_at }
               title={ moment( item.created_at ).format( "LLL" ) }
             >
-              { relativeTime }
+              <a href={ itemURL } target={ linkTarget }>{ relativeTime }</a>
             </time>
             <ActivityItemMenu
               item={ item }

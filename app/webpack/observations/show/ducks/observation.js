@@ -46,7 +46,9 @@ export function setAttributes( attributes ) {
 }
 
 /* global SITE */
-export function windowStateForObservation( observation ) {
+export function windowStateForObservation( observation, options = {
+  hash: ""
+} ) {
   const observationState = {
     observation: {
       id: observation.id,
@@ -73,7 +75,7 @@ export function windowStateForObservation( observation ) {
   const windowState = {
     state: observationState,
     title: `${title} · ${SITE.name}`,
-    url: `/observations/${observation.id}${window.location.search}`
+    url: `/observations/${observation.id}${window.location.search}${options.hash}`
   };
   return windowState;
 }
@@ -161,7 +163,9 @@ export function renderObservation( observation, options = { } ) {
     }
     if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
     if ( fetchAll || options.replaceState ) {
-      const ws = windowStateForObservation( observation );
+      const ws = windowStateForObservation( observation, {
+        hash: options.replaceState ? window.location.hash : null
+      } );
       history.replaceState( ws.state, ws.title, ws.url );
     }
     // delay these requests for a short while, unless the taxon has changed
