@@ -429,7 +429,7 @@ da:
   allow_curator_coordinate_access: Tillad kuratorer adgang til koordinater
   allow_project_curators_to_view_your_private_coordinates: Tillad projektkuratorer
     at se private koordinater
-  allowed_establish_means_values: Tilladte etablering middelværdier
+  allowed_establish_means_values: Tilladte værdier for oprindelse
   allowed_html: Tilladt HTML
   allowed_occurrence_status_values: Tilladte værdier for forekomststatus
   allowed_values: Tilladte værdier
@@ -739,13 +739,13 @@ da:
     activated_soon: aktiveres snarrest
     change_types: Ændre typer
     split: Split
-    merge: Fusionér
+    merge: Sammenlæg
     swap: Skifte
     stage: Status
     drop: Drop
     split_from: opdelt fra
     split_into: opdelt til
-    merge_into: fusionér i
+    merge_into: sammenlæg i
     merged_into: sammenlagt i
     replaced_by: erstattet af
     replace_with: erstat med
@@ -785,9 +785,9 @@ da:
     tillader denne liste ikke taksa, der ikke er i denne takson. Hvis du f.eks. opretter
     en liste over fugle, vil du ikke kunne tilføje nogle frøer til den.
   check_list_for_individual_taxa_that: Tjeklister for individuelle taksa, der lever
-    her, f.eks. "Fugle fra %{place}".
+    her, f.eks. "Fugle i %{place}".
   check_list_individual_taxa: Tjeklister for individuelle taksa, der lever her, f.eks.
-    "Fugle fra %{place}".
+    "Fugle i %{place}".
   check_lists_must_belong_to_a_place: |-
     Tjeklister skal tilhøre et sted. For at oprette en ny tjekliste, besøg
     stedets standardtjekliste og klik på linket "Opret en ny tjekliste".
@@ -820,7 +820,7 @@ da:
   choose_a_list_above: Vælg en af ovenstående lister.
   choose_a_place: Vælg et sted
   choose_a_taxon: Vælg en takson (valgfrit)
-  choose_cc_licensed_photos_html: Vælg <a href="http://creativecommons.org/"> åbne
+  choose_cc_licensed_photos_html: Vælg <a href="http://creativecommons.org/"> åben
     </a> licenserede fotos fra andre websteder eller vælg fra %{site_name} observationer.
     Prøv at vælge billeder, der <em> viser diagnostiske egenskaber </ em> og <em>
     ser godt ud som ikoner </ em>. <Em> Det første bliver standard fotoet </ em>.
@@ -1136,7 +1136,7 @@ da:
   delete_photo: Slet foto
   delete_project: Slet dette projekt
   delete_selected: Slet valgte
-  delete_taxon_and_merge_most_data_html: "Slet <i> %{taxon} </ i> og fusionér det
+  delete_taxon_and_merge_most_data_html: "Slet <i> %{taxon} </ i> og sammenlæg det
     meste af dets data i en anden takson. Brug dette værktøj til <strong> at fjerne
     dubletter </ strong>. Hvis du vil\nfjerne et forældet synonym, så vær venlig at
     oprette en takson skifte. <Strong> VÆR FORSIGTIG! </ Strong> Sletning af taksa
@@ -1309,7 +1309,7 @@ da:
   eol_collection_url: EOL kollektion URL
   error_updating_photo: Fejl ved opdatering af billede:%{photo_errors}
   establishment:
-    establishment: Etablering
+    establishment: Oprindelse
     native: hjemmehørende
     endemic: endemisk
     introduced: indført
@@ -1382,10 +1382,10 @@ da:
   favorites: Favoritter
   fblocale: en_US
   feature_this_project: Fremhæv dette projekt?
-  featured: fremhævet
+  featured: Udvalgte
   featured?: fremhævet?
-  featured_projects_from_everywhere: Fremhævede projekter fra overalt
-  featured_projects_from_place: Fremhævede projekter fra %{place}
+  featured_projects_from_everywhere: Udvalgte projekter fra overalt
+  featured_projects_from_place: Udvalgte projekter fra %{place}
   feedback: Feedback
   feedback_group: Feedback gruppe
   feeds: Feeds
@@ -1856,7 +1856,7 @@ da:
   last_observation: Sidste observation
   last_seen: Sidst set
   last_year: Sidste år
-  lat: Bredde
+  lat: Br.gr.
   latitude: Breddegrad
   latitude_in_decimals: Breddegrad i decimale grader f.eks. 38.123
   latitude_slash_y_coord_slash_northing: Breddegrad / y koordinat / nordlig
@@ -2091,7 +2091,7 @@ da:
     transparent_png: transparent PNG
     white_text_transparent_png: hvid tekst transparent PNG
     none: ingen
-  long: Længde
+  long: Læ.gr.
   longitude: Længdegrad
   longitude_in_decimal: Længdegrad i decimale grader f. eks. 122.123
   longitude_slash_x_coord_slash_easting: Længdegrad / x koordinat /østlig
@@ -2142,12 +2142,12 @@ da:
       all_observations: Alle observationer
       every_publicly_visible_observation: Alle offentligt synlige observationer oprettet
         i iNaturalist netværket
-      featured_observations: Fremhævede observationer
+      featured_observations: Udvalgte observationer
       gbif_network: GBIF netværk
       gbif_network_description: Registreringer fra museer og andre udbydere distribueret
         af Global Biodiversity Informatics Facility
       observations: Observationer
-      place_boundary: Placér omrids
+      place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
       checklist_places_description: Steder hvor denne takson er blevet opført
       range: Interval
@@ -2175,13 +2175,13 @@ da:
   mentioned_you_in_an_x_on_noun_by_html: '%{user} nævnte dig i en %{x} på %{noun}
     af %{by}'
   mentions: Nævnes
-  merge: Fusionér
-  merge_it_with_another_place: Fusionér den med et andet sted
-  merge_two_places_together: Slå to steder sammen. Alle arter på tjeklisterne vil
-    blive slået sammen, samt eventuelle geografiske data.
-  merge_observation_field_x_into: Fusionér observationsfelt %{x} i...
+  merge: Sammenlæg
+  merge_it_with_another_place: Sammenlæg stedet med et andet sted
+  merge_two_places_together: Sammenlæg 2 steder. Alle arter på tjeklisterne vil blive
+    sammenlagt, ligeså enhver geografisk data.
+  merge_observation_field_x_into: Sammenlæg observationsfelt %{x} i...
   merging: Fusionerer
-  merging_places: Fusionerer steder
+  merging_places: Sammenlægning af steder
   message: Besked
   messages: Beskeder
   misidentifications: Fejlidentifikationer
@@ -2278,8 +2278,8 @@ da:
     producerer ingen resulterende fornøjelse. Excepteur cupidatat sorte er ikke excepteur,
     er beroligende for sjælen, det vil sige, de er min Møje de øde den generelle skylden,
     at tjenesteydelser bør være
-  ne_lat: NE Bre.
-  ne_lon: NE Læn.
+  ne_lat: NØ Br.gr.
+  ne_lon: NØ Læ.gr.
   near: nær ved
   near_threatened: næsten truet
   nearby: I nærheden af
@@ -2723,7 +2723,7 @@ da:
   or_you_can: Eller du kan...
   or_you_can_: eller du kan
   orange: orange
-  order: Rækkefølge
+  order: Orden
   order_by: Sorteret efter
   organism_is_wild: Organisme er vild
   organisms: Organismer
@@ -2930,7 +2930,7 @@ da:
     temmelig dyrt, så vi tillader det ikke for meget store steder, medmindre
     de er blevet tilføjet af webstedets admins. Du kan dog stadig bruge dette
     sted til projektområde- og observationssøgninger.
-  place_type_name: Sted type navn
+  place_type_name: Navn på sted
   place_updated: Sted opdateret!
   placement: Placering
   places: Steder
@@ -3151,7 +3151,7 @@ da:
     subclass: underklasse
     infraclass: infraklasse
     superorder: superorden
-    order: rækkefølge
+    order: orden
     suborder: underorden
     infraorder: infraorden
     parvorder: parvorden
@@ -3234,7 +3234,7 @@ da:
   remember_me: Husk mig
   remove: Fjern
   remove_all_tags: Fjern alle tags
-  remove_boundary: Fjern omrids
+  remove_boundary: Fjern omrids permanent
   remove_comma_separated_tags: Fjern kommaseparerede tags
   remove_conservation_status: fjern samtalestatus
   remove_from: Fjern fra
@@ -3576,7 +3576,7 @@ da:
     automatisk.
   sources: Kilder
   sources_youve_added: Kilder du har tilføjet
-  sources_and_credits: Kilder og kreditter
+  sources_and_credits: Kildeangivelse og kreditering
   sourcing: Oprindelse
   spam: spam
   spanish: Spansk
@@ -3667,8 +3667,8 @@ da:
   siutable_observations: Mistænkelige observationer
   sun: Søn
   suspend_user: Suspenderet bruger
-  sw_lat: SV Bre.
-  sw_lon: SV Læn.
+  sw_lat: SV Br.gr.
+  sw_lon: SV Læ.gr.
   sync: Sync?
   sync_with_eol: Sync med EOL
   sync_obs_with_photo_metadata: Sync obs. m/foto metadata?
@@ -3816,7 +3816,7 @@ da:
   the_observation_has_date: observationen <strong>har en dato</strong>
   the_observation_has_photo: observationen <strong>har et foto</strong>
   the_observation_is_georeferenced: observationen <strong>er georefereret</strong>
-    (f.eks. har bre/læn koordinater
+    (f.eks. har br.gr./læ.gr. koordinater
   the_observation_was_already_added_to_that_project: Observationen var allerede tilføjet
     til dette projekt
   the_past: fortiden
@@ -3913,8 +3913,8 @@ da:
   this_observation_has_been_incorporated_into_the_following_external_websites: Denne
     observation er blevet indarbejdet i følgende eksterne websider
   this_observation_is_featured_on_x_sites:
-    one: Denne observation figurerer på 1 side
-    other: Denne observation figurerer på %{count} sider
+    one: Denne observation er fremhævet på 1 side
+    other: Denne observation fremhævet på %{count} sider
   this_observation_is_in_x_projects:
     one: Denne observation er på 1 projekt
     other: Denne observation er på  %{count} projekter
@@ -4303,7 +4303,7 @@ da:
   we_had_trouble_saving_comment: 'Vi havde problemer med at gemme denne kommentar:'
   we_have_no_conservation_status_for_this_taxon: Vi har ingen bevaringsstatus for
     denne takson
-  we_have_no_establishment_data_for_this_taxon: Vi har ingen etableringsdata for denne
+  we_have_no_establishment_data_for_this_taxon: Vi har ingen oprindelsesdata for denne
     taxon
   we_import_our_taxonomic_data: Vi importerer vores taksonomiske data fra nogle eksterne
     taksonomiske databaser, herunder Catalog of Life og uBio. Nogle af vores taksa
@@ -4341,7 +4341,7 @@ da:
   what_did_you_see?: <em>Hvad</em> så du?
   what_do_you_think: Hvad synes du?
   what_do_you_want_to_list: Hvad vil du opføre?
-  what_to_keep: Hvad skal man beholde
+  what_to_keep: Hvad skal beholdes
   what_want_to_list?: Hvad vil du opføre?
   whats_this?: Hvad er dette?
   when: Hvornår
@@ -4871,7 +4871,7 @@ da:
         what_is_an_observation?: Hvad er en observation?
         an_observation_is_the_what_where_and_when_html: |-
           En observation er: Hvad, Hvor og Hvornår af et fund i naturen.
-          %{site_name} er et sted hvor man kan tilføje disse oplysninger sammen med en tilhørende tekst, fotos og tags. %{site_name} opfordrer til registrering af alle fund i naturen, uanset om det er identificerede arter eller enkle beskrivelser.
+          %{site_name} er et sted hvor man kan tilføje disse oplysninger sammen med tilhørende tekst, fotos og tags. %{site_name} opfordrer til registrering af alle fund i naturen, uanset om det er identificerede arter eller enkle beskrivelser.
           (På %{site_name} kan samme firben også beskrives som en Desert Horned Lizard
           såvel som "Mystery Lizard of Death Valley")
         why_doesnt_inaturalist_recognize_the_name_ive_entered?: Hvorfor genkender
@@ -5179,7 +5179,7 @@ da:
           af en observations nøjagtighed. Alle observationer starter som <strong>
           \"uformel\" </ strong> klasse og bliver<strong> \"behøver ID\" </ strong>
           når\n</p>\n\n<ul>\n  <li>observationen <strong>har en dato</strong></li>\n
-          \ <li>observationen <strong>er georefereret</strong> (dvs. har bre./læn.
+          \ <li>observationen <strong>er georefereret</strong> (dvs. har br.gr./læ.gr.
           koordinater)</li>\n  <li>observationen <strong>har foto´s eller lyde</strong></li>\n
           \ <li>observationen <strong>ikke er af et menneske</strong></li>\n</ul>\n<p>\n
           \ Observationen bliver <strong>\"forskningsklasse\"</strong> når\n</p>\n<ul>\n
