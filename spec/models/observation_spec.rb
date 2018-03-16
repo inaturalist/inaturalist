@@ -3110,6 +3110,39 @@ describe Observation do
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @s1
       end
+      it "s1.disagreement_false s2.disagreement_false s2.disagreement_false should be g1" do
+        @taxon_swap1 = TaxonSwap.make
+        @taxon_swap1.add_input_taxon(@s3)
+        @taxon_swap1.add_output_taxon(@s1)
+        @taxon_swap1.save!
+        @taxon_swap2 = TaxonSwap.make
+        @taxon_swap2.add_input_taxon(@s4)
+        @taxon_swap2.add_output_taxon(@s2)
+        @taxon_swap2.save!
+
+        Identification.make!( observation: @o, taxon: @s3)
+        Identification.make!( observation: @o, taxon: @s4)
+        @o.reload
+        expect(@o.identifications.size).to eq(2)
+        expect(@o.identifications.detect{|i| i.taxon_id == @s3.id}).not_to be_blank
+        
+        @user = make_user_with_role(:admin, created_at: Time.now)
+        @taxon_swap1.committer = @user
+        @taxon_swap2.committer = @user
+        @taxon_swap1.commit
+        Delayed::Worker.new.work_off
+        @taxon_swap2.commit
+        Delayed::Worker.new.work_off
+        @s4.reload
+        expect(@s4.is_active).to be false
+        @o.reload
+        expect(@o.identifications.size).to eq(4)
+        expect(@o.identifications.detect{|i| i.taxon_id == @s3.id}).not_to be_blank
+        
+        Identification.make!( observation: @o, taxon: @s2, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @g1
+      end
     end
   end
 
@@ -3621,6 +3654,8 @@ def setup_test_case_taxonomy
   @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
   @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
   @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
+  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "s3" )
+  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "s4" )
   @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
   @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
   @o = Observation.make!
