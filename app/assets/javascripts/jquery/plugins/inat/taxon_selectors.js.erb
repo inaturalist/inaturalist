@@ -390,9 +390,12 @@
         $(formatted).append(formattedSciName);
         $(formatted).append(')');
       }
-    }
-    else {
-      $(formatted).append(I18n.t('all_taxa.' + name['name'].toLowerCase().replace(/ /g, '_').replace(/-/g, '_'), { defaultValue: name['name']}) + ' (');
+    } else {
+      var titleCaseName = iNatModels.Taxon.titleCaseName( name["name"] );
+      $(formatted).append( I18n.t(
+        "all_taxa." + name["name"].toLowerCase( ).replace( / /g, "_" ).replace(/-/g, "_"),
+        { defaultValue: titleCaseName }
+      ) + " (" );
       $(formatted).append(formattedSciName);
       $(formatted).append(')');
     }

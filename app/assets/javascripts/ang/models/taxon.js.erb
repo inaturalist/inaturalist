@@ -102,9 +102,17 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
 };
 
 iNatModels.Taxon.capitalize = function( s ) {
-  var firstLetterMatch = s.match( /[A-z]/ );
+  // As far as I can tell, Javascript has no word metacharacter that matches
+  // Unicode characters, and even support for explicit Unicode matches like this
+  // only works in modern browsers. Might be an argument for performing
+  // capitalization in Ruby before addition to the db. If the lack of support in
+  // older browsers becomes a problem, we might consider moving or duplicating
+  // this into React and using https://babeljs.io/docs/plugins/transform-es2015
+  // -unicode-regex. We could also use the command line tool there to convert
+  // just these patterns for use outside of React
+  var firstLetterMatch = s.match( /[A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]/u );
   var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
-  var leadingContractionMatch = s.match( /^[a-z]'(\w+)/ );
+  var leadingContractionMatch = s.match( /^[a-zéáúóåøØêûîôâñèùìòàçëüïöäæµﬁﬂøŒœ∑ß∂∆Ω][’']([A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]+)/u );
   if ( leadingContractionMatch ) {
     firstLetterIndex = s.indexOf( leadingContractionMatch[1] );
   }
@@ -136,6 +144,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
     "la",
     "o",
     "of",
+    "on",
     "the"
   ];
   var commonNamePieces = name.split( /\s+/ );

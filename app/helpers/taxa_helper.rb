@@ -138,9 +138,12 @@ module TaxaHelper
         Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.name]
       return Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.name]
     end
-    TaxonName.choose_default_name(
+    tn = TaxonName.choose_default_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names
-    ).try(:name) || ""
+    )
+    return "" unless tn
+    return tn.name if tn.is_scientific_names?
+    capitalize_name( tn.name )
   end
   
   def common_taxon_name(taxon, options = {})
@@ -164,7 +167,7 @@ module TaxaHelper
   def capitalize_piece( piece )
     # \p{Word} matches any word in Unicode, \w does not, apparently
     # https://stackoverflow.com/questions/3576232/how-to-match-unicode-words-with-ruby-1-9#3576559
-    if bits = piece.match( /^([a-z]')(\p{Word}+)/ )
+    if bits = piece.match( /^([a-z]['’])(\p{Word}+)/ )
       "#{bits[1]}#{bits[2].capitalize}"
     elsif bits = piece.match( /(.*?)(\p{Word}+)(.*)/ )
       "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"
@@ -191,6 +194,7 @@ module TaxaHelper
       "in",
       "la",
       "o",
+      "on",
       "of",
       "the"
     ]
