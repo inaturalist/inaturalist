@@ -2303,10 +2303,10 @@ describe Observation do
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
-    it "should not include system places that don't contain public_positional_accuracy circle" do
+    it "should include system places that don't contain public_positional_accuracy circle" do
       p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))", admin_level: 1 )
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
-      expect( o.public_places ).not_to include p
+      expect( o.public_places ).to include p
     end
   end
 

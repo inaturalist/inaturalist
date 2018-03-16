@@ -2210,14 +2210,18 @@ class Observation < ActiveRecord::Base
   def places
     return [] unless georeferenced?
     candidates = observations_places.map(&:place).compact
-    candidates.select{|p| p.bbox_privately_contains_observation?( self ) }
+    candidates.select do |p|
+      p.bbox_privately_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+    end
   end
   
   def public_places
     return [] unless georeferenced?
     return [] if geoprivacy == PRIVATE
     candidates = observations_places.map(&:place).compact
-    candidates.select{|p| p.bbox_publicly_contains_observation?( self ) }
+    candidates.select do |p|
+      p.bbox_publicly_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+    end
   end
 
   def self.system_places_for_latlon( lat, lon, options = {} )
