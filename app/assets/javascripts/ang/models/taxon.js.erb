@@ -110,9 +110,9 @@ iNatModels.Taxon.capitalize = function( s ) {
   // this into React and using https://babeljs.io/docs/plugins/transform-es2015
   // -unicode-regex. We could also use the command line tool there to convert
   // just these patterns for use outside of React
-  var firstLetterMatch = s.match( /[A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]/u );
+  var firstLetterMatch = s.match( /[A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]/ );
   var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
-  var leadingContractionMatch = s.match( /^[a-zéáúóåøØêûîôâñèùìòàçëüïöäæµﬁﬂøŒœ∑ß∂∆Ω][’']([A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]+)/u );
+  var leadingContractionMatch = s.match( /^[a-zéáúóåøØêûîôâñèùìòàçëüïöäæµﬁﬂøŒœ∑ß∂∆Ω][’']([A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]+)/ );
   if ( leadingContractionMatch ) {
     firstLetterIndex = s.indexOf( leadingContractionMatch[1] );
   }
