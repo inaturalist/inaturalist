@@ -167,7 +167,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
 
 iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
   options = options || { };
-  options.locale = ( options.locale || "en" ).split( "-" )[0];
+  options.locale = ( options.locale || I18n.locale || "en" ).split( "-" )[0];
   var nameInLocale;
   var nameInPlace;
   var nameInAncestorPlace;
@@ -181,9 +181,9 @@ iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
         nameInAncestorPlace = n.name;
       }
     }
-    if( !nameInLocale && n.locale === options.locale ) { nameInLocale = n.name; }
+    if( !nameInLocale && n.locale.toString( ).split( "-" )[0] === options.locale ) { nameInLocale = n.name; }
   });
-  nameInLocale = nameInPlace || nameInAncestorPlace || nameInLocale;
+  nameInLocale = nameInPlace || nameInAncestorPlace || nameInLocale || this.preferred_common_name;
   if( options.defaultToEnglish === true &&
       !nameInLocale && options.locale != "en" ) {
     return this.preferredCommonName( _.extend( { }, options, { locale: "en" } ) );

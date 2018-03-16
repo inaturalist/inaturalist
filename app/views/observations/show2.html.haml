@@ -5,7 +5,7 @@
         common_taxon_name( @observation.taxon, place: current_user.try(:place) || @site.try(:place) ).try(:name),
         common_taxon_name( @observation.taxon ).try(:name)
       ].detect{|n| !n.blank?}
-    = raw common_name ? "#{common_name} (#{@observation.taxon.name})" : @observation.taxon.name
+    = raw common_name ? "#{capitalize_name( common_name )} (#{@observation.taxon.name})" : @observation.taxon.name
   - elsif !@observation.species_guess.blank?
     = @observation.species_guess
   - else
