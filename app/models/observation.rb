@@ -1512,8 +1512,6 @@ class Observation < ActiveRecord::Base
       print n[:taxon].id.to_s.ljust(width)
       print n[:taxon].name.to_s.ljust(width*2)
       print n[:cumulative_count].to_s.ljust(width)
-      print n[:adjusted_cumulative_count].to_s.ljust(width)
-      print n[:conservative_non_disagreement_count].to_s.ljust(width)
       print n[:disagreement_count].to_s.ljust(width)
       print n[:conservative_disagreement_count].to_s.ljust(width)
       print n[:score].to_s.ljust(width)
@@ -1575,29 +1573,13 @@ class Observation < ActiveRecord::Base
         0
       end
 
-      conservative_non_disagreement_count = if first_ident_of_taxon
-        # working_idents.select {|i|
-        #   i.disagreement == false && i.taxon.self_and_ancestor_ids.include?( id_taxon.id )
-        # }.size
-        working_idents.select {|i|
-          # Does the taxon this identification *could* be disagreeing with include the taxon under consideration?
-          i.disagreement == false && i.previous_observation_taxon && i.previous_observation_taxon.ancestor_ids.include?( id_taxon.id )
-        }.size
-      else
-        0
-      end
-
-      adjusted_cumulative_count = cumulative_count - conservative_non_disagreement_count
-
       {
         taxon: id_taxon,
         ident_count: working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
         cumulative_count: cumulative_count,
-        adjusted_cumulative_count: adjusted_cumulative_count,
-        conservative_non_disagreement_count: conservative_non_disagreement_count,
         disagreement_count: disagreement_count,
         conservative_disagreement_count: conservative_disagreement_count,
-        score: adjusted_cumulative_count.to_f / (adjusted_cumulative_count + disagreement_count + conservative_disagreement_count)
+        score: cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
       }
     end
   end
@@ -2027,7 +2009,7 @@ class Observation < ActiveRecord::Base
     else
       nodes = community_taxon_nodes
       if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
-        num_agreements = node[:adjusted_cumulative_count]
+        num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
         num_agreements = 0 if current_idents.count <= 1
