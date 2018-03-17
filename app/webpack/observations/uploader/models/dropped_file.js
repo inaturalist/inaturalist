@@ -82,6 +82,9 @@ const DroppedFile = class DroppedFile {
             metadata.longitude *= -1;
           }
         }
+        if ( exif.GPSHPositioningError && exif.GPSHPositioningError.length === 2 ) {
+          metadata.accuracy = exif.GPSHPositioningError[0];
+        }
         if ( exif.DateTimeOriginal || exif.DateTimeDigitized ) {
           // reformat YYYY:MM:DD into YYYY/MM/DD for moment
           const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized ).
