@@ -4,7 +4,7 @@
     .container
       .row
         .col-xs-12
-          .box.text-center
+          .box.text-center.upstacked
             - if current_user.in_test_group?( "header-2018" )
               = form_tag leave_test_user_path( current_user, test: "header-2018" ), method: "put" do
                 %label Stop testing the new header?

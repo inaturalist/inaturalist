@@ -47,7 +47,7 @@ export function setAttributes( attributes ) {
 
 /* global SITE */
 export function windowStateForObservation( observation, opts = { } ) {
-  const options = Object.assign( {}, opts, { hash: "" } );
+  const options = Object.assign( { hash: "" }, opts );
   const observationState = {
     observation: {
       id: observation.id,
