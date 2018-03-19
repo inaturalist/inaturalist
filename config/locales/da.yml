@@ -116,7 +116,7 @@ da:
       til art eller lavere</span>
   x_taxa_matching_current_filters:
     one: 1 takson matcher nuværende filtre
-    other: '%{count} taksaer matcher nuværende filtre'
+    other: '%{count} taksa matcher nuværende filtre'
   a: en
   a_: en
   a_community_for_naturalist: Et fællesskab for naturelskere
@@ -199,7 +199,7 @@ da:
   add_asset: Tilføj aktiv
   add_batch: Tilføj bundt
   add_colors: Tilføj farver
-  add_comma_separated_tags: Tilføj komma separerede tags
+  add_comma_separated_tags: Tilføj kommaseparerede tags
   add_comment: Tilføj en kommentar
   add_common_names_for: tilføj lokale navne til eksisterende taksa
   add_conservation_status: tilføj bevaringsstatus
@@ -259,7 +259,7 @@ da:
   add_some_now: Tilføj noget nu
   add_tag: Tilføj tag
   add_tags: Tilføj tags
-  add_tags_to_selected_taxa: Tilføj tags til valgte taksa
+  add_tags_to_selected_taxa: Tilføj tags til den valgte taksa
   add_taxa: Tilføj taksa
   add_taxa_to_places: Tilføj taksa til steder
   add_taxon_batch_to: Tilføj et bundt af taksa til %{list}
@@ -416,7 +416,7 @@ da:
     x_other_animals:
       one: 1 andet dyr
       other: '%{count} andre dyr'
-  all_taxa_in_this_guide: Alle taksa i denne guide
+  all_taxa_in_this_guide: Alle taksa i denne Guide
   all_taxonomic_groups: '&laquo; Alle taksonomiske grupper'
   all_updates: Alle opdateringer
   all_your_observations_will_default_this_time_zone: Alle dine observationer vil som
@@ -449,10 +449,10 @@ da:
   and_make_some_new: og lave nogle nye
   and_other_taxa: '&amp;Andre taksa'
   and_un_license_all_your_observations: og fjern licens fra alle dine observationer
-  and_you_havent_linked: '... og du har ikke tilknyttet en af disse eksterne konti,
-    skal du først logge ind via %{site_name}, derefter redigere din profil og tilknytte
+  and_you_havent_linked: '... og ikke har tilknyttet en af disse eksterne konti, skal
+    du først logge ind via %{site_name}, derefter redigere din profil og tilknytte
     din konto derfra. Ellers kan %{site_name} muligvis ikke fortælle, at de to konti
-    er forbundet, og vil forsøge at oprette en ny konto til dig i stedet!'
+    er forbundet, og vil i stedet forsøge at oprette en ny konto til dig!'
   and_x_more_people!:
     one: og 1 person mere!
     other: and %{count} personer mere!
@@ -489,7 +489,7 @@ da:
     kontrollere, om det har observationer eller opførte taksa.
   are_you_sure_delete_this_place: Er du sikker på at du vil slette dette sted?
   are_you_sure_leave_this_project: Er du sikker på at du vil forlade dette projekt?
-  are_you_sure_merge_these_places: Er du sikker på at du vil fusionere disse steder?
+  are_you_sure_merge_these_places: Er du sikker på at du vil sammenlægge disse steder?
     Dette kan ikke fortrydes.
   are_you_sure_remove_curator: Er du sikker på at du vil fjerne %{user} som kurator?
   are_you_sure_remove_from_project: Er du sikker på, at du ønsker at fjerne %{user}
@@ -548,7 +548,7 @@ da:
     vil fjerne denne takson %{place}'s tjekliste?
   articles: Artikler
   associated_observations: Tilknyttede observationer
-  associated_taxa: Tilknyttede taksa
+  associated_taxa: Tilknyttet taksa
   attention: Bemærk
   you_sure_delete_list: Er du sikker på at du vil slette denne liste?
   you_sure_delete_taxon_from_list?: Er du sikker på at du vil fjerne %{taxon} fra
@@ -646,7 +646,7 @@ da:
     forskellige slags åbne områder (parker, reservater og lignende). Hvis du zoomer
     ind, vil du se flere, mindre steder.
   body: Indhold
-  bounding_box: Geografiske boks
+  bounding_box: Geografisk område
   breadcrumbs: Brødkrummer
   breadcrumbs_description: Dette vil erstatte h1 og vil som standard kræve handling,
     så sørg for at medtage dem, hvis de er vigtige for dette projekt, og husk det
@@ -679,7 +679,7 @@ da:
     disse?
   cancel: Annullér
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
-  cant_merge_a_taxon_with_itself: Kan ikke fusionere en takson med sig selv.
+  cant_merge_a_taxon_with_itself: Kan ikke sammenlægge en takson med sig selv.
   captive: I fangeskab
   captive_cultivated: I fangeskab / Avlet
   card: Kort
@@ -737,7 +737,7 @@ da:
   change_password: Ændre adgangskode
   change_types:
     activated_soon: aktiveres snarrest
-    change_types: Ændre typer
+    change_types: Ændringstyper
     split: Split
     merge: Sammenlæg
     swap: Skifte
@@ -768,7 +768,7 @@ da:
   change_visibility_of: Ændre synlighed af rumlige koordinater?
   change_your_matching: Skift din matchning
   change_your_password: Ændre din adgangskode
-  changing_the_geoprivacy: Ændring af geoprivat ændrer hvordan andre mennesker ser
+  changing_the_geoprivacy: Ændring af geoprivat ændrer hvordan andre personer ser
     placeringen af din observation.
   check_here_to_autoload_description: Sæt markering her for at auto-indlæse en Wikipedia
     beskrivelse. Du vil muligvis fjerne markeringen igen, når et taksons videnskabelige
@@ -795,7 +795,7 @@ da:
   check_list_place: '%{place} Tjekliste'
   check_list_updated: Tjekliste er opdateret
   check_list_source: Kilde <span class="meta">(optional)</span>
-  check_lists_for: Andre tjeklister for %{place}
+  check_lists_for: Yderligere tjeklister for %{place}
   check_out_my_observations_at: Hvis du har lyst, så kan du se mine observationer
     på
   check_out_our_blog: Se vores blog
@@ -853,7 +853,7 @@ da:
   click_on_map_to_draw_shape_around_place: Klik på kortet for at tegne omrids af stedet
   click_on_the_map_to: Klik på kortet for at placere din observation
   click_the_map: <strong>Klik på kortet</strong> for at tilføje et sted.
-  click_the_map_to_jump_new_place: Klik på kortet for at gå til et nyt sted
+  click_the_map_to_jump_new_place: Klik på kortet for at udforske et nyt sted
   close: Luk
   code: Kode
   collapse_days: fold dage sammen
@@ -867,7 +867,7 @@ da:
   columns: Kolonner
   combine: Kombinér
   comma_separated_list_of_tracking_codes: |-
-    Kommasepareret liste over sporingskoder. Tilføj disse, hvis du vil tilføje en sporingskode, når du sender mennesker til det nye observationsskema, f.eks. %{root_url}observationer/nye?projekt_id=%{project_id}&sporing_kode=dinkode123.
+    Kommasepareret liste med sporingskoder. Tilføj disse, hvis du vil tilføje en sporingskode, når du sender personer til det nye observationsskema, f.eks. %{root_url}observationer/nye?projekt_id=%{project_id}&sporings_kode=dinkode123.
     Du kan bruge dette til at spore deltagelse fra forskellige kilder. Du kan få adgang til disse koder, når du downloader dit projekts observationer som CSV.
   comma_separated_please: Kommasepareret, tak
   comment_preview: Kommentér forhåndsvisning
@@ -913,9 +913,9 @@ da:
   comprehensive_list: omfattende liste
   concept_status: Koncept status
   configure: Konfigurér
-  configure_a_widget_to_show: Konfigurér en widget til at vise %{site_name} observationer
+  configure_a_widget_to_show: Konfigurér en widget for at vise %{site_name} observationer
     på din hjemmeside eller i din blog. Det kan være nødvendigt at medtage den integrerede
-    CSS i <code>&lt;;head&gt;</code>din HTML. Du kan ændre i CSSen som du vil.
+    CSS i <code>&lt;head&gt;</code> din HTML. Du kan ændre i CSS'en som du vil.
   confirm: Bekræft
   confirm_membership: Bekræft medlemskab
   confirm_new_password: Bekræft ny adgangskode
@@ -923,12 +923,12 @@ da:
   confirm_your_info: Bekræft din info
   confirmed: bekræftet
   confirmed_observations_are: Bekræftede observationer er
-  confirming_identifications: bekræfter identifikationer
-  connect_to_provider: Forbind med %{provider}
+  confirming_identifications: bekræfte identifikationer
+  connect_to_provider: Tilknyt %{provider}
   connected_accounts: Tilknyttede konti
   connecting_flickr: Tilknytter til Flickr...
   connecting_to_facebook: Tilknytter til Facebook
-  connecting_your_inat_account_to_accounts_other_sites: Ved at forbinde din %{site_name}
+  connecting_your_inat_account_to_accounts_other_sites: Ved at tilknytte din %{site_name}
     konto med konti på andre websteder kan du logge ind på %{site_name} ved hjælp
     af dine legitimationsoplysninger fra disse websteder.
   conservation_status: Bevaringsstatus
@@ -1051,24 +1051,24 @@ da:
   curator: Kurator
   curators_changed_for_x_html: Kuratorer ændret for %{x}
   curators: Kuratorer
-  curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet,
+  curators_can_remove_observations_from: Kuratorer kan fjerne observationer fra projektet
     og deres identifikationer vises sammen med observationerne på projektspecifikke
-    visninger. Kuratorer kan også se de sande koordinater for private og slørede bidrag
-    til dette projekt.
+    visninger. Kuratorer kan også se de korrekte koordinater for private og slørede
+    bidrag til dette projekt.
   curator_identification: Kurator identifikation
   current_flags: Aktuelle markeringer
   current_password: Aktuel adgangskode
-  custom_field_values: Standardværdier for felt
+  custom_field_values: Brugerdefinerede feltværdier
   custom_project_fields: Standardfelter for projekt
-  custom_project_was_successfully_created: Standardprojekt blev oprettet.
-  custom_project_was_successfully_updated: Standardprojekt blev opdateret.
-  customize_location: Tilpas placering
+  custom_project_was_successfully_created: Brugerdefineret projekt blev oprettet.
+  custom_project_was_successfully_updated: Brugerdefineret projekt blev opdateret.
+  customize_location: Tilpas sted
   darr_apply_darr: '&darr; Anvend &darr;'
   dashboard: Betjeningspanel
   data_deficient: mangelfuld data
   data_quality: Datakvalitet
   data_quality_assessment: Vurdering af datakvalitet
-  data_quality_assessment_: vurdering af data kvalitet
+  data_quality_assessment_: vurdering af datakvalitet
   datatype: Datatype
   date_: Dato
   date?: Dato?
@@ -1076,18 +1076,18 @@ da:
   date_created: oprettelsesdato
   date_format:
     date_long:
-      january: Januar %{day} %{year}
-      february: Februar %{day} %{year}
-      march: Marts %{day}%{year}
-      april: April %{day} %{year}
-      may: Maj %{day}%{year}
-      june: Juni %{day}%{year}
-      july: Juli %{day}%{year}
-      august: August %{day}%{year}
-      september: September %{day} %{year}
-      october: Oktober %{day}%{year}
-      november: November %{day}%{year}
-      december: December %{day}%{year}
+      january: '%{day}. januar %{year}'
+      february: '%{day}. februar %{year}'
+      march: '%{day}. marts %{year}'
+      april: '%{day}. april %{year}'
+      may: '%{day}. maj %{year}'
+      june: '%{day}. juni %{year}'
+      july: '%{day}. juli %{year}'
+      august: '%{day}. august %{year}'
+      september: '%{day}. september %{year}'
+      october: '%{day}. oktober %{year}'
+      november: '%{day}. november %{year}'
+      december: '%{day}. december %{year}'
     month:
       january: Januar
       february: Februar
@@ -1139,7 +1139,7 @@ da:
   delete_taxon_and_merge_most_data_html: "Slet <i> %{taxon} </ i> og sammenlæg det
     meste af dets data i en anden takson. Brug dette værktøj til <strong> at fjerne
     dubletter </ strong>. Hvis du vil\nfjerne et forældet synonym, så vær venlig at
-    oprette en takson skifte. <Strong> VÆR FORSIGTIG! </ Strong> Sletning af taksa
+    oprette et takson skifte. <Strong> VÆR FORSIGTIG! </ Strong> Sletning af taksa
     kan være meget ødelæggende. Tjek \n<a href=\"%{curator_url}\"> kurator guiden
     </a> for flere detaljer."
   delete_this_name: Slet dette navn
@@ -1179,7 +1179,7 @@ da:
   display_listings_added_by_curators: Vis lister tilføjet af kuratorer
   display_listings_from_place: Vis lister fra sted
   dna_: DNA
-  documentation_for_developers_html: Dokumentation for <a href="/pages/developers">developers</a>
+  documentation_for_developers_html: Dokumentation for <a href="/pages/developers">udviklere</a>
   do_not_show_this_message_again: Vis ikke denne besked igen
   do_you_know_where_this_species_lives: Ved du hvor denne art lever?
   do_you_study_nematodes_worlds_foremost_expert_barnacle: |-
@@ -1187,7 +1187,7 @@ da:
     taksonomi? Kan du bare lide at se på smukke blomster? Når du udfylder din
     profil tilføjer du den en vis personlighed og det hjælper med at højne din troværdighed, når du hjælper andre personer med identifikationer.
   do_you_want_to_proceed: Vil du fortsætte?
-  does_the_location_seem_accurate: Virker placeringen nøjagtig?
+  does_the_location_seem_accurate: Virker stedet nøjagtig?
   does_the_date_seem_accurate: Virker datoen nøjagtig?
   doesnt_have_default_photo: har endnu ikke et standardbillede.
   doh_something_went_wrong: Åh nej, noget gik galt.
@@ -1199,7 +1199,7 @@ da:
   double_click_to_finish: (dobbeltklik for afslutning)
   download: Download
   download_bulk_import_template_html: |-
-    <a href="%{url}">Download skabelon</a>til brug i
+    <a href="%{url}">Download skabelon</a> til brug i
     <a href="/observations/import#csv_import">multiuploader</a>
   download_csv: Download CSV
   download_csv_template: Download CSV skabelon
@@ -1211,10 +1211,10 @@ da:
   drafts: Kladder
   drag_and_drop_some_photos_or_sounds: Træk og slip nogle billeder eller lyde
   duplicate_verb: Duplikér
-  each_place_displays_all_species_inat_knows: Hver side for respektive steder, viser
-    alle de arter %{site_name} kender fra dette sted, herunder oplysninger om deres
-    forekomst, bevaringsstatus, og hvem der var den første der observerede den pågældende
-    art på dette sted på %{site_name}. Du kan filtrere arterne efter taksonomisk gruppe,
+  each_place_displays_all_species_inat_knows: Hver side med steder, viser alle de
+    arter %{site_name} kender fra dette sted, med oplysninger om deres forekomst,
+    bevaringsstatus, og hvem der var den første der observerede den pågældende art
+    på dette sted på %{site_name}. Du kan filtrere arterne efter taksonomisk gruppe,
     farve, bevaringsstatus eller via almindelig gammeldags søgning.
   edit: Redigér
   edit_a_batch_of_observations: Redigér et bundt af observationer
@@ -1224,7 +1224,7 @@ da:
   edit_body: Redigér indhold
   edit_colors: Redigér farver
   edit_comment: Redigér din kommentar
-  edit_custom_project_fields: Redigér standard projektfelter
+  edit_custom_project_fields: Redigér brugerdefinerede projektfelter
   edit_field: Redigér felt
   edit_flagged_observation: Redigér markerede observationer
   edit_license: Redigér licens
@@ -1264,20 +1264,21 @@ da:
   edited_by_name_html: Redigeret af %{name}
   editing: Redigering
   editing_announcement: Redigerings meddelelse
-  editing_custom_project_fields_for: Redigering standard projekt felter for
+  editing_custom_project_fields_for: Redigering af brugerdefinerede projektfelter
+    for
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: Redigering af observation %{obs_id}
   editing_observations:
     one: 'Redigering <span class="antal">1</span> observation:'
     other: 'Redigering <span class="antal">%{count}</span> observationer:'
-  editing_project: Redigering %{project}
+  editing_project: Redigering af %{project}
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: Redigerer abonnement på %{x}
   editing_taxon_link: Redigering af takson link
-  editing_taxon_name: Redigering takson navn
+  editing_taxon_name: Redigering af takson navn
   editing_taxon_range: Redigering af takson område
-  editing_this: Redigering %{elem}
-  editing_x_in_y: Redigering %{x} i %{y}
+  editing_this: Redigering af %{elem}
+  editing_x_in_y: Redigering af %{x} i %{y}
   eg: f.eks.
   either: Enten
   either_that_user_doesnt_exist_or: Enten eksisterer den bruger ikke, eller du følger
@@ -1306,7 +1307,7 @@ da:
   endemic: endemisk
   endemic_to_x: Endemisk over for %{x}
   eol: EOL
-  eol_collection_url: EOL kollektion URL
+  eol_collection_url: EOL samling´s URL
   error_updating_photo: Fejl ved opdatering af billede:%{photo_errors}
   establishment:
     establishment: Oprindelse
@@ -1319,8 +1320,7 @@ da:
   establishment_means: Oprindelse
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: hjemmehørende og forekommer intet andet sted
-    arrived_in_the_region_via_anthropogenic_means: ankom til regionen via menneskeskabte
-      midler
+    arrived_in_the_region_via_anthropogenic_means: ankom til regionen pga. mennesket
   establishment_means_describes_how: |-
     Oprindelse beskriver hvordan taksonet blev etableret i et område.
     Se DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> flere oplysninger om terminologi </a>.
@@ -1378,7 +1378,7 @@ da:
   faves: '"Synes godt om"'
   Family: Familie
   faved_this_observation: '"Synes godt om" denne observation'
-  favorite_taxa: favorittaksa
+  favorite_taxa: favorit taksa
   favorites: Favoritter
   fblocale: en_US
   feature_this_project: Fremhæv dette projekt?
@@ -1396,16 +1396,16 @@ da:
     en anden allerede har gjort det for at undgå dobbeltarbejde.
   fields: felter
   fields_: Felter
-  fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres af de mennesker,
+  fields_can_only_be_edited_by_the_people_who: Felter kan kun redigeres af de personer,
     der har oprettet dem og side-kuratorer
-  fields_merged: Felterne fusionerede
+  fields_merged: Felterne blev lagt sammen
   file_should_be_in_the_following_format: 'Filen skal være i følgende format: taksonnavn,
     beskrivelse'
   fill_out_project_observation_fields: Udfyld projekt observationsfelter
   fill_out_your_profile: udfyld din profil
   filling_out_checklist_for_place: udfylde tjeklister for steder du kender godt
   filling_out_your_profile: udfylder din profil
-  filter: Filter
+  filter: Filtrér
   filter_by: Sortér efter
   filter_by_curator_identification: Sortér efter kurator identifikation
   filter_by_place: Sortér efter sted
@@ -1508,7 +1508,7 @@ da:
   from_list: Fra liste
   from_this: fra dette
   from_photos: Fra foto´s
-  from_place: Fra sted
+  from_place: Fra et sted
   from_soundcloud: Fra Soundcloud
   from_your_site_observations: Fra %{site_name} observationer
   from_licensed_site_observations: Fra licens %{site_name} observationer
@@ -1555,7 +1555,7 @@ da:
   graft: Pode
   grafting: Podning ...
   grafting_attemps_to_insert_this_taxon: Podning forsøger at indsætte denne takson
-    i vores taksonomiske træ, finde et eksisterende overordnet takson eller skabe
+    i vores taksonomiske træ, finde et eksisterende overordnet takson eller opret
     alle de nødvendige mellemliggende taksa for at vedhæfte det til et eksisterende
     højere takson niveau.
   grant_role: '%{grant} %{role} rolle'
@@ -1575,7 +1575,7 @@ da:
   guide_will_be_deleted: Guiden slettes. Det tager et stykke tid for større guider.
   guide_taxon: Guide takson
   guide_was_successfully_created: Guide blev oprettet.
-  guide_was_successfully_published: Guiden blev udgivet
+  guide_was_successfully_published: Guiden blev offentliggjort.
   guide_was_successfully_updated: Guiden blev opdateret.
   guidelines: Retningslinjer
   has_already_been_flagged_by: er allerede markeret af
@@ -1587,8 +1587,8 @@ da:
   has_sounds: har lyde
   hasnt_contributed_any_observations: har ikke bidraget med nogle observationer til
     dette projekt.
-  hate_me_facebook: Fjern forbindelsen til din Facebook- og %{site_name} konti
-  hate_me_flickr: Fjern forbindelsen til din Flickr- og %{site_name} konti
+  hate_me_facebook: Frakobl din Facebook- fra din %{site_name} konto
+  hate_me_flickr: Frakobl din Flickr- fra din %{site_name} konto
   heads_up: OBS
   heads_up_observation_search_can_only_load: 'OBS: Observations søgning kan kun indlæse
     op til 50 sider'
@@ -1598,9 +1598,9 @@ da:
     forbundet med <a target=''_blank'' href=''%{url}''> en anden observation</a>'
   heads_up_this_taxon_locked_users_cant_add_descendants: '<strong> OBS: </ strong>
     Denne takson er låst, hvilket betyder, at de fleste brugere ikke kan tilføje nye
-    efterkommere til det ved at importere taksa. Kuratorer kan stadig gøre det ved
-    at redigere taksa og vælge en orden, men vær venlig at overveje at kombinere taksa
-    i stedet.'
+    efterkommere til den ved at importere taksa. Kuratorer kan stadig gøre det ved
+    at redigere taksa og vælge en overordnet, men vær venlig at overveje at sammenlægge
+    taksa i stedet.'
   heads_up_you_have_multiple: 'Heads up: Du har flere taksonomiske maskinetags til
     identiske rækker. De er farvekodet nedenfor ved rang.'
   hello: <test>
@@ -1656,7 +1656,7 @@ da:
   ids_by_taxon: IDs efter takson
   identify: Identificering
   identify_observations: Identificering af observationer
-  identify_title: Identificere
+  identify_title: Identificér
   identification: identifikation
   identification_by_user: Identifikation af %{user}
   identification_deleted: Identifikation slettet
@@ -1681,8 +1681,7 @@ da:
     er enige i din identifikation.
   if_matches_come_from_a_comprehensive_list: Hvis matchene kommer fra en omfattende
     liste, vises der en grøn bjælke her.
-  if_this_is_a_scientific_name: Hvis dette er et videnskabeligt navn, accepteres det
-    så for øjeblikket?
+  if_this_is_a_scientific_name: Hvis dette er et videnskabeligt navn, er det så accepteret?
   if_this_link_will_apply_to_descendant: Hvis dette link virker på efterkommer taksa,
     kan du bruge skabelontags til at udfylde takson navnet i webadressen
   if_you_already_have_an_account: Hvis du allerede har %{article}%{site_name} konto...
@@ -1756,11 +1755,11 @@ da:
   inaturalist_is_catching_some_zs: '%{site_name} snorksover'
   inaturalist_observations_by: '%{site_name} &#58; Observationer af %{login}'
   inaturalist_places: '%{site_name} steder'
-  inaturalist_places_are_way_record_what_lives_where: '%{site_name} Steder er en måde
-    at registrere, hvad der bor hvor. Hvis du leder efter en bestemt art, så ved du
+  inaturalist_places_are_way_record_what_lives_where: Med %{site_name} steder kan
+    du registrere, hvad der bor hvor. Hvis du leder efter en bestemt art, så ved du
     hvor du skal lede. Hvert sted har en tjekliste, som indeholder alle de arter der
     findes der, og tjeklisterne kan også være nyttige hvis du vil slå arter op som
-    du har fundet specifikke steder.'
+    du har fundet specifikke steder.
   info: Info
   input_taxon: Input takson
   insects: insekter
@@ -1856,7 +1855,7 @@ da:
   last_observation: Sidste observation
   last_seen: Sidst set
   last_year: Sidste år
-  lat: Br.gr.
+  lat: Bre.
   latitude: Breddegrad
   latitude_in_decimals: Breddegrad i decimale grader f.eks. 38.123
   latitude_slash_y_coord_slash_northing: Breddegrad / y koordinat / nordlig
@@ -1880,7 +1879,7 @@ da:
   leave_a_comment: Efterlad en kommentar
   leave_this_project: Forlad dette projekt
   leaves: blade
-  not_absent: ikke fraværende
+  not_absent: til stede
   legacy_authentication_notice_html: |-
     Det ser ud til at du bruger en adgangskode fra en ældre version af denne hjemmeside.
     Husk at <a href="%{url}"> ændre din adgangskode </a> til den nye version.
@@ -1926,7 +1925,7 @@ da:
   less: Mindre
   license_descriptions_and_images: Beskrivelser af licenser og billeder
   licensed_site_photos: Licenserede %{site_name} foto´s
-  licensing: Licensudstedelse
+  licensing: Valg af licens
   licensing_your_content_gives_others_legal: Licensudstedelse af dit indhold giver
     andre legal ret til at bruge det, hvis de respekterer licensbetingelserne. %{site_name}
     bruger dit Creative Commons-licenserede indhold til at dele med datapartnere så
@@ -1943,12 +1942,9 @@ da:
   life_list_first: livsliste først
   life_list_firsts: livslister først
   link: Link
-  link_or_unlink_your_facebook_account: Tilknyt eller afbryd forbindelsen til din
-    Facebook-konto
-  link_or_unlink_your_flickr_account: Tilknyt eller afbryd forbindelsen til din Flickr
-    konto
-  link_or_unlink_your_google_account: Tilknyt eller afbryd forbindelsen til din Google
-    konto
+  link_or_unlink_your_facebook_account: Tilknyt eller frakobl din Facebook konto
+  link_or_unlink_your_flickr_account: Tilknyt eller frakobl din Flickr konto
+  link_or_unlink_your_google_account: Tilknyt eller frakobl din Google konto
   link_your_facebook_account: Tilknyt din Facebook konto
   link_your_flickr_account: Tilknyt din Flickr konto
   link_your_flickr_account_with_inat: Tilknyt din Flickr konto med %{site_name}
@@ -1961,12 +1957,11 @@ da:
     Facebook, vil vi automatisk genforbinde dine %{site_name} og Facebook-konti. Det
     ser rimeligt ud, at hvis du bruger Facebook, vil du gerne kunne importere Facebook
     foto´s, ikke?
-  linked_facebook_description: Hvis du holder din %{site_name} konto tilknyttet til
-    din Facebook konto, kan du tilføje flere billeder til dine observationer. Selvfølgelig,
-    hvis du på et tidspunkt vil have %{site_name} og Facebook til at blive frakoblet,
-    vil vi ikke stoppe dig, du kan bare ikke tilføje billeder. Nogle gange kan det
-    være det bedste, ligesom hvis du opretter en helt ny Facebook-konto, som du vil
-    forbinde %{site_name} til.
+  linked_facebook_description: Ved at lade din %{site_name} konto være tilknyttet
+    din Facebook konto, kan du tilføje flere billeder samtidigt til dine observationer.
+    Vi vil selvfølgelig ikke stoppe dig, hvis du på et tidspunkt ønsker at %{site_name}
+    og Facebook skal frakobles. Det kan nogle gange være en fordel at oprette en helt
+    ny Facebook konto til brug for billeddeling med %{site_name}
   linked_facebook_howto: For at forbinde Facebook med %{site_name}, klik på linket
     til højre og log ind på Facebook.com.
   linked_facebook_password: Vi vil aldrig bede dig om din Facebook adgangskode (men
@@ -2002,14 +1997,14 @@ da:
     taxonomic: taksonomisk
     photo: foto
   list_was_successfully_created: Listen blev oprettet.
-  listed_taxa: Opført taksa
+  listed_taxa: Opførte taksa
   listed_taxon: Opført takson
   listed_taxon_updated: Opført takson opdateret
   listing_announcement: Oversigts meddelelse
   listing_announcements: Oversigts meddelelser
   listing_lists: Oversigts lister
   listing_project_assets: Oversigts projektvurderinger
-  listing_taxa: Oversigts taksa
+  listing_taxa: Opføre taksa
   listing_taxon_names: Oversigts takson navne
   lists: Lister
   lists_are_lists_of_species: Lister er lister med arter (eller andre taksa), som
@@ -2065,23 +2060,24 @@ da:
     zh-CN: Kinesisk (simplificeret)
     zh-TW: Kinesisk (traditionel)
   locality_notes: Lokalitetsnotater
-  localized_species_accounts: Lokaliserede arter konti
+  localized_species_accounts: Steder med observerede arter
   location: Sted
   location_: Sted
-  location_is_accurate: Placeringen er nøjagtig
-  location_is_exact: placeringen er nøjagtig
-  location_is_public: Placeringen er offentlig
-  location_is_obscured: Placeringen er skjult
-  location_is_private: Placeringen er privat
-  location_specified: Placeringen er specificeret
-  locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade tilføjelser af nye efterkommer
-    taksa. Så hvis du har låst Padder, og nogen forsøgte at importere <i> Rana catesbeiana
-    </ i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det
-    ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede
-    taksa markeres for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges
-    til taksa, da vi mener, at vi allerede har alle efterkommere. Kurator kan tilsidesætte
-    dette ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig
-    at overveje, at kombinere nye taksa med eksisterende i stedet.
+  location_is_accurate: Stedet er nøjagtig
+  location_is_exact: stedet er eksakt
+  location_is_public: Stedet er offentligt
+  location_is_obscured: Stedet er sløret
+  location_is_private: Stedet er privat
+  location_specified: Stedet er specificeret
+  locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer
+    til taksa. Så hvis du har låst Padder, og nogen forsøgte at importere <i> Rana
+    catesbeiana </ i> fra en ekstern navneudbyder, ville det nye takson blive oprettet,
+    men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den
+    nyligt tilføjede taksa markeres for at gøre kurator opmærksom på det. Dette bør
+    egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere.
+    Kuratorer kan tilsidesætte dette ved at redigere taksa og indtaste overordnet
+    ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende
+    i stedet.
   log_in: Login
   logged_in_as: Logget ind som
   login_slash_username: Login / brugernavn
@@ -2091,7 +2087,7 @@ da:
     transparent_png: transparent PNG
     white_text_transparent_png: hvid tekst transparent PNG
     none: ingen
-  long: Læ.gr.
+  long: Læn.
   longitude: Længdegrad
   longitude_in_decimal: Længdegrad i decimale grader f. eks. 122.123
   longitude_slash_x_coord_slash_easting: Længdegrad / x koordinat /østlig
@@ -2135,7 +2131,7 @@ da:
     og skrive projekt journalindlæg.
   manually_create_new_place: Opret et nyt sted manuelt
   map: Kort
-  map_legend: kort beskrivelse
+  map_legend: legende
   map_marker_size: kortmarkør størrelse
   maps:
     overlays:
@@ -2180,7 +2176,7 @@ da:
   merge_two_places_together: Sammenlæg 2 steder. Alle arter på tjeklisterne vil blive
     sammenlagt, ligeså enhver geografisk data.
   merge_observation_field_x_into: Sammenlæg observationsfelt %{x} i...
-  merging: Fusionerer
+  merging: Sammenlægger
   merging_places: Sammenlægning af steder
   message: Besked
   messages: Beskeder
@@ -2204,14 +2200,14 @@ da:
       d: 1d
       dd: '%dd'
       M: 1må
-      MM: '%dmå'
+      MM: '%dmo'
       "y": 1å
-      yy: '%då'
+      yy: '%dy'
   mon: Mån
   month: Måned
   months: Måneder
   months_ago: '%{text} siden'
-  more: Flere
+  more: Mere
   more_fields: Flere felter
   more_filters: Flere filtre
   more_from_x: Flere af %{x}
@@ -2234,7 +2230,7 @@ da:
   most_observed_threatened_species: Mest observerede truede arter
   multiple: flere
   multiple_select_option: -- flere --
-  multiple_taxa_for_taxon_change: Flere taksa (input for skifte/fusionering, output
+  multiple_taxa_for_taxon_change: Flere taksa (input for skifte/sammenlægning, output
     for deling)
   multiple_taxon_ids_separated_by_commas: Flere takson IDer separeret med komma, f.eks.
     123,654
@@ -2278,8 +2274,8 @@ da:
     producerer ingen resulterende fornøjelse. Excepteur cupidatat sorte er ikke excepteur,
     er beroligende for sjælen, det vil sige, de er min Møje de øde den generelle skylden,
     at tjenesteydelser bør være
-  ne_lat: NØ Br.gr.
-  ne_lon: NØ Læ.gr.
+  ne_lat: NØ Bre.
+  ne_lon: NØ Læn.
   near: nær ved
   near_threatened: næsten truet
   nearby: I nærheden af
@@ -2299,14 +2295,14 @@ da:
     som omfattende her.
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent}
     af %{user_link}
-  new_custom_field_for: Nyt standardfelt for
+  new_custom_field_for: Nyt brugerdefineret felt for
   new_flag_for: Ny markering for
   new_guide: Ny guide
   new_journal_posts: Nyt journal indlæg
   new_list: Ny liste
   new_members: Nye medlemmer
   new_message: Ny besked
-  new_observation_field: Nyt observatilnsfelt
+  new_observation_field: Nyt observationsfelt
   new_observation_rules: Nye observationsregler
   new_observations: Nye observationer
   new_observations_ellispsis: Nye observationer...
@@ -2336,7 +2332,7 @@ da:
   next_page: Næste side
   next_photo: Næste foto
   next_tab: Næste fane
-  "no": Ingen
+  "no": Nej
   no_activity_in_the_past_week: Ingen aktivitet i den forgangne uge. Tid til
   no_administrator_knows_your_password: Ingen %{sitename} administrator kender din
     nye adgangskode og har på intet tidspunkt før eller siden haft adgang til din
@@ -2409,7 +2405,7 @@ da:
   no_project_to_admin_current_user: Du administrerer ikke nogen projekter
   no_project_to_admin_login: '%{login} administrerer ikke nogen projekter'
   no_projects_yet: Ingen projekter endnu
-  no_range_data_available: Ingen områdedata tilgængelige.
+  no_range_data_available: Ingen data tilgængelig.
   no_recent_activity: Ingen nylige aktiviteter
   no_recently_active: Ingen nylige aktive projekter endnu.
   no_relevant_annotations: Ingen relevante noter
@@ -2543,8 +2539,8 @@ da:
   observations_from_this_project: Observationer fra dette projekt
   observations_from_you: Observationer af dig
   observations_have_had_their_coordinates: observationer har fået deres koordinater
-    flyttet til et tilfældigt punkt inden for %{km} km, enten fordi taksonen er truet
-    eller fordi observatøren valgte at skjule koordinaterne.
+    flyttet til et tilfældigt punkt indenfor %{km} km, enten fordi taksonen er truet
+    eller fordi observatøren valgte at sløre koordinaterne.
   observations_it_may_take_a_few: observationer. Det kan tage nogle minutter.
   observations_last500: Observationer (mindst 500)
   observations_last_aggregated: Observationer senest indsamlet
@@ -2586,7 +2582,7 @@ da:
   observed: Observeret
   observed_by: Observeret af
   observed_in_place?: Observeret ved sted
-  observed_on: Observ. d.
+  observed_on: Observeret den
   observed_one: observeret en
   observer: Observatør
   observers: Observatører
@@ -2603,7 +2599,7 @@ da:
     uncommon: ualmindelig
     irregular: uregelmæssig
     doubtful: tvivlsom
-    absent: fraværende
+    absent: ikke til stede
   of: af
   of_it_and_its_descendants: af det og dets efterkommere
   of_least_concern: Mindste bekymring
@@ -2642,7 +2638,7 @@ da:
     follow_panel_title_global: Følg nogle aktive naturelskere
     follow_panel_body: Hvis du besøger disse profiler og klikker på følgeknappen,
       bliver du opdateret, når de tilføjer observationer
-    following_panel_title: Følg med i mennesker, taksa og steder
+    following_panel_title: Følg med i personer, taksa og steder
     following_panel_body: |-
       På %{site_name} kan du følge personer og på den måde følge med i de observationer, de har indsendt. Du kan også abonnere på specifikke
       arter,og følge med i når der er nye observationer af disse arter eller du kan gøre det samme for steder.
@@ -2655,8 +2651,8 @@ da:
     updates_by_you_panel_title: Denne fane er en hurtig måde at filtrere opdateringer
       alene på dit indhold.
     updates_by_you_panel_body: Husk, at i fanen 'Alle opdateringer' får du opdateringer,
-      ikke kun på dit eget indhold, men også på indhold fra personer, du følger, og
-      de taksaer eller steder, du abonnerer på, ved hjælp af værktøjet Abonnementer
+      ikke kun på dit eget indhold, men også på indhold fra personer, du følger og
+      de taksa eller steder, du abonnerer på, ved hjælp af værktøjet Abonnementer
       til højre.
     youve_got_updates_panel_title: Du har fået opdateringer!
     youve_got_updates_panel_body_p1: Forbliv aktuel med opdateringer om følgende ...
@@ -2760,7 +2756,7 @@ da:
   pdf: PDF
   pdf_slash_print: PDF / Udskriv
   people: Personer
-  people_agree: flere personer er enige
+  people_agree: personer er enige
   people_following_user: Personer, der følger %{user}
   people_user_follows: Personer %{user} følger
   people_added:
@@ -2778,8 +2774,8 @@ da:
   per_week: Per uge
   person: person
   personal_message: Personlig besked
-  personal_message_description: Ingen kan lide at få email fra en maskine! Hvorfor
-    ikke lade dine venner vide hvorfor du inviterer dem?
+  personal_message_description: Ingen kan lide at få e-mail fra en maskine! Fortæl
+    dine venner hvorfor du vil invitere dem.
   per_page: Per side
   permalink: Permalink
   photo: Foto
@@ -2791,7 +2787,7 @@ da:
   photo_destroyed_because_it_was_deleted_from: Foto ødelagt fordi det blev slettet
     fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at
     se det
-  photo_hosting_accounts: Fotodelingtjeneste konti
+  photo_hosting_accounts: 'Fotodelingtjenester:'
   photo_integration: Foto integration
   photo_licensing: Foto licensering
   photo_type: Foto type
@@ -2992,7 +2988,7 @@ da:
     united_states: De Forenede Stater
     virgin_islands: Jomfruøerne
     west_africa: Vestafrika
-  places_of_interest: Steder af interesse
+  places_of_interest: Interessante steder
   places_merged_successfully: Steder sammenlagt!
   plants: planter
   please_add_a_citation_for_this_change: Tilføj venligst en henvisning til denne ændring.
@@ -3052,7 +3048,7 @@ da:
   privacy_policy: Fortrolighedspolitik
   private: privat
   private_: Privat
-  private_description: Koordinaterne er helt skjult fra offentlige kort, og de reelle
+  private_description: Koordinaterne er helt skjult fra offentlige kort, og de korrekte
     koordinater er kun synlige for dig og kuratorerne for de projekter, du tilføjer
     observationen til. Observationer med private koordinater vil stadig blive brugt
     til at verificere tjeklister for steder.
@@ -3095,7 +3091,7 @@ da:
   project_observations: Projekt observationer
   project_post: Projekt indlæg
   project_preferred_count_description: |-
-    Vil du have det samlede antal taksa for dit projekt, der skal rapporteres som
+    Vil du have det samlede antal taksa for dit projekt rapporteret som
     arter, hvilken som helst takson, eller bare "blade" på det taksonomiske træ?
   project_rules: Projektregler
   project_settings: Projekt indstillinger
@@ -3129,7 +3125,7 @@ da:
   provider_authorizations: Udbyders tilladelser
   public_coordinates_obscured_by: Offentlige koordinater sløret med %{distance} km
   public_domain: Offentlig ejendom
-  publish: Udgiv
+  publish: Offentliggør
   purple: lilla
   quality_grade: Kvalitetsklasse
   quality_grade_: Kvalitetsklasse
@@ -3212,8 +3208,8 @@ da:
   recently_resolved: Nyligt løst
   record!: Registrering!
   red: rød
-  redo_search_in_map: Gentag søgning i kort
-  redo_search_in_map_area: Gentag søgning i kortområde
+  redo_search_in_map: Gentag søgning på kort
+  redo_search_in_map_area: Gentag søgning på kortområde
   refresh: Opdatér
   refresh_listed_taxa: opdatér opførte taksa
   refreshing: opdaterer
@@ -3260,7 +3256,7 @@ da:
   removed!: Fjernet!
   removed_project_user: Fjernet projektbruger
   removing: Fjerner...
-  reorder_by_taxonomy: Arrangér efter taksonomi
+  reorder_by_taxonomy: Sortér efter taksonomi
   repair_doesnt_work_for_that_kind_of_photo: Reparation virker ikke for den slags
     foto
   repair_external_photos: Reparér eksterne foto´s
@@ -3286,7 +3282,7 @@ da:
     et foto, GPS koordinater og et fællesskabs-støttet ID. Klik videre for at se vurderingen
     af datakvaliteten.
   research_grade_qualification: Forskningsklasse kvalifikation
-  research_quality: forskningsklasse
+  research_quality: Forskningskvalitet
   reset_search_filters: Nulstil søgefiltre
   reset_your_password: Nulstil din adgangskode
   resolve: Løs
@@ -3334,8 +3330,8 @@ da:
   save_draft: Gem kladde
   save_fields: Gem felter
   save_flag: Gem markering
-  save_guide: Gem guide
-  save_guide_taxon: Gem guide takson
+  save_guide: Gem Guiden
+  save_guide_taxon: Gem takson i Guiden
   save_identification: Gem identifikation
   save_observation: Gem observation
   save_photos: Gem foto´s
@@ -3347,8 +3343,8 @@ da:
     one: Gemmer observation...
     other: Gemmer %{num} af %{count} observationer...
   saving_verb: Gemmer
-  schemes: Arrangement
-  schemes_including: Arrangement inkluderet
+  schemes: Ordninger
+  schemes_including: Ordninger der inkluderer
   scientific_names: Videnskabelige navne
   search: Søg
   search_all_fields: søg i alle felter
@@ -3413,12 +3409,12 @@ da:
   send: send
   send_invite: Send invitation
   send_invites_to: Send invitationer til
-  send_me_reset_password_instructions: Send mig "Nulstil adgangskode" instruktioner
+  send_me_reset_password_instructions: Send mig info om nulstilling af adgangskode
   send_the_invites: Send invitationerne
   sending: Sender...
   sent: Sendt
-  separate_values_with_a_pipe: Separer værdier med et rør, f.eks."1-5 | 6-10 | meget"
-    eller "ja | nej | måske"
+  separate_values_with_a_pipe: Separér værdier med en lodret streg, f.eks."1-5|6-10|meget"
+    eller "ja|nej|måske"
   september: September
   set_a_place_if_this_link_only_applies_to: Angiv et sted, hvis dette link kun gælder
     for taksa fra et bestemt sted. Lad det være tomt, hvis det gælder taksa over hele
@@ -3464,7 +3460,7 @@ da:
   simple: Enkel
   sign_in_exclamation: Log ind!
   single_observation: Enkelt observation
-  single_taxon: Enkelt takson (input til split/drop/stadie, output til fusion/skifte)
+  single_taxon: Enkelt takson (input til split/drop/stadie, output til sammenlægning/skifte)
   sizes: Størrelser
   skip_to_next_page: Spring til næste side
   small: lille
@@ -3479,8 +3475,8 @@ da:
   some_observations_failed_to_save: Nogle observationer kunne ikke gemmes
   some_of_those_photos_couldnt_be_saved: Nogle af disse fotos kunne ikke gemmes:%{error}
   some_other_reason: Andre grunde kan du forklare nedenfor.
-  some_people: Nogle mennesker
-  some_people_that: Nogle mennesker der
+  some_people: Nogle personer
+  some_people_that: Nogle personer der
   some_rights_reserved: nogle rettigheder forbeholdes
   something: Noget
   something_: noget
@@ -3605,10 +3601,10 @@ da:
   start_new_project: Start et nyt projekt
   start_one: start en
   start_one_now: Start en nu
-  start_typing_field_name: Start med at indtaste feltnavn ...
-  start_typing_place_name: Start med at indtaste navn på sted ...
-  start_typing_taxon_name: Start med at indtaste taksonnavn ...
-  start_typing_someones_name: Start med at indtaste nogens navn ...
+  start_typing_field_name: Indtast feltnavn ...
+  start_typing_place_name: Indtast navn på sted ...
+  start_typing_taxon_name: Indtast taksonnavn ...
+  start_typing_someones_name: Indtast nogens navn ...
   states: Stadier
   stats: Statistik
   stats_for_this_year_have_not_been_generated: Statistik for dette år er ikke blevet
@@ -3651,7 +3647,7 @@ da:
   subscribe_to_this_observation: Abonnér på denne observation
   subscribe_to_x_from_this_y_html: |-
     <a href="#" onclick="$(this).overordnet('form:first').indsend(); return false;">Abonnér</a>
-    to %{x} fra dette %{y}.
+    på %{x} fra dette %{y}.
   subscriptions: Abonnementer
   subscriptions_arent_available_for: Abonnementer er ikke tilgængelige for steder
     uden grænser.
@@ -3667,8 +3663,8 @@ da:
   siutable_observations: Mistænkelige observationer
   sun: Søn
   suspend_user: Suspenderet bruger
-  sw_lat: SV Br.gr.
-  sw_lon: SV Læ.gr.
+  sw_lat: SV Bre.
+  sw_lon: SV Læn.
   sync: Sync?
   sync_with_eol: Sync med EOL
   sync_obs_with_photo_metadata: Sync obs. m/foto metadata?
@@ -3677,9 +3673,9 @@ da:
   table_of_contents: Indholdsfortegnelse
   tagging: Tagger...
   tags: Tags
-  tags_are_a_way: Tags er en måde at organisere dine observationer på. Du kan for
-    eksempel tagge alle dine observationer i tidevandssøer "tidevandssøer" for at
-    gøre dem nemmere at finde senere.
+  tags_are_a_way: Tags er en måde hvorpå du organisere dine observationer. Du kan
+    for eksempel tagge alle dine tidevandssøer observationer med "tidevandssøer",
+    for at gøre det nemmere at finde dem senere.
   tags_like_taxonomy_binomial: 'Tags som <code> taksonomi: binomial = Pseudacris crucifer
     </ code> er <a href="http://www.flickr.com/help/tags#613430"> maskinetags </a>.
     De hjælper ingeniører programmatisk fornemmelse af dine tags, og de kræves af
@@ -3692,7 +3688,7 @@ da:
   taxa_all_species_html: Alle arter
   taxa_needing_curation: Taksa har brug for kuration
   taxa_observed: taksa observeret
-  taxa_to_include: Taksa som skal inkluderes
+  taxa_to_include: Taksa som skal medtages
   taxon: Takson
   taxonomy: Taksonomi
   taxon_: takson
@@ -3713,7 +3709,7 @@ da:
     overlays: Overtræk
   taxon_changes: Takson ændringer
   taxon_curators: Takson kuratorer
-  taxon_merge: takson fusion
+  taxon_merge: takson sammenlægning
   taxon_name: Takson navn
   taxon_name_must_match_an_existing_taxon_in_our_database: Takson navn skal matche
     et eksisterende takson i vores database
@@ -3816,11 +3812,11 @@ da:
   the_observation_has_date: observationen <strong>har en dato</strong>
   the_observation_has_photo: observationen <strong>har et foto</strong>
   the_observation_is_georeferenced: observationen <strong>er georefereret</strong>
-    (f.eks. har br.gr./læ.gr. koordinater
+    (f.eks. har bre./læn. koordinater)
   the_observation_was_already_added_to_that_project: Observationen var allerede tilføjet
     til dette projekt
   the_past: fortiden
-  the_people_of_inat: Mennesker i %{site_name}
+  the_people_of_inat: Personerne i %{site_name}
   the_project: projektet
   the_species_listed_below_were_not_found_in_the_site_database: De arter, der er anført
     nedenfor, blev ikke fundet i %{site_name} databasen
@@ -3832,11 +3828,11 @@ da:
   the_user_x_has_been_unsuspended: Brugeren %{user} er ikke længere suspenderet
   the_world: Verden
   the_world_is_full_of_interesting_places: |-
-    Verden er fuld af interessante steder, hvert sted er fyldt med mærkelige og
+    Verden er fuld af interessante steder, og hvert sted er fyldt med mærkelige og
     vidunderlige livsformer. Nogle er omme på den anden side af jorden, mens
-    andre er lige nede af gaden! %{site_name} steder giver dig mulighed for at se livet fra hele verden. Begynd at udforske!
+    andre er lige nede af gaden! Med %{site_name} steder får du mulighed for at browse livet fra hele verden. Begynd at udforske!
   the_world_is_full_of_interesting_places_short: |-
-    Verden er fuld af interessante steder, hvert sted er fyldt med mærkelige og
+    Verden er fuld af interessante steder, og hvert sted er fyldt med mærkelige og
     vidunderlige livsformer. Nogle er omme på den anden side af jorden, mens
     andre er lige nede af gaden!
   then_keybord_sequence: derefter
@@ -3849,7 +3845,7 @@ da:
   there_isnt_a_wikipedia_article_titled_x_html: Der er ikke en Wikipedia artikel eller
     et link %{x} Måske vil du gerne <a href='http://en.wikipedia.org/wiki/%{x}'>lave
     en</a>?
-  there_merge_problems_with_the_merge: 'Der var problemer med fusionen: %{merged_errors}'
+  there_merge_problems_with_the_merge: 'Der var problemer med sammenlægningen: %{merged_errors}'
   there_was_a_problem_saving_your_identification: Det var et problem med at gemme
     din identifikation %{error}
   there_were_errors: Der var fejl.
@@ -3880,11 +3876,11 @@ da:
     osv., skal håndteres med en høflig kommentar. Gentagende lovovertrædere skal rapporteres til en side administrator eller til %{email}
   these_are_taxa_that: |-
     Dette er taksa, som %{site} ikke automatisk kunne føjes til vores taksonomiske
-    træ af en eller anden grund. Du kan tilføje dem til træet ved at redigere taksonen og vælge en overordnet registrering. For eksempel ville overordnede til Homo sapiens være slægten Homo. Du vil måske også gerne tjekke
-    for synonymt taksa og fusionere dem.
+    træ af en eller anden grund. Du kan tilføje dem til træet ved at redigere taksonen og vælge en overordnet registrering. For eksempel ville overordnede til Homo sapiens være slægten Homo. Du kan også tjekke
+    for synonymt taksa og sammenlægge dem.
   these_arent_necessarily_relevant_to: Disse er ikke nødvendigvis relevante for dette
     projekt. Tjek venligst
-  these_folks_kindly_volunteer_to: Disse fantastiske mennesker har meldt sig til at
+  these_folks_kindly_volunteer_to: Disse fantastiske personer har meldt sig til at
     vedligeholde vores taksonomi samt at løse de udfordringer der løbende opstår.
   these_observations_have_not_been_uploaded_yet: Disse observationer er ikke blevet
     uploadet endnu.
@@ -3925,17 +3921,17 @@ da:
   this_observation_was_created_using: 'Denne observation blev oprettet ved hjælp af:'
   this_photo_is_already_associated: Dette billede er allerede forbundet med en af
     dine observationer.
-  this_place_has_no_check_list: Dette sted har ingen tjekliste, så der er ingen guide.
+  this_place_has_no_check_list: Dette sted har ingen tjekliste.
   this_species: denne art
   this_species_has_no_colors: Denne art har ingen farver! Hjælp med at forbedre artssøgninger
     ved at fortælle os hvilken farve den er!
   this_taxon_change_has_been_commited: |-
-    <strong> Denne takson ændring er blevet gjort! </ strong>
+    <strong> Denne takson ændring er blevet udført! </ strong>
     Vær venlig ikke at redigere taksa. Redigering af andre felter er ok.
   this_taxon_concept_is_inactive: dette takson er inaktivt
   this_taxon_has_no_default_photo: Denne taxon har intet standardbillede!
   this_taxon_is_inactive_this_means: Denne takson er <strong> inaktiv </ strong>.
-    Det betyder, at %{site_name}'s kuratorer har erstattet det med et mere taksonomisk
+    Det betyder, at %{site_name}'s kuratorer har erstattet den med et mere taksonomisk
     aktuelt koncept.
   this_taxon_name_was_originally_imported: 'Dette takson navn blev oprindeligt importeret
     fra en ekstern navne leverandør:'
@@ -3975,7 +3971,7 @@ da:
   time_ago: '%{time} siden'
   tired_of_testing_this_new_version: Træt af at teste denne nye version?
   title: titel
-  title_and_description: Titel & Beskrivelse
+  title_and_description: Titel & beskrivelse
   titled_favorites_and_the_most_recent_additions: '"Favoritter", og de seneste tilføjelser
     vises i dette felt.'
   to: til
@@ -4010,12 +4006,12 @@ da:
   total_species_observed: Samlet antal arter observeret
   total_unique_observers: Samlet antal unikke observatører
   total_users: samlet antal brugere,
-  "true": Rigtigt
+  "true": Sandt
   trending: Tendenser
   trends: Tendenser
   trusted_project?: Tillidsprojekt?
-  try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af formularen på
-    denne side.
+  try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af skemaet på denne
+    side.
   try_it_out: Prøv det
   try_wikipedia: Prøv Wikipedia?
   tue: Tir
@@ -4048,7 +4044,7 @@ da:
   unknown_error: Ukendt fejl
   unknown_rank: (Ukendt rang)
   unfollow: Følg ikke længere
-  unlink_your_google_account: Fjern tilknytning til din Google konto
+  unlink_your_google_account: Frakobl din Google konto
   unmute: Tænd
   unobserved_listings: Ikke observerede opførelser
   updates_notification_email_subject: '%{prefix} Nye opdateringer %{date}'
@@ -4059,7 +4055,7 @@ da:
   unreview: Fjern gennemgang
   unreview_all: Fjern gennemgang for alle
   unsubscribe: Afmeld abonnement
-  unsubscribe_from_this: Afmeld abonnement fra dette
+  unsubscribe_from_this: Afmeld abonnement fra denne
   unsuspend_user: Bruger ikke længere suspenderet
   unverifiable: Ikke verificerbare
   upcoming_bioblitzes: Kommende bioblitzer
@@ -4078,8 +4074,8 @@ da:
     one: Opdatér 1 valgt takson
     other: Opdatér %{count} valgte taksa
   update_your_content: Opdatér dit indhold
-  update_with_eol_content: Opdatér med EOL indhold
-  update_with_site_content: Opdatér med %{site_name} indhold
+  update_with_eol_content: Opdatér med indhold fra EOL
+  update_with_site_content: Opdatér med indhold fra %{site_name}
   updated: Opdateret
   updated_by: Opdateret af
   updated_daily: Opdateret dagligt
@@ -4110,16 +4106,16 @@ da:
   usage_stats: Anvendelses statistik
   use_name_as_a_placeholder: Brug <span class='ac-placeholder'>"%{name}"</span> som
     en pladsholder
-  use_this_form_to_create_a_new: Brug denne formular til at lave en kladde til en
-    taksonomisk ændring, der beskriver en foreslået split, fusionering eller skifte
-    på aktive taksa, der senere vil blive udført.
+  use_this_form_to_create_a_new: Brug dette skema til at lave en kladde til en taksonomisk
+    ændring, der beskriver et foreslået split, en sammenlægning eller et skifte på
+    aktive taksa, der senere vil blive udført.
   use_this_if_the_url_needs_genus_species_separated: Brug dette, hvis URL'en skal
     have slægten og arten adskilt på en særlig måde. Hvis taksonen ikke er en art
     eller infraart, alt mellem [GENUS] og [SPECIES] vil blive erstattet af taksonavnet,
     så brug det sparsomt.
   use_unique_file_names_for_separate_uploads: Brug unikke filnavne til særskilte uploads
   use_well_formed_csv: |-
-    Brug veludført CSV. Det betyder, at tekst med kommaer skal indsættes i
+    Brug korrekt formateret CSV. Det betyder, at tekst med kommaer skal indsættes i
     dobbelte anførselstegn. De fleste regnearksprogrammer kan eksportere CSV i dette format.
   user: Bruger
   user_added_a_x: '%{user} tilføjede en %{x}'
@@ -4197,7 +4193,7 @@ da:
   view_all_your_projects: Vis alle dine projekter
   view_assessment: Vis vurderinger
   view_change: Vis ændring
-  view_check_list_page: Vis tjekliste side
+  view_check_list_page: Vis side med tjekliste(r)
   view_contributions: Vis bidrag
   view_details: Vis detaljer
   view_field_options: Vis felt muligheder
@@ -4240,7 +4236,7 @@ da:
   view_original_by: Vis original af %{by} på %{photo}
   view_original_ccD_photo: Vis original CC´d foto af %{owner}
   view_other_taxa: Vis andre <nobr> %{taxon_name} &raquo; </nobr>
-  view_photos_ranges_observations_more: Se billeder, artsområder, %{site_name} observationer
+  view_photos_ranges_observations_more: Se billeder, arter, %{site_name} observationer
     og meget mere! Vi har samlet information fra mange forskellige kilder og kombineret
     dem i en hurtig opsummering af hver art på hvert sted.
   view_place: Vis sted
@@ -4340,9 +4336,9 @@ da:
   what_did_you_see: Hvad så du?
   what_did_you_see?: <em>Hvad</em> så du?
   what_do_you_think: Hvad synes du?
-  what_do_you_want_to_list: Hvad vil du opføre?
+  what_do_you_want_to_list: Hvad ønsker du vist?
   what_to_keep: Hvad skal beholdes
-  what_want_to_list?: Hvad vil du opføre?
+  what_want_to_list?: Hvad ønsker du vist?
   whats_this?: Hvad er dette?
   when: Hvornår
   when_did_you_see_it?: Hvornår så du den?
@@ -4515,7 +4511,7 @@ da:
   you_must_choose_an_observation_field: Du skal vælge et observationsfelt
   you_must_fill_out_the_required_fields: Du skal udfylde de påkrævede felter
   you_must_have_a_header_row: Du skal have en overskriftsrække
-  you_must_select_a_csv_file_to_upload: Du skal vælge en CSV fil, der skal uploades.
+  you_must_select_a_csv_file_to_upload: Du skal vælge den CSV fil, der skal uploades.
   you_must_select_a_place_to_merge_with: Du skal vælge et sted til sammenlængning
     med.
   you_must_select_at_least_one_taxon: Du skal vælge mindst en takson
@@ -4531,7 +4527,7 @@ da:
     indhold bortset fra de rettigheder, der er givet til %{site_name} i vores Servicevilkår.
   you_sure_delete_asset?: Er du sikker på at du vil slette dette aktiv?
   you_sure_delete_check_list: Er du sikker på, at du vil slette denne liste? Nogle
-    mennesker kan have lagt meget arbejde i det ...
+    personer kan have lagt meget arbejde i den ...
   you_sure_delete_comment?: Er du sikker på, at du vil slette denne kommentar?
   you_sure_delete_custom_field?: Er du sikker på, at du vil slette disse brugerdefinerede
     felter?
@@ -4554,7 +4550,7 @@ da:
   youve_joined_the_x_project: Du er medlem af projektet %{project_invitation} og din
     observation blev tilføjet
   your: Dine
-  your_: Dine
+  your_: Din
   your_account_has_been_activated: Din konto er blevet aktiveret!
   your_account_has_been_verified: Din %{site_name} konto er blevet bekræftet! Log
     venligst ind for at fortsætte.
@@ -4618,8 +4614,8 @@ da:
   youve_already_added_an_identification: Du har allerede tilføjet en identifikation,
     og du kan kun tilføje én
   youve_linked_your_inaturalist_google_account: Du har tilknyttet din %{site_name}
-    konto og din Google-konto. Dette giver dig mulighed for at tilknytte dine Google
-    fotos med dine %{site_name} observationer.
+    konto med din Google konto. Dette giver dig mulighed for at bruge dine Google
+    fotos i dine %{site_name} observationer.
   youve_opted_out_of_community_ids: Du fravalgte fælleskabs identifikationerne
   youve_opted_out_of_community_ids_for_this_obs: Du fravalgte fælleskabs identifikationerne
     for denne observation
@@ -4681,12 +4677,11 @@ da:
         add_color_tags_help: Tilføj farvetags fra farver, der er forbundet med den
           valgte taksa.
         add_rank_tags_help_html: |-
-          Tilføj takson ranglistetags baseret på vores taksonomi, f.eks.
-          <Code>familie = Laridae </code>
-          eller
-          <code>familie = Måger og lignende </ code>
-        coordinates_desc: Ved at oplyse dine guide koordinater hjælper det andre personer
-          med at finde det, når de søger efter sted.
+          Tilføj taksonrang tags baseret på vores taksonomi, f.eks.
+          <code>familie = Laridae</code>
+          eller <code>familie = Mågefugle</code>
+        coordinates_desc: Når du angiver dine koordinater for Guiden, hjælper det
+          andre personer med at finde Guiden, når de søger efter steder.
         eol_subjects_desc: |-
           EOL udgiver indhold under en række forskellige emneoverskrifter, men ikke alle er tilgængelige for hver takson. Valg af "Oversigt"
           vil bare importere den første tilgængelige tekstsektion fra EOL, som generelt
@@ -4698,32 +4693,32 @@ da:
           af arter. Hvis du vil importere arter fra en EOL-samling,
           så indsæt URL'en for denne samling her.
         guide_place_desc: "Ved at tilknytte din guide til et sted kan andre personer
-          finde det, når de søger efter steder og det vil vise stedets ydre grænser
-          på\n%{site_name}kort. Stedets omrids vil blive vist hvis det er indstillet
-          til det. \n(f.eks. \"kort\" vis, takson sider osv.)"
+          finde guiden, når de søger i steder og stedets omrids på\n%{site_name}kortet
+          vil blive vist, hvis det er indstillet til det. \n(f.eks. vis \"kort\",
+          taksonsider osv.)"
         import_tags_from_csv_help_html: |-
           <p>
-            Upload en CSV fil med tags til taksa i denne vejledning. Din CSV-fil skal se sådan ud:
+            Upload en CSV fil med tags til taksa i denne Guide. Din CSV-fil skal se sådan ud:
           </p>
           <table class="table">
             <tbody>
               <tr>
-                <th>Name</th>
-                <th>color</th>
-                <th>Number of hands</th>
+                <th>Navn</th>
+                <th>Farve</th>
+                <th>Antal hænder</th>
                 <th></th>
               </tr>
               <tr>
                 <td>Homo sapiens</td>
                 <td></td>
                 <td>2</td>
-                <td>bipedal</td>
+                <td>tobenet</td>
               </tr>
               <tr>
                 <td>Vulpes vulpes</td>
-                <td>red|black</td>
+                <td>rød|sort</td>
                 <td>0</td>
-                <td>quadripedal</td>
+                <td>firbenet</td>
               </tr>
             </tbody>
           </table>
@@ -4731,21 +4726,20 @@ da:
           Første række starter med "Navn" efterfulgt af tagget
              prædikater/kategorier. Så starter hver følgende række med
              navn på takson, efterfulgt af tags tilsvarende prædikat toppen
-             af søjlen. I dette eksempel får <i> Homo sapiens </ i>
-             tags <code> bipedal </ code> og <code> Antal hænder = 2 </ code>,
-             og <i> Vulpes vulpes </ i> får <code> quadripedal </ code>,
-             <code> color = red </ code>, <code> farve = sort </ code> og
-             <code> Antal hænder = 0 </ code>. Blanke vil blive ignoreret, og du
+             af søjlen. I dette eksempel får <i>Homo sapiens</i> (mennesket) disse
+             tags <code>tobenet</code> og <code>Antal hænder = 2 </code>,
+             og <i>Vulpes vulpes </i> (rød ræv) får <code>firbenet</code>,
+             <code>farve=rød</code>, <code>farve=sort</code> og
+             <code>Antal hænder=0</code>. Blanke vil blive ignoreret, og du
              kan tilføje flere linjer pr. takson. Du kan også tilføje flere
-             værdier pr. celle adskilt af rørkarakteren
+             værdier pr. celle adskilt af en lodret streg.
           </p>
         licensing_explanation: |-
-          Licensering af dit indhold giver andre mennesker ret til at kopiere og
+          Licensering af dit indhold giver andre personer ret til at kopiere og
           ændre det uden at spørge om din tilladelse. Det gør det meget nemmere at
           dele dit arbejde og hvis du inkorporerer tredjeparts indhold fra andre
-          kilder, der bruger Creative Commons dele licenser (som
-          Wikipedia), er du juridisk forpligtet til at bruge en lignende licens. Her er
-          et overblik over alle Creative Commons licenser og hvad de betyder:
+          kilder, der bruger Creative Commons Del på samme måde licenser (som
+          Wikipedia), er du juridisk forpligtet til at bruge en tilsvarende licens. Her er et overblik over alle Creative Commons licenser og hvad de betyder:
         paste_note_html: |-
           Indsæt op til 500 artsnavne, én per linje. %{site_name} vil gøre
           sit bedste for at matche lokale navne for arts koncepter, men for at undgå
@@ -4765,14 +4759,13 @@ da:
           den, indtil du offentliggør den.
       generating_mobile_archive_tip_html: Det kan tage et stykke tid, så prøv at opdatere
         denne side om et par minutter.
-      mobile_downloads_tip_html: Denne Guide kan downloades til mobilappen til offline
-        brug.
+      mobile_downloads_tip_html: Denne Guide kan downloades til offline brug i mobilappen.
       mobile_downloads_help_html: |-
         <p> Dette vil oprette et arkiv til download af alle de data og medier
-        tilknyttet denne Guide, så mobilapp brugere kan se alt indhold i Guiden uden internetforbindelse. Det vil tage få minutter at generere arkivet, men når først det er aktiveret vil arkivet opdateres, hver gang du ændrer i denne Guide. </ p>
+        tilknyttet denne Guide, så mobilapp brugere kan se alt indhold i denne Guide uden internetforbindelse. Det vil tage nogle få minutter at generere arkivet, men når først det er udført vil arkivet opdateres, hver gang du ændrer i denne Guide. </ p>
         <p class = "alert status">
-           Venligst <strong> aktivér ikke offline mobil downloads, medmindre du
-           faktisk har til hensigt at bruge dem. </ strong> De belaster vores system betydeligt.
+           Aktivér <strong> venligst ikke offline mobil downloads, medmindre du
+           faktisk har til hensigt at bruge dem, </ strong> Da det belaster vores system betydeligt.
         </ P>
       pdf_layouts:
         grid: gitter
@@ -4780,19 +4773,18 @@ da:
         journal: journal
       pdf_layout_notes:
         grid: Gitter med enkeltbilleder, ingen beskrivelser
-        journal: Opdelt side, artsinfo til venstre, plads til noter til højre. Artsinfo
-          bliver tilpasset så den passer til siden.
-        book: Komplet Guide inklusive alle fotos og beskrivelser, der spænder over
-          flere sider.
+        journal: Opdelt side, med artsinfo til venstre, og plads til noter til højre.
+          Artsinfo bliver tilpasset så den passer til siden.
+        book: Komplet Guide med alle fotos og beskrivelser, der fylder flere sider.
       pdf_generation_notice: Vær tålmodig, at generere store PDF filer kan tage et
         minut eller to.
       tags_help_html: |-
-        Tags er som kategorier for arten i din Guide, undtaget at
-        flere arter kan have samme tag. Indtast tags som en komma-
-        separeret liste, f.eks. <code>lille,pelsagtig</ code>. For at tilføje navngivne kategorier, brug tags som <code> kategori_navn = kategori_værdi </ code>,
-        f.eks. <Code> color = gul </ code>.
+        Tags er som kategorier for artene i din Guide, bortset fra at
+        flere arter kan have det samme tag. Indtast tags som en komma-
+        separeret liste her, f.eks. <code>lille,pelsagtig</code>. For at tilføje navngivne kategorier, brug tags som <code>category_name=category_value</code>,
+        f.eks. <code>farve=gul</code>.
       sorts:
-        default: Guide orden
+        default: Taksonomisk orden
         alphaname: Alfabetisk efter videnskabeligt navn
         alphadisplay: Alfabetisk efter visningsnavn
     guide_taxa:
@@ -4854,7 +4846,7 @@ da:
           {help_email} </a>
         what_are_admins_and_curators?: Hvad er en administrator og en kurator?
         inat_admins_are_the_people_who: |-
-          %{site_name} administratorer er de mennesker, der udarbejder webstedet. De har direkte adgang til den underliggende kode og databasen, og de kan ændre alt
+          %{site_name} administratorer er de personer, der administrerer webstedet. De har direkte adgang til den underliggende kode og database, og de kan ændre alt
           på siden.
         curators_are_inat_users_who_volunteer_to_html: |-
           Kuratorer er %{site_name} brugere, som frivilligt hjælper med at holde vores taksonomiske data opdateret. Hvis du er interesseret i at blive kurator, venligst
@@ -4862,10 +4854,7 @@ da:
           også udnævne andre brugere til kurator status. Udnævn venligst kun andre personer som du stoler på og som du ved, har noget taksonomisk viden.
         what_is_considered_inappropriate_content?: Hvad anses for upassende indhold?
         you_know_it_when_you_see_it_html: |-
-          Du <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio"> ved det, når du ser det </a>,
-          ikk? Ting, der overtræder afsnit 2 i vores <a href="/terms.html"> servicevilkår </a>
-          er absolut upassende og værd at markere eller på anden måde anmelde til
-          administratorerne. Mildere former for uhøflighed er uheldige, men
+          Du <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio"> ved det, når du ser det </a>, ikk? Ting, der overtræder afsnit 2 i vores <ahref="/terms.html"> servicevilkår </a> er absolut upassende og værd at markere eller på anden måde anmelde til administratorerne. Mildere former for uhøflighed er uheldige, men
           sandsynligvis ikke noget, vi sletter. Observationer af kæledyr, dyr i fangenskab, mennesker og andre organismer, som de fleste naturelskere måske ikke finder interessant er ok (de lever alligevel). Observationer af ting
           der ikke er organismer, er et gråt område. Ting der helt klart intet har at gøre med naturen, som eksempelvis hvad nogen spiste til frokost, er værd at markerer og kan slettes, men tegn på skældsord eller bataljer kan være interessante og vil sandsynligvis ikke blive fjernet.
         what_is_an_observation?: Hvad er en observation?
@@ -4937,10 +4926,9 @@ da:
         what_is_does_it_mean_for: Hvad betyder det for en observation at være sløret?
         when_coordinates_are_obscured_it_means_that: |-
           Når koordinater er sløret betyder det, at et tilfældigt punkt indenfor
-          %{km} KM af de rigtige koordinater vises offentligt (dvs. på hjemmesiden, observations siden og projekt sider), mens de rigtige koordinater kun er synlige, når du ser dine egne observationer (dvs. på de individuelle projekt
-          sider og listen over dine egne observationer). Bemærk at kuratorer på
+          %{km} KM af de rigtige koordinater vises offentligt (dvs. på hjemmesiden, observationssiden og projektsider), mens de korrekte koordinater kun er synlige, når du ser dine egne observationer (dvs. på de individuelle projektsider samt listen over dine egne observationer). Bemærk at kuratorer på
           de projekter, som du har tilføjet en observation til, også kan se de
-          rigtige koordinater. Slørede koordinater skal altid symboliseres af
+          korrekte koordinater. Slørede koordinater skal altid symboliseres af
           cirkulær markør uden stængler på kort og i geospatiale feeds.
         coordinates_are_obscured_for_all_taxa: |-
           Koordinater sløres automatisk for alle taksa, der er "NÆR VED TRUET" eller er i henhold til IUCN´s rødliste. Nogle taksa kan være erklæret truet i henhold til andre bevarelses organisationer, og nogle kan simpelthen markeres som truet af %{site_name} side kuratorer, hvis de
@@ -4961,7 +4949,7 @@ da:
           organismer, som f.eks. en livsliste over fugle eller en livsliste over mælkebøtter.
         a_project_list_belongs: |-
           En projektliste tilhører et projekt og viser alle taksa
-          observeret af medlemmer af projektet. Projektlister kan også være udfyldt  manuelt af administratoren på dette projekt, og kan bruges til
+          observeret af medlemmer af dette projekt. Projektlister kan også være udfyldt  manuelt af administratoren på dette projekt, og kan bruges til
           at begrænse projektbidrag til taksa, der er på projektlisten.
         a_check_list_is_html: |-
           En tjekliste er en liste over taksa, der forekommer på et specifikt sted. Hvert sted har en standard tjekliste, og når en observation er foretaget inden for områdets grænser, <em>og</ em> og det har opnået
@@ -4986,20 +4974,20 @@ da:
       establishment_field:
         confirmation: |-
           Er du sikker? Dette vil ændre oprindelse for ALLE
-          opført taksa tilhørende steder inden for dette sted. Du kunne slette en masse arbejde.
+          opførte taksa, tilhørende steder inden for dette sted. Du kan komme til at slette en masse arbejde.
         description_html: |-
           Dette vil ændre oprindelse for <em> alle </ em> opførelser over denne takson på alle kommende steder af
           <a href="%{place_url}">%{place_name} </a>
           til <strong> "%{establishment_means}" </ strong>. Kun
           kuratorer kan bruge dette værktøj. Ændring af oprindelse til
-          "indført" vil have omtrent samme effekt, men det vil ikke ændre eksisterende værdier, så du skal blot udfylde de tomme værdier.
+          "indført" vil have omtrent samme effekt, men den vil ikke ændre eksisterende værdier, blot udfylde de tomme værdier.
     lists:
       new:
         place_desc: |-
           Fyld automatisk denne liste med taksa observeret på dette sted.
-          Bemærk, at du kun kan vælge steder, der har grænser.
+          Bemærk, at du kun kan vælge steder, der har ydre grænser.
       show:
-        project_list_desc: Taksa der er tilføjet manuelt af projekt kuratorer og taksa,
+        project_list_desc: Taksa der er tilføjet manuelt af projektkuratorer og taksa,
           som er observationer af forskningsklasse, vises på projektlisten.
     observations:
       community_id:
@@ -5029,15 +5017,14 @@ da:
         Var organismen <strong> avlet </ strong> eller
         <Strong> i fangenskab </ strong>? For eksempel var det i en <strong> have,
         zoo, akvarium </ strong> eller en anden situation, hvor den kun var
-        til stede <strong> fordi mennesker havde til hensigt at de skulle være der </ strong>? Alle observationer af levende ting er velkomne, men vi vil gerne vide
-        når ting ikke er vilde / fra naturen.
+        til stede <strong> fordi mennesket havde til hensigt at de skulle være der </ strong>? Alle observationer af levende organismer er velkomne, men vi vil gerne vide når organismerne ikke er vilde / fra naturen.
       export:
         choose_columns_desc: Vælg de kolonner, du vil eksportere
         create_a_query_desc_html: Lav en observations søgning ligesom du ville andre
           steder på siden. Du kan også kopiére og indsætte en observations URL fra
-          et andet sted på websiden. Du skal angive en<strong>takson</strong>,<strong>et
-          sted</ strong>,<strong>en bruger</ strong>,<strong>et projekt</strong>eller<strong>et
-          søgeord</ strong>.
+          et andet sted på websiden. Du skal angive en <strong>takson</strong>, <strong>et
+          sted</ strong>, <strong>en bruger</ strong>, <strong>et projekt</strong>
+          eller<strong> et søgeord</ strong>.
         ident_by_user_desc_html: Kolonner til den aktuelle identifikation af %{user}
         query_placeholder: Vælg søgeparametre nedenfor eller indsæt en observations
           URL
@@ -5045,7 +5032,7 @@ da:
           af din eksport'
         geo_help_html: |-
           By, region, stat, landområder baseret på koordinater. Analoge administrative niveauer vil blive brugt til observationer, hvor disse typer steder ikke gælder.
-          De private_*felter vil kun blive inkluderet når du anvender brugerfilteret og når du er brugeren eller når du bruger projektfilteret, og du er kurator på projektet.
+          De private_*felter vil kun blive inkluderet når brugerfilteret anvendes og du er brugeren eller når du bruger projektfilteret, og du er kurator på projektet.
         be_patient: |-
           Vær tålmodig, det kan tage et par minutter. Hvis dette tager
           for lang tid, kan du
@@ -5064,7 +5051,7 @@ da:
           2015-01-17, 2015-01, 2015
       field_descriptions:
         id: Unik identifikator til observation
-        species_guess: Navngiv observatøren, der er indtastet for det observerede
+        species_guess: Navngiv observatøren, der er indtastet for den observerede
           takson
         scientific_name: Videnskabeligt navn på den observerede takson ifølge dette
           websted
@@ -5082,7 +5069,7 @@ da:
         observed_on: Normaliseret observations dato
         time_observed_at: Normaliseret observationstidspunkt
         time_zone: Observationens tidszone
-        place_guess: Lokal beskrivelse som angivet af observatøren
+        place_guess: Lokalitets beskrivelse som angivet af observatøren
         latitude: Offentlig synlig breddegrad
         longitude: Offentlig synlig længdegrad
         positional_accuracy: Koordinat præcision (ja, ja, nøjagtighed! = Præcision,
@@ -5091,7 +5078,8 @@ da:
           sløret
         private_longitude: Privat længdegrad, indstil hvis observation er privat eller
           sløret
-        geoprivacy: Hvorvidt observatøren har valgt at sløre koordinaterne eller ej
+        geoprivacy: Uanset om observatøren har valgt at sløre eller skjule koordinaterne
+          eller ej
         coordinates_obscured: Hvorvidt koordinaterne er blevet sløret, enten på grund
           af geoprivat eller på grund af et truet takson
         out_of_range: Hvorvidt eller ej denne observation ligger uden for taksonets
@@ -5100,8 +5088,8 @@ da:
         user_login: Observatørens brugernavn
         created_at: Tidspunkt for observationens oprettelse
         updated_at: Tidspunkt for sidste opdatering af observationen
-        quality_grade: Kvalitetsgrad af denne observation. Se hjælpesektionen for
-          detaljer om hvad det betyder
+        quality_grade: Observationens kvalitetsklasse. Se hjælpesektionen for detaljer
+          om hvad dette betyder
         license: Licens, som observatøren har valgt til denne observation
         url: URL for observationen
         image_url: URL til standardbilledet
@@ -5128,7 +5116,7 @@ da:
           de private koordinater for denne observation.
         ancestor_disagreements_desc: '# af identificerede taksa, der er blandt en
           taksons forfædre, men blev oprettet efter den første identifikation ved
-          hjælp af dette takson'
+          hjælp af denne takson'
         community_taxon_desc_html: "<p class = \"ui\">\n  Fællesskabets takson (eller
           fællesskabets identifikation) fortæller\n  hvilken takson %{site_name} fællesskabet
           mener, er afbildet i en\n  observation. Hvis du er interesseret i, hvordan
@@ -5179,7 +5167,7 @@ da:
           af en observations nøjagtighed. Alle observationer starter som <strong>
           \"uformel\" </ strong> klasse og bliver<strong> \"behøver ID\" </ strong>
           når\n</p>\n\n<ul>\n  <li>observationen <strong>har en dato</strong></li>\n
-          \ <li>observationen <strong>er georefereret</strong> (dvs. har br.gr./læ.gr.
+          \ <li>observationen <strong>er georefereret</strong> (dvs. har bre./læn.
           koordinater)</li>\n  <li>observationen <strong>har foto´s eller lyde</strong></li>\n
           \ <li>observationen <strong>ikke er af et menneske</strong></li>\n</ul>\n<p>\n
           \ Observationen bliver <strong>\"forskningsklasse\"</strong> når\n</p>\n<ul>\n
@@ -5216,10 +5204,9 @@ da:
           <a href="/observations/%{observation_id}/markeringer"> Administrer markeringer </a>
       user_stats:
         user_stats_desc: |-
-          Brugerstatistikker er begrænset til en maksimum på top 500 efter observationstælling
-          eller artstælling, så den samlede liste er normalt lidt mere end
+          Brugerstatistikker er begrænset til en maksimum på top 500 af antal observationer og arter, så den samlede liste er normalt lidt mere end
           500, da de to lister sandsynligvis ikke indeholder de samme brugere.
-          En værdi markeret '*' betyder at den ikke var i top 500 for denne statistik.
+          En værdi markeret med '*' betyder at den ikke var i top 500 i denne statistik.
     observation_fields:
       about_editing_observation_fields_desc_html: |-
         <p class = 'ui'> Du kan redigere dette observationsfelt, fordi du oprettede det eller fordi du er side kurator. Hvis du er kurator på siden, skal du følge disse retningslinjer </ p>
@@ -5235,8 +5222,8 @@ da:
         svarende til genet, som dette felt er målrettet mod.
       merge:
         warning_html: "Vær venlig at respektere andres data og <strong> tal med ophavsmanden\naf
-          et observationsfelt inden en fusionering</ strong>. Dette værktøj vil ødelægge
-          observations feltet hvis det fusioneres og flytte alle observationer \nover
+          et observationsfelt inden en sammenlægning</strong>. Dette værktøj vil ødelægge
+          observationsfeltet hvis det sammenlægges og flytte alle observationer \nover
           til holderen.<strong> Denne proces kan ikke fortrydes </ strong>, så PAS
           PÅ."
     emailer:
@@ -5292,11 +5279,11 @@ da:
           Bør kun indstilles til politiske organer. Med hensyn til
           USA-ækvivalenter, 0 = land, 1 = stat, 2 = amt, 3 = by
       index:
-        adding_new_places: tilføjer nye steder
-        confirming_identifications: bekræfter identifikationer ved at tilføje ID'er
+        adding_new_places: tilføje nye steder
+        confirming_identifications: bekræfte identifikationer ved at tilføje ID'er
           til observationer
-        filling_out_checklists: udfyld tjeklister for steder du kender godt
-        you_can_help_out_by: Du kan hjælpe med at forbedre vores steddata ved
+        filling_out_checklists: udfylde tjeklister for steder du kender rigtig godt
+        you_can_help_out_by: Du kan hjælpe med at forbedre vores steddata ved at
       new:
         check_list_note: 'Bemærk: tjeklisterne deaktiveres automatisk for meget store
           steder.'
@@ -5350,8 +5337,8 @@ da:
         change_admin_desc: Vælg en af projekt kuratorerne til at være den nye administrator.
         cover_desc: Valgfrit bannerbillede, der vises øverst på din projektside. Skal
           være 950px bred,og mindre end 400px høj.
-        custom_project_fields_means: Tilpas projektets banner, tilføj sideindhold
-          og rediger CSS.
+        custom_project_fields_means: Tilpas projektetbanner, tilføj sideindhold og
+          rediger CSS.
         end_time_desc: Slut tidspunkt for din bioblitz. Skal være mindre end et år
           efter starttidspunktet
         event_url_desc: |-
@@ -5393,7 +5380,7 @@ da:
           </ Ol>
         project_list_desc_html: |-
           <p class="description">
-          Du kan oprette en standard projektliste over taksa og tilknytte den til dit projekt. Det kan bruges til at begrænse de observationer, der bliver tilføjet dit projekt til kun at være dem, der matcher taksa på din liste. Dette gøres via en "skal være takson på projektlisten "regel.
+          Du kan oprette en brugerdefineret projektliste over taksa og tilknytte den til dit projekt. Dette kan bruges til at begrænse de observationer, der bliver tilføjet dit projekt til kun at være dem, der matcher taksa på din liste. Det gøres via en "skal være takson på projektlisten "regel.
           </P>
         rules:
           captive: være i fangeskab/avlet
@@ -5430,7 +5417,7 @@ da:
           <p class = "ui">
              Kun projektkuratorer kan invitere andre personer til at deltage i et projekt. Du
              skal kunne søge efter personer med deres iNat brugernavn eller
-             deres <em> komplette </ em> e-mail adresse, forudsat vi har det registreret.
+             deres <em> fuldstændige </ em> e-mail adresse, forudsat vi har den registreret.
           </ P>
       join:
         invite_only_description: |-
@@ -5489,9 +5476,8 @@ da:
         curated_checklist_desc: Dette er den kuraterede tjekliste og antal af taksa
           fra observationer, der specifikt er tilføjet til dette projekt, og ikke
           alle observationer er registreret ved tid og sted for dette event.
-      updates_desc: |-
-        Modtag underretninger om dette projekt på dit betjeningspanel og en daglig
-        underretnings e-mail.
+      updates_desc: Modtag underretninger om dette projekt på dit betjeningspanel
+        samt i den daglige underretnings e-mail.
     shared:
       blocked:
         youve_been_blocked: Du er blevet blokeret
@@ -5518,15 +5504,14 @@ da:
     stats:
       year:
         sunburst_desc_html: |-
-          Observeret taksa arrangeret som hierarkisk "lagkage" diagram. Basen
+          Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
           af hierarkiet er i centrum, begyndende med "liv" og slutter
-          med arter ved yderkanterne. Størrelsen på hver "kage" er proportional
+          med arter ved yderkanterne. Størrelsen af hver "bue" er proportional
           med antallet af observationer af den pågældende takson og farver
           svarer groft til vores sædvanlige "ikoniske" taksonfarver (grøn til planter,
           orange til insekter, blå for de fleste andre dyr osv.), så hvis du er
           ser meget grønt, det betyder at du har observeret mange planter.
-          <strong> Klik på en "kage" for at placere det pågældende takson i midten </ strong> og
-          dets underordnede omkring det, eller <strong> klik på midten for at flytte op op i hierarkiet igen </ strong>.
+          <strong> Klik på en "bue" for at placere den pågældende takson i midten </ strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </ strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: |-
@@ -5536,8 +5521,8 @@ da:
           det vil sløre koordinaterne for observationer af disse
           arter ukorrekt.
         complete_desc_html: |-
-          En "komplet" takson indeholder <em> alle </ em> kendte efterkommende taksa ved en specificeret rang, der overholder iNaturalists takson kurations
-          politikker, uanset om de er blevet overholdt eller ej. Kun sideadministratorer kan erklærer taksa fuldstændig på nuværende tidspunkt.
+          En "komplet" takson indeholder <em> alle </ em> kendte efterkommende taksa for en specificeret rang, der overholder iNaturalists takson kurations
+          politik, uanset om de er blevet observeret eller ej. Kun sideadministratorer kan erklærer en taksa komplet på nuværende tidspunkt.
         complete_rank_desc_html: |-
           Rang, hvor denne takson er komplet, f.eks. hvis denne familie indeholder
           alle dens slægter, men ikke alle dets arter, ville dette blive indstillet til "slægten".
@@ -5545,24 +5530,14 @@ da:
       show:
         about_names_desc: |-
           <P>
-            De fleste kategorier af organismer har "lokale navne" i de talte
-            sprog. Disse navne er normalt genkendelige, lette at udtale,
-            og stabile over tid, men mange organismer har flere forskellige
-            navne i forskellige lande, selv på samme sprog, som kan gøre
-            det svært at kommunikere om disse organismer uden at skabe forvirring.
-            Forskerne har løst dette problem ved at bruge et enkelt "videnskabeligt navn" for hver kategori af organismer, der opfylder reglerne i
-            <a href="https://en.wikipedia.org/wiki/Binomial_nomenclature"> biologisk nomenklatur </a>, men disse navne har tendens til at være baseret på Latin, et sprog ingen længere taler, så for mange mennesker, er de ikke så nemme at huske som de lokale navne. Videnskabelige navne kan også afspejle en organismes taksonomiske placering, så de kan også ændre sig, når forskere udvikler mere nøjagtige teorier om de evolutionære forhold mellem
-            forskellige organismer, som igen reducerer deres anvendelighed i
-            kommunikationen, selv blandt personer, der kender de videnskabelige navne.
+            De fleste kategorier af organismer har "lokale navne" i de talte sprog. Disse navne er normalt genkendelige, lette at udtale, og stabile over tid, men mange organismer har flere forskellige navne i forskellige lande, selv på samme sprog, som kan gøre det svært at kommunikere om disse organismer uden at skabe forvirring.
+            Forskerne har løst dette problem ved at bruge et enkelt "videnskabeligt navn" for hver kategori af organismer, der opfylder reglerne i <ahref="https://en.wikipedia.org/wiki/Binomial_nomenclature"> biologisk nomenklatur </a>, men disse navne har tendens til at være baseret på Latin, et sprog ingen længere taler, så for mange mennesker, er de ikke så nemme at huske som de lokale navne. Videnskabelige navne kan også afspejle en organismes taksonomiske placering, så de kan også ændre sig, når forskere udvikler mere nøjagtige teorier om de evolutionære forhold mellem forskellige organismer, som igen reducerer deres anvendelighed i kommunikationen, selv blandt personer, der kender de videnskabelige navne.
           </ P>
           <P>
-            Det gamle ordsprog siger: "Lokale navne skifter fra sted til sted
-            og de videnskabelige navne fra tid til anden. "
+            Det gamle ordsprog siger: "Lokale navne skifter fra sted til sted og de videnskabelige navne fra tid til anden. "
           </ P>
           <P>
-            Vi forsøger at løse disse udfordringer ved at vise både de lokale -
-            og de videnskabelige navne, hvor det er muligt, og vælge lokale navne
-            baseret på brugerens præferencer for sprog og geografi.
+            Vi forsøger at løse disse udfordringer ved at vise både de lokale - og de videnskabelige navne, hvor det er muligt, og vælge lokale navne baseret på brugerens præferencer for sprog og geografi.
           </ P>
         about_conservation_status_desc: Bevaringsstatus opsummerer risikoen for udryddelse
           for en gruppe af organismer.
@@ -5571,20 +5546,19 @@ da:
           aktivitet, imens hjemmehørende betyder, at den ankom uden menneskelig hjælp.
           Endemiske arter forekommer kun på et bestemt sted og ikke andre steder.
         about_taxon_curators_desc: |-
-          Disse mennesker styrer den del af det taksonomiske træ, der indeholder
+          Disse personer administrerer den del af det taksonomiske træ, der indeholder
           denne takson. Hvis du vil foretage ændringer, skal du markere denne takson eller kontakte en af disse personer.
         charts_help_seasonality: |-
           Dette diagram viser antallet af observationer af denne takson grupperet efter
           måned. Husk på, at dette blot er antal observationer, og det
           påvirkes både af, hvornår organismen kan observeres og hvornår
-          andre personer har lyst at observere dem. Så en fugl kan synes at være meget aktiv i maj, men det kunne måske også skyldes at flere mennesker kigger på fugle i maj, og de selv samme personer måske har en tendens til at ignorere denne art i de senere måneder. Det er det samme som, hvis du ser flere guldsmede i juni end i januar, er det måske fordi der er flere mennesker til at observere dem på den nordlige halvkugle end på den sydlige halvkugle og ikke fordi guldsmede er mere aktive i juni måned, så tjek observationskortet, når du ser på disse diagrammer. Det er altid en god idé, at være skeptisk over for disse diagrammer, specielt når der er lave antal af observationer og/eller store forskelle mellem antallet af
-          "Verificerbare" og "Forskningsklasse" observationer.
+          andre personer har lyst at observere dem. Så en fugl kan synes at være meget aktiv i maj, men det kunne måske også skyldes at flere personer kigger på fugle i maj, og de selv samme personer måske har en tendens til at ignorere denne art i de senere måneder. Det er det samme som, hvis du ser flere guldsmede i juni end i januar, er det måske fordi der er flere personer til at observere dem på den nordlige halvkugle end på den sydlige halvkugle og ikke fordi guldsmede er mere aktive i juni måned, så tjek observationskortet, når du ser på disse diagrammer. Det er altid en god idé, at være skeptisk over for disse diagrammer, specielt når der er lave antal af observationer og/eller store forskelle mellem antallet af "Verificerbare" og "Forskningsklasse" observationer.
         charts_help_history: |-
           Dette diagram viser antallet af observationer af denne takson efter måned for
-          de sidste ti år. Igen er det påvirket af antallet af mennesker, der
-          observere, men det vil vise dig usædvanlige pigge i observationer, og hvis
+          de sidste ti år. Igen er det påvirket af antallet af personer, der
+          observerer, men det vil vise dig usædvanlige pigge i observationerne og hvis
           det virker fladt eller faldende trods et stigende antal observatører, så kan
-          det tyde på en ændring i forekomst
+          det tyde på en ændring i forekomst.
         charts_help_other: "Vi viser også diagrammer med sæsonudsving udfra observationsnoterne.\nNoterne
           er et nyt system til at tilføje metadata til observationer ved hjælp af
           et foruddefineret sæt af termer. Indtil videre bruger vi kun \"Livsstadie\"
@@ -5599,14 +5573,14 @@ da:
           eller \"frugt\" i værdien, så feltet \"Blomstrende fænologi\"\ner en god
           en at bruge."
         complete_taxon_desc: |-
-          "Fuldstændige" taksa har alle deres efterkommere, eksisterende taksa af en
+          "Komplette" taksa har alle deres efterkommere, eksisterende taksa af en
           specifik rang indeholdt i sidens database. Når en takson er
           fuldstændig mht. til arter, kan vi f.eks. sige, hvor mange af dens arter
-          er blevet observeret og hvor mange, der stadig mangler at blive observeret. Antal af arter i "fuldstændige" taksa inkluderer ikke de arter, der ikke kan medregnes, som f.eks. uddøde eller inaktive arter og de omfatter kun arter, ikke infraspecifik taksa som
+          er blevet observeret og hvor mange, der stadig mangler at blive observeret. Antal af arter i "komplette" taksa inkluderer ikke de arter, der ikke kan medregnes, som f.eks. uddøde eller inaktive arter og de omfatter kun arter, ikke infra-specifik taksa som
           underarter eller varianter.
         discoveries_desc: Seneste nyligt identificerede arter i denne takson
         trending_desc: Mest observerede taksa i den sidste måned
-        trending_in_place_desc_html: Mest observerede taksa i den sidste måned <a
+        trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a
           href="%{url}">%{place}</a>
         rare_desc: Mindst observerede truede taksa
         rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
@@ -5642,21 +5616,19 @@ da:
       form:
         new_name_guidelines_html: |-
           <Ul>
-             <li> <p> Prøv at tilføje navne, der er blevet brugt andre steder. Opfind venligst ikke nye navne. </ P> </ li>
-             <li> <p> Tilføj ikke dubletter, f.eks. navngiv ikke mange høge "høg" </ p> </ li>
-             <li> <p> For taksa på højere niveau, prøv at bruge navne, der omfatter alle efterkommere, som "hejre og lignende" eller "hede familie" </ p> </ li>
-             <Li>
-               <P>
-                 Tilføj ikke oplysninger, der ikke er selve navnet, f.eks. oplysninger i parantes om, hvordan du mener, at navnet skal bruges
-               </ P>
-             </ Li>
-             <Li>
-               <P>
-                 Leksikaer skal være på engelsk. Tilføj venligst ikke oversatte
-                 sprognavne som "Fransk, Français", fordi det bare vil gøre
-                 det svært eller umuligt for os at vise lokaliserede navne for personer der bruger websiden på forskellige sprog
-               </ P>
-             </ Li>
+           <li> <p> Prøv at tilføje navne, der er blevet brugt andetsteds. Opfind venligst ikke nye navne.</P></ li>
+           <li> <p> Tilføj ikke dubletter, f.eks. navngiv ikke mange høge "høg"</p</li>
+           <li><p> For taksa på højere niveau, prøv at bruge navne, der omfatter alle efterkommere, som "hejrefugle" eller "Lyngfamilie"</p></li>
+           <li>
+            <p>
+             Tilføj ikke oplysninger, der ikke er selve navnet, f.eks. oplysninger i parentes om, hvordan du mener, at navnet skal bruges
+             </p>
+           </li>
+           <li>
+             <p>
+              Leksikaer skal være på engelsk. Tilføj venligst ikke oversatte sprognavne som "Fransk, Français", fordi det bare vil gøre det svært eller umuligt for os at vise lokale navne for de personer, der bruger websiden på forskellige sprog
+            </ P>
+           </ Li>
           </ Ul>
         places_help_html: |-
           Tilføj et navn til et sted for at give det prioritet for websteder og brugere af det sted. Hvis der er flere navne per sted, kan du prioritere
@@ -5693,41 +5665,21 @@ da:
         blocking_desc_html: |-
           <P>
             At blokere nogen, forhindrer dem i at sende dig beskeder, kommentere på dine
-            observationer, identificere dine observationer og i det hele taget at interagere
-            med dig på %{site_name}. Det fjerner også deres observationer fra dine
-            søgeresultater og fjerner dine observationer fra deres søge
-            resultater. Dog gør det dig ikke usynlig for dem. De kan stadig
-            finde dine observationer og se din profil, de kan bare ikke
-            interagere med dig.
+           observationer, identificere dine observationer og i det hele taget at interagere med dig på %{site_name}. Det fjerner også deres observationer fra dine søgeresultater og fjerner dine observationer fra deres søgeresultater. Dog gør det dig ikke usynlig for dem. De kan stadig finde dine observationer og se din profil, de kan bare ikke interagere med dig.
+          </P>
+          <P>
+            Blokering er til situationer, hvor du bare ikke kan komme overens med en eller anden, som bare ikke vil lade dig være, trods din bedste indsats for at løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra andre personer eller at forhindre identifikationer fra personer, hvis mening du ikke stoler på eller for at fravælge fællesskabs ID'et (der er en anden indstilling til det). Blokeringen virker således begge veje: hvis du blokerer nogen, så kan de ikke interagere med dig, men du kan heller ikke interagere med dem. Hvis du misbruger blokering for at forhindre nogen i at identificere dine observationer, forhindrer du også dig selv i at identificere deres observationer.
           </ P>
           <P>
-            Blokering er til situationer, hvor du bare ikke kan komme overens med
-            en eller anden og de ikke vil lade dig være, trods din bedste indsats for at
-            løse tvister på en civiliseret måde. Det er ikke en måde, at skjule sig fra
-            andre personer eller at forhindre identifikationer fra personer, hvis mening du ikke
-            stoler på eller for at fravælge fællesskabs ID'et (der er en anden
-            indstilling til det). Blokeringen virker således begge veje: hvis du blokerer
-            nogen, så kan de ikke interagere med dig, men du kan heller ikke interagere
-            med dem. Hvis du misbruger blokering for at forhindre nogen i at identificere dine
-            observationer, forhindrer du også dig selv i at identificere deres
-            observationer.
+            Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt antal, der rummer de personer, der har brug for blokering, alt imens det forhindrer misbrug af blokering. Hvis du føler, at du skal blokere flere personer, så vær venlig at <a href="mailto:%{help_email}"> kontakte os</a>.
           </ P>
           <P>
-            Du kan kun blokere tre personer. Vi mener, at dette er et rimeligt
-            antal, der rummer de mennesker, der har brug for blokering, alt imens det
-            forhindrer misbrug af blokering. Hvis du føler, at du skal blokere flere
-            personer, så vær venlig at <a href="mailto:%{help_email}"> kontakte os </a>.
-          </ P>
-          <P>
-            Hvis nogen har chikaneret eller stalket dig på %{site_name},
-            <a href="mailto:%{help_email}"> så lad os vide det </a>. Hvis
-            Dette vil være en overtrædelse af vores servicevilkår eller repræsenterer
-             en anden opførsel, som vi anser for upassende for vores hjemmeside, og vi vil undersøge sagen.
+            Hvis nogen har chikaneret eller stalket dig på %{site_name},<ahref="mailto:%{help_email}">så lad os vide det</a>. Hvis dette er en overtrædelse af vores servicevilkår eller repræsenterer en anden opførsel, som vi anser for upassende for vores hjemmeside, og vil vi undersøge sagen.
           </ P>
         common_names_desc: |-
           Vis lokale navne. Deaktiver, hvis du kun vil se videnskabelige navne.
           Bemærk at du kan styre hvilke lokale navne du ser ved at ændre din
-          lokalindstillinger og indstillinger for sted.
+          landestandard og indstillinger for sted.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
@@ -5740,25 +5692,20 @@ da:
           det websted forlader netværket, vil hele din konto og data flytte med
           den side.
         licensing_desc_html: |-
-          Licensering af dit indhold giver andre mennesker juridisk ret til at bruge det
+          Licensering af dit indhold giver andre personer juridisk ret til at bruge det
           uden at spørge om din tilladelse, hvis de overholder betingelserne i
           licensen. %{site_name} bruger dit Creative Commons licenseret indhold til at dele med datapartnere som <a href="http://www.gbif.org/"> Global
-          Biodiversitetsinformationsfacilitet </a> (GBIF), en international,
+          Biodiversitet information facilitet </a> (GBIF), en international,
           interstatslig organisation, der udarbejder og distribuerer
           biodiversitets information fra hele verden.
         muting_desc_html: |-
           <P>
-             At slukke for en bruger forhindrer dig i at modtage underretninger om ting
-             de gør, herunder kommenterer dine observationer, sende dig beskeder,
-             nævne dig osv. At slukke hjælper dig med at ignorere nogen uden
-             forhindre dem i at gøre noget.
-          </ P>
+             At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
+          </P>
           <P>
-             Du kan slukke så mange mennesker som du vil, men husk at
-             du vil gå glip af potentielt vigtige meddelelser, som f.eks
-             identifikationer, der ændrer fællesskabs id'et på dine observationer.
+             Du kan slukke for så mange personer som du vil, men husk at du kan gå glip af potentielt vigtige opdateringer, som f.eks identifikationer, der ændrer fællesskabs id'et på dine observationer.
           </ P>
-        name_place_help_html: Prioriter lokale navne brugt på dette sted.
+        name_place_help_html: Prioritér lokale navne brugt på dette sted.
         place_preference_changed_notice_html: |-
           Sted præference ændret. Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
@@ -5770,7 +5717,7 @@ da:
           Husk, dette giver ikke projekter tilladelse til at få adgang til dine
           private koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.
         taxon_change_desc: |-
-          Når taksa fusioneres eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
+          Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
           taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
           tvetydig (f.eks et split), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge, med muligheden for manuelt at opdatere dit indhold.
         prefers_community_taxa_desc: |-
@@ -5796,7 +5743,7 @@ da:
         explore_and_share: Udforsk og del dine observationer fra naturen.
         observations_to_date: Observationer til dato
         species_observed: Arter observeret
-        people_signed_up: Mennesker tilmeldt
+        people_signed_up: Personer tilmeldt
         how_it_works: Hvordan det fungerer
         record_your_observations: Registrér dine observationer
         share_with_fellow_naturalists: Del med ligesindede naturelskere
@@ -5804,20 +5751,20 @@ da:
         contribute_to_science: Bidrag til videnskaben
         science_desc_html: |-
           Hver observation kan bidrage til videnskaben om biodiversitet, fra de
-          mest sjældne sommerfugle til det mest almindelige baggårds ukrudt. Vi deler dine fund med videnskabelige databaser som
+          mest sjældne sommerfugle til det mest almindelige ukrudt baggården. Vi deler dine fund med videnskabelige databaser som
           <a href='http://gbif.org' target='_blank'> Global Biodiversity Information Facility </a>
           for at hjælpe forskere med at finde og bruge dine data. Alt du behøver at gøre er at observere.
         nature_at_your_fingertips: Naturen ved hånden
         keep_track: Hold styr på
         record_your_encounters: |-
-          Registrér dine forhold med andre organismer og oprethold livslister,
+          Registrér dine møder med andre organismer og vedligehold livslister,
           alt ligger i skyen.
         create_useful_data: Skab nyttige data
-        help_scientists: Hjælp forskere og ressourcemanagere med at forstå, hvornår
-          og hvor organismer forekommer.
-        crowdsource_identifications: Crowdsource Identifikationer
-        connect_with_experts: Forbinde med eksperter, der kan identificere de organismer,
-          du observerer.
+        help_scientists: Hjælp forskere og biologer med at forstå, hvornår og hvor
+          organismer forekommer.
+        crowdsource_identifications: Crowdsource identifikationer
+        connect_with_experts: Kom i kontakt med eksperter, der kan identificere de
+          organismer, du observerer.
         become_a_citizen_scientist: Bliv en Citizen Scientist
         find_a_project: Find et projekt med en mission, der interesserer dig, eller
           start dit eget.
@@ -5869,10 +5816,10 @@ da:
     - Lørdag
     formats:
       default: '%d-%m-%Y'
-      long: '%d %B, %Y'
-      short: '%d %b'
+      long: '%d. %B, %Y'
+      short: '%d. %b'
       month_year: '%B %Y'
-      month_day_year: '%d %B, %Y'
+      month_day_year: '%d. %B, %Y'
     month_names:
       1: Januar
       2: Februar
@@ -6019,11 +5966,11 @@ da:
     am: er
     formats:
       default: '%d. %b, %Y %H:%M:%S %z'
-      long: '%d %B, %Y %I:%M %p'
-      short: '%d %b %H:%M'
+      long: '%d. %B, %Y %I:%M %p'
+      short: '%d. %b %H:%M'
       observed_at: '%I:%M %p %Z'
-      rfc: '%d %B %Y'
-      day_month_year: '%d %B, %Y'
+      rfc: '%d. %B %Y'
+      day_month_year: '%d. %B, %Y'
       hours: '%l:%M %p'
     pm: pm
   activemodel:
@@ -6072,7 +6019,7 @@ da:
         guide_taxon:
           attributes:
             base:
-              guide_has_too_many_taxa: guide kan kun have 500 taksa
+              guide_has_too_many_taxa: Guide kan kun have 500 taksa
         mushroom_observer_import_flow_task:
           attributes:
             base:
