@@ -261,15 +261,20 @@ class Observation < ActiveRecord::Base
       end
       private_place_ids = observations.map(&:indexed_private_place_ids).flatten.uniq.compact
       private_places_by_id = Hash[ Place.where(id: private_place_ids).map{ |p| [ p.id, p ] } ]
+      always_indexed_place_levels = [
+        Place::COUNTRY_LEVEL,
+        Place::STATE_LEVEL,
+        Place::COUNTY_LEVEL
+      ]
       observations.each do |o|
         unless o.indexed_private_place_ids.blank?
           o.indexed_private_places = private_places_by_id.values_at(*o.indexed_private_place_ids).compact.select do |p|
-            p.bbox_privately_contains_observation?( o )
+            always_indexed_place_levels.include?( p.admin_level ) || p.bbox_privately_contains_observation?( o )
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
           unless o.geoprivacy == Observation::PRIVATE
             o.indexed_place_ids = o.indexed_private_places.select {|p|
-              p.bbox_publicly_contains_observation?( o )
+              always_indexed_place_levels.include?( p.admin_level ) || p.bbox_publicly_contains_observation?( o )
             }.map(&:id)
           end
         end
