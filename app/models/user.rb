@@ -185,6 +185,7 @@ class User < ActiveRecord::Base
 
   # Roles
   has_and_belongs_to_many :roles, -> { uniq }
+  belongs_to :curator_sponsor, class_name: "User"
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all

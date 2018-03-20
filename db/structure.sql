@@ -4562,7 +4562,8 @@ CREATE TABLE users (
     icon_content_type character varying,
     icon_file_size integer,
     icon_updated_at timestamp without time zone,
-    search_place_id integer
+    search_place_id integer,
+    curator_sponsor_id integer
 );
 
 
@@ -8401,6 +8402,13 @@ CREATE INDEX index_user_mutes_on_user_id ON user_mutes USING btree (user_id);
 
 
 --
+-- Name: index_users_on_curator_sponsor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_curator_sponsor_id ON users USING btree (curator_sponsor_id);
+
+
+--
 -- Name: index_users_on_identifications_count; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9287,4 +9295,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180124192906');
 INSERT INTO schema_migrations (version) VALUES ('20180126155509');
 
 INSERT INTO schema_migrations (version) VALUES ('20180209020229');
+
+INSERT INTO schema_migrations (version) VALUES ('20180320224314');
 
