@@ -156,9 +156,11 @@ class ObservationModal extends React.Component {
     let sounds = null;
     if ( observation.sounds && observation.sounds.length > 0 ) {
       sounds = observation.sounds.map( s => {
+        const soundKey = `sound-${s.id}`;
         if ( s.subtype === "SoundcloudSound" || !s.file_url ) {
           return (
             <iframe
+              key={ soundKey }
               width="100%"
               height="100"
               scrolling="no"
@@ -168,7 +170,7 @@ class ObservationModal extends React.Component {
           );
         }
         return (
-          <audio controls preload="none">
+          <audio key={ soundKey } controls preload="none">
             <source src={ s.file_url } type={ s.file_content_type } />
             { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
           </audio>
