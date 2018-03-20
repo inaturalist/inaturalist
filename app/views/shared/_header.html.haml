@@ -79,10 +79,11 @@
               %i.fa.fa-angle-down
             %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
               %li= link_to t(:dashboard), home_path
-              %li= link_to t(:your_observations), observations_by_login_path(current_user.login), :class => 'observations_link'
-              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => 'votes_link'
-              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => 'lists_link'
-              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => 'journal_link'
+              %li= link_to t(:your_observations), observations_by_login_path(current_user.login), :class => "observations_link"
+              %li= link_to t(:calendar), calendar_path(current_user.login), :class => "calendar_link"
+              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => "votes_link"
+              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => "lists_link"
+              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => "journal_link"
               %li
                 = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
               %li.divider{role: "separator"}
