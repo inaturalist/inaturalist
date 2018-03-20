@@ -15,7 +15,7 @@
       %button.btn.btn-link.hide-btn
         %i.fa.fa-times-circle
     %ul#mainnav.navtabs
-      %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index by_login show ).include?( controller.action_name ) || controller.class.name == "TaxaController" ? "active" : nil }
+      %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index by_login show identify ).include?( controller.action_name ) || controller.class.name == "TaxaController" ? "active" : nil }
         .dropdown
           #header-explore-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
             = link_to t(:explore).capitalize, observations_path
@@ -23,7 +23,7 @@
           %ul.dropdown-menu{ aria: { labelledby: "header-explore-dropdown-toggle" } }
             %li= link_to t(:observations), observations_path
             - if logged_in?
-              %li= link_to t(:your_observations), observations_by_login_path( current_user.login )
+              %li= link_to t(:your_observations), observations_path( user_id: current_user.login )
             %li= link_to t(:species), taxa_path
             - if logged_in?
               %li= link_to t(:identify), identify_observations_path
@@ -35,7 +35,7 @@
           %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
             %li= link_to t(:people), people_path
             %li= link_to t(:projects), projects_path
-      %li.navtab.moretab.menutab{ class: %w(ObservationsController).include?( controller.class.name ) && controller.action_name == "identify" || %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
+      %li.navtab.moretab.menutab{ class: %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
           #header-more-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
             = link_to t(:more).capitalize, places_path
