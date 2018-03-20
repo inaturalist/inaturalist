@@ -17,6 +17,9 @@ describe FlagsController do
   end
 
   describe "update" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
     let(:curator) { make_curator }
     let(:user) { make_curator }
     let(:flag) { Flag.make!(flaggable: Photo.make!, user: user) }
@@ -41,6 +44,9 @@ describe FlagsController do
   end
 
   describe "destroy" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+    
     let(:curator) { make_curator }
     let(:user) { make_curator }
     let(:flag) { Flag.make!(flaggable: Photo.make!, user: user) }

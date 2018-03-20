@@ -15,9 +15,8 @@ class FlagsController < ApplicationController
   PARTIALS = %w(dialog)
 
   def index
-    if @model
+    if @model && @object = @model.find_by_id(params[@param])
       # The default acts_as_flaggable index route
-      @object = @model.find(params[@param])
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
       @flags = @object.flags.includes(:user, :resolver).
         paginate(page: params[:page]).
