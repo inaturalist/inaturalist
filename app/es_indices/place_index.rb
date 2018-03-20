@@ -52,7 +52,8 @@ class Place < ActiveRecord::Base
         ElasticModel.geom_geojson( place_geometry.bounding_box_geom ) : nil,
       location: ElasticModel.point_latlon(latitude, longitude),
       point_geojson: ElasticModel.point_geojson(latitude, longitude),
-      without_check_list: check_list_id.blank? ? true : nil
+      without_check_list: check_list_id.blank? ? true : nil,
+      observations_count: INatAPIService.observations( per_page: 0, verifiable: true, place_id: id ).total_results
     }
   end
 
