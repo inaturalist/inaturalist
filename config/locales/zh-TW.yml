@@ -16,45 +16,45 @@
 zh-TW:
   licensing_your_content: 授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與像是<a
     href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
-  you_think_observation_inacurate: 如你認為這個觀察紀錄有誤，請你添加上物種資訊、評估資訊品質，或在評論欄中詳述不符點。
+  you_think_observation_inacurate: 如果您認為這筆觀察紀錄有誤，請您添加物種名稱、評估資料品質，或在評論欄中詳述不符點。
   we_also_support: |-
-    我們亦支援 <a href="http://flickr.com">Flickr</a>、
+    我們亦支援使用 <a href="http://flickr.com">Flickr</a>、
     <a href="http://photos.google.com">Google 照片</a>，及
     <a href="http://facebook.com">Facebook</a>
     作為圖片託管。
   a_default_taxon_name_will_automatically_created: |-
-    拉丁文學名會自動成為此物種分類的預設分類學名稱。
-    當你儲存這個分類學名稱後，你將可為這個物種加上其他名稱(例如通用名稱，或過時的學名等)。
+    拉丁文學名會自動成為此物種之預設分類群名稱。
+    當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   x_comments:
     one: 1 個評論
     other: '%{count} 個評論'
   x_followers:
-    one: '1 追隨者 '
-    other: '%{count} 追隨者'
+    one: '1 追蹤者 '
+    other: '%{count} 追蹤者'
   x_identifications:
     one: 1 項鑑定
     other: '%{count} 項鑑定'
   x_identifications_html:
-    one: <span class="count">1</span> 個鑑定
-    other: <span class="count">%{count}</span> 個鑑定
+    one: <span class="count">1</span> 項鑑定
+    other: <span class="count">%{count}</span> 項鑑定
   x_identifications_:
     one: 1 項鑑定
     other: '%{count} 項鑑定'
   x_ids:
-    one: 1個鑑定
-    other: '%{count}個鑑定'
+    one: 1 項鑑定
+    other: '%{count} 項鑑定'
   x_lists:
-    one: 1 分類清單
-    other: '%{count} 分類清單'
+    one: 1 項分類清單
+    other: '%{count} 項分類清單'
   x_journal_posts:
     one: 1 篇日誌發佈文章
     other: '%{count} 篇日誌發佈文章'
   x_matching_taxa:
-    one: 1 項匹配的物種分類
-    other: '%{count} 項匹配的物種分類'
+    one: 1 個符合的分類群
+    other: '%{count} 個符合的分類群'
   x_matching_taxa_html:
-    one: '<span class="count">1</span>項匹配的物種分類 '
-    other: <span class="count">%{count}</span>項匹配的物種分類
+    one: '<span class="count">1</span>個符合的分類群 '
+    other: <span class="count">%{count}</span>個符合的分類群
   x_misidentifications_of_this_species:
     one: 此物種有 1 個錯誤鑑定
     other: '%{count} 此物種有 %{count} 個錯誤鑑定'
@@ -80,8 +80,8 @@ zh-TW:
     one: 1 個人
     other: '%{count} 個人'
   x_people_found_this_helpful:
-    one: 1 個人發現這個有幫助
-    other: '%{count} 個人發現這個有幫助'
+    one: 1 個人發現這個是有益處的
+    other: '%{count} 個人發現這個是有益處的'
   x_faves:
     one: 1 個最愛
     other: '%{count} 個最愛'
@@ -101,8 +101,8 @@ zh-TW:
     one: <a href='%{url}'>1種物種
     other: <a href='%{url}'>%{count}種物種
   x_suggestions_filtered_by_colon:
-    one: 1 個建議被過濾由：
-    other: '%{count} 個建議被過濾由：'
+    one: 1 個建議篩選自：
+    other: '%{count} 個建議篩選自：'
   x_taxa_observed_html:
     one: <span class='count'>1</span> 筆已觀察的物種分類群
     other: <span class='count'>%{count}</span> 筆已觀察的物種分類群
@@ -113,22 +113,22 @@ zh-TW:
     one: <span class='count'>1</span> 筆被分類到物種或以下的研究等級觀察記錄 </span>
     other: <span class='count'>%{count}</span> 筆被分類到物種或以下的研究等級觀察記錄 </span>
   x_taxa_matching_current_filters:
-    one: 1 筆符合本過濾條件的物種分類群
-    other: '%{count} 筆符合本過濾條件的物種分類群'
+    one: 1 個分類群符合此篩選條件
+    other: '%{count} 個分類群符合此篩選條件'
   a: 一個
   a_: 一
   a_community_for_naturalist: 一個博物學友的社群
   a_few_points_to_make_things_clear: '令事情更清楚的幾個要點 :'
   a_flag_for_x: '%{x} 已被標上標記'
-  a_greasemonkey_script: 油猴子腳本
+  a_greasemonkey_script: Greasemonkey (firefox 瀏覽器外掛) 指令稿
   a_member_of: 成員隸屬於
-  a_member_of_taxon_html: '%{taxon} 成員之一'
+  a_member_of_taxon_html: '%{taxon} 之一員'
   able_to_connect_flickr: 好極了！ 我們已能夠連接你的Flickr帳戶。
   about: 關於
   about_bioblitz_results: 關於 bioblitz 的結果
   about_charts: 關於圖表
-  about_community_taxa: 關於社群物種分類
-  about_complete_taxa: 關於完整物種分類群
+  about_community_taxa: 關於社群之分類群
+  about_complete_taxa: 關於完整的分類群
   about_conservation_status: 關於保育狀態
   about_establishment_means: 有關確立方式
   about_external_links: 關於外部連結
@@ -137,7 +137,7 @@ zh-TW:
   about_life!: 關於生物!
   about_names: 關於名稱
   about_places: 關於地點
-  about_taxon_changes: 關於分類更改
+  about_taxon_changes: 關於分類群更改
   about_the_cc_licenses: 關於創用CC授權
   about_the_taxobox_raquo: 關於分類盒
   about_these_licenses: 關於這些授權協議
@@ -148,10 +148,10 @@ zh-TW:
   account: 帳號
   accept: 接受
   accept_community_identifications: 接受社群的物種鑑定
-  accuracy: 準確性
+  accuracy: 精度
   accuracy_m: 精確度（公尺）
   accuracy_meters: 精確度 (公尺)
-  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方「編輯」連結修改或拖動地圖上的標記並拖動手柄修改座標。請盡量把圓形範圍擴大到你肯定自己在裡面的某個位置。
+  accuracy_of_the_coordinates: 坐標精確度以公尺為單位。您可以通過點擊上方「編輯」連結修改或拖動地圖上的標記並拖動控制棒來修改座標。請盡量擴大圓形範圍，直到您確定自己位在其中。
   acquaintances: 同伴
   action: 操作
   actions: 操作
@@ -164,14 +164,14 @@ zh-TW:
   add_a: 新增一個
   add_a_batch_of_observations: 新增一批觀察紀錄
   add_a_batch_of_observations_by_csv: 以CSV檔案新增一批觀察紀錄
-  add_a_batch_of_taxa: 新增一批物種分類
+  add_a_batch_of_taxa: 新增一批分類群
   add_a_comment: 新增評論
   add_a_field: 新增一個欄位
-  add_a_flag: 添加一個標記
+  add_a_flag: 新增一個標記
   add_a_link_raquo: 新增一個連結
   add_a_name: 加入名稱
   add_a_new_change_group: 新增一個新變更群組
-  add_a_new_observation_to_id_please!: 新增一個需要鑑定的新觀察紀錄
+  add_a_new_observation_to_id_please!: 請新增一個需要鑑定的新觀察紀錄
   add_a_place_raquo: 新增一個地點 &raquo;
   add_a_single_observation: 新增單一項觀察紀錄
   add_a_taxon: 新增一個分類群
@@ -179,7 +179,7 @@ zh-TW:
   add_all_your_matching_obs_to_this_project: 把所有符合的觀察紀錄新增到此專案
   add_an_assessment: 新增一個評估
   add_an_identification: 新增一個物種鑑定
-  add_an_observation: 添加一項觀察紀錄
+  add_an_observation: 新增一項觀察紀錄
   add_an_observation?: 新增一項觀察紀錄?
   add_an_observation_of: 新增一筆 %{taxon} 的觀察紀錄
   add_another: 新增其他紀錄
@@ -192,24 +192,24 @@ zh-TW:
   add_colors: 新增顏色
   add_comma_separated_tags: 新增以逗號分隔式標籤
   add_comment: 新增一個評論
-  add_common_names_for: 替既有之分類群新增通用名稱
+  add_common_names_for: 替既有之分類群新增俗名
   add_conservation_status: 新增保育狀態
   add_countries: 新增國家
   add_custom_project_fields: 新增自定專案欄位
   add_edit_flags: 新增/編輯標記
   add_edit_more_fields: 新增/編輯更多欄位
-  add_description: 添加 %{description_name}
+  add_description: 新增 %{description_name}
   add_field: 新增欄位
   add_from_your_observations: 從您的觀察紀錄中新增
   add_link: 新增連結
   add_listed_taxa_from_observations: 從觀察紀錄中加入列出的物種分類群
   add_higher_level_taxon: 新增一個更高級的物種分類 (例如:"鳥類")
-  add_id: 添加物種鑒定
+  add_id: 新增物種鑑定
   add_it_to_place_raquo: 把本項新增至地點 &raquo;
   add_more_photos: 新增更多圖片
   add_new_lexicon: 新增新的詞彙
   add_new_observations: 新增多個觀察紀錄
-  add_new_photos_by_their_ids: 從其Flickr身份中加入新圖片 (必須被Creative Commons認可的!)
+  add_new_photos_by_their_ids: 從其 Flickr 帳戶中新增相片 (必須是創用 CC (Creative Commons) 授權!)
   add_new_place: 新增一處新地點
   add_new_rule: 新增一條新規則
   add_new_source: 新增新的來源....
@@ -229,7 +229,7 @@ zh-TW:
   add_photos: 新增相片
   add_photos_to_this_observation: 新增相片到觀察紀錄中
   add_place: 加入地點
-  add_plant_phenology_budding_annotation: 新增「植物物候：發芽」的註解
+  add_plant_phenology_budding_annotation: 新增「植物物候：發新芽」的註解
   add_plant_phenology_flowering_annotation: 新增「植物物候學：開花」的註解
   add_plant_phenology_fruiting_annotation: 新增「植物物候：結果」註解
   add_life_stage_adult_annotation: 新增「生命階段：成體」的註解
@@ -240,9 +240,9 @@ zh-TW:
   add_life_stage_larva_annotation: 新增「生命階段：幼蟲」註解
   add_life_stage_juvenile_annotation: 新增「生命階段：亞成體」的註解
   add_life_stage_egg_annotation: 新增「生命階段：卵」註解
-  add_several_observations_at_once: 一次過添加多筆觀察紀錄。
+  add_several_observations_at_once: 一次增加多筆觀察紀錄。
   add_sex_female_annotation: 新增「性别：雌」的註解
-  add_sex_male_annotation: '新增"Sex: Male"註解'
+  add_sex_male_annotation: 新增「性別：雄」之註解
   add_shape: 添加形狀
   add_some_now: 現在添加一些
   add_tag: 添加標籤
@@ -937,31 +937,31 @@ zh-TW:
   date_created: 日期已創建
   date_format:
     date_long:
-      january: '%{year} 一月 %{day}'
-      february: '%{year} 二月 %{day}'
-      march: '%{year} 三月 %{day}'
-      april: '%{year} 四月 %{day}'
-      may: '%{year} 五月 %{day}'
-      june: '%{year} 六月 %{day}'
-      july: '%{year} 七月 %{day}'
-      august: '%{year} 八月 %{day}'
-      september: '%{year} 九月 %{day}'
-      october: '%{year} 十月 %{day}'
-      november: '%{year} 十一月 %{day}'
-      december: '%{year} 十二月 %{day}'
+      january: '%{year} 1月 %{day}'
+      february: '%{year} 2月 %{day}'
+      march: '%{year} 3月 %{day}'
+      april: '%{year} 4月 %{day}'
+      may: '%{year} 5月 %{day}'
+      june: '%{year} 6月 %{day}'
+      july: '%{year} 7月 %{day}'
+      august: '%{year} 8月 %{day}'
+      september: '%{year} 9月 %{day}'
+      october: '%{year} 10月 %{day}'
+      november: '%{year} 11月 %{day}'
+      december: '%{year} 12月 %{day}'
     month:
-      january: 一月
-      february: 二月
-      march: 三月
-      april: 四月
-      may: 五月
-      june: 六月
-      july: 七月
-      august: 八月
-      september: 九月
-      october: 十月
-      november: 十一月
-      december: 十二月
+      january: 1月
+      february: 2月
+      march: 3月
+      april: 4月
+      may: 5月
+      june: 6月
+      july: 7月
+      august: 8月
+      september: 9月
+      october: 10月
+      november: 11月
+      december: 12月
   date_is_accurate: 日期精準
   date_observed: 觀察日期
   date_observed_on: 觀察日期於
@@ -970,8 +970,8 @@ zh-TW:
     currentText: 今日
     prevText: 上一頁
     nextText: 下一頁
-    monthNames: '[''一月'', ''二月'', ''三月'', ''四月'', ''五月'', ''六月'', ''七月'', ''八月'',
-      ''九月'', ''十月'', ''十一月'', ''十二月'']'
+    monthNames: '[''1月'', ''2月'', ''3月'', ''4月'', ''5月'', ''6月'', ''7月'', ''8月'',
+      ''9月'', ''10月'', ''11月'', ''12月'']'
     monthNamesShort: '[''1月'', ''2月'', ''3月'', ''4月'', ''5月'', ''6月'', ''7月'', ''8月'',
       ''9月'', ''10月'', ''11月'', ''12月'']'
     dayNames: '[''週日'', ''週一'', ''週二'', ''週三'', ''週四'', ''週五'', ''週六'']'
@@ -1587,7 +1587,7 @@ zh-TW:
   it_instead: 由它取代。
   its_important_that_you: 您所點擊是重要的
   iucn_red_list_status: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄現狀
-  january: 一月
+  january: 1月
   join: 加入
   join_and: 加入及
   join_inat: 加入 %{site_name}！
@@ -1880,7 +1880,7 @@ zh-TW:
   mark_all_as_unreviewed: 全部標記為未檢閱
   matched_several_different_taxa: 符合數種不同的物種分類
   matching_species_will_shown_up_here: 符合的物種將會顯示於此。若%{place}包含物種其一，在地圖上將會顯示出範圍。
-  maverick: 未烙印幼牲
+  maverick: 對此分類群具不同看法
   maybe_your_signed_in_with: 也許您是使用您的%{omniauth}帳號來登入？
   media: 多媒體
   medium: 中
@@ -1933,7 +1933,7 @@ zh-TW:
   more: 更多
   more_fields: 更多欄位
   more_filters: 更多過濾
-  more_from_x: 更多來自%{x}
+  more_from_x: 更多來自 %{x} 的貢獻內容
   more_import_options: 更多匯入選項
   more_info: 更多資訊
   more_info_title: 更多資訊
@@ -1997,7 +1997,7 @@ zh-TW:
   near: 接近
   near_threatened: 接近受威脅
   nearby: 附近
-  nearby_observations_: 附近的觀察
+  nearby_observations_: 接近此處的觀察
   nearby_observations: 附近的觀察
   need_id_help?: 需要鑑定協助？
   needs_id: 需要鑑定
@@ -2090,7 +2090,7 @@ zh-TW:
   no_more_taxa_to_load: 沒有更多要載入的物種分類群！
   no_more_results_found: 沒有找到更多結果
   no_more_updates: 沒有更多更新！
-  no_nearby_observations: 沒有附近的觀察。
+  no_nearby_observations: 沒有接近此處的觀察。
   no_new_messages: 沒有新訊息
   no_observations: 沒有觀察
   no_observations_from_this_place_yet: 尚未有來自此地點的觀察。
@@ -2230,7 +2230,7 @@ zh-TW:
   observations_needing_curation: 觀察需要策展
   observations_obscured: 觀察（隱蔽）
   observations_observed_this_month: 在本月沒有添加<em>已觀察</em>內容。到外頭走走看看吧！
-  observations_of_relatives: 親屬觀察
+  observations_of_relatives: 相關觀察
   observations_of_taxon: '%{taxon_name}的觀察'
   observations_on_inat_check_list: 在 %{site_name} 的觀察。清單地點已被提交，且至少有 1 份提交的觀察帶有邊界。
   observations_per_month: 觀察 / 月
@@ -2995,7 +2995,7 @@ zh-TW:
   sending: 寄送中...
   sent: 已寄送
   separate_values_with_a_pipe: 以豎線來分隔值，例如：「1-5|6-10|a lot」或「yes|no|maybe」
-  september: 九月
+  september: 9月
   set_a_place_if_this_link_only_applies_to: 若此連結僅套用在來自某地點物種分類群情況下，請設定地點。若此套用於圍繞在全世界的物種分類群，請留下空白。
   set_license: 設定許可協議
   settings: 設定
@@ -3312,7 +3312,7 @@ zh-TW:
   the: 該
   the_: 此
   the_admin_is_the_person_who: 管理員為創建專案的人員。他們可進行任何負責人及策展人所能做出的事項，包含刪除專案。
-  the_below_items_are_needed_to_achieve: 以下項目需達到<span className="bold">研究等級：</span>
+  the_below_items_are_needed_to_achieve: 需補充以下項目才能達到<span className="bold">研究等級：</span>
   the_community_agrees_location_doesnt: 社群認為<strong>位置看起來不正確</strong>（例如猴子出現在海洋裡，或是河馬出現在辦公大樓等等）
   the_community_agrees_organism_isnt: 社群認為<strong>不是被野化/歸化的生物</strong>（例如是被人類、或外星智慧生命給捕獲或培育）
   the_community_id_requires_at_least_two_identifications: 社群鑑定至少要有兩份鑑定。
@@ -4758,17 +4758,17 @@ zh-TW:
       month_year: '%Y年%B'
       month_day_year: '%B %d, %Y'
     month_names:
-      1: 一月
-      2: 二月
-      3: 三月
-      4: 四月
-      5: 五月
-      6: 六月
-      7: 七月
-      8: 八月
-      9: 九月
-      10: 十月
-      11: 十一月
+      1: 1月
+      2: 2月
+      3: 3月
+      4: 4月
+      5: 5月
+      6: 6月
+      7: 7月
+      8: 8月
+      9: 9月
+      10: 10月
+      11: 11月
       12: 12 月
     order:
     - :年
