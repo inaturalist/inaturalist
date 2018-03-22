@@ -2389,4 +2389,17 @@ $header-line-height: 34px;
       background-color: transparentize( $inat-green, 0.9 );
     }
   }
+
+  // two-field stuff
+  .search {
+    .btn-primary {
+      background-color: $inat-green;
+      color: white !important;
+      font-size: 14px;
+      border-color: $inat-green;
+    }
+    input {
+      width: auto;
+    }
+  }
 }

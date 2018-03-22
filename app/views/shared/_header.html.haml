@@ -10,6 +10,13 @@
     #headersearch.search.navtabs.form-group
       .searchwrapper
         %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
+      .searchwrapper.placesearchwrapper
+        .input-group
+          %input{ type: "text", placeholder: t(:place, default: "Place"), class: "form-control" }
+          %input{ type: "hidden", id: "header-place-search-place-id" }
+          .input-group-btn
+            %button.btn.btn-primary
+              Go
       %button.btn.btn-link.show-btn
         %i.fa.fa-search
       %button.btn.btn-link.hide-btn

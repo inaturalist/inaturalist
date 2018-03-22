@@ -496,10 +496,12 @@ $(document).ready(function() {
   });
 
   if ( $( "#test-header" ).length > 0 ) {
-    $( "#test-header .search input" ).universalAutocomplete( );
+    $( "#test-header .search input:visible:first" ).universalAutocomplete( {
+      sources: "taxa,users,projects"
+    } );
     function showHeaderSearch() {
       $( "#headersearch" ).addClass( "open" );
-      $( "#headersearch input" ).focus( );
+      $( "#headersearch input:visible:first" ).focus( );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
@@ -512,6 +514,20 @@ $(document).ready(function() {
         return true;
       }
       showHeaderSearch( );
+    } );
+
+    // two-field stuff
+    $( "#test-header .search input:visible:last" ).placeAutocomplete( {
+      idEl: $( "#header-place-search-place-id" )
+    } );
+    $( "#test-header .search .btn-primary" ).click( function( e ) {
+      var placeId = $( "#header-place-search-place-id" ).val( );
+      var firstParam = $( "#test-header .search input:visible:first" ).data( "param" );
+      var url = "/observations?" + firstParam;
+      if ( placeId ) {
+        url += "&place_id=" + placeId;
+      }
+      window.location = url;
     } );
   }
 } );
