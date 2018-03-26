@@ -26,13 +26,28 @@ body {
   margin-top: 60px;
 }
 
-.bootstrap h1 {
-  margin: 30px 0px 30px;
-  font-size: 30px;
-}
-
-.bootstrap h2 {
-  font-size: 28px;
+.bootstrap {
+  h1 {
+    margin: 30px 0px 30px;
+    font-size: 30px;
+  }
+  h2 {
+    font-size: 28px;
+  }
+  .form-group {
+    margin: 0;
+    .error {
+      float: right;
+      color: $fail-red;
+      font-size: 14px;
+    }
+  }
+  .has-error .form-control {
+    border-color: $fail-red;
+    &:focus {
+      border-color: $fail-red;
+    }
+  }
 }
 
 button.btn-green {
@@ -193,9 +208,17 @@ button[disabled] {
     & > div > div {
       display: inline-block;
       position: relative;
+      vertical-align: middle;
+      margin-left: 5px;
     }
     .input-group.date {
       max-width: 230px;
+    }
+    label[for="project-date-type-exact"] + div .input-group.date {
+      max-width: 160px;
+    }
+    #project-date-type-range {
+      margin-left: 5px;
     }
   }
 }
@@ -274,3 +297,8 @@ body > div > .popover.color-picker {
   }
 }
 
+@media (min-width: 768px) {
+  .bootstrap .container {
+    width: 860px;
+  }
+}

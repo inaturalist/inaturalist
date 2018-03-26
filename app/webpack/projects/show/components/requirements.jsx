@@ -1,6 +1,16 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
+import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
+/* global TIMEZONE */
+
+function dateToString( date ) {
+  if ( date.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
+    return moment( date, "YYYY-MM-DD HH:mm Z" ).
+      parseZone( ).tz( TIMEZONE ).format( "MMMM D h:mma z" );
+  }
+  return moment( date ).format( "MMMM D" );
+}
 
 const Requirements = ( { project } ) => {
   const taxonRules = _.isEmpty( project.taxonRules ) ? "All taxa" :
@@ -24,12 +34,14 @@ const Requirements = ( { project } ) => {
   }
   const mediaRules = _.isEmpty( media ) ? "Any" :
     media.join( " and " );
+  let dateRules = "Any";
+  if ( project.rule_d1 && project.rule_d2 ) {
+    dateRules = `${dateToString( project.rule_d1 )} to ${dateToString( project.rule_d2 )}`;
+  } else if ( project.rule_observed_on ) {
+    dateRules = dateToString( project.rule_observed_on );
+  }
   return (
     <div className="Requirements">
-      <h2>
-        Project Requirements
-        <i className="fa fa-arrow-circle-right" />
-      </h2>
       <table>
         <tbody>
           <tr>
@@ -67,6 +79,13 @@ const Requirements = ( { project } ) => {
             </td>
             <td className="value">{ mediaRules }</td>
           </tr>
+          <tr>
+            <td className="param">
+              <i className="fa fa-calendar" />
+              Date
+            </td>
+            <td className="value">{ dateRules }</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -75,9 +94,7 @@ const Requirements = ( { project } ) => {
 
 Requirements.propTypes = {
   config: PropTypes.object,
-  project: PropTypes.object,
-  leaders: PropTypes.array,
-  type: PropTypes.string
+  project: PropTypes.object
 };
 
 export default Requirements;

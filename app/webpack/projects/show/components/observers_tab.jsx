@@ -42,21 +42,23 @@ const ObserversTab = ( { config, observers, setConfig } ) => {
                   </tr>
                 </thead>
                 <tbody>
-                  { _.map( observers.slice( 0, scrollIndex ), ( i, index ) => (
-                    <tr className={ index % 2 !== 0 && "odd" } key={ `observer-${i.user.id}` }>
-                      <td className="rank">{ index + 1 }</td>
-                      <td>
-                        <UserImage user={ i.user } />
-                        <UserLink user={ i.user } />
-                      </td>
-                      <td className={`count ${config.observersSort !== "species" && "sorted"}`}>
-                        { numberWithCommas( i.observation_count ) }
-                      </td>
-                      <td className={`count ${config.observersSort === "species" && "sorted"}`}>
-                        { numberWithCommas( i.species_count ) }
-                      </td>
-                    </tr>
-                  ) ) }
+                  { _.map( observers.slice( 0, scrollIndex ), ( i, index ) => {
+                    return (
+                      <tr className={ index % 2 !== 0 && "odd" } key={ `observer-${i.user.id}` }>
+                        <td className="rank">{ index + 1 }</td>
+                        <td>
+                          <UserImage user={ i.user } />
+                          <UserLink user={ i.user } />
+                        </td>
+                        <td className={`count ${config.observersSort !== "species" && "sorted"}`}>
+                          { numberWithCommas( i.observation_count ) }
+                        </td>
+                        <td className={`count ${config.observersSort === "species" && "sorted"}`}>
+                          { numberWithCommas( i.species_count ) }
+                        </td>
+                      </tr>
+                    );
+                  } ) }
                 </tbody>
               </table>
             </InfiniteScroll>

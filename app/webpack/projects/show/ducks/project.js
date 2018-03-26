@@ -31,6 +31,19 @@ export function setAttributes( attributes ) {
   };
 }
 
+export function fetchSubscriptions( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.project || !state.config.currentUser ) { return null; }
+    const params = { id: state.project.id };
+    return inatjs.projects.subscriptions( params ).then( response => {
+      dispatch( setAttributes( {
+        currentUserSubscribed: !_.isEmpty( response.results )
+      } ) );
+    } ).catch( e => { } );
+  };
+}
+
 export function fetchObservations( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
@@ -173,12 +186,49 @@ export function fetchUmbrellaStats( ) {
   };
 }
 
+export function fetchQualityGradeCounts( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project || project.quality_grade_counts_loading ||
+         project.quality_grade_counts_loaded ) { return null; }
+    dispatch( setAttributes( {
+      quality_grade_counts_loading: true
+    } ) );
+    return inatjs.observations.qualityGrades( project.search_params ).then( response => {
+      dispatch( setAttributes( {
+        quality_grade_counts_loading: false,
+        quality_grade_counts_loaded: true,
+        quality_grade_counts: response
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
+export function fetchIdentificationCategories( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project || project.identification_categories_loading ||
+        project.identification_categories_loaded ) { return null; }
+    dispatch( setAttributes( {
+      identification_categories_loading: true
+    } ) );
+    return inatjs.identifications.categories( project.search_params ).then( response => {
+      dispatch( setAttributes( {
+        identification_categories_loading: false,
+        identification_categories_loaded: true,
+        identification_categories: response
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function fetchOverviewData( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
     if ( project.project_type === "umbrella" ) {
       dispatch( fetchUmbrellaStats( ) );
     }
+    dispatch( fetchSubscriptions( ) );
     dispatch( fetchObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
@@ -218,7 +268,21 @@ export function setSelectedTab( tab, options = { } ) {
         history.pushState( newConfigState, document.title, newURL );
       }
     }
+    if ( tab === "about" ) {
+      window.scrollTo( 0, 0 );
+    }
     dispatch( setConfig( newConfigState ) );
+  };
+}
+
+export function subscribe( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.project || !state.config.currentUser ) { return; }
+    const payload = { id: state.project.id };
+    inatjs.projects.subscribe( payload ).then( response => {
+      dispatch( fetchSubscriptions( ) );
+    } );
   };
 }
 

@@ -31,6 +31,12 @@ class OverviewTab extends Component {
                     className="fa fa-arrow-circle-right"
                     onClick={ ( ) => setSelectedTab( "observations" ) }
                   />
+                  <button
+                    className="btn-green"
+                    onClick={ ( ) => setSelectedTab( "observations" ) }
+                  >
+                    { I18n.t( "view_all" ) }
+                  </button>
                 </h2>
                 <div className="ObservationsGrid">
                   { instances.slice( 0, 5 ).map( o => {
@@ -76,9 +82,20 @@ class OverviewTab extends Component {
         <Grid className="info-grid">
           <Row>
             <Col xs={ 4 }>
+              <h2>
+                Project Requirements
+                <i
+                  className="fa fa-arrow-circle-right"
+                  onClick={ ( ) => setSelectedTab( "about" ) }
+                />
+              </h2>
               <Requirements { ...this.props } />
             </Col>
             <Col xs={ 4 }>
+              <h2>
+                Stats
+                <i className="fa fa-arrow-circle-right" />
+              </h2>
               <IconicTaxaPieChart { ...this.props } />
             </Col>
             <Col xs={ 4 }>

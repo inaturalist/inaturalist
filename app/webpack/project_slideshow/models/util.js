@@ -1,6 +1,6 @@
 import fetch from "isomorphic-fetch";
 
-const Util = class ObsCard {
+const Util = class Util {
   static nodeApiFetch( path ) {
     return fetch( `${$( "meta[name='config:inaturalist_api_url']" ).attr( "content" )}/${path}`, { method: "GET" } ).
       then( response => {

@@ -11,6 +11,8 @@ class SharedForm extends React.Component {
   render( ) {
     const {
       project,
+      setTitle,
+      onFileDrop,
       updateProject
     } = this.props;
     const bgColor = project.banner_color;
@@ -24,15 +26,22 @@ class SharedForm extends React.Component {
           </Row>
           <Row className="first-row">
             <Col xs={4}>
-              <label htmlFor="project-title">Project Name</label>
-              <input
-                type="text"
-                className="form-control"
-                name="project-title"
-                placeholder={ "Birds of Chicago, Amazing Dragonflies, etc." }
-                defaultValue={ project.title }
-                onChange={ e => updateProject( { title: e.target.value } ) }
-              />
+              <div className={ `form-group ${project.titleError && "has-error"}` }>
+                <label htmlFor="project-title">
+                  Project Name
+                  { project.titleError && (
+                    <span className="error">{ project.titleError }</span>
+                  ) }
+                </label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="project-title"
+                  placeholder={ "Birds of Chicago, Amazing Dragonflies, etc." }
+                  defaultValue={ project.title }
+                  onChange={ e => setTitle( e.target.value ) }
+                />
+              </div>
               <input
                 type="checkbox"
                 id="project-display-name"
@@ -45,7 +54,7 @@ class SharedForm extends React.Component {
               <label>ProjectType</label>
               <input
                 type="radio"
-                name="project-type-regular"
+                id="project-type-regular"
                 value="regular"
                 checked={ project.project_type !== "umbrella" }
                 onChange={ ( ) => updateProject( { project_type: "regular" } ) }
@@ -53,7 +62,7 @@ class SharedForm extends React.Component {
               <label className="inline" htmlFor="project-type-regular">Regular</label>
               <input
                 type="radio"
-                name="project-type-umbrella"
+                id="project-type-umbrella"
                 value="regular"
                 checked={ project.project_type === "umbrella" }
                 onChange={ ( ) => updateProject( { project_type: "umbrella" } ) }
@@ -68,7 +77,7 @@ class SharedForm extends React.Component {
               <Dropzone
                 ref="iconDropzone"
                 className="dropzone"
-                onDrop={ droppedFiles => updateProject( { droppedIcon: droppedFiles[0] } ) }
+                onDrop={ droppedFiles => onFileDrop( droppedFiles, "droppedIcon" ) }
                 activeClassName="hover"
                 disableClick
                 accept={ "image/png,image/jpeg,image/gif" }
@@ -77,8 +86,8 @@ class SharedForm extends React.Component {
                 <div className="icon-cell">
                   <label htmlFor="project-title">Project Icon (PNG, JPG, or GIF)</label>
                   <div className="help-text">
-                    Optional image that should be a minimum of 72px x 72px
-                    and will be cropped to a square
+                    Optional icon. Should be a minimum of 72px x 72px
+                    and will be cropped to a square.
                   </div>
                   <button className="btn-white"
                     onClick={ ( ) => this.refs.iconDropzone.open( ) }
@@ -108,7 +117,7 @@ class SharedForm extends React.Component {
               <Dropzone
                 ref="bannerDropzone"
                 className="dropzone"
-                onDrop={ droppedFiles => updateProject( { droppedBanner: droppedFiles[0] } ) }
+                onDrop={ droppedFiles => onFileDrop( droppedFiles, "droppedBanner" ) }
                 activeClassName="hover"
                 disableClick
                 accept={ "image/*" }
@@ -189,6 +198,8 @@ class SharedForm extends React.Component {
 
 SharedForm.propTypes = {
   project: PropTypes.object,
+  onFileDrop: PropTypes.func,
+  setTitle: PropTypes.func,
   updateProject: PropTypes.func
 };
 

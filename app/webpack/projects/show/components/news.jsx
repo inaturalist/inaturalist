@@ -19,7 +19,7 @@ const News = ( { project } ) => {
       </h2>
       <div className="posts">
         { _.map( project.posts.results, post => (
-          <div className="post">
+          <div className="post" key={ `post_${post.id}` }>
             <a href={ `/projects/${project.slug}/journal/${post.id}` }>
               <div className="date">{ moment( post.created_at ).format( "LL - LT" ) }</div>
               <div className="title">{ post.title }</div>

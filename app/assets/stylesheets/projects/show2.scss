@@ -4,6 +4,9 @@
 @import "../shared/taxon_photo";
 @import "../c3";
 
+$background-color: #1A1A1A;
+
+
 body {
   min-width: 980px;
 }
@@ -35,6 +38,11 @@ a.UserImage {
   border: none;
 }
 
+.linky {
+  color: $bootstrap-link-color;
+  cursor: pointer;
+}
+
 .loading_spinner.huge {
   display: block;
   margin: 0px auto;
@@ -43,11 +51,17 @@ a.UserImage {
 
 .bootstrap h2 {
   font-size: 28px;
+  margin-bottom: 20px;
   i.fa {
     color: $inat-green;
     font-size: 24px;
     margin-left: 10px;
     cursor: pointer;
+  }
+  button {
+    font-size: 14px;
+    float: right;
+    line-height: 20px;
   }
 }
 
@@ -60,6 +74,10 @@ button {
     border-radius: 30px;
     background: $inat-green;
     border: none;
+    .fa {
+      color: white;
+      margin-right: 5px;
+    }
   }
   &.btn-white {
     font-weight: 700;
@@ -67,7 +85,17 @@ button {
     border-radius: 30px;
     background: white;
     border: 1px solid $border-grey;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
   }
+}
+
+.section-intro {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 15px;
 }
 
 .project-header {
@@ -120,6 +148,30 @@ button {
           overflow: hidden;
         }
       }
+      .header-dates {
+        position: absolute;
+        bottom: 15px;
+        left: 35px;
+        background: rgba(0,0,0,0.7);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 5px 15px;
+        text-transform: uppercase;
+      }
+      .header-in-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #f22844;
+        color: white;
+        text-transform: uppercase;
+        padding: 3px 12px;
+      }
+      &.event .header-title {
+        margin-bottom: 47px;
+      }
+      &.event.icon .header-dates {
+        left: 80px;
+      }
     }
     .header-about {
       height: 300px;
@@ -155,6 +207,7 @@ button {
       .header-about-read-more {
         font-weight: 700;
         font-size: 15px;
+        cursor: pointer;
         i {
           font-size: 9px;
           margin-left: 3px;
@@ -223,10 +276,6 @@ button {
       border-radius: 30px;
       margin-top: 18px;
       white-space: nowrap;
-      i {
-        color: $inat-green;
-        margin-right: 5px;
-      }
     }
   }
 }
@@ -604,7 +653,7 @@ button {
 
 .News {
   .posts {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     &.row {
       margin-bottom: 0;
     }
@@ -621,7 +670,7 @@ button {
   }
 }
 
-.IconicTaxaPieChart {
+.IconicTaxaPieChart, .QualityGradePieChart {
   position: relative;
   .count-label {
     position: absolute;
@@ -629,10 +678,11 @@ button {
     right: 0;
     width: 100%;
     text-align: center;
-    top: 135px;
+    top: 85px;
     font-size: 18px;
     font-weight: 700;
     pointer-events: none;
+    word-spacing: 400px;
   }
   .PieChart {
     svg {
@@ -641,6 +691,67 @@ button {
     }
   }
 }
+
+.About {
+  background: #f8f8f8;
+  padding-top: 35px;
+  min-height: 500px;
+  .back {
+    .fa {
+      margin-right: 5px;
+    }
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin-bottom: 25px;
+  }
+  .UserText.body, .owner {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .requirements-col {
+    padding-left: 60px;
+  }
+  .owner {
+    margin: 20px 0px 60px;
+    a.UserImage {
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+    }
+    .userlink {
+      margin: 0px 5px;
+      font-weight: 700;
+    }
+  }
+}
+
+.EventCountdown {
+  .row {
+    .col-xs-3 {
+      text-align: center;
+    }
+    span {
+      display: block;
+      &.value {
+        font-size: 30px;
+        line-height: 38px;
+        font-weight: 700;
+      }
+      &.type {
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+  }
+  button {
+    margin-top: 25px;
+  }
+}
+
+
 
 
 

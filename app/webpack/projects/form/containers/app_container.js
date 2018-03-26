@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
-import { setProject } from "../form_reducer";
+import { createNewProject } from "../form_reducer";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +11,7 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setProject: project => { dispatch( setProject( project ) ); }
+    createNewProject: type => { dispatch( createNewProject( type ) ); }
   };
 }
 

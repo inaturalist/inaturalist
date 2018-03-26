@@ -9,6 +9,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :observer_allows_addition?
   validate :project_allows_submitter?
   validate :observer_invited?
+  validate :project_allows_observations?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
@@ -171,6 +172,12 @@ class ProjectObservation < ActiveRecord::Base
     else
       errors.add :user_id, :must_be_curator
       false
+    end
+  end
+
+  def project_allows_observations?
+    if project.is_new_project?
+      errors.add :base, :project_does_not_allow_observations
     end
   end
 

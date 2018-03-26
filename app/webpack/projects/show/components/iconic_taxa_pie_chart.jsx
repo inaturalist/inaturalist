@@ -14,10 +14,6 @@ const IconicTaxaPieChart = ( { project } ) => {
     I18n.toNumber( project.species.total_results, { precision: 0 } ) : "--";
   return (
     <div className="IconicTaxaPieChart">
-      <h2>
-        Stats
-        <i className="fa fa-arrow-circle-right" />
-      </h2>
       <div className="count-label">
         { I18n.t( "x_species", { count: total } ) }
       </div>

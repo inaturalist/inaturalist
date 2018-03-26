@@ -1,7 +1,6 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import convert from "color-convert";
 import tinycolor from "tinycolor2";
 import IdentifiersTabContainer from "../containers/identifiers_tab_container";
 import ObservationsTabContainer from "../containers/observations_tab_container";
@@ -9,13 +8,16 @@ import ObserversTabContainer from "../containers/observers_tab_container";
 import UmbrellaOverviewTabContainer from "../containers/umbrella_overview_tab_container";
 import OverviewTabContainer from "../containers/overview_tab_container";
 import SpeciesTabContainer from "../containers/species_tab_container";
+import StatsTabContainer from "../containers/stats_tab_container";
 import StatsHeaderContainer from "../containers/stats_header_container";
+import AboutContainer from "../containers/about_container";
+import BeforeEventTabContainer from "../containers/before_event_tab_container";
 
-const App = ( { config, project } ) => {
+const App = ( { config, project, subscribe, setSelectedTab } ) => {
   let view;
   let tab = config.selectedTab;
-  if ( _.isEmpty( tab ) && project.project_type === "umbrella" ) {
-    tab = "umbrella_overview";
+  if ( project.startDate && !project.started && tab !== "about" ) {
+    tab = "before_event";
   }
   switch ( tab ) {
     case "observations":
@@ -30,24 +32,47 @@ const App = ( { config, project } ) => {
     case "species":
       view = ( <SpeciesTabContainer /> );
       break;
-    case "umbrella_overview":
-      view = ( <UmbrellaOverviewTabContainer /> );
+    case "stats":
+      view = ( <StatsTabContainer /> );
       break;
+    case "before_event":
+      view = ( <BeforeEventTabContainer /> );
+      break;
+    case "about":
+      return ( <AboutContainer /> );
     default:
-      view = ( <OverviewTabContainer /> );
+      view = project.project_type === "umbrella" ?
+        ( <UmbrellaOverviewTabContainer /> ) :
+        ( <OverviewTabContainer /> );
   }
   const userIsManager = config.currentUser &&
-    _.includes( project.manager_ids, config.currentUser.id );
+    _.find( project.admins, a => a.user.id === config.currentUser.id );
+  const hasIcon = project.customIcon && project.customIcon( );
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
   const headerButton = userIsManager ? (
     <a href={ `/projects/${project.slug}/edit` }>
       <button>{ I18n.t( "edit" ) }</button>
     </a> ) : (
-    <button>{ I18n.t( "follow" ) }</button>
+    <button onClick={ ( ) => subscribe( ) }>
+      { project.currentUserSubscribed ? I18n.t( "unfollow" ) : I18n.t( "follow" ) }
+    </button>
   );
+  let eventDates;
+  if ( project.rule_observed_on && project.startDate ) {
+    eventDates = project.startDate.format( "MMM D, YYYY" );
+  } else if ( project.rule_d1 && project.rule_d2 && project.startDate && project.endDate ) {
+    const start = project.startDate.format( "MMM D, YYYY" );
+    const end = project.endDate.format( "MMM D, YYYY" );
+    eventDates = `${start} - ${end}`;
+  }
+  const headerDates = eventDates ? (
+    <div className="header-dates">
+      { eventDates }
+    </div>
+  ) : null;
   const headerTitle = project.hide_title ? null : (
     <div className="header-title">
-      { project.customIcon && project.customIcon( ) && (
+      { hasIcon && (
         <div
           className="title-icon"
           style={ { backgroundImage: `url( '${project.icon}' )` } }
@@ -58,6 +83,11 @@ const App = ( { config, project } ) => {
       </div>
     </div>
   );
+  const headerInProgress = ( project.started && !project.ended ) ? (
+    <div className="header-in-progress">
+      In Progress
+    </div>
+  ) : null;
   return (
     <div id="ProjectsShow">
       <div className="project-header">
@@ -71,7 +101,7 @@ const App = ( { config, project } ) => {
           <Row>
             <Col
               xs={ 8 }
-              className="title-container"
+              className={ `title-container ${eventDates && "event"} ${hasIcon && "icon"}` }
               style={ project.header_image_url ? {
                 backgroundImage: `url( '${project.header_image_url}' )`
               } : {
@@ -79,6 +109,8 @@ const App = ( { config, project } ) => {
               } }
             >
               { headerTitle }
+              { headerDates }
+              { headerInProgress }
             </Col>
             <Col
               xs={ 4 }
@@ -98,7 +130,10 @@ const App = ( { config, project } ) => {
               <div className="header-about-text">
                 { ( project.description || "" ).substring( 0, 240 ) }...
               </div>
-              <div className="header-about-read-more">
+              <div
+                className="header-about-read-more"
+                onClick={ () => setSelectedTab( "about" ) }
+              >
                 { I18n.t( "read_more" ) }
                 <i className="fa fa-chevron-right" />
               </div>
@@ -112,7 +147,7 @@ const App = ( { config, project } ) => {
           </Row>
         </Grid>
       </div>
-      <StatsHeaderContainer />
+      { !( project.startDate && !project.started ) && ( <StatsHeaderContainer /> ) }
       <div className="Content">
         { view }
       </div>
@@ -122,7 +157,9 @@ const App = ( { config, project } ) => {
 
 App.propTypes = {
   config: PropTypes.object,
-  project: PropTypes.object
+  project: PropTypes.object,
+  subscribe: PropTypes.func,
+  setSelectedTab: PropTypes.func
 };
 
 export default App;

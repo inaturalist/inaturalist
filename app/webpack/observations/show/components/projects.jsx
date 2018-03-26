@@ -32,6 +32,7 @@ class Projects extends React.Component {
       resetOnChange: false,
       idEl: $( "<input/>" ),
       notIDs: _.map( this.props.observation.project_observations, "project_id" ),
+      notTypes: ["collection", "umbrella"],
       allowEnterSubmit: true,
       selectFirstMatch: true,
       currentUsersProjects: true,

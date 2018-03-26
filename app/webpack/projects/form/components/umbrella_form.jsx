@@ -13,6 +13,15 @@ class UmbrellaForm extends React.Component {
     return (
       <div id="UmbrellaForm" className="Form">
         <Grid>
+          <Row className="text">
+            <Col xs={12}>
+              <h2>Observation Requirements</h2>
+              <div className="help-text">
+                Please specify the requirements for the observations to be added to this project.
+                You can have multiple species and places.
+              </div>
+            </Col>
+          </Row>
           <Row className="first-row">
             <Col xs={4}>
               <label>Projects</label>
@@ -24,6 +33,7 @@ class UmbrellaForm extends React.Component {
                   this.refs.ua.inputElement( ).val( "" );
                 } }
                 notIDs={ _.map( project.projectRules, rule => rule.project.id ) }
+                notTypes={ ["umbrella"] }
                 bootstrapClear
               />
               { !_.isEmpty( project.projectRules ) && (

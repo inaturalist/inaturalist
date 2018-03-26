@@ -52,7 +52,10 @@ const StatsHeader = ( { config, project, setSelectedTab } ) => {
                 { I18n.t( "observers" ) }
               </li>
               <li className="stats-tab">
-                <button className="btn-white">
+                <button
+                  className={ config.selectedTab === "stats" ? "btn-green" : "btn-white" }
+                  onClick={ ( ) => setSelectedTab( "stats" ) }
+                >
                   <i className="fa fa-bolt" />
                   { I18n.t( "stats" ) }
                 </button>

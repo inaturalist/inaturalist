@@ -2,7 +2,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import ProjectFormContainer from "../containers/project_form_container";
 
-const App = ( { form, setProject } ) => {
+const App = ( { form, createNewProject } ) => {
   if ( form.project ) {
     return ( <ProjectFormContainer /> );
   }
@@ -48,10 +48,7 @@ const App = ( { form, setProject } ) => {
             <div className="btn-div">
               <button
                 className="btn-green"
-                onClick={ () => {
-                  setProject( { project_type: "regular" } );
-                  $( window ).scrollTop( 0 );
-                } }
+                onClick={ ( ) => createNewProject( "collection" ) }
               >
                 Get started
               </button>
@@ -90,10 +87,7 @@ const App = ( { form, setProject } ) => {
             <div className="btn-div">
               <button
                 className="btn-green"
-                onClick={ () => {
-                  setProject( { project_type: "umbrella" } );
-                  $( window ).scrollTop( 0 );
-                } }
+                onClick={ ( ) => createNewProject( "umbrella" ) }
               >
                 Get started
               </button>
@@ -106,9 +100,8 @@ const App = ( { form, setProject } ) => {
 };
 
 App.propTypes = {
-  config: PropTypes.object,
   form: PropTypes.object,
-  setProject: PropTypes.func
+  createNewProject: PropTypes.func
 };
 
 export default App;

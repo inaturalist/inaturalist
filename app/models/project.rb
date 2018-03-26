@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
-  has_many :project_users, :dependent => :delete_all
+  has_many :project_users, :dependent => :delete_all, :inverse_of => :project
   has_many :project_observations, :dependent => :delete_all
   has_many :project_invitations, :dependent => :destroy
   has_many :project_user_invitations, :dependent => :delete_all
@@ -74,7 +74,8 @@ class Project < ActiveRecord::Base
   NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
 
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
-  
+  accepts_nested_attributes_for :project_users, :allow_destroy => true
+
   validates_length_of :title, :within => 1..100
   validates_presence_of :user
   validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,

@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
+import { setSelectedTab, subscribe } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -8,8 +9,16 @@ function mapStateToProps( state ) {
   };
 }
 
+function mapDispatchToProps( dispatch ) {
+  return {
+    setSelectedTab: tab => { dispatch( setSelectedTab( tab ) ); },
+    subscribe: ( ) => { dispatch( subscribe( ) ); }
+  };
+}
+
 const AppContainer = connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )( App );
 
 export default AppContainer;

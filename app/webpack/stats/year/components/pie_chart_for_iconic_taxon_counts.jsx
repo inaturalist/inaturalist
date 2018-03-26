@@ -159,7 +159,8 @@ PieChartForIconicTaxonCounts.propTypes = {
   margin: React.PropTypes.object,
   labelForDatum: React.PropTypes.func,
   innerRadius: React.PropTypes.number,
-  donutWidth: React.PropTypes.number
+  donutWidth: React.PropTypes.number,
+  urlPrefix: React.PropTypes.string
 };
 
 export default PieChartForIconicTaxonCounts;

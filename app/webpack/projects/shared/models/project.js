@@ -1,11 +1,12 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
-import moment from "moment";
+import moment from "moment-timezone";
+import util from "../util";
 
 const Project = class Project {
   constructor( attrs ) {
     Object.assign( this, attrs );
-    this.is_umbrella = ( this.collection_type === "umbrella" );
+    this.is_umbrella = ( this.project_type === "umbrella" );
     this.project_observation_rules = this.project_observation_rules || [];
     const mappings = {
       Taxon: inatjs.Taxon,
@@ -31,6 +32,32 @@ const Project = class Project {
       ttl: 600,
       v: moment( this.updated_at ).format( "x" )
     };
+    this.setPreviewSearchParams( );
+    const start = this.rule_observed_on || this.rule_d1;
+    const end = this.rule_observed_on || this.rule_d2;
+    this.startDate = util.momentDateFromString( start );
+    this.endDate = util.momentDateFromString( end );
+    this.started = false;
+    this.ended = false;
+    this.durationToEvent = null;
+    const now = moment( );
+    if ( this.startDate ) {
+      if ( util.isDate( start ) ) {
+        this.started = this.startDate.isSame( now, "day" ) || this.startDate.isBefore( now, "day" );
+      } else {
+        if ( this.startDate.isBefore( now ) ) {
+          this.started = true;
+        } else {
+          this.durationToEvent = moment.duration( this.startDate.diff( now ) );
+        }
+      }
+    }
+    if ( this.endDate ) {
+      this.ended = util.isDate( end ) ?
+        this.endDate.isBefore( now, "day" ) :
+        this.endDate.isBefore( now );
+    }
+    this.undestroyedAdmins = _.filter( this.admins, a => !a._destroy );
     // TODO don't hardcode default color
     this.banner_color = this.banner_color || "#28387d";
   }
@@ -91,6 +118,55 @@ const Project = class Project {
       }
     } );
     this.rule_quality_grade = this.rule_quality_grade || { };
+  }
+
+  setPreviewSearchParams( ) {
+    this.previewSearchParamsObject = { };
+    if ( this.is_umbrella ) {
+      if ( !_.isEmpty( this.projectRules ) ) {
+        this.previewSearchParamsObject.project_id =
+          _.map( this.projectRules, r => r.operand_id ).join( "," );
+      }
+    } else {
+      this.previewSearchParamsObject = _.fromPairs(
+        _.map( _.filter( this.rule_preferences, p => p.value !== null ), p => [p.field, p.value] )
+      );
+      if ( !_.isEmpty( this.taxonRules ) ) {
+        this.previewSearchParamsObject.taxon_id =
+          _.map( this.taxonRules, r => r.operand_id ).join( "," );
+      }
+      if ( !_.isEmpty( this.placeRules ) ) {
+        this.previewSearchParamsObject.place_id =
+          _.map( this.placeRules, r => r.operand_id ).join( "," );
+      }
+      if ( !_.isEmpty( this.userRules ) ) {
+        this.previewSearchParamsObject.user_id =
+          _.map( this.userRules, r => r.operand_id ).join( "," );
+      }
+    }
+    if ( !this.date_type ) {
+      if ( this.previewSearchParamsObject.d1 || this.previewSearchParamsObject.d2 ) {
+        this.date_type = "range";
+      } else if ( this.previewSearchParamsObject.observed_on ) {
+        this.date_type = "exact";
+      } else {
+        this.date_type = "any";
+      }
+    }
+    if ( this.date_type !== "range" ) {
+      delete this.previewSearchParamsObject.d1;
+      delete this.previewSearchParamsObject.d2;
+    }
+    if ( this.date_type !== "exact" ) {
+      delete this.previewSearchParamsObject.observed_on;
+    }
+    // using naming consistent with the web obs search form
+    if ( this.previewSearchParamsObject.observed_on ) {
+      this.previewSearchParamsObject.on = this.previewSearchParamsObject.observed_on;
+      delete this.previewSearchParamsObject.observed_on;
+    }
+    this.previewSearchParamsString =
+      _.map( this.previewSearchParamsObject, ( v, k ) => `${k}=${v}` ).join( "&" );
   }
 
 };

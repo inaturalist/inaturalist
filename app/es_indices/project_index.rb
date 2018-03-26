@@ -37,6 +37,7 @@ class Project < ActiveRecord::Base
       end
       indexes :rule_preferences, type: :nested do
         indexes :field, type: "keyword"
+        indexes :value, type: "text"
       end
     end
   end
@@ -56,9 +57,10 @@ class Project < ActiveRecord::Base
       ancestor_place_ids: place ? place.ancestor_place_ids : nil,
       place_ids: place ? place.self_and_ancestor_ids : nil,
       place_id: rule_place_ids.first,
-      manager_ids: managers.map(&:id),
+      user_id: user_id,
+      admins: project_users.select{ |pu| !pu.role.blank? }.uniq.map(&:as_indexed_json),
       rule_place_ids: rule_place_ids,
-      user_ids: project_users.map(&:user_id).sort,
+      user_ids: project_users.map(&:user_id).uniq.sort,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
       icon: icon ? FakeView.asset_url( icon.url(:span2), host: Site.default.url ) : nil,
@@ -80,6 +82,7 @@ class Project < ActiveRecord::Base
       rule_preferences: preferences.
         select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !v.blank? }.
         map{ |k,v| { field: k.sub("rule_",""), value: v } },
+      created_at: created_at,
       updated_at: updated_at
     }
   end

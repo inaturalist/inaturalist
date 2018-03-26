@@ -73,16 +73,19 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>Locations</label>
-              <PlaceAutocomplete
-                ref="pa"
-                afterSelect={ e => {
-                  addProjectRule( "observed_in_place?", "Place", e.item );
-                  this.refs.pa.inputElement( ).val( "" );
-                } }
-                bootstrapClear
-                config={ config }
-                placeholder={ "Zion National Park, Miami, etc." }
-              />
+              <div className="input-group">
+                <span className="input-group-addon fa fa-globe"></span>
+                <PlaceAutocomplete
+                  ref="pa"
+                  afterSelect={ e => {
+                    addProjectRule( "observed_in_place?", "Place", e.item );
+                    this.refs.pa.inputElement( ).val( "" );
+                  } }
+                  bootstrapClear
+                  config={ config }
+                  placeholder={ "Zion National Park, Miami, etc." }
+                />
+              </div>
               { !_.isEmpty( project.placeRules ) && (
                 <div className="icon-previews">
                   { _.map( project.placeRules, placeRule => (
@@ -101,17 +104,20 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>Users</label>
-              <UserAutocomplete
-                ref="ua"
-                afterSelect={ e => {
-                  e.item.id = e.item.user_id;
-                  addProjectRule( "observed_by_user?", "User", e.item );
-                  this.refs.ua.inputElement( ).val( "" );
-                } }
-                bootstrapClear
-                config={ config }
-                placeholder={ "kueda, 1001, etc." }
-              />
+              <div className="input-group">
+                <span className="input-group-addon fa fa-briefcase"></span>
+                <UserAutocomplete
+                  ref="ua"
+                  afterSelect={ e => {
+                    e.item.id = e.item.user_id;
+                    addProjectRule( "observed_by_user?", "User", e.item );
+                    this.refs.ua.inputElement( ).val( "" );
+                  } }
+                  bootstrapClear
+                  config={ config }
+                  placeholder={ "kueda, 1001, etc." }
+                />
+              </div>
               { !_.isEmpty( project.userRules ) && (
                 <div className="icon-previews">
                   { _.map( project.userRules, userRule => (
@@ -183,7 +189,7 @@ class RegularForm extends React.Component {
               <label>Date Observed</label>
               <input
                 type="radio"
-                name="project-date-type-any"
+                id="project-date-type-any"
                 inputProps
                 checked={ project.date_type === "any" }
                 onChange={ ( ) => updateProject( { date_type: "any" } ) }
@@ -191,7 +197,7 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-any">Any</label>
               <input
                 type="radio"
-                name="project-date-type-exact"
+                id="project-date-type-exact"
                 checked={ project.date_type === "exact" }
                 onChange={ ( ) => updateProject( { date_type: "exact" } ) }
               />
@@ -208,10 +214,10 @@ class RegularForm extends React.Component {
               />
               <input
                 type="radio"
-                name="project-date-type-range"
+                id="project-date-type-range"
                 value="regular"
-                checked={ project.date_type === "exact" }
-                onChange={ ( ) => updateProject( { date_type: "exact" } ) }
+                checked={ project.date_type === "range" }
+                onChange={ ( ) => updateProject( { date_type: "range" } ) }
               />
               <label className="inline" htmlFor="project-date-type-range">Range</label>
               <DateTimeFieldWrapper
@@ -219,6 +225,7 @@ class RegularForm extends React.Component {
                 inputFormat="YYYY-MM-DD HH:mm Z"
                 defaultText={ project.rule_d1 }
                 onChange={ date => setRulePreference( "d1", date ) }
+                allowFutureDates
                 inputProps={ {
                   className: "form-control",
                   placeholder: "Start Date / Time"
@@ -229,6 +236,7 @@ class RegularForm extends React.Component {
                 inputFormat="YYYY-MM-DD HH:mm Z"
                 defaultText={ project.rule_d2 }
                 onChange={ date => setRulePreference( "d2", date ) }
+                allowFutureDates
                 inputProps={ {
                   className: "form-control",
                   placeholder: "End Date / Time"
