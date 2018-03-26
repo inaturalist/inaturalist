@@ -658,6 +658,7 @@ es:
   black: negro
   block_user: Bloquear usuario
   block_removed: Bloque eliminado
+  blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
   blue: azul
   blue_butterfly_etc: azul, mariposa, etc.
@@ -1239,6 +1240,7 @@ es:
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
+  drawings: Dibujos
   duplicate_verb: Duplicado
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las
     especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia,
@@ -2487,6 +2489,7 @@ es:
   not_seeing_what_looking_for: ¿No ve lo que está buscando?
   not_yet: Todavía no
   note: Nota
+  notes: Notas
   note_you_can_modify_the_height_attribute: 'Nota: Puedes modificar el atributo "altura"
     para llenar el espacio disponible en tu página web.'
   notify_me_of_mentions: Notificarme sobre las menciones (p. ej. @username)
@@ -3482,6 +3485,7 @@ es:
   show_off_your_recent_observations: ¡Presuma sus observaciones en su propio blog
     o sitio web!
   show_only: Mostrar solamente
+  show_scientific_name_first: Mostrar primero los nombres científicos
   show_taxa_from_both: (mostrar taxones de ambas listas)
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
   showing_observations_by: Mostrando observaciones hechas por
@@ -5476,7 +5480,8 @@ es:
           </p>
         rules:
           captive: ser cautivo/cultivada
-          coordinates_shareable_by_project_curators: coordinables para ser compartidos por los curadores del proyecto
+          coordinates_shareable_by_project_curators: coordinables para ser compartidos
+            por los curadores del proyecto
           georeferenced: tener coordenadas
           has_a_photo: tener una foto
           has_a_sound: tener un sonido
@@ -6133,6 +6138,10 @@ es:
         name_provider: Proveedor de nombre
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
+      user:
+        email: Correo
+        name: Nombre
+        time_zone: Zona horaria
       source:
         title: Título
         in_text: Referencia

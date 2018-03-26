@@ -152,15 +152,18 @@ fr:
   able_to_connect_flickr: Super ! Nous avons pu nous connecter à votre compte Flickr.
   about: À propos
   about_bioblitz_results: À propos des résultats de bioblitz
+  about_blocking: À propos du blocage
   about_charts: À propos des graphiques
   about_community_taxa: À propos des taxons de la communauté
   about_complete_taxa: À propos des taxons complets
   about_conservation_status: À propos de l’état de conservation
+  about_editing_observation_fields: À propos de la modification des champs d’observation
   about_establishment_means: À propos des moyens d’implantation
   about_external_links: À propos des liens externes
   about_licenses: À propos des licences
   about_licensing: À propos de l’octroi de licences
   about_life!: À propos des êtres vivants !
+  about_muting: À propos de réduire au silence
   about_names: À propos des noms
   about_places: À propos des lieux
   about_taxon_changes: Sur les modifications de taxon
@@ -680,6 +683,7 @@ fr:
   black: noir
   block_user: Bloquer l’utilisateur
   block_removed: Blocage supprimé
+  blocked_users: Utilisateurs bloqués
   blog_widget: Widget de blogue
   blue: bleu
   blue_butterfly_etc: bleu, papillon, etc.
@@ -1295,6 +1299,7 @@ fr:
   draft_saved: Brouillon enregistré!
   drafts: Brouillons
   drag_and_drop_some_photos_or_sounds: Glisser et déposer quelques photos ou sons
+  drawings: Croquis
   duplicate_verb: Doublon
   each_place_displays_all_species_inat_knows: Chaque page de lieu affiche toutes les
     espèces dont %{site_name} a connaissance pour ce lieu, y compris les informations
@@ -2351,6 +2356,7 @@ fr:
   must_have_x: doit avoir %{x}
   mute_user: Réduire l’utilisateur au silence
   mute_removed: Mise au silence supprimée
+  muted_users: Utilisateurs réduits au silence
   n_ago: il y a %{n}
   n_people_agrees: '%{amount} des gens sont d’accord'
   n_people_disagrees: '%{amount} des gens ne sont pas d’accord'
@@ -2569,6 +2575,7 @@ fr:
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
   not_yet: Pas encore
   note: Note
+  notes: Notes
   note_you_can_modify_the_height_attribute: 'Remarque : Vous pouvez modifier l’attribut
     ''height'' pour l’adapter à l’espace disponible sur votre page web.'
   notify_me_of_mentions: M’informer des mentions (par ex. @username)
@@ -2830,6 +2837,7 @@ fr:
     exécuter cette action. Soyez gentil.
   only_the_project_admin_can_delete_this_project: Seul l'administrateur du projet
     peut supprimer ce projet.
+  only_you: Seulement vous
   open: Ouvert
   open_: Ouvrir
   open_description: Tout le monde peut voir les coordonnées sauf si le taxon est menacé.
@@ -3581,6 +3589,7 @@ fr:
   show_off_your_recent_observations: Mettez en valeur vos observations récentes sur
     votre propre blogue ou site web !
   show_only: 'Montrer seulement :'
+  show_scientific_name_first: Afficher les noms scientifiques en premier
   show_taxa_from_both: (afficher les taxons des deux listes)
   show_total_listed_taxa: Afficher le total des taxons répertoriés
   showing_observations_by: affichage des observations de
@@ -4505,6 +4514,7 @@ fr:
   we_tried_to_process_your_upload_named_filename: |-
     Nous avons essayé de traiter votre téléversement appelé %{filename}, mais cela n’a pas fonctionné.
     Veuillez résoudre le(s) problème(s) suivant(s) et réessayer.
+  weather: Météo
   wed: Mer
   week_of_date: Semaine de %{date}
   welcome!: Bienvenue!
@@ -5711,16 +5721,18 @@ fr:
           </p>
         rules:
           captive: être captif/cultivé
-          wild: être sauvage/acclimaté
+          coordinates_shareable_by_project_curators: coordonnées partageables par
+            les superviseurs du projet
           georeferenced: avoir des coordonnées
-          has_media: avoir des médias (photo ou son)
           has_a_photo: avoir une photo
           has_a_sound: avoir un son
+          has_media: avoir des médias (photo ou son)
           identified: être identifié
           in_taxon: être dans un taxon
           observed_in_place: être observé dans le lieu
           on_list: être d’un taxon de la liste du projet
           verifiable: être vérifiable
+          wild: être sauvage/acclimaté
         start_time_desc: 'Date de début de votre bioblitz. Format: AAAA-MM-JJThh:mm:ss±hh:mm'
         submission_models:
           any: n’importe qui
@@ -6520,6 +6532,8 @@ fr:
         terms: Conditions
         map_type: Type de carte
         zoom_level: Niveau de zoom
+        preferred_membership_model: Modèle d’adhésion préféré
+        preferred_submission_model: Modèle de soumission préféré
         prefers_place_boundary_visible: Afficher les limites du lieu sur la carte
         tracking_codes: Codes de suivi
         source_url: URL source
@@ -6560,6 +6574,14 @@ fr:
         name_provider: Fournisseur de nom
         source_url: URL source
         source_identifier: Identifiant source
+      user:
+        email: Courriel
+        name: Nom
+        locale: Option régionale
+        time_zone: Fuseau horaire
+        search_place_id: Rechercher un lieu
+        place_id: Endroit
+        preferred_observation_fields_by: Autoriser les champs d’observation depuis
       source:
         title: Titre
         in_text: Dans le texte

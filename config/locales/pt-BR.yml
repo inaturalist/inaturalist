@@ -5326,16 +5326,16 @@ pt-BR:
           haver táxon na lista do projeto\" norma.\n</p>"
         rules:
           captive: ser de cativeiro/cultivado
-          wild: ser selvagem/naturalizado
           georeferenced: tem coordenadas
-          has_media: tem arquivos (foto ou som)
           has_a_photo: tenha uma foto
           has_a_sound: tenha um som
+          has_media: tem arquivos (foto ou som)
           identified: ser identificado
           in_taxon: esteja em um táxon
           observed_in_place: observado no local
           on_list: é de um táxon desta lista de projeto
           verifiable: ser verificável
+          wild: ser selvagem/naturalizado
         start_time_desc: 'Horário de início da sua bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm'
         submission_models:
           any: qualquer

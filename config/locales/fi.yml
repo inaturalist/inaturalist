@@ -1462,6 +1462,7 @@ fi:
     ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>
   join_this_project: Liity tähän projektiin
   joined!: Liitytty!
+  joined_any_projects: liittynyt mihinkään projektiin
   joining: Liitytään...
   journal: Päiväkirja
   journal_post: Päiväkirjamerkintä
@@ -1781,6 +1782,8 @@ fi:
   new_source: Uusi lähde
   new_taxon_change: Uusi taksonimuutos
   new_taxon_link: Uusi taksonilinkki
+  new_updates_in_the_last_24_hours_from: Uusia päivityksiä viimeisten 24 tunnin aikana
+    %{site_name}ista
   new_users_week: Uudet käyttäjät / Viikko
   next: Seuraava
   next_observation: Seuraava havainto
@@ -2781,6 +2784,7 @@ fi:
   user_invited_you_to_join_project: '%{user} kutsui sinut liittymään projektiin %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} kutsui sinut liittymään
     tähän projektiin %{date}'
+  user_invited_your_x_to_a_project_html: '%{user} kutsui sinun %{x} projektiin'
   user_is_a_naturalist: '%{user} on luonnontieteilijä!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> on nyt %{role} projektissa
     %{project}
@@ -2985,6 +2989,7 @@ fi:
   your_home: Kotisi
   your_id: Tunnisteesi
   your_identification: Tunnistamisesi
+  your_inat_account_has_been_activated: '%{inat}-tilisi on aktivoitu.'
   your_life_list: elämälistasi
   your_month_observations: '%{month}n havaintosi'
   your_name_was_saved: Nimesi tallettiin.
@@ -3127,9 +3132,9 @@ fi:
           paikkaa."
         rules:
           georeferenced: on koordinaatit
-          has_media: on mediaa (kuva tai ääni)
           has_a_photo: on kuva
           has_a_sound: on ääni
+          has_media: on mediaa (kuva tai ääni)
         submission_models:
           any: kuka tahansa
           curators: projektin kuraattorit

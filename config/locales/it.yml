@@ -149,15 +149,18 @@ it:
     di Flickr.
   about: Informazioni
   about_bioblitz_results: A proposito dei risultati bioblitz
+  about_blocking: Riguardo al blocco
   about_charts: Sui Grafici
   about_community_taxa: A proposito dei taxa della community
   about_complete_taxa: A proposito dei taxa completi
   about_conservation_status: A proposito dello stato di conservazione
+  about_editing_observation_fields: Riguardo la modifica dei campi delle osservazioni
   about_establishment_means: A proposito dell'origine del popolamento
   about_external_links: A proposito dei Collegamenti Esterni
   about_licenses: A proposito delle licenze
   about_licensing: A proposito delle licenze
   about_life!: a proposito della vita!
+  about_muting: Riguardo il silenziamento
   about_names: A proposito dei nomi
   about_places: A proposito dei luoghi
   about_taxon_changes: A proposito delle modifiche dei taxa
@@ -663,6 +666,7 @@ it:
   black: nero
   block_user: Blocca utente
   block_removed: Blocco rimosso
+  blocked_users: Utenti bloccati
   blog_widget: Blog widget
   blue: blu
   blue_butterfly_etc: blu, farfalla, etc.
@@ -1244,6 +1248,7 @@ it:
   draft_saved: Bozza salvata!
   drafts: Bozze
   drag_and_drop_some_photos_or_sounds: Trascina e rilascia alcune foto o suoni
+  drawings: Bozze
   duplicate_verb: Duplica
   each_place_displays_all_species_inat_knows: Ogni pagina di in luogo mostra tutte
     le specie conosciute da %{site_name} per quel luogo, incluse le informazioni di
@@ -2280,6 +2285,7 @@ it:
   must_have_x: deve avere %{x}
   mute_user: Silenzia l'utente
   mute_removed: Rimuovi il silenziatore
+  muted_users: Utenti silenziati
   n_ago: '%{n} fa'
   n_people_agrees: '%{amount} persone sono d''accordo'
   n_people_disagrees: '%{amount} persone non sono d''accordo'
@@ -2496,6 +2502,7 @@ it:
   not_seeing_what_looking_for: Non Vedi Quello Che Stai Cercando?
   not_yet: Non ancora
   note: Nota
+  notes: Note
   note_you_can_modify_the_height_attribute: 'Nota: È possibile modificare l''altezza
     per adattarla allo spazio disponibile sulla tua pagina web.'
   notify_me_of_mentions: Notificami le citazioni (e.g. @nomeutente)
@@ -2745,6 +2752,7 @@ it:
     fare questo. Sii gentile.
   only_the_project_admin_can_delete_this_project: Solo l'amministratore del progetto
     può cancellare questo progetto.
+  only_you: Solo tu
   open: pubblica
   open_: Aperta
   open_description: Tutti possono vedere le coordinate, a meno che il taxon non sia
@@ -3496,6 +3504,7 @@ it:
   show_off_your_recent_observations: Mostra le tue recenti osservazioni sul tuo blog
     o sul tuo sito!
   show_only: Mostra solo
+  show_scientific_name_first: Mostra prima i nomi scientifici
   show_taxa_from_both: (mostra i taxa di entrambe le liste)
   show_total_listed_taxa: Mostra il totale dei taxa osservati
   showing_observations_by: visualizzazione delle osservazioni per
@@ -4398,6 +4407,7 @@ it:
   we_tried_to_process_your_upload_named_filename: Abbiamo provato a caricare il tuo
     file %{filename} ma non ha funzionato. Per favore correggi i seguenti problemi
     e prova ancora.
+  weather: Meteo
   wed: Mer
   week_of_date: Settimana del %{date}
   welcome!: Benvenuto/a!
@@ -5485,16 +5495,18 @@ it:
           </p>
         rules:
           captive: essere in cattività/coltivato
-          wild: essere selvatico/naturalizzato
+          coordinates_shareable_by_project_curators: Coordinate condivisibili dai
+            curatori del progetto
           georeferenced: avere le coordinate
-          has_media: avere foto o suoni
           has_a_photo: avere una foto
           has_a_sound: avere un suono
+          has_media: avere foto o suoni
           identified: essere identificata
           in_taxon: appartenere al taxon
           observed_in_place: essere osservata nel luogo
           on_list: appartenere a uno dei taxon nella lista del progetto
           verifiable: essere verificabile
+          wild: essere selvatico/naturalizzato
         start_time_desc: 'Momento di inizio per il tuo bioblitz. Formato: AAAA-MM-DDThh:mm±hh:mm'
         submission_models:
           any: chiunque
@@ -6184,6 +6196,8 @@ it:
         terms: Termini
         map_type: Tipo di mappa
         zoom_level: Livello di zoom
+        preferred_membership_model: Modello preferito di adesione
+        preferred_submission_model: Modello preferito di invio
         prefers_place_boundary_visible: Mostra i confini del luogo sulla mappa
         tracking_codes: Codici di tracciamento
         source_url: URL sorgente
@@ -6224,6 +6238,14 @@ it:
         name_provider: Nome del provider
         source_url: URL sorgente
         source_identifier: Identificatore della fonte
+      user:
+        email: Email
+        name: Nome
+        locale: Localizzazione
+        time_zone: Fuso orario
+        search_place_id: Luogo di ricerca
+        place_id: Luogo
+        preferred_observation_fields_by: Permetti campi dell'osservazione da
       source:
         title: Titolo
         in_text: Nel testo

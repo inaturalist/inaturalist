@@ -5385,16 +5385,16 @@ da:
           </P>
         rules:
           captive: være i fangeskab/avlet
-          wild: være vild/fra naturen
           georeferenced: have koordinater
-          has_media: have medie (foto eller lyd)
           has_a_photo: have et foto
           has_a_sound: have en lyd
+          has_media: have medie (foto eller lyd)
           identified: være identificeret
           in_taxon: være en takson
           observed_in_place: være observeret et sted
           on_list: være en takson fra projektlisten
           verifiable: være verificerbar
+          wild: være vild/fra naturen
         start_time_desc: 'Starttidspunkt for din bioblitz. Format: ÅÅÅÅ-MM-DD:tt:mm:ss±tt:mm'
         submission_models:
           any: alle
@@ -6157,8 +6157,8 @@ da:
         source_identifier: Kilde identifikator
       user:
         email: E-mail
-        time_zone: Tidszone
         locale: Lokal
+        time_zone: Tidszone
         search_place_id: Søgested
       source:
         title: Titel

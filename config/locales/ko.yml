@@ -428,6 +428,7 @@ ko:
   black: 검정
   block_user: 사용자 차단
   block_removed: 차단 제거됨
+  blocked_users: 차단된 사용자
   blog_widget: 블로그 위젯
   blue: 파랑
   blue_butterfly_etc: 파랑, 나비 등.
@@ -1550,6 +1551,7 @@ ko:
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
   mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
+  muted_users: 알림에서 제외된 사용자
   n_ago: '%{n}전'
   name: 이름
   name_entered: 이름 입력됨
@@ -1715,6 +1717,7 @@ ko:
   not_seeing_what_looking_for: 찾으려는 것을 발견하지 못했습니까?
   not_yet: 아직 아님
   note: 메모
+  notes: 참고
   notify_me_of_mentions: '내 아이디 언급 시 알림 (예: @아이디)'
   notify_me_about_redundant_identifications: 동정 확인에 대해 알림
   notify_me_about_redundant_identifications_desc: 내 동정과 일치하는 동정에 대해 알람 수신. 이 설정을 제외한다면
@@ -1781,6 +1784,7 @@ ko:
     youve_got_updates_panel_title: 업데이트를 받았습니다!
   only_letters_numbers: 문자와 숫자만 올 수 있고 공백이 없어야 하며 문자로 시작해야 합니다
   only_show_events_that_last_less_than_2_weeks: 최근 2주 간의 일만 보여드립니다
+  only_you: 나만
   open: 열기
   open_: 열기
   optional: 선택 사항
@@ -2023,6 +2027,7 @@ ko:
   show_kml: KML 보이기
   show_less: 덜 보기
   show_more: 더 보기
+  show_scientific_name_first: 학명을 우선 표시
   show_uncountable_species: 셀 수 없는 종을 표시
   sign_in: 로그인
   sign_in_with_provider: '%{provider}(으)로 로그인'
@@ -2160,6 +2165,7 @@ ko:
     당신의 계정을 활성화했을 수 있습니다. 로그인을 시도해 보세요.
   we_currently_support_flickr_for_image_hosting: 영상 호스팅을 위해 Flickr를 현재 지원합니다.
   we_had_trouble_saving_comment: 해당 댓글을 저장하는데 문제가 발생했습니다.
+  weather: 날씨
   wed: 수요일
   welcome!: 환영합니다!
   welcome_comma!: 환영합니다,
@@ -2455,6 +2461,13 @@ ko:
       project:
         description: 설명
         last_aggregated_at: 마지막으로 묶인 관찰
+      user:
+        email: 이메일
+        name: 이름
+        locale: 로캘
+        time_zone: 시간대
+        search_place_id: 장소 검색
+        place_id: 장소
   i18n:
     inflections:
       :@vow_or_con:
