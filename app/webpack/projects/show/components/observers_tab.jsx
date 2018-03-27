@@ -18,9 +18,9 @@ const ObserversTab = ( { config, observers, setConfig } ) => {
             <InfiniteScroll
               loadMore={ ( ) => { setConfig( { observersScrollIndex: scrollIndex + 30 } ); } }
               hasMore={ observers.length >= scrollIndex }
-              loader={loader}
+              loader={ loader }
             >
-            <table>
+              <table>
                 <thead>
                   <tr>
                     <th className="rank">Rank</th>
@@ -50,10 +50,10 @@ const ObserversTab = ( { config, observers, setConfig } ) => {
                           <UserImage user={ i.user } />
                           <UserLink user={ i.user } />
                         </td>
-                        <td className={`count ${config.observersSort !== "species" && "sorted"}`}>
+                        <td className={ `count ${config.observersSort !== "species" && "sorted"}` }>
                           { numberWithCommas( i.observation_count ) }
                         </td>
-                        <td className={`count ${config.observersSort === "species" && "sorted"}`}>
+                        <td className={ `count ${config.observersSort === "species" && "sorted"}` }>
                           { numberWithCommas( i.species_count ) }
                         </td>
                       </tr>

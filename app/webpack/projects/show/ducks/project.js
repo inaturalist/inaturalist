@@ -241,7 +241,7 @@ export function fetchOverviewData( ) {
 
 export function setSelectedTab( tab, options = { } ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
+    const { project, config } = getState( );
     const newConfigState = {
       selectedTab: tab,
       identifiersScrollIndex: null,
@@ -254,6 +254,12 @@ export function setSelectedTab( tab, options = { } ) {
     const urlParams = { };
     if ( tab && tab !== "overview" && tab !== "umbrella_overview" ) {
       urlParams.tab = tab;
+    }
+    if ( options.subtab ) {
+      urlParams.subtab = options.subtab;
+      newConfigState.observationsSearchSubview = options.subtab;
+    } else if ( tab === "observations" && config.observationsSearchSubview ) {
+      urlParams.subtab = config.observationsSearchSubview;
     }
     if ( project.collection_ids ) {
       urlParams.collection_id = project.collection_ids.join( "," );

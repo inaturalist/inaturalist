@@ -20,6 +20,7 @@
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
     var PROJECT_DATA = #{ @projects_data.to_json };
     var CURRENT_TAB = "#{ @current_tab }";
+    var CURRENT_SUBTAB = "#{ @current_subtab }";
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
   = javascript_include_tag "projects-show-webpack"
 

@@ -11,6 +11,7 @@ import projectReducer, { setProject, fetchOverviewData, setSelectedTab } from ".
 import photoModalReducer from "../../taxa/shared/ducks/photo_modal";
 /* global PROJECT_DATA */
 /* global CURRENT_TAB */
+/* global CURRENT_SUBTAB */
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -44,7 +45,7 @@ if ( !_.isEmpty( PREFERRED_PLACE ) ) {
 
 store.dispatch( setProject( PROJECT_DATA ) );
 store.dispatch( fetchOverviewData( ) );
-store.dispatch( setSelectedTab( CURRENT_TAB, { replaceState: true } ) );
+store.dispatch( setSelectedTab( CURRENT_TAB, { subtab: CURRENT_SUBTAB, replaceState: true } ) );
 
 render(
   <Provider store={store}>

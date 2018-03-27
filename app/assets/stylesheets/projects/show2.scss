@@ -65,6 +65,18 @@ a.UserImage {
   }
 }
 
+.bootstrap .btn, .bootstrap .btn-group .btn {
+  outline: none;
+  &:focus, &.active:focus {
+    outline: none !important;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+  &.active {
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  }
+}
+
 button {
   outline: none;
   &.btn-green {
@@ -290,6 +302,129 @@ button {
   .ObservationsGrid {
     height: 234px;
     overflow: hidden
+  }
+}
+
+.ObservationsTab {
+  .contents {
+    margin-top: 20px;
+  }
+  .TaxonMap {
+    height: 350px;
+  }
+  .button-row {
+    button {
+      i {
+        margin-right: 5px;
+      }
+      &.standalone {
+        margin-left: 10px;
+        font-weight: 700;
+        &.export {
+          float: right;
+        }
+        i {
+          color: $inat-green;
+        }
+      }
+    }
+  }
+}
+
+.ObservationsList {
+  thead {
+    tr {
+      border-bottom: 2px solid #ddd;
+      height: 28px;
+      font-size: 15px;
+      th {
+        padding: 0px 10px;
+      }
+    }
+  }
+  tr {
+    &:not(:last-child) {
+      border-bottom: 1px solid #ddd;
+    }
+    .odd {
+      background: white;
+    }
+  }
+  td {
+    vertical-align: top;
+    padding: 10px;
+    &.photo {
+      width: 95px;
+      text-align: center;
+      a {
+        width: 75px;
+        height: 75px;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        background-color: #BABABA;
+        position: relative;
+        .photo-count {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          color: #eee;
+          background-color: #646464;
+          padding: 1px 5px;
+          font-weight: 100;
+          display: block;
+        }
+      }
+      .icon, .sound-icon {
+        display: none;
+        color: white;
+        font-size: 50px;
+        line-height: 70px;
+      }
+      a.sound .sound-icon, a.iconic .icon {
+        display: inline-block;
+      }
+    }
+    &.taxon .contents {
+      min-height: 75px;
+      position: relative;
+      .meta {
+        position: absolute;
+        bottom: 0;
+        .count {
+          i {
+            margin-right: 2px;
+          }
+          margin-right: 5px;
+        }
+      }
+    }
+    &.user, &.date {
+      white-space: nowrap;
+    }
+    &.place {
+      width: 20%;
+      i.fa {
+        margin-right: 5px;
+      }
+    }
+    .SplitTaxon {
+      .display-name {
+        color: inherit;
+        font-weight: 700;
+      }
+      .secondary-name {
+        display: block;
+      }
+    }
+    .UserImage {
+      width: 38px;
+      height: 38px;
+      margin-right: 5px;
+    }
+    .FormattedDate .time {
+      display: block;
+    }
   }
 }
 
@@ -1049,6 +1184,43 @@ $nav-btn-dim: 40px;
     width: auto;
   }
 }
+
+
+
+
+
+
+
+.quality_grade {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 2px 0px 1px 10px;
+  position: relative;
+  font-size: 12px !important;
+  line-height: 17px !important;
+  z-index: 1;
+  margin-right: 20px;
+}
+.quality_grade:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 10px solid #ddd;
+  border-right-width: 5px;
+  border-right-color: transparent;
+  right: -15px;
+  z-index: -1;
+}
+.quality_grade.research {
+  background-color:#74ac00;
+  color:white;
+}
+.quality_grade.research:after {
+  border-color: #74ac00;
+  border-right-color: transparent;
+}
+
 
 
 

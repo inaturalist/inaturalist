@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import ObservationsTab from "../components/observations_tab";
 import { setConfig } from "../../../shared/ducks/config";
-import { infiniteScrollObservations } from "../ducks/project";
+import { infiniteScrollObservations, setSelectedTab } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -14,10 +14,11 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setConfig: attributes => { dispatch( setConfig( attributes ) ); },
-    infiniteScrollObservations: nextScrollIndex => {
-      dispatch( infiniteScrollObservations( nextScrollIndex ) );
-    }
+    setSelectedTab: ( tab, options ) => dispatch( setSelectedTab( tab, options ) ),
+    setObservationsSearchSubview: subview =>
+      dispatch( setConfig( { observationsSearchSubview: subview } ) ),
+    infiniteScrollObservations: nextScrollIndex =>
+      dispatch( infiniteScrollObservations( nextScrollIndex ) )
   };
 }
 

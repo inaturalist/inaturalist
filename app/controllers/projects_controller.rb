@@ -93,7 +93,8 @@ class ProjectsController < ApplicationController
       projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
       return render_404 unless projects_response
       @projects_data = projects_response.results[0]
-      @current_tab = @current_tab || params[:tab]
+      @current_tab = params[:tab]
+      @current_subtab = params[:subtab]
       return render layout: "bootstrap", action: "show2"
     end
 
