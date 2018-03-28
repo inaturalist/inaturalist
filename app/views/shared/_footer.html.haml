@@ -7,12 +7,18 @@
           .box.text-center.upstacked
             - if current_user.in_test_group?( "header-2018" )
               = form_tag leave_test_user_path( current_user, test: "header-2018" ), method: "put" do
-                %label Stop testing the new header?
+                %label Stop testing the new header (Version 1)?
+                = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
+            - elsif current_user.in_test_group?( "header-2018-2" )
+              = form_tag leave_test_user_path( current_user, test: "header-2018-2" ), method: "put" do
+                %label Stop testing the new header (Version 2)?
                 = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
             - else
-              = form_tag join_test_user_path( current_user, test: "header-2018" ), method: "put" do
-                %label Want to test a new version of the header?
-                = submit_tag t(:try_it_out), class: "btn btn-default btn-sm"
+              %label Want to test a new version of the header?
+              = form_tag join_test_user_path( current_user, test: "header-2018" ), method: "put", class: "inlineblock" do
+                = submit_tag "Try Version 1", class: "btn btn-default btn-sm"
+              = form_tag join_test_user_path( current_user, test: "header-2018-2" ), method: "put", class: "inlineblock" do
+                = submit_tag "Try Version 2", class: "btn btn-default btn-sm"
 #footer.bootstrap
   .container
     .row
