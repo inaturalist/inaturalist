@@ -54,7 +54,7 @@ class Place < ActiveRecord::Base
       location: ElasticModel.point_latlon(latitude, longitude),
       point_geojson: ElasticModel.point_geojson(latitude, longitude),
       without_check_list: check_list_id.blank? ? true : nil,
-      observations_count: obs_result ? obs_result.total_entries : nil
+      observations_count: obs_result ? obs_result.total_results : nil
     }
   end
 
