@@ -378,7 +378,7 @@ class Observation < ActiveRecord::Base
     :update_taxon_counter_caches, :create_deleted_observation,
     :update_user_counter_caches
 
-  after_commit :reindex_identifications
+  after_commit :reindex_identifications, :reindex_places
   
   ##
   # Named scopes
@@ -2818,6 +2818,23 @@ class Observation < ActiveRecord::Base
 
   def reindex_identifications
     Identification.elastic_index!( ids: identification_ids )
+  end
+
+  # The intent here is to keep the observations_count in the Places index
+  # *roughly* up-to-date. So these jobs probably won't be queued after
+  # observation creation b/c the ObservationsPlace records won't have been made,
+  # and no place should be re-indexed more than once a day.
+  def reindex_places
+    return true if skip_indexing
+    places.each do |p|
+      Place.delay(
+        run_at: 1.day.from_now,
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Place::elastic_index": p.id }
+      ).elastic_index!
+    end
+    true
   end
 
   def user_viewed_updates(user_id)
