@@ -127,9 +127,9 @@
             %i.fa.fa-angle-down
           %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
             - if logged_in?
-              %li= link_to "Needs ID", identify_observations_path
+              %li= link_to t(:Needs_ID!).sub("!", ""), identify_observations_path
             %li= link_to t(:field_guides), guides_path
-            %li= link_to t(:facts_and_stats, default: "Facts and Stats"), taxa_path
+            %li= link_to t(:facts_and_stats), taxa_path
             %li= link_to t(:places), places_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
