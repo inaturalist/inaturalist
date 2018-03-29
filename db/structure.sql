@@ -7800,6 +7800,13 @@ CREATE UNIQUE INDEX index_preferences_on_owner_and_name_and_preference ON prefer
 
 
 --
+-- Name: index_preferences_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_preferences_on_updated_at ON preferences USING btree (updated_at);
+
+
+--
 -- Name: index_project_assets_on_asset_content_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7888,6 +7895,13 @@ CREATE INDEX index_project_user_invitations_on_user_id ON project_user_invitatio
 --
 
 CREATE INDEX index_project_users_on_project_id_and_taxa_count ON project_users USING btree (project_id, taxa_count);
+
+
+--
+-- Name: index_project_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_users_on_updated_at ON project_users USING btree (updated_at);
 
 
 --
@@ -9297,4 +9311,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180126155509');
 INSERT INTO schema_migrations (version) VALUES ('20180209020229');
 
 INSERT INTO schema_migrations (version) VALUES ('20180320224314');
+
+INSERT INTO schema_migrations (version) VALUES ('20180329144359');
 
