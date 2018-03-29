@@ -1,4 +1,5 @@
 import inatjs from "inaturalistjs";
+import _ from "lodash";
 
 const SET_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_CONTROLLED_TERMS";
 const SET_ALL_CONTROLLED_TERMS = "obs-show/controlled_terms/SET_ALL_CONTROLLED_TERMS";
@@ -60,4 +61,41 @@ export function fetchAllControlledTerms( ) {
     inatjs.controlled_terms.search( ).then( response => {
       dispatch( setAllControlledTerms( response.results ) );
     } ).catch( e => { } );
+}
+
+// This is a utility that doesn't modify the state, but could be useful elsewhere
+export function termsForTaxon( terms, taxon = null ) {
+  const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
+  return _.filter( terms, term => {
+    // reject if it has values and those values and none are availalble
+    if ( term.values && term.values.length > 0 &&
+         termsForTaxon( term.values, taxon ).length === 0 ) {
+      return false;
+    }
+    // value applies to all taxa without exceptions, keep it
+    if (
+      ( term.taxon_ids || [] ).length === 0 &&
+      ( term.excepted_taxon_ids || [] ).length === 0
+    ) {
+      return true;
+    }
+    // remove things with exceptions that include this taxon
+    if (
+      _.intersection( term.excepted_taxon_ids || [], ancestorIds ).length > 0
+    ) {
+      return false;
+    }
+    // no exceptions but applies to all taxa keep it
+    if ( ( term.taxon_ids || [] ).length === 0 ) {
+      return true;
+    }
+    return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
+  } );
+}
+
+export function setControlledTermsForTaxon( taxon, terms = [] ) {
+  return ( dispatch, getState ) => {
+    const allTerms = terms && terms.length > 0 ? terms : getState( ).controlledTerms.allTerms;
+    dispatch( setControlledTerms( termsForTaxon( allTerms, taxon ) ) );
+  };
 }

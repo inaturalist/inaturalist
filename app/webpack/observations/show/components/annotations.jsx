@@ -3,6 +3,7 @@ import React, { PropTypes } from "react";
 import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
+import { termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
 
@@ -157,40 +158,11 @@ class Annotations extends React.Component {
     );
   }
 
-  termsForTaxon( terms, taxon = null ) {
-    const ancestorIds = taxon && taxon.ancestor_ids ? taxon.ancestor_ids : [];
-    return _.filter( terms, term => {
-      // reject if it has values and those values and none are availalble
-      if ( term.values && term.values.length > 0 &&
-           this.termsForTaxon( term.values, taxon ).length === 0 ) {
-        return false;
-      }
-      // value applies to all taxa without exceptions, keep it
-      if (
-        ( term.taxon_ids || [] ).length === 0 &&
-        ( term.excepted_taxon_ids || [] ).length === 0
-      ) {
-        return true;
-      }
-      // remove things with exceptions that include this taxon
-      if (
-        _.intersection( term.excepted_taxon_ids || [], ancestorIds ).length > 0
-      ) {
-        return false;
-      }
-      // no exceptions but applies to all taxa keep it
-      if ( ( term.taxon_ids || [] ).length === 0 ) {
-        return true;
-      }
-      return _.intersection( term.taxon_ids || [], ancestorIds ).length > 0;
-    } );
-  }
-
   render( ) {
     const observation = this.props.observation;
     const config = this.props.config;
     const controlledTerms = this.props.controlledTerms;
-    const availableControlledTerms = this.termsForTaxon(
+    const availableControlledTerms = termsForTaxon(
       controlledTerms,
       observation ? observation.taxon : null
     );
@@ -246,7 +218,7 @@ class Annotations extends React.Component {
         }
       }
       if ( observation.taxon ) {
-        availableValues = this.termsForTaxon( availableValues, observation ? observation.taxon : null );
+        availableValues = termsForTaxon( availableValues, observation ? observation.taxon : null );
       }
       const ctLabel = I18n.t( `controlled_term_labels.${_.snakeCase( ct.label )}`, {
         defaultValue: ct.label

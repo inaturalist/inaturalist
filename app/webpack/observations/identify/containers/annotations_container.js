@@ -11,7 +11,7 @@ function mapStateToProps( state ) {
   return {
     observation: state.currentObservation.observation,
     config: state.config,
-    controlledTerms: state.controlledTerms.terms,
+    controlledTerms: state.controlledTerms.allTerms,
     collapsible: false,
     showEmptyState: true
   };
