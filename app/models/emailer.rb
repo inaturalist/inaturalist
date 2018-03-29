@@ -178,7 +178,7 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
-  def bulk_email(user, subject, body)
+  def custom_email(user, subject, body)
     @user = user
     set_locale
     @subject = subject
