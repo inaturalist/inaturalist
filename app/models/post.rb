@@ -2,7 +2,9 @@ class Post < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :body ],
                     :comment_type => "blog-post"
 
-  has_subscribers
+  has_subscribers to: {
+    comments: { notification: "activity", include_owner: true }
+  }
   notifies_subscribers_of :parent, {
     :on => [:update, :create],
     :queue_if => lambda{ |post|

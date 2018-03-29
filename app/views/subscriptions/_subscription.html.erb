@@ -1,6 +1,6 @@
 <%- 
   subscription ||= @subscription
-  resource ||= subscription.resource
+  resource ||= subscription.resource if subscription
   subscription ||= if resource && logged_in?
     current_user.subscriptions.where(:resource_type => resource.class.to_s, :resource_id => resource.id).first
   end
