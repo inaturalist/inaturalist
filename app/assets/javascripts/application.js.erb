@@ -132,6 +132,13 @@ function loadingClickForButton(options) {
   $(link).attr('disabled', true)
 }
 
+// As inadvisable as this supposedly is, it's still the best way I can find of
+// doing this. Try to only use it for progressive enhancement.
+// See https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent
+function inatIsMobile( ) {
+  return navigator && navigator.userAgent && typeof( navigator.userAgent ) == "string" && navigator.userAgent.match( /Mobi/ );
+}
+
 $(document).on('click', 'input[data-loading-click][type=text], input[data-loading-click][type=submit]', function(clickEvent) {
   var button = this
   if ($(this).parents('form').length > 0) {
@@ -276,19 +283,15 @@ $(document).ready(function() {
 
   // Clicks on main header items should go somewhere
   $( "#test-header #mainnav .dropdown .dropdown-toggle a, #test-header #usernav .user .dropdown .dropdown-toggle a" ).on( "click", function( e ) {
-    if ( "ontouchstart" in document.documentElement ) {
-      return;
+    if ( !inatIsMobile( ) ) {
+      window.location = e.currentTarget.href;
     }
-    window.location = e.currentTarget.href;
     return false;
   } );
 
   // Show main header nav items on hover for desktop browsers. Roughly adapted from the bootstrap js.
   $( "#test-header #mainnav .dropdown, #test-header #usernav .user .dropdown" )
     .on( "mouseover", function( e ) {
-      if ( "ontouchstart" in document.documentElement ) {
-        return;
-      }
       var $dropdown = $( this );
       if ( !$dropdown.is( ".dropdown" ) ) {
         $dropdown = $dropdown.parents( ".dropdown:first" );
@@ -299,9 +302,6 @@ $(document).ready(function() {
       return false
     } )
     .on( "mouseout", function( e ) {
-      if ( "ontouchstart" in document.documentElement ) {
-        return;
-      }
       var $dropdown = $( this );
       if ( !$dropdown.is( ".dropdown" ) ) {
         return;
