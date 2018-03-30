@@ -507,7 +507,8 @@ $(document).ready(function() {
     $( "#test-header .show-btn" ).click( showHeaderSearch );
     $( "#test-header .hide-btn" ).click( hideHeaderSearch );
     $( document ).bind( "keyup", function( e ) {
-      if ( e.which !== 191 ) { return true; }
+      let forwardSlashKeyCode = 191;
+      if ( e.which !== forwardSlashKeyCode ) { return true; }
       if ( e.target.type === "textarea" || e.target.type === "text" ) {
         return true;
       }

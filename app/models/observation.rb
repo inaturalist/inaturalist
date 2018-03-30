@@ -2826,9 +2826,11 @@ class Observation < ActiveRecord::Base
   # and no place should be re-indexed more than once a day.
   def reindex_places
     return true if skip_indexing
-    places.each do |p|
+    places.each_with_index do |p,i|
+      # Queue jobs with a little offset we don't end up running intense API
+      # calls at the same time
       Place.delay(
-        run_at: 1.day.from_now,
+        run_at: ( 1.day + i.minutes ).from_now,
         priority: INTEGRITY_PRIORITY,
         queue: "slow",
         unique_hash: { "Place::elastic_index": p.id }
