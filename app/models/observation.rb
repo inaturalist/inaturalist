@@ -2829,7 +2829,7 @@ class Observation < ActiveRecord::Base
     places.each_with_index do |p,i|
       # Queue jobs with a little offset we don't end up running intense API
       # calls at the same time
-      Place.delay(
+      p.delay(
         run_at: ( 1.day + i.minutes ).from_now,
         priority: INTEGRITY_PRIORITY,
         queue: "slow",

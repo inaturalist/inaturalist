@@ -35,13 +35,7 @@ class Place < ActiveRecord::Base
 
   def as_indexed_json(options={})
     preload_for_elastic_index
-    obs_result = begin
-      Timeout::timeout( 5 ) do
-        INatAPIService.observations( per_page: 0, verifiable: true, place_id: id )
-      end
-    rescue Timeout::Error => e
-      nil
-    end
+    obs_result = INatAPIService.observations( per_page: 0, verifiable: true, place_id: id )
     {
       id: id,
       slug: slug,
