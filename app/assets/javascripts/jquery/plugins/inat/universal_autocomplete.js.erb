@@ -4,7 +4,9 @@ $.fn.universalAutocomplete = function( options ) {
   var field = this;
 
   field.template = function( item ) {
-    var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.type + "-" + item.record.id );
+    var wrapperDiv = $( "<div/>" )
+      .addClass( "ac" )
+      .attr( "id", item.type + "-" + item.record.id );
     var itemUrl;
     var obsUrl;
     var itemText;
@@ -12,6 +14,7 @@ $.fn.universalAutocomplete = function( options ) {
     switch ( item.type ) {
       case "Taxon":
         itemUrl = "/taxa/" + item.record.id;
+        obsUrl = "/observations?taxon_id=" + item.record.id;
         if ( item.record.default_photo ) {
           acThumb = $( "<img />" ).attr( "src", item.record.default_photo.square_url );
         } else {
@@ -87,6 +90,20 @@ $.fn.universalAutocomplete = function( options ) {
         .addClass( "ac-view" )
         .html( I18n.t( "about") )
     );
+    wrapperDiv.on( "mouseup", function( e ) {
+      if (
+        // We only care about the middle mouse button
+        e.which == 2 &&
+        // ...and not about link clicks
+        e.target.nodeName !== "A" &&
+        $( e.target ).parents( "a" ).length == 0
+      ) {
+        $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
+          item: item,
+          openBlank: true
+        } );
+      }
+    } );
     return wrapperDiv;
   };
 
@@ -105,7 +122,6 @@ $.fn.universalAutocomplete = function( options ) {
       });
     },
     select: function( e, ui ) {
-      console.log( "[DEBUG] fired select, e: ", e );
       var url;
       if ( e.ctrlKey || e.altKey || e.metaKey ) {
         switch ( ui.item.type ) {
@@ -139,7 +155,14 @@ $.fn.universalAutocomplete = function( options ) {
             break;
         }
       }
-      window.location = url;
+      if ( ui.openBlank ) {
+        // In Safari and Firefox this has the unpleasant effect of opening a
+        // blank window *and* focusing on that window. In Chrome it opens a tab
+        // in the background like you'd expect. Not sure how to get around this.
+        window.open( url, "_blank" );
+      } else {
+        window.location = url;
+      }
     }
   } ) );
 };
