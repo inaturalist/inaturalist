@@ -178,6 +178,17 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def custom_email(user, subject, body)
+    @user = user
+    set_locale
+    @subject = subject
+    @body = body
+    mail(set_site_specific_opts.merge(
+      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+    ))
+    reset_locale
+  end
+
   private
   def default_url_options
     opts = (Rails.application.config.action_mailer.default_url_options || {}).dup
