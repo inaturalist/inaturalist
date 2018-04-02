@@ -1015,14 +1015,14 @@ class Taxon < ActiveRecord::Base
       details[:summary] += '...' if pre_trunc > details[:summary]
       provider = "Wikipedia"
     end
+
+    if details.blank? || details[:summary].blank?
+      Taxon.where(id: self).update_all(wikipedia_summary: Date.today) if locale.to_s =~ /^en-?/
+      return nil
+    end
     
     if locale.to_s =~ /^en-?/
-      if details.blank? || details[:summary].blank?
-        Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
-        return nil
-      else
-        Taxon.where(id: self).update_all(wikipedia_summary: details[:summary])
-      end
+      Taxon.where(id: self).update_all( wikipedia_summary: details[:summary] )
     end
     td = taxon_descriptions.where(locale: locale).first
     td ||= self.taxon_descriptions.build(locale: locale)
