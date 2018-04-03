@@ -27,11 +27,34 @@ $.fn.universalAutocomplete = function( options ) {
         }
         if ( item.record.preferred_common_name ) {
           itemText.addClass( "has-com-name" );
-          itemText.append( $( "<span>" ).addClass( "display-name" ).html( iNatModels.Taxon.titleCaseName( item.record.preferred_common_name ) ) );
-          itemText.append( " " );
-          itemText.append( $( "<span>" ).addClass( "secondary-name" ).addClass( "sciname" ).html( scinameWithRank ) );
+          var displayName = iNatModels.Taxon.titleCaseName( item.record.preferred_common_name ) ;
+          if ( CURRENT_USER && CURRENT_USER.prefers_scientific_name_first ) {
+            itemText.append( $( "<span>" ).addClass( "display-name" ).addClass( "sciname" ).html( scinameWithRank ) );
+            itemText.append( " " );
+            itemText.append( $( "<span>" ).addClass( "secondary-name" ).html( displayName ) );
+          } else {
+            if (
+              item.record.matched_term &&
+              item.record.preferred_common_name !== item.record.matched_term &&
+              item.record.name !== item.record.matched_term
+            ) {
+              displayName += " (" + iNatModels.Taxon.titleCaseName( item.record.matched_term ) + ")";
+            }
+            itemText.append( $( "<span>" ).addClass( "display-name" ).html( displayName ) );
+            itemText.append( " " );
+            itemText.append( $( "<span>" ).addClass( "secondary-name" ).addClass( "sciname" ).html( scinameWithRank ) );
+          }
         } else {
-          itemText.append( $( "<span>" ).addClass( "display-name" ).addClass( "sciname" ).html( scinameWithRank ) );
+          var displayName = $( "<span>" ).addClass( "display-name" );
+          displayName.append(
+            $( "<span>" ).addClass( "sciname" ).html( scinameWithRank )
+          );
+          if ( item.record.matched_term && item.record.name !== item.record.matched_term ) {
+            displayName.append(
+              $( "<span>" ).html( " (" + item.record.matched_term + ")" )
+            );
+          }
+          itemText.append( displayName );
         }
         break;
       case "Place":
@@ -109,12 +132,20 @@ $.fn.universalAutocomplete = function( options ) {
 
   field.genericAutocomplete( _.extend( options, {
     source: function( request, response ) {
+      var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+      var headers = {};
+      if ( apiToken) {
+        headers["Authorization"] = apiToken;
+      }
       $.ajax({
         url: "<%= CONFIG.node_api_url %>/search",
         dataType: "json",
         cache: true,
+        headers: headers,
         data: {
-          q: request.term
+          q: request.term,
+          locale: I18n.locale,
+          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
         },
         success: function( data ) {
           response( data.results );
