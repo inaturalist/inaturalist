@@ -444,6 +444,21 @@ export function unfave( ) {
   };
 }
 
+export function toggleFave( ) {
+  return ( dispatch, getState ) => {
+    const { config, currentObservation } = getState( );
+    const observation = currentObservation.observation;
+    const userHasFavedThis = observation && observation.faves && _.find( observation.faves, o => (
+      o.user.id === config.currentUser.id
+    ) );
+    if ( userHasFavedThis ) {
+      dispatch( unfave( ) );
+    } else {
+      dispatch( fave( ) );
+    }
+  };
+}
+
 export function voteMetric( metric, params = { } ) {
   if ( metric === "needs_id" ) {
     return vote( "needs_id", { vote: ( params.agree === "false" ) ? "no" : "yes" } );

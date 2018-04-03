@@ -22,6 +22,7 @@ import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
+import FavesContainer from "../containers/faves_container";
 
 import { TABS } from "../actions/current_observation_actions";
 
@@ -217,6 +218,7 @@ class ObservationModal extends React.Component {
       { keys: ["c"], label: I18n.t( "comment" ), skipBlind: true },
       { keys: ["a"], label: I18n.t( "agree" ), skipBlind: true },
       { keys: ["i"], label: I18n.t( "add_id" ) },
+      { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
       { keys: ["&larr;"], label: I18n.t( "previous_observation" ) },
       { keys: ["&rarr;"], label: I18n.t( "next_observation" ) },
@@ -376,7 +378,8 @@ class ObservationModal extends React.Component {
                   </Popover>
                 </Overlay>
               </div>
-              <div>
+              <div className="action-tools">
+                { blind ? null : <div className="btn"><FavesContainer /></div> }
                 <OverlayTrigger
                   placement="top"
                   trigger="hover"

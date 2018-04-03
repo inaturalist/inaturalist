@@ -166,7 +166,11 @@ $galleryHeightElements: "
 
 .ObservationModal .tools {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
+  .action-tools {
+    white-space: nowrap;
+  }
   .form-group {
     margin-bottom: 0;
   }
@@ -584,6 +588,20 @@ body > div > [role="dialog"] .ObservationModal {
       padding-left: 20px;
     }
     td { vertical-align: top; }
+  }
+
+  .Faves {
+    display: inline-block;
+    i {
+      margin-right: 10px;
+      margin-top: 3px;
+    }
+    span.user + span.user:before {
+      content: ", ";
+    }
+    a {
+      color: black;
+    }
   }
 }
 
