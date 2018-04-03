@@ -430,14 +430,18 @@ class ObservationModal extends React.Component {
                       { taxonMap }
                       <ul className="details">
                         { blind ? null : (
-                          <li>
+                          <li className="user-obs-count">
                             <a href={`/people/${observation.user.login}`} target="_blank" className="user-link">
-                              <i className="icon-person"></i> <span className="login">{ observation.user.login }</span>
+                              <i className="icon-person bullet-icon"></i> <span className="login">{ observation.user.login }</span>
+                            </a>
+                            <span className="separator">&bull;</span>
+                            <a href={ `/observations?user_id=${observation.user.login}` } target="_blank">
+                              <i className="fa fa-binoculars" /> { I18n.toNumber( observation.user.observations_count, { precision: 0 } ) }
                             </a>
                           </li>
                         ) }
                         <li>
-                          <i className="fa fa-calendar"></i> {
+                          <i className="fa fa-calendar bullet-icon"></i> {
                             observation.observed_on ?
                               moment( observation.time_observed_at || observation.observed_on ).format( "LLL" )
                               :
@@ -445,11 +449,11 @@ class ObservationModal extends React.Component {
                           }
                         </li>
                         <li>
-                          <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
+                          <i className="fa fa-map-marker bullet-icon"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
                         { country ? (
                           <li>
-                            <i className="fa fa-globe"></i> {
+                            <i className="fa fa-globe bullet-icon"></i> {
                               I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "unknown" )
                             }
                           </li>
@@ -457,12 +461,12 @@ class ObservationModal extends React.Component {
                         { blind ? null : (
                           <li className="view-follow">
                             <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
-                              <i className="icon-link-external"></i>
+                              <i className="icon-link-external bullet-icon"></i>
                               { I18n.t( "view" ) }
                             </a>
                             { observation.user.id === currentUser.id ? null : (
                               <div style={{ display: "inline-block" }}>
-                                &bull;
+                                <span className="separator">&bull;</span>
                                 <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
                               </div>
                             ) }

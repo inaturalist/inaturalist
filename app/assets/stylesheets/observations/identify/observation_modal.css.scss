@@ -473,12 +473,20 @@ body > div > [role="dialog"] .ObservationModal {
       list-style: none;
       padding-left: 20px;
 
+      a {
+        color: black;
+      }
+
       > li {
         position: relative;
         padding-left: 20px;
         margin-bottom: 4px;
       }
-      i {
+      .separator {
+        color: #999;
+        margin: 0 5px;
+      }
+      i.bullet-icon {
         position: absolute;
         left: 0;
         top: 0;
@@ -487,8 +495,15 @@ body > div > [role="dialog"] .ObservationModal {
         display: block;
         line-height: 16px;
       }
+      .user-obs-count {
+        .fa-binoculars {
+          font-size: 12px;
+          position: relative;
+          top: -1px;
+          margin-right: 2px;
+        }
+      }
       .view-follow {
-        color: #999;
         .permalink,
         .FollowButton button {
           color: black;
@@ -501,13 +516,10 @@ body > div > [role="dialog"] .ObservationModal {
           text-decoration: none
         }
       }
-      .permalink {
-        padding-right: 5px;
-      }
       .FollowButton {
         display: inline-block;
         .btn {
-          padding: 0 5px;
+          padding: 0;
           border: 0;
           position: relative;
           top: -1px;
