@@ -190,7 +190,8 @@ module ObservationSearch
       end
       # new projects will use the node API which has the logic
       # for search new regular and umbrella projects
-      if !params[:projects].blank? && params[:projects].detect(&:is_new_project?)
+      if !params[:projects].blank? &&
+         params[:projects].detect{ |p| p.is_a?(Project) && p.is_new_project? }
         mapped_params = map_params_for_node_api(params)
         rsp = INatAPIService.observations(mapped_params.merge(only_id: true))
         return WillPaginate::Collection.create(rsp.page, rsp.per_page, rsp.total_results) do |pager|

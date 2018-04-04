@@ -20,7 +20,7 @@ const Util = class Util {
 
   static numberWithCommas( num ) {
     if ( !num && num !== 0 ) { return ""; }
-    return Number( num ).toLocaleString( );
+    return I18n.toNumber( num, { precision: 0 } );
   }
 };
 
