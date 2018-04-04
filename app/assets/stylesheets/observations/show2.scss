@@ -693,8 +693,13 @@ h3, h4 {
   span.user + span.user:before {
     content: ", ";
   }
-  a, .others {
+  a,
+  a:hover,
+  .others {
     color: #000;
+  }
+  .user a,
+  .others {
     font-weight: 700;
   }
 }
