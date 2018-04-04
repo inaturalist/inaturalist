@@ -12,7 +12,7 @@ function dateToString( date ) {
   return moment( date ).format( "MMMM D" );
 }
 
-const Requirements = ( { project } ) => {
+const Requirements = ( { project, setSelectedTab, includeArrowLink } ) => {
   const taxonRules = _.isEmpty( project.taxonRules ) ? "All taxa" :
     _.map( project.taxonRules, r => (
       <SplitTaxon key={ `requirement_taxon_${r.taxon.id}` } taxon={ r.taxon } />
@@ -42,6 +42,18 @@ const Requirements = ( { project } ) => {
   }
   return (
     <div className="Requirements">
+      <h2>
+        Project Requirements
+        { includeArrowLink && (
+          <i
+            className="fa fa-arrow-circle-right"
+            onClick={ ( ) => setSelectedTab( "about" ) }
+          />
+        ) }
+      </h2>
+      <div className="section-intro">
+        Observations in this project must meet the following criteria:
+      </div>
       <table>
         <tbody>
           <tr>
@@ -94,7 +106,9 @@ const Requirements = ( { project } ) => {
 
 Requirements.propTypes = {
   config: PropTypes.object,
-  project: PropTypes.object
+  project: PropTypes.object,
+  setSelectedTab: PropTypes.func,
+  includeArrowLink: PropTypes.bool
 };
 
 export default Requirements;

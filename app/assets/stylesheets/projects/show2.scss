@@ -628,6 +628,21 @@ button {
   }
 }
 
+.no-obs {
+  background: rgba(116,172,0,0.09);
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-size: 24px;
+  color: #858585;
+  margin: 20px 0px;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #858585;
+}
+
 .ObservationsGrid {
   display: flex;
   flex-wrap: wrap;

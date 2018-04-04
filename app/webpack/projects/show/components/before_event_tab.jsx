@@ -21,17 +21,7 @@ class BeforeEventTab extends Component {
               <EventCountdown { ...this.props } />
             </Col>
             <Col xs={ 4 }>
-              <h2>
-                Project Requirements
-                <i
-                  className="fa fa-arrow-circle-right"
-                  onClick={ ( ) => setSelectedTab( "about" ) }
-                />
-              </h2>
-              <div className="section-intro">
-                Observations in this project must meet the following criteria:
-              </div>
-              <Requirements { ...this.props } />
+              <Requirements { ...this.props } includeArrowLink />
             </Col>
             <Col xs={ 4 }>
               <News { ...this.props } />

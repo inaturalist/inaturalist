@@ -9,61 +9,19 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_container";
 import News from "./news";
 import Requirements from "./requirements";
-import IconicTaxaPieChart from "./iconic_taxa_pie_chart";
-import Observation from "./observation";
+import OverviewRecentObservations from "./overview_recent_observations";
+import OverviewStats from "./overview_stats";
 
 class OverviewTab extends Component {
   render( ) {
-    const { project, config, setSelectedTab } = this.props;
+    const { project, setSelectedTab } = this.props;
     if ( !project.observations_loaded ) {
       return ( <div className="loading_spinner huge" /> );
     }
     const instances = project.observations.results;
     return (
       <div className="OverviewTab">
-        { !_.isEmpty( instances ) && (
-          <Grid>
-            <Row>
-              <Col xs={ 12 }>
-                <h2>
-                  Recent Observations
-                  <i
-                    className="fa fa-arrow-circle-right"
-                    onClick={ ( ) => setSelectedTab( "observations" ) }
-                  />
-                  <button
-                    className="btn-green"
-                    onClick={ ( ) => setSelectedTab( "observations" ) }
-                  >
-                    { I18n.t( "view_all" ) }
-                  </button>
-                </h2>
-                <div className="ObservationsGrid">
-                  { instances.slice( 0, 5 ).map( o => {
-                    let itemDim = 170;
-                    let width = itemDim;
-                    const dims = o.photos.length > 0 && o.photos[0].dimensions( );
-                    if ( dims ) {
-                      width = itemDim / dims.height * dims.width;
-                    } else {
-                      width = itemDim;
-                    }
-                    return (
-                      <Observation
-                        key={`obs-${o.id}`}
-                        observation={ o }
-                        width={ width }
-                        height={itemDim }
-                        config={ config }
-                      />
-                    );
-                  } )
-                 }
-                </div>
-              </Col>
-            </Row>
-          </Grid>
-        ) }
+        <OverviewRecentObservations { ...this.props } />
         { !_.isEmpty( project.observations.total_bounds ) && (
           <Grid className="leaders-grid">
             <Row>
@@ -82,22 +40,9 @@ class OverviewTab extends Component {
         <Grid className="info-grid">
           <Row>
             <Col xs={ 4 }>
-              <h2>
-                Project Requirements
-                <i
-                  className="fa fa-arrow-circle-right"
-                  onClick={ ( ) => setSelectedTab( "about" ) }
-                />
-              </h2>
-              <Requirements { ...this.props } />
+              <Requirements { ...this.props } includeArrowLink />
             </Col>
-            <Col xs={ 4 }>
-              <h2>
-                Stats
-                <i className="fa fa-arrow-circle-right" />
-              </h2>
-              <IconicTaxaPieChart { ...this.props } />
-            </Col>
+            <OverviewStats { ...this.props } />
             <Col xs={ 4 }>
               <News { ...this.props } />
             </Col>

@@ -37,10 +37,6 @@ class About extends React.Component {
               </div>
             </Col>
             <Col xs={ 5 } className="requirements-col">
-              <h2>Project Requirements</h2>
-              <div className="section-intro">
-                Observations in this project must meet the following criteria:
-              </div>
               <Requirements { ...this.props } />
             </Col>
           </Row>
