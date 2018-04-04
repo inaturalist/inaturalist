@@ -10,12 +10,11 @@ const IdCategroryPieChart = ( { project } ) => {
   if ( _.isEmpty( project.identification_categories.results ) ) { return ( <div /> ); }
   const data = _.fromPairs(
     _.map( project.identification_categories.results, r => [r.category, r.count] ) );
-  // const total = project.identifiers_loaded ?
-  //   I18n.toNumber( project.species.total_results, { precision: 0 } ) : "--";
+  const total = _.sum( _.map( project.identification_categories.results, "count" ) );
   return (
     <div className="IconicTaxaPieChart">
       <div className="count-label">
-        { I18n.t( "x_identifications", { count: "---" } ) }
+        { I18n.t( "x_identifications", { count: I18n.toNumber( total, { precision: 0 } ) } ) }
       </div>
       <PieChart
         data={[
@@ -46,20 +45,8 @@ const IdCategroryPieChart = ( { project } ) => {
         ]}
         legendColumns={ 1 }
         legendColumnWidth={ 120 }
-        // labelForDatum={ d => {
-        //   const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
-        //   const percent = _.round( degrees / 360 * 100, 2 );
-        //   const value = I18n.t( "x_observations", {
-        //     count: I18n.toNumber( d.value, { precision: 0 } )
-        //   } );
-        //   return `<strong>${d.data.fullLabel}</strong>: ${value} (${percent}%)`;
-        // }}
         margin={ { top: 0, bottom: 120, left: 0, right: 0 } }
         donutWidth={ 20 }
-        onClick={ d => {
-          const url = `/identifications?project_id=${project.id}&for=others&current=true&category=${d.data.category}`;
-          window.open( url, "_blank" );
-        } }
       />
     </div>
   );

@@ -20,7 +20,11 @@ class UmbrellaMap extends Component {
           const popup = new Popup(
             new google.maps.LatLng( coords[1], coords[0] ),
             color,
-            ( <div className="iwclass">{ rule.project.title }</div> )
+            (
+              <a href={ `/projects/${rule.project.id}` }>
+                <div className="iwclass">{ rule.project.title }</div>
+              </a>
+            )
           );
           popup.setMap( map );
         }

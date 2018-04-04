@@ -6,10 +6,12 @@ import {
   removeProjectRule,
   addManager,
   removeProjectUser,
+  setDescription,
   setTitle,
   submitProject,
   updateProject,
   onFileDrop,
+  deleteProject,
   setRulePreference } from "../form_reducer";
 
 function mapStateToProps( state ) {
@@ -29,9 +31,11 @@ function mapDispatchToProps( dispatch ) {
       dispatch( removeProjectRule( operator, operandType, operand ) ),
     addManager: user => dispatch( addManager( user ) ),
     removeProjectUser: user => dispatch( removeProjectUser( user ) ),
+    setDescription: description => dispatch( setDescription( description ) ),
     setTitle: title => dispatch( setTitle( title ) ),
     submitProject: ( ) => dispatch( submitProject( ) ),
     updateProject: attrs => dispatch( updateProject( attrs ) ),
+    deleteProject: ( ) => dispatch( deleteProject( ) ),
     setRulePreference: ( field, value ) => dispatch( setRulePreference( field, value ) )
   };
 }

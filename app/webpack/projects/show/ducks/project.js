@@ -70,7 +70,7 @@ export function infiniteScrollObservations( nextScrollIndex ) {
     if ( !project || !project.observations_loaded ) { return null; }
     const total = project.observations.total_results;
     const loaded = project.observations.results.length;
-    if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 200 ) {
+    if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
       return null;
     }
@@ -212,7 +212,7 @@ export function fetchIdentificationCategories( ) {
     dispatch( setAttributes( {
       identification_categories_loading: true
     } ) );
-    return inatjs.identifications.categories( project.search_params ).then( response => {
+    return inatjs.observations.identificationCategories( project.search_params ).then( response => {
       dispatch( setAttributes( {
         identification_categories_loading: false,
         identification_categories_loaded: true,

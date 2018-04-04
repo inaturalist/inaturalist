@@ -29,10 +29,10 @@ body {
 .bootstrap {
   h1 {
     margin: 30px 0px 30px;
-    font-size: 30px;
+    font-size: 32px;
   }
   h2 {
-    font-size: 28px;
+    font-size: 26px;
   }
   .form-group {
     margin: 0;
@@ -48,16 +48,16 @@ body {
       border-color: $fail-red;
     }
   }
-}
-
-button.btn-green {
-  font-weight: 500;
-  color: white;
-  padding: 12px 30px;
-  border-radius: 30px;
-  background: #74ac00;
-  border: none;
-  font-size: 18px;
+  .btn.done {
+    color: white;
+    background: #74ac00;
+    &[disabled] {
+      background: #cccccc;
+      &:hover {
+        background: #cccccc;
+      }
+    }
+  }
 }
 
 button.btn-white {
@@ -70,6 +70,16 @@ button.btn-white {
     color: $inat-green;
     margin-right: 5px;
   }
+}
+
+button.btn-green {
+  font-weight: 500;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  background: #74ac00;
+  border: none;
+  font-size: 18px;
 }
 
 button[disabled] {
@@ -106,22 +116,41 @@ button[disabled] {
   .btn-div {
     text-align: center;
   }
+  .contact {
+    margin-top: 50px;
+    a {
+      color: $other-link-color;
+    }
+  }
+}
+
+body>div>.popover[role="tooltip"].popover-error {
+  background: #D9534F;
+  color: white;
+  .arrow::after {
+    border-top-color: #D9534F;
+  }
 }
 
 .Form {
+  h1 {
+    button.delete {
+      float: right;
+      font-size: 14px;
+      .fa {
+        color: $fail-red;
+      }
+    }
+  }
   .row {
     padding-bottom: 20px;
-    &.styles-row {
-      padding-bottom: 40px;
-      border-bottom: 1px solid $border-grey;
-    }
     &.text {
       padding: 0;
     }
   }
   label {
     display: block;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 700;
     &.inline {
       display: inline-block;
@@ -193,6 +222,16 @@ button[disabled] {
       }
     }
   }
+  .icon-cell.icon {
+    .icon-preview > span {
+      margin-right: -85px;
+    }
+  }
+  .icon-cell.banner {
+    .icon-preview > span {
+      margin-right: -120px;
+    }
+  }
   .help-text {
     color: #666;
     margin-bottom: 15px;
@@ -205,6 +244,7 @@ button[disabled] {
     }
   }
   .date-row {
+    padding-bottom: 0px;
     & > div > div {
       display: inline-block;
       position: relative;
@@ -212,13 +252,23 @@ button[disabled] {
       margin-left: 5px;
     }
     .input-group.date {
-      max-width: 230px;
+      width: 190px;
+      .form-control:first-child {
+        border-top-right-radius: 2px;
+        border-bottom-right-radius: 2px;
+      }
+      .input-group-addon {
+        display: none
+      }
     }
     label[for="project-date-type-exact"] + div .input-group.date {
-      max-width: 160px;
+      width: 110px;
     }
-    #project-date-type-range {
-      margin-left: 5px;
+  }
+  .buttons {
+    margin-top: 15px;
+    button + button {
+      margin-left: 10px;
     }
   }
 }
@@ -233,6 +283,14 @@ body > div > .popover.color-picker {
   }
   .popover-content {
     padding: 0;
+  }
+}
+
+#project-description {
+  min-height: 115px;
+  resize: vertical;
+  &:focus {
+    box-shadow: none;
   }
 }
 
@@ -281,6 +339,19 @@ body > div > .popover.color-picker {
   }
 }
 
+.row.project-type {
+  h2 {
+    border-top: 1px solid $border-grey;
+    padding-top: 30px;
+  }
+}
+
+.preview {
+  margin-top: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid $border-grey;
+}
+
 .ui-autocomplete {
   opacity: 0;
   display: none;
@@ -294,6 +365,29 @@ body > div > .popover.color-picker {
   }
   .ac-result.taxon {
     font-size: 0.9em;
+  }
+}
+
+.ConfirmModal.confirm, .FlaggingModal.modal {
+  .modal-dialog {
+    width: 500px;
+    margin-top: 100px;
+  }
+  .text {
+    line-height: 28px;
+    font-size: 1.3em;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .modal-footer {
+    padding: 10px;
+    .buttons {
+      text-align: center;
+    }
+    button {
+      min-width: 100px;
+      margin: 0px 10px;
+    }
   }
 }
 

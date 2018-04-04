@@ -60,6 +60,7 @@ const Project = class Project {
     this.undestroyedAdmins = _.filter( this.admins, a => !a._destroy );
     // TODO don't hardcode default color
     this.banner_color = this.banner_color || "#28387d";
+    this.errors = this.errors || { };
   }
 
   bannerURL( ) {
@@ -149,6 +150,8 @@ const Project = class Project {
         this.date_type = "range";
       } else if ( this.previewSearchParamsObject.observed_on ) {
         this.date_type = "exact";
+      } else if ( this.previewSearchParamsObject.month ) {
+        this.date_type = "months";
       } else {
         this.date_type = "any";
       }
@@ -156,6 +159,9 @@ const Project = class Project {
     if ( this.date_type !== "range" ) {
       delete this.previewSearchParamsObject.d1;
       delete this.previewSearchParamsObject.d2;
+    }
+    if ( this.date_type !== "months" ) {
+      delete this.previewSearchParamsObject.month;
     }
     if ( this.date_type !== "exact" ) {
       delete this.previewSearchParamsObject.observed_on;
@@ -165,8 +171,9 @@ const Project = class Project {
       this.previewSearchParamsObject.on = this.previewSearchParamsObject.observed_on;
       delete this.previewSearchParamsObject.observed_on;
     }
-    this.previewSearchParamsString =
-      _.map( this.previewSearchParamsObject, ( v, k ) => `${k}=${v}` ).join( "&" );
+    this.previewSearchParamsObject.verifiable = "any";
+    this.previewSearchParamsObject.place_id = this.previewSearchParamsObject.place_id || "any";
+    this.previewSearchParamsString = $.param( this.previewSearchParamsObject );
   }
 
 };

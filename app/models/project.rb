@@ -55,9 +55,10 @@ class Project < ActiveRecord::Base
   preference :rule_observed_on, :string
   preference :rule_d1, :string
   preference :rule_d2, :string
+  preference :rule_month, :string
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds", "rule_date_observed",
-    "rule_observed_on", "rule_d1", "rule_d2"
+    "rule_observed_on", "rule_d1", "rule_d2", "rule_month"
   ]
   
   SUBMISSION_BY_ANYONE = 'any'
@@ -161,7 +162,7 @@ class Project < ActiveRecord::Base
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
-  validate :cover_dimensions, :unless => "errors.any?"
+  validate :cover_dimensions, unless: Proc.new { |p| p.errors.any? || p.is_new_project? }
   
   ASSESSMENT_TYPE = 'assessment'
   BIOBLITZ_TYPE = 'bioblitz'

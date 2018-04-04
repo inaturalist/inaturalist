@@ -2,13 +2,15 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import safeHtml from "safe-html";
 import moment from "moment";
+import htmlTruncate from "html-truncate";
 
 const News = ( { project } ) => {
   if ( !project.posts_loaded ) {
     return ( <div className="loading_spinner huge" /> );
   }
-  if ( _.isEmpty( project.posts ) ) { return ( <div /> ); }
-
+  if ( _.isEmpty( project.posts ) || _.isEmpty( project.posts.results ) ) {
+    return ( <span /> );
+  }
   return (
     <div className="News">
       <h2>
@@ -24,7 +26,7 @@ const News = ( { project } ) => {
               <div className="date">{ moment( post.created_at ).format( "LL - LT" ) }</div>
               <div className="title">{ post.title }</div>
               <div className="body">
-                { safeHtml( post.body, { allowedTags: [] } ).substring( 0, 80 ) }...
+                { htmlTruncate( safeHtml( post.body, { allowedTags: [] } ), 90 ) }
               </div>
             </a>
           </div>

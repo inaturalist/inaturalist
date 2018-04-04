@@ -112,11 +112,88 @@ module ObservationSearch
         search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
     end
 
+    # currently only used when a search included new-style projects
+    # this method maps params hash that Observation.params_to_elastic_query
+    # expects into the parameters that Node API obs search method expects
+    def map_params_for_node_api(params)
+      api_params = params.dup
+      unless api_params[:has].blank?
+        api_params[:has].each do |h|
+          api_params[h.to_sym] = true
+        end
+        api_params.delete(:has)
+      end
+      unless api_params[:projects].blank?
+        api_params[:project_id] = params[:projects].map{ |p| p.try(:id) || p }
+        api_params.delete(:projects)
+      end
+      unless api_params[:user].blank?
+        api_params[:user_id] = params[:user].id
+        api_params.delete(:user)
+      end
+      unless api_params[:iconic_taxa_instances].blank?
+        api_params[:iconic_taxa] = params[:iconic_taxa_instances].map{ |i| i ? i.id : "unknown" }
+        api_params.delete(:iconic_taxa_instances)
+      end
+      unless api_params[:place].blank?
+        api_params[:place_id] = params[:place].id
+        api_params.delete(:place)
+      end
+      unless api_params[:viewer].blank?
+        api_params[:viewer_id] = params[:viewer].id
+        api_params.delete(:viewer)
+      end
+      if api_params[:order_by] == "observations.id"
+        api_params[:order_by] = "id"
+      end
+      api_params[:taxon_id] = [ ]
+      if !api_params[:observations_taxon].blank?
+        api_params[:taxon_id] = [ api_params[:observations_taxon].id ]
+        api_params.delete(:observations_taxon)
+      elsif !api_params[:observations_taxa].blank?
+        api_params[:taxon_id] = api_params[:observations_taxa].map(&:id)
+        api_params.delete(:observations_taxa)
+        api_params.delete(:observations_taxon_ids)
+      end
+      unless api_params[:taxon_ids].blank?
+        api_params[:taxon_id] += params[:taxon_ids].map{ |id| id.split(",") }.flatten.map(&:to_i)
+        api_params[:taxon_id].uniq!
+        api_params.delete(:taxon_ids)
+      end
+      unless api_params[:min_id].blank?
+        api_params[:id_above] = api_params[:min_id]
+        api_params.delete(:min_id)
+      end
+      api_params.delete(:partial)
+      api_params.delete(:controller)
+      api_params.delete(:action)
+      api_params.delete(:with_photos)
+      api_params.delete(:with_sounds)
+      api_params.delete(:_query_params_set)
+      api_params.reject!{ |k,v| v == "any" || v.blank? }
+      if api_params[:reviewed].blank?
+        api_params.delete(:viewer_id)
+      end
+      if api_params[:per_page] > 200
+        api_params[:per_page] = 200
+      end
+      api_params
+    end
+
     def elastic_query(params, options = {})
       elastic_params = params_to_elastic_query(params, options)
       if elastic_params.nil?
         # a dummy WillPaginate Collection is the most compatible empty result
-        return WillPaginate::Collection.new(1, 30, 0)
+        return WillPaginate::Collection.new(1, params[:per_page] || 30, 0)
+      end
+      # new projects will use the node API which has the logic
+      # for search new regular and umbrella projects
+      if !params[:projects].blank? && params[:projects].detect(&:is_new_project?)
+        mapped_params = map_params_for_node_api(params)
+        rsp = INatAPIService.observations(mapped_params.merge(only_id: true))
+        return WillPaginate::Collection.create(rsp.page, rsp.per_page, rsp.total_results) do |pager|
+          pager.replace(Observation.where(id: rsp.results.map{ |r| r["id"] }).to_a)
+        end
       end
       Observation.elastic_paginate(elastic_params)
     end

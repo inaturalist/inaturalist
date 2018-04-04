@@ -94,7 +94,7 @@ const ObservationsTab = ( {
           </Col>
         </Row>
       </Grid>
-      <div className="contents">
+      <div className="subtab-contents">
         { view }
       </div>
     </div>

@@ -90,6 +90,11 @@ class ProjectsController < ApplicationController
   
   def show
     if @project.is_new_project?
+      unless logged_in? && current_user.has_role?(:admin)
+        flash[:error] = t(:only_administrators_may_access_that_page)
+        redirect_to projects_path
+        return
+      end
       projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
       return render_404 unless projects_response
       @projects_data = projects_response.results[0]
@@ -176,6 +181,11 @@ class ProjectsController < ApplicationController
   end
 
   def new2
+    unless logged_in? && current_user.has_role?(:admin)
+      flash[:error] = t(:only_administrators_may_access_that_page)
+      redirect_to projects_path
+      return
+    end
     return render layout: "bootstrap"
   end
 
@@ -245,13 +255,23 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.delay( priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
-    
+    if @project.is_new_project?
+      # new projects can be destroyed immediately as they will have no
+      # project observations
+      @project.sane_destroy
+    else
+      @project.delay( priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
+    end
+
     respond_to do |format|
       format.html do
         flash[:notice] = t(:project_x_was_delete, :project => @project.title)
         redirect_to(projects_url)
+      end
+      format.json do
+        Project.refresh_es_index
+        head :ok
       end
     end
   end

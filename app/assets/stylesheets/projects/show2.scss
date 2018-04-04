@@ -132,10 +132,10 @@ button {
     }
     .title-container {
       height: 300px;
-      background-size: cover;
+      background-size: contain;
       background-repeat: no-repeat;
       background-position-x: center;
-      background-position-y: 20%;
+      background-position-y: center;
       display: flex;
       .header-title {
         background: rgba(0,0,0,0.7);
@@ -306,7 +306,7 @@ button {
 }
 
 .ObservationsTab {
-  .contents {
+  .subtab-contents {
     margin-top: 20px;
   }
   .TaxonMap {
@@ -346,7 +346,7 @@ button {
     &:not(:last-child) {
       border-bottom: 1px solid #ddd;
     }
-    .odd {
+    &.even {
       background: white;
     }
   }
@@ -818,6 +818,7 @@ button {
     font-weight: 700;
     pointer-events: none;
     word-spacing: 400px;
+    text-transform: capitalize;
   }
   .PieChart {
     svg {
@@ -885,6 +886,24 @@ button {
     margin-top: 25px;
   }
 }
+
+
+@media (max-width: 1200px) {
+  .project-header {
+    height: 313px;
+    .header-grid {
+      .title-container {
+        height: 263px;
+      }
+      .header-about {
+        height: 263px;
+      }
+    }
+  }
+}
+
+
+
 
 
 

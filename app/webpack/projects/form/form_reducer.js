@@ -1,7 +1,7 @@
 import _ from "lodash";
 import inatjs from "inaturalistjs";
 import Project from "../shared/models/project";
-import piexif from "piexifjs";
+import { setConfirmModalState } from "../../observations/show/ducks/confirm_modal";
 
 const SET_ATTRIBUTES = "projects-form/project/SET_ATTRIBUTES";
 
@@ -24,7 +24,6 @@ export function setAttributes( attributes ) {
 export function setProject( p ) {
   return setAttributes( { project: new Project( p ) } );
 }
-
 
 export function createNewProject( type ) {
   return ( dispatch, getState ) => {
@@ -51,30 +50,41 @@ export function updateProject( attrs ) {
   };
 }
 
+export function setProjectError( field, error ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).form.project;
+    dispatch( updateProject( { errors:
+      Object.assign( { }, project.errors, { [field]: error } )
+    } ) );
+  };
+}
+
 let titleValidationTimestamp = new Date( ).getTime( );
 export function validateProjectTitle( ) {
   return ( dispatch, getState ) => {
+    titleValidationTimestamp = new Date( ).getTime( );
     const project = getState( ).form.project;
     if ( !project ) { return null; }
+    if ( _.isEmpty( project.title ) ) {
+      dispatch( setProjectError( "title", "Project name is required" ) );
+      return null;
+    }
+    if ( project.title.length > 100 ) {
+      dispatch( setProjectError( "title", "Project name must be less than 100 characters" ) );
+      return null;
+    }
     const searchParams = { title_exact: project.title, not_id: project.id, per_page: 1 };
-    titleValidationTimestamp = new Date( ).getTime( );
     const timecheck = _.clone( titleValidationTimestamp );
-    dispatch( updateProject( { titleError: false } ) );
+    dispatch( setProjectError( "title", null ) );
     return setTimeout( ( ) => {
-      if ( _.isEmpty( project.title ) ) {
-        dispatch( updateProject( { titleError: "title is required" } ) );
-        return;
-      }
       if ( timecheck === titleValidationTimestamp ) {
         inatjs.projects.autocomplete( searchParams ).then( response => {
           if ( _.isEmpty( response.results ) ) {
-            dispatch( updateProject( { titleError: false } ) );
+            dispatch( setProjectError( "title", null ) );
           } else {
-            dispatch( updateProject( { titleError: "title already taken" } ) );
+            dispatch( setProjectError( "title", "Project name already taken" ) );
           }
         } ).catch( e => console.log( e ) );
-      } else {
-        console.log( "duplicate" );
       }
     }, 250 );
   };
@@ -84,6 +94,17 @@ export function setTitle( title ) {
   return dispatch => {
     dispatch( updateProject( { title } ) );
     dispatch( validateProjectTitle( ) );
+  };
+}
+
+export function setDescription( description ) {
+  return dispatch => {
+    let descriptionError;
+    if ( _.isEmpty( description ) ) {
+      descriptionError = "Project summary text is required";
+    }
+    dispatch( updateProject( { description } ) );
+    dispatch( setProjectError( "description", descriptionError ) );
   };
 }
 
@@ -199,6 +220,8 @@ export function setRulePreference( field, value ) {
       dateType = "exact";
     } else if ( field === "d1" || field === "d2" ) {
       dateType = "range";
+    } else if ( field === "month" ) {
+      dateType = "months";
     }
     dispatch( updateProject( {
       rule_preferences: project.rule_preferences,
@@ -222,43 +245,41 @@ export function showError( e ) {
 }
 
 
-const readExif = ( droppedFile ) => {
-  const reader = new FileReader();
-  const metadata = { };
-  return new Promise( ( resolve ) => {
-    reader.onloadend = e => {
-      const exif = { };
-      // read EXIF into an object
-      let exifObj;
-      try {
-        exifObj = piexif.load( e.target.result );
-      } catch ( err ) {
-        return resolve( metadata );
-      }
-      _.each( exifObj, ( tags, ifd ) => {
-        if ( ifd === "thumbnail" ) { return; }
-        _.each( tags, ( value, tag ) => {
-          exif[piexif.TAGS[ifd][tag].name] = value;
-        } );
-      } );
-      resolve( { width: exif.PixelXDimension, height: exif.PixelYDimension } );
-    };
-    reader.readAsDataURL( droppedFile );
-  } );
-};
-
 export function onFileDrop( droppedFiles, field ) {
   return dispatch => {
     if ( _.isEmpty( droppedFiles ) ) { return; }
     const droppedFile = droppedFiles[0];
-    readExif( droppedFile ).then( metadata => {
-      console.log( metadata );
-      if ( droppedFile.type.match( /^image\// ) ) {
-        dispatch( updateProject( { [field]: droppedFile } ) );
+    if ( droppedFile.type.match( /^image\// ) ) {
+      dispatch( updateProject( {
+        [field]: droppedFile
+      } ) );
+    }
+  };
+}
+
+export function deleteProject( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const project = state.form.project;
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: "Are you sure you want to delete this project?",
+      confirmText: I18n.t( "yes" ),
+      onConfirm: ( ) => {
+        setTimeout( ( ) => {
+          dispatch( setConfirmModalState( {
+            show: true,
+            message: "Deleting...",
+            hideFooter: true
+          } ) );
+        }, 1 );
+        inatjs.projects.delete( { id: project.id } ).then( ( ) => {
+          window.location = "/projects/new2";
+        } ).catch( e => {
+          dispatch( showError( e ) );
+        } );
       }
-    } ).catch( e => {
-      console.log( e );
-    } );
+    } ) );
   };
 }
 
@@ -267,10 +288,23 @@ export function submitProject( ) {
     const state = getState( );
     const project = state.form.project;
     if ( !loggedIn( state ) || !project ) { return; }
+    // check title and description which may not have been validated yet
+    // if the user didn't enter text in those fields yet
+    let errors;
+    if ( _.isEmpty( project.title ) ) {
+      dispatch( setProjectError( "title", "Project name is required" ) );
+      errors = true;
+    }
+    if ( _.isEmpty( project.description ) ) {
+      dispatch( setProjectError( "description", "Project summary text is required" ) );
+      errors = true;
+    }
+    if ( errors ) { return; }
     const payload = { project: {
       project_type: ( project.project_type === "umbrella" ) ? "umbrella" : "collection",
       user_id: project.user_id || state.config.currentUser.id,
       title: project.title,
+      description: project.description,
       icon: project.droppedIcon ? project.droppedIcon : null,
       cover: project.droppedBanner ? project.droppedBanner : null,
       preferred_banner_color: project.banner_color,
@@ -285,7 +319,9 @@ export function submitProject( ) {
       prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 ) ?
         "" : project.rule_d1,
       prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 ) ?
-        "" : project.rule_d2
+        "" : project.rule_d2,
+      prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month ) ?
+        "" : project.rule_month
     } };
     if ( !payload.project.icon && project.iconDeleted ) {
       payload.icon_delete = true;

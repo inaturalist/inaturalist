@@ -80,14 +80,16 @@ class ConfirmModal extends Component {
             { message || this.props.message }
           </div>
         </Modal.Body>
-        <Modal.Footer>
-         <div className="buttons">
-            { cancel }
-            <Button bsStyle={ this.props.confirmClass || "primary" } onClick={ this.confirm }>
-              { this.props.confirmText || I18n.t( "confirm" ) }
-            </Button>
-          </div>
-        </Modal.Footer>
+        { !this.props.hideFooter && (
+          <Modal.Footer>
+           <div className="buttons">
+              { cancel }
+              <Button bsStyle={ this.props.confirmClass || "primary" } onClick={ this.confirm }>
+                { this.props.confirmText || I18n.t( "confirm" ) }
+              </Button>
+            </div>
+          </Modal.Footer>
+        ) }
       </Modal>
     );
   }
@@ -105,7 +107,8 @@ ConfirmModal.propTypes = {
   cancelText: PropTypes.string,
   confirmText: PropTypes.string,
   setConfirmModalState: PropTypes.func,
-  hideCancel: PropTypes.bool
+  hideCancel: PropTypes.bool,
+  hideFooter: PropTypes.bool
 };
 
 export default ConfirmModal;

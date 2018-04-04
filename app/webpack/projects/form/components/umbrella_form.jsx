@@ -25,17 +25,20 @@ class UmbrellaForm extends React.Component {
           <Row className="first-row">
             <Col xs={4}>
               <label>Projects</label>
-              <ProjectAutocomplete
-                ref="ua"
-                key={ _.map( project.projectRules, rule => rule.project.id ).join( "," ) }
-                afterSelect={ e => {
-                  addProjectRule( "in_project?", "Project", e.item );
-                  this.refs.ua.inputElement( ).val( "" );
-                } }
-                notIDs={ _.map( project.projectRules, rule => rule.project.id ) }
-                notTypes={ ["umbrella"] }
-                bootstrapClear
-              />
+              <div className="input-group">
+                <span className="input-group-addon fa fa-briefcase"></span>
+                <ProjectAutocomplete
+                  ref="ua"
+                  key={ _.map( project.projectRules, rule => rule.project.id ).join( "," ) }
+                  afterSelect={ e => {
+                    addProjectRule( "in_project?", "Project", e.item );
+                    this.refs.ua.inputElement( ).val( "" );
+                  } }
+                  notIDs={ _.map( project.projectRules, rule => rule.project.id ) }
+                  notTypes={ ["umbrella"] }
+                  bootstrapClear
+                />
+              </div>
               { !_.isEmpty( project.projectRules ) && (
                 <div className="icon-previews">
                   { _.map( project.projectRules, projectRule => (

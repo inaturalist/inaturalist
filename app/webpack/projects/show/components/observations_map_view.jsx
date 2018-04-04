@@ -12,9 +12,9 @@ const ObservationsMapView = ( { project } ) => {
             <TaxonMap
               observationLayers={ [project.search_params] }
               showAccuracy
-              enableShowAllLayer={false}
-              overlayMenu
-              clickable={false}
+              enableShowAllLayer={ false }
+              overlayMenu={ false }
+              clickable={ false }
               scrollwheel={ false }
               maxX={ project.observations && project.observations.total_bounds.nelng }
               maxY={ project.observations && project.observations.total_bounds.nelat }

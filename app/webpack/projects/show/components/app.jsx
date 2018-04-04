@@ -2,6 +2,7 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import tinycolor from "tinycolor2";
+import htmlTruncate from "html-truncate";
 import IdentifiersTabContainer from "../containers/identifiers_tab_container";
 import ObservationsTabContainer from "../containers/observations_tab_container";
 import ObserversTabContainer from "../containers/observers_tab_container";
@@ -47,7 +48,7 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
   }
   const userIsManager = config.currentUser &&
     _.find( project.admins, a => a.user.id === config.currentUser.id );
-  const hasIcon = project.customIcon && project.customIcon( );
+  const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
   const headerButton = userIsManager ? (
     <a href={ `/projects/${project.slug}/edit` }>
@@ -128,7 +129,7 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
                 </div>
               </div>
               <div className="header-about-text">
-                { ( project.description || "" ).substring( 0, 240 ) }...
+                { htmlTruncate( project.description || "", 240 ) }
               </div>
               <div
                 className="header-about-read-more"

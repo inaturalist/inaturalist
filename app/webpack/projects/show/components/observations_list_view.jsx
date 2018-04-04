@@ -45,7 +45,7 @@ const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => 
                       displayPlace = I18n.t( "unknown" );
                     }
                     return (
-                      <tr className={ index % 2 !== 0 && "odd" } key={ `obs_list_row_${o.id}` }>
+                      <tr className={ index % 2 === 0 && "even" } key={ `obs_list_row_${o.id}` }>
                         <td className="photo">
                           <a
                             href={`/observations/${o.id}`}

@@ -1,10 +1,11 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col, Overlay, Popover } from "react-bootstrap";
 import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 import RegularForm from "./regular_form";
 import UmbrellaForm from "./umbrella_form";
 import SharedForm from "./shared_form";
+import ConfirmModalContainer from "../containers/confirm_modal_container";
 
 class ProjectForm extends React.Component {
   render( ) {
@@ -23,13 +24,17 @@ class ProjectForm extends React.Component {
         }
         <Grid>
           <Row>
-            <Col xs={4}>
-              <button
-                onClick={ ( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" ) }
-              >
-                <i className="fa fa-external-link" />
-                Preview Observations
-              </button>
+            <Col xs={12}>
+              <div className="preview">
+                <button
+                  className="btn-white"
+                  onClick={ ( ) =>
+                    window.open( `/observations?${project.previewSearchParamsString}`, "_blank" ) }
+                >
+                  <i className="fa fa-external-link" />
+                  Preview Observations
+                </button>
+              </div>
             </Col>
           </Row>
           <Row>
@@ -74,14 +79,38 @@ class ProjectForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <button
-                className="btn-green"
-                onClick={ ( ) => submitProject( ) }
-                disabled={ project.saving || project.titleError }
-              >{ project.saving ? "Saving..." : "Done" }</button>
+              * Required
+              <div className="buttons">
+                <button
+                  className="btn btn-default done"
+                  ref="doneButton"
+                  onClick={ ( ) => submitProject( ) }
+                  disabled={
+                    project.saving || !_.isEmpty( _.compact( _.values( project.errors ) ) )
+                  }
+                >{ project.saving ? "Saving..." : "Done" }</button>
+                { project.errors.description && (
+                  <Overlay
+                    show
+                    placement="top"
+                    target={ ( ) => this.refs.doneButton }
+                  >
+                    <Popover
+                      id="popover-done"
+                      className="popover-error"
+                    >
+                      Check above for errors
+                    </Popover>
+                  </Overlay>
+                ) }
+                <button
+                  className="btn btn-default"
+                >Cancel</button>
+              </div>
             </Col>
           </Row>
         </Grid>
+        <ConfirmModalContainer />
       </div>
     );
   }

@@ -9,6 +9,7 @@ import util from "../../../observations/show/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import DateTimeFieldWrapper from
   "../../../observations/uploader/components/date_time_field_wrapper";
+import JQueryUIMultiselect from "../../../observations/identify/components/jquery_ui_multiselect";
 
 class RegularForm extends React.Component {
 
@@ -26,6 +27,8 @@ class RegularForm extends React.Component {
       setRulePreference,
       updateProject
     } = this.props;
+    const monthNames = ( "january february march april may june july august " +
+      "september october november december" ).split( " " );
     return (
       <div id="RegularForm" className="Form">
         <Grid>
@@ -166,22 +169,45 @@ class RegularForm extends React.Component {
               />
               <label className="inline" htmlFor="project-quality-casual">Casual</label>
             </Col>
-            <Col xs={4}>
+            <Col xs={8}>
               <label>Media Type</label>
               <input
-                type="checkbox"
+                type="radio"
+                name="project-media"
+                id="project-media-any"
+                defaultChecked={ !project.rule_photos && !project.rule_sounds }
+                onChange={ ( ) => {
+                  setRulePreference( "photos", null );
+                  setRulePreference( "sounds", null );
+                } }
+              />
+              <label className="inline" htmlFor="project-media-any">Any</label>
+              <input
+                type="radio"
+                name="project-media"
                 id="project-media-sounds"
-                defaultChecked={ project.rule_sounds }
-                onChange={ e => setRulePreference( "sounds", e.target.checked ? "true" : null ) }
+                defaultChecked={ project.rule_sounds && !project.rule_photos }
+                onChange={ ( ) => setRulePreference( "sounds", "true" ) }
               />
               <label className="inline" htmlFor="project-media-sounds">Has Sound</label>
               <input
-                type="checkbox"
+                type="radio"
+                name="project-media"
                 id="project-media-photos"
-                defaultChecked={ project.rule_photos }
-                onChange={ e => setRulePreference( "photos", e.target.checked ? "true" : null ) }
+                defaultChecked={ project.rule_photos && !project.rule_sounds }
+                onChange={ ( ) => setRulePreference( "photos", "true" ) }
               />
               <label className="inline" htmlFor="project-media-photos">Has Photo</label>
+              <input
+                type="radio"
+                name="project-media"
+                id="project-media-both"
+                defaultChecked={ project.rule_photos && project.rule_sounds }
+                onChange={ ( ) => setRulePreference( "photos", "true" ) }
+              />
+              <label className="inline" htmlFor="project-media-both">
+                Has Both Photo and Sound
+              </label>
             </Col>
           </Row>
           <Row className="date-row">
@@ -204,44 +230,86 @@ class RegularForm extends React.Component {
               <label className="inline" htmlFor="project-date-type-exact">Exact</label>
               <DateTimeFieldWrapper
                 mode="date"
+                ref="exactDate"
                 inputFormat="YYYY-MM-DD"
                 defaultText={ project.rule_observed_on }
                 onChange={ date => setRulePreference( "observed_on", date ) }
                 inputProps={ {
                   className: "form-control",
-                  placeholder: "YYYY-MM-DD"
+                  placeholder: "YYYY-MM-DD",
+                  onClick: ( ) => this.refs.exactDate.onClick( )
                 } }
               />
+            </Col>
+          </Row>
+          <Row className="date-row">
+            <Col xs={12}>
               <input
                 type="radio"
                 id="project-date-type-range"
-                value="regular"
                 checked={ project.date_type === "range" }
                 onChange={ ( ) => updateProject( { date_type: "range" } ) }
               />
               <label className="inline" htmlFor="project-date-type-range">Range</label>
               <DateTimeFieldWrapper
                 mode="datetime"
+                ref="dateRangeD1"
                 inputFormat="YYYY-MM-DD HH:mm Z"
                 defaultText={ project.rule_d1 }
                 onChange={ date => setRulePreference( "d1", date ) }
                 allowFutureDates
                 inputProps={ {
                   className: "form-control",
-                  placeholder: "Start Date / Time"
+                  placeholder: "Start Date / Time",
+                  onClick: ( ) => this.refs.dateRangeD1.onClick( )
                 } }
               />
               <DateTimeFieldWrapper
                 mode="datetime"
+                ref="dateRangeD2"
                 inputFormat="YYYY-MM-DD HH:mm Z"
                 defaultText={ project.rule_d2 }
                 onChange={ date => setRulePreference( "d2", date ) }
                 allowFutureDates
                 inputProps={ {
                   className: "form-control",
-                  placeholder: "End Date / Time"
+                  placeholder: "End Date / Time",
+                  onClick: ( ) => this.refs.dateRangeD2.onClick( )
                 } }
               />
+            </Col>
+          </Row>
+          <Row className="date-row">
+            <Col xs={12}>
+              <input
+                type="radio"
+                id="project-date-type-months"
+                checked={ project.date_type === "months" }
+                onChange={ ( ) => updateProject( { date_type: "months" } ) }
+              />
+              <label className="inline" htmlFor="project-date-type-months">
+                { I18n.t( "months" ) }
+              </label>
+              <div
+                style={ { position: "relative" } }
+              >
+                <JQueryUIMultiselect
+                  className="form-control input-sm"
+                  id="filters-dates-month"
+                  onChange={ values =>
+                    setRulePreference( "month", values ? values.join( "," ) : null )
+                  }
+                  defaultValue={ project.rule_month ? project.rule_month.split( "," ) : null }
+                  data={
+                    _.map( monthNames, ( month, i ) => (
+                      {
+                        value: i + 1,
+                        label: I18n.t( `date_format.month.${month}` )
+                      }
+                    ) )
+                  }
+                />
+              </div>
             </Col>
           </Row>
         </Grid>
