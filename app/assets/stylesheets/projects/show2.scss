@@ -137,6 +137,13 @@ button {
       background-position-x: center;
       background-position-y: center;
       display: flex;
+      &.no-banner {
+        background-image: url(image_path( "project_blank_banner_bg.png" ));
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-position-y: center;
+      }
       .header-title {
         background: rgba(0,0,0,0.7);
         white-space: nowrap;

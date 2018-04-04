@@ -49,6 +49,7 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
   const userIsManager = config.currentUser &&
     _.find( project.admins, a => a.user.id === config.currentUser.id );
   const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
+  const hasBanner = !!project.header_image_url;
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
   const headerButton = userIsManager ? (
     <a href={ `/projects/${project.slug}/edit` }>
@@ -102,11 +103,13 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
           <Row>
             <Col
               xs={ 8 }
-              className={ `title-container ${eventDates && "event"} ${hasIcon && "icon"}` }
+              className={
+                `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
+              }
               style={ project.header_image_url ? {
                 backgroundImage: `url( '${project.header_image_url}' )`
               } : {
-                background: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.2)`
+                backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.3)`
               } }
             >
               { headerTitle }
