@@ -125,6 +125,22 @@ $.fn.universalAutocomplete = function( options ) {
           item: item,
           openBlank: true
         } );
+        e.preventDefault( );
+        return false;
+      }
+    } );
+    wrapperDiv.on( "click", function( e ) {
+      if (
+        ( e.metaKey || e.ctrlKey || e.altKey ) &&
+        e.target.nodeName !== "A" &&
+        $( e.target ).parents( "a" ).length == 0
+      ) {
+        $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
+          item: item,
+          openBlank: true
+        } );
+        e.preventDefault( );
+        return false;
       }
     } );
     return wrapperDiv;
