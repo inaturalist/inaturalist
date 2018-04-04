@@ -501,10 +501,10 @@ body > div > [role="dialog"] .ObservationModal {
       }
       .user-obs-count {
         .fa-binoculars {
-          font-size: 12px;
+          font-size: 11px;
           position: relative;
           top: -1px;
-          margin-right: 2px;
+          margin-right: 1px;
         }
       }
       .view-follow {
@@ -593,7 +593,7 @@ body > div > [role="dialog"] .ObservationModal {
   .Faves {
     display: inline-block;
     i {
-      margin-right: 10px;
+      margin-right: 8px;
       margin-top: 3px;
     }
     span.user + span.user:before {
