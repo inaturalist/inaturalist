@@ -125,3 +125,24 @@ def fetch_head(url)
   end
   nil
 end
+
+# Helper to perform a long running task, catch an exception, and try again
+# after sleeping for a while
+def try_and_try_again( exceptions, options = { } )
+  exceptions = [exceptions].flatten
+  tries = options.delete( :tries ) || 3
+  sleep_for = options.delete( :sleep ) || 60
+  logger = options[:logger] || Rails.logger
+  begin
+    yield
+  rescue *exceptions => e
+    if ( tries -= 1 ).zero?
+      raise e
+    else
+      logger.debug "Caught #{e.class}, sleeping for #{sleep_for} s before trying again..."
+      sleep( sleep_for )
+      retry
+    end
+  end
+end
+

@@ -59,7 +59,7 @@ genericAutocomplete.stripTags = function( txt ) {
 $.fn.genericAutocomplete = function( options ) {
   options = options || { };
   var field = this;
-  if( !options.idEl ) { return; }
+  // if( !options.idEl ) { return; }
   if( !field || field.length < 1 ) { return; }
   var createWrappingDiv = options.createWrappingDiv ||
     genericAutocomplete.createWrappingDiv;
@@ -82,7 +82,9 @@ $.fn.genericAutocomplete = function( options ) {
       field.val( ui.item.title );
     }
     // set the hidden id field
-    options.idEl.val( ui.item.id );
+    if ( options.idEl ) {
+      options.idEl.val( ui.item.id );
+    }
     if( options.afterSelect ) { options.afterSelect( ui ); }
     if( e ) { e.preventDefault( ); }
     return false;
@@ -125,6 +127,7 @@ $.fn.genericAutocomplete = function( options ) {
     focus: options.focus || genericAutocomplete.focus,
     appendTo: options.appendTo,
     position: options.position,
+    classes: options.classes,
     open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) }
   }).data( "uiAutocomplete" );
   field.on( "autocompleteclose", function( e, ui ) {
@@ -232,6 +235,7 @@ $.fn.genericAutocomplete = function( options ) {
     }
   });
   field.bind( "assignSelection", function( e, s, opts ) {
+    if ( !options.idEl ) { return; }
     opts = opts || { };
     options.idEl.val( s.id );
     field.data( 'autocomplete-item', s );
@@ -240,6 +244,7 @@ $.fn.genericAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
+    if ( !options.idEl ) { return; }
     var id = parseInt( options.idEl.val( ) );
     if( id && id > 0 ) {
       options.idEl.val( null );
@@ -253,6 +258,7 @@ $.fn.genericAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).hide( ); }
     if( options.afterClear ) { options.afterClear( ); }
   });
+  if ( !options.idEl ) { return; }
   if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {
       if( options.resetOnChange === false && field.selection ) {

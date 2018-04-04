@@ -129,8 +129,8 @@ describe Post do
       expect( p.mentioned_users ).to eq [ u ]
     end
 
-    describe "generates mention updates" do
-      it "for published posts" do
+    describe "mention updates" do
+      it "generate for published posts" do
         u = User.make!
         project = Project.make!
         p = Post.make!( body: "hey @#{ u.login }", parent: project )
@@ -139,13 +139,27 @@ describe Post do
         expect( UpdateAction.where( notifier: p, notification: "mention" ).first.
           update_subscribers.first.subscriber ).to eq u
       end
-      it "but not for drafts" do
+      it "do not generate for drafts" do
         u = User.make!
         project = Project.make!
         p = Post.make!( :draft, body: "hey @#{ u.login }", parent: project )
         expect( p ).not_to be_published
         expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 0
       end
+
+      it "generate for drafts when they're published" do
+        u = User.make!
+        project = Project.make!
+        p = Post.make!( :draft, body: "hey @#{ u.login }", parent: project )
+        expect( p ).not_to be_published
+        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 0
+        p.update_attributes( published_at: Time.now )
+        expect( p ).to be_published
+        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 1
+        expect( UpdateAction.where( notifier: p, notification: "mention" ).first.
+          update_subscribers.first.subscriber ).to eq u
+      end
+
     end
   end
 end

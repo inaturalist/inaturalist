@@ -138,9 +138,12 @@ module TaxaHelper
         Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.name]
       return Taxon::ICONIC_TAXON_DISPLAY_NAMES[taxon.name]
     end
-    TaxonName.choose_default_name(
+    tn = TaxonName.choose_default_name(
       @taxon_names_by_taxon_id ? @taxon_names_by_taxon_id[taxon.id] : taxon.taxon_names
-    ).try(:name) || ""
+    )
+    return "" unless tn
+    return tn.name if tn.is_scientific_names?
+    capitalize_name( tn.name )
   end
   
   def common_taxon_name(taxon, options = {})
@@ -159,6 +162,52 @@ module TaxaHelper
       locale: options[:locale] || user.try(:locale) || site.try(:locale),
       user: user
     )
+  end
+
+  def capitalize_piece( piece )
+    # \p{Word} matches any word in Unicode, \w does not, apparently
+    # https://stackoverflow.com/questions/3576232/how-to-match-unicode-words-with-ruby-1-9#3576559
+    if bits = piece.match( /^([a-z]['’])(\p{Word}+)/ )
+      "#{bits[1]}#{bits[2].capitalize}"
+    elsif bits = piece.match( /(.*?)(\p{Word}+)(.*)/ )
+      "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"
+    else
+      piece
+    end
+  end
+
+  def capitalize_name( comname )
+    uncapitalized = [
+      "à",
+      "a",
+      "and",
+      "con",
+      "da",
+      "dal",
+      "de",
+      "dei",
+      "del",
+      "des",
+      "di",
+      "du",
+      "e",
+      "in",
+      "la",
+      "o",
+      "on",
+      "of",
+      "the"
+    ]
+    comname_pieces = comname.split( /\s+/ )
+    comname_pieces.each_with_index.map{ |piece, i|
+      if i > 0 && uncapitalized.include?( piece.downcase )
+        piece.downcase
+      elsif i == comname_pieces.size - 1
+        piece.split( "-" ).map{ |s| uncapitalized.include?( s.downcase ) ? s.downcase : capitalize_piece( s ) }.join( "-" )
+      else
+        capitalize_piece( piece )
+      end
+    }.join( " " )
   end
   
   def jit_taxon_node(taxon, options = {})

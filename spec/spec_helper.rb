@@ -191,6 +191,11 @@ end
 def enable_elastic_indexing(*args)
   classes = [args].flatten
   classes.each do |klass|
+    begin
+      klass.__elasticsearch__.delete_index!
+    rescue Exception => e
+      raise e unless e.class.to_s =~ /NotFound/
+    end
     klass.__elasticsearch__.create_index!
     ElasticModel.wait_until_index_exists(klass.index_name)
     klass.send :after_save, :elastic_index!

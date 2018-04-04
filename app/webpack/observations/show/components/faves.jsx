@@ -2,18 +2,43 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import UsersPopover from "./users_popover";
 
-const Faves = ( { observation, config, fave, unfave } ) => {
+const Faves = ( { observation, config, fave, unfave, faveText, hideOtherUsers } ) => {
   const loggedIn = config && config.currentUser && config.currentUser.id;
   if ( !observation || !loggedIn ) { return ( <div /> ); }
-  let userHasFavedThis;
-  let message;
+  const userHasFavedThis = observation.faves && _.find( observation.faves, o => (
+    o.user.id === config.currentUser.id
+  ) );
+  const starIconClass = userHasFavedThis ? "fa-star" : "fa-star-o";
+  const hoverStarIconClass = userHasFavedThis ? "fa-star-o" : "fa-star";
+  const FaveToggle = ( { text, className } ) => (
+    <a
+      href="#"
+      className={ className }
+      onClick={ ( ) => {
+        if ( userHasFavedThis ) {
+          unfave( observation.id );
+        } else {
+          fave( observation.id );
+        }
+        return false;
+      } }
+      onMouseOver={ e => {
+        $( e.target ).siblings( "i" ).removeClass( starIconClass );
+        $( e.target ).siblings( "i" ).addClass( hoverStarIconClass );
+      } }
+      onMouseOut={ e => {
+        $( e.target ).siblings( "i" ).removeClass( hoverStarIconClass );
+        $( e.target ).siblings( "i" ).addClass( starIconClass );
+      } }
+    >
+      { text }
+    </a>
+  );
+  let message = <FaveToggle text={ faveText } />;
   if ( observation.faves && observation.faves.length > 0 ) {
-    userHasFavedThis = observation.faves && _.find( observation.faves, o => (
-      o.user.id === config.currentUser.id
-    ) );
-    if ( observation.faves.length === 1 && userHasFavedThis ) {
-      message = I18n.t( "you_faved_this" );
-    } else {
+    if ( ( hideOtherUsers || observation.faves.length === 1 ) && userHasFavedThis ) {
+      message = <FaveToggle text={ I18n.t( "you_faved_this" ) } />;
+    } else if ( !hideOtherUsers ) {
       const favesToShow = [];
       const otherFaves = [];
       let others;
@@ -52,11 +77,7 @@ const Faves = ( { observation, config, fave, unfave } ) => {
         </span>
       );
     }
-  } else {
-    message = I18n.t( "be_the_first_to_fave_this_observation" );
   }
-  const starIconClass = userHasFavedThis ? "fa-star" : "fa-star-o";
-  const hoverStarIconClass = userHasFavedThis ? "fa-star-o" : "fa-star";
   const starIcon = (
     <i className={ `action fa ${starIconClass}` }
       onClick={ ( ) => {
@@ -88,7 +109,13 @@ Faves.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   fave: PropTypes.func,
-  unfave: PropTypes.func
+  unfave: PropTypes.func,
+  faveText: PropTypes.string,
+  hideOtherUsers: PropTypes.bool
+};
+
+Faves.defaultProps = {
+  faveText: I18n.t( "be_the_first_to_fave_this_observation" )
 };
 
 export default Faves;

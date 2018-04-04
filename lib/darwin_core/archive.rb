@@ -174,7 +174,7 @@ module DarwinCore
         { observations_places: :place }
       ]
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
@@ -277,7 +277,7 @@ module DarwinCore
 
       start_time = @generate_started_at || Time.now
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
@@ -307,7 +307,7 @@ module DarwinCore
       start_time = @generate_started_at || Time.now
       
       # If ES goes down, wait a minute and try again. Repeat a few times then just raise the exception
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_observation_fields_data') do |observation|
@@ -332,7 +332,7 @@ module DarwinCore
       preloads = [ { project_observations: :project } ]
       start_time = @generate_started_at || Time.now
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(params, preloads, label: 'make_project_observations_data') do |observation|
@@ -356,7 +356,7 @@ module DarwinCore
       params = observations_params
       preloads = [ :user ]
       
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches( params, preloads, label: "make_user_data") do |observation|
@@ -371,7 +371,7 @@ module DarwinCore
 
     def observations_in_batches(params, preloads, options = {}, &block)
       batch_times = []
-      Observation.search_in_batches(params) do |batch|
+      Observation.search_in_batches( params, logger: logger ) do |batch|
         start = Time.now
         avg_batch_time = if batch_times.size > 0
           (batch_times.inject{|sum, num| sum + num}.to_f / batch_times.size).round(3)
@@ -383,7 +383,7 @@ module DarwinCore
         msg += " for #{options[:label]}" if options[:label]
         msg += " (avg batch: #{avg_batch_time}s, avg obs: #{avg_observation_time}s)"
         logger.debug msg
-        try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid] ) do
+        try_and_try_again( [PG::ConnectionBad, ActiveRecord::StatementInvalid], logger: logger ) do
           Observation.preload_associations(batch, preloads)
         end
         batch.each do |observation|
@@ -399,25 +399,6 @@ module DarwinCore
       fnames = args.map{|f| File.basename(f)}
       system "cd #{@work_path} && zip -D #{tmp_path} #{fnames.join(' ')}"
       tmp_path
-    end
-
-    # Helper to perform a long running task, catch an exception, and try again
-    # after sleeping for a while
-    def try_and_try_again( exceptions, options = { } )
-      exceptions = [exceptions].flatten
-      tries = options.delete( :tries ) || 3
-      sleep_for = options.delete( :sleep ) || 60
-      begin
-        yield
-      rescue *exceptions => e
-        if ( tries -= 1 ).zero?
-          raise e
-        else
-          logger.debug "Caught #{e.class}, sleeping for #{sleep_for} s before trying again..."
-          sleep( sleep_for )
-          retry
-        end
-      end
     end
   end
 end

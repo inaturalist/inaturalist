@@ -656,7 +656,7 @@ class Taxon < ActiveRecord::Base
       parent_name = name.split(' ')[0..-2].join(' ')
       parent = Taxon.single_taxon_for_name(parent_name)
       parent ||= Taxon.import(parent_name, :exact => true)
-      if parent && rank_level && parent.rank_level && parent.rank_level > rank_level
+      if parent && rank_level && parent.rank_level && parent.rank_level > rank_level && [GENUS, SPECIES].include?( parent.rank )
         self.update_attributes(:parent => parent)
       end
     end
@@ -1015,14 +1015,14 @@ class Taxon < ActiveRecord::Base
       details[:summary] += '...' if pre_trunc > details[:summary]
       provider = "Wikipedia"
     end
+
+    if details.blank? || details[:summary].blank?
+      Taxon.where(id: self).update_all(wikipedia_summary: Date.today) if locale.to_s =~ /^en-?/
+      return nil
+    end
     
     if locale.to_s =~ /^en-?/
-      if details.blank? || details[:summary].blank?
-        Taxon.where(id: self).update_all(wikipedia_summary: Date.today)
-        return nil
-      else
-        Taxon.where(id: self).update_all(wikipedia_summary: details[:summary])
-      end
+      Taxon.where(id: self).update_all( wikipedia_summary: details[:summary] )
     end
     td = taxon_descriptions.where(locale: locale).first
     td ||= self.taxon_descriptions.build(locale: locale)
@@ -1485,24 +1485,6 @@ class Taxon < ActiveRecord::Base
     Taxon.match_descendants_of_id(id, taxon_hash)
   end
 
-  # get the extreme's of this taxon's observations as determined
-  # by our cache table for grids, at the highest zoom
-  def bounds
-    return @bounds if defined?(@bounds)
-    result = Taxon.connection.execute("SELECT
-      MIN(ST_YMIN(geom)) min_y, MAX(ST_YMAX(geom)) max_y,
-      MIN(ST_XMIN(geom)) min_x, MAX(ST_XMAX(geom)) max_x
-      FROM observation_zooms_2 WHERE taxon_id=#{ id }").first
-    @bounds = result['min_x'].nil? ?
-      { } :
-      {
-        min_x: [result['min_x'].to_f, -179.9].max,
-        min_y: [result['min_y'].to_f, -89.9].max,
-        max_x: [result['max_x'].to_f, 179.9].min,
-        max_y: [result['max_y'].to_f, 89.9].min
-      }
-  end
-
   # Used primarily in get_gbif_id. For that particular API, it is useful
   # to know the ancestor of a taxon that fits one of the major ranks, rather
   # than a sibtribe or infrafamily which may nto be as common. This
@@ -1846,8 +1828,8 @@ class Taxon < ActiveRecord::Base
     elsif sorted.select{|taxon| taxon.is_active?}.size == 1
       sorted.detect{|taxon| taxon.is_active?}
 
-    # if the names are synonymous and share the same parent, choose the first active concept
-    elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1
+    # if the names are synonymous and share the same parent and only one is active, choose the active concept
+    elsif taxon_names.map(&:name).uniq.size == 1 && taxa.map(&:parent_id).uniq.size == 1 && taxa.select(&:is_active?).size == 1
       taxon = sorted.detect do |taxon|
         taxon.is_active? && taxon.taxon_names.detect{|tn| tn.name.downcase == name.downcase && tn.is_valid?}
       end

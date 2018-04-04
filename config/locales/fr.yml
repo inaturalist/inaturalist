@@ -957,6 +957,7 @@ fr:
   committed: Validé
   committed_on: Validé le %{date}
   committing: Validation en cours…
+  community: Communauté
   community_curated: Communauté organisée
   community_guidelines: Règles de la communauté
   community_id: 'ID de <strong>communauté</strong> :'
@@ -1579,6 +1580,7 @@ fr:
   follow_us_on: Suivez-nous sur
   follow_user: Suivre %{user}
   follower: abonné
+  followers: Abonnés
   following: vous suivez
   for: pour
   for_a_taxon: pour un taxon
@@ -1931,6 +1933,7 @@ fr:
   journal_archives_for: Archives du journal de
   journal_post: Note du journal
   journal_post_deleted: Note de journal supprimée.
+  journal_posts: Publications du journal
   jpg_png_or_gif: JPG, PNG ou GIF
   jump_to_letter: Sauter à la lettre
   just_a_reminder: Juste un rappel, comme vous pouvez avoir donné des droits aux superviseurs
@@ -2042,7 +2045,7 @@ fr:
     aux taxons de plus haut rang, par ex. une liste d’oiseaux de la famille des corbeaux
     (Corvidés).
   life_list_first: première inscription à la liste des êtres vivants
-  life_list_firsts: premières inscriptions à la liste des êtres vivants
+  life_list_firsts: taxons nouveaux
   link: Lien
   link_or_unlink_your_facebook_account: Lier ou dissocier votre compte Facebook
   link_or_unlink_your_flickr_account: Lier ou dissocier votre compte Flickr
@@ -2135,9 +2138,12 @@ fr:
     de date.
   locales_: Paramètres régionaux
   locales:
+    ar: Arabe
     bg: Bulgare
     br: Breton
     ca: Catalan
+    da: Danois
+    de: Allemand
     en-US: Anglais (États-Unis)
     en: Anglais
     es-ES: Espagnol (Espagne)
@@ -2591,7 +2597,7 @@ fr:
   observation_photo_uploader: Téléverseur de photos d’observation
   observations_by_category: Observations par catégorie
   observations_by_user_on_date: Observations de %{user} le %{date}
-  observations_by_you: Observations de vous
+  observations_by_you: Vos observations
   observations_by_you_on_date: Observations de vous le %{date}
   observation_calendar_for: Calendrier d’observation pour %{user} en %{year}
   observation_contest: concours d’observations
@@ -3061,22 +3067,31 @@ fr:
     afghanistan: Afghanistan
     africa: Afrique
     antigua_and_barbuda: Antigua-et-Barbuda
+    australia: Australie
+    austria: Autriche
     belgium: Belgique
     bosnia_and_herzegovina: Bosnie-Herzégovine
     brazil: Brésil
     central_america: Amérique centrale
+    china: Chine
+    colombia: Colombie
+    denmark: Danemark
     egypt: Égypte
     equatorial_guinea: Guinée équatoriale
     europe: Europe
     france: France
     germany: Allemagne
     greece: Grèce
+    hong_kong: Hong-Kong
     hungary: Hongrie
     italy: Italie
+    india: Inde
     iraq: Iraq
     japan: Japon
+    korea: Corée
     martinique: Martinique
     mexico: Mexique
+    netherlands: Pays-Bas
     new_guinea: Nouvelle-Guinée
     new_zealand: Nouvelle-Zélande
     north_africa: Afrique du Nord
@@ -3085,13 +3100,17 @@ fr:
     panama: Panama
     peru: Pérou
     poland: Pologne
+    portugal: Portugal
     republic_of_congo: Congo
     russia: Russie
     saudi_arabia: Arabie saoudite
     sao_tome_and_principe: Sao Tomé-et-Principe
+    singapore: Singapour
+    south_africa: Afrique du Sud
     south_america: Amérique du Sud
     spain: Espagne
     sweden: Suède
+    switzerland: Suisse
     syria: Syrie
     thailand: Thaïlande
     trinidad_and_tobago: Trinité-et-Tobago
@@ -3250,7 +3269,7 @@ fr:
   quality_grade_colon: 'Degré de qualité :'
   queued: Mis en file
   query: Requête
-  range: Aire de répartition
+  range: Période
   range_from: Aire de répartition de
   rank: Rang
   rank_position: Rang
@@ -3725,7 +3744,7 @@ fr:
   specify_the_reason_youre_flagging: Spécifier le motif du marquage de cet élément
   src: Rech.
   standard: Standard
-  start: Démarrer
+  start: Début
   start_a_new_list: Démarrer une nouvelle liste
   start_a_new_project: Démarrer un nouveau projet
   start_a_project: Démarrer un projet
@@ -4077,8 +4096,7 @@ fr:
   this_observation_was_created_using: 'Cette observation a été créée en utilisant
     :'
   this_photo_is_already_associated: Cette photo est déjà associée à une de vos observations.
-  this_place_has_no_check_list: Ce lieu n’a pas de liste de contrôle, donc il n’y
-    a pas de guide.
+  this_place_has_no_check_list: Ce lieu n’a pas de liste de contrôle.
   this_species: cette espèce
   this_species_has_no_colors: Cette espèce n’a pas de couleur! Aidez à améliorer la
     recherche d’espèces en nous indiquant sa couleur!
@@ -4154,7 +4172,7 @@ fr:
   top_contributors: Collaborateurs les plus importants
   top_identifier: Meilleurs identificateurs
   top_identifiers: Meilleurs Identificateurs
-  top_identifiers_of_taxon: Meilleurs identifieurs de %{taxon}
+  top_identifiers_of_taxon: Meilleurs identificateurs de %{taxon}
   top_observer: Meilleurs observateurs
   top_observers: Meilleurs observateurs
   top_species: Espèces favorites
@@ -4295,7 +4313,7 @@ fr:
   user_blocked: Utilisateur bloqué
   user_commented: '%{user} a commenté'
   user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
-  user_disagrees_this_is_taxon: '%{user} désapprouve, ceci est %{taxon}'
+  user_disagrees_this_is_taxon: '%{user} ne pense pas que ce soit %{taxon}'
   user_faved_a_noun_by_owner: '%{user} a mis en favori %{noun} par %{owner}'
   user_follows: '%{user} suit'
   user_has_opted_out_of_community_id: L’utilisateur a refusé l’ID de la communauté
@@ -4425,6 +4443,7 @@ fr:
   view_the_range: Afficher l’aire de répartition
   view_unidentified_observations: Afficher les observations non identifiées…
   view_user_observations: Afficher les observations de %{user}
+  view_x: Afficher %{x}
   view_x_from_x: Afficher %{day_observations} du %{observed_on}
   view_xs_journal: Afficher le journal de %{x}
   view_year_stats_for_site: Afficher les statistiques de %{year} pour %{site}
@@ -4543,6 +4562,8 @@ fr:
   wondering_what_to_do_next: Voici quelques étapes suivantes pour vous guider dans
     l’observation et l’identification du monde naturel
   would_you_like_to: Aimeriez-vous en
+  would_you_prefer_to_view_common_names_used_in_place_html: Préférez-vous voir les
+    noms communs utilisés à <strong>%{place}</strong> ?
   would_like_some_help_identifying_this: aimerait de l’aide pour identifier ceci
   x_admin: que %{login} administre
   x_blog: Blogue de %{x}
@@ -5440,7 +5461,7 @@ fr:
           <ul>
             <li>
               la <strong>communauté de %{site_name} est d’accord avec l’ID au niveau de l’espèce ou en dessous</strong>, c.-à-d.
-              quand plus de 2/3 des identifieurs sont d’accord sur un taxon
+              quand plus de 2/3 des identificateurs sont d’accord sur un taxon
             </li>
           </ul>
           <p>
@@ -5562,7 +5583,8 @@ fr:
       kml_field_desc: |-
         KML de la frontière du lieu. Vous pouvez en faire un en utilisant Google Maps, Google
         Earth ou la plupart des applications du SIG. Doit contenir au moins un polygone et être
-        inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site).
+        inférieur à 1 Mo (5 Mo pour les responsables de l’organisation du site), et avoir une zone plus petite que
+        l’état du Texas.
       edit:
         complex_boundary_note_html: |-
           Cette frontière est un peu trop complexe à modifier sur le web. Toutefois, vous pouvez
@@ -6045,6 +6067,9 @@ fr:
         common_names_desc: |-
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          Si vous changez d’avis, vous pouvez toujours
+          <a href='/users/edit'>modifier vos paramètres</a>.
         inaturalist_network_affiliation_desc_html: |-
           Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
           sites Web localisés liés à la communauté mondiale de iNaturalist.
@@ -6076,6 +6101,10 @@ fr:
             vous pourrez manquer des notifications importantes, comme
             des identifications qui modifient l’ID de la communauté sur vos observations.
           </p>
+        name_place_help_html: Prioriser les noms communs utilisés à cet endroit.
+        place_preference_changed_notice_html: |-
+          Préférence de lieu modifiée. Si vous changez d’avis, vous pouvez toujours
+          <a href='/users/edit'>modifier vos paramètres</a>.
         project_addition_preferences:
           any: Tout
           joined: Projets que vous avez rejoint
@@ -6102,6 +6131,9 @@ fr:
           l’opinion de la communauté ne sera pas favorisée par rapport à la vôtre, ce qui veut dire que vos
           observations ne seront pas admissibles au calibre recherche, à moins que vous
           ne soyez d’accord avec la communauté.
+        search_place_help_html: Endroit par défaut pour les recherches d’observation.
+        scientific_name_first_desc: Afficher les noms scientifiques avant les noms
+          communs.
         youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
           un blocage pour en ajouter un autre.
       show:

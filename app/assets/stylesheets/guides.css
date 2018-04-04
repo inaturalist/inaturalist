@@ -1,6 +1,6 @@
-.bootstrap .media-object [class^="icon-"], .bootstrap .media-object [class*=" icon-"] {width: 70px; height:70px; text-align:center;}
-.bootstrap .media-object a {text-decoration: none;}
+.bootstrap .container .media-object [class^="icon-"], .bootstrap .media-object [class*=" icon-"] {width: 70px; height:70px; text-align:center;}
+.bootstrap .container .media-object a {text-decoration: none;}
 .recent_tags {line-height: 2.5;}
-.bootstrap .btn i {vertical-align: middle;}
+.bootstrap .container .btn i {vertical-align: middle;}
 .draft.badge {text-transform: uppercase;}
 .sorttarget { height: 100px;}

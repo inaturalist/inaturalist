@@ -22,6 +22,7 @@ import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
+import FavesContainer from "../containers/faves_container";
 
 import { TABS } from "../actions/current_observation_actions";
 
@@ -109,7 +110,7 @@ class ObservationModal extends React.Component {
           clickable={!blind}
           latitude={ obsForMap.latitude }
           longitude={ obsForMap.longitude }
-          zoomLevel={ obsForMap.map_scale || 8 }
+          zoomLevel={ 5 }
           mapTypeControl
           mapTypeControlOptions={{
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
@@ -156,9 +157,11 @@ class ObservationModal extends React.Component {
     let sounds = null;
     if ( observation.sounds && observation.sounds.length > 0 ) {
       sounds = observation.sounds.map( s => {
+        const soundKey = `sound-${s.id}`;
         if ( s.subtype === "SoundcloudSound" || !s.file_url ) {
           return (
             <iframe
+              key={ soundKey }
               width="100%"
               height="100"
               scrolling="no"
@@ -168,7 +171,7 @@ class ObservationModal extends React.Component {
           );
         }
         return (
-          <audio controls preload="none">
+          <audio key={ soundKey } controls preload="none">
             <source src={ s.file_url } type={ s.file_content_type } />
             { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
           </audio>
@@ -215,6 +218,7 @@ class ObservationModal extends React.Component {
       { keys: ["c"], label: I18n.t( "comment" ), skipBlind: true },
       { keys: ["a"], label: I18n.t( "agree" ), skipBlind: true },
       { keys: ["i"], label: I18n.t( "add_id" ) },
+      { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
       { keys: ["&larr;"], label: I18n.t( "previous_observation" ) },
       { keys: ["&rarr;"], label: I18n.t( "next_observation" ) },
@@ -273,6 +277,7 @@ class ObservationModal extends React.Component {
     if ( blind ) {
       tabs = [tabs[0]];
     }
+    const country = _.find( observation.places || [], p => p.admin_level === 0 );
     return (
       <Modal
         show={visible}
@@ -373,7 +378,8 @@ class ObservationModal extends React.Component {
                   </Popover>
                 </Overlay>
               </div>
-              <div>
+              <div className="action-tools">
+                { blind ? null : <div className="btn"><FavesContainer /></div> }
                 <OverlayTrigger
                   placement="top"
                   trigger="hover"
@@ -427,14 +433,18 @@ class ObservationModal extends React.Component {
                       { taxonMap }
                       <ul className="details">
                         { blind ? null : (
-                          <li>
+                          <li className="user-obs-count">
                             <a href={`/people/${observation.user.login}`} target="_blank" className="user-link">
-                              <i className="icon-person"></i> <span className="login">{ observation.user.login }</span>
+                              <i className="icon-person bullet-icon"></i> <span className="login">{ observation.user.login }</span>
+                            </a>
+                            <span className="separator">&bull;</span>
+                            <a href={ `/observations?user_id=${observation.user.login}` } target="_blank">
+                              <i className="fa fa-binoculars" /> { I18n.toNumber( observation.user.observations_count, { precision: 0 } ) }
                             </a>
                           </li>
                         ) }
                         <li>
-                          <i className="fa fa-calendar"></i> {
+                          <i className="fa fa-calendar bullet-icon"></i> {
                             observation.observed_on ?
                               moment( observation.time_observed_at || observation.observed_on ).format( "LLL" )
                               :
@@ -442,17 +452,24 @@ class ObservationModal extends React.Component {
                           }
                         </li>
                         <li>
-                          <i className="fa fa-map-marker"></i> { observation.place_guess || I18n.t( "unknown" ) }
+                          <i className="fa fa-map-marker bullet-icon"></i> { observation.place_guess || I18n.t( "unknown" ) }
                         </li>
+                        { country ? (
+                          <li>
+                            <i className="fa fa-globe bullet-icon"></i> {
+                              I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "unknown" )
+                            }
+                          </li>
+                        ) : null }
                         { blind ? null : (
                           <li className="view-follow">
                             <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
-                              <i className="icon-link-external"></i>
+                              <i className="icon-link-external bullet-icon"></i>
                               { I18n.t( "view" ) }
                             </a>
                             { observation.user.id === currentUser.id ? null : (
                               <div style={{ display: "inline-block" }}>
-                                &bull;
+                                <span className="separator">&bull;</span>
                                 <FollowButtonContainer observation={observation} btnClassName="btn btn-link" />
                               </div>
                             ) }

@@ -39,6 +39,15 @@ body > div > [role="dialog"] .ActivityItem {
       font-style: normal;
       .sciname {
         font-style: normal;
+        &.genus,
+        &.species,
+        &.subspecies,
+        &.hybrid
+        &.variety,
+        &.form,
+        &.infrahybrid {
+          font-style: italic;
+        }
       }
       a.display-name,
       .display-name {
@@ -50,6 +59,9 @@ body > div > [role="dialog"] .ActivityItem {
   .time {
     margin-right: 12px;
     color: #999999;
+    a {
+      color: #999999;
+    }
   }
   .panel-title {
     display: flex;
@@ -129,19 +141,24 @@ body > div > [role="dialog"] .ActivityItem {
     }
     span.taxon {
       display: inline-block;
-      a.sciname {
+      a.secondary-name {
         font-size: 14px;
         line-height: 16px;
+        // This is weird but it allows the secondary-name to be on a new line
+        // without like it would if it was a block, but without filling the
+        // width of the available space like it would with a span or inline-
+        // block
+        display: table;
       }
       & > a.display-name,
       & > .display-name {
         font-size: 20px;
-        display: block;
         line-height: 25px;
       }
       .member-group {
-        display: inline;
-        .taxon {
+        display: table;
+        .taxon,
+        .secondary-name {
           display: inline;
         }
         a.display-name,

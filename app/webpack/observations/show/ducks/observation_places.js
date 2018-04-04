@@ -27,7 +27,16 @@ export function fetchObservationPlaces( ) {
     }
     const params = { lat: observation.latitude, lng: observation.longitude,
       no_geom: true, order_by: "admin_and_distance" };
-    return inatjs.places.fetch( observation.place_ids, params ).then( response => {
+    let placeIDs;
+    if ( observation.private_place_ids && observation.private_place_ids.length > 0 ) {
+      placeIDs = observation.private_place_ids;
+    } else {
+      placeIDs = observation.place_ids;
+    }
+    if ( !placeIDs || placeIDs.length === 0 ) {
+      return null;
+    }
+    return inatjs.places.fetch( placeIDs, params ).then( response => {
       dispatch( setObservationPlaces( response.results ) );
     } ).catch( e => { } );
   };

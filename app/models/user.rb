@@ -83,7 +83,6 @@ class User < ActiveRecord::Base
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   
-  SHARING_PREFERENCES = %w(share_observations_on_facebook share_observations_on_twitter)
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
     identification_email_notification 
@@ -169,6 +168,7 @@ class User < ActiveRecord::Base
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
       path: "/attachments/users/icons/:id/:style.:icon_type_extension",
       default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
@@ -185,6 +185,7 @@ class User < ActiveRecord::Base
 
   # Roles
   has_and_belongs_to_many :roles, -> { uniq }
+  belongs_to :curator_sponsor, class_name: "User"
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all

@@ -280,7 +280,7 @@ module ApplicationHelper
     return text if text.blank?
     split ||= "\n\n"
     text = text.split(split)[0]
-    text = strip_tags(text).html_safe
+    sanitize( text, tags: %w(a b strong i em) ).html_safe
   end
   
   def remaining_paragraphs_of_text(text,split)
@@ -1232,7 +1232,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "key=#{CONFIG.google.browser_api_key}&v=3.31"
+    params = "v=3&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end

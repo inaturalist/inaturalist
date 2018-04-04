@@ -70,15 +70,16 @@ const SplitTaxon = ( {
       } else {
         comNameClass = `display-name ${comNameClass}`;
       }
+      const commonName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       return (
         <LinkElement
           className={`comname ${comNameClass}`}
           href={ url }
           target={ target }
           onClick={ onClick }
-        >
-          { truncateText( taxon.preferred_common_name ) }
-        </LinkElement>
+        >{
+          truncateText( commonName )
+        }</LinkElement>
       );
     } else if ( !taxon ) {
       comNameClass = `noname display-name ${comNameClass}`;
@@ -90,9 +91,9 @@ const SplitTaxon = ( {
               href={ url }
               onClick={ onClick }
               target={ target }
-            >
-              { I18n.t( "unknown" ) }
-            </LinkElement> <span className="altname">
+            >{
+              I18n.t( "unknown" )
+            }</LinkElement> <span className="altname">
               ({ I18n.t( "placeholder" ) }: { placeholder })
             </span>
           </span>
@@ -146,7 +147,9 @@ const SplitTaxon = ( {
         );
       }
     }
-    if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
+    // Maybe we don't really need forceRank...
+    // if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
+    if ( taxon.rank && taxon.rank_level > 10 ) {
       return (
         <LinkElement
           className={sciNameClass}
@@ -200,15 +203,29 @@ const SplitTaxon = ( {
   };
   let memberGroup;
   // show "is member of" if requested and there's no common name
-  if ( showMemberGroup && taxon && !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) {
-    const groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
-      a.preferred_common_name && a.rank_level > 20
-    ) ) ) );
+  const isBetweenGenusAndSpecies = taxon && taxon.rank_level < 20 && taxon.rank_level > 10;
+  if (
+    showMemberGroup &&
+    taxon &&
+    (
+      ( !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) ||
+      isBetweenGenusAndSpecies
+    )
+  ) {
+    let groupAncestor;
+    if ( isBetweenGenusAndSpecies ) {
+      groupAncestor = _.find( taxon.ancestors, a => a.rank === "genus" );
+    } else {
+      groupAncestor = _.head( _.reverse( _.filter( taxon.ancestors, a => (
+        a.preferred_common_name && a.rank_level > 20
+      ) ) ) );
+    }
     if ( groupAncestor ) {
       memberGroup = (
         <span className="member-group">
           { I18n.t( "a_member_of" ) } <SplitTaxon
             taxon={ groupAncestor }
+            forceRank
             url={ `/taxa/${groupAncestor.id}` }
             user={ user }
           />
@@ -225,9 +242,17 @@ const SplitTaxon = ( {
     firstName = comName( );
     secondName = sciName( );
   }
+  const nodes = _.compact( [
+    icon( ),
+    firstName,
+    secondName,
+    inactive( ),
+    extinct( ),
+    memberGroup
+  ] );
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
-      { icon( ) } { firstName } { secondName } { inactive( ) } { extinct( ) } { memberGroup }
+      { _.flatten( _.map( nodes, ( n, i ) => ( i === 0 ? n : [" ", n] ) ) ) }
     </span>
   );
 };

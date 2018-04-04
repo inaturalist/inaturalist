@@ -127,6 +127,7 @@ class Project < ActiveRecord::Base
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
       styles: { thumb: "48x48#", mini: "16x16#", span1: "30x30#", span2: "70x70#", original: "1024x1024>" },
       path: "projects/:id-icon-:style.:extension",
@@ -150,6 +151,7 @@ class Project < ActiveRecord::Base
       s3_credentials: "#{Rails.root}/config/s3.yml",
       s3_protocol: CONFIG.s3_protocol || "https",
       s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
       bucket: CONFIG.s3_bucket,
       path: "projects/:id-cover.:extension",
       url: ":s3_alias_url",
@@ -838,8 +840,14 @@ class Project < ActiveRecord::Base
     # making sure we only look at observations updated since the last aggregation
     unless last_aggregated_at.nil?
       params[:updated_since] = last_aggregated_at.to_s
-      params[:aggregation_user_ids] = User.
-        where("users.updated_at >= ?", last_aggregated_at).pluck(:id)
+      params[:aggregation_user_ids] = Preference.
+        where(name: "project_addition_by").
+        where(owner_type: "User").
+        where("updated_at >= ?", last_aggregated_at).distinct.pluck(:owner_id)
+      params[:aggregation_user_ids] += ProjectUser.
+        where(project_id: id).
+        where("updated_at >= ?", last_aggregated_at).distinct.pluck(:user_id)
+      params[:aggregation_user_ids].uniq!
     end
     list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1

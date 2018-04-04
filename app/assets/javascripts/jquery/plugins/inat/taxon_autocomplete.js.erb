@@ -32,7 +32,7 @@ autocompleter.setTitle = function( result, options ) {
       result.title = result.name;
     }
   } else {
-    result.title = result.preferred_common_name || result.english_common_name || result.name;
+    result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name ) || result.name;
   }
   result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags( result.title ) );
 };
@@ -41,7 +41,7 @@ autocompleter.setSubtitle = function( result, options ) {
   options = options || {};
   if ( !result.title ) { return; }
   if ( options.user && options.user.prefers_scientific_name_first ) {
-    result.subtitle = result.preferred_common_name || result.english_common_name;
+    result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name );
   } else if ( result.name != result.title ) {
     if( result.rank_level <= 10 ) {
       result.subtitle = "<i>" + result.name + "</i>";

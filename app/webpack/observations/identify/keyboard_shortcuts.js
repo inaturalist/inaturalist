@@ -7,6 +7,7 @@ import {
   showPrevObservation,
   toggleCaptive,
   toggleReviewed,
+  toggleFave,
   addAnnotationFromKeyboard,
   zoomCurrentPhoto,
   showPrevPhoto,
@@ -32,6 +33,7 @@ const setupKeyboardShortcuts = ( dispatch ) => {
   bindShortcut( "r", toggleReviewed, dispatch, { eventType: "keyup" } );
   bindShortcut( "a", agreeWithCurrentObservation, dispatch, { eventType: "keyup" } );
   bindShortcut( "z", zoomCurrentPhoto, dispatch );
+  bindShortcut( "f", toggleFave, dispatch );
   bindShortcut( ["command+left", "alt+left"], showPrevPhoto, dispatch );
   bindShortcut( ["command+right", "alt+right"], showNextPhoto, dispatch );
   bindShortcut( "shift+left", showPrevTab, dispatch );

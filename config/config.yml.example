@@ -55,6 +55,7 @@ base: &base
 
     s3_bucket: yourbucketname
     s3_protocol: https
+    s3_region: us-east-1
 
     memcached: localhost
 

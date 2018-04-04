@@ -61,25 +61,13 @@
   #metalinks.meta.right
     :ruby
       pieces = []
-      if logged_in?
-        pieces << link_to(
-          t(:add_an_observation),
-          new_observation_url(
-            :place_guess => @place.display_name,
-            :latitude => @place.latitude,
-            :longitude => @place.longitude,
-            :positional_accuracy => @place.default_observation_precision,
-            :place_id => @place.id
-          )
-        )
-      end
       pieces << link_to(t(:embed_place_widget), place_widget_path(@place.id), :rel => "nofollow") if @place.check_list
       pieces << link_to(t(:edit_place), edit_place_path(@place), :rel => "nofollow") if @place.editable_by?(current_user)
     = raw pieces.join(' | ')
   %ul
     %li
       %a{:href => "#guidetab"}
-        %span= t :species_guide
+        %span= t :species
     %li
       %a{:href => "#observationstab"}
         %span= t(:observations).capitalize

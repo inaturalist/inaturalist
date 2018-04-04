@@ -101,9 +101,73 @@ iNatModels.Taxon.prototype.conservationStatus = function( ) {
   return this.conservationStatusName;
 };
 
+iNatModels.Taxon.capitalize = function( s ) {
+  // As far as I can tell, Javascript has no word metacharacter that matches
+  // Unicode characters, and even support for explicit Unicode matches like this
+  // only works in modern browsers. Might be an argument for performing
+  // capitalization in Ruby before addition to the db. If the lack of support in
+  // older browsers becomes a problem, we might consider moving or duplicating
+  // this into React and using https://babeljs.io/docs/plugins/transform-es2015
+  // -unicode-regex. We could also use the command line tool there to convert
+  // just these patterns for use outside of React
+  var firstLetterMatch = s.match( /[A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]/ );
+  var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
+  var leadingContractionMatch = s.match( /^[a-zéáúóåøØêûîôâñèùìòàçëüïöäæµﬁﬂøŒœ∑ß∂∆Ω][’']([A-zÉéÁáÚúÓóåÅøØÊêÛûÎîÔôÂâÑñÈèÙùÌìÒòÀàçËëÜüÏïÖöÄäÆæµÂﬁﬂøŒœ∑ß∂∆Ω]+)/ );
+  if ( leadingContractionMatch ) {
+    firstLetterIndex = s.indexOf( leadingContractionMatch[1] );
+  }
+  return s.slice( 0, firstLetterIndex ) + s[firstLetterIndex].toUpperCase( ) + s.slice( firstLetterIndex + 1 );
+}
+
+iNatModels.Taxon.titleCaseName = function( name ) {
+  if ( !name ) {
+    return name;
+  }
+  // This may or may not be a scalable solution. An alternative would be get
+  // these from translation files and have translators add the words that
+  // are uncapitalized in their languages
+  var uncapitalized = [
+    "à",
+    "a",
+    "and",
+    "con",
+    "da",
+    "dal",
+    "de",
+    "dei",
+    "del",
+    "des",
+    "di",
+    "du",
+    "e",
+    "in",
+    "la",
+    "o",
+    "of",
+    "on",
+    "the"
+  ];
+  var commonNamePieces = name.split( /\s+/ );
+  return _.map( commonNamePieces, function( piece, i ) {
+    if ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) {
+      return piece.toLowerCase( );
+    }
+    if ( i === commonNamePieces.length - 1 ) {
+      return piece.split( "-" ).map( function( s ) {
+        if ( uncapitalized.indexOf( s.toLowerCase( ) ) >= 0 ) {
+          return s.toLowerCase( );
+        }
+        return iNatModels.Taxon.capitalize( s );
+      } ).join( "-" );
+    }
+    return iNatModels.Taxon.capitalize( piece );
+  } ).join( " " );
+
+}
+
 iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
   options = options || { };
-  options.locale = ( options.locale || "en" ).split( "-" )[0];
+  options.locale = ( options.locale || I18n.locale || "en" ).split( "-" )[0];
   var nameInLocale;
   var nameInPlace;
   var nameInAncestorPlace;
@@ -117,12 +181,12 @@ iNatModels.Taxon.prototype.preferredCommonName = function( options ) {
         nameInAncestorPlace = n.name;
       }
     }
-    if( !nameInLocale && n.locale === options.locale ) { nameInLocale = n.name; }
+    if( !nameInLocale && n.locale.toString( ).split( "-" )[0] === options.locale ) { nameInLocale = n.name; }
   });
-  nameInLocale = nameInPlace || nameInAncestorPlace || nameInLocale;
+  nameInLocale = nameInPlace || nameInAncestorPlace || nameInLocale || this.preferred_common_name;
   if( options.defaultToEnglish === true &&
       !nameInLocale && options.locale != "en" ) {
     return this.preferredCommonName( _.extend( { }, options, { locale: "en" } ) );
   }
-  return nameInLocale;
+  return iNatModels.Taxon.titleCaseName( nameInLocale );
 };

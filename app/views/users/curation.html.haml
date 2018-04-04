@@ -24,7 +24,7 @@
           - for user_attr in User.column_names
             %tr
               %th= user_attr
-              %td= @display_user.send(user_attr).to_s.html_safe
+              %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
           - @display_user.preferences.each do |pref,val|
             %tr
               %th= pref
@@ -40,6 +40,10 @@
                       = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
               - else
                 No observations to check
+          - if @display_user.curator_sponsor
+            %tr
+              %th User who made this user a curator
+              %td= link_to_user @display_user.curator_sponsor
       .col-xs-4
         %p
           = user_image( @display_user, size: "large", class: "img-responsive center-block" )

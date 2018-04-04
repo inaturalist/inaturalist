@@ -6,7 +6,7 @@ import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
 import { fetchSuggestions } from "../ducks/suggestions";
-import { setControlledTerms, fetchControlledTerms } from "../../show/ducks/controlled_terms";
+import { setControlledTermsForTaxon } from "../../show/ducks/controlled_terms";
 import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
 import { fetchSubscriptions, setSubscriptions } from "../../show/ducks/subscriptions";
 
@@ -57,7 +57,7 @@ export function fetchDataForTab( options = { } ) {
     if ( s.currentObservation.tab === "suggestions" ) {
       dispatch( fetchSuggestions( ) );
     } else if ( s.currentObservation.tab === "annotations" ) {
-      dispatch( fetchControlledTerms( { observation } ) );
+      dispatch( setControlledTermsForTaxon( observation.taxon ) );
     } else if ( s.currentObservation.tab === "data-quality" ) {
       dispatch( fetchQualityMetrics( { observation } ) );
     } else {
@@ -121,8 +121,14 @@ function fetchCurrentObservation( observation = null ) {
         return newObs;
       } )
       .then( o => {
-        if ( o.place_ids && o.place_ids.length > 0 ) {
-          const placeIDs = _.take( o.place_ids, 100 );
+        let placeIDs;
+        if ( o.private_place_ids && o.private_place_ids.length > 0 ) {
+          placeIDs = o.private_place_ids;
+        } else {
+          placeIDs = o.place_ids;
+        }
+        if ( placeIDs && placeIDs.length > 0 ) {
+          placeIDs = _.take( o.place_ids, 100 );
           return iNaturalistJS.places.fetch(
             placeIDs, { per_page: 100, no_geom: true }
           ).then( response => {
@@ -153,7 +159,7 @@ function showNextObservation( ) {
       nextObservation = currentObservation.observation || observations.results[0];
     }
     if ( nextObservation ) {
-      dispatch( setControlledTerms( [] ) );
+      dispatch( setControlledTermsForTaxon( nextObservation.taoxn ) );
       dispatch( showCurrentObservation( nextObservation ) );
       dispatch( fetchCurrentObservation( nextObservation ) );
     } else {
@@ -176,7 +182,7 @@ function showPrevObservation( ) {
     prevIndex -= 1;
     const prevObservation = observations.results[prevIndex];
     if ( prevObservation ) {
-      dispatch( setControlledTerms( [] ) );
+      dispatch( setControlledTermsForTaxon( prevObservation.taoxn ) );
       dispatch( showCurrentObservation( prevObservation ) );
       dispatch( fetchCurrentObservation( prevObservation ) );
     }
@@ -285,14 +291,12 @@ function stopLoadingDiscussionItem( item ) {
 export function addAnnotation( controlledAttribute, controlledValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    // if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = ( state.currentObservation.observation.annotations || [] ).concat( [{
       controlled_attribute: controlledAttribute,
       controlled_value: controlledValue,
       user: state.config.currentUser,
       api_status: "saving"
     }] );
-    // dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
 
     const payload = {
@@ -301,7 +305,6 @@ export function addAnnotation( controlledAttribute, controlledValue ) {
       controlled_attribute_id: controlledAttribute.id,
       controlled_value_id: controlledValue.id
     };
-    // dispatch( callAPI( inatjs.annotations.create, payload ) );
     iNaturalistJS.annotations.create( payload )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
@@ -331,14 +334,11 @@ export function addAnnotationFromKeyboard( attributeLabel, valueLabel ) {
 export function deleteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    // if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
       ( a.user.id === state.config.currentUser.id && a.uuid === id ) ?
         Object.assign( { }, a, { api_status: "deleting" } ) : a
     ) );
-    // dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
-    // dispatch( callAPI( inatjs.annotations.delete, { id } ) );
     iNaturalistJS.annotations.delete( { id } )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
@@ -347,7 +347,6 @@ export function deleteAnnotation( id ) {
 export function voteAnnotation( id, voteValue ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    // if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
       ( a.uuid === id ) ?
         Object.assign( { }, a, {
@@ -359,9 +358,7 @@ export function voteAnnotation( id, voteValue ) {
           }] )
         } ) : a
     ) );
-    // dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
-    // dispatch( callAPI( inatjs.annotations.vote, { id, vote: voteValue } ) );
     iNaturalistJS.annotations.vote( { id, vote: voteValue } )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
   };
@@ -370,7 +367,6 @@ export function voteAnnotation( id, voteValue ) {
 export function unvoteAnnotation( id ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    // if ( !hasObsAndLoggedIn( state ) ) { return; }
     const newAnnotations = _.map( state.currentObservation.observation.annotations, a => (
       ( a.uuid === id ) ?
         Object.assign( { }, a, {
@@ -381,7 +377,6 @@ export function unvoteAnnotation( id ) {
           ) )
         } ) : a
     ) );
-    // dispatch( setAttributes( { annotations: newAnnotations } ) );
     dispatch( updateCurrentObservation( { annotations: newAnnotations } ) );
     iNaturalistJS.annotations.unvote( { id } )
       .then( () => dispatch( fetchCurrentObservation( ) ) );
@@ -446,6 +441,21 @@ export function unfave( ) {
     ) );
     dispatch( updateCurrentObservation( { faves: newFaves } ) );
     dispatch( unvote( ) );
+  };
+}
+
+export function toggleFave( ) {
+  return ( dispatch, getState ) => {
+    const { config, currentObservation } = getState( );
+    const observation = currentObservation.observation;
+    const userHasFavedThis = observation && observation.faves && _.find( observation.faves, o => (
+      o.user.id === config.currentUser.id
+    ) );
+    if ( userHasFavedThis ) {
+      dispatch( unfave( ) );
+    } else {
+      dispatch( fave( ) );
+    }
   };
 }
 

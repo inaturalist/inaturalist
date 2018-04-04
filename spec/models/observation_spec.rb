@@ -13,7 +13,7 @@ describe Observation do
 
     before(:each) do
       @taxon = Taxon.make!
-      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'yesterday at 1pm')
+      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'April 1st 1994 at 1am')
     end
   
     it "should be in the past" do
@@ -28,8 +28,10 @@ describe Observation do
   
     it "should properly set date and time" do
       Time.use_zone(@observation.time_zone) do
-        expect(@observation.observed_on).to eq 1.day.ago.to_date
-        expect(@observation.time_observed_at.hour).to eq 13
+        expect(@observation.observed_on.year).to eq 1994
+        expect(@observation.observed_on.month).to eq 4
+        expect(@observation.observed_on.day).to eq 1
+        expect(@observation.time_observed_at.hour).to eq 1
       end
     end
   
@@ -227,7 +229,7 @@ describe Observation do
       @observation.time_zone = 'Eastern Time (US & Canada)'
       @observation.save
       expect(@observation).to be_valid
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 13
+      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 1
     end
   
     it "should set the time zone to UTC if the user's time zone is blank" do
@@ -2301,10 +2303,10 @@ describe Observation do
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
-    it "should not include system places that don't contain public_positional_accuracy circle" do
+    it "should include system places that don't contain public_positional_accuracy circle" do
       p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))", admin_level: 1 )
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
-      expect( o.public_places ).not_to include p
+      expect( o.public_places ).to include p
     end
   end
 
@@ -3108,6 +3110,39 @@ describe Observation do
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @s1
       end
+      it "s1.disagreement_false s2.disagreement_false s2.disagreement_false should be g1" do
+        @taxon_swap1 = TaxonSwap.make
+        @taxon_swap1.add_input_taxon(@s3)
+        @taxon_swap1.add_output_taxon(@s1)
+        @taxon_swap1.save!
+        @taxon_swap2 = TaxonSwap.make
+        @taxon_swap2.add_input_taxon(@s4)
+        @taxon_swap2.add_output_taxon(@s2)
+        @taxon_swap2.save!
+
+        Identification.make!( observation: @o, taxon: @s3)
+        Identification.make!( observation: @o, taxon: @s4)
+        @o.reload
+        expect(@o.identifications.size).to eq(2)
+        expect(@o.identifications.detect{|i| i.taxon_id == @s3.id}).not_to be_blank
+        
+        @user = make_user_with_role(:admin, created_at: Time.now)
+        @taxon_swap1.committer = @user
+        @taxon_swap2.committer = @user
+        @taxon_swap1.commit
+        Delayed::Worker.new.work_off
+        @taxon_swap2.commit
+        Delayed::Worker.new.work_off
+        @s4.reload
+        expect(@s4.is_active).to be false
+        @o.reload
+        expect(@o.identifications.size).to eq(4)
+        expect(@o.identifications.detect{|i| i.taxon_id == @s3.id}).not_to be_blank
+        
+        Identification.make!( observation: @o, taxon: @s2, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @g1
+      end
     end
   end
 
@@ -3619,6 +3654,8 @@ def setup_test_case_taxonomy
   @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
   @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
   @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
+  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "s3" )
+  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "s4" )
   @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
   @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
   @o = Observation.make!

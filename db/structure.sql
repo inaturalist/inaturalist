@@ -3445,6 +3445,38 @@ CREATE TABLE schema_migrations (
 
 
 --
+-- Name: sessions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE sessions (
+    id integer NOT NULL,
+    session_id character varying NOT NULL,
+    data text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE sessions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE sessions_id_seq OWNED BY sessions.id;
+
+
+--
 -- Name: site_admins; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4530,7 +4562,8 @@ CREATE TABLE users (
     icon_content_type character varying,
     icon_file_size integer,
     icon_updated_at timestamp without time zone,
-    search_place_id integer
+    search_place_id integer,
+    curator_sponsor_id integer
 );
 
 
@@ -5284,6 +5317,13 @@ ALTER TABLE ONLY roles ALTER COLUMN id SET DEFAULT nextval('roles_id_seq'::regcl
 --
 
 ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regclass);
+
+
+--
+-- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq'::regclass);
 
 
 --
@@ -6154,6 +6194,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY rules
     ADD CONSTRAINT rules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY sessions
+    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -7752,6 +7800,13 @@ CREATE UNIQUE INDEX index_preferences_on_owner_and_name_and_preference ON prefer
 
 
 --
+-- Name: index_preferences_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_preferences_on_updated_at ON preferences USING btree (updated_at);
+
+
+--
 -- Name: index_project_assets_on_asset_content_type; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7843,6 +7898,13 @@ CREATE INDEX index_project_users_on_project_id_and_taxa_count ON project_users U
 
 
 --
+-- Name: index_project_users_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_project_users_on_updated_at ON project_users USING btree (updated_at);
+
+
+--
 -- Name: index_project_users_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -7910,6 +7972,20 @@ CREATE INDEX index_roles_users_on_role_id ON roles_users USING btree (role_id);
 --
 
 CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
+
+
+--
+-- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_sessions_on_session_id ON sessions USING btree (session_id);
+
+
+--
+-- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_sessions_on_updated_at ON sessions USING btree (updated_at);
 
 
 --
@@ -8337,6 +8413,13 @@ CREATE INDEX index_user_mutes_on_muted_user_id ON user_mutes USING btree (muted_
 --
 
 CREATE INDEX index_user_mutes_on_user_id ON user_mutes USING btree (user_id);
+
+
+--
+-- Name: index_users_on_curator_sponsor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_curator_sponsor_id ON users USING btree (curator_sponsor_id);
 
 
 --
@@ -9224,4 +9307,10 @@ INSERT INTO schema_migrations (version) VALUES ('20180109232530');
 INSERT INTO schema_migrations (version) VALUES ('20180124192906');
 
 INSERT INTO schema_migrations (version) VALUES ('20180126155509');
+
+INSERT INTO schema_migrations (version) VALUES ('20180209020229');
+
+INSERT INTO schema_migrations (version) VALUES ('20180320224314');
+
+INSERT INTO schema_migrations (version) VALUES ('20180329144359');
 

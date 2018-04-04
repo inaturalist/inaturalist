@@ -3,7 +3,9 @@
 # Export driver: phpyaml
 # Author: 2axterix2
 # Author: Alcorman
+# Author: Anitenn
 # Author: Asierog
+# Author: Caloonso
 # Author: Cgalindo
 # Author: Cruzan
 # Author: Csbotero
@@ -18,11 +20,13 @@
 # Author: Luisangelrg
 # Author: Mack
 # Author: Macofe
+# Author: MarcoAurelio
 # Author: Ncontinanza
 # Author: Ohlila
 # Author: Pato
 # Author: PoLuX124
 # Author: RicardoSGZ
+# Author: Turluma
 # Author: Tusca
 # Author: Yllelder
 ---
@@ -38,10 +42,10 @@ es:
     <a href="http://photos.google.com">Google Photos</a> y
     <a href="http://facebook.com">Facebook</a>
     para alojamiento de imágenes.
-  a_default_taxon_name_will_automatically_created: Se creará un nombre por defecto
-    del taxón a partir del atributo del nombre científico de este taxón. Cuando hayas
-    guardado este taxón, podrás agregar otros nombres aquí (nombres comunes, nombres
-    científicos actualizados, etc.).
+  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
+    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
+    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
+    obsoletos, etc.)
   x_comments:
     one: 1 comentario
     other: '%{count} comentarios'
@@ -146,6 +150,7 @@ es:
   about_bioblitz_results: sobre los resultados del "bioblitz" (evaluación rápida)
   about_charts: Acerca de los gráficos
   about_community_taxa: Sobre los taxones comunitarios
+  about_complete_taxa: Acerca de los taxones completos
   about_conservation_status: Acerca del estado de conservación
   about_establishment_means: Acerca de los medios de establecimiento
   about_external_links: Acerca de los enlaces externos
@@ -214,7 +219,7 @@ es:
   add_colors: Añade colores
   add_comma_separated_tags: Añade etiquetas separadas por comas
   add_comment: Añade un comentario
-  add_common_names_for: Añade nombres comunes a taxones existentes
+  add_common_names_for: añadir nombres vernáculos para taxones existentes
   add_conservation_status: Añade estado de conservación
   add_countries: Añade países
   add_custom_project_fields: Añade campos de proyecto personalizados
@@ -339,17 +344,26 @@ es:
   all_places: Todos los lugares
   all_projects: Todos los proyectos
   all_rank_added_to_the_database:
+    phylum: Se añadieron todos los filos a la base de datos
     subphylum: Se añadieron todos los subfilos a la base de datos
     superclass: Se añadieron todas las superclases a la base de datos
     class: Se añadieron todas las clases a la base de datos
+    subclass: Se añadieron todas las subclases a la base de datos
     infraclass: Se añadieron todas las infraclases a la base de datos
     superorder: Se añadieron todos los superórdenes a la base de datos
+    order: Se añadieron todos los órdenes a la base de datos
+    suborder: Se añadieron todos los subórdenes a la base de datos
     infraorder: Se añadieron todos los infraórdenes a la base de datos
+    superfamily: Se añadieron todas las superfamilias a la base de datos
     epifamily: Se añadieron todas las epifamilias a la base de datos
     family: Se añadieron todas las familias a la base de datos
     subfamily: Se añadieron todas las subfamilias a la base de datos
+    supertribe: Se añadieron todas las supertribus a la base de datos
     tribe: Se añadieron todas las tribus a la base de datos
+    subtribe: Se añadieron todas las subtribus a la base de datos
     genus: Se añadieron todos los géneros a la base de datos
+    genushybrid: Se añadieron todos los géneros híbridos a la base de datos
+    subgenus: Se añadieron todos los subgéneros a la base de datos
     section: Se añadieron todas las secciones a la base de datos
     subsection: Se añadieron todas las subsecciones a la base de datos
     species: Se añadieron todas las especies a la base de datos
@@ -899,6 +913,7 @@ es:
   committed: Guardar
   committed_on: Validado el %{date}
   committing: Guardando...
+  community: Comunidad
   community_curated: Supervisado por la Comunidad
   community_guidelines: Directrices comunitarias
   community_id: 'Identificación de la <strong>comunidad</strong>:'
@@ -2042,9 +2057,12 @@ es:
     de fecha.
   locales_: Locales
   locales:
+    ar: Árabe
     bg: Búlgaro
     br: Bretón
     ca: Catalán
+    da: Danés
+    de: Alemán
     en-US: Inglés (Estados Unidos)
     en: Inglés
     es-ES: Español (España)
@@ -2957,22 +2975,31 @@ es:
     afghanistan: Afganistán
     africa: África
     antigua_and_barbuda: Antigua y Barbuda
+    australia: Australia
+    austria: Austria
     belgium: Bélgica
     bosnia_and_herzegovina: Bosnia y Herzegovina
     brazil: Brasil
     central_america: América central
+    china: China
+    colombia: Colombia
+    denmark: Dinamarca
     egypt: Egipto
     equatorial_guinea: Guinea Ecuatorial
     europe: Europa
     france: Francia
     germany: Alemania
     greece: Grecia
+    hong_kong: Hong Kong
     hungary: Hungría
     italy: Italia
+    india: India
     iraq: Irak
     japan: Japón
+    korea: Corea
     martinique: Martinica
     mexico: México
+    netherlands: Países Bajos
     new_guinea: Nueva Guinea
     new_zealand: Nueva Zelanda
     north_africa: África del norte
@@ -2981,13 +3008,17 @@ es:
     panama: Panamá
     peru: Perú
     poland: Polonia
+    portugal: Portugal
     republic_of_congo: República del Congo
     russia: Rusia
     saudi_arabia: Arabia Saudita
     sao_tome_and_principe: Santo Tomé y Príncipe
+    singapore: Singapur
+    south_africa: Sudáfrica
     south_america: América del sur
     spain: España
     sweden: Suecia
+    switzerland: Suiza
     syria: Siria
     thailand: Tailandia
     trinidad_and_tobago: Trinidad y Tobago
@@ -3440,7 +3471,7 @@ es:
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
   show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
-  show_common_names: Mostrar nombres comunes
+  show_common_names: Mostrar nombres vernáculos
   show_counts: Mostrar conteos con base en la lista
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_kml: Mostrar KML
@@ -3956,8 +3987,7 @@ es:
     del rango.
   this_observation_was_created_using: 'Esta observación fue creada usando:'
   this_photo_is_already_associated: Esta foto ya está asociada con una de sus observaciones.
-  this_place_has_no_check_list: Este lugar no tiene lista de comprobación. Por ende,
-    no hay guía.
+  this_place_has_no_check_list: Este lugar no tiene lista de comprobación.
   this_species: esta especie
   this_species_has_no_colors: ¡Esta especie no tiene colores¡Ayude a mejorar las búsquedas
     de especies informándonos de qué color es esta!
@@ -4196,7 +4226,7 @@ es:
   user_suggested_an_id: '%{user} sugirió una identificación'
   user_thinks_yours_is: '%{user} %{noun} su observación %{observation} es'
   username: Nombre de usuario
-  username_or_email: Nombre de usuario o email
+  username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
@@ -4299,6 +4329,7 @@ es:
   view_the_range: Ver el área
   view_unidentified_observations: Ver observaciones no identificadas...
   view_user_observations: Ver observaciones de %{user}
+  view_x: Ver %{x}
   view_x_from_x: Ver %{day_observations} de %{observed_on}
   view_xs_journal: Ver el diario de %{x}
   view_year_stats_for_site: Ver las estadísticas de %{year} de %{site}
@@ -4411,6 +4442,8 @@ es:
   wondering_what_to_do_next: He aquí algunos de los siguientes pasos que puedes dar
     para observar e identificación en el mundo natural
   would_you_like_to: . ¿Le gustaría
+  would_you_prefer_to_view_common_names_used_in_place_html: ¿Prefieres ver los nombres
+    vernáculos utilizados en <strong>%{place}</strong>?
   would_like_some_help_identifying_this: le agradaría recibir ayuda identificando
     esto
   x_admin: '%{login} Administrador'
@@ -4768,13 +4801,11 @@ es:
           Creative Commons Compartir Igual (como Wikipedia), que son legall
           obligado a utilizar una licencia similar. He aquí un resumen de
           todas las licencias de Creative Commons y su significado:
-        paste_note_html: |-
-          Pegue en un máximo de 500 nombres de especies, uno por línea.
-          %{site_name} hará todo lo posible para que coincida con los nombres
-          comunes de los conceptos de especie, sino para evitar la ambigüedad
-          que es mejor usar los nombres científicos. Si desea especificar los
-          dos, separar el nombre científico del nombre común con una coma,
-          como <code>Homo sapiens,humano</code>.
+        paste_note_html: 'Pega hasta 500 nombres de especie, uno por renglón. %{site_name}
+          hará lo posible por relacionar los nombres vernáculos con los conceptos
+          de las especies, pero es mejor utilizar los nombres científicos para evitar
+          ambigüedades. Si quieres especificar ambos, separa el nombre científico
+          del vernáculo con una coma: <code>Homo sapiens,Humano</code>.'
         places_note: |-
           Nota: no todos los lugares tienen listas de comprobación con taxones.
           Si usted está teniendo problemas para encontrar un lugar con
@@ -4823,8 +4854,8 @@ es:
         alphadisplay: Alfabético por nombre para mostrar
     guide_taxa:
       edit:
-        eol_explanation: Añadir un nombre común, hasta 5 imágenes, 1 sección de descripción
-          y 1 mapa de EOL.
+        eol_explanation: Añadir un nombre vernáculo, hasta 5 imágenes, 1 sección de
+          descripción y 1 mapa de EOL.
         site_explanation: Añadir un nombre común, hasta 5 imágenes con licencia, y
           un resumen de Wikipedia %{site_name}.
       show:
@@ -5445,16 +5476,17 @@ es:
           </p>
         rules:
           captive: ser cautivo/cultivada
-          wild: ser salvaje/naturalizó
+          coordinates_shareable_by_project_curators: coordinables para ser compartidos por los curadores del proyecto
           georeferenced: tener coordenadas
-          has_media: tener medios (foto o sonido)
           has_a_photo: tener una foto
           has_a_sound: tener un sonido
+          has_media: tener medios (foto o sonido)
           identified: ser identificado
           in_taxon: estar en taxón
           observed_in_place: ser observado en su lugar
           on_list: ser de un taxón en la lista de proyectos
           verifiable: ser verificable
+          wild: ser salvaje/naturalizó
         start_time_desc: 'Hora de inicio para tu bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm'
         submission_models:
           any: cualquiera
@@ -5637,13 +5669,12 @@ es:
           nombre</strong>, sólo para los lugares que entran en conflicto con
           otros lugares.
       taxon:
-        about_html: |-
-          Taxa puede tener muchos nombres comunes. Apoyamos un defecto nombre
-          común a nivel mundial, que se puede cambiar aquí arrastrando un
-          nombre a la parte superior de la lista. También puede especificar
-          nombres predeterminados en diferentes lugares editando el nombre y
-          añadir un lugar, pero por favor, sólo hacerlo cuando diferentes
-          lugares tienen nombres en conflicto.
+        about_html: Los taxones pueden tener muchos nombres vernáculos. Admitimos
+          un nombre vernáculo global predeterminado, el cual puede cambiarse aquí
+          arrastrando un nombre hacia la parte superior de la lista. También puedes
+          especificar nombres predeterminados para lugares distintos editando el nombre
+          y añadiéndole un lugar, pero utiliza este procedimiento únicamente cuando
+          haya discrepancias entre nombres entre varias regiones.
     users:
       dashboard:
         taxon_change_desc: |-
@@ -5667,8 +5698,11 @@ es:
           a este proyecto."
       edit:
         common_names_desc: |-
-          Mostrar nombres comunes. Desactiva la opción si quieres ver únicamente los científicos.
-          Observa que puedes controlar cuáles nombres comunes ves mediante la configuración de idioma y región.
+          Mostrar los nombres vernáculos. Desactiva la opción si quieres ver solo los científicos.
+          Observa que puedes controlar cuáles nombres vernáculos ves al modificar la configuración de idioma y región.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          Si cambias de opinión siempre puedes
+          <a href='/users/edit'>editar tus preferencias</a>.
         inaturalist_network_affiliation_desc_html: |-
           La <a href="%{url}" target="_blank">Red iNaturalist</a> es una
           colección de sitios web localizados conectados a la comunidad
@@ -5685,6 +5719,8 @@ es:
           Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional,
           organización\nintergubernamental que recopila y distribuye información sobre
           la\nbiodiversidad de todo el mundo."
+        name_place_help_html: Priorizar los nombres vernáculos utilizados en este
+          lugar.
         project_addition_preferences:
           any: Cualquiera
           joined: Proyectos a los que te has unido
@@ -5703,6 +5739,7 @@ es:
           identificaciones, pero la opinión de la comunidad no serán priorizadas frente
           a la suya. Esto significa que sus observaciones sólo serán de grado de investigación,
           cuando usted esté de acuerdo con la comunidad.'
+        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
       show:
         take_a_chance_to_review_html: Aprovecha a revisar <a href="%{link}">nuestras
           directrices</a>.
@@ -6054,6 +6091,8 @@ es:
         terms: Términos
         map_type: Tipo de mapa
         zoom_level: Nivel de acercamiento
+        preferred_membership_model: Modelo preferido de membresía
+        preferred_submission_model: Modelo de envío preferido
         prefers_place_boundary_visible: Mostrar los límites del lugar en el mapa
         tracking_codes: Códigos de rastreo
         source_url: Dirección web de la fuente

@@ -53,5 +53,5 @@
         %td.image{ "ng-bind-html": "t.photoTag( ) | sanitize" }
         %td.taxon
           %a.nobr{ "ng-href": "/taxa/{{ t.id }}" }
-            {{ t.preferred_common_name || t.english_common_name || t.name }}
+            {{ t.preferredCommonName( ) || t.english_common_name || t.name }}
           .meta{ "ng-bind-html": "taxonObservationsLink( t ) | sanitize" }

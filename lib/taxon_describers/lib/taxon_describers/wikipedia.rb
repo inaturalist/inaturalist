@@ -20,10 +20,8 @@ module TaxonDescribers
       coder = HTMLEntities.new
       html.gsub!(/(data-)?videopayload=".+?"/m, '')
       decoded = coder.decode(html)
-      decoded.gsub!('href="//', 'href="http://')
-      decoded.gsub!('src="//', 'src="http://')
-      decoded.gsub!('href="/', 'href="http://en.wikipedia.org/')
-      decoded.gsub!('src="/', 'src="http://en.wikipedia.org/')
+      decoded.gsub!(/href="\/([A-z])/, 'href="https://en.wikipedia.org/\\1')
+      decoded.gsub!(/src="\/([A-z])/, 'src="https://en.wikipedia.org/\\1')
       if options[:strip_references]
         decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')
         decoded.gsub!(/<strong .*?class=.*?error.*?>.+?<\/strong>/, '')

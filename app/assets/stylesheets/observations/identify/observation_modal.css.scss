@@ -87,13 +87,13 @@ $galleryHeightElements: "
 
 .ObservationModal {
   .TaxonMap {
-    height: 120px;
+    height: 140px;
     border-radius: 2px;
     border: 1px solid #DDD;
   }
   .TaxonMap.empty {
     text-align: center;
-    line-height: 120px;
+    line-height: 140px;
     background-color: #eee;
     color: #999;
   }
@@ -166,7 +166,11 @@ $galleryHeightElements: "
 
 .ObservationModal .tools {
   display: flex;
+  flex-wrap: nowrap;
   justify-content: space-between;
+  .action-tools {
+    white-space: nowrap;
+  }
   .form-group {
     margin-bottom: 0;
   }
@@ -473,12 +477,20 @@ body > div > [role="dialog"] .ObservationModal {
       list-style: none;
       padding-left: 20px;
 
+      a {
+        color: black;
+      }
+
       > li {
         position: relative;
         padding-left: 20px;
         margin-bottom: 4px;
       }
-      i {
+      .separator {
+        color: #999;
+        margin: 0 5px;
+      }
+      i.bullet-icon {
         position: absolute;
         left: 0;
         top: 0;
@@ -487,8 +499,15 @@ body > div > [role="dialog"] .ObservationModal {
         display: block;
         line-height: 16px;
       }
+      .user-obs-count {
+        .fa-binoculars {
+          font-size: 11px;
+          position: relative;
+          top: -1px;
+          margin-right: 1px;
+        }
+      }
       .view-follow {
-        color: #999;
         .permalink,
         .FollowButton button {
           color: black;
@@ -501,13 +520,10 @@ body > div > [role="dialog"] .ObservationModal {
           text-decoration: none
         }
       }
-      .permalink {
-        padding-right: 5px;
-      }
       .FollowButton {
         display: inline-block;
         .btn {
-          padding: 0 5px;
+          padding: 0;
           border: 0;
           position: relative;
           top: -1px;
@@ -572,6 +588,20 @@ body > div > [role="dialog"] .ObservationModal {
       padding-left: 20px;
     }
     td { vertical-align: top; }
+  }
+
+  .Faves {
+    display: inline-block;
+    i {
+      margin-right: 8px;
+      margin-top: 3px;
+    }
+    span.user + span.user:before {
+      content: ", ";
+    }
+    a {
+      color: black;
+    }
   }
 }
 

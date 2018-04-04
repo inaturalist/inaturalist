@@ -22,19 +22,6 @@ class UsersController < ApplicationController
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
 
-  caches_action :dashboard,
-    expires_in: 15.minutes,
-    cache_path: Proc.new {|c|
-      c.send(
-        :home_url,
-        user_id: c.instance_variable_get("@current_user").id,
-        ssl: c.request.ssl?
-      )
-    },
-    if: Proc.new {|c|
-      (c.params.keys - %w(action controller format)).blank?
-    }
-
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
     :cache_path => Proc.new {|c|
@@ -89,36 +76,42 @@ class UsersController < ApplicationController
   def add_role
     unless @role = Role.find_by_name(params[:role])
       flash[:error] = t(:that_role_doesnt_exist)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
       flash[:error] = t(:you_dont_have_permission_to_do_that)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     @user.roles << @role
-    flash[:notice] = "Made #{@user.login} a(n) #{@role.name}"
-    redirect_to :back
+    if @role.name === Role::CURATOR
+      @user.update_attributes( curator_sponsor: current_user )
+    end
+    flash[:notice] = "Added #{@role.name} status to #{@user.login}"
+    redirect_back_or_default @user
   end
   
   def remove_role
     unless @role = Role.find_by_name(params[:role])
       flash[:error] = t(:that_role_doesnt_exist)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     unless current_user.has_role?(@role.name)
       flash[:error] = t(:you_dont_have_permission_to_do_that)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
+      if @role.name === Role::CURATOR
+        @user.update_attributes( curator_sponsor: nil )
+      end
     else
       flash[:error] = "#{@user.login} doesn't have #{@role.name} status"
     end
-    redirect_to :back
+    redirect_back_or_default @user
   end
   
   def destroy
@@ -868,8 +861,6 @@ protected
       :prefers_taxon_change_email_notification,
       :prefers_user_observation_email_notification,
       :prefers_taxon_or_place_observation_email_notification,
-      :prefers_share_observations_on_facebook,
-      :prefers_share_observations_on_twitter,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,

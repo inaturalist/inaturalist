@@ -10,6 +10,7 @@
 # Author: Jerrykim306
 # Author: Jonghaya
 # Author: Lefion
+# Author: Nuevo Paso
 # Author: Revi
 # Author: SeoJeongHo
 # Author: Yearning
@@ -24,8 +25,8 @@ ko:
     Biodiversity Information Facility</a>(GBIF)와 같은 데이터 파트너와 공유합니다.
   you_think_observation_inacurate: 이 관찰이 정확하지 않다고 생각할 경우 아이디를 추가한 후 위 평가서를 작성하거나 문제점을
     댓글로 달아주세요.
-  we_also_support: "저희는 <a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
-    포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 이미지 호스팅 또한 지원합니다."
+  we_also_support: "<a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
+    포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 영상 호스팅도 지원합니다."
   a_default_taxon_name_will_automatically_created: 학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을
     저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   x_comments:
@@ -600,6 +601,7 @@ ko:
   comments_by_me: 내가 작성한 댓글
   comments_on: 에 달린 댓글
   comments_on_my_observations: 내 관찰에 달린 댓글
+  community: 공동체
   community_curated: 공동으로 큐래이션된
   community_guidelines: 공동체 지침
   community_id: '<strong>공동체</strong> ID:'
@@ -1093,6 +1095,7 @@ ko:
   follow_us_on: 에서 팔로우해 주세요.
   follow_user: '%{user} 팔로우'
   follower: 팔로우하는 사용자들
+  followers: 팔로어
   following: 팔로잉
   for: 위해
   forgot_your_password: 비밀번호를 잊으셨나요?
@@ -1429,8 +1432,11 @@ ko:
   loading_wikipedia_description: 위키백과 설정 불러오는 중...
   locale_description: 로케일은 당신의 언어와 날짜 형식 설정을 정합니다.
   locales:
+    ar: 아랍어
     bg: 불가리아어
     ca: Català
+    da: 덴마크어
+    de: 독일어
     en-US: 영어 (미국)
     en: 영어
     es-ES: 스페인어 (스페인)
@@ -1504,14 +1510,12 @@ ko:
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>의
     회원
   members: 회원
-  mentioned_you_in_noun_html: '%{user}님이 %{noun}에서 당신을 언급했습니다.'
-  mentioned_you_in_noun_by_html: '%{user}님이 %{noun}에서 당신을 %{by}을(를) 통해 언급했습니다.'
-  mentioned_you_in_a_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 당신을 언급했습니다.'
-  mentioned_you_in_an_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 당신을 언급했습니다.'
-  mentioned_you_in_a_x_on_noun_by_html: '%{user}가 %{noun}의 %{x}에서 %{by}을/를 통해 당신을
-    언급했습니다.'
-  mentioned_you_in_an_x_on_noun_by_html: '%{user}가 %{noun}의 %{x}에서 %{by}을/를 통해 당신을
-    언급했습니다.'
+  mentioned_you_in_noun_html: '%{user}님이 %{noun}에서 나를 언급했습니다.'
+  mentioned_you_in_noun_by_html: '%{user}님이 %{noun}에서 나를 %{by}(으)로 언급했습니다.'
+  mentioned_you_in_a_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 나를 언급했습니다.'
+  mentioned_you_in_an_x_on_noun_html: '%{user}님이 %{noun}의 %{x}에서 나를 언급했습니다.'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user}님이 %{noun}의 %{x}에서 %{by}(으)로 나를 언급했습니다.'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user}님이 %{noun}의 %{x}에서 %{by}(으)로 나를 언급했습니다.'
   mentions: 언급
   merge: 합치기
   merge_it_with_another_place: 다른 장소와 병합
@@ -1842,20 +1846,29 @@ ko:
   places_name:
     afghanistan: 아프가니스탄
     africa: 아프리카
+    australia: 오스트레일리아
+    austria: 오스트리아
     belgium: 벨기에
     brazil: 브라질
     central_america: 중앙 아메리카
+    china: 중국
+    colombia: 콜롬비아
+    denmark: 덴마크
     egypt: 이집트
     equatorial_guinea: 적도 기니
     europe: 유럽
     france: 프랑스
     germany: 독일
     greece: 그리스
+    hong_kong: 홍콩
     hungary: 헝가리
     italy: 이탈리아
+    india: 인도
     iraq: 이라크
     japan: 일본
+    korea: 한국
     mexico: 멕시코
+    netherlands: 네덜란드
     new_guinea: 뉴 기니
     new_zealand: 뉴질랜드
     north_africa: 북아프리카
@@ -1863,12 +1876,16 @@ ko:
     panama: 파나마
     peru: 페루
     poland: 폴란드
+    portugal: 포르투갈
     republic_of_congo: 콩고 민주 공화국
     russia: 러시아
     saudi_arabia: 사우디아라비아
+    singapore: 싱가포르
+    south_africa: 남아프리카
     south_america: 남아메리카
     spain: 스페인
     sweden: 스웨덴
+    switzerland: 스위스
     syria: 시리아
     thailand: 태국
     turkey: 터키
@@ -1913,6 +1930,7 @@ ko:
   quality_grade: 품질 등급
   quality_grade_: 품질 등급
   quality_grade_colon: '품질 등급:'
+  query: 쿼리
   range: 범위
   rank: 순위
   rank_position: 순위
@@ -2063,6 +2081,7 @@ ko:
   this_id_was_added_due_to_a: '이 ID는 다음의 이유로 추가되었습니다:'
   this_observation_was_created_using: '이 관찰은 다음을 사용하여 만들어졌습니다:'
   this_photo_is_already_associated: 이 사진은 이미 관찰에 사용되었습니다.
+  this_place_has_no_check_list: 이 장소에는 체크리스트가 없습니다.
   this_user_has_been_suspended: 이 사용자는 일시 중지되었습니다
   this_year: 올해
   thu: 목요일
@@ -2133,12 +2152,13 @@ ko:
   view_observations_by_everyone: 모두의 관찰 보기
   view_terms: 이용 약관 보기
   view_unidentified_observations: 동정하지 않은 관찰 보기
+  view_x: '%{x} 보기'
   view_your_observations: 내 관찰 보기
   we_care_privacy: 우리는 여러분의 개인정보를 보호합니다!
   we_couldnt_find_a_user: 해당하는 이메일 주소의 사용자를 찾지 못했습니다.
   we_couldnt_find_a_user_with_that_activation_code: 해당 활성 코드와 맞는 사용자를 찾지 못했습니다. 이미
     당신의 계정을 활성화했을 수 있습니다. 로그인을 시도해 보세요.
-  we_currently_support_flickr_for_image_hosting: 이미지 호스팅을 위해 현재 Flickr를 지원합니다.
+  we_currently_support_flickr_for_image_hosting: 영상 호스팅을 위해 Flickr를 현재 지원합니다.
   we_had_trouble_saving_comment: 해당 댓글을 저장하는데 문제가 발생했습니다.
   wed: 수요일
   welcome!: 환영합니다!
@@ -2260,6 +2280,12 @@ ko:
         flagged_photos_desc_html: |-
           이러한 사진 중 일부가 부적절한 내용 또는 저작권 침해로
           플래그되어 있습니다. 자세한 내용은 %{links}을(를) 보십시오
+    places:
+      kml_field_desc: |-
+        장소 경계의 KML입니다. Google Maps, Google Earth,
+        대부분의 GIS 애플리케이션을 사용하여 만들 수 있습니다.
+        적어도 1 MB 미만(사이트 큐레이터의 경우 5 MB)의 다각형이
+        하나라도 있어야 하며 면적은 미국 텍사스 주보다 작아야 합니다.
     projects:
       confirm_leave:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
@@ -2283,8 +2309,15 @@ ko:
           Insect life stage=egg: 알
     users:
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          마음이 바뀌면 언제든지
+          <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
+        place_preference_changed_notice_html: |-
+          장소 설정이 변경되었습니다. 마음이 바뀌면 언제든지
+          <a href='/users/edit'>설정을 수정</a>할 수 있습니다.
         project_addition_preferences:
           none: 없음, 프로젝트에 관찰만 추가할 수 있습니다
+        scientific_name_first_desc: 보통 명사 앞에 학명을 표시합니다.
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.

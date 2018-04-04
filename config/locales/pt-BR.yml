@@ -875,6 +875,7 @@ pt-BR:
   committed: Salvar.
   committed_on: Submetido em %{date}
   committing: Enviando...
+  community: Comunidade
   community_curated: Supervisionado pela Comunidade
   community_id: '<strong>Communidade</strong> ID:'
   community_id_heading: ID da Comunidade
@@ -1479,6 +1480,7 @@ pt-BR:
   follow_us_on: Siga no
   follow_user: Seguir %{user}
   follower: seguidor
+  followers: Seguidores
   following: seguindo
   for: para
   for_a_taxon: para um táxon
@@ -1808,6 +1810,7 @@ pt-BR:
   journal_archives_for: Arquivos do Boletim Informativo
   journal_post: Publique no Boletim Informativo
   journal_post_deleted: Boletim informativo apagado.
+  journal_posts: Publicações de jornal
   jpg_png_or_gif: JPG, PNG, ou GIF
   jump_to_letter: Pule para a carta
   just_a_reminder: Apenas um lembrete, você acabou de permitir o acesso as suas coordenadas
@@ -2003,9 +2006,12 @@ pt-BR:
     datas.
   locales_: Locais
   locales:
+    ar: Árabe
     bg: Húngaro
     br: Bretão
     ca: Catalão
+    da: Dinamarquês
+    de: Alemão
     en-US: Inglés (Estados Unidos)
     en: Inglês
     es-ES: Espanhol (Espanha)
@@ -2019,9 +2025,12 @@ pt-BR:
     it: Italiano
     ja: Japonês
     ko: Coreano
+    lb: Luxemburguês
     mk: Macedônio
     oc: Occitano
     pt-BR: Português (Brasil)
+    pt-PT: Português (Portugal)
+    ru: Russo
     zh-CN: Chinês (Simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -2891,22 +2900,31 @@ pt-BR:
     afghanistan: Afeganistão
     africa: África
     antigua_and_barbuda: Antígua e Barbuda
+    australia: Austrália
+    austria: Áustria
     belgium: Bélgica
     bosnia_and_herzegovina: Bosnia e Herzegovina
     brazil: Brasil
     central_america: América Central
+    china: China
+    colombia: Colômbia
+    denmark: Dinamarca
     egypt: Egito
     equatorial_guinea: Guiné Equatorial
     europe: Europa
     france: França
     germany: Alemanha
     greece: Grécia
+    hong_kong: Hong Kong
     hungary: Hungria
     italy: Itália
+    india: Índia
     iraq: Iraque
     japan: Japão
+    korea: Coréia
     martinique: Martinica
     mexico: México
+    netherlands: Países Baixos
     new_guinea: Nova Guiné
     new_zealand: Nova Zelândia
     north_africa: África do Norte
@@ -2915,13 +2933,17 @@ pt-BR:
     panama: Panamá
     peru: Peru
     poland: Polônia
+    portugal: Portugal
     republic_of_congo: República do Congo
     russia: Russia
     saudi_arabia: Arabia Saudita
     sao_tome_and_principe: São Tomé e Príncipe
+    singapore: Cingapura
+    south_africa: África do Sul
     south_america: América do Sul
     spain: Espanha
     sweden: Suécia
+    switzerland: Suíça
     syria: Siria
     thailand: Tailândia
     trinidad_and_tobago: Trindade e Tobago
@@ -3085,6 +3107,7 @@ pt-BR:
     order: ordem
     suborder: subordem
     infraorder: infraordem
+    zoosubsection: Zoosubsection
     superfamily: superfamília
     epifamily: epifamília
     family: família
@@ -3857,8 +3880,7 @@ pt-BR:
     de vicariância-dispersão or uma expansão da distribuição da espécie.
   this_observation_was_created_using: 'Esta observação foi criada com:'
   this_photo_is_already_associated: Esta foto já está associada com uma de suas observações.
-  this_place_has_no_check_list: Este local não possui lista de verificação, então
-    não existe um guia.
+  this_place_has_no_check_list: Este lugar não tem lista de verificação.
   this_species: esta espécie
   this_species_has_no_colors: Esta espécie não tem cores! Ajude a melhorar a procura
     por esta espécie contanto qual é a cor dela!
@@ -4181,6 +4203,7 @@ pt-BR:
   view_the_range: Exibir área de distribuição
   view_unidentified_observations: Ver as observações não identificadas...
   view_user_observations: Exibir as observações de %{user}
+  view_x: Ver %{x}
   view_x_from_x: Exibir %{day_observations} de %{observed_on}
   view_xs_journal: Veja o Boletim Informativo de %{x}
   view_your_dashboard: Exibir painel de controle
@@ -4285,6 +4308,8 @@ pt-BR:
   wondering_what_to_do_next: Seguem algumas dicas para lhe ajudar a seguir o caminho
     das observações e identificações do mundo natural
   would_you_like_to: Você gostaria
+  would_you_prefer_to_view_common_names_used_in_place_html: Você preferiria ver nomes
+    comuns usados em <strong>%{place}</strong>?
   would_like_some_help_identifying_this: você deseja receber ajuda para identificar
     isto
   x_admin: '%{login} administrador'
@@ -4495,6 +4520,7 @@ pt-BR:
   your_observations_couldnt_be_added_to_that_project: 'Suas observações não puderam
     ser adicionadas neste projeto: %{errors}'
   your_photos_have_been_tagged: Suas fotos foram marcadas!
+  your_google_account: sua conta do Google
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_should_recognize: Você deve reconhecer algumas destas fotos
   your_site_account_has_been_created: Sua conta %{site} foi criada.
@@ -4900,7 +4926,7 @@ pt-BR:
       community_id:
         agreement: Acordo
         algorithm_summary: Resumo do Algoritmo
-        ancestor_disagreements: Contagem de Identificação
+        ancestor_disagreements: Desavisamento do Ancestor
         below_cutoff: Corte por baixo
         cumulative_count: Quantidade Acumulada
         disagreement: Desacordo
@@ -5189,9 +5215,11 @@ pt-BR:
           Por favor deixe um alerta de infração de direitos autorais como não resolvido
           se esta foto estar de fato infringindo direitos.
     places:
-      kml_field_desc: KML dos limites do lugar. Você pode criar um utilizando o Google
-        Maps, Google Earth, ou a maioria dos aplicativos GIS. Deve ter ao menos um
-        polígono e ser menos que 1MB (5MB para coordenadores do site).
+      kml_field_desc: |-
+        KML do limite do local. Você pode fazer um usando Google Maps, Google
+        Terra ou a maioria dos aplicativos GIS. Deve ter pelo menos um polígono
+        menos de 1 MB (5 MB para curadores do site), e tem uma área menor do que o
+        Estado dos EUA no Texas.
       edit:
         complex_boundary_note_html: Estes limites de fronteira são um pouco complexos
           para serem editados na internet. No entanto, você pode fazer o <a href="%{url}">download
@@ -5526,6 +5554,9 @@ pt-BR:
           as coordenadas privadas e protegidas das observações que você adicionou
           neste projeto.
       edit:
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
+          Se você mudar de ideia você sempre pode
+          <a href='/users/edit'>editar suas configurações</a>.
         inaturalist_network_affiliation_desc_html: O <a href="%{url}" target="_blank">iNaturalist
           Network</a> é uma coleção de sites conectados a comunidade global do iNaturalist.
           Você poderá alterar sua afiliação por uma ou outra plataforma, o que significa
@@ -5537,6 +5568,10 @@ pt-BR:
         licensing_desc_html: |-
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
+        name_place_help_html: Priorize os nomes comuns usados neste local.
+        place_preference_changed_notice_html: |-
+          A preferência do lugar mudou. Se você mudar de idéia você sempre pode
+          <a href='/users/edit'>editar suas configurações</a>.
         project_addition_preferences:
           any: Qualquer
           joined: Projetos em que você participa
@@ -5556,6 +5591,8 @@ pt-BR:
           opinião da comunidade de identificação não irá se sobrepor à sua. Isto significa
           que suas observações não estarão elegíveis para serem utilizadas em pesquisas
           a não ser que você concorde com a comunidade.'
+        search_place_help_html: Lugar padrão para pesquisas de observação.
+        scientific_name_first_desc: Mostre nomes científicos antes dos nomes comuns.
       show:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.

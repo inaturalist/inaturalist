@@ -261,7 +261,7 @@ class Photo < ActiveRecord::Base
     remote_photo.subtype = remote_photo.class.name
     remote_photo.native_original_image_url = fetch_url
     remote_photo = remote_photo.becomes(LocalPhoto)
-    remote_photo.file = fetch_url
+    remote_photo.file = URI(fetch_url)
     remote_photo.save
   end
 

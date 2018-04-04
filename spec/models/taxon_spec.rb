@@ -975,6 +975,16 @@ describe Taxon, "single_taxon_for_name" do
     expect( tn.is_valid? ).to eq false
     expect(Taxon.single_taxon_for_name(valid.name)).to eq(valid)
   end
+
+  it "should not choose one active taxon among several active synonyms" do
+    parent = Taxon.make!( rank: "genus" )
+    valid1 = Taxon.make!( :species, parent: parent )
+    valid2 = Taxon.make!( :species, parent: parent )
+    [valid1, valid2].each do |t|
+      TaxonName.make!( taxon: t, name: "Black Oystercatcher", lexicon: TaxonName::ENGLISH )
+    end
+    expect( Taxon.single_taxon_for_name( "Black Oystercatcher" ) ).to be_nil
+  end
 end
 
 describe Taxon, "update_life_lists" do

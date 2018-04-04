@@ -13,10 +13,17 @@ function updateObservationsStats( stats ) {
 function fetchObservationsStats( ) {
   return function ( dispatch, getState ) {
     const s = getState();
-    const apiParams = Object.assign( {
-      viewer_id: s.config.currentUser ? s.config.currentUser.id : null,
-      ttl: -1
-    }, paramsForSearch( s.searchParams.params ) );
+    const apiParams = Object.assign(
+      {
+        viewer_id: s.config.currentUser ? s.config.currentUser.id : null,
+        ttl: -1
+      },
+      paramsForSearch( s.searchParams.params ),
+      {
+        order: "",
+        order_by: ""
+      }
+    );
     const reviewedParams = Object.assign( {}, apiParams, { reviewed: true } );
     iNaturalistJS.observations.search( reviewedParams )
       .then( response => {

@@ -118,15 +118,18 @@ en:
   able_to_connect_flickr: Great!  We were able to link to your Flickr account.
   about: About
   about_bioblitz_results: About bioblitz results
+  about_blocking: About Blocking
   about_charts: About Charts
   about_community_taxa: About community taxa
   about_complete_taxa: About Complete Taxa
   about_conservation_status: About Conservation Status
+  about_editing_observation_fields: About Editing Observation Fields
   about_establishment_means: About Establishment Means
   about_external_links: About External Links
   about_licenses: About licenses
   about_licensing: About licensing
   about_life!: About Life!
+  about_muting: About Muting
   about_names: About Names
   about_places: About Places
   about_taxon_changes: About Taxon Changes
@@ -573,6 +576,7 @@ en:
   black: black
   block_user: Block User
   block_removed: Block removed
+  blocked_users: Blocked Users
   blog_widget: Blog widget
   blue: blue
   blue_butterfly_etc: "blue, butterfly, etc."
@@ -771,6 +775,7 @@ en:
   committed: Committed
   committed_on: Committed on %{date}
   committing: Committing...
+  community: Community
   community_curated: Community Curated
   community_guidelines: Community Guidelines
   community_id: '<strong>Community</strong> ID: '
@@ -1081,6 +1086,7 @@ en:
   draft_saved: Draft saved!
   drafts: Drafts
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
+  drawings: Drawings
   duplicate_verb: Duplicate
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
@@ -1225,6 +1231,7 @@ en:
   facebook_confirmation: "Facebook would like to confirm that you want your account connected to %{site_name}."
   facebook_needs_the_owner_of_that_photo_to: Facebook needs the owner of that photo to re-confirm their connection to %{site_name_short}.
   facebook_options: Facebook Options
+  facts_and_stats: Facts and Stats
   failed_to_find_your_location: Failed to find your location.
   failed_to_repair_photo: "Failed to repair photo: %{errors}"
   failed_to_save_record: "Failed to save record. Please try again later."
@@ -1247,6 +1254,7 @@ en:
   feeds: 'Feeds'
   feeds_for_current_filters: Feeds for Current Filters
   failed: Failed
+  field_guides: Field Guides
   field_note: |
     <strong>Note:</strong> If you'd like to create a field, check to see if
     someone else has already made it to avoid duplication.
@@ -1805,6 +1813,7 @@ en:
     bg: Bulgarian
     br: Breton
     ca: Catalan
+    da: Danish
     de: German
     en-US: English (United States)
     en: English
@@ -1995,6 +2004,7 @@ en:
   must_have_x: "must have %{x}"
   mute_user: Mute User
   mute_removed: Mute removed
+  muted_users: Muted Users
   n_ago: "%{n} ago"
   n_people_agrees: "%{amount} people agree"
   n_people_disagrees: "%{amount} people disagree"
@@ -2192,6 +2202,7 @@ en:
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
   not_yet: Not yet
   note: Note
+  notes: Notes
   note_you_can_modify_the_height_attribute: "Note: You can modify the 'height' attribute to fit the available space on your web page."
   notify_me_of_mentions: Notify me of mentions (e.g. @username)
   notify_me_about_redundant_identifications: Notify me about confirming identifications
@@ -2402,6 +2413,7 @@ en:
   only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
   only_the_owner_of_this_list_can_do_that: Only the owner of this list can do that.  Don't be evil.
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
+  only_you: Only you
   open: open
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
@@ -3099,6 +3111,7 @@ en:
   show_observations_from: Show observations by
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
+  show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
   show_total_listed_taxa: Show total listed taxa
   showing_observations_by: showing observations by
@@ -3526,7 +3539,7 @@ en:
   this_observation_lies_outside_the: "This observation lies outside the range %{site_name} has for this species. This could mean %{site_name}'s range is wrong, the ID is wrong, a vagrant occurrence, or a range expansion!"
   this_observation_was_created_using: "This observation was created using:"
   this_photo_is_already_associated: This photo is already associated with one of your observations.
-  this_place_has_no_check_list: "This place has no check list, so there is no guide."
+  this_place_has_no_check_list: "This place has no check list."
   this_species: this species
   this_species_has_no_colors: This species has no colors! Help improve species searches by telling us what color this is!
   this_taxon_change_has_been_commited: |
@@ -3832,6 +3845,7 @@ en:
   view_the_range: View the range
   view_unidentified_observations: "View unidentified observations..."
   view_user_observations: "View %{user}'s observations"
+  view_x: "View %{x}"
   view_x_from_x: "View %{day_observations} from %{observed_on}"
   view_xs_journal: "View %{x}'s journal"
   view_year_stats_for_site: "View %{year} Stats For %{site}"
@@ -3871,6 +3885,7 @@ en:
   we_tried_to_process_your_upload_named_filename: |
     We tried to process your upload named %{filename} but it didn't work.
     Please fix the following problem(s) and try again.
+  weather: Weather
   wed: Wed
   week_of_date: "Week of %{date}"
   welcome!: Welcome!
@@ -4110,7 +4125,7 @@ en:
   your_observations: Your observations
   your_observations_couldnt_be_added_to_that_project: "Your observations couldn't be added to that project: %{errors}"
   your_photos_have_been_tagged: Your photos have been tagged!
-  your_google_account: your Google sccount
+  your_google_account: your Google account
   your_google_account_info: Your Google Account Information
   your_profile_was_successfully_updated: Your profile was successfully updated!
   your_should_recognize: You should recognize some of these photos
@@ -4862,8 +4877,9 @@ en:
     places:
       kml_field_desc: |
         KML of the place boundary. You can make one using Google Maps, Google
-        Earth, or most GIS applications. Must have at least one polygon and be
-        under 1 MB (5 MB for site curators).
+        Earth, or most GIS applications. Must have at least one polygon be
+        under 1 MB (5 MB for site curators), and have an area smaller than the
+        US state of Texas.
       edit:
         complex_boundary_note_html: |
           This boundary is a bit too complex to edit on the web. However, you can
@@ -4984,16 +5000,17 @@ en:
           </p>
         rules:
           captive: be captive/cultivated
-          wild: be wild/naturalized
+          coordinates_shareable_by_project_curators: coordinates shareable by project curators
           georeferenced: have coordinates
-          has_media: have media (photo or sound)
           has_a_photo: have a photo
           has_a_sound: have a sound
+          has_media: have media (photo or sound)
           identified: be identified
           in_taxon: be in taxon
           observed_in_place: be observed in place
           on_list: be of a taxon on the project list
           verifiable: be verifiable
+          wild: be wild/naturalized
         start_time_desc: "Start time for your bioblitz. Format: YYYY-MM-DDThh:mm:ss±hh:mm"
         submission_models:
           any: anyone
@@ -5714,6 +5731,8 @@ en:
         terms: Terms
         map_type: Map type
         zoom_level: Zoom level
+        preferred_membership_model: Preferred membership model
+        preferred_submission_model: Preferred submission model
         prefers_place_boundary_visible: Show place boundary on map
         tracking_codes: Tracking codes
         source_url: Source URL
@@ -5754,6 +5773,14 @@ en:
         name_provider: Name provider
         source_url: Source URL
         source_identifier: Source identifier
+      user:
+        email: Email
+        name: Name
+        locale: Locale
+        time_zone: Time zone
+        search_place_id: Search place
+        place_id: Place
+        preferred_observation_fields_by: Allow observation fields from
       source:
         title: Title
         in_text: In text

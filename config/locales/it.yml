@@ -917,6 +917,7 @@ it:
   committed: Confermato
   committed_on: Validato il %{date}
   committing: Conferma in corso...
+  community: Comunità
   community_curated: Curate dalla Community
   community_guidelines: Linee guida della comunità
   community_id: 'ID della <strong>Community</strong>:'
@@ -1524,6 +1525,7 @@ it:
   follow_us_on: Seguici su
   follow_user: Segui %{user}
   follower: seguace
+  followers: Seguaci
   following: seguendo
   for: di
   for_a_taxon: per un taxon
@@ -1867,6 +1869,7 @@ it:
   journal_archives_for: Archivi dei diari per
   journal_post: Post del diario
   journal_post_deleted: Post del diario cancellato.
+  journal_posts: Post del diario
   jpg_png_or_gif: JPG, PNG, o GIF
   jump_to_letter: Vai alla lettera
   just_a_reminder: Solo un promemoria, dal momento che potresti aver garantito ai
@@ -2039,7 +2042,7 @@ it:
   listing_project_assets: Elencazione risorse del progetto
   listing_taxa: Elencazione taxa
   listing_taxon_names: Elencazione dei nomi dei taxa
-  lists: Liste
+  lists: Elenchi
   lists_are_lists_of_species: Le Liste sono liste di specie (o altri taxa), come ina
     lista di tutti gli uccelli che hai visto o una lista delle tue salamandre preferite.
     Queste Liste <em>non</em> sono elenchi di osservazioni.
@@ -2066,9 +2069,12 @@ it:
     e la formattazione della data.
   locales_: Localizzazioni
   locales:
+    ar: Arabo
     bg: Bulgaro
     br: Bretone
     ca: Catalano
+    da: Danese
+    de: Tedesco
     en-US: Inglese (Stati Uniti)
     en: Inglese
     es-ES: Spagnolo (Spagna)
@@ -2977,22 +2983,31 @@ it:
     afghanistan: Afghanistan
     africa: Africa
     antigua_and_barbuda: Antigua e Barbuda
+    australia: Australia
+    austria: Austria
     belgium: Belgio
     bosnia_and_herzegovina: Bosnia-Erzegovina
     brazil: Brasile
     central_america: America Centrale
+    china: Cina
+    colombia: Colombia
+    denmark: Danimarca
     egypt: Egitto
     equatorial_guinea: Guinea Equatoriale
     europe: Europa
     france: Francia
     germany: Germania
     greece: Grecia
+    hong_kong: Hong Kong
     hungary: Ungheria
     italy: Italia
+    india: India
     iraq: Iraq
     japan: Giappone
+    korea: Corea
     martinique: Martinica
     mexico: Messico
+    netherlands: Paesi Bassi
     new_guinea: Nuova Guinea
     new_zealand: Nuova Zelanda
     north_africa: Nord Africa
@@ -3001,13 +3016,17 @@ it:
     panama: Panama
     peru: Perù
     poland: Polonia
+    portugal: Portogallo
     republic_of_congo: Repubblica del Congo
     russia: Russia
     saudi_arabia: Arabia Saudita
     sao_tome_and_principe: Sao Tome e Principe
+    singapore: Singapore
+    south_africa: Sud Africa
     south_america: Sud America
     spain: Spagna
     sweden: Svezia
+    switzerland: Svizzera
     syria: Siria
     thailand: Thailandia
     trinidad_and_tobago: Trinidad e Tobago
@@ -3636,7 +3655,7 @@ it:
   src: Fonte
   standard: Standard
   start: Inizia
-  start_a_new_list: Iniziare una nuova lista
+  start_a_new_list: Inizia un nuovo elenco
   start_a_new_project: Avvia un nuovo progetto
   start_a_project: Avvia un progetto
   start_adding_observations: Inizia ad aggiungere le osservazioni
@@ -3978,8 +3997,7 @@ it:
     di un individuo in dispersione, o ancora che l'areale è in espansione.
   this_observation_was_created_using: 'Questa osservazione è stata creata usando:'
   this_photo_is_already_associated: Questa foto è già associata ad una delle tue osservazioni.
-  this_place_has_no_check_list: Questa zona non ha una checklist, quindi non c'è nessuna
-    guida.
+  this_place_has_no_check_list: Questa zona non ha una checklist.
   this_species: questa specie
   this_species_has_no_colors: Questa specie non ha colori! Contribuisci a migliorare
     la ricerca delle specie comunicandoci di che colore è questa!
@@ -4321,6 +4339,7 @@ it:
   view_the_range: Visualizza l'areale
   view_unidentified_observations: Visualizza le osservazioni non identificate...
   view_user_observations: Visualizza le osservazioni di %{user}
+  view_x: Visualizza %{x}
   view_x_from_x: Visualizza %{day_observations} in data %{observed_on}
   view_xs_journal: Visualizza il diario di %{x}
   view_year_stats_for_site: Visualizza statistica %{year} per %{site}
@@ -4435,6 +4454,8 @@ it:
   wondering_what_to_do_next: Ecco alcuni altri passaggi per procedere ad osservare
     e identificare il mondo naturale
   would_you_like_to: Ti piacerebbe
+  would_you_prefer_to_view_common_names_used_in_place_html: Preferisci vedere i nomi
+    comuni usati in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: vorresti qualche aiuto per identificare questo
   x_admin: '%{login} amministra'
   x_blog: Il Blog di %{x}
@@ -5354,7 +5375,9 @@ it:
     places:
       kml_field_desc: File KML del perimetro del luogo. Ne puoi fare uno usando Google
         Maps, Google Earth, o la maggior parte delle applicazioni GIS. Deve essere
-        formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori).
+        formato da almeno un poligono ed essere meno di 1 MB (5 MB per i curatori
+        del sito) ed avere un'area più piccola di quella dello stato statunitense
+        del Texas.
       edit:
         complex_boundary_note_html: Questo perimetro è un po' troppo complesso per
           essere editato sul web. Puoi <a href="%{url}">scaricare il KML</a>, editarlo
@@ -5728,6 +5751,8 @@ it:
         common_names_desc: Mostra i nomi comuni. Disabilita se vuoi vedere i nomi
           scientifici. Nota che puoi controllare quali nomi comuni vedere cambiando
           le impostazioni locali e quelle del luogo.
+        if_you_change_your_mind_you_can_always_edit_your_settings_html: Se cambi idea
+          puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         inaturalist_network_affiliation_desc_html: Il <a href="%{url}" target="_blank">Network
           di iNaturalist</a> è un gruppo di siti web locali connessi alla community
           di iNaturalist. Puoi modificare l'affiliazione principale; ciò significa
@@ -5749,6 +5774,9 @@ it:
           <p>
             Puoi silenziare tutte le persone che vuoi, ma ricordati che ti potrai perdere importanti notifiche, come identificazioni che spostano l'ID della Community delle tue osservazioni.
           </p>
+        name_place_help_html: Dai priorità ai nomi comuni usati in questo luogo.
+        place_preference_changed_notice_html: Preferenza luogo modificato. Se cambi
+          idea puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
         project_addition_preferences:
           any: Qualsiasi
           joined: Progetti a cui ti sei unito
@@ -5771,6 +5799,8 @@ it:
           in grado di aggiungere identificazioni, ma l''opinione della community non
           avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno
           il Livello Ricerca a me che non sia in accordo con l''ID della community.'
+        search_place_help_html: Luogo predefinito per le ricerche di osservazione.
+        scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
         youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
           un blocco per poterne aggiungere un altro.
       show:

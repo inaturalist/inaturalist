@@ -14,6 +14,22 @@ class Activity extends React.Component {
 
   componentDidMount( ) {
     this.setUpMentionsAutocomplete( );
+    if ( window.location.hash ) {
+      // I really wish this timeout wasn't necessary but without it Chrome just
+      // seems to scroll back to the top. Note that $.scrollTo doesn't seem to
+      // work in Safari.
+      const isFirefox = navigator.userAgent.toLowerCase( ).indexOf( "firefox" ) > -1;
+      if ( isFirefox ) {
+        $.scrollTo( window.location.hash );
+      } else {
+        setTimeout( ( ) => {
+          const $hashElt = $( window.location.hash );
+          if ( $hashElt.length > 0 ) {
+            $( document ).scrollTop( $hashElt.offset( ).top );
+          }
+        }, 2000 );
+      }
+    }
   }
 
   componentDidUpdate( ) {

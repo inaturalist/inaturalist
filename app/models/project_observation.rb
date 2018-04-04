@@ -80,6 +80,7 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def project_user
+    return unless project
     project.project_users.where(user_id: observation.user_id).first
   end
 
@@ -152,7 +153,7 @@ class ProjectObservation < ActiveRecord::Base
     return true if user_id == observation.user_id
     case observation.user.preferred_project_addition_by
     when User::PROJECT_ADDITION_BY_JOINED
-      unless project.project_users.where(user_id: observation.user_id).exists?
+      unless project && project.project_users.where(user_id: observation.user_id).exists?
         errors.add :user_id, "does not allow addition to projects they haven't joined"
         return false
       end

@@ -1,0 +1,215 @@
+$.fn.universalAutocomplete = function( options ) {
+  options = options || { };
+  options.appendTo = options.appendTo || "#inat-universal-autocomplete"
+  var field = this;
+
+  field.template = function( item ) {
+    var wrapperDiv = $( "<div/>" )
+      .addClass( "ac" )
+      .attr( "id", item.type + "-" + item.record.id );
+    var itemUrl;
+    var obsUrl;
+    var itemText;
+    var acThumb;
+    switch ( item.type ) {
+      case "Taxon":
+        itemUrl = "/taxa/" + item.record.id;
+        obsUrl = "/observations?taxon_id=" + item.record.id;
+        if ( item.record.default_photo ) {
+          acThumb = $( "<img />" ).attr( "src", item.record.default_photo.square_url );
+        } else {
+          acThumb = $( "<i></i>" ).addClass( "icon-iconic-" + ( item.record.iconic_taxon_name || "unknown" ).toLowerCase() );
+        }
+        itemText = $( "<span></span>" ).addClass( "taxon" ).addClass( item.record.rank );
+        var scinameWithRank = item.record.name;
+        if ( item.record.rank_level > 10 ) {
+          scinameWithRank = "<span class='rank'>" + item.record.rank + "</span> " + item.record.name;
+        }
+        if ( item.record.preferred_common_name ) {
+          itemText.addClass( "has-com-name" );
+          var displayName = iNatModels.Taxon.titleCaseName( item.record.preferred_common_name ) ;
+          if ( CURRENT_USER && CURRENT_USER.prefers_scientific_name_first ) {
+            itemText.append( $( "<span>" ).addClass( "display-name" ).addClass( "sciname" ).html( scinameWithRank ) );
+            itemText.append( " " );
+            itemText.append( $( "<span>" ).addClass( "secondary-name" ).html( displayName ) );
+          } else {
+            if (
+              item.record.matched_term &&
+              item.record.preferred_common_name !== item.record.matched_term &&
+              item.record.name !== item.record.matched_term
+            ) {
+              displayName += " (" + iNatModels.Taxon.titleCaseName( item.record.matched_term ) + ")";
+            }
+            itemText.append( $( "<span>" ).addClass( "display-name" ).html( displayName ) );
+            itemText.append( " " );
+            itemText.append( $( "<span>" ).addClass( "secondary-name" ).addClass( "sciname" ).html( scinameWithRank ) );
+          }
+        } else {
+          var displayName = $( "<span>" ).addClass( "display-name" );
+          displayName.append(
+            $( "<span>" ).addClass( "sciname" ).html( scinameWithRank )
+          );
+          if ( item.record.matched_term && item.record.name !== item.record.matched_term ) {
+            displayName.append(
+              $( "<span>" ).html( " (" + item.record.matched_term + ")" )
+            );
+          }
+          itemText.append( displayName );
+        }
+        break;
+      case "Place":
+        itemUrl = "/places/" + item.record.slug;
+        obsUrl = "/observations?place_id=" + item.record.id;
+        acThumb = $( "<i></i>" ).addClass( "fa fa-map-marker" );
+        itemText = item.record.display_name || item.record.name;
+        switch ( item.record.place_type ) {
+          <%- Place::PLACE_TYPES.each do |type, name| -%>
+          case <%= type %>:
+            itemText += " <span class='secondary-name'>" + I18n.t( '<%= name.parameterize.underscore %>', { defaultValue: '<%= name %>' } ) + "</span>";
+            break;
+          <% end %>
+          default:
+            I18n.t( "place" );
+        }
+        break;
+      case "Project":
+        itemUrl = "/projects/" + item.record.slug;
+        obsUrl = "/observations?project_id=" + item.record.id;
+        if ( item.record.icon ) {
+          acThumb = $( "<img />" ).attr( "src", item.record.icon );
+        } else {
+          acThumb = $( "<i/>" ).addClass( "fa fa-briefcase" );
+        }
+        itemText = item.record.title;
+        break;
+      case "User":
+        itemUrl = "/people/" + item.record.login;
+        obsUrl = "/observations?user_id=" + item.record.login;
+        if ( item.record.icon_url ) {
+          acThumb = $( "<img />" ).attr( "src", item.record.icon_url.replace( /medium\./, "thumb." ) ).addClass( "usericon" );
+        } else {
+          acThumb = $( "<i/>" ).addClass( "icon-person" );
+        }
+        itemText = item.record.login;
+        if ( item.record.name ) {
+          itemText += " <span class='secondary-name'>" + item.record.name + "</span>";
+        }
+        break;
+    }
+    wrapperDiv.append( $( "<div/>" ).addClass( "ac-thumb" ).append( acThumb ) );
+    var labelDiv = $( "<div/>" ).addClass( "ac-label" );
+    labelDiv.append( itemText ); //.append( " (" + I18n.t( item.type.toString().toLowerCase() ) + ")" );
+    wrapperDiv.append( labelDiv );
+    wrapperDiv.append(
+      $("<a></a>")
+        .attr( "href", obsUrl )
+        .addClass( "ac-view" )
+        .addClass( "view-observations" )
+        .html( "<span>" + I18n.t( "view_observations") + "</span>" )
+    );
+    wrapperDiv.append(
+      $("<a></a>")
+        .attr( "href", itemUrl )
+        .addClass( "ac-view" )
+        .html( I18n.t( "about") )
+    );
+    wrapperDiv.on( "mouseup", function( e ) {
+      if (
+        // We only care about the middle mouse button
+        e.which == 2 &&
+        // ...and not about link clicks
+        e.target.nodeName !== "A" &&
+        $( e.target ).parents( "a" ).length == 0
+      ) {
+        $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
+          item: item,
+          openBlank: true
+        } );
+        e.preventDefault( );
+        return false;
+      }
+    } );
+    wrapperDiv.on( "click", function( e ) {
+      if (
+        ( e.metaKey || e.ctrlKey || e.altKey ) &&
+        e.target.nodeName !== "A" &&
+        $( e.target ).parents( "a" ).length == 0
+      ) {
+        $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
+          item: item,
+          openBlank: true
+        } );
+        e.preventDefault( );
+        return false;
+      }
+    } );
+    return wrapperDiv;
+  };
+
+  field.genericAutocomplete( _.extend( options, {
+    source: function( request, response ) {
+      var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+      var headers = {};
+      if ( apiToken) {
+        headers["Authorization"] = apiToken;
+      }
+      $.ajax({
+        url: "<%= CONFIG.node_api_url %>/search",
+        dataType: "json",
+        cache: true,
+        headers: headers,
+        data: {
+          q: request.term,
+          locale: I18n.locale,
+          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+        },
+        success: function( data ) {
+          response( data.results );
+        }
+      });
+    },
+    select: function( e, ui ) {
+      var url;
+      if ( e.ctrlKey || e.altKey || e.metaKey ) {
+        switch ( ui.item.type ) {
+          case "Taxon":
+            url = "/taxa/"+ui.item.record.id;
+            break;
+          case "Place":
+            url = "/places/"+ui.item.record.id;
+            break;
+          case "Project":
+            url = "/projects/" + ( ui.item.record.slug || ui.item.record.slug.id );
+            break;
+          case "User":
+            url = "/people/"+ui.item.record.login;
+            break;
+        }
+      } else {
+        url = "/observations?";
+        switch ( ui.item.type ) {
+          case "Taxon":
+            url += "taxon_id="+ui.item.record.id;
+            break;
+          case "Place":
+            url += "place_id="+ui.item.record.id;
+            break;
+          case "Project":
+            url += "projects="+ui.item.record.id;
+            break;
+          case "User":
+            url += "user_id="+ui.item.record.login;
+            break;
+        }
+      }
+      if ( ui.openBlank ) {
+        // In Safari and Firefox this has the unpleasant effect of opening a
+        // blank window *and* focusing on that window. In Chrome it opens a tab
+        // in the background like you'd expect. Not sure how to get around this.
+        window.open( url, "_blank" );
+      } else {
+        window.location = url;
+      }
+    }
+  } ) );
+};

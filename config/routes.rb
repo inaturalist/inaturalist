@@ -135,7 +135,8 @@ Rails.application.routes.draw do
   
   get '/flickr/invite' => 'photos#invite', :as => :flickr_accept_invite
   get '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
-  get '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
+  
+  get '/google_photos/invite' => 'photos#invite', :as => :picasa_accept_invite
 
   match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
   post '/facebook' => 'facebook#index'
@@ -182,7 +183,7 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  delete 'picasa/unlink' => 'picasa#unlink'
+  delete 'google_photos/unlink' => 'picasa#unlink'
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
@@ -207,6 +208,8 @@ Rails.application.routes.draw do
       get :identify
       get :moimport
       post :moimport
+      get :torquemap
+      get :compare
     end
     member do
       get :taxon_summary
@@ -577,6 +580,8 @@ Rails.application.routes.draw do
       get :score
     end
   end
+
+  get "/google_photos(/:action(/:id))", controller: :picasa
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate

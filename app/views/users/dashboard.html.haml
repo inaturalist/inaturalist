@@ -192,8 +192,9 @@
           .panel.panel-default
             .panel-heading
               %h3.panel-title
-                %span.glyphicon.glyphicon-flag
-                = t(:flag).pluralize
+                = link_to flags_path do
+                  %span.glyphicon.glyphicon-flag
+                = link_to t(:flag).pluralize, flags_path
                 %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_items_people_on, email: @site.email_help ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
             .list-group
               - for flag in @flags

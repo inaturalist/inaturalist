@@ -171,6 +171,7 @@
           %input{ type: "hidden", name: "rank" }
           %input{ type: "hidden", name: "unobserved_by_user_id" }
           %input{ type: "hidden", name: "geo" }
+          %input{ type: "hidden", name: "oauth_application_id" }
     .row
       .col-xs-12
         %button#filters-more-btn.btn.btn-link{ type: 'button', "ng-class" => "{ 'collapsed': moreFiltersHidden }", "ng-click" => "toggleMoreFilters( )" }
@@ -253,9 +254,6 @@
         %a.btn.btn-link{"ng-href" => "/observations.atom?{{ paramsForUrl( ) }}", target: "_self"}
           %i.fa.fa-rss
           %span {{ shared.t('atom') }}
-        %a.btn.btn-link{"ng-href" => "/observations.kml?{{ paramsForUrl( ) }}", target: "_self"}
-          %i.fa.fa-globe
-          %span {{ shared.t('kml') }}
         %a.btn.btn-link{"ng-href" => "/observations/export?{{ paramsForUrl( ) }}", target: "_self"}
           %i.fa.fa-download
           %span {{ shared.t('download') }}

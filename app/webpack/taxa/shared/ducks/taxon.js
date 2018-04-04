@@ -197,8 +197,16 @@ export function fetchTerms( callback ) {
       params.place_id = s.config.chosenPlace.id;
     }
     inatjs.observations.popularFieldValues( params ).then( r => {
-      dispatch( { type: SET_FIELD_VALUES, fieldValues:
-        _.groupBy( r.results, f => ( f.controlled_attribute.id ) ) } );
+      const relevantResults = _.filter( r.results, f => (
+        _.intersection(
+          s.taxon.taxon.ancestor_ids,
+          f.controlled_attribute.taxon_ids
+        ).length > 0
+      ) );
+      dispatch( {
+        type: SET_FIELD_VALUES,
+        fieldValues: _.groupBy( relevantResults, f => f.controlled_attribute.id )
+      } );
       if ( callback ) { callback( ); }
     } ).catch( e => { console.log( e ); } );
   };
@@ -236,7 +244,7 @@ export function fetchTaxon( taxon, options = { } ) {
     return inatjs.taxa.fetch( t.id, params ).then( response => {
       // make sure the charts revert back to the "Seasonality" tab
       // in case the incoming results have no data for the current tab
-      $( "a[href=#charts-seasonality]" ).tab( "show" );
+      $( "a[href='#charts-seasonality']" ).tab( "show" );
       dispatch( setTaxon( response.results[0] ) );
       dispatch( fetchTerms( ) );
     } );

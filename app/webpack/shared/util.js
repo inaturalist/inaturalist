@@ -1,9 +1,9 @@
-import isomorphicFetch from "isomorphic-fetch";
+import baseFetch from "cross-fetch";
 import _ from "lodash";
 
-// Light wrapper around isomorphic fetch to ensure credentials are always passed through
+// Light wrapper around fetch to ensure credentials are always passed through
 const fetch = ( url, options ) =>
-  isomorphicFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
+  baseFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
 
 function updateSession( params ) {
   const data = new FormData( );

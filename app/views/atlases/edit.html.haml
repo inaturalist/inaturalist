@@ -25,7 +25,7 @@
         %tbody.exploded
           - @exploded_atlas_places.each do |exploded_atlas_place|
             %tr
-              %td= link_to exploded_atlas_place.place.name, exploded_atlas_place.place
+              %td= link_to exploded_atlas_place.place.try_methods( :display_name, :name ), exploded_atlas_place.place
               %td= link_to "collapse", exploded_atlas_place_path(exploded_atlas_place), id: exploded_atlas_place.id, class: "collapse_button"
       - if @exploded_atlas_places.count == 0
         .no_exploded="No atlas places have been exploded"
@@ -39,7 +39,7 @@
         %tbody.places
           - @atlas_places.each do |atlas_place|
             %tr
-              %td= link_to atlas_place.name, atlas_place
+              %td= link_to atlas_place.display_name, atlas_place
               %td= link_to "explode", exploded_atlas_places_path, :id => "#{atlas_place.id}_#{@atlas.id}", :class => "explode_button"
       
       = link_to t(:back), @atlas, class: "btn btn-default"

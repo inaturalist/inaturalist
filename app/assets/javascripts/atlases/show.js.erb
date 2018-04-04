@@ -132,7 +132,8 @@ atlasJS.updateMetadataPanel = function( ) {
 
 atlasJS.appendPlaceMetadata = function( panel, place ) {
   var existing = atlasState.placeLayers[place.id];
-  panel.append( $( "<h2>" ).text( place.name ) );
+  var placeName = place.display_name || place.name;
+  panel.append( $( "<h2>" ).text( placeName ) );
   if( !existing || ( ( existing.type != "native" && existing.type != "introduced") && existing.type != "exploded" ) ) {
     var addPlaceLink = $( "<a href='#'>" ).text( "Add this place" );
     addPlaceLink.on( "click", function( e ) {
@@ -355,7 +356,8 @@ atlasJS.getListings = function( place ) {
       panel.html( "" );
       panel.append( $( "<h4>" ).text( "Listed Taxa" ) );
       $.each(s, function(key,value) {
-        var explodeLink = $( "<a href='/listed_taxa/"+value.id+"'>" ).text( value.taxon.name+" in "+value.place.name);
+        var placeName = value.place.display_name || value.place.name;
+        var explodeLink = $( "<a href='/listed_taxa/"+value.id+"'>" ).text( value.taxon.name +" in " + placeName );
         panel.append( explodeLink );
         panel.append( "<br>" );
       });

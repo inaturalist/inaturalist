@@ -11,6 +11,12 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations",
     :queue_if => lambda { |observation| !observation.bulk_import }
+  
+  # Why aren't we using after_save? Because we need this to run before the
+  # after_create created by notifiesi_subscribers_of :public_places runs
+  after_create :update_observations_places
+  after_update :update_observations_places
+  
   notifies_subscribers_of :public_places, :notification => "new_observations", 
     :on => :create,
     :queue_if => lambda {|observation|
@@ -364,7 +370,6 @@ class Observation < ActiveRecord::Base
              :update_public_positional_accuracy,
              :update_mappable,
              :set_captive,
-             :update_observations_places,
              :set_taxon_photo,
              :create_observation_review
   after_create :set_uri, :update_user_counter_caches
@@ -373,7 +378,7 @@ class Observation < ActiveRecord::Base
     :update_taxon_counter_caches, :create_deleted_observation,
     :update_user_counter_caches
 
-  after_commit :reindex_identifications
+  after_commit :reindex_identifications, :reindex_places
   
   ##
   # Named scopes
@@ -1507,8 +1512,6 @@ class Observation < ActiveRecord::Base
       print n[:taxon].id.to_s.ljust(width)
       print n[:taxon].name.to_s.ljust(width*2)
       print n[:cumulative_count].to_s.ljust(width)
-      print n[:adjusted_cumulative_count].to_s.ljust(width)
-      print n[:conservative_non_disagreement_count].to_s.ljust(width)
       print n[:disagreement_count].to_s.ljust(width)
       print n[:conservative_disagreement_count].to_s.ljust(width)
       print n[:score].to_s.ljust(width)
@@ -1516,7 +1519,7 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def community_taxon_nodes(options = {})
+  def community_taxon_nodes( options = {} )
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
     # work on current identifications
     ids = identifications.loaded? ?
@@ -1570,29 +1573,13 @@ class Observation < ActiveRecord::Base
         0
       end
 
-      conservative_non_disagreement_count = if first_ident_of_taxon
-        # working_idents.select {|i|
-        #   i.disagreement == false && i.taxon.self_and_ancestor_ids.include?( id_taxon.id )
-        # }.size
-        working_idents.select {|i|
-          # Does the taxon this identification *could* be disagreeing with include the taxon under consideration?
-          i.disagreement == false && i.previous_observation_taxon && i.previous_observation_taxon.ancestor_ids.include?( id_taxon.id )
-        }.size
-      else
-        0
-      end
-
-      adjusted_cumulative_count = cumulative_count - conservative_non_disagreement_count
-
       {
         taxon: id_taxon,
         ident_count: working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
         cumulative_count: cumulative_count,
-        adjusted_cumulative_count: adjusted_cumulative_count,
-        conservative_non_disagreement_count: conservative_non_disagreement_count,
         disagreement_count: disagreement_count,
         conservative_disagreement_count: conservative_disagreement_count,
-        score: adjusted_cumulative_count.to_f / (adjusted_cumulative_count + disagreement_count + conservative_disagreement_count)
+        score: cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
       }
     end
   end
@@ -2022,7 +2009,7 @@ class Observation < ActiveRecord::Base
     else
       nodes = community_taxon_nodes
       if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
-        num_agreements = node[:adjusted_cumulative_count]
+        num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
         num_agreements = 0 if current_idents.count <= 1
@@ -2134,6 +2121,58 @@ class Observation < ActiveRecord::Base
     ).ceil
   end
 
+  def private_sw_latlon
+    return nil unless georeferenced?
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    return [lat, lon] if positional_accuracy.blank?
+    positional_accuracy_degrees = positional_accuracy / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+    [
+      lat - positional_accuracy_degrees,
+      lon - positional_accuracy_degrees,
+    ]
+  end
+
+  def sw_latlon
+    return nil unless georeferenced?
+    if coordinates_obscured?
+      half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+      positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      return [
+        private_latitude - max_half_cell,
+        private_longitude - max_half_cell
+      ]
+    end
+    private_sw_latlon
+  end
+
+  def private_ne_latlon
+    return nil unless georeferenced?
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    return [lat, lon] if positional_accuracy.blank?
+    positional_accuracy_degrees = positional_accuracy / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+    [
+      lat + positional_accuracy_degrees,
+      lon + positional_accuracy_degrees,
+    ]
+  end
+
+  def ne_latlon
+    return nil unless georeferenced?
+    if coordinates_obscured?
+      half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+      positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      return [
+        private_latitude + max_half_cell,
+        private_longitude + max_half_cell
+      ]
+    end
+    private_ne_latlon
+  end
+
   #
   # Distance of a diagonal from corner to corner across the uncertainty cell
   # for this observation's coordinates.
@@ -2145,8 +2184,9 @@ class Observation < ActiveRecord::Base
     Observation.uncertainty_cell_diagonal_meters( lat, lon )
   end
 
-  def self.places_for_latlon( lat, lon, acc )
-    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
+  def self.places_for_latlon( lat, lon, acc, options = {} )
+    candidates = options[:candidates] || Place.containing_lat_lng( lat, lon )
+    candidates = candidates.sort_by{|p| p.bbox_area || 0}
 
     # At present we use PostGIS GEOMETRY types, which are a bit stupid about
     # things crossing the dateline, so we need to do an app-layer check.
@@ -2169,19 +2209,19 @@ class Observation < ActiveRecord::Base
   
   def places
     return [] unless georeferenced?
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = private_positional_accuracy || positional_accuracy
-    Observation.places_for_latlon( lat, lon, acc )
+    candidates = observations_places.map(&:place).compact
+    candidates.select do |p|
+      p.bbox_privately_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+    end
   end
   
   def public_places
     return [] unless georeferenced?
     return [] if geoprivacy == PRIVATE
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = public_positional_accuracy || positional_accuracy
-    Observation.places_for_latlon( lat, lon, acc )
+    candidates = observations_places.map(&:place).compact
+    candidates.select do |p|
+      p.bbox_publicly_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+    end
   end
 
   def self.system_places_for_latlon( lat, lon, options = {} )
@@ -2778,6 +2818,25 @@ class Observation < ActiveRecord::Base
 
   def reindex_identifications
     Identification.elastic_index!( ids: identification_ids )
+  end
+
+  # The intent here is to keep the observations_count in the Places index
+  # *roughly* up-to-date. So these jobs probably won't be queued after
+  # observation creation b/c the ObservationsPlace records won't have been made,
+  # and no place should be re-indexed more than once a day.
+  def reindex_places
+    return true if skip_indexing
+    places.each_with_index do |p,i|
+      # Queue jobs with a little offset we don't end up running intense API
+      # calls at the same time
+      p.delay(
+        run_at: ( 1.day + i.minutes ).from_now,
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Place::elastic_index": p.id }
+      ).elastic_index!
+    end
+    true
   end
 
   def user_viewed_updates(user_id)
