@@ -126,15 +126,18 @@ fi:
   able_to_connect_flickr: Hienoa! Pystyimme linkittämään Flickr-tilisi.
   about: Tietoja
   about_bioblitz_results: Tietoja biobliz-tuloksista
+  about_blocking: Tietoja estämisestä
   about_charts: Tietoja kaavioista
   about_community_taxa: Tietoja yhteisön taksoneista
   about_complete_taxa: Tietoja täydellisistä taksoneista
   about_conservation_status: Tietoja suojelutasosta
+  about_editing_observation_fields: Tietoja havaintokenttien muokkaamisesta
   about_establishment_means: Tietoja perustamisen keinoista
   about_external_links: Tietoja ulkoisista linkeistä
   about_licenses: Tietoa lisensseistä
   about_licensing: Tietoa lisensoinnista
   about_life!: Tietoa elämästä!
+  about_muting: Tietoja mykistämisestä
   about_names: Tietoa nimistä
   about_places: Tietoa paikoista
   about_taxon_changes: Tietoja taksonimuutoksista
@@ -534,6 +537,7 @@ fi:
   assessment_x: '%{assessment} arviointi'
   assessments: arvioinnit
   associations: Yhdistykset
+  at_any_time_change: koska tahansa (<span class="button">muuta</span>)
   at_time: klo %{time}
   atom: Atom
   authority_list:
@@ -595,6 +599,8 @@ fi:
   birds: linnut
   black: musta
   block_user: Estä käyttäjä
+  block_removed: Esto poistettu
+  blocked_users: Estetyt käyttäjät
   blog_widget: Blogin pienoisohjelma
   blue: sininen
   blue_butterfly_etc: sininen, perhonen, jne.
@@ -1050,6 +1056,7 @@ fi:
   done: Valmis
   dont_filter: Älä suodata
   dont_send_me_email: Älä lähetä minulle yhtään sähköpostia!
+  dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
   drop_it: Pudota se
   double_click_to_finish: (tuplaklikkaa lopettaaksesi)
   download: Lataa
@@ -1185,8 +1192,12 @@ fi:
   fblocale: en_US
   feedback: Palaute
   feeds: Syötteet
+  field_note: "<strong>Huomautus:</strong> \nJos haluat luoda kentän, tarkista nähdäksesi
+    jos joku muu on jo tehnyt sen päällekkäisyyden välttämiseksi."
   fields: kentät
   fields_: Kentät
+  fields_can_only_be_edited_by_the_people_who: Kenttiä voi muokata vain ihmiset, jotka
+    ovat luoneet ne sekä sivustokuraattorit
   fields_merged: Kentät yhdistetään
   file_should_be_in_the_following_format: 'Tiedoston pitäisi olla seuraavassa muodossa:
     taksonin nimi, kuvaus'
@@ -1684,6 +1695,8 @@ fi:
   maps:
     overlays:
       all_observations: Kaikki havainnot
+      every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka
+        luotu iNaturalist networkissä
       gbif_network: GBIF-verkko
       observations: Havaintoa
       place_boundary: Paikan rajat
@@ -1707,10 +1720,19 @@ fi:
   mollusks: nilviäiset
   momentjs:
     shortRelativeTime:
+      future: in %s
+      past: '%s'
+      s: 1s
+      m: 1min
+      mm: '%dm'
       h: 1t
+      hh: '%dh'
       d: 1p
+      dd: '%dd'
       M: 1kk
+      MM: '%dmo'
       "y": 1v
+      yy: '%dy'
   mon: Ma
   month: Kuukausi
   months: Kuukaudet
@@ -1782,6 +1804,7 @@ fi:
   new_source: Uusi lähde
   new_taxon_change: Uusi taksonimuutos
   new_taxon_link: Uusi taksonilinkki
+  new_taxon_name: Uusi taksoninimi
   new_updates_in_the_last_24_hours_from: Uusia päivityksiä viimeisten 24 tunnin aikana
     %{site_name}ista
   new_users_week: Uudet käyttäjät / Viikko
@@ -1824,6 +1847,7 @@ fi:
   no_matching_users: Ei vastaavia käyttäjiä.
   no_members_yet: Ei jäseniä vielä.
   no_messages_yet: Ei vielä viestejä
+  no_more_mail_from_site: Et halua vastaanottaa mitään sähköpostia %{site_name}ilta?
   no_more_updates: Ei enenpää päivityksiä!
   no_nearby_observations: Ei läheisiä havaintoja.
   no_new_messages: Ei uusia viestejä
@@ -1834,6 +1858,7 @@ fi:
   no_observations_submitted: Ei havaintoja toimitettu!
   no_observations_yet: Ei vielä havaintoja
   no_one_has_added_any: Kukaan ei ole lisännyt muistiinpanoja tälle paikalle
+  no_one_posted_anything_yet: Kukaan ei ole lähettänyt vielä mitään!
   no_photo: Ei kuvaa
   no_photos: Ei kuvia
   no_places_available: Ei paikkoja saatavilla
@@ -2955,9 +2980,11 @@ fi:
   you_cant_delete_a_project_list: Et voi poistaa projektiluetteloa
   you_cant_remove_other_peoples_observations: Et voi poistaa muiden ihmisten havaintoja
   you_didnt_select_any_observations: Et valinnut yhtään havaintoa
+  you_dont_have_any: Sinulla ei ole mitään paikka tai taksonitilauksia
   you_have_left_x_project: Olet lähtenyt projektista %{project}
   you_have_logget_out: Olet kirjautunut ulos. Tule pian takaisin!
   you_have_to: Sinun täytyy
+  you_havent: Et ole
   you_havent_linked_your_inaturalist_google_account: Et ole vielä linkittänyt %{site_name}-tiliäsi
     ja Google-tiliäsi
   you_joined_this_project: Liityit tähän projektiin!

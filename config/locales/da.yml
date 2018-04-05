@@ -128,15 +128,18 @@ da:
   able_to_connect_flickr: Super! Det lykkedes os at tilknytte din Flickr konto.
   about: Om
   about_bioblitz_results: Om bioblitz resultater
+  about_blocking: Om blokering
   about_charts: Om diagrammer
   about_community_taxa: Om fællesskabs taksa
   about_complete_taxa: Om komplet taksa
   about_conservation_status: Om bevarings status
+  about_editing_observation_fields: Om redigering af observationsfelter
   about_establishment_means: Om oprindelse
   about_external_links: Om eksterne links
   about_licenses: Om licenser
   about_licensing: Om ophavsrettigheder
   about_life!: Om livet!
+  about_muting: Om slukning
   about_names: Om navne
   about_places: Om steder
   about_taxon_changes: Om taxon ændringer
@@ -638,6 +641,7 @@ da:
   black: sort
   block_user: Blokér bruger
   block_removed: Blokering fjernet
+  blocked_users: Blokerede brugere
   blog_widget: Blog widget
   blue: blå
   blue_butterfly_etc: blå, sommerfugl, etc.
@@ -2225,7 +2229,7 @@ da:
   most_recent_observation_by_date_observed: Seneste verificerbare observationer efter
     observationsdato
   most_species: Fleste arter
-  most_observed_species: Flest observerede arter
+  most_observed_species: Mest observerede arter
   most_observed_introduced_species: Flest observerede indførte arter
   most_observed_threatened_species: Mest observerede truede arter
   multiple: flere
@@ -2242,6 +2246,7 @@ da:
   must_have_x: skal have %{x}
   mute_user: Sluk for bruger
   mute_removed: Sluk fjernet
+  muted_users: Slukkede brugere
   n_ago: '%{n} siden'
   n_people_agrees: '%{amount} personer er enige'
   n_people_disagrees: '%{amount} personer er uenige'
@@ -2457,6 +2462,7 @@ da:
   not_seeing_what_looking_for: Kan du ikke se det du leder efter?
   not_yet: Ikke endnu
   note: Bemærkning
+  notes: Noter
   note_you_can_modify_the_height_attribute: 'Bemærk: Du kan ændre egenskaben ''højde''
     for at tilpasse den til tilgængelig plads på din webside.'
   notify_me_of_mentions: Underret mig hvis nævnt (f.eks. @brugernavn)
@@ -2702,6 +2708,7 @@ da:
     Vær ikke ond.
   only_the_project_admin_can_delete_this_project: Kun projektadministratoren kan slette
     dette projekt.
+  only_you: Kun dig
   open: åben
   open_: Åben
   open_description: Alle kan se koordinaterne, medmindre taksonen er truet.
@@ -3271,10 +3278,10 @@ da:
   request_id_help: Anmod om hjælp til ID
   request_password: Anmod om adgangskode
   request_timed_out: Anmodning timeout!
-  required: påkrævet
-  required_: Påkrævet
-  required_field: påkrævet felt
-  required_columns_in_order: Påkrævede kolonner i rækkefølge
+  required: obligatorisk
+  required_: Obligatorisk
+  required_field: obligatorisk felt
+  required_columns_in_order: Obligatoriske kolonner i rækkefølge
   research: forskning
   research_grade: forskningskvalitet
   research_grade_expandable_html: R<span class='full'>esearch </span>G<span class='full'>rade</span>
@@ -3441,6 +3448,7 @@ da:
   show_off_your_recent_observations: Vis dine seneste observationer på din egen blog
     eller hjemmeside!
   show_only: Vis kun
+  show_scientific_name_first: Vis videnskabelige navne først
   show_taxa_from_both: (vis taksa fra begge lister)
   show_total_listed_taxa: Vis total opførte taksa
   showing_observations_by: viser observationer af
@@ -4314,6 +4322,7 @@ da:
   we_tried_to_process_your_upload_named_filename: Vi forsøgte at behandle din upload
     med navnet %{filename}, men det fungerede ikke. Ret venligst følgende problem(er)
     og prøv igen.
+  weather: Vejr
   wed: Ons
   week_of_date: Ugen med %{date}
   welcome!: Velkommen!
@@ -4510,7 +4519,7 @@ da:
     for at gøre det
   you_must_be_project_manager_to_do_that: Du skal være projektleder for at gøre det
   you_must_choose_an_observation_field: Du skal vælge et observationsfelt
-  you_must_fill_out_the_required_fields: Du skal udfylde de påkrævede felter
+  you_must_fill_out_the_required_fields: Du skal udfylde de obligatoriske felter
   you_must_have_a_header_row: Du skal have en overskriftsrække
   you_must_select_a_csv_file_to_upload: Du skal vælge den CSV fil, der skal uploades.
   you_must_select_a_place_to_merge_with: Du skal vælge et sted til sammenlængning
@@ -5385,6 +5394,7 @@ da:
           </P>
         rules:
           captive: være i fangenskab/dyrket
+          coordinates_shareable_by_project_curators: Koordinater er delbare af projektkuratorer
           georeferenced: have koordinater
           has_a_photo: have et foto
           has_a_sound: have en lyd
@@ -6113,6 +6123,8 @@ da:
         terms: Vilkår
         map_type: Korttype
         zoom_level: Zoom niveau
+        preferred_membership_model: Foretrukne medlemskabsmodel
+        preferred_submission_model: Foretrukne indberetningsmodel
         prefers_place_boundary_visible: Vis stedets ydre grænser på kort
         tracking_codes: Sporingskoder
         source_url: Kilde URL
@@ -6155,9 +6167,12 @@ da:
         source_identifier: Kilde identifikator
       user:
         email: E-mail
+        name: Navn
         locale: Lokal
         time_zone: Tidszone
         search_place_id: Søgested
+        place_id: Sted
+        preferred_observation_fields_by: Tillad observationsfelter fra
       source:
         title: Titel
         in_text: I tekst
