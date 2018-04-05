@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   fetchTaxon,
   setCount,
@@ -27,13 +28,13 @@ export function fetchTaxonAssociates( t ) {
     dispatch( resetObservationsState( ) );
     const s = getState( );
     const taxon = t || s.taxon.taxon;
-    if ( taxon.taxon_changes_count ) {
+    if ( !_.isNil( taxon.taxon_changes_count ) ) {
       dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
       if ( taxon.taxon_changes_count > 0 ) {
         dispatch( fetchTaxonChange( taxon ) );
       }
     }
-    if ( taxon.taxon_schemes_count ) {
+    if ( !_.isNil( taxon.taxon_schemes_count ) ) {
       dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
     }
     dispatch( fetchNames( ) );
@@ -60,7 +61,6 @@ export function fetchTaxonAssociates( t ) {
         break;
       case "highlights":
         dispatch( fetchTrending( ) );
-        // dispatch( fetchRare( ) );
         dispatch( fetchWanted( ) );
         dispatch( fetchRecent( ) );
         break;
