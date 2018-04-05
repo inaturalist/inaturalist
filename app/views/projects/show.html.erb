@@ -287,7 +287,6 @@
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
         <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
       </div>
     </li>
