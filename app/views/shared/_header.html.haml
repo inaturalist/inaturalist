@@ -23,7 +23,7 @@
           %ul.dropdown-menu{ aria: { labelledby: "header-explore-dropdown-toggle" } }
             %li= link_to t(:observations), observations_path
             - if logged_in?
-              %li= link_to t(:your_observations), observations_path( user_id: current_user.login )
+              %li= link_to t(:your_observations), observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
             %li= link_to t(:species), taxa_path
             - if logged_in?
               %li= link_to t(:identify), identify_observations_path
@@ -111,7 +111,7 @@
         = link_to t(:explore).capitalize, observations_path
       - if logged_in?
         %li.navtab{ class: controller.class.name == "ObservationsController" && %w( by_login ).include?( controller.action_name ) || ( controller.class.name == "ObservationsController" && ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login ) ) ? "active" : nil }
-          = link_to t(:your_observations).titleize, observations_path( user_id: current_user.login )
+          = link_to t(:your_observations).titleize, observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
       %li.navtab.communitytab.menutab{ class: %w(UsersController ProjectsController PostsController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
           #header-community-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }

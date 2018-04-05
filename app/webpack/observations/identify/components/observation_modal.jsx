@@ -438,7 +438,7 @@ class ObservationModal extends React.Component {
                               <i className="icon-person bullet-icon"></i> <span className="login">{ observation.user.login }</span>
                             </a>
                             <span className="separator">&bull;</span>
-                            <a href={ `/observations?user_id=${observation.user.login}` } target="_blank">
+                            <a href={ `/observations?user_id=${observation.user.login}&verifiable=any&place_id=any` } target="_blank">
                               <i className="fa fa-binoculars" /> { I18n.toNumber( observation.user.observations_count, { precision: 0 } ) }
                             </a>
                           </li>
