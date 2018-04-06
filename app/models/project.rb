@@ -322,7 +322,7 @@ class Project < ActiveRecord::Base
   end
 
   def remove_times_from_non_bioblitzes
-    return if bioblitz?
+    return if bioblitz? || is_new_project?
     self.start_time = nil
     self.end_time = nil
   end
