@@ -84,11 +84,12 @@ var TaxonGuide = {
     // ensure controls change url state
     function replaceParams() {
       var href = $(this).attr("href") || $(this).serialize()
-      href = href.match(/\?(.+)/)[1]
-      href = TaxonGuide.cleanParamString(href)
-      var state = href.match(/[\?\&=]/) ? $.deparam.querystring(href) : {}
-      $.bbq.pushState(state, TaxonGuide.REPLACE_EXISTING)
-      return false
+      var matches = href.match( /\?(.+)/ );
+      href = matches ? matches[1] : href;
+      href = TaxonGuide.cleanParamString(href);
+      var state = href.match(/[\?\&=]/) ? $.deparam.querystring(href) : {};
+      $.bbq.pushState(state, TaxonGuide.REPLACE_EXISTING);
+      return false;
     }
     function filterParams() {
       var href = $(this).attr("href") || $(this).serialize()
@@ -261,12 +262,14 @@ var TaxonGuide = {
     return {count: count, total: total, valueWidth: valueWidth}
   },
   ajaxify: function(context) {
-    var jsonContainer = $(context).find('code.json')
-    var newTaxa = $.parseJSON(jsonContainer.text())
-    if (newTaxa) {
-      window.taxa = $.extend({}, window.taxa, newTaxa)
+    var jsonContainer = $(context).find('code.json');
+    if ( jsonContainer.length > 0 ) {
+      var newTaxa = $.parseJSON( jsonContainer.text( ) );
+      if (newTaxa) {
+        window.taxa = $.extend( { }, window.taxa, newTaxa );
+      }
+      jsonContainer.remove( );
     }
-    jsonContainer.remove()
     
     TaxonGuide.updateConfirmedChart(context)
     TaxonGuide.updateObservedChart(context)

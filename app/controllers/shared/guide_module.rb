@@ -20,8 +20,21 @@ module Shared::GuideModule
     end
 
     if @q = @filter_params[:q]
+      @q = @q.gsub( /\{\}\[\]/, "" )
       @search_taxon_ids = Taxon.elastic_search(
-        filters: [ { match: { "names.name": @q } } ]).per_page(1000).map(&:id)
+        filters: [
+          {
+            nested: {
+              path: "names",
+              query: {
+                match: {
+                  "names.name": @q
+                }
+              }
+            }
+          }
+        ]
+      ).per_page(1000).map(&:id)
       if @search_taxon_ids.size == 1
         @taxon = Taxon.find_by_id(@search_taxon_ids.first)
       elsif Taxon.where(id: @search_taxon_ids).where("name LIKE ?", "#{@q.capitalize}%").count == 1
