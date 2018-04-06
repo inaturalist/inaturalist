@@ -1,7 +1,18 @@
 - content_for :title do
   = raw @project.title
 - content_for :extrahead do
-  - # TODO: meta tags
+  %meta{ property: "og:type", content: "website" }
+  %meta{ property: "og:title", content: @project.title }
+  - unless @project.icon.blank?
+    - shareable_image_url = uri_join( root_url, @project.icon.url( :original ) )
+    %meta{ property: "og:image", content: shareable_image_url }
+    %meta{ property: "twitter:image", content: shareable_image_url }
+  %meta{ property: "og:url", content: project_url( @project ) }
+  - unless @fb_admin_ids.blank?
+    %meta{ property: "fb:admins", content: @fb_admin_ids.join( "," ) }
+  - unless @project.description.blank?
+    - og_description = truncate(strip_tags( @project.description ).gsub( /\s+/, " " ), length: 1000 )
+  %meta{ property: "og:description", content: og_description }
 - content_for :extracss do
   = stylesheet_link_tag "projects/show2"
 - content_for :extrajs do

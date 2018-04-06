@@ -18,7 +18,7 @@ class StatsTab extends Component {
           <Row>
             <Col xs={ 12 }>
               <h2>
-                Stats
+                { I18n.t( "stats" ) }
               </h2>
             </Col>
           </Row>

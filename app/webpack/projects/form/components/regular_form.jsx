@@ -187,7 +187,10 @@ class RegularForm extends React.Component {
                 name="project-media"
                 id="project-media-sounds"
                 defaultChecked={ project.rule_sounds && !project.rule_photos }
-                onChange={ ( ) => setRulePreference( "sounds", "true" ) }
+                onChange={ ( ) => {
+                  setRulePreference( "sounds", "true" );
+                  setRulePreference( "photos", null );
+                } }
               />
               <label className="inline" htmlFor="project-media-sounds">Has Sound</label>
               <input
@@ -195,7 +198,10 @@ class RegularForm extends React.Component {
                 name="project-media"
                 id="project-media-photos"
                 defaultChecked={ project.rule_photos && !project.rule_sounds }
-                onChange={ ( ) => setRulePreference( "photos", "true" ) }
+                onChange={ ( ) => {
+                  setRulePreference( "photos", "true" );
+                  setRulePreference( "sounds", null );
+                } }
               />
               <label className="inline" htmlFor="project-media-photos">Has Photo</label>
               <input
@@ -203,7 +209,10 @@ class RegularForm extends React.Component {
                 name="project-media"
                 id="project-media-both"
                 defaultChecked={ project.rule_photos && project.rule_sounds }
-                onChange={ ( ) => setRulePreference( "photos", "true" ) }
+                onChange={ ( ) => {
+                  setRulePreference( "photos", "true" );
+                  setRulePreference( "sounds", "true" );
+                } }
               />
               <label className="inline" htmlFor="project-media-both">
                 Has Both Photo and Sound
@@ -234,6 +243,7 @@ class RegularForm extends React.Component {
                 inputFormat="YYYY-MM-DD"
                 defaultText={ project.rule_observed_on }
                 onChange={ date => setRulePreference( "observed_on", date ) }
+                allowFutureDates
                 inputProps={ {
                   className: "form-control",
                   placeholder: "YYYY-MM-DD",

@@ -1,5 +1,5 @@
 - content_for :title do
-  = t(:new_project)
+  = @project ? raw( t( :editing_project, project: @project.title ) ) : t(:new_project)
 - content_for :extrahead do
   - # TODO: meta tags
 - content_for :extracss do

@@ -1,8 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
-import safeHtml from "safe-html";
 import moment from "moment";
-import htmlTruncate from "html-truncate";
+import UserText from "../../../shared/components/user_text";
 
 const News = ( { project } ) => {
   if ( !project.posts_loaded ) {
@@ -12,7 +11,7 @@ const News = ( { project } ) => {
   return (
     <div className="News">
       <h2>
-        News
+        { I18n.t( "news" ) }
         <a href={ `/projects/${project.slug}/journal` }>
           <i className="fa fa-arrow-circle-right" />
         </a>
@@ -20,7 +19,7 @@ const News = ( { project } ) => {
       { noNews ?
         (
           <div className="empty-text">
-            No news yet. Check back soon!
+            { I18n.t( "no_news_yet" ) }. { I18n.t( "check_back_soon" ) }
           </div>
         ) : (
           <div>
@@ -31,7 +30,11 @@ const News = ( { project } ) => {
                     <div className="date">{ moment( post.created_at ).format( "LL - LT" ) }</div>
                     <div className="title">{ post.title }</div>
                     <div className="body">
-                      { htmlTruncate( safeHtml( post.body, { allowedTags: [] } ), 90 ) }
+                      <UserText
+                        text={ post.body }
+                        truncate={ 120 }
+                        moreToggle={ false }
+                      />
                     </div>
                   </a>
                 </div>

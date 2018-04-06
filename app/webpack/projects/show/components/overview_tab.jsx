@@ -14,29 +14,24 @@ import OverviewStats from "./overview_stats";
 
 class OverviewTab extends Component {
   render( ) {
-    const { project, setSelectedTab } = this.props;
-    if ( !project.observations_loaded ) {
-      return ( <div className="loading_spinner huge" /> );
-    }
-    const instances = project.observations.results;
+    const { project } = this.props;
+    const instances = project.observations ? project.observations.results : null;
     return (
       <div className="OverviewTab">
         <OverviewRecentObservations { ...this.props } />
-        { !_.isEmpty( project.observations.total_bounds ) && (
-          <Grid className="leaders-grid">
-            <Row>
-              <Col xs={ 4 } className="no-padding">
-                <TopObserversPanelContainer />
-              </Col>
-              <Col xs={ 4 } className="no-padding">
-                <TopSpeciesObserversPanelContainer />
-              </Col>
-              <Col xs={ 4 } className="no-padding">
-                <TopSpeciesPanelContainer />
-              </Col>
-            </Row>
-          </Grid>
-        ) }
+        <Grid className="leaders-grid">
+          <Row>
+            <Col xs={ 4 } className="no-padding">
+              <TopObserversPanelContainer />
+            </Col>
+            <Col xs={ 4 } className="no-padding">
+              <TopSpeciesObserversPanelContainer />
+            </Col>
+            <Col xs={ 4 } className="no-padding">
+              <TopSpeciesPanelContainer />
+            </Col>
+          </Row>
+        </Grid>
         <Grid className="info-grid">
           <Row>
             <Col xs={ 4 }>

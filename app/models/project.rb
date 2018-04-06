@@ -51,13 +51,12 @@ class Project < ActiveRecord::Base
   preference :rule_quality_grade, :string
   preference :rule_photos, :boolean
   preference :rule_sounds, :boolean
-  preference :rule_date_observed, :string
   preference :rule_observed_on, :string
   preference :rule_d1, :string
   preference :rule_d2, :string
   preference :rule_month, :string
   RULE_PREFERENCES = [
-    "rule_quality_grade", "rule_photos", "rule_sounds", "rule_date_observed",
+    "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month"
   ]
   
@@ -451,6 +450,14 @@ class Project < ActiveRecord::Base
     Project::RULE_PREFERENCES.each do |rule|
       rule_value = send( "prefers_#{rule}" )
       unless rule_value.nil? || rule_value == ""
+        # map the rule values to their proper data types
+        if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
+          rule_value = rule_value.match( / / ) ? Time.parse( rule_value ) : Date.parse( rule_value )
+        elsif rule_value.is_a?( String )
+          is_int = rule_value.match( /^\d+ *(, *\d+)*$/ )
+          rule_value = rule_value.split( "," ).map( &:strip )
+          rule_value.map!( &:to_i ) if is_int
+        end
         params[ rule.sub( "rule_", "" ) ] = rule_value
       end
     end

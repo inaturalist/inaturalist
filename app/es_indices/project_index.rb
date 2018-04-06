@@ -30,6 +30,20 @@ class Project < ActiveRecord::Base
         indexes :value_date, type: "date", format: "dateOptionalTime"
         indexes :value_boolean, type: "boolean"
         indexes :value_number, type: "long"
+        indexes :value_keyword, type: "keyword"
+      end
+      indexes :search_parameter_fields do
+        indexes :d1, type: "date", format: "dateOptionalTime"
+        indexes :d2, type: "date", format: "dateOptionalTime"
+        indexes :observed_on, type: "date", format: "dateOptionalTime"
+        indexes :photos, type: "boolean"
+        indexes :sounds, type: "boolean"
+        indexes :taxon_id, type: "long"
+        indexes :place_id, type: "long"
+        indexes :user_id, type: "long"
+        indexes :project_id, type: "long"
+        indexes :month, type: "long"
+        indexes :quality_grade, type: "keyword"
       end
       indexes :project_observation_rules, type: :nested do
         indexes :operator, type: "keyword"
@@ -68,10 +82,26 @@ class Project < ActiveRecord::Base
       header_image_url: cover.blank? ? nil : FakeView.asset_url( cover.url, host: Site.default.url ),
       header_image_file_name: cover_file_name,
       project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json),
-      search_parameters: search_parameters.map{ |field,value| {
-        field: field,
-        value: value
-      } },
+      search_parameters: search_parameters.map{ |field,value|
+        type = "keyword"
+        if [ "d1", "d2", "observed_on" ].include?( field )
+          type = "date"
+        else
+          instance = value.is_a?( Array ) ? value[0] : value
+          if instance.is_a?( TrueClass ) || instance.is_a?( FalseClass )
+            type = "bool"
+          elsif instance.is_a?( Integer )
+            type = "number"
+          end
+        end
+        doc = {
+          field: field,
+          value: value
+        }
+        doc[:"value_#{type}"] = value
+        doc
+      },
+      search_parameter_fields: search_parameters,
       subproject_ids: project_type === "umbrella" ? project_observation_rules.select{ |rule|
         rule.operator == "in_project?"
       }.map( &:operand_id ) : [],

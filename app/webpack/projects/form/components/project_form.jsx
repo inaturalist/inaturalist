@@ -105,6 +105,11 @@ class ProjectForm extends React.Component {
                 ) }
                 <button
                   className="btn btn-default"
+                  onClick={ ( ) => {
+                    project.id ?
+                      window.location = `/projects/${project.slug}` :
+                      this.props.removeProject( );
+                  } }
                 >Cancel</button>
               </div>
             </Col>
@@ -122,7 +127,8 @@ ProjectForm.propTypes = {
   addManager: PropTypes.func,
   removeProjectUser: PropTypes.func,
   showObservationPreview: PropTypes.func,
-  submitProject: PropTypes.func
+  submitProject: PropTypes.func,
+  removeProject: PropTypes.func
 };
 
 export default ProjectForm;

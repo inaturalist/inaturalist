@@ -6,7 +6,7 @@ import EventCountdown from "./event_countdown";
 
 class BeforeEventTab extends Component {
   render( ) {
-    const { project, setSelectedTab } = this.props;
+    const { project } = this.props;
     if ( !project.observations_loaded ) {
       return ( <div className="loading_spinner huge" /> );
     }

@@ -44,6 +44,7 @@ const Project = class Project {
     if ( this.startDate ) {
       if ( util.isDate( start ) ) {
         this.started = this.startDate.isSame( now, "day" ) || this.startDate.isBefore( now, "day" );
+        this.durationToEvent = moment.duration( this.startDate.diff( now ) );
       } else {
         if ( this.startDate.isBefore( now ) ) {
           this.started = true;

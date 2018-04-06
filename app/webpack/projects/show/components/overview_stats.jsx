@@ -13,7 +13,7 @@ class OverviewStats extends Component {
     return (
       <Col xs={ 4 }>
         <h2>
-          Stats
+          { I18n.t( "stats" ) }
           <i className="fa fa-arrow-circle-right" />
         </h2>
         <IconicTaxaPieChart { ...this.props } />

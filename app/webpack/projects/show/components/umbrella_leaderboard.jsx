@@ -53,21 +53,27 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
                 <tr className="leader-row" key={ `umbrella_${ps.project.id}_${sortField}` }>
                   <td className="icon-cell">
                     <a href={ `/projects/${ps.project.slug}` }>
-                      <div
-                        className="leader-icon"
-                        style={ { backgroundImage: `url( '${ps.project.icon}' )` } }
-                      />
+                      { !ps.project.icon || ps.project.icon.match( "attachment_defaults" ) ? (
+                        <i className="fa fa-briefcase leader-icon" />
+                      ) : (
+                        <div
+                          className="leader-icon"
+                          style={ { backgroundImage: `url( '${ps.project.icon}' )` } }
+                        />
+                      ) }
                     </a>
                   </td>
                   <td className="leader-data">
                     <a href={ `/projects/${ps.project.slug}` }>
                       <div className="leader-score">
-                        <div
-                          className="leader-bar"
-                          style={ { width: `${width}%`, background: color } }
-                        />
+                        { width > 0 && (
+                          <div
+                            className="leader-bar"
+                            style={ { width: `${width}%`, background: color } }
+                          />
+                        ) }
                         <div className="leader-count" style={ { color } }>
-                          { ps[sortField] }
+                          { I18n.toNumber( ps[sortField], { precision: 0 } ) }
                         </div>
                       </div>
                       <div className="leader-title">

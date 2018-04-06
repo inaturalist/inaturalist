@@ -19,7 +19,7 @@ class About extends React.Component {
                 onClick={ () => setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" ) }
               >
                 <i className="fa fa-angle-left" />
-                Back to project
+                { I18n.t( "back_to_x", { noun: project.title } ) }
               </div>
             </Col>
           </Row>
@@ -29,7 +29,7 @@ class About extends React.Component {
               <UserText text={ project.description } className="body" />
               <div className="owner">
                 <UserImage user={ project.user } />
-                Created by:
+                { I18n.t( "created_by" ) }:
                 <UserLink user={ project.user } />
                 <span className="date">
                   - { moment( project.created_at ).format( "MMMM D, YYYY" ) }

@@ -23,20 +23,20 @@ const ObserversTab = ( { config, observers, setConfig } ) => {
               <table>
                 <thead>
                   <tr>
-                    <th className="rank">Rank</th>
-                    <th>User</th>
+                    <th className="rank">{ I18n.t( "rank" ) }</th>
+                    <th>{ I18n.t( "user" ) }</th>
                     <th
                       className="clicky"
                       onClick={ ( ) => setConfig( { observersSort: "observations" } ) }
                     >
-                      Observations
+                      { I18n.t( "observations" ) }
                       <i className="fa fa-caret-down" />
                     </th>
                     <th
                       className="clicky"
                       onClick={ ( ) => setConfig( { observersSort: "species" } ) }
                     >
-                      Species
+                      { I18n.t( "species" ) }
                       <i className="fa fa-caret-down" />
                     </th>
                   </tr>

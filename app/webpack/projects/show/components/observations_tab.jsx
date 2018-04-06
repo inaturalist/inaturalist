@@ -12,11 +12,14 @@ const ObservationsTab = ( {
   infiniteScrollObservations,
   setSelectedTab
 } ) => {
-  if ( _.isEmpty( observations ) ) { return ( <span /> ); }
   const scrollIndex = config.observationsScrollIndex || 30;
   let view;
   const activeSubview = config.observationsSearchSubview || "grid";
-  if ( activeSubview === "map" ) {
+  if ( _.isEmpty( observations ) ) {
+    view = ( <div className="loading_spinner huge" /> );
+  } else if ( _.isEmpty( observations ) ) {
+    view = ( <span /> );
+  } else if ( activeSubview === "map" ) {
     view = (
       <ObservationsMapView
         project={ project }
@@ -56,39 +59,39 @@ const ObservationsTab = ( {
                 onClick={ ( ) => setSelectedTab( "observations", { subtab: "map" } ) }
               >
                 <i className="fa fa-map-marker" />
-                Map
+                { I18n.t( "map" ) }
               </button>
               <button
                 className={ `btn btn-default ${activeSubview === "grid" && "active"}` }
                 onClick={ ( ) => setSelectedTab( "observations", { subtab: "grid" } ) }
               >
                 <i className="fa fa-th" />
-                Grid
+                { I18n.t( "grid" ) }
               </button>
               <button
                 className={ `btn btn-default ${activeSubview === "table" && "active"}` }
                 onClick={ ( ) => setSelectedTab( "observations", { subtab: "table" } ) }
               >
                 <i className="fa fa-bars" />
-                List
+                { I18n.t( "list" ) }
               </button>
             </div>
             <a href={ `/observations/identify?project_id=${project.slug}` }>
               <button className="btn btn-default standalone">
                 <i className="icon-identification" />
-                Identify
+                { I18n.t( "identify" ) }
               </button>
             </a>
             <a href={ `/observations?project_id=${project.slug}&verifiable=any&place=any` }>
               <button className="btn btn-default standalone">
                 <i className="fa fa-search" />
-                Search
+                { I18n.t( "search" ) }
               </button>
             </a>
             <a href={ `/observations/export?projects=${project.slug}` }>
               <button className="btn btn-default standalone export">
                 <i className="fa fa-external-link" />
-                Export Observations
+                { I18n.t( "export_observations" ) }
               </button>
             </a>
           </Col>

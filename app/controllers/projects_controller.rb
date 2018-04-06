@@ -24,7 +24,7 @@ class ProjectsController < ApplicationController
   before_filter :ensure_current_project_url, :only => :show
   before_filter :load_project_user, :except => [:index, :search, :new, :by_login, :new2]
   before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :ensure_can_edit, :only => [:edit, :update, :edit2]
+  before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
   
   ORDERS = %w(title created)
@@ -89,20 +89,6 @@ class ProjectsController < ApplicationController
   end
   
   def show
-    if @project.is_new_project?
-      unless logged_in? && current_user.has_role?(:admin)
-        flash[:error] = t(:only_administrators_may_access_that_page)
-        redirect_to projects_path
-        return
-      end
-      projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
-      return render_404 unless projects_response
-      @projects_data = projects_response.results[0]
-      @current_tab = params[:tab]
-      @current_subtab = params[:subtab]
-      return render layout: "bootstrap", action: "show2"
-    end
-
     respond_to do |format|
 
       list_observed_and_total = @project.list_observed_and_total
@@ -110,6 +96,23 @@ class ProjectsController < ApplicationController
       @list_numerator = list_observed_and_total[:numerator]
 
       format.html do
+        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
+          where("provider_authorizations.provider_name = 'facebook'").
+          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
+          map(&:provider_uid)
+        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
+        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
+        if @project.is_new_project?
+          projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+          if projects_response.blank?
+            flash[:error] = I18n.t( :doh_something_went_wrong )
+            return redirect_to projects_path
+          end
+          @projects_data = projects_response.results[0]
+          @current_tab = params[:tab]
+          @current_subtab = params[:subtab]
+          return render layout: "bootstrap", action: "show2"
+        end
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
@@ -130,12 +133,6 @@ class ProjectsController < ApplicationController
           end
         end
         @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
-        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
-          where("provider_authorizations.provider_name = 'facebook'").
-          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
-          map(&:provider_uid)
-        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
-        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         @observations_url_params = { projects: [@project.slug] }
         @observations_url = observations_url(@observations_url_params)
         @observation_search_url_params = { place_id: "any", verifiable: "any", project_id: @project.slug }
@@ -192,7 +189,10 @@ class ProjectsController < ApplicationController
   def edit
     if @project.is_new_project?
       projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
-      return render_404 unless projects_response
+      if projects_response.blank?
+        flash[:error] = I18n.t( :doh_something_went_wrong )
+        return redirect_to projects_path
+      end
       @project_json = projects_response.results[0]
       return render layout: "bootstrap", action: "new2"
     end

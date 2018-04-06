@@ -19,11 +19,14 @@ body {
     }
   }
 }
-#header {
+#header, #test-header {
   margin-bottom: 0px;
 }
-#bodywrapper:after {
-  height: 196px;
+#bodywrapper {
+  background: $page-background-grey;
+  &:after {
+    height: 196px;
+  }
 }
 
 .no-padding {
@@ -111,18 +114,23 @@ button {
 }
 
 .project-header {
-  height: 350px;
+  height: 370px;
   position: relative;
   overflow: hidden;
   .project-header-background {
     position: absolute;
-    height: 350px;
-    width: 100%;
+    margin: -20px;
+    background-size: 110%;
+    width: 110%;
+    height: 110%;
     filter: blur(20px);
     -webkit-filter: blur(20px);
     -moz-filter: blur(20px);
     -o-filter: blur(20px);
     -ms-filter: "blur(20px)";
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .header-grid {
     margin-top: 25px;
@@ -131,18 +139,16 @@ button {
       margin-right: 0;
     }
     .title-container {
-      height: 300px;
+      height: 320px;
       background-size: contain;
       background-repeat: no-repeat;
-      background-position-x: center;
-      background-position-y: center;
+      background-position: center;
       display: flex;
       &.no-banner {
         background-image: url(image_path( "project_blank_banner_bg.png" ));
         background-size: cover;
         background-repeat: no-repeat;
-        background-position-x: center;
-        background-position-y: center;
+        background-position: center;
       }
       .header-title {
         background: rgba(0,0,0,0.7);
@@ -193,54 +199,58 @@ button {
       }
     }
     .header-about {
-      height: 300px;
+      height: 320px;
       padding: 30px;
       background: #28387d;
       color: white;
-      .header-about-title {
-        font-size: 25px;
-        margin-top: 5px;
-      }
-      .header-about-button {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        button {
-          background: rgba(255, 255, 255, 0.2);
-          border-color: rgba(255, 255, 255, 0.3);
-          border-radius: 30px;
-          padding: 3px 20px 1px 20px;
+      .header-about-content {
+        height: 100%;
+        position: relative;
+        .header-about-title {
+          font-size: 25px;
+          margin-top: 5px;
+        }
+        .header-about-button {
+          position: absolute;
+          top: 0;
+          right: 0;
+          button {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 3px 20px 1px 20px;
+            font-size: 15px;
+            border-style: solid;
+          }
+        }
+        .header-about-text {
+          margin-top: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: inline-block;
+          font-size: 16px;
+          line-height: 22px;
+          max-height: 176px;
+        }
+        .header-about-read-more {
+          font-weight: 700;
           font-size: 15px;
-          border-style: solid;
+          cursor: pointer;
+          i {
+            font-size: 9px;
+            margin-left: 3px;
+            font-weight: 100;
+          }
         }
-      }
-      .header-about-text {
-        margin-top: 20px;
-        overflow: hidden;
-        white-space: pre-line;
-        text-overflow: ellipsis;
-        display: inline-block;
-        font-size: 16px;
-        line-height: 22px;
-      }
-      .header-about-read-more {
-        font-weight: 700;
-        font-size: 15px;
-        cursor: pointer;
-        i {
-          font-size: 9px;
-          margin-left: 3px;
-          font-weight: 100;
-        }
-      }
-      .header-about-news {
-        position: absolute;
-        bottom: 25px;
-        right: 30px;
-        text-transform: uppercase;
-        font-size: 16px;
-        i {
-          margin-right: 5px;
+        .header-about-news {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          text-transform: uppercase;
+          font-size: 16px;
+          i {
+            margin-right: 5px;
+          }
         }
       }
     }
@@ -285,6 +295,11 @@ button {
     }
     &.active, &:hover {
       border-bottom: 3px solid $inat-green;
+      color: inherit;
+    }
+    &.disabled {
+      pointer-events: none;
+      color: #aaa;
     }
   }
   .stats-tab {
@@ -295,6 +310,13 @@ button {
       border-radius: 30px;
       margin-top: 18px;
       white-space: nowrap;
+      &.disabled {
+        pointer-events: none;
+        color: #aaa;
+        i.fa {
+          color: #aaa;
+        }
+      }
     }
   }
 }
@@ -730,8 +752,13 @@ button {
             .leader-icon {
               height: 30px;
               width: 30px;
+              background: #aaa;
               background-size: cover;
               border: 1px solid $border-grey;
+              text-align: center;
+              line-height: 30px;
+              font-size: 18px;
+              color: white;
             }
           }
           .leader-data {
@@ -742,10 +769,10 @@ button {
               .leader-bar {
                 height: 10px;
                 background: black;
+                margin-right: 5px;
               }
               .leader-count {
                 font-weight: 700;
-                margin-left: 5px;
                 line-height: 12px;
                 min-width: 80px;
               }
@@ -822,7 +849,7 @@ button {
       font-weight: 700;
     }
     .post + .post {
-      margin-top: 10px;
+      margin-top: 20px;
     }
   }
 }
@@ -851,7 +878,7 @@ button {
 }
 
 .About {
-  background: #f8f8f8;
+  background: $page-background-grey;
   padding-top: 35px;
   min-height: 500px;
   .back {
@@ -919,6 +946,13 @@ button {
       }
       .header-about {
         height: 263px;
+        padding: 20px;
+        .header-about-content .header-about-text {
+          margin-top: 15px;
+          font-size: 15px;
+          line-height: 20px;
+          max-height: 142px;
+        }
       }
     }
   }
@@ -1222,7 +1256,7 @@ $nav-btn-dim: 40px;
 
 @media (max-width: 1000px) {
   .bootstrap .container {
-    width: auto;
+    width: 970px;
   }
 }
 

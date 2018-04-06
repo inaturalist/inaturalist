@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { PropTypes } from "react";
 import { numberWithCommas } from "../../../shared/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -37,16 +38,16 @@ class LeaderboardPanel extends React.Component {
 
   render( ) {
     const { config, type, leaders } = this.props;
-    if ( !leaders ) { return ( <div /> ); }
+    if ( _.isEmpty( leaders ) ) { return ( <div /> ); }
     const leader = leaders[0];
     let countAttribute = "count";
-    let title = "Most Observed Species";
+    let title = I18n.t( "most_observed_species" );
     if ( type === "observers" ) {
       countAttribute = "observation_count";
-      title = "Most Observations";
+      title = I18n.t( "most_observations" );
     } else if ( type === "species_observers" ) {
       countAttribute = "species_count";
-      title = "Most Species";
+      title = I18n.t( "most_species" );
     }
     return (
       <div className={ `LeaderboardPanel ${type}` }>

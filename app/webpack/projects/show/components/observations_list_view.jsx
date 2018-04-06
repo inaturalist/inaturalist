@@ -24,12 +24,12 @@ const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => 
               <table className="ObservationsList">
                 <thead>
                   <tr>
-                    <th>Media</th>
-                    <th>Name</th>
-                    <th>User</th>
-                    <th>Observed</th>
-                    <th>Place</th>
-                    <th>Added</th>
+                    <th>{ I18n.t( "media" ) }</th>
+                    <th>{ I18n.t( "name" ) }</th>
+                    <th>{ I18n.t( "user" ) }</th>
+                    <th>{ I18n.t( "observed" ) }</th>
+                    <th>{ I18n.t( "place" ) }</th>
+                    <th>{ I18n.t( "added" ) }</th>
                   </tr>
                 </thead>
                 <tbody>

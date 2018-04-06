@@ -23,9 +23,9 @@ const IdentifiersTab = ( { identifiers, config, setConfig } ) => {
               <table>
                 <thead>
                   <tr>
-                    <th className="rank">Rank</th>
-                    <th>User</th>
-                    <th>Identifications</th>
+                    <th className="rank">{ I18n.t( "rank" ) }</th>
+                    <th>{ I18n.t( "user" ) }</th>
+                    <th>{ I18n.t( "identifications" ) }</th>
                   </tr>
                 </thead>
                 <tbody>

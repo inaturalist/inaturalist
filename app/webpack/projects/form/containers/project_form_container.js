@@ -12,7 +12,8 @@ import {
   updateProject,
   onFileDrop,
   deleteProject,
-  setRulePreference } from "../form_reducer";
+  setRulePreference,
+  removeProject } from "../form_reducer";
 
 function mapStateToProps( state ) {
   return {
@@ -33,6 +34,7 @@ function mapDispatchToProps( dispatch ) {
     removeProjectUser: user => dispatch( removeProjectUser( user ) ),
     setDescription: description => dispatch( setDescription( description ) ),
     setTitle: title => dispatch( setTitle( title ) ),
+    removeProject: ( ) => dispatch( removeProject( ) ),
     submitProject: ( ) => dispatch( submitProject( ) ),
     updateProject: attrs => dispatch( updateProject( attrs ) ),
     deleteProject: ( ) => dispatch( deleteProject( ) ),

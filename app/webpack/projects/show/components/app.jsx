@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import tinycolor from "tinycolor2";
-import htmlTruncate from "html-truncate";
+import UserText from "../../../shared/components/user_text";
 import IdentifiersTabContainer from "../containers/identifiers_tab_container";
 import ObservationsTabContainer from "../containers/observations_tab_container";
 import ObserversTabContainer from "../containers/observers_tab_container";
@@ -109,7 +109,7 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
               style={ project.header_image_url ? {
                 backgroundImage: `url( '${project.header_image_url}' )`
               } : {
-                backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.3)`
+                backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
               } }
             >
               { headerTitle }
@@ -123,29 +123,33 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
                 background: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)`
               } }
             >
-              <div>
+              <div className="header-about-content">
                 <div className="header-about-title">
                   { I18n.t( "about" ) }
                 </div>
                 <div className="header-about-button">
                   { headerButton }
                 </div>
-              </div>
-              <div className="header-about-text">
-                { htmlTruncate( project.description || "", 240 ) }
-              </div>
-              <div
-                className="header-about-read-more"
-                onClick={ () => setSelectedTab( "about" ) }
-              >
-                { I18n.t( "read_more" ) }
-                <i className="fa fa-chevron-right" />
-              </div>
-              <div className="header-about-news">
-                <a href={ `/projects/${project.slug}/journal` }>
-                  <i className="fa fa-bell" />
-                  { I18n.t( "news" ) }
-                </a>
+                <div className="header-about-text">
+                  <UserText
+                    text={ project.description }
+                    truncate={ 500 }
+                    moreToggle={ false }
+                  />
+                </div>
+                <div
+                  className="header-about-read-more"
+                  onClick={ () => setSelectedTab( "about" ) }
+                >
+                  { I18n.t( "read_more" ) }
+                  <i className="fa fa-chevron-right" />
+                </div>
+                <div className="header-about-news">
+                  <a href={ `/projects/${project.slug}/journal` }>
+                    <i className="fa fa-bell" />
+                    { I18n.t( "news" ) }
+                  </a>
+                </div>
               </div>
             </Col>
           </Row>

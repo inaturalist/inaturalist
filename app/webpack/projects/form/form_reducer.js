@@ -21,6 +21,11 @@ export function setAttributes( attributes ) {
   };
 }
 
+export function removeProject( ) {
+  $( window ).scrollTop( 0 );
+  return setAttributes( { project: null } );
+}
+
 export function setProject( p ) {
   return setAttributes( { project: new Project( p ) } );
 }

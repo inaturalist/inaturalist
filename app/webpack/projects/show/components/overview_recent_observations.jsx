@@ -7,7 +7,7 @@ class OverviewRecentObservations extends Component {
   render( ) {
     const { project, config, setSelectedTab } = this.props;
     if ( !project.observations_loaded ) {
-      return ( <div className="loading_spinner" /> );
+      return ( <div className="loading_spinner huge" /> );
     }
     const instances = project.observations.results;
     if ( _.isEmpty( instances ) ) {
@@ -28,7 +28,7 @@ class OverviewRecentObservations extends Component {
         <Row>
           <Col xs={ 12 }>
             <h2>
-              Recent Observations
+              { I18n.t( "recent_observations" ) }
               <i
                 className="fa fa-arrow-circle-right"
                 onClick={ ( ) => setSelectedTab( "observations" ) }
