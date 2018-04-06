@@ -5,22 +5,24 @@
       .row
         .col-xs-12
           .box.text-center.upstacked
-            - if current_user.in_test_group?( "header-2018" )
-              = form_tag leave_test_user_path( current_user, test: "header-2018" ), method: "put" do
-                %label Stop testing the new header (Version 1)?
+            - if current_user.test_groups =~ /header-2018/
+              - chosen_header_test = current_user.test_groups[/header-2018[^|]*/, 0]
+              = form_tag join_test_user_path( current_user ), method: "put", class: "inlineblock" do
+                %label Testing the new header
+                = select_tag :test, options_for_select( { "version 1" => "header-2018", "version 2" => "header-2018-2", "version 3" => "header-2018-3" }, chosen_header_test ), data: { autosubmit: true }
+                - %w(header-2018 header-2018-2 header-2018-3).each do |test_group|
+                  = hidden_field_tag "leave[]", test_group
+                &nbsp;
+                = link_to t(:what_do_you_think), "https://www.inaturalist.org/blog/15132-new-header"
+              = form_tag leave_test_user_path( current_user ), method: "put", class: "inlineblock" do
+                - %w(header-2018 header-2018-2 header-2018-3).each do |test_group|
+                  = hidden_field_tag "test[]", test_group
+                &nbsp;
                 = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
-              = link_to t(:what_do_you_think), "https://www.inaturalist.org/blog/15132-new-header"
-            - elsif current_user.in_test_group?( "header-2018-2" )
-              = form_tag leave_test_user_path( current_user, test: "header-2018-2" ), method: "put" do
-                %label Stop testing the new header (Version 2)?
-                = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
-              = link_to t(:what_do_you_think), "https://www.inaturalist.org/blog/15132-new-header"
             - else
-              %label Want to test a new version of the header?
-              = form_tag join_test_user_path( current_user, test: "header-2018" ), method: "put", class: "inlineblock" do
-                = submit_tag "Try Version 1", class: "btn btn-default btn-sm"
-              = form_tag join_test_user_path( current_user, test: "header-2018-2" ), method: "put", class: "inlineblock" do
-                = submit_tag "Try Version 2", class: "btn btn-default btn-sm"
+              = form_tag join_test_user_path( current_user ), method: "put", class: "inlineblock" do
+                %label Want to test a new version of the header?
+                = select_tag :test, options_for_select( { "Try Version 1" => "header-2018", "Try Version 2" => "header-2018-2", "Try Version 3" => "header-2018-3" }, chosen_header_test ), data: { autosubmit: true }
 #footer.bootstrap
   .container
     .row

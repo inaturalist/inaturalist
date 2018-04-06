@@ -179,6 +179,117 @@
               %li= link_to t(:account), edit_person_path(current_user), :class => 'profile_link'
               %li.divider{role: "separator"}
               %li.signout= link_to t(:sign_out), logout_path
+- elsif ( current_user && current_user.in_test_group?( "header-2018-3" ) ) || params[:test] === "header-2018-3"
+  #test-header.test-header.bootstrap{ class: session[:header_search_open] ? "search-open" : nil }
+    .navtabs
+      - if site && !site.custom_logo.blank?
+        =raw site.custom_logo
+      - elsif site && site.logo
+        %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
+          = image_tag site.logo.url, alt: site.name
+    #headersearch.search.navtabs.form-group{ class: session[:header_search_open] ? "open" : nil }
+      .searchwrapper
+        %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
+      %button.btn.btn-link.show-btn
+        %i.fa.fa-search
+      %button.btn.btn-link.hide-btn
+        %i.fa.fa-times-circle
+    %ul#mainnav.navtabs
+      %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index by_login show ).include?( controller.action_name ) || controller.class.name == "TaxaController" ? "active" : nil }
+        .dropdown
+          #header-explore-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+            = link_to t(:explore).capitalize, observations_path
+            %i.fa.fa-angle-down
+          %ul.dropdown-menu{ aria: { labelledby: "header-explore-dropdown-toggle" } }
+            %li= link_to t(:observations), observations_path
+            - if logged_in?
+              %li.header-xs= link_to t(:your_observations), observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
+            %li= link_to t(:species), taxa_path
+            - if logged_in?
+              %li.header-xs.header-sm= link_to t(:identify), identify_observations_path
+      - if logged_in?
+        %li.header-sm.header-md.header-lg.navtab{ class: controller.class.name == "ObservationsController" && %w( by_login ).include?( controller.action_name ) || ( controller.class.name == "ObservationsController" && ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login ) ) ? "active" : nil }
+          = link_to t(:your_observations).titleize, observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
+        %li.header-md.header-lg.navtab{ class: controller.class.name == "ObservationsController" && %w( identify ).include?( controller.action_name ) ? "active" : nil }
+          = link_to t(:identify).titleize, identify_observations_path
+      %li.navtab.communitytab.menutab{ class: %w(UsersController ProjectsController PostsController).include?( controller.class.name ) ? "active" : nil }
+        .dropdown
+          #header-community-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+            = link_to t(:community).capitalize, people_path
+            %i.fa.fa-angle-down
+          %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
+            %li= link_to t(:people), people_path
+            %li= link_to t(:all_projects), projects_path
+            %li= link_to t(:your_projects), projects_by_login_url(current_user.login)
+            - if logged_in?
+              %li.divider{role: "separator"}
+              %li.dropdown-header=t :your_recent_projects
+              - for project in current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
+                %li
+                  = link_to project do
+                    - if project.icon.file?
+                      = image_tag project.icon.url(:mini)
+                    - else
+                      %i.fa.fa-suitcase.text-muted
+                    = truncate( project.title )
+      %li.navtab.moretab.menutab{ class: %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
+        .dropdown
+          #header-more-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+            = link_to t(:more).capitalize, places_path
+            %i.fa.fa-angle-down
+          %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
+            %li= link_to t(:places), places_path
+            %li= link_to t(:guides), guides_path
+            %li.divider{role: "separator"}
+            %li= link_to t(:help), help_path
+    .navtabs.add-obs.header-md.header-lg
+      = link_to upload_observations_path, class: "btn btn-default btn-inat btn-outline" do
+        %i.fa.fa-plus-circle
+        =t :observations
+    %ul#usernav.navtabs
+      - unless logged_in?
+        %li.navtab.signedout
+          = link_to t(:log_in), login_path, class: "signin_link"
+          = t :or
+          = link_to t(:sign_up), signup_url, class: "signup_link"
+      - else
+        - unless @minimal_header
+          %li#messagesnav.navtab.messages
+            .dropdown
+              #header-messages-dropdown-toggle.dropdown-toggle{ aria: { haspopup: "true", expanded: "false" } }
+                %i.fa.fa-envelope
+                %span.count 0
+              #messagessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-messages-dropdown-toggle" } }
+                .loadingwrapper= loading
+          %li#updatesnav.navtab.updates
+            .dropdown
+              #header-updates-dropdown-toggle.dropdown-toggle{ aria: { haspopup: "true", expanded: "false" } }
+                %i.fa.fa-comment
+                %span.count 0
+              #updatessubnav.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-updates-dropdown-toggle" } }
+                .loadingwrapper= loading
+        %li.navtab.user.menutab
+          .dropdown
+            #header-user-menu-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
+              = link_to home_path do
+                = user_image(current_user, :size => "thumb", class: "inlineblock" )
+              %i.fa.fa-angle-down
+            %ul.dropdown-menu.dropdown-menu-right{ aria: { labelledby: "header-user-menu-dropdown-toggle" } }
+              %li= link_to t(:dashboard), home_path
+              %li= link_to t(:your_observations), observations_by_login_path(current_user.login), :class => "observations_link"
+              %li.header-xs.header-sm
+                = link_to t(:add_observations), upload_observations_path
+              %li= link_to t(:calendar), calendar_path(current_user.login), :class => "calendar_link"
+              %li= link_to t(:favorites), faves_by_login_path(current_user.login), :class => "votes_link"
+              %li= link_to t(:lists), lists_by_login_path(current_user.login), :class => "lists_link"
+              %li= link_to t(:journal), journal_by_login_path(current_user.login), :class => "journal_link"
+              %li
+                = link_to t(:messages).capitalize, messages_url, :class => "messages_link"
+              %li.divider{role: "separator"}
+              %li= link_to t(:profile), person_path(current_user), :class => 'profile_link'
+              %li= link_to t(:account), edit_person_path(current_user), :class => 'profile_link'
+              %li.divider{role: "separator"}
+              %li.signout= link_to t(:sign_out), logout_path
 - else
   #header.clear
     %ul#logonav

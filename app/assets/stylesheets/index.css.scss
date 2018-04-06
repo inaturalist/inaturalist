@@ -2227,6 +2227,32 @@ user-icon .icon-person:before {
 }
 $header-line-height: 34px;
 #test-header {
+  .header-xs,
+  .header-sm,
+  .header-md,
+  .header-lg { display: none; }
+  @media (max-width: 767px) {
+    .header-xs { display: block; }
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .header-sm { display: block; }
+    &.search-open {
+      .header-sm { display: none; }
+      .header-xs { display: block; }
+    }
+  }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .header-md { display: block; }
+    &.search-open {
+      .header-md { display: none; }
+      .header-xs { display: block; }
+    }
+  }
+  @media (min-width: 1200px) {
+    .header-lg { display: block; }
+  }
+
+
   padding: 0px 20px;
   display: flex;
   background-color: #eee;
