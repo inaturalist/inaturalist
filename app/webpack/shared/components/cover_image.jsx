@@ -11,6 +11,10 @@ class CoverImage extends React.Component {
     };
   }
   componentDidMount( ) {
+    // TODO: find a better way to do this
+    // there is an async domNode.classList.add below which fails if this component is
+    // unmounts before the async finishes - cannot add classes to unmounted components
+    this.mounted = true;
     this.loadOrDelayImages( );
   }
   componentWillReceiveProps( newProps ) {
@@ -18,6 +22,9 @@ class CoverImage extends React.Component {
       this.setState( { loaded: false } );
       this.loadOrDelayImages( newProps, { force: true } );
     }
+  }
+  componentWillUnmount( ) {
+    this.mounted = false;
   }
   loadOrDelayImages( props, options = {} ) {
     const domNode = ReactDOM.findDOMNode( this );
@@ -38,7 +45,6 @@ class CoverImage extends React.Component {
   }
   loadImages( props, domNode, options = {} ) {
     const p = props || this.props;
-    const that = this;
     if ( this.state.loaded && !options.force ) {
       return;
     }
@@ -46,15 +52,19 @@ class CoverImage extends React.Component {
       domNode.style.backgroundImage = `url(${p.low})`;
       const img = new Image( );
       img.src = p.src;
-      img.onload = function ( ) {
-        domNode.classList.add( "loaded" );
-        that.setState( { loaded: true } );
-        domNode.style.backgroundImage = `url(${this.src})`;
+      img.onload = ( ) => {
+        if ( this.mounted ) {
+          domNode.classList.add( "loaded" );
+          this.setState( { loaded: true } );
+          domNode.style.backgroundImage = `url(${img.src})`;
+        }
       };
     } else {
-      domNode.classList.add( "loaded" );
-      that.setState( { loaded: true } );
-      domNode.style.backgroundImage = `url(${p.src})`;
+      if ( this.mounted ) {
+        domNode.classList.add( "loaded" );
+        this.setState( { loaded: true } );
+        domNode.style.backgroundImage = `url(${p.src})`;
+      }
     }
   }
   idForUrl( url ) {

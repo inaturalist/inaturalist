@@ -29,7 +29,7 @@ function( $http, $rootScope, $filter ) {
 
   var numberWithCommas = function( num ) {
     if( !_.isNumber( num ) ) { return num; }
-    return num.toString( ).replace( /\B(?=(\d{3})+(?!\d))/g, "," );
+    return I18n.toNumber( num, { precision: 0 } );
   };
 
   var t = function( k, options ) {

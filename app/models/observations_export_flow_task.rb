@@ -91,7 +91,8 @@ class ObservationsExportFlowTask < FlowTask
 
   def observations_count
     return 0 if params.blank?
-    Observation.elastic_query(params.merge(per_page: 1)).total_entries
+    search_params = Observation.get_search_params( params.merge( per_page: 1 ) )
+    Observation.elastic_query( search_params ).total_entries
   end
 
   def json_archive

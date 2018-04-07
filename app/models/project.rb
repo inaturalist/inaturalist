@@ -4,7 +4,7 @@ class Project < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :place, :inverse_of => :projects
-  has_many :project_users, :dependent => :delete_all
+  has_many :project_users, :dependent => :delete_all, :inverse_of => :project
   has_many :project_observations, :dependent => :delete_all
   has_many :project_invitations, :dependent => :destroy
   has_many :project_user_invitations, :dependent => :delete_all
@@ -26,7 +26,9 @@ class Project < ActiveRecord::Base
   before_save :remove_times_from_non_bioblitzes
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
-  
+  before_update :set_updated_at_if_preferences_changed
+
+
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
 
@@ -44,6 +46,19 @@ class Project < ActiveRecord::Base
   preference :display_checklist, :boolean, :default => false
   preference :range_by_date, :boolean, :default => false
   preference :aggregation, :boolean, default: false
+  preference :banner_color, :string
+  preference :hide_title, :boolean, default: false
+  preference :rule_quality_grade, :string
+  preference :rule_photos, :boolean
+  preference :rule_sounds, :boolean
+  preference :rule_observed_on, :string
+  preference :rule_d1, :string
+  preference :rule_d2, :string
+  preference :rule_month, :string
+  RULE_PREFERENCES = [
+    "rule_quality_grade", "rule_photos", "rule_sounds",
+    "rule_observed_on", "rule_d1", "rule_d2", "rule_month"
+  ]
   
   SUBMISSION_BY_ANYONE = 'any'
   SUBMISSION_BY_CURATORS = 'curators'
@@ -59,7 +74,8 @@ class Project < ActiveRecord::Base
   NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
 
   accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
-  
+  accepts_nested_attributes_for :project_users, :allow_destroy => true
+
   validates_length_of :title, :within => 1..100
   validates_presence_of :user
   validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
@@ -130,15 +146,15 @@ class Project < ActiveRecord::Base
 
   if Rails.env.production?
     has_attached_file :cover,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_protocol => CONFIG.s3_protocol || "https",
-      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
-      :s3_region => CONFIG.s3_region,
-      :bucket => CONFIG.s3_bucket,
-      :path => "projects/:id-cover.:extension",
-      :url => ":s3_alias_url",
-      :default_url => ""
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
+      bucket: CONFIG.s3_bucket,
+      path: "projects/:id-cover.:extension",
+      url: ":s3_alias_url",
+      default_url: ""
     invalidate_cloudfront_caches :cover, "projects/:id-cover.*"
   else
     has_attached_file :cover,
@@ -147,7 +163,7 @@ class Project < ActiveRecord::Base
       :default_url => ""
   end
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
-  validate :cover_dimensions, :unless => "errors.any?"
+  validate :cover_dimensions, unless: Proc.new { |p| p.errors.any? || p.is_new_project? }
   
   ASSESSMENT_TYPE = 'assessment'
   BIOBLITZ_TYPE = 'bioblitz'
@@ -195,6 +211,10 @@ class Project < ActiveRecord::Base
     end
   end
 
+  def is_new_project?
+    project_type === "umbrella" || project_type === "collection"
+  end
+
   def preferred_start_date_or_time
     return unless start_time
     time = start_time.in_time_zone(user.time_zone)
@@ -234,7 +254,13 @@ class Project < ActiveRecord::Base
     create_project_list(:project => self)
     true
   end
-  
+
+  def set_updated_at_if_preferences_changed
+    if preferences.keys.any?{ |p| send("prefers_#{p}_changed?") }
+      self.updated_at = Time.now
+    end
+  end
+
   def editable_by?(user)
     return false if user.blank?
     return true if user.id == user_id || user.is_admin?
@@ -296,7 +322,7 @@ class Project < ActiveRecord::Base
   end
 
   def remove_times_from_non_bioblitzes
-    return if bioblitz?
+    return if bioblitz? || is_new_project?
     self.start_time = nil
     self.end_time = nil
   end
@@ -305,6 +331,13 @@ class Project < ActiveRecord::Base
     return false if code.blank?
     return false if tracking_codes.blank?
     tracking_codes.split(',').map{|c| c.strip}.include?(code)
+  end
+
+  def rule_place_ids
+    rule_place_ids = project_observation_rules.select do |r|
+      r.operator == "observed_in_place?"
+    end.map( &:operand_id )
+    [ place_id, rule_place_ids ].flatten.compact.uniq
   end
 
   def observations_url_params(options = {})
@@ -369,6 +402,74 @@ class Project < ActiveRecord::Base
     params
   end
 
+  # TODO: probably merge most of this logic with observations_url_params
+  def search_parameters(options = {})
+    params = { }
+    if project_type == "umbrella"
+      project_ids = []
+      project_observation_rules.each do |rule|
+        project_ids << rule.operand_id if rule.operator === "in_project?"
+      end
+      project_ids = project_ids.compact.uniq
+      params.merge!(project_id: project_ids) unless project_ids.blank?
+      return params
+    end
+    if start_time && end_time
+      params[:d1] = preferred_start_date_or_time
+      params[:d2] = preferred_end_date_or_time
+    end
+    taxon_ids = []
+    user_ids = [ ]
+    place_ids = [ place_id ]
+    project_observation_rules.each do |rule|
+      case rule.operator
+      when "in_taxon?"
+        taxon_ids << rule.operand_id
+      when "observed_in_place?"
+        place_ids << rule.operand_id
+      when "on_list?"
+        params[:list_id] = project_list.id
+      when "identified?"
+        params[:identified] = true
+      when "georeferenced?"
+        params[:geo] = true
+      when "has_a_photo?"
+        params[:photos] = true
+      when "has_a_sound?"
+        params[:sounds] = true
+      when "captive?"
+        params[:captive] = true
+      when "wild?"
+        params[:captive] = false
+      when "verifiable?"
+        params[:verifiable] = true
+      when "observed_by_user?"
+        user_ids << rule.operand_id
+      end
+    end
+    Project::RULE_PREFERENCES.each do |rule|
+      rule_value = send( "prefers_#{rule}" )
+      unless rule_value.nil? || rule_value == ""
+        # map the rule values to their proper data types
+        if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
+          rule_value = rule_value.match( / / ) ? Time.parse( rule_value ) : Date.parse( rule_value )
+        elsif rule_value.is_a?( String )
+          is_int = rule_value.match( /^\d+ *(, *\d+)*$/ )
+          rule_value = rule_value.split( "," ).map( &:strip )
+          rule_value.map!( &:to_i ) if is_int
+        end
+        params[ rule.sub( "rule_", "" ) ] = rule_value
+      end
+    end
+    taxon_ids = taxon_ids.compact.uniq
+    place_ids = place_ids.compact.uniq
+    user_ids = user_ids.compact.uniq
+    params.merge!(taxon_id: taxon_ids) unless taxon_ids.blank?
+    params.merge!(place_id: place_ids) unless place_ids.blank?
+    params.merge!(user_id: user_ids) unless user_ids.blank?
+    params
+  end
+
   def cached_slug
     slug
   end
@@ -389,7 +490,11 @@ class Project < ActiveRecord::Base
   end
 
   def managers
-    users.where("project_users.role = ?", ProjectUser::MANAGER)
+    if project_users.loaded?
+      project_users.select{ |pu| pu.role == ProjectUser::MANAGER }.map(&:user)
+    else
+      users.where("project_users.role = ?", ProjectUser::MANAGER)
+    end
   end
 
   def duplicate
@@ -846,6 +951,10 @@ class Project < ActiveRecord::Base
 
   def self.recently_added_to( options = { } )
     Project.where( id: Project.recently_added_to_ids( options ) ).not_flagged_as_spam
+  end
+
+  def self.refresh_es_index
+    Project.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
 end

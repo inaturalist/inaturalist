@@ -55,7 +55,7 @@ class UserText extends React.Component {
   }
 
   render( ) {
-    const { text, truncate, config } = this.props;
+    const { text, truncate, config, moreToggle } = this.props;
     const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
@@ -71,7 +71,7 @@ class UserText extends React.Component {
       truncatedHtml = htmlTruncate( html, truncate );
     }
     let moreLink;
-    if ( truncate && ( truncatedHtml !== html ) ) {
+    if ( truncate && ( truncatedHtml !== html ) && moreToggle ) {
       moreLink = (
         <a
           onClick={ ( ) => {
@@ -102,7 +102,12 @@ UserText.propTypes = {
   text: PropTypes.string,
   truncate: PropTypes.number,
   config: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  moreToggle: PropTypes.bool
+};
+
+UserText.defaultProps = {
+  moreToggle: true
 };
 
 export default UserText;

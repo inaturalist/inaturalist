@@ -1,0 +1,1410 @@
+@import "../colors";
+@import "../shared/loading_spinner";
+@import "../users/user_image";
+@import "../shared/taxon_photo";
+@import "../c3";
+
+$background-color: #1A1A1A;
+
+
+body {
+  min-width: 980px;
+}
+
+.bootstrap {
+  a {
+    color: inherit;
+    &:hover {
+      color: inherit;
+    }
+  }
+}
+#header, #test-header {
+  margin-bottom: 0px;
+}
+#bodywrapper {
+  background: $page-background-grey;
+  &:after {
+    height: 196px;
+  }
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+
+.count, .count a {
+  color: inherit;
+}
+
+a.UserImage {
+  border: none;
+}
+
+.linky {
+  color: $bootstrap-link-color;
+  cursor: pointer;
+}
+
+.loading_spinner.huge {
+  display: block;
+  margin: 0px auto;
+  margin-top: 60px;
+}
+
+.bootstrap h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  i.fa {
+    color: $inat-green;
+    font-size: 24px;
+    margin-left: 10px;
+    cursor: pointer;
+  }
+  button {
+    font-size: 14px;
+    float: right;
+    line-height: 20px;
+  }
+}
+
+.bootstrap .btn, .bootstrap .btn-group .btn {
+  outline: none;
+  &:focus, &.active:focus {
+    outline: none !important;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+  }
+  &.active {
+    box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
+  }
+}
+
+button {
+  outline: none;
+  &.btn-green {
+    font-weight: 700;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: $inat-green;
+    border: none;
+    .fa {
+      color: white;
+      margin-right: 5px;
+    }
+  }
+  &.btn-white {
+    font-weight: 700;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: white;
+    border: 1px solid $border-grey;
+    .fa {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+  }
+}
+
+.section-intro {
+  font-size: 16px;
+  line-height: 24px;
+  margin-bottom: 15px;
+}
+
+.project-header {
+  height: 370px;
+  position: relative;
+  overflow: hidden;
+  .project-header-background {
+    position: absolute;
+    margin: -20px;
+    background-size: 110%;
+    width: 110%;
+    height: 110%;
+    filter: blur(20px);
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: "blur(20px)";
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .header-grid {
+    margin-top: 25px;
+    & > .row {
+      margin-left: 0;
+      margin-right: 0;
+    }
+    .title-container {
+      height: 320px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      &.no-banner {
+        background-image: url(image_path( "project_blank_banner_bg.png" ));
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+      .header-title {
+        background: rgba(0,0,0,0.7);
+        white-space: nowrap;
+        align-self: flex-end;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        max-width: 93%;
+        .title-icon {
+          height: 45px;
+          width: 45px;
+          background-size: cover;
+          float: left;
+        }
+        .title-text {
+          color: white;
+          font-size: 26px;
+          line-height: 45px;
+          padding: 0px 15px;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+      .header-dates {
+        position: absolute;
+        bottom: 15px;
+        left: 35px;
+        background: rgba(0,0,0,0.7);
+        color: rgba(255, 255, 255, 0.8);
+        padding: 5px 15px;
+        text-transform: uppercase;
+      }
+      .header-in-progress {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #f22844;
+        color: white;
+        text-transform: uppercase;
+        padding: 3px 12px;
+      }
+      &.event .header-title {
+        margin-bottom: 47px;
+      }
+      &.event.icon .header-dates {
+        left: 80px;
+      }
+    }
+    .header-about {
+      height: 320px;
+      padding: 30px;
+      background: #28387d;
+      color: white;
+      .header-about-content {
+        height: 100%;
+        position: relative;
+        .header-about-title {
+          font-size: 25px;
+          margin-top: 5px;
+        }
+        .header-about-button {
+          position: absolute;
+          top: 0;
+          right: 0;
+          button {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            padding: 3px 20px 1px 20px;
+            font-size: 15px;
+            border-style: solid;
+          }
+        }
+        .header-about-text {
+          margin-top: 20px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: inline-block;
+          font-size: 16px;
+          line-height: 22px;
+          max-height: 176px;
+        }
+        .header-about-read-more {
+          font-weight: 700;
+          font-size: 15px;
+          cursor: pointer;
+          i {
+            font-size: 9px;
+            margin-left: 3px;
+            font-weight: 100;
+          }
+        }
+        .header-about-news {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          text-transform: uppercase;
+          font-size: 16px;
+          i {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.StatsHeader {
+  border-bottom: 2px solid #eee;
+  height: 80px;
+  ul {
+    padding: 0;
+    li {
+      height: 80px;
+      float: left;
+      width: 16%;
+      list-style: none;
+      margin-right: 3px;
+    }
+  }
+  .overview-tab {
+    padding: 47px 0px 0px 20px;
+    font-size: 20px;
+    cursor: pointer;
+    &.active, &:hover {
+      border-bottom: 3px solid $inat-green;
+    }
+  }
+  .stat-tab {
+    text-transform: uppercase;
+    font-size: 16px;
+    padding: 22px 0px 0px 20px;
+    cursor: pointer;
+    color: #888;
+    .stat {
+      display: block;
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    &.active {
+      color: inherit;
+    }
+    &.active, &:hover {
+      border-bottom: 3px solid $inat-green;
+      color: inherit;
+    }
+    &.disabled {
+      pointer-events: none;
+      color: #aaa;
+    }
+  }
+  .stats-tab {
+    button {
+      font-size: 20px;
+      padding: 10px 45px;
+      border: 1px solid $border-grey;
+      border-radius: 30px;
+      margin-top: 18px;
+      white-space: nowrap;
+      &.disabled {
+        pointer-events: none;
+        color: #aaa;
+        i.fa {
+          color: #aaa;
+        }
+      }
+    }
+  }
+}
+
+.Content {
+  padding-top: 20px;
+  padding-bottom: 60px;
+  background: $page-background-grey;
+}
+
+.OverviewTab {
+  .ObservationsGrid {
+    height: 234px;
+    overflow: hidden
+  }
+}
+
+.ObservationsTab {
+  .subtab-contents {
+    margin-top: 20px;
+  }
+  .TaxonMap {
+    height: 350px;
+  }
+  .button-row {
+    button {
+      i {
+        margin-right: 5px;
+      }
+      &.standalone {
+        margin-left: 10px;
+        font-weight: 700;
+        &.export {
+          float: right;
+        }
+        i {
+          color: $inat-green;
+        }
+      }
+    }
+  }
+}
+
+.ObservationsList {
+  thead {
+    tr {
+      border-bottom: 2px solid #ddd;
+      height: 28px;
+      font-size: 15px;
+      th {
+        padding: 0px 10px;
+      }
+    }
+  }
+  tr {
+    &:not(:last-child) {
+      border-bottom: 1px solid #ddd;
+    }
+    &.even {
+      background: white;
+    }
+  }
+  td {
+    vertical-align: top;
+    padding: 10px;
+    &.photo {
+      width: 95px;
+      text-align: center;
+      a {
+        width: 75px;
+        height: 75px;
+        display: block;
+        background-size: cover;
+        background-position: center;
+        background-color: #BABABA;
+        position: relative;
+        .photo-count {
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          color: #eee;
+          background-color: #646464;
+          padding: 1px 5px;
+          font-weight: 100;
+          display: block;
+        }
+      }
+      .icon, .sound-icon {
+        display: none;
+        color: white;
+        font-size: 50px;
+        line-height: 70px;
+      }
+      a.sound .sound-icon, a.iconic .icon {
+        display: inline-block;
+      }
+    }
+    &.taxon .contents {
+      min-height: 75px;
+      position: relative;
+      .meta {
+        position: absolute;
+        bottom: 0;
+        .count {
+          i {
+            margin-right: 2px;
+          }
+          margin-right: 5px;
+        }
+      }
+    }
+    &.user, &.date {
+      white-space: nowrap;
+    }
+    &.place {
+      width: 20%;
+      i.fa {
+        margin-right: 5px;
+      }
+    }
+    .SplitTaxon {
+      .display-name {
+        color: inherit;
+        font-weight: 700;
+      }
+      .secondary-name {
+        display: block;
+      }
+    }
+    .UserImage {
+      width: 38px;
+      height: 38px;
+      margin-right: 5px;
+    }
+    .FormattedDate .time {
+      display: block;
+    }
+  }
+}
+
+.Identifiers, .Observers {
+  table {
+    width: 100%;
+    font-size: 16px;
+    margin-top: 40px;
+    thead {
+      tr {
+        border-bottom: 2px solid $border-grey;
+        height: 28px;
+        font-size: 15px;
+        th.clicky {
+          cursor: pointer;
+          text-align: center
+        }
+        i.fa-caret-down {
+          margin: 0px 12px 0px 4px;
+          color: #e1e1e1;
+        }
+      }
+    }
+    tr {
+      height: 57px;
+      &:not(:last-child) {
+        border-bottom: 1px solid $border-grey;
+      }
+      &.odd {
+        background: white;
+      }
+      th.rank, td.rank {
+        width: 70px;
+        text-align: center
+      }
+      td.count {
+        width: 120px;
+        max-width: 120px;
+        padding: 8px;
+        &.sorted {
+          background: $border-grey;
+        }
+      }
+      .UserImage {
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+.leaders-grid {
+  .no-padding + .no-padding {
+    .LeaderboardPanel {
+      margin-left: -1px;
+    }
+  }
+  & > .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  margin-bottom: 20px;
+}
+
+.LeaderboardPanel {
+  border: 1px solid $border-grey;
+  padding: 20px;
+  background: white;
+  margin-top: 50px;
+  .taxon {
+    a {
+      color: inherit !important;
+      font-style: inherit;
+    }
+    .secondary-name {
+      display: none;
+    }
+  }
+  .leader {
+    margin-bottom: 5px;
+    height: 85px;
+    .taxon-image, .userimage {
+      width: 75px;
+      height: 75px;
+    }
+    .icon {
+      width: 90px;
+      float: left;
+      i.icon-person {
+        font-size: 60px;
+      }
+    }
+    .leader-header {
+      font-size: 16px;
+      .leaderboard-title {
+        font-size: 22px;
+        padding: 10px 0px;
+      }
+      .leader-row {
+        display: flex;
+        justify-content: space-between;
+        .leader-label {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-right: 5px;
+        }
+        .leader-count {
+          padding-right: 8px;
+        }
+      }
+    }
+  }
+  table {
+    width: 100%;
+    border-top: 1px solid $border-grey;
+    margin-bottom: 15px;
+    tr {
+      border-bottom: 1px solid $border-grey;
+      height: 45px;
+      font-size: 16px;
+      td.leader-name {
+        padding-left: 8px;
+        .userimage, .taxon-image {
+          width: 30px;
+          height: 30px;
+          margin-right: 10px;
+          float: left;
+        }
+        .SplitTaxon, .userlink {
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          line-height: 28px;
+        }
+      }
+      td.leader-count {
+        text-align: right;
+        padding-right: 8px;
+      }
+    }
+  }
+  button {
+    margin-left: 10px;
+  }
+}
+
+.TaxonMap {
+  height: 500px;
+}
+
+.TopSpecies {
+  .results {
+    margin-left: -10px;
+    margin-right: -10px;
+    .result {
+      display: inline-block;
+      width: 20%;
+      padding: 0px 10px 20px 10px;
+      vertical-align: top;
+      .thumbnail {
+        padding: 0;
+        margin-bottom: 5px;
+        position: relative;
+        .overlay {
+          position: absolute;
+          background-color: rgba(0,0,0,0.3);
+          color: white;
+          width: 100%;
+          line-height: 30px;
+          padding: 0 9px;
+          margin-top: -30px;
+        }
+        .display-name {
+          display: block;
+          font-weight: 700;
+          color: inherit;
+          font-size: 16px;
+        }
+        .caption {
+          height: 58px;
+          .display-name, .secondary-name {
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+          }
+        }
+      }
+      .CoverImage {
+        height: 210px;
+      }
+    }
+  }
+}
+
+.no-obs {
+  background: rgba(116,172,0,0.09);
+  height: 100px;
+  line-height: 100px;
+  text-align: center;
+  font-size: 24px;
+  color: #858585;
+  margin: 20px 0px;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #858585;
+}
+
+.ObservationsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .ObservationPhoto {
+    flex-grow: 1;
+    padding: 2px;
+    min-width: 200px;
+    margin: 0px auto;
+    .photo {
+      background: #ccc;
+      text-align: center;
+      i {
+        color: white;
+        font-size: 180px;
+      }
+    }
+    .caption {
+      background: #464646;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      position: relative;
+      padding-right: 50px;
+      white-space: nowrap;
+      .display-name {
+        font-size: 17px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .secondary-name {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .UserImage {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        border: 2px solid white;
+        height: 45px;
+        width: 45px;
+        i.icon-person {
+          font-size: 36px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.UmbrellaOverviewTab {
+  .UmbrellaLeaderboard {
+    h2, .sort {
+      display: inline-block;
+    }
+    .sort {
+      color: #888;
+      margin-left: 20px;
+      span {
+        padding: 0px 2px;
+      }
+      .sort-option {
+        cursor: pointer;
+      }
+      .active {
+        color: #333;
+        font-weight: 700;
+      }
+    }
+    .leaders-panel {
+      border: 1px solid $border-grey;
+      background: white;
+      table {
+        width: 100%;
+        margin: 20px;
+        .leader-row {
+          height: 55px;
+          td.icon-cell {
+            width: 40px;
+            .leader-icon {
+              height: 30px;
+              width: 30px;
+              background: #aaa;
+              background-size: cover;
+              border: 1px solid $border-grey;
+              text-align: center;
+              line-height: 30px;
+              font-size: 18px;
+              color: white;
+            }
+          }
+          .leader-data {
+            line-height: 11px;
+            .leader-score {
+              display: flex;
+              margin-bottom: 4px;
+              .leader-bar {
+                height: 10px;
+                background: black;
+                margin-right: 5px;
+              }
+              .leader-count {
+                font-weight: 700;
+                line-height: 12px;
+                min-width: 80px;
+              }
+            }
+            .leader-title {
+              font-weight: 600;
+            }
+          }
+        }
+      }
+      .show-more {
+        background: #f4f9ec;
+        line-height: 60px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        .fa {
+          color: $inat-green;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .map {
+    height: 500px;
+  }
+}
+
+.Requirements {
+  table {
+    width: 100%;
+    tr {
+      border-top: 1px solid $border-grey;
+      &:last-child {
+        border-bottom: 1px solid $border-grey;
+      }
+    }
+    td {
+      padding: 7px 0px;
+    }
+    td.param {
+      vertical-align: top;
+      white-space: nowrap;
+      padding-right: 20px;
+      width: 100px;
+      .fa {
+        color: $inat-green;
+        width: 25px;
+        text-align: center;
+        vertical-align: text-bottom;
+        font-size: 17px;
+      }
+    }
+    td.value {
+      .display-name {
+        font-weight: 700;
+      }
+    }
+  }
+}
+
+.News {
+  .posts {
+    margin-bottom: 25px;
+    &.row {
+      margin-bottom: 0;
+    }
+    .date {
+      color: #888;
+      font-weight: 700;
+    }
+    .title {
+      font-weight: 700;
+    }
+    .post + .post {
+      margin-top: 20px;
+    }
+  }
+}
+
+.IconicTaxaPieChart, .QualityGradePieChart {
+  position: relative;
+  .count-label {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 100%;
+    text-align: center;
+    top: 85px;
+    font-size: 18px;
+    font-weight: 700;
+    pointer-events: none;
+    word-spacing: 400px;
+    text-transform: capitalize;
+  }
+  .PieChart {
+    svg {
+      height: 330px;
+      width: 100%;
+    }
+  }
+}
+
+.About {
+  background: $page-background-grey;
+  padding-top: 35px;
+  min-height: 500px;
+  .back {
+    .fa {
+      margin-right: 5px;
+    }
+  }
+  h1 {
+    margin-bottom: 20px;
+  }
+  h2 {
+    margin-bottom: 25px;
+  }
+  .UserText.body, .owner {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .requirements-col {
+    padding-left: 60px;
+  }
+  .owner {
+    margin: 20px 0px 60px;
+    a.UserImage {
+      width: 30px;
+      height: 30px;
+      margin-right: 5px;
+    }
+    .userlink {
+      margin: 0px 5px;
+      font-weight: 700;
+    }
+  }
+}
+
+.EventCountdown {
+  .row {
+    .col-xs-3 {
+      text-align: center;
+    }
+    span {
+      display: block;
+      &.value {
+        font-size: 30px;
+        line-height: 38px;
+        font-weight: 700;
+      }
+      &.type {
+        font-size: 18px;
+        line-height: 20px;
+      }
+    }
+  }
+  button {
+    margin-top: 25px;
+  }
+}
+
+
+@media (max-width: 1200px) {
+  .project-header {
+    height: 313px;
+    .header-grid {
+      .title-container {
+        height: 263px;
+        margin-right: -1px;
+      }
+      .header-about {
+        height: 263px;
+        padding: 20px;
+        .header-about-content .header-about-text {
+          margin-top: 15px;
+          font-size: 15px;
+          line-height: 20px;
+          max-height: 142px;
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+// https://css-tricks.com/snippets/css/ribbon/
+.ribbon-container {
+  width: 75px;
+  position: relative;
+  z-index: 1;
+}
+.ribbon {
+  font-size: 12px;
+  line-height: 18px;
+  background: $inat-green;
+  color: #fff;
+  text-align: center;
+  margin-top: -28px;
+  font-weight: 600;
+}
+$ribbon-border-width: 9px;
+.ribbon:before, .ribbon:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: -5px;
+  border: $ribbon-border-width solid darken( $inat-green, 5% );
+  z-index: -1;
+}
+.ribbon:before {
+  left: -0.7em;
+  border-right-width: 16px;
+  border-left-color: transparent;
+  border-left-width: 4px
+}
+.ribbon:after {
+  right: -0.7em;
+  border-left-width: 16px;
+  border-right-color: transparent;
+  border-right-width: 4px
+}
+.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
+  content: "";
+  position: absolute;
+  display: block;
+  border-style: solid;
+  border-color: darken( $inat-green, 10% ) transparent transparent transparent;
+  bottom: -5px;
+}
+.ribbon .ribbon-content:before {
+  left: 0;
+  border-width: 5px 0 0 12px;
+}
+.ribbon .ribbon-content:after {
+  right: 0;
+  border-width: 5px 12px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+$nav-btn-dim: 40px;
+.nav-buttons .nav-btn {
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  padding: 0 !important;
+  border: 0 transparent !important;
+  margin: 0 0 10px 10px;
+}
+.nav-buttons .nav-btn:hover,
+.nav-buttons .nav-btn:focus,
+.nav-buttons .nav-btn:active {
+  background: none;
+}
+.nav-buttons .nav-btn:before {
+  display: block;
+  content: '\276E';
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  border-radius: 100px;
+  background-color: $inat-green;
+  color: white;
+  line-height: $nav-btn-dim * 1.05;
+  font-weight: bold;
+  font-size: $nav-btn-dim / 2;
+}
+❯
+.nav-buttons .nav-btn:hover:before {
+  background-color: $inat-green-light;
+}
+.nav-buttons .next-btn:before {
+  content: '\276F';
+}
+.Carousel .viewall, {
+  width: 100%;
+  height: 262px;
+  background-color: #333;
+  color: white;
+  display: block;
+  line-height: 262px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
+  color: white;
+}
+
+
+.RecentObservations { margin-top: 10px; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+  text-transform: capitalize;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+[role="dialog"] .PhotoModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  opacity: 0.8;
+  z-index: 1;
+}
+[role="dialog"] .PhotoModal .close:hover {
+  color: white;
+  opacity: 0.5;
+}
+.PhotoModal .btn.nav-button {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 100px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  line-height: 30px;
+  text-align: center;
+  left: -100px;
+}
+.PhotoModal .nav-button.next {
+  left: auto;
+  right: -100px;
+}
+.PhotoModal .modal-dialog {
+  height: 100%;
+}
+.PhotoModal .modal-content {
+  height: 90%;
+  padding: 0px;
+}
+.PhotoModal .SplitTaxon {
+  font-size: 130%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.PhotoModal .SplitTaxon a {
+  color: black;
+}
+.PhotoModal .display-name {
+  font-size: 150%;
+}
+.PhotoModal .photo-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.PhotoModal .photo-modal-content:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: black;
+}
+.PhotoModal .photo-modal-content .photo-container {
+  flex-grow: 2;
+  padding: 20px;
+}
+.PhotoModal .photo-modal-content .photo-container:hover {
+  opacity: 1;
+}
+.PhotoModal .photo-modal-content .photo-attribution {
+  padding: 10px;
+  background-color: black;
+  color: #ccc;
+  text-align: center;
+  font-size: smaller;
+}
+.PhotoModal .photo-modal-content .photo-attribution a {
+  color: white;
+}
+.PhotoModal .photo-modal-content .photo-attribution > * {
+  border-left: 1px solid #666;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.PhotoModal .photo-modal-content .photo-attribution > *:first-child {
+  border: 0 transparent;
+  padding: 0;
+  margin: 0;
+}
+.PhotoModal .photo-modal-content .taxon-content {
+  width: 100%;
+  line-height: 1.2;
+  padding: 20px;
+}
+.PhotoModal .taxon-link i {
+  font-size: 200%;
+  color: $inat-green;
+}
+
+@media (max-width: 1000px) {
+  .bootstrap .container {
+    width: 970px;
+  }
+}
+
+
+
+
+
+
+
+.quality_grade {
+  display: inline-block;
+  background-color: #ddd;
+  padding: 2px 0px 1px 10px;
+  position: relative;
+  font-size: 12px !important;
+  line-height: 17px !important;
+  z-index: 1;
+  margin-right: 20px;
+}
+.quality_grade:after {
+  content: "";
+  position: absolute;
+  display: block;
+  bottom: 0;
+  border: 10px solid #ddd;
+  border-right-width: 5px;
+  border-right-color: transparent;
+  right: -15px;
+  z-index: -1;
+}
+.quality_grade.research {
+  background-color:#74ac00;
+  color:white;
+}
+.quality_grade.research:after {
+  border-color: #74ac00;
+  border-right-color: transparent;
+}
+
+
+
+
+
+
+
+$tip-opacity: 1;
+.d3-tip {
+  line-height: 1;
+  padding: 5px;
+  background: rgba(0, 0, 0, $tip-opacity);
+  color: #fff;
+  border-radius: 2px;
+  pointer-events: none;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, $tip-opacity);
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Northward tooltips */
+.d3-tip.n:after {
+  content: "\25BC";
+  margin: -2px 0 0 0;
+  top: 100%;
+  left: 0;
+  text-align: center;
+}
+
+/* Eastward tooltips */
+.d3-tip.e:after {
+  content: "\25C0";
+  margin: -4px 0 0 0;
+  top: 50%;
+  left: -8px;
+}
+
+/* Southward tooltips */
+.d3-tip.s:after {
+  content: "\25B2";
+  margin: 0 0 1px 0;
+  top: -8px;
+  left: 0;
+  text-align: center;
+}
+
+/* Westward tooltips */
+.d3-tip.w:after {
+  content: "\25B6";
+  margin: -4px 0 0 -1px;
+  top: 50%;
+  left: 100%;
+}
+
+
+
+
+/* The location pointed to by the popup tip. */
+.popup-tip-anchor {
+  height: 0;
+  position: absolute;
+  /* The max width of the info window. */
+  width: 200px;
+}
+/* The bubble is anchored above the tip. */
+.popup-bubble-anchor {
+  position: absolute;
+  width: 100%;
+  bottom: /* TIP_HEIGHT= */ 12px;
+  left: 0;
+  background: inherit;
+  border-color: inherit;
+}
+/* Draw the tip. */
+.popup-bubble-anchor::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Center the tip horizontally. */
+  /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+  width: 0;
+  height: 0;
+  /* The tip is 8px high, and 12px wide. */
+  border-right: 12px solid transparent !important;
+  border-top: /* TIP_HEIGHT= */ 12px solid;
+  border-color: inherit;
+}
+/* The popup bubble itself. */
+.popup-bubble-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, -100%);
+  /* Style the info window. */
+  background: inherit;
+  padding: 6px 14px;
+  color: white;
+  font-size: 13px;
+  white-space: nowrap;
+  max-height: 60px;
+  box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.2);
+}

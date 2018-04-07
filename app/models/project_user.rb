@@ -1,6 +1,6 @@
 class ProjectUser < ActiveRecord::Base
   
-  belongs_to :project
+  belongs_to :project, inverse_of: :project_users
   belongs_to :user, touch: true
   auto_subscribes :user, :to => :project
   
@@ -138,6 +138,15 @@ class ProjectUser < ActiveRecord::Base
 
   def index_project
     project.elastic_index! if project
+  end
+
+  def as_indexed_json
+    {
+      id: id,
+      user_id: user_id,
+      project_id: project_id,
+      role: role
+    }
   end
 
   def self.update_observations_counter_cache_from_project_and_user(project_id, user_id)

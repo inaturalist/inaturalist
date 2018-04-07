@@ -181,38 +181,37 @@ $.fn.genericAutocomplete = function( options ) {
   // a reason for it to exist in React. It seems to just generate a ton of
   // unecessary resetSelection events, which end up firing afterUnselect even
   // when nothing has been unselected.
-  if ( !options.react ) {
-    field.keydown( function( e ) {
-      var key = e.keyCode || e.which;
-      // return key
-      if( key === 13 ) {
-        // Absolutely prevent form submission if preventEnterSubmit has been
-        // explicitly set, or allow submit when AC menu is closed, or always if
-        // allowEnterSubmit. So the default behavior is for ENTER to select an
-        // option when the menu is open but not submit the form, and if the menu
-        // is closed and the input has focus, ENTER *will* submit the form
-        if( options.preventEnterSubmit ) { return false; }
-        // can be configured to select the top result when hitting enter
-        if( options.selectFirstMatch ) { field.selectFirst( ); }
-        if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
-          return true;
-        }
-        return false;
+  field.keydown( function( e ) {
+    var key = e.keyCode || e.which;
+    // return key
+    if( key === 13 ) {
+      // Absolutely prevent form submission if preventEnterSubmit has been
+      // explicitly set, or allow submit when AC menu is closed, or always if
+      // allowEnterSubmit. So the default behavior is for ENTER to select an
+      // option when the menu is open but not submit the form, and if the menu
+      // is closed and the input has focus, ENTER *will* submit the form
+      if( options.preventEnterSubmit ) { return false; }
+      // can be configured to select the top result when hitting enter
+      if( options.selectFirstMatch ) { field.selectFirst( ); }
+      if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
+        return true;
       }
-      if( field.searchClear ) {
-        setTimeout( function( ) {
-          field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
-        }, 1 );
-      }
-      if( field.val( ) && options.resetOnChange === false ) { return; }
-      // keys like arrows, tab, shift, caps-lock, etc. won't change
-      // the value of the field so we don't need to reset the selection
-      nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
-        34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
-      if( _.includes( nonCharacters, key ) ) { return; }
-      field.trigger( "resetSelection" );
-    });
-  }
+      return false;
+    }
+    if( field.searchClear ) {
+      setTimeout( function( ) {
+        field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
+      }, 1 );
+    }
+    if ( options.react ) { return; }
+    if( field.val( ) && options.resetOnChange === false ) { return; }
+    // keys like arrows, tab, shift, caps-lock, etc. won't change
+    // the value of the field so we don't need to reset the selection
+    nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
+      34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
+    if( _.includes( nonCharacters, key ) ) { return; }
+    field.trigger( "resetSelection" );
+  });
   field.keyup( function( e ) {
     if( !field.val( ) ) {
       field.trigger( "resetSelection" );

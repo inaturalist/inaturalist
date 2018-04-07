@@ -29,6 +29,7 @@ class ProjectsChooser extends SelectionBasedComponent {
       resetOnChange: false,
       allowEnterSubmit: true,
       idEl: $( "<input/>" ),
+      notTypes: ["collection", "umbrella"],
       appendTo: $( ".leftColumn" ),
       selectFirstMatch: true,
       currentUsersProjects: true,
