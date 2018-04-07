@@ -71,10 +71,17 @@ export function windowStateForObservation( observation, opts = { } ) {
     const date = moment( observation.observed_on ).format( "MMMM D, YYYY" );
     title = `${title} on ${date}`;
   }
+  let url = `/observations/${observation.id}`;
+  if ( window.location.search ) {
+    url += window.location.search;
+  }
+  if ( options.hash ) {
+    url += options.hash;
+  }
   const windowState = {
     state: observationState,
     title: `${title} · ${SITE.name}`,
-    url: `/observations/${observation.id}${window.location.search}${options.hash}`
+    url
   };
   return windowState;
 }
