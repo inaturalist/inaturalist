@@ -135,14 +135,17 @@ pt-BR:
   able_to_connect_flickr: Ótimo! Podemos vincular sua conta do Flickr.
   about: Sobre
   about_bioblitz_results: Sobre os resultados do "bioblitz"
+  about_blocking: Sobre Bloquear
   about_charts: Sobre os Gráficos
   about_community_taxa: Sobre os táxons da comunidade
   about_conservation_status: Sobre o Status de Conservação
+  about_editing_observation_fields: Sobre a Edição dos Campos de Observação
   about_establishment_means: Sobre Formas de Estabelecimento
   about_external_links: Sobre os links externos
   about_licenses: Sobre as licenças
   about_licensing: Sobre as licenças
   about_life!: Sobre a vida!
+  about_muting: Sobre o Silenciar
   about_names: Sobre Nomes
   about_places: Sobre os Lugares
   about_taxon_changes: Sobre Mudanças de Táxon
@@ -616,6 +619,7 @@ pt-BR:
   bioblitz: Bioblitz
   birds: aves
   black: preto
+  blocked_users: Usuários Bloqueados
   blog_widget: Blog Widget
   blue: azul
   blue_butterfly_etc: azul, borboleta, etc.
@@ -1202,6 +1206,7 @@ pt-BR:
   draft_: Rascunho
   draft_saved: Rascunho salvo!
   drafts: Rascunhos
+  drawings: Desenhos
   duplicate_verb: Duplicar
   each_place_displays_all_species_inat_knows: Cada pagina do local mostra todas as
     espécies que %{site_name} conhece daquele lugar, incluindo informação sobre sua
@@ -2428,6 +2433,7 @@ pt-BR:
   not_seeing_what_looking_for: Não está vendo o que você está procurando?
   not_yet: Ainda não
   note: Nota
+  notes: Notas
   note_you_can_modify_the_height_attribute: 'Nota: Você pode modificar o atributo
     "altura" para que adeque-se ao espaço disponível no seu site.'
   notify_me_of_mentions: Me notifique quando for mencionado (e.g. @username)
@@ -4257,6 +4263,7 @@ pt-BR:
   we_tried_to_process_your_upload_named_filename: |-
     Nós tentamos processar seu upload com o nome %{filename} mas isto não deu certo.
     Por favor corrija o seguinte problema(s) e tente novamente.
+  weather: Tempo
   wed: Qua
   welcome!: Bem vindo!
   welcome_comma!: Bem vindo,
@@ -5326,16 +5333,16 @@ pt-BR:
           haver táxon na lista do projeto\" norma.\n</p>"
         rules:
           captive: ser de cativeiro/cultivado
-          wild: ser selvagem/naturalizado
           georeferenced: tem coordenadas
-          has_media: tem arquivos (foto ou som)
           has_a_photo: tenha uma foto
           has_a_sound: tenha um som
+          has_media: tem arquivos (foto ou som)
           identified: ser identificado
           in_taxon: esteja em um táxon
           observed_in_place: observado no local
           on_list: é de um táxon desta lista de projeto
           verifiable: ser verificável
+          wild: ser selvagem/naturalizado
         start_time_desc: 'Horário de início da sua bioblitz. Formato: AAAA-MM-DDThh:mm:ss±hh:mm'
         submission_models:
           any: qualquer
@@ -5991,6 +5998,12 @@ pt-BR:
         name_provider: Nome do provedor
         source_url: URL de origem
         source_identifier: Identificador de fonte
+      user:
+        email: E-mail
+        name: Nome
+        locale: Localização
+        time_zone: Fuso horário
+        place_id: Lugar
       source:
         title: Título
         in_text: Referência

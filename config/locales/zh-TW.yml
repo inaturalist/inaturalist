@@ -9,6 +9,7 @@
 # Author: LNDDYL
 # Author: Liuxinyu970226
 # Author: Mutolisp
+# Author: Sanmosa
 # Author: Sunny Chan
 # Author: 一個正常人
 # Author: 아라
@@ -126,20 +127,23 @@ zh-TW:
   able_to_connect_flickr: 好極了！ 我們已能夠連接你的Flickr帳戶。
   about: 關於
   about_bioblitz_results: 關於 bioblitz 的結果
+  about_blocking: 關於封鎖
   about_charts: 關於圖表
   about_community_taxa: 關於社群之分類群
   about_complete_taxa: 關於完整的分類群
   about_conservation_status: 關於保育狀態
+  about_editing_observation_fields: 關於編輯觀察欄位
   about_establishment_means: 有關確立方式
   about_external_links: 關於外部連結
   about_licenses: 關於授權
   about_licensing: 關於授權協議
   about_life!: 關於生物!
+  about_muting: 關於禁言
   about_names: 關於名稱
   about_places: 關於地點
   about_taxon_changes: 關於分類群更改
   about_the_cc_licenses: 關於創用CC授權
-  about_the_taxobox_raquo: 關於分類盒
+  about_the_taxobox_raquo: 關於分類盒 &raquo;
   about_these_licenses: 關於這些授權協議
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
@@ -155,7 +159,7 @@ zh-TW:
   acquaintances: 同伴
   action: 操作
   actions: 操作
-  activate_user: 啟用使用者
+  activate_user: 啟用用戶
   active: 有效
   activity: 動態
   activity_settings: 動態設定
@@ -577,6 +581,7 @@ zh-TW:
   black: 黑色
   block_user: 封鎖使用者
   block_removed: 封鎖已移除
+  blocked_users: 已封鎖的使用者
   blog_widget: 部落格小工具
   blue: 藍色
   blue_butterfly_etc: 藍色、蝴蝶、或其它。
@@ -1063,6 +1068,7 @@ zh-TW:
   draft_saved: 草稿已儲存！
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
+  drawings: 圖形
   duplicate_verb: 重複
   each_place_displays_all_species_inat_knows: 任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在
     %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來過濾物種。
@@ -1524,7 +1530,7 @@ zh-TW:
   in_taxon?: 在物種分類
   in_the_past: 在之前
   in_the_past_week: 在過去一週
-  inactive: 無作用
+  inactive: 不活躍
   inactive_taxon: 不作用的物種分類
   inactive_taxon_concepts_are: 無作用物種分類概念代表著分類方式過時，或是正處於在物種分類更改的階段上。過時概念會保留在維護歷史裡；並兼容於其它合作者的網站
   inappropriate: 不適當？
@@ -1962,6 +1968,7 @@ zh-TW:
   must_have_x: 必須要有 %{x}
   mute_user: 禁言使用者
   mute_removed: 禁言已移除
+  muted_users: 已被禁言的使用者
   n_ago: '%{n} 前'
   n_people_agrees: '%{amount} 個人同意'
   n_people_disagrees: '%{amount} 個人不同意'
@@ -2159,7 +2166,8 @@ zh-TW:
   not_recorded: 未記錄
   not_seeing_what_looking_for: 沒有看到您要尋找的嗎？
   not_yet: 尚未
-  note: 註釋
+  note: 註解
+  notes: 註解
   note_you_can_modify_the_height_attribute: 註：您可以調整「高度」屬性來符合您的網頁可用空間。
   notify_me_of_mentions: 通知提及到我的（例如：@username）
   notify_me_about_redundant_identifications: 通知我有關確認鑑定
@@ -2340,13 +2348,14 @@ zh-TW:
   only_the_author_of_this_post_can_do_that: 僅發佈此文章的作者可這樣做，並請不要破壞。
   only_the_owner_of_this_list_can_do_that: 僅有此列表的擁有者可以這樣做，請不要破壞。
   only_the_project_admin_can_delete_this_project: 僅專案管理員可刪除此專案。
+  only_you: 僅有您
   open: 開啟
   open_: 開啟
   open_description: 任何人皆可查看座標，除非該物種分類受到瀕臨滅絕危險。
   opt_in_for_this_observation: 用於此觀察的選項
   opt_out_of_community_ids_for_obs: 選擇讓此觀察退出社群鑑定
   optional: 可選
-  optional_columns_note_for_any: 選用欄位（附註：適用於存在觀察裡的任一可用欄位）
+  optional_columns_note_for_any: 選用欄位（註：適用於存在觀察裡的任一可用欄位）
   or: 或
   or_choose_high_level_taxa: '...或從更高階物種分類挑選'
   or_if_you_dont_want_email: 或者是您不想要接受任何電子郵件...
@@ -3016,6 +3025,7 @@ zh-TW:
   show_observations_from: 顯示觀察依照
   show_off_your_recent_observations: 展現出在您個人部落格或網站上的近期觀察！
   show_only: 僅顯示
+  show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: （從兩項列表顯示物種分類群）
   show_total_listed_taxa: 顯示列出的物種分類總計
   showing_observations_by: 顯示觀察依
@@ -3727,6 +3737,7 @@ zh-TW:
   we_tried_to_process_your_upload_named_filename: |-
     我們嘗試處理您所上傳名為 %{filename} 的檔案，但沒有成功。
     請修正下列問題後再重試看看。
+  weather: 天氣
   wed: 週三
   week_of_date: '%{date} 該週'
   welcome!: 歡迎！
@@ -4148,7 +4159,7 @@ zh-TW:
         please_do_not_upload_pictures_you_didnt_take_html: 請<em>不要上傳不是您拍攝的圖片</em>，除非您獲得來自攝影者的許可。在未經作品創建者許可之下發佈版權作品是非法行為，且默認下所有攝影師都擁有他們所拍攝照片的完整版權。如果照片內容與您的觀察項目有關聯，而且您也獲得拍攝一方的許可來做發佈，請您在觀察描述裡註明攝影師的名稱。
         what_is_geoprivacy?: 什麼是位置隱私？
         geoprivacy_is_a_setting_you_can: 位置隱私是個可用於您觀察上的設定，它能控制空間座標（經度與緯度）如何顯示。這裡有相關選項：
-        note_that_curators_of: 注意：無論您如何設定位置隱私，各專案策展人仍可查看其座標。因此若您在乎是誰存取了您的座標內容，您應得確定您自己可信任所參與專案的策展人。
+        note_that_curators_of: 註：無論您如何設定位置隱私，各專案策展人仍可查看其座標。因此若您在乎是誰存取了您的座標內容，您應得確定您自己可信任所參與專案的策展人。
         what_is_does_it_mean_for: 觀察變為隱蔽代表著什麼含意？
         when_coordinates_are_obscured_it_means_that: 當座標為隱蔽時，代表著採用相距於實際座標 %{km} 公里的隨機標點來公開顯示（註：在首頁上、觀察頁面，或專案頁面上），實際座標僅在您檢視您個人的觀察顯示出（註：在各專案頁面與包含您個人觀察列表上）。請注意專案策展人可以查看您所添加觀察的實際座標。隱蔽座標在地圖以及地理空間訊息來源上，應以不帶接線的圓圈標記符號形式。
         coordinates_are_obscured_for_all_taxa: |-
@@ -4214,7 +4225,7 @@ zh-TW:
         create_a_query_desc_html: 創建一份觀察查詢，就像您會前往到網站的某處。您可剪貼來自於其它網站裡的觀察 URL。您必須指明出<strong>物種分類</strong>、<strong>地點</strong>、<strong>用戶</strong>、<strong>專案</strong>，或是<strong>搜尋查詢</strong>。
         ident_by_user_desc_html: 目前由 %{user} 所做鑑定的欄位
         query_placeholder: 挑選以下查詢參數或貼在一個觀察 URL 上
-        taxon_extras_help_html: 附註：這些欄位將會減緩您匯出所產生的內容
+        taxon_extras_help_html: 註：這些欄位將會減緩您匯出所產生的內容
         geo_help_html: 鎮、郡、州，國家欄位基於座標。類似行政層級將會使用在地點類型不適用上述的觀察。「私有_*」之類的欄位僅在當使用到用戶過濾並且您是該用戶、或是使用專案過濾並且您策展該專案時才會包含到。
         be_patient: 這會花費數分鐘，請耐心等待。如果有花費過長時間情況，您可以
         check_back: 如果您在幾分鐘內重新載入此頁面，您的匯出內容因會出現在頁面下方列表。
@@ -4265,7 +4276,7 @@ zh-TW:
         unreview_all_tooltip: 對在頁面上的所有觀察移除已檢閱狀態
       import:
         coordinate_systems_help: '%{site_name} 接受讓座標使用各種不同座標系統，因此當您提供座標是用在經緯度以外的系統時，我們需要了解您想使用何種座標系統以正確詮釋出。請確認您有挑選出適用於您的資料，或遙遠位置的合宜座標系統。如果您的座標來自
-          GPS 單位，請檢查所使用座標系統的名稱設定。備註：我們不儲存自定義的座標，僅用經緯度轉換。'
+          GPS 單位，請檢查所使用座標系統的名稱設定。註：我們不儲存自定義的座標，僅用經緯度轉換。'
         project_csv_template_notice_html: |-
           這是一個用於此專案的模版檔案，它可能有助於您關於在 CSV 檔案結構方面。
           <a href="%{url}">下載模版</a>
@@ -4462,16 +4473,17 @@ zh-TW:
           </p>
         rules:
           captive: 被捕獲/培育
-          wild: 被野化/歸化
+          coordinates_shareable_by_project_curators: 專案策展人的可共享座標
           georeferenced: 有座標
-          has_media: 擁有多媒體（照片和聲音）
           has_a_photo: 有一張照片
           has_a_sound: 擁有一段聲音
+          has_media: 擁有多媒體（照片和聲音）
           identified: 被鑑定
           in_taxon: 在物種分類
           observed_in_place: 被觀察於地點
           on_list: 成為在專案列表上的物種分類之一
           verifiable: 可證實
+          wild: 被野化/歸化
         start_time_desc: 您的 bioblitz 起始時間。格式：YYYY-MM-DDThh:mm:ss±hh:mm
         submission_models:
           any: 任一
@@ -4652,7 +4664,7 @@ zh-TW:
           \ 若有出現違反我們的服務條款，或是其它不適合在我們網站上所做出的行為，\n  我們將會進行調查。\n</p>"
         common_names_desc: |-
           顯示通用名稱。若您想要檢視學名的話請停用。
-          請注意您可以透過更改您的在地化與地點設定，來控制要查看何種通用名稱。
+          註：您可以透過更改您的在地化與地點設定，來控制要查看何種通用名稱。
         if_you_change_your_mind_you_can_always_edit_your_settings_html: 若您改變想法，您可以隨時<a
           href='/users/edit'>編輯您的設定</a>。
         inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist
@@ -5035,6 +5047,8 @@ zh-TW:
         terms: 條款
         map_type: 地圖類型
         zoom_level: 縮放等級
+        preferred_membership_model: 優先成員模組
+        preferred_submission_model: 優先提交模組
         prefers_place_boundary_visible: 在地圖上顯示地點邊界
         tracking_codes: 追蹤代碼
         source_url: 來源 URL
@@ -5075,6 +5089,14 @@ zh-TW:
         name_provider: 名稱提供者
         source_url: 來源 URL
         source_identifier: 來源鑑定人
+      user:
+        email: 電子郵件
+        name: 名稱
+        locale: 在地
+        time_zone: 時區
+        search_place_id: 搜尋地點
+        place_id: 地點
+        preferred_observation_fields_by: 允許觀察欄位來自於
       source:
         title: 標題
         in_text: 在文字裡

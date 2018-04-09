@@ -148,10 +148,12 @@ es:
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
   about: Acerca de
   about_bioblitz_results: sobre los resultados del "bioblitz" (evaluación rápida)
+  about_blocking: Acerca del bloqueo
   about_charts: Acerca de los gráficos
   about_community_taxa: Sobre los taxones comunitarios
   about_complete_taxa: Acerca de los taxones completos
   about_conservation_status: Acerca del estado de conservación
+  about_editing_observation_fields: Acerca de la edición de campos de observación
   about_establishment_means: Acerca de los medios de establecimiento
   about_external_links: Acerca de los enlaces externos
   about_licenses: Sobre las licencias
@@ -658,6 +660,7 @@ es:
   black: negro
   block_user: Bloquear usuario
   block_removed: Bloque eliminado
+  blocked_users: Usuarios bloqueados
   blog_widget: Widget del blog
   blue: azul
   blue_butterfly_etc: azul, mariposa, etc.
@@ -1239,6 +1242,7 @@ es:
   draft_saved: ¡Guardado en borrador!
   drafts: Borradores
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
+  drawings: Dibujos
   duplicate_verb: Duplicado
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las
     especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia,
@@ -2487,6 +2491,7 @@ es:
   not_seeing_what_looking_for: ¿No ve lo que está buscando?
   not_yet: Todavía no
   note: Nota
+  notes: Notas
   note_you_can_modify_the_height_attribute: 'Nota: Puedes modificar el atributo "altura"
     para llenar el espacio disponible en tu página web.'
   notify_me_of_mentions: Notificarme sobre las menciones (p. ej. @username)
@@ -2738,6 +2743,7 @@ es:
     hacer eso.  No seas malvado.
   only_the_project_admin_can_delete_this_project: Solo el administrador del proyecto
     puede eliminar este proyecto.
+  only_you: Solo tú
   open: Transparente
   open_: Abierto
   open_description: Todo el mundo puede ver las coordenadas a menos que el taxón esté
@@ -3482,6 +3488,7 @@ es:
   show_off_your_recent_observations: ¡Presuma sus observaciones en su propio blog
     o sitio web!
   show_only: Mostrar solamente
+  show_scientific_name_first: Mostrar primero los nombres científicos
   show_taxa_from_both: (mostrar taxones de ambas listas)
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
   showing_observations_by: Mostrando observaciones hechas por
@@ -4385,6 +4392,7 @@ es:
   we_tried_to_process_your_upload_named_filename: |-
     Hemos intentado procesar tu subida llamada %{filename}, pero no funcionó.
     Arregla los siguientes problemas y vuelve a intentarlo.
+  weather: Clima
   wed: mié
   week_of_date: Semana de %{date}
   welcome!: ¡Bienvenidos!
@@ -5476,7 +5484,8 @@ es:
           </p>
         rules:
           captive: ser cautivo/cultivada
-          coordinates_shareable_by_project_curators: coordinables para ser compartidos por los curadores del proyecto
+          coordinates_shareable_by_project_curators: coordinables para ser compartidos
+            por los curadores del proyecto
           georeferenced: tener coordenadas
           has_a_photo: tener una foto
           has_a_sound: tener un sonido
@@ -6133,6 +6142,11 @@ es:
         name_provider: Proveedor de nombre
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
+      user:
+        email: Correo
+        name: Nombre
+        time_zone: Zona horaria
+        place_id: Lugar
       source:
         title: Título
         in_text: Referencia
