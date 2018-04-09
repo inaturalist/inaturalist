@@ -6,6 +6,7 @@
 # Author: Elisardojm
 # Author: Fitoschido
 # Author: Macofe
+# Author: Navhy
 # Author: Toliño
 ---
 gl:
@@ -841,6 +842,7 @@ gl:
   draft_: Borrador
   draft_saved: ¡Gardado en borrador!
   drafts: Borradores
+  drawings: Deseños
   each_place_displays_all_species_inat_knows: Cada páxina de lugar mostra todas as
     especies que %{site_name} coñeces dese lugar, incluíndo información da súa abundancia,
     estado de conservación e quen observou esa especie por primeira vez nese lugar
@@ -1667,6 +1669,7 @@ gl:
   not_seeing_what_looking_for: Non atopas o que estás procurando?
   not_yet: Aínda non
   note: Nota
+  notes: Notas
   number_of_observations: Número de observacións
   noun_by_you: '%{noun} propias'
   obs: Obs
@@ -2934,6 +2937,7 @@ gl:
     no futuro e che brinde maior seguridade.
   we_support_flickr: Somos compatibles con Flickr en almacenamento de imaxes e esperamos
     que engadas outros medios de almacenamento de imaxes en pouco tempo.
+  weather: Clima
   wed: Mér
   welcome!: ¡Benvidos!
   welcome_comma!: Benvido!
@@ -3705,7 +3709,10 @@ gl:
       user:
         email: Correo
         name: Nome
+        locale: Local
         time_zone: Zona horaria
+        search_place_id: Procurar lugar
+        place_id: Lugar
       source:
         title: Título
         in_text: Referencia

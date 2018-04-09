@@ -2016,9 +2016,15 @@ pt-PT:
   listed_taxa: Taxa listados.
   listed_taxon: Táxon listado.
   listed_taxon_updated: Táxon listados atualizados
+  listing_announcement: A listar anúncio
+  listing_announcements: A listar anúncios
+  listing_lists: A listar listas
   listing_taxa: Lista de táxones
   listing_taxon_names: A listar os nomes de táxones
   lists: Listas
+  lists_are_lists_of_species: Listas são listas de espécies (ou outros taxa), como
+    uma árvore de biodiversidade com todas as aves que observou ou uma lista das suas
+    salamandras preferidas. Elas <em>não</em> são listas de observações.
   lists_by_login:
     title:
       current_user: As suas listas
@@ -2042,9 +2048,12 @@ pt-PT:
     de data.
   locales_: Locais
   locales:
+    ar: Árabe
     bg: Búlgaro
     br: Bretão
     ca: Catalão
+    da: Dinamarquês
+    de: Alemão
     en-US: Inglês (Estados Unidos)
     en: Inglês
     es-ES: Espanhol (Espanha)
@@ -2076,6 +2085,15 @@ pt-PT:
   location_is_obscured: A localização está oculta
   location_is_private: A localização é privada
   location_specified: Localização específica
+  locked_taxa_will_not_allow_new: Aos taxa bloqueados não se pode adicionar um novo
+    táxon descendente. Por exemplo, se bloquear o Amphibia e alguém tentar importar
+    <i>Rana catesbeiana</i> a partir de um provedor de nome externo, é criado um novo
+    táxon, mas que não pode ser classificado como anfíbio. Quando tal acontece, os
+    taxa adicionados recentemente devem ser sinalizados para que sejam revistos por
+    um curador. Este procedimento só deve ser usado para os taxa que já possuem todos
+    os descendentes. O curador pode corrigir esta situação editando o taxa e inserindo
+    directamente a identificação do ancestral, mas, em alternativa, recomenda-se juntar
+    os novos taxa aos já existentes.
   log_in: Entrar
   logged_in_as: Entrou como
   login_slash_username: Entrada / nome de utilizador
@@ -2100,7 +2118,23 @@ pt-PT:
   made_a: criou um(a)
   make_admin: Tornar administrador
   make_an_observation: faça uma observação
+  mail_disclaimer: '%{site_name} não permitirá que os seus utilizadores lhe enviem
+    outros convites adicionais via o nosso sistema de convites. Pedimos, por favor,
+    que denuncie o abuso de convites para o %{site}.'
+  main_content: Conteúdo principal
+  make_a_new_place: Criar um novo lugar
+  make_a_taxon_swap_instead?: Deseja fazer uma troca de táxons?
+  make_curator: Deseja tornar-se curador?
+  make_it_a_life_list?: Deseja tornar esta lista numa lista de biodiversidade?
+  make_manager: Deseja tornar-se um gestor de projeto?
+  make_new_place: Criar um novo lugar
   make_one: criar um?
+  make_sure_the_default_photo_looks_good: Por favor, verifique que a foto por defeito
+    se vê bem em grande formato.
+  make_taxonomic_flickr_tags_for_taxon_raquo: Criar etiquetas taxonómicas do Flickr
+    para este táxon &raquo;
+  make_this_your_default_license: Definir como a sua licença de %{type} pré-definida
+  make_this_the_primary_listing: Definir como lista principal
   mammals: mamíferos
   manage: Gerir
   manage_all_your_subscriptions: Gerir todas as suas subscrições
@@ -2110,27 +2144,64 @@ pt-PT:
   managed: gerido
   manager: Gestor
   managers: Gestores
+  managers_can_do: Os gestores podem fazer tudo o que fazem os curadores, assim como
+    editar as definições de projeto e escrever artigos no boletim do projeto.
+  manually_create_new_place: Criar manualmente um novo lugar
   map: Mapa
   map_legend: legenda do mapa
   map_marker_size: tamanho do marcador do mapa
   maps:
     overlays:
       all_observations: Todas as observações
+      every_publicly_visible_observation: Todas as observações visíveis para o público
+        criadas na rede do iNaturalist
+      featured_observations: Observações em destaque
       gbif_network: Rede do GBIF
+      gbif_network_description: Registos de museus e de outros provedores de registos
+        de ocorrência distribuídos pela Global Biodiversity Informatics Facility
       observations: Observações
+      place_boundary: Definir o limite da área
+      checklist_places: Lista de verificação de lugares
+      checklist_places_description: Lugares onde este táxon foi listado
       range: Área de distribuição natural
   map_tooltip: Mostrar a vista do mapa
   map_for: Mapa para
   mark_as_reviewed: Marcar como revisado
   mark_all_as_reviewed: Marcar todos como revistos
   mark_all_as_unreviewed: Marcar todos como não revistos
+  matched_several_different_taxa: Coincidiu com vários taxa diferentes
+  matching_species_will_shown_up_here: As espécies encontradas são apresentadas aqui.
+    Os mapas mostram uma área de ocorrência se %{place} tem alguma destas espécies.
   maverick: Maverick
+  maybe_your_signed_in_with: Será que iniciou a sessão com a sua conta %{omniauth}?
   media: Multimédia
   medium: médio
+  meet: Conhecer
   member_of_the_inaturalist_network_html: Membro da <a href="%{url}">Rede iNaturalist</a>
   members: Membros
+  mentioned_you_in_noun_html: '%{user} mencionou você em %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} mencionou você em %{noun} por %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} mencionou você num %{x} em %{noun}'
+  mentioned_you_in_an_x_on_noun_html: '%{user} mencionou você num %{x} em %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} mencionou você num %{x} em %{noun}
+    por %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} mencionou você num %{noun} em %{noun}
+    por %{by}'
   mentions: Menções
   merge: Fundir
+  merge_it_with_another_place: Combinar com outro lugar
+  merge_two_places_together: Combinar dois lugares. Todas as espécies das listas de
+    verificação serão combinadas, assim como os dados geográficos.
+  merge_observation_field_x_into: Combinar o campo de observação %{x} com...
+  merging: Combinando
+  merging_places: A combinar lugares
+  message: Mensagem
+  messages: Mensagens
+  misidentifications: Identificações incorretas
+  misleading_or_illegal_content_html: Conteúdo enganador ou ilegal, insultos racistas
+    ou xenófobos, etc. Para mais informação acerca do que consideramos "conteúdo apropriado"
+    ver <a href="/help#inappropriate">FAQ</a>.
+  mixed_licenses: licenças mistas
   mobile_app_for: Aplicação móvel para
   mobile_apps_for: As aplicações móveis para
   mollusks: moluscos
@@ -2143,33 +2214,64 @@ pt-PT:
       mm: '%dm'
       h: 1 hora
       hh: '%dh'
+      d: 1d
+      dd: '%dd'
+  month: Mês
   months: Meses
+  months_ago: '%{text} meses antes'
+  more: Mais
+  more_fields: Mais campos
   more_filters: Mais filtros
   more_from_x: Mais de %{x}
   more_import_options: Mais opções de importação
   more_info: Mais informações
   more_info_title: Mais informações
+  more_journal_posts: Mais artigos do boletim
   more_observations: Mais observações
   more_photos: Mais fotografias
   most: A maioria
   most_agree: a maioria concorda
   most_disagree: a maioria discorda
+  most_comments_and_faves: A maioria dos comentários e dos favoritos
   most_observations: A maioria das observações
+  most_recent_observation_by_date_observed: As observações mais recentes e verificáveis
+    por data de observação
   most_species: A maioria das espécies
   most_observed_species: Espécies mais observadas
   most_observed_introduced_species: Espécies introduzidas mais observadas
   most_observed_threatened_species: Espécies ameaçadas mais observadas
   multiple: múltiplo
   multiple_select_option: -- múltiplo --
+  multiple_taxa_for_taxon_change: Múltiplos taxa (fornecer para trocar/combinar, resultado
+    para dividir)
+  multiple_taxon_ids_separated_by_commas: As várias Identificações do táxon estão
+    separadas por vírgulas, por exemplo 123,654
+  must_be_observed_after: deve ser observado depois de %{operand}
+  must_be_observed_before: deve ser observado antes de %{operand}
+  must_be_observed_in: deve ser observado em
+  must_be_less_than_x_MB: Deve ser menor que %{x} MB
+  must_have_observation_field: deve ter o campo de observação %{operand} preenchido
+  must_have_x: deve ter %{x}
+  mute_user: Silenciar o utilizador
+  mute_removed: Silenciador removido
+  muted_users: Utilizadores Silenciados
+  n_ago: '%{n} antes'
+  n_people_agrees: '%{amount} pessoas concordam'
+  n_people_disagrees: '%{amount} pessoas discordam'
+  n_person_agrees: '%{amount} pessoa concorda'
+  n_person_disagrees: '%{amount} pessoa discorda'
   name: Nome
   name_entered: Nome introduzido
   name_llaves: '[NOME]'
+  name_or_slug: Nome ou URL, por exemplo meu-projeto
+  name_of_the_place_you: Nome do lugar em que fez a observação
   name_or_username: Nome ou do utilizador
   name_provider: Nome do provedor
   name_providers:
     col: Catálogo da Vida
     ubio: uBio
     nzor: Registo de Organismos da Nova Zelândia
+  named_based_url_might_change: Os URLs baseados em nomes podem mudar, mas este não.
   names: Nomes
   names_for_taxon_html: Nomes para %{taxon}
   naturalised: naturalizado
@@ -2191,8 +2293,62 @@ pt-PT:
   nearby_observations_: Observações próximas
   nearby_observations: Observações próximas
   need_id_help?: Precisa de ajuda com a identificação (ID)?
+  needs_id: Precisa de identificação
   Needs_ID!: Precissa ID!
+  needs_id_expandable_html: <span class='full'>Precisa de </span>ID
+  needs_to_be_identified: Precisa ser identificado
+  new_announcement: Novo anúncio
+  new_assessment: Nova avaliação
+  new_check_list: Nova lista de verificação
+  new_check_list_for: Cria uma nova lista de verificação para %{place} &raquo;
+  new_check_list_record: Se quer marcar esta lista como detalhada, primeiro tem de
+    a criar, adicionar os taxa e depois ao editá-la tem a opção de a marcar como detalhada.
+  new_comment_on_a_parent_by_user_link: Novo comentário em @vow_or_con{vow:an|a} %{parent}
+    por %{user_link}
+  new_custom_field_for: Novo campo personalizado para
+  new_flag_for: Nova Marca para
+  new_guide: Novo Guia
+  new_journal_posts: Nova publicação no Boletim
+  new_list: Nova Lista
+  new_members: Novos membros
+  new_message: Nova mensagem
+  new_observation_field: Nove campo de observação
+  new_observation_rules: Novas Regras de Observação
+  new_observations: Novas observações
+  new_observations_ellispsis: Novas observações...
   new_observations_from_place_html: Novas observações em %{place}
+  new_observations_may_take_up_to: As novas observações podem demorar até %{widget_expiration}
+    minutos  a aparecer no dispositivo.
+  new_observations_of_x_html: Novas observações de %{x}
+  new_password: Nova Palavra-passe
+  new_post: Nova Publicação
+  new_project: Novo Projeto
+  new_project_asset: Novo recurso_projeto
+  new_project_asset_for: Novo Recurso do Projeto para
+  new_source: Nova Fonte
+  new_taxon_change: Nova alteração do táxon
+  new_taxon_link: Nova ligação do Táxon
+  new_taxon_name: Novo nome do táxon
+  new_taxon_name_for: Novo Nome do Táxon para
+  new_taxon_range: Nova Área de Distribuição do Táxon
+  new_taxonomic_change: Nova Mudança Taxonómica (Rascunho)
+  new_trip: Nova viagem
+  new_updates_in_the_last_24_hours_from: Novas atualizações nas últimas 24 horas de
+    %{site_name}
+  new_user_rules: Novas Regras para o Utilizador
+  new_users_week: Novos Utilizadores / Semana
+  next: Seguinte
+  next_observation: Próxima Observação
+  next_page: Página seguinte
+  next_photo: Próxima Foto
+  next_tab: Separador Seguinte
+  "no": Não
+  no_activity_in_the_past_week: Nenhuma atividade na semana passada. Momento de
+  no_administrator_knows_your_password: Nenhum administrador do %{sitename} sabe a
+    sua nova palavra-passe ou em qualquer momento teve ou terá acesso à sua palavra-passe.
+  no_assessments_have_been_added_to_this_project_yet: Ainda não foi adicionada nenhuma
+    avaliação a este projeto.
+  no_but_it_is_a_member_of_taxon: Não, mas é um membro de %{taxon}
   observed: Observado
   observed_by: Observado por
   observed_on: Observado em
