@@ -135,15 +135,18 @@ ar:
   able_to_connect_flickr: رائع لقد استطعنا ربط حساب فليكر الخاص بك
   about: حول
   about_bioblitz_results: عن نتائج bioblitz
+  about_blocking: حول الحظر
   about_charts: حول الرسوم البيانية
   about_community_taxa: معلومات حول مجتمع الأصناف
   about_complete_taxa: حول أصناف كاملة
   about_conservation_status: حول حالة الحفظ
+  about_editing_observation_fields: حول تحرير مجالات الملاحظة
   about_establishment_means: حول وسائل الإنشاء
   about_external_links: عن الروابط الخارجية
   about_licenses: عن الرخصة
   about_licensing: عن الترخيص
   about_life!: عن الحياة!
+  about_muting: حول التجاهل
   about_names: حول الأسماء
   about_places: عن الأماكن
   about_taxon_changes: معلومات حول تغييرات الأصناف
@@ -622,6 +625,7 @@ ar:
   black: أسود
   block_user: مستخدم محظور
   block_removed: تمت إزالة الحظر
+  blocked_users: المستخدمون المحظورون
   blog_widget: أداة المدونة
   blue: أزرق
   blue_butterfly_etc: أزرق، فراشة، إلخ.
@@ -1177,6 +1181,7 @@ ar:
   draft_saved: تم حفظ المسودة!
   drafts: مسودات
   drag_and_drop_some_photos_or_sounds: سحب وإسقاط بعض الصور أو الأصوات
+  drawings: رسومات
   duplicate_verb: مكرر
   each_place_displays_all_species_inat_knows: تعرض كل صفحة مكان كل الأنواع التي يعرفها
     %{site_name} من هذا المكان، بما في ذلك معلومات عن الوفرة، وحالة الحفظ، ومن كان
@@ -2177,6 +2182,7 @@ ar:
   must_have_x: يجب أن يحتوي على %{x}
   mute_user: كتم المستخدم
   mute_removed: تمت إزالة كتم الصوت
+  muted_users: المستخدمون الذين تم تجاهلهم
   n_ago: قبل %{n}
   n_people_agrees: يوافق %{amount} شخص
   n_people_disagrees: لا يوافق %{amount} شخص
@@ -2387,6 +2393,7 @@ ar:
   not_seeing_what_looking_for: لم تر ما كنت تبحث عنه؟
   not_yet: ليس بعد
   note: ملحوظة
+  notes: ملاحظات
   note_you_can_modify_the_height_attribute: 'ملاحظة: يمكنك تعديل السمة ''ارتفاع''
     لتتناسب مع المساحة المتوفرة في صفحة الويب الخاصة بك.'
   notify_me_of_mentions: أشعرني عند الإشارة لي (على سبيل المثال @username)
@@ -2617,6 +2624,7 @@ ar:
     لا تكن شريرا.
   only_the_project_admin_can_delete_this_project: يستطيع إداري المشروع فقط حذف هذا
     المشروع.
+  only_you: أنت فقط
   open: فتح
   open_: فتح
   open_description: يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة.
@@ -3343,6 +3351,7 @@ ar:
   show_observations_from: عرض الملاحظات من قبل
   show_off_your_recent_observations: إظهار ملاحظاتك الأخيرة في مدونتك أو موقعك!
   show_only: أظهر فقط
+  show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
   show_total_listed_taxa: عرض مجموع الأصناف المدرجة
   showing_observations_by: عرض الملاحظات من قبل
@@ -4190,6 +4199,7 @@ ar:
   we_tried_to_process_your_upload_named_filename: |-
     لقد حاولنا معالجة مرفوعك الذي يحمل اسم %{filename} ولكنه لم ينجح،
     الرجاء إصلاح المشكلة(ات) التالية والمحاولة مرة أخرى.
+  weather: الطقس
   wed: أرب
   week_of_date: أسبوع %{date}
   welcome!: مرحبا!
@@ -5158,16 +5168,18 @@ ar:
           أن تكون الأصنوفة \n  في قاعدة قائمة المشروع\". \n</p>"
         rules:
           captive: يكون أسيرا / مزروعا
-          wild: يكون بريا / طبيعيا
+          coordinates_shareable_by_project_curators: الإحداثيات القابلة للمشاركة من
+            قبل أمناء المشروع
           georeferenced: لديك إحداثيات
-          has_media: لديك وسائلط (صورة أو صوت)
           has_a_photo: لديك صورة
           has_a_sound: لديك صوت
+          has_media: لديك وسائلط (صورة أو صوت)
           identified: كن محددا
           in_taxon: يكون في أصنوفة
           observed_in_place: يكون ملاحظا في مكان
           on_list: أن يكون من أصناف في قائمة المشروع
           verifiable: يمكن التحقق منه
+          wild: يكون بريا / طبيعيا
         start_time_desc: 'وقت البدء لـbioblitz الخاص بك، النسق: سسسس-شش-ييسس:دد:ثث±سس:دد'
         submission_models:
           any: أي واحد
@@ -5863,6 +5875,8 @@ ar:
         terms: الشروط
         map_type: نوع الخريطة
         zoom_level: مستوى التكبير
+        preferred_membership_model: نموذج العضوية المفضل
+        preferred_submission_model: نموذج الإرسال المفضل
         prefers_place_boundary_visible: عرض حدود المكان على الخريطة
         tracking_codes: رموز التتبع
         source_url: مسار المصدر
@@ -5903,6 +5917,14 @@ ar:
         name_provider: موفر الاسم
         source_url: مسار المصدر
         source_identifier: معرف المصدر
+      user:
+        email: البريد الإلكتروني
+        name: الاسم
+        locale: المكان
+        time_zone: المنطقة الزمنية
+        search_place_id: ابحث عن مكان
+        place_id: مكان
+        preferred_observation_fields_by: السماح بحقول الملاحظة من
       source:
         title: العنوان
         in_text: في النص

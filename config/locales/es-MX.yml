@@ -4562,15 +4562,15 @@ es-MX:
           </ol>
         rules:
           captive: be capturada/cultivada
-          wild: estado salvaje/silvestre
           georeferenced: tiene coordenadas
-          has_media: tiene contenido multimedia (fotos o sonido)
           has_a_photo: tiene foto
           has_a_sound: tiene sonido
+          has_media: tiene contenido multimedia (fotos o sonido)
           identified: tiene identificación
           in_taxon: ser una especie o grupo
           observed_in_place: fue observado en algún lugar
           on_list: ser una especie o grupo de la lista del proyecto
+          wild: estado salvaje/silvestre
         start_time_desc: Tiempo en que empezará tu proyecto bioblitz
         trusted_project_means: |-
           Cuando un projecto está verificado, los curadores y gerentes del
@@ -4978,6 +4978,11 @@ es-MX:
         name_provider: Proveedor de nombre
         source_url: Dirección web de la fuente
         source_identifier: Identificador de la fuente
+      user:
+        email: Correo
+        name: Nombre
+        locale: Localidad
+        time_zone: Zona horaria
       source:
         title: Título
         in_text: Referencia

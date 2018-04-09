@@ -5407,16 +5407,16 @@ ca:
           </p>
         rules:
           captive: captiva/conreada
-          wild: salvatge/naturalitzada
           georeferenced: té coordenades
-          has_media: té multimèdia (foto o só)
           has_a_photo: té foto
           has_a_sound: té só
+          has_media: té multimèdia (foto o só)
           identified: ser identificat
           in_taxon: estar en el tàxon
           observed_in_place: ser observat en el seu lloc
           on_list: ser d'un tàxon de la llista del projecte
           verifiable: ser verificable
+          wild: salvatge/naturalitzada
         start_time_desc: 'Hora d''inicio del teu bioblitz. Format: AAAA-MM-DDThh:mm:ss±hh:mm'
         submission_models:
           any: qualsevol
@@ -6095,6 +6095,10 @@ ca:
         name_provider: Proveïdor de nom
         source_url: Adreça web de la font
         source_identifier: Identificador de la font
+      user:
+        email: Correu
+        name: Nom
+        time_zone: Zona horària
       source:
         title: Títol
         in_text: Referència
