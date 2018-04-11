@@ -12,7 +12,7 @@ const ALLOWED_TAGS = (
 ).split( " " );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
-  "href src width height alt cite title class name abbr value align"
+  "href src width height alt cite title class name abbr value align target rel"
   // + "xml:lang style controls preload"
 ).split( " " );
 
@@ -89,7 +89,23 @@ class UserText extends React.Component {
         <span
           className="content"
           dangerouslySetInnerHTML={ { __html:
-            sanitizeHtml( linkifyHtml( truncatedHtml || html ), { allowedTags: ALLOWED_TAGS } )
+            sanitizeHtml(
+              linkifyHtml(
+                truncatedHtml || html,
+                {
+                  className: null,
+                  attributes: {
+                    rel: "nofollow"
+                  }
+                }
+              ),
+              {
+                allowedTags: ALLOWED_TAGS,
+                allowedAttributes: {
+                  "*": ALLOWED_ATTRIBUTES_NAMES
+                }
+              }
+            )
           } }
           style={style}
         ></span> { moreLink }
