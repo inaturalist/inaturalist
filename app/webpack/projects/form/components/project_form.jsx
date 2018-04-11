@@ -32,21 +32,16 @@ class ProjectForm extends React.Component {
                     window.open( `/observations?${project.previewSearchParamsString}`, "_blank" ) }
                 >
                   <i className="fa fa-external-link" />
-                  Preview Observations
+                  { I18n.t( "preview_observations" ) }
                 </button>
               </div>
             </Col>
           </Row>
-          <Row>
+          <Row className="admins-row">
             <Col xs={12}>
-              { }
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4}>
-              <label>Admin(s)</label>
+              <label>{ I18n.t( "admin_s" ) }</label>
               <div className="help-text">
-                Note: these users will be able to edit ALL project details including admins.
+                { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
               </div>
               <UserAutocomplete
                 ref="ua"
@@ -56,7 +51,7 @@ class ProjectForm extends React.Component {
                   this.refs.ua.inputElement( ).val( "" );
                 } }
                 bootstrapClear
-                placeholder={ "kueda, 1001, etc." }
+                placeholder={ I18n.t( "user_autocomplete_placeholder" ) }
               />
               { !_.isEmpty( project.undestroyedAdmins ) && (
                 <div className="icon-previews">
@@ -79,7 +74,7 @@ class ProjectForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              * Required
+              * { I18n.t( "required_" ) }
               <div className="buttons">
                 <button
                   className="btn btn-default done"
@@ -88,7 +83,7 @@ class ProjectForm extends React.Component {
                   disabled={
                     project.saving || !_.isEmpty( _.compact( _.values( project.errors ) ) )
                   }
-                >{ project.saving ? "Saving..." : "Done" }</button>
+                >{ project.saving ? I18n.t( "saving" ) : I18n.t( "done" ) }</button>
                 { project.errors.description && (
                   <Overlay
                     show
@@ -99,7 +94,7 @@ class ProjectForm extends React.Component {
                       id="popover-done"
                       className="popover-error"
                     >
-                      Check above for errors
+                      { I18n.t( "check_above_for_errors" ) }
                     </Popover>
                   </Overlay>
                 ) }
@@ -110,7 +105,7 @@ class ProjectForm extends React.Component {
                       window.location = `/projects/${project.slug}` :
                       this.props.removeProject( );
                   } }
-                >Cancel</button>
+                >{ I18n.t( "cancel" ) }</button>
               </div>
             </Col>
           </Row>

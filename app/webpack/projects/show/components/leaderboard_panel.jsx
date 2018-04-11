@@ -11,6 +11,8 @@ class LeaderboardPanel extends React.Component {
   linkForRow( l ) {
     const { project, type } = this.props;
     const linkParams = Object.assign( { }, project.search_params );
+    linkParams.place_id = "any";
+    linkParams.verifiable = "any";
     if ( type === "species" ) {
       linkParams.taxon_id = l.taxon.id;
     } else if ( type === "observers" ) {
@@ -23,17 +25,22 @@ class LeaderboardPanel extends React.Component {
     return `/observations?${$.param( linkParams )}`;
   }
 
-  linkForViewAll( ) {
-    const { project, type } = this.props;
-    const params = Object.assign( { }, project.search_params );
+  linkForViewAll( options = { } ) {
+    const { project, type, config } = this.props;
+    const linkParams = Object.assign( { }, project.search_params );
+    linkParams.place_id = "any";
+    linkParams.verifiable = "any";
     if ( type === "species" ) {
-      params.view = "species";
+      linkParams.view = "species";
     } else if ( type === "observers" ) {
-      params.view = "observers";
+      linkParams.view = "observers";
     } else if ( type === "species_observers" ) {
-      params.view = "observers";
+      linkParams.view = "observers";
     }
-    return `/observations?${$.param( params )}`;
+    if ( options.yours && config.currentUser ) {
+      linkParams.user_id = config.currentUser.id;
+    }
+    return `/observations?${$.param( linkParams )}`;
   }
 
   render( ) {
@@ -118,11 +125,13 @@ class LeaderboardPanel extends React.Component {
             { I18n.t( "view_all" ) }
           </button>
         </a>
-        <a href={ this.linkForViewAll( ) }>
-          <button className="btn-white">
-            { I18n.t( "view_yours" ) }
-          </button>
-        </a>
+        { config.currentUser && (
+          <a href={ this.linkForViewAll( { yours: true } ) }>
+            <button className="btn-white">
+              { I18n.t( "view_yours" ) }
+            </button>
+          </a>
+        ) }
       </div>
     );
   }

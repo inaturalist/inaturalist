@@ -21,7 +21,7 @@ const IconicTaxaPieChart = ( { project } ) => {
         data={ data }
         margin={ { top: 0, bottom: 120, left: 0, right: 0 } }
         donutWidth={ 20 }
-        urlPrefix={ `/observations?project_id=${project.id}` }
+        urlPrefix={ `/observations?project_id=${project.id}&place_id=any&verifiable=any` }
         labelForDatum={ d => {
           const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
           const percent = _.round( degrees / 360 * 100, 2 );

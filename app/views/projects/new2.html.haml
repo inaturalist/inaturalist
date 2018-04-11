@@ -16,6 +16,7 @@
   :javascript
     var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
     var CURRENT_PROJECT = #{ @project_json ? @project_json.to_json : "null" };
+    var HERO_IMAGE_PATH = "#{ image_path( "projects/hero.png" ) }";
   = javascript_include_tag "projects-form-webpack"
 
 #app

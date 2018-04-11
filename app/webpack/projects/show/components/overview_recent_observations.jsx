@@ -6,17 +6,17 @@ import Observation from "./observation";
 class OverviewRecentObservations extends Component {
   render( ) {
     const { project, config, setSelectedTab } = this.props;
-    if ( !project.observations_loaded ) {
+    if ( !project.recent_observations_loaded ) {
       return ( <div className="loading_spinner huge" /> );
     }
-    const instances = project.observations.results;
+    const instances = project.recent_observations.results;
     if ( _.isEmpty( instances ) ) {
       return (
         <Grid>
           <Row>
             <Col xs={ 12 }>
               <div className="no-obs">
-                No observations yet. Check back soon!
+                { I18n.t( "no_observations_yet" ) }. { I18n.t( "check_back_soon" ) }
               </div>
             </Col>
           </Row>
@@ -28,7 +28,7 @@ class OverviewRecentObservations extends Component {
         <Row>
           <Col xs={ 12 }>
             <h2>
-              { I18n.t( "recent_observations" ) }
+              { I18n.t( "recent_observations_" ) }
               <i
                 className="fa fa-arrow-circle-right"
                 onClick={ ( ) => setSelectedTab( "observations" ) }

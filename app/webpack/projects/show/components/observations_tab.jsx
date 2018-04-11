@@ -8,17 +8,24 @@ import ObservationsMapView from "./observations_map_view";
 const ObservationsTab = ( {
   config,
   project,
-  observations,
   infiniteScrollObservations,
-  setSelectedTab
+  setSelectedTab,
+  setObservationFilters
 } ) => {
   const scrollIndex = config.observationsScrollIndex || 30;
   let view;
   const activeSubview = config.observationsSearchSubview || "grid";
-  if ( _.isEmpty( observations ) ) {
+  let observations;
+  const loading = !project.recent_observations_loaded;
+  if ( activeSubview === "table" ) {
+    observations = project.filtered_observations_loaded ?
+      project.filtered_observations.results : null;
+  } else {
+    observations = project.recent_observations_loaded ?
+      project.recent_observations.results : null;
+  }
+  if ( loading ) {
     view = ( <div className="loading_spinner huge" /> );
-  } else if ( _.isEmpty( observations ) ) {
-    view = ( <span /> );
   } else if ( activeSubview === "map" ) {
     view = (
       <ObservationsMapView
@@ -29,7 +36,10 @@ const ObservationsTab = ( {
     view = (
       <ObservationsListView
         config={ config }
-        observations={ observations }
+        loading={ !project.filtered_observations_loaded }
+        setObservationFilters={ setObservationFilters }
+        observations={ project.filtered_observations_loaded ?
+          project.filtered_observations.results : null }
         loadMore={ ( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
         } }
@@ -107,10 +117,9 @@ const ObservationsTab = ( {
 ObservationsTab.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
-  setConfig: PropTypes.func,
   infiniteScrollObservations: PropTypes.func,
   setSelectedTab: PropTypes.func,
-  observations: PropTypes.array
+  setObservationFilters: PropTypes.func
 };
 
 export default ObservationsTab;

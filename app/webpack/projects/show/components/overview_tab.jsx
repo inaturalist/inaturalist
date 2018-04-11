@@ -15,7 +15,8 @@ import OverviewStats from "./overview_stats";
 class OverviewTab extends Component {
   render( ) {
     const { project } = this.props;
-    const instances = project.observations ? project.observations.results : null;
+    const instances = project.recent_observations ? project.recent_observations.results : null;
+    const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
     return (
       <div className="OverviewTab">
         <OverviewRecentObservations { ...this.props } />
@@ -48,18 +49,31 @@ class OverviewTab extends Component {
             <Grid>
               <Row>
                 <Col xs={ 12 }>
-                  <h2>Map of Observations</h2>
+                  <h2>{ I18n.t( "map_of_observations" ) }</h2>
                   <TaxonMap
                     observationLayers={ [project.search_params] }
                     showAccuracy
-                    enableShowAllLayer={false}
-                    overlayMenu
-                    clickable={false}
+                    enableShowAllLayer={ false }
+                    clickable={ false }
                     scrollwheel={ false }
-                    maxX={ project.observations && project.observations.total_bounds.nelng }
-                    maxY={ project.observations && project.observations.total_bounds.nelat }
-                    minX={ project.observations && project.observations.total_bounds.swlng }
-                    minY={ project.observations && project.observations.total_bounds.swlat }
+                    overlayMenu={ false }
+                    mapTypeControl
+                    mapTypeControlOptions={{
+                      style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                      position: google.maps.ControlPosition.TOP_LEFT
+                    }}
+                    zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+                    placeLayers={ _.isEmpty( project.placeRules ) ? null :
+                      [{ place: {
+                        id: _.map( project.placeRules, "operand_id" ).join( "," ),
+                        name: "Places"
+                      } }]
+                    }
+                    minZoom={ 2 }
+                    maxX={ totalBounds && totalBounds.nelng }
+                    maxY={ totalBounds && totalBounds.nelat }
+                    minX={ totalBounds && totalBounds.swlng }
+                    minY={ totalBounds && totalBounds.swlat }
                   />
                 </Col>
               </Row>

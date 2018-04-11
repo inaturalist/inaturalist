@@ -55,7 +55,7 @@ class UserText extends React.Component {
   }
 
   render( ) {
-    const { text, truncate, config, moreToggle } = this.props;
+    const { text, truncate, config, moreToggle, stripWhitespace } = this.props;
     const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
@@ -84,13 +84,19 @@ class UserText extends React.Component {
         </a>
       );
     }
+
+    let htmlToDisplay = sanitizeHtml( linkifyHtml( truncatedHtml || html ), {
+      allowedTags: ALLOWED_TAGS,
+      exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
+    } );
+    if ( stripWhitespace ) {
+      htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
+    }
     return (
       <div className={`UserText ${className}`}>
         <span
           className="content"
-          dangerouslySetInnerHTML={ { __html:
-            sanitizeHtml( linkifyHtml( truncatedHtml || html ), { allowedTags: ALLOWED_TAGS } )
-          } }
+          dangerouslySetInnerHTML={ { __html: htmlToDisplay } }
           style={style}
         ></span> { moreLink }
       </div>
@@ -103,7 +109,8 @@ UserText.propTypes = {
   truncate: PropTypes.number,
   config: PropTypes.object,
   className: PropTypes.string,
-  moreToggle: PropTypes.bool
+  moreToggle: PropTypes.bool,
+  stripWhitespace: PropTypes.bool
 };
 
 UserText.defaultProps = {

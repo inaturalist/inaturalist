@@ -18,36 +18,36 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
   const showMore = sortedProjectStats.length > limit;
   return (
     <div className="UmbrellaLeaderboard">
-      <h2>Leaderboard</h2>
+      <h2>{ I18n.t( "leaderboard" ) }</h2>
       <div className="sort">
-        Sort by:
+        { `${I18n.t( "sort_by" )}:` }
         <span
           className={ `sort-option ${sort === "observations" && "active"}` }
           onClick={ () => setConfig(
             { umbrellaLeaderboardSort: "observations", umbrellaLeaderboardLimit: 8 } ) }
         >
-          Observations
+          { I18n.t( "observations" ) }
         </span> |
         <span
           className={ `sort-option ${sort === "species" && "active"}` }
           onClick={ () => setConfig(
             { umbrellaLeaderboardSort: "species", umbrellaLeaderboardLimit: 8 } ) }
         >
-          Species
+          { I18n.t( "species" ) }
         </span> |
         <span
           className={ `sort-option ${sort === "observers" && "active"}` }
           onClick={ () => setConfig(
             { umbrellaLeaderboardSort: "observers", umbrellaLeaderboardLimit: 8 } ) }
         >
-          Observers
+          { I18n.t( "observers" ) }
         </span>
       </div>
       <div className="leaders-panel">
         <table>
           <tbody>
             { _.map( sortedProjectStats.slice( 0, limit ), ( ps, index ) => {
-              const width = ( Number( ps[sortField] ) / maximumCount ) * 100;
+              const width = Math.floor( ( Number( ps[sortField] ) / maximumCount ) * 100 );
               const color = colors[index % colors.length];
               return (
                 <tr className="leader-row" key={ `umbrella_${ps.project.id}_${sortField}` }>
@@ -91,7 +91,7 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
             className="show-more"
             onClick={ ( ) => setConfig( { umbrellaLeaderboardLimit: sortedProjectStats.length } ) }
           >
-            View More
+            { I18n.t( "view_more" ) }
             <i className="fa fa-arrow-circle-o-down" />
           </div>
         ) }

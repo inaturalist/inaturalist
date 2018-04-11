@@ -4,8 +4,8 @@ import { numberWithCommas } from "../../../shared/util";
 
 const StatsHeader = ( { config, project, setSelectedTab } ) => {
   const tab = config.selectedTab;
-  const obsCount = project.observations_loaded ?
-    numberWithCommas( project.observations.total_results ) : "--";
+  const obsCount = project.recent_observations_loaded ?
+    numberWithCommas( project.recent_observations.total_results ) : "--";
   const speciesCount = project.species_loaded ?
     numberWithCommas( project.species.total_results ) : "--";
   const identifiersCount = project.identifiers_loaded ?

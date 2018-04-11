@@ -87,12 +87,12 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
   );
   const headerInProgress = ( project.started && !project.ended ) ? (
     <div className="header-in-progress">
-      In Progress
+      { I18n.t( "event_in_progress" ) }
     </div>
   ) : null;
   return (
     <div id="ProjectsShow">
-      <div className="project-header">
+      <div className={ `project-header ${hasBanner && "with-banner"}` }>
         <div
           className="project-header-background"
           style={ project.header_image_url ? {

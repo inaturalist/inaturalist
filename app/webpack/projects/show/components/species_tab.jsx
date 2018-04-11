@@ -4,7 +4,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 import InfiniteScroll from "react-infinite-scroller";
 
-const SpeciesTab = ( { config, species, setConfig } ) => {
+const SpeciesTab = ( { project, config, species, setConfig } ) => {
   if ( _.isEmpty( species ) ) { return ( <span /> ); }
   const loader = ( <div className="loading_spinner huge" /> );
   const scrollIndex = config.speciesScrollIndex || 30;
@@ -27,7 +27,9 @@ const SpeciesTab = ( { config, species, setConfig } ) => {
                     truncate={ null }
                     overlay={ (
                       <div>
-                        { I18n.t( "x_observations", { count: s.count } ) }
+                        <a href={ `/observations?project_id=${project.id}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any` }>
+                          { I18n.t( "x_observations", { count: s.count } ) }
+                        </a>
                       </div>
                     )}
                   />
@@ -42,6 +44,7 @@ const SpeciesTab = ( { config, species, setConfig } ) => {
 };
 
 SpeciesTab.propTypes = {
+  project: PropTypes.object,
   config: PropTypes.object,
   setConfig: PropTypes.func,
   species: PropTypes.array

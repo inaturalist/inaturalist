@@ -177,7 +177,7 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def project_allows_observations?
-    if project.is_new_project?
+    if project && project.is_new_project?
       errors.add :base, :project_does_not_allow_observations
     end
   end

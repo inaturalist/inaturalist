@@ -2,8 +2,10 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import RecentObservationsContainer from "../containers/recent_observations_container";
+import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_container";
 
 const ObservationsMapView = ( { project } ) => {
+  const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
   return (
     <div className="ObservationsListView">
       <Grid>
@@ -13,18 +15,26 @@ const ObservationsMapView = ( { project } ) => {
               observationLayers={ [project.search_params] }
               showAccuracy
               enableShowAllLayer={ false }
-              overlayMenu={ false }
               clickable={ false }
               scrollwheel={ false }
-              maxX={ project.observations && project.observations.total_bounds.nelng }
-              maxY={ project.observations && project.observations.total_bounds.nelat }
-              minX={ project.observations && project.observations.total_bounds.swlng }
-              minY={ project.observations && project.observations.total_bounds.swlat }
+              overlayMenu={ false }
+              mapTypeControl
+              mapTypeControlOptions={{
+                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
+                position: google.maps.ControlPosition.TOP_LEFT
+              }}
+              zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+              minZoom={ 1 }
+              maxX={ totalBounds && totalBounds.nelng }
+              maxY={ totalBounds && totalBounds.nelat }
+              minX={ totalBounds && totalBounds.swlng }
+              minY={ totalBounds && totalBounds.swlat }
             />
           </Col>
         </Row>
       </Grid>
       <RecentObservationsContainer />
+      <PhotoModalContainer />
     </div>
   );
 };

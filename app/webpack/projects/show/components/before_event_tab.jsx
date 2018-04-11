@@ -7,7 +7,7 @@ import EventCountdown from "./event_countdown";
 class BeforeEventTab extends Component {
   render( ) {
     const { project } = this.props;
-    if ( !project.observations_loaded ) {
+    if ( !project.recent_observations_loaded ) {
       return ( <div className="loading_spinner huge" /> );
     }
     return (
@@ -16,7 +16,7 @@ class BeforeEventTab extends Component {
           <Row>
             <Col xs={ 4 }>
               <h2>
-                Status
+                { I18n.t( "status" ) }
               </h2>
               <EventCountdown { ...this.props } />
             </Col>

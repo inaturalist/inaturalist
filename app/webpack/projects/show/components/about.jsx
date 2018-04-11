@@ -44,7 +44,7 @@ class About extends React.Component {
       </div>
     );
   }
-};
+}
 
 About.propTypes = {
   config: PropTypes.object,
