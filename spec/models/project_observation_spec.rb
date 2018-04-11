@@ -159,7 +159,7 @@ describe ProjectObservation, "creation" do
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
-      expect( UpdateSubscriber.last.subscriber ).to eq po.observation.user
+      expect( UpdateSubscriber.limit(1).last.subscriber ).to eq po.observation.user
     end
     it "should not be generated if the observer added to the project" do
       without_delay do

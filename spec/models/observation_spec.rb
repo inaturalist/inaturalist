@@ -1278,10 +1278,10 @@ describe Observation do
       s = Subscription.make!(:user => subscriber, :resource => user)
       o = Observation.make(:user => user)
       without_delay { o.save! }
-      update = UpdateSubscriber.where(:subscriber_id => subscriber).last
+      update = UpdateSubscriber.where(:subscriber_id => subscriber).limit(1).last
       expect(update).not_to be_blank
       o.destroy
-      expect(UpdateSubscriber.find_by_id(update.id)).to be_blank
+      expect(UpdateSubscriber.where(update_action_id: update.update_action_id).first).to be_blank
     end
 
     it "should delete associated project observations" do
@@ -2411,7 +2411,7 @@ describe Observation do
       without_delay do
         o.save!
       end
-      u = UpdateSubscriber.last
+      u = UpdateSubscriber.limit(1).last
       expect(u).not_to be_blank
       expect(u.update_action.notifier).to eq(o)
       expect(u.subscriber).to eq(s.user)
@@ -2425,7 +2425,7 @@ describe Observation do
       without_delay do
         o.save!
       end
-      u = UpdateSubscriber.last
+      u = UpdateSubscriber.limit(1).last
       expect(u).not_to be_blank
       expect(u.update_action.notifier).to eq(o)
       expect(u.subscriber).to eq(s.user)
@@ -2491,7 +2491,7 @@ describe Observation do
           Observation.make!( latitude: @christchurch_lat, longitude: @christchurch_lon )
         end
         expect( o.public_places.map(&:id) ).to include place.id
-        expect( @subscription.user.update_subscribers.last.update_action.notifier ).to eq o
+        expect( @subscription.user.update_subscribers.limit(1).last.update_action.notifier ).to eq o
       end
       it "should not generate for observations outside of that place" do
         o = without_delay do

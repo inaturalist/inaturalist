@@ -124,7 +124,7 @@ class UpdateAction < ActiveRecord::Base
     conditions = ["notification = 'activity' AND update_actions.id NOT IN (?)", action_ids]
     conditions[0] += " AND (#{clauses.join(' OR ')})" unless clauses.blank?
     updates += UpdateAction.joins(:update_subscribers).where(conditions).
-      where("update_subscribers.id = ?", user_id)
+      where("update_subscribers.subscriber_id = ?", user_id)
     updates
   end
 

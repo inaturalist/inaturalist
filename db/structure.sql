@@ -4421,30 +4421,10 @@ ALTER SEQUENCE update_actions_id_seq OWNED BY update_actions.id;
 --
 
 CREATE TABLE update_subscribers (
-    id integer NOT NULL,
     update_action_id integer,
     subscriber_id integer,
     viewed_at timestamp without time zone
 );
-
-
---
--- Name: update_subscribers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE update_subscribers_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: update_subscribers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE update_subscribers_id_seq OWNED BY update_subscribers.id;
 
 
 --
@@ -5502,13 +5482,6 @@ ALTER TABLE ONLY update_actions ALTER COLUMN id SET DEFAULT nextval('update_acti
 
 
 --
--- Name: update_subscribers id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY update_subscribers ALTER COLUMN id SET DEFAULT nextval('update_subscribers_id_seq'::regclass);
-
-
---
 -- Name: user_blocks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6402,14 +6375,6 @@ ALTER TABLE ONLY trip_taxa
 
 ALTER TABLE ONLY update_actions
     ADD CONSTRAINT update_actions_pkey PRIMARY KEY (id);
-
-
---
--- Name: update_subscribers update_subscribers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY update_subscribers
-    ADD CONSTRAINT update_subscribers_pkey PRIMARY KEY (id);
 
 
 --
@@ -9313,4 +9278,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180209020229');
 INSERT INTO schema_migrations (version) VALUES ('20180320224314');
 
 INSERT INTO schema_migrations (version) VALUES ('20180329144359');
+
+INSERT INTO schema_migrations (version) VALUES ('20180410171703');
 
