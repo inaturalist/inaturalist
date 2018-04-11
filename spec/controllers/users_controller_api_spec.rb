@@ -117,14 +117,6 @@ shared_examples_for "a signed in UsersController" do
       user.reload
       expect( user.test_groups ).to eq test_groups
     end
-
-    it "should be included in the JSON response to show" do
-      test_groups = "foo|bar"
-      user.update_attributes( test_groups: test_groups )
-      get :show, id: user.id, format: :json
-      json = JSON.parse( response.body )
-      expect( json["test_groups"] ).to eq test_groups
-    end
   end
 
 end
