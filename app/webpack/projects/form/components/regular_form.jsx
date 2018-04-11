@@ -34,16 +34,15 @@ class RegularForm extends React.Component {
         <Grid>
           <Row className="text">
             <Col xs={12}>
-              <h2>Observation Requirements</h2>
+              <h2>{ I18n.t( "observation_requirements" ) }</h2>
               <div className="help-text">
-                Please specify the requirements for the observations to be added to this project.
-                You can have multiple species and places.
+                { I18n.t( "views.projects.new.please_specify_the_requirements" ) }
               </div>
             </Col>
           </Row>
           <Row>
             <Col xs={4}>
-              <label>Taxa</label>
+              <label>{ I18n.t( "taxa" ) }</label>
               <TaxonAutocomplete
                 ref="ta"
                 bootstrap
@@ -54,7 +53,7 @@ class RegularForm extends React.Component {
                   this.refs.ta.inputElement( ).val( "" );
                 } }
                 config={ config }
-                placeholder={ "Birds, monarch, etc." }
+                placeholder={ I18n.t( "taxon_autocomplete_placeholder" ) }
               />
               { !_.isEmpty( project.taxonRules ) && (
                 <div className="icon-previews">
@@ -75,7 +74,7 @@ class RegularForm extends React.Component {
               ) }
             </Col>
             <Col xs={4}>
-              <label>Locations</label>
+              <label>{ I18n.t( "locations" ) }</label>
               <div className="input-group">
                 <span className="input-group-addon fa fa-globe"></span>
                 <PlaceAutocomplete
@@ -86,7 +85,7 @@ class RegularForm extends React.Component {
                   } }
                   bootstrapClear
                   config={ config }
-                  placeholder={ "Zion National Park, Miami, etc." }
+                  placeholder={ I18n.t( "place_autocomplete_placeholder" ) }
                 />
               </div>
               { !_.isEmpty( project.placeRules ) && (
@@ -106,7 +105,7 @@ class RegularForm extends React.Component {
               ) }
             </Col>
             <Col xs={4}>
-              <label>Users</label>
+              <label>{ I18n.t( "users" ) }</label>
               <div className="input-group">
                 <span className="input-group-addon fa fa-briefcase"></span>
                 <UserAutocomplete
@@ -118,7 +117,7 @@ class RegularForm extends React.Component {
                   } }
                   bootstrapClear
                   config={ config }
-                  placeholder={ "kueda, 1001, etc." }
+                  placeholder={ I18n.t( "user_autocomplete_placeholder" ) }
                 />
               </div>
               { !_.isEmpty( project.userRules ) && (
@@ -149,7 +148,9 @@ class RegularForm extends React.Component {
                 defaultChecked={ project.rule_quality_grade.research }
                 onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
               />
-              <label className="inline" htmlFor="project-quality-research">Research</label>
+              <label className="inline" htmlFor="project-quality-research">
+                { I18n.t( "research_" ) }
+              </label>
               <input
                 type="checkbox"
                 id="project-quality-needs-id"
@@ -158,7 +159,9 @@ class RegularForm extends React.Component {
                 defaultChecked={ project.rule_quality_grade.needs_id }
                 onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
               />
-              <label className="inline" htmlFor="project-quality-needs-id">Needs ID</label>
+              <label className="inline" htmlFor="project-quality-needs-id">
+                { I18n.t( "needs_id_" ) }
+              </label>
               <input
                 type="checkbox"
                 id="project-quality-casual"
@@ -167,10 +170,12 @@ class RegularForm extends React.Component {
                 defaultChecked={ project.rule_quality_grade.casual }
                 onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
               />
-              <label className="inline" htmlFor="project-quality-casual">Casual</label>
+              <label className="inline" htmlFor="project-quality-casual">
+                { I18n.t( "casual_" ) }
+              </label>
             </Col>
             <Col xs={8}>
-              <label>Media Type</label>
+              <label>{ I18n.t( "media_type" ) }</label>
               <input
                 type="radio"
                 name="project-media"
@@ -181,7 +186,9 @@ class RegularForm extends React.Component {
                   setRulePreference( "sounds", null );
                 } }
               />
-              <label className="inline" htmlFor="project-media-any">Any</label>
+              <label className="inline" htmlFor="project-media-any">
+                { I18n.t( "any_" ) }
+              </label>
               <input
                 type="radio"
                 name="project-media"
@@ -192,7 +199,9 @@ class RegularForm extends React.Component {
                   setRulePreference( "photos", null );
                 } }
               />
-              <label className="inline" htmlFor="project-media-sounds">Has Sound</label>
+              <label className="inline" htmlFor="project-media-sounds">
+                { I18n.t( "has_sound" ) }
+              </label>
               <input
                 type="radio"
                 name="project-media"
@@ -203,7 +212,9 @@ class RegularForm extends React.Component {
                   setRulePreference( "sounds", null );
                 } }
               />
-              <label className="inline" htmlFor="project-media-photos">Has Photo</label>
+              <label className="inline" htmlFor="project-media-photos">
+                { I18n.t( "has_photo" ) }
+              </label>
               <input
                 type="radio"
                 name="project-media"
@@ -215,13 +226,13 @@ class RegularForm extends React.Component {
                 } }
               />
               <label className="inline" htmlFor="project-media-both">
-                Has Both Photo and Sound
+                { I18n.t( "has_photo_and_sound" ) }
               </label>
             </Col>
           </Row>
           <Row className="date-row">
             <Col xs={12}>
-              <label>Date Observed</label>
+              <label>{ I18n.t( "date_observed_" ) }</label>
               <input
                 type="radio"
                 id="project-date-type-any"
@@ -229,14 +240,18 @@ class RegularForm extends React.Component {
                 checked={ project.date_type === "any" }
                 onChange={ ( ) => updateProject( { date_type: "any" } ) }
               />
-              <label className="inline" htmlFor="project-date-type-any">Any</label>
+              <label className="inline" htmlFor="project-date-type-any">
+                { I18n.t( "any_" ) }
+              </label>
               <input
                 type="radio"
                 id="project-date-type-exact"
                 checked={ project.date_type === "exact" }
                 onChange={ ( ) => updateProject( { date_type: "exact" } ) }
               />
-              <label className="inline" htmlFor="project-date-type-exact">Exact</label>
+              <label className="inline" htmlFor="project-date-type-exact">
+                { I18n.t( "exact" ) }
+              </label>
               <DateTimeFieldWrapper
                 mode="date"
                 ref="exactDate"
@@ -260,7 +275,9 @@ class RegularForm extends React.Component {
                 checked={ project.date_type === "range" }
                 onChange={ ( ) => updateProject( { date_type: "range" } ) }
               />
-              <label className="inline" htmlFor="project-date-type-range">Range</label>
+              <label className="inline" htmlFor="project-date-type-range">
+                { I18n.t( "date_picker.range" ) }
+              </label>
               <DateTimeFieldWrapper
                 mode="datetime"
                 ref="dateRangeD1"
@@ -270,7 +287,7 @@ class RegularForm extends React.Component {
                 allowFutureDates
                 inputProps={ {
                   className: "form-control",
-                  placeholder: "Start Date / Time",
+                  placeholder: I18n.t( "start_date_time" ),
                   onClick: ( ) => this.refs.dateRangeD1.onClick( )
                 } }
               />
@@ -283,7 +300,7 @@ class RegularForm extends React.Component {
                 allowFutureDates
                 inputProps={ {
                   className: "form-control",
-                  placeholder: "End Date / Time",
+                  placeholder: I18n.t( "end_date_time" ),
                   onClick: ( ) => this.refs.dateRangeD2.onClick( )
                 } }
               />

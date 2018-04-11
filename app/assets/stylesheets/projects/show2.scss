@@ -72,8 +72,6 @@ a.UserImage {
   outline: none;
   &:focus, &.active:focus {
     outline: none !important;
-    background-color: #e6e6e6;
-    border-color: #adadad;
   }
   &.active {
     box-shadow: inset 0 3px 5px rgba(0,0,0,0.125);
@@ -117,12 +115,15 @@ button {
   height: 370px;
   position: relative;
   overflow: hidden;
+  &.with-banner {
+    background: black;
+  }
   .project-header-background {
     position: absolute;
-    margin: -20px;
+    margin: -30px;
     background-size: 110%;
-    width: 110%;
-    height: 110%;
+    width: 120%;
+    height: 120%;
     filter: blur(20px);
     -webkit-filter: blur(20px);
     -moz-filter: blur(20px);
@@ -131,6 +132,7 @@ button {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    opacity: 0.8;
   }
   .header-grid {
     margin-top: 25px;
@@ -367,7 +369,23 @@ button {
       height: 28px;
       font-size: 15px;
       th {
-        padding: 0px 10px;
+        padding: 5px 10px;
+        i.fa {
+          float: right;
+          opacity: 0.2;
+        }
+        &.sorting i.fa {
+          opacity: 1;
+        }
+        &.clicky {
+          cursor: pointer;
+          &:hover {
+            background-color: #e1e1e1 !important;
+            i.fa {
+              opacity: 1;
+            }
+          }
+        }
       }
     }
   }
@@ -420,6 +438,7 @@ button {
       .meta {
         position: absolute;
         bottom: 0;
+        white-space: nowrap;
         .count {
           i {
             margin-right: 2px;
@@ -454,6 +473,9 @@ button {
     .FormattedDate .time {
       display: block;
     }
+  }
+  th.sorting, td.sorting {
+    background-color: #e1e1e1 !important;
   }
 }
 
@@ -928,6 +950,7 @@ button {
       &.type {
         font-size: 18px;
         line-height: 20px;
+        text-transform: uppercase;
       }
     }
   }

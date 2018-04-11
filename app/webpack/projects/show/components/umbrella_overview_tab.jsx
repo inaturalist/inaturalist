@@ -3,6 +3,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import UmbrellaLeaderboardContainer from "../containers/umbrella_leaderboard_container";
 import UmbrellaMapContainer from "../containers/umbrella_map_container";
 import RecentObservationsContainer from "../containers/recent_observations_container";
+import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_container";
 import UmbrellaNews from "./umbrella_news";
 
 class UmbrellaOverviewTab extends Component {
@@ -22,6 +23,7 @@ class UmbrellaOverviewTab extends Component {
         </Grid>
         <UmbrellaMapContainer />
         <RecentObservationsContainer />
+        <PhotoModalContainer />
         <UmbrellaNews { ...this.props } />
       </div>
     );

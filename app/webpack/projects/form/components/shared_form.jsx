@@ -24,14 +24,14 @@ class SharedForm extends React.Component {
           <Row>
             <Col xs={12}>
               <h1>
-                Project Details
+                { I18n.t( "views.projects.new.project_details" ) }
                 { project.id && (
                   <button
                     className="btn-white delete"
                     onClick={ deleteProject }
                   >
                     <i className="fa fa-trash" />
-                    Delete Project
+                    { I18n.t( "views.projects.new.delete_project" ) }
                   </button>
                 ) }
               </h1>
@@ -41,14 +41,14 @@ class SharedForm extends React.Component {
             <Col xs={4}>
               <div className={ `form-group ${project.errors.title && "has-error"}` }>
                 <label htmlFor="project-title">
-                  Project Name *
+                  { I18n.t( "views.projects.new.project_name" ) } *
                 </label>
                 <input
                   type="text"
                   className="form-control"
                   name="project-title"
                   ref="title"
-                  placeholder={ "Birds of Chicago, Amazing Dragonflies, etc." }
+                  placeholder={ I18n.t( "views.projects.new.name_placeholder" ) }
                   defaultValue={ project.title }
                   onChange={ e => setTitle( e.target.value ) }
                 />
@@ -73,7 +73,9 @@ class SharedForm extends React.Component {
                 defaultChecked={ !project.hide_title }
                 onChange={ e => updateProject( { hide_title: !e.target.checked } ) }
               />
-              <label className="inline" htmlFor="project-display-name">Display project name</label>
+              <label className="inline" htmlFor="project-display-name">
+                { I18n.t( "views.projects.new.display_project_name" ) }
+              </label>
             </Col>
             <Col xs={4}>
               <Dropzone
@@ -86,19 +88,18 @@ class SharedForm extends React.Component {
                 multiple={ false }
               >
                 <div className="icon-cell icon">
-                  <label>Project Icon (PNG, JPG, or GIF)</label>
+                  <label>{ I18n.t( "views.projects.new.project_icon" ) }</label>
                   <div className="help-text">
-                    Optional icon. Should be a minimum of 72px x 72px
-                    and will be cropped to a square.
+                    { I18n.t( "views.projects.new.project_icon_help" ) }
                   </div>
                   <div>
                     <button className="btn-white"
                       onClick={ ( ) => this.refs.iconDropzone.open( ) }
                     >
                       <i className="fa fa-upload" />
-                      Choose File
+                      { I18n.t( "choose_file" ) }
                     </button>
-                    (Or drag and drop)
+                    { I18n.t( "views.projects.new.or_drag_and_drop" ) }
                   </div>
                   { project.iconURL( ) && (
                     <div className="icon-previews icon-preview">
@@ -130,18 +131,18 @@ class SharedForm extends React.Component {
                 multiple={ false }
               >
                 <div className="icon-cell banner">
-                  <label>Project Banner (PNG, JPG, or GIF)</label>
+                  <label>{ I18n.t( "views.projects.new.project_banner" ) }</label>
                   <div className="help-text">
-                    Optional banner image. Must be 77px wide, less than 300px tall.
+                    { I18n.t( "views.projects.new.project_banner_help" ) }
                   </div>
                   <div>
                     <button className="btn-white"
                       onClick={ ( ) => this.refs.bannerDropzone.open( ) }
                     >
                       <i className="fa fa-upload" />
-                      Choose File
+                      { I18n.t( "choose_file" ) }
                     </button>
-                    (Or drag and drop)
+                    { I18n.t( "views.projects.new.or_drag_and_drop" ) }
                   </div>
                   { project.bannerURL( ) && (
                     <div className="icon-previews icon-preview">
@@ -167,17 +168,17 @@ class SharedForm extends React.Component {
           <Row className="styles-row">
             <Col xs={8}>
               <div className={ `form-group ${project.errors.description && "has-error"}` }>
-                <label htmlFor="project-description">Project Summary *</label>
+                <label htmlFor="project-description">
+                  { I18n.t( "views.projects.new.project_summary" ) } *
+                </label>
                 <div className="help-text">
-                  Give a concise explanation of your project. Approximately the first 200 characters
-                  will be visible to the right of the project home screen banner so put the best
-                  stuff first!
+                  { I18n.t( "views.projects.new.project_summary_help" ) }
                 </div>
                 <textarea
                   id="project-description"
                   ref="description"
                   className="form-control"
-                  placeholder="Discover and track the birds of Golden Gate Park..."
+                  placeholder={ I18n.t( "views.projects.new.project_summary_placeholder" ) }
                   onChange={ e => setDescription( e.target.value ) }
                   value={ project.description }
                 />
@@ -198,9 +199,11 @@ class SharedForm extends React.Component {
               </div>
             </Col>
             <Col xs={4}>
-              <label htmlFor="project-bgcolor">Project Summary Background Color</label>
+              <label htmlFor="project-bgcolor">
+                { I18n.t( "views.projects.new.project_background_color" ) }
+              </label>
               <div className="help-text">
-                Make sure to choose a color dark enough so the white overlaid text is legible.
+                { I18n.t( "views.projects.new.project_background_color_help" ) }
               </div>
               <div className="input-group">
                 <OverlayTrigger
@@ -237,7 +240,7 @@ class SharedForm extends React.Component {
           </Row>
           <Row className="project-type">
             <Col xs={ 12 }>
-              <h2>Project Type</h2>
+              <h2>{ I18n.t( "views.projects.project_type" ) }</h2>
               <input
                 type="radio"
                 id="project-type-regular"
@@ -245,7 +248,9 @@ class SharedForm extends React.Component {
                 checked={ project.project_type !== "umbrella" }
                 onChange={ ( ) => updateProject( { project_type: "regular" } ) }
               />
-              <label className="inline" htmlFor="project-type-regular">Regular</label>
+              <label className="inline" htmlFor="project-type-regular">
+                { I18n.t( "views.projects.regular" ) }
+              </label>
               <input
                 type="radio"
                 id="project-type-umbrella"
@@ -254,7 +259,8 @@ class SharedForm extends React.Component {
                 onChange={ ( ) => updateProject( { project_type: "umbrella" } ) }
               />
               <label className="inline" htmlFor="project-type-umbrella">
-                Umbrella (Tracks multiple projects)
+                { I18n.t( "views.projects.umbrella" ) } ({
+                  I18n.t( "views.projects.tracks_multiple_projects" ) })
               </label>
             </Col>
           </Row>

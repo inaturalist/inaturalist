@@ -13,7 +13,7 @@ function dateToString( date ) {
 }
 
 const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) => {
-  const taxonRules = _.isEmpty( project.taxonRules ) ? "All taxa" :
+  const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" ) :
     _.map( project.taxonRules, r => (
       <SplitTaxon
         user={ config.currentUser }
@@ -21,13 +21,13 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         taxon={ r.taxon }
       />
     ) );
-  const projectRules = _.isEmpty( project.projectRules ) ? "Any" :
+  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" ) :
     _.map( project.projectRules, r => r.project.title ).join( ", " );
-  const locationRules = _.isEmpty( project.placeRules ) ? "Worldwide" :
+  const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" ) :
     _.map( project.placeRules, r => r.place.display_name ).join( ", " );
-  const userRules = _.isEmpty( project.userRules ) ? "Any" :
+  const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" ) :
     _.map( project.userRules, r => r.user.login ).join( ", " );
-  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? "Any" :
+  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" ) :
     _.map( _.keys( project.rule_quality_grade ), q =>
       I18n.t( q === "research" ? "research_grade" : q )
     ).join( ", " );
@@ -38,11 +38,11 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
   if ( project.rule_sounds ) {
     media.push( I18n.t( "sounds.sounds" ) );
   }
-  const mediaRules = _.isEmpty( media ) ? "Any" :
-    media.join( " and " );
-  let dateRules = "Any";
+  const mediaRules = _.isEmpty( media ) ? I18n.t( "any" ) :
+    media.join( ` ${I18n.t( "and" )} ` );
+  let dateRules = I18n.t( "any" );
   if ( project.rule_d1 && project.rule_d2 ) {
-    dateRules = `${dateToString( project.rule_d1 )} to ${dateToString( project.rule_d2 )}`;
+    dateRules = `${dateToString( project.rule_d1 )} ${I18n.t( "to" )} ${dateToString( project.rule_d2 )}`;
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
   }
@@ -58,7 +58,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         ) }
       </h2>
       <div className="section-intro">
-        Observations in this project must meet the following criteria:
+        { I18n.t( "observations_in_this_project_must" ) }:
       </div>
       <table>
         { project.is_umbrella ? (
@@ -66,7 +66,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
             <tr>
               <td className="param">
                 <i className="fa fa-briefcase" />
-                Projects
+                { I18n.t( "projects" ) }
               </td>
               <td className="value">{ projectRules }</td>
             </tr>
@@ -76,42 +76,42 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
             <tr>
               <td className="param">
                 <i className="fa fa-leaf" />
-                Taxa
+                { I18n.t( "taxa" ) }
               </td>
               <td className="value">{ taxonRules }</td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-map-marker" />
-                Location
+                { I18n.t( "location" ) }
               </td>
               <td className="value">{ locationRules }</td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-user" />
-                Users
+                { I18n.t( "users" ) }
               </td>
               <td className="value">{ userRules }</td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-certificate" />
-                Quality Grade
+                { I18n.t( "quality_grade_" ) }
               </td>
               <td className="value">{ qualityGradeRules }</td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-file-image-o" />
-                Media Type
+                { I18n.t( "media_type" ) }
               </td>
               <td className="value">{ mediaRules }</td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-calendar" />
-                Date
+                { I18n.t( "date_" ) }
               </td>
               <td className="value">{ dateRules }</td>
             </tr>

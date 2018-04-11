@@ -8,73 +8,87 @@ const App = ( { form, createNewProject } ) => {
   }
   return (
     <div id="ProjectsForm">
-      <Grid className="intro">
-        <Row>
-          <Col xs={12}>
-            <h1>Welcome to projects!</h1>
-          </Col>
-        </Row>
-        <Row>
+      <Grid>
+        <Row className="intro-row">
           <Col xs={6}>
-            <h2>Regular</h2>
-            <div className="type-icon">
-              <i className="fa fa-object-ungroup" />
-            </div>
-            <div>
-              A project allows you to gather and visualize observations using the core iNaturalist
-              search tools. This eliminates the need to manually add observations because everything
-              that meets the parameters set by the project will be automatically included.
-            </div>
+            <h1>{ I18n.t( "views.projects.new.welcome_to_projects" ) }</h1>
+            <div className="intro">{ I18n.t( "views.projects.new.we_have_redesigned_projects" ) }</div>
             <ul>
               <li>
-                <i className="fa fa-square-o" />
-                <div>
-                  Data visualizations
-                </div>
+                <i className="fa fa-file-image-o" />
+                <div>{ I18n.t( "views.projects.new.custom_banner_icon_and_project_description" ) }</div>
               </li>
               <li>
-                <i className="fa fa-square-o" />
-                <div>
-                  Leaderboards among individuals
-                </div>
+                <i className="fa fa-link" />
+                <div>{ I18n.t( "views.projects.new.unique_url_for_outreach" ) }</div>
               </li>
               <li>
-                <i className="fa fa-square-o" />
-                <div>
-                  Can be included in multiple umbrella projects
-                </div>
+                <i className="fa fa-bullhorn" />
+                <div>{ I18n.t( "views.projects.new.users_can_follow_your_project" ) }</div>
+              </li>
+              <li>
+                <i className="fa fa-users" />
+                <div>{ I18n.t( "views.projects.new.multiple_project_administrators" ) }</div>
+              </li>
+              <li>
+                <i className="fa fa-gears" />
+                <div>{ I18n.t( "views.projects.new.no_need_to_rely_on_manual_addition" ) }</div>
               </li>
             </ul>
           </Col>
           <Col xs={6}>
-            <h2>Umbrella</h2>
-            <div className="type-icon">
-              <i className="fa fa-object-group" />
-            </div>
-            <div>
-              An umbrella project can be used to compare statistics across two or more Automatic or
-              Traditional Projects. The other projects need to be created before you can create an
-              umbrella project. You can include up to X projects under a single umbrella. Umbrella
-              projects cannot contain other umbrella projects.
-            </div>
+            <img src={ HERO_IMAGE_PATH } className="preview-img" />
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12}>
+            <div className="separator" />
+          </Col>
+        </Row>
+        <Row className="types-row">
+          <Col xs={6}>
+            <h2>{ I18n.t( "projects" ) }</h2>
+            <div>{ I18n.t( "views.projects.new.a_project_allows_you_to_gather" ) }</div>
+            <h4>{ I18n.t( "views.projects.new.projects_features" ) }</h4>
             <ul>
               <li>
-                <i className="fa fa-square-o" />
-                <div>
-                  Visual comparisons of data among projects under the umbrella
-                </div>
+                <i className="fa fa-area-chart" />
+                <div>{ I18n.t( "views.projects.new.data_visualizations" ) }</div>
               </li>
               <li>
-                <i className="fa fa-square-o" />
-                <div>
-                  Leaderboards among projects
-                </div>
+                <i className="fa fa-trophy" />
+                <div dangerouslySetInnerHTML={ { __html:
+                  I18n.t( "views.projects.new.leaderboards_among_individuals" ) } }
+                />
               </li>
               <li>
-                <i className="fa fa-square-o" />
-                <div>
-                  Click through to individual projects
-                </div>
+                <i className="fa fa-check" />
+                <div>{ I18n.t( "views.projects.new.can_be_included_in_multiple" ) }</div>
+              </li>
+              <li>
+                <i className="fa fa-clock-o" />
+                <div>{ I18n.t( "views.projects.new.start_and_end_times_for_bioblitzes" ) }</div>
+              </li>
+            </ul>
+          </Col>
+          <Col xs={6}>
+            <h2>{ I18n.t( "umbrella_projects" ) }</h2>
+            <div>{ I18n.t( "views.projects.new.an_umbrella_project_can_be_used_to" ) }</div>
+            <h4>{ I18n.t( "views.projects.new.umbrella_projects_features" ) }</h4>
+            <ul>
+              <li>
+                <i className="fa fa-pie-chart" />
+                <div>{ I18n.t( "views.projects.new.visual_comparison_of_data_among" ) }</div>
+              </li>
+              <li>
+                <i className="fa fa-trophy" />
+                <div dangerouslySetInnerHTML={ { __html:
+                  I18n.t( "views.projects.new.leaderboards_among_projects_and_bioblitzes" ) } }
+                />
+              </li>
+              <li>
+                <i className="fa fa-external-link-square" />
+                <div>{ I18n.t( "views.projects.new.click_through_to_individual_projects" ) }</div>
               </li>
             </ul>
           </Col>
@@ -86,8 +100,14 @@ const App = ( { form, createNewProject } ) => {
                 className="btn-green"
                 onClick={ ( ) => createNewProject( "collection" ) }
               >
-                Get started
+                { I18n.t( "get_started" ) }
               </button>
+              <a href="/projects/global-amphibian-bioblitz">
+                <div className="view-sample">
+                  <i className="fa fa-external-link" />
+                { I18n.t( "view_sample" ) }
+                </div>
+              </a>
             </div>
           </Col>
           <Col xs={6}>
@@ -96,17 +116,22 @@ const App = ( { form, createNewProject } ) => {
                 className="btn-green"
                 onClick={ ( ) => createNewProject( "umbrella" ) }
               >
-                Get started
+                { I18n.t( "get_started" ) }
               </button>
+              <a href="/projects/city-nature-challenge-2018">
+                <div className="view-sample">
+                  <i className="fa fa-external-link" />
+                  { I18n.t( "view_sample" ) }
+                </div>
+              </a>
             </div>
           </Col>
         </Row>
         <Row>
-          <Col xs={12}>
+          <Col xs={8}>
             <p className="contact">
-              Do you need features from traditional projects, such as access to true coordinates,
-              custom observation fields, or adding individual observations that can’t be
-              automatically filtered? Contact us at <a href="mailto:help@inaturalist.org">
+              { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
+              Contact us at <a href="mailto:help@inaturalist.org">
                 help@inaturalist.org
               </a>.
             </p>

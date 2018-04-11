@@ -3,45 +3,46 @@ import { Row, Col } from "react-bootstrap";
 
 const EventCountdown = ( { project, setSelectedTab } ) => {
   if ( !project.durationToEvent ) { return ( <span /> ); }
+  const days = project.durationToEvent.days( );
+  const hours = project.durationToEvent.hours( );
+  const minutes = project.durationToEvent.minutes( );
+  const seconds = project.durationToEvent.seconds( );
   return (
     <div className="EventCountdown">
-      <div className="section-intro">This bioblitz begins in:</div>
+      <div className="section-intro">
+         {I18n.t( "this_bioblitz_beings_in" ) }:
+      </div>
       <Row className="">
         <Col xs={ 3 }>
-          <span className="value">
-            { project.durationToEvent.days( ) }
-          </span>
+          <span className="value">{ days }</span>
           <span className="type">
-            DAYS
+            { I18n.t( "datetime.countdown_x_days", { count: days } ) }
           </span>
         </Col>
         <Col xs={ 3 }>
-          <span className="value">
-            { project.durationToEvent.hours( ) }
-          </span>
+          <span className="value">{ hours }</span>
           <span className="type">
-            HOURS
+            { I18n.t( "datetime.countdown_x_hours", { count: hours } ) }
           </span>
         </Col>
         <Col xs={ 3 }>
-          <span className="value">
-            { project.durationToEvent.minutes( ) }
-          </span>
+          <span className="value">{ minutes }</span>
           <span className="type">
-            MIN
+            { I18n.t( "datetime.countdown_x_minutes", { count: minutes } ) }
           </span>
         </Col>
         <Col xs={ 3 }>
-          <span className="value">
-            { project.durationToEvent.seconds( ) }
-          </span>
+          <span className="value">{ seconds }</span>
           <span className="type">
-            SEC
+            { I18n.t( "datetime.countdown_x_seconds", { count: seconds } ) }
           </span>
         </Col>
       </Row>
-      <button className="btn-green" onClick={ ( ) => setSelectedTab( "about" ) }>
-        About this BioBlitz
+      <button
+        className="btn-green"
+        onClick={ ( ) => setSelectedTab( "about" ) }
+      >
+        { I18n.t( "about_this_bioblitz" ) }
       </button>
     </div>
   );

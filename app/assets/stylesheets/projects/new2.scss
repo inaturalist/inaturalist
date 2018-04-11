@@ -19,6 +19,9 @@ body {
 #bodywrapper, #wrapper {
  background: $page-background-grey;
 }
+#app {
+  margin-top: 15px;
+}
 
 .loading_spinner.huge {
   display: block;
@@ -90,39 +93,71 @@ button[disabled] {
 #ProjectsForm {
   background: $page-background-grey;
   min-height: 100%;
-}
-
-.intro {
-  .type-icon {
-    text-align: center;
-    font-size: 100px;
-    padding: 50px;
+  font-size: 16px;
+  line-height: 24px;
+  a {
+    color: $other-link-color;
+  }
+  h4 {
+    margin-top: 25px;
+  }
+  img.preview-img {
+    margin-top: 50px;
+    width: 100%;
+  }
+  .intro {
+    font-size: 20px;
+    line-height: 28px;
   }
   ul {
     padding: 20px;
+    margin-bottom: 0px;
     li {
       list-style: none;
-      min-height: 60px;
+      min-height: 35px;
       i.fa {
-        font-size: 50px;
         float: left;
-        margin-right: 20px;
+        width: 35px;
+        color: $inat-green;
+        font-size: 20px;
+        margin-top: 2px;
       }
       div {
-        padding-top: 5px;
+        display: table-cell;
       }
     }
   }
+  .intro-row ul {
+    padding-left: 0px;
+  }
+  .types-row ul {
+    padding-top: 0px;
+  }
   .btn-div {
-    text-align: center;
+    font-size: 18px;
+    button {
+      float: left;
+      padding: 12px 50px;
+    }
+    .view-sample {
+      display: inline-block;
+      line-height: 48px;
+      margin-left: 15px;
+      i {
+        margin-right: 5px;
+      }
+    }
   }
   .contact {
     margin-top: 50px;
-    a {
-      color: $other-link-color;
-    }
+  }
+  .separator {
+    width: 100%;
+    border-bottom: 1px solid $border-grey;
+    margin: 20px 0px 10px;
   }
 }
+
 
 body>div>.popover[role="tooltip"].popover-error {
   background: #D9534F;
@@ -222,14 +257,19 @@ body>div>.popover[role="tooltip"].popover-error {
       }
     }
   }
-  .icon-cell.icon {
-    .icon-preview > span {
-      margin-right: -85px;
+  .icon-cell {
+    button {
+      margin-right: 5px;
     }
-  }
-  .icon-cell.banner {
-    .icon-preview > span {
-      margin-right: -120px;
+    &.icon {
+      .icon-preview > span {
+        margin-right: -85px;
+      }
+    }
+    &.banner {
+      .icon-preview > span {
+        margin-right: -120px;
+      }
     }
   }
   .help-text {
@@ -244,7 +284,7 @@ body>div>.popover[role="tooltip"].popover-error {
     }
   }
   .date-row {
-    padding-bottom: 0px;
+    padding-bottom: 5px;
     & > div > div {
       display: inline-block;
       position: relative;
@@ -391,8 +431,8 @@ body > div > .popover.color-picker {
   }
 }
 
-@media (min-width: 768px) {
-  .bootstrap .container {
-    width: 860px;
+.admins-row {
+  .UserAutocomplete input {
+    max-width: 250px;
   }
 }

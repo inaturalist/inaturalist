@@ -44,48 +44,86 @@ export function fetchSubscriptions( ) {
   };
 }
 
-export function fetchObservations( ) {
+export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
     if ( !project ) { return null; }
     const params = Object.assign( { }, project.search_params, {
       return_bounds: "true",
-      order_by: "popular",
-      order: "desc",
-      per_page: 100
+      per_page: 50
     } );
+    dispatch( setConfig( {
+      observationFilters: {
+        order_by: "created_at",
+        order: "desc"
+      }
+    } ) );
     return inatjs.observations.search( params ).then( response => {
       dispatch( setAttributes( {
-        observations_loaded: true,
-        observations: response,
-        observations_page: 1
+        recent_observations_loaded: true,
+        recent_observations: response,
+        filtered_observations_loaded: true,
+        filtered_observations: response,
+        filtered_observations_page: 1
       } ) );
     } ).catch( e => console.log( e ) );
   };
 }
 
+export function fetchFilteredObservations( ) {
+  return ( dispatch, getState ) => {
+    const { project, config } = getState( );
+    if ( !project ) { return null; }
+    let params = Object.assign( { }, project.search_params, {
+      per_page: 50
+    } );
+    if ( config.observationFilters ) {
+      params = Object.assign( params, config.observationFilters );
+    }
+    dispatch( setAttributes( { filtered_observations_loaded: false } ) );
+    return inatjs.observations.search( params ).then( response => {
+      dispatch( setAttributes( {
+        filtered_observations_loaded: true,
+        filtered_observations: response,
+        filtered_observations_page: 1
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
+export function setObservationFilters( params ) {
+  return dispatch => {
+    dispatch( setConfig( {
+      observationFilters: params,
+      observationsScrollIndex: null
+    } ) );
+    dispatch( fetchFilteredObservations( ) );
+  };
+}
+
 export function infiniteScrollObservations( nextScrollIndex ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).project;
-    if ( !project || !project.observations_loaded ) { return null; }
-    const total = project.observations.total_results;
-    const loaded = project.observations.results.length;
+    const { project, config } = getState( );
+    if ( !project || !project.filtered_observations_loaded ) { return null; }
+    const total = project.filtered_observations_loaded.total_results;
+    const loaded = project.filtered_observations.results.length;
     if ( nextScrollIndex > total || nextScrollIndex <= loaded || nextScrollIndex > 500 ) {
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
       return null;
     }
-    const params = Object.assign( { }, project.search_params, {
-      order_by: "popular",
-      order: "desc",
-      per_page: 100,
-      page: project.observations_page + 1
+    let params = Object.assign( { }, project.search_params, {
+      per_page: 50,
+      page: project.filtered_observations_page + 1
     } );
+    if ( config.observationFilters ) {
+      params = Object.assign( params, config.observationFilters );
+    }
     return inatjs.observations.search( params ).then( response => {
-      project.observations.results = project.observations.results.concat( response.results );
+      project.filtered_observations.results =
+        project.filtered_observations.results.concat( response.results );
       dispatch( setAttributes( {
-        observations_loaded: true,
-        observations: project.observations,
-        observations_page: project.observations_page + 1
+        filtered_observations: project.filtered_observations,
+        filtered_observations_page: project.filtered_observations_page + 1
       } ) );
       dispatch( setConfig( { observationsScrollIndex: nextScrollIndex } ) );
     } ).catch( e => console.log( e ) );
@@ -229,7 +267,7 @@ export function fetchOverviewData( ) {
       dispatch( fetchUmbrellaStats( ) );
     }
     dispatch( fetchSubscriptions( ) );
-    dispatch( fetchObservations( ) );
+    dispatch( fetchRecentObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
     dispatch( fetchSpeciesObservers( ) );

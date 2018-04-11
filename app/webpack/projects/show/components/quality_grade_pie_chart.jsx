@@ -10,8 +10,8 @@ const QualityGradePieChart = ( { project } ) => {
   if ( _.isEmpty( project.quality_grade_counts.results ) ) { return ( <div /> ); }
   const data = _.fromPairs(
     _.map( project.quality_grade_counts.results, r => [r.quality_grade, r.count] ) );
-  const total = project.observations_loaded ?
-    I18n.toNumber( project.observations.total_results, { precision: 0 } ) : "--";
+  const total = project.recent_observations_loaded ?
+    I18n.toNumber( project.recent_observations.total_results, { precision: 0 } ) : "--";
   return (
     <div className="QualityGradePieChart">
       <div className="count-label">
@@ -20,21 +20,21 @@ const QualityGradePieChart = ( { project } ) => {
       <PieChart
         data={[
           {
-            label: I18n.t( "research_grade" ),
+            label: _.capitalize( I18n.t( "research_grade" ) ),
             fullLabel: _.capitalize( I18n.t( "research_grade" ) ),
             value: data.research,
             color: COLORS.inatGreenLight,
             enLabel: "research"
           },
           {
-            label: I18n.t( "needs_id" ),
+            label: _.capitalize( I18n.t( "needs_id" ) ),
             fullLabel: _.capitalize( I18n.t( "needs_id" ) ),
             value: data.needs_id,
             color: COLORS.needsIdYellow,
             enLabel: "needs_id"
           },
           {
-            label: I18n.t( "casual" ),
+            label: _.capitalize( I18n.t( "casual" ) ),
             fullLabel: _.capitalize( I18n.t( "casual" ) ),
             value: data.casual,
             color: "#aaaaaa",

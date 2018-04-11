@@ -42,7 +42,7 @@ function mapDispatchToProps( dispatch ) {
       } ) );
     }
     if ( state.photoModal.options.source === "project" ) {
-      const observations = _.filter( state.project.observations.results, o => (
+      const observations = _.filter( state.project.recent_observations.results, o => (
         o.photos.length > 0 && o.photos[0].photoUrl( "small" )
       ) );
       return observations.map( o => ( {

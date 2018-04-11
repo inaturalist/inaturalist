@@ -34,6 +34,7 @@ const News = ( { project } ) => {
                         text={ post.body }
                         truncate={ 120 }
                         moreToggle={ false }
+                        stripWhitespace
                       />
                     </div>
                   </a>

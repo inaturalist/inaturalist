@@ -7,10 +7,17 @@ import UserImage from "../../../shared/components/user_image";
 import UserLink from "../../../shared/components/user_link";
 import FormattedDate from "../../shared/formatted_date";
 
-const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => {
-  if ( _.isEmpty( observations ) ) { return ( <span /> ); }
+const ObservationsListView = ( {
+  config, observations, hasMore, loadMore, setObservationFilters
+} ) => {
   const scrollIndex = config.observationsScrollIndex || 30;
+  const filters = config.observationFilters;
   const loader = ( <div className="loading_spinner huge" /> );
+  const sortColumn = ( filters.order_by === "observed_on" ) ? "observed" : "created";
+  const observedCaretDirection =
+    ( sortColumn === "observed" && filters.order === "asc" ) ? "up" : "down";
+  const createdCaretDirection =
+    ( sortColumn === "created" && filters.order === "asc" ) ? "up" : "down";
   return (
     <div className="ObservationsListView">
       <Grid>
@@ -27,9 +34,29 @@ const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => 
                     <th>{ I18n.t( "media" ) }</th>
                     <th>{ I18n.t( "name" ) }</th>
                     <th>{ I18n.t( "user" ) }</th>
-                    <th>{ I18n.t( "observed" ) }</th>
+                    <th
+                      className={ `clicky ${sortColumn === "observed" && "sorting"}` }
+                      onClick={ ( ) => setObservationFilters( {
+                        order_by: "observed_on",
+                        order: ( sortColumn === "observed" && filters.order === "desc" ) ?
+                          "asc" : "desc"
+                      } ) }
+                    >
+                      { I18n.t( "observed" ) }
+                      <i className={ `fa fa-caret-${observedCaretDirection}`} />
+                    </th>
                     <th>{ I18n.t( "place" ) }</th>
-                    <th>{ I18n.t( "added" ) }</th>
+                    <th
+                      className={ `clicky ${sortColumn === "created" && "sorting"}` }
+                      onClick={ ( ) => setObservationFilters( {
+                        order_by: "created_at",
+                        order: ( sortColumn === "created" && filters.order === "desc" ) ?
+                          "asc" : "desc"
+                      } ) }
+                    >
+                      { I18n.t( "added" ) }
+                      <i className={ `fa fa-caret-${createdCaretDirection}`} />
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -114,7 +141,7 @@ const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => 
                           <UserImage user={ o.user } />
                           <UserLink user={ o.user } />
                         </td>
-                        <td className="date">
+                        <td className={ `date ${sortColumn === "observed" && "sorting"}` }>
                           <FormattedDate
                             date={ o.observed_on_details.date }
                             time={ o.time_observed_at }
@@ -125,7 +152,7 @@ const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => 
                           <i className="fa fa-map-marker" />
                           { displayPlace }
                         </td>
-                        <td className="date">
+                        <td className={ `date ${sortColumn === "created" && "sorting"}` }>
                           <FormattedDate
                             date={ o.created_at_details.date }
                             time={ o.created_at }
@@ -148,6 +175,7 @@ const ObservationsListView = ( { config, observations, hasMore, loadMore } ) => 
 
 ObservationsListView.propTypes = {
   config: PropTypes.object,
+  setObservationFilters: PropTypes.func,
   setConfig: PropTypes.func,
   hasMore: PropTypes.bool,
   infiniteScrollObservations: PropTypes.func,
