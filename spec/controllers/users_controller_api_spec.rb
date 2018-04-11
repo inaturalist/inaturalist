@@ -145,6 +145,20 @@ describe UsersController, "without authentication" do
     expect(response.body).not_to be =~ /#{user.email}/
   end
 
+  describe "show" do
+    let( :user ) { User.make! }
+    it "should show observations_count" do
+      get :show, format: :json, id: user.id
+      expect( response ).to be_success
+      expect( JSON.parse( response.body )["observations_count"] ).to eq 0
+    end
+    it "should show identifications_count" do
+      get :show, format: :json, id: user.id
+      expect( response ).to be_success
+      expect( JSON.parse( response.body )["identifications_count"] ).to eq 0
+    end
+  end
+
   describe "search" do
     it "should search by username" do
       u1 = User.make!(:login => "foo")

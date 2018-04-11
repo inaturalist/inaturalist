@@ -845,7 +845,9 @@ class User < ActiveRecord::Base
         :id,
         :login,
         :name,
-        :created
+        :created,
+        :observations_count,
+        :identifications_count
       ],
       methods: [
         :user_icon_url,
