@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= @title = t(:manage_your_subscriptions, default: 'Manage Your Subscriptions') %>
+  <%= @title = t(:manage_all_your_subscriptions) %>
 <%- end -%>
 <div id="pageheader" class="clear">
   <div class="breadcrumbs">
@@ -11,13 +11,18 @@
 <div class="column span-4">
   <ul class="leftmenu">
     <% for klass in Subscription.subscribable_classes.sort %>
-      <li><%= link_to t(klass.underscore.pluralize.downcase, default: klass.pluralize).humanize, url_for(:type => klass.underscore), :class => @type == klass.underscore ? "active" : nil %></li>
+      <li>
+        <%= link_to t( "activerecord.models.#{klass}", default: t( klass.underscore, default: klass ) ).pluralize,
+          url_for( type: klass.underscore ),
+          class: @type == klass.underscore ? "active" : nil
+        %>
+      </li>
     <% end %>
   </ul>
 </div>
 <div class="last column span-20">
   <% if @subscriptions.blank? -%>
-    <div class="noresults meta"><%= t :no_subscriptions_to, default: 'No subscriptions to' %> <%= @type.underscore.humanize.underscore.pluralize %></div>
+    <div class="noresults meta"><%= t :no_results_found %></div>
   <%- else %>
     <table border="0" cellspacing="5" cellpadding="5" width="100%">
       <thead>
@@ -30,7 +35,7 @@
         <% for subscription in @subscriptions %>
           <tr>
             <td>
-              <%= subscription.resource_type %> <%= subscription.resource_id %>:
+              <%=t subscription.resource_type.parameterize.underscore, default: subscription.resource_type %> <%= subscription.resource_id %>:
               <% name = subscription.resource.try_methods(:to_plain_s, :login, :name, :title, :to_s) %>
               <%= link_to name, subscription.resource %>
             </td>

@@ -187,6 +187,7 @@
             <li><%=t :only_one_coordinate_system_per_file %></li>
           <% end -%>
           <li><%=t :use_unique_file_names_for_separate_uploads %> </li>
+          <li><%=t "views.observations.import.geoprivacy_must_be_in_english" %> </li>
           <li>
             <p class="ui"><%=t :we_can_only_understand_csv_in %>:</p>
             <table cellspacing="0" border="0" cellpadding="0">
@@ -201,13 +202,13 @@
                 <th><%=t :geoprivacy %></th>
               </tr>
               <tr>
-                <td>text</td>
-                <td>YYYY-MM-DD HH:MM</td>
-                <td>text (if it contains commas, enclose in double quotes)</td>
-                <td>text</td>
-                <td>dd.dddd</td>
-                <td>dd.dddd</td>
-                <td>tag1,tag2</td>
+                <td><%= t(:text).downcase %></td>
+                <td><%=t "views.observations.import.date_column_format" %></td>
+                <td><%= t(:text).downcase %></td>
+                <td><%= t(:text).downcase %></td>
+                <td><%=t "views.observations.import.decimal_degrees_format" %></td>
+                <td><%=t "views.observations.import.decimal_degrees_format" %></td>
+                <td><%= t(:tag).downcase %>,<%= t(:tag).downcase %></td>
                 <td>obscured</td>
               </tr>
             </table>

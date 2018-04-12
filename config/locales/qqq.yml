@@ -1029,6 +1029,7 @@ qqq:
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
   tagging: '{{Identical|Tagging}}'
+  tag: Singular noun form of the English word "tag"
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
   taxonomy: '{{Identical|Taxonomy}}'
@@ -1307,6 +1308,19 @@ qqq:
       community_id:
         agreement: '{{Identical|Agreement}}'
         score: '{{Identical|Score}}'
+      import:
+        date_column_format: |
+          Example of how the date should be formatted in CSV. Change if other
+          letters would make more sense in other languages, but please do not
+          change the format.
+        decimal_degrees_format: |
+          Example of how decimal degrees should be formatted in CSV. Change if
+          other letters would make more sense in other languages, but please do
+          not change the format.
+        geoprivacy_must_be_in_english: |
+          Please don't translate the values "obscured" and "private". If user
+          upload translated versions of these strings in their CSV the CSV
+          import won't work.
       show:
         community_taxon_desc_html: whre site_name is the site name
         flagged_photos_desc_html: where links is a URL
