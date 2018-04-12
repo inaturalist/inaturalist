@@ -197,6 +197,7 @@ en:
   add_custom_project_fields: Add custom project fields
   add_edit_flags: Add/Edit Flags
   add_edit_more_fields: Add/edit more fields
+  add_editor: Add Editor
   add_description: "Add %{description_name}"
   add_field: Add field
   add_from_your_observations: Add from your observations
@@ -5850,6 +5851,8 @@ en:
     errors:
       <<: *errors
     models:
+      AssessmentSection: Assessment Section
+      Atlas: Atlas
       CompleteSet: Complete Set
       TaxonLink: Taxon Link
     attributes:
