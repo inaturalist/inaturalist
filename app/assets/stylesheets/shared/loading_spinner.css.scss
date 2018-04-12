@@ -33,6 +33,13 @@
   border-top: 15px solid #74ac00;
 }
 
+.loading_spinner.huge {
+  width: 80px;
+  height: 80px;
+  border: 15px solid $border-grey;
+  border-top: 15px solid #74ac00;
+}
+
 .loading_spinner.big {
   width: 40px;
   height: 40px;

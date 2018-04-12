@@ -12,7 +12,7 @@ const ALLOWED_TAGS = (
 ).split( " " );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
-  "href src width height alt cite title class name abbr value align"
+  "href src width height alt cite title class name abbr value align target rel"
   // + "xml:lang style controls preload"
 ).split( " " );
 
@@ -55,7 +55,7 @@ class UserText extends React.Component {
   }
 
   render( ) {
-    const { text, truncate, config } = this.props;
+    const { text, truncate, config, moreToggle, stripWhitespace } = this.props;
     const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
@@ -71,7 +71,7 @@ class UserText extends React.Component {
       truncatedHtml = htmlTruncate( html, truncate );
     }
     let moreLink;
-    if ( truncate && ( truncatedHtml !== html ) ) {
+    if ( truncate && ( truncatedHtml !== html ) && moreToggle ) {
       moreLink = (
         <a
           onClick={ ( ) => {
@@ -84,13 +84,19 @@ class UserText extends React.Component {
         </a>
       );
     }
+
+    let htmlToDisplay = sanitizeHtml( linkifyHtml( truncatedHtml || html, { className: null, attributes: { rel: "nofollow" } } ), {
+      allowedTags: ALLOWED_TAGS, allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
+      exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
+    } );
+    if ( stripWhitespace ) {
+      htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
+    }
     return (
       <div className={`UserText ${className}`}>
         <span
           className="content"
-          dangerouslySetInnerHTML={ { __html:
-            sanitizeHtml( linkifyHtml( truncatedHtml || html ), { allowedTags: ALLOWED_TAGS } )
-          } }
+          dangerouslySetInnerHTML={ { __html: htmlToDisplay } }
           style={style}
         ></span> { moreLink }
       </div>
@@ -102,7 +108,13 @@ UserText.propTypes = {
   text: PropTypes.string,
   truncate: PropTypes.number,
   config: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  moreToggle: PropTypes.bool,
+  stripWhitespace: PropTypes.bool
+};
+
+UserText.defaultProps = {
+  moreToggle: true
 };
 
 export default UserText;

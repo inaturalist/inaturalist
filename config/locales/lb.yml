@@ -248,6 +248,7 @@ lb:
   black: schwaarz
   block_user: Benotzer spären
   block_removed: Spär ewechgeholl
+  blocked_users: Gespaart Benotzer
   blog_widget: Blog Widget
   blue: blo
   blue_butterfly_etc: blo, Päiperlek, asw.
@@ -449,6 +450,7 @@ lb:
   draft_: Virbereedung
   draft_saved: Virbereedung gespäichert!
   drafts: Virbereedungen
+  drawings: Zeechnungen
   duplicate_verb: Eng Kopie maachen
   edit: Änneren
   edit_atlas: Atlas änneren
@@ -858,7 +860,7 @@ lb:
   none: Keen
   none_found: Kee fonnt
   normal: normal
-  not_findig_what_you_want: Fannt Dir dat wat dir gesicht hutt?
+  not_findig_what_you_want: Fannt Dir dat wat Dir gesicht hutt?
   not_finding_place_you_want?: Fannt Dir déi Plaz déi Dir gesicht hutt?
   not_found: Net fonnt
   not_linked_facebook: Äre(n) %{site_name}-Benotzerkont ass net mat Ärem Facebook-Benotzerkont
@@ -870,6 +872,7 @@ lb:
   not_recorded: Net enregistréiert
   not_yet: Nach net
   note: Notiz
+  notes: Notizen
   number_of_observations: Zuel vun Observatiounen
   number_selected: '# erausgesicht'
   numeric_: numeresch
@@ -920,6 +923,7 @@ lb:
     kommen
   only_letters_numbers: Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat
     engem Buschtaf ufänken
+  only_you: Nëmmen Dir
   open: opmaachen
   open_: Opmaachen
   optional: fakultativ
@@ -1271,6 +1275,7 @@ lb:
     testen?
   wanted: Gesicht
   we_had_trouble_saving_comment: 'Mir hu Problemer fir déi Bemierkung ze späicheren:'
+  weather: Wieder
   wed: Mët
   week_of_date: Woch vum %{date}
   welcome!: Wëllkomm!
@@ -1503,6 +1508,7 @@ lb:
       conservation_status:
         status: Situatioun
         description: Beschreiwung
+        place_id: Plaz
       project:
         description: Beschreiwung
       place:
@@ -1513,6 +1519,12 @@ lb:
         value: Wäert
       taxon:
         name: Numm
+      user:
+        email: E-Mail
+        name: Numm
+        locale: Lokal
+        time_zone: Zäitzon
+        place_id: Plaz
   i18n:
     inflections:
       :@vow_or_con:

@@ -14,6 +14,7 @@
 # Author: Macofe
 # Author: Pihlaviita
 # Author: Purodha
+# Author: Pyscowicz
 # Author: Robby
 # Author: Siebrand
 # Author: SimondR
@@ -443,6 +444,7 @@ qqq:
   from_licensed_site_observations: where site_name is the name of the site
   full_screen: '{{Identical|Full screen}}'
   general: '{{Identical|General}}'
+  geo: Abbrevation of "geographic" e.g. "geo fields"
   geoprivacy: See [[wiktionary:geoprivacy|geoprivacy on Wiktionary]] for hints.
   get_started: '{{Identical|Get started}}'
   getting_started: '{{Identical|Getting started}}'
@@ -726,6 +728,7 @@ qqq:
   not_linked_flickr: where site_name is the site name
   not_logged_in: '{{Identical|Not logged in}}'
   note: '{{Identical|Note}}'
+  notes: '{{Identical|Note}}'
   numeric_: '{{Identical|Numeric}}'
   noun_by_you: where noun is a resource such as observations or comments
   observation: '{{Identical|Observation}}'
@@ -1026,6 +1029,7 @@ qqq:
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
   tagging: '{{Identical|Tagging}}'
+  tag: Singular noun form of the English word "tag"
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
   taxonomy: '{{Identical|Taxonomy}}'
@@ -1128,8 +1132,8 @@ qqq:
   user_has_opted_out_of_community_ids: where user is the name of a user
   user_has_opted_out_of_community_ids_for_this_obs: where user is the name of a user
   user_hasnt: where user is the name of a user
-  user_invite_observation_to_project: where user is the name of a user and project
-    and observation are names of the project and observation
+  user_invite_observation_to_project: where user is the name of a user and observation
+    and project are names of the observation and project
   user_invited_you_to_join_html: where user is the name of a user
   user_invited_you_to_join_project: where user is the name of a user and project is
     the name of a project
@@ -1304,6 +1308,19 @@ qqq:
       community_id:
         agreement: '{{Identical|Agreement}}'
         score: '{{Identical|Score}}'
+      import:
+        date_column_format: |
+          Example of how the date should be formatted in CSV. Change if other
+          letters would make more sense in other languages, but please do not
+          change the format.
+        decimal_degrees_format: |
+          Example of how decimal degrees should be formatted in CSV. Change if
+          other letters would make more sense in other languages, but please do
+          not change the format.
+        geoprivacy_must_be_in_english: |
+          Please don't translate the values "obscured" and "private". If user
+          upload translated versions of these strings in their CSV the CSV
+          import won't work.
       show:
         community_taxon_desc_html: whre site_name is the site name
         flagged_photos_desc_html: where links is a URL
@@ -1525,6 +1542,11 @@ qqq:
       taxon:
         name: '{{Identical|Name}}'
         locked: '{{Identical|Locked}}'
+      user:
+        email: '{{Identical|E-mail}}'
+        name: '{{Identical|Name}}'
+        time_zone: '{{Identical|Time zone}}'
+        place_id: '{{Identical|Place}}'
   i18n:
     inflections:
       :@vow_or_con:

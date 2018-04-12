@@ -7,7 +7,7 @@ class PlaceGeometry < ActiveRecord::Base
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
 
   after_save :refresh_place_check_list,
-             :dissolve_geometry_if_changed,
+             :process_geometry_if_changed,
              :update_observations_places_later
 
   after_destroy :update_observations_places_later
@@ -50,15 +50,17 @@ class PlaceGeometry < ActiveRecord::Base
     true
   end
 
-  def dissolve_geometry_if_changed
-    dissolve_geometry if geom_changed?
+  def process_geometry_if_changed
+    process_geometry if geom_changed?
     true
   end
 
-  def dissolve_geometry
+  def process_geometry
     PlaceGeometry.connection.execute <<-SQL
       UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
-        SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
+        SELECT
+          ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+        FROM (
           SELECT (ST_Dump(geom)).geom
           FROM place_geometries
           WHERE id = #{id}
@@ -72,7 +74,9 @@ class PlaceGeometry < ActiveRecord::Base
       Rails.logger.error "[ERROR #{Time.now}] Failed to dissolve for PlaceGeometry #{id}, attempting to simplify: #{e}"
       connection.execute <<-SQL
         UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
-          SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
+          SELECT
+            ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+          FROM (
             SELECT ST_SimplifyPreserveTopology((ST_Dump(geom)).geom, 0.0001) AS geom
             FROM place_geometries
             WHERE id = #{id}
@@ -86,7 +90,9 @@ class PlaceGeometry < ActiveRecord::Base
       Rails.logger.error "[ERROR #{Time.now}] Failed to dissolve for PlaceGeometry #{id}, filtering invalid geoms: #{e}"
       connection.execute <<-SQL
         UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
-          SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
+          SELECT
+            ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+          FROM (
             SELECT (ST_Dump(geom)).geom
             FROM place_geometries
             WHERE id = #{id}

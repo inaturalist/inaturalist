@@ -3180,15 +3180,15 @@ ja:
           class=\"description\">\n <li>ファイル名が.logo.jpg, .logo.png,などで終わるものはプロジェクトページでプロジェクトアイコンの代わりに使用されます</li>\n<li>KML及びKMZファイルはプロジェクトページ上のマップに追加されます</li>\n</ol>
         rules:
           captive: 飼育/栽培
-          wild: 野生であるか、帰化されている
           georeferenced: 座標あり
-          has_media: メディア（写真または音声）あり
           has_a_photo: 写真あり
           has_a_sound: 音声あり
+          has_media: メディア（写真または音声）あり
           identified: 判定あり
           in_taxon: 分類群に含まれている
           observed_in_place: 場所で観察されている
           on_list: プロジェクトリストの分類群に含まれている
+          wild: 野生であるか、帰化されている
         start_time_desc: バイオビリッツの開始時間。フォーマット：YYYY-MM-DDThh:mm:ss±hh:mm
         submission_models:
           any: 誰でも

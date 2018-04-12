@@ -108,7 +108,7 @@ const PhotoBrowser = ( {
                   group.groupObject,
                   $.deparam( window.location.search.replace( /^\?/, "" ) )
                 ) }
-              /> : group.groupName }
+              /> : I18n.t( `controlled_term_labels.${_.snakeCase( group.groupName )}`, { defaultValue: group.groupName } ) }
           </h3>
           <div className="photos">
             { group.observationPhotos.length === 0 ?
@@ -132,7 +132,7 @@ const PhotoBrowser = ( {
       return I18n.t( "taxonomic" );
     } else if ( param && terms[grouping.values] ) {
       const displayText = terms[grouping.values][0].controlled_attribute.label;
-      return I18n.t( displayText, { defaultValue: displayText } );
+      return I18n.t( `controlled_term_labels.${_.snakeCase( displayText )}`, { defaultValue: displayText } );
     }
     return I18n.t( "none" );
   };
@@ -155,7 +155,7 @@ const PhotoBrowser = ( {
         eventKey={values[0].controlled_attribute}
         active={grouping.param === `field:${values[0].controlled_attribute.label}`}
       >
-        { I18n.t( _.snakeCase( values[0].controlled_attribute.label ),
+        { I18n.t( `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
           { defaultValue: values[0].controlled_attribute.label } ) }
       </MenuItem>
     ) )
@@ -227,7 +227,7 @@ const PhotoBrowser = ( {
                       { attr.label }:&nbsp;
                       <strong>{
                         ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
-                          I18n.t( _.snakeCase( selectedTermValue.label ),
+                          I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
                             { defaultValue: selectedTermValue.label } ) :
                           I18n.t( "any" )
                         ) }
@@ -249,7 +249,7 @@ const PhotoBrowser = ( {
                             eventKey={value.id}
                             active={ selectedTermValue && selectedTermValue.id === value.id }
                           >
-                            { I18n.t( _.snakeCase( value.label ), { defaultValue: value.label } ) }
+                            { I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, { defaultValue: value.label } ) }
                           </MenuItem>
                         );
                       } ) }

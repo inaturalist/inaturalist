@@ -41,6 +41,11 @@ class ProjectAutocomplete extends React.Component {
     }
   }
 
+  inputElement( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    return $( "input[name='project_title']", domNode );
+  }
+
   render( ) {
     return (
       <span className="ProjectAutocomplete">

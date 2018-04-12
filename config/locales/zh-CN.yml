@@ -122,15 +122,18 @@ zh-CN:
   able_to_connect_flickr: 很棒！我们能够链接至您的Flickr账户。
   about: 关于
   about_bioblitz_results: 关于生物限时搜索
+  about_blocking: 关于封禁
   about_charts: 关于图表
   about_community_taxa: 关于社区分类群
   about_complete_taxa: 关于比较分类群
   about_conservation_status: 保护状态
+  about_editing_observation_fields: 关于编辑观察字段
   about_establishment_means: 关于确立意思
   about_external_links: 关于外部链接
   about_licenses: 关于许可协议
   about_licensing: 关于许可协议
   about_life!: 关于生命！
+  about_muting: 关于禁言
   about_names: 关于名称
   about_places: 关于地点
   about_taxon_changes: 关于分类单元变动
@@ -540,6 +543,7 @@ zh-CN:
   black: 黑色
   block_user: 封禁用户
   block_removed: 封禁已移除
+  blocked_users: 封禁的用户
   blog_widget: 博客小部件
   blue: 蓝色
   blue_butterfly_etc: 蓝色、蝴蝶等
@@ -1000,6 +1004,7 @@ zh-CN:
   draft_saved: 草稿已保存！
   drafts: 草稿
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
+  drawings: 绘画
   duplicate_verb: 复制
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
@@ -1808,6 +1813,7 @@ zh-CN:
   must_have_x: 必须有 %{x}
   mute_user: 禁言用户
   mute_removed: 禁言已移除
+  muted_users: 禁言用户
   n_ago: '%{n}前'
   n_people_agrees: '%{amount} 个人同意'
   n_people_disagrees: '%{amount} 个人不同意'
@@ -1960,6 +1966,7 @@ zh-CN:
   not_seeing_what_looking_for: 看不到您要寻找的东西么？
   not_yet: 尚未
   note: 注释
+  notes: 注释
   note_you_can_modify_the_height_attribute: 注意：您可以调整“height”属性来适应您页面的空间。
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
@@ -2058,6 +2065,7 @@ zh-CN:
   only_species: 只有物种
   only_species_and_subspecies: 只有种和亚种/变种
   only_the_owner_of_this_list_can_do_that: 只有列表主人可以这样做。不要作恶。
+  only_you: 只有您
   open: 打开
   open_: 打开
   open_description: 任何人可以查看观察，除非分类受到威胁。
@@ -2628,6 +2636,7 @@ zh-CN:
   show_less: 显示更少
   show_more: 显示更多
   show_only: 仅显示
+  show_scientific_name_first: 首先显示学名
   showing_one_to: 显示1~
   show_uncountable_species: 显示无法计数的物种
   sign_in: 登录
@@ -3122,6 +3131,7 @@ zh-CN:
   we_tried_to_process_your_upload_named_filename: |-
     我们尝试了处理您上传的名为 %{filename} 的文件，但未成功。
     请修复下列问题，然后重试。
+  weather: 天气
   wed: 三
   week_of_date: '%{date}的一周'
   welcome!: 欢迎！
@@ -3614,13 +3624,14 @@ zh-CN:
             on the project list" rule.
           </p>
         rules:
-          wild: 野生的/训化的
+          coordinates_shareable_by_project_curators: 可由项目馆长分享的坐标
           georeferenced: 有坐标
-          has_media: 有媒体（照片或声音）
           has_a_photo: 有一个照片
           has_a_sound: 有一段声音
+          has_media: 有媒体（照片或声音）
           identified: 被认证
           verifiable: 可证实
+          wild: 野生的/训化的
         start_time_desc: 您的生物寻找计划的开始时间。格式：YYYY-MM-DDThh:mm:ss±hh:mm
         submission_models:
           any: 任何人
@@ -4097,6 +4108,8 @@ zh-CN:
         terms: 条款
         map_type: 地图类型
         zoom_level: 缩放级别
+        preferred_membership_model: 首选成员模型
+        preferred_submission_model: 首选提交模型
         source_url: 来源URL
         start_time: 起始时间
       project_observation:
@@ -4133,6 +4146,14 @@ zh-CN:
         name_provider: 名称提供方
         source_url: 来源URL
         source_identifier: 来源标识符
+      user:
+        email: 电子邮件
+        name: 名称
+        locale: 地域
+        time_zone: 时区
+        search_place_id: 搜索地点
+        place_id: 地方
+        preferred_observation_fields_by: 允许观察字段来自
       source:
         title: 标题
         in_text: 于文本中

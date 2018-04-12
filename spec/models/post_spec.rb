@@ -59,7 +59,7 @@ describe Post do
         without_delay do
           post.update_attributes(published_at: Time.now)
         end
-        expect( pu.user.update_subscribers.last.update_action.notifier ).to eq post
+        expect( pu.user.update_subscribers.limit(1).last.update_action.notifier ).to eq post
       end
 
       it "should not generate an update for a project user if they don't prefer it" do

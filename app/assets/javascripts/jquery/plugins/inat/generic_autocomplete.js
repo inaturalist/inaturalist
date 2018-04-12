@@ -59,7 +59,6 @@ genericAutocomplete.stripTags = function( txt ) {
 $.fn.genericAutocomplete = function( options ) {
   options = options || { };
   var field = this;
-  // if( !options.idEl ) { return; }
   if( !field || field.length < 1 ) { return; }
   var createWrappingDiv = options.createWrappingDiv ||
     genericAutocomplete.createWrappingDiv;

@@ -221,10 +221,7 @@
     <% if @project && !@project.project_observation_fields.blank? -%>
       <fieldset id="projectobservationfields" class="stacked">
         <legend>
-          Fields for <%= @project.title %>
-          <% helptip_for "observation_fields" do %>
-            Extra pieces of data the managers of this project are interested in.
-          <% end -%>
+          <%=t :fill_out_project_observation_fields %>
         </legend>
         <div class="observation_fields">
           <% @project.project_observation_fields.each do |pof| %>

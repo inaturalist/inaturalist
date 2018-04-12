@@ -117,14 +117,6 @@ shared_examples_for "a signed in UsersController" do
       user.reload
       expect( user.test_groups ).to eq test_groups
     end
-
-    it "should be included in the JSON response to show" do
-      test_groups = "foo|bar"
-      user.update_attributes( test_groups: test_groups )
-      get :show, id: user.id, format: :json
-      json = JSON.parse( response.body )
-      expect( json["test_groups"] ).to eq test_groups
-    end
   end
 
 end
@@ -151,6 +143,20 @@ describe UsersController, "without authentication" do
     get :edit, :format => :json, :id => user.id
     expect(response).not_to be_success
     expect(response.body).not_to be =~ /#{user.email}/
+  end
+
+  describe "show" do
+    let( :user ) { User.make! }
+    it "should show observations_count" do
+      get :show, format: :json, id: user.id
+      expect( response ).to be_success
+      expect( JSON.parse( response.body )["observations_count"] ).to eq 0
+    end
+    it "should show identifications_count" do
+      get :show, format: :json, id: user.id
+      expect( response ).to be_success
+      expect( JSON.parse( response.body )["identifications_count"] ).to eq 0
+    end
   end
 
   describe "search" do

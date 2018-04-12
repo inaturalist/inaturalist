@@ -2417,3 +2417,9 @@ $header-line-height: 34px;
     }
   }
 }
+#footer-locale-chooser {
+  .dropdown-menu {
+    overflow-y: scroll;
+    max-height: 500px;
+  }
+}

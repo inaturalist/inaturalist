@@ -5,6 +5,7 @@
 # Author: Asierog
 # Author: Cgalindo
 # Author: Fitoschido
+# Author: Iñaki LL
 # Author: Macofe
 # Author: Mikel Ibaiba
 # Author: Sator
@@ -1643,6 +1644,7 @@ eu:
   more_fields: Eremu gehiago
   more_filters: Iragazki gehiago
   more_info: Informazio gehiago
+  more_info_title: Informazio gehiago
   more_journal_posts: Egunkariko ohar gehiago
   more_observations: 'Ohar gehiago:'
   most: Gehiago
@@ -2804,8 +2806,8 @@ eu:
   the_past: iragana
   the_people_of_inat: 'Hemengo jendea: %{site_name}'
   the_project: proiektua
-  the_title_of_the_wikipedia_article_we_use: 'Deskribapenerako erabiltzen dugun Wikipedia-ko
-    artikuluaren titulua. Wikipedia-rako esteka hau baldin bada: <code>http: //en.wikipedia.org/wiki/Bird</code>,
+  the_title_of_the_wikipedia_article_we_use: 'Deskribapenerako erabiltzen dugun Wikipediako
+    artikuluaren izenburua. Wikipediarako esteka hau baldin bada: <code>http: //en.wikipedia.org/wiki/Bird</code>,
     orduan, balio honek <code>Hegaztia</code> izan behar du. Hutsik uzten bada, taxon
     honen izen zientifikoa erabiliko da (oro har, funtzionatzen du).'
   the_user_x_has_been_suspended: '%{user} erabiltzailea egonean dago'
@@ -3911,6 +3913,10 @@ eu:
         name_provider: Izenaren hornitzailea
         source_url: Iturriaren web helbidea
         source_identifier: Iturriaren identifikatzailea
+      user:
+        email: Posta
+        name: Izena
+        time_zone: Ordu-zona
       source:
         title: Izenburua
         in_text: Erreferentzia

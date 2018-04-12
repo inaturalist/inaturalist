@@ -1,12 +1,13 @@
 <div class='photoSelectorAlbums picasaAlbums' <%= "data-friend_id='#{@friend_id}'".html_safe if @friend_id %>>
   <% if @friend_name %>
-    <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; Back to friends</a>
+    <a href='#' class="back_to_friends" data-friend_id="<%= @friend_id %>">&laquo; <%=t :back_to_friends %></a>
   <% end %>
   <% if @albums.empty? %>
     <br />
-    <p class="meta ui">We can't find any albums from Google Photos.</p>
+    <p class="meta ui"><%=t :no_results_found %></p>
   <% else %>
-    <h4>Select one of <%= (@friend_name ? "#{@friend_name}'s" : 'your') %> albums</h4>
+    <h4>
+      <%= @friend_name ? t(:select_one_of_friends_albums, friend: @friend_name) : t(:select_one_of_your_albums) %>
     <table>
     <% @albums.each do |album| %>
       <tr class='album' data-aid='<%= album['aid'] %>'>

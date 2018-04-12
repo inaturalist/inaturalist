@@ -27,8 +27,7 @@
         <%= link_to t(:view_observations), observations_by_login_path(person.login), :class => "readable" %>
         <% if observations_count > 0 -%>
           <div class="meta">
-            <span class="count"><%= number_with_delimiter(observations_count) %></span>
-            total
+            <%=t :x_observations_html, count: number_with_delimiter(observations_count) %>
           </div>
         <% end -%>
       </td>
@@ -36,7 +35,7 @@
         <%= link_to t(:view_lists), lists_by_login_path(person.login), :class => "readable" %>
         <% if listed_taxa_count > 0 %>
           <div class="meta">
-            <span class="count"><%= number_with_delimiter(listed_taxa_count) %></span> known species total
+            <%=t :x_species_html, count: number_with_delimiter(listed_taxa_count) %>
           </div>
         <% end %>
       </td>
@@ -44,8 +43,7 @@
         <%= link_to t(:view_journal), journal_by_login_path(person.login), :class => "readable" %>
         <% unless post_count == 0 %>
           <div class="meta">
-            <span class="count"><%= number_with_delimiter(post_count) %></span>
-            posts
+            <%=t :x_journal_posts_html, count: number_with_delimiter(post_count) %>
           </div>
         <% end %>
       </td>

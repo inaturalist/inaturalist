@@ -539,7 +539,7 @@ describe User do
       m = without_delay do
         ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
       end
-      UpdateSubscriber.destroy_all
+      UpdateSubscriber.delete_all
       old_count = UpdateSubscriber.count
       start = Time.now
       without_delay { @user.sane_destroy }

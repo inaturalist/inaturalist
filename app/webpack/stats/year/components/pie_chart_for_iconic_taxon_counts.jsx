@@ -10,7 +10,8 @@ const PieChartForIconicTaxonCounts = ( {
   year,
   margin,
   donutWidth,
-  labelForDatum
+  labelForDatum,
+  urlPrefix
 } ) => {
   const nameForPieLabel = name => _.truncate( _.capitalize( name ), { length: 15 } );
   return (
@@ -121,7 +122,7 @@ const PieChartForIconicTaxonCounts = ( {
       labelForDatum={ labelForDatum }
       donutWidth={ donutWidth }
       onClick={ d => {
-        let url = `/observations?place_id=any&d1=${year}-01-01&d2=${year + 1}-01-01`;
+        let url = urlPrefix || `/observations?place_id=any&d1=${year}-01-01&d2=${year + 1}-01-01`;
         if ( user ) {
           url += `&user_id=${user.login}`;
         }
@@ -158,7 +159,8 @@ PieChartForIconicTaxonCounts.propTypes = {
   margin: React.PropTypes.object,
   labelForDatum: React.PropTypes.func,
   innerRadius: React.PropTypes.number,
-  donutWidth: React.PropTypes.number
+  donutWidth: React.PropTypes.number,
+  urlPrefix: React.PropTypes.string
 };
 
 export default PieChartForIconicTaxonCounts;

@@ -699,7 +699,7 @@ class Place < ActiveRecord::Base
           :source_name => place.source_name, 
           :source_identifier => place.source_identifier)
       end
-      place.place_geometry_without_geom.dissolve_geometry
+      place.place_geometry_without_geom.process_geometry
     end
     
     puts "\n[INFO] Finished importing places.  #{num_created} created, " + 

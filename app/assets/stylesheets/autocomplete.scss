@@ -95,6 +95,12 @@
       line-height: 56px;
     }
   }
+  img.user_image {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    float: left;
+  }
 }
 .ui-autocomplete .ac-result.active {
   background: #F2F2F2;

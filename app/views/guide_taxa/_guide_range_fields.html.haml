@@ -23,7 +23,7 @@
           = f.text_field :source_url, :data => {:locked => f.object.persisted?}, :placeholder => t(:original_url_for_this_map), :class => "form-control"
       - %w(thumb_url medium_url original_url).each do |a|
         .form-group.readonly_field{:class => "#{a}_field"}
-          = f.label t(a, :default => a), :class => "col-xs-3 control-label"
+          = f.label a, t(a, :default => a), :class => "col-xs-3 control-label"
           = f.hidden_field a
           %span.mirror.col-xs-9= f.object.send(a) || "<span class='meta'>#{t(:default).downcase}</span>".html_safe
   .controls.col-xs-2

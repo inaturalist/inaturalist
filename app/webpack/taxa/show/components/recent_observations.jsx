@@ -5,6 +5,7 @@ import Carousel from "./carousel";
 import TaxonPhoto from "../../shared/components/taxon_photo";
 
 const RecentObservations = ( { observations, showPhotoModal, url } ) => {
+  if ( !observations ) { return ( <span /> ); }
   const chunkSize = 7;
   return (
     <Grid className={`RecentObservations ${observations.length < chunkSize ? "no-slides" : ""}`}>

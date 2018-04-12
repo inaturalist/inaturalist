@@ -20,7 +20,8 @@ $.fn.projectAutocomplete = function( options ) {
           q: request.term,
           per_page: request.term ? 10 : 300,
           member_id: options.currentUsersProjects ? CURRENT_USER.id : null,
-          not_id: options.notIDs ? options.notIDs.join(",") : null
+          not_id: options.notIDs ? options.notIDs.join(",") : null,
+          not_type: options.notTypes ? options.notTypes.join(",") : null
         },
         success: function( data ) {
           response( data.results );

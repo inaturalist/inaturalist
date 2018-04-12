@@ -6,7 +6,11 @@ $.fn.userAutocomplete = function( options ) {
   field.template = function( item ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-    labelDiv.append( item.html );
+    var icon = item.icon || "/attachment_defaults/users/icons/defaults/mini.png";
+    labelDiv.append(
+      "<img alt='" + item.login + "' title='" + item.login +
+        "' class='user_image  usericon' src='" + icon + "'>" );
+    labelDiv.append( "<span class='title'>" + item.login + "</span>" );
     wrapperDiv.append( labelDiv );
     return wrapperDiv;
   };
@@ -14,16 +18,18 @@ $.fn.userAutocomplete = function( options ) {
   field.genericAutocomplete( _.extend( options, {
     source: function( request, response ) {
       $.ajax({
-      url: "/people/search.json",
-        dataType: "json",
+        // TODO: check if the API needs to return users given an ID
+        url: "<%= CONFIG.node_api_url %>/users/autocomplete",
+        dataType: "jsonp",
         cache: true,
+        jsonpCallback: "projectAutocompleteCallback",
         data: {
           q: request.term,
           per_page: 10,
           order: "activity"
         },
         success: function( data ) {
-          response( _.map( data, function( r ) {
+          response( _.map( data.results, function( r ) {
             r.user_id = r.id;
             r.id = r.login;
             r.title = r.login;

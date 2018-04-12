@@ -18,11 +18,11 @@ class ProjectsController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
+  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar, :new2 ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :by_login, :new2]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
@@ -96,6 +96,23 @@ class ProjectsController < ApplicationController
       @list_numerator = list_observed_and_total[:numerator]
 
       format.html do
+        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
+          where("provider_authorizations.provider_name = 'facebook'").
+          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
+          map(&:provider_uid)
+        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
+        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
+        if @project.is_new_project?
+          projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+          if projects_response.blank?
+            flash[:error] = I18n.t( :doh_something_went_wrong )
+            return redirect_to projects_path
+          end
+          @projects_data = projects_response.results[0]
+          @current_tab = params[:tab]
+          @current_subtab = params[:subtab]
+          return render layout: "bootstrap", action: "show2"
+        end
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
         end
@@ -116,12 +133,6 @@ class ProjectsController < ApplicationController
           end
         end
         @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
-        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
-          where("provider_authorizations.provider_name = 'facebook'").
-          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
-          map(&:provider_uid)
-        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
-        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         @observations_url_params = { projects: [@project.slug] }
         @observations_url = observations_url(@observations_url_params)
         @observation_search_url_params = { place_id: "any", verifiable: "any", project_id: @project.slug }
@@ -166,7 +177,25 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def new2
+    unless logged_in? && current_user.has_role?(:admin)
+      flash[:error] = t(:only_administrators_may_access_that_page)
+      redirect_to projects_path
+      return
+    end
+    return render layout: "bootstrap"
+  end
+
   def edit
+    if @project.is_new_project?
+      projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+      if projects_response.blank?
+        flash[:error] = I18n.t( :doh_something_went_wrong )
+        return redirect_to projects_path
+      end
+      @project_json = projects_response.results[0]
+      return render layout: "bootstrap", action: "new2"
+    end
     @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
@@ -186,9 +215,15 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_created)) }
+        format.json {
+          render :json => @project.to_json
+        }
       else
         format.html { render :action => "new" }
+        format.json { render :status => :unprocessable_entity,
+          :json => { :error => @project.errors.full_messages } }
       end
     end
   end
@@ -200,9 +235,12 @@ class ProjectsController < ApplicationController
     @project.cover = nil if params[:cover_delete]
     respond_to do |format|
       if @project.update_attributes(params[:project])
+        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
+        format.json { render json: @project }
       else
         format.html { render :action => "edit" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -217,13 +255,23 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.delay( priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
-    
+    if @project.is_new_project?
+      # new projects can be destroyed immediately as they will have no
+      # project observations
+      @project.sane_destroy
+    else
+      @project.delay( priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
+    end
+
     respond_to do |format|
       format.html do
         flash[:notice] = t(:project_x_was_delete, :project => @project.title)
         redirect_to(projects_url)
+      end
+      format.json do
+        Project.refresh_es_index
+        head :ok
       end
     end
   end
@@ -940,7 +988,6 @@ class ProjectsController < ApplicationController
   
   def filter_params
     params[:project].delete(:featured_at) unless current_user.is_admin?
-    
     if current_user.is_admin?
       params[:project][:featured_at] = params[:project][:featured_at] == "1" ? Time.now : nil
     else

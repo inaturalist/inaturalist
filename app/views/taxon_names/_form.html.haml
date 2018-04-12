@@ -6,10 +6,10 @@
       = error_messages_for :taxon_name
       = n.hidden_field :taxon_id
       - if @taxon_name.new_record? || is_curator? || is_me?(@taxon_name.creator)
-        = n.text_field :name, :class => "text", :autofocus => true
+        = n.text_field :name, class: "text", autofocus: true, label: t(:name)
       - else
         %strong= @taxon_name.name
-      = n.select_lexicon :lexicon, @lexicons
+      = n.select_lexicon :lexicon, @lexicons, {}, label: t(:lexicon)
       .stacked
         = link_to_function t(:add_new_lexicon),                                  |
           "$('#new_lexicon_field').show(); " +                                   |
@@ -17,7 +17,7 @@
           "$('#taxon_name_lexicon_select').attr('name', 'lexicon_select');" +    |
           "$(this).hide();",                                                     |
           :id => "new_lexicon_link"                                              |
-        = n.form_field :new_lexicon, :wrapper => {:id => "new_lexicon_field", :style => "display:none;"} do
+        = n.form_field :new_lexicon, :wrapper => {:id => "new_lexicon_field", :style => "display:none;"}, label: t(:new_lexicon) do
           .input-group
             = n.text_field :lexicon, :name => "lexicon_text", 'label' => false, skip_builder: true, :class => "form-control"
             .input-group-btn

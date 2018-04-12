@@ -388,6 +388,10 @@ inat-taxon.split-taxon .icon {display: none;}
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
 #filter-container { margin-left: 10px; }
+#filters select,
+#filters label {
+  text-transform: capitalize;
+}
 #place-name-input input { margin-left: 4px; }
 #stats-container .col-xs-4 {
   overflow: hidden;
@@ -583,6 +587,7 @@ inat-taxon { white-space: nowrap; }
   display: block;
   font-weight: bold;
   font-size: 16px;
+  text-transform: capitalize;
 }
 
 .bootstrap #filters .radio, 
@@ -638,7 +643,11 @@ inat-taxon { white-space: nowrap; }
   border-right: 1px solid #ccc;
 }
 
-#filters-more-btn {padding:0;margin: 12px 0;}
+#filters-more-btn {
+  padding:0;
+  margin: 12px 0;
+  text-transform: capitalize;
+}
 #filters-more-btn .fa-caret-up { display: inline;}
 #filters-more-btn .fa-caret-down { display: none;}
 #filters-more-btn.collapsed .fa-caret-up { display: none; }

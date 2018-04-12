@@ -7,13 +7,9 @@ import LastObservationContainer from "../containers/last_observation_container";
 import NumObservationsContainer from "../containers/num_observations_container";
 
 const Leaders = ( { taxon } ) => {
-  let optional = <NumObservationsContainer />;
-  if ( taxon.rank_level > 10 ) {
-    if ( taxon.complete_species_count ) {
-      optional = <NumSpeciesContainer />;
-    } else {
-      optional = <LastObservationContainer />;
-    }
+  let optional = <LastObservationContainer />;
+  if ( taxon.rank_level > 10 && taxon.complete_species_count ) {
+    optional = <NumSpeciesContainer />;
   }
   return (
     <div className="Leaders">
