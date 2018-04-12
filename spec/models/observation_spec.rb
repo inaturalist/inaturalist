@@ -389,7 +389,7 @@ describe Observation do
         big_place.update_attributes( name: "Mexico" )
         user = User.make!( locale: "es-MX" )
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, user: user )
-        expect( o.place_guess ).to match /#{ I18n.t( big_place.name, locale: user.locale ) }/
+        expect( o.place_guess ).to match /#{ I18n.t( "places_name.mexico", locale: user.locale ) }/
       end
     end
   

@@ -905,8 +905,9 @@ class Observation < ActiveRecord::Base
 
       if !t
         I18N_SUPPORTED_LOCALES.each do |locale|
-          date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-          break if t = Chronic.parse(date_string) 
+          next if locale =~ /^en.*/
+          new_date_string = englishize_month_abbrevs_for_locale(date_string, locale)
+          break if t = Chronic.parse(new_date_string)
         end
       end
       return true unless t
@@ -1822,7 +1823,16 @@ class Observation < ActiveRecord::Base
       if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        p.code.blank? ? I18n.t( p.name, locale: locale, default: p.name ) : p.code
+        translated_place = I18n.t(
+          p.name,
+          locale: locale,
+          default: I18n.t(
+            "places_name.#{p.name.underscore}",
+            locale: locale,
+            default: p.name
+          )
+        )
+        p.code.blank? ? translated_place : p.code
       end
     end
     [first_name, remaining_names].flatten.join( ", " )
