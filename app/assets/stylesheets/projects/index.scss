@@ -1,0 +1,159 @@
+@import "../colors";
+$carousel-height: 300px;
+$carousel-height-narrow: 350px;
+
+#carousel-container {
+  background-color: white;
+  z-index: 3;
+  .photo {
+    width: 100%;
+    height: $carousel-height-narrow;
+    background-size: cover; 
+  }
+  #featured-carousel,
+  #about-projects {
+    height: $carousel-height-narrow;
+  }
+  .project-caption {
+    position: absolute;
+    opacity: 1;
+    transition: opacity 0.4s linear;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    h2,
+    span {
+      text-transform: capitalize;
+      color: white;
+      background-color: rgba(0,0,0,0.7);
+      padding: 10px;
+      margin: 0;
+      display: inline-block;
+    }
+    span {
+      font-size: 18px;
+    }
+    h2 {
+      font-size: 28px;
+    }
+  }
+  .left, .right {
+    .project-caption {
+      opacity: 0;
+      transition: opacity 0s linear;
+    }
+  }
+  .carousel-indicators {
+    margin: 0;
+    line-height: 0;
+    left: 20px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 5px;
+    width: auto;
+  }
+  #about-projects {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    h1 {
+      color: white;
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 200;
+      margin-bottom: 20px;
+    }
+    .btn {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 992px) {
+    .photo {
+      height: $carousel-height;
+    }
+    #featured-carousel,
+    #about-projects {
+      height: $carousel-height;
+    }
+  }
+}
+#carousel-container,
+#tools-container,
+#main-container {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  position: relative;
+}
+#tools-container {
+  border-top: 2px solid $border-grey;
+  box-shadow: 0 0 20px $border-grey;
+  z-index: 2;
+  .btn {
+    i {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+  }
+  .btn-primary {
+    background-color: $inat-green;
+    border-color: darken($inat-green, 1);
+  }
+}
+#main-container {
+  z-index: 1;
+  background-color: $page-background-grey;
+
+  h2 {
+    text-transform: capitalize;
+  }
+
+  .thumbnail {
+    position: relative;
+    .photo {
+      display: block;
+      background-size: cover;
+      height: 100px;
+      line-height: 120px;
+      text-align: center;
+      background-color: $border-grey;
+      i {
+        font-size: 40px;
+        color: white;
+      }
+    }
+    font-size: 16px;
+    a {
+      color: black;
+      display: block;
+      overflow: hidden;
+      height: 44px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; 
+      text-overflow: ellipsis;
+    }
+    .project-icon {
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: 20px;
+      top: 80px;
+      background-size: cover;
+      line-height: 40px;
+      text-align: center;
+      background-color: $border-grey;
+      border: 2px solid #f8f8f8;
+      box-shadow: 0 0 0 1px #ccc;
+      i {
+        font-size: 20px;
+        color: white;
+      }
+    }
+    .caption {
+      padding: 20px 70px 20px 20px;
+    }
+  }
+}

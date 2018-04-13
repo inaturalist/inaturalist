@@ -1,0 +1,9 @@
+.thumbnail.borderless
+  = link_to project, class: "photo", style: project.cover? ? "background-image: url('#{project.cover.url}')" : nil do
+    - unless project.cover?
+      %i.fa.fa-suitcase
+  .caption
+    = link_to project, class: "project-icon", style: project.icon? ? "background-image: url('#{project.icon.url(:span2)}')" : nil do
+      - unless project.icon?
+        %i.fa.fa-suitcase
+    = link_to project.title, project

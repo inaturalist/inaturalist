@@ -1923,6 +1923,7 @@ en:
   manage: Manage
   manage_all_your_subscriptions: Manage all your subscriptions
   manage_names: Manage names
+  manage_your_projects: Manage Your Projects
   manage_your_project_invitations: Manage your project invitations
   manage_subscriptions: Manage Subscriptions
   managed: managed
@@ -2849,7 +2850,10 @@ en:
   project_was_successfully_updated: Project was successfully updated.
   project_x_was_delete: "%{project} was deleted (please allow a few minutes it to be removed from the website)"
   projects: Projects
-  projects_description: "Projects are a way to pool your observations with other people on %{site_name}.  Whether you're interested in starting a citizen science project or just keeping tabs on the birds in a nearby park with your local birding club, Projects are the way to go."
+  projects_description: |
+    Projects let you pool your observations with other people on %{site_name}.
+    Whether you're starting a citizen science effort or keeping tabs on
+    the birds in your neighborhood, Projects are the way to go.
   projects_from_place: "Projects from %{place}"
   projects_in_x: "Projects in %{x}"
   projects_you_admin: Projects You Admin

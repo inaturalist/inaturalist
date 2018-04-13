@@ -906,7 +906,7 @@ qqq:
   project_user_was_invalid: where project_user is the invalid project user
   project_x_was_delete: where project is the name of a project
   projects: '{{Identical|Project}}'
-  projects_description: where site_name is the name of a site
+  projects_description: where site_name is the name of a site. Try to keep this under 210 characters. There should not be any HTML.
   projects_from_place: where place is the name of a place
   projects_in_x: where x is the name of a place
   public_coordinates_obscured_by: where distance is a number
