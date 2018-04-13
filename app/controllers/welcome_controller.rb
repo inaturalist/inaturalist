@@ -1,29 +1,31 @@
 class WelcomeController < ApplicationController
-  MOBILIZED = [:index]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   before_filter :set_homepage_wiki, only: :index
 
   def index
     respond_to do |format|
       format.html do
-        @announcement = Announcement.where(placement: "welcome/index").
-          where('? BETWEEN "start" AND "end"', Time.now.utc).last
+        scope = Announcement.
+          where(placement: "welcome/index").
+          where('? BETWEEN "start" AND "end"', Time.now.utc).
+          limit( 5 )
+        base_scope = scope
+        scope = scope.where( site_id: nil )
+        @announcements = scope.in_locale( I18n.locale )
+        @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+        if @announcements.blank?
+          @announcements = base_scope.where( "site_id = ? AND locales IN (?)",  @site, [] )
+          @announcements << base_scope.in_locale( I18n.locale ).where( site_id: @site )
+          @announcements = @announcements.flatten
+        end
         @google_webmaster_verification = @site.google_webmaster_verification if @site
         
-        if logged_in?
+        if logged_in? && !@site.draft?
           redirect_to home_path
         elsif !@page
           render layout: 'bootstrap'
         end
       end
-      format.mobile
     end
-  end
-
-  def toggle_mobile
-    session[:mobile_view] = session[:mobile_view] ? false : true
-    redirect_to params[:return_to] || session[:return_to] || "/"
   end
 
   private

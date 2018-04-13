@@ -1,7 +1,26 @@
 - site = @site || CONFIG
-- if defined?(is_mobile_device?) && is_mobile_device? && @mobilized
-  .box.notice.centered
-    = link_to t(:mobile_view_available), toggle_mobile_path, :id => "mobiletogglelink"
+- if logged_in?
+  .bootstrap
+    .container
+      .row
+        .col-xs-12
+          .box.text-center.upstacked
+            - if current_user.in_test_group?( "header-2018" )
+              = form_tag leave_test_user_path( current_user, test: "header-2018" ), method: "put" do
+                %label Stop testing the new header (Version 1)?
+                = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
+              = link_to t(:what_do_you_think), "https://www.inaturalist.org/blog/15132-new-header"
+            - elsif current_user.in_test_group?( "header-2018-2" )
+              = form_tag leave_test_user_path( current_user, test: "header-2018-2" ), method: "put" do
+                %label Stop testing the new header (Version 2)?
+                = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
+              = link_to t(:what_do_you_think), "https://www.inaturalist.org/blog/15132-new-header"
+            - else
+              %label Want to test a new version of the header?
+              = form_tag join_test_user_path( current_user, test: "header-2018" ), method: "put", class: "inlineblock" do
+                = submit_tag "Try Version 1", class: "btn btn-default btn-sm"
+              = form_tag join_test_user_path( current_user, test: "header-2018-2" ), method: "put", class: "inlineblock" do
+                = submit_tag "Try Version 2", class: "btn btn-default btn-sm"
 #footer.bootstrap
   .container
     .row
@@ -20,7 +39,7 @@
           %p
             %a{ href: site.blog_url }=t :our_blog
         %p
-          %a{ href: site.developers_url }=t :developers
+          %a{ href: site.community_guidelines_url }=t :community_guidelines
         %p
           %a{ href: site.terms_url }=t :terms_service
         %p
@@ -38,8 +57,22 @@
   .container
     .row
       .col-xs-12
-        =t :member_of_the_inaturalist_network_html, url: "/pages/network"
-        &nbsp;
-        |
-        &nbsp;
-        =t :powered_by_inaturalist_open_source_software_html
+        .links.inlineblock
+          =t :member_of_the_inaturalist_network_html, url: "/pages/network"
+          &nbsp;
+          |
+          &nbsp;
+          =t :powered_by_inaturalist_open_source_software_html
+          |
+          &nbsp;
+          =t :documentation_for_developers_html
+        #footer-locale-chooser.btn-group.dropup.pull-right
+          %button.btn.btn-default.dropdown-toggle{ data: { toggle: "dropdown" }, "aria-haspopup" => true, "aria-expanded" => false }
+            %i.icon-ios-world
+            = I18n.t( "locales.#{I18n.locale}" )
+            %span.caret
+            %span.sr-only=t :toggle_dropdown, default: "Toggle Dropdown"
+          %ul.dropdown-menu
+            - I18n.t( "locales", locale: :en ).keys.each do |locale|
+              %li
+                = link_to I18n.t( "locales.#{locale}", locale: locale ), set_locale_path( locale: locale )

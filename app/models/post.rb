@@ -1,8 +1,10 @@
 class Post < ActiveRecord::Base
   acts_as_spammable :fields => [ :title, :body ],
-                    :comment_type => "item-description"
+                    :comment_type => "blog-post"
 
-  has_subscribers
+  has_subscribers to: {
+    comments: { notification: "activity", include_owner: true }
+  }
   notifies_subscribers_of :parent, {
     :on => [:update, :create],
     :queue_if => lambda{ |post|
@@ -23,7 +25,12 @@ class Post < ActiveRecord::Base
     :notification => "created_post",
     :include_notifier => true
   }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    delay: false,
+    notification: "mention",
+    if: lambda {|u| u.prefers_receive_mentions? }
   belongs_to :parent, :polymorphic => true
   belongs_to :user
   has_many :comments, :as => :parent, :dependent => :destroy
@@ -34,8 +41,8 @@ class Post < ActiveRecord::Base
   validate :user_must_be_on_site_long_enough
   
   before_save :skip_update_for_draft
-  after_create :increment_user_counter_cache
-  after_destroy :decrement_user_counter_cache
+  after_save :update_user_counter_cache
+  after_destroy :update_user_counter_cache
   
   scope :published, -> { where("published_at IS NOT NULL") }
   scope :unpublished, -> { where("published_at IS NULL") }
@@ -67,17 +74,13 @@ class Post < ActiveRecord::Base
     true
   end
   
-  # Update the counter cache in users.
-  def increment_user_counter_cache
-    self.user.increment!(:journal_posts_count) if parent_type == 'User' && published?
+  def update_user_counter_cache
+    if parent_type == "User" && published_at_changed?
+      User.where( id: user_id, ).update_all( journal_posts_count: user.journal_posts.published.count )
+    end
     true
   end
-  
-  def decrement_user_counter_cache
-    user.decrement!(:journal_posts_count) if parent_type == 'User' && published?
-    true
-  end
-  
+
   def to_s
     "<Post #{self.id}: #{self.to_plain_s}>"
   end
@@ -108,6 +111,11 @@ class Post < ActiveRecord::Base
   def mentioned_users
     return [ ] unless published? && body
     body.mentioned_users
+  end
+
+  def previously_mentioned_users
+    return [ ] if !published? || body_was.blank? || ( published? && published_at_was.blank? )
+    body.mentioned_users & body_was.to_s.mentioned_users
   end
 
 end

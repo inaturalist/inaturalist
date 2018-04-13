@@ -372,7 +372,7 @@ mk:
   captive_cultivated: Во заробеништво / одгледуван
   casual: површно
   catalogue_of_life: Каталог на животот
-  cc_attribution_license: лиценца Криејтив комонс НаведиИзвор
+  cc_attribution_license: лиценца Криејтив комонс Наведи извор
   cc_by_name: Припис
   change: Смени
   change_cover: смени насловна
@@ -388,7 +388,7 @@ mk:
   choose_a_list_above: Одберете список погоре.
   choose_a_place: Одберете место
   choose_a_taxon: Одберете таксон (незадол.)
-  chose_columns: Одберете колони
+  chose_columns: Одберете столбови
   choose_files_from_your_computer: Одберете податотеки од вашиот сметач
   choose_from_your_lists: Одберете од вашите списоци
   choose_good_default_photos: одберете добри стандардни слики од фондот на слики Flickr
@@ -644,8 +644,8 @@ mk:
   featured?: истакнат?
   featured_projects_from_everywhere: Истакнати проекти од секаде
   featured_projects_from_place: Истакнати проекти од %{place}
-  feeds: Канали
-  feeds_for_current_filters: Канали за тековни филтри
+  feeds: Тековници
+  feeds_for_current_filters: Тековници за тековни филтри
   field_note: <strong>Напомена:</strong> Ако сакате да направите поле, стиснете да
     проверите да не е веќе направено од друг, со цел да избегнете удвојувања.
   fields: полиња
@@ -875,7 +875,6 @@ mk:
   link_your_flickr_account_with_inat: Поврзете си ја сметката на Flickr со %{site_name}
   link_your_flickr_account_with_inat_so: Поврзете си ја сметката на Flickr со %{site_name}
     за да можете да им ставате слики на вашите набљудувања.
-  link_your_picasa_account: Поврзете си ја сметката на Picasa
   linked_facebook: Вашата сметка на %{site_name} е врзана со вашата сметка на Facebook.
   list: Список
   list_deleted: Списокот е избришан.
@@ -902,11 +901,11 @@ mk:
   locale_description: Во локалот се задава претпочитаниот јазик и датумски формат.
   locales:
     ca: каталонски
-    en: англиски
     en-US: англиски (САД)
-    es: шпански
+    en: англиски
     es-ES: шпански (Шпанија)
     es-MX: шпански (Мексико)
+    es: шпански
     eu: баскиски
     gl: галициски
     mk: македонски
@@ -957,12 +956,11 @@ mk:
   merging_places: Спојување на места
   message: Порака
   messages: Пораки
-  mixed_licenses: мешовити лиценци
   misleading_or_illegal_content_html: Заблудна или противзаконска содржина, расни
     или етнички навреди и тн.
+  mixed_licenses: мешовити лиценци
   mobile_app_for: Мобилен прог. за
   mobile_apps_for: 'Мобилни верзии:'
-  mobile_view_available: Мобилниот изглед е достапен
   mollusks: мекотелци
   mon: пон
   month: Месец
@@ -1071,7 +1069,6 @@ mk:
   no_matching_users: Нема соодветни корисници.
   no_members_yet: Засега нема членови.
   no_messages_yet: Засега нема пораки
-  no_mobilized_version_of_that_view: Нема мобилизирана верзија на тој поглед.
   no_new_messages: Нема нови пораки
   no_observations: нема набљудувања
   no_observations_from_this_place_yet: Засега нема ниедно набљудување од ова место.
@@ -1474,9 +1471,9 @@ mk:
   search_ubio_raquo: Пребарај го uBio &raquo;
   search_your_photos: Пребарајте по вашите слики
   searching: Пребарувам...
+  select: Избери
   select_all: Избери сè
   select_an_album: Избери албум
-  select: Избери
   select_one_or_more_photos: Изерете една или повеќе слики
   select_none: Ниедно
   send: испрати
@@ -1686,11 +1683,11 @@ mk:
     таксономска промена. Притоа опишете го предложеното одвојување, спојување или
     замена на активните таксони што треба подоцна да се спроведе.
   user: Корисник
-  user_added_an_observation_html: '%{user} додаде набљудување'
-  user_added_an_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
-  user_added_a_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} додаде %{x} во %{noun} од %{by}'
   user_added_a_x_to_noun_by_html: '%{user} додаде %{x} во %{noun} од %{by}'
+  user_added_a_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
+  user_added_an_observation_html: '%{user} додаде набљудување'
+  user_added_an_x_to_noun_by_html: '%{user} додаде %{x} во %{noun} од %{by}'
+  user_added_an_x_to_noun_html: '%{user} додаде %{x} во %{noun}'
   user_added_x_observations_html: '%{user} додаде %{x} набљудувања'
   user_commented_on: '%{user} искоментира на вашето %{title} %{time}'
   user_follows: '%{user} следи'
@@ -1732,7 +1729,6 @@ mk:
     на <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Погледајте скорешни набљудувања
   view_nbsp: Погл. &nbsp;
-  view_non_mobile_site: Погл. немобилниот портал
   view_observation: Погл. набљудување
   view_observations: Погл. набљудувања
   view_observations_by_everyone: Погл. набљудувања од сите
@@ -1866,8 +1862,6 @@ mk:
           Штиклирајте го кутивчето „Препознајте“ кога додавате / менувате ваше
           набљудување и набљудувањето ќе се појави во
           „<a href="%{url}">Препознајте</a>“.
-        we_also_support_picasa_html: 'Ја поддржуваме и Picasa: <a href="%{url}">Нагодете
-          си ја сметката на Picasa &raquo;</a>'
     projects:
       edit:
         start_time_desc: Почетно време на вашиот биоблиц

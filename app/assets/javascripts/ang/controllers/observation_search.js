@@ -59,7 +59,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
   $scope.possibleFields = [ "iconic_taxa", "month", "swlat", "swlng",
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
-    "locale", "preferred_place_id" ];
+    "locale", "preferred_place_id", "ident_user_id" ];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $rootScope.mapType = "map";
@@ -171,7 +171,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
           ($scope.processedParams.user_id == CURRENT_USER.login)
         );
       }
-      if( _.isEqual( newValue, oldValue ) ) { return; }
+      if( _.isEqual( newValue, oldValue ) ) {
+        return;
+      }
       // if any of the filters change we want to reset the page to 1.
       // when pagination, the page will change, so if the page doesn't
       // change, then the user is changing another filter, so go to page 1
@@ -181,7 +183,9 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }, true);
     // changes in processedParams are what initiate searches
     $scope.$watch( "processedParams", function( before, after ) {
-      if( _.isEqual( before, after ) ) { return; }
+      if( _.isEqual( before, after ) ) {
+        return;
+      }
       // when paginating we do want to set processedParams, but we don't
       // want to query for the stats again as they will stay the same
       if( $scope.skipParamChange ) {
@@ -194,6 +198,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       // restore some one-time search settings
       $scope.alignMapOnSearch = false;
       $scope.goingBack = false;
+      $scope.pagingInitialized = true;
     }, true);
   };
   $scope.toggleMoreFilters = function( ) {
@@ -323,8 +328,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       ));
     }
     // set the default user or site place_id
-    if( PREFERRED_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
-      initialParams.place_id = PREFERRED_PLACE.id;
+    if( PREFERRED_SEARCH_PLACE && !ObservationsFactory.hasSpatialParams( initialParams ) ) {
+      initialParams.place_id = PREFERRED_SEARCH_PLACE.id;
     }
     if( PREFERRED_SUBVIEW && !initialParams.subview ) {
       $scope.currentSubview = PREFERRED_SUBVIEW;
@@ -348,7 +353,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.extendBrowserLocation = function( options ) {
     var params = _.extend( { }, $location.search( ), options );
     params = _.omit( params, function( value, key, object ) {
-      return _.isEmpty( value) && !_.isBoolean( value ) && !_.isNumber( value );
+      return _.isEmpty( value ) && !_.isBoolean( value ) && !_.isNumber( value );
     });
     return "?" + $.param( params );
   };
@@ -515,24 +520,50 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.identifiers = [ ];
     $scope.observers = [ ];
     $scope.resetStats( );
-    var processedParams = ObservationsFactory.processParamsForAPI( _.extend( { },
-      $scope.params, iNaturalist.localeParams( ) ),
-      $scope.possibleFields);
+    var processedParamsWithoutLocale = ObservationsFactory.processParamsForAPI( _.extend( { },
+      $scope.params ), $scope.possibleFields);
+    var processedParams = _.extend( { },
+      processedParamsWithoutLocale, iNaturalist.localeParams( ) );
     // recording there was some location in the search. That will be used
     // to hide the `Redo Search` button until the map moves
     if( processedParams.place_id || processedParams.swlat ) {
       $scope.hideRedoSearch = true;
     }
+    if( _.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+      processedParams.ttl = 3600;
+    }
     var statsParams = _.omit( processedParams, [ "order_by", "order", "page" ] );
     var searchParams = _.extend( { }, processedParams, {
-      page: $scope.apiPage( ),
-      per_page: $scope.pagination.perSection });
+      page: $scope.apiPage( ) || 1,
+      per_page: $scope.pagination.perSection,
+      return_bounds: true });
     // prevent slow searches from overwriting current results
     var thisSearchTime = new Date( ).getTime( );
     $scope.lastSearchTime = thisSearchTime;
     ObservationsFactory.search( searchParams ).
                         then( function( response ) {
       if( $scope.lastSearchTime != thisSearchTime ) { return; }
+
+      // this is an initial search, and not the default no-params search,
+      // and we have bounds of the results, so focus the map on the results
+      if( response.data.total_bounds &&
+          options.browserStateOnly &&
+          !_.isEqual( $scope.defaultProcessedParams, processedParamsWithoutLocale ) ) {
+        var bounds = response.data.total_bounds;
+        var swlat = bounds.swlat;
+        var swlng = bounds.swlng;
+        var nelat = bounds.nelat;
+        var nelng = bounds.nelng;
+        if( swlat < -80 ) { swlat = -80; }
+        if( swlng < -179.9 ) { swlng = -179.9; }
+        if( nelat > 80 ) { nelat = 80; }
+        if( nelng > 179.9 ) { nelng = 179.9; }
+        $scope.mapBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng( swlat, swlng ),
+          new google.maps.LatLng( nelat, nelng ));
+        $rootScope.$emit( "alignMap" );
+      }
+
       $scope.pagination.searching = false;
       thisSearchTime = new Date( ).getTime( );
       $scope.lastSearchTime = thisSearchTime;
@@ -588,7 +619,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     $scope.numberObserversShown += 20;
   };
   $scope.apiPage = function( ) {
-    return ( ( $scope.pagination.page - 1 ) * $scope.pagination.maxSections ) + $scope.pagination.section;
+    var page = ( ( $scope.pagination.page - 1 ) * $scope.pagination.maxSections ) + $scope.pagination.section;
+    return page || 1;
   };
   $scope.showMoreObservations = function( ) {
     $scope.pagination = $scope.pagination || { };
@@ -616,7 +648,6 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       $scope.pagingInitialized = true;
       return;
     }
-    // if( !$scope.pagination ) { return; }
     $anchorScroll( );
     $scope.skipParamChange = true;
     $scope.params.page = $scope.pagination.page;
@@ -1176,7 +1207,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     options = options || { };
     options.params = options.params || { };
     if( onMap ) {
-      options.bounds = options.bounds || $scope.map.getBounds( );
+      options.bounds = options.bounds || $scope.mapBounds || $scope.map.getBounds( );
     } else if( $scope.mapBounds ) {
       options.bounds = options.bounds || $scope.mapBounds;
     }
@@ -1261,6 +1292,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.showRedoSearchButton( );
     var time = new Date( ).getTime( );
     $scope.lastMoveTime = time;
+    $scope.mapBounds = $scope.map.getBounds( );
     setTimeout( function( ) {
       // only perform one nearby place search, once
       // the map has stopped moving for a half second
@@ -1403,13 +1435,15 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
         lat: parseFloat( $scope.params.lat ),
         lng: parseFloat( $scope.params.lng )
       };
+      var circleRadius = $scope.params.radius ? parseFloat( $scope.params.radius ) * 1000 : 10000;
       $scope.selectedPlaceLayer = new google.maps.Circle(
         _.extend( { }, $scope.placeLayerStyle, {
           map: $scope.map,
-          radius: 10000,
+          radius: circleRadius,
           center: xMarkerPosition
         })
       );
+      $scope.$parent.mapBounds = $scope.selectedPlaceLayer.getBounds();
     }
     if( xMarkerPosition ) {
       $scope.boundingBoxCenterIcon = new google.maps.Marker({
@@ -1461,5 +1495,8 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
   };
   $scope.togglFullscreen = function( ) {
     $scope.fullscreen = !$scope.fullscreen;
+    setTimeout( function( ) {
+      google.maps.event.trigger( $scope.map, "resize" );
+    }, 100 );
   };
 }]);

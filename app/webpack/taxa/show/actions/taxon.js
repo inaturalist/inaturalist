@@ -1,9 +1,18 @@
+import _ from "lodash";
 import {
   fetchTaxon,
   setCount,
   fetchTaxonChange,
   fetchNames,
-  fetchTerms
+  fetchTerms,
+  fetchSpecies,
+  fetchDescription,
+  fetchLinks,
+  fetchInteractions,
+  fetchTrending,
+  fetchWanted,
+  fetchRecent,
+  fetchSimilar
 } from "../../shared/ducks/taxon";
 import {
   fetchMonthFrequency,
@@ -17,14 +26,15 @@ export function fetchTaxonAssociates( t ) {
   return ( dispatch, getState ) => {
     dispatch( resetLeadersState( ) );
     dispatch( resetObservationsState( ) );
-    const taxon = t || getState( ).taxon.taxon;
-    if ( taxon.taxon_changes_count ) {
+    const s = getState( );
+    const taxon = t || s.taxon.taxon;
+    if ( !_.isNil( taxon.taxon_changes_count ) ) {
       dispatch( setCount( "taxonChangesCount", taxon.taxon_changes_count ) );
       if ( taxon.taxon_changes_count > 0 ) {
         dispatch( fetchTaxonChange( taxon ) );
       }
     }
-    if ( taxon.taxon_schemes_count ) {
+    if ( !_.isNil( taxon.taxon_schemes_count ) ) {
       dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
     }
     dispatch( fetchNames( ) );
@@ -32,6 +42,31 @@ export function fetchTaxonAssociates( t ) {
       .then( ( ) => dispatch( fetchTerms( ) ) )
       .then( ( ) => dispatch( fetchMonthOfYearFrequency( taxon ) ) )
       .then( ( ) => dispatch( fetchMonthFrequency( taxon ) ) );
+    if ( taxon.complete_species_count ) {
+      dispatch( fetchSpecies( ) );
+    }
+    switch ( s.config.chosenTab ) {
+      case "articles":
+        dispatch( fetchDescription( ) );
+        dispatch( fetchLinks( ) );
+        break;
+      case "taxonomy":
+        dispatch( fetchNames( ) );
+        break;
+      case "interactions":
+        dispatch( fetchInteractions( ) );
+        break;
+      case "highlights":
+        dispatch( fetchTrending( ) );
+        dispatch( fetchWanted( ) );
+        dispatch( fetchRecent( ) );
+        break;
+      case "similar":
+        dispatch( fetchSimilar( ) );
+        break;
+      default:
+        // it's cool, you probably have what you need
+    }
   };
 }
 

@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import SearchBar from "../components/search_bar";
 import {
-  fetchObservations,
   updateSearchParams,
   replaceSearchParams,
   reviewAll,
@@ -12,7 +11,8 @@ function mapStateToProps( state ) {
   return {
     params: state.searchParams.params,
     defaultParams: state.searchParams.default,
-    allReviewed: state.config.allReviewed
+    allReviewed: state.config.allReviewed,
+    allControlledTerms: state.controlledTerms.allTerms
   };
 }
 
@@ -26,11 +26,9 @@ function mapDispatchToProps( dispatch ) {
     },
     updateSearchParams: ( params ) => {
       dispatch( updateSearchParams( Object.assign( {}, params, { page: 1 } ) ) );
-      dispatch( fetchObservations( ) );
     },
     replaceSearchParams: ( params ) => {
       dispatch( replaceSearchParams( Object.assign( {}, params, { page: 1 } ) ) );
-      dispatch( fetchObservations( ) );
     }
   };
 }

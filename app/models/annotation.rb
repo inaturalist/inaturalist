@@ -2,6 +2,8 @@
 class Annotation < ActiveRecord::Base
 
   acts_as_votable
+  blockable_by lambda {|annotation| annotation.resource.try(:user_id) }
+
   # acts_as_votable automatically includes `has_subscribers` but
   # we don't want people to subscribe to annotations. Without this,
   # voting on annotations would invoke auto-subscription to the votable
@@ -23,12 +25,14 @@ class Annotation < ActiveRecord::Base
   validate :attribute_belongs_to_taxon
   validate :value_belongs_to_taxon
   validate :multiple_values
+  validate :no_other_annotations_of_blocking_values
+  validate :no_other_annotations_if_this_is_blocking
   validates_uniqueness_of :controlled_value_id,
     scope: [:resource_type, :resource_id, :controlled_attribute_id]
 
-  after_create :index_observation_later
-  after_save :index_observation_later
-  after_destroy :index_observation_later
+  after_create :index_observation
+  after_save :index_observation
+  after_destroy :index_observation
 
   attr_accessor :skip_indexing
 
@@ -83,6 +87,38 @@ class Annotation < ActiveRecord::Base
     end
   end
 
+  def no_other_annotations_of_blocking_values
+    return true unless controlled_attribute
+    return true unless controlled_attribute.multivalued?
+    scope = Annotation.
+      where( controlled_attribute: controlled_attribute, resource: resource ).
+      joins( :controlled_value ).
+      where( "controlled_terms.blocking" )
+    unless new_record?
+      scope = scope.where( "id != ?", id )
+    end
+    if scope.count > 0
+      errors.add( :controlled_value, "blocked by another value" )
+    end
+    true
+  end
+
+  def no_other_annotations_if_this_is_blocking
+    return true unless controlled_attribute
+    return true unless controlled_attribute.multivalued?
+    return true unless controlled_value
+    return true unless controlled_value.blocking?
+    scope = Annotation.
+      where( controlled_attribute: controlled_attribute, resource: resource )
+    unless new_record?
+      scope = scope.where( "id != ?", id )
+    end
+    if scope.count > 0
+      errors.add( :controlled_value, "is blocking but another annotation already added" )
+    end
+    true
+  end
+
   def taxon_id
     taxon.try(:id)
   end
@@ -103,7 +139,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def votable_callback
-    index_observation_later
+    index_observation
   end
 
   def as_indexed_json(options={})
@@ -112,8 +148,16 @@ class Annotation < ActiveRecord::Base
       controlled_attribute_id: controlled_attribute_id,
       controlled_value_id: controlled_value_id,
       concatenated_attr_val: [controlled_attribute_id, controlled_value_id].join("|"),
-      vote_score: vote_score
+      vote_score: vote_score,
+      user_id: user_id,
+      votes: votes_for.map(&:as_indexed_json)
     }
+  end
+
+  def index_observation
+    if resource.is_a?(Observation) && !skip_indexing
+      Observation.elastic_index!(ids: [resource.id])
+    end
   end
 
   def index_observation_later

@@ -1,6 +1,32 @@
-.SplitTaxon > *:after {
-  content: '\0020';
-}
+@import "../colors";
+
 .SplitTaxon > *:first-child {
   content: '';
+}
+.taxon.has-com-name .secondary-name {
+  color: #aaa;
+  white-space: nowrap;
+}
+
+.SplitTaxon.taxon.has-com-name {
+  .sciname:before { content: ''; display: inline-block; }
+  .sciname:after { content: ''; display: inline-block; }
+  &.no-parens .secondary-name:before { content: ''; display: inline-block; }
+  &.no-parens .secondary-name:after { content: ''; display: inline-block; }
+  .secondary-name:before,
+  &.parens .secondary-name:before { content: '('; display: inline-block; }
+  .secondary-name:after,
+  &.parens .secondary-name:after { content: ')'; display: inline-block; }
+}
+
+.taxon .altname { color: #aaa; }
+
+.SplitTaxon {
+  .inactive {
+    margin-left: 5px;
+    a {
+      color: $fail-red;
+      text-decoration: none;
+    }
+  }
 }

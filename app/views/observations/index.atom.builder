@@ -1,7 +1,7 @@
 atom_feed({"xmlns"        => "http://www.w3.org/2005/Atom",
            "xmlns:georss" => "http://www.georss.org/georss"}) do |feed|
              
-  feed.title("#{CONFIG.site_name}: Observations by Everyone")
+  feed.title("#{@site.name}: Observations by Everyone")
   feed.updated(@updated_at)
   feed.icon(image_path('favicon.png'))
   

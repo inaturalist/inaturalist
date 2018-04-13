@@ -93,7 +93,8 @@ class SiteStatistic < ActiveRecord::Base
     at_time = at_time.utc
     { species_counts: Taxon.of_rank_equiv_or_lower(10).joins(:observations).
         where("observations.created_at <= ?", at_time).
-        count(:id, distinct: true),
+        distinct.
+        count(:id),
       species_counts_by_site: Hash[ Taxon.joins(observations: :site).
         where("observations.created_at <= ?", at_time).
         select("sites.name, count(distinct taxa.id) as count").
@@ -175,33 +176,73 @@ class SiteStatistic < ActiveRecord::Base
 
   def self.platforms_stats(at_time = Time.now)
     at_time = at_time.utc
-    { web: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where("oauth_application_id IS NULL").count,
-      iphone: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_iphone_app.id).count,
-      android: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_android_app.id).count,
-      other: Observation.where("created_at BETWEEN ? AND ?", at_time - 1.day, at_time).
-        where("oauth_application_id IS NOT NULL").
-        where("oauth_application_id NOT IN (?,?)",
-          OauthApplication.inaturalist_iphone_app.id,
-          OauthApplication.inaturalist_android_app.id).count
+    date_filter = { range: { created_at: { gte: at_time - 1.day, lt: at_time } } }
+    iphone_app_id = OauthApplication.inaturalist_iphone_app.try(:id) || -1
+    android_app_id = OauthApplication.inaturalist_android_app.try(:id) || -1
+    { web: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { bool: { must_not: { exists: { field: "oauth_application_id" } } } }
+        ]}).total_entries,
+      iphone: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: iphone_app_id } }
+        ]}).total_entries,
+      android: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: android_app_id } }
+        ]}).total_entries,
+      other: Observation.elastic_search({
+        filters: [
+          date_filter,
+          {
+            bool: {
+              must: { exists: { field: "oauth_application_id" } },
+              must_not: { terms: { oauth_application_id: [
+                iphone_app_id,
+                android_app_id
+              ] } }
+            }
+          }
+        ]}).total_entries
     }
   end
 
   def self.platforms_cumulative_stats(at_time = Time.now)
     at_time = at_time.utc
-    { web: Observation.where("created_at <= ?", at_time).
-        where("oauth_application_id IS NULL").count,
-      iphone: Observation.where("created_at <= ?", at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_iphone_app.id).count,
-      android: Observation.where("created_at <= ?", at_time).
-        where(oauth_application_id: OauthApplication.inaturalist_android_app.id).count,
-      other: Observation.where("created_at <= ?", at_time).
-        where("oauth_application_id IS NOT NULL").
-        where("oauth_application_id NOT IN (?,?)",
-          OauthApplication.inaturalist_iphone_app.id,
-          OauthApplication.inaturalist_android_app.id).count
+    date_filter = { range: { created_at: { lte: at_time } } }
+    iphone_app_id = OauthApplication.inaturalist_iphone_app.try(:id) || -1
+    android_app_id = OauthApplication.inaturalist_android_app.try(:id) || -1
+    { web: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { bool: { must_not: { exists: { field: "oauth_application_id" } } } }
+        ]}).total_entries,
+      iphone: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: iphone_app_id } }
+        ]}).total_entries,
+      android: Observation.elastic_search({
+        filters: [
+          date_filter,
+          { term: { oauth_application_id: android_app_id } }
+        ]}).total_entries,
+      other: Observation.elastic_search({
+        filters: [
+          date_filter,
+          {
+            bool: {
+              must: { exists: { field: "oauth_application_id" } },
+              must_not: { terms: { oauth_application_id: [
+                iphone_app_id,
+                android_app_id
+              ] } }
+            }
+          }
+        ]}).total_entries
     }
   end
 

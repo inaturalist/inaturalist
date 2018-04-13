@@ -1,7 +1,7 @@
 import {
   UPDATE_SEARCH_PARAMS,
   RECEIVE_OBSERVATIONS,
-  UPDATE_SEARCH_PARAMS_FROM_POP,
+  UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY,
   UPDATE_DEFAULT_PARAMS,
   REPLACE_SEARCH_PARAMS
 } from "../actions";
@@ -9,22 +9,17 @@ import _ from "lodash";
 
 const DEFAULT_PARAMS = {
   reviewed: false,
-  verifiable: true,
   quality_grade: "needs_id",
   page: 1,
   per_page: 30,
   iconic_taxa: [],
   order_by: "observations.id",
   order: "desc",
-  // This is a hack to get around our node API's cache control settings, since
-  // it defaults to something, and we hit obs search repeatedly for stats. A
-  // better approach might be to have a separate endpoints that delivers these
-  // stats uncached, or disable cache-control when viewer_id is set or
-  // something.
-  ttl: -1
+  dateType: "any",
+  createdDateType: "any"
 };
 
-const HIDDEN_PARAMS = ["dateType", "createdDateType"];
+const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];
 
 // Coerce params into a consistent format for update the state
 const normalizeParams = ( params ) => {
@@ -137,6 +132,7 @@ const paramsForSearch = ( params ) => {
 const setUrl = ( newParams, defaultParams ) => {
   // don't put defaults in the URL
   const urlState = {};
+  const oldUrlState = $.deparam.querystring( );
   _.forEach( paramsForSearch( newParams ), ( v, k ) => {
     if ( defaultParams[k] !== undefined && defaultParams[k] === v ) {
       return;
@@ -149,6 +145,9 @@ const setUrl = ( newParams, defaultParams ) => {
   } );
   if ( !newParams.place_id && defaultParams.place_id ) {
     urlState.place_id = "any";
+  }
+  if ( _.isEqual( oldUrlState, urlState ) ) {
+    return;
   }
   const title = `Identify: ${$.param( urlState )}`;
   const newUrl = [
@@ -173,12 +172,7 @@ const searchParamsReducer = ( state = {
       } );
       break;
     case UPDATE_SEARCH_PARAMS:
-      newState = Object.assign( {}, {
-        default: Object.assign( {}, state.default ),
-        params: Object.assign( {}, state.params, action.params )
-      } );
-      break;
-    case UPDATE_SEARCH_PARAMS_FROM_POP:
+    case UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY:
       newState = Object.assign( {}, {
         default: Object.assign( {}, state.default ),
         params: Object.assign( {}, state.params, action.params )
@@ -205,10 +199,17 @@ const searchParamsReducer = ( state = {
       return state;
   }
   newState.params = normalizeParams( newState.params );
+
+  // if the states are equal there should be no reason to update the URL
   if ( _.isEqual( state.params, newState.params ) ) {
     return state;
   }
-  if ( action.type === UPDATE_SEARCH_PARAMS_FROM_POP ) {
+  // if we're popping or setting the initial state, the URL should already be updated
+  if ( action.type === UPDATE_SEARCH_PARAMS_WITHOUT_HISTORY ) {
+    return newState;
+  }
+  // if we're setting defaults there's no need to update the URL
+  if ( action.type === UPDATE_DEFAULT_PARAMS ) {
     return newState;
   }
   setUrl( newState.params, newState.default );

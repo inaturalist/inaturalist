@@ -1,8 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-shared_examples_for "an ObservationsController" do
+shared_examples_for "ObservationsController basics" do
 
   describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should create" do
       expect {
         post :create, :format => :json, :observation => {:species_guess => "foo"}
@@ -11,13 +13,104 @@ shared_examples_for "an ObservationsController" do
       expect(o.user_id).to eq(user.id)
       expect(o.species_guess).to eq ("foo")
     end
+    it "should not create for a suspended user" do
+      user.suspend!
+      expect {
+        post :create, format: :json, observation: { species_guess: "foo" }
+      }.not_to change( Observation, :count )
+    end
+    it "should create for an unsuspended user" do
+      user.suspend!
+      user.unsuspend!
+      expect {
+        post :create, format: :json, observation: { species_guess: "foo" }
+      }.to change( Observation, :count )
+    end
+  end
 
-    it "should include private coordinates in create response" do
-      post :create, :format => :json, :observation => {:latitude => 1.2345, :longitude => 1.2345, :geoprivacy => Observation::PRIVATE}
+  describe "destroy" do
+    it "should destroy" do
+      o = Observation.make!(:user => user)
+      delete :destroy, :format => :json, :id => o.id
+      expect(Observation.find_by_id(o.id)).to be_blank
+    end
+  end
+
+  describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+    it "should not provide private coordinates for another user's observation" do
+      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      expect(response.body).not_to be =~ /#{o.private_latitude}/
+      expect(response.body).not_to be =~ /#{o.private_longitude}/
+    end
+  end
+
+  describe "update" do
+    let( :o ) { Observation.make!( user: user ) }
+    it "should update" do
+      put :update, format: :json, id: o.id, observation: { species_guess: "i am so updated" }
+      o.reload
+      expect( o.species_guess ).to eq "i am so updated"
+    end
+  end
+end
+
+shared_examples_for "an ObservationsController" do
+
+  describe "create" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
+
+    it "should create with an existing photo ID" do
+      p = LocalPhoto.make!( user: user )
+      3.times do
+        post :create, format: :json, observation: {
+          taxon_id: Taxon.make!.id,
+          latitude: 1.2345,
+          longitude: 1.2345,
+        }, local_photos: { "0" => p.id }
+      end
+      o = user.observations.last
+      expect( o.photos ).to include p
+    end
+
+    it "should include coordinates in create response when geoprivacy is obscured" do
+      post :create, format: :json, observation: {
+        latitude: 1.2345,
+        longitude: 1.2345,
+        geoprivacy: Observation::OBSCURED
+      }
       o = Observation.last
       expect(o).to be_coordinates_obscured
-      expect(response.body).to be =~ /#{o.private_latitude}/
-      expect(response.body).to be =~ /#{o.private_longitude}/
+      expect(response.body).to be =~ /#{o.latitude}/
+      expect(response.body).to be =~ /#{o.longitude}/
+    end
+
+    it "should include private coordinates in create response when geoprivacy is obscured" do
+      post :create, format: :json, observation: {
+        latitude: 1.2345,
+        longitude: 1.2345,
+        geoprivacy: Observation::OBSCURED
+      }
+      o = Observation.last
+      expect( o ).to be_coordinates_obscured
+      expect( response.body ).to be =~ /#{o.private_latitude}/
+      expect( response.body ).to be =~ /#{o.private_longitude}/
+    end
+
+    it "should include private coordinates in create response when geoprivacy is private" do
+      post :create, format: :json, observation: {
+        latitude: 1.2345,
+        longitude: 1.2345,
+        geoprivacy: Observation::PRIVATE
+      }
+      o = Observation.last
+      expect( o.latitude ).to be_blank
+      expect( o.private_latitude ).not_to be_blank
+      expect( response.body ).to be =~ /#{o.private_latitude}/
+      expect( response.body ).to be =~ /#{o.private_longitude}/
     end
 
     it "should not fail if species_guess is a question mark" do
@@ -42,6 +135,14 @@ shared_examples_for "an ObservationsController" do
       o = Observation.last
       expect(o.observation_field_values.last.observation_field).to eq(of)
       expect(o.observation_field_values.last.value).to eq("foo")
+    end
+
+    it "should survive blank observation_field_values_attributes" do
+      expect {
+        post :create, format: :json, observation: {
+          observation_field_values_attributes: ""
+        }
+      }.not_to raise_error
     end
 
     it "should allow Google Street View photos" do
@@ -102,14 +203,14 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not duplicate observations with the same uuid" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       o = Observation.make!(:user => user, :uuid => uuid)
       post :create, :format => :json, :observation => {:uuid => uuid}
       expect(Observation.where(:uuid => uuid).count).to eq 1
     end
 
     it "should update attributes for an existing observation with the same uuid" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       o = Observation.make!(:user => user, :uuid => uuid)
       post :create, :format => :json, :observation => {:uuid => uuid, :description => "this is a WOAH"}
       expect(Observation.where(:uuid => uuid).count).to eq 1
@@ -118,7 +219,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should be invalid for observations with the same uuid if the existing was by a differnet user" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       o = Observation.make!( uuid: uuid )
       post :create, format: :json, observation: { uuid: uuid }
       expect( response.status ).to eq 422
@@ -132,38 +233,43 @@ shared_examples_for "an ObservationsController" do
     end
 
     it "should not override a uuid in the request" do
-      uuid = "some really long identifier"
+      uuid = SecureRandom.uuid
       post :create, format: :json, observation: { uuid: uuid }
       json = JSON.parse( response.body )[0]
       expect( json["uuid"] ).to eq uuid
     end
 
-    it "should default to using CONFIG.site_id" do
-      site =  Site.make!
-      CONFIG.site_id = site.id
+    it "should default to using Site.default" do
       post :create, format: :json, observation: { uuid: SecureRandom.uuid }
       json = JSON.parse( response.body )[0]
-      expect( json["site_id"] ).to eq site.id
+      expect( json["site_id"] ).to eq Site.default.id
     end
 
     it "should accept other site_ids" do
-      site =  Site.make!
-      CONFIG.site_id = site.id
       newsite = Site.make!
       post :create, format: :json, observation: { uuid: SecureRandom.uuid, site_id: newsite.id }
       json = JSON.parse( response.body )[0]
       expect( json["site_id"] ).to eq newsite.id
     end
 
+    describe "with owners_identification_from_vision" do
+      it "should set mark the owners identification as coming from vision" do
+        post :create, format: :json, observation: { taxon_id: Taxon.make!.id, owners_identification_from_vision: true }
+        json = JSON.parse( response.body )[0]
+        o = Observation.find( json["id"] )
+        expect( o.owners_identification_from_vision ).to be true
+        expect( o.owners_identification.vision ).to be true
+      end
+      it "should return the same attribute and value" do
+        post :create, format: :json, observation: { taxon_id: Taxon.make!.id, owners_identification_from_vision: true }
+        json = JSON.parse( response.body )[0]
+        expect( json["owners_identification_from_vision"] ).to be true
+      end
+    end
+
   end
 
   describe "destroy" do
-    it "should destroy" do
-      o = Observation.make!(:user => user)
-      delete :destroy, :format => :json, :id => o.id
-      expect(Observation.find_by_id(o.id)).to be_blank
-    end
-
     it "should not destory other people's observations" do
       o = Observation.make!
       delete :destroy, :format => :json, :id => o.id
@@ -180,13 +286,6 @@ shared_examples_for "an ObservationsController" do
       get :show, :format => :json, :id => o.id
       expect(response.body).to be =~ /#{o.private_latitude}/
       expect(response.body).to be =~ /#{o.private_longitude}/
-    end
-
-    it "should not provide private coordinates for another user's observation" do
-      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-      get :show, :format => :json, :id => o.id
-      expect(response.body).not_to be =~ /#{o.private_latitude}/
-      expect(response.body).not_to be =~ /#{o.private_longitude}/
     end
 
     it "should not include photo metadata" do
@@ -337,12 +436,6 @@ shared_examples_for "an ObservationsController" do
   describe "update" do
     before do
       @o = Observation.make!(:user => user)
-    end
-
-    it "should update" do
-      put :update, :format => :json, :id => @o.id, :observation => {:species_guess => "i am so updated"}
-      @o.reload
-      expect(@o.species_guess).to eq("i am so updated")
     end
 
     it "should accept nested observation_field_values" do
@@ -592,6 +685,42 @@ shared_examples_for "an ObservationsController" do
         expect( o.observation_photos ).to be_blank
       end
     end
+
+    describe "with owners_identification_from_vision" do
+      let( :observation ) { Observation.make!( user: user, taxon: Taxon.make! ) }
+      it "should update if requested and taxon changed" do
+        expect( observation.owners_identification_from_vision ).to be false
+        put :update, format: :json, id: observation.id, observation: {
+          owners_identification_from_vision: true,
+          taxon_id: Taxon.make!.id
+        }
+        json = JSON.parse( response.body )[0]
+        expect( json["owners_identification_from_vision"] ).to be true
+        observation.reload
+        expect( observation.owners_identification_from_vision ).to be true
+      end
+      it "should not update if requested and taxon did not changed" do
+        put :update, format: :json, id: observation.id, observation: {
+          owners_identification_from_vision: true,
+          description: "this shouldn't update b/c the taxon didn't change so no ID was made"
+        }
+        json = JSON.parse( response.body )[0]
+        expect( json["owners_identification_from_vision"] ).to be false
+        observation.reload
+        expect( observation.owners_identification_from_vision ).to be false
+      end
+      it "should set the vision attribute on the corresponding identification if changed and taxon changed" do
+        old_owners_ident = observation.owners_identification
+        put :update, format: :json, id: observation.id, observation: {
+          owners_identification_from_vision: true,
+          taxon_id: Taxon.make!.id
+        }
+        observation.reload
+        new_owners_ident = observation.owners_identification
+        expect( new_owners_ident.id ).not_to eq old_owners_ident.id
+        expect( new_owners_ident.vision ).to be true
+      end
+    end
   end
 
   describe "by_login" do
@@ -680,6 +809,19 @@ shared_examples_for "an ObservationsController" do
       json_obs = json.detect{|jo| jo['id'] == o.id}
       expect(json_obs).not_to be_blank
       expect(json_obs['private_latitude']).to eq o.private_latitude.to_s
+    end
+
+    it "should return names specific to the user's place" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      ptn = PlaceTaxonName.make!( taxon_name: tn_place )
+      user.update_attributes( place_id: ptn.place_id )
+      o = Observation.make!( user: user, taxon: t )
+      get :by_login, format: :json, login: user.login, taxon_id: t.id
+      json = JSON.parse( response.body )
+      json_obs = json.detect{|jo| jo["id"] == o.id }
+      expect( json_obs["taxon"]["common_name"]["name"] ).to eq tn_place.name
     end
   end
 
@@ -876,8 +1018,10 @@ shared_examples_for "an ObservationsController" do
 
     it "should filter by establishment means" do
       p = make_place_with_geom
-      lt1 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::INTRODUCED, :list => p.check_list, :place => p)}
-      lt2 = without_delay {ListedTaxon.make!(:establishment_means => ListedTaxon::NATIVE, :list => p.check_list, :place => p)}
+      Delayed::Worker.new.work_off
+      lt1 = ListedTaxon.make!(:establishment_means => ListedTaxon::INTRODUCED, :list => p.check_list, :place => p)
+      lt2 = ListedTaxon.make!(:establishment_means => ListedTaxon::NATIVE, :list => p.check_list, :place => p)
+      Delayed::Worker.new.work_off
       o1 = Observation.make!(:taxon => lt1.taxon, :latitude => p.latitude, :longitude => p.longitude)
       o2 = Observation.make!(:taxon => lt2.taxon, :latitude => p.latitude, :longitude => p.longitude)
       get :index, :format => :json, :establishment_means => lt1.establishment_means, :place_id => p.id
@@ -1295,8 +1439,7 @@ shared_examples_for "an ObservationsController" do
     end
 
     describe "with site" do
-      let(:site) { Site.make! }
-      before { stub_config site_id: site.id }
+      let(:site) { Site.default( refresh: true ) }
       it "should filter by place" do
         p = make_place_with_geom
         site.update_attributes(place: p, preferred_site_observations_filter: Site::OBSERVATIONS_FILTERS_PLACE)
@@ -1484,7 +1627,7 @@ shared_examples_for "an ObservationsController" do
   describe "viewed_updates" do
     before do
       enable_elastic_indexing(UpdateAction)
-      without_delay do
+      after_delayed_job_finishes do
         @o = Observation.make!(:user => user)
         @c = Comment.make!(:parent => @o)
         @i = Identification.make!(:observation => @o)
@@ -1510,7 +1653,9 @@ shared_examples_for "an ObservationsController" do
       num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
         where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 3
-      put :viewed_updates, :format => :json, :id => @o.id
+      without_delay do
+        put :viewed_updates, :format => :json, :id => @o.id
+      end
       num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
         where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
       expect(num_updates_for_owner).to eq 1
@@ -1697,21 +1842,32 @@ end
 
 describe ObservationsController, "oauth authentication" do
   let(:user) { User.make! }
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id, :application => OauthApplication.make! }
   before do
-    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
+    token = Doorkeeper::AccessToken.create(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
+    request.env["HTTP_AUTHORIZATION"] = "Bearer #{token.token}"
   end
+  it_behaves_like "ObservationsController basics"
   it_behaves_like "an ObservationsController"
 end
 
 describe ObservationsController, "oauth authentication with param" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   let(:user) { User.make! }
+  
   it "should create" do
-    app = OauthApplication.make!
-    token = Doorkeeper::AccessToken.create(:application_id => app.id, :resource_owner_id => user.id)
+    token = Doorkeeper::AccessToken.create(
+      application: OauthApplication.make!,
+      resource_owner_id: user.id,
+      scopes: Doorkeeper.configuration.default_scopes
+    )
     expect {
-      post :create, :format => :json, :access_token => token.token, :observation => {:species_guess => "foo"}
+      post :create, format: :json, access_token: token.token, observation: { species_guess: "foo" }
     }.to change(Observation, :count).by(1)
   end
 end
@@ -1721,7 +1877,23 @@ describe ObservationsController, "devise authentication" do
   before do
     http_login(user)
   end
-  it_behaves_like "an ObservationsController"
+  it_behaves_like "ObservationsController basics"
+end
+
+describe ObservationsController, "jwt authentication" do
+  let(:user) { User.make! }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = JsonWebToken.encode(user_id: user.id)
+  end
+  it_behaves_like "ObservationsController basics"
+end
+
+describe ObservationsController, "jwt bearer authentication" do
+  let(:user) { User.make! }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer #{JsonWebToken.encode(user_id: user.id)}"
+  end
+  it_behaves_like "ObservationsController basics"
 end
 
 describe ObservationsController, "without authentication" do

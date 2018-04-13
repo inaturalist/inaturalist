@@ -19,51 +19,46 @@
     :class => "existing", 
     "data-chooser-default-sources" => sources.to_json(:methods => [:html])
   }
-  if source
+  if source && source.persisted?
     chooser_options["data-chooser-chosen"] = source.to_json(:methods => [:html])
   end
 -%>
-<% if f.object.send(assoc_name) -%>
-  <%- edit_source_fields = capture do %>
-    <%= f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
-      <%= s.text_field :title, :description => t("source_eg.title") %>
-      <%= s.text_field :in_text, :description => t("source_eg.in_text") %>
-      <%= s.text_field :url, :description => t("source_eg.url") %>
-      <%= s.text_area :citation, :description => t("source_eg.citation") %>
-    <% end %>
-  <%- end -%>
-  <!-- <%= link_to_function t(:edit) + " #{f.object.send(assoc_name).title}...",
-    "$(this).after('#{escape_javascript edit_source_fields}'); " +
-    "$(this).hide();" +
-    "$(this).parents('.source_nested_form_fields').find('select').remove();" +
-    "$('#new_source_link').remove()",
-    :id => "edit_source_link" %>
-  <br/> -->
-<% end -%>
-<%- new_source_fields = capture do %>
-  <fieldset>
-    <legend><%= t(:new_source) %></legend>
-    <%= f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
-      <%= s.hidden_field :user_id, :value => current_user.id %>
-      <%= s.text_field :title, :description => t("source_eg.title") %>
-      <%= s.text_field :in_text, :description => t("source_eg.in_text") %>
-      <%= s.text_field :url, :description => t("source_eg.url") %>
-      <%= s.text_area :citation, :description => t("source_eg.citation") %>
-    <% end %>
-    <%= link_to_function t(:cancel), 
-      "$(this).parents('.source_nested_form_fields').find('.choicefields').show();" +
-      "$(this).parents('fieldset:first').remove(); " %>
-  </fieldset>
-<%- end -%>
 
 <div class="source_nested_form_fields">
-  <div class="choicefields">
-    <%= f.text_field foreign_key, chooser_options %>
-    <%= t :or %>
-    <%= link_to_function t(:add_new_source).downcase,
-        "$(this).parents('.choicefields').after('#{escape_javascript new_source_fields}'); " +
-        "$(this).parents('.choicefields').hide();" +
-        "$(this).parents('.source_nested_form_fields').find('.existing').chooser('clear')",
-      :id => "new_source_link" %>
-  </div>
+  <% if source && source.new_record? -%>
+    <fieldset>
+      <legend><%= t(:new_source) %></legend>
+      <%= f.fields_for assoc_name, :builder => DefaultFormBuilder do |s| %>
+        <%= s.text_field :title, :description => t("source_eg.title"), required: true %>
+        <%= s.text_field :in_text, :description => t("source_eg.in_text") %>
+        <%= s.text_field :url, :description => t("source_eg.url") %>
+        <%= s.text_area :citation, :description => t("source_eg.citation") %>
+      <% end %>
+    </fieldset>
+  <% else %>
+    <%- new_source_fields = capture do %>
+      <fieldset>
+        <legend><%= t(:new_source) %></legend>
+        <%= f.fields_for assoc_name, :builder => DefaultFormBuilder, :object => f.object.send("build_#{assoc_name}") do |s| %>
+          <%= s.hidden_field :user_id, :value => current_user.id %>
+          <%= s.text_field :title, :description => t("source_eg.title"), required: true %>
+          <%= s.text_field :in_text, :description => t("source_eg.in_text") %>
+          <%= s.text_field :url, :description => t("source_eg.url") %>
+          <%= s.text_area :citation, :description => t("source_eg.citation") %>
+        <% end %>
+        <%= link_to_function t(:cancel), 
+          "$(this).parents('.source_nested_form_fields').find('.choicefields').show();" +
+          "$(this).parents('fieldset:first').remove(); " %>
+      </fieldset>
+    <%- end -%>
+    <div class="choicefields">
+      <%= f.text_field foreign_key, chooser_options %>
+      <%= t :or %>
+      <%= link_to_function t(:add_new_source).downcase,
+          "$(this).parents('.choicefields').after('#{escape_javascript new_source_fields}'); " +
+          "$(this).parents('.choicefields').hide();" +
+          "$(this).parents('.source_nested_form_fields').find('.existing').chooser('clear')",
+        :id => "new_source_link" %>
+    </div>
+  <% end -%>
 </div>

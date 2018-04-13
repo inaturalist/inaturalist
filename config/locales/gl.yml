@@ -3,7 +3,10 @@
 # Export driver: phpyaml
 # Author: Cgalindo
 # Author: Chairego apc
+# Author: Elisardojm
+# Author: Fitoschido
 # Author: Macofe
+# Author: Navhy
 # Author: Toliño
 ---
 gl:
@@ -342,8 +345,6 @@ gl:
     ou grupo da lista?
   are_you_sure_remove_taxon_from_place: Estás seguro de que desexas eliminar este
     taxón da túa lista de verificación de %{place}?
-  are_you_sure_unlink_picasa: Estás seguro de que desexas desvincular a túa conta
-    de Picasa?
   are_you_sure_want_activate_account: Estás seguro de que desexas activar esta conta?
   are_you_sure_want_delete_account: Estás seguro de que desexas eliminar a túa conta?
     Isto eliminará todos os teus datos e é irreversible. Sentimos a túa marcha
@@ -841,6 +842,7 @@ gl:
   draft_: Borrador
   draft_saved: ¡Gardado en borrador!
   drafts: Borradores
+  drawings: Deseños
   each_place_displays_all_species_inat_knows: Cada páxina de lugar mostra todas as
     especies que %{site_name} coñeces dese lugar, incluíndo información da súa abundancia,
     estado de conservación e quen observou esa especie por primeira vez nese lugar
@@ -1025,6 +1027,7 @@ gl:
   follow_us_on: Síguenos en
   follow_user: Seguir a %{user}
   follower: Seguidor
+  followers: Seguidores
   following: Seguindo
   for: Para
   for_a_taxon: dun taxon
@@ -1340,13 +1343,11 @@ gl:
   link: Vínculo
   link_or_unlink_your_facebook_account: Vincular ou desvincular a túa conta de Facebook
   link_or_unlink_your_flickr_account: Vincular ou desvincular a túa conta de Flickr
-  link_or_unlink_your_picasa_account: Vincular ou desvincular a túa conta de Picasa
   link_your_facebook_account: Vincula a túa conta de Facebook
   link_your_flickr_account: Vincula a túa conta de Flickr
   link_your_flickr_account_with_inat: Vincula a túa conta de Flickr con %{site_name}
   link_your_flickr_account_with_inat_so: Vincula a túa conta de Flickr con %{site_name}
     para poder agregar fotos das túas observacións.
-  link_your_picasa_account: Vincula a túa conta de Picasa
   linked_facebook: A túa conta de %{site_name} está actualmente vinculada coa túa
     conta de Facebook.
   linked_facebook_description: Manter a túa conta de %{site_name} vinculada á túa
@@ -1481,15 +1482,14 @@ gl:
   merging_places: Combinar lugares
   message: Mensaxe
   messages: Mensaxes
-  mixed_licenses: Licenza combinada
   misleading_or_illegal_content_html: Contido ilegal, enganoso, racista, xenófobo,
     etc.
+  mixed_licenses: Licenza combinada
   mobile_apps_for: As aplicacións móbiles para
-  mobile_view_available: Vista para teléfono móbil dispoñible
   mollusks: Moluscos
   mon: Lun
   month: Mes
-  months_ago: fai %{text}
+  months_ago: hai %{text}
   more: Máis
   more_fields: Máis campos
   more_info: Máis información
@@ -1502,7 +1502,7 @@ gl:
     intercambiar/mesturar, saída de datos para separar)
   must_be_observed_in: deben ser observacións en
   must_have_observation_field: Debes completar o campo '%{operand}' na observación
-  n_ago: fai %{n}
+  n_ago: hai %{n}
   n_people_agrees: '%{amount} persoas están de acordo'
   n_people_disagrees: '%{amount} persoas non están de acordo'
   n_person_agrees: '%{amount} persoa está de acordo'
@@ -1587,7 +1587,7 @@ gl:
   no_facebook_photos: Non podemos atopar fotos en Facebook.
   no_flags: Non hai marcas
   no_flickr_photos_tagged: Non hai fotos etiquetadas con Flickr!
-  no_header_row: Non hai encabezado de fila
+  no_header_row: Non hai fila de cabeceira
   no_journal_post_have_been: Non se engadiu ningunha nota de diario a este proxecto.
   no_license_all_rights_reserved: Non hai licenza (todos os dereitos reservados)
   no_link_flickr: Non, prefiro que non.
@@ -1669,6 +1669,7 @@ gl:
   not_seeing_what_looking_for: Non atopas o que estás procurando?
   not_yet: Aínda non
   note: Nota
+  notes: Notas
   number_of_observations: Número de observacións
   noun_by_you: '%{noun} propias'
   obs: Obs
@@ -2270,9 +2271,9 @@ gl:
   see_something_wrong_with_taxon: Ves algo malo neste taxón? Comunícallelo aos administradores.
   seen_it?: Víchelo?
   seen_one: Viches un?
+  select: Selecciona
   select_all: Seleccionar todo
   select_an_album: Seleccionar un álbum
-  select: Selecciona
   select_one_or_more_photos: Selecciona unha ou máis fotos
   select_none: Non seleccionar ningunha
   select_photos_from_your_photo_stream: Seleccionar fotos de Photostream para convertelas
@@ -2352,7 +2353,6 @@ gl:
     que poidas localizalo a próxima vez.
   sorry_one_of_those_flickr_photos_either_doesnt_exist_or: Sentímolo, algunha desas
     fotos de Flickr non existen ou non tes permisos para velas.
-  sorry_picasa_isnt_responding_at_the_moment: Sentímolo, Picasa de momento non responde.
   sorry_that_photo_provider_isnt_responding: Sentímolo, esa foto de momento non está
     respondendo. Por favor téntao de novo máis tarde.
   sorry_there_were_problems_with_your_request: 'Sentímolo, houbo algúns problemas
@@ -2518,7 +2518,6 @@ gl:
       se existen en GBIF.
     data_url: Enlace de datos
     overlays: Capas
-  taxon_change_settings: Configuración do cambio de especies e grupos
   taxon_merge: fusión de taxón
   taxon_name: Nome do taxón
   taxon_photos_updated: Actualizáronse as fotos do taxón.
@@ -2728,9 +2727,6 @@ gl:
   to_add_ids: para engadir identificacións
   to_an: a unha
   to_configure_your_widget: para configurar o teu widget.
-  to_include_your_picassa_with_inat: Para incluír as túas fotos de Picasa, fotos coas
-    túas observacións %{site_name}, preme o botón da dereita para vincular ambas contas.
-    Enviaráseche a Google, onde se che preguntará se autorizas esta conexión
   to_tag_your_flickr_from_here: para etiquetar as túas fotos de Flickr dende aquí
     sen cortar e pegar
   to_the_bat_cave: Á Baticova!
@@ -2773,7 +2769,6 @@ gl:
   unique_observers_last_3_months: observadores únicos nos últimos 3 meses,
   unknown: Descoñecido
   unknown_rank: (Clasificación descoñecida)
-  unlink_your_picasa_account: Desvincular a túa conta de Picasa
   updates_notification_email_subject: '%{prefix} Novas actualizacións %{date}'
   unpublish: Non publicar
   unsubscribe: Quitar subscrición
@@ -2811,11 +2806,11 @@ gl:
     ou infraespecie, todo o que estea entre [XÉNERO] e [ESPECIE] será substituído
     polo nome do taxón, así que emprégao moderadamente. <br/><br/> <strong>Exemplo.</strong><br/>
   user: Usuario
-  user_added_an_observation_html: '%{user} engadiches unha observación'
-  user_added_an_x_to_noun_html: '%{user} engadiches unha %{x} a %{noun}'
-  user_added_a_x_to_noun_html: '%{user} engadiches un %{x} a %{noun}'
-  user_added_an_x_to_noun_by_html: '%{user} engadiches unha %{x} a %{noun} de %{by}'
   user_added_a_x_to_noun_by_html: '%{user} engadiches un %{x} a %{noun} de %{by}'
+  user_added_a_x_to_noun_html: '%{user} engadiches un %{x} a %{noun}'
+  user_added_an_observation_html: '%{user} engadiches unha observación'
+  user_added_an_x_to_noun_by_html: '%{user} engadiches unha %{x} a %{noun} de %{by}'
+  user_added_an_x_to_noun_html: '%{user} engadiches unha %{x} a %{noun}'
   user_added_x_observations_html: '%{user} engadiches %{x} observacións'
   user_commented_on: '%{user} comentaches sobre o teu %{title} %{time}'
   user_follows: '%{user} segues a'
@@ -2823,8 +2818,8 @@ gl:
   user_invite_observation_to_project: '%{user} desexa convidar a túa observación "%{observation}"
     ao proxecto %{project}.'
   user_invited_your_x_to_a_project_html: '%{user} convidaches ao teu %{x} a un proxecto'
-  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} de %{project}
   user_is_a_naturalist: '%{user} es un naturalista!'
+  user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} de %{project}
   user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: '%Listas {user}'
@@ -2876,7 +2871,6 @@ gl:
     »</nobr>
   view_more_recent_observations: Ver máis observacións recentes
   view_nbsp: Ver
-  view_non_mobile_site: Ver webs non adaptadas para móbiles
   view_observation: Ver observación
   view_observations: Ver observacións
   view_observations_raquo: Ver observacións »
@@ -2943,6 +2937,7 @@ gl:
     no futuro e che brinde maior seguridade.
   we_support_flickr: Somos compatibles con Flickr en almacenamento de imaxes e esperamos
     que engadas outros medios de almacenamento de imaxes en pouco tempo.
+  weather: Clima
   wed: Mér
   welcome!: ¡Benvidos!
   welcome_comma!: Benvido!
@@ -3069,8 +3064,6 @@ gl:
   you_havent: Non
   you_havent_left_any_comments_recently: Non deixaches comentarios recentemente. Déixalle
     unha nota a alguén!
-  you_havent_linked_your_inaturalist_picasa_account: Aínda non vinculaches a túa conta
-    de %{site_name} coa túa conta de Picasa.
   you_may_have: 'Que poida ter. Probablemente só funcione en buscadores modernos:'
   you_must_be_a_member_of_this_project_to_do_that: Debes ser un membro do proxecto
     para poder facer iso.
@@ -3136,8 +3129,6 @@ gl:
   your_observations_couldnt_be_added_to_that_project: 'As túas observacións non poden
     ser engadidas a este proxecto: %{errors}'
   your_photos_have_been_tagged: ¡As túas fotos foron etiquetadas!
-  your_picasa_account: A túa conta Picasa
-  your_picasa_account_info: Información da túa conta Picasa
   your_profile_was_successfully_updated: O teu perfil foi actualizado satisfactoriamente.
   your_should_recognize: Deberías recoñecer algunhas destas fotos
   your_site_account_has_been_created: A túa conta de %{site} foi creada.
@@ -3154,9 +3145,6 @@ gl:
     facendo
   youve_already_added_an_identification: xa engadiches unha identificación, e só podes
     engadir unha
-  youve_linked_your_inaturalist_picasa_account: Vinculaches a túa conta de %{site_name}
-    coa túa conta de Picasa. Isto permitirache asociar as túas fotos de Picasa coas
-    túas observacións de %{site_name}.
   youve_seen_it_want_to: Víchelo! Deséxalo?
   zoom_to_taxon_name: Achegarse a %{taxonname}
   zoom_to_x: Ir a %{x}
@@ -3275,8 +3263,6 @@ gl:
           de empregar ningunha das túas fotos en algo que non queiras.
         can_i_add_photos_without_a_flickr_account?: Podo agregar fotos sen ter conta
           de Flickr?
-        we_also_support_picasa_html: 'Tamén podes empregar Picasa: <a href="%{url}">Configura
-          a túa conta en Picasa » </a>'
         we_also_support_uploading_photos: |-
           Tamén podes subir as túas fotos directamente a %{site_name}, pero pode resultar un pouco lento,
           así que soamente permitimos subir unha foto á vez. Empregar Flickr ou Picasa é
@@ -3415,8 +3401,6 @@ gl:
           do lugar.
     projects:
       edit:
-        bioblitz_create_a_new_place_html: '%{link}, asegúrate de que ten un límite,
-          logo volve atrás e inténtao de novo.'
         bioblitz_desc_html: |-
           <p>
           Un bioblitz é un evento no que ti tentas que outras persoas observen tantas
@@ -3722,6 +3706,13 @@ gl:
         name_provider: Provedor de nome
         source_url: Dirección web da fonte
         source_identifier: Identificador da fonte
+      user:
+        email: Correo
+        name: Nome
+        locale: Local
+        time_zone: Zona horaria
+        search_place_id: Procurar lugar
+        place_id: Lugar
       source:
         title: Título
         in_text: Referencia

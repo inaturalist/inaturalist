@@ -2,17 +2,22 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Andreas Plank
+# Author: Cellina
 # Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
+# Author: Jujurenoult
+# Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: Pihlaviita
 # Author: Purodha
+# Author: Pyscowicz
 # Author: Robby
 # Author: Siebrand
+# Author: SimondR
 # Author: Sudachi
 # Author: Walter Klosse
 # Author: Woytecr
@@ -91,6 +96,7 @@ qqq:
   action: '{{Identical|Action}}'
   actions: '{{Identical|Action}}'
   active: '{{Identical|Active}}'
+  activity: '{{Identical|Activity}}'
   adapted_by_name_from_a_work_by_original: where name is the adaptor's name and original
     is the original author's name
   add: '{{Identical|Add}}'
@@ -109,8 +115,11 @@ qqq:
   adding: '{{Identical|Adding}}'
   admin: '{{Identical|Admin}}'
   agree: '{{Identical|Agree}}'
+  agree_: '{{Identical|Agree}}'
   agree?: '{{Identical|Agree}}'
   all: '{{Identical|All}}'
+  all_rank_added_to_the_database:
+    supertribe: 'Tribe (en), biol.: Übersetzung Tribus (auch pl.) bei Leo https://dict.leo.org/englisch-deutsch/Tribus'
   all_rights_reserved: where name is the author name
   all_taxa:
     rank:
@@ -127,13 +136,11 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
-  an: can not be translated to Finnish as we don't have prepositions in our language
-  an_: Prepositions like "an" can not be translated to Finnish as we don't have prepositions
-    in our language. How can we remove them from the list of not yet translated texts?
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
   animals: '{{Identical|Animal}}'
+  annotations: '{{Identical|Annotation}}'
   announcements: '{{Identical|Announcement}}'
   apply_darr: '{{Identical|Apply}}'
   appropriate?: '{{Identical|Appropriate}}'
@@ -166,8 +173,11 @@ qqq:
     where time is a time
     {{Identical|At}}
   atom: '{{Identical|Atom}}'
+  attribute: '{{Identical|Attribute}}'
   authorize_permissions_from_provider: where provider is an external provider like
     Facebook
+  automatically_id_new: '"ID sth." means identify something. That''s a common abbreviation
+    that naturalists use in online communities.'
   back: '{{Identical|Back}}'
   back_to_calendar: where user is the name of a user
   back_to_lists: where name is the possesive form of the name of a user
@@ -194,9 +204,23 @@ qqq:
   built_with_site_guides_html: where site_name is the name of the site
   by: '{{Identical|By}}'
   by_user: attribution for user, user is a username
+  by_you: |-
+    Konteksti: Observations
+    By you
+    but also
+    Projects
+    By you and so on.
   calendar: '{{Identical|Calendar}}'
   cancel: '{{Identical|Cancel}}'
+  captive: '{{Identical|Captive}}'
   card: '{{Identical|Card}}'
+  casual: |-
+    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when
+
+    the observation has a date /
+    the observation is georeferenced (i.e. has lat/lon coordinates) /
+    the observation has photos or sounds /
+    the observation isn't of a human
   catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
     global index of species currently available.
   categories: '{{Identical|Category}}'
@@ -210,8 +234,8 @@ qqq:
     drop: '{{Identical|Drop}}'
     dropped: '{{Identical|Dropped}}'
     staged: '{{Identical|Staged}}'
-    input_taxa_were_merged_into_output_taxon_html: The word "where" is a misspelling
-      for "were".
+  check_here_to_autoload_description: '"Parus" is still used in Finland, bad example
+    here.'
   check_list_for_individual_taxa_that: where place is the name of a place
   check_list_individual_taxa: where place is the name of a place
   check_list_place: where place is the name of a place
@@ -223,13 +247,19 @@ qqq:
   clear: '{{Identical|Clear}}'
   click_add_an_observation_to_the_lower_right: where site_name_short is the name of
     a site
+  close: |-
+    Close a window
+    {{Identical|Close}}
   code: '{{Identical|Code}}'
   colors: '{{Identical|Color}}'
   columns: '{{Identical|Column}}'
   comma_separated_list_of_tracking_codes: where the parameters are parts of a URL
   comment: '{{Identical|Comment}}'
+  comment_: '{{Identical|Comment}}'
   commented: '{{Identical|Commented}}'
   comments: '{{Identical|Comment}}'
+  community: '{{Identical|Community}}'
+  compare: '{{Identical|Compare}}'
   comparing: '{{Identical|Comparing}}'
   comparing_list_to_list: where list1 and list2 are the name of lists
   comparing_versions_x_and_y: where x and y are versions of the wiki article
@@ -249,6 +279,9 @@ qqq:
   continue: '{{Identical|Continue}}'
   contributions: '{{Identical|Contribution}}'
   contributors_to_project: where project is the name of a project
+  controlled_term_labels:
+    male: '{{Identical|Male}}'
+    female: '{{Identical|Female}}'
   controls: '{{Identical|Control}}'
   coordinates: '{{Identical|Coordinate}}'
   copy: '{{Identical|Copy}}'
@@ -271,6 +304,10 @@ qqq:
   curators: '{{Identical|Curator}}'
   darr_apply_darr: '{{Identical|Apply}}'
   dashboard: '{{Identical|Dashboard}}'
+  data_quality: Hi. Here, Data refers to one given observation. So this should be
+    "la donnée", not a plurial. Thanks, Julien
+  data_quality_assessment_: Il s'agit d'établir le niveau de qualité (Needs ID, Research
+    Grade ...) de l'observation en question, que l'on décrit ici par "la donnée".
   date_: '{{Identical|Date}}'
   date?: '{{Identical|Date}}'
   date_format:
@@ -307,6 +344,8 @@ qqq:
   date_picker:
     closeText: '{{Identical|Close}}'
     currentText: '{{Identical|Today}}'
+    dayNamesShort: '''Sun'' is doubled in the code. I assume there should be a ''Fri''
+      instead of the second ''Sun''.'
   date_time: '{{Identical|Date}}'
   dates: '{{Identical|Date}}'
   datetime_: '{{Identical|Date}}'
@@ -316,13 +355,15 @@ qqq:
     is a URL
   delete: '{{Identical|Delete}}'
   delete_taxon_and_merge_most_data_html: where taxon is the name of a taxon
-  dna_: '{{Identical|DNA}}'
   description: '{{Identical|Description}}'
   desription: '{{Identical|Description}}'
   details: '{{Identical|Detail}}'
   developers: '{{Identical|Developer}}'
   device: '{{Identical|Device}}'
+  disagree_: '{{Identical|Disagree}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
+  dna_: '{{Identical|DNA}}'
+  done: '{{Identical|Done}}'
   download: '{{Identical|Download}}'
   each_place_displays_all_species_inat_knows: where site_name is the name of the site
   edit: '{{Identical|Edit}}'
@@ -364,6 +405,7 @@ qqq:
   failed_to_repair_photo: where errors is a description of the error
   "false": '{{Identical|False}}'
   faq: '{{Identical|Frequently asked questions}}'
+  favorites: '{{Identical|Favorites}}'
   featured: '{{Identical|Featured}}'
   featured?: '{{Identical|Featured}}'
   featured_projects_from_place: where place is the name of the palce
@@ -382,6 +424,7 @@ qqq:
   flag: '{{Identical|Flag}}'
   flag_reason: where record is an observation or other resource
   flagged: '{{Identical|Flagged}}'
+  flagged_: '{{Identical|Flagged}}'
   flags: '{{Identical|Flag}}'
   flags_explanation: where site_name is the name of the site and thing is a resource
     like an observation
@@ -389,20 +432,24 @@ qqq:
     was flagged
   flickr_needs_to_confirm: where site_name is the name of the site
   flickr_youre_all_set: where site_name is the name of the site
+  follow: '{{Identical|Follow}}'
   follow_user: where user is the name of a user
   for_a_widget_showing_recent_observations_from: where place_name is the name of a
     place
   forgot_your_password: '{{Identical|Forgot your password}}'
+  frequency: '{{Identical|Frequency}}'
   fri: Abbreviation for Friday, a day of the week.
   from: '{{Identical|From}}'
   from_your_site_observations: where site_name is the name of the site
   from_licensed_site_observations: where site_name is the name of the site
   full_screen: '{{Identical|Full screen}}'
   general: '{{Identical|General}}'
+  geo: Abbrevation of "geographic" e.g. "geo fields"
   geoprivacy: See [[wiktionary:geoprivacy|geoprivacy on Wiktionary]] for hints.
   get_started: '{{Identical|Get started}}'
   getting_started: '{{Identical|Getting started}}'
   go: '{{Identical|Go}}'
+  go_back: '{{Identical|Go back}}'
   got_it!: '{{Identical|Got it}}'
   grant_role: where grant is removed/added and role is a role like admin
   grid: '{{Identical|Grid}}'
@@ -432,8 +479,10 @@ qqq:
   ignore: '{{Identical|Ignore}}'
   import: '{{Identical|Import}}'
   importing: '{{Identical|Importing}}'
+  improving: '{{Identical|Improving}}'
   inbox: '{{Identical|Inbox}}'
   inactive: '{{Identical|Inactive}}'
+  inactive_taxon: Keep in short, under 20 characters
   inat_account_action: where site_name is the name of the site and action name is
     the name of an action
   inat_believes_this_is_a_complete_listing: where site_name is the name of the site
@@ -461,7 +510,9 @@ qqq:
   it: '{{Identical|It}}'
   january: '{{Identical|January}}'
   join: '{{Identical|Join}}'
-  join_inat: where site_name is the name of the site
+  join_inat: |-
+    where site_name is the name of the site
+    {{Identical|Join}}
   joined!: '{{Identical|Joined}}'
   journal: '{{Identical|Journal}}'
   labels: '{{Identical|Label}}'
@@ -477,12 +528,76 @@ qqq:
     leaves a site or tree leaves?
     {{Identical|Leave}}
   lexicons:
-    english: '{{Identical|English}}'
-    french: '{{Identical|French}}'
-    german: '{{Identical|German}}'
-    italian: '{{Identical|Italian}}'
-    misima_paneati: Language of Papua New Guinea
-    portuguese: '{{Identical|Portuguese}}'
+    afrikaans: Name of this language translated into the target language, *not* into
+      Afrikaans (unless that's the target language)
+    bengali: Name of this language translated into the target language, *not* into
+      Bengali (unless that's the target language)
+    catalan: Name of this language translated into the target language, *not* into
+      Catalan (unless that's the target language)
+    cebuano: Name of this language translated into the target language, *not* into
+      Cebuano (unless that's the target language)
+    creole_french: Name of this language translated into the target language, *not*
+      into creole (French) (unless that's the target language)
+    creole_portuguese: Name of this language translated into the target language,
+      *not* into creole (Portuguese) (unless that's the target language)
+    davawenyo: Name of this language translated into the target language, *not* into
+      Davawenyo (unless that's the target language)
+    dutch: Name of this language translated into the target language, *not* into Dutch
+      (unless that's the target language)
+    english: Name of this language translated into the target language, *not* into
+      English (unless that's the target language)
+    french: Name of this language translated into the target language, *not* into
+      French (unless that's the target language)
+    gela: Name of this language translated into the target language, *not* into Gela
+      (unless that's the target language)
+    german: Name of this language translated into the target language, *not* into
+      German (unless that's the target language)
+    hawaiian: Name of this language translated into the target language, *not* into
+      Hawaiian (unless that's the target language)
+    hebrew: Name of this language translated into the target language, *not* into
+      Hebrew (unless that's the target language)
+    hiligaynon: Name of this language translated into the target language, *not* into
+      Hiligaynon (unless that's the target language)
+    icelandic: Name of this language translated into the target language, *not* into
+      Icelandic (unless that's the target language)
+    ilokano: Name of this language translated into the target language, *not* into
+      Ilokano (unless that's the target language)
+    italian: Name of this language translated into the target language, *not* into
+      Italian (unless that's the target language)
+    japanese: Name of this language translated into the target language, *not* into
+      Japanese (unless that's the target language)
+    korean: Name of this language translated into the target language, *not* into
+      Korean (unless that's the target language)
+    maltese: Name of this language translated into the target language, *not* into
+      Maltese (unless that's the target language)
+    maori: Name of this language translated into the target language, *not* into Maori
+      (unless that's the target language)
+    misima_paneati: Name of this language translated into the target language, *not*
+      into Misima-paneati (unless that's the target language)
+    norwegian: Name of this language translated into the target language, *not* into
+      Norwegian (unless that's the target language)
+    pangasinan: Name of this language translated into the target language, *not* into
+      Pangasinan (unless that's the target language)
+    portuguese: Name of this language translated into the target language, *not* into
+      Portuguese (unless that's the target language)
+    romanian: Name of this language translated into the target language, *not* into
+      Romanian (unless that's the target language)
+    russian: Name of this language translated into the target language, *not* into
+      Russian (unless that's the target language)
+    spanish: Name of this language translated into the target language, *not* into
+      Spanish (unless that's the target language)
+    swedish: Name of this language translated into the target language, *not* into
+      Swedish (unless that's the target language)
+    tagalog: Name of this language translated into the target language, *not* into
+      Tagalog (unless that's the target language)
+    tahitian: Name of this language translated into the target language, *not* into
+      Tahitian (unless that's the target language)
+    tokelauan: Name of this language translated into the target language, *not* into
+      Tokelauan (unless that's the target language)
+    turkish: Name of this language translated into the target language, *not* into
+      Turkish (unless that's the target language)
+    waray_waray: Name of this language translated into the target language, *not*
+      into Waray-Waray (unless that's the target language)
   less: '{{Identical|Less}}'
   licensed_site_photos: where site_name is the name of the site
   licensing: '{{Identical|Licensing}}'
@@ -490,6 +605,8 @@ qqq:
   life: '{{Identical|Life}}'
   life!: '{{Identical|Life}}'
   life_list: where user is the name of a user
+  life_list_firsts: 'ATTENTION : there is an important space constraint here : 2-3
+    words max (the text appears in a bullet)'
   link: '{{Identical|Link}}'
   link_your_flickr_account_with_inat: where site_name is the name of the site
   link_your_flickr_account_with_inat_so: where site_name is the name of the site
@@ -510,11 +627,13 @@ qqq:
   loading: '{{Identical|Loading}}'
   locales_: '{{Identical|Locale}}'
   locales:
+    bg: '{{Identical|Bulgarian}}'
+    br: '{{Identical|Breton}}'
     en: '{{Identical|English}}'
     es: '{{Identical|Spanish}}'
     fr: '{{Identical|French}}'
     it: '{{Identical|Italian}}'
-    pt: '{{Identical|Portuguese}}'
+    ko: '{{Identical|Korean}}'
   localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
@@ -545,6 +664,7 @@ qqq:
     Facebook
   media: '{{Identical|Media}}'
   medium: '{{Identical|Medium}}'
+  meet: '{{Identical|Meet}}'
   members: '{{Identical|Member}}'
   mentions: '{{Identical|Mention}}'
   merge: '{{Identical|Merge}}'
@@ -592,6 +712,7 @@ qqq:
   new_observations_may_take_up_to: where widget_expiration is a number
   new_observations_of_x_html: where x is a taxon such as Animalia
   new_password: '{{Identical|New password}}'
+  news: '{{Identical|News}}'
   next: '{{Identical|Next}}'
   next_page: '{{Identical|Next page}}'
   "no": '{{Identical|No}}'
@@ -606,7 +727,9 @@ qqq:
   normal: '{{Identical|Normal}}'
   not_linked_facebook: where site_name is the site name
   not_linked_flickr: where site_name is the site name
+  not_logged_in: '{{Identical|Not logged in}}'
   note: '{{Identical|Note}}'
+  notes: '{{Identical|Note}}'
   numeric_: '{{Identical|Numeric}}'
   noun_by_you: where noun is a resource such as observations or comments
   observation: '{{Identical|Observation}}'
@@ -647,6 +770,7 @@ qqq:
     where submitdate is a date
     {{Identical|On}}
   open: '{{Identical|Open}}'
+  open_: '{{Identical|Open}}'
   optional: '{{Identical|Optional}}'
   or: '{{Identical|Or}}'
   orange: |-
@@ -659,6 +783,7 @@ qqq:
   other: '{{Identical|Other}}'
   other_species_commonly_misidentified_as_this_species_in_place_html: Paikka (Place)
     taipuu inessiivissä.
+  overview: '{{Identical|Overview}}'
   owner: '{{Identical|Owner}}'
   parent: '{{Identical|Parent}}'
   password: '{{Identical|Password}}'
@@ -677,7 +802,6 @@ qqq:
   photo_by_id_attribution: where id is an identifier and attribution is the author's
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
-  photo_s: '{{Identical|Photo}}'
   photos_of: intended to precede subject, e.g. Photos of Pigeons
   photos_size:
     small: '{{Identical|Small}}'
@@ -690,8 +814,6 @@ qqq:
   photos_size_photo: |-
     number of photos
     {{Identical|Photo}}
-  picasa_account_not_linked: where site is the site name and user is the name of a
-    user
   place: '{{Identical|Place}}'
   place_added_to_inat_by: where site_name is the site name
   place_geo:
@@ -759,6 +881,10 @@ qqq:
   possessive_user: where user is the name of a user
   post: '{{Identical|Post}}'
   posts: '{{Identical|Post}}'
+  present: '{{Identical|Present}}'
+  press: |-
+    Noun, as in sources of news, not the verb
+    {{Identical|Press}}
   preview_personal_message: where site is the site name
   previewing: '{{Identical|Previewing}}'
   previous: '{{Identical|Previous}}'
@@ -767,6 +893,7 @@ qqq:
   privacy: '{{Identical|Privacy policy}}'
   privacy_policy: '{{Identical|Privacy policy}}'
   private: '{{Identical|Private}}'
+  private_: '{{Identical|Private}}'
   proceed: '{{Identical|Proceed}}'
   processing: '{{Identical|Processing}}'
   processing3p: '{{Identical|Processing}}'
@@ -785,7 +912,7 @@ qqq:
   public_coordinates_obscured_by: where distance is a number
   public_domain: '{{Identical|Public domain}}'
   purple: '{{Identical|Purple}}'
-  queued: '{{Identical|Queued}}'
+  queued: '{{Identical|Queue}}'
   query: '{{Identical|Query}}'
   range: '{{Identical|Range}}'
   rank: '{{Identical|Rank}}'
@@ -817,6 +944,7 @@ qqq:
   removing: '{{Identical|Removing}}'
   reply: '{{Identical|Reply}}'
   required: '{{Identical|Required}}'
+  required_: '{{Identical|Required}}'
   research: '{{Identical|Research}}'
   resolved: '{{Identical|Resolved}}'
   resolver_said_x_html: where resolver is the name of a user and x is a message
@@ -834,8 +962,8 @@ qqq:
     where noun is a resource like an observation
     used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
   second_person_possessive_singular_: where noun is a resource like an observation
-  select_all: '{{Identical|Select all}}'
   select: '{{Identical|Select}}'
+  select_all: '{{Identical|Select all}}'
   select_photos_from_your_photo_stream: where site_name is the name of a site
   selected: '{{Identical|Selected}}'
   send: '{{Identical|Send}}'
@@ -843,6 +971,7 @@ qqq:
   sent: '{{Identical|Sent}}'
   september: '{{Identical|September}}'
   settings: '{{Identical|Settings}}'
+  share: '{{Identical|Share}}'
   show: '{{Identical|Show}}'
   showing_taxa_from_place: where place is the name of a place
   show_taxa_from_place: where place is the name of a place
@@ -896,11 +1025,13 @@ qqq:
     and stuff is a resource like a taxon
   submit: '{{Identical|Submit}}'
   submitted: '{{Identical|Submitted}}'
+  suggestions: '{{Identical|Suggestion}}'
   summary: '{{Identical|Summary}}'
   sun: Abbreviation for Sunday, a day of the week.
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
   tagging: '{{Identical|Tagging}}'
+  tag: Singular noun form of the English word "tag"
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
   taxonomy: '{{Identical|Taxonomy}}'
@@ -908,12 +1039,20 @@ qqq:
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
   text_: '{{Identical|Text}}'
+  thanks_from_all_of_us_here_at: |-
+    Thank you followed by the site logo, so in English it would be 'Thanks from
+    all of us here at iNaturalist', but this translation is for everything
+    before the site name.
+  the_: '{{Identical|The}}'
   the_following_observations_could: where link is the name of the resource
   the_identotron_is_a_tool_to: where place is the name of a place
   the_people_of_inat: where site is the name of a site
   the_user_x_has_been_suspended: where user is the name of a user
   the_user_x_has_been_unsuspended: where user is the name of a user
   the_world_is_full_of_interesting_places: where site is the name of a site
+  then_keybord_sequence: |-
+    word to combine a sequence of keys in a keyboard shortcut, e.g. "x then y"
+    {{Identical|Then}}
   there_are_x_synonyms_html: number of synonyms
   there_isnt_a_wikipedia_article_titled_x_html: where x is the title of the article,
     feel free to change en.wikipedia.org to your language edition's domain if needed.
@@ -933,12 +1072,12 @@ qqq:
   this_observation_lies_outside_the: where site_name is the name of a site
   this_taxon_is_inactive_this_means: where site_name is the name of a site
   thu: Abbreviation for Thursday, a day of the week.
+  time_: '{{Identical|Time}}'
   time_ago: |-
     where time is a time period like 4 hours
     {{Identical|Ago}}
   title: '{{Identical|Title}}'
   to: '{{Identical|To}}'
-  to_include_your_picassa_with_inat: where site_name is the name of the site
   to_recipient: '{{Identical|To}}'
   today: '{{Identical|Today}}'
   too_many_observations_csv: where max_rows is the maximum number of rows
@@ -953,6 +1092,7 @@ qqq:
   type: '{{Identical|Type}}'
   type_authority: Authority as in literature
   unknown: '{{Identical|Unknown}}'
+  unfollow: '{{Identical|Unfollow}}'
   updates_notification_email_subject: where prefix is the name of the site and date
     is a date
   unreview: '{{Identical|Unreview}}'
@@ -969,38 +1109,43 @@ qqq:
   use_name_as_a_placeholder: where name is the name of a new taxon not yet in our
     database
   user: '{{Identical|User}}'
-  user_added_an_observation_html: where user is the name of a user
-  user_added_an_x_to_noun_html: where user is the name of a user and x is a resource
-    like an observation and nown is a resource like a project
-  user_added_a_x_to_noun_html: where user is the name of a user and x is a resource
-    like an observation and nown is a resource like a project
-  user_added_an_x_to_noun_by_html: |-
-    where user is the name of a user and x is a resource like an observation
-    and nown is a resource like a project and by is the owner of that resource
   user_added_a_x_to_noun_by_html: |-
     where user is the name of a user and x is a resource like an observation
     and nown is a resource like a project and by is the owner of that resource
+  user_added_a_x_to_noun_html: where user is the name of a user and x is a resource
+    like an observation and nown is a resource like a project
+  user_added_an_observation_field_html: where user and owner are names of users and
+    field_name is the name of a field like eating
+  user_added_an_observation_html: where user is the name of a user
+  user_added_an_x_to_noun_by_html: |-
+    where user is the name of a user and x is a resource like an observation
+    and nown is a resource like a project and by is the owner of that resource
+  user_added_an_x_to_noun_html: where user is the name of a user and x is a resource
+    like an observation and nown is a resource like a project
   user_added_x_observations_html: where user is the name of a user and x a number
+  user_commented: '{{Identical|Commented}}'
   user_commented_on: where user is the name of a user and title is a resource like
     an observation and time is the time
-  user_follows: where user is the name of a user
+  user_disagrees_this_is_taxon: 'BE CAREFUL : here the sentence means that the user
+    disagrees with the current identification'
+  user_follows: |-
+    where user is the name of a user
+    {{Identical|Follow}}
   user_has_opted_out_of_community_ids: where user is the name of a user
   user_has_opted_out_of_community_ids_for_this_obs: where user is the name of a user
   user_hasnt: where user is the name of a user
-  user_invite_observation_to_project: where user is the name of a user and project
-    and observation are names of the project and observation
+  user_invite_observation_to_project: where user is the name of a user and observation
+    and project are names of the observation and project
+  user_invited_you_to_join_html: where user is the name of a user
   user_invited_you_to_join_project: where user is the name of a user and project is
     the name of a project
-  user_invited_you_to_join_html: where user is the name of a user
   user_invited_you_to_join_this_project_on_date_html: where user is the name of a
     user and date is a date
   user_invited_your_x_to_a_project_html: where user is the name of a user and x is
     a resource like an observation
+  user_is_a_naturalist: where user is the name of a user
   user_is_now_role_for_project_html: where user is the name of a user role is a role
     like curator and project is the name of a project
-  user_added_an_observation_field_html: where user and owner are names of users and
-    field_name is the name of a field like eating
-  user_is_a_naturalist: where user is the name of a user
   user_s: where user is the name of a user
   user_s_id: where user is the name of a user
   user_s_lists: |-
@@ -1021,6 +1166,7 @@ qqq:
   users_profile: |-
     where user is the name of a user
     {{Identical|Profile}}
+  value: '{{Identical|Value}}'
   verbing_x_of_y: where verb is a verb like viewing and x and y are numbers
   view: '{{Identical|View}}'
   view_all: '{{Identical|View all}}'
@@ -1060,6 +1206,7 @@ qqq:
   welcome_to_inat: where site_name is the name of the site
   welcome_to_guides: where site_name is the name of the site
   welcome_to_x_project: where project is the name of a project
+  were_pretty_sure_this_is_in_the_rank: where rank is a taxonomic rank
   where_do_x_live: where taxa is the name of a taxon
   where_does_x_live: where taxa is the name of a taxon
   widget: '{{Identical|Widget}}'
@@ -1091,6 +1238,7 @@ qqq:
   year: '{{identical|Year}}'
   "yes": '{{Identical|Yes}}'
   yesterday: '{{Identical|Yesterday}}'
+  you_: '{{Identical|You}}'
   you_are_now_following_x: where friend_user is the name of a user
   you_are_now_role_for_project_html: where role is a role like curator and project
     is the name of a project
@@ -1098,8 +1246,6 @@ qqq:
   you_can_sign_free_at: where site name is the name of the site
   you_cant_rotate_photos_hostde_outside: where site name is the name of the site
   you_have_left_x_project: where project is the name of the project
-  you_havent_linked_your_inaturalist_picasa_account: where site name is the name of
-    the site
   you_retain_full_copyright: where site name is the name of the site
   you_retain_full_copyright_over_your_content: where site name is the name of the
     site
@@ -1121,8 +1267,6 @@ qqq:
   your_sure_delete_taxon_from_list?: where taxon is the name of a taxon
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
-  youve_linked_your_inaturalist_picasa_account: where site_name is the name of the
-    site
   zoom_to_taxon_name: where taxonname is the name of a taxon
   zoom_to_x: where x is the location
   views:
@@ -1163,16 +1307,33 @@ qqq:
         while_the_life_list_is_automatically_populated: where site_name is the site
           name
     observations:
+      community_id:
+        agreement: '{{Identical|Agreement}}'
+        score: '{{Identical|Score}}'
+      import:
+        date_column_format: |
+          Example of how the date should be formatted in CSV. Change if other
+          letters would make more sense in other languages, but please do not
+          change the format.
+        decimal_degrees_format: |
+          Example of how decimal degrees should be formatted in CSV. Change if
+          other letters would make more sense in other languages, but please do
+          not change the format.
+        geoprivacy_must_be_in_english: |
+          Please don't translate the values "obscured" and "private". If user
+          upload translated versions of these strings in their CSV the CSV
+          import won't work.
       show:
         community_taxon_desc_html: whre site_name is the site name
         flagged_photos_desc_html: where links is a URL
     photos:
       inviter:
+        automatically_id_the_new_obs_as: '"ID sth." means identify something. That''s
+          a common abbreviation that naturalists use in online communities.'
         invite_other_photographers_to_inat: where site_name is the site name
         invite_your_friends_description: where site_name is the site name
     projects:
       edit:
-        bioblitz_create_a_new_place_html: where link is a URL
         submission_models:
           any: '{{Identical|Anyone}}'
       show:
@@ -1190,6 +1351,7 @@ qqq:
             (of an arthropod, etc.) Callow. In the pale, soft-bodied state that follows moulting, before the hardening and darkening of the cuticle, during which the creature is able to expand.
 
             En Wikipedia, «Teneral» redirige a «Ecdysis», y en la versión en castellano «Muda».
+            {{Identical|Teneral}}
           Insect life stage=adult: '{{Identical|Adult}}'
     users:
       dashboard:
@@ -1198,8 +1360,8 @@ qqq:
         new_project_admin_html: where site_name is the site_name and help_email is
           an email address
       edit:
-        taxon_change_desc: where site_name is the site name
         licensing_desc_html: where site_name is the site name
+        taxon_change_desc: where site_name is the site name
         prefers_community_taxa_desc: where site_name is the site name
       show:
         take_a_chance_to_review_html: where link is a URL to the website help page
@@ -1207,6 +1369,10 @@ qqq:
       index:
         welcome_message_html: where image is the site name
         run_a_bioblitz: See [https://en.wikipedia.org/wiki/BioBlitz Wikipedia on BioBlitz].
+        join_today: |-
+          Should be short, preferrably under 20 characters. This is an
+          imperative to join the site, so "today" could be ommitted, e.g.
+          "Join!" or "Join Us"
   date:
     abbr_month_names:
     - '{{notranslate}}'
@@ -1378,8 +1544,19 @@ qqq:
       taxon:
         name: '{{Identical|Name}}'
         locked: '{{Identical|Locked}}'
+      user:
+        email: '{{Identical|E-mail}}'
+        name: '{{Identical|Name}}'
+        time_zone: '{{Identical|Time zone}}'
+        place_id: '{{Identical|Place}}'
   i18n:
     inflections:
+      :@vow_or_con:
+        vow: |-
+          Translation of the word "vowel." If you translate any of the keys in
+          the vow_or_con block, please do not make @ references to keys that
+          have not been translated.
+        con: Translation of the word "consonant"
       gender:
         m: '{{Identical|Male}}'
         f: '{{Identical|Female}}'

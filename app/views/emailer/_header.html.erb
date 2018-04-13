@@ -1,14 +1,13 @@
 <%-
-  site = @user.site || @site
-  site_logo_email_banner = site.logo_email_banner.url if site
-  site_logo_email_banner ||= CONFIG.logo_email_banner 
-  site_url = @site ? @site.url : root_url
+  site = @user.site || @site || Site.default
+  site_logo_email_banner = site.logo_email_banner.url
+  site_url = site.url
   img_url = if site_logo_email_banner =~ /http/
     site_logo_email_banner
   else
-    FakeView.uri_join(site_url, FakeView.image_url(site_logo_email_banner))
+    FakeView.uri_join(site_url, FakeView.image_url( site_logo_email_banner ) )
   end
-  site_name = @site ? @site.name : CONFIG.site_name
+  site_name = site.name
 -%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">

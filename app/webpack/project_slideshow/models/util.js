@@ -1,8 +1,8 @@
-import fetch from "isomorphic-fetch";
+import fetch from "cross-fetch";
 
-const Util = class ObsCard {
+const Util = class Util {
   static nodeApiFetch( path ) {
-    return fetch( `https://api.inaturalist.org/v1/${path}`, { method: "GET" } ).
+    return fetch( `${$( "meta[name='config:inaturalist_api_url']" ).attr( "content" )}/${path}`, { method: "GET" } ).
       then( response => {
         if ( response.status >= 200 && response.status < 300 ) {
           return response;
@@ -20,7 +20,7 @@ const Util = class ObsCard {
 
   static numberWithCommas( num ) {
     if ( !num && num !== 0 ) { return ""; }
-    return Number( num ).toLocaleString( );
+    return I18n.toNumber( num, { precision: 0 } );
   }
 };
 

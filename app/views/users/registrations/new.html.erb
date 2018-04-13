@@ -6,17 +6,28 @@
     #signup_form .formError {display: inline;}
     #signup_form input.text {width: 300px;}
     .providerlink, .button.providerlink { width: 140px; }
+    .button.default[disabled] {
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+    .button.default[disabled]:hover {
+      background-color: #999;
+    }
   </style>
 <% end -%>
 <%- content_for(:extrajs) do -%>
   <script type="text/javascript" charset="utf-8">
+    var RecaptchaCallback = function( response ) {
+      $( "#signup_form .button[type='submit']" ).prop( "disabled", false );
+    };
+
     $(document).ready(function() {
       $('.time_zone_select').selectLocalTimeZone();
     })
   </script>
 <%- end -%>
 <div class="column prepend-2 span-8">
-  <%= image_tag @site && @site.logo_square? ? @site.logo_square.url : CONFIG.logo_icon_square_big, :width => 300  %>
+  <%= image_tag @site.logo_square.url, :width => 300  %>
   <div style="margin: 20px 0 0 80px">
     <div style="margin-bottom: 0.5em;">
       <label><%= t :or_you_can %></label>
@@ -29,6 +40,6 @@
   </div>
 </div>
 <div class="column span-12 append-2 last">
-  <h2><%= t :join %> <%= SITE_NAME %>!</h2>
+  <h2><%= t :join %> <%= @site.name %>!</h2>
   <%= render :partial => 'users/new_form' %>
 </div>

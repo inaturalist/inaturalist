@@ -6,8 +6,8 @@
   <meta property="og:type" content="website"> 
   <meta property="og:title" content="<%= @project.title %>"/> 
   <% unless @project.icon.blank? -%>
-    <meta property="og:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
-    <meta property="twitter:image" content="<%= uri_join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="og:image" content="<%= @shareable_image_url = uri_join(root_url, @project.icon.url(:original)) %>"/> 
+    <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
   <% end -%>
   <meta property="og:url" content="<%= project_url(@project) %>"/> 
   <% unless @fb_admin_ids.blank? -%>
@@ -34,7 +34,6 @@
 
 <%- content_for(:extracss) do -%>
   <%= stylesheet_link_tag 'projects/show' %>
-  <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
   <% if @custom_project && !@custom_project.css.blank? -%>
     <style type="text/css" media="screen">
       <%= @custom_project.css %>
@@ -135,7 +134,7 @@
     <% if !@project.event_url.blank? && !@project.event_started? -%>
       <div id="event" class="clear stacked <%= 'with_description' unless @project.description.blank? %>">
         <% if @project.eventbrite_id -%>
-          <iframe src="http://www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="300" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
+          <iframe src="//www.eventbrite.com/tickets-external?eid=<%= @project.eventbrite_id %>&ref=etckt&v=2" frameborder="0" height="300" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
         <% elsif (uri = URI.parse(@project.event_url) rescue nil) %>
           <div class="inline buttonrow centered quiet box unstacked">
             <%= link_to t(:register), @project.event_url, :class => "default button" %>
@@ -288,7 +287,6 @@
       <%= link_to "<span class='lead'>&raquo;</span> #{t(:export_observations)}".html_safe, export_observations_path(projects: [@project]), :class => "navlink" %>
       <div class="inner feeds">
         <%= link_to("Atom", project_observations_path(@project, :format => 'atom'), :class => 'atomlink', :rel => "nofollow") %> /
-        <%= link_to("KML",  project_observations_path(@project, :format => 'kml'),  :class => 'kmllink', :rel => "nofollow") %> /
         <%= link_to("CSV",  export_observations_path('projects[]' => @project),  :class => 'csvlink', :rel => "nofollow") %>
       </div>
     </li>
@@ -307,7 +305,7 @@
     <ul id="projectnav" class="stacked curatorbox">
       <li><div class="curatorlabel"><%=t :project_curator_tools %></div></li>
       <% if !@project.observations_url_params.blank? -%>
-        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params.merge(not_in_project: @project.slug)), :class => "navlink" %></li>
+        <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_suitable_observations)}".html_safe, observations_path(@project.observations_url_params(concat_ids: true).merge(not_in_project: @project.slug)), :class => "navlink" %></li>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:find_unsuitable_observations)}".html_safe, observations_path(@observation_search_url_params.merge(not_matching_project_rules_for: @project.slug)), :class => "navlink" %></li>
       <% end -%>
       <li>

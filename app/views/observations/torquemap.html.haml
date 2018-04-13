@@ -1,0 +1,12 @@
+- content_for :extrajs do
+  :javascript
+    var MAP_PARAMS = #{@params.to_json};
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
+  = javascript_include_tag "torque.full.uncompressed"
+  = javascript_include_tag "observations-torque-webpack"
+- content_for :extracss do
+  = stylesheet_link_tag "observations/torquemap"
+  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
+#app
+  #initial-loading.text-center
+    .loading_spinner

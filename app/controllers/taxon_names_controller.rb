@@ -3,6 +3,8 @@ class TaxonNamesController < ApplicationController
   before_filter :load_taxon_name, :only => [:show, :edit, :update, :destroy, :destroy_synonyms]
   before_filter :load_taxon, :except => [:index, :destroy_synonyms]
   before_filter :curator_required_for_sciname, :only => [:create, :update, :destroy, :destroy_synonyms]
+  before_filter :curator_or_creator_required, only: [:edit, :update, :destroy]
+  before_filter :curator_required, only: [:destroy_synonyms]
   before_filter :load_lexicons, :only => [:new, :create, :edit, :update]
   
   cache_sweeper :taxon_name_sweeper, :only => [:create, :update, :destroy]
@@ -159,6 +161,16 @@ class TaxonNamesController < ApplicationController
     end
     flash[:error] = t(:only_curators_can_add_edit_scientific_names)
     redirect_back_or_default(@taxon)
+    false
+  end
+
+  def curator_or_creator_required
+    return true if current_user.is_curator?
+    if @taxon_name
+      return true if @taxon_name.creator_id == current_user.id
+    end
+    flash[:error] = t(:you_dont_have_permission_to_do_that)
+    redirect_back_or_default( @taxon )
     false
   end
 

@@ -78,7 +78,8 @@ class VotesController < ApplicationController
   private
   def load_votable
     klass = Object.const_get(params[:resource_type].singularize.underscore.camelcase) rescue nil
-    unless klass && (@record = klass.find(params[:resource_id]) rescue nil)
+    unless klass && (@record = klass.find_by_uuid(params[:resource_id]) ||
+                               klass.find(params[:resource_id]) rescue nil)
       render_404
       return false
     end

@@ -1,6 +1,8 @@
 import React, { PropTypes } from "react";
 import safeHtml from "safe-html";
 import htmlTruncate from "html-truncate";
+import linkifyHtml from "linkifyjs/html";
+import sanitizeHtml from "sanitize-html";
 
 const ALLOWED_TAGS = (
   "div a abbr acronym b blockquote br cite code dl dt em h1 h2 h3 h4 h5 h6 hr i"
@@ -10,7 +12,7 @@ const ALLOWED_TAGS = (
 ).split( " " );
 
 const ALLOWED_ATTRIBUTES_NAMES = (
-  "href src width height alt cite title class name abbr value align"
+  "href src width height alt cite title class name abbr value align target rel"
   // + "xml:lang style controls preload"
 ).split( " " );
 
@@ -53,12 +55,13 @@ class UserText extends React.Component {
   }
 
   render( ) {
-    const { text, truncate, config } = this.props;
-    let { className } = Object.assign( { }, this.props );
+    const { text, truncate, config, moreToggle, stripWhitespace } = this.props;
+    const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`}></div>;
     }
-    const html = safeHtml( this.hyperlinkMentions( text ), config || CONFIG );
+    const withBreaks = text.trim( ).replace( /\n/gm, "<br />" );
+    const html = safeHtml( this.hyperlinkMentions( withBreaks ), config || CONFIG );
     let truncatedHtml;
     const style = {
       transition: "height 2s",
@@ -66,32 +69,36 @@ class UserText extends React.Component {
     };
     if ( truncate && truncate > 0 && !this.state.more ) {
       truncatedHtml = htmlTruncate( html, truncate );
-      if ( truncatedHtml !== html ) {
-        className += " truncated";
-      }
     }
     let moreLink;
-    if ( truncate && ( truncatedHtml !== html ) ) {
+    if ( truncate && ( truncatedHtml !== html ) && moreToggle ) {
       moreLink = (
         <a
           onClick={ ( ) => {
             this.toggle( );
             return false;
           } }
-          className={truncate && truncate > 0 ? "" : "collapse"}
+          className={truncate && truncate > 0 ? "more" : "collapse"}
         >
           { this.state.more ? I18n.t( "less" ) : I18n.t( "more" ) }
         </a>
       );
     }
+
+    let htmlToDisplay = sanitizeHtml( linkifyHtml( truncatedHtml || html, { className: null, attributes: { rel: "nofollow" } } ), {
+      allowedTags: ALLOWED_TAGS, allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
+      exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
+    } );
+    if ( stripWhitespace ) {
+      htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
+    }
     return (
       <div className={`UserText ${className}`}>
-        <div
+        <span
           className="content"
-          dangerouslySetInnerHTML={ { __html: ( truncatedHtml || html ) } }
+          dangerouslySetInnerHTML={ { __html: htmlToDisplay } }
           style={style}
-        ></div>
-        { moreLink }
+        ></span> { moreLink }
       </div>
     );
   }
@@ -101,7 +108,13 @@ UserText.propTypes = {
   text: PropTypes.string,
   truncate: PropTypes.number,
   config: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  moreToggle: PropTypes.bool,
+  stripWhitespace: PropTypes.bool
+};
+
+UserText.defaultProps = {
+  moreToggle: true
 };
 
 export default UserText;

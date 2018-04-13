@@ -8,20 +8,32 @@ import {
   toggleReviewed,
   agreeWithCurrentObservation,
   showNextObservation,
-  showPrevObservation
+  showPrevObservation,
+  updateCurrentObservation,
+  fetchDataForTab
 } from "../actions";
 
 function mapStateToProps( state ) {
   let images;
   const observation = state.currentObservation.observation;
   if ( observation && observation.photos && observation.photos.length > 0 ) {
-    images = observation.photos.map( ( photo ) => ( {
-      original: photo.photoUrl( "medium" ),
+    let defaultPhotoSize = "medium";
+    if ( $( ".image-gallery" ).width( ) > 600 ) {
+      defaultPhotoSize = "large";
+    }
+    images = observation.photos.map( photo => ( {
+      original: photo.photoUrl( defaultPhotoSize ),
       zoom: photo.photoUrl( "original" ),
-      thumbnail: photo.photoUrl( "square" )
+      thumbnail: photo.photoUrl( "square" ),
+      originalDimensions: photo.original_dimensions
     } ) );
   }
-  return Object.assign( {}, { images }, state.currentObservation );
+  return Object.assign( {}, {
+    images,
+    blind: state.config.blind,
+    controlledTerms: state.controlledTerms.terms,
+    currentUser: state.config.currentUser
+  }, state.currentObservation );
 }
 
 function mapDispatchToProps( dispatch ) {
@@ -51,6 +63,16 @@ function mapDispatchToProps( dispatch ) {
     },
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
+    },
+    chooseTab: ( tab ) => {
+      dispatch( updateCurrentObservation( { tab } ) );
+      dispatch( fetchDataForTab( ) );
+    },
+    setImagesCurrentIndex: index => {
+      dispatch( updateCurrentObservation( { imagesCurrentIndex: index } ) );
+    },
+    toggleKeyboardShortcuts: keyboardShortcutsShown => {
+      dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
     }
   };
 }

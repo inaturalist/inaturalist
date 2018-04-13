@@ -1,5 +1,3 @@
 <div class="inat-widget-header">
-  <a href="<%= CONFIG.site_url %>">
-    <img alt="Logo-small" src="<%= CONFIG.site_url %>/assets/logo-small.gif" />
-  </a>
+  <%= link_to image_tag( image_url( @site.logo.url ), alt: @site.name ), @site.url %>
 </div>

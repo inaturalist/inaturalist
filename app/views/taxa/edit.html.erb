@@ -9,7 +9,7 @@
     <%= link_to t(:back_to_viewing, :taxon => @taxon.name).html_safe, 
                 taxon_path(@taxon), :class => 'back crumb' %>
   </span>
-  <h2><%= t(:editing) %> <i><%= @taxon.name %></i></h2>
+  <h2><%= t(:editing) %> <%= @taxon.name %></h2>
   <div class="description">
     <% if @taxon.creator -%>
       <%=t :created_by_user_on_date, :user => @taxon.creator.login, :date => l(@taxon.created_at) %>

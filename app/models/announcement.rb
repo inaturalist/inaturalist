@@ -1,10 +1,9 @@
 class Announcement < ActiveRecord::Base
-  PLACEMENTS = %w(welcome/index users/dashboard users/dashboard#sidebar)
+  PLACEMENTS = %w(users/dashboard users/dashboard#sidebar welcome/index)
   belongs_to :site, inverse_of: :announcements
   validates_presence_of :placement, :start, :end, :body
 
   scope :in_locale, lambda {|locale|
-    Rails.logger.debug "[DEBUG] locale: #{locale}"
     where("(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale)
   }
 

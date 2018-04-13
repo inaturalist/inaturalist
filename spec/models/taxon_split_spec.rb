@@ -21,7 +21,10 @@ describe TaxonSplit, "validation" do
 end
 
 describe TaxonSplit, "commit" do
-  before(:each) { prepare_split }
+  before(:each) do
+    prepare_split
+    @split.committer = @split.user
+  end
 
   it "should generate updates for observers of the old taxon"
   it "should generate updates for identifiers of the old taxon"
@@ -94,6 +97,44 @@ describe TaxonSplit, "commit_records" do
   before(:each) { prepare_split }
   before(:each) { enable_elastic_indexing( Observation, Identification ) }
   after(:each) { disable_elastic_indexing( Observation, Identification ) }
+
+  describe "for identification disagreements" do
+    before do
+      superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+      @input_taxon.update_attributes( parent: superfamily )
+      @output_taxon1.update_attributes( parent: superfamily )
+      @output_taxon2.update_attributes( parent: superfamily )
+      @input_taxon.reload
+      @split.reload
+    end
+    it "should not replace disagreement identifications of the input taxon with new disagreements" do
+      o = Observation.make!
+      s = Taxon.make!( rank: Taxon::GENUS, parent: @input_taxon )
+      3.times { Identification.make!( observation: o, taxon: s ) }
+      expect( @input_taxon ).to be_grafted
+      expect( s ).to be_grafted
+      ident = Identification.make!( observation: o, taxon: @input_taxon, disagreement: true )
+      expect( ident ).to be_disagreement
+      expect( @split.output_taxon_for_record( ident ) ).not_to be_blank
+      @split.commit_records
+      o.reload
+      new_ident = o.identifications.current.where( user_id: ident.user_id ).first
+      expect( new_ident ).not_to be_disagreement
+    end
+
+    it "should mark all past disagreements with the input taxon as not disagreements" do
+      o = Observation.make!
+      3.times { Identification.make!( observation: o, taxon: @input_taxon ) }
+      g = Taxon.make!( rank: Taxon::GENUS )
+      s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+      ident = Identification.make!( observation: o, taxon: s )
+      expect( ident ).to be_disagreement
+      expect( ident.previous_observation_taxon ).to eq @input_taxon
+      @split.commit_records
+      ident.reload
+      expect( ident ).not_to be_disagreement
+    end
+  end
 
   describe "with unatlased taxa" do
     describe "identifications" do
@@ -223,15 +264,39 @@ describe TaxonSplit, "commit_records" do
         end
       end
       describe "observations" do
-        it "should change the taxon if coordinates are in a non-overlapping presence place" do
-          o = Observation.make!(
-            latitude: presence_place1.latitude,
-            longitude: presence_place1.longitude,
-            taxon: @split.input_taxon
-          )
-          @split.commit_records
-          o.reload
-          expect( o.taxon ).to eq @split.output_taxa[0]
+        describe "where coordinates are in a non-overlapping presence place" do
+          let(:o) {
+            Observation.make!(
+              latitude: presence_place1.latitude,
+              longitude: presence_place1.longitude,
+              taxon: @split.input_taxon
+            )
+          }
+          it "should change the taxon" do
+            expect( o.taxon ).to eq @split.input_taxon
+            @split.commit_records
+            o.reload
+            expect( o.taxon ).to eq @split.output_taxa[0]
+          end
+          it "should update the iconic taxon" do
+            input_iconic_taxon = Taxon.make!( is_iconic: true, name: "Input Iconic Taxon", rank: Taxon::ORDER )
+            output_iconic_taxon = Taxon.make!( is_iconic: true, name: "Output Iconic Taxon", rank: Taxon::ORDER )
+            @input_taxon.update_attributes( parent: input_iconic_taxon, iconic_taxon: input_iconic_taxon )
+            @output_taxon1.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
+            @output_taxon2.update_attributes( parent: output_iconic_taxon, iconic_taxon: output_iconic_taxon )
+            @split.reload
+            expect( @split.input_taxon.iconic_taxon ).to eq input_iconic_taxon
+            @split.output_taxa.each do |t|
+              expect( t.iconic_taxon ).to eq output_iconic_taxon
+            end
+            expect( o.iconic_taxon ).to eq input_iconic_taxon
+            @split.commit_records
+            Delayed::Worker.new.work_off
+            o.reload
+            # puts "o.iconic_taxon: #{o.iconic_taxon}"
+            # puts "output_iconic_taxon: #{output_iconic_taxon}"
+            expect( o.iconic_taxon ).to eq output_iconic_taxon
+          end
         end
         it "should not change the taxon if the obs is of a competely different taxon" do
           t = Taxon.make!
@@ -412,9 +477,10 @@ describe TaxonSplit, "commit_records" do
 end
 
 def prepare_split
-  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
-  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY )
-  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY )
+  superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "Input Taxon" )
+  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon 1" )
+  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon 2" )
   @split = TaxonSplit.make
   @split.add_input_taxon(@input_taxon)
   @split.add_output_taxon(@output_taxon1)

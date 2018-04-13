@@ -4,112 +4,134 @@ class Observation < ActiveRecord::Base
 
   DEFAULT_ES_BATCH_SIZE = 500
 
-  attr_accessor :indexed_tag_names, :indexed_project_ids, :indexed_place_ids,
-    :indexed_places, :indexed_project_ids_with_curator_id,
-    :indexed_project_ids_without_curator_id
+  attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
   scope :load_for_index, -> { includes(
     :user, :confirmed_reviews, :flags,
-    :model_attribute_changes,
+    :observation_links, :quality_metrics,
+    :votes_for, :stored_preferences,
+    { project_observations: :stored_preferences }, :tags,
     { annotations: :votes_for },
-    { project_observations_with_changes: :model_attribute_changes },
     { sounds: :user },
     { photos: [ :user, :flags ] },
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user, :taxon ] },
-    { comments: :user } ) }
+    { identifications: [ :user, :taxon, :stored_preferences, :flags, :taxon_change ] },
+    { comments: [ :user, :flags ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
-      indexes :uuid, index: "not_analyzed"
+      indexes :uuid, type: "keyword"
       indexes :taxon do
-        indexes :ancestry, index: "not_analyzed"
-        indexes :min_species_ancestry, index: "not_analyzed"
-        indexes :rank, index: "not_analyzed"
-        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :ancestry, type: "keyword"
+        indexes :min_species_ancestry, type: "keyword"
+        indexes :rank, type: "keyword"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :names do
-          indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
-          indexes :locale, index: "not_analyzed"
+          indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :locale, type: "keyword"
         end
         indexes :statuses, type: :nested do
-          indexes :authority, index: "not_analyzed"
-          indexes :status, index: "not_analyzed"
-          indexes :geoprivacy, index: "not_analyzed"
+          indexes :authority, type: "keyword"
+          indexes :status, type: "keyword"
+          indexes :geoprivacy, type: "keyword"
         end
-      end
-      indexes :photos do
-        indexes :license_code, index: "not_analyzed"
-      end
-      indexes :sounds do
-        indexes :license_code, index: "not_analyzed"
       end
       indexes :ofvs, type: :nested do
-        indexes :uuid, index: "not_analyzed"
-        indexes :name, index: "not_analyzed"
-        indexes :value, index: "not_analyzed"
+        indexes :uuid, type: "keyword"
+        indexes :name, type: "keyword"
+        indexes :name_ci, type: "text", analyzer: "keyword_analyzer"
+        indexes :value, type: "keyword"
+        indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
+        indexes :datatype, type: "keyword"
       end
       indexes :annotations, type: :nested do
-        indexes :uuid, index: "not_analyzed"
-        indexes :resource_type, index: "not_analyzed"
-        indexes :concatenated_attr_val, index: "not_analyzed"
+        indexes :uuid, type: "keyword"
+        indexes :resource_type, type: "keyword"
+        indexes :concatenated_attr_val, type: "keyword"
       end
-      indexes :non_owner_ids, type: :nested do
-        indexes :uuid, index: "not_analyzed"
-        indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
-        indexes :category, index: "not_analyzed"
+      indexes :identifications, type: :nested do
+        indexes :uuid, type: "keyword"
+        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :category, type: "keyword"
         indexes :user do
-          indexes :login, index: "not_analyzed"
+          indexes :login, type: "keyword"
         end
-      end
-      indexes :field_change_times, type: :nested do
-        indexes :field_name, index: "not_analyzed"
-        indexes :keyword, index: "not_analyzed"
+        indexes :taxon_change do
+          indexes :type, type: "keyword"
+        end
+        indexes :flags do
+          indexes :flag, type: "keyword"
+        end
+        indexes :created_at, type: "date"
       end
       indexes :comments do
-        indexes :uuid, index: "not_analyzed"
-        indexes :body, type: "string", analyzer: "ascii_snowball_analyzer"
+        indexes :uuid, type: "keyword"
+        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :user do
-          indexes :login, index: "not_analyzed"
+          indexes :login, type: "keyword"
+        end
+        indexes :flags do
+          indexes :flag, type: "keyword"
         end
       end
+      indexes :flags do
+        indexes :flag, type: "keyword"
+      end
       indexes :project_observations do
-        indexes :uuid, index: "not_analyzed"
+        indexes :uuid, type: "keyword"
+        indexes :preferences do
+          indexes :name, type: "keyword", index: false
+          indexes :value, type: "keyword", index: false
+        end
       end
       indexes :observation_photos do
-        indexes :uuid, index: "not_analyzed"
+        indexes :uuid, type: "keyword"
       end
       indexes :user do
-        indexes :login, index: "not_analyzed"
+        indexes :login, type: "keyword"
       end
       indexes :photos do
-        indexes :attribution, index: "not_analyzed"
-        indexes :url, index: "not_analyzed"
-        indexes :license_code, index: "not_analyzed"
+        indexes :attribution, type: "keyword", index: false
+        indexes :url, type: "keyword", index: false
+        indexes :license_code, type: "keyword"
+        indexes :flags do
+          indexes :flag, type: "keyword"
+        end
+      end
+      indexes :votes, type: :nested do
+        indexes :vote_scope, type: "keyword"
       end
       indexes :sounds do
-        indexes :attribution, index: "not_analyzed"
-        indexes :native_sound_id, index: "not_analyzed"
-        indexes :license_code, index: "not_analyzed"
+        indexes :attribution, type: "keyword", index: false
+        indexes :native_sound_id, type: "keyword"
+        indexes :license_code, type: "keyword"
       end
-      indexes :description, type: "string", analyzer: "ascii_snowball_analyzer"
-      indexes :tags, type: "string", analyzer: "ascii_snowball_analyzer"
-      indexes :place_guess, type: "string", analyzer: "ascii_snowball_analyzer"
-      indexes :species_guess, index: "not_analyzed"
-      indexes :license_code, index: "not_analyzed"
+      indexes :preferences do
+        indexes :name, type: "keyword", index: false
+        indexes :value, type: "keyword", index: false
+      end
+      indexes :quality_metrics do
+        indexes :metric, type: "keyword", index: false
+      end
+      indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :tags, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :place_guess, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :species_guess, type: "keyword"
+      indexes :license_code, type: "keyword"
       indexes :observed_on, type: "date", format: "dateOptionalTime"
-      indexes :observed_on_string, type: "string"
+      indexes :observed_on_string, type: "text"
       indexes :location, type: "geo_point"
       indexes :private_location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
       indexes :private_geojson, type: "geo_shape"
-      indexes :created_time_zone, index: "not_analyzed"
-      indexes :geoprivacy, index: "not_analyzed"
-      indexes :observed_time_zone, index: "not_analyzed"
-      indexes :quality_grade, index: "not_analyzed"
-      indexes :time_zone_offset, index: "not_analyzed"
-      indexes :uri, index: "not_analyzed"
+      indexes :created_time_zone, type: "keyword", index: false
+      indexes :geoprivacy, type: "keyword"
+      indexes :observed_time_zone, type: "keyword", index: false
+      indexes :quality_grade, type: "keyword"
+      indexes :time_zone_offset, type: "keyword", index: false
+      indexes :uri, type: "keyword", index: false
     end
   end
 
@@ -117,23 +139,24 @@ class Observation < ActiveRecord::Base
     preload_for_elastic_index unless options[:no_details]
     # some timezones are invalid
     created = created_at.in_time_zone(timezone_object || "UTC")
-    t = taxon || community_taxon
+    t = taxon
     json = {
-        id: id,
-        uuid: uuid,
-        site_id: site_id,
-        created_at: created,
-        created_at_details: ElasticModel.date_details(created),
-        observed_on: datetime.blank? ? nil : datetime.to_date,
-        observed_on_details: ElasticModel.date_details(datetime),
-        time_observed_at: time_observed_at_in_zone,
-        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
-        quality_grade: quality_grade,
-        captive: captive,
-        user: user ? user.as_indexed_json(no_details: true) : nil,
-        taxon: t ? t.as_indexed_json(for_observation: true,
-          no_details: options[:no_details],
-          for_identification: options[:for_identification]) : nil
+      id: id,
+      uuid: uuid,
+      site_id: site_id,
+      created_at: created,
+      created_at_details: ElasticModel.date_details(created),
+      observed_on: datetime.blank? ? nil : datetime.to_date,
+      observed_on_details: ElasticModel.date_details(datetime),
+      time_observed_at: time_observed_at_in_zone,
+      place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
+      private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
+      quality_grade: quality_grade,
+      captive: captive,
+      user: user ? user.as_indexed_json(no_details: true) : nil,
+      taxon: t ? t.as_indexed_json(for_observation: true,
+        no_details: options[:no_details],
+        for_identification: options[:for_identification]) : nil
     }
 
     unless options[:no_details]
@@ -147,11 +170,15 @@ class Observation < ActiveRecord::Base
         mappable: mappable,
         species_guess: species_guess.blank? ? nil : species_guess,
         place_guess: place_guess.blank? ? nil : place_guess,
+        private_place_guess: private_place_guess.blank? ? nil : private_place_guess,
         observed_on_string: observed_on_string,
         id_please: id_please,
         out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
+        map_scale: map_scale,
+        oauth_application_id: application_id_to_index,
+        community_taxon_id: community_taxon_id,
         faves_count: cached_votes_total,
         cached_votes_total: cached_votes_total,
         num_identification_agreements: num_identification_agreements,
@@ -162,27 +189,26 @@ class Observation < ActiveRecord::Base
           (num_identification_agreements > 0),
         identifications_most_disagree:
           (num_identification_agreements < num_identification_disagreements),
-        place_ids: (indexed_place_ids || observations_places.map(&:place_id)).compact.uniq,
-        project_ids: (indexed_project_ids || project_observations).map{ |po| po[:project_id] }.compact.uniq,
-        project_ids_with_curator_id: (indexed_project_ids_with_curator_id ||
-          project_observations.select{ |po| !po.curator_identification_id.nil? }.
-            map(&:project_id)).compact.uniq,
-        project_ids_without_curator_id: (indexed_project_ids_without_curator_id ||
-          project_observations.select{ |po| po.curator_identification_id.nil? }.
-            map(&:project_id)).compact.uniq,
-        project_observations: (indexed_project_ids || project_observations).map{ |po|
-          { project_id: po[:project_id], uuid: po[:uuid] } },
+        place_ids: (indexed_place_ids || public_places.map(&:id)).compact.uniq,
+        private_place_ids: (indexed_private_place_ids || places.map(&:id)).compact.uniq,
+        project_ids: project_observations.map{ |po| po[:project_id] }.compact.uniq,
+        project_ids_with_curator_id: project_observations.
+          select{ |po| !po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
+        project_ids_without_curator_id: project_observations.
+          select{ |po| po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
+        project_observations: project_observations.map(&:as_indexed_json),
         reviewed_by: confirmed_reviews.map(&:user_id),
-        tags: (indexed_tag_names || tags.map(&:name)).compact.uniq,
+        tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
         annotations: annotations.map(&:as_indexed_json),
         sounds: sounds.map(&:as_indexed_json),
-        non_owner_ids: others_identifications.map{ |i| i.as_indexed_json(no_details: true) },
+        identifications: identifications.map{ |i| i.as_indexed_json(no_details: true) },
         identifications_count: num_identifications_by_others,
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,
         obscured: coordinates_obscured? || geoprivacy_obscured?,
-        field_change_times: field_changes_to_index,
+        positional_accuracy: positional_accuracy,
+        public_positional_accuracy: public_positional_accuracy,
         location: (latitude && longitude) ?
           ElasticModel.point_latlon(latitude, longitude) : nil,
         private_location: (private_latitude && private_longitude) ?
@@ -190,7 +216,13 @@ class Observation < ActiveRecord::Base
         geojson: (latitude && longitude) ?
           ElasticModel.point_geojson(latitude, longitude) : nil,
         private_geojson: (private_latitude && private_longitude) ?
-          ElasticModel.point_geojson(private_latitude, private_longitude) : nil
+          ElasticModel.point_geojson(private_latitude, private_longitude) : nil,
+        votes: votes_for.map(&:as_indexed_json),
+        outlinks: observation_links.map(&:as_indexed_json),
+        owners_identification_from_vision: owners_identification_from_vision,
+        preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
+        flags: flags.map(&:as_indexed_json),
+        quality_metrics: quality_metrics.map(&:as_indexed_json)
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]
@@ -206,66 +238,45 @@ class Observation < ActiveRecord::Base
     json
   end
 
-  # to quickly fetch tag names and project_ids when bulk indexing
+  # to quickly fetch observation place_ids when bulk indexing
   def self.prepare_batch_for_index(observations, options = {})
     # make sure we default all caches to empty arrays
     # this prevents future lookups for instances with no results
     observations.each{ |o|
-      o.indexed_tag_names ||= [ ]
-      o.indexed_project_ids ||= [ ]
-      o.indexed_project_ids_with_curator_id ||= [ ]
-      o.indexed_project_ids_without_curator_id ||= [ ]
-      o.indexed_project_ids_with_curator_id ||= [ ]
       o.indexed_place_ids ||= [ ]
-      o.indexed_places ||= [ ]
+      o.indexed_private_place_ids ||= [ ]
+      o.indexed_private_places ||= [ ]
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
-    if options.blank? || options[:tags]
-      # fetch all tag names store them in `indexed_tag_names`
-      connection.execute("
-        SELECT ts.taggable_id, t.name
-        FROM taggings ts
-        JOIN tags t ON (ts.tag_id = t.id)
-        WHERE ts.taggable_type='Observation' AND
-        ts.taggable_id IN (#{ batch_ids_string })").to_a.each do |r|
-        if o = observations_by_id[ r["taggable_id"].to_i ]
-          o.indexed_tag_names << r["name"]
-        end
-      end
-    end
-    # fetch all project_ids store them in `indexed_project_ids`
-    if options.blank? || options[:projects]
-      connection.execute("
-        SELECT observation_id, project_id, curator_identification_id, uuid
-        FROM project_observations
-        WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
-        if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_project_ids << { project_id: r["project_id"].to_i, uuid: r["uuid"] }
-          # these are for the `pcid` search param
-          if r["curator_identification_id"].nil?
-            o.indexed_project_ids_without_curator_id << r["project_id"].to_i
-          else
-            o.indexed_project_ids_with_curator_id << r["project_id"].to_i
-          end
-        end
-      end
-    end
     # fetch all place_ids store them in `indexed_place_ids`
-    if options.blank? || options[:places]
+    if !batch_ids_string.blank? && ( options.blank? || options[:places] )
       connection.execute("
         SELECT observation_id, place_id
         FROM observations_places
         WHERE observation_id IN (#{ batch_ids_string })").to_a.each do |r|
         if o = observations_by_id[ r["observation_id"].to_i ]
-          o.indexed_place_ids << r["place_id"].to_i
+          o.indexed_private_place_ids << r["place_id"].to_i
         end
       end
-      place_ids = observations.map(&:indexed_place_ids).flatten.uniq.compact
-      places_by_id = Hash[ Place.where(id: place_ids).map{ |p| [ p.id, p ] } ]
+      private_place_ids = observations.map(&:indexed_private_place_ids).flatten.uniq.compact
+      private_places_by_id = Hash[ Place.where(id: private_place_ids).map{ |p| [ p.id, p ] } ]
+      always_indexed_place_levels = [
+        Place::COUNTRY_LEVEL,
+        Place::STATE_LEVEL,
+        Place::COUNTY_LEVEL
+      ]
       observations.each do |o|
-        unless o.indexed_place_ids.blank?
-          o.indexed_places = places_by_id.values_at(*o.indexed_place_ids).compact
+        unless o.indexed_private_place_ids.blank?
+          o.indexed_private_places = private_places_by_id.values_at(*o.indexed_private_place_ids).compact.select do |p|
+            always_indexed_place_levels.include?( p.admin_level ) || p.bbox_privately_contains_observation?( o )
+          end
+          o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
+          unless o.geoprivacy == Observation::PRIVATE
+            o.indexed_place_ids = o.indexed_private_places.select {|p|
+              always_indexed_place_levels.include?( p.admin_level ) || p.bbox_publicly_contains_observation?( o )
+            }.map(&:id)
+          end
         end
       end
     end
@@ -491,7 +502,7 @@ class Observation < ActiveRecord::Base
     if p[:d1] || p[:d2]
       d1 = DateTime.parse(p[:d1]) rescue DateTime.parse("1800-01-01")
       d2 = DateTime.parse(p[:d2]) rescue Time.now
-      d2 = Time.now if d2 && d2 > Time.now
+      # d2 = Time.now if d2 && d2 > Time.now # not sure why we need to prevent queries into the future
       query_by_date = (
         (p[:d1] && d1.to_s =~ /00:00:00/ && p[:d1] !~ /00:00:00/) ||
         (p[:d2] && d2.to_s =~ /00:00:00/ && p[:d2] !~ /00:00:00/))
@@ -585,17 +596,37 @@ class Observation < ActiveRecord::Base
           nested: {
             path: "ofvs",
             query: { bool: { must: [ { match: {
-              "ofvs.name" => v[:observation_field].name } } ] }
+              "ofvs.name_ci" => v[:observation_field].name } } ] }
             }
           }
         }
         unless v[:value].blank?
           nested_query[:nested][:query][:bool][:must] <<
-            { match: { "ofvs.value" => v[:value] } }
+            { match: { "ofvs.value_ci" => v[:value] } }
         end
         search_filters << nested_query
       end
     end
+
+    if p[:ident_user_id]
+      vals = p[:ident_user_id].to_s.split( "," )
+      if vals[0].to_i > 0
+        term_filter = { terms: { "identifications.user.id" => vals } }
+      else
+        term_filter = { terms: { "identifications.user.login" => vals } }
+      end
+      search_filters << {
+        nested: {
+          path: "identifications",
+          query: {
+            bool: {
+              filter: term_filter
+            }
+          }
+        }
+      }
+    end
+
     # conservation status
     unless p[:cs].blank?
       values = [ p[:cs] ].flatten.map(&:downcase)
@@ -637,34 +668,6 @@ class Observation < ActiveRecord::Base
         search_filters << { terms: { geoprivacy: Observation::GEOPRIVACIES } }
       else
         search_filters << { term: { geoprivacy: p[:geoprivacy] } }
-      end
-    end
-
-    if p[:changed_since]
-      if changedDate = DateTime.parse(p[:changed_since])
-        changed_since_filters = [ { range: { "field_change_times.changed_at": {
-          gte: changedDate.strftime("%F") }}}]
-        if p[:changed_fields]
-          # one of these fields must have changed (and have that recorded by Rails)
-          changed_since_filters << {
-            terms: { "field_change_times.field_name": p[:changed_fields].split(",") }
-          }
-        end
-        if p[:change_project_id]
-          # project curator ID must have changed for these projects
-          changed_since_filters << { bool: { should: [
-            { terms: { "field_change_times.project_id": p[:change_project_id].split(",") } },
-            { bool: { must_not: { exists: { field: "field_change_times.project_id" } } } }
-          ]}}
-        end
-        search_filters << {
-          nested: {
-            path: "field_change_times",
-            query: { bool: {
-              must: changed_since_filters
-            } }
-          }
-        }
       end
     end
 
@@ -728,7 +731,7 @@ class Observation < ActiveRecord::Base
       json[:taxon][:endemic] = false
       return
     end
-    places = indexed_places ||
+    places = indexed_private_places ||
       Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
     json[:taxon][:threatened] = t.threatened?(place: places)
     json[:taxon][:introduced] = t.establishment_means_in_place?(
@@ -743,28 +746,6 @@ class Observation < ActiveRecord::Base
       ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = t.establishment_means_in_place?(
       "endemic", places)
-  end
-
-  # returns an array of change hashes:
-  #   [ { field_name: "geom", changed_at: ... },
-  #     { field_name: "curator_identification_id",
-  #       project_id: 1, changed_at: ... } ]
-  def field_changes_to_index
-    # get all the changes for this observation
-    changes = model_attribute_changes.map do |c|
-      { field_name: c.field_name, changed_at: c.changed_at }
-    end
-    # get all the project curator IDs for this obs
-    if project_observations_with_changes.length > 0
-      changes += project_observations_with_changes.map do |po|
-        po.model_attribute_changes.map do |c|
-          return unless c.field_name == "curator_identification_id"
-          { field_name: "project_curator_id", project_id: po.project_id,
-              changed_at: c.changed_at }
-        end
-      end.flatten.compact
-    end
-    changes
   end
 
 end

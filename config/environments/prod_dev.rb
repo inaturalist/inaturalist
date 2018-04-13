@@ -16,7 +16,6 @@ Inaturalist::Application.configure do
   config.action_controller.perform_caching = false
 
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
   config.action_mailer.delivery_method = :test
 
   # # Uncomment to test mail delivery
@@ -34,13 +33,10 @@ Inaturalist::Application.configure do
   # Raise an error on page load if there are pending migrations.
   config.active_record.migration_error = :page_load
 
-  # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = CONFIG.site_url
-
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  config.assets.debug = true
+  config.assets.debug = false
 
   # Asset digests allow you to set far-future HTTP expiration dates on all assets,
   # yet still be able to expire them through the digest params.

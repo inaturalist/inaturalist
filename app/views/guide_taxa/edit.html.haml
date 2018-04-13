@@ -21,7 +21,7 @@
       %li
         = link_to "#updatewithsite", "data-toggle" => "modal" do
           %i.fa.fa-refresh
-          = t(:update_with_site_content, :site_name => SITE_NAME_SHORT)
+          = t(:update_with_site_content, :site_name => @site.preferred_site_name_short)
   %h2= @title
   = render 'form'
 
@@ -41,9 +41,9 @@
     .modal-content
       .modal-header
         %button.close{:type => "button", "data-dismiss" => "modal"} x
-        %h4.modal-title=t :update_with_site_content, :site_name => SITE_NAME_SHORT
+        %h4.modal-title=t :update_with_site_content, :site_name => @site.preferred_site_name_short
       .modal-body
-        %p=t 'views.guide_taxa.edit.site_explanation', :site_name => SITE_NAME
+        %p=t 'views.guide_taxa.edit.site_explanation', :site_name => @site.name
       .modal-footer
         %button.btn.btn-default{"data-dismiss" => "modal"}=t :close
-        = link_to t(:update_with_site_content, :site_name => SITE_NAME_SHORT), sync_guide_taxon_path(@guide_taxon, :provider => "site"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}
+        = link_to t(:update_with_site_content, :site_name => @site.preferred_site_name_short), sync_guide_taxon_path(@guide_taxon, :provider => "site"), :method => :post, :class => "btn btn-primary", :data => {:loading_click => t(:updating)}

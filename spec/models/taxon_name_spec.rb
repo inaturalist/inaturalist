@@ -75,6 +75,10 @@ describe TaxonName, 'creation' do
     expect(tn.name).to eq 'Foo'
   end
 
+  it "should strip the lexicon" do
+    expect( TaxonName.make!( lexicon: " Foo" ).lexicon ).to eq "Foo"
+  end
+
   it "should set is_valid to true for common names by default" do
     tn = TaxonName.make!(:lexicon => TaxonName::LEXICONS[:ENGLISH])
     expect(tn.is_valid).to be true
@@ -185,7 +189,7 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_gl
   end
 
-  it "should pick names based on the site's place even when a place isn't requested explicitly" do
+  it "should pick names based on the site's place" do
     california = Place.make!
     oregon = Place.make!
     tn_gl = TaxonName.make!(name: "bay tree", lexicon: "English", taxon: t)
@@ -193,8 +197,7 @@ describe TaxonName, "choose_common_name" do
     tn_or = TaxonName.make!(name: "Oregon myrtle", lexicon: "English", taxon: t)
     ptn_or = PlaceTaxonName.make!(taxon_name: tn_or, place: oregon)
     t.reload
-    site = Site.make!( place: oregon )
-    stub_config( site_id: site.id )
-    expect(TaxonName.choose_common_name( t.taxon_names ) ).to eq tn_or
+    Site.default.update_attributes( place: oregon )
+    expect(TaxonName.choose_common_name( t.taxon_names, site: Site.default ) ).to eq tn_or
   end
 end

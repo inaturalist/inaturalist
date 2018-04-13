@@ -4,9 +4,21 @@ iNatAPI.factory( "shared", [ "$http", "$rootScope", "$filter",
 function( $http, $rootScope, $filter ) {
   var basicGet = function( url, options ) {
     options = options || { };
-    if( options.cache !== true) { options.cache = false; }
-    // 20 second timeout
-    return $http.get( url, { cache: options.cache, timeout: 20000 } ).then(
+    if( options.cache !== true ) { options.cache = false; }
+    var config = {
+      cache: options.cache,
+      timeout: 20000 // 20 second timeout
+    };
+    var apiURL = $( "meta[name='config:inaturalist_api_url']" ).attr( "content" );
+    if ( apiURL && url.indexOf( apiURL ) >= 0 ) {
+      var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+      if ( apiToken ) {
+        config.headers = {
+          Authorization: apiToken
+        }
+      }
+    }
+    return $http.get( url, config ).then(
       function( response ) {
         return response;
       }, function( errorResponse ) {
@@ -17,7 +29,7 @@ function( $http, $rootScope, $filter ) {
 
   var numberWithCommas = function( num ) {
     if( !_.isNumber( num ) ) { return num; }
-    return num.toString( ).replace( /\B(?=(\d{3})+(?!\d))/g, "," );
+    return I18n.toNumber( num, { precision: 0 } );
   };
 
   var t = function( k, options ) {
@@ -171,6 +183,30 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
         }
       };
       scope.shared = shared;
+      scope.user = CURRENT_USER;
+      scope.displayName = function() {
+        var name;
+        if ( !scope.taxon ) { return; }
+        if ( scope.user && scope.user.prefers_scientific_name_first ) {
+          name = scope.taxon.name;
+        } else if ( scope.taxon.preferred_common_name ) {
+          name = iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name );
+        }
+        return name || scope.taxon.name;
+      }
+      scope.secondaryName = function() {
+        var name;
+        if ( !scope.taxon ) { return; }
+        if ( scope.user && scope.user.prefers_scientific_name_first ) {
+          name = iNatModels.Taxon.titleCaseName( scope.taxon.preferred_common_name );
+        } else if ( scope.taxon.preferred_common_name ) {
+          name = scope.taxon.name;
+        }
+        return name;
+      }
+      scope.showRank = function() {
+        return scope.taxon && scope.taxon.rank_level > 10;
+      }
     },
     templateUrl: 'ang/templates/shared/taxon.html'
   }

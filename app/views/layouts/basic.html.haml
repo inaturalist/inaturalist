@@ -1,14 +1,13 @@
 !!! 5
-%html
+%html{ lang: I18n.locale }
   %head
     %title
-      = CONFIG.site_name
-      - if content_for?(:title)
-        &middot;
-        = yield(:title)
+      = content_for(:title) ? "#{content_for(:title)} · " : ""
+      = @site.try(:name)
     = favicon_link_tag
     = csrf_meta_tag
-    - if logged_in?
+    %meta{ http_equiv: "Content-Language", content: I18n.locale }
+    - if current_user
       %meta{ name: "inaturalist-api-token", content: JsonWebToken.encode(user_id: current_user.id) }
     = yield :extrahead
   %body
@@ -30,6 +29,7 @@
         CURRENT_USER = {                                |
           id: #{ current_user.id },                     |
           login: "#{ current_user.login }",             |
+          prefers_scientific_name_first: #{ current_user.prefers_scientific_name_first }, |
           icon: "#{ current_user.icon.url(:thumb) }" }; |
       var TIMEZONE = "#{ Time.zone.tzinfo.name }";
       var SITE = #{ @site.to_json(                      |

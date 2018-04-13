@@ -13,7 +13,7 @@
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
-  %ul.breadcrumb
+  %ul.breadcrumb.clearfix
     %li
       - if @trip.parent.is_a?(Project)
         = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
@@ -133,5 +133,8 @@
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
         - else
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
+        - if logged_in? && current_user.id != @trip.user_id
+          .upstacked
+            = render "subscriptions/subscription", resource: @trip.becomes( Post )
         .upstacked
           = render :partial => "shared/flagging", :locals => { :instance => @post }

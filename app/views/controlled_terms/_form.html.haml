@@ -1,12 +1,12 @@
 - primary_term_label = (@term && @term.term_label || ControlledTermLabel.new)
 - term = @term || ControlledTerm.new
-.container.form-horizontal
+.container
   .row
     = form_for term do |f|
       = f.fields_for primary_term_label do |ctl_f|
         = ctl_f.hidden_field :id, value: primary_term_label.id
         = render partial: "controlled_term_labels/form_fields", locals: { f: ctl_f, label: primary_term_label }
-      .row
+      .row.form-horizontal
         .col-md-12
           .form-group
             %label.col-sm-2.control-label Ontology URI
@@ -16,11 +16,6 @@
             %label.col-sm-2.control-label URI
             .col-sm-10
               = f.text_field :uri, class: "form-control"
-          .form-group
-            %label.col-sm-2.control-label Valid Within Clade
-            .col-sm-10
-              = f.hidden_field :valid_within_clade, "data-ac-taxon-id": true
-              %input.form-control{ type: "text", name: "valid_within_clade_q", "data-initial-taxon": term && term.valid_within_taxon ? term.valid_within_taxon.to_json : nil }
           .form-group
             .col-sm-offset-2.col-sm-10
               .checkbox
@@ -32,8 +27,20 @@
                     = f.check_box :multivalued
                     Multivalued?
                 %label
+                  = f.check_box :blocking
+                  Blocks annotations of other values?
+                %label
                   = f.check_box :active
                   Active?
+      .row
+        .col-sm-2.form-horizontal
+          .control-label
+            %label Taxa
+        .col-sm-10.controlled_term_taxa
+          = f.fields_for :controlled_term_taxa do |ctt|
+            = render "controlled_term_taxon_fields", f: ctt
+          .upstacked
+            = link_to_add_association "Add a taxon", f, :controlled_term_taxa, class: "btn btn-success btn-sm"
       .row
         .col-md-12.text-center
           = f.submit class: "btn btn-primary"

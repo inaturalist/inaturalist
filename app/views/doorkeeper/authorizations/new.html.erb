@@ -16,8 +16,8 @@
   </ul>
   <% end %>
 
-  <div class="buttonrow">
-    <%= form_tag oauth_authorization_path, :method => :post do %>
+  <div id="auth-buttons" class="buttonrow">
+    <%= form_tag oauth_authorization_path, method: :post, class: "buttonrow" do %>
       <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
       <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
       <%= hidden_field_tag :state, @pre_auth.state %>
@@ -26,7 +26,7 @@
       <%= submit_tag "Authorize", :class => "default button" %>
       <span class="meta inter">or</span>
     <% end %>
-    <%= form_tag oauth_authorization_path, :method => :delete do %>
+    <%= form_tag oauth_authorization_path, method: :delete, class: "buttonrow" do %>
       <%= hidden_field_tag :client_id, @pre_auth.client.uid %>
       <%= hidden_field_tag :redirect_uri, @pre_auth.redirect_uri %>
       <%= hidden_field_tag :state, @pre_auth.state %>

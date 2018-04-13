@@ -17,10 +17,6 @@ describe UsersController, "update" do
 
   it "changes updated_at when changing preferred_project_addition_by" do
     expect {
-      put :update, id: user.id, user: { preferred_photo_license: "CC-BY-NC-SA" }
-      user.reload
-    }.to_not change(user, :updated_at)
-    expect {
       put :update, id: user.id, user: { preferred_project_addition_by: "none" }
       user.reload
     }.to change(user, :updated_at)
@@ -215,5 +211,29 @@ describe UsersController, "merge" do
     sign_in admin_user
     put :merge, id: keeper_user.id, reject_user_id: reject_user.id
     expect( User.find_by_id( reject_user.id ) ).to be_blank
+  end
+end
+
+describe UsersController, "add_role" do
+  it "should set curator_sponsor to current user" do
+    curator_user = make_curator
+    normal_user = User.make!
+    sign_in curator_user
+    put :add_role, id: normal_user.id, role: "curator"
+    normal_user.reload
+    expect( normal_user ).to be_is_curator
+    expect( normal_user.curator_sponsor ).to eq curator_user
+  end
+end
+
+describe UsersController, "remove_role" do
+  it "should nilify curator_sponsor" do
+    curator_user = make_curator
+    admin_user = make_admin
+    sign_in admin_user
+    put :remove_role, id: curator_user.id, role: "curator"
+    curator_user.reload
+    expect( curator_user ).not_to be_is_curator
+    expect( curator_user.curator_sponsor ).to be_blank
   end
 end

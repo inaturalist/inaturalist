@@ -1,0 +1,84 @@
+:ruby
+  @no_footer_gap = true
+  @title = if @display_user
+    t( :users_year_on_site, user: @display_user.login, site: @site.site_name_short || @site.name, year: @year )
+  else
+    t( :year_on_site, site: @site.name, year: @year )
+  end
+- content_for :title do
+  = @title
+- content_for :extrajs do
+  :javascript
+    ROOT_TAXON_ID = #{ Taxon::LIFE.id };
+    YEAR_DATA = #{ @year_statistic.try(:data).to_json };
+    YEAR = #{ @year };
+    DISPLAY_USER = #{ @display_user ? 
+      @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url ).to_json
+      :
+      "null"
+    };
+    SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json };
+    DEFAULT_SITE_ID = #{ Site.default.id };
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=#{CONFIG.facebook.app_id}';
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    window.twttr = (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0],
+        t = window.twttr || {};
+      if (d.getElementById(id)) return t;
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://platform.twitter.com/widgets.js";
+      fjs.parentNode.insertBefore(js, fjs);
+
+      t._e = [];
+      t.ready = function(f) {
+        t._e.push(f);
+      };
+
+      return t;
+    }(document, "script", "twitter-wjs"));
+  :javascript
+    $( document ).ready( function() {
+      if ( typeof( Object.assign ) !== 'function' ) {
+        alert( "We're really sorry but this page probably won't work in older browsers like Internet Explorer. Please try it out in an up-to-date version of Chrome, Firefox, or Safari." );
+      }
+    })
+  = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
+  = javascript_include_tag "torque.full.uncompressed"
+  = javascript_include_tag "stats-year-webpack"
+- content_for :extracss do
+  = stylesheet_link_tag "stats/year"
+  = stylesheet_link_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.css"
+- content_for :extrahead do
+  - if @shareable_image_url
+    %meta{ name: "og:image", content: image_url( @shareable_image_url ) }
+    %meta{ name: "twitter:image", content: image_url( @shareable_image_url ) }
+  - if @year_statistic && @year_statistic.shareable_image?
+    %meta{ name: "twitter:card", content: "summary_large_image" }
+    %meta{ property: "og:image:width", content: "1000" }
+    %meta{ property: "og:image:height", content: "500" }
+  - else
+    %meta{ name: "twitter:card", content: "summary" }
+    - if @display_user && @display_user.icon?
+      %meta{ property: "og:image:width", content: "500" }
+      %meta{ property: "og:image:height", content: "500" }
+  %meta{ property: "og:title", content: @title }
+  %meta{ property: "og:type", content: "website" }
+  %meta{ property: "og:url", content: request.url }
+  - if @display_user
+    %meta{ property: "og:description", content: html_attributize( I18n.t( :users_highlights_and_stats_from_year_on_site, user: (@display_user.name || @display_user.login), year: @year, site: @site.name ) ) }
+  - else
+    %meta{ property: "og:description", content: html_attributize( I18n.t( :highlights_and_stats_from_year_on_site, year: @year, site: @site.name ) ) }
+#fb-root
+#app
+  #initial-loading.text-center
+    .loading_spinner
+#logo
+  %p=t :thanks_from_all_of_us_here_at
+  = link_to @site.url do
+    = image_tag @site.logo.url, alt: @site.name

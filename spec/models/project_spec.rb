@@ -202,11 +202,11 @@ describe Project do
       allow(p).to receive(:icon_updated_at) { Time.now }
       expect(p.icon_url).not_to be_blank
     end
-    it "should be absolute" do
-      expect(p.icon_url).to match /^http/
+    it "should be relative" do
+      expect(p.icon_url).to match /^\/attachments/
     end
-    it "should not have two protocols" do
-      expect(p.icon_url.scan(/http/).size).to eq 1
+    it "should not have a protocol" do
+      expect(p.icon_url.scan(/http/).size).to eq 0
     end
   end
 
@@ -238,6 +238,8 @@ describe Project do
   end
 
   describe "generate_csv" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include curator_coordinate_access" do
       path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
       po = make_project_observation
@@ -262,6 +264,15 @@ describe Project do
         expect(row['captive_cultivated']).not_to be_blank
       end
     end
+    it "should include coordinates_obscured" do
+      path = File.join( Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}" )
+      o = make_research_grade_observation( geoprivacy: Observation::OBSCURED )
+      po = make_project_observation( observation: o )
+      po.project.generate_csv( path, Observation::CSV_COLUMNS )
+      CSV.foreach( path, headers: true ) do |row|
+        expect( row["coordinates_obscured"] ).to eq "true"
+      end
+    end
   end
 
   describe "aggregation preference" do
@@ -277,30 +288,32 @@ describe Project do
     end
   end
 
-  describe "aggregate_observations class method" do
+  describe "queue_project_aggregations class method" do
     before(:each) { enable_elastic_indexing(Observation, Place) }
     after(:each) { disable_elastic_indexing(Observation, Place) }
     it "should touch projects that prefer aggregation" do
       p = Project.make!(prefers_aggregation: true, place: make_place_with_geom, trusted: true)
-      expect( p.last_aggregated_at ).to be_nil
-      Project.aggregate_observations
+      Delayed::Job.destroy_all
+      expect( Delayed::Job.count ).to eq 0
+      Project.queue_project_aggregations
       p.reload
-      expect( p.last_aggregated_at ).not_to be_nil
+      expect( Delayed::Job.count ).to eq 1
     end
 
     it "should not touch projects that do not prefer aggregation" do
       p = Project.make!(prefers_aggregation: false, place: make_place_with_geom, trusted: true)
-      expect( p.last_aggregated_at ).to be_nil
-      Project.aggregate_observations
+      Delayed::Job.destroy_all
+      expect( Delayed::Job.count ).to eq 0
+      Project.queue_project_aggregations
       p.reload
-      expect( p.last_aggregated_at ).to be_nil
+      expect( Delayed::Job.count ).to eq 0
     end
   end
 
   describe "aggregate_observations" do
     before(:each) { enable_elastic_indexing(Observation, Place) }
     after(:each) { disable_elastic_indexing(Observation, Place) }
-    let(:project) { Project.make! }
+    let(:project) { Project.make!(prefers_aggregation: true, place: make_place_with_geom) }
     it "should add observations matching the project observation scope" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
       o = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
@@ -325,6 +338,7 @@ describe Project do
     end
 
     it "should not happen if aggregation is not allowed" do
+      project = Project.make!
       expect( project ).not_to be_aggregation_allowed
       o = Observation.make!(latitude: 1, longitude: 1)
       project.aggregate_observations
@@ -370,7 +384,7 @@ describe Project do
       expect( o.project_observations.size ).to eq 1
     end
 
-    it "adds observations whose users were updated since last_aggregated_at" do
+    it "adds observations whose users updated their project addition preference since last_aggregated_at" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
       o1 = Observation.make!(latitude: project.place.latitude, longitude: project.place.longitude)
       o2 = Observation.make!(latitude: 90, longitude: 90)
@@ -382,7 +396,8 @@ describe Project do
       project.aggregate_observations
       # it's still 1 becuase the observations was updated in the past
       expect( project.observations.count ).to eq 1
-      o2.user.update_columns(updated_at: Time.now)
+      o2.user.prefers_project_addition_by = "something new"
+      o2.user.save
       project.aggregate_observations
       # now the observation was aggregated because the user was updated
       expect( project.observations.count ).to eq 2
@@ -414,15 +429,44 @@ describe Project do
         longitude: project.place.longitude, user: pu.user, taxon: taxon)
       Observation.make!(latitude: project.place.latitude,
         longitude: project.place.longitude, user: pu.user, taxon: taxon)
+      pu2 = ProjectUser.make!(project: project)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: taxon)
+      Observation.make!(latitude: project.place.latitude,
+        longitude: project.place.longitude, user: pu2.user, taxon: Taxon.make!(rank: "species"))
       expect( pu.observations_count ).to eq 0
       expect( pu.taxa_count ).to eq 0
+      expect( pu2.observations_count ).to eq 0
+      expect( pu2.taxa_count ).to eq 0
       expect( project.observations.count ).to eq 0
       project.aggregate_observations
       project.reload
       pu.reload
-      expect( project.observations.count ).to eq 2
+      pu2.reload
+      expect( project.observations.count ).to eq 5
       expect( pu.observations_count ).to eq 2
       expect( pu.taxa_count ).to eq 1
+      expect( pu2.observations_count ).to eq 3
+      expect( pu2.taxa_count ).to eq 2
+    end
+
+    it "should create project observations that allow curator coordinate access if the observer has joined and opted in" do
+      project.update_attributes( place: make_place_with_geom, trusted: true )
+      pu = ProjectUser.make!(
+        project: project,
+        preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY
+      )
+      o = Observation.make!(
+        latitude: project.place.latitude,
+        longitude: project.place.longitude,
+        user: pu.user
+      )
+      project.aggregate_observations
+      o.reload
+      po = o.project_observations.first
+      expect( po ).to be_prefers_curator_coordinate_access
     end
   end
 
@@ -460,6 +504,15 @@ describe Project do
       por = ProjectObservationRule.make!(operator: 'on_list?', ruler: p)
       expect( por.ruler ).to be_aggregation_allowed
     end
+
+    it "should be true if fails the normal rules, but is in the exceptions" do
+      envelope_ewkt = "MULTIPOLYGON(((0 0,0 15,15 15,15 0,0 0)))"
+      p = Project.make!(place: make_place_with_geom(ewkt: envelope_ewkt), trusted: true)
+      CONFIG.aggregator_exception_project_ids = [ p.id ]
+      expect( p ).to be_aggregation_allowed
+      CONFIG.aggregator_exception_project_ids = nil
+    end
+
   end
 
   describe "slug" do
@@ -536,4 +589,44 @@ describe Project do
       expect( Project.find_by_id( p.id ) ).to be_blank
     end
   end
+
+  describe "observations_url_params" do
+    it "includes multiple taxon ids" do
+      p = Project.make!
+      taxon1 = Taxon.make!
+      taxon2 = Taxon.make!
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      expect( p.observations_url_params[:taxon_ids].sort ).to eq [taxon1.id, taxon2.id].sort
+    end
+
+    it "can concatenate taxon ids" do
+      p = Project.make!
+      taxon1 = Taxon.make!
+      taxon2 = Taxon.make!
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon1, ruler: p)
+      ProjectObservationRule.make!(operator: "in_taxon?", operand: taxon2, ruler: p)
+      expect( p.observations_url_params(concat_ids: true)[:taxon_ids] ).to eq [taxon1.id, taxon2.id].sort.join(",")
+    end
+
+    it "includes multiple place ids" do
+      p = Project.make!
+      place1 = Place.make!
+      place2 = Place.make!
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      expect( p.observations_url_params[:place_id].sort ).to eq [place1.id, place2.id].sort
+    end
+
+    it "can concatenate place ids" do
+      p = Project.make!
+      place1 = Place.make!
+      place2 = Place.make!
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place1, ruler: p)
+      ProjectObservationRule.make!(operator: "observed_in_place?", operand: place2, ruler: p)
+      expect( p.observations_url_params(concat_ids: true)[:place_id] ).to eq [place1.id, place2.id].sort.join(",")
+    end
+
+  end
+
 end

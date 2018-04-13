@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe GuideTaxaController, "index" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+  
   before do
     @guide_photo = GuidePhoto.make!
     @guide_taxon = @guide_photo.guide_taxon

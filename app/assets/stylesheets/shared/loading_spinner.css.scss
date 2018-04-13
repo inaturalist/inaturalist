@@ -1,0 +1,47 @@
+@import "../colors";
+
+.loading_spinner {
+  width: 14px;
+  height: 14px;
+  border: 3px solid $border-grey;
+  border-radius: 50%;
+  border-top: 3px solid #74ac00;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+  vertical-align: text-bottom;
+  margin-left: 5px;
+  display: inline-block;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+#initial-loading .loading_spinner {
+  display: inline-block;
+  margin: 0px auto;
+  margin-top: 150px;
+  width: 80px;
+  height: 80px;
+  border: 15px solid $border-grey;
+  border-top: 15px solid #74ac00;
+}
+
+.loading_spinner.huge {
+  width: 80px;
+  height: 80px;
+  border: 15px solid $border-grey;
+  border-top: 15px solid #74ac00;
+}
+
+.loading_spinner.big {
+  width: 40px;
+  height: 40px;
+  border-width: 8px;
+}

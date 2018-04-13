@@ -1,13 +1,13 @@
 GIT
-  remote: git://github.com/JayTeeSF/translate.git
+  remote: https://github.com/JayTeeSF/translate.git
   revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
   specs:
     translate-rails3 (0.2.3)
       ya2yaml (~> 0.30)
 
 GIT
-  remote: git://github.com/Programatica/irwi.git
-  revision: 323b3c89d74c2b0aec41b7b7a0c32fe1f569c9f2
+  remote: https://github.com/Programatica/irwi.git
+  revision: ca970bca1ccd07e9a7ac8782c7a892d1ec0f06d1
   specs:
     irwi (0.4.2)
       actionpack (>= 3.0.0)
@@ -17,24 +17,24 @@ GIT
       rails_autolink (>= 1.0)
 
 GIT
-  remote: git://github.com/elasticsearch/elasticsearch-rails.git
-  revision: 2f2c0fb7a25ece68fd3a9eec7b9026848e66fa4f
+  remote: https://github.com/elasticsearch/elasticsearch-rails.git
+  revision: 64f31b41c073f05eac7d089aeea07c4366b7adca
   specs:
-    elasticsearch-model (0.1.6)
+    elasticsearch-model (6.0.0.alpha1)
       activesupport (> 3)
-      elasticsearch (> 0.4)
+      elasticsearch (> 1)
       hashie
-    elasticsearch-rails (0.1.6)
+    elasticsearch-rails (6.0.0.alpha1)
 
 GIT
-  remote: git://github.com/fnando/i18n-js.git
-  revision: 1a1cea7dbb264b7b345606c103051ea8eb49c44b
+  remote: https://github.com/fnando/i18n-js.git
+  revision: c37eba5e337e4e000a9a8f2cbba7a81d59d0f53f
   specs:
-    i18n-js (3.0.0.rc8)
-      i18n (~> 0.6)
+    i18n-js (3.0.2)
+      i18n (~> 0.6, >= 0.6.6)
 
 GIT
-  remote: git://github.com/gaslight/angular-rails4-templates
+  remote: https://github.com/gaslight/angular-rails4-templates
   revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
   ref: v0.1.5
   specs:
@@ -44,7 +44,7 @@ GIT
       tilt
 
 GIT
-  remote: git://github.com/hugueslamy/delayed_job_active_record.git
+  remote: https://github.com/hugueslamy/delayed_job_active_record.git
   revision: 7dcacc2459ad47c948153cc3bab78bc822191718
   ref: 7dcacc2459ad47c948153cc3bab78bc822191718
   specs:
@@ -53,7 +53,7 @@ GIT
       delayed_job (>= 3.0, < 5)
 
 GIT
-  remote: git://github.com/inaturalist/riparian.git
+  remote: https://github.com/inaturalist/riparian.git
   revision: 083846b15272cb8f4979d2bd331140fe868735cb
   specs:
     riparian (0.4.0)
@@ -64,15 +64,7 @@ GIT
       rdoc
 
 GIT
-  remote: git://github.com/jrgifford/delayed_paperclip.git
-  revision: 8f11882ee945bf56affe8df4f591e5171581aac3
-  ref: 8f11882ee945bf56affe8df4f591e5171581aac3
-  specs:
-    delayed_paperclip (2.9.1)
-      paperclip (>= 3.3)
-
-GIT
-  remote: git://github.com/kueda/activerecord-postgis-adapter.git
+  remote: https://github.com/kueda/activerecord-postgis-adapter.git
   revision: 4d7c4c91720e4824582fb3b1b271ba85ac06a391
   branch: activerecord42
   specs:
@@ -81,7 +73,7 @@ GIT
       rgeo-activerecord (~> 2.0)
 
 GIT
-  remote: git://github.com/kueda/bugguide.git
+  remote: https://github.com/kueda/bugguide.git
   revision: 970be508a4bce380cf8aa455d370a3cdd5719e10
   specs:
     bugguide (0.1.2)
@@ -90,26 +82,26 @@ GIT
       nokogiri (~> 1.6)
 
 GIT
-  remote: git://github.com/kueda/flickraw.git
+  remote: https://github.com/kueda/flickraw.git
   revision: 35cc21b0f1b6b1af3d10b19d53ea46dd2e5316ea
   branch: ssl-cert
   specs:
     flickraw (0.9.8)
 
 GIT
-  remote: git://github.com/kueda/georuby.git
+  remote: https://github.com/kueda/georuby.git
   revision: 00a95123977726492a4049eb1c36f98c372cd714
   specs:
     georuby (2.0.0)
 
 GIT
-  remote: git://github.com/kueda/preferences.git
+  remote: https://github.com/kueda/preferences.git
   revision: e96644efae320870938d611cfbe6cb77a81b926f
   specs:
     preferences (0.4.2)
 
 GIT
-  remote: git://github.com/kueda/rack-google-analytics.git
+  remote: https://github.com/kueda/rack-google-analytics.git
   revision: 92f9fe2f699a429b194a4c0ed18a5089e03454f8
   branch: eval-blocks-per-request
   specs:
@@ -118,47 +110,38 @@ GIT
       activesupport
 
 GIT
-  remote: git://github.com/kueda/xmp.git
-  revision: 3bf755b906fc6d8edbde68a29f264108c0c4a4ae
+  remote: https://github.com/kueda/xmp.git
+  revision: 5c3e2d9ce2589b631fad1ee1e31eeb6384b2b1e1
   specs:
-    xmp (0.2.0)
-      nokogiri (~> 1.6.0)
+    xmp (0.2.1)
+      nokogiri (~> 1.8.1)
 
 GIT
-  remote: git://github.com/pleary/gdata.git
+  remote: https://github.com/pleary/gdata.git
   revision: 85805f4f077357ceafce89c34073fa163944d7d4
   specs:
     gdata (1.1.2)
 
 GIT
-  remote: git://github.com/ratafire/omniauth-soundcloud.git
+  remote: https://github.com/ratafire/omniauth-soundcloud.git
   revision: 34e7e48919dadc66a27ee2a135e54a5d82df91ee
   specs:
     omniauth-soundcloud (1.0.2)
       omniauth-oauth2
 
-GIT
-  remote: https://github.com/kueda/mobile-fu.git
-  revision: 0c8b184cbef00c17e47e0c7947575d3b95cdc66d
-  specs:
-    mobile-fu (1.1.3)
-      rack-mobile-detect
-      rails
-
 GEM
   remote: http://rubygems.org/
   specs:
-    RedCloth (4.2.9)
     aasm (4.0.8)
-    actionmailer (4.2.6)
-      actionpack (= 4.2.6)
-      actionview (= 4.2.6)
-      activejob (= 4.2.6)
+    actionmailer (4.2.7.1)
+      actionpack (= 4.2.7.1)
+      actionview (= 4.2.7.1)
+      activejob (= 4.2.7.1)
       mail (~> 2.5, >= 2.5.4)
       rails-dom-testing (~> 1.0, >= 1.0.5)
-    actionpack (4.2.6)
-      actionview (= 4.2.6)
-      activesupport (= 4.2.6)
+    actionpack (4.2.7.1)
+      actionview (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       rack (~> 1.6)
       rack-test (~> 0.6.2)
       rails-dom-testing (~> 1.0, >= 1.0.5)
@@ -167,23 +150,29 @@ GEM
       actionpack (>= 4.0.0, < 5.0)
     actionpack-page_caching (1.0.2)
       actionpack (>= 4.0.0, < 5)
-    actionview (4.2.6)
-      activesupport (= 4.2.6)
+    actionview (4.2.7.1)
+      activesupport (= 4.2.7.1)
       builder (~> 3.1)
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
-    activejob (4.2.6)
-      activesupport (= 4.2.6)
+    activejob (4.2.7.1)
+      activesupport (= 4.2.7.1)
       globalid (>= 0.3.0)
-    activemodel (4.2.6)
-      activesupport (= 4.2.6)
+    activemodel (4.2.7.1)
+      activesupport (= 4.2.7.1)
       builder (~> 3.1)
-    activerecord (4.2.6)
-      activemodel (= 4.2.6)
-      activesupport (= 4.2.6)
+    activerecord (4.2.7.1)
+      activemodel (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       arel (~> 6.0)
-    activesupport (4.2.6)
+    activerecord-session_store (1.1.0)
+      actionpack (>= 4.0, < 5.2)
+      activerecord (>= 4.0, < 5.2)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 1.5.2, < 3)
+      railties (>= 4.0, < 5.2)
+    activesupport (4.2.7.1)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
       minitest (~> 5.1)
@@ -192,11 +181,12 @@ GEM
     acts-as-taggable-on (3.4.3)
       activerecord (>= 3.2, < 5)
     acts_as_votable (0.10.0)
-    addressable (2.4.0)
+    addressable (2.5.1)
+      public_suffix (~> 2.0, >= 2.0.2)
     airbrake (4.1.0)
       builder
       multi_json
-    airbrussh (1.0.2)
+    airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     akami (1.2.2)
       gyoku (>= 0.4.0)
@@ -205,18 +195,19 @@ GEM
       activerecord (>= 3.0.0)
     apipie-rails (0.3.1)
       json
-    archive-zip (0.7.0)
-      io-like (~> 0.3.0)
-    arel (6.0.3)
+    arel (6.0.4)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (1.61.0)
-      aws-sdk-v1 (= 1.61.0)
-    aws-sdk-v1 (1.61.0)
-      json (~> 1.4)
-      nokogiri (>= 1.4.4)
+    aws-sdk (2.10.123)
+      aws-sdk-resources (= 2.10.123)
+    aws-sdk-core (2.10.123)
+      aws-sigv4 (~> 1.0)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.10.123)
+      aws-sdk-core (= 2.10.123)
+    aws-sigv4 (1.0.2)
     bcrypt (3.1.9)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -230,23 +221,20 @@ GEM
       treetop (~> 1.4.1)
       unicode_utils (~> 1.4)
     bluecloth (2.2.0)
-    buftok (0.2.0)
-    builder (3.2.2)
+    builder (3.2.3)
     byebug (3.5.1)
       columnize (~> 0.8)
       debugger-linecache (~> 1.2)
       slop (~> 3.6)
-    capistrano (3.5.0)
+    capistrano (3.10.0)
       airbrussh (>= 1.0.0)
-      capistrano-harrow
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
-    capistrano-harrow (0.5.1)
-    capistrano-passenger (0.0.1)
+    capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.1.5)
       capistrano (~> 3.1)
@@ -262,16 +250,10 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    childprocess (0.5.8)
-      ffi (~> 1.0, >= 1.0.11)
     chroma (0.0.1)
-    chromedriver-helper (1.0.0)
-      archive-zip (~> 0.7.0)
-      nokogiri (~> 1.6)
     chronic (0.10.2)
-    climate_control (0.0.3)
-      activesupport (>= 3.0)
-    cocaine (0.5.7)
+    climate_control (0.2.0)
+    cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
     coderay (1.1.0)
@@ -283,22 +265,12 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     columnize (0.9.0)
-    commander (4.3.5)
+    commander (4.4.3)
       highline (~> 1.7.2)
+    concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    cucumber (1.3.20)
-      builder (>= 2.1.2)
-      diff-lcs (>= 1.1.3)
-      gherkin (~> 2.12)
-      multi_json (>= 1.7.5, < 2.0)
-      multi_test (>= 0.1.2)
-    cucumber-rails (1.4.2)
-      capybara (>= 1.1.2, < 3)
-      cucumber (>= 1.3.8, < 2)
-      mime-types (>= 1.16, < 3)
-      nokogiri (~> 1.5)
-      rails (>= 3, < 5)
+    crass (1.0.3)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     dalli (2.7.2)
@@ -326,18 +298,19 @@ GEM
     diff-lcs (1.2.5)
     diffy (3.0.7)
     docile (1.1.5)
-    doorkeeper (2.1.0)
-      railties (>= 3.1)
+    domain_name (0.5.20170404)
+      unf (>= 0.0.5, < 1.0.0)
+    doorkeeper (4.2.6)
+      railties (>= 4.2)
     dynamic_form (1.1.4)
-    elasticsearch (1.0.8)
-      elasticsearch-api (= 1.0.7)
-      elasticsearch-transport (= 1.0.7)
-    elasticsearch-api (1.0.7)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
       multi_json
-    elasticsearch-transport (1.0.7)
+    elasticsearch-transport (5.0.4)
       faraday
       multi_json
-    equalizer (0.0.9)
     erubis (2.7.0)
     eventmachine (1.0.6)
     execjs (2.2.2)
@@ -348,19 +321,15 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
-    fastimage (1.7.0)
-      addressable (~> 2.3, >= 2.3.5)
-    ffi (1.9.10)
+    fastimage (2.1.0)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.7)
     geoplanet (0.2.7)
       json (>= 1.1.3)
       rest-client (>= 0.9)
-    gherkin (2.12.2)
-      multi_json (~> 1.3)
-    globalid (0.3.6)
-      activesupport (>= 4.1.0)
+    globalid (0.4.1)
+      activesupport (>= 4.2.0)
     gn_uuid (0.5.0)
     google-api-client (0.8.6)
       activesupport (>= 3.2)
@@ -385,8 +354,8 @@ GEM
       builder (>= 2.1.2)
     haml (4.0.6)
       tilt
-    hashdiff (0.3.0)
-    hashie (3.4.4)
+    hashdiff (0.3.7)
+    hashie (3.5.7)
     highline (1.7.8)
     hike (1.2.3)
     hoe (3.13.0)
@@ -396,15 +365,14 @@ GEM
       httparty (>= 0.7.3)
       mimemagic
       multipart-post
-    http (0.6.3)
-      http_parser.rb (~> 0.6.0)
-    http_parser.rb (0.6.0)
-    httparty (0.13.3)
-      json (~> 1.8)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
+    httparty (0.15.6)
       multi_xml (>= 0.5.2)
     httpi (2.2.7)
       rack
-    i18n (0.7.0)
+    i18n (0.9.4)
+      concurrent-ruby (~> 1.0)
     i18n-inflector (2.6.7)
       i18n (>= 0.4.1)
     i18n-inflector-rails (1.0.7)
@@ -412,12 +380,12 @@ GEM
       i18n-inflector (~> 2.6)
       railties (>= 3.0.0)
     icalendar (2.3.0)
-    io-like (0.3.0)
-    jquery-rails (4.0.3)
+    jmespath (1.3.1)
+    jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.3)
+    json (1.8.6)
     jwt (1.5.4)
     koala (2.4.0)
       addressable
@@ -429,35 +397,35 @@ GEM
     logging (2.1.0)
       little-plugger (~> 1.1)
       multi_json (~> 1.10)
-    loofah (2.0.3)
+    loofah (2.2.2)
+      crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     macaddr (1.7.1)
       systemu (~> 2.6.2)
     machinist (2.0)
-    mail (2.6.3)
-      mime-types (>= 1.16, < 3)
+    mail (2.7.0)
+      mini_mime (>= 0.1.1)
     memoist (0.14.0)
-    memoizable (0.4.2)
-      thread_safe (~> 0.3, >= 0.3.1)
     metaclass (0.0.4)
-    mime-types (2.99.1)
-    mimemagic (0.2.1)
-    mini_portile2 (2.1.0)
-    minitest (5.9.1)
+    mime-types (3.1)
+      mime-types-data (~> 3.2015)
+    mime-types-data (3.2016.0521)
+    mimemagic (0.3.2)
+    mini_mime (1.0.0)
+    mini_portile2 (2.3.0)
+    minitest (5.11.3)
     mocha (1.1.0)
       metaclass (~> 0.0.1)
-    multi_json (1.12.1)
-    multi_test (0.1.2)
-    multi_xml (0.5.5)
+    multi_json (1.12.2)
+    multi_xml (0.6.0)
     multipart-post (2.0.0)
-    naught (1.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.1.1)
-    netrc (0.10.2)
+    net-ssh (4.2.0)
+    netrc (0.11.0)
     newrelic_rpm (3.15.0.314)
-    nokogiri (1.6.8.1)
-      mini_portile2 (~> 2.1.0)
+    nokogiri (1.8.2)
+      mini_portile2 (~> 2.3.0)
     non-stupid-digest-assets (1.0.4)
     nori (2.4.0)
     oauth (0.4.7)
@@ -471,9 +439,9 @@ GEM
       activesupport
       hoe (>= 2.0.0)
       nokogiri
-    omniauth (1.3.1)
-      hashie (>= 1.2, < 4)
-      rack (>= 1.0, < 3)
+    omniauth (1.8.1)
+      hashie (>= 3.4.6, < 3.6.0)
+      rack (>= 1.6.2, < 3)
     omniauth-facebook (4.0.0)
       omniauth-oauth2 (~> 1.2)
     omniauth-flickr (0.0.15)
@@ -497,16 +465,18 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     os (0.9.6)
-    paperclip (4.2.1)
-      activemodel (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (~> 0.5.3)
+    paperclip (5.2.1)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
       mime-types
+      mimemagic (~> 0.3.0)
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
+    public_suffix (2.0.5)
     puma (3.4.0)
-    rack (1.6.4)
+    rack (1.6.8)
     rack-mobile-detect (0.4.0)
       rack
     rack-openid (1.3.1)
@@ -514,22 +484,22 @@ GEM
       ruby-openid (>= 2.1.8)
     rack-test (0.6.3)
       rack (>= 1.0)
-    rails (4.2.6)
-      actionmailer (= 4.2.6)
-      actionpack (= 4.2.6)
-      actionview (= 4.2.6)
-      activejob (= 4.2.6)
-      activemodel (= 4.2.6)
-      activerecord (= 4.2.6)
-      activesupport (= 4.2.6)
+    rails (4.2.7.1)
+      actionmailer (= 4.2.7.1)
+      actionpack (= 4.2.7.1)
+      actionview (= 4.2.7.1)
+      activejob (= 4.2.7.1)
+      activemodel (= 4.2.7.1)
+      activerecord (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       bundler (>= 1.3.0, < 2.0)
-      railties (= 4.2.6)
+      railties (= 4.2.7.1)
       sprockets-rails
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
-    rails-dom-testing (1.0.7)
+    rails-dom-testing (1.0.8)
       activesupport (>= 4.2.0.beta, < 5.0)
-      nokogiri (~> 1.6.0)
+      nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
@@ -537,22 +507,23 @@ GEM
       activemodel (~> 4.0)
     rails_autolink (1.1.6)
       rails (> 3.1)
-    railties (4.2.6)
-      actionpack (= 4.2.6)
-      activesupport (= 4.2.6)
+    railties (4.2.7.1)
+      actionpack (= 4.2.7.1)
+      activesupport (= 4.2.7.1)
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.5.0)
     rakismet (1.5.0)
-    rdoc (4.2.0)
+    rdoc (5.1.0)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
-    rest-client (1.7.2)
-      mime-types (>= 1.16, < 3.0)
-      netrc (~> 0.7)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     retriable (1.4.1)
     rgeo (0.5.3)
-    rgeo-activerecord (2.0.0)
+    rgeo-activerecord (2.1.1)
       activerecord (~> 4.2)
       rgeo (~> 0.3)
     rgeo-geojson (0.3.1)
@@ -583,7 +554,6 @@ GEM
       rspec-support (~> 3.4.0)
     rspec-support (3.4.1)
     ruby-openid (2.6.0)
-    rubyzip (1.1.7)
     safe_yaml (1.0.4)
     sass (3.2.5)
     sass-rails (5.0.1)
@@ -601,27 +571,20 @@ GEM
       nori (~> 2.4.0)
       uuid (~> 2.3.7)
       wasabi (~> 3.3.0)
-    selenium-webdriver (2.48.1)
-      childprocess (~> 0.5)
-      multi_json (~> 1.0)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
     signet (0.7.3)
       addressable (~> 2.3)
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
-    simple_oauth (0.3.1)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
     slop (3.6.0)
-    soundcloud (0.3.1)
+    soundcloud (0.3.4)
       hashie
-      httmultiparty (>= 0.3)
-      httparty (>= 0.7.3)
+      httmultiparty (~> 0.3.0)
     sprockets (2.12.4)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -631,7 +594,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    sshkit (1.10.0)
+    sshkit (1.15.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     statsd-ruby (1.2.1)
@@ -640,31 +603,22 @@ GEM
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0)
       rack (~> 1.0)
-    thor (0.19.1)
-    thread_safe (0.3.5)
+    thor (0.20.0)
+    thread_safe (0.3.6)
     tilt (1.4.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
     trollop (2.1.1)
-    twitter (5.13.0)
-      addressable (~> 2.3)
-      buftok (~> 0.2.0)
-      equalizer (~> 0.0.9)
-      faraday (~> 0.9.0)
-      http (~> 0.6.0)
-      http_parser.rb (~> 0.6.0)
-      json (~> 1.8)
-      memoizable (~> 0.4.0)
-      naught (~> 1.0)
-      simple_oauth (~> 0.3.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (2.7.0)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.4)
     unicode_utils (1.4.0)
-    useragent (0.13.3)
     utf8-cleaner (0.0.9)
     uuid (2.3.7)
       macaddr (~> 1.0)
@@ -674,11 +628,10 @@ GEM
       httpi (~> 2.0)
       nokogiri (>= 1.4.0)
     watu_table_builder (0.3.0)
-    webmock (2.0.3)
+    webmock (3.1.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
       hashdiff
-    websocket (1.2.2)
     whenever (0.9.4)
       chronic (>= 0.6.3)
     wicked_pdf (0.11.0)
@@ -693,11 +646,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  RedCloth
   aasm
   actionpack-action_caching
   actionpack-page_caching
   activerecord-postgis-adapter!
+  activerecord-session_store
   acts-as-taggable-on (~> 3.4)
   acts_as_votable (~> 0.10.0)
   addressable
@@ -705,7 +658,7 @@ DEPENDENCIES
   ancestry
   angular-rails-templates!
   apipie-rails
-  aws-sdk
+  aws-sdk (< 3.0)
   better_errors
   binding_of_caller
   biodiversity
@@ -719,11 +672,9 @@ DEPENDENCIES
   capistrano3-delayed-job (~> 1.0)
   capybara (~> 2.4)
   chroma
-  chromedriver-helper
   chronic
   cocoon
   coffee-rails
-  cucumber-rails
   daemon-spawn
   daemons
   dalli
@@ -731,14 +682,15 @@ DEPENDENCIES
   dbf
   delayed_job (~> 4.0.1)
   delayed_job_active_record!
-  delayed_paperclip!
   devise
   devise-encryptable
   devise-i18n
   devise_suspendable
   diffy
-  doorkeeper
+  doorkeeper (~> 4.2.0)
   dynamic_form
+  elasticsearch (~> 5.0)
+  elasticsearch-api (~> 5.0)
   elasticsearch-model!
   elasticsearch-rails!
   exifr
@@ -757,14 +709,13 @@ DEPENDENCIES
   i18n-js!
   icalendar
   irwi!
-  jquery-rails
+  jquery-rails (~> 4.0.4)
   json
   koala
   machinist
-  mobile-fu!
   mocha
   newrelic_rpm (~> 3.15.0)
-  nokogiri
+  nokogiri (~> 1.8.1)
   non-stupid-digest-assets
   objectify-xml
   omniauth
@@ -775,12 +726,13 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud!
   omniauth-twitter
-  paperclip (= 4.2.1)
+  paperclip (~> 5.2.1)
   pg
   preferences!
   puma
   rack-google-analytics!
-  rails (~> 4.2.6)
+  rack-mobile-detect
+  rails (~> 4.2.7.1)
   rails-observers
   rakismet
   rest-client
@@ -794,7 +746,6 @@ DEPENDENCIES
   sass (= 3.2.5)
   sass-rails (= 5.0.1)
   savon
-  selenium-webdriver
   simplecov
   soundcloud
   sprockets (~> 2.8)
@@ -802,18 +753,16 @@ DEPENDENCIES
   thin (~> 1.6.3)
   translate-rails3!
   trollop
-  twitter
   uglifier
-  useragent
   utf8-cleaner
   watu_table_builder
   webmock
   whenever
   wicked_pdf
   will_paginate
-  xmp!
+  xmp (~> 0.2.1)!
   ya2yaml
   yui-compressor
 
 BUNDLED WITH
-   1.12.5
+   1.16.0

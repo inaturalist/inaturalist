@@ -159,7 +159,7 @@ class FlickrController < ApplicationController
       flash[:notice] = <<-EOT
         Ack! Something went wrong connecting to Flickr. You might try unlinking 
         and re-linking your account. You can contact us at 
-        #{CONFIG.help_email} if that doesn't work.  Error: #{e.message}
+        #{@site.email_help} if that doesn't work.  Error: #{e.message}
       EOT
     end
   end
@@ -169,7 +169,7 @@ class FlickrController < ApplicationController
   def unlink_flickr_account
     if current_user.flickr_identity
       current_user.flickr_identity.destroy
-      flash[:notice] = "We've dissassociated your Flickr account from your #{CONFIG.site_name} account."
+      flash[:notice] = "We've dissassociated your Flickr account from your #{@site.name} account."
       redirect_to :action => 'options'
     else
       flash[:notice] = "Your Flickr account has not been linked before!"

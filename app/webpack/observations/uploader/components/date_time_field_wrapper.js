@@ -58,9 +58,10 @@ class DateTimeFieldWrapper extends Component {
       <DateTimeField
         ref="datetime"
         key="datetime"
-        mode={this.props.mode}
-        size={this.props.size}
-        maxDate={ moment( ) }
+        mode={ this.props.mode }
+        size={ this.props.size }
+        maxDate={ this.props.allowFutureDates ? null : moment( ) }
+        inputProps={ this.props.inputProps }
         defaultText={ this.props.defaultText || "" }
         dateTime={ this.props.dateTime }
         inputFormat={this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ"}
@@ -71,6 +72,7 @@ class DateTimeFieldWrapper extends Component {
 }
 
 DateTimeFieldWrapper.propTypes = {
+  inputProps: PropTypes.object,
   onChange: PropTypes.func,
   onSelection: PropTypes.func,
   reactKey: PropTypes.string,
@@ -79,6 +81,7 @@ DateTimeFieldWrapper.propTypes = {
   mode: PropTypes.string,
   inputFormat: PropTypes.string,
   size: PropTypes.string,
+  allowFutureDates: PropTypes.bool,
   dateTime: PropTypes.oneOfType( [
     React.PropTypes.string,
     React.PropTypes.number,

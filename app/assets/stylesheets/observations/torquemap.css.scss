@@ -1,0 +1,42 @@
+@import "../colors";
+@import "../shared/loading_spinner";
+
+#header {
+  margin-bottom: 0;
+}
+
+#bodywrapper {
+  margin-bottom: 0px;
+  min-height: auto;
+}
+
+#bodywrapper:after {
+  height: 0;
+}
+
+.leaflet-pane {
+  z-index: 1 !important;
+}
+
+.TorqueMap {
+  position: relative;
+  .map {
+    height: 500px;
+  }
+  .legend {
+    position: absolute;
+    width: 100%;
+    bottom: 25px;
+    z-index: 2;
+    .date {
+      background: rgba(255,255,255,0.3);
+      color: black;
+      width: 150px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      font-size: 18px;
+      line-height: 30px;
+    }
+  }
+}

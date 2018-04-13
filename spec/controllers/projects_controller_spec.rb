@@ -86,10 +86,7 @@ describe ProjectsController, "search" do
 
   describe "for site with a place" do
     let(:place) { make_place_with_geom }
-    let(:site) { Site.make!(place: place) }
-    before do
-      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
-    end
+    before { Site.default.update_attributes(place_id: place.id) }
 
     it "should filter by place" do
       with_place = Project.make!(place: place)

@@ -43,18 +43,18 @@ Inaturalist::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  # Enable serving of images, stylesheets, and javascripts from an asset server
-  config.action_controller.asset_host = Proc.new {|*args|
-    source, request = args
-    host = CONFIG.assets_host || CONFIG.site_url
-    ( host =~ /^https/ ) ? host :
-      "#{request ? request.protocol : 'http://'}#{host.sub(/^https?:\/\//, '')}"
-  }
+  # # Enable serving of images, stylesheets, and javascripts from an asset server
+  # config.action_controller.asset_host = Proc.new {|*args|
+  #   source, request = args
+  #   host = CONFIG.assets_host || CONFIG.site_url
+  #   ( host =~ /^https/ ) ? host :
+  #     "#{request ? request.protocol : 'http://'}#{host.sub(/^https?:\/\//, '')}"
+  # }
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { :host => URI.parse(CONFIG.site_url).host }
-  config.action_mailer.asset_host = config.action_controller.asset_host
+  # config.action_mailer.default_url_options = { :host => URI.parse(CONFIG.site_url).host }
+  # config.action_mailer.asset_host = config.action_controller.asset_host
   smtp_config_path = File.open("#{Rails.root}/config/smtp.yml")
   ActionMailer::Base.smtp_settings = YAML.load(smtp_config_path).symbolize_keys
   config.action_mailer.delivery_method = :smtp

@@ -13,7 +13,14 @@ class IdentificationsController < ApplicationController
 
   def index
     per_page = 50
-    search_params = { order_by: "id", order: "desc", per_page: per_page, page: params[:page] || 1 }
+    search_params = {
+      order_by: "id",
+      order: "desc",
+      per_page: per_page,
+      page: params[:page] || 1,
+      d1: params[:d1],
+      d2: params[:d2]
+    }
     if Identification::CATEGORIES.include?( params[:category] )
       search_params[:category] = params[:category]
     end
@@ -31,6 +38,8 @@ class IdentificationsController < ApplicationController
     end
     if params[:for] == "others"
       search_params[:own_observation] = "false"
+    elsif params[:for] == "self"
+      search_params[:own_observation] = "true"
     end
     search_params[:taxon_id] = params[:taxon_id] if params[:taxon_id]
     api_response = INatAPIService.identifications(search_params)
@@ -58,34 +67,39 @@ class IdentificationsController < ApplicationController
     block_if_spammer(@selected_user) && return
     params[:page] = params[:page].to_i
     params[:page] = 1 unless params[:page] > 0
-    user_filter = { term: { "non_owner_ids.user.id": @selected_user.id } }
+    user_filter = { term: { "identifications.user.id": @selected_user.id } }
+    ownership_filter = { term: { "identifications.own_observation": false } }
     date_parts = Identification.conditions_for_date("col", params[:on])
     # only if conditions_for_date determines a valid range will it return
     # an array of [ condition_to_interpolate, min_date, max_date ]
     if date_parts.length == 3
       date_filters = [
-        { range: { "non_owner_ids.created_at": { gte: date_parts[1] } } },
-        { range: { "non_owner_ids.created_at": { lte: date_parts[2] } } }
+        { range: { "identifications.created_at": { gte: date_parts[1] } } },
+        { range: { "identifications.created_at": { lte: date_parts[2] } } }
       ]
     end
     result = Observation.elastic_search(
       filters: [ { nested: {
-        path: "non_owner_ids",
-        query: { bool: { must: [ user_filter, date_filters ].flatten.compact } }
+        path: "identifications",
+        query: { bool: { must: [ user_filter, date_filters, ownership_filter ].flatten.compact } }
       } } ],
       size: limited_per_page,
       from: (params[:page] - 1) * limited_per_page,
-      sort: { "non_owner_ids.created_at": {
-        order: "desc",
-        mode: "max",
-        nested_path: "non_owner_ids",
-        nested_filter: user_filter
-      } }
+      sort: {
+        "identifications.created_at": {
+          order: "desc",
+          mode: "max",
+          nested_path: "identifications",
+          nested_filter: user_filter
+        }
+      }
     )
     # pluck the proper Identification IDs from the obs results
-    ids = result.response.hits.hits.map{ |h| h._source.non_owner_ids.detect{ |i|
-      i.user.id == @selected_user.id
-    } }.compact.map{ |i| i.id }
+    ids = result.response.hits.hits.map do |h|
+      ( h._source.identifications).detect{ |i|
+        i.user.id == @selected_user.id
+      }
+    end.compact.map{ |i| i.id }
     # fetch the Identification instances and preload
     instances = Identification.where(id: ids).order(id: :desc).includes(
       { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
@@ -151,7 +165,9 @@ class IdentificationsController < ApplicationController
       taxon_name = TaxonName.find_by_name(params[:taxa_search_form_taxon_name])
       @identification.taxon = taxon_name.taxon if taxon_name
     end
-    
+    if params[:vision]
+      @identification.prefers_vision = true
+    end
     respond_to do |format|
       duplicate_key_violation = false
       begin
@@ -173,7 +189,7 @@ class IdentificationsController < ApplicationController
           Observation.refresh_es_index
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(
-            :methods => [:html], 
+            :methods => [:html, :vision], 
             :include => {
               :observation => {:methods => [:iconic_taxon_name]}
             }
@@ -285,14 +301,12 @@ class IdentificationsController < ApplicationController
       end
       if @identification.valid? && duplicate_key_violation == false
         format.html { agree_respond_to_html }
-        format.mobile { agree_respond_to_html }
         format.json do
           @identification.html = view_context.render_in_format(:html, :partial => "identifications/identification")
           render :json => @identification.to_json(:methods => [:html])
         end
       else
         format.html { agree_respond_to_html_failure }
-        format.mobile { agree_respond_to_html_failure }
         format.json do
           render :status => :unprocessable_entity, :json => {:errors => @identification.errors.full_messages }
         end

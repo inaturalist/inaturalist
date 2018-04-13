@@ -38,7 +38,7 @@ class TaxonPhoto < ActiveRecord::Base
     {
       taxon_id: taxon_id,
       photo: photo.as_indexed_json(
-        sizes: [:square, :small, :medium, :large],
+        sizes: [:square, :small, :medium, :large, :original],
         native_page_url: true,
         native_photo_id: true,
         type: true
@@ -47,7 +47,9 @@ class TaxonPhoto < ActiveRecord::Base
   end
 
   def index_taxon
-    taxon.self_and_ancestors.reverse.each(&:elastic_index!)
+    taxon.elastic_index!
+    Taxon.delay( priority: INTEGRITY_PRIORITY ).index_taxa( taxon.ancestor_ids )
+    true
   end
 
 end

@@ -54,6 +54,7 @@ class List < ActiveRecord::Base
   #
   def add_taxon(taxon, options = {})
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
+    return unless taxon
     ListedTaxon.create(options.merge(:list => self, :taxon_id => taxon.id))
   end
   
@@ -141,10 +142,9 @@ class List < ActiveRecord::Base
   end
   
   def generate_csv(options = {})
-    CONFIG.site ||= Site.find_by_id(CONFIG.site_id) if CONFIG.site_id
     controller = options[:controller] || FakeView.new
     attrs = %w(taxon_name description occurrence_status establishment_means adding_user_login first_observation 
-       last_observation url created_at updated_at taxon_common_name confirmed_observations_count unconfirmed_observations_count)
+       last_observation url created_at updated_at taxon_common_name)
     ranks = %w(kingdom phylum class sublcass superorder order suborder superfamily family subfamily tribe genus)
     headers = options[:taxonomic] ? ranks + attrs : attrs
     fname = options[:fname] || "#{to_param}.csv"

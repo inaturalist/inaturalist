@@ -22,7 +22,7 @@
     </h3>
     <% unless taxon.is_active? -%>
       <div class="notice box">
-        <%= t(:this_taxon_is_inactive_this_means, :site_name => CONFIG.site_name).html_safe %>
+        <%= t(:this_taxon_is_inactive_this_means, :site_name => @site.name).html_safe %>
         <%= link_to t(:view_taxon_changes), taxon_changes_path(:taxon_id => taxon), :class => "readmore" %>
       </div>
     <% end -%>

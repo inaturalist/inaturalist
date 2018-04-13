@@ -1,11 +1,14 @@
 - unless @updates.blank?
   %ul.timeline
     - for key, updates in @grouped_updates
-      - resource_type, resource_id, notification = key
-      - resource = updates.last.resource
-      - resource_owner = updates.last.resource_owner
-      - notifier = updates.last.notifier
-      - is_mention = ( notification == "mention" )
+      :ruby
+        resource_type, resource_id, notification = key
+        resource = updates.last.resource
+        resource_owner = updates.last.resource_owner
+        # Updates that aren't persisted are just filler to show all activity on the resource
+        notifying_update = updates.select(&:persisted?).last
+        notifier = notifying_update.notifier
+        is_mention = ( notification == "mention" )
       %li.observation_multiple_added
         - if notification == "committed"
           .timeline-badge.warning
@@ -15,7 +18,7 @@
             %i.glyphicon.glyphicon-map-marker
         - else
           .timeline-badge.plain
-            = link_to update_image_for( updates.last ), resource
+            = link_to update_image_for( notifying_update ), resource
         - if ["activity","curator_change","invited","created_post"].include? notification
           :ruby
             glytype = case notification
@@ -30,33 +33,32 @@
           .timeline-heading
             %h2.timeline-title
               - if is_mention
-                = link_to generic_edit_user_url, class: "pull-right subscriptionsettings" do
+                = link_to generic_edit_user_url( anchor: "activity-settings" ), class: "pull-right update-settings", target: "_blank" do
                   %span.glyphicon.glyphicon-cog
               - elsif !is_me?( resource_owner ) && !resource.is_a?( TaxonChange ) && !resource.is_a?( Project )
-                = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "pull-right subscriptionsettings" do
+                = link_to edit_subscription_by_resource_path( resource_type, resource_id ), class: "pull-right update-settings subscriptionsettings" do
                   %span.glyphicon.glyphicon-cog
-              %span.time{ title: updates.last.sort_by_date.iso8601 }
+              %span.time{ title: notifying_update.sort_by_date.iso8601 }
                 %i.glyphicon.glyphicon-time
-                = compact_date( updates.last.sort_by_date )
-              = update_tagline_for( updates.last, count: updates.size )
+                = compact_date( notifying_update.sort_by_date )
+              = update_tagline_for( notifying_update, count: updates.size )
           - if notification == "activity" || is_mention
             .timeline-body
               - if updates[0].resource_type == 'Observation'
                 - observations = [updates[0].resource]
                 = render partial: 'observations/observations_component_for_dashboard', locals: { for_idents: true, observations: observations }
               - target_id = bootstrapTargetID
-              .collapse.out{:id => "expand#{target_id}"}
+              .collapse.out{:class => "expand#{target_id}"}
                 %ul.timeline.timeline_observation
-                  - for u in updates[0..-2]
-                    - notifier = u.notifier
-                    = render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: false, no_thumb: (is_mention && notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
-              %ul.timeline.timeline_observation
-                - notifier = updates.last.notifier
-                = render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { last: true, no_thumb: (is_mention && notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
+                  - for u in updates
+                    = render partial: "shared/activity_item_for_dashboard", object: u.notifier, locals: { no_thumb: (is_mention && u.notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
+              .collapse.in{:class => "expand#{target_id}"}
+                %ul.timeline.timeline_observation
+                  = render partial: "shared/activity_item_for_dashboard", object: notifier, locals: { no_thumb: (is_mention && notifier.is_a?( Post ) ), no_meta: is_mention, context_around: is_mention ? "@#{ current_user.login }" : nil }
             .timeline-footer
               = link_to t( "view_#{resource_type.downcase}".to_sym, default: "View" ), resource, class: "btn btn-sm btn-primary"
               - if updates.count > 1
-                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", autocomplete: "off", "data-target" => "#expand#{target_id}", "data-toggle" => "collapse", type: "button" }
+                %button.btn.btn-sm.btn-default.btn_expand.collapsed{ "aria-pressed" => "false", autocomplete: "off", "data-target" => ".expand#{target_id}", "data-toggle" => "collapse", type: "button" }
                   %span.expand_inactive
                     %i.glyphicon.glyphicon-collapse-down
                     = succeed "..." do

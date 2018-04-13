@@ -1,0 +1,221 @@
+@import "../../colors";
+
+.Suggestions {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .suggestions-wrapper {
+    transition: 0.5s;
+    width: 200%;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    flex: 2;
+  }
+
+  .suggestions-wrapper.with-detail {
+    transition: 0.5s;
+    transform: translateX( -50% );
+  }
+
+  .suggestions-inner {
+    padding: 20px;
+  }
+
+  .suggestions-list,
+  .suggestions-detail {
+    position: relative;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .suggestions-detail {
+    .detail-taxon.will-change-for-next {
+      opacity: 0;
+      transform: translateX( 100% );
+    }
+    .detail-taxon.will-change-for-prev {
+      opacity: 0;
+      transform: translateX( -100% );
+    }
+    .detail-taxon.changed {
+      transition: 0.2s;
+      opacity: 1;
+      transform: translateX( 0% );
+    }
+    .prevnext {
+      .btn {
+        background-color: transparent;
+        padding: 0;
+        border: 0 transparent;
+        font-weight: bold;
+      }
+      .next {
+        margin-left: 10px;
+      }
+    }
+  }
+  .photos {
+    margin: -2.5px;
+    line-height: 0;
+    display: flex;
+  }
+  
+  $galleryHeightElements: "
+    .image-gallery,
+    .image-gallery-content,
+    .image-gallery-content > .image-gallery-slide-wrapper,
+    .image-gallery-slides,
+    .image-gallery-slide,
+    .easyzoom,
+    .easyzoom > a,
+    .easyzoom > a img,
+    .image-gallery-image > img
+  ";
+   
+  #{$galleryHeightElements} {
+    height: auto;
+    max-height: 500px;
+    min-height: 300px;
+  }
+
+  .TaxonPhoto {
+    display: inline-block;
+    margin: 2.5px;
+  }
+  .TaxonPhoto .actions {
+    margin-top: -60px;
+  }
+
+  .SplitTaxon {
+    cursor: pointer;
+  }
+
+  .RecordChooserPopoverTrigger {
+    display: inline-block;
+    color: $bootstrap-link-color;
+    label {
+      margin-right: 0.3em;
+      font-weight: normal;
+      color: black;
+    }
+    label:after {
+      content: ':';
+    }
+    i {
+      margin-right: 5px;
+    }
+  }
+  .TaxonChooserPopoverTrigger {
+    .SplitTaxon.taxon .display-name,
+    .taxon.has-com-name .sciname {
+      color: $bootstrap-link-color;
+    }
+  }
+
+  .filters > * {
+    margin-right: 10px;
+    margin-bottom: 0px;
+  }
+
+  .suggestion-row {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+
+    h3 {
+      margin-top: 0;
+      font-size: 16px;
+
+      > div {
+        position: relative;
+        top: -2px;
+      }
+    }
+    
+    .btn-label {
+      margin-right: 10px;
+    }
+  }
+
+  .obs-modal-header {
+    margin: 20px 0;
+  }
+
+  .TaxonMap {
+    height: 300px;
+  }
+
+  .tools {
+    display: block;
+    text-align: right;
+  }
+
+  .loading_spinner {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .photo-meta {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 0px 0px 20px black;
+    opacity: 0.5;
+    a,
+    a:active,
+    a:hover {
+      color: white;
+      cursor: pointer;
+    }
+    .license {
+      margin-right: 5px;
+    }
+  }
+  .multiple-photos .photo-meta {
+    bottom: 70px;
+  }
+  .photo-meta:hover {
+    opacity: 1;
+  }
+
+  .comprehensive-list {
+    padding: 10px 15px;
+    background-color: #eee;
+    margin-top: 10px;
+    border-radius: 2px;
+    border: 1px solid $border-grey;
+    i {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+  }
+}
+
+.ObservationModal .right-col .Suggestions .tools {
+  background-color: #E3E9DA;
+}
+.ObservationModal .right-col .Suggestions .tools > * {
+  width: auto;
+}
+
+.ObservationModal .inat-tab.active.suggestions-tab {
+  display: flex;
+  flex: 2;
+  overflow: hidden; // firefox needs this
+}
+
+body > div > [role="dialog"] .TaxonChooserPopover .form-group {
+  margin-bottom: 0;
+}
+
+body > div > [role="dialog"] .RecordChooserPopover.popover {
+  max-width: 200px;
+}

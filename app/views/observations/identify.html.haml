@@ -1,10 +1,29 @@
 - @no_footer_gap = true
 - content_for :title do
   = I18n.t :identify_title
+- content_for :extrahead do
+  :javascript
+    var RECENT_OBSERVATION_FIELDS = #{ logged_in? ? current_user.recent_observation_fields.to_json(
+      only: [:id, :name, :description, :datatype, :allowed_values, :values_count]) : "[]" };
 - content_for :extrajs do
   = javascript_include_tag "observations-identify-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "observations/identify"
-- content_for :extrahead do
-  %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
+  :css
+    /* a truly shameful hack for a truly shameful browser named safari */
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-content,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-content,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-slide-wrapper,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-swipe,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-slides,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .image-gallery-slide,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom > a,
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom > a img {
+      flex: 2;
+    }
+    _::-webkit-full-page-media, _:future, :root .ObservationModal .easyzoom > a img {
+      max-height: 70%;
+    }
 #app

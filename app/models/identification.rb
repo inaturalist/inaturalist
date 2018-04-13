@@ -2,19 +2,28 @@
 class Identification < ActiveRecord::Base
   include ActsAsElasticModel
   acts_as_spammable fields: [ :body ],
-                    comment_type: "item-description",
+                    comment_type: "comment",
                     automated: false
 
+  blockable_by lambda {|identification| identification.observation.try(:user_id) }
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon
   belongs_to :taxon_change
+  belongs_to :previous_observation_taxon, class_name: "Taxon"
   has_many :project_observations, :foreign_key => :curator_identification_id, :dependent => :nullify
   validates_presence_of :observation, :user
   validates_presence_of :taxon, 
                         :message => "for an ID must be something we recognize"
   
-  before_save :update_other_identifications
+  before_create :replace_inactive_taxon
+
+  # Note: order is important here. set_previous_observation_taxon should
+  # happen before update_other_identifications
+  before_save :set_previous_observation_taxon,
+              :update_other_identifications
+              
+  before_create :set_disagreement
   after_create :update_observation,
                :create_observation_review,
                :update_obs_stats, 
@@ -23,7 +32,8 @@ class Identification < ActiveRecord::Base
   after_update :update_obs_stats, 
                :update_curator_identification,
                :update_quality_metrics
-  after_commit :update_categories,
+  after_commit :skip_observation_indexing,
+                 :update_categories,
                  :update_observation,
                  :update_user_counter_cache,
                unless: Proc.new { |i| i.observation.destroyed? }
@@ -50,6 +60,10 @@ class Identification < ActiveRecord::Base
   attr_accessor :skip_observation
   attr_accessor :html
   attr_accessor :captive_flag
+  attr_accessor :skip_set_previous_observation_taxon
+  attr_accessor :skip_set_disagreement
+
+  preference :vision, :boolean, default: false
 
   %w(improving supporting leading maverick).each do |category|
     const_set category.upcase, category
@@ -80,7 +94,12 @@ class Identification < ActiveRecord::Base
   auto_subscribes :user, :to => :observation, :if => lambda {|ident, observation| 
     ident.user_id != observation.user_id
   }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    delay: false,
+    notification: "mention",
+    if: lambda {|u| u.prefers_receive_mentions? }
   
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)
@@ -120,6 +139,13 @@ class Identification < ActiveRecord::Base
   
   # Callbacks ###############################################################
 
+  def replace_inactive_taxon
+    return true if taxon && taxon.is_active?
+    return true unless candidate = taxon.current_synonymous_taxon
+    self.taxon = candidate
+    true
+  end
+
   def update_other_identifications
     return true unless ( current_changed? || new_record? ) && current?
     scope = if id
@@ -135,6 +161,55 @@ class Identification < ActiveRecord::Base
       # might cause some testing problems if we're testing indexing...
       raise e unless Rails.env.test?
     end
+    true
+  end
+
+  def set_previous_observation_taxon
+    return true if skip_set_previous_observation_taxon
+    self.previous_observation_taxon_id = if new_record?
+      observation.probable_taxon( force: true ).try(:id)
+    elsif previous_probable_taxon = observation.probable_taxon( force: true, before: id )
+      if observation.prefers_community_taxon == false || !observation.user.prefers_community_taxa?
+        previous_probable_taxon.id
+      else
+        observation.taxon.try(:id)
+      end
+    end
+    unless previous_observation_taxon_id
+      working_created_at = created_at || Time.now
+      previous_ident = observation.identifications.select{|i| i.persisted? && i.current && i.created_at < working_created_at }.last
+      previous_ident ||= observation.identifications.select{|i| i.persisted? && i.created_at < working_created_at }.last
+      self.previous_observation_taxon_id = previous_ident.try(:taxon_id) || observation.taxon_id
+    end
+    true
+  end
+
+  def set_disagreement( options = {} )
+    return true if skip_set_disagreement
+
+    # Can't disagree with nothing or roots
+    if !previous_observation_taxon || !previous_observation_taxon.grafted?
+      self.disagreement = nil
+      return true
+    end
+
+    # Can't disagree when suggesting an ungrafted taxon
+    if !taxon.grafted? && !taxon.children.exists?
+      self.disagreement = nil
+      return true
+    end
+
+    # Explicit disagreement can only happen when suggesting a taxon that is an
+    # ancestor of the previous taxon
+    if disagreement? && previous_observation_taxon.ancestor_ids.include?( taxon.id )
+      return true
+    end
+
+    # Implicit disagreement
+    ancestor_of_previous_observation_taxon = previous_observation_taxon.self_and_ancestor_ids.include?( taxon_id )
+    descendant_of_previous_observation_taxon = taxon.self_and_ancestor_ids.include?( previous_observation_taxon.id )
+    self.disagreement = !ancestor_of_previous_observation_taxon && !descendant_of_previous_observation_taxon
+
     true
   end
   
@@ -216,12 +291,13 @@ class Identification < ActiveRecord::Base
   # Update the counter cache in users.  That cache ONLY tracks observations 
   # made for others.
   def update_user_counter_cache
-    return unless self.user && self.observation
-    return if user.destroyed?
+    return true unless self.user && self.observation
+    return true if user.destroyed?
     if self.user_id != self.observation.user_id
       User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
         update_identifications_counter_cache(user_id)
     end
+    true
   end
 
   def set_last_identification_as_current
@@ -260,29 +336,42 @@ class Identification < ActiveRecord::Base
     true
   end
 
+  def flagged_with(flag, options)
+    evaluate_new_flag_for_spam(flag)
+    elastic_index!
+    if observation
+      observation.elastic_index!
+    end
+  end
+
   # /Callbacks ##############################################################
   
   #
   # Tests whether this identification should be considered an agreement with
-  # the observer's identification.  If this identification has the same taxon
-  # or a child taxon of the observer's identification, then they agree.
+  # the observation's taxon.  If this identification has the same taxon
+  # or a descendant taxon of the observation's taxon, then they agree.
   #
   def is_agreement?(options = {})
     return false if frozen?
     o = options[:observation] || observation
     return false if o.taxon_id.blank?
     return false if o.user_id == user_id
-    return false if o.identifications.count == 1
+    return false if o.community_taxon_id.blank?
     return true if taxon_id == o.taxon_id
     taxon.in_taxon? o.taxon_id
   end
   
-  def is_disagreement?(options = {})
-    return false if frozen?
-    o = options[:observation] || observation
-    return false if o.user_id == user_id
-    return false if o.identifications.count == 1
-    !is_agreement?(options)
+  # def old_is_disagreement?(options = {})
+  #   return false if frozen?
+  #   o = options[:observation] || observation
+  #   return false if o.user_id == user_id
+  #   return false if o.identifications.count == 1
+  #   prior_community_taxon = o.get_community_taxon( before: id, force: true )
+  #   !prior_community_taxon.self_and_ancestor_ids.include?( taxon.id ) && !taxon.self_and_ancestor_ids.include?( prior_community_taxon.id )
+  # end
+
+  def is_disagreement?( options = {} )
+    disagreement
   end
   
   #
@@ -312,7 +401,6 @@ class Identification < ActiveRecord::Base
       idents = o.identifications
     else
       idents = Identification.
-        select( "id, taxon_id, current" ).
         includes(:taxon).
         where( observation_id: o.id )
     end
@@ -344,17 +432,53 @@ class Identification < ActiveRecord::Base
       next if idents.compact.blank?
       Identification.where( id: idents.map(&:id) ).update_all( category: category )
     end
+    Identification.elastic_index!( ids: idents.map(&:id) )
+    o.reload
+    o.elastic_index!
   end
 
   def update_categories
-    return true if skip_observation
-    Identification.update_categories_for_observation( observation )
+    if skip_observation
+      Identification.delay.update_categories_for_observation( observation_id )
+    else
+      Identification.update_categories_for_observation( observation )
+    end
+    true
+  end
+
+  # Should only run after commit and should be the final thing to run before
+  # commit. If the observation attached to this instance is dirty for some
+  # reason, ignore those changes b/c they've probably already been set in the
+  # database in an obs callback
+  def skip_observation_indexing
+    observation.skip_indexing = true
     true
   end
 
   def mentioned_users
     return [ ] unless body
     body.mentioned_users
+  end
+
+  def previously_mentioned_users
+    return [ ] if body_was.blank?
+    body.mentioned_users & body_was.to_s.mentioned_users
+  end
+
+  def vision
+    prefers_vision?
+  end
+
+  def vision=( val )
+    self.preferred_vision = val.yesish?
+  end
+
+  def taxon_name
+    taxon.try(:name)
+  end
+
+  def taxon_rank
+    taxon.try(:rank)
   end
 
   # Static ##################################################################
@@ -441,12 +565,29 @@ class Identification < ActiveRecord::Base
         observation_id: ident.observation_id,
         taxon: output_taxon, 
         user_id: ident.user_id,
-        taxon_change: taxon_change
+        taxon_change: taxon_change,
+        disagreement: false,
+        skip_set_disagreement: true
       )
+      if ident.disagreement && ident.previous_observation_taxon && ( current_synonym = ident.previous_observation_taxon.current_synonymous_taxon )
+        new_ident.disagreement = true
+        new_ident.skip_set_previous_observation_taxon = true
+        new_ident.previous_observation_taxon = current_synonym
+      end
       new_ident.skip_observation = true
       new_ident.save
       observation_ids << ident.observation_id
       yield( new_ident ) if block_given?
+    end
+    Identification.current.where( "disagreement AND identifications.previous_observation_taxon_id IN (?)", input_taxon_ids ).find_each do |ident|
+      ident.skip_observation = true
+      if taxon_change.is_a?( TaxonMerge ) || taxon_change.is_a?( TaxonSwap )
+        ident.update_attributes( skip_set_previous_observation_taxon: true, previous_observation_taxon: taxon_change.output_taxon )
+        observation_ids << ident.observation_id
+      elsif taxon_change.is_a?( TaxonSplit )
+        ident.update_attributes( disagreement: false )
+        observation_ids << ident.observation_id
+      end
     end
     observation_ids.uniq.compact.sort.in_groups_of( 100 ) do |obs_ids|
       obs_ids.compact!
@@ -469,6 +610,21 @@ class Identification < ActiveRecord::Base
       end
       Observation.elastic_index!( ids: obs_ids )
     end
+  end
+
+  def self.update_disagreement_identifications_for_taxon( taxon )
+    return unless taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    block = Proc.new{ |ident|
+      if ident.taxon.self_and_ancestor_ids.include?( ident.previous_observation_taxon_id )
+        ident.update_attributes( disagreement: false )
+      end
+    }
+    Identification.
+        includes( :taxon ).
+        where( "disagreement" ).
+        joins( taxon: :taxon_ancestors ).
+        where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ).
+        find_each( &block )
   end
   
   # /Static #################################################################

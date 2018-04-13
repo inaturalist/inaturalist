@@ -55,8 +55,8 @@ const mapDispatchToProps = ( dispatch ) => ( {
   movePhoto: ( photo, toObsCard ) => {
     dispatch( actions.movePhoto( photo, toObsCard ) );
   },
-  newCardFromPhoto: ( photo ) => {
-    dispatch( actions.newCardFromPhoto( photo ) );
+  newCardFromMedia: ( media ) => {
+    dispatch( actions.newCardFromMedia( media ) );
   },
   combineSelected: ( ) => {
     dispatch( actions.combineSelected( ) );

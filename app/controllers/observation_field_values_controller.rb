@@ -6,13 +6,15 @@ class ObservationFieldValuesController < ApplicationController
   def index
     per_page = params[:per_page].to_i
     per_page = 30 if (per_page <= 0 || per_page > 200)
-    @ofvs = ObservationFieldValue.
-      includes(:observation_field, :observation => [{:taxon => [:source]}, :user]).
-      page(params[:page]).per_page(per_page)
+    @ofvs = ObservationFieldValue.page(params[:page]).per_page(per_page)
     @ofvs = @ofvs.datatype(params[:type]) unless params[:type].blank?
     @ofvs = @ofvs.field(params[:field]) unless params[:field].blank?
     @ofvs = @ofvs.license(params[:license]) unless params[:license].blank?
     @ofvs = @ofvs.quality_grade(params[:quality_grade]) unless params[:quality_grade].blank?
+    ObservationFieldValue.preload_associations( @ofvs, {
+      observation_field: {},
+      observation: [ { taxon: [:source] }, :user ]
+    } )
     pagination_headers_for(@ofvs)
     respond_to do |format|
       format.json do
@@ -66,6 +68,7 @@ class ObservationFieldValuesController < ApplicationController
     ofv_params = observation_field_value_params
     ofv_params.delete(:id) # why does rails even allow this...
     @observation_field_value = ObservationFieldValue.new(ofv_params)
+    @observation_field_value.user = current_user
     if !@observation_field_value.valid?
       if existing = ObservationFieldValue.where(
           "observation_field_id = ? AND observation_id = ?", 
@@ -75,9 +78,9 @@ class ObservationFieldValuesController < ApplicationController
         @observation_field_value.attributes = ofv_params
       end
     end
-    
     respond_to do |format|
       if @observation_field_value.save
+        Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -89,7 +92,13 @@ class ObservationFieldValuesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @observation_field_value.update_attributes(observation_field_value_params)
+      update_params = observation_field_value_params
+      if !update_params[:id].is_a? Fixnum
+        update_params[:uuid] = update_params[:id]
+        update_params.delete(:id)
+      end
+      if @observation_field_value.update_attributes(update_params)
+        Observation.refresh_es_index
         format.json { render :json => @observation_field_value }
       else
         format.json do
@@ -112,12 +121,12 @@ class ObservationFieldValuesController < ApplicationController
       status = :ok
       json = nil
     end
-    
     respond_to do |format|
       format.any do
         render :status => :status, :text => json
       end
       format.json do 
+        Observation.refresh_es_index
         render :status => status, :json => json
       end
     end
@@ -125,7 +134,9 @@ class ObservationFieldValuesController < ApplicationController
 
   private
   def load_observation_field_value
-    @observation_field_value = ObservationFieldValue.find_by_id(params[:id])
+    @observation_field_value =
+      ObservationFieldValue.find_by_uuid(params[:id]) ||
+      ObservationFieldValue.find_by_id(params[:id])
     render_404 unless @observation_field_value
   end
 

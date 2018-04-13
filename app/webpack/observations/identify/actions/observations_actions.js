@@ -22,8 +22,14 @@ function fetchObservations( ) {
     const apiParams = Object.assign( {
       viewer_id: currentUser.id,
       preferred_place_id: preferredPlace ? preferredPlace.id : null,
-      locale: I18n.locale
+      locale: I18n.locale,
+      ttl: -1
     }, paramsForSearch( s.searchParams.params ) );
+    if ( s.config.blind ) {
+      apiParams.order_by = "random";
+      apiParams.quality_grade = "any";
+      apiParams.page = 1;
+    }
     return iNaturalistJS.observations.search( apiParams )
       .then( response => {
         let obs = response.results;
@@ -75,7 +81,7 @@ function reviewAll( ) {
     // updating the stats after each request, so this might not last, but now
     // I know how to do this
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.review( o ) )
+      getState( ).observations.results.map( o => iNaturalistJS.observations.review( { id: o.id } ) )
     )
       .catch( ( ) => dispatch( showAlert(
         I18n.t( "failed_to_save_record" ),
@@ -90,7 +96,7 @@ function unreviewAll( ) {
     dispatch( setConfig( { allReviewed: false } ) );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( o ) )
+      getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( { id: o.id } ) )
     )
       .catch( ( ) => dispatch( showAlert(
         I18n.t( "failed_to_save_record" ),

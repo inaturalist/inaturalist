@@ -24,13 +24,7 @@ class TaxonRange < ActiveRecord::Base
   
   has_attached_file :range,
     :path => ":rails_root/public/attachments/:class/:id.:extension",
-    :url => "#{ CONFIG.attachments_host }/attachments/:class/:id.:extension"
-    # :storage => :s3,
-    # :s3_credentials => "#{Rails.root}/config/s3.yml",
-    # :s3_host_alias => CONFIG.s3_bucket,
-    # :bucket => CONFIG.s3_bucket,
-    # :path => "taxon_ranges/:id.:extension",
-    # :url => ":s3_alias_url"
+    :url => "/attachments/:class/:id.:extension"
 
   after_save :derive_missing_values
   
@@ -65,7 +59,7 @@ class TaxonRange < ActiveRecord::Base
           xml.Placemark {
             xml.name
             xml.description
-            xml.styleUrl "#{CONFIG.site_url}/assets/index.kml#taxon_range"
+            xml.styleUrl "#{Site.default.url}/assets/index.kml#taxon_range"
             xml << GeoRuby::SimpleFeatures::Geometry.from_ewkt(wkt).as_kml
           }
         }
@@ -89,7 +83,7 @@ class TaxonRange < ActiveRecord::Base
       if geojsongeom = GeoRuby::SimpleFeatures::Geometry.from_geojson(f.read)
         self.geom = geojsongeom.features.first.geometry.as_wkt
         if geom && geom.geometry_type == RGeo::Feature::Polygon
-          factory = RGeo::Geographic.simple_mercator_factory
+          factory = RGeo::Cartesian.simple_factory( srid: 0 )
           self.geom = factory.multi_polygon([geom])
         end
         self.save

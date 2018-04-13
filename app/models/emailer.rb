@@ -6,15 +6,15 @@ class Emailer < ActionMailer::Base
 
   after_action :set_sendgrid_headers
 
-  default :from =>     "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
-          :reply_to => CONFIG.noreply_email
+  default from: "#{Site.default.try(:name)} <#{Site.default.try(:email_noreply)}>",
+          reply_to: Site.default.try(:email_noreply)
   
   def invite_user(address, params, user) 
     Invite.create(:user => user, :invite_address => address)
     @user = user
-    @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{CONFIG.site_name}" 
-    @personal_message = params[:personal_message]
     set_locale
+    @subject = "#{subject_prefix} #{params[:sender_name]} wants you to join them on #{@site.name}"
+    @personal_message = params[:personal_message]
     @sending_user = params[:sender_name]
     mail(set_site_specific_opts.merge(
       :to => address,
@@ -85,7 +85,7 @@ class Emailer < ActionMailer::Base
     mail(set_site_specific_opts.merge(
       to: @user.email,
       subject: t(:site_observations_export_from_date,
-        site_name: SITE_NAME,
+        site_name: @site.name,
         date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
     ))
     reset_locale
@@ -100,7 +100,7 @@ class Emailer < ActionMailer::Base
     mail(set_site_specific_opts.merge(
       to: @user.email,
       subject: t(:site_observations_export_from_date,
-        site_name: SITE_NAME,
+        site_name: @site.name,
         date: l(@flow_task.created_at.in_time_zone(@user.time_zone), format: :long))
     ))
     reset_locale
@@ -178,34 +178,40 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def custom_email(user, subject, body)
+    @user = user
+    set_locale
+    @subject = subject
+    @body = body
+    mail(set_site_specific_opts.merge(
+      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+    ))
+    reset_locale
+  end
+
   private
   def default_url_options
-    opts = Rails.application.config.action_mailer.default_url_options.dup
-    return opts unless @user && @user.site
-    site_url = @user.site.url if @user.site
-    site_url = CONFIG.site_url if site_url.blank?
-    if site_uri = URI.parse( site_url )
+    opts = (Rails.application.config.action_mailer.default_url_options || {}).dup
+    site = @user.try(:site) || @site || Site.default
+    if site_uri = URI.parse( site.url )
       opts[:host] = site_uri.host
       if port = site_uri.port
-        opts[:port] = port if port != 80
+        opts[:port] = port unless [80, 443].include?( port )
       end
     end
     opts
   end
 
   def subject_prefix
-    if site = @user.site
-      "[#{site.name}]"
-    else
-      "[#{CONFIG.site_name}]"
-    end
+    site = @user.site || @site || Site.default
+    "[#{site.name}]"
   end
 
   def site_name
     if site = @user.site
       site.name
     else
-      CONFIG.site_name
+      @site.name
     end
   end
 
@@ -218,26 +224,24 @@ class Emailer < ActionMailer::Base
     else
       I18n.default_locale
     end
+    set_site
   end
 
   def reset_locale
     I18n.locale = @locale_was || I18n.default_locale
   end
 
-  def set_site_specific_opts
+  def set_site
     @site ||= @user.site if @user
-    @site_name = @site.try(:name) || CONFIG.site_name
-    if @site
-      {
-        :from => "#{@site.name} <#{@site.email_noreply.blank? ? CONFIG.noreply_email : @site.email_noreply}>",
-        :reply_to => @site.email_noreply.blank? ? CONFIG.noreply_email : @site.email_noreply
-      }
-    else
-      {
-        :from => "#{CONFIG.site_name} <#{CONFIG.noreply_email}>",
-        :reply_to => CONFIG.noreply_email
-      }
-    end
+    @site ||= Site.default
+  end
+
+  def set_site_specific_opts
+    @site_name = @site.name
+    {
+      :from => "#{@site.name} <#{@site.email_noreply}>",
+      :reply_to => @site.email_noreply
+    }
   end
 
   def set_sendgrid_headers

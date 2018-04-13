@@ -4,7 +4,6 @@ class TaxaController < ApplicationController
   caches_action :show, :expires_in => 1.day,
     :cache_path => Proc.new{ |c| {
       locale: I18n.locale,
-      mobile: c.request.format.mobile?,
       ssl: c.request.ssl? } },
     :if => Proc.new {|c|
       !request.format.json? &&
@@ -32,7 +31,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -48,9 +47,6 @@ class TaxaController < ApplicationController
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
   ALLOWED_SHOW_PARTIALS = %w(chooser)
   ALLOWED_PHOTO_PARTIALS = %w(photo)
-  MOBILIZED = [:show, :index]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   
   #
   # GET /observations
@@ -60,7 +56,7 @@ class TaxaController < ApplicationController
   # @param q:    Return all taxa where the name begins with q 
   #
   def index
-    find_taxa unless request.format.blank? || request.format.html? || request.format.mobile?
+    find_taxa unless request.format.blank? || request.format.html?
     
     begin
       @taxa.try(:total_entries)
@@ -120,13 +116,6 @@ class TaxaController < ApplicationController
           @recent = @recent.sort_by(&:id).reverse
         end
       end
-      format.mobile do
-        if request.query_parameters.blank?
-          @taxa = Taxon.iconic_taxa.page(1).per_page(50)
-        else
-          find_taxa
-        end
-      end
       format.xml  do
         render(:xml => @taxa.to_xml(:methods => [:common_name]))
       end
@@ -150,9 +139,6 @@ class TaxaController < ApplicationController
   end
 
   def show
-    # if params[:entry] == 'widget'
-    #   flash[:notice] = t(:click_add_an_observation_to_the_lower_right, :site_name_short => CONFIG.site_name_short)
-    # end
     if params[:id]
       begin
         @taxon ||= Taxon.where(id: params[:id]).includes(:taxon_names).first
@@ -184,120 +170,14 @@ class TaxaController < ApplicationController
           place_id = preferred_place.id
         end
         api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
-        @node_taxon_json = INatAPIService.get_json( api_url )
+        options = {}
+        options[:api_token] = JsonWebToken.encode( user_id: current_user.id ) if current_user
+        @node_taxon_json = INatAPIService.get_json( api_url, options )
         return render_404 unless @node_taxon_json
         @node_place_json = INatAPIService.get_json( "/places/#{place_id.to_i}" )
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
         render layout: "bootstrap", action: "show2"
-        return
-        # end
-
-        place_id = params[:place_id] if logged_in? && !params[:place_id].blank?
-        place_id ||= current_user.place_id if logged_in?
-        place_id ||= CONFIG.place_id
-        @place = Place.find(place_id) rescue nil
-        @conservation_statuses = @taxon.conservation_statuses.includes(:place).sort_by do |cs|
-          cs.place.blank? ? [0] : cs.place.self_and_ancestor_ids
-        end
-        if @place
-          @conservation_status = @conservation_statuses.detect do |cs|
-            @place.id == cs.place_id && cs.iucn > Taxon::IUCN_LEAST_CONCERN
-          end
-          @conservation_status ||= @conservation_statuses.detect do |cs|
-            @place.self_and_ancestor_ids.include?( cs.place_id ) && cs.iucn > Taxon::IUCN_LEAST_CONCERN
-          end
-        end
-        @conservation_status ||= @conservation_statuses.detect{|cs| cs.place_id.blank? && cs.iucn > Taxon::IUCN_LEAST_CONCERN}
-        
-        if @place
-          @listed_taxon = @taxon.listed_taxa.includes(:place).
-            where(place_id: @place.id).
-            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).first
-          @listed_taxon ||= @taxon.listed_taxa.joins(:place).includes(:place).
-            where(place_id: @place.self_and_ancestor_ids).
-            where( "occurrence_status_level IS NULL OR occurrence_status_level IN (?)", ListedTaxon::PRESENT_EQUIVALENTS ).
-            order("admin_level DESC, (places.ancestry || '/' || places.id) DESC, establishment_means").first
-        end
-        
-        @children = @taxon.children.where(:is_active => @taxon.is_active).
-          includes({ taxon_names: :place_taxon_names }).sort_by{ |c| c.name }
-        @ancestors = @taxon.ancestors.includes({ taxon_names: :place_taxon_names })
-        @iconic_taxa = Taxon::ICONIC_TAXA
-        
-        @check_listed_taxa = ListedTaxon.page(1).
-          select("
-            min(listed_taxa.id) AS id,
-            listed_taxa.place_id,
-            listed_taxa.taxon_id,
-            min(listed_taxa.list_id) AS list_id,
-            min(establishment_means) AS establishment_means,
-            max(occurrence_status_level) AS occurrence_status_level").
-          includes(:place, :list).
-          group(:place_id, :taxon_id).
-          where("place_id IS NOT NULL AND taxon_id = ?", @taxon)
-        @sorted_check_listed_taxa = @check_listed_taxa.sort_by{|lt| lt.place.try(:place_type) || 0}.reverse
-        @places = @check_listed_taxa.map{ |lt| lt.place }.compact.uniq{ |p| p.id }
-        @countries = @taxon.places.where(["place_type = ?", Place::PLACE_TYPE_CODES['Country']]).
-          select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
-        if @countries.size == 1 && @countries.first.code == 'US'
-          @us_states = @taxon.places.
-            where("admin_level = ? AND parent_id = ?", Place::STATE_LEVEL, @countries.first.id).
-            select("places.id, place_type, code, admin_level").uniq{ |p| p.id }
-        end
-
-        @taxon_links = TaxonLink.by_taxon(@taxon, :reject_places => @places.blank?)
-        @observations = Observation.page_of_results(
-          taxon_id: @taxon.id, per_page: 12, order_by: "id", order: "desc")
-        @photos = Rails.cache.fetch(@taxon.photos_cache_key) do
-          @taxon.photos_with_backfill(:skip_external => true, :limit => 24)
-        end
-        
-        if logged_in?
-          @listed_taxa = ListedTaxon.joins(:list).
-            where(taxon_id: @taxon, lists: { user_id: current_user })
-          @listed_taxa_by_list_id = @listed_taxa.index_by{|lt| lt.list_id}
-          @current_user_lists = current_user.lists.includes(:rules).
-            where("(type IN ('LifeList', 'List') OR type IS NULL)").
-            order("lower( lists.title )").
-            limit(200).to_a
-          if life_list_index = @current_user_lists.index{|l| l.id == current_user.life_list_id}
-            @current_user_lists.insert(0, @current_user_lists.delete_at( life_list_index ) )
-          end
-          @lists_rejecting_taxon = @current_user_lists.select do |list|
-            if list.is_a?(LifeList) && (rule = list.rules.detect{|rule| rule.operator == "in_taxon?"})
-              !rule.validates?(@taxon)
-            else
-              false
-            end
-          end
-        end
-        
-        # @taxon_ranges = @taxon.taxon_ranges.without_geom.includes(:source).limit(10).select(&:kml_url)
-        # @taxon_range = if CONFIG.taxon_range_source_id
-        #   @taxon_ranges.detect{|tr| tr.source_id == CONFIG.taxon_range_source_id}
-        # end
-        # @taxon_range ||= @taxon_ranges.detect{|tr| !tr.range.blank?}
-        @taxon_ranges = @taxon.taxon_ranges_with_kml
-        @taxon_range = @taxon_ranges[0]
-        @additional_ranges = @taxon_ranges[1..-1]
-        @taxon_gbif = "#{@taxon.name.gsub(' ','+')}*"
-        @colors = @taxon.colors if @taxon.species_or_lower?
-        
-        unless @taxon.is_active?
-          @taxon_change = TaxonChange.taxon(@taxon).last
-        end
-        
-        render :action => 'show'
-      end
-      
-      format.mobile do
-        if @taxon.species_or_lower? && @taxon.species
-          @siblings = @taxon.species.siblings.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
-          @siblings.delete_if{|s| s.id == @taxon.id}
-        else
-          @children = @taxon.children.includes(:photos, :taxon_names).limit(100).sort_by{|t| t.name}
-        end
       end
       
       format.xml do
@@ -316,6 +196,7 @@ class TaxaController < ApplicationController
         opts[:include][:iconic_taxon] = {only: [:id, :name]}
         opts[:methods] += [:common_name, :image_url, :taxon_range_kml_url, :html, :default_photo]
         Taxon.preload_associations(@taxon, { taxon_photos: :photo })
+        @taxon.current_user = current_user
         render :json => @taxon.to_json(opts)
       end
       format.node { render :json => jit_taxon_node(@taxon) }
@@ -325,7 +206,9 @@ class TaxaController < ApplicationController
   def browse_photos
     respond_to do |format|
       format.html do
-        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}" )
+        options = {}
+        options[:api_token] = JsonWebToken.encode( user_id: current_user.id ) if current_user
+        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}", options )
         place_id = current_user.preferred_taxon_page_place_id if logged_in?
         place_id = session[:prefers_taxon_page_place_id] if place_id.blank?
         @place = Place.find_by_id( place_id )
@@ -338,13 +221,14 @@ class TaxaController < ApplicationController
   def tip
     @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
     if @observation
-      @places = @observation.system_places
+      @places = @observation.public_system_places
     end
     render :layout => false
   end
 
   def new
-    @taxon = Taxon.new(:name => params[:name])
+    @taxon = Taxon.new( name: params[:name] )
+    @protected_attributes_editable = true
   end
 
   def create
@@ -352,6 +236,7 @@ class TaxaController < ApplicationController
     return unless presave
     @taxon.attributes = params[:taxon]
     @taxon.creator = current_user
+    @taxon.current_user = current_user
     if @taxon.save
       Taxon.refresh_es_index
       flash[:notice] = t(:taxon_was_successfully_created)
@@ -377,6 +262,9 @@ class TaxaController < ApplicationController
       Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
+    unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
+      flash.now[:notice] ||= "This taxon is complete or descends from a complete taxon, so some taxonomic attributes can only be editable by curators of that complete taxon."
+    end
   end
 
   def update
@@ -453,7 +341,14 @@ class TaxaController < ApplicationController
 
     filters = [ ]
     unless @q.blank?
-      filters << { match: { "names.name": { query: @q, operator: "and" } } }
+      filters << {
+        nested: {
+          path: "names",
+          query: {
+            match: { "names.name": { query: @q, operator: "and" } }
+          }
+        }
+      }
     end
     filters << { term: { is_active: true } } if @is_active === true
     filters << { term: { is_active: false } } if @is_active === false
@@ -471,7 +366,7 @@ class TaxaController < ApplicationController
       per_page(per_page).page(page)
     # if there are no search results, and the search was performed with
     # a search ID filter, but one wasn't asked for. This will happen when
-    # CONFIG.site_only_observations is true and a search filter is
+    # rendering a partner site and a search filter is
     # set automatically. Re-run the search w/o the place filter
     if search_result.total_entries == 0 && params[:places].blank? && !@place_ids.blank?
       without_place_filters = filters.select{ |f| !( f[:terms] && f[:terms][:place_ids] ) }
@@ -574,7 +469,10 @@ class TaxaController < ApplicationController
               :only => [:id, :name, :lexicon, :is_valid, :position]
             }
           )
-          options[:methods] += [:common_name, :image_url, :default_name]
+          options[:methods] += [:image_url, :default_name]
+          if current_user && current_user.prefers_common_names?
+            options[:methods] += [:common_name]
+          end
           if params[:partial]
             partial_path = if params[:partial] == "taxon"
               "shared/#{params[:partial]}.html.erb"
@@ -589,7 +487,14 @@ class TaxaController < ApplicationController
             end
             @taxa[i].current_user = current_user
           end
-          render :json => @taxa.to_json(options)
+          json = @taxa.as_json( options )
+          if current_user && !current_user.prefers_common_names?
+            json = json.map do |jt|
+              jt["taxon_names"] = jt["taxon_names"].select{|tn| tn["lexicon"] == TaxonName::LEXICONS[:SCIENTIFIC_NAMES] }
+              jt
+            end
+          end
+          render json: json
         end
       end
     end
@@ -604,7 +509,14 @@ class TaxaController < ApplicationController
     else
       params[:is_active]
     end
-    filters = [{ match: { "names.name_autocomplete": { query: @q, operator: "and" } } }]
+    filters = [{
+      nested: {
+        path: "names",
+        query: {
+          match: { "names.name_autocomplete": { query: @q, operator: "and" } }
+        }
+      }
+    }]
     filters << { term: { is_active: true } } if @is_active === true
     filters << { term: { is_active: false } } if @is_active === false
     @taxa = Taxon.elastic_paginate(
@@ -615,7 +527,14 @@ class TaxaController < ApplicationController
     )
     # attempt to fetch the best exact match, which will go first
     exact_results = Taxon.elastic_paginate(
-      filters: filters + [ { match: { "names.exact" => @q } } ],
+      filters: filters + [ {
+        nested: {
+          path: "names",
+          query: {
+            match: { "names.exact_ci" => @q }
+          }
+        }
+      } ],
       sort: { observations_count: "desc" },
       per_page: 1,
       page: 1
@@ -761,11 +680,12 @@ class TaxaController < ApplicationController
   
   def observation_photos
     @taxon = Taxon.includes(:taxon_names).where( id: params[:id].to_i ).first
+    @taxon ||= Taxon.single_taxon_for_name( params[:q] )
     licensed = %w(t any true).include?(params[:licensed].to_s)
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
-    observations = if @taxon && params[:q].blank?
+    observations = if @taxon
       obs = Observation.of(@taxon).
         joins(:photos).
         where("photos.id IS NOT NULL AND photos.user_id IS NOT NULL AND photos.license IS NOT NULL").
@@ -867,6 +787,12 @@ class TaxaController < ApplicationController
     }
   end
 
+  def taxobox
+    respond_to do |format|
+      format.html { render partial: "wikipedia_taxobox", object: @taxon }
+    end
+  end
+
   private
   def add_places_from_paste
     place_names = params[:paste_places].split(",").map{|p| p.strip.downcase}.reject(&:blank?)
@@ -932,7 +858,7 @@ class TaxaController < ApplicationController
     raise e unless e.message =~ /OAuthException/
     msg = t(
       :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: CONFIG.site_name_short
+      site_name_short: @site.site_name_short
     )
     respond_to do |format|
       format.json { render json: { error: msg }, status: :unprocessable_entity }
@@ -977,7 +903,14 @@ class TaxaController < ApplicationController
       @taxon.elastic_index!
       Taxon.refresh_es_index
     else
-      errors << "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+      respond_to do |format|
+        format.json do
+          render status: :unprocessable_entity, json: {
+            error: "Failed to save taxon: #{@taxon.errors.full_messages.to_sentence}"
+          }
+        end
+      end
+      return
     end
     unless photos.count == 0
       Taxon.delay( priority: INTEGRITY_PRIORITY ).update_ancestor_photos( @taxon.id, photos.first.id )
@@ -997,7 +930,7 @@ class TaxaController < ApplicationController
     raise e unless e.message =~ /OAuthException/
     msg = t(
       :facebook_needs_the_owner_of_that_photo_to,
-      site_name_short: CONFIG.site_name_short
+      site_name_short: @site.site_name_short
     )
     respond_to do |format|
       format.json { render json: { error: msg }, status: :unprocessable_entity }
@@ -1009,8 +942,8 @@ class TaxaController < ApplicationController
   end
   
   def describe
-    @describers = if CONFIG.taxon_describers
-      CONFIG.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
+    @describers = if @site.taxon_describers
+      @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
     elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
       [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
     else
@@ -1492,6 +1425,7 @@ class TaxaController < ApplicationController
       render_404
       return
     end
+    @taxon.current_user = current_user
   end
   
   def do_external_lookups
@@ -1534,9 +1468,9 @@ class TaxaController < ApplicationController
     rescue FlickRaw::FailedResponse, FlickRaw::OAuthClient::FailedResponse => e
       if e.message =~ /Insufficient permissions/ || e.message =~ /signature_invalid/
         auth_url = auth_url_for('flickr', :scope => 'write')
-        flash[:error] = ("#{CONFIG.site_name_short} can't add tags to your photos until " + 
+        flash[:error] = ("#{@site.site_name_short} can't add tags to your photos until " +
           "Flickr knows you've given us permission.  " + 
-          "<a href=\"#{auth_url}\">Click here to authorize #{CONFIG.site_name_short} to add tags</a>.").html_safe
+          "<a href=\"#{auth_url}\">Click here to authorize #{@site.site_name_short} to add tags</a>.").html_safe
       else
         flash[:error] = "Something went wrong trying to to post those tags: #{e.message}"
       end
@@ -1613,12 +1547,14 @@ class TaxaController < ApplicationController
   def load_form_variables
     @conservation_status_authorities = ConservationStatus.
       select('DISTINCT authority').where("authority IS NOT NULL").
-      map(&:authority).compact.reject(&:blank?).map(&:strip).sort
+      map(&:authority).compact.reject(&:blank?).map(&:strip)
+    @conservation_status_authorities += ConservationStatus::AUTHORITIES
+    @conservation_status_authorities = @conservation_status_authorities.uniq.sort
   end
 
   def taxon_curator_required
     unless @taxon.editable_by?( current_user )
-      flash[:notice] = t(:only_administrators_may_access_that_page)
+      flash[:notice] = t(:you_dont_have_permission_to_edit_that_taxon)
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else

@@ -78,7 +78,7 @@ class Picasa
       if args[:thumbsize] and not args[:thumbsize].split(/,/).all? { |s| RubyPicasa::Photo::VALID.include?(s) }
         raise RubyPicasa::PicasaError, 'Invalid thumbsize.'
       end
-      if args[:imgmax] and not RubyPicasa::Photo::VALID.include?(args[:imgmax])
+      if args[:imgmax] && args[:imgmax] != "d" && !RubyPicasa::Photo::VALID.include?(args[:imgmax])
         raise RubyPicasa::PicasaError, 'Invalid imgmax.'
       end
       [:max_results, :start_index, :tag, :q, :kind,

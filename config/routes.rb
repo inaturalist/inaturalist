@@ -1,8 +1,4 @@
-# Inaturalist::Application.routes.draw do
 Rails.application.routes.draw do
-  resources :guide_users
-
-
   apipie
 
   resources :sites
@@ -11,14 +7,22 @@ Rails.application.routes.draw do
   simplified_login_regex = /\w[^\.,\/]+/  
   root :to => 'welcome#index'
 
+  # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
+  get "/ping", to: "application#ping"
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
+  get "/users/new.mobile", to: redirect( "/signup" )
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
   resources :controlled_term_values, only: [:create, :destroy]
   resources :annotations
+
+  resources :user_blocks, only: [:create, :destroy]
+  resources :user_mutes, only: [:create, :destroy]
+  resources :guide_users
+  resources :taxon_curators, except: [:show, :index]
 
   resources :guide_sections do
     collection do
@@ -76,8 +80,9 @@ Rails.application.routes.draw do
   get '/oauth/bounce' => 'provider_oauth#bounce', :as => "oauth_bounce"
   get '/oauth/bounce_back' => 'provider_oauth#bounce_back', :as => "oauth_bounce_back"
   use_doorkeeper do
-    controllers :applications => 'oauth_applications',
-                :authorizations => 'oauth_authorizations'
+    controllers applications: "oauth_applications",
+                authorizations: "oauth_authorizations",
+                tokens: "oauth_tokens"
   end
 
   wiki_root '/pages'
@@ -111,13 +116,12 @@ Rails.application.routes.draw do
     get "logout", :to => "users/sessions#destroy"
     post "session", :to => "users/sessions#create"
     get "signup", :to => "users/registrations#new"
-    get "users/new", :to => "users/registrations#new", :as => "new_user"
+    get "users/new", to: redirect( "signup" ), as: "new_user"
     get "/forgot_password", :to => "devise/passwords#new", :as => "forgot_password"
     put "users/update_session", :to => "users#update_session"
   end
   
   get '/activate/:activation_code' => 'users#activate', :as => :activate, :activation_code => nil
-  get '/toggle_mobile' => 'welcome#toggle_mobile', :as => :toggle_mobile
   get '/help' => 'help#index', :as => :help
   get '/auth/failure' => 'provider_authorizations#failure', :as => :omniauth_failure
   get '/auth/:provider' => 'provider_authorizations#blank'
@@ -131,7 +135,8 @@ Rails.application.routes.draw do
   
   get '/flickr/invite' => 'photos#invite', :as => :flickr_accept_invite
   get '/facebook/invite' => 'photos#invite', :as => :fb_accept_invite
-  get '/picasa/invite' => 'photos#invite', :as => :picasa_accept_invite
+  
+  get '/google_photos/invite' => 'photos#invite', :as => :picasa_accept_invite
 
   match "/photos/inviter" => "photos#inviter", as: :photo_inviter, via: [:get, :post]
   post '/facebook' => 'facebook#index'
@@ -178,19 +183,20 @@ Rails.application.routes.draw do
       put :rotate
     end
   end
-  delete 'picasa/unlink' => 'picasa#unlink'
+  delete 'google_photos/unlink' => 'picasa#unlink'
   post 'flickr/unlink_flickr_account' => 'flickr#unlink_flickr_account'
 
   resources :observation_photos, :only => [:show, :create, :update, :destroy]
+  resources :observation_sounds, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
+  resources :sounds, only: [:local_sound_fields, :create]
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
     get 'community_taxon_summary'
     collection do
       get :upload
-      post :photo
       get :stats
       get :taxa
       get :taxon_stats
@@ -202,8 +208,12 @@ Rails.application.routes.draw do
       get :identify
       get :moimport
       post :moimport
+      get :torquemap
+      get :compare
     end
     member do
+      get :taxon_summary
+      get :observation_links
       put :viewed_updates
       patch :update_fields
       post :review
@@ -288,6 +298,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :calendar
+      get :new2
     end
     resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
@@ -351,13 +362,14 @@ Rails.application.routes.draw do
       post 'update_photos', as: "update_photos_for"
       post 'set_photos', as: "set_photos_for"
       post 'refresh_wikipedia_summary', as: "refresh_wikipedia_summary_for"
-      get 'schemes', as: "schemes_for", constraints: { format: [:html, :mobile] }
+      get 'schemes', as: "schemes_for", constraints: { format: [:html] }
       get 'tip'
       get 'names', to: "taxon_names#taxon"
       get 'links'
       get "map_layers"
       get "browse_photos"
       get "show_google"
+      get "taxobox"
     end
     collection do
       get 'synonyms'
@@ -441,7 +453,7 @@ Rails.application.routes.draw do
   get 'identifications/:login' => 'identifications#by_login', :as => :identifications_by_login, :constraints => { :login => simplified_login_regex }
   get 'emailer/invite' => 'emailer#invite', :as => :emailer_invite
   post 'emailer/invite/send' => 'emailer#invite_send', :as => :emailer_invite_send
-  resources :taxon_links, :except => [:show]
+  resources :taxon_links
   
   get 'places/:id/widget' => 'places#widget', :as => :place_widget
   get 'places/guide_widget/:id' => 'places#guide_widget', :as => :place_guide_widget
@@ -489,6 +501,16 @@ Rails.application.routes.draw do
       get :summary
       get :observation_weeks
       get :nps_bioblitz
+      get :cnc2016
+      get :cnc2017
+      get :cnc2017_taxa
+      get :cnc2017_stats
+      get :canada_150
+      get :parks_canada_2017
+      get ":year", as: "year", to: "stats#year", constraints: { year: /\d+/ }
+      get ":year/you", as: "your_year", to: "stats#your_year", constraints: { year: /\d+/ }
+      get ":year/:login", as: "user_year", to: "stats#year", constraints: { year: /\d+/ }
+      post :generate_year
     end
   end
 
@@ -540,7 +562,7 @@ Rails.application.routes.draw do
     put "commit_record/:type/:record_id/to/:taxon_id" => "taxon_changes#commit_records", as: :commit_record
     put "commit_records/:type/(to/:taxon_id)" => "taxon_changes#commit_records", as: :commit_records
   end
-  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html, :mobile]}
+  resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
@@ -550,6 +572,16 @@ Rails.application.routes.draw do
   resources :taxon_drops, :controller => :taxon_changes
   resources :taxon_stages, :controller => :taxon_changes
   resources :conservation_statuses, :only => [:autocomplete]
+
+  resource :computer_vision_demo, only: :index, controller: :computer_vision_demo do
+  end
+  resources :computer_vision_demo_uploads do
+    member do
+      get :score
+    end
+  end
+
+  get "/google_photos(/:action(/:id))", controller: :picasa
 
   get 'translate' => 'translations#index', :as => :translate_list
   post 'translate/translate' => 'translations#translate', :as => :translate

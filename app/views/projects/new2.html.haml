@@ -1,0 +1,24 @@
+- content_for :title do
+  = @project ? raw( t( :editing_project, project: @project.title ) ) : t(:new_project)
+- content_for :extrahead do
+  - # TODO: meta tags
+- content_for :extracss do
+  = stylesheet_link_tag "projects/new2"
+- content_for :extrajs do
+  - if logged_in?
+    :ruby
+      js_current_user = { id: current_user.id,
+        login: current_user.login,
+        icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
+        roles: current_user.roles.map(&:name),
+        prefers_scientific_name_first: current_user.prefers_scientific_name_first
+      }
+  :javascript
+    var CURRENT_USER = #{ js_current_user ? js_current_user.to_json : "{ }" };
+    var CURRENT_PROJECT = #{ @project_json ? @project_json.to_json : "null" };
+    var HERO_IMAGE_PATH = "#{ image_path( "projects/hero.png" ) }";
+  = javascript_include_tag "projects-form-webpack"
+
+#app
+  #initial-loading.text-center
+    .loading_spinner

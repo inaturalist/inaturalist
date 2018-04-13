@@ -4,21 +4,21 @@ import * as types from "../constants/constants";
 
 const defaultState = {
   /* global SLIDESHOW_PROJECT */
-  /* global NPS_OVERALL_ID */
-  /* global NPS_UMBRELLA_PROJECTS */
-  /* global NPS_UMBRELLA_SUB_PROJECTS */
-  /* global NPS_ALL_SUB_PROJECTS */
-  /* global NPS_UMBRELLA_PROJECTS */
+  /* global OVERALL_ID */
+  /* global UMBRELLA_PROJECTS */
+  /* global UMBRELLA_SUB_PROJECTS */
+  /* global ALL_SUB_PROJECTS */
+  /* global UMBRELLA_PROJECTS */
   singleProject: SLIDESHOW_PROJECT,
-  overallID: ( typeof NPS_OVERALL_ID === "undefined" ) ? null :
-    NPS_OVERALL_ID,
-  umbrellaProjects: ( typeof NPS_UMBRELLA_PROJECTS === "undefined" ) ? null :
-    NPS_UMBRELLA_PROJECTS,
-  umbrellaSubProjects: ( typeof NPS_UMBRELLA_SUB_PROJECTS === "undefined" ) ? null :
-    NPS_UMBRELLA_SUB_PROJECTS,
-  allSubProjects: ( typeof NPS_ALL_SUB_PROJECTS === "undefined" ) ? null :
-    NPS_ALL_SUB_PROJECTS,
-  project: SLIDESHOW_PROJECT || NPS_UMBRELLA_PROJECTS[0],
+  overallID: ( typeof OVERALL_ID === "undefined" ) ? null :
+    OVERALL_ID,
+  umbrellaProjects: ( typeof UMBRELLA_PROJECTS === "undefined" ) ? null :
+    UMBRELLA_PROJECTS,
+  umbrellaSubProjects: ( typeof UMBRELLA_SUB_PROJECTS === "undefined" ) ? null :
+    UMBRELLA_SUB_PROJECTS,
+  allSubProjects: ( typeof ALL_SUB_PROJECTS === "undefined" ) ? null :
+    ALL_SUB_PROJECTS,
+  project: SLIDESHOW_PROJECT || UMBRELLA_PROJECTS[0],
   slideshowUmbrellaIndex: 0,
   slideshowSubProjectIndex: null,
   umbrellaProject: null,

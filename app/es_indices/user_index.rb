@@ -2,9 +2,12 @@ class User < ActiveRecord::Base
 
   include ActsAsElasticModel
 
+  scope :load_for_index, -> { includes( :roles ) }
+
+
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :icon, index: "not_analyzed"
+      indexes :icon, type: "keyword", index: false
       indexes :login, analyzer: "ascii_snowball_analyzer"
       indexes :login_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
@@ -28,7 +31,9 @@ class User < ActiveRecord::Base
         observations_count: observations_count,
         identifications_count: identifications_count,
         journal_posts_count: journal_posts_count,
-        activity_count: observations_count + identifications_count + journal_posts_count
+        activity_count: observations_count + identifications_count + journal_posts_count,
+        roles: roles.map(&:name),
+        site_id: site_id
       })
     end
     json

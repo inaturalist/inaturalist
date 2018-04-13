@@ -1,48 +1,60 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xml:lang="<%= I18n.locale %>"
+      lang="<%= I18n.locale %>"
       xmlns:fb="http://www.facebook.com/2008/fbml"
       xmlns:og="http://ogp.me/ns#">
   <head>
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
+    <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag %>
     <meta name="viewport" content="width=980">
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
     <%= csrf_meta_tag %>
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
     <% if logged_in? -%>
-      <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode(user_id: current_user.id) %>">
+      <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>">
     <% end -%>
-    <% if CONFIG.twitter && CONFIG.twitter.username -%>
-      <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
+    <% if !@site.twitter_username.blank? -%>
+      <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
-    <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <meta property="og:site_name" content="<%= @site.name %>"/>
+    <% if CONFIG.facebook && CONFIG.facebook.app_id -%>
+      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
     <% end %>
-    <% if !@headless && @site && @site.preferred_ios_app_id -%>
-      <meta name="apple-itunes-app" content="app-id=<%= @site.preferred_ios_app_id %>">
+    <% if !@headless && @site && !@site.ios_app_id.blank? -%>
+      <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
-    <% if @site %>
+    <% if @site && @shareable_image_url.blank? %>
       <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
     <% end %>
   </head>
   <body>
     <div id="bodywrapper"<%=raw " class='no-footer-gap'" if @no_footer_gap %>>
       <% unless @headless -%>
-        <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
-          <%= render :partial => 'shared/header' %>
-        <% end %>
+        <%= render :partial => 'shared/header' %>
       <% end -%>
       
-      <% if flash[:notice] || flash[:alert] %>
+      <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
         <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
       <% end %>
       
-      <% if flash[:error] %>
+      <% if flash[:error] && !@flash_js %>
         <p id="flash" class="error"><%= raw flash[:error] %></p>
+      <% end %>
+
+      <% if current_user && session[:potential_place] && flash.empty? %>
+        <div class="bootstrap">
+          <div id="full-width-notice" class="container-fluid bg-warning">
+            <%=t :would_you_prefer_to_view_common_names_used_in_place_html, place: session[:potential_place][:name] %>
+            <%= link_to t(:yes), user_path( current_user, user: { place_id: session[:potential_place][:id] }, from_potential_place: true ), method: "PUT", class: "btn btn-success btn-xs" %>
+            <%= link_to t(:no), user_path( current_user,  user: { prefers_no_place: true }, from_potential_place: true ), method: "PUT", class: "btn btn-default btn-xs" %>
+          </div>
+        </div>
       <% end %>
 
       <div id="wrapper" class="bootstrap">
@@ -53,7 +65,7 @@
             </div>
           </div>
         <% end -%>
-        <% if flash[:warning] -%>
+        <% if flash[:warning] && !@flash_js -%>
           <div class="container">
             <div class="alert alert-warning">
               <% if flash[:warning_title] -%>
@@ -71,6 +83,8 @@
 
     <%= render :partial => 'shared/footer' unless @footless %>
 
+    <div id="inat-universal-autocomplete"></div>
+
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js' %>
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js' %>
     <script type="text/javascript">
@@ -80,13 +94,19 @@
       I18n.locale = "<%= I18n.locale %>";
       I18n.fallbacks = true;
       <% site_place = @site && @site.place
-         user_place = current_user && current_user.place -%>
+         user_place = current_user && current_user.place
+         user_search_place = current_user && current_user.search_place -%>
       <% if site_place -%>
         var SITE_PLACE = <%= json_escape site_place.to_json(only: [:id, :name]).html_safe %>
       <% end -%>
       var PREFERRED_PLACE;
       <% if place = (user_place || site_place) -%>
-      PREFERRED_PLACE = <%= json_escape (user_place || site_place).
+      PREFERRED_PLACE = <%= json_escape place.
+        to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
+      <% end -%>
+      var PREFERRED_SEARCH_PLACE;
+      <% if search_place = user_search_place || site_place -%>
+      PREFERRED_SEARCH_PLACE = <%= json_escape search_place.
         to_json(only: [:id, :name, :display_name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
       var CURRENT_USER;
@@ -94,10 +114,12 @@
         CURRENT_USER = {
           id: <%= current_user.id %>,
           login: '<%= current_user.login %>',
-          prefers_skip_coarer_id_modal: <%= current_user.prefers_skip_coarer_id_modal %>,
-          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>
+          icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
+          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
+          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>
         };
       <% end -%>
+      var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
     </script>
     <%= javascript_include_tag 'application_bundle' %>

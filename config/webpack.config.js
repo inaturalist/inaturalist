@@ -11,7 +11,15 @@ var config = {
     'observations-uploader': './observations/uploader/webpack-entry',
     'project-slideshow': './project_slideshow/webpack-entry',
     'taxa-show': './taxa/show/webpack-entry',
-    'taxa-photos': './taxa/photos/webpack-entry'
+    'taxa-photos': './taxa/photos/webpack-entry',
+    'observations-show': './observations/show/webpack-entry',
+    'observations-torque': './observations/torque/webpack-entry',
+    'computer-vision': './computer_vision/webpack-entry',
+    'search-slideshow': './search_slideshow/webpack-entry',
+    'stats-year': './stats/year/webpack-entry',
+    'projects-form': './projects/form/webpack-entry',
+    'projects-show': './projects/show/webpack-entry',
+    'observations-compare': './observations/compare/webpack-entry'
   },
   output: {
     // each bundle will be stored in app/assets/javascripts/[name].output.js
@@ -23,8 +31,7 @@ var config = {
   //   jquery: 'var jQuery'
   // },
   resolve: {
-    extensions: ['', '.js', '.jsx'],
-    root: path.resolve(webpack_assets_path)
+    extensions: ['.js', '.jsx']
   },
   module: {
     loaders: [

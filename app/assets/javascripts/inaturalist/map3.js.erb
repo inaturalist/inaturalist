@@ -135,8 +135,9 @@ google.maps.Map.prototype.addObservation = function(observation, options) {
   if (options.showAccuracy && 
       (observation.coordinates_obscured || (observation.positional_accuracy && observation.positional_accuracy > 0))) {
     var iconicTaxonName = observation.iconic_taxon_name
-    if (!iconicTaxonName && observation.iconic_taxon) iconicTaxonName = observation.iconic_taxon.name
-    var color = iconicTaxonName ? iNaturalist.Map.ICONIC_TAXON_COLORS[iconicTaxonName] : '#333333'
+    if (!iconicTaxonName && observation.iconic_taxon) iconicTaxonName = observation.iconic_taxon.name;
+    if (!iconicTaxonName && observation.taxon) iconicTaxonName = observation.taxon.iconic_taxon_name;
+    var color = iconicTaxonName ? iNaturalist.Map.ICONIC_TAXON_COLORS[iconicTaxonName] : '#333333';
     var shape;
     var shapeOptions = {
       strokeColor: color,
@@ -429,7 +430,9 @@ iNaturalist.Map.createMap = function(options) {
     zoom: 1,
     mapTypeId: google.maps.MapTypeId.TERRAIN,
     streetViewControl: false,
-    backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR
+    backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
+    clickableIcons: false,
+    gestureHandling: "greedy"
   }, options);
   
   var map;
@@ -1087,8 +1090,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'photo_license', 'created_d1', 'created_d2', 'not_in_project',
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
     'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
-    'taxon_ids', 'changed_fields', 'changed_since', 'change_project_id',
-    'not_in_place', 'unobserved_by_user_id', 'radius' ];
+    'taxon_ids', 'not_in_place', 'unobserved_by_user_id', 'radius', 'geo',
+    'oauth_application_id' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -1225,7 +1228,8 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
           // needs to be asynchronous so the selector resolves
           var googleMainMapDiv = $(map.div).find("div[style*='cursor'][style*='z-index: 0']");
           var googleMapInteractionsDiv = $(googleMainMapDiv).children()[2];
-          if(googleMapInteractionsDiv !== o.e.target) { return false; }
+          if( !$.contains( googleMapInteractionsDiv, o.e.target ) &&
+            !$( googleMapInteractionsDiv ).is( o.e.target ) ) { return false; }
           // if a native infoWindow is still open, close it
           if( iNaturalist.Map.infoWindow ) { iNaturalist.Map.infoWindow.close( ); }
           // hide the legend if it is open so the infoWindow has room

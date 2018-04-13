@@ -1,9 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 def setup_taxon_merge
-  @input_taxon1 = Taxon.make!( rank: Taxon::SPECIES )
-  @input_taxon2 = Taxon.make!( rank: Taxon::SPECIES )
-  @input_taxon3 = Taxon.make!( rank: Taxon::SPECIES )
+  input_genus = Taxon.make!( rank: Taxon::GENUS )
+  @input_taxon1 = Taxon.make!( rank: Taxon::SPECIES, parent: input_genus )
+  @input_taxon2 = Taxon.make!( rank: Taxon::SPECIES, parent: input_genus )
+  @input_taxon3 = Taxon.make!( rank: Taxon::SPECIES, parent: input_genus )
   @output_taxon = Taxon.make!( rank: Taxon::SPECIES )
   @merge = TaxonMerge.make
   @merge.add_input_taxon( @input_taxon1 )
@@ -27,6 +28,7 @@ end
 describe TaxonMerge, "commit" do
   before(:each) do
     setup_taxon_merge
+    @merge.committer = @merge.user
   end
 
   it "should not duplicate conservation status" do
@@ -220,6 +222,7 @@ describe TaxonMerge, "commit_records" do
     ident.reload
     expect( ident.observation.identifications.by( ident.observation.user ).count ).to eq 2
   end
+
   it "should not add multiple identifications for the observer when run twice and the obs is still associated with the old taxon" do
     o = make_research_grade_observation( taxon: @input_taxon1 )
     expect( o.identifications.by( o.user ).count ).to eq 1
@@ -232,5 +235,42 @@ describe TaxonMerge, "commit_records" do
     @merge.commit_records
     o.reload
     expect( o.identifications.by( o.user ).count ).to eq 2
+  end
+
+  it "should set a current identification's previous_observation_taxon if it is the input" do
+    o = Observation.make!( taxon: @input_taxon1 )
+    g = Taxon.make!( rank: Taxon::GENUS )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    ident = Identification.make!( observation: o, taxon: s )
+    expect( ident.previous_observation_taxon ).to eq @input_taxon1
+    @merge.commit_records
+    ident.reload
+    expect( ident.previous_observation_taxon ).to eq @output_taxon
+  end
+  
+  it "should replace an inactive previous_observation_taxon with it's current active synonym" do
+    other_swap = TaxonSwap.make
+    other_swap.add_input_taxon( Taxon.make!( :species, is_active: false, name: "OtherInputSpecies" ) )
+    other_swap.add_output_taxon( Taxon.make!( :species, is_active: false, name: "OtherOutputSpecies" ) )
+    without_delay do
+      other_swap.committer = make_admin
+      other_swap.commit
+      other_swap.commit_records
+    end
+    g = Taxon.make!( rank: Taxon::GENUS )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    o = Observation.make!( taxon: s )
+    ident = Identification.make!( observation: o, taxon: @input_taxon1 )
+    ident.update_attributes(
+      skip_set_previous_observation_taxon: true,
+      previous_observation_taxon: other_swap.input_taxon
+    )
+    expect( ident ).to be_disagreement
+    expect( ident.previous_observation_taxon ).to eq other_swap.input_taxon
+    expect( ident.previous_observation_taxon ).not_to be_is_active
+    @merge.commit_records
+    o.reload
+    new_ident = o.identifications.current.where( user_id: ident.user_id ).first
+    expect( new_ident.previous_observation_taxon ).to eq other_swap.output_taxon
   end
 end

@@ -24,7 +24,10 @@ function fetchIdentifiers( ) {
     const s = getState();
     const apiParams = Object.assign( { }, paramsForSearch( s.searchParams.params ), {
       reviewed: "any",
-      quality_grade: "any"
+      quality_grade: "any",
+      page: 1,
+      order: "",
+      order_by: ""
     } );
     dispatch( updateIdentifiers( { loading: true } ) );
     return inatjs.observations.identifiers( apiParams )

@@ -66,8 +66,8 @@ class SitesController < ApplicationController
 
     respond_to do |format|
       if @record.update_attributes(params[:site])
-        if CONFIG.site && CONFIG.site.id == @record.id
-          CONFIG.site = @record
+        if Site.default && @record.id == Site.default.id
+          Site.default( refresh: true )
         end
         format.html { redirect_to @record, notice: 'Site was successfully updated.' }
         format.json { head :no_content }

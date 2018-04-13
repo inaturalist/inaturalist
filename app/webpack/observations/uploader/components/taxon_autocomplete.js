@@ -5,6 +5,7 @@ import ReactDOMServer from "react-dom/server";
 import inaturalistjs from "inaturalistjs";
 import { Glyphicon } from "react-bootstrap";
 var searchInProgress;
+/* global iNatModels */
 
 class TaxonAutocomplete extends React.Component {
 
@@ -27,6 +28,29 @@ class TaxonAutocomplete extends React.Component {
   }
 
   componentDidMount( ) {
+    const renderMenuWithCategories = function ( ul, items ) {
+      ul.removeClass( "ui-corner-all" ).removeClass( "ui-menu" );
+      ul.addClass( "ac-menu" );
+      if ( items.length === 1 && items[0].label === "loadingSuggestions" ) {
+        ul.append( `<li class="category">${I18n.t( "loading_suggestions" )}</li>` );
+        return;
+      }
+      const isVisionResults = items[0] && items[0].isVisionResult;
+      let speciesCategoryShown = false;
+      $.each( items, ( index, item ) => {
+        if ( isVisionResults ) {
+          if ( item.isCommonAncestor ) {
+            const label = I18n.t( "were_pretty_sure_this_is_in_the_rank", { rank: item.rank } );
+            ul.append( `<li class='category'>${label}:</li>` );
+          } else if ( !speciesCategoryShown ) {
+            const label = I18n.t( "here_are_our_top_species_suggestions" );
+            ul.append( `<li class='category'>${label}:</li>` );
+            speciesCategoryShown = true;
+          }
+        }
+        this._renderItemData( ul, item );
+      } );
+    };
     const opts = Object.assign( { }, this.props, {
       extraClass: "taxon",
       idEl: this.idElement( ),
@@ -34,7 +58,9 @@ class TaxonAutocomplete extends React.Component {
       select: this.select,
       template: this.template,
       // ensure the AC menu scrolls with the input
-      appendTo: this.idElement( ).parent( )
+      appendTo: this.idElement( ).parent( ),
+      minLength: 0,
+      renderMenu: renderMenuWithCategories
     } );
     this.inputElement( ).genericAutocomplete( opts );
     this.fetchTaxon( );
@@ -68,6 +94,9 @@ class TaxonAutocomplete extends React.Component {
     if ( this.props.initialTaxonID &&
          this.props.initialTaxonID !== prevProps.initialTaxonID ) {
       this.fetchTaxon( );
+    }
+    if ( !_.isEqual( this.props.visionParams, prevProps.visionParams ) ) {
+      this.cachedVisionResponse = null;
     }
   }
 
@@ -126,6 +155,10 @@ class TaxonAutocomplete extends React.Component {
   }
 
   updateWithSelection( item ) {
+    if ( this.props.onSelectReturn ) {
+      this.props.onSelectReturn( { item } );
+      return;
+    }
     // show the best name in the search field
     if ( item.id ) {
       this.inputElement( ).val( item.title || item.name );
@@ -150,7 +183,51 @@ class TaxonAutocomplete extends React.Component {
     if ( this.props.afterSelect ) { this.props.afterSelect( { item } ); }
   }
 
-  source( request, response ) {
+  returnVisionResults( response, callback ) {
+    const visionTaxa = _.map( response.results.slice( 0, 8 ), r => {
+      const taxon = new iNatModels.Taxon( r.taxon );
+      taxon.isVisionResult = true;
+      taxon.visionScore = r.vision_score;
+      taxon.frequencyScore = r.frequency_score;
+      return taxon;
+    } );
+    if ( response.common_ancestor ) {
+      const taxon = new iNatModels.Taxon( response.common_ancestor.taxon );
+      taxon.isVisionResult = true;
+      taxon.isCommonAncestor = true;
+      visionTaxa.unshift( taxon );
+    }
+    callback( visionTaxa );
+  }
+
+  visionAutocompleteSource( callback ) {
+    if ( this.cachedVisionResponse ) {
+      this.returnVisionResults( this.cachedVisionResponse, callback );
+    } else if ( this.props.visionParams ) {
+      if ( this.props.visionParams.image ) {
+        inaturalistjs.computervision.score_image( this.props.visionParams ).then( r => {
+          this.cachedVisionResponse = r;
+          this.returnVisionResults( r, callback );
+        } ).catch( e => {
+          console.log( ["Error fetching vision response for photo", e] );
+        } );
+        callback( ["loadingSuggestions"] );
+      } else if ( this.props.visionParams.observationID ) {
+        const params = { id: this.props.visionParams.observationID };
+        this.fetchingVision = true;
+        inaturalistjs.computervision.score_observation( params ).then( r => {
+          this.cachedVisionResponse = r;
+          this.fetchingVision = false;
+          this.returnVisionResults( r, callback );
+        } ).catch( e => {
+          console.log( ["Error fetching vision response for observation", e] );
+        } );
+        callback( ["loadingSuggestions"] );
+      }
+    }
+  }
+
+  taxonAutocompleteSource( request, callback ) {
     inaturalistjs.taxa.autocomplete( {
       q: request.term,
       per_page: this.props.perPage || 10,
@@ -174,8 +251,16 @@ class TaxonAutocomplete extends React.Component {
           title: this.inputValue( )
         } );
       }
-      response( _.map( results, t => new iNatModels.Taxon( t ) ) );
+      callback( _.map( results, t => new iNatModels.Taxon( t ) ) );
     } );
+  }
+
+  source( request, callback ) {
+    if ( !request.term ) {
+      this.visionAutocompleteSource( callback );
+    } else if ( request.term ) {
+      this.taxonAutocompleteSource( request, callback );
+    }
   }
 
   select( e, ui ) {
@@ -242,8 +327,17 @@ class TaxonAutocomplete extends React.Component {
   }
 
   resultTitle( result ) {
-    const name = result.preferred_common_name || result.english_common_name;
-    return name || result.name;
+    let name;
+    if (
+      this.props.config &&
+      this.props.config.currentUser &&
+      this.props.config.currentUser.prefers_scientific_name_first
+    ) {
+      name = result.name;
+    } else {
+      name = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name ) || result.name;
+    }
+    return name;
   }
 
   differentMatchedTerm( result, fieldValue ) {
@@ -276,14 +370,28 @@ class TaxonAutocomplete extends React.Component {
       return this.searchExternalTemplate( );
     }
     let photo = this.itemPhoto( r ) || this.itemIcon( r );
+    let className = "ac";
+    let extraSubtitle;
+    if ( r.isVisionResult ) {
+      className += " vision";
+      const subtitles = [];
+      if ( r.visionScore ) {
+        subtitles.push( I18n.t( "visually_similar" ) );
+      }
+      if ( r.frequencyScore ) {
+        subtitles.push( I18n.t( "seen_nearby" ) );
+      }
+      extraSubtitle = ( <span className="subtitle vision">{ subtitles.join( " / " ) }</span> );
+    }
     return ReactDOMServer.renderToString(
-      <div className="ac" data-taxon-id={ r.id }>
+      <div className={ className } data-taxon-id={ r.id }>
         <div className="ac-thumb has-photo">
           { photo }
         </div>
         <div className="ac-label">
           <span className="title">{ r.title }</span>
           <span className="subtitle">{ r.subtitle }</span>
+          { extraSubtitle }
         </div>
         <a target="_blank" href={ `/taxa/${r.id}` }>
           <div className="ac-view">{ I18n.t( "view" ) }</div>
@@ -326,28 +434,42 @@ class TaxonAutocomplete extends React.Component {
     );
   }
 
-  template( r, fieldValue ) {
+  template( r, fieldValue, options = {} ) {
     const result = _.clone( r );
+    const scinameFirst = (
+      this.props.config &&
+      this.props.config.currentUser &&
+      this.props.config.currentUser.prefers_scientific_name_first
+    );
     if ( !result.title ) {
       result.title = this.resultTitle( result );
       r.title = result.title;
+      if ( scinameFirst && result.rank_level <= 20
+      ) {
+        result.title = ( <i>{ result.title }</i> );
+      }
     }
-    if ( result.title && result.name !== result.title ) {
-      if ( result.rank_level <= 10 ) {
-        result.subtitle = ( <i>{result.name}</i> );
-      } else {
-        result.subtitle = result.name;
+    if ( result.title ) {
+      if ( scinameFirst ) {
+        result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name );
+      }
+      if ( !result.subtitle && result.name !== result.title ) {
+        if ( result.rank_level <= 20 ) {
+          result.subtitle = ( <i>{result.name}</i> );
+        } else {
+          result.subtitle = result.name;
+        }
       }
     }
     const addition = this.differentMatchedTerm( r, fieldValue );
     if ( addition ) {
-      result.title += ` ${addition}`;
+      result.title = <span>{ result.title } { addition }</span>;
     }
     if ( result.rank && ( result.rank_level > 10 || !result.subtitle ) ) {
       const rank = I18n.t( `ranks.${result.rank}`, { defaultValue: result.rank } );
-      result.subtitle = `${_.capitalize( rank )} ${_.capitalize( result.subtitle )}`;
+      result.subtitle = <span>{ _.capitalize( rank ) } { result.subtitle }</span>;
     }
-    return this.resultTemplate( result, fieldValue );
+    return this.resultTemplate( result, fieldValue, options );
   }
 
   render( ) {
@@ -387,10 +509,13 @@ TaxonAutocomplete.propTypes = {
   allowPlaceholders: PropTypes.bool,
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
+  onSelectReturn: PropTypes.func,
   value: PropTypes.string,
+  visionParams: PropTypes.object,
   initialSelection: PropTypes.object,
   initialTaxonID: PropTypes.number,
-  perPage: PropTypes.number
+  perPage: PropTypes.number,
+  config: PropTypes.object
 };
 
 export default TaxonAutocomplete;

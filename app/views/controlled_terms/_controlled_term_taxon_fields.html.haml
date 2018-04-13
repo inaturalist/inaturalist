@@ -1,0 +1,11 @@
+.nested-fields.form-inline.stacked.lined
+  .form-group
+    = text_field_tag :taxon_name, f.object.try(:taxon).try(:name), class: "form-control taxon-autocomplete"
+    = f.hidden_field :taxon_id
+  .checkbox
+    %label
+      = f.check_box :exception
+      Exception
+  .form-group
+    = link_to_remove_association "Remove", f, class: "btn btn-danger btn-sm"
+  = f.hidden_field :controlled_term_id

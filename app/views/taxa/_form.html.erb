@@ -18,7 +18,7 @@
     </div>
     <div class="column span-8">
       <%= f.select :rank, Taxon::RANK_LEVELS.keys.reject {|r| r === "root" },
-        { allow_blank: true }, { class: "text", required: true } %>
+        { }, { class: "text", required: true, disabled: !@protected_attributes_editable } %>
     </div>
     
     <div class="last column span-8">
@@ -35,17 +35,19 @@
     
     <div class="stacked last column span-23">
       <div class="column span-12">
-        <%= f.text_field :parent_id, :value => taxon.parent_id, :class => 'text' %><br/>
+        <%= f.text_field :parent_id, value: taxon.parent_id, class: "text", disabled: !@protected_attributes_editable %><br/>
 
         <%= label_tag t(:parent_name) %><br/>
-        <%= text_field_tag :parent_name, taxon.parent ? taxon.parent.name : '', :id => 'parent_name', :class => 'text' %>
-        <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
+        <%= text_field_tag :parent_name, ( parent = taxon.parent rescue nil ) ? parent.name : "", id: "parent_name", class: "text", disabled: !@protected_attributes_editable %>
+        <% if @protected_attributes_editable %>
+          <%= link_to_function t(:browse_all_species), "$('#taxonchooser').jqmShow();" %>
+        <% end %>
         <div class="description">
           <%= t(:this_is_more_convenient_way_find_parent) %>
         </div>
 
       </div>
-      <% unless taxon.new_record? -%>
+      <% if !taxon.new_record? && @protected_attributes_editable -%>
         <div class="column span-5">
           <label><%= t(:graft) %></label><br/>
           <%= link_to "#{t(:graft)} <i>#{taxon.name}</i>".html_safe, graft_taxon_path(taxon), :class => "button", :method => :patch, :data => {:loading_click => true} %>
@@ -62,6 +64,38 @@
         <%= t(:locked_taxa_will_not_allow_new) %>
       </p>
     </div>
+
+    <% if taxon.rank_level && taxon.rank_level > Taxon::SPECIES_LEVEL %>
+      <div class="column span-23">
+        <% if is_admin? %>
+          <div class="admin">
+            <%= f.check_box :complete, label_after: true, description: t("views.taxa.edit.complete_desc_html") %>
+            <%= f.select :complete_rank, Taxon::RANK_LEVELS.reject {|rank, level| rank === "root" || level >= taxon.rank_level.to_i }.keys,
+              {
+                include_blank: true
+              },
+              {
+                class: "text",
+                description: t("views.taxa.edit.complete_rank_desc_html"),
+                wrapper: { style: taxon.complete ? "display: block;" : "display:none;" }
+              } %>
+          </div>
+        <% elsif taxon.complete? %>
+          <fieldset>
+            <legend><%=t :complete %></legend>
+            <p class="meta ui">
+              <%= t("views.taxa.edit.complete_desc_html") %>
+            </p>
+            <dl>
+              <dt><%=t :complete %></dt>
+              <dd><%= taxon.complete %></dd>
+              <dt><%=t :complete_rank %></dt>
+              <dd><%= taxon.complete_rank %></dd>
+            </dl>
+          </fieldset>
+        <% end %>
+      </div>
+    <% end %>
   </fieldset>
   
   <fieldset class="column span-24">
@@ -176,8 +210,8 @@
 
   <fieldset class="last column span-11">
     <legend><%= t :concept_status %></legend>
-    <%= f.radio_button :is_active, true, :label_after => true, :label => t(:active).titleize %>
-    <%= f.radio_button :is_active, false, :label_after => true, :label => t(:inactive).titleize %>
+    <%= f.radio_button :is_active, true, label_after: true, label: t(:active).titleize, disabled: !@protected_attributes_editable %>
+    <%= f.radio_button :is_active, false, label_after: true, label: t(:inactive).titleize, disabled: !@protected_attributes_editable %>
     <div class="description">
       <%= t :inactive_taxon_concepts_are %>
     </div>
@@ -199,20 +233,23 @@
     <% end -%>
   </fieldset>
   
-  <% if @taxon.species_or_lower? -%>
-    <fieldset class="column span-24 twocolform">
-      <legend><%= t :conservation_status %></legend>
-      <div id="conservation_statuses">
-        <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
-          <%= render "conservation_status_fields", :f => cs %>
-        <% end -%>
-        <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
+  <fieldset class="column span-24 twocolform">
+    <legend><%= t :conservation_status %></legend>
+    <% if @taxon.rank_level.to_i > Taxon::SPECIES_LEVEL %>
+      <div class="notice box">
+        <%=t "views.taxa.edit.high_status_conservation_status_notice_html" %>
       </div>
-    </fieldset>
-  <% end -%>
+    <% end %>
+    <div id="conservation_statuses">
+      <%= f.fields_for :conservation_statuses, :builder => DefaultFormBuilder do |cs| %>
+        <%= render "conservation_status_fields", :f => cs %>
+      <% end -%>
+      <%= link_to_add_association t(:add_conservation_status), f, :conservation_statuses %>
+    </div>
+  </fieldset>
   
   <div class="clear buttonrow">
-    <%= f.submit t(:save_changes), :class => 'default button' %>
+    <%= f.submit t(:save_changes), :class => 'default button', data: { loading_click: t(:saving) } %>
     <%= link_to t(:cancel), taxon, :class => 'button' %>
     <%-
       pieces = []

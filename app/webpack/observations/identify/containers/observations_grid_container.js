@@ -9,7 +9,8 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    observations: state.observations.results || []
+    observations: state.observations.results || [],
+    currentUser: state.config.currentUser
   };
 }
 

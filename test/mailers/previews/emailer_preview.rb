@@ -1,9 +1,10 @@
 class EmailerPreview < ActionMailer::Preview
+  # Preview at /rails/mailers/emailer/updates_notification
   def updates_notification
     set_locale
     set_user
-    @user ||= Update.last.subscriber
-    updates = @user.updates.order("id DESC").limit(50).includes(:subscriber, :resource_owner)
+    @user ||= UpdateAction.last.update_subscribers.last.subscriber
+    updates = @user.recent_notifications( per_page: 50 )
     Emailer.updates_notification(@user, updates)
   end
 

@@ -1,5 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 require 'rails/all'
+require 'rack/mobile-detect'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -50,7 +51,7 @@ module Inaturalist
     config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    config.assets.version = '1.9'
+    config.assets.version = '2.0'
 
     # Compile localized CSS:
     config.assets.precompile += ['*.css', '*.js']
@@ -73,6 +74,7 @@ module Inaturalist
     end
 
     config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
+    config.middleware.use Rack::MobileDetect
   end
 
 end
@@ -85,9 +87,6 @@ Rack::Utils.multipart_part_limit = 2048
 require "site_config"
 CONFIG = SiteConfig.load
 
-# flickr api keys - these need to be set before Flickraw gets included
-FLICKR_API_KEY = CONFIG.flickr.key
-FLICKR_SHARED_SECRET = CONFIG.flickr.shared_secret
 # A DEFAULT_SRID of -1 causes lots of warnings when running specs
 # Keep it as -1 for production because existing data is based on it
 DEFAULT_SRID = Rails.env.test? ? 0 : -1 # nofxx-georuby defaults to 4326.  Ugh.
@@ -99,21 +98,13 @@ USER_INTEGRITY_PRIORITY = 2     # maintains data integrity for stuff user's care
 INTEGRITY_PRIORITY = 3          # maintains data integrity for everything else, needs to happen, eventually
 OPTIONAL_PRIORITY = 4           # inconsequential stuff like updating wikipedia summaries
 
-### API KEYS ###
-UBIO_KEY = CONFIG.ubio.key
-
 # Yahoo Developer Network
-YDN_APP_ID = CONFIG.yahoo_dev_network.app_id
-GeoPlanet.appid = YDN_APP_ID
+GeoPlanet.appid = CONFIG.yahoo_dev_network.app_id
 
-FlickRaw.api_key = FLICKR_API_KEY
-FlickRaw.shared_secret = FLICKR_SHARED_SECRET
+# flickr api keys - these need to be set before Flickraw gets included
+FlickRaw.api_key = CONFIG.flickr.key
+FlickRaw.shared_secret = CONFIG.flickr.shared_secret
 FlickRaw.check_certificate = false
-# FlickRaw.ca_path = "/etc/ssl/certs" if File.exists?("/etc/ssl/certs")
-
-# General settings
-SITE_NAME = CONFIG.site_name
-SITE_NAME_SHORT = CONFIG.site_name_short || SITE_NAME
 
 # force encoding
 Encoding.default_internal = Encoding::UTF_8
@@ -133,3 +124,4 @@ require 'to_csv'
 require 'elasticsearch/model'
 require 'elasticsearch/rails/instrumentation'
 require 'inat_api_service'
+require 'google_recaptcha'

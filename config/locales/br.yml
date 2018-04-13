@@ -1,6 +1,7 @@
 # Messages for Breton (brezhoneg)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Dishual
 # Author: Fulup
 # Author: Gwenn-Ael
 # Author: Y-M D
@@ -152,7 +153,7 @@ br:
   add_asset: Ouzhpennañ ur splet
   add_batch: Ouzpennañ ul lod
   add_colors: Ouzhpennañ livioù
-  add_comma_separated_tags: Ouzhpennañ balizennoù dispartiet gant skejoù
+  add_comma_separated_tags: Ouzhpennañ tikedennoù dispartiet gant skejoù
   add_comment: Ouzhpennañ un evezhiadenn
   add_common_names_for: Ouzhpennañ anvioù boutin da daksonoù zo anezho
   add_countries: Ouzhpennañ broioù
@@ -195,8 +196,8 @@ br:
   add_several_observations_at_once: Ouzhepnnañ meur a evezhiadenn war un dro.
   add_shape: Ouzhpennañ ur stumm
   add_some_now: Ouzhpennañ un dra bremañ
-  add_tags: Ouzhpennañ balizennoù
-  add_tags_to_selected_taxa: Ouzhpennañ balizennoù d'an taksonoù diuzet
+  add_tags: Ouzhpennañ tikedennoù
+  add_tags_to_selected_taxa: Ouzhpennañ tikedennoù d'an taksonoù diuzet
   add_taxa: Ouzhpennañ un takson
   add_taxa_to_places: Ouzhpennañ taksonoù d'al lec'hioù
   add_taxon_batch_to: Ouzhpennañ ul lod taksnoù da %{list}
@@ -397,8 +398,6 @@ br:
     eus roll kontrollañ %{place} ?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: Sur eo ? pellgarget
     e vo ar bajenn-mañ ha gallout a rafec'h koll lod eus ho kemmoù.
-  are_you_sure_unlink_picasa: Ha sur eo hoc'h eus c'hoant da zilemel al liamm war-zu
-    ho kont Picassa ?
   are_you_sure_want_activate_account: Ha sur eo hoc'h eus c'hoant da weredekaat ar
     gont-mañ ?
   are_you_sure_want_delete_account: Ha sur eo hoc'h eus c'hoant da zilemel ho kont
@@ -601,7 +600,7 @@ br:
   choose_place: Dibab ul lec'h
   choose_rule: Dibab ur reolenn
   choose_subjects: Dibab danvezioù
-  choose_tags: Dibab balizennoù
+  choose_tags: Dibab tikedennoù
   choose_taxon: Dibab un takson
   choose_what_kind_of_change_youre_creating: Dibabit ar seurt kemm emaoc'h o krouiñ.
   choose_your_username: Dibab hoc'h anv implijer
@@ -788,7 +787,6 @@ br:
   deleting: O telemel...
   deleting_verb: Dilemel
   desc: War zigresk
-  dna_: TDN
   descending: War zigresk
   describe_purpose: Deskrivañ pal ar raktres-mañ.
   describe_your_interest_in_nature: Deskrivit hoc'h interest evit an natur!
@@ -812,6 +810,7 @@ br:
   display_listings_added_by_curators: Diskwel ar rolloù ouzhpennet gant atebeien an
     aozadur
   display_listings_from_place: Diskwel rolloù al lec'h
+  dna_: TDN
   do_you_know_where_this_species_lives: Ha gouzout a rit pelec'h emañ ar spesadoù
     o vevañ ?
   does_the_location_seem_accurate: Seblantout a ra al lec'hiadur bezañ reizh ?
@@ -1106,6 +1105,7 @@ br:
   id_: ID
   id_please!: ID, mar plij !
   id_please: ID, mar plij
+  id_withdrawn: ID lammet
   identify: Anaout
   ids: IDoù
   import: Enporzhiañ
@@ -1117,7 +1117,7 @@ br:
     pe eus ur restr en hoc'h ardivink.
   import_photos: Enporzhiañ luc'hskeudennoù
   import_sounds: Enporzhiañ ar sonioù
-  import_tags_from_csv: Enporzhiañ ar balizennoù eus ur restr CSV
+  import_tags_from_csv: Enporzhiañ an tikedennoù diwar ur restr CSV
   importing: Oc'h enporzhiañ...
   in: e-barzh
   in_: e-barzh
@@ -1178,10 +1178,11 @@ br:
   large: bras
   last_confirmed_observation: Arselladenn diwezhañ kardarnaet
   last_seen: Gwelet ar wech diwezhañ
+  last_year: bloaz tremenet
   lat: Led
   latitude: Ledred
   latitude_in_decimals: Ledred e derezioù degel, da skouer 38,123
-  latitude_slash_y_coord_slash_northing: Ledred / daveennoù y / daveennoù
+  latitude_slash_y_coord_slash_northing: Ledred / daveennoù y / urzhienn
   layers: Gwiskadoù
   layout: Pajennaozañ
   leaderboards: Renkadurioù
@@ -1233,13 +1234,11 @@ br:
   link: Liamm
   link_or_unlink_your_facebook_account: Liammañ pe diliammañ ho kont Facebook
   link_or_unlink_your_flickr_account: Liammañ pe diliammañ ho kot Flickr
-  link_or_unlink_your_picasa_account: Liammañ pe diliammañ ho kont Picasa
   link_your_facebook_account: Liammañ ho kont Facebook
   link_your_flickr_account: Liammañ ho kont Flickr
   link_your_flickr_account_with_inat: Liammañ ho kont Flickr ouzh %{site_name}
   link_your_flickr_account_with_inat_so: Liammañ ho kont Flickr ouzh %{site_name}
     evit gallout ouzhpennañ luc'hskeudennoù en hoc'h evezhiadennoù.
-  link_your_picasa_account: Liammañ ho kont Picasa
   linked_facebook: Ho kont %{site_name} zo liammet ouzh ho kont Facebook dija.
   list: Roll
   list_deleted: Roll dilamet
@@ -1265,18 +1264,17 @@ br:
   loading_wikipedia_description: O kargañ deskrivadur Wikipedia...
   locales:
     ca: Katalaneg
-    en: Saozneg
     en-US: Saozneg (Stadoù Unanet)
-    es: Spagnoleg
+    en: Saozneg
     es-ES: Spagnoleg (Spagn)
     es-MX: Spagnoleg (Mec'hiko)
-    fr: Galleg
+    es: Spagnoleg
     eu: Euskareg
+    fr: Galleg
     gl: Galizeg
-    mk: Makedoneg
-    pt: Portugaleg
-    pt-BR: Portugaleg (Brazil)
     ja: Japaneg
+    mk: Makedoneg
+    pt-BR: Portugaleg (Brazil)
     zh-CN: Sinaeg (eeunaet)
     zh-TW: Sinaeg (hengounel)
   location: Lec'hiadur
@@ -1480,6 +1478,9 @@ br:
   people_user_follows: Tud heuliet gant %{user}
   people_added:
     post: en deus embannet ur %{post_link}
+  per_day: An deiz
+  per_month: Bep miz
+  per_week: Dre sizhun
   person: den
   personal_message: Kemennadenn bersonel
   per_page: Dre bajenn
@@ -1658,5 +1659,11 @@ br:
   privacy_policy: Reolennoù prevezded
   private: prevez
   project: Raktres
+  recaptcha_verification_failed: Gwiriadenn reCaptcha c'hwitet
   recently_finished: Echu nevez zo
+  share: Rannañ
+  supporting: Harpañ
+  this_year: Bloaz-mañ
+  week_of_date: Sizhun eus %{date}
+  who_helped_user_the_most: Piv en deus sikouret ar muiañ %{user}
 ...

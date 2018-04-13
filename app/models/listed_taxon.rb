@@ -224,6 +224,7 @@ class ListedTaxon < ActiveRecord::Base
   validate :list_rules_pass
   validate :taxon_matches_observation
   validate :check_list_editability
+  validate :establishment_means_allowed
 
   attr_accessor :skip_sync_with_parent,
                 :skip_species_for_infraspecies,
@@ -346,6 +347,14 @@ class ListedTaxon < ActiveRecord::Base
       end
     end
   end
+
+  def establishment_means_allowed
+    return true unless endemic?
+    if place && ( ( place.admin_level && place.admin_level <= Place::CONTINENT_LEVEL ) || ( place.place_type == Place::CONTINENT ) )
+      errors.add( :establishment_means, "can't be endemic for continents" )
+    end
+    true
+  end
   
   def set_old_list
     @old_list = self.list
@@ -409,7 +418,7 @@ class ListedTaxon < ActiveRecord::Base
   
   def sync_parent_check_list
     return true unless list.is_a?(CheckList)
-    return true if @skip_sync_with_parent
+    return true if skip_sync_with_parent
     list.delay(priority: INTEGRITY_PRIORITY,
       unique_hash: { "CheckList::sync_with_parent": list_id }).
       sync_with_parent(:time_since_last_sync => updated_at)
@@ -417,7 +426,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def sync_species_if_infraspecies
-    return true if @skip_species_for_infraspecies
+    return true if skip_species_for_infraspecies
     return true unless list.is_a?(CheckList) && taxon
     return true unless taxon.infraspecies?
     ListedTaxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
@@ -428,13 +437,15 @@ class ListedTaxon < ActiveRecord::Base
 
   def index_taxon
     unless skip_index_taxon
-      Taxon.load_for_index.where(id: taxon.id).elastic_index!
+      Taxon.delay(priority: INTEGRITY_PRIORITY, run_at: 30.minutes.from_now,
+        unique_hash: { "Taxon::elastic_index": taxon_id }).
+        elastic_index!(ids: [taxon_id])
     end
   end
 
   def update_cache_columns
-    return true if @skip_update_cache_columns
-    return true if list.is_a?(CheckList) && (!@force_update_cache_columns || place_id.blank?)
+    return true if skip_update_cache_columns
+    return true if list.is_a?(CheckList) && (!force_update_cache_columns || place_id.blank?)
     return true if list.is_a?(CheckList) && !primary_listing
     set_cache_columns
     true
@@ -444,15 +455,15 @@ class ListedTaxon < ActiveRecord::Base
     return unless taxon_id
     if cc = cache_columns
       self.first_observation_id, self.last_observation_id,
-      self.observations_count, self.observations_month_counts = cc
+      self.observations_count = cc
     end
   end
   
   def update_cache_columns_for_check_list
-    return true if @skip_update_cache_columns
+    return true if skip_update_cache_columns
     return true unless list.is_a?(CheckList)
     if primary_listing
-      unless @force_update_cache_columns
+      unless force_update_cache_columns
         ListedTaxon.delay(priority: INTEGRITY_PRIORITY, run_at: 1.hour.from_now,
           queue: "slow", unique_hash: { "ListedTaxon::update_cache_columns_for": id }).
           update_cache_columns_for(id)
@@ -555,7 +566,7 @@ class ListedTaxon < ActiveRecord::Base
     end
   end
   
-  # Retrievest the first and last observations and the month counts. Note that
+  # Retrieve the first and last observations and the month counts. Note that
   # at present first_observation has a different meaning depending on the
   # list: for check lists it means the first observation added to iNat (i.e.
   # sorted by ID), but for everything else it means first observation by date
@@ -566,50 +577,7 @@ class ListedTaxon < ActiveRecord::Base
     return unless list
     # get the specific options for this list type
     options = list.cache_columns_options(self)
-    earliest_id = nil
-    latest_id = nil
-    month_counts = nil
-    total = 0
-    # run the query for the first entry, total count, and aggregations
-    begin
-      rs = Observation.elastic_search(options.merge(
-        size: 0,
-        aggregate: {
-          month: { terms: { field: "observed_on_details.month", size: 15 },
-            aggs: { quality: { terms: { field: "quality_grade", size: 5 } } }
-          }
-        }
-      )).results
-      rs.total_entries
-    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
-           Elasticsearch::Transport::Transport::Errors::BadRequest => e
-      rs = nil
-      Logstasher.write_exception(e, reference: "ListedTaxon.cache_columns failed on #{ self }")
-      Rails.logger.error "[Error] ListedTaxon::cache_columns failed: #{ e }"
-      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-    end
-    # no need to do anything else if there are no results
-    if rs && rs.total_entries > 0
-      total = rs.total_entries
-      # loop through the months
-      month_counts = rs.response.response.aggregations.month.buckets.map do |m|
-        # and then the quality grade counts in that month
-        month_qualities = Hash[ m.quality.buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
-        if month_qualities["needs_id"]
-          if month_qualities["casual"]
-            month_qualities["casual"] += month_qualities["needs_id"]
-          else
-            month_qualities["casual"] = month_qualities["needs_id"]
-          end
-          month_qualities.delete("needs_id")
-        end
-        month_qualities.map do |k,v|
-          "#{ m['key'] }#{ k[0] }-#{ v }"
-        end
-      end.flatten.sort.join(",")
-      earliest_id, latest_id = ListedTaxon.earliest_and_latest_ids(options)
-    end
-    [ earliest_id, latest_id, total, month_counts]
+    ListedTaxon.earliest_and_latest_ids(options)
   end
 
   def self.earliest_and_latest_ids(options)
@@ -621,17 +589,47 @@ class ListedTaxon < ActiveRecord::Base
     if options[:range_filters]
       search_params[:filters] += options[:range_filters]
     end
-    if r = Observation.elastic_search(search_params.merge(
-      sort: [ { (options[:earliest_sort_field] || "observed_on") => { order: "asc", unmapped_type: "long" } },
-              { id: :asc } ] )).results.first
-      earliest_id = r.id
+    begin
+      # fetch the total and the earliest and latest observations
+      # in a single ES query with the top_hits aggregation
+      rs = Observation.elastic_search(search_params.merge(
+        size: 0,
+        aggregate: {
+          earliest: {
+            top_hits: {
+              sort: [
+                { (options[:earliest_sort_field] || "observed_on") => { order: "asc", unmapped_type: "long" } },
+                { id: :asc }
+              ],
+              _source: { includes: [ "id" ] },
+              size: 1
+            }
+          },
+          latest: {
+            top_hits: {
+              sort: [
+                { observed_on: { order: "desc", unmapped_type: "long" } },
+                { id: :desc }
+              ],
+              _source: { includes: [ "id" ] },
+              size: 1
+            }
+          }
+        }
+      ))
+    rescue Elasticsearch::Transport::Transport::Errors::NotFound,
+           Elasticsearch::Transport::Transport::Errors::BadRequest => e
+      rs = nil
+      Logstasher.write_exception(e, reference: "ListedTaxon.earliest_and_latest_ids failed")
+      Rails.logger.error "[Error] ListedTaxon::earliest_and_latest_ids failed: #{ e }"
+      Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
     end
-    if r = Observation.elastic_search(search_params.merge(
-      sort: [ { observed_on: { order: "desc", unmapped_type: "long" } },
-              { id: :desc } ] )).results.first
-      latest_id = r.id
+    if rs && rs.total_entries > 0 && rs.response.aggregations
+      earliest_id = rs.response.aggregations.earliest.hits.hits[0]._source.id
+      latest_id = rs.response.aggregations.latest.hits.hits[0]._source.id
+      total = rs.total_entries
     end
-    [ earliest_id, latest_id ]
+    [ earliest_id, latest_id, total || 0]
   end
 
   def self.update_cache_columns_for(lt)
@@ -641,8 +639,7 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon.where(id: lt.id).update_all(
       first_observation_id: lt.first_observation_id,
       last_observation_id: lt.last_observation_id,
-      observations_count: lt.observations_count,
-      observations_month_counts: lt.observations_month_counts)
+      observations_count: lt.observations_count)
   end
   
   def self.species_for_infraspecies(lt)
@@ -675,45 +672,6 @@ class ListedTaxon < ActiveRecord::Base
     where( "listed_taxa.place_id IN ( ? )", place_with_descendant_ids ).limit( options[:limit] )
   end
 
-  def observation_month_stats
-    return {} if observations_month_counts.blank?
-    r_stats = confirmed_observation_month_stats
-    c_stats = casual_observation_month_stats
-    stats = {}
-    (r_stats.keys + c_stats.keys).uniq.each do |key|
-      stats[key] = r_stats[key].to_i + c_stats[key].to_i
-    end
-    stats
-  end
-  
-  def confirmed_observation_month_stats
-    return {} if observations_month_counts.blank?
-    Hash[observations_month_counts.split(',').map {|kv| 
-      k, v = kv.split('-')
-      quality_grade = k[/[rc]/,0]
-      next unless (quality_grade == 'r' || quality_grade.blank?)
-      [k.to_i.to_s, v.to_i]
-    }.compact]
-  end
-  
-  def casual_observation_month_stats
-    return {} if observations_month_counts.blank?
-    Hash[observations_month_counts.split(',').map {|kv| 
-      k, v = kv.split('-')
-      quality_grade = k[/[rc]/,0]
-      next unless quality_grade == 'c'
-      [k.to_i.to_s, v.to_i]
-    }.compact]
-  end
-  
-  def confirmed_observations_count
-    confirmed_observation_month_stats.map{|k,v| v}.sum
-  end
-
-  def unconfirmed_observations_count
-    casual_observation_month_stats.map{|k,v| v}.sum
-  end
-  
   def nilify_blanks
     %w(establishment_means occurrence_status_level).each do |col|
       send("#{col}=", nil) if send(col).blank?
@@ -797,11 +755,11 @@ class ListedTaxon < ActiveRecord::Base
     ListedTaxon::ORDERS.each do |order|
       ctrl.expire_fragment(FakeView.url_for(:controller => 'observations', :action => 'add_from_list', :id => list_id, :order => order))
     end
-    unless place_id.blank?
-      ctrl.expire_page("/places/cached_guide/#{place_id}.html")
-      ctrl.expire_page("/places/cached_guide/#{place.slug}.html") if place
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place_id))
-      ctrl.expire_page(FakeView.url_for(:controller => 'places', :action => 'cached_guide', :id => place.slug)) if place
+    if !place_id.blank? && manually_added
+      I18N_SUPPORTED_LOCALES.each do |locale|
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place_id, locale: locale ) )
+        ctrl.send( :expire_action, FakeView.url_for( controller: "places", action: "cached_guide", id: place.slug, locale: locale ) ) if place
+      end
     end
     if list
       ctrl.expire_page FakeView.list_path(list_id, :format => 'csv')
@@ -833,7 +791,7 @@ class ListedTaxon < ActiveRecord::Base
   def observed_in_place?
     p = place || list.place
     return false unless p
-    scope = Observation.in_place(p).of(taxon)
+    scope = Observation.joins(:observations_places).where("observations_places.place_id = ?", p).of(taxon)
     if list.is_a?(LifeList)
       scope = scope.by(list.user)
     end
@@ -841,6 +799,7 @@ class ListedTaxon < ActiveRecord::Base
   end
   
   def self.merge_duplicates(options = {})
+    debug = options.delete(:debug)
     where = options.map{|k,v| "#{k} = #{v}"}.join(' AND ') unless options.blank?
     sql = <<-SQL
       SELECT list_id, taxon_id, array_agg(id) AS ids, count(*) 
@@ -848,16 +807,23 @@ class ListedTaxon < ActiveRecord::Base
       #{"WHERE #{where}" if where}
       GROUP BY list_id, taxon_id HAVING count(*) > 1
     SQL
+    puts "Finding listed taxa WHERE #{where}" if debug
     connection.execute(sql.gsub(/\s+/, ' ').strip).each do |row|
       to_merge_ids = row['ids'].to_s.gsub(/[\{\}]/, '').split(',').sort
       lt = ListedTaxon.find_by_id(to_merge_ids.first)
+      puts "lt: #{lt}, merging #{to_merge_ids}" if debug
       rejects = ListedTaxon.where(id: to_merge_ids[1..-1])
 
       # remove the rejects from the list before merging to avoid alread-on-list validation errors
       ListedTaxon.where(id: rejects).update_all(list_id: nil)
       
       rejects.each do |reject|
-        lt.merge(reject)
+        begin
+          lt.merge( reject )
+        rescue ActiveRecord::RecordInvalid
+          puts "Validation error on #{reject}, skipping merge and deleting" if debug
+          reject.destroy
+        end
       end
     end
   end
@@ -928,7 +894,6 @@ class ListedTaxon < ActiveRecord::Base
       related_listed_taxon.first_observation_id = first_observation_id
       related_listed_taxon.last_observation_id = last_observation_id 
       related_listed_taxon.observations_count = observations_count
-      related_listed_taxon.observations_month_counts = observations_month_counts
       related_listed_taxon.occurrence_status_level = occurrence_status_level
       related_listed_taxon.skip_index_taxon = true
       related_listed_taxon.skip_update_cache_columns = true
@@ -981,6 +946,16 @@ class ListedTaxon < ActiveRecord::Base
       occurrence_status_level: occurrence_status_level,
       establishment_means: establishment_means
     }
+  end
+
+  def establishment_means_label
+    I18n.t( "establishment.#{establishment_means}", default: establishment_means ).capitalize
+  end
+
+  def establishment_means_description
+    default = ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[establishment_means]
+    key = default.gsub( "-", "_" ).gsub( " ", "_" ).downcase
+    I18n.t( "establishment_means_descriptions.#{ key }", default: default )
   end
 
 end

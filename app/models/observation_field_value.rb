@@ -1,14 +1,18 @@
 class ObservationFieldValue < ActiveRecord::Base
+
+  blockable_by lambda {|ofv| ofv.observation.try(:user_id) }
+  
   belongs_to :observation, :inverse_of => :observation_field_values
   belongs_to :observation_field
   belongs_to :user
   belongs_to :updater, :class_name => 'User'
-  has_one :annotation, dependent: :destroy
+  has_one :annotation
   
   before_validation :strip_value
-  before_save :set_user
+  before_validation :set_user
   after_create :create_annotation
   after_destroy :destroy_annotation
+  after_update :fix_annotation_after_update
   validates_uniqueness_of :observation_field_id, :scope => :observation_id
   # I'd like to keep this, but since mobile clients could be submitting
   # observations that weren't created on a mobile device now, the check really
@@ -16,10 +20,12 @@ class ObservationFieldValue < ActiveRecord::Base
   # validates_presence_of :value, :if => lambda {|ofv| ofv.observation && !ofv.observation.mobile? }
   validates_presence_of :observation_field_id
   validates_presence_of :observation
+  validates_presence_of :user
   validates_length_of :value, :maximum => 2048
   # validate :validate_observation_field_datatype, :if => lambda {|ofv| ofv.observation }
   # Again, we can't support this until all mobile clients support all field types
   validate :validate_observation_field_allowed_values
+  validate :observer_prefers_fields_by_user
 
   after_save :update_observation_field_counts, :index_observation
 
@@ -69,7 +75,7 @@ class ObservationFieldValue < ActiveRecord::Base
   scope :quality_grade, lambda {|quality_grade|
     scope = joins(:observation)
     quality_grade = '' unless Observation::QUALITY_GRADES.include?(quality_grade)
-    where("observations.quality_grade = ?", quality_grade)
+    scope.where("observations.quality_grade = ?", quality_grade)
   }
 
   def to_s
@@ -93,7 +99,7 @@ class ObservationFieldValue < ActiveRecord::Base
     if updater_user_id
       self.user_id ||= updater_user_id
       self.updater_id = updater_user_id
-    else
+    elsif observation
       self.user_id ||= observation.user_id
       self.updater_id ||= user_id
     end
@@ -154,6 +160,21 @@ class ObservationFieldValue < ActiveRecord::Base
     end
   end
 
+  def observer_prefers_fields_by_user
+    return true unless user && observation
+    return true if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_ANYONE
+    if observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
+      if observation.user_id != user_id
+        errors.add(:observation_id, :user_does_not_accept_fields_from_others )
+      end
+    elsif observation.user.preferred_observation_fields_by === User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
+      unless user.is_curator?
+        errors.add(:observation_id, :user_only_accepts_fields_from_site_curators )
+      end
+    end
+    true
+  end
+
   def update_observation_field_counts
     observation_field.update_counts
   end
@@ -170,7 +191,7 @@ class ObservationFieldValue < ActiveRecord::Base
       controlled_attribute: attr_val[:controlled_attribute],
       controlled_value: attr_val[:controlled_value],
       user_id: user_id,
-      created_at: created_at)
+      created_at: created_at) rescue nil
   end
 
   def annotation_attribute_and_value
@@ -196,15 +217,31 @@ class ObservationFieldValue < ActiveRecord::Base
   end
 
   def destroy_annotation
-    Annotation.where(observation_field_value_id: id).destroy_all
+    return unless annotation && annotation.vote_score <= 0
+    annotation.destroy
+  end
+
+  def fix_annotation_after_update
+    if annotation && annotation.vote_score <= 0
+      annotation.destroy
+      create_annotation
+    end
   end
 
   def as_indexed_json(options={})
-    {
+    json = {
+      id: id,
       uuid: uuid,
+      field_id: observation_field.id,
+      datatype: observation_field.datatype,
       name: observation_field.name,
-      value: self.value
+      name_ci: observation_field.name,
+      value: self.value,
+      value_ci: self.value,
+      user_id: user_id
     }
+    json[:taxon_id] = value if observation_field.datatype == ObservationField::TAXON
+    json
   end
 
   def self.update_for_taxon_change( taxon_change, options, &block )

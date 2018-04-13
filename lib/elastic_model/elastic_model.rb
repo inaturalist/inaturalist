@@ -123,6 +123,8 @@ module ElasticModel
           [ k, v ]
         end
       }]
+    elsif options[:aggs]
+      elastic_hash[:aggs] = options[:aggs]
     end
     elastic_hash
   end
@@ -199,6 +201,7 @@ module ElasticModel
     return false unless lat.kind_of?(Numeric) && lon.kind_of?(Numeric)
     return false if lat < -90.0 || lat > 90.0
     return false if lon < -180.0 || lon > 180.0
+    return false if lat.try(:nan?) || lon.try(:nan?)
     true
   end
 

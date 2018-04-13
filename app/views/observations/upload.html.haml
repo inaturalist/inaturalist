@@ -1,3 +1,5 @@
+- content_for :title do
+  =t :add_observations
 - content_for :extrahead do
   :javascript
     var RECENT_OBSERVATION_FIELDS = #{ current_user.recent_observation_fields.to_json(only:
@@ -23,4 +25,4 @@
   = javascript_include_tag "jquery/plugins/inat/project_autocomplete"
   = javascript_include_tag "jquery/plugins/inat/observation_field_autocomplete"
   = javascript_include_tag "observations-uploader-webpack"
-  = javascript_include_tag "//getbootstrap.com/dist/js/bootstrap.min.js"
+  = javascript_include_tag "//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"

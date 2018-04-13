@@ -1,5 +1,14 @@
 var genericAutocomplete = { };
 
+// allow <li class="category"> to be included in the results
+// but do not consider them selectable items
+$.widget( "ui.autocomplete", $.ui.autocomplete, {
+  _create: function( ) {
+    this._super( );
+    this.widget( ).menu( "option", "items", "> :not(.category)" );
+  }
+});
+
 genericAutocomplete.createWrappingDiv = function( field, options ) {
   if( !field.parent().hasClass( "ac-chooser" ) ) {
     var wrappingDiv = $( "<div/>" ).addClass( "ac-chooser" );
@@ -30,7 +39,7 @@ genericAutocomplete.focus = function( e, ui ) {
 genericAutocomplete.renderItem = function( ul, item ) {
   var li = $( "<li/>" ).addClass( "ac-result" ).
     data( "item.autocomplete", item ).
-    append( genericAutocomplete.template( item ) ).appendTo( ul );
+    append( genericAutocomplete.template( item, null, options ) ).appendTo( ul );
   return li;
 };
 
@@ -43,10 +52,13 @@ genericAutocomplete.renderMenu = function( ul, items ) {
   });
 };
 
+genericAutocomplete.stripTags = function( txt ) {
+  return txt.replace( /<\w+>(.+)<\/\w+>/g, "$1" );
+}
+
 $.fn.genericAutocomplete = function( options ) {
   options = options || { };
   var field = this;
-  if( !options.idEl ) { return; }
   if( !field || field.length < 1 ) { return; }
   var createWrappingDiv = options.createWrappingDiv ||
     genericAutocomplete.createWrappingDiv;
@@ -69,13 +81,15 @@ $.fn.genericAutocomplete = function( options ) {
       field.val( ui.item.title );
     }
     // set the hidden id field
-    options.idEl.val( ui.item.id );
+    if ( options.idEl ) {
+      options.idEl.val( ui.item.id );
+    }
     if( options.afterSelect ) { options.afterSelect( ui ); }
     if( e ) { e.preventDefault( ); }
     return false;
   };
 
-  field.template = options.template || field.template || function( item ) {
+  field.template = options.template || field.template || function( item, val, options ) {
     var wrapperDiv = $( "<div/>" ).addClass( "ac" ).attr( "id", item.id );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
     labelDiv.append( $( "<span/>" ).addClass( "title" ).
@@ -86,7 +100,7 @@ $.fn.genericAutocomplete = function( options ) {
 
   field.renderItem = function( ul, item ) {
     var li = $( "<li/>" ).addClass( "ac-result" ).data( "item.autocomplete", item ).
-      append( field.template( item, field.val( ))).
+      append( field.template( item, field.val( ), options ) ).
       appendTo( ul );
     if( options.extraClass ) {
       li.addClass( options.extraClass );
@@ -112,6 +126,7 @@ $.fn.genericAutocomplete = function( options ) {
     focus: options.focus || genericAutocomplete.focus,
     appendTo: options.appendTo,
     position: options.position,
+    classes: options.classes,
     open: function () { $( $(this).data().uiAutocomplete.menu.element ).addClass( "open" ) }
   }).data( "uiAutocomplete" );
   field.on( "autocompleteclose", function( e, ui ) {
@@ -161,36 +176,42 @@ $.fn.genericAutocomplete = function( options ) {
     }
     acResponse( content );
   };
-  field.keydown( function( e ) {
-    var key = e.keyCode || e.which;
-    // return key
-    if( key === 13 ) {
-      // Absolutely prevent form submission if preventEnterSubmit has been
-      // explicitly set, or allow submit when AC menu is closed, or always if
-      // allowEnterSubmit. So the default behavior is for ENTER to select an
-      // option when the menu is open but not submit the form, and if the menu
-      // is closed and the input has focus, ENTER *will* submit the form
-      if( options.preventEnterSubmit ) { return false; }
-      // can be configured to select the top result when hitting enter
-      if( options.selectFirstMatch ) { field.selectFirst( ); }
-      if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
-        return true;
+  // I'm not sure why this keydown binding is here, but I'm not really seeing
+  // a reason for it to exist in React. It seems to just generate a ton of
+  // unecessary resetSelection events, which end up firing afterUnselect even
+  // when nothing has been unselected.
+  if ( !options.react ) {
+    field.keydown( function( e ) {
+      var key = e.keyCode || e.which;
+      // return key
+      if( key === 13 ) {
+        // Absolutely prevent form submission if preventEnterSubmit has been
+        // explicitly set, or allow submit when AC menu is closed, or always if
+        // allowEnterSubmit. So the default behavior is for ENTER to select an
+        // option when the menu is open but not submit the form, and if the menu
+        // is closed and the input has focus, ENTER *will* submit the form
+        if( options.preventEnterSubmit ) { return false; }
+        // can be configured to select the top result when hitting enter
+        if( options.selectFirstMatch ) { field.selectFirst( ); }
+        if( options.allowEnterSubmit || genericAutocomplete.menuClosed( ) ) {
+          return true;
+        }
+        return false;
       }
-      return false;
-    }
-    if( field.searchClear ) {
-      setTimeout( function( ) {
-        field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
-      }, 1 );
-    }
-    if( field.val( ) && options.resetOnChange === false ) { return; }
-    // keys like arrows, tab, shift, caps-lock, etc. won't change
-    // the value of the field so we don't need to reset the selection
-    nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
-      34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
-    if( _.includes( nonCharacters, key ) ) { return; }
-    field.trigger( "resetSelection" );
-  });
+      if( field.searchClear ) {
+        setTimeout( function( ) {
+          field.val( ) ? $(field.searchClear).show( ) : $(field.searchClear).hide( );
+        }, 1 );
+      }
+      if( field.val( ) && options.resetOnChange === false ) { return; }
+      // keys like arrows, tab, shift, caps-lock, etc. won't change
+      // the value of the field so we don't need to reset the selection
+      nonCharacters = [ 9, 16, 17, 18, 19, 20, 27, 33,
+        34, 35, 36, 37, 38, 39, 40, 91, 93, 144, 145 ];
+      if( _.includes( nonCharacters, key ) ) { return; }
+      field.trigger( "resetSelection" );
+    });
+  }
   field.keyup( function( e ) {
     if( !field.val( ) ) {
       field.trigger( "resetSelection" );
@@ -202,7 +223,7 @@ $.fn.genericAutocomplete = function( options ) {
     // set a small delay before showing the results menu
     setTimeout( function() {
       // don't redo the search if there are results being shown
-      if( genericAutocomplete.menuClosed( ) ) {
+      if( genericAutocomplete.menuClosed( ) && $(that).data( "uiAutocomplete" ) ) {
         $(that).autocomplete( "search", $(that).val( ));
       }
     }, 100);
@@ -214,17 +235,21 @@ $.fn.genericAutocomplete = function( options ) {
     }
   });
   field.bind( "assignSelection", function( e, s, opts ) {
+    if ( !options.idEl ) { return; }
     opts = opts || { };
     options.idEl.val( s.id );
+    field.data( 'autocomplete-item', s );
     field.val( s.title );
     field.selection = s;
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
-    if( options.idEl.val( ) !== null ) {
+    if ( !options.idEl ) { return; }
+    var id = parseInt( options.idEl.val( ) );
+    if( id && id > 0 ) {
       options.idEl.val( null );
-      if( options.afterUnselect ) { options.afterUnselect( ); }
     }
+    if( options.afterUnselect ) { options.afterUnselect( id ); }
     field.selection = null;
   });
   field.bind( "resetAll", function( e ) {
@@ -233,10 +258,11 @@ $.fn.genericAutocomplete = function( options ) {
     if( field.searchClear ) { $(field.searchClear).hide( ); }
     if( options.afterClear ) { options.afterClear( ); }
   });
+  if ( !options.idEl ) { return; }
   if( options.allowPlaceholders !== true ) {
     field.blur( function( ) {
       if( options.resetOnChange === false && field.selection ) {
-        field.val( field.selection.title );
+        field.val( field.selection.textTitle || genericAutocomplete.stripTags( field.selection.title ) );
       }
       // adding a small timeout to allow the autocomplete JS to make
       // a selection or not before deciding if we need to clear the field

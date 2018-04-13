@@ -2,6 +2,10 @@
 @import "show/wikipedia";
 @import "../shared/user_text";
 @import "../shared/split_taxon";
+@import "../shared/taxon_photo";
+@import "../shared/record_chooser_popover";
+@import "../shared/observations_grid_item";
+@import "../shared/user_with_icon";
 
 #app {
   min-height: 600px;
@@ -31,7 +35,7 @@
   color: black;
 }
 
-#TaxonHeader .has-com-name .sciname {
+#TaxonHeader .has-com-name .secondary-name {
   font-size: 20px;
 }
 
@@ -169,12 +173,19 @@
   border: 1px solid #ddd;
 }
 
+.permalink {
+  position: relative;
+  top: -6px;
+}
+
 .TaxonCrumbs {
   color: #aaa;
   padding: 0;
   margin: 0 7px 0 0;
-  line-height: 28px;
+  line-height: 25px;
   display: inline;
+  position: relative;
+  top: -4px;
 }
 .TaxonCrumbs.contracted .inner {
   display: none;
@@ -218,7 +229,7 @@
   display: none;
 }
 
-.TaxonCrumbs .has-com-name .sciname {
+.TaxonCrumbs .has-com-name .secondary-name {
   display: none;
 }
 
@@ -229,7 +240,7 @@
 .taxon-crumbs-children .taxon a {
   color: #333;
 }
-.taxon-crumbs-children .taxon.has-com-name .sciname {
+.taxon-crumbs-children .taxon.has-com-name .secondary-name {
   color: #aaa;
 }
 .taxon-crumbs-children .SplitTaxon:before {
@@ -426,75 +437,6 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview.gallery .viewmore .fa {
   margin-left: 5px;
 }
-.TaxonPhoto {
-  position: relative;
-  .photo-hover {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    color: white;
-    font-weight: 100;
-    opacity: 0;
-    transition: opacity 0.2s linear;
-    text-align: center;
-    a {
-      color: white;
-    }
-    a:hover {
-      color: white;
-      opacity: 0.8;
-    }
-  }
-  .modal-link {
-    width: 100%;
-    height: 100%;
-    font-size: 80%;
-    color: #ddd;
-    text-transform: uppercase;
-    i {
-      display: inline-block;
-      font-size: 300%;
-      padding: 10px;
-      background-color: rgba(0,0,0,0.5);
-    }
-  }
-  .modal-link:hover {
-    text-decoration: none;
-    color: white;
-  }
-  .photo-taxon {
-    display: flex;
-    justify-content: space-between;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    padding: 10px;
-    background-color: rgba(0,0,0,0.4);
-    font-weight: 100;
-    font-size: 90%;
-    line-height: 20px;
-    text-align: left;
-
-    .display-name {
-      font-size: 120%;
-      display: block;
-    }
-    i {
-      font-size: 150%;
-    }
-    .SplitTaxon a {
-      color: white;
-    }
-    .info-link {
-      padding: 0;
-      position: relative;
-      top: -2px;
-    }
-  }
-}
-.TaxonPhoto:hover .photo-hover {
-  opacity: 1;
-}
 .PhotoPreview.no-content {
   display: flex;
   flex-direction: row;
@@ -518,53 +460,113 @@ $photoPreviewThumbGutterTop: 3px;
 .CoverImage.loaded {
   opacity: 1;
 }
-
-.TaxonomyTab .taxonomy {
-  list-style: none;
-}
-.TaxonomyTab .taxonomy li {
-  margin-left: 15px;
-  margin-top: 5px;
-}
-.TaxonomyTab .taxonomy li:before,
-.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname {
-  content: '\21B3';
-  color: #999;
-}
-.TaxonomyTab .taxonomy li.root {
-  margin-left: 0;
-}
-.TaxonomyTab .taxonomy li.root:before {
-  content: '';
-}
-.TaxonomyTab .taxonomy .taxon {
-  margin-left: 3px;
-}
-.TaxonomyTab .taxonomy .taxon a {
-  color: #333;
-}
-.TaxonomyTab .taxonomy .taxon a:hover {
-  color: #23527c;
-}
-
-.TaxonomyTab .taxonomy li.current > .SplitTaxon {
-  font-weight: 800;
-}
-
-.TaxonomyTab .taxonomy .SplitTaxon.has-com-name .sciname,
-.TaxonomyTab .taxonomy i {
-  font-size: smaller;
-}
-
-.TaxonomyTab .sciname.species,
-.TaxonomyTab .sciname.subspecies,
-.TaxonomyTab .sciname.variety,
-.TaxonomyTab .sciname.hybrid {
-  font-style: italic;
-}
-
-.TaxonomyTab .outdated .sciname {
-  text-decoration: line-through;
+.TaxonomyTab {
+  .taxonomy {
+    list-style: none;
+    li {
+      margin-left: 15px;
+      margin-top: 5px;
+    }
+    .name-row {
+      display: inline-block;
+    }
+    li.tabular {
+      .row-content {
+        display: table-row;
+        padding: 3px 0px 5px 5px;
+        .name-row {
+          width: 100%;
+        }
+      }
+      .row-content > * {
+        display: table-cell;
+        padding: 3px 5px 5px 5px;
+      }
+      li.current .row-content > * {
+        border-bottom: 1px solid #efefef;
+      }
+    }
+    .label-complete {
+      display: inline-block;
+      background-color: $inat-green;
+      padding: 2px 0px 1px 10px;
+      position: relative;
+      font-size: 12px !important;
+      line-height: 17px !important;
+      z-index: 1;
+      margin: 0 30px 0 10px;
+      color: white
+    }
+    .label-complete:before {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      border: 10px solid transparent;
+      border-right-width: 5px;
+      border-right-color: $inat-green;
+      left: -15px;
+      z-index: -1;
+    }
+    .label-complete:after {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      border: 10px solid $inat-green;
+      border-right-width: 5px;
+      border-right-color: white;
+      right: -15px;
+      z-index: -1;
+    }
+    .taxonomy-complete-notice .text-muted {
+      margin: 0 5px;
+    }
+    .row-content:before,
+    .SplitTaxon.has-com-name .secondary-name {
+      content: '\21B3';
+      color: #999;
+    }
+    li.root {
+      margin-left: 0;
+    }
+    li.root:before {
+      content: '';
+    }
+    .taxon {
+      margin-left: 3px;
+      a {
+        color: #333;
+      }
+      a:hover {
+        color: #23527c;
+      }
+    }
+    li.current > .row-content > .SplitTaxon {
+      font-weight: 800;
+    }
+    .SplitTaxon.has-com-name .secondary-name,
+    i {
+      font-size: smaller;
+    }
+  }
+  .sciname.species,
+  .sciname.subspecies,
+  .sciname.variety,
+  .sciname.hybrid {
+    font-style: italic;
+  }
+  .outdated .sciname,
+  .outdated .comname {
+    text-decoration: line-through;
+  }
+  .complete .hidable {
+    display: none;
+    opacity: 0.5;
+  }
+  .complete.all-shown .hidable {
+    display: block;
+  }
 }
 
 .tab-section > [class*="col-"] {
@@ -602,17 +604,23 @@ $photoPreviewThumbGutterTop: 3px;
   margin-right: 10px;
 }
 
-.StatusTab .media-body {
-  width: auto;
-}
-
-.StatusTab .place-link {
-  color: black;
-}
-.StatusTab th {
-  font-weight: 600;
-  white-space: nowrap;
-  text-transform: capitalize;
+.StatusTab {
+  .media-body {
+    width: auto;
+  }
+  .place-link {
+    color: black;
+  }
+  th {
+    font-weight: 600;
+    white-space: nowrap;
+    text-transform: capitalize;
+  }
+  .UserText {
+    br {
+      display: none;
+    }
+  }
 }
 
 h2, h3, h4, h5 {
@@ -630,6 +638,7 @@ h2, h3, h4, h5 {
 $leastConcernColor: #73AC13;
 $vulnerableColor: #817134;
 $endangeredColor: #D12F19;
+$extinctColor: #000000;
 .StatusHeader.iucn-least-concern {
   background-color: transparentize( $leastConcernColor, 0.90 );
   border-color: transparentize( $leastConcernColor, 0.80 );
@@ -647,6 +656,12 @@ $endangeredColor: #D12F19;
   border-color: transparentize( $endangeredColor, 0.80 );
   color: $endangeredColor;
 }
+.StatusHeader.iucn-extinct,
+.StatusHeader.iucn-extinct-in-the-wild {
+  background-color: transparentize( $extinctColor, 0.90 );
+  border-color: transparentize( $extinctColor, 0.80 );
+  color: $extinctColor;
+}
 .glyphicon-flag.endangered {
   color: $endangeredColor;
 }
@@ -655,6 +670,9 @@ $endangeredColor: #D12F19;
 }
 .glyphicon-flag.least-concern {
   color: $leastConcernColor;
+}
+.glyphicon-flag.extinct {
+  color: $extinctColor;
 }
 $endemicColor: darken( $inat-green, 10% );
 .EstablishmentHeader.establishment-endemic {
@@ -924,7 +942,7 @@ $nav-btn-dim: 40px;
   font-weight: bold;
 }
 
-.TaxonThumbnail .taxon .sciname {
+.TaxonThumbnail .taxon .secondary-name {
   white-space: normal;
 }
 
@@ -935,6 +953,21 @@ $nav-btn-dim: 40px;
 }
 .TaxonThumbnail .badge.with-tip {
   cursor: pointer;
+}
+
+.TaxonThumbnail {
+  .SplitTaxon {
+    display: block;
+    min-height: 42px;
+    margin-bottom: 10px;
+  }
+  .discovery-caption {
+    display: block;
+    text-align: right;
+    i {
+      margin-right: 5px;
+    }
+  }
 }
 
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
@@ -950,95 +983,11 @@ $nav-btn-dim: 40px;
   width: 18.9%;
 }
 
-.btn.btn-inat {
-  border-radius: 100px;
-  background-color: #999;
-  border-color: #999;
-  color: white;
-  text-transform: capitalize;
-}
-.btn.btn-inat:hover,
-.btn.btn-inat:focus {
-  background-color: lighten(#999, 1%);
-  border-color: lighten(#999, 1%);
-  color: white;
-}
-.btn-primary.btn-inat {
-  background-color: $inat-green;
-  color: white;
-  border-color: $inat-green;
-}
-.btn-primary.btn-inat:hover,
-.btn-primary.btn-inat:focus {
-  background-color: lighten($inat-green, 1%);
-  border-color: lighten($inat-green, 1%);
-}
-
-.PlaceChooserPopoverTrigger {
-  margin-top: 20px;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.PlaceChooserPopoverTrigger:hover {
-  opacity: 0.8;
-}
-.PlaceChooserPopoverTrigger .fa-map-marker {
-  margin-right: 5px;
-}
-.PlaceChooserPopoverTrigger.chosen .fa-map-marker {
-  color: $inat-green;
-}
-.PlaceChooserPopover {
-  max-width: 200px;
-}
-.PlaceChooserPopover.popover .popover-content {
-  padding: 10px;
-}
-.PlaceChooserPopover a {
-  color: #333;
-}
-.PlaceChooserPopover.popover .form-group {
-  margin-bottom: 5px;
-}
-.PlaceChooserPopover.popover ul {
-  margin-bottom: 0;
-  cursor: pointer;
-}
-.PlaceChooserPopover.popover .media {
-  margin: 0;
-}
-.PlaceChooserPopover.popover .media-left {
-  padding: 0;
-}
-.PlaceChooserPopover li {
-  padding: 5px 0;
-  border-bottom: 1px solid #ddd;
-}
-.PlaceChooserPopover li:last-child {
-  border-bottom: 0 transparent;
-}
-.PlaceChooserPopover li i {
-  color: #999;
-  width: 20px;
-  text-align: center;
-  margin-top: 2px;
-}
-.PlaceChooserPopover li.current {
-  background-color: #eee;
-}
-.PlaceChooserPopover li .place-type {
-  text-transform: capitalize;
-}
-.PlaceChooserPopover .pinned {
-  border-bottom: 2px solid #ddd;
-  font-weight: bold;
-}
-
 .DraggablePhoto {
   display: inline-block;
   position: relative;
   border: 2px solid transparent;
-  width: 104px;
+  width: 130px;
   min-height: 50px;
 }
 .DraggablePhoto .control-link {
@@ -1099,6 +1048,22 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
 }
 .PhotoChooserModal .photos {
   margin: -2.5px;
+}
+.PhotoChooserModal .modal-body {
+  display: flex;
+}
+.PhotoChooserModal .photocols {
+  display: flex;
+  align-items: stretch;
+}
+.PhotoChooserModal .photocols > div {
+  overflow-x: hidden;
+  overflow-y: auto;
+  margin-left: 20px;
+  width: 50%;
+}
+.PhotoChooserModal .photocols > div:first-child {
+  margin-left: 0;
 }
 .comma-separated-list > *:before {
   content: ', ';
@@ -1170,5 +1135,51 @@ body > div > [role="dialog"] .PhotoChooserModal .modal-title {
   .RecentObservations .TaxonPhoto,
   .RecentObservations .viewall {
     width: 200px !important;
+  }
+}
+.iconified-list-group .list-group-item {
+  display: flex;
+}
+.iconified-list-group .list-group-item a:first-child {
+  background-repeat: no-repeat;
+  padding: 1px 0 1px 25px;
+  display: block;
+  flex: 1;
+  background-position-y: 2px;
+}
+.PlaceChooserPopoverTrigger {
+  margin-top: 20px;
+}
+.ObservationsGridItem {
+  .photo {
+    height: 200px;
+  }
+  .controls {
+    text-align: right;
+  }
+}
+.complete-taxon-popover {
+  max-width: 400px;
+}
+
+.UserWithIcon {
+  width: 50%;
+  float: left;
+  margin-top: 10px;
+
+  .icon {
+    margin-right: 10px;
+    .UserImage {
+      width: 48px;
+      height: 48px;
+      line-height: 39px;
+    }
+  }
+  .title {
+    font-weight: bold;
+    line-height: 48px;
+  }
+  .subtitle {
+    display: none
   }
 }

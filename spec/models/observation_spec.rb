@@ -13,7 +13,7 @@ describe Observation do
 
     before(:each) do
       @taxon = Taxon.make!
-      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'yesterday at 1pm')
+      @observation = Observation.make!(:taxon => @taxon, :observed_on_string => 'April 1st 1994 at 1am')
     end
   
     it "should be in the past" do
@@ -28,8 +28,10 @@ describe Observation do
   
     it "should properly set date and time" do
       Time.use_zone(@observation.time_zone) do
-        expect(@observation.observed_on).to eq 1.day.ago.to_date
-        expect(@observation.time_observed_at.hour).to eq 13
+        expect(@observation.observed_on.year).to eq 1994
+        expect(@observation.observed_on.month).to eq 4
+        expect(@observation.observed_on.day).to eq 1
+        expect(@observation.time_observed_at.hour).to eq 1
       end
     end
   
@@ -76,7 +78,12 @@ describe Observation do
 
         ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
         ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
-        ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"]
+        ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
+        ["2017-03-12 12:17:00 pm PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
+        ["2017/03/12 12:17 PM PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
+        ["2017/03/12 12:17 P.M. PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
+        # ["2017/03/12 12:17 AM PDT", month: 3, day: 12, hour: 0, offset: "-07:00"], # this doesn't work.. why...
+        ["2017/04/12 12:17 AM PDT", month: 4, day: 12, hour: 0, offset: "-07:00"]
       ].each do |date_string, opts|
         o = Observation.make!(:observed_on_string => date_string)
         expect(o.observed_on.day).to eq opts[:day]
@@ -222,7 +229,7 @@ describe Observation do
       @observation.time_zone = 'Eastern Time (US & Canada)'
       @observation.save
       expect(@observation).to be_valid
-      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 13
+      expect(@observation.time_observed_at.in_time_zone(@observation.time_zone).hour).to eq 1
     end
   
     it "should set the time zone to UTC if the user's time zone is blank" do
@@ -241,8 +248,11 @@ describe Observation do
     end
   
     it "should increment the counter cache in users" do
+      Delayed::Worker.new.work_off
+      @observation.reload
       old_count = @observation.user.observations_count
       Observation.make!(:user => @observation.user)
+      Delayed::Worker.new.work_off
       @observation.reload
       expect(@observation.user.observations_count).to eq old_count+1
     end
@@ -379,7 +389,7 @@ describe Observation do
         big_place.update_attributes( name: "Mexico" )
         user = User.make!( locale: "es-MX" )
         o = Observation.make!( latitude: small_place.latitude, longitude: small_place.longitude, user: user )
-        expect( o.place_guess ).to match /#{ I18n.t( big_place.name, locale: user.locale ) }/
+        expect( o.place_guess ).to match /#{ I18n.t( "places_name.mexico", locale: user.locale ) }/
       end
     end
   
@@ -446,7 +456,8 @@ describe Observation do
     end
 
     it "should create an observation review for the observer if there's a taxon" do
-      o = Observation.make!( taxon: Taxon.make! )
+      user = User.make!
+      o = Observation.make!( taxon: Taxon.make!, editing_user_id: user.id, user: user )
       o.reload
       expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 1
     end
@@ -455,6 +466,52 @@ describe Observation do
       o = Observation.make!
       o.reload
       expect( o.observation_reviews.where( user_id: o.user_id ).count ).to eq 0
+    end
+
+    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
+      expect(o.coordinates_obscured?).to be true
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
+    end
+
+    it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
+      lat, lon = [ 1.1, 2.2 ]
+      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
+      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
+        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
+      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
+    end
+
+    it "should set public accuracy to accuracy" do
+      expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
+    end
+
+    it "should set public accuracy to nil if accuracy is nil" do
+      expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
+    end
+
+    it "should replace an inactive taxon with its active equivalent" do
+      taxon_change = make_taxon_swap
+      taxon_change.committer = taxon_change.user
+      taxon_change.commit
+      expect( taxon_change.input_taxon ).not_to be_is_active
+      o = Observation.make!( taxon: taxon_change.input_taxon )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.taxon ).to eq taxon_change.output_taxon
+    end
+
+    describe "identification category" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      
+      it "should be set" do
+        t = Taxon.make!
+        o = Observation.make!( taxon: t )
+        Delayed::Worker.new.work_off
+        expect( o.identifications.first.taxon ).to eq t
+        expect( o.identifications.first.category ).to eq Identification::LEADING
+      end
     end
 
   end
@@ -467,12 +524,28 @@ describe Observation do
         :time_zone => 'UTC')
     end
 
-    it "should create an obs review if taxon set but was blank" do
+    it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
-      o.update_attributes( taxon: Taxon.make! )
+      o.update_attributes( taxon: Taxon.make!, editing_user_id: o.user_id )
       o.reload
       expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
+    it "should create an obs review identified by the observer" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      after_delayed_job_finishes { Identification.make!( observation: o, user: o.user )}
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 1
+    end
+
+    it "should not create an obs review identified by someone else" do
+      o = Observation.make!
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
+      after_delayed_job_finishes { Identification.make!( observation: o )}
+      o.reload
+      expect( o.observation_reviews.where( user: o.user_id ).count ).to eq 0
     end
 
     it "should not destroy the owner's old identification if the taxon has changed" do
@@ -662,6 +735,18 @@ describe Observation do
       o.update_attributes(:longitude => -200)
       expect(o).not_to be_valid
     end
+
+    it "should add the taxon to a check list for an enclosing place if the quality became research" do
+      t = Taxon.make!(:species)
+      p = without_delay { make_place_with_geom }
+      o = without_delay { make_research_grade_candidate_observation( latitude: p.latitude, longitude: p.longitude, taxon: t ) }
+      expect( p.check_list.taxa ).not_to include t
+      i = without_delay { Identification.make!( observation: o, taxon: t ) }
+      o.reload
+      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      p.reload
+      expect( p.check_list.taxa ).to include t
+    end
   
     describe "quality_grade" do
 
@@ -686,6 +771,7 @@ describe Observation do
         o.reload
         expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
       end
+
       it "should not be research grade if community taxon above family" do
         o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: 'order'))
         Identification.make!(observation: o, taxon: o.taxon)
@@ -750,6 +836,22 @@ describe Observation do
         expect( o.quality_grade ).to eq Observation::CASUAL
       end
 
+      it "should be casual if the community taxon is Homo" do
+        t = Taxon.make!( name: "Homo", rank: Taxon::GENUS )
+        o = Observation.make!( taxon: t )
+        i = Identification.make!( observation: o, taxon: t )
+        expect( o.community_taxon ).to eq t
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
+      it "should be casual if the taxon is Homo" do
+        t = Taxon.make!( name: "Homo", rank: Taxon::GENUS )
+        o = make_research_grade_candidate_observation( taxon: t )
+        expect( o.community_taxon ).to be_blank
+        expect( o.taxon ).to eq t
+        expect( o.quality_grade ).to eq Observation::CASUAL
+      end
+
       it "should be casual if flagged" do
         o = make_research_grade_observation
         Flag.make!(:flaggable => o, :flag => Flag::SPAM)
@@ -765,7 +867,6 @@ describe Observation do
         expect(o.quality_grade).to eq Observation::CASUAL
       end
 
-      # needs ID
       it "should be research grade if community ID at species or lower and research grade candidate" do
         o = make_research_grade_candidate_observation
         t = Taxon.make!(rank: Taxon::SPECIES)
@@ -851,20 +952,125 @@ describe Observation do
         o = make_research_grade_candidate_observation
         o.downvote_from User.make!, vote_scope: 'needs_id'
         o.upvote_from User.make!, vote_scope: 'needs_id'
+        Observation.set_quality_grade(o.id)
         o.reload
         expect( o.quality_grade ).to eq Observation::NEEDS_ID
       end
 
-      it "should work with query" do
-        o_needs_id = make_research_grade_candidate_observation
-        o_needs_id.reload
-        o_verified = make_research_grade_observation
-        o_casual = Observation.make!
-        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).to include o_needs_id
-        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_verified
-        expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_casual
-        expect( Observation.query(quality_grade: Observation::RESEARCH_GRADE) ).to include o_verified
-        expect( Observation.query(quality_grade: Observation::CASUAL) ).to include o_casual
+      it "should be research grade if the taxon is in a different subtree from the CID taxon" do
+        owner_taxon = Taxon.make!( rank: Taxon::SPECIES )
+        community_taxon = Taxon.make!( rank: Taxon::SPECIES )
+        o = make_research_grade_candidate_observation( taxon: owner_taxon )
+        3.times { Identification.make!( observation: o, taxon: community_taxon ) }
+        o.reload
+        expect( o.community_taxon ).to eq community_taxon
+        expect( o.owners_identification.taxon ).to eq owner_taxon
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+      end
+
+      it "should be needs_id when voted out of needs_id if no CID" do
+        o = make_research_grade_candidate_observation( taxon: Taxon.make!(:species) )
+        o.downvote_from User.make!, vote_scope: "needs_id"
+        expect( o.identifications.count ).to eq 1
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      describe "when observer opts out of CID" do
+        let(:u) { User.make!( prefers_community_taxa: false ) }
+        it "should be casual if the taxon is in a different subtree from the CID taxon" do
+          species1 = Taxon.make!( rank: Taxon::SPECIES )
+          species2 = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species1, user: u )
+          3.times { Identification.make!( observation: o, taxon: species2 ) }
+          o.reload
+          expect( o.community_taxon ).to eq species2
+          expect( o.taxon ).to eq species1
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
+        it "should be needs_id if no CID" do
+          o = make_research_grade_candidate_observation( user: u )
+          expect( o.community_taxon ).to be_blank
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be needs_id if the taxon matches the CID taxon and the CID taxon is a family" do
+          family = Taxon.make!( rank: Taxon::FAMILY )
+          o = make_research_grade_candidate_observation( taxon: family, user: u )
+          Identification.make!( observation: o, taxon: family )
+          o.reload
+          expect( o.community_taxon ).to eq family
+          expect( o.taxon ).to eq family
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be needs_id if the taxon is above species and is an ancestor of the CID taxon" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( taxon: genus, user: u )
+          3.times { Identification.make!( observation: o, taxon: species ) }
+          o.reload
+          expect( o.community_taxon ).to eq species
+          expect( o.taxon ).to eq genus
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be needs_id if the CID taxon is an ancestor of the taxon" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( taxon: species, user: u )
+          3.times { Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.community_taxon ).to eq genus
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        end
+        it "should be research if the taxon matches the CID taxon and the CID taxon is a species" do
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species, user: u )
+          Identification.make!( observation: o, taxon: species )
+          o.reload
+          expect( o.community_taxon ).to eq species
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
+        it "should be research if the taxon is a species that contains the CID taxon" do
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, parent: species )
+          o = make_research_grade_candidate_observation( taxon: species, user: u )
+          2.times { Identification.make!( observation: o, taxon: subspecies ) }
+          o.reload
+          expect( o.community_taxon ).to eq subspecies
+          expect( o.taxon ).to eq species
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
+        it "should be research if the taxon and CID taxon are both the same subspecies" do
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, parent: species )
+          o = make_research_grade_candidate_observation( taxon: subspecies, user: u )
+          Identification.make!( observation: o, taxon: subspecies )
+          o.reload
+          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        end
+        it "should be casual if the observer has no ID and the CID is at species" do
+          o = make_research_grade_candidate_observation( prefers_community_taxon: false )
+          species = Taxon.make!( rank: Taxon::SPECIES )
+          2.times { Identification.make!( observation: o, taxon: species ) }
+          o.reload
+          expect( o.owners_identification ).to be_blank
+          expect( o.community_taxon ).to eq species
+          expect( o.taxon ).to be_blank
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
+      end
+
+      describe "when observer opts out of CID for a single observation" do
+        it "should be casual if the taxon is in a different subtree from the CID taxon" do
+          species1 = Taxon.make!( rank: Taxon::SPECIES )
+          species2 = Taxon.make!( rank: Taxon::SPECIES )
+          o = make_research_grade_candidate_observation( taxon: species1, prefers_community_taxon: false )
+          3.times { Identification.make!( observation: o, taxon: species2 ) }
+          o.reload
+          expect( o.community_taxon ).to eq species2
+          expect( o.taxon ).to eq species1
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
       end
     end
   
@@ -1048,10 +1254,12 @@ describe Observation do
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
+      Delayed::Worker.new.work_off
       user = @observation.user
       user.reload
       old_count = user.observations_count
       @observation.destroy
+      Delayed::Worker.new.work_off
       user.reload
       expect(user.observations_count).to eq old_count - 1
     end
@@ -1070,10 +1278,10 @@ describe Observation do
       s = Subscription.make!(:user => subscriber, :resource => user)
       o = Observation.make(:user => user)
       without_delay { o.save! }
-      update = UpdateSubscriber.where(:subscriber_id => subscriber).last
+      update = UpdateSubscriber.where(:subscriber_id => subscriber).limit(1).last
       expect(update).not_to be_blank
       o.destroy
-      expect(UpdateSubscriber.find_by_id(update.id)).to be_blank
+      expect(UpdateSubscriber.where(update_action_id: update.update_action_id).first).to be_blank
     end
 
     it "should delete associated project observations" do
@@ -1891,6 +2099,18 @@ describe Observation do
   end
 
   describe "query" do
+    it "should filter by quality_grade" do
+      o_needs_id = make_research_grade_candidate_observation
+      o_needs_id.reload
+      o_verified = make_research_grade_observation
+      o_casual = Observation.make!
+      expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).to include o_needs_id
+      expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_verified
+      expect( Observation.query(quality_grade: Observation::NEEDS_ID) ).not_to include o_casual
+      expect( Observation.query(quality_grade: Observation::RESEARCH_GRADE) ).to include o_verified
+      expect( Observation.query(quality_grade: Observation::CASUAL) ).to include o_casual
+    end
+
     it "should filter by research grade" do
       r = make_research_grade_observation
       c = Observation.make!(:user => r.user)
@@ -2083,18 +2303,18 @@ describe Observation do
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
-    it "should not include system places that don't contain public_positional_accuracy circle" do
+    it "should include system places that don't contain public_positional_accuracy circle" do
       p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))", admin_level: 1 )
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
-      expect( o.public_places ).not_to include p
+      expect( o.public_places ).to include p
     end
   end
 
   describe "update_stats" do
     it "should not consider outdated identifications as agreements" do
-      o = Observation.make!(:taxon => Taxon.make!)
-      old_ident = Identification.make!(:observation => o, :taxon => o.taxon)
-      new_ident = Identification.make!(:observation => o, :user => old_ident.user)
+      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "sp1" ) )
+      old_ident = Identification.make!( observation: o, taxon: o.taxon )
+      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "sp2" ) )
       o.reload
       o.update_stats
       o.reload
@@ -2191,7 +2411,7 @@ describe Observation do
       without_delay do
         o.save!
       end
-      u = UpdateSubscriber.last
+      u = UpdateSubscriber.limit(1).last
       expect(u).not_to be_blank
       expect(u.update_action.notifier).to eq(o)
       expect(u.subscriber).to eq(s.user)
@@ -2205,7 +2425,7 @@ describe Observation do
       without_delay do
         o.save!
       end
-      u = UpdateSubscriber.last
+      u = UpdateSubscriber.limit(1).last
       expect(u).not_to be_blank
       expect(u.update_action.notifier).to eq(o)
       expect(u.subscriber).to eq(s.user)
@@ -2271,7 +2491,7 @@ describe Observation do
           Observation.make!( latitude: @christchurch_lat, longitude: @christchurch_lon )
         end
         expect( o.public_places.map(&:id) ).to include place.id
-        expect( @subscription.user.update_subscribers.last.update_action.notifier ).to eq o
+        expect( @subscription.user.update_subscribers.limit(1).last.update_action.notifier ).to eq o
       end
       it "should not generate for observations outside of that place" do
         o = without_delay do
@@ -2556,6 +2776,18 @@ describe Observation do
       expect(o.taxon).to be_blank
     end
 
+    it "should not set the taxon if there are no identifications and the user chose a taxon" do
+      t = Taxon.make!
+      o = Observation.make( taxon: t )
+      expect( o.identifications.size ).to eq 0
+      expect( o.taxon ).to eq t
+      o.set_taxon_from_probable_taxon
+      expect( o.taxon ).to eq t
+      o.save!
+      o.reload
+      expect( o.taxon ).to eq t
+    end
+
     it "should change the taxon to the owner's identication when observation opted out" do
       owner_taxon = Taxon.make!
       o = Observation.make!(:taxon => owner_taxon)
@@ -2585,12 +2817,12 @@ describe Observation do
     end
 
     it "should set the taxon if observation is opted in but user is opted out" do
-      u = User.make!(:prefers_community_taxa => false)
-      o = Observation.make!(:prefers_community_taxon => true, :user => u)
-      i1 = Identification.make!(:observation => o)
-      i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
+      u = User.make!( prefers_community_taxa: false )
+      o = Observation.make!( prefers_community_taxon: true, user: u )
+      i1 = Identification.make!( observation: o, taxon: Taxon.make!(:species) )
+      i2 = Identification.make!( observation: o, taxon: i1.taxon )
       o.reload
-      expect(o.taxon).to eq o.community_taxon
+      expect( o.taxon ).to eq o.community_taxon
     end
 
     it "should not be set if there is only one current identification" do
@@ -2629,10 +2861,6 @@ describe Observation do
       expect(o.community_taxon).not_to be_blank
       expect(o.identifications.count).to eq 2
     end
-    
-    # it "change should trigger change in observation stats" do
-
-    # end
 
     it "should obscure the observation if set to a threatened taxon if the owner has an ID but the community confirms a descendant" do
       p = Taxon.make!(:rank => "genus")
@@ -2660,41 +2888,63 @@ describe Observation do
       expect(o).to be_coordinates_obscured
     end
 
-    describe "test cases: " do
-      before do
-        # Tree:
-        #          f
-        #       /     \
-        #      g1     g2
-        #     /  \
-        #    s1  s2
-        #   /  \
-        # ss1  ss2
+    it "should not consider identifications of inactive taxa" do
+      g1 = Taxon.make!( rank: Taxon::GENUS, name: "g1" )
+      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s1" )
+      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s2", is_active: false )
+      o = Observation.make!
+      Identification.make!( observation: o, taxon: s1 )
+      Identification.make!( observation: o, taxon: s1 )
+      Identification.make!( observation: o, taxon: s2 )
+      o.reload
+      expect( o.community_taxon ).to eq s1
+    end
 
-        @f = Taxon.make!(:rank => "family", :name => "f")
-        @g1 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g1")
-        @g2 = Taxon.make!(:rank => "genus", :parent => @f, :name => "g2")
-        @s1 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s1")
-        @s2 = Taxon.make!(:rank => "species", :parent => @g1, :name => "s2")
-        @ss1 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss1")
-        @ss2 = Taxon.make!(:rank => "species", :parent => @s1, :name => "ss2")
-        @o = Observation.make!
-      end
+    describe "test cases: " do
+      before { setup_test_case_taxonomy }
 
       it "s1 s1 s2" do
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @s1)
         i = Identification.make!(:observation => @o, :taxon => @s2)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 g1" do
-        Identification.make!(:observation => @o, :taxon => @s1)
-        Identification.make!(:observation => @o, :taxon => @s1)
-        Identification.make!(:observation => @o, :taxon => @g1)
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1 )
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @s1
+      end
+
+      it "s1 s1 g1.disagreement_nil" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        i = Identification.make!( observation: @o, taxon: @g1 )
+        i.update_attribute( :disagreement, nil )
+        i.reload
+        expect( i.disagreement ).to eq nil
+        @o.reload
+        @o.set_community_taxon( force: true )
+        expect( @o.community_taxon ).to eq @g1
+      end
+
+      it "s1 s1 g1.disagreement" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: true )
+        @o.reload
+        expect( @o.community_taxon ).to eq @g1
+      end
+
+      it "s1 s1 g1.disagreement_false" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: false )
+        @o.reload
+        expect( @o.community_taxon ).to eq @s1
       end
 
       it "s1 s1 s1 g1" do
@@ -2703,16 +2953,16 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @g1)
         @o.reload
-        expect(@o.community_taxon).to eq @s1
+        expect( @o.community_taxon ).to eq @s1
       end
 
-      it "ss1 ss1 ss2 ss2" do
+      it "s1 s1 s2 s2" do
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @s1)
         Identification.make!(:observation => @o, :taxon => @s2)
         Identification.make!(:observation => @o, :taxon => @s2)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "f f f f ss1 s2 s2 s2 s2" do
@@ -2726,7 +2976,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s2)
         Identification.make!(:observation => @o, :taxon => @s2)
         @o.reload
-        expect(@o.community_taxon).to eq @s2
+        expect( @o.community_taxon ).to eq @s2
       end
 
       it "f f f f ss1 ss1 s2 s2 s2 s2 g1" do
@@ -2742,7 +2992,7 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @s2)
         Identification.make!(:observation => @o, :taxon => @g1)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "f g1 s1 (should not taxa with only one ID to be the community taxon)" do
@@ -2750,16 +3000,16 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @g1)
         Identification.make!(:observation => @o, :taxon => @s1)
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "f f g1 s1" do
-        Identification.make!(:observation => @o, :taxon => @f)
-        Identification.make!(:observation => @o, :taxon => @f)
-        Identification.make!(:observation => @o, :taxon => @g1)
-        Identification.make!(:observation => @o, :taxon => @s1)
+        Identification.make!( observation: @o, taxon: @f )
+        Identification.make!( observation: @o, taxon: @f )
+        Identification.make!( observation: @o, taxon: @g1 )
+        Identification.make!( observation: @o, taxon: @s1 )
         @o.reload
-        expect(@o.community_taxon).to eq @g1
+        expect( @o.community_taxon ).to eq @g1
       end
 
       it "s1 s1 f f" do
@@ -2768,7 +3018,130 @@ describe Observation do
         Identification.make!(:observation => @o, :taxon => @f)
         Identification.make!(:observation => @o, :taxon => @f)
         @o.reload
-        expect(@o.community_taxon).to eq @f
+        expect( @o.community_taxon ).to eq @s1
+      end
+
+      it "s1 s1 f.disagreement f" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        Identification.make!( observation: @o, taxon: @f)
+        @o.reload
+        expect( @o.community_taxon ).to eq @f
+      end
+    end
+  end
+
+  describe "probable_taxon" do
+    describe "test cases: " do
+      before { setup_test_case_taxonomy }
+      it "s1 should be s1" do
+        i = Identification.make!( observation: @o, taxon: @s1 )
+        @o.reload
+        o = Observation.find( @o.id )
+        expect( o.probable_taxon ).to eq @s1
+      end
+      it "s1 g1.disagreement_true should be g1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: true )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @g1
+      end
+      it "s1 g1.disagreement_nil should be g1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        i = Identification.make!( observation: @o, taxon: @g1 )
+        i.update_attribute( :disagreement, nil )
+        o = Observation.find( @o.id )
+        expect( o.probable_taxon ).to eq @g1
+      end
+      it "s1 g1.disagreement_false should be s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @s1
+      end
+      it "ss1 s1.disagreement_false should be ss1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @ss1
+      end
+      it "s1 g1.disagreement_false g1.disagreement_false should be s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: false )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @s1
+      end
+      it "s1 g1.disagreement_false should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @g1, disagreement: false )
+        @o.reload
+        expect( @o.taxon ).to eq @s1
+      end
+      it "s1 s2 should be g1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s2 )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @g1
+      end
+      it "s1 s2 should set taxon to g1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s2 )
+        @o.reload
+        expect( @o.taxon ).to eq @g1
+      end
+      it "g2 s1 should set taxon to f" do
+        Identification.make!( observation: @o, taxon: @g2 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @f
+      end
+      it "s1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
+      it "s1 s1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
+      it "s1.disagreement_false s2.disagreement_false s2.disagreement_false should be g1" do
+        @taxon_swap1 = TaxonSwap.make
+        @taxon_swap1.add_input_taxon(@s3)
+        @taxon_swap1.add_output_taxon(@s1)
+        @taxon_swap1.save!
+        @taxon_swap2 = TaxonSwap.make
+        @taxon_swap2.add_input_taxon(@s4)
+        @taxon_swap2.add_output_taxon(@s2)
+        @taxon_swap2.save!
+
+        Identification.make!( observation: @o, taxon: @s3)
+        Identification.make!( observation: @o, taxon: @s4)
+        @o.reload
+        expect(@o.identifications.size).to eq(2)
+        expect(@o.identifications.detect{|i| i.taxon_id == @s3.id}).not_to be_blank
+        
+        @user = make_user_with_role(:admin, created_at: Time.now)
+        @taxon_swap1.committer = @user
+        @taxon_swap2.committer = @user
+        @taxon_swap1.commit
+        Delayed::Worker.new.work_off
+        @taxon_swap2.commit
+        Delayed::Worker.new.work_off
+        @s4.reload
+        expect(@s4.is_active).to be false
+        @o.reload
+        expect(@o.identifications.size).to eq(4)
+        expect(@o.identifications.detect{|i| i.taxon_id == @s3.id}).not_to be_blank
+        
+        Identification.make!( observation: @o, taxon: @s2, disagreement: false )
+        @o.reload
+        expect( @o.probable_taxon ).to eq @g1
       end
     end
   end
@@ -2840,6 +3213,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::WILD, agree: false)
+      o.reload
       expect(o.mappable?).to be true
     end
 
@@ -2847,6 +3221,7 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       q = QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+      o.reload
       expect(o.mappable?).to be false
       q.destroy
       expect(o.reload.mappable?).to be true
@@ -2856,29 +3231,8 @@ describe Observation do
       o = Observation.make!(latitude: 1.1, longitude: 2.2)
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::LOCATION, agree: false)
+      o.reload
       expect(o.mappable?).to be false
-    end
-
-    it "should default accuracy of obscured observations to uncertainty_cell_diagonal_meters" do
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1.1, longitude: 2.2)
-      expect(o.coordinates_obscured?).to be true
-      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters
-    end
-
-    it "should set public accuracy to the greater of accuracy and M_TO_OBSCURE_THREATENED_TAXA" do
-      lat, lon = [ 1.1, 2.2 ]
-      uncertainty_cell_diagonal_meters = Observation.uncertainty_cell_diagonal_meters( lat, lon )
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: lat, longitude: lon,
-        positional_accuracy: uncertainty_cell_diagonal_meters + 1)
-      expect(o.calculate_public_positional_accuracy).to eq o.uncertainty_cell_diagonal_meters + 1
-    end
-
-    it "should set public accuracy to accuracy" do
-      expect(Observation.make!(positional_accuracy: 10).public_positional_accuracy).to eq 10
-    end
-
-    it "should set public accuracy to nil if accuracy is nil" do
-      expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
     end
 
     it "should be mappable for obscured" do
@@ -2895,6 +3249,7 @@ describe Observation do
       o = make_research_grade_observation
       expect(o.mappable?).to be true
       QualityMetric.make!(observation: o, metric: QualityMetric::EVIDENCE, agree: false)
+      o.reload
       expect(o.mappable?).to be false
     end
 
@@ -2912,6 +3267,17 @@ describe Observation do
       Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
       o.reload
       expect(o.mappable?).to be false
+    end
+
+    it "should not be mappable if community disagrees with taxon" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      u = User.make!( prefers_community_taxa: false )
+      o = make_research_grade_observation( user: u )
+      5.times { Identification.make!( observation: o, taxon: t ) }
+      o.reload
+      expect( o.taxon ).not_to eq t
+      expect( o.community_taxon ).to eq t
+      expect( o.mappable? ).to be false
     end
 
   end
@@ -3066,10 +3432,27 @@ describe Observation do
 
     it "generates mention updates" do
       u = User.make!
-      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      o = Observation.make!(description: "hey @#{ u.login }")
       expect( UpdateAction.where(notifier: o, notification: "mention").count ).to eq 1
-      expect( UpdateAction.where(notifier: o, notification: "mention").first.
-        update_subscribers.first.subscriber ).to eq u
+      expect(
+        UpdateAction.where(notifier: o, notification: "mention").first.update_subscribers.first.subscriber
+      ).to eq u
+    end
+
+    it "does not generation a mention update if the description was updated and the mentioned user wasn't in the new content" do
+      u = User.make!
+      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      UpdateAction.where( notifier: o, notification: "mention" ).destroy_all
+      o.update_attributes( description: "#{o.description} and some extra" )
+      action = UpdateAction.where( notifier: o, notification: "mention" ).first
+      expect( action.update_subscribers.count ).to eq 0
+    end
+    it "generates a mention update if the description was updated and the mentioned user was in the new content" do
+      u = User.make!
+      o = without_delay { Observation.make!(description: "hey") }
+      o.update_attributes( description: "#{o.description} @#{u.login}" )
+      action = UpdateAction.where( notifier: o, notification: "mention" ).first
+      expect( action.update_subscribers.count ).to eq 1
     end
   end
 
@@ -3129,4 +3512,151 @@ describe Observation do
       expect( Observation.find_by_id(@dupe.id) ).not_to be_blank
     end
   end
+
+  describe "public_positional_accuracy" do
+    it "should be set on read if nil" do
+      t = make_threatened_taxon
+      o = make_research_grade_observation( taxon: t )
+      expect( o ).to be_coordinates_obscured
+      expect( o.public_positional_accuracy ).not_to be_blank
+      # o.update_attribute( :public_positional_accuracy, nil )
+      Observation.where( id: o.id ).update_all( public_positional_accuracy: nil )
+      o.reload
+      expect( o.read_attribute( :public_positional_accuracy ) ).to be_blank
+      expect( o.public_positional_accuracy ).not_to be_blank
+    end
+  end
+end
+
+describe Observation, "probably_captive?" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
+  let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
+  def make_captive_obs
+    Observation.make!( taxon: taxon, captive_flag: true, latitude: place.latitude, longitude: place.longitude )
+  end
+  def make_non_captive_obs
+    Observation.make!( taxon: taxon, latitude: place.latitude, longitude: place.longitude )
+  end
+  it "should be false with under 10 captive obs" do
+    9.times { make_captive_obs }
+    expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+  it "should be true with more than 10 captive obs" do
+    11.times { make_captive_obs }
+    expect( make_non_captive_obs ).to be_probably_captive
+  end
+  it "should require more than 80% captive" do
+    11.times { make_non_captive_obs }
+    11.times { make_captive_obs }
+    expect( make_non_captive_obs ).not_to be_probably_captive
+  end
+  it "should be false with no coordinates" do
+    11.times { make_captive_obs }
+    o = Observation.make!( taxon: taxon )
+    expect( o ).not_to be_georeferenced
+    expect( o ).not_to be_probably_captive
+  end
+  it "should be false with no taxon" do
+    11.times { make_captive_obs }
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude )
+    expect( o.taxon ).to be_blank
+    expect( o ).not_to be_probably_captive
+  end
+  it "should use the community taxon if present" do
+    11.times { make_captive_obs }
+    o = Observation.make!(
+      taxon: Taxon.make!( rank: Taxon::SPECIES ),
+      latitude: place.latitude,
+      longitude: place.longitude,
+      prefers_community_taxon: false
+    )
+    4.times { Identification.make!( observation: o, taxon: taxon ) }
+    o.reload
+    expect( o.taxon ).not_to eq taxon 
+    expect( o.community_taxon ).to eq taxon
+    expect( o ).to be_probably_captive
+  end
+
+  describe Observation, "and update_quality_metrics" do
+    it "should add a userless quality metric if probably_captive?" do
+      11.times { make_captive_obs }
+      o = make_non_captive_obs
+      o.reload
+      expect( o ).to be_captive
+      expect(
+        o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).not_to be_blank
+    end
+    it "should remove the quality metric if not probably_captive? anymore" do
+      11.times { make_captive_obs }
+      o = make_non_captive_obs
+      o.reload
+      expect( o ).to be_captive
+      11.times do
+        obs = make_non_captive_obs
+        QualityMetric.vote( nil, obs, QualityMetric::WILD, true )
+      end
+      o.update_attributes( description: "foo" )
+      o.reload
+      expect( o ).not_to be_captive
+      expect(
+        o.quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+      ).to be_blank
+    end
+  end
+end
+
+describe "ident getters" do
+  it "should return taxon_id for a particular user by login" do
+    u = User.make!( login: "balthazar_salazar" )
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send("ident_by_balthazar_salazar:taxon_id" ) ).to eq i.taxon_id
+  end
+
+  it "should return taxon name for a particular user by login" do
+    u = User.make!( login: "balthazar_salazar" )
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send( "ident_by_balthazar_salazar:taxon_name" ) ).to eq i.taxon.name
+  end
+
+  it "should return taxon_id for a particular user by id" do
+    u = User.make!
+    i = Identification.make!( user: u )
+    o = i.observation
+    o.reload
+    expect( o.send( "ident_by_#{u.id}:taxon_id" ) ).to eq i.taxon_id
+  end
+end
+
+def setup_test_case_taxonomy
+  # Tree:
+  #          sf
+  #          |
+  #          f
+  #       /     \
+  #      g1     g2
+  #     /  \
+  #    s1  s2
+  #   /  \
+  # ss1  ss2
+
+  # Superfamily intentionally left unavailable. Since it has a blank ancestry,
+  # it will not really behave as expected in most tests
+  sf = Taxon.make!( rank: "superfamily", name: "sf" )
+  @f = Taxon.make!( rank: "family", parent: sf, name: "f" )
+  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "g1" )
+  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
+  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
+  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
+  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "s3" )
+  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "s4" )
+  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
+  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
+  @o = Observation.make!
 end

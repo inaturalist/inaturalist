@@ -8,61 +8,64 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
-    :taxon_change_taxa, :taxon_schemes, :taxon_changes,
+    :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
-    { taxon_photos: { photo: :user } },
+    { taxon_photos: { photo: [ :user, :flags ] } },
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :ancestry, index: "not_analyzed"
-      indexes :min_species_ancestry, index: "not_analyzed"
-      indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
-      indexes :rank, index: "not_analyzed"
+      indexes :ancestry, type: "keyword"
+      indexes :min_species_ancestry, type: "keyword"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :rank, type: "keyword"
+      indexes :wikipedia_url, type: "keyword", index: false
       indexes :taxon_photos do
-        indexes :license_code, index: "not_analyzed"
+        indexes :license_code, type: "keyword"
         indexes :photo do
-          indexes :attribution, index: "not_analyzed"
-          indexes :license_code, index: "not_analyzed"
-          indexes :large_url, index: "not_analyzed"
-          indexes :medium_url, index: "not_analyzed"
-          indexes :small_url, index: "not_analyzed"
-          indexes :square_url, index: "not_analyzed"
-          indexes :url, index: "not_analyzed"
-          indexes :native_page_url, index: "not_analyzed"
-          indexes :native_photo_id, index: "not_analyzed"
-          indexes :type, index: "not_analyzed"
+          indexes :attribution, type: "keyword", index: false
+          indexes :license_code, type: "keyword"
+          indexes :original_url, type: "keyword", index: false
+          indexes :large_url, type: "keyword", index: false
+          indexes :medium_url, type: "keyword", index: false
+          indexes :small_url, type: "keyword", index: false
+          indexes :square_url, type: "keyword", index: false
+          indexes :url, type: "keyword", index: false
+          indexes :native_page_url, type: "keyword", index: false
+          indexes :native_photo_id, type: "keyword", index: false
+          indexes :type, type: "keyword"
         end
       end
       indexes :colors do
-        indexes :value, index: "not_analyzed"
+        indexes :value, type: "keyword"
       end
       indexes :default_photo do
-        indexes :attribution, index: "not_analyzed"
-        indexes :license_code, index: "not_analyzed"
-        indexes :medium_url, index: "not_analyzed"
-        indexes :square_url, index: "not_analyzed"
-        indexes :url, index: "not_analyzed"
+        indexes :attribution, type: "keyword", index: false
+        indexes :license_code, type: "keyword"
+        indexes :medium_url, type: "keyword", index: false
+        indexes :square_url, type: "keyword", index: false
+        indexes :url, type: "keyword", index: false
       end
       indexes :listed_taxa do
-        indexes :establishment_means, index: "not_analyzed"
+        indexes :establishment_means, type: "keyword"
       end
-      indexes :names do
-        indexes :name, type: "string", analyzer: "ascii_snowball_analyzer"
-        indexes :locale, index: "not_analyzed"
+      indexes :names, type: :nested do
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :locale, type: "keyword"
         # NOTE: don't forget to install the proper analyzers in Elasticsearch
         # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
-        indexes :name_ja, type: "string", analyzer: "kuromoji"
-        indexes :name_autocomplete, type: "string",
+        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :name_autocomplete, type: "text",
           analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
-        indexes :name_autocomplete_ja, type: "string", analyzer: "autocomplete_analyzer_ja"
-        indexes :exact, index: "not_analyzed"
+        indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
+        indexes :exact, type: "keyword"
+        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
       end
       indexes :statuses do
-        indexes :authority, index: "not_analyzed"
-        indexes :geoprivacy, index: "not_analyzed"
-        indexes :status, index: "not_analyzed"
+        indexes :authority, type: "keyword"
+        indexes :geoprivacy, type: "keyword"
+        indexes :status, type: "keyword"
       end
     end
   end
@@ -119,6 +122,7 @@ class Taxon < ActiveRecord::Base
         sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
         map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
+      json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
@@ -131,14 +135,21 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        current_synonymous_taxon_ids: is_active? ? nil : current_synonymous_taxa.map(&:id),
         # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
-        atlas_id: atlas.try( :id )
+        atlas_id: atlas.try( :id ),
+        complete_species_count: complete_species_count,
+        wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
+      if complete_taxon
+        json[:complete_rank] = complete_taxon.complete_rank
+        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      end
     end
     json
   end

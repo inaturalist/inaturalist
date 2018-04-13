@@ -44,7 +44,7 @@
                           = render( partial: 'favorites', locals: { taxon: taxon } )
                     .media
                       .media-body
-                        %p.lead= t( "onboarding.observe_panel_body_p2", site_name: SITE_NAME.gsub(".org",""), new_observation_path: upload_observations_path).html_safe
+                        %p.lead= t( "onboarding.observe_panel_body_p2", site_name: @site.name.gsub(".org",""), new_observation_path: upload_observations_path).html_safe
                         %p= t( "onboarding.observe_panel_body_p3" )
                       .media-right
                         %img.media-object{ src: "https://static.inaturalist.org/wiki_page_attachments/615-original.jpg", style: "padding: 0 0 0 10px" }
@@ -76,8 +76,8 @@
                   %a.close{ "data-panel-type" => "activity" } &#215;
                   %h3.panel-title= t "onboarding.youve_got_updates_panel_title"
                 .panel-body
-                  %p.lead= t( "onboarding.youve_got_updates_panel_body_p1", site_name: SITE_NAME.gsub( ".org", "" ) )
-                  = t( "onboarding.youve_got_updates_panel_body_p2", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
+                  %p.lead= t( "onboarding.youve_got_updates_panel_body_p1", site_name: @site.name.gsub( ".org", "" ) )
+                  = t( "onboarding.youve_got_updates_panel_body_p2", site_name: @site.name.gsub( ".org", "" ) ).html_safe
                 .panel-footer
                   %a.btn.btn-primary{ "data-panel-type" => "activity" }= t(:got_it!)
             #updates_target
@@ -98,9 +98,9 @@
               #following_panel.panel.panel-info
                 .panel-heading
                   %a.close{ "data-panel-type" => "following" } &#215;
-                  %h3.panel-title= t( "onboarding.following_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
+                  %h3.panel-title= t( "onboarding.following_panel_title", site_name: @site.name.gsub( ".org", "" ) )
                 .panel-body
-                  = t( "onboarding.following_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
+                  = t( "onboarding.following_panel_body", site_name: @site.name.gsub( ".org", "" ) ).html_safe
                 .panel-footer
                   %a.btn.btn-primary{ "data-panel-type" => "following" }= t(:got_it!)
             #following_target
@@ -110,9 +110,9 @@
               #comments_panel.panel.panel-info
                 .panel-heading
                   %a.close{ "data-panel-type" => "comments" } &#215;
-                  %h3.panel-title= t( "onboarding.comments_panel_title", site_name: SITE_NAME.gsub( ".org", "" ) )
+                  %h3.panel-title= t( "onboarding.comments_panel_title", site_name: @site.name.gsub( ".org", "" ) )
                 .panel-body
-                  = t( "onboarding.comments_panel_body", site_name: SITE_NAME.gsub( ".org", "" ) ).html_safe
+                  = t( "onboarding.comments_panel_body", site_name: @site.name.gsub( ".org", "" ) ).html_safe
                 .panel-footer
                   %a.btn.btn-primary{ "data-panel-type" => "comments" }= t(:got_it!)
             #comments_target
@@ -187,14 +187,15 @@
       - if current_user.is_curator?
         %h3.page-header
           = t :curation
-          %span.glyphicon.glyphicon-info-sign{ "data-content" => t(:youre_a_site_curator_which_means, email: CONFIG.help_email ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+          %span.glyphicon.glyphicon-info-sign{ "data-content" => t(:youre_a_site_curator_which_means, email: @site.email_help ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
         - unless @flags.blank?
           .panel.panel-default
             .panel-heading
               %h3.panel-title
-                %span.glyphicon.glyphicon-flag
-                = t(:flag).pluralize
-                %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_items_people_on, email: CONFIG.help_email ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+                = link_to flags_path do
+                  %span.glyphicon.glyphicon-flag
+                = link_to t(:flag).pluralize, flags_path
+                %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_items_people_on, email: @site.email_help ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
             .list-group
               - for flag in @flags
                 - flaggable = flag.flaggable
@@ -207,7 +208,7 @@
                   - if flag.user
                     = flag.user.login
                   - else
-                    = CONFIG.site_name_short
+                    = @site.site_name_short
                   = t(:flagged)
                   %strong
                     = ( flaggable.respond_to?(:user) && flaggable.user ) ? "#{flaggable.user.login}'s" : t(:a)
@@ -220,7 +221,7 @@
             %h3.panel-title
               %span.glyphicon.glyphicon-leaf{ "aria-hidden" => "true", style: "" }
               = t :ungrafted_taxa
-              %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_taxa_that, site: CONFIG.site_name_short ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+              %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_taxa_that, site: @site.site_name_short ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
           %ul.list-group
             - for taxon in @ungrafted_taxa
               %li.list-group-item

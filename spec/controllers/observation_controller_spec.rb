@@ -4,7 +4,6 @@ describe ObservationsController do
   describe "create" do
     before(:each) { enable_elastic_indexing( Observation ) }
     after(:each) { disable_elastic_indexing( Observation ) }
-    render_views
     let(:user) { User.make! }
     before do
       sign_in user
@@ -53,9 +52,9 @@ describe ObservationsController do
     
     it "should set the site" do
       @site = Site.make!
-      CONFIG.site_id = @site.id
-      post :create, :observation => {:species_guess => "Foo"}
-      expect(user.observations.last.site).to_not be_blank
+      post :create, observation: { species_guess: "Foo" }, site_id: @site.id, inat_site_id: @site.id
+      expect( user.observations.last.site ).to_not be_blank
+      expect( user.observations.last.site.id ).to eq @site.id
     end
 
     it "should survive submitting an invalid observation to a project" do
@@ -76,6 +75,13 @@ describe ObservationsController do
       o = user.observations.last
       expect( o.latitude ).to eq -39.380943828
       expect( o.longitude ).to eq 176.3574072522
+    end
+
+    it "should mark the observation as reviewed by the observer if there was a taxon" do
+      taxon = Taxon.make!
+      post :create, observation: { taxon_id: taxon.id }
+      o = user.observations.last
+      expect( o ).to be_reviewed_by( o.user )
     end
 
   end
@@ -157,7 +163,6 @@ describe ObservationsController do
   end
 
   describe "show" do
-    render_views
     it "should not include the place_guess when coordinates obscured" do
       original_place_guess = "Duluth, MN"
       o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
@@ -167,16 +172,6 @@ describe ObservationsController do
     it "should 404 for absurdly large ids" do
       get :show, id: "389299563_507aed5ae4_s.jpg"
       expect( response ).to be_not_found
-    end
-  end
-
-  describe "show.mobile" do
-    render_views
-    it "should now include the place_guess when coordinates obscured" do
-      original_place_guess = "Duluth, MN"
-      o = Observation.make!(geoprivacy: Observation::OBSCURED, latitude: 1, longitude: 1, place_guess: original_place_guess)
-      get :show, format: "mobile", id: o.id
-      expect( response.body ).not_to be =~ /#{original_place_guess}/
     end
   end
   
@@ -407,35 +402,6 @@ describe ObservationsController do
       expect(response.body).not_to be =~ /#{po.observation.private_latitude}/
     end
   end
-  
-  describe "photo" do
-    let(:file) { fixture_file_upload('files/egg.jpg', 'image/jpeg') }
-    before do
-      @user = User.make!
-      sign_in @user
-    end
-    it "should generate an error if no files specified" do
-      post :photo, :format => :json
-      json = JSON.parse(response.body)
-      expect(json['error']).to_not be_blank
-    end
-
-    it "should set the site based on config" do
-      @site = Site.make!
-      stub_config(site_id: @site.id)
-      post :photo, :format => :json, :files => [ file ]
-      expect(@user.observations.last.site).to_not be_blank
-    end
-
-    it "should set the site based on user's site" do
-      @user.update_attribute(:site_id, Site.make!.id)
-      post :photo, :format => :json, :files => [ file ]
-      expect(@user.observations.last.site).to_not be_blank
-    end
-
-    # ugh, how to test uploads...
-    it "should generate an error if single file makes invalid photo"
-  end
 
   describe "curation" do
     render_views
@@ -448,15 +414,15 @@ describe ObservationsController do
       Flag.make!(user: @curator, flaggable: Observation.make!)
       get :curation
       expect(response.body).to have_selector("table td", text: @curator.login)
-      expect(response.body).to_not have_selector("table td", text: CONFIG.site_name_short)
+      expect(response.body).to_not have_selector("table td", text: Site.default.site_name_short)
     end
 
-    it "should show CONFIG.site_name_short if there is no flagger" do
+    it "should show site.site_name_short if there is no flagger" do
       Flag.make!(flaggable: Observation.make!)
       Flag.last.update_column(:user_id, 0)
       get :curation
       expect(response.body).to_not have_selector("table td", text: @curator.login)
-      expect(response.body).to have_selector("table td", text: CONFIG.site_name_short)
+      expect(response.body).to have_selector("table td", text: Site.default.site_name_short)
     end
   end
 
@@ -472,7 +438,8 @@ describe ObservationsController do
 
     it "should include https image urls in widget response" do
       make_research_grade_observation
-      get :index, protocol: :https, format: :widget
+      request.env['HTTPS'] = 'on'
+      get :index, format: :widget
       expect( response.body ).to match /s3.amazonaws.com/
     end
   end
@@ -636,17 +603,17 @@ describe ObservationsController, "new_bulk_csv" do
   end
 
   it "should create observations with custom coordinate systems" do
-    stub_config :coordinate_systems => {
-      :nztm2000 => {
-        :label => "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
-        :proj4 => "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
+    Site.default.update_attributes( coordinate_systems_json: '{
+      "nztm2000": {
+        "label": "NZTM2000 (NZ Transverse Mercator), EPSG:2193",
+        "proj4": "+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs"
       },
-      :nzmg => {
-        :label => "NZMG (New Zealand Map Grid), EPSG:27200",
-        :proj4 => "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
+      "nzmg": {
+        "label": "NZMG (New Zealand Map Grid), EPSG:27200",
+        "proj4": "+proj=nzmg +lat_0=-41 +lon_0=173 +x_0=2510000 +y_0=6023150 +ellps=intl +datum=nzgd49 +units=m +no_defs"
       }
-    }
-    expect(CONFIG.coordinate_systems).not_to be_blank
+    }' )
+    expect(Site.default.coordinate_systems).not_to be_blank
     Delayed::Job.delete_all
     Observation.by( user ).destroy_all
     expect( Observation.by( user ).count ).to eq 0

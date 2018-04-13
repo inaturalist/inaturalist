@@ -1,11 +1,15 @@
 #header {
   margin-bottom: 0px;
 }
+#full-width-notice {
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
 #main-container {
   width: 100%;
 }
 #bodywrapper {
-  margin-bottom: -202px;
+  margin-bottom: -180px;
 }
 #bodywrapper:after {
   height: 180px;
@@ -37,7 +41,7 @@
   margin-top: 60px;
 }
 
-#obs-container .taxon.has-com-name .sciname { 
+#obs-container .taxon.has-com-name .secondary-name { 
   color: #333;
 }
 
@@ -55,6 +59,8 @@
   background-position: center;
   margin: 0px auto;
   text-align: center;
+  background-color: #ccc;
+  position: relative;
 }
 .grid .photo .icon, 
 .grid .photo:hover .icon,
@@ -77,9 +83,18 @@
 .grid .photo .sound-icon { display: none; }
 .grid .photo.sound .sound-icon {
   display: inline-block;
-  color: #aaa;
-  opacity: 0.8;
+  color: #777;
   font-size: smaller;
+}
+.grid .photo.has-photo.sound .sound-icon {
+  color: white;
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba( 0, 0, 0, 0.7 );
+  padding: 10px;
+  font-size: 24px;
 }
 .grid .photo {
   height: 120px;
@@ -97,6 +112,7 @@
   .grid .photo {
     height: 212.5px;
     font-size: 135px;
+    line-height: 200px;
   }
 }
 @media (min-width: 1200px) {
@@ -161,7 +177,7 @@ inat-taxon.split-taxon .display-name {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-inat-taxon.split-taxon .sciname {
+inat-taxon.split-taxon .secondary-name {
   display: block;
   width: 100%;
   white-space: nowrap;
@@ -173,17 +189,16 @@ inat-taxon.split-taxon .sciname {
   font-size: 18px;
   line-height: 18px;
 }
-#result-grid inat-taxon.split-taxon .has-com-name .sciname {
+#result-grid inat-taxon.split-taxon .has-com-name .secondary-name {
   line-height: 26px;
 }
-#result-grid inat-taxon.split-taxon .sciname.display-name,
-#result-grid inat-taxon.split-taxon .noname.display-name {
+#result-grid inat-taxon.split-taxon .no-com-name .display-name {
   margin-bottom: 28px;
 }
-#result-table inat-taxon.split-taxon .sciname {
+#result-table inat-taxon.split-taxon .secondary-name {
   margin-bottom: 15px;
 }
-#result-table inat-taxon.split-taxon .sciname.display-name,
+#result-table inat-taxon.split-taxon .no-com-name .display-name,
 #result-table inat-taxon.split-taxon .noname.display-name {
   margin-bottom: 34px;
 }
@@ -373,6 +388,10 @@ inat-taxon.split-taxon .icon {display: none;}
 .bootstrap .primary-filters .form-control {width: 250px;}
 .primary-filters > span { margin: 0 5px;}
 #filter-container { margin-left: 10px; }
+#filters select,
+#filters label {
+  text-transform: capitalize;
+}
 #place-name-input input { margin-left: 4px; }
 #stats-container .col-xs-4 {
   overflow: hidden;
@@ -456,7 +475,7 @@ inat-taxon.split-taxon .icon {display: none;}
 
 #obs-container .dateloc,
 #obs-container .observation .meta,
-#obs-container .observation .has-com-name .sciname {
+#obs-container .observation .has-com-name .secondary-name {
   font-size: 12px;
   line-height: 18px;
 }
@@ -529,7 +548,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 
 #obs-container inat-taxon.split-taxon .display-name,
-#obs-container inat-taxon.split-taxon .sciname {
+#obs-container inat-taxon.split-taxon .secondary-name {
   width: 100%;
 }
 #obs-container .userimage {
@@ -538,13 +557,13 @@ inat-taxon.split-taxon .icon {display: none;}
 
 @media (min-width: 768px) {
   #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .sciname {
+  #obs-container inat-taxon.split-taxon .secondary-name {
     width: 60%;
   }
 }
 @media (min-width: 992px) {
   #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .sciname {
+  #obs-container inat-taxon.split-taxon .secondary-name {
     width: 75%;
   }
   #obs-container .userimage {
@@ -553,7 +572,7 @@ inat-taxon.split-taxon .icon {display: none;}
 }
 @media (min-width: 1200px) {
   #obs-container inat-taxon.split-taxon .display-name,
-  #obs-container inat-taxon.split-taxon .sciname {
+  #obs-container inat-taxon.split-taxon .secondary-name {
     width: 80%;
   }
 }
@@ -568,6 +587,7 @@ inat-taxon { white-space: nowrap; }
   display: block;
   font-weight: bold;
   font-size: 16px;
+  text-transform: capitalize;
 }
 
 .bootstrap #filters .radio, 
@@ -623,7 +643,11 @@ inat-taxon { white-space: nowrap; }
   border-right: 1px solid #ccc;
 }
 
-#filters-more-btn {padding:0;margin: 12px 0;}
+#filters-more-btn {
+  padding:0;
+  margin: 12px 0;
+  text-transform: capitalize;
+}
 #filters-more-btn .fa-caret-up { display: inline;}
 #filters-more-btn .fa-caret-down { display: none;}
 #filters-more-btn.collapsed .fa-caret-up { display: none; }

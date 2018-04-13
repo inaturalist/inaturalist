@@ -16,9 +16,6 @@ describe ApplicationController do
         get :index, format: :html
         expect(response.response_code).to eq 200
         expect(response.body).to include "Observations"
-        get :index, format: :mobile
-        expect(response.response_code).to eq 200
-        expect(response.body).to include "Observations"
         get :index, format: :json
         expect(response.response_code).to eq 200
         expect(JSON.parse response.body).to eq [ ]
@@ -52,6 +49,14 @@ describe ApplicationController do
     end
   end
 
+  describe "ping" do
+    it "returns json" do
+      get :ping
+      expect(response.response_code).to eq 200
+      expect(JSON.parse response.body).to eq( { "status" => "available" } )
+    end
+  end
+
   describe WelcomeController do
     describe "check_user_last_active" do
       it "re-activate inactive users" do
@@ -66,8 +71,54 @@ describe ApplicationController do
         # subscriptions are unsuspended
         expect( user.subscriptions_suspended_at ).to be_nil
       end
-
     end
+
+    describe "draft sites" do
+      let(:site) { Site.make!(draft: true) }
+      let(:basic_user) { User.make! }
+      let(:admin_user) { make_admin }
+      let(:site_admin_user) {
+        u = User.make!
+        SiteAdmin.create(site: site, user: u)
+        u
+      }
+
+      it "does not redirect users on the main site" do
+        get :index
+        expect(response.response_code).to eq 200
+        expect(response).to_not be_redirect
+      end
+
+      it "redirects logged-out users to log in" do
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 302
+        expect(response).to be_redirect
+        expect(response).to redirect_to(new_user_session_url)
+      end
+
+      it "redirects basic users to log in" do
+        http_login(basic_user)
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 302
+        expect(response).to be_redirect
+        expect(response).to redirect_to(login_url)
+      end
+
+      it "does not redirect admins" do
+        http_login(admin_user)
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 200
+        expect(response).to_not be_redirect
+      end
+
+      it "does not redirect site admins" do
+        http_login(site_admin_user)
+        get :index, inat_site_id: site.id
+        expect(response.response_code).to eq 200
+        expect(response).to_not be_redirect
+      end
+    end
+
   end
 
 end

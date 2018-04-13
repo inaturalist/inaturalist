@@ -5,6 +5,7 @@ import inaturalistjs from "inaturalistjs";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
 import util from "../models/util";
+import { resizeUpload } from "../../../shared/util";
 
 const actions = class actions {
 
@@ -79,10 +80,25 @@ const actions = class actions {
     };
   }
 
+  static processNewImage( file ) {
+    return function ( dispatch ) {
+      dispatch( actions.createVisionThumbnail( file ) );
+      dispatch( actions.readFileExif( file ) );
+    };
+  }
+
   static readFileExif( file ) {
     return function ( dispatch ) {
       file.readExif( ).then( metadata => {
         dispatch( actions.updateFile( file, { metadata } ) );
+      } );
+    };
+  }
+
+  static createVisionThumbnail( file ) {
+    return function ( dispatch ) {
+      resizeUpload( file.file, { blob: true }, resizedFile => {
+        dispatch( actions.updateFile( file, { visionThumbnail: resizedFile } ) );
       } );
     };
   }
@@ -102,14 +118,20 @@ const actions = class actions {
           const obsCard = new ObsCard( { id } );
           files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
           obsCards[obsCard.id] = obsCard;
-          dispatch( actions.readFileExif( files[id] ) );
+          dispatch( actions.processNewImage( files[id] ) );
+          i += 1;
+        } else if ( f.type.match( /^audio\// ) ) {
+          const id = ( startTime + i );
+          const obsCard = new ObsCard( { id } );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: id, sort: id } );
+          obsCards[obsCard.id] = obsCard;
           i += 1;
         }
       } );
       if ( Object.keys( obsCards ).length > 0 ) {
         dispatch( actions.appendObsCards( obsCards ) );
         dispatch( actions.appendFiles( files ) );
-        dispatch( actions.uploadImages( ) );
+        dispatch( actions.uploadFiles( ) );
       }
     };
   }
@@ -124,13 +146,17 @@ const actions = class actions {
         if ( f.type.match( /^image\// ) ) {
           const id = ( startTime + i );
           files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
-          dispatch( actions.readFileExif( files[id] ) );
+          dispatch( actions.processNewImage( files[id] ) );
+          i += 1;
+        } else if ( f.type.match( /^audio\// ) ) {
+          const id = ( startTime + i );
+          files[id] = DroppedFile.fromFile( f, { id, cardID: obsCard.id, sort: id } );
           i += 1;
         }
       } );
       if ( Object.keys( files ).length > 0 ) {
         dispatch( actions.appendFiles( files ) );
-        dispatch( actions.uploadImages( ) );
+        dispatch( actions.uploadFiles( ) );
       }
     };
   }
@@ -236,15 +262,15 @@ const actions = class actions {
     };
   }
 
-  static newCardFromPhoto( photo ) {
+  static newCardFromMedia( media ) {
     return function ( dispatch ) {
       const time = new Date( ).getTime( );
       const obsCards = { [time]: new ObsCard( { id: time } ) };
       dispatch( actions.appendObsCards( obsCards ) );
-      dispatch( actions.updateFile( photo.file, { cardID: time, sort: time } ) );
+      dispatch( actions.updateFile( media.file, { cardID: time, sort: time } ) );
 
-      const fromCard = new ObsCard( Object.assign( { }, photo.obsCard ) );
-      delete fromCard.files[photo.file.id];
+      const fromCard = new ObsCard( Object.assign( { }, media.obsCard ) );
+      delete fromCard.files[media.file.id];
       // the card from where the photo was move can be removed if it has no data
       // or if its data is untouched from when it was imported
       if ( fromCard.blank( ) || ( _.isEmpty( fromCard.files ) && !fromCard.modified ) ) {
@@ -324,6 +350,7 @@ const actions = class actions {
   static submitObservations( ) {
     return function ( dispatch ) {
       dispatch( { type: types.SET_STATE, attrs: { saveStatus: "saving" } } );
+      dispatch( actions.selectObsCards( { } ) );
       dispatch( actions.saveObservations( ) );
     };
   }
@@ -348,12 +375,12 @@ const actions = class actions {
       } else if ( nextToSave ) {
         // waiting for existing uploads to finish;
       } else if ( stateCounts.pending === 0 && stateCounts.saving === 0 ) {
-        dispatch( actions.finalizeSave( ) );
+        dispatch( actions.checkProjectErrors( ) );
       }
     };
   }
 
-  static finalizeSave( ) {
+  static checkProjectErrors( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       const missingProjects = { };
@@ -381,10 +408,10 @@ const actions = class actions {
           confirmText: I18n.t( "continue" ),
           message: (
             <div>
-              { I18n.t( "some_observations_failed" ) }
-              <div className="projects">
+              { I18n.t( "some_observations_failed_to_be_added" ) }
+              <div className="confirm-list">
                 { _.map( missingProjects, mp => (
-                  <div className="project" key={ mp.project.id }>
+                  <div className="confirm-list-item" key={ mp.project.id }>
                     <span className="title">{ mp.project.title }</span>
                     <span className="count">
                       { I18n.t( "x_observations_failed", { count: mp.count } ) }
@@ -395,16 +422,71 @@ const actions = class actions {
             </div>
           ),
           onConfirm: () => {
-            window.location = `/observations/${CURRENT_USER.login}`;
+            dispatch( actions.checkFailedUploads( ) );
           }
         } } ) );
       } else {
-        window.location = `/observations/${CURRENT_USER.login}`;
+        dispatch( actions.checkFailedUploads( ) );
       }
     };
   }
 
-  static uploadImages( ) {
+  static checkFailedUploads( ) {
+    return function ( dispatch, getState ) {
+      const s = getState( );
+      const failedCards = _.filter( s.dragDropZone.obsCards, c => c.saveState === "failed" );
+      const remaining = _.pick( s.dragDropZone.obsCards, _.map( failedCards, "id" ) );
+      if ( s.dragDropZone.saveCounts.failed > 0 && _.size( remaining ) > 0 ) {
+        const grouped = { };
+        _.each( remaining, r => {
+          _.each( r.saveErrors, err => {
+            grouped[err] = grouped[err] || 0;
+            grouped[err] += 1;
+          } );
+        } );
+        dispatch( actions.setState( { confirmModal: {
+          show: true,
+          confirmText: I18n.t( "stay_and_try_again" ),
+          cancelText: I18n.t( "ignore_and_continue" ),
+          message: (
+            <div>
+              { I18n.t( "some_observations_failed_to_save" ) }
+              <div className="confirm-list">
+                { _.map( grouped, ( count, err ) => (
+                  <div className="confirm-list-item" key={ err }>
+                    <span className="title">{ err }</span>
+                    <span className="count">
+                      { I18n.t( "x_observations_failed", { count } ) }
+                    </span>
+                  </div>
+                ) ) }
+              </div>
+            </div>
+          ),
+          onConfirm: ( ) => {
+            dispatch( actions.setState( { obsCards: remaining, saveStatus: null } ) );
+            _.each( remaining, c => {
+              dispatch( actions.updateObsCard( c, { saveState: "pending" } ) );
+            } );
+          },
+          onCancel: ( ) => {
+            _.each( remaining, c => {
+              dispatch( actions.updateObsCard( c, { saveState: "saved" } ) );
+            } );
+            actions.loadUsersObservationsPage( );
+          }
+        } } ) );
+      } else {
+        actions.loadUsersObservationsPage( );
+      }
+    };
+  }
+
+  static loadUsersObservationsPage( ) {
+    window.location = `/observations/${CURRENT_USER.login}`;
+  }
+
+  static uploadFiles( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
       const stateCounts = { pending: 0, uploading: 0, uploaded: 0, failed: 0 };
@@ -417,7 +499,11 @@ const actions = class actions {
         }
       } );
       if ( nextToUpload && stateCounts.uploading < s.dragDropZone.maximumNumberOfUploads ) {
-        dispatch( actions.uploadImage( nextToUpload ) );
+        if ( nextToUpload.type.match( /audio/ ) ) {
+          dispatch( actions.uploadSound( nextToUpload ) );
+        } else {
+          dispatch( actions.uploadImage( nextToUpload ) );
+        }
       } else if ( nextToUpload ) {
         // waiting for existing uploads to finish
       } else {
@@ -429,18 +515,50 @@ const actions = class actions {
   static uploadImage( file ) {
     return function ( dispatch ) {
       dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
+
       inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
         const serverMetadata = file.additionalPhotoMetadata( r );
         dispatch( actions.updateFile( file, {
           uploadState: "uploaded", photo: r, serverMetadata } ) );
         setTimeout( ( ) => {
-          dispatch( actions.uploadImages( ) );
+          dispatch( actions.uploadFiles( ) );
+          // if the file has been uploaded and we had a preview,
+          // ditch the preview to avoid memory leaks
+          if ( file.preview ) {
+            window.URL.revokeObjectURL( file.preview );
+            dispatch( actions.updateFile( file, { preview: null } ) );
+          }
         }, 100 );
       } ).catch( e => {
         console.log( "Upload failed:", e );
         dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
         setTimeout( ( ) => {
-          dispatch( actions.uploadImages( ) );
+          dispatch( actions.uploadFiles( ) );
+        }, 100 );
+      } );
+    };
+  }
+
+  static uploadSound( file ) {
+    return function ( dispatch ) {
+      dispatch( actions.updateFile( file, { uploadState: "uploading" } ) );
+      inaturalistjs.sounds.create( { file: file.file }, { same_origin: true } ).then( r => {
+        // const serverMetadata = file.additionalPhotoMetadata( r );
+        dispatch( actions.updateFile( file, {
+          uploadState: "uploaded",
+          sound: r,
+          serverMetadata: {}
+        } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadFiles( ) );
+          // TODO figure out why calling window.URL.revokeObjectURL prevents the
+          // sound from playing via the URL in Safari and Firefox
+        }, 100 );
+      } ).catch( e => {
+        console.log( "Upload failed:", e );
+        dispatch( actions.updateFile( file, { uploadState: "failed" } ) );
+        setTimeout( ( ) => {
+          dispatch( actions.uploadFiles( ) );
         }, 100 );
       } );
     };

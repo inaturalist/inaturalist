@@ -63,6 +63,7 @@ const DiscussionListItem = ( {
           url={`/taxa/${t.id}`}
           target="_blank"
           displayClassName="fadednowrap"
+          user={ currentUser }
         />
         { actions }
       </div>
@@ -89,7 +90,11 @@ const DiscussionListItem = ( {
     );
   }
   return (
-    <div className={`DiscussionListItem ${className}`}>
+    <div
+      className={
+        `DiscussionListItem ${className} ${user.id === currentUser.id ? "by-current-user" : "by-someone-else"}`
+      }
+    >
       <div className="clear">
         <span
           dangerouslySetInnerHTML={ { __html: (

@@ -6,15 +6,15 @@ class PlaceAutocomplete extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
     const opts = Object.assign( {}, this.props, {
-      idEl: $( "input[name='place_id']", domNode )
+      idEl: $( "input[name='place_id']", domNode ),
+      react: true
     } );
     $( "input[name='place_name']", domNode ).placeAutocomplete( opts );
     this.fetchPlace( );
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialPlaceID &&
-         this.props.initialPlaceID !== prevProps.initialPlaceID ) {
+    if ( this.props.initialPlaceID !== prevProps.initialPlaceID ) {
       this.fetchPlace( );
     }
   }
@@ -26,6 +26,8 @@ class PlaceAutocomplete extends React.Component {
           this.updatePlace( { place: r.results[0] } );
         }
       } );
+    } else {
+      this.updatePlace( { place: null } );
     }
   }
 
@@ -38,7 +40,15 @@ class PlaceAutocomplete extends React.Component {
           options.place,
           { title: options.place.display_name }
         ) );
+    } else {
+      $( "input[name='place_name']", domNode ).
+        trigger( "resetAll" );
     }
+  }
+
+  inputElement( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    return $( "input[name='place_name']", domNode );
   }
 
   render( ) {
@@ -48,7 +58,7 @@ class PlaceAutocomplete extends React.Component {
           type="search"
           name="place_name"
           className={`form-control ${this.props.className}`}
-          placeholder={ I18n.t( "place" ) }
+          placeholder={ this.props.placeholder || I18n.t( "place" ) }
         />
         <input type="hidden" name="place_id" />
       </span>
@@ -65,7 +75,8 @@ PlaceAutocomplete.propTypes = {
   afterClear: PropTypes.func,
   initialSelection: PropTypes.object,
   initialPlaceID: PropTypes.number,
-  className: PropTypes.string
+  className: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default PlaceAutocomplete;

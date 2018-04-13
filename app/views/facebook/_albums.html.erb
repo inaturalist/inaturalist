@@ -1,5 +1,5 @@
 <%-
-  opts = {:class => "photoSelectorAlbums facebookAlbums"}
+  opts = { class: "photoSelectorAlbums facebookAlbums" }
   opts["data-friend_id"] = @friend_id if @friend_id
 -%>
 <%= content_tag :div, opts do %>
@@ -14,7 +14,7 @@
     <table>
     <% @albums.each do |album| %>
       <tr class='album' data-aid='<%= album['aid'] %>'>
-        <td><%= image_tag(album['cover_photo_src'], :alt=>"Album cover photo") %></td>
+        <td><%= image_tag( album['cover_photo_src'], alt: "Album cover photo" ) %></td>
         <td><%= album['name'] %></td>
       </tr>
     <% end %>

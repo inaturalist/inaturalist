@@ -12,6 +12,7 @@ Options:
 EOS
   opt :user, "User whose observations to resurrect", :short => "-u", :type => :string
   opt :observation, "Observation ID(s) to resurrect", :short => "-o", :type => :string
+  opt :observation_ids_file, "File containing obs ids, one per line", short: "-f", type: :string
   opt :observed_on, "Observed date to resurrect observations from, format: YYYY-MM-DD", :short => "-d", :type => :string
   opt :created_on, "Created date to resurrect observations from, format: YYYY-MM-DD", :short => "-c", :type => :string
   opt :dbname, "Database to connect export from", short: "-n", type: :string, default: ActiveRecord::Base.connection.current_database
@@ -20,7 +21,7 @@ end
 
 OPTS = opts
 
-unless OPTS.user || OPTS.observation || OPTS.observed_on || OPTS.created_on
+unless OPTS.user || OPTS.observation || OPTS.observed_on || OPTS.created_on || OPTS.observation_ids_file
   puts "You must specify a user, an observation, or a date"
   exit(0)
 end
@@ -40,8 +41,30 @@ if OPTS.user
   end
 end
 
-if OPTS.observation
-  @observations = Observation.where(id: OPTS.observation.split(","))
+if OPTS.observation || OPTS.observation_ids_file
+  observation_ids = if OPTS.observation_ids_file
+    ids = []
+    CSV.foreach( OPTS.observation_ids_file ) do |row|
+      ids << row[0].to_i unless row[0].to_i == 0
+    end
+    ids.uniq
+  elsif OPTS.observation
+    OPTS.observation.split( "," )
+  end
+  if ActiveRecord::Base.connection.current_database != OPTS.dbname
+    # if we're trying to extract data from a separate database AND we're specifying obs IDs, we need to look for them in that database
+    Observation.establish_connection( ActiveRecord::Base.connection_config.merge( database: OPTS.dbname ) )
+    begin
+      Observation.first
+    rescue PG::ConnectionBad
+      Observation.establish_connection( ActiveRecord::Base.connection_config.merge(
+        database: OPTS.dbname,
+        host: nil,
+        password: nil
+      ) )
+    end
+  end
+  @observations = Observation.where( id: observation_ids )
   unless @observations.blank?
     @where << "observations.id IN (#{@observations.map(&:id).join(',')})"
   else
@@ -68,7 +91,14 @@ if OPTS.created_on
   end
 end
 
-es_cmd = "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+es_cmd = if @where[0].to_s =~ /id IN \(/
+  @observations.in_groups_of( 500 ).map { |obs|
+    new_where = ["observations.id IN (#{obs.compact.map(&:id).join( "," )})"] + @where[1..-1]
+    "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{new_where.join( " AND " )}' ) )\""
+  }.join( " && \\\n" )
+else
+  "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+end
 
 system "rm -rf resurrect_#{session_id}*"
 
@@ -98,11 +128,16 @@ has_many_reflections.each do |k, reflection|
   unless table_names.include?(reflection.table_name)
     system "test #{fname} || rm #{fname}"
   end
+  join_condition = "#{reflection.table_name}.#{reflection.foreign_key} = observations.id"
+  # if the reflection is polymorphic, we need to add an additional condition for the type column
+  if %w( comments taggings tag_taggings votes_for flags annotations ).include?( k.to_s ) && reflection.options[:as]
+    join_condition += " AND #{reflection.table_name}.#{reflection.options[:as]}_type = 'Observation'"
+  end
   sql = <<-SQL
     SELECT DISTINCT
       #{column_names.map{|cn| "#{reflection.table_name}.#{cn}"}.join( ", " )}
     FROM #{reflection.table_name}
-      JOIN observations ON #{reflection.table_name}.#{reflection.foreign_key} = observations.id
+      JOIN observations ON #{join_condition}
     WHERE #{@where.join(' AND ')}
   SQL
   cmd = "psql #{OPTS.dbname} -c \"COPY (#{sql}) TO STDOUT WITH CSV\" > #{fname}"

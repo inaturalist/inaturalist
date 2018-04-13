@@ -1,13 +1,14 @@
 module ObservationsHelper
   def observation_image_url(observation, params = {})
     return nil if observation.observation_photos.blank?
-    size = params[:size] ? "#{params[:size]}_url" : 'square_url'
+    size = params[:size].blank? ? "square" : params[:size]
     photo = observation.observation_photos.sort_by do |op|
       op.position || observation.observation_photos.size + op.id.to_i
     end.first.photo
-    url = photo.send(size)
+    url = photo.best_url( size )
+    return nil if !url
     # this assumes you're not using SSL *and* locally hosted attachments for observations
-    if params[:ssl] || ( defined? request && request && request.protocol =~ /https/ )
+    if params[:ssl] || ( defined?( request ) && request && request.protocol =~ /https/ )
       url = url.sub("http://", "https://s3.amazonaws.com/")
     end
     url
@@ -112,14 +113,14 @@ module ObservationsHelper
   end
   
   def coordinate_system_select_options(options = {})
-    return {} unless CONFIG.coordinate_systems
+    return {} unless @site.coordinate_systems
     systems = if options[:skip_lat_lon]
       {}
     else
       { "#{t :latitude} / #{t :longitude} (WGS84, EPSG:4326)" => 'wgs84' }
     end
-    CONFIG.coordinate_systems.to_h.each do |system_name, system|
-      systems[system[:label]] = options[:names] ? system_name : system.proj4
+    @site.coordinate_systems.to_h.each do |system_name, system|
+      systems[system["label"]] = options[:names] ? system_name : system["proj4"]
     end
     systems
   end

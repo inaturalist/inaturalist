@@ -89,16 +89,16 @@
 <% content_for(:extrahead) do %>
   <link rel="alternate" type="application/atom+xml" title=<%= t(:recent_atom_observations_by, :login => @login ) %>  href="<%= url_for({:controller => 'observations', :action => 'by_login', :login => @login, :format => 'atom'}) %>" />
   <meta property="og:title" content="<%=t :observations_by_user, :user => @login %>">
-  <meta property="og:url" content="<%= uri_join CONFIG.site_url, request.fullpath %>"/>
+  <meta property="og:url" content="<%= request.original_url %>"/>
   <%-
-    desc = t(:users_latest_observations_on_site, :user => @login, :site => SITE_NAME)
+    desc = t(:users_latest_observations_on_site, :user => @login, :site => @site.name)
   -%>
   <meta property="og:description" content="<%= desc %>">
   <%- photo_observations = (@observations || []).select{|o| o.observation_photos_count > 0}.sort_by{|o| [o.comments_count.to_i, o.id]}[0..3] %>
   <% if photo_obs = photo_observations.last -%>
     <% if photo = photo_obs.observation_photos.map(&:photo).detect{|p| p.medium_url =~ /^http/} -%>
-      <meta property="og:image" content="<%= photo.medium_url %>"/> 
-      <meta property="twitter:image" content="<%= photo.medium_url %>"/> 
+      <meta property="og:image" content="<%= @shareable_image_url = photo.medium_url %>"/> 
+      <meta property="twitter:image" content="<%= @shareable_image_url %>"/> 
     <% end -%>
   <% end -%>
   <% if @observer_provider_authorizations && twitter_pa = @observer_provider_authorizations.detect{|pa| pa.provider_name == "twitter"} -%>
@@ -247,15 +247,9 @@
         feed_params = request.query_parameters.reject do |key,value|
           ObservationsController::REJECTED_FEED_PARAMS.include?(key)
         end
-        kml_feed_params = request.query_parameters.reject do |key,value|
-          ObservationsController::REJECTED_KML_FEED_PARAMS.include?(key)
-        end
-        kml_feed_params[:kml_type] = "network_link"
       -%>
       <%= link_to(t(:atom), observations_by_login_feed_path(@login, :format => :atom, :params => feed_params),
         :class => 'atomlink') %>
-      <%= link_to(t(:kml), observations_by_login_feed_path(@login, :format => :kml, :params => kml_feed_params),
-        :class => 'kmllink') %>
     </span>
 
     <% if is_me?(@selected_user) -%>

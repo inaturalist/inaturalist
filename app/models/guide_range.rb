@@ -15,7 +15,7 @@ class GuideRange < ActiveRecord::Base
     },
     :storage => :s3,
     :s3_credentials => "#{Rails.root}/config/s3.yml",
-    :s3_host_alias => CONFIG.s3_bucket,
+    :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
     :bucket => CONFIG.s3_bucket,
     :path => "guide_maps/:id-:style.:extension",
     :url => ":s3_alias_url",

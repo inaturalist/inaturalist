@@ -29,7 +29,7 @@ class FacebookController < ApplicationController
       Logstasher.write_exception(e, request: request, session: session, user: current_user)
       flash[:error] = "Ack! Something went horribly wrong, like a giant " +
                        "squid ate your Facebook info.  You can contact us at " +
-                       "#{CONFIG.help_email} if you still can't get this " +
+                       "#{@site.email_help} if you still can't get this " +
                        "working.  Error: #{e.message}"
     end
   end
@@ -88,8 +88,13 @@ class FacebookController < ApplicationController
       friend_data = current_user.facebook_api.get_object(@friend_id)
       @friend_name = friend_data['first_name']
     end
-    @photos = current_user.facebook_api.get_connections(params[:id], 'photos', 
-        :limit => limit, :offset => offset).map do |fp|
+    @photos = current_user.facebook_api.get_connections(
+      params[:id],
+      "photos",
+      limit: limit,
+      offset: offset,
+      fields: FacebookPhoto::PHOTO_FIELDS
+    ).map do |fp|
       FacebookPhoto.new_from_api_response(fp)
     end
     # sync doesn't work with facebook! they strip exif metadata from photos. :(
@@ -133,15 +138,18 @@ class FacebookController < ApplicationController
   # not terribly efficient, cause it makes an api call to get album data and separate calls for each album to get the url
   def facebook_albums(user, friend_id=nil)
     return [] unless user.facebook_api
-    album_data = user.facebook_api.get_connections(friend_id || 'me', 'albums', :limit => 500)
-    album_data.reject{|a| a['count'].blank? || a['count'] < 1}.map do |a|
-      {
-        'aid' => a['id'],
-        'name' => a['name'],
-        'photo_count' => a['count'],
-        'cover_photo_src' => 
-          "https://graph.facebook.com/#{a['cover_photo']}/picture?type=album&access_token=#{user.facebook_token}"
+    album_data = user.facebook_api.get_connections( friend_id || "me", "albums", limit: 500, fields: "name,cover_photo,count")
+    album_data.reject{|a| a["count"].blank? || a["count"] < 1}.map do |a|
+      data = {
+        "aid" => a["id"],
+        "name" => a["name"],
+        "photo_count" => a["count"]
       }
+      if a["cover_photo"]
+        data["cover_photo_src"] =
+          "https://graph.facebook.com/#{a["cover_photo"]["id"]}/picture?type=album&access_token=#{user.facebook_token}"
+      end
+      data
     end
   rescue OpenSSL::SSL::SSLError, Timeout::Error, Errno::ENETUNREACH => e
     Rails.logger.error "[ERROR #{Time.now}] #{e}"

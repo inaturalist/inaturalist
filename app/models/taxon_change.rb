@@ -20,7 +20,7 @@ class TaxonChange < ActiveRecord::Base
   accepts_nested_attributes_for :taxon_change_taxa, :allow_destroy => true,
     :reject_if => lambda { |attrs| attrs[:taxon_id].blank? }
 
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :new_mentioned_users, on: :save, notification: "mention"
   
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxon_change_taxa tct ON tct.taxon_change_id = taxon_changes.id",
@@ -87,6 +87,17 @@ class TaxonChange < ActiveRecord::Base
     !committed_on.blank?
   end
 
+  def committable_by?( u )
+    return false unless u
+    return false unless u.is_curator?
+    uneditable_input_taxon = input_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
+    uneditable_output_taxon = nil
+    unless uneditable_input_taxon
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
+    end
+    uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
+  end
+
   # Override in subclasses that use self.taxon_change_taxa as the input
   def add_input_taxon(taxon)
     self.taxon = taxon
@@ -109,8 +120,13 @@ class TaxonChange < ActiveRecord::Base
     "#{self.class.name.underscore.split('_')[1..-1].join(' ').downcase}"
   end
 
+  class PermissionError < StandardError; end
+
   # Override in subclasses
   def commit
+    unless committable_by?( committer )
+      raise PermissionError, "Committing user doesn't have permission to commit"
+    end
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
     output_taxa.each {|t| t.update_attribute(:is_active, true)}
     update_attribute(:committed_on, Time.now)
@@ -259,7 +275,7 @@ class TaxonChange < ActiveRecord::Base
       identifications.find_each(&:destroy)
     end
     in_taxon = input_taxa.first if input_taxa.size == 1
-    if in_taxon
+    if in_taxon && !output_taxa.blank?
       listed_taxa_sql = <<-SQL
         UPDATE listed_taxa SET taxon_id = #{in_taxon.id} FROM places WHERE
           listed_taxa.taxon_id IN (#{output_taxa.map(&:id).join(',')})
@@ -275,6 +291,10 @@ class TaxonChange < ActiveRecord::Base
       logger.info "[INFO #{Time.now}] Reverting taxon links: #{taxon_link_sql}"
       ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
     end
+    input_taxa.each do |input_taxon|
+      input_taxon.update_attributes( is_active: true )
+    end
+    # output taxa may or may not need to be made inactive, impossible to say in code
     logger.info "[INFO #{Time.now}] Finished partial revert for #{self}"
   end
 
@@ -284,7 +304,7 @@ class TaxonChange < ActiveRecord::Base
 
   def commit_records_later
     return true unless committed_on_changed? && committed?
-    delay(:priority => USER_PRIORITY).commit_records
+    delay(:priority => USER_INTEGRITY_PRIORITY).commit_records
     true
   end
 
@@ -304,7 +324,7 @@ class TaxonChange < ActiveRecord::Base
 
   def taxa_below_order
     return true if user && user.is_admin?
-    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level >= Taxon::ORDER_LEVEL }
+    if [taxon, taxon_change_taxa.map(&:taxon)].flatten.compact.detect{|t| t.rank_level.to_i >= Taxon::ORDER_LEVEL }
       errors.add(:base, "only admins can move around taxa at order-level and above")
     end
     true
@@ -316,6 +336,12 @@ class TaxonChange < ActiveRecord::Base
     end
     if target_input_taxon.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == target_input_taxon.rank
       target_input_taxon.children.active.each do |child|
+        # If for some horrible reason people are swapping replacing taxa with
+        # their own children, at least don't get into some kind of invite
+        # change loop.
+        if input_taxa.include?( child ) || output_taxa.include?( child )
+          next
+        end
         tc = TaxonSwap.new(
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
@@ -335,6 +361,7 @@ class TaxonChange < ActiveRecord::Base
         end
         tc.add_output_taxon( output_child )
         tc.save!
+        tc.committer = committer
         tc.commit
       end
     else
@@ -350,6 +377,11 @@ class TaxonChange < ActiveRecord::Base
   def mentioned_users
     return [ ] if description.blank?
     description.mentioned_users
+  end
+
+  def new_mentioned_users
+    return [ ] unless description && description_changed?
+    description.mentioned_users - description_was.to_s.mentioned_users
   end
 
   def draft?

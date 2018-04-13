@@ -14,17 +14,17 @@
     </p>
   <% end %>
 <p>
-  <%=t :linked_flickr, :site_name => SITE_NAME %>
+  <%=t :linked_flickr, :site_name => @site.name %>
 </p>
 <p>
-  <%=t :linked_flickr_description, :site_name => SITE_NAME %>
+  <%=t :linked_flickr_description, :site_name => @site.name %>
 </p>
 <% else -%>
-<h3><%=t :not_linked_flickr, :site_name => SITE_NAME_SHORT %></h3>
+<h3><%=t :not_linked_flickr, :site_name => @site.preferred_site_name_short %></h3>
 <p class="description">
   <%=t :linked_flickr_howto %> <%= link_to t(:flickr_tagger), flickr_tagger_path %>.
-  To connect Flickr with <%= CONFIG.site_name_short %> , click the link on the right and sign into
-  Flickr.com. Flickr will ask you if you want to give <%= CONFIG.site_name %> permission
+  To connect Flickr with <%= @site.site_name_short %> , click the link on the right and sign into
+  Flickr.com. Flickr will ask you if you want to give <%= @site.name %> permission
   to <strong>read</strong> from your Flickr account and will then send you
   back here.
 </p>
@@ -33,7 +33,7 @@
 </p>
 
 <p class="description">
-  <%=t :linked_flickr_automatically, :site_name => CONFIG.site_name %>
+  <%=t :linked_flickr_automatically, :site_name => @site.name %>
 </p>
 <% end -%>
 
@@ -52,7 +52,7 @@
 <div class="column span-7 last">
 <p>
 <% if current_user.flickr_identity %>
-<%= button_to t(:hate_me_flickr, :site_name => SITE_NAME), 
+<%= button_to t(:hate_me_flickr, :site_name => @site.name),
   {:controller => 'flickr', :action => 'unlink_flickr_account'}, :class => 'delete button' %>
 <% else %>
 <%= render :partial => 'link_to_flickr', :locals => {:flickr_url => @flickr_url} -%>

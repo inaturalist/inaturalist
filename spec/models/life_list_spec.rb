@@ -67,7 +67,7 @@ describe LifeList do
 
   describe "refresh_with_observation" do
     before(:each) do
-      @parent = Taxon.make!
+      @parent = Taxon.make!( rank: Taxon::GENUS )
       @list = LifeList.make!
       @list.build_taxon_rule(@parent)
       @list.save!
@@ -136,8 +136,8 @@ describe LifeList do
     end
   
     it "should remove taxa when taxon changed" do
-      t1 = Taxon.make!(:parent => @parent)
-      t2 = Taxon.make!(:parent => @parent)
+      t1 = Taxon.make!( parent: @parent, rank: Taxon::SPECIES )
+      t2 = Taxon.make!( parent: @parent, rank: Taxon::SPECIES )
       o = Observation.make!(:user => @list.user, :taxon => t1)
       LifeList.refresh_with_observation(o)
       expect(@list.taxon_ids).to include(t1.id)

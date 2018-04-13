@@ -18,18 +18,14 @@ class ProjectsController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar ]
+  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar, :new2 ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :by_login]
+  before_filter :load_project_user, :except => [:index, :search, :new, :by_login, :new2]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
-
-  MOBILIZED = [:join]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -43,16 +39,7 @@ class ProjectsController < ApplicationController
         if @site && (@site_place = @site.place)
           @place = @site.place unless params[:everywhere].yesish?
         end
-        project_observations = ProjectObservation.
-          select("MAX(project_observations.id) AS id, project_id").
-          order("id DESC").
-          limit(9).
-          group('project_id')
-        if @place
-          project_observations = project_observations.joins(:project => :place).where(@place.self_and_descendant_conditions)
-        end
-        @projects = Project.where("projects.id IN (?)",
-          project_observations.map(&:project_id)).not_flagged_as_spam
+        @projects = Project.recently_added_to(place: @place)
         @created = Project.not_flagged_as_spam.order("projects.id desc").limit(9)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
         @featured = Project.featured
@@ -109,35 +96,32 @@ class ProjectsController < ApplicationController
       @list_numerator = list_observed_and_total[:numerator]
 
       format.html do
+        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
+          where("provider_authorizations.provider_name = 'facebook'").
+          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
+          map(&:provider_uid)
+        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
+        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
+        if @project.is_new_project?
+          projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+          if projects_response.blank?
+            flash[:error] = I18n.t( :doh_something_went_wrong )
+            return redirect_to projects_path
+          end
+          @projects_data = projects_response.results[0]
+          @current_tab = params[:tab]
+          @current_subtab = params[:subtab]
+          return render layout: "bootstrap", action: "show2"
+        end
         if logged_in?
           @provider_authorizations = current_user.provider_authorizations.all
-        end
-        @observations_count = current_user.observations.count if current_user
-        @observed_taxa_count = @project.observed_taxa_count
-        top_observers_scope = @project.project_users.limit(10)
-        @top_observers = if @project.project_type == "observation contest"
-          top_observers_scope.order("observations_count desc, taxa_count desc").where("observations_count > 0")
-        else
-          top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
         end
         @project_users = @project.project_users.includes(:user).
           paginate(:page => 1, :per_page => 5).order("id DESC")
         @members_count = @project_users.total_entries
-        @project_observations = @project.project_observations.page(1).
-          includes([
-            { :observation => [ :iconic_taxon,
-                                :projects,
-                                :quality_metrics,
-                                :stored_preferences,
-                                :taxon,
-                                :flags,
-                                { :photos => :flags },
-                                { :user => :stored_preferences } ] },
-            { :curator_identification => [:user, :taxon] }
-          ]).
-          order("project_observations.id DESC")
-        @project_observations_count = @project_observations.count
-        @observations = @project_observations.map(&:observation)
+        search_params = Observation.get_search_params( { projects: [@project.id] }, current_user: current_user )
+        @observations = Observation.page_of_results( search_params )
+        Observation.preload_for_component( @observations, logged_in: !!current_user )
         @project_journal_posts = @project.posts.published.order("published_at DESC").limit(4)
         @custom_project = @project.custom_project
         @project_assets = @project.project_assets.limit(100)
@@ -148,14 +132,7 @@ class ProjectsController < ApplicationController
             @place_geometry = PlaceGeometry.without_geom.where(:place_id => @place).first
           end
         end
-        
         @project_assessments = @project.assessments.incomplete.order("assessments.id DESC").limit(5)
-        @fb_admin_ids = ProviderAuthorization.joins(:user => :project_users).
-          where("provider_authorizations.provider_name = 'facebook'").
-          where("project_users.project_id = ? AND project_users.role = ?", @project, ProjectUser::MANAGER).
-          map(&:provider_uid)
-        @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
-        @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
         @observations_url_params = { projects: [@project.slug] }
         @observations_url = observations_url(@observations_url_params)
         @observation_search_url_params = { place_id: "any", verifiable: "any", project_id: @project.slug }
@@ -165,6 +142,12 @@ class ProjectsController < ApplicationController
 
         if params[:iframe]
           @headless = @footless = true
+          top_observers_scope = @project.project_users.limit(10)
+          @top_observers = if @project.project_type == "observation contest"
+            top_observers_scope.order("observations_count desc, taxa_count desc").where("observations_count > 0")
+          else
+            top_observers_scope.order("taxa_count desc, observations_count desc").where("taxa_count > 0")
+          end
           render :action => "show_iframe"
         elsif params[:test]
           render action: 'show_test', layout: 'bootstrap'
@@ -194,7 +177,25 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def new2
+    unless logged_in? && current_user.has_role?(:admin)
+      flash[:error] = t(:only_administrators_may_access_that_page)
+      redirect_to projects_path
+      return
+    end
+    return render layout: "bootstrap"
+  end
+
   def edit
+    if @project.is_new_project?
+      projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+      if projects_response.blank?
+        flash[:error] = I18n.t( :doh_something_went_wrong )
+        return redirect_to projects_path
+      end
+      @project_json = projects_response.results[0]
+      return render layout: "bootstrap", action: "new2"
+    end
     @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
     if @place = @project.place
@@ -214,9 +215,15 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_created)) }
+        format.json {
+          render :json => @project.to_json
+        }
       else
         format.html { render :action => "new" }
+        format.json { render :status => :unprocessable_entity,
+          :json => { :error => @project.errors.full_messages } }
       end
     end
   end
@@ -228,9 +235,12 @@ class ProjectsController < ApplicationController
     @project.cover = nil if params[:cover_delete]
     respond_to do |format|
       if @project.update_attributes(params[:project])
+        Project.refresh_es_index
         format.html { redirect_to(@project, :notice => t(:project_was_successfully_updated)) }
+        format.json { render json: @project }
       else
         format.html { render :action => "edit" }
+        format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -245,13 +255,23 @@ class ProjectsController < ApplicationController
       return
     end
     
-    @project.delay( priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
-    
+    if @project.is_new_project?
+      # new projects can be destroyed immediately as they will have no
+      # project observations
+      @project.sane_destroy
+    else
+      @project.delay( priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: { "Project::sane_destroy": @project.id } ).sane_destroy
+    end
+
     respond_to do |format|
       format.html do
         flash[:notice] = t(:project_x_was_delete, :project => @project.title)
         redirect_to(projects_url)
+      end
+      format.json do
+        Project.refresh_es_index
+        head :ok
       end
     end
   end
@@ -458,7 +478,6 @@ class ProjectsController < ApplicationController
             # just render the default
           end
         end
-        format.mobile
         format.json { render :json => @project }
       end
       return
@@ -578,21 +597,71 @@ class ProjectsController < ApplicationController
   end
   
   def stats
-    @project_user_stats = @project.project_users.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
-    @project_observation_stats = @project.project_observations.group("EXTRACT(YEAR FROM created_at) || '-' || EXTRACT(MONTH FROM created_at)").count
-    @unique_observer_stats = @project.project_observations.joins(:observation).
-      select("DISTINCT observations.user_id").
-      group("EXTRACT(YEAR FROM project_observations.created_at) || '-' || EXTRACT(MONTH FROM project_observations.created_at)").
-      count
+    @project_user_stats = Hash[
+      @project.project_users.
+        group("date_trunc('month', created_at)").
+        count.map{|k,v| [k.to_s[/\d{4}-\d{2}/, 0], v]}
+    ]
+    @project_observation_stats = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { project_ids: [@project.id] } }
+      ],
+      aggregate: {
+        year_months: {
+          date_histogram: {
+            field: "created_at",
+            interval: "month",
+            format: "yyyy-MM",
+            keyed: true
+          }
+        }
+      }
+    ).response.aggregations.year_months.buckets
+    @project_observation_stats = Hash[@project_observation_stats.map{|year_month, bucket| [year_month, bucket.doc_count]}]
+    @unique_observer_stats = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { project_ids: [@project.id] } }
+      ],
+      aggregate: {
+        year_months: {
+          date_histogram: {
+            field: "created_at",
+            interval: "month",
+            format: "yyyy-MM",
+            keyed: true
+          },
+          aggs: {
+            distinct_users: {
+              cardinality: {
+                field: "user.id"
+              }
+            }
+          }
+        }
+      }
+    ).response.aggregations.year_months.buckets
+    @unique_observer_stats = Hash[@unique_observer_stats.map{|year_month, bucket| [year_month, bucket.distinct_users.value]}]
     @total_project_users = @project.project_users.count
-    @total_project_observations = @project.project_observations.count
-    @total_unique_observers = @project.project_observations.select("DISTINCT observations.user_id").joins(:observation).count
-    
+    @total_project_observations = @project_observation_stats.values.sum
+    @total_unique_observers = Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { project_ids: [@project.id] } }
+      ],
+      aggregate: {
+        distinct_users: {
+          cardinality: {
+            field: "user.id"
+          }
+        }
+      }
+    ).response.aggregations.distinct_users.value
     @headers = [t(:year_month), t(:new_members), t(:new_observations), t(:unique_observers)]
     @data = []
     (@project_user_stats.keys + @project_observation_stats.keys + @unique_observer_stats.keys).uniq.each do |key|
-      display_key = key.gsub(/\-(\d)$/, "-0\\1")
-      @data << [display_key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
+      @data << [key, @project_user_stats[key].to_i, @project_observation_stats[key].to_i, @unique_observer_stats[key].to_i]
     end
     @data.sort_by!(&:first).reverse!
     
@@ -672,6 +741,7 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
+        Observation.refresh_es_index
         render :json => @project_observation.to_json(:include => {
           :observation => {:include => :observation_field_values}, 
           :project => {:include => :project_observation_fields}
@@ -708,6 +778,7 @@ class ProjectsController < ApplicationController
         redirect_back_or_default(@project)
       end
       format.json do
+        Observation.refresh_es_index
         render :json => @project_observation
       end
     end
@@ -894,7 +965,7 @@ class ProjectsController < ApplicationController
     dest = options[:dest] || @project || session[:return_to]
     respond_to do |format|
       if error
-        format.any(:html, :mobile) do
+        format.html do
           flash[:error] = error
           redirect_to dest
         end
@@ -903,7 +974,7 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
-        format.any(:html, :mobile) do
+        format.html do
           flash[:notice] = notice
           redirect_to dest
         end
@@ -917,7 +988,6 @@ class ProjectsController < ApplicationController
   
   def filter_params
     params[:project].delete(:featured_at) unless current_user.is_admin?
-    
     if current_user.is_admin?
       params[:project][:featured_at] = params[:project][:featured_at] == "1" ? Time.now : nil
     else

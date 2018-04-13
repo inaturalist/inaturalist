@@ -84,6 +84,19 @@ shared_examples_for "an IdentificationsController" do
       json = JSON.parse(response.body)
       expect(json['observation']['iconic_taxon_name']).to eq o.iconic_taxon_name
     end
+
+    it "should set vision attribute" do
+      post :create, format: :json, identification: {
+        observation_id: observation.id,
+        taxon_id: Taxon.make!.id,
+        vision: true
+      }
+      expect( response ).to be_success
+      json = JSON.parse(response.body)
+      expect( json["vision"] ).to be true
+      ident = Identification.find( json["id"] )
+      expect( ident.vision ).to be true
+    end
   end
 
   describe "update" do

@@ -1,5 +1,5 @@
 #community_taxon_summary
-  =t 'views.observations.show.community_taxon_desc_html', :site_name => SITE_NAME_SHORT
+  =t 'views.observations.show.community_taxon_desc_html', :site_name => @site.preferred_site_name_short
   %h3=t :algorithm_summary
   %table
     %tr
@@ -31,7 +31,7 @@
         %td{:class => row_class}= n[:disagreement_count]
         %td{:class => row_class}= n[:conservative_disagreement_count]
         %td{:class => "#{row_class} score"}
-          = "#{n[:cumulative_count]}/(#{n[:cumulative_count]}+#{n[:disagreement_count]}+#{n[:disagreement_count]}+#{n[:conservative_disagreement_count]}=#{n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count]}) = #{n[:score].round(4)}"
+          = "#{n[:cumulative_count]}/(#{n[:cumulative_count]}+#{n[:disagreement_count]}+#{n[:conservative_disagreement_count]}=#{n[:cumulative_count] + n[:disagreement_count] + n[:conservative_disagreement_count]}) = #{n[:score].round(4)}"
   .legend.stacked
     %label.agreement=t :agreement
     %label.disagreement=t :disagreement

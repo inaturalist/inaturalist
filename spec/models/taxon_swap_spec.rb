@@ -35,6 +35,31 @@ describe TaxonSwap, "creation" do
     disable_elastic_indexing( Observation, UpdateAction )
   end
 
+  it "should not bail if a taxon has no rank_level" do
+    swap = TaxonSwap.make
+    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
+    swap.add_output_taxon( Taxon.make!( rank: "something ridiculous" ) )
+    expect( swap.output_taxon.rank_level ).to be_blank
+    expect(swap).to be_valid
+  end
+
+  it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the input taxon" do
+    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
+    tc = TaxonCurator.make!( taxon: genus )
+    swap = TaxonSwap.make
+    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
+    swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
+    expect( swap ).to be_valid
+  end
+  it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the output taxon" do
+    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
+    tc = TaxonCurator.make!( taxon: genus )
+    swap = TaxonSwap.make
+    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
+    swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
+    expect( swap ).to be_valid
+  end
+
 end
 
 describe TaxonSwap, "destruction" do
@@ -45,7 +70,8 @@ describe TaxonSwap, "destruction" do
   after(:each) { disable_elastic_indexing( Observation, UpdateAction, Taxon, Identification ) }
 
   it "should destroy updates" do
-    Observation.make!(:taxon => @input_taxon)
+    Observation.make!( taxon: @input_taxon )
+    @swap.committer = @swap.user
     without_delay do
       @swap.commit
     end
@@ -53,7 +79,7 @@ describe TaxonSwap, "destruction" do
     expect( @swap.update_actions.to_a ).not_to be_blank
     old_id = @swap.id
     @swap.destroy
-    expect(UpdateAction.where(resource_type: "TaxonSwap", resource_id: old_id).to_a).to be_blank
+    expect( UpdateAction.where( resource_type: "TaxonSwap", resource_id: old_id ).to_a ).to be_blank
   end
 
   it "should destroy subscriptions" do
@@ -67,6 +93,7 @@ end
 describe TaxonSwap, "commit" do
   before(:each) do
     prepare_swap
+    @swap.committer = @swap.user
   end
 
   it "should duplicate conservation status" do
@@ -216,6 +243,34 @@ describe TaxonSwap, "commit" do
         expect( child_swap.output_taxon.parent ).to eq @output_taxon
       end
     end
+
+    it "should not make swaps for a child if the child is itself involved in this swap" do
+      @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
+      @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", parent: @input_taxon )
+      child = @output_taxon
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      without_delay { @swap.commit }
+      [@input_taxon, @output_taxon, child].each(&:reload)
+      expect( child.parent ).to eq @input_taxon
+      expect( child.taxon_change_taxa ).to be_blank
+    end
+  end
+
+  it "should raise an error if commiter is not a taxon curator of a complete ancestor of the input taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
+    tc = TaxonCurator.make!( taxon: superfamily )
+    @swap.input_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::PermissionError
+  end
+  it "should raise an error if commiter is not a taxon curator of a complete ancestor of the output taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
+    tc = TaxonCurator.make!( taxon: superfamily )
+    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::PermissionError
   end
 
 end
@@ -341,6 +396,43 @@ describe TaxonSwap, "commit_records" do
     expect(ident.observation.identifications.by(ident.user).of(@output_taxon).count).to eq(1)
   end
 
+  it "should set a current identification's previous_observation_taxon if it is the input" do
+    o = Observation.make!( taxon: @input_taxon )
+    g = Taxon.make!( rank: Taxon::GENUS )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    ident = Identification.make!( observation: o, taxon: s )
+    expect( ident.previous_observation_taxon ).to eq @input_taxon
+    @swap.commit_records
+    ident.reload
+    expect( ident.previous_observation_taxon ).to eq @output_taxon
+  end
+  
+  it "should replace an inactive previous_observation_taxon with it's current active synonym" do
+    other_swap = TaxonSwap.make
+    other_swap.add_input_taxon( Taxon.make!( :species, is_active: false, name: "OtherInputSpecies" ) )
+    other_swap.add_output_taxon( Taxon.make!( :species, is_active: false, name: "OtherOutputSpecies" ) )
+    without_delay do
+      other_swap.committer = make_admin
+      other_swap.commit
+      other_swap.commit_records
+    end
+    g = Taxon.make!( rank: Taxon::GENUS )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    o = Observation.make!( taxon: s )
+    ident = Identification.make!( observation: o, taxon: @input_taxon )
+    ident.update_attributes(
+      skip_set_previous_observation_taxon: true,
+      previous_observation_taxon: other_swap.input_taxon
+    )
+    expect( ident ).to be_disagreement
+    expect( ident.previous_observation_taxon ).to eq other_swap.input_taxon
+    expect( ident.previous_observation_taxon ).not_to be_is_active
+    @swap.commit_records
+    o.reload
+    new_ident = o.identifications.current.where( user_id: ident.user_id ).first
+    expect( new_ident.previous_observation_taxon ).to eq other_swap.output_taxon
+  end
+
   it "should not queue job to generate updates for new identifications" do
     obs = Observation.make!(:taxon => @input_taxon)
     Delayed::Job.delete_all
@@ -442,16 +534,39 @@ describe "move_input_children_to_output" do
     @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
     [@input_taxon, @output_taxon, child].each(&:reload)
+    @swap.committer = @swap.user
     @swap.commit
     [@input_taxon, @output_taxon, child].each(&:reload)
     @swap.move_input_children_to_output( @input_taxon )
     expect( Delayed::Job.all.select{ |j| j.handler =~ /commit_records/m }.size ).to eq 2
   end
+
+  it "should preserve disagreements with the input taxon" do
+    prepare_swap
+    family = Taxon.make!( rank: Taxon::FAMILY, name: "Canidae" )
+    @input_taxon.update_attributes( parent: family, rank: Taxon::GENUS, name: "Canis" )
+    @output_taxon.update_attributes( parent: family, rank: Taxon::GENUS, name: "Dogis" )
+    child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Canis lupus" )
+    @swap.committer = @swap.user
+    o = Observation.make!
+    i1 = Identification.make!( observation: o, taxon: child )
+    i2 = Identification.make!( observation: o, taxon: @input_taxon, disagreement: true )
+    expect( i2 ).to be_disagreement
+    expect( i2.previous_observation_taxon ).to eq child
+    @swap.commit
+    Delayed::Worker.new.work_off
+    o = Observation.find( o.id )
+    @output_taxon.reload
+    new_i2 = o.identifications.current.where( user_id: i2.user_id ).first
+    expect( new_i2 ).to be_disagreement
+    expect( new_i2.previous_observation_taxon ).to eq @output_taxon.children.first
+  end
 end
 
 def prepare_swap
-  @input_taxon = Taxon.make!( rank: Taxon::FAMILY )
-  @output_taxon = Taxon.make!( rank: Taxon::FAMILY )
+  superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: superfamily )
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: superfamily )
   @swap = TaxonSwap.make
   @swap.add_input_taxon(@input_taxon)
   @swap.add_output_taxon(@output_taxon)

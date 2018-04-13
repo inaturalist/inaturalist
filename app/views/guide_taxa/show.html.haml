@@ -52,7 +52,10 @@
         - else
           = @guide_taxon.display_name
       - if @guide_taxon.display_name != @guide_taxon.name
-        %em= @guide_taxon.name
+        - if @guide_taxon.taxon && @guide_taxon.taxon.name == @guide_taxon.name && @guide_taxon.taxon.rank_level.to_i <= Taxon::GENUS_LEVEL
+          %em= @guide_taxon.name
+        - else
+          = @guide_taxon.name
 
   #photos.row.stacked
     .col-sm-12
@@ -83,13 +86,13 @@
                 = s.attribution
               = link_to(s.source_url, s.source_url)
         = formatted_user_text s.description, compact: true
-      - unless @guide_taxon.guide_sections.blank?
+      - unless @guide_taxon.guide_sections.blank? && @guide_taxon.guide_photos.blank?
         %h3=t :sources_and_credits
         = references
       %h3= t(:more_info_title, default: t(:more_info))
       %ul
         - if @guide_taxon.taxon
-          %li= link_to t(:site_taxon_page, :site_name => SITE_NAME_SHORT), @guide_taxon.taxon
+          %li= link_to t(:site_taxon_page, :site_name => @site.preferred_site_name_short), @guide_taxon.taxon
         - for tl in @taxon_links.sort_by{|tl| tl.site_title.downcase}
           - if @guide_taxon.eol_page_id && tl.url =~ /eol\.org/
             %li= link_to tl.site_title, "http://eol.org/pages/#{@guide_taxon.eol_page_id}"
@@ -110,7 +113,7 @@
                   = link_to(gr.attribution, gr.source_url)
       - if @guide_taxon.taxon
         %h3
-          = SITE_NAME_SHORT
+          = @site.try_methods( :site_name_short, :name )
           =t :map
         :ruby
           a = {

@@ -1,5 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
+def update_cache_columns_jobs
+  Delayed::Job.where("handler LIKE '%update_cache_columns_for%'").count
+end
+
 describe ListedTaxon do
   before(:each) { enable_elastic_indexing( Observation, Place ) }
   after(:each) { disable_elastic_indexing( Observation, Place ) }
@@ -34,10 +38,6 @@ describe ListedTaxon do
     
     it "should set observations_count" do
       expect(@listed_taxon.observations_count).to eq(2)
-    end
-    
-    it "should set observations_month_counts" do
-      expect(@listed_taxon.observations_month_counts).not_to be_blank
     end
 
   end
@@ -204,6 +204,22 @@ describe ListedTaxon do
       expect(lt).not_to be_valid
       expect(lt.errors[:occurrence_status_level]).not_to be_blank
     end
+
+    it "should not allow endemic taxa for continent-level places" do
+      place = make_place_with_geom( admin_level: Place::CONTINENT_LEVEL )
+      lt = ListedTaxon.make!( place: place, list: place.check_list )
+      lt.establishment_means = ListedTaxon::ENDEMIC
+      expect( lt ).not_to be_valid
+      expect( lt.errors[:establishment_means] ).not_to be_blank
+    end
+
+    it "should not allow endemic taxa for continents" do
+      place = make_place_with_geom( place_type: Place::CONTINENT )
+      lt = ListedTaxon.make!( place: place, list: place.check_list )
+      lt.establishment_means = ListedTaxon::ENDEMIC
+      expect( lt ).not_to be_valid
+      expect( lt.errors[:establishment_means] ).not_to be_blank
+    end
   end
   
   describe "check list user removal" do
@@ -333,7 +349,9 @@ describe ListedTaxon do
       subspecies = Taxon.make!(:rank => Taxon::SUBSPECIES, :parent => @taxon)
       o = make_research_grade_observation(:taxon => subspecies, :latitude => @place.latitude, :longitude => @place.longitude)
       lt = ListedTaxon.make!(:list => @check_list, :place => @place, :taxon => @taxon)
-      ListedTaxon.update_cache_columns_for(lt)
+      without_delay do
+        ListedTaxon.update_cache_columns_for(lt)
+      end
       lt.reload
       expect(lt.first_observation_id).to eq o.id
     end
@@ -590,8 +608,7 @@ describe ListedTaxon do
       ListedTaxon.where(id: @lt).update_all(
         first_observation_id: nil,
         last_observation_id: nil,
-        observations_count: nil,
-        observations_month_counts: nil)
+        observations_count: nil)
       Delayed::Job.delete_all
       expect(Delayed::Job.count).to eq 0
       @lt.reload
@@ -600,24 +617,24 @@ describe ListedTaxon do
 
     it "should queue a job to update cache columns when not set" do
       @lt.save 
-      expect(Delayed::Job.count).to eq 1
+      expect(update_cache_columns_jobs).to eq 1
       @lt.reload
       expect(@lt.last_observation_id).to be_nil
     end
 
     it "should not queue a job to update cache columns if a job already exists" do
       @lt.save 
-      expect(Delayed::Job.count).to eq 1
+      expect(update_cache_columns_jobs).to eq 1
       @lt.reload
       @lt.save
-      expect(Delayed::Job.count).to eq 1
+      expect(update_cache_columns_jobs).to eq 1
     end
 
     it "should not queue a job to update cache columns if set" do
       Delayed::Job.delete_all
       @lt.force_update_cache_columns = true
       @lt.save
-      expect(Delayed::Job.count).to eq 0
+      expect(update_cache_columns_jobs).to eq 0
     end
 
     it "should force cache columns to be set" do

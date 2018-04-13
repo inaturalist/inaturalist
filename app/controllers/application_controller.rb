@@ -2,9 +2,6 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   include Ambidextrous
-  
-  has_mobile_fu :ignore_formats => [:tablet, :json, :widget]
-  around_filter :catch_missing_mobile_templates
 
   # many people try random URLs like wordpress login pages with format .php
   # for any format we do not recognize, make sure we render a proper 404
@@ -16,18 +13,25 @@ class ApplicationController < ActionController::Base
   around_filter :set_time_zone
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
+  before_filter :preload_user_preferences
   before_filter :user_logging
   before_filter :check_user_last_active
   after_filter :user_request_logging
   before_filter :remove_header_and_footer_for_apps
   before_filter :login_from_param
   before_filter :set_site
+  before_filter :draft_site_requires_login
+  before_filter :draft_site_requires_admin
   before_filter :set_ga_trackers
   before_filter :set_request_locale
+  before_filter :check_preferred_place
   before_filter :sign_out_spammers
 
+  # /ping should skip all before filters and just render
+  skip_filter *_process_action_callbacks.map(&:filter), only: :ping
+
   PER_PAGES = [10,30,50,100,200]
-  HEADER_VERSION = 19
+  HEADER_VERSION = 21
   
   alias :logged_in? :user_signed_in?
 
@@ -43,6 +47,10 @@ class ApplicationController < ActionController::Base
     redirect_back_or_default( root_url )
   end
 
+  def ping
+    render json: { status: "available" }
+  end
+
   private
 
   # Store the URI of the current request in the session.
@@ -53,39 +61,102 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    @site ||= CONFIG.site unless Rails.env.test?
-    if ( !@site || !@site.is_a?( Site ) ) && CONFIG.site_id
-      @site = Site.find_by_id(CONFIG.site_id)
-      CONFIG.site = @site unless Rails.env.test?
+    if params[:inat_site_id]
+      @site ||= Site.find( params[:inat_site_id] )
     end
-    @site ||= Site.where("url LIKE '%#{request.host}%'").first
+    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
+    @site ||= Site.default
+  end
+
+  def draft_site_requires_login
+    return unless @site && @site.draft?
+    return if [ login_path, user_session_path, session_path ].include?( request.path )
+    doorkeeper_authorize! if authenticate_with_oauth?
+    authenticate_user! unless ( authenticated_with_oauth? || logged_in? )
+  end
+
+  def draft_site_requires_admin
+    return unless @site && @site.draft?
+    return if [ login_path, user_session_path, session_path ].include?( request.path )
+    return redirect_to login_path if !current_user
+    unless current_user.is_admin? ||
+        ( @site && @site.site_admins.where( user_id: current_user ).first )
+      sign_out current_user
+      flash[:error] = t(:only_administrators_may_access_that_page)
+      redirect_to login_path
+    end
   end
 
   def set_ga_trackers
     return true unless request.format.blank? || request.format.html?
-    trackers = []
-    if CONFIG.google_analytics
-      if CONFIG.google_analytics.trackers
-        trackers += CONFIG.google_analytics.trackers
-      elsif CONFIG.google_analytics.tracker_id
-        trackers << ['default', CONFIG.google_analytics.tracker_id]
-      end
+    trackers = [ ]
+    if Site.default && !Site.default.google_analytics_tracker_id.blank?
+      trackers << [ "default", Site.default.google_analytics_tracker_id ]
     end
-    if @site && !@site.google_analytics_tracker_id.blank?
-      trackers << [@site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id]
+    if @site && @site != Site.default && !@site.google_analytics_tracker_id.blank?
+      trackers << [ @site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id ]
     end
-    request.env['inat_ga_trackers'] = trackers unless trackers.blank?
+    request.env[ "inat_ga_trackers" ] = trackers unless trackers.blank?
   end
 
   def set_request_locale
     # use params[:locale] for single-request locale settings,
-    # otherwise use the session, user's preferred, or site default locale
-    I18n.locale = params[:locale] || session[:locale] ||
-      current_user.try(:locale) || I18n.default_locale
-    I18n.locale = current_user.try(:locale) if I18n.locale.blank?
-    I18n.locale = I18n.default_locale if I18n.locale.blank?
+    # otherwise use the session, user's preferred, or site default,
+    # or application default locale
+    locale = params[:locale]
+    locale = session[:locale] if locale.blank?
+    locale = current_user.try(:locale) if locale.blank?
+    locale = @site.locale if locale.blank?
+    locale = locale_from_header if locale.blank?
+    locale = I18n.default_locale if locale.blank?
+    I18n.locale = locale
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
+    end
+    true
+  end
+
+  def locale_from_header
+    return if request.env["HTTP_ACCEPT_LANGUAGE"].blank?
+    http_locale = request.env["HTTP_ACCEPT_LANGUAGE"].
+      split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
+    return if http_locale.blank?
+    lang, region = http_locale.split( "-" ).map(&:downcase)
+    return lang if region.blank?
+    # These re-mappings will cause problem if these regions ever get
+    # translated, so be warned. Showing zh-TW for people in Hong Kong is
+    # *probably* fine, but Brazilian Portuguese for people in Portugal might
+    # be a bigger problem.
+    if lang == "es" && region == "xl"
+      region = "mx"
+    elsif lang == "zh" && region == "hk"
+      region = "tw"
+    elsif lang == "pt" && region == "pt"
+      region = "br"
+    end
+    locale = "#{lang.downcase}-#{region.upcase}"
+    if I18N_SUPPORTED_LOCALES.include?( locale )
+      locale
+    elsif I18N_SUPPORTED_LOCALES.include?( lang )
+      lang
+    end
+  end
+
+  def check_preferred_place
+    return true unless current_user
+    return true if current_user.prefers_no_place?
+    return true unless session[:potential_place].blank?
+    if current_user.latitude && current_user.longitude && current_user.place.blank?
+      potential_place = Place.
+        containing_lat_lng( current_user.latitude, current_user.longitude ).
+        where( admin_level: Place::COUNTRY_LEVEL ).first
+      if potential_place
+        place_name = t( "places_name.#{potential_place.name.to_s.parameterize.underscore}", default: potential_place.name )
+        session[:potential_place] = {
+          id: potential_place.id,
+          name: place_name == "United States" ? "the United States" : place_name
+        }
+      end
     end
     true
   end
@@ -198,7 +269,13 @@ class ApplicationController < ActionController::Base
     return true if params[:return_to].blank?
     session[:return_to] = params[:return_to]
   end
-  
+
+  def preload_user_preferences
+    if logged_in?
+      User.preload_associations(current_user, :stored_preferences)
+    end
+  end
+
   def user_logging
     return true unless logged_in?
     Rails.logger.info "  User: #{current_user.login} #{current_user.id}"
@@ -214,7 +291,9 @@ class ApplicationController < ActionController::Base
     if current_user
       # there is a current_user, so that user is active
       if current_user.last_active.nil? || current_user.last_active != Date.today
-        current_user.update_column(:last_active, Date.today)
+        current_user.last_active = Date.today
+        current_user.last_ip = Logstasher.ip_from_request_env( request.env )
+        current_user.save
       end
       # since they are active, unsuspend any stopped subscriptions
       if current_user.subscriptions_suspended_at
@@ -227,7 +306,7 @@ class ApplicationController < ActionController::Base
   # Return a 404 response with our default 404 page
   #
   def render_404
-    unless request.format.json? || request.format.mobile?
+    unless request.format.json?
       request.format = "html"
     end
     respond_to do |format|
@@ -266,7 +345,10 @@ class ApplicationController < ActionController::Base
       class_name = class_name.to_s.underscore.camelcase
       klass = Object.const_get(class_name)
     end
-    record = klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
+    if klass.respond_to?(:find_by_uuid)
+      record = klass.find_by_uuid(params[:id] || params["#{class_name}_id"])
+    end
+    record ||= klass.find(params[:id] || params["#{class_name}_id"]) rescue nil
     instance_variable_set "@#{class_name.underscore}", record
     render_404 unless record
   end
@@ -343,30 +425,6 @@ class ApplicationController < ActionController::Base
         @places = Place.where("id in (?)", new_places.map(&:id).compact).page(1).to_a
       end
     end
-  end
-  
-  def catch_missing_mobile_templates
-    begin
-      yield
-    rescue ActionView::MissingTemplate => e
-      if in_mobile_view?
-        flash[:notice] = t(:no_mobilized_version_of_that_view)
-        session[:mobile_view] = false
-        Rails.logger.debug "[DEBUG] Caught missing mobile template: #{e}: \n#{e.backtrace.join("\n")}"
-        return redirect_to request.path.gsub(/\.mobile/, '')
-      end
-      raise e
-    end
-    true
-  end
-  
-  def mobilized
-    @mobilized = true
-  end
-  
-  def unmobilized
-    @mobilized = false
-    request.format = :html if in_mobile_view? && request.format == :mobile
   end
   
   # Get current_user's preferences, prefs in the session, or stash new prefs in the session
@@ -520,9 +578,20 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_with_oauth?
+    # Don't want OAuth if we're already authenticated
     return false if !session.blank? && !session['warden.user.user.key'].blank?
     return false if request.authorization.to_s =~ /^Basic /
+    # Need an access token for OAuth
     return false unless !params[:access_token].blank? || request.authorization.to_s =~ /^Bearer /
+    # If the bearer token is a JWT with a user we don't want to go through
+    # Doorkeeper's OAuth-based flow
+    token = request.authorization.to_s.split( /\s+/ ).last
+    jwt_claims = begin
+      ::JsonWebToken.decode( token )
+    rescue JWT::DecodeError => e
+      nil
+    end
+    return false if jwt_claims && jwt_claims.fetch( "user_id" )
     @doorkeeper_for_called = true
   end
 
@@ -557,7 +626,7 @@ class ApplicationController < ActionController::Base
         @error_msg = if current_user.is_admin?
           @job.last_error
         else
-          t(:this_job_failed_to_run, :email => CONFIG.help_email)
+          t(:this_job_failed_to_run, email: @site.email_help)
         end
       elsif @job
         @status = "working"
@@ -598,6 +667,10 @@ class ApplicationController < ActionController::Base
     head(:ok) if request.request_method == "OPTIONS"
   end
 
+  # NOTE: this is called as part of ActionController::Instrumentation, and not
+  # referenced elsewhere within this codebase. The payload data will be used
+  # by config/initializers/logstasher.rb
+  #
   # adding extra info to the payload sent to ActiveSupport::Notifications
   # used in metrics collecting libraries like the Logstasher
   def append_info_to_payload(payload)
@@ -608,6 +681,7 @@ class ApplicationController < ActionController::Base
       payload.merge!(Logstasher.payload_from_user( current_user ))
     end
   end
+
 end
 
 # Override the Google Analytics insertion code so it won't track admins

@@ -61,7 +61,7 @@ class Photo < ActiveRecord::Base
     if user.blank? && (license == COPYRIGHT || license.blank?)
       errors.add(
         :license, 
-        "must be set if the photo wasn't added by an #{CONFIG.site_name_short} user.")
+        "must be set if the photo wasn't added by a local user.")
     end
   end
 
@@ -123,7 +123,7 @@ class Photo < ActiveRecord::Base
   end
 
   def index_observations
-    Observation.elastic_index!(scope: observations, delay: true)
+    Observation.elastic_index!(scope: observations)
   end
 
   def editable_by?(user)
@@ -182,6 +182,14 @@ class Photo < ActiveRecord::Base
     end
   end
 
+  def original_dimensions
+    return unless metadata && metadata[:dimensions] && metadata[:dimensions][:original]
+    {
+      height: metadata[:dimensions][:original][:height],
+      width: metadata[:dimensions][:original][:width]
+    }
+  end
+
   def self.repair_photos_for_user(user, type)
     count = 0
     user.photos.where(type: type).find_each do |photo|
@@ -220,7 +228,11 @@ class Photo < ActiveRecord::Base
       end
     end
     if photo.respond_to?(:repair)
-      return photo.repair
+      repaired_photo, errors = photo.repair
+      if errors.blank? && repaired_photo.user && !repaired_photo.is_a?( LocalPhoto )
+        Photo.turn_remote_photo_into_local_photo( repaired_photo )
+      end
+      [repaired_photo, errors]
     end
   end
 
@@ -249,7 +261,7 @@ class Photo < ActiveRecord::Base
     remote_photo.subtype = remote_photo.class.name
     remote_photo.native_original_image_url = fetch_url
     remote_photo = remote_photo.becomes(LocalPhoto)
-    remote_photo.file = fetch_url
+    remote_photo.file = URI(fetch_url)
     remote_photo.save
   end
 
@@ -309,7 +321,9 @@ class Photo < ActiveRecord::Base
       license_code: (license_code.blank? || license.blank? || license == 0) ?
         nil : license_code.downcase,
       attribution: attribution,
-      url: (self.is_a?(LocalPhoto) && processing?) ? nil : square_url
+      url: (self.is_a?(LocalPhoto) && processing?) ? file.url(:square) : square_url,
+      original_dimensions: original_dimensions,
+      flags: flags.map(&:as_indexed_json)
     }
     json[:native_page_url] = native_page_url if options[:native_page_url]
     json[:native_photo_id] = native_photo_id if options[:native_photo_id]

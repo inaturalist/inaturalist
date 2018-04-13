@@ -174,7 +174,7 @@
                 $('<div class="success status comprehensive_notice stacked"></div>').append(
                   "<strong><%=t :comprehensive_list %>: </strong>",
                   link,
-                  $('<span class="helptip right"></span>').attr('rel', '<%=t :inat_believes_this_is_a_complete_listing, :site_name => SITE_NAME_SHORT %>')
+                  $('<span class="helptip right"></span>').attr('rel', '<%=t :inat_believes_this_is_a_complete_listing, :site_name => @site.preferred_site_name_short %>')
                 )
               )
               buildHelpTips()
@@ -241,7 +241,7 @@
   <div class="right">
     <%= link_to_dialog t(:identotron_help), :width => 600 do %>
 
-        <%= t(:the_identotron_is_a_tool_to, :place=>CONFIG.site_name_short).html_safe %>
+        <%= t(:the_identotron_is_a_tool_to, :place=>@site.site_name_short).html_safe %>
 
       <table style="width:100%">
         <tr>
@@ -260,7 +260,7 @@
             </div>
 
             <div class="quiet box" style="height:200px;">
-              <%= t(:matching_species_will_shown_up_here, :place=>CONFIG.site_name_short) %>
+              <%= t(:matching_species_will_shown_up_here, :place=>@site.site_name_short) %>
             </div>
           </td>
         </tr>

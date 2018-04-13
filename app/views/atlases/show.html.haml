@@ -79,7 +79,7 @@
       %tbody#alteration
         - @atlas_alterations.each do |atlas_alteration|
           %tr
-            %th{:scope => "row" }= link_to atlas_alteration.place.name, atlas_alteration.place
+            %th{:scope => "row" }= link_to atlas_alteration.place.try_methods( :display_name, :name ), atlas_alteration.place
             %td= atlas_alteration.action
             %td= atlas_alteration.user.nil? ? "" : ( link_to atlas_alteration.user.login, atlas_alteration.user )
             %td= atlas_alteration.created_at
@@ -104,7 +104,7 @@
       %tbody#listed_taxon_alteration
         - @listed_taxon_alterations.each do |listed_taxon_alteration|
           %tr
-            %th{ :scope => "row" }= link_to listed_taxon_alteration.place.name, listed_taxon_alteration.place
+            %th{ :scope => "row" }= link_to listed_taxon_alteration.place.try_methods( :display_name, :name ), listed_taxon_alteration.place
             %td= link_to listed_taxon_alteration.taxon.name, listed_taxon_alteration.taxon
             %td= listed_taxon_alteration.action
             %td= listed_taxon_alteration.user.nil? ? "" : ( link_to listed_taxon_alteration.user.login, listed_taxon_alteration.user )

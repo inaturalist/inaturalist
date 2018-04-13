@@ -8,7 +8,7 @@
   </style>
 <%- end -%>
 <div class="column span-8 prepend-2">
-  <%= image_tag @site && @site.logo_square? ? @site.logo_square.url : CONFIG.logo_icon_square_big, :width => 300  %>
+  <%= image_tag @site.logo_square.url, :width => 300  %>
 </div>
 <div class="column span-7">
   
@@ -24,7 +24,7 @@
       <%= f.submit t(:sign_in_exclamation), :class => "default button" %>
       <span class="small inter ui nobr description" style="line-height: 1.6">
         <%= t :or %>
-        <%= link_to t(:start_new_account), new_user_path, :class => "readmore" %>
+        <%= link_to t(:start_new_account), signup_path, :class => "readmore" %>
       </span>
     </div>
   <% end %>
@@ -48,9 +48,9 @@
   </div>
   
   <%= link_to_toggle t(:if_you_already_have_an_account, 
-    :article => %w(a e i o u).include?(SITE_NAME_SHORT[0]) ? t(:an) : t(:a), 
-    :site_name => SITE_NAME_SHORT), "#already" %>
+    :article => %w(a e i o u).include?(( @site.preferred_site_name_short || @site.name )[0]) ? t(:an) : t(:a),
+    :site_name => ( @site.preferred_site_name_short || @site.name ) ), "#already" %>
   <p id="already" class="ui description" style="display: none;">
-    <%= t(:and_you_havent_linked, :site_name => SITE_NAME_SHORT) %>
+    <%= t(:and_you_havent_linked, :site_name => @site.preferred_site_name_short) %>
   </p>
 </div>

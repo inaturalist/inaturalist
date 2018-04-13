@@ -24,7 +24,7 @@
           - for user_attr in User.column_names
             %tr
               %th= user_attr
-              %td= @display_user.send(user_attr).to_s.html_safe
+              %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
           - @display_user.preferences.each do |pref,val|
             %tr
               %th= pref
@@ -40,6 +40,10 @@
                       = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
               - else
                 No observations to check
+          - if @display_user.curator_sponsor
+            %tr
+              %th User who made this user a curator
+              %td= link_to_user @display_user.curator_sponsor
       .col-xs-4
         %p
           = user_image( @display_user, size: "large", class: "img-responsive center-block" )
@@ -57,6 +61,7 @@
           = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
             method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
             class: "btn btn-block btn-success"
+        = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
         = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
         = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
         = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put, |

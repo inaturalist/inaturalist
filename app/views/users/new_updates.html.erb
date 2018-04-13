@@ -4,6 +4,7 @@
   <% end -%>
   <% for update in @updates %>
     <%- 
+      next unless update.resource
       resource = update.resource
       link_subject = resource
       if update.notification == "mention"

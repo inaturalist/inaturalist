@@ -14,14 +14,14 @@ import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";
 import AkaNamesContainer from "../containers/aka_names_container";
 import StatusRow from "./status_row";
 
-const App = ( { taxon, showNewTaxon } ) => (
+const App = ( { taxon, showNewTaxon, config } ) => (
   <div id="TaxonDetail">
     <Grid>
       <TaxonChangeAlertContainer />
       <Row className="preheader">
         <Col xs={8}>
           <TaxonCrumbsContainer />
-          <a href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
+          <a className="permalink" href={`/taxa/${taxon.id}-${taxon.name.split( " " ).join( "-" )}`}>
             <i className="icon-link"></i>
           </a>
         </Col>
@@ -47,6 +47,7 @@ const App = ( { taxon, showNewTaxon } ) => (
               <SplitTaxon
                 taxon={taxon}
                 forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
+                user={ config.currentUser }
               />
             </h1>
             <div>
@@ -92,7 +93,12 @@ const App = ( { taxon, showNewTaxon } ) => (
 
 App.propTypes = {
   taxon: PropTypes.object,
-  showNewTaxon: PropTypes.func
+  showNewTaxon: PropTypes.func,
+  config: PropTypes.object
+};
+
+App.defaultProps = {
+  config: {}
 };
 
 export default App;

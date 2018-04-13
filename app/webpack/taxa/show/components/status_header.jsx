@@ -18,6 +18,10 @@ const StatusHeader = ( { status } ) => {
     case "EN":
       alertClass = "iucn-endangered";
       break;
+    case "EW":
+    case "EX":
+      alertClass = "iucn-extinct";
+      break;
     default:
       // ok
   }

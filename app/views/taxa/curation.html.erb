@@ -56,7 +56,7 @@
       <% if flagging.user -%>
         <%= link_to h(flagging.user.login), flagging.user %>
       <% else %>
-        <%= CONFIG.site_name_short %>
+        <%= @site.site_name_short %>
       <% end -%>
     </td>
     <td>

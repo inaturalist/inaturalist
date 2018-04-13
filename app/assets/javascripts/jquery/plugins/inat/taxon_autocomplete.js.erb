@@ -22,11 +22,38 @@ autocompleter.defaultPhotoForResult = function( result ) {
 };
 
 // return the best name in the locale, or defaulting to EN
-autocompleter.setTitle = function( result ) {
+autocompleter.setTitle = function( result, options ) {
   if( result.title ) { return; }
-  var name = result.preferred_common_name || result.english_common_name;
-  result.title = name || result.name;
+  options = options || {};
+  if ( options.user && options.user.prefers_scientific_name_first ) {
+    if( result.rank_level <= 10 ) {
+      result.title = "<i>" + result.name + "</i>";
+    } else {
+      result.title = result.name;
+    }
+  } else {
+    result.title = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name ) || result.name;
+  }
+  result.textTitle = autocompleter.stripRank( genericAutocomplete.stripTags( result.title ) );
 };
+
+autocompleter.setSubtitle = function( result, options ) {
+  options = options || {};
+  if ( !result.title ) { return; }
+  if ( options.user && options.user.prefers_scientific_name_first ) {
+    result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name );
+  } else if ( result.name != result.title ) {
+    if( result.rank_level <= 10 ) {
+      result.subtitle = "<i>" + result.name + "</i>";
+    } else {
+      result.subtitle = result.name;
+    }
+  }
+}
+
+autocompleter.stripRank = function( txt ) {
+  return txt.replace( /^(Kingdom|Subkingdom|Phylum|Subphylum|Superclass|Class|Subclass|Infraclass|Superorder|Order|Suborder|Infraorder|Parvorder|Zoosection|Zoosubsection|Superfamily|Epifamily|Family|Subfamily|Supertribe|Tribe|Subtribe|Genus|Genushybrid|Subgenus|Section|Subsection)\s+(.+)/g, "$2" );
+}
 
 autocompleter.stringIncludes = function( string, test ) {
   if( !string || !test ) { return false; }
@@ -42,20 +69,21 @@ autocompleter.appendMatchedTerm = function( result, fieldValue ) {
   result.title += " (" + autocompleter.capitalize( result.matched_term ) + ")";
 };
 
-autocompleter.taxonTemplate = function( result, fieldValue ) {
-  autocompleter.setTitle( result );
-  if( result.title && result.name != result.title ) {
-    if( result.rank_level <= 10 ) {
-      result.subtitle = "<i>" + result.name + "</i>";
-    } else {
-      result.subtitle = result.name;
-    }
-  }
+autocompleter.taxonTemplate = function( result, fieldValue, options ) {
+  options = options || {};
+  autocompleter.setTitle( result, options );
+  autocompleter.setSubtitle( result, options );
   autocompleter.appendMatchedTerm( result, fieldValue );
   if( result.rank && ( result.rank_level > 10 || !result.subtitle )) {
-    result.subtitle =
-      autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
-      ( result.subtitle ? " " + result.subtitle : "" );
+    if ( options.user && options.user.prefers_scientific_name_first ) {
+      result.title =
+        autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
+        ( result.title ? " " + result.title : "" );
+    } else {
+      result.subtitle =
+        autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
+        ( result.subtitle ? " " + result.subtitle : "" );
+    }
   }
 
   result.defaultPhoto = autocompleter.defaultPhotoForResult( result );
@@ -122,18 +150,25 @@ $.fn.taxonAutocomplete = function( options ) {
   if( !options.idEl ) { return; }
   var field = this;
   field.template = autocompleter.taxonTemplate;
+  if ( !options.user && typeof( CURRENT_USER ) === "object" ) {
+    options.user = CURRENT_USER;
+  }
   var source = function( request, response ) {
+    var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
+    var headers = {};
+    if ( apiToken) {
+      headers["Authorization"] = apiToken;
+    }
     $.ajax({
       url: "<%= CONFIG.node_api_url %>/taxa/autocomplete",
-      dataType: "jsonp",
       cache: true,
+      headers: headers,
       data: {
         q: request.term,
         per_page: options.perPage || 10,
         locale: I18n.locale,
         preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
       },
-      jsonpCallback: "taxonAutocompleteCallback",
       success: function( data ) {
         var results = data.results || [ ];
         // show as the last item an option to search external name providers
@@ -216,13 +251,14 @@ $.fn.taxonAutocomplete = function( options ) {
     }
     // show the best name in the search field
     if( ui.item.id ) {
-      field.val( ui.item.title || ui.item.name );
+      field.val( ui.item.textTitle || ui.item.title || ui.item.name );
     }
     // set the hidden taxon_id
     options.idEl.val( ui.item.id );
     // set the selection's thumbnail image
     field.wrappingDiv.find(".ac-select-thumb").html( ui.item.defaultPhoto );
     field.selection = ui.item;
+    field.data( 'autocomplete-item', ui.item );
     if( options.afterSelect ) { options.afterSelect( ui ); }
     return false;
   };
@@ -243,13 +279,14 @@ $.fn.taxonAutocomplete = function( options ) {
     source: source,
     select: select,
     focus: focus,
-    createWrappingDiv: autocompleter.createWrappingDiv
+    createWrappingDiv: autocompleter.createWrappingDiv,
   }, options ));
   if( !ac ) { return; }
   field.bind( "assignSelection", function( e, t ) {
     options.idEl.val( t.id );
-    t.title = t.preferred_common_name || t.name;
-    field.val( t.title );
+    autocompleter.setTitle( t, options );
+    field.val( t.textTitle || t.title );
+    field.data('autocomplete-item', t);
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;
@@ -263,5 +300,31 @@ $.fn.taxonAutocomplete = function( options ) {
   });
   if( options.initialSelection ) {
     field.trigger( "assignSelection", options.initialSelection );
+  }
+
+  if ( $( options.idEl ).val( ) ) {
+    var url = "<%= CONFIG.node_api_url %>/taxa/"+$( options.idEl ).val( )
+    var jsonpCallback = "initialTaxonCallback";
+    // try to make jsonp callback unique to handle multiple taxon autocompletes on a page
+    if ( options.idEl.id && options.idEl.id != "" ) {
+      jsonpCallback = jsonpCallback + options.idEl.id;
+    } else {
+      jsonpCallback = jsonpCallback + Math.round( Math.random( ) * 1000000 ).toString( );
+    }
+    $.ajax( {
+      url: url,
+      dataType: "jsonp",
+      cache: true,
+      data: {
+        locale: I18n.locale,
+        preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+      },
+      jsonpCallback: jsonpCallback,
+      success: function( data ) {
+        field.trigger( "assignSelection", _.map( data.results || [], function( r ) {
+          return new iNatModels.Taxon( r );
+        } ) );
+      }
+    } );
   }
 };

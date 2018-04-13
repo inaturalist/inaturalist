@@ -4,7 +4,8 @@ class ProjectObservationsController < ApplicationController
   before_filter :load_record, only: [:update, :destroy]
   
   def create
-    @project_observation = ProjectObservation.new(params[:project_observation])
+    @project_observation = ProjectObservation.new( project_observation_params_for_create )
+    set_curator_coordinate_access
     existing = ProjectObservation.
       where(
         project_id: @project_observation.project_id,
@@ -35,7 +36,11 @@ class ProjectObservationsController < ApplicationController
   def update
     respond_to do |format|
       format.json do
-        if @project_observation.update_attributes(project_observation_params)
+        @project_observation.assign_attributes( project_observation_params_for_update )
+        set_curator_coordinate_access
+        if @project_observation.save
+          @project_observation.observation.elastic_index!
+          Observation.refresh_es_index
           render json: @project_observation
         else
           render status: :unprocessable_entity, json: {errors: @project_observation.errors}
@@ -81,8 +86,26 @@ class ProjectObservationsController < ApplicationController
     end
   end
 
-  def project_observation_params
-    params.require(:project_observation).permit(:preferred_curator_coordinate_access, :prefers_curator_coordinate_access)
+  def project_observation_params_for_create
+    params.require(:project_observation).permit(
+      :observation_id,
+      :project_id,
+      :preferred_curator_coordinate_access,
+      :prefers_curator_coordinate_access
+    )
+  end
+
+  def project_observation_params_for_update
+    params.require(:project_observation).permit(
+      :preferred_curator_coordinate_access,
+      :prefers_curator_coordinate_access
+    )
+  end
+
+  def set_curator_coordinate_access
+    if @project_observation.observation && current_user != @project_observation.observation.user
+      @project_observation.prefers_curator_coordinate_access = @project_observation.prefers_curator_coordinate_access_was
+    end
   end
   
 end

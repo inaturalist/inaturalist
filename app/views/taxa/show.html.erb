@@ -3,16 +3,16 @@
 <% end -%>
 
 <%- content_for(:extrahead) do -%>
-  <% if CONFIG.facebook -%>
+  <% if CONFIG.facebook && !CONFIG.facebook.namespace.blank? -%>
     <meta property="og:type" content="<%= CONFIG.facebook.namespace %>:taxon"/>
   <% end -%>
   <meta property="og:title" content="<%= @taxon.to_plain_s(:verb => true, :no_time => true) %>"/>
   <% if @photos.blank? -%>
-    <meta property="og:image" content="<%= iconic_taxon_image_url(@taxon) %>"/>
-    <meta property="twitter:image" content="<%= iconic_taxon_image_url(@taxon) %>"/>
+    <meta property="og:image" content="<%= @shareable_image_url = iconic_taxon_image_url(@taxon) %>"/>
+    <meta property="twitter:image" content="<%= @shareable_image_url %>"/>
   <% else %>
-    <meta property="og:image" content="<%= @photos.first.medium_url %>"/>
-    <meta property="twitter:image" content="<%= @photos.first.medium_url %>"/>
+    <meta property="og:image" content="<%= @shareable_image_url = @photos.first.medium_url %>"/>
+    <meta property="twitter:image" content="<%= @shareable_image_url %>"/>
   <% end -%>
   <meta property="og:url" content="<%= taxon_url(@taxon) %>"/>
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
@@ -268,7 +268,7 @@
 <div class="column span-4 aka">
   <h3>
     <%= t(:classification) %>
-    <div class="description"><%=t :within_inaturalist, :site_name => SITE_NAME %></div>
+    <div class="description"><%=t :within_inaturalist, :site_name => @site.name %></div>
   </h3>
 
   <%= render :partial => 'classification_list' %>
@@ -390,7 +390,7 @@
 
     <p class="ui">
       <%= link_to t(:taxonomic_changes_raquo_html), taxon_changes_path(:taxon_id => @taxon),
-        "data-tip" => "View the history of this taxon on #{CONFIG.site_name_short}, e.g. splits, merges, etc." %>
+        "data-tip" => "View the history of this taxon on #{@site.site_name_short}, e.g. splits, merges, etc." %>
     </p>
 
     <p class="ui">

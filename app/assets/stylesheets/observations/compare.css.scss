@@ -1,0 +1,115 @@
+#Compare {
+  .Queries {
+    .query {
+      margin-bottom: 10px;
+      display: flex;
+      .name {
+        width: 100px;
+        margin-right: 10px;
+      }
+      .params {
+        flex: 2;
+      }
+      > .btn,
+      > .btn-group {
+        margin-left: 10px;
+      }
+    }
+  }
+  .alert-sm {
+    padding: 6px 12px;
+    margin: 0;
+  }
+  table {
+    th {
+      white-space: nowrap;
+    }
+    .headers {
+      th {
+        border-top: 0 transparent;
+      }
+      th.sortable {
+        cursor: pointer;
+      }
+      th.taxon {
+        width: 100%;
+      }
+    }
+    .totals {
+      font-size: smaller;
+      th.total-label {
+        text-align: right;
+      }
+    }
+    .sorted {
+      background-color: #eee;
+    }
+    .value {
+      text-align: right;
+    }
+    td.value {
+      font-family: "Lucida Console", Monaco, monospace, fixed-width;
+    }
+  }
+
+  .maps-combined,
+  .maps-horizontal {
+    .TaxonMap {
+      height: 500px;
+    }
+  }
+  .maps-vertical,
+  .maps-horizontal {
+    display: flex;
+    align-items: stretch;
+
+  }
+  .maps-vertical {
+    flex-direction: column;
+    .TaxonMap {
+      height: 300px;
+    }
+    .map {
+      margin-bottom: 10px;
+    }
+  }
+  .maps-horizontal {
+    flex-direction: row;
+    h5 {
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .map {
+      flex-grow: 1;
+      margin-left: 10px;
+      width: 100%;
+    }
+    .map:first-child {
+      margin-left: 0;
+    }
+  }
+
+  .HistoryComparison {
+    .DateHistogram svg {
+      width: 100%;
+      min-height: 300px;
+    }
+    .charts-horizontal {
+      display: flex;
+      .DateHistogram {
+        flex-grow: 1;
+        width: 100%;
+      }
+    }
+    .form-inline {
+      label {
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.compare-popover {
+  max-width: 400px;
+}
+

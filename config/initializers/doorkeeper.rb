@@ -11,8 +11,9 @@ Doorkeeper.configure do
   resource_owner_from_credentials do |routes|
     username = params[:login] || params[:email] || params[:username]
     if username && params[:password]
-      User.authenticate(username, params[:password])
-    else
+      user = User.find_for_authentication( email: username )
+      user && user.valid_password?( params[:password] ) ? user : nil
+    elsif defined?( warden )
       warden.authenticate!(auth_options)
     end
   end

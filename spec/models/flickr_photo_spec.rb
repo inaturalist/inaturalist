@@ -34,11 +34,13 @@ describe FlickrPhoto, "updating" do
 
   it "should be valid if flickr identity blank but past observations exist" do
     pending_flickr_setup do
+      enable_elastic_indexing( Observation )
       o = Observation.make!(:user => @user)
       o.photos << @cc_flickr_photo
       @user.flickr_identity.destroy
       @cc_flickr_photo.reload
       expect(@cc_flickr_photo).to be_valid
+      disable_elastic_indexing( Observation )
     end
   end
 end
@@ -143,9 +145,6 @@ def setup_flickr_stuff
     "media"=>"photo"
   }
   begin
-    FlickRaw.api_key = FLICKR_API_KEY
-    FlickRaw.shared_secret = FLICKR_SHARED_SECRET
-    @flickr = flickr
     @user = User.make!
     @fi = FlickrIdentity.make!(:user => @user, :flickr_user_id => "18024068@N00")
 

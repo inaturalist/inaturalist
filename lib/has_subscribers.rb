@@ -271,8 +271,12 @@ module HasSubscribers
         send callback_type do |record|
           unless record.skip_updates || record.try(:unsubscribable?)
             if options[:queue_if].blank? || options[:queue_if].call(record)
-              record.delay(priority: options[:priority]).
-                send(callback_method, subscribable_association)
+              if options[:delay] == false
+                record.send(callback_method, subscribable_association)
+              else
+                record.delay(priority: options[:priority]).
+                  send(callback_method, subscribable_association)
+              end
             end
           end
           true
@@ -298,7 +302,7 @@ module HasSubscribers
       UpdateAction.elastic_index!(ids: [action.id])
     end
 
-    def notify_users(method)
+    def notify_users( method )
       options = self.class.notifies_users_options
       resource = observation if respond_to?(:observation)
       resource = parent if is_a?( Comment )
@@ -309,15 +313,22 @@ module HasSubscribers
         notification: options[:notification]
       }
       users = send(method)
+      except_users = send( options[:except].to_sym ) unless options[:except].blank?
+      except_users ||= []
       if users.empty?
         UpdateAction.delete_and_purge(action_attrs)
         return
       end
+      users_to_notify = users - except_users
+      user_ids = users.map{ |u|
+        options[:if].blank? || options[:if].call( u ) ? u.id : nil
+      }.compact
+      user_ids_to_notify = users_to_notify.map{ |u|
+        options[:if].blank? || options[:if].call( u ) ? u.id : nil
+      }.compact
       action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-      user_ids = users.map{ |u| u.prefers_receive_mentions? ? u.id : nil }.compact
-      action.bulk_insert_subscribers(user_ids)
-      UpdateSubscriber.where({ update_action_id: action.id }).
-        where("subscriber_id NOT IN (?)", user_ids).delete_all
+      action.bulk_insert_subscribers( user_ids_to_notify )
+      UpdateSubscriber.where({ update_action_id: action.id }).where("subscriber_id NOT IN (?)", user_ids).delete_all
       UpdateAction.elastic_index!(ids: [action.id])
     end
 

@@ -3,8 +3,7 @@
 #pageheader.column.span-24
   #nav.clear
     .breadcrumbs
-      = link_to 'Back to observation field', @observation_field, :class => 'back crumb'
-    / /#breadcrumbs
+      = link_to t(:back_to_x, noun: t(:observation_field, default: "observation field").downcase), @observation_field, :class => 'back crumb'
   %h2= @title
 = render :partial => 'form'
 = link_to t(:cancel), observation_fields_path, :class => "button"

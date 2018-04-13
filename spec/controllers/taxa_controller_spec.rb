@@ -222,11 +222,27 @@ describe TaxaController do
   end
 
   describe "observation_photos" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include photos from observations" do
       o = make_research_grade_observation
       p = o.photos.first
       get :observation_photos, id: o.taxon_id
       expect(assigns(:photos)).to include p
+    end
+
+    it "should return photos of an exact taxon match even if there are lots of text matches" do
+      o = make_research_grade_observation
+      p = o.photos.first
+      t = o.taxon
+      other_obs = []
+      10.times { other_obs << make_research_grade_observation( description: t.name ) }
+      Delayed::Worker.new.work_off
+      expect( Taxon.where( name: t.name ).count ).to eq 1
+      expect( o.photos.size ).to eq 1
+      get :observation_photos, q: t.name
+      expect( assigns(:photos).size ).to eq 1
+      expect( assigns(:photos) ).to include p
     end
   end
 

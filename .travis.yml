@@ -10,21 +10,37 @@ cache:
 rvm:
   - 2.3.1
 
+node_js:
+  - "8.9.1"
+
+jdk:
+  - openjdk8
+
+env:
+  - CXX=g++-4.8
+
 addons:
-  postgresql: "9.3"
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+  postgresql: "9.6"
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y postgresql-9.3-postgis-2.3 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev wkhtmltopdf
+  - sudo apt-cache search postgis
+  - sudo apt-get install -y postgresql-9.6-postgis-2.4 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev wkhtmltopdf
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - psql -U postgres -c "create extension postgis"
   - psql -U postgres -c 'create extension "uuid-ossp"'
   - createdb -O postgres template_postgis
   - psql -U postgres template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
-  - curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/deb/elasticsearch/2.3.2/elasticsearch-2.3.2.deb && sudo dpkg -i --force-confnew elasticsearch-2.3.2.deb
-  - sudo /usr/share/elasticsearch/bin/plugin install analysis-kuromoji
-  - sudo /usr/share/elasticsearch/bin/plugin install delete-by-query
+  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.4.deb && sudo dpkg -i --force-confnew elasticsearch-5.6.4.deb
+  - export JAVA_HOME='/usr'
+  - sudo cat /usr/share/elasticsearch/bin/elasticsearch-plugin
+  - sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
   - sudo service elasticsearch start
   - gem install bundler
   - mkdir -p tmp/pids
@@ -35,7 +51,8 @@ before_script:
   - ci/scripts/before_script.sh
 
 env:
-  - TRAVIS_CI=true TESTFOLDER=spec/models
+  - TRAVIS_CI=true TESTFOLDER=spec/models/*(observation|taxon)_spec.rb
+  - TRAVIS_CI=true TESTFOLDER=spec/models/!(observation|taxon)_spec.rb
   - TRAVIS_CI=true TESTFOLDER='spec/controllers spec/helpers spec/initializers spec/lib spec/views'
 
 script: "bundle exec rspec $TESTFOLDER"
@@ -43,4 +60,3 @@ script: "bundle exec rspec $TESTFOLDER"
 notifications:
   slack:
     secure: a5oKH3x+irU27B+5f9hZPLEKl4gFPjj74UXPvVPKJdJ8shnDVwZkJdzsCV9u2qirD07TzZNCKGprTIG4zWJdYyMVmKucwT7hRMPCGIBu/2cGvSBfOSyiDHLNmvUvA6yOaECWT7h8CpTE2wqxNV8avqGlc20oNrxlJT2bpVTTU4U=
-

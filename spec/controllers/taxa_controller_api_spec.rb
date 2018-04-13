@@ -2,10 +2,14 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a TaxaController" do
   describe "index" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should filter by place_id" do
       t = Taxon.make!
       p = Place.make!
-      p.check_list.add_taxon(t)
+      without_delay do
+        p.check_list.add_taxon(t)
+      end
       get :index, :format => :json, :place_id => p.id
       expect(response.headers['X-Total-Entries'].to_i).to eq(1)
     end
@@ -35,14 +39,16 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "search" do
-    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
-    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+    before(:each) { enable_elastic_indexing( Observation, Taxon, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Taxon, Place ) }
 
     it "should filter by place_id" do
       taxon_not_in_place = Taxon.make!
       taxon_in_place = Taxon.make!
       p = Place.make!
-      p.check_list.add_taxon(taxon_in_place)
+      without_delay do
+        p.check_list.add_taxon(taxon_in_place)
+      end
       get :search, format: :json, places: p.id.to_s
       json = JSON.parse(response.body)
       expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).to be_blank
@@ -53,9 +59,10 @@ shared_examples_for "a TaxaController" do
       taxon_not_in_place = Taxon.make!(name: "Disco stu")
       taxon_in_place = Taxon.make!(name: "Disco stu")
       p = Place.make!
-      p.check_list.add_taxon(taxon_in_place)
-      site = Site.make!(place: p)
-      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      without_delay do
+        p.check_list.add_taxon(taxon_in_place)
+      end
+      Site.default.update_attributes(place_id: p.id)
       get :search, format: :json, q: "disco"
       json = JSON.parse(response.body)
       expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).to be_blank
@@ -66,8 +73,7 @@ shared_examples_for "a TaxaController" do
       taxon_not_in_place = Taxon.make!(name: "nonsense")
       taxon2_not_in_place = Taxon.make!(name: "nonsense")
       p = Place.make!
-      site = Site.make!(place: p)
-      expect(CONFIG).to receive(:site_id).at_least(:once).and_return(site.id)
+      Site.default.update_attributes(place_id: p.id)
       get :search, format: :json, q: "nonsense"
       json = JSON.parse(response.body)
       expect(json.detect{|t| t['id'] == taxon_not_in_place.id}).not_to be_blank
@@ -133,8 +139,8 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "autocomplete" do
-    before(:each) { enable_elastic_indexing([ Taxon, Place ]) }
-    after(:each) { disable_elastic_indexing([ Taxon, Place ]) }
+    before(:each) { enable_elastic_indexing([ Observation, Taxon, Place ]) }
+    after(:each) { disable_elastic_indexing([ Observation, Taxon, Place ]) }
 
     it "filters by is_active=true" do
       active = Taxon.make!(name: "test", is_active: true)
@@ -164,6 +170,8 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "show" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should include range kml url" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")
       get :show, :format => :json, :id => tr.taxon_id
@@ -203,6 +211,17 @@ shared_examples_for "a TaxaController" do
         response_taxon = JSON.parse(response.body)
         expect(response_taxon['default_photo']['license_url']).to eq photo.license_url
       end
+    end
+
+    it "should return names specific to the user's place" do
+      t = Taxon.make!( rank: Taxon::SPECIES )
+      tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      tn_place = TaxonName.make!( taxon: t, lexicon: TaxonName::ENGLISH )
+      ptn = PlaceTaxonName.make!( taxon_name: tn_place )
+      user.update_attributes( place_id: ptn.place_id )
+      get :show, format: :json, id: t.id
+      json = JSON.parse( response.body )
+      expect( json["common_name"]["name"] ).to eq tn_place.name
     end
   end
 

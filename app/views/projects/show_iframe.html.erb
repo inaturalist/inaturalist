@@ -60,8 +60,8 @@
         <% end -%>
       </li>
       <li id="logoitem" class="item inlineblock">
-        <a href="<%= root_url %>" title="<%= CONFIG.site_name %>" class="logolink">
-          <img src="<%= asset_path("inat-logo-pb.png") %>" alt="Powered by <%= CONFIG.site_name %>" />
+        <a href="<%= root_url %>" title="<%= @site.name %>" class="logolink">
+          <img src="<%= asset_path("inat-logo-pb.png") %>" alt="Powered by <%= @site.name %>" />
         </a>
       </li>
     </ul>
@@ -86,14 +86,20 @@
       <h3>
         <%= link_to "Recent Observations", project_observations_path(@project), :class => "navlink" %>
       </h3>
-      <% if @project_observations.blank? -%>
+      <% if @observations.blank? -%>
         <div class="description noresults">
           No observations have been added to this project yet.
         </div>
       <% else %>
         <div class="mini observations">
-          <% for project_observation in @project_observations %>
-            <%= render :partial => 'project_observation', :object => project_observation %>
+          <% for observation in @observations %>
+            <%-
+              next unless po = observation.project_observations.detect{|po| po.project_id == @project.id }
+            -%>
+            <%= render partial: "project_observation",
+              observation: observation,
+              object: po
+            %>
           <% end %>
         </div>
       <% end -%>

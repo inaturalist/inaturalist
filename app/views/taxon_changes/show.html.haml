@@ -67,6 +67,20 @@
             = link_to_taxon @taxon_change.output_ancestor, sciname: true
           This happens when we can't automatically assign an identification to one of the output taxa.
           = link_to "Review identifications of <span class='sciname'>#{@taxon_change.input_taxon.name}</span> #{@taxon_change.input_taxon.id}".html_safe, identifications_path( taxon_id: @taxon_change.input_taxon.id, current: "any" ), class: "viewmore taxon #{@taxon_change.input_taxon.rank}"
+      - if @complete_taxon && !@complete_taxon.editable_by?( current_user )
+        .alert.alert-warning
+          %strong= "#{t(:heads_up)}:"
+          One or both of the taxa involved in this change are within the complete taxon
+          = succeed "." do
+            = link_to_taxon @complete_taxon, sciname: true
+          Only site admins or curators of that taxon can commit changes affecting descendants of that taxon.
+          - if @complete_taxon.taxon_curators.count > 0
+            Contact one of that taxon's curators to commit this change:
+            %ul
+              - @complete_taxon.taxon_curators.each do |tc|
+                %li
+                  = link_to user_image( tc.user ), person_path( tc.user.login )
+                  = link_to_user( tc.user )
 
       #pageheader
         .breadcrumbs

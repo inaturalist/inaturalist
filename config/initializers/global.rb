@@ -31,11 +31,13 @@ end
 
 def ratatosk(options = {})
   src = options[:src]
-  if CONFIG.ratatosk && CONFIG.ratatosk.name_providers
-    if CONFIG.ratatosk.name_providers.include?(src.to_s.downcase)
+  site = options[:site] || Site.default
+  providers = ( options[:site] && options[:site].ratatosk_name_providers ) || [ "col", "eol" ]
+  if !providers.blank?
+    if providers.include?(src.to_s.downcase)
       Ratatosk::Ratatosk.new(:name_providers => [src])
     else
-      @ratatosk ||= Ratatosk::Ratatosk.new(:name_providers => CONFIG.ratatosk.name_providers)
+      Ratatosk::Ratatosk.new( name_providers: providers )
     end
   else
     Ratatosk
@@ -123,3 +125,24 @@ def fetch_head(url)
   end
   nil
 end
+
+# Helper to perform a long running task, catch an exception, and try again
+# after sleeping for a while
+def try_and_try_again( exceptions, options = { } )
+  exceptions = [exceptions].flatten
+  tries = options.delete( :tries ) || 3
+  sleep_for = options.delete( :sleep ) || 60
+  logger = options[:logger] || Rails.logger
+  begin
+    yield
+  rescue *exceptions => e
+    if ( tries -= 1 ).zero?
+      raise e
+    else
+      logger.debug "Caught #{e.class}, sleeping for #{sleep_for} s before trying again..."
+      sleep( sleep_for )
+      retry
+    end
+  end
+end
+

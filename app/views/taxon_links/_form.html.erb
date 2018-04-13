@@ -14,7 +14,7 @@
     $(document).ready(function() {
       $('#species_guess').simpleTaxonSelector()
       $('#taxon_link_place_id').chooser({
-        collectionUrl: '/places/autocomplete.json',
+        collectionUrl: '/places/autocomplete.json?with_check_list=true',
         resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
         chosen: PLACE
       })
@@ -24,7 +24,7 @@
   </script>
 <%- end -%>
 <div class="column span-15 append-1">
-  <%= form_for @taxon_link, :builder => DefaultFormBuilder, :html => {:class => 'taxon_link_form'} do |f| %>
+  <%= form_for @taxon_link, :builder => DefaultFormBuilder, :html => {:class => 'clear taxon_link_form'} do |f| %>
     <%= f.text_field :url, :required => true %>
     <%= f.text_field :site_title, :required => true %>
     <%= f.text_field :short_title, :maxlength => 10, :description => t(:short_or_abbreviated_title_for_display) %>
@@ -46,11 +46,19 @@
     <div class="buttonrow">
       <%= f.submit t(:save), :class => "default button" %>
       <%= link_to t(:cancel), @taxon_link.taxon, :class => "button" %>
-      <% unless @taxon_link.new_record?  -%>
+      <% if @taxon_link.deletable_by?( current_user )  -%>
         <%= link_to t(:delete), @taxon_link, :method => :delete,
           :data => {:confirm => t(:are_you_sure_want_delete_taxon_link)},
           :class => "minor button delete" %>
       <% end -%>
+    </div>
+  <% end -%>
+  <% if @taxon_link.user -%>
+    <div class="clear description">
+      <%= t( :created_by, gender: "taxon_link" ) %>
+      <%= link_to user_image( @taxon_link.user ), @taxon_link.user %>
+      <%= link_to @taxon_link.user.login, @taxon_link.user %>
+      <%= t :on_day %> <%= l( @taxon_link.created_at.to_date, format: :long ) %>
     </div>
   <% end -%>
 </div>
@@ -59,34 +67,34 @@
   <div id="help_field" class="description field" >
     <p class="ui"><%= t(:if_this_link_will_apply_to_descendant) %></p>
     <dl>
-      <dt><%= t(:name_llaves) %></dt>
+      <% # Note, these param names should *not* be translated. If you use [NOBMRE] in a taxon link URL nothing will happen. %>
+      <dt>[NAME]</dt>
       <dd>
-        <%= t(:the_name_of_the_taxon_including_space) %>
-        <strong>Example:</strong><br/>
+        <p class="ui"><%= t(:the_name_of_the_taxon_including_space) %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/[NAME]</code> -> 
         <code>http://site.com/Homo%20sapiens</code>
       </dd><br/>
 
-      <dt><%= t(:genus_slash_species) %></dt>
+      <dt>[GENUS] / [SPECIES]</dt>
       <dd>
-        <%= t(:use_this_if_the_url_needs_genus_species_separated) %>
-        <strong>Example:</strong><br/>
+        <p class="ui"><%= t(:use_this_if_the_url_needs_genus_species_separated) %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/?g=[GENUS]&amp;s=[SPECIES]</code> -> 
         <code>http://site.com/?g=Homo&amp;s=sapiens</code>
       </dd><br/>
 
       <dt>[RANK]</dt>
       <dd>
-        The rank of the taxon, e.g. family, species, etc.<br/><br/>
-        <strong>Example:</strong><br/>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/[RANK]/[NAME]</code> -> 
         <code>http://site.com/species/Homo%20sapiens</code>
       </dd><br/>
 
       <dt>[NAME_WITH_RANK]</dt>
       <dd>
-        The name of the taxon with the rank. For infraspecific ranks, rank is inserted after the binomial.<br/><br/>
-        <strong>Example:</strong><br/>
+        <p class="ui"><%=t "views.taxon_links.form.name_with_rank_desc" %></p>
+        <p class="ui"><strong><%=t :example %>:</strong></p>
         <code>http://site.com/[NAME_WITH_RANK]</code> -> 
         <code>http://site.com/Homo%20sapiens%20ssp.%20inaturalensis</code>
       </dd>

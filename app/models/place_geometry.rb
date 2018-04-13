@@ -7,13 +7,18 @@ class PlaceGeometry < ActiveRecord::Base
   scope :without_geom, -> { select((column_names - ['geom']).join(', ')) }
 
   after_save :refresh_place_check_list,
-             :dissolve_geometry_if_changed,
+             :process_geometry_if_changed,
              :update_observations_places_later
 
   after_destroy :update_observations_places_later
 
   validates_presence_of :geom
+  validates_uniqueness_of :place_id
   validate :validate_geometry
+
+  def to_s
+    "<PlaceGeometry #{id} place_id: #{place_id}>"
+  end
 
   def validate_geometry
     # not sure why this is necessary, but validates_presence_of :geom doesn't always seem to run first
@@ -33,29 +38,29 @@ class PlaceGeometry < ActiveRecord::Base
   def refresh_place_check_list
     if place.check_list
       priority = place.user_id.blank? ? INTEGRITY_PRIORITY : USER_PRIORITY
-      if self.place.check_list
-        unless new_record?
-          self.place.check_list.delay(
-            unique_hash: { "CheckList::refresh": self.place.check_list.id },
-            queue: "slow", priority: priority).refresh
-        end
+      unless new_record?
         self.place.check_list.delay(
-          unique_hash: { "CheckList::add_observed_taxa": self.place.check_list.id },
-          queue: "slow", priority: priority).add_observed_taxa
+          unique_hash: { "CheckList::refresh": self.place.check_list.id },
+          queue: "slow", priority: priority).refresh
       end
+      self.place.check_list.delay(
+        unique_hash: { "CheckList::add_observed_taxa": self.place.check_list.id },
+        queue: "slow", priority: priority).add_observed_taxa
     end
     true
   end
 
-  def dissolve_geometry_if_changed
-    dissolve_geometry if geom_changed?
+  def process_geometry_if_changed
+    process_geometry if geom_changed?
     true
   end
 
-  def dissolve_geometry
+  def process_geometry
     PlaceGeometry.connection.execute <<-SQL
       UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
-        SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
+        SELECT
+          ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+        FROM (
           SELECT (ST_Dump(geom)).geom
           FROM place_geometries
           WHERE id = #{id}
@@ -69,7 +74,9 @@ class PlaceGeometry < ActiveRecord::Base
       Rails.logger.error "[ERROR #{Time.now}] Failed to dissolve for PlaceGeometry #{id}, attempting to simplify: #{e}"
       connection.execute <<-SQL
         UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
-          SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
+          SELECT
+            ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+          FROM (
             SELECT ST_SimplifyPreserveTopology((ST_Dump(geom)).geom, 0.0001) AS geom
             FROM place_geometries
             WHERE id = #{id}
@@ -83,7 +90,9 @@ class PlaceGeometry < ActiveRecord::Base
       Rails.logger.error "[ERROR #{Time.now}] Failed to dissolve for PlaceGeometry #{id}, filtering invalid geoms: #{e}"
       connection.execute <<-SQL
         UPDATE place_geometries SET geom = reuonioned_geoms.new_geom FROM (
-          SELECT ST_Multi(ST_Union(geom)) AS new_geom FROM (
+          SELECT
+            ST_RemoveRepeatedPoints(ST_Multi(ST_Union(geom))) AS new_geom
+          FROM (
             SELECT (ST_Dump(geom)).geom
             FROM place_geometries
             WHERE id = #{id}
@@ -127,8 +136,8 @@ class PlaceGeometry < ActiveRecord::Base
 
   def bounding_box_geom
     return if !geom
-    PlaceGeometry.where( id: id ).
-      select( "id, ST_Envelope( geom ) AS bounding_box" ).first.bounding_box
+    db_pg = PlaceGeometry.where( id: id ).select( "id, ST_Envelope( geom ) AS bounding_box" ).first
+    db_pg.bounding_box if db_pg
   end
 
   def self.update_observations_places(place_geometry_id)

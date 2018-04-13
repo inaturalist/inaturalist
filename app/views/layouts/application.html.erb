@@ -1,10 +1,12 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
-     xmlns:fb="http://www.facebook.com/2008/fbml"
-     xmlns:og="http://ogp.me/ns#">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xml:lang="<%= I18n.locale %>"
+    lang="<%= I18n.locale %>"
+    xmlns:fb="http://www.facebook.com/2008/fbml"
+    xmlns:og="http://ogp.me/ns#">
   <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# <% if CONFIG.facebook && CONFIG.facebook.namespace %><%= CONFIG.facebook.namespace %>: http://ogp.me/ns/fb/<%= CONFIG.facebook.namespace %>#<% end %>">
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+    <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <% if logged_in? && @provider_authorizations -%>
       <meta name="authenticators" content="<%= @provider_authorizations.map{|pa| pa.provider}.join(',') %>">
     <% end -%>
@@ -14,8 +16,9 @@
     <%= render :partial => 'shared/common_stylesheets'%>
     <%= stylesheet_link_tag "blueprint-inat" %>
     <%= stylesheet_link_tag "blueprint-bootstrap" %>
-    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js' %>
+    <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' %>
     <%= javascript_include_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js' %>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript">
       I18n = { }
       I18n.defaultLocale = "en"
@@ -31,32 +34,45 @@
       PREFERRED_PLACE = <%= json_escape (user_place || site_place).
         to_json(only: [:id, :name, :place_type], methods: [:ancestor_place_ids]).html_safe %>
       <% end -%>
+      <% if logged_in? -%>
+        var CURRENT_USER = {
+          id: <%= current_user.id %>,
+          login: '<%= current_user.login %>',
+          icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
+          roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
+          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>
+        };
+      <% end -%>
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <%= csrf_meta_tag %>
-    <% if CONFIG.twitter && CONFIG.twitter.username -%>
-      <meta name="twitter:site" content="<%= CONFIG.twitter.username %>">
+    <meta name="config:inaturalist_api_url" content="<%= CONFIG.node_api_url %>">
+    <% if current_user %>
+      <meta name="inaturalist-api-token" content="<%= JsonWebToken.encode( user_id: current_user.id ) %>" />
+    <% end %>
+    <% if @site && !@site.twitter_username.blank? -%>
+      <meta name="twitter:site" content="<%= @site.twitter_username %>">
     <% end -%>
-    <meta property="og:site_name" content="<%= CONFIG.site_name %>"/>
-    <% if CONFIG.facebook && CONFIG.facebook['app_id'] -%>
-      <meta property="fb:app_id" content="<%= CONFIG.facebook['app_id'] %>" />
+    <% if @site %>
+      <meta property="og:site_name" content="<%= @site.name %>"/>
+    <% end %>
+    <% if CONFIG.facebook && !CONFIG.facebook.app_id.blank? -%>
+      <meta property="fb:app_id" content="<%= CONFIG.facebook.app_id %>" />
     <% end -%>
-    <% if !@headless && @site && @site.preferred_ios_app_id -%>
-      <meta name="apple-itunes-app" content="app-id=<%= @site.preferred_ios_app_id %>">
+    <% if !@headless && @site && !@site.ios_app_id -%>
+      <meta name="apple-itunes-app" content="app-id=<%= @site.ios_app_id %>">
     <% end -%>
     <%= yield :extrahead %>
     <%= yield :extracss %>
     <%= yield :extrajs %>
-    <% if @site %>
+    <% if @site && @shareable_image_url.blank? %>
       <meta property="og:image" content="<%= image_url @site.logo_square.url %>"/>
     <% end %>
   </head>
 <body class="browser">
   <div id="bodywrapper">
     <% unless @headless -%>
-      <% cache(User.header_cache_key_for(current_user, site: @site)) do %>
-        <%= render :partial => 'shared/header' %>
-      <% end %>
+      <%= render :partial => 'shared/header' %>
     <% end -%>
     
     <% if flash[:notice] || flash[:alert] %>
@@ -94,6 +110,8 @@
   </div>
   
   <%= render :partial => 'shared/footer' unless @footless %>
+
+  <div id="inat-universal-autocomplete"></div>
   
   <% if logged_in? -%>
     <script type="text/javascript" charset="utf-8">

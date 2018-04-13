@@ -1,9 +1,9 @@
 <%-
-  @title = t(:add_your_photo_to, :project => "#{@project ? h(@project.title) : CONFIG.site_name}")
+  @title = t(:add_your_photo_to, :project => "#{@project ? h(@project.title) : @site.name}")
   @img = if @project && @project.icon.file?
     image_url @project.icon.url(:span2)
   else
-    image_url CONFIG.logo_icon_square_big
+    image_url @site.logo_square.url
   end
 -%>
 <%- @description = capture do %>
@@ -11,7 +11,7 @@
     <%= formatted_user_text @project.description %>
   <% else %>
     <p>
-      <%_ t(:inaturalist_is_an_online_community, :site_name => SITE_NAME)
+      <%_ t(:inaturalist_is_an_online_community, :site_name => @site.name)
       <% if @taxon -%>
         <% if @taxon.species_or_lower? && @taxon.common_name && @taxon.common_name.to_s !~/'/ -%>
           <%= t(:the) %>
@@ -20,7 +20,7 @@
       <% else %>
         <%= t(>this_species) %>
       <% end -%>
-      <%= t(:and_help_the_inaturalist_community_grow, :site_name => SITE_NAME) %>
+      <%= t(:and_help_the_inaturalist_community_grow, :site_name => @site.name) %>
     </p>
   <% end -%>
 <% end %>
@@ -31,7 +31,7 @@
 
 <%- content_for(:extrahead) do -%>
   <meta property="og:title" content="<%= @title %>"/> 
-  <meta property="og:image" content="<%= @img %>"/>
+  <meta property="og:image" content="<%= @shareable_image_url = @img %>"/>
   <meta property="twitter:image" content="<%= @img %>"/>
   <% if CONFIG.facebook && !CONFIG.facebook.admin_ids.blank? -%>
     <meta property="fb:admins" content="<%= CONFIG.facebook.admin_ids.join(',') %>"/>

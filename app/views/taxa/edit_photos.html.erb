@@ -4,7 +4,7 @@
 -%>
 <div id="edit_taxon_photos_<%= resource.id %>" class="edit_taxon_photos">
   <div class="readable description" style="margin-bottom: 1em">
-    <%= t(:choose_cc_licensed_photos_html, :site_name => SITE_NAME) %>
+    <%= t(:choose_cc_licensed_photos_html, :site_name => @site.name) %>
   </div>
   
   <div class="tabs">
@@ -13,9 +13,9 @@
       <li>
         <%-
           title = if licensed
-            t(:from_licensed_site_observations, :site_name => SITE_NAME_SHORT)
+            t(:from_licensed_site_observations, :site_name => @site.preferred_site_name_short)
           else
-            t(:from_your_site_observations, :site_name => SITE_NAME_SHORT)
+            t(:from_your_site_observations, :site_name => @site.preferred_site_name_short)
           end
         -%>
         <%= link_to "<span>#{title}</span>".html_safe, "#inat_obs_taxon_photos" %>

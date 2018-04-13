@@ -138,7 +138,7 @@ class GuideTaxaController < ApplicationController
     redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
   rescue Koala::Facebook::APIError => e
     raise e unless e.message =~ /OAuthException/
-    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{CONFIG.site_name_short}."
+    flash[:error] = "Facebook needs the owner of that photo to re-confirm their connection to #{@site.preferred_site_name_short}."
     redirect_back_or_default(edit_guide_taxon_path(@guide_taxon))
   end
 

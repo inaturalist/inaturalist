@@ -14,24 +14,25 @@ import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
 import HeaderUserMenu from "./header_user_menu";
+import { ACCEPTED_FILE_TYPES } from "../models/util";
 
-const photoTarget = {
+const fileTarget = {
   drop( props, monitor, component ) {
     if ( monitor.didDrop( ) ) { return; }
     const item = monitor.getItem( );
     const dropResult = component.props;
     if ( dropResult ) {
-      props.newCardFromPhoto( item, dropResult.obsCard );
+      props.newCardFromMedia( item, dropResult.obsCard );
     }
   }
 };
 
 class DragDropZone extends Component {
 
-  static photoDrop( connect, monitor ) {
+  static fileDrop( connect, monitor ) {
     return {
       connectDropTarget: connect.dropTarget( ),
-      photoIsOver: monitor.isOver( ),
+      fileIsOver: monitor.isOver( ),
       canDrop: monitor.canDrop( )
     };
   }
@@ -193,7 +194,7 @@ class DragDropZone extends Component {
     let intro;
     let className = "uploader";
     if ( draggingProps && draggingProps.obsCard ) { className += " hover"; }
-    if ( this.props.photoIsOver ) { className += " photoOver"; }
+    if ( this.props.fileIsOver ) { className += " fileOver"; }
     const cardCount = Object.keys( obsCards ).length;
     if ( cardCount > 0 ) {
       const keys = _.keys( selectedObsCards );
@@ -236,7 +237,7 @@ class DragDropZone extends Component {
           className={ className }
           activeClassName="hover"
           disableClick
-          accept="image/*"
+          accept={ ACCEPTED_FILE_TYPES }
         >
           <nav className="navbar navbar-default">
             <div className="container-fluid">
@@ -333,19 +334,20 @@ class DragDropZone extends Component {
 
 DragDropZone.propTypes = {
   commandKeyPressed: PropTypes.bool,
+  config: PropTypes.object,
   confirmModal: PropTypes.object,
   confirmRemoveObsCard: PropTypes.func,
   connectDropTarget: PropTypes.func,
   draggingProps: PropTypes.object,
+  fileIsOver: PropTypes.bool,
   files: PropTypes.object,
   locationChooser: PropTypes.object,
-  newCardFromPhoto: PropTypes.func,
+  newCardFromMedia: PropTypes.func,
   obsCards: PropTypes.object,
   observationField: PropTypes.object,
-  observationFieldValue: PropTypes.any,
   observationFieldSelectedDate: PropTypes.string,
+  observationFieldValue: PropTypes.any,
   onDrop: PropTypes.func.isRequired,
-  photoIsOver: PropTypes.bool,
   photoViewer: PropTypes.object,
   removeModal: PropTypes.object,
   removeObsCard: PropTypes.func,
@@ -357,5 +359,5 @@ DragDropZone.propTypes = {
 };
 
 export default pipe(
-  DropTarget( "Photo", photoTarget, DragDropZone.photoDrop )
+  DropTarget( ["Photo", "Sound"], fileTarget, DragDropZone.fileDrop )
 )( DragDropZone );

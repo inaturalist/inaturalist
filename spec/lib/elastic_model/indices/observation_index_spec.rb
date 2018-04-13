@@ -7,6 +7,8 @@ describe "Observation Index" do
     load_test_taxa
   end
   after( :all ) { Time.zone = @starting_time_zone }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
 
   it "as_indexed_json should return a hash" do
     o = Observation.make!
@@ -56,6 +58,7 @@ describe "Observation Index" do
     # these without a position will be last in order of creation
     make_observation_photo(photo: p4, observation: o)
     make_observation_photo(photo: p5, observation: o)
+    o.reload
     json = o.as_indexed_json
     expect( json[:photos][0][:id] ).to eq p1.id
     expect( json[:photos][1][:id] ).to eq p2.id
@@ -147,9 +150,70 @@ describe "Observation Index" do
     Identification.where(observation_id: o.id).destroy_all
     5.times{ Identification.make!(observation: o) }
     json = o.as_indexed_json
-    expect( json[:non_owner_ids].length ).to eq 5
-    expect( json[:non_owner_ids].first ).to eq o.identifications.first.
+    expect( json[:identifications].length ).to eq 5
+    expect( json[:identifications].first ).to eq o.identifications.first.
       as_indexed_json(no_details: true)
+  end
+
+  it "indexes owners_identification_from_vision" do
+    o = Observation.make!( taxon: Taxon.make!, owners_identification_from_vision: true )
+    expect( o.owners_identification_from_vision ).to be true
+    json = o.as_indexed_json
+    expect( json[:owners_identification_from_vision] ).to be true
+  end
+
+  it "indexes applications based on user agent" do
+    OauthApplication.make!(name: "iNaturalist Android App")
+    OauthApplication.make!(name: "iNaturalist iPhone App")
+    o = Observation.make!( oauth_application_id: 11 )
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq 11
+    o.update_attributes( oauth_application_id: nil,
+      user_agent: "iNaturalist/1.5.1 (Build 195; Android 3.18..." )
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_android_app.id
+    o.update_attributes( user_agent: "iNaturalist/2.7 (iOS iOS 10.3.2 iPhone)" )
+    expect( o.as_indexed_json[:oauth_application_id] ).to eq OauthApplication.inaturalist_iphone_app.id
+  end
+
+  it "private_place_ids should include places that contain the positional_accuracy" do
+    place = make_place_with_geom
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, positional_accuracy: 10 )
+    expect( o.as_indexed_json[:private_place_ids] ).to include place.id
+  end
+  it "private_place_ids should not include places that do not contain the positional_accuracy" do
+    place = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))" )
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, positional_accuracy: 99999 )
+    expect( o.as_indexed_json[:private_place_ids] ).not_to include place.id
+  end
+  it "private_place_ids should include places that do not contain the positional_accuracy but are county-level" do
+    place = make_place_with_geom(
+      wkt: "MULTIPOLYGON(((0 0,0 0.1,0.1 0.1,0.1 0,0 0)))",
+      place_type: Place::COUNTY,
+      admin_level: Place::COUNTY_LEVEL
+    )
+    o = Observation.make!(
+      latitude: place.latitude,
+      longitude: place.longitude,
+      positional_accuracy: 99999
+    )
+    expect( o.as_indexed_json[:private_place_ids] ).to include place.id
+  end
+  it "place_ids should include places that contain the uncertainty cell" do
+    place = make_place_with_geom
+    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, geoprivacy: Observation::OBSCURED )
+    expect( o.as_indexed_json[:place_ids] ).to include place.id
+  end
+  it "place_ids should not include places that do not contain the uncertainty cell" do
+    place = make_place_with_geom
+    o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+    expect( o.as_indexed_json[:place_ids] ).not_to include place.id
+  end
+  it "place_ids should include county-level places that do not contain the uncertainty cell" do
+    place = make_place_with_geom(
+      place_type: Place::COUNTY,
+      admin_level: Place::COUNTY_LEVEL
+    )
+    o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+    expect( o.as_indexed_json[:place_ids] ).to include place.id
   end
 
   describe "params_to_elastic_query" do
@@ -560,8 +624,8 @@ describe "Observation Index" do
       ofv_params = { whatever: { observation_field: of, value: "testvalue" } }
       expect( Observation.params_to_elastic_query({ ofv_params: ofv_params }) ).to include(
         filters: [ { nested: { path: "ofvs", query: { bool: { must: [
-          { match: { "ofvs.name" => of.name } },
-          { match: { "ofvs.value" => "testvalue" }}]}}}}])
+          { match: { "ofvs.name_ci" => of.name } },
+          { match: { "ofvs.value_ci" => "testvalue" }}]}}}}])
     end
 
     it "filters by conservation status" do
@@ -636,5 +700,28 @@ describe "Observation Index" do
         filters: [ { range: { id: { gte: 99 } } } ])
     end
 
+  end
+
+  describe "prepare_batch_for_index" do
+    it "should always include country-, state-, and county-level place IDs" do
+      country = make_place_with_geom(
+        admin_level: Place::COUNTRY_LEVEL,
+        wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))"
+      )
+      state = make_place_with_geom(
+        admin_level: Place::STATE_LEVEL, parent: country,
+        wkt: "MULTIPOLYGON(((0.1 0.1,0.1 0.9,0.9 0.9,0.9 0.1,0.1 0.1)))"
+      )
+      county = make_place_with_geom(
+        admin_level: Place::STATE_LEVEL, parent: state,
+        wkt: "MULTIPOLYGON(((0.2 0.2,0.2 0.8,0.8 0.8,0.8 0.2,0.2 0.2)))" 
+      )
+      o = Observation.make!( latitude: county.latitude, longitude: county.longitude, positional_accuracy: 99999 )
+      Observation.prepare_batch_for_index( [o] )
+      [country, state, county].each do |p|
+        expect( o.indexed_place_ids ).to include p.id
+        expect( o.indexed_private_place_ids ).to include p.id
+      end
+    end
   end
 end

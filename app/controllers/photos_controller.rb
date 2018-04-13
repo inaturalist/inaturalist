@@ -1,8 +1,5 @@
 #encoding: utf-8
 class PhotosController < ApplicationController
-  MOBILIZED = [:show]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
   before_filter :load_photo, :only => [:show, :update, :repair, :destroy, :rotate]
   before_filter :require_owner, :only => [:update, :destroy, :rotate]
   before_filter :authenticate_user!, :only =>
@@ -26,7 +23,6 @@ class PhotosController < ApplicationController
         @observations = @photo.observations.limit(100)
         @flags = @photo.flags
       end
-      format.mobile
       format.js do
         partial = params[:partial] || 'photo'
         render :layout => false, :partial => partial, :object => @photo
@@ -238,7 +234,7 @@ class PhotosController < ApplicationController
     url = @photo.taxa.first || @photo.observations.first || '/'
     repaired, errors = Photo.repair_single_photo(@photo)
     if repaired.destroyed?
-      flash[:error] = t(:photo_destroyed_because_it_was_deleted_from, :site_name => CONFIG.site_name_short)
+      flash[:error] = t(:photo_destroyed_because_it_was_deleted_from, :site_name => @site.site_name_short)
       redirect_to url
     elsif !errors.blank?
       flash[:error] = t(:failed_to_repair_photo, :errors => errors.values.to_sentence)
@@ -251,7 +247,7 @@ class PhotosController < ApplicationController
 
   def rotate
     unless @photo.is_a?(LocalPhoto)
-      flash[:error] = t(:you_cant_rotate_photos_hostde_outside, :site_name => CONFIG.site_name_short)
+      flash[:error] = t(:you_cant_rotate_photos_hostde_outside, :site_name => @site.site_name_short)
       redirect_back_or_default(@photo.becomes(Photo))
     end
     rotation = params[:left] ? -90 : 90

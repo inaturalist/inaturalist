@@ -278,10 +278,10 @@ jQuery.extend({
 				pattern = new RegExp(pattern.source, patternMods);
 			}
 			var sarray = s.split(pattern), matches = s.match(pattern);
-			if (jQuery.browser.msie) {
-				if (s.indexOf(matches[0]) == 0) sarray.unshift("");
-				if (s.lastIndexOf(matches[matches.length-1]) == s.length - matches[matches.length-1].length) sarray.push("");
-			}
+			// if (jQuery.browser.msie) {
+			// 	if (s.indexOf(matches[0]) == 0) sarray.unshift("");
+			// 	if (s.lastIndexOf(matches[matches.length-1]) == s.length - matches[matches.length-1].length) sarray.push("");
+			// }
 			count = (count < 0)?(sarray.length-1):count || 1;
 			s = sarray[0];
 			for (var i=1; i<sarray.length; i++) {

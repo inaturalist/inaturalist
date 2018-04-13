@@ -23,6 +23,7 @@ class ProjectMap extends Component {
     } );
 
     const inat = L.tileLayer(
+      // "https://tiles.inaturalist.org/v1/colored_heatmap/{z}/{x}/{y}.png?" +
       "https://tiles.inaturalist.org/v1/colored_heatmap/{z}/{x}/{y}.png?" +
       `project_id=${this.props.project.id}&color=white&ttl=600` );
     map.addLayer( inat );
@@ -54,7 +55,7 @@ class ProjectMap extends Component {
     } else {
       $.ajax( {
         dataType: "json",
-        url: `https://api.inaturalist.org/v1/places/${this.props.project.place_id}?ttl=60`,
+        url: `${$( "meta[name='config:inaturalist_api_url']" ).attr( "content" )}/places/${this.props.project.place_id}?ttl=60`,
         success: data => {
           const f = { type: "Feature", geometry: data.results[0].geometry_geojson };
           const myStyle = {
@@ -104,7 +105,7 @@ class ProjectMap extends Component {
           <div className="value">
             { parksCount }
           </div>
-          <div className="stat">Parks</div>
+          <div className="stat">{ I18n.t("of_places") }</div>
         </div>
       );
     }
@@ -117,25 +118,25 @@ class ProjectMap extends Component {
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.observations ) }
               </div>
-              <div className="stat">Observations</div>
+              <div className="stat">{ I18n.t("of_observations") }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.species ) }
               </div>
-              <div className="stat">Species</div>
+              <div className="stat">{ I18n.t("of_species") }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.identifiers ) }
               </div>
-              <div className="stat">Identifiers</div>
+              <div className="stat">{ I18n.t("of_identifiers") }</div>
             </div>
             <div className="row-fluid">
               <div className="value">
                 { Util.numberWithCommas( this.props.overallStats.observers ) }
               </div>
-              <div className="stat">Observers</div>
+              <div className="stat">{ I18n.t("of_observers") }</div>
             </div>
             { parksStat }
           </div>

@@ -13,6 +13,7 @@ class TaxonName < ActiveRecord::Base
                           :scope => [:lexicon, :taxon_id], 
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
+  validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   # There are so many names that violate
   # validates_uniqueness_of :source_identifier,
   #                         :scope => [:taxon_id, :source_id],
@@ -91,6 +92,38 @@ class TaxonName < ActiveRecord::Base
     EOT
     const_set k.to_s.upcase, v
   end
+
+  LOCALES = {
+    "arabic"                => "ar",
+    "basque"                => "eu",
+    "breton"                => "br",
+    "bulgarian"             => "bg",
+    "catalan"               => "ca",
+    "chinese_traditional"   => "zh",
+    "danish"                => "da",
+    "dutch"                 => "nl",
+    "english"               => "en",
+    "french"                => "fr",
+    "galician"              => "gl",
+    "german"                => "de",
+    "finnish"               => "fi",
+    "hawaiian"              => "haw",
+    "hebrew"                => "iw",
+    "indonesian"            => "id",
+    "italian"               => "it",
+    "japanese"              => "ja",
+    "korean"                => "ko",
+    "luxembourgish"         => "lb",
+    "macedonian"            => "mk",
+    "maori"                 => "mi",
+    "maya"                  => "myn",
+    "occitan"               => "oc",
+    "portuguese"            => "pt",
+    "russian"               => "ru",
+    "scientific_names"      => "sci",
+    "spanish"               => "es"
+  }
+
   alias :is_scientific? :is_scientific_names?
   
   def to_s
@@ -114,7 +147,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def self.normalize_lexicon(lexicon)
-    LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize
+    ( LEXICONS[lexicon.underscore.upcase.to_sym] || lexicon.titleize ).strip
   end
   
   def normalize_lexicon
@@ -141,7 +174,7 @@ class TaxonName < ActiveRecord::Base
 
   def as_indexed_json(options={})
     json = {
-      name: name.blank? ? nil : name.slice(0,1).capitalize + name.slice(1..-1),
+      name: name.blank? ? nil : name,
       locale: locale_for_lexicon,
       position: position,
       place_taxon_names: place_taxon_names.map(&:as_indexed_json)
@@ -154,6 +187,7 @@ class TaxonName < ActiveRecord::Base
         json[:name_autocomplete_ja] = name
       end
       json[:exact] = name
+      json[:exact_ci] = name
     end
     json
   end
@@ -166,13 +200,17 @@ class TaxonName < ActiveRecord::Base
   
   def self.choose_common_name(taxon_names, options = {})
     return nil if taxon_names.blank?
+    if options[:user] && !options[:user].prefers_common_names?
+      return nil
+    end
     common_names = taxon_names.reject { |tn| tn.is_scientific_names? || !tn.is_valid? }
     return nil if common_names.blank?
     place_id = options[:place_id] unless options[:place_id].blank?
     place_id ||= (options[:place].is_a?(Place) ? options[:place].id : options[:place]) unless options[:place].blank?
     place_id ||= options[:user].place_id unless options[:user].blank?
-    if place_id.blank? && ( site = CONFIG.site || Site.find_by_id( CONFIG.site_id ) )
-      place_id ||= site.place_id unless site.place_id.blank?
+    
+    if place_id.blank? && options[:site]
+      place_id ||= options[:site].place_id unless options[:site].place_id.blank?
     end
     place = (options[:place].is_a?(Place) ? options[:place] : Place.find_by_id(place_id)) unless place_id.blank?
     common_names = common_names.sort_by{|tn| [tn.position, tn.id]}
@@ -192,7 +230,10 @@ class TaxonName < ActiveRecord::Base
     else
       place_names = []
     end
-    language_name = language_for_locale(options[:locale]) || 'english'
+    locale = options[:locale]
+    locale = options[:site].try(:locale) if locale.blank?
+    locale = I18n.locale if locale.blank?
+    language_name = language_for_locale( locale ) || "english"
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
     engnames = common_names.select {|n| n.is_english? }
     unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }
@@ -211,7 +252,7 @@ class TaxonName < ActiveRecord::Base
     # subsequent records in an array
     options = opts ? opts.clone : { }
     options[:except] ||= []
-    options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :creator_id, :updater_id]
+    options[:except] += [:source_id, :source_identifier, :source_url, :name_provider, :updater_id]
     if options[:only]
       options[:except] = options[:except] - options[:only]
     end
@@ -225,27 +266,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def locale_for_lexicon
-    case localizable_lexicon
-    when "catalan" then "ca"
-    when "chinese_traditional" then "zh"
-    when "dutch" then "nl"
-    when "english" then "en"
-    when "french" then "fr"
-    when "german" then "de"
-    when "hawaiian" then "haw"
-    when "hebrew" then "iw"
-    when "indonesian" then "id"
-    when "italian" then "it"
-    when "japanese" then "ja"
-    when "korean" then "ko"
-    when "maori" then "mi"
-    when "maya" then "myn"
-    when "portuguese" then "pt"
-    when "scientific_names" then "sci"
-    when "spanish" then "es"
-    else
-      "und"
-    end
+    LOCALES[localizable_lexicon] || "und"
   end
 
   def index_taxon
@@ -258,17 +279,9 @@ class TaxonName < ActiveRecord::Base
 
   def self.language_for_locale(locale = nil)
     locale ||= I18n.locale
-    case locale.to_s
-    when /^ca/      then 'catalan'
-    when /^en/      then 'english'
-    when /^es/      then 'spanish'
-    when /^fr/      then 'french'
-    when /^iw/      then 'hebrew'
-    when /^ja/      then 'japanese'
-    when /^ko/      then 'korean'
-    when /^pt/      then 'portuguese'
-    when /zh.CN/i   then 'chinese_simplified'
-    when /^zh/      then 'chinese_traditional'
+    LOCALES.each do |language, language_locale|
+      return "chinese_simplified" if locale.to_s =~ /zh.CN/i
+      return language if locale.to_s =~ /^#{language_locale}/
     end
   end
 

@@ -30,7 +30,8 @@ class PicasaPhoto < Photo
     observation.observation_photos.build(:photo => self, :observation => observation)
     observation.description = api_response.description
     if timestamp = api_response.exif_time || api_response.timestamp
-      observation.observed_on_string = Time.at(timestamp / 1000).to_s(:long)
+      # Google seems to present these as UTC these days (I think)
+      observation.observed_on_string = ActiveSupport::TimeZone.new('UTC').at(timestamp / 1000).to_s(:long)
     end
     observation.munge_observed_on_with_chronic
     observation.time_zone = observation.user.time_zone if observation.user
@@ -144,7 +145,14 @@ class PicasaPhoto < Photo
     if picasa_identity
       picasa = Picasa.new(picasa_identity.token)
       PicasaPhoto.picasa_request_with_refresh(picasa_identity) do
-        picasa.get_url(native_photo_id, :kind => "photo,user", :thumbsize => RubyPicasa::Photo::VALID.join(','))
+        picasa.get_url(
+          native_photo_id,
+          kind: "photo,user",
+          # request all relevant thumbnail sizes
+          thumbsize: RubyPicasa::Photo::VALID.join(','),
+          # make sure we get the original photo file url
+          imgmax: "d"
+        )
       end
     else
       nil

@@ -14,7 +14,10 @@ class PlacesController < ApplicationController
   before_filter :curator_required, :only => [:planner]
   
   caches_page :geometry
-  caches_page :cached_guide
+  caches_action :cached_guide,
+    expires_in: 1.hour,
+    cache_path: Proc.new {|c| c.params.merge( locale: I18n.locale ) },
+    if: Proc.new {|c| c.session.blank? || c.session["warden.user.user.key"].blank? }
   cache_sweeper :place_sweeper, :only => [:update, :destroy, :merge]
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
@@ -28,7 +31,7 @@ class PlacesController < ApplicationController
   def index
     respond_to do |format|
       format.html do
-        place = (Place.find(CONFIG.place_id) rescue nil) unless CONFIG.place_id.blank?
+        place = @site.place
         key = place ? "random_place_ids_#{place.id}" : 'random_place_ids'
         place_ids = Rails.cache.fetch(key, :expires_in => 15.minutes) do
           places = if place
@@ -155,14 +158,14 @@ class PlacesController < ApplicationController
     else
       @place = Place.new(params[:place])
       @place.user = current_user
-      @place.save
       if params[:file]
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
-        @place.save_geom(@geometry, user: current_user) if @geometry
+        @place.validate_with_geom( @geometry, user: current_user )
       end
       if @geometry && @place.valid?
+        @place.save
         @place.save_geom(@geometry, user: current_user)
         if @place.too_big_for_check_list?
           notice = t(:place_too_big_for_check_list)
@@ -203,14 +206,16 @@ class PlacesController < ApplicationController
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
-        @place.save_geom(@geometry, user: current_user) if @geometry
+        if @place.validate_with_geom( @geometry, user: current_user )
+          @place.save_geom(@geometry, user: current_user) if @geometry
+        end
       end
       if @place.errors.any?
         flash[:error] = t(:there_were_problems_importing_that_place_geometry,
           error: @place.errors.full_messages.join(', '))
       end
 
-      if params[:remove_geom]
+      if params[:remove_geom] && @place.place_geometry_without_geom
         @place.place_geometry_without_geom.delete
       end
 
@@ -279,6 +284,7 @@ class PlacesController < ApplicationController
         Place.where("place_type = ?", Place::CONTINENT).order("updated_at desc")
       end
       scope = scope.with_geom if params[:with_geom]
+      scope = scope.with_check_list if params[:with_check_list]
       @places = scope.includes(:place_geometry_without_geom).limit(params[:per_page]).
         sort_by{|p| p.bbox_area || 0}.reverse
     else
@@ -288,11 +294,19 @@ class PlacesController < ApplicationController
         { match: { display_name_autocomplete: @q } },
         { match: { display_name: { query: @q, operator: "and" } } }
       ] } } ]
+      inverse_filters = []
       if site_place
         filters << { term: { ancestor_place_ids: site_place.id } }
       end
+      if params[:with_geom]
+        filters << { exists: { field: :geometry_geojson } }
+      end
+      if params[:with_check_list]
+        inverse_filters << { exists: { field: :without_check_list } }
+      end
       @places = Place.elastic_paginate(
         filters: filters,
+        inverse_filters: inverse_filters,
         sort: { bbox_area: "desc" },
         per_page: params[:per_page])
       Place.preload_associations(@places, :place_geometry_without_geom)
@@ -438,9 +452,8 @@ class PlacesController < ApplicationController
       @comprehensive = @place.check_lists.exists?(["taxon_id IN (?) AND comprehensive = 't'", ancestor_ids])
       @comprehensive_list = @place.check_lists.where(taxon_id: ancestor_ids, comprehensive: "t").first
     end
-    @listed_taxa_count = @scope.count("taxa.id", distinct: true)
-    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").
-      count("taxa.id", distinct: true)
+    @listed_taxa_count = @scope.distinct.count( "taxa.id" )
+    @confirmed_listed_taxa_count = @scope.where("listed_taxa.first_observation_id IS NOT NULL").distinct.count( "taxa.id" )
     @listed_taxa = @place.listed_taxa
                          .where(taxon_id: @taxa, primary_listing: true)
                          .includes([ :place, { :first_observation => :user } ])
@@ -564,7 +577,9 @@ class PlacesController < ApplicationController
       if @geometry
         @place.latitude = @geometry.envelope.center.y
         @place.longitude = @geometry.envelope.center.x
-        @place.save_geom(@geometry, user: current_user)
+        if @place.validate_with_geom( @geometry, user: current_user )
+          @place.save_geom(@geometry, user: current_user)
+        end
       else
         @place.add_custom_error(:base, "File was invalid or did not contain any polygons")
       end

@@ -11,6 +11,12 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations",
     :queue_if => lambda { |observation| !observation.bulk_import }
+  
+  # Why aren't we using after_save? Because we need this to run before the
+  # after_create created by notifiesi_subscribers_of :public_places runs
+  after_create :update_observations_places
+  after_update :update_observations_places
+  
   notifies_subscribers_of :public_places, :notification => "new_observations", 
     :on => :create,
     :queue_if => lambda {|observation|
@@ -29,26 +35,24 @@ class Observation < ActiveRecord::Base
       return false if observation.taxon.blank?
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
-  notifies_users :mentioned_users, on: :save, notification: "mention"
+  notifies_users :mentioned_users,
+    except: :previously_mentioned_users,
+    on: :save,
+    notification: "mention",
+    delay: false,
+    if: lambda {|u| u.prefers_receive_mentions? }
   acts_as_taggable
   acts_as_votable
   acts_as_spammable fields: [ :description ],
                     comment_type: "item-description",
                     automated: false
-  WATCH_FIELDS_CHANGED_AT = {
-    geom: true,
-    observed_on: true,
-    place_guess: true,
-    positional_accuracy: true
-  }
-  include FieldsChangedAt
   include Ambidextrous
   
   # Set to true if you want to skip the expensive updating of all the user's
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing
+    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -62,6 +66,10 @@ class Observation < ActiveRecord::Base
   attr_accessor :coordinate_system
   attr_accessor :geo_x
   attr_accessor :geo_y
+
+  attr_accessor :owners_identification_from_vision_requested
+  attr_accessor :localize_locale
+  attr_accessor :localize_place
   
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -142,6 +150,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "coordinates_obscured",
     "positioning_method",
     "positioning_device",
     "out_of_range",
@@ -191,6 +200,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "coordinates_obscured",
     "positioning_method",
     "positioning_device",
     "place_town_name",
@@ -235,7 +245,7 @@ class Observation < ActiveRecord::Base
 
   preference :community_taxon, :boolean, :default => nil
   
-  belongs_to :user, :counter_cache => true
+  belongs_to :user
   belongs_to :taxon
   belongs_to :community_taxon, :class_name => 'Taxon'
   belongs_to :iconic_taxon, :class_name => 'Taxon', 
@@ -298,6 +308,13 @@ class Observation < ActiveRecord::Base
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
   validate do
+    # This should be a validation on cached_tag_list, but acts_as_taggable seems
+    # to set that after the validations run
+    if tag_list.join(", ").length > 750
+      errors.add( :tag_list, "must be under 750 characters total, no more than 256 characters per tag" )
+    end
+  end
+  validate do
     unless coordinate_system.blank?
       begin
         RGeo::CoordSys::Proj4.new( coordinate_system )
@@ -321,6 +338,7 @@ class Observation < ActiveRecord::Base
                     :set_time_in_time_zone,
                     :set_coordinates
 
+  before_create :replace_inactive_taxon
   before_save :strip_species_guess,
               :set_taxon_from_species_guess,
               :set_taxon_from_taxon_name,
@@ -332,7 +350,7 @@ class Observation < ActiveRecord::Base
               :trim_user_agent,
               :update_identifications,
               :set_community_taxon_before_save,
-              :set_taxon_from_community_taxon,
+              :set_taxon_from_probable_taxon,
               :obscure_coordinates_for_geoprivacy,
               :obscure_coordinates_for_threatened_taxa,
               :set_geom_from_latlon,
@@ -352,12 +370,15 @@ class Observation < ActiveRecord::Base
              :update_public_positional_accuracy,
              :update_mappable,
              :set_captive,
-             :update_observations_places,
              :set_taxon_photo,
              :create_observation_review
-  after_create :set_uri
+  after_create :set_uri, :update_user_counter_caches
   before_destroy :keep_old_taxon_id
-  after_destroy :refresh_lists_after_destroy, :refresh_check_lists, :update_taxon_counter_caches, :create_deleted_observation
+  after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
+    :update_taxon_counter_caches, :create_deleted_observation,
+    :update_user_counter_caches
+
+  after_commit :reindex_identifications, :reindex_places
   
   ##
   # Named scopes
@@ -738,7 +759,8 @@ class Observation < ActiveRecord::Base
       [options[:include]].flatten.compact
     end
     options[:methods] ||= []
-    options[:methods] += [:created_at_utc, :updated_at_utc, :time_observed_at_utc, :faves_count]
+    options[:methods] += [:created_at_utc, :updated_at_utc,
+      :time_observed_at_utc, :faves_count, :owners_identification_from_vision]
     viewer = options[:viewer]
     viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
     options[:except] ||= []
@@ -848,6 +870,15 @@ class Observation < ActiveRecord::Base
 
     # strip paranthesized stuff
     date_string.gsub!(/\(.*\)/, '')
+
+    # strip noon hour madness
+    # this is due to a weird, weird bug in Chronic
+    if date_string =~ /p\.?m\.?/i
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?p\.?m\.?/i, '\\1')
+    elsif date_string =~ /a\.?m\.?/i
+      date_string.gsub!( /( 12:(\d\d)(:\d\d)?)\s+?a\.?m\.?/i, '\\1')
+      date_string.gsub!( / 12:/, " 00:" )
+    end
     
     # Set the time zone appropriately
     old_time_zone = Time.zone
@@ -874,8 +905,9 @@ class Observation < ActiveRecord::Base
 
       if !t
         I18N_SUPPORTED_LOCALES.each do |locale|
-          date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-          break if t = Chronic.parse(date_string) 
+          next if locale =~ /^en.*/
+          new_date_string = englishize_month_abbrevs_for_locale(date_string, locale)
+          break if t = Chronic.parse(new_date_string)
         end
       end
       return true unless t
@@ -937,27 +969,33 @@ class Observation < ActiveRecord::Base
   def update_identifications
     return true if @skip_identifications
     return true unless taxon_id_changed?
-    owners_ident = identifications.where(:user_id => user_id).order("id asc").last
+    owners_ident = identifications.where( user_id: user_id ).order( "id asc" ).last
     
     # If there's a taxon we need to make sure the owner's ident agrees
-    if taxon && (owners_ident.blank? || owners_ident.taxon_id != taxon.id)
+    if taxon && ( owners_ident.blank? || owners_ident.taxon_id != taxon.id )
       # If the owner doesn't have an identification for this obs, make one
-      attrs = {:user => user, :taxon => taxon, :observation => self, :skip_observation => true}
+      attrs = {
+        user: user,
+        taxon: taxon,
+        observation: self,
+        skip_observation: true,
+        vision: owners_identification_from_vision_requested
+      }
       owners_ident = if new_record?
-        self.identifications.build(attrs)
+        self.identifications.build( attrs )
       else
-        self.identifications.create(attrs)
+        self.identifications.create( attrs )
       end
     elsif taxon.blank? && owners_ident && owners_ident.current?
-      if identifications.where(:user_id => user_id).count > 1
-        owners_ident.update_attributes(:current => false, :skip_observation => true)
+      if identifications.where( user_id: user_id ).count > 1
+        owners_ident.update_attributes( current: false, skip_observation: true )
       else
         owners_ident.skip_observation = true
         owners_ident.destroy
       end
     end
     
-    update_stats(:skip_save => true)
+    update_stats( skip_save: true )
     
     true
   end
@@ -968,6 +1006,7 @@ class Observation < ActiveRecord::Base
   # specified
   def observation_field_values_attributes=(attributes)
     attr_array = attributes.is_a?(Hash) ? attributes.values : attributes
+    return unless attr_array
     attr_array.each_with_index do |v,i|
       if v["id"].blank?
         existing = observation_field_values.where(:observation_field_id => v["observation_field_id"]).first unless v["observation_field_id"].blank?
@@ -1075,6 +1114,13 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def replace_inactive_taxon
+    return true if taxon.blank? || ( taxon && taxon.is_active? )
+    return true unless candidate = taxon.current_synonymous_taxon
+    self.taxon = candidate
+    true
+  end
+
   #
   # Trim whitespace around species guess
   #
@@ -1119,11 +1165,7 @@ class Observation < ActiveRecord::Base
   def set_captive
     update_column(:captive, captive_cultivated)
   end
-  
-  def lsid
-    "lsid:#{URI.parse(CONFIG.site_url).host}:observations:#{id}"
-  end
-  
+
   def component_cache_key(options = {})
     Observation.component_cache_key(id, options)
   end
@@ -1154,7 +1196,7 @@ class Observation < ActiveRecord::Base
   
   def quality_metric_score(metric)
     quality_metrics.all unless quality_metrics.loaded?
-    metrics = quality_metrics.select{|qm| qm.metric == metric}
+    metrics = quality_metrics.select{|qm| !qm.frozen? && qm.metric == metric}
     return nil if metrics.blank?
     metrics.select{|qm| qm.agree?}.size.to_f / metrics.size
   end
@@ -1191,11 +1233,10 @@ class Observation < ActiveRecord::Base
   
   def human?
     t = community_taxon || taxon
-    t && t.name =~ /^Homo /
+    t && ( t.name =~ /^Homo / || t.name == "Homo" )
   end
   
   def research_grade?
-    # community_supported_id? && research_grade_candidate?
     quality_grade == RESEARCH_GRADE
   end
 
@@ -1204,6 +1245,9 @@ class Observation < ActiveRecord::Base
   end
 
   def photos?
+    # new observations from the uploader may have .photos
+    # but may not yet have observation_p
+    return true if photos && photos.any?
     observation_photos.loaded? ? ! observation_photos.empty? : observation_photos.exists?
   end
 
@@ -1233,9 +1277,21 @@ class Observation < ActiveRecord::Base
       CASUAL
     elsif voted_in_to_needs_id?
       NEEDS_ID
+    elsif community_taxon_id && community_taxon_rejected?
+      if owners_identification.blank? || owners_identification.maverick?
+        CASUAL
+      elsif (
+        owners_identification &&
+        owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+        community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+      )
+        RESEARCH_GRADE
+      else
+        NEEDS_ID
+      end
     elsif community_taxon_at_species_or_lower?
       RESEARCH_GRADE
-    elsif voted_out_of_needs_id?
+    elsif community_taxon_id && voted_out_of_needs_id?
       if community_taxon_below_family?
         RESEARCH_GRADE
       else
@@ -1350,8 +1406,6 @@ class Observation < ActiveRecord::Base
 
 
   def obscure_place_guess
-    # puts "obscure_place_guess, coordinates_private?: #{coordinates_private?}"
-    # return true unless latitude_changed? || 
     public_place_guess = Observation.place_guess_from_latlon(
       private_latitude,
       private_longitude,
@@ -1359,9 +1413,6 @@ class Observation < ActiveRecord::Base
       user: user
     )
     if coordinates_private?
-      # puts "obscure_place_guess, place_guess_changed?: #{place_guess_changed?}"
-      # puts "obscure_place_guess, place_guess: #{place_guess}"
-      # puts "obscure_place_guess, private_place_guess: #{private_place_guess}"
       if place_guess_changed? && place_guess == private_place_guess
         self.place_guess = nil
       elsif !place_guess.blank? && place_guess != public_place_guess
@@ -1427,10 +1478,13 @@ class Observation < ActiveRecord::Base
   ##### Community Taxon #########################################################
 
   def get_community_taxon(options = {})
-    return if (identifications.loaded? ?
+    return if (
+      identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
-      identifications.current).count <= 1
-    node = community_taxon_nodes(options).select{|n| n[:cumulative_count] > 1}.sort_by do |n| 
+      identifications.current
+    ).count <= 1
+    nodes = community_taxon_nodes(options)
+    node = nodes.select{|n| n[:cumulative_count] > 1}.sort_by do |n|
       [
         n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF ? 1 : 0, # only consider taxa with a score above the cutoff
         0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
@@ -1438,32 +1492,46 @@ class Observation < ActiveRecord::Base
     end.last
     
     # # Visualizing this stuff is pretty useful for testing, so please leave this in
-    # puts
-    # width = 15
-    # %w(taxon_id taxon_name cc dc cdc score).each do |c|
-    #   print c.ljust(width)
-    # end
-    # puts
-    # community_taxon_nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
-    #   print n[:taxon].id.to_s.ljust(width)
-    #   print n[:taxon].name.to_s.ljust(width)
-    #   print n[:cumulative_count].to_s.ljust(width)
-    #   print n[:disagreement_count].to_s.ljust(width)
-    #   print n[:conservative_disagreement_count].to_s.ljust(width)
-    #   print n[:score].to_s.ljust(width)
-    #   puts
-    # end
+    # print_community_taxon_nodes( nodes )
     return unless node
     node[:taxon]
   end
 
-  def community_taxon_nodes(options = {})
+  def print_community_taxon_nodes( nodes = nil )
+    nodes ||= community_taxon_nodes
+    puts
+    width = 15
+    %w(taxon_id taxon_name cc acc cndc dc cdc score).each do |c|
+      if c == "taxon_name"
+        print c.ljust( width*2 )
+      else
+        print c.ljust( width )
+      end
+    end
+    puts
+    nodes.sort_by{|n| n[:taxon].ancestry || ""}.each do |n|
+      print n[:taxon].id.to_s.ljust(width)
+      print n[:taxon].name.to_s.ljust(width*2)
+      print n[:cumulative_count].to_s.ljust(width)
+      print n[:disagreement_count].to_s.ljust(width)
+      print n[:conservative_disagreement_count].to_s.ljust(width)
+      print n[:score].to_s.ljust(width)
+      puts
+    end
+  end
+
+  def community_taxon_nodes( options = {} )
     return @community_taxon_nodes if @community_taxon_nodes && !options[:force]
     # work on current identifications
     ids = identifications.loaded? ?
       identifications.select(&:current?).select(&:persisted?).uniq :
       identifications.current.includes(:taxon)
-    working_idents = ids.sort_by(&:id)
+    working_idents = ids.select{|i| i.taxon.is_active }.sort_by(&:id)
+    if options[:before].to_i > 0
+      working_idents = working_idents.select{|i| i.id < options[:before].to_i }
+    elsif options[:before].is_a?( DateTime ) || options[:before].is_a?( ActiveSupport::TimeWithZone )
+      working_idents = working_idents.select{|i| i.created_at < options[:before] }
+    end
 
     # load all ancestor taxa implied by identifications
     ancestor_ids = working_idents.map{|i| i.taxon.ancestor_ids}.flatten.uniq.compact
@@ -1481,24 +1549,38 @@ class Observation < ActiveRecord::Base
        id_taxon.self_and_ancestor_ids.include?(i.taxon_id) || i.taxon.self_and_ancestor_ids.include?(id_taxon.id)
       }.size
 
-      # count identifications of taxa that are ancestors of this taxon but
-      # were made after the first identification of this taxon (i.e.
-      # conservative disagreements). Note that for genus1 > species1, an
-      # identification of species1 implies an identification of genus1
-      first_ident = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
-      conservative_disagreement_count = if first_ident
-        working_idents.select{|i| i.id > first_ident.id && id_taxon.ancestor_ids.include?(i.taxon_id)}.size
+      # Count identifications that explicitly disagreed with an ancestor of this taxon
+      first_ident_of_taxon = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
+      conservative_disagreement_count = if first_ident_of_taxon
+        working_idents.select {|i|
+          if (
+            i.disagreement? &&
+            i.previous_observation_taxon &&
+            ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
+          )
+            # If an identification of Homonidae is a disagreement with Homo
+            # sapiens, that implies disagreement with everything between
+            # Homonidae and Homo sapiens (i.e. genus Homo), otherwise they would
+            # have added an ID of genus Homo
+            disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            # So if the taxon under consideration is any of the taxa this
+            # identification disagrees with, count it as a disagreement
+            ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
+          elsif i.disagreement == nil
+            i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
+          end
+        }.size
       else
         0
       end
 
       {
-        :taxon => id_taxon,
-        :ident_count => working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
-        :cumulative_count => cumulative_count,
-        :disagreement_count => disagreement_count,
-        :conservative_disagreement_count => conservative_disagreement_count,
-        :score => cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
+        taxon: id_taxon,
+        ident_count: working_idents.select{|i| i.taxon_id == id_taxon.id}.size,
+        cumulative_count: cumulative_count,
+        disagreement_count: disagreement_count,
+        conservative_disagreement_count: conservative_disagreement_count,
+        score: cumulative_count.to_f / (cumulative_count + disagreement_count + conservative_disagreement_count)
       }
     end
   end
@@ -1542,19 +1624,35 @@ class Observation < ActiveRecord::Base
     (prefers_community_taxon == false || user.prefers_community_taxa == false)
   end
 
-  def set_taxon_from_community_taxon
-    # explicitly opted in
-    self.taxon_id = if prefers_community_taxon
-      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
-    # obs opted out or user opted out
-    elsif prefers_community_taxon == false || !user.prefers_community_taxa?
+  # What the system thinks the organism probably is. Current combines the
+  # communal opinion with the preferences of individuals (disagreement / not
+  # disagreement), and may in the future incorporate modeled identifier skill
+  def probable_taxon( options = {} )
+    nodes = community_taxon_nodes( options )
+    # # Visualizing this stuff is pretty useful for testing, so please leave this in
+    # print_community_taxon_nodes( nodes )
+    node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
+      0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
+    }.last
+    return unless node
+    node[:taxon]
+  end
+
+  def set_taxon_from_probable_taxon
+    return if identifications.count == 0 && taxon_id
+    prob_taxon = probable_taxon( force: true )
+    self.taxon_id = if ( !user.prefers_community_taxa? && prefers_community_taxon == nil ) || prefers_community_taxon == false
+      # obs opted out or user opted out
       owners_identification.try(:taxon_id)
-    # implicitly opted in
+    elsif ( ct = community_taxon ) && prob_taxon && prob_taxon.rank_level.to_i < Taxon::SPECIES_LEVEL && prob_taxon.ancestor_ids.include?( ct.id )
+      # prob_taxon was subspecific, using CID
+      ct.id
     else
-      community_taxon_id || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      # opted in
+      prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
     end
     if taxon_id_changed? && (community_taxon_id_changed? || prefers_community_taxon_changed?)
-      update_stats(:skip_save => true)
+      update_stats( skip_save: true )
       self.species_guess = if taxon
         taxon.common_name.try(:name) || taxon.name
       else
@@ -1725,7 +1823,16 @@ class Observation < ActiveRecord::Base
       if p.admin_level == Place::COUNTY_LEVEL && sys_places_codes.include?( "US" )
         "#{p.name} County"
       else
-        p.code.blank? ? I18n.t( p.name, locale: locale, default: p.name ) : p.code
+        translated_place = I18n.t(
+          p.name,
+          locale: locale,
+          default: I18n.t(
+            "places_name.#{p.name.underscore}",
+            locale: locale,
+            default: p.name
+          )
+        )
+        p.code.blank? ? translated_place : p.code
       end
     end
     [first_name, remaining_names].flatten.join( ", " )
@@ -1807,6 +1914,7 @@ class Observation < ActiveRecord::Base
   def update_all_licenses
     return true unless make_licenses_same.yesish?
     Observation.where(user_id: user_id).update_all(license: license)
+    user.index_observations_later
     true
   end
 
@@ -1819,15 +1927,28 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def update_user_counter_caches
+    User.delay( unique_hash: { "User::update_observations_counter_cache": user_id } ).
+      update_observations_counter_cache( user_id )
+    true
+  end
+
   def update_quality_metrics
+    return true if skip_quality_metrics
     if captive_flag.yesish?
-      QualityMetric.vote(user, self, QualityMetric::WILD, false)
+      QualityMetric.vote( user, self, QualityMetric::WILD, false )
     elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote(user, self, QualityMetric::WILD, true)
-    elsif captive_flag.noish? && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
-      qm.update_attributes(:agree => true)
-    elsif force_quality_metrics && (qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD})
+      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+      qm.update_attributes( agree: true)
+    elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
+    end
+    system_captive_vote = quality_metrics.detect{ |m| m.user_id.blank? && m.metric == QualityMetric::WILD }
+    if probably_captive?
+      QualityMetric.vote( nil, self, QualityMetric::WILD, false ) unless system_captive_vote
+    elsif system_captive_vote
+      system_captive_vote.destroy
     end
     true
   end
@@ -1875,8 +1996,10 @@ class Observation < ActiveRecord::Base
     taxon.scientific_name.name if taxon && taxon.scientific_name
   end
   
-  def common_name
-    taxon.common_name.name if taxon && taxon.common_name
+  def common_name(options = {})
+    options[:locale] ||= localize_locale
+    options[:place] ||= localize_place
+    taxon.common_name(options).name if taxon && taxon.common_name(options)
   end
   
   def url
@@ -1894,7 +2017,8 @@ class Observation < ActiveRecord::Base
       num_agreements    = 0
       num_disagreements = 0
     else
-      if node = community_taxon_nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
+      nodes = community_taxon_nodes
+      if node = nodes.detect{|n| n[:taxon].try(:id) == taxon_id}
         num_agreements = node[:cumulative_count]
         num_disagreements = node[:disagreement_count] + node[:conservative_disagreement_count]
         num_agreements -= 1 if current_idents.detect{|i| i.taxon_id == taxon_id && i.user_id == user_id}
@@ -1928,10 +2052,19 @@ class Observation < ActiveRecord::Base
     end
   end
   
-  def self.update_stats_for_observations_of(taxon)
+  def self.update_stats_for_observations_of( taxon )
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    descendant_conditions = taxon.descendant_conditions.to_a
+    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", taxon.id]
+    obs_exist = Observation.
+      joins( "INNER JOIN taxon_ancestors ON taxon_ancestors.taxon_id = observations.taxon_id" ).
+      where( "observations.created_at > ?", taxon.created_at ).
+      where( conditions ).exists?
+    idents_exist = Identification.
+      joins( "INNER JOIN taxon_ancestors ON taxon_ancestors.taxon_id = identifications.taxon_id" ).
+      where( "identifications.created_at > ?", taxon.created_at ).
+      where( conditions ).exists?
+    return unless obs_exist || idents_exist
     result = Identification.elastic_search(
       filters: [ { bool: { should: [
         { term: { "taxon.ancestor_ids": taxon.id } },
@@ -1965,22 +2098,22 @@ class Observation < ActiveRecord::Base
     precision = 10**5.0
     range = ((-1 * precision)..precision)
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
-    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
-    [ base_lat + ((rand(range) / precision) * half_cell),
-      base_lon + ((rand(range) / precision) * half_cell)]
+    center_lat, center_lon = uncertainty_cell_center_latlon( lat, lon )
+    [ center_lat + ((rand(range) / precision) * half_cell),
+      center_lon + ((rand(range) / precision) * half_cell)]
   end
 
   # 
   # Coordinates of the southwest corner of the uncertainty cell for any given coordinates
   # 
-  def self.uncertainty_cell_southwest_latlon( lat, lon )
+  def self.uncertainty_cell_center_latlon( lat, lon )
     half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
     # how many significant digits in the obscured coordinates (e.g. 5)
     # doing a floor with intervals of 0.2, then adding 0.1
     # so our origin is the center of a 0.2 square
-    base_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
-    base_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
-    [base_lat, base_lon]
+    center_lat = lat - (lat % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    center_lon = lon - (lon % COORDINATE_UNCERTAINTY_CELL_SIZE) + half_cell
+    [center_lat, center_lon]
   end
 
   #
@@ -1988,13 +2121,66 @@ class Observation < ActiveRecord::Base
   # for the given coordinates.
   #
   def self.uncertainty_cell_diagonal_meters( lat, lon )
-    base_lat, base_lon = uncertainty_cell_southwest_latlon( lat, lon )
+    half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+    center_lat, center_lon = uncertainty_cell_center_latlon( lat, lon )
     lat_lon_distance_in_meters( 
-      base_lat, 
-      base_lon, 
-      base_lat + COORDINATE_UNCERTAINTY_CELL_SIZE,
-      base_lon + COORDINATE_UNCERTAINTY_CELL_SIZE
+      center_lat - half_cell, 
+      center_lon - half_cell, 
+      center_lat + half_cell,
+      center_lon + half_cell
     ).ceil
+  end
+
+  def private_sw_latlon
+    return nil unless georeferenced?
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    return [lat, lon] if positional_accuracy.blank?
+    positional_accuracy_degrees = positional_accuracy / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+    [
+      lat - positional_accuracy_degrees,
+      lon - positional_accuracy_degrees,
+    ]
+  end
+
+  def sw_latlon
+    return nil unless georeferenced?
+    if coordinates_obscured?
+      half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+      positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      return [
+        private_latitude - max_half_cell,
+        private_longitude - max_half_cell
+      ]
+    end
+    private_sw_latlon
+  end
+
+  def private_ne_latlon
+    return nil unless georeferenced?
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    return [lat, lon] if positional_accuracy.blank?
+    positional_accuracy_degrees = positional_accuracy / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+    [
+      lat + positional_accuracy_degrees,
+      lon + positional_accuracy_degrees,
+    ]
+  end
+
+  def ne_latlon
+    return nil unless georeferenced?
+    if coordinates_obscured?
+      half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
+      positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
+      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      return [
+        private_latitude + max_half_cell,
+        private_longitude + max_half_cell
+      ]
+    end
+    private_ne_latlon
   end
 
   #
@@ -2008,8 +2194,9 @@ class Observation < ActiveRecord::Base
     Observation.uncertainty_cell_diagonal_meters( lat, lon )
   end
 
-  def self.places_for_latlon( lat, lon, acc )
-    candidates = Place.containing_lat_lng(lat, lon).sort_by{|p| p.bbox_area || 0}
+  def self.places_for_latlon( lat, lon, acc, options = {} )
+    candidates = options[:candidates] || Place.containing_lat_lng( lat, lon )
+    candidates = candidates.sort_by{|p| p.bbox_area || 0}
 
     # At present we use PostGIS GEOMETRY types, which are a bit stupid about
     # things crossing the dateline, so we need to do an app-layer check.
@@ -2032,24 +2219,24 @@ class Observation < ActiveRecord::Base
   
   def places
     return [] unless georeferenced?
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = private_positional_accuracy || positional_accuracy
-    Observation.places_for_latlon( lat, lon, acc )
+    candidates = observations_places.map(&:place).compact
+    candidates.select do |p|
+      p.bbox_privately_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+    end
   end
   
   def public_places
     return [] unless georeferenced?
     return [] if geoprivacy == PRIVATE
-    lat = private_latitude || latitude
-    lon = private_longitude || longitude
-    acc = public_positional_accuracy || positional_accuracy
-    Observation.places_for_latlon( lat, lon, acc )
+    candidates = observations_places.map(&:place).compact
+    candidates.select do |p|
+      p.bbox_publicly_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+    end
   end
 
   def self.system_places_for_latlon( lat, lon, options = {} )
     all_places = options[:places] || places_for_latlon( lat, lon, options[:acc] )
-    all_places.select do |p| 
+    all_places.select do |p|
       p.user_id.blank? && (
         [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?(p.admin_level) || 
         p.place_type == Place::PLACE_TYPE_CODES['Open Space']
@@ -2060,6 +2247,11 @@ class Observation < ActiveRecord::Base
   # The places that are theoretically controlled by site admins
   def system_places(options = {})
     Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+  end
+
+  def public_system_places( options = {} )
+    Observation.system_places_for_latlon( latitude, longitude, options.merge( acc: positional_accuracy ) )
+    public_places.select{|p| !p.admin_level.blank? }
   end
 
   def intersecting_places
@@ -2166,15 +2358,27 @@ class Observation < ActiveRecord::Base
   end
 
   def method_missing(method, *args, &block)
-    return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/
+    return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/ || method.to_s =~ /^ident_by_/
     if method.to_s =~ /^field:/
-      of_name = method.to_s.split(':').last
+      of_name = ObservationField.normalize_name( method.to_s.split(':').last )
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
       if ofv
         return ofv.taxon ? ofv.taxon.name : ofv.value
       end
     elsif method.to_s =~ /^taxon_/ && !self.class.instance_methods.include?(method) && taxon
       return taxon.send(method.to_s.gsub(/^taxon_/, ''))
+    elsif method.to_s =~ /^ident_by_/ && !self.class.instance_methods.include?( method )
+      user_id = method.to_s[/ident_by_([^\:]+)/, 1]
+      return unless user_id
+      ident = if user_id.to_i > 0
+        identifications.detect{|i| i.current && i.user_id == user_id.to_i }
+      else
+        identifications.detect{|i| i.current && i.user.login == user_id }
+      end
+      return unless ident
+      ident_method = method.to_s[/ident_by_([^\:]+)\:(.+)/, 2]
+      return unless ident_method
+      return ident.send( ident_method )
     end
     super
   end
@@ -2196,17 +2400,23 @@ class Observation < ActiveRecord::Base
     super
   end
 
-  def merge(reject)
-    mutable_columns = self.class.column_names - %w(id created_at updated_at)
+  def merge(reject, options = {})
+    mutable_columns = self.class.column_names - %w(id created_at updated_at uuid)
     mutable_columns.each do |column|
       self.send("#{column}=", reject.send(column)) if send(column).blank?
     end
-    reject.identifications.update_all("current = false")
+    if options[:skip_identifications]
+      reject.identifications.delete_all
+    else
+      reject.identifications.update_all("current = false")
+    end
     merge_has_many_associations(reject)
     reject.destroy
-    identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
-      c = idents.sort_by(&:id).last
-      c.update_attributes(:current => true)
+    unless options[:skip_identifications]
+      identifications.group_by{|ident| [ident.user_id, ident.taxon_id]}.each do |pair, idents|
+        c = idents.sort_by(&:id).last
+        c.update_attributes(:current => true)
+      end
     end
     save!
   end
@@ -2214,6 +2424,7 @@ class Observation < ActiveRecord::Base
   def create_observation_review
     return true unless taxon
     return true unless taxon_id_was.blank?
+    return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
     true
   end
@@ -2356,6 +2567,13 @@ class Observation < ActiveRecord::Base
     "#{record.class.name.underscore}_#{record.id}"
   end
 
+  def public_positional_accuracy
+    if coordinates_obscured? && !read_attribute(:public_positional_accuracy)
+      update_public_positional_accuracy
+    end
+    read_attribute(:public_positional_accuracy)
+  end
+
   def update_public_positional_accuracy
     update_column(:public_positional_accuracy, calculate_public_positional_accuracy)
   end
@@ -2383,8 +2601,9 @@ class Observation < ActiveRecord::Base
     return false if latitude.blank? && longitude.blank?
     return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
     return false if inaccurate_location?
-    return false unless passes_quality_metric?(QualityMetric::EVIDENCE)
+    return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?
+    return false if community_taxon && taxon && !community_taxon.self_and_ancestor_ids.include?( taxon.id )
     true
   end
 
@@ -2396,7 +2615,7 @@ class Observation < ActiveRecord::Base
 
   def set_taxon_photo
     return true unless research_grade? && quality_grade_changed?
-    unless taxon.photos.any?
+    if taxon && !taxon.photos.any?
       community_taxon.delay( priority: INTEGRITY_PRIORITY, run_at: 1.day.from_now ).set_photo_from_observations
     end
     true
@@ -2422,7 +2641,7 @@ class Observation < ActiveRecord::Base
         connection.execute("DELETE FROM observations_places
           WHERE observation_id IN (#{ ids.join(',') })")
         connection.execute("INSERT INTO observations_places (observation_id, place_id)
-          SELECT o.id, pg.place_id FROM observations o
+          SELECT DISTINCT o.id, pg.place_id FROM observations o
           JOIN place_geometries pg ON ST_Intersects(pg.geom, o.private_geom)
           WHERE o.id IN (#{ ids.join(',') })
           AND pg.place_id IS NOT NULL
@@ -2480,15 +2699,15 @@ class Observation < ActiveRecord::Base
   end
 
   def community_taxon_at_species_or_lower?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level <= Taxon::SPECIES_LEVEL
   end
 
   def community_taxon_at_family_or_lower?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level <= Taxon::FAMILY_LEVEL
   end
 
   def community_taxon_below_family?
-    community_taxon && community_taxon_id == taxon_id && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
+    community_taxon && community_taxon.rank_level && community_taxon.rank_level < Taxon::FAMILY_LEVEL
   end
 
   def needs_id_upvotes_count
@@ -2544,20 +2763,9 @@ class Observation < ActiveRecord::Base
     description.mentioned_users
   end
 
-  def last_changed(params={})
-    changes = field_changes_to_index
-    # only consider the fields requested
-    if params[:changed_fields] && fields = params[:changed_fields].split(",")
-      changes = changes.select{ |c| fields.include?(c[:field_name]) }
-    end
-    # ignore any projects other than those selected
-    if params[:change_project_id]
-      changes = changes.select do |c|
-        c[:project_id].blank? || c[:project_id] == params[:change_project_id]
-      end
-    end
-    # return the max of the remaining dates
-    field_changes_to_index.map{ |c| c[:changed_at] }.max
+  def previously_mentioned_users
+    return [ ] if description_was.blank?
+    description.mentioned_users & description_was.to_s.mentioned_users
   end
 
   # Show count of all faves on this observation. cached_votes_total stores the
@@ -2566,6 +2774,86 @@ class Observation < ActiveRecord::Base
   # use acts_as_votable, faves_count seems clearer.
   def faves_count
     cached_votes_total
+  end
+
+  def probably_captive?
+    target_taxon = community_taxon || taxon
+    return false unless target_taxon
+    if target_taxon.rank_level.blank? || target_taxon.rank_level.to_i > Taxon::GENUS_LEVEL
+      return false
+    end
+    place = system_places.detect do |p|
+      [
+        Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL
+      ].include?( p.admin_level )
+    end
+    return false unless place
+    buckets = Observation.elastic_search(
+      filters: [
+        { term: { "taxon.ancestor_ids": target_taxon.id } },
+        { term: { place_ids: place.id } },
+      ],
+      # earliest_sort_field: "id",
+      size: 0,
+      aggregate: {
+        captive: {
+          terms: { field: "captive", size: 15 }
+        }
+      }
+    ).results.response.response.aggregations.captive.buckets
+    captive_stats = Hash[ buckets.map{ |b| [ b["key"], b["doc_count" ] ] } ]
+    total = captive_stats.values.sum
+    ratio = captive_stats[1].to_f / total
+    # puts "total: #{total}, ratio: #{ratio}, place: #{place}"
+    total > 10 && ratio >= 0.8
+  end
+
+  def application_id_to_index
+    return oauth_application_id if oauth_application_id
+    if user_agent =~ IPHONE_APP_USER_AGENT_PATTERN
+      return OauthApplication.inaturalist_iphone_app.try(:id)
+    end
+    if user_agent =~ ANDROID_APP_USER_AGENT_PATTERN
+      return OauthApplication.inaturalist_android_app.try(:id)
+    end
+  end
+
+  def owners_identification_from_vision
+    owners_identification.try(:vision)
+  end
+
+  def owners_identification_from_vision=( val )
+    self.owners_identification_from_vision_requested = val
+  end
+
+  def reindex_identifications
+    Identification.elastic_index!( ids: identification_ids )
+  end
+
+  # The intent here is to keep the observations_count in the Places index
+  # *roughly* up-to-date. So these jobs probably won't be queued after
+  # observation creation b/c the ObservationsPlace records won't have been made,
+  # and no place should be re-indexed more than once a day.
+  def reindex_places
+    return true if skip_indexing
+    places.each_with_index do |p,i|
+      # Queue jobs with a little offset we don't end up running intense API
+      # calls at the same time
+      p.delay(
+        run_at: ( 1.day + i.minutes ).from_now,
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Place::elastic_index": p.id }
+      ).elastic_index!
+    end
+    true
+  end
+
+  def user_viewed_updates(user_id)
+    obs_updates = UpdateAction.joins(:update_subscribers).
+      where(resource: self).
+      where("update_subscribers.subscriber_id = ?", user_id)
+    UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 
   def self.dedupe_for_user(user, options = {})

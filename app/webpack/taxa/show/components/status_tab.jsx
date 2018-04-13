@@ -103,7 +103,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                         </a>
                       </div>
                       <div className="media-right">
-                        <a href={`/places/${status.place ? status.place.id : null}`}>
+                        <a href={ status.url }>
                           <i className="glyphicon glyphicon-new-window"></i>
                         </a>
                       </div>
@@ -149,7 +149,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                     { lt.place ?
                       <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
                         { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                          { defaultValue: lt.place.name } ) }
+                          { defaultValue: lt.place.display_name } ) }
                       </a>
                       :
                       _.capitalize( I18n.t( "globally" ) )
@@ -192,7 +192,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                 >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
               </p>
               <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
-              <ul className="tab-links list-group">
+              <ul className="tab-links list-group iconified-list-group">
                 {
                   [
                     {
@@ -212,10 +212,7 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
                       <a
                         href={link.url}
                         style={{
-                          backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${link.host}' )`,
-                          backgroundRepeat: "no-repeat",
-                          padding: "1px 0 1px 25px",
-                          backgroundPosition: "0 2px"
+                          backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${link.host}' )`
                         }}
                       >
                         <i className="icon-link-external pull-right"></i>

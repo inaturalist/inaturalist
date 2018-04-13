@@ -147,21 +147,36 @@ namespace :inaturalist do
                  "date_format.month", "momentjs", "endemic", "native", 
                  "introduced", "casual", "status_globally", "status_in_place",
                  "number_selected", "you_are_setting_this_project_to_aggregate",
-                 "all_taxa.animals", "animals",
-                 "all_taxa.birds", "birds",
-                 "all_taxa.amphibians", "amphibians",
-                 "all_taxa.reptiles", "reptiles",
-                 "all_taxa.mammals", "mammals",
-                 "all_taxa.insects", "insects",
-                 "all_taxa.arachnids", "arachnids",
-                 "all_taxa.mollusks", "mollusks",
-                 "all_taxa.ray_finned_fishes", "ray_finned_fishes",
-                 "all_taxa.plants", "plants",
-                 "all_taxa.fungi", "fungi",
-                 "all_taxa.protozoans", "protozoans",
+                 "animals",
+                 "birds",
+                 "amphibians",
+                 "reptiles",
+                 "mammals",
+                 "insects",
+                 "arachnids",
+                 "mollusks",
+                 "ray_finned_fishes",
+                 "plants",
+                 "fungi",
+                 "protozoans",
                  "unknown", "date.formats.month_day_year",
                  "views.taxa.show.frequency", "flowering_phenology", "insect_life_stage",
-                 "lexicons", "places_name" ]
+                 "lexicons", "places_name", "copyright", "taxon_merge", "taxon_swap",
+                 "taxon_split", "taxon_stage", "taxon_drop",
+                 "lexicons", "places_name",
+                 "data_quality", "checklist", "misidentifications",
+                 "frequency", "rg_observations", "supporting"
+                ]
+    %w(
+      all_taxa
+      controlled_term_labels
+      all_rank_added_to_the_database
+    ).each do |key|
+      all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
+    end
+    all_keys += ControlledTerm.attributes.map{|a|
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+    }.flatten
     # look for other keys in all javascript files
     scanner_proc = Proc.new do |f|
       # Ignore non-files
@@ -210,7 +225,7 @@ namespace :inaturalist do
             if value
               h[key] ||= value
             elsif Rails.env.development?
-              puts "WARNING: Failed to translate #{key}"
+              puts "WARNING: Failed to translate #{locale}.#{key}"
             end
           else
             h[key] ||= { }

@@ -24,7 +24,17 @@ class UpdateAction < ActiveRecord::Base
   end
 
   def bulk_insert_subscribers(subscriber_ids)
-    values = subscriber_ids.map{ |id| "(#{self.id},#{id})" }
+    potential_subscriber_ids = subscriber_ids
+    notifier_user = notifier if notifier.is_a?( User )
+    notifier_user ||= notifier.try(:user)
+    if notifier_user
+      excepted_user_ids = UserBlock.
+        where( "user_id = ? OR blocked_user_id = ?", notifier_user.id, notifier_user.id ).
+        pluck(:user_id, :blocked_user_id).flatten.uniq
+      excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
+      potential_subscriber_ids = potential_subscriber_ids - excepted_user_ids.uniq
+    end
+    values = potential_subscriber_ids.compact.map{ |id| "(#{self.id},#{id})" }
     return if values.blank?
     sql = "INSERT INTO update_subscribers (update_action_id, subscriber_id) " +
           "VALUES #{ values.join(",") }"
@@ -49,51 +59,16 @@ class UpdateAction < ActiveRecord::Base
 
 
   def self.email_updates
-    # site will be looked up tons of times, so store it in CONFIG
-    CONFIG.site = Site.find_by_id(CONFIG.site_id)
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
-    email_count = 0
     user_ids = UpdateAction.joins(:update_subscribers).
       where(["created_at BETWEEN ? AND ?", start_time, end_time]).
       select("DISTINCT subscriber_id").map{|u| u.subscriber_id}.compact.uniq.sort
-    delivery_times = []
-    process_start_time = Time.now
-    msg = "[INFO #{Time.now}] start daily updates emailer, #{user_ids.size} users"
-    Rails.logger.info msg
-    puts msg
     user_ids.each do |subscriber_id|
-      delivery_start_time = Time.now
-      msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id}"
-      Rails.logger.info msg
-      puts msg
-      email_sent = begin
+      UpdateAction.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
+        unique_hash: { "UpdateAction::email_updates_to_user": subscriber_id }).
         email_updates_to_user(subscriber_id, start_time, end_time)
-      rescue Net::SMTPServerBusy => e
-        sleep(5)
-        begin
-          email_updates_to_user(subscriber_id, start_time, end_time)
-        rescue Net::SMTPServerBusy => e
-          msg =  "[ERROR #{Time.now}] daily updates emailer couldn't deliver to #{subscriber_id} (Net::SMTPServerBusy): #{e.message}"
-          Rails.logger.error msg
-          puts msg
-          next
-        end
-      rescue
-        Rails.logger.info "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} failed"
-      end
-      if email_sent
-        msg =  "[INFO #{Time.now}] daily updates emailer: user #{subscriber_id} sent"
-        Rails.logger.info msg
-        puts msg
-        delivery_times << (Time.now - delivery_start_time)
-        email_count += 1
-      end
     end
-    avg_time = delivery_times.size == 0 ? 0 : delivery_times.sum / delivery_times.size
-    msg = "[INFO #{Time.now}] end daily updates emailer, sent #{email_count} in #{Time.now - process_start_time} s, avg: #{avg_time}"
-    Rails.logger.info msg
-    puts msg
   end
 
   def self.email_updates_to_user(subscriber, start_time, end_time)
@@ -102,6 +77,7 @@ class UpdateAction < ActiveRecord::Base
     user ||= User.find_by_login(subscriber)
     return unless user.is_a?(User)
     return if user.email.blank?
+    User.preload_associations(user, :stored_preferences)
     return if user.prefers_no_email
     return unless user.active? # email verified
     updates = UpdateAction.elastic_paginate(
@@ -115,8 +91,13 @@ class UpdateAction < ActiveRecord::Base
     updates = updates.to_a.delete_if do |u|
       !user.prefers_project_journal_post_email_notification? && u.resource_type == "Project" && u.notifier_type == "Post" ||
       !user.prefers_comment_email_notification? && u.notifier_type == "Comment" ||
-      !user.prefers_identification_email_notification? && u.notifier_type == "Identification"
-      !user.prefers_mention_email_notification? && u.notification == "mention"
+      !user.prefers_identification_email_notification? && u.notifier_type == "Identification" ||
+      !user.prefers_mention_email_notification? && u.notification == "mention" ||
+      !user.prefers_project_added_your_observation_email_notification? && u.notification == "your_observations_added" ||
+      !user.prefers_project_curator_change_email_notification? && u.notification == "curator_change" ||
+      !user.prefers_taxon_change_email_notification? && u.notification == "committed" ||
+      !user.prefers_user_observation_email_notification? && u.notification == "created_observations" ||
+      !user.prefers_taxon_or_place_observation_email_notification? && u.notification == "new_observations"
     end.compact
     return if updates.blank?
 
@@ -143,7 +124,7 @@ class UpdateAction < ActiveRecord::Base
     conditions = ["notification = 'activity' AND update_actions.id NOT IN (?)", action_ids]
     conditions[0] += " AND (#{clauses.join(' OR ')})" unless clauses.blank?
     updates += UpdateAction.joins(:update_subscribers).where(conditions).
-      where("update_subscribers.id = ?", user_id)
+      where("update_subscribers.subscriber_id = ?", user_id)
     updates
   end
 

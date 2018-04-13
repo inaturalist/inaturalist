@@ -3,13 +3,6 @@
   listed_taxon ||= guide_taxon || @listed_taxon
   taxon ||= listed_taxon.taxon
 -%>
-<%- month_stats = capture do %>
-  <% if (stats = listed_taxon.observation_month_stats) && !stats.blank? -%>
-    <div class="ministats monthstats">
-      <%= month_graph stats %>
-    </div>
-  <% end -%>
-<% end -%>
 <%- upperright = capture do %>
   <% if listed_taxon.endemic? || listed_taxon.introduced? || taxon.threatened?(:place => listed_taxon.place) -%>
     <%= render 'listed_taxa/taxon_blobs', :taxon => taxon, :listed_taxon => listed_taxon %>
@@ -28,7 +21,7 @@
     :link_image => true,
     :extra_class => "inlineblock",
     :hide_wikipedia_summary => true,
-    :after_image => month_stats.to_s + upperright.to_s
+    :after_image => upperright.to_s
   } %>
 
   <% if obs = listed_taxon.first_observation -%>

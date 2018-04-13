@@ -29,7 +29,7 @@
     <td><%= h flagging.flag %></td>
     <td><%= flagging.user ?
       link_to( h(flagging.user.login), person_path(flagging.user_id) ) :
-      CONFIG.site_name_short %>
+      @site.site_name_short %>
     </td>
     <td class="buttonrow">
       <%= link_to t(:edit_the_observation), 

@@ -64,11 +64,10 @@
           description: t('views.projects.updates_desc'),
           data: {autosubmit: true}
         %label=t 'views.projects.curator_coordinate_access_label'
-        - ProjectUser::CURATOR_COORDINATE_ACCESS_OPTIONS.each do |option|
+        - [ProjectUser::CURATOR_COORDINATE_ACCESS_ANY, ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER, ProjectUser::CURATOR_COORDINATE_ACCESS_NONE].each do |option|
           = f.radio_button :preferred_curator_coordinate_access, option,
             label_after: true, 
             label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}"), 
-            description: t("views.projects.project_user_curator_coordinate_access_descriptions.#{option}"),
             data: {autosubmit: true}
       = link_to t(:leave_this_project) , confirm_leave_project_path(@project), 'class': "ui description"
 

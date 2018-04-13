@@ -9,4 +9,8 @@ describe OauthApplication do
     allow(Rails).to receive('env').and_return('production')
     expect( OauthApplication.make(redirect_uri: 'http://www.inaturalist.org') ).to be_valid
   end
+
+  it "should not allow params in the redirect_uri" do
+    expect( OauthApplication.make( redirect_uri: "http://www.inaturalist.org/foo?bar=baz" ) ).not_to be_valid
+  end
 end

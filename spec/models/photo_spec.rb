@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Photo do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+  let( :stable_image_url ) { "https://www.inaturalist.org/assets/logo-small.png" }
   describe "creation" do
     it "should not allow native_realname to be too big" do
       txt = <<-TXT
@@ -69,7 +72,7 @@ describe Photo do
   describe "local_photo_from_remote_photo" do
     it "creates a LocalPhoto with the right attributes" do
       fp = FlickrPhoto.new(
-        original_url: "https://static.inaturalist.org/sites/1-logo.png",
+        original_url: stable_image_url,
         native_photo_id: "a native_photo_id",
         native_page_url: "a native_page_url",
         native_username: "a native_username",
@@ -93,8 +96,7 @@ describe Photo do
 
   describe "turn_remote_photo_into_local_photo" do
     it "creates and saves local photos" do
-      fp = FlickrPhoto.new(
-        original_url: "https://static.inaturalist.org/sites/1-logo.png")
+      fp = FlickrPhoto.new( original_url: stable_image_url )
       expect(fp.type).to eq "FlickrPhoto"
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
@@ -113,7 +115,7 @@ describe Photo do
     it "uses the large URL when the original is not available" do
       fp = FlickrPhoto.new(
         original_url: "https://static.inaturalist.org/whatever.png",
-        large_url: "https://static.inaturalist.org/sites/1-logo.png")
+        large_url: stable_image_url )
       Photo.turn_remote_photo_into_local_photo(fp)
       expect(fp.type).to eq "LocalPhoto"
       expect(fp.native_original_image_url).to eq fp.large_url

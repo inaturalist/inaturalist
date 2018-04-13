@@ -92,6 +92,17 @@
   </div>
 <% end -%>
 
+<% if logged_in? %>
+  <div class="last column span-24">
+    <%= form_tag join_test_user_path( current_user, test: "obs-show" ),
+        method: "put",
+        class: "clear quiet box centered buttonrow smallbuttons" do %>
+      <span class="inter"><%=t :want_to_test_a_new_version_of_this_page %></span>
+      <%= submit_tag t(:try_it_out), class: "default button" %>
+    <% end %>
+  </div>
+<% end %>
+
 <div id="pageheader" class="column span-24">
   <div id="nav" class="clear">
     <div class="breadcrumbs">
@@ -762,7 +773,7 @@
     <div id="links" class="stacked">
       <div id="links_tip" style="display:none;">
         <p>
-          <%= t :x_site_shared_licensed_observation_data_with, :site_name => CONFIG.site_name %>
+          <%= t :x_site_shared_licensed_observation_data_with, :site_name => @site.name %>
         </p>
         
         <% if is_me?(current_user) -%>
@@ -814,7 +825,7 @@
       <div id="editlicense" class="dialog" style="display:none">
         <div class="column span-18 verticalmiddle licensechoices">
           <p class="ui description">
-            <%= raw t(:licensing_your_content, :site_name => SITE_NAME) %>
+            <%= raw t(:licensing_your_content, :site_name => @site.name) %>
           </p>
           <%= render :partial => 'shared/license_form' %>
         </div>

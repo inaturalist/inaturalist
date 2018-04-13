@@ -1,0 +1,6 @@
+.container
+  .row
+    .col-xs-4.prepend-4
+      %h2=t :new_taxon_curator
+      = render 'form'
+      = link_to t(:cancel), taxon_curators_path, class: "btn btn-default"

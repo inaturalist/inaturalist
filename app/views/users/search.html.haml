@@ -11,7 +11,7 @@
   %span.breadcrumbs
     = link_to "Back to people", people_path, :class => 'back crumb'
   .right.inline.smallbuttons.buttonrow
-    = link_to "Invite someone to #{CONFIG.site_name_short}!", emailer_invite_path, :class => "inter"
+    = link_to "Invite someone to #{@site.site_name_short}!", emailer_invite_path, :class => "inter"
     %span.meta.inter or
     = form_tag(search_people_path, :method => :get, :class => "last") do
       = text_field_tag :q, @q, :class => 'text', :placeholder => "Search by name or email", :style => "width: 150px;"
@@ -23,8 +23,8 @@
     = link_to user_image(user, :size => "medium", :class => "userimage"), user, :class => "userimagelink"
     .blurb
       = link_to_user user, :class => "userlink"
-      %span.count= @observation_counts[user.id] || 0
-      =  @observation_counts[user.id] == 1 ? "observation" : "observations"
+      %span.count= user.observations_count
+      = user.observations_count == 1 ? "observation" : "observations"
 
 .column.span-24
   = will_paginate @users, :renderer => INatLinkRenderer

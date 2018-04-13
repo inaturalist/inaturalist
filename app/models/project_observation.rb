@@ -1,4 +1,6 @@
 class ProjectObservation < ActiveRecord::Base
+  blockable_by lambda {|po| po.observation.try(:user_id) }
+
   belongs_to :project
   belongs_to :observation
   belongs_to :curator_identification, :class_name => "Identification"
@@ -7,6 +9,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :observer_allows_addition?
   validate :project_allows_submitter?
   validate :observer_invited?
+  validate :project_allows_observations?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
@@ -34,12 +37,16 @@ class ProjectObservation < ActiveRecord::Base
   include ActsAsUUIDable
 
   def notify_observer(association)
-    if UpdateAction.joins(:update_subscribers).
-         where(resource: project, notification: UpdateAction::YOUR_OBSERVATIONS_ADDED).
-         where("update_subscribers.subscriber_id = ?", observation.user_id).
-         where("update_subscribers.viewed_at IS NULL").count >= 15
-      return
-    end
+    existing_project_updates = UpdateAction.elastic_paginate(
+      filters: [
+        { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
+        { term: { subscriber_ids: observation.user_id } }
+      ],
+      inverse_filters: [
+        { term: { viewed_subscriber_ids: observation.user_id } }
+      ],
+      per_page: 1 )
+    return if existing_project_updates && existing_project_updates.total_entries >= 15
     action_attrs = {
       resource: project,
       notifier: self,
@@ -73,6 +80,7 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def project_user
+    return unless project
     project.project_users.where(user_id: observation.user_id).first
   end
 
@@ -94,9 +102,7 @@ class ProjectObservation < ActiveRecord::Base
   after_create :revisit_curator_identifications_later
 
   after_save :update_project_list_if_curator_ident_changed
-
-  WATCH_FIELDS_CHANGED_AT = { curator_identification_id: true }
-  include FieldsChangedAt
+  after_commit :reindex_observation, on: :update # after create and destroy should be handled by TouchesObservationModule
 
   include Shared::TouchesObservationModule
 
@@ -126,6 +132,10 @@ class ProjectObservation < ActiveRecord::Base
      )
     true
   end
+
+  def reindex_observation
+    Observation.elastic_index!( ids: [observation_id] ) if observation
+  end
   
   def update_curator_identification
     return true if observation.new_record?
@@ -143,7 +153,7 @@ class ProjectObservation < ActiveRecord::Base
     return true if user_id == observation.user_id
     case observation.user.preferred_project_addition_by
     when User::PROJECT_ADDITION_BY_JOINED
-      unless project.project_users.where(user_id: observation.user_id).exists?
+      unless project && project.project_users.where(user_id: observation.user_id).exists?
         errors.add :user_id, "does not allow addition to projects they haven't joined"
         return false
       end
@@ -163,6 +173,12 @@ class ProjectObservation < ActiveRecord::Base
     else
       errors.add :user_id, :must_be_curator
       false
+    end
+  end
+
+  def project_allows_observations?
+    if project && project.is_new_project?
+      errors.add :base, :project_does_not_allow_observations
     end
   end
 
@@ -238,9 +254,10 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def expire_caches
+    return true if project_id.blank?
     begin
       FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project, :format => 'csv')), :force => true
-    rescue ActionController::RoutingError
+    rescue ActionController::RoutingError, ActionController::UrlGenerationError
       FileUtils.rm private_page_cache_path(FakeView.all_project_observations_path(project_id, :format => 'csv')), :force => true
     end
     true
@@ -279,7 +296,7 @@ class ProjectObservation < ActiveRecord::Base
         else
           nil
         end
-      elsif observation_field = p.observation_fields.detect{|of| of.name == column}
+      elsif observation_field = p.observation_fields.detect{|of| of.normalized_name == ObservationField.normalize_name( column )}
         observation.observation_field_values.detect{|ofv| ofv.observation_field_id == observation_field.id}.try(:value)
       else
         observation.send(column) rescue send(column) rescue nil
@@ -392,6 +409,16 @@ class ProjectObservation < ActiveRecord::Base
       observation.project_observations.reload
       observation.touch
     end
+  end
+
+  def as_indexed_json
+    {
+      id: id,
+      uuid: uuid,
+      project_id: project_id,
+      user_id: user_id,
+      preferences: preferences.map{ |p| { name: p[0], value: p[1] } }
+    }
   end
 
   ##### Static ##############################################################

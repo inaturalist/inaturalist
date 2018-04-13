@@ -3,6 +3,7 @@ module ActsAsVotable
 
   class Vote
     include HasSubscribers
+    blockable_by lambda {|vote| vote.votable.try(:user) }
 
     belongs_to :observation, ->(vote) { where(vote.votable_type == "Observation" ? "true" : "false") },
       foreign_key: "votable_id"
@@ -10,7 +11,7 @@ module ActsAsVotable
       foreign_key: "votable_id"
 
     notifies_owner_of :votable, notification: "activity",
-      queue_if: lambda { |record| record.vote_scope.blank? }
+      queue_if: lambda { |record| record.vote_scope.blank? && record.user_id != record.votable.try(:user_id) }
 
     auto_subscribes :user, to: :votable
 
@@ -33,6 +34,16 @@ module ActsAsVotable
       if votable.respond_to?(:votable_callback)
         votable.votable_callback
       end
+    end
+
+    def as_indexed_json
+      {
+        id: id,
+        vote_flag: vote_flag,
+        vote_scope: vote_scope,
+        user_id: user_id,
+        created_at: created_at
+      }
     end
 
   end

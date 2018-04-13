@@ -147,7 +147,9 @@ class LocationChooser extends SelectionBasedComponent {
     };
     if ( !attrs.accuracy ) { attrs.accuracy = undefined; }
     if ( this.props.obsCard ) {
-      this.props.updateObsCard( this.props.obsCard, attrs );
+      this.props.updateSingleObsCard ?
+        this.props.updateObsCard( attrs ) :
+        this.props.updateObsCard( this.props.obsCard, attrs );
     } else {
       if ( !attrs.latitude && this.multiValued( "latitude" ) ) { delete attrs.latitude; }
       if ( !attrs.longitude && this.multiValued( "longitude" ) ) { delete attrs.longitude; }
@@ -437,6 +439,7 @@ LocationChooser.propTypes = {
   updateState: PropTypes.func,
   updateObsCard: PropTypes.func,
   updateSelectedObsCards: PropTypes.func,
+  updateSingleObsCard: PropTypes.bool,
   lat: PropTypes.any,
   lng: PropTypes.any,
   radius: PropTypes.any,

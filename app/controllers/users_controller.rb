@@ -18,26 +18,9 @@ class UsersController < ApplicationController
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
-  
-  MOBILIZED = [:show, :new, :create]
-  before_filter :unmobilized, :except => MOBILIZED
-  before_filter :mobilized, :only => MOBILIZED
 
   protect_from_forgery unless: -> {
     request.parameters[:action] == "search" && request.format.json? }
-
-  caches_action :dashboard,
-    expires_in: 15.minutes,
-    cache_path: Proc.new {|c|
-      c.send(
-        :home_url,
-        user_id: c.instance_variable_get("@current_user").id,
-        ssl: c.request.ssl?
-      )
-    },
-    if: Proc.new {|c|
-      (c.params.keys - %w(action controller format)).blank?
-    }
 
   caches_action :dashboard_updates,
     :expires_in => 15.minutes,
@@ -52,35 +35,6 @@ class UsersController < ApplicationController
       (c.params.keys - %w(action controller format)).blank?
     }
   cache_sweeper :user_sweeper, :only => [:update]
-  
-  def new
-    @user = User.new
-  end
- 
-  def create
-    logout_keeping_session!
-    @user = User.new(params[:user])
-    params[:user].each do |k,v|
-      if k =~ /^prefer/
-        params[:user].delete(k)
-      else
-        next
-      end
-      @user.send("#{k}=", v)
-    end
-    @user.register! if @user && @user.valid?
-    success = @user && @user.valid?
-    if success && @user.errors.empty?
-      flash[:notice] = t(:please_check_for_you_confirmation_email, :site_name => CONFIG.site_name)
-      self.current_user = @user
-      redirect_back_or_default(dashboard_path)
-    else
-      respond_to do |format|
-        format.html { render :action => 'new' }
-        format.mobile { render :action => 'new' }
-      end
-    end
-  end
 
   # this method should have been replaced by Devise, but there are probably some activation emails lingering in people's inboxes
   def activate
@@ -90,7 +44,7 @@ class UsersController < ApplicationController
       redirect_back_or_default('/')
     when (!params[:activation_code].blank?) && user && !user.confirmed?
       user.confirm!
-      flash[:notice] = t(:your_account_has_been_verified, :site_name => CONFIG.site_name)
+      flash[:notice] = t(:your_account_has_been_verified, :site_name => @site.name)
       if logged_in? && current_user.is_admin?
         redirect_back_or_default('/')
       else
@@ -122,43 +76,49 @@ class UsersController < ApplicationController
   def add_role
     unless @role = Role.find_by_name(params[:role])
       flash[:error] = t(:that_role_doesnt_exist)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     if !current_user.has_role?(@role.name) || (@user.is_admin? && !current_user.is_admin?)
       flash[:error] = t(:you_dont_have_permission_to_do_that)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     @user.roles << @role
-    flash[:notice] = "Made #{@user.login} a(n) #{@role.name}"
-    redirect_to :back
+    if @role.name === Role::CURATOR
+      @user.update_attributes( curator_sponsor: current_user )
+    end
+    flash[:notice] = "Added #{@role.name} status to #{@user.login}"
+    redirect_back_or_default @user
   end
   
   def remove_role
     unless @role = Role.find_by_name(params[:role])
       flash[:error] = t(:that_role_doesnt_exist)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     unless current_user.has_role?(@role.name)
       flash[:error] = t(:you_dont_have_permission_to_do_that)
-      return redirect_to :back
+      return redirect_back_or_default @user
     end
     
     if @user.roles.delete(@role)
       flash[:notice] = "Removed #{@role.name} status from #{@user.login}"
+      if @role.name === Role::CURATOR
+        @user.update_attributes( curator_sponsor: nil )
+      end
     else
       flash[:error] = "#{@user.login} doesn't have #{@role.name} status"
     end
-    redirect_to :back
+    redirect_back_or_default @user
   end
   
   def destroy
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)
-    flash[:notice] = "#{@user.login} has been removed from #{CONFIG.site_name} " + 
+    flash[:notice] = "#{@user.login} has been removed from #{@site.name} " +
       "(it may take up to an hour to completely delete all associated content)"
     redirect_to root_path
   end
@@ -182,7 +142,7 @@ class UsersController < ApplicationController
   # Methods below here are added by iNaturalist
   
   def index
-    @recently_active_key = "recently_active_#{I18n.locale}_#{SITE_NAME}"
+    @recently_active_key = "recently_active_#{I18n.locale}_site_#{@site.id}"
     unless fragment_exist?(@recently_active_key)
       @updates = []
       [Observation, Identification, Post, Comment].each do |klass|
@@ -209,7 +169,7 @@ class UsersController < ApplicationController
       @updates = hash.values.sort_by(&:created_at).reverse[0..11]
     end
 
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_4"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{@site.name}_4"
     unless fragment_exist?(@leaderboard_key)
       @most_observations = most_observations(:per => 'month')
       @most_species = most_species(:per => 'month')
@@ -219,14 +179,21 @@ class UsersController < ApplicationController
       @most_identifications_year = most_identifications(:per => 'year')
     end
 
-    @curators_key = "users_index_curators_#{I18n.locale}_#{SITE_NAME}_4"
+    @curators_key = "users_index_curators_#{I18n.locale}_#{@site.name}_4"
     unless fragment_exist?(@curators_key)
-      @curators = User.curators.limit(500).includes(:roles)
+      @curators = User.curators.limit(500).includes(:roles).order( "updated_at DESC" )
       @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
       @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
       @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+      @curators = @curators.sort_by do |u|
+        -1 * (
+          @resolved_flag_counts[u.id].to_i +
+          @updated_taxa_counts[u.id].to_i +
+          @taxon_change_counts[u.id].to_i
+        )
+      end
     end
 
     respond_to do |format|
@@ -239,7 +206,7 @@ class UsersController < ApplicationController
     @month = params[:month].to_i unless params[:month].blank?
     @date = Date.parse("#{@year}-#{@month || '01'}-01")
     @time_unit = params[:month].blank? ? 'year' : 'month'
-    @leaderboard_key = "leaderboard_#{I18n.locale}_#{SITE_NAME}_#{@year}_#{@month}"
+    @leaderboard_key = "leaderboard_#{I18n.locale}_#{@site.name}_#{@year}_#{@month}"
     unless fragment_exist?(@leaderboard_key)
       if params[:month].blank?
         @most_observations = most_observations(:per => 'year', :year => @year)
@@ -327,8 +294,10 @@ class UsersController < ApplicationController
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
         render layout: "bootstrap"
       end
-      format.json { render :json => @selected_user.to_json(User.default_json_options) }
-      format.mobile
+      opts = User.default_json_options
+      opts[:only] ||= []
+      opts[:only] << :description
+      format.json { render :json => @selected_user.to_json( opts ) }
     end
   end
   
@@ -458,10 +427,13 @@ class UsersController < ApplicationController
         scope = scope.where( site_id: nil )
         @announcements = scope.in_locale( I18n.locale )
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
-        @announcements = base_scope.where( site_id: @site ) if @announcements.blank?
+        if @announcements.blank?
+          @announcements = base_scope.where( "site_id = ? AND locales IN (?)",  @site, [] )
+          @announcements << base_scope.in_locale( I18n.locale ).where( site_id: @site )
+          @announcements = @announcements.flatten
+        end
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
-          order("subscriptions.id DESC").
           limit(5)
         if current_user.is_curator? || current_user.is_admin?
           @flags = Flag.order("id desc").where("resolved = ? AND (user_id != 0 OR (user_id = 0 AND flaggable_type = 'Taxon'))", false).
@@ -556,6 +528,8 @@ class UsersController < ApplicationController
     preferred_project_addition_by_was = @display_user.preferred_project_addition_by
 
     @display_user.assign_attributes( whitelist_params ) unless whitelist_params.blank?
+    place_id_changed = @display_user.place_id_changed?
+    prefers_no_place_changed = @display_user.prefers_no_place_changed?
     if @display_user.save
       # user changed their project addition rules and nothing else, so
       # updated_at wasn't touched on user. Set set updated_at on the user
@@ -570,8 +544,20 @@ class UsersController < ApplicationController
             session[:locale] = @display_user.locale
           end
 
+          if place_id_changed
+            session.delete(:potential_place)
+            if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.place_preference_changed_notice_html" )
+            end
+          elsif prefers_no_place_changed
+            session.delete(:potential_place)
+            if params[:from_potential_place]
+              flash[:notice] = I18n.t( "views.users.edit.if_you_change_your_mind_you_can_always_edit_your_settings_html" )
+            end
+          end
+
           if params[:from_edit_after_auth].blank?
-            flash[:notice] = t(:your_profile_was_successfully_updated)
+            flash[:notice] ||= t(:your_profile_was_successfully_updated)
             redirect_back_or_default(person_by_login_path(:login => current_user.login))
           else
             redirect_to(dashboard_path)
@@ -607,6 +593,15 @@ class UsersController < ApplicationController
       @display_user = User.find_by_id(params[:id].to_i)
       @display_user ||= User.find_by_login(params[:id])
       @display_user ||= User.find_by_email(params[:id])
+      @display_user ||= User.where( "email ILIKE ?", "%#{params[:id]}%" ).first
+      @display_user ||= User.elastic_paginate( query: {
+        bool: {
+          should: [
+            { match: { name: { query: params[:id], operator: "and" } } },
+            { match: { login: { query: params[:id], operator: "and" } } }
+          ]
+        }
+      } ).first
       if @display_user.blank?
         flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
@@ -652,7 +647,11 @@ class UsersController < ApplicationController
   end
 
   def api_token
-    render json: { api_token: JsonWebToken.encode(user_id: current_user.id) }
+    payload = { user_id: current_user.id }
+    if doorkeeper_token && (a = doorkeeper_token.application)
+      payload[:oauth_application_id] = a.becomes( OauthApplication ).id
+    end
+    render json: { api_token: JsonWebToken.encode( payload ) }
   end
 
   def join_test
@@ -741,7 +740,6 @@ protected
   end
   
   def counts_for_users
-    @observation_counts = Observation.where(user_id: @users.to_a).group(:user_id).count
     @listed_taxa_counts = ListedTaxon.where(list_id: @users.to_a.map{|u| u.life_list_id}).
       group(:user_id).count
     @post_counts = Post.where(user_id: @users.to_a).group(:user_id).count
@@ -811,12 +809,14 @@ protected
       }}}
     end
 
+    # This is brittle and will continue to cause problems for individual sites
+    # as we grow and their top users fall out of the global top 500.
     result = Identification.elastic_search(
       filters: filters,
       size: 0,
       aggregate: {
         obs: {
-          terms: { field: "user.id", size: site_filter ? 200 : 20 }
+          terms: { field: "user.id", size: site_filter ? 500 : 20 }
         }
       }
     )
@@ -864,16 +864,23 @@ protected
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
       :prefers_project_invitation_email_notification,
-      :prefers_project_journal_post_email_notification,
       :prefers_mention_email_notification,
-      :prefers_share_observations_on_facebook,
-      :prefers_share_observations_on_twitter,
+      :prefers_project_journal_post_email_notification,
+      :prefers_project_curator_change_email_notification,
+      :prefers_project_added_your_observation_email_notification,
+      :prefers_taxon_change_email_notification,
+      :prefers_user_observation_email_notification,
+      :prefers_taxon_or_place_observation_email_notification,
       :prefers_no_email,
       :prefers_automatic_taxonomic_changes,
       :prefers_community_taxa,
       :prefers_location_details,
       :prefers_receive_mentions,
       :prefers_redundant_identification_notifications,
+      :prefers_common_names,
+      :prefers_scientific_name_first,
+      :prefers_no_place,
+      :search_place_id,
       :site_id,
       :test_groups,
       :time_zone
@@ -881,9 +888,10 @@ protected
   end
 
   def before_edit
-    @user = current_user
     @sites = Site.live.limit(100)
-    @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    if @user = current_user
+      @user.site_id ||= Site.first.try(:id) unless @sites.blank?
+    end
   end
 
 end

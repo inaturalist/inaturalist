@@ -23,7 +23,7 @@
       <tr>
         <td valign="top" style="padding-right:10px;">
           <%- if notifier.user && !no_thumb %>
-            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32) %>
+            <%= user_image(notifier.user, size: "thumb", width: 32, height: 32, style: "border-radius: 32px;") %>
           <%- end %>
         </td>
         <td valign="top">
@@ -32,8 +32,9 @@
               <%= taxon_image(notifier.taxon, :style => "max-width:32px; vertical-align:middle;") %>
               <span><%= t(:user_s_id, :user => user.login, :id => t(:id)) %>:</span>
               <%= render :partial => 'shared/taxon', 
-                         :locals => { :taxon => notifier.taxon,
-                                      :link_url => taxon_url(notifier.taxon) } %>
+                         :locals => { taxon: notifier.taxon,
+                                      link_url: taxon_url(notifier.taxon),
+                                      viewer: viewing_user } %>
             </div>
           <% elsif notifier.is_a?(ProjectInvitation) %>
             <p>
@@ -49,7 +50,7 @@
                   username = if notifier.resolver
                     notifier.resolver.login
                   elsif notifier.resolver_id.blank?
-                    SITE_NAME_SHORT
+                    @site.preferred_site_name_short
                   else
                     t(:deleted_user)
                   end

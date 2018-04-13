@@ -122,7 +122,7 @@ def export_model(klass)
     scope = scope.joins(list: :user).where("users.site_id = ?", @site)
 
   # anything else including a user_id or observation_id
-  elsif klass.column_names.include?('user_id') && ![ConservationStatus, Source, TaxonChange].include?(klass)
+  elsif klass.column_names.include?('user_id') && ![ConservationStatus, Source, TaxonChange, ControlledTermLabel].include?(klass)
     puts "Exporting #{klass.name.underscore.pluralize} belonging to users of #{@site_name}" if OPTS[:debug]
     scope = scope.joins(:user).where("users.site_id = ?", @site)
   elsif klass.column_names.include?('observation_id')
@@ -165,7 +165,7 @@ ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
   next if klass.name =~ /^Goal/
   next if [
     DeletedObservation, # irrelevant
-    Update, # massive
+    UpdateAction, # massive
     FlowTask, # irrelevant
     TaxonRange # massive
   ].include?(klass)

@@ -100,20 +100,28 @@ body {
   height: 5vw;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 0.8vw 0;
+  .container-fluid {
+    display: flex;
+    justify-content: space-between;
+  }
   .navbar-left {
     text-align: left;
     margin: 0;
     padding: 0 2vw;
-    width: 15vw;
+    width: 20vw;
     height: 3vw;
   }
   .navbar-right {
     text-align: center;
     margin: 0;
-    width: 6.5vw;
+    // width: 6.5vw;
     padding: 0 2vw 0 0;
-    &.natgeo {
-      width: 11vw;
+    img {
+      // width: 11vw;
+      // height: auto;
+      // width: auto;
+      height: 3vw;
+      object-fit: contain;
     }
   }
   .navbar-title {
@@ -121,7 +129,9 @@ body {
     font-size: 2vw;
     line-height: 3.2vw;
     margin: 0;
-    width: 65vw;
+    // width: 65vw;
+    flex-grow: 2;
+    width: 100%;
     padding: 0.2vw 0 0 2vw;
     white-space: nowrap;
     overflow: hidden;
@@ -486,4 +496,11 @@ body {
     margin-left: 0;
     float: left;
   }
+}
+
+.nocontent,
+.noresults {
+  margin: 1em auto;
+  width: 80%;
+  text-align: center;
 }

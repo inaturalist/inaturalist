@@ -97,4 +97,25 @@ describe PlacesController, "autocomplete" do
     get :autocomplete, format: :json, q: "Área de Protección de Flora y Fauna Laguna de Términos"
     expect( JSON.parse(response.body).first["id"] ).to eq place.id
   end
+
+  it "should filter by with_geom" do
+    p1 = make_place_with_geom
+    p2 = Place.make!( name: p1.name )
+    Delayed::Worker.new.work_off
+    json = get :autocomplete, format: :json, q: p1.name, with_geom: true
+    json = JSON.parse( response.body )
+    expect( json.size ).to eq 1
+  end
+  it "should filter by with_checklist" do
+    p1 = Place.make!( prefers_check_lists: false )
+    p2 = Place.make!( name: p1.name )
+    Delayed::Worker.new.work_off
+    p1.reload
+    p2.reload
+    expect( p1.check_list ).to be_blank
+    expect( p2.check_list ).not_to be_blank
+    json = get :autocomplete, format: :json, q: p1.name, with_check_list: true
+    json = JSON.parse( response.body )
+    expect( json.size ).to eq 1
+  end
 end

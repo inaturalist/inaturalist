@@ -19,6 +19,7 @@ class Place < ActiveRecord::Base
   has_many :place_taxon_names, :dependent => :delete_all, :inverse_of => :place
   has_many :taxon_names, :through => :place_taxon_names
   has_many :users, :inverse_of => :place, :dependent => :nullify
+  has_many :search_users, inverse_of: :search_place, dependent: :nullify, class_name: "User"
   # do not destroy observations_places. That will happen
   # in update_observations_places, from a callback in place_geometry
   has_many :observations_places
@@ -256,6 +257,7 @@ class Place < ActiveRecord::Base
   }
 
   scope :with_geom, -> { joins(:place_geometry).where("place_geometries.id IS NOT NULL") }
+  scope :with_check_list, -> { joins(:check_list).where("lists.id IS NOT NULL") }
   scope :straddles_date_line, -> { where("swlng > 180 OR swlng < -180 OR nelng > 180 OR nelng < -180 OR (swlng > 0 AND nelng < 0)") }
 
   def self.north_america
@@ -473,28 +475,58 @@ class Place < ActiveRecord::Base
     check_list.listed_taxa.delete_all
     check_list.destroy
   end
+
+  def validate_with_geom( geom, other_attrs = {} )
+    if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
+      georuby_geom = geom
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
+    end
+    if geom.blank?
+      # This probably means GeoRuby parsed some polygons but RGeo didn't think
+      # they looked like a multipolygon, possibly because of overlapping
+      # polygons or other problems
+      add_custom_error( :base, "Failed to import a boundary. Check for slivers, overlapping polygons, and other geometry issues." )
+      return false
+    end
+    # 66 is roughly the size of Texas
+    if other_attrs[:user] && !other_attrs[:user].is_admin?
+      if geom.respond_to?(:area)
+      end
+      if geom.respond_to?(:area) && geom.area > 66.0
+        add_custom_error(:place_geometry, :is_too_large_to_import)
+        return false
+      elsif Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count >= 500000
+        add_custom_error(:place_geometry, :contains_too_many_observations)
+        return false
+      end
+    end
+    true
+  end
   
   # Update the associated place_geometry or create a new one
-  def save_geom(geom, other_attrs = {})
-    geom = RGeo::WKRep::WKBParser.new.parse(geom.as_wkb) if geom.is_a?(GeoRuby::SimpleFeatures::Geometry)
-    # 100 is roughly the size of Ethiopia
-    if other_attrs[:user] && geom.respond_to?(:area) &&
-       geom.area > 100.0 && !other_attrs[:user].is_admin?
-      errors.add(:place_geometry, :is_too_large_to_import)
-      return
+  def save_geom( geom, other_attrs = {} )
+    if geom.is_a?( GeoRuby::SimpleFeatures::Geometry )
+      georuby_geom = geom
+      geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
     end
+    return unless validate_with_geom( geom )
     other_attrs.delete(:user)
     other_attrs.merge!(:geom => geom, :place => self)
     begin
       if place_geometry
         self.place_geometry.update_attributes(other_attrs)
       else
-        pg = PlaceGeometry.create(other_attrs)
+        pg = PlaceGeometry.create!(other_attrs)
         self.place_geometry = pg
       end
       update_bbox_from_geom(geom) if self.place_geometry.valid?
     rescue ActiveRecord::StatementInvalid => e
       Rails.logger.error "[ERROR] \tCouldn't save #{self.place_geometry}: #{e.message[0..200]}"
+      if e.message =~ /TopologyException/
+        add_custom_error( :base, e.message[/TopologyException: (.+)/, 1] )
+      else
+        add_custom_error( :base, "Boundary did not save: #{e.message[0..200]}" )
+      end
     end
   end
   
@@ -667,7 +699,7 @@ class Place < ActiveRecord::Base
           :source_name => place.source_name, 
           :source_identifier => place.source_identifier)
       end
-      place.place_geometry_without_geom.dissolve_geometry
+      place.place_geometry_without_geom.process_geometry
     end
     
     puts "\n[INFO] Finished importing places.  #{num_created} created, " + 
@@ -743,7 +775,7 @@ class Place < ActiveRecord::Base
     end
     if check_list
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( list_id: check_list_id, place_id: id )
-    elsif mergee.check_list.listed_taxa.count > 0
+    elsif mergee.check_list && mergee.check_list.listed_taxa.count > 0
       mergee.check_list.update_attributes( place_id: id, title: "MERGED #{mergee.check_list.title}")
       ListedTaxon.where( list_id: mergee.check_list_id ).update_all( place_id: id )
     end
@@ -861,6 +893,18 @@ class Place < ActiveRecord::Base
     # seem to work properly. When you use the spherical_factory, it claims
     # contains? isn't defined.
     bbox.contains?(pt)
+  end
+
+  def bbox_privately_contains_observation?( o )
+    sw = o.private_sw_latlon
+    ne = o.private_ne_latlon
+    bbox_contains_lat_lng?( *sw ) && bbox_contains_lat_lng?( *ne )
+  end
+
+  def bbox_publicly_contains_observation?( o )
+    sw = o.sw_latlon
+    ne = o.ne_latlon
+    bbox_contains_lat_lng?( *sw ) && bbox_contains_lat_lng?( *ne )
   end
 
   def kml_url

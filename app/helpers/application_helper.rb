@@ -280,7 +280,7 @@ module ApplicationHelper
     return text if text.blank?
     split ||= "\n\n"
     text = text.split(split)[0]
-    text = strip_tags(text).html_safe
+    sanitize( text, tags: %w(a b strong i em) ).html_safe
   end
   
   def remaining_paragraphs_of_text(text,split)
@@ -354,12 +354,7 @@ module ApplicationHelper
     css_class += " usericon" if %w(mini small thumb).include?(size.to_s) || size.blank?
     options[:alt] ||= user.login
     options[:title] ||= user.login
-    url = if defined? root_url
-      uri_join(root_url, user.icon.url(size || :mini))
-    else
-      url_join(CONFIG.site_url, user.icon.url(size || :mini))
-    end
-    image_tag(url, options.merge(:style => style, :class => css_class))
+    image_tag( user.icon.url( size || :mini ), options.merge( style: style, class: css_class ) )
   end
 
   def user_seen_announcement?(announcement)
@@ -455,7 +450,7 @@ module ApplicationHelper
      abs_path = uri_join(options[:base_url] || @site.try(:url) || root_url, abs_path).to_s
     end
     abs_path
-  rescue Sprockets::Helpers::RailsHelper::AssetPaths::AssetNotPrecompiledError
+  rescue Exception => e
     nil
   end
   
@@ -949,7 +944,7 @@ module ApplicationHelper
     when "Taxon"
       taxon_image(resource, {:size => "square", :width => 48}.merge(options))
     when "TaxonSplit", "TaxonMerge", "TaxonSwap", "TaxonDrop", "TaxonStage"
-      image_tag("#{resource.class.name.underscore}-aaaaaa-48px.png", options)
+      image_tag( FakeView.image_url( "#{resource.class.name.underscore}-aaaaaa-48px.png", options) )
     when "ObservationField"
       image_tag(FakeView.image_url("notebook-icon-color-155px-shadow.jpg"), options)
     else
@@ -1135,15 +1130,7 @@ module ApplicationHelper
   end
   
   def url_for_resource_with_host(resource)
-    base_url = if (u = @user) && u.site
-      u.site.url
-    end
-    base_url ||= CONFIG.site_url || root_url
-    if url_for(resource) =~ /^http/
-      URI.join(base_url, URI.parse(url_for(resource)).path).to_s
-    else
-      URI.join(base_url, url_for(resource)).to_s
-    end
+    polymorphic_url(resource)
   end
   
   def commas_and(list, options = {})
@@ -1220,9 +1207,9 @@ module ApplicationHelper
   def establishment_blob(listed_taxon, options = {})
     icon_class = listed_taxon.introduced? ? 'ui-icon-notice' : 'ui-icon-star'
     tip_class = listed_taxon.introduced? ? 'ui-tooltip-error' : 'ui-tooltip-success'
-    tip = "<strong>#{t("establishment.#{(listed_taxon.establishment_means)}", :default => listed_taxon.establishment_means).capitalize}"
+    tip = "<strong>#{listed_taxon.establishment_means_label}"
     tip += " #{t(:in)} #{listed_taxon.place.display_name}" if options[:show_place_name] && listed_taxon.place
-    tip += ":</strong> #{t("establishment_means_descriptions.#{ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means].gsub('-','_').gsub(' ','_').downcase}", :default => ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS[listed_taxon.establishment_means])}"
+    tip += ":</strong> #{listed_taxon.establishment_means_description}"
     blob_attrs = {
       :class => "blob #{listed_taxon.introduced? ? 'introduced' : listed_taxon.establishment_means.underscore} #{options[:class]}", 
       "data-tip" => tip, 
@@ -1245,7 +1232,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "key=#{CONFIG.google.browser_api_key}"
+    params = "v=3&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
@@ -1374,8 +1361,11 @@ module ApplicationHelper
 
   def hyperlink_mentions(text)
     linked_text = text.dup
-    linked_text.mentioned_users.each do |u|
-      linked_text.gsub!(/(\B)@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
+    # link the longer logins first, to prevent mistakes when
+    # one username is a substring of another username
+    linked_text.mentioned_users.sort_by{ |u| u.login.length }.reverse.each do |u|
+      # link `@login` when @ is preceded by a word break but isn't preceded by ">
+      linked_text.gsub!(/(^|(?<!">))@#{ u.login }/, "\\1#{link_to("@#{ u.login }", person_by_login_url(u.login))}")
     end
     linked_text
   end

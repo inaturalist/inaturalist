@@ -1,6 +1,15 @@
 <%-
   listed_taxon ||= @primary_listed_taxon || @listed_taxon
   @list_title = display_list_title(@list)
+  obs_url_params = { taxon_id: @taxon.id }
+  if @list.is_a?( CheckList )
+    obs_url_params[:place_id] = @listed_taxon.place_id
+  elsif @list.is_a?( ProjectList )
+    obs_url_params[:projects] = @list.project.slug
+  else
+    obs_url_params[:user_id] = @list.user.login
+  end
+  obs_url = observations_url( obs_url_params )
 -%>
 
 <%- content_for(:title) do -%>
@@ -73,12 +82,10 @@
   
   <div class="observationcounts stacked">
     <div class="ui description">
-      <strong><%= listed_taxon.observations_count %></strong>
-      <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>,
-      <strong class="count"><%= listed_taxon.confirmed_observations_count %></strong>
-      <%= t :research_grade %>
-    
-    <% if logged_in? && current_user.is_admin? -%>
+      <strong><%= link_to listed_taxon.observations_count, obs_url %></strong>
+      <%= (listed_taxon.observations_count == 1 ? t(:observation).downcase : t(:observations).downcase) -%>
+
+    <% if logged_in? -%>
       <span class="button">
         <%= link_to t(:refresh).downcase, {
             :controller => 'listed_taxa',
@@ -88,21 +95,11 @@
           "data-loading-click" => t(:refreshing) -%></span>
     <% end -%>
     </div>
-    <% unless listed_taxon.observation_month_stats.blank? -%>
-      <div class="statsgraphs stacked">
-        <div class="observedgraph">
-          <%= month_graph listed_taxon.observation_month_stats %>
-        </div>
-        <div class="confirmedgraph">
-          <%= month_graph listed_taxon.confirmed_observation_month_stats, :max => listed_taxon.observation_month_stats.values.max %>
-        </div>
-      </div>
-    <% end -%>
   </div>
 
   <% if listed_taxon.first_observation -%>
     <p class="ui description">
-      <%=t :first_inat_observation, :site_name => SITE_NAME_SHORT %>
+      <%=t :first_inat_observation, :site_name => @site.preferred_site_name_short %>
       <%= link_to one_line_observation(listed_taxon.first_observation, :skip => %w(user taxon)), listed_taxon.first_observation %>
       <% if @list.is_a?(CheckList) -%>
         <%= t(:by).downcase %>

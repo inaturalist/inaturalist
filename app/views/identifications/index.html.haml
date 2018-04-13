@@ -41,6 +41,9 @@
             %th user
             %th category
             %th current
+            %th vision
+            %th blind
+            %th disagreement with
         %tbody
           - @identifications.each do |i|
             %tr
@@ -55,6 +58,13 @@
               %td= link_to_user i.user
               %td= i.category
               %td= i.current
+              %td= i.vision
+              %td= i.blind
+              %td
+                - if i.disagreement? && i.previous_observation_taxon
+                  = render "shared/taxon", taxon: i.previous_observation_taxon, link_url: i.previous_observation_taxon
+                - elsif i.disagreement?
+                  true
       = will_paginate
     .col-xs-3
       %h3 Stats
@@ -71,5 +81,5 @@
           %code current=false|any
           Default: true
         %li
-          %code for=others|any
+          %code for=self|others|any
           Default: any

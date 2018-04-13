@@ -2,6 +2,9 @@ class Message < ActiveRecord::Base
   acts_as_spammable fields: [ :subject, :body ],
     user: :from_user
 
+  blockable_by lambda { |message| message.to_user_id },
+    blockable_user_id: lambda { |message| message.from_user_id }
+  
   belongs_to :user
   belongs_to :from_user, :class_name => "User"
   belongs_to :to_user, :class_name => "User"
@@ -47,7 +50,7 @@ class Message < ActiveRecord::Base
   end
 
   def set_read_at
-    if user_id == from_user_id
+    if user_id == from_user_id || UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
       self.read_at = Time.now
     end
     true
@@ -79,6 +82,7 @@ class Message < ActiveRecord::Base
   def deliver_email
     return true if user_id == from_user_id
     return true if skip_email
+    return true if UserMute.where( user_id: to_user, muted_user_id: from_user ).exists?
     Emailer.delay(:priority => USER_INTEGRITY_PRIORITY).new_message(id)
     true
   end

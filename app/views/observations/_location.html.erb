@@ -19,7 +19,7 @@
         <%=t :out_of_range %>!
         <span class="helptip" rel="#<%= dom_id(observation, 'out_of_range_tip') %>"></span>
         <div id="<%= dom_id(observation, 'out_of_range_tip') %>" style="display:none;" class="inlineblock">
-          <%=t :this_observation_lies_outside_the, :site_name => SITE_NAME_SHORT %> 
+          <%=t :this_observation_lies_outside_the, :site_name => @site.preferred_site_name_short %>
           <%= link_to t(:view_the_range), taxon_path(observation.taxon, :anchor => "taxon_range"), :class => "readmore" %>
         </div>
       </strong>
@@ -58,7 +58,10 @@
   <% if show_observation_coordinates?(observation) %>
     <div class="coordinates">
       <% if !observation.coordinates_viewable_by?(current_user) -%>
-        <%= t( :public_coordinates_obscured_by, distance: number_with_delimiter( ( observation.public_positional_accuracy.to_f / 1000 ).round ) ) %>
+        <%=
+          t( :public_coordinates_obscured_by,
+            distance: observation.public_positional_accuracy ? number_with_delimiter( ( observation.public_positional_accuracy.to_f / 1000 ).round ) : "?" )
+        %>
       <% else %>
         <% if observation.coordinates_obscured? -%>
           <span class="latitude"><label><%= t :lat %></label> <%= observation.private_latitude %></span>,

@@ -220,7 +220,7 @@ h2.timeline-title { /* fix - added h2 */
   font-size: 75%;
 }
 
-.timeline-title > .subscriptionsettings {
+.timeline-title > .update-settings {
   padding-left: 10px;
   border-left: 1px solid #ddd;
   margin-left: 10px;
@@ -580,7 +580,7 @@ ul.timeline_observation > li > .timeline-panel > .timeline-heading > h2.timeline
 ul.timeline_observation > li > .timeline-panel > .timeline-heading > .timeline-title > .time {
   border-right: 0;
 }
-.timeline-panel a.subscriptionsettings {
+.timeline-panel a.update-settings {
   margin-top:-2px;
   color: gray;
 }
@@ -609,7 +609,7 @@ ul.timeline_observation > li > .timeline-panel > .timeline-body {
   padding-bottom: 20px;
   border-bottom: 1px solid #eee;
 }
-ul.timeline_observation > li.last > .timeline-panel > .timeline-body {
+ul.timeline_observation > li:last-child > .timeline-panel > .timeline-body {
   border-bottom: 1px transparent;
   padding-bottom: 0px;
 }
@@ -675,9 +675,26 @@ h3 .glyphicon {
 h3 .glyphicon.info-link {
   font-size: 14px;
 }
+a.icon_container,
 .icon_container {
   display: block;
   text-align: center;
+  line-height: 149px;
+  background-color: #ccc;
+}
+.icon_container i.fa,
+.icon_container i.icon,
+.scaledimg i.icon {
+   vertical-align: middle;
+   font-size: 80px;
+   color: white;
+}
+.has-sound .icon_container i.fa {
+  color: #777;
+}
+.has-sound.has-photo .icon_container i.fa {
+  color: white;
+  opacity: 0.8;
 }
 
 .thumbnail > a > .scaledimg {
@@ -689,16 +706,19 @@ h3 .glyphicon.info-link {
 .media-left > a > .scaledimg {
  width: 120px;
  height: 120px;
+ line-height: 120px;
+ background-color: #ccc;
  margin-right: 5px;
  background-size: cover;
  background-position: center;
+ text-align: center;
 }
 
 .list-group-item {
   overflow: hidden;
 }
 
-.list-group-item .subscriptionsettings {
+.list-group-item .update-settings {
   margin-top: 1px;
 }
 

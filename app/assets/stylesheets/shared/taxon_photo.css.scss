@@ -1,0 +1,70 @@
+.TaxonPhoto {
+  position: relative;
+  .photo-hover {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    font-weight: 100;
+    opacity: 0;
+    transition: opacity 0.2s linear;
+    text-align: center;
+    a {
+      color: white;
+    }
+    a:hover {
+      color: white;
+      opacity: 0.8;
+    }
+  }
+  .modal-link {
+    width: 100%;
+    height: 100%;
+    font-size: 80%;
+    color: #ddd;
+    text-transform: uppercase;
+    i {
+      color: white;
+      display: inline-block;
+      font-size: 300%;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.5);
+    }
+  }
+  .modal-link:hover {
+    text-decoration: none;
+    color: white;
+  }
+  .photo-taxon {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.4);
+    font-weight: 100;
+    font-size: 90%;
+    line-height: 20px;
+    text-align: left;
+
+    .display-name {
+      font-size: 120%;
+      display: block;
+    }
+    i {
+      font-size: 150%;
+    }
+    .SplitTaxon a {
+      color: white;
+    }
+    .info-link {
+      padding: 0;
+      position: relative;
+      top: -2px;
+    }
+  }
+}
+.TaxonPhoto:hover .photo-hover {
+  opacity: 1;
+}

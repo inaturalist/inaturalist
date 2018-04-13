@@ -1,6 +1,6 @@
 class ProjectUser < ActiveRecord::Base
   
-  belongs_to :project
+  belongs_to :project, inverse_of: :project_users
   belongs_to :user, touch: true
   auto_subscribes :user, :to => :project
   
@@ -44,6 +44,8 @@ class ProjectUser < ActiveRecord::Base
     # check to make sure role status hasn't changed since queuing
     :if => Proc.new {|pu| ROLES.include?(pu.role) || pu.user_id == pu.project.user_id}
 
+  scope :curator_privilege, -> { where("role IN ('curator', 'manager')") }
+
   def to_s
     "<ProjectUser #{id} project: #{project_id} user: #{user_id} role: #{role}>"
   end
@@ -77,7 +79,9 @@ class ProjectUser < ActiveRecord::Base
   def update_project_observations_curator_coordinate_access
     project.project_observations.joins(:observation).where( "observations.user_id = ?", user ).find_each do |po|
       po.set_curator_coordinate_access( force: true )
-      po.save!
+      unless po.save
+        Rails.logger.error "[ERROR #{Time.now}] Failed to update #{po}: #{po.errors.full_messages.to_sentence}"
+      end
     end
   end
 
@@ -134,6 +138,15 @@ class ProjectUser < ActiveRecord::Base
 
   def index_project
     project.elastic_index! if project
+  end
+
+  def as_indexed_json
+    {
+      id: id,
+      user_id: user_id,
+      project_id: project_id,
+      role: role
+    }
   end
 
   def self.update_observations_counter_cache_from_project_and_user(project_id, user_id)
