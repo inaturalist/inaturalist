@@ -36,6 +36,7 @@ class UmbrellaForm extends React.Component {
                   } }
                   notIDs={ _.map( project.projectRules, rule => rule.project.id ) }
                   notTypes={ ["umbrella"] }
+                  hasParams
                   bootstrapClear
                 />
               </div>

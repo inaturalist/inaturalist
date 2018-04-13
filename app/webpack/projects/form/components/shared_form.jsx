@@ -249,7 +249,7 @@ class SharedForm extends React.Component {
                 onChange={ ( ) => updateProject( { project_type: "regular" } ) }
               />
               <label className="inline" htmlFor="project-type-regular">
-                { I18n.t( "views.projects.regular" ) }
+                { I18n.t( "views.projects.collection" ) }
               </label>
               <input
                 type="radio"

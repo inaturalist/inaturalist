@@ -4985,9 +4985,10 @@ en:
       formatting_simple_help: "Automatically link URLs and insert line breaks."
     projects:
       project_type: Project Type
-      regular: Regular
+      collection: Collection
       umbrella: Umbrella
       tracks_multiple_projects: tracks multiple projects
+      projects_included: Projects Included
       curator_coordinate_access_desc_html: |
         Remember, <strong>project curators can add any of your observations to
         their project</strong> unless you've opted out in your <a
@@ -5133,16 +5134,18 @@ en:
             invitation.
       new:
         a_project_allows_you_to_gather: |
-          A project allows you to gather and visualize observations using the core iNaturalist
+          A collection project allows you to gather and visualize observations using the core iNaturalist
           search tools. This eliminates the need to manually add observations because everything
           that meets the parameters set by the project will be automatically included.
         an_umbrella_project_can_be_used_to: |
-          An umbrella project can be used to compare statistics across two or more Automatic or
-          Traditional Projects. The other projects need to be created before you can create an
+          An umbrella project can be used to compare statistics across two or more Collection or
+          Traditional Projects. The other projects need to exist before you can add them to an
           umbrella project. You can include hundreds of projects under a single umbrella. Umbrella
           projects cannot contain other umbrella projects.
         can_be_included_in_multiple: Can be included in multiple umbrella projects
         click_through_to_individual_projects: Click through to individual projects
+        collection_projects: Collection Projects
+        collection_project_features: "Collection Project features:"
         custom_banner_icon_and_project_description: Custom banner, icon, and project description
         data_visualizations: Data visualizations
         delete_project: Delete Project
@@ -5160,10 +5163,12 @@ en:
           No need to rely on manual addition of observations or on the aggregator to index observations
         note_these_users_will_be_able_to_edit: |
           Note: these users will be able to edit ALL project details including admins.
+        note_you_can_delete_the_time: |
+          (Note: you can delete the time zone and precise times if you want to include whole days.)
         or_drag_and_drop: (or drag and drop)
         please_specify_the_requirements: |
           Please specify the requirements for the observations to be added to this project.
-          You can have multiple species and places.
+          You can select multiple species, places, and users to be automatically included.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
@@ -5178,16 +5183,17 @@ en:
           Give a concise explanation of your project. Approximately the first 200 characters will
           be visible to the right of the project home screen banner so put the best stuff first!
         project_summary_placeholder: Discover and track the birds of Golden Gate Park...
-        projects_features: "Projects features:"
         start_and_end_times_for_bioblitzes: Start and end times for bioblitzes
-        umbrella_projects_features: "Umbrella Projects features:"
+        umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
         users_can_follow_your_project: Users can follow your project for updates via journal posts
+        use_this_link_to_create_html: |
+          Use <a href="%{url}">this link</a> to create a traditional project instead.
         visual_comparison_of_data_among: Visual comparisons of data among projects under the umbrella
         we_have_redesigned_projects: |
-          We've redesign projects to automatically include all of the observations that fir the
+          We redesigned projects to automatically include all of the observations that fit the
           places, taxa, users, quality, and dates that you define. Choose between two types:
-          Projects and Umbrella Projects, which share the following features:
+          Collection Projects and Umbrella Projects, which share the following features:
         welcome_to_projects: Welcome to Projects!
       project_location_privacy_notice_html: |
         <p>

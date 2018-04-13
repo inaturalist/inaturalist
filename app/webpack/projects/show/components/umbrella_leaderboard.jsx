@@ -1,10 +1,10 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
+import colors from "../umbrella_project_colors";
 
 const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
   const projectStats = project.umbrella_stats_loaded ? project.umbrella_stats.results : [];
   if ( _.isEmpty( projectStats ) ) { return ( <span /> ); }
-  const colors = ["#127faa", "#75aa1f", "#1aaba3", "#aa17a3", "#f3474a", "#ce5abe", "#425cca"];
   const limit = config.umbrellaLeaderboardLimit || 8;
   const sort = config.umbrellaLeaderboardSort || "observations";
   let sortField = "observation_count";
@@ -13,6 +13,9 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
   } else if ( sort === "observers" ) {
     sortField = "observers_count";
   }
+  const projectColors = _.fromPairs( _.map( project.umbrella_stats.results, ( ps, index ) =>
+    [ps.project.id, colors[index % colors.length]]
+  ) );
   const sortedProjectStats = _.reverse( _.sortBy( projectStats, sortField ) );
   const maximumCount = Number( sortedProjectStats[0][sortField] );
   const showMore = sortedProjectStats.length > limit;
@@ -46,9 +49,9 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
       <div className="leaders-panel">
         <table>
           <tbody>
-            { _.map( sortedProjectStats.slice( 0, limit ), ( ps, index ) => {
+            { _.map( sortedProjectStats.slice( 0, limit ), ps => {
               const width = Math.floor( ( Number( ps[sortField] ) / maximumCount ) * 100 );
-              const color = colors[index % colors.length];
+              const color = projectColors[ps.project.id];
               return (
                 <tr className="leader-row" key={ `umbrella_${ps.project.id}_${sortField}` }>
                   <td className="icon-cell">
