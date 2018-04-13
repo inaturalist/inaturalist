@@ -2,6 +2,7 @@ import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import Requirements from "./requirements";
+import SubprojectsList from "./subprojects_list";
 import UserText from "../../../shared/components/user_text";
 import UserLink from "../../../shared/components/user_link";
 import UserImage from "../../../shared/components/user_image";
@@ -37,7 +38,10 @@ class About extends React.Component {
               </div>
             </Col>
             <Col xs={ 5 } className="requirements-col">
-              <Requirements { ...this.props } />
+              { project.is_umbrella ?
+                ( <SubprojectsList {...this.props } /> ) :
+                ( <Requirements { ...this.props } /> )
+              }
             </Col>
           </Row>
         </Grid>

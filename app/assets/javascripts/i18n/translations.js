@@ -24,17 +24,9 @@ I18n.translations["ar"] = {
   "add_an_identification": "أضف تعريفا",
   "add_edit_flags": "إضافة/تعديل الأعلام",
   "add_id": "أضف معرفا",
-  "add_life_stage_adult_annotation": "إضافة شرح \"مرحلة الحياة:البلوغ\"",
-  "add_life_stage_egg_annotation": "إضافة شرح \"مرحلة الحياة: البيض\"",
-  "add_life_stage_juvenile_annotation": "إضافة شرح \"مرحلة الحياة: القاصر\"",
-  "add_life_stage_larva_annotation": "إضافة شرح \"مرحلة الحياة: اليرقة\"",
-  "add_life_stage_pupa_annotation": "إضافة شرح \"مرحلة الحياة:العذراء\"",
   "add_link": "إضافة رابط",
   "add_one_now": "إضافة واحد الآن",
   "add_photos_to_this_observation": "إضافة صور إلى هذه الملاحظة",
-  "add_plant_phenology_budding_annotation": "إضافة شرح \"الفينولوجيا النباتي: التبرعم\"",
-  "add_plant_phenology_flowering_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإزهار\"",
-  "add_plant_phenology_fruiting_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإثمار\"",
   "add_tag": "إضافة وسم",
   "add_tags": "إضافة وسوم",
   "add_to_a_project": "إضافة إلى مشروع",
@@ -864,6 +856,7 @@ I18n.translations["ar"] = {
     }
   },
   "placeholder": "نائب",
+  "places": "الأماكن",
   "places_added_by_members_of_the_community": "الأماكن التي أضافها أعضاء المنتدى",
   "places_maintained_by_site_admins": "الأماكن التي يحتفظ بها إداريو الموقع",
   "places_name": {
@@ -2011,6 +2004,7 @@ I18n.translations["bg"] = {
       "zone": "зона"
     }
   },
+  "places": "Места",
   "places_added_by_members_of_the_community": "Места добавени от потребителите на общността",
   "places_maintained_by_site_admins": "Места поддържани от администраторите на сайта",
   "places_name": {
@@ -2724,6 +2718,7 @@ I18n.translations["br"] = {
       "zone": "takad"
     }
   },
+  "places": "Lec'hioù",
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrika",
@@ -2977,17 +2972,9 @@ I18n.translations["ca"] = {
   "add_an_identification": "Afegiu una identificació",
   "add_edit_flags": "Afegir/Editar etiquetes",
   "add_id": "Afegiu ID",
-  "add_life_stage_adult_annotation": "Afegiu nota \"Estat del Cicle biològic: Adult\"",
-  "add_life_stage_egg_annotation": "Afegiu nota \"Estat del Cicle biològic: Ou\"",
-  "add_life_stage_juvenile_annotation": "Afegir l'anotació «Etapa de la vida: juvenil»",
-  "add_life_stage_larva_annotation": "Afegiu nota \"Estat del Cicle biològic: Larva\"",
-  "add_life_stage_pupa_annotation": "Afegiu nota \"Estat del Cicle biològic: Pupa\"",
   "add_link": "Afegeix un enllaç",
   "add_one_now": "Afegir-ne un ara",
   "add_photos_to_this_observation": "Afegiu fotos a aquesta observació",
-  "add_plant_phenology_budding_annotation": "Afegir l'anotació «Fenologia de la planta: gemmació»",
-  "add_plant_phenology_flowering_annotation": "Afegiu nota \"Fenologia de la planta: Floració\"",
-  "add_plant_phenology_fruiting_annotation": "Afegiu nota \"Fenologia de la planta: Fructificació\"",
   "add_tag": "Afegiu etiqueta",
   "add_tags": "Afegiu etiquetes",
   "add_to_a_project": "Afegiu al projecte",
@@ -3815,6 +3802,7 @@ I18n.translations["ca"] = {
     }
   },
   "placeholder": "Posició",
+  "places": "Llocs",
   "places_added_by_members_of_the_community": "Llocs afegits per membres de la comunitat",
   "places_maintained_by_site_admins": "Llocs mantinguts per administradors del lloc",
   "places_name": {
@@ -4397,17 +4385,9 @@ I18n.translations["cs"] = {
   "add_an_identification": "Vložte identifikaci",
   "add_edit_flags": "Přidat/editovat vlajky",
   "add_id": "Vložit ID",
-  "add_life_stage_adult_annotation": "Přidat anotaci „Stádium života: dospělý“",
-  "add_life_stage_egg_annotation": "Přidat anotaci „Stádium života: vejce“",
-  "add_life_stage_juvenile_annotation": "Přidat anotaci „Stádium života: mládě“",
-  "add_life_stage_larva_annotation": "Přidat anotaci „Stádium života: larva“",
-  "add_life_stage_pupa_annotation": "Přidat anotaci „Stádium života: kukla“",
   "add_link": "Přidat odkaz",
   "add_one_now": "Přidat nyní",
   "add_photos_to_this_observation": "Vložit fotky k tomuto pozorování",
-  "add_plant_phenology_budding_annotation": "Přidat anotaci „Fenologie rostliny: pučení“",
-  "add_plant_phenology_flowering_annotation": "Přidat anotaci „Fenologie rostliny: kvetení“",
-  "add_plant_phenology_fruiting_annotation": "Přidat anotaci „Fenologie rostliny: plození“",
   "add_tag": "Přidat tag",
   "add_tags": "Přidat tagy",
   "add_to_a_project": "Přidat do projektu",
@@ -5233,6 +5213,7 @@ I18n.translations["cs"] = {
     }
   },
   "placeholder": "Zástupný text",
+  "places": "Místa",
   "places_added_by_members_of_the_community": "Místa přidaná členy komunity",
   "places_maintained_by_site_admins": "Místa vedená správci stránky",
   "places_name": {
@@ -5813,17 +5794,9 @@ I18n.translations["da"] = {
   "add_an_identification": "Tilføj en identifikation",
   "add_edit_flags": "Tilføj/redigér markeringer",
   "add_id": "Tilføj ID",
-  "add_life_stage_adult_annotation": "Tilføj noten \"Livsstadie: Voksen\"",
-  "add_life_stage_egg_annotation": "Tilføj noten \"Livsstadie: Æg\"",
-  "add_life_stage_juvenile_annotation": "Tilføj noten \"Livsstadie: Juvenil\"",
-  "add_life_stage_larva_annotation": "Tilføj noten \"Livsstadie: Larve\"",
-  "add_life_stage_pupa_annotation": "Tilføj noten \"Livsstadie: Puppe\"",
   "add_link": "Tilføj link",
   "add_one_now": "Tilføj en nu",
   "add_photos_to_this_observation": "Tilføj fotos til denne observation",
-  "add_plant_phenology_budding_annotation": "Tilføj noten \"Plantefænologi: Spirende\"",
-  "add_plant_phenology_flowering_annotation": "Tilføj noten \"Plantefænologi: Blomstrende\"",
-  "add_plant_phenology_fruiting_annotation": "Tilføj noten \"Plantefænologi: I frugt\"",
   "add_tag": "Tilføj tag",
   "add_tags": "Tilføj tags",
   "add_to_a_project": "Tilføj til et projekt",
@@ -6653,6 +6626,7 @@ I18n.translations["da"] = {
     }
   },
   "placeholder": "Pladsholder",
+  "places": "Steder",
   "places_added_by_members_of_the_community": "Steder tilføjet af medlemmer af fællesskabet",
   "places_maintained_by_site_admins": "Steder vedligeholdt af side administratorer",
   "places_name": {
@@ -7238,17 +7212,9 @@ I18n.translations["de"] = {
   "add_an_identification": "Eine Bestimmung hinzufügen",
   "add_edit_flags": "Markierungen hinzufügen/bearbeiten",
   "add_id": "Kennung hinzufügen",
-  "add_life_stage_adult_annotation": "Vermerk \"Lebensstadium: Ausgewachsen\" hinzufügen",
-  "add_life_stage_egg_annotation": "Vermerk \"Lebensstadium: Ei\" hinzufügen",
-  "add_life_stage_juvenile_annotation": "Vermerk \"Lebensstadium: Jungtier\" hinzufügen",
-  "add_life_stage_larva_annotation": "Vermerk \"Lebensstadium: Larve\" hinzufügen",
-  "add_life_stage_pupa_annotation": "Vermerk \"Lebensstadium: Puppe\" hinzufügen",
   "add_link": "Link hinzufügen",
   "add_one_now": "Jetzt einen hinzufügen",
   "add_photos_to_this_observation": "Fotos zu dieser Beobachtung hinzufügen",
-  "add_plant_phenology_budding_annotation": "Vermerk \"Pflanzenphänologie: Knospung\" hinzufügen",
-  "add_plant_phenology_flowering_annotation": "Vermerk \"Pflanzenphänologie: Blüte\" hinzufügen",
-  "add_plant_phenology_fruiting_annotation": "Vermerk \"Pflanzenphänologie: Fruchttragend\" hinzufügen",
   "add_tag": "Markierung hinzufügen",
   "add_tags": "Tags hinzufügen",
   "add_to_a_project": "Zu einem Projekt hinzugefügt",
@@ -7966,6 +7932,7 @@ I18n.translations["de"] = {
     }
   },
   "placeholder": "Platzhalter",
+  "places": "Orte",
   "places_added_by_members_of_the_community": "Ort wurde von einem Mitglied der Gemeinschaft hinzugefügt",
   "places_name": {
     "afghanistan": "Afghanistan",
@@ -8896,6 +8863,7 @@ I18n.translations["el"] = {
       "zone": "ζώνη"
     }
   },
+  "places": "Μέρη",
   "places_added_by_members_of_the_community": "Μέρη που προστέθηκαν από μέλη της κοινότητας",
   "places_maintained_by_site_admins": "Μέρη που συντηρούνται από διαχειριστές του ιστοχώρου",
   "places_name": {
@@ -9161,17 +9129,9 @@ I18n.translations["en"] = {
   "add_an_identification": "Add an identification",
   "add_edit_flags": "Add/Edit Flags",
   "add_id": "Add ID",
-  "add_life_stage_adult_annotation": "Add \"Life Stage: Adult\" annotation",
-  "add_life_stage_egg_annotation": "Add \"Life Stage: Egg\" annotation",
-  "add_life_stage_juvenile_annotation": "Add \"Life Stage: Juvenile\" annotation",
-  "add_life_stage_larva_annotation": "Add \"Life Stage: Larva\" annotation",
-  "add_life_stage_pupa_annotation": "Add \"Life Stage: Pupa\" annotation",
   "add_link": "Add Link",
   "add_one_now": "Add One Now",
   "add_photos_to_this_observation": "Add photos to this observation",
-  "add_plant_phenology_budding_annotation": "Add \"Plant Phenology: Budding\" annotation",
-  "add_plant_phenology_flowering_annotation": "Add \"Plant Phenology: Flowering\" annotation",
-  "add_plant_phenology_fruiting_annotation": "Add \"Plant Phenology: Fruiting\" annotation",
   "add_tag": "Add tag",
   "add_tags": "Add tags",
   "add_to_a_project": "Add to a project",
@@ -9753,7 +9713,6 @@ I18n.translations["en"] = {
   "location_private": "Location Private",
   "location_specified": "Location specified",
   "location_unknown": "Location Unknown",
-  "locations": "Locations",
   "log_in": "Log in",
   "long": "Lon",
   "longitude": "Longitude",
@@ -10038,6 +9997,7 @@ I18n.translations["en"] = {
     }
   },
   "placeholder": "Placeholder",
+  "places": "Places",
   "places_added_by_members_of_the_community": "Places added by members of the community",
   "places_maintained_by_site_admins": "Places maintained by site admins",
   "places_name": {
@@ -10428,11 +10388,14 @@ I18n.translations["en"] = {
       }
     },
     "projects": {
+      "collection": "Collection",
       "new": {
-        "a_project_allows_you_to_gather": "A project allows you to gather and visualize observations using the core iNaturalist\nsearch tools. This eliminates the need to manually add observations because everything\nthat meets the parameters set by the project will be automatically included.\n",
-        "an_umbrella_project_can_be_used_to": "An umbrella project can be used to compare statistics across two or more Automatic or\nTraditional Projects. The other projects need to be created before you can create an\numbrella project. You can include hundreds of projects under a single umbrella. Umbrella\nprojects cannot contain other umbrella projects.\n",
+        "a_project_allows_you_to_gather": "A collection project allows you to gather and visualize observations using the core iNaturalist\nsearch tools. This eliminates the need to manually add observations because everything\nthat meets the parameters set by the project will be automatically included.\n",
+        "an_umbrella_project_can_be_used_to": "An umbrella project can be used to compare statistics across two or more Collection or\nTraditional Projects. The other projects need to exist before you can add them to an\numbrella project. You can include hundreds of projects under a single umbrella. Umbrella\nprojects cannot contain other umbrella projects.\n",
         "can_be_included_in_multiple": "Can be included in multiple umbrella projects",
         "click_through_to_individual_projects": "Click through to individual projects",
+        "collection_project_features": "Collection Project features:",
+        "collection_projects": "Collection Projects",
         "custom_banner_icon_and_project_description": "Custom banner, icon, and project description",
         "data_visualizations": "Data visualizations",
         "delete_project": "Delete Project",
@@ -10444,8 +10407,9 @@ I18n.translations["en"] = {
         "name_placeholder": "Birds of Chicago, Amazing Dragonflies, etc.",
         "no_need_to_rely_on_manual_addition": "No need to rely on manual addition of observations or on the aggregator to index observations\n",
         "note_these_users_will_be_able_to_edit": "Note: these users will be able to edit ALL project details including admins.\n",
+        "note_you_can_delete_the_time": "(Note: you can delete the time zone and precise times if you want to include whole days.)\n",
         "or_drag_and_drop": "(or drag and drop)",
-        "please_specify_the_requirements": "Please specify the requirements for the observations to be added to this project.\nYou can have multiple species and places.\n",
+        "please_specify_the_requirements": "Please specify the requirements for the observations to be added to this project.\nYou can select multiple species, places, and users to be automatically included.\n",
         "project_background_color": "Project Summary Background Color",
         "project_background_color_help": "Make sure to choose a color dark enough so the white overlaid text is legible.",
         "project_banner": "Project Banner (PNG, JPG, or GIF)",
@@ -10457,17 +10421,17 @@ I18n.translations["en"] = {
         "project_summary": "Project Summary",
         "project_summary_help": "Give a concise explanation of your project. Approximately the first 200 characters will\nbe visible to the right of the project home screen banner so put the best stuff first!\n",
         "project_summary_placeholder": "Discover and track the birds of Golden Gate Park...",
-        "projects_features": "Projects features:",
         "start_and_end_times_for_bioblitzes": "Start and end times for bioblitzes",
-        "umbrella_projects_features": "Umbrella Projects features:",
+        "umbrella_project_features": "Umbrella Project features:",
         "unique_url_for_outreach": "Unique URL for outreach",
+        "use_this_link_to_create_html": "Use <a href=\"%{url}\">this link</a> to create a traditional project instead.\n",
         "users_can_follow_your_project": "Users can follow your project for updates via journal posts",
         "visual_comparison_of_data_among": "Visual comparisons of data among projects under the umbrella",
-        "we_have_redesigned_projects": "We've redesign projects to automatically include all of the observations that fir the\nplaces, taxa, users, quality, and dates that you define. Choose between two types:\nProjects and Umbrella Projects, which share the following features:\n",
+        "we_have_redesigned_projects": "We redesigned projects to automatically include all of the observations that fit the\nplaces, taxa, users, quality, and dates that you define. Choose between two types:\nCollection Projects and Umbrella Projects, which share the following features:\n",
         "welcome_to_projects": "Welcome to Projects!"
       },
       "project_type": "Project Type",
-      "regular": "Regular",
+      "projects_included": "Projects Included",
       "tracks_multiple_projects": "tracks multiple projects",
       "umbrella": "Umbrella"
     },
@@ -10871,17 +10835,9 @@ I18n.translations["es"] = {
   "add_an_identification": "Añade una identificación",
   "add_edit_flags": "Añadir/editar etiquetas",
   "add_id": "Añade ID",
-  "add_life_stage_adult_annotation": "Añade nota \"Etapa de Vida: Adulto\"",
-  "add_life_stage_egg_annotation": "Añade nota \"Etapa de Vida: Huevo\"",
-  "add_life_stage_juvenile_annotation": "Añadir anotación \"Etapa vital:juvenil\"",
-  "add_life_stage_larva_annotation": "Añade nota \"Etapa de Vida: Larva\"",
-  "add_life_stage_pupa_annotation": "Añade nota \"Etapa de Vida: Pupa\"",
   "add_link": "Añadir enlace",
   "add_one_now": "Añadir uno",
   "add_photos_to_this_observation": "Añade fotos a esta observación",
-  "add_plant_phenology_budding_annotation": "Añadir anotación \"fenologia de la planta:incipiente\"",
-  "add_plant_phenology_flowering_annotation": "Añade nota \"Fenología de la Planta: Floreciendo\"",
-  "add_plant_phenology_fruiting_annotation": "Añade nota \"Fenología de la Planta: Fructificando\" anotación",
   "add_tag": "Añadir etiqueta",
   "add_tags": "Añade etiquetas",
   "add_to_a_project": "Añade a un proyecto",
@@ -11707,6 +11663,7 @@ I18n.translations["es"] = {
     }
   },
   "placeholder": "Posición",
+  "places": "Lugares",
   "places_added_by_members_of_the_community": "Lugares añadidos por miembros de la comunidad",
   "places_maintained_by_site_admins": "Lugares mantenidos por administradores del sitio",
   "places_name": {
@@ -12704,6 +12661,7 @@ I18n.translations["es-ES"] = {
       "zone": "zona"
     }
   },
+  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -13511,6 +13469,7 @@ I18n.translations["es-MX"] = {
       "zone": "zona"
     }
   },
+  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -13946,15 +13905,9 @@ I18n.translations["eu"] = {
   "add_a_name": "Izena gehitu",
   "add_an_identification": "Identifikazioa gehitu",
   "add_id": "Identifikadorea gehitu",
-  "add_life_stage_adult_annotation": "Gehitu \"Bizi Aroa: Heldua\" oharra",
-  "add_life_stage_egg_annotation": "Gehitu: \"Bizi aroa: Arrautza\" oharra",
-  "add_life_stage_larva_annotation": "Gehitu \"Bizi Aroa: Larba\" oharra",
-  "add_life_stage_pupa_annotation": "Gehitu: \"Bizi Aroa: Pupa\" oharra",
   "add_link": "Gehitu lotura",
   "add_one_now": "Gehitu bat orain",
   "add_photos_to_this_observation": "Argazkiak gehitu oharrari",
-  "add_plant_phenology_flowering_annotation": "Gehitu \"Landare Fenologia: Loratzen\" oharra",
-  "add_plant_phenology_fruiting_annotation": "Gehitu \"Landare Fenologia: Fruituak ematen\" oharra",
   "add_tag": "Gehitu etiketa",
   "add_tags": "Ekiketak gehitu",
   "add_to_favorites": "Gustokoentara gehitu",
@@ -14479,6 +14432,7 @@ I18n.translations["eu"] = {
       "zone": "eremua"
     }
   },
+  "places": "Tokiak",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrika",
@@ -14857,17 +14811,9 @@ I18n.translations["fi"] = {
   "add_an_identification": "Lisää tunnistus",
   "add_edit_flags": "Lisää/muokkaa merkintöjä",
   "add_id": "Lisää tunniste",
-  "add_life_stage_adult_annotation": "Lisää \"Life Stage: Adult\" selitys",
-  "add_life_stage_egg_annotation": "Lisää \"Life Stage: Egg\" selitys",
-  "add_life_stage_juvenile_annotation": "Lisää \"Life Stage: Juvenile\" selitys",
-  "add_life_stage_larva_annotation": "Lisää \"Life Stage: Larva\" selitys",
-  "add_life_stage_pupa_annotation": "Lisää \"Life Stage: Pupa\" selitys",
   "add_link": "Lisää linkki",
   "add_one_now": "Lisää yksi nyt",
   "add_photos_to_this_observation": "Lisää kuvia tähän havaintoon",
-  "add_plant_phenology_budding_annotation": "Lisää \"Plant Phenology: Budding\" selitys",
-  "add_plant_phenology_flowering_annotation": "Lisää \"Plant Phenology: Flowering\" selitys",
-  "add_plant_phenology_fruiting_annotation": "Lisää \"Plant Phenology: Fruiting\" selitys",
   "add_tag": "Lisää tunniste",
   "add_tags": "Lisää tunnisteita",
   "add_to_a_project": "Lisää projektiin",
@@ -15579,6 +15525,7 @@ I18n.translations["fi"] = {
       "zone": "vyöhyke"
     }
   },
+  "places": "Paikat",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrikka",
@@ -16052,17 +15999,9 @@ I18n.translations["fr"] = {
   "add_an_identification": "Ajouter une identification",
   "add_edit_flags": "Ajouter / éditer les marquages",
   "add_id": "Ajouter une identification",
-  "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : Adulte\"",
-  "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : Oeuf\"",
-  "add_life_stage_juvenile_annotation": "Ajouter l’annotation « Stade de vie : Juvénile »",
-  "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : Larve\"",
-  "add_life_stage_pupa_annotation": "Ajoute l'annotation \"Stade d'évolution : Pupe\"",
   "add_link": "Ajouter un lien",
   "add_one_now": "En ajouter un maintenant",
   "add_photos_to_this_observation": "Ajouter des photos à cette observation",
-  "add_plant_phenology_budding_annotation": "Ajouter l’annotation « Phénélogie végétale : Bourgeonnement »",
-  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie de plante : Floraison »",
-  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie de plante : Fruits »",
   "add_tag": "Ajouter une balise",
   "add_tags": "Ajouter des étiquettes",
   "add_to_a_project": "Ajouter à un projet",
@@ -16892,6 +16831,7 @@ I18n.translations["fr"] = {
     }
   },
   "placeholder": "Signet (élément de substitution)",
+  "places": "Lieux",
   "places_added_by_members_of_the_community": "Lieux ajoutés par des membres de la communauté",
   "places_maintained_by_site_admins": "Lieux entretenus par les administrateurs du site",
   "places_name": {
@@ -17934,6 +17874,7 @@ I18n.translations["gl"] = {
       "zone": "Zona"
     }
   },
+  "places": "Lugares",
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
@@ -19051,6 +18992,7 @@ I18n.translations["id"] = {
       "zone": "zona"
     }
   },
+  "places": "Tempat",
   "places_added_by_members_of_the_community": "Tempat ditambahkan oleh anggota dari komunitas",
   "places_maintained_by_site_admins": "Tempat diatur oleh situs admin",
   "places_name": {
@@ -19450,17 +19392,9 @@ I18n.translations["it"] = {
   "add_an_identification": "Aggiungi un'identificazione",
   "add_edit_flags": "Aggiungi/Modifica contrassegni",
   "add_id": "Aggiungi ID",
-  "add_life_stage_adult_annotation": "Aggiungi nota \"Stadio vitale: Adulto\"",
-  "add_life_stage_egg_annotation": "Aggiungi nota \"Stadio vitale: Uovo\"",
-  "add_life_stage_juvenile_annotation": "Aggiungi nota \"Stadio vitale: Giovane\"",
-  "add_life_stage_larva_annotation": "Aggiungi nota \"Stadio vitale: Larva\"",
-  "add_life_stage_pupa_annotation": "Aggiungi nota \"Stadio vitale: Pupa\"",
   "add_link": "Aggiungi collegamento",
   "add_one_now": "Aggiungi ora",
   "add_photos_to_this_observation": "Aggiungi foto a questa osservazione",
-  "add_plant_phenology_budding_annotation": "Aggiungi nota \"Fenologia della Pianta: Germinazione\"",
-  "add_plant_phenology_flowering_annotation": "Aggiungi nota \"Fenologia della Pianta: Fioritura\"",
-  "add_plant_phenology_fruiting_annotation": "Aggiungi nota \"Fenologia della Pianta: Fruttificazione\"",
   "add_tag": "Aggiungi etichetta",
   "add_tags": "Aggiungi etichetta",
   "add_to_a_project": "Aggiungi a un progetto",
@@ -20290,6 +20224,7 @@ I18n.translations["it"] = {
     }
   },
   "placeholder": "Segnaposto",
+  "places": "Luoghi",
   "places_added_by_members_of_the_community": "Luogo aggiunto dai membri della community",
   "places_maintained_by_site_admins": "Luoghi mantenuti dagli amministratori",
   "places_name": {
@@ -21590,6 +21525,7 @@ I18n.translations["ja"] = {
     }
   },
   "placeholder": "プレースホルダー",
+  "places": "場所",
   "places_added_by_members_of_the_community": "コミュニティーメンバーによって追加された場所",
   "places_maintained_by_site_admins": "サイト管理者によって管理されている場所",
   "places_name": {
@@ -22488,6 +22424,7 @@ I18n.translations["ko"] = {
       "unknown": "알 수 없음"
     }
   },
+  "places": "장소",
   "places_name": {
     "afghanistan": "아프가니스탄",
     "africa": "아프리카",
@@ -23145,6 +23082,7 @@ I18n.translations["lb"] = {
       "unknown": "Onbekannt"
     }
   },
+  "places": "Plazen",
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrika",
@@ -24074,6 +24012,7 @@ I18n.translations["mk"] = {
       "zone": "подрачје"
     }
   },
+  "places": "Места",
   "places_name": {
     "afghanistan": "Авганистан",
     "africa": "Африка",
@@ -25118,6 +25057,7 @@ I18n.translations["oc"] = {
       "zone": "zòna"
     }
   },
+  "places": "Luòcs",
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Africa",
@@ -25521,17 +25461,9 @@ I18n.translations["pt-BR"] = {
   "add_an_identification": "Adicione uma identificação",
   "add_edit_flags": "Adicionar/Editar Etiquetas",
   "add_id": "Adicionar identificação (ID)",
-  "add_life_stage_adult_annotation": "Adicionar \"Estágio de Vida: Adulto\" anotação",
-  "add_life_stage_egg_annotation": "Adicionar \"Estágio de Vida: Ovo\" anotação",
-  "add_life_stage_juvenile_annotation": "Adicionar \"Estágio de Vida: Juvenil\" anotação",
-  "add_life_stage_larva_annotation": "Adicionar \"Estágio de Vida: Larva\" anotação",
-  "add_life_stage_pupa_annotation": "Adicionar \"Estágio de Vida: Pupa\" anotação",
   "add_link": "Adicionar Link",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Adicionar fotos para esta observação",
-  "add_plant_phenology_budding_annotation": "Adicionar \"Fenologia\": Brotamento\" anotações",
-  "add_plant_phenology_flowering_annotation": "Adicionar \"Fenologia\": Floração\" anotações",
-  "add_plant_phenology_fruiting_annotation": "Adicionar \"Fenologia\": Frutificação\" anotações",
   "add_tag": "Adicionar marcação",
   "add_tags": "Adicionar marcações",
   "add_to_a_project": "Adicionar a um projeto",
@@ -26301,6 +26233,7 @@ I18n.translations["pt-BR"] = {
     }
   },
   "placeholder": "Posição",
+  "places": "Lugares",
   "places_added_by_members_of_the_community": "Locais adicionados por membros da comunidade",
   "places_maintained_by_site_admins": "Locais mantidos por administradores",
   "places_name": {
@@ -26838,17 +26771,9 @@ I18n.translations["pt-PT"] = {
   "add_an_identification": "Adicione uma identificação",
   "add_edit_flags": "Adicionar/Editar etiquetas",
   "add_id": "Adicionar identificação (ID)",
-  "add_life_stage_adult_annotation": "Estádio de Vida: Adulto",
-  "add_life_stage_egg_annotation": "Acrescentar anotação \"Estádio de Vida: Ovo\"",
-  "add_life_stage_juvenile_annotation": "Acrescentar anotação \"Estádio de Vida: Juvenil\"",
-  "add_life_stage_larva_annotation": "Acrescentar anotação \"Estádio de Vida: Larva\"",
-  "add_life_stage_pupa_annotation": "Acrescentar anotação \"Estádio de Vida: Pupa\"",
   "add_link": "Adicionar ligação",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Acrescentar fotografias a esta observação",
-  "add_plant_phenology_budding_annotation": "Acrescentar anotação \"Fenologia da Planta: Gemulação\"",
-  "add_plant_phenology_flowering_annotation": "Acrescentar anotação \"Fenologia da Planta: Floração\"",
-  "add_plant_phenology_fruiting_annotation": "Acrescentar anotação \"Fenologia da Planta: Frutificação\"",
   "add_tag": "Adicionar etiqueta",
   "add_tags": "Adicionar tags",
   "add_to_a_project": "Adicionar a um projeto",
@@ -27807,11 +27732,8 @@ I18n.translations["ru"] = {
   "add_an_identification": "Добавить идентификацию",
   "add_edit_flags": "Добавить/редактировать флаги",
   "add_id": "Добавить идентификатор",
-  "add_life_stage_adult_annotation": "Добавить значение \"Стадия жизни: Имаго\"",
-  "add_life_stage_juvenile_annotation": "Добавить значение \"Стадия жизни: Молодой\"",
   "add_link": "Добавить ссылку",
   "add_photos_to_this_observation": "Добавить фото для этого наблюдения",
-  "add_plant_phenology_budding_annotation": "Добавить значение \"Фенология растений: Почкование\"",
   "add_tag": "Добавить тег",
   "add_tags": "Добавьте теги",
   "add_to_a_project": "Добавить в проект",
@@ -28272,6 +28194,7 @@ I18n.translations["ru"] = {
       "undefined": "не определено"
     }
   },
+  "places": "Места",
   "places_added_by_members_of_the_community": "Места, добавленные членами сообщества",
   "places_name": {
     "afghanistan": "Афганистан",
@@ -29367,16 +29290,9 @@ I18n.translations["zh-CN"] = {
   "add_an_identification": "添加一个身份证明",
   "add_edit_flags": "添加/编辑标记",
   "add_id": "添加ID",
-  "add_life_stage_adult_annotation": "添加“生命阶段：成人”注释",
-  "add_life_stage_juvenile_annotation": "添加“生命阶段：青少年”注释",
-  "add_life_stage_larva_annotation": "添加“生活期：幼虫”注解",
-  "add_life_stage_pupa_annotation": "添加“生命阶段：蛹”注释",
   "add_link": "添加链接",
   "add_one_now": "现在添加一个",
   "add_photos_to_this_observation": "添加照片至此观察",
-  "add_plant_phenology_budding_annotation": "添加“植物物候学：发芽”注释",
-  "add_plant_phenology_flowering_annotation": "添加“植物物候学：开花”注释",
-  "add_plant_phenology_fruiting_annotation": "添加“植物物候学：结果”注释",
   "add_tag": "添加标签",
   "add_tags": "添加标签",
   "add_to_a_project": "添加至一个项目",
@@ -30129,6 +30045,7 @@ I18n.translations["zh-CN"] = {
     }
   },
   "placeholder": "占位符",
+  "places": "地方",
   "places_added_by_members_of_the_community": "由社群成员添加的地点",
   "places_maintained_by_site_admins": "由网站管理员维护的地点",
   "places_name": {
@@ -30716,17 +30633,9 @@ I18n.translations["zh-TW"] = {
   "add_an_identification": "新增一個物種鑑定",
   "add_edit_flags": "新增/編輯標記",
   "add_id": "新增物種鑑定",
-  "add_life_stage_adult_annotation": "新增「生命階段：成體」的註解",
-  "add_life_stage_egg_annotation": "新增「生命階段：卵」註解",
-  "add_life_stage_juvenile_annotation": "新增「生命階段：亞成體」的註解",
-  "add_life_stage_larva_annotation": "新增「生命階段：幼蟲」註解",
-  "add_life_stage_pupa_annotation": "新增「生命階段：蛹」的註解",
   "add_link": "新增連結",
   "add_one_now": "現在新增一個",
   "add_photos_to_this_observation": "新增相片到觀察紀錄中",
-  "add_plant_phenology_budding_annotation": "新增「植物物候：發新芽」的註解",
-  "add_plant_phenology_flowering_annotation": "新增「植物物候學：開花」的註解",
-  "add_plant_phenology_fruiting_annotation": "新增「植物物候：結果」註解",
   "add_tag": "添加標籤",
   "add_tags": "添加標籤",
   "add_to_a_project": "添加至專案",
@@ -31556,6 +31465,7 @@ I18n.translations["zh-TW"] = {
     }
   },
   "placeholder": "位置標誌符",
+  "places": "地點",
   "places_added_by_members_of_the_community": "由社群成員添加的地點",
   "places_maintained_by_site_admins": "由網站管理員維護的地點",
   "places_name": {
