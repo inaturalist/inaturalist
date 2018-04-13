@@ -64,6 +64,12 @@ $carousel-height-narrow: 350px;
       font-size: 16px;
       font-weight: 200;
       margin-bottom: 20px;
+      max-height: 200px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 8;
+      -webkit-box-orient: vertical; 
+      text-overflow: ellipsis;
     }
     .btn {
       font-size: 16px;

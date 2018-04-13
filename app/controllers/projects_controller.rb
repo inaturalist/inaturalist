@@ -40,18 +40,11 @@ class ProjectsController < ApplicationController
           @place = @site.place unless params[:everywhere].yesish?
         end
         @projects = Project.recently_added_to(place: @place)
-        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(9)
+        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(8)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @featured = Project.featured
+        @featured = Project.featured.limit(8)
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @recent = ProjectObservation.includes(:project).order( "project_observations.id DESC" ).limit( 20 ).to_a.uniq{|po| po.project_id}.map(&:project)
-        if logged_in?
-          @started = current_user.projects.not_flagged_as_spam.
-            order("projects.id desc").limit(9)
-          @joined = current_user.project_users.joins(:project).
-            merge(Project.not_flagged_as_spam).includes(:project).
-            order("projects.id desc").limit(9).map(&:project)
-        end
+        @recent = ProjectObservation.includes(:project).order( "project_observations.id DESC" ).limit( 20 ).to_a.uniq{|po| po.project_id}.map(&:project)[0..8]
         render layout: "bootstrap"
       end
       format.json do
