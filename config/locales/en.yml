@@ -80,6 +80,9 @@ en:
   x_faves:
     one: '1 fave'
     other: '%{count} faves'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> flag resolved"
+    other: "<span class='count'>%{count}</span> flags resolved"
   x_people_like_this:
     one: '1 person likes this'
     other: '%{count} people like this'
@@ -107,9 +110,15 @@ en:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> research-grade observation ID'd to species or lower</span>"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower</span>"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> taxon curated"
+    other: "<span class='count'>%{count}</span> taxa curated"
   x_taxa_matching_current_filters: 
     one: "1 taxon matching current filters"
     other: "%{count} taxa matching current filters"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> taxon change added"
+    other: "<span class='count'>%{count}</span> taxon changes added"
   a: a
   a_: a
   a_community_for_naturalist: A Community for Naturalists
