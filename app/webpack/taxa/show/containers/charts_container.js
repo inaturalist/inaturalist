@@ -74,6 +74,7 @@ function mapStateToProps( state ) {
     } )] );
   }
   return {
+    taxon: state.taxon.taxon,
     seasonalityKeys,
     seasonalityColumns,
     historyColumns,

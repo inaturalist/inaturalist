@@ -54,7 +54,7 @@ class Charts extends React.Component {
     this.setState( { helpModalVisible: false } );
   }
   numberPrecision( ) {
-    return this.props.scaled ? 2 : 0;
+    return this.props.scaled ? 4 : 0;
   }
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
@@ -99,7 +99,16 @@ class Charts extends React.Component {
           },
           tick: {
             outer: false,
-            format: d => I18n.toNumber( d, { precision: this.numberPrecision( ) } )
+            format: d => {
+              const precision = this.numberPrecision( );
+              if ( d > 0 && d < 0.0001 ) {
+                return d.toExponential( 2 );
+              }
+              if ( d > 9999 ) {
+                return d.toExponential( precision );
+              }
+              return I18n.toNumber( d, { precision } );
+            }
           }
         }
       },
@@ -118,20 +127,26 @@ class Charts extends React.Component {
   }
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
     const order = _.map( this.props.seasonalityColumns, c => ( c[0] ) );
-    const tipRows = order.map( seriesName => {
-      const item = _.find( data, series => series.name === seriesName );
-      if ( item ) {
-        return `
-          <div class="series">
-            <span class="swatch" style="background-color: ${color( item )}"></span>
-            <span class="column-label">${I18n.t( `views.taxa.show.frequency.${item.name}`,
-              { defaultValue: item.name.split( "=" )[1] } )}:</span>
-            <span class="value">${I18n.toNumber( item.value, { precision: this.numberPrecision( ) } )}</span>
-          </div>
-        `;
-      }
-      return null;
-    } );
+    const items = _.compact( order.map( seriesName => _.find( data, series => series.name === seriesName ) ) );
+    const unAnnotatedItem = _.find( data, d => d.id === "unannotated" );
+    if ( unAnnotatedItem ) {
+      items.push( unAnnotatedItem );
+    }
+    const tipRows = items.map( item => `
+      <div class="series">
+        <span class="swatch" style="background-color: ${color( item )}"></span>
+        <span class="column-label">
+          ${
+            I18n.t( `views.taxa.show.frequency.${item.name}`, {
+              defaultValue: item.name.split( "=" )[1]
+            } )
+          }:
+        </span>
+        <span class="value">
+          ${I18n.toNumber( item.value, { precision: this.numberPrecision( ) } )}
+        </span>
+      </div>
+    ` );
     return `
       <div class="frequency-chart-tooltip">
         <div class="title">${tipTitle}</div>
@@ -144,6 +159,10 @@ class Charts extends React.Component {
     const pointSearchOptions = { };
     if ( options.controlled_attribute ) {
       pointSearchOptions.term_id = options.controlled_attribute.id;
+    }
+    let tipTitle = I18n.t( "observations_total" );
+    if ( that.props.scaled ) {
+      tipTitle = I18n.t( "relative_observations" );
     }
     return _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
@@ -170,7 +189,7 @@ class Charts extends React.Component {
       tooltip: {
         contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
           d, defaultTitleFormat, defaultValueFormat, color,
-          `${I18n.t( "observations_total" )}: ${I18n.t( "date.month_names" )[d[0].index + 1]}`
+          `${tipTitle}: ${I18n.t( "date.month_names" )[d[0].index + 1]}`
         )
       }
     } );
@@ -188,7 +207,19 @@ class Charts extends React.Component {
     if ( !this.props.chartedFieldValues ) { return; }
     _.each( this.props.chartedFieldValues, ( values, termID ) => {
       const columns = _.filter( this.props.seasonalityColumns, column =>
-        _.startsWith( column[0], `${values[0].controlled_attribute.label}=` ) );
+        _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
+      );
+      const verifiableColumn = _.find( this.props.seasonalityColumns, c => c[0] === "verifiable" );
+      if ( verifiableColumn ) {
+        const unAnnotatedColumn = verifiableColumn.slice( 0 );
+        unAnnotatedColumn[0] = "unannotated";
+        _.each( columns, column => {
+          for ( let i = 1; i < column.length; i++ ) {
+            unAnnotatedColumn[i] = unAnnotatedColumn[i] - column[i];
+          }
+        } );
+        columns.unshift( unAnnotatedColumn );
+      }
       const labelsToValueIDs = _.fromPairs( _.map( values, v => (
         [`${v.controlled_attribute.label}=${v.controlled_value.label}`,
           v.controlled_value.id] ) ) );
@@ -202,7 +233,8 @@ class Charts extends React.Component {
       config.data.order = null;
       const mountNode = $( `#FieldValueChart${termID}`, ReactDOM.findDOMNode( this ) ).get( 0 );
       this.fieldValueCharts[termID] = c3.generate(
-        Object.assign( { bindto: mountNode }, config ) );
+        Object.assign( { bindto: mountNode }, config )
+      );
     } );
   }
   renderHistoryChart( ) {
@@ -293,25 +325,6 @@ class Charts extends React.Component {
         ) );
       } );
     }
-    const scaleControl = (
-      <div className="scale-control">
-        { this.props.scaled ? (
-          <button
-            className="btn btn-link btn-xs center-block"
-            onClick={ ( ) => this.props.setScaledPreference( false ) }
-          >
-            Show total counts for this taxon
-          </button>
-        ) : (
-          <button
-            className="btn btn-link btn-xs center-block"
-            onClick={ ( ) => this.props.setScaledPreference( true ) }
-          >
-            Show counts relative to observations of all taxa
-          </button>
-        ) }
-      </div>
-    );
     return (
       <div id="charts" className="Charts">
         <ul className="nav nav-tabs" role="tablist">
@@ -337,6 +350,63 @@ class Charts extends React.Component {
           </li>
           { fieldValueTabs }
           <li role="presentation" className="pull-right">
+            <div className="dropdown inlineblock">
+              <button
+                className="btn btn-link help-btn dropdown-toggle"
+                type="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <i className="fa fa-gear"></i>
+              </button>
+              <ul className="dropdown-menu dropdown-menu-right">
+                <li>
+                  { this.props.scaled ? (
+                    <a
+                      href="#"
+                      onClick={ e => {
+                        e.preventDefault( );
+                        this.props.setScaledPreference( false );
+                        return false;
+                      } }
+                    >
+                      Show total counts for this taxon
+                    </a>
+                  ) : (
+                    <a
+                      href="#"
+                      onClick={ e => {
+                        e.preventDefault( );
+                        this.props.setScaledPreference( true );
+                        return false;
+                      } }
+                    >
+                      Show counts relative to all observations
+                    </a>
+                  ) }
+                </li>
+                { this.props.chartedFieldValues ? (
+                  _.map( this.props.chartedFieldValues, ( values, termID ) => (
+                    <li>
+                      <a
+                        href={
+                          `/observations/identify?taxon_id=${this.props.taxon.id}&without_term_id=${termID}`
+                        }
+                        target="_blank"
+                      >
+                        { `
+                          Add annotations for
+                          ${I18n.t( _.snakeCase( values[0].controlled_attribute.label ), {
+                            defaultValue: values[0].controlled_attribute.label
+                          } )}
+                        ` }
+                      </a>
+                    </li>
+                  ) )
+                ) : null }
+              </ul>
+            </div>
             <button
               className="btn btn-link help-btn"
               onClick={ ( ) => this.showHelpModal( ) }
@@ -356,7 +426,6 @@ class Charts extends React.Component {
             </div>
             <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart">
             </div>
-            { scaleControl }
           </div>
           <div role="tabpanel" className="tab-pane" id="charts-history">
             <div
@@ -367,7 +436,6 @@ class Charts extends React.Component {
               { I18n.t( "no_observations_yet" ) }
             </div>
             <div id="HistoryChart" className="HistoryChart FrequencyChart"></div>
-            { scaleControl }
           </div>
           { fieldValuePanels }
         </div>
@@ -411,13 +479,15 @@ Charts.propTypes = {
   historyKeys: PropTypes.array,
   colors: PropTypes.object,
   scaled: PropTypes.bool,
-  setScaledPreference: PropTypes.func
+  setScaledPreference: PropTypes.func,
+  taxon: PropTypes.object
 };
 
 Charts.defaultProps = {
   colors: {
     research: "#74ac00",
-    verifiable: "#dddddd"
+    verifiable: "#dddddd",
+    unannotated: "#dddddd"
   }
 };
 
