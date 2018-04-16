@@ -111,7 +111,7 @@ class SharedForm extends React.Component {
                       <i
                         className="fa fa-times-circle"
                         onClick={ ( ) => updateProject( project.customIcon( ) ?
-                          { iconDeleted: true } :
+                          { iconDeleted: true, droppedIcon: null } :
                           { droppedIcon: null }
                         ) }
                       />
@@ -154,8 +154,8 @@ class SharedForm extends React.Component {
                           project.droppedBanner.name : project.header_image_file_name }
                       <i
                         className="fa fa-times-circle"
-                        onClick={ ( ) => updateProject( project.customIcon( ) ?
-                          { bannerDeleted: true } :
+                        onClick={ ( ) => updateProject( project.customBanner( ) ?
+                          { bannerDeleted: true, droppedBanner: null } :
                           { droppedBanner: null }
                         ) }
                       />

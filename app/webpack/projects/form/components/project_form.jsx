@@ -5,16 +5,20 @@ import UserAutocomplete from "../../../observations/identify/components/user_aut
 import RegularForm from "./regular_form";
 import UmbrellaForm from "./umbrella_form";
 import SharedForm from "./shared_form";
-import ConfirmModalContainer from "../containers/confirm_modal_container";
+import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
 
 class ProjectForm extends React.Component {
   render( ) {
     const {
+      config,
       project,
       addManager,
       removeProjectUser,
-      submitProject } = this.props;
+      submitProject,
+      updateProject } = this.props;
     if ( !project ) { return ( <span /> ); }
+    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
+      config.currentUser.roles.indexOf( "admin" ) >= 0;
     return (
       <div className="Form">
         <SharedForm { ...this.props } />
@@ -72,6 +76,25 @@ class ProjectForm extends React.Component {
               ) }
             </Col>
           </Row>
+          { viewerIsAdmin && (
+            <Row>
+              <Col xs={12}>
+                <div className="admin-tools">
+                  <label>{ I18n.t( "admin_tools" ) }</label>
+                  <input
+                    type="checkbox"
+                    id="project-featured-at"
+                    name="featured_at"
+                    defaultChecked={ project.featured_at }
+                    onChange={ e => updateProject( { featured_at: e.target.checked } ) }
+                  />
+                  <label className="inline" htmlFor="project-featured-at">
+                    { I18n.t( "feature_this_project" ) }
+                  </label>
+                </div>
+              </Col>
+            </Row>
+          )}
           <Row>
             <Col xs={12}>
               * { I18n.t( "required_" ) }
@@ -117,13 +140,15 @@ class ProjectForm extends React.Component {
 }
 
 ProjectForm.propTypes = {
+  config: PropTypes.object,
   project: PropTypes.object,
   onFileDrop: PropTypes.func,
   addManager: PropTypes.func,
   removeProjectUser: PropTypes.func,
   showObservationPreview: PropTypes.func,
   submitProject: PropTypes.func,
-  removeProject: PropTypes.func
+  removeProject: PropTypes.func,
+  updateProject: PropTypes.func
 };
 
 export default ProjectForm;

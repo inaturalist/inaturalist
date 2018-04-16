@@ -935,6 +935,36 @@ button {
   }
 }
 
+.SubprojectsList {
+  margin-bottom: 50px;
+  tr {
+    border-top: 1px solid $border-grey;
+    td {
+      vertical-align: top;
+      padding: 8px 0px;
+      font-weight: 700;
+      &.label-cell {
+        padding-top: 10px;
+      }
+    }
+    &:last-child {
+      border-bottom: 1px solid $border-grey;
+    }
+  }
+  .project-icon {
+    height: 24px;
+    width: 24px;
+    background: #aaa;
+    background-size: cover;
+    border: 1px solid $border-grey;
+    text-align: center;
+    line-height: 24px;
+    font-size: 15px;
+    color: white;
+    margin: 0px 10px;
+  }
+}
+
 .EventCountdown {
   .row {
     .col-xs-3 {
@@ -1318,6 +1348,33 @@ $nav-btn-dim: 40px;
 .quality_grade.research:after {
   border-color: #74ac00;
   border-right-color: transparent;
+}
+
+
+
+
+
+.ConfirmModal.confirm {
+  .modal-dialog {
+    width: 500px;
+    margin-top: 100px;
+  }
+  .text {
+    line-height: 28px;
+    font-size: 1.3em;
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .modal-footer {
+    padding: 10px;
+    .buttons {
+      text-align: center;
+    }
+    button {
+      min-width: 100px;
+      margin: 0px 10px;
+    }
+  }
 }
 
 

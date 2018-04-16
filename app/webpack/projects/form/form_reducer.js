@@ -293,6 +293,8 @@ export function submitProject( ) {
     const state = getState( );
     const project = state.form.project;
     if ( !loggedIn( state ) || !project ) { return; }
+    const viewerIsAdmin = state.config.currentUser.roles &&
+      state.config.currentUser.roles.indexOf( "admin" ) >= 0;
     // check title and description which may not have been validated yet
     // if the user didn't enter text in those fields yet
     let errors;
@@ -334,6 +336,8 @@ export function submitProject( ) {
     if ( !payload.project.cover && project.bannerDeleted ) {
       payload.cover_delete = true;
     }
+
+    // add project_observation_rules
     payload.project.project_observation_rules_attributes =
       payload.project.project_observation_rules_attributes || [];
     _.each( project.project_observation_rules, rule => {
@@ -354,6 +358,8 @@ export function submitProject( ) {
         payload.project.project_observation_rules_attributes.push( rulePayload );
       }
     } );
+
+    // add project_users
     payload.project.project_users_attributes =
       payload.project.project_users_attributes || [];
     _.each( project.admins, admin => {
@@ -367,6 +373,12 @@ export function submitProject( ) {
       }
       payload.project.project_users_attributes.push( projectUserPayload );
     } );
+
+    // add featured_at flag
+    if ( viewerIsAdmin ) {
+      payload.project.featured_at = project.featured_at ? "1" : null;
+    }
+
     dispatch( updateProject( { saving: true } ) );
     if ( project.id ) {
       payload.id = project.slug;
