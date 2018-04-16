@@ -18,10 +18,9 @@ $carousel-height-narrow: 350px;
     position: absolute;
     opacity: 1;
     transition: opacity 0.4s linear;
-    top: 20px;
-    left: 20px;
-    right: 20px;
     bottom: 20px;
+    left: 20px;
+    right: 150px;
     h2,
     span {
       text-transform: capitalize;
@@ -38,7 +37,8 @@ $carousel-height-narrow: 350px;
       font-size: 28px;
     }
   }
-  .left, .right {
+  .left,
+  .right {
     .project-caption {
       opacity: 0;
       transition: opacity 0s linear;
@@ -47,7 +47,8 @@ $carousel-height-narrow: 350px;
   .carousel-indicators {
     margin: 0;
     line-height: 0;
-    left: 20px;
+    left: auto;
+    right: 20px;
     background-color: rgba(0,0,0,0.7);
     padding: 5px;
     width: auto;

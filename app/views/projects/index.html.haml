@@ -9,7 +9,7 @@
       .container
         .row.no-gutters
           .col-xs-8
-            #featured-carousel.carousel.slide{ data: { interval: "false" } }
+            #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
               %ol.carousel-indicators
                 - @featured.each_with_index do |project,i|
                   %li{ class: i == 0 ? "active" : nil, data: { slide_to: i, target: "#featured-carousel" } }
@@ -17,12 +17,13 @@
                 - @featured.each_with_index do |project,i|
                   .item{ class: i == 0 ? "active" : nil }
                     %div.photo{ style: "background-image: url('#{project.cover.url}');"}
-                    .project-caption
-                      %span
-                        = succeed ":" do
-                          =t :featured
-                      %br
-                      %h2= project.title
+                    - unless project.prefers_hide_title?
+                      .project-caption
+                        %span
+                          = succeed ":" do
+                            =t :featured
+                        %br
+                        %h2= project.title
           .col-xs-4
             #about-projects
               %h1=t :projects
