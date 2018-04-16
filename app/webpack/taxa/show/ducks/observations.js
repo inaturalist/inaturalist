@@ -115,11 +115,16 @@ export function fetchMonthFrequencyResearchGrade( ) {
 }
 
 export function fetchMonthFrequency( ) {
-  return dispatch => Promise.all( [
-    dispatch( fetchMonthFrequencyVerifiable( ) ),
-    dispatch( fetchMonthFrequencyResearchGrade( ) ),
-    dispatch( fetchMonthFrequencyBackground( ) )
-  ] );
+  return ( dispatch, getState ) => {
+    const promises = [
+      dispatch( fetchMonthFrequencyVerifiable( ) ),
+      dispatch( fetchMonthFrequencyResearchGrade( ) )
+    ];
+    if ( getState( ).config.prefersScaledFrequencies ) {
+      promises.push( dispatch( fetchMonthFrequencyBackground( ) ) );
+    }
+    Promise.all( promises );
+  };
 }
 
 export function fetchMonthOfYearFrequencyBackground( ) {
@@ -167,9 +172,11 @@ export function fetchMonthOfYearFrequency( ) {
   return ( dispatch, getState ) => {
     const promises = [
       dispatch( fetchMonthOfYearFrequencyVerifiable( ) ),
-      dispatch( fetchMonthOfYearFrequencyResearchGrade( ) ),
-      dispatch( fetchMonthOfYearFrequencyBackground( ) )
+      dispatch( fetchMonthOfYearFrequencyResearchGrade( ) )
     ];
+    if ( getState( ).config.prefersScaledFrequencies ) {
+      promises.push( dispatch( fetchMonthOfYearFrequencyBackground( ) ) );
+    }
     const fieldValues = getState( ).taxon.fieldValues;
     if ( fieldValues && _.size( fieldValues ) > 0 ) {
       _.each( fieldValues, values => {

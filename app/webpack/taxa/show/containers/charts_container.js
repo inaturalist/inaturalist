@@ -6,7 +6,7 @@ import {
   fetchMonthOfYearFrequency,
   openObservationsSearch
 } from "../ducks/observations";
-import { setConfig } from "../../../shared/ducks/config";
+import { setScaledPreference } from "../actions/taxon";
 
 const TERMS_TO_CHART = ["Life Stage", "Plant Phenology"];
 
@@ -80,7 +80,8 @@ function mapStateToProps( state ) {
     historyColumns,
     historyKeys,
     chartedFieldValues,
-    scaled: state.config.prefersScaledFrequencies
+    scaled: state.config.prefersScaledFrequencies,
+    config: state.config
   };
 }
 
@@ -89,7 +90,7 @@ function mapDispatchToProps( dispatch ) {
     fetchMonthOfYearFrequency: ( ) => dispatch( fetchMonthOfYearFrequency( ) ),
     fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) ),
     openObservationsSearch: params => dispatch( openObservationsSearch( params ) ),
-    setScaledPreference: pref => dispatch( setConfig( { prefersScaledFrequencies: pref } ) )
+    setScaledPreference: pref => dispatch( setScaledPreference( pref ) )
   };
 }
 

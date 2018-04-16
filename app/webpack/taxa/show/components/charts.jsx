@@ -248,6 +248,10 @@ class Charts extends React.Component {
         end: `${pair[0] + 1}-01-01`
       }
     ) );
+    let tipTitle = I18n.t( "observations_total" );
+    if ( that.props.scaled ) {
+      tipTitle = I18n.t( "relative_observations" );
+    }
     const config = _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
         x: "x",
@@ -278,7 +282,7 @@ class Charts extends React.Component {
       tooltip: {
         contents: ( d, defaultTitleFormat, defaultValueFormat, color ) => that.tooltipContent(
           d, defaultTitleFormat, defaultValueFormat, color,
-          `${I18n.t( "observations_total" )}:
+          `${tipTitle}:
           ${I18n.t( "date.abbr_month_names" )[d[0].x.getMonth( ) + 1]}
           ${d[0].x.getFullYear( )}`
         )
@@ -289,12 +293,21 @@ class Charts extends React.Component {
     this.historyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
   render( ) {
-    const noHistoryData = _.isEmpty( this.props.historyKeys );
-    const noSeasonalityData = _.isEmpty( this.props.seasonalityKeys );
+    const {
+      chartedFieldValues,
+      config,
+      historyKeys,
+      scaled,
+      seasonalityKeys,
+      setScaledPreference,
+      taxon
+    } = this.props;
+    const noHistoryData = _.isEmpty( historyKeys );
+    const noSeasonalityData = _.isEmpty( seasonalityKeys );
     let fieldValueTabs = [];
     let fieldValuePanels = [];
-    if ( this.props.chartedFieldValues ) {
-      _.each( this.props.chartedFieldValues, ( values, termID ) => {
+    if ( chartedFieldValues ) {
+      _.each( chartedFieldValues, ( values, termID ) => {
         fieldValueTabs.push( (
           <li role="presentation" key={ `charts-field-values-${termID}` }>
             <a
@@ -362,45 +375,46 @@ class Charts extends React.Component {
               </button>
               <ul className="dropdown-menu dropdown-menu-right">
                 <li>
-                  { this.props.scaled ? (
+                  { scaled ? (
                     <a
                       href="#"
                       onClick={ e => {
                         e.preventDefault( );
-                        this.props.setScaledPreference( false );
+                        setScaledPreference( false );
                         return false;
                       } }
                     >
-                      Show total counts for this taxon
+                      { I18n.t( "show_total_counts" ) }
                     </a>
                   ) : (
                     <a
                       href="#"
                       onClick={ e => {
                         e.preventDefault( );
-                        this.props.setScaledPreference( true );
+                        setScaledPreference( true );
                         return false;
                       } }
                     >
-                      Show counts relative to all observations
+                      { I18n.t( "show_relative_proportions_of_all_observations" ) }
                     </a>
                   ) }
                 </li>
-                { this.props.chartedFieldValues ? (
+                { chartedFieldValues && config && config.currentUser && config.currentUser.id ? (
                   _.map( this.props.chartedFieldValues, ( values, termID ) => (
                     <li>
                       <a
                         href={
-                          `/observations/identify?taxon_id=${this.props.taxon.id}&without_term_id=${termID}`
+                          `/observations/identify?quality_grade=needs_id,research&taxon_id=${taxon.id}&without_term_id=${termID}`
                         }
                         target="_blank"
                       >
-                        { `
-                          Add annotations for
-                          ${I18n.t( _.snakeCase( values[0].controlled_attribute.label ), {
-                            defaultValue: values[0].controlled_attribute.label
-                          } )}
-                        ` }
+                        {
+                          I18n.t( `add_annotations_for_controlled_attribute.${_.snakeCase( values[0].controlled_attribute.label )}`, {
+                            defaultValue: I18n.t( "add_annotations_for_x", {
+                              x: I18n.t( `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}` )
+                            } )
+                          } )
+                        }
                       </a>
                     </li>
                   ) )
@@ -456,6 +470,10 @@ class Charts extends React.Component {
             <p>
               { I18n.t( "views.taxa.show.charts_help_history" ) }
             </p>
+            <h4>{ I18n.t( "relative_observations" ) }</h4>
+            <p>
+              { I18n.t( "views.taxa.show.charts_help_relative_observations" ) }
+            </p>
             <h4>{ I18n.t( "other" ) }</h4>
             <p>
               { I18n.t( "views.taxa.show.charts_help_other" ) }
@@ -480,7 +498,8 @@ Charts.propTypes = {
   colors: PropTypes.object,
   scaled: PropTypes.bool,
   setScaledPreference: PropTypes.func,
-  taxon: PropTypes.object
+  taxon: PropTypes.object,
+  config: PropTypes.object
 };
 
 Charts.defaultProps = {

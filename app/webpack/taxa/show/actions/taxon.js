@@ -17,10 +17,13 @@ import {
 import {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency,
-  resetObservationsState
+  resetObservationsState,
+  fetchMonthOfYearFrequencyBackground,
+  fetchMonthFrequencyBackground
 } from "../ducks/observations";
 import { fetchLeaders, resetLeadersState } from "../ducks/leaders";
 import { windowStateForTaxon } from "../../shared/util";
+import { setConfig } from "../../../shared/ducks/config";
 
 export function fetchTaxonAssociates( t ) {
   return ( dispatch, getState ) => {
@@ -83,5 +86,17 @@ export function showNewTaxon( taxon, options ) {
       document.title = s.title;
       dispatch( fetchTaxonAssociates( taxon ) );
     } );
+  };
+}
+
+export function setScaledPreference( pref ) {
+  return ( dispatch, getState ) => {
+    dispatch( setConfig( { prefersScaledFrequencies: pref } ) );
+    if ( !getState( ).observations.monthOfYearFrequency.background ) {
+      dispatch( fetchMonthOfYearFrequencyBackground( ) );
+    }
+    if ( !getState( ).observations.monthFrequency.background ) {
+      dispatch( fetchMonthFrequencyBackground( ) );
+    }
   };
 }
