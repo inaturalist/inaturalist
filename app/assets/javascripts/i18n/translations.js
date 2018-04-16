@@ -9493,9 +9493,11 @@ I18n.translations["en"] = {
       "other": "hours"
     },
     "countdown_x_minutes": {
+      "one": "min",
       "other": "min"
     },
     "countdown_x_seconds": {
+      "one": "sec",
       "other": "sec"
     }
   },
