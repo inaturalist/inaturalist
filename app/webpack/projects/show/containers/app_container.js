@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import App from "../components/app";
-import { setSelectedTab, subscribe } from "../ducks/project";
+import { setSelectedTab, subscribe, convertProject } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -11,8 +11,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setSelectedTab: tab => { dispatch( setSelectedTab( tab ) ); },
-    subscribe: ( ) => { dispatch( subscribe( ) ); }
+    convertProject: ( ) => dispatch( convertProject( ) ),
+    setSelectedTab: tab => dispatch( setSelectedTab( tab ) ),
+    subscribe: ( ) => dispatch( subscribe( ) )
   };
 }
 

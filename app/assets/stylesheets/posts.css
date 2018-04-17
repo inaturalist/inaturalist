@@ -35,6 +35,11 @@ form.post_form .observationSelectorObservations {
   height: 480px;
 }
 
+#noposts.news {
+  color: #888;
+  margin-top: 30px;
+  font-size: 18px;
+}
 
 #noposts .button {
   display: inline;
@@ -68,4 +73,11 @@ form.post_form .observationSelectorObservations {
 .post img {
   max-width: 100%;
   height: auto;
+}
+
+.project-back {
+  margin-top: 15px;
+  i.fa {
+    margin-right: 3px;
+  }
 }

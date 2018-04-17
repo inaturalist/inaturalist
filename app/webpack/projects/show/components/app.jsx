@@ -13,8 +13,9 @@ import StatsTabContainer from "../containers/stats_tab_container";
 import StatsHeaderContainer from "../containers/stats_header_container";
 import AboutContainer from "../containers/about_container";
 import BeforeEventTabContainer from "../containers/before_event_tab_container";
+import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
 
-const App = ( { config, project, subscribe, setSelectedTab } ) => {
+const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) => {
   let view;
   let tab = config.selectedTab;
   if ( project.startDate && !project.started && tab !== "about" ) {
@@ -48,6 +49,8 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
   }
   const userIsManager = config.currentUser &&
     _.find( project.admins, a => a.user.id === config.currentUser.id );
+  const viewerIsAdmin = config.currentUser && config.currentUser.roles &&
+    config.currentUser.roles.indexOf( "admin" ) >= 0;
   const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
   const hasBanner = !!project.header_image_url;
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
@@ -92,6 +95,25 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
   ) : null;
   return (
     <div id="ProjectsShow">
+      { project.is_traditional && (
+        <Grid>
+          <Row>
+            <Col xs={ 12 }>
+              <div className="box text-center upstacked">
+                This is a preview.
+                { ( userIsManager || viewerIsAdmin ) && (
+                  <div>
+                    <a onClick={ convertProject } className="linky">
+                      Click here to convert this project
+                    </a>
+                    <ConfirmModalContainer />
+                  </div>
+                ) }
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+      ) }
       <div className={ `project-header ${hasBanner && "with-banner"}` }>
         <div
           className="project-header-background"
@@ -127,9 +149,11 @@ const App = ( { config, project, subscribe, setSelectedTab } ) => {
                 <div className="header-about-title">
                   { I18n.t( "about" ) }
                 </div>
-                <div className="header-about-button">
-                  { headerButton }
-                </div>
+                { !project.is_traditional && (
+                  <div className="header-about-button">
+                    { headerButton }
+                  </div>
+                ) }
                 <div className="header-about-text">
                   <UserText
                     text={ project.description }
@@ -167,7 +191,8 @@ App.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
   subscribe: PropTypes.func,
-  setSelectedTab: PropTypes.func
+  setSelectedTab: PropTypes.func,
+  convertProject: PropTypes.func
 };
 
 export default App;

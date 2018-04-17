@@ -295,6 +295,8 @@ Rails.application.routes.draw do
       get :confirm_leave
       get :stats_slideshow
       put "change_admin/:user_id" => "projects#change_admin", as: :change_admin
+      get :convert_to_collection
+      get :convert_to_traditional
     end
     collection do
       get :calendar
