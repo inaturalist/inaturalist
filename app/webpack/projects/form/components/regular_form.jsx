@@ -74,7 +74,7 @@ class RegularForm extends React.Component {
               ) }
             </Col>
             <Col xs={4}>
-              <label>{ I18n.t( "locations" ) }</label>
+              <label>{ I18n.t( "places" ) }</label>
               <div className="input-group">
                 <span className="input-group-addon fa fa-globe"></span>
                 <PlaceAutocomplete
@@ -268,7 +268,7 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row className="date-row">
-            <Col xs={12}>
+            <Col xs={12} className="date-range-col">
               <input
                 type="radio"
                 id="project-date-type-range"
@@ -304,6 +304,9 @@ class RegularForm extends React.Component {
                   onClick: ( ) => this.refs.dateRangeD2.onClick( )
                 } }
               />
+              <div className="help-text">
+                { I18n.t( "views.projects.new.note_you_can_delete_the_time" ) }
+              </div>
             </Col>
           </Row>
           <Row className="date-row">

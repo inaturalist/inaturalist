@@ -2,6 +2,7 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
 import Project from "../../shared/models/project";
+import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
 
 const SET_PROJECT = "projects-show/project/SET_PROJECT";
 const SET_ATTRIBUTES = "projects-show/project/SET_ATTRIBUTES";
@@ -302,6 +303,9 @@ export function setSelectedTab( tab, options = { } ) {
     if ( project.collection_ids ) {
       urlParams.collection_id = project.collection_ids.join( "," );
     }
+    if ( project.is_traditional ) {
+      urlParams.collection_preview = true;
+    }
     if ( !_.isEmpty( urlParams ) ) {
       newURL += `?${$.param( urlParams )}`;
     }
@@ -327,6 +331,20 @@ export function subscribe( ) {
     inatjs.projects.subscribe( payload ).then( response => {
       dispatch( fetchSubscriptions( ) );
     } );
+  };
+}
+
+export function convertProject( ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( );
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: "Are you sure you want to convert this project?",
+      confirmText: I18n.t( "yes" ),
+      onConfirm: ( ) => {
+        window.location = `/projects/${project.slug}/convert_to_collection`;
+      }
+    } ) );
   };
 }
 

@@ -4,17 +4,19 @@ import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import { definePopupClass } from "../util";
+import colors from "../umbrella_project_colors";
 
 class UmbrellaMap extends Component {
-
 
   componentDidMount( ) {
     setTimeout( ( ) => {
       const map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
       const Popup = definePopupClass( );
-      const colors = ["#127faa", "#75aa1f", "#1aaba3", "#aa17a3", "#f3474a", "#ce5abe", "#425cca"];
-      _.each( this.props.project.projectRules, ( rule, index ) => {
-        const color = colors[index % colors.length];
+      const projectColors = _.fromPairs( _.map( this.props.project.umbrella_stats.results, ( ps, index ) =>
+        [ps.project.id, colors[index % colors.length]]
+      ) );
+      _.each( this.props.project.projectRules, rule => {
+        const color = projectColors[rule.project.id];
         if ( rule.project.place && rule.project.place.point_geojson ) {
           const coords = rule.project.place.point_geojson.coordinates;
           const popup = new Popup(

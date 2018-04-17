@@ -47,9 +47,9 @@ const App = ( { form, createNewProject } ) => {
         </Row>
         <Row className="types-row">
           <Col xs={6}>
-            <h2>{ I18n.t( "projects" ) }</h2>
+            <h2>{ I18n.t( "views.projects.new.collection_projects" ) }</h2>
             <div>{ I18n.t( "views.projects.new.a_project_allows_you_to_gather" ) }</div>
-            <h4>{ I18n.t( "views.projects.new.projects_features" ) }</h4>
+            <h4>{ I18n.t( "views.projects.new.collection_project_features" ) }</h4>
             <ul>
               <li>
                 <i className="fa fa-area-chart" />
@@ -74,7 +74,7 @@ const App = ( { form, createNewProject } ) => {
           <Col xs={6}>
             <h2>{ I18n.t( "umbrella_projects" ) }</h2>
             <div>{ I18n.t( "views.projects.new.an_umbrella_project_can_be_used_to" ) }</div>
-            <h4>{ I18n.t( "views.projects.new.umbrella_projects_features" ) }</h4>
+            <h4>{ I18n.t( "views.projects.new.umbrella_project_features" ) }</h4>
             <ul>
               <li>
                 <i className="fa fa-pie-chart" />
@@ -131,9 +131,9 @@ const App = ( { form, createNewProject } ) => {
           <Col xs={8}>
             <p className="contact">
               { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
-              Contact us at <a href="mailto:help@inaturalist.org">
-                help@inaturalist.org
-              </a>.
+              <span dangerouslySetInnerHTML={ { __html:
+                I18n.t( "views.projects.new.use_this_link_to_create_html", { url: "/projects/new" } ) } }
+              />
             </p>
           </Col>
         </Row>

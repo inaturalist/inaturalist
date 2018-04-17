@@ -88,6 +88,7 @@ class Project < ActiveRecord::Base
   validate :aggregation_preference_allowed?
 
   def aggregation_preference_allowed?
+    return if is_new_project?
     return true unless prefers_aggregation?
     return true if aggregation_allowed?
     errors.add(:base, I18n.t(:project_aggregator_filter_error))
@@ -403,7 +404,7 @@ class Project < ActiveRecord::Base
   end
 
   # TODO: probably merge most of this logic with observations_url_params
-  def search_parameters(options = {})
+  def collection_search_parameters(options = {})
     params = { }
     if project_type == "umbrella"
       project_ids = []
@@ -427,24 +428,14 @@ class Project < ActiveRecord::Base
         taxon_ids << rule.operand_id
       when "observed_in_place?"
         place_ids << rule.operand_id
-      when "on_list?"
-        params[:list_id] = project_list.id
-      when "identified?"
-        params[:identified] = true
-      when "georeferenced?"
-        params[:geo] = true
       when "has_a_photo?"
         params[:photos] = true
       when "has_a_sound?"
         params[:sounds] = true
-      when "captive?"
-        params[:captive] = true
-      when "wild?"
-        params[:captive] = false
-      when "verifiable?"
-        params[:verifiable] = true
       when "observed_by_user?"
         user_ids << rule.operand_id
+      when "verifiable?"
+        params[:quality_grade] = "research,needs_id"
       end
     end
     Project::RULE_PREFERENCES.each do |rule|
@@ -468,6 +459,53 @@ class Project < ActiveRecord::Base
     params.merge!(place_id: place_ids) unless place_ids.blank?
     params.merge!(user_id: user_ids) unless user_ids.blank?
     params
+  end
+
+  def can_be_converted_to_collection_project?
+    return false if is_new_project?
+    return false if collection_search_parameters.blank?
+    return false if project_observation_rules.detect do |r|
+      ![ "in_taxon?", "observed_in_place?", "has_a_photo?", "has_a_sound?",
+         "observed_by_user?", "verifiable?" ].include?( r.operator )
+    end
+    true
+  end
+
+  def convert_properties_for_collection_project
+    return unless can_be_converted_to_collection_project?
+    return if is_new_project?
+    self.prefers_rule_d1 = self.preferred_start_date_or_time if self.preferred_start_date_or_time
+    self.prefers_rule_d2 = self.preferred_end_date_or_time if self.preferred_end_date_or_time
+    if project_observation_rules.detect{ |r| r.operator == "verifiable?" }
+      self.prefers_rule_quality_grade = "research,needs_id"
+    end
+    if place_id &&
+      !project_observation_rules.detect{ |r| r.operator == "observed_in_place?" && r.operand_id == place_id}
+      association(:project_observation_rules).add_to_target(ProjectObservationRule.new(
+        ruler: self,
+        operator: "observed_in_place?",
+        operand_type: "Place",
+        operand_id: place_id
+      ))
+    end
+  end
+
+  def convert_to_collection_project
+    return unless can_be_converted_to_collection_project?
+    return if is_new_project?
+    convert_properties_for_collection_project
+    self.prefers_aggregation = false
+    self.project_type = "collection"
+    save
+  end
+
+  def convert_collection_project_to_traditional_project
+    return unless project_type == "collection"
+    Project::RULE_PREFERENCES.each do |rule|
+      self.send( "prefers_#{rule}=", nil )
+    end
+    self.project_type = (preferred_start_date_or_time || preferred_end_date_or_time) ? "bioblitz" : nil
+    save
   end
 
   def cached_slug
@@ -754,6 +792,7 @@ class Project < ActiveRecord::Base
   end
 
   def aggregation_allowed?
+    return false if is_new_project?
     return true if CONFIG.aggregator_exception_project_ids && CONFIG.aggregator_exception_project_ids.include?(id)
     return true if place && place.bbox_area.to_f < 141
     return true if project_observation_rules.where("operator IN (?)", %w(in_taxon? on_list?)).exists?

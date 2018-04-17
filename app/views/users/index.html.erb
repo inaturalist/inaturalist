@@ -169,19 +169,9 @@
           <div class="column span-6 <%= 'last' if i % 4 == 3 %>">
             <%= image_and_content user_image(user, :size => 'thumb'), :class => "stacked left" do %>
               <div class="large"><%= link_to_user user %></div>
-              <%- [
-                  [@updated_taxa_counts[user.id].to_i, "taxon", "curated"],
-                  [@taxon_change_counts[user.id].to_i, "taxon_change", "added"],
-                  [@resolved_flag_counts[user.id].to_i, "flag", "resolved"]
-                ].each do |count, noun, verb| -%>
-                <div>
-                  <%= t("#{count}_#{noun}_html", 
-                    :count => count, 
-                    :default => "<span class='count'>#{count}</span> #{t(noun, :default => noun).pluralize}"
-                  ).downcase.html_safe %>
-                  <%=t(verb, :default => verb).downcase %>
-                </div>
-              <% end -%>
+              <div><%=t :x_taxa_curated_html, count: @updated_taxa_counts[user.id].to_i %></div>
+              <div><%=t :x_taxon_changes_added_html, count: @taxon_change_counts[user.id].to_i %></div>
+              <div><%=t :x_flags_resolved_html, count: @resolved_flag_counts[user.id].to_i %></div>
             <% end -%>
           </div>
         <% end %>

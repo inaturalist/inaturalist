@@ -6,6 +6,7 @@ import {
   fetchMonthOfYearFrequency,
   openObservationsSearch
 } from "../ducks/observations";
+import { setScaledPreference } from "../actions/taxon";
 
 const TERMS_TO_CHART = ["Life Stage", "Plant Phenology"];
 
@@ -30,12 +31,20 @@ function mapStateToProps( state ) {
       order.push( `${v.controlled_attribute.label}=${v.controlled_value.label}` );
     } );
   } );
+  const scaledSeasonality = state.config.prefersScaledFrequencies &&
+    state.observations.monthOfYearFrequency.background;
   for ( let i = 0; i < order.length; i++ ) {
     const series = order[i];
     const frequency = state.observations.monthOfYearFrequency[series];
     if ( frequency ) {
       seasonalityColumns.push(
-        [series, ...seasonalityKeys.map( key => frequency[key.toString( )] || 0 )]
+        [series, ...seasonalityKeys.map( key => {
+          let freq = frequency[key.toString( )] || 0;
+          if ( scaledSeasonality ) {
+            freq = freq / ( state.observations.monthOfYearFrequency.background[key.toString( )] || 1 );
+          }
+          return freq;
+        } )]
       );
     }
   }
@@ -45,19 +54,34 @@ function mapStateToProps( state ) {
   const monthFrequencyResearch = state.observations.monthFrequency.research || {};
   const historyKeys = _.keys( monthFrequencyVerifiable ).sort( );
   const historyColumns = [];
+  const scaledHistory = state.config.prefersScaledFrequencies &&
+    state.observations.monthFrequency.background;
   if ( !_.isEmpty( _.keys( state.observations.monthFrequency ) ) ) {
     historyColumns.push( ["x", ...historyKeys] );
-    historyColumns.push( ["verifiable", ...historyKeys.map( d =>
-      monthFrequencyVerifiable[d] || 0 )] );
-    historyColumns.push( ["research", ...historyKeys.map( d =>
-      monthFrequencyResearch[d] || 0 )] );
+    historyColumns.push( ["verifiable", ...historyKeys.map( d => {
+      let freq = monthFrequencyVerifiable[d] || 0;
+      if ( scaledHistory ) {
+        freq = freq / ( state.observations.monthFrequency.background[d] || 1 );
+      }
+      return freq;
+    } )] );
+    historyColumns.push( ["research", ...historyKeys.map( d => {
+      let freq = monthFrequencyResearch[d] || 0;
+      if ( scaledHistory ) {
+        freq = freq / ( state.observations.monthFrequency.background[d] || 1 );
+      }
+      return freq;
+    } )] );
   }
   return {
+    taxon: state.taxon.taxon,
     seasonalityKeys,
     seasonalityColumns,
     historyColumns,
     historyKeys,
-    chartedFieldValues
+    chartedFieldValues,
+    scaled: state.config.prefersScaledFrequencies,
+    config: state.config
   };
 }
 
@@ -65,7 +89,8 @@ function mapDispatchToProps( dispatch ) {
   return {
     fetchMonthOfYearFrequency: ( ) => dispatch( fetchMonthOfYearFrequency( ) ),
     fetchMonthFrequency: ( ) => dispatch( fetchMonthFrequency( ) ),
-    openObservationsSearch: params => dispatch( openObservationsSearch( params ) )
+    openObservationsSearch: params => dispatch( openObservationsSearch( params ) ),
+    setScaledPreference: pref => dispatch( setScaledPreference( pref ) )
   };
 }
 

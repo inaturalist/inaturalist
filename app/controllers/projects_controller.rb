@@ -84,7 +84,31 @@ class ProjectsController < ApplicationController
       format.html
     end
   end
-  
+
+  def convert_to_collection
+    project_user = current_user.project_users.where(project_id: @project.id).first
+    if !current_user.has_role?(:admin) && ( project_user.blank? || !project_user.is_admin? )
+      flash[:error] = t(:only_the_project_admin_can_do_that)
+      redirect_to @project
+      return
+    end
+    @project.convert_to_collection_project
+    Project.refresh_es_index
+    redirect_to @project
+  end
+
+  def convert_to_traditional
+    project_user = current_user.project_users.where(project_id: @project.id).first
+    if !current_user.has_role?(:admin) && ( project_user.blank? || !project_user.is_admin? )
+      flash[:error] = t(:only_the_project_admin_can_do_that)
+      redirect_to @project
+      return
+    end
+    @project.convert_collection_project_to_traditional_project
+    Project.refresh_es_index
+    redirect_to @project
+  end
+
   def show
     respond_to do |format|
 
@@ -99,7 +123,27 @@ class ProjectsController < ApplicationController
           map(&:provider_uid)
         @fb_admin_ids += CONFIG.facebook.admin_ids if CONFIG.facebook && CONFIG.facebook.admin_ids
         @fb_admin_ids = @fb_admin_ids.compact.map(&:to_s).uniq
-        if @project.is_new_project?
+        # check if the project can be previewed as a new-style project
+        if params.has_key?(:collection_preview) && logged_in? && !@project.is_new_project?
+          project_user = current_user.project_users.where(project_id: @project.id).first
+          if current_user.has_role?(:admin) || ( project_user && !project_user.is_admin? )
+            if @project.can_be_converted_to_collection_project?
+              preview = true
+            else
+              flash.now[:notice] = "This project cannot be converted"
+            end
+          end
+        end
+        # if previewing new-style project, make sure the projects index has the
+        # properties that new-style projects would have, and sync the ES index
+        if preview
+          @project.convert_properties_for_collection_project
+          @project.elastic_index!
+          Project.refresh_es_index
+        end
+        # if previewing, or the project is a new-style, fetch the API
+        # response and render the React projects show page
+        if @project.is_new_project? || preview
           projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
           if projects_response.blank?
             flash[:error] = I18n.t( :doh_something_went_wrong )
