@@ -1566,14 +1566,19 @@ class Taxon < ActiveRecord::Base
 
   def current_synonymous_taxon
     return nil if is_active?
-    TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
+    synonymous_taxon = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
       joins( :taxon_change_taxa ).
       where( "taxon_change_taxa.taxon_id = ?", self ).order(:id).last.try(:output_taxon)
+    return synonymous_taxon if synonymous_taxon.blank? || synonymous_taxon.is_active?
+    candidates = synonymous_taxon.current_synonymous_taxa
+    return nil if candidates.size > 1
+    candidates.first
   end
 
   def current_synonymous_taxa_from_split
-    Taxon.where(id: TaxonChange.where(taxon_id: self.id).
+    taxa = Taxon.where(id: TaxonSplit.where(taxon_id: self.id).
       joins(:taxon_change_taxa).pluck("taxon_change_taxa.taxon_id"))
+    taxa.map{|t| t.is_active? ? t : t.current_synonymous_taxa }.flatten.uniq
   end
 
   def current_synonymous_taxa
