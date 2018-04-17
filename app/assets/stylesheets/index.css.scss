@@ -2416,6 +2416,33 @@ $header-line-height: 34px;
       background-color: transparentize( $inat-green, 0.9 );
     }
   }
+
+  &.test-header-3,
+  &.test-header-4 {
+    .add-obs {
+      .btn {
+        background-color: $inat-green;
+        border-color: $inat-green;
+        color: white;
+        i { color: white; }
+      }
+    }
+    .search {
+      .btn {
+        line-height: 22px;
+        i {
+          font-size: 22px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  &.test-header-4 {
+    .search {
+      margin-right: 20px;
+    }
+  }
 }
 #footer-locale-chooser {
   .dropdown-menu {

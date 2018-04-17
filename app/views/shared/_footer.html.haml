@@ -7,22 +7,23 @@
           .box.text-center.upstacked
             - if current_user.test_groups =~ /header-2018/
               - chosen_header_test = current_user.test_groups[/header-2018[^|]*/, 0]
+              - opts = { "Try Version 1" => "header-2018", "Try Version 2" => "header-2018-2", "Try Version 3" => "header-2018-3", "Try Version 4" => "header-2018-4" }
               = form_tag join_test_user_path( current_user ), method: "put", class: "inlineblock" do
                 %label Testing the new header
-                = select_tag :test, options_for_select( { "version 1" => "header-2018", "version 2" => "header-2018-2", "version 3" => "header-2018-3" }, chosen_header_test ), data: { autosubmit: true }
-                - %w(header-2018 header-2018-2 header-2018-3).each do |test_group|
+                = select_tag :test, options_for_select( opts, chosen_header_test ), data: { autosubmit: true }
+                - %w(header-2018 header-2018-2 header-2018-3 header-2018-4).each do |test_group|
                   = hidden_field_tag "leave[]", test_group
                 &nbsp;
                 = link_to t(:what_do_you_think), "https://www.inaturalist.org/blog/15132-new-header"
               = form_tag leave_test_user_path( current_user ), method: "put", class: "inlineblock" do
-                - %w(header-2018 header-2018-2 header-2018-3).each do |test_group|
+                - %w(header-2018 header-2018-2 header-2018-3 header-2018-4).each do |test_group|
                   = hidden_field_tag "test[]", test_group
                 &nbsp;
                 = submit_tag t(:take_me_back), class: "btn btn-default btn-sm"
             - else
               = form_tag join_test_user_path( current_user ), method: "put", class: "inlineblock" do
                 %label Want to test a new version of the header?
-                = select_tag :test, options_for_select( { "Try Version 1" => "header-2018", "Try Version 2" => "header-2018-2", "Try Version 3" => "header-2018-3" }, chosen_header_test ), data: { autosubmit: true }
+                = select_tag :test, options_for_select( opts ), data: { autosubmit: true }
 #footer.bootstrap
   .container
     .row
