@@ -190,6 +190,11 @@ en:
   add_an_observation: Add an observation
   add_an_observation?: Add an observation?
   add_an_observation_of: "Add an observation of %{taxon}"
+  add_annotations_for_x: Add annotations for "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Add annotations for "Sex"
+    plant_phenology: Add annotations for "Plant Phenology"
+    life_stage: Add annotations for "Life Stage"
   add_another: Add another
   add_another_flag: Add another flag
   add_another_photo: Add another photo
@@ -2967,6 +2972,7 @@ en:
   reject?: Reject?
   reject_the_community_id: reject the community ID
   related_species: Related Species
+  relative_observations: Relative Observations
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
@@ -3166,9 +3172,9 @@ en:
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
-  show_default_taxon_photos: show default taxon photos
   show_common_names: Show common names
   show_counts: Show counts based on the list.
+  show_default_taxon_photos: show default taxon photos
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_kml: Show KML
   show_less: Show less
@@ -3177,16 +3183,18 @@ en:
   show_observations_from: Show observations by
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
+  show_relative_proportions_of_all_observations: Show relative proportions of all observations
   show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
+  show_taxa_from_everywhere: "Show taxa from everywhere"
+  show_taxa_from_place: "Show taxa from %{place}"
+  show_total_counts: Show total counts
   show_total_listed_taxa: Show total listed taxa
+  show_uncountable_species: Show uncountable species
   showing_observations_by: showing observations by
   showing_one_to: Showing 1 - 
-  showing_taxa_from_place: "Showing taxa from %{place}"
-  show_taxa_from_place: "Show taxa from %{place}"
   showing_taxa_from_everywhere: "Showing taxa from everywhere"
-  show_taxa_from_everywhere: "Show taxa from everywhere"
-  show_uncountable_species: Show uncountable species
+  showing_taxa_from_place: "Showing taxa from %{place}"
   shown_publicly_as: Shown publicly as
   sign_in: Sign in
   sign_in_with_provider: "Sign in with %{provider}"
@@ -5388,6 +5396,20 @@ en:
           looking at any field with the word "phenology" in its name and
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
+        charts_help_relative_observations: |
+          Showing frequency as a relative proportion of all observations helps
+          smooth out the effect of the overall growth of the site. For example,
+          if the site is growing as we get more observations with every passing
+          year, we get more observations of any individual taxon, which doesn't
+          tell you anything about whether there are more of that taxon around to
+          observe, just that there are more people observing it. Showing the
+          relative proportion means that if there are 100 observations total but
+          20 observations of this taxon, the proportion is 0.2 (20 / 100). If
+          people observe 2000 observations the next year and 400 observations of
+          this taxon, the proportion is still 0.2 (400 / 2000). This causes some
+          abberrations when there are very few observers in an area, or for taxa
+          that are very infrequently observed, but that's true of total counts
+          as well.
         complete_taxon_desc: |
           "Complete" taxa have all of their descendant, extant taxa of a
           specific rank present in the site's database. When a taxon is
@@ -5418,6 +5440,7 @@ en:
           "Insect life stage=nymph": Nymph
           "Insect life stage=pupa": Pupa
           "Insect life stage=adult": Adult
+          unannotated: No Annotation
         photo_chooser_modal_desc: |
           Drag photos here from the left, or drag photos here to re-arrange.
         photo_chooser_modal_explanation: |

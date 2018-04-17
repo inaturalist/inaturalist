@@ -189,14 +189,14 @@ export function showPhotoChooserIfSignedIn( ) {
   };
 }
 
-export function fetchTerms( callback ) {
+export function fetchTerms( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const params = { taxon_id: s.taxon.taxon.id, per_page: 50, verifiable: true };
     if ( s.config.chosenPlace ) {
       params.place_id = s.config.chosenPlace.id;
     }
-    inatjs.observations.popularFieldValues( params ).then( r => {
+    return inatjs.observations.popularFieldValues( params ).then( r => {
       const relevantResults = _.filter( r.results, f => (
         _.intersection(
           s.taxon.taxon.ancestor_ids,
@@ -207,7 +207,6 @@ export function fetchTerms( callback ) {
         type: SET_FIELD_VALUES,
         fieldValues: _.groupBy( relevantResults, f => f.controlled_attribute.id )
       } );
-      if ( callback ) { callback( ); }
     } ).catch( e => { console.log( e ); } );
   };
 }
