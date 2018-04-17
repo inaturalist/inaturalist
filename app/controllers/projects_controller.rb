@@ -44,7 +44,9 @@ class ProjectsController < ApplicationController
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
         @featured = Project.featured.limit(8)
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @recent = ProjectObservation.includes(:project).order( "project_observations.id DESC" ).limit( 20 ).to_a.uniq{|po| po.project_id}.map(&:project)[0..8]
+        @recent = ProjectObservation.includes(:project).order( "project_observations.id DESC" ).limit( 20 )
+        @recent = @recent.joins( project: :place ).where( @place.self_and_descendant_conditions ) if @place
+        @recent = @recent.to_a.uniq{|po| po.project_id}.map(&:project)[0..8]
         render layout: "bootstrap"
       end
       format.json do
@@ -851,7 +853,7 @@ class ProjectsController < ApplicationController
         }
       ]
       filters << { term: { place_ids: @place.id } } if @place
-      @projects = Project.elastic_paginate(filters: filters, page: params[:page])
+      @projects = Project.elastic_paginate( filters: filters, page: params[:page] )
     end
     respond_to do |format|
       format.html
