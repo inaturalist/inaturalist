@@ -9,21 +9,23 @@
       .container
         .row.no-gutters
           .col-xs-8
+            - carousel_projects = @featured.blank? ? [@recent].flatten.compact[0..5] : @featured
             #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
               %ol.carousel-indicators
-                - @featured.each_with_index do |project,i|
+                - carousel_projects.each_with_index do |project,i|
                   %li{ class: i == 0 ? "active" : nil, data: { slide_to: i, target: "#featured-carousel" } }
               .carousel-inner{:role => "listbox"}
-                - @featured.each_with_index do |project,i|
+                - carousel_projects.each_with_index do |project,i|
                   .item{ class: i == 0 ? "active" : nil }
-                    %div.photo{ style: "background-image: url('#{project.cover.url}');"}
+                    = link_to "", project, class: "photo", style: "background-image: url('#{project.cover.url}');"
                     - unless project.prefers_hide_title?
                       .project-caption
                         %span
                           = succeed ":" do
                             =t :featured
                         %br
-                        %h2= project.title
+                        %h2
+                          = link_to project.title, project
           .col-xs-4
             #about-projects
               %h1=t :projects
@@ -40,7 +42,7 @@
               .input-group
                 %input.form-control{ name: "q", type: "text", placeholder: t(:search) }
                 %span.input-group-btn
-                  %button.btn.btn-primary{ type: "button" }
+                  %input.btn.btn-primary{ type: "submit" }
                     =t :go
           .col-xs-8
             - if logged_in?
@@ -52,14 +54,10 @@
   .row
     .col-xs-12
       .container
-        .row
-          .col-xs-12
-            %h2=t :featured
-        - if @featured.blank?
+        - unless @featured.blank?
           .row
             .col-xs-12
-              .nocontent=t :no_projects_yet
-        - else
+              %h2=t :featured
           - @featured.in_groups_of( 4 ) do |group|
             .row
               - group.compact.each do |project|

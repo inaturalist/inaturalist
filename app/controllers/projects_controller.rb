@@ -840,10 +840,16 @@ class ProjectsController < ApplicationController
       @place = @site.place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      filters = [ { multi_match: {
-        query: @q,
-        operator: "and",
-        fields: [ :title, :description ] } } ]
+      filters = [
+        {
+          multi_match: {
+            query: @q,
+            operator: "and",
+            fields: [ :title, :description ],
+            type: "phrase"
+          }
+        }
+      ]
       filters << { term: { place_ids: @place.id } } if @place
       @projects = Project.elastic_paginate(filters: filters, page: params[:page])
     end

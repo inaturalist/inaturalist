@@ -6,9 +6,16 @@ $carousel-height-narrow: 350px;
   background-color: white;
   z-index: 3;
   .photo {
+    display: block;
     width: 100%;
     height: $carousel-height-narrow;
     background-size: cover; 
+  }
+  .photo:hover {
+    opacity: 1;
+  }
+  #featured-carousel {
+    background-color: $inat-green;
   }
   #featured-carousel,
   #about-projects {
@@ -23,8 +30,10 @@ $carousel-height-narrow: 350px;
     right: 150px;
     h2,
     span {
-      text-transform: capitalize;
       color: white;
+      a {
+        color: white;
+      }
       background-color: rgba(0,0,0,0.7);
       padding: 10px;
       margin: 0;
@@ -32,6 +41,7 @@ $carousel-height-narrow: 350px;
     }
     span {
       font-size: 18px;
+      text-transform: capitalize;
     }
     h2 {
       font-size: 28px;
@@ -117,6 +127,7 @@ $carousel-height-narrow: 350px;
   }
 
   .thumbnail {
+    border: 1px solid $border-grey;
     position: relative;
     .photo {
       display: block;
