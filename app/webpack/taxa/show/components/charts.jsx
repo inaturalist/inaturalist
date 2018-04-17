@@ -53,8 +53,15 @@ class Charts extends React.Component {
   hideHelpModal( ) {
     this.setState( { helpModalVisible: false } );
   }
-  numberPrecision( ) {
-    return this.props.scaled ? 4 : 0;
+  formatNumber( number ) {
+    const precision = this.props.scaled ? 4 : 0;
+    if ( number > 0 && number < 0.0001 ) {
+      return number.toExponential( 2 );
+    }
+    if ( number > 9999 ) {
+      return number.toExponential( precision );
+    }
+    return I18n.toNumber( number, { precision } );
   }
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
@@ -99,16 +106,7 @@ class Charts extends React.Component {
           },
           tick: {
             outer: false,
-            format: d => {
-              const precision = this.numberPrecision( );
-              if ( d > 0 && d < 0.0001 ) {
-                return d.toExponential( 2 );
-              }
-              if ( d > 9999 ) {
-                return d.toExponential( precision );
-              }
-              return I18n.toNumber( d, { precision } );
-            }
+            format: d => this.formatNumber( d )
           }
         }
       },
@@ -143,7 +141,7 @@ class Charts extends React.Component {
           }:
         </span>
         <span class="value">
-          ${I18n.toNumber( item.value, { precision: this.numberPrecision( ) } )}
+          ${this.formatNumber( item.value )}
         </span>
       </div>
     ` );
@@ -401,10 +399,10 @@ class Charts extends React.Component {
                 </li>
                 { chartedFieldValues && config && config.currentUser && config.currentUser.id ? (
                   _.map( this.props.chartedFieldValues, ( values, termID ) => (
-                    <li>
+                    <li key={ `identify-link-for-${termID}` }>
                       <a
                         href={
-                          `/observations/identify?quality_grade=needs_id,research&taxon_id=${taxon.id}&without_term_id=${termID}`
+                          `/observations/identify?taxon_id=${taxon.id}&without_term_id=${termID}&reviewed=any&quality_grade=needs_id,research`
                         }
                         target="_blank"
                       >
