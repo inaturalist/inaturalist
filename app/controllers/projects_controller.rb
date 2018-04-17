@@ -47,6 +47,13 @@ class ProjectsController < ApplicationController
         @recent = ProjectObservation.includes(:project).order( "project_observations.id DESC" ).limit( 20 )
         @recent = @recent.joins( project: :place ).where( @place.self_and_descendant_conditions ) if @place
         @recent = @recent.to_a.uniq{|po| po.project_id}.map(&:project)[0..8]
+        if logged_in?
+          @started = current_user.projects.not_flagged_as_spam.
+            order("projects.id desc").limit(5)
+          @joined = current_user.project_users.joins(:project).
+            merge(Project.not_flagged_as_spam).includes(:project).
+            order("projects.id desc").limit(5).map(&:project)
+        end
         render layout: "bootstrap"
       end
       format.json do

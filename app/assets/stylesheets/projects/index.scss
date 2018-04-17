@@ -10,6 +10,9 @@ $carousel-height-narrow: 350px;
     width: 100%;
     height: $carousel-height-narrow;
     background-size: cover; 
+    background-image: url(image_path( "project_blank_banner_bg.png" ));
+    background-repeat: no-repeat;
+    background-position: center;
   }
   .photo:hover {
     opacity: 1;
@@ -132,10 +135,13 @@ $carousel-height-narrow: 350px;
     .photo {
       display: block;
       background-size: cover;
+      background-image: url(image_path( "project_blank_banner_bg.png" ));
+      background-repeat: no-repeat;
+      background-position: center;
       height: 100px;
       line-height: 120px;
       text-align: center;
-      background-color: $border-grey;
+      background-color: #aaa;
       i {
         font-size: 40px;
         color: white;

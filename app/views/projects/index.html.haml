@@ -10,14 +10,15 @@
         .row.no-gutters
           .col-xs-8
             - carousel_projects = @featured.blank? ? [@recent].flatten.compact[0..5] : @featured
-            #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
+            / #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
+            #featured-carousel.carousel.slide
               %ol.carousel-indicators
                 - carousel_projects.each_with_index do |project,i|
                   %li{ class: i == 0 ? "active" : nil, data: { slide_to: i, target: "#featured-carousel" } }
               .carousel-inner{:role => "listbox"}
                 - carousel_projects.each_with_index do |project,i|
                   .item{ class: i == 0 ? "active" : nil }
-                    = link_to "", project, class: "photo", style: "background-image: url('#{project.cover.url}');"
+                    = link_to "", project, class: "photo", style: project.cover? ? "background-image: url('#{project.cover.url}');" : nil
                     - unless project.prefers_hide_title?
                       .project-caption
                         %span
@@ -45,10 +46,24 @@
                   %input.btn.btn-primary{ type: "submit" }
                     =t :go
           .col-xs-8
-            - if logged_in?
-              = link_to projects_by_login_path( current_user.login ), class: "btn btn-default pull-right" do
-                %i.fa.fa-gear
-                =t :manage_your_projects
+            - if logged_in? && !@started.blank? || !@joined.blank?
+              .dropdown.pull-right
+                %button#manage-projects-btn.btn.btn-default{ data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } }
+                  %i.fa.fa-gear
+                  =t :manage_your_projects
+                  %span.caret
+                %ul.dropdown-menu.dropdown-menu-right{ aria: { labelled_by: "manage-projects-btn" } }
+                  - unless @started.blank?
+                    %li.dropdown-header=t :your_projects
+                    - @started.each do |project|
+                      %li= link_to project.title, project
+                    %li.divider{ role: "separator" }
+                  - unless @joined.blank?
+                    %li.dropdown-header=t :joined_projects
+                    - @joined.each do |project|
+                      %li= link_to project.title, project
+                    %li.divider{ role: "separator" }
+                  %li= link_to t(:view_all), projects_by_login_path( current_user.login )
 
 #main-container.container-fluid
   .row
