@@ -88,6 +88,7 @@ class Project < ActiveRecord::Base
   validate :aggregation_preference_allowed?
 
   def aggregation_preference_allowed?
+    return if is_new_project?
     return true unless prefers_aggregation?
     return true if aggregation_allowed?
     errors.add(:base, I18n.t(:project_aggregator_filter_error))
@@ -461,6 +462,7 @@ class Project < ActiveRecord::Base
   end
 
   def can_be_converted_to_collection_project?
+    return false if is_new_project?
     return false if collection_search_parameters.blank?
     return false if project_observation_rules.detect do |r|
       ![ "in_taxon?", "observed_in_place?", "has_a_photo?", "has_a_sound?",

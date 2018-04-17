@@ -1,8 +1,10 @@
+import _ from "lodash";
 import React, { Component, PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import News from "./news";
 import Requirements from "./requirements";
 import EventCountdown from "./event_countdown";
+import OverviewMap from "./overview_map";
 
 class BeforeEventTab extends Component {
   render( ) {
@@ -27,6 +29,9 @@ class BeforeEventTab extends Component {
               <News { ...this.props } />
             </Col>
           </Row>
+          { !_.isEmpty( project.placeRules ) && (
+            <OverviewMap project={ project } />
+          ) }
         </Grid>
       </div>
     );
