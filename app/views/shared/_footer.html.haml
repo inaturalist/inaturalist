@@ -9,8 +9,11 @@
             - if current_user.test_groups =~ /header-2018/
               - chosen_header_test = current_user.test_groups[/header-2018[^|]*/, 0]
               = form_tag join_test_user_path( current_user ), method: "put", class: "inlineblock" do
-                %label Testing the new header
-                = select_tag :test, options_for_select( opts, chosen_header_test ), data: { autosubmit: true }
+                %label
+                  Testing the new header version
+                  = chosen_header_test[/-(\d)$/, 1] || 1
+                  &nbsp;
+                = select_tag :test, options_for_select( { "Try Another Version" => nil }.merge( opts ) ), data: { autosubmit: true }
                 - %w(header-2018 header-2018-2 header-2018-3 header-2018-4).each do |test_group|
                   = hidden_field_tag "leave[]", test_group
                 &nbsp;
@@ -23,7 +26,7 @@
             - else
               = form_tag join_test_user_path( current_user ), method: "put", class: "inlineblock" do
                 %label Want to test a new version of the header?
-                = select_tag :test, options_for_select( opts ), data: { autosubmit: true }
+                = select_tag :test, options_for_select( { "Choose A Version" => nil }.merge( opts ) ), data: { autosubmit: true }
 #footer.bootstrap
   .container
     .row

@@ -242,10 +242,11 @@
             %li= link_to t(:guides), guides_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
-    .navtabs.add-obs.header-md.header-lg
-      = link_to upload_observations_path, class: "btn btn-default btn-inat" do
-        %i.fa.fa-arrow-circle-up
-        =t :upload
+    - if logged_in?
+      .navtabs.add-obs.header-md.header-lg
+        = link_to upload_observations_path, class: "btn btn-default btn-inat" do
+          %i.fa.fa-arrow-circle-up
+          =t :upload
     %ul#usernav.navtabs
       - unless logged_in?
         %li.navtab.signedout
@@ -324,7 +325,7 @@
                       %i.fa.fa-suitcase.text-muted
                     = truncate( project.title )
       - if logged_in?
-        %li.navtab{ class: controller.class.name == "ObservationsController" && %w( identify ).include?( controller.action_name ) ? "active" : nil }
+        %li.navtab.header-md.header-lg{ class: controller.class.name == "ObservationsController" && %w( identify ).include?( controller.action_name ) ? "active" : nil }
           = link_to t(:identify).titleize, identify_observations_path
       %li.navtab.moretab.menutab{ class: %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
@@ -332,6 +333,8 @@
             = link_to t(:more).capitalize, places_path
             %i.fa.fa-angle-down
           %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
+            - if logged_in?
+              %li.header-xs.header-sm= link_to t(:identify), identify_observations_path
             %li= link_to t(:taxa_info), taxa_path
             %li= link_to t(:guides), guides_path
             %li= link_to t(:places), places_path
@@ -344,10 +347,11 @@
         %i.fa.fa-search
       %button.btn.btn-link.hide-btn
         %i.fa.fa-times-circle
-    .navtabs.add-obs
-      = link_to upload_observations_path, class: "btn btn-default btn-inat" do
-        %i.fa.fa-arrow-circle-up
-        =t :upload
+    - if logged_in?
+      .navtabs.add-obs
+        = link_to upload_observations_path, class: "btn btn-default btn-inat" do
+          %i.fa.fa-arrow-circle-up
+          %span.header-md.header-lg=t :upload
     %ul#usernav.navtabs
       - unless logged_in?
         %li.navtab.signedout
