@@ -190,7 +190,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
                 { ( userIsManager || viewerIsAdmin ) && (
                   <div className="header-about-edit">
                     <a href={ `/projects/${project.slug}/edit` }>
-                      <button className="btn-white">
+                      <button className="btn btn-default btn-white">
                         <i className="fa fa-cog" />
                         { I18n.t( "edit_project" ) }
                       </button>

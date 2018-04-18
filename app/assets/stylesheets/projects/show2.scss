@@ -260,7 +260,7 @@ button {
           display: inline-block;
           font-size: 16px;
           line-height: 21px;
-          max-height: 166px;
+          max-height: 150px;
           a {
             text-decoration: underline;
           }
@@ -282,6 +282,7 @@ button {
           .btn-white {
             border-radius: 2px;
             color: #333;
+            text-transform: capitalize;
           }
         }
         .header-about-news {
@@ -1085,7 +1086,7 @@ button {
           margin-top: 15px;
           font-size: 15px;
           line-height: 18px;
-          max-height: 124px;
+          max-height: 110px;
         }
       }
     }
