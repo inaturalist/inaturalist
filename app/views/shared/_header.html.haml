@@ -300,7 +300,7 @@
         %a.logolink.innertab{:href => "/", :title => "#{site.try(:name) || @site.try(:name)}"}
           = image_tag site.logo.url, alt: site.name
     %ul#mainnav.navtabs
-      %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index show ).include?( controller.action_name ) ? "active" : nil }
+      %li.navtab{ class: ( controller.class.name == "ObservationsController" && %w( index show ).include?( controller.action_name ) && ( !logged_in? || ![current_user.id.to_s, current_user.login].include?( params[:user_id] ) ) ) || controller.class.name == "TaxaController" ? "active" : nil }
         = link_to t(:explore).capitalize, observations_path
       - if logged_in?
         %li.navtab{ class: controller.class.name == "ObservationsController" && %w( by_login ).include?( controller.action_name ) || ( controller.class.name == "ObservationsController" && ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login ) ) ? "active" : nil }
