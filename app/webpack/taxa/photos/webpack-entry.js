@@ -63,7 +63,7 @@ const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 // fetch taxon terms before rendering the photo browser, in case
 // we need to verify a term grouping by termID
-store.dispatch( fetchTerms( ( ) => {
+store.dispatch( fetchTerms( ) ).then( ( ) => {
   const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
   store.dispatch( hydrateFromUrlParams( urlParams ) );
   window.onpopstate = e => {
@@ -78,4 +78,4 @@ store.dispatch( fetchTerms( ( ) => {
     </Provider>,
     document.getElementById( "app" )
   );
-} ) );
+} );

@@ -9,6 +9,7 @@ import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import projectReducer, { setProject, fetchOverviewData, setSelectedTab } from "./ducks/project";
 import photoModalReducer from "../../taxa/shared/ducks/photo_modal";
+import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 /* global PROJECT_DATA */
 /* global CURRENT_TAB */
 /* global CURRENT_SUBTAB */
@@ -16,7 +17,8 @@ import photoModalReducer from "../../taxa/shared/ducks/photo_modal";
 const rootReducer = combineReducers( {
   config: configReducer,
   project: projectReducer,
-  photoModal: photoModalReducer
+  photoModal: photoModalReducer,
+  confirmModal: confirmModalReducer
 } );
 
 const store = createStore(

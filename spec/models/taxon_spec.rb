@@ -1385,3 +1385,55 @@ describe "complete_species_count" do
     end
   end
 end
+
+describe "current_synonymous_taxon" do
+  let(:curator) { make_curator }
+  it "should be the output of a first-order swap" do
+    swap = make_taxon_swap( committer: curator )
+    swap.commit
+    expect( swap.input_taxon.current_synonymous_taxon ).to eq swap.output_taxon
+  end
+  it "should be the output of a second-order swap" do
+    swap1 = make_taxon_swap( committer: curator )
+    swap1.commit
+    swap2 = make_taxon_swap( input_taxon: swap1.output_taxon, committer: curator )
+    swap2.commit
+    expect( swap1.input_taxon.current_synonymous_taxon ).to eq swap2.output_taxon
+  end
+  it "should not get stuck in a 1-hop loop" do
+    swap1 = make_taxon_swap( committer: curator )
+    swap1.commit
+    swap2 = make_taxon_swap(
+      input_taxon: swap1.output_taxon,
+      output_taxon: swap1.input_taxon,
+      committer: curator
+    )
+    swap2.commit
+    expect( swap1.input_taxon.current_synonymous_taxon ).to be_nil
+    expect( swap1.output_taxon.current_synonymous_taxon ).to eq swap1.input_taxon
+  end
+  it "should not get stuck in a 2-hop loop" do
+    swap1 = make_taxon_swap( committer: curator )
+    swap1.commit
+    swap2 = make_taxon_swap(
+      input_taxon: swap1.output_taxon,
+      committer: curator
+    )
+    swap2.commit
+    swap3 = make_taxon_swap(
+      input_taxon: swap2.output_taxon,
+      output_taxon: swap1.input_taxon,
+      committer: curator
+    )
+    swap3.commit
+    expect( swap1.input_taxon.current_synonymous_taxon ).to be_nil
+    expect( swap1.output_taxon.current_synonymous_taxon ).to eq swap1.input_taxon
+  end
+  it "should be blank if swapped and then split" do
+    swap = make_taxon_swap( committer: curator )
+    swap.commit
+    split = make_taxon_split( committer: curator, input_taxon: swap.output_taxon )
+    split.commit
+    expect( swap.input_taxon.current_synonymous_taxon ).to be_blank
+  end
+end

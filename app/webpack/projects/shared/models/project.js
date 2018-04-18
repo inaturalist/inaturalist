@@ -6,6 +6,7 @@ import util from "../util";
 const Project = class Project {
   constructor( attrs ) {
     Object.assign( this, attrs );
+    this.is_traditional = this.project_type !== "collection" && this.project_type !== "umbrella";
     this.is_umbrella = ( this.project_type === "umbrella" );
     this.project_observation_rules = this.project_observation_rules || [];
     const mappings = {
@@ -32,6 +33,9 @@ const Project = class Project {
       ttl: 600,
       v: moment( this.updated_at ).format( "x" )
     };
+    if ( this.is_traditional ) {
+      this.search_params.collection_preview = true;
+    }
     this.setPreviewSearchParams( );
     const start = this.rule_observed_on || this.rule_d1;
     const end = this.rule_observed_on || this.rule_d2;

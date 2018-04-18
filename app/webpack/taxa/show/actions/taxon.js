@@ -17,10 +17,13 @@ import {
 import {
   fetchMonthFrequency,
   fetchMonthOfYearFrequency,
-  resetObservationsState
+  resetObservationsState,
+  fetchMonthOfYearFrequencyBackground,
+  fetchMonthFrequencyBackground
 } from "../ducks/observations";
 import { fetchLeaders, resetLeadersState } from "../ducks/leaders";
 import { windowStateForTaxon } from "../../shared/util";
+import { setConfig } from "../../../shared/ducks/config";
 
 export function fetchTaxonAssociates( t ) {
   return ( dispatch, getState ) => {
@@ -38,13 +41,10 @@ export function fetchTaxonAssociates( t ) {
       dispatch( setCount( "taxonSchemesCount", taxon.taxon_schemes_count ) );
     }
     dispatch( fetchNames( ) );
-    dispatch( fetchLeaders( taxon ) ).then( ( ) => {
-      dispatch( fetchTerms( ( ) => {
-        dispatch( fetchMonthOfYearFrequency( taxon ) ).then( ( ) => {
-          dispatch( fetchMonthFrequency( taxon ) );
-        } );
-      } ) );
-    } );
+    dispatch( fetchLeaders( taxon ) )
+      .then( ( ) => dispatch( fetchTerms( ) ) )
+      .then( ( ) => dispatch( fetchMonthOfYearFrequency( taxon ) ) )
+      .then( ( ) => dispatch( fetchMonthFrequency( taxon ) ) );
     if ( taxon.complete_species_count ) {
       dispatch( fetchSpecies( ) );
     }
@@ -86,5 +86,17 @@ export function showNewTaxon( taxon, options ) {
       document.title = s.title;
       dispatch( fetchTaxonAssociates( taxon ) );
     } );
+  };
+}
+
+export function setScaledPreference( pref ) {
+  return ( dispatch, getState ) => {
+    dispatch( setConfig( { prefersScaledFrequencies: pref } ) );
+    if ( !getState( ).observations.monthOfYearFrequency.background ) {
+      dispatch( fetchMonthOfYearFrequencyBackground( ) );
+    }
+    if ( !getState( ).observations.monthFrequency.background ) {
+      dispatch( fetchMonthFrequencyBackground( ) );
+    }
   };
 }

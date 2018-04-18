@@ -16,7 +16,10 @@
   %ul.breadcrumb.clearfix
     %li
       - if @trip.parent.is_a?(Project)
-        = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
+        - if @trip.parent.is_new_project?
+          = link_to t( :x_project_journal, project: strip_tags( @parent.title ), name: t( :news ) ), project_journal_path(@trip.parent)
+        - else
+          = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
       - elsif @trip.parent.is_a?(Site)
         = link_to t(:x_blog, x: @trip.parent.name), site_posts_path
       - else

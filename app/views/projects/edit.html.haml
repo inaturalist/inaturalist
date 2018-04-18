@@ -1,0 +1,22 @@
+- content_for(:title) do
+  = raw @title = t( :editing_project, project: @project.title )
+#pageheader.clear
+  .breadcrumbs
+    %strong
+      = link_to "&laquo #{h @project.title}".html_safe, @project, :class => 'crumb'
+  %h2= @title
+
+- if @project.can_be_converted_to_collection_project? && current_user.has_role?(:admin)
+  .bootstrap
+    .row
+      .col-xs-12
+        .box.text-center.upstacked
+          It looks like this project can be converted to a new
+          = succeed "." do
+            = link_to '"Collection" project', "/blog/15450-announcing-changes-to-projects-on-inaturalist"
+          %br
+          You can preview what your project would look like by
+          = succeed "." do
+            = link_to "clicking here", project_path(@project, collection_preview: true)
+
+= render :partial => 'form'

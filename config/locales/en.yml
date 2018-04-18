@@ -80,6 +80,9 @@ en:
   x_faves:
     one: '1 fave'
     other: '%{count} faves'
+  x_flags_resolved_html:
+    one: "<span class='count'>1</span> flag resolved"
+    other: "<span class='count'>%{count}</span> flags resolved"
   x_people_like_this:
     one: '1 person likes this'
     other: '%{count} people like this'
@@ -107,9 +110,15 @@ en:
   x_research_grade_observations_to_species_html:
     one: "<span class='count'>1</span> research-grade observation ID'd to species or lower</span>"
     other: "<span class='count'>%{count}</span> research-grade observations ID'd to species or lower</span>"
+  x_taxa_curated_html:
+    one: "<span class='count'>1</span> taxon curated"
+    other: "<span class='count'>%{count}</span> taxa curated"
   x_taxa_matching_current_filters: 
     one: "1 taxon matching current filters"
     other: "%{count} taxa matching current filters"
+  x_taxon_changes_added_html:
+    one: "<span class='count'>1</span> taxon change added"
+    other: "<span class='count'>%{count}</span> taxon changes added"
   a: a
   a_: a
   a_community_for_naturalist: A Community for Naturalists
@@ -182,6 +191,11 @@ en:
   add_an_observation: Add an observation
   add_an_observation?: Add an observation?
   add_an_observation_of: "Add an observation of %{taxon}"
+  add_annotations_for_x: Add annotations for "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Add annotations for "Sex"
+    plant_phenology: Add annotations for "Plant Phenology"
+    life_stage: Add annotations for "Life Stage"
   add_another: Add another
   add_another_flag: Add another flag
   add_another_photo: Add another photo
@@ -198,6 +212,7 @@ en:
   add_custom_project_fields: Add custom project fields
   add_edit_flags: Add/Edit Flags
   add_edit_more_fields: Add/edit more fields
+  add_editor: Add Editor
   add_description: "Add %{description_name}"
   add_field: Add field
   add_from_your_observations: Add from your observations
@@ -2959,6 +2974,7 @@ en:
   reject?: Reject?
   reject_the_community_id: reject the community ID
   related_species: Related Species
+  relative_observations: Relative Observations
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
@@ -3158,9 +3174,9 @@ en:
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
   show: Show
   show_active_and_inactive_taxa: Show active and inactive taxa
-  show_default_taxon_photos: show default taxon photos
   show_common_names: Show common names
   show_counts: Show counts based on the list.
+  show_default_taxon_photos: show default taxon photos
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_kml: Show KML
   show_less: Show less
@@ -3169,16 +3185,18 @@ en:
   show_observations_from: Show observations by
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
+  show_relative_proportions_of_all_observations: Show relative proportions of all observations
   show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
+  show_taxa_from_everywhere: "Show taxa from everywhere"
+  show_taxa_from_place: "Show taxa from %{place}"
+  show_total_counts: Show total counts
   show_total_listed_taxa: Show total listed taxa
+  show_uncountable_species: Show uncountable species
   showing_observations_by: showing observations by
   showing_one_to: Showing 1 - 
-  showing_taxa_from_place: "Showing taxa from %{place}"
-  show_taxa_from_place: "Show taxa from %{place}"
   showing_taxa_from_everywhere: "Showing taxa from everywhere"
-  show_taxa_from_everywhere: "Show taxa from everywhere"
-  show_uncountable_species: Show uncountable species
+  showing_taxa_from_place: "Showing taxa from %{place}"
   shown_publicly_as: Shown publicly as
   sign_in: Sign In
   sign_in_with_provider: "Sign in with %{provider}"
@@ -4977,9 +4995,10 @@ en:
       formatting_simple_help: "Automatically link URLs and insert line breaks."
     projects:
       project_type: Project Type
-      regular: Regular
+      collection: Collection
       umbrella: Umbrella
       tracks_multiple_projects: tracks multiple projects
+      projects_included: Projects Included
       curator_coordinate_access_desc_html: |
         Remember, <strong>project curators can add any of your observations to
         their project</strong> unless you've opted out in your <a
@@ -5125,16 +5144,18 @@ en:
             invitation.
       new:
         a_project_allows_you_to_gather: |
-          A project allows you to gather and visualize observations using the core iNaturalist
+          A collection project allows you to gather and visualize observations using the core iNaturalist
           search tools. This eliminates the need to manually add observations because everything
           that meets the parameters set by the project will be automatically included.
         an_umbrella_project_can_be_used_to: |
-          An umbrella project can be used to compare statistics across two or more Automatic or
-          Traditional Projects. The other projects need to be created before you can create an
+          An umbrella project can be used to compare statistics across two or more Collection or
+          Traditional Projects. The other projects need to exist before you can add them to an
           umbrella project. You can include hundreds of projects under a single umbrella. Umbrella
           projects cannot contain other umbrella projects.
         can_be_included_in_multiple: Can be included in multiple umbrella projects
         click_through_to_individual_projects: Click through to individual projects
+        collection_projects: Collection Projects
+        collection_project_features: "Collection Project features:"
         custom_banner_icon_and_project_description: Custom banner, icon, and project description
         data_visualizations: Data visualizations
         delete_project: Delete Project
@@ -5152,10 +5173,12 @@ en:
           No need to rely on manual addition of observations or on the aggregator to index observations
         note_these_users_will_be_able_to_edit: |
           Note: these users will be able to edit ALL project details including admins.
+        note_you_can_delete_the_time: |
+          (Note: you can delete the time zone and precise times if you want to include whole days.)
         or_drag_and_drop: (or drag and drop)
         please_specify_the_requirements: |
           Please specify the requirements for the observations to be added to this project.
-          You can have multiple species and places.
+          You can select multiple species, places, and users to be automatically included.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
@@ -5170,16 +5193,17 @@ en:
           Give a concise explanation of your project. Approximately the first 200 characters will
           be visible to the right of the project home screen banner so put the best stuff first!
         project_summary_placeholder: Discover and track the birds of Golden Gate Park...
-        projects_features: "Projects features:"
         start_and_end_times_for_bioblitzes: Start and end times for bioblitzes
-        umbrella_projects_features: "Umbrella Projects features:"
+        umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
         users_can_follow_your_project: Users can follow your project for updates via journal posts
+        use_this_link_to_create_html: |
+          Use <a href="%{url}">this link</a> to create a traditional project instead.
         visual_comparison_of_data_among: Visual comparisons of data among projects under the umbrella
         we_have_redesigned_projects: |
-          We've redesign projects to automatically include all of the observations that fir the
+          We redesigned projects to automatically include all of the observations that fit the
           places, taxa, users, quality, and dates that you define. Choose between two types:
-          Projects and Umbrella Projects, which share the following features:
+          Collection Projects and Umbrella Projects, which share the following features:
         welcome_to_projects: Welcome to Projects!
       project_location_privacy_notice_html: |
         <p>
@@ -5374,6 +5398,20 @@ en:
           looking at any field with the word "phenology" in its name and
           "flower" or "fruit" in the value, so the "Flowering Phenology" field
           is a good one to use.
+        charts_help_relative_observations: |
+          Showing frequency as a relative proportion of all observations helps
+          smooth out the effect of the overall growth of the site. For example,
+          if the site is growing as we get more observations with every passing
+          year, we get more observations of any individual taxon, which doesn't
+          tell you anything about whether there are more of that taxon around to
+          observe, just that there are more people observing it. Showing the
+          relative proportion means that if there are 100 observations total but
+          20 observations of this taxon, the proportion is 0.2 (20 / 100). If
+          people observe 2000 observations the next year and 400 observations of
+          this taxon, the proportion is still 0.2 (400 / 2000). This causes some
+          abberrations when there are very few observers in an area, or for taxa
+          that are very infrequently observed, but that's true of total counts
+          as well.
         complete_taxon_desc: |
           "Complete" taxa have all of their descendant, extant taxa of a
           specific rank present in the site's database. When a taxon is
@@ -5404,6 +5442,7 @@ en:
           "Insect life stage=nymph": Nymph
           "Insect life stage=pupa": Pupa
           "Insect life stage=adult": Adult
+          unannotated: No Annotation
         photo_chooser_modal_desc: |
           Drag photos here from the left, or drag photos here to re-arrange.
         photo_chooser_modal_explanation: |
@@ -5727,8 +5766,10 @@ en:
       one: hour
       other: hours
     countdown_x_minutes:
+      one: min
       other: min
     countdown_x_seconds:
+      one: sec
       other: sec
     prompts:
       day: Day
@@ -5852,6 +5893,8 @@ en:
     errors:
       <<: *errors
     models:
+      AssessmentSection: Assessment Section
+      Atlas: Atlas
       CompleteSet: Complete Set
       TaxonLink: Taxon Link
     attributes:

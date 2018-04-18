@@ -181,12 +181,19 @@ class UsersController < ApplicationController
 
     @curators_key = "users_index_curators_#{I18n.locale}_#{@site.name}_4"
     unless fragment_exist?(@curators_key)
-      @curators = User.curators.limit(500).includes(:roles)
+      @curators = User.curators.limit(500).includes(:roles).order( "updated_at DESC" )
       @curators = @curators.where("users.site_id = ?", @site) if @site && @site.prefers_site_only_users?
       @curators = @curators.reject(&:is_admin?)
       @updated_taxa_counts = Taxon.where("updater_id IN (?)", @curators).group(:updater_id).count
       @taxon_change_counts = TaxonChange.where("user_id IN (?)", @curators).group(:user_id).count
       @resolved_flag_counts = Flag.where("resolver_id IN (?)", @curators).group(:resolver_id).count
+      @curators = @curators.sort_by do |u|
+        -1 * (
+          @resolved_flag_counts[u.id].to_i +
+          @updated_taxa_counts[u.id].to_i +
+          @taxon_change_counts[u.id].to_i
+        )
+      end
     end
 
     respond_to do |format|

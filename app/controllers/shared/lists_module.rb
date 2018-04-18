@@ -18,7 +18,7 @@ module Shared::ListsModule
     @view = params[:view] || params[:view_type]
     @observable_list = @list
     @q = params[:q] unless params[:q].blank?
-    @search_taxon_ids = set_search_taxon_ids(@q)
+    @search_taxon_ids ||= set_search_taxon_ids(@q)
     unless @search_taxon_ids.blank?
       @find_options[:conditions] = update_conditions(@find_options[:conditions], ["AND listed_taxa.taxon_id IN (?)", @search_taxon_ids])
     end
@@ -401,10 +401,20 @@ private
     unpaginated_listed_taxa
   end
 
-  def set_search_taxon_ids(q)
+  def set_search_taxon_ids( q )
     return [] if q.blank?
     @search_taxon_ids = Taxon.elastic_search(
-      filters: [ { match: { "names.name": @q } } ]).per_page(1000).map(&:id)
+      filters: [
+        {
+          nested: {
+            path: "names",
+            query: {
+              match: { "names.name": { query: q, operator: "and" } }
+            }
+          }
+        }
+      ]
+    ).per_page(1000).map(&:id)
   end
 
   def get_iconic_taxon_counts(list, iconic_taxa = nil, listed_taxa = nil)

@@ -73,6 +73,20 @@ export function setMonthOfYearFrequecy( key, frequency ) {
   };
 }
 
+export function fetchMonthFrequencyBackground( ) {
+  return ( dispatch, getState ) => {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      date_field: "observed",
+      interval: "month"
+    } );
+    delete params.taxon_id;
+    return inatjs.observations.histogram( params ).then( response => {
+      dispatch( setMonthFrequecy( "background", response.results.month ) );
+      return new Promise( ( resolve ) => resolve( response.results.month ) );
+    } );
+  };
+}
+
 export function fetchMonthFrequencyVerifiable( ) {
   return ( dispatch, getState ) => {
     const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
@@ -101,10 +115,30 @@ export function fetchMonthFrequencyResearchGrade( ) {
 }
 
 export function fetchMonthFrequency( ) {
-  return dispatch => Promise.all( [
-    dispatch( fetchMonthFrequencyVerifiable( ) ),
-    dispatch( fetchMonthFrequencyResearchGrade( ) )
-  ] );
+  return ( dispatch, getState ) => {
+    const promises = [
+      dispatch( fetchMonthFrequencyVerifiable( ) ),
+      dispatch( fetchMonthFrequencyResearchGrade( ) )
+    ];
+    if ( getState( ).config.prefersScaledFrequencies ) {
+      promises.push( dispatch( fetchMonthFrequencyBackground( ) ) );
+    }
+    Promise.all( promises );
+  };
+}
+
+export function fetchMonthOfYearFrequencyBackground( ) {
+  return ( dispatch, getState ) => {
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      date_field: "observed",
+      interval: "month_of_year"
+    } );
+    delete params.taxon_id;
+    return inatjs.observations.histogram( params ).then( response => {
+      dispatch( setMonthOfYearFrequecy( "background", response.results.month_of_year ) );
+      return new Promise( ( resolve ) => resolve( response.results.month_of_year ) );
+    } );
+  };
 }
 
 export function fetchMonthOfYearFrequencyVerifiable( ) {
@@ -140,6 +174,9 @@ export function fetchMonthOfYearFrequency( ) {
       dispatch( fetchMonthOfYearFrequencyVerifiable( ) ),
       dispatch( fetchMonthOfYearFrequencyResearchGrade( ) )
     ];
+    if ( getState( ).config.prefersScaledFrequencies ) {
+      promises.push( dispatch( fetchMonthOfYearFrequencyBackground( ) ) );
+    }
     const fieldValues = getState( ).taxon.fieldValues;
     if ( fieldValues && _.size( fieldValues ) > 0 ) {
       _.each( fieldValues, values => {

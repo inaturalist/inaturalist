@@ -223,11 +223,12 @@ body>div>.popover[role="tooltip"].popover-error {
   }
   .icon-preview {
     line-height: 30px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     & > span {
-      margin-right: -35px;
+      max-width: 80%;
+      display: inline-block;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     & > .fa {
       float: right;
@@ -261,14 +262,9 @@ body>div>.popover[role="tooltip"].popover-error {
     button {
       margin-right: 5px;
     }
-    &.icon {
-      .icon-preview > span {
-        margin-right: -85px;
-      }
-    }
     &.banner {
       .icon-preview > span {
-        margin-right: -120px;
+        max-width: 66%;
       }
     }
   }
@@ -303,6 +299,11 @@ body>div>.popover[role="tooltip"].popover-error {
     }
     label[for="project-date-type-exact"] + div .input-group.date {
       width: 120px;
+    }
+    .date-range-col .help-text {
+      display: block;
+      margin-bottom: 3px;
+      margin-left: 0px;
     }
   }
   .buttons {
@@ -408,7 +409,7 @@ body > div > .popover.color-picker {
   }
 }
 
-.ConfirmModal.confirm, .FlaggingModal.modal {
+.ConfirmModal.confirm {
   .modal-dialog {
     width: 500px;
     margin-top: 100px;
@@ -434,5 +435,29 @@ body > div > .popover.color-picker {
 .admins-row {
   .UserAutocomplete input {
     max-width: 250px;
+  }
+}
+
+.admin-tools {
+  border: 1px solid $border-grey;
+  padding: 15px;
+  background: white;
+}
+
+@media (min-width: 768px) {
+  .bootstrap .container {
+    width: auto;
+  }
+}
+
+@media (min-width: 992px) {
+  .bootstrap .container {
+    width: 970px;
+  }
+}
+
+@media (min-width: 1200) {
+  .bootstrap .container {
+    width: 1170px;
   }
 }

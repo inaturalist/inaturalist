@@ -224,7 +224,7 @@ const PhotoBrowser = ( {
                     onSelect={ ( event, key ) => setTerm( attr.id, key ) }
                   >
                     <Dropdown.Toggle bsClass="link">
-                      { attr.label }:&nbsp;
+                      { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }:&nbsp;
                       <strong>{
                         ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
                           I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,

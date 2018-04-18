@@ -82,7 +82,7 @@ class Project < ActiveRecord::Base
       header_image_url: cover.blank? ? nil : FakeView.asset_url( cover.url, host: Site.default.url ),
       header_image_file_name: cover_file_name,
       project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json),
-      search_parameters: search_parameters.map{ |field,value|
+      search_parameters: collection_search_parameters.map{ |field,value|
         type = "keyword"
         if [ "d1", "d2", "observed_on" ].include?( field )
           type = "date"
@@ -101,7 +101,7 @@ class Project < ActiveRecord::Base
         doc[:"value_#{type}"] = value
         doc
       },
-      search_parameter_fields: search_parameters,
+      search_parameter_fields: collection_search_parameters,
       subproject_ids: project_type === "umbrella" ? project_observation_rules.select{ |rule|
         rule.operator == "in_project?"
       }.map( &:operand_id ) : [],
@@ -114,6 +114,7 @@ class Project < ActiveRecord::Base
       rule_preferences: preferences.
         select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !v.blank? }.
         map{ |k,v| { field: k.sub("rule_",""), value: v } },
+      featured_at: featured_at,
       created_at: created_at,
       updated_at: updated_at
     }

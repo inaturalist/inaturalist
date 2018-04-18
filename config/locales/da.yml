@@ -18,9 +18,9 @@ da:
     i en kommentar.
   we_also_support: |-
     Vi understøtter også <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Foto´s</a> og
+    <a href="http://photos.google.com">Google Fotos</a> og
     <a href="http://facebook.com">Facebook</a>
-    til billedvisning.
+    til billeddeling.
   a_default_taxon_name_will_automatically_created: Et standard taksonnavn vil automatisk
     blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den
     nye takson, vil du kunne tilføje andre navne her (lokale navne, forældede videnskabelige
@@ -132,7 +132,7 @@ da:
   about_charts: Om diagrammer
   about_community_taxa: Om fællesskabs taksa
   about_complete_taxa: Om komplet taksa
-  about_conservation_status: Om bevarings status
+  about_conservation_status: Om bevaringsstatus
   about_editing_observation_fields: Om redigering af observationsfelter
   about_establishment_means: Om oprindelse
   about_external_links: Om eksterne links
@@ -166,7 +166,7 @@ da:
   activate_user: Aktivér bruger
   active: aktiv
   activity: Aktivitet
-  activity_settings: Aktivitets indstillinger
+  activity_settings: Aktivitetsindstillinger
   adapted_by_name_from_a_work_by_original: Tilpasset efter %{name} fra et værk af
     %{original}
   add: Tilføj
@@ -774,6 +774,7 @@ da:
   change_your_password: Ændre din adgangskode
   changing_the_geoprivacy: Ændring af geofortrolighed ændrer hvordan andre personer
     ser placeringen af din observation.
+  check_back_soon: Kig ind snart!
   check_here_to_autoload_description: Sæt markering her for at auto-indlæse en Wikipedia
     beskrivelse. Du vil muligvis fjerne markeringen igen, når et taksons videnskabelige
     navn også er et ikke-videnskabeligt ord eller en almindelig fejlstavning, som
@@ -1004,7 +1005,7 @@ da:
     attribution_sharealike_license: Kildeangivelse - Del på samme måde licens
     attribution_noderivs_license: Kildeangivelse - Ingen bearbejdning licens
     gnu_free_documentation_license: GNU Free Dokumentations Licens
-  copyright_holder: Indehaver af ​​ophavsretten
+  copyright_holder: Ophavsret
   copyright_info: Ophavsret info
   copyright_info_and_more: Ophavsret info og mere
   copyright_infringement_desc: Overtræder ophavsretsloven eller er blevet oprettet
@@ -1374,6 +1375,7 @@ da:
   facebook_needs_the_owner_of_that_photo_to: Facebook ønsker at ejeren af dette foto
     bekræfter deres forbindelse til %{site_name_short}
   facebook_options: Facebook valg
+  facts_and_stats: Fakta og statistik
   failed_to_find_your_location: Kunne ikke finde din placering.
   failed_to_repair_photo: 'Kunne ikke reparere foto: %{errors}'
   failed_to_save_record: Kunne ikke gemme registreringen. Prøv igen senere.
@@ -1396,6 +1398,7 @@ da:
   feeds: Feeds
   feeds_for_current_filters: Feeds for aktuelle filtre
   failed: Mislykkedes
+  field_guides: Feltguider
   field_note: <strong>OBS:</strong> Hvis du vil oprette et felt, skal du tjekke om
     en anden allerede har oprettet det for at undgå dobbeltarbejde.
   fields: felter
@@ -1612,8 +1615,8 @@ da:
   help_confirm_observations!: Hjælp med at bekræfte observationer!
   help_faq: Hjælp / FAQ
   help_out!: Hjælp!
-  helped_the_observer_make: hjalp observatøren til at finde deres endelige id (dvs.
-    de blev lavet før det endelige id og de matcher det)
+  helped_the_observer_make: hjalp observatøren til at finde deres endelige Id (dvs.
+    de blev lavet før det endelige Id og de matcher det)
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
   here_are_our_top_species_suggestions: Her er vores topforslag til art
   here_are_some_things_you_can_do_meantime: 'Her er nogle ting du kan gøre i mellemtiden:'
@@ -2040,8 +2043,10 @@ da:
     bg: Bulgarsk
     br: Bretonsk
     ca: Catalansk
+    cs: Tjekkisk
     da: Dansk
     de: Tysk
+    el: Græsk
     en-US: Engelsk (USA)
     en: Engelsk
     es-ES: Spansk (Spanien)
@@ -2154,8 +2159,8 @@ da:
   map_tooltip: Vis kortvisning
   map_for: Kort for
   mark_as_reviewed: Markér som gennemgået
-  mark_all_as_reviewed: Markér alle som revideret
-  mark_all_as_unreviewed: Markér alle som ikke revideret
+  mark_all_as_reviewed: Markér alle som gennemgået
+  mark_all_as_unreviewed: Markér alle som ikke gennemgået
   matched_several_different_taxa: matchede flere forskellige taksa
   matching_species_will_shown_up_here: Matchende arter vil dukke op her. Kortene viser
     et område, hvis %{place} har en for den pågældende art.
@@ -2207,7 +2212,7 @@ da:
       MM: '%dmo'
       "y": 1å
       yy: '%dy'
-  mon: Mån
+  mon: Man
   month: Måned
   months: Måneder
   months_ago: '%{text} siden'
@@ -2332,6 +2337,7 @@ da:
     %{site_name}
   new_user_rules: Nye brugerregler
   new_users_week: Nye brugere / Uge
+  news: Nyheder
   next: Næste
   next_observation: Næste observation
   next_page: Næste side
@@ -2389,6 +2395,7 @@ da:
   no_more_updates: Ikke flere opdateringer!
   no_nearby_observations: Ingen observationer i nærheden.
   no_new_messages: Ingen nye beskeder
+  no_news_yet: Ingen nyheder endnu
   no_observations: ingen observationer
   no_observations_from_this_place_yet: Ingen observationer fra dette sted endnu.
   no_observations_matching_those_ids: Ingen observationer matcher disse IDs.
@@ -2590,7 +2597,7 @@ da:
   observed_by: Observeret af
   observed_in_place?: Observeret ved sted
   observed_on: Observeret den
-  observed_one: observeret en
+  observed_one: observerede en
   observer: Observatør
   observers: Observatører
   observer_short: Observatør
@@ -2753,6 +2760,7 @@ da:
   our_blog: Vores blog
   out_of_range: Udenfor interval
   output_taxon: Output takson
+  overview: Overblik
   owner: Ejer
   parent: Overordnet
   parent_name: Overordnets navn
@@ -2797,7 +2805,7 @@ da:
     se det
   photo_hosting_accounts: 'Fotodelingtjenester:'
   photo_integration: Foto integration
-  photo_licensing: Foto licensering
+  photo_licensing: Fotolicens
   photo_type: Foto type
   photo_urls_repaired: Foto URLs repareret
   photos_chosen_for_this_taxon: Foto´s valgt for denne takson
@@ -3101,6 +3109,7 @@ da:
   project_preferred_count_description: |-
     Vil du have det samlede antal taksa for dit projekt rapporteret som
     arter, hvilken som helst takson, eller bare "blade" på det taksonomiske træ?
+  project_requirements: Projektkrav
   project_rules: Projektregler
   project_settings: Projekt indstillinger
   project_terms_and_rules: Projekt vilkår &amp; regler
@@ -3184,6 +3193,7 @@ da:
   ray_finned_fishes: strålefinnede fisk
   re_apply_list_rules: Genanvend listens regler
   re_order_photos: Ændre rækkefølgen for foto´s &raquo;
+  read_more: Læs mere
   read_our_getting_started_guide: læs vores "Kom godt igang" guide
   read_the_full_wikipedia: Læs hele Wikipedia beskrivelsen
   ready_to_get_started?: Klar til at komme i gang?
@@ -3855,8 +3865,8 @@ da:
     et link %{x} Måske vil du gerne <a href='http://en.wikipedia.org/wiki/%{x}'>lave
     en</a>?
   there_merge_problems_with_the_merge: 'Der var problemer med sammenlægningen: %{merged_errors}'
-  there_was_a_problem_saving_your_identification: Det var et problem med at gemme
-    din identifikation %{error}
+  there_was_a_problem_saving_your_identification: 'Det var et problem med at gemme
+    din identifikation: %{error}'
   there_were_errors: Der var fejl.
   there_were_problems_adding_taxa: Der var problemer med at tilføje disse taksa:%{errors}
   there_were_problems_adding_your_observation_to_this_project: 'Der var problemer
@@ -4087,7 +4097,7 @@ da:
   update_with_site_content: Opdatér med indhold fra %{site_name}
   updated: Opdateret
   updated_by: Opdateret af
-  updated_daily: Opdateret dagligt
+  updated_daily: Opdateres dagligt
   updated_photo: Opdateret foto
   upload: Upload
   upload_a_csv_file: Upload CSV fil
@@ -4463,7 +4473,7 @@ da:
     den lille pil øverst til højre på siden og benytte drop down menuen.
   you_can_change_your_new_passwd_after_logging_in: 'Du kan ændre din nye adgangskode
     efter at du logger ind her:'
-  you_can_choose_observations_associated: Du kan vælge observationer der skal forbindes
+  you_can_choose_observations_associated: Du kan vælge observationer, som skal forbindes
     med dette journalindlæg.
   you_can_edit_this_default_check_list_because: |-
     Du kan redigere denne standard tjekliste fordi du er en
@@ -4559,7 +4569,7 @@ da:
     class="readmore">blive medlem af dette projekt</a>
   youve_joined_the_x_project: Du er medlem af projektet %{project_invitation} og din
     observation blev tilføjet
-  your: Dine
+  your: Din
   your_: Din
   your_account_has_been_activated: Din konto er blevet aktiveret!
   your_account_has_been_verified: Din %{site_name} konto er blevet bekræftet! Log
@@ -4698,7 +4708,7 @@ da:
           indeholder en opsummering, når den er tilgængelig.
         eol_collection_desc_html: |-
           <a href="http://eol.org/" target="_blank"> Encyclopedia of Life (EOL) </a>
-          er et lager af oplysninger om livet på jorden. På EOL kan du oprette
+          er en kæmpe database med oplysninger om livet på jorden. På EOL kan du oprette
           <a href="http://eol.org/info/252" target="_blank"> samlinger </a>
           af arter. Hvis du vil importere arter fra en EOL-samling,
           så indsæt URL'en for denne samling her.
@@ -4791,7 +4801,7 @@ da:
       tags_help_html: |-
         Tags er som kategorier for artene i din Guide, bortset fra at
         flere arter kan have det samme tag. Indtast tags som en komma-
-        separeret liste her, f.eks. <code>lille,pelsagtig</code>. For at tilføje navngivne kategorier, brug tags som <code>category_name=category_value</code>,
+        separeret liste her, f.eks. <code>lille,pelsagtig</code>. For at tilføje navngivne kategorier, brug tags som <code>kategori_navn=kategori_værdi</code>,
         f.eks. <code>farve=gul</code>.
       sorts:
         default: Taksonomisk orden
@@ -4799,7 +4809,7 @@ da:
         alphadisplay: Alfabetisk efter visningsnavn
     guide_taxa:
       edit:
-        eol_explanation: Tilføj et fælles navn, op til 5 billeder, 1 beskrivelses
+        eol_explanation: Tilføj et lokalt navn, op til 5 billeder, 1 beskrivelses
           sektion og 1 kort fra EOL.
         site_explanation: Tilføj et almindeligt navn, op til 5 licenserede billeder,
           og en Wikipedia opsummering fra %{site_name}.
@@ -5107,10 +5117,10 @@ da:
         positioning_method: Hvordan koordinaterne blev bestemt
         positioning_device: Enhed, der bruges til at bestemme koordinater
       identify:
-        review_all_tooltip: Markér alle observationer på siden som gennemset
-        you_reviewed_message: Du har gennemset %{reviewed} af %{pageTotal} observationer
+        review_all_tooltip: Markér alle observationer på siden som gennemgået
+        you_reviewed_message: Du har gennemgået %{reviewed} af %{pageTotal} observationer
           på denne side ud af %{total} matchende observationer.
-        unreview_all_tooltip: Fjern gennemset status for alle observationer på siden
+        unreview_all_tooltip: Fjern gennemgået status for alle observationer på siden
       import:
         coordinate_systems_help: |-
           %{site_name} accepterer koordinater ved hjælp af flere forskellige koordinat
