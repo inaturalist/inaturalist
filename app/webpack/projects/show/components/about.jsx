@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import moment from "moment";
@@ -28,13 +29,40 @@ class About extends React.Component {
             <Col xs={ 7 }>
               <h1>{ project.title }</h1>
               <UserText text={ project.description } className="body" />
-              <div className="owner">
-                <UserImage user={ project.user } />
-                { I18n.t( "created_by" ) }:
-                <UserLink user={ project.user } />
-                <span className="date">
-                  - { moment( project.created_at ).format( "MMMM D, YYYY" ) }
+              <div className="attribution">
+                <span className="owner">
+                  <span className="type">
+                    { I18n.t( "created_by" ) }:
+                  </span>
+                  <UserImage user={ project.user } />
+                  <UserLink user={ project.user } /> <span className="date">
+                    - { moment( project.created_at ).format( "MMMM D, YYYY" ) }
+                  </span>
                 </span>
+                <table className="admins">
+                  <tbody>
+                    <tr>
+                      <td>
+                        <span className="type">
+                          { I18n.t( "project_admins", { count: project.admins.length } ) }:
+                        </span>
+                      </td>
+                      <td>
+                        <div>
+                          { _.map( project.admins, a => (
+                            <span className="project-admin">
+                              <span className="project-admin-span">
+                                <UserImage user={ a.user } />
+                                <UserLink user={ a.user } />
+                              </span>
+                              <span> </span>
+                            </span>
+                          ) ) }
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </Col>
             <Col xs={ 5 } className="requirements-col">

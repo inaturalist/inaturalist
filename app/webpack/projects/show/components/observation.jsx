@@ -2,6 +2,12 @@ import React, { PropTypes } from "react";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserImage from "../../../shared/components/user_image";
+import moment from "moment-timezone";
+
+const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
+if ( shortRelativeTime ) {
+  moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
+}
 
 const Observation = ( {
   observation,
@@ -12,6 +18,7 @@ const Observation = ( {
   backgroundSize,
   config
 } ) => {
+  const observedDate = observation.time_observed_at || observation.observed_on;
   let caption = (
     <div className="caption">
       <SplitTaxon
@@ -21,6 +28,33 @@ const Observation = ( {
         url={ `/observations/${observation.id}` }
       />
       <UserImage user={ observation.user } />
+      <div className="meta">
+        { observation.non_owner_ids.length > 0 && (
+          <span
+            className="count identifications"
+            title={
+              I18n.t( "x_identifications", { count: observation.non_owner_ids.length } )
+            }
+          >
+            <i className="icon-identification" />
+            { observation.non_owner_ids.length }
+          </span>
+        ) }
+        { observation.comments.length > 0 && (
+          <span
+            className="count comments"
+            title={ I18n.t( "x_comments", { count: observation.comments.length } ) }
+          >
+            <i className="icon-chatbubble" />
+            { observation.comments.length }
+          </span>
+        ) }
+        { observedDate && (
+          <span className="time" title={ `${I18n.t( "observed_on" )} ${observedDate}` }>
+            { moment( observedDate ).fromNow( ) }
+          </span>
+        ) }
+      </div>
     </div>
   );
   const style = { width, maxWidth: 2 * width };

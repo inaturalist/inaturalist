@@ -1,6 +1,8 @@
 import { connect } from "react-redux";
 import StatsTab from "../components/stats_tab";
-import { fetchIdentificationCategories,
+import {
+  fetchIdentificationCategories,
+  fetchPopularObservations,
   fetchQualityGradeCounts } from "../ducks/project";
 import { setConfig } from "../../../shared/ducks/config";
 
@@ -14,6 +16,7 @@ function mapStateToProps( state ) {
 function mapDispatchToProps( dispatch ) {
   return {
     fetchIdentificationCategories: ( ) => dispatch( fetchIdentificationCategories( ) ),
+    fetchPopularObservations: ( ) => dispatch( fetchPopularObservations( ) ),
     fetchQualityGradeCounts: ( ) => dispatch( fetchQualityGradeCounts( ) ),
     setConfig: attributes => dispatch( setConfig( attributes ) )
   };

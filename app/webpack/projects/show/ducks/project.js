@@ -45,6 +45,38 @@ export function fetchSubscriptions( ) {
   };
 }
 
+export function fetchFollowers( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const params = { id: state.project.id, per_page: 100 };
+    return inatjs.projects.followers( params ).then( response => {
+      dispatch( setAttributes( {
+        followers_loaded: true,
+        followers: response
+      } ) );
+    } ).catch( e => { } );
+  };
+}
+
+export function fetchPopularObservations( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project ) { return null; }
+    if ( project.popular_observations_loaded ) { return null; }
+    const params = Object.assign( { }, project.search_params, {
+      per_page: 47,
+      popular: true,
+      order: "votes"
+    } );
+    return inatjs.observations.search( params ).then( response => {
+      dispatch( setAttributes( {
+        popular_observations_loaded: true,
+        popular_observations: response
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function fetchRecentObservations( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
@@ -267,13 +299,14 @@ export function fetchOverviewData( ) {
     if ( project.project_type === "umbrella" ) {
       dispatch( fetchUmbrellaStats( ) );
     }
-    dispatch( fetchSubscriptions( ) );
     dispatch( fetchRecentObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
     dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchPosts( ) );
+    dispatch( fetchSubscriptions( ) );
+    dispatch( fetchFollowers( ) );
     dispatch( fetchIconicTaxaCounts( ) );
   };
 }
@@ -325,11 +358,14 @@ export function setSelectedTab( tab, options = { } ) {
 
 export function subscribe( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    if ( !state.project || !state.config.currentUser ) { return; }
-    const payload = { id: state.project.id };
-    inatjs.projects.subscribe( payload ).then( response => {
+    const { project, config } = getState( );
+    if ( !project || !config.currentUser ) { return; }
+    const payload = { id: project.id };
+    dispatch( setAttributes( { follow_status: "saving" } ) );
+    inatjs.projects.subscribe( payload ).then( ( ) => {
       dispatch( fetchSubscriptions( ) );
+      dispatch( fetchFollowers( ) );
+      dispatch( setAttributes( { follow_status: null } ) );
     } );
   };
 }

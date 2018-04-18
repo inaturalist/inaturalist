@@ -4,9 +4,9 @@ import { Grid, Row, Col } from "react-bootstrap";
 import Observation from "./observation";
 import InfiniteScroll from "react-infinite-scroller";
 
-const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore } ) => {
+const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, scrollIndex } ) => {
   if ( _.isEmpty( observations ) ) { return ( <span /> ); }
-  const scrollIndex = config.observationsScrollIndex || 30;
+  const index = scrollIndex || 30;
   const loader = ( <div className="loading_spinner huge" /> );
   return (
     <div className="ObservationFlexGridView">
@@ -19,7 +19,7 @@ const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore } )
               loader={ loader }
             >
               <div className="ObservationsGrid">
-                { observations.slice( 0, scrollIndex ).map( o => {
+                { observations.slice( 0, index ).map( o => {
                   let itemDim = 235;
                   let width = itemDim;
                   const dims = o.photos.length > 0 && o.photos[0].dimensions( );
@@ -54,6 +54,7 @@ ObservationsFlexGridView.propTypes = {
   hasMore: PropTypes.bool,
   infiniteScrollObservations: PropTypes.func,
   loadMore: PropTypes.func,
+  scrollIndex: PropTypes.number,
   observations: PropTypes.array
 };
 

@@ -4,7 +4,7 @@ import { Popover, OverlayTrigger } from "react-bootstrap";
 import UserImage from "../../../shared/components/user_image";
 /* global SITE */
 
-const UsersPopover = ( { keyPrefix, users, contents } ) => {
+const UsersPopover = ( { keyPrefix, users, contents, placement } ) => {
   if ( !users || users.length === 0 ) { return ( <div /> ); }
   const popover = (
     <Popover className="UsersPopoverOverlay" id={ `popover-${keyPrefix}` }>
@@ -30,7 +30,7 @@ const UsersPopover = ( { keyPrefix, users, contents } ) => {
     <OverlayTrigger
       trigger="click"
       rootClose
-      placement="top"
+      placement={ placement || "top" }
       animation={false}
       overlay={popover}
     >
@@ -44,7 +44,8 @@ const UsersPopover = ( { keyPrefix, users, contents } ) => {
 UsersPopover.propTypes = {
   keyPrefix: PropTypes.string,
   contents: PropTypes.object,
-  users: PropTypes.array
+  users: PropTypes.array,
+  placement: PropTypes.string
 };
 
 export default UsersPopover;
