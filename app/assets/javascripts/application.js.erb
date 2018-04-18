@@ -499,10 +499,14 @@ $(document).ready(function() {
     $( "#test-header .search input" ).universalAutocomplete( );
     function showHeaderSearch() {
       $( "#headersearch" ).addClass( "open" );
+      $( "#test-header" ).addClass( "search-open" );
       $( "#headersearch input" ).focus( );
+      updateSession( { header_search_open: true } );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
+      $( "#test-header" ).removeClass( "search-open" );
+      updateSession( { header_search_open: false } );
     }
     $( "#test-header .show-btn" ).click( showHeaderSearch );
     $( "#test-header .hide-btn" ).click( hideHeaderSearch );
