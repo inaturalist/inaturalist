@@ -797,7 +797,6 @@ ar:
   choose_cc_licensed_photos_html: اختر الصور <a href="http://creativecommons.org/">المفتوحة</a>-المرخصة
     من مواقع أخرى أو اختر من ملاحظات %{site_name}، حاول اختيار الصور التي <em>تعرض
     الميزات التشخيصية</em> و<em> تبدو جيدة كأيقونات</em>، <em>الأول هو الافتراضي</em>.
-  chose_columns: اختر الأعمدة
   choose_files: اختر الملفات
   choose_files_from_your_computer: اختيار الملفات من حاسوبك
   choose_from_your_lists: اختر من قوائمك
@@ -1575,6 +1574,8 @@ ar:
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
   here_are_some_things_you_can_do_meantime: 'إليك بعض الأشياء التي يمكنك القيام بها
     في هذه الأثناء:'
+  here_are_some_things_you_can_do_in_the_meantime: إليك بعض الأشياء التي يمكنك القيام
+    بها في غضون ذلك
   heres_a_litle_about: هنا القليل عن
   hex_color_eg: لون Hex، على سبيل المثال 65644F
   hi: مرحبًا،
@@ -2381,8 +2382,6 @@ ar:
   non_human?: غير بشري؟
   none: لا شيء
   none_found: لم يتم العثور على شيء
-  none_of_the_people_you_follow_have_updates: لم يقم أي من الأشخاص الذين تتابعهم بإجراء
-    أية تحديثات حتى الآن!
   normal: عادي
   not_completed: غير مكتمل
   not_evaluated: لم يتم تقييمه
@@ -4502,18 +4501,9 @@ ar:
     لهذه الملاحظة
   youve_seen_it_want_to: رأيت ذلك! تريد أن
   youve_successfully_linked_your_provider_account: لقد نجحت في ربط حسابك في %{provider}
-  zoom_in: تكبير
-  zoom_out: تصغير
-  zoom_photo: تكبير الصورة
-  zoom_to_taxon_name: تكبير إلى %{taxonname}
-  zoom_to_x: تكبير إلى %{x}
   your_dashboard_helps_you: تساعدك لوحة التحكم في تتبع ما يفعله الأشخاص على الموقع،
     لمتابعة تحديثات شخص ما; انقر على الرابط "متابعة [الاسم]" في الرأس عند عرض ملاحظاتهم
     أو ملفاتهم الشخصية.
-  here_are_some_things_you_can_do_in_the_meantime: إليك بعض الأشياء التي يمكنك القيام
-    بها في غضون ذلك
-  none_of_the_people_you_follow_have_any_updates_yet: لم يقم أي من الأشخاص الذين تتابعهم
-    بإجراء أية تحديثات حتى الآن!
   verifiable: يمكن التحقق منه
   views:
     views: العروض
@@ -5870,9 +5860,20 @@ ar:
         url: مسار
         geoprivacy: خصوصية جغرافية
         iucn: نظير الاتحاد الدولي لحفظ الطبيعة
+      flag:
+        reason: السبب
+        flag: علم
       guide:
         source_url: مسار المصدر
         published_at: منشور
+      listed_taxon:
+        occurrence_status_level: مستوى حالة الظهور
+        establishment_means: وسائل الإنشاء
+      observation:
+        geo_x: اتجاه الشرق
+        geo_y: اتجاه الشمال
+      observation_field_value:
+        value: قيمة
       project:
         title: العنوان
         project_icon: أيقونة المشروع
@@ -5904,14 +5905,11 @@ ar:
         place_type: نوع المكان
         prefers_check_lists: هل تم السماح بقوائم التحقق؟
         woeid: معرف أين على الأرض
-      flag:
-        reason: السبب
-        flag: علم
-      observation:
-        geo_x: اتجاه الشرق
-        geo_y: اتجاه الشمال
-      observation_field_value:
-        value: قيمة
+      source:
+        title: العنوان
+        in_text: في النص
+        url: مسار
+        citation: اقتباس
       taxon:
         name: اسم
         rank: المرتبة
@@ -5935,14 +5933,6 @@ ar:
         search_place_id: ابحث عن مكان
         place_id: مكان
         preferred_observation_fields_by: السماح بحقول الملاحظة من
-      source:
-        title: العنوان
-        in_text: في النص
-        url: مسار
-        citation: اقتباس
-      listed_taxon:
-        occurrence_status_level: مستوى حالة الظهور
-        establishment_means: وسائل الإنشاء
   i18n:
     inflections:
       :@vow_or_con:
@@ -5972,4 +5962,9 @@ ar:
     previous_label: '&#8592; السابق'
     next_label: التالي &#8594;
     page_gap: '&hellip;'
+  zoom_in: تكبير
+  zoom_out: تصغير
+  zoom_photo: تكبير الصورة
+  zoom_to_taxon_name: تكبير إلى %{taxonname}
+  zoom_to_x: تكبير إلى %{x}
 ...

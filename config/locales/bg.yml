@@ -1818,8 +1818,6 @@ bg:
     другите хора и създайте нови <a href="%{people_path}">запознанства</a>.
   youve_successfully_linked_your_provider_account: Успешно свързахте Вашия %{provider}
     акаунт
-  zoom_in: Приближи
-  zoom_out: Отдалечи
   your_dashboard_helps_you: Вашето информационно табло Ви държи в течение какво правят
     хората на сайта. За да следите обновленията на някого, щракнете препратката 'Следи
     [име]' отгоре, когато преглеждате неговите наблюдения или профил.
@@ -2211,15 +2209,17 @@ bg:
         parent_id: Обхващащо (по-голямо) място
         place_type: Вид на мястото
         prefers_check_lists: Позволи видови списъци?
+      source:
+        title: Заглавие
       taxon:
         rank: Ранг
         wikipedia_title: Заглавие в Уикипедия
         wikipedia_summary: Резюме от Уикипедия
-      source:
-        title: Заглавие
   wild: див
   will_paginate:
     previous_label: '&#8592; Пред.'
     next_label: След. &#8594;
     page_gap: '&hellip;'
+  zoom_in: Приближи
+  zoom_out: Отдалечи
 ...

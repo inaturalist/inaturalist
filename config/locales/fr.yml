@@ -452,6 +452,7 @@ fr:
     x_other_animals:
       one: 1 autre animal
       other: '%{count} autres animaux'
+  all_taxa_: Tous les taxons
   all_taxa_in_this_guide: Tous les taxons dans ce guide
   all_taxonomic_groups: '&laquo; Tous les groupes taxinomiques'
   all_updates: Toutes les mises à jour
@@ -502,6 +503,7 @@ fr:
   announcement_was_successfully_updated: L’annonce a bien été mise à jour.
   announcements: Annonces
   any: tous
+  any_: Tous
   apply_to_selected: Appliquer à la sélection
   apply_captive_cultivated: Appliquer la caractéristique captif/cultivé
   apply_fields: Appliquer les champs
@@ -634,6 +636,7 @@ fr:
   back_to_browsing_people: Retourner à l’exploration par personne
   back_to_calendar: Retourner au calendrier de %{user}
   back_to_editing_observation: Retourner à la modification des observations
+  back_to_friends: Retour aux amis
   back_to_help: Retourner à l’aide
   back_to_import: Retourner à l’importation
   back_to_lists: Retourner aux listes de %{name}
@@ -734,6 +737,7 @@ fr:
   card: Carte
   case_plural: s
   casual: occasionnel
+  casual_: Occasionnel
   catalogue_of_life: Catalogue of Life
   categories: catégories
   cc_0_description: Cette licence place votre travail dans le domaine public, de telle
@@ -890,7 +894,6 @@ fr:
     d’%{site_name}. Essayez de choisir des images qui <em>affichent des
     fonctionnalités de diagnostic</em> et <em>s’affichent bien comme
     icônes</em>.  La <em>première est l’icône par défaut</em>.
-  chose_columns: Choisissez les colonnes
   choose_files: Choisir les fichiers
   choose_files_from_your_computer: choisissez les fichiers à partir de votre ordinateur
   choose_from_your_lists: Choisissez à partir de vos listes
@@ -1202,6 +1205,7 @@ fr:
       ''Samedi'']'
     dayNamesShort: '[''Dim'',''Lun'',''Mar'',''Mer'',''Jeu'',''Ven'',''Sam'']'
     dayNamesMin: '[''Di'',''Lu'',''Ma'',''Me'',''Je'',''Ve'',''Sa'']'
+    range: Intervalle
   date_specified: Date spécifiée
   date_time: Horodatage
   dates: dates
@@ -1371,6 +1375,7 @@ fr:
   editing_taxon_range: Modification de l’aire de répartition de taxon
   editing_this: Modification de %{elem}
   editing_x_in_y: Modification de %{x} dans %{y}
+  editors: Contributeurs
   eg: par ex.
   either: Soit
   either_that_user_doesnt_exist_or: Cet utilisateur n’existe pas ou vous le suivez
@@ -1394,6 +1399,7 @@ fr:
   enlarge: Agrandir
   encompassing_places: Lieux encerclés
   end: Fin
+  end_date_time: Date / heure de fin
   endangered: en voie de disparition
   endemic: endémique
   endemic_to_x: Endémique à %{x}
@@ -1683,6 +1689,7 @@ fr:
   has_been: a été
   has_id_supported_by_two_or_more: Possède un ID établi par au moins deux
   has_one_or_more_faves: A un ou plusieurs favoris
+  has_photo: a des photos
   has_photos: a des photos
   has_photos_or_sounds: A des photos ou des sons
   has_sounds: a des sons
@@ -1717,6 +1724,8 @@ fr:
     favorites
   here_are_some_things_you_can_do_meantime: Voici certaines choses que vous pouvez
     faire pendant ce temps
+  here_are_some_things_you_can_do_in_the_meantime: Voici des choses que vous pourriez
+    faire en attendant
   heres_a_litle_about: Voici un petit sujet
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
@@ -2179,6 +2188,7 @@ fr:
   localized_species_accounts: Comptes d’espèces localisées
   location: Emplacement
   location_: Emplacement
+  locations: Emplacements
   location_is_accurate: L’emplacement est exact
   location_is_exact: l’emplacement est exact
   location_is_public: L’emplacement est public
@@ -2278,6 +2288,7 @@ fr:
   maverick: Maverick
   maybe_your_signed_in_with: Êtes-vous peut-être connecté avec votre compte %{omniauth}?
   media: Média
+  media_type: Type de média
   medium: moyen
   meet: Rencontrer
   member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
@@ -2563,8 +2574,6 @@ fr:
   non_human?: Non-humain ?
   none: Aucun
   none_found: Aucun trouvé
-  none_of_the_people_you_follow_have_updates: Aucune des personnes que vous suivez
-    n’a encore fait de mise à jour!
   normal: normal
   not_completed: Incomplet
   not_evaluated: non évalué
@@ -3326,6 +3335,7 @@ fr:
     form: forme
     infrahybrid: sous-hybride
     leaves: feuilles
+  ranges: Intervalles
   rare: Rare
   ray_finned_fishes: poissons à nageoires rayonnées
   re_apply_list_rules: Réappliquer les règles de la liste
@@ -3403,6 +3413,7 @@ fr:
   remove_observations:
     one: Supprimer 1 observation ?
     other: Supprimer %{count} observations ?
+  remove_photo: Supprimer la photo
   remove_place: Supprimer lieu
   remove_project_user: Supprimer l’utilisateur du projet
   remove_selected: Supprimer la sélection
@@ -3431,6 +3442,7 @@ fr:
   required_field: champ obligatoire
   required_columns_in_order: Colonnes obligatoires dans l’ordre
   research: recherche
+  research_: Recherche
   research_grade: calibre recherche
   research_grade_expandable_html: C<span class='full'>alibre </span> R<span class='full'>echerche</span>
   research_grade_short_html: C<span class='full'>alibre </span> R<span class='full'>echerche</span>
@@ -3847,6 +3859,7 @@ fr:
   synonyms: Synonymes
   table: Tableau
   table_of_contents: Table des matières
+  tag: Attribut
   tagging: Étiquetage en cours…
   tags: Étiquettes
   tags_are_a_way: Les étiquettes sont un moyen d’organiser vos observations. Par exemple,
@@ -3935,6 +3948,7 @@ fr:
   terms_of_service: Conditions d’utilisation
   terms_service: Conditions d’utilisation
   terrain: terrain
+  text: Texte
   text_: texte
   thanks_for_signing_up: Merci de votre inscription!
   thanks_for_using: Merci d’utiliser
@@ -4564,6 +4578,8 @@ fr:
   where_were_you?: Où étiez-vous?
   which_projects_can_add_your_observations?: Quels projets peuvent ajouter vos observations ?
   white: blanc
+  who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce
+    projet ?
   who_helped_user_the_most: Qui a le plus aidé %{user}
   who_user_helped_the_most: Qui %{user} a le plus aidé
   with_annotation: Avec annotation
@@ -4805,6 +4821,7 @@ fr:
   your_identification: Votre Identifiant
   your_inat_account_has_been_activated: Votre compte %{inat} a été activé.
   your_life_list: votre liste des êtres vivants!
+  your_membership: Votre adhésion
   your_month_observations: vos observations de %{month}
   your_name_was_saved: Votre nom a été enregistré.
   your_new_password_is: Votre nouveau mot de passe est
@@ -4855,18 +4872,9 @@ fr:
   youve_seen_it_want_to: Vous l’avez vu! Vous voulez
   youve_successfully_linked_your_provider_account: Vous avez bien lié votre compte
     %{provider}
-  zoom_in: Zoom avant
-  zoom_out: Zoom arrière
-  zoom_photo: Élargir la photo
-  zoom_to_taxon_name: Faites un zoom sur %{taxonname}
-  zoom_to_x: faites un zoom sur %{x}
   your_dashboard_helps_you: Votre tableau de bord vous aide à suivre ce que font les
     gens sur le site. Pour suivre les mises à jour de quelqu’un, cliquez sur le lien
     'Suivez [nom]' dans l’entête quand leur observation ou profil est affiché.
-  here_are_some_things_you_can_do_in_the_meantime: Voici des choses que vous pourriez
-    faire en attendant
-  none_of_the_people_you_follow_have_any_updates_yet: Aucune des personnes que vous
-    suivez n’a encore fait de mise à jour!
   verifiable: vérifiable
   views:
     views: Vues
@@ -5633,6 +5641,7 @@ fr:
       formatting_simple_help: Lier automatiquement les Url et insérer des sauts de
         lignes.
     projects:
+      project_type: Type de projet
       curator_coordinate_access_desc_html: |-
         Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
@@ -5776,6 +5785,10 @@ fr:
           Vous devez être invité à vous joindre à ce projet. Si vous voulez
           Joindre le projet, veuillez contacter un des responsables de l’organisation ci-dessous et demander une
           invitation.
+      new:
+        project_name: Nom du projet
+        use_this_link_to_create_html: Utilisez à la place,  <a href="%{url}">ce lien</a>
+          pour créer un projet traditionnel.
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement
@@ -6302,6 +6315,8 @@ fr:
       x_seconds:
         one: 1 seconde
         other: '%{count} secondes'
+    countdown_x_seconds:
+      other: seconde(s)
     prompts:
       day: Jour
       hour: Heure
@@ -6527,9 +6542,23 @@ fr:
         url: URL
         geoprivacy: Géoonfidentialité
         iucn: Équivalent de l’UICN
+      flag:
+        reason: Motif
+        flag: Drapeau
       guide:
         source_url: URL source
         published_at: Publication
+      listed_taxon:
+        occurrence_status_level: Niveau d’état de la présence
+        establishment_means: Moyens d’établissement
+      observation:
+        geo_x: Abscisse
+        geo_y: Ordonnée
+      observation_field_value:
+        value: valeur
+      post:
+        title: Titre
+        body: Corps
       project:
         title: Titre
         project_icon: Icône du projet
@@ -6561,14 +6590,11 @@ fr:
         place_type: Type de lieu
         prefers_check_lists: Listes de contrôle autorisées?
         woeid: WOEID
-      flag:
-        reason: Motif
-        flag: Drapeau
-      observation:
-        geo_x: Abscisse
-        geo_y: Ordonnée
-      observation_field_value:
-        value: valeur
+      source:
+        title: Titre
+        in_text: Dans le texte
+        url: URL
+        citation: Citation
       taxon:
         name: Nom
         rank: Rang
@@ -6592,14 +6618,6 @@ fr:
         search_place_id: Rechercher un lieu
         place_id: Endroit
         preferred_observation_fields_by: Autoriser les champs d’observation depuis
-      source:
-        title: Titre
-        in_text: Dans le texte
-        url: URL
-        citation: Citation
-      listed_taxon:
-        occurrence_status_level: Niveau d’état de la présence
-        establishment_means: Moyens d’établissement
   i18n:
     inflections:
       :@vow_or_con:
@@ -6629,4 +6647,9 @@ fr:
     previous_label: '&#8592; Précédent'
     next_label: Suivant &#8594;
     page_gap: '&hellip;'
+  zoom_in: Zoom avant
+  zoom_out: Zoom arrière
+  zoom_photo: Élargir la photo
+  zoom_to_taxon_name: Faites un zoom sur %{taxonname}
+  zoom_to_x: faites un zoom sur %{x}
 ...

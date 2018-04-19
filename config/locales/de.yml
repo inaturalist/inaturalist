@@ -828,7 +828,6 @@ de:
   choose_a_list_above: Wählen Sie eine der obigen Listen.
   choose_a_place: Wählen Sie einen Ort
   choose_a_taxon: Wählen Sie ein Taxon (optional)
-  chose_columns: Wählen Sie die Spalten aus
   choose_files: Dateien auswählen
   choose_files_from_your_computer: wählen Sie Dateien von Ihrem Computer aus
   choose_from_your_lists: Wählen Sie aus Ihren Listen
@@ -1392,6 +1391,8 @@ de:
   here_are_our_top_species_suggestions: Hier unsere top Arten-Vorschläge
   here_are_some_things_you_can_do_meantime: 'Hier sind ein paar Sachen die Sie in
     der Zwischenzeit tun können:'
+  here_are_some_things_you_can_do_in_the_meantime: Hier sind ein paar Dinge die Sie
+    in der Zwischenzeit tun können
   heres_a_litle_about: Hier ist etwas über
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
@@ -1937,8 +1938,6 @@ de:
   non_human?: Nichtmenschlich?
   none: Keine
   none_found: nichts gefunden
-  none_of_the_people_you_follow_have_updates: Niemand von den Personen, denen du folgst,
-    hat bisher irgendwelche Aktualisierungen gemacht!
   normal: normal
   not_completed: Nicht komplett
   not_evaluated: nicht beurteilt
@@ -2734,10 +2733,6 @@ de:
     Die können nur eine hinzufügen
   youve_successfully_linked_your_provider_account: Sie haben erfolgreich ihr %{provider}
     Konto verknüpft
-  zoom_in: Heranzoomen
-  zoom_out: Herauszoomen
-  here_are_some_things_you_can_do_in_the_meantime: Hier sind ein paar Dinge die Sie
-    in der Zwischenzeit tun können
   verifiable: überprüfbar
   views:
     views: Aufrufe
@@ -3109,9 +3104,13 @@ de:
         authority: Behörde
         place_id: Ort
         url: URL
+      flag:
+        reason: Grund
       guide:
         source_url: Quell-URL
         published_at: Publikation
+      observation_field_value:
+        value: Wert
       project:
         title: Titel
         project_icon: Projektsymbol
@@ -3131,10 +3130,11 @@ de:
         longitude: Längengrad
         name: Name
         prefers_check_lists: Checklisten erlaubt?
-      flag:
-        reason: Grund
-      observation_field_value:
-        value: Wert
+      source:
+        title: Titel
+        in_text: Im Text
+        url: URL
+        citation: Zitierung
       taxon:
         name: Name
         rank: Rang
@@ -3145,11 +3145,6 @@ de:
         source_url: Quell-URL
       taxon_name:
         source_url: Quellen-URL
-      source:
-        title: Titel
-        in_text: Im Text
-        url: URL
-        citation: Zitierung
   i18n:
     inflections:
       :@vow_or_con:
@@ -3179,4 +3174,6 @@ de:
     previous_label: '&#8592; Prev'
     next_label: Nächste &#8594;
     page_gap: '&hellip;'
+  zoom_in: Heranzoomen
+  zoom_out: Herauszoomen
 ...

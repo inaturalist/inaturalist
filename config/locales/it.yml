@@ -857,7 +857,6 @@ it:
     licenziate da altri siti o seleziona osservazioni da %{site_name}. Prova a scegliere
     immagini che <em>mostrano caratteri diagnostici</em> e <em>si prestano bene ad
     essere utilizzate come icone </em>.  La <em>prima e quella predefinita</em>.
-  chose_columns: Scegli colonne
   choose_files: Seleziona i file
   choose_files_from_your_computer: scegli dei file dal tuo computer
   choose_from_your_lists: Scegli tra le tue liste
@@ -1663,6 +1662,8 @@ it:
     per la specie
   here_are_some_things_you_can_do_meantime: 'Qui ci sono alcune cose che puoi fare
     fare nel frattempo:'
+  here_are_some_things_you_can_do_in_the_meantime: Ecco alcune cose che puoi fare
+    nel frattempo
   heres_a_litle_about: Ecco qualche info su
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
@@ -2489,8 +2490,6 @@ it:
   non_human?: Non umano?
   none: Nessuno
   none_found: Non trovato
-  none_of_the_people_you_follow_have_updates: Nessuna delle persone che segui ha ancora
-    fatto aggiornamenti!
   normal: normale
   not_completed: Non Completato
   not_evaluated: Non Valutata
@@ -4732,19 +4731,10 @@ it:
   youve_seen_it_want_to: L'hai visto! Vuoi
   youve_successfully_linked_your_provider_account: Hai collegato con successo il tuo
     account %{provider}
-  zoom_in: Zoom avanti
-  zoom_out: Zoom indietro
-  zoom_photo: Zoom sulla foto
-  zoom_to_taxon_name: Zoom su %{taxonname}
-  zoom_to_x: Zoom su %{x}
   your_dashboard_helps_you: La tua bacheca ti permette di tenere sotto controllo cosa
     stanno facendo le altre persone sul sito. Per seguire gli aggiornamenti di una
     persona, clicca il link 'Segui [nome]' nell'intestazione quando visualizzi le
     sue osservazioni o il suo profilo.
-  here_are_some_things_you_can_do_in_the_meantime: Ecco alcune cose che puoi fare
-    nel frattempo
-  none_of_the_people_you_follow_have_any_updates_yet: Ancora nessun aggiornamento
-    riguardo alle persone che segui!
   verifiable: verificabile
   views:
     views: Visualizzazioni
@@ -6191,9 +6181,20 @@ it:
         url: URL
         geoprivacy: Geoprivacy
         iucn: Equivalente IUCN
+      flag:
+        reason: Motivo
+        flag: Etichetta
       guide:
         source_url: URL sorgente
         published_at: Pubblicazione
+      listed_taxon:
+        occurrence_status_level: Stato della presenza
+        establishment_means: Origine del popolamento
+      observation:
+        geo_x: Est
+        geo_y: Nord
+      observation_field_value:
+        value: valore
       project:
         title: Titolo
         project_icon: Icona del Progetto
@@ -6225,14 +6226,11 @@ it:
         place_type: Tipo di luogo
         prefers_check_lists: Checklist consentita?
         woeid: WOEID
-      flag:
-        reason: Motivo
-        flag: Etichetta
-      observation:
-        geo_x: Est
-        geo_y: Nord
-      observation_field_value:
-        value: valore
+      source:
+        title: Titolo
+        in_text: Nel testo
+        url: URL
+        citation: Citazione
       taxon:
         name: Nome
         rank: Rango
@@ -6256,14 +6254,6 @@ it:
         search_place_id: Luogo di ricerca
         place_id: Luogo
         preferred_observation_fields_by: Permetti campi dell'osservazione da
-      source:
-        title: Titolo
-        in_text: Nel testo
-        url: URL
-        citation: Citazione
-      listed_taxon:
-        occurrence_status_level: Stato della presenza
-        establishment_means: Origine del popolamento
   i18n:
     inflections:
       :@vow_or_con:
@@ -6293,4 +6283,9 @@ it:
     previous_label: '&#8592; Precedente'
     next_label: Successivo &#8594;
     page_gap: '&hellip;'
+  zoom_in: Zoom avanti
+  zoom_out: Zoom indietro
+  zoom_photo: Zoom sulla foto
+  zoom_to_taxon_name: Zoom su %{taxonname}
+  zoom_to_x: Zoom su %{x}
 ...
