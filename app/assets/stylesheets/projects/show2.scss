@@ -50,6 +50,10 @@ a.UserImage {
   cursor: pointer;
 }
 
+.clicky {
+  cursor: pointer;
+}
+
 .loading_spinner.huge {
   display: block;
   margin: 0px auto;
@@ -221,22 +225,22 @@ button {
           border-radius: 100px;
           overflow: hidden;
           background: rgba(255, 255, 255, 0.1);
-          cursor: pointer;
           .action {
             display: inline-block;
             padding: 2px 8px 2px 10px;
+            min-width: 72px;
+            text-align: center;
           }
           .count {
+            cursor: pointer;
             display: inline-block;
             padding: 2px 10px 2px 5px;
             background: rgba(255, 255, 255, 0.2);
+            min-width: 50px;
+            text-align: center;
             i {
               padding-right: 5px;
               padding-left: 3px;
-            }
-            .loading_spinner {
-              margin-left: 0;
-              margin-right: 4px;
             }
           }
         }
@@ -1085,8 +1089,8 @@ button {
         .header-about-content .header-about-text {
           margin-top: 15px;
           font-size: 15px;
-          line-height: 18px;
-          max-height: 110px;
+          line-height: 19px;
+          max-height: 114px;
         }
       }
     }

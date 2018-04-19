@@ -361,8 +361,13 @@ export function subscribe( ) {
     const { project, config } = getState( );
     if ( !project || !config.currentUser ) { return; }
     const payload = { id: project.id };
-    dispatch( setAttributes( { follow_status: "saving" } ) );
+    dispatch( setAttributes( {
+      follow_status: "saving"
+    } ) );
     inatjs.projects.subscribe( payload ).then( ( ) => {
+      dispatch( setAttributes( {
+        currentUserSubscribed: !project.currentUserSubscribed
+      } ) );
       dispatch( fetchSubscriptions( ) );
       dispatch( fetchFollowers( ) );
       dispatch( setAttributes( { follow_status: null } ) );

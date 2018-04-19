@@ -56,13 +56,27 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
   const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
   const hasBanner = !!project.header_image_url;
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
+  let followLabel;
+  if ( loggedIn ) {
+    if ( project.follow_status === "saving" ) {
+      followLabel = ( <div className="loading_spinner" /> );
+    } else {
+      followLabel = project.currentUserSubscribed ? I18n.t( "unfollow" ) : I18n.t( "follow" );
+    }
+  } else {
+    followLabel = I18n.t( "followers" );
+  }
   const headerButton = (
     <div className="header-followers-button">
-      <div className="action" onClick={ ( ) => subscribe( ) }>
-        { loggedIn ?
-          ( project.currentUserSubscribed ? I18n.t( "unfollow" ) : I18n.t( "follow" ) ) :
-          I18n.t( "followers" )
-        }
+      <div
+        className={ `action ${loggedIn && "clicky"}` }
+        onClick={ ( ) => {
+          if ( loggedIn ) {
+            subscribe( );
+          }
+        } }
+      >
+        { followLabel }
       </div>
       <UsersPopover
         users={ project.followers_loaded ?
@@ -71,10 +85,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
         placement="bottom"
         contents={ (
           <div className="count">
-            { project.follow_status === "saving" ?
-              ( <div className="loading_spinner" /> ) :
-              ( <i className="fa fa-user" /> )
-            }
+            <i className="fa fa-user" />
             { project.followers_loaded ? project.followers.total_results : "---" }
           </div>
         ) }
