@@ -23,8 +23,18 @@ $.fn.universalAutocomplete = function( options ) {
 
   field.template = function( item ) {
     var wrapperDiv = $( "<div/>" )
-      .addClass( "ac" )
-      .attr( "id", item.type + "-" + item.record.id );
+      .addClass( "ac" );
+    if ( item.type == "view_all" ) {
+      return wrapperDiv.addClass( "view-all" ).append(
+        $( "<div>" ).addClass( "ac-thumb" ).append(
+          $( "<i>" ).addClass( "fa fa-search" )
+        ),
+        $( "<div>" ).addClass( "ac-label" ).append(
+          $( "<a>" ).attr( "href", "/search?q=" + $( field ).val( ) ).html( I18n.t( "view_all" ) )
+        )
+      );
+    }
+    wrapperDiv.attr( "id", item.type + "-" + item.record.id );
     var itemUrl;
     var obsUrl;
     var itemText;
@@ -182,7 +192,9 @@ $.fn.universalAutocomplete = function( options ) {
           preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
         },
         success: function( data ) {
-          response( data.results );
+          response( data.results.concat( [{
+            type: "view_all"
+          }]) );
         }
       });
     },
@@ -190,7 +202,9 @@ $.fn.universalAutocomplete = function( options ) {
       // Hack to tell keyup listener on input not to do anything
       $( field ).data( "selected", true );
       var url;
-      if ( e.ctrlKey || e.altKey || e.metaKey ) {
+      if ( ui.item.type === "view_all" ) {
+        url = "/search?q=" + $( field ).val( );
+      } else if ( e.ctrlKey || e.altKey || e.metaKey ) {
         switch ( ui.item.type ) {
           case "Taxon":
             url = "/taxa/" + ui.item.record.id;

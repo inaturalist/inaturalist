@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :controlled_term_values, only: [:create, :destroy]
   resources :annotations
 
+  get "/search" => "search#index", as: "search"
+
   resources :user_blocks, only: [:create, :destroy]
   resources :user_mutes, only: [:create, :destroy]
   resources :guide_users

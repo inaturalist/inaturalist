@@ -2218,6 +2218,9 @@ user-icon .icon-person:before {
         }
       }
     }
+    .ac.view-all {
+      text-transform: capitalize;
+    }
     .ui-state-focus {
       .ac {
         background-color: #eee;
