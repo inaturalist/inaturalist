@@ -40,8 +40,8 @@
               = link_to record do
                 %i.fa.fa-map-marker
             .media-body
-              %h4.media-heading= link_to t( "places_name.#{record.name.parameterize.underscore}", default: record.display_name ), record
-              %p= t( "place_geo.geo_planet_place_types.#{record.place_type_name.parameterize.underscore}", default: record.place_type_name ).capitalize
+              %h4.media-heading= link_to t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record
+              %p= t( "place_geo.geo_planet_place_types.#{record.place_type_name.to_s.parameterize.underscore}", default: record.place_type_name ).capitalize
           - elsif record.is_a?( Project )
             .media-left
               = link_to record do
