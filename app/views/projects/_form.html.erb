@@ -154,7 +154,7 @@
     </fieldset>
   </div>
 
-  <fieldset id="aggregation" class="observationrules<% unless @project.bioblitz? || is_curator? -%> curatorsonly<% end -%>" <% unless @project.bioblitz? || is_curator? -%>style="display:none"<% end -%>>
+  <fieldset id="aggregation" class="observationrules<% unless @project.bioblitz? || is_curator? -%> curatorsonly<% end -%>" <% unless @project.prefers_aggregation? && (@project.bioblitz? || is_curator?) -%>style="display:none"<% end -%>>
     <legend><%= t(:observation_aggregation).titleize %></legend>
     <%= f.check_box :prefers_aggregation, label_after: true, label: t(:automatically_add_observations_to_this_project) %>
     <div id="last_aggregated_at" class="column span-24" <% unless @project.prefers_aggregation? -%>style="display:none"<% end -%>>
