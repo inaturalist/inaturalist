@@ -58,6 +58,7 @@ class Project < ActiveRecord::Base
 
   def as_indexed_json(options={})
     preload_for_elastic_index
+    obs_result = INatAPIService.observations( per_page: 0, project_id: id )
     {
       id: id,
       title: title,
@@ -116,7 +117,8 @@ class Project < ActiveRecord::Base
         map{ |k,v| { field: k.sub("rule_",""), value: v } },
       featured_at: featured_at,
       created_at: created_at,
-      updated_at: updated_at
+      updated_at: updated_at,
+      observations_count: obs_result ? obs_result.total_results : nil
     }
   end
 

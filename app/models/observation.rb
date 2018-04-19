@@ -378,7 +378,7 @@ class Observation < ActiveRecord::Base
     :update_taxon_counter_caches, :create_deleted_observation,
     :update_user_counter_caches
 
-  after_commit :reindex_identifications, :reindex_places
+  after_commit :reindex_identifications, :reindex_places, :reindex_projects
   
   ##
   # Named scopes
@@ -2844,6 +2844,21 @@ class Observation < ActiveRecord::Base
         priority: INTEGRITY_PRIORITY,
         queue: "slow",
         unique_hash: { "Place::elastic_index": p.id }
+      ).elastic_index!
+    end
+    true
+  end
+
+  def reindex_projects
+    return true if skip_indexing
+    projects.each_with_index do |p,i|
+      # Queue jobs with a little offset we don't end up running intense API
+      # calls at the same time
+      p.delay(
+        run_at: ( 1.day + i.minutes ).from_now,
+        priority: INTEGRITY_PRIORITY,
+        queue: "slow",
+        unique_hash: { "Project::elastic_index": p.id }
       ).elastic_index!
     end
     true
