@@ -235,7 +235,7 @@
       %li.navtab.moretab.menutab{ class: %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
           #header-more-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
-            = link_to t(:more).capitalize, places_path
+            = t(:more).capitalize
             %i.fa.fa-angle-down
           %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
             %li= link_to t(:places), places_path
@@ -330,7 +330,7 @@
       %li.navtab.moretab.menutab{ class: %w(GuidesController PlacesController WikiPagesController).include?( controller.class.name ) ? "active" : nil }
         .dropdown
           #header-more-dropdown-toggle.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { haspopup: "true", expanded: "false" } }
-            = link_to t(:more).capitalize, places_path
+            = t(:more).capitalize
             %i.fa.fa-angle-down
           %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
             - if logged_in?

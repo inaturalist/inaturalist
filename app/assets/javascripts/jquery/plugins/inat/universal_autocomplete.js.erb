@@ -93,12 +93,12 @@ $.fn.universalAutocomplete = function( options ) {
       case "Project":
         itemUrl = "/projects/" + item.record.slug;
         obsUrl = "/observations?project_id=" + item.record.id;
-        if ( item.record.icon ) {
+        if ( item.record.icon && !item.record.icon.match( /attachment_defaults/ ) ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon );
         } else {
           acThumb = $( "<i/>" ).addClass( "fa fa-briefcase" );
         }
-        itemText = item.record.title;
+        itemText = item.record.title + " <span class='secondary-name'>" + I18n.t( "project" ) + "</span>";
         break;
       case "User":
         itemUrl = "/people/" + item.record.login;
@@ -116,7 +116,7 @@ $.fn.universalAutocomplete = function( options ) {
     }
     wrapperDiv.append( $( "<div/>" ).addClass( "ac-thumb" ).append( acThumb ) );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-    labelDiv.append( itemText ); //.append( " (" + I18n.t( item.type.toString().toLowerCase() ) + ")" );
+    labelDiv.append( itemText );
     wrapperDiv.append( labelDiv );
     wrapperDiv.append(
       $("<a></a>")
