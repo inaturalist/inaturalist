@@ -155,18 +155,24 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
           <Row>
             <Col
               xs={ 8 }
-              className={
-                `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
-              }
-              style={ project.header_image_url ? {
-                backgroundImage: `url( '${project.header_image_url}' )`
-              } : {
-                backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
-              } }
+              className="title-container background"
+              style={ { backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)` } }
             >
-              { headerTitle }
-              { headerDates }
-              { headerInProgress }
+              <Col
+                xs={ 12 }
+                className={
+                  `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
+                }
+                style={ project.header_image_url ? {
+                  backgroundImage: `url( '${project.header_image_url}' )`
+                } : {
+                  backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
+                } }
+              >
+                { headerTitle }
+                { headerDates }
+                { headerInProgress }
+              </Col>
             </Col>
             <Col
               xs={ 4 }

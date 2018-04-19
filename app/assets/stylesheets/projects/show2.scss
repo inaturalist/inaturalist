@@ -160,6 +160,9 @@ button {
         background-repeat: no-repeat;
         background-position: center;
       }
+      &.background {
+        padding: 0;
+      }
       .header-title {
         background: rgba(0,0,0,0.7);
         white-space: nowrap;
