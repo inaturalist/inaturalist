@@ -1243,6 +1243,8 @@ I18n.translations["ar"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -1478,6 +1480,8 @@ I18n.translations["az"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2198,6 +2202,8 @@ I18n.translations["bg"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2798,6 +2804,8 @@ I18n.translations["br"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2928,6 +2936,8 @@ I18n.translations["bs"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -4196,6 +4206,8 @@ I18n.translations["ca"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -5606,6 +5618,8 @@ I18n.translations["cs"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -7028,6 +7042,8 @@ I18n.translations["da"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -8173,6 +8189,8 @@ I18n.translations["de"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -9091,6 +9109,8 @@ I18n.translations["el"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -9391,6 +9411,7 @@ I18n.translations["en"] = {
     "subimago": "Subimago",
     "teneral": "Teneral"
   },
+  "convert": "Convert",
   "copyright": {
     "some_rights_reserved": "some rights reserved",
     "some_rights_reserved_by": "(c) %{name}, some rights reserved (%{license_short})",
@@ -10471,6 +10492,12 @@ I18n.translations["en"] = {
       },
       "project_type": "Project Type",
       "projects_included": "Projects Included",
+      "show": {
+        "are_you_sure_you_want_to_convert": "Are you sure you want to convert this project to a Collection Project?\n",
+        "click_here_to_convert_this_project": "Click here to convert this project to a Collection Project.\n",
+        "make_sure_you_have_read_about_the_differences": "Make sure you have read about the differences in\nour <a href=\"%{url}\" target=\"_blank\">blog post about Collection Projects</a>.\n",
+        "this_is_a_preview": "This is a preview of what this project would looke like as a Collection Project.\n"
+      },
       "tracks_multiple_projects": "tracks multiple projects",
       "umbrella": "Umbrella"
     },
@@ -10711,6 +10738,8 @@ I18n.translations["en-GB"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -10825,6 +10854,8 @@ I18n.translations["en-US"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -12088,6 +12119,8 @@ I18n.translations["es"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -12887,6 +12920,8 @@ I18n.translations["es-ES"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -13768,6 +13803,8 @@ I18n.translations["es-MX"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -13913,6 +13950,8 @@ I18n.translations["et"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -14694,6 +14733,8 @@ I18n.translations["eu"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -14816,6 +14857,8 @@ I18n.translations["fa"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -15891,6 +15934,8 @@ I18n.translations["fi"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -17277,6 +17322,8 @@ I18n.translations["fr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18120,6 +18167,8 @@ I18n.translations["gl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18234,6 +18283,8 @@ I18n.translations["he"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18318,6 +18369,8 @@ I18n.translations["hr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18402,6 +18455,8 @@ I18n.translations["hu"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -19271,6 +19326,8 @@ I18n.translations["id"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -19411,6 +19468,8 @@ I18n.translations["is"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -20681,6 +20740,8 @@ I18n.translations["it"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -20920,6 +20981,8 @@ I18n.translations["iw"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -21864,6 +21927,8 @@ I18n.translations["ja"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -22680,6 +22745,8 @@ I18n.translations["ko"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23316,6 +23383,8 @@ I18n.translations["lb"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23459,6 +23528,8 @@ I18n.translations["lexicons"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23543,6 +23614,8 @@ I18n.translations["lt"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23627,6 +23700,8 @@ I18n.translations["lv"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24250,6 +24325,8 @@ I18n.translations["mk"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24371,6 +24448,8 @@ I18n.translations["my"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24455,6 +24534,8 @@ I18n.translations["nb"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24539,6 +24620,8 @@ I18n.translations["nl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24623,6 +24706,8 @@ I18n.translations["no"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -25283,6 +25368,8 @@ I18n.translations["oc"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -25412,6 +25499,8 @@ I18n.translations["pl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -25496,6 +25585,8 @@ I18n.translations["pt"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -26680,6 +26771,8 @@ I18n.translations["pt-BR"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -27622,6 +27715,8 @@ I18n.translations["pt-PT"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -27774,6 +27869,8 @@ I18n.translations["ro"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28469,6 +28566,8 @@ I18n.translations["ru"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28662,6 +28761,8 @@ I18n.translations["sk"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28746,6 +28847,8 @@ I18n.translations["sl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28830,6 +28933,8 @@ I18n.translations["sr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28914,6 +29019,8 @@ I18n.translations["sr-RS"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28998,6 +29105,8 @@ I18n.translations["sv"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29082,6 +29191,8 @@ I18n.translations["th"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29166,6 +29277,8 @@ I18n.translations["tr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29250,6 +29363,8 @@ I18n.translations["uk"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29334,6 +29449,8 @@ I18n.translations["vi"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -30471,6 +30588,8 @@ I18n.translations["zh-CN"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -30681,6 +30800,8 @@ I18n.translations["zh-HK"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -31951,6 +32072,8 @@ I18n.translations["zh-TW"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {

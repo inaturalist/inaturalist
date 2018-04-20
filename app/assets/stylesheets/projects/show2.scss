@@ -37,6 +37,12 @@ body {
   white-space: nowrap;
 }
 
+.box.upstacked {
+  a {
+    text-decoration: underline;
+  }
+}
+
 .count, .count a {
   color: inherit;
 }
@@ -1084,7 +1090,7 @@ button {
     .header-grid {
       .title-container {
         height: 263px;
-        margin-right: -1px;
+        margin-left: -1px;
       }
       .header-about {
         height: 263px;

@@ -1,4 +1,5 @@
 import _ from "lodash";
+import React from "react";
 import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
 import Project from "../../shared/models/project";
@@ -380,8 +381,18 @@ export function convertProject( ) {
     const { project } = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: "Are you sure you want to convert this project?",
-      confirmText: I18n.t( "yes" ),
+      message: (
+        <span>
+          <span>{ I18n.t( "views.projects.show.are_you_sure_you_want_to_convert" ) }</span>
+          <br /><br/>
+          <span dangerouslySetInnerHTML={ { __html:
+            I18n.t( "views.projects.show.make_sure_you_have_read_about_the_differences",
+              { url: "/blog/15450-announcing-changes-to-projects-on-inaturalist" }
+            ) } }
+          />
+        </span>
+      ),
+      confirmText: I18n.t( "convert" ),
       onConfirm: ( ) => {
         window.location = `/projects/${project.slug}/convert_to_collection`;
       }

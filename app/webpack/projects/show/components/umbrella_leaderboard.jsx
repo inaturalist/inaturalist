@@ -16,7 +16,7 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
   const projectColors = _.fromPairs( _.map( project.umbrella_stats.results, ( ps, index ) =>
     [ps.project.id, colors[index % colors.length]]
   ) );
-  const sortedProjectStats = _.reverse( _.sortBy( projectStats, sortField ) );
+  const sortedProjectStats = _.orderBy( projectStats, [sortField, "project.title"], ["desc", "asc"] );
   const maximumCount = Number( sortedProjectStats[0][sortField] );
   const showMore = sortedProjectStats.length > limit;
   return (
