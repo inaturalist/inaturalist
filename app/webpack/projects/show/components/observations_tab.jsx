@@ -51,6 +51,7 @@ const ObservationsTab = ( {
       <ObservationsFlexGridView
         config={ config }
         observations={ observations }
+        scrollIndex={ config.observationsScrollIndex }
         loadMore={ ( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
         } }

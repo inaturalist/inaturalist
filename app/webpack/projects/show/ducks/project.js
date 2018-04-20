@@ -1,4 +1,5 @@
 import _ from "lodash";
+import React from "react";
 import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
 import Project from "../../shared/models/project";
@@ -42,6 +43,38 @@ export function fetchSubscriptions( ) {
         currentUserSubscribed: !_.isEmpty( response.results )
       } ) );
     } ).catch( e => { } );
+  };
+}
+
+export function fetchFollowers( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const params = { id: state.project.id, per_page: 100 };
+    return inatjs.projects.followers( params ).then( response => {
+      dispatch( setAttributes( {
+        followers_loaded: true,
+        followers: response
+      } ) );
+    } ).catch( e => { } );
+  };
+}
+
+export function fetchPopularObservations( ) {
+  return ( dispatch, getState ) => {
+    const project = getState( ).project;
+    if ( !project ) { return null; }
+    if ( project.popular_observations_loaded ) { return null; }
+    const params = Object.assign( { }, project.search_params, {
+      per_page: 47,
+      popular: true,
+      order: "votes"
+    } );
+    return inatjs.observations.search( params ).then( response => {
+      dispatch( setAttributes( {
+        popular_observations_loaded: true,
+        popular_observations: response
+      } ) );
+    } ).catch( e => console.log( e ) );
   };
 }
 
@@ -215,8 +248,7 @@ export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
     if ( !project ) { return null; }
-    const statsParams = { project_id: project.id };
-    return inatjs.observations.umbrellaProjectStats( statsParams ).then( response => {
+    return inatjs.observations.umbrellaProjectStats( project.search_params ).then( response => {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
         umbrella_stats: response
@@ -267,13 +299,14 @@ export function fetchOverviewData( ) {
     if ( project.project_type === "umbrella" ) {
       dispatch( fetchUmbrellaStats( ) );
     }
-    dispatch( fetchSubscriptions( ) );
     dispatch( fetchRecentObservations( ) );
     dispatch( fetchSpecies( ) );
     dispatch( fetchObservers( ) );
     dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchPosts( ) );
+    dispatch( fetchSubscriptions( ) );
+    dispatch( fetchFollowers( ) );
     dispatch( fetchIconicTaxaCounts( ) );
   };
 }
@@ -325,11 +358,19 @@ export function setSelectedTab( tab, options = { } ) {
 
 export function subscribe( ) {
   return ( dispatch, getState ) => {
-    const state = getState( );
-    if ( !state.project || !state.config.currentUser ) { return; }
-    const payload = { id: state.project.id };
-    inatjs.projects.subscribe( payload ).then( response => {
+    const { project, config } = getState( );
+    if ( !project || !config.currentUser ) { return; }
+    const payload = { id: project.id };
+    dispatch( setAttributes( {
+      follow_status: "saving"
+    } ) );
+    inatjs.projects.subscribe( payload ).then( ( ) => {
+      dispatch( setAttributes( {
+        currentUserSubscribed: !project.currentUserSubscribed
+      } ) );
       dispatch( fetchSubscriptions( ) );
+      dispatch( fetchFollowers( ) );
+      dispatch( setAttributes( { follow_status: null } ) );
     } );
   };
 }
@@ -339,8 +380,18 @@ export function convertProject( ) {
     const { project } = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: "Are you sure you want to convert this project?",
-      confirmText: I18n.t( "yes" ),
+      message: (
+        <span>
+          <span>{ I18n.t( "views.projects.show.are_you_sure_you_want_to_convert" ) }</span>
+          <br /><br/>
+          <span dangerouslySetInnerHTML={ { __html:
+            I18n.t( "views.projects.show.make_sure_you_have_read_about_the_differences",
+              { url: "/blog/15450-announcing-changes-to-projects-on-inaturalist" }
+            ) } }
+          />
+        </span>
+      ),
+      confirmText: I18n.t( "convert" ),
       onConfirm: ( ) => {
         window.location = `/projects/${project.slug}/convert_to_collection`;
       }

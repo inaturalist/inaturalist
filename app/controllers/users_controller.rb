@@ -628,7 +628,8 @@ class UsersController < ApplicationController
       /^show_quality_metrics$/,
       /^user-seen-ann*/,
       /^prefers_*/,
-      /^preferred_*/
+      /^preferred_*/,
+      /^header_search_open$/
     ]
     updates = params.select {|k,v|
       allowed_patterns.detect{|p| 
@@ -655,13 +656,17 @@ class UsersController < ApplicationController
   end
 
   def join_test
-    groups = ( current_user.test_groups_array + [params[:test]] ).compact.uniq
+    groups = current_user.test_groups_array
+    if params[:leave]
+      groups -= [params[:leave]].flatten
+    end
+    groups = ( groups + [params[:test]] ).compact.uniq
     current_user.update_attributes( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
   end
 
   def leave_test
-    groups = ( current_user.test_groups_array - [params[:test]] ).compact.uniq
+    groups = ( current_user.test_groups_array - [params[:test]].flatten ).compact.uniq
     current_user.update_attributes( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
   end

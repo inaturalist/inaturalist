@@ -3,6 +3,24 @@ $.fn.universalAutocomplete = function( options ) {
   options.appendTo = options.appendTo || "#inat-universal-autocomplete"
   var field = this;
 
+  $( field ).on( "keyup", function( e ) {
+    // Don't bother if this wasn't the ENTER key
+    if ( e.which !== 13 ) {
+      return;
+    }
+    // Stop if select is already in process
+    if ( $( field ).data( "selected" ) ) {
+      $( field ).data( "selected", false );
+      return;
+    }
+    var results = $( "li:visible", options.appendTo )
+    if ( results.length === 0 ) {
+      window.location = "/observations?taxon_name=" + $( field ).val( );
+    } else {
+      results.get( 0 ).click( );
+    }
+  } );
+
   field.template = function( item ) {
     var wrapperDiv = $( "<div/>" )
       .addClass( "ac" )
@@ -75,12 +93,12 @@ $.fn.universalAutocomplete = function( options ) {
       case "Project":
         itemUrl = "/projects/" + item.record.slug;
         obsUrl = "/observations?project_id=" + item.record.id;
-        if ( item.record.icon ) {
+        if ( item.record.icon && !item.record.icon.match( /attachment_defaults/ ) ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon );
         } else {
           acThumb = $( "<i/>" ).addClass( "fa fa-briefcase" );
         }
-        itemText = item.record.title;
+        itemText = item.record.title + " <span class='secondary-name'>" + I18n.t( "project" ) + "</span>";
         break;
       case "User":
         itemUrl = "/people/" + item.record.login;
@@ -98,7 +116,7 @@ $.fn.universalAutocomplete = function( options ) {
     }
     wrapperDiv.append( $( "<div/>" ).addClass( "ac-thumb" ).append( acThumb ) );
     var labelDiv = $( "<div/>" ).addClass( "ac-label" );
-    labelDiv.append( itemText ); //.append( " (" + I18n.t( item.type.toString().toLowerCase() ) + ")" );
+    labelDiv.append( itemText );
     wrapperDiv.append( labelDiv );
     wrapperDiv.append(
       $("<a></a>")
@@ -161,7 +179,8 @@ $.fn.universalAutocomplete = function( options ) {
         data: {
           q: request.term,
           locale: I18n.locale,
-          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
+          per_page: 10
         },
         success: function( data ) {
           response( data.results );
@@ -169,6 +188,8 @@ $.fn.universalAutocomplete = function( options ) {
       });
     },
     select: function( e, ui ) {
+      // Hack to tell keyup listener on input not to do anything
+      $( field ).data( "selected", true );
       var url;
       if ( e.ctrlKey || e.altKey || e.metaKey ) {
         switch ( ui.item.type ) {

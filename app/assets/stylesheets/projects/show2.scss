@@ -21,6 +21,7 @@ body {
 }
 #header, #test-header {
   margin-bottom: 0px;
+  border-bottom: 0px;
 }
 #bodywrapper {
   background: $page-background-grey;
@@ -31,6 +32,15 @@ body {
 
 .no-padding {
   padding: 0 !important;
+}
+.nowrap {
+  white-space: nowrap;
+}
+
+.box.upstacked {
+  a {
+    text-decoration: underline;
+  }
 }
 
 .count, .count a {
@@ -43,6 +53,10 @@ a.UserImage {
 
 .linky {
   color: $bootstrap-link-color;
+  cursor: pointer;
+}
+
+.clicky {
   cursor: pointer;
 }
 
@@ -152,6 +166,9 @@ button {
         background-repeat: no-repeat;
         background-position: center;
       }
+      &.background {
+        padding: 0;
+      }
       .header-title {
         background: rgba(0,0,0,0.7);
         white-space: nowrap;
@@ -202,7 +219,7 @@ button {
     }
     .header-about {
       height: 320px;
-      padding: 30px;
+      padding: 25px;
       background: #28387d;
       color: white;
       .header-about-content {
@@ -211,6 +228,30 @@ button {
         .header-about-title {
           font-size: 25px;
           margin-top: 5px;
+        }
+        .header-followers-button {
+          border: 1px solid rgba(255, 255, 255, 0.3);
+          border-radius: 100px;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.1);
+          .action {
+            display: inline-block;
+            padding: 2px 8px 2px 10px;
+            min-width: 72px;
+            text-align: center;
+          }
+          .count {
+            cursor: pointer;
+            display: inline-block;
+            padding: 2px 10px 2px 5px;
+            background: rgba(255, 255, 255, 0.2);
+            min-width: 50px;
+            text-align: center;
+            i {
+              padding-right: 5px;
+              padding-left: 3px;
+            }
+          }
         }
         .header-about-button {
           position: absolute;
@@ -226,13 +267,16 @@ button {
           }
         }
         .header-about-text {
-          margin-top: 20px;
+          margin-top: 17px;
           overflow: hidden;
           text-overflow: ellipsis;
           display: inline-block;
           font-size: 16px;
-          line-height: 22px;
-          max-height: 176px;
+          line-height: 21px;
+          max-height: 150px;
+          a {
+            text-decoration: underline;
+          }
         }
         .header-about-read-more {
           font-weight: 700;
@@ -244,9 +288,19 @@ button {
             font-weight: 100;
           }
         }
-        .header-about-news {
+        .header-about-edit {
           position: absolute;
           bottom: 0;
+          left: 0;
+          .btn-white {
+            border-radius: 2px;
+            color: #333;
+            text-transform: capitalize;
+          }
+        }
+        .header-about-news {
+          position: absolute;
+          bottom: 4px;
           right: 0;
           text-transform: uppercase;
           font-size: 16px;
@@ -260,7 +314,7 @@ button {
 }
 
 .StatsHeader {
-  border-bottom: 2px solid #eee;
+  border-bottom: 1px solid #eee;
   height: 80px;
   ul {
     padding: 0;
@@ -273,7 +327,7 @@ button {
     }
   }
   .overview-tab {
-    padding: 47px 0px 0px 20px;
+    padding-top: 47px;
     font-size: 20px;
     cursor: pointer;
     &.active, &:hover {
@@ -283,7 +337,7 @@ button {
   .stat-tab {
     text-transform: uppercase;
     font-size: 16px;
-    padding: 22px 0px 0px 20px;
+    padding-top: 22px;
     cursor: pointer;
     color: #888;
     .stat {
@@ -693,7 +747,7 @@ button {
   .ObservationPhoto {
     flex-grow: 1;
     padding: 2px;
-    min-width: 200px;
+    min-width: 260px;
     margin: 0px auto;
     .photo {
       background: #ccc;
@@ -709,7 +763,7 @@ button {
       height: 60px;
       padding: 10px;
       position: relative;
-      padding-right: 50px;
+      padding-right: 86px;
       white-space: nowrap;
       .display-name {
         font-size: 17px;
@@ -736,6 +790,18 @@ button {
         }
         &:hover {
           opacity: 1;
+        }
+      }
+      .meta {
+        position: absolute;
+        bottom: 10px;
+        right: 8px;
+        color: white;
+        .count {
+          i {
+            margin-right: 1px;
+          }
+          margin-right: 5px;
         }
       }
     }
@@ -914,23 +980,51 @@ button {
   h2 {
     margin-bottom: 25px;
   }
-  .UserText.body, .owner {
+  .UserText.body, .attribution {
     font-size: 16px;
     line-height: 24px;
+  }
+  .UserText.body a {
+    text-decoration: underline;
   }
   .requirements-col {
     padding-left: 60px;
   }
-  .owner {
+  .attribution {
     margin: 20px 0px 60px;
+    .admins {
+      margin-top: 10px;
+      line-height: 30px;
+    }
     a.UserImage {
-      width: 30px;
-      height: 30px;
-      margin-right: 5px;
+      width: 24px;
+      height: 24px;
+      margin-right: 2px;
     }
     .userlink {
-      margin: 0px 5px;
       font-weight: 700;
+    }
+    tr {
+      td:first-child {
+        white-space: nowrap;
+        vertical-align: top;
+      }
+    }
+    .type {
+      margin-right: 5px;
+    }
+    .project-admin {
+      .project-admin-span {
+        white-space: nowrap;
+      }
+      &:not(:last-child) {
+        .project-admin-span {
+          margin-right: 5px;
+          &::after {
+           content: ", ";
+          }
+        }
+      }
     }
   }
 }
@@ -996,7 +1090,7 @@ button {
     .header-grid {
       .title-container {
         height: 263px;
-        margin-right: -1px;
+        margin-left: -1px;
       }
       .header-about {
         height: 263px;
@@ -1004,8 +1098,8 @@ button {
         .header-about-content .header-about-text {
           margin-top: 15px;
           font-size: 15px;
-          line-height: 20px;
-          max-height: 142px;
+          line-height: 19px;
+          max-height: 114px;
         }
       }
     }
@@ -1200,6 +1294,44 @@ $nav-btn-dim: 40px;
 }
 
 
+
+
+.UsersPopover {
+  cursor: pointer;
+}
+
+.UsersPopoverOverlay {
+  .user {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+    .UserImage, .site {
+      min-width: 22px;
+      width: 22px;
+      height: 22px;
+      vertical-align: bottom;
+      margin-right: 5px;
+      .icon-person {
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+    &:not(:first-child) {
+      margin-top: 4px;
+    }
+  }
+  .popover-content {
+    padding: 12px 20px 12px 10px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  a {
+    color: #000 !important;
+    font-weight: 700;
+  }
+}
 
 
 

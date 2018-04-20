@@ -70,14 +70,14 @@ class Annotations extends React.Component {
       <UsersPopover
         users={ votersFor }
         keyPrefix={ `votes-for-${a.controlled_value.id}` }
-        contents={ ( <span>{votersFor.length}</span> ) }
+        contents={ ( <span>{votersFor.length === 0 ? null : votersFor.length}</span> ) }
       /> );
     let votesAgainstCount = voteAgainstLoading ? (
       <div className="loading_spinner" /> ) : (
       <UsersPopover
         users={ votersAgainst }
         keyPrefix={ `votes-against-${a.controlled_value.id}` }
-        contents={ ( <span>{votersAgainst.length}</span> ) }
+        contents={ ( <span>{votersAgainst.length === 0 ? null : votersAgainst.length}</span> ) }
       /> );
     const attr = a.controlled_attribute;
     const value = a.controlled_value;

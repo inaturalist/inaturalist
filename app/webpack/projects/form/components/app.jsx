@@ -132,7 +132,7 @@ const App = ( { form, createNewProject } ) => {
             <p className="contact">
               { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
               <span dangerouslySetInnerHTML={ { __html:
-                I18n.t( "views.projects.new.use_this_link_to_create_html", { url: "/projects/new" } ) } }
+                I18n.t( "views.projects.new.use_this_link_to_create_html", { url: "/projects/new_traditional" } ) } }
               />
             </p>
           </Col>

@@ -24,17 +24,9 @@ I18n.translations["ar"] = {
   "add_an_identification": "أضف تعريفا",
   "add_edit_flags": "إضافة/تعديل الأعلام",
   "add_id": "أضف معرفا",
-  "add_life_stage_adult_annotation": "إضافة شرح \"مرحلة الحياة:البلوغ\"",
-  "add_life_stage_egg_annotation": "إضافة شرح \"مرحلة الحياة: البيض\"",
-  "add_life_stage_juvenile_annotation": "إضافة شرح \"مرحلة الحياة: القاصر\"",
-  "add_life_stage_larva_annotation": "إضافة شرح \"مرحلة الحياة: اليرقة\"",
-  "add_life_stage_pupa_annotation": "إضافة شرح \"مرحلة الحياة:العذراء\"",
   "add_link": "إضافة رابط",
   "add_one_now": "إضافة واحد الآن",
   "add_photos_to_this_observation": "إضافة صور إلى هذه الملاحظة",
-  "add_plant_phenology_budding_annotation": "إضافة شرح \"الفينولوجيا النباتي: التبرعم\"",
-  "add_plant_phenology_flowering_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإزهار\"",
-  "add_plant_phenology_fruiting_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإثمار\"",
   "add_tag": "إضافة وسم",
   "add_tags": "إضافة وسوم",
   "add_to_a_project": "إضافة إلى مشروع",
@@ -392,6 +384,7 @@ I18n.translations["ar"] = {
   "edit_multiple_locations": "تعديل مواقع متعددة",
   "edit_multiple_species": "تحرير أنواع متعددة",
   "edit_photos": "تحرير الصور",
+  "edit_project": "تعديل المشروع",
   "edit_taxon": "تعديل أصنوفة",
   "edit_your_default_settings": "عدل الإعدادات الافتراضية",
   "edit_your_global_project_settings": "عدل إعدادات المشروع العالمية",
@@ -448,6 +441,7 @@ I18n.translations["ar"] = {
   "flowering_phenology": "دراسة أحداث الإزهار البيولوجية",
   "fluid_layout": "تصميم السائل",
   "follow": "تابع",
+  "followers": "متابعون",
   "frequency": "تردد",
   "from": "من",
   "from_flickr_facebook_etc": "من فليكر، فيسبوك، إلخ.",
@@ -1249,6 +1243,8 @@ I18n.translations["ar"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -1484,6 +1480,8 @@ I18n.translations["az"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2204,6 +2202,8 @@ I18n.translations["bg"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2499,6 +2499,7 @@ I18n.translations["br"] = {
   "edit": "Kemmañ",
   "edit_license": "Kemmañ an aotre-implijout",
   "edit_photos": "Kemmañ al luc'hskeudennoù",
+  "edit_project": "Kemmañ ar raktres",
   "edit_your_default_settings": "Kemmañ hoc'h arventennoù dre ziouer",
   "edit_your_global_project_settings": "Kemmañ hoc'h arventennoù raktres hollek",
   "edit_your_settings_for_this_project": "Kemmañ hoc'h aventennoù evit ar raktres-mañ",
@@ -2803,6 +2804,8 @@ I18n.translations["br"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2933,6 +2936,8 @@ I18n.translations["bs"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -2984,17 +2989,9 @@ I18n.translations["ca"] = {
   "add_an_identification": "Afegiu una identificació",
   "add_edit_flags": "Afegir/Editar etiquetes",
   "add_id": "Afegiu ID",
-  "add_life_stage_adult_annotation": "Afegiu nota \"Estat del Cicle biològic: Adult\"",
-  "add_life_stage_egg_annotation": "Afegiu nota \"Estat del Cicle biològic: Ou\"",
-  "add_life_stage_juvenile_annotation": "Afegir l'anotació «Etapa de la vida: juvenil»",
-  "add_life_stage_larva_annotation": "Afegiu nota \"Estat del Cicle biològic: Larva\"",
-  "add_life_stage_pupa_annotation": "Afegiu nota \"Estat del Cicle biològic: Pupa\"",
   "add_link": "Afegeix un enllaç",
   "add_one_now": "Afegir-ne un ara",
   "add_photos_to_this_observation": "Afegiu fotos a aquesta observació",
-  "add_plant_phenology_budding_annotation": "Afegir l'anotació «Fenologia de la planta: gemmació»",
-  "add_plant_phenology_flowering_annotation": "Afegiu nota \"Fenologia de la planta: Floració\"",
-  "add_plant_phenology_fruiting_annotation": "Afegiu nota \"Fenologia de la planta: Fructificació\"",
   "add_tag": "Afegiu etiqueta",
   "add_tags": "Afegiu etiquetes",
   "add_to_a_project": "Afegiu al projecte",
@@ -3351,6 +3348,7 @@ I18n.translations["ca"] = {
   "edit_multiple_locations": "Editeu diverses localitzacions",
   "edit_multiple_species": "Editeu diverses espècies",
   "edit_photos": "Modifica les fotos",
+  "edit_project": "Modifica projecte",
   "edit_taxon": "Edita el tàxon",
   "edit_your_default_settings": "Editeu la vostra configuració predeterminada",
   "edit_your_global_project_settings": "Editeu la vostra configuració global del projecte",
@@ -3407,6 +3405,7 @@ I18n.translations["ca"] = {
   "flowering_phenology": "Fenologia de floració",
   "fluid_layout": "Disseny fluid",
   "follow": "Seguiu",
+  "followers": "seguidors",
   "frequency": "Freqüència",
   "from": "de",
   "from_flickr_facebook_etc": "Des de Flickr, Facebook, etc.",
@@ -4207,6 +4206,8 @@ I18n.translations["ca"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -4407,17 +4408,9 @@ I18n.translations["cs"] = {
   "add_an_identification": "Vložte identifikaci",
   "add_edit_flags": "Přidat/editovat vlajky",
   "add_id": "Vložit ID",
-  "add_life_stage_adult_annotation": "Přidat anotaci „Stádium života: dospělý“",
-  "add_life_stage_egg_annotation": "Přidat anotaci „Stádium života: vejce“",
-  "add_life_stage_juvenile_annotation": "Přidat anotaci „Stádium života: mládě“",
-  "add_life_stage_larva_annotation": "Přidat anotaci „Stádium života: larva“",
-  "add_life_stage_pupa_annotation": "Přidat anotaci „Stádium života: kukla“",
   "add_link": "Přidat odkaz",
   "add_one_now": "Přidat nyní",
   "add_photos_to_this_observation": "Vložit fotky k tomuto pozorování",
-  "add_plant_phenology_budding_annotation": "Přidat anotaci „Fenologie rostliny: pučení“",
-  "add_plant_phenology_flowering_annotation": "Přidat anotaci „Fenologie rostliny: kvetení“",
-  "add_plant_phenology_fruiting_annotation": "Přidat anotaci „Fenologie rostliny: plození“",
   "add_tag": "Přidat tag",
   "add_tags": "Přidat tagy",
   "add_to_a_project": "Přidat do projektu",
@@ -4774,6 +4767,7 @@ I18n.translations["cs"] = {
   "edit_multiple_locations": "Editovat více míst",
   "edit_multiple_species": "Editovat více druhů",
   "edit_photos": "Editovat fotografie",
+  "edit_project": "Editovat projekt",
   "edit_taxon": "Editovat taxon",
   "edit_your_default_settings": "Editovat vlastní výchozí nastavení",
   "edit_your_global_project_settings": "Editovat vaše globální nastavení projektu",
@@ -4830,6 +4824,7 @@ I18n.translations["cs"] = {
   "flowering_phenology": "Fenologie kvetení",
   "fluid_layout": "Proměnlivé rozložení",
   "follow": "Sledovat",
+  "followers": "Sledovatelé",
   "frequency": "Frekvence",
   "from": "Od",
   "from_flickr_facebook_etc": "Z Flickru, Facebooku, apod.",
@@ -5623,6 +5618,8 @@ I18n.translations["cs"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -5826,17 +5823,9 @@ I18n.translations["da"] = {
   "add_an_identification": "Tilføj en identifikation",
   "add_edit_flags": "Tilføj/redigér markeringer",
   "add_id": "Tilføj ID",
-  "add_life_stage_adult_annotation": "Tilføj noten \"Livsstadie: Voksen\"",
-  "add_life_stage_egg_annotation": "Tilføj noten \"Livsstadie: Æg\"",
-  "add_life_stage_juvenile_annotation": "Tilføj noten \"Livsstadie: Juvenil\"",
-  "add_life_stage_larva_annotation": "Tilføj noten \"Livsstadie: Larve\"",
-  "add_life_stage_pupa_annotation": "Tilføj noten \"Livsstadie: Puppe\"",
   "add_link": "Tilføj link",
   "add_one_now": "Tilføj en nu",
   "add_photos_to_this_observation": "Tilføj fotos til denne observation",
-  "add_plant_phenology_budding_annotation": "Tilføj noten \"Plantefænologi: Spirende\"",
-  "add_plant_phenology_flowering_annotation": "Tilføj noten \"Plantefænologi: Blomstrende\"",
-  "add_plant_phenology_fruiting_annotation": "Tilføj noten \"Plantefænologi: I frugt\"",
   "add_tag": "Tilføj tag",
   "add_tags": "Tilføj tags",
   "add_to_a_project": "Tilføj til et projekt",
@@ -6194,6 +6183,7 @@ I18n.translations["da"] = {
   "edit_multiple_locations": "Redigér flere steder",
   "edit_multiple_species": "Redigér flere arter",
   "edit_photos": "Redigér foto´s",
+  "edit_project": "Redigér projekt",
   "edit_taxon": "Redigér takson",
   "edit_your_default_settings": "Redigér dine standardindstillinger",
   "edit_your_global_project_settings": "Redigér dine globale projektindstillinger",
@@ -6250,6 +6240,7 @@ I18n.translations["da"] = {
   "flowering_phenology": "Blomster fænologi",
   "fluid_layout": "Flydende visning",
   "follow": "Følg",
+  "followers": "Følgere",
   "frequency": "Hyppighed",
   "from": "Fra",
   "from_flickr_facebook_etc": "Fra Flickr, Facebook, etc.",
@@ -7051,6 +7042,8 @@ I18n.translations["da"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -7254,17 +7247,9 @@ I18n.translations["de"] = {
   "add_an_identification": "Eine Bestimmung hinzufügen",
   "add_edit_flags": "Markierungen hinzufügen/bearbeiten",
   "add_id": "Kennung hinzufügen",
-  "add_life_stage_adult_annotation": "Vermerk \"Lebensstadium: Ausgewachsen\" hinzufügen",
-  "add_life_stage_egg_annotation": "Vermerk \"Lebensstadium: Ei\" hinzufügen",
-  "add_life_stage_juvenile_annotation": "Vermerk \"Lebensstadium: Jungtier\" hinzufügen",
-  "add_life_stage_larva_annotation": "Vermerk \"Lebensstadium: Larve\" hinzufügen",
-  "add_life_stage_pupa_annotation": "Vermerk \"Lebensstadium: Puppe\" hinzufügen",
   "add_link": "Link hinzufügen",
   "add_one_now": "Jetzt einen hinzufügen",
   "add_photos_to_this_observation": "Fotos zu dieser Beobachtung hinzufügen",
-  "add_plant_phenology_budding_annotation": "Vermerk \"Pflanzenphänologie: Knospung\" hinzufügen",
-  "add_plant_phenology_flowering_annotation": "Vermerk \"Pflanzenphänologie: Blüte\" hinzufügen",
-  "add_plant_phenology_fruiting_annotation": "Vermerk \"Pflanzenphänologie: Fruchttragend\" hinzufügen",
   "add_tag": "Markierung hinzufügen",
   "add_tags": "Tags hinzufügen",
   "add_to_a_project": "Zu einem Projekt hinzugefügt",
@@ -7608,6 +7593,7 @@ I18n.translations["de"] = {
   "edit_multiple_locations": "Mehrere Standorte bearbeiten",
   "edit_multiple_species": "Mehrere Arten bearbeiten",
   "edit_photos": "Fotos bearbeiten",
+  "edit_project": "Projekt bearbeiten",
   "edit_taxon": "Taxon bearbeiten",
   "edit_your_default_settings": "Deine Standardeinstellungen bearbeiten",
   "edit_your_global_project_settings": "Die globalen Projekteinstellungen bearbeiten",
@@ -7643,6 +7629,7 @@ I18n.translations["de"] = {
   "flag_an_item": "Objekt hervorheben",
   "flag_as_inappropriate": "Als unangemessen hervorheben",
   "flowering_phenology": "Blütenphänologie",
+  "followers": "Follower",
   "frequency": "Häufigkeit",
   "from": "Von",
   "from_flickr_facebook_etc": "Von Flickr, Facebook, usw.",
@@ -8202,6 +8189,8 @@ I18n.translations["de"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -8560,6 +8549,7 @@ I18n.translations["el"] = {
   "edit_multiple_locations": "Επεξεργασία πολλαπλών τοποθεσιών",
   "edit_multiple_species": "Επεξεργασία πολλαπλών ειδών",
   "edit_photos": "Επεξεργασία φωτογραφιών",
+  "edit_project": "Επεξεργασία εγχειρήματος",
   "edit_your_default_settings": "Επεξεργασία των προεπιλεγμένων επιλογών σας",
   "edit_your_settings_for_this_project": "Επεξεργασία των ρυθμίσεων σας για αυτό το εγχείρημα",
   "end": "Τέλος",
@@ -8593,6 +8583,7 @@ I18n.translations["el"] = {
   "flag_an_item": "Αναφορά αντικειμένου",
   "flag_as_inappropriate": "Αναφορά ως ακατάλληλο",
   "follow": "Ακολουθήστε",
+  "followers": "ακόλουθοι",
   "frequency": "Συχνότητα",
   "from": "Από",
   "from_flickr_facebook_etc": "Από το Flickr, Facebook, κτλ.",
@@ -9118,6 +9109,8 @@ I18n.translations["el"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -9182,17 +9175,9 @@ I18n.translations["en"] = {
   "add_annotations_for_x": "Add annotations for \"%{x}\"",
   "add_edit_flags": "Add/Edit Flags",
   "add_id": "Add ID",
-  "add_life_stage_adult_annotation": "Add \"Life Stage: Adult\" annotation",
-  "add_life_stage_egg_annotation": "Add \"Life Stage: Egg\" annotation",
-  "add_life_stage_juvenile_annotation": "Add \"Life Stage: Juvenile\" annotation",
-  "add_life_stage_larva_annotation": "Add \"Life Stage: Larva\" annotation",
-  "add_life_stage_pupa_annotation": "Add \"Life Stage: Pupa\" annotation",
   "add_link": "Add Link",
   "add_one_now": "Add One Now",
   "add_photos_to_this_observation": "Add photos to this observation",
-  "add_plant_phenology_budding_annotation": "Add \"Plant Phenology: Budding\" annotation",
-  "add_plant_phenology_flowering_annotation": "Add \"Plant Phenology: Flowering\" annotation",
-  "add_plant_phenology_fruiting_annotation": "Add \"Plant Phenology: Fruiting\" annotation",
   "add_tag": "Add tag",
   "add_tags": "Add tags",
   "add_to_a_project": "Add to a project",
@@ -9426,6 +9411,7 @@ I18n.translations["en"] = {
     "subimago": "Subimago",
     "teneral": "Teneral"
   },
+  "convert": "Convert",
   "copyright": {
     "some_rights_reserved": "some rights reserved",
     "some_rights_reserved_by": "(c) %{name}, some rights reserved (%{license_short})",
@@ -9576,6 +9562,7 @@ I18n.translations["en"] = {
   "edit_multiple_locations": "Edit multiple locations",
   "edit_multiple_species": "Edit multiple species",
   "edit_photos": "Edit photos",
+  "edit_project": "Edit project",
   "edit_taxon": "Edit taxon",
   "edit_your_default_settings": "Edit your default settings",
   "edit_your_global_project_settings": "Edit your global project settings",
@@ -9634,6 +9621,7 @@ I18n.translations["en"] = {
   "flowering_phenology": "Flowering Phenology",
   "fluid_layout": "Fluid Layout",
   "follow": "Follow",
+  "followers": "Followers",
   "frequency": "Frequency",
   "from": "From",
   "from_flickr_facebook_etc": "From Flickr, Facebook, etc.",
@@ -10139,6 +10127,10 @@ I18n.translations["en"] = {
   "proceed": "Proceed",
   "profile": "Profile",
   "project": "Project",
+  "project_admins": {
+    "one": "Project admin",
+    "other": "Project admins"
+  },
   "project_requirements": "Project Requirements",
   "projects": "Projects",
   "proposed_taxa_that_contradict_the_community_id": "Proposed taxa that contradict the Community ID",
@@ -10257,8 +10249,8 @@ I18n.translations["en"] = {
   "show_uncountable_species": "Show uncountable species",
   "showing_taxa_from_everywhere": "Showing taxa from everywhere",
   "showing_taxa_from_place": "Showing taxa from %{place}",
-  "sign_out": "Sign out",
-  "sign_up": "Sign up",
+  "sign_out": "Sign Out",
+  "sign_up": "Sign Up",
   "similar_species": "Similar species",
   "skip_to_next_page": "Skip to next page",
   "some_observations_failed_to_be_added": "Some observations failed to be added to projects",
@@ -10500,6 +10492,12 @@ I18n.translations["en"] = {
       },
       "project_type": "Project Type",
       "projects_included": "Projects Included",
+      "show": {
+        "are_you_sure_you_want_to_convert": "Are you sure you want to convert this project to a Collection Project?\n",
+        "click_here_to_convert_this_project": "Click here to convert this project to a Collection Project.\n",
+        "make_sure_you_have_read_about_the_differences": "Make sure you have read about the differences in\nour <a href=\"%{url}\" target=\"_blank\">blog post about Collection Projects</a>.\n",
+        "this_is_a_preview": "This is a preview of what this project would looke like as a Collection Project.\n"
+      },
       "tracks_multiple_projects": "tracks multiple projects",
       "umbrella": "Umbrella"
     },
@@ -10740,6 +10738,8 @@ I18n.translations["en-GB"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -10854,6 +10854,8 @@ I18n.translations["en-US"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -10905,17 +10907,9 @@ I18n.translations["es"] = {
   "add_an_identification": "Añade una identificación",
   "add_edit_flags": "Añadir/editar etiquetas",
   "add_id": "Añade ID",
-  "add_life_stage_adult_annotation": "Añade nota \"Etapa de Vida: Adulto\"",
-  "add_life_stage_egg_annotation": "Añade nota \"Etapa de Vida: Huevo\"",
-  "add_life_stage_juvenile_annotation": "Añadir anotación \"Etapa vital:juvenil\"",
-  "add_life_stage_larva_annotation": "Añade nota \"Etapa de Vida: Larva\"",
-  "add_life_stage_pupa_annotation": "Añade nota \"Etapa de Vida: Pupa\"",
   "add_link": "Añadir enlace",
   "add_one_now": "Añadir uno",
   "add_photos_to_this_observation": "Añade fotos a esta observación",
-  "add_plant_phenology_budding_annotation": "Añadir anotación \"fenologia de la planta:incipiente\"",
-  "add_plant_phenology_flowering_annotation": "Añade nota \"Fenología de la Planta: Floreciendo\"",
-  "add_plant_phenology_fruiting_annotation": "Añade nota \"Fenología de la Planta: Fructificando\" anotación",
   "add_tag": "Añadir etiqueta",
   "add_tags": "Añade etiquetas",
   "add_to_a_project": "Añade a un proyecto",
@@ -11271,6 +11265,7 @@ I18n.translations["es"] = {
   "edit_multiple_locations": "Editar múltiples localizaciones",
   "edit_multiple_species": "Editar múltiples grupos o especies",
   "edit_photos": "Modificar fotos",
+  "edit_project": "Modificar proyecto",
   "edit_taxon": "Editar taxón",
   "edit_your_default_settings": "Editar la configuración predeterminada",
   "edit_your_global_project_settings": "Editar tu configuración global de proyectos",
@@ -11327,6 +11322,7 @@ I18n.translations["es"] = {
   "flowering_phenology": "Fenología de la floración",
   "fluid_layout": "Diseño fluido",
   "follow": "Seguir",
+  "followers": "seguidores",
   "frequency": "Frecuencia",
   "from": "de",
   "from_flickr_facebook_etc": "De Flickr, Facebook, etc.",
@@ -12123,6 +12119,8 @@ I18n.translations["es"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -12513,6 +12511,7 @@ I18n.translations["es-ES"] = {
   "edit": "Modificar",
   "edit_license": "Modificar licencia",
   "edit_photos": "Modificar las fotos",
+  "edit_project": "Modificar proyecto",
   "end": "Final",
   "endangered": "en peligro",
   "endemic": "endémica",
@@ -12533,6 +12532,7 @@ I18n.translations["es-ES"] = {
   "flag_an_item": "Marca un contenido",
   "flag_for_curation": "Marcar para administración.",
   "flickr_has_no_creative_commons": "Flickr no tiene fotos etiquetadas con Creative Commons para este lugar.",
+  "followers": "seguidores",
   "from": "de",
   "fungi": {
     "one": "hongo",
@@ -12920,6 +12920,8 @@ I18n.translations["es-ES"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -13254,6 +13256,7 @@ I18n.translations["es-MX"] = {
   "edit_multiple_locations": "Editar múltiples localizaciones",
   "edit_multiple_species": "Editar múltiples grupos o especies",
   "edit_photos": "Edita las fotos",
+  "edit_project": "Edita el proyecto",
   "edit_your_default_settings": "Edita tu configuración predeterminada",
   "edit_your_global_project_settings": "Edita tu configuración global de proyectos",
   "edit_your_settings_for_this_project": "Edita tu configuración para este proyecto",
@@ -13800,6 +13803,8 @@ I18n.translations["es-MX"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -13945,6 +13950,8 @@ I18n.translations["et"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -13989,15 +13996,9 @@ I18n.translations["eu"] = {
   "add_a_name": "Izena gehitu",
   "add_an_identification": "Identifikazioa gehitu",
   "add_id": "Identifikadorea gehitu",
-  "add_life_stage_adult_annotation": "Gehitu \"Bizi Aroa: Heldua\" oharra",
-  "add_life_stage_egg_annotation": "Gehitu: \"Bizi aroa: Arrautza\" oharra",
-  "add_life_stage_larva_annotation": "Gehitu \"Bizi Aroa: Larba\" oharra",
-  "add_life_stage_pupa_annotation": "Gehitu: \"Bizi Aroa: Pupa\" oharra",
   "add_link": "Gehitu lotura",
   "add_one_now": "Gehitu bat orain",
   "add_photos_to_this_observation": "Argazkiak gehitu oharrari",
-  "add_plant_phenology_flowering_annotation": "Gehitu \"Landare Fenologia: Loratzen\" oharra",
-  "add_plant_phenology_fruiting_annotation": "Gehitu \"Landare Fenologia: Fruituak ematen\" oharra",
   "add_tag": "Gehitu etiketa",
   "add_tags": "Ekiketak gehitu",
   "add_to_favorites": "Gustokoentara gehitu",
@@ -14264,6 +14265,7 @@ I18n.translations["eu"] = {
   "edit": "Aldatu",
   "edit_license": "Lizentzia aldatu",
   "edit_photos": "Argazkiak aldatu",
+  "edit_project": "Proiektua aldatu",
   "end": "Amaiera",
   "endangered": "arriskuan",
   "endemic": "endemikoa",
@@ -14287,6 +14289,7 @@ I18n.translations["eu"] = {
   "flag_an_item": "Eduki bat markatu",
   "flag_for_curation": "Administraziorako markatu.",
   "flickr_has_no_creative_commons": "Flickr-ek ez du leku horretarako Creative Commons-ekin etiketatutako argazkirik.",
+  "followers": "jarraitzaileak",
   "frequency": "Maiztasuna",
   "from": "hemendik:",
   "fungi": {
@@ -14730,6 +14733,8 @@ I18n.translations["eu"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -14852,6 +14857,8 @@ I18n.translations["fa"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -14903,17 +14910,9 @@ I18n.translations["fi"] = {
   "add_an_identification": "Lisää tunnistus",
   "add_edit_flags": "Lisää/muokkaa merkintöjä",
   "add_id": "Lisää tunniste",
-  "add_life_stage_adult_annotation": "Lisää \"Life Stage: Adult\" selitys",
-  "add_life_stage_egg_annotation": "Lisää \"Life Stage: Egg\" selitys",
-  "add_life_stage_juvenile_annotation": "Lisää \"Life Stage: Juvenile\" selitys",
-  "add_life_stage_larva_annotation": "Lisää \"Life Stage: Larva\" selitys",
-  "add_life_stage_pupa_annotation": "Lisää \"Life Stage: Pupa\" selitys",
   "add_link": "Lisää linkki",
   "add_one_now": "Lisää yksi nyt",
   "add_photos_to_this_observation": "Lisää kuvia tähän havaintoon",
-  "add_plant_phenology_budding_annotation": "Lisää \"Plant Phenology: Budding\" selitys",
-  "add_plant_phenology_flowering_annotation": "Lisää \"Plant Phenology: Flowering\" selitys",
-  "add_plant_phenology_fruiting_annotation": "Lisää \"Plant Phenology: Fruiting\" selitys",
   "add_tag": "Lisää tunniste",
   "add_tags": "Lisää tunnisteita",
   "add_to_a_project": "Lisää projektiin",
@@ -15246,6 +15245,7 @@ I18n.translations["fi"] = {
   "edit_multiple_locations": "Muokkaa useita paikkoja",
   "edit_multiple_species": "Muokkaa useita lajeja",
   "edit_photos": "Muokkaa valokuvia",
+  "edit_project": "Muokkaa projektia",
   "edit_taxon": "Muokkaa taksonia",
   "edit_your_default_settings": "Muokka oletusasetuksiasi",
   "edit_your_global_project_settings": "Muokkaa yleisiä projektiasetuksiasi",
@@ -15288,6 +15288,7 @@ I18n.translations["fi"] = {
   "flagged_": "Liputettu",
   "flickr_has_no_creative_commons": "Flickr'issä ei ole Creative Commons-lisensoituja kuvia tästä paikasta.",
   "follow": "Seuraa",
+  "followers": "Seuraajat",
   "from": "Lähettäjä",
   "from_flickr_facebook_etc": "Flickristä, Facebookista, yms.",
   "from_soundcloud": "Soundcloudista",
@@ -15933,6 +15934,8 @@ I18n.translations["fi"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -16100,17 +16103,9 @@ I18n.translations["fr"] = {
   "add_an_identification": "Ajouter une identification",
   "add_edit_flags": "Ajouter / éditer les marquages",
   "add_id": "Ajouter une identification",
-  "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : Adulte\"",
-  "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : Oeuf\"",
-  "add_life_stage_juvenile_annotation": "Ajouter l’annotation « Stade de vie : Juvénile »",
-  "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : Larve\"",
-  "add_life_stage_pupa_annotation": "Ajoute l'annotation \"Stade d'évolution : Pupe\"",
   "add_link": "Ajouter un lien",
   "add_one_now": "En ajouter un maintenant",
   "add_photos_to_this_observation": "Ajouter des photos à cette observation",
-  "add_plant_phenology_budding_annotation": "Ajouter l’annotation « Phénélogie végétale : Bourgeonnement »",
-  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie de plante : Floraison »",
-  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie de plante : Fruits »",
   "add_tag": "Ajouter une balise",
   "add_tags": "Ajouter des étiquettes",
   "add_to_a_project": "Ajouter à un projet",
@@ -16468,6 +16463,7 @@ I18n.translations["fr"] = {
   "edit_multiple_locations": "Modifier des emplacements multiples",
   "edit_multiple_species": "Modifier plusieurs espèces",
   "edit_photos": "Modifier les photos",
+  "edit_project": "Modifier le projet",
   "edit_taxon": "Modifier le taxon",
   "edit_your_default_settings": "Modifier vos paramètres par défaut",
   "edit_your_global_project_settings": "Modifier vos paramètres de projet globaux",
@@ -16524,6 +16520,7 @@ I18n.translations["fr"] = {
   "flowering_phenology": "Phénologie de la floraison",
   "fluid_layout": "Mise en page fluide",
   "follow": "Suivre",
+  "followers": "Abonnés",
   "frequency": "Fréquence",
   "from": "À partir de",
   "from_flickr_facebook_etc": "Depuis Flickr, Facebook, etc.",
@@ -17325,6 +17322,8 @@ I18n.translations["fr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -17756,6 +17755,7 @@ I18n.translations["gl"] = {
   "edit": "Modificar",
   "edit_license": "Modificar licenza",
   "edit_photos": "Modificar as fotos",
+  "edit_project": "Modificar proxecto",
   "end": "Final",
   "endangered": "en perigo",
   "endemic": "Endémica",
@@ -17777,6 +17777,7 @@ I18n.translations["gl"] = {
   "flag_an_item": "Marca un contido",
   "flag_for_curation": "Marcar para administración.",
   "flickr_has_no_creative_commons": "Flickr non ten fotos etiquetadas con Creative Commons para este lugar.",
+  "followers": "Seguidores",
   "from": "De",
   "fungi": {
     "one": "Fungo",
@@ -18166,6 +18167,8 @@ I18n.translations["gl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18280,6 +18283,8 @@ I18n.translations["he"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18364,6 +18369,8 @@ I18n.translations["hr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18448,6 +18455,8 @@ I18n.translations["hu"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -18767,6 +18776,7 @@ I18n.translations["id"] = {
   "edit_multiple_locations": "Mengedit beberapa lokasi",
   "edit_multiple_species": "Mengedit beberapa spesies",
   "edit_photos": "Merubah foto",
+  "edit_project": "Perubah proyek",
   "edit_taxon": "Mengedit takson",
   "edit_your_default_settings": "Rubah pengauran standar anda",
   "edit_your_global_project_settings": "Mengedit pengaturan proyek global Anda",
@@ -19316,6 +19326,8 @@ I18n.translations["id"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -19456,6 +19468,8 @@ I18n.translations["is"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -19507,17 +19521,9 @@ I18n.translations["it"] = {
   "add_an_identification": "Aggiungi un'identificazione",
   "add_edit_flags": "Aggiungi/Modifica contrassegni",
   "add_id": "Aggiungi ID",
-  "add_life_stage_adult_annotation": "Aggiungi nota \"Stadio vitale: Adulto\"",
-  "add_life_stage_egg_annotation": "Aggiungi nota \"Stadio vitale: Uovo\"",
-  "add_life_stage_juvenile_annotation": "Aggiungi nota \"Stadio vitale: Giovane\"",
-  "add_life_stage_larva_annotation": "Aggiungi nota \"Stadio vitale: Larva\"",
-  "add_life_stage_pupa_annotation": "Aggiungi nota \"Stadio vitale: Pupa\"",
   "add_link": "Aggiungi collegamento",
   "add_one_now": "Aggiungi ora",
   "add_photos_to_this_observation": "Aggiungi foto a questa osservazione",
-  "add_plant_phenology_budding_annotation": "Aggiungi nota \"Fenologia della Pianta: Germinazione\"",
-  "add_plant_phenology_flowering_annotation": "Aggiungi nota \"Fenologia della Pianta: Fioritura\"",
-  "add_plant_phenology_fruiting_annotation": "Aggiungi nota \"Fenologia della Pianta: Fruttificazione\"",
   "add_tag": "Aggiungi etichetta",
   "add_tags": "Aggiungi etichetta",
   "add_to_a_project": "Aggiungi a un progetto",
@@ -19875,6 +19881,7 @@ I18n.translations["it"] = {
   "edit_multiple_locations": "Modifica più località",
   "edit_multiple_species": "Modifica più specie",
   "edit_photos": "Modifica le foto",
+  "edit_project": "Modifica il progetto",
   "edit_taxon": "Modifica taxon",
   "edit_your_default_settings": "Modifica le tue impostazioni predefinite",
   "edit_your_global_project_settings": "Modifica le impostazioni globali del progetto",
@@ -19931,6 +19938,7 @@ I18n.translations["it"] = {
   "flowering_phenology": "Fenologia della fioritura",
   "fluid_layout": "Layout fluido",
   "follow": "Segui",
+  "followers": "Seguaci",
   "frequency": "Frequenza",
   "from": "Da",
   "from_flickr_facebook_etc": "Da Flickr, Facebook, etc.",
@@ -20732,6 +20740,8 @@ I18n.translations["it"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -20971,6 +20981,8 @@ I18n.translations["iw"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -21275,6 +21287,7 @@ I18n.translations["ja"] = {
   "edit_multiple_locations": "複数の場所を編集",
   "edit_multiple_species": "複数の種を編集",
   "edit_photos": "写真を編集",
+  "edit_project": "プロジェクトを編集",
   "edit_taxon": "分類群を編集",
   "edit_your_default_settings": "規定設定を編集",
   "edit_your_global_project_settings": "プロジェクトのグローバル設定を変更",
@@ -21914,6 +21927,8 @@ I18n.translations["ja"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -22283,6 +22298,7 @@ I18n.translations["ko"] = {
   "edit_multiple_locations": "다수의 장소 편집",
   "edit_multiple_species": "다수의 종 편집",
   "edit_photos": "사진 편집",
+  "edit_project": "프로젝트 편집",
   "edit_your_default_settings": "기본 설정 값 편집하기",
   "edit_your_global_project_settings": "글로벌 프로젝트 설정 편집",
   "edit_your_settings_for_this_project": "이 프로젝트에 대한 설정 편집",
@@ -22321,6 +22337,7 @@ I18n.translations["ko"] = {
   "flag_for_curation": "큐레이션 대상으로 플래그",
   "flickr_has_no_creative_commons": "Flickr는 이곳에서 크리에이티브 커먼즈 인증된 사진들이 없습니다.",
   "follow": "팔로우",
+  "followers": "팔로어",
   "frequency": "주기",
   "from": "보낸이",
   "from_flickr_facebook_etc": "Flickr, Facebook 등으로부터",
@@ -22728,6 +22745,8 @@ I18n.translations["ko"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -22971,6 +22990,7 @@ I18n.translations["lb"] = {
   "edit_multiple_dates": "Méi Datumen änneren",
   "edit_multiple_descriptions": "Méi Beschreiwungen änneren",
   "edit_photos": "Fotoen änneren",
+  "edit_project": "Projet änneren",
   "edit_your_settings_for_this_project": "Ännert Är Astellunge fir dëse Projet",
   "end": "Schluss",
   "endangered": "bedrot",
@@ -23363,6 +23383,8 @@ I18n.translations["lb"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23506,6 +23528,8 @@ I18n.translations["lexicons"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23590,6 +23614,8 @@ I18n.translations["lt"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23674,6 +23700,8 @@ I18n.translations["lv"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -23929,6 +23957,7 @@ I18n.translations["mk"] = {
   "edit": "Измени",
   "edit_license": "Измени лиценца",
   "edit_photos": "Измени слики",
+  "edit_project": "Измени проект",
   "edit_your_default_settings": "Измени ги стандардните поставки",
   "exact_location": "Точна_местоположба",
   "exit_full_screen": "Излези од цел екран",
@@ -24296,6 +24325,8 @@ I18n.translations["mk"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24417,6 +24448,8 @@ I18n.translations["my"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24501,6 +24534,8 @@ I18n.translations["nb"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24585,6 +24620,8 @@ I18n.translations["nl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24669,6 +24706,8 @@ I18n.translations["no"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -24932,6 +24971,7 @@ I18n.translations["oc"] = {
   "edit": "Modificar",
   "edit_license": "Modificar la licéncia",
   "edit_photos": "Modificar las fòtos",
+  "edit_project": "Modificar lo projècte",
   "edit_taxon": "Modificar lo taxon",
   "end": "Fin",
   "endangered": "en via de desaparicion",
@@ -25328,6 +25368,8 @@ I18n.translations["oc"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -25457,6 +25499,8 @@ I18n.translations["pl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -25541,6 +25585,8 @@ I18n.translations["pt"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -25591,17 +25637,9 @@ I18n.translations["pt-BR"] = {
   "add_an_identification": "Adicione uma identificação",
   "add_edit_flags": "Adicionar/Editar Etiquetas",
   "add_id": "Adicionar identificação (ID)",
-  "add_life_stage_adult_annotation": "Adicionar \"Estágio de Vida: Adulto\" anotação",
-  "add_life_stage_egg_annotation": "Adicionar \"Estágio de Vida: Ovo\" anotação",
-  "add_life_stage_juvenile_annotation": "Adicionar \"Estágio de Vida: Juvenil\" anotação",
-  "add_life_stage_larva_annotation": "Adicionar \"Estágio de Vida: Larva\" anotação",
-  "add_life_stage_pupa_annotation": "Adicionar \"Estágio de Vida: Pupa\" anotação",
   "add_link": "Adicionar Link",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Adicionar fotos para esta observação",
-  "add_plant_phenology_budding_annotation": "Adicionar \"Fenologia\": Brotamento\" anotações",
-  "add_plant_phenology_flowering_annotation": "Adicionar \"Fenologia\": Floração\" anotações",
-  "add_plant_phenology_fruiting_annotation": "Adicionar \"Fenologia\": Frutificação\" anotações",
   "add_tag": "Adicionar marcação",
   "add_tags": "Adicionar marcações",
   "add_to_a_project": "Adicionar a um projeto",
@@ -25927,6 +25965,7 @@ I18n.translations["pt-BR"] = {
   "edit_multiple_locations": "Editar múltiplas localizações",
   "edit_multiple_species": "Editar múltiplas espécies",
   "edit_photos": "Alterar fotos",
+  "edit_project": "Editar projeto",
   "edit_taxon": "Editar táxon",
   "edit_your_default_settings": "Modifique suas configurações padrão",
   "edit_your_global_project_settings": "Editar suas configurações globais de projeto",
@@ -25983,6 +26022,7 @@ I18n.translations["pt-BR"] = {
   "flowering_phenology": "Fenologia de Floração",
   "fluid_layout": "Layout Fluído",
   "follow": "Seguir",
+  "followers": "Seguidores",
   "frequency": "Frequência",
   "from": "De",
   "from_flickr_facebook_etc": "Do Flickr, Facebook, etc.",
@@ -26731,6 +26771,8 @@ I18n.translations["pt-BR"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -26911,17 +26953,9 @@ I18n.translations["pt-PT"] = {
   "add_an_identification": "Adicione uma identificação",
   "add_edit_flags": "Adicionar/Editar etiquetas",
   "add_id": "Adicionar identificação (ID)",
-  "add_life_stage_adult_annotation": "Estádio de Vida: Adulto",
-  "add_life_stage_egg_annotation": "Acrescentar anotação \"Estádio de Vida: Ovo\"",
-  "add_life_stage_juvenile_annotation": "Acrescentar anotação \"Estádio de Vida: Juvenil\"",
-  "add_life_stage_larva_annotation": "Acrescentar anotação \"Estádio de Vida: Larva\"",
-  "add_life_stage_pupa_annotation": "Acrescentar anotação \"Estádio de Vida: Pupa\"",
   "add_link": "Adicionar ligação",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Acrescentar fotografias a esta observação",
-  "add_plant_phenology_budding_annotation": "Acrescentar anotação \"Fenologia da Planta: Gemulação\"",
-  "add_plant_phenology_flowering_annotation": "Acrescentar anotação \"Fenologia da Planta: Floração\"",
-  "add_plant_phenology_fruiting_annotation": "Acrescentar anotação \"Fenologia da Planta: Frutificação\"",
   "add_tag": "Adicionar etiqueta",
   "add_tags": "Adicionar tags",
   "add_to_a_project": "Adicionar a um projeto",
@@ -27249,6 +27283,7 @@ I18n.translations["pt-PT"] = {
   "edit_multiple_locations": "Editar diversos locais",
   "edit_multiple_species": "Editar múltiplas espécies",
   "edit_photos": "Editar fotografias",
+  "edit_project": "Editar projeto",
   "edit_taxon": "Editar táxon",
   "edit_your_default_settings": "Editar as suas configurações padrão",
   "edit_your_global_project_settings": "Editar as suas configurações globais de projetos",
@@ -27305,6 +27340,7 @@ I18n.translations["pt-PT"] = {
   "flowering_phenology": "Fenologia de Floração",
   "fluid_layout": "Composição fluída",
   "follow": "Seguir",
+  "followers": "Seguidores",
   "frequency": "Frequência",
   "from": "De",
   "from_flickr_facebook_etc": "Do Flickr, Facebook, etc.",
@@ -27679,6 +27715,8 @@ I18n.translations["pt-PT"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -27831,6 +27869,8 @@ I18n.translations["ro"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -27882,11 +27922,8 @@ I18n.translations["ru"] = {
   "add_an_identification": "Добавить идентификацию",
   "add_edit_flags": "Добавить/редактировать флаги",
   "add_id": "Добавить идентификатор",
-  "add_life_stage_adult_annotation": "Добавить значение \"Стадия жизни: Имаго\"",
-  "add_life_stage_juvenile_annotation": "Добавить значение \"Стадия жизни: Молодой\"",
   "add_link": "Добавить ссылку",
   "add_photos_to_this_observation": "Добавить фото для этого наблюдения",
-  "add_plant_phenology_budding_annotation": "Добавить значение \"Фенология растений: Почкование\"",
   "add_tag": "Добавить тег",
   "add_tags": "Добавьте теги",
   "add_to_a_project": "Добавить в проект",
@@ -28126,6 +28163,7 @@ I18n.translations["ru"] = {
   "edit_license": "Редактировать лицензию",
   "edit_multiple_locations": "Редактировать множественные местоположения",
   "edit_photos": "Редактировать фото",
+  "edit_project": "Редактировать проект",
   "edit_taxon": "Редактировать таксон",
   "edit_your_default_settings": "Редактировать настройки по умолчанию",
   "edit_your_global_project_settings": "Редактирование глобальных параметров проекта",
@@ -28528,6 +28566,8 @@ I18n.translations["ru"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28721,6 +28761,8 @@ I18n.translations["sk"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28805,6 +28847,8 @@ I18n.translations["sl"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28889,6 +28933,8 @@ I18n.translations["sr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -28973,6 +29019,8 @@ I18n.translations["sr-RS"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29057,6 +29105,8 @@ I18n.translations["sv"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29141,6 +29191,8 @@ I18n.translations["th"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29225,6 +29277,8 @@ I18n.translations["tr"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29309,6 +29363,8 @@ I18n.translations["uk"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29393,6 +29449,8 @@ I18n.translations["vi"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -29444,16 +29502,9 @@ I18n.translations["zh-CN"] = {
   "add_an_identification": "添加一个身份证明",
   "add_edit_flags": "添加/编辑标记",
   "add_id": "添加ID",
-  "add_life_stage_adult_annotation": "添加“生命阶段：成人”注释",
-  "add_life_stage_juvenile_annotation": "添加“生命阶段：青少年”注释",
-  "add_life_stage_larva_annotation": "添加“生活期：幼虫”注解",
-  "add_life_stage_pupa_annotation": "添加“生命阶段：蛹”注释",
   "add_link": "添加链接",
   "add_one_now": "现在添加一个",
   "add_photos_to_this_observation": "添加照片至此观察",
-  "add_plant_phenology_budding_annotation": "添加“植物物候学：发芽”注释",
-  "add_plant_phenology_flowering_annotation": "添加“植物物候学：开花”注释",
-  "add_plant_phenology_fruiting_annotation": "添加“植物物候学：结果”注释",
   "add_tag": "添加标签",
   "add_tags": "添加标签",
   "add_to_a_project": "添加至一个项目",
@@ -29778,6 +29829,7 @@ I18n.translations["zh-CN"] = {
   "edit_multiple_locations": "编辑多个位置",
   "edit_multiple_species": "编辑多个物种",
   "edit_photos": "编辑照片",
+  "edit_project": "编辑项目",
   "edit_taxon": "编辑分类群",
   "edit_your_default_settings": "编辑您的默认设置",
   "edit_your_global_project_settings": "编辑您的全域项目设置",
@@ -29829,6 +29881,7 @@ I18n.translations["zh-CN"] = {
   "flowering_phenology": "开花物候学",
   "fluid_layout": "流动布局",
   "follow": "关注",
+  "followers": "关注者",
   "frequency": "频率",
   "from": "来自",
   "from_flickr_facebook_etc": "来自Flickr、Facebook等",
@@ -30535,6 +30588,8 @@ I18n.translations["zh-CN"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -30745,6 +30800,8 @@ I18n.translations["zh-HK"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
@@ -30796,17 +30853,9 @@ I18n.translations["zh-TW"] = {
   "add_an_identification": "新增一個物種鑑定",
   "add_edit_flags": "新增/編輯標記",
   "add_id": "新增物種鑑定",
-  "add_life_stage_adult_annotation": "新增「生命階段：成體」的註解",
-  "add_life_stage_egg_annotation": "新增「生命階段：卵」註解",
-  "add_life_stage_juvenile_annotation": "新增「生命階段：亞成體」的註解",
-  "add_life_stage_larva_annotation": "新增「生命階段：幼蟲」註解",
-  "add_life_stage_pupa_annotation": "新增「生命階段：蛹」的註解",
   "add_link": "新增連結",
   "add_one_now": "現在新增一個",
   "add_photos_to_this_observation": "新增相片到觀察紀錄中",
-  "add_plant_phenology_budding_annotation": "新增「植物物候：發新芽」的註解",
-  "add_plant_phenology_flowering_annotation": "新增「植物物候學：開花」的註解",
-  "add_plant_phenology_fruiting_annotation": "新增「植物物候：結果」註解",
   "add_tag": "添加標籤",
   "add_tags": "添加標籤",
   "add_to_a_project": "添加至專案",
@@ -31164,6 +31213,7 @@ I18n.translations["zh-TW"] = {
   "edit_multiple_locations": "編輯多個位置",
   "edit_multiple_species": "編輯多個物種",
   "edit_photos": "編輯照片",
+  "edit_project": "編輯專案",
   "edit_taxon": "編輯分類群",
   "edit_your_default_settings": "編輯您的預設設定",
   "edit_your_global_project_settings": "編輯您的全域專案設定",
@@ -31220,6 +31270,7 @@ I18n.translations["zh-TW"] = {
   "flowering_phenology": "開花物候",
   "fluid_layout": "流動佈局",
   "follow": "關注",
+  "followers": "關注者",
   "frequency": "頻率",
   "from": "來自",
   "from_flickr_facebook_etc": "來自 Flickr、臉書、或其它。",
@@ -32021,6 +32072,8 @@ I18n.translations["zh-TW"] = {
     },
     "projects": {
       "new": {
+      },
+      "show": {
       }
     },
     "shared": {
