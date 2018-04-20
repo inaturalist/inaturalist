@@ -248,8 +248,7 @@ export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
     if ( !project ) { return null; }
-    const statsParams = { project_id: project.id };
-    return inatjs.observations.umbrellaProjectStats( statsParams ).then( response => {
+    return inatjs.observations.umbrellaProjectStats( project.search_params ).then( response => {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
         umbrella_stats: response

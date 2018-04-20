@@ -238,7 +238,7 @@ class ProjectsController < ApplicationController
         return redirect_to projects_path
       end
       @project_json = projects_response.results[0]
-      return render layout: "bootstrap", action: "new2"
+      return render layout: "bootstrap", action: "new"
     end
     @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
@@ -265,7 +265,7 @@ class ProjectsController < ApplicationController
           render :json => @project.to_json
         }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new_traditional" }
         format.json { render :status => :unprocessable_entity,
           :json => { :error => @project.errors.full_messages } }
       end
