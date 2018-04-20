@@ -242,9 +242,11 @@ body>div>.popover[role="tooltip"].popover-error {
     }
     .icon, .banner, img {
       height: 30px;
-      background-size: cover;
+      background-size: contain;
       float: left;
       margin-right: 10px;
+      background-repeat: no-repeat;
+      background-position: center;
     }
     .icon, img {
       width: 30px;
@@ -264,7 +266,7 @@ body>div>.popover[role="tooltip"].popover-error {
     }
     &.banner {
       .icon-preview > span {
-        max-width: 66%;
+        max-width: 64%;
       }
     }
   }

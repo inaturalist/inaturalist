@@ -129,7 +129,7 @@ class ProjectsController < ApplicationController
         # check if the project can be previewed as a new-style project
         if params.has_key?(:collection_preview) && logged_in? && !@project.is_new_project?
           project_user = current_user.project_users.where(project_id: @project.id).first
-          if current_user.has_role?(:admin) || ( project_user && !project_user.is_admin? )
+          if current_user.has_role?(:admin) || ( project_user && project_user.is_admin? )
             if @project.can_be_converted_to_collection_project?
               preview = true
             else

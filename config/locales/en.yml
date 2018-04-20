@@ -881,6 +881,7 @@ en:
     egg: Egg
     juvenile: Juvenile
   controls: Controls
+  convert: Convert
   coordinate_systems: Coordinate systems
   coordinates: Coordinates
   coordinates_private: (coordinates private)
@@ -5060,6 +5061,8 @@ en:
           include a sign-up widget on your project page until your bioblitz
           begins.
         icon_desc: "Will be cropped to a square"
+        it_looks_like_this_project_can_be_converted: |
+          It looks like this project can be converted to a new <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: |
           Time when the aggregator last finished adding observations to this project
         no_curators: |
@@ -5122,6 +5125,9 @@ en:
           to custom project attributes means the project managers can
           potentially add malicious Javascript, so only trust projects that
           have managers that are both responsible and technically competent.
+        you_can_preview: |
+          You can preview what your project would look like as a Collection Project
+          by <a href="%{url}">clicking here</a>.
       invite:
         description_html: |
           <h3>About Invitations</h3>
@@ -5235,6 +5241,8 @@ en:
         Allow the curators of this project to use your observations according
         to the <a href="%{url}">project terms</a>.
       show:
+        are_you_sure_you_want_to_convert: |
+          Are you sure you want to convert this project to a Collection Project?
         bioblitz_results_desc_html: |
           <p>
             Unlike regular projects, bioblitzes display event stats from
@@ -5259,6 +5267,8 @@ en:
             make sure your participants join the project and add their
             observations like they would in a normal project.
           </p>
+        click_here_to_convert_this_project: |
+          Click here to convert this project to a Collection Project.
         no_journal_blurb_html: |
           <p>
             Your project journal is a tool for communicating with project
@@ -5272,6 +5282,11 @@ en:
           This is the curated checklist and count of taxa from observations explictly added to this
           project, not all observations recorded at the place and time of this
           event.
+        make_sure_you_have_read_about_the_differences: |
+          Make sure you have read about the differences in
+          our <a href="%{url}" target="_blank">blog post about Collection Projects</a>.
+        this_is_a_preview: |
+          This is a preview of what this project would looke like as a Collection Project.
       updates_desc: |
         Receive updates about this project on your dashboard and in the daily
         updates email.
