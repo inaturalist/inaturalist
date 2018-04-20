@@ -18,11 +18,11 @@ class ProjectsController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
-  load_except = [ :create, :index, :search, :new, :by_login, :map, :browse, :calendar, :new2 ]
+  load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
   before_filter :load_project, :except => load_except
   blocks_spam :except => load_except, :instance => :project
   before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new, :by_login, :new2]
+  before_filter :load_project_user, :except => [:index, :search, :new_traditional, :by_login, :new]
   before_filter :load_user_by_login, :only => [:by_login]
   before_filter :ensure_can_edit, :only => [:edit, :update]
   before_filter :filter_params, :only => [:update, :create]
@@ -217,11 +217,11 @@ class ProjectsController < ApplicationController
     send_data(csv, { :filename => "#{@project.title.parameterize}.csv", :type => :csv })
   end
 
-  def new
+  def new_traditional
     @project = Project.new
   end
 
-  def new2
+  def new
     unless logged_in? && current_user.has_role?(:admin)
       flash[:error] = t(:only_administrators_may_access_that_page)
       redirect_to projects_path
@@ -238,7 +238,7 @@ class ProjectsController < ApplicationController
         return redirect_to projects_path
       end
       @project_json = projects_response.results[0]
-      return render layout: "bootstrap", action: "new2"
+      return render layout: "bootstrap", action: "new"
     end
     @project_assets = @project.project_assets.limit(100)
     @kml_assets = @project_assets.select{|pa| pa.asset_file_name =~ /\.km[lz]$/}
@@ -265,7 +265,7 @@ class ProjectsController < ApplicationController
           render :json => @project.to_json
         }
       else
-        format.html { render :action => "new" }
+        format.html { render :action => "new_traditional" }
         format.json { render :status => :unprocessable_entity,
           :json => { :error => @project.errors.full_messages } }
       end

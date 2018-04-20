@@ -300,7 +300,7 @@ Rails.application.routes.draw do
     end
     collection do
       get :calendar
-      get :new2
+      get :new_traditional
     end
     resources :flags
     resources :assessments, :only => [:new, :create, :show, :index, :edit, :update]
