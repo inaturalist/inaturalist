@@ -179,7 +179,8 @@ $.fn.universalAutocomplete = function( options ) {
         data: {
           q: request.term,
           locale: I18n.locale,
-          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null
+          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
+          per_page: 10
         },
         success: function( data ) {
           response( data.results );
