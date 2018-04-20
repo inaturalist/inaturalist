@@ -222,12 +222,7 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    unless logged_in? && current_user.has_role?(:admin)
-      flash[:error] = t(:only_administrators_may_access_that_page)
-      redirect_to projects_path
-      return
-    end
-    return render layout: "bootstrap"
+    render layout: "bootstrap"
   end
 
   def edit
