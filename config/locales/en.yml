@@ -6048,6 +6048,9 @@ en:
                 using the site in a day, you'll be able to publish.
         project_observation:
           attributes:
+            base:
+              project_does_not_allow_observations: |
+                Project does not allow observations
             user_id:
               must_be_curator: must be a curator of this project
             observation_id:
