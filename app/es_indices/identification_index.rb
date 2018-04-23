@@ -62,7 +62,8 @@ class Identification < ActiveRecord::Base
       } : nil,
       vision: vision,
       disagreement: disagreement,
-      previous_observation_taxon_id: previous_observation_taxon_id
+      previous_observation_taxon_id: previous_observation_taxon_id,
+      spam: known_spam? || owned_by_spammer?
     }
     if options[:no_details]
       json[:taxon_id] = taxon_id

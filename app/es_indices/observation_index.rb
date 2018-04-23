@@ -222,7 +222,8 @@ class Observation < ActiveRecord::Base
         owners_identification_from_vision: owners_identification_from_vision,
         preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
         flags: flags.map(&:as_indexed_json),
-        quality_metrics: quality_metrics.map(&:as_indexed_json)
+        quality_metrics: quality_metrics.map(&:as_indexed_json),
+        spam: known_spam? || owned_by_spammer?
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]

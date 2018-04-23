@@ -1,5 +1,4 @@
 class Project < ActiveRecord::Base
-
   include ActsAsElasticModel
 
   DEFAULT_ES_BATCH_SIZE = 500
@@ -118,7 +117,8 @@ class Project < ActiveRecord::Base
       featured_at: featured_at,
       created_at: created_at,
       updated_at: updated_at,
-      observations_count: obs_result ? obs_result.total_results : nil
+      observations_count: obs_result ? obs_result.total_results : nil,
+      spam: known_spam? || owned_by_spammer?
     }
   end
 

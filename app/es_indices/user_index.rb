@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-
   include ActsAsElasticModel
 
   scope :load_for_index, -> { includes( :roles ) }
@@ -20,7 +19,9 @@ class User < ActiveRecord::Base
   def as_indexed_json(options={})
     json = {
       id: id,
-      login: login
+      login: login,
+      spam: known_spam?,
+      suspended: suspended?
     }
     unless options[:no_details]
       json.merge!({
