@@ -1,4 +1,5 @@
 import _ from "lodash";
+import React from "react";
 import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
 import Project from "../../shared/models/project";
@@ -247,8 +248,7 @@ export function fetchUmbrellaStats( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
     if ( !project ) { return null; }
-    const statsParams = { project_id: project.id };
-    return inatjs.observations.umbrellaProjectStats( statsParams ).then( response => {
+    return inatjs.observations.umbrellaProjectStats( project.search_params ).then( response => {
       dispatch( setAttributes( {
         umbrella_stats_loaded: true,
         umbrella_stats: response
@@ -361,8 +361,13 @@ export function subscribe( ) {
     const { project, config } = getState( );
     if ( !project || !config.currentUser ) { return; }
     const payload = { id: project.id };
-    dispatch( setAttributes( { follow_status: "saving" } ) );
+    dispatch( setAttributes( {
+      follow_status: "saving"
+    } ) );
     inatjs.projects.subscribe( payload ).then( ( ) => {
+      dispatch( setAttributes( {
+        currentUserSubscribed: !project.currentUserSubscribed
+      } ) );
       dispatch( fetchSubscriptions( ) );
       dispatch( fetchFollowers( ) );
       dispatch( setAttributes( { follow_status: null } ) );
@@ -375,8 +380,18 @@ export function convertProject( ) {
     const { project } = getState( );
     dispatch( setConfirmModalState( {
       show: true,
-      message: "Are you sure you want to convert this project?",
-      confirmText: I18n.t( "yes" ),
+      message: (
+        <span>
+          <span>{ I18n.t( "views.projects.show.are_you_sure_you_want_to_convert" ) }</span>
+          <br /><br/>
+          <span dangerouslySetInnerHTML={ { __html:
+            I18n.t( "views.projects.show.make_sure_you_have_read_about_the_differences",
+              { url: "/blog/15450-announcing-changes-to-projects-on-inaturalist" }
+            ) } }
+          />
+        </span>
+      ),
+      confirmText: I18n.t( "convert" ),
       onConfirm: ( ) => {
         window.location = `/projects/${project.slug}/convert_to_collection`;
       }

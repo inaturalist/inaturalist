@@ -5,7 +5,7 @@ import UserImage from "../../../shared/components/user_image";
 /* global SITE */
 
 const UsersPopover = ( { keyPrefix, users, contents, placement } ) => {
-  if ( !users || users.length === 0 ) { return ( <div /> ); }
+  if ( !users || users.length === 0 ) { return contents; }
   const popover = (
     <Popover className="UsersPopoverOverlay" id={ `popover-${keyPrefix}` }>
       { users.map( u => {

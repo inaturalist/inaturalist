@@ -37,7 +37,7 @@ class QualityMetrics extends React.Component {
       <UsersPopover
         users={ voters }
         keyPrefix={ `metric-${metric}` }
-        contents={ ( <span>{voters.length}</span> ) }
+        contents={ ( <span>{voters.length === 0 ? null : voters.length}</span> ) }
       /> );
     const thumb = config && config.currentUser ? (
       <i className={ `fa ${className}` } onClick={ () => {

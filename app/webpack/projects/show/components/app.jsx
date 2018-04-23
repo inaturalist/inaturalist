@@ -56,13 +56,27 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
   const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
   const hasBanner = !!project.header_image_url;
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
+  let followLabel;
+  if ( loggedIn ) {
+    if ( project.follow_status === "saving" ) {
+      followLabel = ( <div className="loading_spinner" /> );
+    } else {
+      followLabel = project.currentUserSubscribed ? I18n.t( "unfollow" ) : I18n.t( "follow" );
+    }
+  } else {
+    followLabel = I18n.t( "followers" );
+  }
   const headerButton = (
     <div className="header-followers-button">
-      <div className="action" onClick={ ( ) => subscribe( ) }>
-        { loggedIn ?
-          ( project.currentUserSubscribed ? I18n.t( "unfollow" ) : I18n.t( "follow" ) ) :
-          I18n.t( "followers" )
-        }
+      <div
+        className={ `action ${loggedIn && "clicky"}` }
+        onClick={ ( ) => {
+          if ( loggedIn ) {
+            subscribe( );
+          }
+        } }
+      >
+        { followLabel }
       </div>
       <UsersPopover
         users={ project.followers_loaded ?
@@ -71,10 +85,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
         placement="bottom"
         contents={ (
           <div className="count">
-            { project.follow_status === "saving" ?
-              ( <div className="loading_spinner" /> ) :
-              ( <i className="fa fa-user" /> )
-            }
+            <i className="fa fa-user" />
             { project.followers_loaded ? project.followers.total_results : "---" }
           </div>
         ) }
@@ -112,6 +123,35 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
       { I18n.t( "event_in_progress" ) }
     </div>
   ) : null;
+  let bannerContainer = (
+    <Col
+      xs={ hasBanner ? 12 : 8 }
+      className={
+        `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
+      }
+      style={ project.header_image_url ? {
+        backgroundImage: `url( '${project.header_image_url}' )`
+      } : {
+        backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
+      } }
+    >
+      { headerTitle }
+      { headerDates }
+      { headerInProgress }
+    </Col>
+  );
+  if ( hasBanner ) {
+    // when there is a banner, create an additional container with a solid background
+    bannerContainer = (
+      <Col
+        xs={ 8 }
+        className="title-container background"
+        style={ { backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},1)` } }
+      >
+        { bannerContainer }
+      </Col>
+    );
+  }
   return (
     <div id="ProjectsShow">
       { project.is_traditional && (
@@ -119,11 +159,11 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
           <Row>
             <Col xs={ 12 }>
               <div className="box text-center upstacked">
-                This is a preview.
+                { I18n.t( "views.projects.show.this_is_a_preview" ) }
                 { ( userIsManager || viewerIsAdmin ) && (
                   <div>
                     <a onClick={ convertProject } className="linky">
-                      Click here to convert this project
+                      { I18n.t( "views.projects.show.click_here_to_convert_this_project" ) }
                     </a>
                     <ConfirmModalContainer />
                   </div>
@@ -142,21 +182,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
         />
         <Grid className="header-grid">
           <Row>
-            <Col
-              xs={ 8 }
-              className={
-                `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
-              }
-              style={ project.header_image_url ? {
-                backgroundImage: `url( '${project.header_image_url}' )`
-              } : {
-                backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
-              } }
-            >
-              { headerTitle }
-              { headerDates }
-              { headerInProgress }
-            </Col>
+            { bannerContainer }
             <Col
               xs={ 4 }
               className="header-about"
@@ -168,11 +194,9 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
                 <div className="header-about-title">
                   { I18n.t( "about" ) }
                 </div>
-                { !project.is_traditional && (
-                  <div className="header-about-button">
-                    { headerButton }
-                  </div>
-                ) }
+                <div className="header-about-button">
+                  { headerButton }
+                </div>
                 <div className="header-about-text">
                   <UserText
                     text={ project.description }
