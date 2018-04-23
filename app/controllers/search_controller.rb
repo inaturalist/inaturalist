@@ -35,7 +35,7 @@ class SearchController < ApplicationController
         records_by_type_id[result["type"]][result["record"]["id"]]
       end.compact
     end
-    @results = WillPaginate::Collection.create( response["page"] || 0, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
+    @results = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
       pager.replace( records )
     end
   end
