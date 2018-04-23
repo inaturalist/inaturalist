@@ -5,6 +5,7 @@
 # Author: Benjozork
 # Author: C13m3n7
 # Author: Cgalindo
+# Author: Chris971
 # Author: Cl3m3n7
 # Author: Derugon
 # Author: Element303
@@ -73,6 +74,9 @@ fr:
   x_journal_posts:
     one: 1 note de journal
     other: '%{count} notes de journal'
+  x_journal_posts_html:
+    one: <span class="count">1</span> publication du journal
+    other: <span class="count">%{count}</span> publications du journal
   x_matching_taxa:
     one: 1 taxon correspondant
     other: '%{count} taxons correspondants'
@@ -109,6 +113,9 @@ fr:
   x_faves:
     one: 1 favori
     other: '%{count} favoris'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> marque résolue
+    other: <span class='count'>%{count}</span> marques résolues
   x_people_like_this:
     one: 1 personne aime cela
     other: '%{count} personnes aiment cela'
@@ -138,9 +145,15 @@ fr:
       au rang d'espèce ou à un rang inférieur</span>
     other: <span class='count'>%{count}</span> observations de calibre recherche identifiées
       au rang d'espèce ou à un rang inférieur</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span> taxon supervisé
+    other: <span class='count'>%{count}</span> taxons supervisés
   x_taxa_matching_current_filters:
     one: 1 taxon correspondant aux filtres actuels
     other: '%{count} taxons correspondant aux filtres actuels'
+  x_taxon_changes_added_html:
+    one: <span class='count'>1</span> modification de taxon ajoutée
+    other: <span class='count'>%{count}</span> modifications de taxon ajoutées
   a: un
   a_: un
   a_community_for_naturalist: Une communauté pour les naturalistes
@@ -170,6 +183,7 @@ fr:
   about_the_cc_licenses: À propos des licences Creative Commons
   about_the_taxobox_raquo: À propos de taxobox &raquo;
   about_these_licenses: À propos de ces licences
+  about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
   about_x: À propos de %{x}
@@ -236,12 +250,13 @@ fr:
   add_custom_project_fields: Ajouter des champs de projet personnalisés
   add_edit_flags: Ajouter / éditer les marquages
   add_edit_more_fields: Ajouter/modifier plus de champs
+  add_editor: Ajouter un éditeur
   add_description: Ajouter %{description_name}
   add_field: Ajouter un champ
   add_from_your_observations: Ajouter à partir de vos observations
   add_link: Ajouter un lien
   add_listed_taxa_from_observations: Ajouter les taxons répertoriés dans les observations
-  add_higher_level_taxon: Ajouter un taxon de plus haut rang(par ex. « oiseaux »)
+  add_higher_level_taxon: Ajouter un taxon de plus haut rang (par ex. « oiseaux »)
   add_id: Ajouter une identification
   add_it_to_place_raquo: Ajouter à un lieu &raquo;
   add_more_photos: Ajouter plus de photos
@@ -271,7 +286,7 @@ fr:
   add_photos: Ajouter des photos
   add_photos_to_this_observation: Ajouter des photos à cette observation
   add_place: Ajouter un lieu
-  add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénélogie végétale
+  add_plant_phenology_budding_annotation: 'Ajouter l’annotation « Phénologie végétale
     : Bourgeonnement »'
   add_plant_phenology_flowering_annotation: 'Ajouter l’annotation « Phénologie de
     plante : Floraison »'
@@ -285,6 +300,7 @@ fr:
   add_life_stage_larva_annotation: 'Ajoute l''annotation "Stade d''évolution : Larve"'
   add_life_stage_juvenile_annotation: 'Ajouter l’annotation « Stade de vie : Juvénile »'
   add_life_stage_egg_annotation: 'Ajoute l''annotation "Stade d''évolution : Oeuf"'
+  add_section: Ajouter une section
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_sex_female_annotation: 'Ajouter l''annotation "Sex: Female"'
   add_sex_male_annotation: 'Ajouter l''annotation "Sex: Male"'
@@ -310,7 +326,7 @@ fr:
   add_to_id_please: Ajouter à Identification, SVP
   add_to_list: Ajouter à la liste
   add_to_project: Ajouter au projet
-  add_to_your_life_list: Ajouter à votre liste des êtres vivants!
+  add_to_your_life_list: Ajouter à votre liste des êtres vivants !
   add_to_your_list: Ajouter à votre liste
   add_your_email_to_get: |-
     Ajoutez votre adresse électronique pour obtenir des commentaires sur votre observation de la communauté.
@@ -319,7 +335,7 @@ fr:
   add_your_photo: Ajouter votre photo
   add_your_photo_to: Ajouter votre photo à %{project}
   added: Ajouté
-  added!: Ajouté!
+  added!: Ajouté !
   added_an: a ajouté un
   added_as_a_part_of: Ajouté comme partie d’un
   added_by: Ajouté par
@@ -337,6 +353,7 @@ fr:
   additional_range_data_from_an_unknown_source: Données supplémentaires sur l’aire
     de répartition d’une source inconnue
   admin: Admin
+  admin_s: Administrateur(s)
   admin_any_projects: Administrer n’importe quels projets
   admin_tools: Outils d’administration
   agree: accepter
@@ -350,7 +367,7 @@ fr:
   all_colors: '&laquo; Toutes les couleurs'
   all_comments: Tous les commentaires
   all_csv: Tous les formats CSV
-  all_flags_must_be_resolved: Toutes les étiquettes doivent être résolues
+  all_flags_must_be_resolved: Toutes les signalements doivent être résolus
   all_life: Tous les êtres vivants
   all_names: Tous les noms
   all_observations: Toutes les observations
@@ -666,6 +683,7 @@ fr:
   back_to_your_projects: Retourner à vos projets
   based_on_the_evidence_can_id_be_improved: D’après les preuves, l’ID de la communauté
     peut-il être encore confirmé ou amélioré ?
+  basic: Basique
   batch: Lot
   batch_edit: Modifier en lot
   batch_edit_taxa_for_x_html: Modifier en lot les taxons %{x}
@@ -835,6 +853,7 @@ fr:
   change_your_password: Modifier votre mot de passe
   changing_the_geoprivacy: En changeant la géoconfidentialité, vous changez la façon
     dont les gens voient l’emplacement de votre observation.
+  check_above_for_errors: Vérifier ci-dessus les erreurs
   check_back_soon: Vérification bientôt de retour !
   check_here_to_autoload_description: |-
     Cochez pour charger automatiquement la description à partir de Wikipédia.
@@ -894,6 +913,8 @@ fr:
     d’%{site_name}. Essayez de choisir des images qui <em>affichent des
     fonctionnalités de diagnostic</em> et <em>s’affichent bien comme
     icônes</em>.  La <em>première est l’icône par défaut</em>.
+  choose_columns: Choisir les colonnes
+  choose_file: Choisir le fichier
   choose_files: Choisir les fichiers
   choose_files_from_your_computer: choisissez les fichiers à partir de votre ordinateur
   choose_from_your_lists: Choisissez à partir de vos listes
@@ -1192,6 +1213,7 @@ fr:
       december: Décembre
   date_is_accurate: La date est actuelle
   date_observed: Date observée
+  date_observed_: Date d’observation
   date_observed_on: date observée le
   date_picker:
     closeText: Fermer
@@ -1206,6 +1228,7 @@ fr:
     dayNamesShort: '[''Dim'',''Lun'',''Mar'',''Mer'',''Jeu'',''Ven'',''Sam'']'
     dayNamesMin: '[''Di'',''Lu'',''Ma'',''Me'',''Je'',''Ve'',''Sa'']'
     range: Intervalle
+  date_range: Date de classement
   date_specified: Date spécifiée
   date_time: Horodatage
   dates: dates
@@ -1246,6 +1269,7 @@ fr:
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
   description: Description
   description_from: Description de
+  description_sections: Description des sections
   description_slash_tags: Description / Balises
   description_tags_more: Description, étiquettes, &amp; Plus
   desription: Description
@@ -1433,6 +1457,7 @@ fr:
   everyone_: Tout le monde
   everyone_journal_posts: Notes de journal de tout le monde
   everywhere: partout
+  exact: Exacte
   exact_coordinates_obscured_for: Coordonnées exactes non affichées pour les espèces
     menacées.
   exact_date: Date exacte
@@ -1502,6 +1527,7 @@ fr:
     modifiés par les personnes qui les ont créés et par les responsables de l’organisation
     du site
   fields_merged: Champs fusionnés
+  file: Fichier
   file_should_be_in_the_following_format: 'Le fichier doit être dans le format suivant
     : nom du taxon, description'
   fill_out_project_observation_fields: Remplir vos champs d’observation de projet
@@ -1601,6 +1627,7 @@ fr:
   for_a_widget_showing_recent_observations_from: Pour un widget affichant les observations
     récentes à %{place_name}, découvrez le
   for_more_information: pour obtenir plus d’information.
+  formatting: Mise en forme
   forgot_your_password: Avez-vous oublié votre mot de passe?
   frequency: Fréquence
   fri: Ven
@@ -1628,6 +1655,7 @@ fr:
     one: champignon
     other: champignons
   gbif_occurrences: Présences selon le SMIB
+  geo: Géo
   general: Général
   generally_these_come_from_iucn_red_list: En général, ils viennent de la liste rouge
     de l’UICN et, s’ils viennent d’ailleurs, ils respecteront les catégories de l’UICN.
@@ -1691,7 +1719,9 @@ fr:
   has_one_or_more_faves: A un ou plusieurs favoris
   has_photo: a des photos
   has_photos: a des photos
+  has_photo_and_sound: A une photo et un son
   has_photos_or_sounds: A des photos ou des sons
+  has_sound: A un son
   has_sounds: a des sons
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
   hate_me_facebook: Supprimer le lien entre Facebook et vos comptes %{site_name}
@@ -1836,6 +1866,8 @@ fr:
   import_observations_from_a_photo: Importer des observations à partir d’un fournisseur
     de photos ou d’un fichier sur votre machine.
   import_photos: Importer des photos
+  import_ranges: Importer les classements
+  import_sections: Importer les sections
   import_sounds: Importer les sons
   import_tags_from_csv: Importer des balises à partir d'un fichier CSV
   importing: Importation en cours…
@@ -2046,6 +2078,7 @@ fr:
   less: Moins
   license_descriptions_and_images: Descriptions et images de la licence
   licensed_site_photos: Photos d’%{site_name} sous licence
+  license: Licence
   licensing: Mise sous licence
   licensing_your_content_gives_others_legal: En mettant votre contenu sous licence,
     vous donnez aux autres le droit de l’utiliser s’ils respectent les conditions
@@ -2262,6 +2295,7 @@ fr:
   map: Carte
   map_legend: légende de la carte
   map_marker_size: taille du marqueur sur la carte
+  map_of_observations: Carte des observations
   maps:
     overlays:
       all_observations: Toutes les observations
@@ -2290,9 +2324,11 @@ fr:
   media: Média
   media_type: Type de média
   medium: moyen
+  medium_url: URL du média
   meet: Rencontrer
   member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
   members: Membres
+  membership_model: Modèle d’adhésion
   mentioned_you_in_noun_html: '%{user} vous a mentionné dans %{noun}'
   mentioned_you_in_noun_by_html: '%{user} vous a mentionné dans %{noun} par %{by}'
   mentioned_you_in_a_x_on_noun_html: '%{user} vous a mentionné dans un %{x} sur %{noun}'
@@ -2315,6 +2351,7 @@ fr:
   misleading_or_illegal_content_html: Contenu trompeur ou illégal, insultes raciales
     ou ethniques, etc.
   mixed_licenses: licences mixtes
+  mobile: Mobile
   mobile_app_for: Application mobile pour
   mobile_apps_for: Applications mobiles pour
   mollusks: mollusques
@@ -2396,6 +2433,7 @@ fr:
   naturalised: acclimatée
   naturalized: acclimatée
   native: indigène
+  native_page_url: URL de la page native
   native_to_place: Originaire de %{place}
   nav: Nav
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -2413,6 +2451,7 @@ fr:
   nearby_observations: Observations à proximité
   need_id_help?: Besoin d’aide avec l’identification ?
   needs_id: besoin ID
+  needs_id_: Nécessite un ID
   Needs_ID!: Besoin ID!
   needs_id_expandable_html: <span class='full'>Besoin </span>ID
   needs_to_be_identified: Doit être identifié
@@ -2429,6 +2468,7 @@ fr:
   new_flag_for: Nouveau drapeau pour
   new_guide: Nouveau guide
   new_journal_posts: Nouvelle note du journal
+  new_lexicon: Nouveau lexique
   new_list: Nouvelle liste d'observations
   new_members: Nouveaux membres…
   new_message: Nouveau message
@@ -2640,6 +2680,7 @@ fr:
   observation_flagged: Observation marquée
   observation_flagged_as_flag: Observation marquée comme %{flag}
   observation_removed_from_the_project: Observation supprimée du projet « %{project} »
+  observation_requirements: Critères d’observation
   observation_rights_html: '%{rights} sur l’observation'
   observation_rules: Règles d’observation
   observation_rules_description: |-
@@ -2682,6 +2723,8 @@ fr:
   observations_have_had_their_coordinates: les coordonnées de l’observation ont été
     déplacées vers un point au hasard dans les %{km} km parce que le taxon est menacé
     ou parce que l’observateur a choisi de les masquer.
+  observations_in_this_project_must: Les observations dans ce projet doivent correspondre
+    aux critères suivants
   observations_it_may_take_a_few: observations. Ça peut prendre quelques minutes.
   observations_last500: Observations (les 500 dernières)
   observations_last_aggregated: Observations agrégées pour la dernière fois
@@ -2884,6 +2927,7 @@ fr:
   originally_imported_from_url_html: Importé à l'origine de <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: Lien de la page d'origine de cette photo.
   original_rights_holder: Détenteur des droits d'origine
+  original_url: URL originale
   original_url_for_this_map: Lien d'origine de cette carte
   organism_appears_captive_cultivated: Organisme présent en captivité ou cultivé
   other: autre
@@ -2970,6 +3014,7 @@ fr:
   place: Lieu
   placeholder: Signet (élément de substitution)
   place_added_to_inat_by: Lieu ajouté à %{site_name} par
+  place_autocomplete_placeholder: Parc National de Zion, Miami, etc...
   place_deleted: Lieu supprimé.
   place_geo:
     geo_planet_place_types:
@@ -3189,6 +3234,7 @@ fr:
   present: présent
   press: Presse
   preview: Aperçu
+  preview_observations: Aperçu des observations
   preview_of_synced_observation: <strong>Aperçu</strong> de l’observation synchronisée.
     <a href="%{url}">Annulez ?</a>
   preview_personal_message: J’aimerais que vous me rejoigniez sur %{site}, un site
@@ -3359,6 +3405,7 @@ fr:
   recent_evidence?: Preuve récente ?
   recent_evidence_of_organism: Preuve récente d’un organisme
   recent_observations: Observations récentes
+  recent_observations_: Observations récentes
   recent_post: Note récente
   recent_atom_observations_by: Observations récentes de %{login} (Atom)
   recent_observations_by: Observations récentes de %{login}
@@ -3416,6 +3463,8 @@ fr:
   remove_photo: Supprimer la photo
   remove_place: Supprimer lieu
   remove_project_user: Supprimer l’utilisateur du projet
+  remove_range: Supprimer la classification
+  remove_section: Supprimer la section
   remove_selected: Supprimer la sélection
   remove_tags: Supprimer les étiquettes
   remove_your_existing_id?: Supprimer votre identification existante ?
@@ -3565,6 +3614,8 @@ fr:
   select_one_or_more_photos: Sélectionnez une ou plusieurs photos
   select_none: Ne rien sélectionner
   select_observations_to_edit: Sélectionner les observations à modifier...
+  select_one_of_friends_albums: Sélectionner un des albums de %{friend}
+  select_one_of_your_albums: Sélectionnez un de vos albums
   select_options: Sélectionnez les options
   select_photos_from_your_photo_stream: Sélectionnez des photos des sites d’échange
     externes pour les convertir en observations %{site_name}. Nous remplirons la date,
@@ -3780,6 +3831,7 @@ fr:
   start_a_new_project: Démarrer un nouveau projet
   start_a_project: Démarrer un projet
   start_adding_observations: Démarrer l’ajout d’observations
+  start_date_time: Date / Heure de début
   start_new_account: Démarrer un nouveau compte
   start_new_project: Démarrer un nouveau projet
   start_one: démarrer une
@@ -3809,6 +3861,7 @@ fr:
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
   subject_committed_thing_affecting_stuff_html: '%{subject} a validé %{thing} concernant
     %{stuff}'
+  submission_model: Modèle de soumission
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit: Soumettre
   submit_comment: Soumettre un commentaire
@@ -3880,6 +3933,7 @@ fr:
   taxa_observed: taxons observés
   taxa_to_include: Taxons à inclure
   taxon: Taxon
+  taxon_autocomplete_placeholder: Oiseaux, monarque, etc.
   taxonomy: Taxinomie
   taxon_: taxon
   taxon_assessments_are: |-
@@ -3898,7 +3952,9 @@ fr:
     data_url: URL des données
     overlays: Superpositions
   taxon_changes: Modifications de taxon
+  taxon_colors: Couleurs des taxons
   taxon_curators: Superviseurs des taxons
+  taxon_extras: Taxons additionnels
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
@@ -3911,6 +3967,7 @@ fr:
     quelques minutes qu’elle apparaisse sur les cartes.
   taxon_range_updated_notice: La gamme de taxons a bien été mise à jour. Veuillez
     attendre quelques minutes pour que les modifications apparaissent sur les cartes.
+  taxon_ranks: Rangs de taxons
   taxon_removed_from_list: Taxon enlevé de la liste.
   taxon_scheme: Classification du taxon
   taxon_schemes: Classifications de taxons
@@ -4093,6 +4150,7 @@ fr:
   they_have_been_invited: …ils ont déjà été invités
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
   this: ce
+  this_bioblitz_beings_in: Ce bioblitz commence dans
   this_id_was_added_due_to_a: Cet ID a été ajouté suite à un(e)
   this_is_a: Il s’agit d’un
   this_is_a_cached_summary_based_on: Voici un résumé cahcé de ce taxon basé sur son
@@ -4177,6 +4235,7 @@ fr:
   those_observations_no_longer_exist: Ces observations n’existent plus.
   threatened: menacée
   thu: Jeu
+  thumb_url: URL de la vignette
   time_: heure
   time_ago: il y a %{time}
   tired_of_testing_this_new_version: Lassé de tester cette nouvelle version ?
@@ -4242,6 +4301,7 @@ fr:
   type_taxon_name: Saisissez un nom de taxon
   type_taxon_name_and_click_lookup: Saisissez un nom de taxon et cliquez sur recherchez
   uicn_red_list_status: 'Situation selon la liste rouge de UICN :'
+  umbrella_projects: Projets ombrelle
   un_license_this_observation: supprimer la licence de cette observation
   unblock: Débloquer
   unclassified: Non classifié
@@ -4298,7 +4358,9 @@ fr:
   upload_a_csv_file_with_observation: Téléverser les données d’observation dans un
     fichier CSV. Si vos données se trouvent dans une feuille de calcul ou une base
     de données, c’est la meilleure méthode à adopter.
+  upload_photo: Téléverser des photos
   upload_photos: Téléverser des photos
+  upload_range: Télécharger la classification
   uploaded_by: Téléversé par
   uploader:
     tooltips:
@@ -4343,6 +4405,7 @@ fr:
   user_added_an_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} de %{by}'
   user_added_an_x_to_noun_html: '%{user} a ajouté une %{x} à %{noun}'
   user_added_x_observations_html: '%{user} a ajouté %{x} observations'
+  user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Utilisateur bloqué
   user_commented: '%{user} a commenté'
   user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
@@ -4462,6 +4525,7 @@ fr:
   view_projects_from_place: Afficher les projets de %{place}
   view_real_time_stats_in_a_new_window: Afficher les statistiques en temps réel dans
     une nouvelle fenêtre
+  view_sample: Voir un exemple
   view_site_name_observations_html: Afficher les observations d’<strong>%{site_name}</strong>
   view_stats: Afficher les statistiques
   view_taxon_change: Afficher la modification du taxon
@@ -4595,6 +4659,7 @@ fr:
   withdrawing: Retrait…
   with_errors: Avec des erreurs
   within_inaturalist: Dans %{site_name}
+  worldwide: Dans le monde entier
   wondering_what_to_do_next: Voici quelques étapes suivantes pour vous guider dans
     l’observation et l’identification du monde naturel
   would_you_like_to: Aimeriez-vous en
@@ -4850,6 +4915,7 @@ fr:
   your_sure_delete_list?: Êtes-vous sûr de vouloir supprimer cette liste?
   your_sure_delete_taxon_from_list?: Êtes-vous sûr de vouloir supprimer %{taxon} de
     cette liste?
+  your_tags: Vos étiquettes
   your_world!: votre monde!
   yours: Votre
   youre_following: vous suivez
@@ -5407,6 +5473,10 @@ fr:
           coordonnées proviennent d’un GPS, vérifiez ses paramètres pour trouver le nom du
           système de coordonnées qu’il utilise. Prenez note que nous ne stockons pas les coordonnées
           personnalisées, seulement leurs conversions en lat/lon.
+        date_column_format: AAAA-MM-JJ HH:MM
+        decimal_degrees_format: dd.dddd
+        geoprivacy_must_be_in_english: La colonne coordonnées privées doit être en
+          anglais et laissée vide ou avoir une valeur « obscured » ou « private »
         project_csv_template_notice_html: "Il y a un fichier modèle pour ce projet
           qui peut vous aider avec la structure du fichier CSV. \n<a href=\"%{url}\">Téléchargez
           le modèle</a>"
@@ -5642,6 +5712,10 @@ fr:
         lignes.
     projects:
       project_type: Type de projet
+      collection: Collection
+      umbrella: Chapeau
+      tracks_multiple_projects: suit de multiples projets
+      projects_included: Projets inclus
       curator_coordinate_access_desc_html: |-
         Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
@@ -5786,9 +5860,74 @@ fr:
           Joindre le projet, veuillez contacter un des responsables de l’organisation ci-dessous et demander une
           invitation.
       new:
+        a_project_allows_you_to_gather: |-
+          Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche
+          du cœur de iNaturalist. Cela élimine le besoin d’ajouter manuellement des observations, car tout ce qui correspond aux paramètres mis par le projet sera automatiquement inclus.
+        an_umbrella_project_can_be_used_to: Un projet chapeau peut être utilisé pour
+          comparer des statistiques entre au moins deux projets traditionnels ou chapeau.
+          Les autres projets doivent exister avant que vous puissiez les ajouter à
+          un projet chapeau. Vous pouvez inclure des centaines de projets sous un
+          seul chapeau. Les projets chapeau ne peuvent pas contenir d’autres projets
+          chapeau.
+        can_be_included_in_multiple: Peut être inclus dans plusieurs projets chapeau
+        click_through_to_individual_projects: Cliquez parmi les projets individuels
+        collection_projects: Projets de collections
+        collection_project_features: Fonctionalités des projets de collection
+        custom_banner_icon_and_project_description: Entête personnalisée, icône, et
+          description du projet
+        data_visualizations: Visualisations des données
+        delete_project: Supprimer le projet
+        display_project_name: Afficher le nom du projet
+        do_you_need_features_from_traditional: |-
+          Avez-vous besoin des fonctionnalités des projets traditionnels, comme accéder aux coordonnées réelles,
+          des champs d’observation personnalisés, ou ajouter des observations qui ne peuvent pas être filtrées automatiquement ?
+        leaderboards_among_individuals: Classements entre <strong>individus</strong>
+        leaderboards_among_projects_and_bioblitzes: Classements entre <strong>projets
+          et bioblitz</strong>
+        multiple_project_administrators: Administrateurs multiples du projet
+        name_placeholder: Oiseaux de Chicago, étranges libellules, etc.
+        no_need_to_rely_on_manual_addition: Pas besoin de compter sur l’ajout manuel
+          d’observations  ou sur l’agrégateur pour indexer les observations
+        note_these_users_will_be_able_to_edit: 'Note : ces utilisateurs pourront modifier
+          TOUS les détails du projet, y compris les administrateurs.'
+        note_you_can_delete_the_time: '(Note: vous pouvez supprimer le fuseau horaire
+          et l''heure locale si vous voulez inclure les journées complètes.)'
+        or_drag_and_drop: (ou glissez et déposez)
+        please_specify_the_requirements: |-
+          Veuillez spécifier les exigences pour les observations à ajouter à ce projet.
+          Vous pouvez sélectionner plusieurs espèces, endroits et utilisateurs à inclure automatiquement.
+        project_background_color: Couleur d'arrière plan du résumé du projet
+        project_background_color_help: Assurez-vous de choisir une couleur assez sombre
+          pour que le texte blanc recouvrant soit lisible.
+        project_banner: Entête de projet (PNG, JPG, ou GIF)
+        project_banner_help: Image de bannière facultative. Les dimensions idéales
+          sont 760x320px.
+        project_details: Détails du projet
+        project_icon: Icône du project (PNG, JPG, ou GIF)
+        project_icon_help: Icône facultative. Elle doit avoir une taille minimale
+          de 72x72px et sera coupée en un carré.
         project_name: Nom du projet
+        project_summary: Résumé du projet
+        project_summary_help: |-
+          Donner une explication concise de votre projet. Les deux cents premiers caractères environ seront
+          visibles à droite de la bannière de l’écran d’accueil du projet, donc mettez le meilleur en premier !
+        project_summary_placeholder: Découvrir et suivre les oiseaux du parc de Golden
+          Gate…
+        start_and_end_times_for_bioblitzes: Heures de début et de fin des bioblitz
+        umbrella_project_features: 'Fonctionnalités du projet chapeau :'
+        unique_url_for_outreach: URL unique pour le dépassement
+        users_can_follow_your_project: Les utilisateurs peuvent suivre les mises à
+          jour de votre projet via les publications du journal
         use_this_link_to_create_html: Utilisez à la place,  <a href="%{url}">ce lien</a>
           pour créer un projet traditionnel.
+        visual_comparison_of_data_among: Comparaison visuelle des données parmi les
+          projets sous l'ombrelle
+        we_have_redesigned_projects: 'Nous avons refondu les projets pour inclure
+          automatiquement toutes les observations qui correspondent aux lieux, taxons,
+          utilisateurs, qualité et dates que vous avez définis. Choisir entre deux
+          types : Projets collection et Projets chapeau, qui partagent les fonctionnalités
+          suivantes :'
+        welcome_to_projects: Bienvenue dans les projets !
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement
@@ -6315,6 +6454,14 @@ fr:
       x_seconds:
         one: 1 seconde
         other: '%{count} secondes'
+    countdown_x_days:
+      one: jour
+      other: jours
+    countdown_x_hours:
+      one: heure
+      other: heures
+    countdown_x_minutes:
+      other: minutes(s)
     countdown_x_seconds:
       other: seconde(s)
     prompts:
@@ -6360,6 +6507,8 @@ fr:
         one: 1 erreur a empêché ce %{model} d’être enregistré
         other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   helpers:
+    defaults:
+      title: CECI EST UN TITRE
     select:
       prompt: Veuillez sélectionner
     submit:
@@ -6528,6 +6677,11 @@ fr:
             lexicon:
               should_not_contain_commas_or_slashes: ne doit pas contenir de virgules
                 ni de barres obliques
+    models:
+      AssessmentSection: Section d’évaluation
+      Atlas: Atlas
+      CompleteSet: Ensemble complet
+      TaxonLink: Lien de taxon
     attributes:
       assessment:
         description: Description

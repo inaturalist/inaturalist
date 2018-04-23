@@ -292,7 +292,7 @@ zh-TW:
   added!: 已新增!
   added_an: 已添加一個
   added_as_a_part_of: 已添加成為部份
-  added_by: 添加自
+  added_by: 添加由
   added_by_user_on_date_html: 由 %{user} 於 %{date} 所添加
   added_identifications_to: 為任何人的觀察紀錄添加物種鑑定
   added_on: 已添加在
@@ -680,14 +680,14 @@ zh-TW:
     split: 拆分
     merge: 合併
     swap: 對換
-    stage: 舉行
+    stage: 階段
     drop: 去除
     split_from: 拆分自
     split_into: 拆分至
     merge_into: 合併至
     merged_into: 已合併至
     replaced_by: 替代由
-    replace_with: 替代以
+    replace_with: 替代為
     dropped: 已去除
     staged: 已舉行
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon}被拆分成%{output_taxa}'
@@ -3317,7 +3317,7 @@ zh-TW:
   taxa_observed: 物種分類已觀察
   taxa_to_include: 包括的物種分類群
   taxon: 物種分類
-  taxon_autocomplete_placeholder: 鳥、王鶲等等。
+  taxon_autocomplete_placeholder: 鳥、君主斑蝶等等。
   taxonomy: 分類法
   taxon_: 物種分類
   taxon_assessments_are: 物種分類評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之物種分類群狀態的意見回饋。
@@ -4708,8 +4708,7 @@ zh-TW:
         about_names_desc: |-
           <p>
             多數生物的分類在語言裡擁有「通用名稱」。這些名稱通常是易於辨別、容易唸出、長期下識用，
-            但多數生物在不同地點裡各擁有不同名稱，即使是在使用同一種語言的情形下。這些在溝通有關
-            這些生物時產生困難。科學家透過採取符合<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95">二名法</a>的單一「學名」在任一生物分類上來處理問題，
+            但即使是在使用同一種語言的情形下，也會有多數生物在不同地點裡各擁有不同名稱的情況。這些在溝通有關這些生物時產生困難。因此科學家透過採取符合<a href="https://zh.wikipedia.org/wiki/%E4%BA%8C%E5%90%8D%E6%B3%95">二名法</a>的單一「學名」在任一生物分類上來處理問題，
             但這些名稱通常是建立於多數人不會講的拉丁文上，因此對於多數人這些不像通用名稱那般好記。
             學名能反應出生物在分類法上的對應位置，因此它們能在科學家推導出有關不同生物之演化關係上
             更精準的理論時做出更改，但也因此降低在溝通上的實用性，即使是在了解學名的人士上。
@@ -4852,7 +4851,7 @@ zh-TW:
         help_scientists: 協助科學家與資源管理者了解生物在何時及何處出現。
         crowdsource_identifications: 群眾外包鑑定
         connect_with_experts: 聯絡可以鑑定您所觀察到生物的專家。
-        become_a_citizen_scientist: 成為一位市民科學家
+        become_a_citizen_scientist: 成為一位公眾科學家
         find_a_project: 循著一個有著您感興趣任務的專案，或是開始您自己擁有的專案。
         learn_about_nature: 了解關於自然
         build_your_knowledge: 透過與其他博物學友的交談，以及協助他人來建立您的知識。

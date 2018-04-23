@@ -99,6 +99,7 @@ lb:
   add_photos: Fotoen derbäisetzen
   add_photos_to_this_observation: Fotoe bei dëse Observatioun derbäisetzen
   add_place: Plaz derbäisetzen
+  add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
   add_to_a_project: E Projet derbäisetzen
   add_to_calendar: Bei de Kalenner derbäisetzen
@@ -220,6 +221,7 @@ lb:
   back_to_albums: Zréck op d'Albumen
   back_to_calendar: Zréck op de Kalenner vum %{user}}
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
+  back_to_friends: Zréck bei d'Frënn
   back_to_help: Zréck op d'Hëllef
   back_to_import: Zréck op den Import
   back_to_lists: Zréck op %{name}-Lëschten
@@ -391,6 +393,7 @@ lb:
       november: November
       december: Dezember
   date_is_accurate: Datum ass richteg
+  date_observed_: Datum vun der Observatioun
   date_picker:
     closeText: Zoumaachen
     currentText: Haut
@@ -547,6 +550,7 @@ lb:
   fluid: flësseg
   follow: Iwwerwaachen
   for_more_information: fir méi Informatiounen.
+  formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
   frequency: Frequenz
   fri: Fre
@@ -750,6 +754,7 @@ lb:
   manage: Geréieren
   manage_names: Nimm geréieren
   map: Kaart
+  map_of_observations: Kaart vun den Observatiounen
   maps:
     overlays:
       all_observations: All Observatiounen
@@ -773,6 +778,7 @@ lb:
   mentions: Mentiounen
   message: Message
   messages: Messagen
+  mobile: Mobil
   momentjs:
     shortRelativeTime:
       past: '%s'
@@ -1126,6 +1132,7 @@ lb:
   remove: Ewechhuelen
   remove_photo: Foto ewechhuelen
   remove_place: Plaz ewechhuelen
+  remove_section: Abschnitt ewechhuelen
   repair_external_photos: Extern Fotoe flecken
   replace_parentesis: (ersetzen)
   reply: Äntwerten
@@ -1160,6 +1167,7 @@ lb:
   select: Eraussichen
   select_all: Alles uwielen
   select_at_least_one: Mindestens een Element eraussichen
+  select_one_of_your_albums: Sicht ee vun Ären Albumen eraus
   select_options: Optiounen auswielen
   send: schécken
   sending: Schécken...
@@ -1285,6 +1293,7 @@ lb:
   view_all_your_projects: All Är Projete weisen
   view_change: Ännerung weisen
   view_projects_from_place: Projeten vu(n) %{place} weisen
+  view_sample: Beispill weisen
   view_stats: Statistike weisen
   view_x: '%{x} weisen'
   view_year_stats_for_site: Weis %{year} Statistike fir %{site}
@@ -1403,12 +1412,15 @@ lb:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: Ok, mir schécken Iech eng E-Mail wann et prett ass.
     projects:
+      collection: Sammlung
       edit:
         rules:
           has_a_photo: eng Foto hunn
       new:
         delete_project: Projet läschen
+        project_details: Detailer vum Projet
         project_name: Numm vum Projet
+        project_summary: Resumé vum Projet
       project_user_curator_coordinate_access_labels:
         observer: Jo, awer nëmme wann ech selwer d'Observatioun bei de Projet derbäisetzen
         any: Jo, et ass net wichteg wien d'Observatioun bei de Projet derbäisetzt.
@@ -1472,6 +1484,8 @@ lb:
       9: September
   datetime:
     countdown_x_hours: '{{PLURAL: $1|one=Stonn|Stonnen}}'
+    countdown_x_seconds:
+      other: Sek
     prompts:
       day: Dag
   errors:
@@ -1523,6 +1537,8 @@ lb:
           attributes:
             place_geometry:
               is_too_large_to_import: ass ze grouss fir z'importéieren
+    models:
+      Atlas: Atlas
     attributes:
       assessment:
         description: Beschreiwung

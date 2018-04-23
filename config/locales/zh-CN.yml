@@ -84,6 +84,9 @@ zh-CN:
   x_faves:
     one: 1次喜爱
     other: '%{count} 次喜爱'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span>个标记已解决
+    other: <span class='count'>%{count}</span>个标记已解决
   x_people_like_this:
     one: 1个人喜欢这个
     other: '%{count} 个人喜欢这个'
@@ -111,6 +114,9 @@ zh-CN:
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span>个研究级观察ID已降级至物种或更低</span>
     other: <span class='count'>%{count}</span> 个研究级观察ID已降级至物种或更低</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span>个分类单元已有馆长
+    other: <span class='count'>%{count}</span>个分类单元已有馆长
   x_taxa_matching_current_filters:
     one: 1个分类单元匹配当前的过滤器
     other: '%{count} 个分类群匹配当前的过滤器'
@@ -2387,6 +2393,7 @@ zh-CN:
   present: 礼物
   press: 新闻稿
   preview: 预览
+  preview_observations: 预览观察
   preview_personal_message: 我希望您和我一起加入 %{site}，这是一个您可以记录您对植物和动物的观察，保持追踪您的生命清单，并了解自然世界的网站！
   preview_your_message: 预览您的消息
   previewing: 正在预览...
@@ -2667,6 +2674,7 @@ zh-CN:
   select_none: 均不选择
   select_observations_to_edit: 选择观察编辑...
   select_one_of_friends_albums: 选择%{friend}的专辑之一
+  select_one_of_your_albums: 选择您的专辑之一
   select_options: 选择选项
   select_photos_from_your_photo_stream: 从外部照片分享网站选择照片以转换至%{site_name}观察中。我们将从照片的元数据中填充日期、时间和位置，并尝试从标签查找物种名称。
   select_photos_to_display: 选择要显示的照片
@@ -2944,6 +2952,7 @@ zh-CN:
   these_are_taxa_that: 这些是由于某些原因，%{site} 网站不能自动加入到我们的分类树中的分类群。您可以通过编辑分类单元并选择一个父记录加入它们。例如现代人的父分类是人属。您也可能希望检查同义词分类群并合并它们。
   third_person_possessive_singular: '%{object_phrase} 的 %{noun}'
   this: 此
+  this_bioblitz_beings_in: 此bioblitz开始于
   this_id_was_added_due_to_a: 此ID已加入，由于
   this_is_a: 这是一个
   this_is_a_cached_summary_based_on: 这是此分类单元的已缓存摘要，基于它的
@@ -3733,13 +3742,19 @@ zh-CN:
             file.
           </p>
       new:
+        can_be_included_in_multiple: 可以包含在多个雨伞项目中
+        click_through_to_individual_projects: 单个项目的点击次数
         collection_projects: 收藏项目
+        collection_project_features: 收藏项目功能：
         custom_banner_icon_and_project_description: 自定义横幅、图标和项目描述
+        data_visualizations: 数据可视化
         delete_project: 删除项目
         display_project_name: 显示项目名称
         multiple_project_administrators: 多重项目管理员
+        name_placeholder: 芝加哥的鸟、神奇的蜻蜓等
         note_you_can_delete_the_time: （注意：如果您希望包含一整天，您可以删除时区和精确时间。）
         or_drag_and_drop: （或者拖放）
+        project_background_color: 项目摘要背景颜色
         project_banner: 项目横幅（PNG、JPG或GIF）
         project_details: 项目详情
         project_icon: 项目图标（PNG、JPG或GIF）
@@ -4190,6 +4205,7 @@ zh-CN:
             lexicon:
               should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
     models:
+      AssessmentSection: 评定章节
       Atlas: 地图集
       CompleteSet: 完整集
       TaxonLink: 分类单元链接

@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Alex00728
 # Author: Amael Borzee
+# Author: Doyoon1995
 # Author: Garam
 # Author: Hosseinblue
 # Author: Hwangjy9
@@ -391,6 +392,7 @@ ko:
   back_to_browsing_people: 사람들 검색으로 돌아가기
   back_to_calendar: '%{user} 달력으로 돌아가기'
   back_to_editing_observation: 관찰 편집하기로 돌아가기
+  back_to_friends: 친구들로 돌아가기
   back_to_help: 도움말로 돌아가기
   back_to_import: 끌어오기로 돌아가기
   back_to_lists: '%{name} 목록으로 돌아가기'
@@ -563,6 +565,7 @@ ko:
   choose_a_list_above: 목록을 선택하세요.
   choose_a_place: 장소를 선택하세요.
   choose_a_taxon: 분류군을 선택하세요.
+  choose_columns: 열 선택
   choose_file: 파일 선택
   choose_files: 파일 선택
   choose_files_from_your_computer: 컴퓨터에서 파일을 선택하세요
@@ -1549,6 +1552,7 @@ ko:
   messages: 매시지
   misleading_or_illegal_content_html: 잘못되었거나 불법인 콘텐츠, 인종차별주의적 발언 등. "적절한"의 기준을 확인하고
     싶다면 <a href="/help#inappropriate">FAQ</a>을 참고해주세요.
+  mobile: 모바일
   mobile_app_for: 모바일 앱
   mobile_apps_for: 모바일 앱들
   mollusks: 연체동물
@@ -1840,6 +1844,7 @@ ko:
     사진을 접근할 권한이 없습니다.'
   pink: 핑크
   place: 장소
+  place_autocomplete_placeholder: 자이언 국립공원, 마이애미, 등등
   place_deleted: 장소 삭제됨.
   place_geo:
     geo_planet_place_types:
@@ -2111,6 +2116,9 @@ ko:
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_all_species_html: 모든 종
+  taxon_colors: 분류 색
+  taxon_extras: 분류군 엑스트라들
+  taxon_ranks: 분류 순위
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   tell_us_why: 이유를 말해주세요...
   text: 텍스트
@@ -2194,6 +2202,7 @@ ko:
   view_more_recent_observations: 더 최근 관찰 보기
   view_observations: 관찰 보기
   view_observations_by_everyone: 모두의 관찰 보기
+  view_sample: 샘플 보기
   view_terms: 이용 약관 보기
   view_unidentified_observations: 동정하지 않은 관찰 보기
   view_x: '%{x} 보기'
@@ -2353,6 +2362,7 @@ ko:
         project_icon_help: 선택적 아이콘. 최소 72px x 72px이어야 정사각형으로 잘립니다.
         project_name: 프로젝트 이름
         project_summary: 프로젝트 요약
+        use_this_link_to_create_html: 전통 프로젝트를 만들려면 <a href="%{url}">이 링크</a>를 사용하세요.
         welcome_to_projects: 프로젝트에 오신 것을 환영합니다!
       project_user_curator_coordinate_access_labels:
         none: 없음.
@@ -2519,6 +2529,8 @@ ko:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+    models:
+      TaxonLink: 분류 링크
     attributes:
       assessment:
         description: 설명
@@ -2529,6 +2541,7 @@ ko:
         description: 설명
       post:
         title: 제목
+        body: 본문
       project:
         description: 설명
         last_aggregated_at: 마지막으로 묶인 관찰
