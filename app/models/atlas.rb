@@ -149,7 +149,7 @@ class Atlas < ActiveRecord::Base
   def self.still_is_marked( atlas )
     return false if atlas.is_marked = false
     observation_search_url_params = { 
-      verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas.presence_places.pluck(:id).join( "," )
+      verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas.presence_places.pluck(:id).join( "," ), geoprivacy: ["open","obscured"].join(",")
     }
     total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
     if total_res > 0
@@ -176,7 +176,7 @@ class Atlas < ActiveRecord::Base
       change = false
       atlas_presence_places = atlas.presence_places
       observation_search_url_params = { 
-        verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," )
+        verifiable: true, taxon_id: atlas.taxon_id, not_in_place: atlas_presence_places.pluck(:id).join( "," ), geoprivacy: ["open","obscured"].join(",")
       }
       total_res = INatAPIService.observations( observation_search_url_params.merge( per_page: 0 ) ).total_results
       if total_res == 0
