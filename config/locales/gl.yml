@@ -586,7 +586,6 @@ gl:
     en Flickr ou seleccionalas das túas observacións en %{site_name}. Proba a seleccionar
     imaxes que <em>mostren características de diagnóstico</em> e <em> que se vexan
     ben coma iconas</em>. A <em>primeira aparece por defecto</em>.
-  chose_columns: Escolle columnas
   choose_files_from_your_computer: selecciona o arquivo no teu ordenador.
   choose_from_your_lists: Seleccionar das túas listas
   choose_good_default_photos: seleccionar boas fotos por defecto do grupo de fotos
@@ -1116,6 +1115,8 @@ gl:
   here_are_3_examples: Aquí hai 3 exemplos de datos ben formados
   here_are_some_things_you_can_do_meantime: Aquí hai algunhas cousas que podes facer
     mentres tanto
+  here_are_some_things_you_can_do_in_the_meantime: Aquí hai algunhas cousas que podes
+    facer mentres tanto
   hex_color_eg: Cor en hexadecimal, ex. 65644F
   hi: Ola.
   hide: Ocultar
@@ -1651,8 +1652,6 @@ gl:
   no_x_this_y: Non hai %{x} deste %{y}
   noble_curators: Administradores activos de %{site}
   none: Ningún
-  none_of_the_people_you_follow_have_updates: As persoas que segues aínda non fixeron
-    ningunha actualización!
   normal: Normal
   not_evaluated: non avaliado
   not_filtering: Sen filtrar
@@ -2553,6 +2552,7 @@ gl:
   terms_of_service: Termos do servizo
   terms_service: Termos do servizo
   terrain: Terreo
+  text: Texto
   text_: texto
   thanks_for_signing_up: Grazas por rexistrarte!
   thanks_for_using: Grazas por empregar o noso servizo
@@ -3146,15 +3146,9 @@ gl:
   youve_already_added_an_identification: xa engadiches unha identificación, e só podes
     engadir unha
   youve_seen_it_want_to: Víchelo! Deséxalo?
-  zoom_to_taxon_name: Achegarse a %{taxonname}
-  zoom_to_x: Ir a %{x}
   your_dashboard_helps_you: O taboleiro axúdache a seguir o que está facendo a xente
     en iNaturaList. Para seguir actualizacións doutros usuarios, selecciona ‘Seguir
     a [nome]’ no encabezado cando vexas as túas observacións ou o teu perfil.
-  here_are_some_things_you_can_do_in_the_meantime: Aquí hai algunhas cousas que podes
-    facer mentres tanto
-  none_of_the_people_you_follow_have_any_updates_yet: As persoas que te seguen aínda
-    non fixeron ningunha actualización!
   views:
     custom_projects:
       edit:
@@ -3664,6 +3658,17 @@ gl:
         description: Descrición
         place_id: Lugar
         url: URL
+      flag:
+        reason: Razón
+        flag: Marca
+      listed_taxon:
+        occurrence_status_level: Status de ocorrencia
+        establishment_means: Medio de establecemento.
+      observation_field_value:
+        value: valor
+      post:
+        title: Título
+        body: Texto
       project:
         title: Título
         project_icon: Icona de proxecto
@@ -3686,11 +3691,11 @@ gl:
         place_type: Tipo de lugar
         prefers_check_lists: ¿Comprobar listas permitidas?
         woeid: Identificador único mundial (de acordo con Yahoo)
-      flag:
-        reason: Razón
-        flag: Marca
-      observation_field_value:
-        value: valor
+      source:
+        title: Título
+        in_text: Referencia
+        url: Enlace
+        citation: Bibliografía
       taxon:
         name: Nome
         rank: Clasificación
@@ -3713,12 +3718,6 @@ gl:
         time_zone: Zona horaria
         search_place_id: Procurar lugar
         place_id: Lugar
-      source:
-        title: Título
-        in_text: Referencia
-        url: Enlace
-        citation: Bibliografía
-      listed_taxon:
-        occurrence_status_level: Status de ocorrencia
-        establishment_means: Medio de establecemento.
+  zoom_to_taxon_name: Achegarse a %{taxonname}
+  zoom_to_x: Ir a %{x}
 ...

@@ -388,7 +388,6 @@ mk:
   choose_a_list_above: Одберете список погоре.
   choose_a_place: Одберете место
   choose_a_taxon: Одберете таксон (незадол.)
-  chose_columns: Одберете столбови
   choose_files_from_your_computer: Одберете податотеки од вашиот сметач
   choose_from_your_lists: Одберете од вашите списоци
   choose_good_default_photos: одберете добри стандардни слики од фондот на слики Flickr
@@ -732,6 +731,8 @@ mk:
   help_confirm_observations!: Помогнете со потврдувањето ана набљудувањата!
   help_faq: Помош / ЧПП
   help_out!: Помогнете!
+  here_are_some_things_you_can_do_in_the_meantime: Еве што друго можете да правите
+    во меѓувреме
   hex_color_eg: Хексадецимална боја, на пр. 65644F
   hi: Здраво,
   hide: Скриј
@@ -1820,15 +1821,9 @@ mk:
   your_observations: Ваши набљудувања
   your_profile_was_successfully_updated: Вашиот профил е успешно подновен!
   your_world!: го вашиот свет!
-  zoom_to_taxon_name: Приближи на %{taxonname}
-  zoom_to_x: приближи на %{x}
   your_dashboard_helps_you: Прегледникот ви помага да бидете во тек со сето она што
     другите го прават на iNat. За да следите нечии новини, стиснете на „Следи го/ја
     [name]“ во заглавието на набљудувањата или профилот на дадениот корисник.
-  here_are_some_things_you_can_do_in_the_meantime: Еве што друго можете да правите
-    во меѓувреме
-  none_of_the_people_you_follow_have_any_updates_yet: Засега никој од следените нема
-    новини!
   views:
     views: Посети
     custom_projects:
@@ -2122,9 +2117,16 @@ mk:
         url: URL
         geoprivacy: Геоприватност
         iucn: Истоветник во МСЗП
+      flag:
+        reason: Причина
       guide:
         source_url: Изворен URL
         published_at: Издание
+      listed_taxon:
+        occurrence_status_level: Степен на застапеност
+        establishment_means: Начин на утврдување
+      observation_field_value:
+        value: вредност
       project:
         title: Наслов
         project_icon: Проектна икона
@@ -2143,10 +2145,11 @@ mk:
         longitude: Г.Д.
         name: Име
         woeid: WOEID
-      flag:
-        reason: Причина
-      observation_field_value:
-        value: вредност
+      source:
+        title: Наслов
+        in_text: Во текстот
+        url: URL
+        citation: Наведување
       taxon:
         name: Име
         rank: Ранг
@@ -2160,12 +2163,6 @@ mk:
         name_provider: Добавувач на името
         source_url: Изворен URL
         source_identifier: Назнака на изворот
-      source:
-        title: Наслов
-        in_text: Во текстот
-        url: URL
-        citation: Наведување
-      listed_taxon:
-        occurrence_status_level: Степен на застапеност
-        establishment_means: Начин на утврдување
+  zoom_to_taxon_name: Приближи на %{taxonname}
+  zoom_to_x: приближи на %{x}
 ...

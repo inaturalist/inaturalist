@@ -819,7 +819,6 @@ cs:
     jiných stránek nebo z pozorování %{site_name}. Snažte se vybírat obrázky, které
     <em>ukazují rozpoznávací znaky</em> a <em>vypadají dobře jako ikony</em>. <em>První
     je základní</em>.
-  chose_columns: Vybrat sloupce
   choose_files: Vybrat soubory
   choose_files_from_your_computer: vyberte soubory ze svého počítače
   choose_from_your_lists: Vybrat z vašich seznamů
@@ -1600,6 +1599,8 @@ cs:
   here_are_3_examples: Toto jsou 3 příklady dobře sestavených údajů
   here_are_our_top_species_suggestions: Toto jsou naše nejlepší návrhy k druhům
   here_are_some_things_you_can_do_meantime: 'Toto jsou věci, které můžete zatím udělat:'
+  here_are_some_things_you_can_do_in_the_meantime: Toto jsou věci, které můžete zatím
+    udělat
   heres_a_litle_about: Tady je něco málo o
   hex_color_eg: Barva hex, např. 65644F
   hi: Ahoj,
@@ -2418,8 +2419,6 @@ cs:
   non_human?: Není lidský?
   none: Žádný
   none_found: Nenalezeno
-  none_of_the_people_you_follow_have_updates: Nikdo z lidí, které sledujete, zatím
-    neprovedl žádné aktualizace!
   normal: normální
   not_completed: Nedokončený
   not_evaluated: nehodnoceno
@@ -4586,18 +4585,9 @@ cs:
   youve_seen_it_want_to: Viděli jste to! Chcete
   youve_successfully_linked_your_provider_account: Úspěšně jste si propojili účet
     %{provider}
-  zoom_in: Přiblížit
-  zoom_out: Oddálit
-  zoom_photo: Přiblížit fotku
-  zoom_to_taxon_name: Přiblížit na %{taxonname}
-  zoom_to_x: přiblížit na %{x}
   your_dashboard_helps_you: Na své nástěnce můžete sledovat, co ostatní na stránkách
     dělají. Pokud chcete sledovat něčí aktualizace, klikněte na odkaz „Sledovat [jméno]“
     v nadpisu, když se díváte na pozorování nebo profil této osoby.
-  here_are_some_things_you_can_do_in_the_meantime: Toto jsou věci, které můžete zatím
-    udělat
-  none_of_the_people_you_follow_have_any_updates_yet: Nikdo z lidí, které sledujete,
-    zatím neprovedl žádné aktualizace!
   verifiable: ověřitelné
   views:
     views: Zobrazení
@@ -5996,9 +5986,20 @@ cs:
         url: URL
         geoprivacy: Geosoukromí
         iucn: Ekvivalent IUCN
+      flag:
+        reason: Důvod
+        flag: Vlajka
       guide:
         source_url: URL zdroje
         published_at: Zveřejnění
+      listed_taxon:
+        occurrence_status_level: Úroveň statusu výskytu
+        establishment_means: Způsob vzniku
+      observation:
+        geo_x: Východní směr
+        geo_y: Nic
+      observation_field_value:
+        value: Hodnota
       project:
         title: Název
         project_icon: Ikona projektu
@@ -6030,14 +6031,11 @@ cs:
         place_type: Typ místa
         prefers_check_lists: Seznam povolen?
         woeid: WOEID
-      flag:
-        reason: Důvod
-        flag: Vlajka
-      observation:
-        geo_x: Východní směr
-        geo_y: Nic
-      observation_field_value:
-        value: Hodnota
+      source:
+        title: Název
+        in_text: V textu
+        url: URL
+        citation: Citace
       taxon:
         name: Jméno
         rank: Pořadí
@@ -6061,17 +6059,14 @@ cs:
         search_place_id: Prohledat místo
         place_id: Místo
         preferred_observation_fields_by: Povolit pole pozorování z
-      source:
-        title: Název
-        in_text: V textu
-        url: URL
-        citation: Citace
-      listed_taxon:
-        occurrence_status_level: Úroveň statusu výskytu
-        establishment_means: Způsob vzniku
   wild: divoký
   will_paginate:
     previous_label: '&#8592; Předch'
     next_label: Další &#8594;
     page_gap: '&hellip;'
+  zoom_in: Přiblížit
+  zoom_out: Oddálit
+  zoom_photo: Přiblížit fotku
+  zoom_to_taxon_name: Přiblížit na %{taxonname}
+  zoom_to_x: přiblížit na %{x}
 ...

@@ -83,8 +83,8 @@ da:
     one: En person synes dette var en hjælp
     other: '%{count} personer synes dette var en hjælp'
   x_faves:
-    one: 1 "Synes om"
-    other: '%{count} "Synes om"'
+    one: 1 favorit
+    other: '%{count} favoritter'
   x_people_like_this:
     one: 1 person kan lide dette
     other: '%{count} personer kan lide dette'
@@ -626,7 +626,8 @@ da:
   batch_edit: Multi redigere
   batch_edit_taxa_for_x_html: Bundt redigere takson for %{x}
   batch_operations: Multi operationer
-  be_the_first_to_fave_this_observation: Vær den første til at "Synes om"  denne observation
+  be_the_first_to_fave_this_observation: Vær den første til at gøre denne observation
+    til favorit
   beacuse_we_recently_changed_auth_system: Fordi vi for nylig har ændret vores bruger
     godkendelsessystem, var det nødvendigt, at din adgangskode blev nulstillet.
   because: fordi
@@ -829,7 +830,6 @@ da:
     </a> licenserede fotos fra andre websteder eller vælg fra %{site_name} observationer.
     Prøv at vælge billeder, der <em> viser diagnostiske egenskaber </ em> og <em>
     ser godt ud som ikoner </ em>. <Em> Det første bliver standard fotoet </ em>.
-  chose_columns: Vælg kolonner
   choose_files: Vælg filer
   choose_files_from_your_computer: vælg filer fra din computer
   choose_from_your_lists: Vælg fra dine lister
@@ -948,7 +948,7 @@ da:
     url: URL for en side, der beskriver denne status.
     geoprivacy: Standard geofortrolighed for denne taksons observationer
     iucn: Tilsvarende IUCN Rødliste kode
-  conservation_summary: Bevarings opsummering
+  conservation_summary: Bevaringsoversigt
   contain_all_descendants?: Indeholder denne tjekliste alle efterkommere af denne
     taxon, der forekommer her?
   contest: konkurrence
@@ -1381,10 +1381,10 @@ da:
   failed_to_save_record: Kunne ikke gemme registreringen. Prøv igen senere.
   "false": Falsk
   faq: Ofte stillede spørgsmål
-  fave: '"Synes om"'
+  fave: favorit
   faves: '"Synes godt om"'
   Family: Familie
-  faved_this_observation: '"Synes godt om" denne observation'
+  faved_this_observation: gjorde denne observation til favorit
   favorite_taxa: favorit taksa
   favorites: Favoritter
   fblocale: en_US
@@ -1588,7 +1588,7 @@ da:
   has_already_been_flagged_by: er allerede markeret af
   has_been: er blevet
   has_id_supported_by_two_or_more: Er ID understøttet af to eller flere
-  has_one_or_more_faves: Har en eller flere "Synes om"
+  has_one_or_more_faves: Har en eller flere favoritter
   has_photos: har foto´s
   has_photos_or_sounds: Har foto´s eller lyde
   has_sounds: har lyde
@@ -1620,6 +1620,8 @@ da:
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
   here_are_our_top_species_suggestions: Her er vores topforslag til art
   here_are_some_things_you_can_do_meantime: 'Her er nogle ting du kan gøre i mellemtiden:'
+  here_are_some_things_you_can_do_in_the_meantime: Her er nogle ting du kan gøre i
+    mellemtiden
   heres_a_litle_about: Her er lidt om
   hex_color_eg: Hex farve, f.eks. 65644F
   hi: Hej,
@@ -1668,7 +1670,7 @@ da:
   identification_by_user: Identifikation af %{user}
   identification_deleted: Identifikation slettet
   identification_saved: Identifikation gemt!
-  identification_summary: Identifikation opsummering
+  identification_summary: Identifikationsoversigt
   identification_updated: Identifikation opdateret!
   identification_user_short: Ident. bruger
   identification_withdrawn: Identifikation trukket tilbage
@@ -2155,15 +2157,15 @@ da:
       place_boundary: Ydre grænser for sted
       checklist_places: Tjekliste steder
       checklist_places_description: Steder hvor denne takson er blevet opført
-      range: Interval
+      range: Område
   map_tooltip: Vis kortvisning
   map_for: Kort for
   mark_as_reviewed: Markér som gennemgået
   mark_all_as_reviewed: Markér alle som gennemgået
   mark_all_as_unreviewed: Markér alle som ikke gennemgået
   matched_several_different_taxa: matchede flere forskellige taksa
-  matching_species_will_shown_up_here: Matchende arter vil dukke op her. Kortene viser
-    et område, hvis %{place} har en for den pågældende art.
+  matching_species_will_shown_up_here: Matchende arter vil dukke op her. Kortene vil
+    vise et område, hvis %{place} har en for den pågældende art.
   maverick: Uafhængig
   maybe_your_signed_in_with: Måske har du logget ind med din %{omniauth} konto?
   media: Medier
@@ -2229,7 +2231,7 @@ da:
   most: Flest
   most_agree: mest enig
   most_disagree: mest uenig
-  most_comments_and_faves: Flest kommentarer og "Synes godt om"
+  most_comments_and_faves: Flest kommentarer og favoritter
   most_observations: Fleste observationer
   most_recent_observation_by_date_observed: Seneste verificerbare observationer efter
     observationsdato
@@ -2417,7 +2419,7 @@ da:
   no_project_to_admin_current_user: Du administrerer ikke nogen projekter
   no_project_to_admin_login: '%{login} administrerer ikke nogen projekter'
   no_projects_yet: Ingen projekter endnu
-  no_range_data_available: Ingen data tilgængelig.
+  no_range_data_available: Ingen områdedata tilgængelig.
   no_recent_activity: Ingen nylige aktiviteter
   no_recently_active: Ingen nylige aktive projekter endnu.
   no_relevant_annotations: Ingen relevante noter
@@ -2436,8 +2438,8 @@ da:
     <a href="%{url}"class="nobr">tilføjer observationer</a>.
   no_subject_parens: (Intet emne)
   no_suggestions_available: Ingen forslag tilgængelige
-  no_summary_from_wikipedia: Ingen opsummering fra Wikipedia
-  no_summary_has_been_set: Ingen opsummering er indstillet.
+  no_summary_from_wikipedia: Ingen oversigt fra Wikipedia
+  no_summary_has_been_set: Ingen oversigt er indstillet.
   no_taxa: Ingen taksa
   no_taxa_listed: Ingen taksa opført
   no_taxa_selected: Ingen taksa valgt!
@@ -2450,8 +2452,6 @@ da:
   non_human?: Ikke menneskelig?
   none: Ingen
   none_found: Ingen fundet
-  none_of_the_people_you_follow_have_updates: Ingen af de personer du følger har foretaget
-    nogen opdateringer endnu!
   normal: normal
   not_completed: Ikke afsluttet
   not_evaluated: Ikke evalueret
@@ -2672,9 +2672,9 @@ da:
     youve_got_updates_panel_body_p1: Forbliv aktuel med opdateringer om følgende ...
     youve_got_updates_panel_body_p2: |-
       <Ul>
-         <li> <strong> Dit indhold: </ strong> Aktivitet vedr. dine observationer, såsom kommentarer, identifikationer eller "Synes godt om" fra fællesskabet %{site_name}. Du modtager også underretninger, når nogen tilføjer din observation til et projekt eller tilføjer yderligere felter. </ Li>
+         <li> <strong> Dit indhold: </ strong> Aktivitet vedr. dine observationer, såsom kommentarer, identifikationer eller favoritter fra fællesskabet %{site_name}. Du modtager også underretninger, når nogen tilføjer din observation til et projekt eller tilføjer yderligere felter. </ Li>
          <li> <strong> Personer: </ strong> Nye observationer eller journalindlæg fra de personer, du følger. </ li>
-         <li> <strong> Organismer, projekter og steder: </ strong> Nye observationer af bestemte organismer eller steder, som du abonnerer på. Du kan også deltage i projekter, så vil du blive underrettet, når de udgiver projektjournaler. </ Li>
+         <li> <strong> Organismer, projekter og steder: </ strong> Nye observationer af bestemte organismer eller steder, som du abonnerer på. Hvis du deltager i projekter, så vil du blive underrettet, når de udgiver projektjournaler. </ Li>
          <li> <strong> Diskussioner, du har deltaget i: </ strong> Kommentering eller tilføjelse af identifikationer til andres indhold, tilmelder dig automatisk enhver ny aktivitet på dette indhold. Brug værktøjet 'Administrer dit abonnement' for at stoppe modtagelsen af underretninger. </ Li>
       </ Ul>
   one_by_one: En efter en
@@ -2758,7 +2758,7 @@ da:
   other_species_commonly_misidentified_as_this_species_in_place_html: Andre arter,
     der ofte er fejlidentificeret som denne art i <a href="%{url}">%{place}</a>
   our_blog: Vores blog
-  out_of_range: Udenfor interval
+  out_of_range: Udenfor område
   output_taxon: Output takson
   overview: Overblik
   owner: Ejer
@@ -3149,7 +3149,7 @@ da:
   quality_grade_colon: 'Kvalitetsklasse:'
   queued: I kø
   query: Søgning
-  range: Interval
+  range: Område
   range_from: Område fra
   rank: Rang
   rank_position: Rang
@@ -3676,7 +3676,7 @@ da:
   suggest_or_require_that: Opret observationsfelter, som KAN eller SKAL udfyldes af
     dem der bidrager med observationer til dit projekt.
   suggestions: Forslag
-  summary: Opsummering
+  summary: Oversigt
   supporting: Støtter
   suspicious_photos: Mistænkelige foto´s
   siutable_observations: Mistænkelige observationer
@@ -3738,8 +3738,8 @@ da:
   taxon_range: Takson område
   taxon_range_created_notice: Taksonområdet blev oprettet. Vent venligst et par minutter
     for at få det vist på kortene.
-  taxon_range_updated_notice: Taxonområdet blev oprettet. Vent venligst et par minutter
-    for at få ændringerne vist på kortene.
+  taxon_range_updated_notice: Taxonområdet blev opdateret. Ændringerne vises på kortet
+    om få minutter.
   taxon_removed_from_list: Takson fjernet fra liste.
   taxon_scheme: Taksonordning
   taxon_schemes: Taksonordninger
@@ -3909,8 +3909,8 @@ da:
   this: dette
   this_id_was_added_due_to_a: Dette ID blev tilføjet på grund af
   this_is_a: Dette er en
-  this_is_a_cached_summary_based_on: Dette er en cachelagret opsummering af denne
-    takson baseret på dens
+  this_is_a_cached_summary_based_on: Dette er en cachelagret oversigt over denne takson
+    baseret på dens
   this_is_a_life_list_of: Dette er en livsliste for
   this_is_a_life_list_from_place_html: Dette er en livsliste fra %{place}
   this_is_a_life_list_of_taxon_in_place: Dette er en livsliste for %{taxon} i %{place}
@@ -4151,7 +4151,7 @@ da:
   user_commented: '%{user} kommenterede'
   user_commented_on: '%{user} kommenterede på din %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} er uenig i denne %{taxon}'
-  user_faved_a_noun_by_owner: '%{user} "Synes om" %{noun} af %{owner}'
+  user_faved_a_noun_by_owner: '%{user} synes godt om %{noun} af %{owner}'
   user_follows: '%{user} følger'
   user_has_opted_out_of_community_id: Bruger er blevet afmeldt af fællesskabs ID
   user_has_opted_out_of_community_ids: '%{user}har valgt at bevare kontrollen over
@@ -4257,7 +4257,7 @@ da:
   view_other_taxa: Vis andre <nobr> %{taxon_name} &raquo; </nobr>
   view_photos_ranges_observations_more: Se billeder, arter, %{site_name} observationer
     og meget mere! Vi har samlet information fra mange forskellige kilder og kombineret
-    dem i en hurtig opsummering af hver art på hvert sted.
+    dem i en hurtig oversigt med alle arter på hvert sted.
   view_place: Vis sted
   view_post: Vis indlæg
   view_projects_from_place: Vis projekter fra %{place}
@@ -4513,7 +4513,7 @@ da:
     taksonet for at anmode om ændringer.
   you_dont_have_permission_to_edit_those_photos: Du har ikke tilladelse til at redigere
     disse foto´s.
-  you_faved_this: Du "Synes om" denne!
+  you_faved_this: Du gjorde denne til favorit!
   you_have_left_x_project: Du har forladt %{project}
   you_have_logget_out: Du er blevet logget ud. Kom snart tilbage!
   you_have_to: Du skal
@@ -4642,19 +4642,10 @@ da:
   youve_seen_it_want_to: Du har set det! Vil du
   youve_successfully_linked_your_provider_account: Du har tilknyttet din %{provider}
     konto
-  zoom_in: Zoom ind
-  zoom_out: Zoom ud
-  zoom_photo: Zoom foto
-  zoom_to_taxon_name: Zoom til %{taxonname}
-  zoom_to_x: zoom til %{x}
   your_dashboard_helps_you: Dit betjeningspanel hjælper dig med at følge med i, hvad
     andre personer laver på websiden. Hvis du vil følge en persons opdateringer, skal
     du klikke på linket "Følg [navn]" i overskriften, når du ser deres observationer
     eller profil.
-  here_are_some_things_you_can_do_in_the_meantime: Her er nogle ting du kan gøre i
-    mellemtiden
-  none_of_the_people_you_follow_have_any_updates_yet: Ingen af de personer du følger
-    har foretaget nogen opdateringer endnu!
   verifiable: verificerbare
   views:
     views: Visninger
@@ -4705,7 +4696,7 @@ da:
         eol_subjects_desc: |-
           EOL udgiver indhold under en række forskellige emneoverskrifter, men ikke alle er tilgængelige for hver takson. Valg af "Oversigt"
           vil bare importere den første tilgængelige tekstsektion fra EOL, som generelt
-          indeholder en opsummering, når den er tilgængelig.
+          indeholder en oversigt, når den er tilgængelig.
         eol_collection_desc_html: |-
           <a href="http://eol.org/" target="_blank"> Encyclopedia of Life (EOL) </a>
           er en kæmpe database med oplysninger om livet på jorden. På EOL kan du oprette
@@ -4812,7 +4803,7 @@ da:
         eol_explanation: Tilføj et lokalt navn, op til 5 billeder, 1 beskrivelses
           sektion og 1 kort fra EOL.
         site_explanation: Tilføj et almindeligt navn, op til 5 licenserede billeder,
-          og en Wikipedia opsummering fra %{site_name}.
+          og en Wikipedia oversigt fra %{site_name}.
       show:
         reuse_desc: |-
           Du kan kopiere denne takson til en anden Guide. Hvis du er en af redaktørerne for denne Guide, skulle alt blive kopieret, men hvis du ikke er det,
@@ -6118,9 +6109,20 @@ da:
         url: URL
         geoprivacy: geofortrolighed
         iucn: ICUN tilsvarende
+      flag:
+        reason: Årsag
+        flag: Markering
       guide:
         source_url: Kilde URL
         published_at: Offentliggørelse
+      listed_taxon:
+        occurrence_status_level: Forekomst status niveau
+        establishment_means: Oprindelse
+      observation:
+        geo_x: Østlig
+        geo_y: Nordlig
+      observation_field_value:
+        value: værdi
       project:
         title: Titel
         project_icon: Projekt ikon
@@ -6152,14 +6154,11 @@ da:
         place_type: Sted type
         prefers_check_lists: Tjeklister tilladt?
         woeid: WOEID
-      flag:
-        reason: Årsag
-        flag: Markering
-      observation:
-        geo_x: Østlig
-        geo_y: Nordlig
-      observation_field_value:
-        value: værdi
+      source:
+        title: Titel
+        in_text: I tekst
+        url: URL
+        citation: Citation
       taxon:
         name: Navn
         rank: Rang
@@ -6168,7 +6167,7 @@ da:
         auto_photos: Auto. foto´s
         auto_description: Auto. beskrivelse
         wikipedia_title: Wikipedia titel
-        wikipedia_summary: Wikipedia opsummering
+        wikipedia_summary: Wikipedia oversigt
         source_identifier: Kilde identifikator
         source_url: Kilde URL
       taxon_name:
@@ -6183,17 +6182,14 @@ da:
         search_place_id: Søgested
         place_id: Sted
         preferred_observation_fields_by: Tillad observationsfelter fra
-      source:
-        title: Titel
-        in_text: I tekst
-        url: URL
-        citation: Citation
-      listed_taxon:
-        occurrence_status_level: Forekomst status niveau
-        establishment_means: Oprindelse
   wild: vild
   will_paginate:
     previous_label: '&#8592; Forrige.'
     next_label: Næste &#8594;
     page_gap: '&hellip;'
+  zoom_in: Zoom ind
+  zoom_out: Zoom ud
+  zoom_photo: Zoom foto
+  zoom_to_taxon_name: Zoom til %{taxonname}
+  zoom_to_x: zoom til %{x}
 ...
