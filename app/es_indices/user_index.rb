@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes( :roles ) }
+  scope :load_for_index, -> { includes( :roles, :flags ) }
 
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do

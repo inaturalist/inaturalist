@@ -4,6 +4,8 @@ class Project < ActiveRecord::Base
   DEFAULT_ES_BATCH_SIZE = 500
 
   scope :load_for_index, -> { includes(
+    :flags,
+    :user,
     :place,
     :project_users,
     :observation_fields,

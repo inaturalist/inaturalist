@@ -6,7 +6,7 @@ class Identification < ActiveRecord::Base
 
   scope :load_for_index, -> { includes(:taxon, :flags,
     :stored_preferences, :taxon_change,
-    { observation: [ :taxon, :user ] }, :user) }
+    { observation: [ :taxon, { user: :flags } ] }, { user: :flags } ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
