@@ -16,6 +16,7 @@ I18n.translations["ar"] = {
   "accuracy": "الدقة",
   "accuracy_meters": "الدقة (أمتار)",
   "action": "فعل",
+  "active": "نشط",
   "activity": "النشاط",
   "add": "أضف",
   "add_a_comment": "إضافة تعليق",
@@ -24,9 +25,17 @@ I18n.translations["ar"] = {
   "add_an_identification": "أضف تعريفا",
   "add_edit_flags": "إضافة/تعديل الأعلام",
   "add_id": "أضف معرفا",
+  "add_life_stage_adult_annotation": "إضافة شرح \"مرحلة الحياة:البلوغ\"",
+  "add_life_stage_egg_annotation": "إضافة شرح \"مرحلة الحياة: البيض\"",
+  "add_life_stage_juvenile_annotation": "إضافة شرح \"مرحلة الحياة: القاصر\"",
+  "add_life_stage_larva_annotation": "إضافة شرح \"مرحلة الحياة: اليرقة\"",
+  "add_life_stage_pupa_annotation": "إضافة شرح \"مرحلة الحياة:العذراء\"",
   "add_link": "إضافة رابط",
   "add_one_now": "إضافة واحد الآن",
   "add_photos_to_this_observation": "إضافة صور إلى هذه الملاحظة",
+  "add_plant_phenology_budding_annotation": "إضافة شرح \"الفينولوجيا النباتي: التبرعم\"",
+  "add_plant_phenology_flowering_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإزهار\"",
+  "add_plant_phenology_fruiting_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإثمار\"",
   "add_tag": "إضافة وسم",
   "add_tags": "إضافة وسوم",
   "add_to_a_project": "إضافة إلى مشروع",
@@ -159,6 +168,7 @@ I18n.translations["ar"] = {
   "allow_project_curators_to_view_your_private_coordinates": "السماح لأمناء المشروع بعرض إحداثياتك الخاصة",
   "amphibians": "برمائيات",
   "and": "و",
+  "android": "أندرويد",
   "animals": "حيوانات",
   "animated_observations_map": "خريطة الملاحظات المتحركة",
   "annotations": "الشروح",
@@ -507,6 +517,7 @@ I18n.translations["ar"] = {
   "interactions": "التفاعلات",
   "introduced": "أُدخِلت",
   "introduced_in_place": "قُدِّم في %{place}",
+  "iphone": "آيفون",
   "is_an_evaluation": "هو تقييم لدقة المراقبة.\nقد يستخدم علماء البحوث بحوث التقييم العلمي. أرسل تصويتك أدناه:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "هل الأدلة المقدمة تكفي لتأكيد أن هذا %{taxon}؟",
   "it_can_now_be_used_for_research": "يمكنها الآن أن تُستخدَم للبحث ومميزة على مواقع أخرى",
@@ -699,6 +710,7 @@ I18n.translations["ar"] = {
   "not_evaluated": "لم يتم تقييمه",
   "not_recorded": "غير مسجل",
   "number_selected": "تم اختيار #",
+  "obs": "ملاحظات",
   "obscured": "مشوش",
   "observation": "الملاحظة",
   "observation_": "الملاحظة",
@@ -987,6 +999,7 @@ I18n.translations["ar"] = {
   },
   "ray_finned_fishes": "الأسماك شعاعيات الزعانف",
   "read_more": "اقرأ المزيد",
+  "recent": "الأخيرة",
   "recent_evidence_of_organism": "دليل حديث لكائن حي",
   "recent_observations": "الملاحظات الأخيرة",
   "red": "أحمر",
@@ -1144,6 +1157,7 @@ I18n.translations["ar"] = {
   "top_observer": "أعلى مراقب",
   "top_observers": "أفضل الملاحظين",
   "top_species": "الأنواع الأعلى",
+  "total": "إجمالي",
   "total_observations": "مجموع الملاحظات",
   "total_species_observed": "مجموع الأنواع الملحوظة",
   "trending": "الشائع",
@@ -1259,6 +1273,8 @@ I18n.translations["ar"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "أصناف ملاحظة رُتِّبت كرسم \"سونبورست\" الهرمي، قاعدة \nالتسلسل الهرمي في المركز، تبدأ من \"الحياة\" وتنتهي \nمع الأنواع على الحواف الخارجية، حجم كل قوس يتناسب \nمع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء \nتتوافق مع ألوان الأصناف المعتادة لدينا \"iconic\" (الأخضر للنباتات \nوالبرتقالي للحشرات والأزرق لمعظم الحيوانات الأخرى، وما إلى ذلك); لذلك إذا كنت \" \nترى الكثير من الأخضر: هذا يعني أنك لاحظت الكثير من النباتات. \n<strong> انقر على القوس لوضع هذه الأصنوفة في المركز</strong> \nوأطفالها حولها، أو <strong> انقر على المركز لنقل وإرجاع \nالتسلسل الهرمي </strong>."
       }
@@ -1491,6 +1507,8 @@ I18n.translations["az"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -1518,6 +1536,7 @@ I18n.translations["bg"] = {
   "account": "Сметка",
   "accuracy": "Точност",
   "accuracy_meters": "Точност (метри)",
+  "active": "активен",
   "add": "Добавяне",
   "add_a_comment": "Добавяне на коментар",
   "add_a_field": "Добавяне на поле",
@@ -1617,6 +1636,7 @@ I18n.translations["bg"] = {
     }
   },
   "amphibians": "земноводни",
+  "android": "Android",
   "animals": "Животни",
   "any": "без значение",
   "arachnids": "паякообразни",
@@ -2102,6 +2122,7 @@ I18n.translations["bg"] = {
     "form": "форма"
   },
   "ray_finned_fishes": "лъчеперки",
+  "recent": "Последни",
   "recent_observations": "Последни наблюдения",
   "reload_timed_out": "Презареждането е неуспешно. Моля опитайте пак по-късно.",
   "remove": "Премахни",
@@ -2214,6 +2235,8 @@ I18n.translations["bg"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -2301,6 +2324,7 @@ I18n.translations["br"] = {
   "account": "Kont",
   "accuracy": "Pizhder",
   "accuracy_meters": "Pizhder (metroù)",
+  "active": "oberiant",
   "add": "Ouzhpennañ",
   "add_a_comment": "Ouzhpennañ un evezhiadenn",
   "add_a_field": "Ouzhpennañ ur vaezienn",
@@ -2401,6 +2425,7 @@ I18n.translations["br"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Aotren goursellerien ar raktres da welet hoc'h evezhiadennoù prevez",
   "amphibians": "Divelfenneged",
   "and": "ha(g)",
+  "android": "Android",
   "animals": "Loened",
   "any": "forzh pehini",
   "arachnids": "araknided",
@@ -2557,6 +2582,7 @@ I18n.translations["br"] = {
   "info": "Titouroù",
   "input_taxon": "Ebarzhiñ un takson",
   "insects": "amprevaned",
+  "iphone": "iPhone",
   "kml_file_size_error": "Ar furmad KML a rank bezañ 1Mo da nebeutañ",
   "labels": "Labelioù",
   "last_year": "bloaz tremenet",
@@ -2815,6 +2841,8 @@ I18n.translations["br"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -2947,6 +2975,8 @@ I18n.translations["bs"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -2981,6 +3011,7 @@ I18n.translations["ca"] = {
   "accuracy": "Exactitud",
   "accuracy_meters": "Exactitud (metres)",
   "action": "Acció",
+  "active": "actiu",
   "activity": "Activitat",
   "add": "Afegiu",
   "add_a_comment": "Afegiu un comentari",
@@ -2989,9 +3020,17 @@ I18n.translations["ca"] = {
   "add_an_identification": "Afegiu una identificació",
   "add_edit_flags": "Afegir/Editar etiquetes",
   "add_id": "Afegiu ID",
+  "add_life_stage_adult_annotation": "Afegiu nota \"Estat del Cicle biològic: Adult\"",
+  "add_life_stage_egg_annotation": "Afegiu nota \"Estat del Cicle biològic: Ou\"",
+  "add_life_stage_juvenile_annotation": "Afegir l'anotació «Etapa de la vida: juvenil»",
+  "add_life_stage_larva_annotation": "Afegiu nota \"Estat del Cicle biològic: Larva\"",
+  "add_life_stage_pupa_annotation": "Afegiu nota \"Estat del Cicle biològic: Pupa\"",
   "add_link": "Afegeix un enllaç",
   "add_one_now": "Afegir-ne un ara",
   "add_photos_to_this_observation": "Afegiu fotos a aquesta observació",
+  "add_plant_phenology_budding_annotation": "Afegir l'anotació «Fenologia de la planta: gemmació»",
+  "add_plant_phenology_flowering_annotation": "Afegiu nota \"Fenologia de la planta: Floració\"",
+  "add_plant_phenology_fruiting_annotation": "Afegiu nota \"Fenologia de la planta: Fructificació\"",
   "add_tag": "Afegiu etiqueta",
   "add_tags": "Afegiu etiquetes",
   "add_to_a_project": "Afegiu al projecte",
@@ -3124,6 +3163,7 @@ I18n.translations["ca"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Permet als supervisors del projecte a visualitzar les vostres coordenades privades",
   "amphibians": "amfibis",
   "and": "i",
+  "android": "Android",
   "animals": "Animals",
   "animated_observations_map": "Mapa d'Observacions Animat",
   "annotations": "Anotacions",
@@ -3471,6 +3511,7 @@ I18n.translations["ca"] = {
   "interactions": "Interaccions",
   "introduced": "introduïda",
   "introduced_in_place": "Introduït a %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "és una avaluació de la precisió d'una observació.\nLes observacions de Grau de Recerca poden ser utilitzades per científics a les seves recerques. Feu el vostre vot a sota:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Aquesta evidència és suficient per confirmar que és %{taxon}?",
   "it_can_now_be_used_for_research": "Ara pot ser utilitzat per a recerca i mostrat en altres pàgines web",
@@ -3663,6 +3704,7 @@ I18n.translations["ca"] = {
   "not_evaluated": "no avaluat",
   "not_recorded": "No enregistrat",
   "number_selected": "# seleccionat",
+  "obs": "Obs",
   "obscured": "Enfosquida",
   "observation": "Observació",
   "observation_": "observació",
@@ -3950,6 +3992,7 @@ I18n.translations["ca"] = {
   },
   "ray_finned_fishes": "peixos ossis",
   "read_more": "Llegiu-ne més",
+  "recent": "Recent",
   "recent_evidence_of_organism": "Evidència recent d'un organisme",
   "recent_observations": "Observacions recents",
   "red": "vermell",
@@ -4107,6 +4150,7 @@ I18n.translations["ca"] = {
   "top_observer": "Principals observadors",
   "top_observers": "Principal observadors",
   "top_species": "Principals Espècies",
+  "total": "Total",
   "total_observations": "Nombre total d'observacions",
   "total_species_observed": "Total d'espècies observades",
   "trending": "Tendències",
@@ -4222,6 +4266,8 @@ I18n.translations["ca"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -4400,6 +4446,7 @@ I18n.translations["cs"] = {
   "accuracy": "Přesnost",
   "accuracy_meters": "Přesnost (v metrech)",
   "action": "Akce",
+  "active": "aktivní",
   "activity": "Aktivita",
   "add": "Vložit",
   "add_a_comment": "Vložit komentář",
@@ -4408,9 +4455,17 @@ I18n.translations["cs"] = {
   "add_an_identification": "Vložte identifikaci",
   "add_edit_flags": "Přidat/editovat vlajky",
   "add_id": "Vložit ID",
+  "add_life_stage_adult_annotation": "Přidat anotaci „Stádium života: dospělý“",
+  "add_life_stage_egg_annotation": "Přidat anotaci „Stádium života: vejce“",
+  "add_life_stage_juvenile_annotation": "Přidat anotaci „Stádium života: mládě“",
+  "add_life_stage_larva_annotation": "Přidat anotaci „Stádium života: larva“",
+  "add_life_stage_pupa_annotation": "Přidat anotaci „Stádium života: kukla“",
   "add_link": "Přidat odkaz",
   "add_one_now": "Přidat nyní",
   "add_photos_to_this_observation": "Vložit fotky k tomuto pozorování",
+  "add_plant_phenology_budding_annotation": "Přidat anotaci „Fenologie rostliny: pučení“",
+  "add_plant_phenology_flowering_annotation": "Přidat anotaci „Fenologie rostliny: kvetení“",
+  "add_plant_phenology_fruiting_annotation": "Přidat anotaci „Fenologie rostliny: plození“",
   "add_tag": "Přidat tag",
   "add_tags": "Přidat tagy",
   "add_to_a_project": "Přidat do projektu",
@@ -4543,6 +4598,7 @@ I18n.translations["cs"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Povolit správcům projektu náhled vašich soukromých souřadnic",
   "amphibians": "obojživelníci",
   "and": "a",
+  "android": "Android",
   "animals": "Zvířata",
   "animated_observations_map": "Animovaná mapa pozorování",
   "annotations": "Anotace",
@@ -4890,6 +4946,7 @@ I18n.translations["cs"] = {
   "interactions": "Interakce",
   "introduced": "zavedený",
   "introduced_in_place": "Zavedený v %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "je hodnocení přesnosti pozorování. Pozorování výzkumného stupně mohou vědci používat při výzkumu. Hlasujte níže:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Jsou předložené důkazy dostatečné k potvrzení, že toto je %{taxon}?",
   "it_can_now_be_used_for_research": "Nyní může být využito pro výzkum a zobrazováno na dalších webových stránkách",
@@ -5080,6 +5137,7 @@ I18n.translations["cs"] = {
   "not_evaluated": "nehodnoceno",
   "not_recorded": "Nezaznamenáno",
   "number_selected": "# vybráno",
+  "obs": "Skr",
   "obscured": "Skrytý",
   "observation": "Pozorování",
   "observation_": "pozorování",
@@ -5365,6 +5423,7 @@ I18n.translations["cs"] = {
     "leaves": "listy"
   },
   "ray_finned_fishes": "paprskoploutví",
+  "recent": "Nedávné",
   "recent_evidence_of_organism": "Nedávné důkazy o organismu",
   "recent_observations": "Nedávná pozorování",
   "red": "červený",
@@ -5522,6 +5581,7 @@ I18n.translations["cs"] = {
   "top_observer": "Nejlepší pozorovatel",
   "top_observers": "Nejlepší pozorovatelé",
   "top_species": "Nejlepší druh",
+  "total": "součet",
   "total_observations": "Celkový počet pozorování",
   "total_species_observed": "Celkový počet pozorovaných druhů",
   "trending": "Populární",
@@ -5634,6 +5694,8 @@ I18n.translations["cs"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "Pozorované taxony jsou uspořádány jako hierarchický „paprskovitý“ diagram. Základní úroveň hierarchie je uprostřed, začíná „Životem“ a končí druhy na vnějších okrajích. Velikost každého oblouku je úměrná počtu pozorování daného taxonu a barvy zhruba odpovídají obvyklým „tradičním“ barvám taxonů (zelená pro rostliny, oranžová pro hmyz, modrá pro většinu ostatních zvířat atd.), takže pokud vidíte hodně zelené, znamená to, že jste pozorovali hodně rostlin. <strong>Taxon do středu umístíte kliknutím na oblouk</strong> a jeho následné taxony rozmístíte okole, nebo <strong>klikněte na střed a posuňte se výš v hierarchii</strong>."
       }
@@ -5815,6 +5877,7 @@ I18n.translations["da"] = {
   "accuracy": "Nøjagtighed",
   "accuracy_meters": "Nøjagtighed (meter)",
   "action": "Handling",
+  "active": "aktiv",
   "activity": "Aktivitet",
   "add": "Tilføj",
   "add_a_comment": "Tilføj en kommentar",
@@ -5823,9 +5886,17 @@ I18n.translations["da"] = {
   "add_an_identification": "Tilføj en identifikation",
   "add_edit_flags": "Tilføj/redigér markeringer",
   "add_id": "Tilføj ID",
+  "add_life_stage_adult_annotation": "Tilføj noten \"Livsstadie: Voksen\"",
+  "add_life_stage_egg_annotation": "Tilføj noten \"Livsstadie: Æg\"",
+  "add_life_stage_juvenile_annotation": "Tilføj noten \"Livsstadie: Juvenil\"",
+  "add_life_stage_larva_annotation": "Tilføj noten \"Livsstadie: Larve\"",
+  "add_life_stage_pupa_annotation": "Tilføj noten \"Livsstadie: Puppe\"",
   "add_link": "Tilføj link",
   "add_one_now": "Tilføj en nu",
   "add_photos_to_this_observation": "Tilføj fotos til denne observation",
+  "add_plant_phenology_budding_annotation": "Tilføj noten \"Plantefænologi: Spirende\"",
+  "add_plant_phenology_flowering_annotation": "Tilføj noten \"Plantefænologi: Blomstrende\"",
+  "add_plant_phenology_fruiting_annotation": "Tilføj noten \"Plantefænologi: I frugt\"",
   "add_tag": "Tilføj tag",
   "add_tags": "Tilføj tags",
   "add_to_a_project": "Tilføj til et projekt",
@@ -5958,6 +6029,7 @@ I18n.translations["da"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Tillad projektkuratorer at se private koordinater",
   "amphibians": "padder",
   "and": "og",
+  "android": "Android",
   "animals": "Dyr",
   "animated_observations_map": "Animeret observationskort",
   "annotations": "Note",
@@ -6306,6 +6378,7 @@ I18n.translations["da"] = {
   "interactions": "Interaktioner",
   "introduced": "indført",
   "introduced_in_place": "indført i %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "er en evaluering af en observations nøjagtighed.\nObservationer af forskningsklasse kan blive brugt af forskere. Giv din mening til kende herunder:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Er beviserne tilstrækkelige til at bekræfte, at dette er %{taxon}",
   "it_can_now_be_used_for_research": "Den kan nu bruges til forskning og vises på andre web-sider",
@@ -6498,6 +6571,7 @@ I18n.translations["da"] = {
   "not_evaluated": "Ikke evalueret",
   "not_recorded": "Ikke registreret",
   "number_selected": "# valgte",
+  "obs": "Obs.",
   "obscured": "Sløret",
   "observation": "Observation",
   "observation_": "observation",
@@ -6786,6 +6860,7 @@ I18n.translations["da"] = {
   },
   "ray_finned_fishes": "strålefinnede fisk",
   "read_more": "Læs mere",
+  "recent": "Seneste",
   "recent_evidence_of_organism": "Nylige beviser på en organisme",
   "recent_observations": "Seneste observationer",
   "red": "rød",
@@ -6943,6 +7018,7 @@ I18n.translations["da"] = {
   "top_observer": "Top observatør",
   "top_observers": "Top observatører",
   "top_species": "Top arter",
+  "total": "total",
   "total_observations": "Samlet antal observationer",
   "total_species_observed": "Samlet antal arter observeret",
   "trending": "Tendenser",
@@ -7058,6 +7134,8 @@ I18n.translations["da"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </ strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </ strong>."
       }
@@ -7239,6 +7317,7 @@ I18n.translations["de"] = {
   "accuracy": "Genauigkeit",
   "accuracy_meters": "Genauigkeit (Meter)",
   "action": "Aktion",
+  "active": "aktiv",
   "activity": "Aktivität",
   "add": "Hinzufügen",
   "add_a_comment": "Kommentar hinzufügen",
@@ -7247,9 +7326,17 @@ I18n.translations["de"] = {
   "add_an_identification": "Eine Bestimmung hinzufügen",
   "add_edit_flags": "Markierungen hinzufügen/bearbeiten",
   "add_id": "Kennung hinzufügen",
+  "add_life_stage_adult_annotation": "Vermerk \"Lebensstadium: Ausgewachsen\" hinzufügen",
+  "add_life_stage_egg_annotation": "Vermerk \"Lebensstadium: Ei\" hinzufügen",
+  "add_life_stage_juvenile_annotation": "Vermerk \"Lebensstadium: Jungtier\" hinzufügen",
+  "add_life_stage_larva_annotation": "Vermerk \"Lebensstadium: Larve\" hinzufügen",
+  "add_life_stage_pupa_annotation": "Vermerk \"Lebensstadium: Puppe\" hinzufügen",
   "add_link": "Link hinzufügen",
   "add_one_now": "Jetzt einen hinzufügen",
   "add_photos_to_this_observation": "Fotos zu dieser Beobachtung hinzufügen",
+  "add_plant_phenology_budding_annotation": "Vermerk \"Pflanzenphänologie: Knospung\" hinzufügen",
+  "add_plant_phenology_flowering_annotation": "Vermerk \"Pflanzenphänologie: Blüte\" hinzufügen",
+  "add_plant_phenology_fruiting_annotation": "Vermerk \"Pflanzenphänologie: Fruchttragend\" hinzufügen",
   "add_tag": "Markierung hinzufügen",
   "add_tags": "Tags hinzufügen",
   "add_to_a_project": "Zu einem Projekt hinzugefügt",
@@ -7382,6 +7469,7 @@ I18n.translations["de"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Projektkuratoren die Ansicht deiner privaten Koordinaten erlauben",
   "amphibians": "Amphibien",
   "and": "und",
+  "android": "Android",
   "animals": "Tiere",
   "animated_observations_map": "animierte Karte der Beobachtungen",
   "annotations": "Vermerke",
@@ -7675,6 +7763,7 @@ I18n.translations["de"] = {
   "interactions": "Interaktionen",
   "introduced": "eingeführt",
   "introduced_in_place": "Eingeführt in %{place}",
+  "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Sind genug Beweise gegeben um zu bestätigen, dass es sich um %{taxon} handelt?",
   "join_project": "Diesem Projekt beitreten",
   "join_this_project": "Diesem Projekt beitreten",
@@ -8077,6 +8166,7 @@ I18n.translations["de"] = {
     "leaves": "Blätter"
   },
   "ray_finned_fishes": "Strahlenflosser",
+  "recent": "Aktuell",
   "recent_observations": "Letzte Beobachtungen",
   "red": "rot",
   "reject?": "Ablehnen?",
@@ -8145,6 +8235,7 @@ I18n.translations["de"] = {
   "top_observer": "Top Beobachter",
   "top_observers": "Top Beobachter",
   "top_species": "Top Arten",
+  "total": "Gesamt",
   "total_observations": "Beobachtungen insgesamt",
   "trends": "Trends",
   "twitter": "Twitter",
@@ -8202,6 +8293,8 @@ I18n.translations["de"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -8331,6 +8424,7 @@ I18n.translations["el"] = {
   "accuracy": "Ακρίβεια",
   "accuracy_meters": "Ακρίβεια (σε μέτρα)",
   "action": "Δράση",
+  "active": "Ενεργός",
   "activity": "Δραστηριότητα",
   "add": "Προσθήκη",
   "add_a_comment": "Προσθήκη πεδίου",
@@ -8384,6 +8478,7 @@ I18n.translations["el"] = {
   },
   "amphibians": "Αμφίβια",
   "and": "και",
+  "android": "Ανδροειδές",
   "animals": "Ζώα",
   "any": "Οτιδήποτε",
   "arachnids": "Αραχνίδια",
@@ -8622,6 +8717,7 @@ I18n.translations["el"] = {
   "interactions": "Διαδράσεις",
   "introduced": "εισηγμένο",
   "introduced_in_place": "Εισήχθη στο %{place}",
+  "iphone": "iPhone",
   "it_can_now_be_used_for_research": "Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να προβληθεί σε άλλες ιστοσελίδες",
   "join_project": "Γίνετε μέλος στο εγχείρημα",
   "join_this_project": "Γίνετε μέλος στο εγχείρημα",
@@ -8783,6 +8879,7 @@ I18n.translations["el"] = {
   "none_found": "Δεν βρέθηκε",
   "not_recorded": "μη καταγεγραμμένο",
   "number_selected": "# επιλεγμένα",
+  "obs": "Παρατηρήσεις",
   "observation": "Παρατήρηση",
   "observation_": "παρατήρηση",
   "observation_date": "Ημερομηνία",
@@ -9013,6 +9110,7 @@ I18n.translations["el"] = {
     "leaves": "φύλλα"
   },
   "read_more": "Διαβάστε περισσότερα",
+  "recent": "Πρόσφατα",
   "recent_evidence_of_organism": "Πρόσφατα στοιχεία ενός οργανισμού",
   "recent_observations": "Πρόσφατες παρατηρήσεις",
   "red": "κόκκινο",
@@ -9090,6 +9188,7 @@ I18n.translations["el"] = {
   "top_observer": "Κορυφαίος παρατηρητής",
   "top_observers": "Παρατηρητές Τορ επιπέδου",
   "top_species": "Κορυφαία είδη",
+  "total": "συνολικά",
   "total_observations": "Συνολικές παρατηρήσεις",
   "trends": "Τάσεις",
   "uploader": {
@@ -9120,6 +9219,8 @@ I18n.translations["el"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -9166,6 +9267,7 @@ I18n.translations["en"] = {
   "accuracy": "Accuracy",
   "accuracy_meters": "Accuracy (meters)",
   "action": "Action",
+  "active": "active",
   "activity": "Activity",
   "add": "Add",
   "add_a_comment": "Add a comment",
@@ -9175,9 +9277,17 @@ I18n.translations["en"] = {
   "add_annotations_for_x": "Add annotations for \"%{x}\"",
   "add_edit_flags": "Add/Edit Flags",
   "add_id": "Add ID",
+  "add_life_stage_adult_annotation": "Add \"Life Stage: Adult\" annotation",
+  "add_life_stage_egg_annotation": "Add \"Life Stage: Egg\" annotation",
+  "add_life_stage_juvenile_annotation": "Add \"Life Stage: Juvenile\" annotation",
+  "add_life_stage_larva_annotation": "Add \"Life Stage: Larva\" annotation",
+  "add_life_stage_pupa_annotation": "Add \"Life Stage: Pupa\" annotation",
   "add_link": "Add Link",
   "add_one_now": "Add One Now",
   "add_photos_to_this_observation": "Add photos to this observation",
+  "add_plant_phenology_budding_annotation": "Add \"Plant Phenology: Budding\" annotation",
+  "add_plant_phenology_flowering_annotation": "Add \"Plant Phenology: Flowering\" annotation",
+  "add_plant_phenology_fruiting_annotation": "Add \"Plant Phenology: Fruiting\" annotation",
   "add_tag": "Add tag",
   "add_tags": "Add tags",
   "add_to_a_project": "Add to a project",
@@ -9312,6 +9422,7 @@ I18n.translations["en"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Allow project curators to view your private coordinates",
   "amphibians": "amphibians",
   "and": "and",
+  "android": "Android",
   "animals": "Animals",
   "animated_observations_map": "Animated Observations Map",
   "annotations": "Annotations",
@@ -9690,6 +9801,7 @@ I18n.translations["en"] = {
   "interactions": "Interactions",
   "introduced": "introduced",
   "introduced_in_place": "Introduced in %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "is an evaluation of an observation’s accuracy.\nResearch Grade observations may be used by scientists for research. Cast your vote below:\n",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Is the evidence provided enough to confirm this is %{taxon}?",
   "it_can_now_be_used_for_research": "It can now be used for research and featured on other websites",
@@ -9848,6 +9960,7 @@ I18n.translations["en"] = {
   "nearby_observations_": "Nearby observations",
   "needs_id": "needs ID",
   "needs_id_": "Needs ID",
+  "new": "New",
   "new_observation_field": "New observation field",
   "news": "News",
   "next": "Next",
@@ -9886,6 +9999,9 @@ I18n.translations["en"] = {
   "not_evaluated": "not evaluated",
   "not_recorded": "Not recorded",
   "number_selected": "# selected",
+  "obs": "Obs",
+  "obs_cid_d": "Obs CID'd",
+  "obs_id_d": "Obs ID'd",
   "obscured": "Obscured",
   "observation": "Observation",
   "observation_": "observation",
@@ -9899,7 +10015,7 @@ I18n.translations["en"] = {
   "observations": "Observations",
   "observations_": "observations",
   "observations_annotated_with_annotation": "Observations annotated with %{annotation}",
-  "observations_by_category": "Observations by category",
+  "observations_by_category": "Observations By category",
   "observations_in_this_project_must": "Observations in this project must meet the following criteria",
   "observations_map": "Observations / Map",
   "observations_of_relatives": "Observations of relatives",
@@ -9927,7 +10043,7 @@ I18n.translations["en"] = {
   "order_by": "Order by",
   "organism_appears_captive_cultivated": "Organism appears captive / cultivated",
   "organism_is_wild": "Organism is wild",
-  "other": "other",
+  "other": "Other",
   "other_animals": "other animals",
   "other_species_commonly_misidentified_as_this_species": "Other species commonly misidentified as this species",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Other species commonly misidentified as this species in <a href=\"%{url}\">%{place}</a>\n",
@@ -10182,6 +10298,7 @@ I18n.translations["en"] = {
   },
   "ray_finned_fishes": "ray-finned fishes",
   "read_more": "Read More",
+  "recent": "Recent",
   "recent_evidence_of_organism": "Recent evidence of an organism",
   "recent_observations": "Recent observations",
   "recent_observations_": "Recent Observations",
@@ -10347,6 +10464,7 @@ I18n.translations["en"] = {
   "top_observer": "Top Observer",
   "top_observers": "Top Observers",
   "top_species": "Top Species",
+  "total": "total",
   "total_observations": "Total observations",
   "total_species_observed": "Total Species Observed",
   "trending": "Trending",
@@ -10513,6 +10631,16 @@ I18n.translations["en"] = {
       }
     },
     "stats": {
+      "index": {
+        "avg_ttcid": "Avg TTCID",
+        "avg_ttid": "Avg TTID",
+        "med_ttcid": "Med TTCID",
+        "med_ttid": "Med TTID",
+        "obs_1_day": "Obs (1 day)",
+        "obs_cid_d_to_genus": "Obs CID'd to genus",
+        "recent_w_0_obs": "Recent w/ 0 obs",
+        "recent_w_7_obs": "Recent w/ >= 7 obs"
+      },
       "year": {
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
@@ -10568,6 +10696,7 @@ I18n.translations["en"] = {
   "wanted": "Wanted",
   "we_have_no_conservation_status_for_this_taxon": "We have no conservation status for this taxon",
   "we_have_no_establishment_data_for_this_taxon": "We have no establishment data for this taxon",
+  "website": "Website",
   "week_of_date": "Week of %{date}",
   "were_pretty_sure_this_is_in_the_rank": "We're pretty sure this is in the %{rank}",
   "whats_this?": "What's this?",
@@ -10749,6 +10878,8 @@ I18n.translations["en-GB"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -10865,6 +10996,8 @@ I18n.translations["en-US"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -10899,6 +11032,7 @@ I18n.translations["es"] = {
   "accuracy": "Precisión",
   "accuracy_meters": "Precisión (metros)",
   "action": "Acción",
+  "active": "activo",
   "activity": "Actividad",
   "add": "Añadir",
   "add_a_comment": "Añadir un comentario",
@@ -10907,9 +11041,17 @@ I18n.translations["es"] = {
   "add_an_identification": "Añade una identificación",
   "add_edit_flags": "Añadir/editar etiquetas",
   "add_id": "Añade ID",
+  "add_life_stage_adult_annotation": "Añade nota \"Etapa de Vida: Adulto\"",
+  "add_life_stage_egg_annotation": "Añade nota \"Etapa de Vida: Huevo\"",
+  "add_life_stage_juvenile_annotation": "Añadir anotación \"Etapa vital:juvenil\"",
+  "add_life_stage_larva_annotation": "Añade nota \"Etapa de Vida: Larva\"",
+  "add_life_stage_pupa_annotation": "Añade nota \"Etapa de Vida: Pupa\"",
   "add_link": "Añadir enlace",
   "add_one_now": "Añadir uno",
   "add_photos_to_this_observation": "Añade fotos a esta observación",
+  "add_plant_phenology_budding_annotation": "Añadir anotación \"fenologia de la planta:incipiente\"",
+  "add_plant_phenology_flowering_annotation": "Añade nota \"Fenología de la Planta: Floreciendo\"",
+  "add_plant_phenology_fruiting_annotation": "Añade nota \"Fenología de la Planta: Fructificando\" anotación",
   "add_tag": "Añadir etiqueta",
   "add_tags": "Añade etiquetas",
   "add_to_a_project": "Añade a un proyecto",
@@ -11041,6 +11183,7 @@ I18n.translations["es"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Permite a los curadores del proyecto ver tus coordenadas privadas",
   "amphibians": "anfibios",
   "and": "y",
+  "android": "Android",
   "animals": "Animales",
   "animated_observations_map": "Mapa de observaciones animado",
   "annotations": "Anotaciones",
@@ -11388,6 +11531,7 @@ I18n.translations["es"] = {
   "interactions": "Interacciones",
   "introduced": "introducida",
   "introduced_in_place": "Introducción en %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "es una evaluación de la exactitud de una observación.\nLas observaciones de Grado de Investigación pueden ser usadas por científicos para su investigación. Vota aquí abajo:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "¿La evidencia provista es suficiente para confirmar que se trata de %{taxon}?",
   "it_can_now_be_used_for_research": "Ahora puede utilizarse para propósitos de investigación y presentarse en otros sitios web",
@@ -11580,6 +11724,7 @@ I18n.translations["es"] = {
   "not_evaluated": "no evaluado",
   "not_recorded": "No grabado",
   "number_selected": "# seleccionado",
+  "obs": "Obs",
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_": "observación",
@@ -11866,6 +12011,7 @@ I18n.translations["es"] = {
   },
   "ray_finned_fishes": "peces con aletas radiadas",
   "read_more": "Conocer más",
+  "recent": "Recientes",
   "recent_evidence_of_organism": "Evidencia reciente de un organismo",
   "recent_observations": "Observaciones recientes",
   "red": "rojo",
@@ -12022,6 +12168,7 @@ I18n.translations["es"] = {
   "top_observer": "Mayor observador",
   "top_observers": "Mejores observadores",
   "top_species": "Especie superior",
+  "total": "total",
   "total_observations": "Total de observaciones",
   "trending": "Tendencias",
   "trends": "Tendencias",
@@ -12134,6 +12281,8 @@ I18n.translations["es"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de\n\"resplandor solar\". La base de la jerarquía está en el centro,\ncomenzando con \"Vida\" y terminando con especies en los bordes\nexteriores. El tamaño de cada arco es proporcional al número de\nobservaciones de ese taxón, y los colores se corresponden con los\ncolores de nuestro taxón \"icónico\" habitual (verde para las plantas,\nnaranja para los insectos, azul para la mayoría de los otros animales,\netc.), así que si Veo mucho verde, eso significa que has observado\nmuchas plantas. <strong>Haga clic en un arco para colocar ese taxón en\nel centro</strong> y sus niños a su alrededor, o <strong>haga clic en\nel centro para volver a subir la jerarquía.</strong>"
       }
@@ -12303,6 +12452,7 @@ I18n.translations["es-ES"] = {
   "account": "Cuenta",
   "accuracy": "Exactitud",
   "accuracy_meters": "Exactitud (metros)",
+  "active": "activa",
   "add": "Añadir",
   "add_a_comment": "Añadir un comentario",
   "add_a_field": "Añadir un campo",
@@ -12648,6 +12798,7 @@ I18n.translations["es-ES"] = {
   "no_summary_from_wikipedia": "No hay resumen de Wikipedia",
   "none": "Ninguno",
   "not_evaluated": "no evaluado",
+  "obs": "Obs",
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_date": "Fecha",
@@ -12889,6 +13040,7 @@ I18n.translations["es-ES"] = {
   "to": "a",
   "to_add_comments": "para añadir comentarios.",
   "today": "Hoy",
+  "total": "total",
   "total_observations": "Total de observaciones",
   "type_species_name": "Teclea el nombre de la especie...",
   "unknown": "Desconocido",
@@ -12931,6 +13083,8 @@ I18n.translations["es-ES"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -12988,6 +13142,7 @@ I18n.translations["es-MX"] = {
   "account": "Cuenta",
   "accuracy": "Precisión",
   "accuracy_meters": "Precisión (metros)",
+  "active": "activa",
   "add": "Añade",
   "add_a_comment": "Añade un comentario",
   "add_a_field": "Añade un campo",
@@ -13095,6 +13250,7 @@ I18n.translations["es-MX"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Permite a los curadores del proyecto ver tus coordinadas privadas",
   "amphibians": "Anfibios",
   "and": "y",
+  "android": "Androide",
   "animals": "Animales",
   "any": "Cualquiera",
   "arachnids": "Arácnidos",
@@ -13331,6 +13487,7 @@ I18n.translations["es-MX"] = {
   "input_taxon": "Incluye al taxón",
   "insects": "Insectos",
   "introduced": "introducida",
+  "iphone": "iPhone",
   "join_project": "Únete a este proyecto",
   "join_this_project": "unirte a este proyecto",
   "joined!": "¡Unido!",
@@ -13457,6 +13614,7 @@ I18n.translations["es-MX"] = {
   "no_summary_from_wikipedia": "No hay resumen de Wikipedia",
   "none": "Ninguno",
   "not_evaluated": "No se ha evaluado",
+  "obs": "Obs",
   "obscured": "Oscurecida",
   "observation": "Observación",
   "observation_date": "Fecha",
@@ -13743,6 +13901,7 @@ I18n.translations["es-MX"] = {
   "to_add_comments": "para añadir comentarios",
   "today": "Hoy",
   "top_identifiers": "Los principales identificadores",
+  "total": "Total",
   "total_observations": "Total de observaciones",
   "twitter": "Twitter",
   "type_species_name": "Escribe el nombre de la especie...",
@@ -13815,6 +13974,8 @@ I18n.translations["es-MX"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -13961,6 +14122,8 @@ I18n.translations["et"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -13990,15 +14153,22 @@ I18n.translations["eu"] = {
   "accuracy": "Zehaztasuna",
   "accuracy_meters": "Zehaztasuna (metroak)",
   "action": "Ekintza",
+  "active": "aktibo",
   "add": "Gehitu",
   "add_a_comment": "Oharra gehitu",
   "add_a_field": "Eremua gehitu",
   "add_a_name": "Izena gehitu",
   "add_an_identification": "Identifikazioa gehitu",
   "add_id": "Identifikadorea gehitu",
+  "add_life_stage_adult_annotation": "Gehitu \"Bizi Aroa: Heldua\" oharra",
+  "add_life_stage_egg_annotation": "Gehitu: \"Bizi aroa: Arrautza\" oharra",
+  "add_life_stage_larva_annotation": "Gehitu \"Bizi Aroa: Larba\" oharra",
+  "add_life_stage_pupa_annotation": "Gehitu: \"Bizi Aroa: Pupa\" oharra",
   "add_link": "Gehitu lotura",
   "add_one_now": "Gehitu bat orain",
   "add_photos_to_this_observation": "Argazkiak gehitu oharrari",
+  "add_plant_phenology_flowering_annotation": "Gehitu \"Landare Fenologia: Loratzen\" oharra",
+  "add_plant_phenology_fruiting_annotation": "Gehitu \"Landare Fenologia: Fruituak ematen\" oharra",
   "add_tag": "Gehitu etiketa",
   "add_tags": "Ekiketak gehitu",
   "add_to_favorites": "Gustokoentara gehitu",
@@ -14098,6 +14268,7 @@ I18n.translations["eu"] = {
   "allow_curator_access": "Ontzailearen sartzea onartu",
   "amphibians": "anfibioak",
   "and": "eta",
+  "android": "Android",
   "animals": "Animaliak",
   "any": "Edozein",
   "arachnids": "araknidoak",
@@ -14321,6 +14492,7 @@ I18n.translations["eu"] = {
   "info": "Informazioa",
   "insects": "intsektuak",
   "introduced": "sartu zuen",
+  "iphone": "iPhone",
   "is_an_evaluation": "zehaztasun meaketaren ebaluaketa da.\nIkerketa Graduaren oharrak zientzialariek erabili ditzakete ikertzeko. Eman zure botoa hemen:",
   "join_project": "Proiektu honekin bat egin",
   "join_this_project": "gehitu behar duzu.",
@@ -14426,6 +14598,7 @@ I18n.translations["eu"] = {
   "none": "Bat ere ez",
   "none_found": "Ez da aurkitu",
   "not_evaluated": "ebaluatu gabe",
+  "obs": "Beh.",
   "obscured": "Lausoa",
   "observation": "Behaketa",
   "observation_date": "Data",
@@ -14697,6 +14870,7 @@ I18n.translations["eu"] = {
   "to_add_comments": "aipamenak gehitzeko.",
   "to_suggest_an_identification": "Identifikazio bat gomendatu",
   "today": "Gaur",
+  "total": "totala",
   "total_observations": "Behaketak guztira",
   "twitter": "Twitter",
   "type_species_name": "Tekleatu espeziearen izena...",
@@ -14744,6 +14918,8 @@ I18n.translations["eu"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -14868,6 +15044,8 @@ I18n.translations["fa"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -14902,6 +15080,7 @@ I18n.translations["fi"] = {
   "accuracy": "Tarkkuus",
   "accuracy_meters": "Tarkkuus (metreinä)",
   "action": "Toiminto",
+  "active": "aktiivinen",
   "activity": "Toiminta",
   "add": "Lisää",
   "add_a_comment": "Lisää kommentti",
@@ -14910,9 +15089,17 @@ I18n.translations["fi"] = {
   "add_an_identification": "Lisää tunnistus",
   "add_edit_flags": "Lisää/muokkaa merkintöjä",
   "add_id": "Lisää tunniste",
+  "add_life_stage_adult_annotation": "Lisää \"Life Stage: Adult\" selitys",
+  "add_life_stage_egg_annotation": "Lisää \"Life Stage: Egg\" selitys",
+  "add_life_stage_juvenile_annotation": "Lisää \"Life Stage: Juvenile\" selitys",
+  "add_life_stage_larva_annotation": "Lisää \"Life Stage: Larva\" selitys",
+  "add_life_stage_pupa_annotation": "Lisää \"Life Stage: Pupa\" selitys",
   "add_link": "Lisää linkki",
   "add_one_now": "Lisää yksi nyt",
   "add_photos_to_this_observation": "Lisää kuvia tähän havaintoon",
+  "add_plant_phenology_budding_annotation": "Lisää \"Plant Phenology: Budding\" selitys",
+  "add_plant_phenology_flowering_annotation": "Lisää \"Plant Phenology: Flowering\" selitys",
+  "add_plant_phenology_fruiting_annotation": "Lisää \"Plant Phenology: Fruiting\" selitys",
   "add_tag": "Lisää tunniste",
   "add_tags": "Lisää tunnisteita",
   "add_to_a_project": "Lisää projektiin",
@@ -15035,6 +15222,7 @@ I18n.translations["fi"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Salli projektin kuraattorien katsoa yksityisiä koordinaattejasi",
   "amphibians": "sammakkoeläimet",
   "and": "ja",
+  "android": "Android",
   "animals": "Eläimet",
   "animated_observations_map": "Animoitu havaintokartta",
   "annotations": "Merkinnät",
@@ -15339,6 +15527,7 @@ I18n.translations["fi"] = {
   "insects": "hyönteiset",
   "introduced": "esitelty",
   "introduced_in_place": "Esitelty paikassa %{place}",
+  "iphone": "iPhone",
   "join_project": "Liity tähän projektiin",
   "join_this_project": "Liity tähän projektiin",
   "joined!": "Liitytty!",
@@ -15740,6 +15929,7 @@ I18n.translations["fi"] = {
   },
   "ray_finned_fishes": "viuhkaeväiset",
   "read_more": "Lue lisää",
+  "recent": "Viimeaikainen",
   "recent_evidence_of_organism": "Viimeaikainen todiste eliöstä",
   "recent_observations": "Viimeaikaiset havainnot",
   "red": "punainen",
@@ -15862,6 +16052,7 @@ I18n.translations["fi"] = {
   "top_observer": "Huippuhavainnoitsija",
   "top_observers": "Ylimmät havainnoijat",
   "top_species": "Huippulajit",
+  "total": "yhteensä",
   "total_observations": "Havaintoja yhteensä",
   "total_species_observed": "Lajeja havaittu yhteensä",
   "trending": "Nousussa",
@@ -15948,6 +16139,8 @@ I18n.translations["fi"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -16095,6 +16288,7 @@ I18n.translations["fr"] = {
   "accuracy": "Précision",
   "accuracy_meters": "Précision (mètres)",
   "action": "Action",
+  "active": "actif",
   "activity": "Activité",
   "add": "Ajouter",
   "add_a_comment": "Ajouter un commentaire",
@@ -16103,9 +16297,17 @@ I18n.translations["fr"] = {
   "add_an_identification": "Ajouter une identification",
   "add_edit_flags": "Ajouter / éditer les marquages",
   "add_id": "Ajouter une identification",
+  "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : Adulte\"",
+  "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : Oeuf\"",
+  "add_life_stage_juvenile_annotation": "Ajouter l’annotation « Stade de vie : Juvénile »",
+  "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : Larve\"",
+  "add_life_stage_pupa_annotation": "Ajoute l'annotation \"Stade d'évolution : Pupe\"",
   "add_link": "Ajouter un lien",
   "add_one_now": "En ajouter un maintenant",
   "add_photos_to_this_observation": "Ajouter des photos à cette observation",
+  "add_plant_phenology_budding_annotation": "Ajouter l’annotation « Phénélogie végétale : Bourgeonnement »",
+  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie de plante : Floraison »",
+  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie de plante : Fruits »",
   "add_tag": "Ajouter une balise",
   "add_tags": "Ajouter des étiquettes",
   "add_to_a_project": "Ajouter à un projet",
@@ -16238,6 +16440,7 @@ I18n.translations["fr"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Autoriser les superviseurs du projet à voir vos coordonnées privées",
   "amphibians": "amphibiens",
   "and": "et",
+  "android": "Androïde",
   "animals": "Animaux",
   "animated_observations_map": "Carte animée des observations",
   "annotations": "Annotations",
@@ -16586,6 +16789,7 @@ I18n.translations["fr"] = {
   "interactions": "Interactions",
   "introduced": "Introduite",
   "introduced_in_place": "Introduit dans %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "est une évaluation de la précision d’une observation.\nLes observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Donnez votre vote ci-dessous :",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Est-ce que l'évidence est suffisammnt flagrante pour confirmer que ceci est %{taxon} ?",
   "it_can_now_be_used_for_research": "Il peut maintenant être utilisé pour la recherche et mis en vedette sur d’autres sites web",
@@ -16778,6 +16982,7 @@ I18n.translations["fr"] = {
   "not_evaluated": "non évalué",
   "not_recorded": "Non enregistré",
   "number_selected": "n° sélectionné",
+  "obs": "Obs",
   "obscured": "Masqué",
   "observation": "Observation",
   "observation_": "observation",
@@ -17066,6 +17271,7 @@ I18n.translations["fr"] = {
   },
   "ray_finned_fishes": "poissons à nageoires rayonnées",
   "read_more": "Lire plus",
+  "recent": "Récent",
   "recent_evidence_of_organism": "Preuve récente d’un organisme",
   "recent_observations": "Observations récentes",
   "red": "rouge",
@@ -17223,6 +17429,7 @@ I18n.translations["fr"] = {
   "top_observer": "Meilleurs observateurs",
   "top_observers": "Meilleurs observateurs",
   "top_species": "Espèces favorites",
+  "total": "total",
   "total_observations": "Total des observations",
   "total_species_observed": "Nombre total d’espèces observées",
   "trending": "Tendance",
@@ -17338,6 +17545,8 @@ I18n.translations["fr"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base\nde la hiérarchie est au centre, en commençant par « Vie » et en se terminant\npar les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle\nau nombre d’observations de ce taxon, et les couleurs correspondent\nà peu près à nos couleurs de taxon « iconiques » habituelles (vert pour les plantes,\norange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous\nvoyez beaucoup de vert, cela veut dire que vous observez beaucoup de plantes.\n<strong>Cliquez sur un arc pour placer ce taxon au centre</strong> et\nses enfants autour, ou <strong>cliquez sur le centre pour remonter dans\nla hiérarchie</strong>."
       }
@@ -17511,6 +17720,7 @@ I18n.translations["gl"] = {
   "account": "Conta",
   "accuracy": "Exactitude",
   "accuracy_meters": "Exactitude (metros)",
+  "active": "Activa",
   "add": "Engadir",
   "add_a_comment": "Engadir un comentario",
   "add_a_field": "Engadir un campo",
@@ -17613,6 +17823,7 @@ I18n.translations["gl"] = {
   },
   "amphibians": "Anfibios",
   "and": "E",
+  "android": "Android",
   "animals": "Animais",
   "any": "Calquera",
   "arachnids": "Arácnidos",
@@ -17803,6 +18014,7 @@ I18n.translations["gl"] = {
   "info": "Información",
   "insects": "Insectos",
   "introduced": "Introduciu",
+  "iphone": "iPhone",
   "join_project": "Unirse a este proxecto",
   "join_this_project": "unirte a este proxecto.",
   "journal": "Diario",
@@ -17892,6 +18104,7 @@ I18n.translations["gl"] = {
   "no_summary_from_wikipedia": "No hay resumen de Wikipedia",
   "none": "Ningún",
   "not_evaluated": "non avaliado",
+  "obs": "Obs",
   "obscured": "Difusa",
   "observation": "Observación",
   "observation_date": "Data",
@@ -18135,6 +18348,7 @@ I18n.translations["gl"] = {
   "to": "A",
   "to_add_comments": "para engadir comentarios.",
   "today": "Hoxe",
+  "total": "Total",
   "total_observations": "Total de observacións",
   "twitter": "Twitter",
   "type_species_name": "Teclea o nome da especie...",
@@ -18178,6 +18392,8 @@ I18n.translations["gl"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -18294,6 +18510,8 @@ I18n.translations["he"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -18380,6 +18598,8 @@ I18n.translations["hr"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -18466,6 +18686,8 @@ I18n.translations["hu"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -18497,6 +18719,7 @@ I18n.translations["id"] = {
   "accuracy": "akurasi",
   "accuracy_meters": "akurasi (meter)",
   "action": "Tindakan",
+  "active": "Aktif",
   "add": "Tambahkan",
   "add_a_comment": "Tambahkan Komentar",
   "add_a_field": "Tambahkan kolom",
@@ -18606,6 +18829,7 @@ I18n.translations["id"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Memungkinkan kurator proyek untuk melihat koordinat pribadi Anda",
   "amphibians": "Amfibi",
   "and": "dan",
+  "android": "Android",
   "animals": "Binatang",
   "any": "semua",
   "arachnids": "arakhnida",
@@ -18860,6 +19084,7 @@ I18n.translations["id"] = {
   "insects": "serangga",
   "interactions": "Interaksi",
   "introduced": "introduksi",
+  "iphone": "iPhone",
   "join_project": "Gabung dengan projek ini",
   "join_this_project": "Gabung dengan projek ini",
   "joined!": "Bergabung!",
@@ -19005,6 +19230,7 @@ I18n.translations["id"] = {
   "none": "Tak satupun",
   "not_evaluated": "tidak dievaluasi",
   "number_selected": "# dipilih",
+  "obs": "Pengamatan",
   "obscured": "Dikaburkan",
   "observation": "Pengamatan",
   "observation_date": "Tanggal",
@@ -19209,6 +19435,7 @@ I18n.translations["id"] = {
     "leaves": "meninggalkan"
   },
   "ray_finned_fishes": "ikan bersirip cahaya",
+  "recent": "Terkini",
   "recent_observations": "Pengamatan yang baru",
   "red": "merah",
   "redo_search_in_map": "Kembalikan pencarian di peta",
@@ -19291,6 +19518,7 @@ I18n.translations["id"] = {
   "to": "untuk",
   "to_add_comments": "untuk menambahkan komen",
   "today": "Hari ini",
+  "total": "total:",
   "total_observations": "Total pengamatan",
   "twitter": "Twitter",
   "type_species_name": "Ketik nama spesies",
@@ -19338,6 +19566,8 @@ I18n.translations["id"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -19479,6 +19709,8 @@ I18n.translations["is"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -19513,6 +19745,7 @@ I18n.translations["it"] = {
   "accuracy": "Accuratezza",
   "accuracy_meters": "Precisione di misura (in metri)",
   "action": "Azione",
+  "active": "attivo",
   "activity": "Attività",
   "add": "Aggiungi",
   "add_a_comment": "Aggiungi un commento",
@@ -19521,9 +19754,17 @@ I18n.translations["it"] = {
   "add_an_identification": "Aggiungi un'identificazione",
   "add_edit_flags": "Aggiungi/Modifica contrassegni",
   "add_id": "Aggiungi ID",
+  "add_life_stage_adult_annotation": "Aggiungi nota \"Stadio vitale: Adulto\"",
+  "add_life_stage_egg_annotation": "Aggiungi nota \"Stadio vitale: Uovo\"",
+  "add_life_stage_juvenile_annotation": "Aggiungi nota \"Stadio vitale: Giovane\"",
+  "add_life_stage_larva_annotation": "Aggiungi nota \"Stadio vitale: Larva\"",
+  "add_life_stage_pupa_annotation": "Aggiungi nota \"Stadio vitale: Pupa\"",
   "add_link": "Aggiungi collegamento",
   "add_one_now": "Aggiungi ora",
   "add_photos_to_this_observation": "Aggiungi foto a questa osservazione",
+  "add_plant_phenology_budding_annotation": "Aggiungi nota \"Fenologia della Pianta: Germinazione\"",
+  "add_plant_phenology_flowering_annotation": "Aggiungi nota \"Fenologia della Pianta: Fioritura\"",
+  "add_plant_phenology_fruiting_annotation": "Aggiungi nota \"Fenologia della Pianta: Fruttificazione\"",
   "add_tag": "Aggiungi etichetta",
   "add_tags": "Aggiungi etichetta",
   "add_to_a_project": "Aggiungi a un progetto",
@@ -19656,6 +19897,7 @@ I18n.translations["it"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Consenti ai curatori del progetto di vedere le tue coordinate private",
   "amphibians": "anfibi",
   "and": "e",
+  "android": "Android",
   "animals": "Animali",
   "animated_observations_map": "Mappa animata delle osservazioni",
   "annotations": "Annotazioni",
@@ -20004,6 +20246,7 @@ I18n.translations["it"] = {
   "interactions": "Interazioni",
   "introduced": "introdotta",
   "introduced_in_place": "Introdotto in %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "è una valutazione dell'accuratezza dell'osservazione.\nLe osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "La prova fornita è sufficiente per confermare che questo è %{taxon}?",
   "it_can_now_be_used_for_research": "Ora può essere usata per la ricerca o messa in risalto su altri siti web",
@@ -20196,6 +20439,7 @@ I18n.translations["it"] = {
   "not_evaluated": "Non Valutata",
   "not_recorded": "Non registrata",
   "number_selected": "# selezionati",
+  "obs": "Osservazioni",
   "obscured": "Oscurata",
   "observation": "Osservazione",
   "observation_": "osservazione",
@@ -20484,6 +20728,7 @@ I18n.translations["it"] = {
   },
   "ray_finned_fishes": "Attinopterigi",
   "read_more": "Leggi di più",
+  "recent": "Recenti",
   "recent_evidence_of_organism": "Evidenze recenti della presenza dell'organismo",
   "recent_observations": "Osservazioni recenti",
   "red": "rosso",
@@ -20641,6 +20886,7 @@ I18n.translations["it"] = {
   "top_observer": "Il miglior osservatore",
   "top_observers": "Migliori osservatori",
   "top_species": "Specie più osservata",
+  "total": "totale",
   "total_observations": "Totale osservazioni",
   "total_species_observed": "Totale specie osservate",
   "trending": "Tendenze",
@@ -20756,6 +21002,8 @@ I18n.translations["it"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "Taxa osservati disposti secondo un diagramma gerarchico \"raggi di sole\". La base è al centro, inizia on \"Organismo\" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori \"iconici\" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.\n<strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>."
       }
@@ -20992,6 +21240,8 @@ I18n.translations["iw"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -21023,6 +21273,7 @@ I18n.translations["ja"] = {
   "accuracy": "精度",
   "accuracy_meters": "精度（メートル）",
   "action": "操作",
+  "active": "アクティブ",
   "add": "追加",
   "add_a_comment": "コメントの追加",
   "add_a_field": "フィールドの追加",
@@ -21122,6 +21373,7 @@ I18n.translations["ja"] = {
   "allow_project_curators_to_view_your_private_coordinates": "プロジェクトのキュレーター管理者にプライベートな位置情報の閲覧を許可",
   "amphibians": "両生類",
   "and": "そして",
+  "android": "Android",
   "animals": "動物",
   "any": "すべて",
   "arachnids": "クモ綱",
@@ -21375,6 +21627,7 @@ I18n.translations["ja"] = {
   "insects": "昆虫類",
   "introduced": "移入種",
   "introduced_in_place": "%{place}の移入種",
+  "iphone": "iPhone",
   "join_project": "このプロジェクトに参加する",
   "join_this_project": "このプロジェクトに参加",
   "joined!": "参加しました！",
@@ -21530,6 +21783,7 @@ I18n.translations["ja"] = {
   "none": "該当する項目ありません",
   "not_evaluated": "未評価",
   "number_selected": "# 選択済み",
+  "obs": "不明瞭",
   "obscured": "不明瞭",
   "observation": "観察記録",
   "observation_date": "日付",
@@ -21768,6 +22022,7 @@ I18n.translations["ja"] = {
     "leaves": "末端ノード"
   },
   "ray_finned_fishes": "条鰭綱",
+  "recent": "新着",
   "recent_observations": "最新の観察記録",
   "red": "赤",
   "redo_search_in_map": "マップ範囲内で再検索",
@@ -21874,6 +22129,7 @@ I18n.translations["ja"] = {
   "top_identifiers": "同定の達人",
   "top_observer": "トップ観察者",
   "top_species": "トップ種",
+  "total": "合計",
   "total_observations": "合計観察記録数",
   "twitter": "ツイッター",
   "type_species_name": "種名を入力",
@@ -21939,6 +22195,8 @@ I18n.translations["ja"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -22032,6 +22290,7 @@ I18n.translations["ko"] = {
   "account": "계정",
   "accuracy": "정확성",
   "accuracy_meters": "정확도 (미터)",
+  "active": "활성",
   "activity": "활동",
   "add": "추가",
   "add_a_comment": "댓글 추가",
@@ -22112,6 +22371,7 @@ I18n.translations["ko"] = {
   "allow_project_curators_to_view_your_private_coordinates": "프로젝트 큐레이터에게 내 사적 좌표를 열람할 수 있는 권한 부여",
   "amphibians": "양서류",
   "and": "그리고",
+  "android": "안드로이드",
   "animals": "동물",
   "annotations": "주석",
   "any": "모두",
@@ -22380,6 +22640,7 @@ I18n.translations["ko"] = {
   "insects": "곤충",
   "introduced": "도입종",
   "introduced_in_place": "%{place}에서 유입됨",
+  "iphone": "아이폰",
   "it_can_now_be_used_for_research": "이제 연구를 위해 사용하거나 다른 웹사이트에 실을 수 있습니다",
   "join_project": "이 프로젝트 가입하기",
   "join_this_project": "이 프로젝트 가입하기",
@@ -22512,6 +22773,7 @@ I18n.translations["ko"] = {
   "not_evaluated": "평가되지 않음",
   "not_recorded": "기록되지 않음",
   "number_selected": "# 선택됨",
+  "obs": "관찰",
   "obscured": "숨김",
   "observation": "관찰",
   "observation_": "관찰",
@@ -22760,6 +23022,8 @@ I18n.translations["ko"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -22805,6 +23069,7 @@ I18n.translations["lb"] = {
   "about_names": "Iwwer Nimm",
   "account": "Benotzerkont",
   "action": "Aktioun",
+  "active": "aktiv",
   "activity": "Aktivitéit",
   "add": "Derbäisetzen",
   "add_a_comment": "Eng Bemierkung derbäisetzen",
@@ -22870,6 +23135,7 @@ I18n.translations["lb"] = {
   },
   "amphibians": "Amphibien",
   "and": "a(n)",
+  "android": "Android",
   "animals": "Déieren",
   "animated_observations_map": "Animéiert Kaart mat den Observatiounen",
   "annotations": "Notizen",
@@ -23044,6 +23310,7 @@ I18n.translations["lb"] = {
   "info": "Informatioun",
   "insects": "Insekten",
   "interactions": "Interaktiounen",
+  "iphone": "iPhone",
   "keep_editing": "Virufuere mat Änneren",
   "kml_file_size_error": "KML muss méi kleng si wéi 1 MB",
   "labels": "Etiketten",
@@ -23295,6 +23562,7 @@ I18n.translations["lb"] = {
     "section": "Abschnitt"
   },
   "read_more": "Liest méi",
+  "recent": "Rezent",
   "recent_observations": "Rezent Observatiounen",
   "red": "rout",
   "redo_search_in_map": "Nach eng Kéier op der Kaart sichen",
@@ -23347,6 +23615,7 @@ I18n.translations["lb"] = {
   "this_observation": "Dës Observatioun",
   "this_year": "Dëst Joer",
   "today": "Haut",
+  "total": "Total",
   "trends": "Tendenzen",
   "twitter": "Twitter",
   "unknown": "Onbekannt",
@@ -23398,6 +23667,8 @@ I18n.translations["lb"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -23539,6 +23810,8 @@ I18n.translations["lexicons"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -23625,6 +23898,8 @@ I18n.translations["lt"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -23711,6 +23986,8 @@ I18n.translations["lv"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -23839,6 +24116,7 @@ I18n.translations["mk"] = {
   },
   "amphibians": "водоземци",
   "and": "и",
+  "android": "Андроид",
   "animals": "Животни",
   "arachnids": "пајаковидни",
   "asc": "раст",
@@ -23995,6 +24273,7 @@ I18n.translations["mk"] = {
   "input_taxon": "Влезен таксон",
   "insects": "Инсекти",
   "introduced": "Доведен",
+  "iphone": "iPhone",
   "join_project": "Приклучете се на проектов!",
   "join_this_project": "Приклучи се на проектов",
   "joined!": "Приклучено!",
@@ -24298,6 +24577,7 @@ I18n.translations["mk"] = {
   "terrain": "теренска",
   "threatened": "Загрозен",
   "today": "Денес",
+  "total": "вкупно",
   "total_observations": "Вкупно набљудувања",
   "unknown": "непознато",
   "uploader": {
@@ -24336,6 +24616,8 @@ I18n.translations["mk"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -24459,6 +24741,8 @@ I18n.translations["my"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -24545,6 +24829,8 @@ I18n.translations["nb"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -24631,6 +24917,8 @@ I18n.translations["nl"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -24717,6 +25005,8 @@ I18n.translations["no"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -24748,6 +25038,7 @@ I18n.translations["oc"] = {
   "accuracy": "Precision",
   "accuracy_meters": "Precision (mètres)",
   "action": "Accion",
+  "active": "actiu",
   "activity": "Activitat",
   "add": "Apondre",
   "add_a_comment": "Apondre un comentari",
@@ -24858,6 +25149,7 @@ I18n.translations["oc"] = {
   },
   "amphibians": "amfibians",
   "and": "e",
+  "android": "Android",
   "animals": "Animals",
   "annotations": "Anotacions",
   "any": "totes",
@@ -25032,6 +25324,7 @@ I18n.translations["oc"] = {
   "insects": "Insèctes",
   "interactions": "Interaccions",
   "introduced": "introduït",
+  "iphone": "iPhone",
   "join_project": "Rejonhètz aquel projècte",
   "joined!": "Junt !",
   "journal": "Jornal",
@@ -25145,6 +25438,7 @@ I18n.translations["oc"] = {
   "no_species_observed": "Cap d'espècias pas observadas.",
   "none": "Pas cap",
   "not_evaluated": "pas avalorat",
+  "obs": "Obs",
   "observation": "Observacion",
   "observation_date": "Data",
   "observation_fields": "Camps d’observacion",
@@ -25345,6 +25639,7 @@ I18n.translations["oc"] = {
   "taxon_map": {
   },
   "today": "Uèi",
+  "total": "total",
   "unreview_all": "Marcar tot coma pas relegit",
   "uploader": {
     "tooltips": {
@@ -25379,6 +25674,8 @@ I18n.translations["oc"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -25510,6 +25807,8 @@ I18n.translations["pl"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -25596,6 +25895,8 @@ I18n.translations["pt"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -25629,6 +25930,7 @@ I18n.translations["pt-BR"] = {
   "accuracy": "Precisão (Acurácia)",
   "accuracy_meters": "Precisão (Acurácia em metros)",
   "action": "Ação",
+  "active": "ativo",
   "activity": "Atividade",
   "add": "Adicionar",
   "add_a_comment": "Adicione um comentário",
@@ -25637,9 +25939,17 @@ I18n.translations["pt-BR"] = {
   "add_an_identification": "Adicione uma identificação",
   "add_edit_flags": "Adicionar/Editar Etiquetas",
   "add_id": "Adicionar identificação (ID)",
+  "add_life_stage_adult_annotation": "Adicionar \"Estágio de Vida: Adulto\" anotação",
+  "add_life_stage_egg_annotation": "Adicionar \"Estágio de Vida: Ovo\" anotação",
+  "add_life_stage_juvenile_annotation": "Adicionar \"Estágio de Vida: Juvenil\" anotação",
+  "add_life_stage_larva_annotation": "Adicionar \"Estágio de Vida: Larva\" anotação",
+  "add_life_stage_pupa_annotation": "Adicionar \"Estágio de Vida: Pupa\" anotação",
   "add_link": "Adicionar Link",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Adicionar fotos para esta observação",
+  "add_plant_phenology_budding_annotation": "Adicionar \"Fenologia\": Brotamento\" anotações",
+  "add_plant_phenology_flowering_annotation": "Adicionar \"Fenologia\": Floração\" anotações",
+  "add_plant_phenology_fruiting_annotation": "Adicionar \"Fenologia\": Frutificação\" anotações",
   "add_tag": "Adicionar marcação",
   "add_tags": "Adicionar marcações",
   "add_to_a_project": "Adicionar a um projeto",
@@ -25745,6 +26055,7 @@ I18n.translations["pt-BR"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Permitir o acesso as suas coordenadas privadas pelos administradores do projeto",
   "amphibians": "anfíbios",
   "and": "e",
+  "android": "Android",
   "animals": "Animais",
   "annotations": "Anotações",
   "any": "qualquer",
@@ -26081,6 +26392,7 @@ I18n.translations["pt-BR"] = {
   "interactions": "Interações",
   "introduced": "introduzida",
   "introduced_in_place": "Introduzido em %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "é uma avaliação de uma observação acurada.\nObservações ao Nível de Pesquisa podem ser utilizadas por cientistas. Vote abaixo:",
   "it_can_now_be_used_for_research": "Pode agora ser utilizada para pesquisa ou visualizada em outros sites",
   "join_project": "Entre neste projeto",
@@ -26264,6 +26576,7 @@ I18n.translations["pt-BR"] = {
   "not_evaluated": "Não avaliado",
   "not_recorded": "Não registrado",
   "number_selected": "# selecionado",
+  "obs": "Obs",
   "obscured": "Oculto",
   "observation": "Observação",
   "observation_": "observação",
@@ -26532,6 +26845,7 @@ I18n.translations["pt-BR"] = {
     "leaves": "folhas"
   },
   "ray_finned_fishes": "Actinopterygii, grupo de peixes de barbatanas com raios.",
+  "recent": "Recente",
   "recent_evidence_of_organism": "Evidência recente de um organismo",
   "recent_observations": "Observações recentes",
   "red": "vermelho",
@@ -26678,6 +26992,7 @@ I18n.translations["pt-BR"] = {
   "top_identifiers_of_taxon": "Top Identificadores por %{taxon}",
   "top_observer": "Top Observador",
   "top_species": "Top Espécies",
+  "total": "total",
   "total_observations": "Total de observações",
   "trending": "Tendências",
   "trends": "Tendências",
@@ -26783,6 +27098,8 @@ I18n.translations["pt-BR"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -26945,6 +27262,7 @@ I18n.translations["pt-PT"] = {
   "accuracy": "Precisão",
   "accuracy_meters": "Precisão (metros)",
   "action": "Ação",
+  "active": "ativo",
   "activity": "Atividade",
   "add": "Acrescentar",
   "add_a_comment": "Adicione um comentário",
@@ -26953,9 +27271,17 @@ I18n.translations["pt-PT"] = {
   "add_an_identification": "Adicione uma identificação",
   "add_edit_flags": "Adicionar/Editar etiquetas",
   "add_id": "Adicionar identificação (ID)",
+  "add_life_stage_adult_annotation": "Estádio de Vida: Adulto",
+  "add_life_stage_egg_annotation": "Acrescentar anotação \"Estádio de Vida: Ovo\"",
+  "add_life_stage_juvenile_annotation": "Acrescentar anotação \"Estádio de Vida: Juvenil\"",
+  "add_life_stage_larva_annotation": "Acrescentar anotação \"Estádio de Vida: Larva\"",
+  "add_life_stage_pupa_annotation": "Acrescentar anotação \"Estádio de Vida: Pupa\"",
   "add_link": "Adicionar ligação",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Acrescentar fotografias a esta observação",
+  "add_plant_phenology_budding_annotation": "Acrescentar anotação \"Fenologia da Planta: Gemulação\"",
+  "add_plant_phenology_flowering_annotation": "Acrescentar anotação \"Fenologia da Planta: Floração\"",
+  "add_plant_phenology_fruiting_annotation": "Acrescentar anotação \"Fenologia da Planta: Frutificação\"",
   "add_tag": "Adicionar etiqueta",
   "add_tags": "Adicionar tags",
   "add_to_a_project": "Adicionar a um projeto",
@@ -27088,6 +27414,7 @@ I18n.translations["pt-PT"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Permitir aos Curadores do projecto visualizar as suas coordenadas privadas",
   "amphibians": "anfíbios",
   "and": "e",
+  "android": "Android",
   "animals": "Animais",
   "animated_observations_map": "Mapa de Observações Animado",
   "annotations": "Anotações",
@@ -27406,6 +27733,7 @@ I18n.translations["pt-PT"] = {
   "interactions": "Interações",
   "introduced": "introduzido",
   "introduced_in_place": "Introduzido em %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "é uma avaliação da veracidade da observação.\nAs observações classificadas com Grau de Pesquisa podem ser usadas na investigação por cientistas. Dê o seu voto em baixo:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "A evidência fornecida é suficiente para confirmar que é %{taxon}?",
   "it_can_now_be_used_for_research": "Agora pode ser usado para pesquisa e apresentado noutros sítios",
@@ -27687,6 +28015,7 @@ I18n.translations["pt-PT"] = {
     "form": "forma"
   },
   "ray_finned_fishes": "Peixes de barbatanas com raios",
+  "recent": "Recentes",
   "restore": "Restaurar",
   "sounds": {
   },
@@ -27726,6 +28055,8 @@ I18n.translations["pt-PT"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -27880,6 +28211,8 @@ I18n.translations["ro"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -27914,6 +28247,7 @@ I18n.translations["ru"] = {
   "accuracy": "Точность",
   "accuracy_meters": "Точность (м)",
   "action": "Действие",
+  "active": "активен",
   "activity": "Активность",
   "add": "Добавить",
   "add_a_comment": "Добавить комментарий",
@@ -27922,8 +28256,11 @@ I18n.translations["ru"] = {
   "add_an_identification": "Добавить идентификацию",
   "add_edit_flags": "Добавить/редактировать флаги",
   "add_id": "Добавить идентификатор",
+  "add_life_stage_adult_annotation": "Добавить значение \"Стадия жизни: Имаго\"",
+  "add_life_stage_juvenile_annotation": "Добавить значение \"Стадия жизни: Молодой\"",
   "add_link": "Добавить ссылку",
   "add_photos_to_this_observation": "Добавить фото для этого наблюдения",
+  "add_plant_phenology_budding_annotation": "Добавить значение \"Фенология растений: Почкование\"",
   "add_tag": "Добавить тег",
   "add_tags": "Добавьте теги",
   "add_to_a_project": "Добавить в проект",
@@ -27989,6 +28326,7 @@ I18n.translations["ru"] = {
   "allow_project_curators_to_view_your_private_coordinates": "Разрешить кураторам проекта видеть ваши приватные координаты",
   "amphibians": "земноводные",
   "and": "и",
+  "android": "Андроид",
   "animals": "Животные",
   "animated_observations_map": "Анимированная карта наблюдений",
   "annotations": "Аннотация",
@@ -28224,6 +28562,7 @@ I18n.translations["ru"] = {
   "insect_life_stage": "Стадия жизни насекомого",
   "introduced": "интродуцированный",
   "introduced_in_place": "Интродуцирован в %{place}",
+  "iphone": "iPhone",
   "is_an_evaluation": "это оценка точности наблюдения.\nНаблюдения исследовательского уровня могут использоваться учёными для исследований. Оставьте свой голос ниже:",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Достаточно ли доказательств, подтверждающих, что это %{taxon}?",
   "join_project": "Присоединиться к этому проекту",
@@ -28428,6 +28767,7 @@ I18n.translations["ru"] = {
     "species": "виды",
     "leaves": "листья"
   },
+  "recent": "Последние",
   "recent_observations": "Последние наблюдения",
   "red": "красный",
   "redo_search_in_map": "Повторить поиск на карте",
@@ -28580,6 +28920,8 @@ I18n.translations["ru"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "Наблюдаемые таксоны упорядочены как иерархическая диаграмма «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>."
       }
@@ -28772,6 +29114,8 @@ I18n.translations["sk"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -28858,6 +29202,8 @@ I18n.translations["sl"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -28944,6 +29290,8 @@ I18n.translations["sr"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29030,6 +29378,8 @@ I18n.translations["sr-RS"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29116,6 +29466,8 @@ I18n.translations["sv"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29202,6 +29554,8 @@ I18n.translations["th"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29288,6 +29642,8 @@ I18n.translations["tr"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29374,6 +29730,8 @@ I18n.translations["uk"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29460,6 +29818,8 @@ I18n.translations["vi"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -29494,6 +29854,7 @@ I18n.translations["zh-CN"] = {
   "accuracy": "准确性",
   "accuracy_meters": "精确度（米）",
   "action": "操作",
+  "active": "激活",
   "activity": "活跃",
   "add": "添加",
   "add_a_comment": "添加一条评论",
@@ -29502,9 +29863,16 @@ I18n.translations["zh-CN"] = {
   "add_an_identification": "添加一个身份证明",
   "add_edit_flags": "添加/编辑标记",
   "add_id": "添加ID",
+  "add_life_stage_adult_annotation": "添加“生命阶段：成人”注释",
+  "add_life_stage_juvenile_annotation": "添加“生命阶段：青少年”注释",
+  "add_life_stage_larva_annotation": "添加“生活期：幼虫”注解",
+  "add_life_stage_pupa_annotation": "添加“生命阶段：蛹”注释",
   "add_link": "添加链接",
   "add_one_now": "现在添加一个",
   "add_photos_to_this_observation": "添加照片至此观察",
+  "add_plant_phenology_budding_annotation": "添加“植物物候学：发芽”注释",
+  "add_plant_phenology_flowering_annotation": "添加“植物物候学：开花”注释",
+  "add_plant_phenology_fruiting_annotation": "添加“植物物候学：结果”注释",
   "add_tag": "添加标签",
   "add_tags": "添加标签",
   "add_to_a_project": "添加至一个项目",
@@ -29610,6 +29978,7 @@ I18n.translations["zh-CN"] = {
   "allow_curator_access": "允许馆长访问",
   "amphibians": "两栖动物",
   "and": "和",
+  "android": "安卓",
   "animals": "动物",
   "animated_observations_map": "动画化观察地图",
   "annotations": "注释",
@@ -29941,6 +30310,7 @@ I18n.translations["zh-CN"] = {
   "interactions": "互动",
   "introduced": "引进",
   "introduced_in_place": "在%{place}中引进",
+  "iphone": "iPhone",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "有提供足够证据来确认这是%{taxon}么？",
   "join_project": "加入这个项目",
   "join_this_project": "加入这个项目",
@@ -30119,6 +30489,7 @@ I18n.translations["zh-CN"] = {
   "not_evaluated": "未评估",
   "not_recorded": "未记录",
   "number_selected": "# 已选择",
+  "obs": "观察",
   "obscured": "已遮盖",
   "observation": "观察",
   "observation_": "观察",
@@ -30383,6 +30754,7 @@ I18n.translations["zh-CN"] = {
     "leaves": "叶片"
   },
   "read_more": "阅读更多",
+  "recent": "最近",
   "recent_observations": "最新观察",
   "red": "红色",
   "redo_search_in_map": "在地图中重新搜索",
@@ -30509,6 +30881,7 @@ I18n.translations["zh-CN"] = {
   "top_observer": "最多观察者",
   "top_observers": "最多观察者",
   "top_species": "最多物种",
+  "total": "总计",
   "total_observations": "总计观察",
   "total_species_observed": "总计观察物种",
   "trending": "趋向",
@@ -30604,6 +30977,8 @@ I18n.translations["zh-CN"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -30811,6 +31186,8 @@ I18n.translations["zh-HK"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
       }
     },
@@ -30845,6 +31222,7 @@ I18n.translations["zh-TW"] = {
   "accuracy": "精度",
   "accuracy_meters": "精確度 (公尺)",
   "action": "操作",
+  "active": "有效",
   "activity": "動態",
   "add": "新增",
   "add_a_comment": "新增評論",
@@ -30853,9 +31231,17 @@ I18n.translations["zh-TW"] = {
   "add_an_identification": "新增一個物種鑑定",
   "add_edit_flags": "新增/編輯標記",
   "add_id": "新增物種鑑定",
+  "add_life_stage_adult_annotation": "新增「生命階段：成體」的註解",
+  "add_life_stage_egg_annotation": "新增「生命階段：卵」註解",
+  "add_life_stage_juvenile_annotation": "新增「生命階段：亞成體」的註解",
+  "add_life_stage_larva_annotation": "新增「生命階段：幼蟲」註解",
+  "add_life_stage_pupa_annotation": "新增「生命階段：蛹」的註解",
   "add_link": "新增連結",
   "add_one_now": "現在新增一個",
   "add_photos_to_this_observation": "新增相片到觀察紀錄中",
+  "add_plant_phenology_budding_annotation": "新增「植物物候：發新芽」的註解",
+  "add_plant_phenology_flowering_annotation": "新增「植物物候學：開花」的註解",
+  "add_plant_phenology_fruiting_annotation": "新增「植物物候：結果」註解",
   "add_tag": "添加標籤",
   "add_tags": "添加標籤",
   "add_to_a_project": "添加至專案",
@@ -30988,6 +31374,7 @@ I18n.translations["zh-TW"] = {
   "allow_project_curators_to_view_your_private_coordinates": "允許專案策展人檢視您的私有座標",
   "amphibians": "兩棲類",
   "and": "和",
+  "android": "Android",
   "animals": "動物",
   "animated_observations_map": "動畫化觀察地圖",
   "annotations": "註解",
@@ -31336,6 +31723,7 @@ I18n.translations["zh-TW"] = {
   "interactions": "互動",
   "introduced": "引進",
   "introduced_in_place": "在%{place}引進",
+  "iphone": "iPhone",
   "is_an_evaluation": "是對觀察準確的評估。\n研究等級觀察有機會被科學家用於研究上。請在下方投下您的一票：",
   "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "證據是否提供足夠的內容來確定這是%{taxon}？",
   "it_can_now_be_used_for_research": "現在可被用於在其它網站的研究和功能",
@@ -31528,6 +31916,7 @@ I18n.translations["zh-TW"] = {
   "not_evaluated": "未評估",
   "not_recorded": "未記錄",
   "number_selected": "# 已選擇",
+  "obs": "觀察",
   "obscured": "不清",
   "observation": "觀察",
   "observation_": "觀察",
@@ -31816,6 +32205,7 @@ I18n.translations["zh-TW"] = {
   },
   "ray_finned_fishes": "輻鰭魚類",
   "read_more": "閱讀更多",
+  "recent": "最近",
   "recent_evidence_of_organism": "近期的生物證據",
   "recent_observations": "最近觀察",
   "red": "紅色",
@@ -31973,6 +32363,7 @@ I18n.translations["zh-TW"] = {
   "top_observer": "熱門觀察者",
   "top_observers": "熱門觀察者",
   "top_species": "熱門物種",
+  "total": "總計",
   "total_observations": "觀察總數",
   "total_species_observed": "觀察物種總計",
   "trending": "趨勢",
@@ -32088,6 +32479,8 @@ I18n.translations["zh-TW"] = {
       }
     },
     "stats": {
+      "index": {
+      },
       "year": {
         "sunburst_desc_html": "已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。\n<strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。"
       }

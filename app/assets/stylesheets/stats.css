@@ -1,6 +1,10 @@
 .vis {
   height: 300px;
 }
+.bootstrap .container.vis {
+  padding-left: 0;
+  padding-right: 0;
+}
 .spark {
   width: 100%;
   height: 40px;

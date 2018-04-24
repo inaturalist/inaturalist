@@ -240,6 +240,8 @@
           %ul.dropdown-menu{ aria: { labelledby: "header-more-dropdown-toggle" } }
             %li= link_to t(:places), places_path
             %li= link_to t(:guides), guides_path
+            - if @site.blank? || @site.place_id.blank?
+              %li= link_to t(:site_stats), stats_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
     - if logged_in?
@@ -338,6 +340,8 @@
             %li= link_to t(:taxa_info), taxa_path
             %li= link_to t(:guides), guides_path
             %li= link_to t(:places), places_path
+            - if @site.blank? || @site.place_id.blank?
+              %li= link_to t(:site_stats), stats_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
     #headersearch.search.navtabs.form-group
