@@ -32,15 +32,8 @@ const OverviewMap = ( { project } ) => {
             observationLayers={ [project.search_params] }
             showAccuracy
             enableShowAllLayer={ false }
-            clickable={ false }
-            scrollwheel={ false }
             overlayMenu={ false }
-            mapTypeControl
-            mapTypeControlOptions={{
-              style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-              position: google.maps.ControlPosition.TOP_LEFT
-            }}
-            zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+            gestureHandling="auto"
             placeLayers={ _.isEmpty( project.placeRules ) ? null :
               [{ place: {
                 id: _.map( project.placeRules, "operand_id" ).join( "," ),
