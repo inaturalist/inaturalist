@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
-
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes( :roles ) }
+  scope :load_for_index, -> { includes( :roles, :flags ) }
 
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -20,7 +19,9 @@ class User < ActiveRecord::Base
   def as_indexed_json(options={})
     json = {
       id: id,
-      login: login
+      login: login,
+      spam: known_spam?,
+      suspended: suspended?
     }
     unless options[:no_details]
       json.merge!({
