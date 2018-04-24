@@ -98,7 +98,7 @@ class ConfirmModal extends Component {
 ConfirmModal.propTypes = {
   show: PropTypes.bool,
   confirmClass: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.any,
   idTaxon: PropTypes.object,
   errors: PropTypes.array,
   existingTaxon: PropTypes.object,

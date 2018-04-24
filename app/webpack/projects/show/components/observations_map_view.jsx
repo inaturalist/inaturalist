@@ -1,3 +1,4 @@
+import _ from "lodash";
 import React, { PropTypes } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
@@ -15,16 +16,15 @@ const ObservationsMapView = ( { project } ) => {
               observationLayers={ [project.search_params] }
               showAccuracy
               enableShowAllLayer={ false }
-              clickable={ false }
-              scrollwheel={ false }
               overlayMenu={ false }
-              mapTypeControl
-              mapTypeControlOptions={{
-                style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
-                position: google.maps.ControlPosition.TOP_LEFT
-              }}
-              zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
-              minZoom={ 1 }
+              gestureHandling="auto"
+              placeLayers={ _.isEmpty( project.placeRules ) ? null :
+                [{ place: {
+                  id: _.map( project.placeRules, "operand_id" ).join( "," ),
+                  name: "Places"
+                } }]
+              }
+              minZoom={ 2 }
               maxX={ totalBounds && totalBounds.nelng }
               maxY={ totalBounds && totalBounds.nelat }
               minX={ totalBounds && totalBounds.swlng }

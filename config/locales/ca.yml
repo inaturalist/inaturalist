@@ -838,7 +838,6 @@ ca:
     a Flickr o seleccioneu-les de les vostres observacions a %{site_name}. Proveu
     de seleccionar imatges que <em>mostrin característiques de diagnòstic</em> i <em>
     que es vegin bé com a icones</em>.  La <em>primera apareix per defecte</em>.
-  chose_columns: Escolliu les columnes
   choose_files: Escolliu els fitxers
   choose_files_from_your_computer: seleccioneu l'arxiu al vostre ordinador.
   choose_from_your_lists: Seleccioneu de les vostres llistes
@@ -1636,6 +1635,8 @@ ca:
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
   here_are_our_top_species_suggestions: Aquí estan les principals espècies suggerides
   here_are_some_things_you_can_do_meantime: Mentrestant aquí trobareu coses per fer
+  here_are_some_things_you_can_do_in_the_meantime: Mentrestant aquí trobareu coses
+    per fer
   heres_a_litle_about: Aquí teniu una mica al respecte
   hex_color_eg: Color en hexadecimal, ex. 65644F
   hi: Hola.
@@ -2465,8 +2466,6 @@ ca:
   non_human?: No humà?
   none: Cap
   none_found: No s'ha trobat cap
-  none_of_the_people_you_follow_have_updates: Les persones que seguiu encara no han
-    fet cap actualització!
   normal: normal
   not_completed: No Finalitzat
   not_evaluated: no avaluat
@@ -3807,6 +3806,7 @@ ca:
   terms_of_service: Condicions del servei
   terms_service: Condicions del servei
   terrain: terreny
+  text: Text
   text_: text
   thanks_for_signing_up: Gràcies per registrar-vos!
   thanks_for_using: Gràcies per utilitzar
@@ -4699,19 +4699,10 @@ ca:
   youve_seen_it_want_to: Ho heu vist! Voleu
   youve_successfully_linked_your_provider_account: Heu enllaçat correctament amb el
     vostre compte de %{provider}
-  zoom_in: Apropar Zoom
-  zoom_out: Allunyar Zoom
-  zoom_photo: Zoom de la Foto
-  zoom_to_taxon_name: Apropar-se a %{taxonname}
-  zoom_to_x: Zoom a %{x}
   your_dashboard_helps_you: El vostre tauler us ajuda a seguir l’activitat d'altres
     usuaris. Per seguir les actualitzacions d'altres usuaris, seleccioneu l'enllaç
     ‘Segueix a [nom]’ a l'encapçalament quan vegeu les seves observacions o el seu
     perfil.
-  here_are_some_things_you_can_do_in_the_meantime: Mentrestant aquí trobareu coses
-    per fer
-  none_of_the_people_you_follow_have_any_updates_yet: Les persones que seguiu encara
-    no han fet cap actualització!
   verifiable: verificable
   views:
     views: Vistes
@@ -6047,9 +6038,23 @@ ca:
         url: URL
         geoprivacy: Geo-privacitat
         iucn: Equivalent a la UICN
+      flag:
+        reason: Raó
+        flag: Marca
       guide:
         source_url: URL d'origen
         published_at: Publicació
+      listed_taxon:
+        occurrence_status_level: Estatus d'ocurrència
+        establishment_means: Forma d'establiment.
+      observation:
+        geo_x: Est
+        geo_y: Nord
+      observation_field_value:
+        value: valor
+      post:
+        title: Títol
+        body: Text
       project:
         title: Títol
         project_icon: Icona de projecte
@@ -6079,14 +6084,11 @@ ca:
         place_type: Tipus de lloc
         prefers_check_lists: Voleu permetre llistes de comprovació?
         woeid: WOEID (Identificador únic mundial, d'acord amb Yahoo)
-      flag:
-        reason: Raó
-        flag: Marca
-      observation:
-        geo_x: Est
-        geo_y: Nord
-      observation_field_value:
-        value: valor
+      source:
+        title: Títol
+        in_text: Referència
+        url: Enllaç
+        citation: Bibliografia
       taxon:
         name: Nom
         rank: Rang
@@ -6106,14 +6108,6 @@ ca:
         email: Correu
         name: Nom
         time_zone: Zona horària
-      source:
-        title: Títol
-        in_text: Referència
-        url: Enllaç
-        citation: Bibliografia
-      listed_taxon:
-        occurrence_status_level: Estatus d'ocurrència
-        establishment_means: Forma d'establiment.
   i18n:
     inflections:
       :@vow_or_con:
@@ -6143,4 +6137,9 @@ ca:
     previous_label: ← Anterior
     next_label: Següent →
     page_gap: '&hellip;'
+  zoom_in: Apropar Zoom
+  zoom_out: Allunyar Zoom
+  zoom_photo: Zoom de la Foto
+  zoom_to_taxon_name: Apropar-se a %{taxonname}
+  zoom_to_x: Zoom a %{x}
 ...

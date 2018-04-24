@@ -1,5 +1,6 @@
-a.UserImage,
-body > div > [role="dialog"] a.UserImage {
+.bootstrap a.UserImage,
+body > div > [role="dialog"] a.UserImage,
+body > div > .popover[role="tooltip"] a.UserImage {
   display: inline-block;
   border-radius: 120px;
   width: 40px;
@@ -17,6 +18,7 @@ body > div > [role="dialog"] a.UserImage {
   overflow: hidden;
   .icon-person {
     line-height: 0;
+    color: white;
   }
 }
 .ObservationsGridItem .UserImage:hover,

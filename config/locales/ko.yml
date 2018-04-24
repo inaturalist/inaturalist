@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Alex00728
 # Author: Amael Borzee
+# Author: Doyoon1995
 # Author: Garam
 # Author: Hosseinblue
 # Author: Hwangjy9
@@ -57,6 +58,7 @@ ko:
   about_the_cc_licenses: 크리에이티브 커먼즈 라이선스에 대해
   about_the_taxobox_raquo: 분류군 상자에 대해 &raquo;
   about_these_licenses: 이 라이선스에 대해
+  about_this_bioblitz: 이 bioblitz 정보
   about_this_map: 이 지도에 대해
   about_this_project: 프로젝트 소개
   about_x: '%{x} 소개'
@@ -114,6 +116,7 @@ ko:
   add_custom_project_fields: 자체적 프로젝트 필드 추가하기
   add_edit_flags: 플래그 추가/편집
   add_edit_more_fields: 더 많은 필드 추가/편집
+  add_editor: 편집자 추가
   add_description: '%{description_name} 추가하기'
   add_field: 필드 추가
   add_from_your_observations: 관찰에서 추가하기
@@ -189,6 +192,7 @@ ko:
   additional_range: 추가적인 범위
   additional_range_data_from_an_unknown_source: 알 수 없는 자료에서 추가적인 범위 데이터
   admin: 관리자
+  admin_s: 관리자
   admin_any_projects: 관리자 아무 프로젝트
   admin_tools: 관리자 도구
   agree: 동의
@@ -257,6 +261,7 @@ ko:
     ray_finned_fishes: 조기류
     reptiles: 파충류
     life: Life
+  all_taxa_: 모든 분류
   all_taxa_in_this_guide: 이 가이드에 있는 모든 분류군
   all_taxonomic_groups: '&laquo; 모든 분류학적 그룹'
   all_your_observations_will_default_this_time_zone: 다른 설정을 하지 않을 경우 모든 관찰은 이 시간대로
@@ -293,6 +298,7 @@ ko:
   announcement_was_successfully_updated: 공지가 성공적으로 업데이트되었습니다.
   announcements: 공지
   any: 모두
+  any_: 모두
   apply_to_selected: 선택에 적용
   apply_captive_cultivated: 사육/재배종 적용
   apply_fields: 필드 적용
@@ -386,6 +392,7 @@ ko:
   back_to_browsing_people: 사람들 검색으로 돌아가기
   back_to_calendar: '%{user} 달력으로 돌아가기'
   back_to_editing_observation: 관찰 편집하기로 돌아가기
+  back_to_friends: 친구들로 돌아가기
   back_to_help: 도움말로 돌아가기
   back_to_import: 끌어오기로 돌아가기
   back_to_lists: '%{name} 목록으로 돌아가기'
@@ -413,6 +420,7 @@ ko:
   back_to_your_observations: 너의 관찰로 돌아가기
   back_to_your_profile: 너의 프로파일로 돌아가기
   back_to_your_projects: 너의 프로젝트들로 돌아가기
+  basic: 기본
   batch: 일괄
   batch_edit: 일괄 편집
   batch_edit_taxa_for_x_html: '%{x}로 분류군 일괄 편집'
@@ -524,6 +532,7 @@ ko:
   change_your_matching: 매치 변경
   change_your_password: 비밀번호 바꾸기
   changing_the_geoprivacy: 위치보호를 변경하면 다른 사람이 사용자의 관찰 위치를 보는 방식이 변경됩니다.
+  check_above_for_errors: 오류에 대해서는 상단을 확인하십시오
   check_here_to_autoload_description: 위키백과에서 설명을 자동으로 가져오려면 여기에 체크하십시오. 분류군의 학명이 비과학
     용어거나 흔한 오타일 경우 체크하지 않는 것이 좋습니다.
   check_here_to_autoload_photos: 플리커에서 자동으로 사진을 업로드하려면 체크하세요. 학명이 일반적으로 쓰는 단어이거나 흔한
@@ -556,7 +565,8 @@ ko:
   choose_a_list_above: 목록을 선택하세요.
   choose_a_place: 장소를 선택하세요.
   choose_a_taxon: 분류군을 선택하세요.
-  chose_columns: 열을 선택하세요.
+  choose_columns: 열 선택
+  choose_file: 파일 선택
   choose_files: 파일 선택
   choose_files_from_your_computer: 컴퓨터에서 파일을 선택하세요
   choose_from_your_lists: 내 목록에서 선택하세요.
@@ -786,6 +796,8 @@ ko:
     dayNames: '[''일요일'', ''월요일'', ''화요일'', ''수요일'', ''목요일'', ''금요일'', ''토요일'']'
     dayNamesShort: '[''일'', ''월'', ''화'', ''수'', ''목'', ''금'', ''토'']'
     dayNamesMin: '[''일'', ''월'', ''화'', ''수'', ''목'', ''금'', ''토'']'
+    range: 범위
+  date_range: 날짜 범위
   date_time: 날짜/시간
   dates: 날짜
   datetime_: 날짜/시간
@@ -925,6 +937,7 @@ ko:
   editing_taxon_range: 분류군 범위 편집
   editing_this: '%{elem} 편집'
   editing_x_in_y: '%{y}에서 %{x} 편집'
+  editors: 편집자
   eg: 예시
   either: 어느 쪽이든
   either_that_user_doesnt_exist_or: 사용자가 존재하지 않거나 이미 팔로잉하고 있습니다.
@@ -943,6 +956,7 @@ ko:
   enable_offline_access: 오프라인 접근 허용
   enable_offline_access_for_mobile: 모바일 오프라인 접근 허용
   end: 종료
+  end_date_time: 끝 날짜 / 시간
   endangered: 멸종 위기
   endemic: 고유종
   endemic_to_x: '%{x}의 토착종'
@@ -1021,6 +1035,7 @@ ko:
   fields_: 필드
   fields_can_only_be_edited_by_the_people_who: 필드는 만든이와 사이트 큐레이터만 편집할 수 있습니다.
   fields_merged: 필드 병합
+  file: 파일
   file_should_be_in_the_following_format: '파일은 다음의 형식을 따라야 합니다: 분류군 이름, 설명'
   fill_out_project_observation_fields: 프로젝트 관찰 필드를 기입하십시오
   fill_out_your_profile: 프로파일을 완성하십시오
@@ -1099,6 +1114,7 @@ ko:
   followers: 팔로어
   following: 팔로잉
   for: 위해
+  formatting: 서식 지정
   forgot_your_password: 비밀번호를 잊으셨나요?
   frequency: 주기
   fri: 금
@@ -1160,8 +1176,11 @@ ko:
   guidelines: 가이드라인
   has_already_been_flagged_by: 에 의해 이미 플래그함
   has_one_or_more_faves: 하나 이상의 '좋아요'가 있다
+  has_photo: 사진이 있음
   has_photos: 사진이 있다
+  has_photo_and_sound: 사진과 소리가 모두 있음
   has_photos_or_sounds: 사진이나 음원이 있습니다
+  has_sound: 소리가 있음
   has_sounds: 소리가 있다
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 기여하지 않았습니다.
   hate_me_facebook: 페이스북과 %{site_name} 계정 연결을 끊습니다
@@ -1369,6 +1388,7 @@ ko:
     swedish: svenska
     tagalog: tagalog
     turkish: Türk
+  license: 라이선스
   licensing_your_content_gives_others_legal: 콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로
     해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 데이터 파트너와 공유합니다.
   life: 생명
@@ -1458,6 +1478,7 @@ ko:
     zh-CN: 중국어 (번체)
   location: 위치
   location_: 위치
+  locations: 위치
   location_is_accurate: 위치가 정확함
   location_is_exact: 위치가 정확하다
   location_is_public: 위치가 공개되어있다
@@ -1509,6 +1530,7 @@ ko:
   mark_all_as_reviewed: 모두 검토한 것으로 표시
   mark_all_as_unreviewed: 모두 검토하지 않은 것으로 표시
   matched_several_different_taxa: 여러 다른 분류군들을 맞추어 봄
+  media_type: 미디어 유형
   medium: 보통
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>의
     회원
@@ -1530,6 +1552,7 @@ ko:
   messages: 매시지
   misleading_or_illegal_content_html: 잘못되었거나 불법인 콘텐츠, 인종차별주의적 발언 등. "적절한"의 기준을 확인하고
     싶다면 <a href="/help#inappropriate">FAQ</a>을 참고해주세요.
+  mobile: 모바일
   mobile_app_for: 모바일 앱
   mobile_apps_for: 모바일 앱들
   mollusks: 연체동물
@@ -1569,6 +1592,7 @@ ko:
   nearby_observations: 근처 관찰
   need_id_help?: 동정에 도움이 필요하십니까?
   needs_id: 동정이 필요합니다.
+  needs_id_: ID가 필요합니다
   Needs_ID!: 동정 필요!
   needs_to_be_identified: 동정 필요
   new_announcement: 새로운 알림
@@ -1703,7 +1727,6 @@ ko:
   non_human?: 사람이 아닙니까?
   none: 없음
   none_found: 찾을 수 없음
-  none_of_the_people_you_follow_have_updates: 아직 팔로우하는 사람들이 업데이트하지 않았습니다!
   normal: 보통
   not_completed: 미완성
   not_evaluated: 평가되지 않음
@@ -1752,6 +1775,7 @@ ko:
   observation_field: 관찰 필드
   observation_fields: 관찰 필드
   observation_fields_are_additional: 관찰 필드는 관찰에 추가로 데이터 입력 필드를 더할 수 있는 필드입니다.
+  observation_requirements: 관찰 요구사항
   observations: 관찰
   observations_: 관찰
   observations_added_by_x_html: '%{x}에 의해 관찰이 추가되었습니다.'
@@ -1793,6 +1817,7 @@ ko:
   open_: 열기
   optional: 선택 사항
   or: 또는
+  original_url: 원래의 URL
   overview: 개요
   owner: 소유자
   password: 비밀번호
@@ -1819,6 +1844,7 @@ ko:
     사진을 접근할 권한이 없습니다.'
   pink: 핑크
   place: 장소
+  place_autocomplete_placeholder: 자이언 국립공원, 마이애미, 등등
   place_deleted: 장소 삭제됨.
   place_geo:
     geo_planet_place_types:
@@ -1951,6 +1977,7 @@ ko:
     section: 섹션
     subsection: 아섹션
     species: 종
+  ranges: 범위
   read_more: 더 읽어보기
   real_time_discussions: 실시간 토론
   reason: 이유
@@ -1970,7 +1997,10 @@ ko:
   remove_observations:
     one: 1개 관찰을 제거하시겠습니까?
     other: ' %{count}개 관찰을 제거하시겠습니까?'
+  remove_photo: 사진 제거
+  remove_place: 장소 제거
   remove_project_user: 프로젝트 사용자 제거
+  remove_range: 범위 제거
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거
   remove_your_existing_id?: 당신의 ID를 삭제하시겠습니까?
@@ -1984,6 +2014,7 @@ ko:
   required: 필수
   required_: 필수
   required_field: 필수 필드
+  research_: 연구
   restore: 복구
   restoring: 복구 중...
   review_verb: 검토
@@ -2017,6 +2048,7 @@ ko:
   select_an_album: 앨범 선택
   select_at_least_one: 적어도 하나를 선택하십시오
   select_observations_to_edit: 편집할 관찰페이지 선택하기...
+  select_one_of_your_albums: 앨범 중 하나를 선택하십시오
   selected: 삭제됨
   selected_photos: 선택된 사진들
   select_this_taxon: 이 분류군 선택
@@ -2065,6 +2097,7 @@ ko:
     inaturalist: iNaturalist
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
   start_adding_observations: 관찰 추가를 시작하기
+  start_date_time: 시작 날짜 / 시간
   start_one_now: 지금 당장 시작해보세요!
   status: 상태
   stay_and_try_again: 동일 장소에서 다시 시도하세요
@@ -2078,12 +2111,17 @@ ko:
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
+  tag: 태그
   tags: 태그
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_all_species_html: 모든 종
+  taxon_colors: 분류 색
+  taxon_extras: 분류군 엑스트라들
+  taxon_ranks: 분류 순위
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   tell_us_why: 이유를 말해주세요...
+  text: 텍스트
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
   then_keybord_sequence: 다음에
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
@@ -2114,6 +2152,7 @@ ko:
   updated_daily: 매일 갱신
   upload: 올리기
   upload_a_csv_file: CSV 파일 올리기
+  upload_photo: 사진 올리기
   upload_photos: 사진 올리기
   uploader:
     tooltips:
@@ -2128,6 +2167,7 @@ ko:
   user_added_a_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_an_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
+  user_autocomplete_placeholder: kueda, simon123 등.
   user_blocked: 사용자가 차단됨
   user_commented: '%{user}님이 댓글을 남겼습니다'
   user_muted: 사용자를 알림에서 제외함
@@ -2162,6 +2202,7 @@ ko:
   view_more_recent_observations: 더 최근 관찰 보기
   view_observations: 관찰 보기
   view_observations_by_everyone: 모두의 관찰 보기
+  view_sample: 샘플 보기
   view_terms: 이용 약관 보기
   view_unidentified_observations: 동정하지 않은 관찰 보기
   view_x: '%{x} 보기'
@@ -2193,8 +2234,10 @@ ko:
   where_did_you_see_it: 어디서 봤나요?
   which_projects_can_add_your_observations?: 내 관찰을 추가할 수 있는 프로젝트
   white: 흰색
+  who_can_add_observations_to_this_project?: 이 프로젝트에 관찰을 추가할 수 있는 사람은 누구입니까?
   widget: 위젯
   widget_code: 위젯 코드
+  worldwide: 전 세계
   x_blog: '%{x}의 블로그'
   x_journal_archives_for_y: '%{user}님의 저널 • 아카이브 대상:'
   x_journal_editing: '%{user}님의 저널 • 편집'
@@ -2237,7 +2280,6 @@ ko:
   youre_following: '팔로우 중:'
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong> 관찰을 보고
     있습니다.
-  zoom_photo: 사진 확대/축소
   views:
     devise:
       mailer:
@@ -2289,6 +2331,9 @@ ko:
         you_reviewed_message: 이 페이지에서 일치하는 %{total}개의 관찰 중 이 페이지에서 %{pageTotal}개의
           관찰 중 %{reviewed}개를 리뷰했습니다.
         unreview_all_tooltip: 페이지 내 모든 관찰자 검토상태 삭제하기
+      import:
+        date_column_format: YYYY-MM-DD HH:MM
+        decimal_degrees_format: dd.dddd
       show:
         flagged_photos_desc_html: |-
           이러한 사진 중 일부가 부적절한 내용 또는 저작권 침해로
@@ -2300,8 +2345,25 @@ ko:
         적어도 1 MB 미만(사이트 큐레이터의 경우 5 MB)의 다각형이
         하나라도 있어야 하며 면적은 미국 텍사스 주보다 작아야 합니다.
     projects:
+      project_type: 프로젝트 유형
       confirm_leave:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
+      new:
+        custom_banner_icon_and_project_description: 사용자 지정 배너, 아이콘, 프로젝트 설명
+        data_visualizations: 데이터 시각화
+        delete_project: 프로젝트 삭제
+        multiple_project_administrators: 다중 프로젝트 관리자
+        note_you_can_delete_the_time: '(참고: 전체 일수를 포함하고 싶으시다면 시간대와 정확한 시간을 삭제할 수 있습니다.)'
+        or_drag_and_drop: (아니면 끌어 놓으십시오)
+        project_banner: 프로젝트 배너 (PNG, JPG, GIF)
+        project_banner_help: 선택적인 배너 그림입니다. 이상적인 크기는 760px x 320px입니다.
+        project_details: 프로젝트 세부 사항
+        project_icon: 프로젝트 아이콘 (PNG, JPG, GIF)
+        project_icon_help: 선택적 아이콘. 최소 72px x 72px이어야 정사각형으로 잘립니다.
+        project_name: 프로젝트 이름
+        project_summary: 프로젝트 요약
+        use_this_link_to_create_html: 전통 프로젝트를 만들려면 <a href="%{url}">이 링크</a>를 사용하세요.
+        welcome_to_projects: 프로젝트에 오신 것을 환영합니다!
       project_user_curator_coordinate_access_labels:
         none: 없음.
     shared:
@@ -2402,6 +2464,14 @@ ko:
     - :월
     - :일
   datetime:
+    countdown_x_days:
+      other: 일
+    countdown_x_hours:
+      other: 시간
+    countdown_x_minutes:
+      other: 분
+    countdown_x_seconds:
+      other: 초
     prompts:
       day: 일
       hour: 시간
@@ -2431,6 +2501,8 @@ ko:
       record_invalid: '검증에 실패했습니다: %{errors}'
       taken: 이미 쓰이고 있습니다.
   helpers:
+    defaults:
+      title: 이것은 제목입니다
     submit:
       create: '%{model} 만들기'
   number:
@@ -2457,6 +2529,8 @@ ko:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+    models:
+      TaxonLink: 분류 링크
     attributes:
       assessment:
         description: 설명
@@ -2465,6 +2539,9 @@ ko:
       conservation_status:
         status: 상태
         description: 설명
+      post:
+        title: 제목
+        body: 본문
       project:
         description: 설명
         last_aggregated_at: 마지막으로 묶인 관찰
@@ -2486,4 +2563,5 @@ ko:
       gender:
         m: 남
         f: 여
+  zoom_photo: 사진 확대/축소
 ...

@@ -1220,6 +1220,8 @@ eu:
   here_are_3_examples: Hemen ondo osatutako datuen 3 adibide daude
   here_are_some_things_you_can_do_meantime: Hemen bien bitartean egin ditzakezun zenbait
     gauza daude
+  here_are_some_things_you_can_do_in_the_meantime: Hemen bien bitartean egin ditzakezun
+    zenbait gauza daude
   hex_color_eg: Kolorea hamaseitarrean, adib. 65644F
   hi: Kaixo.
   hi_user: Kaixo %{user}
@@ -1811,8 +1813,6 @@ eu:
   noble_curators: 'Hemengo administratzaile aktiboak: %{site}'
   none: Bat ere ez
   none_found: Ez da aurkitu
-  none_of_the_people_you_follow_have_updates: Zuk jarraitzen dituzun pertsonek oraindik
-    ez dute eguneraketarik egin!
   normal: normala
   not_evaluated: ebaluatu gabe
   not_filtering: Iragazi gabe
@@ -3368,16 +3368,9 @@ eu:
   youve_already_added_an_identification: gehitu zenuen identifikazio bat eta bakarra
     gehi dezakezu
   youve_seen_it_want_to: Ikusi duzu! Nahi duzu?
-  zoom_photo: Argazkia handitu
-  zoom_to_taxon_name: '%{taxonname}-(e)ra hurbildu'
-  zoom_to_x: 'Hona joan: %{x}'
   your_dashboard_helps_you: 'Jendeak iNaturaList-en zer egiten duen jarraitzen lagunduko
     dizu taulak. Beste erabiltzaile batzuen eguneraketak jarraitzeko, hautatu ‘Honi
     jarraitu: [izena]’ goiburuan, horren behaketak edo profila ikustean.'
-  here_are_some_things_you_can_do_in_the_meantime: Hemen bien bitartean egin ditzakezun
-    zenbait gauza daude
-  none_of_the_people_you_follow_have_any_updates_yet: Jarraitzen duten pertsonek oraindik
-    ez dute eguneraketarik egin!
   verifiable: egiaztagarria
   views:
     views: Ikustaldiak
@@ -3871,8 +3864,17 @@ eu:
         description: Deskribapena
         url: URL
         iucn: IUCN Baliokidea
+      flag:
+        reason: Arrazoia
+        flag: Marka
       guide:
         source_url: Jatorrizko URL
+      listed_taxon:
+        occurrence_status_level: Agerraldiaren estatusa
+        establishment_means: Kokatzeko modua.
+      post:
+        title: Izenburua
+        body: Testua
       project:
         title: Izenburua
         project_icon: Proiektuaren ikonoa
@@ -3895,9 +3897,11 @@ eu:
         place_type: Leku mota
         prefers_check_lists: Baimendutako zerrendak egiaztatu?
         woeid: Mundu mailako identifikatzaile bakarra (Yahoo-rekin bat)
-      flag:
-        reason: Arrazoia
-        flag: Marka
+      source:
+        title: Izenburua
+        in_text: Erreferentzia
+        url: Esteka
+        citation: Bibliografia
       taxon:
         name: Izena
         rank: Sailkapena
@@ -3917,14 +3921,6 @@ eu:
         email: Posta
         name: Izena
         time_zone: Ordu-zona
-      source:
-        title: Izenburua
-        in_text: Erreferentzia
-        url: Esteka
-        citation: Bibliografia
-      listed_taxon:
-        occurrence_status_level: Agerraldiaren estatusa
-        establishment_means: Kokatzeko modua.
   i18n:
     inflections:
       :@vow_or_con:
@@ -3953,4 +3949,7 @@ eu:
     previous_label: '&#8592; Aurrekoa'
     next_label: Hurrengoa &#8594;
     page_gap: '&hellip;'
+  zoom_photo: Argazkia handitu
+  zoom_to_taxon_name: '%{taxonname}-(e)ra hurbildu'
+  zoom_to_x: 'Hona joan: %{x}'
 ...

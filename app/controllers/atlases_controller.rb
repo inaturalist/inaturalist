@@ -22,10 +22,11 @@ class AtlasesController < ApplicationController
     @atlas_presence_places_with_establishment_means_hash_json = @atlas_presence_places_with_establishment_means_hash.to_json
     @exploded_places_json = @exploded_places.to_json
     
-    #any obs outside of the complete set
+    #any obs outside of the atlas
     @observations_not_in_atlas_places_params = { 
       taxon_id: @atlas.taxon_id, 
-      quality_grade: ["research","needs_id"].join( "," ), 
+      quality_grade: ["research","needs_id"].join( "," ),
+      geoprivacy: ["open,obscured"].join( "," ),
       not_in_place: @atlas_presence_places_with_establishment_means.map{|p| p[:id] }.join( "," )
     }
     @num_obs_not_in_atlas_places = INatAPIService.observations( @observations_not_in_atlas_places_params.merge( per_page: 0 ) ).total_results

@@ -541,7 +541,6 @@ ja:
   choose_a_place: 場所を選ぶ
   choose_a_taxon: 分類群を選択（任意）
   choose_cc_licensed_photos_html: 別のサイトの<a href=\"http://creativecommons.org/\">公開ライセンス</a>の写真を選択するか、%{site_name}の観察記録からお選びください。<em>同定に役立つ特徴</em>がはっきり写っている写真、<em>アイコンとしてよく見える</em>写真を推奨しています。<em>1枚目の写真はデファルトとなります。
-  chose_columns: 列を選択
   choose_files_from_your_computer: パソコンからファイルを選択
   choose_from_your_lists: 自分のリストから選択
   choose_photos: 写真を選択
@@ -1123,6 +1122,7 @@ ja:
   help_faq: ヘルプ／よくあるご質問
   help_out!: 協力しよう！
   here_are_3_examples: 質の高いデータの例として次の３つをご覧ください
+  here_are_some_things_you_can_do_in_the_meantime: とりあえず、次のようなことができます：
   heres_a_litle_about: 詳しく紹介します：
   hex_color_eg: 16進色、例：65644F
   hi: こんにちは、
@@ -1706,7 +1706,6 @@ ja:
   noble_curators: '%{site}のキュレーター管理者の紹介'
   non_human?: 非人間？
   none: 該当する項目ありません
-  none_of_the_people_you_follow_have_updates: フォローするユーザーから新着情報がありません
   normal: 通常
   not_completed: 未完成
   not_evaluated: 未評価
@@ -3082,10 +3081,6 @@ ja:
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示中
   youve_seen_it_want_to: 観察済です！よかったら、
   youve_successfully_linked_your_provider_account: あなたの%{provider}アカウントと無事接続できました。
-  zoom_in: 拡大
-  zoom_out: 縮小
-  here_are_some_things_you_can_do_in_the_meantime: とりあえず、次のようなことができます：
-  none_of_the_people_you_follow_have_any_updates_yet: フォローしているユーザーから更新がありません。
   verifiable: 確認できる
   views:
     views: 閲覧回数
@@ -3470,9 +3465,17 @@ ja:
         url: URL
         geoprivacy: 位置情報プライバシー
         iucn: IUCN相当
+      flag:
+        reason: 理由
+        flag: フラグ
       guide:
         source_url: ソースURL
         published_at: 出版物
+      listed_taxon:
+        establishment_means: 定着方法
+      observation:
+        geo_x: 東距
+        geo_y: 北�距
       project:
         title: タイトル
         project_icon: プロジェクトアイコン
@@ -3499,12 +3502,10 @@ ja:
         place_type: 場所種類
         prefers_check_lists: チェックリスト許可されている？
         woeid: WOEID
-      flag:
-        reason: 理由
-        flag: フラグ
-      observation:
-        geo_x: 東距
-        geo_y: 北�距
+      source:
+        title: タイトル
+        url: URL
+        citation: 引用
       taxon:
         name: 名称
         rank: 階級
@@ -3518,12 +3519,6 @@ ja:
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL
-      source:
-        title: タイトル
-        url: URL
-        citation: 引用
-      listed_taxon:
-        establishment_means: 定着方法
   i18n:
     inflections:
       :@vow_or_con:
@@ -3553,4 +3548,6 @@ ja:
     previous_label: '&#8592; 前へ'
     next_label: 次へ &#8594;
     page_gap: '&hellip;'
+  zoom_in: 拡大
+  zoom_out: 縮小
 ...

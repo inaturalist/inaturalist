@@ -266,6 +266,7 @@ export function deleteProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const project = state.form.project;
+    if ( !loggedIn( state ) || !project ) { return; }
     dispatch( setConfirmModalState( {
       show: true,
       message: "Are you sure you want to delete this project?",
@@ -279,7 +280,7 @@ export function deleteProject( ) {
           } ) );
         }, 1 );
         inatjs.projects.delete( { id: project.id } ).then( ( ) => {
-          window.location = "/projects/new2";
+          window.location = `/projects/user/${state.config.currentUser.login}`;
         } ).catch( e => {
           dispatch( showError( e ) );
         } );
@@ -322,11 +323,11 @@ export function submitProject( ) {
       prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
       prefers_rule_observed_on:
         ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) ) ?
-          "" : project.rule_observed_on,
+          "" : project.rule_observed_on.trim( ),
       prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 ) ?
-        "" : project.rule_d1,
+        "" : project.rule_d1.trim( ),
       prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 ) ?
-        "" : project.rule_d2,
+        "" : project.rule_d2.trim( ),
       prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month ) ?
         "" : project.rule_month
     } };

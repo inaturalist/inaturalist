@@ -7,7 +7,7 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
   scope :load_for_index, -> { includes(
-    :user, :confirmed_reviews, :flags,
+    { user: :flags }, :confirmed_reviews, :flags,
     :observation_links, :quality_metrics,
     :votes_for, :stored_preferences,
     { project_observations: :stored_preferences }, :tags,
@@ -17,8 +17,8 @@ class Observation < ActiveRecord::Base
     { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
       { listed_taxa_with_establishment_means: :place } ] },
     { observation_field_values: :observation_field },
-    { identifications: [ :user, :taxon, :stored_preferences, :flags, :taxon_change ] },
-    { comments: [ :user, :flags ] } ) }
+    { identifications: [ { user: :flags }, :taxon, :stored_preferences, :flags, :taxon_change ] },
+    { comments: [ { user: :flags }, :flags ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -222,7 +222,8 @@ class Observation < ActiveRecord::Base
         owners_identification_from_vision: owners_identification_from_vision,
         preferences: preferences.map{ |p| { name: p[0], value: p[1] } },
         flags: flags.map(&:as_indexed_json),
-        quality_metrics: quality_metrics.map(&:as_indexed_json)
+        quality_metrics: quality_metrics.map(&:as_indexed_json),
+        spam: known_spam? || owned_by_spammer?
       })
       json[:photos] = [ ]
       json[:observation_photos] = [ ]

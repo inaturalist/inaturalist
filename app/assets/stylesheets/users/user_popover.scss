@@ -1,0 +1,38 @@
+.UsersPopover {
+  cursor: pointer;
+}
+
+.UsersPopoverOverlay,
+body > div > .popover[role="tooltip"].UsersPopoverOverlay {
+  .user {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+    .UserImage,
+    .site {
+      min-width: 22px;
+      width: 22px;
+      height: 22px;
+      vertical-align: bottom;
+      margin-right: 5px;
+      .icon-person {
+        font-size: 14px;
+        line-height: 14px;
+      }
+    }
+    &:not(:first-child) {
+      margin-top: 4px;
+    }
+  }
+  .popover-content {
+    padding: 12px 20px 12px 10px;
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  a {
+    color: #000 !important;
+    font-weight: 700;
+  }
+}

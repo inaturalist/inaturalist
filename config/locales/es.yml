@@ -274,6 +274,7 @@ es:
   add_life_stage_larva_annotation: 'Añade nota "Etapa de Vida: Larva"'
   add_life_stage_juvenile_annotation: Añadir anotación "Etapa vital:juvenil"
   add_life_stage_egg_annotation: 'Añade nota "Etapa de Vida: Huevo"'
+  add_section: Añadir sección
   add_several_observations_at_once: Añade varias observaciones de una sola vez
   add_sex_female_annotation: 'Agregar anotación "Género: Femenino"'
   add_sex_male_annotation: 'Agregar anotación "Género: Masculino"'
@@ -439,6 +440,7 @@ es:
     x_other_animals:
       one: 1 otro animal
       other: '%{count} otros animales'
+  all_taxa_: Todos los taxones
   all_taxa_in_this_guide: Todas las especies y grupos de esta guía
   all_taxonomic_groups: '&laquo; Todos los grupos taxonómicos'
   all_updates: Todas las Actualizaciones
@@ -640,6 +642,7 @@ es:
   back_to_your_projects: Regresa a tus proyectos
   based_on_the_evidence_can_id_be_improved: ¿Basándose en la evidencia, el ID de la
     comunidad puede ser confirmado o mejorado, todavía?
+  basic: Básico
   batch: Grupo
   batch_edit: Modifica el grupo
   batch_edit_taxa_for_x_html: Edita datos de los taxones en lote para %{x}
@@ -850,7 +853,7 @@ es:
     observaciones en %{site_name}. Trate de seleccionar imágenes que
     <em>muestren características de diagnóstico</em> y <em>se vean bien como
     íconos</em>.  La <em>primera aparece por defecto</em>.
-  chose_columns: Elige columnas
+  choose_columns: Elegir columnas
   choose_files: Selecciona archivos
   choose_files_from_your_computer: selecciona archivos de tu equipo
   choose_from_your_lists: Seleccionar de sus listas
@@ -1149,6 +1152,7 @@ es:
       ''sábado'']'
     dayNamesShort: '[''dom'',''lun'',''mar'',''mié'',''jue'',''vie'',''sáb'']'
     dayNamesMin: '[''do'',''lu'',''ma'',''mi'',''ju'',''vi'',''sá'']'
+    range: Área
   date_specified: Fecha especificada
   date_time: Fecha/hora
   dates: fechas
@@ -1187,6 +1191,7 @@ es:
   describe_your_interest_in_nature: ¡Describa su interés en la naturaleza!
   description: Descripción
   description_from: Descripción de
+  description_sections: Descripción secciones
   description_slash_tags: Descripción / Etiquetas
   description_tags_more: Descripción, etiquetas y más
   desription: Descripción
@@ -1647,6 +1652,8 @@ es:
     de especies
   here_are_some_things_you_can_do_meantime: Aquí hay algunas cosas que puede hacer
     mientras tanto
+  here_are_some_things_you_can_do_in_the_meantime: Aquí hay algunas cosas que usted
+    puede hacer mientras tanto
   heres_a_litle_about: sobre
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: 'Hola:'
@@ -1753,6 +1760,8 @@ es:
   import_observations_from_a_photo: Importar observaciones de un proveedor de fotos
     o de un archivo en su computador.
   import_photos: Importar fotos
+  import_ranges: Importar distribuciónes
+  import_sections: Importe secciones
   import_sounds: Importar sonidos
   import_tags_from_csv: Importar etiquetas de CSV
   importing: Importando...
@@ -1957,6 +1966,7 @@ es:
   license_descriptions_and_images: Descripción de las licenciaas y sus respectivas
     imágenes
   licensed_site_photos: Fotos con licencia de %{site_name}
+  license: Licencia
   licensing: Licencias
   licensing_your_content_gives_others_legal: Hacer uso de una licencia sobre el contenido
     generado por usted les da a otros el derecho de usarlos, siempre y cuando, se
@@ -2192,6 +2202,7 @@ es:
   maybe_your_signed_in_with: ¿Tal vez usted ingresó con su cuenta %{omniauth}?
   media: Multimedia
   medium: medio
+  medium_url: URL medio
   meet: Conocer
   member_of_the_inaturalist_network_html: Miembro de la <a href="%{url}">Red iNaturalist</a>
   members: Miembros
@@ -2218,6 +2229,7 @@ es:
     o étnicos, etc.\nMás información de nuestra definición de \"contenido apropriado\"
     en las \n<a href=\"/help#inappropriate\">Preguntas frecuentes</a>."
   mixed_licenses: Licencia combinada
+  mobile: Móvil
   mobile_app_for: Aplicación móvil para
   mobile_apps_for: Las aplicaciones móviles para
   mollusks: moluscos
@@ -2298,6 +2310,7 @@ es:
   naturalised: naturalizado
   naturalized: naturalizado
   native: nativa
+  native_page_url: Página URL nativa
   native_to_place: Nativo de %{place}
   nav: Nav
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
@@ -2475,8 +2488,6 @@ es:
   non_human?: ¿No humano?
   none: Ninguno
   none_found: No se encontró ninguno
-  none_of_the_people_you_follow_have_updates: ¡Ninguna de las personas que usted sigue
-    ha hecho actualizaciones todavía!
   normal: normal
   not_completed: No completado
   not_evaluated: no evaluado
@@ -2778,6 +2789,7 @@ es:
   originally_imported_from_url_html: Originalmente importados de <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: Página original URL de esta foto
   original_rights_holder: Titular de los derechos originales
+  original_url: URL original
   original_url_for_this_map: URL original para este mapa
   organism_appears_captive_cultivated: Organismo parece cautivo / cultivado
   other: otro
@@ -3223,6 +3235,7 @@ es:
     form: Forma
     infrahybrid: infrahíbrido
     leaves: hojas
+  ranges: Distribuciónes
   rare: Escaso
   ray_finned_fishes: peces con aletas radiadas
   re_apply_list_rules: Re-aplicar las reglas de la lista
@@ -3246,6 +3259,7 @@ es:
   recent_evidence?: ¿Evidencia reciente?
   recent_evidence_of_organism: Evidencia reciente de un organismo
   recent_observations: Observaciones recientes
+  recent_observations_: Observaciones recientes
   recent_post: Notas recientes
   recent_atom_observations_by: Observaciones recientes por %{login} (Atom)
   recent_observations_by: Observaciones recientes por %{login}
@@ -3302,8 +3316,11 @@ es:
   remove_observations:
     one: ¿Quitar 1 observación?
     other: ¿Quitar %{count} observaciones?
+  remove_photo: Quitar foto
   remove_place: Quitar lugar
   remove_project_user: Quitar usuario de proyecto
+  remove_range: Quitar distribución
+  remove_section: Quitar sección
   remove_selected: Eliminar los elementos seleccionados
   remove_tags: Quite las etiquetas
   remove_your_existing_id?: Eliminar la identificación existente?
@@ -3739,6 +3756,7 @@ es:
   synonyms: Sinónimos
   table: Tabla
   table_of_contents: Sumario
+  tag: Etiqueta
   tagging: Etiquetando…
   tags: Etiquetas
   tags_are_a_way: Las etiquetas son palabras clave que puedes agregar a tus observaciones
@@ -3779,6 +3797,8 @@ es:
     data_url: Enlace de datos
     overlays: Capas
   taxon_changes: Cambios de taxón
+  taxon_colors: Colores de taxón
+  taxon_extras: Extras taxón
   taxon_merge: fusión de taxón
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
@@ -3792,6 +3812,7 @@ es:
   taxon_range_updated_notice: El área de distribución del taxón se ha actualizado
     correctamente. Por favor, espere unos minutos para que los cambios aparezcan en
     los mapas.
+  taxon_ranks: Filas de taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonómia
   taxon_schemes: Esquema de taxón
@@ -3829,6 +3850,7 @@ es:
   terms_of_service: Términos del servicio
   terms_service: Términos del servicio
   terrain: terreno
+  text: Texto
   text_: texto
   thanks_for_signing_up: ¡Gracias por registrarse!
   thanks_for_using: Gracias por usar
@@ -4048,6 +4070,7 @@ es:
   those_observations_no_longer_exist: Esas observaciones ya no existen.
   threatened: amenazado
   thu: jue
+  thumb_url: URL miniatura
   time_: vez
   time_ago: hace %{time}
   tired_of_testing_this_new_version: ¿Cansado de probar esta nueva versión?
@@ -4166,7 +4189,9 @@ es:
   upload_a_csv_file_with_observation: Cargar un archivo CSV con datos de observación.
     Si sus datos están en una hoja de cálculo o base de datos, esta es probablemente
     la forma de hacerlo.
+  upload_photo: Cargar foto
   upload_photos: Subir fotos
+  upload_range: Cargar distribución
   uploaded_by: Subido por
   uploader:
     tooltips:
@@ -4330,6 +4355,7 @@ es:
   view_projects_from_place: Ver proyectos de %{place}
   view_real_time_stats_in_a_new_window: Ver estadísticas en tiempo real en una nueva
     ventana
+  view_sample: Ver muestra
   view_site_name_observations_html: Ver observaciones de <strong>%{site_name}</strong>
   view_stats: Ver contribuciones
   view_taxon_change: Ver cambio de taxón
@@ -4666,6 +4692,7 @@ es:
   your_identification: Su identificación
   your_inat_account_has_been_activated: Su cuenta %{inat} ha sido activada.
   your_life_list: your life list!
+  your_membership: Tu membresía
   your_month_observations: Tus observaciones de %{month}
   your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Su nueva contraseña es
@@ -4689,6 +4716,7 @@ es:
   your_sure_delete_list?: ¿Confirmas que quieres eliminar esta lista?
   your_sure_delete_taxon_from_list?: ¿Confirmas que quieres eliminar %{taxon} de esta
     lista?
+  your_tags: Sus etiquetas
   your_world!: ¡Tu mundo!
   yours: Tuyos
   youre_following: usted está siguiendo
@@ -4708,19 +4736,10 @@ es:
   youve_seen_it_want_to: ¡Lo ha visto¿Desea
   youve_successfully_linked_your_provider_account: Has vinculado con éxito tu cuenta
     de %{provider}
-  zoom_in: Acercar Zoom
-  zoom_out: Alejar Zoom
-  zoom_photo: Ampliar foto
-  zoom_to_taxon_name: Acercar a %{taxonname}
-  zoom_to_x: Ir a %{x}
   your_dashboard_helps_you: El tablero te ayuda a dar seguimiento a lo que está haciendo
     la gente en el sitio. Para seguir las actualizaciones de alguien, selecciona el
     enlace 'Seguir a [nombre]' en el encabezado cuando veas sus observaciones o su
     perfil.
-  here_are_some_things_you_can_do_in_the_meantime: Aquí hay algunas cosas que usted
-    puede hacer mientras tanto
-  none_of_the_people_you_follow_have_any_updates_yet: ¡Ninguna de las personas que
-    siguen han hecho ninguna actualización todavía!
   verifiable: verificable
   views:
     views: Visualizaciones
@@ -5530,6 +5549,11 @@ es:
         invite_only_description: La membresía en este proyecto es sólo por invitación.
           Si quieres unirte, por favor ponte en contacto con uno de los curadores
           y solicita una invitación.
+      new:
+        delete_project: Eliminar proyecto
+        project_details: Detalles del proyecto
+        project_name: Nombre del proyecto
+        project_summary: Resumen del proyecto
       project_location_privacy_notice_html: |-
         <p>
          Por favor, date cuenta que los curadores de proyectos podrán ver cualquier ubicación privada o oscurecida de tus observaciones en este proyecto a menos que declines el permiso, y también podrán añadir cualquiera de tus observaciones a este proyecto a menos que cambies tu  <a href="/users/edit"> configuración</a>. También puedes conceder o revocar el acceso a las observaciones del proyecto caso por caso.
@@ -5898,6 +5922,8 @@ es:
       x_seconds:
         one: 1 segundo
         other: '%{count} segundos'
+    countdown_x_seconds:
+      other: s
     prompts:
       day: Día
       hour: Hora
@@ -5935,6 +5961,8 @@ es:
         one: No se pudo guardar este/a %{model} porque se encontró 1 error
         other: No se pudo guardar este/a %{model} porque se encontraron %{count} errores
   helpers:
+    defaults:
+      title: ESTE ES UN TÍTULO
     select:
       prompt: Selecciona
     submit:
@@ -6093,9 +6121,23 @@ es:
         url: URL
         geoprivacy: Geoprivacidad
         iucn: Equivalente a IUCN
+      flag:
+        reason: Razón
+        flag: Marca
       guide:
         source_url: URL de origen
         published_at: Publicación
+      listed_taxon:
+        occurrence_status_level: Estatus de ocurrencia
+        establishment_means: Medio de establecimiento
+      observation:
+        geo_x: Hacia el este
+        geo_y: Hacia el norte
+      observation_field_value:
+        value: valor
+      post:
+        title: Título
+        body: Texto
       project:
         title: Título
         project_icon: Ícono de proyecto
@@ -6127,14 +6169,11 @@ es:
         place_type: Tipo de lugar
         prefers_check_lists: ¿Comprobar listas permitidas?
         woeid: Identificador único mundial (de acuerdo con Yahoo)
-      flag:
-        reason: Razón
-        flag: Marca
-      observation:
-        geo_x: Hacia el este
-        geo_y: Hacia el norte
-      observation_field_value:
-        value: valor
+      source:
+        title: Título
+        in_text: Referencia
+        url: Enlace
+        citation: Bibliografía
       taxon:
         name: Nombre
         rank: Clasificación
@@ -6155,14 +6194,6 @@ es:
         name: Nombre
         time_zone: Zona horaria
         place_id: Lugar
-      source:
-        title: Título
-        in_text: Referencia
-        url: Enlace
-        citation: Bibliografía
-      listed_taxon:
-        occurrence_status_level: Estatus de ocurrencia
-        establishment_means: Medio de establecimiento
   i18n:
     inflections:
       :@vow_or_con:
@@ -6192,4 +6223,9 @@ es:
     previous_label: '&#8592; Previa'
     next_label: Siguiente &#8594;
     page_gap: '&hellip;'
+  zoom_in: Acercar Zoom
+  zoom_out: Alejar Zoom
+  zoom_photo: Ampliar foto
+  zoom_to_taxon_name: Acercar a %{taxonname}
+  zoom_to_x: Ir a %{x}
 ...

@@ -382,11 +382,9 @@ body > div > .popover.color-picker {
   }
 }
 
-.row.project-type {
-  h2 {
-    border-top: 1px solid $border-grey;
-    padding-top: 30px;
-  }
+.row.separator-row .col-xs-12 .separator {
+  border-bottom: 1px solid $border-grey;
+  padding-bottom: 30px;
 }
 
 .preview {

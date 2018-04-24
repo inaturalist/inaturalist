@@ -20,7 +20,10 @@ class BeforeEventTab extends Component {
               <h2>
                 { I18n.t( "status" ) }
               </h2>
-              <EventCountdown { ...this.props } />
+              <EventCountdown
+                { ...this.props }
+                startTimeObject={ project.startDate }
+              />
             </Col>
             <Col xs={ 4 }>
               <Requirements { ...this.props } includeArrowLink />

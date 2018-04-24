@@ -178,7 +178,7 @@ class Charts extends React.Component {
         x: {
           type: "category",
           categories: this.props.seasonalityKeys.map( i =>
-            I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) ),
+            I18n.t( "date.abbr_month_names" )[i].toString( ).toUpperCase( ) ),
           tick: {
             multiline: false
           }
@@ -314,7 +314,7 @@ class Charts extends React.Component {
               role="tab"
               data-toggle="tab"
             >
-              { I18n.t( _.snakeCase( values[0].controlled_attribute.label ),
+              { I18n.t( `controlled_term_labels.${_.snakeCase( values[0].controlled_attribute.label )}`,
                 { defaultValue: values[0].controlled_attribute.label } ) }
             </a>
           </li>
