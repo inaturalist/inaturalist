@@ -1399,20 +1399,14 @@ qqq:
         *%B - The full month name ("January")
         *%d - Day of the month, zero-padded (01 to 31)
         *%Y - Year with century (can be negative, 4 digits at least)
-
-        See also http://ruby-doc.org/core-2.0/Time.html#method-i-strftime
       short: |-
         * %b - The abbreviated month name (''Jan'')
         * %d - Day of the month, zero-padded (01 to 31)
-
-        See also http://ruby-doc.org/core-2.0/Time.html#method-i-strftime
       month_year: '{{DataFormatRuby/en}}'
       month_day_year: |-
         *%B - The full month name ("January")
         *%d - Day of the month, zero-padded (01 to 31)
         *%Y - Year with century (can be negative, 4 digits at least)
-
-        See also http://ruby-doc.org/core-2.0/Time.html#method-i-strftime
     month_names:
       1: '{{Identical|January}}'
       2: '{{Identical|February}}'

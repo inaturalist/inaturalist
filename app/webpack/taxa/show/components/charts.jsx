@@ -178,7 +178,7 @@ class Charts extends React.Component {
         x: {
           type: "category",
           categories: this.props.seasonalityKeys.map( i =>
-            I18n.t( "date.abbr_month_names" )[i].toUpperCase( ) ),
+            I18n.t( "date.abbr_month_names" )[i].toString( ).toUpperCase( ) ),
           tick: {
             multiline: false
           }
