@@ -21,7 +21,7 @@
       %h3= t :your_identification
       = render "identifications/identification", identification: @identification, hide_actions: true
       = form_for @identification, builder: BootstrapFormBuilder do |f|
-        = f.text_area :body, label: t(:remarks)
+        = f.text_area :body, label: t(:remarks_optional)
         = submit_tag t(:save_identification), :class => 'default button'
         - unless @identification.new_record?
           = link_to t(:cancel), url_for(@identification.observation) + "##{id_for(@identification)}", :class => 'button'
