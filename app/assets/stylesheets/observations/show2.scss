@@ -7,6 +7,8 @@
 @import "../shared/activity_item";
 @import "../shared/taxon_autocomplete";
 @import "../shared/user_with_icon";
+@import "../users/user_popover";
+@import "../users/user_image";
 @import "../shared/disagreement_alert";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
@@ -987,37 +989,6 @@ h3, h4 {
   .ac-select-thumb i {
     vertical-align: auto;
     line-height: 31px;
-  }
-}
-
-.UsersPopover {
-  cursor: pointer;
-}
-
-.UsersPopoverOverlay {
-  .user {
-    display: block;
-    .UserImage, .site {
-      min-width: 22px;
-      width: 22px;
-      height: 22px;
-      vertical-align: bottom;
-      margin-right: 5px;
-      .icon-person {
-        font-size: 14px;
-        line-height: 20px;
-      }
-    }
-    &:not(:first-child) {
-      margin-top: 4px;
-    }
-  }
-  .popover-content {
-    padding: 12px 20px 12px 10px;
-  }
-  a {
-    color: #000 !important;
-    font-weight: 700;
   }
 }
 

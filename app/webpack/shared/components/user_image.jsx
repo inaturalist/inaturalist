@@ -5,7 +5,7 @@ const UserImage = ( { user, linkTarget } ) => {
     <i
       className="icon-person"
       style={ {
-        display: user && user.icon_url ? "none" : "inline"
+        display: user && user.icon_url ? "none" : "inline-block"
       } }
     />
   );
