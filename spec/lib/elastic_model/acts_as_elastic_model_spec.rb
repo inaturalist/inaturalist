@@ -204,14 +204,6 @@ describe ActsAsElasticModel do
       end
     end
 
-    describe "as_indexed_json" do
-      it "should be a blank has for a non-spammable model" do
-        expect( UpdateAction.make.as_indexed_json ).to be_blank
-      end
-      it "should include the spam key for a spammable model" do
-        expect( Observation.make.as_indexed_json( ).key?( :spam ) ).to be true
-      end
-    end
   end
 
 end
