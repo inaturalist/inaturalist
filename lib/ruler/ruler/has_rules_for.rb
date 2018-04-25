@@ -7,7 +7,7 @@ module Ruler
     def has_rules_for(association, options = {})
       rule_class = options[:rule_class] || Rule
       association_name = "#{association.to_s.singularize}_rules".to_sym
-      has_many association_name, :class_name => rule_class.to_s, :as => :ruler
+      has_many association_name, class_name: rule_class.to_s, as: :ruler, dependent: :destroy
       accepts_nested_attributes_for association_name, :allow_destroy => true, 
         :reject_if => :all_blank
     end

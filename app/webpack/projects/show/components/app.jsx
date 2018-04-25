@@ -83,6 +83,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
           _.compact( _.map( project.followers.results, "user" ) ) : null }
         keyPrefix="followers-popover"
         placement="bottom"
+        returnContentsWhenEmpty
         contents={ (
           <div className="count">
             <i className="fa fa-user" />
@@ -130,7 +131,8 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
         `title-container ${eventDates && "event"} ${hasIcon && "icon"} ${!hasBanner && "no-banner"}`
       }
       style={ project.header_image_url ? {
-        backgroundImage: `url( '${project.header_image_url}' )`
+        backgroundImage: `url( '${project.header_image_url}' )`,
+        backgroundSize: project.header_image_contain ? "contain" : "cover"
       } : {
         backgroundColor: `rgba(${colorRGB.r},${colorRGB.g},${colorRGB.b},0.6)`
       } }

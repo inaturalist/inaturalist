@@ -592,6 +592,13 @@ button {
   & > .row {
     margin-left: 0;
     margin-right: 0;
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    & > .col-xs-4 {
+      flex: 1;
+      display: flex;
+    }
   }
   margin-bottom: 20px;
 }
@@ -601,6 +608,7 @@ button {
   padding: 20px;
   background: white;
   margin-top: 50px;
+  flex: 1;
   .taxon {
     a {
       color: inherit !important;
@@ -759,11 +767,28 @@ button {
 .ObservationsGrid {
   display: flex;
   flex-wrap: wrap;
-  .ObservationPhoto {
+  .ObservationsGridCell {
     flex-grow: 1;
     padding: 2px;
     min-width: 260px;
     margin: 0px auto;
+  }
+  .Observation {
+    position: relative;
+    .quality {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 10px;
+      font-size: 16px;
+      &.research {
+        background: $inat-green;
+        color: white;
+      }
+      .full {
+        display: none;
+      }
+    }
     .photo {
       background: #ccc;
       text-align: center;
@@ -933,6 +958,12 @@ button {
     td.value {
       .display-name {
         font-weight: 700;
+      }
+      a {
+        color: inherit;
+      }
+      & > a:not(:last-child)::after, .SplitTaxon:not(:last-child)::after {
+       content: ", ";
       }
     }
   }
@@ -1104,12 +1135,13 @@ button {
     height: 313px;
     .header-grid {
       .title-container {
-        height: 263px;
-        margin-left: -1px;
+        height: 264px;
+        width: 627px
       }
       .header-about {
-        height: 263px;
+        height: 264px;
         padding: 20px;
+        width: 313px;
         .header-about-content .header-about-text {
           margin-top: 15px;
           font-size: 15px;

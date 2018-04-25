@@ -43,7 +43,7 @@ const ObservationsTab = ( {
         loadMore={ ( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
         } }
-        hasMore={ observations.length >= scrollIndex && scrollIndex < 200 }
+        hasMore={ observations && observations.length >= scrollIndex && scrollIndex < 200 }
       />
     );
   } else {
@@ -55,7 +55,7 @@ const ObservationsTab = ( {
         loadMore={ ( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
         } }
-        hasMore={ observations.length >= scrollIndex && scrollIndex < 200 }
+        hasMore={ observations && observations.length >= scrollIndex && scrollIndex < 200 }
       />
     );
   }

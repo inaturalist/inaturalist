@@ -80,14 +80,27 @@ const Observation = ( {
   }
   return (
     <div
-      className={`ObservationPhoto ${className}`}
+      className="ObservationsGridCell"
       style={ style }
-      key={ `observation-photo-${observation.id}` }
+      key={ `observation-grid-cell-${observation.id}` }
     >
-      <a href={ `/observations/${observation.id}` }>
-        { img }
-      </a>
-      { caption }
+      <div
+        className={`Observation ${className}`}
+      >
+        <a href={ `/observations/${observation.id}` }>
+          { img }
+        </a>
+        { observation.quality_grade === "research" && (
+          <div
+            className="quality research"
+            title={ I18n.t( "research_grade" ) }
+            dangerouslySetInnerHTML={ { __html:
+              I18n.t( "research_grade_short_html" )
+            } }
+          />
+        ) }
+        { caption }
+      </div>
     </div>
   );
 };

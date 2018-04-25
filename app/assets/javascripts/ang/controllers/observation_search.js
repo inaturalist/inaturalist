@@ -1052,17 +1052,18 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     });
     $scope.defaultProcessedParams = ObservationsFactory.processParamsForAPI( $scope.defaultParams, $scope.possibleFields );
   };
-  $scope.paramsForUrl = function( ) {
+  $scope.paramsForUrl = function( options ) {
+    options = options || { };
     var urlParams = _.extend( { }, $scope.params );
     if( urlParams.month && !_.isArray( urlParams.month ) ) {
       urlParams.month = urlParams.month.split(",");
     }
     urlParams.iconic_taxa = _.keys( urlParams._iconic_taxa );
-    if( urlParams.project_id ) {
+    if( options.convertProjectsParam && urlParams.project_id ) {
       urlParams.projects = urlParams.project_id;
+      delete urlParams.project_id;
     }
     delete urlParams._iconic_taxa;
-    delete urlParams.project_id;
     delete urlParams.order;
     delete urlParams.order_by;
     delete urlParams.dateType;

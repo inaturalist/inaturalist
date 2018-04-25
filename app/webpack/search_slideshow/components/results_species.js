@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
 import Util from "../../project_slideshow/models/util";
+import SplitTaxon from "../../shared/components/split_taxon";
 
 class ResultsSpecies extends Component {
 
@@ -66,11 +67,7 @@ class ResultsSpecies extends Component {
                   </div>
                 </a>
                 <div className="meta">
-                  <span className="name">
-                    <a href={ `/taxa/${r.taxon.id}`}>
-                      { r.taxon.preferred_common_name || r.taxon.name }
-                    </a>
-                  </span>
+                  <SplitTaxon taxon={ r.taxon } url={ `/taxa/${r.taxon.id}` } />
                   <span className="count">
                     <a href={ `/observations?verifiable=any&${$.param( Object.assign( { }, this.props.searchParams, { taxon_id: r.taxon.id } ) )}`}>
                       { I18n.t( "x_observations_", { count: r.count } ) }
@@ -108,11 +105,7 @@ class ResultsSpecies extends Component {
                   <div className="image" style={ style }>{ placeholder }</div>
                 </a>
                 <div className="meta">
-                  <span className="name">
-                    <a href={ `/taxa/${r.taxon.id}`}>
-                      { r.taxon.preferred_common_name || r.taxon.name }
-                    </a>
-                  </span>
+                  <SplitTaxon taxon={ r.taxon } url={ `/taxa/${r.taxon.id}` } />
                   <span className="count">
                     <a href={ `/observations?verifiable=any&${$.param( Object.assign( { }, this.props.searchParams, { taxon_id: r.taxon.id } ) )}`}>
                       { I18n.t( "x_observations_", { count: r.count } ) }
@@ -150,11 +143,7 @@ class ResultsSpecies extends Component {
                   <div className="image" style={ style }>{ placeholder }</div>
                 </a>
                 <div className="meta">
-                  <span className="name">
-                    <a href={ `/taxa/${r.taxon.id}`}>
-                      { r.taxon.preferred_common_name || r.taxon.name }
-                    </a>
-                  </span>
+                  <SplitTaxon taxon={ r.taxon } url={ `/taxa/${r.taxon.id}` } />
                   <span className="count">
                     <a href={ `/observations?verifiable=any&${$.param( Object.assign( { }, this.props.searchParams, { taxon_id: r.taxon.id } ) )}`}>
                       { I18n.t( "x_observations_", { count: r.count } ) }

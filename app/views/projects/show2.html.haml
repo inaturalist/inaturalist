@@ -3,10 +3,11 @@
 - content_for :extrahead do
   %meta{ property: "og:type", content: "website" }
   %meta{ property: "og:title", content: @project.title }
-  - unless @project.icon.blank?
-    - shareable_image_url = uri_join( root_url, @project.icon.url( :original ) )
-    %meta{ property: "og:image", content: shareable_image_url }
-    %meta{ property: "twitter:image", content: shareable_image_url }
+  - og_image = @project.icon.blank? ? @project.cover : @project.icon
+  - unless og_image.blank?
+    - @shareable_image_url = uri_join( root_url, og_image.url( :original ) )
+    %meta{ property: "og:image", content: @shareable_image_url }
+    %meta{ property: "twitter:image", content: @shareable_image_url }
   %meta{ property: "og:url", content: project_url( @project ) }
   - unless @fb_admin_ids.blank?
     %meta{ property: "fb:admins", content: @fb_admin_ids.join( "," ) }

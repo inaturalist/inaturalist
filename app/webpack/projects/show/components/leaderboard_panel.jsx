@@ -62,7 +62,9 @@ class LeaderboardPanel extends React.Component {
           <div className="icon">
             { leader.user ?
               ( <UserImage user={ leader.user } /> ) :
-              util.taxonImage( leader.taxon )
+              ( <a href={ `/taxa/${leader.taxon.id}` }>
+                { util.taxonImage( leader.taxon ) }
+              </a> )
             }
             { leader.user && ( <div className="ribbon-container">
               <a href={ `/users/${leader.user.id}` }>
@@ -101,7 +103,12 @@ class LeaderboardPanel extends React.Component {
             { leaders.slice( 1, 6 ).map( l => (
               <tr key={ `${type}-leader-${l.user ? l.user.id : l.taxon.id}` }>
                 <td className="leader-name">
-                  { l.user ? ( <UserImage user={ l.user } /> ) : util.taxonImage( l.taxon ) }
+                  { l.user ?
+                    ( <UserImage user={ l.user } /> ) :
+                    ( <a href={ `/taxa/${l.taxon.id}` }>
+                      { util.taxonImage( l.taxon ) }
+                    </a> )
+                  }
                   { l.user ?
                     ( <UserLink user={ l.user } /> ) :
                     <SplitTaxon

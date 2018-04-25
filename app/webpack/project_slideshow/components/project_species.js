@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
 import Util from "../models/util";
+import SplitTaxon from "../../shared/components/split_taxon";
 
 class ProjectSpecies extends Component {
 
@@ -43,7 +44,7 @@ class ProjectSpecies extends Component {
     if ( this.props.speciesStats.all ) {
       species = (
         <div>
-          <div className="heading">{ I18n.t("most_observed_species") }</div>
+          <div className="heading">{ I18n.t( "most_observed_species" ) }</div>
           { _.map( this.props.speciesStats.all.results, r => {
             let style;
             let placeholder;
@@ -62,7 +63,7 @@ class ProjectSpecies extends Component {
                 { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
-                  <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
+                  <SplitTaxon taxon={ r.taxon } />
                   <span className="count">
                     { I18n.t( "x_observations_", { count: r.count } ) }
                   </span>
@@ -77,7 +78,7 @@ class ProjectSpecies extends Component {
     if ( this.props.speciesStats.introduced ) {
       introduced = (
         <div>
-          <div className="heading">{ I18n.t("most_observed_introduced_species") }</div>
+          <div className="heading">{ I18n.t( "most_observed_introduced_species" ) }</div>
           { _.map( this.props.speciesStats.introduced.results, r => {
             let style;
             let placeholder;
@@ -96,7 +97,7 @@ class ProjectSpecies extends Component {
                 { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
-                  <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
+                  <SplitTaxon taxon={ r.taxon } />
                   <span className="count">
                     { I18n.t( "x_observations_", { count: r.count } ) }
                   </span>
@@ -111,7 +112,7 @@ class ProjectSpecies extends Component {
     if ( this.props.speciesStats.threatened ) {
       threatened = (
         <div>
-          <div className="heading">{ I18n.t("most_observed_threatened_species") }</div>
+          <div className="heading">{ I18n.t( "most_observed_threatened_species" ) }</div>
           { _.map( this.props.speciesStats.threatened.results, r => {
             let style;
             let placeholder;
@@ -130,7 +131,7 @@ class ProjectSpecies extends Component {
                 { prefetch }
                 <div className="image" style={ style }>{ placeholder }</div>
                 <div className="meta">
-                  <span className="name">{ r.taxon.preferred_common_name || r.taxon.name }</span>
+                  <SplitTaxon taxon={ r.taxon } />
                   <span className="count">
                     { I18n.t( "x_observations_", { count: r.count } ) }
                   </span>

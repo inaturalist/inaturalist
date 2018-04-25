@@ -240,10 +240,14 @@ body {
         line-height: 2.24vw;
       }
       .taxon {
-        font-size: 1.6vw;
+        font-size: 1.4vw;
         font-weight: 200;
         margin: 0px -30%;
         color: rgba(255, 255, 255, 0.7);
+        width: 160%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
     .bar {
@@ -272,7 +276,7 @@ body {
     background-position-x: center;
     background-position-y: 35%;
     position: relative;
-    .caption {
+    .SplitTaxon {
       position: absolute;
       bottom: 0px;
       height: 20%;
@@ -376,7 +380,7 @@ body {
   .top > div, .bottom-half > div {
     height: 100%;
   }
-  .species {
+  div.species {
     width: 15.6%;
     height: 85%;
     margin: 0.5%;
@@ -397,7 +401,7 @@ body {
     }
     .meta {
       padding: 0.4vw 0.6vw;
-      .name, .count {
+      .name, .SplitTaxon, .count {
         display: block;
         font-size: 1.6vw;
         white-space: nowrap;
@@ -416,21 +420,21 @@ body {
       height: 20%;
       margin: 0 0.5% 0.5% 0.5%
     }
-    .species {
+    div.species {
       width: 49%;
       height: 38%;
-    }
-    .image {
-      height: 100%;
-      float: left;
-      width: 32%;
-      i {
-        font-size: 5.6vw;
-        line-height: 10vw;
+      .image {
+        height: 100%;
+        float: left;
+        width: 32%;
+        i {
+          font-size: 5.6vw;
+          line-height: 10vw;
+        }
       }
-    }
-    .meta {
-      padding-left: 35%;
+      .meta {
+        padding-left: 35%;
+      }
     }
   }
 }
@@ -475,6 +479,12 @@ body {
         width: 30vw;
       }
     }
+  }
+}
+
+.SplitTaxon.taxon {
+  .rank, .secondary-name {
+    display: none;
   }
 }
 

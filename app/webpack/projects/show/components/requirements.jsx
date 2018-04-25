@@ -19,14 +19,23 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         user={ config.currentUser }
         key={ `requirement_taxon_${r.taxon.id}` }
         taxon={ r.taxon }
+        url={ `/taxa/${r.taxon.id}` }
       />
     ) );
   const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" ) :
     _.map( project.projectRules, r => r.project.title ).join( ", " );
   const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" ) :
-    _.map( project.placeRules, r => r.place.display_name ).join( ", " );
+    _.map( project.placeRules, r => (
+      <a href={ `/places/${r.place.id}` }>
+        { r.place.display_name }
+      </a>
+    ) );
   const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" ) :
-    _.map( project.userRules, r => r.user.login ).join( ", " );
+    _.map( project.userRules, r => (
+      <a href={ `/people/${r.user.login}` }>
+        { r.user.login }
+      </a>
+    ) );
   const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" ) :
     _.map( _.keys( project.rule_quality_grade ), q =>
       I18n.t( q === "research" ? "research_grade" : q )

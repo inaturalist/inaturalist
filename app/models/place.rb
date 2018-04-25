@@ -490,8 +490,6 @@ class Place < ActiveRecord::Base
     end
     # 66 is roughly the size of Texas
     if other_attrs[:user] && !other_attrs[:user].is_admin?
-      if geom.respond_to?(:area)
-      end
       if geom.respond_to?(:area) && geom.area > 66.0
         add_custom_error(:place_geometry, :is_too_large_to_import)
         return false
@@ -509,7 +507,7 @@ class Place < ActiveRecord::Base
       georuby_geom = geom
       geom = RGeo::WKRep::WKBParser.new.parse( georuby_geom.as_wkb )
     end
-    return unless validate_with_geom( geom )
+    return unless validate_with_geom( geom, other_attrs )
     other_attrs.delete(:user)
     other_attrs.merge!(:geom => geom, :place => self)
     begin
