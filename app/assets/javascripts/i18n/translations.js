@@ -10807,6 +10807,7 @@ I18n.translations["en"] = {
         "click_through_to_individual_projects": "Click through to individual projects",
         "collection_project_features": "Collection Project features:",
         "collection_projects": "Collection Projects",
+        "contain_entire_image_without_cropping": "Contain entire image without cropping",
         "custom_banner_icon_and_project_description": "Custom banner, icon, and project description",
         "data_visualizations": "Data visualizations",
         "delete_project": "Delete Project",

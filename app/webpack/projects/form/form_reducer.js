@@ -317,6 +317,7 @@ export function submitProject( ) {
       cover: project.droppedBanner ? project.droppedBanner : null,
       preferred_banner_color: project.banner_color,
       prefers_hide_title: project.hide_title,
+      prefers_banner_contain: project.header_image_contain,
       prefers_rule_quality_grade: project.rule_quality_grade ?
         _.keys( project.rule_quality_grade ).join( "," ) : "",
       prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
