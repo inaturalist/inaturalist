@@ -397,3 +397,33 @@ export function submitProject( ) {
     }
   };
 }
+
+export function confirmSubmitProject( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const project = state.form.project;
+    let empty = true;
+    const dateType = project.date_type;
+    if ( !_.isEmpty( project.rule_quality_grade ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_photos ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_sounds ) ) { empty = false; }
+    if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
+    if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }
+    if ( dateType === "range" && !_.isEmpty( project.rule_d2 ) ) { empty = false; }
+    if ( dateType === "months" && !_.isEmpty( project.rule_month ) ) { empty = false; }
+    if ( !_.isEmpty( project.project_observation_rules ) ) { empty = false; }
+    if ( !empty ) {
+      dispatch( submitProject( ) );
+      return;
+    }
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "views.projects.new.you_have_not_defined_any_observation_requirements" ),
+      confirmText: I18n.t( "go_back" ),
+      cancelText: I18n.t( "continue" ),
+      onCancel: ( ) => {
+        dispatch( submitProject( ) );
+      }
+    } ) );
+  };
+}

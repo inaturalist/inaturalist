@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
 import Util from "../models/util";
+import SplitTaxon from "../../shared/components/split_taxon";
 
 class ProjectPhotos extends Component {
 
@@ -52,9 +53,7 @@ class ProjectPhotos extends Component {
               >
                 <link rel="prefetch" href={ photoUrl } />
                 { prefetch }
-                <div className="caption">
-                  { r.taxon ? ( r.taxon.preferred_common_name || r.taxon.name ) : "Unknown" }
-                </div>
+                <SplitTaxon taxon={ r.taxon } />
                 <div className="user-icon" style={ style }>{ placeholder }</div>
               </div>
             );

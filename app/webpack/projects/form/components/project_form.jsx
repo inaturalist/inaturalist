@@ -14,7 +14,7 @@ class ProjectForm extends React.Component {
       project,
       addManager,
       removeProjectUser,
-      submitProject,
+      confirmSubmitProject,
       updateProject } = this.props;
     if ( !project ) { return ( <span /> ); }
     const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
@@ -102,7 +102,7 @@ class ProjectForm extends React.Component {
                 <button
                   className="btn btn-default done"
                   ref="doneButton"
-                  onClick={ ( ) => submitProject( ) }
+                  onClick={ ( ) => confirmSubmitProject( ) }
                   disabled={
                     project.saving || !_.isEmpty( _.compact( _.values( project.errors ) ) )
                   }
@@ -146,7 +146,7 @@ ProjectForm.propTypes = {
   addManager: PropTypes.func,
   removeProjectUser: PropTypes.func,
   showObservationPreview: PropTypes.func,
-  submitProject: PropTypes.func,
+  confirmSubmitProject: PropTypes.func,
   removeProject: PropTypes.func,
   updateProject: PropTypes.func
 };

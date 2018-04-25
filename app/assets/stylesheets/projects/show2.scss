@@ -592,6 +592,13 @@ button {
   & > .row {
     margin-left: 0;
     margin-right: 0;
+    flex: 1;
+    flex-direction: row;
+    display: flex;
+    & > .col-xs-4 {
+      flex: 1;
+      display: flex;
+    }
   }
   margin-bottom: 20px;
 }
@@ -601,6 +608,7 @@ button {
   padding: 20px;
   background: white;
   margin-top: 50px;
+  flex: 1;
   .taxon {
     a {
       color: inherit !important;
@@ -1105,7 +1113,7 @@ button {
     .header-grid {
       .title-container {
         height: 263px;
-        margin-left: -1px;
+        margin-left: -2px;
       }
       .header-about {
         height: 263px;

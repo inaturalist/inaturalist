@@ -501,6 +501,10 @@ class ProjectsController < ApplicationController
   end
   
   def join
+    if @project.is_new_project?
+      redirect_to @project
+      return
+    end
     @observation = Observation.find_by_id(params[:observation_id])
     @project_curators = @project.project_users.where(role: [ProjectUser::MANAGER, ProjectUser::CURATOR])
     if @project_user
@@ -915,13 +919,6 @@ class ProjectsController < ApplicationController
   def stats_slideshow
     if @project.title == Project::NPS_BIOBLITZ_PROJECT_NAME
       return redirect_to nps_bioblitz_stats_path
-    end
-    # must have a place and one observation with a photo
-    if (!@project.place && !@project.rule_place) ||
-      !Observation.joins(:projects).
-        where("projects.id=? AND observations.observation_photos_count > 0", @project.id).
-        exists?
-      return redirect_to project_path(@project)
     end
     begin
       @slideshow_project = {

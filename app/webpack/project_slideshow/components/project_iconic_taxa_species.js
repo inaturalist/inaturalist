@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { Component, PropTypes } from "react";
 import Util from "../models/util";
+import SplitTaxon from "../../shared/components/split_taxon";
 
 class ProjectIconicTaxaSpecies extends Component {
 
@@ -39,10 +40,9 @@ class ProjectIconicTaxaSpecies extends Component {
         <div className="chart">
           { _.map( categories, r => {
             const height = ( r.count / maxValue ) * 75;
-            let name = r.taxon.preferred_common_name;
             return (
               <div key={ r.taxon.id } style={ { width: `${width}%` } }>
-                <span className="taxon">{ name }</span>
+                <SplitTaxon taxon={ r.taxon } />
                 <i className={ `icon icon-iconic-${r.taxon.name.toLowerCase( )}` } />
                 <div className="bar" style={ { height: `${height}%` } } />
                 <span className="value">{ Util.numberWithCommas( r.count ) }</span>
@@ -55,7 +55,7 @@ class ProjectIconicTaxaSpecies extends Component {
     return (
       <div className="slide vertical-barchart iconic-taxa-species-slide">
         { graph }
-        <h2>{ I18n.t("species_by_category") }</h2>
+        <h2>{ I18n.t( "species_by_category" ) }</h2>
       </div>
     );
   }
