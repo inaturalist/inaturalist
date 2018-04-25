@@ -1,5 +1,10 @@
+:ruby
+  photo_style = project.cover? ? "background-image: url('#{project.cover.url}')" : ""
+  if !project.preferred_banner_color.blank?
+    photo_style += "; background-color: #{project.preferred_banner_color};"
+  end
 .thumbnail.borderless
-  = link_to "", project, class: "photo", style: project.cover? ? "background-image: url('#{project.cover.url}')" : nil
+  = link_to "", project, class: "photo", style: photo_style
   .caption
     = link_to project, class: "project-icon", style: project.icon? ? "background-image: url('#{project.icon.url(:span2)}')" : nil do
       - unless project.icon?

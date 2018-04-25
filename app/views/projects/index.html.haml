@@ -9,7 +9,7 @@
       .container
         .row.no-gutters
           .col-xs-8
-            - carousel_projects = @featured.blank? ? [@recent].flatten.compact[0..5] : @featured
+            - carousel_projects = @carousel.blank? ? [@recent].flatten.compact[0..5] : @carousel
             / #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
             #featured-carousel.carousel.slide
               %ol.carousel-indicators
@@ -18,15 +18,18 @@
               .carousel-inner{:role => "listbox"}
                 - carousel_projects.each_with_index do |project,i|
                   .item{ class: i == 0 ? "active" : nil }
+                    .carousel-title
+                      %span=t :new_and_noteworthy
+                      - if project.event_in_progress?
+                        %span.in-progress=t :event_in_progress
                     = link_to "", project, class: "photo", style: project.cover? ? "background-image: url('#{project.cover.url}');" : nil
                     - unless project.prefers_hide_title?
                       .project-caption
-                        %span
-                          = succeed ":" do
-                            =t :featured
-                        %br
                         %h2
-                          = link_to project.title, project
+                          - if project.icon?
+                            = link_to image_tag( project.icon.url( :span2 ) ), project
+                          = link_to project.title , project, class: "title"
+
           .col-xs-4
             #about-projects
               %h1=t :projects
@@ -43,7 +46,7 @@
               .input-group
                 %input.form-control{ name: "q", type: "text", placeholder: t(:search) }
                 %span.input-group-btn
-                  %input.btn.btn-primary{ type: "submit" }
+                  %input.btn.btn-primary{ type: "submit", value: t(:go) }
                     =t :go
           .col-xs-8
             - if logged_in? && !@started.blank? || !@joined.blank?
@@ -61,6 +64,11 @@
                   - unless @joined.blank?
                     %li.dropdown-header=t :joined_projects
                     - @joined.each do |project|
+                      %li= link_to project.title, project
+                    %li.divider{ role: "separator" }
+                  - unless @followed.blank?
+                    %li.dropdown-header=t :followed_projects
+                    - @followed.each do |project|
                       %li= link_to project.title, project
                     %li.divider{ role: "separator" }
                   %li= link_to t(:view_all), projects_by_login_path( current_user.login )

@@ -9,7 +9,7 @@ $carousel-height-narrow: 350px;
     display: block;
     width: 100%;
     height: $carousel-height-narrow;
-    background-size: cover; 
+    background-size: contain;
     background-image: url(image_path( "project_blank_banner_bg.png" ));
     background-repeat: no-repeat;
     background-position: center;
@@ -24,34 +24,65 @@ $carousel-height-narrow: 350px;
   #about-projects {
     height: $carousel-height-narrow;
   }
+  .carousel-title,
   .project-caption {
     position: absolute;
+  }
+
+  .carousel-title,
+  .project-caption h2 .title {
     opacity: 1;
     transition: opacity 0.4s linear;
-    bottom: 20px;
-    left: 20px;
-    right: 150px;
-    h2,
-    span {
+    color: white;
+    a {
       color: white;
-      a {
-        color: white;
+    }
+    background-color: rgba(0,0,0,0.7);
+  }
+  .carousel-title {
+    top: 0;
+    left: 0;
+    display: flex;
+    > * {
+      padding: 5px 10px;
+    }
+    .in-progress {
+      background-color: #f22844;
+      text-transform: uppercase;
+    }
+  }
+  .project-caption {
+    bottom: 60px;
+    left: 20px;
+    right: 20px;
+    h2 {
+      display: flex;
+      height: 45px;
+      overflow-y: hidden;
+      .title {
+        display: inline-block;
+        padding: 0 15px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
       }
-      background-color: rgba(0,0,0,0.7);
-      padding: 10px;
       margin: 0;
-      display: inline-block;
+      font-size: 26px;
+      line-height: 43px;
+      img {
+        height: 45px;
+      }
     }
     span {
       font-size: 18px;
       text-transform: capitalize;
     }
-    h2 {
-      font-size: 28px;
-    }
   }
   .left,
   .right {
+    .carousel-title,
     .project-caption {
       opacity: 0;
       transition: opacity 0s linear;
@@ -82,7 +113,7 @@ $carousel-height-narrow: 350px;
       overflow: hidden;
       display: -webkit-box;
       -webkit-line-clamp: 8;
-      -webkit-box-orient: vertical; 
+      -webkit-box-orient: vertical;
       text-overflow: ellipsis;
     }
     .btn {
@@ -107,8 +138,8 @@ $carousel-height-narrow: 350px;
   position: relative;
 }
 #tools-container {
-  border-top: 2px solid $border-grey;
-  box-shadow: 0 0 20px $border-grey;
+  border-top: 1px solid $border-grey;
+  border-bottom: 1px solid $border-grey;
   z-index: 2;
   .btn {
     i {

@@ -592,25 +592,31 @@ class Project < ActiveRecord::Base
   end
 
   def event_started?
-    return nil if start_time.blank?
+    t = DateTime.parse( preferred_rule_d1 ) unless preferred_rule_d1.blank?
+    t ||= start_time
+    return nil if t.blank?
     if prefers_range_by_date?
-      start_time.to_date <= Date.today
+      t.to_date <= Date.today
     else
-      start_time < Time.now
+      t < Time.now
     end
   end
 
   def event_ended?
-    return nil if end_time.blank?
+    t = DateTime.parse( preferred_rule_d2 ) unless preferred_rule_d2.blank?
+    t ||= end_time
+    return nil if t.blank?
     if prefers_range_by_date?
-      Date.today > end_time.to_date
+      Date.today > t.to_date
     else
-      Time.now > end_time
+      Time.now > t
     end
   end
 
   def event_in_progress?
-    return nil if end_time.blank? || start_time.blank?
+    unless preferred_rule_d1 && preferred_rule_d2
+      return nil if end_time.blank? || start_time.blank? 
+    end
     event_started? && !event_ended?
   end
   

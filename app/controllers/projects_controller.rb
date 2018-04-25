@@ -42,17 +42,33 @@ class ProjectsController < ApplicationController
         @projects = Project.recently_added_to(place: @place)
         @created = Project.not_flagged_as_spam.order("projects.id desc").limit(8)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @featured = Project.featured.limit(8)
+        @featured = Project.featured
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @recent = ProjectObservation.includes(:project).order( "project_observations.id DESC" ).limit( 20 )
-        @recent = @recent.joins( project: :place ).where( @place.self_and_descendant_conditions ) if @place
-        @recent = @recent.to_a.uniq{|po| po.project_id}.map(&:project)[0..8]
+        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 )
+        @carousel = @featured.limit( 3 ) if @carousel.count == 0
+        @carousel = @projects.limit( 3 ) if @carousel.count == 0
+
+        # Temporary for CNC
+        if cnc_project = Project.find( "city-nature-challenge-2018" ) rescue nil
+          @carousel = [cnc_project, @carousel.to_a].flatten[0..3]
+        end
+
+        @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}[0..8]
+        @recent = Project.joins(:posts).order( "posts.id DESC" ).limit( 20 )
+        @recent = @recent.joins( :place ).where( @place.self_and_descendant_conditions ) if @place
+        @recent = @recent.to_a.uniq[0..8]
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
             order("projects.id desc").limit(5)
           @joined = current_user.project_users.joins(:project).
             merge(Project.not_flagged_as_spam).includes(:project).
+            where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
+          @followed = Project.
+            joins( "JOIN subscriptions ON subscriptions.resource_type = 'Project' AND resource_id = projects.id" ).
+            where( "subscriptions.user_id = ?", current_user ).
+            where( "projects.user_id != ?", current_user ).
+            order( "subscriptions.id DESC" ).limit( 15 ).select{ |p| !@joined.include?( p ) }
         end
         render layout: "bootstrap"
       end
