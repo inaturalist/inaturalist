@@ -116,6 +116,14 @@ describe Project do
       p.destroy
       expect(ProjectObservation.find_by_id(po.id)).to be_blank
     end
+
+    it "should delete associated rules" do
+      project = Project.make!
+      rule = project.project_observation_rules.build( operator: "observed_in_place?", operand: Place.make! )
+      rule.save!
+      project.destroy
+      expect( Rule.find_by_id( rule.id ) ).to be_blank
+    end
   end
 
   describe "update_curator_idents_on_make_curator" do
