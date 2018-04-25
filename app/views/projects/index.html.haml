@@ -21,12 +21,12 @@
                       %span=t :new_and_noteworthy
                       - if project.event_in_progress?
                         %span.in-progress=t :event_in_progress
-                    = link_to "", project, class: "photo", style: project.cover? ? "background-image: url('#{project.cover.url}');" : nil
+                    = link_to "", project, class: "photo", style: project.cover? ? "background-size: #{project.prefers_banner_contain? ? "contain" : "cover"}; background-image: url('#{project.cover.url}');" : nil
                     - unless project.prefers_hide_title?
                       .project-caption
                         %h2
                           - if project.icon?
-                            = link_to image_tag( project.icon.url( :span2 ) ), project
+                            = link_to image_tag( project.icon.url( :span2 ) ), project, class: "icon"
                           = link_to project.title , project, class: "title"
 
           .col-xs-4

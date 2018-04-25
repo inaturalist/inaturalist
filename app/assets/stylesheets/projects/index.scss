@@ -42,6 +42,9 @@ $carousel-height-narrow: 350px;
     }
     background-color: rgba(0,0,0,0.7);
   }
+  .project-caption h2 .icon {
+    background-color: black;
+  }
   .carousel-title {
     top: 0;
     left: 0;
@@ -55,9 +58,9 @@ $carousel-height-narrow: 350px;
     }
   }
   .project-caption {
-    bottom: 60px;
+    bottom: 20px;
     left: 20px;
-    right: 20px;
+    right: 90px;
     h2 {
       display: flex;
       height: 45px;
