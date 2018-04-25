@@ -47,13 +47,17 @@ def save_common_names(taxon, common_names)
     next if name.blank?
     name = name.split(/[,;]/).first
     tn = TaxonName.new(:taxon => taxon, :name => name, :lexicon => lexicon, :is_valid => true)
-    if tn.save
-      puts "\tCreated #{tn}"
-    else
-      puts "\tFailed to create #{tn}: #{tn.errors.full_messages.to_sentence}"
-      unless tn.errors.full_messages.to_sentence =~ /already exists/
-        @errors << [taxon.name, "failed common name"]
+    begin
+      if tn.save
+        puts "\tCreated #{tn}"
+      else
+        puts "\tFailed to create #{tn}: #{tn.errors.full_messages.to_sentence}"
+        unless tn.errors.full_messages.to_sentence =~ /already exists/
+          @errors << [taxon.name, "failed common name"]
+        end
       end
+    rescue PG::UniqueViolation, ActiveRecord::RecordNotUnique
+      puts "\tFailed to create #{tn}: already added"
     end
   end
 end
