@@ -15,7 +15,7 @@ class INatAWS
     if path[0] != "/"
       path = "/" + path
     end
-    cf = ::AWS::CloudFront.new(
+    cf = ::Aws::CloudFront.new(
       access_key_id: config["access_key_id"],
       secret_access_key: config["secret_access_key"])
     cf.client.create_invalidation({

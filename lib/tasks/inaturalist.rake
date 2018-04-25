@@ -74,9 +74,9 @@ namespace :inaturalist do
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    AWS.config(access_key_id: S3_CONFIG["access_key_id"],
+    Aws.config(access_key_id: S3_CONFIG["access_key_id"],
       secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
-    bucket = AWS::S3.new.buckets[CONFIG.s3_bucket]
+    bucket = Aws::S3.new.buckets[CONFIG.s3_bucket]
 
     fails = 0
     DeletedPhoto.still_in_s3.
