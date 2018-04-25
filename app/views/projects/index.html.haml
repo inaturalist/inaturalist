@@ -10,8 +10,7 @@
         .row.no-gutters
           .col-xs-8
             - carousel_projects = @carousel.blank? ? [@recent].flatten.compact[0..5] : @carousel
-            / #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
-            #featured-carousel.carousel.slide
+            #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
               %ol.carousel-indicators
                 - carousel_projects.each_with_index do |project,i|
                   %li{ class: i == 0 ? "active" : nil, data: { slide_to: i, target: "#featured-carousel" } }
