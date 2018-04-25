@@ -50,7 +50,7 @@ class ProjectsController < ApplicationController
 
         # Temporary for CNC
         if cnc_project = Project.find( "city-nature-challenge-2018" ) rescue nil
-          @carousel = [cnc_project, @carousel.to_a].flatten[0..3]
+          @carousel = [cnc_project, @carousel.to_a].flatten.uniq[0..3]
         end
 
         @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}[0..8]
