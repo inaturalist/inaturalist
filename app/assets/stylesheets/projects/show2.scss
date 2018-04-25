@@ -767,11 +767,28 @@ button {
 .ObservationsGrid {
   display: flex;
   flex-wrap: wrap;
-  .ObservationPhoto {
+  .ObservationsGridCell {
     flex-grow: 1;
     padding: 2px;
     min-width: 260px;
     margin: 0px auto;
+  }
+  .Observation {
+    position: relative;
+    .quality {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 10px;
+      font-size: 16px;
+      &.research {
+        background: $inat-green;
+        color: white;
+      }
+      .full {
+        display: none;
+      }
+    }
     .photo {
       background: #ccc;
       text-align: center;
@@ -1112,12 +1129,13 @@ button {
     height: 313px;
     .header-grid {
       .title-container {
-        height: 263px;
-        margin-left: -2px;
+        height: 264px;
+        width: 627px
       }
       .header-about {
-        height: 263px;
+        height: 264px;
         padding: 20px;
+        width: 313px;
         .header-about-content .header-about-text {
           margin-top: 15px;
           font-size: 15px;
