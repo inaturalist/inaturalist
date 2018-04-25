@@ -959,6 +959,12 @@ button {
       .display-name {
         font-weight: 700;
       }
+      a {
+        color: inherit;
+      }
+      & > a:not(:last-child)::after, .SplitTaxon:not(:last-child)::after {
+       content: ", ";
+      }
     }
   }
 }
