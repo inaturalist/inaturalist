@@ -70,7 +70,7 @@ class ProjectPeople extends Component {
     if ( this.props.peopleStats.identifiers ) {
       identifiers = (
         <div className="half">
-          <div className="heading">{ I18n.t("top_identifiers") }</div>
+          <div className="heading">{ I18n.t( "top_identifiers" ) }</div>
           { _.map( this.props.peopleStats.identifiers.results, r => {
             let style;
             let placeholder;

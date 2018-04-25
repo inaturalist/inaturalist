@@ -602,13 +602,16 @@ class User < ActiveRecord::Base
     autogen_login = User.suggest_login(email.split('@').first) if autogen_login.blank? && !email.blank?
     autogen_login = User.suggest_login('naturalist') if autogen_login.blank?
     autogen_pw = SecureRandom.hex(6) # autogenerate a random password (or else validation fails)
+    icon_url = auth_info["info"]["image"]
+    # Don't bother if the icon URL looks like the default Google user icon
+    icon_url = nil if icon_url =~ /4252rscbv5M/
     u = User.new(
       :login => autogen_login,
       :email => email,
       :name => auth_info["info"]["name"],
       :password => autogen_pw,
       :password_confirmation => autogen_pw,
-      :icon_url => auth_info["info"]["image"]
+      :icon_url => icon_url
     )
     u.skip_email_validation = true
     u.skip_confirmation!

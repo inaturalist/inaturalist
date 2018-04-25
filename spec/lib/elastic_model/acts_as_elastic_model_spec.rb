@@ -203,6 +203,7 @@ describe ActsAsElasticModel do
         expect( obs.last_indexed_at ).to be > 1.minute.ago
       end
     end
+
   end
 
 end

@@ -6,6 +6,7 @@ class ConfirmModal extends Component {
 
   constructor( ) {
     super( );
+    this.cancel = this.cancel.bind( this );
     this.close = this.close.bind( this );
     this.confirm = this.confirm.bind( this );
   }
@@ -30,12 +31,19 @@ class ConfirmModal extends Component {
     this.close( );
   }
 
+  cancel( ) {
+    if ( _.isFunction( this.props.onCancel ) ) {
+      this.props.onCancel( );
+    }
+    this.close( );
+  }
+
   render( ) {
     let cancel;
     let message;
     if ( !this.props.hideCancel ) {
       cancel = (
-        <Button bsStyle="default" onClick={ this.close }>
+        <Button bsStyle="default" onClick={ this.cancel }>
           { this.props.cancelText || I18n.t( "cancel" ) }
         </Button>
       );
@@ -98,11 +106,12 @@ class ConfirmModal extends Component {
 ConfirmModal.propTypes = {
   show: PropTypes.bool,
   confirmClass: PropTypes.string,
-  message: PropTypes.string,
+  message: PropTypes.any,
   idTaxon: PropTypes.object,
   errors: PropTypes.array,
   existingTaxon: PropTypes.object,
   type: PropTypes.string,
+  onCancel: PropTypes.func,
   onConfirm: PropTypes.func,
   cancelText: PropTypes.string,
   confirmText: PropTypes.string,

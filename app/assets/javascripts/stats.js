@@ -129,8 +129,8 @@ Stats.loadObservations = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
     element_id: "observations",
     series: [
-      { label: "Total" },
-      { label: "Research Grade" }
+      { label: I18n.t( "total" ) },
+      { label: I18n.t( "research_grade" ) }
     ],
     data: _.map( json, function( stat ) {
       stat.data.platforms_cumulative = stat.data.platforms_cumulative || { };
@@ -148,10 +148,10 @@ Stats.loadCumulativePlatforms = function( json ) {
     element_id: "cumulative-platforms",
     chartOptions: { isStacked: true },
     series: [
-      { label: "Website" },
-      { label: "iPhone" },
-      { label: "Android" },
-      { label: "Other" }
+      { label: I18n.t( "website" ) },
+      { label: I18n.t( "iphone" ) },
+      { label: I18n.t( "android" ) },
+      { label: I18n.t( "other" ) }
     ],
     data: _.map( json, function( stat ) {
       stat.data.platforms_cumulative = stat.data.platforms_cumulative || { };
@@ -171,12 +171,11 @@ Stats.loadObservations7Days = function( json ) {
     element_id: "obs_7",
     chartType: google.visualization.AnnotationChart,
     series: [
-      { label: "Obs" },
-      { label: "Obs ID'd" },
-      { label: "Obs CID'd" },
-      { label: "Obs CID'd to genus" },
-      { label: "Obs (1 day)" },
-      { label: "Active Users" }
+      { label: I18n.t( "obs" ) },
+      { label: I18n.t( "obs_id_d" ) },
+      { label: I18n.t( "obs_cid_d" ) },
+      { label: I18n.t( "views.stats.index.obs_cid_d_to_genus" ) },
+      { label: I18n.t( "views.stats.index.obs_1_day" ) }
     ],
     data: _.map( json, function( stat ) {
       return [
@@ -185,8 +184,7 @@ Stats.loadObservations7Days = function( json ) {
         stat.data.observations.identified,
         stat.data.observations.community_identified,
         stat.data.observations.community_identified_to_genus,
-        stat.data.observations.today,
-        stat.data.users.active
+        stat.data.observations.today
       ];
     })
   }));
@@ -197,10 +195,10 @@ Stats.loadPlatforms = function( json ) {
     element_id: "platforms",
     chartType: google.visualization.AnnotationChart,
     series: [
-      { label: "Website" },
-      { label: "iPhone" },
-      { label: "Android" },
-      { label: "Other" }
+      { label: I18n.t( "website" ) },
+      { label: I18n.t( "iphone" ) },
+      { label: I18n.t( "android" ) },
+      { label: I18n.t( "other" ) }
     ],
     data: _.map( json, function( stat ) {
       stat.data.platforms = stat.data.platforms || { };
@@ -224,10 +222,10 @@ Stats.loadTTID = function( json ) {
     element_id: "ttid",
     chartType: google.visualization.AnnotationChart,
     series: [
-      { label: "Med TTID" },
-      { label: "Avg TTID" },
-      { label: "Med TTCID" },
-      { label: "Avg TTCID" }
+      { label: I18n.t( "views.stats.index.med_ttid" ) },
+      { label: I18n.t( "views.stats.index.avg_ttid" ) },
+      { label: I18n.t( "views.stats.index.med_ttcid" ) },
+      { label: I18n.t( "views.stats.index.avg_ttcid" ) }
     ],
     data: _.map( json, function( stat ) {
       if (stat.data.identifier) {
@@ -257,7 +255,7 @@ Stats.loadTTID = function( json ) {
 Stats.loadProjects = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
     element_id: "projects",
-    series: [ { label: "Total" } ],
+    series: [ { label: I18n.t( "total" ) } ],
     data: _.map( json, function( stat ) {
       return [ Stats.dateForStat( stat ), stat.data.projects.count ]
     })
@@ -284,12 +282,12 @@ Stats.loadUsers = function( json ) {
     element_id: "users",
     chartType: google.visualization.AnnotationChart,
     series: [
-      { label: "Active" },
-      { label: "New" },
-      { label: "Identifiers" },
-      { label: "Recent" },
-      { label: "Recent w/ >= 7 obs" },
-      { label: "Recent w/ 0 obs" },
+      { label: I18n.t( "active" ) },
+      { label: I18n.t( "new" ) },
+      { label: I18n.t( "identifiers" ) },
+      { label: I18n.t( "recent" ) },
+      { label: I18n.t( "views.stats.index.recent_w_7_obs" ) },
+      { label: I18n.t( "views.stats.index.recent_w_0_obs" ) },
     ],
     data: _.map( json, function( stat ) {
       return [
@@ -310,7 +308,7 @@ Stats.loadRanks = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
     element_id: "ranks",
     series: _.map( ranks, function( rank ) {
-      return { label: rank }
+      return { label: I18n.t( "ranks." + rank, { defaultValue: rank } ) }
     }),
     data: _.map( json, function( stat ) {
       var values = _.map( ranks, function( rank ) {
@@ -327,7 +325,7 @@ Stats.loadRanksPie = function( json ) {
   google.setOnLoadCallback(Stats.simpleChart({
     element_id: "ranks_pie",
     data: _.map( json[0].data.taxa.count_by_rank, function( value, rank ) {
-      return [ rank, parseInt( value ) ];
+      return [ I18n.t( "ranks." + rank, { defaultValue: rank } ), parseInt( value ) ];
     }),
     chartType: google.visualization.PieChart
   }));

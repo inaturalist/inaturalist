@@ -381,6 +381,7 @@ qqq:
     where elem is the resource being edited like an observation
     {{Identical|Editing}}
   editing_x_in_y: where x and y are resources being edited
+  editors: '{{Identical|Editor}}'
   email: '{{Identical|E-mail}}'
   embed: '{{Identical|Embed}}'
   enlarge: '{{Identical|Enlarge}}'
@@ -414,6 +415,7 @@ qqq:
   failed: '{{Identical|Failed}}'
   fields: '{{Identical|Field}}'
   fields_: '{{Identical|Field}}'
+  file: '{{Identical|File}}'
   filter: '{{Identical|Filter}}'
   filters: '{{Identical|Filter}}'
   find: '{{Identical|Find}}'
@@ -443,8 +445,8 @@ qqq:
   from_your_site_observations: where site_name is the name of the site
   from_licensed_site_observations: where site_name is the name of the site
   full_screen: '{{Identical|Full screen}}'
-  general: '{{Identical|General}}'
   geo: Abbrevation of "geographic" e.g. "geo fields"
+  general: '{{Identical|General}}'
   geoprivacy: See [[wiktionary:geoprivacy|geoprivacy on Wiktionary]] for hints.
   get_started: '{{Identical|Get started}}'
   getting_started: '{{Identical|Getting started}}'
@@ -600,6 +602,7 @@ qqq:
       into Waray-Waray (unless that's the target language)
   less: '{{Identical|Less}}'
   licensed_site_photos: where site_name is the name of the site
+  license: '{{Identical|License}}'
   licensing: '{{Identical|Licensing}}'
   licensing_your_content_gives_others_legal: where site_name is the name of the site
   life: '{{Identical|Life}}'
@@ -637,6 +640,7 @@ qqq:
   localized_species_accounts: Check http://www.inaturalist.org/places for context
   location: '{{Identical|Location}}'
   location_: '{{Identical|Location}}'
+  locations: '{{Identical|Location}}'
   log_in: '{{Identical|Log in}}'
   logo:
     logo: '{{Identical|Logo}}'
@@ -672,6 +676,7 @@ qqq:
     as eating
   message: '{{Identical|Message}}'
   messages: '{{Identical|Message}}'
+  mobile: '{{Identical|Mobile}}'
   momentjs:
     shortRelativeTime:
       future: '{{Identical|In}}'
@@ -927,6 +932,7 @@ qqq:
     family: '{{Identical|Family}}'
     species: '{{Identical|Species}}'
     form: '{{Identical|Form}}'
+  ranges: '{{Identical|Range}}'
   reason: '{{Identical|Reason}}'
   received: '{{Identical|Received}}'
   recent: '{{Identical|Recent}}'
@@ -1030,14 +1036,17 @@ qqq:
   sun: Abbreviation for Sunday, a day of the week.
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
+  tag: |-
+    Singular noun form of the English word "tag"
+    {{Identical|Tag}}
   tagging: '{{Identical|Tagging}}'
-  tag: Singular noun form of the English word "tag"
   tags: '{{Identical|Tag}}'
   taxa: '{{Identical|Taxa}}'
   taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
+  text: '{{Identical|Text}}'
   text_: '{{Identical|Text}}'
   thanks_from_all_of_us_here_at: |-
     Thank you followed by the site logo, so in English it would be 'Thanks from
@@ -1267,8 +1276,6 @@ qqq:
   your_sure_delete_taxon_from_list?: where taxon is the name of a taxon
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
-  zoom_to_taxon_name: where taxonname is the name of a taxon
-  zoom_to_x: where x is the location
   views:
     guides:
       edit:
@@ -1311,15 +1318,15 @@ qqq:
         agreement: '{{Identical|Agreement}}'
         score: '{{Identical|Score}}'
       import:
-        date_column_format: |
+        date_column_format: |-
           Example of how the date should be formatted in CSV. Change if other
           letters would make more sense in other languages, but please do not
           change the format.
-        decimal_degrees_format: |
+        decimal_degrees_format: |-
           Example of how decimal degrees should be formatted in CSV. Change if
           other letters would make more sense in other languages, but please do
           not change the format.
-        geoprivacy_must_be_in_english: |
+        geoprivacy_must_be_in_english: |-
           Please don't translate the values "obscured" and "private". If user
           upload translated versions of these strings in their CSV the CSV
           import won't work.
@@ -1392,20 +1399,14 @@ qqq:
         *%B - The full month name ("January")
         *%d - Day of the month, zero-padded (01 to 31)
         *%Y - Year with century (can be negative, 4 digits at least)
-
-        See also http://ruby-doc.org/core-2.0/Time.html#method-i-strftime
       short: |-
         * %b - The abbreviated month name (''Jan'')
         * %d - Day of the month, zero-padded (01 to 31)
-
-        See also http://ruby-doc.org/core-2.0/Time.html#method-i-strftime
       month_year: '{{DataFormatRuby/en}}'
       month_day_year: |-
         *%B - The full month name ("January")
         *%d - Day of the month, zero-padded (01 to 31)
         *%Y - Year with century (can be negative, 4 digits at least)
-
-        See also http://ruby-doc.org/core-2.0/Time.html#method-i-strftime
     month_names:
       1: '{{Identical|January}}'
       2: '{{Identical|February}}'
@@ -1528,6 +1529,13 @@ qqq:
         url: '{{Identical|URL}}'
         geoprivacy: See [https://en.wiktionary.org/wiki/geoprivacy geoprivacy on Wiktionary]
           for hints.
+      flag:
+        reason: '{{Identical|Reason}}'
+        flag: '{{Identical|Flag}}'
+      observation_field_value:
+        value: '{{Identical|Value}}'
+      post:
+        title: '{{Identical|Title}}'
       project:
         description: '{{Identical|Description}}'
       place:
@@ -1536,11 +1544,6 @@ qqq:
         parent_id: |-
           The parent place of the newly created place.
           (see http://www.inaturalist.org/places/new )
-      flag:
-        reason: '{{Identical|Reason}}'
-        flag: '{{Identical|Flag}}'
-      observation_field_value:
-        value: '{{Identical|Value}}'
       taxon:
         name: '{{Identical|Name}}'
         locked: '{{Identical|Locked}}'
@@ -1563,4 +1566,6 @@ qqq:
   will_paginate:
     previous_label: '{{Identical|Prev}}'
     next_label: '{{Identical|Next}}'
+  zoom_to_taxon_name: where taxonname is the name of a taxon
+  zoom_to_x: where x is the location
 ...

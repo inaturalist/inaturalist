@@ -143,7 +143,7 @@ const ObservationsListView = ( {
                         </td>
                         <td className={ `date ${sortColumn === "observed" && "sorting"}` }>
                           <FormattedDate
-                            date={ o.observed_on_details.date }
+                            date={ o.observed_on_details && o.observed_on_details.date }
                             time={ o.time_observed_at }
                             timezone={ o.observed_time_zone }
                           />

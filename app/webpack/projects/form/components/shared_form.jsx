@@ -238,32 +238,39 @@ class SharedForm extends React.Component {
               </div>
             </Col>
           </Row>
-          <Row className="project-type">
+          <Row className="separator-row">
             <Col xs={ 12 }>
-              <h2>{ I18n.t( "views.projects.project_type" ) }</h2>
-              <input
-                type="radio"
-                id="project-type-regular"
-                value="regular"
-                checked={ project.project_type !== "umbrella" }
-                onChange={ ( ) => updateProject( { project_type: "regular" } ) }
-              />
-              <label className="inline" htmlFor="project-type-regular">
-                { I18n.t( "views.projects.collection" ) }
-              </label>
-              <input
-                type="radio"
-                id="project-type-umbrella"
-                value="regular"
-                checked={ project.project_type === "umbrella" }
-                onChange={ ( ) => updateProject( { project_type: "umbrella" } ) }
-              />
-              <label className="inline" htmlFor="project-type-umbrella">
-                { I18n.t( "views.projects.umbrella" ) } ({
-                  I18n.t( "views.projects.tracks_multiple_projects" ) })
-              </label>
+              <div className="separator" />
             </Col>
           </Row>
+          { !project.id && (
+            <Row className="project-type">
+              <Col xs={ 12 }>
+                <h2>{ I18n.t( "views.projects.project_type" ) }</h2>
+                <input
+                  type="radio"
+                  id="project-type-regular"
+                  value="regular"
+                  checked={ project.project_type !== "umbrella" }
+                  onChange={ ( ) => updateProject( { project_type: "regular" } ) }
+                />
+                <label className="inline" htmlFor="project-type-regular">
+                  { I18n.t( "views.projects.collection" ) }
+                </label>
+                <input
+                  type="radio"
+                  id="project-type-umbrella"
+                  value="regular"
+                  checked={ project.project_type === "umbrella" }
+                  onChange={ ( ) => updateProject( { project_type: "umbrella" } ) }
+                />
+                <label className="inline" htmlFor="project-type-umbrella">
+                  { I18n.t( "views.projects.umbrella" ) } ({
+                    I18n.t( "views.projects.tracks_multiple_projects" ) })
+                </label>
+              </Col>
+            </Row>
+          ) }
         </Grid>
       </div>
     );

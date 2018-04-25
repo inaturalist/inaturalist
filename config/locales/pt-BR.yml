@@ -763,6 +763,7 @@ pt-BR:
   change_your_password: Altere sua senha
   changing_the_geoprivacy: Mudar a geoprivacidade altera como as outras pessoas verão
     a localização das suas observações.
+  check_back_soon: Verifique em breve!
   check_here_to_autoload_description: Selecione aqui para carregar automaticamente
     as descrições da Wikipedia. Desmarque esta seleção quando uma nome científico
     for empregado igualmente como nome popular, como por exemplo "PArus".
@@ -814,7 +815,6 @@ pt-BR:
     licenciadas de outros sites ou carregue de %{site_name} observações. Tente escolher
     imagens que <em>com características que possibilitem a identificação</em> e <em>sejam
     bonitas com ícones</em>.  A <em>primeira será a padrão</em>.
-  chose_columns: Escolha colunas
   choose_files_from_your_computer: escolha arquivos do seu computador
   choose_from_your_lists: Escolha das suas listas
   choose_good_default_photos: Escolha com atenção as imagens licenciadas apra Crative
@@ -1364,6 +1364,7 @@ pt-BR:
   facebook_needs_the_owner_of_that_photo_to: Facebook precisa que o proprietário desta
     imagem reconfirme a conexão com %{site_name_short}.
   facebook_options: Opções do Facebook
+  facts_and_stats: Fatos e Estatísticas
   failed_to_find_your_location: Falha ao buscar localização.
   failed_to_repair_photo: 'Falha ao reparar a foto:  %{errors}'
   failed_to_save_record: Falha ao salvar registro. Tente novamente mais tarde.
@@ -1386,6 +1387,7 @@ pt-BR:
   feeds: Feeds
   feeds_for_current_filters: Fontes para os filtros atuais
   failed: Falhou
+  field_guides: Guias de campo
   field_note: <strong>Atenção:</strong> Se você gostaria de criar um novo campo, confira
     se nenhum outro usuário já configurou esta área para evitar duplicações.
   fields: campos
@@ -1610,6 +1612,8 @@ pt-BR:
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
   here_are_some_things_you_can_do_meantime: 'Aqui estão algumas coisas que você pode
     fazer neste meio tempo:'
+  here_are_some_things_you_can_do_in_the_meantime: Aqui estão algumas coisas que você
+    pode fazer neste meio tempo
   heres_a_litle_about: Um pouco sobre
   hex_color_eg: 'Cor hexadecimal, ex: 65644F'
   hi: Olá,
@@ -2015,8 +2019,10 @@ pt-BR:
     bg: Húngaro
     br: Bretão
     ca: Catalão
+    cs: Checo
     da: Dinamarquês
     de: Alemão
+    el: Grego
     en-US: Inglés (Estados Unidos)
     en: Inglês
     es-ES: Espanhol (Espanha)
@@ -2301,6 +2307,7 @@ pt-BR:
     %{site_name}
   new_user_rules: Novas regras de usuários
   new_users_week: Novos Usuários / Semana
+  news: Notícias
   next: Próximo
   next_observation: Próxima Observação
   next_page: Próxima página
@@ -2356,6 +2363,7 @@ pt-BR:
   no_more_updates: Sem mais atualizações!
   no_nearby_observations: Não existem observações próximas.
   no_new_messages: Não há novas mensagens
+  no_news_yet: Nenhuma notícia ainda
   no_observations: Não existem observações
   no_observations_from_this_place_yet: Ainda não existem observações neste local.
   no_observations_matching_those_ids: Não existem observações coincidentes com estas
@@ -2413,8 +2421,6 @@ pt-BR:
   non_human?: Não-humano?
   none: Nenhum
   none_found: Não encontrado
-  none_of_the_people_you_follow_have_updates: Nenhuma das pessoas que você segue fizeram
-    atualizações ainda!
   normal: normal
   not_completed: Incompleto
   not_evaluated: Não avaliado
@@ -2719,6 +2725,7 @@ pt-BR:
   our_blog: Nosso Blog
   out_of_range: Fora de alcance
   output_taxon: Taxón de saída
+  overview: Visão geral
   owner: Proprietário
   parent: Pai
   parent_name: Nome da espécie pai
@@ -3061,6 +3068,7 @@ pt-BR:
   project_preferred_count_description: Você deseja que o número total de táxons para
     seu projeto seja detalhado por espécies, qualquer táxon, ou somente "folhas" da
     árvore taxonômica?
+  project_requirements: Requisitos do projeto
   project_rules: Regras do Projeto
   project_settings: Configurações do Projeto
   project_terms_and_rules: Termos e regras &amp; do projeto
@@ -3136,6 +3144,7 @@ pt-BR:
   ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
   re_apply_list_rules: Reaplicar as regras da lista
   re_order_photos: Reorganize fotos &raquo;
+  read_more: Ler mais
   read_our_getting_started_guide: ler ou Acessar o guia de uso
   read_the_full_wikipedia: Leia a descrição da Wikipédia completa
   ready_to_get_started?: Pronto para começar?
@@ -4554,19 +4563,10 @@ pt-BR:
   youve_seen_it_want_to: Você viu! Quer
   youve_successfully_linked_your_provider_account: Você vinculou com sucesso sua conta
     do %{provider}
-  zoom_in: Aumentar o Zoom
-  zoom_out: Diminuir o Zoom
-  zoom_photo: Ampliar Foto
-  zoom_to_taxon_name: Aproximar de %{taxonname}
-  zoom_to_x: aproximar de %{x}
   your_dashboard_helps_you: Seu painel de controle oferece suporte para rastrear o
     que os usuários estão fazendo no site. Para acompanhar as atualizações de alguém
     , clique em 'Seguir [nome]' link no topo da página de visualização de observações
     ou no perfil.
-  here_are_some_things_you_can_do_in_the_meantime: Aqui estão algumas coisas que você
-    pode fazer neste meio tempo
-  none_of_the_people_you_follow_have_any_updates_yet: Nenhuma pessoa que você segue
-    fez atualizações ainda!
   verifiable: verificável
   views:
     views: Visualizações
@@ -5943,9 +5943,20 @@ pt-BR:
         url: URL
         geoprivacy: Geoprivacidade
         iucn: Equivalente a IUCN
+      flag:
+        reason: 'Razão:'
+        flag: Alerta
       guide:
         source_url: URL de origem
         published_at: Publicação
+      listed_taxon:
+        occurrence_status_level: Status de ocorrência
+        establishment_means: Período de Estabelecimento
+      observation:
+        geo_x: Deslocando-se ao leste
+        geo_y: Deslocando-se ao norte
+      observation_field_value:
+        value: valor
       project:
         title: Título
         project_icon: Ícone do Projeto
@@ -5975,14 +5986,11 @@ pt-BR:
         place_type: Tipo de lugar
         prefers_check_lists: Checklists permitidas?
         woeid: Identificador único mundial (de acordo com Yahoo)
-      flag:
-        reason: 'Razão:'
-        flag: Alerta
-      observation:
-        geo_x: Deslocando-se ao leste
-        geo_y: Deslocando-se ao norte
-      observation_field_value:
-        value: valor
+      source:
+        title: Título
+        in_text: Referência
+        url: URL
+        citation: Citação
       taxon:
         name: Nome
         rank: Posição
@@ -6004,14 +6012,6 @@ pt-BR:
         locale: Localização
         time_zone: Fuso horário
         place_id: Lugar
-      source:
-        title: Título
-        in_text: Referência
-        url: URL
-        citation: Citação
-      listed_taxon:
-        occurrence_status_level: Status de ocorrência
-        establishment_means: Período de Estabelecimento
   i18n:
     inflections:
       :@vow_or_con:
@@ -6041,4 +6041,9 @@ pt-BR:
     previous_label: '&#8592; Prévia'
     next_label: Próxima &#8594;
     page_gap: '&hellip;'
+  zoom_in: Aumentar o Zoom
+  zoom_out: Diminuir o Zoom
+  zoom_photo: Ampliar Foto
+  zoom_to_taxon_name: Aproximar de %{taxonname}
+  zoom_to_x: aproximar de %{x}
 ...

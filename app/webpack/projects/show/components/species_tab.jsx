@@ -25,6 +25,7 @@ const SpeciesTab = ( { project, config, species, setConfig } ) => {
                     taxon={ s.taxon }
                     config={ config }
                     truncate={ null }
+                    height={ 210 }
                     overlay={ (
                       <div>
                         <a href={ `/observations?project_id=${project.id}&taxon_id=${s.taxon.id}&place_id=any&verifiable=any` }>

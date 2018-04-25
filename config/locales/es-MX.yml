@@ -684,7 +684,6 @@ es-MX:
     las fotos de Flickr o selecciona de las observaciones de %{site_name}. Intenta
     escoger imágenes que  <em>muestren rasgos diagnósticos</em> y <em>que se ven bien
     como íconos</em>. La<em> primera es la predeterminada</em>.
-  chose_columns: Elige columnas
   choose_files_from_your_computer: Escoge el archivo de tu computadora.
   choose_from_your_lists: Escoge de tus listas
   choose_good_default_photos: Escoge buenas fotos predeterminadas para el grupo de
@@ -1375,6 +1374,8 @@ es-MX:
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
   here_are_some_things_you_can_do_meantime: 'Algunas cosas que puedes hacer mientras
     tanto:'
+  here_are_some_things_you_can_do_in_the_meantime: Algunas cosas que puedes hacer
+    mientras tanto
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: Hola,
   hi_user: Hola %{user}
@@ -2031,8 +2032,6 @@ es-MX:
   no_x_this_y: No hay %{x} de este %{y}
   noble_curators: Curadores activos de %{site}
   none: Ninguno
-  none_of_the_people_you_follow_have_updates: ¡Ninguna de las personas que sigues
-    han hecho actualizaciones, aún!
   normal: normal
   not_completed: Sin completar
   not_evaluated: No se ha evaluado
@@ -3113,10 +3112,12 @@ es-MX:
     data_url: Enlace de datos
     overlays: Capas
   taxon_changes: Cambios a especies o grupos
+  taxon_colors: Colores del grupo o especie
   taxon_merge: fusión de taxa
   taxon_name: Nombre de la especie o grupo
   taxon_photos_updated: ¡Las fotos de la especie o grupo fueron actualizadas!
   taxon_range: Distribución potencial
+  taxon_ranks: Categoria taxonómica del taxón
   taxon_removed_from_list: Especie o grupo eliminado de la lista.
   taxon_scheme: Esquema de taxonomía
   taxon_schemes_raquo_html: Esquemas <nobr>taxonómicos &raquo;</nobr>
@@ -3865,6 +3866,7 @@ es-MX:
   your_identification: Tu identificación
   your_inat_account_has_been_activated: Tu cuenta de %{inat} ha sido activada
   your_life_list: tu lista de vida
+  your_membership: Tus contribuciones
   your_month_observations: Tus observaciones de %{month}
   your_name_was_saved: El nombre fue guardado.
   your_new_password_is: Tu nueva contraseña es
@@ -3902,16 +3904,10 @@ es-MX:
   youve_seen_it_want_to: ¡Lo has visto! Quieres
   youve_successfully_linked_your_provider_account: Has enlazado existosamente tu cuenta
     de  %{provider}
-  zoom_to_taxon_name: Acercamiento a %{taxonname}
-  zoom_to_x: Acercamiento a  %{x}
   your_dashboard_helps_you: Tu tablero te ayuda a dar seguimiento a lo que la gente
     está haciendo en el sitio. Para seguir las actualizaciones de alguien, selecciona
     el enlace Seguir [nombre] en el encabezado cuando estés viendo sus observaciones
     o su perfil.
-  here_are_some_things_you_can_do_in_the_meantime: Algunas cosas que puedes hacer
-    mientras tanto
-  none_of_the_people_you_follow_have_any_updates_yet: ¡Ninguna de las personas que
-    sigues han hecho actualizaciones, aún!
   verifiable: verificable
   views:
     views: Vistas
@@ -4934,6 +4930,12 @@ es-MX:
         url: URL
         geoprivacy: Geoprivacidad
         iucn: Equivalente a IUCN
+      flag:
+        reason: Razón
+        flag: Advertencia
+      listed_taxon:
+        occurrence_status_level: Estatus de ocurrencia
+        establishment_means: Medio de establecimiento
       project:
         title: Título
         project_icon: Ícono del Proyecto
@@ -4960,9 +4962,11 @@ es-MX:
         place_type: Tipo de lugar
         prefers_check_lists: ¿Verificar lista de comprobación?
         woeid: Identificador único mundial (de acuerdo a Yahoo)
-      flag:
-        reason: Razón
-        flag: Advertencia
+      source:
+        title: Título
+        in_text: Referencia
+        url: Enlace
+        citation: Bibliografía
       taxon:
         name: Nombre
         rank: Clasificación
@@ -4983,17 +4987,11 @@ es-MX:
         name: Nombre
         locale: Localidad
         time_zone: Zona horaria
-      source:
-        title: Título
-        in_text: Referencia
-        url: Enlace
-        citation: Bibliografía
-      listed_taxon:
-        occurrence_status_level: Estatus de ocurrencia
-        establishment_means: Medio de establecimiento
   wild: salvaje
   will_paginate:
     previous_label: '&#8592; Previo'
     next_label: Siguiente &#8594;
     page_gap: '&hellip;'
+  zoom_to_taxon_name: Acercamiento a %{taxonname}
+  zoom_to_x: Acercamiento a  %{x}
 ...

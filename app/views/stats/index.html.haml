@@ -6,88 +6,79 @@
   :javascript
     var STATS_JSON = #{ @stats.to_json };
 .container
-  %h2 Stats
+  %h2=t :stats
   .row.sparks
     .col-md-12
-      %h3 100 Day Trends
+      %h3=t :_100_day_trends
     .col-md-2
       #obsspark.spark
-      %label Observations
+      %label=t :observations
     .col-md-2
       #percentidspark.spark
-      %label % ID'd
+      %label=t :_percent_ID_d
     .col-md-2
       #percentcidtogenusspark.spark
-      %label CID'd to genus
+      %label=t :cid_d_to_genus
     .col-md-2
       #activeusersspark.spark
-      %label Active users
+      %label=t :active_users
     .col-md-2
       #newusersspark.spark
-      %label New users
+      %label=t :new_users
     .col-md-2
       #new7obsusersspark.spark
-      %label New users w/ 7 obs
+      %label=t :new_users_w_7_obs
   .row
     .col-md-12
-      %h3 Observations (1 week moving window)
+      %h3=t :observations_1_week_moving_window
       #obs_7.stacked.vis
         .loading.status=t :loading
     .col-md-6
       %dl.meta
         %dt=t :obs
-        %dd Created in prev 7 days
-        %dt Obs ID'd
-        %dd Created in prev 7 days and have an ID (could be observer's)
-        %dt Obs CID'd
-        %dd Created in prev 7 days and have a community ID
+        %dd=t "views.stats.index.obs_desc"
+        %dt=t :obs_id_d
+        %dd=t "views.stats.index.obs_id_d_desc"
+        %dt=t :obs_cid_d
+        %dd=t "views.stats.index.obs_cid_d_desc"
     .col-md-6
       %dl.meta
-        %dt Obs CID'd to genus
-        %dd Created in prev 7 days and have a community ID at or below genus-level
-        %dt Active Users
-        %dd Created an ID, obs, comment, or post in the previous 30 days
+        %dt=t "views.stats.index.obs_cid_d_to_genus"
+        %dd=t "views.stats.index.obs_cid_d_to_genus_desc"
+        %dt=t "views.stats.index.obs_1_day"
+        %dt=t "views.stats.index.obs_1_day_desc"
   .row
     .col-md-12
-      %h3 Observations by platform
+      %h3=t :observations_by_app
       #platforms.stacked.vis
         .loading.status=t :loading
     .col-md-6
       %dl.meta
-        %dt Website
-        %dd
-          Created via
-          = link_to "iNaturalist", "http://www.inaturalist.org/"
-          or
-          = link_to "iNaturalist network", wiki_page_url("network")
-          websites
-        %dt iPhone
-        %dd
-          Created via the
-          = link_to "iNaturalist iPhone app", @site.iphone_app_url
+        %dt=t :website
+        %dd=t "views.stats.index.website_desc_html", url: wiki_page_url( "network" )
+        %dt=t :iphone
+        %dd=t "views.stats.index.iphone_desc_html", url: @site.iphone_app_url
     .col-md-6
       %dl.meta
-        %dt Android
-        %dd
-          Created via the
-          = link_to "iNaturalist Android app", @site.android_app_url
-        %dt Other
-        %dd
-          Created via other applications
-          = link_to "built by developers", wiki_page_url("developers")
+        %dt=t :android
+        %dd=t "views.stats.index.android_desc_html", url: @site.android_app_url
+        %dt= t(:other).capitalize
+        %dd=t "views.stats.index.other_desc_html", url: wiki_page_url( "developers" )
   .row
     .col-md-12
-      %h3 Time to ID (hours, 1 week moving window)
+      %h3=t "views.stats.index.time_to_id_desc"
       #ttid.stacked.vis
         .loading.status=t :loading
-      %p.meta
-        %strong TTID
-        is time to receive an identification from someone else, and 
-        %strong TTCID
-        is time to receive an identification from someone else that matches the community taxon.
-        These stats are made for observations created for a week prior, which means it will miss identifications added to observations after more than a week, and thus make the stats look lower than they would if you computed them again in the present, but they should still provide a decent measure for how fast the community is at identifying within 1 week windows.
-      %p.meta
-        Note that these stats are only for observations with photos.
+    .col-md-6
+      %dl.meta
+        %dt=t "views.stats.index.TTID"
+        %dd=t "views.stats.index.TTID_desc"
+    .col-md-6
+      %dl.meta
+        %dt=t "views.stats.index.TTCID"
+        %dd=t "views.stats.index.TTCID_desc"
+    .col-md-12
+      %p.meta=t "views.stats.index.TTID_note"
   .row
     .col-md-12
       %h3=t :users
@@ -96,43 +87,43 @@
     .col-md-6
       %dl.meta
         %dt=t :active
-        %dd Created an ID, obs, comment, or post in the previous 30 days
+        %dd=t "views.stats.index.active_desc"
         %dt=t :new
-        %dd Signed up on this day
+        %dd=t "views.stats.index.new_users_desc"
         %dt=t :identifiers
-        %dd Added an ID to someone else's obs on this day
+        %dd=t "views.stats.index.identifiers_desc"
     .col-md-6
       %dl.meta
-        %dt Recent
-        %dd Signed up in prev 7 days
-        %dt Recent w/ >= 5 obs
-        %dd Signed up in prev 7 days and added >= 7 obs
-        %dt Recent w/ 0 obs
-        %dd Signed up in prev 7 days and added 0 obs
+        %dt=t :recent
+        %dd=t "views.stats.index.recent_desc"
+        %dt=t "views.stats.index.recent_w_7_obs"
+        %dd=t "views.stats.index.recent_w_7_obs_desc"
+        %dt=t "views.stats.index.recent_w_0_obs"
+        %dd=t "views.stats.index.recent_w_0_obs_desc"
   .row
     .col-md-6
-      %h3 Observations
+      %h3=t :observations
       #observations.stacked.vis
         .loading.status=t :loading
     .col-md-6
-      %h3 Observations by platform
+      %h3=t :observations_by_app
       #cumulative-platforms.stacked.vis
         .loading.status=t :loading
   .row
     .col-md-6
-      %h3 Users
+      %h3=t :users
       #cumulative-users.stacked.vis
         .loading.status=t :loading
     .col-md-6
-      %h3 Projects
+      %h3=t :projects
       #projects.stacked.vis
         .loading.status=t :loading
   .row
     .col-md-6
-      %h3 Observations by rank
+      %h3=t :observations_by_rank
       #ranks.stacked.vis
         .loading.status=t :loading
     .col-md-6
-      %h3 Ranks
+      %h3=t :taxon_ranks
       #ranks_pie.stacked.vis
         .loading.status=t :loading

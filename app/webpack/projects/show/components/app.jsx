@@ -83,6 +83,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
           _.compact( _.map( project.followers.results, "user" ) ) : null }
         keyPrefix="followers-popover"
         placement="bottom"
+        returnContentsWhenEmpty
         contents={ (
           <div className="count">
             <i className="fa fa-user" />

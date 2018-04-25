@@ -1,12 +1,23 @@
 import _ from "lodash";
 import update from "react-addons-update";
 import * as types from "../constants/constants";
+/* global SLIDESHOW_PARAMS */
+/* global SLIDESHOW_URL_PARAMS */
+/* global SLIDESHOW_TITLE */
+/* global SLIDESHOW_SUBTITLE */
+
+let defaultParams = { };
+if ( typeof SLIDESHOW_PARAMS !== "undefined" ) {
+  defaultParams = SLIDESHOW_PARAMS;
+} else if ( typeof SLIDESHOW_URL_PARAMS !== "undefined" ) {
+  _.each( SLIDESHOW_URL_PARAMS.split( "&" ), kv => {
+    const parts = kv.split( "=" );
+    defaultParams[parts[0]] = parts[1];
+  } );
+}
 
 const defaultState = {
-  /* global SLIDESHOW_PARAMS */
-  /* global SLIDESHOW_TITLE */
-  /* global SLIDESHOW_SUBTITLE */
-  searchParams: SLIDESHOW_PARAMS,
+  searchParams: defaultParams,
   title: SLIDESHOW_TITLE,
   subtitle: SLIDESHOW_SUBTITLE,
   slideshowIndex: 0,

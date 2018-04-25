@@ -99,6 +99,7 @@ lb:
   add_photos: Fotoen derbäisetzen
   add_photos_to_this_observation: Fotoe bei dëse Observatioun derbäisetzen
   add_place: Plaz derbäisetzen
+  add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
   add_to_a_project: E Projet derbäisetzen
   add_to_calendar: Bei de Kalenner derbäisetzen
@@ -220,6 +221,7 @@ lb:
   back_to_albums: Zréck op d'Albumen
   back_to_calendar: Zréck op de Kalenner vum %{user}}
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
+  back_to_friends: Zréck bei d'Frënn
   back_to_help: Zréck op d'Hëllef
   back_to_import: Zréck op den Import
   back_to_lists: Zréck op %{name}-Lëschten
@@ -285,7 +287,7 @@ lb:
   check_out_our_blog: Besicht eise Blog
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
-  chose_columns: Kolonnen eraussichen
+  choose_file: Fichier eraussichen
   choose_files: Fichieren eraussichen
   choose_from_your_lists: Aus Äre Lëschten eraussichen
   choose_photos: Fotoen eraussichen
@@ -391,6 +393,7 @@ lb:
       november: November
       december: Dezember
   date_is_accurate: Datum ass richteg
+  date_observed_: Datum vun der Observatioun
   date_picker:
     closeText: Zoumaachen
     currentText: Haut
@@ -403,6 +406,7 @@ lb:
       ''Freideg'', ''Samschdeg'']'
     dayNamesShort: '[''Son'',''Méi'',''Dën'',''Mët'',''Don'',''Frei'',''Sam'']'
     dayNamesMin: '[''So'',''Mé'',''Dë'',''Më'',''Do'',''Fr'',''Sa'']'
+    range: Beräich
   date_time: Datum/Zäit
   dates: Datumen
   datetime_: Datum/Zäit
@@ -477,6 +481,7 @@ lb:
   edited_by: Geännert vum
   edited_by_name_html: Geännert vum %{name}
   editing: Änneren
+  editors: Auteuren
   eg: z. Bsp.
   email: E-Mail
   email_settings: E-Mail-Astellungen
@@ -492,6 +497,7 @@ lb:
   everyone: jiddwereen
   everyone_: Jiddwereen
   everywhere: iwwerall
+  exact: Genee
   exact_date: Geneeën Datum
   explore: Entdecken
   export: Exportéieren
@@ -513,6 +519,7 @@ lb:
   failed: Huet net funktionéiert
   fields: Felder
   fields_: Felder
+  file: Fichier
   fill_out_your_profile: completéiert Äre Profil
   filter: Filter
   filter_by: Filteren no
@@ -543,6 +550,7 @@ lb:
   fluid: flësseg
   follow: Iwwerwaachen
   for_more_information: fir méi Informatiounen.
+  formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
   frequency: Frequenz
   fri: Fre
@@ -550,6 +558,7 @@ lb:
   from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
   from_photos: Vu Fotoen
   full_screen: Ganzen Ecran
+  geo: Geo
   general: Allgemeng
   generate_pdf: PDF generéieren
   generate_your_stats: Generéiert Är Statistiken
@@ -569,12 +578,15 @@ lb:
   guides: Guiden
   guidelines: Richtlinnen
   has_already_been_flagged_by: gouf scho markéiert vum
+  has_photo: Huet eng Foto
   has_photos: huet Fotoen
   has_photos_or_sounds: Huet Fotoen oder Téin
   has_sounds: huet Téin
   hello: <test>
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
+  here_are_some_things_you_can_do_in_the_meantime: Hei sinn e puer Saachen déi Dir
+    an der Tëschenzäit maache kënnt
   hi_user: Salut %{user}
   hide: Verstoppen
   hide_details: Detailer verstoppen
@@ -673,6 +685,7 @@ lb:
     tahitian: Tahitesch
     turkish: Tierkesch
   less: Manner
+  license: Lizenz
   life: Liewen
   life!: Liewen!
   link: Link
@@ -723,6 +736,7 @@ lb:
     zh-TW: Chinesesch (traditionell)
   location: Plaz
   location_: Plaz
+  locations: Plazen
   location_is_public: D'Plaz ass ëffentlech
   location_is_private: Plaz ass privat
   log_in: Aloggen
@@ -740,6 +754,7 @@ lb:
   manage: Geréieren
   manage_names: Nimm geréieren
   map: Kaart
+  map_of_observations: Kaart vun den Observatiounen
   maps:
     overlays:
       all_observations: All Observatiounen
@@ -763,6 +778,7 @@ lb:
   mentions: Mentiounen
   message: Message
   messages: Messagen
+  mobile: Mobil
   momentjs:
     shortRelativeTime:
       past: '%s'
@@ -806,6 +822,7 @@ lb:
   new_comment_on_a_parent_by_user_link: Nei Bemierkung iwwer @vow_or_con{vow:an|a}
     %{parent} vum %{user_link}
   new_guide: Neie Guide
+  new_lexicon: Neie Lexikon
   new_list: Nei Lëscht
   new_members: Nei Memberen...
   new_message: Neie Message
@@ -1113,7 +1130,9 @@ lb:
   regenerate_stats: Statistiken nei generéieren
   reject?: Refuséieren?
   remove: Ewechhuelen
+  remove_photo: Foto ewechhuelen
   remove_place: Plaz ewechhuelen
+  remove_section: Abschnitt ewechhuelen
   repair_external_photos: Extern Fotoe flecken
   replace_parentesis: (ersetzen)
   reply: Äntwerten
@@ -1148,6 +1167,7 @@ lb:
   select: Eraussichen
   select_all: Alles uwielen
   select_at_least_one: Mindestens een Element eraussichen
+  select_one_of_your_albums: Sicht ee vun Ären Albumen eraus
   select_options: Optiounen auswielen
   send: schécken
   sending: Schécken...
@@ -1204,6 +1224,7 @@ lb:
   taxon_observed_by_user: '%{taxon} observéiert vum %{user}'
   tell_the_world_a_little_about_yourself: Zielt eis eppes vun Iech
   tell_us_why: Sot eis firwat...
+  text: Text
   text_: Text
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
   the_: De(n)
@@ -1245,6 +1266,7 @@ lb:
   updated_photo: Aktualiséiert Foto
   upload: Eroplueden
   upload_a_csv_file: CSV-Fichier eroplueden
+  upload_photo: Foto eroplueden
   upload_photos: Fotoen eroplueden
   uploaded_by: Eropgeluede vum
   uploader:
@@ -1271,6 +1293,7 @@ lb:
   view_all_your_projects: All Är Projete weisen
   view_change: Ännerung weisen
   view_projects_from_place: Projeten vu(n) %{place} weisen
+  view_sample: Beispill weisen
   view_stats: Statistike weisen
   view_x: '%{x} weisen'
   view_year_stats_for_site: Weis %{year} Statistike fir %{site}
@@ -1314,6 +1337,7 @@ lb:
   withdraw: Zréckzéien
   withdrawing: Zréckzéien...
   with_errors: Mat Feeler
+  worldwide: Weltwäit
   x_blog: '%{x} säi Blog'
   x_deleted: '%{x} geläscht'
   x_does_not_exist: '"%{x}" gëtt et net'
@@ -1365,9 +1389,6 @@ lb:
   yours: Ären
   youve_already_added_an_identification: Dier hutt schonn eng Identifikatioun dobäigesat,
     Dir däerft just eng derbäisetzen
-  zoom_photo: Zoom Foto
-  here_are_some_things_you_can_do_in_the_meantime: Hei sinn e puer Saachen déi Dir
-    an der Tëschenzäit maache kënnt
   views:
     devise:
       mailer:
@@ -1391,9 +1412,15 @@ lb:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: Ok, mir schécken Iech eng E-Mail wann et prett ass.
     projects:
+      collection: Sammlung
       edit:
         rules:
           has_a_photo: eng Foto hunn
+      new:
+        delete_project: Projet läschen
+        project_details: Detailer vum Projet
+        project_name: Numm vum Projet
+        project_summary: Resumé vum Projet
       project_user_curator_coordinate_access_labels:
         observer: Jo, awer nëmme wann ech selwer d'Observatioun bei de Projet derbäisetzen
         any: Jo, et ass net wichteg wien d'Observatioun bei de Projet derbäisetzt.
@@ -1456,6 +1483,9 @@ lb:
       8: August
       9: September
   datetime:
+    countdown_x_hours: '{{PLURAL: $1|one=Stonn|Stonnen}}'
+    countdown_x_seconds:
+      other: Sek
     prompts:
       day: Dag
   errors:
@@ -1507,6 +1537,8 @@ lb:
           attributes:
             place_geometry:
               is_too_large_to_import: ass ze grouss fir z'importéieren
+    models:
+      Atlas: Atlas
     attributes:
       assessment:
         description: Beschreiwung
@@ -1516,14 +1548,16 @@ lb:
         status: Situatioun
         description: Beschreiwung
         place_id: Plaz
-      project:
-        description: Beschreiwung
-      place:
-        name: Numm
       flag:
         reason: Grond
       observation_field_value:
         value: Wäert
+      post:
+        title: Titel
+      project:
+        description: Beschreiwung
+      place:
+        name: Numm
       taxon:
         name: Numm
       user:
@@ -1561,4 +1595,5 @@ lb:
     previous_label: '&#8592; Vireg'
     next_label: Nächst &#8594;
     page_gap: '&hellip;'
+  zoom_photo: Zoom Foto
 ...

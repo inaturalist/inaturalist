@@ -1,22 +1,4 @@
 en:
-  licensing_your_content: |
-    Licensing your content gives others the legal right to use it if
-    they stick to the terms of the license. %{site_name} uses your Creative
-    Commons-licensed content to share with data partners like the 
-    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
-  you_think_observation_inacurate: |
-    If you think this observation is inaccurate, please add an ID,
-    participate in the quality assessment above, or describe the inaccuracy
-    in a comment.
-  we_also_support: |
-    We also support <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, and
-    <a href="http://facebook.com">Facebook</a>
-    for image hosting.
-  a_default_taxon_name_will_automatically_created: |
-    A default taxon name will automatically be created from the scientific name attribute of this taxon. 
-    When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   x_comments:
     one: '1 comment'
     other: '%{count} comments'
@@ -119,9 +101,14 @@ en:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taxon change added"
     other: "<span class='count'>%{count}</span> taxon changes added"
+  _100_day_trends: 100 Day Trends
+  _percent_ID_d: "% ID'd"
   a: a
   a_: a
   a_community_for_naturalist: A Community for Naturalists
+  a_default_taxon_name_will_automatically_created: |
+    A default taxon name will automatically be created from the scientific name attribute of this taxon. 
+    When you've saved this new taxon, you'll be able to add other names here (common names, outdated scientific names, etc.).
   a_few_points_to_make_things_clear: "A few points to make things a bit clearer:"
   a_flag_for_x: "a flag for %{x}"
   a_greasemonkey_script: a Greasemonkey script
@@ -165,7 +152,8 @@ en:
   action: Action
   actions: Actions
   activate_user: Activate user
-  active: active
+  active: Active
+  active_users: Active Users
   activity: Activity
   activity_settings: Activity settings
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
@@ -758,6 +746,7 @@ en:
   choose_taxon: Choose a taxon
   choose_what_kind_of_change_youre_creating: "Choose what kind of change you're creating."
   choose_your_username: Choose your username
+  cid_d_to_genus: CID'd to Genus
   citation: Citation
   classification: Classification
   clear: clear
@@ -1752,12 +1741,16 @@ en:
     cebuano: Cebuano
     creole_french: creole (French)
     creole_portuguese: creole (Portuguese)
+    czech: Czech
+    danish: Danish
     davawenyo: Davawenyo
     dutch: Dutch
     english: English
+    finnish: Finnish
     french: French
     gela: Gela
     german: German
+    greek: Greek
     hawaiian: Hawaiian
     hebrew: Hebrew
     hiligaynon: Hiligaynon
@@ -1766,6 +1759,7 @@ en:
     italian: Italian
     japanese: Japanese
     korean: Korean
+    luxembourgish: Luxembourgish
     maltese: Maltese
     maori: Maori
     misima_paneati: Misima-paneati
@@ -1786,6 +1780,12 @@ en:
   licensed_site_photos: "Licensed %{site_name} photos"
   license: License
   licensing: Licensing
+  licensing_your_content: |
+    Licensing your content gives others the legal right to use it if
+    they stick to the terms of the license. %{site_name} uses your Creative
+    Commons-licensed content to share with data partners like the 
+    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+    (GBIF).
   licensing_your_content_gives_others_legal: "Licensing your content gives others the legal right to use it if they stick to the terms of the license. %{site_name} uses your Creative Commons-licensed content to share with data partners like the "
   life: Life
   life!: Life!
@@ -2102,6 +2102,7 @@ en:
   Needs_ID!: Needs ID!
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
+  new: New
   new_announcement: New announcement
   new_assessment: New assessment
   new_check_list: New check list
@@ -2139,6 +2140,8 @@ en:
   new_trip: New trip
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
   new_user_rules: New User Rules
+  new_users: New Users
+  new_users_w_7_obs: New Users w/ 7 Obs
   new_users_week: New Users / Week
   news: News
   next: Next
@@ -2275,6 +2278,8 @@ en:
   numeric_: numeric
   noun_by_you: "%{noun} by you"
   obs: Obs
+  obs_cid_d: Obs CID'd
+  obs_id_d: Obs ID'd
   obscured_: obscured
   obscured: Obscured
   obscured_or_private: obscured or private
@@ -2285,7 +2290,9 @@ en:
   observation_added_to_the_project: "Observation added to the project \"%{project}\""
   observation_aggregation: Observation aggregation
   observation_photo_uploader: Observation Photo Uploader
-  observations_by_category: "Observations by category"
+  observations_by_category: "Observations By category"
+  observations_by_app: Observations By App
+  observations_by_rank: Observations By Rank
   observations_by_user_on_date: "Observations by %{user} on %{date}"
   observations_by_you: "Observations by you"
   observations_by_you_on_date: "Observations by you on %{date}"
@@ -2505,7 +2512,7 @@ en:
   original_url: Original URL
   original_url_for_this_map: Original URL for this map
   organism_appears_captive_cultivated: Organism appears captive / cultivated
-  other: other
+  other: Other
   other_animals: other animals
   other_animals_plural:
     one: other animal
@@ -3035,7 +3042,7 @@ en:
   required_columns_in_order: Required columns in order
   research: research
   research_: Research
-  research_grade: research grade
+  research_grade: Research Grade
   research_grade_expandable_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
   research_grade_short_html: "R<span class='full'>esearch </span>G<span class='full'>rade</span>"
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
@@ -3218,6 +3225,7 @@ en:
   small: small
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
+  site_stats: Site Stats
   site_taxon_page: "%{site_name} taxon page"
   site_year_in_review: "%{site_name} Year In Review %{year}"
   so_meta!: so meta!
@@ -3694,7 +3702,7 @@ en:
   top_observer: Top Observer
   top_observers: Top Observers
   top_species: Top Species
-  total: total
+  total: Total
   totals: totals
   total_members: Total members
   total_observations: Total observations
@@ -3964,6 +3972,11 @@ en:
   want_to_test_a_new_version_of_this_page: Want to test a new version of this page?
   wanted: Wanted
   was_it_captive_cultivated?: "Was it captive / cultivated?"
+  we_also_support: |
+    We also support <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Photos</a>, and
+    <a href="http://facebook.com">Facebook</a>
+    for image hosting.
   we_can_only_understand_csv_in: We can only understand CSV in the following format
   we_care_privacy: We Care About Your Privacy!
   we_couldnt_find_a_user: We couldn't find a user with that email address.
@@ -3981,6 +3994,7 @@ en:
     We tried to process your upload named %{filename} but it didn't work.
     Please fix the following problem(s) and try again.
   weather: Weather
+  website: Website
   wed: Wed
   week_of_date: "Week of %{date}"
   welcome!: Welcome!
@@ -4179,6 +4193,10 @@ en:
   you_sure_remove_taxon_from?: "Are you sure you want to remove this taxon from %{list}?"
   you_sure_remove_this_invitation?: "Are you sure you want to remove this invitation?"
   you_sure_remove_this_observation?: Are you sure you want to remove this observation?
+  you_think_observation_inacurate: |
+    If you think this observation is inaccurate, please add an ID,
+    participate in the quality assessment above, or describe the inaccuracy
+    in a comment.
   you_tried_to_do_something_you_shouldnt: |
     You tried to do something you shouldn't, like edit
     someone else's data without permission.  Don't be evil.
@@ -5215,6 +5233,10 @@ en:
           places, taxa, users, quality, and dates that you define. Choose between two types:
           Collection Projects and Umbrella Projects, which share the following features:
         welcome_to_projects: Welcome to Projects!
+        you_have_not_defined_any_observation_requirements: |
+          You have not defined any observation requirements. Make sure to select one or more taxa
+          (e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates to define
+          the observations that you want to include in your project.
       project_location_privacy_notice_html: |
         <p>
           Please be aware project curators will be able to see any private or
@@ -5314,6 +5336,46 @@ en:
         sorry_that_doesnt_exist: Sorry, that doesn't exist!
         even_our_dedicated_search_mole_couldnt: Even our dedicated search mole couldn't find anything!
     stats:
+      index:
+        active_desc: Created an ID, obs, comment, or post in the previous 30 days
+        active_users_desc: Created an ID, obs, comment, or post in the previous 30 days
+        android_desc_html: Created via the <a href="%{url}">iNaturalist Android app</a>
+        avg_ttcid: Avg TTCID
+        avg_ttid: Avg TTID
+        identifiers_desc: Added an ID to someone else's obs on this day
+        iphone_desc_html: Created via the <a href="%{url}">iNaturalist iPhone app</a>
+        med_ttcid: Med TTCID
+        med_ttid: Med TTID
+        new_users_desc: Signed up on this day
+        obs_1_day: "Obs (1 day)"
+        obs_1_day_desc: "Observations created on a single day"
+        obs_cid_d_desc: Created in prev 7 days and have a community ID
+        obs_cid_d_to_genus: Obs CID'd to genus
+        obs_cid_d_to_genus_desc: Created in prev 7 days and have a community ID at or below genus-level
+        obs_desc: Created in prev 7 days
+        obs_id_d_desc: Created in prev 7 days and have an ID (could be observer's)
+        other_desc_html: Created via other applications <a href="%{url}">built by developers</a>
+        recent_desc: Signed up in prev 7 days
+        recent_w_0_obs: Recent w/ 0 obs
+        recent_w_0_obs_desc: Signed up in prev 7 days and added 0 obs
+        recent_w_7_obs: Recent w/ >= 7 obs
+        recent_w_7_obs_desc: Signed up in prev 7 days and added >= 7 obs
+        time_to_id_desc: Time to ID (hours, 1 week moving window)
+        TTCID: TTCID
+        TTCID_desc: Time to receive an identification from someone else that matches the community taxon.
+        TTID: TTID
+        TTID_desc: Time to receive an identification from someone else
+        TTID_note: |
+          These stats are made for observations created for a week prior, which
+          means it will miss identifications added to observations after more
+          than a week, and thus make the stats look lower than they would if you
+          computed them again in the present, but they should still provide a
+          decent measure for how fast the community is at identifying within 1
+          week windows. Note that these stats are only for observations with
+          photos.
+        website_desc_html: |
+          Created via <a href="https://www.inaturalist.org">iNaturalist</a>
+          or <a href="%{url}">iNaturalist Network</a> websites
       year:
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
@@ -5454,13 +5516,13 @@ en:
           "Flowering Phenology=budding": Budding
           "Flowering Phenology=flower": Flowering
           "Flowering Phenology=fruit": Fruiting
-          "Insect life stage=egg": Egg
-          "Insect life stage=larva": Larva
-          "Insect life stage=teneral": Teneral
-          "Insect life stage=subimago": Subimago
-          "Insect life stage=nymph": Nymph
-          "Insect life stage=pupa": Pupa
-          "Insect life stage=adult": Adult
+          "Life Stage=egg": Egg
+          "Life Stage=larva": Larva
+          "Life Stage=teneral": Teneral
+          "Life Stage=subimago": Subimago
+          "Life Stage=nymph": Nymph
+          "Life Stage=pupa": Pupa
+          "Life Stage=adult": Adult
           unannotated: No Annotation
         photo_chooser_modal_desc: |
           Drag photos here from the left, or drag photos here to re-arrange.

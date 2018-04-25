@@ -8,7 +8,7 @@ import {
   removeProjectUser,
   setDescription,
   setTitle,
-  submitProject,
+  confirmSubmitProject,
   updateProject,
   onFileDrop,
   deleteProject,
@@ -35,7 +35,7 @@ function mapDispatchToProps( dispatch ) {
     setDescription: description => dispatch( setDescription( description ) ),
     setTitle: title => dispatch( setTitle( title ) ),
     removeProject: ( ) => dispatch( removeProject( ) ),
-    submitProject: ( ) => dispatch( submitProject( ) ),
+    confirmSubmitProject: ( ) => dispatch( confirmSubmitProject( ) ),
     updateProject: attrs => dispatch( updateProject( attrs ) ),
     deleteProject: ( ) => dispatch( deleteProject( ) ),
     setRulePreference: ( field, value ) => dispatch( setRulePreference( field, value ) )

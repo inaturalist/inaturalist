@@ -718,7 +718,6 @@ id:
     photos from other sites or pick from %{site_name} observations. Try to choose
     images that <em>show diagnostic features</em> and <em>look good as icons</em>.  The
     <em>first is the default</em>.
-  chose_columns: Pilih kolom
   choose_files_from_your_computer: Pilih berkas dari komputer anda
   choose_from_your_lists: Pilih dari daftar anda
   choose_good_default_photos: memilih yang baik foto bawaan dari kolam foto Creative
@@ -1430,6 +1429,8 @@ id:
   here_are_3_examples: Berikut adalah 3 contoh data yang terbentuk
   here_are_some_things_you_can_do_meantime: 'Berikut adalah beberapa hal yang dapat
     Anda lakukan sementara itu:'
+  here_are_some_things_you_can_do_in_the_meantime: 'Berikut adalah beberapa hal yang
+    dapat Anda lakukan sementara itu:'
   heres_a_litle_about: Berikut adalah sedikit tentang
   hex_color_eg: warna hex, e.g. 65644F
   hi: Halo,
@@ -2054,8 +2055,6 @@ id:
   no_wikipedia_page_for_taxon: Tidak ada halaman Wikipedia pada taksa ini
   no_x_this_y: Tidak ada %{x} ini %{y}
   none: Tak satupun
-  none_of_the_people_you_follow_have_updates: Belum ada satupun orang yang kamu ikuti
-    membuat pembaharuan!
   normal: normal
   not_completed: Belum Selesai
   not_evaluated: tidak dievaluasi
@@ -3636,12 +3635,6 @@ id:
   youve_opted_out_of_community_ids_for_this_obs: Memilih keluar dari identifikasikomunitas
     untuk pengamatan ini
   youve_seen_it_want_to: Anda telah melihat itu! Ingin untuk
-  zoom_in: Perdekat
-  zoom_out: Perjauh
-  here_are_some_things_you_can_do_in_the_meantime: 'Berikut adalah beberapa hal yang
-    dapat Anda lakukan sementara itu:'
-  none_of_the_people_you_follow_have_any_updates_yet: Belum ada satupun orang yang
-    kamu ikuti membuat pembaharuan!
   verifiable: diverifikasi
   views:
     views: Lihat
@@ -4173,9 +4166,20 @@ id:
         url: URL
         geoprivacy: Geoprivasi
         iucn: setara IUCN
+      flag:
+        reason: Alasan
+        flag: Tanda
       guide:
         source_url: Sumber URL
         published_at: Publikasi
+      listed_taxon:
+        occurrence_status_level: tingkat status terjadinya
+        establishment_means: Pendirian sarana
+      observation:
+        geo_x: Arah Timur
+        geo_y: Arah Utara
+      observation_field_value:
+        value: Nilai
       project:
         title: Judul
         project_icon: Ikon proyek
@@ -4205,14 +4209,11 @@ id:
         place_type: Tipe tempat
         prefers_check_lists: Checklist diperbolehkan?
         woeid: WOEID
-      flag:
-        reason: Alasan
-        flag: Tanda
-      observation:
-        geo_x: Arah Timur
-        geo_y: Arah Utara
-      observation_field_value:
-        value: Nilai
+      source:
+        title: Judul
+        in_text: dalam teks
+        url: URL
+        citation: Kutipan
       taxon:
         name: Nama
         rank: Peringkat
@@ -4228,14 +4229,6 @@ id:
         name_provider: Nama penyedia
         source_url: Sumber URL
         source_identifier: Sumber identifier
-      source:
-        title: Judul
-        in_text: dalam teks
-        url: URL
-        citation: Kutipan
-      listed_taxon:
-        occurrence_status_level: tingkat status terjadinya
-        establishment_means: Pendirian sarana
   i18n:
     inflections:
       :@vow_or_con:
@@ -4245,4 +4238,6 @@ id:
         m: Pria
         f: Wanita
   wild: Liar
+  zoom_in: Perdekat
+  zoom_out: Perjauh
 ...

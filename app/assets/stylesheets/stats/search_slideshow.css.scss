@@ -38,14 +38,14 @@ a, a:hover, a:active, a:focus {
   }
 }
 
-.people-slide .person, .species-slide .species {
+.people-slide .person, .species-slide div.species {
   background-color: rgba(0,0,0,0.07);
   .meta .count {
     color: black;
   }
 }
 
-.photos-slide .cell .caption {
+.photos-slide .cell .SplitTaxon {
   color: white;
 }
 
