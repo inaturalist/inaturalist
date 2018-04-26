@@ -13,12 +13,13 @@ $.fn.universalAutocomplete = function( options ) {
       $( field ).data( "selected", false );
       return;
     }
-    var results = $( "li:visible", options.appendTo )
-    if ( results.length === 0 ) {
-      window.location = "/observations?taxon_name=" + $( field ).val( );
-    } else {
-      results.get( 0 ).click( );
-    }
+    // var results = $( "li:visible", options.appendTo )
+    // if ( results.length === 0 ) {
+    //   window.location = "/search?q=" + $( field ).val( );
+    // } else {
+    //   results.get( 0 ).click( );
+    // }
+    window.location = "/search?q=" + $( field ).val( );
   } );
 
   field.template = function( item ) {

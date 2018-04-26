@@ -2,28 +2,47 @@
   =t :search
 - content_for :extracss do
   :css
-    .media-left a { display: block; width: 75px; text-align: center; }
-    .media-left a i { font-size: 75px; }
-    .media-left a i.fa { font-size: 50px; }
-    .media-left a img { max-height: 75px; max-width: 75px; }
+    .bootstrap .media-left {
+      padding-right: 20px;
+    }
+    .media-left.icon .inner {
+      border: 1px solid #aaa;
+    }
+    .media-left a {
+      display: block;
+      width: 64px;
+      height: 64px;
+      text-align: center;
+    }
+    .media-left.icon a {
+      background-color: #aaa;
+      border: 2px solid white;
+    }
+    .media-left.icon a i { font-size: 40px; line-height: 60px; color: white; }
+    .media-left.icon a i[class*="iconic"] { font-size: 50px; line-height: 55px; }
+    .media-left a img { width: 100%; max-height: 64px; max-width: 64px; }
+    .media-left .usericon { display: block; width: 64px; height: 64px; background-size: cover; border-radius: 500px; background-position: center; }
     .media .taxon a { color: #428BCA !important; }
+    #controls { margin: 10px 0 40px; }
+    .form-search .btn { background-color: #74ac00; border-color: #74ac00; }
+    .form-search .input-group { width: 300px; }
 .container
   .row
     .col-xs-12
-      %h1=t :search
-      %ul.nav.nav-pills.pull-right
-        %li{ class: @sources.blank? ? "active" : nil }
-          = link_to t(:all), search_path( q: @q )
-        - %w(taxa users projects places).each do |source|
-          %li{ class: @sources.include?( source ) ? "active" : nil }
-            = link_to t( source, default: source ), search_path( q: @q, "source[]": source )
-      = form_tag( url_for, method: :get, class: "form-search form-inline" ) do
-        .input-group
-          %input.text.form-control{ name: "q", type: "text", value: @q, placeholder: t(:search) }
-          .input-group-btn
-            = submit_tag t(:search), class: "btn btn-primary"
-          - @sources.each do |source|
-            %input{ type: "hidden", name: "source[]", value: source }
+      %h1= @q.blank? ? t(:search) : t(:search_results_for_query, query: @q)
+
+      #controls
+        = form_tag( url_for, method: :get, class: "form-search form-inline pull-right" ) do
+          .input-group
+            %input.text.form-control{ name: "q", type: "text", value: @q, placeholder: t(:search) }
+            .input-group-btn
+              = submit_tag t(:go), class: "btn btn-primary"
+            - @sources.each do |source|
+              %input{ type: "hidden", name: "source[]", value: source }
+        #source-btns.btn-group
+          = link_to t(:all), search_path( q: @q ), class: "btn btn-default #{@sources.blank? ? "active" : nil}"
+          - %w(taxa users projects places).each do |source|
+            = link_to t( source, default: source ), search_path( q: @q, "source[]": source ), class: "btn btn-default #{@sources.include?( source ) ? "active" : nil}"
   .row
     .col-xs-12
       - if @results.blank?
@@ -32,44 +51,52 @@
       - for record in @results
         .media
           - if record.is_a?( Taxon )
-            .media-left
-              = link_to record do
-                = taxon_image( record )
+            .media-left{ class: record.default_photo.blank? ? "icon" : nil }
+              .inner
+                = link_to record do
+                  - if record.default_photo.blank?
+                    %i{ class: "icon-iconic-#{record.iconic_taxon_name.try(:underscore) || 'unknown'}"}
+                  - else
+                    = taxon_image( record )
             .media-body
               %h4.media-heading= render "shared/taxon", taxon: record, link_url: record
               %p=raw record.wikipedia_summary || record.auto_summary
           - elsif record.is_a?( Place )
-            .media-left
-              = link_to record do
-                %i.fa.fa-map-marker
+            .media-left.icon
+              .inner
+                = link_to record do
+                  %i.fa.fa-map-marker
             .media-body
               %h4.media-heading= link_to t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record
               - unless record.place_type_name.blank?
                 %p= t( "place_geo.geo_planet_place_types.#{record.place_type_name.to_s.parameterize.underscore}", default: record.place_type_name ).capitalize
           - elsif record.is_a?( Project )
-            .media-left
-              = link_to record do
-                - if record.icon?
-                  = image_tag record.icon.url(:span2)
-                - else
-                  %i.fa.fa-briefcase
+            .media-left{ class: record.icon? ? nil : "icon" }
+              .inner
+                = link_to record do
+                  - if record.icon?
+                    = image_tag record.icon.url(:span2)
+                  - else
+                    %i.fa.fa-briefcase
             .media-body
               %h4.media-heading= link_to record.try_methods( :name, :title ), record
               %p= formatted_user_text( record.try_methods( :body, :description ) )
           - elsif record.is_a?( User )
-            .media-left
-              = link_to record do
-                - if record.icon?
-                  = user_image record, size: "thumb"
-                - else
-                  %i.icon-person
+            .media-left{ class: record.icon? ? nil : "icon" }
+              .inner
+                = link_to record do
+                  - if record.icon?
+                    .usericon{ style: "background-image: url( '#{record.icon.url(:medium)}')" }
+                  - else
+                    %i.icon-person
             .media-body
               %h4.media-heading= link_to record.login, person_path( record )
               %p= formatted_user_text( record.try_methods( :description, :name ).to_s.truncate( 200 ) )
           - else
-            .media-left
-              = link_to record do
-                %i.icon-iconic-unknown
+            .media-left.icon
+              .inner
+                = link_to record do
+                  %i.icon-iconic-unknown
             .media-body
               %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
               %p= formatted_user_text( record.try_methods( :body, :description ).to_s.truncate( 200 ) )
