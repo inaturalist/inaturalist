@@ -272,7 +272,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def index_taxon
-    taxon.elastic_index!
+    taxon.elastic_index! if taxon
   end
 
   def self.localizable_lexicon(lexicon)
