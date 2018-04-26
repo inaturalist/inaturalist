@@ -19,7 +19,9 @@ import UsersPopover from "../../../observations/show/components/users_popover";
 const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) => {
   let view;
   let tab = config.selectedTab;
-  if ( project.startDate && !project.started && tab !== "about" ) {
+  const showingCountdown = ( project.startDate && !project.started && tab !== "about" &&
+    !( project.recent_observations && !_.isEmpty( project.recent_observations.results ) ) );
+  if ( showingCountdown ) {
     tab = "before_event";
   }
   switch ( tab ) {
@@ -119,7 +121,8 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
       </div>
     </div>
   );
-  const headerInProgress = ( project.started && !project.ended ) ? (
+  const inProgress = ( project.startDate && !showingCountdown ) && !project.ended;
+  const headerInProgress = inProgress ? (
     <div className="header-in-progress">
       { I18n.t( "event_in_progress" ) }
     </div>
@@ -234,7 +237,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
           </Row>
         </Grid>
       </div>
-      { !( project.startDate && !project.started ) && ( <StatsHeaderContainer /> ) }
+      { !showingCountdown && ( <StatsHeaderContainer /> ) }
       <div className="Content">
         { view }
       </div>
