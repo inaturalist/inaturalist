@@ -958,6 +958,11 @@ class Project < ActiveRecord::Base
     (response && response.total_results) || 0
   end
 
+  def flagged_with( flag, options = {} )
+    evaluate_new_flag_for_spam( flag )
+    elastic_index!
+  end
+
   def self.recently_added_to_ids( options = { } )
     options[:limit] ||= 9
     project_observations = ProjectObservation.select( "project_id" )
