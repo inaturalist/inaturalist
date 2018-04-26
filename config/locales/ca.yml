@@ -11,21 +11,6 @@
 # Author: Macofe
 ---
 ca:
-  licensing_your_content: Llicenciar el contingut permet a altres persones el dret
-    legal d'utilitzar-ho si respecten els termes de la llicència. %{site_name} utilitza
-    el vostre contingut amb llicència de Creative Commons per compartir amb altres
-    associats com </a> href=http://www.gbif.org/>Global Biodiversity Information Facility</a>
-    (GBIF).
-  you_think_observation_inacurate: |-
-    Si penseu que aquesta observació és inexacta, afegiu una
-    ID, participeu en l'avaluació de la qualitat de les dades, o descriu la inexactitud amb un comentari.
-  we_also_support: |-
-    També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Fotografies de Google</a> i
-    <a href="http://facebook.com">Facebook</a>.
-  a_default_taxon_name_will_automatically_created: |-
-    Es crearà automàticament un nom per defecte del tàxon a partir de l'atribut del seu nom científic.
-    Quan hagueu desat aquest tàxon, podreu afegir-hi altres noms (noms comuns, noms científics actualitzats, etc.).
   x_comments:
     one: 1 comentari
     other: '%{count} comentaris'
@@ -121,6 +106,9 @@ ca:
   a: una
   a_: una
   a_community_for_naturalist: Una comunitat per a naturalistes
+  a_default_taxon_name_will_automatically_created: |-
+    Es crearà automàticament un nom per defecte del tàxon a partir de l'atribut del seu nom científic.
+    Quan hagueu desat aquest tàxon, podreu afegir-hi altres noms (noms comuns, noms científics actualitzats, etc.).
   a_few_points_to_make_things_clear: Més informació per aclarir les coses
   a_flag_for_x: una marca de %{x}
   a_greasemonkey_script: un script de Greasemonkey
@@ -1950,6 +1938,11 @@ ca:
     imatges
   licensed_site_photos: Fotos amb llicència de %{site_name}
   licensing: Llicències
+  licensing_your_content: Llicenciar el contingut permet a altres persones el dret
+    legal d'utilitzar-ho si respecten els termes de la llicència. %{site_name} utilitza
+    el vostre contingut amb llicència de Creative Commons per compartir amb altres
+    associats com </a> href=http://www.gbif.org/>Global Biodiversity Information Facility</a>
+    (GBIF).
   licensing_your_content_gives_others_legal: Llicenciar el contingut que genereu dona
     a altres persones el dret a fer-lo servir, sempre que acceptin les condicions
     de la llicència. %{site_name} fa servir el vostre contingut amb llicència de Creative
@@ -2351,6 +2344,7 @@ ca:
   new_updates_in_the_last_24_hours_from: Noves actualitzacions a les darreres 24 hores
     d’%{site_name}
   new_user_rules: Noves normes d'usuari
+  new_users: Usuaris nous
   new_users_week: Nous usuaris / setmana
   news: Notícies
   next: Següent
@@ -3468,9 +3462,9 @@ ca:
     quan l'espai és molt limitat (màxim 10 caràcters).
   show: Mostra
   show_active_and_inactive_taxa: Mostra tàxons actius i inactius
-  show_default_taxon_photos: Mostra les fotos predeterminades del tàxon
   show_common_names: Mostra noms vulgars
   show_counts: Mostra càlculs basats en la llista
+  show_default_taxon_photos: Mostra les fotos predeterminades del tàxon
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_kml: Mostra KML
   show_less: Mostrar menys
@@ -3481,14 +3475,14 @@ ca:
     blog o pàgina web!
   show_only: Mostra només
   show_taxa_from_both: (mostra un altre cop tàxons d'ambdues llistes)
+  show_taxa_from_everywhere: Mostra tàxons de tot arreu
+  show_taxa_from_place: Mostra tàxon de %{place}
   show_total_listed_taxa: Mostra la llista total de tàxons
+  show_uncountable_species: Mostra espècies incomptables
   showing_observations_by: Mostrant observacions fetes per
   showing_one_to: Mostrant 1 -
-  showing_taxa_from_place: Mostrant tàxons de %{place}
-  show_taxa_from_place: Mostra tàxon de %{place}
   showing_taxa_from_everywhere: Mostrant tàxons de tot arreu
-  show_taxa_from_everywhere: Mostra tàxons de tot arreu
-  show_uncountable_species: Mostra espècies incomptables
+  showing_taxa_from_place: Mostrant tàxons de %{place}
   shown_publicly_as: Mostra públicament com a
   sign_in: Inicieu sessió
   sign_in_with_provider: Inicieu sessió amb %{provider}
@@ -4355,6 +4349,10 @@ ca:
   want_to_test_a_new_version_of_this_page: Vol provar una nova versió d'aquesta pàgina?
   wanted: Requerit
   was_it_captive_cultivated?: Estava captiva/conreada?
+  we_also_support: |-
+    També acceptem imatges allotjades a <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Fotografies de Google</a> i
+    <a href="http://facebook.com">Facebook</a>.
   we_can_only_understand_csv_in: Només podem importar CSV amb el format següent
   we_care_privacy: Ens importa la vostra privacitat!
   we_couldnt_find_a_user: No hem trobat cap usuari amb aquest correu electrònic.
@@ -4614,6 +4612,9 @@ ca:
   you_sure_remove_taxon_from?: Esteu segur que voleu eliminar aquest tàxon de %{list}?
   you_sure_remove_this_invitation?: Esteu segur que voleu eliminar aquesta invitació?
   you_sure_remove_this_observation?: Esteu segur que voleu eliminar aquesta observació?
+  you_think_observation_inacurate: |-
+    Si penseu que aquesta observació és inexacta, afegiu una
+    ID, participeu en l'avaluació de la qualitat de les dades, o descriu la inexactitud amb un comentari.
   you_tried_to_do_something_you_shouldnt: |-
     Heu intentat fer quelcom que no hauríeu de fer, com editar la informació d'algú sense autorització.
     No ho feu!
@@ -5563,13 +5564,13 @@ ca:
           Flowering Phenology=budding: Incipient
           Flowering Phenology=flower: Floració
           Flowering Phenology=fruit: Fructificació
-          Insect life stage=egg: Ou
-          Insect life stage=larva: Larva
-          Insect life stage=teneral: Muda
-          Insect life stage=subimago: Subimago
-          Insect life stage=nymph: Nimfa
-          Insect life stage=pupa: Pupa
-          Insect life stage=adult: Adult
+          Life Stage=egg: Ou
+          Life Stage=larva: Larva
+          Life Stage=teneral: Muda
+          Life Stage=subimago: Subimago
+          Life Stage=nymph: Nimfa
+          Life Stage=pupa: Pupa
+          Life Stage=adult: Adult
         photo_chooser_modal_desc: Arrossegueu les fotografies aquí des de l'esquerra,
           o arrossegueu les fotografies aquí per tornar a organitzar.
         photo_chooser_modal_explanation: Tingueu en compte que la pàgina del tàxon

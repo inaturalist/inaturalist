@@ -15,17 +15,6 @@
 # Author: 아라
 ---
 zh-TW:
-  licensing_your_content: 授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與像是<a
-    href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
-  you_think_observation_inacurate: 如果您認為這筆觀察紀錄有誤，請您添加物種名稱、評估資料品質，或在評論欄中詳述不符點。
-  we_also_support: |-
-    我們亦支援使用 <a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google 照片</a>，及
-    <a href="http://facebook.com">Facebook</a>
-    作為圖片託管。
-  a_default_taxon_name_will_automatically_created: |-
-    拉丁文學名會自動成為此物種之預設分類群名稱。
-    當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   x_comments:
     one: 1 個評論
     other: '%{count} 個評論'
@@ -128,9 +117,13 @@ zh-TW:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> 個物種變更已新增
     other: <span class='count'>%{count}</span> 個物種變更已新增
+  _100_day_trends: 100 天裡的趨勢
   a: 一個
   a_: 一
   a_community_for_naturalist: 一個博物學友的社群
+  a_default_taxon_name_will_automatically_created: |-
+    拉丁文學名會自動成為此物種之預設分類群名稱。
+    當您儲存這個新分類群後，您將可為這個物種加上其他名稱(例如俗名、過時的學名等)。
   a_few_points_to_make_things_clear: '令事情更清楚的幾個要點 :'
   a_flag_for_x: '%{x} 已被標上標記'
   a_greasemonkey_script: Greasemonkey (firefox 瀏覽器外掛) 指令稿
@@ -163,6 +156,7 @@ zh-TW:
   about_x: 關於 %{x}
   acc: 精確度 (公尺)
   account: 帳號
+  account_settings: 帳號設定
   accept: 接受
   accept_community_identifications: 接受社群的物種鑑定
   accuracy: 精度
@@ -174,6 +168,7 @@ zh-TW:
   actions: 操作
   activate_user: 啟用用戶
   active: 有效
+  active_users: 活躍使用者
   activity: 動態
   activity_settings: 動態設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
@@ -869,6 +864,7 @@ zh-TW:
     egg: 卵
     juvenile: 亞成體
   controls: 控制
+  convert: 轉換
   coordinate_systems: 座標系統
   coordinates: 座標
   coordinates_private: （私有座標）
@@ -1099,7 +1095,7 @@ zh-TW:
   drawings: 圖形
   duplicate_verb: 重複
   each_place_displays_all_species_inat_knows: 任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在
-    %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來過濾物種。
+    %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來篩選物種。
   edit: 編輯
   edit_a_batch_of_observations: 編輯批量觀察
   edit_account_settings_and_profile: 編輯帳號設定&amp;個人檔案
@@ -1118,6 +1114,7 @@ zh-TW:
   edit_multiple_species: 編輯多個物種
   edit_notes: 編輯註解
   edit_observation: 編輯觀察
+  edit_observations: 編輯觀察
   edit_photos: 編輯照片
   edit_photos_for_observation_id: 編輯用於%{obs_id}此觀察的照片
   edit_place: 編輯地點
@@ -1741,6 +1738,8 @@ zh-TW:
   licensed_site_photos: 已授權的 %{site_name} 照片
   license: 許可協議
   licensing: 許可協議
+  licensing_your_content: 授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與像是<a
+    href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）的資料合作者共享內容。
   licensing_your_content_gives_others_legal: 授權您的內容，可讓其他遵守授權條款的用戶能合法使用其中資料。%{site_name}
     使用您的創用 CC 授權內容，來與其它資料合作者分享，例如
   life: 生物
@@ -2101,6 +2100,7 @@ zh-TW:
   new_trip: 新旅程
   new_updates_in_the_last_24_hours_from: 來自於 %{site_name} 在最近 24 小時內新的更新
   new_user_rules: 新用戶規範
+  new_users: 新使用者
   new_users_week: 新用戶 / 週
   news: 最新消息
   next: 下一個
@@ -2243,6 +2243,8 @@ zh-TW:
   observation_aggregation: 觀察聚集
   observation_photo_uploader: 觀察照片上傳者
   observations_by_category: 依分類區分觀察
+  observations_by_app: 依應用程式區分觀察
+  observations_by_rank: 依級別區分觀察
   observations_by_user_on_date: 於 %{date} 由 %{user} 所做的觀察
   observations_by_you: 由您所做的觀察
   observations_by_you_on_date: 於 %{date} 由您所做的觀察
@@ -2338,7 +2340,7 @@ zh-TW:
   of_it_and_its_descendants: 它和它的後代
   of_least_concern: 最不重要的
   of_observations: 項觀察記錄
-  of_species: 種物種
+  of_species: 個物種
   of_observers: 個觀察者
   of_identifiers: 個辨認者
   of_places: 個地點
@@ -2740,6 +2742,9 @@ zh-TW:
   profile: 個人資料
   project: 專案
   project_added_your_observations: 專案已添加您的觀察
+  project_admins:
+    one: 專案管理員
+    other: 專案管理員
   project_aggregator_filter_error: 專案無法啟動自動觀察聚集，除非專案關聯於適中大小的地點、或僅允許特定物種分類群觀察、或是在列表上物種分類群的觀察
   project_assessments: 專案評估
   project_assets: 專案可用物件
@@ -2802,7 +2807,7 @@ zh-TW:
   query: 查詢
   range: 範圍
   range_from: 範圍來自
-  rank: 級別
+  rank: 排名
   rank_position: 級別
   rank_restrictions: 級別限制
   ranks:
@@ -2868,7 +2873,7 @@ zh-TW:
   recent_atom_observations_by: 最近由 %{login}（Atom）做出的觀察
   recent_observations_by: 最近由 %{login}做出的觀察
   recent_updates: 最近更新
-  recently_active: 最近活動
+  recently_active: 最近活躍者
   recently_active_projects_from_everywhere: 近期來自各處的活躍專案
   recently_active_projects_from_place: 近期來自%{place}各處的活躍專案
   recently_created: 最近創建
@@ -2890,6 +2895,7 @@ zh-TW:
   reject?: 拒絕？
   reject_the_community_id: 駁回社群鑑定
   related_species: 相關物種
+  relative_observations: 相關觀察
   reload_and_refresh: 重新載入及重整列表
   reload_from_observations: 從觀察來重新載入
   reload_timed_out: 重新載入時間逾時，請再重試。
@@ -3085,9 +3091,9 @@ zh-TW:
   short_or_abbreviated_title_for_display: 用於顯示在內容有限區域裡的簡短或縮寫標題。最多 10 個字元。
   show: 顯示
   show_active_and_inactive_taxa: 顯示有效和無作用的物種分類
-  show_default_taxon_photos: 顯示預設物種分類照片
   show_common_names: 顯示通用名稱
   show_counts: 顯示基於列表的次數。
+  show_default_taxon_photos: 顯示預設物種分類照片
   show_keyboard_shortcuts: 顯示鍵盤快捷鍵
   show_kml: 顯示 KML
   show_less: 顯示較少
@@ -3098,14 +3104,15 @@ zh-TW:
   show_only: 僅顯示
   show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: （從兩項列表顯示物種分類群）
+  show_taxa_from_everywhere: 顯示來自於任何地點的物種分類
+  show_taxa_from_place: 顯示來自於%{place}的物種分類
+  show_total_counts: 顯示總計計數
   show_total_listed_taxa: 顯示列出的物種分類總計
+  show_uncountable_species: 顯示無法計數的物種
   showing_observations_by: 顯示觀察依
   showing_one_to: 顯示 1 -
-  showing_taxa_from_place: 進行顯示來自於%{place}的物種分類群
-  show_taxa_from_place: 顯示來自於%{place}的物種分類
   showing_taxa_from_everywhere: 進行顯示來自於任何地點的物種分類群
-  show_taxa_from_everywhere: 顯示來自於任何地點的物種分類
-  show_uncountable_species: 顯示無法計數的物種
+  showing_taxa_from_place: 進行顯示來自於%{place}的物種分類群
   shown_publicly_as: 公開展示為
   sign_in: 登入
   sign_in_with_provider: 以 %{provider} 登入
@@ -3123,6 +3130,7 @@ zh-TW:
   small: 小型
   site_name_place: '%{site_name} 地點'
   site_observations_export_from_date: 自 %{date} %{site_name} 匯出的觀察
+  site_stats: 網站統計
   site_taxon_page: '%{site_name} 物種分類頁面'
   site_year_in_review: 回顧 %{year} 年的 %{site_name}
   so_meta!: 太重覆提及了！
@@ -3805,6 +3813,11 @@ zh-TW:
   want_to_test_a_new_version_of_this_page: 想要測試此頁面的新版本嗎？
   wanted: 徵求
   was_it_captive_cultivated?: 是被捕獲/培育？
+  we_also_support: |-
+    我們亦支援使用 <a href="http://flickr.com">Flickr</a>、
+    <a href="http://photos.google.com">Google 照片</a>，及
+    <a href="http://facebook.com">Facebook</a>
+    作為圖片託管。
   we_can_only_understand_csv_in: 我們僅接受以下格式的 CSV
   we_care_privacy: 我們關心您的個人隱私！
   we_couldnt_find_a_user: 我們沒有找到帶此電子郵件的用戶。
@@ -3824,6 +3837,7 @@ zh-TW:
     我們嘗試處理您所上傳名為 %{filename} 的檔案，但沒有成功。
     請修正下列問題後再重試看看。
   weather: 天氣
+  website: 網站
   wed: 週三
   week_of_date: '%{date} 該週'
   welcome!: 歡迎！
@@ -4001,6 +4015,7 @@ zh-TW:
   you_sure_remove_taxon_from?: 您確定要從%{list}移除此物種分類？
   you_sure_remove_this_invitation?: 您確定要移除此邀請？
   you_sure_remove_this_observation?: 您確定要移除此觀察？
+  you_think_observation_inacurate: 如果您認為這筆觀察紀錄有誤，請您添加物種名稱、評估資料品質，或在評論欄中詳述不符點。
   you_tried_to_do_something_you_shouldnt: 您嘗試做了一些您不應做的行為，像是未經允許來編輯某人的資料。請別作惡。
   you_unlinked_your_provider_account: 您取消連結您的 %{provider} 帳號
   you_would_get_the: 您將會獲得以下標記：
@@ -4041,6 +4056,7 @@ zh-TW:
   your_observations: 您的觀察
   your_observations_couldnt_be_added_to_that_project: 您的觀察無法添加至該專案：%{errors}
   your_photos_have_been_tagged: 您的照片已被標記！
+  your_projects: 您的專案
   your_google_account: 您的 Google 帳號
   your_google_account_info: 您的 Google 帳號訊息
   your_profile_was_successfully_updated: 您的個人資料更新成功！
@@ -4394,7 +4410,7 @@ zh-TW:
 
           <ul>
             <li>觀察<strong>擁有日期</strong></li>
-            <li>觀察<strong>為地理參考</strong>（註：擁有經/緯度）</li>
+            <li>觀察<strong>具備地理參考</strong>（註：擁有經/緯度）</li>
             <li>觀察<strong>擁有照片或聲音</strong></li>
             <li>觀察<strong>內容不是人類</strong></li>
           </ul>
@@ -4403,7 +4419,7 @@ zh-TW:
           </p>
           <ul>
             <li>
-               %{site_name} <strong>社群認同物種級別或以下級別鑑定</strong>, 註：當超過三分之二鑑定人同意一項物種分類
+               %{site_name} <strong>社群認同物種級別或以下級別鑑定</strong>，註：當超過三分之二鑑定人同意同一項物種分類
             </li>
           </ul>
           <p>
@@ -4411,7 +4427,7 @@ zh-TW:
           </p>
           <ul>
             <li>
-              <strong>位置不精準</strong>（例如：例如猴子出現在海洋裡，或是河馬出現在辦公大樓等等）
+              <strong>位置不精準</strong>（例如：例如猴子位在海洋裡，或是河馬位在辦公大樓等等）
             </li>
             <li>
               <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給捕獲或培育）
@@ -4741,13 +4757,13 @@ zh-TW:
           Flowering Phenology=budding: 發芽
           Flowering Phenology=flower: 開花
           Flowering Phenology=fruit: 結果
-          Insect life stage=egg: 卵
-          Insect life stage=larva: 幼蟲
-          Insect life stage=teneral: 初羽化
-          Insect life stage=subimago: 亞成蟲
-          Insect life stage=nymph: 若蟲
-          Insect life stage=pupa: 蛹
-          Insect life stage=adult: 成體
+          Life Stage=egg: 卵
+          Life Stage=larva: 幼蟲
+          Life Stage=teneral: 初羽化
+          Life Stage=subimago: 亞成蟲
+          Life Stage=nymph: 若蟲
+          Life Stage=pupa: 蛹
+          Life Stage=adult: 成體
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
     taxon_links:
@@ -4961,8 +4977,10 @@ zh-TW:
       one: 小時
       other: 小時
     countdown_x_minutes:
+      one: 分
       other: 分
     countdown_x_seconds:
+      one: 秒
       other: 秒
     prompts:
       day: 日

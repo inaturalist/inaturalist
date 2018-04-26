@@ -24,23 +24,6 @@
 # Author: Tiin
 ---
 de:
-  licensing_your_content: |-
-    Deine Inhalte zu lizenzieren, räumt anderen das Nutzungsrecht ein,
-    falls jene sich an die Lizenzbedingungen halten. %{site_name} verwendet für deine Inhalte die
-    Creative-Commons-Lizenz, um sie mit Datenprojektpartnern zu teilen wie die
-    <a href="http://www.gbif.org/">globale Biodiversitätsinformationsstelle</a>
-    (GBIF).
-  you_think_observation_inacurate: |-
-    Falls du denkst, die Beobachtung ist ungenau, dann füge eine Kennung hinzu,
-    beteilige dich an obiger Qualitätsbewertung oder beschreibe die Ungenauigkeit in einem Kommentar.
-  we_also_support: |-
-    Von <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a> und
-    <a href="http://facebook.com">Facebook</a>
-    bereitgestellte Bilder unterstützen wir ebenso.
-  a_default_taxon_name_will_automatically_created: |-
-    Ein voreingestellter Taxonname wird automatisch erstellt aus dem Attribut des Wissenschaftsnamens dieses Taxons.
-    Wenn du das neue Taxon gespeichert hast, kannst du hier andere Namen (umgangssprachliche Namen, veraltete Wissenschaftsnamen usw.) hinzufügen.
   x_comments:
     one: Ein Kommentar
     other: '%{count} Kommentare'
@@ -130,9 +113,14 @@ de:
   x_taxa_matching_current_filters:
     one: Ein auf die aktuellen Filter passendes Taxon
     other: '%{count} auf die aktuellen Filter passende Taxa'
+  _100_day_trends: 100-Tage-Trend
+  _percent_ID_d: '% bestimmt'
   a: ein
   a_: ein
   a_community_for_naturalist: Eine Gemeinschaft für Naturforscher
+  a_default_taxon_name_will_automatically_created: |-
+    Ein voreingestellter Taxonname wird automatisch erstellt aus dem Attribut des Wissenschaftsnamens dieses Taxons.
+    Wenn du das neue Taxon gespeichert hast, kannst du hier andere Namen (umgangssprachliche Namen, veraltete Wissenschaftsnamen usw.) hinzufügen.
   a_few_points_to_make_things_clear: 'Ein paar Punkte sollen die Dinge etwas verdeutlichen:'
   a_flag_for_x: eine Markierung für %{x}
   a_greasemonkey_script: ein Greasemonkey-Skript
@@ -161,6 +149,7 @@ de:
   about_x: Über %{x}
   acc: Zuordnungsgenauigkeit (m)
   account: Benutzerkonto
+  account_settings: Kontoeinstellungen
   accept: akzeptieren
   accept_community_identifications: Bestimmung der Gemeinschaft annehmen
   accuracy: Genauigkeit
@@ -174,7 +163,8 @@ de:
   action: Aktion
   actions: Aktionen
   activate_user: Benutzer aktivieren
-  active: aktiv
+  active: Aktiv
+  active_users: Aktive Benutzer
   activity: Aktivität
   activity_settings: Aktivitätseinstellungen
   adapted_by_name_from_a_work_by_original: Angepasst von %{name} aus einer Arbeit
@@ -205,6 +195,10 @@ de:
   add_an_observation: Eine Beobachtung hinzufügen
   add_an_observation?: Eine Beobachtung hinzufügen?
   add_an_observation_of: Eine Beobachtung von %{taxon} hinzufügen
+  add_annotations_for_x: Erläuterung für "%{x}" hinzufügen
+  add_annotations_for_controlled_attribute:
+    sex: Erläuterung für "Geschlecht" hinzufügen
+    plant_phenology: Erläuterungen zur "Pflanzenphänologie" hinzufügen
   add_another: Weitere hinzufügen
   add_another_flag: Eine weitere Markierung hinzufügen
   add_another_photo: Ein weiteres Foto hinzufügen
@@ -268,6 +262,7 @@ de:
   add_life_stage_larva_annotation: 'Vermerk "Lebensstadium: Larve" hinzufügen'
   add_life_stage_juvenile_annotation: 'Vermerk "Lebensstadium: Jungtier" hinzufügen'
   add_life_stage_egg_annotation: 'Vermerk "Lebensstadium: Ei" hinzufügen'
+  add_section: Abschnitt hinzufügen
   add_several_observations_at_once: Mehrere Beobachtungen gleichzeitig hinzufügen.
   add_sex_female_annotation: 'Vermerk "Geschlecht: Weiblich" hinzufügen'
   add_sex_male_annotation: 'Vermerk "Geschlecht: Männlich" hinzufügen'
@@ -319,6 +314,7 @@ de:
   additional_range_data_from_an_unknown_source: Zusätzliche Bereichsdaten von einer
     unbekannten Quelle
   admin: Administrator
+  admin_s: Admin(s)
   admin_any_projects: Projekte verwalten
   admin_tools: Verwaltungswerkzeuge
   agree: Zustimmen
@@ -434,6 +430,7 @@ de:
     x_other_animals:
       one: Ein anderes Tier
       other: '%{count} andere Tiere'
+  all_taxa_: Alle Taxa
   all_taxa_in_this_guide: Alle Taxa in dieser Anleitung
   all_taxonomic_groups: '&laquo; Alle Taxonomie-Gruppen'
   all_updates: Alle Aktualisierungen
@@ -633,6 +630,7 @@ de:
   back_to_your_observations: Zurück zu Ihren Beobachtungen
   back_to_your_profile: Zurück zu Ihrem Profil
   back_to_your_projects: Zurück zu Ihren Projekten
+  basic: Einfach
   batch: Stapel
   batch_edit: Stapelbearbeitung
   batch_edit_taxa_for_x_html: Taxa-Stapelbearbeitung für %{x}
@@ -654,6 +652,7 @@ de:
   black: schwarz
   block_user: Benutzer sperren
   block_removed: Sperre entfernt
+  blocked_users: Gesperrte Benutzer
   blog_widget: Blog Widget
   blue: blau
   blue_butterfly_etc: blau, Schmetterling, usw.
@@ -699,6 +698,7 @@ de:
   card: Karte
   case_plural: s
   casual: gelegentlich
+  casual_: zufällig
   catalogue_of_life: Verzeichnis des Lebens
   categories: Kategorien
   cc_0_name: Kein Copyright (CC0)
@@ -766,6 +766,7 @@ de:
     input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} wird in %{output_taxa}
       aufgeteilt'
     input_taxon_was_dropped_html: '%{input_taxon} wurde gelöscht'
+    input_taxon_will_be_dropped_html: '%{input_taxon} wird gelöscht'
     input_taxon_will_be_activated_soon_html: '%{input_taxon} wird bald aktiviert'
     input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} wurde ersetzt durch
       %{output_taxon}'
@@ -828,6 +829,7 @@ de:
   choose_a_list_above: Wählen Sie eine der obigen Listen.
   choose_a_place: Wählen Sie einen Ort
   choose_a_taxon: Wählen Sie ein Taxon (optional)
+  choose_file: Datei auswählen
   choose_files: Dateien auswählen
   choose_files_from_your_computer: wählen Sie Dateien von Ihrem Computer aus
   choose_from_your_lists: Wählen Sie aus Ihren Listen
@@ -1070,6 +1072,7 @@ de:
       december: Dezember
   date_is_accurate: Datum ist genau
   date_observed: Beobachtungsdatum
+  date_observed_: Beobachtungsdatum
   date_observed_on: Beobachtungsdatum
   date_picker:
     closeText: Schließen
@@ -1313,7 +1316,10 @@ de:
   flag_as_spammer: Als Spammer markieren
   flag_it!: Markieren!
   flag_saved: Markierung gespeichert.
+  flag_this_observation: Diese Beobachtung kennzeichnen
   flag_this_photo: Dieses Foto markieren
+  flagged: Gekennzeichnet
+  flagged_: Gekennzeichnet
   flickr_photo: Flickr Foto
   flickr_photos: Flickr Fotos
   flickr_tags: Flickr Tags
@@ -1363,11 +1369,13 @@ de:
   go: Los
   go_back: Zurück gehen
   going_to_your_observations: Gehe zu ihren Beobachtungen...
+  got_it!: Verstanden!
   gray: graun
   green: grün
   grey: graun
   grid: Gitter
   grid_layout: Gitter Layout
+  grid_tooltip: Rasteransicht anzeigen
   group: Gruppe
   grouping: Gruppieren
   guides: Führer
@@ -1381,7 +1389,23 @@ de:
   guide_was_successfully_published: Der Führer wurde erfolgreich veröffentlicht
   guide_was_successfully_updated: Führer wurde erfolgreich aktualisiert.
   guidelines: Richtlinien
+  has_already_been_flagged_by: wurde schon gekennzeichnet von
+  has_been: wurde
+  has_id_supported_by_two_or_more: Die ID wurde von zwei der mehr unterstützt
+  has_photo: Mit Foto
   has_photos: hat Fotos
+  has_photo_and_sound: Mit Foto und Ton
+  has_photos_or_sounds: mit Foto oder Ton
+  has_sound: mit Ton
+  has_sounds: mit Ton
+  hasnt_contributed_any_observations: hat keine Beobachtungen zu diesem Projekt beigetragen
+  heads_up: Achtung
+  heads_up_observation_search_can_only_load: 'Achtung: Beobachtungs-suche kann nur
+    bis zu 50 Seiten laden'
+  heads_up_this_observation_has_been_flagged: 'Achtung: diese Beobachtung wurde gekennzeichnet'
+  heads_up_this_photo_has_been_flagged: 'Achtung: dieses Foto wurde gekennzeichnet.'
+  heads_up_this_photo_is_already_associated_with: 'Achtung: dieses Foto ist schon
+    mit <a target=''_blank'' href=''%{url}''>einer anderen Beobachtung verbunden</a>'
   hello: <test>
   help: Hilfe
   help_confirm_observations!: Hilf Beobachtungen zu bestätigen!
@@ -1608,6 +1632,12 @@ de:
   less: Weniger
   license_descriptions_and_images: Lizenz-Beschreibungen und Bilder
   licensed_site_photos: Lizenzierte %{site_name} Fotos
+  licensing_your_content: |-
+    Deine Inhalte zu lizenzieren, räumt anderen das Nutzungsrecht ein,
+    falls jene sich an die Lizenzbedingungen halten. %{site_name} verwendet für deine Inhalte die
+    Creative-Commons-Lizenz, um sie mit Datenprojektpartnern zu teilen wie die
+    <a href="http://www.gbif.org/">globale Biodiversitätsinformationsstelle</a>
+    (GBIF).
   life: Leben
   life!: Leben!
   life_list: '%{user}''s Lebens-Liste'
@@ -2068,7 +2098,7 @@ de:
   organism_is_wild: Organismus ist wild
   organisms: Organismen
   original: Original
-  other: andere
+  other: Andere
   other_animals: andere Tiere
   other_annimals: Andere Tiere
   our_blog: Unser Blog
@@ -2654,6 +2684,11 @@ de:
   view_all_of_your_observations_from_x: Zeige alle deine Beobachtungen aus %{x}
   visually_similar: optisch ähnlich
   vulnerable: gefährdet
+  we_also_support: |-
+    Von <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Fotos</a> und
+    <a href="http://facebook.com">Facebook</a>
+    bereitgestellte Bilder unterstützen wir ebenso.
   whats_this?: Was ist das?
   which_projects_can_add_your_observations?: Welche Projekte können ihre Beobachtungen
     hinzufügen?
@@ -2697,6 +2732,9 @@ de:
   you_can_only_block_three_users: Du kannst nur drei Benutzer sperren
   you_need_to_select_at_least_one_photo: Sie müssen mindestens ein Foto auswählen!
   you_need_to_select_some_observations_first: Sie müssen erst eine Beobachtung auswählen.
+  you_think_observation_inacurate: |-
+    Falls du denkst, die Beobachtung ist ungenau, dann füge eine Kennung hinzu,
+    beteilige dich an obiger Qualitätsbewertung oder beschreibe die Ungenauigkeit in einem Kommentar.
   your: Ihrs
   your_: Ihrs
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
@@ -2858,11 +2896,11 @@ de:
           Flowering Phenology=budding: Knospend
           Flowering Phenology=flower: Blühend
           Flowering Phenology=fruit: Fruchttragend
-          Insect life stage=egg: Ei
-          Insect life stage=larva: Larve
-          Insect life stage=nymph: Nymphe
-          Insect life stage=pupa: Puppe
-          Insect life stage=adult: Adult
+          Life Stage=egg: Ei
+          Life Stage=larva: Larve
+          Life Stage=nymph: Nymphe
+          Life Stage=pupa: Puppe
+          Life Stage=adult: Adult
     users:
       edit:
         project_addition_preferences:

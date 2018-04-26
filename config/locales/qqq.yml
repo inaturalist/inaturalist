@@ -12,6 +12,7 @@
 # Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
+# Author: Nike
 # Author: Pihlaviita
 # Author: Purodha
 # Author: Pyscowicz
@@ -24,8 +25,6 @@
 # Author: 아라
 ---
 qqq:
-  licensing_your_content: Info about licensing content where site_name is the name
-    of the site
   x_comments: '{{Identical|Comment}}'
   x_followers: |-
     Number of followers
@@ -604,6 +603,8 @@ qqq:
   licensed_site_photos: where site_name is the name of the site
   license: '{{Identical|License}}'
   licensing: '{{Identical|Licensing}}'
+  licensing_your_content: Info about licensing content where site_name is the name
+    of the site
   licensing_your_content_gives_others_legal: where site_name is the name of the site
   life: '{{Identical|Life}}'
   life!: '{{Identical|Life}}'
@@ -979,8 +980,8 @@ qqq:
   settings: '{{Identical|Settings}}'
   share: '{{Identical|Share}}'
   show: '{{Identical|Show}}'
-  showing_taxa_from_place: where place is the name of a place
   show_taxa_from_place: where place is the name of a place
+  showing_taxa_from_place: where place is the name of a place
   sign_in: '{{Identical|Sign in}}'
   sign_in_with_provider: where provider is an external provider like Facebook
   simple: '{{Identical|Simple}}'
@@ -1349,8 +1350,8 @@ qqq:
     taxa:
       show:
         frequency:
-          Insect life stage=egg: '{{Identical|Egg}}'
-          Insect life stage=teneral: |-
+          Life Stage=egg: '{{Identical|Egg}}'
+          Life Stage=teneral: |-
             No es una errata, no debería ser «General». Es una fase en la metamorfosis de los insectos.
 
             https://en.wiktionary.org/wiki/teneral
@@ -1359,7 +1360,7 @@ qqq:
 
             En Wikipedia, «Teneral» redirige a «Ecdysis», y en la versión en castellano «Muda».
             {{Identical|Teneral}}
-          Insect life stage=adult: '{{Identical|Adult}}'
+          Life Stage=adult: '{{Identical|Adult}}'
     users:
       dashboard:
         taxon_change_desc: where site_name is the site name

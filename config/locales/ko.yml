@@ -21,15 +21,6 @@
 # Author: 아라
 ---
 ko:
-  licensing_your_content: 콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다.
-    %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 <a href="http://www.gbif.org/">Global
-    Biodiversity Information Facility</a>(GBIF)와 같은 데이터 파트너와 공유합니다.
-  you_think_observation_inacurate: 이 관찰이 정확하지 않다고 생각할 경우 아이디를 추가한 후 위 평가서를 작성하거나 문제점을
-    댓글로 달아주세요.
-  we_also_support: "<a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
-    포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 영상 호스팅도 지원합니다."
-  a_default_taxon_name_will_automatically_created: 학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을
-    저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   x_comments:
     one: 댓글 1개
     other: 댓글 %{count}개
@@ -40,6 +31,8 @@ ko:
     one: 한 명이 좋아합니다
     other: '%{count}명이 좋아합니다'
   a_community_for_naturalist: 자연을 연구하는 사람들을 위한 공동체
+  a_default_taxon_name_will_automatically_created: 학명을 입력하면 분류군은 자동으로 생성됩니다. 새로운 분류군을
+    저장한 후 다른 이름(일반명, 더 이상 사용되지 않는 학명 등)을 추가할 수 있습니다.
   a_few_points_to_make_things_clear: '더 쉽게 사용하기 위한 팁:'
   a_flag_for_x: '%{x}을 위한 플래그'
   a_member_of: '소속:'
@@ -987,6 +980,7 @@ ko:
   everyone_: 모두
   everyone_journal_posts: 모든 사람의 일지 포스트
   everywhere: 모든 곳
+  exact: 정확하게
   exact_coordinates_obscured_for: 멸종 위기에 직면한 종들의 정확한 위치 좌표는 일반인에게는 비공개로 되어 있습니다.
   exact_date: 정확한 일자
   exact_location: 정확한_장소
@@ -1389,6 +1383,9 @@ ko:
     tagalog: tagalog
     turkish: Türk
   license: 라이선스
+  licensing_your_content: 콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로 해당 콘텐츠를 이용할 수 있습니다.
+    %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 <a href="http://www.gbif.org/">Global
+    Biodiversity Information Facility</a>(GBIF)와 같은 데이터 파트너와 공유합니다.
   licensing_your_content_gives_others_legal: 콘텐츠를 라이선스하면 다른 사람들이 라이선스 규칙을 지키는 한 합법적으로
     해당 콘텐츠를 이용할 수 있습니다. %{site_name}은 당신의 크리에이티브 커먼즈 라이선스가 된 콘텐츠를 데이터 파트너와 공유합니다.
   life: 생명
@@ -2207,6 +2204,8 @@ ko:
   view_unidentified_observations: 동정하지 않은 관찰 보기
   view_x: '%{x} 보기'
   view_your_observations: 내 관찰 보기
+  we_also_support: "<a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
+    포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 영상 호스팅도 지원합니다."
   we_care_privacy: 우리는 여러분의 개인정보를 보호합니다!
   we_couldnt_find_a_user: 해당하는 이메일 주소의 사용자를 찾지 못했습니다.
   we_couldnt_find_a_user_with_that_activation_code: 해당 활성 코드와 맞는 사용자를 찾지 못했습니다. 이미
@@ -2269,6 +2268,8 @@ ko:
     않았습니다'
   you_must_fill_out_the_required_fields: 필수 칸은 채워야 합니다
   you_need_to_select_some_observations_first: 관찰을 먼저 선택하세요.
+  you_think_observation_inacurate: 이 관찰이 정확하지 않다고 생각할 경우 아이디를 추가한 후 위 평가서를 작성하거나 문제점을
+    댓글로 달아주세요.
   your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
   your_month_observations: '%{month}월의 내 관찰'
@@ -2355,6 +2356,8 @@ ko:
         multiple_project_administrators: 다중 프로젝트 관리자
         note_you_can_delete_the_time: '(참고: 전체 일수를 포함하고 싶으시다면 시간대와 정확한 시간을 삭제할 수 있습니다.)'
         or_drag_and_drop: (아니면 끌어 놓으십시오)
+        project_background_color: 프로젝트 요약 배경색
+        project_background_color_help: 겹치는 흰색 텍스트를 읽을 수 있도록 충분히 어두운 색을 선택해 주십시오.
         project_banner: 프로젝트 배너 (PNG, JPG, GIF)
         project_banner_help: 선택적인 배너 그림입니다. 이상적인 크기는 760px x 320px입니다.
         project_details: 프로젝트 세부 사항
@@ -2381,7 +2384,7 @@ ko:
       show:
         frequency:
           Flowering Phenology=bare: 꽃 없음
-          Insect life stage=egg: 알
+          Life Stage=egg: 알
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-

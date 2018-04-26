@@ -19,21 +19,6 @@
 # Author: محمد أحمد عبد الفتاح
 ---
 ar:
-  licensing_your_content: |-
-    إصدار ترخيص محتواكم يمنح الغير الحق القانوني في استخدام هذا المحتوى في حالة
-     تقيدهم بشروط الترخيص. %{site_name} يستخدم محتوى مرخص
-    بالمشاع الإبداعي للمشاركة مع شركاء البيانات مثل <a href="http://www.gbif.org/">مرفق معلومات التنوع البيولولجي العالمي </a> (GBIF).
-  you_think_observation_inacurate: |-
-    إذا كنت تعتقد أن هذه الملاحظة غير دقيقة، رجاءً أضف معرفا،
-    وشارك في تقييم الجودة أعلاه أو صف عدم الدقة
-    في تعليق.
-  we_also_support: |-
-    نحن ندعم أيضا <a href="http://flickr.com">فليكر</a>
-    و<a href="http://photos.google.com">جوجل صور</a> و<a href="http://facebook.com">فيسبوك</a>
-    لمشاركة الصور
-  a_default_taxon_name_will_automatically_created: |-
-    سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذه الأصنوفة
-    عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   x_comments:
     one: تعليق واحد
     other: '%{count} تعليقات'
@@ -139,6 +124,9 @@ ar:
   a: أ
   a_: أ
   a_community_for_naturalist: تجمع لعلماء الطبيعة
+  a_default_taxon_name_will_automatically_created: |-
+    سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذه الأصنوفة
+    عند حفظ هذه الأصنوفة الجديدة، ستتمكن من إضافة أسماء أخرى هنا (الأسماء الشائعة والأسماء العلمية القديمة وغير ذلك).
   a_few_points_to_make_things_clear: مزيد من النقاط لجعل الأمور أوضح قليلا
   a_flag_for_x: علم ل%{x}
   a_greasemonkey_script: سكريبت غريسمونكي (Greasemonkey)
@@ -1922,6 +1910,10 @@ ar:
   licensed_site_photos: صور %{site_name} مرخصة
   license: الترخيص
   licensing: الترخيص
+  licensing_your_content: |-
+    إصدار ترخيص محتواكم يمنح الغير الحق القانوني في استخدام هذا المحتوى في حالة
+     تقيدهم بشروط الترخيص. %{site_name} يستخدم محتوى مرخص
+    بالمشاع الإبداعي للمشاركة مع شركاء البيانات مثل <a href="http://www.gbif.org/">مرفق معلومات التنوع البيولولجي العالمي </a> (GBIF).
   licensing_your_content_gives_others_legal: يمنح ترخيص المحتوى الخاص بك الآخرين الحق
     القانوني في استخدامه إذا التزموا بشروط الترخيص، يستخدم %{site_name} المحتوى المرخص
     بالمشاع الإبداعي لمشاركته مع شركاء البيانات مثل
@@ -3412,9 +3404,9 @@ ar:
     الأقصى 10 حروف.
   show: أظهر
   show_active_and_inactive_taxa: عرض الأصناف النشطة وغير النشطة
-  show_default_taxon_photos: عرض صور الأصناف الافتراضية
   show_common_names: عرض الأسماء الشائعة
   show_counts: عرض العدد استنادا إلى القائمة.
+  show_default_taxon_photos: عرض صور الأصناف الافتراضية
   show_keyboard_shortcuts: عرض اختصارات لوحة المفاتيح
   show_kml: عرض KML
   show_less: عرض أقل
@@ -3425,14 +3417,14 @@ ar:
   show_only: أظهر فقط
   show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
+  show_taxa_from_everywhere: عرض أصناف من كل مكان
+  show_taxa_from_place: عرض أصناف من %{place}
   show_total_listed_taxa: عرض مجموع الأصناف المدرجة
+  show_uncountable_species: عرض الأنواع التي لا تُحصَى
   showing_observations_by: عرض الملاحظات من قبل
   showing_one_to: عرض 1 -
-  showing_taxa_from_place: عرض أصناف من %{place}
-  show_taxa_from_place: عرض أصناف من %{place}
   showing_taxa_from_everywhere: عرض أصناف من كل مكان
-  show_taxa_from_everywhere: عرض أصناف من كل مكان
-  show_uncountable_species: عرض الأنواع التي لا تُحصَى
+  showing_taxa_from_place: عرض أصناف من %{place}
   shown_publicly_as: يظهر بشكل عام كـ
   sign_in: تسجيل الدخول
   sign_in_with_provider: تسجيل الدخول باستخدام %{provider}
@@ -4263,6 +4255,10 @@ ar:
   want_to_test_a_new_version_of_this_page: هل تريد اختبار إصدار جديد لهذه الصفحة؟
   wanted: مطلوب
   was_it_captive_cultivated?: هل كان أسير / مزروع؟
+  we_also_support: |-
+    نحن ندعم أيضا <a href="http://flickr.com">فليكر</a>
+    و<a href="http://photos.google.com">جوجل صور</a> و<a href="http://facebook.com">فيسبوك</a>
+    لمشاركة الصور
   we_can_only_understand_csv_in: لا يمكننا فهم CSV إلا بالصيغة التالية
   we_care_privacy: نحن نهتم بخصوصياتك!
   we_couldnt_find_a_user: تعذر العثور على مستخدم لديه عنوان البريد الإلكتروني هذا.
@@ -4504,6 +4500,10 @@ ar:
   you_sure_remove_taxon_from?: هل تريد بالتأكيد إزالة هذه الأصنوفة من %{list}?
   you_sure_remove_this_invitation?: هل تريد بالتأكيد إزالة هذه الدعوة؟
   you_sure_remove_this_observation?: هل تريد بالتأكيد إزالة هذه الملاحظة؟
+  you_think_observation_inacurate: |-
+    إذا كنت تعتقد أن هذه الملاحظة غير دقيقة، رجاءً أضف معرفا،
+    وشارك في تقييم الجودة أعلاه أو صف عدم الدقة
+    في تعليق.
   you_tried_to_do_something_you_shouldnt: |-
     حاولت أن تفعل شيئا لا ينبغي لك فعله، مثل تحرير
     بيانات شخص آخر دون إذن، لا تكن شريرا.
@@ -5525,13 +5525,13 @@ ar:
           Flowering Phenology=budding: تبرعم
           Flowering Phenology=flower: إزهار
           Flowering Phenology=fruit: إثمار
-          Insect life stage=egg: بيضة
-          Insect life stage=larva: يرقة
-          Insect life stage=teneral: انسلاخ
-          Insect life stage=subimago: سوبيماجو
-          Insect life stage=nymph: حورية
-          Insect life stage=pupa: عذراء
-          Insect life stage=adult: بالغة
+          Life Stage=egg: بيضة
+          Life Stage=larva: يرقة
+          Life Stage=teneral: انسلاخ
+          Life Stage=subimago: سوبيماجو
+          Life Stage=nymph: حورية
+          Life Stage=pupa: عذراء
+          Life Stage=adult: بالغة
         photo_chooser_modal_desc: اسحب الصور هنا من اليسار، أو اسحب الصور هنا لإعادة
           ترتيبها.
         photo_chooser_modal_explanation: "لاحظ أن صفحة الأصنوفة سوف تظهر صور هذه الأصنوفة

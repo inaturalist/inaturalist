@@ -31,21 +31,6 @@
 # Author: Yllelder
 ---
 es:
-  licensing_your_content: |-
-    Licenciar tu contenido le da a otros el derecho legal de utilizarlo si se aceptan los términos de la licencia. %{site_name} utiliza contenido licenciado bajo Creative Commons para compartir con asociados como <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
-  you_think_observation_inacurate: Si piensas que esta observación no es exacta, agrega
-    un identificador, participa en la sección de calidad de datos, o describe la inexactitud
-    en un comentario.
-  we_also_support: |-
-    También admitimos <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> y
-    <a href="http://facebook.com">Facebook</a>
-    para alojamiento de imágenes.
-  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
-    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
-    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
-    obsoletos, etc.)
   x_comments:
     one: 1 comentario
     other: '%{count} comentarios'
@@ -140,6 +125,10 @@ es:
   a: un(a)
   a_: una
   a_community_for_naturalist: Una comunidad para naturalistas
+  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
+    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
+    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
+    obsoletos, etc.)
   a_few_points_to_make_things_clear: 'Algunos puntos para aclarar las cosas:'
   a_flag_for_x: una marca para %{x}
   a_greasemonkey_script: una secuencia de órdenes de Greasemonkey
@@ -490,6 +479,7 @@ es:
   announcement_was_successfully_updated: El aviso fue actualizado exitosamente.
   announcements: Anuncios
   any: cualquiera
+  any_: Cualquiera
   apply_to_selected: Apicar a las seleccionadas
   apply_captive_cultivated: Aplicar en cautiverio / cultivada
   apply_fields: Aplicar campos
@@ -854,6 +844,7 @@ es:
     <em>muestren características de diagnóstico</em> y <em>se vean bien como
     íconos</em>.  La <em>primera aparece por defecto</em>.
   choose_columns: Elegir columnas
+  choose_file: Elige un archivo
   choose_files: Selecciona archivos
   choose_files_from_your_computer: selecciona archivos de tu equipo
   choose_from_your_lists: Seleccionar de sus listas
@@ -1138,6 +1129,7 @@ es:
       december: Diciembre
   date_is_accurate: La fecha es correcta
   date_observed: Fecha de observación
+  date_observed_: Fecha de observación
   date_observed_on: fecha que se observo
   date_picker:
     closeText: Cerrar
@@ -1153,6 +1145,7 @@ es:
     dayNamesShort: '[''dom'',''lun'',''mar'',''mié'',''jue'',''vie'',''sáb'']'
     dayNamesMin: '[''do'',''lu'',''ma'',''mi'',''ju'',''vi'',''sá'']'
     range: Área
+  date_range: Intervalo de fechas
   date_specified: Fecha especificada
   date_time: Fecha/hora
   dates: fechas
@@ -1434,6 +1427,7 @@ es:
   fields_can_only_be_edited_by_the_people_who: Los campos solo pueden ser editados
     por las personas que los crearon y los curadores del sitio.
   fields_merged: Campos combinados
+  file: Archivo
   file_should_be_in_the_following_format: 'El archivo debería tener el siguiente formato:
     nombre de la especie o grupo, descripción'
   fill_out_project_observation_fields: Llenar los campos de observación del proyecto
@@ -1619,8 +1613,11 @@ es:
   has_been: ha sido
   has_id_supported_by_two_or_more: Tiene ID apoyado por dos o más
   has_one_or_more_faves: Tiene uno o más favoritos
+  has_photo: Tiene foto
   has_photos: tiene fotos
+  has_photo_and_sound: Tiene tanto foto como sonido
   has_photos_or_sounds: Tiene fotos o sonidos
+  has_sound: Tiene sonido
   has_sounds: tiene sonidos
   hasnt_contributed_any_observations: no ha aportado ninguna observación a este proyecto.
   hate_me_facebook: Desvincular sus cuentas de Facebook e %{site_name}
@@ -1968,6 +1965,9 @@ es:
   licensed_site_photos: Fotos con licencia de %{site_name}
   license: Licencia
   licensing: Licencias
+  licensing_your_content: |-
+    Licenciar tu contenido le da a otros el derecho legal de utilizarlo si se aceptan los términos de la licencia. %{site_name} utiliza contenido licenciado bajo Creative Commons para compartir con asociados como <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+    (GBIF).
   licensing_your_content_gives_others_legal: Hacer uso de una licencia sobre el contenido
     generado por usted les da a otros el derecho de usarlos, siempre y cuando, se
     apeguen a los términos de la licencia. %{site_name} usa una licencia de Creative
@@ -2105,6 +2105,7 @@ es:
   localized_species_accounts: Cuentas de especies localizadas
   location: Ubicación
   location_: Ubicación
+  locations: Ubicaciones
   location_is_accurate: Ubicación es correcta
   location_is_exact: ubicación es exacta
   location_is_public: La ubicación es pública
@@ -2175,6 +2176,7 @@ es:
   map: Mapa
   map_legend: leyenda del mapa
   map_marker_size: tamaño del marcador de mapa
+  map_of_observations: Mapa de observaciones
   maps:
     overlays:
       all_observations: Todas las observaciones
@@ -2206,6 +2208,7 @@ es:
   meet: Conocer
   member_of_the_inaturalist_network_html: Miembro de la <a href="%{url}">Red iNaturalist</a>
   members: Miembros
+  membership_model: Modelo de membresía
   mentioned_you_in_noun_html: '%{user} te ha mencionado en %{noun}'
   mentioned_you_in_noun_by_html: '%{user} te ha mencionado en %{noun} por %{by}'
   mentioned_you_in_a_x_on_noun_html: '%{user} te ha mencionado en un %{x} en %{noun}'
@@ -2370,6 +2373,7 @@ es:
   new_updates_in_the_last_24_hours_from: Nuevas actualizaciones en las últimas 24
     horas de %{site_name}
   new_user_rules: Nuevas reglas de usuario
+  new_users: Usuarios nuevos
   new_users_week: Usuarios nuevos / Semana
   news: Noticias
   next: Siguiente
@@ -2594,6 +2598,8 @@ es:
   observations_have_had_their_coordinates: Las coordenadas de las observaciones han
     sido desplazadas a un punto al azar dentro de %{km} Km., ya sea porque el taxón
     está amenazado o porque el observador eligió ocultar las coordenadas.
+  observations_in_this_project_must: Las observaciones de este proyecto deben satisfacer
+    los criterios siguientes
   observations_it_may_take_a_few: observaciones. Esto podría tardar unos minutos.
   observations_last500: Observaciones (últimas 500)
   observations_last_aggregated: Últimas observaciones agregadas
@@ -3467,6 +3473,8 @@ es:
   select_one_or_more_photos: Selecciona una o más fotos
   select_none: No seleccionar ninguno
   select_observations_to_edit: Selecciona observaciones para editar ...
+  select_one_of_friends_albums: Selecciona uno de los álbumes de %{friend}
+  select_one_of_your_albums: Selecciona uno de tus álbumes
   select_options: Seleccione opciones
   select_photos_from_your_photo_stream: Selecciona las fotos de sitios que comparten
     fotos para convertirlas en observaciones de {site_name}. Encontraremos la fecha,
@@ -3501,9 +3509,9 @@ es:
     cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Mostrar
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
-  show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
   show_common_names: Mostrar nombres vernáculos
   show_counts: Mostrar conteos con base en la lista
+  show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_kml: Mostrar KML
   show_less: Mostrar menos
@@ -3515,14 +3523,14 @@ es:
   show_only: Mostrar solamente
   show_scientific_name_first: Mostrar primero los nombres científicos
   show_taxa_from_both: (mostrar taxones de ambas listas)
+  show_taxa_from_everywhere: Mostrar taxones de todas partes
+  show_taxa_from_place: Mostrar taxones de %{place}
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
+  show_uncountable_species: Mostrar especies incontables
   showing_observations_by: Mostrando observaciones hechas por
   showing_one_to: Mostrando 1 -
-  showing_taxa_from_place: Mostrando taxones de %{place}
-  show_taxa_from_place: Mostrar taxones de %{place}
   showing_taxa_from_everywhere: Mostrando taxones de todas partes
-  show_taxa_from_everywhere: Mostrar taxones de todas partes
-  show_uncountable_species: Mostrar especies incontables
+  showing_taxa_from_place: Mostrando taxones de %{place}
   shown_publicly_as: Mostrar públicamente como
   sign_in: Ingrese
   sign_in_with_provider: Ingrese con %{provider}
@@ -3708,6 +3716,7 @@ es:
   subject_affecting_stuff_html: '%{subject} affecta %{stuff}'
   subject_committed_thing_affecting_stuff_html: '%{subject} cometió %{thing} affecta
     %{stuff}'
+  submission_model: Modelo de envíos
   submission_model_description: ¿Quién puede agregar observaciones a tu proyecto?
   submit: Enviar
   submit_comment: Enviar comentario
@@ -4398,6 +4407,11 @@ es:
     página?
   wanted: Requerido
   was_it_captive_cultivated?: ¿Fue cautiva / cultivado?
+  we_also_support: |-
+    También admitimos <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Photos</a> y
+    <a href="http://facebook.com">Facebook</a>
+    para alojamiento de imágenes.
   we_can_only_understand_csv_in: Sólo podemos entender CSV en el siguiente formato
   we_care_privacy: ¡Nos importa su privacidad!
   we_couldnt_find_a_user: No pudimos encontrar un usuario con esa dirección de correo.
@@ -4466,6 +4480,8 @@ es:
   where_were_you?: <em>¿Dónde</em> estaba usted?
   which_projects_can_add_your_observations?: ¿Qué proyectos pueden añadir tus observaciones?
   white: blanco
+  who_can_add_observations_to_this_project?: ¿Quiénes pueden añadir observaciones
+    a este proyecto?
   who_helped_user_the_most: Quién ayudó a %{user} más
   who_user_helped_the_most: Quien %{user} ayudó más
   with_annotation: Con anotación
@@ -4655,6 +4671,9 @@ es:
   you_sure_remove_taxon_from?: ¿Confirmas que quieres quitar este taxón de %{list}?
   you_sure_remove_this_invitation?: ¿Confirma que quiere quitar esta invitación?
   you_sure_remove_this_observation?: ¿Confirma que quiere quitar esta observación?
+  you_think_observation_inacurate: Si piensas que esta observación no es exacta, agrega
+    un identificador, participa en la sección de calidad de datos, o describe la inexactitud
+    en un comentario.
   you_tried_to_do_something_you_shouldnt: |-
     Intentaste hacer algo que no deberías, como editar
     la información de alguien más sin permiso. No seas malvado.
@@ -5252,6 +5271,7 @@ es:
           Si tus coordenadas vienen de un GPS, comprueba su configuración para el
           nombre del sistema de coordenadas que está usando. Ten en cuenta que nosotros
           no almacenamos coordenadas  personalizadas, sólo las conversiones a lat/lon.
+        date_column_format: AAAA-MM-DD HH:MM
         project_csv_template_notice_html: Hay un archivo plantilla para este proyecto
           que puede ayudarte con la estructura del archivo CSV. <a href="%{url}">Descarga
           la plantilla</a>
@@ -5422,6 +5442,9 @@ es:
       formatting_none_help: No se inserta HTML; solo utiliza las etiquetas que proporciones.
       formatting_simple_help: Enlaza las URL automáticamente e inserta saltos de línea.
     projects:
+      project_type: Tipo de proyecto
+      collection: Colección
+      projects_included: Proyectos incluidos
       curator_coordinate_access_desc_html: |-
         Recuerda: <strong>los curadores de proyectos pueden agregar cualquiera de tus observaciones a su proyecto</strong> a menos que hayas cambiado la <a
         href="/users/edit">configuración de tu cuenta</a>. Sólo marca esta casilla si
@@ -5550,10 +5573,16 @@ es:
           Si quieres unirte, por favor ponte en contacto con uno de los curadores
           y solicita una invitación.
       new:
+        data_visualizations: Visualizaciones de datos
         delete_project: Eliminar proyecto
+        project_background_color: Color de fondo del resumen del proyecto
         project_details: Detalles del proyecto
+        project_icon: Icono del proyecto (PNG, JPG o GIF)
+        project_icon_help: Icono opcional. Debe medir como mínimo 72 × 72 px y se
+          recortará a un cuadrado.
         project_name: Nombre del proyecto
         project_summary: Resumen del proyecto
+        welcome_to_projects: ¡Te damos la bienvenida a los proyectos!
       project_location_privacy_notice_html: |-
         <p>
          Por favor, date cuenta que los curadores de proyectos podrán ver cualquier ubicación privada o oscurecida de tus observaciones en este proyecto a menos que declines el permiso, y también podrán añadir cualquiera de tus observaciones a este proyecto a menos que cambies tu  <a href="/users/edit"> configuración</a>. También puedes conceder o revocar el acceso a las observaciones del proyecto caso por caso.
@@ -5681,13 +5710,13 @@ es:
           Flowering Phenology=budding: Incipiente
           Flowering Phenology=flower: Floración
           Flowering Phenology=fruit: Fructificacón
-          Insect life stage=egg: Huevo
-          Insect life stage=larva: Larva
-          Insect life stage=teneral: Muda
-          Insect life stage=subimago: Subimago
-          Insect life stage=nymph: Ninfa
-          Insect life stage=pupa: Pupa
-          Insect life stage=adult: Adulto
+          Life Stage=egg: Huevo
+          Life Stage=larva: Larva
+          Life Stage=teneral: Muda
+          Life Stage=subimago: Subimago
+          Life Stage=nymph: Ninfa
+          Life Stage=pupa: Pupa
+          Life Stage=adult: Adulto
         photo_chooser_modal_desc: Arrastre las fotos aquí desde la izquierda, o arrastre
           las fotos aquí para volver a organizar.
         photo_chooser_modal_explanation: "Tenga en cuenta que en la página del taxón
@@ -5922,6 +5951,12 @@ es:
       x_seconds:
         one: 1 segundo
         other: '%{count} segundos'
+    countdown_x_days:
+      one: día
+      other: días
+    countdown_x_hours:
+      one: hora
+      other: horas
     countdown_x_seconds:
       other: s
     prompts:
@@ -6107,6 +6142,9 @@ es:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: no debe contener comas ni barras
+    models:
+      Atlas: Atlas
+      TaxonLink: Enlace de taxón
     attributes:
       assessment:
         description: Descripción

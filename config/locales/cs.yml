@@ -15,20 +15,6 @@
 # Author: Walter Klosse
 ---
 cs:
-  licensing_your_content: |-
-    Udělením licence k vašemu obsahu dáváte ostatním právo tento obsah používat, dodrží-li podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons při sdílení s partnery, jako je například <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
-  you_think_observation_inacurate: Pokud si myslíte, že toto pozorování je nepřesné,
-    přidejte prosím identifikační číslo, přispějte do hodnocení kvality výše nebo
-    tuto nepřesnost popište v komentáři.
-  we_also_support: |-
-    Ke zveřejňování obrázků podporujeme také <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> a
-    <a href="http://facebook.com">Facebook</a>.
-  a_default_taxon_name_will_automatically_created: Z vědeckého názvu tohoto taxonu
-    bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon
-    uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké
-    názvy atd.).
   x_comments:
     one: 1 komentář
     other: '%{count} komentáře'
@@ -124,6 +110,10 @@ cs:
   a: jeden
   a_: jeden
   a_community_for_naturalist: Komunita naturalistů
+  a_default_taxon_name_will_automatically_created: Z vědeckého názvu tohoto taxonu
+    bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon
+    uložíte, budete sem moci přidávat další názvy (obecné názvy, zastaralé vědecké
+    názvy atd.).
   a_few_points_to_make_things_clear: 'Několik bodů, které by vám to mohly ujasnit:'
   a_flag_for_x: prapor pro %{x}
   a_greasemonkey_script: text Greasemonkey
@@ -1908,6 +1898,9 @@ cs:
   license_descriptions_and_images: Popis licence a obrázky
   licensed_site_photos: Fotky s licencí %{site_name}
   licensing: Licence
+  licensing_your_content: |-
+    Udělením licence k vašemu obsahu dáváte ostatním právo tento obsah používat, dodrží-li podmínky licence. %{site_name} využívá váš obsah s licencí Creative Commons při sdílení s partnery, jako je například <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+    (GBIF).
   licensing_your_content_gives_others_legal: Udělením licence k vašemu obsahu dáváte
     ostatním právo tento obsah používat, dodrží-li podmínky licence. %{site_name}
     využívá váš obsah s licencí Creative Commons při sdílení s partnery, jako je například
@@ -3397,9 +3390,9 @@ cs:
     v omezených sekcích. Max. 10 znaků.
   show: Zobrazit
   show_active_and_inactive_taxa: Zobrazit aktivní a neaktivní taxony
-  show_default_taxon_photos: zobrazit základní fotky taxonu
   show_common_names: Zobrazit obecné názvy
   show_counts: Zobrazit počty podle seznamu.
+  show_default_taxon_photos: zobrazit základní fotky taxonu
   show_keyboard_shortcuts: Zobrazit klávesové zkratky
   show_kml: Zobrazit KML
   show_less: Zobrazit méně
@@ -3411,14 +3404,14 @@ cs:
   show_only: Zobrazit jen
   show_scientific_name_first: Zobrazit nejdřív vědecké názvy
   show_taxa_from_both: (zobrazit taxony z obou seznamů)
+  show_taxa_from_everywhere: Zobrazit taxony ze všech míst
+  show_taxa_from_place: Zobrazit taxony z %{place}
   show_total_listed_taxa: Zobrazit všechny taxony v seznamu
+  show_uncountable_species: Zobrazit nespočitatelné druhy
   showing_observations_by: zobrazení pozorování podle
   showing_one_to: Zobrazení 1 -
-  showing_taxa_from_place: Zobrazení taxonů z %{place}
-  show_taxa_from_place: Zobrazit taxony z %{place}
   showing_taxa_from_everywhere: Zobrazení taxonů ze všech míst
-  show_taxa_from_everywhere: Zobrazit taxony ze všech míst
-  show_uncountable_species: Zobrazit nespočitatelné druhy
+  showing_taxa_from_place: Zobrazení taxonů z %{place}
   shown_publicly_as: Veřejně zobrazeno jako
   sign_in: Přihlásit se
   sign_in_with_provider: Přihlásit se přes %{provider}
@@ -4254,6 +4247,10 @@ cs:
   want_to_test_a_new_version_of_this_page: Chcete vyzkoušet novou verzi této stránky?
   wanted: Hledaný
   was_it_captive_cultivated?: Byl v zajetí / pěstovaný?
+  we_also_support: |-
+    Ke zveřejňování obrázků podporujeme také <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Photos</a> a
+    <a href="http://facebook.com">Facebook</a>.
   we_can_only_understand_csv_in: Rozumíme pouze CSV v následujícím formátu
   we_care_privacy: Na ochraně vašeho soukromí nám záleží!
   we_couldnt_find_a_user: Nepodařilo se nám najít uživatele s touto e-mailovou adresou.
@@ -4504,6 +4501,9 @@ cs:
     %{list}?
   you_sure_remove_this_invitation?: Jste si jistí, že chcete odstranit tuto pozvánku?
   you_sure_remove_this_observation?: Jste si jistí, že chcete odstranit toto pozorování?
+  you_think_observation_inacurate: Pokud si myslíte, že toto pozorování je nepřesné,
+    přidejte prosím identifikační číslo, přispějte do hodnocení kvality výše nebo
+    tuto nepřesnost popište v komentáři.
   you_tried_to_do_something_you_shouldnt: Pokusili jste se udělat něco, co byste neměli,
     například bez povolení editovat údaje někoho jiného. Nebuďte zlí.
   you_unlinked_your_provider_account: Zrušili jste propojení vašeho účtu %{provider}
@@ -5503,13 +5503,13 @@ cs:
           Flowering Phenology=budding: Pučení
           Flowering Phenology=flower: Kvetení
           Flowering Phenology=fruit: Plození
-          Insect life stage=egg: Vejce
-          Insect life stage=larva: Larva
-          Insect life stage=teneral: Tenerální
-          Insect life stage=subimago: Subimago
-          Insect life stage=nymph: Nymfa
-          Insect life stage=pupa: Kukla
-          Insect life stage=adult: Dospělý
+          Life Stage=egg: Vejce
+          Life Stage=larva: Larva
+          Life Stage=teneral: Tenerální
+          Life Stage=subimago: Subimago
+          Life Stage=nymph: Nymfa
+          Life Stage=pupa: Kukla
+          Life Stage=adult: Dospělý
         photo_chooser_modal_desc: Přetáhněte sem fotky zleva nebo přetáhněte fotky
           sem a uspořádejte je.
         photo_chooser_modal_explanation: Vezměte prosím na vědomí, že stránka taxonu

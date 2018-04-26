@@ -15,15 +15,6 @@
 # Author: 아라
 ---
 zh-CN:
-  licensing_your_content: 授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name} 使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a
-    href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
-  you_think_observation_inacurate: 如果您认为这条观察记录不准确，请添加您的鉴定、在上方参与质量评估、或在评论中描述不准确之处。
-  we_also_support: |-
-    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://photos.google.com">Google照片</a>和<a
-    href="http://facebook.com">Facebook</a>用于图片存储。
-  a_default_taxon_name_will_automatically_created: |-
-    一个来自归属于此分类的学名的默认分类名称将被创建。
-    当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
   x_comments:
     one: 1条评论
     other: '%{count} 条评论'
@@ -120,9 +111,13 @@ zh-CN:
   x_taxa_matching_current_filters:
     one: 1个分类单元匹配当前的过滤器
     other: '%{count} 个分类群匹配当前的过滤器'
+  _percent_ID_d: '% ID''d'
   a: 一个
   a_: 一个
   a_community_for_naturalist: 一个自然爱好者的社区
+  a_default_taxon_name_will_automatically_created: |-
+    一个来自归属于此分类的学名的默认分类名称将被创建。
+    当您保存此新分类时，您将可以在此添加其他名称（通用名称、曾用学名等）。
   a_few_points_to_make_things_clear: 一些能使这些事情变得清晰点的要点：
   a_flag_for_x: 用于%{x}的旗帜
   a_greasemonkey_script: 油猴脚本
@@ -155,6 +150,7 @@ zh-CN:
   about_x: 关于 %{x}
   acc: 精度（米）
   account: 账户
+  account_settings: 账户设置
   accept: 接受
   accept_community_identifications: 接受来自社区的鉴定
   accuracy: 准确性
@@ -166,6 +162,7 @@ zh-CN:
   actions: 操作
   activate_user: 激活用户
   active: 激活
+  active_users: 活跃用户
   activity: 活跃
   activity_settings: 活跃设置
   adapted_by_name_from_a_work_by_original: 改编自由 %{original} 创作的作品 %{name}
@@ -191,6 +188,7 @@ zh-CN:
   add_an_observation: 添加一个观察
   add_an_observation?: 添加一个观察？
   add_an_observation_of: 添加 %{taxon} 的观察
+  add_annotations_for_x: 添加用于“%{x}”的注释
   add_another: 添加其他
   add_another_flag: 添加其他标记
   add_another_photo: 添加其他照片
@@ -812,6 +810,7 @@ zh-CN:
     egg: 蛋
     juvenile: 青少年
   controls: 控制
+  convert: 转换
   coordinate_systems: 坐标系
   coordinates: 坐标
   coordinates_private: （私有坐标）
@@ -1049,6 +1048,7 @@ zh-CN:
   edit_multiple_species: 编辑多个物种
   edit_notes: 编辑注释
   edit_observation: 编辑观察
+  edit_observations: 编辑观察
   edit_photos: 编辑照片
   edit_photos_for_observation_id: 编辑%{obs_id}这一观察记录的照片
   edit_place: 编辑地点
@@ -1634,6 +1634,8 @@ zh-CN:
   licensed_site_photos: 已授权的 %{site_name} 照片
   license: 许可协议
   licensing: 授权协议
+  licensing_your_content: 授权您的内容，提供其他法律权利，以在他们坚持许可条款时使用。%{site_name} 使用您的知识共享许可协议许可的内容以与数据提供商分享，例如<a
+    href="http://www.gbif.org/">Global Biodiversity Information Facility</a>（GBIF）。
   licensing_your_content_gives_others_legal: 对您的内容进行协议授权，可以授予遵守该协议的其他人使用您内容的合法权利。%{site_name}使用您知识共享协议授权的内容同其他数据合作伙伴进行分享，比如
   life: 生命
   life!: 生命！
@@ -1902,6 +1904,7 @@ zh-CN:
   Needs_ID!: 需要ID！
   needs_id_expandable_html: <span class='full'>需要</span>ID
   needs_to_be_identified: 需要被鉴定
+  new: 新
   new_assessment: 新评估
   new_check_list: 新检查表
   new_check_list_for: 为 %{place} 创建一个新检查表&raquo;
@@ -1928,6 +1931,8 @@ zh-CN:
   new_taxon_name: 新的分类名称
   new_updates_in_the_last_24_hours_from: 来自%{site_name}的近24小时新更新
   new_user_rules: 新用户规则
+  new_users: 新用户
+  new_users_w_7_obs: 新用户w/ 7观察
   new_users_week: 新用户 / 周
   news: 新闻
   next: 下一个
@@ -2026,6 +2031,7 @@ zh-CN:
   numeric_: 数字
   noun_by_you: 由您做出的 %{noun}
   obs: 观察
+  obs_cid_d: 观察CID'd
   obscured_: 已遮盖
   obscured: 已遮盖
   obscured_or_private: 已掩盖或私有
@@ -2033,6 +2039,7 @@ zh-CN:
   observation_: 观察
   observation_added: 观察已添加。
   observations_by_category: 按分类排序观察
+  observations_by_rank: 按等级排序观察
   observation_date: 日期
   observation_date?: 日期？
   observation_field: 观察字段
@@ -2054,6 +2061,7 @@ zh-CN:
   observations_from_this_project: 来自此项目的观察
   observations_from_you: 您的观察
   observations_have_had_their_coordinates: 他们的观察中的坐标已转移至相距 %{km} 千米外的随机点上，既因为分类单元受到威胁，又因为观察者选择模糊坐标。
+  observations_in_this_project_must: 此项目中的观察必须符合以下标准
   observations_map: 观察 / 地图
   observation_must_dotdotdot: 观察必须...
   observations_of_relatives: 亲属的观察
@@ -2415,6 +2423,9 @@ zh-CN:
   profile: 个人信息
   project: 项目
   project_added_your_observations: 项目添加了您的观察
+  project_admins:
+    one: 项目管理员
+    other: 项目管理员
   project_created_on: 于%{date}创建此项目
   project_curator_changes: 项目馆长更改
   project_curator_tools: 项目馆长工具
@@ -2704,8 +2715,9 @@ zh-CN:
   show_more: 显示更多
   show_only: 仅显示
   show_scientific_name_first: 首先显示学名
-  showing_one_to: 显示1~
+  show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
+  showing_one_to: 显示1~
   sign_in: 登录
   sign_out: 退出
   sign_up!: 注册！
@@ -2718,6 +2730,7 @@ zh-CN:
   sizes: 尺寸
   skip_to_next_page: 跳至下一页
   small: 小
+  site_stats: 网站统计
   site_year_in_review: '%{site_name}在%{year}年中的复核'
   so_meta!: 所以元！
   some_agree: 部分同意
@@ -3203,6 +3216,9 @@ zh-CN:
   want_to_add_one: 想加入一个？
   want_to_test_a_new_version_of_this_page: 想要测试此页面的新版本么？
   wanted: 希望的
+  we_also_support: |-
+    我们也支持<a href="http://flickr.com">Flickr</a>、<a href="http://photos.google.com">Google照片</a>和<a
+    href="http://facebook.com">Facebook</a>用于图片存储。
   we_care_privacy: 我们关心您的隐私！
   we_couldnt_find_a_user: 我们没找到与此电子邮件地址相关的用户。
   we_currently_support_flickr_for_image_hosting: 我们目前支持Flickr用于图片存储。
@@ -3214,6 +3230,7 @@ zh-CN:
     我们尝试了处理您上传的名为 %{filename} 的文件，但未成功。
     请修复下列问题，然后重试。
   weather: 天气
+  website: 网站
   wed: 三
   week_of_date: '%{date}的一周'
   welcome!: 欢迎！
@@ -3355,6 +3372,7 @@ zh-CN:
   you_sure_delete_comment?: 您确定要删除此评论吗？
   you_sure_delete_flag?: 您确定要删除此标志吗？
   you_sure_delete_project?: 您确定要删除这个项目么？
+  you_think_observation_inacurate: 如果您认为这条观察记录不准确，请添加您的鉴定、在上方参与质量评估、或在评论中描述不准确之处。
   you_tried_to_do_something_you_shouldnt: 您尝试做了一些您不应该做的事情，例如未获授权编辑一些人的数据。请不要作恶。
   you_unlinked_your_provider_account: 您取消连接了您的%{provider}账户
   you_would_get_the: 您会获得下列标签：
@@ -3384,6 +3402,7 @@ zh-CN:
   your_observation_will_get_shared_html: 如果您勾选这些框的话，您的观察将被社交网络分享。您可通过<a href='%{url}'
     target='_blank'>编辑您的账户设置</a>更改您的默认值。如果您在此功能添加前连接了您的Facebook或Twitter账户，您可能需要重新连接您的账户与Twitter或Facebook以使其工作。
   your_photos_have_been_tagged: 您的照片已被标记！
+  your_projects: 您的项目
   your_google_account: 您的Google账户
   your_google_account_info: 您的Google账户信息
   your_profile_was_successfully_updated: 您的个人资料已成功更新！
@@ -3685,6 +3704,7 @@ zh-CN:
         change_admin_desc: 选择一位项目馆长作为新管理员。
         custom_project_fields_means: 自定义项目标志，添加一些内容，及编辑CSS。
         icon_desc: 将被裁剪成正方形
+        it_looks_like_this_project_can_be_converted: 看起来此项目可以转换成新的<a href="%{url}">收藏项目</a>。
         no_curators: 这里没有项目馆长。如果您希望分配新人作为管理员，他必须首先加入此项目，并且您必须将其提拔为馆长。
         observation_aggregation_desc_html: |-
           <p class="description">
@@ -3750,6 +3770,7 @@ zh-CN:
         data_visualizations: 数据可视化
         delete_project: 删除项目
         display_project_name: 显示项目名称
+        leaderboards_among_individuals: <strong>个人</strong>之间的排行榜
         multiple_project_administrators: 多重项目管理员
         name_placeholder: 芝加哥的鸟、神奇的蜻蜓等
         note_you_can_delete_the_time: （注意：如果您希望包含一整天，您可以删除时区和精确时间。）
@@ -3765,6 +3786,7 @@ zh-CN:
         umbrella_project_features: 雨伞项目功能：
         unique_url_for_outreach: 用于拓展的唯一URL
         use_this_link_to_create_html: 使用<a href="%{url}">此链接</a>创建传统项目。
+        visual_comparison_of_data_among: 对同一雨伞内项目的可视化数据比较
         welcome_to_projects: 欢迎来到项目！
       project_location_privacy_notice_html: |-
         <p>
@@ -3802,6 +3824,17 @@ zh-CN:
       not_found:
         sorry_that_doesnt_exist: 抱歉，它不存在！
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
+    stats:
+      index:
+        avg_ttcid: 平均TTCID
+        avg_ttid: 平均TTID
+        med_ttcid: 医学TTCID
+        med_ttid: 医学TTID
+        obs_1_day: 观察（1天）
+        obs_id_d_desc: 在过去7天创建，并且有ID（可以是观察者的）
+        other_desc_html: 通过由<a href="%{url}">开发者</a>制作的其他应用程序创建
+        TTCID: TTCID
+        TTID: TTID
     taxa:
       edit:
         high_status_conservation_status_notice_html: 给更高级别的类单位添加保护状态会影响该类群中所有物种的观察。请不要给类群添加含有没有状态的物种，因为这将不正确地掩盖这些物种的观察坐标。
@@ -3824,13 +3857,13 @@ zh-CN:
           Flowering Phenology=budding: 发芽
           Flowering Phenology=flower: 开花
           Flowering Phenology=fruit: 医学结果
-          Insect life stage=egg: 蛋
-          Insect life stage=larva: 幼虫
-          Insect life stage=teneral: 幼体
-          Insect life stage=subimago: 亚成虫
-          Insect life stage=nymph: 仙女
-          Insect life stage=pupa: 蛹
-          Insect life stage=adult: 成人
+          Life Stage=egg: 蛋
+          Life Stage=larva: 幼虫
+          Life Stage=teneral: 幼体
+          Life Stage=subimago: 亚成虫
+          Life Stage=nymph: 仙女
+          Life Stage=pupa: 蛹
+          Life Stage=adult: 成人
     taxon_links:
       form:
         name_with_rank_desc: 分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。
@@ -4022,8 +4055,10 @@ zh-CN:
       one: 小时
       other: 小时
     countdown_x_minutes:
+      one: 分
       other: 分
     countdown_x_seconds:
+      one: 秒
       other: 秒
     prompts:
       day: 日

@@ -27,6 +27,7 @@ el:
   x_people:
     one: 1 άτομο
     other: '%{count} άτομα'
+  _100_day_trends: Τάσεις 100 ημερών
   a: a
   a_: a
   a_community_for_naturalist: Μια κοινότητα για φυσιοδίφες
@@ -63,7 +64,8 @@ el:
   action: Δράση
   actions: Δράσεις
   activate_user: Ενεργοποίηση χρήστη
-  active: Ενεργός
+  active: Ενεργό
+  active_users: Ενεργοί χρήστες
   activity: Δραστηριότητα
   activity_settings: Ρυθμίσεις δραστηριότητας
   add: Προσθήκη
@@ -441,6 +443,7 @@ el:
     adult: Ενήλικας
     egg: Αυγό
   controls: Έλεγχοι
+  convert: Μετατροπή
   coordinate_systems: Συστήματα συντεταγμένων
   coordinates: Συντεταγμένες
   coordinates_private: (οι συντεταγμένες είναι ιδιωτικές)
@@ -606,6 +609,7 @@ el:
   edit_multiple_descriptions: Επεξεργασία πολλαπλών περιγραφών
   edit_multiple_locations: Επεξεργασία πολλαπλών τοποθεσιών
   edit_multiple_species: Επεξεργασία πολλαπλών ειδών
+  edit_observations: Επεξεργασία παρατηρήσεων
   edit_photos: Επεξεργασία φωτογραφιών
   edit_photos_for_observation_id: Επεξεργασία φωτογραφιών για την παρατήρηση %{obs_id}
   edit_place: Επεξεργασία μέρους
@@ -1186,6 +1190,7 @@ el:
   needs_id_: Χρειάζεται αναγνωριστικό
   Needs_ID!: Χρειάζεται αναγνωριστικό!
   needs_to_be_identified: Πρέπει να αναγνωριστεί
+  new: Νέος
   new_announcement: Νέα ανακοίνωση
   new_check_list: Νέα λίστα ελέγχου
   new_custom_field_for: Νέο εξατομικευμένο πεδίο για
@@ -1212,6 +1217,7 @@ el:
   new_updates_in_the_last_24_hours_from: Νέες ενημερώσεις στις τελευταίες 24 ώρες
     από το %{site_name}
   new_user_rules: Νέοι κανόνες χρηστών
+  new_users: Νέοι χρήστες
   new_users_week: Νέοι χρήστες ανά εβδομάδα
   news: Νέα
   next: Επόμενο
@@ -1297,7 +1303,9 @@ el:
   observation_: παρατήρηση
   observation_added: Προστέθηκε παρατήρηση.
   observation_added_to_the_project: Παρατήρηση προστέθηκε στο εγχείρημα %{project}
-  observations_by_category: Παρατηρήσεις ανά κατηγορία
+  observations_by_category: Παρατηρήσεις Ανά κατηγορία
+  observations_by_app: Παρατηρήσεις ανά εφαρμογή
+  observations_by_rank: Παρατηρήσεις ανά κατάταξη
   observations_by_user_on_date: Παρατηρήσεις από τον %{user} στις %{date}
   observations_by_you: Παρατηρήσεις από εσάς
   observations_by_you_on_date: Παρατηρήσεις από εσάς στις %{date}
@@ -1382,7 +1390,7 @@ el:
   original: Πρωτότυπο
   original_rights_holder: Αρχικός κάτοχος δικαιωμάτων
   original_url: Αρχική διεύθυνση URL
-  other: άλλα
+  other: Άλλα
   other_animals: άλλα ζώα
   other_animals_plural:
     one: άλλο ζώο
@@ -1697,6 +1705,7 @@ el:
   reject?: Απόρριψη;
   reject_the_community_id: Απόρριψη του αναγνωριστικού κοινότητας
   related_species: Σχετικά είδη
+  relative_observations: Σχετικές παρατηρήσεις
   remember_me: Να με θυμάσαι
   remove: Αφαίρεση
   remove_boundary: Αφαίρεση συνόρου
@@ -1714,7 +1723,7 @@ el:
   required_field: Απαιτούμενο πεδίο
   research: έρευνα
   research_: έρευνα
-  research_grade: τάξη έρευνας
+  research_grade: Τάξη Έρευνας
   reset_search_filters: Επαναφέρετε τα φίλτρα αναζήτησης
   reset_your_password: Επαναφέρετε τον κωδικό σας
   resolve: Επίλυση
@@ -1805,7 +1814,10 @@ el:
   show_less: Εμφάνιση λιγότερων
   show_more: Εμφάνιση περισσότερων
   show_only: Εμφάνιση μόνο
+  show_relative_proportions_of_all_observations: Εμφάνιση σχετικών αναλογιών όλων
+    των παρατηρήσεων
   show_scientific_name_first: Εμφάνιση επιστημονικών ονομάτων πρώτα
+  show_total_counts: Εμφάνιση συνολικών μετρήσεων
   showing_one_to: Εμφάνιση 1 -
   sign_in: Συνδεθείτε
   sign_in_with_provider: Συνδεθείτε με τον %{provider}
@@ -1957,7 +1969,7 @@ el:
   top_observer: Κορυφαίος παρατηρητής
   top_observers: Παρατηρητές Τορ επιπέδου
   top_species: Κορυφαία είδη
-  total: συνολικά
+  total: Συνολικά
   totals: Σύνολα
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
@@ -1966,12 +1978,14 @@ el:
   upload_photo: Ανέβασμα φωτογραφίας
   view_sample: Προβολή δείγματος
   weather: Καιρός
+  website: Ιστότοπος
   whats_this?: Τι είναι αυτό;
   who_helped_user_the_most: Ποιος Βοήθησε το %{user} Περισσότερο
   worldwide: Παγκόσμιες
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} de %{y} la gente (mas que 2/3)
     son d''acuerdo que esto s valido'
   your_membership: Η συμμετοχή σας
+  your_projects: Τα εγχειρήματά σας
   your_google_account: ο Google λογαριασμό σας
   your_tags: Οι ετικέτες σας
   views:
@@ -1997,6 +2011,12 @@ el:
         use_this_link_to_create_html: Χρησιμοποιήστε <a href="%{url}">αυτό το σύνδεσμο</a>
           για να δημιουργήσετε ένα παραδοσιακό εγχείρημα αντί γι'αυτού.
         welcome_to_projects: Καλωσήρθατε στα εγχειρήματα!
+    stats:
+      index:
+        iphone_desc_html: Δημιουργήθηκε μέσω της <a href="%{url}">εφαρμογής κινητού
+          iNaturalist</a>
+        new_users_desc: Εγγράφηκε αυτή τη ημέρα
+        recent_desc: Εγγράφηκε στις τελευταίες 7 ημέρες
     users:
       edit:
         common_names_desc: Mostrar nombres conocidos (comunes). Va desactivar solamente
@@ -2056,8 +2076,10 @@ el:
       half_a_minute: μισό λεπτό
     countdown_x_days: '{{PLURAL: $1|one=ημέρα|ημέρες}})'
     countdown_x_minutes:
+      one: λεπτό
       other: λεπτά
     countdown_x_seconds:
+      one: δευτερόλεπτο
       other: δευτερόλεπτα
     prompts:
       day: Ημέρα
@@ -2114,6 +2136,10 @@ el:
   activerecord:
     errors:
       models:
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Το εγχείρημα δεν επιτρέπει παρατηρήσεις
         taxon:
           attributes:
             rank:

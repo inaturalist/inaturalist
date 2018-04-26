@@ -31,25 +31,6 @@
 # Author: Yasten
 ---
 fr:
-  licensing_your_content: "En ajoutant une licence à votre contenu, vous donnez aux
-    autres le droit\nd’utiliser ce contenu s’ils se conforment aux conditions de la
-    licence.\n%{site_name} utilise votre contenu sous licence Creative Commons pour\nl’échanger
-    avec des partenaires comme \n<a href=\"http://www.gbif.org/\">Global Biodiversity
-    Information Facility</a> (GBIF)."
-  you_think_observation_inacurate: |-
-    Si vous pensez que cette observation est inexacte, veuillez ajouter une
-    identification, participez à l’évaluation de la qualité ci-dessous ou
-    décrivez les erreurs dans un commentaire.
-  we_also_support: |-
-    Nous acceptons aussi <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a> et
-    <a href="http://facebook.com">Facebook</a>
-    pour l’hébergement d’images.
-  a_default_taxon_name_will_automatically_created: |-
-    Un nom de taxon par défaut sera créé automatiquement à partir de
-    l’attribution du nom scientifique de ce taxon. Quand vous aurez enregistré
-    ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs,
-    noms scientifiques désuets, etc.).
   x_comments:
     one: 1 commentaire
     other: '%{count} commentaires'
@@ -154,9 +135,15 @@ fr:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> modification de taxon ajoutée
     other: <span class='count'>%{count}</span> modifications de taxon ajoutées
+  _percent_ID_d: '% ID assigné(s)'
   a: un
   a_: un
   a_community_for_naturalist: Une communauté pour les naturalistes
+  a_default_taxon_name_will_automatically_created: |-
+    Un nom de taxon par défaut sera créé automatiquement à partir de
+    l’attribution du nom scientifique de ce taxon. Quand vous aurez enregistré
+    ce nouveau taxon, vous pourrez ajouter d’autres noms ici (noms communs,
+    noms scientifiques désuets, etc.).
   a_few_points_to_make_things_clear: 'Quelques éclaircissements :'
   a_flag_for_x: un drapeau pour %{x}
   a_greasemonkey_script: un script Greasemonkey
@@ -204,7 +191,8 @@ fr:
   action: Action
   actions: Actions
   activate_user: Activer l'utilisateur
-  active: actif
+  active: Actif
+  active_users: Utilisateurs actifs
   activity: Activité
   activity_settings: Paramètres d’activité
   adapted_by_name_from_a_work_by_original: Adaptation du travail de %{original} par
@@ -234,6 +222,7 @@ fr:
   add_an_observation: Ajouter une observation
   add_an_observation?: Ajouter une observation ?
   add_an_observation_of: Ajouter une observation sur %{taxon}
+  add_annotations_for_x: Ajouter des annotations pour « %{x} »
   add_another: Ajoutez-en une autre
   add_another_flag: Signaler d’un autre drapeau
   add_another_photo: Ajouter une autre photo
@@ -1074,6 +1063,7 @@ fr:
     egg: Oeuf
     juvenile: Juvénile
   controls: Contrôles
+  convert: Convertir
   coordinate_systems: Systèmes des coordonnées
   coordinates: Coordonnées
   coordinates_private: (coordonnées privées)
@@ -1354,6 +1344,7 @@ fr:
   edit_multiple_species: Modifier plusieurs espèces
   edit_notes: Modifier les notes
   edit_observation: Modifier l’observation
+  edit_observations: Modifier les observations
   edit_photos: Modifier les photos
   edit_photos_for_observation_id: Modifier les photos pour l’observation %{obs_id}
   edit_place: Modifier le lieu
@@ -2080,6 +2071,11 @@ fr:
   licensed_site_photos: Photos d’%{site_name} sous licence
   license: Licence
   licensing: Mise sous licence
+  licensing_your_content: "En ajoutant une licence à votre contenu, vous donnez aux
+    autres le droit\nd’utiliser ce contenu s’ils se conforment aux conditions de la
+    licence.\n%{site_name} utilise votre contenu sous licence Creative Commons pour\nl’échanger
+    avec des partenaires comme \n<a href=\"http://www.gbif.org/\">Global Biodiversity
+    Information Facility</a> (GBIF)."
   licensing_your_content_gives_others_legal: En mettant votre contenu sous licence,
     vous donnez aux autres le droit de l’utiliser s’ils respectent les conditions
     de la licence. %{site_name} utilise votre contenu sous licence Creative Commons
@@ -2496,6 +2492,8 @@ fr:
   new_updates_in_the_last_24_hours_from: Nouvelles mises à jour dans les dernières
     24 heures d’%{site_name}
   new_user_rules: Nouvelles règles utilisateur
+  new_users: Nouveaux utilisateurs
+  new_users_w_7_obs: Nouveaux utilisateurs avec 7 Obs
   new_users_week: Nouveaux utilisateurs/semaine
   news: Actualités
   next: Suivant
@@ -2659,6 +2657,7 @@ fr:
   observation_aggregation: Agrégation d’observations
   observation_photo_uploader: Téléverseur de photos d’observation
   observations_by_category: Observations par catégorie
+  observations_by_rank: Observations par rang
   observations_by_user_on_date: Observations de %{user} le %{date}
   observations_by_you: Vos observations
   observations_by_you_on_date: Observations de vous le %{date}
@@ -2930,7 +2929,7 @@ fr:
   original_url: URL originale
   original_url_for_this_map: Lien d'origine de cette carte
   organism_appears_captive_cultivated: Organisme présent en captivité ou cultivé
-  other: autre
+  other: Autre
   other_animals: autres animaux
   other_animals_plural:
     one: autre animal
@@ -3492,7 +3491,7 @@ fr:
   required_columns_in_order: Colonnes obligatoires dans l’ordre
   research: recherche
   research_: Recherche
-  research_grade: calibre recherche
+  research_grade: Niveau de recherche
   research_grade_expandable_html: C<span class='full'>alibre </span> R<span class='full'>echerche</span>
   research_grade_short_html: C<span class='full'>alibre </span> R<span class='full'>echerche</span>
   research_grade_observations_have: Les observations de « calibre recherche » ont
@@ -3650,9 +3649,9 @@ fr:
     des champs à espace réduit. 10 caractères maximum.
   show: Afficher
   show_active_and_inactive_taxa: Afficher les taxons actifs et inactifs
-  show_default_taxon_photos: afficher les photos de taxon par défaut
   show_common_names: Afficher les noms vulgaires
   show_counts: Afficher le nombre en fonction de la liste.
+  show_default_taxon_photos: afficher les photos de taxon par défaut
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_kml: Afficher en format KML
   show_less: Afficher moins
@@ -3664,16 +3663,17 @@ fr:
   show_only: 'Montrer seulement :'
   show_scientific_name_first: Afficher les noms scientifiques en premier
   show_taxa_from_both: (afficher les taxons des deux listes)
+  show_taxa_from_everywhere: Afficher les taxons de partout
+  show_taxa_from_place: Afficher les taxons de %{place}
+  show_total_counts: Afficher les compteurs totaux
   show_total_listed_taxa: Afficher le total des taxons répertoriés
+  show_uncountable_species: Afficher les espèces indénombrables
   showing_observations_by: affichage des observations de
   showing_one_to: Affichage de 1 à
-  showing_taxa_from_place: Affichage des taxons de %{place}
-  show_taxa_from_place: Afficher les taxons de %{place}
   showing_taxa_from_everywhere: Affichage des taxons de partout
-  show_taxa_from_everywhere: Afficher les taxons de partout
-  show_uncountable_species: Afficher les espèces indénombrables
+  showing_taxa_from_place: Affichage des taxons de %{place}
   shown_publicly_as: Affiché publiquement comme
-  sign_in: Connectez-vous
+  sign_in: S’identifier
   sign_in_with_provider: vous connecter avec %{provider}
   sign_out: Déconnexion
   sign_up!: Inscrivez-vous !
@@ -3691,6 +3691,7 @@ fr:
   site_name_place: lieu d’%{site_name}
   site_observations_export_from_date: observations d’%{site_name} exportées depuis
     le %{date}
+  site_stats: Statistiques du site
   site_taxon_page: Page de taxon d’%{site_name}
   site_year_in_review: Année %{site_name} revue en %{year}
   so_meta!: méta!
@@ -4268,7 +4269,7 @@ fr:
   top_observer: Meilleurs observateurs
   top_observers: Meilleurs observateurs
   top_species: Espèces favorites
-  total: total
+  total: Total
   totals: totaux
   total_members: Total des membres
   total_observations: Total des observations
@@ -4569,6 +4570,11 @@ fr:
     cette page ?
   wanted: Recherché
   was_it_captive_cultivated?: Était-il captif/cultivé?
+  we_also_support: |-
+    Nous acceptons aussi <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Photos</a> et
+    <a href="http://facebook.com">Facebook</a>
+    pour l’hébergement d’images.
   we_can_only_understand_csv_in: Nous ne pouvons comprendre le CSV que dans le format
     suivant
   we_care_privacy: Nous veillons à votre vie privée!
@@ -4847,6 +4853,10 @@ fr:
   you_sure_remove_this_invitation?: Êtes-vous certain de vouloir supprimer cette invitation?
   you_sure_remove_this_observation?: Êtes-vous certain de vouloir supprimer cette
     observation?
+  you_think_observation_inacurate: |-
+    Si vous pensez que cette observation est inexacte, veuillez ajouter une
+    identification, participez à l’évaluation de la qualité ci-dessous ou
+    décrivez les erreurs dans un commentaire.
   you_tried_to_do_something_you_shouldnt: |-
     Vous avez essayé de faire quelque chose que vous ne devriez pas, comme modifier
     les données de quelqu'un d'autre sans autorisation. Soyez gentil.
@@ -4903,6 +4913,7 @@ fr:
   your_observations_couldnt_be_added_to_that_project: 'Vos observations n''ont pas
     pu être ajoutées à ce projet : %{errors}'
   your_photos_have_been_tagged: Vos photos ont été étiquetées!
+  your_projects: Vos projets
   your_google_account: votre compte Google
   your_google_account_info: Les informations de votre compte Google
   your_profile_was_successfully_updated: Votre profil a bien été mis à jour!
@@ -5773,6 +5784,8 @@ fr:
           inclurons un widget d’inscription sur votre page de projet jusqu’au début de
           votre bioblitz.
         icon_desc: Sera retaillé en un carré
+        it_looks_like_this_project_can_be_converted: On dirait que ce projet peut
+          être converti en un nouveau <a href="%{url}">project Collection</a>.
         last_aggregated_at_desc: Moment où l’agrégateur a terminé d’ajouter des observations
           à ce projet
         no_curators: Il n’y a pas de superviseur de projet. Si vous voulez affecter
@@ -6012,6 +6025,12 @@ fr:
         even_our_dedicated_search_mole_couldnt: Même notre taupe de recherche n’a
           rien pu trouver !
     stats:
+      index:
+        iphone_desc_html: Créé avec l'<a href="%{url}">application iPhone iNaturalist</a>
+        obs_id_d_desc: Créés pendant ces 7 derniers jours et ayant un ID (peuvent
+          être des observateurs)
+        other_desc_html: Créés avec d'autres applications <a href="%{url}">conçut
+          par des développeurs</a>
       year:
         sunburst_desc_html: |-
           Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base
@@ -6135,13 +6154,14 @@ fr:
           Flowering Phenology=budding: Naissant
           Flowering Phenology=flower: Floraison
           Flowering Phenology=fruit: Avec du fruit
-          Insect life stage=egg: Oeuf
-          Insect life stage=larva: Larve
-          Insect life stage=teneral: Ténéral
-          Insect life stage=subimago: Subimago
-          Insect life stage=nymph: Nymphe
-          Insect life stage=pupa: Chrysalide
-          Insect life stage=adult: Adulte
+          Life Stage=egg: Oeuf
+          Life Stage=larva: Larve
+          Life Stage=teneral: Ténéral
+          Life Stage=subimago: Subimago
+          Life Stage=nymph: Nymphe
+          Life Stage=pupa: Chrysalide
+          Life Stage=adult: Adulte
+          unannotated: Pas d'annotation
         photo_chooser_modal_desc: Faire glisser les photos d’ici vers la gauche, ou
           les faire glisser ici pour les réarranger.
         photo_chooser_modal_explanation: |-
@@ -6461,9 +6481,11 @@ fr:
       one: heure
       other: heures
     countdown_x_minutes:
-      other: minutes(s)
+      one: minute
+      other: minutes
     countdown_x_seconds:
-      other: seconde(s)
+      one: seconde
+      other: seconde
     prompts:
       day: Jour
       hour: Heure

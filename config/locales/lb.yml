@@ -20,6 +20,9 @@ lb:
   x_observations:
     one: 1 Observatioun
     other: '%{count} Observatiounen'
+  x_observations_:
+    one: 1 Observatioun
+    other: '%{count} Observatiounen'
   x_observations_html:
     one: <span class='count'>1</span> Observatioun
     other: <span class='count'>%{count}</span> Observatiounen
@@ -41,11 +44,13 @@ lb:
   a_few_points_to_make_things_clear: 'E puer Punkte fir d''Saachen e bësse méi kloer
     ze maachen:'
   a_flag_for_x: en Markéierung fir %{x}
+  a_greasemonkey_script: e Greasemonkey-Script
   a_member_of: E Member vu(n)
   a_member_of_taxon_html: e Member vu(n) %{taxon}
   able_to_connect_flickr: Super! Mir kënnen e Link op Äre Flickr-Benotzerkont maachen.
   about: Iwwer
   about_bioblitz_results: Iwwer Bioblitz Resultater
+  about_blocking: Iwwer Spären
   about_charts: Iwwer Diagrammer
   about_external_links: Iwwer extern Linken
   about_licenses: Iwwer Lizenzen
@@ -63,17 +68,37 @@ lb:
   action: Aktioun
   actions: Aktiounen
   activate_user: Benotzer aktivéieren
-  active: aktiv
+  active: Aktiv
+  active_users: Aktiv Notzer
   activity: Aktivitéit
   activity_settings: Astellunge vun der Aktivitéit
+  adapted_by_name_from_a_work_by_original: Ugepasst vun %{name} aus enger Aarbecht
+    vun %{original}
   add: Derbäisetzen
   add_a_comment: Eng Bemierkung derbäisetzen
   add_a_field: E Feld derbäisetzen
+  add_a_flag: Eng Markéierung derbäisetzen
   add_a_link_raquo: E Link derbäisetzen &raquo;
   add_a_name: En Numm derbäisetzen
+  add_a_new_change_group: Eng nei Ännerungsgrupp derbäisetzen
+  add_a_new_observation_to_id_please!: Eng nei Observatioun fir ze bestëmmen derbäisetze
+    weg!
+  add_a_place_raquo: Eng Plaatz derbäisetzen &raquo;
+  add_a_single_observation: eng eentzel Observatioun aginn
+  add_a_taxon: een Taxon derbäisetzen
+  add_all_your_matching_obs_of_this_taxon: Setzt all är passend Observatiounen vun
+    desem Taxon an dese Projet
+  add_all_your_matching_obs_to_this_project: Setzt all är passend Observatiounen an
+    dese Projet
+  add_an_assessment: Eng Bewärtung derbäisetzen
+  add_an_identification: eng Bestëmmung derbäisetzen
   add_an_observation: Eng Observatiounen derbäisetzen
   add_an_observation?: Eng Observatioun derbäisetzen?
   add_an_observation_of: Eng Observatioun vu(n) %{taxon} derbäisetzen
+  add_annotations_for_x: Erklärunge fir %{x} derbäisetzen
+  add_annotations_for_controlled_attribute:
+    sex: Erklärunge fir "Geschlecht" derbäisetzen
+    plant_phenology: Erklärunge fir "Planzephänologie" derbäisetzen
   add_another: Nach eng derbäisetzen
   add_another_flag: Nach eng Markéierung derbäisetzen
   add_another_photo: Eng aner Foto derbäisetzen
@@ -81,6 +106,7 @@ lb:
   add_colors: Faarwen derbäisetzen
   add_comment: Eng Bemierkung derbäisetzen
   add_countries: Länner derbäisetzen
+  add_editor: Auteur derbäisetzen
   add_description: '%{description_name} derbäisetzen'
   add_field: Feld derbäisetzen
   add_link: Link derbäisetzen
@@ -108,7 +134,7 @@ lb:
   add_to_your_list: Op Är Lëscht derbäisetzen
   add_your_own_observations_at: Setzt Är eegen Observatiounen op %{site_name} derbäi
   add_your_photo: Är Foto derbäisetzen
-  add_your_photo_to: Är Foto op %{Project} derbäisetzen
+  add_your_photo_to: Är Foto op %{project} derbäisetzen
   added: Derbäigesat
   added!: Derbäigesat!
   added_by: Derbäigesat vum
@@ -268,6 +294,7 @@ lb:
   captive: A Gefaangenschaft
   card: Kaart
   case_plural: s
+  casual_: Geleeëntlech
   catalogue_of_life: Katalog vum Liewen
   categories: Kategorien
   cc_by_name: Attributioun
@@ -765,6 +792,7 @@ lb:
   mark_all_as_reviewed: All als nogekuckt markéieren
   maverick: Maverick
   media: Medien
+  media_type: Medientyp
   meet: Treffen
   member_of_the_inaturalist_network_html: Member vum <a href="%{url}">iNaturalist
     Reseau</a>
@@ -817,6 +845,7 @@ lb:
   near: beim
   nearby: Nobäi
   nearby_observations: Observatiounen nobäi
+  needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
   new_announcement: Nei Ukënnegung
   new_comment_on_a_parent_by_user_link: Nei Bemierkung iwwer @vow_or_con{vow:an|a}
@@ -956,6 +985,7 @@ lb:
   orange: orange
   organisms: Organismen
   original: Original
+  original_url: Original URL
   other_animals: aner Déieren
   other_animals_plural:
     one: anert Déier
@@ -1111,6 +1141,7 @@ lb:
     kingdom: Kinnekräich
     subgenus: Ënneraart
     section: Abschnitt
+  ranges: Beräicher
   rare: Seelen
   read_more: Liest méi
   real_time_discussions: Live-Diskussiounen
@@ -1140,6 +1171,7 @@ lb:
   request_failed: Ufro huet net funktionéiert
   required: obligatoresch
   required_: Obligatoresch
+  research_: Recherche
   reset_search_filters: Sichfilteren zrécksetzen
   restore: Restauréieren
   restoring: Restauréieren...
@@ -1240,6 +1272,7 @@ lb:
   this_user_has_been_suspended: Dëse Benotzer gouf suspendéiert
   this_year: Dëst Joer
   thu: Don
+  thumb_url: URL vun der Miniatur
   time_: Zäit
   title: Titel
   title_and_description: Titel & Beschreiwung
@@ -1411,6 +1444,8 @@ lb:
       export:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: Ok, mir schécken Iech eng E-Mail wann et prett ass.
+      import:
+        decimal_degrees_format: dd.dddd
     projects:
       collection: Sammlung
       edit:
@@ -1442,10 +1477,10 @@ lb:
           verifiable: Iwwerpréifbar
           Flowering Phenology=bare: Keng Blummen
           Flowering Phenology=fruit: Kritt Friichten
-          Insect life stage=egg: Ee
-          Insect life stage=larva: Larve
-          Insect life stage=nymph: Nymph
-          Insect life stage=adult: Erwuessen
+          Life Stage=egg: Ee
+          Life Stage=larva: Larve
+          Life Stage=nymph: Nymph
+          Life Stage=adult: Erwuessen
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Wann Dir Är
@@ -1461,6 +1496,7 @@ lb:
         people_signed_up: Leit hu sech ageschriwwen
         how_it_works: Wéi et geet
         record_your_observations: Enregistréiert Är Observatiounen
+        share_with_fellow_naturalists: Mat Naturalistekollegen deelen
         discuss_your_findings: Diskutéiert Är Konklusiounen
         create_useful_data: Nëtzlech Donnéeën uleeën
         works_on_all_your_devices: Funktionéiert op all Ären Apparater
