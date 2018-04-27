@@ -404,6 +404,16 @@ class ProjectObservation < ActiveRecord::Base
     false
   end
 
+  def in_project?
+    return true if project.is_new_project?
+    false
+  end
+
+  def observed_by_user?
+    return true if project.is_new_project?
+    false
+  end
+
   def touch_observation
     if observation
       observation.project_observations.reload
