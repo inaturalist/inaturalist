@@ -334,7 +334,7 @@ class ProjectsController < ApplicationController
       format.json do
         @project_users = @selected_user.project_users.joins(:project).
           includes({:project => [:project_list, {:project_observation_fields => :observation_field}]}, :user).
-          where("projects.project_type != 'umbrella' AND projects.project_type != 'collection'").
+          where("projects.project_type IS NULL OR (projects.project_type != 'umbrella' AND projects.project_type != 'collection')").
           order("lower(projects.title)").
           limit(1000)
         project_options = Project.default_json_options.update(
