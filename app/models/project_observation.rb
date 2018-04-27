@@ -404,7 +404,7 @@ class ProjectObservation < ActiveRecord::Base
     false
   end
 
-  def in_project?(project = nil)
+  def in_project?(rule_project = nil)
     return true if project.is_new_project?
     false
   end
