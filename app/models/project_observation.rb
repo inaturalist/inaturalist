@@ -404,12 +404,12 @@ class ProjectObservation < ActiveRecord::Base
     false
   end
 
-  def in_project?
+  def in_project?(project = nil)
     return true if project.is_new_project?
     false
   end
 
-  def observed_by_user?
+  def observed_by_user?(user = nil)
     return true if project.is_new_project?
     false
   end
