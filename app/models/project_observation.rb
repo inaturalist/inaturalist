@@ -9,7 +9,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :observer_allows_addition?
   validate :project_allows_submitter?
   validate :observer_invited?
-  validate :project_allows_observations?
+  # validate :project_allows_observations?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
