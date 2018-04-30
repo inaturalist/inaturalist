@@ -327,7 +327,7 @@ ru:
     rank:
       kingdom: Царство
       class: Класс
-      species: Виды
+      species: Вид
       order: Порядок
     amphibians: Земноводные
     animals: Животные
@@ -1203,6 +1203,7 @@ ru:
   global_names: Глобальные имена
   go: Вперед
   got_it!: Понятно!
+  got_your_data_somewhere_else?: Ваши данные где-нибудь еще? Мы можем помочь.
   grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в
     наше таксономическое дерево, найти существующий родительский таксон или создать
     все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону
@@ -1284,12 +1285,14 @@ ru:
   import_date_time_location_taxonomic: Импортировать дату, время, место, описание
     и таксономическую информацию из этого фото.
   import_from_csv: Импорт из CSV
-  import_from_other_photo_sites: Импортировать с других фото-сайтов
+  import_from_other_photo_sites: Импортировать с других фотосайтов
   import_from_photos: Импортировать из фотографий
   import_from_yahoo: Импортировать из Yahoo
   import_observations: Импорт Наблюдений
   import_observations_from_a_photo: Импорт наблюдений от поставщика фото или файла
     на вашем компьютере.
+  import_photos: Импортировать фото
+  import_sections: Импортировать разделы
   import_tags_from_csv: Импорт тегов формата CSV
   in: в
   in_: в
@@ -1656,7 +1659,7 @@ ru:
   new_updates_in_the_last_24_hours_from: Новые обновления за последние 24 часа от
     %{site_name}
   new_users_week: Новые пользователи / Неделя
-  next: Далее
+  next: След
   next_observation: Следующее наблюдение
   next_page: Следующая страница
   next_photo: Следующее фото
@@ -1717,6 +1720,7 @@ ru:
   no_taxonomic_changes_match_those_criteria: Никакие таксономические изменения не
     соответствуют этим критериям
   noble_curators: Почетные кураторы %{site}
+  none: Ничего
   none_found: Ничего не найдено
   normal: обычный
   not_found: Не найдено
@@ -2252,6 +2256,7 @@ ru:
     import_from_soundcloud_description: Выберите звуки из вашего аккаунта SoundCloud
       для преобразования их в наблюдения iNaturalist. Мы заполним дату и время из
       метаданных звуков и попытаемся найти видовые названия в тегах.
+    import_from_sounds: Импортировать из звуковых файлов
     link_your_soundcloud_account: Привязать ваш аккаунт SoundCloud
     no_photos_sounds: Нет фото или звуков
     photos_sounds: Фото / Звуки
@@ -2665,6 +2670,8 @@ ru:
   welcome_to_guides: Добро пожаловать в руководства %{site_name}!
   welcome_to_x_project: Добро пожаловать в %{project}
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
+  were_sorry_but_your_bulk_import_of_filename_has_failed: Извините, но ваш массовый
+    импорт %{filename} не удался.
   what_did_you_see: Что вы видели?
   whats_this?: Что это?
   when: Когда

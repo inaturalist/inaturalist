@@ -383,6 +383,7 @@ bg:
   brief_description_on_what_you_observed: Кратко описание на това, което сте наблюдавали
   brief_description_of_what_you_saw: Кратко описание на това, което сте видели
   brown: кафяво
+  browse_all_projects: Разгледай всички проекти
   browse_species_that_occur_near_this_observation: Преглеждане на видове, които се
     срещат в близост до това наблюдение.
   by: от
@@ -759,6 +760,8 @@ bg:
   faved_this_observation: харесва(т) това наблюдение
   favorite_taxa: любими таксони
   favorites: Любими
+  featured: препоръчани
+  featured_projects_from_everywhere: Препоръчани проекти отвсякъде
   feedback: Обратна връзка
   fields: полета
   fields_: Полета
@@ -1191,6 +1194,7 @@ bg:
   more: Още
   more_fields: Още полета
   more_filters: Още филтри
+  more_from_x: Още от %{x}
   more_import_options: Още възможности за импорт
   more_journal_posts: Още публикации от дневника
   more_observations: Още наблюдения
@@ -1684,7 +1688,7 @@ bg:
   projects_description: Проектите са начин да обедините наблюденията си с тези на
     други хора от %{site_name}. Независимо дали искате да започнете граждански научен
     проект или просто да следите птиците от близкия парк заедно с други местни ентусиасти
-    - Проектите ви дават удобен начин да го направите.
+    - Проектите са удобен начин да го направите.
   projects_from_place: Проекти от %{place}
   projects_in_x: Проекти в %{x}
   projects_you_admin: Проекти които администрирате
@@ -1748,6 +1752,7 @@ bg:
   recently_active: Последно активни
   recently_active_projects_from_everywhere: Последно активни проекти от всякъде
   recently_active_projects_from_place: Последно активни проекти от %{place}
+  recently_created: Наскоро създадени
   red: червено
   refresh: Опресни
   refreshing: опресняване
@@ -2063,6 +2068,9 @@ bg:
   this_list_is_empty!: Този списък е празен!
   this_list_only_accepts_taxa_that_are: Този списък приема само таксони които са
   this_observation: Това наблюдение
+  this_observation_is_featured_on_x_sites:
+    one: Това наблюдение се използва на 1 сайт
+    other: Това наблюдение се използва на %{count} сайта
   this_observation_is_in_x_projects:
     one: Това наблюдение е в 1 проект
     other: Това наблюдение е в %{count} проекта
@@ -2289,6 +2297,7 @@ bg:
   your_coarser_id: |-
     Вашето по-общо ID <span class='taxon'>%{coarser_taxon_name}</span> предполага, че не сте съгласни с текущото по-конкретно ID <span class='taxon'>%{finer_taxon_name}</span>. Това ли е намерението Ви?<br><br>
     <a href='/pages/getting+started' target='_blank'>Научете повече за процеса на разпознаване &raquo;</a>
+  your_content: Вашето съдържание
   your_contributions_to_project: Вашите приноси към %{project_title}
   your_default_time_zone: Вашата часова зона по подразбиране
   your_drafts: Вашите чернови
@@ -2305,6 +2314,7 @@ bg:
   your_observations_couldnt_be_added_to_that_project: 'Вашите наблюдения не можеха
     да бъдат добавени към този проект: %{errors}'
   your_photos_have_been_tagged: Снимките Ви бяха тагнати!
+  your_projects: Вашите проекти
   your_profile_was_successfully_updated: Вашият профил беше успешно обновен!
   your_site_account_has_been_created: Вашият акаунт на %{site} е създаден.
   your_subscriptions: Вашите абонаменти
@@ -2333,6 +2343,8 @@ bg:
         grid: решетка
         book: книга
         journal: дневник
+      pdf_layout_notes:
+        grid: Решетка от единични снимки без описание
     help:
       index:
         what_is_inaturalist?: Какво е %{site_name}?

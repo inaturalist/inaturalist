@@ -57,6 +57,7 @@ ko:
   about_x: '%{x} 소개'
   acc: 정확도 (m)
   account: 계정
+  account_settings: 계정 설정
   accept: 승인
   accept_community_identifications: 공동체 식별자 승인
   accuracy: 정확성
@@ -657,6 +658,7 @@ ko:
   contributor_cannot_be_found: 기여자 찾을 수 없음
   contributors_to_project: '%{project}의 기여자들'
   controls: 제어
+  convert: 변환
   coordinate_systems: 좌표계
   coordinates: 좌표
   coordinates_private: 좌표 숨김
@@ -1592,6 +1594,7 @@ ko:
   needs_id_: ID가 필요합니다
   Needs_ID!: 동정 필요!
   needs_to_be_identified: 동정 필요
+  new: 신규
   new_announcement: 새로운 알림
   new_assessment: 새로운 평가
   new_check_list: 새로운 체크리스트
@@ -1627,6 +1630,7 @@ ko:
   new_trip: 새 여행
   new_updates_in_the_last_24_hours_from: '%{site_name}에서 지난 24시간 동안의 새로운 업데이트'
   new_user_rules: 새로운 사용자 규칙
+  new_users: 새 사용자
   new_users_week: 이 주의 새로운 사용자
   news: 새 소식
   next: 다음
@@ -1815,6 +1819,7 @@ ko:
   optional: 선택 사항
   or: 또는
   original_url: 원래의 URL
+  other: 기타
   overview: 개요
   owner: 소유자
   password: 비밀번호
@@ -2064,6 +2069,7 @@ ko:
   show_less: 덜 보기
   show_more: 더 보기
   show_scientific_name_first: 학명을 우선 표시
+  show_total_counts: 총 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
   sign_in: 로그인
   sign_in_with_provider: '%{provider}(으)로 로그인'
@@ -2213,6 +2219,7 @@ ko:
   we_currently_support_flickr_for_image_hosting: 영상 호스팅을 위해 Flickr를 현재 지원합니다.
   we_had_trouble_saving_comment: 해당 댓글을 저장하는데 문제가 발생했습니다.
   weather: 날씨
+  website: 웹사이트
   wed: 수요일
   welcome!: 환영합니다!
   welcome_comma!: 환영합니다,
@@ -2274,6 +2281,7 @@ ko:
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
   your_month_observations: '%{month}월의 내 관찰'
   your_observations_couldnt_be_added_to_that_project: 관찰이 프로젝트에 추가되지 못했습니다.%{errors}
+  your_projects: 내 프로젝트
   your_google_account: 내 구글 계정
   your_google_account_info: 구글 계정 정보
   your_subscriptions: 당신의 구독 목록
@@ -2380,6 +2388,13 @@ ko:
           이 자원의 소유자를 차단했기 때문에 이들과 통신하는 것은
           불가능합니다. 이 문서의 상호작용 기능들 대부분은 동작하지
           않습니다.
+    stats:
+      index:
+        avg_ttcid: 평균 TTCID
+        avg_ttid: 평균 TTID
+        new_users_desc: 오늘 가입함
+        TTCID: TTCID
+        TTID: TTID
     taxa:
       show:
         frequency:

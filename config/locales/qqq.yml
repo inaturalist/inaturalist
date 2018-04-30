@@ -282,6 +282,7 @@ qqq:
     male: '{{Identical|Male}}'
     female: '{{Identical|Female}}'
   controls: '{{Identical|Control}}'
+  convert: '{{identical|Convert}}'
   coordinates: '{{Identical|Coordinate}}'
   copy: '{{Identical|Copy}}'
   copyright:
@@ -712,6 +713,7 @@ qqq:
   ne_lon: Abbreviation of the Northeastern Longitude.
   near: '{{Identical|Near}}'
   nearby: '{{Identical|Nearby}}'
+  new: '{{Identical|New}}'
   new_check_list_for: where place is the name of a place
   new_message: Clicked to create a new message to another user.
   new_observations_from_place_html: where place is the name of a place
@@ -917,6 +919,7 @@ qqq:
   projects_in_x: where x is the name of a place
   public_coordinates_obscured_by: where distance is a number
   public_domain: '{{Identical|Public domain}}'
+  publish: '{{Identical|Publish}}'
   purple: '{{Identical|Purple}}'
   queued: '{{Identical|Queue}}'
   query: '{{Identical|Query}}'
@@ -965,6 +968,7 @@ qqq:
   said: '{{Identical|Said}}'
   sat: Abbreviation for Saturday, a day of the week.
   save: '{{Identical|Save}}'
+  search: '{{Identical|Search}}'
   second_person_possessive_singular: |-
     where noun is a resource like an observation
     used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
@@ -1161,7 +1165,7 @@ qqq:
   user_s_lists: |-
     where user is the name of a user
     {{Identical|List}}
-  user_thinks_yours_is: where user is the name of a user and nown is agrees/thinks
+  user_thinks_yours_is: where user is the name of a user and noun is agrees/thinks
     and observation describes the observation
   username: '{{Identical|Username}}'
   users: '{{Identical|User}}'
@@ -1210,6 +1214,7 @@ qqq:
   we_had_a_problem_flagging_that_item: where flag_error is a description of the error
   we_know_is_inconvenience_but_will_allow_grow: where sitename is the name of the
     site
+  website: '{{Identical|Website}}'
   wed: Abbreviation for Wednesday, a day of the week.
   welcome!: '{{Identical|Welcome}}'
   welcome_login: where login is the name of a user
@@ -1382,6 +1387,8 @@ qqq:
           imperative to join the site, so "today" could be ommitted, e.g.
           "Join!" or "Join Us"
   date:
+    abbr_day_names:
+    - '{{Identical|Sun}}'
     abbr_month_names:
     - '{{notranslate}}'
     day_names:

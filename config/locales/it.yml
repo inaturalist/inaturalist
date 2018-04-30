@@ -25,6 +25,7 @@
 # Author: Pierpao
 # Author: Rippitippi
 # Author: Saracrovetto
+# Author: Sarah Bernabei
 # Author: Statix64
 ---
 it:
@@ -131,6 +132,8 @@ it:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> modifica del taxon aggiunti
     other: <span class='count'>%{count}</span> modifiche del taxon aggiunte
+  _100_day_trends: Andamento di 100 giorni
+  _percent_ID_d: '% identificati'
   a: una
   a_: una
   a_community_for_naturalist: Una Community per Naturalisti
@@ -171,6 +174,7 @@ it:
   about_x: A proposito di %{x}
   acc: Acc (m)
   account: Account
+  account_settings: Impostazioni del profilo
   accept: accetta
   accept_community_identifications: Accetta le identificazioni della community
   accuracy: Accuratezza
@@ -888,6 +892,7 @@ it:
   choose_taxon: Scegli un taxon
   choose_what_kind_of_change_youre_creating: Scegliere che tipo di modifica stai creando.
   choose_your_username: Scegli il tuo nome utente
+  cid_d_to_genus: Con CID al Genere
   citation: Citazione
   classification: Classificazione
   clear: pulisci
@@ -1344,7 +1349,7 @@ it:
   eg: ad es.
   either: Qualsiasi
   either_that_user_doesnt_exist_or: Sia che l'utente non esista o tu li stia già seguendo.
-  eligible_for_research_grade: Qualificate per il Livello Ricerca
+  eligible_for_research_grade: Qualificate per il Livello ricerca
   email: Email
   email_addresses_description: indirizzi email separati da virgola, il limite è di
     60 ogni 30 giorni.
@@ -2425,6 +2430,7 @@ it:
     %{site_name}
   new_user_rules: Nuove Regole degli Utenti
   new_users: Nuovi Utenti
+  new_users_w_7_obs: Nuovi utenti w/7 Obs
   new_users_week: Nuovi Utenti/Settimana
   news: Notizie
   next: Successivo
@@ -2571,6 +2577,8 @@ it:
   numeric_: numerico
   noun_by_you: tuoi/tue %{noun}
   obs: Osservazioni
+  obs_cid_d: Osservazioni con CID
+  obs_id_d: Osservazioni con ID
   obscured_: oscurato
   obscured: Oscurata
   obscured_or_private: nascosto o privato
@@ -3181,6 +3189,9 @@ it:
   profile: Profilo
   project: Progetto
   project_added_your_observations: Il Progetto ha aggiunto le tue osservazioni
+  project_admins:
+    one: Amministratore del Progetto
+    other: Amministratori del Progetto
   project_aggregator_filter_error: Nei progetti non è possibile attivare l'aggregazione
     automatica delle osservazioni, salvo che il progetto sia associato ad un luogo
     di moderata estensione o che permetta l'inserimento solo di specifici taxa elencati
@@ -3351,6 +3362,7 @@ it:
   reject?: Rifiuta?
   reject_the_community_id: rifiuta l'ID della Comunità
   related_species: Specie affini
+  relative_observations: Osservazioni relative
   reload_and_refresh: Ricarica ed aggiorna la lista
   reload_from_observations: Ricarica dalle osservazioni
   reload_timed_out: Tempo del caricamento scaduto. Riprova più tardi.
@@ -3411,7 +3423,7 @@ it:
   required_columns_in_order: Colonne richieste in ordine
   research: ricerca
   research_: Ricerca
-  research_grade: livello ricerca
+  research_grade: Livello ricerca
   research_grade_expandable_html: L<span class='full'>ivello</span>R<span class='full'>icerca
     </span>
   research_grade_short_html: L<span class='full'>ivello</span>R<span class='full'>icerca
@@ -3419,7 +3431,7 @@ it:
   research_grade_observations_have: le osservazioni ad un "Livello ricerca" hanno
     foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere
     la valutazione della qualità dei dati
-  research_grade_qualification: Qualifica di Livello Ricerca
+  research_grade_qualification: Qualifica di Livello ricerca
   research_quality: Qualità Ricerca
   reset_search_filters: Resetta i filtri di ricerca
   reset_your_password: Reimposta la tua password
@@ -3579,10 +3591,13 @@ it:
   show_off_your_recent_observations: Mostra le tue recenti osservazioni sul tuo blog
     o sul tuo sito!
   show_only: Mostra solo
+  show_relative_proportions_of_all_observations: Mostra le proporzioni relative di
+    tutte le osservazioni
   show_scientific_name_first: Mostra prima i nomi scientifici
   show_taxa_from_both: (mostra i taxa di entrambe le liste)
   show_taxa_from_everywhere: Visualizza i taxa di tutto il mondo
   show_taxa_from_place: Mostra i taxa in %{place}
+  show_total_counts: Mostra tutti i conteggi
   show_total_listed_taxa: Mostra il totale dei taxa osservati
   show_uncountable_species: Mostra le specie non conteggiabili
   showing_observations_by: visualizzazione delle osservazioni per
@@ -3606,6 +3621,7 @@ it:
   small: piccola
   site_name_place: Luogo di %{site_name}
   site_observations_export_from_date: osservazioni di %{site_name} esportate dal %{date}
+  site_stats: Statistiche del sito
   site_taxon_page: pagina %{site_name} del taxon
   site_year_in_review: Anno %{site_name} in Riassunto %{year}
   so_meta!: così autoreferenziale!
@@ -4083,7 +4099,7 @@ it:
   this_observation_is_in_x_projects:
     one: Questa osservazione è in 1 progetto
     other: Questa osservazione è in %{count} progetti
-  this_observation_is_research_grade: Questa osservazione è di Livello Ricerca!
+  this_observation_is_research_grade: Questa osservazione è di Livello ricerca!
   this_observation_lies_outside_the: Questa osservazione cade all'esterno dell'areale
     che %{site_name} ha memorizzato per questa specie. Questo può significare che
     l'areale di %{site_name} è sbagliato, o che l'ID è sbagliata, oppure che si tratta
@@ -4169,7 +4185,7 @@ it:
   top_observer: Il miglior osservatore
   top_observers: Migliori osservatori
   top_species: Specie più osservata
-  total: totale
+  total: Totale
   totals: totali
   total_members: Totale membri
   total_observations: Totale osservazioni
@@ -4503,6 +4519,7 @@ it:
     file %{filename} ma non ha funzionato. Per favore correggi i seguenti problemi
     e prova ancora.
   weather: Meteo
+  website: Sito web
   wed: Mer
   week_of_date: Settimana del %{date}
   welcome!: Benvenuto/a!
@@ -4792,6 +4809,7 @@ it:
   your_observations_couldnt_be_added_to_that_project: 'Le tue osservazioni non possono
     essere aggiunte al progetto: %{errors}'
   your_photos_have_been_tagged: Le tue foto sono state taggate!
+  your_projects: I tuoi progetti
   your_google_account: il tuo account Google
   your_google_account_info: Informazioni del tuo account Google
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
@@ -5564,6 +5582,8 @@ it:
           includeremo un widget di registrazione sulla tua pagina di progetto fino
           all'inizio del bioblitz.
         icon_desc: Sarà ritagliato ad un quadrato
+        it_looks_like_this_project_can_be_converted: Sembra che questo progetto può
+          essere convertito in un nuovo <a href="%{url}">Collection Project</a>.
         last_aggregated_at_desc: Ora in cui l'ultimo aggregatore ha finito di aggiungere
           le osservazioni al progetto
         no_curators: Non esistono curatori del progetto. Se vuoi rendere qualcuno
@@ -5621,6 +5641,8 @@ it:
           che i gestori posso potenzialmente aggiungere codici Javascript malevoli,
           perciò dai la fiducia solo a quei progetti che hanno gestori responsabili
           e tecnicamente competenti.
+        you_can_preview: Puoi vedere in anteprima cosa il tuo progetto potrebbe avere
+          come un Collection Project attraverso <a href="%{url}">ciccando qui</a>.
       invite:
         description_html: |-
           <h3>Rigurdo gli inviti</h3>
@@ -5727,6 +5749,8 @@ it:
       project_terms_desc_html: Permetti ai curatori del progetto di usare le osservazioni
         in accordo con i <a href="%{url}">termini del progetto</a>.
       show:
+        are_you_sure_you_want_to_convert: Sei sicuro di voler convertire questo progetto
+          in Collection Project?
         bioblitz_results_desc_html: |-
           <p>
             A differenza dei normali progetti, i bioblitz mostrano le statistiche dell'evento basandosi su <em>tutte</em> le osservazioni nel dato luogo per il periodo definito, non solo sulle osservazioni che le persone hanno eventualmente aggiunto al progetto.
@@ -5735,6 +5759,8 @@ it:
           <p>
             Ricorda, inoltre, che questo tipo di progetti, pur mostrando le statistiche anche per le osservazioni che non sono state aggiunte attivamente, non permettono ai curatori di visualizzare le coordinate private od oscurate di tali osservazioni, ne di assumere che gli osservatori abbiano accettato i termini del progetto. Se sei un curatore del progetto e vuoi vedere le coordinate precise, hai bisogno che i partecipanti acconsentano ai termini del progetto; anche se vuoi che le osservazioni siano considerate per la checklist del progetto, devi assicurarti che i partecipanti si uniscano al progetto ed aggiungano le loro osservazioni come farebbero in un normale progetto.
           </p>
+        click_here_to_convert_this_project: Clicca qui per convertire questo progetto
+          in un Collection Project
         no_journal_blurb_html: |-
           <p>
             Il diaro del progetto è uno strumento per comunicare con i membri del progetto. Puoi usarlo per comunicare avvisi, stabilire priorità, o discutere sui ritrovamenti.
@@ -5745,6 +5771,11 @@ it:
         curated_checklist_desc: Questa e la checklist revisionata e il conteggio dei
           taxa sulla base delle osservazioni esplicitamente aggiunte al progetto,
           non contiene tutte le osservazioni nel luogo e nel periodo dell'evento.
+        make_sure_you_have_read_about_the_differences: Assicurati di aver letto circa
+          le differenze nel nostro <a href="%{url}" target="_blank">blog post riguardo
+          Collection Projects</a>.
+        this_is_a_preview: Questa è un'anteprima di cosa questo progetto potrà avere
+          uguale ad un Collection Project
       updates_desc: Ricevi gli aggiornamenti relativi a questo progetto sulla tua
         bacheca e tramite gli aggiornamenti email giornalieri.
     shared:
@@ -5767,6 +5798,49 @@ it:
         even_our_dedicated_search_mole_couldnt: Anche la nostra talpa da ricerca non
           è riuscita a trovare niente!
     stats:
+      index:
+        active_desc: Identificazione, obs, commento o post creato nei precedenti 30
+          giorni
+        active_users_desc: Identificazioni, obs, commenti o post creati nei 30 giorni
+          precedenti
+        android_desc_html: Creato via <a href="%{url}">iNaturalist app Android</a>
+        avg_ttcid: TTCID Media
+        avg_ttid: TTID Media
+        identifiers_desc: Ha aggiunto oggi un'ID ad un'osservazione di qualcun altro
+        iphone_desc_html: Create con l'<a href="%{url}">app iPhone iNaturalist</a>
+        med_ttcid: TTCID Mediana
+        med_ttid: TTID Mediana
+        new_users_desc: Iscritti in questo giorno
+        obs_1_day: Obs (1 giorno)
+        obs_1_day_desc: Osservazioni create in un singolo giorno
+        obs_cid_d_desc: Create nei precedenti 7 giorni e con una ID della Comunità
+        obs_cid_d_to_genus: Osservazioni con CID al genere
+        obs_cid_d_to_genus_desc: Create nei precedenti 7 giorni e con una ID della
+          Comunità al genere o minore
+        obs_desc: Creato nei precedenti 7 giorni
+        obs_id_d_desc: Creato nei precedenti 7 giorni e hanno un'identificazione (potrebbe
+          essere dell'osservatore)
+        other_desc_html: Creato con un'altra applicazione <a href="%{url}">built da
+          un programmatore</a>
+        recent_desc: Iscritti nei precedenti 7 giorni
+        recent_w_0_obs: Recenti con 0 osservazioni
+        recent_w_0_obs_desc: Inscritti nei precedenti 7 giorni e aggiunti 0 obs
+        recent_w_7_obs: Recente con >= 7 osservazioni
+        recent_w_7_obs_desc: Iscritti nei precedenti 7 giorni e aggiunti >=7 obs
+        time_to_id_desc: Per per l'ID (ore, finestra di 1 settimana)
+        TTCID: TTCID
+        TTCID_desc: Tempo per avere una identificazione da parte di qualcun'altro
+          che corrisponde al taxon della comunità.
+        TTID: TTID
+        TTID_desc: Tempistiche per ricevere un'identificazione da qualcun'altro
+        TTID_note: Queste statistiche si riferiscono alle osservazioni create la settimana
+          precedente, quindi non comprendono le osservazioni più vecchie di una settimana;
+          per questo le statistiche appaiono minori rispetto a quelle calcolate al
+          momento attuale, ma forniscono comunque un indicazione realistica di quanto
+          velocemente la comunità identifica gli organismi in una settimana. Queste
+          statistiche si riferiscono solo alle osservazioni corredate di foto.
+        website_desc_html: Creato via <a href="https://www.inaturalist.org">iNaturalist</a>
+          o <a href="%{url}">iNaturalist Network<a/> siti internet
       year:
         sunburst_desc_html: |-
           Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia on "Organismo" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.
@@ -5853,7 +5927,7 @@ it:
         no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
           mese
         frequency:
-          research: Livello Ricerca
+          research: Livello ricerca
           verifiable: Verificabile
           Flowering Phenology=bare: Senza fiori
           Flowering Phenology=budding: Incipiente
@@ -5866,6 +5940,7 @@ it:
           Life Stage=nymph: Ninfa
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
+          unannotated: Nessuna annotazione
         photo_chooser_modal_desc: Trascina qui le foto da sinistra, oppure trascinale
           qui per riordinarle.
         photo_chooser_modal_explanation: |-
@@ -6138,8 +6213,10 @@ it:
       one: ora
       other: ore
     countdown_x_minutes:
+      one: min
       other: min
     countdown_x_seconds:
+      one: sec
       other: sec
     prompts:
       day: Giorno
@@ -6323,6 +6400,8 @@ it:
                 userai ancora il sito, potrai pubblicare.
         project_observation:
           attributes:
+            base:
+              project_does_not_allow_observations: Progetto che non permette osservazioni
             user_id:
               must_be_curator: deve essere un curatore di questo progetto
             observation_id:

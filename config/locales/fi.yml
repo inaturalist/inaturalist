@@ -168,7 +168,8 @@ fi:
   active_users: Aktiiviset käyttäjät
   activity: Toiminta
   activity_settings: Aktiivisuusasetukset
-  adapted_by_name_from_a_work_by_original: Muokannut %{name} työstä jonka teki %{original}
+  adapted_by_name_from_a_work_by_original: Muokannut %{name} käyttäjän %{original}
+    työstä
   add: Lisää
   add_a: Lisää
   add_a_batch_of_observations: Lisää erä havaintoja
@@ -969,7 +970,7 @@ fi:
   custom_project_fields: Mukautetut projektikentät
   custom_project_was_successfully_created: CustomProject luotiin onnistuneesti.
   custom_project_was_successfully_updated: CustomProject päivitettiin onnistuneesti.
-  customize_location: Muokkaa Sijaintia
+  customize_location: Muokkaa sijaintia
   darr_apply_darr: '&darr; Käytä &darr;'
   dashboard: Kojelauta
   data_deficient: puutteellisesti tunnettu
@@ -1196,6 +1197,9 @@ fi:
     native_and_occurs_nowhere_else: kotoperäinen eikä esiinny missään muualla
     arrived_in_the_region_via_anthropogenic_means: saapunut alueelle ihmisen toiminnan
       seurauksena
+  event_in_progress: Tapahtuma käynnissä
+  event_stats: Tapahtuman tilastot
+  events_only: Vain tapahtumat
   everyone: jokainen
   everyone_: Kaikki
   everyone_journal_posts: Kaikkien päiväkirja-artikkelit
@@ -2014,6 +2018,7 @@ fi:
   number_selected: '# valittu'
   numeric_: numeerinen
   noun_by_you: sinun %{noun}
+  obs: Havainnot
   obscured_: piilotettu
   obscured_or_private: piilotettu tai yksityinen
   observation: Havainto
@@ -2182,6 +2187,7 @@ fi:
   people_following_user: Ihmiset jotka seuraavat käyttäjää %{user}
   people_user_follows: Ihmiset, joita %{user} seuraa
   people_added:
+    observation: lisäsi %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
     identification:
       without_observation: lisäsi <strong>tunnisteen</strong>
     post: tehty %{post_link}
@@ -2408,6 +2414,9 @@ fi:
   profile: Profiili
   project: Projekti
   project_added_your_observations: Projekti lisätty havaintoihisi
+  project_admins:
+    one: Projektin ylläpitäjä
+    other: Projektin ylläpitäjät
   project_cover: Projektikansi
   project_created_on: loi tämän projektin %{date}
   project_curators: Projektin kuraattorit
@@ -2447,7 +2456,7 @@ fi:
   quality_grade_colon: 'Laatuaste:'
   query: Kysely
   range: Väli
-  rank: Sija
+  rank: Luokka
   rank_position: Sija
   ranks:
     kingdom: kunta
@@ -2538,7 +2547,7 @@ fi:
   required_field: pakolliset kentät
   research: tutkimus
   research_: Tutkimus
-  research_grade: tutkimusaste
+  research_grade: Tutkimusaste
   research_grade_qualification: Tutkimusasteen pätevyys
   research_quality: Tutkimuksen laatu
   reset_search_filters: Tyhjennä hakusuodattimet
@@ -2893,7 +2902,7 @@ fi:
   the_following_photos_have_been_tagged: 'Seuraaviin kuviin on lisätty tunnisteet:'
   the_list: lista
   the_past: menneisyys
-  the_people_of_inat: '%{site_name}in ihmiset'
+  the_people_of_inat: '%{site_name}in väki'
   the_project: projekti
   the_world: Maailma
   then_keybord_sequence: sitten
@@ -2960,7 +2969,7 @@ fi:
   top_observer: Huippuhavainnoitsija
   top_observers: Ylimmät havainnoijat
   top_species: Huippulajit
-  total: yhteensä
+  total: Yhteensä
   totals: yhteensä
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
@@ -3525,6 +3534,10 @@ fi:
         sorry_that_doesnt_exist: Anteeksi, sitä ei ole olemassa!
         even_our_dedicated_search_mole_couldnt: Jopa omistautunut hakumyyrämme ei
           löytänyt mitään!
+    stats:
+      index:
+        obs_1_day: Havainnot (1 päivä)
+        obs_1_day_desc: Yhden päivän aikana luodut havainnot
     taxa:
       show:
         trending_desc: Eniten havaitut taksonit viime kuussa

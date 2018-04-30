@@ -111,6 +111,7 @@ zh-CN:
   x_taxa_matching_current_filters:
     one: 1个分类单元匹配当前的过滤器
     other: '%{count} 个分类群匹配当前的过滤器'
+  _100_day_trends: 100天动态
   _percent_ID_d: '% ID''d'
   a: 一个
   a_: 一个
@@ -2032,6 +2033,7 @@ zh-CN:
   noun_by_you: 由您做出的 %{noun}
   obs: 观察
   obs_cid_d: 观察CID'd
+  obs_id_d: 观察ID'd
   obscured_: 已遮盖
   obscured: 已遮盖
   obscured_or_private: 已掩盖或私有
@@ -2039,6 +2041,7 @@ zh-CN:
   observation_: 观察
   observation_added: 观察已添加。
   observations_by_category: 按分类排序观察
+  observations_by_app: 通过应用观察
   observations_by_rank: 按等级排序观察
   observation_date: 日期
   observation_date?: 日期？
@@ -3828,13 +3831,19 @@ zh-CN:
       index:
         avg_ttcid: 平均TTCID
         avg_ttid: 平均TTID
+        iphone_desc_html: 通过<a href="%{url}">iNaturalist iPhone应用</a>创建
         med_ttcid: 医学TTCID
         med_ttid: 医学TTID
+        new_users_desc: 今天就注册吧
         obs_1_day: 观察（1天）
         obs_id_d_desc: 在过去7天创建，并且有ID（可以是观察者的）
         other_desc_html: 通过由<a href="%{url}">开发者</a>制作的其他应用程序创建
+        recent_w_0_obs: 最近w/ 0观察
+        recent_w_7_obs: 最近w/ >= 7观察
         TTCID: TTCID
         TTID: TTID
+        website_desc_html: 通过<a href="https://www.inaturalist.org">iNaturalist</a>或<a
+          href="%{url}">iNaturalist网络</a>网站创建
     taxa:
       edit:
         high_status_conservation_status_notice_html: 给更高级别的类单位添加保护状态会影响该类群中所有物种的观察。请不要给类群添加含有没有状态的物种，因为这将不正确地掩盖这些物种的观察坐标。
@@ -3864,6 +3873,7 @@ zh-CN:
           Life Stage=nymph: 仙女
           Life Stage=pupa: 蛹
           Life Stage=adult: 成人
+          unannotated: 没有注释
     taxon_links:
       form:
         name_with_rank_desc: 分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。

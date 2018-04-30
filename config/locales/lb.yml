@@ -14,6 +14,12 @@ lb:
   x_identifications:
     one: 1 Identifikatioun
     other: '%{count} Identifikatiounen'
+  x_identifications_:
+    one: 1 Identifikatioun
+    other: '%{count} Identifikatiounen'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDen'
   x_lists:
     one: Eng Lëscht
     other: '%{count} Lëschten'
@@ -29,6 +35,9 @@ lb:
   x_observations_link_html:
     one: <a href='%{url}'>1 Observatioun</a>
     other: <a href='%{url}'>%{count} Observatiounen</a>
+  x_others:
+    one: 1 anerer
+    other: '%{count} anerer'
   x_people:
     one: Eng Persoun
     other: '%{count} Leit'
@@ -38,6 +47,7 @@ lb:
   x_species:
     one: 1 Aart
     other: '%{count} Aarten'
+  _100_day_trends: Tendenz iwwer 100 Deeg
   a: ee(n)
   a_: ee(n)
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -58,18 +68,21 @@ lb:
   about_life!: iwwer d'Liewen!
   about_names: Iwwer Nimm
   about_places: Iwwer Plazen
+  about_taxon_changes: Iwwer Taxon-Ännerungen
   about_the_cc_licenses: Iwwer Creative Commons Lizenzen
   about_these_licenses: Iwwer dës Lizenzen
+  about_this_bioblitz: Iwwer dëse bioblitz
   about_this_map: Iwwer Dës Kaart
   about_this_project: Iwwer dëse Projet
   about_x: Iwwer %{x}
   account: Benotzerkont
+  account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren
   action: Aktioun
   actions: Aktiounen
   activate_user: Benotzer aktivéieren
   active: Aktiv
-  active_users: Aktiv Notzer
+  active_users: Aktiv Benotzer
   activity: Aktivitéit
   activity_settings: Astellunge vun der Aktivitéit
   adapted_by_name_from_a_work_by_original: Ugepasst vun %{name} aus enger Aarbecht
@@ -82,15 +95,15 @@ lb:
   add_a_name: En Numm derbäisetzen
   add_a_new_change_group: Eng nei Ännerungsgrupp derbäisetzen
   add_a_new_observation_to_id_please!: Eng nei Observatioun fir ze bestëmmen derbäisetze
-    weg!
+    w.e.g.!
   add_a_place_raquo: Eng Plaatz derbäisetzen &raquo;
-  add_a_single_observation: eng eentzel Observatioun aginn
-  add_a_taxon: een Taxon derbäisetzen
-  add_all_your_matching_obs_of_this_taxon: Setzt all är passend Observatiounen vun
-    desem Taxon an dese Projet
-  add_all_your_matching_obs_to_this_project: Setzt all är passend Observatiounen an
-    dese Projet
-  add_an_assessment: Eng Bewärtung derbäisetzen
+  add_a_single_observation: Eng eenzel Observatioun derbäisetzen.
+  add_a_taxon: Een Taxon derbäisetzen
+  add_all_your_matching_obs_of_this_taxon: Setzt all Är passend Observatioune vun
+    dësem Taxon an dëse Projet
+  add_all_your_matching_obs_to_this_project: Setzt all Är passend Observatiounen an
+    dëse Projet
+  add_an_assessment: Eng Bewäertung derbäisetzen
   add_an_identification: eng Bestëmmung derbäisetzen
   add_an_observation: Eng Observatiounen derbäisetzen
   add_an_observation?: Eng Observatioun derbäisetzen?
@@ -217,13 +230,21 @@ lb:
     wëllt? Dat kann net réckgängeg gemaach ginn.
   are_you_sure_remove_from_project: Sidd Dir sécher datt Dir %{user} vun dësem Projet
     erofhuele wëllt?
+  are_you_sure_remove_photo: Sidd Dir sécher datt Dir dës Foto ewechhuele wëllt?
+  are_you_sure_remove_taxon_from_list: Sidd Dir sécher datt Dir dësen Taxon} vun der
+    Lëscht erofhuele wëllt?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: Sidd Dir sécher?
     D'Säit gëtt dann nei gelueden an Dir verléiert eventuell Är Ännerungen.
   are_you_sure_want_activate_account: Sidd Dir sécher datt Dir dës Benotzerkont aktivéiere
     wëllt?
+  are_you_sure_want_delete_taxon: Sidd Dir sécher datt Dir dësen Taxon läsche wëllt?
+    %{msg}
+  are_you_sure_want_delete_taxon_link: Sidd Dir sécher datt Dir dësen Taxon_link läsche
+    wëllt?
   are_you_sure_want_delete_this_name: Sidd Dir sécher datt Dir dësen Numm läsche wëllt?
   are_you_sure_want_delete_this_range: Sidd Dir sécher datt Dir dëse Beräich läsche
     wëllt?
+  are_you_sure_want_join: Sidd Dir sécher datt Dir matmaache wëllt
   are_you_sure_you_want_to_delete_this: Sidd Dir sécher datt Dir dëst läsche wëllt?
   are_you_sure_you_want_to_delete_this_photo?: Sidd Dir sécher datt Dir dës Foto läsche
     wëllt?
@@ -272,6 +293,7 @@ lb:
   because_of: well
   before_importing_photos: virum Import vu Fotoen
   bg_color: Hannergrondfaarf
+  bioblitz: Bioblitz
   birds: Vigel
   black: schwaarz
   block_user: Benotzer spären
@@ -300,6 +322,8 @@ lb:
   cc_by_name: Attributioun
   change: Änneren
   change_admin: Administrateur änneren
+  change_descriptions:
+    swap: 1-zu-1-Nummännerung
   change_group: Grupp änneren
   change_password: Passwuert änneren
   change_types:
@@ -312,8 +336,11 @@ lb:
   change_your_password: Ännert Äert Passwuert
   check_it_out: Probéiert et aus
   check_out_our_blog: Besicht eise Blog
+  checklist: Check-Lëscht
+  checklists: Check-Lëschten
   choose_a_field: E Feld eraussichen
   choose_a_place: Eng Plaz eraussichen
+  choose_columns: Kolonnen eraussichen
   choose_file: Fichier eraussichen
   choose_files: Fichieren eraussichen
   choose_from_your_lists: Aus Äre Lëschten eraussichen
@@ -332,6 +359,7 @@ lb:
   colors: Faarwen
   columns: Kolonnen
   combine: Combinéieren
+  comment: Bemierkung
   comment_: Bemierkung
   comment_deleted: Bemierkung geläscht
   comments: Bemierkungen
@@ -355,6 +383,7 @@ lb:
   confirm_now: Elo confirméieren
   confirm_your_info: Confirméiert Är Informatioun
   confirmed: confirméiert
+  connecting_to_facebook: Mat Facebook verbannen...
   contest: Concours
   continue: Virufueren
   contributions: Kontributiounen
@@ -368,6 +397,7 @@ lb:
     nymph: Nymph
     egg: Ee
   controls: Kontrollen
+  convert: Ëmwandelen
   coordinate_systems: Koordinatesystem
   coordinates: Koordinaten
   copy: Kopéieren
@@ -380,6 +410,9 @@ lb:
   copyright_info_and_more: Copyright Info a Méi
   couldnt_change_your_password: 'Äert Passwuert konnt net geännert ginn: %{e}'
   countries: Länner
+  create_a_list: Eng Lëscht uleeën
+  create_a_new_field: En neit Feld uleeën
+  create_an_account: E Benotzerkont opmaachen
   create_an_atlas: En Atlas uleeën
   created_by_user_on_date: Ugeluecht vum %{user} de(n) %{date}
   creating_your_account: Äre Benotzerkont gëtt ugeluecht...
@@ -459,12 +492,17 @@ lb:
   desription: Beschreiwung
   destroy: Zerstéieren
   details: Detailer
+  devise:
+    failure:
+      user:
+        suspended: Äre Benotzerkont gouf suspendéiert
   developers: Entwéckler
   device: Apparat
   discoveries: Entdeckungen
   did_you_mean: Mengt Dir
   did_you_photos_flickr?: Hutt Dir Fotoen op Flickr gesat?
   disagree_: Refuséieren
+  disconnect_provider: '%{provider} trennen'
   dna_: DNA
   documentation_for_developers_html: Dokumentatioun fir <a href="/pages/developers">Entwéckler</a>
   do_you_want_to_proceed: Wëllt Dir virufueren?
@@ -493,6 +531,7 @@ lb:
   edit_multiple_descriptions: Méi Beschreiwungen änneren
   edit_notes: Notizen änneren
   edit_observation: Observatioun änneren
+  edit_observations: Observatiounen änneren
   edit_photos: Fotoen änneren
   edit_place: Plaz änneren
   edit_project: Projet änneren
@@ -502,6 +541,7 @@ lb:
   edit_this_link: Dëse Link änneren
   edit_your_account: ännert Äre Benotzerkont
   edit_your_account_and_profile_html: Ännert Äre Benotzerkont an Äre Profil
+  edit_your_identification: Är Identifikatioun änneren
   edit_your_profile: Ännert Äre Profil
   edit_your_settings_for_this_project: Ännert Är Astellunge fir dëse Projet
   edited: Geännert
@@ -554,6 +594,7 @@ lb:
   filtering: Filteren
   filters: Filteren
   find_a_place: Eng Plaz fannen
+  find_photos: Fotoe fannen
   find_places: Plaze fannen
   find_your_current_location: Är aktuell Plaz fannen
   finished: Fäerdeg
@@ -576,11 +617,13 @@ lb:
   fluid_layout: Fluid Layout
   fluid: flësseg
   follow: Iwwerwaachen
+  for: fir
   for_more_information: fir méi Informatiounen.
   formatting: Formatéierung
   forgot_your_password: Hutt Dir Äert Passwuert vergiess?
   frequency: Frequenz
   fri: Fre
+  from: Vum
   from_a_place: vun enger Plaz
   from_flickr_facebook_etc: Vu Flickr, Facebook, asw.
   from_photos: Vu Fotoen
@@ -612,6 +655,7 @@ lb:
   hello: <test>
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
+  help_faq: Hëllef / FAQ
   here_are_some_things_you_can_do_in_the_meantime: Hei sinn e puer Saachen déi Dir
     an der Tëschenzäit maache kënnt
   hi_user: Salut %{user}
@@ -664,6 +708,8 @@ lb:
   is_now: ass elo
   its_important_that_you: Et ass wichteg datt Dir klickt
   january: Januar
+  join: Matmaachen
+  join_inat: Bei %{site_name} matmaachen!
   just_added!: Elo grad bäigesat!
   keep_editing: Virufuere mat Änneren
   kml: KML
@@ -812,6 +858,7 @@ lb:
       past: '%s'
       s: 1s
       m: 1min
+      d: 1d
       M: 1min
       MM: '%dmo'
   mon: Méi
@@ -842,11 +889,13 @@ lb:
   names: Nimm
   names_for_taxon_html: Nimm fir %{taxon}
   naturalised: naturaliséiert
+  naturalized: naturaliséiert
   near: beim
   nearby: Nobäi
   nearby_observations: Observatiounen nobäi
   needs_id_: Brauch eng ID
   needs_to_be_identified: Muss identifizéiet ginn
+  new: Nei
   new_announcement: Nei Ukënnegung
   new_comment_on_a_parent_by_user_link: Nei Bemierkung iwwer @vow_or_con{vow:an|a}
     %{parent} vum %{user_link}
@@ -863,6 +912,7 @@ lb:
   new_project: Neie Projet
   new_source: Nei Quell
   new_trip: Nei Rees
+  new_users: Nei Benotzer
   new_users_week: Nei Benotzer / Woch
   news: Neiegkeeten
   next: Nächst
@@ -911,6 +961,8 @@ lb:
   none: Keen
   none_found: Kee fonnt
   normal: normal
+  not_completed: Net Komplett
+  not_evaluated: net bewäert
   not_findig_what_you_want: Fannt Dir dat wat Dir gesicht hutt?
   not_finding_place_you_want?: Fannt Dir déi Plaz déi Dir gesicht hutt?
   not_found: Net fonnt
@@ -929,7 +981,7 @@ lb:
   numeric_: numeresch
   observation: Observatioun
   observation_: Observatioun
-  observations_by_category: Observatioune pro Kategorie
+  observations_by_category: Observatioune Pro Kategorie
   observations_by_user_on_date: Observatioune vum %{user} de(n) %{date}
   observations_by_you: Observatioune vun Iech
   observations_by_you_on_date: Observatioune vun Iech de(n) %{date}
@@ -940,6 +992,7 @@ lb:
   observation_without_media: Observatioun ouni Medien
   observations: Observatiounen
   observations_: Observatiounen
+  observations_by: Observatioune vum
   observations_by_user: Observatioune vum %{user}
   observations_confirmed: Observatiounen (confirméiert)
   observations_deleted: Observatioune goufe geläscht.
@@ -958,6 +1011,9 @@ lb:
   observed: Observéiert
   observed_by: Observéiert vum
   observers: Observateuren
+  occurrence_status_levels:
+    doubtful: zweiwelhaft
+    absent: net do
   of_observations: Observatiounen
   of_species: Spezien
   of_places: Plazen
@@ -986,6 +1042,7 @@ lb:
   organisms: Organismen
   original: Original
   original_url: Original URL
+  other: Anerer
   other_animals: aner Déieren
   other_animals_plural:
     one: anert Déier
@@ -996,6 +1053,7 @@ lb:
   owner: Besëtzer
   password: Passwuert
   pdf: PDF
+  pdf_slash_print: PDF / Drécken
   people: Leit
   per_day: Pro Dag
   per_month: Pro Mount
@@ -1060,9 +1118,11 @@ lb:
       Subdivision: Ënnerdeelung
       subdivision: Ënnerdeelung
       Territory: Territoire
+      territory: Territoire
       Time_Zone: Zäitzon
       time_zone: Zäitzon
       Town: Stad
+      town: Stad
       Unknown: Onbekannt
       unknown: Onbekannt
   places: Plazen
@@ -1078,6 +1138,7 @@ lb:
     china: China
     colombia: Kolumbien
     denmark: Dänemark
+    egypt: Egypten
     europe: Europa
     france: Frankräich
     germany: Däitschland
@@ -1094,10 +1155,12 @@ lb:
     new_zealand: Neiséiland
     north_africa: Nordafrika
     north_america: Nordamerika
+    palestine: Palestina
     panama: Panama
     peru: Peru
     poland: Polen
     portugal: Portugal
+    republic_of_congo: Republik Kongo
     russia: Russland
     saudi_arabia: Saudi Arabien
     singapore: Singapur
@@ -1108,6 +1171,7 @@ lb:
     switzerland: Schwäiz
     syria: Syrien
     thailand: Thailand
+    trinidad_and_tobago: Trinidad an Tobago
     turkey: Tierkei
     west_africa: Westafrika
   places_of_interest: Interessant Plazen
@@ -1135,6 +1199,8 @@ lb:
   projects: Projeten
   projects_from_place: Projete vu(n) %{place}
   projects_you_admin: Projeten déi Dir administréiert
+  projects_youve_joined: Projete bei deenen Dir matgemaach hutt
+  publish: Verëffentlechen
   query: Ufro
   rank_position: Klassement
   ranks:
@@ -1155,6 +1221,7 @@ lb:
   recently_active_projects_from_everywhere: Rezent aktiv Projete vun iwwerall
   recently_created_projects_from_everywhere: Rezent kreéiert Projete vun iwwerall
   recently_finished: Rezent fäerdeg gemaach
+  record!: Rekord!
   red: rout
   redo_search_in_map: Nach eng Kéier op der Kaart sichen
   refresh: Aktualiséieren
@@ -1182,6 +1249,7 @@ lb:
   rg_observations: RG Observatiounen
   roadmap: Zäitplang
   role: Roll
+  said: gesot
   sat: Sam
   satellite: Satellit
   save: Späicheren
@@ -1193,6 +1261,8 @@ lb:
   save_observation: Observatioun späicheren
   save_photos: Fotoe späicheren
   saved: Gespäichert
+  saving: Späicheren...
+  search: Sichen
   search_projects: Projeten duerchsichen
   seen_nearby: Nobäi gesinn
   seen_one: Hutt dir ee gesinn?
@@ -1213,6 +1283,8 @@ lb:
   show_observation_photos: Fotoe vun der Observatioun weisen
   show_off_your_recent_observations: Weist Är rezent Observatiounen ob Ärem Blog oder
     Ärer Websäit!
+  sign_out: Ofmellen
+  sign_up: Mellt Iech un
   simple: Einfach
   sign_in_exclamation: Schreift Iech an!
   sizes: Gréissten
@@ -1234,12 +1306,16 @@ lb:
   spanish: Spuenesch
   species_by_category: Aarten no Kategorie
   standard: Standard
+  start: Ufank
+  start_a_project: E Projet ufänken
+  start_new_project: En neie Projet ufänken
   stats: Statistiken
   stats_for_this_year_have_not_been_generated: D'Statistike fir dëst Joer goufen net
     generéiert.
   status: Status
   status_globally: '%{status} global'
   stay_and_try_again: Bleiwen an nach emol probéieren
+  still_no_luck?: Nach ëmmer kee Gléck?
   submit: Schécken
   subscribe_to_a_taxon: Op een Taxon abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder
@@ -1308,10 +1384,12 @@ lb:
       photo_failed: Foto konnt net eropgeluede ginn
       remove_observation: Observatioun ewechhuelen
       remove_photo: Foto ewechhuelen
+  US_states: US Staaten
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_x: '%{user} huet e(n) %{x} derbäigesat'
   user_blocked: Benotzer gespaart
+  user_invited_you_to_join_html: '%{user} huet Iech invitéiert fir matzemaachen'
   user_muted: Benotzer stommgeschalt
   user_s_lists: '%{user} Lëschten'
   username: Benotzernumm
@@ -1323,8 +1401,16 @@ lb:
   valid_interrogation: Valabel?
   value: Wäert
   view: Weisen
+  view_all_members: All Membere weisen
   view_all_your_projects: All Är Projete weisen
   view_change: Ännerung weisen
+  view_details: Detailer weisen
+  view_invitation: Invitatioun weisen
+  view_more: Méi weisen
+  view_observation: Observatioun weisen
+  view_observations: Observatioune weisen
+  view_on_wikipedia: Op Wikipedia weisen
+  view_original: Original weisen
   view_projects_from_place: Projeten vu(n) %{place} weisen
   view_sample: Beispill weisen
   view_stats: Statistike weisen
@@ -1339,6 +1425,7 @@ lb:
   wanted: Gesicht
   we_had_trouble_saving_comment: 'Mir hu Problemer fir déi Bemierkung ze späicheren:'
   weather: Wieder
+  website: Internetsite
   wed: Mët
   week_of_date: Woch vum %{date}
   welcome!: Wëllkomm!
@@ -1384,6 +1471,7 @@ lb:
   year_on_site: Joer %{year}op %{site}
   yellow: giel
   "yes": Jo
+  yes_i_want_to_join: Jo, Ech wëll matmaachen
   yes_reject_it: Jo, refuséiert et
   yesterday: Gëschter
   yesterday_at: ', gëschter ëm 4 Auer mëttes'
@@ -1397,6 +1485,7 @@ lb:
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
   you_dont_have_permission_to_do_that: Dir hutt net d'Recht fir dat ze maachen.
   you_have_to: Dir musst
+  you_joined_this_project: Dir maacht bei dësem Projet mat!
   you_must_fill_out_the_required_fields: Dir musst déi obligatoresch Felder ausfëllen
   you_need_to_select_at_least_one_photo: Dir musst mindestens eng Foto eraussichen!
   you_sure_delete_comment?: Sidd Dir sécher datt Dir dës Bemierkung läsche wëllt?
@@ -1415,9 +1504,13 @@ lb:
   your_name_was_saved: Ären Numm gouf gespäichert.
   your_new_password_is: Äert neit Passwuert ass
   your_observations: Är Bemierkungen
+  your_projects: Är Projeten
   your_google_account: Äre Google Benotzerkont
   your_google_account_info: D'Informatioun vun Ärem Google-Benotzerkont
   your_profile_was_successfully_updated: Äre Profil gouf aktualiséiert!
+  your_should_recognize: Dir misst e puer vun dëse Fotoen erkennen
+  your_subscriptions: Är Abonnementer
+  your_sure_delete_list?: Sidd Dir sécher datt dir dës Lëscht läsche wëllt?
   your_world!: Är Welt!
   yours: Ären
   youve_already_added_an_identification: Dier hutt schonn eng Identifikatioun dobäigesat,
@@ -1436,18 +1529,22 @@ lb:
         what_is_inaturalist?: Wat ass %{site_name}?
         who_is_behind_inaturalist?: Wien ass hannert %{site_name}?
         who_is_behind_inaturalist: Wien ass hannert %{site_name}?
+        what_is_an_observation?: Wat ass eng Observatioun?
         can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen
           op mäi Blog oder meng Websäit bäisetzen?
     observations:
       community_id:
+        agreement: Accord
         score: Score
       export:
         choose_columns_desc: Sicht d'Kolonnen eraus déi Dir exportéiere wëllt
         well_email_you: Ok, mir schécken Iech eng E-Mail wann et prett ass.
       import:
+        date_column_format: JJJJ-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
     projects:
       collection: Sammlung
+      umbrella: Prabelli
       edit:
         rules:
           has_a_photo: eng Foto hunn
@@ -1456,6 +1553,7 @@ lb:
         project_details: Detailer vum Projet
         project_name: Numm vum Projet
         project_summary: Resumé vum Projet
+        welcome_to_projects: Wëllkomm op de Projeten!
       project_user_curator_coordinate_access_labels:
         observer: Jo, awer nëmme wann ech selwer d'Observatioun bei de Projet derbäisetzen
         any: Jo, et ass net wichteg wien d'Observatioun bei de Projet derbäisetzt.
@@ -1471,6 +1569,9 @@ lb:
         this_has_been_flagged_as_spam: Dëst gouf als Spam mrkéiert
       not_found:
         sorry_that_doesnt_exist: Pardon, dat gëtt et net!
+    stats:
+      index:
+        obs_1_day: Observatiounen (1 Dag)
     taxa:
       show:
         frequency:
@@ -1481,6 +1582,7 @@ lb:
           Life Stage=larva: Larve
           Life Stage=nymph: Nymph
           Life Stage=adult: Erwuessen
+          unannotated: Keng Notiz
     users:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Wann Dir Är
@@ -1504,10 +1606,35 @@ lb:
         what_are_you_waiting_for: Wourop waart Dir?
         join_today: Maacht haut nach mat
   date:
+    abbr_day_names:
+    - Son
+    - Méi
+    - Dën
+    - Mët
+    - Don
+    - Fre
+    - Sam
+    abbr_month_names:
+      1: Jan
+      2: Feb
+      3: Mäe
+      4: Abr
+      5: Mee
+      6: Jun
+      7: Jul
+      8: Aug
+      9: Sep
+      10: Okt
+      11: Nov
+      12: Dez
     day_names:
-      2: Dënschdeg
-      5: Freideg
-      6: Samschdeg
+    - Sonndeg
+    - Méindeg
+    - Dënschdeg
+    - Mëttwoch
+    - Donneschdeg
+    - Freideg
+    - Samschdeg
     month_names:
       1: Januar
       2: Februar
@@ -1518,12 +1645,30 @@ lb:
       7: Juli
       8: August
       9: September
+      10: Oktober
+      11: November
+      12: Dezember
+    order:
+    - :Joer
+    - :Mount
+    - :Dag
   datetime:
+    distance_in_words:
+      half_a_minute: eng hallef Minutt
+    countdown_x_days:
+      one: Dag
+      other: Deeg
     countdown_x_hours: '{{PLURAL: $1|one=Stonn|Stonnen}}'
     countdown_x_seconds:
+      one: Sek
       other: Sek
     prompts:
       day: Dag
+      hour: Stonn
+      minute: Minutt
+      month: Mount
+      second: Sekonnen
+      year: Joer
   errors:
     messages:
       blank: däerf net eidel sinn
@@ -1531,6 +1676,7 @@ lb:
       even: muss gerued sinn
       exclusion: ass reservéiert
       greater_than: muss méi grouss wéi %{count} sinn
+      invalid: ass net valabel
       not_a_number: ass keng Zuel
       not_an_integer: muss eng ganz Zuel sinn
       odd: muss ongerued sinn
