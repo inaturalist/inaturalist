@@ -24,15 +24,18 @@ class User < ActiveRecord::Base
       suspended: suspended?
     }
     unless options[:no_details]
+      obs_count = [observations_count.to_i, 0].max
+      ident_count = [identifications_count.to_i, 0].max
+      post_count = [journal_posts_count.to_i, 0].max
       json.merge!({
         login_autocomplete: login,
         name: name,
         name_autocomplete: name,
         icon: icon.file? ? icon.url(:thumb) : nil,
-        observations_count: observations_count,
-        identifications_count: identifications_count,
-        journal_posts_count: journal_posts_count,
-        activity_count: observations_count + identifications_count + journal_posts_count,
+        observations_count: obs_count,
+        identifications_count: ident_count,
+        journal_posts_count: post_count,
+        activity_count: obs_count + ident_count + post_count,
         roles: roles.map(&:name),
         site_id: site_id
       })

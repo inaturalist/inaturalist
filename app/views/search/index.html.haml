@@ -5,8 +5,12 @@
     .bootstrap .media-left {
       padding-right: 20px;
     }
-    .media-left.icon .inner {
+    .project-result .media-left.icon .inner {
       border: 1px solid #aaa;
+    }
+    .user-result .media-left.icon .inner,
+    .user-result .media-left.icon .inner a {
+      border-radius: 500px;
     }
     .media-left a {
       display: block;
@@ -16,9 +20,16 @@
     }
     .media-left.icon a {
       background-color: #aaa;
+      border: 2px solid #ddd;
+    }
+    .project-result .media-left.icon a {
       border: 2px solid white;
+      width: 63px;
+      height: 63px;
     }
     .media-left.icon a i { font-size: 40px; line-height: 60px; color: white; }
+    .project-result .media-left.icon a i { font-size: 36px; }
+    .user-result .media-left.icon a i { line-height: 57px; }
     .media-left.icon a i[class*="iconic"] { font-size: 50px; line-height: 55px; }
     .media-left a img { width: 100%; max-height: 64px; max-width: 64px; }
     .media-left .usericon { display: block; width: 64px; height: 64px; background-size: cover; border-radius: 500px; background-position: center; }
@@ -49,7 +60,7 @@
         .upstacked.text-center.text-muted
           %p=t :no_results
       - for record in @results
-        .media
+        .media{ class: "#{record.class.name.parameterize}-result" }
           - if record.is_a?( Taxon )
             .media-left{ class: record.default_photo.blank? ? "icon" : nil }
               .inner
@@ -80,7 +91,7 @@
                     %i.fa.fa-briefcase
             .media-body
               %h4.media-heading= link_to record.try_methods( :name, :title ), record
-              %p= formatted_user_text( record.try_methods( :body, :description ) )
+              %p= strip_tags( truncate( record.try_methods( :body, :description ), length: 200 ) )
           - elsif record.is_a?( User )
             .media-left{ class: record.icon? ? nil : "icon" }
               .inner
