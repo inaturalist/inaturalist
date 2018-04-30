@@ -6063,6 +6063,7 @@ en:
         source_identifier: Source identifier
       user:
         email: Email
+        login: Username
         name: Name
         locale: Locale
         time_zone: Time zone
@@ -6145,6 +6146,14 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: |
+                must begin with a letter, contain no spaces, and use only
+                letters, numbers, dashes, and underscores
+            email:
+              must_look_like_an_email_address: must look like an email address
   i18n:
     inflections:
       :@vow_or_con:
