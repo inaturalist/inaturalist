@@ -6146,6 +6146,9 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                cannot match the scientific name of a species for this lexicon
         user:
           attributes:
             login:

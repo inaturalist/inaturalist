@@ -14,17 +14,7 @@ class TaxonName < ActiveRecord::Base
                           :message => "already exists for this taxon in this lexicon",
                           :case_sensitive => false
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
-  # There are so many names that violate
-  # validates_uniqueness_of :source_identifier,
-  #                         :scope => [:taxon_id, :source_id],
-  #                         :message => "already exists",
-  #                         :allow_blank => true,
-  #                         :unless => Proc.new {|taxon_name|
-  #                           taxon_name.source && taxon_name.source.title =~ /Catalogue of Life/
-  #                         }
-
-  #TODO is the validates uniqueness correct?  Allows duplicate TaxonNames to be created with same 
-  #source_url but different taxon_ids
+  validate :species_name_cannot_match_taxon_name
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
@@ -273,6 +263,12 @@ class TaxonName < ActiveRecord::Base
 
   def index_taxon
     taxon.elastic_index! if taxon
+  end
+
+  def species_name_cannot_match_taxon_name
+    if taxon && taxon.rank_level <= Taxon::SPECIES_LEVEL && taxon.name == name && !is_scientific_names?
+      errors.add(:name, :cannot_match_the_scientific_name_of_a_species_for_this_lexicon)
+    end
   end
 
   def self.localizable_lexicon(lexicon)
