@@ -2646,7 +2646,7 @@ class Observation < ActiveRecord::Base
           WHERE o.id IN (#{ ids.join(',') })
           AND pg.place_id IS NOT NULL
           AND NOT EXISTS (
-            SELECT id FROM observations_places
+            SELECT observation_id FROM observations_places
             WHERE place_id = pg.place_id AND observation_id = o.id
           )")
       end
