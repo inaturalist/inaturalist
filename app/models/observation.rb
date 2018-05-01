@@ -2217,11 +2217,22 @@ class Observation < ActiveRecord::Base
     end
   end
   
+  CNC_2018_PLACE_IDS = [
+    16978, 17062, 17063, 15680, 18040, 17478, 16383, 16874, 17160, 18375, 15322,
+    17790, 17876, 16329, 16159, 16464, 17788, 16808, 17070, 16158, 17064, 17787,
+    16877, 16809, 16933, 17065, 17297, 17746, 17728, 16123, 18620, 16065, 17067,
+    17789, 15453, 16345, 16564, 16924, 18011, 16077, 16073, 17009, 17511, 18000,
+    16327, 17836, 17324, 17022, 17807, 17783, 17471, 17785, 17066, 16958, 16036,
+    17782, 16232, 17480, 17627, 16853, 16659, 16935, 16461, 16937
+  ]
+  
   def places
     return [] unless georeferenced?
     candidates = observations_places.map(&:place).compact
     candidates.select do |p|
-      p.bbox_privately_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+      p.bbox_privately_contains_observation?( self ) ||
+      [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
+      CNC_2018_PLACE_IDS.include?( p.id )
     end
   end
   
@@ -2230,7 +2241,9 @@ class Observation < ActiveRecord::Base
     return [] if geoprivacy == PRIVATE
     candidates = observations_places.map(&:place).compact
     candidates.select do |p|
-      p.bbox_publicly_contains_observation?( self ) || [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level )
+      p.bbox_publicly_contains_observation?( self ) ||
+      [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
+      CNC_2018_PLACE_IDS.include?( p.id )
     end
   end
 
