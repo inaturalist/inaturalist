@@ -266,7 +266,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   def species_name_cannot_match_taxon_name
-    if taxon && taxon.rank_level <= Taxon::SPECIES_LEVEL && taxon.name == name && !is_scientific_names?
+    if !is_scientific_names? && taxon && taxon.rank_level.to_i <= Taxon::SPECIES_LEVEL && taxon.name == name
       errors.add(:name, :cannot_match_the_scientific_name_of_a_species_for_this_lexicon)
     end
   end
