@@ -2218,12 +2218,70 @@ class Observation < ActiveRecord::Base
   end
   
   CNC_2018_PLACE_IDS = [
-    16978, 17062, 17063, 15680, 18040, 17478, 16383, 16874, 17160, 18375, 15322,
-    17790, 17876, 16329, 16159, 16464, 17788, 16808, 17070, 16158, 17064, 17787,
-    16877, 16809, 16933, 17065, 17297, 17746, 17728, 16123, 18620, 16065, 17067,
-    17789, 15453, 16345, 16564, 16924, 18011, 16077, 16073, 17009, 17511, 18000,
-    16327, 17836, 17324, 17022, 17807, 17783, 17471, 17785, 17066, 16958, 16036,
-    17782, 16232, 17480, 17627, 16853, 16659, 16935, 16461, 16937
+    124319, # City Nature Challenge 2018 Ahmedabad, India
+    121393, # City Nature Challenge 2018: Amarillo
+    60211,  # City Nature Challenge 2018: Austin
+    122861, # City Nature Challenge 2018: Baltimore
+    124697, # City Nature Challenge Maine 2018
+    28784,  # Reto Naturalista Urbano 2018: Bogotá, D.C.
+    118678, # City Nature Challenge 2018: Boston Area
+    1733,   # City Nature Challenge 2018: Boulder
+    123650, # City Nature Challenge 2018: Bristol & Bath
+    124987, # City Nature Challenge 2018: Buenos Aires y alrededores
+    2178,   # City Nature Challenge 2018: Cabarrus County, NC
+    21588,  # City Nature Challenge 2018: Campo Grande
+    124476, # City Nature Challenge 2018: Charlottesville
+    57482,  # City Nature Challenge 2018: Chicago Wilderness Region
+    122697, # City Nature Challenge 2018: Vancouver, British Columbia
+    122777, # City Nature Challenge 2018: Cleveland
+    125697, # City Nature Challenge 2018: Curitiba
+    57484,  # City Nature Challenge 2018: Dallas/Fort Worth
+    122714, # City Nature Challenge 2018: Denver Metro Area
+    124794, # City Nature Challenge 2018: Twin Ports
+    982,    # City Nature Challenge 2018: El Paso
+    24546,  # City Nature Challenge 2018: Florianópolis
+    125290, # City Nature Challenge 2018: Guimarães
+    37720,  # City Nature Challenge 2018: Hermosillo
+    7613,   # City Nature Challenge 2018: Hong Kong
+    110679, # City Nature Challenge 2018: Houston
+    123855, # City Nature Challenge 2018 Indianapolis
+    124354, # Klang Valley City Nature Challenge 2018
+    124339, # City Nature Challenge 2018: La Plata
+    117586, # City Nature Challenge 2018: Southwest Louisiana
+    66357,  # City Nature Challenge 2018: London
+    962,    # City Nature Challenge 2018: Los Angeles
+    94019,  # City Nature Challenge 2018: Lower Rio Grande Valley
+    125291, # City Nature Challenge 2018: Manaus
+    51507,  # City Nature Challenge 2018: Maui
+    2345,   # City Nature Challenge 2018: Miami
+    119106, # City Nature Challenge 2018: Minneapolis/St. Paul
+    113429, # City Nature Challenge 2018: Monterrey Zona Metropolitana
+    125114, # City Nature Challenge 2018: Mumbai
+    121396, # City Nature Challenge 2018: Nashville
+    674,    # City Nature Challenge 2018: New York City
+    123395, # City Nature Challenge 2018: Omaha Metro
+    124156, # City Nature Challenge 2018: Padova
+    124663, # City Nature Challenge 2018: Palmer Station, Antarctica
+    125789, # City Nature Challenge 2018: Pittsburgh
+    124440, # City Nature Challenge 2018: Plymouth (UK)
+    123944, # City Nature Challenge 2018: Prague
+    118770, # City Nature Challenge 2018: Triangle Area
+    124396, # City Nature Challenge 2018: Richmond
+    23734,  # City Nature Challenge 2018: Rio de Janeiro
+    124146, # City Nature Challenge 2018: Roma
+    20640,  # City Nature Challenge 2018: Salvador
+    121345, # City Nature Challenge 2018: San Antonio
+    829,    # City Nature Challenge 2018: San Diego County
+    54321,  # City Nature Challenge 2018: San Francisco Bay Area
+    25311,  # City Nature Challenge 2018: São Paulo
+    122789, # City Nature Challenge 2018: Seattle Metropolitan Area
+    124153, # City Nature Challenge 2018: Southern Oregon
+    124535, # City Nature Challenge 2018: St. Louis, MO
+    2739,   # City Nature Challenge 2018: The Wasatch
+    124352, # City Nature Challenge 2018: Tokyo
+    123333, # City Nature Challenge 2018: Tulsa
+    118683, # City Nature Challenge 2018: Washington, DC metro area
+    27609   # City Nature Challenge 2018: Waterloo Region
   ]
   
   def places
