@@ -270,12 +270,16 @@ class Observation < ActiveRecord::Base
       observations.each do |o|
         unless o.indexed_private_place_ids.blank?
           o.indexed_private_places = private_places_by_id.values_at(*o.indexed_private_place_ids).compact.select do |p|
-            always_indexed_place_levels.include?( p.admin_level ) || p.bbox_privately_contains_observation?( o )
+            always_indexed_place_levels.include?( p.admin_level ) ||
+            Observation::CNC_2018_PLACE_IDS.include?( p.id ) ||
+            p.bbox_privately_contains_observation?( o )
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
           unless o.geoprivacy == Observation::PRIVATE
             o.indexed_place_ids = o.indexed_private_places.select {|p|
-              always_indexed_place_levels.include?( p.admin_level ) || p.bbox_publicly_contains_observation?( o )
+              always_indexed_place_levels.include?( p.admin_level ) ||
+              Observation::CNC_2018_PLACE_IDS.include?( p.id ) ||
+              p.bbox_publicly_contains_observation?( o )
             }.map(&:id)
           end
         end
