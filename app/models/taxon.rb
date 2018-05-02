@@ -1040,6 +1040,11 @@ class Taxon < ActiveRecord::Base
   end
 
   def auto_summary
+    translated_rank = if rank.blank?
+      I18n.t( :rank, default: "rank" ).downcase
+    else
+      I18n.t( "ranks.#{rank}", default: rank ).downcase
+    end
     summary = if kingdom?
       I18n.t(:taxon_is_kingdom_of_life_with_x_observations, count: observations_count )
     elsif iconic_taxon_id
@@ -1051,18 +1056,18 @@ class Taxon < ActiveRecord::Base
       I18n.t(
         "taxon_is_a_rank_of_#{iconic_name.downcase.underscore}_with_x_observations",
         taxon: name,
-        rank: rank,
+        rank: translated_rank,
         count: observations_count,
         default: I18n.t(
           :taxon_is_a_rank_in_iconic_taxon_with_x_observations,
           taxon: name,
-          rank: rank,
+          rank: translated_rank,
           iconic_taxon: iconic_name,
           count: observations_count
         )
       )
     else
-      I18n.t(:taxon_is_a_rank, taxon: name, rank: rank )
+      I18n.t(:taxon_is_a_rank, taxon: name, rank: translated_rank )
     end
     summary
   end
