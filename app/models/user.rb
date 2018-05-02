@@ -230,23 +230,21 @@ class User < ActiveRecord::Base
   # Regexes from restful_authentication
   LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
-  bad_login_message = "begin with a letter and use only letters, numbers, and -_ please.".freeze
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
   domain_tld_regex  = '(?:[A-Z]+)'.freeze
   email_regex       = /\A#{email_name_regex}@#{domain_head_regex}#{domain_tld_regex}\z/i
-  bad_email_message = "should look like an email address.".freeze
   
   validates_length_of       :login,     within: MIN_LOGIN_SIZE..MAX_LOGIN_SIZE
   validates_uniqueness_of   :login
-  validates_format_of       :login,     with: login_regex, message: bad_login_message
+  validates_format_of       :login,     with: login_regex, message: :must_begin_with_a_letter
   validates_exclusion_of    :login,     in: %w(password new edit create update delete destroy)
 
   validates_exclusion_of    :password,     in: %w(password)
 
   validates_length_of       :name,      maximum: 100, allow_blank: true
 
-  validates_format_of       :email,     with: email_regex, message: bad_email_message, allow_blank: true
+  validates_format_of       :email,     with: email_regex, message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
   validates_length_of       :time_zone, minimum: 3, allow_nil: true
   validate :validate_email_pattern, on: :create

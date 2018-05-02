@@ -47,6 +47,7 @@ class Project < ActiveRecord::Base
   preference :range_by_date, :boolean, :default => false
   preference :aggregation, :boolean, default: false
   preference :banner_color, :string
+  preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
   preference :rule_quality_grade, :string
   preference :rule_photos, :boolean
@@ -479,6 +480,7 @@ class Project < ActiveRecord::Base
     if project_observation_rules.detect{ |r| r.operator == "verifiable?" }
       self.prefers_rule_quality_grade = "research,needs_id"
     end
+    self.prefers_banner_contain = true
     if place_id &&
       !project_observation_rules.detect{ |r| r.operator == "observed_in_place?" && r.operand_id == place_id}
       association(:project_observation_rules).add_to_target(ProjectObservationRule.new(
@@ -954,6 +956,11 @@ class Project < ActiveRecord::Base
     response = INatAPIService.observations_species_counts(
       project_id: self.id, per_page: 0, ttl: 300)
     (response && response.total_results) || 0
+  end
+
+  def flagged_with( flag, options = {} )
+    evaluate_new_flag_for_spam( flag )
+    elastic_index!
   end
 
   def self.recently_added_to_ids( options = { } )

@@ -145,20 +145,34 @@ class SharedForm extends React.Component {
                     { I18n.t( "views.projects.new.or_drag_and_drop" ) }
                   </div>
                   { project.bannerURL( ) && (
-                    <div className="icon-previews icon-preview">
-                      <div
-                        className="banner"
-                        style={ { backgroundImage: `url( '${project.bannerURL( )}' )` } }
+                    <div>
+                      <div className="icon-previews icon-preview">
+                        <div
+                          className="banner"
+                          style={ {
+                            backgroundImage: `url( '${project.bannerURL( )}' )`,
+                            backgroundSize: project.header_image_contain ? "contain" : "cover"
+                          } }
+                        />
+                        { project.droppedBanner ?
+                            project.droppedBanner.name : project.header_image_file_name }
+                        <i
+                          className="fa fa-times-circle"
+                          onClick={ ( ) => updateProject( project.customBanner( ) ?
+                            { bannerDeleted: true, droppedBanner: null } :
+                            { droppedBanner: null }
+                          ) }
+                        />
+                      </div>
+                      <input
+                        type="checkbox"
+                        id="project-header-contain"
+                        defaultChecked={ project.header_image_contain }
+                        onChange={ e => updateProject( { header_image_contain: e.target.checked } ) }
                       />
-                      { project.droppedBanner ?
-                          project.droppedBanner.name : project.header_image_file_name }
-                      <i
-                        className="fa fa-times-circle"
-                        onClick={ ( ) => updateProject( project.customBanner( ) ?
-                          { bannerDeleted: true, droppedBanner: null } :
-                          { droppedBanner: null }
-                        ) }
-                      />
+                      <label className="inline" htmlFor="project-header-contain">
+                        { I18n.t( "views.projects.new.contain_entire_image_without_cropping" ) }
+                      </label>
                     </div>
                   ) }
                 </div>

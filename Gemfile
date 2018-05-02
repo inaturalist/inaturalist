@@ -78,6 +78,7 @@ gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
 gem "rack-mobile-detect"
 gem 'rails-observers'
+gem "rails-html-sanitizer", "~> 1.0.4"
 gem 'rakismet'
 gem 'rest-client', :require => 'rest_client'
 gem 'rinku', :require => 'rails_rinku'

@@ -501,10 +501,6 @@ class ProjectsController < ApplicationController
   end
   
   def join
-    if @project.is_new_project?
-      redirect_to @project
-      return
-    end
     @observation = Observation.find_by_id(params[:observation_id])
     @project_curators = @project.project_users.where(role: [ProjectUser::MANAGER, ProjectUser::CURATOR])
     if @project_user
@@ -888,12 +884,21 @@ class ProjectsController < ApplicationController
       @place = @site.place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      filters = [ { multi_match: {
-        query: @q,
-        operator: "and",
-        fields: [ :title, :description ] } } ]
+      filters = [ {
+        multi_match: {
+          query: @q,
+          operator: "and",
+          fields: [ :title, :description ]
+        }
+      } ]
       filters << { term: { place_ids: @place.id } } if @place
-      @projects = Project.elastic_paginate(filters: filters, page: params[:page])
+      @projects = Project.elastic_paginate(
+        filters: filters,
+        inverse_filters: [
+          { term: { spam: true } }
+        ],
+        page: params[:page]
+      )
     end
     respond_to do |format|
       format.html

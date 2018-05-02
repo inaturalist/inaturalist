@@ -5185,6 +5185,7 @@ en:
         click_through_to_individual_projects: Click through to individual projects
         collection_projects: Collection Projects
         collection_project_features: "Collection Project features:"
+        contain_entire_image_without_cropping: Contain entire image without cropping
         custom_banner_icon_and_project_description: Custom banner, icon, and project description
         data_visualizations: Data visualizations
         delete_project: Delete Project
@@ -6063,6 +6064,7 @@ en:
         source_identifier: Source identifier
       user:
         email: Email
+        login: Username
         name: Name
         locale: Locale
         time_zone: Time zone
@@ -6145,6 +6147,17 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                cannot match the scientific name of a species for this lexicon
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: |
+                must begin with a letter, contain no spaces, and use only
+                letters, numbers, dashes, and underscores
+            email:
+              must_look_like_an_email_address: must look like an email address
   i18n:
     inflections:
       :@vow_or_con:
