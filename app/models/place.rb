@@ -792,25 +792,22 @@ class Place < ActiveRecord::Base
       end
     end
 
-    # delete extra ObservationsPlaces for observations that are in both
-    # places. Doesn't matter which potential duplicate we delete b/c foreign
-    # keys will be updated to match the keeper with
-    # merge_has_many_associations
+    # Add any observations_places from mergee into this place
+    # which didn't aleady exist
     Place.connection.execute <<-SQL
-      DELETE FROM observations_places
-      USING (
-        SELECT
-          MAX(id) AS id
-        FROM
-          observations_places
-        WHERE
-          place_id IN (#{id},#{mergee.id})
-        GROUP BY observation_id
-        HAVING count(*) > 1
-      ) AS dupes
-      WHERE observations_places.id = dupes.id
+      INSERT INTO observations_places (observation_id, place_id)
+      SELECT op.observation_id, #{id} FROM observations_places op
+      WHERE place_id = #{mergee.id}
+      AND NOT EXISTS (
+        SELECT observation_id FROM observations_places
+        WHERE place_id = #{id} AND observation_id = op.observation_id
+      )
     SQL
-
+    # Because of the above, if the mergee had any observations_places
+    # those merge queries will fail here and the observations_places will
+    # remain associated with mergee. This is good because on mergee destroy,
+    # that will trigger Place.update_observations_places(mergee) which
+    # will index all the observations that used to be in mergee
     merge_has_many_associations(mergee)
     
     # ensure any loaded associates that had their foreign keys updated in the db aren't hanging around

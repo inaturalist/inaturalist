@@ -276,7 +276,9 @@ class Observation < ActiveRecord::Base
   has_and_belongs_to_many :posts
   has_many :observation_sounds, :dependent => :destroy, :inverse_of => :observation
   has_many :sounds, :through => :observation_sounds
-  has_many :observations_places, :dependent => :destroy
+  # not using dependent: :destroy for observations_places
+  # since that table has no ID column and Rails expect it
+  has_many :observations_places
   has_many :observation_reviews, :dependent => :destroy
   has_many :confirmed_reviews, -> { where("observation_reviews.reviewed = true") },
     class_name: "ObservationReview"
@@ -376,7 +378,7 @@ class Observation < ActiveRecord::Base
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
     :update_taxon_counter_caches, :create_deleted_observation,
-    :update_user_counter_caches
+    :update_user_counter_caches, :delete_observations_places
 
   after_commit :reindex_identifications, :reindex_places, :reindex_projects
   
@@ -1933,6 +1935,10 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def delete_observations_places
+    ObservationsPlace.where(observation_id: self.id).delete_all
+  end
+
   def update_quality_metrics
     return true if skip_quality_metrics
     if captive_flag.yesish?
@@ -2717,7 +2723,7 @@ class Observation < ActiveRecord::Base
           WHERE o.id IN (#{ ids.join(',') })
           AND pg.place_id IS NOT NULL
           AND NOT EXISTS (
-            SELECT id FROM observations_places
+            SELECT observation_id FROM observations_places
             WHERE place_id = pg.place_id AND observation_id = o.id
           )")
       end

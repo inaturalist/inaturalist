@@ -2670,29 +2670,9 @@ ALTER SEQUENCE observations_id_seq OWNED BY observations.id;
 --
 
 CREATE TABLE observations_places (
-    id integer NOT NULL,
     observation_id integer NOT NULL,
     place_id integer NOT NULL
 );
-
-
---
--- Name: observations_places_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE observations_places_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: observations_places_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE observations_places_id_seq OWNED BY observations_places.id;
 
 
 --
@@ -5160,13 +5140,6 @@ ALTER TABLE ONLY observations ALTER COLUMN id SET DEFAULT nextval('observations_
 
 
 --
--- Name: observations_places id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY observations_places ALTER COLUMN id SET DEFAULT nextval('observations_places_id_seq'::regclass);
-
-
---
 -- Name: passwords id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5999,14 +5972,6 @@ ALTER TABLE ONLY observation_reviews
 
 ALTER TABLE ONLY observations
     ADD CONSTRAINT observations_pkey PRIMARY KEY (id);
-
-
---
--- Name: observations_places observations_places_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY observations_places
-    ADD CONSTRAINT observations_places_pkey PRIMARY KEY (id);
 
 
 --
@@ -9282,4 +9247,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180329144359');
 INSERT INTO schema_migrations (version) VALUES ('20180410171703');
 
 INSERT INTO schema_migrations (version) VALUES ('20180425181719');
+
+INSERT INTO schema_migrations (version) VALUES ('20180501172628');
 
