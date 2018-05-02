@@ -3427,6 +3427,52 @@ en:
   taxa_to_include: Taxa to include
   taxon: Taxon
   taxon_autocomplete_placeholder: Birds, monarch, etc.
+  taxon_is_a_rank: "%{taxon} is a %{rank}"
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: "%{taxon} is a %{rank} in %{iconic_taxon} with 1 observation"
+    other: "%{taxon} is a %{rank} in %{iconic_taxon} with %{count} observations"
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: "%{taxon} is a %{rank} of amphibians with 1 observation"
+    other: "%{taxon} is a %{rank} of amphibians with %{count} observations"
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: "%{taxon} is a %{rank} of birds with 1 observation"
+    other: "%{taxon} is a %{rank} of birds with %{count} observations"
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: "%{taxon} is a %{rank} of mammals with 1 observation"
+    other: "%{taxon} is a %{rank} of mammals with %{count} observations"
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: "%{taxon} is a %{rank} of reptiles with 1 observation"
+    other: "%{taxon} is a %{rank} of reptiles with %{count} observations"
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: "%{taxon} is a %{rank} of plants with 1 observation"
+    other: "%{taxon} is a %{rank} of plants with %{count} observations"
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: "%{taxon} is a %{rank} of ray-finned fishes with 1 observation"
+    other: "%{taxon} is a %{rank} of ray-finned fishes with %{count} observations"
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: "%{taxon} is a %{rank} of animals with 1 observation"
+    other: "%{taxon} is a %{rank} of animals with %{count} observations"
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: "%{taxon} is a %{rank} of insects with 1 observation"
+    other: "%{taxon} is a %{rank} of insects with %{count} observations"
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: "%{taxon} is a %{rank} of arachnids with 1 observation"
+    other: "%{taxon} is a %{rank} of arachnids with %{count} observations"
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: "%{taxon} is a %{rank} of fungi with 1 observation"
+    other: "%{taxon} is a %{rank} of fungi with %{count} observations"
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: "%{taxon} is a %{rank} of protozoans with 1 observation"
+    other: "%{taxon} is a %{rank} of protozoans with %{count} observations"
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: "%{taxon} is a %{rank} of mollusks with 1 observation"
+    other: "%{taxon} is a %{rank} of mollusks with %{count} observations"
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: "%{taxon} is a %{rank} in Chromista (brown algae and allies) with 1 observation"
+    other: "%{taxon} is a %{rank} in Chromista (brown algae and allies) with %{count} observations"
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: "%{taxon} is a kingdom of life with 1 observation"
+    other: "%{taxon} is a kingdom of life with %{count} observations"
   taxonomy: Taxonomy
   taxon_: taxon
   taxon_assessments_are: |

@@ -37,6 +37,17 @@
     #controls { margin: 10px 0 40px; }
     .form-search .btn { background-color: #74ac00; border-color: #74ac00; }
     .form-search .input-group { width: 300px; }
+    .media-heading,
+    .media-body p {
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 1;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+    .media-body p {
+      -webkit-line-clamp: 2;
+    }
 .container
   .row
     .col-xs-12
@@ -91,7 +102,7 @@
                     %i.fa.fa-briefcase
             .media-body
               %h4.media-heading= link_to record.try_methods( :name, :title ), record
-              %p= strip_tags( truncate( record.try_methods( :body, :description ), length: 200 ) )
+              %p= strip_tags( truncate( record.try_methods( :body, :description ), length: 300 ) )
           - elsif record.is_a?( User )
             .media-left{ class: record.icon? ? nil : "icon" }
               .inner
@@ -102,7 +113,7 @@
                     %i.icon-person
             .media-body
               %h4.media-heading= link_to record.login, person_path( record )
-              %p= formatted_user_text( record.try_methods( :description, :name ).to_s.truncate( 200 ) )
+              %p= formatted_user_text( record.try_methods( :description, :name ).to_s.truncate( 300 ) )
           - else
             .media-left.icon
               .inner
@@ -110,5 +121,5 @@
                   %i.icon-iconic-unknown
             .media-body
               %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
-              %p= formatted_user_text( record.try_methods( :body, :description ).to_s.truncate( 200 ) )
+              %p= formatted_user_text( record.try_methods( :body, :description ).to_s.truncate( 300 ) )
       = will_paginate @results
