@@ -2175,6 +2175,7 @@ user-icon .icon-person:before {
     .ac {
       display: flex;
       background: white;
+      min-width: auto;
       &.ui-state-active {
         background: #efefef;
       }
@@ -2204,6 +2205,8 @@ user-icon .icon-person:before {
         .rank {
           text-transform: capitalize;
         }
+        overflow: hidden;
+        white-space: nowrap;
       }
       .ac-view {
         padding: 0 10px;
@@ -2236,23 +2239,59 @@ $header-line-height: 34px;
   .header-lg { display: none; }
   @media (max-width: 767px) {
     .header-xs { display: inline-block; }
+    .dropdown-menu {
+      .header-xs { display: block; }
+    }
+    .add-obs {
+      .btn {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+      }
+    }
   }
   @media (min-width: 768px) and (max-width: 991px) {
     .header-sm { display: inline-block; }
+    .dropdown-menu {
+      .header-sm { display: block; }
+    }
+    .add-obs {
+      .btn {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+      }
+    }
     &.search-open {
       .header-sm { display: none; }
       .header-xs { display: inline-block; }
+      .dropdown-menu {
+        .header-xs { display: block; }
+      }
     }
   }
   @media (min-width: 992px) and (max-width: 1199px) {
     .header-md { display: inline-block; }
+    .dropdown-menu {
+      .header-md { display: block; }
+    }
     &.search-open {
       .header-md { display: none; }
       .header-xs { display: inline-block; }
+      .dropdown-menu {
+        .header-xs { display: block; }
+      }
+      .add-obs {
+        .btn {
+          padding-left: 8px !important;
+          padding-right: 8px !important;
+        }
+      }
     }
   }
   @media (min-width: 1200px) {
     .header-lg { display: inline-block; }
+    .dropdown-menu {
+      .header-lg { display: block; }
+    }
   }
 
 
@@ -2299,11 +2338,12 @@ $header-line-height: 34px;
     }
     margin: 0;
   }
+  $header-search-width: 250px;
   .search {
     margin-bottom: 0;
     margin-right: 0px;
     input {
-      width: 300px;
+      width: $header-search-width;
     }
     .searchwrapper {
       width: 0;
@@ -2324,7 +2364,7 @@ $header-line-height: 34px;
     }
     &.open {
       .searchwrapper {
-        width: 300px;
+        width: $header-search-width;
         transition: width 0.5s ease;
       }
       .hide-btn {
@@ -2423,20 +2463,31 @@ $header-line-height: 34px;
   &.test-header-3,
   &.test-header-4 {
     .add-obs {
+      display: flex;
+      align-items: center;
+      margin-right: 15px;
       .btn {
         background-color: $inat-green;
         border-color: $inat-green;
         color: white;
         i { color: white; }
+        font-size: 13px;
+        font-weight: 700;
+        padding: 6px 10px 5px;
+        line-height: 15px;
       }
     }
     .search {
       .btn {
-        line-height: 22px;
+        line-height: 38px;
+        color: #333;
         i {
-          font-size: 22px;
+          font-size: 20px;
           font-weight: bold;
         }
+      }
+      .hide-btn {
+        color: #777;
       }
     }
   }

@@ -294,7 +294,7 @@
               %li.signout= link_to t(:sign_out), logout_path
 
 - elsif ( current_user && current_user.in_test_group?( "header-2018-4" ) ) || params[:test] === "header-2018-4"
-  #test-header.test-header.test-header-4.bootstrap
+  #test-header.test-header.test-header-4.bootstrap{ class: session[:header_search_open] ? "search-open" : nil }
     .navtabs
       - if site && !site.custom_logo.blank?
         =raw site.custom_logo
@@ -344,7 +344,7 @@
               %li= link_to t(:site_stats), stats_path
             %li.divider{role: "separator"}
             %li= link_to t(:help), help_path
-    #headersearch.search.navtabs.form-group
+    #headersearch.search.navtabs.form-group{ class: session[:header_search_open] ? "open" : nil }
       .searchwrapper
         %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
       %button.btn.btn-link.show-btn
