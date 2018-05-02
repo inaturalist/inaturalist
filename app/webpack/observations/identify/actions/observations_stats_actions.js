@@ -24,14 +24,22 @@ function fetchObservationsStats( ) {
         order_by: ""
       }
     );
-    const reviewedParams = Object.assign( {}, apiParams, { reviewed: true } );
+    const reviewedParams = Object.assign( {}, apiParams, {
+      reviewed: true,
+      page: 1,
+      per_page: 0
+    } );
     iNaturalistJS.observations.search( reviewedParams )
       .then( response => {
         dispatch( updateObservationsStats( {
           reviewed: response.total_results
         } ) );
       } );
-    const anyReviewedParams = Object.assign( {}, apiParams, { reviewed: "any" } );
+    const anyReviewedParams = Object.assign( {}, apiParams, {
+      reviewed: "any",
+      page: 1,
+      per_page: 0
+    } );
     iNaturalistJS.observations.search( anyReviewedParams )
       .then( response => {
         dispatch( updateObservationsStats( {
