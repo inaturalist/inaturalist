@@ -190,6 +190,8 @@ zh-CN:
   add_an_observation?: 添加一个观察？
   add_an_observation_of: 添加 %{taxon} 的观察
   add_annotations_for_x: 添加用于“%{x}”的注释
+  add_annotations_for_controlled_attribute:
+    sex: 添加用于“性”的注释
   add_another: 添加其他
   add_another_flag: 添加其他标记
   add_another_photo: 添加其他照片
@@ -706,6 +708,7 @@ zh-CN:
   choose_taxon: 选择一个分类单元
   choose_what_kind_of_change_youre_creating: 选择您正在创建什么类型的更新。
   choose_your_username: 选择您的用户名
+  cid_d_to_genus: CID'd至类
   citation: 引用
   classification: 分类
   clear: 清除
@@ -2551,6 +2554,7 @@ zh-CN:
   reject?: 拒绝？
   reject_the_community_id: 拒绝社群ID
   related_species: 相关物种
+  relative_observations: 相关观察
   reload_and_refresh: 重新加载和刷新列表
   remarks_optional: 摘要<span class="small description">（可选）</span>
   remember_its_a_lot_easier_to_id: 请记住，如果您提供的描述信息越多，就越容易找到该物种ID。最重要的是，请提供<strong>地点</strong>、<strong>日期/时间</strong>，以及有关<strong>尺寸</strong>的一些信息。
@@ -3829,6 +3833,7 @@ zh-CN:
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     stats:
       index:
+        android_desc_html: 通过<a href="%{url}">iNaturalist Android应用</a>创建
         avg_ttcid: 平均TTCID
         avg_ttid: 平均TTID
         iphone_desc_html: 通过<a href="%{url}">iNaturalist iPhone应用</a>创建
@@ -3836,8 +3841,12 @@ zh-CN:
         med_ttid: 医学TTID
         new_users_desc: 今天就注册吧
         obs_1_day: 观察（1天）
+        obs_cid_d_desc: 在过去7天创建，并有一个社群ID
+        obs_cid_d_to_genus: 观察CID'd至类
+        obs_desc: 在过去7天创建
         obs_id_d_desc: 在过去7天创建，并且有ID（可以是观察者的）
         other_desc_html: 通过由<a href="%{url}">开发者</a>制作的其他应用程序创建
+        recent_desc: 在过去7天注册
         recent_w_0_obs: 最近w/ 0观察
         recent_w_7_obs: 最近w/ >= 7观察
         TTCID: TTCID
@@ -4228,6 +4237,8 @@ zh-CN:
               must_be_on_site_long_enough: 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
         project_observation:
           attributes:
+            base:
+              project_does_not_allow_observations: 项目不允许观察
             observation_id:
               must_be_observed_after: 必须在 %{time} 之后被观察
               must_be_observed_before: 必须在 %{time} 之前被观察

@@ -121,6 +121,8 @@ ar:
   x_taxon_changes_added_html:
     one: تمت إضافة <span class='count'>1</span> تغيير أصنوفة
     other: <span class=تمت إضافة 'count'>%{count}</span> تغييرات أصناف
+  _100_day_trends: اتجاهات 100 يوم
+  _percent_ID_d: '% معرف'
   a: أ
   a_: أ
   a_community_for_naturalist: تجمع لعلماء الطبيعة
@@ -159,6 +161,7 @@ ar:
   about_x: عن %{x}
   acc: الدقة (م)
   account: الحساب
+  account_settings: إعدادات الحساب
   accept: قبول
   accept_community_identifications: الموافقة على تعاريف المجتمع
   accuracy: الدقة
@@ -172,6 +175,7 @@ ar:
   actions: إجراءات
   activate_user: تنشيط المستخدم
   active: نشط
+  active_users: المستخدمون النشطون
   activity: النشاط
   activity_settings: إعدادات النشاط
   adapted_by_name_from_a_work_by_original: مقتبس من قبل %{name} لصاحبه %{original}
@@ -198,6 +202,11 @@ ar:
   add_an_observation: أضف ملاحظة
   add_an_observation?: أضف ملاحظة؟
   add_an_observation_of: أضف ملاحظة حول %{taxon}
+  add_annotations_for_x: إضافة تعليقات توضيحية لـ"%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: إضافة تعليقات توضيحية لـ"الجنس"
+    plant_phenology: إضافة شروح لـ"دراسة الأحداث البيولوجية للنبات"
+    life_stage: إضافة تعليقات توضيحية لـ"مرحلة الحياة"
   add_another: إضافة آخر
   add_another_flag: إضافة علم آخر
   add_another_photo: إضافة صورة أخرى
@@ -824,6 +833,7 @@ ar:
   choose_taxon: اختر أصنوفة
   choose_what_kind_of_change_youre_creating: اختر نوع التغيير الذي تنشئه.
   choose_your_username: اختر اسم المستخدم الخاص بك
+  cid_d_to_genus: CID'd إلى الجنس
   citation: اقتباس
   classification: تصنيف
   clear: مسح
@@ -956,6 +966,7 @@ ar:
     egg: بيضة
     juvenile: حدث
   controls: عناصر التحكم
+  convert: تحويل
   coordinate_systems: نظم الإحداثيات
   coordinates: إحداثيات
   coordinates_private: (إحداثيات خاصة)
@@ -1221,6 +1232,7 @@ ar:
   edit_multiple_species: تحرير أنواع متعددة
   edit_notes: تحرير الملاحظات
   edit_observation: تحرير الملاحظة
+  edit_observations: تحرير الملاحظات
   edit_photos: تحرير الصور
   edit_photos_for_observation_id: تعديل الصور للملاحظة %{obs_id}
   edit_place: تعديل المكان
@@ -2272,6 +2284,7 @@ ar:
   Needs_ID!: يحتاج معرفا!
   needs_id_expandable_html: <span class='full'>يحتاج </span>معرفا
   needs_to_be_identified: ينبغي تحديدها
+  new: جديد
   new_announcement: إعلان جديد
   new_assessment: تقييم جديد
   new_check_list: قائمة تحقق جديدة
@@ -2312,6 +2325,8 @@ ar:
   new_trip: رحلة جديدة
   new_updates_in_the_last_24_hours_from: تحديثات جديدة في آخر 24 ساعة من %{site_name}
   new_user_rules: قواعد المستخدم الجديد
+  new_users: مستخدمون جدد
+  new_users_w_7_obs: المستخدمون الجدد w/ 7 ملا
   new_users_week: المستخدمون الجدد / الأسبوع
   news: الأخبار
   next: التالي
@@ -2453,6 +2468,8 @@ ar:
   numeric_: رقمي
   noun_by_you: '%{noun} بواسطتك'
   obs: ملاحظات
+  obs_cid_d: ملا CID'd
+  obs_id_d: ملا ID'd
   obscured_: مشوش
   obscured: مشوش
   obscured_or_private: محجوب أو خاص
@@ -2466,6 +2483,8 @@ ar:
   observation_aggregation: تجميع الملاحظة
   observation_photo_uploader: مراقبة رافع الصورة
   observations_by_category: الملاحظات حسب التصنيف
+  observations_by_app: ملاحظات حسب التطبيق
+  observations_by_rank: ملاحظات حسب الرتبة
   observations_by_user_on_date: ملاحظات %{user} في %{date}
   observations_by_you: ملاحظات بواسطتك
   observations_by_you_on_date: ملاحظات بواسطتك في %{date}
@@ -3033,6 +3052,9 @@ ar:
   profile: الملف الشخصي
   project: المشروع
   project_added_your_observations: أضاف المشروع ملاحظاتك
+  project_admins:
+    one: إداري مشروع
+    other: إداريو مشروع
   project_aggregator_filter_error: "لا يمكن للمشاريع تمكين تجميع الملاحظة التلقائية
     ما لم يكن \nالمشروع مرتبطا بمكان معتدل الحجم أو أنه يسمح فقط \nبملاحظة أصناف أو
     أصناف محددة في قائمة"
@@ -3196,6 +3218,7 @@ ar:
   reject?: رفض؟
   reject_the_community_id: رفض معرف المجتمع
   related_species: الأنواع ذات الصلة
+  relative_observations: ملاحظات مرتبطة
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
   reload_timed_out: انتهت مهلة التحميل; الرجاء معاودة المحاولة في وقت لاحق.
@@ -3415,10 +3438,12 @@ ar:
   show_observations_from: عرض الملاحظات من قبل
   show_off_your_recent_observations: إظهار ملاحظاتك الأخيرة في مدونتك أو موقعك!
   show_only: أظهر فقط
+  show_relative_proportions_of_all_observations: إظهار النسب المرتبطة لجميع الملاحظات
   show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
   show_taxa_from_everywhere: عرض أصناف من كل مكان
   show_taxa_from_place: عرض أصناف من %{place}
+  show_total_counts: إظهار العدد الإجمالي
   show_total_listed_taxa: عرض مجموع الأصناف المدرجة
   show_uncountable_species: عرض الأنواع التي لا تُحصَى
   showing_observations_by: عرض الملاحظات من قبل
@@ -3442,6 +3467,7 @@ ar:
   small: صغير
   site_name_place: مكان %{site_name}
   site_observations_export_from_date: تصدير ملاحظات %{site_name} من %{date}
+  site_stats: إحصائيات الموقع
   site_taxon_page: صفحة أصنوفة %{site_name}
   site_year_in_review: '%{site_name} سنة قيد المراجعة %{year}'
   so_meta!: حتى ميتا!
@@ -4283,6 +4309,7 @@ ar:
     لقد حاولنا معالجة مرفوعك الذي يحمل اسم %{filename} ولكنه لم ينجح،
     الرجاء إصلاح المشكلة(ات) التالية والمحاولة مرة أخرى.
   weather: الطقس
+  website: الموقع الإلكتروني
   wed: أرب
   week_of_date: أسبوع %{date}
   welcome!: مرحبا!
@@ -4555,6 +4582,7 @@ ar:
   your_observations_couldnt_be_added_to_that_project: 'تعذرت إضافة ملاحظاتك إلى هذا
     المشروع: %{errors}'
   your_photos_have_been_tagged: تم وسم صورك!
+  your_projects: مشاريعك
   your_google_account: حسابك في جوجل
   your_google_account_info: معلومات حسابك في جوجل
   your_profile_was_successfully_updated: تم تحديث ملفك الشخصي بنجاح!
@@ -5232,6 +5260,8 @@ ar:
           \nإذا كان هذا مسارا لإيفنتبريت يتضمن معرفا رقميا، \nفسنضمن أداة الاشتراك
           في صفحة المشروع حتى \nتبدأ بيوبلويتز."
         icon_desc: سيتم الاقتصاص إلى مربع
+        it_looks_like_this_project_can_be_converted: يبدو أنه يمكن تحويل هذا المشروع
+          إلى <a href="%{url}">مشروع تجميع</a>.
         last_aggregated_at_desc: الوقت الذي انتهى فيه المجمع أخيرا من إضافة ملاحظات
           إلى هذا المشروع
         no_curators: "لا يوجد أي أمناء مشروع، إذا كنت ترغب في تعيين شخص جديد \nكإداري،
@@ -5280,6 +5310,8 @@ ar:
           \nإلى سمات المشروع المخصصة يعني أن مديري المشاريع \nيحتمل أن يضيفوا جافا
           سكريبت ضارة; لذلك الثقة فقط بالمشاريع التي \nلديها المديرين المسؤولين وذوي
           كفاءة من الناحية الفنية."
+        you_can_preview: "يمكنك معاينة الشكل الذي سيبدو عليه مشروعك كمشروع تجميع بواسطة
+          \nby <a href=\"%{url}\">النقر هنا</a>."
       invite:
         description_html: "<h3>حول الدعوات</h3>\n<p class=\"ui\">\n  دعوة أشخاص إلى
           مشروعك مختلفة قليلا عن دعوة \n  الملاحظات الفردية; دعوة الأشخاص سوف\n</p>\n<ol>\n
@@ -5376,6 +5408,8 @@ ar:
         السماح لأمناء هذا المشروع باستخدام ملاحظاتك وفقا
         <a href="%{url}">لشروط المشروع</a>.
       show:
+        are_you_sure_you_want_to_convert: هل أنت متأكد من أنك تريد تحويل هذا المشروع
+          إلى مشروع تجميع؟
         bioblitz_results_desc_html: "<p> \n  خلافا للمشاريع العادية، يعرض بيوبليتزس
           إحصاءات الأحداث من ملاحظات \n  <em>الكل </em> في مكان وزمن، وليست فقط \n
           \ الملاحظات التي أضافها الأشخاص عمدا إلى المشروع; \n  هذا لإزالة عقبة إضافة
@@ -5390,6 +5424,8 @@ ar:
           الخاصة، فأنت بحاجة لموافقة المشاركين على \n  شروط المشروع، أو كنت ترغب في
           حساب الملاحظات نحو قائمة الفحص للمشروع المنسق، \n  تأكد من أن مشاركيك قد
           انضموا إلى المشروع ويضيفون \n  ملاحظاتهم كما في مشروع عادي. \n</P>"
+        click_here_to_convert_this_project: انقر هنا لتحويل هذا المشروع إلى مشروع
+          تجميع.
         no_journal_blurb_html: "<p>\n  مجلة مشروعك هي أداة للتواصل مع \n  أعضاء المشروع،
           يمكنك استخدامها لصنع الإعلانات، وتحديد الأولويات، أو \n  الحديث عن نتائج
           مشروعك. \n</p>\n<p>\n  للبدء; <a href=\"%{url}\" class=\"readmore\">أنشئ
@@ -5397,6 +5433,10 @@ ar:
         curated_checklist_desc: "هذه هي قائمة الفحص المنسقة وعدد الأصناف من الملاحظات
           المضافة صراحة إلى هذا \nالمشروع، وليست كل الملاحظات المسجلة في مكان وزمان
           هذا \nالحدث."
+        make_sure_you_have_read_about_the_differences: |-
+          تأكد من أنك قد قرأت عن الاختلافات في
+          our <a href="%{url}" target="_blank">مشاركة المدونة حول مشروعات المجموعة</a>.
+        this_is_a_preview: هذه معاينة لما سيبدو عليه هذا المشروع كمشروع تجميع.
       updates_desc: |-
         تلقي تحديثات حول هذا المشروع على لوحة التحكم وفي
         البريد الإلكتروني للتحديثات اليومية.
@@ -5424,6 +5464,47 @@ ar:
         even_our_dedicated_search_mole_couldnt: حتى خلد البحث المخصص لدينا لا يمكنه
           العثور على أي شيء!
     stats:
+      index:
+        active_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما الماضية
+        active_users_desc: تم إنشاء معرف أو ملاحظة أو تعليق أو منشور في الثلاثين يوما
+          الماضية
+        android_desc_html: تم إنشاؤها عبر <a href="%{url}">تطبيق أندرويد إيناتوراليست</a>
+        avg_ttcid: متوسط ​​TTCID
+        avg_ttid: متوسط ​​TTID
+        identifiers_desc: إضافة معرف لشخصية أخرى في هذا اليوم
+        iphone_desc_html: تم إنشاؤها عبر <a href="%{url}">تطبيق آيفون إيناتوراليست</a>
+        med_ttcid: متوسط ​​TTCID
+        med_ttid: متوسط ​​TTID
+        new_users_desc: سجلت في هذا اليوم
+        obs_1_day: ملاحظات (يوم واحد)
+        obs_1_day_desc: ملاحظات التي تم إنشاؤها في يوم واحد
+        obs_cid_d_desc: تم إنشاؤها في الـ7 أيام السابقة ولديها معرف مجتمع
+        obs_cid_d_to_genus: ملا CID'd إلى الجنس
+        obs_cid_d_to_genus_desc: تم إنشاؤها في الـ7 أيام السابقة ولديها معرف مجتمع
+          على مستوى جنس أو أقل
+        obs_desc: تم إنشاؤها في الـ7 أيام السابقة
+        obs_id_d_desc: تم إنشاؤها في الـ7 أيام السابقة ولديها معرف (يمكن أن تكون ملاحظين)
+        other_desc_html: تم إنشاؤها عبر تطبيقات أخرى <a href="%{url}">تم إنشاؤها بواسطة
+          مطورين</a>
+        recent_desc: تم التسجيل في الـ7 أيام السابقة
+        recent_w_0_obs: ملاحظات  w/ 0 الأخيرة
+        recent_w_0_obs_desc: تم التسجيل في الـ7 أيام السابقة وإضافة 0 ملا
+        recent_w_7_obs: ملا w/ 0 w/ >= 7 الأخيرة
+        recent_w_7_obs_desc: تم التسجيل في الـ7 أيام السابقة وإضافة >= 7 ملا
+        time_to_id_desc: وقت المعرف (ساعات، نافذة متحركة لمدة أسبوع)
+        TTCID: TTCID
+        TTCID_desc: الوقت للحصول على هوية من شخص آخر يطابق أصنوفة المجتمع.
+        TTID: TTID
+        TTID_desc: الوقت للحصول على هوية من شخص آخر
+        TTID_note: "تم إعداد هذه الإحصائيات من أجل الملاحظات التي تم إنشاؤها قبل أسبوع:
+          مما \nيعني أنها ستفقد التفضيلات التي تمت إضافتها إلى الملاحظات بعد أكثر
+          \nمن أسبوع، وبالتالي جعل الإحصائيات تبدو أقل مما لو كنت \nتحسبهم مرة أخرى
+          في الوقت الحاضر، ولكن لا يزال يتعين عليهم توفير \nمقياس لائق لمدى سرعة المجتمع
+          في تحديد في غضون \nنوافذ 1 أسبوع، لاحظ أن هذه الإحصائيات مخصصة فقط للملاحظات
+          التي تحتوي على \nصور."
+        website_desc_html: |-
+          تم إنشاؤها عبر <a href="https://www.inaturalist.org">إيناتوراليست</a>
+          أو مواقع <a href="%{url}">شبكة إيناتوراليست</a>
       year:
         sunburst_desc_html: "أصناف ملاحظة رُتِّبت كرسم \"سونبورست\" الهرمي، قاعدة
           \nالتسلسل الهرمي في المركز، تبدأ من \"الحياة\" وتنتهي \nمع الأنواع على الحواف
@@ -5503,6 +5584,17 @@ ar:
           و\n\"مرحلة حياة الحشرات\" جيدة، بالنسبة ل\"علم النبات\"، نحن \nننظر في أي
           حقل بكلمة \"دراسة الأحداث البيولوجية\" في اسمه و \n\"زهرة\" أو \"فاكهة\"
           في القيمة، وبالتالي فإن حقل \"دراسة الأحداث البيولوجية للزهور\" \nجيد للاستخدام."
+        charts_help_relative_observations: "عرض التردد كنسبة مرتبطة لجميع الملاحظات
+          يساعد على \nتخفيف تأثير النمو الكلي للموقع، على سبيل المثال، \nإذا كان الموقع
+          ينمو مع حصولنا على المزيد من الملاحظات مع كل عام \nيمر، فإننا نحصل على المزيد
+          من الملاحظات عن أي أصنوفة فردية، والتي لا \nتخبرك بأي شيء حول ما إذا كان
+          هناك المزيد من تلك الأصنوفة حول \nملاحظة، فقط أن هناك المزيد من الناس يلاحظونها،
+          \nويعني عرض النسبة المرتبطة أنه إذا كانت هناك 100 ملاحظة كاملة ولكن \n20
+          ملاحظة لهذه الأصنوفة، فإن النسبة هي 0.2 (20/100)، إذا \nلاحظ الناس ملاحظات
+          عام 2000 في العام التالي و 400 ملاحظة \nلهذه الأصنوفة، فإن النسبة لا تزال
+          0.2 (400/2000); هذا يسبب بعض\nالانحرافات عندما يكون هناك عدد قليل جدا من
+          اللاحظين في منطقة ما، أو بالنسبة للأنواع \nالتي لا تتم ملاحظتها بشكل متكرر،
+          ولكن هذا صحيح أيضا في إجمالي \nعدد المرات."
         complete_taxon_desc: "الأصناف \"المكتملة\" لديها كل سليلها، أصناف موجودة من
           \nرتبة معينة موجودة في قاعدة بيانات الموقع; فعندما \nتكتمل هذه الأصنوفة
           لنوع، على سبيل المثال، يمكننا أن نقول كم عدد أنواعها \nالملاحظة، وما زال
@@ -5532,6 +5624,7 @@ ar:
           Life Stage=nymph: حورية
           Life Stage=pupa: عذراء
           Life Stage=adult: بالغة
+          unannotated: لا يوجد تعليق توضيحي
         photo_chooser_modal_desc: اسحب الصور هنا من اليسار، أو اسحب الصور هنا لإعادة
           ترتيبها.
         photo_chooser_modal_explanation: "لاحظ أن صفحة الأصنوفة سوف تظهر صور هذه الأصنوفة
@@ -5979,6 +6072,8 @@ ar:
                 كنت لا تزال \nتستخدم الموقع في يوم واحد، فستتمكن من النشر."
         project_observation:
           attributes:
+            base:
+              project_does_not_allow_observations: المشروع لا يسمح بالملاحظات
             user_id:
               must_be_curator: يجب أن تكون أمينا لهذا المشروع
             observation_id:

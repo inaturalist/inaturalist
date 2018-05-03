@@ -122,6 +122,8 @@ es:
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
+  _100_day_trends: Tendencias de 100 días
+  _percent_ID_d: '% identificados'
   a: un(a)
   a_: una
   a_community_for_naturalist: Una comunidad para naturalistas
@@ -995,6 +997,7 @@ es:
     egg: Huevo
     juvenile: Juvenil
   controls: Controles
+  convert: Convertir
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
   coordinates_private: (coordenadas privadas)
@@ -2337,6 +2340,7 @@ es:
   Needs_ID!: ¡Necesita identificador!
   needs_id_expandable_html: <span class='full'>Necesita </span>identificador
   needs_to_be_identified: Necesita identificarse
+  new: Nuevo
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de verificación
@@ -3535,11 +3539,11 @@ es:
   showing_taxa_from_everywhere: Mostrando taxones de todas partes
   showing_taxa_from_place: Mostrando taxones de %{place}
   shown_publicly_as: Mostrar públicamente como
-  sign_in: Ingrese
+  sign_in: Acceder
   sign_in_with_provider: Ingrese con %{provider}
   sign_out: Salir
   sign_up!: ¡Regístrese!
-  sign_up: Regístrese
+  sign_up: Crear una cuenta
   sign_up_exclamation: ¡Regístrese!
   similar_species: Especies similares
   simple: Simple
@@ -4116,7 +4120,7 @@ es:
   top_observer: Mayor observador
   top_observers: Mejores observadores
   top_species: Especie superior
-  total: total
+  total: Total
   totals: totales
   total_members: Total de miembros
   total_observations: Total de observaciones
@@ -4445,6 +4449,7 @@ es:
     Hemos intentado procesar tu subida llamada %{filename}, pero no funcionó.
     Arregla los siguientes problemas y vuelve a intentarlo.
   weather: Clima
+  website: Sitio web
   wed: mié
   week_of_date: Semana de %{date}
   welcome!: ¡Bienvenidos!
@@ -5653,6 +5658,11 @@ es:
         even_our_dedicated_search_mole_couldnt: ¡Incluso nuestro dedicado topo buscador
           no pudo encontrar nada!
     stats:
+      index:
+        iphone_desc_html: Creado mediante la <a href="%{url}">apli iNaturalist para
+          iPhone</a>
+        other_desc_html: Creado mediante otras aplicaciones <a href="%{url}">creadas
+          por desarrolladores</a>
       year:
         sunburst_desc_html: |-
           Taxones observados dispuestos como un diagrama jerárquico de
@@ -5962,6 +5972,7 @@ es:
       one: hora
       other: horas
     countdown_x_seconds:
+      one: s
       other: s
     prompts:
       day: Día

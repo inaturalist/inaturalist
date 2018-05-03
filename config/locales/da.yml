@@ -114,7 +114,7 @@ da:
     one: <span class='count'>1</span> taksonændring tilføjet
     other: <span class='count'>%{count}</span> taksonændringer tilføjet
   _100_day_trends: 100 dage tendens
-  _percent_ID_d: '% ID''s'
+  _percent_ID_d: '% ID''et'
   a: en
   a_: en
   a_community_for_naturalist: Et fællesskab for naturelskere
@@ -867,6 +867,7 @@ da:
   choose_taxon: Vælg en takson
   choose_what_kind_of_change_youre_creating: Vælg hvilken ændring du vil foretage.
   choose_your_username: Vælg dit brugernavn
+  cid_d_to_genus: FID'et til slægt
   citation: Citation
   classification: Klassifikation
   clear: ryd
@@ -1150,7 +1151,7 @@ da:
   date_specified: Dato angivet
   date_time: Dato/Tid
   dates: datoer
-  datetime_: Dato/Tid
+  datetime_: Dato/Tidspunkt
   day: Dag
   default: standard
   default_invite_comment: 'Godt billede! Du bør sende det til %{site_name}: {{INVITE_LINK}}'
@@ -2538,6 +2539,8 @@ da:
   numeric_: numerisk
   noun_by_you: '%{noun} af dig'
   obs: Obs.
+  obs_cid_d: Obs FID'et
+  obs_id_d: Obs ID'et
   obscured_: sløret
   obscured: Sløret
   obscured_or_private: Sløret eller privat
@@ -2613,8 +2616,8 @@ da:
   observations_have_had_their_coordinates: observationer har fået deres koordinater
     flyttet til et tilfældigt punkt indenfor %{km} km, enten fordi taksonen er truet
     eller fordi observatøren valgte at sløre koordinaterne.
-  observations_in_this_project_must: Observertioner i dette projekt skal opfylde følgende
-    kriterier
+  observations_in_this_project_must: Observationer i dette projekt skal leve op til
+    følgende kriterier
   observations_it_may_take_a_few: observationer. Det kan tage nogle minutter.
   observations_last500: Observationer (mindst 500)
   observations_last_aggregated: Observationer senest indsamlet
@@ -4075,7 +4078,7 @@ da:
   threatened: truet
   thu: Tor
   thumb_url: Miniature URL
-  time_: tid
+  time_: tidspunkt
   time_ago: '%{time} siden'
   tired_of_testing_this_new_version: Træt af at teste denne nye version?
   title: titel
@@ -4911,8 +4914,8 @@ da:
       edit:
         eol_explanation: Tilføj et lokalt navn, op til 5 billeder, 1 beskrivelses
           sektion og 1 kort fra EOL.
-        site_explanation: Tilføj et almindeligt navn, op til 5 licenserede billeder
-          og en Wikipedia oversigt fra %{site_name}.
+        site_explanation: Tilføj et lokalt navn, op til 5 licenserede billeder og
+          en Wikipedia oversigt fra %{site_name}.
       show:
         reuse_desc: |-
           Du kan kopiere denne takson til en anden Guide. Hvis du er en af redaktørerne for denne Guide, skulle alt blive kopieret, men hvis du ikke er det,
@@ -5560,19 +5563,20 @@ da:
           invitation.
       new:
         a_project_allows_you_to_gather: Et samlingsprojekt giver dig mulighed for
-          at samle og visualisere observationer ved brug af søgeværktøjerne i iNaturalist.
+          at samle og vise observationer ved brug af søgeværktøjerne i iNaturalist.
           Det betyder at der ikke længere er behov for manuelt, at tilføje observationer
           fordi alle, der opfylder projektets parametre automatisk, vil blive inkluderet.
         an_umbrella_project_can_be_used_to: Et paraplyprojekt kan bruges til at sammenligne
           statistik mellem to eller flere samlinger eller traditionelle projekter.
-          De andre projekter skal eksistere, før du kan tilføje dem til et paraplyprojekt.
+          Projekterne skal være oprettet, før du kan tilføje dem til et paraplyprojekt.
           Du kan inkludere hundredevis af projekter under én enkelt paraply. Paraplyprojekter
           kan ikke indeholde andre paraplyprojekter.
         can_be_included_in_multiple: Kan inkluderes i flere paraplyprojekter
         click_through_to_individual_projects: Klik videre til individuelle projekter
         collection_projects: Samlingsprojekter
         collection_project_features: 'Samlingsprojekt egenskaber:'
-        custom_banner_icon_and_project_description: Bruger banner, ikon og projektbeskrivelse
+        custom_banner_icon_and_project_description: Brugerdefiberet banner, ikon og
+          projektbeskrivelse
         data_visualizations: Data visualiseringer
         delete_project: Slet projekt
         display_project_name: Vis projektnavn
@@ -5589,7 +5593,7 @@ da:
         note_these_users_will_be_able_to_edit: 'OBS: Disse brugere er i stand til
           at redigere ALLE projektdetaljer inklusiv administratorer.'
         note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtig tidspunkt,
-          hvis du vil bruge hele dage.)'
+          hvis du i stedet vil bruge hele dage.)'
         or_drag_and_drop: (eller træk og slip)
         please_specify_the_requirements: Specificér venligst observertionskravene
           for observationer, der tilføjes til dette projekt. Du kan vælge flere arter,
@@ -5621,7 +5625,7 @@ da:
         we_have_redesigned_projects: 'Vi har redesignet projekter, så de automatisk
           inkluderer observationer, der matcher steder, taksa, brugere, kvalitet samt
           datoer, som du har defineret. Vælg mellem to typer: Samlingsprojekter og
-          paraplyprojekter, som deler følgende egenskaber:'
+          Paraplyprojekter, som deler følgende egenskaber:'
         welcome_to_projects: Velkommen til projekter!
       project_location_privacy_notice_html: |-
         <P>
@@ -5645,7 +5649,7 @@ da:
       project_terms_desc_html: Tillad kuratorerne i dette projekt at bruge dine observationer
         i henhold til <a href="%{url}"> projektvilkårene </a>.
       show:
-        are_you_sure_you_want_to_convert: Er du sikker på at du vil konvertere dette
+        are_you_sure_you_want_to_convert: Er du sikker på, at du vil konvertere dette
           projekt til et samlingsprojekt?
         bioblitz_results_desc_html: |-
           <P>
@@ -5715,12 +5719,17 @@ da:
         active_users_desc: Oprettede et ID, en obs, en kommentar eller et indlæg i
           de forgangne 30 dage
         android_desc_html: Oprettet via <a href="%{url}">iNaturalist Android app</a>
+        avg_ttcid: Gnms TTFID
+        avg_ttid: Gnms TTID
         identifiers_desc: Tilføjede et ID til en andens obs på denne dag
         iphone_desc_html: Oprettet via <a href="%{url}">iNaturalist iPhone app</a>
+        med_ttcid: Med TTFID
+        med_ttid: Med TTID
         new_users_desc: Tilmeldte sig på denne dag
         obs_1_day: Obs (1 dag)
         obs_1_day_desc: Observationer oprettet på én enkelt dag
         obs_cid_d_desc: Oprettet i de foregående 7 dage og har et fælleskabs ID
+        obs_cid_d_to_genus: Obs FID'et til slægt
         obs_cid_d_to_genus_desc: Oprettet i de foregående 7 dage og har et fælleskabs
           ID på eller under slægtsniveau
         obs_desc: Oprettet i de foregående 7 dage
@@ -5728,9 +5737,22 @@ da:
         other_desc_html: Oprettet via andre applikationer<a href="%{url}">Skabt af
           udviklere</a>
         recent_desc: Tilmeldte sig i de forgangne 7 dage
+        recent_w_0_obs: Nylige m/0 obs
         recent_w_0_obs_desc: Tilmeldte sig i de forgangne 7 dage Og tilføjede 0 obs
+        recent_w_7_obs: Nylige m/> 7 obs
         recent_w_7_obs_desc: Tilmeldte sig i de forgangne 7 dage og tilføjede >= 7
           obs
+        time_to_id_desc: Tid til ID (timer, 1 løbende uge)
+        TTCID: TTCID
+        TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs
+          taksonen
+        TTID: TTID
+        TTID_desc: Tid til modtagelse af identifikation fra andre
+        TTID_note: |-
+          Disse statistikker er lavet til observationer oprettet en uge tidligere, hvilket
+          betyder, at de vil mangle identifikationer, der er tilføjet til observationer senere
+          end en uge efter. Dette får statistikken til at se lavere ud end de ville, hvis du beregnede den igen lige nu. Det skulle dog give en målestok for, hvor hurtigt fællesskabet er til, at identificere inden for et vindue på 1 uge. Bemærk, at disse statistikker kun er for observationer med
+          fotos.
         website_desc_html: |-
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a> hjemmesider
@@ -5802,6 +5824,18 @@ da:
           på et hvilket som helst felt med ordet \"fænologi\" i sit navn og\n\"blomst\"
           eller \"frugt\" i værdien, så feltet \"Blomstrende fænologi\"\ner en god
           en at bruge."
+        charts_help_relative_observations: "Ved at vise hyppighed som en relativ andel
+          af alle observationer, hjælper det med at udjævne effekten af websidens
+          samlede vækst. \nFor eksempel, når websiden hvert år vokser efterhånden
+          som vi får flere observationer, tilgår der flere observationer af alle taksa.
+          Dette fortæller dig ikke noget om, hvorvidt der er flere af denne takson
+          omkring, der kan\nobserveres blot, at der er flere mennesker, der observerer
+          den. \nAt vise den relative andel betyder, at hvis der er 100 observationer
+          i alt, men\n20 observationer af denne takson er andelen 0,2 (20/100). \nHvis
+          folk observerer 2000 observationer året efter og 400 observationer af denne
+          takson er andelen stadig 0,2 (400/2000). \nDette giver nogle afvigelser,
+          når der er meget få observatører i et område eller for taksa,\nder er meget
+          sjældent observeret, men det stemmer alligevel for det samlede antal."
         complete_taxon_desc: |-
           "Komplette" taksa har alle deres efterkommere, eksisterende taksa af en
           specifik rang indeholdt i sidens database. Når en takson er
@@ -6295,9 +6329,7 @@ da:
             user:
               must_be_on_site_long_enough: |-
                 skal være registreret i mere end 24 timer for at kunne publicere. Vi får
-                en masse spammere, og dette er et dårligt forsøg på håndtering
-                af dem. Du kan stadig gemme en kladde og hvis du stadig gør
-                brug af webstedet om en dag, så kan du publicere.
+                en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
         project_observation:
           attributes:
             base:

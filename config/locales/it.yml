@@ -1300,7 +1300,7 @@ it:
   edit_multiple_species: Modifica più specie
   edit_notes: Modifica le note
   edit_observation: Modifica l'osservazione
-  edit_observations: Modifica Osservazioni
+  edit_observations: Modifica osservazioni
   edit_photos: Modifica le foto
   edit_photos_for_observation_id: Modifica la foto per l'osservazione %{obs_id}
   edit_place: Modifica il luogo
@@ -2429,7 +2429,7 @@ it:
   new_updates_in_the_last_24_hours_from: Nuovi aggiornamenti nelle ultime 24 ore da
     %{site_name}
   new_user_rules: Nuove Regole degli Utenti
-  new_users: Nuovi Utenti
+  new_users: Nuovi utenti
   new_users_w_7_obs: Nuovi utenti w/7 Obs
   new_users_week: Nuovi Utenti/Settimana
   news: Notizie
@@ -5641,8 +5641,8 @@ it:
           che i gestori posso potenzialmente aggiungere codici Javascript malevoli,
           perciò dai la fiducia solo a quei progetti che hanno gestori responsabili
           e tecnicamente competenti.
-        you_can_preview: Puoi vedere in anteprima cosa il tuo progetto potrebbe avere
-          come un Collection Project attraverso <a href="%{url}">ciccando qui</a>.
+        you_can_preview: Puoi vedere in anteprima come il tuo progetto potrebbe rendere
+          come Collection Project <a href="%{url}">cliccando qui</a>.
       invite:
         description_html: |-
           <h3>Rigurdo gli inviti</h3>
@@ -5750,7 +5750,7 @@ it:
         in accordo con i <a href="%{url}">termini del progetto</a>.
       show:
         are_you_sure_you_want_to_convert: Sei sicuro di voler convertire questo progetto
-          in Collection Project?
+          in un Collection Project?
         bioblitz_results_desc_html: |-
           <p>
             A differenza dei normali progetti, i bioblitz mostrano le statistiche dell'evento basandosi su <em>tutte</em> le osservazioni nel dato luogo per il periodo definito, non solo sulle osservazioni che le persone hanno eventualmente aggiunto al progetto.
@@ -5774,8 +5774,8 @@ it:
         make_sure_you_have_read_about_the_differences: Assicurati di aver letto circa
           le differenze nel nostro <a href="%{url}" target="_blank">blog post riguardo
           Collection Projects</a>.
-        this_is_a_preview: Questa è un'anteprima di cosa questo progetto potrà avere
-          uguale ad un Collection Project
+        this_is_a_preview: Questa è un'anteprima di coma questo progetto potrebbe
+          rendere come Collection Project
       updates_desc: Ricevi gli aggiornamenti relativi a questo progetto sulla tua
         bacheca e tramite gli aggiornamenti email giornalieri.
     shared:
@@ -5799,8 +5799,8 @@ it:
           è riuscita a trovare niente!
     stats:
       index:
-        active_desc: Identificazione, obs, commento o post creato nei precedenti 30
-          giorni
+        active_desc: Identificazione, osservazione, commento o post creato nei precedenti
+          30 giorni
         active_users_desc: Identificazioni, obs, commenti o post creati nei 30 giorni
           precedenti
         android_desc_html: Creato via <a href="%{url}">iNaturalist app Android</a>
@@ -5824,9 +5824,9 @@ it:
           un programmatore</a>
         recent_desc: Iscritti nei precedenti 7 giorni
         recent_w_0_obs: Recenti con 0 osservazioni
-        recent_w_0_obs_desc: Inscritti nei precedenti 7 giorni e aggiunti 0 obs
+        recent_w_0_obs_desc: Inscritti nei precedenti 7 giorni e aggiunte 0 osservazioni
         recent_w_7_obs: Recente con >= 7 osservazioni
-        recent_w_7_obs_desc: Iscritti nei precedenti 7 giorni e aggiunti >=7 obs
+        recent_w_7_obs_desc: Iscritti nei precedenti 7 giorni e aggiunte >=7 osservazioni
         time_to_id_desc: Per per l'ID (ore, finestra di 1 settimana)
         TTCID: TTCID
         TTCID_desc: Tempo per avere una identificazione da parte di qualcun'altro
@@ -5839,8 +5839,8 @@ it:
           momento attuale, ma forniscono comunque un indicazione realistica di quanto
           velocemente la comunità identifica gli organismi in una settimana. Queste
           statistiche si riferiscono solo alle osservazioni corredate di foto.
-        website_desc_html: Creato via <a href="https://www.inaturalist.org">iNaturalist</a>
-          o <a href="%{url}">iNaturalist Network<a/> siti internet
+        website_desc_html: Creato tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a>
+          o <a href="%{url}">iNaturalist Network<a/>
       year:
         sunburst_desc_html: |-
           Taxa osservati disposti secondo un diagramma gerarchico "raggi di sole". La base è al centro, inizia on "Organismo" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori "iconici" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.

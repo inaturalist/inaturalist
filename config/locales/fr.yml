@@ -15,6 +15,7 @@
 # Author: Hellotheworld
 # Author: Hercule
 # Author: Hydros
+# Author: JamesP
 # Author: Jujurenoult
 # Author: Ktmartins
 # Author: Linedwell
@@ -4319,7 +4320,7 @@ fr:
   type_taxon_name: Saisissez un nom de taxon
   type_taxon_name_and_click_lookup: Saisissez un nom de taxon et cliquez sur recherchez
   uicn_red_list_status: 'Situation selon la liste rouge de UICN :'
-  umbrella_projects: Projets ombrelle
+  umbrella_projects: Projets cadres
   un_license_this_observation: supprimer la licence de cette observation
   unblock: Débloquer
   unclassified: Non classifié
@@ -5742,7 +5743,7 @@ fr:
     projects:
       project_type: Type de projet
       collection: Collection
-      umbrella: Chapeau
+      umbrella: cadre
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
       curator_coordinate_access_desc_html: |-
@@ -5896,13 +5897,12 @@ fr:
         a_project_allows_you_to_gather: |-
           Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche
           du cœur de iNaturalist. Cela élimine le besoin d’ajouter manuellement des observations, car tout ce qui correspond aux paramètres mis par le projet sera automatiquement inclus.
-        an_umbrella_project_can_be_used_to: Un projet chapeau peut être utilisé pour
-          comparer des statistiques entre au moins deux projets traditionnels ou chapeau.
-          Les autres projets doivent exister avant que vous puissiez les ajouter à
-          un projet chapeau. Vous pouvez inclure des centaines de projets sous un
-          seul chapeau. Les projets chapeau ne peuvent pas contenir d’autres projets
-          chapeau.
-        can_be_included_in_multiple: Peut être inclus dans plusieurs projets chapeau
+        an_umbrella_project_can_be_used_to: Un projet cadre peut être utilisé pour
+          comparer des statistiques entre au moins deux projets traditionnels ou collections.
+          Les autres projets doivent exister avant que vous puissiez les ajouter.
+          Vous pouvez inclure des centaines de projets sous un seul cadre. Les projets
+          cadres ne peuvent pas contenir d’autres projets caders.
+        can_be_included_in_multiple: Peut être inclus dans plusieurs projets cadres
         click_through_to_individual_projects: Cliquez parmi les projets individuels
         collection_projects: Projets de collections
         collection_project_features: Fonctionalités des projets de collection
@@ -5947,7 +5947,7 @@ fr:
         project_summary_placeholder: Découvrir et suivre les oiseaux du parc de Golden
           Gate…
         start_and_end_times_for_bioblitzes: Heures de début et de fin des bioblitz
-        umbrella_project_features: 'Fonctionnalités du projet chapeau :'
+        umbrella_project_features: 'Fonctionnalités du projet cadre:'
         unique_url_for_outreach: URL unique pour le dépassement
         users_can_follow_your_project: Les utilisateurs peuvent suivre les mises à
           jour de votre projet via les publications du journal
@@ -5958,7 +5958,7 @@ fr:
         we_have_redesigned_projects: 'Nous avons refondu les projets pour inclure
           automatiquement toutes les observations qui correspondent aux lieux, taxons,
           utilisateurs, qualité et dates que vous avez définis. Choisir entre deux
-          types : Projets collection et Projets chapeau, qui partagent les fonctionnalités
+          types : Projets collections et Projets cadres, qui partagent les fonctionnalités
           suivantes :'
         welcome_to_projects: Bienvenue dans les projets !
       project_location_privacy_notice_html: |-

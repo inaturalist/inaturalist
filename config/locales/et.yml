@@ -471,7 +471,7 @@ et:
   animated_observations_map: Animeeritud vaatluste kaart
   annotations: Märked
   announcement_was_successfully_created: Teate loomine õnnestus.
-  announcement_was_successfully_updated: Teate täiendamine õnnestus.
+  announcement_was_successfully_updated: Teate uuendamine õnnestus.
   announcements: Teated
   any: kõik
   any_: Kõik
@@ -572,7 +572,7 @@ et:
   assessment_sections: Hinnangu osad
   assessment_was_deleted: Hinnang on kustutatud.
   assessment_was_successfully_created: Hinnangu loomine õnnestus.
-  assessment_was_successfully_updated: Hinnangu täiendamine õnnestus.
+  assessment_was_successfully_updated: Hinnangu uuendamine õnnestus.
   assessment_x: hinnang %{assessment}
   assessments: hinnangud
   associations: Seosed
@@ -1586,7 +1586,7 @@ et:
   guide_taxon: Abitakson
   guide_was_successfully_created: Juhendi loomine õnnestus.
   guide_was_successfully_published: Juhendi avaldamine õnnestus.
-  guide_was_successfully_updated: Juhendi täiendamine õnnestus.
+  guide_was_successfully_updated: Juhendi uuendamine õnnestus.
   guidelines: Juhised
   has_already_been_flagged_by: on juba varustatud märkusega kasutajalt
   has_been: on juba
@@ -1674,7 +1674,7 @@ et:
   identification_deleted: Määratlus kustutatud.
   identification_saved: Määratlus salvestatud!
   identification_summary: Määratluse kokkuvõte
-  identification_updated: Määratlus täiendatud!
+  identification_updated: Määratlus uuendatud!
   identification_user_short: Määratlenud kasutaja
   identification_withdrawn: Määratlus tagasivõetud.
   identifications: Määratlused
@@ -1931,6 +1931,58 @@ et:
     Enda poolt toodetud sisu litsentseerimine lubab teistel seda seaduslikult litsentsi reegleid järgides kasutada. %{site_name} jagab sinu Creative
     Commons-litsentsi alusel toodetud sisu andmepartneritega nagu <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
     (GBIF).
+  life: Elu
+  life!: Elu!
+  life_list: Kasutaja %{user} elunimekiri
+  life_list_updated: Elunimekiri uuendatud!
+  life_list_updated_we_also_saved_a: Elunimekiri uuendatud! Salvestasime ka antud
+    taksoni kohta tühja vaatluse
+  life_lists_automatically_fill: Elunimekirjad täituvad vaatlemisel automaatselt uute
+    taksonitega ning neid saab piirata mõne kõrgema taseme taksoniga, nt nimekiri
+    vareslaste sugukonna lindudest (Corvidae).
+  life_list_first: uus elunimekirja kanne
+  life_list_firsts: uut elunimekirja kannet
+  link: Link
+  link_or_unlink_your_facebook_account: Ühenda oma Facebooki konto või tühista ühendus
+  link_or_unlink_your_flickr_account: Ühenda oma Flickr konto või tühista ühendus
+  link_or_unlink_your_google_account: Ühenda oma Google'i konto või tühista ühendus
+  link_your_facebook_account: Ühenda oma Facebooki konto
+  link_your_flickr_account: Ühenda oma Flickr konto
+  link_your_flickr_account_with_inat: Ühenda oma Flickr konto lehega %{site_name}
+  link_your_flickr_account_with_inat_so: Ühenda oma Flickr konto lehega %{site_name},
+    et saaksid vaatlustele pilte lisada.
+  link_your_google_account: Ühenda oma Google'i konto
+  linked_facebook: Sinu lehe %{site_name} konto on praegu ühendatud sinu Facebooki
+    kontoga.
+  linked_facebook_automaticaly: Pea lisaks meeles, et kui sa sisened lehele %{site_name}
+    Facebooki konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib
+    mõistlik, et kui kasutad Facebooki, soovid sa ka vajadusel importida Facebookis
+    olevaid fotosid.
+  linked_facebook_description: Ühendades lehe %{site_name} konto Facebooki omaga saad
+    lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel
+    lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa
+    sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue
+    Facebooki konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada.
+  linked_facebook_howto: Kui soovid ühendada Facebooki lehega %{site_name}, vajuta
+    paremal olevale lingile ning logi ennast Facebooki sisse.
+  linked_facebook_password: 'Me ei küsi sinult kunagi su Facebooki salasõna (kuid
+    Facebook võib seda teha: kontrolli internetiaadressit, millele see nupp sind saadab,
+    ja veendu, et tegemist oleks Facebook.com-iga). Samuti ei muuda me sinu Facebooki
+    andmeid, kui sa meilt just seda ise ei palu.'
+  linked_flickr: Sinu lehe %{site_name} konto on praegu ühendatud sinu Flickr kontoga.
+  linked_flickr_automatically: Pea lisaks meeles, et kui sa sisened lehele %{site_name}
+    Flickr konto abil, ühendame me automaatsel need kontod omavahel uuesti. Näib mõistlik,
+    et kui kasutad Flickrit, soovid sa ka vajadusel importida Flickris olevaid fotosid.
+  linked_flickr_description: Ühendades lehe %{site_name} konto Flickri omaga saad
+    lisada vaatlustele mitu fotot korraga. Kui tahad kunagi kahte kontot omavahel
+    lahti ühendada, siis me loomulikult ei takista sind, kuid sellisel juhul ei saa
+    sa fotosid lisada. Mõnikord võib see olla parim lahendus, näiteks kui lood uue
+    Flickr konto ning soovid hoopis seda lehe %{site_name} kontoga ühendada.
+  linked_flickr_hotwo: Vajutades sellele lingile saad fotode lisamiseks ühendada oma
+    Flickr konto lehe %{site_name} omaga.
+  linked_flickr_password_html: '<strong>Me ei küsi sinult kunagi su Flickri salasõna</strong>
+    (kuid Flickr võib seda teha: kontrolli internetiaadressit, millele see nupp sind
+    saadab, ja veendu, et tegemist oleks Flickr.com-iga).'
   locales:
     ar: Araabia
     bg: Bulgaaria
