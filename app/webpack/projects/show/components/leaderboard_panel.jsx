@@ -87,6 +87,7 @@ class LeaderboardPanel extends React.Component {
                     taxon={ leader.taxon }
                     url={ `/taxa/${leader.taxon.id}` }
                     user={ config.currentUser }
+                    noInactive
                   />
                 }
               </div>

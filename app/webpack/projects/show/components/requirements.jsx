@@ -20,6 +20,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         key={ `requirement_taxon_${r.taxon.id}` }
         taxon={ r.taxon }
         url={ `/taxa/${r.taxon.id}` }
+        noInactive
       />
     ) );
   const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" ) :

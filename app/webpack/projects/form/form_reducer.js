@@ -362,8 +362,8 @@ export function submitProject( ) {
     } );
 
     // add project_users
-    payload.project.project_users_attributes =
-      payload.project.project_users_attributes || [];
+    payload.project.admin_attributes =
+      payload.project.admin_attributes || [];
     _.each( project.admins, admin => {
       const projectUserPayload = {
         user_id: admin.user.id,
@@ -373,7 +373,7 @@ export function submitProject( ) {
         projectUserPayload.id = admin.id;
         projectUserPayload._destroy = !!admin._destroy;
       }
-      payload.project.project_users_attributes.push( projectUserPayload );
+      payload.project.admin_attributes.push( projectUserPayload );
     } );
 
     // add featured_at flag
