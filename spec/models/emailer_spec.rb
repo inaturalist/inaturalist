@@ -24,15 +24,15 @@ describe Emailer, "updates_notification" do
   it "should use common names for a user's place" do
     p = Place.make!
     t = Taxon.make!
-    tn_default = TaxonName.make!(:taxon => t, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    tn_local = TaxonName.make!(:taxon => t, :lexicon => TaxonName::LEXICONS[:ENGLISH])
-    expect(t.common_name.name).to eq tn_default.name
-    ptn = PlaceTaxonName.make!(:taxon_name => tn_local, :place => p)
-    @user.update_attributes(:place_id => p.id)
-    identification = without_delay { Identification.make!(:taxon => t, :observation => @observation) }
-    mail = Emailer.updates_notification(@user, @user.update_subscriber_actions.all)
-    expect(mail.body).to match /#{tn_local.name}/
-    expect(mail.body).not_to match /#{tn_default.name}/
+    tn_default = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Default Name" )
+    tn_local = TaxonName.make!( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: "Localized Name" )
+    ptn = PlaceTaxonName.make!( taxon_name: tn_local, place: p )
+    @user.update_attributes( place_id: p.id )
+    identification = without_delay { Identification.make!( taxon: t, observation: @observation ) }
+    update_action = @user.update_subscriber_actions.where( notifier: identification ).first
+    mail = Emailer.updates_notification( @user, [update_action] )
+    expect( mail.body ).to match /#{tn_local.name}/
+    expect( mail.body ).not_to match /#{tn_default.name}/
   end
 
   it "sends updates on observation field values, in all languages" do

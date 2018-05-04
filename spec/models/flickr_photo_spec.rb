@@ -15,15 +15,11 @@ describe FlickrPhoto, "creation" do
   end
   
   it "should make a valid FlickrPhoto from a flickraw response" do
-    pending_flickr_setup do
-      expect(FlickrPhoto.new_from_flickraw(@cc_flickr_photo_response, :user => @user)).to be_valid
-    end
+    expect(FlickrPhoto.new_from_flickraw( @cc_flickr_photo_response, user: @user ) ).to be_valid
   end
   
   it "should not be valid if the associated user didn't take the photo" do
-    pending_flickr_setup do
-      expect(FlickrPhoto.new_from_api_response(@cc_flickr_photo_response, :user => User.make!)).not_to be_valid
-    end
+    expect(FlickrPhoto.new_from_api_response( @cc_flickr_photo_response, user: User.make! ) ).not_to be_valid
   end
 end
 
