@@ -4,11 +4,6 @@
 # Author: Bjankuloski06
 ---
 mk:
-  we_also_support: |-
-    Ги поддржуваме и <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a> и
-    <a href="http://facebook.com">Facebook</a>
-    како места за вдомување на сликите.
   x_followers:
     one: 1 следбеник
     other: '%{count} следбеници'
@@ -1486,11 +1481,11 @@ mk:
     на
   short_code_for_this_place: Краток код за местово, на пр. US за Соединетите Држави
   show: Прикажи
-  showing_one_to: Приказ на 1 -
-  showing_taxa_from_place: Приказ на таксони од %{place}
-  show_taxa_from_place: Прикажи таксони од %{place}
-  showing_taxa_from_everywhere: Приказ на таксони од секаде
   show_taxa_from_everywhere: Прикажи таксони од секаде
+  show_taxa_from_place: Прикажи таксони од %{place}
+  showing_one_to: Приказ на 1 -
+  showing_taxa_from_everywhere: Приказ на таксони од секаде
+  showing_taxa_from_place: Приказ на таксони од %{place}
   shown_publicly_as: Прикажано јавно како
   sign_in: Најава
   sign_in_with_provider: Најави ме со %{provider}
@@ -1757,6 +1752,11 @@ mk:
   w_photos_only: со слики
   w_sounds: со звуци
   was_it_captive_cultivated?: Дали е во заробеништво / одгледуван
+  we_also_support: |-
+    Ги поддржуваме и <a href="http://flickr.com">Flickr</a>,
+    <a href="http://picasaweb.google.com">Picasa</a> и
+    <a href="http://facebook.com">Facebook</a>
+    како места за вдомување на сликите.
   we_care_privacy: Вашата приватност ни значи!
   wed: сре
   welcome!: Добре дојдовте!

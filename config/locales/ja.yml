@@ -10,11 +10,6 @@
 # Author: 아라
 ---
 ja:
-  we_also_support: |-
-    画像ホスティングサービスの<a href="http://flickr.com">Flickr</a>、
-    <a href="http://photos.google.com">Google フォト</a>及び
-    <a href="http://facebook.com">Facebook</a>にも対応しています。
-  a_default_taxon_name_will_automatically_created: 当分類群の学名がデフォルト名となります。保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   x_followers:
     one: 1人のフォロワー
     other: '%{count}人のフォロワー'
@@ -69,6 +64,7 @@ ja:
   a: 一つの
   a_: 一つの
   a_community_for_naturalist: ナチュラリストのためのコミュニティー
+  a_default_taxon_name_will_automatically_created: 当分類群の学名がデフォルト名となります。保存が完了しましたら、別の名称（俗名、旧学名など）を追加することができます。
   a_flag_for_x: '%{x}用のフラグ'
   a_greasemonkey_script: Greasemonkeyスクリプトを使用しています
   a_member_of_taxon_html: '%{taxon}の一つ'
@@ -2421,12 +2417,12 @@ ja:
   show_observations_from: 次のユーザの観察記録を表示：
   show_off_your_recent_observations: 最近の観察記録を自分のブログまたホームページで紹介しよう！
   show_only: '表示限定:'
+  show_taxa_from_everywhere: すべての場所からの分類群を表示
+  show_taxa_from_place: '%{place}からの分類群を表示'
   show_total_listed_taxa: リストのすべての分類群を表示
   showing_observations_by: 次のユーザの観察記録を表示中：
-  showing_taxa_from_place: '%{place}からの分類群を表示中'
-  show_taxa_from_place: '%{place}からの分類群を表示'
   showing_taxa_from_everywhere: すべての場所からの分類群を表示中
-  show_taxa_from_everywhere: すべての場所からの分類群を表示
+  showing_taxa_from_place: '%{place}からの分類群を表示中'
   sign_in: ログイン
   sign_in_with_provider: '%{provider}でログイン'
   sign_out: ログアウト
@@ -2923,6 +2919,10 @@ ja:
   want_to_add_one: 一つ追加しませんか？
   want_to_show_off_some_of_your_favorite_taxa: こちらでお気に入りの分類群を表示しませんか？
   was_it_captive_cultivated?: 飼育/栽培？
+  we_also_support: |-
+    画像ホスティングサービスの<a href="http://flickr.com">Flickr</a>、
+    <a href="http://photos.google.com">Google フォト</a>及び
+    <a href="http://facebook.com">Facebook</a>にも対応しています。
   we_can_only_understand_csv_in: 以下のフォーマットのCSVデータしか認識できません：
   we_care_privacy: あなたの個人情報及びプライバシーは大切です。
   we_couldnt_find_a_user: 指定のメールアドレスで該当するユーザーが見つかりません。
@@ -3203,12 +3203,12 @@ ja:
           research: 研究用
           verifiable: 確認できる
           Flowering Phenology=bare: 花なし
-          Insect life stage=egg: 卵
-          Insect life stage=larva: 幼虫
-          Insect life stage=teneral: 脱皮直後
-          Insect life stage=nymph: 若虫
-          Insect life stage=pupa: 蛹
-          Insect life stage=adult: 成虫
+          Life Stage=egg: 卵
+          Life Stage=larva: 幼虫
+          Life Stage=teneral: 脱皮直後
+          Life Stage=nymph: 若虫
+          Life Stage=pupa: 蛹
+          Life Stage=adult: 成虫
     users:
       edit:
         project_addition_preferences:

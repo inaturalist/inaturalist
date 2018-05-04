@@ -10,25 +10,6 @@
 # Author: Toliño
 ---
 gl:
-  licensing_your_content: |-
-    Licenciar o teu contido dálle a outros o dereito legal de empregalo
-    se se apegan a os termos da licenza. Empregamos contido licenciado
-    baixo Creative Commons para compartir con asociados como
-    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
-  you_think_observation_inacurate: |-
-    Se pensas que esta observación é inexacta, por favor, agrega unha
-    identificación, participa na sección de calidade de datos, ou describe
-    a inexactitude cun comentario.
-  we_also_support: |-
-    Tamén temos conexión con Flickr <a href="http://flickr.com"></a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para as túas imaxes.
-  a_default_taxon_name_will_automatically_created: Crearase automaticamente un nome
-    por defecto do taxón a partir do atributo do nome científico deste taxón. Cando
-    teñas gardado este taxón, poderás engadir outros nomes aquí (nomes comúns, nomes
-    científicos actualizados, etc.).
   x_followers:
     one: 1 seguidor
     other: '%{count} seguidores'
@@ -70,6 +51,10 @@ gl:
   a: Unha
   a_: un(</a)
   a_community_for_naturalist: Unha comunidade para naturalistas
+  a_default_taxon_name_will_automatically_created: Crearase automaticamente un nome
+    por defecto do taxón a partir do atributo do nome científico deste taxón. Cando
+    teñas gardado este taxón, poderás engadir outros nomes aquí (nomes comúns, nomes
+    científicos actualizados, etc.).
   a_few_points_to_make_things_clear: Algúns puntos para aclarar as cousas un pouco
     mellor
   a_flag_for_x: unha marca de %{x}
@@ -1328,6 +1313,12 @@ gl:
   license_descriptions_and_images: Descrición das licenzas e das túas respectivas
     imaxes
   licensing: Licenzas
+  licensing_your_content: |-
+    Licenciar o teu contido dálle a outros o dereito legal de empregalo
+    se se apegan a os termos da licenza. Empregamos contido licenciado
+    baixo Creative Commons para compartir con asociados como
+    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+    (GBIF).
   licensing_your_content_gives_others_legal: Aplicar unha licenza ao contido xerado
     por ti confire a outros o dereito a empregalo, sempre e cando acepten os termos
     da licenza. %{site_name} emprega unha licenza de Creative Commons para compartir
@@ -1568,6 +1559,7 @@ gl:
   new_updates_in_the_last_24_hours_from: Novas actualizacións nas últimas 24 horas
     de %{site_name}
   new_user_rules: Novas regras de usuario
+  new_users: Usuarios novos
   new_users_week: Usuarios novos / Semana
   next: Seguinte
   next_page: Páxina seguinte
@@ -2305,8 +2297,8 @@ gl:
     cando o espazo é moi limitado (máximo 10 caracteres).
   show: Mostrar
   show_active_and_inactive_taxa: Mostra especies activas e inactivas
-  show_default_taxon_photos: Mostra as fotos predeterminadas das especies
   show_counts: Mostrar cálculos baseados na lista
+  show_default_taxon_photos: Mostra as fotos predeterminadas das especies
   show_kml: Mostrar KML
   show_observation_photos: Mostra as fotos das observacións
   show_observations_from: Mostra observacións feitas por
@@ -2916,6 +2908,11 @@ gl:
   want_to_show_off_some_of_your_favorite_taxa: Desexas incorporar algúns dos teus
     taxóns favoritos aquí?
   was_it_captive_cultivated?: Era cativa/cultivada?
+  we_also_support: |-
+    Tamén temos conexión con Flickr <a href="http://flickr.com"></a>,
+    <a href="http://picasaweb.google.com">Picasa</a>, e
+    <a href="http://facebook.com">Facebook</a>
+    para as túas imaxes.
   we_can_only_understand_csv_in: Só podemos importar CSV no seguinte formato
   we_care_privacy: Impórtanos a túa privacidade!
   we_couldnt_find_a_user: Non puidemos atopar un usuario con este enderezo de correo.
@@ -3094,6 +3091,10 @@ gl:
   you_sure_remove_taxon_from?: Estás seguro de que desexas quitar este taxón de %{list}?
   you_sure_remove_this_invitation?: Estás seguro de que desexas eliminar esta invitación?
   you_sure_remove_this_observation?: Estás seguro de que desexas eliminar esta observación?
+  you_think_observation_inacurate: |-
+    Se pensas que esta observación é inexacta, por favor, agrega unha
+    identificación, participa na sección de calidade de datos, ou describe
+    a inexactitude cun comentario.
   you_would_get_the: Obterás as seguintes etiquetas
   youll_need_to_link: Deberás vincular
   youve_joined_the_x_project: Unícheste ao proxecto %{project_invitation} e engadíronse

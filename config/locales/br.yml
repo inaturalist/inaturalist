@@ -7,15 +7,6 @@
 # Author: Y-M D
 ---
 br:
-  licensing_your_content: |-
-    Dre ouzhpennañ un aotre-implijout d'hoc'h endalc'h e roit gwir d'ar re all da implijout an endalc'h-se ma reont diouzh divizoù an aotre-implijout.
-    %{site_name} a implij hoc'h endalc'h dindan Creative Commons evit eskemmañ anezhañ gant kevelerien evel <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
-  we_also_support: Asantiñ a reomp ivez da <a href="http://picasaweb.google.com">Picasa</a>
-    ha <a href="http://facebook.com">Facebook</a>evit herberc'hiañ skeudennoù.
-  a_default_taxon_name_will_automatically_created: Un anv takson dre ziouer a vo krouet
-    ent emgefreek adalek ma vo roet anv skiantel an takson-mañ. P'ho po enrollet an
-    takson nevez-mañ e c'hallot ouzhpennañ anvioù all amañ (anvioù boutin, anvioù
-    skiantel dispredet ha kement se...).
   x_comments:
     one: 1{count} evezhiadenn
     other: '%{count} evezhiadenn'
@@ -82,6 +73,10 @@ br:
   a: ar/an/al
   a_: ar/an/al
   a_community_for_naturalist: Ur gumuniezh evit an  naturelourien
+  a_default_taxon_name_will_automatically_created: Un anv takson dre ziouer a vo krouet
+    ent emgefreek adalek ma vo roet anv skiantel an takson-mañ. P'ho po enrollet an
+    takson nevez-mañ e c'hallot ouzhpennañ anvioù all amañ (anvioù boutin, anvioù
+    skiantel dispredet ha kement se...).
   a_few_points_to_make_things_clear: 'Un nebeud krafoù evit sklaeraat an traoù un
     tammig :'
   a_flag_for_x: ur merk evit %{x}
@@ -1224,6 +1219,9 @@ br:
   less: Nebeutoc'h
   license_descriptions_and_images: Deskrivadurioù ha skeudennoù eus an aotre-implijout
   licensing: Aotre-implijout
+  licensing_your_content: |-
+    Dre ouzhpennañ un aotre-implijout d'hoc'h endalc'h e roit gwir d'ar re all da implijout an endalc'h-se ma reont diouzh divizoù an aotre-implijout.
+    %{site_name} a implij hoc'h endalc'h dindan Creative Commons evit eskemmañ anezhañ gant kevelerien evel <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
   life: Bev
   life!: Bev !
   life_list: Roll ar bevien %{user}
@@ -1663,6 +1661,8 @@ br:
   share: Rannañ
   supporting: Harpañ
   this_year: Bloaz-mañ
+  we_also_support: Asantiñ a reomp ivez da <a href="http://picasaweb.google.com">Picasa</a>
+    ha <a href="http://facebook.com">Facebook</a>evit herberc'hiañ skeudennoù.
   week_of_date: Sizhun eus %{date}
   who_helped_user_the_most: Piv en deus sikouret ar muiañ %{user}
 ...

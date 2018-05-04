@@ -29,22 +29,6 @@
 # Author: Ядерный Трамвай
 ---
 ru:
-  licensing_your_content: Лицензирование вашего контента дает другим законное право
-    использовать его, если они придерживаются условий лицензии. %{site_name} использует
-    ваш контент, лицензированный Creative Commons, для обмена данными с партнерами
-    по данным, например, <a href="http://www.gbif.org/">Глобальным информационным
-    фондом биоразнообразия</a> (GBIF).
-  you_think_observation_inacurate: Если Вам кажется, что наблюдение неточное, пожалуйста,
-    добавьте ID, примите участие в указанной выше оценке качества, либо опишите неточность
-    в комментарии.
-  we_also_support: |-
-    Мы также поддерживаем <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Photos</a>, и
-    <a href="http://facebook.com">Facebook</a> для размещения фотографий.
-  a_default_taxon_name_will_automatically_created: Наименование таксона по умолчанию
-    будет автоматически создано из атрибута научного наименования этого таксона. Когда
-    вы сохраните этот новый таксон, вы сможете добавлять здесь другие наименования  (общее
-    наименование, устаревшее научное наименование и т.д.).
   x_comments:
     one: 1 комментарий
     other: '%{count} комментарии'
@@ -148,10 +132,15 @@ ru:
     other: '%{count} таксонов, соответствующих текущим фильтрам'
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> изменение таксона добавлено
+    few: <span class='count'>%{count}</span> изменения таксонов добавлено
     other: <span class='count'>%{count}</span> изменений таксонов добавлено
   a: a
   a_: a
   a_community_for_naturalist: Сообщество Натуралистов
+  a_default_taxon_name_will_automatically_created: Наименование таксона по умолчанию
+    будет автоматически создано из атрибута научного наименования этого таксона. Когда
+    вы сохраните этот новый таксон, вы сможете добавлять здесь другие наименования  (общее
+    наименование, устаревшее научное наименование и т.д.).
   a_few_points_to_make_things_clear: 'Несколько уточняющих моментов:'
   a_flag_for_x: флаг для %{x}
   a_greasemonkey_script: сценарий Greasemonkey
@@ -338,7 +327,7 @@ ru:
     rank:
       kingdom: Царство
       class: Класс
-      species: Виды
+      species: Вид
       order: Порядок
     amphibians: Земноводные
     animals: Животные
@@ -755,6 +744,9 @@ ru:
   connected_accounts: Связанные учётные записи
   connecting_flickr: Подключение к Flickr...
   connecting_to_facebook: Подключение к Facebook...
+  connecting_your_inat_account_to_accounts_other_sites: Подключение учетной записи
+    %{site_name} к учетным записям на других сайтах позволит вам входить в %{site_name},
+    используя учетные данные этих сайтов.
   conservation_status: Природоохранный статус
   conservation_status_descriptions:
     status: Код состояния, ранг и т.д. Если существует короткий код типа E или CR,
@@ -1211,6 +1203,7 @@ ru:
   global_names: Глобальные имена
   go: Вперед
   got_it!: Понятно!
+  got_your_data_somewhere_else?: Ваши данные где-нибудь еще? Мы можем помочь.
   grafting_attemps_to_insert_this_taxon: Привязка пытается вставить этот таксон в
     наше таксономическое дерево, найти существующий родительский таксон или создать
     все необходимые промежуточные таксоны, чтобы прикрепить его к существующему таксону
@@ -1292,12 +1285,14 @@ ru:
   import_date_time_location_taxonomic: Импортировать дату, время, место, описание
     и таксономическую информацию из этого фото.
   import_from_csv: Импорт из CSV
-  import_from_other_photo_sites: Импортировать с других фото-сайтов
+  import_from_other_photo_sites: Импортировать с других фотосайтов
   import_from_photos: Импортировать из фотографий
   import_from_yahoo: Импортировать из Yahoo
   import_observations: Импорт Наблюдений
   import_observations_from_a_photo: Импорт наблюдений от поставщика фото или файла
     на вашем компьютере.
+  import_photos: Импортировать фото
+  import_sections: Импортировать разделы
   import_tags_from_csv: Импорт тегов формата CSV
   in: в
   in_: в
@@ -1418,6 +1413,11 @@ ru:
   less: Меньше
   licensed_site_photos: Лицензированные фото %{site_name}
   license: Лицензия
+  licensing_your_content: Лицензирование вашего контента дает другим законное право
+    использовать его, если они придерживаются условий лицензии. %{site_name} использует
+    ваш контент, лицензированный Creative Commons, для обмена данными с партнерами
+    по данным, например, <a href="http://www.gbif.org/">Глобальным информационным
+    фондом биоразнообразия</a> (GBIF).
   life: Жизнь
   life!: Жизнь!
   life_list_updated_we_also_saved_a: Список жизни обновлён! Мы также сохранили пустое
@@ -1659,7 +1659,7 @@ ru:
   new_updates_in_the_last_24_hours_from: Новые обновления за последние 24 часа от
     %{site_name}
   new_users_week: Новые пользователи / Неделя
-  next: Далее
+  next: След
   next_observation: Следующее наблюдение
   next_page: Следующая страница
   next_photo: Следующее фото
@@ -1720,6 +1720,7 @@ ru:
   no_taxonomic_changes_match_those_criteria: Никакие таксономические изменения не
     соответствуют этим критериям
   noble_curators: Почетные кураторы %{site}
+  none: Ничего
   none_found: Ничего не найдено
   normal: обычный
   not_found: Не найдено
@@ -2205,8 +2206,8 @@ ru:
     отображения в области с ограниченным пространством. Максимум 10 символов.
   show: Показать
   show_active_and_inactive_taxa: Показать активные и неактивные таксоны
-  show_default_taxon_photos: показать фото таксона по умолчанию
   show_common_names: Показывать общие названия
+  show_default_taxon_photos: показать фото таксона по умолчанию
   show_keyboard_shortcuts: Показать сочетания клавиш
   show_less: Показать меньше
   show_observation_photos: показать фото наблюдения
@@ -2214,8 +2215,8 @@ ru:
     или на своем сайте!
   show_scientific_name_first: Показать научные наименования вначале
   show_total_listed_taxa: Показать все перечисленные таксоны
-  showing_taxa_from_place: Показ таксонов из %{place}
   showing_taxa_from_everywhere: Показывать таксоны отовсюду
+  showing_taxa_from_place: Показ таксонов из %{place}
   similar_species: Аналогичные виды
   single_observation: Одиночное наблюдение
   skip_to_next_page: Перейти на следующую страницу
@@ -2255,6 +2256,7 @@ ru:
     import_from_soundcloud_description: Выберите звуки из вашего аккаунта SoundCloud
       для преобразования их в наблюдения iNaturalist. Мы заполним дату и время из
       метаданных звуков и попытаемся найти видовые названия в тегах.
+    import_from_sounds: Импортировать из звуковых файлов
     link_your_soundcloud_account: Привязать ваш аккаунт SoundCloud
     no_photos_sounds: Нет фото или звуков
     photos_sounds: Фото / Звуки
@@ -2277,6 +2279,7 @@ ru:
   species_name: название вида
   species_name_cap: название вида
   species_names: названия вида
+  species_search: Поиск видов
   species_taxon_name: Вид/Наименование таксона
   start_a_new_project: Начать новый проект
   start_new_project: Начать новый проект
@@ -2452,6 +2455,8 @@ ru:
     наблюдение было включено в следующие внешние веб-сайты
   this_observation_is_research_grade: Это наблюдение достигло исследовательского уровня!
   this_place_has_no_check_list: Для этого места нет контрольного списка.
+  this_species_has_no_colors: У этого вида нет цветов! Помогите улучшить поиск видов,
+    сообщая нам, какого он цвета!
   this_taxon_change_has_been_commited: |-
     <strong>Произведено изменение таксонов!</strong>
     Пожалуйста, не редактируйте таксоны. Редактирование других полей допустимо.
@@ -2635,6 +2640,10 @@ ru:
   want_to_show_off_some_of_your_favorite_taxa: Хотите, покажем здесь некоторые из
     ваших любимых таксонов?
   was_it_captive_cultivated?: Было ли оно в неволе / культивируемое?
+  we_also_support: |-
+    Мы также поддерживаем <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Photos</a>, и
+    <a href="http://facebook.com">Facebook</a> для размещения фотографий.
   we_can_only_understand_csv_in: Мы можем понимать CSV только в следующем формате
   we_care_privacy: Мы заботимся о вашей конфиденциальности!
   we_currently_support_flickr_for_image_hosting: В настоящее время мы поддерживаем
@@ -2661,6 +2670,8 @@ ru:
   welcome_to_guides: Добро пожаловать в руководства %{site_name}!
   welcome_to_x_project: Добро пожаловать в %{project}
   were_pretty_sure_this_is_in_the_rank: Мы почти уверены, что это относится к %{rank}
+  were_sorry_but_your_bulk_import_of_filename_has_failed: Извините, но ваш массовый
+    импорт %{filename} не удался.
   what_did_you_see: Что вы видели?
   whats_this?: Что это?
   when: Когда
@@ -2785,6 +2796,9 @@ ru:
   you_sure_remove_taxon_from?: Вы уверены что хотите удалить этот таксон из %{list}?
   you_sure_remove_this_invitation?: Вы уверены, что хотите удалить это приглашение?
   you_sure_remove_this_observation?: Вы уверены, что хотите удалить это наблюдение?
+  you_think_observation_inacurate: Если Вам кажется, что наблюдение неточное, пожалуйста,
+    добавьте ID, примите участие в указанной выше оценке качества, либо опишите неточность
+    в комментарии.
   you_would_get_the: 'вы получите следующие теги:'
   youve_been_invited_to_join_this_project_html: Вас приглашают <a href="%{url}" class="readmore">присоединиться
     к этому проекту</a>
@@ -3370,7 +3384,7 @@ ru:
         frequency:
           research: Исследовательский уровень
           Flowering Phenology=budding: Почкование
-          Insect life stage=egg: Яйцо
+          Life Stage=egg: Яйцо
         photo_chooser_modal_desc: Переместите фото сюда с левой стороны или перемещайте
           фото здесь, чтобы изменить порядок.
         photo_chooser_modal_explanation: Обратите внимание, что на странице таксона
