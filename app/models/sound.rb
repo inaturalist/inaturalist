@@ -6,6 +6,8 @@ class Sound < ActiveRecord::Base
   serialize :native_response
 
   include Shared::LicenseModule
+
+  attr_accessor :orphan
   
   def update_attributes(attributes)
     MASS_ASSIGNABLE_ATTRIBUTES.each do |a|
@@ -19,6 +21,7 @@ class Sound < ActiveRecord::Base
   after_save :update_default_license,
              :update_all_licenses,
              :index_observations
+  after_destroy :create_deleted_sound
 
   validate :licensed_if_no_user
   
@@ -131,6 +134,19 @@ class Sound < ActiveRecord::Base
       play_local: is_a?( LocalSound ) && ( subtype.blank? || ( native_response && native_response["sharing"] == "private") ),
       subtype: subtype
     }
+  end
+
+  def orphaned?
+    return false if observation_sounds.loaded? ? observation_sounds.size > 0 : observation_sounds.exists?
+    true
+  end
+
+  def create_deleted_sound
+    DeletedSound.create(
+      sound_id: id,
+      user_id: user_id,
+      orphan: orphan || false
+    )
   end
 
 end
