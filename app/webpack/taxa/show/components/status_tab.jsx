@@ -3,7 +3,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 
-const StatusTab = ( { statuses, listedTaxa } ) => {
+const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
   const sortedStatuses = _.sortBy( statuses, status => {
     let sortKey = `-${status.iucn}`;
     if ( status.place ) {
@@ -120,57 +120,62 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
   let establishmentSection;
   if ( sortedListedTaxa.length > 0 ) {
     establishmentSection = (
-      <table className="table">
-        <thead>
-          <tr>
-            <th>{ I18n.t( "place" ) }</th>
-            <th>{ I18n.t( "establishment_means" ) }</th>
-            <th>{ I18n.t( "source_list_" ) }</th>
-            <th>{ I18n.t( "details" ) }</th>
-          </tr>
-        </thead>
-        <tbody>
-          { sortedListedTaxa.map( lt => (
-            <tr
-              key={`listed-taxon-${lt.id}`}
-            >
-              <td className="conservation-status">
-                <div className="media">
-                  <div className="media-left">
-                    { lt.place ?
-                      <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                        <i className="fa fa-invert fa-map-marker"></i>
-                      </a>
-                      :
-                      <i className="fa fa-invert fa-globe"></i>
-                    }
-                  </div>
-                  <div className="media-body">
-                    { lt.place ?
-                      <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                        { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                          { defaultValue: lt.place.display_name } ) }
-                      </a>
-                      :
-                      _.capitalize( I18n.t( "globally" ) )
-                    }
-                  </div>
-                </div>
-              </td>
-              <td>
-                { _.capitalize( I18n.t( lt.establishment_means,
-                  { defaultValue: lt.establishment_means } ) ) }
-              </td>
-              <td>
-                <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
-              </td>
-              <td>
-                <a href={`/listed_taxa/${lt.id}`}>{ I18n.t( "view" ) }</a>
-              </td>
+      <div>
+        { listedTaxaCount > listedTaxa.length ? (
+          <p>{ I18n.t( "showing_x_of_y_listings", { x: listedTaxa.length, y: listedTaxaCount } ) }</p>
+        ) : null }
+        <table className="table">
+          <thead>
+            <tr>
+              <th>{ I18n.t( "place" ) }</th>
+              <th>{ I18n.t( "establishment_means" ) }</th>
+              <th>{ I18n.t( "source_list_" ) }</th>
+              <th>{ I18n.t( "details" ) }</th>
             </tr>
-          ) ) }
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            { sortedListedTaxa.map( lt => (
+              <tr
+                key={`listed-taxon-${lt.id}`}
+              >
+                <td className="conservation-status">
+                  <div className="media">
+                    <div className="media-left">
+                      { lt.place ?
+                        <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                          <i className="fa fa-invert fa-map-marker"></i>
+                        </a>
+                        :
+                        <i className="fa fa-invert fa-globe"></i>
+                      }
+                    </div>
+                    <div className="media-body">
+                      { lt.place ?
+                        <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                          { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
+                            { defaultValue: lt.place.display_name } ) }
+                        </a>
+                        :
+                        _.capitalize( I18n.t( "globally" ) )
+                      }
+                    </div>
+                  </div>
+                </td>
+                <td>
+                  { _.capitalize( I18n.t( lt.establishment_means,
+                    { defaultValue: lt.establishment_means } ) ) }
+                </td>
+                <td>
+                  <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
+                </td>
+                <td>
+                  <a href={`/listed_taxa/${lt.id}`}>{ I18n.t( "view" ) }</a>
+                </td>
+              </tr>
+            ) ) }
+          </tbody>
+        </table>
+      </div>
     );
   }
   return (
@@ -252,12 +257,14 @@ const StatusTab = ( { statuses, listedTaxa } ) => {
 
 StatusTab.propTypes = {
   statuses: PropTypes.array,
-  listedTaxa: PropTypes.array
+  listedTaxa: PropTypes.array,
+  listedTaxaCount: PropTypes.number
 };
 
 StatusTab.defaultProps = {
   statuses: [],
-  listedTaxa: []
+  listedTaxa: [],
+  listedTaxaCount: 0
 };
 
 export default StatusTab;
