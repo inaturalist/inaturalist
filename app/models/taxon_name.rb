@@ -94,6 +94,7 @@ class TaxonName < ActiveRecord::Base
     "danish"                => "da",
     "dutch"                 => "nl",
     "english"               => "en",
+    "estonian"              => "et",
     "french"                => "fr",
     "galician"              => "gl",
     "german"                => "de",

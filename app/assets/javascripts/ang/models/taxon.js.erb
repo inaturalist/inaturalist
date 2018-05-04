@@ -110,7 +110,7 @@ iNatModels.Taxon.capitalize = function( s ) {
   // this into React and using https://babeljs.io/docs/plugins/transform-es2015
   // -unicode-regex. We could also use the command line tool there to convert
   // just these patterns for use outside of React
-  var lowerCaseChars = "éáúóåøØêûîôâñèùìòàçëüïöäæµﬁﬂøŒœ∑ß∂∆Ωčšžřěňȟǧǎěǐǒǔǚ";
+  var lowerCaseChars = "éáúóåøØêûîôâãĩũṽỹñõèùìòàçëüïöäæµﬁﬂøŒœ∑ß∂∆Ωčšžřěňȟǧǎěǐǒǔǚ";
   var allCasePattern = new RegExp( "[A-z" + lowerCaseChars + lowerCaseChars.toUpperCase( ) + "]" );
   var firstLetterMatch = s.match( allCasePattern );
   var firstLetterIndex = firstLetterMatch ? firstLetterMatch.index : 0;
