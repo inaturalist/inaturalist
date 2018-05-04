@@ -8,9 +8,11 @@ const IdentificationForm = ( {
   observation: o,
   onSubmitIdentification,
   className,
-  blind
+  blind,
+  key
 } ) => (
   <form
+    key={ key }
     className={`IdentificationForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
@@ -58,7 +60,13 @@ const IdentificationForm = ( {
   >
     <h3>{ I18n.t( "add_an_identification" ) }</h3>
     <TaxonAutocomplete />
-    <INatTextArea type="textarea" name="body" className="form-control" mentions />
+    <INatTextArea
+      type="textarea"
+      name="body"
+      className="form-control"
+      key={ `${key}-inat-text-area` }
+      mentions
+    />
     { blind ? (
       <div className="form-group disagreement-group">
         <label>
@@ -83,7 +91,8 @@ IdentificationForm.propTypes = {
   onSubmitIdentification: PropTypes.func.isRequired,
   className: PropTypes.string,
   currentUser: PropTypes.object,
-  blind: PropTypes.bool
+  blind: PropTypes.bool,
+  key: PropTypes.string
 };
 
 export default IdentificationForm;

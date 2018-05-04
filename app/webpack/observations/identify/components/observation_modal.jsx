@@ -234,7 +234,10 @@ class ObservationModal extends React.Component {
         {
           defaultShortcuts.map( shortcut => (
             blind && shortcut.skipBlind ? null : (
-              <tr className="keyboard-shortcuts">
+              <tr
+                className="keyboard-shortcuts"
+                key={ `keyboard-shortcuts-${shortcut.keys.join( "-" )}` }
+              >
                 <td>
                   <span dangerouslySetInnerHTML={ { __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) } } />
                 </td>
@@ -357,7 +360,10 @@ class ObservationModal extends React.Component {
                                       // inaturalist.rake generate_translations_js
                                       const labelKey = _.snakeCase( `add ${shortcut.attributeLabel} ${shortcut.valueLabel} annotation` );
                                       return (
-                                        <tr className="keyboard-shortcuts">
+                                        <tr
+                                          className="keyboard-shortcuts"
+                                          key={ `keyboard-shortcuts-${labelKey}` }
+                                        >
                                           <td>
                                             <code>{ shortcut.keys[0] }</code> {
                                               I18n.t( "then_keybord_sequence" )
@@ -411,7 +417,7 @@ class ObservationModal extends React.Component {
           <div className="right-col">
             <ul className="inat-tabs">
               {tabs.map( tabName => (
-                <li className={tab === tabName ? "active" : ""}>
+                <li key={ `obs-modal-tabs-${tabName}` } className={tab === tabName ? "active" : ""}>
                   <a
                     href="#"
                     onClick={ e => {
@@ -489,6 +495,7 @@ class ObservationModal extends React.Component {
                       <div className="big loading_spinner" />
                     </center>
                     <CommentFormContainer
+                      key={ `comment-form-obs-${observation.id}` }
                       observation={observation}
                       className={commentFormVisible ? "" : "collapse"}
                       ref={ function ( elt ) {
@@ -505,6 +512,7 @@ class ObservationModal extends React.Component {
                       } }
                     />
                     <IdentificationFormContainer
+                      key={ `identification-form-obs-${observation.id}` }
                       observation={observation}
                       className={identificationFormVisible ? "" : "collapse"}
                       ref={ function ( elt ) {
