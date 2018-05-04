@@ -108,6 +108,13 @@ describe Taxon, "creation" do
     t.reload
     expect( t.taxon_ancestors ).not_to be_blank
   end
+
+  it "should strip trailing space" do
+    expect( Taxon.make!( name: "Trailing space  " ).name ).to eq "Trailing space"
+  end
+  it "should strip leading space" do
+    expect( Taxon.make!( name: "   Leading space" ).name ).to eq "Leading space"
+  end
 end
 
 describe Taxon, "updating" do
@@ -128,6 +135,17 @@ describe Taxon, "updating" do
     t.photos = [Photo.make!]
     o.reload
     expect(o.photos).not_to be_blank
+  end
+
+  it "should strip trailing space" do
+    t = Taxon.make!( name: "No trailing space" )
+    t.update_attributes( name: "Trailing space    " )
+    expect( t.name ).to eq "Trailing space"
+  end
+  it "should strip leading space" do
+    t = Taxon.make!( name: "No leading space" )
+    t.update_attributes( name: "    Leading space" )
+    expect( t.name ).to eq "Leading space"
   end
 end
 

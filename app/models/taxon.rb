@@ -79,7 +79,8 @@ class Taxon < ActiveRecord::Base
 
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
-              :capitalize_name
+              :capitalize_name,
+              :strip_name
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
@@ -534,6 +535,11 @@ class Taxon < ActiveRecord::Base
     else
       name.capitalize
     end
+    true
+  end
+
+  def strip_name
+    self.name = name.strip
     true
   end
   
