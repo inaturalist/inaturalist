@@ -1978,12 +1978,16 @@ it:
     cebuano: Cebuano
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
+    czech: Ceco
+    danish: Danese
     davawenyo: Davawenyo
     dutch: Olandese
     english: Inglese
+    finnish: Finlandese
     french: Francese
     gela: Gela
     german: Tedesco
+    greek: Greco
     hawaiian: Hawaiano
     hebrew: Ebraico
     hiligaynon: Hiligaynon
@@ -1992,6 +1996,7 @@ it:
     italian: Italiano
     japanese: Giapponese
     korean: Coreano
+    luxembourgish: Lussemburghese
     maltese: Maltese
     maori: Maori
     misima_paneati: Misima-paneati
@@ -2135,6 +2140,7 @@ it:
     es-ES: Spagnolo (Spagna)
     es-MX: Spagnolo (Messico)
     es: Spagnolo
+    et: Estone
     eu: Basco
     fi: Finlandese
     fr: Francese
@@ -3854,6 +3860,7 @@ it:
   take_me_back: Indietro
   taxa: Taxa
   taxa_all_species_html: Tutte le specie
+  taxa_info: Info Taxa
   taxa_needing_curation: Taxa che necessitano di revisione
   taxa_observed: taxa osservati
   taxa_to_include: Taxa da includere
@@ -5675,6 +5682,7 @@ it:
         click_through_to_individual_projects: Navigazione tra i singoli progetti
         collection_projects: Progetti Collezione
         collection_project_features: 'Caratteristiche del Progetto collezione:'
+        contain_entire_image_without_cropping: Contiene un'intera immagine senza ritaglio
         custom_banner_icon_and_project_description: Banner personalizzato, icona,
           e descrizione del progetto
         data_visualizations: Visualizzazione dei dati
@@ -6431,6 +6439,10 @@ it:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: non deve contenere virgole o barre
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: deve sembrare un indirizzo email
     models:
       AssessmentSection: Sezione vatulazioni
       Atlas: Atlante
@@ -6520,6 +6532,7 @@ it:
         source_identifier: Identificatore della fonte
       user:
         email: Email
+        login: Nome utente
         name: Nome
         locale: Localizzazione
         time_zone: Fuso orario

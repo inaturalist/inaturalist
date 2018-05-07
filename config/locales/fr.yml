@@ -2045,12 +2045,16 @@ fr:
     cebuano: Cebuano
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
+    czech: Tchèque
+    danish: Danois
     davawenyo: Davawenyo
     dutch: Néerlandais
     english: Anglais
+    finnish: Finnois
     french: Français
     gela: Gela
     german: Allemand
+    greek: Grec
     hawaiian: Hawaïen
     hebrew: Hébreu
     hiligaynon: Hiligaynon
@@ -2059,6 +2063,7 @@ fr:
     italian: Italien
     japanese: Japonais
     korean: Coréen
+    luxembourgish: Luxembourgeois
     maltese: Maltais
     maori: Maori
     misima_paneati: Misima-paneati
@@ -2205,6 +2210,7 @@ fr:
     es-ES: Espagnol (Espagne)
     es-MX: Espagnol (Mexique)
     es: Espagnol
+    et: Estonien
     eu: Basque
     fi: Finnois
     fr: Français
@@ -3690,6 +3696,7 @@ fr:
   showing_one_to: Affichage de 1 à
   showing_taxa_from_everywhere: Affichage des taxons de partout
   showing_taxa_from_place: Affichage des taxons de %{place}
+  showing_x_of_y_listings: Affiche %{x} de %{y} listes
   shown_publicly_as: Affiché publiquement comme
   sign_in: S’identifier
   sign_in_with_provider: vous connecter avec %{provider}
@@ -3948,6 +3955,7 @@ fr:
   take_me_back: Revenir en arrière
   taxa: Taxons
   taxa_all_species_html: Toutes espèces
+  taxa_info: Informations des taxons
   taxa_needing_curation: Taxons nécessitant une organisation
   taxa_observed: taxons observés
   taxa_to_include: Taxons à inclure
@@ -5902,10 +5910,11 @@ fr:
           Les autres projets doivent exister avant que vous puissiez les ajouter.
           Vous pouvez inclure des centaines de projets sous un seul cadre. Les projets
           cadres ne peuvent pas contenir d’autres projets caders.
-        can_be_included_in_multiple: Peut être inclus dans plusieurs projets cadres
+        can_be_included_in_multiple: Peut être inclus dans plusieurs projets chapeau
         click_through_to_individual_projects: Cliquez parmi les projets individuels
         collection_projects: Projets de collections
         collection_project_features: Fonctionalités des projets de collection
+        contain_entire_image_without_cropping: Contient une image entière sans troncature
         custom_banner_icon_and_project_description: Entête personnalisée, icône, et
           description du projet
         data_visualizations: Visualisations des données
@@ -5961,6 +5970,11 @@ fr:
           types : Projets collections et Projets cadres, qui partagent les fonctionnalités
           suivantes :'
         welcome_to_projects: Bienvenue dans les projets !
+        you_have_not_defined_any_observation_requirements: 'Vous n''avez défini aucun
+          critère d''observation. Vérifiez bien d''avoir sélectionné un ou plusieurs
+          taxons (par exemple: oiseaux, connifères), places (par exemple: Brésil,
+          Yellowstone), utilisateurs, et/ou dates des observations que vous voulez
+          inclure dans votre projet.'
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement
@@ -6786,6 +6800,17 @@ fr:
             lexicon:
               should_not_contain_commas_or_slashes: ne doit pas contenir de virgules
                 ni de barres obliques
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ne correspond
+                pas au nom scientifique d'une espèce pour ce lexicon
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: doit commencer par une lettre, ne pas contenir
+                d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères
+                souligné
+            email:
+              must_look_like_an_email_address: doit ressembler à une adresse courriel
     models:
       AssessmentSection: Section d’évaluation
       Atlas: Atlas
@@ -6875,6 +6900,7 @@ fr:
         source_identifier: Identifiant source
       user:
         email: Courriel
+        login: Nom d’utilisateur
         name: Nom
         locale: Option régionale
         time_zone: Fuseau horaire

@@ -266,6 +266,7 @@ lb:
   back: Zréck
   back_to: Zréck op
   back_to_albums: Zréck op d'Albumen
+  back_to_all_species: Zréck op all Spezien
   back_to_calendar: Zréck op de Kalenner vum %{user}}
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
@@ -737,16 +738,21 @@ lb:
     bengali: Bengalesch
     catalan: Katalanesch
     creole_french: kreolesch (Franséisch)
+    czech: Tschechesch
+    danish: Dänesch
     dutch: Hollännesch
     english: Englesch
+    finnish: Finnesch
     french: Franséisch
     german: Däitsch
+    greek: Griichesch
     hawaiian: Hawaiianesch
     hebrew: Hebräesch
     icelandic: Islännesch
     italian: Italienesch
     japanese: Japanesch
     korean: Koreanesch
+    luxembourgish: Lëtzebuergesch
     maltese: Maltesesch
     maori: Maori
     norwegian: Norwegesch
@@ -792,6 +798,7 @@ lb:
     en: Englesch
     es-ES: Spuenesch (Spuenien)
     es: Spuenesch
+    et: Estnesch
     eu: Baskesch
     fi: Finnesch
     fr: Franséisch
@@ -1601,6 +1608,7 @@ lb:
         share_with_fellow_naturalists: Mat Naturalistekollegen deelen
         discuss_your_findings: Diskutéiert Är Konklusiounen
         create_useful_data: Nëtzlech Donnéeën uleeën
+        learn_about_nature: Iwwer d'Natur léieren
         works_on_all_your_devices: Funktionéiert op all Ären Apparater
         who_uses_site_name: Wie benotzt %{site_name}?
         what_are_you_waiting_for: Wourop waart Dir?
@@ -1719,6 +1727,10 @@ lb:
           attributes:
             place_geometry:
               is_too_large_to_import: ass ze grouss fir z'importéieren
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
     models:
       Atlas: Atlas
     attributes:
@@ -1744,6 +1756,7 @@ lb:
         name: Numm
       user:
         email: E-Mail
+        login: Benotzernumm
         name: Numm
         locale: Lokal
         time_zone: Zäitzon

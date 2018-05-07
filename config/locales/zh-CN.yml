@@ -1604,12 +1604,16 @@ zh-CN:
     cebuano: 宿务语
     creole_french: 克里奥尔语（法语）
     creole_portuguese: 克里奥尔语（葡萄牙语）
+    czech: 捷克语
+    danish: 丹麦语
     davawenyo: Davawenyo语
     dutch: 荷兰语
     english: 英语
+    finnish: 芬兰语
     french: 法语
     gela: Gela语
     german: 德语
+    greek: 希腊语
     hawaiian: 夏威夷语
     hebrew: 希伯来语
     hiligaynon: 希利盖农语
@@ -1618,6 +1622,7 @@ zh-CN:
     italian: 意大利语
     japanese: 日语
     korean: 韩语
+    luxembourgish: 卢森堡语
     maltese: 马耳他语
     maori: 毛利语
     misima_paneati: 米斯马-帕尼阿梯语
@@ -1714,6 +1719,7 @@ zh-CN:
     es-ES: 西班牙语（西班牙）
     es-MX: 西班牙语（墨西哥）
     es: 西班牙语
+    et: 爱沙尼亚语
     eu: 巴斯克语
     fi: 芬兰语
     fr: 法语
@@ -2721,10 +2727,12 @@ zh-CN:
   show_less: 显示更少
   show_more: 显示更多
   show_only: 仅显示
+  show_relative_proportions_of_all_observations: 显示所有观察的相关尺寸
   show_scientific_name_first: 首先显示学名
   show_total_counts: 显示总计计数
   show_uncountable_species: 显示无法计数的物种
   showing_one_to: 显示1~
+  showing_x_of_y_listings: 显示%{x}/%{y}个列表项
   sign_in: 登录
   sign_out: 退出
   sign_up!: 注册！
@@ -2884,6 +2892,7 @@ zh-CN:
   take_me_back: 让我返回
   taxa: 分类单元
   taxa_all_species_html: 所有物种
+  taxa_info: 分类群信息
   taxon: 类群
   taxon_autocomplete_placeholder: 鸟、君主等
   taxonomy: 分类学
@@ -3773,6 +3782,7 @@ zh-CN:
         click_through_to_individual_projects: 单个项目的点击次数
         collection_projects: 收藏项目
         collection_project_features: 收藏项目功能：
+        contain_entire_image_without_cropping: 包含整个图片，但没有裁剪
         custom_banner_icon_and_project_description: 自定义横幅、图标和项目描述
         data_visualizations: 数据可视化
         delete_project: 删除项目
@@ -3795,6 +3805,7 @@ zh-CN:
         use_this_link_to_create_html: 使用<a href="%{url}">此链接</a>创建传统项目。
         visual_comparison_of_data_among: 对同一雨伞内项目的可视化数据比较
         welcome_to_projects: 欢迎来到项目！
+        you_have_not_defined_any_observation_requirements: 您没有定义任何观察要求。确保选择一个或多个分类群（例如鸟、针叶树）、地点（例如巴西、黄石公园）、用户和/或日期以定义您希望包含在您的项目中的观察。
       project_location_privacy_notice_html: |-
         <p>
         请注意项目馆长将可以查看在此项目中您观察中的任何私有或已掩盖位置，除非您解除授权，并且他们将可以添加您观察的任意内容至此项目，除非<a href="/users/edit">您更改您的设置</a>。You can also grant or revoke access to project
@@ -3810,6 +3821,7 @@ zh-CN:
         none: 编号
       curator_coordinate_access_label: 允许项目馆长查看您观察中的私有坐标，当添加项目自
       show:
+        are_you_sure_you_want_to_convert: 您确定要转换词项目至一个收藏项目么？
         no_journal_blurb_html: |-
           <p>
             您的项目日记是与其他项目成员交流的工具。您可以使用它发布公告，设置优先级，或讨论有关您项目中找到的东西。
@@ -3833,6 +3845,8 @@ zh-CN:
         even_our_dedicated_search_mole_couldnt: 甚至我们的专业搜索引擎都找不到任何东西！
     stats:
       index:
+        active_desc: 过去30天创建的ID、观察、评论或帖子
+        active_users_desc: 过去30天创建的ID、观察、评论或帖子
         android_desc_html: 通过<a href="%{url}">iNaturalist Android应用</a>创建
         avg_ttcid: 平均TTCID
         avg_ttid: 平均TTID
@@ -3849,6 +3863,7 @@ zh-CN:
         recent_desc: 在过去7天注册
         recent_w_0_obs: 最近w/ 0观察
         recent_w_7_obs: 最近w/ >= 7观察
+        time_to_id_desc: ID的时间（小时，1周移动窗口）
         TTCID: TTCID
         TTID: TTID
         website_desc_html: 通过<a href="https://www.inaturalist.org">iNaturalist</a>或<a
@@ -4260,6 +4275,14 @@ zh-CN:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: 不能匹配指定此词汇的物种名
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
+            email:
+              must_look_like_an_email_address: 必须看起来像电子邮件地址
     models:
       AssessmentSection: 评定章节
       Atlas: 地图集
@@ -4342,6 +4365,7 @@ zh-CN:
         source_identifier: 来源标识符
       user:
         email: 电子邮件
+        login: 用户名
         name: 名称
         locale: 地域
         time_zone: 时区

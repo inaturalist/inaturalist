@@ -104,7 +104,8 @@ bg:
   about_licenses: За лицензите
   about_licensing: За лицензирането
   about_life!: За живота!
-  about_places: За местата
+  about_names: Относно имената
+  about_places: Относно местата
   about_the_cc_licenses: За лицензите Creative Commons
   about_the_taxobox_raquo: За таксокутията &raquo;
   about_these_licenses: За тези лицензи
@@ -631,6 +632,7 @@ bg:
   default_photo_license: Лиценз на снимка по подразбиране
   default_sound_license: Лиценз на звук по подразбиране
   delete: Изтрий
+  delete_conversation: Изтрий разговора
   delete_your_account: Изтриване на акаунта
   deleting: Изтриване...
   deleting_verb: Изтриване
@@ -1102,7 +1104,7 @@ bg:
     es-MX: испански (Мексико)
     es: испански
     eu: баски
-    fi: Приключване
+    fi: финландски
     fr: френски
     gl: галисийски
     id: индонезийски
@@ -1199,6 +1201,7 @@ bg:
   more_import_options: Още възможности за импорт
   more_journal_posts: Още публикации от дневника
   more_observations: Още наблюдения
+  more_photos: Още снимки
   most_observations: Най-много наблюдения
   most_species: Най-много видове
   most_observed_species: Най-наблюдавани видове
@@ -1218,6 +1221,7 @@ bg:
   ne_lat: СИ шир.
   ne_lon: СИ дълж.
   near_threatened: почти застрашен
+  nearby: Наблизо
   nearby_observations_: Наблюдения наблизо
   nearby_observations: Наблюдения наблизо
   needs_id: нуждае се от ID
@@ -1276,6 +1280,7 @@ bg:
   no_relevant_annotations: Няма подходящи анотации
   no_results_found: Не бяха открити резултати
   no_subject_parens: (без наслов)
+  no_wikipedia_page_for_taxon: В Уикипедия няма статия за този таксон.
   noble_curators: Знатните куратори на %{site}
   none: Нищо
   not_evaluated: неоценен
@@ -1316,6 +1321,7 @@ bg:
   observation_was_deleted: Наблюдението е изтрито.
   observation_without_media: Наблюдение без медийно съдържание
   observations: Наблюдения
+  observations_: наблюдения
   observations_added_by_x_html: Наблюдения добавени от %{x}
   observations_by: Наблюдения от
   observations_by_everyone: Наблюдения от всички
@@ -1458,6 +1464,9 @@ bg:
     comment:
       with_by: коментира %{comment_subject_link} от %{by_link}
       without_by: коментира %{comment_subject_link}
+  per_day: На ден
+  per_month: На месец
+  per_week: На седмица
   person: човек
   personal_message: Лично съобщение
   personal_message_description: Никой не обича да получава писма от машини! Защо не
@@ -1473,6 +1482,8 @@ bg:
     от външния сайт, или защото %{site_name} няма достъп до нея
   photo_hosting_accounts: Акаунти за съхранение на снимки
   photo_licensing: Лиценз на снимката
+  photos_from: Снимки от
+  photos_of: Снимки на
   photos_of_taxon_html: Снимки на %{taxon}
   photos_or_sounds: Снимки или звуци
   photos_or_sounds?: Снимки или звуци?
@@ -1530,6 +1541,8 @@ bg:
       nearby_building: близка сграда
       Nearby_Intersection: Близка пресечка
       nearby_intersection: близка пресечка
+      Open_Space: Отворено пространство
+      open_space: отворено пространство
       Parish: Eнория
       parish: енория
       Point_of_Interest: Място от интерес
@@ -1540,6 +1553,8 @@ bg:
       province: провинция
       Region: Регион
       region: регион
+      Republic: Република
+      republic: република
       Sports_Team: Спортен отбор
       sports_team: спортен отбор
       Street: Улица
@@ -1674,6 +1689,8 @@ bg:
   project: Проект
   project_cover: Корица на проекта
   project_created_on: създаде този проект на %{date}
+  project_group_label: Група
+  project_group_description: Група, към която принадлежи проектът
   project_icon: Икона на проекта
   project_invitations: Покани за проекти
   project_journal_posts: Публикации в дневника на проект
