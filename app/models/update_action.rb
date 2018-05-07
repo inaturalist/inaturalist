@@ -136,12 +136,13 @@ class UpdateAction < ActiveRecord::Base
     unless clauses.blank?
       filters << { bool: { should: clauses } }
     end
-    UpdateAction.elastic_paginate(
+    updates += UpdateAction.elastic_paginate(
       filters: filters,
       inverse_filters: inverse_filters,
       per_page: 200,
       sort: { id: :desc }
     )
+    updates
   end
 
   def self.group_and_sort(updates, options = {})
