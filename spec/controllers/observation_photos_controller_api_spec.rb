@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "an ObservationPhotosController" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+
   describe "create" do
     let(:file) { fixture_file_upload('files/cuthona_abronia-tagged.jpg', 'image/jpeg') }
     it "should work" do
@@ -62,9 +65,18 @@ shared_examples_for "an ObservationPhotosController" do
         expect( o.observation_photos.size ).to eq 0
         put :update, format: :json, id: nil, observation_photo: { observation_id: o.id }, file: file
         expect( response ).not_to be_success
+        expect( response.code ).not_to eq 500
         o.reload
         expect( o.observation_photos.size ).to eq 0
       end
+    end
+    it "should return an error when you try to update an observation photo that isn't yours" do
+      op = make_observation_photo
+      put :update, format: :json, id: op.id, observation_photo: { observation_id: op.observation_id, position: 2 }
+      expect( response ).not_to be_success
+      expect( response.code ).not_to eq 500
+      json = JSON.parse( response.body )
+      expect( json["error"] ).not_to be_blank
     end
   end
 
