@@ -12,30 +12,46 @@
     .user-result .media-left.icon .inner a {
       border-radius: 500px;
     }
+    .bootstrap .media {
+      margin-top: 23px;
+    }
     .media-left a {
       display: block;
-      width: 64px;
-      height: 64px;
+      width: 66px;
+      height: 66px;
       text-align: center;
     }
     .media-left.icon a {
       background-color: #aaa;
-      border: 2px solid #ddd;
+      border: 1px solid #ddd;
+      border-radius: 2px;
     }
     .project-result .media-left.icon a {
       border: 2px solid white;
-      width: 63px;
-      height: 63px;
+      width: 65px;
+      height: 65px;
     }
     .media-left.icon a i { font-size: 40px; line-height: 60px; color: white; }
     .project-result .media-left.icon a i { font-size: 36px; }
     .place-result .media-left.icon a { background-color: transparent; border: 0 transparent; }
-    .place-result .media-left.icon a i { color: #74ac00; font-size: 48px; }
+    .place-result .media-left.icon a i { color: #74ac00; font-size: 50px; line-height: 45px; }
     .user-result .media-left.icon a i { line-height: 57px; }
     .media-left.icon a i[class*="iconic"] { font-size: 50px; line-height: 55px; }
-    .media-left a img { width: 100%; max-height: 64px; max-width: 64px; }
-    .media-left .usericon { display: block; width: 64px; height: 64px; background-size: cover; border-radius: 500px; background-position: center; }
+    .media-left a img { width: 100%; max-height: 66px; max-width: 66px; }
+    .media-left .usericon {
+      display: block;
+      width: 66px;
+      height: 66px;
+      background-size: cover;
+      border-radius: 500px;
+      background-position: center;
+      border: 1px solid #ddd;
+    }
     .media .taxon a { color: #428BCA !important; }
+    .taxon-result .media-left a {
+      border: 1px solid #ddd;
+      border-radius: 2px;
+    }
     #controls { margin: 10px 0 40px; }
     .form-search .btn { background-color: #74ac00; border-color: #74ac00; }
     .form-search .input-group { width: 300px; }
@@ -130,7 +146,12 @@
                 = link_to record.login, person_path( record )
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( user_id: record.login ), class: "view-obs-link"
-              %p= formatted_user_text( record.try_methods( :description, :name ).to_s.truncate( 300 ) )
+              %p
+                - txt = record.try_methods( :description, :name ).to_s
+                - if txt.blank?
+                  =t :no_description
+                - else
+                  = formatted_user_text( record.try_methods( :description, :name ).to_s.truncate( 300 ) )
           - else
             .media-left.icon
               .inner

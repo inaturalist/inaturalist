@@ -2186,7 +2186,13 @@ user-icon .icon-person:before {
         width: 30px;
         overflow: hidden;
         line-height: 39px;
-        img,
+        img {
+          width: 28px;
+          height: 28px;
+          margin: 10px 0 0 0;
+          border: 1px solid #ddd;
+          border-radius: 1px;
+        }
         .fa {
           width: auto;
           height: 30px;
@@ -2217,6 +2223,61 @@ user-icon .icon-person:before {
             border-right: 1px solid #ddd;
             padding-right: 10px;
           }
+        }
+      }
+      &.ac-result-Taxon {
+        .no-photo {
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          border: 1px solid #ddd;
+          border-radius: 1px;
+          background-color: #aaa;
+          line-height: 23px;
+          i {
+            font-size: 23px;
+            color: white;
+          }
+        }
+      }
+      &.ac-result-Place {
+        i { color: $inat-green; }
+      }
+      &.ac-result-Project {
+        .no-photo {
+          margin-top: 9px;
+          display: inline-block;
+          width: 28px;
+          height: 28px;
+          border: 1px solid #ddd;
+          border-radius: 1px;
+          background-color: #aaa;
+          line-height: 23px;
+          i {
+            font-size: 16px;
+            color: white;
+            margin: 0;
+            height: auto;
+          }
+          .inner {
+            border: 1px solid white;
+            display: inline-block;
+            width: 26px;
+            height: 26px;
+          }
+        }
+      }
+      div.usericon {
+        display: inline-block;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+        border: 1px solid #ddd;
+        background-color: #aaa;
+        line-height: 20px;
+        i {
+          font-size: 20px;
+          color: white;
         }
       }
     }

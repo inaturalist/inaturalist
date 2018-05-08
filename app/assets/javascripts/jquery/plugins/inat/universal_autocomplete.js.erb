@@ -36,6 +36,7 @@ $.fn.universalAutocomplete = function( options ) {
       );
     }
     wrapperDiv.attr( "id", item.type + "-" + item.record.id );
+    wrapperDiv.addClass( "ac-result-" + item.type );
     var itemUrl;
     var obsUrl;
     var itemText;
@@ -47,7 +48,9 @@ $.fn.universalAutocomplete = function( options ) {
         if ( item.record.default_photo ) {
           acThumb = $( "<img />" ).attr( "src", item.record.default_photo.square_url );
         } else {
-          acThumb = $( "<i></i>" ).addClass( "icon-iconic-" + ( item.record.iconic_taxon_name || "unknown" ).toLowerCase() );
+          acThumb = $( "<div />" ).addClass( "no-photo" ).append(
+            $( "<i></i>" ).addClass( "icon-iconic-" + ( item.record.iconic_taxon_name || "unknown" ).toLowerCase() )
+          );
         }
         itemText = $( "<span></span>" ).addClass( "taxon" ).addClass( item.record.rank );
         var scinameWithRank = item.record.name;
@@ -107,7 +110,11 @@ $.fn.universalAutocomplete = function( options ) {
         if ( item.record.icon && !item.record.icon.match( /attachment_defaults/ ) ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon );
         } else {
-          acThumb = $( "<i/>" ).addClass( "fa fa-briefcase" );
+          acThumb = $( "<div />" ).addClass( "no-photo" ).append(
+            $( "<div />" ).addClass( "inner" ).append(
+              $( "<i/>" ).addClass( "fa fa-briefcase" )
+            )
+          );
         }
         itemText = item.record.title + " <span class='secondary-name'>" + I18n.t( "project" ) + "</span>";
         break;
@@ -117,7 +124,7 @@ $.fn.universalAutocomplete = function( options ) {
         if ( item.record.icon_url ) {
           acThumb = $( "<img />" ).attr( "src", item.record.icon_url.replace( /medium\./, "thumb." ) ).addClass( "usericon" );
         } else {
-          acThumb = $( "<i/>" ).addClass( "icon-person" );
+          acThumb = $( "<div />").addClass( "usericon" ).append( $( "<i/>" ).addClass( "icon-person" ) );
         }
         itemText = item.record.login;
         if ( item.record.name ) {

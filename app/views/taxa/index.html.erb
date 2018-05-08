@@ -1,21 +1,6 @@
 <% content_for(:title) do %>
-  <%= t(:taxa_all_species_html) %>
+  <%= t(:taxa_info) %>
 <% end -%>
-
-<% content_for(:extrajs) do %>
-  <!--[if lt IE 8]>
-  <script src="http://ie7-js.googlecode.com/svn/trunk/lib/IE8.js" type="text/javascript"></script>
-  <![endif]-->
-  <script type="text/javascript" charset="utf-8">
-    // Animation might be cool if I can get it working right...
-    // $(document).ready(function() {
-    //   $('#featured .taxonimage').animate({
-    //     top: "-" + (1024 - 390 - 40) + "px",
-    //     right: "-" + (1024 - 950) + "px"
-    //   }, 45000);
-    // });
-  </script>
-<% end %>
 
 <%- content_for(:extracss) do %>
 <%= stylesheet_link_tag 'taxa/_index' %>
@@ -182,7 +167,7 @@
   <div class="right">
     <%= render :partial => 'search_form' %>
   </div>
-  <h2><%= t(:species) %><span class="description"><% t(:and_other_taxa) %></span></h2>
+  <h2><%= t(:taxa_info) %><span class="description"><% t(:and_other_taxa) %></span></h2>
 </div>
 
 <div id="featured" class="column span-24">
