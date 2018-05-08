@@ -1371,6 +1371,7 @@ en:
   follow_us: Follow us on
   follow_us_on: Follow us on
   follow_user: "Follow %{user}"
+  followed_projects: Followed Projects
   follower: follower
   followers: Followers
   following: following
@@ -1677,6 +1678,7 @@ en:
   join_this_project: Join this project
   'joined!': Joined!
   joined_any_projects: joined any projects
+  joined_projects: Joined Projects
   joining: Joining...
   journal: Journal
   journal_archives_for: Journal archives for
@@ -1942,6 +1944,7 @@ en:
   manage: Manage
   manage_all_your_subscriptions: Manage all your subscriptions
   manage_names: Manage names
+  manage_your_projects: Manage Your Projects
   manage_your_project_invitations: Manage your project invitations
   manage_subscriptions: Manage Subscriptions
   managed: managed
@@ -2104,6 +2107,7 @@ en:
   needs_id_expandable_html: "<span class='full'>Needs </span>ID"
   needs_to_be_identified: Needs to be identified
   new: New
+  new_and_noteworthy: New & Noteworthy
   new_announcement: New announcement
   new_assessment: New assessment
   new_check_list: New check list
@@ -2878,7 +2882,10 @@ en:
   project_was_successfully_updated: Project was successfully updated.
   project_x_was_delete: "%{project} was deleted (please allow a few minutes it to be removed from the website)"
   projects: Projects
-  projects_description: "Projects are a way to pool your observations with other people on %{site_name}.  Whether you're interested in starting a citizen science project or just keeping tabs on the birds in a nearby park with your local birding club, Projects are the way to go."
+  projects_description: |
+    Projects let you pool your observations with other people on %{site_name}.
+    Whether you're starting a citizen science effort or keeping tabs on
+    the birds in your neighborhood, Projects are the way to go.
   projects_from_place: "Projects from %{place}"
   projects_in_x: "Projects in %{x}"
   projects_you_admin: Projects You Admin
@@ -4248,6 +4255,7 @@ en:
   your_google_account: your Google account
   your_google_account_info: Your Google Account Information
   your_profile_was_successfully_updated: Your profile was successfully updated!
+  your_projects: Your Projects
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"

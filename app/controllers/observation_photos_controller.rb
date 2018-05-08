@@ -135,4 +135,5 @@ class ObservationPhotosController < ApplicationController
     end
     true
   end
+  true
 end
