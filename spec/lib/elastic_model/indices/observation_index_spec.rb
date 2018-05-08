@@ -231,10 +231,11 @@ describe "Observation Index" do
 
     it "filters by list taxa" do
       list = List.make!
-      lt1 = ListedTaxon.make!(list: list, taxon: Taxon.make!)
-      lt2 = ListedTaxon.make!(list: list, taxon: Taxon.make!)
-      expect( Observation.params_to_elastic_query(list_id: list.id)).
-        to include( filters: [{ terms: { "taxon.ancestor_ids" => [ lt1.taxon_id, lt2.taxon_id ] } }])
+      lt1 = ListedTaxon.make!( list: list, taxon: Taxon.make! )
+      lt2 = ListedTaxon.make!( list: list, taxon: Taxon.make! )
+      filtered_ancestor_ids = Observation.params_to_elastic_query( list_id: list.id )[:filters][0][:terms]["taxon.ancestor_ids"]
+      expect( filtered_ancestor_ids ).to include lt1.taxon_id
+      expect( filtered_ancestor_ids ).to include lt2.taxon_id
     end
 
     it "doesn't apply a site filter unless the site wants one" do

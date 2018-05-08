@@ -82,13 +82,6 @@ GIT
       nokogiri (~> 1.6)
 
 GIT
-  remote: https://github.com/kueda/flickraw.git
-  revision: 35cc21b0f1b6b1af3d10b19d53ea46dd2e5316ea
-  branch: ssl-cert
-  specs:
-    flickraw (0.9.8)
-
-GIT
   remote: https://github.com/kueda/georuby.git
   revision: 00a95123977726492a4049eb1c36f98c372cd714
   specs:
@@ -270,7 +263,7 @@ GEM
     concurrent-ruby (1.0.5)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    crass (1.0.3)
+    crass (1.0.4)
     daemon-spawn (0.4.2)
     daemons (1.1.9)
     dalli (2.7.2)
@@ -322,6 +315,9 @@ GEM
       multipart-post (>= 1.2, < 3)
     fastercsv (1.5.5)
     fastimage (2.1.0)
+    flickraw (0.9.9)
+    flickraw-cached (20120701)
+      flickraw (>= 0.9)
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.7)
@@ -501,8 +497,8 @@ GEM
       activesupport (>= 4.2.0.beta, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails-observers (0.1.2)
       activemodel (~> 4.0)
     rails_autolink (1.1.6)
@@ -696,7 +692,7 @@ DEPENDENCIES
   exifr
   faker
   fastimage
-  flickraw (~> 0.9.8)!
+  flickraw-cached
   friendly_id (~> 5.1.0)
   gdata!
   geocoder
@@ -733,6 +729,7 @@ DEPENDENCIES
   rack-google-analytics!
   rack-mobile-detect
   rails (~> 4.2.7.1)
+  rails-html-sanitizer (~> 1.0.4)
   rails-observers
   rakismet
   rest-client

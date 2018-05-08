@@ -50,7 +50,7 @@ const UmbrellaLeaderboard = ( { project, setConfig, config } ) => {
         <table>
           <tbody>
             { _.map( sortedProjectStats.slice( 0, limit ), ps => {
-              const width = Math.floor( ( Number( ps[sortField] ) / maximumCount ) * 100 );
+              const width = Math.floor( ( Number( ps[sortField] ) / maximumCount ) * 90 );
               const color = projectColors[ps.project.id];
               return (
                 <tr className="leader-row" key={ `umbrella_${ps.project.id}_${sortField}` }>

@@ -98,6 +98,13 @@ describe TaxonName, 'creation' do
     tn2 = TaxonName.make!(name: "third", taxon: t)
     expect(tn2.position).to eq 3
   end
+
+  it "should not allow species names that match the taxon name that are non-scientific" do
+    t = Taxon.make!( rank: Taxon::SPECIES, name: "Foo bar" )
+    tn = TaxonName.make( taxon: t, lexicon: TaxonName::LEXICONS[:ENGLISH], name: t.name )
+    expect( tn ).not_to be_valid
+    expect( tn.errors[:name] ).not_to be_blank
+  end
 end
 
 describe TaxonName, "strip_author" do

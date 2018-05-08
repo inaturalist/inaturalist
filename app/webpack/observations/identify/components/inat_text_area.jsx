@@ -13,6 +13,7 @@ class INatTextArea extends React.Component {
   render( ) {
     return (
       <Input
+        text={ this.props.key }
         type="textarea"
         name={this.props.name}
         className={this.props.className}
@@ -26,7 +27,8 @@ INatTextArea.propTypes = {
   className: PropTypes.string,
   name: PropTypes.string,
   mentions: PropTypes.bool,
-  value: PropTypes.string
+  value: PropTypes.string,
+  key: PropTypes.string
 };
 
 export default INatTextArea;

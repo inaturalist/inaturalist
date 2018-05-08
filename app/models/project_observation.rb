@@ -9,7 +9,7 @@ class ProjectObservation < ActiveRecord::Base
   validate :observer_allows_addition?
   validate :project_allows_submitter?
   validate :observer_invited?
-  validate :project_allows_observations?
+  # validate :project_allows_observations?
   validates_rules_from :project, :rule_methods => [
     :captive?,
     :coordinates_shareable_by_project_curators?,
@@ -401,6 +401,16 @@ class ProjectObservation < ActiveRecord::Base
     else
       return true if time && obs_time <= time
     end
+    false
+  end
+
+  def in_project?(rule_project = nil)
+    return true if project.is_new_project?
+    false
+  end
+
+  def observed_by_user?(user = nil)
+    return true if project.is_new_project?
     false
   end
 

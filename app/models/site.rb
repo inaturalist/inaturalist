@@ -309,7 +309,7 @@ class Site < ActiveRecord::Base
   end
 
   def using_recaptcha?
-    google_recaptcha_key && google_recaptcha_secret
+    !google_recaptcha_key.blank? && !google_recaptcha_secret.blank?
   end
 
   def refresh_default_site

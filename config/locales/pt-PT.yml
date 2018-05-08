@@ -16,20 +16,6 @@
 # Author: Vitorvicentevalente
 ---
 pt-PT:
-  licensing_your_content: |-
-    Licenciar o seu conteúdo dá a outros o direito legal de o usar se se limitarem aos termos da licença. %{site_name} usa o seu conteúdo Creative Commons licenciado para partilhar com parceiros de dados como <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-    (GBIF).
-  you_think_observation_inacurate: Se consideras esta observação incorreta, por favor
-    acrescente uma identificação, e participa da avaliação de qualidade acima, ou
-    descreva o erro num comentário.
-  we_also_support: |-
-    Também temos conexão com <a href="http://flickr.com">Flickr</a>,
-    <a href="http://photos.google.com">Google Fotos</a>, e
-    <a href="http://facebook.com">Facebook</a>
-    para as suas imagens.
-  a_default_taxon_name_will_automatically_created: |-
-    Um nome por definição vai ser automaticamente criado a partir do nome científico atribuído para este táxon.
-    Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
   x_comments:
     one: 1 comentário
     other: '%{count} comentários'
@@ -123,6 +109,9 @@ pt-PT:
   a: um(a)
   a_: um(a)
   a_community_for_naturalist: Uma Comunidade para Naturalistas
+  a_default_taxon_name_will_automatically_created: |-
+    Um nome por definição vai ser automaticamente criado a partir do nome científico atribuído para este táxon.
+    Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
   a_few_points_to_make_things_clear: 'Algumas considerações para esclarecer as coisas:'
   a_flag_for_x: Um alerta para %{x}
   a_greasemonkey_script: um script do Greasemonkey
@@ -1939,6 +1928,9 @@ pt-PT:
   license_descriptions_and_images: Descrição das licenças e imagens
   licensed_site_photos: Fotografias com a licença %{site_name}
   licensing: Licenciamento
+  licensing_your_content: |-
+    Licenciar o seu conteúdo dá a outros o direito legal de o usar se se limitarem aos termos da licença. %{site_name} usa o seu conteúdo Creative Commons licenciado para partilhar com parceiros de dados como <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+    (GBIF).
   licensing_your_content_gives_others_legal: Ao licenciar o seu conteúdo está a permitir
     que outros tenham o direito legal de o utilizar, se cumprirem os termos da licença.
     %{site_name} usa o conteúdo da sua licença Creative Commons para o partilhar com
@@ -2532,7 +2524,15 @@ pt-PT:
     tooltips:
       add: Adicionar observação(ões)
       remove_observation: Remover observação
+  we_also_support: |-
+    Também temos conexão com <a href="http://flickr.com">Flickr</a>,
+    <a href="http://photos.google.com">Google Fotos</a>, e
+    <a href="http://facebook.com">Facebook</a>
+    para as suas imagens.
   yesterday: Ontem
+  you_think_observation_inacurate: Se consideras esta observação incorreta, por favor
+    acrescente uma identificação, e participa da avaliação de qualidade acima, ou
+    descreva o erro num comentário.
   your_content: O seu Conteúdo
   views:
     observations:

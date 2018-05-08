@@ -222,11 +222,10 @@ describe Place, "merging" do
     keeper = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")
     reject = make_place_with_geom(wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))")
     o = Observation.make!(latitude: reject.latitude, longitude: reject.longitude)
-    op = o.observations_places.where(place_id: reject.id).first
-    expect( op.place_id ).to eq reject.id
+    op = o.observations_places.where(place_id: keeper)
+    expect( o.observations_places.where(place_id: keeper).count ).to eq 0
     keeper.merge(reject)
-    op.reload
-    expect( op.place_id ).to eq keeper.id
+    expect( o.observations_places.where(place_id: keeper).count ).to eq 1
   end
 
   it "should not create duplicate observations_places" do

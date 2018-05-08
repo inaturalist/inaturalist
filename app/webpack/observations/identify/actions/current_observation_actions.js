@@ -129,12 +129,18 @@ function fetchCurrentObservation( observation = null ) {
         }
         if ( placeIDs && placeIDs.length > 0 ) {
           placeIDs = _.take( o.place_ids, 100 );
+          if ( placeIDs.length === 0 ) {
+            return o;
+          }
           return iNaturalistJS.places.fetch(
             placeIDs, { per_page: 100, no_geom: true }
           ).then( response => {
-            dispatch( updateCurrentObservation( { places: response.results } ) );
-            return Object.assign( o, { places: response.results } );
-          } );
+            if ( getState( ).currentObservation.observation.id === o.id ) {
+              dispatch( updateCurrentObservation( { places: response.results } ) );
+              return Object.assign( o, { places: response.results } );
+            }
+            return o;
+          } ).catch( ( ) => o );
         }
         return o;
       } )

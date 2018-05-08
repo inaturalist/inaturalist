@@ -8,8 +8,9 @@ import INatTextArea from "./inat_text_area";
 // https://github.com/erikras/redux-form if this approach ends up getting
 // complicated.
 
-const CommentForm = ( { observation, onSubmitComment, className } ) => (
+const CommentForm = ( { observation, onSubmitComment, className, key } ) => (
   <form
+    key={ key }
     className={`CommentForm ${className}`}
     onSubmit={function ( e ) {
       e.preventDefault();
@@ -22,7 +23,7 @@ const CommentForm = ( { observation, onSubmitComment, className } ) => (
     }}
   >
     <h3>{ I18n.t( "add_a_comment" ) }</h3>
-    <INatTextArea name="body" className="form-control" mentions />
+    <INatTextArea name="body" className="form-control" key={ `${key}-inat-text-area` } mentions />
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );
@@ -30,7 +31,8 @@ const CommentForm = ( { observation, onSubmitComment, className } ) => (
 CommentForm.propTypes = {
   observation: PropTypes.object,
   onSubmitComment: PropTypes.func.isRequired,
-  className: PropTypes.string
+  className: PropTypes.string,
+  key: PropTypes.string
 };
 
 export default CommentForm;

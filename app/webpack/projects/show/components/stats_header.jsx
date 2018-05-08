@@ -3,7 +3,7 @@ import { Grid, Row, Col } from "react-bootstrap";
 import { numberWithCommas } from "../../../shared/util";
 
 const StatsHeader = ( { config, project, setSelectedTab } ) => {
-  const tab = config.selectedTab;
+  const tab = config.selectedTab || "overview";
   const obsCount = project.recent_observations_loaded ?
     numberWithCommas( project.recent_observations.total_results ) : "--";
   const speciesCount = project.species_loaded ?

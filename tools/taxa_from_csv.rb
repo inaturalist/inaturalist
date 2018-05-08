@@ -60,6 +60,9 @@ def save_common_names(taxon, common_names)
       puts "\tFailed to create #{tn}: already added"
     end
   end
+rescue Faraday::ConnectionFailed
+  sleep 5
+  retry
 end
 
 def add_to_place( taxon, place )

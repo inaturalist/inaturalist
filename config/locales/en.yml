@@ -1873,6 +1873,7 @@ en:
     es-ES: Spanish (Spain)
     es-MX: Spanish (Mexico)
     es: Spanish
+    et: Estonian
     eu: Basque
     fi: Finnish
     fr: French
@@ -3215,6 +3216,7 @@ en:
   showing_one_to: Showing 1 - 
   showing_taxa_from_everywhere: "Showing taxa from everywhere"
   showing_taxa_from_place: "Showing taxa from %{place}"
+  showing_x_of_y_listings: "Showing %{x} of %{y} listings"
   shown_publicly_as: Shown publicly as
   sign_in: Sign In
   sign_in_with_provider: "Sign in with %{provider}"
@@ -3428,6 +3430,7 @@ en:
   take_me_back: Take me back
   taxa: Taxa
   taxa_all_species_html: "All Species"
+  taxa_info: Taxa Info
   taxa_needing_curation: Taxa Needing Curation
   taxa_observed: taxa observed
   taxa_to_include: Taxa to include
@@ -6071,6 +6074,7 @@ en:
         source_identifier: Source identifier
       user:
         email: Email
+        login: Username
         name: Name
         locale: Locale
         time_zone: Time zone
@@ -6153,6 +6157,17 @@ en:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: should not contain commas or slashes
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
+                cannot match the scientific name of a species for this lexicon
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: |
+                must begin with a letter, contain no spaces, and use only
+                letters, numbers, dashes, and underscores
+            email:
+              must_look_like_an_email_address: must look like an email address
   i18n:
     inflections:
       :@vow_or_con:

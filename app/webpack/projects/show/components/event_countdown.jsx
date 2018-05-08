@@ -14,7 +14,7 @@ class EventCountdown extends Component {
     }
     if ( !durationToEvent ) { return ( <span /> ); }
 
-    const days = durationToEvent.days( );
+    const days = Math.floor( durationToEvent.asDays( ) );
     const hours = durationToEvent.hours( );
     const minutes = durationToEvent.minutes( );
     const seconds = durationToEvent.seconds( );
