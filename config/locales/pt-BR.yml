@@ -1867,12 +1867,16 @@ pt-BR:
     cebuano: Cebuano
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
+    czech: Checo
+    danish: Dinamarquês
     davawenyo: Davao Chavacano
     dutch: Holandês
     english: Inglês
+    finnish: Finlandês
     french: Francês
     gela: Gela
     german: Alemão
+    greek: Grego
     hawaiian: Havaiano
     hebrew: Hebraico
     hiligaynon: Ilongo
@@ -1881,6 +1885,7 @@ pt-BR:
     italian: Italiano
     japanese: Japonês
     korean: Coreano
+    luxembourgish: Luxemburguês
     maltese: Maltês
     maori: Maori
     misima_paneati: Misima-paneati
@@ -2300,6 +2305,7 @@ pt-BR:
   new_updates_in_the_last_24_hours_from: Novas atualizações nas últimas 24 horas de
     %{site_name}
   new_user_rules: Novas regras de usuários
+  new_users: Novos usuários
   new_users_week: Novos Usuários / Semana
   news: Notícias
   next: Próximo
@@ -3241,7 +3247,7 @@ pt-BR:
   required_field: campo obrigatório
   required_columns_in_order: É obrigatório classificar as colunas em ordem
   research: pesquisa
-  research_grade: nível de pesquisa
+  research_grade: Nível de Pesquisa
   research_grade_expandable_html: P<span class='full'>esquisa </span>N<span class='full'>ível</span>
   research_grade_short_html: P<span class='full'>esquisa </span>N<span class='full'>ível</span>
   research_grade_observations_have: '"Categoria Pesquisa" observação devem incluir
@@ -3964,7 +3970,7 @@ pt-BR:
   top_identifiers_of_taxon: Top Identificadores por %{taxon}
   top_observer: Top Observador
   top_species: Top Espécies
-  total: total
+  total: Total
   totals: Totais
   total_members: Total de membros
   total_observations: Total de observações
@@ -5369,6 +5375,8 @@ pt-BR:
         invite_only_description: A participação neste projeto como membro só pode
           ser feita através de convite. Se você deseja entrar no grupo. por favor
           contate um dos administradores abaixo e solicite um convite.
+      new:
+        contain_entire_image_without_cropping: Contém imagem inteira sem cortar
       project_location_privacy_notice_html: |-
         <p>
           Por favor este ciente de que os administradores de projetos serão capazes de acessar todos seus dados de localização, sejam elas ocultas ou privadas, a não ser que você revogue esta permissão além disso, eles serão capazes de adicionar qualquer uma de suas observações aos seus projetos a não ser que você <a href="/users/edit">altere suas configurações</a>. Você também pode permitir ou revogar o acesso de administradores de projetos as suas observações configurando uma à uma.
@@ -5931,6 +5939,10 @@ pt-BR:
             observation_id:
               must_be_observed_after: deve ser observado depois %{time}
               must_be_observed_before: deve ser observado antes %{time}
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: deve parecer um endereço de e-mail
     attributes:
       assessment:
         description: Descrição
@@ -6010,6 +6022,7 @@ pt-BR:
         source_identifier: Identificador de fonte
       user:
         email: E-mail
+        login: Nome de usuário
         name: Nome
         locale: Localização
         time_zone: Fuso horário

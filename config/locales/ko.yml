@@ -1363,18 +1363,23 @@ ko:
     bengali: বাঙালি
     cebuano: Cebuano
     creole_french: creole (French)
+    czech: 체코어
+    danish: 덴마크어
     davawenyo: Davawenyo
     dutch: Nederlands
     english: 영어
+    finnish: 핀란드어
     french: français
     gela: Gela
     german: Deutsch
+    greek: 그리스어
     hawaiian: Hawaiian
     hebrew: עברית
     icelandic: Íoslainnis
     italian: italiano
     japanese: 日本語
     korean: 한국어
+    luxembourgish: 룩셈부르크어
     maltese: maltese
     norwegian: norsk
     portuguese: 포르투갈어
@@ -1464,6 +1469,7 @@ ko:
     es-ES: 스페인어 (스페인)
     es-MX: 스페인어 (멕시코)
     es: 스페인어
+    et: 에스토니아어
     eu: 바스크어
     fi: 핀란드어
     fr: 프랑스어
@@ -2071,6 +2077,7 @@ ko:
   show_scientific_name_first: 학명을 우선 표시
   show_total_counts: 총 개수 보기
   show_uncountable_species: 셀 수 없는 종을 표시
+  showing_x_of_y_listings: '%{y}개 목록 중 %{x}개 표시'
   sign_in: 로그인
   sign_in_with_provider: '%{provider}(으)로 로그인'
   sign_out: 로그아웃
@@ -2119,6 +2126,7 @@ ko:
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
   taxa_all_species_html: 모든 종
+  taxa_info: 생물 분류 정보
   taxon_colors: 분류 색
   taxon_extras: 분류군 엑스트라들
   taxon_ranks: 분류 순위
@@ -2139,6 +2147,7 @@ ko:
   this_year: 올해
   thu: 목요일
   title: 제목
+  total: 합계
   total_observations: 총 관찰
   tue: 화요일
   twitter: 트위터
@@ -2358,6 +2367,7 @@ ko:
       confirm_leave:
         keep_observations_label: 이 프로젝트에 내 관찰을 두기
       new:
+        contain_entire_image_without_cropping: 잘라내지 않고 전체 그림 포함
         custom_banner_icon_and_project_description: 사용자 지정 배너, 아이콘, 프로젝트 설명
         data_visualizations: 데이터 시각화
         delete_project: 프로젝트 삭제
@@ -2547,6 +2557,11 @@ ko:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
+                사용해야 합니다
     models:
       TaxonLink: 분류 링크
     attributes:
@@ -2565,6 +2580,7 @@ ko:
         last_aggregated_at: 마지막으로 묶인 관찰
       user:
         email: 이메일
+        login: 사용자 이름
         name: 이름
         locale: 로캘
         time_zone: 시간대

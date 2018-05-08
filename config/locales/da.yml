@@ -2555,7 +2555,7 @@ da:
   observation_photo_uploader: Observationsfoto uploader
   observations_by_category: Observationer efter kategori
   observations_by_app: Observationer via App
-  observations_by_rank: Observationer efter rangering
+  observations_by_rank: Observationer efter rang
   observations_by_user_on_date: Observationer af %{user} den %{date}
   observations_by_you: Observationer af dig
   observations_by_you_on_date: Observationer af dig den %{date}
@@ -5562,9 +5562,9 @@ da:
           være medlem, så kontakt en af kuratorerne nedenfor og anmod om en
           invitation.
       new:
-        a_project_allows_you_to_gather: Et samlingsprojekt giver dig mulighed for
+        a_project_allows_you_to_gather: Et samlingsprojekt giver dig mulighed for,
           at samle og vise observationer ved brug af søgeværktøjerne i iNaturalist.
-          Det betyder at der ikke længere er behov for manuelt, at tilføje observationer
+          Det betyder, at der ikke længere er behov for manuelt, at tilføje observationer
           fordi alle, der opfylder projektets parametre automatisk, vil blive inkluderet.
         an_umbrella_project_can_be_used_to: Et paraplyprojekt kan bruges til at sammenligne
           statistik mellem to eller flere samlinger eller traditionelle projekter.
@@ -5592,7 +5592,7 @@ da:
           tilføjelse af observationer eller på aggregatoren til at indeksere observationer
         note_these_users_will_be_able_to_edit: 'OBS: Disse brugere er i stand til
           at redigere ALLE projektdetaljer inklusiv administratorer.'
-        note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtig tidspunkt,
+        note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtige tidspunkt,
           hvis du i stedet vil bruge hele dage.)'
         or_drag_and_drop: (eller træk og slip)
         please_specify_the_requirements: Specificér venligst observertionskravene
@@ -5728,20 +5728,20 @@ da:
         new_users_desc: Tilmeldte sig på denne dag
         obs_1_day: Obs (1 dag)
         obs_1_day_desc: Observationer oprettet på én enkelt dag
-        obs_cid_d_desc: Oprettet i de foregående 7 dage og har et fælleskabs ID
+        obs_cid_d_desc: Oprettet indenfor de seneste 7 dage og har et fælleskabs ID
         obs_cid_d_to_genus: Obs FID'et til slægt
-        obs_cid_d_to_genus_desc: Oprettet i de foregående 7 dage og har et fælleskabs
+        obs_cid_d_to_genus_desc: Oprettet indenfor de seneste 7 dage og har et fælleskabs
           ID på eller under slægtsniveau
         obs_desc: Oprettet i de foregående 7 dage
-        obs_id_d_desc: Oprettet i de foregående 7 dage og har et ID (kan være observatørens)
+        obs_id_d_desc: Oprettet indenfor de seneste 7 dage og har et ID (kan være
+          observatørens)
         other_desc_html: Oprettet via andre applikationer<a href="%{url}">Skabt af
           udviklere</a>
-        recent_desc: Tilmeldte sig i de forgangne 7 dage
+        recent_desc: Tilmeldte sig i de seneste 7 dage
         recent_w_0_obs: Nylige m/0 obs
-        recent_w_0_obs_desc: Tilmeldte sig i de forgangne 7 dage Og tilføjede 0 obs
+        recent_w_0_obs_desc: Tilmeldte sig i de seneste 7 dage Og tilføjede 0 obs
         recent_w_7_obs: Nylige m/> 7 obs
-        recent_w_7_obs_desc: Tilmeldte sig i de forgangne 7 dage og tilføjede >= 7
-          obs
+        recent_w_7_obs_desc: Tilmeldte sig i de seneste 7 dage og tilføjede >= 7 obs
         time_to_id_desc: Tid til ID (timer, 1 løbende uge)
         TTCID: TTCID
         TTCID_desc: Tid til modtagelse af identifikation fra andre, som matcher fællesskabs
@@ -6008,7 +6008,7 @@ da:
         explore_and_share: Udforsk og del dine observationer fra naturen.
         observations_to_date: Observationer til dato
         species_observed: Arter observeret
-        people_signed_up: Personer tilmeldt
+        people_signed_up: Personer tilmeldte sig
         how_it_works: Hvordan det fungerer
         record_your_observations: Registrér dine observationer
         share_with_fellow_naturalists: Del med ligesindede naturelskere

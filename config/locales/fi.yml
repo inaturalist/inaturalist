@@ -471,10 +471,10 @@ fi:
     poistaa tämän käyttäjän ja kaikki hänen aineistonsa?
   are_you_sure?: Oletko varma?
   are_you_sure_no_undo: Oletko varma? Tätä ei voi perua.
-  are_you_sure_delete_asset: Oletko varma, että haluat poistaa tämän omaisuuden?
+  are_you_sure_delete_asset: Haluatko varmasti poistaa tämän omaisuuden?
   are_you_sure_delete_observation_from_project: Oletko varma, että haluat poistaa
     tämän havainnon kohteesta %{project}?
-  are_you_sure_delete_post: Oletko varma, että haluat poistaa tämän julkaisun?
+  are_you_sure_delete_post: Haluatko varmasti poistaa tämän julkaisun?
   are_you_sure_delete_taxon_move_associates: Oletko varma, että haluat poistaa taksonin
     %{taxonname} (%{taxonid}), ja siirtää kaikki sen kumppanit?
   are_you_sure_delete_this: Haluatko varmasti poistaa tämän? Sinun pitäisi todennäköisesti
@@ -525,8 +525,8 @@ fi:
   are_you_sure_you_want_to_remove_spammer: |-
     Oletko varma, että pidät tätä käyttäjää kunniallisena?
     Kaikki roskapostiliput hänen sisällössään ratkaistaan.
-  are_you_sure_you_want_to_remove_these_x_taxa?: 'Oletko varma että haluat poistaa
-    nämä taksonit?: %{x}'
+  are_you_sure_you_want_to_remove_these_x_taxa?: 'Haluatko varmasti poistaa nämä taksonit?:
+    %{x}'
   are_you_sure_you_want_to_remove_this_invitation: Haluatko varmasti poistaa tämän
     kutsun?
   are_you_sure_you_want_to_remove_this_taxon: Haluatko varmasti poistaa tämän taksonin?
@@ -536,7 +536,7 @@ fi:
   associated_observations: Liittyvät havainnot
   associated_taxa: Liittyvät taksonit
   attention: Huomautus
-  you_sure_delete_list: Oletko varma, että haluat poistaa tämän listan?
+  you_sure_delete_list: Haluatko varmasti poistaa tämän listan?
   you_sure_delete_taxon_from_list?: Oletko varma, että haluat poistaa taksonin %{taxon}
     listasta?
   asc: nouseva
@@ -1768,7 +1768,7 @@ fi:
   make_new_place: Tee uusi paikka
   make_taxonomic_flickr_tags_for_taxon_raquo: Tee taksonomisia Flickr tunnisteita
     tähän taksoniin &raquo;
-  make_this_your_default_license: Tee tästä oletuslisenssisi
+  make_this_your_default_license: Tee tästä oletus lisenssisi
   mammals: nisäkkäät
   manage: Hallitse
   manage_all_your_subscriptions: Hallitse kaikkia tilauksiasi
@@ -3062,6 +3062,7 @@ fi:
     %{noun}'
   user_added_an_x_to_noun_html: '%{user} lisäsi %{x} kohteeseen %{noun}'
   user_added_x_observations_html: '%{user} lisäsi %{x} havaintoa'
+  user_autocomplete_placeholder: kueda, simon123, yms.
   user_blocked: Käyttäjä on estetty
   user_commented: '%{user} kommentoi'
   user_commented_on: '%{user} kommentoi sinun %{title}:n %{time}'
@@ -3106,6 +3107,7 @@ fi:
   view_all_n: Näytä kaikki %{n}
   view_all_observations: Näytä kaikki havainnot
   view_all_your_projects: Näytä kaikki projektisi
+  view_assessment: Näytä arviointi
   view_change: Näytä muutos
   view_check_list_page: Katso lajiluettelosivu
   view_contributions: Näytä muokkaukset
@@ -3702,6 +3704,9 @@ fi:
       x_seconds:
         one: 1 sekunti
         other: '%{count} sekuntia'
+    countdown_x_seconds:
+      one: sekunti
+      other: sekuntia
     prompts:
       day: Päivä
       hour: Tunti
@@ -3826,6 +3831,10 @@ fi:
               must_be_curator: täytyy olla tämän projektin kuraattori
             observation_id:
               must_be_observed_before: pitää olla havaittu ennen %{time}
+    models:
+      AssessmentSection: Arvioinnin osa
+      Atlas: Kartasto
+      TaxonLink: Taksonilinkki
     attributes:
       assessment:
         description: Kuvaus

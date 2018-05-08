@@ -31,104 +31,137 @@
 ru:
   x_comments:
     one: 1 комментарий
-    other: '%{count} комментарии'
+    few: '%{count} комментария'
+    other: '%{count} комментариев'
   x_followers:
     one: 1 последователь
-    other: '%{count} последователи'
+    few: '%{count} последователя'
+    other: '%{count} последователей'
   x_identifications:
     one: 1 идентификация
-    other: '%{count} идентификации'
+    few: '%{count} идентификации'
+    other: '%{count} идентификаций'
   x_identifications_html:
-    one: <span class="count">1</span> идентификация
-    other: <span class="count">%{count}</span> идентификации
+    one: <span class='count'>1</span> идентификация
+    few: <span class='count'>%{count}</span> идентификации
+    other: <span class='count'>%{count}</span> идентификаций
   x_identifications_:
-    one: 1 Идентификация
-    other: '%{count} Идентификации'
+    one: 1 идентификация
+    few: '%{count} идентификации'
+    other: '%{count} идентификаций'
   x_ids:
-    one: 1 идентификатор
-    other: '%{count} идентификаторы'
+    one: 1 идентификация
+    few: '%{count} идентификации'
+    other: '%{count} идентификаций'
   x_lists:
     one: 1 список
-    other: '%{count} списки'
+    few: '%{count} списка'
+    other: '%{count} списков'
   x_journal_posts:
     one: 1 сообщение журнала
+    few: '%{count} сообщения журнала'
     other: '%{count} сообщений журнала'
   x_journal_posts_html:
-    one: <span class="count">1</span> сообщение журнала
-    other: <span class="count">%{count}</span> сообщений журнала
+    one: <span class='count'>1</span> сообщение журнала
+    few: <span class='count'>%{count}</span> сообщения журнала
+    other: <span class='count'>%{count}</span> сообщений журнала
   x_matching_taxa:
     one: 1 соответствующий таксон
+    few: '%{count} соответствующих таксона'
     other: '%{count} соответствующих таксонов'
   x_matching_taxa_html:
-    one: <span class="count">1</span> соответствующий таксон
-    other: <span class="count">%{count}</span> соответствующих таксонов
+    one: <span class='count'>1</span> соответствующий таксон
+    few: <span class='count'>%{count}</span> соответствующих таксона
+    other: <span class='count'>%{count}</span> соответствующих таксонов
   x_misidentifications_of_this_species:
-    one: 1 ошибочные идентификации этого вида
-    other: '%{count} ошибочные идентификации этого вида'
+    one: 1 ошибочная идентификация этого вида
+    few: '%{count} ошибочные идентификации этого вида'
+    other: '%{count} ошибочных идентификаций этого вида'
   x_observations:
     one: 1 наблюдение
-    other: '%{count} наблюдения'
+    few: '%{count} наблюдения'
+    other: '%{count} наблюдений'
   x_observations_:
     one: 1 Наблюдение
-    other: '%{count} Наблюдения'
+    few: '%{count} Наблюдения'
+    other: '%{count} Наблюдений'
   x_observations_html:
     one: <span class='count'>1</span> наблюдение
-    other: <span class='count'>%{count}</span> наблюдения
+    few: <span class='count'>%{count}</span> наблюдения
+    other: <span class='count'>%{count}</span> наблюдений
   x_observations_link_html:
     one: <a href='%{url}'>1 наблюдение</a>
-    other: <a href='%{url}'>%{count} наблюдения</a>
+    few: <a href='%{url}'>%{count} наблюдения</a>
+    other: <a href='%{url}'>%{count} наблюдений</a>
   x_observations_reviewed_html:
     one: <span class='count'>1</span> просмотренное наблюдение
+    few: <span class='count'>%{count}</span> просмотренных наблюдения
     other: <span class='count'>%{count}</span> просмотренных наблюдений
   x_others:
     one: 1 другой
-    other: '%{count} другие'
+    other: '%{count} других'
   x_people:
     one: 1 человек
-    other: '%{count} человек(а)'
+    few: '%{count} человека'
+    other: '%{count} человек'
   x_people_found_this_helpful:
     one: Один человек нашел это полезным
+    few: '%{count} человека нашли это полезным'
     other: '%{count} людей нашли это полезным'
   x_faves:
     one: 1 фаворит
+    few: '%{count} фаворита'
     other: '%{count} фаворитов'
   x_flags_resolved_html:
     one: <span class='count'>1</span> флаг разрешён
+    few: <span class='count'>%{count}</span> флага разрешено
     other: <span class='count'>%{count}</span> флагов разрешено
   x_people_like_this:
     one: 1 человеку нравится это
+    few: '%{count} человекам нравится это'
     other: '%{count} людям нравится это'
   x_people_agree_html:
     one: <span class='count'>1</span> человек согласен
+    few: <span class='count'>%{count}</span> человека согласны
     other: <span class='count'>%{count}</span> человек согласны
   x_species:
     one: 1 вид
-    other: '%{count} виды'
+    few: '%{count} вида'
+    other: '%{count} видов'
   x_species_html:
     one: <span class='count'>1</span> вид
-    other: <span class='count'>%{count}</span> виды
+    few: <span class='count'>%{count}</span> вида
+    other: <span class='count'>%{count}</span> видов
   x_species_link_html:
     one: <a href='%{url}'>1 вид</a>
-    other: <a href='%{url}'>%{count} виды</a>
+    few: <a href='%{url}'>%{count} вида
+    other: <a href='%{url}'>%{count} видов</a>
   x_suggestions_filtered_by_colon:
-    one: '1 Предложения, отфильтрованные по:'
-    other: '%{count} Предложения, отфильтрованные по:'
+    one: '1 Предложение, отфильтрованное по:'
+    few: '%{count} Предложения, отфильтрованных по:'
+    other: '%{count} Предложений, отфильтрованных по:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> наблюдаемый таксон
+    few: <span class='count'>%{count}</span> наблюдаемых таксона
     other: <span class='count'>%{count}</span> наблюдаемых таксонов
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> наблюдение исследовательского уровня</span>
-    other: <span class='count'>%{count}</span> наблюдений исследовательского уровня</span>
+    one: <span class='count'>1</span> наблюдение исследовательского уровня
+    few: <span class='count'>%{count}</span> наблюдения исследовательского уровня
+    other: <span class='count'>%{count}</span> наблюдений исследовательского уровня
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> наблюдение исследовательского уровня с идентификацией
-      до вида или ниже</span>
+      до вида или ниже
+    few: <span class='count'>%{count}</span> наблюдения исследовательского уровня
+      с идентификацией до вида или ниже
     other: <span class='count'>%{count}</span> наблюдений исследовательского уровня
-      с идентификацией до вида или ниже</span>
+      с идентификацией до вида или ниже
   x_taxa_curated_html:
     one: <span class='count'>1</span> курируемый таксон
+    few: <span class='count'>%{count}</span> курируемых таксона
     other: <span class='count'>%{count}</span> курируемых таксонов
   x_taxa_matching_current_filters:
-    one: 1 таксон, соответствующие текущим фильтрам
+    one: 1 таксон, соответствующий текущим фильтрам
+    few: '%{count} таксона, соответствующих текущим фильтрам'
     other: '%{count} таксонов, соответствующих текущим фильтрам'
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> изменение таксона добавлено
@@ -341,24 +374,51 @@ ru:
     other_animals: Другие Животные
     plants: Растения
     protozoans: Простейшие
-    ray_finned_fishes: Лучеперые Рыбы
+    ray_finned_fishes: Лучепёрые Рыбы
     reptiles: Рептилии
     life: Жизнь
     x_plantae:
       one: 1 растение
-      other: '%{count} растения'
+      few: '%{count} растения'
+      other: '%{count} растений'
     x_animalia:
       one: 1 животное
-      other: '%{count} животные'
+      other: '%{count} животных'
     x_mollusca:
       one: 1 моллюск
-      other: '%{count} моллюски'
+      few: '%{count} моллюска'
+      other: '%{count} моллюсков'
+    x_amphibia:
+      one: '%{count} амфибия'
+      few: '%{count} амфибии'
+      other: '%{count} амфибий'
+    x_mammalia:
+      one: 1 млекопитающее
+      other: '%{count} млекопитающих'
+    x_actinopterygii:
+      one: '%{count} лучепёрая рыба'
+      few: '%{count} лучепёрые рыбы'
+      other: '%{count} лучепёрых рыб'
     x_aves:
       one: 1 птица
-      other: '%{count} птиц(ы)'
+      few: '%{count} птицы'
+      other: '%{count} птиц'
+    x_insecta:
+      one: '%{count} насекомое'
+      other: '%{count} насекомых'
+    x_arachnida:
+      one: 1 паукообразное
+      other: '%{count} паукообразных'
+    x_fungi:
+      one: '%{count} гриб'
+      few: '%{count} гриба'
+      other: '%{count} грибов'
+    x_protozoa:
+      one: 1 простейшее
+      other: '%{count} простейших'
     x_other_animals:
       one: 1 другое животное
-      other: '%{count} другие животные'
+      other: '%{count} других животных'
   all_taxa_in_this_guide: Все таксоны этого руководства
   all_taxonomic_groups: '&laquo; Все Таксономические Группы'
   all_updates: Все обновления
@@ -386,8 +446,9 @@ ru:
     остановитесь на чем-то подобном
   and_other_taxa: '&amp; Другие Таксоны'
   and_x_more_people!:
-    one: и 1 народ, больше!
-    other: и %{count} народы, больше!
+    one: и ещё один человек!
+    few: и на %{count} человека больше!
+    other: и на %{count} человек больше!
   android: Андроид
   animals: Животные
   animated_observations_map: Анимированная карта наблюдений
@@ -806,7 +867,7 @@ ru:
   create_new_taxon: Создать новый таксон
   create_observations: Создать наблюдения
   create_observations_by_uploading_photos_to: |-
-    Создать наблюдения выгружая фотографии с привязкой к %{place}. Когда вы выгрузите, %{place} попытается извлечь GPS координаты и дату/время из фото.
+    Создать наблюдения, загружая фотографии с привязкой к %{place}. После загрузки %{place} попытается извлечь GPS координаты и дату/время из фото.
     Для начала
   created: Создано
   created_by: Создатель
@@ -1038,6 +1099,10 @@ ru:
     для
   editing_observation_field: Редактирование поля наблюдения
   editing_observation_id: Редактирование Наблюдения %{obs_id}
+  editing_observations:
+    one: 'Редактирование <span class=''count''>1</span> наблюдения:'
+    few: 'Редактирование <span class=''count''>%{count}</span> наблюдений:'
+    other: 'Редактирование <span class=''count''>%{count}</span> наблюдений:'
   editing_project: Редактирование %{project}
   editing_project_asset: Редактирование актива проекта для
   editing_subscription_to_x_html: Редактировать подписку на %{x}
@@ -1186,6 +1251,10 @@ ru:
   from_list: Из списка
   from_photos: Из фотографий
   from_soundcloud: Из Soundcloud
+  fungi:
+    one: 1 гриб
+    few: '%{count} гриба'
+    other: '%{count} грибов'
   generally_these_come_from_iucn_red_list: Как правило, они поступают из Красного
     списка МСОП, но если они приходят из других источников, они будут придерживаться
     категорий МСОП.
@@ -1909,6 +1978,7 @@ ru:
   other_animals: другие животные
   other_animals_plural:
     one: другое животное
+    few: других животных
     other: другие животные
   other_annimals: Другие Животные
   other_species_commonly_misidentified_as_this_species: Другие виды, которые обычно
@@ -2036,6 +2106,10 @@ ru:
   profile: Профиль
   project: Проект
   project_added_your_observations: Проект добавлен к вашим наблюдениям
+  project_admins:
+    one: 1 администратор проекта
+    few: '%{count} администратора проектов'
+    other: '%{count} администраторов проектов'
   project_assets: Активы проекта
   project_created_on: создали этот проект %{date}
   project_curator_tools: Инструментарий куратора проекта
@@ -2131,6 +2205,10 @@ ru:
   remove_from_list: Удалить из списка
   remove_from_project: Удалить из проекта
   remove_manager: Удалить менеджера
+  remove_observations:
+    one: Удалить 1 наблюдение?
+    few: Удалить %{count} наблюдения?
+    other: Удалить %{count} наблюдений?
   remove_project_user: Удалить участника проекта
   remove_selected: Удалить выбранное
   remove_tags: Удалить теги
@@ -2161,6 +2239,9 @@ ru:
   save_photos: Сохранить фото
   save_place: Сохранить место
   save_trip: Сохранить путешествие
+  saving_num_of_count_observations:
+    one: Сохранение наблюдения...
+    other: Сохранение %{num} из %{count} наблюдений...
   schemes_including: Схемы, включающие
   scientific_names: Научные наименования
   search: Поиск
@@ -2296,6 +2377,9 @@ ru:
   stop_following_user: Отменить отслеживание %{user}
   submission_model_description: Кто может добавлять наблюдения к вашему проекту?
   submit: Отправить
+  submit_observations:
+    one: Подтверждение 1 наблюдения...
+    other: Подтверждение %{num} из %{count} наблюдений...
   submitted: Загружено
   subscribe_to_a_taxon: Подписаться на Таксон
   subscribe_to_a_place: Подписаться на Место
@@ -2421,6 +2505,10 @@ ru:
   the_world_is_full_of_interesting_places_short: Мир полон интересных мест, каждое
     из которых наполнено странными и прекрасными жизненными формами. Некоторые из
     них находятся на другой стороне земли, а другие просто на улице!
+  there_are_x_synonyms_html:
+    one: Существует <span class='count'>1</span> синоним</span>
+    few: Существуют <span class='count'>%{count}</span> синонима
+    other: Существуют <span class='count'>%{count}</span> синонимов</span>
   there_isnt_wiki_article: Не существует статьи в Википедии или идёт перенаправление
     по названию '<i>%{taxon}</i>'. Возможно, вы хотели бы
   there_was_a_problem_saving_your_identification: 'Возникла проблема с сохранением
@@ -2453,6 +2541,9 @@ ru:
   this_observation: Данное наблюдение
   this_observation_has_been_incorporated_into_the_following_external_websites: Это
     наблюдение было включено в следующие внешние веб-сайты
+  this_observation_is_featured_on_x_sites:
+    one: Это наблюдение представлено на 1 сайте
+    other: Это наблюдение представлено на %{count} сайтах
   this_observation_is_research_grade: Это наблюдение достигло исследовательского уровня!
   this_place_has_no_check_list: Для этого места нет контрольного списка.
   this_species_has_no_colors: У этого вида нет цветов! Помогите улучшить поиск видов,
@@ -2526,6 +2617,10 @@ ru:
   upcoming_bioblitzes: Предстоящие биоблицы
   update_search: Обновить поиск
   update_selected_taxa: Обновите выбранные таксоны
+  update_x_selected_taxa:
+    one: Обновить 1 выбранный таксон
+    few: Обновить %{count} выбранных таксона
+    other: Обновить %{count} выбранных таксонов
   update_your_content: Обновить ваш контент
   updated_daily: Обновляется ежедневно
   upload_a_csv_file_with_observation: Загрузите CSV-файл с данными наблюдений. Если
@@ -2538,6 +2633,9 @@ ru:
       remove: Удалить выбранные наблюдения
       remove_photo: Удалить фото
       select_all: Выбрать все наблюдения
+  uploading_num_of_count_photos:
+    one: Загружается фото...
+    other: Загружается %{num} из %{count} фото...
   url_identifier_of_a_project_derived_from: URL / идентификатор проекта, полученный
     из некоего внешнего ресурса
   usage_stats: Статистика использования
@@ -2696,6 +2794,10 @@ ru:
   x_journal_editing: Журнал %{user} • Редактирование
   x_journal_middot: Journal %{user}•
   x_journal_new_post: Журнал %{user} • Новое сообщение
+  x_observations_failed:
+    one: не удалось создать 1 наблюдение
+    few: не удалось создать %{count} наблюдения
+    other: не удалось создать %{count} наблюдений
   x_project_journal: '%{project}%{name}'
   x_project_stats: Статистика %{project}
   x_site_is_a_social_network_for_naturalist: |-
@@ -3533,10 +3635,47 @@ ru:
       10: Октябрь
       11: Ноябрь
       12: Декабрь
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: около 1 часа
+        other: около %{count} часов
+      about_x_years:
+        one: около 1 года
+        other: около %{count} лет
+      less_than_x_minutes:
+        one: менее 1 минуты
+        other: менее %{count} минут
+      over_x_years:
+        one: более 1 года
+        other: более %{count} лет
+      x_minutes:
+        one: 1 минута
+        few: '%{count} минуты'
+        other: '%{count} минут'
+      x_seconds:
+        one: 1 секунда
+        few: '%{count} секунды'
+        other: '%{count} секунд'
+    countdown_x_hours:
+      one: час
+      few: часа
+      other: часов
+    countdown_x_seconds:
+      one: сек
+      other: сек
   errors:
     messages:
       less_than: должно быть меньше %{count}
       less_than_or_equal_to: должно быть меньше или равно %{count}
+      too_long:
+        one: слишком длинный (максимум 1 символ)
+        few: слишком длинный (максимум %{count} символа)
+        other: слишком длинный (максимум %{count} символов)
+      wrong_length:
+        one: неверная длина (должен быть 1 символ)
+        few: неверная длина (должно быть %{count} символа)
+        other: неверная длина (должно быть %{count} символов)
     template:
       body: 'Возникли некоторые проблемы со следующими полями:'
   helpers:
@@ -3546,11 +3685,27 @@ ru:
       prompt: Пожалуйста, выберите
     submit:
       submit: Сохранить %{model}
+  number:
+    human:
+      storage_units:
+        units:
+          byte:
+            one: Байт
+            few: Байта
+            other: Байт
   activemodel:
     errors:
       messages:
         less_than: должно быть меньше %{count}
         less_than_or_equal_to: должно быть меньше или равно %{count}
+        too_long:
+          one: слишком длинный (максимум 1 символ)
+          few: слишком длинный  (максимум %{count} символа)
+          other: слишком длинный  (максимум %{count} символов)
+        wrong_length:
+          one: неверная длина (должен быть 1 символ)
+          few: неверная длина (должно быть %{count} символа)
+          other: неверная длина (должно быть %{count} символов)
       template:
         body: 'Возникли некоторые проблемы со следующими полями:'
   activerecord:
