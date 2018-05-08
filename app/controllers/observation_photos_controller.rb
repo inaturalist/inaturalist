@@ -133,6 +133,7 @@ class ObservationPhotosController < ApplicationController
       end
       return false
     end
+    true
   end
   true
 end
