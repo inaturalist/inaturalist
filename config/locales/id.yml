@@ -4,24 +4,11 @@
 # Author: Arief
 # Author: Bramadiarya
 # Author: Hidayatsrf
+# Author: Indah Setyawati
 # Author: Kenrick95
 # Author: Zakiy
 ---
 id:
-  licensing_your_content: Melisensi konten Anda memberi orang lain hak hukum untuk
-    menggunakannya jika mereka tetap dengan persyaratan lisensi. %{Site_name} menggunakan
-    konten Anda yang berlisensi Creative Commons untuk berbagi dengan mitra Data seperti
-    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
-  you_think_observation_inacurate: Jika Anda berpikir pengamatan ini tidak akurat,
-    silakan menambahkan ID, berpartisipasi dalam penilaian kualitas di atas, atau
-    menggambarkan ketidaktepatan di komentar.
-  we_also_support: Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a
-    href="http://picasaweb.google.com"> Picasa </a>, dan <a href="http://facebook.com">
-    Facebook </a> untuk hosting gambar.
-  a_default_taxon_name_will_automatically_created: Sebuah nama standar takson akan
-    secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan
-    takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama
-    ilmiah usang, dll).
   x_comments:
     one: 1 comment
     other: '%{count} comments'
@@ -90,6 +77,10 @@ id:
   a: a
   a_: a
   a_community_for_naturalist: Komunitas untuk Naturalis
+  a_default_taxon_name_will_automatically_created: Sebuah nama standar takson akan
+    secara otomatis dibuat dari atribut nama ilmiah takson ini. Bila Anda telah menyimpan
+    takson baru ini, Anda akan dapat menambahkan nama lain di sini (nama umum, nama
+    ilmiah usang, dll).
   a_few_points_to_make_things_clear: 'Beberapa poin untuk membuat hal-hal sedikit
     lebih jelas:'
   a_flag_for_x: a flag for %{x}
@@ -156,6 +147,7 @@ id:
   add_an_observation: menambahkan observasi
   add_an_observation?: menambahkan observasi?
   add_an_observation_of: Add an observation of %{taxon}
+  add_annotations_for_x: Add annotations for "%{x}"
   add_another: Tambahkan yang lain
   add_another_flag: menambahkan penanda lain
   add_another_photo: Menambahkan foto lain
@@ -1673,6 +1665,10 @@ id:
   less: Kurang
   license_descriptions_and_images: Deskripsi lisensi dan gambar
   licensing: lisensi
+  licensing_your_content: Melisensi konten Anda memberi orang lain hak hukum untuk
+    menggunakannya jika mereka tetap dengan persyaratan lisensi. %{Site_name} menggunakan
+    konten Anda yang berlisensi Creative Commons untuk berbagi dengan mitra Data seperti
+    <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
   licensing_your_content_gives_others_legal: Melisensi konten Anda memberikan orang
     lain hak hukum untuk menggunakannya jika mereka tetap dengan persyaratan lisensi.
     %{Site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan
@@ -2846,8 +2842,8 @@ id:
     di area ruang terbatas. Max 10 karakter.
   show: Tampilkan
   show_active_and_inactive_taxa: Tampilkan taksa aktif dan tidak aktif
-  show_default_taxon_photos: tampilkan kegagalan foto takson
   show_counts: Tampilkan jumlah berdasarkan daftar.
+  show_default_taxon_photos: tampilkan kegagalan foto takson
   show_kml: Tampilkan KML
   show_observation_photos: tampilkan foto pengamatan
   show_observations_from: Tampilkan pengamatan oleh
@@ -2855,13 +2851,13 @@ id:
     sendiri atau website Anda!
   show_only: Hanya tampilkan
   show_taxa_from_both: (tampilkan taksa dari kedua daftar)
+  show_taxa_from_everywhere: Tampilkan taksa dari manapun
+  show_taxa_from_place: Tampilkan taksa dari %{place}
   show_total_listed_taxa: Tampilkan total daftar taksa
   showing_observations_by: tampilkan pengamatan oleh
   showing_one_to: Tampilkan 1 -
-  showing_taxa_from_place: Tampilkan taksa dari %{place}
-  show_taxa_from_place: Tampilkan taksa dari %{place}
   showing_taxa_from_everywhere: Tampilkan taksa dari manapun
-  show_taxa_from_everywhere: Tampilkan taksa dari manapun
+  showing_taxa_from_place: Tampilkan taksa dari %{place}
   shown_publicly_as: Tampil di hadapan publik sebagai
   sign_in: Masuk
   sign_in_with_provider: Masuk dengan %{provider}
@@ -3434,6 +3430,9 @@ id:
   want_to_show_off_some_of_your_favorite_taxa: Ingin menunjukkan beberapa dari taksa
     favorit anda disini?
   was_it_captive_cultivated?: Apakah itu captive / dibudidayakan?
+  we_also_support: Kami juga mendukung <a href="http://flickr.com"> Flickr </a>, <a
+    href="http://picasaweb.google.com"> Picasa </a>, dan <a href="http://facebook.com">
+    Facebook </a> untuk hosting gambar.
   we_can_only_understand_csv_in: Kami hanya dapat mengerti CSV dalam format tersebut
   we_care_privacy: Kami Peduli pada Privasi Anda!
   we_couldnt_find_a_user: Kami tidak dapat menemukan pengguna dengan alamat email
@@ -3595,6 +3594,9 @@ id:
   you_sure_remove_this_invitation?: Apakah Anda yakin ingin menghapus undangan ini?
   you_sure_remove_this_observation?: Apakah Anda yakin ingin menghapus pengamatan
     ini?
+  you_think_observation_inacurate: Jika Anda berpikir pengamatan ini tidak akurat,
+    silakan menambahkan ID, berpartisipasi dalam penilaian kualitas di atas, atau
+    menggambarkan ketidaktepatan di komentar.
   you_tried_to_do_something_you_shouldnt: Anda mencoba untuk melakukan sesuatu yang
     tidak seharusnya, seperti mengedit data orang lain tanpa izin. Jangan jahat.
   you_would_get_the: 'Anda akan mendapatkan tag berikut:'

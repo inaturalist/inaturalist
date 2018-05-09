@@ -14,23 +14,6 @@
 # Author: Xabier Armendaritz
 ---
 eu:
-  licensing_your_content: |-
-    Zure edukia lizentziatzeak beste batzuei legez erabiltzeko
-    eskubidea ematen die lizentziaren baldintzetara atxikitzen badira. Creative Commonsekin
-    lizentziatutako edukia erabiltzen dugu bazkideekin partekatzeko, esate baterako,
-    <a href="http://www.gbif.org">Global Biodiversity Information Facility</a> (GBIF).
-  you_think_observation_inacurate: Behaketa zehaztasunik gabekoa dela pentsatzen baduzu,
-    mesedez, gehitu identifikazioa, hartu parte datuen kalitate atalean edo zehaztasunik
-    eza aipamen batekin deskribatu.
-  we_also_support: |-
-    Zure irudietarako <a href="http://flickr.com">Flickr</a>, <a
-    href="http://picasaweb.google.com">Picasa</a> eta <a
-    href="http://facebook.com">Facebook-ekin</a> ere konexioa dugu.
-  a_default_taxon_name_will_automatically_created: |-
-    Taxonaren izen zientifikoaren ezaugarrian oinarrituta taxonaren izena
-    automatikoki sortuko da besterik adierazi ezean. Taxona gorde duzunean,
-    beste izen batzuk gehitu ahal izango dituzu hemen (izen arruntak,
-    eguneratutako izen zientifikoak eta abar).
   x_followers:
     one: 1 jarraitzaile
     other: '%{count} jarraitzaile'
@@ -74,6 +57,11 @@ eu:
   a: bat
   a_: bat
   a_community_for_naturalist: Naturalistentzako komunitatea
+  a_default_taxon_name_will_automatically_created: |-
+    Taxonaren izen zientifikoaren ezaugarrian oinarrituta taxonaren izena
+    automatikoki sortuko da besterik adierazi ezean. Taxona gorde duzunean,
+    beste izen batzuk gehitu ahal izango dituzu hemen (izen arruntak,
+    eguneratutako izen zientifikoak eta abar).
   a_few_points_to_make_things_clear: Gauzak apur bat hobeto argitzeko zenbait puntu
   a_flag_for_x: 'marka bat: %{x}'
   a_greasemonkey_script: Greasemonkey-ko script-a
@@ -1453,6 +1441,11 @@ eu:
   less: Gutxiago
   license_descriptions_and_images: Lizentzien eta horiei dagozkien irudien deskribapena
   licensing: Lizentziak
+  licensing_your_content: |-
+    Zure edukia lizentziatzeak beste batzuei legez erabiltzeko
+    eskubidea ematen die lizentziaren baldintzetara atxikitzen badira. Creative Commonsekin
+    lizentziatutako edukia erabiltzen dugu bazkideekin partekatzeko, esate baterako,
+    <a href="http://www.gbif.org">Global Biodiversity Information Facility</a> (GBIF).
   licensing_your_content_gives_others_legal: Zuk sortutako edukiari lizentzia aplikatzeak
     beste batzuei hori erabiltzeko eskubidea ematen die, lizentziaren baldintzak onartzen
     dituztenean, betiere. %{site_name} webguneak Creative Commons-eko lizentzia erabiltzen
@@ -1723,6 +1716,7 @@ eu:
   new_updates_in_the_last_24_hours_from: 'Azken 24 orduetan honen eguneraketa berriak:
     %{site_name}'
   new_user_rules: Erabiltzaile-arau berriak
+  new_users: Erabiltzaile berriak
   new_users_week: Erabiltzaile berriak / Astea
   next: Hurrengoa
   next_observation: Hurrengo behaketa
@@ -2500,8 +2494,8 @@ eu:
     oso mugatua denean (gehienez ere 10 karaktere).
   show: Erakutsi
   show_active_and_inactive_taxa: Espezie aktiboak eta inaktiboak erakutsi
-  show_default_taxon_photos: Espezieen lehenetsitako argazkiak erakutsi
   show_counts: Zerrendan oinarritutako zenbaketak erakutsi
+  show_default_taxon_photos: Espezieen lehenetsitako argazkiak erakutsi
   show_keyboard_shortcuts: Teklatuko Lasterbideak Erakutsi
   show_kml: KML erakutsi
   show_observation_photos: Behaketen argazkiak erakutsi
@@ -3130,6 +3124,10 @@ eu:
   want_to_show_off_some_of_your_favorite_taxa: Zure taxon gogokoenetako batzuk hemen
     gehitu nahi dituzu?
   was_it_captive_cultivated?: Gatibu/hezia izan da?
+  we_also_support: |-
+    Zure irudietarako <a href="http://flickr.com">Flickr</a>, <a
+    href="http://picasaweb.google.com">Picasa</a> eta <a
+    href="http://facebook.com">Facebook-ekin</a> ere konexioa dugu.
   we_can_only_understand_csv_in: 'CSV formatu honetan soilik inporta dezakegu:'
   we_care_privacy: Zure pribatutasuna axola zaigu!
   we_couldnt_find_a_user: Ezin izan dugu erabiltzailerik topatu posta-helbide honekin.
@@ -3314,6 +3312,9 @@ eu:
   you_sure_remove_taxon_from?: Ziur zaude taxon hau %{list}-tik ezabatu nahi duzula?
   you_sure_remove_this_invitation?: Ziur zaude gonbidapen hau ezabatu nahi duzula?
   you_sure_remove_this_observation?: Ziur zaude behaketa hau ezabatu nahi duzula?
+  you_think_observation_inacurate: Behaketa zehaztasunik gabekoa dela pentsatzen baduzu,
+    mesedez, gehitu identifikazioa, hartu parte datuen kalitate atalean edo zehaztasunik
+    eza aipamen batekin deskribatu.
   you_would_get_the: Etiketa hauek eskuratuko dituzu
   youll_need_to_link: Estekatu egin beharko duzu
   youve_joined_the_x_project: '%{project_invitation} proiektuarekin bat egin duzu

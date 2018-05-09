@@ -1,0 +1,110 @@
+- content_for :title do
+  = @title = t(:projects)
+- content_for :extracss do
+  = stylesheet_link_tag "projects/index"
+
+#carousel-container.container-fluid
+  .row
+    .col-xs-12
+      .container
+        .row.no-gutters
+          .col-xs-8
+            - carousel_projects = @carousel.blank? ? [@recent].flatten.compact[0..5] : @carousel
+            #featured-carousel.carousel.slide{ data: { ride: "carousel" } }
+              %ol.carousel-indicators
+                - carousel_projects.each_with_index do |project,i|
+                  %li{ class: i == 0 ? "active" : nil, data: { slide_to: i, target: "#featured-carousel" } }
+              .carousel-inner{:role => "listbox"}
+                - carousel_projects.each_with_index do |project,i|
+                  .item{ class: i == 0 ? "active" : nil }
+                    .carousel-title
+                      %span=t :new_and_noteworthy
+                      - if project.event_in_progress?
+                        %span.in-progress=t :event_in_progress
+                    = link_to "", project, class: "photo", style: project.cover? ? "background-size: #{project.prefers_banner_contain? ? "contain" : "cover"}; background-image: url('#{project.cover.url}');" : "background-size: cover;"
+                    - unless project.prefers_hide_title?
+                      .project-caption
+                        %h2
+                          - if project.icon?
+                            = link_to image_tag( project.icon.url( :span2 ) ), project, class: "icon"
+                          = link_to project.title , project, class: "title"
+
+          .col-xs-4
+            #about-projects
+              %h1=t :projects
+              %p=t :projects_description, site_name: @site.name
+              = link_to t(:start_a_project), new_project_path, class: "btn btn-primary btn-inat"
+
+#tools-container.container-fluid
+  .row
+    .col-xs-12
+      .container
+        .row
+          .col-xs-4
+            = form_tag( project_search_path, method: :get ) do
+              .input-group
+                %input.form-control{ name: "q", type: "text", placeholder: t(:search) }
+                %span.input-group-btn
+                  %input.btn.btn-primary{ type: "submit", value: t(:go) }
+                    =t :go
+          .col-xs-8
+            - if logged_in? && !@started.blank? || !@joined.blank?
+              .dropdown.pull-right
+                %button#manage-projects-btn.btn.btn-default{ data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: false } }
+                  %i.fa.fa-gear
+                  =t :manage_your_projects
+                  %span.caret
+                %ul.dropdown-menu.dropdown-menu-right{ aria: { labelled_by: "manage-projects-btn" } }
+                  - unless @started.blank?
+                    %li.dropdown-header=t :your_projects
+                    - @started.each do |project|
+                      %li= link_to project.title, project
+                    %li.divider{ role: "separator" }
+                  - unless @joined.blank?
+                    %li.dropdown-header=t :joined_projects
+                    - @joined.each do |project|
+                      %li= link_to project.title, project
+                    %li.divider{ role: "separator" }
+                  - unless @followed.blank?
+                    %li.dropdown-header=t :followed_projects
+                    - @followed.each do |project|
+                      %li= link_to project.title, project
+                    %li.divider{ role: "separator" }
+                  %li= link_to t(:view_all), projects_by_login_path( current_user.login )
+
+#main-container.container-fluid
+  .row
+    .col-xs-12
+      .container
+        - unless @featured.blank?
+          .row
+            .col-xs-12
+              %h2=t :featured
+          - @featured.in_groups_of( 4 ) do |group|
+            .row
+              - group.compact.each do |project|
+                .col-xs-3
+                  = render "thumbnail", project: project
+        .row
+          .col-xs-12
+            %h2=t :recently_active
+        - if @recent.blank?
+          .row
+            .col-xs-12
+              .nocontent=t :no_projects_yet
+        - else
+          - @recent.in_groups_of( 4 ) do |group|
+            .row
+              - group.compact.each do |project|
+                .col-xs-3
+                  = render "thumbnail", project: project
+        .row
+          .col-xs-12
+            %h2
+              =t :recently_created
+              = link_to t(:browse_all_projects), browse_projects_path, class: "btn btn-primary btn-inat pull-right"
+        - @created.in_groups_of( 4 ) do |group|
+          .row
+            - group.compact.each do |project|
+              .col-xs-3
+                = render "thumbnail", project: project

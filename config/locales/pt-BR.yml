@@ -19,22 +19,6 @@
 # Author: Walesson
 ---
 pt-BR:
-  licensing_your_content: "Licenciar seu conteúdo permite que outros tenham direito
-    de utilizar se praticarem os termos da licença. %{site_name} Utilize seu conteúdo
-    licenciado pela Creative\nCommons-para compartilhar dados com associados como
-    a \n<a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>\n(GBIF)."
-  you_think_observation_inacurate: Se você acredita que esta observação não é correta,
-    por favor adicione uma ID, participe da avaliação de qualidade acima, ou comente
-    a imprecisão na identificação.
-  we_also_support: |-
-    Também suportamos <a href="http://flickr.com">Flickr</a>,
-    <a href="http://picasaweb.google.com">Picasa</a>, and
-    <a href="http://facebook.com">Facebook</a>
-    para armazenamento de imagens.
-  a_default_taxon_name_will_automatically_created: |-
-    Um nome de táxon padrão será automaticamente criado a partir do nome científico deste táxon.
-
-    Quando você salvar este novo táxon, você será capaz de adicionar outros nomes aqui (nomes comuns, nomes em desuso, antigos nomes científicos, entre outros.).
   x_comments:
     one: 1 comentário
     other: '%{count} comentários'
@@ -124,9 +108,14 @@ pt-BR:
   x_taxa_matching_current_filters:
     one: 1 táxon corresponde com filtros selecionados
     other: '%{count} táxons correspondem com filtros selecionados'
+  _percent_ID_d: '% ID''d'
   a: uma
   a_: uma
   a_community_for_naturalist: Uma Comunidade para Naturalistas
+  a_default_taxon_name_will_automatically_created: |-
+    Um nome de táxon padrão será automaticamente criado a partir do nome científico deste táxon.
+
+    Quando você salvar este novo táxon, você será capaz de adicionar outros nomes aqui (nomes comuns, nomes em desuso, antigos nomes científicos, entre outros.).
   a_few_points_to_make_things_clear: 'Alguns pontos para esclarecer as coisas:'
   a_flag_for_x: Um alerta para %{x}
   a_greasemonkey_script: um script do Greasemonkey
@@ -172,7 +161,7 @@ pt-BR:
   action: Ação
   actions: ações
   activate_user: Ativar usuário
-  active: ativo
+  active: Ativo
   activity: Atividade
   activity_settings: Configurações de atividade
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} from a work by %{original}
@@ -961,6 +950,7 @@ pt-BR:
     egg: Ovo
     juvenile: Juvenil
   controls: Controles
+  convert: Converter
   coordinate_systems: Sistemas de coordenadas
   coordinates: Coordenadas
   coordinates_private: (coordenadas particulares)
@@ -1877,12 +1867,16 @@ pt-BR:
     cebuano: Cebuano
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
+    czech: Checo
+    danish: Dinamarquês
     davawenyo: Davao Chavacano
     dutch: Holandês
     english: Inglês
+    finnish: Finlandês
     french: Francês
     gela: Gela
     german: Alemão
+    greek: Grego
     hawaiian: Havaiano
     hebrew: Hebraico
     hiligaynon: Ilongo
@@ -1891,6 +1885,7 @@ pt-BR:
     italian: Italiano
     japanese: Japonês
     korean: Coreano
+    luxembourgish: Luxemburguês
     maltese: Maltês
     maori: Maori
     misima_paneati: Misima-paneati
@@ -1910,6 +1905,10 @@ pt-BR:
   license_descriptions_and_images: Descrição das licenças e imagens
   licensed_site_photos: Fotos com licença %{site_name}
   licensing: Licenciando
+  licensing_your_content: "Licenciar seu conteúdo permite que outros tenham direito
+    de utilizar se praticarem os termos da licença. %{site_name} Utilize seu conteúdo
+    licenciado pela Creative\nCommons-para compartilhar dados com associados como
+    a \n<a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>\n(GBIF)."
   licensing_your_content_gives_others_legal: Licenciar seu conteúdo dá a oportunidade
     legal para outros usuários utilizarem se eles respeitarem os termos da licença.
     %{site_name} utiliza o conteúdo sob licença Creative Commons para compartilhar
@@ -2306,6 +2305,7 @@ pt-BR:
   new_updates_in_the_last_24_hours_from: Novas atualizações nas últimas 24 horas de
     %{site_name}
   new_user_rules: Novas regras de usuários
+  new_users: Novos usuários
   new_users_week: Novos Usuários / Semana
   news: Notícias
   next: Próximo
@@ -2710,7 +2710,7 @@ pt-BR:
   original_rights_holder: Titular original dos direitos
   original_url_for_this_map: URL original para este mapa
   organism_appears_captive_cultivated: Aparentemente o organismo é doméstico / cultivado
-  other: outro(s)
+  other: Outro
   other_animals: outros animais
   other_animals_plural:
     one: outro animal
@@ -3247,7 +3247,7 @@ pt-BR:
   required_field: campo obrigatório
   required_columns_in_order: É obrigatório classificar as colunas em ordem
   research: pesquisa
-  research_grade: nível de pesquisa
+  research_grade: Nível de Pesquisa
   research_grade_expandable_html: P<span class='full'>esquisa </span>N<span class='full'>ível</span>
   research_grade_short_html: P<span class='full'>esquisa </span>N<span class='full'>ível</span>
   research_grade_observations_have: '"Categoria Pesquisa" observação devem incluir
@@ -3402,8 +3402,8 @@ pt-BR:
     em áreas com espaço limitado. Máximo 10 caracteres.
   show: Exibir
   show_active_and_inactive_taxa: Exibir espécies ativas e inativas
-  show_default_taxon_photos: Exibir fotos padrão para os táxons
   show_counts: Exibir contagens baseadas na lista
+  show_default_taxon_photos: Exibir fotos padrão para os táxons
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_kml: Exibir KML
   show_less: Mostrar menos
@@ -3414,13 +3414,13 @@ pt-BR:
     blog ou site!
   show_only: 'Mostrar somente:'
   show_taxa_from_both: (exibir táxons de ambas as listas)
+  show_taxa_from_everywhere: Exibir táxons de todas as localidades
+  show_taxa_from_place: Exibir táxons de %{local}
   show_total_listed_taxa: Exibir a lista total de espécies
   showing_observations_by: exibindo observações por
   showing_one_to: Exibindo 1 -
-  showing_taxa_from_place: Exibindo táxons de %{place}
-  show_taxa_from_place: Exibir táxons de %{local}
   showing_taxa_from_everywhere: Exibir táxons de todas as localidades
-  show_taxa_from_everywhere: Exibir táxons de todas as localidades
+  showing_taxa_from_place: Exibindo táxons de %{place}
   shown_publicly_as: Exibir publicamente como
   sign_in: Entrar
   sign_in_with_provider: Entrar com %{provider}
@@ -3970,7 +3970,7 @@ pt-BR:
   top_identifiers_of_taxon: Top Identificadores por %{taxon}
   top_observer: Top Observador
   top_species: Top Espécies
-  total: total
+  total: Total
   totals: Totais
   total_members: Total de membros
   total_observations: Total de observações
@@ -4243,6 +4243,11 @@ pt-BR:
   want_to_test_a_new_version_of_this_page: Gostaria de testar uma nova versão desta
     página?
   was_it_captive_cultivated?: Era cultivada / mantida em cativeiro?
+  we_also_support: |-
+    Também suportamos <a href="http://flickr.com">Flickr</a>,
+    <a href="http://picasaweb.google.com">Picasa</a>, and
+    <a href="http://facebook.com">Facebook</a>
+    para armazenamento de imagens.
   we_can_only_understand_csv_in: Só podemos entender CSV no seguinte formato
   we_care_privacy: Nos importamos com sua privacidade!
   we_couldnt_find_a_user: Não podemos encontrar um usuário com este endereço de e-mail.
@@ -4487,6 +4492,9 @@ pt-BR:
   you_sure_remove_taxon_from?: Você tem certeza que quer remover este táxon da %{list}?
   you_sure_remove_this_invitation?: Você tem certeza que deseja remover este convite?
   you_sure_remove_this_observation?: Você tem certeza que deseja remover esta observação?
+  you_think_observation_inacurate: Se você acredita que esta observação não é correta,
+    por favor adicione uma ID, participe da avaliação de qualidade acima, ou comente
+    a imprecisão na identificação.
   you_tried_to_do_something_you_shouldnt: Você tentou fazer alguma coisa que não podia,
     como modificar os dados de outra pessoa sem permissão. Não seja maldoso.
   you_unlinked_your_provider_account: Você desvinculou sua conta do %{provider}
@@ -5367,6 +5375,8 @@ pt-BR:
         invite_only_description: A participação neste projeto como membro só pode
           ser feita através de convite. Se você deseja entrar no grupo. por favor
           contate um dos administradores abaixo e solicite um convite.
+      new:
+        contain_entire_image_without_cropping: Contém imagem inteira sem cortar
       project_location_privacy_notice_html: |-
         <p>
           Por favor este ciente de que os administradores de projetos serão capazes de acessar todos seus dados de localização, sejam elas ocultas ou privadas, a não ser que você revogue esta permissão além disso, eles serão capazes de adicionar qualquer uma de suas observações aos seus projetos a não ser que você <a href="/users/edit">altere suas configurações</a>. Você também pode permitir ou revogar o acesso de administradores de projetos as suas observações configurando uma à uma.
@@ -5509,13 +5519,13 @@ pt-BR:
           Flowering Phenology=budding: Brotamento
           Flowering Phenology=flower: Floração
           Flowering Phenology=fruit: Frutificação
-          Insect life stage=egg: Ovo
-          Insect life stage=larva: Larva
-          Insect life stage=teneral: Teneral
-          Insect life stage=subimago: Subimago
-          Insect life stage=nymph: Ninfa
-          Insect life stage=pupa: Pupa
-          Insect life stage=adult: Adulto
+          Life Stage=egg: Ovo
+          Life Stage=larva: Larva
+          Life Stage=teneral: Teneral
+          Life Stage=subimago: Subimago
+          Life Stage=nymph: Ninfa
+          Life Stage=pupa: Pupa
+          Life Stage=adult: Adulto
         photo_chooser_modal_desc: Arraste as fotos aqui da esquerda, ou arraste as
           fotos aqui para rearranjar.
         photo_chooser_modal_explanation: Perceba que a página de táxons exibirá fotos
@@ -5929,6 +5939,10 @@ pt-BR:
             observation_id:
               must_be_observed_after: deve ser observado depois %{time}
               must_be_observed_before: deve ser observado antes %{time}
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: deve parecer um endereço de e-mail
     attributes:
       assessment:
         description: Descrição
@@ -6008,6 +6022,7 @@ pt-BR:
         source_identifier: Identificador de fonte
       user:
         email: E-mail
+        login: Nome de usuário
         name: Nome
         locale: Localização
         time_zone: Fuso horário

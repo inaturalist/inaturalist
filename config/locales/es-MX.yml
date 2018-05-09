@@ -7,21 +7,6 @@
 # Author: MattiaMen
 ---
 es-MX:
-  licensing_your_content: "Si das licencia de tus contenidos le permites a otros el
-    uso legal de usarlos  \nsi siguen las condiciones de la licencia. %{site_name}
-    usa las licencias de Creative \nCommons para compartir información con socios
-    como  \n<a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>
-    \n(GBIF)."
-  you_think_observation_inacurate: |-
-    Si crees que esta observación no es precisa, por favor añade una identificación,
-    participa en la evaluación de calidad superior o describe la imprecisión en un comentario
-  we_also_support: "También tenemos conexión con <a href=\"http://flickr.com\">Flickr</a>,\n<a
-    href=\"http://picasaweb.google.com\">Picasa</a>, y \n<a href=\"http://facebook.com\">Facebook</a>
-    \npara tus imágenes."
-  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
-    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
-    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
-    obsoletos, etc.)
   x_followers:
     one: Un seguidor
     other: '%{count} seguidores'
@@ -87,6 +72,10 @@ es-MX:
   a: a
   a_: un(a)
   a_community_for_naturalist: Una comunidad para naturalistas
+  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
+    para el taxón a partir de su atributo Nombre científico. Cuando hayas guardado
+    este taxón nuevo, podrás añadirle aquí otros nombres (vernáculos, científicos
+    obsoletos, etc.)
   a_few_points_to_make_things_clear: Algunos puntos para aclarar las cosas
   a_flag_for_x: una alerta para %{x}
   a_greasemonkey_script: una secuencia de órdenes de Greasemonkey
@@ -1625,6 +1614,11 @@ es-MX:
   license_descriptions_and_images: Descripción de licencias y de imágenes
   licensed_site_photos: Fotos con licencia de %{site_name}
   licensing: Licencias
+  licensing_your_content: "Si das licencia de tus contenidos le permites a otros el
+    uso legal de usarlos  \nsi siguen las condiciones de la licencia. %{site_name}
+    usa las licencias de Creative \nCommons para compartir información con socios
+    como  \n<a href=\"http://www.gbif.org/\">Global Biodiversity Information Facility</a>
+    \n(GBIF)."
   licensing_your_content_gives_others_legal: La licencia de tu contenido le da derechos
     legales a otros para usarlos si cumplen con las condiciones de la licencia. %{site_name}
     usa tus licencias de contenido de Creative Commons para compartirlo con socios
@@ -2583,8 +2577,6 @@ es-MX:
   projects: Proyectos
   projects_description: |-
     Los proyectos son una forma de agrupar tus observaciones con las de otras personas en %{site_name}.
-    Revisa los <a href="http://conabio.inaturalist.org/pages/proyectosmexico">proyectos existentes</a> antes de crear uno nuevo
-    y revisa el <a href="http://conabio.inaturalist.org/pages/proyectos">tutorial</a> para que conozcas los pasos.
   projects_from_place: Proyectos de %{place}
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que administras
@@ -2855,8 +2847,8 @@ es-MX:
     cuando el espacio es muy limitado (máximo 10 caracteres).
   show: Muestra
   show_active_and_inactive_taxa: Muestra especies activas e inactivas
-  show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
   show_counts: Muestra los conteos basados en la lista.
+  show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
   show_kml: Muestra KML
   show_observation_photos: Muestra las fotos de las observaciones
   show_observations_from: Muestra observaciones hechas por
@@ -2864,13 +2856,13 @@ es-MX:
     blog o sitio web!
   show_only: Muestra solo
   show_taxa_from_both: (Muestra taxa de las dos listas otra vez)
+  show_taxa_from_everywhere: Muestra taxa de todas partes
+  show_taxa_from_place: Muestra taxa de %{place}
   show_total_listed_taxa: Mostrar la lista total de especies o grupos
   showing_observations_by: Mostrando observaciones hechas por
   showing_one_to: Mostrando 1 -
-  showing_taxa_from_place: Mostrando taxa de %{place}
-  show_taxa_from_place: Muestra taxa de %{place}
   showing_taxa_from_everywhere: Mostrando taxa de todas partes
-  show_taxa_from_everywhere: Muestra taxa de todas partes
+  showing_taxa_from_place: Mostrando taxa de %{place}
   shown_publicly_as: Mostrado públicamente como
   sign_in: Entra
   sign_in_with_provider: Entra con %{provider}
@@ -3504,7 +3496,7 @@ es-MX:
   user_s_lists: Listas %{user}
   user_thinks_yours_is: '%{user} %{noun} tu observación %{observation} es'
   username: Nombre de usuario
-  username_or_email: Nombre de usuario o correo electónico
+  username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
   users: Usuarios
   users_comment_html: Comentario de <a href='%{url}'>%{user}</a>
@@ -3614,6 +3606,9 @@ es-MX:
   want_to_show_off_some_of_your_favorite_taxa: ¿Quieres presumir tus grupos (o especies)
     favoritos aquí?
   was_it_captive_cultivated?: ¿En cautiverio o cultivada?
+  we_also_support: "También tenemos conexión con <a href=\"http://flickr.com\">Flickr</a>,\n<a
+    href=\"http://picasaweb.google.com\">Picasa</a>, y \n<a href=\"http://facebook.com\">Facebook</a>
+    \npara tus imágenes."
   we_can_only_understand_csv_in: Solamente podemos entender CSV en el siguiente formato
   we_care_privacy: ¡Nos preocupamos por tu privacidad!
   we_couldnt_find_a_user: No pudimos encontrar a un usuario con esa dirección de correo
@@ -3834,6 +3829,9 @@ es-MX:
     de %{list}?
   you_sure_remove_this_invitation?: ¿Estás seguro que quieres borrar esta invitación?
   you_sure_remove_this_observation?: ¿Estás seguro que quieres borrar esta observación?
+  you_think_observation_inacurate: |-
+    Si crees que esta observación no es precisa, por favor añade una identificación,
+    participa en la evaluación de calidad superior o describe la imprecisión en un comentario
   you_tried_to_do_something_you_shouldnt: |-
     Intentaste hacer algo que no deberías, como editar
     la información de alguien más sin permiso. No seas malvado.

@@ -119,12 +119,29 @@ class UpdateAction < ActiveRecord::Base
     action_ids = activity_updates.map{ |u| u.id }
     clauses = []
     activity_updates.each do |update|
-      clauses << "(resource_type = '#{update.resource_type}' AND resource_id = #{update.resource_id})"
+      clauses << {
+        bool: {
+          must: [
+            { term: { resource_type: update.resource_type } },
+            { term: { resource_id: update.resource_id } }
+          ]
+        }
+      }
     end
-    conditions = ["notification = 'activity' AND update_actions.id NOT IN (?)", action_ids]
-    conditions[0] += " AND (#{clauses.join(' OR ')})" unless clauses.blank?
-    updates += UpdateAction.joins(:update_subscribers).where(conditions).
-      where("update_subscribers.subscriber_id = ?", user_id)
+    filters = [
+      { term: { notification: "activity" } },
+      { term: { subscriber_ids: user_id } }
+    ]
+    inverse_filters = { terms: { id: action_ids } }
+    unless clauses.blank?
+      filters << { bool: { should: clauses } }
+    end
+    updates += UpdateAction.elastic_paginate(
+      filters: filters,
+      inverse_filters: inverse_filters,
+      per_page: 200,
+      sort: { id: :desc }
+    )
     updates
   end
 

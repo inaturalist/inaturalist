@@ -16,7 +16,8 @@ const TaxonThumbnail = ( {
   captionForTaxon,
   urlForTaxon,
   overlay,
-  config
+  config,
+  noInactive
 } ) => {
   const img = taxon.defaultPhoto ? (
     <CoverImage
@@ -72,6 +73,7 @@ const TaxonThumbnail = ( {
           truncate={truncate}
           onClick={onClick}
           user={ config.currentUser }
+          noInactive={ noInactive }
         />
         { captionForTaxon ? captionForTaxon( taxon ) : null }
       </div>
@@ -93,7 +95,8 @@ TaxonThumbnail.propTypes = {
   captionForTaxon: PropTypes.func,
   urlForTaxon: PropTypes.func,
   overlay: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  noInactive: PropTypes.bool
 };
 
 TaxonThumbnail.defaultProps = {

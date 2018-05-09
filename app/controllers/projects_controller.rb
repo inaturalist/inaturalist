@@ -39,18 +39,35 @@ class ProjectsController < ApplicationController
         if @site && (@site_place = @site.place)
           @place = @site.place unless params[:everywhere].yesish?
         end
-        @projects = Project.recently_added_to(place: @place)
-        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(9)
+        @projects = Project.recently_added_to(place: @place).includes(:stored_preferences)
+        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(8).includes(:stored_preferences)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @featured = Project.featured
+        @featured = Project.featured.includes(:stored_preferences)
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
+        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 ).includes(:stored_preferences)
+        @carousel = @featured.limit( 3 ) if @carousel.count == 0
+        @carousel = @projects.limit( 3 ) if @carousel.count == 0
+        @carousel = @carousel.to_a
+
+        @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}[0..8]
+        @recent = Project.joins(:posts).order( "posts.id DESC" ).limit( 20 ).includes(:stored_preferences)
+        @recent = @recent.joins( :place ).where( @place.self_and_descendant_conditions ) if @place
+        @recent = @recent.to_a.uniq[0..7]
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
-            order("projects.id desc").limit(9)
+            order("projects.id desc").limit(5).includes(:stored_preferences)
           @joined = current_user.project_users.joins(:project).
-            merge(Project.not_flagged_as_spam).includes(:project).
-            order("projects.id desc").limit(9).map(&:project)
+            merge(Project.not_flagged_as_spam).includes( project: :stored_preferences ).
+            where( "projects.user_id != ?", current_user ).
+            order("projects.id desc").limit(5).map(&:project)
+          @followed = Project.
+            includes(:stored_preferences).
+            joins( "JOIN subscriptions ON subscriptions.resource_type = 'Project' AND resource_id = projects.id" ).
+            where( "subscriptions.user_id = ?", current_user ).
+            where( "projects.user_id != ?", current_user ).
+            order( "subscriptions.id DESC" ).limit( 15 ).select{ |p| !@joined.include?( p ) }
         end
+        render layout: "bootstrap"
       end
       format.json do
         scope = Project.all
@@ -884,13 +901,16 @@ class ProjectsController < ApplicationController
       @place = @site.place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      filters = [ {
-        multi_match: {
-          query: @q,
-          operator: "and",
-          fields: [ :title, :description ]
+      filters = [
+        {
+          multi_match: {
+            query: @q,
+            operator: "and",
+            fields: [ :title, :description ],
+            type: "phrase"
+          }
         }
-      } ]
+      ]
       filters << { term: { place_ids: @place.id } } if @place
       @projects = Project.elastic_paginate(
         filters: filters,

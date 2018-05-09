@@ -298,3 +298,15 @@ input[type="color"]:focus,
   color: lighten(#000, 1%);
   border-color: lighten(#999, 1%);
 }
+
+/* Cribbed from Bootstrap 4 */
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}

@@ -26,6 +26,7 @@ function fetchIdentifiers( ) {
       reviewed: "any",
       quality_grade: "any",
       page: 1,
+      per_page: 10,
       order: "",
       order_by: ""
     } );

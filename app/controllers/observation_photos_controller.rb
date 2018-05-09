@@ -88,13 +88,13 @@ class ObservationPhotosController < ApplicationController
     unless @observation_photo = ObservationPhoto.find_by_id( params[:id] )
       return create
     end
-    require_owner
+    return unless require_owner
 
     @observation_photo.photo.file = params[:file] if params[:file]
     respond_to do |format|
       if @observation_photo.update_attributes(params[:observation_photo])
-          @observation_photo.observation.elastic_index!
-          Observation.refresh_es_index
+        @observation_photo.observation.elastic_index!
+        Observation.refresh_es_index
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
@@ -125,13 +125,15 @@ class ObservationPhotosController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:error] = msg
-          return redirect_to record
+          redirect_to record
         end
         format.json do
-          return render :json => {:error => msg}
+          render json: { error: msg }, status: :unprocessable_entity
         end
       end
       return false
     end
+    true
   end
+  true
 end

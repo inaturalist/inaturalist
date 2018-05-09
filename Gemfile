@@ -43,7 +43,8 @@ gem 'doorkeeper', "~> 4.2.0"
 gem 'dynamic_form'
 gem 'exifr'
 gem 'fastimage'
-gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
+# gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
+gem "flickraw-cached"
 gem "friendly_id", "~> 5.1.0"
 gem 'gdata', :git => 'https://github.com/pleary/gdata.git'
 gem 'geocoder'

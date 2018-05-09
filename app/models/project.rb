@@ -27,7 +27,7 @@ class Project < ActiveRecord::Base
   after_create :create_the_project_list
   after_save :add_owner_as_project_user
   before_update :set_updated_at_if_preferences_changed
-
+  after_save :add_admins
 
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
@@ -88,14 +88,6 @@ class Project < ActiveRecord::Base
   validate :one_year_time_span, :if => lambda {|p| p.bioblitz? }, :unless => "errors.any?"
   validate :aggregation_preference_allowed?
 
-  def aggregation_preference_allowed?
-    return if is_new_project?
-    return true unless prefers_aggregation?
-    return true if aggregation_allowed?
-    errors.add(:base, I18n.t(:project_aggregator_filter_error))
-    true
-  end
-  
   scope :featured, -> { where("featured_at IS NOT NULL") }
   scope :in_group, lambda {|name| where(:group => name) }
   scope :near_point, lambda {|latitude, longitude|
@@ -179,6 +171,8 @@ class Project < ActiveRecord::Base
   acts_as_spammable fields: [ :title, :description ],
                     comment_type: "item-description",
                     automated: false
+
+  attr_accessor :admin_attributes
 
   def place_with_boundary
     return if place_id.blank?
@@ -594,25 +588,31 @@ class Project < ActiveRecord::Base
   end
 
   def event_started?
-    return nil if start_time.blank?
+    t = DateTime.parse( preferred_rule_d1 ) unless preferred_rule_d1.blank?
+    t ||= start_time
+    return nil if t.blank?
     if prefers_range_by_date?
-      start_time.to_date <= Date.today
+      t.to_date <= Date.today
     else
-      start_time < Time.now
+      t < Time.now
     end
   end
 
   def event_ended?
-    return nil if end_time.blank?
+    t = DateTime.parse( preferred_rule_d2 ) unless preferred_rule_d2.blank?
+    t ||= end_time
+    return nil if t.blank?
     if prefers_range_by_date?
-      Date.today > end_time.to_date
+      Date.today > t.to_date
     else
-      Time.now > end_time
+      Time.now > t
     end
   end
 
   def event_in_progress?
-    return nil if end_time.blank? || start_time.blank?
+    unless preferred_rule_d1 && preferred_rule_d2
+      return nil if end_time.blank? || start_time.blank? 
+    end
     event_started? && !event_ended?
   end
   
@@ -961,6 +961,31 @@ class Project < ActiveRecord::Base
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!
+  end
+
+  def add_admins
+    return if admin_attributes.blank?
+    admin_attributes.each do |k, admin_attr|
+      next unless admin_attr["user_id"]
+      if admin_attr["_destroy"] == "true"
+        if pu = project_users.where( user_id: admin_attr["user_id"] ).first
+          pu.update_attributes( role: nil )
+        end
+      else
+        pu = project_users.find_or_create_by( user_id: admin_attr["user_id"] )
+        pu.update_attributes( role: "manager" )
+      end
+    end
+    project_users.reload
+    elastic_index!
+  end
+
+  def aggregation_preference_allowed?
+    return if is_new_project?
+    return true unless prefers_aggregation?
+    return true if aggregation_allowed?
+    errors.add(:base, I18n.t(:project_aggregator_filter_error))
+    true
   end
 
   def self.recently_added_to_ids( options = { } )

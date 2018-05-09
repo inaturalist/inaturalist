@@ -1,0 +1,225 @@
+@import "../colors";
+$carousel-height: 320px;
+$carousel-height-narrow: 350px;
+
+#carousel-container {
+  background-color: white;
+  z-index: 3;
+  .row.no-gutters {
+    border: 1px solid #ddd;
+  }
+  .photo {
+    display: block;
+    width: 100%;
+    height: $carousel-height-narrow;
+    background-size: contain;
+    background-image: url(image_path( "project_blank_banner_bg.png" ));
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .photo:hover {
+    opacity: 1;
+  }
+  #featured-carousel {
+    background-color: $inat-green;
+  }
+  #featured-carousel,
+  #about-projects {
+    height: $carousel-height-narrow;
+  }
+  .carousel-title,
+  .project-caption {
+    position: absolute;
+  }
+
+  .carousel-title,
+  .project-caption h2 .title {
+    opacity: 1;
+    transition: opacity 0.4s linear;
+    color: white;
+    a {
+      color: white;
+    }
+    background-color: rgba(0,0,0,0.7);
+  }
+  .project-caption h2 .icon {
+    background-color: black;
+  }
+  .carousel-title {
+    top: 0;
+    left: 0;
+    display: flex;
+    > * {
+      padding: 5px 10px;
+    }
+    .in-progress {
+      background-color: #f22844;
+      text-transform: uppercase;
+    }
+  }
+  .project-caption {
+    bottom: 20px;
+    left: 20px;
+    right: 90px;
+    h2 {
+      display: flex;
+      height: 45px;
+      overflow-y: hidden;
+      .title {
+        display: inline-block;
+        padding: 0 15px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+      }
+      margin: 0;
+      font-size: 26px;
+      line-height: 43px;
+      img {
+        height: 45px;
+      }
+    }
+    span {
+      font-size: 18px;
+      text-transform: capitalize;
+    }
+  }
+  .left,
+  .right {
+    .carousel-title,
+    .project-caption {
+      opacity: 0;
+      transition: opacity 0s linear;
+    }
+  }
+  .carousel-indicators {
+    margin: 0;
+    line-height: 0;
+    left: auto;
+    right: 20px;
+    background-color: rgba(0,0,0,0.7);
+    padding: 5px;
+    width: auto;
+  }
+  #about-projects {
+    background-color: black;
+    color: white;
+    padding: 20px;
+    h1 {
+      color: white;
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
+      font-weight: 200;
+      margin-bottom: 20px;
+      max-height: 200px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 8;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+    }
+    .btn {
+      font-size: 16px;
+    }
+  }
+  @media (min-width: 992px) {
+    .photo {
+      height: $carousel-height;
+    }
+    #featured-carousel,
+    #about-projects {
+      height: $carousel-height;
+    }
+  }
+}
+#carousel-container,
+#tools-container,
+#main-container {
+  padding-bottom: 20px;
+  position: relative;
+}
+
+#tools-container,
+#main-container {
+  padding-top: 20px;
+}
+
+#tools-container {
+  border-top: 1px solid $border-grey;
+  border-bottom: 1px solid $border-grey;
+  z-index: 2;
+  .btn {
+    i {
+      color: $inat-green;
+      margin-right: 5px;
+    }
+  }
+  .btn-primary {
+    background-color: $inat-green;
+    border-color: darken($inat-green, 1);
+  }
+}
+#main-container {
+  z-index: 1;
+  background-color: $page-background-grey;
+
+  h2 {
+    text-transform: capitalize;
+  }
+
+  .thumbnail {
+    border: 1px solid $border-grey;
+    position: relative;
+    .photo {
+      display: block;
+      background-size: cover;
+      background-image: url(image_path( "project_blank_banner_bg.png" ));
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100px;
+      line-height: 120px;
+      text-align: center;
+      background-color: #aaa;
+      i {
+        font-size: 40px;
+        color: white;
+      }
+    }
+    font-size: 16px;
+    a {
+      color: black;
+      display: block;
+      overflow: hidden;
+      height: 44px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; 
+      text-overflow: ellipsis;
+    }
+    .project-icon {
+      display: block;
+      width: 40px;
+      height: 40px;
+      position: absolute;
+      right: 20px;
+      top: 80px;
+      background-size: cover;
+      line-height: 40px;
+      text-align: center;
+      background-color: $border-grey;
+      border: 2px solid #f8f8f8;
+      box-shadow: 0 0 0 1px #ccc;
+      i {
+        font-size: 20px;
+        color: white;
+      }
+    }
+    .caption {
+      padding: 20px 70px 20px 20px;
+    }
+  }
+}

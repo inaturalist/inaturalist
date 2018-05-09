@@ -26,6 +26,7 @@ const Observation = ( {
         noParens
         user={ config.currentUser }
         url={ `/observations/${observation.id}` }
+        noInactive
       />
       <UserImage user={ observation.user } />
       <div className="meta">
