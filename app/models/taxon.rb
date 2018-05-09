@@ -1046,62 +1046,35 @@ class Taxon < ActiveRecord::Base
   end
 
   def auto_summary
-    name_part = name
-    other_names = taxon_names.select { |tn| tn.name != name }
-    unless other_names.blank?
-      name_part += " (also known as #{FakeView.commas_and( other_names.map(&:name) )})"
+    translated_rank = if rank.blank?
+      I18n.t( :rank, default: "rank" ).downcase
+    else
+      I18n.t( "ranks.#{rank}", default: rank ).downcase
     end
     summary = if kingdom?
-      "#{name} is a kingdom of life with #{observations_count} observations"
+      I18n.t(:taxon_is_kingdom_of_life_with_x_observations, count: observations_count )
     elsif iconic_taxon_id
       iconic_name = if iconic_taxon_id == id
         parent.iconic_taxon_name
       else
         iconic_taxon_name
       end
-      iconic_part = if iconic_name == "Chromista"
-        "in Chromista (brown algae and allies)"
-      elsif ICONIC_TAXON_NAMES[iconic_name]
-        iconic_common_name = I18n.t(
-          ICONIC_TAXON_NAMES[iconic_name].downcase.parameterize.underscore,
-          count: 1
+      I18n.t(
+        "taxon_is_a_rank_of_#{iconic_name.downcase.underscore}_with_x_observations",
+        taxon: name,
+        rank: translated_rank,
+        count: observations_count,
+        default: I18n.t(
+          :taxon_is_a_rank_in_iconic_taxon_with_x_observations,
+          taxon: name,
+          rank: translated_rank,
+          iconic_taxon: iconic_name,
+          count: observations_count
         )
-        if rank_level && rank_level <= 10
-          iconic_common_name = iconic_common_name.singularize
-        end
-        "of #{iconic_common_name.downcase}"
-      else
-        "in #{iconic_name}"
-      end
-      "#{name_part} is a #{rank} #{iconic_part} with #{observations_count} observations"
+      )
     else
-      "#{name} is a #{rank}"
+      I18n.t(:taxon_is_a_rank, taxon: name, rank: translated_rank )
     end
-    # This stuff is all so slow that we'd need to cache it.
-    # endemic_listed_taxon = listed_taxa.
-    #   where( establishment_means: ListedTaxon::ENDEMIC ).
-    #   joins( :place ).
-    #   order( "places.admin_level DESC" ).first
-    # if endemic_listed_taxon
-    #   summary += " that only occurs in #{endemic_listed_taxon.place.display_name}"
-    # else
-    #   place_listed_taxa = listed_taxa.joins( :place ).where( "places.admin_level = ?", Place::COUNTRY_LEVEL ).limit( 6 )
-    #   unless place_listed_taxa.blank?
-    #     summary += " that occurs in #{FakeView.commas_and( place_listed_taxa[0..5].map{ |lt| lt.place.display_name } )}"
-    #     if place_listed_taxa.size > 5
-    #       summary += ", and elsewhere"
-    #     end
-    #   end
-    # end
-    # status_scope = conservation_statuses.where( "iucn > ?", IUCN_NEAR_THREATENED )
-    # conservation_status = status_scope.where( "place_id IS NULL" ).first
-    # conservation_status ||= status_scope.joins( :place ).order( "places.admin_level ASC" ).first
-    # if conservation_status
-    #   status_desc = "It is considered #{conservation_status.status_name}"
-    #   status_desc += " in #{conservation_status.place.display_name}" if conservation_status.place
-    #   status_desc += " by #{conservation_status.authority}"
-    #   summary += ". #{status_desc}"
-    # end
     summary
   end
   

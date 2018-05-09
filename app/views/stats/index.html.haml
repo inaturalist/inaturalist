@@ -1,3 +1,5 @@
+- content_for(:title) do
+  =t :site_stats
 - content_for(:extracss) do
   = stylesheet_link_tag :stats
 - content_for(:extrajs) do
@@ -6,7 +8,7 @@
   :javascript
     var STATS_JSON = #{ @stats.to_json };
 .container
-  %h2=t :stats
+  %h2=t :site_stats
   .row.sparks
     .col-md-12
       %h3=t :_100_day_trends

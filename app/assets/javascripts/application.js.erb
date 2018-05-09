@@ -24,43 +24,6 @@ function blurTip(obj, txt) {
   obj.value = txt;
 }
 
-function toggleHeaderSubnav(link) {
-  if ($(link).parents('.navtab').hasClass('open')) {
-    closeHeaderSubnav(link);
-  } else {
-    openHeaderSubnav(link);
-  }
-  return false;
-}
-
-function openHeaderSubnav(link) {
-  var navtab = $(link).parents('.navtab').get(0)
-  $('#header .navtab').removeClass('open')
-  $('#header .subnav').hide()
-  $(navtab).addClass('open')
-  $('.subnav', navtab).show()
-  $(document).click(subnavClickOff);
-  $(".ui-autocomplete").hide( );
-  return false;
-}
-
-function closeHeaderSubnav(link) {
-  var navtab = $(link).parents('.navtab').get(0)
-  
-  if ($('input:focus', navtab).length <= 0) {
-    $(navtab).removeClass('open');
-    $('.subnav', navtab).hide();
-    $(document).unbind('click', subnavClickOff);
-  }
-  return false;
-}
-
-function subnavClickOff(e) {
-  if ($(e.target).parents('.navtab').length == 0) {
-    $('.subnav').hide();
-    $('.navtab').removeClass('open');
-  }
-}
 var QTIP_DEFAULTS = {
   hide: {
     fixed: true
@@ -282,7 +245,7 @@ $(document).ready(function() {
   })
 
   // Clicks on main header items should go somewhere
-  $( "#test-header #mainnav .dropdown .dropdown-toggle a, #test-header #usernav .user .dropdown .dropdown-toggle a" ).on( "click", function( e ) {
+  $( "#header #mainnav .dropdown .dropdown-toggle a, #header #usernav .user .dropdown .dropdown-toggle a" ).on( "click", function( e ) {
     if ( !inatIsMobile( ) ) {
       window.location = e.currentTarget.href;
     }
@@ -290,7 +253,7 @@ $(document).ready(function() {
   } );
 
   // Show main header nav items on hover for desktop browsers. Roughly adapted from the bootstrap js.
-  $( "#test-header #mainnav .dropdown, #test-header #usernav .user .dropdown" )
+  $( "#header #mainnav .dropdown, #header #usernav .user .dropdown" )
     .on( "mouseover", function( e ) {
       var $dropdown = $( this );
       if ( !$dropdown.is( ".dropdown" ) ) {
@@ -309,47 +272,47 @@ $(document).ready(function() {
       $dropdown.removeClass( "open" );
     } );
 
-  $( "#test-header #messagesnav .dropdown" ).on( "click", function( e ) {
+  $( "#header #messagesnav .dropdown" ).on( "click", function( e ) {
     if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
       $( this ).toggleClass( "open" );
       $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
-      $( "#test-header #updatesnav .dropdown" ).removeClass( "open" );
-      $( "#test-header #updatesnav .dropdown" ).attr( "aria-expanded", "false" );
+      $( "#header #updatesnav .dropdown" ).removeClass( "open" );
+      $( "#header #updatesnav .dropdown" ).attr( "aria-expanded", "false" );
     }
   } );
 
-  $( "#test-header #updatesnav .dropdown" ).on( "click", function( e ) {
+  $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
     if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
       $( this ).toggleClass( "open" );
       $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
-      $( "#test-header #messagesnav .dropdown" ).removeClass( "open" );
-      $( "#test-header #messagesnav .dropdown" ).attr( "aria-expanded", "false" );
+      $( "#header #messagesnav .dropdown" ).removeClass( "open" );
+      $( "#header #messagesnav .dropdown" ).attr( "aria-expanded", "false" );
     }
   } );
 
   $( "body" ).on( "click", function ( e ) {
     if (
-      !$( "#test-header #messagesnav .dropdown" ).is( e.target ) &&
-      $( "#test-header #messagesnav .dropdown" ).has( e.target ).length === 0 &&
+      !$( "#header #messagesnav .dropdown" ).is( e.target ) &&
+      $( "#header #messagesnav .dropdown" ).has( e.target ).length === 0 &&
       $( ".open" ).has( e.target ).length === 0
     ) {
-      $( "#test-header #messagesnav .dropdown" ).removeClass( "open" );
+      $( "#header #messagesnav .dropdown" ).removeClass( "open" );
       $( this ).attr( "aria-expanded", "false" );
     }
   } );
 
   $( "body" ).on( "click", function ( e ) {
     if (
-      !$( "#test-header #updatesnav .dropdown" ).is( e.target ) &&
-      $( "#test-header #updatesnav .dropdown" ).has( e.target ).length === 0 &&
+      !$( "#header #updatesnav .dropdown" ).is( e.target ) &&
+      $( "#header #updatesnav .dropdown" ).has( e.target ).length === 0 &&
       $( ".open" ).has( e.target ).length === 0
     ) {
-      $( "#test-header #updatesnav .dropdown" ).removeClass( "open" );
+      $( "#header #updatesnav .dropdown" ).removeClass( "open" );
       $( this ).attr( "aria-expanded", "false" );
     }
   } );
 
-  $( "#test-header #messagesnav .dropdown" ).on( "click", function( e ) {
+  $( "#header #messagesnav .dropdown" ).on( "click", function( e ) {
     if ( !$( "#messagessubnav" ).data( "loaded" ) ) {
       $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
         $( this ).html( data );
@@ -359,7 +322,7 @@ $(document).ready(function() {
     }
   } );
 
-  $( "#test-header #updatesnav .dropdown" ).on( "click", function( e ) {
+  $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
     if ( !$( "#updatessubnav" ).data( "loaded" ) ) {
       $( "#updatessubnav" ).load( "/users/new_updates?notification=activity,mention", function( data ) {
         $( this ).html( data );
@@ -478,38 +441,21 @@ $(document).ready(function() {
 
   $('.dna').dnaHighlight()
 
-  var menuCloseInitiated;
-  $('#header .menutab').mouseenter( function( ) {
-    openHeaderSubnav( $('a:first', this) );
-    // openHeaderSubnav automatically closes all other menus,
-    // so prevent any existing delayed close calls from running
-    menuCloseInitiated = null;
-  }).mouseleave( function( e ) {
-    var item = this;
-    menuCloseInitiated = Date.now( );
-    setTimeout( function( checkTime ) {
-      // double check that we still want to close this same menu
-      if( checkTime != menuCloseInitiated ) return;
-      closeHeaderSubnav( $('a:first', item) );
-      $(".ui-autocomplete").hide( );
-    }, 200, menuCloseInitiated );
-  });
-
-  if ( $( "#test-header" ).length > 0 ) {
-    $( "#test-header .search input" ).universalAutocomplete( );
+  if ( $( "#header" ).length > 0 ) {
+    $( "#header .search input" ).universalAutocomplete( );
     function showHeaderSearch() {
       $( "#headersearch" ).addClass( "open" );
-      $( "#test-header" ).addClass( "search-open" );
+      $( "#header" ).addClass( "search-open" );
       $( "#headersearch input" ).focus( );
       updateSession( { header_search_open: true } );
     }
     function hideHeaderSearch() {
       $( "#headersearch" ).removeClass( "open" );
-      $( "#test-header" ).removeClass( "search-open" );
+      $( "#header" ).removeClass( "search-open" );
       updateSession( { header_search_open: false } );
     }
-    $( "#test-header .show-btn" ).click( showHeaderSearch );
-    $( "#test-header .hide-btn" ).click( hideHeaderSearch );
+    $( "#header .show-btn" ).click( showHeaderSearch );
+    $( "#header .hide-btn" ).click( hideHeaderSearch );
     $( document ).bind( "keyup", function( e ) {
       var forwardSlashKeyCode = 191;
       if ( e.which !== forwardSlashKeyCode ) { return true; }
@@ -1009,18 +955,18 @@ function setUpdatesCount(count, options) {
   options = options || {}
   if (count > 0) {
     if (options.skipAnimation) {
-      $('#header .updates, #test-header .updates').addClass('hasupdates')
+      $('#header .updates').addClass('hasupdates')
     } else {
-      $('#header .updates, #test-header .updates').switchClass('', 'hasupdates')
+      $('#header .updates').switchClass('', 'hasupdates')
     }
-    $('#header .updates .count, #test-header .updates .count').html(count)
+    $('#header .updates .count').html(count)
   } else {
     if (options.skipAnimation) {
-      $('#header .updates, #test-header .updates').removeClass('hasupdates')
+      $('#header .updates').removeClass('hasupdates')
     } else {
-      $('#header .updates, #test-header .updates').switchClass('hasupdates', '')
+      $('#header .updates').switchClass('hasupdates', '')
     }
-    $('#header .updates .count, #test-header .updates .count').html(0)
+    $('#header .updates .count').html(0)
   }
 }
 
@@ -1034,18 +980,18 @@ function setMessagesCount(count, options) {
   options = options || {}
   if (count > 0) {
     if (options.skipAnimation) {
-      $('#header .messages, #test-header .messages').addClass('hasupdates')
+      $('#header .messages').addClass('hasupdates')
     } else {
-      $('#header .messages, #test-header .messages').switchClass('', 'hasupdates')
+      $('#header .messages').switchClass('', 'hasupdates')
     }
-    $('#header .messages .count, #test-header .messages .count').html(count)
+    $('#header .messages .count').html(count)
   } else {
     if (options.skipAnimation) {
-      $('#header .messages, #test-header .messages').removeClass('hasupdates')
+      $('#header .messages').removeClass('hasupdates')
     } else {
-      $('#header .messages, #test-header .messages').switchClass('hasupdates', '')
+      $('#header .messages').switchClass('hasupdates', '')
     }
-    $('#header .messages .count, #test-header .messages .count').html(0)
+    $('#header .messages .count').html(0)
   }
 }
 
