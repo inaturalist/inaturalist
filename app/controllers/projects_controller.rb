@@ -39,32 +39,29 @@ class ProjectsController < ApplicationController
         if @site && (@site_place = @site.place)
           @place = @site.place unless params[:everywhere].yesish?
         end
-        @projects = Project.recently_added_to(place: @place)
-        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(8)
+        @projects = Project.recently_added_to(place: @place).includes(:stored_preferences)
+        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(8).includes(:stored_preferences)
         @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @featured = Project.featured
+        @featured = Project.featured.includes(:stored_preferences)
         @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 )
+        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 ).includes(:stored_preferences)
         @carousel = @featured.limit( 3 ) if @carousel.count == 0
         @carousel = @projects.limit( 3 ) if @carousel.count == 0
-
-        # Temporary for CNC
-        if cnc_project = Project.find( "city-nature-challenge-2018" ) rescue nil
-          @carousel = [cnc_project, @carousel.to_a].flatten.uniq[0..3]
-        end
+        @carousel = @carousel.to_a
 
         @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}[0..8]
-        @recent = Project.joins(:posts).order( "posts.id DESC" ).limit( 20 )
+        @recent = Project.joins(:posts).order( "posts.id DESC" ).limit( 20 ).includes(:stored_preferences)
         @recent = @recent.joins( :place ).where( @place.self_and_descendant_conditions ) if @place
-        @recent = @recent.to_a.uniq[0..8]
+        @recent = @recent.to_a.uniq[0..7]
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
-            order("projects.id desc").limit(5)
+            order("projects.id desc").limit(5).includes(:stored_preferences)
           @joined = current_user.project_users.joins(:project).
-            merge(Project.not_flagged_as_spam).includes(:project).
+            merge(Project.not_flagged_as_spam).includes( project: :stored_preferences ).
             where( "projects.user_id != ?", current_user ).
             order("projects.id desc").limit(5).map(&:project)
           @followed = Project.
+            includes(:stored_preferences).
             joins( "JOIN subscriptions ON subscriptions.resource_type = 'Project' AND resource_id = projects.id" ).
             where( "subscriptions.user_id = ?", current_user ).
             where( "projects.user_id != ?", current_user ).
