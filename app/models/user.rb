@@ -931,4 +931,9 @@ class User < ActiveRecord::Base
     test_groups_array.include?( group)
   end
 
+  def flagged_with( flag, options = {} )
+    evaluate_new_flag_for_spam( flag )
+    elastic_index!
+  end
+
 end
