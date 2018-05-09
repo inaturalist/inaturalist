@@ -20,7 +20,7 @@
         ( controller.action_name == "show" && @observation && @observation.user_id == current_user.id ) ||
         ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login )
       )
-    %li.navtab{ class: controller.class.name == "ObservationsController" && !looking_at_own_observations || controller.class.name == "TaxaController" ? "active" : nil }
+    %li.navtab{ class: controller.class.name == "ObservationsController" && %w( index show by_login ).include?( controller.action_name ) && !looking_at_own_observations || controller.class.name == "TaxaController" ? "active" : nil }
       = link_to t(:explore).capitalize, observations_path
     - if logged_in?
       %li.navtab{ class: looking_at_own_observations ? "active" : nil }

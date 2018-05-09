@@ -106,7 +106,12 @@
                 = render "shared/taxon", taxon: record, link_url: record
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( taxon_id: record.id ), class: "view-obs-link"
-              %p=raw record.wikipedia_summary || record.auto_summary
+              %p
+                - txt = record.wikipedia_summary || record.auto_summary
+                - if txt.blank?
+                  =t :no_description
+                - else
+                  =raw txt
           - elsif record.is_a?( Place )
             .media-left.icon
               .inner
@@ -117,7 +122,9 @@
                 = link_to t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( place_id: record.id ), class: "view-obs-link"
-              - unless record.place_type_name.blank?
+              - if record.place_type_name.blank?
+                %p=t :no_description
+              - else
                 %p= t( "place_geo.geo_planet_place_types.#{record.place_type_name.to_s.parameterize.underscore}", default: record.place_type_name ).capitalize
           - elsif record.is_a?( Project )
             .media-left{ class: record.icon? ? nil : "icon" }
@@ -132,7 +139,13 @@
                 = link_to record.try_methods( :name, :title ), record
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( project_id: record.slug ), class: "view-obs-link"
-              %p= strip_tags( truncate( record.try_methods( :body, :description ), length: 300 ) )
+              %p
+                - txt = record.try_methods( :body, :description )
+                - if txt.blank?
+                  =t :no_description
+                - else
+                  = strip_tags( truncate( txt, length: 300 ) )
+                
           - elsif record.is_a?( User )
             .media-left{ class: record.icon? ? nil : "icon" }
               .inner
@@ -151,7 +164,7 @@
                 - if txt.blank?
                   =t :no_description
                 - else
-                  = formatted_user_text( record.try_methods( :description, :name ).to_s.truncate( 300 ) )
+                  = formatted_user_text( txt.truncate( 300 ) )
           - else
             .media-left.icon
               .inner
@@ -160,4 +173,4 @@
             .media-body
               %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
               %p= formatted_user_text( record.try_methods( :body, :description ).to_s.truncate( 300 ) )
-      = will_paginate @results
+      = will_paginate @results, renderer: INatLinkRenderer, skip_right: true

@@ -216,7 +216,7 @@
           {:selected => @prefs["per_page"].to_i}, :onchange => "$(this).parents('form:first').submit()" %>
       <% end %>
     <% end -%>
-    <%= will_paginate @observations, :renderer => INatLinkRenderer %>
+    <%= will_paginate @observations, renderer: INatLinkRenderer, skip_right: true %>
   </div>
 </div>
 
