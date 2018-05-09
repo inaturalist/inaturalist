@@ -14,10 +14,16 @@
     %button.btn.btn-link.hide-btn
       %i.fa.fa-times-circle
   %ul#mainnav.navtabs
-    %li.navtab{ class: ( controller.class.name == "ObservationsController" && %w( index show ).include?( controller.action_name ) && ( !logged_in? || ![current_user.id.to_s, current_user.login].include?( params[:user_id] ) ) ) || controller.class.name == "TaxaController" ? "active" : nil }
+    :ruby
+      looking_at_own_observations = logged_in? && controller.class.name == "ObservationsController" && (
+        ( controller.action_name == "by_login" && current_user.login === params[:login] ) ||
+        ( controller.action_name == "show" && @observation && @observation.user_id == current_user.id ) ||
+        ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login )
+      )
+    %li.navtab{ class: controller.class.name == "ObservationsController" && !looking_at_own_observations || controller.class.name == "TaxaController" ? "active" : nil }
       = link_to t(:explore).capitalize, observations_path
     - if logged_in?
-      %li.navtab{ class: controller.class.name == "ObservationsController" && %w( by_login ).include?( controller.action_name ) || ( controller.class.name == "ObservationsController" && ( params[:user_id] == current_user.id.to_s || params[:user_id] === current_user.login ) ) ? "active" : nil }
+      %li.navtab{ class: looking_at_own_observations ? "active" : nil }
         = link_to t(:your_observations).titleize, observations_path( user_id: current_user.login, verifiable: "any", place_id: "any" )
     %li.navtab.communitytab.menutab{ class: %w(UsersController ProjectsController PostsController).include?( controller.class.name ) ? "active" : nil }
       .dropdown
