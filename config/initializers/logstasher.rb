@@ -73,14 +73,20 @@ module Logstasher
   end
 
   def self.replace_known_types!(hash)
-    if hash[:request] && hash[:request].is_a?(ActionDispatch::Request)
-      hash.merge!( Logstasher.payload_from_request(hash[:request]) )
+    if hash.key?(:request)
+      if hash[:request].is_a?(ActionDispatch::Request)
+        hash.merge!( Logstasher.payload_from_request(hash[:request]) )
+      end
       hash.delete(:request)
     end
-    if hash[:session] && hash[:session].is_a?(ActionDispatch::Request::Session)
-      hash.merge!( Logstasher.payload_from_session(hash[:session]) )
+    if hash.key?(:session)
+      if hash[:session].is_a?(ActionDispatch::Request::Session)
+        hash.merge!( Logstasher.payload_from_session(hash[:session]) )
+      else
+        hash.delete(:session)
+      end
     end
-    if hash[:user]
+    if hash.key?(:user)
       if hash[:user].is_a?(User)
         hash.merge!( Logstasher.payload_from_user(hash[:user]) )
       end
@@ -104,6 +110,7 @@ module Logstasher
 
   def self.write_exception(exception, custom={})
     return if Rails.env.test?
+    Logstasher.replace_known_types!(custom)
     begin
       Logstasher.write_hash( custom.merge({
         subtype: "Exception",
