@@ -1959,6 +1959,9 @@ user-icon .icon-person:before {
           border: 1px solid #ddd;
           border-radius: 1px;
         }
+        img.usericon {
+          border-radius: 50%;
+        }
         .fa {
           width: auto;
           height: 30px;
