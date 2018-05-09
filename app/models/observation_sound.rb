@@ -3,6 +3,7 @@ class ObservationSound < ActiveRecord::Base
   belongs_to :sound
   after_create :set_observation_sounds_count
   after_destroy :set_observation_sounds_count
+  after_destroy :destroy_orphan_sound
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
@@ -22,5 +23,11 @@ class ObservationSound < ActiveRecord::Base
       updated_at: updated_at,
       sound: sound.as_indexed_json
     }
+  end
+
+  private
+  def destroy_orphan_sound
+    Sound.delay( priority: INTEGRITY_PRIORITY ).destroy_orphans( sound_id )
+    true
   end
 end

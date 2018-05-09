@@ -149,4 +149,12 @@ class Sound < ActiveRecord::Base
     )
   end
 
+  def self.destroy_orphans( ids )
+    records = Sound.where( id: [ ids ].flatten ).includes( :observation_sounds )
+    return if records.blank?
+    records.each do |record|
+      record.destroy if record.orphaned?
+    end
+  end
+
 end
