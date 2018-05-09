@@ -154,321 +154,6 @@ function buildHelpTips() {
   })
 }
 
-$(document).ready(function() {
-  // stub jquery browser has to keep older qtip alive
-  $.browser = $.browser || {}
-  
-  buildHelpTips()
-  
-  $('#usernav .signin_link, #usernav .signup_link').click(function() {
-    if (window.location.pathname != '' && window.location.pathname != '/') {
-      window.location = $(this).attr('href') + '?return_to=' + window.location
-      return false
-    }
-  })
-  
-  $([
-    '<%= image_path('spinner.gif') %>',
-    '<%= image_path('spinner-small.gif') %>',
-    '<%= image_path('spinner-small-ffffff_on_dedede.gif') %>',
-    '<%= image_path('spinner-small-ffffff_on_aaaaaa.gif') %>'
-  ]).preload()
-  
-  $('[data-tip]').each(autoTip)
-  $('[data-popover]').each(autoPopover)
-  
-  $('.source_nested_form_fields input.existing').chooser({
-    collectionUrl: '/sources.json',
-    resourceUrl: '/sources/{{id}}.json'
-  })
-  
-  $('.zoomable').zoomify()
-  
-  $('.delayedlink').click(function() {
-    window.delayedLinkTries = 0
-    var dialog = $('#delayedlinknotice'),
-        msg = $(this).attr('data-delayed-link-msg') || 'Hold on while we generate that file...',
-        status = $('<div class="loading status"></div>').html(msg)
-    if (dialog.length == 0) {
-      dialog = $('<div id="delayedlinknotice"></div>')
-      $(document.body).append(dialog)
-    }
-    dialog.html(status)
-    dialog.dialog({modal: true, title: 'Hold on...'})
-    checkDelayedLink($(this).attr('href'))
-    return false
-  })
-  
-  $('#headerupdatesnotice').click(function() {
-    toggleHeaderSubnav(this)
-    if (!$('#updatessubnav').data('loaded')) {
-      $('#updatessubnav').load('/users/new_updates?notification=activity,mention', function(data) {
-        $(this).html(data)
-        $('#updatessubnav').data('loaded', true)
-        setUpdatesCount(0, {skipAnimation: true})
-        var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, {
-          position: {
-            my: 'right center',
-            at: 'left center',
-            target: 'event'
-          },
-          content: {
-            text: '<span class="loading status">' + I18n.t('loading') + '</span>',
-            ajax: {
-              type: 'GET',
-              data: {partial: 'cached_component'}
-            }
-          }
-        })
-        tipOptions.style.classes += ' compact mini observations'
-        tipOptions.style.width = 250
-        $('li a[href*="/observations/"]', this).each(function() {
-          tipOptions.position.target = $(this).parents('li:first')
-          tipOptions.content.ajax.url = $(this).attr('href')
-          $(this).qtip(tipOptions)
-        })
-      })
-    }
-    return false
-  })
-
-  $('#headermessagesnotice').click(function() {
-    toggleHeaderSubnav(this)
-    if (!$('#messagessubnav').data('loaded')) {
-      $('#messagessubnav').load('/messages/new_messages', function(data) {
-        $(this).html(data)
-        $('#messagessubnav').data('loaded', true)
-        setMessagesCount(0, {skipAnimation: true})
-      })
-    }
-    return false
-  })
-
-  // Clicks on main header items should go somewhere
-  $( "#header #mainnav .dropdown .dropdown-toggle a, #header #usernav .user .dropdown .dropdown-toggle a" ).on( "click", function( e ) {
-    if ( !inatIsMobile( ) ) {
-      window.location = e.currentTarget.href;
-    }
-    return false;
-  } );
-
-  // Show main header nav items on hover for desktop browsers. Roughly adapted from the bootstrap js.
-  $( "#header #mainnav .dropdown, #header #usernav .user .dropdown" )
-    .on( "mouseover", function( e ) {
-      var $dropdown = $( this );
-      if ( !$dropdown.is( ".dropdown" ) ) {
-        $dropdown = $dropdown.parents( ".dropdown:first" );
-      }
-      if ( $dropdown.is( ".disabled, :disabled" ) ) return;
-      $dropdown.addClass( "open" );
-      $dropdown.focus()
-      return false
-    } )
-    .on( "mouseout", function( e ) {
-      var $dropdown = $( this );
-      if ( !$dropdown.is( ".dropdown" ) ) {
-        return;
-      }
-      $dropdown.removeClass( "open" );
-    } );
-
-  $( "#header #messagesnav .dropdown" ).on( "click", function( e ) {
-    if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
-      $( this ).toggleClass( "open" );
-      $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
-      $( "#header #updatesnav .dropdown" ).removeClass( "open" );
-      $( "#header #updatesnav .dropdown" ).attr( "aria-expanded", "false" );
-    }
-  } );
-
-  $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
-    if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
-      $( this ).toggleClass( "open" );
-      $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
-      $( "#header #messagesnav .dropdown" ).removeClass( "open" );
-      $( "#header #messagesnav .dropdown" ).attr( "aria-expanded", "false" );
-    }
-  } );
-
-  $( "body" ).on( "click", function ( e ) {
-    if (
-      !$( "#header #messagesnav .dropdown" ).is( e.target ) &&
-      $( "#header #messagesnav .dropdown" ).has( e.target ).length === 0 &&
-      $( ".open" ).has( e.target ).length === 0
-    ) {
-      $( "#header #messagesnav .dropdown" ).removeClass( "open" );
-      $( this ).attr( "aria-expanded", "false" );
-    }
-  } );
-
-  $( "body" ).on( "click", function ( e ) {
-    if (
-      !$( "#header #updatesnav .dropdown" ).is( e.target ) &&
-      $( "#header #updatesnav .dropdown" ).has( e.target ).length === 0 &&
-      $( ".open" ).has( e.target ).length === 0
-    ) {
-      $( "#header #updatesnav .dropdown" ).removeClass( "open" );
-      $( this ).attr( "aria-expanded", "false" );
-    }
-  } );
-
-  $( "#header #messagesnav .dropdown" ).on( "click", function( e ) {
-    if ( !$( "#messagessubnav" ).data( "loaded" ) ) {
-      $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
-        $( this ).html( data );
-        $( "#messagessubnav" ).data( "loaded", true );
-        setMessagesCount( 0, { skipAnimation: true } );
-      } );
-    }
-  } );
-
-  $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
-    if ( !$( "#updatessubnav" ).data( "loaded" ) ) {
-      $( "#updatessubnav" ).load( "/users/new_updates?notification=activity,mention", function( data ) {
-        $( this ).html( data );
-        $( "#updatessubnav" ).data( "loaded", true )
-        setUpdatesCount( 0, { skipAnimation: true } );
-        var tipOptions = $.extend( true, {}, QTIP_DEFAULTS, {
-          position: {
-            my: "right center",
-            at: "left center",
-            target: "event"
-          },
-          content: {
-            text: '<span class="loading status">' + I18n.t( "loading") + "</span>",
-            ajax: {
-              type: "GET",
-              data: { partial: "cached_component" }
-            }
-          }
-        } );
-        tipOptions.style.classes += " compact mini observations";
-        tipOptions.style.width = 250;
-        $( 'li a[href*="/observations/"]', this ).each( function() {
-          tipOptions.position.target = $( this ).parents( "li:first" );
-          tipOptions.content.ajax.url = $( this ).attr( "href" );
-          $( this ).qtip( tipOptions );
-        } );
-      } );
-    }
-  } );
-  
-  $('.commentpreviewbutton').click(function() {
-    var button = this
-    $.ajax($(this).attr('href'), {
-      type: 'POST',
-      data: $(this).parents('form').serialize() + '&preview=true',
-      dataType: 'json',
-      beforeSend: function() {
-        $(button).hide()
-        $(button).nextAll('.loading').show()
-      }
-    })
-    .done(function(data) {
-      $(button).show()
-      $(button).nextAll('.loading').hide()
-      var html = data.html || data.body || ''
-      html = '<div class="dialog">'+html+'</div>'
-      $(html).dialog({
-        modal: true, 
-        title: I18n.t('preview'),
-        width: $(window).width() * 0.7
-      })
-    })
-    return false
-  })
-  
-  $('.identificationform')
-    .bind('ajax:before', function() {
-      $('.default.button', this).hide()
-      $('.loading', this).show()
-    })
-    .bind('ajax:complete', function() {
-      $('.default.button', this).show()
-      $('.loading', this).hide()
-    })
-    .bind('ajax:success', function(event, json, status) {
-      $(this).parents('.identification_form_wrapper:first').fadeOut()
-      $(this).parents('.identifications').find('.identifications-list').append(json.html)
-      $(this).parents('.identifications').find('.identifications-list .identification:last').addClass('stacked')
-    })
-    .bind('ajax:error', function(event, request, settings) {
-      var json = eval('(' + request.responseText + ')')
-      if (json.errors) {
-        var errors = json.errors.join(', ')
-        alert('Failed to save identification: ' + errors)
-      }
-    })
-    
-  $('.friend_link').bind('ajax:before', function() {
-    $(this).fadeOut(function() {
-      $(this).siblings('.unfriend_link').fadeIn()
-    })
-  })
-  $('.unfriend_link').bind('ajax:before', function() {
-    $(this).fadeOut(function() {
-      $(this).siblings('.friend_link').fadeIn()
-    })
-  })
-  
-  $('.commentform').bind('ajax:before', function() {
-    $(this).siblings('.loading').show()
-    $(this).hide()
-  }).bind('ajax:complete', function() {
-    $(this).siblings('.loading').hide()
-    $(this).show()
-    $('input[type=submit]', this).val('Save comment').attr('disabled', false)
-  }).bind('ajax:success', function(e, json, status) {
-    $('textarea', this).val('')
-    var wrapper = $(this).parents('.comments_wrapper:first')
-    wrapper.find('.comments').show()
-    wrapper.find('.noresults').hide()
-    wrapper.find('.comments').append(json.html)
-    $('.item .item_content', wrapper).width(function() { return $(this).parent().width() - 58 })
-  }).bind('ajax:error', function(xhr, status, error) {
-    alert(error)
-  })
-
-  // force browsers that don't support HTML5's required attribute to recognize it
-  $('form:has(input[required])').submit(checkFormForRequiredFields)
-
-  $('body.browser .item .item_content').width(function() { return $(this).parent().width() - 58 })
-  setTimeout(function() {
-    $('.identification:visible .identification_body').width(function() { 
-      return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 25
-    })
-  }, 1000)
-
-  $('.dna').dnaHighlight()
-
-  if ( $( "#header" ).length > 0 ) {
-    $( "#header .search input" ).universalAutocomplete( );
-    function showHeaderSearch() {
-      $( "#headersearch" ).addClass( "open" );
-      $( "#header" ).addClass( "search-open" );
-      $( "#headersearch input" ).focus( );
-      updateSession( { header_search_open: true } );
-    }
-    function hideHeaderSearch() {
-      $( "#headersearch" ).removeClass( "open" );
-      $( "#header" ).removeClass( "search-open" );
-      updateSession( { header_search_open: false } );
-    }
-    $( "#header .show-btn" ).click( showHeaderSearch );
-    $( "#header .hide-btn" ).click( hideHeaderSearch );
-    $( document ).bind( "keyup", function( e ) {
-      var forwardSlashKeyCode = 191;
-      if ( e.which !== forwardSlashKeyCode ) { return true; }
-      if ( e.target.type === "textarea" || e.target.type === "text" ) {
-        return true;
-      }
-      showHeaderSearch( );
-    } );
-  }
-} );
-
-
-
 function checkFormForRequiredFields(e) {
   var inputs = $('input[required]:visible').filter(function() { return !$(this).val() })
   if (inputs.length == 0) {
@@ -1676,6 +1361,319 @@ $.fn.confirmModal = function( options ) {
     $( ":focus" ).blur( );
   });
 };
+
+$(document).ready(function() {
+  // stub jquery browser has to keep older qtip alive
+  $.browser = $.browser || {}
+  
+  buildHelpTips()
+  
+  $('#usernav .signin_link, #usernav .signup_link').click(function() {
+    if (window.location.pathname != '' && window.location.pathname != '/') {
+      window.location = $(this).attr('href') + '?return_to=' + window.location
+      return false
+    }
+  })
+  
+  $([
+    '<%= image_path('spinner.gif') %>',
+    '<%= image_path('spinner-small.gif') %>',
+    '<%= image_path('spinner-small-ffffff_on_dedede.gif') %>',
+    '<%= image_path('spinner-small-ffffff_on_aaaaaa.gif') %>'
+  ]).preload()
+  
+  $('[data-tip]').each(autoTip)
+  $('[data-popover]').each(autoPopover)
+  
+  $('.source_nested_form_fields input.existing').chooser({
+    collectionUrl: '/sources.json',
+    resourceUrl: '/sources/{{id}}.json'
+  })
+  
+  $('.zoomable').zoomify()
+  
+  $('.delayedlink').click(function() {
+    window.delayedLinkTries = 0
+    var dialog = $('#delayedlinknotice'),
+        msg = $(this).attr('data-delayed-link-msg') || 'Hold on while we generate that file...',
+        status = $('<div class="loading status"></div>').html(msg)
+    if (dialog.length == 0) {
+      dialog = $('<div id="delayedlinknotice"></div>')
+      $(document.body).append(dialog)
+    }
+    dialog.html(status)
+    dialog.dialog({modal: true, title: 'Hold on...'})
+    checkDelayedLink($(this).attr('href'))
+    return false
+  })
+  
+  $('#headerupdatesnotice').click(function() {
+    toggleHeaderSubnav(this)
+    if (!$('#updatessubnav').data('loaded')) {
+      $('#updatessubnav').load('/users/new_updates?notification=activity,mention', function(data) {
+        $(this).html(data)
+        $('#updatessubnav').data('loaded', true)
+        setUpdatesCount(0, {skipAnimation: true})
+        var tipOptions = $.extend(true, {}, QTIP_DEFAULTS, {
+          position: {
+            my: 'right center',
+            at: 'left center',
+            target: 'event'
+          },
+          content: {
+            text: '<span class="loading status">' + I18n.t('loading') + '</span>',
+            ajax: {
+              type: 'GET',
+              data: {partial: 'cached_component'}
+            }
+          }
+        })
+        tipOptions.style.classes += ' compact mini observations'
+        tipOptions.style.width = 250
+        $('li a[href*="/observations/"]', this).each(function() {
+          tipOptions.position.target = $(this).parents('li:first')
+          tipOptions.content.ajax.url = $(this).attr('href')
+          $(this).qtip(tipOptions)
+        })
+      })
+    }
+    return false
+  })
+
+  $('#headermessagesnotice').click(function() {
+    toggleHeaderSubnav(this)
+    if (!$('#messagessubnav').data('loaded')) {
+      $('#messagessubnav').load('/messages/new_messages', function(data) {
+        $(this).html(data)
+        $('#messagessubnav').data('loaded', true)
+        setMessagesCount(0, {skipAnimation: true})
+      })
+    }
+    return false
+  })
+
+  // Clicks on main header items should go somewhere
+  $( "#header #mainnav .dropdown .dropdown-toggle a, #header #usernav .user .dropdown .dropdown-toggle a" ).on( "click", function( e ) {
+    if ( !inatIsMobile( ) ) {
+      window.location = e.currentTarget.href;
+    }
+    return false;
+  } );
+
+  // Show main header nav items on hover for desktop browsers. Roughly adapted from the bootstrap js.
+  $( "#header #mainnav .dropdown, #header #usernav .user .dropdown" )
+    .on( "mouseover", function( e ) {
+      var $dropdown = $( this );
+      if ( !$dropdown.is( ".dropdown" ) ) {
+        $dropdown = $dropdown.parents( ".dropdown:first" );
+      }
+      if ( $dropdown.is( ".disabled, :disabled" ) ) return;
+      $dropdown.addClass( "open" );
+      $dropdown.focus()
+      return false
+    } )
+    .on( "mouseout", function( e ) {
+      var $dropdown = $( this );
+      if ( !$dropdown.is( ".dropdown" ) ) {
+        return;
+      }
+      $dropdown.removeClass( "open" );
+    } );
+
+  $( "#header #messagesnav .dropdown" ).on( "click", function( e ) {
+    if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
+      $( this ).toggleClass( "open" );
+      $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
+      $( "#header #updatesnav .dropdown" ).removeClass( "open" );
+      $( "#header #updatesnav .dropdown" ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
+    if ( $( e.target ).parents( ".dropdown-menu" ).length === 0 ) {
+      $( this ).toggleClass( "open" );
+      $( this ).attr( "aria-expanded", $( this ).attr( "aria-expanded" ) === "true" ? "false" : "true" );
+      $( "#header #messagesnav .dropdown" ).removeClass( "open" );
+      $( "#header #messagesnav .dropdown" ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "body" ).on( "click", function ( e ) {
+    if (
+      !$( "#header #messagesnav .dropdown" ).is( e.target ) &&
+      $( "#header #messagesnav .dropdown" ).has( e.target ).length === 0 &&
+      $( ".open" ).has( e.target ).length === 0
+    ) {
+      $( "#header #messagesnav .dropdown" ).removeClass( "open" );
+      $( this ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "body" ).on( "click", function ( e ) {
+    if (
+      !$( "#header #updatesnav .dropdown" ).is( e.target ) &&
+      $( "#header #updatesnav .dropdown" ).has( e.target ).length === 0 &&
+      $( ".open" ).has( e.target ).length === 0
+    ) {
+      $( "#header #updatesnav .dropdown" ).removeClass( "open" );
+      $( this ).attr( "aria-expanded", "false" );
+    }
+  } );
+
+  $( "#header #messagesnav .dropdown" ).on( "click", function( e ) {
+    if ( !$( "#messagessubnav" ).data( "loaded" ) ) {
+      $( "#messagessubnav" ).load( "/messages/new_messages", function( data ) {
+        $( this ).html( data );
+        $( "#messagessubnav" ).data( "loaded", true );
+        setMessagesCount( 0, { skipAnimation: true } );
+      } );
+    }
+  } );
+
+  $( "#header #updatesnav .dropdown" ).on( "click", function( e ) {
+    if ( !$( "#updatessubnav" ).data( "loaded" ) ) {
+      $( "#updatessubnav" ).load( "/users/new_updates?notification=activity,mention", function( data ) {
+        $( this ).html( data );
+        $( "#updatessubnav" ).data( "loaded", true )
+        setUpdatesCount( 0, { skipAnimation: true } );
+        var tipOptions = $.extend( true, {}, QTIP_DEFAULTS, {
+          position: {
+            my: "right center",
+            at: "left center",
+            target: "event"
+          },
+          content: {
+            text: '<span class="loading status">' + I18n.t( "loading") + "</span>",
+            ajax: {
+              type: "GET",
+              data: { partial: "cached_component" }
+            }
+          }
+        } );
+        tipOptions.style.classes += " compact mini observations";
+        tipOptions.style.width = 250;
+        $( 'li a[href*="/observations/"]', this ).each( function() {
+          tipOptions.position.target = $( this ).parents( "li:first" );
+          tipOptions.content.ajax.url = $( this ).attr( "href" );
+          $( this ).qtip( tipOptions );
+        } );
+      } );
+    }
+  } );
+  
+  $('.commentpreviewbutton').click(function() {
+    var button = this
+    $.ajax($(this).attr('href'), {
+      type: 'POST',
+      data: $(this).parents('form').serialize() + '&preview=true',
+      dataType: 'json',
+      beforeSend: function() {
+        $(button).hide()
+        $(button).nextAll('.loading').show()
+      }
+    })
+    .done(function(data) {
+      $(button).show()
+      $(button).nextAll('.loading').hide()
+      var html = data.html || data.body || ''
+      html = '<div class="dialog">'+html+'</div>'
+      $(html).dialog({
+        modal: true, 
+        title: I18n.t('preview'),
+        width: $(window).width() * 0.7
+      })
+    })
+    return false
+  })
+  
+  $('.identificationform')
+    .bind('ajax:before', function() {
+      $('.default.button', this).hide()
+      $('.loading', this).show()
+    })
+    .bind('ajax:complete', function() {
+      $('.default.button', this).show()
+      $('.loading', this).hide()
+    })
+    .bind('ajax:success', function(event, json, status) {
+      $(this).parents('.identification_form_wrapper:first').fadeOut()
+      $(this).parents('.identifications').find('.identifications-list').append(json.html)
+      $(this).parents('.identifications').find('.identifications-list .identification:last').addClass('stacked')
+    })
+    .bind('ajax:error', function(event, request, settings) {
+      var json = eval('(' + request.responseText + ')')
+      if (json.errors) {
+        var errors = json.errors.join(', ')
+        alert('Failed to save identification: ' + errors)
+      }
+    })
+    
+  $('.friend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.unfriend_link').fadeIn()
+    })
+  })
+  $('.unfriend_link').bind('ajax:before', function() {
+    $(this).fadeOut(function() {
+      $(this).siblings('.friend_link').fadeIn()
+    })
+  })
+  
+  $('.commentform').bind('ajax:before', function() {
+    $(this).siblings('.loading').show()
+    $(this).hide()
+  }).bind('ajax:complete', function() {
+    $(this).siblings('.loading').hide()
+    $(this).show()
+    $('input[type=submit]', this).val('Save comment').attr('disabled', false)
+  }).bind('ajax:success', function(e, json, status) {
+    $('textarea', this).val('')
+    var wrapper = $(this).parents('.comments_wrapper:first')
+    wrapper.find('.comments').show()
+    wrapper.find('.noresults').hide()
+    wrapper.find('.comments').append(json.html)
+    $('.item .item_content', wrapper).width(function() { return $(this).parent().width() - 58 })
+  }).bind('ajax:error', function(xhr, status, error) {
+    alert(error)
+  })
+
+  // force browsers that don't support HTML5's required attribute to recognize it
+  $('form:has(input[required])').submit(checkFormForRequiredFields)
+
+  $('body.browser .item .item_content').width(function() { return $(this).parent().width() - 58 })
+  setTimeout(function() {
+    $('.identification:visible .identification_body').width(function() { 
+      return $(this).parent().outerWidth(true) - $(this).siblings('.identification_image').outerWidth(true) - 25
+    })
+  }, 1000)
+
+  $('.dna').dnaHighlight()
+
+  if ( $( "#header" ).length > 0 ) {
+    $( "#header .search input" ).universalAutocomplete( );
+    function showHeaderSearch() {
+      $( "#headersearch" ).addClass( "open" );
+      $( "#header" ).addClass( "search-open" );
+      $( "#headersearch input" ).focus( );
+      updateSession( { header_search_open: true } );
+    }
+    function hideHeaderSearch() {
+      $( "#headersearch" ).removeClass( "open" );
+      $( "#header" ).removeClass( "search-open" );
+      updateSession( { header_search_open: false } );
+    }
+    $( "#header .show-btn" ).click( showHeaderSearch );
+    $( "#header .hide-btn" ).click( hideHeaderSearch );
+    $( document ).bind( "keyup", function( e ) {
+      var forwardSlashKeyCode = 191;
+      if ( e.which !== forwardSlashKeyCode ) { return true; }
+      if ( e.target.type === "textarea" || e.target.type === "text" ) {
+        return true;
+      }
+      showHeaderSearch( );
+    } );
+  }
+} );
 
 $(document).ready(function() {
   // tmp fixes for old views being used with bootstrap
