@@ -1,6 +1,6 @@
 - site = @site || CONFIG
 #header.bootstrap{ class: session[:header_search_open] ? "search-open" : nil }
-  .navtabs
+  #logonav.navtabs
     - if site && !site.custom_logo.blank?
       =raw site.custom_logo
     - elsif site && site.logo
