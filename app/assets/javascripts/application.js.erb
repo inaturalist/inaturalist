@@ -400,9 +400,6 @@ $.fn.unlock = function() {
     $(this).show().data('locked', false)
   })
 }
-$(document).ready(function() {
-  $(':input[data-locked]').lock()
-})
 
 $.fn.zoomify = function() {
   var selection = $(this).not('.zoomified')
@@ -1364,9 +1361,11 @@ $.fn.confirmModal = function( options ) {
 
 $(document).ready(function() {
   // stub jquery browser has to keep older qtip alive
-  $.browser = $.browser || {}
+  $.browser = $.browser || {};
+
+  $(':input[data-locked]').lock();
   
-  buildHelpTips()
+  buildHelpTips();
   
   $('#usernav .signin_link, #usernav .signup_link').click(function() {
     if (window.location.pathname != '' && window.location.pathname != '/') {
@@ -1673,9 +1672,7 @@ $(document).ready(function() {
       showHeaderSearch( );
     } );
   }
-} );
 
-$(document).ready(function() {
   // tmp fixes for old views being used with bootstrap
   $('.bootstrap .button.default').addClass('btn btn-primary').removeClass('button default');
   $('.bootstrap .inter').addClass('btn btn-link').removeClass('inter');
