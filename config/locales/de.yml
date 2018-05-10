@@ -215,6 +215,7 @@ de:
   add_custom_project_fields: Benutzerdefinierte Projektfelder hinzufügen
   add_edit_flags: Markierungen hinzufügen/bearbeiten
   add_edit_more_fields: Hinzufügen/Bearbeiten weiterer Felder
+  add_editor: Autor hinzufügen
   add_description: '%{description_name} hinzufügen'
   add_field: Feld hinzufügen
   add_from_your_observations: Aus Ihren Beobachtungen hinzufügen
@@ -603,6 +604,7 @@ de:
   back_to_browsing_people: Zurück zur Personensuche
   back_to_calendar: Zurück zu %{user}s Kalender
   back_to_editing_observation: Zurück zur Beobachtungsbearbeitung
+  back_to_friends: Zurück zu den Freunden
   back_to_help: Zurück zur Hilfe
   back_to_import: Zurück zum Import
   back_to_lists: Zurück zu den %{name}-Listen
@@ -830,6 +832,7 @@ de:
   choose_a_list_above: Wählen Sie eine der obigen Listen.
   choose_a_place: Wählen Sie einen Ort
   choose_a_taxon: Wählen Sie ein Taxon (optional)
+  choose_columns: Spalten auswählen
   choose_file: Datei auswählen
   choose_files: Dateien auswählen
   choose_files_from_your_computer: wählen Sie Dateien von Ihrem Computer aus
@@ -1010,6 +1013,7 @@ de:
   created_by_user_on_date: Erstellt von %{user} am %{date}
   created_on: Erstellt am
   creating_your_account: Benutzerkonto erstellen...
+  creative_commons_unless_otherwise_noted: Creative Commons, sofern nicht anders angegeben.
   critically_endangered: vom Aussterben bedroht
   critically_imperiled: stark gefährdet
   csv: CSV
@@ -1103,6 +1107,7 @@ de:
   default_observation_license: Standardbeobachtungslizenz
   default_photo_license: Standard-Fotolizenz
   default_sound_license: Standardtonlizenz
+  defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
   delete: Löschen
   delete_all: Alle löschen
   delete_conversation: Unterhaltung löschen
@@ -1217,6 +1222,7 @@ de:
   editing_taxon_range: Taxonbereich bearbeiten
   editing_this: Bearbeiten %{elem}
   editing_x_in_y: Bearbeiten %{x} in %{y}
+  editors: Autoren
   eg: z.B.
   either: Oder
   email: E-Mail
@@ -1246,6 +1252,7 @@ de:
     native_and_occurs_nowhere_else: einheimisch und sonst nirgends zu finden
     arrived_in_the_region_via_anthropogenic_means: ist durch anthropogenen Einfluss
       in die Region gelangt
+  event_stats: Ereignisstatistiken
   event_url: Ereignis-URL
   events_only: Nur Ereignisse
   every_species_seen_by: Jede Art gesehen von
@@ -1290,6 +1297,7 @@ de:
   fields_can_only_be_edited_by_the_people_who: Felder bearbeiten dürfen nur diejenigen,
     die sie erstellt haben, sowie Kuratoren
   fields_merged: Felder verbunden
+  file: Datei
   fill_out_project_observation_fields: Projekt Beobachtungsfeld ausfüllen
   fill_out_your_profile: vervollständige dein Profil
   filling_out_your_profile: ihr Profil ausfüllen
@@ -1299,6 +1307,7 @@ de:
   filter_by_place: nach Ort filtern
   filter_by_taxon: Nach Taxon filtern
   filter_list_by_this_taxon: Liste nach diesem Taxon filtern
+  filtering: Filterung
   filters: Filter
   find: Finden
   find_a_guide: Einen Führer finden
@@ -1326,10 +1335,14 @@ de:
   flag_as_spammer: Als Spammer markieren
   flag_it!: Markieren!
   flag_saved: Markierung gespeichert.
+  flag_saved_thanks: Markierung gespeichert. Danke!
   flag_this_observation: Diese Beobachtung kennzeichnen
   flag_this_photo: Dieses Foto markieren
   flagged: Gekennzeichnet
   flagged_: Gekennzeichnet
+  flagger: Markierer
+  flags_for: Markierungen für
+  flickr_identity: Flickr-Identität
   flickr_photo: Flickr Foto
   flickr_photos: Flickr Fotos
   flickr_tags: Flickr Tags
@@ -2573,8 +2586,8 @@ de:
   table: Tabelle
   table_of_contents: Inhaltsverzeichnis
   tags: Tags
-  taxa_all_species_html: Alle Arten
   taxa_info: Informationen zu Taxa
+  taxa_all_species_html: Alle Arten
   taxa_observed: beobachtete Taxa
   taxon: Taxon
   taxonomy: Taxonomie

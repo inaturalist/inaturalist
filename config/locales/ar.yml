@@ -1482,6 +1482,7 @@ ar:
   follow_us: اتبعنا في
   follow_us_on: اتبعنا في
   follow_user: اتبع %{user}
+  followed_projects: المشاريع المتبعة
   follower: متابع
   followers: متابعون
   following: التالي
@@ -1824,6 +1825,7 @@ ar:
   join_this_project: انضم إلى هذا المشروع
   joined!: تم الانضام!
   joined_any_projects: انضم إلى أي المشاريع
+  joined_projects: المشاريع التي أنت منضم إليها
   joining: جارٍ الانضام...
   journal: مجلة
   journal_archives_for: أرشيفات المجلة لـ
@@ -1888,12 +1890,16 @@ ar:
     cebuano: السيبوانية
     creole_french: الكريولية (الفرنسية)
     creole_portuguese: الكريولية (البرتغالية)
+    czech: التشيكية
+    danish: الدانماركية
     davawenyo: دفاوينيو
     dutch: الهولندية
     english: الإنجليزية
+    finnish: الفنلندية
     french: الفرنسية
     gela: جيلا
     german: الألمانية
+    greek: اليونانية
     hawaiian: الهاوايية
     hebrew: العبرية
     hiligaynon: الهيليجينون
@@ -1902,6 +1908,7 @@ ar:
     italian: الإيطالية
     japanese: اليابانية
     korean: الكورية
+    luxembourgish: اللوكسمبرغية
     maltese: المالطية
     maori: الماورية
     misima_paneati: ميسيما
@@ -2036,6 +2043,7 @@ ar:
     es-ES: الإسبانية (إسبانيا)
     es-MX: الإسبانية (المكسيك)
     es: الإسبانية
+    et: الإستونية
     eu: الباسكية
     fi: الفنلندية
     fr: الفرنسية
@@ -2113,6 +2121,7 @@ ar:
   manage: إدارة
   manage_all_your_subscriptions: إدارة جميع اشتراكاتك
   manage_names: إدارة الأسماء
+  manage_your_projects: إدارة مشاريعك
   manage_your_project_invitations: إدارة دعوات مشروعك
   manage_subscriptions: إدارة الاشتراكات
   managed: يديره
@@ -2285,6 +2294,7 @@ ar:
   needs_id_expandable_html: <span class='full'>يحتاج </span>معرفا
   needs_to_be_identified: ينبغي تحديدها
   new: جديد
+  new_and_noteworthy: جديد وجدير بالملاحظة
   new_announcement: إعلان جديد
   new_assessment: تقييم جديد
   new_check_list: قائمة تحقق جديدة
@@ -2349,6 +2359,7 @@ ar:
     "%{x}"
   no_curators_set: لم يتم تعيين قيمين
   no_curators_yet: لا يوجد قيمون حتى الآن!
+  no_description: لا يوجد وصف
   no_facebook_photos: لا يمكننا العثور على أي صور من فيسبوك.
   no_flags: لا توجد أعلام هذه المرة
   no_flickr_photos_tagged: لا توجد صور فليكر موسومة!
@@ -3105,9 +3116,9 @@ ar:
   project_was_successfully_updated: تم تحديث المشروع بنجاح.
   project_x_was_delete: تم حذف %{project} (يُرجى السماح لبضع دقائق لإزالته من الموقع)
   projects: مشاريع
-  projects_description: تعد المشاريع وسيلة لتجميع ملاحظاتك مع أشخاص آخرين في %{site_name}،
-    سواء كنت ترغب في بدء مشروع علم مواطن أو مجرد تتبع طيور في حديقة مجاورة مع نادي
-    الطيور المحلي، والمشاريع طريق للذهاب فيه.
+  projects_description: "تتيح لك المشروعات تجميع ملاحظاتك مع أشخاص آخرين في %{site_name}،\nسواء
+    كنت ترغب في بدء مشروع علم مواطن أو أو تحافظ على علامات تبويب \nالطيور في منطقتك،
+    فإن المشاريع هي الطريق للذهاب فيه."
   projects_from_place: مشاريع من %{place}
   projects_in_x: مشاريع في %{x}
   projects_you_admin: مشاريع أنت إداريها
@@ -3369,6 +3380,7 @@ ar:
   search_places: ابحث عن أماكن
   search_projects: البحث في المشاريع
   search_results_for: نتائج البحث عن
+  search_results_for_query: نتائج البحث عن "%{query}"
   search_remote: البحث عن بعد
   search_species: البحث عن الأنواع
   search_species_: البحث عن الأنواع...
@@ -3450,6 +3462,7 @@ ar:
   showing_one_to: عرض 1 -
   showing_taxa_from_everywhere: عرض أصناف من كل مكان
   showing_taxa_from_place: عرض أصناف من %{place}
+  showing_x_of_y_listings: عرض %{x} من قوائم %{y}
   shown_publicly_as: يظهر بشكل عام كـ
   sign_in: تسجيل الدخول
   sign_in_with_provider: تسجيل الدخول باستخدام %{provider}
@@ -3684,12 +3697,61 @@ ar:
   take_me_flickr!: نعم، خذني إلى فليكر!
   take_me_back: أعدني
   taxa: أصناف
+  taxa_info: معلومات الأصناف
   taxa_all_species_html: جميع الأنواع
   taxa_needing_curation: أصناف تحتاج معالجة
   taxa_observed: أصناف ملاحظة
   taxa_to_include: أصناف للتضمين
   taxon: أصنوفة
   taxon_autocomplete_placeholder: طيور، فراشة ملكية، إلخ.
+  taxon_is_a_rank: '%{taxon} %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} هي %{rank} في %{iconic_taxon} بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} في %{iconic_taxon} بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} هي %{rank} من البرمائيات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من البرمائيات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} هي %{rank} من الطيور بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الطيور بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} هي %{rank} من الثدييات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الثدييات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} هي %{rank} من الزواحف بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الزواحف بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} هي %{rank} من النباتات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من النباتات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} هي %{rank} من شعاعيات الزعانف بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من شعاعيات الزعانف بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} هي %{rank} من الحيوانات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الحيوانات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} هي %{rank} من الحشرات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الحشرات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} هي %{rank} من العناكب بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من العناكب بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} هي %{rank} من الفطريات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الفطريات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} هي %{rank} من الأوليات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الأوليات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} هي %{rank} من الرخويات بملاحظة واحدة'
+    other: '%{taxon} هي %{rank} من الرخويات بـ%{count} ملاحظات'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} هي %{rank} من السوطيات المتغايرة (الطحالب البنية وحلفائه) بملاحظة
+      واحدة'
+    other: '%{taxon} هي %{rank} من السوطيات المتغايرة (الطحالب البنية وحلفائه) بـ%{count}
+      ملاحظات'
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: '%{taxon} هي مملكة حياة بملاحظة واحدة'
+    other: '%{taxon} هي مملكة حياة بـ%{count} ملاحظات'
   taxonomy: التصنيف
   taxon_: أصنوفة
   taxon_assessments_are: |-
@@ -4586,6 +4648,7 @@ ar:
   your_google_account: حسابك في جوجل
   your_google_account_info: معلومات حسابك في جوجل
   your_profile_was_successfully_updated: تم تحديث ملفك الشخصي بنجاح!
+  your_recent_projects: مشاريعك الحديثة
   your_should_recognize: يجب عليك التعرف على بعض هذه الصور
   your_site_account_has_been_created: تم إنشاء حسابك في %{site}.
   your_site_needs_your_to_authorize_more_permissions_from_provider: 'يحتاج%{site_name}
@@ -5337,6 +5400,7 @@ ar:
         click_through_to_individual_projects: انقر من خلال المشاريع الفردية
         collection_projects: مشاريع المجموعة
         collection_project_features: 'ميزات مشروع التجميع:'
+        contain_entire_image_without_cropping: تحتوي على صورة كاملة بدون اقتصاص
         custom_banner_icon_and_project_description: شعار ورمز ووصف مشروع مخصص
         data_visualizations: تصورات البيانات
         delete_project: حذف المشروع
@@ -5388,6 +5452,10 @@ ar:
           التي تحددها، اختر من بين نوعين: \nمجموعة المشروعات ومشاريع المظلة، والتي
           تشترك في الميزات التالية:"
         welcome_to_projects: مرحبا بك في المشاريع!
+        you_have_not_defined_any_observation_requirements: "لم تحدد أي متطلبات للملاحظة;
+          تأكد من تحديد أصنوفة واحدة أو أكثر \n(مثل الطيور والصنوبريات) والأماكن (مثل
+          البرازيل ويلوستون) والمستخدمين و/أو التواريخ لتحديد \nالملاحظات التي تريد
+          تضمينها في مشروعك."
       project_location_privacy_notice_html: "<p>\n  يُرجَى الانتباه إلى أن أمناء المشروع
         سيكونون قادرين على رؤية أي \n  مواقع خاصة أو محجوبة لملاحظاتك في هذا المشروع
         ما لم \n  تلغٍ هذا الإذن، وسيتمكنون من إضافة أي من ملاحظاتك \n  إلى هذا المشروع
@@ -6104,6 +6172,17 @@ ar:
             lexicon:
               should_not_contain_commas_or_slashes: يجب ألا تحتوي على فواصل أو خطوط
                 مائلة
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: لا يمكن
+                أن تتطابق مع الاسم العلمي للنوع لهذا المعجم
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: |-
+                يجب أن يبدأ بحرف، ولا يحتوي على مسافات، ويستخدم فقط
+                الأحرف والأرقام والشرطات والشرطات السفلية
+            email:
+              must_look_like_an_email_address: يجب أن يبدو مثل عنوان بريد إلكتروني
     models:
       AssessmentSection: قسم التقييم
       Atlas: أطلس
@@ -6193,6 +6272,7 @@ ar:
         source_identifier: معرف المصدر
       user:
         email: البريد الإلكتروني
+        login: اسم المستخدم
         name: الاسم
         locale: المكان
         time_zone: المنطقة الزمنية

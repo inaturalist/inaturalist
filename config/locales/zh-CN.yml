@@ -1276,6 +1276,7 @@ zh-CN:
   follow_us: 关注我们在
   follow_us_on: 关注我们在
   follow_user: 关注%{user}
+  followed_projects: 关注的项目
   follower: 关注者
   followers: 关注者
   following: 关注中
@@ -1548,6 +1549,7 @@ zh-CN:
   join_this_project: 加入这个项目
   joined!: 已加入！
   joined_any_projects: 已加入任何项目
+  joined_projects: 加入的项目
   joining: 正在加入……
   journal: 杂志
   journal_archives_for: 日记存档，用于
@@ -1772,6 +1774,7 @@ zh-CN:
   mammals: 哺乳类
   manage: 管理
   manage_names: 管理名称
+  manage_your_projects: 管理您的项目
   manage_subscriptions: 管理订阅
   managed: 已管理
   manager: 经理
@@ -1915,6 +1918,7 @@ zh-CN:
   needs_id_expandable_html: <span class='full'>需要</span>ID
   needs_to_be_identified: 需要被鉴定
   new: 新
+  new_and_noteworthy: 新闻与显著内容
   new_assessment: 新评估
   new_check_list: 新检查表
   new_check_list_for: 为 %{place} 创建一个新检查表&raquo;
@@ -1958,6 +1962,7 @@ zh-CN:
   no_countries_added_yet: 尚未添加国家
   no_creative_commons_flickr_photo: 没有知识共享Flickr照片已标记
   no_creative_commons_flickr_photos_tagged_x: 没有知识共享Flickr照片标记为“%{x}”
+  no_description: 无描述
   no_facebook_photos: 我们找不到任何来自Facebook的照片。
   no_flags: 目前没有标记
   no_header_row: 没有标题行
@@ -2673,6 +2678,7 @@ zh-CN:
   search_places: 搜索地点
   search_projects: 搜索项目
   search_results_for: 搜索结果用于
+  search_results_for_query: 搜索“%{query}”的结果
   search_remote: 搜索远程
   search_species: 搜索物种
   search_species_: 搜索物种...
@@ -2891,10 +2897,11 @@ zh-CN:
   take_me_flickr!: 是的，带我去Flickr！
   take_me_back: 让我返回
   taxa: 分类单元
-  taxa_all_species_html: 所有物种
   taxa_info: 分类群信息
+  taxa_all_species_html: 所有物种
   taxon: 类群
   taxon_autocomplete_placeholder: 鸟、君主等
+  taxon_is_a_rank: '%{taxon}是一个%{rank}'
   taxonomy: 分类学
   taxon_: 分类单元
   taxon_id: 分类单元ID
@@ -3422,6 +3429,7 @@ zh-CN:
   your_google_account: 您的Google账户
   your_google_account_info: 您的Google账户信息
   your_profile_was_successfully_updated: 您的个人资料已成功更新！
+  your_recent_projects: 您最近的项目
   your_site_account_has_been_created: 您的%{site}账户已创建。
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
     需要您授权 %{provider} 使用更多权限：'
@@ -3855,6 +3863,7 @@ zh-CN:
         med_ttid: 医学TTID
         new_users_desc: 今天就注册吧
         obs_1_day: 观察（1天）
+        obs_1_day_desc: 在同一天内创建的观察
         obs_cid_d_desc: 在过去7天创建，并有一个社群ID
         obs_cid_d_to_genus: 观察CID'd至类
         obs_desc: 在过去7天创建
