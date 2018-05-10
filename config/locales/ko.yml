@@ -1106,6 +1106,7 @@ ko:
   follow_us: 에서 팔로우해 주세요.
   follow_us_on: 에서 팔로우해 주세요.
   follow_user: '%{user} 팔로우'
+  followed_projects: 팔로우한 프로젝트
   follower: 팔로우하는 사용자들
   followers: 팔로어
   following: 팔로잉
@@ -1331,6 +1332,7 @@ ko:
   join_project: 이 프로젝트 가입하기
   join_this_project: 이 프로젝트 가입하기
   joined!: 가입했습니다!
+  joined_projects: 참가한 프로젝트
   joining: 참여중...
   journal: 일지
   journal_archives_for: 위한 일지 아카이브
@@ -1510,6 +1512,7 @@ ko:
   manage: 관리
   manage_all_your_subscriptions: 모든 구독 정보 관리
   manage_names: 이름 관리
+  manage_your_projects: 내 프로젝트 관리
   manage_your_project_invitations: 프로젝트 초대 관리
   managed: 관리됨
   manager: 매니저
@@ -1601,6 +1604,7 @@ ko:
   Needs_ID!: 동정 필요!
   needs_to_be_identified: 동정 필요
   new: 신규
+  new_and_noteworthy: 새롭고 주목할 만한 사항
   new_announcement: 새로운 알림
   new_assessment: 새로운 평가
   new_check_list: 새로운 체크리스트
@@ -1656,6 +1660,7 @@ ko:
   no_creative_commons_flickr_photos_tagged_x: '%{x}로 크리에이티브 커먼즈 Flickr 사진 태그된 것이 없음'
   no_curators_set: 정해진 큐레이터 없음
   no_curators_yet: 아직 큐레이터가 없습니다
+  no_description: 설명 없음
   no_facebook_photos: 페이스북에서 사진을 찾을 수 없습니다.
   no_flags: 플래그가 없습니다.
   no_flickr_photos_tagged: 태그된 플리커 사진이 없습니다.
@@ -2047,6 +2052,7 @@ ko:
   search_list: 목록 검색
   search_places: 장소 검색
   search_projects: 프로젝트 검색
+  search_results_for_query: '"%{query}" 검색 결과'
   search_species: 종 검색
   search_species_: 종 검색...
   search_the_map: 지도 검색
@@ -2125,8 +2131,8 @@ ko:
   tags: 태그
   take_me_facebook: 네, 페이스북으로 연결해주세요!
   take_me_flickr!: 네, Flickr로 연결해주세요!
-  taxa_all_species_html: 모든 종
   taxa_info: 생물 분류 정보
+  taxa_all_species_html: 모든 종
   taxon_colors: 분류 색
   taxon_extras: 분류군 엑스트라들
   taxon_ranks: 분류 순위
@@ -2293,6 +2299,7 @@ ko:
   your_projects: 내 프로젝트
   your_google_account: 내 구글 계정
   your_google_account_info: 구글 계정 정보
+  your_recent_projects: 내 최근 프로젝트
   your_subscriptions: 당신의 구독 목록
   your_sure_delete_list?: 이 목록을 삭제하겠습니까?
   youre_following: '팔로우 중:'
@@ -2562,6 +2569,8 @@ ko:
             login:
               must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
                 사용해야 합니다
+            email:
+              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
     models:
       TaxonLink: 분류 링크
     attributes:

@@ -1562,6 +1562,7 @@ it:
   follow_us: Seguici su
   follow_us_on: Seguici su
   follow_user: Segui %{user}
+  followed_projects: Progetti seguiti
   follower: seguace
   followers: Seguaci
   following: seguendo
@@ -1911,6 +1912,7 @@ it:
   join_this_project: Aderisci a questo progetto
   joined!: Hai aderito!
   joined_any_projects: aderito a nessun progetto
+  joined_projects: Progetti a cui ti sei unito
   joining: Stai aderendo...
   journal: Diario
   journal_archives_for: Archivi dei diari per
@@ -2221,6 +2223,7 @@ it:
   manage: Gestisci
   manage_all_your_subscriptions: Gestisci tutte le tue sottoscrizioni
   manage_names: Gestisci i nomi
+  manage_your_projects: Gestisci i Tuoi Progetti
   manage_your_project_invitations: Gestisci i tuoi inviti al progetto
   manage_subscriptions: Gestisci iscrizioni
   managed: gestito
@@ -2394,6 +2397,7 @@ it:
   needs_id_expandable_html: <span class='full'>Serve </span>ID
   needs_to_be_identified: Ha bisogno essere identificato
   new: Nuovo
+  new_and_noteworthy: Novità & Di Interesse
   new_announcement: Nuovo annuncio
   new_assessment: Nuova valutazione
   new_check_list: Nuova cheklist
@@ -2460,6 +2464,7 @@ it:
     è stata contrassegnata "%{x}"
   no_curators_set: Nessun curatore stabilito
   no_curators_yet: Ancora nessun curatore!
+  no_description: Nessuna descrizione
   no_facebook_photos: Non abbiamo trovato alcun foto da Facebook.
   no_flags: Non ci sono contrassegni questa volta
   no_flickr_photos_tagged: Nessuna foto di Flickr contrassegnata!
@@ -3251,11 +3256,10 @@ it:
   project_x_was_delete: '%{project} è stato cancellato (saranno necessarî alcuni minuti
     prima che sia rimosso dal sito)'
   projects: Progetti
-  projects_description: I progetti sono un modo per condividere e organizzare le vostre
-    osservazioni con altre persone su %{site_name}. Se siete interessati ad avviare
-    un progetto di citizen science o semplicemente a tenere nota delle specie di uccelli
-    presenti in un parco vicino a voi insieme alla vostra associazione di birdwatching
-    locale, i Progetti fanno per voi.
+  projects_description: I progetti ti permettono di unire le tue osservazioni con
+    altre persone su %{site_name}. Se stai per avviare un progetto di citizen science
+    o semplicemente vuoi annotarti le specie di uccelli presenti in un parco vicino
+    a te, i Progetti fanno per te.
   projects_from_place: Progetti in %{place}
   projects_in_x: Progetti in %{x}
   projects_you_admin: Progetti che amministri
@@ -3610,6 +3614,7 @@ it:
   showing_one_to: Visualizzazione 1 -
   showing_taxa_from_everywhere: Visualizzazione dei taxa di tutto il mondo
   showing_taxa_from_place: Visualizzazione taxa in %{place}
+  showing_x_of_y_listings: Visualizzando %{x} di %{y} liste
   shown_publicly_as: Mostrato pubblicamente come
   sign_in: Accedi
   sign_in_with_provider: Accedi con %{provider}
@@ -3859,8 +3864,8 @@ it:
   take_me_flickr!: Si, vai a Flickr!
   take_me_back: Indietro
   taxa: Taxa
-  taxa_all_species_html: Tutte le specie
   taxa_info: Info Taxa
+  taxa_all_species_html: Tutte le specie
   taxa_needing_curation: Taxa che necessitano di revisione
   taxa_observed: taxa osservati
   taxa_to_include: Taxa da includere
@@ -5738,6 +5743,10 @@ it:
           qualità del dato e periodo che decidi tu. Puoi segliere tra due tipi: Progetti
           Collezione e Progetti Ombrello, che condividono le seguenti caratteristiche:'
         welcome_to_projects: Benvenuti nei progetti
+        you_have_not_defined_any_observation_requirements: Non hai definito alcun
+          requisito per le osservazioni. Accertati di aver selezionato uno o più taxa
+          (e.g. uccelli, conifere), luoghi (e.g. Brasile, Yellowstone), utenti, e/o
+          date che definiscano le osservazioni che vuoi includere nel tuo progetto.
       project_location_privacy_notice_html: |-
         <p>
           Ricordati che i curatori del progetto possono vedere le coordinate private e quelle oscurate delle tue osservazioni aggiunte in questo progetto a meno che tu non revochi questo permesso, ed essi possono aggiungere qualsiasi delle tue osservazioni a meno che tu non <a href="/users/edit">modifichi le tue impostazioni</a>. Puoi anche garantire o revocare l'accesso alle osservazioni una per una.
@@ -6439,8 +6448,14 @@ it:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: non deve contenere virgole o barre
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: non
+                corrisponde al nome scientifico di una specie in questa lingua
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: deve iniziare con una lettera, non contenere
+                spazi e deve avere solo lettere, numeri, trattini e trattini in basso
             email:
               must_look_like_an_email_address: deve sembrare un indirizzo email
     models:

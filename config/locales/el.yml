@@ -735,6 +735,7 @@ el:
   follow_us: Ακολουθήστε μας στο
   follow_us_on: Ακολουθήστε μας στο
   follow_user: Ακολουθήστε τον %{user}
+  followed_projects: Ακολουθούμενα εγχειρήματα
   follower: ακόλουθος
   followers: ακόλουθοι
   following: ακολουθεί
@@ -889,6 +890,7 @@ el:
   join_some_projects_and_invite_some_observations_html: Γίνετε μέλος σε <a href='%{join_url}'>εγχειρήματα</a>
     και <a href='%{invite_url}'>προσκαλέστε μερικές παρατηρήσεις</a>
   join_this_project: Γίνετε μέλος στο εγχείρημα
+  joined_projects: Εγχειρήματα που έχετε προσχωρήσει
   jpg_png_or_gif: JPG, PNG, ή GIF
   just_added!: Μόλις προστέθηκε!
   keep_editing: Συνέχεια επεξεργασίας
@@ -933,12 +935,16 @@ el:
     cebuano: Σεμπουανικά
     creole_french: κρεολικά (Γαλλικά)
     creole_portuguese: κρεολικά (Πορτογαλικά)
+    czech: Τσεχικά
+    danish: Δανικά
     davawenyo: Νταβαουένγιο
     dutch: Ολλανδικά
     english: Αγγλικά
+    finnish: Φινλανδικά
     french: Γαλλικά
     gela: Γκέλα
     german: Γερμανικά
+    greek: Ελληνικά
     hawaiian: Χαβαϊκά
     hebrew: Εβραϊκά
     hiligaynon: Χιλιγκαϊνόν
@@ -947,6 +953,7 @@ el:
     italian: Ιταλικά
     japanese: Ιαπωνικά
     korean: Κορεατικά
+    luxembourgish: Λουξεμβουργιανά
     maltese: Μαλτέζικα
     maori: Μαορί
     misima_paneati: Μισίμα-πανεάτι
@@ -1025,6 +1032,7 @@ el:
     es-ES: Ισπανικά (Ισπανίας)
     es-MX: Ισπανικά (Μεξικού)
     es: Ισπανικά
+    et: Εσθονικά
     eu: Βασκικά
     fi: Φινλανδικά
     fr: Γαλλικά
@@ -1069,6 +1077,7 @@ el:
   manage: Διαχείριση
   manage_all_your_subscriptions: Διαχείριση όλων των συνδρομών σας
   manage_names: Διαχείριση ονομάτων
+  manage_your_projects: Διαχείριση των εγχειρημάτων σας
   manage_your_project_invitations: Διαχείριση των προσκλήσεων στο εγχείρημα σας
   manage_subscriptions: Διαχείριση συνδρομών
   managed: Διαχειρισμένο
@@ -1931,6 +1940,7 @@ el:
   table_of_contents: Πίνακας περιεχομένων
   tag: Ετικέτα
   tags: Ετικέτες
+  taxa_info: Πληροφορίες ταξινομίας
   taxa_all_species_html: Όλα τα είδη
   taxon_autocomplete_placeholder: Πουλιά, μονάρχης, κτλ.
   taxon_colors: Χρώματα ταξινόμησης
@@ -2161,6 +2171,7 @@ el:
         body: Κύριο Μέρος
       user:
         email: Διεύθυνση ηλ. ταχυδρομείου
+        login: Όνομα χρήστη
         name: Όνομα
         locale: Τοπικές ρυθμίσεις
         time_zone: Ζώνη ώρας

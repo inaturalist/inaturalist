@@ -1356,6 +1356,7 @@ zh-TW:
   follow_us: 關注我們在
   follow_us_on: 關注我們在
   follow_user: 關注 %{user}
+  followed_projects: 關注的專案
   follower: 關注者
   followers: 關注者
   following: 關注
@@ -1649,6 +1650,7 @@ zh-TW:
   join_this_project: 加入此專案
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
+  joined_projects: 已加入的專案
   joining: 加入中…
   journal: 日誌
   journal_archives_for: 期刊歸檔用於
@@ -1873,7 +1875,7 @@ zh-TW:
   location_is_public: 位置為公開的
   location_is_obscured: 位置為隱蔽
   location_is_private: 位置為私有的
-  location_specified: 指定位置
+  location_specified: 位置指定
   locked_taxa_will_not_allow_new: 被鎖定的物種分類群不允許添加派生物種分類群在裡頭。因此如果您鎖定了兩棲動物，當其他人嘗試從外部名稱提供者匯入美洲牛蛙時，新的物種分類群創建後不會被歸類為兩棲動物。在以上情況發生時，新添加物種分類群應被標記來讓策展人關注。這應僅用在我們認為內容已包含所有相關派生的物種分類群上。雖然策展人可以透過直接編輯物種分類群以及輸入父級鑑定來覆蓋掉，但請考慮以合併新物種分類群至現有內容為主。
   log_in: 登入
   logged_in_as: 已登入為
@@ -1915,6 +1917,7 @@ zh-TW:
   manage: 管理
   manage_all_your_subscriptions: 管理您所有的訂閱
   manage_names: 管理名稱
+  manage_your_projects: 管理您的專案
   manage_your_project_invitations: 管理您的專案邀請
   manage_subscriptions: 管理訂閱
   managed: 已管理
@@ -2074,9 +2077,10 @@ zh-TW:
   needs_id: 需要鑑定
   needs_id_: 需要鑑定
   Needs_ID!: 需要鑑定！
-  needs_id_expandable_html: <span class='full'>需要</span> ID
+  needs_id_expandable_html: <span class='full'>需要</span>鑑定
   needs_to_be_identified: 需要被鑑定
   new: 新
+  new_and_noteworthy: 新事物與關注事項
   new_announcement: 新公告
   new_assessment: 新評估
   new_check_list: 新清單
@@ -2135,6 +2139,7 @@ zh-TW:
   no_creative_commons_flickr_photos_tagged_x: 沒有創用CC 的 Flickr 照片被標記為「%{x}」
   no_curators_set: 沒有策展人設定
   no_curators_yet: 尚未有策展人！
+  no_description: 沒有描述
   no_facebook_photos: 我們找不到任何來自於臉書的照片
   no_flags: 目前沒有標記
   no_flickr_photos_tagged: 沒有 Flickr 的照片被標記！
@@ -2247,8 +2252,8 @@ zh-TW:
   numeric_: 數字
   noun_by_you: 由您做出的 %{noun}
   obs: 觀察
-  obs_cid_d: Obs CID'd
-  obs_id_d: Obs ID'd
+  obs_cid_d: 觀察（社群鑑定）
+  obs_id_d: 觀察（鑑定）
   obscured_: 隱蔽
   obscured: 不清
   obscured_or_private: 隱蔽或私有
@@ -2501,7 +2506,7 @@ zh-TW:
   photo: 照片
   photo?: 照片？
   photo_attribution: 照片%{attribution}
-  photo_browser: 照片瀏覽器
+  photo_browser: 照片瀏覽
   photo_by_id_attribution: 照片 %{id}， %{attribution}
   photo_deleted: 照片已刪除
   photo_destroyed_because_it_was_deleted_from: 照片已損毀，因為它被外部網站所刪除或 %{site_name} 不再有檢視它的權限
@@ -2804,7 +2809,9 @@ zh-TW:
   project_was_successfully_updated: 專案更新成功。
   project_x_was_delete: '%{project}已刪除（請允許花費幾分鐘來從網站移除）'
   projects: 專案
-  projects_description: 專案是在 %{site_name} 上讓您的觀察與其他人有所交集的方式。無論您是有意舉行公眾科學專案，或是僅對與您當地賞鳥俱樂部一同在鄰近公園賞鳥感興趣，專案都會是可採用的方法。
+  projects_description: |-
+    專案能讓您的觀察在 %{site_name} 上與其他人交流。
+    無論您是有意開始進行公眾科學事項，或是僅對在您的鄰近地區裡賞鳥感興趣，專案都會是可採用的方法。
   projects_from_place: 來自於%{place}的專案
   projects_in_x: 在%{x}的專案
   projects_you_admin: 您管理的專案
@@ -3056,6 +3063,7 @@ zh-TW:
   search_places: 搜尋地點
   search_projects: 搜尋專案
   search_results_for: 搜尋結果用於
+  search_results_for_query: 「%{query}」的搜尋結果
   search_remote: 搜尋遠端
   search_species: 搜尋物種
   search_species_: 搜尋物種...
@@ -3339,13 +3347,20 @@ zh-TW:
   take_me_flickr!: 是的，帶我前往 Flickr！
   take_me_back: 帶我返回
   taxa: 物種分類
-  taxa_all_species_html: 所有物種
   taxa_info: 物種分類群訊息
+  taxa_all_species_html: 所有物種
   taxa_needing_curation: 物種分類群需要策展
   taxa_observed: 物種分類已觀察
   taxa_to_include: 包括的物種分類群
   taxon: 物種分類
   taxon_autocomplete_placeholder: 鳥、君主斑蝶等等。
+  taxon_is_a_rank: '%{taxon}屬於%{rank}'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: 帶有 1 個觀察屬於軟體動物中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於軟體動物中%{rank}的%{taxon}
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: 帶有 1 個觀察在色藻界裡（褐藻綱與相關生物）屬於%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察在色藻界裡（褐藻綱與相關生物）屬於%{rank}的%{taxon}
   taxonomy: 分類法
   taxon_: 物種分類
   taxon_assessments_are: 物種分類評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之物種分類群狀態的意見回饋。
@@ -4080,6 +4095,7 @@ zh-TW:
   your_google_account: 您的 Google 帳號
   your_google_account_info: 您的 Google 帳號訊息
   your_profile_was_successfully_updated: 您的個人資料更新成功！
+  your_recent_projects: 您最近的專案
   your_should_recognize: 您應該辨別其中一些照片
   your_site_account_has_been_created: 您的 %{site} 帳號已被創建。
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -4751,10 +4767,10 @@ zh-TW:
         med_ttcid: TTCID 中位數
         med_ttid: TTID 中位數
         new_users_desc: 代表在今日的註冊
-        obs_1_day: Obs (1 day)
+        obs_1_day: 觀察（1 日）
         obs_1_day_desc: 代表在單一日子裡所建立的觀察
         obs_cid_d_desc: 代表在前 7 日所建立並具有社群鑑定
-        obs_cid_d_to_genus: Obs CID'd to genus
+        obs_cid_d_to_genus: 觀察（屬層級社群鑑定）
         obs_cid_d_to_genus_desc: 代表在前 7 日所建立並具有在屬層級或較低階層級的社群鑑定
         obs_desc: 代表在前 7 日所建立
         obs_id_d_desc: 代表在前 7 日所建立並具有社群鑑定（可以是觀察者的）

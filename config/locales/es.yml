@@ -11,6 +11,7 @@
 # Author: Csbotero
 # Author: Dgstranz
 # Author: Eduardo Martinez
+# Author: ErrE
 # Author: Fitoschido
 # Author: Fortega
 # Author: Isabelgg22
@@ -175,7 +176,8 @@ es:
   action: Acción
   actions: Acciones
   activate_user: Activar usuario
-  active: activo
+  active: Activo
+  active_users: Usuarios activos
   activity: Actividad
   activity_settings: Configuración de la actividad
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} de un trabajo de %{original}
@@ -204,6 +206,10 @@ es:
   add_an_observation?: ¿Añade una observación?
   add_an_observation_of: Añade una observación de %{taxon}
   add_annotations_for_x: Añadir anotaciones para «%{x}»
+  add_annotations_for_controlled_attribute:
+    sex: Añadir anotaciones para "Sexo"
+    plant_phenology: Añadir anotaciones para "Fenología de Planta"
+    life_stage: Añadir anotaciones para "Etapa de Vida"
   add_another: Añade otra
   add_another_flag: Añade otra marca
   add_another_photo: Añade otra foto
@@ -220,6 +226,7 @@ es:
   add_custom_project_fields: Añade campos de proyecto personalizados
   add_edit_flags: Añadir/editar etiquetas
   add_edit_more_fields: Añade/edita más campos
+  add_editor: Añadir Editor
   add_description: Añade %{description_name}
   add_field: Añadir campo
   add_from_your_observations: Añade de tus observaciones
@@ -319,6 +326,7 @@ es:
   additional_range_data_from_an_unknown_source: Datos de distribución adicional de
     fuente desconocida
   admin: Administrador
+  admin_s: Administrador(es)
   admin_any_projects: administra cualquier proyecto
   admin_tools: Herramientas administrativas
   agree: de acuerdo
@@ -1171,9 +1179,11 @@ es:
   delete_project: Eliminar este proyecto
   delete_selected: Eliminar seleccionados
   delete_taxon_and_merge_most_data_html: Eliminar <i>%{taxon}</i> y combinar la mayoría
-    de sus datos con otro taxón. Utilice esta herramienta para eliminar taxones duplicados
-    y sinónimos desactualizados. <strong>¡TENGA CUIDADO!</fuerte> Eliminar taxones
-    puede ser muy destructivo.
+    de sus datos con otro taxón. Utilice esta herramienta para <strong>eliminar taxones
+    duplicados</strong>. Si quiere eliminar un sinónimo desactualizado, por favor
+    cree un intercambio de taxón. <strong>¡TENGA CUIDADO!</strong> Eliminar taxones
+    puede ser muy destructivo. Revise la <a href="%{curator_url}">Curator Guide</a>
+    para más detalles.
   delete_this_name: Eliminar este nombre
   delete_user: Eliminar usuario
   delete_your_account: Eliminar su cuenta
@@ -1314,6 +1324,7 @@ es:
   editing_taxon_range: Modificar área del taxón
   editing_this: Modificando %{elem}
   editing_x_in_y: Editando %{x} en%{y}
+  editors: Editores
   eg: ej.
   either: Cualquiera
   either_that_user_doesnt_exist_or: Ese usuario no existe o ya te encuentras siguiendolo.
@@ -1936,12 +1947,16 @@ es:
     cebuano: Cebuano
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
+    czech: Checo
+    danish: Danés
     davawenyo: Davawenyo
     dutch: Holandés
     english: Inglés
+    finnish: Finés
     french: Francés
     gela: Gela
     german: Alemán
+    greek: Griego
     hawaiian: Hawaiano
     hebrew: Hebreo
     hiligaynon: Hiligainón
@@ -1950,6 +1965,7 @@ es:
     italian: Italiano
     japanese: Japonés
     korean: Coreano
+    luxembourgish: Luxemburgués
     maltese: Maltés
     maori: Maorí
     misima_paneati: Misima-paneati
@@ -2091,6 +2107,7 @@ es:
     es-ES: Español (España)
     es-MX: Español (México)
     es: Español
+    et: Estonio
     eu: Euskera
     fi: Finlandés
     fr: Francés
@@ -3454,7 +3471,7 @@ es:
   search_places: Buscar lugares
   search_projects: Buscar proyectos
   search_results_for: Buscar resultados para
-  search_results_for_query: 'Los resultados de búsqueda para "%{query}"'
+  search_results_for_query: Los resultados de búsqueda para "%{query}"
   search_remote: Búsqueda remota
   search_species: Busca especies
   search_species_: Buscar especie…
@@ -6159,6 +6176,11 @@ es:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: no debe contener comas ni barras
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: debe asemejarse a una dirección de
+                correo electrónico
     models:
       Atlas: Atlas
       TaxonLink: Enlace de taxón
@@ -6246,6 +6268,7 @@ es:
         source_identifier: Identificador de la fuente
       user:
         email: Correo
+        login: Nombre de usuario
         name: Nombre
         time_zone: Zona horaria
         place_id: Lugar
