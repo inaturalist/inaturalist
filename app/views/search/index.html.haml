@@ -174,3 +174,45 @@
               %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
               %p= formatted_user_text( record.try_methods( :body, :description ).to_s.truncate( 300 ) )
       = will_paginate @results, renderer: INatLinkRenderer, skip_right: true
+  - if logged_in? && @sources.include?( "taxa" )
+    .row
+      .col-xs-12
+        = separator
+        .quiet.box
+          .row
+            .col-xs-12
+              %h4=t :not_seeing_what_looking_for
+              %p=t :sorry_how_about_we_try_repeat
+          .row
+            - ratatosk.name_providers.each_with_index do |np,i|
+              .col-xs-4
+                - name = np.class.source.try(:title) || nil
+                - name_key = np.class.name.split('::').last.gsub(/NameProvider/, '').underscore
+                - short_name = name_key.humanize
+                - name ||= short_name
+                - name = t( "name_providers.#{name.underscore}", default: name )
+                - url = np.class.source.try(:url)
+                - code = np.class.name.split('::').last.gsub(/NameProvider/, '').underscore.downcase
+                = form_tag search_taxa_path, method: :get do
+                  %label
+                    - if url
+                      = link_to name, url
+                    - else
+                      = name
+                  %input{ name: "all_names", type: "hidden", value: "true" }
+                  %input{ name: "include_external", type: "hidden", value: "true" }
+                  %input{ name: "force_external", type: "hidden", value: "true" }
+                  %input{ name: "external_src", type: "hidden", value: code }
+                  %input{ name: "return_to", type: "hidden", value: url_for( request.query_parameters ) }
+                  .form-inline
+                    .input-group
+                      %input.form-control{ name: "q", value: @q }
+                      %span.input-group-btn
+                        %input.btn.btn-default{ type: "submit", value: raw( t(:search) ) }
+            .col-xs-4
+              %label=t :still_no_luck?
+              %div
+                - if is_curator?
+                  = link_to t(:create_new_taxon), new_taxon_path( name: @q ), class: "btn btn-default"
+                - else
+                  =t "views.search.index.no_taxa_options_html", feedback_url: @site.feedback_url.blank? ? CONFIG.feedback_url : @site.feedback_url, help_email: @site.email_help.blank? ? CONFIG.help_email : @site.email_help

@@ -44,7 +44,7 @@ input.chooser {width: auto;}
 .overlaycontrol input[type="checkbox"] { margin: 0 5px 0 0; }
 .gmapv3control label {margin-bottom: 0;}
 #map img, .latLonSelectorMap img, .taxonmap img {max-width: none;}
-.box {border-radius: 6px;}
+.box {border-radius: 6px; padding: 20px; }
 .clear { display: inline-block; }   
 .clear:after, .container:after {
   content: "."; 

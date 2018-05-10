@@ -5375,6 +5375,33 @@ en:
       updates_desc: |
         Receive updates about this project on your dashboard and in the daily
         updates email.
+    search:
+      index:
+        no_taxa_options_html: |
+          <p>You've got a few options:</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>Add a Flag to a Higher-level Taxon</strong>
+              <p>
+                E.g. the genus that contains a species. Hopefully a friendly
+                curator will add the taxon if it can be added.
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">Contact the Feedback Group</a></strong>
+              <p>
+                Many site curators keep track of emails to the Feedback Group.
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">Contact Support</a>
+              </strong>
+              <p>
+                Please be patient, we don't have many dedicated support staff.
+              </p>
+            </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: You've Been Blocked

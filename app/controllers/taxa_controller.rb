@@ -435,6 +435,7 @@ class TaxaController < ApplicationController
     
     respond_to do |format|
       format.html do
+        return redirect_to params[:return_to] unless params[:return_to].blank?
         @view = BROWSE_VIEWS.include?(params[:view]) ? params[:view] : GRID_VIEW
         flash[:notice] = @status unless @status.blank?
         
@@ -1447,6 +1448,8 @@ class TaxaController < ApplicationController
     @external_taxa.each do |external_taxon|
       external_taxon.delay(:priority => USER_INTEGRITY_PRIORITY).graft_silently unless external_taxon.grafted?
     end
+
+    Taxon.refresh_es_index
     
     @taxa = WillPaginate::Collection.create(1, @external_taxa.size) do |pager|
       pager.replace(@external_taxa)

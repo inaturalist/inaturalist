@@ -4,9 +4,9 @@
   <div class="last column span-24">
     <div class="column span-8">
       <% if @taxon.new_record? || is_admin? || is_me?(@taxon.creator) -%>
-        <%= f.text_field :name, :class => "text", :required => true %>
+        <%= f.text_field :name, class: "text", required: true, label: t(:scientific_name) %>
       <% else %>
-        <%= f.form_field :name do %>
+        <%= f.form_field :name, label: t(:scientific_name) do %>
           <strong><%= @taxon.name %></strong>
           <div class="meta">
             <%= t :add_a %>
