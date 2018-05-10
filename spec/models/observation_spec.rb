@@ -1321,6 +1321,22 @@ describe Observation do
       expect(deleted_obs).not_to be_blank
       expect(deleted_obs.user_id).to eq o.user_id
     end
+
+    it "should create a deleted photo" do
+      o = make_research_grade_observation
+      p = o.photos.first
+      without_delay { o.destroy }
+      expect( Photo.find_by_id( p.id ) ).to be_blank
+      expect( DeletedPhoto.where( photo_id: p.id ).count ).to eq 1
+    end
+    it "should create a deleted sound" do
+      o = Observation.make!
+      s = Sound.make!
+      o.sounds << s
+      without_delay { o.destroy }
+      expect( Sound.find_by_id( s.id ) ).to be_blank
+      expect( DeletedSound.where( sound_id: s.id ).count ).to eq 1
+    end
   end
 
   describe "species_guess parsing" do

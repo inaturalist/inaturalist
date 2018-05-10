@@ -37,3 +37,13 @@ describe Sound, "license" do
     expect(s.license).to eq Sound::COPYRIGHT
   end
 end
+
+describe Sound, "destroy" do
+  it "should create a deleted sound" do
+    p = Sound.make!
+    p.destroy
+    deleted_sound = DeletedSound.where( sound_id: p.id ).first
+    expect( deleted_sound ).not_to be_blank
+    expect( deleted_sound.user_id ).to eq p.user_id
+  end
+end

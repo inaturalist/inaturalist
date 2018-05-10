@@ -74,9 +74,14 @@ namespace :inaturalist do
   desc "Delete expired S3 photos"
   task :delete_expired_photos => :environment do
     S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
-    Aws.config(access_key_id: S3_CONFIG["access_key_id"],
-      secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
-    bucket = Aws::S3.new.buckets[CONFIG.s3_bucket]
+    # Aws.config(access_key_id: S3_CONFIG["access_key_id"],
+    #   secret_access_key: S3_CONFIG["secret_access_key"], region: "us-east-1")
+    # bucket = Aws::S3.new.buckets[CONFIG.s3_bucket]
+    client = ::Aws::S3::Client.new(
+      access_key_id: S3_CONFIG["access_key_id"],
+      secret_access_key: S3_CONFIG["secret_access_key"],
+      region: CONFIG.s3_region
+    )
 
     fails = 0
     DeletedPhoto.still_in_s3.
@@ -85,12 +90,42 @@ namespace :inaturalist do
       where("(orphan=false AND deleted_photos.created_at <= ?)
         OR (orphan=true AND deleted_photos.created_at <= ?)",
         6.months.ago, 1.month.ago).select(:id, :photo_id).find_each do |p|
-      images = bucket.objects.with_prefix("photos/#{ p.photo_id }/").to_a
+      images = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ p.photo_id }/" ).contents
       if images.any?
         pp images
         begin
-          bucket.objects.delete(images)
+          client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
           p.update_attributes(removed_from_s3: true)
+        rescue
+          fails += 1
+          break if fails >= 5
+        end
+      end
+    end
+  end
+
+  desc "Delete expired S3 sounds"
+  task :delete_expired_sounds => :environment do
+    S3_CONFIG = YAML.load_file(File.join(Rails.root, "config", "s3.yml"))
+    client = ::Aws::S3::Client.new(
+      access_key_id: S3_CONFIG["access_key_id"],
+      secret_access_key: S3_CONFIG["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+
+    fails = 0
+    DeletedSound.still_in_s3.
+      joins("LEFT JOIN sounds ON (deleted_sounds.sound_id = sounds.id)").
+      where("sounds.id IS NULL").
+      where("(orphan=false AND deleted_sounds.created_at <= ?)
+        OR (orphan=true AND deleted_sounds.created_at <= ?)",
+        6.months.ago, 1.month.ago).select(:id, :sound_id).find_each do |s|
+      sounds = client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ s.sound_id }." ).contents
+      if sounds.any?
+        pp sounds
+        begin
+          client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
+          s.update_attributes(removed_from_s3: true)
         rescue
           fails += 1
           break if fails >= 5
@@ -122,11 +157,38 @@ namespace :inaturalist do
     end
   end
 
+  desc "Delete orphaned sounds"
+  task :delete_orphaned_sounds => :environment do
+    first_id = Sound.minimum(:id)
+    last_id = Sound.maximum(:id)
+    index = 0
+    batch_size = 10000
+    # using `where id BETWEEN` instead of .find_each or similar, which use
+    # LIMIT and create fewer, but longer-running queries
+    while index <= last_id
+      sounds = Sound.joins("left join observation_sounds os on (sounds.id=os.sound_id)").
+        where("os.id IS NULL").
+        where("sounds.id BETWEEN ? AND ?", index, index + batch_size)
+      sounds.each do |s|
+        # set the orphan attribute on sound, which will set the same on Deletedsound
+        s.orphan = true
+        s.destroy
+      end
+      index += batch_size
+    end
+  end
+
 
   desc "Delete orphaned and expired photos"
   task :delete_orphaned_and_expired_photos => :environment do
     Rake::Task["inaturalist:delete_orphaned_photos"].invoke
     Rake::Task["inaturalist:delete_expired_photos"].invoke
+  end
+
+  desc "Delete orphaned and expired sounds"
+  task :delete_orphaned_and_expired_sounds => :environment do
+    Rake::Task["inaturalist:delete_orphaned_sounds"].invoke
+    Rake::Task["inaturalist:delete_expired_sounds"].invoke
   end
 
   desc "Find all javascript i18n keys and print a new translations.js"

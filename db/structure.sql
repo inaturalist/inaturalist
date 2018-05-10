@@ -1105,6 +1105,40 @@ ALTER SEQUENCE deleted_photos_id_seq OWNED BY deleted_photos.id;
 
 
 --
+-- Name: deleted_sounds; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE deleted_sounds (
+    id integer NOT NULL,
+    user_id integer,
+    sound_id integer,
+    removed_from_s3 boolean DEFAULT false,
+    orphan boolean DEFAULT false,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: deleted_sounds_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE deleted_sounds_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: deleted_sounds_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE deleted_sounds_id_seq OWNED BY deleted_sounds.id;
+
+
+--
 -- Name: deleted_users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4888,6 +4922,13 @@ ALTER TABLE ONLY deleted_photos ALTER COLUMN id SET DEFAULT nextval('deleted_pho
 
 
 --
+-- Name: deleted_sounds id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY deleted_sounds ALTER COLUMN id SET DEFAULT nextval('deleted_sounds_id_seq'::regclass);
+
+
+--
 -- Name: deleted_users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5692,6 +5733,14 @@ ALTER TABLE ONLY deleted_observations
 
 ALTER TABLE ONLY deleted_photos
     ADD CONSTRAINT deleted_photos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: deleted_sounds deleted_sounds_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY deleted_sounds
+    ADD CONSTRAINT deleted_sounds_pkey PRIMARY KEY (id);
 
 
 --
@@ -6698,6 +6747,13 @@ CREATE INDEX index_deleted_observations_on_user_id_and_created_at ON deleted_obs
 --
 
 CREATE INDEX index_deleted_photos_on_created_at ON deleted_photos USING btree (created_at);
+
+
+--
+-- Name: index_deleted_sounds_on_created_at; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_deleted_sounds_on_created_at ON deleted_sounds USING btree (created_at);
 
 
 --
@@ -9249,4 +9305,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180410171703');
 INSERT INTO schema_migrations (version) VALUES ('20180425181719');
 
 INSERT INTO schema_migrations (version) VALUES ('20180501172628');
+
+INSERT INTO schema_migrations (version) VALUES ('20180504213719');
 
