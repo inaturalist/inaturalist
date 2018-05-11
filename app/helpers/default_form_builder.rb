@@ -101,7 +101,11 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     else
       lexicons.sort
     end
-    lexicon_list = (lexicons & TaxonName::DEFAULT_LEXICONS) + [separator] + (lexicons - TaxonName::DEFAULT_LEXICONS)
+    default_lexicons = TaxonName::DEFAULT_LEXICONS.map{ |l| TaxonName.normalize_lexicon( l )}.sort_by{|lexicon|
+      key = "lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}"
+      I18n.t( key, default: lexicon )
+    }
+    lexicon_list = ( default_lexicons & lexicons ) + [separator] + ( lexicons - default_lexicons )
     lexicon_options = lexicon_list.map do |lexicon|
       key = "lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}"
       [

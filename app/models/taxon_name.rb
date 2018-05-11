@@ -35,6 +35,8 @@ class TaxonName < ActiveRecord::Base
     :BENGALI             =>  'Bengali',
     :CATALAN             =>  'Catalan',
     :CEBUANO             =>  'Cebuano',
+    :CHINESE_TRADITIONAL =>  'Chinese (Traditional)',
+    :CHINESE_SIMPLIFIED  =>  'Chinese (Simplified)',
     :CREOLE_FRENCH       =>  'creole (French)',
     :CREOLE_PORTUGUESE   =>  'creole (Portuguese)',
     :DAVAWENYO           =>  'Davawenyo',
@@ -68,12 +70,6 @@ class TaxonName < ActiveRecord::Base
     :WARAY_WARAY         =>  'Waray-Waray'
   }
   
-  DEFAULT_LEXICONS = [
-    LEXICONS[:SCIENTIFIC_NAMES],
-    LEXICONS[:ENGLISH],
-    LEXICONS[:SPANISH]
-  ]
-  
   LEXICONS.each do |k,v|
     class_eval <<-EOT
       def is_#{k.to_s.downcase}?
@@ -90,6 +86,7 @@ class TaxonName < ActiveRecord::Base
     "bulgarian"             => "bg",
     "catalan"               => "ca",
     "chinese_traditional"   => "zh",
+    "chinese_simplified"    => "zh-CN",
     "czech"                 => "cs",
     "danish"                => "da",
     "dutch"                 => "nl",
@@ -116,6 +113,11 @@ class TaxonName < ActiveRecord::Base
     "scientific_names"      => "sci",
     "spanish"               => "es"
   }
+  LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
+
+  DEFAULT_LEXICONS = [LEXICONS[:SCIENTIFIC_NAMES]] + I18N_SUPPORTED_LOCALES.map {|locale|
+    LEXICONS_BY_LOCALE[locale] || LEXICONS_BY_LOCALE[locale.sub( /\-.+/, "" )]
+  }.compact
 
   alias :is_scientific? :is_scientific_names?
   
