@@ -236,7 +236,6 @@ module ActsAsElasticModel
       rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
         puts e
         Logstasher.write_exception(e)
-        raise e unless Rails.env.production?
         Rails.logger.error "[Error] elastic_index! failed: #{ e }"
         Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
       end
