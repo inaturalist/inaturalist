@@ -87,11 +87,9 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
     form_field method, tag, options.merge(html_options)
   end
 
-  def select_lexicon(method, lexicons, options = {}, html_options = {})
-    separator = '---------------------------'
+  def sort_lexicons( lexicons )
     sortable_locale = I18N_LOCALES.detect{|l| l =~ /#{I18n.locale}-phonetic/}
-    lexicons = lexicons.uniq{|l| TaxonName.normalize_lexicon(l)}
-    lexicons = if sortable_locale
+    if sortable_locale
       lexicons.sort do |a,b|
         t_a = I18n.t("lexicons.#{a.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: '')
         t_b = I18n.t("lexicons.#{b.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}", locale: sortable_locale, default: '')
@@ -99,23 +97,36 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
         [(t_a != '' ? 0 : 1), t_a] <=> [(t_b != '' ? 0 : 1), t_b]
       end
     else
-      lexicons.sort
+      lexicons.sort_by do |lexicon|
+        key = "lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}"
+        I18n.t( key, default: lexicon ).to_s.downcase
+      end
     end
-    default_lexicons = TaxonName::DEFAULT_LEXICONS.map{ |l| TaxonName.normalize_lexicon( l )}.sort_by{|lexicon|
-      key = "lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}"
-      I18n.t( key, default: lexicon )
-    }
-    lexicon_list = ( default_lexicons & lexicons ) + [separator] + ( lexicons - default_lexicons )
-    lexicon_options = lexicon_list.map do |lexicon|
+  end
+
+  def select_lexicon(method, lexicons, options = {}, html_options = {})
+    separator = '---------------------------'
+    sortable_locale = I18N_LOCALES.detect{|l| l =~ /#{I18n.locale}-phonetic/}
+    lexicons = sort_lexicons( lexicons.uniq{|l| TaxonName.normalize_lexicon(l)} )
+    default_lexicons = sort_lexicons( TaxonName::DEFAULT_LEXICONS.map{ |l| TaxonName.normalize_lexicon( l ) }.uniq )
+    default_lexicons.delete( TaxonName::SCIENTIFIC_NAMES )
+    lexicons.delete( TaxonName::SCIENTIFIC_NAMES )
+    lexicon_optionifier = lambda do |lexicon|
       key = "lexicons.#{lexicon.gsub(' ', '_').gsub('-', '_').gsub(/[()]/,'').downcase}"
       [
-        I18n.t(key, default: lexicon), 
+        I18n.t( key, default: lexicon ), 
         lexicon,
-        {data: {'i18n-key' => key}}
+        { data: { "i18n-key" => key } }
       ]
     end
+    lexicon_options =
+      [I18n.t( "lexicons.scientific_names" ), separator] +
+      [I18n.t( :translated_languages )] +
+      default_lexicons.map( &lexicon_optionifier ) +
+      [separator, I18n.t( :other_lexicons )] +
+      ( lexicons - default_lexicons ).map( &lexicon_optionifier )
     options[:include_blank] ||= I18n.t(:unknown)
-    options[:disabled] ||= separator
+    options[:disabled] ||= [separator, I18n.t( :translated_languages ), I18n.t( :other_lexicons )]
     select(method, lexicon_options, options, html_options)
   end
   

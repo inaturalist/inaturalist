@@ -2528,6 +2528,7 @@ en:
     one: other animal
     other: other animals
   other_annimals: Other Animals
+  other_lexicons: Other Lexicons
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
   other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
   other_species_commonly_misidentified_as_this_species_in_place_html: |
@@ -3772,6 +3773,7 @@ en:
   total_species_observed: Total Species Observed
   total_unique_observers: Total unique observers
   total_users: "total users,"
+  translated_languages: Translated Languages
   'true': 'True'
   trending: Trending
   trends: Trends
@@ -5648,6 +5650,14 @@ en:
                 language names like "French, Français" because that will just make
                 it hard or impossible for us to show localized names for people
                 who use the site in different languages.
+              </p>
+            </li>
+            <li>
+              <p>
+                Common names associated with translated languages will appear
+                as the default common name for that language (barring the
+                effect of place preferences, name ordering, etc.).
+                <a class="readmore" href="/pages/translate">Learn more about translation</a>
               </p>
             </li>
           </ul>

@@ -116,7 +116,7 @@ class TaxonName < ActiveRecord::Base
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 
   DEFAULT_LEXICONS = [LEXICONS[:SCIENTIFIC_NAMES]] + I18N_SUPPORTED_LOCALES.map {|locale|
-    LEXICONS_BY_LOCALE[locale] || LEXICONS_BY_LOCALE[locale.sub( /\-.+/, "" )]
+    LEXICONS_BY_LOCALE[locale] || LEXICONS_BY_LOCALE[locale.sub( /\-.+/, "" )] || I18n.t( "locales.#{locale}", locale: "en", default: nil )
   }.compact
 
   alias :is_scientific? :is_scientific_names?
