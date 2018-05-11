@@ -166,6 +166,7 @@ class Identification < ActiveRecord::Base
 
   def set_previous_observation_taxon
     return true if skip_set_previous_observation_taxon
+    return true unless previous_observation_taxon.blank?
     self.previous_observation_taxon_id = if new_record?
       observation.probable_taxon( force: true ).try(:id)
     elsif previous_probable_taxon = observation.probable_taxon( force: true, before: id )

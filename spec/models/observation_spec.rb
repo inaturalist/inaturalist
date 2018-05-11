@@ -3159,6 +3159,12 @@ describe Observation do
         @o.reload
         expect( @o.probable_taxon ).to eq @g1
       end
+      it "g2 f.disagreement_true s1" do
+        i1 = Identification.make!( observation: @o, taxon: @g2 )
+        i2 = Identification.make!( observation: @o, taxon: @f, disagreement: true )
+        i3 = Identification.make!( observation: @o, taxon: @s1, user: i1.user )
+        expect( @o.probable_taxon ).to eq @s1
+      end
     end
   end
 

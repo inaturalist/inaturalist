@@ -1503,7 +1503,7 @@ class Observation < ActiveRecord::Base
     nodes ||= community_taxon_nodes
     puts
     width = 15
-    %w(taxon_id taxon_name cc acc cndc dc cdc score).each do |c|
+    %w(taxon_id taxon_name cc dc cdc score).each do |c|
       if c == "taxon_name"
         print c.ljust( width*2 )
       else
@@ -1542,6 +1542,7 @@ class Observation < ActiveRecord::Base
     taxon_ids_count = taxon_ids.size
 
     @community_taxon_nodes = taxa.map do |id_taxon|
+      # puts id_taxon.name
       # count all identifications of this taxon and its descendants
       cumulative_count = working_idents.select{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}.size
 
@@ -1555,18 +1556,24 @@ class Observation < ActiveRecord::Base
       first_ident_of_taxon = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
       conservative_disagreement_count = if first_ident_of_taxon
         working_idents.select {|i|
+          # puts "\tID #{i.id}: #{i.taxon.name}"
+          # puts "\t\ti.disagreement?: #{i.disagreement?}"
+          # puts "\t\ti.previous_observation_taxon: #{i.previous_observation_taxon}"
           if (
             i.disagreement? &&
             i.previous_observation_taxon &&
             ( base_index = i.previous_observation_taxon.ancestor_ids.index( i.taxon_id ) )
           )
+
             # If an identification of Homonidae is a disagreement with Homo
             # sapiens, that implies disagreement with everything between
             # Homonidae and Homo sapiens (i.e. genus Homo), otherwise they would
             # have added an ID of genus Homo
             disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            # puts "\t\tdisagreement_branch_taxon_ids: #{disagreement_branch_taxon_ids}"
             # So if the taxon under consideration is any of the taxa this
             # identification disagrees with, count it as a disagreement
+            # puts "\t\t( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ): #{( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids )}"
             ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
           elsif i.disagreement == nil
             i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
@@ -1631,8 +1638,6 @@ class Observation < ActiveRecord::Base
   # disagreement), and may in the future incorporate modeled identifier skill
   def probable_taxon( options = {} )
     nodes = community_taxon_nodes( options )
-    # # Visualizing this stuff is pretty useful for testing, so please leave this in
-    # print_community_taxon_nodes( nodes )
     node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
       0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
     }.last

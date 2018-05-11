@@ -1027,6 +1027,8 @@ describe Identification, "disagreement" do
 end
 
 describe Identification, "set_previous_observation_taxon" do
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should choose the observation taxon by default" do
     o = Observation.make!( taxon: Taxon.make!(:species) )
     t = Taxon.make!(:species)
@@ -1070,6 +1072,23 @@ describe Identification, "set_previous_observation_taxon" do
     o.reload
     i3 = Identification.make!( observation: o, taxon: genus, user: i2.user, disagreement: true )
     expect( i3.previous_observation_taxon ).to eq species
+  end
+
+  it "should not happen when you restore a withdrawn ident" do
+    genus = Taxon.make!( rank: Taxon::GENUS, name: "Genus" )
+    species1 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus species1" )
+    species2 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus species2" )
+    o = Observation.make!( taxon: species1 )
+    i = Identification.make!( observation: o, taxon: genus, disagreement: true )
+    expect( i.previous_observation_taxon ).to eq species1
+    expect( o.taxon ).to eq genus
+    i.update_attributes( current: false )
+    o.reload
+    expect( o.taxon ).to eq species1
+    i2 = Identification.make!( observation: o, user: o.user, taxon: species2 )
+    expect( o.taxon ).to eq species2
+    i.update_attributes( current: true )
+    expect( i.previous_observation_taxon ).to eq species1
   end
 end
 
