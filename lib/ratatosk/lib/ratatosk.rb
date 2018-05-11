@@ -142,11 +142,12 @@ module Ratatosk
                 name.taxon.taxon_names.detect{|tn| tn.name == name.name}
               end
             
-            # If the taxon was invalid, try to see if something similar has 
-            # already been saved
-            elsif existing = Taxon.where(source_identifier: name.taxon.source_identifier,
-              name_provider: name.taxon.name_provider).first
-              name.taxon = existing
+            # This *might* be the cause of https://github.com/inaturalist/inaturalist/issues/1602, but it's really hard to replicate
+            # # If the taxon was invalid, try to see if something similar has 
+            # # already been saved
+            # elsif existing = Taxon.where(source_identifier: name.taxon.source_identifier,
+            #   name_provider: name.taxon.name_provider).first
+            #   name.taxon = existing
             else
               name = nil
             end
