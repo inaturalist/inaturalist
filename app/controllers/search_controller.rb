@@ -12,7 +12,8 @@ class SearchController < ApplicationController
         "/search",
         q: @q,
         page: params[:page],
-        sources: @sources.join( "," )
+        sources: @sources.join( "," ),
+        ttl: logged_in? ? "-1" : nil
       )
       record_ids_by_type = response.results.inject( {} ) do |memo, result|
         memo[result["type"]] ||= []
