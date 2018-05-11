@@ -206,7 +206,9 @@ class Observation < ActiveRecord::Base
     "place_town_name",
     "place_county_name",
     "place_state_name",
-    "place_country_name"
+    "place_country_name",
+    "place_admin1_name",
+    "place_admin2_name"
   ]
   TAXON_COLUMNS = [
     "species_guess",
@@ -2375,10 +2377,20 @@ class Observation < ActiveRecord::Base
     101   => "Territory"
   }.each do |code, type|
     define_method "place_#{type.underscore}" do
-      intersecting_places.detect{|p| p.place_type == code}
+      public_places.detect{|p| p.place_type == code}
     end
     define_method "place_#{type.underscore}_name" do
       send("place_#{type.underscore}").try(:name)
+    end
+  end
+
+  # Actually referring to Place::STATE_LEVEL seems to cause trouble here
+  [1, 2].each do |admin_level|
+    define_method "place_admin#{admin_level}" do
+      public_places.detect{|p| p.admin_level == admin_level}
+    end
+    define_method "place_admin#{admin_level}_name" do
+      send( "place_admin#{admin_level}" ).try(:name)
     end
   end
 
