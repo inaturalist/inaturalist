@@ -455,6 +455,7 @@ class User < ActiveRecord::Base
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
     Observation.where(user_id: id).update_all(license: preferred_observation_license)
+    index_observations_later
     true
   end
   

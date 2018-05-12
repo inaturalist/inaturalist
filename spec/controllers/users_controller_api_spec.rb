@@ -37,6 +37,56 @@ shared_examples_for "a signed in UsersController" do
       expect( user.description ).to eq new_desc
       expect( user.icon_file_name ).not_to be_blank
     end
+    describe "observation license preference" do
+      it "should update past observations if requested" do
+        user.update_attributes( preferred_observation_license: Observation::CC_BY )
+        o = Observation.make!( user: user )
+        expect( o.license ).to eq Observation::CC_BY
+        put :update, id: user.id, format: :json, user: { preferred_observation_license: Observation::CC0, make_observation_licenses_same: "1" }
+        o.reload
+        expect( o.license ).to eq Observation::CC0
+      end
+      it "should update re-index past observations" do
+        user.update_attributes( preferred_observation_license: Observation::CC_BY )
+        o = Observation.make!( user: user )
+        es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+        expect( es_response.license_code ).to eq Observation::CC_BY.downcase
+        put :update, id: user.id, format: :json, user: {
+          preferred_observation_license: "",
+          make_observation_licenses_same: "1"
+        }
+        Delayed::Worker.new.work_off
+        es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+        expect( es_response.license_code ).to be_blank
+      end
+    end
+    describe "photo license preference" do
+      it "should update past observations if requested" do
+        user.update_attributes( preferred_photo_license: Observation::CC_BY )
+        p = LocalPhoto.make!( user: user )
+        expect( p.license_code ).to eq Observation::CC_BY
+        put :update, id: user.id, format: :json, user: {
+          preferred_photo_license: Observation::CC0,
+          make_photo_licenses_same: "1"
+        }
+        p.reload
+        expect( p.license_code ).to eq Observation::CC0
+      end
+      # Honestly not sure why this passes
+      it "should update re-index past observations" do
+        user.update_attributes( preferred_photo_license: Observation::CC_BY )
+        o = make_research_grade_observation( user: user )
+        es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+        expect( es_response.photos.first.license_code ).to eq Observation::CC_BY.downcase
+        put :update, id: user.id, format: :json, user: {
+          preferred_photo_license: "",
+          make_photo_licenses_same: "1"
+        }
+        Delayed::Worker.new.work_off
+        es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
+        expect( es_response.photos.first.license_code ).to be_blank
+      end
+    end
   end
 
   describe "new_updates" do
