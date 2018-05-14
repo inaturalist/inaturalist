@@ -9,6 +9,7 @@
       display: inline;
       padding: 2px;
     }
+    fieldset { white-space: nowrap; }
   </style>
 <% end -%>
 
@@ -62,7 +63,7 @@
     <td>
       <%= link_to t(:view), taxon_path(:id => flagging.flaggable_id) %> /
       <%= link_to t(:edit), edit_taxon_path(:id => flagging.flaggable_id) %> /
-      <%= link_to t(:merge), merge_taxon_path(:id => flagging.flaggable_id) %>
+      <%= link_to t(:view_flag), flag_path( flagging ) %>
       <%= form_for(flagging, :action => "update", :html => {:class => "inline buttonrow"}) do |f| %>
         <fieldset>
           <legend><%= t(:resolve_this_flag) %></legend>
@@ -113,8 +114,6 @@
       
       <td>
         <span class="button"> <%= link_to t(:edit), edit_taxon_path(taxon) %></span>
-        |
-        <span class="button"> <%= link_to t(:merge), merge_taxon_path(taxon) %></span>
         |
         <span class="button"> <%= link_to t(:add_taxon_change), new_taxon_change_path("input_taxon_ids[]" => taxon.id, :type => "TaxonSwap") %></span>
         |

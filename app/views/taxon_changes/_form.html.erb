@@ -39,11 +39,17 @@
         $('#singletaxon').removeClass('left').addClass('right').show()
         $('#singletaxon legend').text(I18n.t('output_taxon'))
         $('#multiple_taxa').removeClass('right').addClass('left').show()
+        if ( changeType == 'TaxonSwap' ) {
+          $('#multiple_taxa .add_taxon_link').hide();
+        } else {
+          $('#multiple_taxa .add_taxon_link').show();
+        }
         $('#multiple_taxa legend').text(I18n.t('input_taxon'))
       } else {
         $('#singletaxon').removeClass('right').addClass('left').show()
         $('#singletaxon legend').text(I18n.t('input_taxon'))
         $('#multiple_taxa').removeClass('left').addClass('right').show()
+        $('#multiple_taxa .add_taxon_link').show();
         $('#multiple_taxa legend').text(I18n.t('output_taxon'))
       }
     }
@@ -67,7 +73,10 @@
   taxon_change_type = taxon_change.class.name
 -%>
 
-<%= form_for( taxon_change.becomes( TaxonChange ), builder: DefaultFormBuilder, html: { multipart: true } ) do |f| %>
+<%= form_for( taxon_change, as: :taxon_change,
+    url: taxon_change.new_record? ? taxon_changes_path : taxon_change_path( taxon_change ),
+    builder: DefaultFormBuilder,
+    html: { multipart: true } ) do |f| %>
   <%= error_messages_for :taxon_change %>
   
   <div class="column span-24">
