@@ -61,10 +61,19 @@ class PhotoChooserModal extends React.Component {
       page: options.page || 1
     } );
     this.setState( { page: params.page, photos: [] } );
-    const url = provider === "inat" ?
-      `/taxa/observation_photos.json?${querystring.stringify( params )}`
-      :
-      `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
+    let url;
+    switch ( provider ) {
+      case "inat":
+        url = `/taxa/observation_photos.json?${querystring.stringify( params )}`;
+        break;
+      case "inat-rg": {
+        const rgParams = Object.assign( {}, params, { quality_grade: "research" } );
+        url = `/taxa/observation_photos.json?${querystring.stringify( rgParams )}`;
+        break;
+      }
+      default:
+        url = `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
+    }
     fetch( url, params )
       .then(
         response => response.json( ),
@@ -215,7 +224,8 @@ class PhotoChooserModal extends React.Component {
                     className="form-control"
                     onChange={ e => this.setProvider( e.target.value ) }
                   >
-                    <option value="inat">{ $( "meta[property='og:site_name']" ).attr( "content" ) }</option>
+                    <option value="inat">{ I18n.t( "observations" ) }</option>
+                    <option value="inat-rg">{ I18n.t( "rg_observations" ) }</option>
                     <option value="flickr">Flickr</option>
                     <option value="eol">EOL</option>
                     <option value="wikimedia_commons">Wikimedia Commons</option>

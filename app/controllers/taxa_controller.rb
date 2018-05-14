@@ -683,6 +683,7 @@ class TaxaController < ApplicationController
     @taxon = Taxon.includes(:taxon_names).where( id: params[:id].to_i ).first
     @taxon ||= Taxon.single_taxon_for_name( params[:q] )
     licensed = %w(t any true).include?(params[:licensed].to_s)
+    quality_grades = %w(research needs_id) & params[:quality_grade].to_s.split( "," )
     if per_page = params[:per_page]
       per_page = per_page.to_i > 50 ? 50 : per_page.to_i
     end
@@ -694,10 +695,17 @@ class TaxaController < ApplicationController
       if licensed
         obs = obs.where("photos.license IS NOT NULL AND photos.license > ? OR photos.user_id = ?", Photo::COPYRIGHT, current_user)
       end
+      unless quality_grades.blank?
+        obs = obs.where( "quality_grade IN (?)", quality_grades )
+      end
       obs.to_a
     elsif params[:q].to_i > 0
       # Look up photos associated with a specific observation
-      Observation.where( id: params[:q] )
+      obs = Observation.where( id: params[:q] )
+      unless quality_grades.blank?
+        obs = obs.where( "quality_grade IN (?)", quality_grades )
+      end
+      obs
     else
       filters = [ { exists: { field: "photos" } } ]
       unless params[:q].blank?
@@ -706,6 +714,13 @@ class TaxaController < ApplicationController
             query: params[:q],
             operator: "and",
             fields: [ :description, "taxon.names.name", "user.login", "field_values.value" ]
+          }
+        }
+      end
+      unless quality_grades.blank?
+        filters << {
+          match: {
+            quality_grade: quality_grades
           }
         }
       end
