@@ -1978,6 +1978,8 @@ it:
     bengali: Bengalese
     catalan: Catalano
     cebuano: Cebuano
+    chinese_simplified: Cinese (semplificato)
+    chinese_traditional: Cinese (tradizionale)
     creole_french: creolo (francese)
     creole_portuguese: creolo (portoghese)
     czech: Ceco
@@ -1985,6 +1987,7 @@ it:
     davawenyo: Davawenyo
     dutch: Olandese
     english: Inglese
+    estonian: Estone
     finnish: Finlandese
     french: Francese
     gela: Gela
@@ -2003,6 +2006,7 @@ it:
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norvegese
+    occitan: Occitano
     pangasinan: Pangasinan
     portuguese: Portoghese
     romanian: Rumeno
@@ -3528,6 +3532,7 @@ it:
   search_places: Cerca luoghi
   search_projects: Cerca progetti
   search_results_for: Cerca Risultati per
+  search_results_for_query: Risultati della ricerca per"%{query}"
   search_remote: Cerca in remoto
   search_species: Cerca specie
   search_species_: Cerca specie...
@@ -3871,6 +3876,52 @@ it:
   taxa_to_include: Taxa da includere
   taxon: Taxon
   taxon_autocomplete_placeholder: Uccelli, Monarca, etc.
+  taxon_is_a_rank: '%{taxon} è un %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} è un %{rank} in %{iconic_taxon} con 1 osservazione'
+    other: '%{taxon} è un %{rank} in %{iconic_taxon} con %{count} osservazioni'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} è un %{rank} di anfibi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di anfibi con %{count} osservazioni'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} è un %{rank} di uccelli con 1 osservazione'
+    other: '%{taxon} è un %{rank} di uccelli con %{count} osservazioni'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} è un %{rank} di mammiferi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di mammiferi con %{count} osservazioni'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} è un %{rank} di rettili con 1 osservazione'
+    other: '%{taxon} è un %{rank} di rettili con %{count} osservazioni'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} è un %{rank} di piante con 1 osservazione'
+    other: '%{taxon} è un %{rank} di piante con %{count} osservazioni'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} è un %{rank} di attinopterigi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di attinopterigi con %{count} osservazioni'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} è un %{rank} di animali con 1 osservazione'
+    other: '%{taxon} è un %{rank} di animali con %{count} osservazioni'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} è un %{rank} di insetti con 1 osservazione'
+    other: '%{taxon} è un %{rank} di insetti con %{count} osservazioni'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} è un %{rank} di aracnidi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di aracnidi con %{count} osservazioni'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} è un %{rank} di funghi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di funghi con %{count} osservazioni'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} è un %{rank} di protozoi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di protozoi con %{count} osservazioni'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} è un %{rank} di molluschi con 1 osservazione'
+    other: '%{taxon} è un %{rank} di molluschi con %{count} osservazioni'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} è un %{rank} di Cromisti (alghe brune etc.) con 1 osservazione'
+    other: '%{taxon} è un %{rank} di Cromisti (alghe brune etc.) con %{count} osservazioni'
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: '%{taxon} è un regno animale con 1 osservazione'
+    other: '%{taxon} è un regno animale con %{count} osservazioni'
   taxonomy: Tassonomia
   taxon_: taxon
   taxon_assessments_are: |-
@@ -4825,6 +4876,7 @@ it:
   your_google_account: il tuo account Google
   your_google_account_info: Informazioni del tuo account Google
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
+  your_recent_projects: I tuoi Progetti Recenti
   your_should_recognize: Dovresti riconosce alcune di queste foto
   your_site_account_has_been_created: Il tuo account %{site} è stato creato.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5977,7 +6029,7 @@ it:
             <li><p>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</p></li>
             <li><p>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</p></li>
             <li>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato  </p></li>
-            <li><p>Il lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte "Francese" perchè ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali per le persone che usano il sito in lingue diverse.</p></li>
+            <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte "Francese" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali per le persone che usano il sito in lingue diverse.</p></li>
           </ul>
         places_help_html: Aggiungi un nome per un luogo al fine di dargli una priorità
           per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso

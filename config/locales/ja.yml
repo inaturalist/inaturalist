@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Omotecho
 # Author: Otokoume
+# Author: S2KTS
 # Author: Sudachi
 # Author: Sujiniku
 # Author: Zero 1 k
@@ -26,8 +27,8 @@ ja:
     one: 1件の同定
     other: '%{count}件の同定'
   x_ids:
-    one: 1 ID
-    other: '%{count} ID'
+    one: 1件の同定
+    other: '%{count}件の同定'
   x_lists:
     one: 1件のリスト
     other: '%{count}件のリスト'
@@ -163,7 +164,7 @@ ja:
   add_a_link_raquo: リンクを追加 &raquo;
   add_a_name: 名前を追加
   add_a_new_change_group: 新規変更グループを追加
-  add_a_new_observation_to_id_please!: ID依頼の新規観察記録を追加
+  add_a_new_observation_to_id_please!: 同定対象の新規観察記録を追加
   add_a_place_raquo: 場所を追加 &raquo;
   add_a_single_observation: 1件の観測記録を追加
   add_a_taxon: 分類群を追加
@@ -202,7 +203,7 @@ ja:
   add_link: リンクを追加
   add_listed_taxa_from_observations: リスト記載分類群を観察記録から追加
   add_higher_level_taxon: より高い階級の分類群を追加（例：鳥類）
-  add_id: IDを追加
+  add_id: 同定を追加
   add_it_to_place_raquo: 場所に追加 &raquo;
   add_more_photos: さらに写真を追加
   add_new_lexicon: 新規用語集（言語）を追加
@@ -211,7 +212,7 @@ ja:
   add_new_place: 新しい場所を追加
   add_new_rule: 新しいルールを追加
   add_new_source: 新規ソースを追加...
-  add_new_taxon_name: 新規タクソン名を追加
+  add_new_taxon_name: 新規タクソン(分類群)名を追加
   add_notes_about_this_taxon: この場所におけるこの分類群についての記述（例：どこで、いつ確認できるのか）
   add_obs_from_a_link: 次のリストから観測記録を追加：%{link}
   add_obs_from_a_list: リストから観測記録を追加
@@ -219,9 +220,9 @@ ja:
   add_observations!: 観察記録を追加しよう！
   add_observations: 観察記録を追加
   add_observations_by_checking_off: リストから削除した種に観察記録を追加
-  add_observations_from_list: リストをから観察記録を追加
+  add_observations_from_list: リストから観察記録を追加
   add_observations_project: このプロジェクトに観測記録を追加
-  add_one: 一つを追加しよう！
+  add_one: 1件、追加しよう！
   add_one_now: 今すぐ追加
   add_photos: 写真を追加
   add_photos_to_this_observation: この観測記録に写真を追加
@@ -233,10 +234,10 @@ ja:
   add_tags_to_selected_taxa: 選択されている分類群にタグを追加
   add_taxa: 分類群を追加
   add_taxa_to_places: 場所に分類群を追加
-  add_taxon_batch_to: 分類群の一括追加先：%{list}
+  add_taxon_batch_to: 分類群を一括で%{list}に追加
   add_taxon_range: 分類群の分布・生息区域を追加
   add_taxonomic_tags_to: 選択されたFlickr写真に分類群タグを付ける &raquo;
-  add_to: 次の場所に追加：
+  add_to: 次のフィールドに追加：
   add_to_a_scheme: スキームに追加
   add_to_a_project: プロジェクトに追加
   add_to_calendar: カレンダーに追加
@@ -246,15 +247,15 @@ ja:
   add_to_list: リストに追加
   add_to_project: プロジェクトに追加
   add_to_your_life_list: ライフリストに追加！
-  add_to_your_list: あなたのリストに追加
+  add_to_your_list: 自分のリストに追加
   add_your_own_observations_at: 自分が観察したものを%{site_name}に追加しましょう
-  add_your_photo: あなたの写真を追加
-  add_your_photo_to: '%{project}にあなたの写真を追加'
+  add_your_photo: 自分の写真を追加
+  add_your_photo_to: '%{project}に自分の写真を追加'
   added: 追加されました
   added!: 追加されました！
-  added_an: 追加した：
-  added_as_a_part_of: 追加先：
-  added_by: 追加者
+  added_an: '追加:'
+  added_as_a_part_of: '追加先:'
+  added_by: '追加者:'
   added_by_user_on_date_html: '%{date}に%{user}によって追加されました'
   added_identifications_to: は別のユーザーの観察記録に同定を追加したことがあります。
   added_on: 追加日付
@@ -313,21 +314,21 @@ ja:
     reptiles: 爬虫類
     life: 生命
     x_plantae:
-      one: 1個の植物
-      other: '%{count}個の植物'
+      one: 1件の植物
+      other: '%{count}件の植物'
     x_animalia:
-      one: 1頭の動物
-      other: '%{count}頭の動物'
+      one: 1件の動物
+      other: '%{count}件の動物'
     x_mollusca:
-      one: 1頭の軟体動物
-      other: '%{count}頭の軟体動物'
-    x_amphibia: '{{PLURAL|one=1頭の両生類|%{count}頭の両生類}'
+      one: 1件の軟体動物
+      other: '%{count}件の軟体動物'
+    x_amphibia: '{{PLURAL|one=1件の両生類|%{count}件の両生類}'
     x_mammalia:
-      one: 1頭の哺乳類
-      other: '%{count}頭の哺乳類'
+      one: 1件の哺乳類
+      other: '%{count}件の哺乳類'
     x_reptilia:
-      one: 1頭の爬虫類
-      other: '%{count}頭の爬虫類'
+      one: 1件の爬虫類
+      other: '%{count}件の爬虫類'
     x_aves:
       one: 1羽の鳥
       other: '%{count}羽の鳥'
@@ -341,11 +342,11 @@ ja:
       one: 1種の菌類
       other: '%{count}種の菌類'
     x_protozoa:
-      one: 1頭の原生動物
-      other: '%{count}頭の原生動物'
+      one: 1件の原生動物
+      other: '%{count}件の原生動物'
     x_other_animals:
-      one: 1頭のその他の動物
-      other: '%{count}頭のその他の動物'
+      one: 1件のその他の動物
+      other: '%{count}件のその他の動物'
   all_taxa_in_this_guide: このガイド内のすべての分類群
   all_taxonomic_groups: '&laquo; すべての分類群'
   all_updates: すべての更新情報
@@ -557,7 +558,7 @@ ja:
     split: 古い分類群が複数の新しい分類群に分割されます
     merge: いくつかの古い分類群が一つの新しい分類群にまとめる
     swap: １対１名称変更
-    drop: 現在は完全に認められていない分類群。過去の記録またはデータ提供先との互換性のために保存されます。
+    drop: 現在は完全に廃止された分類群。過去の記録またはデータ提供先との互換性のために保存されます。
   change_geoprivacy: 地理情報プライバシー
   change_group: グループを変更
   change_icon: アイコンを変更
@@ -1041,7 +1042,7 @@ ja:
   fields_can_only_be_edited_by_the_people_who: フィールド設定を変更できるのは、作成者及びサイトキュレーター管理者のみです。
   fields_merged: フィールドが統合されました
   fill_out_project_observation_fields: プロジェクトの観察フィールドを入力してください
-  fill_out_your_profile: あなたのプロフィールを完成させましょう
+  fill_out_your_profile: あなたのプロフィールを完成しましょう
   filling_out_checklist_for_place: あなたがよく知っている場所のチェックリストを完成させること
   filling_out_your_profile: あなたのプロフィールを完成させましょう
   filter: 絞り込む
@@ -1240,7 +1241,7 @@ ja:
   ids: ID
   ids_made_for_others: 他のユーザのためのID
   if_this_is_a_scientific_name: 学名の場合、現在認められているものでしょうか？
-  if_you_already_have_an_account: すでに%{site_name}のアカウントをお持ちの場合...
+  if_you_already_have_an_account: すでに%{site_name}%{article}に投稿してある場合…
   if_you_dont_want_us_to_share_your_data: あなたが提供したデータを共有してほしくない場合、
   if_you_have_trouble_with_the_site: お困りのことがありませんか？ヘルプをご覧ください：
   if_you_use: ご利用ですか？
@@ -1273,7 +1274,7 @@ ja:
   in_the_past_week: ここ1週間以内
   inactive: 廃止
   inactive_taxon: 無効な分類群
-  inactive_taxon_concepts_are: 廃止された分類群概念は分類学上無効と見なされたもの、または分類群変更待ちの状態です。廃止された分類群は履歴残すために、また一部のパートナーサイトとの互換性を維持するために必要です。
+  inactive_taxon_concepts_are: 廃止された分類群概念は分類学上は無効と見なされた、または分類群変更待ちの状態です。廃止された分類群は履歴継承や、一部のパートナーサイトとの互換性を維持するために残してあります。
   inappropriate: 不適切な内容？
   inat_believes_this_is_a_complete_listing: '%{site_name}は、この場所における当分類群のリストとして完全なものだと認識しています。'
   inat_user_profile: '%{site_name}: %{user}さんのプロフィール'
@@ -1329,6 +1330,7 @@ ja:
   join_this_project: このプロジェクトに参加
   joined!: 参加しました！
   joined_any_projects: プロジェクトに参加していません
+  joined_projects: 参加したプロジェクト
   joining: 参加中...
   journal: ジャーナル
   journal_archives_for: ジャーナルアーカイブ：
@@ -1541,6 +1543,7 @@ ja:
   manage: 管理
   manage_all_your_subscriptions: 購読管理
   manage_names: 名称を管理
+  manage_your_projects: プロジェクトを管理する
   manage_your_project_invitations: プロジェクト招待を管理
   manage_subscriptions: 購読を管理
   managed: 管理されている
@@ -1667,7 +1670,7 @@ ja:
   new_announcement: 新着お知らせ
   new_assessment: 新規評定
   new_check_list: 新規チェックリスト
-  new_comment_on_a_parent_by_user_link: '%{parent}に%{parent}からの新規コメントがあります'
+  new_comment_on_a_parent_by_user_link: '%{user_link}さんから@vow_or_con{vow:an|a} %{parent}に新規コメントがあります'
   new_custom_field_for: 新規専用フィールド：
   new_flag_for: 新規フラグ：
   new_guide: 新規ガイド
@@ -1902,6 +1905,13 @@ ja:
     follow_panel_title_global: 活発なナチュラリストをフォローしましょう
     comments_panel_body: <p>%{site_name}は生き物の観察記録を公開し話し合う場です。以下のとおり、現在も議論が進行中です（注記：議論にコメントを投稿したり同定を記入すると、自動で購読に設定されます。右欄の「購読」欄で更新通知を管理できます。)</p>
     youve_got_updates_panel_title: 新着情報あります！
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li><strong>あなたのコンテンツ:</strong> あなたの観察記録について%{site_name}コミュニティーから寄せられたコメント、同定、お気に入りを表示します。誰かがプロジェクトにあなたの観察記録を載せたり、新規フィールドに注釈をを追加した場合には更新の通知が届きます。</li>
+        <li><strong>人々:</strong>フォローしている人々の新しい観察記録、ジャーナル投稿。</li>
+        <li><strong>生物、プロジェクト、場所: </ strong>購読している特定の生物や場所に載った新しい観察記録。プロジェクトに参加すると、そちらでジャーナル投稿が公開されたときに通知を受け取るように設定できます。</ li>
+        <li><strong>参加した議論:</ strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツの購読者に登録されます。購読を解除には「購読の管理」ツールを使います。</ li>
+      </ ul>
   one_by_one: １個ずつ
   one_of_your_lists: 自分のリストに
   only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
@@ -1911,7 +1921,7 @@ ja:
   only_curators_can_add_edit_scientific_names: 学名の追加・変更ができるのはキュレーター管理者のみです。
   only_curators_can_access_that_page: このページにアクセスできるのは、キュレーター管理者のみです。
   only_files_with_10000_rows_at_a_time: 一つファイルにつき10000列までのデータでお願いします
-  only_letters_numbers: アルファベットとアラビア数字のみ（スペースなし）
+  only_letters_numbers: アルファベットとアラビア数字のみ（スペースなし）。1文字目は必ず文字とする
   only_project_curators_can_do_that: その操作ができるのはプロジェクトキュレーター管理者のみです。
   only_show_active_taxa: アクティブ分類群のみ表示する
   only_show_taxa_fom_this_list: リスト内の分類群のみ表示
@@ -2630,7 +2640,7 @@ ja:
   status_globally: 世界中で%{status}
   status_in_place: '%{place}で%{status}'
   still_no_luck?: それでもダメですか？
-  still_needs_id?: それでもIDが必要ですか？
+  still_needs_id?: コミュニティーによる同定の確認・改善を許可しますか？
   still_working_on_classifying_taxon: この分類群は分類作業中です。しばらくしてからまた見てください。
   stop_editing: 編集をやめる
   stop_following_user: '%{user}のフォローをやめる'
@@ -2721,7 +2731,7 @@ ja:
   tell_the_world_a_little_about_yourself: 自己紹介しましょう
   terms: 規約
   terms_and_rules_html: 規約及び規則
-  terms_new_users: プロジェクトに参加する条件として、同意しなければならない規約
+  terms_new_users: 新規項目の追加をするには、新規ユーザーはプロジェクトに参加する前提条件として、規約に同意しなければならなりません。
   terms_of_service: サービス利用規約
   terms_service: サービス利用規約
   terrain: 地形
@@ -2797,7 +2807,7 @@ ja:
   this_observation_has_been_incorporated_into_the_following_external_websites: この観察記録データが次の外部サイトに提供されています：
   this_observation_lies_outside_the: この観察記録が%{site_name}のデータベース上にあるこの種の生息域の外にあるようです。もしかしたら、${site_name}の生息域データに不備があるか、IDが異なるか、迷鳥のような突発的な移動なのか、また生息域拡大なのかもしれません
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
-  this_place_has_no_check_list: この場所にはチェックリストがないため、ガイドが存在しません。
+  this_place_has_no_check_list: この場所にはチェックリストがありません。
   this_species: この種
   this_species_has_no_colors: この種の色が指定されていません。種検索を改善するために、この種の色を選んでください
   this_taxon_change_has_been_commited: <strong>この分類群変更が確定されました</strong>。分類群を編集しないでください。その他のフィールド編集は可です。
@@ -3064,14 +3074,14 @@ ja:
   withdraw: 撤回
   withdrawing: 撤回中...
   within_inaturalist: '%{site_name}内'
-  wondering_what_to_do_next: 次何しましょうか？よかったら
+  wondering_what_to_do_next: 自然界の観察と同定の方法を身につけるため、いくつかのステップをお奨めしています。
   would_you_like_to: よかったら
   would_like_some_help_identifying_this: は同定協力を依頼しています
   x_blog: '%{x}のブログ'
   x_deleted: '%{x}は削除されました'
   x_does_not_exist: '%{x}は存在しません'
   x_journal: '%{user}さんのジャーナル'
-  x_journal_middot: '%{user}のジャーナル &middot;'
+  x_journal_middot: '%{user}さんのジャーナル •'
   x_observations_failed:
     one: 1件の観察失敗記録
     other: '%{count}件の観察失敗記録'
@@ -3166,6 +3176,7 @@ ja:
   your_observations_couldnt_be_added_to_that_project: 指定のプロジェクトに観察記録を追加できません：%{errors}
   your_photos_have_been_tagged: あなたの写真はタグ付けされました！
   your_profile_was_successfully_updated: プロフィールは無事更新されました
+  your_recent_projects: あなたの最近のプロジェクト
   your_should_recognize: こちらの写真のうち、いくつか見覚えありませんか
   your_site_account_has_been_created: あなたの%{site}アカウントは無事作成することができました。
   your_subscriptions: あなたの購読
@@ -3177,6 +3188,7 @@ ja:
   youre_viewing_site_name_observations_html: <strong>%{site_name}</strong>の観察記録を表示中
   youve_already_added_an_identification: 同定の登録は1回だけです。すでに登録が終わっています。
   youve_opted_out_of_community_ids: コミュニティー判定の通知を解除しました
+  youve_opted_out_of_community_ids_for_this_obs: この観察記録に対するコミュニティー分類群の通知が解除されました
   youve_seen_it_want_to: 観察済です！よかったら、
   youve_successfully_linked_your_provider_account: あなたの%{provider}アカウントと無事接続できました。
   verifiable: 確認できる
@@ -3222,7 +3234,7 @@ ja:
     listed_taxa:
       establishment_field:
         confirmation: 本当によろしいですか？この場所に属する複数の場所のすべての分類群の定着方法が変更されます。たくさんの大事な情報を取り消すことになります。
-        description_html: <a href="%{place_url}">%{place_name}</a>において、この分類群の<em>すべての記録</em>の定着方法が「<strong>"%{establishment_means}"</strong>」に変更されます。こちらの機能が使えるのは、キュレーターのみです。「移入種」に変更することもほぼ同じ結果になりますが、既存の値が変更されず、空白の場合のみ、新しい値に変更されます。
+        description_html: <a href="%{place_url}">%{place_name}</a>において、この分類群の<em>すべての記録</em>の定着方法が「<strong>"%{establishment_means}"</strong>」に変更されます。こちらの機能は、キュレーター専用です。「移入種」に変更するとやはりほぼ同じ結果になりますが、既存の値は変更されず、空白の場合のみ、新しい値に変更されます。
     lists:
       show:
         project_list_desc: |-
@@ -3256,6 +3268,7 @@ ja:
       field_descriptions:
         taxon_id: 観察された分類群の一意の識子
         num_identification_agreements: 観察者の同定と一致する同定
+        num_identification_disagreements: 観察者の同定と一致しない同定
         observed_on_string: 観察者が入力した日時
         time_zone: 観察地の時間帯
         latitude: 公開緯度
@@ -3292,6 +3305,7 @@ ja:
           \ <i> Homo </ i>類には<i> Homo sapiens </ i>が含まれる）、両方を採\n  点し、同定数の累計の合計に対するその分類群の同定の累計数の比率、\n
           \ その分類群の最初の同定以降に追加された、より保守的な同定件数、\n  ならびに完全に異なる同定の件数（すなわち分類群で3分の2以上をスコ\n
           \ アし最低2件の同定が存在）を記録します。3分の2以上をスコアし最低\n  2件の同定が存在する分類群は、最も低い順位の分類群を選択します。</p>"
+        cumulative_count_desc: 単一の分類群とその下位分類に対する同定の総数
         identification_count_desc: 単一の分類群に対する同定の件数
     photos:
       inviter:
@@ -3331,7 +3345,7 @@ ja:
           any: 誰でも
           curators: プロジェクトキュレーター
       project_user_curator_coordinate_access_labels:
-        observer: あなた
+        observer: 同意します。ただしその観察記録をプロジェクトに追加したのが私自身だった場合に限定します。
     shared:
       spam:
         this_has_been_flagged_as_spam: スパムとしてフラグ付けられました
@@ -3365,8 +3379,50 @@ ja:
           Life Stage=adult: 成虫
     users:
       edit:
+        blocking_desc_html: |-
+          <p>
+            誰かをブロックすると、相手からのメッセージを受信しなくなり、あなたの
+            観察日記へのコメントや観察の同定、%{site_name}での相互作用が停止されます。
+            あなたの検索結果から相手の観察記録を削除しあわせて相手の検索結果から
+            あなたの観察記録を削除します。しかし、それでもあなたの存在は表示されます。
+            あなたの観察記録の検索とあなたのプロフィールの閲覧は可能で、ブロック
+            されるのはあなたとのやりとりに限定されます。
+          </ p>
+          <p>
+            ブロックはあなたが誰かと友好的な関係が築けない状況で、どれほど努力しても
+            相手の干渉が止まらず、文明的なやり方で紛争を解決できない場合の対策です。
+            その意見を信用できない相手から自分の存在を隠す方法あるいはコミュニティ
+            判定を回避する手段でもありません（専門の設定が必要）。したがって両面性
+            があります：誰かをブロックする場合、相手もあなたも互いに対話できません。
+            自分の観察記録が誰かに同定されないようにブロックを誤用した場合、
+          自分も
+            相手の観察記録を同定できなくなります。
+          </ p>
+          <p>
+            ブロックの上限は3人です。これはブロック処理が必要な人々と処理の悪用防止
+            を両立する合理的な規制だと考えます。もっと多くのブロック処理が必要だと
+            感じたら<a href="mailto:%{help_email}">お問い合わせ</a>ください。
+          </ p>
+          <p>
+            誰かに％{site_name}で嫌がらせやつけ回しをされた場合は
+          <a href="mailto:%{help_email}">お知らせください</a>。もし利用規約の違反あるいは私たちの
+            サイトに不適切と判断するその他の行為に当たるかどうか、調査に当たります。
+          </ p>
+        muting_desc_html: |-
+          <p>
+            誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントや
+            メッセージ、言及その他に関する通知を受け取ることができなくなります。
+            ミュートは相手の行動を防止することなく、相手を無視することができます。
+          </ p>
+          <p>
+            ミュート対象の人数に上限はありませんが、特定の同定により、あなたの同定を
+            コミュニティ判定で上書きするなど、潜在的に重要な通知を見逃すことになる
+            点にご注意ください。
+          </ p>
         project_addition_preferences:
           joined: 自分の参加しているプロジェクト
+        taxon_change_desc: 分類群が%{site_name}で統合や改名されると、変化が明確であれば、あなたの観察記録、一覧にした分類群や同定などは自動的に新しいものに更新されます。通知の解除または変更があいまい（例：分割）な場合は、更新通知が届き、手動でコンテンツを更新するツールへのリンクから、自分で更新ができます。
+        prefers_community_taxa_desc: '%{site_name}は、あなたの観察記録に対するあなた自身やコミュニティによる評価を追跡します。データ提携先と共有する同定情報はコミュニティの同定ですが、もしコミュニティの意見であなた自身の同定を上書きしないほうがよいと考える場合、これを解除できます。人々は引き続き同定情報を追加できても、あなたの意見よりコミュニティの意見が優先されることはありません。これにより、コミュニティ同定に同意しない限り、あなたの観察記録は研究用になりません。'
       show:
         this_user_was_banned: このユーザーは利用停止されました
     welcome:
