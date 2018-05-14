@@ -2073,8 +2073,8 @@ $header-line-height: 34px;
     }
     .add-obs {
       .btn {
-        padding-left: 8px !important;
-        padding-right: 8px !important;
+        font-size: 15px !important;
+        padding: 5px 7px !important;
       }
     }
   }
@@ -2085,8 +2085,8 @@ $header-line-height: 34px;
     }
     .add-obs {
       .btn {
-        padding-left: 8px !important;
-        padding-right: 8px !important;
+        font-size: 15px !important;
+        padding: 5px 7px !important;
       }
     }
     &.search-open {
@@ -2110,8 +2110,8 @@ $header-line-height: 34px;
       }
       .add-obs {
         .btn {
-          padding-left: 8px !important;
-          padding-right: 8px !important;
+          font-size: 15px !important;
+          padding: 5px 7px !important;
         }
       }
     }
@@ -2170,7 +2170,7 @@ $header-line-height: 34px;
   $header-search-width: 250px;
   .search {
     margin-bottom: 0;
-    margin-right: 20px;
+    margin-right: 10px;
     display: flex;
     input {
       width: $header-search-width;
@@ -2215,6 +2215,7 @@ $header-line-height: 34px;
     line-height: 32px;
     border: 1px solid transparent;
     font-weight: bold;
+    letter-spacing: 0.2px;
   }
   #mainnav {
     text-align: left;
@@ -2293,7 +2294,7 @@ $header-line-height: 34px;
       border-color: $inat-green;
       color: white;
       i { color: white; }
-      font-size: 13px;
+      font-size: 14px;
       font-weight: 700;
       padding: 6px 10px 5px;
       line-height: 15px;
