@@ -1276,7 +1276,7 @@ fi:
   find_photos: Löydä valokuvia
   find_places: Löydä paikkoja
   find_some_people_to_follow: Löydä seurattavia henkilöitä
-  find_species: Löydä lajeja
+  find_species: Etsi lajeja
   find_suitable_observations: Hae sopivia havaintoja
   find_unsuitable_observations: Löydä sopimattomia havaintoja
   find_your_current_location: Hae tämänhetkinen sijaintisi
@@ -1382,6 +1382,7 @@ fi:
   grouping: Ryhmitys
   guides: Oppaat
   guide_deleted: Opas poistettu
+  guide_taxon: Taksoniopas
   guide_was_successfully_created: Oppaan teko onnistui.
   guide_was_successfully_published: Oppaan julkaisu onnistui.
   guide_was_successfully_updated: Oppaan päivitys onnistui.
@@ -1442,7 +1443,7 @@ fi:
   identifications: Tunnistukset
   identifications_by: Käyttäjän %{user} tekemät tunnistukset
   identifiers: Tunnisteet
-  ids: Tunnistetta
+  ids: Tunnisteet
   ids_made_for_others: muille tehtyä tunnistetta
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se tällä hetkellä
     hyväksytty?
@@ -1607,14 +1608,21 @@ fi:
     bengali: Bengali
     catalan: Katalaani
     cebuano: Cebuano
+    chinese_simplified: Kiina (yksinkertaistettu)
+    chinese_traditional: Kiina (perinteinen)
     creole_french: kreoli (Ranska)
     creole_portuguese: kreoli (Portugali)
+    czech: Tsekki
+    danish: Tanska
     davawenyo: Davawenyo
     dutch: Hollanti
     english: Englanti
+    estonian: Viro
+    finnish: Suomi
     french: Ranska
     gela: Gela
     german: Saksa
+    greek: Kreikka
     hawaiian: Havaiji
     hebrew: Heprea
     hiligaynon: Hiligaino
@@ -1623,10 +1631,12 @@ fi:
     italian: Italia
     japanese: Japani
     korean: Korea
+    luxembourgish: Luksemburgi
     maltese: Malta
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norja
+    occitan: Oksitaani
     pangasinan: Pangasinan
     portuguese: Portugali
     romanian: Romania
@@ -1637,6 +1647,7 @@ fi:
     tahitian: Tahiti
     tokelauan: Tokelauan
     turkish: Turkki
+    waray_waray: Waray-Waray
   less: Vähemmän
   license_descriptions_and_images: Lisenssikuvaukset ja kuvat
   licensed_site_photos: Lisensoidut %{site_name}-kuvat
@@ -1700,6 +1711,7 @@ fi:
   loading_taxa_from_your: Ladataan taksoneita havainnoistasi...
   loading_wikipedia_description: Ladataan Wikipediakuvausta...
   locale_description: Maa asettaa kieli- ja päivämäärämuotoiluasetuksesi.
+  locales_: Kieli
   locales:
     ar: Arabia
     bg: Bulgaria
@@ -1714,6 +1726,7 @@ fi:
     es-ES: Espanja (Espanja)
     es-MX: Espanja (Meksiko)
     es: Espanja
+    et: Viro
     eu: Baski
     fi: Suomi
     fr: Ranska
@@ -1768,11 +1781,12 @@ fi:
   make_new_place: Tee uusi paikka
   make_taxonomic_flickr_tags_for_taxon_raquo: Tee taksonomisia Flickr tunnisteita
     tähän taksoniin &raquo;
-  make_this_your_default_license: Tee tästä oletus lisenssisi
+  make_this_your_default_license: Tee tästä oletus %{type} lisenssisi
   mammals: nisäkkäät
   manage: Hallitse
   manage_all_your_subscriptions: Hallitse kaikkia tilauksiasi
   manage_names: Hallitse nimiä
+  manage_your_projects: Hallitse projektejasi
   manage_your_project_invitations: Hallitse kutsujasi projekteihin
   manage_subscriptions: Hallitse tilauksia
   manager: Manageri
@@ -2841,6 +2855,7 @@ fi:
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   take_me_back: Vie minut takaisin
   taxa: Taksonit
+  taxa_info: Taksonitiedot
   taxa_all_species_html: Kaikki lajit
   taxa_observed: taksonia havaittu
   taxon: Taksoni
@@ -2853,6 +2868,7 @@ fi:
   taxon_id: Taksonin tunniste
   taxon_ids: Taksonin tunnisteet
   taxon_changes: Taksonimuutokset
+  taxon_colors: Taksonivärit
   taxon_curators: Taksonikuraattorit
   taxon_name: Taksonin nimi
   taxon_observed_by_user: '%{taxon} havaittu käyttäjän %{user} toimesta'
@@ -3384,6 +3400,9 @@ fi:
         journal: päiväkirja
       pdf_layout_notes:
         grid: Yksittäisten kuvien ruudukko, ei kuvauksia
+      sorts:
+        alphaname: Aakkosjärjestyksessä tieteellisten nimien mukaan
+        alphadisplay: Aakkosjärjestyksessä näyttönimittäin
     help:
       index:
         what_is_inaturalist?: Mikä on %{site_name}?
@@ -3487,6 +3506,7 @@ fi:
     projects:
       project_type: Projektin tyyppi
       collection: Kokoelma
+      umbrella: Sateenvarjo
       confirm_leave:
         keep_observations_label: Jätä havaintosi tässä projektissa
         remove_observations_label: Poista kaikki havaintosi tästä projektista
@@ -3514,6 +3534,7 @@ fi:
           curators: projektin kuraattorit
       new:
         delete_project: Poista projekti
+        display_project_name: Näytä projektin nimi
         or_drag_and_drop: (tai vedä ja pudota)
         project_banner: Projektin banneri (PNG, JPG, tai GIF)
         project_banner_help: Valinnainen bannerikuva. Ihanteelliset mitat ovat 760px
@@ -3704,6 +3725,15 @@ fi:
       x_seconds:
         one: 1 sekunti
         other: '%{count} sekuntia'
+    countdown_x_days:
+      one: päivä
+      other: päivää
+    countdown_x_hours:
+      one: tunti
+      other: tuntia
+    countdown_x_minutes:
+      one: minuutti
+      other: minuuttia
     countdown_x_seconds:
       one: sekunti
       other: sekuntia
@@ -3727,6 +3757,8 @@ fi:
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
   helpers:
+    defaults:
+      title: TÄMÄ ON OTSIKKO
     select:
       prompt: Valitse
     submit:
@@ -3857,6 +3889,8 @@ fi:
         geo_y: Pohjoiseen
       observation_field_value:
         value: arvo
+      post:
+        title: Otsikko
       project:
         title: Otsikko
         project_type: Projektin tyyppi
@@ -3897,6 +3931,7 @@ fi:
         source_identifier: Lähdetunniste
       user:
         email: Sähköposti
+        login: Käyttäjänimi
         name: Nimi
         locale: Maa
         time_zone: Aikavyöhyke
