@@ -588,6 +588,23 @@ span.button {
 
 .sciname .rank {font-style: normal;}
 
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+  .genus .sciname,
+  .species .sciname,
+  .subspecies .sciname,
+  .infraspecies .sciname,
+  .variety .sciname,
+  .hybrid .sciname,
+  .sciname.genus,
+  .sciname.species,
+  .sciname.infraspecies,
+  .sciname.subspecies,
+  .sciname.variety,
+  .sciname.hybrid {
+    font-weight: 100;
+  }
+}
+
 .taxon .othernames {
   font-size: 80%;
   color: #888;
