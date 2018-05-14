@@ -47,9 +47,9 @@ class ProjectsController < ApplicationController
         @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 ).includes(:stored_preferences)
         @carousel = @featured.limit( 3 ) if @carousel.count == 0
         @carousel = @projects.limit( 3 ) if @carousel.count == 0
-        @carousel = @carousel.to_a
+        @carousel = @carousel.to_a.sort_by(&:featured_at).reverse
 
-        @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}[0..8]
+        @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}.sort_by(&:featured_at).reverse[0..8]
         @recent = Project.joins(:posts).order( "posts.id DESC" ).limit( 20 ).includes(:stored_preferences)
         @recent = @recent.joins( :place ).where( @place.self_and_descendant_conditions ) if @place
         @recent = @recent.to_a.uniq[0..7]
