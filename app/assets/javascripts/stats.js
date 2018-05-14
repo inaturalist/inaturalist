@@ -312,7 +312,7 @@ Stats.loadRanks = function( json ) {
     }),
     data: _.map( json, function( stat ) {
       var values = _.map( ranks, function( rank ) {
-        return _.detect(stat.data.taxa.count_by_rank, function(v, k) { return k === rank });
+        return _.find(stat.data.taxa.count_by_rank, function(v, k) { return k === rank });
       });
       values.unshift( Stats.dateForStat( stat ) );
       return values;

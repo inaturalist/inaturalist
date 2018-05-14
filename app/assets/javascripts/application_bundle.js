@@ -12,7 +12,7 @@
 //= require jquery/plugins/jquery.string.1.0
 //= require jquery/plugins/jquery.dataTables.min
 //= require rails
-//= require underscore.min
+//= require lodash.min
 //= require jquery/plugins/inat/generic_autocomplete
 //= require application
 //= require inaturalist
