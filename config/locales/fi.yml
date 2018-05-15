@@ -3666,6 +3666,14 @@ fi:
     - Torstai
     - Perjantai
     - Lauantai
+    day_names_min:
+      1: Su
+      2: Ma
+      3: Ti
+      4: Ke
+      5: To
+      6: Pe
+      7: La
     formats:
       default: '%d-%m-%Y'
       long: '%d. %Bta %Y'

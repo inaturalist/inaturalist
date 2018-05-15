@@ -1008,11 +1008,6 @@ en:
     currentText: Today
     prevText: Prev
     nextText: Next
-    monthNames: "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
-    monthNamesShort: "['Jan','Feb','Mar','Apr', 'May','Jun','Jul','Aug','Sep', 'Oct','Nov','Dec']"
-    dayNames: "['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']"
-    dayNamesShort: "['Sun','Mon','Tue','Wed','Thu','Sun','Sat']"
-    dayNamesMin: "['Su','Mo','Tu','We','Th','Fr','Sa']"
     range: Range
   date_range: Date Range
   date_specified: Date specified
@@ -5886,6 +5881,14 @@ en:
       - Thursday
       - Friday
       - Saturday
+    day_names_min:
+      1: Su
+      2: Mo
+      3: Tu
+      4: We
+      5: Th
+      6: Fr
+      7: Sa
     formats:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'

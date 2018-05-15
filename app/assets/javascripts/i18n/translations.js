@@ -310,6 +310,15 @@ I18n.translations["ar"] = {
   "data_quality_assessment": "تقييم جودة البيانات",
   "data_quality_assessment_": "تقييم جودة البيانات",
   "date": {
+    "abbr_day_names": [
+      "أحد",
+      "اثن",
+      "ثلا",
+      "أرب",
+      "خم",
+      "جم",
+      "سبت"
+    ],
     "abbr_month_names": {
       "1": "ين",
       "2": "فب",
@@ -323,6 +332,24 @@ I18n.translations["ar"] = {
       "10": "أكت",
       "11": "نوف",
       "12": "ديس"
+    },
+    "day_names": [
+      "الأحد",
+      "الاثنين",
+      "الثلاثاء",
+      "الأربعاء",
+      "الخميس",
+      "الجمعة",
+      "السبت"
+    ],
+    "day_names_min": {
+      "1": "أح",
+      "2": "اث",
+      "3": "ثل",
+      "4": "أر",
+      "5": "خم",
+      "6": "جم",
+      "7": "سب"
     },
     "formats": {
       "month_day_year": "%ش %ي، %س"
@@ -368,7 +395,7 @@ I18n.translations["ar"] = {
     "currentText": "اليوم",
     "prevText": "سابق",
     "nextText": "التالي",
-    "monthNames": "['يناير'، 'فبراير'، 'مارس'، 'أبريل'، 'مايو'، 'يونيو'، 'يوليو'، 'أغسطس'، 'سبتمبر'، 'أكتوبر'، 'نوفمبر'، 'ديسمبر']",
+    "monthNames": "['يناير', 'فبراير', 'مارس', 'أبريل', 'مايو', 'يونيو', 'يوليو', 'أغسطس', 'سبتمبر', 'أكتوبر', 'نوفمبر', 'ديسمبر']",
     "monthNamesShort": "['ين'، 'فب'، 'ما'، 'أب'، 'ما'، 'يون'، 'يول'، 'أغ'، 'سب'، 'أك'، 'نو'، 'دي']",
     "dayNames": "['الأحد'، 'الاثنين'، 'الثلاثاء'، 'الأربعاء'، 'الخميس'، 'الجمعة'، 'السبت']",
     "dayNamesShort": "['أحد'، 'اثن'، 'ثلا'، 'أرب'، 'خمي'، 'جمع'، 'سبت']",
@@ -570,14 +597,21 @@ I18n.translations["ar"] = {
     "bengali": "البنغالية",
     "catalan": "الكتالونية",
     "cebuano": "السيبوانية",
+    "chinese_simplified": "الصينية (المبسطة)",
+    "chinese_traditional": "الصينية (التقليدية)",
     "creole_french": "الكريولية (الفرنسية)",
     "creole_portuguese": "الكريولية (البرتغالية)",
+    "czech": "التشيكية",
+    "danish": "الدانماركية",
     "davawenyo": "دفاوينيو",
     "dutch": "الهولندية",
     "english": "الإنجليزية",
+    "estonian": "الإستونية",
+    "finnish": "الفنلندية",
     "french": "الفرنسية",
     "gela": "جيلا",
     "german": "الألمانية",
+    "greek": "اليونانية",
     "hawaiian": "الهاوايية",
     "hebrew": "العبرية",
     "hiligaynon": "الهيليجينون",
@@ -586,10 +620,12 @@ I18n.translations["ar"] = {
     "italian": "الإيطالية",
     "japanese": "اليابانية",
     "korean": "الكورية",
+    "luxembourgish": "اللوكسمبرغية",
     "maltese": "المالطية",
     "maori": "الماورية",
     "misima_paneati": "ميسيما",
     "norwegian": "النرويجية",
+    "occitan": "القسطانية",
     "pangasinan": "بانغاسينان",
     "portuguese": "البرتغالية",
     "romanian": "الرومانية",
@@ -1106,6 +1142,7 @@ I18n.translations["ar"] = {
   "show_uncountable_species": "عرض الأنواع التي لا تُحصَى",
   "showing_taxa_from_everywhere": "عرض أصناف من كل مكان",
   "showing_taxa_from_place": "عرض أصناف من %{place}",
+  "showing_x_of_y_listings": "عرض %{x} من قوائم %{y}",
   "sign_out": "تسجيل الخروج",
   "sign_up": "أنشئ حسابًا",
   "similar_species": "أنواع مماثلة",
@@ -1314,6 +1351,7 @@ I18n.translations["ar"] = {
         "click_through_to_individual_projects": "انقر من خلال المشاريع الفردية",
         "collection_project_features": "ميزات مشروع التجميع:",
         "collection_projects": "مشاريع المجموعة",
+        "contain_entire_image_without_cropping": "تحتوي على صورة كاملة بدون اقتصاص",
         "custom_banner_icon_and_project_description": "شعار ورمز ووصف مشروع مخصص",
         "data_visualizations": "تصورات البيانات",
         "delete_project": "حذف المشروع",
@@ -1346,7 +1384,8 @@ I18n.translations["ar"] = {
         "users_can_follow_your_project": "يمكن للمستخدمين متابعة مشروعك للحصول على التحديثات عبر منشورات المجلات",
         "visual_comparison_of_data_among": "مقارنات مرئية للبيانات بين المشاريع تحت المظلة",
         "we_have_redesigned_projects": "لقد أعدنا تصميم المشروعات بحيث تشمل تلقائيا جميع الملاحظات التي تناسب \nالأماكن والأصناف والمستخدمين والجودة والتواريخ التي تحددها، اختر من بين نوعين: \nمجموعة المشروعات ومشاريع المظلة، والتي تشترك في الميزات التالية:",
-        "welcome_to_projects": "مرحبا بك في المشاريع!"
+        "welcome_to_projects": "مرحبا بك في المشاريع!",
+        "you_have_not_defined_any_observation_requirements": "لم تحدد أي متطلبات للملاحظة; تأكد من تحديد أصنوفة واحدة أو أكثر \n(مثل الطيور والصنوبريات) والأماكن (مثل البرازيل ويلوستون) والمستخدمين و/أو التواريخ لتحديد \nالملاحظات التي تريد تضمينها في مشروعك."
       },
       "project_type": "نوع المشروع",
       "projects_included": "المشاريع المضمنة",
@@ -1644,11 +1683,12 @@ I18n.translations["bg"] = {
   "a_member_of": "Представител на",
   "about": "Относно",
   "about_community_taxa": "За таксоните от общността",
+  "about_names": "Относно имената",
   "account": "Акаунт",
   "accuracy": "Точност",
   "accuracy_meters": "Точност (метри)",
   "action": "Действие",
-  "active": "активен",
+  "active": "Активен",
   "activity": "Активност",
   "add": "Добавяне",
   "add_a_comment": "Добавяне на коментар",
@@ -1661,7 +1701,7 @@ I18n.translations["bg"] = {
   "add_to_a_project": "Добавяне към проект",
   "add_to_favorites": "Добавяне към любими",
   "add_to_project": "Добави към проект",
-  "added": "Добавен",
+  "added": "Добавено",
   "added!": "Добавено!",
   "added_on": "Добавено на",
   "agree_": "Съгласен",
@@ -1757,6 +1797,7 @@ I18n.translations["bg"] = {
   "annotations": "Анотации",
   "any": "без значение",
   "arachnids": "паякообразни",
+  "are_you_sure_remove_photo": "Сигурни ли сте, че искате да премахнете тази снимка?",
   "are_you_sure_you_want_to_remove_all_tags": "Сигурни ли сте, че искате да премахнете всички етикети?",
   "are_you_sure_you_want_to_remove_these_x_taxa?": "Сигурни ли сте, че искате да премахнете тези %{x} таксона?",
   "asc": "възх.",
@@ -1765,6 +1806,7 @@ I18n.translations["bg"] = {
   "attribute": "Атрибут",
   "back_to_suggestions": "Назад към предложенията",
   "back_to_x": "Обратно към %{noun}",
+  "be_the_first_to_fave_this_observation": "Станете първият добавил наблюдението в Любими!",
   "birds": "птици",
   "black": "черно",
   "blue": "синьо",
@@ -1803,6 +1845,7 @@ I18n.translations["bg"] = {
   "combine": "Обедини",
   "comment": "коментар",
   "comment_": "Коментар",
+  "community_curated": "Курирано от общността",
   "community_id_at_species_level_or_lower": "ID от общността на ниво вид или по-ниско",
   "compare": "Сравняване",
   "conservation_status": "Природозащитен статут",
@@ -1843,6 +1886,15 @@ I18n.translations["bg"] = {
   "data_quality_assessment": "Оценка на качеството на данните",
   "data_quality_assessment_": "оценка на качеството на данните",
   "date": {
+    "abbr_day_names": [
+      "Нд",
+      "Пн",
+      "Вт",
+      "Ср",
+      "Чт",
+      "Пт",
+      "Сб"
+    ],
     "abbr_month_names": {
       "1": "Ян",
       "2": "фев",
@@ -1856,6 +1908,24 @@ I18n.translations["bg"] = {
       "10": "Окт",
       "11": "Ное",
       "12": "Дек"
+    },
+    "day_names": [
+      "неделя",
+      "понеделник",
+      "вторник",
+      "сряда",
+      "четвъртък",
+      "петък",
+      "събота"
+    ],
+    "day_names_min": {
+      "1": "Нд",
+      "2": "Пн",
+      "3": "Вт",
+      "4": "Ср",
+      "5": "Чт",
+      "6": "Пт",
+      "7": "Сб"
     },
     "formats": {
       "month_day_year": "%d %B %Y"
@@ -1935,11 +2005,13 @@ I18n.translations["bg"] = {
     "other": "Редактиране на <span class=\"count\">%{count}</span> наблюдения:"
   },
   "eligible_for_research_grade": "Приемливо за „Изследователски клас“",
+  "encompassing_places": "Обхващащи места",
   "end": "Край",
   "endangered": "застрашен",
   "endemic": "ендемичен",
   "endemic_to_x": "Ендемичен за %{x}",
   "establishment_means": "Начин на заселване",
+  "everyone_": "Всички",
   "evidence_of_organism": "Наличност (или следи) на организъм",
   "exact_date": "Точна дата",
   "exact_location": "Точно местоположение",
@@ -2002,16 +2074,19 @@ I18n.translations["bg"] = {
   "identify": "Разпознай",
   "identify_observations": "Разпознай наблюдения",
   "identify_title": "Разпознай",
+  "ids_made_for_others": "Разпознавания направени за други",
   "inactive_taxon": "неактивен таксон",
   "inappropriate_content": "Неуместно съдържание?",
   "info": "Информация",
   "insects": "насекоми",
   "introduced": "интродуциран",
+  "introduced_in_place": "Интродуциран във %{place}",
   "join_project": "Включи се в проекта",
   "join_this_project": "Включи се в проекта",
   "journal": "Дневник",
   "kml_file_size_error": "KML файла трябва да е по-малък от 1MB",
   "labels": "Етикети",
+  "language_slash_type": "Език / Тип",
   "last_observation": "Последно наблюдение",
   "lat": "г.ш.",
   "latitude": "Геогр. ширина",
@@ -2115,6 +2190,7 @@ I18n.translations["bg"] = {
   "more_filters": "Още филтри",
   "more_from_x": "Още от %{x}",
   "more_import_options": "Още възможности за импорт",
+  "more_photos": "Още снимки",
   "most_observations": "Най-много наблюдения",
   "most_observed_species": "Най-наблюдавани видове",
   "most_species": "Най-много видове",
@@ -2137,6 +2213,9 @@ I18n.translations["bg"] = {
   "no_matching_observations": "Няма намерени наблюдения",
   "no_matching_users": "Няма намерени потребители.",
   "no_news_yet": "Все още няма новини",
+  "no_observations": "Няма наблюдения",
+  "no_observations_from_this_place_yet": "Все още няма наблюдения от това място.",
+  "no_observations_yet": "Все още няма наблюдения",
   "no_relevant_annotations": "Няма подходящи анотации",
   "no_results_found": "Не бяха открити резултати",
   "none": "Нищо",
@@ -2148,28 +2227,41 @@ I18n.translations["bg"] = {
   "observation_fields": "Полета за наблюдения",
   "observation_without_media": "Наблюдение без медийно съдържание",
   "observations": "Наблюдения",
+  "observations_": "наблюдения",
   "observations_in_this_project_must": "Наблюденията в този проект трябва да отговарят на следните критерии",
   "observations_map": "Наблюдения / Карта",
   "observations_of_relatives": "Наблюдения на сродни видове",
+  "observations_total": "Общо наблюдения",
   "observed": "Наблюдавано",
   "observed_on": "Наблюдаван на",
   "observers": "Наблюдатели",
+  "of_identifiers": "разпознавачи",
+  "of_observations": "наблюдения",
+  "of_observers": "наблюдатели",
+  "of_places": "места",
   "of_species": "вид",
+  "of_this_taxon": "От този таксон",
   "offensive_inappropriate": "обидно / неуместно",
-  "open": "отвори",
-  "open_": "Отваряне",
+  "open": "открито",
+  "open_": "Открито",
   "or": "или",
   "orange": "оранжево",
   "order_by": "Подреди по",
   "organism_appears_captive_cultivated": "Организмът изглежда отгледан от човек",
   "organism_is_wild": "Организмът е див",
+  "other": "Други",
   "other_animals": "други животни",
   "other_species_commonly_misidentified_as_this_species": "Други видове често обърквани с този вид",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Други видове често обърквани с този вид във <a href=\"%{url}\">%{place}</a>",
   "overview": "Общ преглед",
+  "per_day": "На ден",
+  "per_month": "На месец",
+  "per_week": "На седмица",
   "person": "човек",
   "photo": "Снимка",
   "photo_licensing": "Лиценз на снимката",
+  "photos_from": "Снимки от",
+  "photos_of": "Снимки на",
   "photos_or_sounds": "Снимки или звуци",
   "pink": "розово",
   "place": "Място",
@@ -2215,6 +2307,8 @@ I18n.translations["bg"] = {
       "nearby_building": "близка сграда",
       "Nearby_Intersection": "Близка пресечка",
       "nearby_intersection": "близка пресечка",
+      "Open_Space": "Отворено пространство",
+      "open_space": "отворено пространство",
       "Parish": "Eнория",
       "parish": "енория",
       "Point_of_Interest": "Място от интерес",
@@ -2225,6 +2319,8 @@ I18n.translations["bg"] = {
       "province": "провинция",
       "Region": "Регион",
       "region": "регион",
+      "Republic": "Република",
+      "republic": "република",
       "Sports_Team": "Спортен отбор",
       "sports_team": "спортен отбор",
       "Street": "Улица",
@@ -2402,6 +2498,7 @@ I18n.translations["bg"] = {
   "select_at_least_one": "Изберете поне едно",
   "select_observations_to_edit": "Изберете наблюдения за редактиране...",
   "select_options": "Избери опция",
+  "selected_photos": "Избрани снимки",
   "share": "Споделяне",
   "show": "Покажи",
   "show_taxa_from_everywhere": "Покажи таксони отвсякъде",
@@ -2439,6 +2536,7 @@ I18n.translations["bg"] = {
   "tags": "Етикети",
   "taxa": "Таксони",
   "taxon": "Таксон",
+  "taxon_changes": "Таксономични промени",
   "taxon_map": {
   },
   "taxonomic_groups": "Таксономични групи",
@@ -2458,7 +2556,11 @@ I18n.translations["bg"] = {
   "top_identifier": "Най-добър разпознавач",
   "top_identifiers": "Топ разпознавачи",
   "top_identifiers_of_taxon": "Най-добри разпознавачи на %{taxon}",
+  "top_observer": "Най-добър наблюдател",
+  "total": "Общо",
   "total_observations": "Общо наблюдения",
+  "trending": "В тенденция",
+  "trends": "Тенденции",
   "twitter": "Twitter",
   "type_species_name": "Въведи вид",
   "unfollow": "Спри следването",
@@ -2481,6 +2583,7 @@ I18n.translations["bg"] = {
   },
   "user": "Потребител",
   "user_disagrees_this_is_taxon": "Потребителят %{user} не е съгласен, че това е %{taxon}",
+  "user_suggested_an_id": "%{user} предложи ID",
   "username_or_user_id": "Потребителско име или идентификатор",
   "users": "Потребители",
   "value": "Стойност",
@@ -2492,6 +2595,9 @@ I18n.translations["bg"] = {
   "view_more": "Виж още",
   "view_observation": "Виж наблюдението",
   "view_observations": "Виж наблюденията",
+  "view_observations_of_this_taxon_by": "Виж наблюдения на този таксон от",
+  "view_your_year_stats": "Виж своята статистика за %{year}",
+  "view_yours": "Виж своите",
   "views": {
     "observations": {
       "community_id": {
@@ -2540,7 +2646,10 @@ I18n.translations["bg"] = {
           "Life Stage=nymph": "Нимфа",
           "Life Stage=pupa": "Какавида",
           "Life Stage=adult": "Възрастен"
-        }
+        },
+        "trending_desc": "Най-наблюдаваните таксони през последния месец",
+        "trending_in_place_desc_html": "Най-наблюдаваните таксони през последния месец във <a href=\"%{url}\">%{place}</a>",
+        "wanted_desc": "Видове от този таксон които все още не са наблюдавани."
       }
     },
     "users": {
@@ -2554,6 +2663,7 @@ I18n.translations["bg"] = {
     }
   },
   "vulnerable": "уязвим",
+  "website": "Уебсайт",
   "whats_this?": "Какво е това?",
   "white": "бяло",
   "wild": "див",
@@ -2619,10 +2729,12 @@ I18n.translations["bg"] = {
   "yes": "Да",
   "yesterday": "Вчера",
   "you_must_select_at_least_one_taxon": "Трябва да изберете поне един таксон",
+  "you_retain_full_copyright": "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване.",
   "your_browser_does_not_support_the_audio_element": "Вашият браузър не поддържа аудио функцията.",
   "your_coarser_id": "Вашето по-общо ID <span class='taxon'>%{coarser_taxon_name}</span> предполага, че не сте съгласни с текущото по-конкретно ID <span class='taxon'>%{finer_taxon_name}</span>. Това ли е намерението Ви?<br><br>\n<a href='/pages/getting+started' target='_blank'>Научете повече за процеса на разпознаване &raquo;</a>",
   "your_hard_drive": "Вашият твърд диск",
   "your_observations": "Ваши наблюдения",
+  "yours": "Вашите",
   "zoom_in": "Приближи",
   "zoom_out": "Отдалечи"
 };
@@ -3617,6 +3729,15 @@ I18n.translations["ca"] = {
   "data_quality_assessment": "Avaluació de la qualitat de dades",
   "data_quality_assessment_": "Avaluació de la qualitat de les dades",
   "date": {
+    "abbr_day_names": [
+      "dg.",
+      "dl.",
+      "dt.",
+      "dc.",
+      "dj.",
+      "dv.",
+      "ds."
+    ],
     "abbr_month_names": {
       "1": "gen.",
       "2": "febr.",
@@ -3630,6 +3751,24 @@ I18n.translations["ca"] = {
       "10": "oct.",
       "11": "nov.",
       "12": "des."
+    },
+    "day_names": [
+      "diumenge",
+      "dilluns",
+      "dimarts",
+      "dimecres",
+      "dijous",
+      "divendres",
+      "dissabte"
+    ],
+    "day_names_min": {
+      "1": "dg",
+      "2": "dl",
+      "3": "dt",
+      "4": "dc",
+      "5": "dj",
+      "6": "dv",
+      "7": "ds"
     },
     "formats": {
       "month_day_year": "%d de %B de %Y"
@@ -3869,14 +4008,21 @@ I18n.translations["ca"] = {
     "bengali": "Bengalí",
     "catalan": "Català",
     "cebuano": "Cebuà",
+    "chinese_simplified": "Xinès (simplificat)",
+    "chinese_traditional": "Xinès (tradicional)",
     "creole_french": "Crioll (francès)",
     "creole_portuguese": "Crioll (portuguès)",
+    "czech": "Txec",
+    "danish": "Danès",
     "davawenyo": "Davawenyo",
     "dutch": "Holandès",
     "english": "Anglès",
+    "estonian": "Estonià",
+    "finnish": "Finès",
     "french": "Francès",
     "gela": "Gela",
     "german": "Alemany",
+    "greek": "Grec",
     "hawaiian": "Hawaià",
     "hebrew": "Hebreu",
     "hiligaynon": "Híligaynon",
@@ -3885,10 +4031,12 @@ I18n.translations["ca"] = {
     "italian": "Italià",
     "japanese": "Japonès",
     "korean": "Coreà",
+    "luxembourgish": "Luxemburguès",
     "maltese": "Maltès",
     "maori": "Maorí",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Noruec",
+    "occitan": "Occità",
     "pangasinan": "Pangasinan",
     "portuguese": "Portuguès",
     "romanian": "Romanès",
@@ -5081,6 +5229,15 @@ I18n.translations["cs"] = {
   "data_quality_assessment": "Hodnocení kvality údajů",
   "data_quality_assessment_": "hodnocení kvality údajů",
   "date": {
+    "abbr_day_names": [
+      "slunce",
+      "Po",
+      "Út",
+      "St",
+      "Čt",
+      "Pá",
+      "So"
+    ],
     "abbr_month_names": {
       "1": "Leden",
       "2": "Únor",
@@ -5094,6 +5251,24 @@ I18n.translations["cs"] = {
       "10": 10.0,
       "11": 11.0,
       "12": 12.0
+    },
+    "day_names": [
+      "Neděle",
+      "Pondělí",
+      "Úterý",
+      "Středa",
+      "Čtvrtek",
+      "Pátek",
+      "Sobota"
+    ],
+    "day_names_min": {
+      "1": "ne",
+      "2": "po",
+      "3": "út",
+      "4": "st",
+      "5": "čt",
+      "6": "pá",
+      "7": "so"
     },
     "formats": {
       "month_day_year": "%M %d, %R"
@@ -6523,6 +6698,15 @@ I18n.translations["da"] = {
   "data_quality_assessment": "Vurdering af datakvalitet",
   "data_quality_assessment_": "vurdering af datakvalitet",
   "date": {
+    "abbr_day_names": [
+      "Søn",
+      "Man",
+      "Tir",
+      "Ons",
+      "Tor",
+      "Fre",
+      "Lør"
+    ],
     "abbr_month_names": {
       "1": "Jan",
       "2": "Feb",
@@ -6536,6 +6720,24 @@ I18n.translations["da"] = {
       "10": "Okt",
       "11": "Nov",
       "12": "Dec"
+    },
+    "day_names": [
+      "Søndag",
+      "Mandag",
+      "Tirsdag",
+      "Onsdag",
+      "Torsdag",
+      "Fredag",
+      "Lørdag"
+    ],
+    "day_names_min": {
+      "1": "Sø",
+      "2": "Ma",
+      "3": "Ti",
+      "4": "On",
+      "5": "To",
+      "6": "Fr",
+      "7": "Lø"
     },
     "formats": {
       "month_day_year": "%d. %B, %Y"
@@ -7529,7 +7731,7 @@ I18n.translations["da"] = {
     "projects": {
       "collection": "Samling",
       "new": {
-        "a_project_allows_you_to_gather": "Et samlingsprojekt giver dig mulighed for at samle og vise observationer ved brug af søgeværktøjerne i iNaturalist. Det betyder at der ikke længere er behov for manuelt, at tilføje observationer fordi alle, der opfylder projektets parametre automatisk, vil blive inkluderet.",
+        "a_project_allows_you_to_gather": "Et samlingsprojekt giver dig mulighed for, at samle og vise observationer ved brug af søgeværktøjerne i iNaturalist. Det betyder, at der ikke længere er behov for manuelt, at tilføje observationer fordi alle, der opfylder projektets parametre automatisk, vil blive inkluderet.",
         "an_umbrella_project_can_be_used_to": "Et paraplyprojekt kan bruges til at sammenligne statistik mellem to eller flere samlinger eller traditionelle projekter. Projekterne skal være oprettet, før du kan tilføje dem til et paraplyprojekt. Du kan inkludere hundredevis af projekter under én enkelt paraply. Paraplyprojekter kan ikke indeholde andre paraplyprojekter.",
         "can_be_included_in_multiple": "Kan inkluderes i flere paraplyprojekter",
         "click_through_to_individual_projects": "Klik videre til individuelle projekter",
@@ -7546,7 +7748,7 @@ I18n.translations["da"] = {
         "name_placeholder": "Chicagos fugle, fantastiske guldsmede osv.",
         "no_need_to_rely_on_manual_addition": "Du behøver ikke at sætte din lid til manuel tilføjelse af observationer eller på aggregatoren til at indeksere observationer",
         "note_these_users_will_be_able_to_edit": "OBS: Disse brugere er i stand til at redigere ALLE projektdetaljer inklusiv administratorer.",
-        "note_you_can_delete_the_time": "(OBS: Du kan slette tidszone og nøjagtig tidspunkt, hvis du i stedet vil bruge hele dage.)",
+        "note_you_can_delete_the_time": "(OBS: Du kan slette tidszone og nøjagtige tidspunkt, hvis du i stedet vil bruge hele dage.)",
         "or_drag_and_drop": "(eller træk og slip)",
         "please_specify_the_requirements": "Specificér venligst observertionskravene for observationer, der tilføjes til dette projekt. Du kan vælge flere arter, steder og brugere der inkluderes automatisk.",
         "project_background_color": "Projektoversigt baggrundsfarve",
@@ -8049,7 +8251,8 @@ I18n.translations["de"] = {
     "public_domain": "Gemeinfreiheit",
     "copyright": "Urheberrecht",
     "no_copyright": "Kein Urheberrecht (CC0)",
-    "attribution_license": "Namensnennungslizenz"
+    "attribution_license": "Namensnennungslizenz",
+    "gnu_free_documentation_license": "GNU-Lizenz für freie Dokumentation"
   },
   "copyright_info": "Info zum Urheberrecht",
   "copyright_info_and_more": "Urheberrechtsinformationen und mehr",
@@ -8067,6 +8270,15 @@ I18n.translations["de"] = {
   "data_quality_assessment": "Datenqualitätsbewertung",
   "data_quality_assessment_": "Datenqualitätsbewertung",
   "date": {
+    "abbr_day_names": [
+      "So",
+      "Mo",
+      "Di",
+      "Mi",
+      "Do",
+      "Fr",
+      "Sa"
+    ],
     "abbr_month_names": {
       "1": "Jan",
       "2": "Feb",
@@ -8080,6 +8292,24 @@ I18n.translations["de"] = {
       "10": "Okt",
       "11": "Nov",
       "12": "Dez"
+    },
+    "day_names": [
+      "Sonntag",
+      "Montag",
+      "Dienstag",
+      "Mittwoch",
+      "Donnerstag",
+      "Freitag",
+      "Samstag"
+    ],
+    "day_names_min": {
+      "1": "So",
+      "2": "Mo",
+      "3": "Di",
+      "4": "Mi",
+      "5": "Do",
+      "6": "Fr",
+      "7": "Sa"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -8280,11 +8510,14 @@ I18n.translations["de"] = {
     "bengali": "Bengali",
     "catalan": "Katalanisch",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Chinesisch (vereinfacht)",
+    "chinese_traditional": "Chinesisch (traditionell)",
     "creole_french": "Kreole (Französisch)",
     "creole_portuguese": "Kreole (Portugiesisch)",
     "davawenyo": "Davawenyo",
     "dutch": "Niederländisch",
     "english": "Englisch",
+    "estonian": "Estnisch",
     "french": "Französisch",
     "gela": "Gela",
     "german": "Deutsch",
@@ -8300,6 +8533,7 @@ I18n.translations["de"] = {
     "maori": "Maori",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norwegisch",
+    "occitan": "Okzitanisch",
     "pangasinan": "Pangasinan",
     "portuguese": "Protugisisch",
     "romanian": "Rumänisch",
@@ -8682,6 +8916,7 @@ I18n.translations["de"] = {
   "set_license": "Lizenz festlegen",
   "share": "Teilen",
   "show": "Anzeigen",
+  "showing_x_of_y_listings": "Zeige %{x} von %{y} Ergebnissen",
   "sign_out": "Abmelden",
   "sign_up": "Registrieren",
   "similar_species": "Ähnliche Arten",
@@ -9053,6 +9288,15 @@ I18n.translations["el"] = {
   "csv": "CSV",
   "data_quality": "Ποιότητα δεδομένων",
   "date": {
+    "abbr_day_names": [
+      "Κυ",
+      "Δε",
+      "Τρ",
+      "Τε",
+      "Πε",
+      "Πα",
+      "Σα"
+    ],
     "abbr_month_names": {
       "1": "Ιαν",
       "2": "Φεβ",
@@ -9066,6 +9310,24 @@ I18n.translations["el"] = {
       "10": "Οκτ",
       "11": "Νοε",
       "12": "Δεκ"
+    },
+    "day_names": [
+      "Κυριακή",
+      "Δευτέρα",
+      "Τρίτη",
+      "Τετάρτη",
+      "Πέμπτη",
+      "Παρασκευή",
+      "Σάββατο"
+    ],
+    "day_names_min": {
+      "1": "Κυ",
+      "2": "Δε",
+      "3": "Τρ",
+      "4": "Τε",
+      "5": "Πε",
+      "6": "Πα",
+      "7": "Σα"
     },
     "formats": {
     },
@@ -9254,12 +9516,16 @@ I18n.translations["el"] = {
     "cebuano": "Σεμπουανικά",
     "creole_french": "κρεολικά (Γαλλικά)",
     "creole_portuguese": "κρεολικά (Πορτογαλικά)",
+    "czech": "Τσεχικά",
+    "danish": "Δανικά",
     "davawenyo": "Νταβαουένγιο",
     "dutch": "Ολλανδικά",
     "english": "Αγγλικά",
+    "finnish": "Φινλανδικά",
     "french": "Γαλλικά",
     "gela": "Γκέλα",
     "german": "Γερμανικά",
+    "greek": "Ελληνικά",
     "hawaiian": "Χαβαϊκά",
     "hebrew": "Εβραϊκά",
     "hiligaynon": "Χιλιγκαϊνόν",
@@ -9268,6 +9534,7 @@ I18n.translations["el"] = {
     "italian": "Ιταλικά",
     "japanese": "Ιαπωνικά",
     "korean": "Κορεατικά",
+    "luxembourgish": "Λουξεμβουργιανά",
     "maltese": "Μαλτέζικα",
     "maori": "Μαορί",
     "misima_paneati": "Μισίμα-πανεάτι",
@@ -10104,6 +10371,15 @@ I18n.translations["en"] = {
   "data_quality_assessment": "Data Quality Assessment",
   "data_quality_assessment_": "data quality assessment",
   "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "abbr_month_names": [
       null,
       "Jan",
@@ -10119,6 +10395,24 @@ I18n.translations["en"] = {
       "Nov",
       "Dec"
     ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "day_names_min": {
+      "1": "Su",
+      "2": "Mo",
+      "3": "Tu",
+      "4": "We",
+      "5": "Th",
+      "6": "Fr",
+      "7": "Sa"
+    },
     "formats": {
       "month_day_year": "%B %d, %Y"
     },
@@ -10164,11 +10458,6 @@ I18n.translations["en"] = {
     "currentText": "Today",
     "prevText": "Prev",
     "nextText": "Next",
-    "monthNames": "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']",
-    "monthNamesShort": "['Jan','Feb','Mar','Apr', 'May','Jun','Jul','Aug','Sep', 'Oct','Nov','Dec']",
-    "dayNames": "['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']",
-    "dayNamesShort": "['Sun','Mon','Tue','Wed','Thu','Sun','Sat']",
-    "dayNamesMin": "['Su','Mo','Tu','We','Th','Fr','Sa']",
     "range": "Range"
   },
   "date_specified": "Date specified",
@@ -10374,6 +10663,8 @@ I18n.translations["en"] = {
     "bengali": "Bengali",
     "catalan": "Catalan",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Chinese (simplified)",
+    "chinese_traditional": "Chinese (traditional)",
     "creole_french": "creole (French)",
     "creole_portuguese": "creole (Portuguese)",
     "czech": "Czech",
@@ -10381,6 +10672,7 @@ I18n.translations["en"] = {
     "davawenyo": "Davawenyo",
     "dutch": "Dutch",
     "english": "English",
+    "estonian": "Estonian",
     "finnish": "Finnish",
     "french": "French",
     "gela": "Gela",
@@ -10399,6 +10691,7 @@ I18n.translations["en"] = {
     "maori": "Maori",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norwegian",
+    "occitan": "Occitan",
     "pangasinan": "Pangasinan",
     "portuguese": "Portuguese",
     "romanian": "Romanian",
@@ -10427,7 +10720,7 @@ I18n.translations["en"] = {
   "location_private": "Location Private",
   "location_specified": "Location specified",
   "location_unknown": "Location Unknown",
-  "log_in": "Log in",
+  "log_in": "Log In",
   "long": "Lon",
   "longitude": "Longitude",
   "lookup": "Lookup",
@@ -11466,6 +11759,15 @@ I18n.translations["en-US"] = {
   "copyright": {
   },
   "date": {
+    "abbr_day_names": [
+      "Sun",
+      "Mon",
+      "Tue",
+      "Wed",
+      "Thu",
+      "Fri",
+      "Sat"
+    ],
     "abbr_month_names": [
       null,
       "Jan",
@@ -11480,6 +11782,15 @@ I18n.translations["en-US"] = {
       "Oct",
       "Nov",
       "Dec"
+    ],
+    "day_names": [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
     ],
     "formats": {
     },
@@ -11585,7 +11896,7 @@ I18n.translations["es"] = {
   "accuracy": "Precisión",
   "accuracy_meters": "Precisión (metros)",
   "action": "Acción",
-  "active": "activo",
+  "active": "Activo",
   "activity": "Actividad",
   "add": "Añadir",
   "add_a_comment": "Añadir un comentario",
@@ -11616,6 +11927,7 @@ I18n.translations["es"] = {
   "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
+  "admin_s": "Administrador(es)",
   "admin_tools": "Herramientas administrativas",
   "agree": "de acuerdo",
   "agree_": "Aceptar",
@@ -11873,6 +12185,15 @@ I18n.translations["es"] = {
   "data_quality_assessment": "Evaluación de la calidad de datos",
   "data_quality_assessment_": "evaluación de la calidad de datos",
   "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
     "abbr_month_names": {
       "1": "ene",
       "2": "feb",
@@ -11886,6 +12207,24 @@ I18n.translations["es"] = {
       "10": "oct",
       "11": "nov",
       "12": "dic"
+    },
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "day_names_min": {
+      "1": "do",
+      "2": "lu",
+      "3": "ma",
+      "4": "mi5",
+      "5": "ju",
+      "6": "vi",
+      "7": "sá"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -12135,14 +12474,21 @@ I18n.translations["es"] = {
     "bengali": "Bengalí",
     "catalan": "Catalán",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Chino (simplificado)",
+    "chinese_traditional": "Chino (tradicional)",
     "creole_french": "Criollo (Francés)",
     "creole_portuguese": "Criollo (Portugués)",
+    "czech": "Checo",
+    "danish": "Danés",
     "davawenyo": "Davawenyo",
     "dutch": "Holandés",
     "english": "Inglés",
+    "estonian": "Estonio",
+    "finnish": "Finés",
     "french": "Francés",
     "gela": "Gela",
     "german": "Alemán",
+    "greek": "Griego",
     "hawaiian": "Hawaiano",
     "hebrew": "Hebreo",
     "hiligaynon": "Hiligainón",
@@ -12151,10 +12497,12 @@ I18n.translations["es"] = {
     "italian": "Italiano",
     "japanese": "Japonés",
     "korean": "Coreano",
+    "luxembourgish": "Luxemburgués",
     "maltese": "Maltés",
     "maori": "Maorí",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Noruego",
+    "occitan": "Occitano",
     "pangasinan": "Pangasinán",
     "portuguese": "Portugués",
     "romanian": "Rumano",
@@ -13922,6 +14270,15 @@ I18n.translations["es-MX"] = {
   "data_deficient": "con datos deficientes",
   "data_quality_assessment": "Evaluación de calidad de los datos",
   "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
     "abbr_month_names": {
       "1": "ene",
       "2": "feb",
@@ -13935,6 +14292,24 @@ I18n.translations["es-MX"] = {
       "10": "oct",
       "11": "nov",
       "12": "dic"
+    },
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
+    "day_names_min": {
+      "1": "Do",
+      "2": "Lu",
+      "3": "Ma",
+      "4": "Mi",
+      "5": "Ju",
+      "6": "Vi",
+      "7": "Sá"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -15552,6 +15927,15 @@ I18n.translations["eu"] = {
   "data_quality_assessment": "Datuen kalitatearen ebaluazioa",
   "data_quality_assessment_": "Datuen kalitatearen ebaluazioa",
   "date": {
+    "abbr_day_names": [
+      "ig.",
+      "al.",
+      "ar.",
+      "az.",
+      "og.",
+      "ol.",
+      "lr."
+    ],
     "abbr_month_names": {
       "1": "urt.",
       "2": "ots.",
@@ -15565,6 +15949,24 @@ I18n.translations["eu"] = {
       "10": "urr.",
       "11": "aza.",
       "12": "abe."
+    },
+    "day_names": [
+      "igandea",
+      "astelehena",
+      "asteartea",
+      "asteazkena",
+      "osteguna",
+      "ostirala",
+      "larunbata"
+    ],
+    "day_names_min": {
+      "1": "Ig",
+      "2": "Al",
+      "3": "A",
+      "4": "Az",
+      "5": "Og",
+      "6": "Ol",
+      "7": "Lr"
     },
     "formats": {
     },
@@ -16429,7 +16831,7 @@ I18n.translations["fi"] = {
   "arachnids": "hämähäkkieläimet",
   "are_you_sure_remove_photo": "Haluatko varmasti poistaa tämän kuvan?",
   "are_you_sure_you_want_to_remove_all_tags": "Oletko varma että haluat poistaa kaikki tunnisteet?",
-  "are_you_sure_you_want_to_remove_these_x_taxa?": "Oletko varma että haluat poistaa nämä taksonit?: %{x}",
+  "are_you_sure_you_want_to_remove_these_x_taxa?": "Haluatko varmasti poistaa nämä taksonit?: %{x}",
   "asc": "nouseva",
   "ascending": "nouseva",
   "atom": "Atom",
@@ -16546,6 +16948,15 @@ I18n.translations["fi"] = {
   "data_quality": "Tiedon laatu",
   "data_quality_assessment": "Tietojen laadun arviointi",
   "date": {
+    "abbr_day_names": [
+      "Su",
+      "Ma",
+      "Ti",
+      "Ke",
+      "To",
+      "Pe",
+      "La"
+    ],
     "abbr_month_names": {
       "1": "Tammi",
       "2": "Helmi",
@@ -16559,6 +16970,24 @@ I18n.translations["fi"] = {
       "10": "Loka",
       "11": "Marras",
       "12": "Joulu"
+    },
+    "day_names": [
+      "Sunnuntai",
+      "Maanantai",
+      "Tiistai",
+      "Keskiviikko",
+      "Torstai",
+      "Perjantai",
+      "Lauantai"
+    ],
+    "day_names_min": {
+      "1": "Su",
+      "2": "Ma",
+      "3": "Ti",
+      "4": "Ke",
+      "5": "To",
+      "6": "Pe",
+      "7": "La"
     },
     "formats": {
       "month_day_year": "%d. %Bta %Y"
@@ -16612,6 +17041,22 @@ I18n.translations["fi"] = {
   "date_specified": "Päivämäärä määritetty",
   "date_time": "Päiväys/Aika",
   "datetime": {
+    "countdown_x_days": {
+      "one": "päivä",
+      "other": "päivää"
+    },
+    "countdown_x_hours": {
+      "one": "tunti",
+      "other": "tuntia"
+    },
+    "countdown_x_minutes": {
+      "one": "minuutti",
+      "other": "minuuttia"
+    },
+    "countdown_x_seconds": {
+      "one": "sekunti",
+      "other": "sekuntia"
+    }
   },
   "default": "oletus",
   "delete": "Poista",
@@ -16767,14 +17212,21 @@ I18n.translations["fi"] = {
     "bengali": "Bengali",
     "catalan": "Katalaani",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Kiina (yksinkertaistettu)",
+    "chinese_traditional": "Kiina (perinteinen)",
     "creole_french": "kreoli (Ranska)",
     "creole_portuguese": "kreoli (Portugali)",
+    "czech": "Tsekki",
+    "danish": "Tanska",
     "davawenyo": "Davawenyo",
     "dutch": "Hollanti",
     "english": "Englanti",
+    "estonian": "Viro",
+    "finnish": "Suomi",
     "french": "Ranska",
     "gela": "Gela",
     "german": "Saksa",
+    "greek": "Kreikka",
     "hawaiian": "Havaiji",
     "hebrew": "Heprea",
     "hiligaynon": "Hiligaino",
@@ -16783,10 +17235,12 @@ I18n.translations["fi"] = {
     "italian": "Italia",
     "japanese": "Japani",
     "korean": "Korea",
+    "luxembourgish": "Luksemburgi",
     "maltese": "Malta",
     "maori": "Maori",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norja",
+    "occitan": "Oksitaani",
     "pangasinan": "Pangasinan",
     "portuguese": "Portugali",
     "romanian": "Romania",
@@ -16796,7 +17250,8 @@ I18n.translations["fi"] = {
     "tagalog": "Tagalog",
     "tahitian": "Tahiti",
     "tokelauan": "Tokelauan",
-    "turkish": "Turkki"
+    "turkish": "Turkki",
+    "waray_waray": "Waray-Waray"
   },
   "life": "Elämä",
   "list": "Lista",
@@ -16818,7 +17273,7 @@ I18n.translations["fi"] = {
   "longitude": "Pituusaste",
   "lookup": "Hae",
   "low": "matala",
-  "make_this_your_default_license": "Tee tästä oletuslisenssisi",
+  "make_this_your_default_license": "Tee tästä oletus %{type} lisenssisi",
   "mammals": "nisäkkäät",
   "manage_names": "Hallitse nimiä",
   "map": "Kartta",
@@ -17313,6 +17768,7 @@ I18n.translations["fi"] = {
     "other": "Lähetetään %{num} of %{count} kuvaa..."
   },
   "user": "Käyttäjä",
+  "user_autocomplete_placeholder": "kueda, simon123, yms.",
   "user_commented": "%{user} kommentoi",
   "user_disagrees_this_is_taxon": "%{user} on eri mieltä siitä että tämä on %{taxon}",
   "user_suggested_an_id": "%{user} ehdotti tunnistetta",
@@ -17358,6 +17814,7 @@ I18n.translations["fi"] = {
       "collection": "Kokoelma",
       "new": {
         "delete_project": "Poista projekti",
+        "display_project_name": "Näytä projektin nimi",
         "or_drag_and_drop": "(tai vedä ja pudota)",
         "project_banner": "Projektin banneri (PNG, JPG, tai GIF)",
         "project_banner_help": "Valinnainen bannerikuva. Ihanteelliset mitat ovat 760px x 320px.",
@@ -17368,7 +17825,8 @@ I18n.translations["fi"] = {
       },
       "project_type": "Projektin tyyppi",
       "show": {
-      }
+      },
+      "umbrella": "Sateenvarjo"
     },
     "shared": {
       "blocked": {
@@ -17827,6 +18285,15 @@ I18n.translations["fr"] = {
   "data_quality_assessment": "Évaluation de la qualité des données",
   "data_quality_assessment_": "évaluation de la qualité de la donnée",
   "date": {
+    "abbr_day_names": [
+      "Dim",
+      "Lun",
+      "Mar",
+      "Mer",
+      "Jeu",
+      "Ven",
+      "Sam"
+    ],
     "abbr_month_names": {
       "1": "Jan",
       "2": "Fév",
@@ -17840,6 +18307,24 @@ I18n.translations["fr"] = {
       "10": "Oct",
       "11": "Nov",
       "12": "Déc"
+    },
+    "day_names": [
+      "Dimanche",
+      "Lundi",
+      "Mardi",
+      "Mercredi",
+      "Jeudi",
+      "Vendredi",
+      "Samedi"
+    ],
+    "day_names_min": {
+      "1": "Di",
+      "2": "Lu",
+      "3": "Ma",
+      "4": "Me",
+      "5": "Je",
+      "6": "Ve",
+      "7": "Sa"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -18095,14 +18580,21 @@ I18n.translations["fr"] = {
     "bengali": "Bengali",
     "catalan": "Catalan",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Chinois (simplifié)",
+    "chinese_traditional": "Chinois (traditionnel)",
     "creole_french": "Créole (Français)",
     "creole_portuguese": "Créole (Portugais)",
+    "czech": "Tchèque",
+    "danish": "Danois",
     "davawenyo": "Davawenyo",
     "dutch": "Néerlandais",
     "english": "Anglais",
+    "estonian": "Estonien",
+    "finnish": "Finnois",
     "french": "Français",
     "gela": "Gela",
     "german": "Allemand",
+    "greek": "Grec",
     "hawaiian": "Hawaïen",
     "hebrew": "Hébreu",
     "hiligaynon": "Hiligaynon",
@@ -18111,10 +18603,12 @@ I18n.translations["fr"] = {
     "italian": "Italien",
     "japanese": "Japonais",
     "korean": "Coréen",
+    "luxembourgish": "Luxembourgeois",
     "maltese": "Maltais",
     "maori": "Maori",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norvégien",
+    "occitan": "Occitan",
     "pangasinan": "Pangasinan",
     "portuguese": "Portugais",
     "romanian": "Roumain",
@@ -18631,6 +19125,7 @@ I18n.translations["fr"] = {
   "show_uncountable_species": "Afficher les espèces indénombrables",
   "showing_taxa_from_everywhere": "Affichage des taxons de partout",
   "showing_taxa_from_place": "Affichage des taxons de %{place}",
+  "showing_x_of_y_listings": "Affiche %{x} de %{y} listes",
   "sign_out": "Déconnexion",
   "sign_up": "Inscrivez-vous",
   "similar_species": "Espèces proches",
@@ -18835,10 +19330,11 @@ I18n.translations["fr"] = {
       "new": {
         "a_project_allows_you_to_gather": "Un projet de collection vous permet de rassembler et visualiser les observations en utilisant les outils de recherche\ndu cœur de iNaturalist. Cela élimine le besoin d’ajouter manuellement des observations, car tout ce qui correspond aux paramètres mis par le projet sera automatiquement inclus.",
         "an_umbrella_project_can_be_used_to": "Un projet cadre peut être utilisé pour comparer des statistiques entre au moins deux projets traditionnels ou collections. Les autres projets doivent exister avant que vous puissiez les ajouter. Vous pouvez inclure des centaines de projets sous un seul cadre. Les projets cadres ne peuvent pas contenir d’autres projets caders.",
-        "can_be_included_in_multiple": "Peut être inclus dans plusieurs projets cadres",
+        "can_be_included_in_multiple": "Peut être inclus dans plusieurs projets chapeau",
         "click_through_to_individual_projects": "Cliquez parmi les projets individuels",
         "collection_project_features": "Fonctionalités des projets de collection",
         "collection_projects": "Projets de collections",
+        "contain_entire_image_without_cropping": "Contient une image entière sans troncature",
         "custom_banner_icon_and_project_description": "Entête personnalisée, icône, et description du projet",
         "data_visualizations": "Visualisations des données",
         "delete_project": "Supprimer le projet",
@@ -18871,7 +19367,8 @@ I18n.translations["fr"] = {
         "users_can_follow_your_project": "Les utilisateurs peuvent suivre les mises à jour de votre projet via les publications du journal",
         "visual_comparison_of_data_among": "Comparaison visuelle des données parmi les projets sous l'ombrelle",
         "we_have_redesigned_projects": "Nous avons refondu les projets pour inclure automatiquement toutes les observations qui correspondent aux lieux, taxons, utilisateurs, qualité et dates que vous avez définis. Choisir entre deux types : Projets collections et Projets cadres, qui partagent les fonctionnalités suivantes :",
-        "welcome_to_projects": "Bienvenue dans les projets !"
+        "welcome_to_projects": "Bienvenue dans les projets !",
+        "you_have_not_defined_any_observation_requirements": "Vous n'avez défini aucun critère d'observation. Vérifiez bien d'avoir sélectionné un ou plusieurs taxons (par exemple: oiseaux, connifères), places (par exemple: Brésil, Yellowstone), utilisateurs, et/ou dates des observations que vous voulez inclure dans votre projet."
       },
       "project_type": "Type de projet",
       "projects_included": "Projets inclus",
@@ -19253,6 +19750,15 @@ I18n.translations["gl"] = {
   "data_deficient": "datos insuficientes",
   "data_quality_assessment": "Avaliación da calidade de datos",
   "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mér",
+      "xov",
+      "ven",
+      "sáb"
+    ],
     "abbr_month_names": {
       "1": "xan",
       "2": "feb",
@@ -19266,6 +19772,24 @@ I18n.translations["gl"] = {
       "10": "out",
       "11": "nov",
       "12": "dec"
+    },
+    "day_names": [
+      "domingo",
+      "luns",
+      "martes",
+      "mércores",
+      "xoves",
+      "venres",
+      "sábado"
+    ],
+    "day_names_min": {
+      "1": "Do",
+      "2": "Lu",
+      "3": "Ma",
+      "4": "Mé",
+      "5": "Xo",
+      "6": "Ve",
+      "7": "Sá"
     },
     "formats": {
     },
@@ -20279,6 +20803,15 @@ I18n.translations["id"] = {
   "data_deficient": "Kekurangan data",
   "data_quality_assessment": "Penilaian kualitas data",
   "date": {
+    "abbr_day_names": [
+      "Min",
+      "Sen",
+      "Sel",
+      "Rab",
+      "Kam",
+      "Jum",
+      "Sab"
+    ],
     "abbr_month_names": {
       "1": "Jan",
       "2": "Feb",
@@ -20292,6 +20825,24 @@ I18n.translations["id"] = {
       "10": "Okt",
       "11": "Nov",
       "12": "Des"
+    },
+    "day_names": [
+      "Minggu",
+      "Senin",
+      "Selasa",
+      "Rabu",
+      "Kamis",
+      "Jumat",
+      "Sabtu"
+    ],
+    "day_names_min": {
+      "1": "Mi",
+      "2": "Se",
+      "3": "Se",
+      "4": "Ra",
+      "5": "Ka",
+      "6": "Ju",
+      "7": "Sa"
     },
     "formats": {
     },
@@ -21403,6 +21954,15 @@ I18n.translations["it"] = {
   "data_quality_assessment": "Valutazione della qualità dei dati",
   "data_quality_assessment_": "Valutazione della qualità dei dati",
   "date": {
+    "abbr_day_names": [
+      "Dom",
+      "Lun",
+      "Mar",
+      "Mer",
+      "Gio",
+      "Ven",
+      "Sab"
+    ],
     "abbr_month_names": {
       "1": "Gen",
       "2": "Feb",
@@ -21416,6 +21976,24 @@ I18n.translations["it"] = {
       "10": "Ott",
       "11": "Nov",
       "12": "Dic"
+    },
+    "day_names": [
+      "Domenica",
+      "Lunedì",
+      "Martedì",
+      "Mercoledì",
+      "Giovedì",
+      "Venerdì",
+      "Sabato"
+    ],
+    "day_names_min": {
+      "1": "Do",
+      "2": "Lu",
+      "3": "Ma",
+      "4": "Me",
+      "5": "Gi",
+      "6": "Ve",
+      "7": "Sa"
     },
     "formats": {
       "month_day_year": "%d %B, %Y"
@@ -21671,14 +22249,21 @@ I18n.translations["it"] = {
     "bengali": "Bengalese",
     "catalan": "Catalano",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Cinese (semplificato)",
+    "chinese_traditional": "Cinese (tradizionale)",
     "creole_french": "creolo (francese)",
     "creole_portuguese": "creolo (portoghese)",
+    "czech": "Ceco",
+    "danish": "Danese",
     "davawenyo": "Davawenyo",
     "dutch": "Olandese",
     "english": "Inglese",
+    "estonian": "Estone",
+    "finnish": "Finlandese",
     "french": "Francese",
     "gela": "Gela",
     "german": "Tedesco",
+    "greek": "Greco",
     "hawaiian": "Hawaiano",
     "hebrew": "Ebraico",
     "hiligaynon": "Hiligaynon",
@@ -21687,10 +22272,12 @@ I18n.translations["it"] = {
     "italian": "Italiano",
     "japanese": "Giapponese",
     "korean": "Coreano",
+    "luxembourgish": "Lussemburghese",
     "maltese": "Maltese",
     "maori": "Maori",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norvegese",
+    "occitan": "Occitano",
     "pangasinan": "Pangasinan",
     "portuguese": "Portoghese",
     "romanian": "Rumeno",
@@ -22207,6 +22794,7 @@ I18n.translations["it"] = {
   "show_uncountable_species": "Mostra le specie non conteggiabili",
   "showing_taxa_from_everywhere": "Visualizzazione dei taxa di tutto il mondo",
   "showing_taxa_from_place": "Visualizzazione taxa in %{place}",
+  "showing_x_of_y_listings": "Visualizzando %{x} di %{y} liste",
   "sign_out": "Esci",
   "sign_up": "Registrati",
   "similar_species": "Specie simili",
@@ -22415,6 +23003,7 @@ I18n.translations["it"] = {
         "click_through_to_individual_projects": "Navigazione tra i singoli progetti",
         "collection_project_features": "Caratteristiche del Progetto collezione:",
         "collection_projects": "Progetti Collezione",
+        "contain_entire_image_without_cropping": "Contiene un'intera immagine senza ritaglio",
         "custom_banner_icon_and_project_description": "Banner personalizzato, icona, e descrizione del progetto",
         "data_visualizations": "Visualizzazione dei dati",
         "delete_project": "Elimina progetto",
@@ -22447,7 +23036,8 @@ I18n.translations["it"] = {
         "users_can_follow_your_project": "Gli utenti possono seguire il tuo progetto per aggiornamenti tramite i post del diario",
         "visual_comparison_of_data_among": "Confronto visivo dei dati tra i progetti sotto l'ombrello",
         "we_have_redesigned_projects": "Abbiamo ridisegnato i progetti per includere tutte le osservazioni che soddisfano i criteri di luogo, taxon, utente, qualità del dato e periodo che decidi tu. Puoi segliere tra due tipi: Progetti Collezione e Progetti Ombrello, che condividono le seguenti caratteristiche:",
-        "welcome_to_projects": "Benvenuti nei progetti"
+        "welcome_to_projects": "Benvenuti nei progetti",
+        "you_have_not_defined_any_observation_requirements": "Non hai definito alcun requisito per le osservazioni. Accertati di aver selezionato uno o più taxa (e.g. uccelli, conifere), luoghi (e.g. Brasile, Yellowstone), utenti, e/o date che definiscano le osservazioni che vuoi includere nel tuo progetto."
       },
       "project_type": "Tipo di progetto",
       "projects_included": "Progetti inclusi",
@@ -22750,17 +23340,21 @@ I18n.translations["ja"] = {
   "about_conservation_status": "保全状況について",
   "about_establishment_means": "定着方法について",
   "about_names": "名称について",
+  "about_this_bioblitz": "このバイオブリッツについて",
   "account": "アカウント",
   "accuracy": "精度",
-  "accuracy_meters": "精度（メートル）",
+  "accuracy_meters": "精度（m）",
   "action": "操作",
-  "active": "アクティブ",
+  "active": "活動中",
+  "activity": "活動",
   "add": "追加",
   "add_a_comment": "コメントの追加",
   "add_a_field": "フィールドの追加",
   "add_a_name": "名前を追加",
-  "add_an_identification": "IDを追加",
-  "add_id": "IDを追加",
+  "add_an_identification": "同定を追加",
+  "add_annotations_for_x": "「%{x}」の注釈を追加",
+  "add_edit_flags": "フラッグの追加・編集",
+  "add_id": "同定を追加",
   "add_link": "リンクを追加",
   "add_one_now": "今すぐ追加",
   "add_photos_to_this_observation": "この観測記録に写真を追加",
@@ -22779,6 +23373,7 @@ I18n.translations["ja"] = {
   "aka": "別名",
   "all": "すべて",
   "all_rank_added_to_the_database": {
+    "species": "データベースに追加した種の合計"
   },
   "all_rights_reserved": "著作権を全て留保する",
   "all_taxa": {
@@ -22806,25 +23401,25 @@ I18n.translations["ja"] = {
     "reptiles": "爬虫類",
     "life": "生命",
     "x_plantae": {
-      "one": "1個の植物",
-      "other": "%{count}個の植物"
+      "one": "1件の植物",
+      "other": "%{count}件の植物"
     },
     "x_animalia": {
-      "one": "1頭の動物",
-      "other": "%{count}頭の動物"
+      "one": "1件の動物",
+      "other": "%{count}件の動物"
     },
     "x_mollusca": {
-      "one": "1頭の軟体動物",
-      "other": "%{count}頭の軟体動物"
+      "one": "1件の軟体動物",
+      "other": "%{count}件の軟体動物"
     },
-    "x_amphibia": "{{PLURAL|one=1頭の両生類|%{count}頭の両生類}",
+    "x_amphibia": "{{PLURAL|one=1件の両生類|%{count}件の両生類}",
     "x_mammalia": {
-      "one": "1頭の哺乳類",
-      "other": "%{count}頭の哺乳類"
+      "one": "1件の哺乳類",
+      "other": "%{count}件の哺乳類"
     },
     "x_reptilia": {
-      "one": "1頭の爬虫類",
-      "other": "%{count}頭の爬虫類"
+      "one": "1件の爬虫類",
+      "other": "%{count}件の爬虫類"
     },
     "x_aves": {
       "one": "1羽の鳥",
@@ -22843,12 +23438,12 @@ I18n.translations["ja"] = {
       "other": "%{count}種の菌類"
     },
     "x_protozoa": {
-      "one": "1頭の原生動物",
-      "other": "%{count}頭の原生動物"
+      "one": "1件の原生動物",
+      "other": "%{count}件の原生動物"
     },
     "x_other_animals": {
-      "one": "1頭のその他の動物",
-      "other": "%{count}頭のその他の動物"
+      "one": "1件のその他の動物",
+      "other": "%{count}件のその他の動物"
     }
   },
   "allow_project_curators_to_view_your_private_coordinates": "プロジェクトのキュレーター管理者にプライベートな位置情報の閲覧を許可",
@@ -22866,6 +23461,7 @@ I18n.translations["ja"] = {
   "atom": "Atom",
   "attention": "注意",
   "back_to_x": "%{noun}に戻る",
+  "based_on_the_evidence_can_id_be_improved": "証拠を根拠にコミュニティー判定を確定しますか、改善しますか？",
   "birds": "鳥類",
   "black": "黒",
   "blue": "青",
@@ -22901,6 +23497,9 @@ I18n.translations["ja"] = {
   "combine": "統合",
   "comment": "コメント",
   "commercial_solicitation": "セールス、どこにも繋がらないリンクなど。",
+  "community_id_at_genus_level_or_lower": "層レベル以下のコミュニティー判定の有無",
+  "community_id_at_species_level_or_lower": "種以下の階級によるコミニュティID",
+  "community_id_heading": "コミュニティー判定",
   "comprehensive_list": "包括リスト",
   "confirm": "確認",
   "confirmed": "確認済",
@@ -22936,6 +23535,15 @@ I18n.translations["ja"] = {
   "data_deficient": "データ不足",
   "data_quality_assessment": "データ質評定",
   "date": {
+    "abbr_day_names": [
+      "日",
+      "月",
+      "火",
+      "水",
+      "木",
+      "金",
+      "土"
+    ],
     "abbr_month_names": {
       "1": "1月",
       "2": "2月",
@@ -22949,6 +23557,24 @@ I18n.translations["ja"] = {
       "10": "10月",
       "11": "11月",
       "12": "12月"
+    },
+    "day_names": [
+      "日曜日",
+      "月曜日",
+      "火曜日",
+      "水曜日",
+      "木曜日",
+      "金曜日",
+      "土曜日"
+    ],
+    "day_names_min": {
+      "1": "日",
+      "2": "月",
+      "3": "火",
+      "4": "水",
+      "5": "木",
+      "6": "金",
+      "7": "土"
     },
     "formats": {
       "month_day_year": "%Y年%B%d日"
@@ -23090,6 +23716,7 @@ I18n.translations["ja"] = {
   "history": "履歴",
   "id_categories": {
     "tooltips": {
+      "leading": "分類群は上位の群落からつながっています。この同定は正しい答えに結びつく可能性があります。"
     }
   },
   "identifications": "同定",
@@ -23468,6 +24095,7 @@ I18n.translations["ja"] = {
   "profile": "プロフィール",
   "project": "プロジェクト",
   "projects": "プロジェクト",
+  "proposed_taxa_that_contradict_the_community_id": "コミュニティー鑑定を否定する種分類",
   "protozoans": "原生動物",
   "public_domain": "パブリックドメイン",
   "purple": "紫",
@@ -23581,6 +24209,7 @@ I18n.translations["ja"] = {
     "other": "%{count}件の観察記録を送信"
   },
   "submitted": "投稿済",
+  "suggest_an_identification": "同定を提案",
   "table": "表",
   "tagging": "タグを付けています...",
   "tags": "タグ",
@@ -23598,6 +24227,8 @@ I18n.translations["ja"] = {
   "taxonomy": "分類",
   "terrain": "地形",
   "that_was_the_last_observation_matching_the_current_filters": "現在のフィルター設定に該当する最後の観察記録です",
+  "the_community_id_requires_at_least_two_identifications": "コミュニティーIDには最低2件の判定が必要です。",
+  "the_community_must_feel_that": "コミュニティーにとって、証拠に基づくコミュニティー判定は最善である必要があります",
   "the_world": "世界中",
   "there_were_problems_adding_taxa": "指定の分類群を追加する際にエラーが発生しました：%{errors}",
   "these_observations_have_not_been_uploaded_yet": "こちらの観察記録はまだアップロードされていません。",
@@ -23606,6 +24237,7 @@ I18n.translations["ja"] = {
   "this_taxon_has_no_default_photo": "この分類群のデファルト写真がありません",
   "threatened": "絶滅危惧種",
   "to_add_comments": "すれば、コメントを投稿することができます",
+  "to_suggest_an_identification": "同定を提案",
   "today": "今日",
   "top_identifier": "トップ同定者",
   "top_identifiers": "同定の達人",
@@ -23635,6 +24267,7 @@ I18n.translations["ja"] = {
     "other": "%{num}/%{count}枚の写真をアップロード中..."
   },
   "user": "ユーザー",
+  "user_has_opted_out_of_community_id": "利用者はコミュニティー判定の通知を受け取りません",
   "username_or_user_id": "ユーザー名もしくユーザーID",
   "users": "ユーザー",
   "users_comment_html": "<a href='%{url}'>%{user}</a>のコメント",
@@ -23652,6 +24285,10 @@ I18n.translations["ja"] = {
   "views": {
     "observations": {
       "community_id": {
+        "explanation": "<p>\n  もし利用者が何らかの理由でコミュニティのタクソンに同意しない\n  場合は否定できます。するとその利用者の判定がその他の鑑定への\n  リンク、その他の観察、人生リストの更新などに使われます。また\n　コミュニティーの同意が得られた場合にのみ、その観察は学術研究\n　レベルと認められます。\n</p>\n<p>\n  その場合であっても、コミュニティーの判定は表示され、判定の差\n　をだれでも確認できます。\n</p>",
+        "identification_count": "同定件数",
+        "you_have_opted_out": "コミュニティー判定の通知を解除しました",
+        "your_id_does_not_match": "利用者の判定（<span class=\"bold\">%{taxon_name}</span>）はコミュニティーの判定と一致しません"
       },
       "export": {
         "well_email_you": "準備ができましたら電子メールでお知らせします。"
@@ -23661,6 +24298,10 @@ I18n.translations["ja"] = {
         "unreview_all_tooltip": "ページ内のすべての観察記録を未確認にする"
       },
       "show": {
+        "ancestor_disagreements_desc": "分類群の祖先の中に含まれるものの、この分類群を使用した最初の同定後に作成された、同定された分類群の数",
+        "community_taxon_desc_html": "<p class=\"ui\">\n  コミュニティの分類群（コミュニティの判定）とは、%{site_name} \n  コミュニティが特定の観察記録に記されたと認めた分類群のことです。\n  コミュニティの分類群の決定法に興味がある場合、以下のアルゴリズム\n  の説明に説明がありますが、通常は<strong>同定者の3分の2以上が賛成\n  する分類群</strong>を指します。ときには、より上位の分類群を選び\n  相反する種を含める（kingsnakeだという主張とrattlesnakeという主張\n  があることからiNatはヘビ類を総括する Serpentes を選択）ことが\n  あります。アルゴリズムは、反対意見がしばしば正しいということから\n  反対意見を少し重視する傾向があります。</p>\n<p class=\"ui\">\n  コミュニティの分類群は、観察記録をデータ提携先と共有したり、同種\n  の観察記録をウェブサイトにリンクしたり、生き物リストの更新に使い\n  ます。もしコミュニティの分類群に賛成しない場合は否定できますが、\n  その場合はあなたの同定を使い、他の観察記録にリンクしたり、生き物\n  リストの更新に使われたりします。また自分の観察記録が研究用と承認\n  されるには、コミュニティが<em>アナタの同定</em>に同意する必要があり\n  ます。もしコミュニティの分類群という考え方に反対であれば、完全に\n  通知を削除するよう<a href=\"/users/edit\" target=\"_blank\">個人設定\n  を編集してください</a>。\n</p>\n<p class=\"ui\">\n  <strong>アルゴリズム：</strong>同定された群とそれを含む分類（例：\n  <i> Homo </ i>類には<i> Homo sapiens </ i>が含まれる）、両方を採\n  点し、同定数の累計の合計に対するその分類群の同定の累計数の比率、\n  その分類群の最初の同定以降に追加された、より保守的な同定件数、\n  ならびに完全に異なる同定の件数（すなわち分類群で3分の2以上をスコ\n  アし最低2件の同定が存在）を記録します。3分の2以上をスコアし最低\n  2件の同定が存在する分類群は、最も低い順位の分類群を選択します。</p>",
+        "cumulative_count_desc": "単一の分類群とその下位分類に対する同定の総数",
+        "identification_count_desc": "単一の分類群に対する同定の件数"
       }
     },
     "projects": {
@@ -23714,13 +24355,33 @@ I18n.translations["ja"] = {
   "white": "白",
   "wild": "野生",
   "withdraw": "撤回",
+  "x_comments": {
+    "one": "1件のコメント",
+    "other": "%{count}件のコメント"
+  },
   "x_faves": {
     "one": "1件のお気に入り",
     "other": "%{count}件のお気に入り"
   },
+  "x_identifications": {
+    "one": "1件の同定",
+    "other": "%{count}件の同定"
+  },
+  "x_identifications_": {
+    "one": "1件の同定",
+    "other": "%{count}件の同定"
+  },
+  "x_identifications_html": {
+    "one": "<span class=\"count\">1</span>件の同定",
+    "other": "<span class=\"count\">%{count}</span>件の同定"
+  },
   "x_matching_taxa_html": {
-    "one": "<span class=\"count\">1</span>個の該当する分類群",
-    "other": "<span class=\"count\">%{count}</span>個の該当する分類群"
+    "one": "<span class=\"count\">1</span>件の該当する分類群",
+    "other": "<span class=\"count\">%{count}</span>件の該当する分類群"
+  },
+  "x_misidentifications_of_this_species": {
+    "one": "この種の鑑定に間違いが1点",
+    "other": "%{count}この種の鑑定に間違いが%{count}件"
   },
   "x_observations": {
     "one": "1件の観察記録",
@@ -23734,17 +24395,37 @@ I18n.translations["ja"] = {
     "one": "1件の観察失敗記録",
     "other": "%{count}件の観察失敗記録"
   },
+  "x_observations_html": {
+    "one": "<span class='count'>1</span>件の観察記録",
+    "other": "<span class='count'>%{count}</span>件の観察記録"
+  },
   "x_observations_link_html": {
-    "one": "<a href='%{url}'>1件の</a>観察記録",
-    "other": "<a href='%{url}'>%{count}件の</a>観察記録"
+    "one": "<a href='%{url}'>1件の観察記録</a>",
+    "other": "<a href='%{url}'>%{count}件の観察記録</a>"
+  },
+  "x_observations_reviewed_html": {
+    "one": "<span class='count'>1</span>件の観察記録を査読",
+    "other": "<span class='count'>%{count}</span>件の観察記録を査読"
+  },
+  "x_others": {
+    "one": "1件のその他",
+    "other": "%{count}件のその他"
   },
   "x_species": {
     "one": "1種",
     "other": "%{count}種"
   },
+  "x_species_html": {
+    "one": "<span class='count'>1</span>種",
+    "other": "<span class='count'>%{count}</span>種"
+  },
   "x_species_link_html": {
-    "one": "<a href='%{url}'>1</a>種",
-    "other": "<a href='%{url}'>%{count}</a>種"
+    "one": "<a href='%{url}'>1種</a>",
+    "other": "<a href='%{url}'>%{count}種</a>"
+  },
+  "x_suggestions_filtered_by_colon": {
+    "one": "1件の提案を検出:",
+    "other": "%{count}件の提案を検出:"
   },
   "yellow": "黄",
   "yes": "はい",
@@ -23753,6 +24434,7 @@ I18n.translations["ja"] = {
   "you_must_select_at_least_one_taxon": "一つ以上の分類群を選択しなければなりません",
   "you_sure_delete_comment?": "このコメントを削除して本当によろしいですか？",
   "you_sure_delete_this_observation": "この観察記録を削除して本当によろしいですか？",
+  "your_coarser_id": "より大まかな<span class='taxon'>%{coarser_taxon_name}</span>の同定が、下位分類の<span class='taxon'>%{finer_taxon_name}</span>の同定と一致していないようです。このまま保存してよいですか？<br><br>\n<a href='/pages/getting+started' target='_blank'>同定の方法について、詳しい説明はこちら&raquo;</a>",
   "your_default": "自分のデフォルト",
   "your_hard_drive": "マイパソコンから",
   "your_observations": "あなたの観察記録",
@@ -23958,6 +24640,15 @@ I18n.translations["ko"] = {
   "data_quality": "데이터 품질",
   "data_quality_assessment": "데이터 품질 평가",
   "date": {
+    "abbr_day_names": [
+      "일",
+      "월",
+      "화",
+      "수",
+      "목",
+      "금",
+      "토"
+    ],
     "abbr_month_names": {
       "1": "1월",
       "2": "2월",
@@ -23971,6 +24662,24 @@ I18n.translations["ko"] = {
       "10": "10월",
       "11": "11월",
       "12": "12월"
+    },
+    "day_names": [
+      "일요일",
+      "월요일",
+      "화요일",
+      "수요일",
+      "목요일",
+      "금요일",
+      "토요일"
+    ],
+    "day_names_min": {
+      "1": "일",
+      "2": "월",
+      "3": "화",
+      "4": "수",
+      "5": "목",
+      "6": "금",
+      "7": "토"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -24167,19 +24876,27 @@ I18n.translations["ko"] = {
     "afrikaans": "Afrikaans",
     "bengali": "বাঙালি",
     "cebuano": "Cebuano",
+    "chinese_simplified": "중국어 (간체)",
+    "chinese_traditional": "중국어 (정체)",
     "creole_french": "creole (French)",
+    "czech": "체코어",
+    "danish": "덴마크어",
     "davawenyo": "Davawenyo",
     "dutch": "Nederlands",
     "english": "영어",
+    "estonian": "에스토니아어",
+    "finnish": "핀란드어",
     "french": "français",
     "gela": "Gela",
     "german": "Deutsch",
+    "greek": "그리스어",
     "hawaiian": "Hawaiian",
     "hebrew": "עברית",
     "icelandic": "Íoslainnis",
     "italian": "italiano",
     "japanese": "日本語",
     "korean": "한국어",
+    "luxembourgish": "룩셈부르크어",
     "maltese": "maltese",
     "norwegian": "norsk",
     "portuguese": "포르투갈어",
@@ -24454,6 +25171,7 @@ I18n.translations["ko"] = {
   "show_keyboard_shortcuts": "단축 키 표시",
   "show_total_counts": "총 개수 보기",
   "show_uncountable_species": "셀 수 없는 종을 표시",
+  "showing_x_of_y_listings": "%{y}개 목록 중 %{x}개 표시",
   "sign_out": "로그아웃",
   "sign_up": "가입하기",
   "similar_species": "비슷한 종",
@@ -24476,6 +25194,7 @@ I18n.translations["ko"] = {
   "this_id_was_added_due_to_a": "이 ID는 다음의 이유로 추가되었습니다:",
   "this_observation_was_created_using": "이 관찰은 다음을 사용하여 만들어졌습니다:",
   "this_year": "올해",
+  "total": "합계",
   "total_observations": "총 관찰",
   "twitter": "트위터",
   "unfollow": "팔로우 해제",
@@ -24525,6 +25244,7 @@ I18n.translations["ko"] = {
     },
     "projects": {
       "new": {
+        "contain_entire_image_without_cropping": "잘라내지 않고 전체 그림 포함",
         "custom_banner_icon_and_project_description": "사용자 지정 배너, 아이콘, 프로젝트 설명",
         "data_visualizations": "데이터 시각화",
         "delete_project": "프로젝트 삭제",
@@ -24739,6 +25459,15 @@ I18n.translations["lb"] = {
   "current_flags": "Aktuell Markéierungen",
   "data_quality": "Datequalitéit",
   "date": {
+    "abbr_day_names": [
+      "Son",
+      "Méi",
+      "Dën",
+      "Mët",
+      "Don",
+      "Fre",
+      "Sam"
+    ],
     "abbr_month_names": {
       "1": "Jan",
       "2": "Feb",
@@ -24752,6 +25481,24 @@ I18n.translations["lb"] = {
       "10": "Okt",
       "11": "Nov",
       "12": "Dez"
+    },
+    "day_names": [
+      "Sonndeg",
+      "Méindeg",
+      "Dënschdeg",
+      "Mëttwoch",
+      "Donneschdeg",
+      "Freideg",
+      "Samschdeg"
+    ],
+    "day_names_min": {
+      "1": "So",
+      "2": "Mé",
+      "3": "Dë",
+      "4": "Më",
+      "5": "Do",
+      "6": "Fr",
+      "7": "Sa"
     },
     "formats": {
     },
@@ -24904,20 +25651,29 @@ I18n.translations["lb"] = {
     "afrikaans": "Afrikaans",
     "bengali": "Bengalesch",
     "catalan": "Katalanesch",
+    "chinese_simplified": "Chinesesch (Vereinfacht)",
+    "chinese_traditional": "Chinesesch (traditionell)",
     "creole_french": "kreolesch (Franséisch)",
+    "czech": "Tschechesch",
+    "danish": "Dänesch",
     "dutch": "Hollännesch",
     "english": "Englesch",
+    "estonian": "Estnesch",
+    "finnish": "Finnesch",
     "french": "Franséisch",
     "german": "Däitsch",
+    "greek": "Griichesch",
     "hawaiian": "Hawaiianesch",
     "hebrew": "Hebräesch",
     "icelandic": "Islännesch",
     "italian": "Italienesch",
     "japanese": "Japanesch",
     "korean": "Koreanesch",
+    "luxembourgish": "Lëtzebuergesch",
     "maltese": "Maltesesch",
     "maori": "Maori",
     "norwegian": "Norwegesch",
+    "occitan": "Okzitanesch",
     "portuguese": "Portugisesch",
     "romanian": "Rumänesch",
     "russian": "Russesch",
@@ -25786,6 +26542,15 @@ I18n.translations["mk"] = {
   "data_deficient": "недоволно податоци",
   "data_quality_assessment": "Оценка на квалитетот на податоците",
   "date": {
+    "abbr_day_names": [
+      "нед",
+      "пон",
+      "вто",
+      "сре",
+      "чет",
+      "пет",
+      "саб"
+    ],
     "abbr_month_names": {
       "1": "јан",
       "2": "фев",
@@ -25799,6 +26564,24 @@ I18n.translations["mk"] = {
       "10": "окт",
       "11": "ное",
       "12": "дек"
+    },
+    "day_names": [
+      "недела",
+      "понеделник",
+      "вторник",
+      "среда",
+      "четврток",
+      "петок",
+      "сабота"
+    ],
+    "day_names_min": {
+      "1": "не",
+      "2": "по",
+      "3": "вт",
+      "4": "ср",
+      "5": "че",
+      "6": "пе",
+      "7": "са"
     },
     "formats": {
       "month_day_year": "%j %B %Y"
@@ -26834,8 +27617,25 @@ I18n.translations["oc"] = {
   "dashboard": "Tablèu de bòrd",
   "data_deficient": "donadas insufisentas",
   "date": {
+    "abbr_day_names": [
+      "Dim",
+      "Dil",
+      "Mar",
+      "Mèc",
+      "Dij",
+      "Div"
+    ],
     "abbr_month_names": {
       "3": "Mar"
+    },
+    "day_names_min": {
+      "1": "Di",
+      "2": "Lu",
+      "3": "Ma",
+      "4": "Me",
+      "5": "Jò",
+      "6": "Ve",
+      "7": "Sa"
     },
     "formats": {
     },
@@ -27815,6 +28615,15 @@ I18n.translations["pt-BR"] = {
   "data_quality_assessment": "Avaliação da qualidade dos dados",
   "data_quality_assessment_": "Avaliação da qualidade dos dados",
   "date": {
+    "abbr_day_names": [
+      "Dom",
+      "Seg",
+      "Ter",
+      "Qua",
+      "Qui",
+      "Sex",
+      "Sab"
+    ],
     "abbr_month_names": {
       "1": "Jan",
       "2": "Fev",
@@ -27828,6 +28637,24 @@ I18n.translations["pt-BR"] = {
       "10": "Out",
       "11": "Nov",
       "12": "Dez"
+    },
+    "day_names": [
+      "Domingo",
+      "Segunda-feira",
+      "Terça-feira",
+      "Quarta-feira",
+      "Quinta-feira",
+      "Sexta-feira",
+      "Sábado"
+    ],
+    "day_names_min": {
+      "1": "Do",
+      "2": "Se",
+      "3": "Te",
+      "4": "Qa",
+      "5": "Qi",
+      "6": "Sx",
+      "7": "Sa"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -28049,14 +28876,19 @@ I18n.translations["pt-BR"] = {
     "bengali": "Bengalês",
     "catalan": "Catalão",
     "cebuano": "Cebuano",
+    "chinese_simplified": "Chinês (Simplificado)",
     "creole_french": "Crioulo (Francês)",
     "creole_portuguese": "Crioulo (Português)",
+    "czech": "Checo",
+    "danish": "Dinamarquês",
     "davawenyo": "Davao Chavacano",
     "dutch": "Holandês",
     "english": "Inglês",
+    "finnish": "Finlandês",
     "french": "Francês",
     "gela": "Gela",
     "german": "Alemão",
+    "greek": "Grego",
     "hawaiian": "Havaiano",
     "hebrew": "Hebraico",
     "hiligaynon": "Ilongo",
@@ -28065,10 +28897,12 @@ I18n.translations["pt-BR"] = {
     "italian": "Italiano",
     "japanese": "Japonês",
     "korean": "Coreano",
+    "luxembourgish": "Luxemburguês",
     "maltese": "Maltês",
     "maori": "Maori",
     "misima_paneati": "Misima-paneati",
     "norwegian": "Norueguês",
+    "occitan": "Occitano",
     "pangasinan": "Pangasinán",
     "portuguese": "Português",
     "romanian": "Romano",
@@ -28500,7 +29334,7 @@ I18n.translations["pt-BR"] = {
   "request_failed": "Ops! Falha na solicitação",
   "required_": "Obrigatório",
   "research": "pesquisa",
-  "research_grade": "nível de pesquisa",
+  "research_grade": "Nível de Pesquisa",
   "research_grade_qualification": "Qualificação à Nível de Pesquisa",
   "research_grade_short_html": "P<span class='full'>esquisa </span>N<span class='full'>ível</span>",
   "reset_search_filters": "Restabelecer filtros de pesquisa",
@@ -28628,7 +29462,7 @@ I18n.translations["pt-BR"] = {
   "top_identifiers_of_taxon": "Top Identificadores por %{taxon}",
   "top_observer": "Top Observador",
   "top_species": "Top Espécies",
-  "total": "total",
+  "total": "Total",
   "total_observations": "Total de observações",
   "trending": "Tendências",
   "trends": "Tendências",
@@ -28722,6 +29556,7 @@ I18n.translations["pt-BR"] = {
     },
     "projects": {
       "new": {
+        "contain_entire_image_without_cropping": "Contém imagem inteira sem cortar"
       },
       "show": {
       }
@@ -28898,7 +29733,7 @@ I18n.translations["pt-PT"] = {
   "accuracy": "Precisão",
   "accuracy_meters": "Precisão (metros)",
   "action": "Ação",
-  "active": "ativo",
+  "active": "Ativo",
   "activity": "Atividade",
   "add": "Acrescentar",
   "add_a_comment": "Adicione um comentário",
@@ -29539,7 +30374,7 @@ I18n.translations["pt-PT"] = {
   "of_this_taxon": "Deste táxon",
   "offensive_inappropriate": "ofensivo / inapropriado",
   "ok": "OK",
-  "other": "outro",
+  "other": "Outro",
   "other_animals": "outros animais",
   "other_species_commonly_misidentified_as_this_species": "Outras espécies que costumam ser confundidas com esta",
   "person": "pessoa",
@@ -29884,7 +30719,7 @@ I18n.translations["ru"] = {
   "accuracy": "Точность",
   "accuracy_meters": "Точность (м)",
   "action": "Действие",
-  "active": "активен",
+  "active": "Активен",
   "activity": "Активность",
   "add": "Добавить",
   "add_a_comment": "Добавить комментарий",
@@ -29905,7 +30740,7 @@ I18n.translations["ru"] = {
   "add_to_project": "Добавить в проект",
   "added": "Добавлено",
   "added!": "Добавлено!",
-  "added_on": "Добавил(а)",
+  "added_on": "Добавил",
   "additional_range": "Дополнительный диапазон",
   "additional_range_data_from_an_unknown_source": "Данные дополнительного диапазона из неизвестного источника",
   "admin_tools": "Средства Администрирования",
@@ -29921,7 +30756,7 @@ I18n.translations["ru"] = {
     "rank": {
       "kingdom": "Царство",
       "class": "Класс",
-      "species": "Вид",
+      "species": "Виды",
       "order": "Порядок"
     },
     "amphibians": "Земноводные",
@@ -29936,34 +30771,73 @@ I18n.translations["ru"] = {
     "other_animals": "Другие Животные",
     "plants": "Растения",
     "protozoans": "Простейшие",
-    "ray_finned_fishes": "Лучеперые Рыбы",
+    "ray_finned_fishes": "Лучепёрые Рыбы",
     "reptiles": "Рептилии",
     "life": "Жизнь",
     "x_plantae": {
       "one": "1 растение",
-      "other": "%{count} растения"
+      "few": "%{count} растения",
+      "other": "%{count} растений"
     },
     "x_animalia": {
       "one": "1 животное",
-      "other": "%{count} животные"
+      "other": "%{count} животных"
     },
     "x_mollusca": {
       "one": "1 моллюск",
-      "other": "%{count} моллюски"
+      "few": "%{count} моллюска",
+      "other": "%{count} моллюсков"
+    },
+    "x_amphibia": {
+      "one": "%{count} амфибия",
+      "few": "%{count} амфибии",
+      "other": "%{count} амфибий"
+    },
+    "x_mammalia": {
+      "one": "1 млекопитающее",
+      "other": "%{count} млекопитающих"
+    },
+    "x_actinopterygii": {
+      "one": "%{count} лучепёрая рыба",
+      "few": "%{count} лучепёрые рыбы",
+      "other": "%{count} лучепёрых рыб"
+    },
+    "x_reptilia": {
+      "one": "1 рептилия",
+      "few": "%{count} рептилии",
+      "other": "%{count} рептилий"
     },
     "x_aves": {
       "one": "1 птица",
-      "other": "%{count} птиц(ы)"
+      "few": "%{count} птицы",
+      "other": "%{count} птиц"
+    },
+    "x_insecta": {
+      "one": "%{count} насекомое",
+      "other": "%{count} насекомых"
+    },
+    "x_arachnida": {
+      "one": "1 паукообразное",
+      "other": "%{count} паукообразных"
+    },
+    "x_fungi": {
+      "one": "%{count} гриб",
+      "few": "%{count} гриба",
+      "other": "%{count} грибов"
+    },
+    "x_protozoa": {
+      "one": "1 простейшее",
+      "other": "%{count} простейших"
     },
     "x_other_animals": {
       "one": "1 другое животное",
-      "other": "%{count} другие животные"
+      "other": "%{count} других животных"
     }
   },
   "allow_project_curators_to_view_your_private_coordinates": "Разрешить кураторам проекта видеть ваши приватные координаты",
   "amphibians": "земноводные",
   "and": "и",
-  "android": "Андроид",
+  "android": "Android",
   "animals": "Животные",
   "animated_observations_map": "Анимированная карта наблюдений",
   "annotations": "Аннотация",
@@ -30056,6 +30930,12 @@ I18n.translations["ru"] = {
   "data_quality_assessment": "Оценка Качества Данных",
   "data_quality_assessment_": "оценка качества данных",
   "date": {
+    "abbr_day_names": {
+      "0": "Вск",
+      "2": "Вт",
+      "3": "Ср",
+      "6": "Сб"
+    },
     "abbr_month_names": {
       "1": "Янв",
       "2": "Фев",
@@ -30069,6 +30949,21 @@ I18n.translations["ru"] = {
       "10": "Окт",
       "11": "Ноя",
       "12": "Дек"
+    },
+    "day_names": {
+      "0": "Воскресенье",
+      "2": "Вторник",
+      "3": "Среда",
+      "6": "Суббота"
+    },
+    "day_names_min": {
+      "1": "Вс",
+      "2": "Пн",
+      "3": "Вт",
+      "4": "Ср",
+      "5": "Чт",
+      "6": "Пт",
+      "7": "Сб"
     },
     "formats": {
     },
@@ -30121,6 +31016,19 @@ I18n.translations["ru"] = {
   "date_specified": "Указана дата",
   "date_time": "Дата/Время",
   "datetime": {
+    "countdown_x_hours": {
+      "one": "час",
+      "few": "часа",
+      "other": "часов"
+    },
+    "countdown_x_minutes": {
+      "one": "мин",
+      "other": "мин"
+    },
+    "countdown_x_seconds": {
+      "one": "сек",
+      "other": "сек"
+    }
   },
   "default": "по умолчанию",
   "delete": "Удалить",
@@ -30141,6 +31049,7 @@ I18n.translations["ru"] = {
   "edit_atlas": "Редактировать атлас",
   "edit_license": "Редактировать лицензию",
   "edit_multiple_dates": "Редактировать несколько дат",
+  "edit_multiple_descriptions": "Редактировать множественные описания",
   "edit_multiple_locations": "Редактировать множественные местоположения",
   "edit_photos": "Редактировать фото",
   "edit_project": "Редактировать проект",
@@ -30148,6 +31057,11 @@ I18n.translations["ru"] = {
   "edit_your_default_settings": "Редактировать настройки по умолчанию",
   "edit_your_global_project_settings": "Редактирование глобальных параметров проекта",
   "edit_your_settings_for_this_project": "Редактировать настройки данного проекта",
+  "editing_observations": {
+    "one": "Редактирование <span class='count'>1</span> наблюдения:",
+    "few": "Редактирование <span class='count'>%{count}</span> наблюдений:",
+    "other": "Редактирование <span class='count'>%{count}</span> наблюдений:"
+  },
   "eligible_for_research_grade": "Доступно для Исследовательского уровня",
   "endemic": "эндемичный",
   "establishment_means": "Способ возникновения",
@@ -30166,6 +31080,7 @@ I18n.translations["ru"] = {
   "filter_by_taxon": "Фильтр по таксону",
   "filters": "Фильтры",
   "find": "Поиск",
+  "find_observations": "Найти наблюдения",
   "find_photos": "Найти фото",
   "find_your_current_location": "Найдите ваше текущее местоположение",
   "finished_with_page": "Страница закончилась",
@@ -30176,13 +31091,21 @@ I18n.translations["ru"] = {
   "flickr_has_no_creative_commons": "На Flickr не найдены фото с лицензией Creative Commons для этого места.",
   "fluid_layout": "Гибкая разметка",
   "follow": "Отслеживать",
+  "followers": "Последователи",
   "frequency": "Частота",
   "from": "Из",
   "from_flickr_facebook_etc": "Из Flickr, Facebook и т.д.",
   "from_soundcloud": "Из Soundcloud",
+  "fungi": {
+    "one": "1 гриб",
+    "few": "гриба",
+    "other": "грибов"
+  },
   "generate_your_stats": "Сгенерировать вашу статистику",
   "geoprivacy": "Приватность местоположения",
+  "get_started": "Начать",
   "go": "Вперед",
+  "going_to_your_observations": "Перейдём к вашим наблюдениям...",
   "green": "зеленый",
   "grey": "серый",
   "grid": "Сетка",
@@ -30202,9 +31125,11 @@ I18n.translations["ru"] = {
     }
   },
   "identifications": "Идентификации",
-  "identifiers": "Экспертов",
+  "identifiers": "Эксперты",
   "identify": "Идентифицировать",
   "identify_title": "Идентифицировать",
+  "ids_by_taxon": "Идентификации по таксону",
+  "ids_made_for_others": "Идентификации, сделанные для других",
   "if_for_some_reason_a_user_doesnt_agree": "Если по какой-то причине вы не согласны с таксоном сообщества, вы можете отклонить его, что означает, что ваш ID используется для ссылки на другие наблюдения, обновления списков жизни и т.д. Это также означает, что ваше наблюдение может перейти на  исследовательский уровень только тогда, когда сообщество соглашается с вами.",
   "import": "Импорт",
   "inactive_taxon": "неактивный таксон",
@@ -30259,6 +31184,7 @@ I18n.translations["ru"] = {
   "loading_suggestions": "Загрузка предложений...",
   "location": "Местоположение",
   "location_is_accurate": "Местоположение является точным",
+  "location_is_obscured": "Местоположение скрыто",
   "location_is_private": "Местоположение является частным",
   "location_is_public": "Местоположение является общедоступным",
   "location_private": "Местоположение является частным",
@@ -30287,6 +31213,15 @@ I18n.translations["ru"] = {
   "messages": "Сообщения",
   "misidentifications": "Ошибочные идентификации",
   "misleading_or_illegal_content_html": "Вводящий в заблуждение или незаконный контент, расовые или этнические оскорбления и т.д. Более подробно о нашем определении «приемлемый» см. <a href=\"/help#inappropriate\">FAQ</a>.",
+  "momentjs": {
+    "shortRelativeTime": {
+      "m": "1мин",
+      "h": "1ч",
+      "d": "1д",
+      "M": "1мес",
+      "y": "1г"
+    }
+  },
   "more": "Больше",
   "more_filters": "Больше фильтров",
   "more_from_x": "Больше от %{x}",
@@ -30310,6 +31245,7 @@ I18n.translations["ru"] = {
   "no": "Нет",
   "no_but_it_is_a_member_of_taxon": "Нет, но это член %{taxon}",
   "no_identifications": "Нет идентификаций",
+  "no_ids_have_been_suggested_yet": "Никаких идентификаций пока не предложено",
   "no_its_as_good_as_it_can_be": "Нет, это хорошо, насколько возможно",
   "no_matching_users": "Нет соответствующих пользователей.",
   "no_misidentifications_yet": "Ошибочные идентификации пока не обнаружены",
@@ -30323,12 +31259,16 @@ I18n.translations["ru"] = {
   "none": "Ничего",
   "none_found": "Ничего не найдено",
   "not_recorded": "Не указана",
+  "obs": "Набл",
+  "obs_cid_d": "Наблюдения, идентифицированные сообществом",
+  "obs_id_d": "Набл с ID",
   "observation": "Наблюдение",
   "observation_date": "Дата",
   "observation_fields": "Поля наблюдения",
   "observation_without_media": "Наблюдение без медиафайлов",
   "observations": "Наблюдения",
   "observations_": "наблюдения",
+  "observations_in_this_project_must": "Наблюдения в этом проекте должны соответствовать следующим критериям",
   "observations_map": "Наблюдения / Карта",
   "observations_of_relatives": "Наблюдения близких видов",
   "observations_total": "Итого наблюдений",
@@ -30345,6 +31285,7 @@ I18n.translations["ru"] = {
   "order_by": "Сортировать по",
   "organism_appears_captive_cultivated": "Организм выглядит как В неволе / культивируемое",
   "organism_is_wild": "Организм является диким",
+  "other": "Другое",
   "other_animals": "другие животные",
   "other_species_commonly_misidentified_as_this_species": "Другие виды, которые обычно ошибочно идентифицируются как этот вид",
   "person": "Пользователь",
@@ -30421,7 +31362,13 @@ I18n.translations["ru"] = {
   "previous_tab": "Предыдущая вкладка",
   "profile": "Профиль",
   "project": "Проект",
+  "project_admins": {
+    "one": "1 администратор проекта",
+    "few": "администратора проектов",
+    "other": "администраторов проектов"
+  },
   "projects": "Проекты",
+  "protozoans": "простейшие",
   "quality_grade": "Уровень качества",
   "rank": "Ранг",
   "ranks": {
@@ -30442,13 +31389,22 @@ I18n.translations["ru"] = {
   "reload_timed_out": "Перезагрузка отключена. Пожалуйста, повторите попытку позже.",
   "remove": "Удалить",
   "remove_from_project": "Удалить из проекта",
-  "research_grade": "исследовательский уровень",
+  "remove_observations": {
+    "one": "Удалить 1 наблюдение?",
+    "few": "Удалить %{count} наблюдения?",
+    "other": "Удалить %{count} наблюдений?"
+  },
+  "research_grade": "Исследовательский уровень",
   "research_grade_qualification": "Качество исследовательского уровня",
   "reset_search_filters": "Сбросить фильтры поиска",
   "reviewed": "Проверено",
   "rg_observations": "Наблюдения статуса \"исследовательский\"",
   "save": "Сохранить",
   "save_photos": "Сохранить фото",
+  "saving_num_of_count_observations": {
+    "one": "Сохранение наблюдения...",
+    "other": "Сохранение %{num} из %{count} наблюдений..."
+  },
   "search": "Поиск",
   "search_by_taxon_name_or_flickr_photo_id": "Поиск по имени таксона или идентификатору фото на Фликр",
   "search_by_taxon_name_or_observation_id": "Поиск по наименованию таксона или идентификатору наблюдения",
@@ -30463,11 +31419,15 @@ I18n.translations["ru"] = {
   "selected_photos": "Выбранные фото",
   "show": "Показать",
   "show_keyboard_shortcuts": "Показать сочетания клавиш",
+  "show_taxa_from_place": "Показать таксоны из %{place}",
   "showing_taxa_from_everywhere": "Показывать таксоны отовсюду",
   "showing_taxa_from_place": "Показ таксонов из %{place}",
+  "sign_out": "Выйти",
   "similar_species": "Аналогичные виды",
   "skip_to_next_page": "Перейти на следующую страницу",
   "some_observations_failed_to_save": "Некоторые наблюдения сохранить не удалось",
+  "something": "Что-то",
+  "something_went_wrong_adding": "Что-то пошло не так при добавлении этого вида в ваш список",
   "sort_by": "Сортировать по",
   "sounds": {
     "sounds": "Звуки"
@@ -30475,13 +31435,17 @@ I18n.translations["ru"] = {
   "source": "Источник",
   "source_": "Источник:",
   "source_wikipedia": "Источник: Википедия",
-  "species": "Виды",
+  "species": "Вид",
   "species_name_cap": "название вида",
   "start_typing_taxon_name": "Начните набирать наименование таксона...",
   "stats": "Статистика",
   "stats_for_this_year_have_not_been_generated": "Статистика за этот год не сформирована.",
   "status": "Статус",
   "status_in_place": "%{status} в %{place}",
+  "submit_observations": {
+    "one": "Подтверждение 1 наблюдения",
+    "other": "Подтверждение %{count} наблюдений"
+  },
   "submitted": "Загружено",
   "suggest_an_identification": "Предложить Идентификацию",
   "suggestions": "Предложения",
@@ -30501,8 +31465,14 @@ I18n.translations["ru"] = {
   "that_was_the_last_observation_matching_the_current_filters": "Это было последнее наблюдение, удовлетворяющее текущим фильтрам.",
   "the_below_items_are_needed_to_achieve": "Перечисленные ниже пункты требуются для достижения <span className=\"bold\">Исследовательский статус:</span>",
   "the_community_id_requires_at_least_two_identifications": "Идентификация сообществом требует не менее двух идентификаций.",
+  "the_world": "Весь мир",
+  "these_observations_have_not_been_uploaded_yet": "Эти наблюдения ещё не были загружены",
   "this_id_was_added_due_to_a": "Этот ID был добавлен из-за",
   "this_observation": "Данное наблюдение",
+  "this_observation_is_featured_on_x_sites": {
+    "one": "Это наблюдение представлено на 1 сайте",
+    "other": "Это наблюдение представлено на %{count} сайтах"
+  },
   "this_observation_is_research_grade": "Это наблюдение достигло исследовательского уровня!",
   "this_taxon_concept_is_inactive": "эта концепция таксона неактивна",
   "threatened": "под угрозой исчезновения",
@@ -30513,11 +31483,17 @@ I18n.translations["ru"] = {
   "top_observer": "Лучший Наблюдатель",
   "top_observers": "Лучшие наблюдатели",
   "top_species": "Топ Видов",
+  "total": "Всего",
   "total_observations": "Итого наблюдений",
   "trends": "Тенденции",
   "type_species_name": "Введите название вида",
   "unfollow": "Не отслеживать",
   "update_search": "Обновить поиск",
+  "update_x_selected_taxa": {
+    "one": "Обновить 1 выбранный таксон",
+    "few": "Обновить %{count} выбранных таксона",
+    "other": "Обновить %{count} выбранных таксонов"
+  },
   "uploader": {
     "tooltips": {
       "combine": "Объединить выбранные наблюдения",
@@ -30526,6 +31502,10 @@ I18n.translations["ru"] = {
       "remove_photo": "Удалить фото",
       "select_all": "Выбрать все наблюдения"
     }
+  },
+  "uploading_num_of_count_photos": {
+    "one": "Загружается фото...",
+    "other": "Загружается %{num} из %{count} фото..."
   },
   "use_name_as_a_placeholder": "Используйте <span class='ac-placeholder'>\"%{name}\"</span> в качестве заполнителя",
   "user": "Пользователь",
@@ -30538,7 +31518,7 @@ I18n.translations["ru"] = {
   "view_flags": "Посмотреть флаги",
   "view_more": "Посмотреть ещё",
   "view_more_unreviewed": "Посмотреть ещё непроверенные",
-  "view_observation": "Просмотр наблюдения",
+  "view_observation": "Посмотреть наблюдение",
   "view_observations": "Посмотреть наблюдения",
   "view_year_stats_for_site": "Просмотр статистики %{year} для %{site}",
   "view_your_year_stats": "Просмотр вашей статистики %{year}",
@@ -30574,6 +31554,9 @@ I18n.translations["ru"] = {
     },
     "projects": {
       "new": {
+        "note_these_users_will_be_able_to_edit": "Примечание: эти пользователи смогут редактировать ВСЕ детали проекта, включая администраторов.",
+        "users_can_follow_your_project": "Пользователи могут следить за обновлениями вашего проекта через сообщения журнала",
+        "we_have_redesigned_projects": "Мы переработали проекты так, чтобы автоматически включались все наблюдения, которые соответствуют местам, таксонам, пользователям, качеству и датам, которые вы задаёте. Выбирайте между двумя типами: проекты-коллекции и проекты-зонтики, которые имеют следующие особенности:"
       },
       "show": {
       }
@@ -30589,6 +31572,13 @@ I18n.translations["ru"] = {
     },
     "stats": {
       "index": {
+        "avg_ttcid": "Ср TTCID",
+        "avg_ttid": "Ср TTID",
+        "med_ttid": "Мед TTID",
+        "obs_1_day": "Набл (1 день)",
+        "obs_cid_d_to_genus": "Набл с CID до рода",
+        "recent_w_0_obs": "Недавние с 0 набл",
+        "recent_w_7_obs": "Недавние с набл>= 7"
       },
       "year": {
         "sunburst_desc_html": "Наблюдаемые таксоны упорядочены как иерархическая диаграмма «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>."
@@ -30627,6 +31617,7 @@ I18n.translations["ru"] = {
   "visually_similar": "Визуально Похожие",
   "we_have_no_conservation_status_for_this_taxon": "У нас нет никакого природоохранного статуса для этого таксона",
   "we_have_no_establishment_data_for_this_taxon": "У нас нет данных по способу возникновения этого таксона",
+  "website": "Веб-сайт",
   "week_of_date": "Неделя %{date}",
   "were_pretty_sure_this_is_in_the_rank": "Мы почти уверены, что это относится к %{rank}",
   "whats_this?": "Что это?",
@@ -30636,71 +31627,92 @@ I18n.translations["ru"] = {
   "without_annotation": "Без аннотации",
   "x_comments": {
     "one": "1 комментарий",
-    "other": "%{count} комментарии"
+    "few": "%{count} комментария",
+    "other": "%{count} комментариев"
   },
   "x_faves": {
     "one": "1 фаворит",
+    "few": "%{count} фаворита",
     "other": "%{count} фаворитов"
   },
   "x_identifications": {
     "one": "1 идентификация",
-    "other": "%{count} идентификации"
+    "few": "%{count} идентификации",
+    "other": "%{count} идентификаций"
   },
   "x_identifications_": {
-    "one": "1 Идентификация",
-    "other": "%{count} Идентификации"
+    "one": "1 идентификация",
+    "few": "%{count} идентификации",
+    "other": "%{count} идентификаций"
   },
   "x_identifications_html": {
     "one": "<span class=\"count\">1</span> идентификация",
-    "other": "<span class=\"count\">%{count}</span> идентификации"
+    "few": "<span class=\"count\">%{count}</span> идентификации",
+    "other": "<span class=\"count\">%{count}</span> идентификаций"
   },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> соответствующий таксон",
+    "few": "<span class=\"count\">%{count}</span> соответствующих таксона",
     "other": "<span class=\"count\">%{count}</span> соответствующих таксонов"
   },
   "x_misidentifications_of_this_species": {
-    "one": "1 ошибочные идентификации этого вида",
-    "other": "%{count} ошибочные идентификации этого вида"
+    "one": "1 ошибочная идентификация этого вида",
+    "few": "%{count} ошибочные идентификации этого вида",
+    "other": "%{count} ошибочных идентификаций этого вида"
   },
   "x_observations": {
     "one": "1 наблюдение",
-    "other": "%{count} наблюдения"
+    "few": "%{count} наблюдения",
+    "other": "%{count} наблюдений"
   },
   "x_observations_": {
     "one": "1 Наблюдение",
-    "other": "%{count} Наблюдения"
+    "few": "%{count} Наблюдения",
+    "other": "%{count} Наблюдений"
+  },
+  "x_observations_failed": {
+    "one": "не удалось создать 1 наблюдение",
+    "few": "не удалось создать %{count} наблюдения",
+    "other": "не удалось создать %{count} наблюдений"
   },
   "x_observations_html": {
     "one": "<span class='count'>1</span> наблюдение",
-    "other": "<span class='count'>%{count}</span> наблюдения"
+    "few": "<span class='count'>%{count}</span> наблюдения",
+    "other": "<span class='count'>%{count}</span> наблюдений"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 наблюдение</a>",
-    "other": "<a href='%{url}'>%{count} наблюдения</a>"
+    "few": "<a href='%{url}'>%{count} наблюдения</a>",
+    "other": "<a href='%{url}'>%{count} наблюдений</a>"
   },
   "x_observations_reviewed_html": {
     "one": "<span class='count'>1</span> просмотренное наблюдение",
+    "few": "<span class='count'>%{count}</span> просмотренных наблюдения",
     "other": "<span class='count'>%{count}</span> просмотренных наблюдений"
   },
   "x_others": {
     "one": "1 другой",
-    "other": "%{count} другие"
+    "other": "%{count} других"
   },
   "x_species": {
     "one": "1 вид",
-    "other": "%{count} виды"
+    "few": "%{count} вида",
+    "other": "%{count} видов"
   },
   "x_species_html": {
     "one": "<span class='count'>1</span> вид",
-    "other": "<span class='count'>%{count}</span> виды"
+    "few": "<span class='count'>%{count}</span> вида",
+    "other": "<span class='count'>%{count}</span> видов"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 вид</a>",
-    "other": "<a href='%{url}'>%{count} виды</a>"
+    "few": "<a href='%{url}'>%{count} вида",
+    "other": "<a href='%{url}'>%{count} видов</a>"
   },
   "x_suggestions_filtered_by_colon": {
-    "one": "1 Предложения, отфильтрованные по:",
-    "other": "%{count} Предложения, отфильтрованные по:"
+    "one": "1 Предложение, отфильтрованное по:",
+    "few": "%{count} Предложения, отфильтрованных по:",
+    "other": "%{count} Предложений, отфильтрованных по:"
   },
   "yes": "Да",
   "yes_reject_it": "Да, отклоните это",
@@ -30714,7 +31726,10 @@ I18n.translations["ru"] = {
   "you_must_select_at_least_one_taxon": "Вы должны выбрать хотя бы один таксон",
   "you_retain_full_copyright": "Вы сохраняете полное авторское право на свой контент, кроме тех прав, которые предоставляются %{site_name} в наших Условиях использования.",
   "you_sure_delete_comment?": "Вы уверены, что хотите удалить данный комментарий?",
-  "you_sure_delete_this_observation": "Вы уверены, что хотите удалить это наблюдение?"
+  "you_sure_delete_this_observation": "Вы уверены, что хотите удалить это наблюдение?",
+  "your_observations": "Ваши наблюдения",
+  "zoom_in": "Увеличить",
+  "zoom_photo": "Увеличить фото"
 };
 I18n.translations["sk"] = {
   "<%= name": {
@@ -31785,6 +32800,15 @@ I18n.translations["zh-CN"] = {
   "data_quality_assessment": "数据质量评价",
   "data_quality_assessment_": "数据质量评价",
   "date": {
+    "abbr_day_names": [
+      "日",
+      "一",
+      "二",
+      "三",
+      "四",
+      "五",
+      "六"
+    ],
     "abbr_month_names": {
       "1": "1月",
       "2": "2月",
@@ -31798,6 +32822,24 @@ I18n.translations["zh-CN"] = {
       "10": "10月",
       "11": "11月",
       "12": "12月"
+    },
+    "day_names": [
+      "星期日",
+      "星期一",
+      "星期二",
+      "星期三",
+      "星期四",
+      "星期五",
+      "星期六"
+    ],
+    "day_names_min": {
+      "1": "日",
+      "2": "一",
+      "3": "二",
+      "4": "三",
+      "5": "四",
+      "6": "五",
+      "7": "六"
     },
     "formats": {
       "month_day_year": "%B%d日%Y年"
@@ -32039,14 +33081,21 @@ I18n.translations["zh-CN"] = {
     "bengali": "孟加拉语",
     "catalan": "加泰罗尼亚语",
     "cebuano": "宿务语",
+    "chinese_simplified": "简体中文",
+    "chinese_traditional": "繁体中文",
     "creole_french": "克里奥尔语（法语）",
     "creole_portuguese": "克里奥尔语（葡萄牙语）",
+    "czech": "捷克语",
+    "danish": "丹麦语",
     "davawenyo": "Davawenyo语",
     "dutch": "荷兰语",
     "english": "英语",
+    "estonian": "爱沙尼亚语",
+    "finnish": "芬兰语",
     "french": "法语",
     "gela": "Gela语",
     "german": "德语",
+    "greek": "希腊语",
     "hawaiian": "夏威夷语",
     "hebrew": "希伯来语",
     "hiligaynon": "希利盖农语",
@@ -32055,10 +33104,12 @@ I18n.translations["zh-CN"] = {
     "italian": "意大利语",
     "japanese": "日语",
     "korean": "韩语",
+    "luxembourgish": "卢森堡语",
     "maltese": "马耳他语",
     "maori": "毛利语",
     "misima_paneati": "米斯马-帕尼阿梯语",
     "norwegian": "挪威语",
+    "occitan": "奥克语",
     "pangasinan": "邦阿西楠语",
     "portuguese": "葡萄牙语",
     "romanian": "罗马尼亚语",
@@ -32530,8 +33581,10 @@ I18n.translations["zh-CN"] = {
   "share": "分享",
   "show": "显示",
   "show_keyboard_shortcuts": "显示键盘快捷键",
+  "show_relative_proportions_of_all_observations": "显示所有观察的相关尺寸",
   "show_total_counts": "显示总计计数",
   "show_uncountable_species": "显示无法计数的物种",
+  "showing_x_of_y_listings": "显示%{x}/%{y}个列表项",
   "sign_out": "退出",
   "sign_up": "注册",
   "similar_species": "类似物种",
@@ -32694,6 +33747,7 @@ I18n.translations["zh-CN"] = {
         "click_through_to_individual_projects": "单个项目的点击次数",
         "collection_project_features": "收藏项目功能：",
         "collection_projects": "收藏项目",
+        "contain_entire_image_without_cropping": "包含整个图片，但没有裁剪",
         "custom_banner_icon_and_project_description": "自定义横幅、图标和项目描述",
         "data_visualizations": "数据可视化",
         "delete_project": "删除项目",
@@ -32715,11 +33769,13 @@ I18n.translations["zh-CN"] = {
         "unique_url_for_outreach": "用于拓展的唯一URL",
         "use_this_link_to_create_html": "使用<a href=\"%{url}\">此链接</a>创建传统项目。",
         "visual_comparison_of_data_among": "对同一雨伞内项目的可视化数据比较",
-        "welcome_to_projects": "欢迎来到项目！"
+        "welcome_to_projects": "欢迎来到项目！",
+        "you_have_not_defined_any_observation_requirements": "您没有定义任何观察要求。确保选择一个或多个分类群（例如鸟、针叶树）、地点（例如巴西、黄石公园）、用户和/或日期以定义您希望包含在您的项目中的观察。"
       },
       "project_type": "项目类型",
       "projects_included": "包含的项目",
       "show": {
+        "are_you_sure_you_want_to_convert": "您确定要转换词项目至一个收藏项目么？"
       },
       "tracks_multiple_projects": "追踪多个项目",
       "umbrella": "雨伞"
@@ -33286,6 +34342,15 @@ I18n.translations["zh-TW"] = {
   "data_quality_assessment": "資料品質估計",
   "data_quality_assessment_": "資料品質估計",
   "date": {
+    "abbr_day_names": [
+      "週日",
+      "週一",
+      "週二",
+      "週三",
+      "週四",
+      "週五",
+      "週六"
+    ],
     "abbr_month_names": {
       "1": "1 月",
       "2": "2 月",
@@ -33299,6 +34364,24 @@ I18n.translations["zh-TW"] = {
       "10": "10 月",
       "11": "11 月",
       "12": "12 月"
+    },
+    "day_names": [
+      "週日",
+      "週一",
+      "週二",
+      "週三",
+      "週四",
+      "週五",
+      "週六"
+    ],
+    "day_names_min": {
+      "1": "日",
+      "2": "一",
+      "3": "二",
+      "4": "三",
+      "5": "四",
+      "6": "五",
+      "7": "六"
     },
     "formats": {
       "month_day_year": "%B %d, %Y"
@@ -33509,7 +34592,7 @@ I18n.translations["zh-TW"] = {
   "identify_observations": "鑑定觀察",
   "identify_title": "鑑定",
   "ids_by_taxon": "按物種分類的鑑定",
-  "ids_made_for_others": "為其他所做的鑑定",
+  "ids_made_for_others": "個替其他人所做的鑑定",
   "if_for_some_reason_a_user_doesnt_agree": "若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。",
   "ignore_and_continue": "忽略並繼續",
   "import": "匯入",
@@ -33554,14 +34637,21 @@ I18n.translations["zh-TW"] = {
     "bengali": "孟加拉語",
     "catalan": "加泰隆尼亞語",
     "cebuano": "宿霧語",
+    "chinese_simplified": "簡體中文",
+    "chinese_traditional": "繁體中文",
     "creole_french": "克里奧爾語 (法語)",
     "creole_portuguese": "克里奧爾語 (葡萄牙語)",
+    "czech": "捷克語",
+    "danish": "丹麥語",
     "davawenyo": "Davawenyo 語",
     "dutch": "荷蘭語",
     "english": "英語",
+    "estonian": "愛沙尼亞語",
+    "finnish": "芬蘭語",
     "french": "法語",
     "gela": "Gela 語",
     "german": "德語",
+    "greek": "希臘語",
     "hawaiian": "夏威夷語",
     "hebrew": "希伯來語",
     "hiligaynon": "Hiligaynon 語",
@@ -33570,10 +34660,12 @@ I18n.translations["zh-TW"] = {
     "italian": "義大利語",
     "japanese": "日語",
     "korean": "韓語",
+    "luxembourgish": "盧森堡語",
     "maltese": "馬爾他語",
     "maori": "毛利語",
     "misima_paneati": "Misima-paneati 語",
     "norwegian": "挪威語",
+    "occitan": "奧克語",
     "pangasinan": "邦阿西楠語",
     "portuguese": "葡萄牙語",
     "romanian": "羅馬尼亞語",
@@ -33600,7 +34692,7 @@ I18n.translations["zh-TW"] = {
   "location_is_private": "位置為私有的",
   "location_is_public": "位置為公開的",
   "location_private": "位置為私有的",
-  "location_specified": "指定位置",
+  "location_specified": "位置指定",
   "location_unknown": "位置不明",
   "log_in": "登入",
   "long": "經度",
@@ -33723,8 +34815,8 @@ I18n.translations["zh-TW"] = {
   "not_recorded": "未記錄",
   "number_selected": "# 已選擇",
   "obs": "觀察",
-  "obs_cid_d": "Obs CID'd",
-  "obs_id_d": "Obs ID'd",
+  "obs_cid_d": "觀察（社群鑑定）",
+  "obs_id_d": "觀察（鑑定）",
   "obscured": "不清",
   "observation": "觀察",
   "observation_": "觀察",
@@ -33777,7 +34869,7 @@ I18n.translations["zh-TW"] = {
   "per_week": "各週",
   "person": "人",
   "photo": "照片",
-  "photo_browser": "照片瀏覽器",
+  "photo_browser": "照片瀏覽",
   "photo_licensing": "照片許可",
   "photos_chosen_for_this_taxon": "挑選用於此物種分類的照片",
   "photos_from": "照片來自",
@@ -34090,6 +35182,7 @@ I18n.translations["zh-TW"] = {
   "show_uncountable_species": "顯示無法計數的物種",
   "showing_taxa_from_everywhere": "進行顯示來自於任何地點的物種分類群",
   "showing_taxa_from_place": "進行顯示來自於%{place}的物種分類群",
+  "showing_x_of_y_listings": "顯示 %{y} 個裡的 %{x} 個清單",
   "sign_out": "登出",
   "sign_up": "註冊",
   "similar_species": "相似物種",
@@ -34298,6 +35391,7 @@ I18n.translations["zh-TW"] = {
         "click_through_to_individual_projects": "點擊至各項專案",
         "collection_project_features": "收藏專案特性：",
         "collection_projects": "收藏專案",
+        "contain_entire_image_without_cropping": "包含整個不剪裁的圖片",
         "custom_banner_icon_and_project_description": "自定義橫幅、圖標，以及專案描述",
         "data_visualizations": "視覺化資料",
         "delete_project": "刪除專案",
@@ -34330,7 +35424,8 @@ I18n.translations["zh-TW"] = {
         "users_can_follow_your_project": "使用者可透過日誌發布文章的更新來關注您的專案",
         "visual_comparison_of_data_among": "此綜合專案下的視覺化專案資料比較",
         "we_have_redesigned_projects": "我們將專案重新設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者類型其一：收藏專案或綜合專案，這些共有著以下特點：",
-        "welcome_to_projects": "歡迎來到專案！"
+        "welcome_to_projects": "歡迎來到專案！",
+        "you_have_not_defined_any_observation_requirements": "您尚未定義任何觀察需求。請確認選擇一個或多個的物種分類群（例如：鳥類、毬果植物門）、地點（例如：巴西、黃石公園）、使用者與/或日期來定義您希望包含在您專案裡的觀察。"
       },
       "project_type": "專案類型",
       "projects_included": "已包含專案",
@@ -34360,8 +35455,8 @@ I18n.translations["zh-TW"] = {
         "avg_ttid": "平均 TTID",
         "med_ttcid": "TTCID 中位數",
         "med_ttid": "TTID 中位數",
-        "obs_1_day": "Obs (1 day)",
-        "obs_cid_d_to_genus": "Obs CID'd to genus",
+        "obs_1_day": "觀察（1 日）",
+        "obs_cid_d_to_genus": "觀察（屬層級社群鑑定）",
         "recent_w_0_obs": "最近帶有 0 個觀察",
         "recent_w_7_obs": "最近帶有 >= 7 個觀察"
       },

@@ -5711,6 +5711,14 @@ cs:
     - Čtvrtek
     - Pátek
     - Sobota
+    day_names_min:
+      1: ne
+      2: po
+      3: út
+      4: st
+      5: čt
+      6: pá
+      7: so
     formats:
       default: '%R-%m-%d'
       long: '%M %d, %R'
