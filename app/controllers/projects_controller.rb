@@ -172,6 +172,7 @@ class ProjectsController < ApplicationController
           @projects_data = projects_response.results[0]
           @current_tab = params[:tab]
           @current_subtab = params[:subtab]
+          @flash_js = true
           return render layout: "bootstrap", action: "show2"
         end
         if logged_in?

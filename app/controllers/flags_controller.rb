@@ -95,6 +95,8 @@ class FlagsController < ApplicationController
     if @object.is_a?(Identification) || @object.is_a?(Observation) ||
        @object.is_a?(Comment) || @object.is_a?(Photo)
       Observation.refresh_es_index
+    elsif @object.is_a?(Project)
+      Project.refresh_es_index
     end
 
     respond_to do |format|
@@ -133,6 +135,8 @@ class FlagsController < ApplicationController
       if @object.is_a?(Identification) || @object.is_a?(Observation) ||
          @object.is_a?(Comment) || @object.is_a?(Photo)
         Observation.refresh_es_index
+      elsif @object.is_a?(Project)
+        Project.refresh_es_index
       end
       format.html do 
         redirect_back_or_default(@flag)
@@ -147,6 +151,8 @@ class FlagsController < ApplicationController
     if @object.is_a?(Identification) || @object.is_a?(Observation) ||
        @object.is_a?(Comment) || @object.is_a?(Photo)
       Observation.refresh_es_index
+    elsif @object.is_a?(Project)
+      Project.refresh_es_index
     end
     respond_to do |format|
       format.html { redirect_back_or_default(admin_path) }

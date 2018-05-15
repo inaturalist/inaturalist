@@ -5,9 +5,9 @@ import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 import UserWithIcon from "./user_with_icon";
+import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 import ConservationStatusBadge from "../components/conservation_status_badge";
 import EstablishmentMeansBadge from "../components/establishment_means_badge";
-import FlashMessage from "../components/flash_message";
 import ActivityContainer from "../containers/activity_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import AssessmentContainer from "../containers/assessment_container";
@@ -32,8 +32,6 @@ import ProjectFieldsModalContainer from "../containers/project_fields_modal_cont
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
-import MD5 from "md5.js";
-/* global RAILS_FLASH */
 
 moment.locale( "en", {
   relativeTime: {
@@ -69,75 +67,6 @@ const App = ( {
     ( ( !observation.photos || observation.photos.length === 0 ) &&
     ( !observation.sounds || observation.sounds.length === 0 ) ) ? "empty" : null;
   const taxonUrl = observation.taxon ? `/taxa/${observation.taxon.id}` : null;
-  let flashes = [];
-  if ( !_.isEmpty( RAILS_FLASH ) ) {
-    const types = [
-      { flashType: "notice", bootstrapType: "success" },
-      { flashType: "alert", bootstrapType: "success" },
-      { flashType: "warning", bootstrapType: "warning" },
-      { flashType: "error", bootstrapType: "error" }
-    ];
-    _.each( types, type => {
-      if ( RAILS_FLASH[type.flashType] &&
-           RAILS_FLASH[`${[type.flashType]}_title`] !==
-             I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) ) {
-        flashes.push( <FlashMessage
-          key={ `flash_${type.flashType}`}
-          title={ RAILS_FLASH[`${[type.flashType]}_title`] }
-          message={ RAILS_FLASH[type.flashType] }
-          type={ type.bootstrapType }
-        /> );
-      }
-    } );
-  }
-  const unresolvedFlags = _.filter( observation.flags || [], f => !f.resolved );
-  if ( _.find( unresolvedFlags, f => f.flag === "spam" ) ) {
-    /* global SITE */
-    const message = (
-      <span
-        dangerouslySetInnerHTML={ { __html: I18n.t(
-          "views.observations.show.observation_flagged_notice_html",
-          {
-            help_email: SITE.help_email,
-            observation_id: observation.id
-          }
-        ) } }
-      />
-    );
-    flashes.push( <FlashMessage
-      key="flash_flag"
-      title = { I18n.t( "views.shared.spam.this_has_been_flagged_as_spam" ) }
-      message={ message }
-      type="flag"
-    /> );
-  }
-  if (
-    config.currentUser &&
-    _.find(
-      config.currentUser.blockedByUserHashes, h =>
-        new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h
-    )
-  ) {
-    flashes.push( <FlashMessage
-      key="flash_blocked"
-      title = { I18n.t( "views.shared.blocked.youve_been_blocked" ) }
-      message={ I18n.t( "views.shared.blocked.youve_been_blocked_desc" ) }
-      type="warning"
-    /> );
-  } else if (
-    config.currentUser &&
-    _.find(
-      config.currentUser.blockedUserHashes, h =>
-        new MD5( ).update( observation.user.id.toString( ) ).digest( "hex" ) === h
-    )
-  ) {
-    flashes.push( <FlashMessage
-      key="flash_blocked"
-      title = { I18n.t( "views.shared.blocked.youve_blocked" ) }
-      message={ I18n.t( "views.shared.blocked.youve_blocked_desc" ) }
-      type="warning"
-    /> );
-  }
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
     formattedDateObserved = moment.tz( observation.time_observed_at,
@@ -158,7 +87,11 @@ const App = ( {
     "research_grade" : observation.quality_grade;
   return (
     <div id="ObservationShow">
-      { flashes }
+      <FlashMessagesContainer
+        item={ observation }
+        manageFlagsPath={ `/observations/${observation.id}/flags` }
+        showBlocks
+      />
       <div className="upper">
         <Grid>
           <Row className="title_row">

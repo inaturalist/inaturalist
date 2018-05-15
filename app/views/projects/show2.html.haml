@@ -34,6 +34,9 @@
     var CURRENT_TAB = "#{ @current_tab }";
     var CURRENT_SUBTAB = "#{ @current_subtab }";
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
+    var SITE = {
+      help_email: "#{@site.email_help}"
+    };
   = javascript_include_tag "projects-show-webpack"
 
 #app

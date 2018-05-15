@@ -1,0 +1,32 @@
+.FlashMessage {
+  .alert {
+    margin-bottom: 10px;
+  }
+  a {
+    color: $other-link-color;
+    &.contact {
+      color: #a94442;
+      text-decoration: underline;
+    }
+  }
+  .message {
+    .bold {
+      margin-right: 3px;
+      font-weight: bold;
+    }
+    .fa {
+      margin-right: 5px;
+    }
+    display: inline-block;
+    width: 95%;
+  }
+  .action {
+    display: inline-block;
+    float: right;
+    .fa {
+      font-size: 18px;
+      vertical-align: middle;
+      cursor: pointer;
+    }
+  }
+}

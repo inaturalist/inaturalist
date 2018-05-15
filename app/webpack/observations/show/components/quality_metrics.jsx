@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React, { PropTypes } from "react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
+import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
 /* global SITE */
 
@@ -8,8 +9,6 @@ class QualityMetrics extends React.Component {
   constructor( ) {
     super( );
     this.voteCellsForMetric = this.voteCellsForMetric.bind( this );
-    this.openFlaggingModal = this.openFlaggingModal.bind( this );
-    this.flaggingDiv = this.flaggingDiv.bind( this );
     this.needsIDRow = this.needsIDRow.bind( this );
   }
 
@@ -195,53 +194,6 @@ class QualityMetrics extends React.Component {
     };
   }
 
-  openFlaggingModal( ) {
-    this.props.setFlaggingModalState( { item: this.props.observation, show: true } );
-  }
-
-  flaggingDiv( ) {
-    const { observation, config } = this.props;
-    const loggedIn = config && config.currentUser;
-    const unresolvedFlags = _.filter( observation.flags || [], f => !f.resolved );
-    if ( unresolvedFlags.length > 0 ) {
-      const groupedFlags = _.groupBy( unresolvedFlags, f => ( f.flag ) );
-      let flagQualifier;
-      if ( groupedFlags.spam ) {
-        flagQualifier = "spam";
-      } else if ( groupedFlags.inappropriate ) {
-        flagQualifier = "inappropriate";
-      }
-      const editLink = loggedIn ? (
-        <a href={ `/observations/${observation.id}/flags` } className="view">
-          { I18n.t( "add_edit_flags" ) }
-        </a> ) : null;
-      return (
-        <div className="flagging alert alert-danger">
-          <i className="fa fa-flag" />
-          { flagQualifier ?
-            I18n.t( "observation_flagged_as_flag", { flag: flagQualifier } ) :
-            I18n.t( "observation_flagged" ) }
-          { editLink }
-        </div>
-      );
-    }
-    const addFlagLink = loggedIn ?
-      (
-        <span className="flag_link" onClick={ this.openFlaggingModal } >
-          { I18n.t( "flag_as_inappropriate" ) }
-        </span>
-      ) : (
-        <a href="/login">
-          { I18n.t( "flag_as_inappropriate" ) }
-        </a>
-      );
-    return (
-      <div className="flagging">
-        { I18n.t( "inappropriate_content" ) } { addFlagLink }
-      </div>
-    );
-  }
-
   render( ) {
     const observation = this.props.observation;
     if ( !observation || !observation.user ) { return ( <div /> ); }
@@ -381,7 +333,11 @@ class QualityMetrics extends React.Component {
             { this.needsIDRow( ) }
           </tbody>
         </table>
-        { this.flaggingDiv( ) }
+        <FlagAnItemContainer
+          item={ observation }
+          itemTypeLabel={ I18n.t( "observation" ) }
+          manageFlagsPath={ `/observations/${observation.id}/flags` }
+        />
       </div>
     );
   }

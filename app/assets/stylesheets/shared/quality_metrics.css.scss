@@ -1,4 +1,5 @@
 @import "../colors";
+@import "./flag_an_item";
 
 .QualityMetrics {
   margin-bottom: 40px;
@@ -63,21 +64,6 @@
       font-weight: 600;
       border-bottom: 1px !important;
 
-    }
-  }
-  .flagging {
-    &.alert {
-      font-weight: 600;
-    }
-    .fa {
-      margin-right: 5px;
-    }
-    a {
-      color: $bootstrap-link-color;
-      &.view {
-        font-weight: normal;
-        float: right;
-      }
     }
   }
 }

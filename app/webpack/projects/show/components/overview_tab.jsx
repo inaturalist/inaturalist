@@ -11,6 +11,7 @@ import Requirements from "./requirements";
 import OverviewRecentObservations from "./overview_recent_observations";
 import OverviewStats from "./overview_stats";
 import OverviewMap from "./overview_map";
+import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
 class OverviewTab extends Component {
   render( ) {
@@ -50,6 +51,16 @@ class OverviewTab extends Component {
             <PhotoModalContainer />
           </div>
         ) }
+        <Grid>
+          <Row>
+            <Col xs={ 12 }>
+              <FlagAnItemContainer
+                item={ project }
+                manageFlagsPath={ `/flags?project_id=${project.id}` }
+              />
+            </Col>
+          </Row>
+        </Grid>
       </div>
     );
   }

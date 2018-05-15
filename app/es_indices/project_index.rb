@@ -54,6 +54,9 @@ class Project < ActiveRecord::Base
         indexes :field, type: "keyword"
         indexes :value, type: "text"
       end
+      indexes :flags do
+        indexes :flag, type: "keyword"
+      end
     end
   end
 
@@ -121,7 +124,8 @@ class Project < ActiveRecord::Base
       created_at: created_at,
       updated_at: updated_at,
       observations_count: obs_result ? obs_result.total_results : nil,
-      spam: known_spam? || owned_by_spammer?
+      spam: known_spam? || owned_by_spammer?,
+      flags: flags.map(&:as_indexed_json)
     }
   end
 

@@ -4,6 +4,7 @@ import inatjs from "inaturalistjs";
 import { setConfig } from "../../../shared/ducks/config";
 import Project from "../../shared/models/project";
 import { setConfirmModalState } from "../../../observations/show/ducks/confirm_modal";
+import { setFlaggingModalState } from "../../../observations/show/ducks/flagging_modal";
 
 const SET_PROJECT = "projects-show/project/SET_PROJECT";
 const SET_ATTRIBUTES = "projects-show/project/SET_ATTRIBUTES";
@@ -399,3 +400,44 @@ export function convertProject( ) {
   };
 }
 
+function afterFlagChange( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    inatjs.projects.fetch( [state.project.id], { rule_details: true, ttl: -1 } ).then( response => {
+      if ( response && !_.isEmpty( response.results ) ) {
+        const newFlags = response.results[0].flags;
+        dispatch( setAttributes( { flags: newFlags } ) );
+        // make sure the flaggingModal gets updated so any changes are visible
+        if ( state.flaggingModal && state.flaggingModal.item && state.flaggingModal.show ) {
+          const flaggingItem = Object.assign( state.flaggingModal.item, { flags: newFlags } );
+          dispatch( setFlaggingModalState( { item: flaggingItem } ) );
+        }
+      }
+    } );
+  };
+}
+
+export function createFlag( className, id, flag, body ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.project || !state.config.currentUser ) { return null; }
+    const params = { flag: {
+      flaggable_type: className,
+      flaggable_id: id,
+      flag
+    }, flag_explanation: body };
+    return inatjs.flags.create( params ).then( ( ) => {
+      dispatch( afterFlagChange( ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
+export function deleteFlag( id ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    if ( !state.project || !state.config.currentUser ) { return null; }
+    return inatjs.flags.delete( { id } ).then( ( ) => {
+      dispatch( afterFlagChange( ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
