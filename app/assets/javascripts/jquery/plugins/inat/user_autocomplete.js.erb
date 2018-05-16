@@ -19,7 +19,7 @@ $.fn.userAutocomplete = function( options ) {
     source: function( request, response ) {
       $.ajax({
         // TODO: check if the API needs to return users given an ID
-        url: "<%= CONFIG.node_api_url %>/users/autocomplete",
+        url: "<%= CONFIG.node_api_url %>/search?sources=users",
         dataType: "jsonp",
         cache: true,
         jsonpCallback: "projectAutocompleteCallback",
@@ -30,10 +30,10 @@ $.fn.userAutocomplete = function( options ) {
         },
         success: function( data ) {
           response( _.map( data.results, function( r ) {
-            r.user_id = r.id;
-            r.id = r.login;
-            r.title = r.login;
-            return r;
+            r.record.user_id = r.record.id;
+            r.record.id = r.record.login;
+            r.record.title = r.record.login;
+            return r.record;
           }));
         }
       });
