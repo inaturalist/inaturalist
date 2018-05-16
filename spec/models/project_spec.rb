@@ -647,4 +647,37 @@ describe Project do
 
   end
 
+  describe "in_place" do
+    let(:country) { Place.make!( admin_level: Place::COUNTRY_LEVEL ) }
+    let(:state) { Place.make!( admin_level: Place::STATE_LEVEL, parent: country ) }
+    
+    it "should include projects in a place" do
+      project = Project.make!( place: country )
+      expect( Project.in_place( country ) ).to include project
+    end
+    it "should not include projects not in a place" do
+      project = Project.make!( place: Place.make! )
+      expect( Project.in_place( country ) ).not_to include project
+    end
+    it "should include projects in a descendant place" do
+      project = Project.make!( place: state )
+      expect( Project.in_place( country ) ).to include project
+    end
+    it "should include projects with a rule for a place" do
+      project = Project.make!
+      project.project_observation_rules << ProjectObservationRule.make!( operator: "observed_in_place?", operand: country )
+      expect( Project.in_place( country ) ).to include project
+    end
+    it "should not include projects with a rule for a different place" do
+      project = Project.make!
+      project.project_observation_rules << ProjectObservationRule.make!( operator: "observed_in_place?", operand: country )
+      expect( Project.in_place( state ) ).not_to include project
+    end
+    it "should include projects with a rule for a descendant place" do
+      project = Project.make!
+      project.project_observation_rules << ProjectObservationRule.make!( operator: "observed_in_place?", operand: state )
+      expect( Project.in_place( country ) ).to include project
+    end
+  end
+
 end
