@@ -42,9 +42,9 @@ ru:
     few: '%{count} идентификации'
     other: '%{count} идентификаций'
   x_identifications_html:
-    one: <span class='count'>1</span> идентификация
-    few: <span class='count'>%{count}</span> идентификации
-    other: <span class='count'>%{count}</span> идентификаций
+    one: <span class="count">1</span> идентификация
+    few: <span class="count">%{count}</span> идентификации
+    other: <span class="count">%{count}</span> идентификаций
   x_identifications_:
     one: 1 идентификация
     few: '%{count} идентификации'
@@ -62,17 +62,17 @@ ru:
     few: '%{count} сообщения журнала'
     other: '%{count} сообщений журнала'
   x_journal_posts_html:
-    one: <span class='count'>1</span> сообщение журнала
-    few: <span class='count'>%{count}</span> сообщения журнала
-    other: <span class='count'>%{count}</span> сообщений журнала
+    one: <span class="count">1</span> сообщение журнала
+    few: <span class="count">%{count}</span> сообщения журнала
+    other: <span class="count">%{count}</span> сообщений журнала
   x_matching_taxa:
     one: 1 соответствующий таксон
     few: '%{count} соответствующих таксона'
     other: '%{count} соответствующих таксонов'
   x_matching_taxa_html:
-    one: <span class='count'>1</span> соответствующий таксон
-    few: <span class='count'>%{count}</span> соответствующих таксона
-    other: <span class='count'>%{count}</span> соответствующих таксонов
+    one: <span class="count">1</span> соответствующий таксон
+    few: <span class="count">%{count}</span> соответствующих таксона
+    other: <span class="count">%{count}</span> соответствующих таксонов
   x_misidentifications_of_this_species:
     one: 1 ошибочная идентификация этого вида
     few: '%{count} ошибочные идентификации этого вида'
@@ -121,9 +121,9 @@ ru:
     few: '%{count} человекам нравится это'
     other: '%{count} людям нравится это'
   x_people_agree_html:
-    one: <span class='count'>1</span> человек согласен
-    few: <span class='count'>%{count}</span> человека согласны
-    other: <span class='count'>%{count}</span> человек согласны
+    one: <span class="count">1</span> человек согласен
+    few: <span class="count">%{count}</span> человека согласны
+    other: <span class="count">%{count}</span> человек согласны
   x_species:
     one: 1 вид
     few: '%{count} вида'
@@ -167,6 +167,8 @@ ru:
     one: <span class='count'>1</span> изменение таксона добавлено
     few: <span class='count'>%{count}</span> изменения таксонов добавлено
     other: <span class='count'>%{count}</span> изменений таксонов добавлено
+  _100_day_trends: 100-дневный тренд
+  _percent_ID_d: '% идентифицированных'
   a: a
   a_: a
   a_community_for_naturalist: Сообщество Натуралистов
@@ -206,6 +208,7 @@ ru:
   about_x: О %{x}
   acc: Точность (м)
   account: Учётная запись
+  account_settings: Настройки учетной записи
   accept: принять
   accept_community_identifications: Принять идентификации сообщества
   accuracy: Точность
@@ -219,6 +222,7 @@ ru:
   actions: Действия
   activate_user: Активировать пользователя
   active: Активен
+  active_users: Активные участники
   activity: Активность
   activity_settings: Активность настройки
   add: Добавить
@@ -321,13 +325,13 @@ ru:
   add_your_photo_to: Добавить ваше фоток к %{project}
   added: Добавлено
   added!: Добавлено!
-  added_an: добавил(а)
+  added_an: добавил
   added_as_a_part_of: Добавлено как часть
-  added_by: Добавил(а)
+  added_by: Добавлено
   added_by_user_on_date_html: Добавленно %{user} в %{date}
   added_identifications_to: идентификации, добавленные к чьим-то наблюдениям.
-  added_on: Добавил(а)
-  added_to: Добавил(а)
+  added_on: Добавил
+  added_to: Добавил к
   added_to_favorites: Добавлено в фавориты
   added_to_favorites_html: Добавлено в <a href="%{url}">фавориты</a>
   adding: Добавление...
@@ -361,7 +365,7 @@ ru:
     rank:
       kingdom: Царство
       class: Класс
-      species: Вид
+      species: Виды
       order: Порядок
     amphibians: Земноводные
     animals: Животные
@@ -444,7 +448,7 @@ ru:
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb не имеет никакой информации
     об этих животных.
   amphibiaweb_taxonomy: Таксономия AmphibiaWeb
-  an: an
+  an: '-'
   an_: an
   and: и
   and_choose_a_matching_taxon: и выберите соответствующий таксон из списка. Если Вы
@@ -455,7 +459,7 @@ ru:
     one: и ещё один человек!
     few: и на %{count} человека больше!
     other: и на %{count} человек больше!
-  android: Андроид
+  android: Android
   animals: Животные
   animated_observations_map: Анимированная карта наблюдений
   annotations: Аннотация
@@ -754,6 +758,7 @@ ru:
   choose_tags: Выберите теги
   choose_taxon: Выберите таксон
   choose_your_username: Выбрать ваше пользовательское имя
+  cid_d_to_genus: Идентифицированные до рода
   classification: Классификация
   clear: очистить
   clear_color_filters: Очистить цветовые фильтры
@@ -1076,6 +1081,7 @@ ru:
   edit_multiple_locations: Редактировать множественные местоположения
   edit_notes: Редактировать заметки
   edit_observation: Редактировать наблюдение
+  edit_observations: Редактировать наблюдения
   edit_photos: Редактировать фото
   edit_photos_for_observation_id: Редактировать фото Наблюдения %{obs_id}
   edit_place: Редактировать место
@@ -1253,9 +1259,11 @@ ru:
   follow: Отслеживать
   follow_us: Подпишитесь на нас в
   follow_us_on: Подпишитесь на нас в
+  follow_user: Отслеживать %{user}
   followed_projects: Отслеживаемые проекты
   follower: последователь
-  following: Отслеживает
+  followers: Последователи
+  following: Отслеживание
   for_a_taxon: для таксона
   for_a_widget_showing_recent_observations_from: Для виджета, показывающего последние
     наблюдения в %{place_name}, проверьте
@@ -1343,6 +1351,7 @@ ru:
         согласилось. Это помогло уточнить таксон сообщества.
       maverick: Таксон не является потомком или предком таксона сообщества, т.е. сообщество
         не согласно с этим таксоном.
+  ids_by_taxon: Идентификации по таксону
   identify: Идентифицировать
   identify_title: Идентифицировать
   identification: идентификация
@@ -1351,6 +1360,7 @@ ru:
   identifications_by: Идентификации %{user}
   identifiers: Эксперты
   ids: Идентификации
+  ids_made_for_others: Идентификации, сделанные для других
   if_for_some_reason_a_user_doesnt_agree: Если по какой-то причине вы не согласны
     с таксоном сообщества, вы можете отклонить его, что означает, что ваш ID используется
     для ссылки на другие наблюдения, обновления списков жизни и т.д. Это также означает,
@@ -1684,6 +1694,13 @@ ru:
     см. <a href="/help#inappropriate">FAQ</a>.
   mobile_app_for: Мобильное приложение для
   mobile_apps_for: Мобильные приложения для
+  momentjs:
+    shortRelativeTime:
+      m: 1мин
+      h: 1ч
+      d: 1д
+      M: 1мес
+      "y": 1г
   mon: Пн
   month: Месяц
   months_ago: '%{text} назад'
@@ -1709,11 +1726,13 @@ ru:
     исчезновения
   multiple_taxa_for_taxon_change: Несколько таксонов (ввод для замены/слияния, вывод
     для разделения)
+  multiple_taxon_ids_separated_by_commas: Множественные идентификации таксона, разделённые
+    запятыми, например, 123,654
   must_be_less_than_x_MB: Должен быть меньше %{x} Мб
   muted_users: Отключенные Пользователи
   n_ago: '%{n} назад'
-  n_person_agrees: '%{amount} человек(а) соглашается'
-  n_person_disagrees: '%{amount} человек(а) не соглашается'
+  n_person_agrees: '%{amount} человек согласны'
+  n_person_disagrees: '%{amount} человек не согласны'
   name: Имя
   name_of_the_place_you: Название места где вы сделали наблюдение
   names_for_taxon_html: Имена для %{taxon}
@@ -1755,6 +1774,8 @@ ru:
   new_trip: Новое путешествие
   new_updates_in_the_last_24_hours_from: Новые обновления за последние 24 часа от
     %{site_name}
+  new_users: Новые участники
+  new_users_w_7_obs: Новые участники с 7 набл за неделю
   new_users_week: Новые пользователи / Неделя
   next: След
   next_observation: Следующее наблюдение
@@ -1795,6 +1816,7 @@ ru:
   no_more_taxa_to_load: Больше нет таксонов для загрузки!
   no_more_results_found: Больше ничего не найдено
   no_nearby_observations: Наблюдения рядом отсутствуют.
+  no_observations_matching_those_ids: Нет наблюдений, соответствующих этим идентификациям.
   no_observations_submitted: Не отправлены никакие наблюдения!
   no_observations_suitable_for_this_project: Нет наблюдений, подходящих для этого
     проекта, которые еще не были  добавлены или приглашены.
@@ -1802,7 +1824,7 @@ ru:
   no_photo: Нет фото
   no_places_available: Нет доступных мест
   no_places_selected: Не выбраны места.
-  no_post_yet: Нет сообщений!
+  no_post_yet: Пока ещё нет сообщений!
   no_project_selected: Нет выбранных проектов
   no_project_to_admin_current_user: Вы не администрируете никакой проект
   no_project_to_admin_login: '%{login} не администрирует никакой проект'
@@ -1839,6 +1861,9 @@ ru:
     точно вашей идентификации таксона.
   number_of_observations: Число наблюдений
   noun_by_you: ваши %{noun}
+  obs: Набл
+  obs_cid_d: Наблюдения, идентифицированные сообществом
+  obs_id_d: Набл с ID
   obscured_: скрытое
   obscured_or_private: скрытое или частное
   obscured_description: Публичные координаты показываются как произвольная точка в
@@ -1848,6 +1873,8 @@ ru:
   observation_added: Наблюдение добавлено
   observation_added_to_the_project: Наблюдение добавлено к проекту %{project}
   observation_photo_uploader: Загрузчик Фото Наблюдений
+  observations_by_app: Наблюдения по приложениям
+  observations_by_rank: Наблюдения по рангу
   observations_by_user_on_date: Наблюдения %{user} за %{date}
   observations_by_you: Ваши наблюдения
   observation_calendar_for: Календарь наблюдений %{user} в %{year}
@@ -2018,6 +2045,7 @@ ru:
   original_page_url_for_this_photo: URL исходной страницы этого фото.
   original_url_for_this_map: Оригинальная ссылка для этой карты
   organism_appears_captive_cultivated: Организм выглядит как В неволе / культивируемое
+  other: Другое
   other_animals: другие животные
   other_animals_plural:
     one: другое животное
@@ -2123,6 +2151,9 @@ ru:
     south_africa: Южная Африка
     switzerland: Швейцария
   places_of_interest: Достопримечательности
+  please_be_careful_particulary_when: Будьте осторожны, особенно при удалении таксонов.
+    Если таксон имеет связанные наблюдения, идентификаторы, таксоны, содержащиеся
+    в списках и т.д., пожалуйста
   please_check_for_you_confirmation_email: Добро пожаловать на %{site_name}! Пожалуйста,
     проверьте свое подтверждение по электронной почте, но не стесняйтесь начать путешествовать
     по сайту.
@@ -2316,6 +2347,7 @@ ru:
   search_the_map: Поиск на карте
   search_your_photos: Поиск ваших фото
   seasonality: Сезонность
+  see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
   select: Выбрать
   select_all: Выбрать все
   select_at_least_one: Выберите хотя бы одно
@@ -2355,6 +2387,7 @@ ru:
   show_total_listed_taxa: Показать все перечисленные таксоны
   showing_taxa_from_everywhere: Показывать таксоны отовсюду
   showing_taxa_from_place: Показ таксонов из %{place}
+  sign_out: Выйти
   similar_species: Аналогичные виды
   single_observation: Одиночное наблюдение
   skip_to_next_page: Перейти на следующую страницу
@@ -2365,6 +2398,9 @@ ru:
   some_observations_failed_to_save: Некоторые наблюдения сохранить не удалось
   some_of_those_photos_couldnt_be_saved: 'Некоторые из этих фото не могут быть сохранены:
     %{error}'
+  something: Что-то
+  something_went_wrong_adding: Что-то пошло не так при добавлении этого вида в ваш
+    список
   something_went_wrong_deleting_the_taxon_name: Что-то пошло не так при удалении наименования
     таксона '%{taxon_name}'!
   sorry_flickr_isnt_responding_at_the_moment: К сожалению, Flickr в данный момент
@@ -2481,6 +2517,7 @@ ru:
     Оценки таксонов - это документы, оценивающие текущий статус вида, как правило, природоохранный статус.
     Например, региональная природоохранная организация может использовать их для организации информации и получения обратной связи о статусе некоторых находящихся под угрозой таксонов в регионе.
   taxon_id: Идентификатор таксона
+  taxon_ids: Идентификации таксона
   taxon_map:
     it_may_take_google_a_while_to: Для загрузки этих данных может потребоваться Google,
       если предположить, что у GBIF есть какие-либо данные.
@@ -2496,6 +2533,7 @@ ru:
     несколько минут, чтобы он появился на картах.
   taxon_range_updated_notice: Диапазон таксона был успешно обновлён. Пожалуйста, подождите
     несколько минут, чтобы он появился на картах.
+  taxon_ranks: Ранги таксонов
   taxon_removed_from_list: Таксон удален из списка
   taxon_schemes: Таксономические схемы
   taxon_search_results_for: Результаты поиска таксона для
@@ -2650,6 +2688,7 @@ ru:
   titled_favorites_and_the_most_recent_additions: озаглавленный «Фавориты» и самые
     последние пополнения появятся в этом пространстве.
   to_add_identifications: добавлять идентификации
+  to_add_ids: добавить идентификации
   to_configure_your_widget: сформировать ваш виджет.
   to_include_your_google_with_inat: включить ваш аккаунт Google на %{site_name}
   to_suggest_an_identification: предлагать идентификацию
@@ -2662,6 +2701,8 @@ ru:
   top_observer: Лучший Наблюдатель
   top_observers: Лучшие наблюдатели
   top_species: Топ Видов
+  total: Всего
+  total_members: Общее число членов
   total_observations: Итого наблюдений
   total_unique_observers: Итого уникальных наблюдателей
   total_users: всего пользователей,
@@ -2727,11 +2768,11 @@ ru:
     приложений электронных таблиц должны экспортировать файлы CSV в этом формате.
   user: Пользователь
   user_added_a_x: '%{user} добавил %{x}'
-  user_added_a_x_to_noun_by_html: '%{user} добавил %{x} к %{noun} на %{by}'
+  user_added_a_x_to_noun_by_html: '%{user} добавил %{x} к %{noun} %{by}'
   user_added_a_x_to_noun_html: '%{user} добавил %{x} к %{noun}'
   user_added_an_observation_html: '%{user} добавил наблюдение'
   user_added_an_x: '%{user}добавил %{x}'
-  user_added_an_x_to_noun_by_html: '%{user} добавил %{x} к %{noun} на %{by}'
+  user_added_an_x_to_noun_by_html: '%{user} добавил %{x} к %{noun} %{by}'
   user_added_an_x_to_noun_html: '%{user} добавил %{x} к %{noun}'
   user_blocked: Участник заблокирован
   user_commented_on: '%{user} прокомментировал ваш %{title} %{time}'
@@ -2741,6 +2782,7 @@ ru:
     %{observation} к проекту %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} приглашает вас присоединиться
     к этому проекту %{date}'
+  user_is_a_naturalist: '%{user} - натуралист!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> теперь является %{role}
     %{project}
   user_observations: Наблюдения пользователя
@@ -2850,6 +2892,7 @@ ru:
     Мы попытались обработать вашу загрузку с именем %{filename}, но обработка не удалась.
     Устраните следующие проблемы и повторите попытку.
   weather: Погода
+  website: Веб-сайт
   wed: Ср
   week_of_date: Неделя %{date}
   welcome_message: где вы можете <strong>зарегистрировать</strong> то, что вы видите
@@ -3594,7 +3637,48 @@ ru:
           ничего не смог найти!
     stats:
       index:
+        active_desc: Создавал идентификации, наблюдения, комментарии или сообщения
+          в журнале в предыдущие 30 дней
+        android_desc_html: Создано с помощью <a href="%{url}">приложения iNaturalist
+          для Android</a>
+        avg_ttcid: Ср TTCID
+        avg_ttid: Ср TTID
         identifiers_desc: Добавил идентификацию к чужому наблюдению в этот день
+        iphone_desc_html: Создано с помощью <a href="%{url}">приложения iNaturalist
+          для iPhone</a>
+        med_ttid: Мед TTID
+        new_users_desc: Зарегистрировался в этот день
+        obs_1_day: Набл (1 день)
+        obs_1_day_desc: Наблюдения, созданные за один день
+        obs_cid_d_desc: Созданные в пред 7 дней и имеющие идентификацию сообществом
+        obs_cid_d_to_genus: Набл с CID до рода
+        obs_cid_d_to_genus_desc: Созданные в пред 7 дней и имеющие идентификацию сообществом
+          на уровне рода или ниже
+        obs_id_d_desc: Созданные в пред 7 дней и имеющие идентификацию (включая идентификацию
+          наблюдателем)
+        other_desc_html: Создано с помощью других приложений<a href="%{url}">созданных
+          разработчиками</a>
+        recent_desc: Зарегистрировались в предыдущие 7 дней
+        recent_w_0_obs: Недавние с 0 набл
+        recent_w_0_obs_desc: Зарегистрировались в предыдущие 7 дней и добавили 0 наблюдений
+        recent_w_7_obs: Недавние с набл>= 7
+        time_to_id_desc: Время до идентификации (часы, данные за 1 неделю обновляются
+          в окне)
+        TTCID: TTCID
+        TTCID_desc: Время до получения от кого-то другого идентификации, которая соответствует
+          идентификации сообществом
+        TTID: TTID
+        TTID_desc: Время до получения идентификации от кого-то другого
+        TTID_note: Эта статистика приведена для наблюдений, созданных за предшествующую
+          неделю, что означает, что упущены идентификации, добавленные к наблюдениям
+          за более чем неделю после, и, таким образом, статистика меньше, чем если
+          бы её вычислили снова в настоящий момент; но она ещё и приводит достойный
+          показатель, как быстро сообщество идентифицирует в течение 1-недельного
+          окна. Обратите внимание, что эта статистика отображает только наблюдения
+          с фотографиями.
+        website_desc_html: |-
+          Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
+          или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
         sunburst_desc_html: Наблюдаемые таксоны упорядочены как иерархическая диаграмма
           «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни»,
@@ -3844,6 +3928,14 @@ ru:
       2: Вторник
       3: Среда
       6: Суббота
+    day_names_min:
+      1: Вс
+      2: Пн
+      3: Вт
+      4: Ср
+      5: Чт
+      6: Пт
+      7: Сб
     month_names:
       1: Январь
       2: Февраль
@@ -3990,6 +4082,7 @@ ru:
       project:
         title: Название
         map_type: Тип карты
+        zoom_level: Уровень масштабирования
         preferred_membership_model: Предпочтительная модель членства
         preferred_submission_model: Предпочтительная модель представления
         prefers_place_boundary_visible: Показать границы места на карте
@@ -4016,4 +4109,7 @@ ru:
         search_place_id: Место поиска
         place_id: Место
         preferred_observation_fields_by: Разрешить поля наблюдения от
+  zoom_in: Увеличить
+  zoom_photo: Увеличить фото
+  zoom_to_x: Увеличить до %{x}
 ...

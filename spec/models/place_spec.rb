@@ -380,5 +380,11 @@ describe Place, "save_geom" do
       expect( lt ).to be_primary_listing
     end
   end
+  it "should not raise an ES error for a self-intersection" do
+    p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,1 1,0 1,1 0,0 0)))" )
+    expect {
+      p.elastic_index!
+    }.not_to raise_error
+  end
 end
 

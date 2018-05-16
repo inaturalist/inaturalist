@@ -24,8 +24,12 @@ class AdminController < ApplicationController
       flash[:error] = "User doesn't exist"
       redirect_back_or_default(curate_users_path)
     end
-    u.update_attributes(params[:user])
-    flash[:notice] = "User description deleted for #{u.login}"
+    u.update_attributes(params[:user]) if params[:user]
+    if params[:icon_delete]
+      u.icon = nil
+      u.save
+    end
+    flash[:notice] = "Updated attributes for #{u.login}"
     redirect_back_or_default(curate_users_path(:user_id => u.id))
   end
 

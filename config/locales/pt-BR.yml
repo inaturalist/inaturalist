@@ -1865,6 +1865,7 @@ pt-BR:
     bengali: Bengalês
     catalan: Catalão
     cebuano: Cebuano
+    chinese_simplified: Chinês (Simplificado)
     creole_french: Crioulo (Francês)
     creole_portuguese: Crioulo (Português)
     czech: Checo
@@ -1890,6 +1891,7 @@ pt-BR:
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norueguês
+    occitan: Occitano
     pangasinan: Pangasinán
     portuguese: Português
     romanian: Romano
@@ -3440,6 +3442,7 @@ pt-BR:
   small: pequeno
   site_name_place: '%{site_name} local'
   site_observations_export_from_date: '%{site_name} observações exportadas de %{date}'
+  site_stats: Estatísticas do site
   site_taxon_page: '%{site_name} página do táxon'
   so_meta!: Metadados!
   some_agree: alguns concordam
@@ -5693,6 +5696,14 @@ pt-BR:
     - Quinta-feira
     - Sexta-feira
     - Sábado
+    day_names_min:
+      1: Do
+      2: Se
+      3: Te
+      4: Qa
+      5: Qi
+      6: Sx
+      7: Sa
     formats:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'

@@ -64,8 +64,11 @@
         = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
         = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
         = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
-        = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put, |
-          :data => {:confirm => t(:are_you_sure?)},                                                                                |
+        = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
+          :data => {:confirm => t(:are_you_sure_no_undo)},
+          class: "btn btn-block btn-danger"
+        = link_to "Delete user photo", admin_update_user_path( @display_user.id, icon_delete: true ), method: :put,
+          :data => {:confirm => t(:are_you_sure_no_undo)},
           class: "btn btn-block btn-danger"
         = link_to t(:delete_user), @display_user, :method => :delete,           |
           :data => {:confirm => t(:are_you_really_sure_want_delete_this_user)}, |

@@ -88,8 +88,9 @@ bg:
   x_taxa_matching_current_filters:
     one: 1 таксон отговаря на текущите филтри
     other: '%{count} таксона отговарят на текущите филтри'
-  x_taxon_changes_added_html: '{PLURAL|one=<span class=''count''>1</span> промяна
-    на таксон добавена|<span class=''count''>%{count}</span> промени на таксони добавени}}'
+  x_taxon_changes_added_html:
+    one: <span class='count'>1</span> промяна на таксон добавена
+    other: <span class='count'>%{count}</span> промени на таксони добавени
   _100_day_trends: Тенденции за 100 дена
   a_community_for_naturalist: Общност за естествоизпитатели
   a_few_points_to_make_things_clear: 'Няколко уточнения:'
@@ -129,7 +130,7 @@ bg:
   action: Действие
   actions: Действия
   activate_user: Активирай потребител
-  active: активен
+  active: Активен
   active_users: Активни потребители
   activity: Активност
   activity_settings: Настройки за активност
@@ -160,8 +161,11 @@ bg:
   add_another_photo: Добавяне на друга снимка
   add_another_section: Добавяне на друг раздел
   add_batch: Добавяне групово
+  add_colors: Добавяне на цветове
   add_comma_separated_tags: Добави етикети (разделени със запетаи)
   add_comment: Добавяне на коментар
+  add_countries: Добавяне на държави
+  add_custom_project_fields: Добавяне на потребителски полета на проекта
   add_field: Добавяне на поле
   add_from_your_observations: Добавяне от своите наблюдения
   add_higher_level_taxon: Добавяне на родителски таксон (напр. „птици“)
@@ -527,6 +531,7 @@ bg:
   comments_on: Коментари на
   comments_on_my_observations: Коментари на мои наблюдения
   community: Общност
+  community_curated: Курирано от общността
   community_guidelines: Правила на общността
   community_id_at_species_or_lower?: ID от общността до вид или по-точно?
   community_id_at_species_level_or_lower: ID от общността на ниво вид или по-ниско
@@ -756,6 +761,7 @@ bg:
   embed_a_widget_for_this_taxon_on_website: Вмъкни widget за този таксон на сайта
     си
   embed_widget_project: Вмъкни widget за този проект на сайта си
+  encompassing_places: Обхващащи места
   end: Край
   endangered: застрашен
   endemic: ендемичен
@@ -1013,6 +1019,7 @@ bg:
   kml_file_size_error: KML файла трябва да е по-малък от 1MB
   labels: Етикети
   language_slash_type: Език / Тип
+  large: голям
   last_observation: Последно наблюдение
   lat: г.ш.
   latitude: Геогр. ширина
@@ -1221,6 +1228,7 @@ bg:
   mark_all_as_unreviewed: Отбелязване на всички като непроверени
   media: Мултимедия
   media_type: Тип медия
+  medium: среден
   meet: Запознайте се
   member_of_the_inaturalist_network_html: Част от <a href="%{url}">Мрежата на iNaturalist</a>
   members: Членове
@@ -1305,6 +1313,7 @@ bg:
   "no": Не
   no_colors_selected: Не са избрани цветове.
   no_comments_yet: Няма коментари.
+  no_description: Липсва описание
   no_identifications: Няма разпознавания
   no_identifications_added:
     user: Потребителят %{user} не е добавял разпознавания към чужди наблюдения.
@@ -1985,7 +1994,9 @@ bg:
   similar_species: Подобни видове
   simple: Просто
   sign_in_exclamation: Влезте!
+  sizes: Размери
   skip_to_next_page: Направо към следващата страница
+  small: малък
   site_stats: Статистика на сайта
   some_rights_reserved: някои права запазени
   something: Нещо
@@ -2332,6 +2343,7 @@ bg:
   view_your_calendar: Виж своя календар
   view_your_observations: Виж своите наблюдения
   view_your_year_stats: Виж своята статистика за %{year}
+  view_yours: Виж своите
   view_all_of_your_observations_from_x: Виж всичките си наблюдения от %{x}
   vulnerable: уязвим
   w_photos_only: със снимка
@@ -2786,6 +2798,14 @@ bg:
     - четвъртък
     - петък
     - събота
+    day_names_min:
+      1: Нд
+      2: Пн
+      3: Вт
+      4: Ср
+      5: Чт
+      6: Пт
+      7: Сб
     formats:
       default: '%Y-%m-%d'
       long: '%d %B %Y'

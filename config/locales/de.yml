@@ -1137,6 +1137,10 @@ de:
   desription: Beschreibung
   destroy: Zerstören
   details: Einzelheiten
+  devise:
+    failure:
+      user:
+        suspended: Ihr Benutzerkonto wurde gesperrt
   developers: Entwickler
   device: Gerät
   discoveries: Entdeckungen
@@ -1621,11 +1625,14 @@ de:
     bengali: Bengali
     catalan: Katalanisch
     cebuano: Cebuano
+    chinese_simplified: Chinesisch (vereinfacht)
+    chinese_traditional: Chinesisch (traditionell)
     creole_french: Kreole (Französisch)
     creole_portuguese: Kreole (Portugiesisch)
     davawenyo: Davawenyo
     dutch: Niederländisch
     english: Englisch
+    estonian: Estnisch
     french: Französisch
     gela: Gela
     german: Deutsch
@@ -1641,6 +1648,7 @@ de:
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norwegisch
+    occitan: Okzitanisch
     pangasinan: Pangasinan
     portuguese: Protugisisch
     romanian: Rumänisch
@@ -2978,6 +2986,14 @@ de:
     - Donnerstag
     - Freitag
     - Samstag
+    day_names_min:
+      1: So
+      2: Mo
+      3: Di
+      4: Mi
+      5: Do
+      6: Fr
+      7: Sa
     formats:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'

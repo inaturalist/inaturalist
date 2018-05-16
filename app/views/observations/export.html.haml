@@ -87,7 +87,7 @@
                   %tr
                     - for c in grp.compact
                       %td
-                        = foc.check_box c, :label => c, :checked => c !~ /place_[tcs]/ && ctype != :taxon_extras, :label_after => true, :wrapper => {"data-tip" => t("views.observations.field_descriptions.#{c.underscore}", :default => ''), "data-tip-position-at" => "left bottom"}
+                        = foc.check_box c, :label => c, :checked => c !~ /place_[tcsa]/ && ctype != :taxon_extras, :label_after => true, :wrapper => {"data-tip" => t("views.observations.field_descriptions.#{c.underscore}", :default => ''), "data-tip-position-at" => "left bottom"}
           .column.span-24
             %h4
               =t :observation_fields

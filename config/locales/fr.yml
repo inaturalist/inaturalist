@@ -2045,6 +2045,8 @@ fr:
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
+    chinese_simplified: Chinois (simplifié)
+    chinese_traditional: Chinois (traditionnel)
     creole_french: Créole (Français)
     creole_portuguese: Créole (Portugais)
     czech: Tchèque
@@ -2052,6 +2054,7 @@ fr:
     davawenyo: Davawenyo
     dutch: Néerlandais
     english: Anglais
+    estonian: Estonien
     finnish: Finnois
     french: Français
     gela: Gela
@@ -2070,6 +2073,7 @@ fr:
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norvégien
+    occitan: Occitan
     pangasinan: Pangasinan
     portuguese: Portugais
     romanian: Roumain
@@ -3613,6 +3617,7 @@ fr:
   search_places: Rechercher des lieux
   search_projects: Rechercher des projets
   search_results_for: Rechercher des résultats pour
+  search_results_for_query: Résultats de recherche pour « %{query} »
   search_remote: Rechercher à distance
   search_species: Rechercher des espèces
   search_species_: Rechercher des espèces...
@@ -3966,6 +3971,54 @@ fr:
   taxa_to_include: Taxons à inclure
   taxon: Taxon
   taxon_autocomplete_placeholder: Oiseaux, monarque, etc.
+  taxon_is_a_rank: '%{taxon} est un %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} est un %{rank} dans %{iconic_taxon} avec 1 observation'
+    other: '%{taxon} est un %{rank} dans %{iconic_taxon} avec %{count} observations'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} est un %{rank} d’amphibiens avec 1 observation'
+    other: '%{taxon} est un %{rank} d’amphibiens avec %{count} observations'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} est un %{rank} d’oiseaux avec 1 observation'
+    other: '%{taxon} est un %{rank} d’oiseaux avec %{count} observations'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} est un %{rank} de mammifères avec 1 observation'
+    other: '%{taxon} est un %{rank} de mammifères avec %{count} observations'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} est un %{rank} de reptiles avec 1 observation'
+    other: '%{taxon} est un %{rank} de reptiles avec %{count} observations'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} est un %{rank} de plantes avec 1 observation'
+    other: '%{taxon} est un %{rank} de plantes avec %{count} observations'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} est un %{rank} d’actinoptérygien avec 1 observation'
+    other: '%{taxon} est un %{rank} d’actinoptérygiens avec %{count} observations'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} est un %{rank} d’animal avec 1 observation'
+    other: '%{taxon} est un %{rank} d’animal avec %{count} observations'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} est un %{rank} d’insecte avec 1 observation'
+    other: '%{taxon} est un %{rank} d’insecte avec %{count} observations'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} est un %{rank} d’arachnide avec 1 observation'
+    other: '%{taxon} est un %{rank} d’arachnide avec %{count} observations'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} est un %{rank} de champignon avec 1 observation'
+    other: '%{taxon} est un %{rank} de champignon avec %{count} observations'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} est un %{rank} de protozoaire avec 1 observation'
+    other: '%{taxon} est un %{rank} de protozoaire avec %{count} observations'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} est un %{rank} de mollusque avec 1 observation'
+    other: '%{taxon} est un %{rank} de mollusque avec %{count} observations'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} est un %{rank} dans les chromistes (algues brunes et associées)
+      avec 1 observation'
+    other: '%{taxon} est un %{rank} dans les chromistes (algues brunes et associées)
+      avec %{count} observations'
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: '%{taxon} est un domaine de la vie avec 1 observation'
+    other: '%{taxon} est un domaine de la vie avec %{count} observations'
   taxonomy: Taxinomie
   taxon_: taxon
   taxon_assessments_are: |-
@@ -6520,6 +6573,14 @@ fr:
     - Jeudi
     - Vendredi
     - Samedi
+    day_names_min:
+      1: Di
+      2: Lu
+      3: Ma
+      4: Me
+      5: Je
+      6: Ve
+      7: Sa
     formats:
       default: '%Y-%m-%d'
       long: '%e %B %Y'

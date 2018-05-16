@@ -69,6 +69,7 @@ ko:
   actions: 동작
   activate_user: 활성 사용자
   active: 활성
+  active_users: 활동적인 사용자
   activity: 활동
   activity_settings: 활동 설정
   adapted_by_name_from_a_work_by_original: '%{original}의 연구에서 %{name}이(가) 적용'
@@ -1364,12 +1365,15 @@ ko:
     afrikaans: Afrikaans
     bengali: বাঙালি
     cebuano: Cebuano
+    chinese_simplified: 중국어 (간체)
+    chinese_traditional: 중국어 (정체)
     creole_french: creole (French)
     czech: 체코어
     danish: 덴마크어
     davawenyo: Davawenyo
     dutch: Nederlands
     english: 영어
+    estonian: 에스토니아어
     finnish: 핀란드어
     french: français
     gela: Gela
@@ -1482,7 +1486,7 @@ ko:
     pt-BR: 포루투갈어 (브라질)
     pt-PT: 포르투갈어 (포르투갈)
     ru: 러시아어
-    zh-CN: 중국어 (번체)
+    zh-CN: 중국어 (간체)
   location: 위치
   location_: 위치
   locations: 위치
@@ -2475,6 +2479,14 @@ ko:
     - 목요일
     - 금요일
     - 토요일
+    day_names_min:
+      1: 일
+      2: 월
+      3: 화
+      4: 수
+      5: 목
+      6: 금
+      7: 토
     formats:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'

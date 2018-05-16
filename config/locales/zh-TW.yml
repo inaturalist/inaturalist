@@ -1146,8 +1146,8 @@ zh-TW:
   edit_your_settings_for_this_project: 編輯您用於此專案的設定
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>編輯您的設定</a>來更改您所接收之更新種類，或完全取消訂閱。
   edited: 已編輯
-  edited_by: 已編輯由
-  edited_by_name_html: 已編輯由%{name}
+  edited_by: 編輯由
+  edited_by_name_html: 編輯由 %{name}
   editing: 編輯中
   editing_announcement: 編輯通告
   editing_custom_project_fields_for: 編輯自定義專案欄位用於
@@ -1528,7 +1528,7 @@ zh-TW:
   identotron_for: Identotron 用於
   identotron_help: Identotron 幫助
   ids: 鑑定
-  ids_made_for_others: 為其他所做的鑑定
+  ids_made_for_others: 個替其他人所做的鑑定
   if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物列表、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
   if_matches_come_from_a_comprehensive_list: 若符合來自於綜合列表內容，會在此顯示出綠色長條。
   if_this_is_a_scientific_name: 如果這是一個學名，它是否能被接受？
@@ -1711,6 +1711,8 @@ zh-TW:
     bengali: 孟加拉語
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
+    chinese_simplified: 簡體中文
+    chinese_traditional: 繁體中文
     creole_french: 克里奧爾語 (法語)
     creole_portuguese: 克里奧爾語 (葡萄牙語)
     czech: 捷克語
@@ -1718,6 +1720,7 @@ zh-TW:
     davawenyo: Davawenyo 語
     dutch: 荷蘭語
     english: 英語
+    estonian: 愛沙尼亞語
     finnish: 芬蘭語
     french: 法語
     gela: Gela 語
@@ -1736,6 +1739,7 @@ zh-TW:
     maori: 毛利語
     misima_paneati: Misima-paneati 語
     norwegian: 挪威語
+    occitan: 奧克語
     pangasinan: 邦阿西楠語
     portuguese: 葡萄牙語
     romanian: 羅馬尼亞語
@@ -3355,12 +3359,51 @@ zh-TW:
   taxon: 物種分類
   taxon_autocomplete_placeholder: 鳥、君主斑蝶等等。
   taxon_is_a_rank: '%{taxon}屬於%{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: 帶有 1 個觀察屬於%{iconic_taxon}中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於%{iconic_taxon}中%{rank}的%{taxon}
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: 帶有 1 個觀察屬於兩棲類中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於兩棲類中%{rank}的%{taxon}
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: 帶有 1 個觀察屬於鳥類中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於鳥類中%{rank}的%{taxon}
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: 帶有 1 個觀察屬於哺乳動物中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於哺乳動物中%{rank}的%{taxon}
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: 帶有 1 個觀察屬於爬蟲類中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於爬蟲類中%{rank}的%{taxon}
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: 帶有 1 個觀察屬於植物中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於植物中%{rank}的%{taxon}
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: 帶有 1 個觀察屬於輻鰭魚中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於輻鰭魚中%{rank}的%{taxon}
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: 帶有 1 個觀察屬於動物中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於動物中%{rank}的%{taxon}
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: 帶有 1 個觀察屬於昆蟲中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於昆蟲中%{rank}的%{taxon}
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: 帶有 1 個觀察屬於蛛形綱中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於蛛形綱中%{rank}的%{taxon}
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: 帶有 1 個觀察屬於真菌中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於真菌中%{rank}的%{taxon}
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: 帶有 1 個觀察屬於原生動物中%{rank}的%{taxon}
+    other: 帶有 %{count} 個觀察屬於原生動物中%{rank}的%{taxon}
   taxon_is_a_rank_of_mollusca_with_x_observations:
     one: 帶有 1 個觀察屬於軟體動物中%{rank}的%{taxon}
     other: 帶有 %{count} 個觀察屬於軟體動物中%{rank}的%{taxon}
   taxon_is_a_rank_of_chromista_with_x_observations:
     one: 帶有 1 個觀察在色藻界裡（褐藻綱與相關生物）屬於%{rank}的%{taxon}
     other: 帶有 %{count} 個觀察在色藻界裡（褐藻綱與相關生物）屬於%{rank}的%{taxon}
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: 帶有 1 個觀察屬於生物界的%{taxon}
+    other: 帶有 %{count} 個觀察屬於生物界的%{taxon}
   taxonomy: 分類法
   taxon_: 物種分類
   taxon_assessments_are: 物種分類評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之物種分類群狀態的意見回饋。
@@ -4742,6 +4785,32 @@ zh-TW:
           target="_blank">有關收藏專案</a>的部落格發佈文章裡頭差別。
         this_is_a_preview: 此為此專案成為收藏專案時的模樣預覽。
       updates_desc: 在您的控制面板與每日更新電郵裡接收有關此專案之更新。
+    search:
+      index:
+        no_taxa_options_html: |-
+          <p>您可以有以下選擇：</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>添加標籤至較高層級的物種分類</strong>
+              <p>
+                例如：屬底下包含著種。若這已被添加，希望能有友善的策展人幫忙添加該物種分類。
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">聯絡意見回饋群組</a></strong>
+              <p>
+                許多網站策展人有保持關注針對意見回饋群組的電子郵件。
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">聯絡支援</a>
+              </strong>
+              <p>
+                這點請耐心等候，因為我們並沒有特別多位的專門支援成員。
+              </p>
+            </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: 您已被封鎖
@@ -4865,7 +4934,7 @@ zh-TW:
             </li>
             <li>
               <p>
-                詞彙應採用英文。請不要添加翻譯過的語言名稱，例如像「French, 法文」，
+                新詞彙應採用英文。請不要添加翻譯過的語言名稱，例如像「French，法文」，
                 因為這會在使用不同語言的人們在利用此網站時，我們會很難或無法顯示在地化名稱。
               </p>
             </li>
@@ -4941,7 +5010,7 @@ zh-TW:
         discuss_your_findings: 討論您所發現的
         contribute_to_science: 貢獻於科學
         science_desc_html: 不論是來自稀有的蝴蝶品種，或是後院常見的野生雜草，每一個觀察都可對生物多樣性科學做出貢獻。我們如同<a href='http://gbif.org'
-          target='_blank'>全球生物多樣性資訊機構</a>將您的所見內容附上科學資料貯藏庫來分享，以協助科學家們作查找並使用您的資料。您僅需做出觀察即可。
+          target='_blank'>全球生物多樣性資訊機構</a>將您的所見內容以科學資料貯藏庫來分享，來協助科學家們作查找並使用您的資料。您僅需做出觀察即可。
         nature_at_your_fingertips: 觸手可及的自然
         keep_track: 保持追蹤
         record_your_encounters: 在雲端上記錄您與各種生物的相遇，以及維護生物列表。
@@ -4950,7 +5019,7 @@ zh-TW:
         crowdsource_identifications: 群眾外包鑑定
         connect_with_experts: 聯絡可以鑑定您所觀察到生物的專家。
         become_a_citizen_scientist: 成為一位公眾科學家
-        find_a_project: 循著一個有著您感興趣任務的專案，或是開始您自己擁有的專案。
+        find_a_project: 尋找一個有著您感興趣任務的專案，或是開始您自己擁有的專案。
         learn_about_nature: 了解關於自然
         build_your_knowledge: 透過與其他博物學友的交談，以及協助他人來建立您的知識。
         run_a_bioblitz: 運作一個 Bioblitz
@@ -4993,6 +5062,14 @@ zh-TW:
     - 週四
     - 週五
     - 週六
+    day_names_min:
+      1: 日
+      2: 一
+      3: 二
+      4: 三
+      5: 四
+      6: 五
+      7: 六
     formats:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'

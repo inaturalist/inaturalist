@@ -1008,11 +1008,6 @@ en:
     currentText: Today
     prevText: Prev
     nextText: Next
-    monthNames: "['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']"
-    monthNamesShort: "['Jan','Feb','Mar','Apr', 'May','Jun','Jul','Aug','Sep', 'Oct','Nov','Dec']"
-    dayNames: "['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']"
-    dayNamesShort: "['Sun','Mon','Tue','Wed','Thu','Sun','Sat']"
-    dayNamesMin: "['Su','Mo','Tu','We','Th','Fr','Sa']"
     range: Range
   date_range: Date Range
   date_specified: Date specified
@@ -4836,6 +4831,8 @@ en:
         url: URL for the observation
         image_url: URL for the default image
         tag_list: Comma-separated list of tags
+        place_admin1_name: Name of the administrative place one rank below the country level
+        place_admin2_name: Name of the administrative place two ranks below the country level
         positioning_method: How the coordinates were determined
         positioning_device: Device used to determine coordinates
       identify:
@@ -5884,6 +5881,14 @@ en:
       - Thursday
       - Friday
       - Saturday
+    day_names_min:
+      1: Su
+      2: Mo
+      3: Tu
+      4: We
+      5: Th
+      6: Fr
+      7: Sa
     formats:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'

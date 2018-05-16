@@ -226,7 +226,7 @@ es:
   add_custom_project_fields: Añade campos de proyecto personalizados
   add_edit_flags: Añadir/editar etiquetas
   add_edit_more_fields: Añade/edita más campos
-  add_editor: Añadir Editor
+  add_editor: Añadir editor
   add_description: Añade %{description_name}
   add_field: Añadir campo
   add_from_your_observations: Añade de tus observaciones
@@ -1945,6 +1945,8 @@ es:
     bengali: Bengalí
     catalan: Catalán
     cebuano: Cebuano
+    chinese_simplified: Chino (simplificado)
+    chinese_traditional: Chino (tradicional)
     creole_french: Criollo (Francés)
     creole_portuguese: Criollo (Portugués)
     czech: Checo
@@ -1952,6 +1954,7 @@ es:
     davawenyo: Davawenyo
     dutch: Holandés
     english: Inglés
+    estonian: Estonio
     finnish: Finés
     french: Francés
     gela: Gela
@@ -1970,6 +1973,7 @@ es:
     maori: Maorí
     misima_paneati: Misima-paneati
     norwegian: Noruego
+    occitan: Occitano
     pangasinan: Pangasinán
     portuguese: Portugués
     romanian: Rumano
@@ -2358,6 +2362,7 @@ es:
   needs_id_expandable_html: <span class='full'>Necesita </span>identificador
   needs_to_be_identified: Necesita identificarse
   new: Nuevo
+  new_and_noteworthy: Nuevo y notable
   new_announcement: Nuevo anuncio
   new_assessment: Nueva evaluación
   new_check_list: Nueva lista de verificación
@@ -3471,7 +3476,7 @@ es:
   search_places: Buscar lugares
   search_projects: Buscar proyectos
   search_results_for: Buscar resultados para
-  search_results_for_query: Los resultados de búsqueda para "%{query}"
+  search_results_for_query: Resultados de la búsqueda «%{query}»
   search_remote: Búsqueda remota
   search_species: Busca especies
   search_species_: Buscar especie…
@@ -3807,6 +3812,7 @@ es:
   take_me_flickr!: ¡Sí, lléveme a Flickr!
   take_me_back: Llévame de vuelta
   taxa: Taxones
+  taxa_info: Información sobre taxones
   taxa_all_species_html: Todas las especies
   taxa_needing_curation: Taxones que necesitan curación
   taxa_observed: especies o grupos observados
@@ -4754,7 +4760,7 @@ es:
   your_google_account: tu cuenta de Google
   your_google_account_info: Información de tu cuenta de Google
   your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
-  your_recent_projects: Tus Proyectos Recientes
+  your_recent_projects: Tus proyectos recientes
   your_should_recognize: Usted debería reconocer algunas de estas fotos
   your_site_account_has_been_created: Su cuenta de %{site} ha sido creada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5925,6 +5931,14 @@ es:
     - jueves
     - viernes
     - sábado
+    day_names_min:
+      1: do
+      2: lu
+      3: ma
+      4: mi5
+      5: ju
+      6: vi
+      7: sá
     formats:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
