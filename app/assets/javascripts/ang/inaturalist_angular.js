@@ -88,6 +88,8 @@ function( $http, $rootScope, $filter ) {
     cPoint.x = cPoint.x + options.left; // left of center
     cPoint.y = cPoint.y + options.up; // north of center
     var newCenter = proj.fromDivPixelToLatLng( cPoint );
+    overlay.setMap( null );
+    overlay = null;
     callback( newCenter );
   };
 
