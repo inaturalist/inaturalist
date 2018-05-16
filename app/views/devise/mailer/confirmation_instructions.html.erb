@@ -22,6 +22,7 @@
   else
     URI.join( site.url.to_s, site.community_guidelines_url.to_s )
   end
+  teachers_url = URI.join( site.url.to_s, "pages/#{CGI.escape( "teacher's+guide" )}" )
 -%>
 <h1>
 <%=raw t(:your_account_has_been_activated) %>
@@ -51,7 +52,7 @@
   </i>
 </strong>
 <p>
-  <%= t( "views.devise.mailer.confirmation_instructions.please_read_the_teachers_guide_html", url: "/pages/teacher's+guide", site_name: site_name ) %>
+  <%= t( "views.devise.mailer.confirmation_instructions.please_read_the_teachers_guide_html", url: teachers_url, site_name: site_name ) %>
 </p>
 
 <%= render 'emailer/footer' %>
