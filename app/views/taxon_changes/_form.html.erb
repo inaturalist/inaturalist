@@ -23,6 +23,7 @@
         isActive: 'any',
         includeID: true
       })
+      rearrangeTaxonFieldsets( );
     }
 
     function rearrangeTaxonFieldsets() {
@@ -39,7 +40,7 @@
         $('#singletaxon').removeClass('left').addClass('right').show()
         $('#singletaxon legend').text(I18n.t('output_taxon'))
         $('#multiple_taxa').removeClass('right').addClass('left').show()
-        if ( changeType == 'TaxonSwap' ) {
+        if ( changeType == 'TaxonSwap' && $( "#multiple_taxa .taxon_change_taxon:visible" ).length > 0 ) {
           $('#multiple_taxa .add_taxon_link').hide();
         } else {
           $('#multiple_taxa .add_taxon_link').show();
@@ -176,7 +177,7 @@
               <%= tct.hidden_field :taxon_change_id %>
               <%= tct.hidden_field "_destroy" %>
               <%= link_to_function t(:remove),
-                "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
+                "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp(function( ) { rearrangeTaxonFieldsets( ); }).attr('id', ''); ", 
                 :class => "right" %>
               <%= tct.form_field :taxon_name, :label=>t(:taxon_name) do %>
                 <input type="text" class="text"/>
@@ -190,7 +191,7 @@
                 <%= tct.hidden_field :taxon_change_id %>
                 <%= tct.hidden_field "_destroy" %>
                 <%= link_to_function t(:remove),
-                  "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp().attr('id', '')", 
+                  "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp( function( ) { rearrangeTaxonFieldsets( ); }).attr('id', '');", 
                   :class => "right" %>
                 <%= tct.form_field :taxon_name, :label=>t(:taxon_name) do %>
                   <input type="text" class="text"/>

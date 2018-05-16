@@ -11,19 +11,18 @@
     <%= text_field_tag :taxon_name, @taxon_change.taxon ? @taxon_change.taxon.name : '', :id => 'taxon_name', :class => 'text' %>
     <%= link_to_function "Browse all species", "$('#taxonchooser').jqmShow();" %>
     <div class="description">
-    	This is a more convenient way to find a taxon ID. It's the taxon ID
-    	that actually gets saved. This search only works for active taxa.
+      <%=t :this_is_a_more_convenient_way_to_find_a_taxon_id %>
   	</div>
   </p>
 
   <div class="clear buttonrow">
-    <%= n.submit "Save", :class => 'default button' %>
-    <%= link_to "Cancel", @taxon_change || @taxon_change_taxon.taxon_change, :class => 'button' %>
+    <%= n.submit t(:save), :class => 'default button' %>
+    <%= link_to t(:cancel), @taxon_change || @taxon_change_taxon.taxon_change, :class => 'button' %>
     <%- unless @taxon_change_taxon.new_record? -%>
-      <%= link_to 'Delete', @taxon_change_taxon,
-                  :method => :delete,
-                  :data => {:confirm => "Are you sure you want to delete this taxon change taxon?"},
-                  :class => 'minor delete button' %>
+      <%= link_to t(:delete), @taxon_change_taxon,
+        method: :delete,
+        data: { confirm: t(:are_you_sure?) },
+        class: "minor delete button" %>
     <%- end -%>
   </div>
 <% end %>
