@@ -1,0 +1,16 @@
+@import "../colors";
+.bootstrap .FlagAnItem {
+  &.alert {
+    font-weight: 600;
+  }
+  .fa {
+    margin-right: 5px;
+  }
+  a {
+    color: $bootstrap-link-color;
+    &.view {
+      font-weight: normal;
+      float: right;
+    }
+  }
+}

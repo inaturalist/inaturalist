@@ -124,6 +124,16 @@ describe Project do
       project.destroy
       expect( Rule.find_by_id( rule.id ) ).to be_blank
     end
+
+    it "should delete associated project rules" do
+      umbrella_project = Project.make!(project_type: "umbrella")
+      subproject = Project.make!(project_type: "collection")
+      rule = umbrella_project.project_observation_rules.build( operator: "in_project?", operand: subproject )
+      rule.save!
+      expect( Project.find( umbrella_project ).project_observation_rules.length ).to eq 1
+      subproject.destroy
+      expect( Project.find( umbrella_project ).project_observation_rules.length ).to eq 0
+    end
   end
 
   describe "update_curator_idents_on_make_curator" do

@@ -1,0 +1,91 @@
+@import "../colors";
+.ConfirmModal.confirm, .FlaggingModal.modal {
+  &.error {
+    font-size: 14px;
+    ul {
+      margin-top: 10px;
+      li {
+        margin-bottom: 5px;
+      }
+    }
+    .modal-body {
+      color: #333333;
+    }
+  }
+  .modal-dialog {
+    width: 500px;
+    margin-top: 100px;
+  }
+  .text {
+    line-height: 28px;
+    font-size: 1.3em;
+    display: inline-block;
+    margin-left: 10px;
+    .coarse_ids {
+      .taxon {
+        font-weight: 600;
+      }
+      .learn {
+        margin: 15px 0px 10px;
+        display: block;
+        font-size: 16px;
+      }
+      input {
+        margin: 0px;
+      }
+      label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-left: 5px;
+        line-height: auto;
+        margin: 0px 0px 0px 5px;
+        vertical-align: middle;
+      }
+    }
+  }
+  .modal-footer {
+    padding: 10px;
+    .buttons {
+      text-align: center;
+    }
+    button {
+      min-width: 100px;
+      margin: 0px 10px;
+    }
+  }
+}
+
+.FlaggingModal.modal {
+  .modal-dialog {
+    width: 450px;
+    margin-top: 30px;
+  }
+  .text {
+    line-height: inherit;
+    font-size: inherit;
+  }
+  .flagInput {
+    .heading {
+      input {
+        margin: 0px 5px;
+      }
+      font-size: 16px;
+      font-weight: 600;
+    }
+  }
+  .modal-dialog {
+    .modal-body {
+      textarea {
+        min-height: 75px;
+        resize: none;
+        border-radius: 3px;
+        background: $light-grey;
+      }
+      .glyphicon-remove-circle {
+        top: 3px;
+        margin-left: 5px;
+        cursor: pointer;
+      }
+    }
+  }
+}

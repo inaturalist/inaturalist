@@ -29,6 +29,8 @@ class Project < ActiveRecord::Base
   before_update :set_updated_at_if_preferences_changed
   after_save :add_admins
 
+  after_destroy :destroy_project_rules
+
   has_rules_for :project_users, :rule_class => ProjectUserRule
   has_rules_for :project_observations, :rule_class => ProjectObservationRule
 
@@ -978,6 +980,14 @@ class Project < ActiveRecord::Base
     end
     project_users.reload
     elastic_index!
+  end
+
+  def destroy_project_rules
+    ProjectObservationRule.where(
+      operator: "in_project?",
+      operand_type: "Project",
+      operand_id: id
+    ).destroy_all
   end
 
   def aggregation_preference_allowed?

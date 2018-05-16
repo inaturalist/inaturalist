@@ -14,7 +14,9 @@ import StatsHeaderContainer from "../containers/stats_header_container";
 import AboutContainer from "../containers/about_container";
 import BeforeEventTabContainer from "../containers/before_event_tab_container";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
+import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
+import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 
 const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) => {
   let view;
@@ -178,6 +180,10 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
           </Row>
         </Grid>
       ) }
+      <FlashMessagesContainer
+        item={ project }
+        manageFlagsPath={ `/flags?project_id=${project.id}` }
+      />
       <div className={ `project-header ${hasBanner && "with-banner"}` }>
         <div
           className="project-header-background"
@@ -241,6 +247,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
       <div className="Content">
         { view }
       </div>
+      <FlaggingModalContainer />
     </div>
   );
 };

@@ -23,7 +23,9 @@ class FlaggingModal extends Component {
     const item = this.props.state.item;
     const body = this.refs.reason && $( this.refs.reason ).val( );
     let className = "Comment";
-    if ( item.quality_grade ) {
+    if ( item.constructor.name === "Project" ) {
+      className = "Project";
+    } else if ( item.quality_grade ) {
       className = "Observation";
     } else if ( item.taxon ) {
       className = "Identification";

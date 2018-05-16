@@ -1662,6 +1662,12 @@ en:
   it_can_now_be_used_for_research: It can now be used for research and featured on other websites
   it_has: It has
   it_instead: it instead.
+  item_flagged_notice_html: |
+    This has been flagged as spam and is no longer
+    publicly visible. You can see it because you created it, or you are a
+    site curator. If you think this is a mistake, please
+    <a href="mailto:%{help_email}" class="contact">contact us</a>.
+    <a href="%{manage_flags_path}">Manage flags</a>
   its_important_that_you:  It's important that you click
   iucn_red_list_status: IUCN Red List status
   january: January
@@ -4117,6 +4123,8 @@ en:
   x_deleted: "%{x} deleted"
   x_does_not_exist: "\"%{x}\" does not exist"
   x_doesnt: "%{login} doesn't"
+  x_flagged: "%{x} flagged"
+  x_flagged_as_flag: "%{x} flagged as %{flag}"
   x_hasnt: "%{login} hasn't"
   x_journal: "%{user}'s Journal"
   x_journal_archives_for_y: "%{user}'s Journal • Archives for"
