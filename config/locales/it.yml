@@ -1168,14 +1168,6 @@ it:
     currentText: Oggi
     prevText: Prec
     nextText: Successivo
-    monthNames: '[''Gennaio'', ''Febbraio'', ''Marzo'', ''Aprile'', ''Maggio'', ''Giugno'',
-      ''Luglio'', ''Agosto'', ''Settembre'', ''Ottobre'', ''Novembre'', ''Dicembre'']'
-    monthNamesShort: '[''Gen'',''Feb'',''Mar'',''Apr'', ''Mag'',''Giu'',''Lug'',''Ago'',''Set'',
-      ''Ott'',''Nov'',''Dic'']'
-    dayNames: '[''Domenica'', ''Lunedì'', ''Martedì'', ''Mercoledì'', ''Giovedì'',
-      ''Venerdì'', ''Sabato'']'
-    dayNamesShort: '[''Dom'',''Lun'',''Mar'',''Mer'',''Gio'',''Ven'',''Sab'']'
-    dayNamesMin: '[''Do'',''Lu'',''Ma'',''Me'',''Gi'',''Ve'',''Sa'']'
     range: Intervallo
   date_range: Intervallo di date
   date_specified: Data specificata
@@ -5847,6 +5839,32 @@ it:
           rendere come Collection Project
       updates_desc: Ricevi gli aggiornamenti relativi a questo progetto sulla tua
         bacheca e tramite gli aggiornamenti email giornalieri.
+    search:
+      index:
+        no_taxa_options_html: |-
+          <p>Hai alcune opzioni:</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>Aggiungi un contrassegno a un taxon di livello più alto </strong>
+              <p>
+                E.g. il genere che include la specie. Facilmente un curatore disponibile aggiungerà il taxon se è possibile.
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">Contatta il Gruppo di Feedback</a></strong>
+              <p>
+                Molti curatori del sito controllano le mail del Gruppo di Feedback.
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">Conttatta il Supporto</a>
+              </strong>
+              <p>
+                Sii paziente, non abbiamo molte persone nello staff di supporto.
+              </p>
+            </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Sei stato bloccato

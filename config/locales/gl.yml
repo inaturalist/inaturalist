@@ -758,13 +758,6 @@ gl:
     currentText: Hoxe
     prevText: Anterior
     nextText: Seguinte
-    monthNames: '[''xaneiro'', ''febreiro'', ''marzo'', ''abril'', ''maio'', ''xuño'',
-      ''xullo'', ''agosto'', ''setembro'', ''outubro'', ''novembro'', ''decembro'']'
-    monthNamesShort: '[''xan'',''feb'',''mar'',''abr'',''mai'',''xuñ'',''xul'',''ago'',''set'',''out'',''nov'',''dec'']'
-    dayNames: '[''Domingo'', ''Luns'', ''Martes'', ''Mércores'', ''Xoves'', ''Venres'',
-      ''Sábado'']'
-    dayNamesShort: '[''Dom'',''Lun'',''Mar'',''Mér'',''Xov'',''Ven'',''Sáb'']'
-    dayNamesMin: '[''Do'',''Lu'',''Ma'',''Mé'',''Xo'',''Ve'',''Sá'']'
   date_time: Data/Hora
   datetime_: Data/Hora
   day: Día
@@ -3493,13 +3486,13 @@ gl:
     - venres
     - sábado
     day_names_min:
-        1: Do
-        2: Lu
-        3: Ma
-        4: Mé
-        5: Xo
-        6: Ve
-        7: Sá
+      1: Do
+      2: Lu
+      3: Ma
+      4: Mé
+      5: Xo
+      6: Ve
+      7: Sá
     formats:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'

@@ -34,14 +34,14 @@ da:
     one: 1 journalindlæg
     other: '%{count} journalindlæg'
   x_journal_posts_html:
-    one: <span class="count">1</span> journalindlæg
-    other: <span class="count">%{count}</span> journalindlæg
+    one: <span class="antal">1</span> journalindlæg
+    other: <span class="antal">%{count}</span> journalindlæg
   x_matching_taxa:
     one: 1 matchende takson
     other: '%{count} matchende taksa'
   x_matching_taxa_html:
-    one: <span class="count">1</span> matchende takson
-    other: <span class="count">%{count}</span> matchende taksa
+    one: <span class="antal">1</span> matchende takson
+    other: <span class="antal">%{count}</span> matchende taksa
   x_misidentifications_of_this_species:
     one: 1 fejlidentifikation af denne art
     other: '%{count} fejlidentifikationer af denne art'
@@ -52,14 +52,14 @@ da:
     one: 1 Observation
     other: '%{count} Observationer'
   x_observations_html:
-    one: <span class='count'>1</span> observation
-    other: <span class='count'>%{count}</span> observationer
+    one: <span class='antal'>1</span> observation
+    other: <span class='antal'>%{count}</span> observationer
   x_observations_link_html:
     one: <a href='%{url}'>1 observation</a>
     other: <a href='%{url}'>%{count} observationer</a>
   x_observations_reviewed_html:
-    one: <span class='count'>1</span> observation gennemgået
-    other: <span class='count'>%{count}</span> observationer gennemgået
+    one: <span class='antal'>1</span> observation gennemgået
+    other: <span class='antal'>%{count}</span> observationer gennemgået
   x_others:
     one: 1 anden
     other: '%{count} andre'
@@ -67,26 +67,26 @@ da:
     one: 1 person
     other: '%{count} personer'
   x_people_found_this_helpful:
-    one: En person synes dette var en hjælp
-    other: '%{count} personer synes dette var en hjælp'
+    one: En person synes dette var hjælpsomy
+    other: '%{count} personer synes dette var hjælpsomt'
   x_faves:
     one: 1 favorit
     other: '%{count} favoritter'
   x_flags_resolved_html:
-    one: <span class='count'>1</span> markering løst
-    other: <span class='count'>%{count}</span> markeringer løst
+    one: <span class='antal'>1</span> markering løst
+    other: <span class='antal'>%{count}</span> markeringer løst
   x_people_like_this:
     one: 1 person kan lide dette
     other: '%{count} personer kan lide dette'
   x_people_agree_html:
-    one: <span class="count">1</span> person er enig
-    other: <span class="count">%{count}</span> personer er enige
+    one: <span class="antal">1</span> person er enig
+    other: <span class="antal">%{count}</span> personer er enige
   x_species:
     one: 1 art
     other: '%{count} arter'
   x_species_html:
-    one: <span class='count'>1</span> art
-    other: <span class='count'>%{count}</span> arter
+    one: <span class='antal'>1</span> art
+    other: <span class='antal'>%{count}</span> arter
   x_species_link_html:
     one: <a href='%{url}'>1 art</a>
     other: <a href='%{url}'>%{count} arter</a>
@@ -94,25 +94,25 @@ da:
     one: '1 forslag filtreret af:'
     other: '%{count} forslag filtreret af:'
   x_taxa_observed_html:
-    one: <span class='count'>1</span> takson observeret
-    other: <span class='count'>%{count}</span> taksa observeret
+    one: <span class='antal'>1</span> takson observeret
+    other: <span class='antal'>%{count}</span> taksa observeret
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> observation af forskningskvalitet</span>
-    other: <span class='count'>%{count}</span> observationer af forskningskvalitet</span>
+    one: <span class='antal'>1</span> observation af forskningskvalitet</span>
+    other: <span class='antal'>%{count}</span> observationer af forskningskvalitet</span>
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span> observation af forskningskvalitet identificeret
+    one: <span class='antal'>1</span> observation af forskningskvalitet identificeret
       til art eller lavere</span>
-    other: <span class='count'>%{count}</span> observationer af forskningskvalitet
+    other: <span class='antal'>%{count}</span> observationer af forskningskvalitet
       identificerede til art eller lavere</span>
   x_taxa_curated_html:
-    one: <span class='count'>1</span> takson kurateret
-    other: <span class='count'>%{count}</span> taksa kurateret
+    one: <span class='antal'>1</span> takson kurateret
+    other: <span class='antal'>%{count}</span> taksa kurateret
   x_taxa_matching_current_filters:
     one: 1 takson matcher nuværende filtre
     other: '%{count} taksa matcher nuværende filtre'
   x_taxon_changes_added_html:
-    one: <span class='count'>1</span> taksonændring tilføjet
-    other: <span class='count'>%{count}</span> taksonændringer tilføjet
+    one: <span class='antal'>1</span> taksonændring tilføjet
+    other: <span class='antal'>%{count}</span> taksonændringer tilføjet
   _100_day_trends: 100 dage tendens
   _percent_ID_d: '% ID''et'
   a: en
@@ -1138,14 +1138,6 @@ da:
     currentText: I dag
     prevText: Forrige
     nextText: Næste
-    monthNames: '[''Januar'', ''Februar'', ''Marts'', ''April'', ''Maj'', ''Juni'',
-      ''Juli'', ''August'', ''September'', ''Oktober'', ''November'', ''December'']'
-    monthNamesShort: '[''Jan'',''Feb'',''Mar'',''Apr'', ''May'',''Jun'',''Jul'',''Aug'',''Sep'',
-      ''Okt'',''Nov'',''Dec'']'
-    dayNames: '[''Søndag'', ''Mandag'', ''Tirsdag'', ''Onsdag'', ''Torsdag'', ''Fredag'',
-      ''Lørdag'']'
-    dayNamesShort: '[''Søn'',''Man'',''Tir'',''Ons'',''Tor'',''Fre'',''Lør'']'
-    dayNamesMin: '[''Sø'',''Ma'',''Ti'',''On'',''To'',''Fr'',''Lø'']'
     range: Område
   date_range: Datointerval
   date_specified: Dato angivet
@@ -1527,6 +1519,7 @@ da:
   follow_us: Følg os på
   follow_us_on: Følg os på
   follow_user: Følg %{user}
+  followed_projects: Projekter der følges
   follower: følger
   followers: Følgere
   following: følger
@@ -1875,6 +1868,7 @@ da:
   join_this_project: Bliv medlem af dette projekt
   joined!: Tilsluttet!
   joined_any_projects: tilsluttet nogen projekter
+  joined_projects: Tilmeldte projekter
   joining: Tilslutter...
   journal: Journal
   journal_archives_for: Journal arkiveres til
@@ -1939,14 +1933,21 @@ da:
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
+    chinese_simplified: Kinesisk (Simplificeret)
+    chinese_traditional: Kinesisk (traditionelt)
     creole_french: kreol (Fransk)
     creole_portuguese: kreol (Portugisisk)
+    czech: Tjekkisk
+    danish: Dansk
     davawenyo: Davawenyo
     dutch: Hollandsk
     english: Engelsk
+    estonian: Estisk
+    finnish: Finsk
     french: Fransk
     gela: Gela
     german: Tysk
+    greek: Græsk
     hawaiian: Hawaiian
     hebrew: Hebraisk
     hiligaynon: Hiligaynon
@@ -1955,10 +1956,12 @@ da:
     italian: Italiensk
     japanese: Japansk
     korean: Koreansk
+    luxembourgish: Luxembursk
     maltese: Maltesisk
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norsk
+    occitan: Occitansk
     pangasinan: Pangasinan
     portuguese: Portugisisk
     romanian: Rumænsk
@@ -2098,6 +2101,7 @@ da:
     es-ES: Spansk (Spanien)
     es-MX: Spansk (Mexico)
     es: Spansk
+    et: Estisk
     eu: Baskisk
     fi: Finsk
     fr: Fransk
@@ -2178,6 +2182,7 @@ da:
   manage: Administrer
   manage_all_your_subscriptions: Administrer alle dine abonnementer
   manage_names: Administrer navne
+  manage_your_projects: Administrer dine projekter
   manage_your_project_invitations: Administrer dine projekt invitationer
   manage_subscriptions: Administrer abonnementer
   managed: lykkedes
@@ -2351,6 +2356,7 @@ da:
   needs_id_expandable_html: <span class='full'>Behøver </span>ID
   needs_to_be_identified: Behøver en identifikation
   new: Ny
+  new_and_noteworthy: Nyt og bemærkelsesværdigt
   new_announcement: Ny meddelelse
   new_assessment: Ny vurdering
   new_check_list: Ny tjekliste
@@ -2417,6 +2423,7 @@ da:
     tagget "%{x}"
   no_curators_set: Ingen kurator valgt
   no_curators_yet: Ingen kurator endnu!
+  no_description: Ingen beskrivelse
   no_facebook_photos: Vi kan ikke finde nogle foto´s fra Facebook.
   no_flags: Ingen markering denne gang
   no_flickr_photos_tagged: Ingen Flickr foto´s markeret!
@@ -2815,6 +2822,7 @@ da:
     one: andet dyr
     other: andre dyr
   other_annimals: Andre dyr
+  other_lexicons: Andre leksika
   other_listings_of_this_taxon_for_this_place: Andre fortegnelser over denne takson
     for dette sted
   other_species_commonly_misidentified_as_this_species: Andre arter, der ofte er fejlidentificeret
@@ -3195,10 +3203,9 @@ da:
   project_x_was_delete: '%{project} blev slettet (Giv det et par minutter til at fjerne
     det fra websiden)'
   projects: Projekter
-  projects_description: Projekter er en måde at samle dine og andres observationer
+  projects_description: Projekter er en måde at samle dine med andres observationer
     på %{site_name}. Om du er interesseret i at starte et "citizen science" projekt
-    eller registrerer fuglene i en nærliggende park sammen med din lokale fuglekigger
-    klub, er projekter skabt til det.
+    eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
   projects_from_place: Projekter fra %{place}
   projects_in_x: Projekter i %{x}
   projects_you_admin: Projekter du administrerer
@@ -3463,6 +3470,7 @@ da:
   search_places: Søg i steder
   search_projects: Søg i projekter
   search_results_for: Søg i resultater for
+  search_results_for_query: Søgeresultater for "%{query}"
   search_remote: Søg fjernt
   search_species: Søg i arter
   search_species_: Søg i arter...
@@ -3549,6 +3557,7 @@ da:
   showing_one_to: Viser 1-
   showing_taxa_from_everywhere: Viser taksa fra overalt
   showing_taxa_from_place: Viser taksa fra %{place}
+  showing_x_of_y_listings: Viser %{x} af %{y} lister
   shown_publicly_as: Vist offentligt som
   sign_in: Log ind
   sign_in_with_provider: Log ind med %{provider}
@@ -3789,12 +3798,59 @@ da:
   take_me_flickr!: Ja, før mig til Flickr!
   take_me_back: Tag mig tilbage
   taxa: Taksa
+  taxa_info: Taksa info
   taxa_all_species_html: Alle arter
   taxa_needing_curation: Taksa har brug for kuration
   taxa_observed: taksa observeret
   taxa_to_include: Taksa som skal medtages
   taxon: Takson
   taxon_autocomplete_placeholder: Fugle, Monarker, osv.
+  taxon_is_a_rank: '%{taxon} er en %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} er en %{rank} i %{iconic_taxon} med 1 observation'
+    other: '%{taxon} er en %{rank} i %{iconic_taxon} med %{count} observationer'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} er en %{rank} af amfibier med 1 observation'
+    other: '%{taxon} er en %{rank} af amfibier med %{count} observationer'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} er en %{rank} af fugle med 1 observation'
+    other: '%{taxon} er en %{rank} af fugle med %{count} observationer'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} er en %{rank} af pattedyr med 1 observation'
+    other: '%{taxon} er en %{rank} af pattedyr med %{count} observationer'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} er en %{rank} af krybdyr med 1 observation'
+    other: '%{taxon} er en %{rank} af krybdyr med %{count} observationer'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} er en %{rank} af planter med 1 observation'
+    other: '%{taxon} er en %{rank} af planter med %{count} observationer'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} er en %{rank} af stråle finnede fisk med 1 observation'
+    other: '%{taxon} er en %{rank} af stråle finnede fisk med %{count} observationer'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} en af %{rank} af dyr med 1 observation'
+    other: '%{taxon} er en %{rank} af dyr med %{count} observationer'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} er en %{rank} af insekter med 1 observation'
+    other: '%{taxon} er en %{rank} af insekter med %{count} observationer'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} er en %{rank} af spindlere med 1 observation'
+    other: '%{taxon} er en %{rank} af spindlere med %{count} observationer'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} er en %{rank} af svampe med 1 observation'
+    other: '%{taxon} en af %{rank} af svampe med %{count} observationer'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} er en %{rank} af protozoer med 1 observation'
+    other: '%{taxon} er en %{rank} af protozoer med %{count} observationer'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} er en %{rank} af bløddyr med 1 observation'
+    other: '%{taxon} er en %{rank} af bløddyr med %{count} observationer'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} er en %{rank} i Chromista (brunalge m.fl.) med 1 observation'
+    other: '%{taxon} er en %{rank} i Chromista (brunalge m.fl.) med %{count} observationer'
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: '%{taxon} er et rige af liv med 1 observation'
+    other: '%{taxon} er et rige af liv med %{count} observationer'
   taxonomy: Taksonomi
   taxon_: takson
   taxon_assessments_are: |-
@@ -4022,8 +4078,8 @@ da:
     one: Denne observation er fremhævet på 1 side
     other: Denne observation fremhævet på %{count} sider
   this_observation_is_in_x_projects:
-    one: Denne observation er på 1 projekt
-    other: Denne observation er på  %{count} projekter
+    one: Denne observation er i 1 projekt
+    other: Denne observation er i %{count} projekter
   this_observation_is_research_grade: Denne observation har forskningskvalitet!
   this_observation_lies_outside_the: Denne observation ligger uden for området %{site_name}
     for denne art. Dette kan betyde %{site_name}'s område er forkert, ID'et er forkert,
@@ -4117,6 +4173,7 @@ da:
   total_species_observed: Samlet antal arter observeret
   total_unique_observers: Samlet antal unikke observatører
   total_users: samlet antal brugere,
+  translated_languages: Oversatte sprog
   "true": Sandt
   trending: Tendenser
   trends: Tendenser
@@ -4312,6 +4369,7 @@ da:
   view_contributions: Vis bidrag
   view_details: Vis detaljer
   view_field_options: Vis felt muligheder
+  view_flag: Vis markering
   view_flags: Vis markeringer
   view_flags_for_x_html: Vis markeringer for %{x}
   view_full_observation: Vis fuld observation
@@ -4724,6 +4782,7 @@ da:
   your_google_account: din Google konto
   your_google_account_info: Din Google kontooplysninger
   your_profile_was_successfully_updated: Din profil blev opdateret!
+  your_recent_projects: Dine seneste projekter
   your_should_recognize: Du bør kunne genkende nogle af disse billeder
   your_site_account_has_been_created: Din %{site} konto er blevet oprettet.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5217,6 +5276,8 @@ da:
         url: URL for observationen
         image_url: URL til standardbilledet
         tag_list: Kommasepareret liste over tags
+        place_admin1_name: Navn på det administrative sted en rang under landeniveau
+        place_admin2_name: Navn på det administrative sted to rang under landeniveau
         positioning_method: Hvordan koordinaterne blev bestemt
         positioning_device: Enhed, der bruges til at bestemme koordinater
       identify:
@@ -5575,6 +5636,7 @@ da:
         click_through_to_individual_projects: Klik videre til individuelle projekter
         collection_projects: Samlingsprojekter
         collection_project_features: 'Samlingsprojekt egenskaber:'
+        contain_entire_image_without_cropping: Bibehold hele billedet uden beskæring
         custom_banner_icon_and_project_description: Brugerdefiberet banner, ikon og
           projektbeskrivelse
         data_visualizations: Data visualiseringer
@@ -5627,6 +5689,9 @@ da:
           datoer, som du har defineret. Vælg mellem to typer: Samlingsprojekter og
           Paraplyprojekter, som deler følgende egenskaber:'
         welcome_to_projects: Velkommen til projekter!
+        you_have_not_defined_any_observation_requirements: |-
+          Du har ikke defineret nogen observationskrav. Sørg for at vælge en eller flere taksa
+          (f.eks. fugle, nåletræer), steder (f.eks Brasilien, Yellowstone), brugere og/eller datoer for at definere de observationer, du vil medtage i dit projekt.
       project_location_privacy_notice_html: |-
         <P>
            Vær opmærksom på, at projektets kuratorer vil kunne se enhver privat eller
@@ -5689,6 +5754,32 @@ da:
           ud som et samlingsprojekt.
       updates_desc: Modtag underretninger om dette projekt på dit betjeningspanel
         samt i den daglige underretnings e-mail.
+    search:
+      index:
+        no_taxa_options_html: |-
+          <p>Du har følgende muligheder:</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>Tilføj en markering til en takson på højere niveau</strong>
+              <p>
+                F.eks slægten, der indeholder arten. Så kan man håbe på at en kurator vil tilføje taksonen, hvis dette er muligt.
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">Kontakt Feedbackgruppen</a></strong>
+              <p>
+                Mange sidekuratorer holder øje med e-mails til feedbackgruppen.
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">Kontakt support</a>
+              </strong>
+              <p>
+                Vær tålmodig. Vi har ikke ansatte der er dedikeret til support.
+              </p>
+            </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Du er blevet blokeret
@@ -6004,7 +6095,7 @@ da:
         welcome_message_html: til%{image}hvor du kan <strong> registrere </ strong>,
           hvad du ser i naturen, <strong> møde </ strong> andre naturentusiaster,
           og <strong> lære </ strong> om verdens natur.
-        connect_with_nature: Forbind med naturen
+        connect_with_nature: I kontakt med naturen
         explore_and_share: Udforsk og del dine observationer fra naturen.
         observations_to_date: Observationer til dato
         species_observed: Arter observeret
@@ -6239,7 +6330,7 @@ da:
         units:
           byte:
             one: Byte
-            other: Bytes
+            other: Bits
           gb: GB
           kb: KB
           mb: MB
@@ -6372,6 +6463,16 @@ da:
             lexicon:
               should_not_contain_commas_or_slashes: bør ikke indeholde kommaer eller
                 skråstreger
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: kan
+                ikke matche det videnskabelige navn på en art i dette leksikon
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: skal begynde med et bogstav, ikke indeholde
+                mellemrum, kun anvende bogstaver, tal, bindestreger og understregninger
+            email:
+              must_look_like_an_email_address: skal se ud som en e-mail adresse
     models:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
@@ -6461,6 +6562,7 @@ da:
         source_identifier: Kilde identifikator
       user:
         email: E-mail
+        login: Brugernavn
         name: Navn
         locale: Lokal
         time_zone: Tidszone

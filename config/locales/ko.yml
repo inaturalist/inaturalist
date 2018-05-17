@@ -787,11 +787,6 @@ ko:
     currentText: 오늘
     prevText: 이전
     nextText: 다음
-    monthNames: '[''1월'',''2월'',''3월'',''4월'',''5월'',''6월'',''7월'',''8월'',''9월'',''10월'',''11월'',''12월'']'
-    monthNamesShort: '[''1월'',''2월'',''3월'',''4월'',''5월'',''6월'',''7월'',''8월'',''9월'',''10월'',''11월'',''12월'']'
-    dayNames: '[''일요일'', ''월요일'', ''화요일'', ''수요일'', ''목요일'', ''금요일'', ''토요일'']'
-    dayNamesShort: '[''일'', ''월'', ''화'', ''수'', ''목'', ''금'', ''토'']'
-    dayNamesMin: '[''일'', ''월'', ''화'', ''수'', ''목'', ''금'', ''토'']'
     range: 범위
   date_range: 날짜 범위
   date_time: 날짜/시간
@@ -1324,6 +1319,12 @@ ko:
   is_this_offensive_html: 이것이 <a href="/help#inappropriate">부적절</a>하거나, 스팸, 또는 불쾌합니까?
   is_this_place_a_duplicate: 이 장소는 중복되었나요?
   it_can_now_be_used_for_research: 이제 연구를 위해 사용하거나 다른 웹사이트에 실을 수 있습니다
+  item_flagged_notice_html: |-
+    스팸으로 표시되어 더 이상 공개되지 않습니다.
+    당신이 만든 사람이거나 사이트 큐레이터이기 때문에 볼 수 있습니다.
+    스팸이 실수라고 생각되신다면
+    <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
+    <a href="%{manage_flags_path}">표시 관리</a>
   its_important_that_you: 클릭하는 것이 중요합니다.
   iucn_red_list_status: IUCN Red List 상태
   january: 1월
@@ -1835,6 +1836,7 @@ ko:
   or: 또는
   original_url: 원래의 URL
   other: 기타
+  other_lexicons: 기타 어휘 목록
   overview: 개요
   owner: 소유자
   password: 비밀번호
@@ -2159,6 +2161,7 @@ ko:
   title: 제목
   total: 합계
   total_observations: 총 관찰
+  translated_languages: 번역된 언어
   tue: 화요일
   twitter: 트위터
   unblock: 차단 해제
@@ -2214,6 +2217,7 @@ ko:
   view_change: 차이 보기
   view_contributions: 기여 보기
   view_details: 자세한 내용 보기
+  view_flag: 플래그 보기
   view_license: 라이선스 보기
   view_lists: 목록 보기
   view_more: 더 보기

@@ -214,13 +214,16 @@ bg:
   adding: Добавяне...
   adding_to_your_life_list: Добавяне към Вашия житейски списък...
   admin: Администратор
+  agree: съгласен съм
   agree_: Съгласен
   agree?: Съгласни ли сте?
   agree_to_the_project_terms: Съгласен съм с условията на проекта
+  agree_with_current_taxon: Съгласен съм с текущия таксон
   all: Всичко
   all_comments: Всички коментари
   all_observations: Всички наблюдения
   all_places: Всички места
+  all_projects: Всички проекти
   all_rights_reserved: всички права запазени
   all_taxa:
     rank:
@@ -653,13 +656,6 @@ bg:
     currentText: Днес
     prevText: Пред.
     nextText: След.
-    monthNames: '[''Януари'', ''Февруари'', ''Март'', ''Април'', ''Май'', ''Юни'',
-      ''Юли'', ''Август'', ''Септември'', ''Октомври'', ''Ноември'', ''Декември'']'
-    monthNamesShort: '[''Яну'',''Фев'',''Мар'',''Апр'',''Май'',''Юни'',''Юли'',''Авг'',''Сеп'',''Окт'',''Ное'',''Дек'']'
-    dayNames: '[''неделя'', ''понеделник'', ''вторник'', ''сряда'', ''четвъртък'',
-      ''петък'', ''събота'']'
-    dayNamesShort: '[''Нед'',''Пон'',''Вто'',''Сря'',''Чет'',''Пет'',''Съб'']'
-    dayNamesMin: '[''Нд'',''Пн'',''Вт'',''Ср'',''Чт'',''Пт'',''Сб'']'
     range: Период
   date_range: Интервал от време
   date_specified: Указана дата
@@ -935,7 +931,7 @@ bg:
   icon_slash_photo: Иконка / снимка
   id: ID
   id_: ID
-  identify: Разпознай
+  identify: Разпознаване
   identify_observations: Разпознай наблюдения
   identify_title: Разпознай
   identification: разпознаване
@@ -1008,6 +1004,7 @@ bg:
   join_some_projects_and_invite_some_observations_html: Включете се в някой <a href='%{join_url}'>проект</a>
     и <a href='%{invite_url}'>поканете няколко наблюдения</a>
   join_this_project: Включи се в проекта
+  joined_any_projects: включили към никакъв проект
   joining: Присъединяване...
   journal: Дневник
   journal_archives_for: Архиви на дневника на
@@ -1054,6 +1051,7 @@ bg:
     davawenyo: даваонски
     dutch: нидерландски
     english: английски
+    finnish: фински
     french: френски
     gela: гелански
     german: немски
@@ -2238,7 +2236,7 @@ bg:
   update_search: Обнови търсенето
   updated: Обновено
   updated_daily: Обновявано ежедневно
-  upload: Качи
+  upload: Качване
   upload_a_csv_file: Качи CSV файл
   upload_photos: Качи снимки
   uploaded_by: Качено от
@@ -2396,6 +2394,7 @@ bg:
     и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
   yesterday_at: ', вчера в 16:00 ч.'
+  you_admin: администрирани от вас
   you_are_now_following_x: Вече следвате %{friend_user}.
   you_are_already_a_member_of_this_project: Вече членувате в този проект!
   you_are_no_longer_following_x: Вече не следвате %{friend}.

@@ -939,13 +939,6 @@ zh-CN:
     currentText: 今天
     prevText: 上一个
     nextText: 下一个
-    monthNames: '[''一月'', ''二月'', ''三月'', ''四月'', ''五月'', ''六月'', ''七月'', ''八月'',
-      ''九月'', ''十月'', ''十一月'', ''十二月'']'
-    monthNamesShort: '[''1月'',''2月'',''3月'',''4月'', ''5月'',''6月'',''7月'',''8月'',''9月'',
-      ''10月'',''11月'',''12月'']'
-    dayNames: '[''星期日'', ''星期一'', ''星期二'', ''星期三'', ''星期四'', ''星期五'', ''星期六'']'
-    dayNamesShort: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
-    dayNamesMin: '[''日'',''一'',''二'',''三'',''四'',''五'',''六'']'
     range: 范围
   date_range: 数据范围
   date_specified: 已指定日期
@@ -2174,6 +2167,7 @@ zh-CN:
     one: 其他动物
     other: 其他动物
   other_annimals: 其他动物
+  other_lexicons: 其他辞典
   our_blog: 我们的博客
   out_of_range: 超出范围
   overview: 概述
@@ -3043,6 +3037,7 @@ zh-CN:
   total_species_observed: 总计观察物种
   total_unique_observers: 总计独立观察者
   total_users: 总用户，
+  translated_languages: 翻译的语言
   "true": 真
   trending: 趋向
   trends: 趋势
@@ -3174,6 +3169,7 @@ zh-CN:
   view_contributions: 查看贡献
   view_details: 查看详情
   view_field_options: 查看字段选项
+  view_flag: 查看标记
   view_flags: 查看标记
   view_flags_for_x_html: 查看用于 %{x} 的旗帜
   view_full_observation: 查看完整观察
@@ -3318,6 +3314,8 @@ zh-CN:
   x_deleted: '%{x}已删除'
   x_does_not_exist: “%{x}”不存在
   x_doesnt: '%{login} 不会'
+  x_flagged: '%{x}已标记'
+  x_flagged_as_flag: '%{x}已标记为%{flag}'
   x_hasnt: '%{login}没有'
   x_journal: '%{user}的杂志'
   x_journal_archives_for_y: '%{user}的杂志 • 存档用于'

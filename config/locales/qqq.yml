@@ -2,6 +2,8 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Andreas Plank
+# Author: Aru
+# Author: BramEsposito
 # Author: Cellina
 # Author: Cruzan
 # Author: Danieleseglie
@@ -66,7 +68,7 @@ qqq:
     {{Identical|Species}}
   x_species_link_html: |-
     Number of species, with the count linked to $url
-    {{Identical|Species}}
+    {{Identical|Species}}數字+種物種，感覺很拗口，省略單位詞在報告形式中很常見。
   x_taxa_observed_html: Number of taxa observed, with the count in a span of class
     'count'
   x_research_grade_observations_html: |-
@@ -99,6 +101,10 @@ qqq:
   adapted_by_name_from_a_work_by_original: where name is the adaptor's name and original
     is the original author's name
   add: '{{Identical|Add}}'
+  add_a: 單位詞省略可避免出現不適當單位詞，也較為簡潔。
+  add_a_place_raquo: 不定冠詞 a 於中文裡省略不譯符合語言習慣。e.g. 一起吃個飯、然後看場電影。唱首歌、喝杯茶、...etc.
+  add_a_single_observation: 單一項=一項，「單一項」感覺有些累贅
+  add_a_taxon: 不定冠詞 a 於中文裡省略不譯符合語言習慣。e.g. 一起吃個飯、然後看場電影。唱首歌、喝杯茶、...etc.
   add_an_observation_of: where taxon is the name of a taxon such as Animalia
   add_description: |-
     where description_name represents place notes or a description
@@ -231,8 +237,14 @@ qqq:
     swap: '{{Identical|Swap}}'
     stage: '{{Identical|Stage}}'
     drop: '{{Identical|Drop}}'
+    split_from: |-
+      分拆 <=> 合併；分合、拆併。
+      拆分也講得通，但不符習慣。
+    split_into: 分拆 <=> 合併；分合、拆併。 拆分也講得通，但不符習慣。
     dropped: '{{Identical|Dropped}}'
     staged: '{{Identical|Staged}}'
+    input_taxon_was_split_into_output_taxa_html: 分拆 <=> 合併；分合、拆併。 拆分也講得通，但不符習慣。
+    input_taxon_will_be_split_into_output_taxa_html: 分拆 <=> 合併；分合、拆併。 拆分也講得通，但不符習慣。
   check_here_to_autoload_description: '"Parus" is still used in Finland, bad example
     here.'
   check_list_for_individual_taxa_that: where place is the name of a place
@@ -344,8 +356,6 @@ qqq:
   date_picker:
     closeText: '{{Identical|Close}}'
     currentText: '{{Identical|Today}}'
-    dayNamesShort: '''Sun'' is doubled in the code. I assume there should be a ''Fri''
-      instead of the second ''Sun''.'
   date_time: '{{Identical|Date}}'
   dates: '{{Identical|Date}}'
   datetime_: '{{Identical|Date}}'
@@ -1355,6 +1365,8 @@ qqq:
           any journal posts.
     taxa:
       show:
+        charts_help_other: Not sure if the functionality described here will continue
+          to work in a localized context with localized field names and values.
         frequency:
           Life Stage=egg: '{{Identical|Egg}}'
           Life Stage=teneral: |-

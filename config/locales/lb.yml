@@ -129,6 +129,7 @@ lb:
   add_new_place: Eng nei Plaz do bäisetzen
   add_new_rule: Eng nei Regel derbäisetzen
   add_new_source: Eng nei Quell derbäisetzen...
+  add_new_taxon_name: En neien Taxon-Numm derbäisetzen
   add_observation: Eng Observatioun derbäisetzen
   add_observations!: Observatiounen derbäisetzen!
   add_observations: Observatiounen derbäisetzen
@@ -226,6 +227,8 @@ lb:
     vu(n) %{project) ewechhuele wëllt?
   are_you_sure_delete_post: Sidd Dir sécher datt Dir dës Matdeelung läsche wëllt?
   are_you_sure_delete_this_place: Sidd Dir sécher datt Dir dës Plaz läsche wëllt?
+  are_you_sure_leave_this_project: Sidd Dir sécher datt Dir dëse Projet verloosse
+    wëllt?
   are_you_sure_merge_these_places: Sidd Dir sécher datt Dir dës Plaze fusionéiere
     wëllt? Dat kann net réckgängeg gemaach ginn.
   are_you_sure_remove_from_project: Sidd Dir sécher datt Dir %{user} vun dësem Projet
@@ -263,6 +266,8 @@ lb:
   associations: Associatiounen
   atom: Atom
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
+  automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse
+    Projet derbäisetzen
   back: Zréck
   back_to: Zréck op
   back_to_albums: Zréck op d'Albumen
@@ -460,13 +465,6 @@ lb:
     currentText: Haut
     prevText: Vireg
     nextText: Nächst
-    monthNames: '[''Januar'', ''Februar'', ''Mäerz'', ''Abrëll'', ''Mee'', ''Juni'',
-      ''Juli'', ''August'', ''September'', ''Oktober'', ''November'', ''Dezember'']'
-    monthNamesShort: '[''Jan'',''Feb'',''Mäe'',''Abr'',''Mee'',''Jun'',''Jul'',''Aug'',''Sep'',''Okt'',''Nov'',''Dez'']'
-    dayNames: '[''Sonndeg'', ''Méindeg'', ''Dënschdeg'', ''Mëttwoch'', ''Donneschdeg'',
-      ''Freideg'', ''Samschdeg'']'
-    dayNamesShort: '[''Son'',''Méi'',''Dën'',''Mët'',''Don'',''Frei'',''Sam'']'
-    dayNamesMin: '[''So'',''Mé'',''Dë'',''Më'',''Do'',''Fr'',''Sa'']'
     range: Beräich
   date_time: Datum/Zäit
   dates: Datumen
@@ -549,6 +547,7 @@ lb:
   edited_by: Geännert vum
   edited_by_name_html: Geännert vum %{name}
   editing: Änneren
+  editing_project: '%{project} änneren'
   editors: Auteuren
   eg: z. Bsp.
   email: E-Mail
@@ -712,6 +711,7 @@ lb:
   january: Januar
   join: Matmaachen
   join_inat: Bei %{site_name} matmaachen!
+  join_project: Bei dësem Projet matmaachen
   just_added!: Elo grad bäigesat!
   keep_editing: Virufuere mat Änneren
   kml: KML
@@ -732,6 +732,7 @@ lb:
   learn: Léieren
   learn_more: Méi wëssen
   learn_more_raquo: Méi wëssen &raquo;
+  leave_this_project: Dëse Projet verloossen
   lexicon: Lexikon
   lexicons:
     scientific_names: Wëssenschaftlech Nimm
@@ -944,6 +945,7 @@ lb:
   no_favorites_added:
     current_user: Dir hutt nach keng Favoriten derbäigesat.
   no_matching_projects: Keng passend Projeten
+  no_matching_users: Keng passend Benotzer.
   no_members_yet: Nach keng Memberen
   no_messages_yet: Nach keng Messagen
   no_more_results_found: Net méi Resultater fonnt
@@ -961,6 +963,7 @@ lb:
   no_places_selected: Keng Plazen erausgesicht.
   no_project_selected: Kee Projet eruasgesicht
   no_project_to_admin_current_user: Dir administréiert keng Projeten
+  no_project_to_admin_login: '%{login} geréiert keng Projeten'
   no_projects_yet: Nach keng Projeten
   no_recent_activity: Keng rezent Aktivitéit
   no_recently_active: Nach keng rezent aktiv Projeten.
@@ -1011,6 +1014,7 @@ lb:
   observations_by_user: Observatioune vum %{user}
   observations_confirmed: Observatiounen (confirméiert)
   observations_deleted: Observatioune goufe geläscht.
+  observations_for_project: Observatioune fir %{project}
   observations_from: Observatioune vum %{date}
   observations_from_people_taxa_and_places_youre_following: Observatioune vu Leit,
     Plazen an Taxa, déi Dir iwwerwaacht.
@@ -1045,6 +1049,8 @@ lb:
     kommen
   only_letters_numbers: Nëmme Buschtawen an Zifferen, keng Eidelzeechen, muss mat
     engem Buschtaf ufänken
+  only_the_project_admin_can_delete_this_project: Nëmmen den Administrateur vum Projet
+    kann dëse Projet läschen.
   only_you: Nëmmen Dir
   open: opmaachen
   open_: Opmaachen
@@ -1063,6 +1069,7 @@ lb:
     one: anert Déier
     other: aner Déieren
   other_annimals: Aner Déieren
+  other_lexicons: Aner Lexikonen
   our_blog: Eise Blog
   overview: Iwwersiicht
   owner: Besëtzer
@@ -1092,6 +1099,7 @@ lb:
   photos_size_photos: '%{photos_size} Fotoen'
   photos_size_photo: '%{photos_size} Foto'
   photos_updated: Fotoen aktualiséiert.
+  pick_a_username: Sicht e Benotzernumm eraus
   pink: rosa
   place: Plaz
   place_deleted: Plaz geläscht.
@@ -1193,6 +1201,7 @@ lb:
   plants: Planzen
   popular: beléift
   position: Positioun
+  possessive_user: '%{user}'
   potential_disagreement: Potentiellen Desaccord
   press: Press
   previous: Vireg
@@ -1211,6 +1220,7 @@ lb:
   project_members: '%{project} Memberen'
   project_name: Numm vum Projet
   project_settings: Astellunge vum Projet
+  project_was_successfully_updated: De Projet gouf aktualiséiert.
   projects: Projeten
   projects_from_place: Projete vu(n) %{place}
   projects_you_admin: Projeten déi Dir administréiert
@@ -1322,6 +1332,7 @@ lb:
   species_by_category: Aarten no Kategorie
   standard: Standard
   start: Ufank
+  start_a_new_project: En neie Projet ufänken
   start_a_project: E Projet ufänken
   start_new_project: En neie Projet ufänken
   stats: Statistiken
@@ -1341,6 +1352,7 @@ lb:
   summary: Resumé
   supporting: Ënnerstëtzen
   sun: Son
+  suspend_user: Benotzer suspendéieren
   table: Tabell
   take_me_back: Zréck goen
   taxa_all_species_html: All Spezien
@@ -1350,6 +1362,7 @@ lb:
   text: Text
   text_: Text
   thanks_from_all_of_us_here_at: Merci vun eis all hei op
+  that_project_doesnt_exist: Dee Projet gëtt et net.
   the_: De(n)
   the_list: d'Lëscht
   the_project: de Projet
@@ -1369,6 +1382,7 @@ lb:
   title_and_description: Titel & Beschreiwung
   today: Haut
   total: Total
+  translated_languages: Iwwersat Sproochen
   "true": Wouer
   trends: Tendenzen
   try_it_out: Probéiert et aus
@@ -1376,12 +1390,14 @@ lb:
   tue: Dën
   twitter: Twitter
   type: Typ
+  type_project_name: Tippt den Numm vum Projet
   unblock: Spär ophiewen
   unknown: Onbekannt
   unknown_error: Onbekannte Feeler
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
   unmute: Stomm schalten ausmaachen
   updating: Aktualisatioun...
+  unsuspend_user: Suspendéierung vum Benotzer ophiewen
   update: Aktualiséieren
   update_search: Sichen aktualiséieren
   update_with_eol_content: Mat EOL-Inhalt aktualiséieren
@@ -1406,6 +1422,7 @@ lb:
   user_blocked: Benotzer gespaart
   user_invited_you_to_join_html: '%{user} huet Iech invitéiert fir matzemaachen'
   user_muted: Benotzer stommgeschalt
+  user_s: '%{user}'
   user_s_lists: '%{user} Lëschten'
   username: Benotzernumm
   username_or_email: Benotzernumm oder E-Mail-Adress
@@ -1438,6 +1455,7 @@ lb:
   want_to_test_a_new_version_of_this_page: Wëllt Dir eng nei Versioun vun dëser Säit
     testen?
   wanted: Gesicht
+  we_couldnt_find_a_user: Mir konnte kee Benotzer mat där E-Mail-Adress fannen.
   we_had_trouble_saving_comment: 'Mir hu Problemer fir déi Bemierkung ze späicheren:'
   weather: Wieder
   website: Internetsite
@@ -1499,8 +1517,11 @@ lb:
   you_can_accept_invitations: Dir kënnt d'Invitatioun hei unhuelen
   you_can_only_block_three_users: Dir kënnt nëmmen dräi Benotzer spären
   you_dont_have_permission_to_do_that: Dir hutt net d'Recht fir dat ze maachen.
+  you_have_left_x_project: Dir hutt %{project} verlooss
   you_have_to: Dir musst
   you_joined_this_project: Dir maacht bei dësem Projet mat!
+  you_must_be_a_member_of_this_project_to_do_that: Dir musst e Member vun dësem Projet
+    si fir dat ze maachen
   you_must_fill_out_the_required_fields: Dir musst déi obligatoresch Felder ausfëllen
   you_need_to_select_at_least_one_photo: Dir musst mindestens eng Foto eraussichen!
   you_sure_delete_comment?: Sidd Dir sécher datt Dir dës Bemierkung läsche wëllt?
@@ -1559,6 +1580,7 @@ lb:
         date_column_format: JJJJ-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
     projects:
+      project_type: Typ vu Projet
       collection: Sammlung
       umbrella: Prabelli
       edit:
@@ -1566,6 +1588,7 @@ lb:
           has_a_photo: eng Foto hunn
       new:
         delete_project: Projet läschen
+        display_project_name: Numm vum Projet weisen
         project_details: Detailer vum Projet
         project_name: Numm vum Projet
         project_summary: Resumé vum Projet
@@ -1607,6 +1630,8 @@ lb:
           joined: Projeten deenen Dir bäigetruede sidd
           none: Keen, nëmmen Dir kennt Är Observatiounen a Projete bäisetzen
         scientific_name_first_desc: Déi wëssentlech Nimm virun de populären Nimm weisen.
+      show:
+        this_user_was_banned: Dëse Benotzer gouf suspendéiert
     welcome:
       index:
         connect_with_nature: Mat der Natur verbannen
@@ -1766,6 +1791,7 @@ lb:
       post:
         title: Titel
       project:
+        project_icon: Symbol vum Projet
         description: Beschreiwung
       place:
         name: Numm
