@@ -33,4 +33,4 @@
   <% if i % 3 == 2 -%><div class="clear" style="margin-bottom: 10px"></div><% end -%>
 <% end %>
 
-<%= will_paginate @projects, :renderer => INatLinkRenderer %>
+<%= will_paginate @projects, renderer: INatLinkRenderer, skip_right: true %>

@@ -109,9 +109,24 @@ class ProjectsController < ApplicationController
     end
     @order = params[:order] if ORDERS.include?(params[:order])
     @order ||= 'title'
-    @projects = Project.not_flagged_as_spam.
-      page(params[:page]).order(ORDER_CLAUSES[@order])
-    @projects = @projects.in_place(@place) if @place
+
+    filters = []
+    if @place
+      filters << { terms: { associated_place_ids: [@place.id] } }
+    end
+    sort = { title_exact: :asc }
+    if @order == "created"
+      sort = { created_at: :desc }
+    end
+    @projects = Project.elastic_paginate(
+      filters: filters,
+      inverse_filters: [
+        { term: { spam: true } }
+      ],
+      sort: sort,
+      page: params[:page]
+    )
+
     respond_to do |format|
       format.html
     end
