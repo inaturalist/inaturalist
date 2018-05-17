@@ -49,6 +49,22 @@ const App = ( { taxon, showNewTaxon, config } ) => (
                 forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
                 user={ config.currentUser }
               />
+              {
+                config.currentUser &&
+                config.currentUser.roles &&
+                (
+                  config.currentUser.roles.indexOf( "curator" ) >= 0 ||
+                  config.currentUser.roles.indexOf( "admin" ) >= 0
+                ) &&
+                taxon.flag_counts &&
+                taxon.flag_counts.unresolved &&
+                taxon.flag_counts.unresolved > 0 ? (
+                  <a href={ `/taxa/${taxon.id}/flags` } className="btn btn-default btn-flags">
+                    <i className="fa fa-flag">
+                    </i> { I18n.t( "flags_with_count", { count: taxon.flag_counts.unresolved } ) }
+                  </a>
+                ) : null
+              }
             </h1>
             <div>
               <PlaceChooserContainer />

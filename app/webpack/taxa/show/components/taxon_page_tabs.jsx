@@ -33,17 +33,16 @@ class TaxonPageTabs extends React.Component {
     }
   }
   render( ) {
-    const speciesOrLower = this.props.taxon && this.props.taxon.rank_level <= 10;
-    const chosenTab = this.props.chosenTab;
+    const { taxon, chosenTab, currentUser, showPhotoChooserModal } = this.props;
+    const speciesOrLower = taxon && taxon.rank_level <= 10;
     let curationTab;
-    const currentUser = this.props.currentUser;
     if ( currentUser && currentUser.id ) {
       const isCurator =
         currentUser.roles.indexOf( "curator" ) >= 0 ||
         currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;
-      if ( isCurator && this.props.taxon.rank_level <= 10 ) {
-        atlasItem = this.props.taxon.atlas_id ? (
+      if ( isCurator && taxon.rank_level <= 10 ) {
+        atlasItem = taxon.atlas_id ? (
           <MenuItem eventKey="edit-atlas" >
             <i className="fa fa-globe"></i> { I18n.t( "edit_atlas" ) }
           </MenuItem>
@@ -61,22 +60,22 @@ class TaxonPageTabs extends React.Component {
             onSelect={ ( e, eventKey ) => {
               switch ( eventKey ) {
                 case "add-flag":
-                  window.location = `/taxa/${this.props.taxon.id}/flags/new`;
+                  window.location = `/taxa/${taxon.id}/flags/new`;
                   break;
                 case "view-flags":
-                  window.location = `/taxa/${this.props.taxon.id}/flags`;
+                  window.location = `/taxa/${taxon.id}/flags`;
                   break;
                 case "edit-photos":
-                  this.props.showPhotoChooserModal( );
+                  showPhotoChooserModal( );
                   break;
                 case "edit-atlas":
-                  window.location = `/atlases/${this.props.taxon.atlas_id}`;
+                  window.location = `/atlases/${taxon.atlas_id}`;
                   break;
                 case "new-atlas":
-                  window.location = `/atlases/new?taxon_id=${this.props.taxon.id}`;
+                  window.location = `/atlases/new?taxon_id=${taxon.id}`;
                   break;
                 default:
-                  window.location = `/taxa/${this.props.taxon.id}/edit`;
+                  window.location = `/taxa/${taxon.id}/edit`;
               }
             }}
           >
@@ -90,10 +89,11 @@ class TaxonPageTabs extends React.Component {
                 <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
-                className={isCurator ? "" : "hidden"}
+                className={isCurator && taxon.flag_counts && taxon.flag_counts.unresolved && taxon.flag_counts.unresolved > 0 ? "" : "hidden"}
                 eventKey="view-flags"
               >
-                <i className="fa fa-flag-checkered"></i> { I18n.t( "view_flags" ) }
+                <i className="fa fa-flag-checkered">
+                </i> { I18n.t( "view_flags" ) } <strong>({ taxon.flag_counts ? taxon.flag_counts.unresolved : 0 })</strong>
               </MenuItem>
               <MenuItem
                 eventKey="edit-photos"

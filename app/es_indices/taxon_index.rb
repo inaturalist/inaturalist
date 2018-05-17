@@ -126,6 +126,7 @@ class Taxon < ActiveRecord::Base
     end
     # indexing originating from Taxa
     unless options[:for_observation] || options[:no_details]
+      flag_counts = flags.group( :resolved ).count
       json.merge!({
         created_at: created_at,
         default_photo: default_photo ?
@@ -135,6 +136,10 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        flag_counts: {
+          resolved: flag_counts[true] || 0,
+          unresolved: flag_counts[false] || 0
+        },
         current_synonymous_taxon_ids: is_active? ? nil : current_synonymous_taxa.map(&:id),
         # see prepare_for_index. Basicaly indexed_place_ids may be set
         # when using Taxon.elasticindex! to bulk import

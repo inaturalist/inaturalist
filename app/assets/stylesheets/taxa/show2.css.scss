@@ -29,6 +29,12 @@
   margin-top: 10px;
   font-size: 32px;
   font-weight: 300;
+
+  .btn-flags {
+    margin-left: 10px;
+    background-color: #EFD6D6;
+    i { color: red; }
+  }
 }
 
 #TaxonHeader .taxon .display-name {
