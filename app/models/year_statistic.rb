@@ -128,7 +128,7 @@ class YearStatistic < ActiveRecord::Base
         params[:locale] = locale
       end
     end
-    JSON.parse( INatAPIService.get_json("/observations/tree_taxa", params, 3, 30 ) )["results"] rescue nil
+    JSON.parse( INatAPIService.get_json("/observations/tree_taxa", params, { timeout: 30 } ) )["results"] rescue nil
   end
 
   def self.observations_histogram( year, options = {} )
@@ -144,7 +144,7 @@ class YearStatistic < ActiveRecord::Base
     if site = options[:site]
       params[:site_id] = site.id
     end
-    JSON.parse( INatAPIService.get_json("/observations/histogram", params, 3, 30 ) )["results"][params[:interval]]
+    JSON.parse( INatAPIService.get_json("/observations/histogram", params, { timeout: 30 } ) )["results"][params[:interval]]
   end
 
   def self.identifications_histogram( year, options = {} )
@@ -252,7 +252,7 @@ class YearStatistic < ActiveRecord::Base
       params[:site_id] = site.id
     end
     # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
-    JSON.parse( INatAPIService.get_json( "/observations/species_counts", params, 3, 30 ) )["total_results"].to_i
+    JSON.parse( INatAPIService.get_json( "/observations/species_counts", params, { timeout: 30 } ) )["total_results"].to_i
   end
 
   def self.iconic_taxa_counts( year, options = {} )
@@ -325,7 +325,7 @@ class YearStatistic < ActiveRecord::Base
     return [] if ids.blank?
       
     JSON.
-        parse( INatAPIService.get_json( "/observations", api_params, 3, 30 ) )["results"].
+        parse( INatAPIService.get_json( "/observations", api_params, { timeout: 30 } ) )["results"].
         sort_by{|o| [0 - o["cached_votes_total"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
       if i < 10
