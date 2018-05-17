@@ -323,7 +323,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     }
     // setting _iconic_taxa for the iconic taxa filters, (e.g { Chromista: true })
     if( initialParams.iconic_taxa ) {
-      initialParams._iconic_taxa = _.object( _.map( initialParams.iconic_taxa.split(","),
+      initialParams._iconic_taxa = _.fromPairs( _.map( initialParams.iconic_taxa.split(","),
         function( n ) { return [ n, true ]; }
       ));
     }
@@ -385,8 +385,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     var currentState = { };
     var currentSearch = { };
     if( !_.isEmpty( newParams ) ) {
-      var urlParams = ObservationsFactory.processParams( _.object( newParams ), $scope.possibleFields );
-      urlParams = _.mapObject( urlParams, function( v, k ) {
+      var urlParams = ObservationsFactory.processParams( _.fromPairs( newParams ), $scope.possibleFields );
+      urlParams = _.mapValues( urlParams, function( v, k ) {
         // arrays turned to comma-delimited lists for URLs
         if( _.isArray( v ) ) { return v.join(","); }
         // allow `photos=any` when the default value of true is changed
@@ -1026,7 +1026,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       delete previousProcessedParams.subview;
       // restoring state of iconic taxa filters, (e.g { Chromista: true })
       if( previousParams.iconic_taxa ) {
-        previousParams._iconic_taxa = _.object( _.map( previousParams.iconic_taxa.split(","),
+        previousParams._iconic_taxa = _.fromPairs( _.map( previousParams.iconic_taxa.split(","),
           function( n ) { return [ n, true ]; }
         ));
       }
@@ -1352,6 +1352,9 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.snippetInfoWindowObservation = o;
     $scope.snippetInfoWindow = $scope.snippetInfoWindow ||
       $scope.map.getInfoWindow({ disableAutoPan: true });
+    if ( !o.location ) {
+      return;
+    }
     var ll = o.location.split(",");
     var latLng = new google.maps.LatLng( ll[0], ll[1] );
     $scope.infoWindowCallback( $scope.map, iw, latLng, o.id );

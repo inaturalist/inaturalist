@@ -48,6 +48,7 @@
         alert( "We're really sorry but this page probably won't work in older browsers like Internet Explorer. Please try it out in an up-to-date version of Chrome, Firefox, or Safari." );
       }
     })
+    window._.any = _.some; // Patch so torque won't miss underscore
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
   = javascript_include_tag "torque.full.uncompressed"
   = javascript_include_tag "stats-year-webpack"
