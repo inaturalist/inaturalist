@@ -32,7 +32,7 @@
 
 <ul>
   <li><%= link_to t(:read_our_getting_started_guide).capitalize, url_for(:controller => "help", :action => "getting_started", :only_path => false) %></li>
-  <li><%= link_to t(:add_an_observation).capitalize, new_observation_url %></li>
+  <li><%= link_to t(:add_an_observation).capitalize, upload_observations_url %></li>
   <li><%= link_to t(:fill_out_your_profile).capitalize, edit_user_url(@resource) %></li>
   <li>
     <%= link_to t(:find_some_people_to_follow).capitalize, people_url %>
