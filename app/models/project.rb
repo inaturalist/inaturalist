@@ -338,6 +338,18 @@ class Project < ActiveRecord::Base
     [ place_id, rule_place_ids ].flatten.compact.uniq
   end
 
+  def associated_place_ids
+    rule_places = project_observation_rules.where(operator: "observed_in_place?").map(&:operand).compact
+    place_ids = [place.try(:self_and_ancestor_ids), rule_places.map(&:self_and_ancestor_ids)]
+    if project_type == "umbrella"
+      project_observation_rules.includes(:operand).each do |por|
+        next unless por.operand.is_a? Project
+        place_ids << por.operand.associated_place_ids
+      end
+    end
+    place_ids.flatten.uniq.compact
+  end
+
   def observations_url_params(options = {})
     params = { }
     if start_time && end_time
@@ -996,42 +1008,6 @@ class Project < ActiveRecord::Base
     return true if aggregation_allowed?
     errors.add(:base, I18n.t(:project_aggregator_filter_error))
     true
-  end
-
-  def self.recently_added_to_ids( options = { } )
-    options[:limit] ||= 9
-    project_observations = ProjectObservation.select( "project_id" )
-    # add place filter
-    if options[:place] && options[:place].is_a?( Place )
-      project_observations = project_observations.
-        joins( project: :place ).
-        where( options[:place].self_and_descendant_conditions )
-    end
-    # ignore projects previously included
-    if options[:not_project_ids]
-      project_observations = project_observations.
-        where("project_observations.project_id NOT IN (?)", options[:not_project_ids] )
-    end
-    ids = project_observations.
-      order( "project_observations.id DESC" ).
-      limit( options[:limit] ).
-      pluck(:project_id).uniq
-    # there are no more recent projects
-    return if ids.empty?
-    # if there might be more results, and we are short of the requested limit
-    if ids.length < options[:limit]
-      # fetch the remaining projects
-      ignore_project_ids = options[:not_project_ids] ? options[:not_project_ids].dup : []
-      more_ids = Project.recently_added_to_ids( options.merge(
-        limit: options[:limit] - ids.length,
-        not_project_ids: ids + ignore_project_ids ) )
-      ids += more_ids if more_ids
-    end
-    ids
-  end
-
-  def self.recently_added_to( options = { } )
-    Project.where( id: Project.recently_added_to_ids( options ) ).not_flagged_as_spam
   end
 
   def self.refresh_es_index

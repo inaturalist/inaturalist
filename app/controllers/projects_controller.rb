@@ -39,19 +39,31 @@ class ProjectsController < ApplicationController
         if @site && (@site_place = @site.place)
           @place = @site.place unless params[:everywhere].yesish?
         end
-        @projects = Project.recently_added_to(place: @place).includes(:stored_preferences)
-        @created = Project.not_flagged_as_spam.order("projects.id desc").limit(8).includes(:stored_preferences)
-        @created = @created.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @featured = Project.featured.includes(:stored_preferences)
-        @featured = @featured.joins(:place).where(@place.self_and_descendant_conditions) if @place
-        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 ).includes(:stored_preferences)
+
+        filters = []
+        if @place
+          filters << { terms: { associated_place_ids: [@place.id] } }
+        end
+        project_ids = Project.elastic_search(
+          filters: filters,
+          sort: [
+            { featured_at: :desc },
+            { updated_at: :desc }
+          ],
+          source: %w(id),
+          size: 100
+        ).response.hits.hits.map{|h| h._source.id }
+
+        @projects = Project.where( id: project_ids ).includes(:stored_preferences).not_flagged_as_spam.limit( 30 )
+        @created = @projects.order( "projects.id desc" ).limit( 8 )
+        @featured = @projects.featured
+        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 )
         @carousel = @featured.limit( 3 ) if @carousel.count == 0
         @carousel = @projects.limit( 3 ) if @carousel.count == 0
         @carousel = @carousel.to_a.sort_by(&:featured_at).reverse
 
         @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}.sort_by(&:featured_at).reverse[0..8]
-        @recent = Project.joins(:posts).order( "posts.id DESC" ).limit( 20 ).includes(:stored_preferences)
-        @recent = @recent.joins( :place ).where( @place.self_and_descendant_conditions ) if @place
+        @recent = @projects.joins(:posts).order( "posts.id DESC" ).limit( 20 )
         @recent = @recent.to_a.uniq[0..7]
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
@@ -899,7 +911,7 @@ class ProjectsController < ApplicationController
 
   def search
     if @site && (@site_place = @site.place)
-      @place = @site.place unless params[:everywhere].yesish?
+      @place = @site_place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
       filters = [
@@ -912,7 +924,7 @@ class ProjectsController < ApplicationController
           }
         }
       ]
-      filters << { term: { place_ids: @place.id } } if @place
+      filters << { terms: { associated_place_ids: [@place.id] } } if @place
       @projects = Project.elastic_paginate(
         filters: filters,
         inverse_filters: [

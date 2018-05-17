@@ -79,6 +79,7 @@ class Project < ActiveRecord::Base
       user_id: user_id,
       admins: project_users.select{ |pu| !pu.role.blank? }.uniq.map(&:as_indexed_json),
       rule_place_ids: rule_place_ids,
+      associated_place_ids: associated_place_ids,
       user_ids: project_users.map(&:user_id).uniq.sort,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
