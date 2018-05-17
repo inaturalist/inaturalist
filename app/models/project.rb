@@ -110,12 +110,7 @@ class Project < ActiveRecord::Base
     if place
       conditions = place.descendant_conditions.to_sql
       conditions += " OR places.id = #{place.id}"
-      conditions = "( #{conditions} OR r.operand_id = #{place.id} OR #{place.descendant_conditions.to_sql.gsub( /places/, "rp" ) } )"
-      select( "DISTINCT projects.id, projects.*" ).
-        joins( "LEFT OUTER JOIN places ON places.id = projects.place_id" ).
-        joins( "LEFT OUTER JOIN rules r ON r.ruler_type = 'Project' AND r.operand_type = 'Place'" ).
-        joins( "LEFT OUTER JOIN places rp ON rp.id = r.operand_id" ).
-        where( conditions )
+      joins(:place).where(conditions)
     else
       where("1 = 2")
     end
@@ -1005,18 +1000,12 @@ class Project < ActiveRecord::Base
 
   def self.recently_added_to_ids( options = { } )
     options[:limit] ||= 9
-    project_observations = ProjectObservation.select( "DISTINCT project_id, project_observations.id" )
+    project_observations = ProjectObservation.select( "project_id" )
     # add place filter
-    if ( place = options[:place] ) && place.is_a?( Place )
-      conditions = place.descendant_conditions.to_sql
-      conditions += " OR places.id = #{place.id}"
-      conditions = "( #{conditions} OR r.operand_id = #{place.id} OR #{place.descendant_conditions.to_sql.gsub( /places/, "rp" ) } )"
+    if options[:place] && options[:place].is_a?( Place )
       project_observations = project_observations.
-        joins( :project ).
-        joins( "LEFT OUTER JOIN places ON places.id = projects.place_id" ).
-        joins( "LEFT OUTER JOIN rules r ON r.ruler_type = 'Project' AND r.operand_type = 'Place'" ).
-        joins( "LEFT OUTER JOIN places rp ON rp.id = r.operand_id" ).
-        where( conditions )
+        joins( project: :place ).
+        where( options[:place].self_and_descendant_conditions )
     end
     # ignore projects previously included
     if options[:not_project_ids]
@@ -1025,7 +1014,8 @@ class Project < ActiveRecord::Base
     end
     ids = project_observations.
       order( "project_observations.id DESC" ).
-      limit( options[:limit] ).map(&:project_id)
+      limit( options[:limit] ).
+      pluck(:project_id).uniq
     # there are no more recent projects
     return if ids.empty?
     # if there might be more results, and we are short of the requested limit
