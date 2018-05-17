@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
       post_count = [journal_posts_count.to_i, 0].max
       json.merge!({
         login_autocomplete: login,
+        login_exact: login,
         name: name,
         name_autocomplete: name,
         icon: icon.file? ? icon.url(:thumb) : nil,
