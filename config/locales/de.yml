@@ -1087,14 +1087,6 @@ de:
     currentText: Heute
     prevText: Zurück
     nextText: Weiter
-    monthNames: '[''Januar'', ''Februar'', ''März'', ''April'', ''Mai'', ''Juni'',
-      ''Juli'', ''August'', ''September'', ''Oktober'', ''November'', ''Dezember'']'
-    monthNamesShort: '[''Jan'',''Feb'',''Mrz'',''Apr'', ''Mai'',''Jun'',''Jul'',''Aug'',''Sep'',
-      ''Okt'',''Nov'',''Dez'']'
-    dayNames: '[''Sonntag'', ''Montag'', ''Dienstag'', ''Mittwoch'', ''Donnerstag'',
-      ''Freitag'', ''Samstag'']'
-    dayNamesShort: '[''So'',''Mo'',''Di'',''Mi'',''Do'',''Fr'',''Sa'']'
-    dayNamesMin: '[''So'',''Mo'',''Di'',''Mi'',''Do'',''Fr'',''Sa'']'
     range: Bereich
   date_range: Datumsbereich
   date_specified: Angegebenes Datum
@@ -1175,6 +1167,7 @@ de:
   duplicate_verb: Duplikat
   edit: Bearbeiten
   edit_a_batch_of_observations: Einen Stapel an Beobachtungen bearbeiten
+  edit_account_settings_and_profile: Benutzerkonteneinstellungen &amp; Profil bearbeiten
   edit_assessment: Bewertung bearbeiten
   edit_atlas: Atlas bearbeiten
   edit_body: Haupttext bearbeiten
@@ -1230,6 +1223,7 @@ de:
   eg: z.B.
   either: Oder
   email: E-Mail
+  email_addresses_to_receive_invites: E-Mail-Adressen zum Erhalt von Einladungen
   email_settings: E-Mail-Einstellungen
   embed: Einbetten
   embed_place_widget: Eingebettetes Orts Widget
@@ -1285,15 +1279,18 @@ de:
   facebook: Facebook
   facebook_account_information: Ihre Facebook-Konto Informationen
   facebook_options: Facebook-Optionen
+  facts_and_stats: Fakten und Statistiken
   failed_to_find_your_location: Standort konnte nicht gefunden werden
   failed_to_repair_photo: 'Fehler bei der Reparatur des Fotos: %{errors}'
   "false": Falsch
   faq: Häufig gestellte Fragen
+  faves: Favoriten
   Family: Familie
   favorite_taxa: bevorzugte Taxa
   favorites: Favoriten
   feedback: Feedback
   feedback_group: Feedback Gruppe
+  feeds: Feeds
   feeds_for_current_filters: Feeds für Aktuelle Filter
   failed: Fehlgeschlagen
   fields: Felder
@@ -1337,6 +1334,7 @@ de:
   flag_as_inappropriate: Als unangemessen hervorheben
   flag_an_item: Objekt hervorheben
   flag_as_spammer: Als Spammer markieren
+  flag_for_curation: Zur Kuratierung markieren
   flag_it!: Markieren!
   flag_saved: Markierung gespeichert.
   flag_saved_thanks: Markierung gespeichert. Danke!
@@ -1344,7 +1342,9 @@ de:
   flag_this_photo: Dieses Foto markieren
   flagged: Gekennzeichnet
   flagged_: Gekennzeichnet
+  flagged_for_curation: Zur Kuratierung markiert
   flagger: Markierer
+  flags: Markierungen
   flags_for: Markierungen für
   flickr_identity: Flickr-Identität
   flickr_photo: Flickr Foto
@@ -1747,7 +1747,7 @@ de:
   location_is_obscured: Standort ist obskur
   location_is_private: Standort ist privat
   location_specified: Standort festgelegt
-  log_in: Einloggen
+  log_in: Anmelden
   logged_in_as: Einloggen als
   login_slash_username: Login / Benutzername
   logo:

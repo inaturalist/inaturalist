@@ -1218,13 +1218,6 @@ fr:
     currentText: Aujourd’hui
     prevText: Précédent
     nextText: Suivant
-    monthNames: '[''Janvier'', ''Février'', ''Mars'', ''Avril'', ''Mai'', ''Juin'',
-      ''Juillet'', ''Août'', ''Septembre'', ''Octobre'', ''Novembre'', ''Décembre'']'
-    monthNamesShort: '[''Jan'',''Fév'',''Mar'',''Avr'',''Mai'',''Jun'',''Jul'',''Aoû'',''Sep'',''Oct'',''Nov'',''Déc'']'
-    dayNames: '[''Dimanche'', ''Lundi'', ''Mardi'', ''Mercredi'', ''Jeudi'', ''Vendredi'',
-      ''Samedi'']'
-    dayNamesShort: '[''Dim'',''Lun'',''Mar'',''Mer'',''Jeu'',''Ven'',''Sam'']'
-    dayNamesMin: '[''Di'',''Lu'',''Ma'',''Me'',''Je'',''Ve'',''Sa'']'
     range: Intervalle
   date_range: Date de classement
   date_specified: Date spécifiée
@@ -1965,6 +1958,12 @@ fr:
   it_has: Ce taxon a des
   it_instead: si un taxon a des observations, des identifications, des taxons répertoriés
     associés, etc.
+  item_flagged_notice_html: |-
+    Ceci a été marqué comme pourriel et n’est plus
+    visible publiquement. Vous pouvez le voir parce que vous l’avez créé, ou que vous êtes un
+    superviseur du site. Si vous pensez que c’est une erreur, veuillez
+    <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
+    <a href="%{manage_flags_path}">Gérer les drapeaux</a>
   its_important_that_you: Il est important que vous cliquiez
   iucn_red_list_status: Situation selon la liste rouge de l’UICN
   january: Janvier
@@ -2254,7 +2253,7 @@ fr:
     de l’organisation peut annuler cette action en modifiant les taxons et en entrant
     directement les identifications de rang supérieur, mais il est préférable de fusionner
     les nouveaux taxons avec les taxons existants.
-  log_in: Connectez-vous
+  log_in: Connexion
   logged_in_as: Vous êtes connecté en tant que
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -2962,6 +2961,7 @@ fr:
     one: autre animal
     other: autres animaux
   other_annimals: Autres animaux
+  other_lexicons: Autres lexicons
   other_listings_of_this_taxon_for_this_place: Autres listes de ce taxon pour ce lieu
   other_species_commonly_misidentified_as_this_species: Autres espèces souvent confondues
     avec cette espèce
@@ -4360,6 +4360,7 @@ fr:
   total_species_observed: Nombre total d’espèces observées
   total_unique_observers: Total des observateurs uniques
   total_users: total des utilisateurs,
+  translated_languages: Langues traduites
   "true": Oui
   trending: Tendance
   trends: Tendances
@@ -4561,6 +4562,7 @@ fr:
   view_contributions: Afficher les contributions
   view_details: Afficher les détails
   view_field_options: Afficher les options du champ
+  view_flag: Afficher le drapeau
   view_flags: Afficher les drapeaux
   view_flags_for_x_html: Afficher les drapeaux pour %{x}
   view_full_observation: Afficher l’observation complète
@@ -4762,6 +4764,8 @@ fr:
   x_deleted: '%{x} supprimé'
   x_does_not_exist: « %{x} » n’existe pas
   x_doesnt: '%{login} ne fait pas'
+  x_flagged: '%{x} marqué'
+  x_flagged_as_flag: '%{x} marqué comme %{flag}'
   x_hasnt: '%{login} n’a pas'
   x_journal: Journal de %{user}
   x_journal_archives_for_y: Journal de %{user} • Archives de
@@ -5551,6 +5555,10 @@ fr:
         url: URL de l’observation
         image_url: URL de l’image par défaut
         tag_list: Liste d’étiquettes séparée par des virgules
+        place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau
+          pays
+        place_admin2_name: Nom de l’endroit administratif deux rangs en dessous du
+          niveau pays
         positioning_method: Façon dont les coordonnées ont été déterminées
         positioning_device: Appareil utilisé pour déterminer les coordonnées
       identify:
@@ -6105,6 +6113,33 @@ fr:
           en tant que projet Collection.
       updates_desc: Recevoir des notifications pour ce projet sur votre tableau de
         bord et dans le courriel quotidien
+    search:
+      index:
+        no_taxa_options_html: |-
+          <p>Vous avez quelques options :</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>Ajouter un drapeau à un taxon de plus haut niveau</strong>
+              <p>
+                Par ex. le genre qui contient une espèce. Avec de la chance, un superviseur
+                ami ajoutera le taxon s’il peut être ajouté.
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">Contacter le groupe de remarques</a></strong>
+              <p>
+                Beaucoup de superviseurs du site gardent trace des courriels du groupe de remarques.
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">Contacter le support</a>
+              </strong>
+              <p>
+                Soyez patient, nous n’avons pas une grosse équipe dédiée au support.
+              </p>
+            </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Vous avez été bloqué
@@ -6344,10 +6379,18 @@ fr:
             </p></li>
           <li>
               <p>
-                Les lexiques doivent être en anglais. Veuillez ne pas ajouter de noms de langue
+                Les nouveaux lexiques doivent être en anglais. Veuillez ne pas ajouter de noms de langue
                 traduits comme « French, Français » parce que cela rendra simplement
                 plus difficile ou impossible pour nous d’afficher les noms localisés aux personnes
                 qui utilisent ce site dans différentes langues.
+              </p>
+            </li>
+            <li>
+              <p>
+                Les noms communs associés avec les langues traduites apparaîtront
+                comme le nom commun par défaut pour cette langue (à l’exception de
+                l’effet des préférences de lieu, d’ordre des noms, etc.).
+                <a class="readmore" href="/pages/translate">En savoir plus sur la traduction</a>
               </p>
             </li>
           </ul>

@@ -523,14 +523,6 @@ el:
     currentText: Σήμερα
     prevText: Προηγ
     nextText: Επόμενο
-    monthNames: '[''Ιανουάριος'', ''Φεβρουάριος'', ''Μάρτιος'', ''Απρίλιος'', ''Μάιος'',
-      ''Ιούνιος'', ''Ιούλιος'', ''Αύγουστος'', ''Σεπτέμβριος'', ''Οκτώβριος'', ''Νοέμβριος'',
-      ''Δεκέμβριος'']'
-    monthNamesShort: '[''Ιαν'',''Φεβ'',''Μαρ'',''Απρ'',''Μαι'',''Ιουν'',''Ιουλ'',''Αυγ'',''Σεπ'',''Οκτ'',''Νοε'',''Δεκ'']'
-    dayNames: '[''Κυριακή'', ''Δευτέρα'', ''Τρίτη'', ''Τετάρτη'', ''Πέμπτη'', ''Παρασκευή'',
-      ''Σάββατο'']'
-    dayNamesShort: '[''Κυρ'',''Δευ'',''Τρι'',''Τετ'',''Πεμ'',''Παρ'',''Σαβ'']'
-    dayNamesMin: '[''Κυ'',''Δε'',''Τρ'',''Τε'',''Πε'',''Πα'',''Σα'']'
     range: Εύρος
   date_range: Εύρος ημερομηνίας
   date_time: Ημερομηνία/Ώρα
@@ -933,6 +925,8 @@ el:
     bengali: Βεγγαλικά
     catalan: Καταλανικά
     cebuano: Σεμπουανικά
+    chinese_simplified: Κινέζικα (Απλοποιημένα)
+    chinese_traditional: Κινεζικά (Παραδοσιακά)
     creole_french: κρεολικά (Γαλλικά)
     creole_portuguese: κρεολικά (Πορτογαλικά)
     czech: Τσεχικά
@@ -940,6 +934,7 @@ el:
     davawenyo: Νταβαουένγιο
     dutch: Ολλανδικά
     english: Αγγλικά
+    estonian: Εσθονικά
     finnish: Φινλανδικά
     french: Γαλλικά
     gela: Γκέλα
@@ -958,6 +953,7 @@ el:
     maori: Μαορί
     misima_paneati: Μισίμα-πανεάτι
     norwegian: Νορβηγικά
+    occitan: Οξιτανικά
     pangasinan: Πανγκασινάν
     portuguese: Πορτογαλικά
     romanian: Ρουμανικά
@@ -1057,7 +1053,7 @@ el:
   location_is_public: Η τοποθεσία είναι δημόσια
   location_is_private: Η τοποθεσία είναι ιδιωτική
   location_specified: Η τοποθεσία είναι ορισμένη
-  log_in: Είσοδος
+  log_in: Σύνδεση
   logged_in_as: Συνδεδεμένος ως
   login_slash_username: Σύνδεση / όνομα χρήστη
   logo:
@@ -1241,6 +1237,7 @@ el:
   no_colors_selected: Δεν έχουν επιλεχθεί χρώματα.
   no_comments_yet: Δεν υπάρχουν ακόμα σχόλια
   no_countries_added_yet: Δεν έχουν προστεθεί χώρες ακόμα
+  no_description: Χωρίς περιγραφή
   no_facebook_photos: Δε μπορέσαμε να βρούμε κάποια φωτογραφία από το Facebook.
   no_link_flickr: Όχι, καλύτερα όχι.
   no_matching_invitations: Δεν υπάρχουν αντίστοιχες προσκλήσεις
@@ -1405,6 +1402,7 @@ el:
     one: άλλο ζώο
     other: άλλα ζώα
   other_annimals: Άλλα ζώα
+  other_lexicons: Άλλα λεξικά
   our_blog: Το ιστολόγιό μας
   out_of_range: Εκτός εύρους
   overview: Επισκόπηση
@@ -1983,6 +1981,7 @@ el:
   totals: Σύνολα
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
+  translated_languages: Μεταφρασμένες γλώσσες
   "true": Αληθές
   trends: Τάσεις
   upload_photo: Ανέβασμα φωτογραφίας
@@ -1997,6 +1996,7 @@ el:
   your_membership: Η συμμετοχή σας
   your_projects: Τα εγχειρήματά σας
   your_google_account: ο Google λογαριασμό σας
+  your_recent_projects: Τα πρόσφατα εγχειρήματά σας
   your_tags: Οι ετικέτες σας
   views:
     observations:
