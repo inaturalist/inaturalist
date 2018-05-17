@@ -66,6 +66,9 @@ EOS
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
+  opt :additional_with_taxa_path, "Create a second archive with a taxa.csv file", type: :string
+  opt :post_taxon_archive_to_url, "Post the second archive with taxa.csv to this URL", type: :string
+  opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
 end
 
 if opts.debug

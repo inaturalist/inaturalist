@@ -4,35 +4,42 @@ module INatAPIService
   ENDPOINT = CONFIG.node_api_url
   TIMEOUT = 8
 
-  def self.identifications(params={})
-    return INatAPIService.get("/identifications", params)
+  def self.identifications(params={}, options = {})
+    return INatAPIService.get("/identifications", params, options)
   end
 
-  def self.identifications_categories(params={})
-    return INatAPIService.get("/identifications/categories", params)
+  def self.identifications_categories(params={}, options = {})
+    return INatAPIService.get("/identifications/categories", params, options)
   end
 
-  def self.observations(params={})
-    return INatAPIService.get("/observations", params)
+  def self.observations(params={}, options = {})
+    return INatAPIService.get("/observations", params, options)
   end
 
-  def self.observations_observers(params={})
-    return INatAPIService.get("/observations/observers", params)
+  def self.observations_observers(params={}, options = {})
+    return INatAPIService.get("/observations/observers", params, options)
   end
 
-  def self.observations_species_counts(params={})
-    return INatAPIService.get("/observations/species_counts", params)
+  def self.observations_species_counts(params={}, options = {})
+    return INatAPIService.get("/observations/species_counts", params, options)
   end
 
-  def self.observations_popular_field_values(params={})
-    return INatAPIService.get("/observations/popular_field_values", params)
+  def self.observations_popular_field_values(params={}, options = {})
+    return INatAPIService.get("/observations/popular_field_values", params, options)
   end
 
-  def self.geoip_lookup(params={})
-    return INatAPIService.get("/geoip_lookup", params)
+  def self.geoip_lookup(params={}, options = {})
+    return INatAPIService.get("/geoip_lookup", params, options)
   end
 
-  def self.get_json( path, params = {}, retries = 3, timeout = INatAPIService::TIMEOUT )
+  def self.taxa(params={}, options={})
+    return INatAPIService.get("/taxa", params, options)
+  end
+
+  def self.get_json( path, params = {}, options = {} )
+    options[:retries] ||= 3
+    options[:timeout] ||= INatAPIService::TIMEOUT
+    options[:retry_delay] ||= 0.1
     url = INatAPIService::ENDPOINT + path;
     headers = {}
     if api_token = params.delete(:api_token)
@@ -43,7 +50,7 @@ module INatAPIService
     end
     uri = URI(url)
     begin
-      timed_out = Timeout::timeout( timeout ) do
+      timed_out = Timeout::timeout( options[:timeout] ) do
         http = Net::HTTP.new(uri.host, uri.port)
         http.use_ssl = true if uri.scheme == "https"
         # http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -53,16 +60,22 @@ module INatAPIService
         end
       end
     rescue => e
-      Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{retries}) failed: #{e}"
+      Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{options[:retries]}) failed: #{e}"
     end
-    if retries.is_a?(Fixnum) && retries > 0
-      return INatAPIService.get_json( path, params, retries - 1 )
+    if options[:retries].is_a?(Fixnum) && options[:retries] > 0
+      retry_options = options.dup
+      retry_options[:retries] -= 1
+      if options[:retry_delay]
+        # delay a bit before retrying
+        sleep options[:retry_delay]
+      end
+      return INatAPIService.get_json( path, params, retry_options )
     end
     false
   end
 
-  def self.get( path, params = {}, retries = 3 )
-    json = get_json( path, params, retries )
+  def self.get( path, params = {}, options = {} )
+    json = get_json( path, params, options )
     return unless json
     OpenStruct.new_recursive( JSON.parse( json ) || {} )
   end
