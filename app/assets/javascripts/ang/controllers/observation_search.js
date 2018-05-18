@@ -780,11 +780,11 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       currentText: I18n.t('date_picker.currentText'),
       prevText: I18n.t('date_picker.prevText'),
       nextText: I18n.t('date_picker.nextText'),
-      montNames: _.compact( I18n.t( "date.month_names" ) ),
-      monthNamesShort: _.compact( I18n.t( "date.abbr_month_names" ) ),
-      dayNames: _.compact( I18n.t( "date.day_names" ) ),
-      dayNamesShort: _.compact( I18n.t( "date.abbr_day_names" ) ),
-      dayNamesMin: _.compact( I18n.t( "date.day_names_min" ) )
+      montNames: _.compact( _.values( I18n.t( "date.month_names" ) ) ),
+      monthNamesShort: _.compact( _.values( I18n.t( "date.abbr_month_names" ) ) ),
+      dayNames: _.compact( _.values( I18n.t( "date.day_names" ) ) ),
+      dayNamesShort: _.compact( _.values( I18n.t( "date.abbr_day_names" ) ) ),
+      dayNamesMin: _.compact( _.values( I18n.t( "date.day_names_min" ) ) )
     });
   };
   $scope.setupPlaceSearchbox = function( ) {
