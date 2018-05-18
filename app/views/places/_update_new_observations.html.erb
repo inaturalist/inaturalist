@@ -3,6 +3,14 @@
   updates ||= []
   observations = updates.map{|u| u.notifier}
   target_id = bootstrapTargetID
+  common_ancestor_ids = observations.detect{|o| o.taxon }.taxon.self_and_ancestor_ids
+  observations.each do |o|
+    next unless o.taxon
+    common_ancestor_ids = common_ancestor_ids & o.taxon.self_and_ancestor_ids
+  end
+  subscription = unless common_ancestor_ids.blank?
+    current_user.subscriptions.where( "resource_type = 'Place' AND resource_id = ?", place).where( "taxon_id IN (?)", common_ancestor_ids ).first
+  end
 -%>
 
 <div class="timeline-body">
@@ -14,6 +22,9 @@
     created_d1 = created_at_times.min.strftime( "%Y-%m-%dT%H:%M:%S%z" )
     created_d2 = ( created_at_times.max+1.second ).strftime( "%Y-%m-%dT%H:%M:%S%z" )
     url_params = { verifiable: "any", place_id: place.id, created_d1: created_d1, created_d2: created_d2, subview: "grid" }
+    if subscription && subscription.taxon_id
+      url_params[:taxon_id] = subscription.taxon_id
+    end
   -%>
   <div class="timeline-footer">
     <%= link_to t(:view_observations), observations_path( url_params ), class: "btn btn-sm btn-primary" %>
