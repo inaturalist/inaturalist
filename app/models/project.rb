@@ -498,6 +498,8 @@ class Project < ActiveRecord::Base
         operand_id: place_id
       ))
     end
+    # place_id gets turned into an observed_in_place? rule for collection projects
+    self.place_id = nil
   end
 
   def convert_to_collection_project

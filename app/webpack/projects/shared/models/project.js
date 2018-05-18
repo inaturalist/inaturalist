@@ -138,7 +138,7 @@ const Project = class Project {
         _.map( _.filter( this.rule_preferences, p => p.value !== null ), p => [p.field, p.value] )
       );
       if ( !_.isEmpty( this.taxonRules ) ) {
-        this.previewSearchParamsObject.taxon_id =
+        this.previewSearchParamsObject.taxon_ids =
           _.map( this.taxonRules, r => r.operand_id ).join( "," );
       }
       if ( !_.isEmpty( this.placeRules ) ) {

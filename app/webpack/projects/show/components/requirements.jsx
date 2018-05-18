@@ -4,12 +4,15 @@ import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 /* global TIMEZONE */
 
-function dateToString( date ) {
+function dateToString( date, spansYears = false ) {
+  let format;
   if ( date.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
+    format = spansYears ? "MMMM D, YYYY h:mma z" : "MMMM D h:mma z";
     return moment( date, "YYYY-MM-DD HH:mm Z" ).
-      parseZone( ).tz( TIMEZONE ).format( "MMMM D h:mma z" );
+      parseZone( ).tz( TIMEZONE ).format( format );
   }
-  return moment( date ).format( "MMMM D" );
+  format = spansYears ? "MMMM D, YYYY" : "MMMM D";
+  return moment( date ).format( format );
 }
 
 const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) => {
@@ -52,7 +55,9 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
     media.join( ` ${I18n.t( "and" )} ` );
   let dateRules = I18n.t( "any" );
   if ( project.rule_d1 && project.rule_d2 ) {
-    dateRules = `${dateToString( project.rule_d1 )} ${I18n.t( "to" )} ${dateToString( project.rule_d2 )}`;
+    const spansYears = project.startDate.year( ) !== project.endDate.year( );
+    dateRules = `${dateToString( project.rule_d1, spansYears )} ${I18n.t( "to" )} ` +
+      `${dateToString( project.rule_d2, spansYears )}`;
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
   }

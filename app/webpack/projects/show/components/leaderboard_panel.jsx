@@ -28,16 +28,21 @@ class LeaderboardPanel extends React.Component {
   linkForViewAll( options = { } ) {
     const { project, type, config } = this.props;
     const linkParams = Object.assign( { }, project.search_params );
+    const yours = options.yours && config.currentUser;
     linkParams.place_id = "any";
     linkParams.verifiable = "any";
     if ( type === "species" ) {
       linkParams.view = "species";
     } else if ( type === "observers" ) {
-      linkParams.view = "observers";
+      if ( yours ) {
+        linkParams.subview = "grid";
+      } else {
+        linkParams.view = "observers";
+      }
     } else if ( type === "species_observers" ) {
-      linkParams.view = "observers";
+      linkParams.view = yours ? "species" : "observers";
     }
-    if ( options.yours && config.currentUser ) {
+    if ( yours ) {
       linkParams.user_id = config.currentUser.id;
     }
     return `/observations?${$.param( linkParams )}`;
