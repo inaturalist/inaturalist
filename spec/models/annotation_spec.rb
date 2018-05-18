@@ -186,4 +186,65 @@ describe Annotation do
     }.to_not raise_error
   end
 
+  describe "deletion after" do
+    before do
+      @attribute = ControlledTerm.make!
+      @value = ControlledTerm.make!( is_value: true )  
+      @attribute.controlled_term_values << ControlledTermValue.new(
+        controlled_attribute: @attribute,
+        controlled_value: @value
+      )
+      @family = Taxon.make!( rank: Taxon::FAMILY )
+      @genus = Taxon.make!( rank: Taxon::GENUS, parent: @family )
+      @species = Taxon.make!( rank: Taxon::SPECIES, parent: @genus )
+      @attribute.controlled_term_taxa.create!( taxon: @family )
+
+      @observation = Observation.make!( taxon: @genus )
+      @annotation = Annotation.make!(
+        resource: @observation,
+        controlled_attribute: @attribute,
+        controlled_value: @value
+      )
+    end
+    describe "changing the observation taxon" do
+      it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
+        @observation.update_attributes( taxon: Taxon.make! )
+        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+      end
+      it "should not happen if the taxon is still a descendant of the controlled term taxon" do
+        @observation.update_attributes( taxon: @species )
+        expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
+      end
+    end
+    describe "moving the observation taxon" do
+      it "should happen when the taxon is no longer a descendant of the controlled term taxon" do
+        other_family = Taxon.make!( rank: Taxon::FAMILY )
+        @observation.taxon.update_attributes( parent: other_family )
+        Delayed::Worker.new.work_off
+        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+      end
+      it "should not happen if the taxon is still a descendant of the controlled term taxon" do
+        subfamily = Taxon.make!( rank: Taxon::SUBFAMILY, parent: @family )
+        @observation.taxon.update_attributes( parent: subfamily )
+        Delayed::Worker.new.work_off
+        expect( Annotation.find_by_id( @annotation.id ) ).not_to be_blank
+      end
+    end
+    describe "changing the controlled term taxon" do
+
+      it "should happen when the observation taxon is no longer a descendant of the controlled term taxon" do
+        @attribute.controlled_term_taxa.destroy_all
+        @attribute.controlled_term_taxa.create!( taxon: Taxon.make! )
+        Delayed::Worker.new.work_off
+        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+      end
+      it "should not happen if the observation taxon is still a descendant of the controlled term taxon" do
+        subfamily = Taxon.make!( rank: Taxon::SUBFAMILY, parent: @family )
+        @attribute.controlled_term_taxa.destroy_all
+        @attribute.controlled_term_taxa.create!( taxon: subfamily )
+        Delayed::Worker.new.work_off
+        expect( Annotation.find_by_id( @annotation.id ) ).to be_blank
+      end
+    end
+  end
 end

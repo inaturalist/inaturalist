@@ -375,7 +375,8 @@ class Observation < ActiveRecord::Base
              :update_mappable,
              :set_captive,
              :set_taxon_photo,
-             :create_observation_review
+             :create_observation_review,
+             :reassess_annotations
   after_create :set_uri, :update_user_counter_caches
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
@@ -2520,6 +2521,14 @@ class Observation < ActiveRecord::Base
     return true unless taxon_id_was.blank?
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
+    true
+  end
+
+  def reassess_annotations
+    return true unless taxon_id_changed?
+    annotations.each do |a|
+      a.destroy unless a.valid?
+    end
     true
   end
 

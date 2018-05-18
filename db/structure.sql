@@ -6463,10 +6463,31 @@ CREATE INDEX fk_flags_user ON flags USING btree (user_id);
 
 
 --
+-- Name: index_annotations_on_controlled_attribute_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_annotations_on_controlled_attribute_id ON annotations USING btree (controlled_attribute_id);
+
+
+--
+-- Name: index_annotations_on_controlled_value_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_annotations_on_controlled_value_id ON annotations USING btree (controlled_value_id);
+
+
+--
 -- Name: index_annotations_on_resource_id_and_resource_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_annotations_on_resource_id_and_resource_type ON annotations USING btree (resource_id, resource_type);
+
+
+--
+-- Name: index_annotations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_annotations_on_user_id ON annotations USING btree (user_id);
 
 
 --
@@ -9309,4 +9330,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180501172628');
 INSERT INTO schema_migrations (version) VALUES ('20180504213719');
 
 INSERT INTO schema_migrations (version) VALUES ('20180518192353');
+
+INSERT INTO schema_migrations (version) VALUES ('20180518231918');
 

@@ -166,4 +166,32 @@ class Annotation < ActiveRecord::Base
     end
   end
 
+  def self.reassess_annotations_for_taxon_ids( taxon_ids )
+    Annotation.
+        joins(
+          controlled_attribute: {
+            controlled_term_taxa: {
+              taxon: :taxon_ancestors
+            }
+          }
+        ).
+        where( "taxon_ancestors.ancestor_taxon_id IN (?)", taxon_ids ).
+        includes(
+          :resource,
+          controlled_attribute: {
+            controlled_term_taxa: :taxon
+          }
+        ).
+        find_each do |a|
+      a.destroy unless a.valid?
+    end
+    
+  end
+
+  def self.reassess_annotations_for_attribute_id( attribute_id )
+    Annotation.where( controlled_attribute_id: attribute_id ).find_each do |a|
+      a.destroy unless a.valid?
+    end
+  end
+
 end
