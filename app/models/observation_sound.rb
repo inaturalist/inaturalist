@@ -1,12 +1,19 @@
 class ObservationSound < ActiveRecord::Base
   belongs_to :observation, inverse_of: :observation_sounds, counter_cache: false
   belongs_to :sound
-  after_create :set_observation_sounds_count
-  after_destroy :set_observation_sounds_count
+  after_create :set_observation_sounds_count, :set_observation_quality_grade
+  after_destroy :set_observation_sounds_count, :set_observation_quality_grade
   after_destroy :destroy_orphan_sound
 
   include Shared::TouchesObservationModule
   include ActsAsUUIDable
+
+  def set_observation_quality_grade
+    return true unless observation
+    return true if observation.new_record? # presumably this will happen when the obs is saved
+    Observation.set_quality_grade( observation.id )
+    true
+  end
 
   def set_observation_sounds_count
     return true unless observation_id
