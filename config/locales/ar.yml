@@ -1451,6 +1451,7 @@ ar:
   flagged_thing_explanation: علم المستخدمون هذا %{thing} لأنه
   flagger: المعلم
   flags: أعلام
+  flags_with_count: الأعلام (%{count})
   flags_explanation: يعلم مستخدمو %{site_name} الأشياء عندما يجدون شيئا غير صحيح،
     وهنا بعض القضايا التي لم يتم حلها من قبل المشرفين حتى الآن.
   flags_for: أعلام ل
@@ -1805,6 +1806,10 @@ ar:
     أخرى
   it_has: لديه
   it_instead: بدلا من ذلك.
+  item_flagged_notice_html: "تم تعليم هذه كرسالة غير مرغوب فيها ولم تعد \nمرئية للجميع،
+    يمكنك رؤيتها نظرا لأنك أنشأتها، أو لأنك\nأمين موقع، إذا كنت تعتقد أن هذا خطأ،
+    فالرجاء\n<a href=\"mailto:%{help_email}\" class=\"contact\">الاتصال بنا</a>.\n<a
+    href=\"%{manage_flags_path}\">إدارة الأعلام</a>"
   its_important_that_you: من المهم أن تنقر
   iucn_red_list_status: حالة القائمة الحمراء للأنواع المهددة بالانقراض
   january: يناير
@@ -2737,6 +2742,7 @@ ar:
     one: حيوان آخر
     other: حيوانات أخرى
   other_annimals: حيوانات أخرى
+  other_lexicons: معاجم أخرى
   other_listings_of_this_taxon_for_this_place: قوائم أخرى لهذه الأصنوفة لهذا المكان
   other_species_commonly_misidentified_as_this_species: الأنواع الأخرى عادة ما يتم
     التعرف عليها بشكل خاطئ مثل هذا النوع
@@ -4059,6 +4065,7 @@ ar:
   total_species_observed: مجموع الأنواع الملحوظة
   total_unique_observers: مجموع المراقبين الفريدين
   total_users: إجمالي المستخدمين،
+  translated_languages: اللغات المترجمة
   "true": صحيح
   trending: الشائع
   trends: الاتجاهات
@@ -4252,6 +4259,7 @@ ar:
   view_contributions: عرض المساهمات
   view_details: عرض التفاصيل
   view_field_options: عرض خيارات الحقل
+  view_flag: عرض العلم
   view_flags: عرض الأعلام
   view_flags_for_x_html: عرض الأعلام ل%{x}
   view_full_observation: عرض الملاحظة الكاملة
@@ -4433,6 +4441,8 @@ ar:
   x_deleted: تم حذف %{x}
   x_does_not_exist: '"%{x}" غير موجود'
   x_doesnt: لا %{login}
+  x_flagged: تم تعليم %{x}
+  x_flagged_as_flag: تم تعليم %{x} كـ%{flag}
   x_hasnt: لا %{login}
   x_journal: مجلة %{user}
   x_journal_archives_for_y: مجلة %{user} • أراشيف لـ
@@ -5088,6 +5098,8 @@ ar:
         url: مسار للملاحظة
         image_url: مسار للصورة الافتراضية
         tag_list: قائمة مفصولة بفواصل بالعلامات
+        place_admin1_name: اسم المكان الإداري مرتبة واحدة تحت مستوى البلد
+        place_admin2_name: اسم المكان الإداري رتبان تحت مستوى البلد
         positioning_method: كيف تم تحديد الإحداثيات
         positioning_device: الجهاز المستخدم لتحديد الإحداثيات
       identify:
@@ -5737,7 +5749,11 @@ ar:
           \n    </p>\n  </li>\n  <li>\n    <p>\n     يجب أن تكون المعاجم الجديدة باللغة
           الإنجليزية; الرجاء عدم إضافة أسماء مترجمة\n     اللغة مثل \"الفرنسية، فرانسيس\"
           لأن ذلك سيجعل فقط\n     من الصعب أو المستحيل علينا أن نعرض أسماء محلية للأشخاص
-          \n     الذين يستخدمون الموقع بلغات مختلفة. \n    </p>\n  </li>"
+          \n     الذين يستخدمون الموقع بلغات مختلفة. \n    </p>\n  </li>\n<li>\n   <p>\n
+          \    ستظهر الأسماء الشائعة المرتبطة باللغات المترجمة \n     على أنها الاسم
+          الشائع الافتراضي لتلك اللغة (باستثناء\n     تأثير تفضيلات المكان، وترتيب
+          الأسماء، وما إلى ذلك.).\n     <a class=\"readmore\" href=\"/pages/translate\">معرفة
+          مزيد من المعلومات حول الترجمة</a>\n   </p>\n  </li>\n</ul>"
         places_help_html: "أضف اسما إلى مكان لإعطائه الأولوية للمواقع والمستخدمين
           من \nهذا المكان، إذا كانت هناك أسماء متعددة في كل مكان، فيمكنك تحديد أولوياتها
           \nthem <a href=\"%{url}\">هنا</a>، يُرجَى <strong>عدم</strong> إضافة أسماء

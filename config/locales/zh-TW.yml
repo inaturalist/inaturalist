@@ -140,7 +140,7 @@ zh-TW:
   about_complete_taxa: 關於完整的分類群
   about_conservation_status: 關於保育狀態
   about_editing_observation_fields: 關於編輯觀察欄位
-  about_establishment_means: 有關確立方式
+  about_establishment_means: 有關定居方式
   about_external_links: 關於外部連結
   about_licenses: 關於授權
   about_licensing: 關於授權協議
@@ -470,7 +470,7 @@ zh-TW:
   apply_fields: 套用欄位
   apply_geoprivacy: 套用位置隱私
   apply_darr: 套用 &darr;
-  apply_establishment_means_to_descendant_places: 對派生地點來套用確立方式
+  apply_establishment_means_to_descendant_places: 對派生地點來套用定居方式
   apply_these_settings_to_all: 套用這些設定到以下所有觀察。
   appropriate?: 適當嗎？
   arachnids: 蛛形綱
@@ -722,7 +722,7 @@ zh-TW:
   check_lists_for: 用於%{place}的其它清單
   check_out_my_observations_at: 若您有意願，您可以查看我的觀察在：
   check_out_our_blog: 看看我們的部落格
-  check_out_what_the_observation: 瞧瞧您想嘗試鑑定物種的類型。
+  check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_out_your_life_list: 退出及儲存您的生物清單
   check_this_box_if: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/3.0/tw/'
     target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
@@ -1194,11 +1194,11 @@ zh-TW:
     naturalised: 歸化
     invasive: 侵入
     managed: 已管理
-  establishment_means: 確立方式
+  establishment_means: 定居方式
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: 本地物種，並且沒有出現在其它地方
     arrived_in_the_region_via_anthropogenic_means: 透過人類的活動行為來到達此區域
-  establishment_means_describes_how: 確立方式描述著物種分類在地區上如何被確立。請查看達爾文核心集（Darwin Core）更多<a
+  establishment_means_describes_how: 定居方式描述著物種分類如何在地區上出現。請查看達爾文核心集（Darwin Core）更多<a
     href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">關於術語</a>的訊息。
   event_in_progress: 進行中的活動
   event_registration_url: 活動註冊 URL
@@ -1281,7 +1281,7 @@ zh-TW:
   filter_by_curator_identification: 依策展人鑑定篩選
   filter_by_place: 依地點篩選
   filter_by_taxon: 按物種分類篩選
-  filter_by_place_taxon_and_color: 依地點、物種分類、和色彩使用控制篩選。
+  filter_by_place_taxon_and_color: 依地點、物種分類、和色彩來使用控制篩選。
   filter_list_by_this_taxon: 依此物種分類篩選清單
   filtering: 篩選中
   filtering_observations_that_pass_the: 篩選觀察來通過專案規範，或是產生在尚未有貢獻的專案地點
@@ -1328,6 +1328,7 @@ zh-TW:
   flagged_thing_explanation: 用戶已標記此%{thing}因為
   flagger: 加旗號標記者
   flags: 標記
+  flags_with_count: 標記（%{count}）
   flags_explanation: '%{site_name} 用戶標記了一些他們所發現錯誤的事物。這裏有一些尚未被策展人解決的問題。'
   flags_for: 標記為
   flags_on_users_content: 標記在 %{user} 的內容
@@ -1520,7 +1521,7 @@ zh-TW:
   identifiers: 鑑定人
   identotron: Identotron
   identotron_for: Identotron 用於
-  identotron_help: Identotron 幫助
+  identotron_help: Identotron 說明
   ids: 鑑定
   ids_made_for_others: 個替其他人所做的鑑定
   if_for_some_reason_a_user_doesnt_agree: 若出自於某種原因您不同意社群物種分類，您可以拒絕，這代表著您的鑑定是用在連結至其它觀察、更新的生物清單、或其它等等。這也代表您的觀察，僅能在社群認可後才能成為研究等級的內容。
@@ -1606,7 +1607,7 @@ zh-TW:
   invite_photos_from_other_sites: 從其它網站來徵求照片
   invite_photos_to: 邀請照片至 %{site_name}
   invite_photos_to_raquo_html: 徵求照片至<nobr>%{site_name} &raquo;</nobr>
-  invite_someone_to: 邀請一些人至%{name}！
+  invite_someone_to: 邀請一些人來 %{name}！
   invite_to_project: 徵求至專案
   invite_your_friends: 邀請您的好友
   invite_your_friends_description: 透過邀請您的好友加入來協助讓 %{site_name} 成為更大、更好的社群！
@@ -1709,7 +1710,7 @@ zh-TW:
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
     chinese_simplified: 簡體中文
-    chinese_traditional: 傳統中文
+    chinese_traditional: 繁體中文
     creole_french: 克里奧爾語 (法語)
     creole_portuguese: 克里奧爾語 (葡萄牙語)
     czech: 捷克語
@@ -1948,7 +1949,7 @@ zh-TW:
   mark_all_as_reviewed: 全部標記為已檢閱
   mark_all_as_unreviewed: 全部標記為未檢閱
   matched_several_different_taxa: 符合數種不同的物種分類
-  matching_species_will_shown_up_here: 符合的物種將會顯示於此。若%{place}包含物種其一，在地圖上將會顯示出範圍。
+  matching_species_will_shown_up_here: 符合的物種將會顯示於此。若 %{place} 含有其一物種，在地圖上將會顯示出範圍。
   maverick: 對此分類群具不同看法
   maybe_your_signed_in_with: 也許您是使用您的%{omniauth}帳號來登入？
   media: 多媒體
@@ -2351,7 +2352,7 @@ zh-TW:
   observing: 觀察中
   occurence_status_describes_how: 發生狀態描述出在指定地區裡的普遍、或稀有程度。請查看達爾文核心集<a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">來了解更多有關術語的訊息</a>。
   occurrence_status: 事件狀態
-  occurrence_status_establishment_means: 事件狀態，確立方式
+  occurrence_status_establishment_means: 事件狀態，定居方式
   occurrence_status_levels:
     present: 現今
     common: 普遍
@@ -2468,7 +2469,7 @@ zh-TW:
   other_annimals: 其它動物
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
-  other_species_commonly_misidentified_as_this_species: 其它物種常被誤認為此物種
+  other_species_commonly_misidentified_as_this_species: 常被誤認為此物種的其它物種
   other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>的其它物種常被誤認為此物種
   our_blog: 我們的部落格
   out_of_range: 超出範圍
@@ -2745,7 +2746,7 @@ zh-TW:
   preview: 預覽
   preview_observations: 預覽觀察
   preview_of_synced_observation: <strong>預覽</strong>同步觀察。<a href="%{url}">要取消？</a>
-  preview_personal_message: 我希望您與我一起加入 %{site}，這網站讓您紀錄您對動植物觀察資料，為您觀察到的生物建立清單，並去探索自然世界！
+  preview_personal_message: 我希望您能與我一同加入 %{site}，這網站可以讓您紀錄您對動植物觀察的資料，替您觀察到的生物建立清單，並來探索自然世界！
   preview_your_message: 預覽您的訊息
   previewing: 預覽中...
   previous: 上一步
@@ -3171,8 +3172,8 @@ zh-TW:
   some_people: 有些人們
   some_people_that: 有些人們
   some_rights_reserved: 保留部分權利
-  something: 某些事物
-  something_: 某些事物
+  something: 一些生物
+  something_: 一些生物
   something_went_wrong_adding: 添加物種至您的清單時出現問題
   something_went_wrong_deleting_the_taxon_name: 刪除物種分類名稱「%{taxon_name}」出現錯誤！
   something_went_wrong_updating: 更新您清單時出現一些錯誤！
@@ -3494,8 +3495,9 @@ zh-TW:
   the_following_lists: 以下清單
   the_following_observations_could: 以下觀察不能被添加至 %{link}
   the_following_photos_have_been_tagged: 以下照片已被標記為：
-  the_identotron_is_a_tool_to: Identotron 是用來協助您基於%{place}的清單資料來鑑定觀察之工具。所給予更高層級物種分類與地點（例如：印度的哺乳類）會讓%{place}查看在清單項目裡符合地點的物種，就像個包含整個星球事物的動態實地指南。雖然多數%{place}清單為進行中項目，但只要有一個就會是全面性的。註：此列出<em>所有</em>在地點裡的物種分類代表，而
-    Identotron 會顯示出通知。
+  the_identotron_is_a_tool_to: Identotron 是用來協助您基於 %{place} 之清單資料來鑑定觀察的工具。所指定更高層級的物種分類與地點（例如：印度的哺乳類）會讓
+    %{place} 查看在清單項目裡符合地點的物種，這就好比像是一個包含整個星球事物的動態實地指南。雖然多數 %{place} 檢驗清單為進行中的項目，但只要有一個就會是全面性的。註：在此所列出<em>所有</em>在地點裡的物種分類代表，會讓
+    Identotron 顯示出通知。
   the_list: 列表
   the_name_of_the_taxon_including_space: 物種分類的名稱，包含物種和次物種的空間。
   the_observation_form_looks: 觀察表單如下：
@@ -3605,7 +3607,7 @@ zh-TW:
   tired_of_testing_this_new_version: 對於測試此新版本感到厭倦？
   title: 標題
   title_and_description: 標題與描述
-  titled_favorites_and_the_most_recent_additions: 已賦予「個人最愛」，而最新添加內容將會出現在此空間裡。
+  titled_favorites_and_the_most_recent_additions: 且標題可以是「個人最愛」，而最新添加內容將會出現在此空間裡。
   to: 至
   to_: 至
   to_add_comments: 添加評論
@@ -3685,7 +3687,7 @@ zh-TW:
   unreview: 未檢閱
   unreview_all: 取消全部檢閱
   unsubscribe: 取消訂閱
-  unsubscribe_from_this: 取消訂閱自此
+  unsubscribe_from_this: 取消訂閱此
   unsuspend_user: 取消暫停用戶
   unverifiable: 不可證實
   upcoming_bioblitzes: 即將到來的 bioblitz
@@ -4364,9 +4366,9 @@ zh-TW:
           無法識別出您所使用的名稱，物種將不會被加入至清單。我們推薦採用可讓我們識別出的其它別名。
     listed_taxa:
       establishment_field:
-        confirmation: 您確定嗎？這將會更改所有列出隸屬此地點的物種分類群之確立方式。而您需要花費一番功夫才能回復內容。
+        confirmation: 您確定嗎？這將會更改所有列出隸屬此地點的物種分類群之定居方式。而您需要花費一番功夫才能回復內容。
         description_html: |-
-          這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類清單之確認方式成為<strong>「%{establishment_means}」</strong>. 僅策展人可使用此工具。更改確認方式
+          這將會更改<em>全部</em>在所有<a href="%{place_url}">%{place_name}</a>派生地點的物種分類清單之定居方式成為<strong>「%{establishment_means}」</strong>. 僅策展人可使用此工具。更改定居方式
           為「引進」會有大致相同的效果，但不會更改現有內容值，僅是填為空白。
     lists:
       new:
@@ -4406,7 +4408,7 @@ zh-TW:
         ident_by_user_desc_html: 目前由 %{user} 所做鑑定的欄位
         query_placeholder: 挑選以下查詢參數或貼在一個觀察 URL 上
         taxon_extras_help_html: 註：這些欄位將會減緩您匯出所產生的內容
-        geo_help_html: 鎮、郡、州，國家欄位基於座標。類似行政層級將會使用在地點類型不適用上述的觀察。「私有_*」之類的欄位僅在當使用到用戶篩選並且您是該用戶、或是使用專案過濾並且您策展該專案時才會包含到。
+        geo_help_html: 鎮、郡、州，國家欄位基於座標。類似行政層級將會使用在地點類型不適用上述的觀察。「private_*」之類的欄位僅在當使用到用戶篩選並且您是該用戶、或是使用專案過濾並且您策展該專案時才會包含到。
         be_patient: 這會花費數分鐘，請耐心等待。如果有花費過長時間情況，您可以
         check_back: 如果您在幾分鐘內重新載入此頁面，您的匯出內容因會出現在頁面下方清單。
         receive_an_email_with_your_data: 接收一份帶有您的資料之電子郵件
@@ -4887,8 +4889,8 @@ zh-TW:
             我們嘗試以透過同時顯示通用名稱與學名來解決這些情況，並基於所使用的語言和視圖上的地理資料
             偏好設定來挑選出通用名稱。
           </p>
-        about_conservation_status_desc: 保護狀態總結出一群生物的滅絕風險。
-        about_establishment_desc: 「確立方式」描述著目前出現的物種如何發生在此處。引進代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
+        about_conservation_status_desc: 保育狀態總結出一群生物的滅絕風險。
+        about_establishment_desc: 「定居方式」描述著目前出現的物種如何出現在此處。引進代表著它們是透過人類的行為所帶來於此，本地代表著非透過人類的行為就出現於此。特有物種則是僅出現在指定地點。
         about_taxon_curators_desc: 這些人們管理著包含物種分類的分類樹之內容。如果您想要產生更改，請標記此物種分類，或是聯絡那些人們。
         charts_help_seasonality: 此圖表顯示出物種分類依月份區分的觀察次數。請記住這些是觀察次數，因此會被當生物可被觀察的期間，以及被人們有前來觀察它們的行為所影響。因此某隻鳥在五月裡的觀察次數看似很活躍，但有可能是人們剛好一同在五月觀察，而將其它月份給忽略掉。相同地，如果您發現蜻蜓在六月的次數比一月多，這可能是因為在北半球有比南半球較多人口，而並非蜻蜓是剛好在六月比較活躍，因此在考量這些圖表時可以先查看地圖。當圖表上「可驗證」與「研究等級」觀察次數之間，有出現較低觀察次數以及/或是較大差異時，對這些情況做出疑慮是正確的。
         charts_help_history: 此圖表會顯示過去十年依各月份呈現的物種分類觀察數量。這些是由人們觀察次數所形成的傾向，且會為您顯示觀察裡的不尋常尖峰點。如果觀察數量增加，但圖表是呈現平坦或下降的情況，可能是因為有著大量的變化。
@@ -5386,7 +5388,7 @@ zh-TW:
         published_at: 出版物
       listed_taxon:
         occurrence_status_level: 發生狀態層級
-        establishment_means: 確立方式
+        establishment_means: 定居方式
       observation:
         geo_x: 向東
         geo_y: 向北
