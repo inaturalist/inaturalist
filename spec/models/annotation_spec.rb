@@ -186,4 +186,26 @@ describe Annotation do
     }.to_not raise_error
   end
 
+  describe "creation" do
+    it "should touch the resource" do
+      o = Observation.make!
+      t = o.created_at
+      a = make_annotation( resource: o )
+      a.save!
+      o.reload
+      expect( o.updated_at ).to be > t
+    end
+  end
+
+  describe "deletion" do
+    it "should touch the resource" do
+      o = Observation.make!
+      a = make_annotation( resource: o )
+      a.save!
+      t = o.updated_at
+      a.destroy
+      o.reload
+      expect( o.updated_at ).to be > t
+    end
+  end
 end
