@@ -3,7 +3,7 @@
   updates ||= []
   observations = updates.map{|u| u.notifier}
   target_id = bootstrapTargetID
-  common_ancestor_ids = observations.detect{|o| o.taxon }.taxon.self_and_ancestor_ids
+  common_ancestor_ids = observations.detect{|o| o.taxon }.try(:taxon).try(:self_and_ancestor_ids)
   observations.each do |o|
     next unless o.taxon
     common_ancestor_ids = common_ancestor_ids & o.taxon.self_and_ancestor_ids
