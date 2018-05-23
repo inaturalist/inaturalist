@@ -295,9 +295,9 @@ class UsersController < ApplicationController
         if @selected_user.last_active.blank?
           @selected_user.last_active = [
             INatAPIService.identifications(
-              user_id: @selected_user.id, order_by: "created_at", order: "desc"
+              user_id: @selected_user.id, order_by: "created_at", order: "desc", is_change: false
             ).results.first.try(:[], "created_at" ).try(:to_time),
-            @selected_user.last_active ||= Observation.elastic_query(
+            Observation.elastic_query(
               user_id: @selected_user.id, order_by: "created_at", order: "desc"
             ).first.try(&:created_at)
           ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
