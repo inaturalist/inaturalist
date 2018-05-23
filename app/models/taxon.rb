@@ -1571,6 +1571,10 @@ class Taxon < ActiveRecord::Base
     synonymous_taxa
   end
 
+  def flagged_with( flag, options = {} )
+    elastic_index!
+  end
+
   # Static ##################################################################
 
   def self.match_descendants_of_id(id, taxon_hash)
