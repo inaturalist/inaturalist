@@ -1557,9 +1557,9 @@ class Taxon < ActiveRecord::Base
   end
 
   def current_synonymous_taxa_from_split
-    taxa = Taxon.where(id: TaxonSplit.where(taxon_id: self.id).
-      joins(:taxon_change_taxa).pluck("taxon_change_taxa.taxon_id"))
-    taxa.map{|t| t.is_active? ? t : t.current_synonymous_taxa }.flatten.uniq
+    last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
+    return [] if last_committed_split.blank?
+    last_committed_split.output_taxa.map{|t| t.is_active? ? t : t.current_synonymous_taxa }.flatten.uniq
   end
 
   def current_synonymous_taxa

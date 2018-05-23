@@ -1447,6 +1447,19 @@ describe "current_synonymous_taxon" do
     expect( swap1.input_taxon.current_synonymous_taxon ).to be_nil
     expect( swap1.output_taxon.current_synonymous_taxon ).to eq swap1.input_taxon
   end
+  it "should not get stuck in a loop if the taxon has been the input in multiple splits due to reversion" do
+    split1 = make_taxon_split( committer: curator )
+    split1.commit
+    split2 = make_taxon_split( committer: curator, input_taxon: split1.input_taxon )
+    split2.commit
+    split1.output_taxa.each do |output_taxon|
+      expect( split1.input_taxon.current_synonymous_taxa ).not_to include output_taxon
+    end
+    split2.output_taxa.each do |output_taxon|
+      expect( split2.input_taxon.current_synonymous_taxa ).to include output_taxon
+    end
+    expect( split1.input_taxon.current_synonymous_taxon ).to be_blank
+  end
   it "should be blank if swapped and then split" do
     swap = make_taxon_swap( committer: curator )
     swap.commit
