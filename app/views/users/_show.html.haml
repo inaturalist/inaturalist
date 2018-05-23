@@ -58,7 +58,7 @@
         - if @user.last_active
           =t :last_active_with_date, date: l( @user.last_active, format: :short_with_year )
         - else
-          =t :more_than_x_year_ago, x: ( ( Date.today - Date.parse( "2015-11-04" ) ) / 365  ).floor
+          =t :last_active_with_date, date: t(:unknown)
     #description
       - if @user.description.blank?
         - if is_me?(@selected_user)

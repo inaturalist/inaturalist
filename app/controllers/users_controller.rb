@@ -292,6 +292,16 @@ class UsersController < ApplicationController
         @shareable_image_url = FakeView.image_url(@selected_user.icon.url(:original))
         @shareable_description = @selected_user.description
         @shareable_description = I18n.t(:user_is_a_naturalist, :user => @selected_user.login) if @shareable_description.blank?
+        if @selected_user.last_active.blank?
+          @selected_user.last_active = [
+            INatAPIService.identifications(
+              user_id: @selected_user.id, order_by: "created_at", order: "desc"
+            ).results.first.try(:[], "created_at" ).try(:to_time),
+            @selected_user.last_active ||= Observation.elastic_query(
+              user_id: @selected_user.id, order_by: "created_at", order: "desc"
+            ).first.try(&:created_at)
+          ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
+        end
         render layout: "bootstrap"
       end
       opts = User.default_json_options
