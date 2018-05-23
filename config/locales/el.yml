@@ -21,12 +21,21 @@ el:
   x_lists:
     one: 1 λίστα
     other: '%{count} λίστες'
+  x_observations:
+    one: 1 παρατήρηση
+    other: '%{count} παρατηρήσεις'
+  x_observations_:
+    one: 1 Παρατήρηση
+    other: '%{count} Παρατηρήσεις'
   x_others:
     one: 1 άλλο
     other: '%{count} άλλα'
   x_people:
     one: 1 άτομο
     other: '%{count} άτομα'
+  x_species:
+    one: 1 είδος
+    other: '%{count} είδη'
   _100_day_trends: Τάσεις 100 ημερών
   a: a
   a_: a
@@ -43,6 +52,7 @@ el:
   about_blocking: σχετικά με την φραγή
   about_charts: Σχετικά με γραφήματα
   about_community_taxa: Σχετικά με τις ταξινομίες της κοινότητας
+  about_conservation_status: Σχετικά με τη κατάσταση διατήρησης
   about_licenses: Σχετικά με άδειες
   about_licensing: Σχετικά με αδειοδότηση
   about_life!: Σχετικά με τη ζωή!
