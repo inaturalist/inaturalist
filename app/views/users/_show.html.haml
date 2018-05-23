@@ -45,29 +45,40 @@
     %h1
       = @user.name.blank? ? @user.login : @user.name
       - if @user.is_admin? || @user.is_curator?
-        %small= @user.is_admin? ? t(:admin) : t(:curator)
         %small
+          = @user.is_admin? ? t(:admin) : t(:curator)
           = link_to help_path(:anchor => "curators") do
             %span.glyphicon.glyphicon.glyphicon-question-sign
-    - if @user.description.blank?
-      - if is_me?(@selected_user)
-        #nodescription.well
-          %p
-            = link_to t(:tell_the_world_a_little_about_yourself).html_safe, generic_edit_user_path, :class => "btn btn-primary btn-default"
-          .more
-            = t(:do_you_study_nematodes_worlds_foremost_expert_barnacle)
-          = form_for @selected_user, :html => {:style => "display: none"} do |f|
-            = f.text_area :description, placeholder: t(:describe_your_interest_in_nature), :class => "stacked form-control"
-            .actions
-              = f.submit t(:save), :class => "default button", "data-loading-click" => true
-              %a.button.cancellink{:href => "#"}= t(:cancel)
+    %p#significant-dates
+      %span.date
+        %i.fa.fa-calendar-plus-o
+        =t :joined_with_date, date: l( @user.created_at.to_date, format: :short_with_year )
+      %span.date
+        %i.fa.fa-clock-o
+        - if @user.last_active
+          =t :last_active_with_date, date: l( @user.last_active, format: :short_with_year )
+        - else
+          =t :more_than_x_year_ago, x: ( ( Date.today - Date.parse( "2015-11-04" ) ) / 365  ).floor
+    #description
+      - if @user.description.blank?
+        - if is_me?(@selected_user)
+          #nodescription.well
+            %p
+              = link_to t(:tell_the_world_a_little_about_yourself).html_safe, generic_edit_user_path, :class => "btn btn-primary btn-default"
+            .more
+              = t(:do_you_study_nematodes_worlds_foremost_expert_barnacle)
+            = form_for @selected_user, :html => {:style => "display: none"} do |f|
+              = f.text_area :description, placeholder: t(:describe_your_interest_in_nature), :class => "stacked form-control"
+              .actions
+                = f.submit t(:save), :class => "default button", "data-loading-click" => true
+                %a.button.cancellink{:href => "#"}= t(:cancel)
+        - else
+          = t(:user_is_a_naturalist, :user => @user.login)
       - else
-        = t(:user_is_a_naturalist, :user => @user.login)
-    - else
-      - @description = formatted_user_text(@user.description)
-      %p.lead
-        = stripped_first_paragraph_of_text(@description, "\n\n")
-      = remaining_paragraphs_of_text(@description, "\n\n")
+        - @description = formatted_user_text(@user.description)
+        %p.lead
+          = stripped_first_paragraph_of_text(@description, "\n\n")
+        = remaining_paragraphs_of_text(@description, "\n\n")
     %h3.page-header
       = t(:following).capitalize
       = t(:x_people, :count => @user.friendships.count)

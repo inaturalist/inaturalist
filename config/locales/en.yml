@@ -1681,6 +1681,7 @@ en:
   'joined!': Joined!
   joined_any_projects: joined any projects
   joined_projects: Joined Projects
+  joined_with_date: "Joined: %{date}"
   joining: Joining...
   journal: Journal
   journal_archives_for: Journal archives for
@@ -1702,6 +1703,7 @@ en:
   location_unknown: Location Unknown
   language_slash_type: Language / Type
   large: large
+  last_active_with_date: "Last Active: %{date}"
   last_confirmed_observation: Last confirmed observation
   last_inat_observation: "Last %{site_name} observation"
   last_observation: Last observation
@@ -2047,6 +2049,7 @@ en:
   more_journal_posts: More journal posts
   more_observations: More observations
   more_photos: More Photos
+  more_than_x_years_ago: More than %{x} years ago
   most: Most
   most_agree: most agree
   most_disagree: most disagree
@@ -5902,6 +5905,7 @@ en:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:

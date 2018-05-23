@@ -1,3 +1,5 @@
+@import "../colors";
+
 #view_more_btn_container {
   margin-top:15px;
 }
@@ -19,6 +21,7 @@
 .list-group .fa,
 .dropdown-toggle .glyphicon {
   margin-right: 0.5em;
+  color: $inat-green;
 }
 
 #nodescription textarea {
@@ -35,10 +38,30 @@
   width: 100%;
 }
 
-h1 .btn {
-  margin-left: 10px;
+h1 {
+  .btn {
+    margin-left: 10px;
+  }
+
+  small {
+    white-space: nowrap;
+  }
 }
 
 .page-header {
   text-transform: capitalize;
+}
+
+#description img {
+  max-width: 100%;
+}
+
+#significant-dates {
+  i {
+    color: #555;
+    margin-right: 3px;
+  }
+  .date {
+    margin-right: 20px;
+  }
 }
