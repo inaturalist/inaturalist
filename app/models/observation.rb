@@ -2959,9 +2959,7 @@ class Observation < ActiveRecord::Base
   end
 
   def user_viewed_updates(user_id)
-    obs_updates = UpdateAction.joins(:update_subscribers).
-      where(resource: self).
-      where("update_subscribers.subscriber_id = ?", user_id)
+    obs_updates = UpdateAction.where(resource: self)
     UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 

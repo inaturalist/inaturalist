@@ -160,9 +160,8 @@ class TaxonChange < ActiveRecord::Base
               notifier: self,
               notification: "committed"
             }
-            action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-            action.bulk_insert_subscribers( [record.user.id] )
-            UpdateAction.elastic_index!(ids: [action.id])
+            action = UpdateAction.first_with_attributes(action_attrs)
+            action.append_subscribers( [record.user.id] )
             notified_user_ids << record.user.id
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)

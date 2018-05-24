@@ -244,18 +244,15 @@ module HasSubscribers
         end
       end
       if users_to_notify.length > 0
-        actions = [ ]
         users_to_notify.each do |subscribable, user_ids|
           action_attrs = {
             resource: subscribable,
             notifier: notifier,
             notification: notification
           }
-          action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-          action.bulk_insert_subscribers(user_ids)
-          actions << action
+          action = UpdateAction.first_with_attributes(action_attrs)
+          action.append_subscribers( user_ids )
         end
-        UpdateAction.elastic_index!(ids: actions.map(&:id))
       end
     end
 
@@ -297,9 +294,8 @@ module HasSubscribers
         notifier: self,
         notification: options[:notification]
       }
-      action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-      action.bulk_insert_subscribers( [send(association).user.id] )
-      UpdateAction.elastic_index!(ids: [action.id])
+      action = UpdateAction.first_with_attributes(action_attrs)
+      action.append_subscribers( [send(association).user.id] )
     end
 
     def notify_users( method )
@@ -326,10 +322,9 @@ module HasSubscribers
       user_ids_to_notify = users_to_notify.map{ |u|
         options[:if].blank? || options[:if].call( u ) ? u.id : nil
       }.compact
-      action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-      action.bulk_insert_subscribers( user_ids_to_notify )
-      UpdateSubscriber.where({ update_action_id: action.id }).where("subscriber_id NOT IN (?)", user_ids).delete_all
-      UpdateAction.elastic_index!(ids: [action.id])
+      action = UpdateAction.first_with_attributes(action_attrs)
+      action.append_subscribers( user_ids_to_notify )
+      action.restrict_to_subscribers( user_ids )
     end
 
   end

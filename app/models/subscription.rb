@@ -24,9 +24,23 @@ class Subscription < ActiveRecord::Base
   end
 
   def self.users_with_unviewed_updates_from(notifier)
-    UpdateSubscriber.joins(:update_action).where(update_actions: {
-      notifier_type: notifier.class.to_s, notifier_id: notifier.id },
-      viewed_at: nil).map(&:subscriber_id)
+    es_response = UpdateAction.elastic_search(
+      filters: [
+        { term: { notifier_type: notifier.class.to_s } },
+        { term: { notifier_id: notifier.id } }
+      ],
+      sort: { id: :desc }
+    ).per_page(100).page(1)
+    if es_response && es_response.results
+      subscriber_ids = []
+      viewed_subscriber_ids = []
+      es_response.results.each do |result|
+        subscriber_ids += result.subscriber_ids
+        viewed_subscriber_ids += result.viewed_subscriber_ids
+      end
+      return subscriber_ids.uniq - viewed_subscriber_ids.uniq
+    end
+    []
   end
 
   def cannot_subscribe_to_north_america

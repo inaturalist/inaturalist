@@ -13,6 +13,9 @@ class UpdateAction < ActiveRecord::Base
 
   YOUR_OBSERVATIONS_ADDED = "your_observations_added"
 
+  attr_accessor :filtered_subscriber_ids
+  attr_accessor :created_but_not_indexed
+
   def to_s
     "<UpdateAction #{id} resource_type: #{resource_type} " +
       "resource_id: #{resource_id} notifier_type: #{notifier_type} notifier_id: #{notifier_id}>"
@@ -34,11 +37,8 @@ class UpdateAction < ActiveRecord::Base
       excepted_user_ids += UserMute.where( muted_user_id: notifier_user.id ).pluck(:user_id)
       potential_subscriber_ids = potential_subscriber_ids - excepted_user_ids.uniq
     end
-    values = potential_subscriber_ids.compact.map{ |id| "(#{self.id},#{id})" }
-    return if values.blank?
-    sql = "INSERT INTO update_subscribers (update_action_id, subscriber_id) " +
-          "VALUES #{ values.join(",") }"
-    UpdateAction.connection.execute(sql)
+    self.filtered_subscriber_ids ||= []
+    self.filtered_subscriber_ids = ( self.filtered_subscriber_ids + potential_subscriber_ids ).uniq
   end
 
   def sort_by_date
@@ -187,12 +187,32 @@ class UpdateAction < ActiveRecord::Base
   def self.user_viewed_updates(updates, user_id)
     updates = updates.to_a.compact
     return if updates.blank?
-    # mark all as viewed
-    action_ids = updates.map(&:id)
-    UpdateSubscriber.where(update_action_id: action_ids).
-      where(subscriber_id: user_id).
-      update_all(viewed_at: Time.now)
-    UpdateAction.elastic_index!(ids: action_ids)
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep_for: 1, tries: 10 ) do
+      UpdateAction.__elasticsearch__.client.update_by_query(
+        index: UpdateAction.index_name,
+        type: "update_action",
+        refresh: true,
+        body: {
+          query: {
+            bool: {
+              must: [
+                { terms: { id: updates.map(&:id) } },
+                { term: { subscriber_ids: user_id } }
+              ]
+            }
+          },
+          script: {
+            inline: "
+              ctx._source.viewed_subscriber_ids.add( params.user_id );
+              ctx._source.viewed_subscriber_ids =
+                ctx._source.viewed_subscriber_ids.stream( ).distinct( ).collect( Collectors.toList( ) )",
+            params: {
+              user_id: user_id
+            }
+          }
+        }
+      )
+    end
   end
 
   def self.delete_and_purge(*args)
@@ -202,7 +222,6 @@ class UpdateAction < ActiveRecord::Base
       ids = batch.map(&:id)
       if ids.any?
         UpdateAction.elastic_delete!(filters: [ { terms: { id: ids } } ])
-        UpdateSubscriber.delete_all(update_action_id: ids)
       end
     end
     # then delete them from Postgres
@@ -211,14 +230,100 @@ class UpdateAction < ActiveRecord::Base
 
   def self.first_with_attributes(attrs, options = {})
     skip_validations = options.delete(:skip_validations)
-    # using .limit(1)[0] rather than .first to avoid a SQL sort on id
-    if action = UpdateAction.where(attrs).limit(1)[0]
+    filters = []
+    attrs.each do |k,v|
+      if k.to_sym == :resource
+        filters << { term: { resource_id: v.id } }
+        filters << { term: { resource_type: v.class.name } }
+      elsif k.to_sym == :notifier
+        filters << { term: { notifier_id: v.id } }
+        filters << { term: { notifier_type: v.class.name } }
+      else
+        filters << { term: { k => v.try(:id) || v } }
+      end
+    end
+    if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
       return action
     end
-    action = UpdateAction.new(attrs.merge(created_at: Time.now).merge(options))
+    action = UpdateAction.new(attrs.merge(created_at: Time.now, skip_indexing: true).merge(options))
     if !action.save(validate: !skip_validations)
       return
     end
+    action.created_but_not_indexed = true
     return action
   end
+
+  def append_subscribers( user_ids )
+    raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
+    if es_source
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep_for: 1, tries: 10 ) do
+        UpdateAction.__elasticsearch__.client.update_by_query(
+          index: UpdateAction.index_name,
+          type: "update_action",
+          refresh: true,
+          body: {
+            query: {
+              bool: {
+                must: [
+                  { term: { id: id } }
+                ]
+              }
+            },
+            script: {
+              inline: "
+                for (entry in params.user_ids) {
+                  ctx._source.subscriber_ids.add( entry );
+                }
+                ctx._source.subscriber_ids =
+                  ctx._source.subscriber_ids.stream( ).distinct( ).collect( Collectors.toList( ) )",
+              params: {
+                user_ids: user_ids
+              }
+            }
+          }
+        )
+      end
+    else
+      bulk_insert_subscribers( user_ids )
+      elastic_index!
+    end
+  end
+
+  def restrict_to_subscribers( user_ids )
+    raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
+    if es_source
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep_for: 1, tries: 10 ) do
+        UpdateAction.__elasticsearch__.client.update_by_query(
+          index: UpdateAction.index_name,
+          type: "update_action",
+          refresh: true,
+          body: {
+            query: {
+              bool: {
+                must: [
+                  { term: { id: id } }
+                ]
+              }
+            },
+            script: {
+              inline: "ctx._source.subscriber_ids.retainAll( params.user_ids )",
+              params: {
+                user_ids: user_ids
+              }
+            }
+          }
+        )
+      end
+    else
+      self.filtered_subscriber_ids ||= []
+      restricted_subscriber_ids = self.filtered_subscriber_ids.dup
+      # using & for array intersection
+      restricted_subscriber_ids = restricted_subscriber_ids & user_ids
+      unless restricted_subscriber_ids == self.filtered_subscriber_ids
+        self.filtered_subscriber_ids = restricted_subscriber_ids
+        elastic_index!
+      end
+    end
+  end
+
 end

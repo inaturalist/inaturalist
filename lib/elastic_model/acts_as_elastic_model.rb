@@ -6,6 +6,7 @@ module ActsAsElasticModel
     include Elasticsearch::Model
 
     attr_accessor :skip_indexing
+    attr_accessor :es_source
 
     # load the index definition, if it exists
     index_path = File.join(Rails.root, "app/es_indices/#{ name.underscore }_index.rb")
@@ -40,10 +41,10 @@ module ActsAsElasticModel
       def elastic_paginate(options={})
         options[:page] ||= 1
         options[:per_page] ||= 20
-        options[:source] ||= [ "id" ]
+        options[:source] ||= options[:keep_es_source] ? "*" : [ "id" ]
         result = elastic_search(options).
           per_page(options[:per_page]).page(options[:page])
-        result_to_will_paginate_collection(result)
+        result_to_will_paginate_collection(result, options)
       end
 
       # standard way to bulk index instances. Called without options it will
@@ -169,10 +170,14 @@ module ActsAsElasticModel
         end
       end
 
-      def result_to_will_paginate_collection(result)
+      def result_to_will_paginate_collection(result, options)
         try_and_try_again( PG::ConnectionBad, sleep_for: 20 ) do
           begin
-            records = result.records.to_a
+            records = options[:keep_es_source] ?
+              result.records.map_with_hit do |record, hit|
+                record.es_source = hit._source
+                record
+              end : result.records.to_a
             elastic_ids = result.results.results.map{ |r| r.id.to_i }
             elastic_ids_to_delete = elastic_ids - records.map(&:id)
             unless elastic_ids_to_delete.blank?
