@@ -34,7 +34,7 @@ const definePopupClass = ( ) => {
 
   /** Called when the popup is added to the map. */
   Popup.prototype.onAdd = function( ) {
-    this.getPanes().floatPane.appendChild( this.anchor );
+    this.getPanes().overlayMouseTarget.appendChild( this.anchor );
   };
 
   /** Called when the popup is removed from the map. */
