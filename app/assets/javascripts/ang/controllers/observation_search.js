@@ -1131,9 +1131,13 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     $scope.updateParamsForCurrentBounds( );
   });
   $rootScope.$on( "offsetCenter", function( event, left, up ) {
-    shared.offsetCenter({ map: $scope.map, left: left, up: up }, function( center ) {
-      $scope.map.setCenter( center );
-    });
+    // As of Google Maps v3.32, we need to wait for all animations to be
+    // complete before performing these offset center calculations
+    google.maps.event.addListenerOnce( $scope.map, "idle", function( ) {
+      shared.offsetCenter({ map: $scope.map, left: left, up: up }, function( center ) {
+        $scope.map.setCenter( center );
+      });
+    } );
   });
   $scope.setupMap = function( ) {
     if( $scope.map ) { return; }
