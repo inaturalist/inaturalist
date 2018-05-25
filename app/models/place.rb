@@ -29,7 +29,8 @@ class Place < ActiveRecord::Base
   before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
   after_save :reindex_projects_later, if: Proc.new { |place| place.ancestry_changed? }
-  
+  after_destroy :destroy_project_rules
+
   validates_presence_of :latitude, :longitude
   validates_numericality_of :latitude,
     :allow_blank => true, 
@@ -462,6 +463,14 @@ class Place < ActiveRecord::Base
   def reindex_projects_later
     Project.elastic_index!( scope: Project.in_place( id ), delay: true )
     true
+  end
+
+  def destroy_project_rules
+    ProjectObservationRule.where(
+      operator: "observed_in_place?",
+      operand_type: "Place",
+      operand_id: id
+    ).destroy_all
   end
 
   def too_big_for_check_list?

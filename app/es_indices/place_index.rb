@@ -68,6 +68,7 @@ class Place < ActiveRecord::Base
   end
 
   def double_check_index
+    return if destroyed?
     unless geom_in_elastic_index?
       original_index_without_geometry = self.index_without_geometry
       self.index_without_geometry = true
