@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: 2axterix2
+# Author: Adjen
 # Author: Alcorman
 # Author: Anitenn
 # Author: Asierog
@@ -1873,7 +1874,7 @@ es:
   join_this_project: unirte a este proyecto
   joined!: ¡Unido!
   joined_any_projects: se ha unido a ningún proyecto
-  joined_with_date: "Unido: %{date}"
+  joined_with_date: 'Unido: %{date}'
   joining: Unirse
   journal: Diario
   journal_archives_for: Archivos de diario de
@@ -1896,7 +1897,7 @@ es:
   location_unknown: Ubicación desconocida
   language_slash_type: Idioma / Tipo
   large: gran
-  last_active_with_date: "Última actividad: %{date}"
+  last_active_with_date: 'Última actividad: %{date}'
   last_confirmed_observation: Última observación confirmada
   last_inat_observation: Última observación %{site_name}
   last_observation: Última observación
@@ -2286,6 +2287,7 @@ es:
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
   more_photos: Más fotos
+  more_than_x_years_ago: Hace más de %{x} años atras
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan

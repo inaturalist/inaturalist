@@ -147,6 +147,7 @@ lb:
   add_to_calendar: Bei de Kalenner derbäisetzen
   add_to_favorites: Bei d'Favoriten deräisetzen
   add_to_list: Op d'Lëscht derbäisetzen
+  add_to_project: Bäi de Projet derbäisetzen
   add_to_your_list: Op Är Lëscht derbäisetzen
   add_your_own_observations_at: Setzt Är eegen Observatiounen op %{site_name} derbäi
   add_your_photo: Är Foto derbäisetzen
@@ -154,6 +155,7 @@ lb:
   added: Derbäigesat
   added!: Derbäigesat!
   added_by: Derbäigesat vum
+  added_by_user_on_date_html: Derbäigesat vum %{user} de(n) %{date}
   added_on: Derbäigesat de(n)
   added_to_favorites: Bei d'Favoriten derbäigesat
   adding: Derbäisetzen...
@@ -171,6 +173,8 @@ lb:
   all_photos: All Fotoen
   all_places: All Plazen
   all_projects: All Projeten
+  all_rank_added_to_the_database:
+    hybrid: All Hybriden an d'Datebank derbäigesat
   all_species: All Spezien
   all_taxa:
     rank:
@@ -179,6 +183,7 @@ lb:
       species: Spezien
     amphibians: Amphibien
     animals: Déieren
+    arachnids: Spannendéieren
     birds: Vigel
     insects: Insekten
     mammals: Mamendéieren
@@ -204,6 +209,9 @@ lb:
     x_insecta:
       one: Een Insekt
       other: '%{count} Insekten'
+    x_arachnida:
+      one: 1 Spannendéier
+      other: '%{count} Spannendéieren'
     x_other_animals:
       one: 1 anert Déier
       other: '%{count} aner Déieren'
@@ -222,6 +230,8 @@ lb:
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
+  appropriate?: Gëeegent?
+  arachnids: Spannendéieren
   archives: Archiven
   are_you_sure?: Sidd Dir sécher?
   are_you_sure_no_undo: Sidd Dir sécher? Dëst kann net zréckgesat ginn.
@@ -890,6 +900,7 @@ lb:
   more_info_title: Méi Informatiounen
   more_observations: Méi Observatiounen
   more_photos: Méi Fotoen
+  more_than_x_years_ago: Viru méi wéi %{x} Joer
   most: Déi meescht
   most_observations: Meescht Observatiounen
   most_observed_threatened_species: Bedreeten Aarten déi am dacksten observéiert goufen
