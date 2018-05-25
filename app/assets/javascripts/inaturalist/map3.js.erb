@@ -764,14 +764,14 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     addWindshaftOverlayTaxonDiv( ul, li, options );
   }
   checkbox.change( function( ) {
-    var checked = this.checked;
+    var checked = $( this ).prop( "checked" );
     _.each( layers, function( layerData ) {
       map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : emptyLayer);
     });
     // if this checkbox belongs to a taxon, make sure that if this is the
     // last in the set unchecked, the taxon is also unchecked. And as soon
     // as one checkox is checked, the taxon's checkbox will also be checked
-    if( taxonID = $(this).parent().data("taxon-id") ) {
+    if ( taxonID = $(this).parent().data( "taxon-id" ) ) {
       updateTaxonCheckboxState( ul, taxonID );
     }
   })
@@ -790,10 +790,10 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
 // with all of its layers. If none of a taxon's layers are enabled
 // then the taxon's checkbox should be un-checked
 var updateTaxonCheckboxState = function( ul, taxonID ) {
-  if( ul.find( "li.for_taxon[data-taxon-id='" + taxonID + "'] input:checked").length === 0 ) {
-    ul.find( "li.taxon[data-taxon-id='" + taxonID + "'] input").attr( "checked", false );
+  if( ul.find( "li.for_taxon[data-taxon-id='" + taxonID + "'] input:checked" ).length === 0 ) {
+    ul.find( "li.taxon[data-taxon-id='" + taxonID + "'] input" ).prop( "checked", false );
   } else {
-    ul.find( "li.taxon[data-taxon-id='" + taxonID + "'] input").attr( "checked", true );
+    ul.find( "li.taxon[data-taxon-id='" + taxonID + "'] input" ).prop( "checked", true );
   }
 }
 
@@ -807,11 +807,12 @@ var updateCheckboxInteractions = function( ul ) {
   // reset the change interaction for taxon checkboxes
   ul.find("li.taxon input").unbind("change");
   // when a taxon checkbox is enabled, so are all of its layers and vice versa
-  ul.find("li.taxon input").bind("change", function( ) {
-    var selector = $(this).prop("checked") ? ":not(:checked)" : ":checked";
-    ul.find("li.for_taxon[data-taxon-id='" + $(this).attr("id") + "'] input" + selector)
-      .attr("checked", $(this).prop("checked")).trigger("change");
-  });
+  ul.find("li.taxon input").bind( "change", function( ) {
+    var checked = $( this ).prop( "checked" );
+    var selector = checked ? ":not(:checked)" : ":checked";
+    ul.find( "li.for_taxon[data-taxon-id='" + $(this).attr("id") + "'] input" + selector ).
+      prop( "checked", checked ).trigger( "change" );
+  } );
 };
 
 var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
