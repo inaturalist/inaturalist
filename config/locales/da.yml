@@ -1858,8 +1858,8 @@ da:
   it_has: Det har
   it_instead: det i stedet.
   item_flagged_notice_html: "Dette er blevet markeret som spam, og er ikke længere
-    synligt for offentligheden. Du kan se det, enten for at du har oprettet det eller
-    du er sidekurator. Hvis du mener det er en fejl, så \n<a href=\"mailto:%{help_email}\"
+    synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det
+    eller du er sidekurator. Hvis du mener det er en fejl, så \n<a href=\"mailto:%{help_email}\"
     class=\"contact\">kontakt os venligst</a>.\n<a href=\"%{manage_flags_path}\">Manage
     flags</a>"
   its_important_that_you: Det er vigtigt, at du klikker
@@ -3212,8 +3212,8 @@ da:
   project_x_was_delete: '%{project} blev slettet (Giv det et par minutter til at fjerne
     det fra websiden)'
   projects: Projekter
-  projects_description: Projekter er en måde at samle dine med andres observationer
-    på %{site_name}. Om du er interesseret i at starte et "citizen science" projekt
+  projects_description: Projekter er en måde at forene dine - med andres observationer
+    på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt
     eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
   projects_from_place: Projekter fra %{place}
   projects_in_x: Projekter i %{x}
@@ -6482,7 +6482,7 @@ da:
           attributes:
             login:
               must_begin_with_a_letter: skal begynde med et bogstav, ikke indeholde
-                mellemrum, kun anvende bogstaver, tal, bindestreger og understregninger
+                mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
     models:

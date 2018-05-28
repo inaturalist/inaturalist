@@ -2287,7 +2287,7 @@ es:
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
   more_photos: Más fotos
-  more_than_x_years_ago: Hace más de %{x} años atras
+  more_than_x_years_ago: Hace más de %{x} años
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
@@ -5939,6 +5939,7 @@ es:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
       short: '%d de %b'
+      short_with_year: '%B %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:
