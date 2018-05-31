@@ -229,6 +229,12 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
 };
 
 inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
+  this.taxonLayerSignatures = this.taxonLayerSignatures || {};
+  var sig = JSON.stringify( layer );
+  if ( this.taxonLayerSignatures[sig] ) {
+    return;
+  }
+  this.taxonLayerSignatures[sig] = true;
   if( layer.places && layer.taxon && taxonData.listed_places ) {
     layerOptions = _.isObject( layer.places ) ?
       layer.places : { };

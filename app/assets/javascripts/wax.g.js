@@ -3520,7 +3520,6 @@ wax.g.connector.prototype.getTile = function(coord, zoom, ownerDocument) {
 wax.g.connector.prototype.releaseTile = function(tile) {
     var key = tile.getAttribute('gTileKey');
     if (this.cache[key]) delete this.cache[key];
-    if (tile.parentNode) tile.parentNode.removeChild(tile);
 };
 
 // Get a tile url, based on x, y coordinates and a z value.

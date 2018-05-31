@@ -72,6 +72,8 @@ function( $http, $rootScope, $filter ) {
     if( !options.map ) { return callback( ); }
     var overlay = new google.maps.OverlayView( );
     overlay.draw = function( ) { };
+    overlay.onAdd = function( ) { };
+    overlay.onRemove = function( ) { };
     overlay.setMap( options.map );
     var proj = overlay.getProjection( );
     var currentCenter = options.map.getCenter( );
