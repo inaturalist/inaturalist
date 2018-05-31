@@ -1528,6 +1528,7 @@ it:
   flagged_thing_explanation: Gli utenti hanno contrassegnato questa %{thing} perché
   flagger: Segnalatore
   flags: Contrassegni
+  flags_with_count: Contrassegni (%{count})
   flags_explanation: Gli utenti di %{site_name} contrassegnano gli elementi quando
     trovano qualcosa che non va. Qui ci sono alcuni problemi che non sono ancora stati
     risolti dai curatori.
@@ -1905,6 +1906,7 @@ it:
   joined!: Hai aderito!
   joined_any_projects: aderito a nessun progetto
   joined_projects: Progetti a cui ti sei unito
+  joined_with_date: 'Unito: %{date}'
   joining: Stai aderendo...
   journal: Diario
   journal_archives_for: Archivi dei diari per
@@ -1928,6 +1930,7 @@ it:
   location_unknown: Posizione sconosciuta
   language_slash_type: Lingua / Tipo
   large: grande
+  last_active_with_date: 'Attivo l''ultima volta: %{date}'
   last_confirmed_observation: Ultima osservazione confermata
   last_inat_observation: Ultima osservazione %{site_name}
   last_observation: Ultima osservazione
@@ -2321,6 +2324,7 @@ it:
   more_journal_posts: Più post del diario
   more_observations: Più osservazioni
   more_photos: Più Foto
+  more_than_x_years_ago: Più di %{x} anni fa
   most: Il più
   most_agree: la maggior parte è daccordo
   most_disagree: la maggior parte è in disaccordo
@@ -2867,6 +2871,7 @@ it:
     one: 1 altro animale
     other: altri animali
   other_annimals: Altri Animali
+  other_lexicons: Altre lingue
   other_listings_of_this_taxon_for_this_place: Altre osservazioni di questo taxon
     per questo luogo
   other_species_commonly_misidentified_as_this_species: Altre specie identificate
@@ -4247,6 +4252,7 @@ it:
   total_species_observed: Totale specie osservate
   total_unique_observers: Totale osservatori unici
   total_users: totale utenti,
+  translated_languages: Lingue tradotte
   "true": Vero
   trending: Tendenze
   trends: Tendenze
@@ -4447,6 +4453,7 @@ it:
   view_contributions: Visualizza i contributi
   view_details: Visualizza i dettagli
   view_field_options: Visualizzare le opzioni del campo
+  view_flag: Visualizza contrassegno
   view_flags: Visualizza le etichette
   view_flags_for_x_html: Visualizza le etichette per %{x}
   view_full_observation: Visualizza l'osservazione completa
@@ -4642,6 +4649,8 @@ it:
   x_deleted: '%{x} elimitato'
   x_does_not_exist: '"%{x}" non esiste'
   x_doesnt: '%{login} non'
+  x_flagged: '%{x} contrassegnati'
+  x_flagged_as_flag: '%{x} contrassegnati come %{flag}'
   x_hasnt: '%{login} non ha'
   x_journal: Diario di %{user}
   x_journal_archives_for_y: Diario di %{user} • Archivi di
@@ -5361,6 +5370,10 @@ it:
         url: URL dell'osservazione
         image_url: URL dell'immagine predefinita
         tag_list: Elenco separato da virgola delle etichette
+        place_admin1_name: Nome dell'unità amministrativa di un rango inferiore al
+          livello di stato
+        place_admin2_name: Nome dell'unità amministrativa di due ranghi inferiore
+          al livello di stato
         positioning_method: Come sono state determinate le coordinate
         positioning_device: Dispositivo utilizzato per determinare le coordinate
       identify:
@@ -6246,6 +6259,7 @@ it:
       default: '%d-%m-%Y'
       long: '%d %B, %Y'
       short: '%d %b'
+      short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%d %B, %Y'
     month_names:

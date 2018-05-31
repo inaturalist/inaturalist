@@ -1978,6 +1978,7 @@ fr:
   joined!: Vous vous êtes joint!
   joined_any_projects: rejoint aucun projet
   joined_projects: Projets liés
+  joined_with_date: 'Rejoint le : %{date}'
   joining: Rejoindre…
   journal: Journal
   journal_archives_for: Archives du journal de
@@ -2001,6 +2002,7 @@ fr:
   location_unknown: Emplacement inconnu
   language_slash_type: Langue / Type
   large: grand
+  last_active_with_date: 'Dernière activité : %{date}'
   last_confirmed_observation: Dernière observation confirmée
   last_inat_observation: Dernière observation %{site_name}
   last_observation: Dernière observation
@@ -2401,6 +2403,7 @@ fr:
   more_journal_posts: Plus de notes de journal
   more_observations: Plus d’observations
   more_photos: Plus de photos
+  more_than_x_years_ago: Il y a plus de %{x} ans
   most: Le plus
   most_agree: la plupart sont d’accord
   most_disagree: la plupart ne sont pas d’accord
@@ -6629,6 +6632,7 @@ fr:
       default: '%Y-%m-%d'
       long: '%e %B %Y'
       short: '%b %d'
+      short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:

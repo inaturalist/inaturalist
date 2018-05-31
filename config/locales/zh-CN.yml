@@ -1544,6 +1544,7 @@ zh-CN:
   joined!: 已加入！
   joined_any_projects: 已加入任何项目
   joined_projects: 加入的项目
+  joined_with_date: 加入于：%{date}
   joining: 正在加入……
   journal: 杂志
   journal_archives_for: 日记存档，用于
@@ -1562,6 +1563,7 @@ zh-CN:
   location_unknown: 位置未知
   language_slash_type: 语言/种类
   large: 大
+  last_active_with_date: 上次活跃：%{date}
   last_confirmed_observation: 最近确认的观察
   last_inat_observation: 最近 %{site_name} 观察
   last_observation: 最近观察
@@ -1857,6 +1859,7 @@ zh-CN:
   more_journal_posts: 更多日志发布
   more_observations: 更多观察
   more_photos: 更多照片
+  more_than_x_years_ago: 超过%{x}年前
   most: 多数
   most_agree: 多数同意
   most_disagree: 多数不同意
@@ -4047,6 +4050,7 @@ zh-CN:
       default: '%Y-%m-%d'
       long: '%Y年%B%d日'
       short: '%b%d日'
+      short_with_year: '%Y %b %d'
       month_year: '%Y年%B'
       month_day_year: '%B%d日%Y年'
     month_names:

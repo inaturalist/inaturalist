@@ -1823,6 +1823,7 @@ ar:
   joined!: تم الانضام!
   joined_any_projects: انضم إلى أي المشاريع
   joined_projects: المشاريع التي أنت منضم إليها
+  joined_with_date: انضم %{date}
   joining: جارٍ الانضام...
   journal: مجلة
   journal_archives_for: أرشيفات المجلة لـ
@@ -1845,6 +1846,7 @@ ar:
   location_unknown: الموقع غير معروف
   language_slash_type: اللغة / النوع
   large: كبير
+  last_active_with_date: 'آخر نشاط: %{date}'
   last_confirmed_observation: آخر ملاحظة مؤكدة
   last_inat_observation: آخر ملاحظة لـ%{site_name}
   last_observation: الملاحظة الأخيرة
@@ -2223,6 +2225,7 @@ ar:
   more_journal_posts: المزيد من مشاركات المجلات
   more_observations: المزيد من الملاحظات
   more_photos: المزيد من الصور
+  more_than_x_years_ago: أكثر من %{x} سنوات
   most: الأكثر
   most_agree: الأكثر توافقا
   most_disagree: الأكثر خلافا
@@ -5945,6 +5948,7 @@ ar:
       default: '%س-%ش-%ي'
       long: '%ش %ي، %س'
       short: '%ش %ي'
+      short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%ش %ي، %س'
     month_names:

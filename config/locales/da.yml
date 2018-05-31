@@ -512,7 +512,7 @@ da:
   are_you_sure_remove_curator: Er du sikker på at du vil fjerne %{user} som kurator?
   are_you_sure_remove_from_project: Er du sikker på, at du ønsker at fjerne %{user}
     fra dette projekt?
-  are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette billede?
+  are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette foto?
   are_you_sure_remove_taxon_from_list: Er du sikker på at du vil fjerne denne takson
     fra listen?
   are_you_sure_remove_taxon_from_place: Er du sikker på, at du vil fjerne denne takson
@@ -1492,6 +1492,7 @@ da:
   flagged_thing_explanation: Bruger har markeret dette %{thing} fordi
   flagger: Markør
   flags: Markéringer
+  flags_with_count: Markeringer (%{count})
   flags_explanation: '%{site_name} brugere markerer ting, når de finder noget, der
     ikke er rigtigt. Her er nogle problemer, som ikke er blevet løst af kuratorerne
     endnu.'
@@ -1856,6 +1857,11 @@ da:
     web-sider
   it_has: Det har
   it_instead: det i stedet.
+  item_flagged_notice_html: "Dette er blevet markeret som spam, og er ikke længere
+    synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det
+    eller du er sidekurator. Hvis du mener det er en fejl, så \n<a href=\"mailto:%{help_email}\"
+    class=\"contact\">kontakt os venligst</a>.\n<a href=\"%{manage_flags_path}\">Manage
+    flags</a>"
   its_important_that_you: Det er vigtigt, at du klikker
   iucn_red_list_status: IUCN Rødliste status
   january: Januar
@@ -1869,6 +1875,7 @@ da:
   joined!: Tilsluttet!
   joined_any_projects: tilsluttet nogen projekter
   joined_projects: Tilmeldte projekter
+  joined_with_date: 'Tilmeldt: %{date}'
   joining: Tilslutter...
   journal: Journal
   journal_archives_for: Journal arkiveres til
@@ -1892,6 +1899,7 @@ da:
   location_unknown: Sted ukendt
   language_slash_type: Sprog / Type
   large: stor
+  last_active_with_date: 'Senest aktiv: %{date}'
   last_confirmed_observation: Sidste bekræftede observation
   last_inat_observation: Sidste %{site_name} observation
   last_observation: Sidste observation
@@ -2283,6 +2291,7 @@ da:
   more_journal_posts: Flere journal indlæg
   more_observations: Flere observationer
   more_photos: Flere foto´s
+  more_than_x_years_ago: Mere end %{x} år siden
   most: Flest
   most_agree: mest enig
   most_disagree: mest uenig
@@ -3203,8 +3212,8 @@ da:
   project_x_was_delete: '%{project} blev slettet (Giv det et par minutter til at fjerne
     det fra websiden)'
   projects: Projekter
-  projects_description: Projekter er en måde at samle dine med andres observationer
-    på %{site_name}. Om du er interesseret i at starte et "citizen science" projekt
+  projects_description: Projekter er en måde at forene dine - med andres observationer
+    på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt
     eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
   projects_from_place: Projekter fra %{place}
   projects_in_x: Projekter i %{x}
@@ -4562,6 +4571,8 @@ da:
   x_deleted: '%{x} slettet'
   x_does_not_exist: '%{x} findes ikke'
   x_doesnt: '%{login} gør ikke'
+  x_flagged: '%{x} markeret'
+  x_flagged_as_flag: '%{x} markeret som %{flag}'
   x_hasnt: '%{login} har ikke'
   x_journal: '%{user}''s journal'
   x_journal_archives_for_y: '%{user}''s journal • Arkiver for'
@@ -6182,6 +6193,7 @@ da:
       default: '%d-%m-%Y'
       long: '%d. %B, %Y'
       short: '%d. %b'
+      short_with_year: '%d. %b, %Y'
       month_year: '%B %Y'
       month_day_year: '%d. %B, %Y'
     month_names:
@@ -6470,7 +6482,7 @@ da:
           attributes:
             login:
               must_begin_with_a_letter: skal begynde med et bogstav, ikke indeholde
-                mellemrum, kun anvende bogstaver, tal, bindestreger og understregninger
+                mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
     models:

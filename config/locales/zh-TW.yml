@@ -62,11 +62,11 @@ zh-TW:
     one: <span class='count'>1</span> 個觀察記錄
     other: <span class='count'>%{count}</span> 個觀察記錄
   x_observations_link_html:
-    one: <a href='%{url}'>1個觀察紀錄
-    other: <a href='%{url}'>%{count}</a>個觀察紀錄
+    one: <a href='%{url}'>1個觀察記錄
+    other: <a href='%{url}'>%{count}</a>個觀察記錄
   x_observations_reviewed_html:
-    one: <span class='count'>1</span> 個觀察紀錄已檢閱
-    other: <span class='count'>%{count}</span> 個觀察紀錄已檢閱
+    one: <span class='count'>1</span> 個觀察記錄已檢閱
+    other: <span class='count'>%{count}</span> 個觀察記錄已檢閱
   x_others:
     one: 1 個其它
     other: '%{count} 個其它'
@@ -170,14 +170,14 @@ zh-TW:
   actions: 操作
   activate_user: 啟用用戶
   active: 有效
-  active_users: 活躍使用者
+  active_users: 有效的使用者
   activity: 動態
   activity_settings: 動態設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
   add: 新增
   add_a: 新增一
-  add_a_batch_of_observations: 新增一批觀察紀錄
-  add_a_batch_of_observations_by_csv: 以CSV檔案新增一批觀察紀錄
+  add_a_batch_of_observations: 新增一批觀察記錄
+  add_a_batch_of_observations_by_csv: 以 CSV 檔案新增一批觀察記錄
   add_a_batch_of_taxa: 新增一批分類群
   add_a_comment: 新增評論
   add_a_field: 新增一個欄位
@@ -185,12 +185,12 @@ zh-TW:
   add_a_link_raquo: 新增一個連結
   add_a_name: 加入名稱
   add_a_new_change_group: 增加一新變更群組
-  add_a_new_observation_to_id_please!: 請新增一個需要鑑定的新觀察紀錄
+  add_a_new_observation_to_id_please!: 請增加一個需要鑑定的新觀察記錄！
   add_a_place_raquo: 新增地點 &raquo;
-  add_a_single_observation: 新增一項觀察紀錄
+  add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
-  add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察紀錄添加到此專案
-  add_all_your_matching_obs_to_this_project: 把您所有符合的觀察紀錄新增到此專案
+  add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察記錄添加到此專案
+  add_all_your_matching_obs_to_this_project: 把您所有符合的觀察記錄新增到此專案
   add_an_assessment: 新增評估
   add_an_identification: 新增物種鑑定
   add_an_observation: 新增觀察紀錄
@@ -1217,7 +1217,7 @@ zh-TW:
   exact_rank: 精確級別
   existing_flags: 精確標記
   exit_full_screen: 退出全螢幕
-  examples_of_ranking_organizations: 有機體級別範例
+  examples_of_ranking_organizations: 生物階層範例
   expand_days: 展開日期
   expand_updates: 擴充更新
   explore!: 探索！
@@ -1404,7 +1404,7 @@ zh-TW:
   get_current_position: 獲得目前位置
   get_started_raquo: 入門&raquo;
   get_started: 入門
-  getting_started: 入門
+  getting_started: 開始建立
   getting_started_guide: 入門指南
   give_it_some_detail: 為它提供一些詳細內容！
   global_conservation_status: 全球保育狀態
@@ -1649,6 +1649,7 @@ zh-TW:
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
   joined_projects: 已加入的專案
+  joined_with_date: 加入於：%{date}
   joining: 加入中…
   journal: 日誌
   journal_archives_for: 期刊歸檔用於
@@ -1670,6 +1671,7 @@ zh-TW:
   location_unknown: 位置不明
   language_slash_type: 語言/類型
   large: 大
+  last_active_with_date: 最近活躍：%{date}
   last_confirmed_observation: 最近提交的觀察
   last_inat_observation: 最近 %{site_name} 的觀察
   last_observation: 最近觀察
@@ -2014,6 +2016,7 @@ zh-TW:
   more_journal_posts: 更多日誌發佈文章
   more_observations: 更多觀察
   more_photos: 更多照片
+  more_than_x_years_ago: 超過 %{x} 年之前
   most: 多數
   most_agree: 最多同意
   most_disagree: 多數不同意
@@ -2452,7 +2455,7 @@ zh-TW:
   order: 排序
   order_by: 排序依
   organism_is_wild: 野生生物
-  organisms: 有機體
+  organisms: 生物
   original: 原有
   originally_flagged_by: 原有標記由
   originally_imported_from_url_html: 最初從 <a href='%{url}'>%{url}</a> 所匯入
@@ -2469,7 +2472,7 @@ zh-TW:
   other_annimals: 其它動物
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
-  other_species_commonly_misidentified_as_this_species: 常被誤認為此物種的其它物種
+  other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
   other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>的其它物種常被誤認為此物種
   our_blog: 我們的部落格
   out_of_range: 超出範圍
@@ -4353,8 +4356,8 @@ zh-TW:
         what_is_the_quality_assessment: 什麼是品質評估以及如何讓觀察品質成為有「研究」的等級？
         what_is_a_life_list?: 甚麼是生物清單呢?
         just_a_simple_list: 純為簡單的物種分類群列表而無特別功能。
-        automatically_updates_based_on_your_observations: 根據您的觀察紀錄自動更新。每位用戶在 %{site_name}
-          都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察紀錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該記錄，您手動添加到清單中的物種將不會被刪除。
+        automatically_updates_based_on_your_observations: 根據您的觀察記錄自動更新。每位用戶在 %{site_name}
+          都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察記錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該記錄，您手動添加到清單中的物種將不會被刪除。
         you_can_also_make_additional_life_lists: 您也可為指定的生命體組別製作一份生物清單，例如鳥類的生物清單，或乳草屬植物的生物清單等。
         a_project_list_belongs: 專案清單隸屬於某一專案，並列出由專案成員們所觀察出的物種分類群。專案清單也可由該專案管理員來手動加入內容，也可對於在清單上物種分類群的專案貢獻做出限制。
         a_check_list_is_html: 核對清單是物種分類群發生在地點上的清單。每一地點都有預設的清單，而每當地點邊界上有觀察產生<em>以及</em>達到研究等級狀態時，所觀察物種將會自動添加到地點的清單。
@@ -5086,6 +5089,7 @@ zh-TW:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%Y %b %d'
       month_year: '%Y年%B'
       month_day_year: '%B %d, %Y'
     month_names:

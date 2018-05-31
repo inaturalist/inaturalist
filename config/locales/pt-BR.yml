@@ -1,6 +1,7 @@
 # Messages for Brazilian Portuguese (português do Brasil)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Allysson
 # Author: AndroidOSUser
 # Author: Angelocl
 # Author: Athena in Wonderland
@@ -1441,6 +1442,7 @@ pt-BR:
   flagged_thing_explanation: Usuários marcaram isto %{thing} porque
   flagger: Sinalizador
   flags: Sinalizações
+  flags_with_count: Linhas (%{count})
   flags_explanation: '%{site_name} usuários marcam com alertas aquilo que eles encontram
     e percebem que não está correto. Aqui estão alguns aspectos que ainda não foram
     resolvidos pelos administradores.'
@@ -1784,6 +1786,10 @@ pt-BR:
     em outros sites
   it_has: Tem
   it_instead: ao invés disso.
+  item_flagged_notice_html: |-
+    Isto foi marcado como spam e não está mais visível publicamente. Você pode vê-lo porque o criou, ou você é um curador do site. Se você acha que foi um erro, por favor
+    <a href="mailto:%{help_email}" class="contact">contact us</a>.
+    <a href="%{manage_flags_path}">Manage flags</a>
   its_important_that_you: É importante que você marque
   iucn_red_list_status: Status da Lista Vermelha da IUCN
   january: Janeiro
@@ -1796,6 +1802,7 @@ pt-BR:
   join_this_project: Entre neste projeto
   joined!: Participando!
   joined_any_projects: participações e projetos
+  joined_with_date: 'Entrou: %{date}'
   joining: Participando...
   journal: Boletim Informativo
   journal_archives_for: Arquivos do Boletim Informativo
@@ -1818,6 +1825,7 @@ pt-BR:
   location_unknown: Localização Desconhecida
   language_slash_type: Idioma / Tipo
   large: grande
+  last_active_with_date: 'Última vez ativo: %{date}'
   last_confirmed_observation: Última observação confirmada
   last_inat_observation: Última observação %{site_name}
   last_observation: Última observação
@@ -2196,6 +2204,7 @@ pt-BR:
   more_journal_posts: Mais artigos do Boletim Informativo
   more_observations: Mais observações
   more_photos: Mais Fotos
+  more_than_x_years_ago: Mais do que %{x} anos atrás
   most: Mais
   most_agree: a maioria concorda
   most_disagree: a maioria discorda
@@ -3517,7 +3526,7 @@ pt-BR:
   source_list:
     ubio: uBio
     catalogue_of_life: Catálogo da Vida
-    inaturalist: NaturaLista
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Registro de organismos da Nova Zelândia
     nzbrn_birds: NZBRN Aves
     nzbrn_fungi: NZBRN Fungos
@@ -5700,6 +5709,7 @@ pt-BR:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%b %d %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:
