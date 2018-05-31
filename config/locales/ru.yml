@@ -20,6 +20,7 @@
 # Author: Lugimax
 # Author: Mailman
 # Author: Movses
+# Author: Nina
 # Author: Okras
 # Author: Patrick Star
 # Author: Redredsonia
@@ -246,6 +247,11 @@ ru:
   add_an_observation: Добавьте наблюдение
   add_an_observation?: Добавить наблюдение?
   add_an_observation_of: Добавить наблюдение %{taxon}
+  add_annotations_for_x: Добавить аннотации для "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Добавить аннотации для "Sex"
+    plant_phenology: Добавить аннотации для "Plant Phenology"
+    life_stage: Добавить аннотации для "Life Stage"
   add_another: Добавить еще один
   add_another_flag: Добавить еще один флаг
   add_another_photo: Добавьте еще фото
@@ -268,6 +274,7 @@ ru:
   add_from_your_observations: Добавить из своих наблюдений
   add_link: Добавить ссылку
   add_listed_taxa_from_observations: Добавить перечисленные таксоны из наблюдений
+  add_higher_level_taxon: Добавить таксон высшего уровня (например "птицы")
   add_id: Добавить идентификатор
   add_it_to_place_raquo: Добавить это к месту &raquo;
   add_more_photos: Добавьте больше фото
@@ -291,16 +298,28 @@ ru:
     в список.  В стадии разработки все еще отрабатываются баги...
   add_observations_project: Добавить наблюдения к этому проекту
   add_one: Добавьте одно!
+  add_one_now: Добавить один сейчас
   add_photos: Добавить фотографию
   add_photos_to_this_observation: Добавить фото для этого наблюдения
   add_place: Добавить место
   add_plant_phenology_budding_annotation: 'Добавить значение "Фенология растений:
     Почкование"'
+  add_plant_phenology_flowering_annotation: 'Добавить аннотацию к "Plant Phenology:
+    Flowering"'
+  add_plant_phenology_fruiting_annotation: 'Добавить аннотацию к "Plant Phenology:
+    Fruiting"'
   add_life_stage_adult_annotation: 'Добавить значение "Стадия жизни: Имаго"'
+  add_life_stage_teneral_annotation: 'Добавить аннотацию к "Life Stage: teneral"'
   add_life_stage_subimago_annotation: 'Добавить значение "Стадия жизни: Субимаго"'
+  add_life_stage_pupa_annotation: 'Добавить аннотацию к "Life Stage: Pupa"'
   add_life_stage_nymph_annotation: 'Добавить значение "Стадия жизни: Нимфа"'
+  add_life_stage_larva_annotation: 'Добавить аннотацию к "Life Stage: Larva"'
   add_life_stage_juvenile_annotation: 'Добавить значение "Стадия жизни: Молодой"'
+  add_life_stage_egg_annotation: 'Добавить аннотацию к "Life Stage: Egg"'
+  add_section: Добавить секцию
   add_several_observations_at_once: Добавить несколько наблюдений сразу.
+  add_sex_female_annotation: 'Добавить аннотацию к "Sex: Female"'
+  add_sex_male_annotation: 'Добавить аннотацию к "Sex: Male"'
   add_shape: Добавить форму
   add_some_now: Добавьте немного сейчас
   add_tag: Добавить тег
@@ -319,6 +338,7 @@ ru:
   add_to_calendar: Добавить в календарь
   add_to_checklist: Добавить в контрольный список
   add_to_favorites: Добавить к фаворитам
+  add_to_id_please: Добавить к ID, пожалуйста
   add_to_list: Добавить в список
   add_to_project: Добавить в проект
   add_to_your_life_list: Добавьте в свой список жизни!
@@ -347,6 +367,7 @@ ru:
   additional_range_data_from_an_unknown_source: Данные дополнительного диапазона из
     неизвестного источника
   admin: Администратор
+  admin_s: Администратор(ы)
   admin_any_projects: администрирование любых проектов
   admin_tools: Средства Администрирования
   agree: согласен
@@ -360,18 +381,48 @@ ru:
   all_colors: '&laquo; Все цвета'
   all_comments: Все комментарии
   all_csv: Все CSV
+  all_flags_must_be_resolved: Все флажки должны быть отмечены
   all_life: Вся жизнь
   all_names: Все Имена
   all_observations: Все наблюдения
   all_photos: Все фотографии
   all_places: Все Места
   all_projects: Все Проекты
+  all_rank_added_to_the_database:
+    phylum: Все филы добавленные в базу данных
+    subphylum: Все субфилы добавленные в базу данных
+    superclass: Все суперклассы добавленные в базу данных
+    class: Все классы добавленные в базу данных
+    subclass: Все подклассы добавленные в базу данных
+    infraclass: Все инфраклассы добавленные в базу данных
+    superorder: Все надпорядки добавленные в базу данных
+    order: Все порядки добавленные в базу данных
+    suborder: Все подпорядки добавленные в базу данных
+    infraorder: Все инфраклассы добавленные в базу данных
+    superfamily: Все суперсемейства добавленные в базу данных
+    epifamily: Все эписемейства добавленные в базу данных
+    family: Все семейства добавленные в базу данных
+    subfamily: Все субсемейства добавленные в базу данных
+    supertribe: Все супертрибы добавленные в базу данных
+    tribe: Все трибы добавленные в базу данных
+    subtribe: Все субтрибы добавленные в базу данных
+    genus: Все рода добавленные в базу данных
+    genushybrid: Все родовые гибриды добавленные в базу данных
+    subgenus: Все подроды добавленные в базу данных
+    section: Все секции добавленные в базу данных
+    subsection: Все подсекции добавленные в базу данных
+    species: Все виды добавленные в базу данных
+    hybrid: Все гибриды добавленные в базу данных
+    subspecies: Все подвиды добавленные в базу данных
+    variety: Все вариации добавленные в базу данных
+    form: Все формы добавленные в базу данных
   all_rights_reserved: Все права защищены
   all_species: Все Виды
   all_taxa:
     rank:
       kingdom: Царство
       class: Класс
+      phylum: Фила
       species: Вид
       order: Порядок
     amphibians: Земноводные
@@ -380,6 +431,7 @@ ru:
     birds: Птицы
     chromista: Хромисты
     fungi: Грибы
+    fungi_including_lichens: Грибы включая лишайники
     insects: Насекомые
     mammals: Млекопитающие
     mollusks: Моллюски
@@ -438,6 +490,7 @@ ru:
     x_other_animals:
       one: 1 другое животное
       other: '%{count} других животных'
+  all_taxa_: Все таксоны
   all_taxa_in_this_guide: Все таксоны этого руководства
   all_taxonomic_groups: '&laquo; Все Таксономические Группы'
   all_updates: Все обновления
@@ -447,6 +500,8 @@ ru:
     будут отнесены к этому часовому поясу если при их добавлении вы не укажите другой.
   all_your_projects: Все ваши проекты
   allow_any: разрешить любые
+  allow_curator_access: Позволить кураторский доступ
+  allow_curator_coordinate_access: Позволить кураторский доступ к координатам
   allow_project_curators_to_view_your_private_coordinates: Разрешить кураторам проекта
     видеть ваши приватные координаты
   allowed_html: Разрешенный HTML-код
@@ -463,8 +518,15 @@ ru:
   and: и
   and_choose_a_matching_taxon: и выберите соответствующий таксон из списка. Если Вы
     остановитесь на чем-то подобном
+  and_help_the_inaturalist_community_grow: и помочь росту сообщества %{site_name}
+  and_make_some_new: и сделать что-то новое
   and_other_taxa: '&amp; Другие Таксоны'
   and_un_license_all_your_observations: и лишить лицензии все ваши наблюдения
+  and_you_havent_linked: '... и вы не связали одну из этих внешних учетных записей,
+    сначала необходимо войти через %{site_name}, а затем отредактировать свой профиль
+    и связать свою учетную запись оттуда. В противном случае %{site_name} может не
+    распознать, что две учетные записи связаны, и попробует вместо этого создать новую
+    учетную запись!'
   and_x_more_people!:
     one: и ещё один человек!
     few: и на %{count} человека больше!
@@ -477,12 +539,16 @@ ru:
   announcement_was_successfully_updated: Объявление было успешно обновлено.
   announcements: Объявления
   any: любой
+  any_: Любой
   apply_to_selected: Применить к выбранным
   apply_captive_cultivated: Применить В неволе / культивируемое
+  apply_fields: Примените поля
   apply_geoprivacy: Применить настройку приватности местоположения
+  apply_darr: Примените &darr;
   apply_establishment_means_to_descendant_places: Применить способ возникновения к
     местам-потомкам
   apply_these_settings_to_all: Применить эти настройки ко всем приведенным ниже наблюдениям.
+  appropriate?: Приемлимое?
   arachnids: паукообразные
   archives: Архивы
   are_you_really_sure_want_delete_this_user: Вы абсолютно точно уверены в том, что
@@ -594,6 +660,7 @@ ru:
   back_to_browsing_people: Вернуться к поиску людей
   back_to_calendar: Вернуться к календарю %{user}
   back_to_editing_observation: Вернуться к редактированию наблюдения
+  back_to_friends: Назад к друзьям
   back_to_help: Назад к Справке
   back_to_import: Назад к Импорту
   back_to_lists: Назад к спискам %{name}
@@ -623,6 +690,7 @@ ru:
   back_to_your_projects: Вернуться к вашим проектам
   based_on_the_evidence_can_id_be_improved: Основываясь на свидетельствах, можно ли
     подтвердить или улучшить идентификатор сообщества?
+  basic: Основное
   batch: Пакетная загрузка
   batch_edit: Пакетное редактирование
   batch_edit_taxa_for_x_html: Пакетное редактирование таксонов для %{x}
@@ -651,6 +719,11 @@ ru:
     - различные типы открытых пространств (парки, заповедники). Если вы увеличите
     масштаб, вы увидите больше объектов.
   body: 'Текст:'
+  bounding_box: Ограничительная рамка
+  breadcrumbs: Панировочные сухари
+  breadcrumbs_description: Это заменит h1 и действия по умолчанию, поэтому обязательно
+    включите их, если они важны для этого проекта, и помните, что максимальная ширина
+    950px
   brief_caption: Краткий заголовок
   brief_description_on_what_you_observed: Краткое описание того, что вы видели
   brief_description_of_what_you_saw: Краткое описание того, что вы видели
@@ -664,18 +737,21 @@ ru:
   browse_species_that_occur_near_this_observation: Посмотреть виды, которые встречались
     рядом с местом этого наблюдения.
   browse_your_observations: Просмотр ваших наблюдений
+  built_with_site_guides_html: Постройте с <a href='%{url}'>%{site_name} Guides</a>
   bulk_import_of_filename_is_complete: Групповой импорт %{filename} завершён
   but_we_didnt_add_this_observation_to_the_x_project: Мы не добавили это наблюдение
     к проекту %{project} потому, что вы не согласны с условиями проекта.
   by: по
   by_adding_ids_to_observations: добавляя идентификаторы к наблюдениям
   by_everyone: Любые
+  by_project_list: по списку проекта
   by_user: по %{user}
   by_you: Ваши
   calendar: Календарь
   can_you_help_your_friends_id_these: Вы можете помочь своим друзьям идентифицировать
     это?
   cancel: Отмена
+  cant_flag_an_object_that_doesnt_exist: Не может отметить объект который не существует
   cant_merge_a_taxon_with_itself: Невозможно объединение элемента с самим собой.
   captive: В неволе
   captive_cultivated: В неволе / культивируемое
@@ -690,6 +766,7 @@ ru:
     даже в коммерческих целях, без вашего разрешения или выражения вам благодарности.
     Это наиболее приемлемый вариант предлагаемых лицензий. Рекомендуется для максимального
     распространения и использования лицензированных материалов.
+  cc_0_name: Нет авторских прав (СС0)
   cc_attribution_license: лицензии Creative Commons Attribution
   cc_by_description: Эта лицензия позволяет другим распространять, ремикшировать,
     настраивать и основываться на вашей работе, даже на коммерческой основе, если
@@ -699,36 +776,60 @@ ru:
     строить свою работу некоммерчески, и хотя их новые работы также должны признавать
     вас и быть некоммерческими, они не должны лицензировать свои производные работы
     на тех же условиях.
+  cc_by_nc_name: Attribution-NonCommercial
   cc_by_nc_nd_description: Эта лицензия является наиболее ограниченной из шести основных
     лицензий, позволяя другим только загружать ваши работы и делиться ими с другими
     при условии, что они выражают вам благодарность, но ваши работы не могут каким-либо
     образом изменены или использованы на коммерческой основе.
+  cc_by_nc_nd_name: Attribution-NonCommercial-NoDerivs
   cc_used_under_a: Creative Commons, используется по
   change: Изменить
+  change_admin: Изменить администрирование
+  change_cover: Изменить обложку
   change_descriptions:
     split: Старый таксон разделился на несколько новых таксонов
     merge: Несколько старых таксонов объединились в один таксон
+    swap: Изменение имени один-к-одному
+    drop: Концепция таксона полностью недействительна, поддерживается в исторических
+      целях или для совместимости
+    stage: Подготовьте неактивную концепцию для выпуска как часть изменяемой группы
   change_geoprivacy: Изменить настройку приватности местоположения
   change_group: Изменить группу
   change_icon: Сменить иконку
   change_password: Изменить пароль
   change_types:
+    activated_soon: Будет активно вскоре
+    change_types: Изменить типы
     split: Разделить
     merge: Объединить
     swap: Заменить
     stage: Статус
+    drop: Бросить
+    split_from: Разделить форму
     split_into: разделить на
+    merge_into: Соединить вместе
     merged_into: слились в
     replaced_by: заменены
     replace_with: 'Заменить на:'
+    dropped: Брошено
+    input_taxon_was_split_into_output_taxa_html: '%{input_taxon} был разделен на %{output_taxa}'
     input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} будет разделен
       на %{output_taxa}'
+    input_taxon_was_dropped_html: '%{input_taxon} был выброшен'
+    input_taxon_will_be_dropped_html: '%{input_taxon} будет выброшен'
+    input_taxon_will_be_activated_soon_html: '%{input_taxon} будет активирован вскоре'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} был заменён %{output_taxon}'
     input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} будет заменен
       на %{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} были сведены к %{output_taxon}'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} будет сведен
+      в %{output_taxon}'
+  change_visibility_of: Изменить вид пространственных координат?
   change_your_matching: Измените соответствие
   change_your_password: Изменить пароль
   changing_the_geoprivacy: Изменение настройки приватности местоположения влияет на
     то, могут ли другие люди видеть место вашего наблюдения.
+  check_above_for_errors: Проверьте ошибки
   check_back_soon: Возвращайтесь в ближайшее время!
   check_here_to_autoload_description: Проверьте автозагрузку описания из Википедии.
     Возможно, вы захотите отменить её в случае, если научное наименование таксона
@@ -736,6 +837,7 @@ ru:
   check_here_to_autoload_photos: Проверьте автозагрузку фото с Flickr. Возможно, вы
     захотите отменить её в случае, если научное наименование таксона таковым не является
     или если имеется обычная опечатка, как, например "Парус"
+  check_it_out: Проверьте это
   check_list: Контрольный список
   check_list_description: Выберите таксон верхнего уровня для этого списка, такие
     как "Aves" для птиц или "Amphibia" для земноводных. После этого выбора в список
@@ -745,9 +847,13 @@ ru:
     здесь обитают, например, "Птицы %{place}".
   check_list_individual_taxa: Контрольные списки по отдельным таксонам, которые здесь
     обитают, например, "Птицы %{place}".
+  check_lists_must_belong_to_a_place: Чеклисты должны принадлежать месту. Для того,
+    чтобы создать чеклист, пройдите в чеклист этого места по умолчанию и кликните
+    ссылку 'Create a new check list'
   check_list_of_species_occuring_in: Контрольный список видов, встречающихся
   check_list_place: Контрольный список %{place}
   check_list_updated: Контрольный список обновлён!
+  check_list_source: Источник <span class="meta">(optional)</span>
   check_lists_for: Другие контрольные списки для %{place}
   check_out_my_observations_at: Если вы хотите, вы можете проверить мои наблюдения
     на
@@ -760,9 +866,11 @@ ru:
     фото. Позже вы можете выбрать другую лицензию или лицензию, но это лучшая лицензия
     для совместного использования с исследователями."
   checklist: Контрольный список
+  checklists: Чеклисты
   checklist_places: Перечень мест с контрольными списками
   checklist_places_absent: Места с контрольными списками (отсутствуют)
   checklist_places_confirmed: Перечень мест с контрольными списками (подтвержденный)
+  checklist_places_introduced: Места чеклистов (введено)
   cheklist_places_are_places_with_contain_taxon: '"Перечень мест с контрольными списками"
     - это места с контрольными списками, содержащими данный таксон.'
   child_taxa: Дочерние таксоны
@@ -774,6 +882,8 @@ ru:
     фото с других сайтов или укажите наблюдения с %{site_name}. Постарайтесь выбрать
     изображения, которые <em>показывают диагностические особенности</em> и <em>выглядят
     так хорошо, как иконки</em>. <em>По умолчанию используется первое из изображений</em>.
+  choose_columns: Выберите колонки
+  choose_file: Выберите файл
   choose_files: Выберите файлы
   choose_files_from_your_computer: выбрать файлы с вашего компьютера
   choose_from_your_lists: Выбрать из ваших списков
@@ -791,10 +901,12 @@ ru:
   choose_what_kind_of_change_youre_creating: Выберите, какие изменения вы создаете.
   choose_your_username: Выбрать ваше пользовательское имя
   cid_d_to_genus: Идентифицированные до рода
+  citation: Цитата
   classification: Классификация
   clear: очистить
   clear_color_filters: Очистить цветовые фильтры
   clear_search: Очистить поиск
+  clear_shapes: Очистите формы
   click_add_an_observation_to_the_lower_right: Добро пожаловать на %{site_name_short}!
     Нажмите 'Добавить наблюдение' в нижнем правом углу. Вам будет предложено войти
     в систему/зарегистрироваться, если вы еще этого не сделали
@@ -804,6 +916,7 @@ ru:
   click_the_map: <strong>Кликните на карту</strong> чтобы добавить местоположение.
   click_the_map_to_jump_new_place: Щелкните на карте, чтобы перейти на новое место
   close: Закрыть
+  code: Код
   color_categories_for_this_species: Цветовые категории для данного вида, - это как
     если бы вы собирались поместить его в руководстве по полевым исследованиям с сортировкой
     по цвету. Пожалуйста, не перечисляйте все цвета организма, только самые основные.
@@ -816,17 +929,26 @@ ru:
   comma_separated_list_of_tracking_codes: |-
     Список кодов отслеживания, разделенных запятыми. Добавьте их, если вы хотите добавить код отслеживания, направляя людей в новую форму наблюдения, например, %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
     Вы можете использовать это для отслеживания участия из разных источников. Вы можете получить доступ к этим кодам при загрузке наблюдений в ваш проект в формате CSV.
+  comma_separated_please: Разделитель запятая, пожалуйста
   comment_preview: Предварительный просмотр комментария
   comment: комментарий
   comment_: Комментарий
+  comment_feed: Комментировать
   comment_deleted: Комментарий удалён
+  commented: Прокомментировано
   comments: Комментарии
   comments_and_identifications: Комментарии и Идентификации
   comments_by_everyone: Комментарии всех
   comments_by_me: Мои комментарии
+  comments_on: Комментарии для
   comments_on_my_observations: Комментарии к моим наблюдениям
   comments_youve_made_with_others: Комментарии, которые вы создали (с другими)<br/><span
     class="description">на прошлой неделе</span>
+  commercial_solicitation: Коммерческое ходатайство, ссылки и т.д.
+  commit: Совершить
+  committed: Совершено
+  committed_on: Совершено %{date}
+  committing: В процессе ...
   community: Сообщество
   community_guidelines: Правила сообщества
   community_id_heading: Идентификатор сообщества
@@ -1221,6 +1343,7 @@ ru:
   failed_to_save_record: Не удалось сохранить запись. Пожалуйста, попробуйте повторить
     позже.
   "false": Нет
+  faq: Часто задаваемые вопросы
   fave: фаворит
   faves: Фавориты
   faved_this_observation: добавил(и) это наблюдение к фаворитам
@@ -1235,6 +1358,7 @@ ru:
     создал ли его кто-то другой, чтобы избежать дублирования.
   fields_can_only_be_edited_by_the_people_who: Поля могут редактироваться только людьми,
     которые их создали, и кураторами сайтов
+  fields_merged: Поля объединены
   file: Файл
   file_should_be_in_the_following_format: 'Файл должен иметь следующий формат: наименование
     таксона, описание'
@@ -1329,6 +1453,7 @@ ru:
     one: 1 гриб
     few: гриба
     other: грибов
+  general: Общие
   generally_these_come_from_iucn_red_list: Как правило, они поступают из Красного
     списка МСОП, но если они приходят из других источников, они будут придерживаться
     категорий МСОП.
@@ -1774,6 +1899,7 @@ ru:
   merge_it_with_another_place: Объединить с другим местом
   merge_two_places_together: Объединить два места в одно. Все виды из контрольных
     списков и географические данные будут объединены.
+  merge_observation_field_x_into: Объединить поле наблюдения %{x} в...
   merging_places: Объединение мест
   message: Сообщение
   messages: Сообщениях
@@ -2067,7 +2193,7 @@ ru:
     если не соблюдаются вышеуказанные условия или
   observations_with_this_field: Наблюдения с таким полем
   observationcounts_refreshed: Подсчёт наблюдений обновлён
-  observed: Наблюдалось
+  observed: Дата, время наблюдения
   observers: Наблюдатели
   occurence_status_describes_how: Статус присутствия указывает, насколько часто или
     редко встречается таксон в данной области. Смотрите спецификацию DarwinCore <a
@@ -2084,7 +2210,7 @@ ru:
     absent: отсутствует
   of: из
   of_observations: наблюдения
-  of_species: виды
+  of_species: вид
   of_observers: наблюдатели
   of_identifiers: Экспертов
   of_places: места
@@ -2204,6 +2330,8 @@ ru:
         %{user_link}
       without_observation: добавил <strong>идентификацию</strong>
   person: Пользователь
+  personal_message_description: Никто не любит получать электронную почту от робота!
+    Почему бы вам не рассказать своим друзьям, почему вы их приглашаете?
   per_page: На странице
   photo: Фото
   photo?: Фото?
@@ -2294,6 +2422,7 @@ ru:
     south_africa: Южная Африка
     switzerland: Швейцария
   places_of_interest: Достопримечательности
+  places_merged_successfully: Места объединены успешно!
   please_be_careful_particulary_when: Будьте осторожны, особенно при удалении таксонов.
     Если таксон имеет связанные наблюдения, идентификаторы, таксоны, содержащиеся
     в списках и т.д., пожалуйста
@@ -2573,6 +2702,8 @@ ru:
   sign_out: Выйти
   similar_species: Аналогичные виды
   single_observation: Одиночное наблюдение
+  single_taxon: Отдельный таксон (ввод для разделения/отбрасывания/стадии, вывод для
+    слияния/замены)
   skip_to_next_page: Перейти на следующую страницу
   small: маленький
   site_name_place: '%{site_name} место'
@@ -2663,6 +2794,8 @@ ru:
   stop_editing: Завершить редактирование
   stop_following_user: Отменить отслеживание %{user}
   subject_resolved_noun_html: '%{subject} разрешил %{noun}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} произвёл %{thing}, влияющее
+    на %{stuff}'
   submission_model_description: Кто может добавлять наблюдения к вашему проекту?
   submit: Отправить
   submit_observations:
@@ -2761,6 +2894,7 @@ ru:
     overlays: Наложения
   taxon_changes: Изменениях таксона
   taxon_curators: Кураторы таксона
+  taxon_merge: слияния таксонов
   taxon_name: Наименование таксона
   taxon_name_must_match_an_existing_taxon_in_our_database: Наименование таксона должно
     соответствовать существующему в нашей базе
@@ -2774,12 +2908,14 @@ ru:
   taxon_ranks: Ранги таксонов
   taxon_removed_from_list: Таксон удален из списка
   taxon_schemes: Таксономические схемы
+  taxon_schemes_raquo_html: Таксономические <nobr>схемы &raquo;</nobr>
   taxon_search_results_for: Результаты поиска таксона для
   taxon_name_was_deleted: Наименование таксона было удалено.
   taxon_name_was_successfully_updated: Наименование таксона было успешно обновлено.
   taxon_was_successfully_updated: Таксон был успешно обновлён.
   taxonomic: Таксономический
   taxonomic_changes: Таксономические изменения
+  taxonomic_changes_raquo_html: Таксономические <nobr>изменения &raquo;</nobr>
   taxonomic_groups: Таксономические Группы
   taxonomic_order: Таксономический Порядок
   taxonomic_status: Таксономический статус
@@ -2857,6 +2993,8 @@ ru:
     other: Существуют <span class='count'>%{count}</span> синонимов</span>
   there_isnt_wiki_article: Не существует статьи в Википедии или идёт перенаправление
     по названию '<i>%{taxon}</i>'. Возможно, вы хотели бы
+  there_merge_problems_with_the_merge: 'Возникли проблемы слияния с кодом ошибки:
+    %{merged_errors}'
   there_was_a_problem_saving_your_identification: 'Возникла проблема с сохранением
     вашей идентификации: %{error}'
   there_were_problems_adding_your_observation_to_this_project: 'Возникли проблемы
@@ -3002,6 +3140,7 @@ ru:
     other: Обновить %{count} выбранных таксонов
   update_your_content: Обновить ваш контент
   updated: Обновлено
+  updated_by: Обновлено
   updated_daily: Обновляется ежедневно
   updated_photo: Обновлённые фото
   upload: Загрузка
@@ -3346,6 +3485,10 @@ ru:
     к этому проекту</a>
   your_activation_code_was_missing: Ваш код активации отсутствовал. Пожалуйста, следуйте
     по URL-адресу из вашей электронной почты.
+  your_coarser_id: |-
+    Ваша более грубая идентификация <span class='taxon'>%{coarser_taxon_name}</span> означает, что вы не согласны с существующей более точной идентификацией
+    <span class='taxon'>%{finer_taxon_name}</span>. Это то, что вы хотите сделать?<br><br>
+    <a href='/pages/getting+started' target='_blank'>Подробнее о том, как работает идентификация &raquo;</a>
   your_comment_was_saved: Ваш контент был сохранен.
   your_content: Ваш контент
   your_contributions_to_project: Ваш вклад в %{project_title}
@@ -3444,6 +3587,39 @@ ru:
           его при поиске мест и покажет границу места на картах %{site_name}, где
           места отображаются, если граница была задана (например, отображение в виде
           "карточки", страницы таксона и т. д.)
+        import_tags_from_csv_help_html: |-
+          <p>
+            Выгрузите CSV-файл, содержащий теги для таксонов этого руководства. Ваш CSV-файл должен выглядеть так:
+          </p>
+          <table class="table">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>color</th>
+                <th>Number of hands</th>
+                <th></th>
+              </tr>
+              <tr>
+                <td>Homo sapiens</td>
+                <td></td>
+                <td>2</td>
+                <td>bipedal</td>
+              </tr>
+              <tr>
+                <td>Vulpes vulpes</td>
+                <td>red|black</td>
+                <td>0</td>
+                <td>quadripedal</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            Первая строка начинается с "Name", за которым следует тег
+            предикаты / категории. Каждая следующая строка начинается с имени таксона, за которым следуют теги, соответствующие предикату в верхней части столбца. В указанном примере <i>Homo sapiens</i> даёт теги <code>bipedal</code> and <code>Number of hands=2</code>,
+            а <i>Vulpes vulpes</i> даёт <code>quadripedal</code>,
+            <code>color=red</code>, <code>color=black</code>, и
+            <code>Number of hands=0</code>. Пробелы будут проигнорированы, и вы можете добавить несколько строк для каждого таксона. Вы также можете добавить несколько значений на ячейку, разделяя их символом вертикальная черта, '|' .
+          </p>
         paste_note_html: Вставьте до 500 названий видов, по одному на каждую строку.
           %{site_name} лучше всего обеспечит соответствие общих наименований концепции
           видов, но для избежания двусмысленности лучше использовать научные наименования.
@@ -3520,6 +3696,9 @@ ru:
           <a href="http://github.com/inaturalist/inaturalist" title= "inaturalist
           at master-GitHub" > развивайтесь с нами на GitHub</a>!'
         what_are_admins_and_curators?: Кто такие администраторы и кураторы?
+        inat_admins_are_the_people_who: Администраторы %{site_name} -это люди, которые
+          управляют сайтом. У них есть прямой доступ к базовому коду и базе данных,
+          и они могут изменить на сайте что угодно.
         curators_are_inat_users_who_volunteer_to_html: Кураторы - это пользователи
           %{site_name}, которые добровольно помогают поддерживать актуальными наши
           таксономические данные. Если вы заинтересованы в том, чтобы стать куратором,
@@ -3838,6 +4017,12 @@ ru:
           <li>Не удалять поля, которые люди используют</li>
           <li>Не переводите существующие имена полей на другие языки. Английский язык - это лингва-франка этого сайта. Если вы действительно хотите поле, которое отражает ту же концепцию, но на другом языке, пожалуйста, создайте новое поле наблюдения.</li>
         </ol>
+      merge:
+        warning_html: Пожалуйста, относитесь с уважением к данным других людей и <strong>поговорите
+          с создателем поля наблюдения перед слиянием </strong>. Этот инструмент уничтожит
+          объединяемое поле наблюдения и переместит все наблюдения, использующие его,
+          к хранителю. <strong>Этот процесс нельзя отменить </strong>, поэтому будьте
+          осторожны.
     emailer:
       observations_export_notification:
         your_observations_export_is_ready_html: Экспорт ваших наблюдений готов. К
@@ -4565,9 +4750,11 @@ ru:
         preferred_membership_model: Предпочтительная модель членства
         preferred_submission_model: Предпочтительная модель представления
         prefers_place_boundary_visible: Показать границы места на карте
+        tracking_codes: Код отслеживания
       project_observation:
         user_id: Отправитель
       place:
+        code: Код
         display_name: Отображаемое имя
         latitude: Широта
         longitude: Долгота
