@@ -136,7 +136,7 @@ class MushroomObserverImportFlowTask < FlowTask
       name = consensus_name.at( "name" ).text
       begin
         taxon = Taxon.single_taxon_for_name( name, iconic_taxa: [
-          Taxon::ICONIC_TAXA_BY_NAME["Fungi"]
+          Taxon::ICONIC_TAXA_BY_NAME["Fungi"],
           Taxon::ICONIC_TAXA_BY_NAME["Protozoa"]
         ] )
         taxon ||= Taxon.import( name, ancestor: Taxon::ICONIC_TAXA_BY_NAME["Fungi"] ) rescue nil
