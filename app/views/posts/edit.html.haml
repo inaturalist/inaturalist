@@ -14,11 +14,10 @@
         = t(:editing)
         = @post.title
       .meta
-        = t(:post) + ' ' + t(:from).downcase
         - if %w(Project Site).include?( @post.parent_type )
-          = link_to t(:x_journal, user: @post.parent.try_methods(:title, :name)), @post.parent
+          =t :post_from_journal_by_parent_html, parent: @post.parent.try_methods(:title, :name), url: url_for( @post.parent )
         - else
-          = link_to t(:x_journal, user: t(:your).downcase.singularize), journal_by_login_path(current_user.login)
+          =t :post_from_your_journal_html, url: journal_by_login_path( current_user.login )
   .row
     .col-md-12
       - if @preview
