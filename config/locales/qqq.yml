@@ -1062,6 +1062,8 @@ qqq:
   taxa: '{{Identical|Taxa}}'
   taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
+  taxon_is_a_rank: Statement that a particular taxon is of a particular rank.
+    Do not translation the variable names, i.e. anything between { and }.
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
   text: '{{Identical|Text}}'
