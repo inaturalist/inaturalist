@@ -134,6 +134,29 @@ describe Annotation do
     }.to raise_error( ActiveRecord::RecordInvalid, /is blocking but another annotation already added/ )
   end
 
+  it "validates for multivalued term on update" do
+    obs = Observation.make!
+    atr = ControlledTerm.make!( multivalued: true )
+    val1 = ControlledTerm.make!( is_value: true )
+    val2 = ControlledTerm.make!( is_value: true )
+    atr.controlled_term_values.create( controlled_value: val1 )
+    atr.controlled_term_values.create( controlled_value: val2 )
+    a1 = Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: val1,
+      resource: obs
+    )
+    expect( a1 ).to be_valid
+    a2 = Annotation.make!(
+      controlled_attribute: atr,
+      controlled_value: val2,
+      resource: obs
+    )
+    expect( a2 ).to be_valid
+    a1.reload
+    expect( a1 ).to be_valid
+  end
+
   it "creates valid instances" do
     atr = ControlledTerm.make!
     val = ControlledTerm.make!(is_value: true)
@@ -208,6 +231,7 @@ describe Annotation do
       expect( o.updated_at ).to be > t
     end
   end
+
   describe "deletion after" do
     before do
       @attribute = ControlledTerm.make!
@@ -253,7 +277,6 @@ describe Annotation do
       end
     end
     describe "changing the controlled term taxon" do
-
       it "should happen when the observation taxon is no longer a descendant of the controlled term taxon" do
         @attribute.controlled_term_taxa.destroy_all
         @attribute.controlled_term_taxa.create!( taxon: Taxon.make! )
