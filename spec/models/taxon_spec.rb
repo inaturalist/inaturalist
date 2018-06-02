@@ -1460,6 +1460,23 @@ describe "current_synonymous_taxon" do
     end
     expect( split1.input_taxon.current_synonymous_taxon ).to be_blank
   end
+  it "should not get stuck in a no-hop loop" do
+    swap1 = make_taxon_swap( committer: curator )
+    swap1.commit
+    # creating a case that shouldnt be possible with current code
+    # but is possible with older data created before curent validations
+    swap2 = make_taxon_swap(
+      input_taxon: swap1.output_taxon,
+      output_taxon: swap1.output_taxon,
+      committer: curator,
+      validate: false
+    )
+    swap2.commit
+    swap1.input_taxon.update_attributes(is_active: false)
+    swap1.output_taxon.update_attributes(is_active: false)
+    expect( swap1.input_taxon.current_synonymous_taxon ).to be_nil
+    expect( swap1.output_taxon.current_synonymous_taxon ).to be_nil
+  end
   it "should be blank if swapped and then split" do
     swap = make_taxon_swap( committer: curator )
     swap.commit

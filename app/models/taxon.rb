@@ -1553,7 +1553,8 @@ class Taxon < ActiveRecord::Base
     return nil if is_active?
     synonymous_taxon = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
       joins( :taxon_change_taxa ).
-      where( "taxon_change_taxa.taxon_id = ?", self ).order(:id).last.try(:output_taxon)
+      where( "taxon_change_taxa.taxon_id = ?", self ).
+      where( "taxon_changes.taxon_id != ?", self ).order(:id).last.try(:output_taxon)
     return synonymous_taxon if synonymous_taxon.blank? || synonymous_taxon.is_active?
     candidates = synonymous_taxon.current_synonymous_taxa
     return nil if candidates.size > 1
