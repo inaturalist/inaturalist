@@ -349,6 +349,8 @@ el:
   by_user: από τον %{user}
   by_you: από εσάς
   calendar: Ημερολόγιο
+  calendars_only_show_x_observations_at_time: Τα ημερολόγια δείχνουν μόνο τις %{x}
+    παρατηρήσεις σε ένα χρονικό διάστημα
   cancel: Ακύρωση
   cant_flag_an_object_that_doesnt_exist: Δεν μπορεί να αναφερθεί ένα αντικείμενο που
     δεν υπάρχει
@@ -1177,7 +1179,6 @@ el:
   more_journal_posts: Περισσότερες αναρτήσεις ημερολογίου
   more_observations: Περισσότερες παρατηρήσεις
   more_photos: Περισσότερες φωτογραφίες
-  more_than_x_years_ago: Πάνω από %{x} χρόνια πριν
   most: Περισσότερα
   most_agree: Οι περισσότεροι συμφωνούν
   most_disagree: Οι περισσότεροι διαφωνούν
@@ -1635,6 +1636,9 @@ el:
   position: Θέση
   positional_accuracy: Ακρίβεια θέσης
   post: Καταχώριση
+  post_from_journal_by_parent_html: Δημοσίευση από το <a href="%{url}">ημερολόγιο
+    από %{parent}</a>
+  post_from_your_journal_html: Δημοσίευση από το <a href="%{url}">ημερολόγιό σας</a>
   post_published: Η ανάρτηση δημοσιεύτηκε!
   posted_by: Δημοσιεύθηκε από
   posted_on: Καταχωρήθηκε στις
@@ -1670,6 +1674,7 @@ el:
   project_name: Όνομα εγχειρήματος
   project_requirements: Απαιτήσεις εγχειρήματος
   projects: Εγχειρήματα
+  projects_from_everywhere: Εγχειρήματα από παντού
   projects_from_place: Εγχειρήματα από το %{place}
   projects_in_x: Εγχειρήματα στο %{x}
   projects_youve_joined: Εγχειρήματα που είστε μέλος

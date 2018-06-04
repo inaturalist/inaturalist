@@ -697,6 +697,8 @@ da:
   by_user: af %{user}
   by_you: Af dig
   calendar: Kalender
+  calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer
+    ad gangen
   can_you_help_your_friends_id_these: Kan du hjælpe dine venner med at identificere
     disse?
   cancel: Annullér
@@ -2291,7 +2293,6 @@ da:
   more_journal_posts: Flere journal indlæg
   more_observations: Flere observationer
   more_photos: Flere foto´s
-  more_than_x_years_ago: Mere end %{x} år siden
   most: Flest
   most_agree: mest enig
   most_disagree: mest uenig
@@ -3116,6 +3117,8 @@ da:
   positional_accuracy: Positionsnøjagtighed
   possessive_user: '%{user}''s'
   post: Indlæg
+  post_from_journal_by_parent_html: Indlæg af<a href="%{url}">journal af %{parent}</a>
+  post_from_your_journal_html: Indlæg af <a href="%{url}">din journal</a>
   post_published: Indlæg publiceret!
   post_some_new_stuff: indsend nogle nye ting
   posted_by: Indsendt af
@@ -3215,6 +3218,7 @@ da:
   projects_description: Projekter er en måde at forene dine - med andres observationer
     på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt
     eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
+  projects_from_everywhere: Projekter alle steder fra
   projects_from_place: Projekter fra %{place}
   projects_in_x: Projekter i %{x}
   projects_you_admin: Projekter du administrerer

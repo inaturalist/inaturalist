@@ -635,6 +635,7 @@ zh-TW:
   by_user: 由 %{user}
   by_you: 由您
   calendar: 行事曆
+  calendars_only_show_x_observations_at_time: 行事曆每次僅會顯示 %{x} 個觀察
   can_you_help_your_friends_id_these: 您可以幫助您的好友來鑑定這些嗎？
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
@@ -2016,7 +2017,6 @@ zh-TW:
   more_journal_posts: 更多日誌發佈文章
   more_observations: 更多觀察
   more_photos: 更多照片
-  more_than_x_years_ago: 超過 %{x} 年之前
   most: 多數
   most_agree: 最多同意
   most_disagree: 多數不同意
@@ -2473,7 +2473,7 @@ zh-TW:
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
   other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
-  other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>的其它物種常被誤認為此物種
+  other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
   our_blog: 我們的部落格
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
@@ -2735,6 +2735,8 @@ zh-TW:
   positional_accuracy: 位置準確性
   possessive_user: '%{user} 的'
   post: 貼文
+  post_from_journal_by_parent_html: 來自 <a href="%{url}">%{parent} 的日誌</a>的發佈文章
+  post_from_your_journal_html: 來自<a href="%{url}">您的日誌</a>的發佈文章
   post_published: 貼文已發佈！
   post_some_new_stuff: 發佈一些新事物
   posted_by: 發佈由
@@ -2818,6 +2820,7 @@ zh-TW:
   projects_description: |-
     專案能讓您的觀察在 %{site_name} 上與其他人交流。
     無論您是有意開始進行公眾科學事項，或是僅對在您的鄰近地區裡賞鳥感興趣，專案都會是可採用的方法。
+  projects_from_everywhere: 來自各處的專案
   projects_from_place: 來自於%{place}的專案
   projects_in_x: 在%{x}的專案
   projects_you_admin: 您管理的專案

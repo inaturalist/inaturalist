@@ -716,6 +716,8 @@ es:
   by_user: por %{user}
   by_you: Tuyas
   calendar: Calendario
+  calendars_only_show_x_observations_at_time: Calendarios sólo muestran %{x} observaciones
+    en un momento
   can_you_help_your_friends_id_these: ¿Puedes ayudar a identificar estas observaciones?
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: No puedes marcar un objeto que no existe
@@ -2318,7 +2320,6 @@ es:
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
   more_photos: Más fotos
-  more_than_x_years_ago: Hace más de %{x} años
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
@@ -3769,7 +3770,7 @@ es:
   start_a_new_project: Comenzar un proyecto nuevo
   start_a_project: Comenzar un proyecto
   start_adding_observations: Comience a agregar observaciones
-  start_date_time: Fecha de inicio / tiempo
+  start_date_time: Fecha y hora de inicio
   start_new_account: Comenzar una cuenta nueva
   start_new_project: Comenzar proyecto nuevo
   start_one: comenzar uno
@@ -3873,36 +3874,36 @@ es:
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
-    other: un=%{taxon} es un %{rank} en %{icónico_taxon} con una observación
+    one: '%{taxon} es un %{rank} en %{icónico_taxon} con una observación'
   taxon_is_a_rank_of_amphibia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de anfibios con una observación
+    one: '%{taxon} es un %{rank} de anfibios con una observación'
   taxon_is_a_rank_of_aves_with_x_observations:
-    other: un=%{taxon} es un %{rank} de aves con una observación
+    one: '%{taxon} es un %{rank} de aves con una observación'
   taxon_is_a_rank_of_mammalia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de mamíferos con una observación
+    one: '%{taxon} es un %{rank} de mamíferos con una observación'
   taxon_is_a_rank_of_reptilia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de reptiles con una observación
+    one: '%{taxon} es un %{rank} de reptiles con una observación'
   taxon_is_a_rank_of_plantae_with_x_observations:
-    other: un=%{taxon} es un %{rank} de plantas con una observación
+    one: '%{taxon} es un %{rank} de plantas con una observación'
   taxon_is_a_rank_of_actinopterygii_with_x_observations:
-    other: un=%{taxon} es un %{rank} de peces con aletas radiadas con una observación
+    one: '%{taxon} es un %{rank} de peces con aletas radiadas con una observación'
   taxon_is_a_rank_of_animalia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de animales con una observación
+    one: '%{taxon} es un %{rank} de animales con una observación'
   taxon_is_a_rank_of_insecta_with_x_observations:
-    other: un=%{taxon} es un %{rank} de insectos con una observación
+    one: '%{taxon} es un %{rank} de insectos con una observación'
   taxon_is_a_rank_of_arachnida_with_x_observations:
-    other: un=%{taxon} es un %{rank} de arácnidos con una observación
+    one: '%{taxon} es un %{rank} de arácnidos con una observación'
   taxon_is_a_rank_of_fungi_with_x_observations:
-    other: un=%{taxon} es un %{rank} de hongos con una observación
+    one: '%{taxon} es un %{rank} de hongos con una observación'
   taxon_is_a_rank_of_protozoa_with_x_observations:
-    other: un=%{taxon} es un %{rank} de protozoarios con una observación
+    one: '%{taxon} es un %{rank} de protozoarios con una observación'
   taxon_is_a_rank_of_mollusca_with_x_observations:
-    other: un=%{taxon} es un %{rank} de moluscos con una observación
+    one: '%{taxon} es un %{rank} de moluscos con una observación'
   taxon_is_a_rank_of_chromista_with_x_observations:
-    other: un=%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una
-      observación
+    one: '%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una observación'
   taxon_is_kingdom_of_life_with_x_observations:
-    other: un=%{taxon} es un reino con una observación
+    one: '%{taxon} es un reino con una observación'
+    other: '%{taxon} es un reino con %{observaciones} de conteo'
   taxonomy: Taxonomía
   taxon_: Taxón
   taxon_assessments_are: Las evaluaciones del taxón son documentos que evalúan el
@@ -4638,7 +4639,7 @@ es:
   x_does_not_exist: '"%{x}" no existe'
   x_doesnt: '%{login} no'
   x_flagged: '%{x} advertencias'
-  x_flagged_as_flag: '%{x} advertido como %{advertencia}'
+  x_flagged_as_flag: '%{x} marcado como %{flag}'
   x_hasnt: '%{login} no ha'
   x_journal: Diario de %{user}
   x_journal_archives_for_y: Diario de %{user} • Archivos de
@@ -6666,7 +6667,7 @@ es:
         email: Correo
         login: Nombre de usuario
         name: Nombre
-        locale: Localización
+        locale: Configuración regional
         time_zone: Zona horaria
         search_place_id: Busca lugares
         place_id: Lugar
