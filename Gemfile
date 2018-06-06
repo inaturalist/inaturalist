@@ -30,7 +30,7 @@ gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on
 gem 'daemons'
 gem 'daemon-spawn'
 gem 'dbf'
-gem 'delayed_job', '~> 4.0.1'
+gem 'delayed_job', '~> 4.1.5'
 gem 'delayed_job_active_record',
   git: 'https://github.com/hugueslamy/delayed_job_active_record.git',
   ref: '7dcacc2459ad47c948153cc3bab78bc822191718'
