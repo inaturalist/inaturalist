@@ -94,8 +94,6 @@ es:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
-  x_flags_resolved_html:
-    other: un=<span class='count'>1</span> grupo observado</span>
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -125,13 +123,9 @@ es:
       investigación para especies o descendientes</span>
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
-  x_taxa_curated_html:
-    other: un=<span class='count'>1</span> grupo observado</span>
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
-  x_taxon_changes_added_html:
-    other: un=<span class='count'>1</span> grupo observado</span>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
   a: un(a)
