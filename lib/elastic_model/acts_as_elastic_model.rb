@@ -111,36 +111,29 @@ module ActsAsElasticModel
         end
       end
 
-      def elastic_sync(options = {})
+      def elastic_sync(start_id, end_id, options)
+        return if !start_id || !end_id || start_id >= end_id
         options[:batch_size] ||=
           defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
-        filter_scope = options.delete(:scope)
-        # this method will accept an existing scope
-        scope = (filter_scope && filter_scope.is_a?(ActiveRecord::Relation)) ?
-          filter_scope : self.all
-        # it also accepts an array of IDs to filter by
-        if filter_ids = options.delete(:ids)
-          filter_ids.compact!
-          if filter_ids.length > options[:batch_size]
-            # call again for each batch, then return
-            filter_ids.each_slice(options[:batch_size]) do |slice|
-              elastic_sync(options.merge(ids: slice))
-            end
-            return
+        batch_start_id = start_id
+        while batch_start_id <= end_id
+          Rails.logger.debug "[DEBUG] Processing from #{ batch_start_id }"
+          batch_end_id = batch_start_id + options[:batch_size]
+          if batch_end_id > end_id + 1
+            batch_end_id = end_id + 1
           end
-          scope = scope.where(id: filter_ids)
-        end
-        if self.respond_to?(:load_for_index)
-          scope = scope.load_for_index
-        end
-        scope.find_in_batches(options) do |batch|
+          scope = self.where("id >= ? AND id < ?", batch_start_id, batch_end_id)
+          if self.respond_to?(:load_for_index)
+            scope = scope.load_for_index
+          end
+          batch = scope.to_a
           prepare_for_index(batch)
-          Rails.logger.debug "[DEBUG] Processing from #{ batch.first.id }"
           results = elastic_search(
             sort: { id: :asc },
             size: options[:batch_size],
             filters: [
-              { terms: { id: batch.map(&:id) } }
+              { range: { id: { gte: batch_start_id } } },
+              { range: { id: { lt: batch_end_id } } }
             ],
             source: ["id"]
           ).group_by{ |r| r.id.to_i }
@@ -150,9 +143,44 @@ module ActsAsElasticModel
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
             elastic_delete!(where: { id: ids_only_in_es } )
           end
+          batch_start_id = batch_end_id
         end
       end
 
+      def elastic_prune(start_id, end_id, options)
+        return if !start_id || !end_id || start_id >= end_id
+        options[:batch_size] ||=
+          defined?(self::DEFAULT_ES_BATCH_SIZE) ? self::DEFAULT_ES_BATCH_SIZE : 1000
+        batch_start_id = start_id
+        while batch_start_id <= end_id
+          Rails.logger.debug "[DEBUG] Processing from #{ batch_start_id }"
+          batch_end_id = batch_start_id + options[:batch_size]
+          if batch_end_id > end_id + 1
+            batch_end_id = end_id + 1
+          end
+          scope = self.where("id >= ? AND id < ?", batch_start_id, batch_end_id)
+          batch_ids = scope.pluck(:id)
+          ids_only_in_es = elastic_search(
+            sort: { id: :asc },
+            size: options[:batch_size],
+            filters: [
+              { range: { id: { gte: batch_start_id } } },
+              { range: { id: { lt: batch_end_id } } },
+              { bool: {
+                must_not: {
+                  terms: { id: batch_ids }
+                }
+              } }
+            ],
+            source: ["id"]
+          ).map(&:id)
+          unless ids_only_in_es.empty?
+            Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
+            elastic_delete!(where: { id: ids_only_in_es } )
+          end
+          batch_start_id = batch_end_id
+        end
+      end
       def result_to_will_paginate_collection(result)
         try_and_try_again( PG::ConnectionBad, sleep_for: 20 ) do
           begin
