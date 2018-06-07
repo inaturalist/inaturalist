@@ -141,26 +141,10 @@ module ActsAsElasticModel
             size: options[:batch_size],
             filters: [
               { terms: { id: batch.map(&:id) } }
-            ]
+            ],
+            source: ["id"]
           ).group_by{ |r| r.id.to_i }
-          batchToIndex = [ ]
-          batch.each do |obj|
-            if result = results[ obj.id ]
-              result = result.first._source
-              if obj.as_indexed_json.to_json == result.to_json
-                # it's OK
-              else
-                Rails.logger.debug "[DEBUG] Object #{ obj } is out of sync"
-                batchToIndex << obj
-              end
-            else
-              Rails.logger.debug "[DEBUG] Object #{ obj } is not in ES"
-              batchToIndex << obj
-            end
-          end
-          unless batchToIndex.empty?
-            bulk_index(batchToIndex, skip_prepare_batch: true)
-          end
+          bulk_index(batch, skip_prepare_batch: true)
           ids_only_in_es = results.keys - batch.map(&:id)
           unless ids_only_in_es.empty?
             Rails.logger.debug "[DEBUG] Deleting vestigial docs in ES: #{ ids_only_in_es }"
