@@ -1,0 +1,2049 @@
+# Messages for Albanian (shqip)
+# Exported from translatewiki.net
+# Export driver: phpyaml
+# Author: Bjakupi
+# Author: Elmi
+# Author: Eridan Xharahi
+# Author: Jtroshani
+# Author: Kosovastar
+# Author: Liridonshala
+# Author: Luanibraj
+# Author: Milot
+---
+sq:
+  x_comments: '{{SHUMËS|një=1 koment|%{llogarit} komentet}}'
+  x_followers: '{{SHUMËS|një=1 ndjekës|%{llogarit} ndjekësit}}'
+  x_identifications: '{{SHUMËS|një=1 identifikim|%{llogarit} identifikimet}}'
+  x_identifications_html:
+    one: <span class="count">1</span> identification
+    other: <span class="count">%{count}</span> identifications
+  x_identifications_:
+    one: 1 Identification
+    other: '%{count} Identifications'
+  x_ids:
+    one: 1 ID
+    other: '%{count} IDs'
+  x_lists:
+    one: 1 list
+    other: '%{count} lists'
+  x_journal_posts:
+    one: 1 journal post
+    other: '%{count} journal posts'
+  x_journal_posts_html:
+    one: <span class="count">1</span> journal post
+    other: <span class="count">%{count}</span> journal posts
+  x_matching_taxa:
+    one: 1 matching taxon
+    other: '%{count} matching taxa'
+  x_matching_taxa_html:
+    one: <span class="count">1</span> matching taxon
+    other: <span class="count">%{count}</span> matching taxa
+  x_misidentifications_of_this_species:
+    one: 1 misidentification of this species
+    other: '%{count} misidentifications of this species'
+  x_observations:
+    one: 1 observation
+    other: '%{count} observations'
+  x_observations_:
+    one: 1 Observation
+    other: '%{count} Observations'
+  x_observations_html:
+    one: <span class='count'>1</span> observation
+    other: <span class='count'>%{count}</span> observations
+  x_observations_link_html:
+    one: <a href='%{url}'>1 observation</a>
+    other: <a href='%{url}'>%{count} observations</a>
+  x_observations_reviewed_html:
+    one: <span class='count'>1</span> observation reviewed
+    other: <span class='count'>%{count}</span> observations reviewed
+  x_others:
+    one: 1 other
+    other: '%{count} others'
+  x_people:
+    one: 1 person
+    other: '%{count} people'
+  x_people_found_this_helpful:
+    one: One person found this helpful
+    other: '%{count} people found this helpful'
+  x_faves:
+    one: 1 fave
+    other: '%{count} faves'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> flag resolved
+    other: <span class='count'>%{count}</span> flags resolved
+  x_people_like_this:
+    one: 1 person ka pëlqyer këtë
+    other: '%{count} people like this'
+  x_species:
+    one: |2-
+
+      1 lloj
+    other: |2-
+
+      %{count} species
+  x_suggestions_filtered_by_colon:
+    one: '1 Suggestion Filtered By:'
+    other: '%{count} Suggestions Filtered By:'
+  x_taxa_observed_html:
+    one: <span class='count'>1</span> taxon observed
+    other: <span class='count'>%{count}</span> taxa observed
+  x_research_grade_observations_html:
+    one: <span class='count'>1</span> research-grade observation</span>
+    other: <span class='count'>%{count}</span> research-grade observations</span>
+  x_research_grade_observations_to_species_html:
+    one: <span class='count'>1</span> research-grade observation ID'd to species or
+      lower</span>
+    other: <span class='count'>%{count}</span> research-grade observations ID'd to
+      species or lower</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span> taxon curated
+    other: <span class='count'>%{count}</span> taxa curated
+  x_taxa_matching_current_filters:
+    one: 1 taxon matching current filters
+    other: '%{count} taxa matching current filters'
+  x_taxon_changes_added_html:
+    one: <span class='count'>1</span> taxon change added
+    other: <span class='count'>%{count}</span> taxon changes added
+  _100_day_trends: Trendet e 100 Ditëve
+  _percent_ID_d: '% ID''d'
+  a: një
+  a_: një
+  a_community_for_naturalist: Një Komunitet për Natyralistët
+  a_few_points_to_make_things_clear: 'Disa pika për t''i bërë gjërat pak më të qarta:'
+  a_flag_for_x: një flamur për %{x}
+  a_member_of: Një anëtar i
+  a_member_of_taxon_html: një anëtar i %{taxon}
+  able_to_connect_flickr: Shkëlqyeshëm! Ne mundëm të lidheshim me llogarinë tuaj Flickr.
+  about: Rreth
+  about_bioblitz_results: Rreth rezultateve të bioblitz
+  about_blocking: Rreth Bllokimit
+  about_charts: Rreth Tabelave
+  about_conservation_status: Rreth Statusit të Ruajtjes
+  about_editing_observation_fields: Për editimin/ndryshimin e fushave të vrojtimit
+  about_establishment_means: Për kuptimin e vendosjes
+  about_external_links: Për vegëzat e jashtme
+  about_licenses: Rreth licencave
+  about_licensing: Rreth licencimit
+  about_life!: Rreth Jetës!
+  about_names: Rreth Emrave
+  about_places: Rreth Vendeve
+  about_taxon_changes: Rreth ndryshimit Taxon
+  about_the_cc_licenses: Rreth licencave të Creative Commons
+  about_these_licenses: Rreth këtyre licencave
+  about_this_map: Rreth Kësaj Harte
+  about_this_project: Rreth këtij Projekti
+  about_x: Rreth %{x}
+  account: Llogari
+  account_settings: Cilësimet e llogarisë
+  accept: pranoj
+  accept_community_identifications: Pranoni identifikimet e komunitetit
+  accuracy: Saktësia
+  accuracy_m: Saktësia (m)
+  accuracy_meters: Saktësia (metra)
+  accuracy_of_the_coordinates: Saktësia e koordinatave në metra. Ju mund ta redaktoni
+    këtë duke klikuar lidhjen "redakto" lart ose duke klikuar në shenjën e hartës
+    duke zvarritur dorën. Mundohuni ta bëni rrethin mjaftueshem të madh që të  jeni
+    i sigurt se keni qenë diku brenda tij.
+  acquaintances: të njohurit
+  action: Veprim
+  actions: Veprimet
+  activate_user: Aktivizo përdoruesin
+  active: Aktiv
+  active_users: Përdoruesit Aktivë
+  activity: Aktiviteti
+  activity_settings: Cilësimet e aktivitetit
+  add: Shto
+  add_a: Shto një
+  add_a_batch_of_observations: Shto një Seri Vëzhgimesh
+  add_a_batch_of_observations_by_csv: Shto një Seri Vëzhgimi prej CVS
+  add_a_comment: Shto një koment
+  add_a_field: Shto një fushë
+  add_a_flag: Shto një flamur
+  add_a_link_raquo: Shto një lidhje &raquo;
+  add_a_name: Shtoni një emër
+  add_a_new_change_group: Shto një ndryshim të ri në grup
+  add_a_new_observation_to_id_please!: Shto një Vëzhgim të Ri identifikimi Ju lutem!
+  add_a_place_raquo: Shto një vend &raquo;
+  add_a_single_observation: Shto një vrojtim të vetëm.
+  add_a_taxon: Shto një taxon
+  add_all_your_matching_obs_to_this_project: Shto të gjitha vrojtimet e tua që përputhen,
+    në këtë projekt.
+  add_an_assessment: Shto një vlerësim
+  add_an_identification: Shto një identifikim
+  add_an_observation: Shtoni një vëzhgim
+  add_an_observation?: Shto një vëzhgim?
+  add_an_observation_of: Shto një vëzhgim të %{taxon}
+  add_annotations_for_x: Shto shënime për "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Shto shënime për "Seksin"
+    plant_phenology: Shto shënime për "Fenologjinë e bimëve"
+    life_stage: Shto shënime për "Fazën e Jetës"
+  add_another: Shto një tjetër
+  add_another_flag: Shto një tjetër flamur
+  add_another_photo: Shto një foto tjetër
+  add_another_section: Shto një seksion tjetër
+  add_another_subscription: Shto një abonim tjetër
+  add_asset: Shto asetet
+  add_batch: Shtoni grumbull
+  add_colors: Shto ngjyra
+  add_comment: Shto një koment
+  add_conservation_status: shtoni statusin e ruajtjes
+  add_countries: Shto Shtete
+  add_edit_flags: Shto/Ndrysho Flamuj
+  add_edit_more_fields: Shtoni/ndryshoni më shumë fusha
+  add_editor: Shto Redaktor
+  add_field: Shto një fushë
+  add_from_your_observations: Shtoni nga vëzhgimet tuaja
+  add_link: Shtoni Lidhjen
+  add_id: Shto ID-n
+  add_it_to_place_raquo: Shtoni në një vend &raquo;
+  add_more_photos: Shto më shumë foto
+  add_new_lexicon: Shto leksik të ri
+  add_new_observations: Shto vëzhgime të reja
+  add_new_photos_by_their_ids: Shto foto të reja simbas ID-s së Flickr (duhet të jenë
+    kreative!)
+  add_new_place: Shto një vend të ri
+  add_new_rule: Shto një rregull të ri
+  add_new_source: Shto burim të ri...
+  add_obs_from_a_link: 'Shto vrojtimin nga lista: %{link}'
+  add_obs_from_a_list: Shto vëzhgime nga lista
+  add_observation: Shto një vëzhgim
+  add_observations!: Shto Vëzhgime!
+  add_observations: Shto Vëzhgime
+  add_observations_by_checking_off: Shto vëzhgime duke kontrolluar speciet nga lista
+  add_observations_from_list: Shto vëzhgime nga një listë
+  add_observations_project: Shto vëzhgime në këtë projekt
+  add_one: Shto një!
+  add_one_now: Shto Një tani
+  add_photos: Shto foto
+  add_photos_to_this_observation: Shtoni fotografi në këtë vëzhgim
+  add_place: Shtoni vend
+  add_life_stage_adult_annotation: 'Shto "Faza e Jetës: I rritur" shënim'
+  add_life_stage_pupa_annotation: 'Shto "Faza e Jetës: Pupa" shënim'
+  add_life_stage_nymph_annotation: 'Shto "Faza e Jetës: Nimfë" shënim'
+  add_life_stage_larva_annotation: 'Shto "Faza e Jetës: Larva" shënim'
+  add_life_stage_juvenile_annotation: 'Shto "Faza e Jetës: I ri" shënim'
+  add_life_stage_egg_annotation: 'Shto "Faza e Jetës: Vezë" shënim'
+  add_section: Shto Seksionin
+  add_several_observations_at_once: Shtoni disa vëzhgime në të njëjtën kohë.
+  add_sex_female_annotation: 'Shto "Seksi: Femër" shënim'
+  add_sex_male_annotation: 'Shto "Seksi: Mashkull" shënim'
+  add_shape: Shto formë
+  add_some_now: Shtoni disa tani
+  add_tag: Shto tagun
+  add_tags: Shto etiketimet
+  add_tags_to_selected_taxa: Shto etiketën në taksa-n e përzgjedhur
+  add_taxa: Shto taksa
+  add_taxa_to_places: shtoni taxa në vende
+  add_to: Shto tek
+  add_to_a_scheme: Shtoni në një skemë
+  add_to_a_project: Shtoni në një projekt
+  add_to_calendar: Shtoni në kalendar
+  add_to_checklist: Shto tek lista e kontrollit
+  add_to_favorites: Shto te të preferuarat
+  add_to_id_please: Shto një Identifikim ju lutem
+  add_to_list: Shtoje në listë
+  add_to_project: Shtoni në projekt
+  add_to_your_life_list: Shtoni në listën tuaj të jetës!
+  add_to_your_list: Shtoni në listën tuaj
+  add_your_email_to_get: Jepni emailin tuaj për të pranuar reagimet e komunitetit.
+    Nëse nuk dëshironi ta ndani këtë informacion, mund të riktheheni në këtë faqë
+    përsëri.
+  add_your_own_observations_at: Shtoni vëzhgimet tuaja në %{site_name}
+  add_your_photo: Shtoni foton tuaj
+  add_your_photo_to: Shtoni foton tuaj tek %{project}
+  added: Shtuar
+  added!: Shtuar!
+  added_an: shtoi një
+  added_as_a_part_of: Shtuar si pjesë e një
+  added_by: Shtuar nga
+  added_by_user_on_date_html: Shtuar nga %{user} on %{date}
+  added_identifications_to: Identifikime të shtuara për vëzhgimet e secilit.
+  added_on: Shtuar më
+  added_to: Shtuar në
+  added_to_favorites: Shtuar në të preferuarat
+  adding: Duke shtuar...
+  adding_observations: Duke shtuar vëzhgime
+  adding_to_your_life_list: Duke shtuar në listën tuaj të jetës ...
+  additional_range: Shtrirje shtesë
+  additional_range_data_from_an_unknown_source: Të dhëna shtesë nga një burim i panjohur
+  admin: Administrator
+  admin_s: Administratorët
+  admin_any_projects: Administro ndonjë projekt
+  admin_tools: Veglat e Administrimit
+  agree: pajtohem
+  agree_: Pajtohem
+  agree?: Pajtohem?
+  agree_to_the_project_terms: Pajtohuni me kushtet e projektit
+  agree_with_current_taxon: Pajtohem me taxon e tanishem
+  agreeing: Duke rënë dakord ...
+  aka: pseudonim
+  all: Të gjitha
+  all_colors: '&laquo; Të gjitha ngjyrat'
+  all_comments: Të gjitha komentet
+  all_csv: Të gjitha CSV
+  all_flags_must_be_resolved: Të gjithë flamujt duhet të zgjidhen
+  all_life: Gjithë jetën
+  all_names: Të gjitha Emrat
+  all_observations: Të gjitha vëzhgimet
+  all_photos: Të gjitha fotot
+  all_places: Të gjitha Vendet
+  all_projects: Të gjitha Projektet
+  all_rank_added_to_the_database:
+    superclass: Të gjitha super klasat janë shtuar në Databazë
+    class: Te gjitha kategorite jane shtuar ne bazen e te dhenave
+    subclass: Të gjitha nënklasat janë shtuar ne bazën e të dhënave
+    infraclass: Të gjitha infra klasat janë shtuar në bazën e të dhënave
+    superorder: Të gjitha super porositë janë shtuar në databazë
+    order: Të ghitha porositë janë shtuar në databazë
+    superfamily: Të gjitha super familjet janë shtuar në databazë
+    family: Të gjitha familjet janë shtuar në databazë
+    subfamily: Në gjitha nënfamiljet janë shtuar në databazë
+    supertribe: Të gjitha super fiset janë shtuar në databazë
+    tribe: Të gjitha fiset janë shtuar në databazë
+    subtribe: Në gjitha nënfiset janë shtuar në databazë
+    section: Të gjitha seksionet janë shtuar në databazë
+    subsection: Të gjitha nënseksionet janë shtuar në databazë
+    species: Të gjitha speciet janë shtuar në databazë
+    hybrid: Të gjitha hibridet janë shtuar në databazë
+    subspecies: Të gjitha nën-llojet janë shtuar në databazë
+    variety: Të gjitha varietetet janë shtuar në databazë
+    form: Të gjitha format janë shtuar në databazë
+  all_rights_reserved: të gjitha të drejtat e rezervuara
+  all_species: Të gjitha llojet
+  all_taxa:
+    rank:
+      kingdom: Mbretëri
+      class: Klasë
+      phylum: Tipi
+      species: Lloje
+      order: Rendit
+    amphibians: Amfibët
+    animals: Kafshët
+    arachnids: Araknidë
+    birds: Zogjët
+    fungi: Këpurdhat
+    fungi_including_lichens: Kërpudhat përfshirë Likenet
+    insects: Insektet
+    mammals: Gjitarët
+    mollusks: Molusqeve
+    other_animals: Kafshët e tjera
+    plants: Bimët
+    protozoans: Protozoa
+    ray_finned_fishes: Peshqit pendë-rreze
+    reptiles: Zvarranikët
+    life: Jetë
+    x_plantae:
+      one: 1 plant
+      other: '%{count} plants'
+    x_animalia:
+      one: 1 animal
+      other: '%{count} animals'
+    x_mollusca:
+      one: 1 mollusk
+      other: '%{count} mollusks'
+    x_amphibia:
+      one: 1 amphibian
+      other: '%{count} amphibians'
+    x_mammalia:
+      one: 1 mammal
+      other: '%{count} mammals'
+    x_actinopterygii:
+      one: 1 ray-finned fish
+      other: '%{count} ray-finned fishes'
+    x_reptilia:
+      one: 1 reptile
+      other: '%{count} reptiles'
+    x_aves:
+      one: 1 bird
+      other: '%{count} birds'
+    x_arachnida:
+      one: 1 arachnid
+      other: '%{count} arachnids'
+    x_fungi:
+      one: 1 fungus
+      other: '%{count} fungi'
+    x_chromista:
+      one: 1 chromist
+      other: '%{count} chromists'
+    x_protozoa:
+      one: 1 protozoan
+      other: '%{count} protozoa'
+    x_other_animals:
+      one: 1 other animal
+      other: '%{count} other animals'
+  all_taxa_: Të gjitha taksat
+  all_taxa_in_this_guide: Të gjitha taksat në këtë udhëzues
+  all_taxonomic_groups: '&laquo; Të gjitha grupet taksonomike'
+  all_updates: Të gjitha Përditësimet
+  all_your_observations_will_default_this_time_zone: Të gjitha vëzhgimet tuaja do
+    të renditen në këtë zonë nëse nuk ju nuk e përcaktoni ndryshe.
+  all_your_observations_will_default_to_this_time_zone: Të gjitha vëzhgimet tuaja
+    do të renditen në këtë zonë nëse nuk ju nuk e përcaktoni ndryshe.
+  all_your_projects: Të gjitha projektet tuaja
+  allow_any: lejoni cilindo
+  allow_curator_access: Lejo të drejtën e kuratorit
+  allow_curator_coordinate_access: Lejo hyrjen e koordinatës së kuratorit
+  allow_project_curators_to_view_your_private_coordinates: Lejo që kuratorët e projektit
+    të shohin koordinatat tuaja private
+  allowed_establish_means_values: Lejohet krijimi i vlerave të mjeteve
+  allowed_html: HTML i lejuar
+  allowed_values: Vlerat e lejuara
+  alphabetical: Alfabetike
+  alphabetical_order: Sipas rendit alfabetik
+  amphibians: amfibet
+  amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb nuk ka ndonjë informacion
+    në lidhje me këto specie.
+  amphibiaweb_taxonomy: AmphibiaWeb Taksonomia
+  an: një
+  an_: një
+  and: dhe
+  and_choose_a_matching_taxon: dhe zgjidhni një taxon që përputhet nga lista. Nëse
+    nuk përfundoni me diçka të ngjashme
+  and_help_the_inaturalist_community_grow: dhe ndihmo %{site_name} zgjerimin e komunitetit.
+  and_make_some_new: dhe bëj disa të reja
+  and_other_taxa: '&amp; Taksa të Tjera'
+  and_un_license_all_your_observations: dhe hiq licencën të gjitha vëzhgimeve tuaja
+  and_you_havent_linked: …nëse nuk keni lidhur një nga llogaritë e tjera të jashtme,
+    atëhere duhet të identifikoheni fillimisht përmes %{site_name}, të redaktoni profilin
+    tuaj dhe pastaj t’i lidhni llogaritë me njëra tjetrën. Përndryshe %{site_name}
+    mund të mos jetë në gjëndje të kuptojë që dy llogaritë janë të lidhura dhe mund
+    të krijojë një llogari të re.
+  and_x_more_people!:
+    one: and 1 more person!
+    other: and %{count} more people!
+  android: Android
+  animals: Kafshët
+  animated_observations_map: Harta e Vëzhgimeve të Animuara
+  annotations: Shënime
+  announcement_was_successfully_created: Njoftimi u krijua me sukses.
+  announcement_was_successfully_updated: Njoftimi u përditësua me sukses.
+  announcements: Lajmërime
+  any: cilido
+  any_: Cilido
+  apply_to_selected: Aplikoni tek të përzgjedhurat
+  apply_fields: Aplikoni fushat
+  apply_geoprivacy: Apliko privatesinë e vendndodhjes gjeografike
+  apply_darr: Aplikoni &darr;
+  apply_these_settings_to_all: Aplikoni këto cilësime në të gjitha vëzhgimet e mëposhtme.
+  appropriate?: E përshtatshme?
+  arachnids: araknidë
+  archives: Arkivat
+  are_you_really_sure_want_delete_this_user: A jeni shume te sigurt qe deshironi te
+    fshini kete perdorues dhe permbajtet e tij?
+  are_you_sure?: A je i sigurt?
+  are_you_sure_no_undo: A je i sigurt? Kjo nuk mund të zhbëhet.
+  are_you_sure_delete_asset: Je i sigurt që dëshiron ta fshish këtë pasuri?
+  are_you_sure_delete_observation_from_project: Je i sigurt që dëshiron ta fshish
+    këtë vëzhgim nga %{project}?
+  are_you_sure_delete_post: Je i sigurt që dëshiron ta fshish këtë post?
+  are_you_sure_delete_taxon_move_associates: Jeni i sigurt që doni të fshini %{taxonname}
+    (%{taxonid}) dhe të lëvizni të gjithë bashkëpunëtorët e tij?
+  are_you_sure_delete_this: Je i sigurt që dëshiron ta fshish këtë? Ju ndoshta duhet
+    të kontrolloni për të parë nëse ajo ka vëzhgime ose taksa të listuara së pari.
+  are_you_sure_delete_this_place: Je i sigurt që dëshiron ta fshish këtë vënd?
+  are_you_sure_leave_this_project: A jeni të sigurt që doni ta leni këtë projekt?
+  are_you_sure_merge_these_places: Je i sigurt që dëshiron të bashkosh këto vende?
+    Kjo nuk mund të zhbëhet.
+  are_you_sure_remove_curator: Jeni i sigurt se doni të hiqni %{user} si kurator?
+  are_you_sure_remove_from_project: Jeni i sigurt se doni të hiqni %{user} nga ky
+    projekt?
+  are_you_sure_remove_photo: Je i sigurt që dëshiron ta heqësh këtë foto?
+  are_you_sure_remove_taxon_from_list: Jeni i sigurt se doni ta hiqni këtë taksonë
+    nga lista?
+  are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: A je i sigurt?
+    Kjo do të rifreskojë faqen dhe ju mund të humbni disa nga ndryshimet tuaja.
+  are_you_sure_want_activate_account: Je i sigurt që dëshiron ta aktivizosh këtë llogari?
+  are_you_sure_want_delete_account: Je i sigurt që dëshiron ta fshish llogarinë tënde?
+    Kjo do të fshijë të gjitha të dhënat tuaja dhe nuk mund të zhbëhet, dhe do të
+    na vijë keq t'ju shohim të ikni.
+  are_you_sure_want_delete_taxon: Je i sigurt që dëshiron ta fshish këtë takson? %{msg}
+  are_you_sure_want_delete_taxon_link: Je i sigurt që dëshiron ta fshish këtë lidhje
+    taksoni?
+  are_you_sure_want_delete_this_name: Je i sigurt që dëshiron ta fshish këtë emër?
+  are_you_sure_want_delete_this_range: Je i sigurt që dëshiron ta fshish këtë varg?
+  are_you_sure_want_join: Jeni i sigurt se doni të bashkoheni
+  are_you_sure_you_want_sync_this: Jeni i sigurt se doni të sinkronizoni të dhënat
+    e këtij vëzhgimi me këtë foto Flickr? Ju do të humbni ndryshimet që keni bërë
+    në këtë formular, por do të jeni në gjendje të ktheheni në kopjen tuaj të ruajtur.
+  are_you_sure_you_want_to_commit_this_change: Je i sigurt që dëshiron ta bësh këtë
+    ndryshim? Kjo nuk mund të zhbëhet.
+  are_you_sure_you_want_to_delete_this: Je i sigurt që dëshiron ta fshish këtë?
+  are_you_sure_you_want_to_delete_this_assessment?: Je i sigurt që dëshiron ta fshish
+    vlerësimin?
+  are_you_sure_you_want_to_delete_this_photo?: Je i sigurt që dëshiron ta fshish këtë
+    foto?
+  are_you_sure_you_want_to_delete_this_post: Je i sigurt që dëshiron ta fshish këtë
+    postim?
+  are_you_sure_you_want_to_delete_this_taxon_change: Je i sigurt që dëshiron ta fshish
+    këtë ndryshim të taksonit?
+  are_you_sure_you_want_to_remove_all_tags: Je i sigurt që dëshiron të heqësh të gjitha
+    etiketat?
+  are_you_sure_you_want_to_remove_curator: Jeni i sigurt se doni të hiqni %{user}
+    si kurator?
+  are_you_sure_you_want_to_remove_from_project: Jeni i sigurt se doni të hiqni %{user}
+    nga ky projekt?
+  are_you_sure_you_want_to_remove_manager: Jeni i sigurt se doni të hiqni %{user}
+    si manaxher?
+  are_you_sure_you_want_to_remove_spammer: |-
+    A jeni i sigurt se e konsideroni këtë përdorues të nderuar?
+    Çdo flamur spam në përmbajtjen e tyre do të zgjidhet.
+  are_you_sure_you_want_to_remove_these_x_taxa?: Je i sigurt që dëshiron ti heqësh
+    këto %{x} taksa?
+  are_you_sure_you_want_to_remove_this_invitation: Je i sigurt që dëshiron ta heqësh
+    këtë ftesë?
+  are_you_sure_you_want_to_remove_this_taxon: Je i sigurt që dëshiron ta heqësh këtë
+    takson?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: Jeni i sigurt se doni
+    ta hiqni këtë taksonë nga %{place}'s lista?
+  articles: Artikuj
+  associated_observations: Vëzhgime të lidhura
+  associated_taxa: Taksa shoqëruese
+  attention: Kujdes
+  you_sure_delete_list: |2-
+
+    Jeni i sigurt se doni ta fshini këtë listë?
+  you_sure_delete_taxon_from_list?: Jeni i sigurt se doni të hiqni %{taxon} nga lista?
+  ascending: ngjitje
+  aside_from_extraordinary_circumstances: Përveç rrethanave të jashtëzakonshme, nuk
+    ju kërkojmë kurrë fjalëkalimin tuaj.
+  assessment: vlerësim
+  assessment_has_benn_completed: Vlerësimi është përfunduar
+  assessment_sections: Seksionet e vlerësimit
+  assessment_was_deleted: Vlerësimi u fshi.
+  assessment_was_successfully_created: Vlerësimi u krijua me sukses.
+  assessment_was_successfully_updated: Vlerësimi u përditësua me sukses.
+  assessment_x: '%{assessment} vlerësim'
+  assessments: vlerësimet
+  associations: Shoqatat
+  at: në
+  at_any_time_change: në çdo kohë (<span class="button">change</span>)
+  at_time: në %{time}
+  atom: Atom
+  attribute: Atribut
+  authority_list:
+    iucn_red_list: IUCN Lista e Kuqe
+  authorize_permissions_from_provider: Autorizo ​​lejet nga %{provider}
+  automatic_descriptions_have_been_disabled: Përshkrimet automatike janë çaktivizuar
+    për këtë taxon.
+  automatically_add_to_project: Automatikisht shto në projekt
+  automatically_add_observations_to_this_project: Shto automatikisht vëzhgime në këtë
+    projekt
+  automatically_share_your_observations_on: Ndani automatikisht vëzhgimet tuaja
+  automatically_id_new: ID Automatikisht vëzhgimin e ri si
+  automatically_update_my_content_for_taxon_changes: Përditëso automatikisht përmbajtjen
+    time për ndryshimet e taksonit
+  back: Kthehu
+  back_to: Kthehu tek
+  back_to_albums: Kthehu tek albumet
+  back_to_all_species: Kthehu tek të gjitha Speciet
+  back_to_calendar: Kthehu tek kalendari %{user}
+  back_to_editing_observation: Kthehu tek redaktimi i vëzhgimit
+  back_to_friends: Kthehu tek miqtë
+  back_to_help: Kthehu tek Ndihma
+  back_to_import: Kthehu tek Importi
+  back_to_lists: Kthehu tek %{name} listat
+  back_to_observation: Kthehu tek vëzhgimi
+  back_to_observation_fields: Kthehu në fushat e vëzhgimit
+  back_to_people: Kthehu tek njerëzit
+  back_to_places: Kthehu tek vendet
+  back_to_possessive_user_profile: Kthehu tek profili i %{possuser}
+  back_to_projects: Kthehu tek projektet
+  back_to_shared_taxon: Kthehu tek %{sharedtaxon}
+  back_to_suggestions: Kthehu tek Sugjerimet
+  back_to_taxon: Kthehu tek %{defaulttaxon}
+  back_to_taxon_changes: Kthehu tek ndryshimet e njesisë sistematike
+  back_to_this: Kthehu tek %{place}
+  back_to_viewing: Kthehu tek shikimi <i>%{taxon}</i>
+  back_to_x: Kthehu tek %{noun}
+  back_to_x_assessment: Kthehu tek %{project} vlerësimet
+  back_to_x_history: Kthehuni në %{x} histori
+  back_to_x_blog: Prapa në %{x}'s blog
+  back_to_your_lists: Kthehu te listat e tua
+  back_to_your_journal: Kthehuni në ditarin tuaj
+  back_to_your_observations: Kthehuni në vëzhgimet tuaja
+  back_to_your_profile: Kthehu te profili yt
+  back_to_your_projects: Kthehu në projektet tuaja
+  based_on_the_evidence_can_id_be_improved: Bazuar në prova, a mund të konfirmohet
+    apo përmirësohet ID-ja e komunitetit?
+  basic: Themelor
+  be_the_first_to_fave_this_observation: Bëhu i pari që ta pëlqesh këtë vëzhgim!
+  because: sepse
+  because_of: për arsye se
+  before_importing_photos: para importimit të fotove
+  before_you_can_contribute_your_observations: para se të mund të kontribuoni me vëzhgimet
+    tuaja.
+  belives_this_is_a_comprehensive_list_of: beson se kjo është një listë gjithëpërfshirëse
+    e
+  bg_color: Ngjyra e sfondit
+  bioblitz: Bioblitz
+  birds: zogjtë
+  black: e zezë
+  block_user: Blloko përdoruesin
+  block_removed: Blloku u hoq
+  blocked_users: Përdoruesit e bllokuar
+  blue: blu
+  blue_butterfly_etc: blu, flutur, etj.
+  blue_icons_represent_political_units: Ikonat blu përfaqësojnë njësi politike si
+    vende, shtete, provinca, qarqe dhe të ngjashme, ndërsa ikonat e gjelbra përfaqësojnë
+    lloje të ndryshme të hapësirave (parqe, rezerva). Nëse zmadhoni, do të shihni
+    më shumë vende të vogla.
+  body: Trupi i mesazhit
+  bounding_box: Kutia e kufizimit
+  breadcrumbs: Thërrime buke
+  breadcrumbs_description: Kjo do të zëvendësojë h1 dhe thirrjet për veprim, prandaj
+    sigurohuni që t'i përfshini ato nëse janë të rëndësishme për këtë projekt dhe
+    mos harroni që gjerësia maksimale e lejuar është 950px
+  brief_caption: Titull i shkurtër
+  brief_description_on_what_you_observed: Përshkrim i shkurtër i asaj që keni vëzhguar
+  brief_description_of_what_you_saw: Përshkrim i shkurtër i asaj që patë
+  brown: bojë kafe
+  browse: Shfleto
+  browse_all_projects: Shfletoni të gjitha projektet
+  browse_all_species: Shfletoni të gjitha speciet
+  browse_observations: Shfletoni Vëzhgimet
+  browse_people: Shfleto Njerëzit
+  browse_projects: Shfletoni Projektet
+  browse_species_that_occur_near_this_observation: Shfletoni speciet që ndodhen afër
+    këtij vëzhgimi.
+  browse_your_observations: Shfletoni vëzhgimet tuaja
+  built_with_site_guides_html: Ndërtuar me <a href='%{url}'>%{site_name} Guides</a>
+  but_we_didnt_add_this_observation_to_the_x_project: Por ne nuk e shtuam këtë vëzhgim
+    në projektin %{project} sepse nuk u pajtuat me termat e projektit.
+  by: nga
+  by_adding_ids_to_observations: duke shtuar ID për vëzhgimet
+  by_everyone: Nga të gjithë
+  by_project_list: sipas listës së projekteve
+  by_user: nga %{user}
+  by_you: Nga ju
+  calendar: Kalendar
+  calendars_only_show_x_observations_at_time: Kalendarët tregojnë vetëm %{x} vëzhgime
+    në një kohë
+  can_you_help_your_friends_id_these: A mund t'i ndihmoni miqtë tuaj të identifikojnë
+    këto?
+  cancel: Anuloj
+  captive_cultivated: Kapur / kultivuar
+  card: Kartë
+  casual: rastësor
+  casual_: Rastësor
+  catalogue_of_life: Katalogu i Jetës
+  categories: Kategoritë
+  cc_0_description: Kjo licencë lëshon punën tuaj në domeinin publik, kështu që të
+    tjerët mund të kopjojnë, modifikojnë, shpërndajnë dhe kryejnë punën tuaj, madje
+    edhe për qëllime komerciale, të gjitha pa ju kërkuar leje ose pa ju dhënë kredit.
+    Kjo është më e pranueshmja e licencave të ofruara. Rekomandohet për shpërndarjen
+    maksimale dhe përdorimin e materialeve të licencuara.
+  cc_0_name: Asnjë Copyright (CC0)
+  cc_attribution_license: Licenca e Attribution Creative Commons
+  cc_by_description: Kjo licencë lejon që të tjerët të shpërndajnë, remixojnë, ndryshojnë,
+    dhe të ndërtohen mbi punën tuaj, qoftë edhe komercialisht, për aq kohë sa ju të
+    kreditojnë për krijimin origjinal.
+  cc_by_name: Atributim
+  cc_by_nc_description: Kjo licencë lejon të tjerët të remixojnë, përpunojnë dhe të
+    ndërtojnë mbi punën tuaj jo-komercialisht, dhe megjithëse punimet e tyre të reja
+    duhet t'ju njohin dhe të jenë jo-komerciale, ata nuk duhet të licencojnë veprat
+    e tyre të derivuara sipas kushteve të njëjta.
+  cc_by_nc_name: Atributim-JoKomercial
+  cc_by_nc_nd_description: Kjo licencë është më kufizuesja nga gjashtë licencat kryesore,
+    vetëm duke u lejuar të tjerëve të shkarkojnë punimet tuaja dhe t'i ndajnë me të
+    tjerët për sa kohë që ju japin kredit, por ato nuk mund t'i ndryshojnë ato në
+    asnjë mënyrë ose t'i përdorin ato komercialisht.
+  cc_by_nc_sa_description: Kjo licencë lejon të tjerët të remixojnë, përpunojnë dhe
+    të ndërtojnë mbi punën tuaj jo-komercialisht, per aq sa ata ju kreditojne ju dhe
+    licencojnë krijimet e tyre të reja nën terma identike.
+  cc_by_nc_sa_name: Atribuimi-JoKomercial-NdaniNjëlloj
+  cc_by_nd_description: Kjo licencë lejon rishpërndarjen, komerciale dhe jo komerciale,
+    për aq kohë sa ajo kalon e pandryshuar dhe e plote, me kredit për ju.
+  cc_by_sa_name: Atribuimi-NdaniNjëlloj
+  change: Ndrysho
+  change_admin: Ndryshoje Administratorin
+  change_cover: Ndrysho kopertinë
+  change_descriptions:
+    split: Taxoni i vjetër u nda në shumë taxa të reja
+    merge: Disa taxa të vjetra u hodhën në një takson të ri
+    swap: Ndryshimi i emrit 1 në 1
+    drop: Koncepti i taksonit krejtësisht i pavlefshëm, i mbajtur për qëllime historike
+      ose përputhshmëri me partnerin
+    stage: Përgatitni një koncept joaktiv për ta lëshuar si pjesë e një grup ndryshimi
+  change_geoprivacy: Ndrysho gjeoprivatësinë
+  change_group: Ndrysho grupin
+  change_icon: Ndrysho ikonën
+  change_password: Ndrysho fjalëkalimin
+  change_types:
+    activated_soon: aktivizohet së shpejti
+    change_types: Ndrysho llojet
+    split: Ndaj
+    merge: Ngjiti
+    swap: Shkëmbe
+    stage: Fazë
+    drop: Lësho
+    split_from: ndarë prej
+    split_into: ndaje në
+    merge_into: bashko në
+    merged_into: bashkuar në
+    replaced_by: zëvendësohet nga
+    replace_with: zëvendësoj me
+    dropped: lëshuar
+    input_taxon_was_split_into_output_taxa_html: '%{input_taxon} u nda në %{output_taxa}'
+    input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} do të ndahet
+      në %{output_taxa}'
+    input_taxon_was_dropped_html: '%{input_taxon} u lëshua'
+    input_taxon_will_be_dropped_html: '%{input_taxon} do të lëshohet'
+    input_taxon_will_be_activated_soon_html: '%{input_taxon} do të aktivizohet së
+      shpejti'
+    input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} u zëvendësua nga
+      %{output_taxon}'
+    input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} do të zëvendësohet
+      nga %{output_taxon}'
+    input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} u bashkuan në %{output_taxon}'
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} do të bashkohen
+      në %{output_taxon}'
+  change_visibility_of: Të ndryshohet dukshmëria e koordinatave hapësinore?
+  change_your_matching: Ndrysho përputhjen tënde
+  change_your_password: Ndrysho fjalëkalimin tënd
+  changing_the_geoprivacy: Ndryshimi i gjeoprivatisë ndryshon mënyrën se si njerëzit
+    e tjerë e shohin vendndodhjen e vëzhgimit tuaj.
+  check_above_for_errors: Kontrollo për gabime
+  check_back_soon: Kontrolloni së shpejti!
+  check_here_to_autoload_description: Kontrollo këtu për të ngarkuar automatikisht
+    përshkrimin nga Wikipedia. Ju mund të dëshironi të mos e zgjidhni atë kur emri
+    shkencor i një takse është gjithashtu një fjalë jo-shkencore ose keqkuptim i zakonshëm,
+    si "Parus".
+  check_here_to_autoload_photos: Kontrollo këtu për të ngarkuar automatikisht përshkrimin
+    nga Flickr. Ju mund të dëshironi të mos e zgjidhni atë kur emri shkencor i një
+    takse është gjithashtu një fjalë jo-shkencore ose keqkuptim i zakonshëm, si "Parus".
+  check_it_out: Kontrolloje
+  check_list: Kontrollo listën
+  check_list_description: Zgjidhni një taxon të nivelit më të lartë që dëshironi të
+    shfaqni në këtë listë, si "Aves" për zogjtë, ose "Amphibia" për amfibët. Kur të
+    vendoset, kjo listë nuk do të lejojë taxa që nuk janë në këtë taxon. Për shembull,
+    nëse krijoni një listë zogjsh, nuk do të mundni të shtoni ndonjë bretkocë në të.
+  check_list_for_individual_taxa_that: Kontrolloni listat për taxa individuale që
+    jetojnë këtu, psh. "Zogjtë e %{place}".
+  check_list_individual_taxa: Kontrolloni listat për taxa individuale që jetojnë këtu,
+    psh. "Zogjtë e %{place}".
+  check_lists_must_belong_to_a_place: Listat kontrolluese kanë vend të caktuar. Për
+    të krijuar një listë të re kontrolluese, gjeni listën shabllon të një vendi dhe
+    klikoni në vegzën ‘Krijo listë të re kontrolluese’.
+  check_list_of_species_occuring_in: Kontrolloni listën e llojeve që ndodhen në
+  check_list_source: Burimi <span class="meta">(optional)</span>
+  check_out_my_observations_at: Nëse dëshironi, mund të shikoni vëzhgimet e mia në
+  check_out_our_blog: Shikoni Blogun tonë
+  check_out_what_the_observation: Shikoni se si duket vëzhgimi që po përpiqeni të
+    identifikoni.
+  check_out_your_life_list: Kontrolloni Listën tuaj të Jetës
+  check_this_box_if: |-
+    Klikoni këtë kuti nëse doni të aplikoni një
+    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+    për fotot tuaja. Ju mund të zgjidhni një licencë të ndryshme ose të hiqni licencën
+    më vonë, por kjo është licenca më e mirë për ta ndarë me kërkuesit.
+  choose_a_field: Zgjidhni një fushë
+  choose_a_list_above: Zgjidhni një listë më lart.
+  choose_a_place: Zgjidhni një vend
+  choose_a_taxon: Zgjidhni një taxon (opsional)
+  choose_columns: Zgjidh kolonat
+  choose_file: Zgjidh skedarin
+  choose_files: Zgjidh skedarët
+  choose_files_from_your_computer: zgjidhni skedarë nga kompjuteri juaj
+  choose_from_your_lists: Zgjidhni nga listat tuaja
+  choose_good_default_photos: zgjidhni fotot e mira të përzgjedhura nga lëmi e fotografive
+    të Creative Commons në Flickr
+  choose_photos: Zgjidhni fotot
+  choose_photos_for_this_taxon: Zgjidhni fotografitë për këtë takson
+  choose_photos_to_tag_from_photostream: Zgjidhni fotot për t'u etiketuar nga fotosfera
+    juaj
+  choose_place: Zgjidhni një vend
+  choose_rule: Zgjidh një rregull
+  choose_subjects: Zgjidhni lëndët
+  choose_tags: Zgjidhni etiketat
+  choose_taxon: Zgjidhni një takson
+  choose_what_kind_of_change_youre_creating: Zgjidhni çfarë lloj ndryshimi jeni duke
+    krijuar.
+  choose_your_username: Zgjidhni emrin e përdoruesit
+  citation: Citim
+  classification: Klasifikim
+  clear: Fshije
+  clear_color_filters: Pastro filtrat e ngjyrave
+  clear_search: Fshi kërkimin
+  clear_shapes: Fshi format
+  click_add_an_observation_to_the_lower_right: Mirë se erdhët në %{site_name_short}!
+    Kliko 'Shto një vëzhgim' në të djathtën e poshtme. Ju do të kërkohet të identifikoheni
+    / regjistroheni nëse nuk e keni bërë tashmë
+  click_on_map_to_draw_shape_around_place: Klikoni në hartë për të vizatuar një formë
+    rreth vendit
+  click_on_the_map_to: Klikoni në hartë për të vendosur vëzhgimin tuaj
+  click_the_map: <strong>Kliko në hartë</strong> për të shtuar një vendndodhje.
+  click_the_map_to_jump_new_place: Klikoni hartë për të kërcyer në një vend të ri
+  close: Mbylle
+  code: Kodi
+  color_categories_for_this_species: |-
+    Ngjyrosni kategoritë për këtë specie, sikur do ta vendosnit atë
+    në një udhëzues në terren të renditur sipas ngjyrës. Ju lutemi mos listoni çdo ngjyrë tek organizmi, vetëm ato të shquarat. Për bimët e lulëzuara ju lutemi përdorni ngjyrën e luleve. Ju lutemi të lini bosh për ngjyra që nuk do të ishin të dobishme për kategorizimin, si gjitarët kafe dhe fieret e gjelbra.
+  colors: Ngjyrat
+  columns: ' Kollonat'
+  combine: Kombino
+  comma_separated_list_of_tracking_codes: |-
+    Lista e kodeve gjurmuese të ndara me presje. Shtoni këto nëse doni të shtoni një kod gjurmues kur u dërgoni njerëzve formën e re të vëzhgimit, p.sh. %{root_url}observations/new?project_id=%{project_id}&tracking_code=yourcode123.
+    Ju mund ta përdorni këtë për të gjurmuar pjesëmarrjen nga burime të ndryshme. Këto kode mund të aksesohen kur shkarkoni vëzhgimet e projektit si CSV.
+  comma_separated_please: Të ndara me presje, ju lutem
+  comment_preview: Shikoni komentin
+  comment: Koment
+  comment_: Koment
+  comment_deleted: Komenti u fshi
+  commented: Komentuar
+  comments: Komentet
+  comments_and_identifications: Komentet dhe Identifikimet
+  comments_by_everyone: Komentet e të gjithëve
+  comments_by_me: Komentet nga unë
+  comments_on: Komente mbi
+  comments_on_my_observations: Komentet për vëzhgimet e mia
+  comments_youve_made_with_others: Komentet që keni bërë (w/ Others)<br/><span class="description">javën
+    e kaluar</span>
+  commercial_solicitation: Kërkesa komerciale, lidhje askund, etj.
+  commit: Kryej
+  committed: Kryer
+  committed_on: Kryer në %{date}
+  committing: Duke Kryer...
+  community: Komuniteti
+  community_curated: Komuniteti i kuruar
+  community_guidelines: Udhëzimet e Komunitetit
+  community_id: '<strong>Komuniteti</strong> ID:'
+  community_id_heading: ID e Komunitetit
+  community_id_at_species_or_lower?: ID i Komunitetit në specie ose më i ulët?
+  community_id_at_genus_level_or_lower: ID e komunitetit në nivelin e gjinisë ose
+    më të ulët
+  community_id_at_species_level_or_lower: ID e komunitetit në nivelin e specieve ose
+    më e ulët
+  community_supported_id: ID e mbështetur nga komuniteti?
+  compare: Krahasim
+  compare_with: Krahaso me
+  comparing: duke krahasuar
+  comparing_list_to_list: Duke krahasuar %{list1} me %{list2}
+  comparing_versions_x_and_y: Duke krahasuar versionet %{x} dhe %{y}
+  comparing_observations_from: Duke krahasuar %{user} vezhgimet prej %{dates}
+  compiled_by_name: Përpiluar nga %{name}
+  completed: I përfunduar
+  completed_at: I përfunduar në
+  comprehensive: gjithëpërfshirës
+  comprehensive?: Gjithëpërfshirës?
+  comprehensive_list: Lista gjithëpërfshirëse
+  concept_status: Statusi i konceptit
+  configure: Konfiguro
+  configure_a_widget_to_show: Konfiguro një komponent për të shfaqur %{site_name}
+    vëzhgimet në faqen tënde ose blogun tënd. Mund të duhet të përfshini CSS-në e
+    ngulur në <code>&lt;head&gt;</code> të HTML-së tënde. Ndjehuni të lirë të ri-shkruani
+    CSS.
+  confirm: Konfirmo
+  confirm_membership: Konfirmo anëtarësimin
+  confirm_new_password: Konfirmo fjalëkalimin e ri
+  confirm_now: Konfirmo tani
+  confirm_your_info: Konfirmo informacionin tënd
+  confirmed: i konfirmuar
+  confirmed_observations_are: Vëzhgimet e konfirmuara janë
+  confirming_identifications: duke konfirmuar identifikimet
+  connect_to_provider: Lidhu me %{provider}
+  connected_accounts: Llogaritë e lidhura
+  connecting_flickr: Duke u lidhur me Flickr...
+  connecting_to_facebook: Duke u lidhur me Facebook...
+  conservation_status: Statusi i Ruajtjes
+  conservation_status_descriptions:
+    description: Përshkrimi i shkurtër i arsyes se pse kjo u rendit.
+    authority: Organizata që deklaroi këtë status. Ju mund të kaloni këtë nëse *ju*
+      dëshironi të listoheni si autoritet.
+    place: Vendi ku ky status është i kufizuar.
+    url: URL për një faqe që përshkruan këtë status.
+    iucn: Ekuivalenti IUCN i Kodit të Listës së Kuqe
+  conservation_summary: Përmbledhje e Konservimit
+  contest: garë
+  continue: Vazhdo
+  contributions: kontributet
+  contributions_from: Kontributet nga
+  contributor_cannot_be_found: Kontribuesi nuk mund të gjendet
+  contributors_to_project: Kontribuesit në %{project}
+  controlled_term_labels:
+    sex: Gjinia
+    male: Mashkull
+    female: Femër
+    plant_phenology: Fenologjia e bimëve
+    flowering: Lulëzimi
+    fruiting: Frutëzimi
+    life_stage: Cikli e Jetës
+    adult: I rritur
+    pupa: Pupa
+    nymph: Nimfë
+    larva: Larvë
+    egg: Vezë
+    juvenile: I ri
+  controls: Kontrollet
+  convert: Konverto
+  coordinate_systems: Sistemet e koordinimit
+  coordinates: Koordinatat
+  coordinates_private: (koordinata private)
+  copy: Kopjo
+  copy_and_paste_the_following_code_to: Kopjoni dhe ngjisni kodin vijues për ta ndërfutur
+    këtë vlerësim në një faqe tjetër interneti.
+  copy_and_paste_this_into_your_own_html: Kopjoni dhe ngjisni këtë në HTML tuaj.
+  copy_guide_taxon_to: Kopjo udhëzuesin e taksonit në...
+  copyright:
+    some_rights_reserved: disa të drejta të rezervuara
+    some_rights_reserved_by: (c) %{name}, disa të drejta të rezervuara (%{license_short})
+    all_rights_reserved: (c) %{name}, të gjitha të drejtat e rezervuara
+    no_known_copyright_restrictions: '%{name}, nuk ka kufizime të njohura për të drejtat
+      e autorit (%{license_name})'
+    no_known_copyright_restrictions_text: nuk ka kufizime të njohura për të drejtat
+      e autorit
+    no_rights_reserved: nuk ka të drejta të rezervuara
+    no_rights_reserved_by: '%{name}, nuk ka të drejta të rezervuara (%{license_name})'
+    anonymous: anonim
+    public_domain: domeni publik
+    copyright: të drejtat e autorit
+    no_copyright: Asnjë Copyright (CC0)
+    attribution_noncommercial_sharealike_license: Atributim Jo-Komercial Ndani Njelloj
+      Licence
+    attribution_noncommercial_license: Atributim Licenca Jo Komerciale
+  copyright_holder: Mbajtësi i të drejtave të autorit
+  copyright_info: Info për të drejtën e autorit
+  copyright_info_and_more: Info për të drejtën e autorit dhe më shumë
+  copyright_infringement_desc: Shkel të drejtën autoriale, ose nuk është krijuar nga
+    vëzhguesi/ja dhe i mungon atributi.
+  couldnt_change_your_password: 'Nuk mund ta ndryshoni fjalëkalimin tuaj: %{e}'
+  couldnt_find_a_user_matching_x_param: Nuk mund të gjendet përdoruesi që përputhet
+    me %{id}
+  couldnt_find_that_taxon: Nuk mund të gjendet ky takson.
+  couldnt_log_you_in_x: Nuk mund të hyni në llogarinë tuaj si '%{x}'
+  countries: Shtetet
+  country_stats: Statistikat e vendit për vëzhgimet e krijuara në
+  create: Krijo
+  create_a_guide: Krijo një udhëzues
+  create_a_list: Krijo një listë
+  create_a_new_field: Krijo një fushë të re
+  create_a_new_place: Krijo një vend të ri
+  create_a_new_taxon: Krijo një taxon të ri
+  create_a_query: Krijo një pyetje
+  create_an_account: Krijo një llogari
+  create_an_atlas: Krijo një atlas
+  create_new_taxon: Krijo një taxon të ri
+  create_observations: Krijo vëzhgime
+  create_observations_by_uploading_photos_to: "Krijo vëzhgime duke ngarkuar fotot
+    në %{place}. Pasi të ngarkoni foton, %{place} do te përpiqemi të nxjerrim koordinatat
+    e pozicionimit global (GPS) dhe datën/kohën e fotos. \nPër të filluar,"
+  created: E Krijuar
+  created_by: Krijuar nga
+  created_by_user_on_date: Krijuar nga %{user} me %{date}
+  created_on: Krijuar me
+  creating_your_account: Krijimi i llogarisë suaj ...
+  critically_endangered: rrezikuar në mënyrë kritike
+  css_description: Kjo do të përfshihet pas të gjitha css të tjera në faqe.
+  csv: CSV
+  csv_file: Dosja CSV
+  csv_should_not_contain_a_header_row: CSV nuk duhet të përmbajë një rresht në krye
+  cumulative_ids: 'ID-të kumulative: %{count} of %{total}'
+  curate_observations: Kuro vëzhgimet
+  curate_taxa: Kuro taxa
+  curate_users: Kuro përdoruesit
+  curated: e kuruar
+  curating: Duke kuruar
+  curation: Kurimi
+  curator: Kurator
+  curators_changed_for_x_html: Kuratorët ndryshuan %{x}
+  curators: Kuratorët
+  curators_can_remove_observations_from: Kuratorët mund të heqin vëzhgimet nga projekti,
+    dhe identifikimet e tyre shfaqen krahas vëzhgimeve në pamje specifike të projektit.
+    Po ashtu, kuratorët mund të shohin koordinatat e vërteta të kontributeve private
+    dhe të errësuara në projekt.
+  curator_identification: Identifikimi i kuratorit
+  current_flags: Flamujt aktuale
+  current_password: Fjalëkalimi aktual
+  custom_field_values: Vlerat e fushave të personalizuara
+  custom_project_fields: Fushat e Projektit me porosi
+  customize_location: Rregullo vendndodhjen
+  darr_apply_darr: '&darr; apliko &darr;'
+  dashboard: Paneli
+  data_deficient: të dhëna të mangëta
+  data_quality: Cilësia e të dhënave
+  data_quality_assessment: Vlerësimi i cilësisë së të dhënave
+  data_quality_assessment_: vlerësimi i cilësisë së të dhënave
+  datatype: Tipi i të dhënave
+  date_: Data
+  date?: Data?
+  date_added: Data e shtuar
+  date_created: data e krijuar
+  date_format:
+    date_long:
+      january: Janar %{day} %{year}
+      february: Shkurt %{day} %{year}
+      march: Mars %{day} %{year}
+      april: Prill %{day} %{year}
+      may: Maj %{day} %{year}
+      june: Qershor %{day} %{year}
+      july: Korrik %{day} %{year}
+      august: Gusht %{day} %{year}
+      september: Shtator %{day} %{year}
+      october: Tetor %{day} %{year}
+      november: Nëntor %{day} %{year}
+      december: Dhjetor %{day} %{year}
+    month:
+      january: Janar
+      february: Shkurt
+      march: Mars
+      april: Prill
+      may: Maj
+      june: Qershor
+      july: Korrik
+      august: Gusht
+      september: Shtator
+      october: Tetor
+      november: Nëntor
+      december: Dhjetor
+  date_is_accurate: Data është e saktë
+  date_observed: Vëzhguar në datë
+  date_observed_: Vëzhguar në datë
+  date_picker:
+    closeText: Mbyll
+    currentText: Sot
+    prevText: E mëparshme
+    nextText: Vijo
+  date_specified: Data e specifikuar
+  date_time: Data/Ora
+  dates: datat
+  datetime_: Data/Ora
+  day: Dita
+  default: e paracaktuar
+  default_invite_comment: 'Foto e mrekullueshme! Duhet ta postoni në %{site_name}:
+    {{INVITE_LINK}}'
+  default_observation_license: Licenca standard e vëzhgimit
+  default_photo_license: Licenca standard e fotos
+  default_sound_license: Licenca standard e tingullit
+  delete: Fshi
+  delete_all: Fshi të gjitha
+  delete_conversation: Fshije bisedën
+  delete_cover?: ta fshij kopertinën?
+  delete_icon?: Ta fshij ikonën?
+  delete_photo: Fshi foto
+  delete_project: Fshi këtë projekt
+  delete_selected: Fshi zgjedhjen
+  delete_this_name: Fshi këtë emër
+  delete_user: Fshi përdoruesin
+  delete_your_account: Fshini llogarinë tuaj
+  deleted_synonyms: Sinonime të fshira
+  deleted_user: përdorues i fshirë
+  deleted_vote: Votimi i fshirë
+  deleting: Fshirja ...
+  deleting_verb: Fshirja
+  desc: zbritje
+  descendant_taxa: taksa pasardhëse
+  descending: duke zbritur
+  describe_purpose: Shpjego qëllimin e këtij projekti
+  describe_your_interest_in_nature: Përshkruaj interesin tënd në natyrë!
+  description: Përshkrimi
+  description_from: Përshkrimi nga
+  description_sections: Seksionet e Përshkrimit
+  desription: Përshkrimi
+  destroy: Shkatërro
+  details: Detajet
+  devise:
+    failure:
+      user:
+        suspended: Llogaria juaj është pezulluar
+  developers: Zhvilluesit
+  device: Pajisje
+  discoveries: Zbulimet
+  did_you_mean: Kishit në mendje
+  did_you_photos_flickr?: A keni hedhur ndonjë fotografi në Flickr?
+  disagree: nuk bie dakort
+  disagree_: Nuk bie dakort
+  disconnect_provider: Shkëput %{provider}
+  display_link_to_checklist: Afisho lidhjen në listën e projekteve nga faqja e projektit
+  display_listings_added_by_curators: Shfaq listat e shtuar nga kuratorët
+  display_listings_from_place: Shfaq listat nga vendi
+  dna_: ADN
+  documentation_for_developers_html: Dokumentacioni për <a href="/pages/developers">developers</a>
+  do_not_show_this_message_again: Mos e shfaq këtë mesazh përsëri
+  do_you_know_where_this_species_lives: A e dini se ku jeton kjo specie?
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: Studioni krimbat? Jeni eksperti
+    më i madh i klasës së karavidheve? Ju pëlqen të sodisni lulet? Plotësimi i profilit
+    tuaj i jep personalitet dhe rrit besueshmërinë tuaj kur ndihmoni të tjerët të
+    bëjnë identifikime.
+  do_you_want_to_proceed: A doni të vazhdoni?
+  does_the_location_seem_accurate: A duket vendndodhja e saktë?
+  does_the_date_seem_accurate: A duket data e saktë?
+  doesnt_have_default_photo: ende nuk ka një foto të paracaktuar.
+  doh_something_went_wrong: D'oh, diçka shkoi keq.
+  done: U krye
+  dont_filter: Mos filtro
+  dont_send_me_email: Mos më dërgoni asnjë email!
+  dont_use_double_quotes: Mos përdorni citate të dyfishta askund
+  drop_it: Hidhe
+  double_click_to_finish: (kliko dy herë për të përfunduar)
+  download: Shkarko
+  download_csv: Shkarko CSV
+  download_csv_template: Shkarko modelin CSV
+  download_kml: Shkarko KML
+  draft: skicë
+  draft_: Skicë
+  draft_saved: Skicë e ruajtur!
+  drafts: Skicat
+  drawings: Vizatimet
+  duplicate_verb: Dyfisho
+  each_place_displays_all_species_inat_knows: Çdo faqe e një vendi të caktuar paraqet
+    të gjitha speciet që njeh %{site_name} nga ai vend, përfshirë shpeshtësinë, ruajtjen,
+    dhe kush e ka vrojtuar për herë të parë atë specie të atij vendi në %{site_name}.
+    Mund të filtroni speciet sipas klasifikimit, ngjyrës, ruajtjes, ose me kërkim
+    të përgjithshëm.
+  edit: Redakto
+  edit_a_batch_of_observations: Shto një Seri Vëzhgimesh
+  edit_assessment: Ndrysho vlerësimin
+  edit_atlas: Ndrysho Atlasin
+  edit_colors: Ndrysho ngjyrat
+  edit_comment: Ndrysho komentin tënd
+  edit_license: Ndrysho licencën
+  edit_multiple_dates: Ndrysho datat e shumta
+  edit_multiple_descriptions: Ndrysho përshkrimet e shumëfishta
+  edit_multiple_locations: Ndrysho vende të shumëfishta
+  edit_multiple_species: Redakto speciet e shumta
+  edit_notes: Ndrysho shënimet
+  edit_observation: Ndrysho Vëzhgimin
+  edit_observations: Ndrysho Vëzhgimet
+  edit_photos: Ndrysho fotot
+  edit_photos_for_observation_id: Redakto fotot për Vëzhgim %{obs_id}
+  edit_place: Ndrysho vendin
+  edit_project: Ndrysho projektin
+  edit_remove: Ndrysho/Hiq
+  edit_selected: Përpuno të përzgjedhurën
+  edit_source: Redakto tekstin burimor
+  edit_taxa: Redakto taksa
+  edit_taxon: Redakto taxon
+  edit_taxon_change: redakto ndryshimin e taksonit
+  edit_taxon_link: Ndrysho lidhjen e taksonit
+  edit_the_observation: Redakto Vëzhgimin
+  edit_this_link: Redakto këtë link
+  edit_your_account: redaktoni llogarinë tuaj
+  edit_your_account_and_profile_html: Ndrysho llogarinë tënde dhe profilin
+  edit_your_identification: Ndrysho identifikimin tënd
+  edit_your_profile: Ndrysho profilin tënd
+  edited: Redaktuar
+  edited_by: Redaktuar nga
+  edited_by_name_html: Redaktuar nga %{name}
+  editing: Redaktimi
+  editing_announcement: Njoftim i redaktimit
+  editing_observation_field: Redaktimi i fushës së vëzhgimit
+  editing_observation_id: Redaktimi i Vëzhgimit %{obs_id}
+  editing_observations:
+    one: 'Editing <span class="count">1</span> observation:'
+    other: 'Editing <span class="count">%{count}</span> observations:'
+  editing_project: Redaktimi %{project}
+  editing_project_asset: Redaktimi i Aseteve të Projektit për
+  editing_subscription_to_x_html: Redaktimi i abonimit në %{x}
+  editing_taxon_range: Redakto Vargun e Taxon
+  editors: Redaktorët
+  eg: p.sh.
+  either: Ose
+  either_that_user_doesnt_exist_or: Ose ky përdorues nuk ekziston ose jeni duke i
+    ndjekur ato.
+  email: Email
+  email_settings: Cilësimet e Email
+  enlarge: Zmadho
+  encompassing_places: Përfshirja e Vendeve
+  end: Fundi
+  end_date_time: Data / Koha e Fundit
+  endangered: të rrezikuara
+  endemic: endemik
+  endemic_to_x: Endemik në %{x}
+  eol: EOL
+  eol_collection_url: EOL koleksion URL
+  error_updating_photo: 'Gabim gjatë përditësimit të fotos: %{photo_errors}'
+  establishment:
+    establishment: Vendosje
+    native: autokton
+    endemic: endemik
+    introduced: e prezantuar
+    naturalised: e natyralizuar
+    invasive: pushtuese
+    managed: e menaxhuar
+  establishment_means_descriptions:
+    native_and_occurs_nowhere_else: amtare dhe nuk ndodh askund tjetër
+    arrived_in_the_region_via_anthropogenic_means: arriti në rajon nëpërmjet mjeteve
+      antropogjene
+  event_in_progress: Ngjarje në progres
+  event_registration_url: URL e regjistrimit të ngjarjes
+  event_stats: Statistikat e ngjarjes
+  event_url: URL e ngjarjes
+  events_only: Vetëm ngjarjet
+  every_species_seen_by: Çdo specie e parë nga
+  everyone: gjithkush
+  everyone_: Gjithkush
+  everyone_journal_posts: Të gjitha postimet e ditarit
+  everywhere: gjithkund
+  exact: I/E saktë
+  exact_coordinates_obscured_for: Koordinatat e sakta janë të paqarta për shikimin
+    e publikut për speciet e kërcënuara.
+  exact_date: Data e saktë
+  exact_location: Vendndodhja_e_saktë
+  exact_rank: Katergoria e saktë
+  existing_flags: Flamujt ekzistues
+  exit_full_screen: Dil nga ekrani i plotë
+  examples_of_ranking_organizations: Shembuj të Organizatave Renditëse
+  expand_days: zgjat ditët
+  expand_updates: zgjero përditësimet
+  explore!: Eksploro!
+  explore: Eksploro
+  explore_everyones_observations: Eksploro vëzhgimet e të gjithëve
+  export: Eksporto
+  export_observations: Eksporto vëzhgimet
+  export_with_private_coordinates: Eksporto me koordinata private
+  exporting: Duke eksportuar...
+  external_links: Lidhje të jashtme
+  extinct: i zhdukur
+  extinct_in_the_wild: të zhdukur në natyrë
+  extras: Shtesat
+  evidence_of_organism: Dëshmia e organizmit
+  evidence_of_organism?: Dëshmia e organizmit?
+  facebook: Facebook
+  facebook_account_information: Informacioni i llogarisë tuaj në Facebook
+  facebook_account_not_linked: '%{user} nuk ka më një llogari të lidhur me facebook,
+    kështu që %{site_name} nuk ka leje për të parë këtë foto.'
+  facebook_confirmation: Facebook dëshiron të konfirmojë nëse doni që llogaria juaj
+    të lidhet me %{site_name}.
+  facebook_needs_the_owner_of_that_photo_to: Facebook-u ka nevojë për poseduesin e
+    kësaj foto për të ri-konfirmuar lidhjen e tij me %{site_name_short}.
+  facebook_options: Opsionet e Facebook
+  facts_and_stats: Faktet dhe statistikat
+  failed_to_find_your_location: Dështoi në gjetjen e vendndodhjes tënde.
+  failed_to_repair_photo: 'Dështoi në riparimin e fotos: %{errors}'
+  failed_to_save_record: Dështoi në ruajtjen e regjistrimit. Ju lutem provoni përsëri
+    më vonë.
+  "false": E gabuar
+  faq: Pyetjet më të shpeshta
+  Family: Familja
+  favorites: Favoritet
+  fblocale: en_US
+  featured: i/e paraqitur
+  featured_projects_from_everywhere: Projektet e paraqitura nga kudo
+  featured_projects_from_place: Projektet e përzgjedhura nga %{place}
+  feedback: Reagim
+  feedback_group: Grupi i reagimeve
+  failed: Dështoi
+  field_guides: Udhëzues në terren
+  fields: fushat
+  fields_: Fushat
+  fields_merged: Fushat u bashkuan
+  file: Dosja
+  fill_out_your_profile: plotësoni profilin tuaj
+  filling_out_your_profile: duke plotësuar profilin tuaj
+  filter: Filtër
+  filter_by: Filtro nga
+  filter_by_curator_identification: Filtro nga identifikimi i kuratorit
+  filter_by_place: Filtro sipas vendit
+  filter_by_taxon: Filtro nga taxon
+  filter_by_place_taxon_and_color: Filtroni sipas vendit, takson dhe ngjyrës duke
+    përdorur kontrollet.
+  filter_list_by_this_taxon: Lista e filtrave sipas këtij taxon
+  filtering: Filtrim
+  filtering_observations_that_pass_the: Filtrimi i vezhgimeve që kalojnë rregullat
+    e projektit, ose që janë zhvilluar në vendin e projektit dhe ende nuk janë dorëzuar.
+  filters: Filtrat
+  find: Gjej
+  find_a_guide: Gjeni një udhëzues
+  find_a_place: Gjej një vend
+  find_guides: Gjej Udhëzues
+  find_new_place_to_explore: Gjej një vend të ri për të eksploruar!
+  find_observations: Gjej vëzhgimet
+  find_photos: Gjej fotot
+  find_places: Gjej Vendet
+  find_some_people_to_follow: Gjej disa njerëz të ndiqni
+  find_species: Gjej Speciet
+  find_suitable_observations: Gjej vëzhgime të përshtatshme
+  find_unsuitable_observations: Gjej vëzhgime të papërshtatshme
+  find_your_current_location: Gjej vendndodhjen tuaj të tanishme
+  finished: Përfundoi
+  finished_with_page: Përfunduar me Faqen
+  first_confirmed_inat_observation: Vëzhgimi i parë i konfirmuar %{site_name}
+  first_inat_observation: Vëzhgimi i parë %{site_name}
+  first_observation: Vëzhgimi i Parë
+  first_observation_by_date_added: Vëzhgimi i parë sipas datës u shtua
+  first_observer: Vëzhguesi i 1-rë
+  first_report: raporti i parë
+  flag: Shëno
+  flag_as_inappropriate: Shëno si e papërshtatshme
+  flag_as_spammer: Shëno si spammer
+  flag_as_non_spammer: Shëno si jo-spammer
+  flag_description: Shënjoni këtë përmbajtje për të informuar kuratorët që diçka nuk
+    është në rregull.
+  flag_for_curation: Shëno për kurimin
+  flags_explanation: Përdoruesit e %{site_name} bëjnë shenime kur vërejnë diçka që
+    nuk është në rregull. Ja disa probleme që nuk janë zgjidhur ende nga kuratorët.
+  flickr_account_information: Informacioni i llogarisë tuaj në Flickr
+  flickr_description: Flickr është shërbim fotografish në internet, mbase keni dëgjuar
+    për të!
+  flickr_identity: Identiteti i Flickr
+  flickr_photo: Foto e Flickr
+  flickr_photos: Fotot e Flickr
+  follow: Ndjek
+  follow_us: Na ndiqni në
+  follow_us_on: Na ndiqni në
+  follower: ndjekës
+  followers: Ndjekësit
+  for: për
+  for_a_taxon: per një taxon
+  for_more_information: për më shumë informacion.
+  formatting: Formatimi
+  forgot_your_password: Keni harruar fjalëkalimin?
+  frequency: Shpeshtësia
+  from: Prej
+  from_a_place: nga një vend
+  from_eol_collection: Nga koleksioni EOL
+  from_flickr_facebook_etc: Nga Flickr, Facebook, etc.
+  from_in_this_place: Nga brendësia e këtij vend
+  from_list: Nga lista
+  from_this: nga kjo
+  from_photos: Nga fotot
+  from_place: nga një vend
+  from_soundcloud: Nga Soundcloud
+  from_your_site_observations: Nga %{site_name} vëzhgimet
+  from_licensed_site_observations: Nga %{site_name} vëzhgimet e licencuara
+  full_id_please: ID Ju lutem!
+  full_id_please!: ID Ju lutem!
+  full_id_please?: ID Ju lutem?
+  full_screen: Ekran i plotë
+  fungi:
+    one: fungus
+    other: fungi
+  fungus:
+    one: fungus
+    other: fungi
+  gbif_occurrences: Dukuritë e GBIF
+  geo: Gjeo
+  general: Të përgjithshme
+  generally_these_come_from_iucn_red_list: Zakonisht këto vijnë nga Lista e Kuqe e
+    Unionit Ndërkombëtar për Ruajtjen e Natyrës (angl. IUCN), dhe nëse vijnë prej
+    diku tjetër i përmbahen kategorive të IUCN.
+  generate_pdf: Krijo PDF
+  generate_taxonomic_tags_for_flickr: Gjeneroni etiketat taksonomike për fotot tuaja
+    në Flickr.
+  generate_your_stats: Prodho statistikat tuaja
+  generating: Duke Gjeneruar...
+  generating_mobile_archive: Gjenerimi i arkivit celular
+  Genus: Klasë
+  genus_slash_species: '[GENUS] / [SPECIES]'
+  geoprivacy: Privatësia e Gjeografike
+  get_current_position: Merr pozicionin aktual
+  get_started_raquo: Fillo &raquo;
+  get_started: Filloni
+  getting_started: Duke Filluar
+  getting_started_guide: Udhëzuesi i fillimit
+  give_it_some_detail: Jepni disa detaje!
+  global_conservation_status: 'Statusi global i ruajtjes:'
+  global_names: Emrat globalë
+  globally: globalisht
+  go: Shko
+  go_back: Kthehu
+  going_to_your_observations: Shkuarja në vëzhgimet tuaja...
+  good_choice_for_sharing: Zgjedhje e mirë për ndarjen me shkencëtarët
+  got_it!: E kuptova!
+  got_your_data_somewhere_else?: Ke të dhënat e tua diku tjetër? Ne mund të të ndihmojmë.
+  grafting_attemps_to_insert_this_taxon: Përpjekjet për ta futur këtë taxon në pemën
+    tonë të taksonomisë, gjetja e një klase prind ose krijimi i të gjitha ndërklasave
+    të nevojshme për t’ia bashkangjitur një taxon ekzistues më të lartë.
+  grant_role: '%{grant} %{role} rol'
+  gray: gri
+  green: e gjelbër
+  grey: gri
+  grid: Rrjet
+  grid_tooltip: Trego pamjen e rrjetit
+  group: Grupi
+  grouping: Grupim
+  guess_description: Supozo / Përshkrimi
+  guides: Udhëzuesit
+  guide_colors: Ngjyrat e Udhëzimeve
+  guide_compiled_by: Udhëzues i përpiluar nga
+  guide_deleted: Udhëzuesi fshihet
+  guide_will_be_deleted: Udhëzuesi do të fshihet. Duhen një kohë për udhëzuesit më
+    të mëdhenj.
+  guide_was_successfully_created: Udhëzuesi u krijua me sukses.
+  guide_was_successfully_published: Udhëzuesi u publikua me sukses.
+  guide_was_successfully_updated: Udhëzuesi u përditësua me sukses.
+  guidelines: Udhëzime
+  has_already_been_flagged_by: tashmë është shënuar nga
+  has_been: ka qene
+  has_id_supported_by_two_or_more: Ka ID të mbështetur nga dy ose më shumë
+  has_photo: Ka foto
+  has_photos: ka foto
+  has_photo_and_sound: Ka foto dhe zë
+  has_photos_or_sounds: Ka foto ose tinguj
+  has_sound: Ka zë
+  has_sounds: ka tinguj
+  hasnt_contributed_any_observations: nuk ka kontribuar asnjë vëzhgim në këtë projekt.
+  hate_me_facebook: Shkëputini lidhjet tuaja me Facebook dhe Llogaritë në %{site_name}
+  hate_me_flickr: Shkëputini lidhjet tuaja me Flickr dhe Llogaritë në %{site_name}
+  help: Ndihmë
+  help_confirm_observations!: Ndihmoni të konfirmoni vëzhgimet!
+  help_faq: Ndihmë / Pyetje-Përgjigje
+  help_out!: Ndihmoni!
+  helped_the_observer_make: Ndihmon vrojtuesin/en për identifikimin përfundimtar (d.m.th.
+    është kryer para identifikimit final dhe përputhet)
+  here_are_3_examples: Këtu janë 3 shembuj të të dhënave të formuluara mirë
+  here_are_some_things_you_can_do_meantime: 'Këtu janë disa gjëra që mund të bëni
+    në ndërkohë:'
+  heres_a_litle_about: Ja pak për këtë
+  hex_color_eg: Ngjyra Hex, p.sh. 65644F
+  hi: Përshëndetje,
+  hi_user: Përshëndetje %{user}
+  hide: Fshih
+  hide_details: Fshih detajet
+  high: I lartë
+  highest_rank: Grada më të lartë
+  highlights: Pikat kryesore
+  highlights_and_stats_from_year_on_site: Pikat kryesore dhe statistikat nga %{year}
+    në %{site}
+  history: Historiku
+  home: Faqja kryesore
+  home_faq: Pyetje Përgjigje
+  however_there_were_some_issues: 'Megjithatë, ka pasur disa probleme: %{issues}'
+  hybrid: hibrid
+  i_agree_to_the_project_terms: Pajtohem me kushtet e projektit
+  i_dont_know_but_i_am_sure_this_is_taxon: Nuk e dij, por jam i sigurtë se kjo është
+    %{taxon}
+  icon: Ikonë
+  icon_size: Madhësia e ikonës
+  icon_slash_photo: Ikonë / Fotografi
+  id_categories:
+    tooltips:
+      leading: Taxon rrjedh prej komunitetit taxon. Ky identifikim mund të shpjerë
+        drejt përgjigjes së drejtë.
+      improving: Sugjerimi i parë i këtij taxon me të cilin komuniteti më pas pajtohet.
+        Kjo ndihmon rafinimin komunitetit taxon.
+      maverick: Taxon nuk është pasardhëse apo paraardhëse e komunitetit taxon, d.m.th.
+        komuniteti nuk pajtohet me këtë taxon.
+  identify: Identifiko
+  if_for_some_reason_a_user_doesnt_agree: Nëse, për ndonjë arsye, nuk pajtoheni me
+    taxon e komunitetit mund ta refuzoni, çka nënkupton se ID-ja juaj përdoret për
+    ndërlidhjen me vëzhgime të tjera, përditësimin e listave jetësore etj. Gjithashtu
+    nënkupton se vëzhgimi juaj mund të konsiderohet i natyrës hulumtuese vetëm kur
+    komuniteti pajtohet me ju.
+  if_youd_like_us_to_share_your_observations_with: Nëse dëshironi që të shpërndajmë
+    vëzhgimet tuaja me partnerë të të dhënave, sigurohuni që të keni zgjedhur licencimin
+    e vëzhgimeve tuaja me licencën Bashkësia Krijuese [Creative Commons].
+  if_your_project_is: Nëse projekti juaj është rreth një vendi të caktuar, zgjidhni
+    koordinatat duke klikuar në hartë ose duke i shtuar manualisht.
+  if_your_search_comes_up: 'Nëse kërkimi ju del i zbrazët shihni kutitë kërkuese për
+    ta përsëritur kërkimin përmes ofruesve tanë të jashtëm:'
+  import_date_time_location_taxonomic: Importoni datën, kohën, vendndodhjen, përshkrimin
+    dhe të dhënat klasifikuese nga kjo foto.
+  import_observations_from_a_photo: Importoni vëzhgimet nga një foto-shërbim apo nga
+    skedat në kompjuterin tuaj.
+  inbox: Kutia e mesazheve
+  including: përfshirë
+  in_order_to_login_and_using_site_visit_url: 'Me qëllim që të hyni dhe të shfrytëzoni
+    faqen duhet të vizitoni këtë vegëz (URL) për të aktivizuar llogarinë tuaj:'
+  in_taxon?: në taxon
+  inactive: Joaktiv
+  inactive_taxon: taxon joaktiv
+  inactive_taxon_concepts_are: Konceptet taxon joaktive janë vjetëruar si klasifikime,
+    ose presin ndryshime në taxon. Konceptet e vjetëruara ruhen me qëllim të vazhdimësisë
+    dhe përputhshmërisë me disa faqe partnere.
+  inaturalist_is_an_online_community: '%{site_name} është komunitet online për adhuruesit
+    e natyrës! Fotot tuaja ndihmojnë hulumtuesit të mësojnë më shumë rreth'
+  inaturalist_places_are_way_record_what_lives_where: Vendet në %{site_name} mundësojnë
+    dokumentimin e krijesave që gjallojnë në vende të ndryshme. Nëse kërkoni një specie
+    të veçantë, e dini ku të kërkoni. Secili vend ka një listë që dokumenton të gjitha
+    speciet që ndodhen aty, çka ju ndihmon të hulumtoni rreth krijesave që mund të
+    gjeni në vende të caktuara.
+  info: Informacion
+  insects: Insektet
+  invitation: Ftesë
+  invitations: Ftesat
+  invite: Fto
+  invite_more: Fto më tepër
+  invite_people: Fto njerëz
+  invite_people_to_project: Fto njerëz në %{project}
+  invite_your_friends: Fto miqtë e tu
+  invite_your_friends_description: Ndihmo ta bëjmë %{site_name} më të madhe dhe komunitet
+    më të mirë duke ftuar miqtë të bashkangjiten!
+  inviting: Duke ftuar...
+  iphone: iPhone
+  is_a: është një
+  is_an: është një
+  is_an_evaluation: "është vlerësim i saktësisë së një vëzhgimi. \nVezhgimet Nota
+    e Hulumtimit [Research Grade] mund të përdoren nga shkencëtarët për hulumtime.
+    Votoni këtu poshtë:"
+  is_not_following_anyone: nuk është duke ndjekur dikë.
+  is_now: është tani
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: A është evidenca e siguruar
+    e mjaftueshme për të konfirmuar që kjo është %{taxon}
+  it_can_now_be_used_for_research: Tani mund të përdoret për hulumtime, dhe mund të
+    paraqitet në faqe të tjera.
+  january: Janar
+  join: Bashkangjitu
+  join_and: Bashkangjitu dhe
+  join_inat: Bashkangjitju %{site_name}
+  join_project: Bashkangjitju projektit
+  joined!: Bashkangjitur!
+  joining: Duke u bashkangjitur...
+  jpg_png_or_gif: JPG, PNG ose GIF
+  jump_to_letter: Kërce tek shkronja
+  just_a_reminder: Vetëm për rikujtim, meqenëse mund t’u keni dhënë leje kuratorëve
+    të projektit për të shikuar koordinatat private të vëzhgimeve tuaja në këtë projekt.
+  just_added!: Sapo u shtua!
+  keep_editing: Vazhdo përpunimin
+  keyboard_shortcuts: Shkurtesat e tastierës
+  last_seen: Se fundmi i parë
+  learn!: Mëso!
+  learn: Mëso
+  learn_about_the_species_live_in: Mëso për speciet që jetojnë në
+  learn_more: Mëso më shumë
+  learn_more_raquo: Mëso më shumë mbi &raquo;
+  leaves: Gjethet
+  lexicons:
+    scientific_names: Emrat shkencor
+    chinese_simplified: Kinezisht (e thjeshtuar)
+    chinese_traditional: Kinezisht (tradicionale)
+    english: Anglisht
+    estonian: Estonisht
+    finnish: Finlandisht
+    french: Frengjisht
+    german: Gjermanisht
+    greek: Greqisht
+    hebrew: Hebreisht
+    icelandic: Islandisht
+    italian: Italisht
+    japanese: Japonisht
+    norwegian: Norvegjisht
+    portuguese: Portugalisht
+    romanian: Rumanisht
+    russian: Rusisht
+    spanish: Spanjisht
+    swedish: Suedisht
+    turkish: Turqisht
+  less: Më pak
+  licensing_your_content: |-
+    Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës. %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
+    (GBIF).
+  life_list_updated_we_also_saved_a: Lista jetësore u përditësua! Kemi ruajtur edhe
+    një vëzhgim të zbrazët të këtij takson.
+  life_lists_automatically_fill: Listat jetësore automatikisht plotësohen me klasa
+    të reja ndërkohë që ju vrojtoni, dhe mund të kufizohen në shkallë më të lartë
+    të klasave prindërore, p.sh. lista jetësore e zogjve në familjen e korbave (Corvidae).
+  link: Vegëza
+  link_or_unlink_your_facebook_account: Lidh ose çlidh llogarinë tuaj në Facebook
+  link_or_unlink_your_flickr_account: Lidh ose çlidh llogarinë tuaj në Flickr
+  link_or_unlink_your_google_account: Lidh ose çlidh llogarinë tuaj në Google
+  link_your_facebook_account: Lidh llogarinë tuaj në Facebook
+  link_your_flickr_account: Lidh llogarinë tuaj në Flickr
+  link_your_google_account: Lidh llogarinë tuaj në Google
+  linked_facebook_password: Nuk do t’ju kërkojmë asnjëherë fjalëkalimin e llogarisë
+    suaj në Facebook (por Facebook mund të kontrollojë URL-në që ju dërgohet për t’u
+    siguruar që vjen nga Facebook.com). Gjithashu, nuk do të ndryshojmë të dhënat
+    tuaja në Facebook nëse nuk doni.
+  list: Lista
+  list_deleted: Lista u fshi.
+  list_saved: Lista u ruajt.
+  list_tooltip: Shiko si listë
+  list_updated: Lista u përditësua!
+  list_views:
+    taxonomic: taksonomike
+    photo: Fotografi
+  list_was_successfully_created: Lista u krijua me sukses.
+  listed_taxon: taxon te listuara
+  listing_taxon_names: Listimi i emrave taxon
+  lists_are_lists_of_species: Listat janë lista të specieve (ose klasave të tjera),
+    si p.sh. lista jetësore e të gjithë zogjve të parë gjatë jetës, ose lista e amfibëve
+    të preferuar. Ato <em>nuk</em> janë lista të vrojtimeve.
+  load: Ngarko
+  loading: Po ngarkohet...
+  loading_flickr_photos: Duke ngarkuar fotografi nga Flickr...
+  loading_full_description_html: Duke ngarkuar përshkrimin e plotë...
+  loading_images: Duke ngarkuar imazhet...
+  loading_map: Duke ngarkuar hartën...
+  loading_more_photos: Duke ngarkuar më shumë fotografi...
+  loading_suggestions: Duke ngarkuar sugjerimet...
+  loading_tags: Duke ngarkuar etiketimet...
+  locales:
+    ar: Arabisht
+    bg: Bulgarisht
+    de: Gjermanisht
+    el: Greqisht
+    en-US: Anglisht (ShBA)
+    en: Anglisht
+    es-ES: Spanjisht (Spanjë)
+    es-MX: Spanjisht (Meksikë)
+    es: Spanjisht
+    et: Estonisht
+    fi: Finlandisht
+    fr: Frengjisht
+    id: Indonezisht
+    it: Italisht
+    ja: Japonisht
+    mk: Maqedonisht
+    pt-BR: Portugalisht (Brazil)
+    pt-PT: Portugalisht (Portugali)
+    ru: Rusisht
+    zh-CN: Kinezisht (e thjeshtuar)
+    zh-TW: Kinezisht (tradicionale)
+  locked_taxa_will_not_allow_new: Klasat e kyçura nuk lejojnë shtimin e klasave të
+    reja. Pra, nëse kyçni Amphibia dhe dikush përpiqet të importojë <i>Rana catesbeiana</i>
+    nga një ofrues i jashtëm, krijohet një klasë e re por nuk klasifikohet si amfibe.
+    Në këtë rast, klasa e re që shtohet duhet të shenjohet për vëmendje të mëtejshme
+    nga ana e kuratorit. Në fakt, kjo duhet përdorur vetëm për klasa pasardhësit e
+    të cilave mendojmë se i kemi të gjithë. Kuratori mund ta tejkalojë këtë duke ndryshuar
+    klasat dhe duke vënë direkt identifikatin prindëror, por mundësisht sugjerohet
+    bashkimi i klasave të reja me ato ekzistuese në vend të krijimit të klasave të
+    tjera.
+  managers_can_do: Menaxheri mund të kryejë të gjitha funksionet e kuratorit, si dhe
+    mund të ndryshojë parametrat dhe të mbajë shënime rreth ecurisë së projektit.
+  maps:
+    overlays:
+      gbif_network_description: Të dhëna nga muzetë dhe ofrues të tjerë të të dhënave
+        të shpërndara nga Enti i Informatikës për Biodiversitetin në Botë (EIBB)
+  map_for: Harta për
+  members: Anëtarët
+  membership_model: Modeli i anëtarësimit
+  mentioned_you_in_noun_html: '%{user}% u ka përmendur në %{noun}'
+  mentioned_you_in_noun_by_html: '%{user}u ka përmendur juve në %{noun} nga %{by}'
+  message: Mesazh
+  messages: Mesazhe
+  mobile: Celular
+  mobile_app_for: Aplikacion celular për
+  mobile_apps_for: Aplikacione celulare për
+  month: Muaj
+  months: Muaj
+  months_ago: '%{text} më parë'
+  more: Më shumë
+  more_fields: Më shumë fusha
+  more_filters: Më shumë filtra
+  more_info: Më shumë informacion
+  more_info_title: Më shumë informacion
+  more_journal_posts: Më shumë postime gazetareske
+  more_photos: Më shumë fotografi
+  names_for_taxon_html: Emrat për %{taxon}
+  nav_description: Lorem Ipsum është një tekst shabllon i industrisë së printimit
+    dhe shtypshkronjave. Lorem Ipsum ka qenë teksti shabllon i industrisë që nga vitet
+    1500, kur një shtypës i panjohur morri një galeri shkrimesh dhe i ngatërroi për
+    të krijuar një libër mostër.
+  new_list: Listë e re
+  new_members: Anëtarë të rinj
+  new_message: Mesazh i ri
+  new_password: Fjalëkalimi i ri
+  new_post: Postim i ri
+  new_project: Projekt i ri
+  new_source: Burim i ri
+  new_taxon_change: Ndryshim i ri në taxon
+  new_taxon_name: Emri i takson të ri
+  new_taxon_range: Varg i Ri Taxon
+  new_user_rules: Rregullat e reja të përdoruesit
+  new_users: Përdorues i ri
+  new_users_w_7_obs: Përdorues të rinj w/ 7 Obs
+  new_users_week: Përdorues të rinj / Javë
+  news: Lajme
+  next: Tjetër
+  next_observation: Vëzhgimi i ardhshëm
+  next_page: Faqja tjetër
+  next_photo: Foto tjetër
+  "no": Jo
+  no_but_it_is_a_member_of_taxon: Jo, por është anëtar i %{taxon}
+  no_colors_selected: Nuk ka ngjyra të zgjedhura.
+  no_comments_yet: Nuk ka komente ende.
+  no_countries_added_yet: Asnjë vend nuk ka shtuar akoma
+  no_curators_set: Asnjë kurator nuk është caktuar
+  no_curators_yet: Asnjë kurator ende!
+  no_description: Pa pershkrim
+  no_facebook_photos: Ne nuk mund të gjejmë ndonjë foto nga Facebook.
+  no_flags: Nuk ka flamuj këtë herë
+  no_identifications: Asnjë identifikim
+  no_identifications_added:
+    current_user: Ju nuk keni shtuar identifikime për vëzhgimet e askujt.
+    user: '%{user} nuk ka shtuar identifikime për vëzhgimet e askujt.'
+  no_ids_have_been_suggested_yet: Asnjë ID nuk është sugjeruar ende
+  no_interaction_data_available: Nuk ka të dhëna të ndërveprimit
+  no_its_as_good_as_it_can_be: Jo, është aq e mirë sa mund të jetë
+  no_journal_post_have_been: Asnjë postim i ditarit nuk është shtuar ende në këtë
+    projekt.
+  no_license_all_rights_reserved: Asnjë licencë (të gjitha të drejtat e rezervuara)
+  no_link_flickr: Jo, nuk do të më pëlqente.
+  no_managers_set: Asnjë menaxher nuk është caktuar
+  no_matching_article_from_x: Asnjë artikull nuk përputhet nga %{x}
+  no_matching_invitations: Nuk ka ftesa që përputhen
+  no_matching_observations: Asnjë vëzhgim i ngjashëm.
+  no_members_yet: Nuk ka anëtarë ende.
+  no_messages_yet: Nuk ka mesazhe ende
+  no_misidentifications_yet: Ende nuk ka identifikime të gabuara
+  no_more_mail_from_site: Nuk dua të marr ndonjë email nga %{site_name}?  Ndrysho
+    cilësimet e emalit në
+  no_more_results_found: Nuk u gjetën më shumë rezultate
+  no_more_updates: Asnjë përditësim më shumë!
+  no_nearby_observations: Nuk ka vëzhgime të perafërta.
+  no_new_messages: Nuk ka mesazhe të reja
+  no_news_yet: Asnjë lajm ende
+  no_observations: nuk ka vëzhgime
+  no_observations_from_this_place_yet: Asnjë vëzhgim nga ky vend ende.
+  no_observations_matching_those_ids: Asnjë vëzhgim që përputhet me ato ID.
+  no_observations_need_an_id: Asnjë vëzhgim nuk ka nevoj për një ID mometalisht. Shkelqyeshem!
+  no_observations_submitted: Asnjë vëzhgim nuk është dorëzuar!
+  no_observations_suitable_for_this_project: Nuk ka vërejtje të ofruara apo të kërkuara
+    për këtë projekt.
+  no_observations_yet: Ende nuk ka vëzhgime
+  no_one_has_added_any: Askush nuk ka shtuar ndonjë shënim për këtë vend
+  no_one_has_been_invited_yet: Askush nuk është ftuar akoma
+  no_one_posted_anything_yet: Askush nuk ka postuar asgjë akoma!
+  no_ones_observed: Askush nuk ka vëzhguar
+  no_photo: Asnjë Foto
+  no_photos: Asnjë foto
+  no_places_available: Nuk ka vende në dispozicion
+  no_places_selected: Nuk ka vende të zgjedhura.
+  no_post_yet: Ende nuk ka postime!
+  no_project_selected: Asnjë projekt nuk është përzgjedhur
+  no_projects_yet: Asnjë projekt ende
+  no_range_data_available: Nuk ka të dhëna në dispozicion.
+  no_recent_activity: Asnjë aktivitet i kohëve të fundit
+  no_recently_active: Ende nuk ka projekte aktive.
+  no_relevant_annotations: Asnjë Shënim Përkatës
+  no_reply_yet: Asnjë përgjigje ende
+  no_results_found: Nuk u gjetën rezultate
+  no_results_for: Nuk ka rezultate për
+  no_results_matching: Nuk ka rezultate që përputhen
+  no_sections_available: Nuk ka pjesë të disponueshme.
+  no_sections_have_been_added_to_this_assessments_yet: Ende nuk janë shtuar pjesë
+    në këto vlerësime.
+  no_species_have_been_listed: Nuk ka specie të listuara për këtë vend akoma!
+  no_species_observed: Asnjë specie nuk është vëzhguar
+  no_species_on_this_list: Nuk ka specie në këtë listë akoma!
+  no_species_on_this_list_for_owner_html: Mund të filloni të shtoni specie në këtë
+    listë drejtpërsëdrejti, ose nëse kjo është listë jetësore, ajo automatikisht do
+    të përditësohet me specie kur ju <a href="%{url}" class="nobr">shto vëzhgime</a>.
+  no_subject_parens: (Asnjë subjekt)
+  no_suggestions_available: Asnjë Sugjerim në Dispozicion
+  no_summary_from_wikipedia: Asnjë përmbledhje nga Wikipedia
+  no_summary_has_been_set: Asnjë përmbledhje nuk është caktuar.
+  no_taxonomic_changes_match_those_criteria: Asnjë ndryshim taksonomik nuk përputhet
+    me këto kritere
+  no_wikipedia_page_for_taxon: Asnjë faqe në Wikipedia për këtë takson.
+  non_human?: Jo-njerëzore?
+  none: Asnjë
+  none_found: Asnjë nuk u gjet
+  normal: normale
+  not_completed: Nuk është Përfunduar
+  not_evaluated: Nuk është akoma e vlerësuar
+  not_filtering: Nuk filtron
+  not_findig_what_you_want: Nuk gjetët atë që dëshiron?
+  not_finding_place_you_want?: Nuk gjetët vendin që dëshiron?
+  not_finding_what_looking_for: Nuk po gjen atë që po kërkon?
+  not_found: Nuk u gjet
+  not_on_this_list: Jo në këtë listë.
+  not_recorded: Nuk regjistrohet
+  not_seeing_what_looking_for: Nuk jeni duke parë atë që kërkoni?
+  not_yet: Jo ende
+  note: Shënim
+  notes: Shënime
+  observation_date: Data
+  observation_date?: Data?
+  occurrence_status_levels:
+    doubtful: i dyshimtë
+  of_identifiers: Identifikuesit
+  of_places: Vendet
+  of_this_taxon: Nga kjo taxon
+  one_by_one: Një nga një
+  one_of_your_lists: Një nga listat tuaja...
+  only_receive_updates_about_this_taxon: Merrni vetëm përditësime për këtë takson
+  original: Origjinal
+  password: Fjalëkalimi
+  password_confirmation: Konfirmim i fjalëkalimit
+  pdf: PDF
+  pdf_slash_print: PDF/Print
+  people: Njerëz
+  people_agree: Njerëz që pajtohen
+  people_following_user: Njerëz që ndjekin %{user}
+  people_user_follows: Njerëz që %{user} i ndjek
+  per_day: Në ditë
+  per_month: Në muaj
+  per_week: Në javë
+  personal_message: Mesazh personal
+  personal_message_description: Askush nuk deshiron të marrë email nga një makinë!
+    Përse nuk ua bën me dije miqve se përse i ftoni ato?
+  per_page: Për faqe
+  photo: Fotografi
+  photo_deleted: Fotografia u fshi
+  photos_chosen_for_this_taxon: Fotot e zgjedhura për këtë taxon
+  photos_of_taxon_html: Fotografitë e %{taxon}
+  photos_size:
+    small: e vogël
+    medium: e mesme
+    large: e madhe
+    original: origjinale
+  photos_size_photos: fotografi %{photos_size}
+  photos_size_photo: fotografi %{photos_size}
+  photos_updated: fotografia u përditësua.
+  picasa_identity: Identiteti Pikasa
+  pick_a_username: Perzgjidh nje emer perdoruesi
+  pink: njgyre roze
+  place: Vend
+  placeholder: Vend-mbajtes
+  place_autocomplete_placeholder: Parku nacional Zion, Majami,etj
+  place_deleted: Vendi i fshire
+  place_geo:
+    geo_planet_place_types:
+      aggregate: Totali
+      Airport: Aeroporti
+      airport: aeroport
+      Building: Ndertese
+      building: Ndërtesa
+      Island: Ishull
+      island: ishull
+      Local_Authority: Autoritetet Vendase
+      local_authority: autoritetet vendase
+      Municipality: Bashki
+      municipality: bashki
+      Nationality: Kombësia
+      nationality: kombësia
+      Nearby_Building: Pranë Ndërtesës
+      nearby_building: pranë ndërtesës
+      Nearby_Intersection: Kryqëzimi më i afërt
+      nearby_intersection: kryqëzimi më i afërt
+      Open_Space: Hapësira e Hapur
+      open_space: hapësira e hapur
+      Point_of_Interest: Pika e interesit
+      point_of_interest: pika e interesit
+      Postal_Code: Kodi Postar
+      postal_code: kodi postar
+      Province: Provincë
+      province: provincë
+      Region: Rajon
+      region: rajon
+      Republic: Republikë
+      republic: republikë
+      Sports_Team: Ekipi i Sportit
+      sports_team: ekipi i sportit
+      State: Shteti
+      state: shteti
+  reorder_by_taxonomy: Renditja sipas taksonomisë
+  rules_types:
+    must_be_in: E detyrueshme të jetë në taxon
+  save: Ruaj
+  save_all: Ruaji të gjitha
+  save_and_add_another: Ruaj dhe shto një tjetër
+  save_changes: Ruaj ndryshimet
+  save_colors: Ruaj ngjyrat
+  save_comment: Ruaje komentin
+  save_guide_taxon: Ruaj udhëzuesin taxon
+  save_photos: Ruaji fotografitë
+  saved: E ruajtur
+  saving: Duke ruajtur...
+  saving_verb: Duke ruajtur
+  schemes: Skemat
+  search: Kërko
+  search_all_fields: Kërko në të gjithë fushat
+  search_by_name_or_email: Kërko sipas emrit ose postës elektronike
+  search_by_taxon_name_or_observation_id: Kërko sipas emrit të takson ose ID-së së
+    vëzhgimit
+  search_this_taxon: kërkoni këtë taxon
+  searching: Duke kërkuar...
+  see_something_wrong_with_taxon: Sheh diçka të gabuar me këtë takson? Informo kuratorët.
+  select: Zgjidh
+  select_all: Përzgjidh të gjitha
+  select_an_album: Zgjidhe një album
+  select_at_least_one: Zgjidhe të paktën një
+  select_none: Mos zgjidh asnjë
+  select_options: Opsionet e zgjedhjes
+  select_photos_to_display: Zgjidh fotografitë për tu shfaqur
+  selected: i zgjedhur
+  selected_photos: Fotografitë e përzgjedhura
+  selected_taxon: Taxon i Zgjedhur
+  send_the_invites: Dërgoi ftesat
+  sending: Duke u dërguar...
+  sent: Dërguar
+  september: Shtator
+  settings: Cilësimet
+  share: Shpërndaje
+  sign_in: Kyçu
+  sign_in_with_provider: kyçu përmes %{provider}
+  sign_out: Shkyçu
+  sign_up!: Regjistrohu!
+  sign_up: Regjistrohu!
+  sign_up_exclamation: Regjistrohu!
+  sign_in_exclamation: Kyçu!
+  sorry_flickr_isnt_responding_at_the_moment: Na falni, Flickr nuk po përgjigjet për
+    momentin.
+  source: Burimi
+  source_: 'Burimi:'
+  source_wikipedia: 'Burimi: Wikipedia'
+  source_identifier: Identifikuesi i burimit
+  source_unknown: Burim i panjohur
+  species_taxon_name: Speciet / Emri i Taxon
+  standard: Standard
+  start: Fillo
+  start_a_new_list: Fillo një listë të re
+  start_a_new_project: Fillo një projekt të ri
+  start_a_project: Fillo një projekt
+  start_new_account: Fillo një llogari të re
+  start_new_project: Fillo një projekt të ri
+  start_one: Fillo një
+  start_one_now: Fillo një tani!
+  start_typing_field_name: Fillo të shkruash emrin e fushës...
+  start_typing_place_name: Fillo të shkruash emrin e vendit...
+  start_typing_taxon_name: Filloni të shkruani emrin e takson...
+  start_typing_someones_name: Fillo të shkruash emrin e dikujt...
+  stats: Statistikat
+  stats_for_this_year_have_not_been_generated: Statistikat për këtë vit nuk janë gjeneruar
+  stats_title: Statistikat e faqes
+  status: Statusi
+  still_working_on_classifying_taxon: Ende po punon për klasifikimin e këtij taxon.
+    Kontrolloni më vonë
+  subscribe_to_a_taxon: Regjistrohu tek një Taxon
+  taxon: Taxon
+  taxon_: taxon
+  taxon_change: ndryshim i taxon
+  taxon_doesnt_have_a_range: Taxon nuk ka një varg
+  taxon_id: Taxon ID
+  taxon_changes: Ndryshimet Taxon
+  taxon_curators: Kuratorët e Taxon
+  taxon_search: Kërko Taxon
+  taxon_split: ndarje e taxon
+  taxon_subscription: abonim në taxon
+  taxonomic_order: Rendi Taksonomik
+  taxonomy_settings: Cilësimet e taksonomisë
+  type_taxon_name: Lloji i emrit të taxon
+  views:
+    users:
+      edit:
+        licensing_desc_html: Licencimi i përmbajtjes suaj u jep të tjerëve të drejtën
+          ligjore për ta shfrytëzuar atë duke iu përmbajtur kushteve të licencës.
+          %{site_name} përdor përmbajtjen tuaj të licencuar sipas Bashkësisë Krijuese
+          [Creative Commons] për ta ndarë me partnerë të të dhënave si <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar
+          dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin
+          nga e gjithë bota.
+  activemodel:
+    errors:
+      messages:
+        blank: nuk mund të jetë bosh
+        confirmation: nuk përputhet me konfirmimin
+        empty: nuk mund të jetë bosh
+        equal_to: duhet të jetë e barabartë me %{count}
+        even: duhet të jetë i barabartë
+        exclusion: është e rezervuar
+        greater_than: duhet të jetë më i madh se %{count}
+        greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
+        inclusion: nuk është përfshirë në listë
+        invalid: është i pavlefshëm
+        less_than: duhet të jetë më pak se %{count}
+        less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
+        not_a_number: nuk është një numër
+        not_an_integer: duhet të jetë një numër i plotë
+        odd: duhet të jetë tek
+        record_invalid: 'Vlefshmëria dështoi: %{errors}'
+        taken: është marrë tashmë
+        too_long:
+          one: is too long (maximum is 1 character)
+          other: is too long (maximum is %{count} characters)
+        too_short:
+          one: is too short (minimum is 1 character)
+          other: is too short (minimum is %{count} characters)
+        wrong_length:
+          one: is the wrong length (should be 1 character)
+          other: is the wrong length (should be %{count} characters)
+      template:
+        body: 'Kishte probleme me fushat e mëposhtme:'
+        header:
+          one: 1 error prohibited this %{model} from being saved
+          other: '%{count} errors prohibited this %{model} from being saved'
+  activerecord:
+    errors:
+      models:
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: është shumë e madhe për tu importuar
+              contains_too_many_observations: përmban shumë vëzhgime për tu importuar
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Projekti nuk lejon vëzhgime
+            user_id:
+              must_be_curator: duhet të jetë kurator i këtij projekti
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: duhet të duket si një adresë e-mail
+    models:
+      AssessmentSection: Seksioni i Vlerësimit
+    attributes:
+      assessment:
+        description: Përshkrimi
+      assessment_section:
+        title: Titulli
+        body: Trupi i mesazhit
+      conservation_status:
+        status: Statusi
+        description: Përshkrimi
+        place_id: Vend
+        url: URL
+      flag:
+        reason: Arsyeja
+        flag: Flamur
+      guide:
+        source_url: Burimi URL
+        published_at: Publikim
+      observation:
+        geo_y: Asgjë
+      observation_field_value:
+        value: vlera
+      post:
+        title: Titulli
+        body: Trupi i mesazhit
+      project:
+        title: Titulli
+        project_icon: Ikona e projektit
+        project_type: Lloji i projektit
+        preferred_count_by: Numërimi i preferuar nga
+        prefers_count_from_list: Preferon numërimin nga lista
+        description: Përshkrimi
+        end_time: Koha e përfundimit
+        event_url: URL e regjistrimit të ngjarjes
+        terms: Kushtet
+        map_type: Lloji i Hartës
+        zoom_level: Niveli i zmadhimit
+        preferred_membership_model: Modeli i preferuar i anëtarësimit
+        preferred_submission_model: Modeli i preferuar i paraqitjes
+        prefers_place_boundary_visible: Trego kufirin e vendit në hartë
+        tracking_codes: Kodet e ndjekjes
+        source_url: Burimi URL
+        start_time: Koha e nisjes
+        last_aggregated_at: Vrojtimet e agreguara të fundit
+      place:
+        code: Kodi
+        latitude: Latituda
+        longitude: Longituda
+        name: Emër
+      source:
+        title: Titulli
+        in_text: Ne tekst
+        url: URL
+        citation: Citim
+      taxon:
+        name: Emri
+        rank: Renditja
+        locked: I bllokuar
+        wikipedia_title: Titulli i Wikipedia
+        wikipedia_summary: Përmbledhje e Wikipedia
+        source_identifier: Identifikuesi i burimit
+        source_url: Burimi URL
+      taxon_name:
+        name_provider: Ofruesi i emrit
+        source_url: Burimi URL
+        source_identifier: Identifikuesi i burimit
+      user:
+        email: Emaili
+        login: Emri i përdoruesit
+        name: Emër
+        locale: Vendndodhje
+        time_zone: Zona kohore
+        search_place_id: Kërko vendin
+        place_id: Vend
+        preferred_observation_fields_by: Lejo fusha vëzhgimi nga
+  wild: i egër
+  will_paginate:
+    next_label: Tjetër &#8594;
+  zoom_in: Zmadhoni
+  zoom_out: Zvogëloni
+  zoom_photo: Zmadho foton
+  zoom_to_taxon_name: Zmadho tek %{taxonname}
+  zoom_to_x: zmadho tek %{x}
+...

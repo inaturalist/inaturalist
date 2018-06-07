@@ -14,6 +14,7 @@
 # Author: Greis
 # Author: JackLantern
 # Author: LauraCri
+# Author: Lucascan
 # Author: Macofe
 # Author: Marsitown
 # Author: Martinligabue
@@ -63,7 +64,7 @@ it:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
   x_misidentifications_of_this_species:
-    other: =1 identificazione errata di questa specie
+    other: =1 identificazione errata
   x_observations:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -6016,6 +6017,9 @@ it:
           Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi
           cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto"
           come valore; un campo adatto è ad esempio "Fenologia della fioritura".'
+        charts_help_relative_observations: |-
+          Il mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l'effetto della crescita globale del sito. Per esempio,
+          se il sito sta crescendo mentre raccogliamo più osservazioni ogni anno che passa, abbiamo più osservazioni di qualsiasi taxón individuale. Questo non dici niente su se c'è più individui di quello taxón o se c'è più persone che l'osservano. Al mostrare la proporzione relativa significa che se c'è un totale di 100 osservazioni totali, ma 20 di questo taxón, la proporzione è 0.2 (20 / 100). Se le persone osservano 2000 osservazioni l'anno entrante e 400 osservazioni di questo taxón, la proporzione è ancora 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono molto pochi osservatori in una area, o per taxa che non sono molto osservati, ma quello stesso accade con i conteos totali.
         complete_taxon_desc: Per i taxa "completi" sono elencati nel database del
           sito tutti i discendenti o tutti i taxa esistenti di uno specifico livello.
           Quando un taxon è completo a livello di specie, per esempio, è possibile
@@ -6067,7 +6071,7 @@ it:
             <li><p>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</p></li>
             <li><p>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</p></li>
             <li>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato  </p></li>
-            <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte "Francese" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali per le persone che usano il sito in lingue diverse.</p></li>
+            <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte come "Francese, Français" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali alle persone che usano il sito in lingue diverse.</p></li>
           </ul>
         places_help_html: Aggiungi un nome per un luogo al fine di dargli una priorità
           per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso

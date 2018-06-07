@@ -19,6 +19,7 @@
 # Author: Josecurioso
 # Author: KATRINE1992
 # Author: Loarie
+# Author: Luanibraj
 # Author: Luisangelrg
 # Author: Mack
 # Author: Macofe
@@ -1522,7 +1523,7 @@ es:
   flagged_thing_explanation: Los usuarios han marcado esta %{thing} porque
   flagger: Marcador
   flags: Marcas
-  flags_with_count: Advertencias (%{conteo})
+  flags_with_count: Shënimet (%{llogaritja})
   flags_explanation: Los usuarios de %{site_name} marcan cosas cuando encuentran algo
     que no está bien. Aquí hay algunos problemas que los curadores no han resuelto
     todavía.
@@ -3159,6 +3160,8 @@ es:
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
   post: Ingresar
+  post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
+  post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   post_published: ¡Nota publicada!
   post_some_new_stuff: publicar algo nuevo
   posted_by: Publicado por
@@ -3258,6 +3261,7 @@ es:
     otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de
     ciencia ciudadana o solamente mantener registros de las aves de un parque cercano
     con tu club local, la forma de hacerlo es con Proyectos.
+  projects_from_everywhere: Projekte nga të gjitha anët
   projects_from_place: Proyectos de %{place}
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que usted administra
@@ -3873,24 +3877,33 @@ es:
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
-  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
-    one: '%{taxon} es un %{rank} en %{icónico_taxon} con una observación'
-  taxon_is_a_rank_of_amphibia_with_x_observations:
-    one: '%{taxon} es un %{rank} de anfibios con una observación'
-  taxon_is_a_rank_of_aves_with_x_observations:
-    one: '%{taxon} es un %{rank} de aves con una observación'
-  taxon_is_a_rank_of_mammalia_with_x_observations:
-    one: '%{taxon} es un %{rank} de mamíferos con una observación'
-  taxon_is_a_rank_of_reptilia_with_x_observations:
-    one: '%{taxon} es un %{rank} de reptiles con una observación'
-  taxon_is_a_rank_of_plantae_with_x_observations:
-    one: '%{taxon} es un %{rank} de plantas con una observación'
-  taxon_is_a_rank_of_actinopterygii_with_x_observations:
-    one: '%{taxon} es un %{rank} de peces con aletas radiadas con una observación'
-  taxon_is_a_rank_of_animalia_with_x_observations:
-    one: '%{taxon} es un %{rank} de animales con una observación'
-  taxon_is_a_rank_of_insecta_with_x_observations:
-    one: '%{taxon} es un %{rank} de insectos con una observación'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations: '{{SHUMËS|një=%{taxon} është
+    një %{shkallës} në %{iconic_taxon} me 1 vëzhgim|%{taxon} është një %{rank} në
+    %{iconic_taxon} me %{llogarit} vëzhgimet}}}'
+  taxon_is_a_rank_of_amphibia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të amfibeve me 1 vëzhgim|%{taxon} është një %{shkallës} të amfibeve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_aves_with_x_observations: '{{SHUMËS|një=%{taxon} është një %{shkallës}
+    të zogjve me 1 vëzhgim|%{taxon} është një %{shkallës} të zogjve me %{llogarit}
+    vëzhgimet}}'
+  taxon_is_a_rank_of_mammalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të gjitarëve me 1 vëzhgim|%{taxon} është një %{shkallës} të gjitarëve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_reptilia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të zvarranikëve me 1 vëzhgim|%{taxon} është një %{shkallës} të zvarranikëve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_plantae_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të bimëve me 1 vëzhgim|%{taxon} është një %{shkallës} të bimëve me
+    %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations: '{{SHUMËS|një=%{taxon} është
+    një %{shkallës} së peshqve rajë 1 vëzhgim|%{taxon} është një %{shkallës} së peshqve
+    rajë me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_animalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të kafshëve me 1 vëzhgim|%{taxon} është një %{shkallës} të kafshëve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_insecta_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të insekteve me 1 vëzhgim|%{taxon} është një %{shkallës} të insekteve
+    me %{llogarit} vëzhgimet}}'
   taxon_is_a_rank_of_arachnida_with_x_observations:
     one: '%{taxon} es un %{rank} de arácnidos con una observación'
   taxon_is_a_rank_of_fungi_with_x_observations:
