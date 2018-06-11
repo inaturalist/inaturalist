@@ -37,6 +37,7 @@ class ProjectObservation < ActiveRecord::Base
   include ActsAsUUIDable
 
   def notify_observer(association)
+    return if CONFIG.has_subscribers == :disabled
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },

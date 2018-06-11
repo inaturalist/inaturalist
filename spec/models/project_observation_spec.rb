@@ -2,10 +2,10 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectObservation, "creation" do
   before(:each) do
-    enable_elastic_indexing( Observation, Place, UpdateAction )
+    enable_elastic_indexing( Observation, Place )
     setup_project_and_user
   end
-  after(:each) { disable_elastic_indexing( Observation, Place, UpdateAction ) }
+  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
@@ -156,10 +156,13 @@ describe ProjectObservation, "creation" do
   end
 
   describe "updates" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
     it "should be generated for the observer" do
       pu = ProjectUser.make!(role: ProjectUser::CURATOR)
       po = without_delay { ProjectObservation.make!(user: pu.user, project: pu.project) }
-      expect( UpdateSubscriber.limit(1).last.subscriber ).to eq po.observation.user
+      expect( UpdateAction.unviewed_by_user_from_query(po.observation.user_id, notifier: po) ).to eq true
     end
     it "should not be generated if the observer added to the project" do
       without_delay do
@@ -184,21 +187,25 @@ describe ProjectObservation, "creation" do
           ProjectObservation.make!(user: pu.user, project: pu.project, observation: Observation.make!(user: observer))
         end
       end
-      expect( UpdateSubscriber.joins(:update_action).where(subscriber_id: observer.id).
-        where("update_actions.notification = ?", UpdateAction::YOUR_OBSERVATIONS_ADDED).
-        count ).to eq 15
+      es_response = UpdateAction.elastic_search(
+        filters: [
+          { term: { subscriber_id: observer.id } },
+          { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } }
+        ]
+      ).per_page(100).page(1)
+      expect( es_response.results.total ).to eq 15
     end
   end
 end
 
 describe ProjectObservation, "destruction" do
   before(:each) do
-    enable_elastic_indexing(Observation, UpdateAction, Place)
+    enable_elastic_indexing(Observation, Place)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
   end
-  after(:each) { disable_elastic_indexing(Observation, UpdateAction, Place) }
+  after(:each) { disable_elastic_indexing(Observation, Place) }
 
   it "should queue a DJ job for the list" do
     stamp = Time.now

@@ -88,7 +88,7 @@ module HasSubscribers
       end
       
       after_destroy do |record|
-        unless record.try(:unsubscribable?)
+        unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           UpdateAction.transaction do
             UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.base_class.name, record.id])
           end
@@ -112,7 +112,7 @@ module HasSubscribers
 
       create_callback(subscribable_association, options)
       after_destroy do |record|
-        unless record.try(:unsubscribable?)
+        unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
         end
       end
@@ -133,7 +133,7 @@ module HasSubscribers
 
       create_callback(method, options)
       after_destroy do |record|
-        unless record.try(:unsubscribable?)
+        unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           UpdateAction.delete_and_purge(["notifier_type = ? AND notifier_id = ?", record.class.name, record.id])
         end
       end
@@ -156,7 +156,7 @@ module HasSubscribers
       
       send(callback_method) do |record|
         resource = options[:to] ? record.send(options[:to]) : record
-        if (options[:if].blank? || options[:if].call(record, resource)) && !record.try(:unsubscribable?)
+        if (options[:if].blank? || options[:if].call(record, resource)) && !record.try(:unsubscribable?) && CONFIG.has_subscribers != :disabled
           Subscription.create(:user => record.send(subscriber), :resource => resource)
         end
       end
@@ -164,7 +164,7 @@ module HasSubscribers
       attr_accessor :auto_subscriber
 
       before_destroy do |record|
-        unless record.try(:unsubscribable?)
+        unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           record.auto_subscriber = record.send(subscriber)
         end
       end
@@ -174,7 +174,7 @@ module HasSubscribers
       # alts would be to remove uniqueness constraint so every
       # auto_subscribing object generates a subscription...
       after_destroy do |record|
-        unless record.try(:unsubscribable?)
+        unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           resource = options[:to] ? record.send(options[:to]) : record
           user = record.auto_subscriber || record.send(subscriber)
           if user && resource
@@ -188,6 +188,7 @@ module HasSubscribers
     end
     
     def notify_subscribers_with(notifier, subscribable_association)
+      return if CONFIG.has_subscribers == :disabled
       options = self.notifies_subscribers_of_options[subscribable_association.to_sym]
       notifier = find_by_id(notifier) unless notifier.is_a?(self)
       has_many_reflections    = reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k.to_s}
@@ -284,10 +285,12 @@ module HasSubscribers
   
   module InstanceMethods
     def notify_subscribers_of(subscribable_association)
+      return if CONFIG.has_subscribers == :disabled
       self.class.send(:notify_subscribers_with, self, subscribable_association)
     end
 
     def notify_owner_of(association)
+      return if CONFIG.has_subscribers == :disabled
       options = self.class.notifies_owner_of_options[association.to_sym]
       action_attrs = {
         resource: send(association),
@@ -299,6 +302,7 @@ module HasSubscribers
     end
 
     def notify_users( method )
+      return if CONFIG.has_subscribers == :disabled
       options = self.class.notifies_users_options
       resource = observation if respond_to?(:observation)
       resource = parent if is_a?( Comment )
@@ -324,7 +328,7 @@ module HasSubscribers
       }.compact
       action = UpdateAction.first_with_attributes(action_attrs)
       action.append_subscribers( user_ids_to_notify )
-      action.restrict_to_subscribers( user_ids )
+      action.restrict_to_subscribers( user_ids_to_notify )
     end
 
   end

@@ -5,7 +5,6 @@ class UpdateAction < ActiveRecord::Base
   belongs_to :resource, polymorphic: true
   belongs_to :notifier, polymorphic: true
   belongs_to :resource_owner, class_name: "User"
-  has_many :update_subscribers, dependent: :delete_all
 
   validates_presence_of :resource, :notifier
 
@@ -61,9 +60,21 @@ class UpdateAction < ActiveRecord::Base
   def self.email_updates
     start_time = 1.day.ago.utc
     end_time = Time.now.utc
-    user_ids = UpdateAction.joins(:update_subscribers).
-      where(["created_at BETWEEN ? AND ?", start_time, end_time]).
-      select("DISTINCT subscriber_id").map{|u| u.subscriber_id}.compact.uniq.sort
+    user_ids = UpdateAction.elastic_search(
+      size: 0,
+      filters: [
+        { range: { created_at: { gte: start_time } } },
+        { range: { created_at: { lte: end_time } } }
+      ],
+      aggregate: {
+        distinct_subscribers: {
+          terms: {
+            field: "subscriber_ids",
+            size: 200000
+          }
+        }
+      }
+    ).response.aggregations.distinct_subscribers.buckets.map{ |b| b["key"] }
     user_ids.each do |subscriber_id|
       UpdateAction.delay(priority: INTEGRITY_PRIORITY, queue: "slow",
         unique_hash: { "UpdateAction::email_updates_to_user": subscriber_id }).
@@ -229,19 +240,9 @@ class UpdateAction < ActiveRecord::Base
   end
 
   def self.first_with_attributes(attrs, options = {})
+    return if CONFIG.has_subscribers == :disabled
     skip_validations = options.delete(:skip_validations)
-    filters = []
-    attrs.each do |k,v|
-      if k.to_sym == :resource
-        filters << { term: { resource_id: v.id } }
-        filters << { term: { resource_type: v.class.name } }
-      elsif k.to_sym == :notifier
-        filters << { term: { notifier_id: v.id } }
-        filters << { term: { notifier_type: v.class.name } }
-      else
-        filters << { term: { k => v.try(:id) || v } }
-      end
-    end
+    filters = UpdateAction.arel_attributes_to_es_filters( attrs )
     if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
       return action
     end
@@ -251,6 +252,24 @@ class UpdateAction < ActiveRecord::Base
     end
     action.created_but_not_indexed = true
     return action
+  end
+
+  def self.arel_attributes_to_es_filters( attrs )
+    filters = []
+    attrs.each do |k,v|
+      # base_class is used because UpdateAction uses polymorphic associations
+      # for resource and notifier which use base_class for setting `*_type`
+      if k.to_sym == :resource
+        filters << { term: { resource_id: v.id } }
+        filters << { term: { resource_type: v.class.base_class.name } }
+      elsif k.to_sym == :notifier
+        filters << { term: { notifier_id: v.id } }
+        filters << { term: { notifier_type: v.class.base_class.name } }
+      else
+        filters << { term: { k => v.try(:id) || v } }
+      end
+    end
+    filters
   end
 
   def append_subscribers( user_ids )
@@ -324,6 +343,31 @@ class UpdateAction < ActiveRecord::Base
         elastic_index!
       end
     end
+  end
+
+  # Only used in specs
+  def self.users_with_unviewed_updates_from_query(attrs, options={})
+    filters = UpdateAction.arel_attributes_to_es_filters( attrs )
+    es_response = UpdateAction.elastic_search(
+      filters: filters,
+      sort: { id: :desc }
+    ).per_page(100).page(1)
+    if es_response && es_response.results
+      subscriber_ids = []
+      viewed_subscriber_ids = []
+      es_response.results.each do |result|
+        subscriber_ids += result.subscriber_ids
+        viewed_subscriber_ids += result.viewed_subscriber_ids
+      end
+      return subscriber_ids.uniq - viewed_subscriber_ids.uniq
+    end
+    []
+  end
+
+  # Only used in specs
+  def self.unviewed_by_user_from_query(user_id, attrs, options={})
+    unviewed_user_ids = UpdateAction.users_with_unviewed_updates_from_query( attrs )
+    unviewed_user_ids.include?(user_id)
   end
 
 end

@@ -190,8 +190,6 @@ class User < ActiveRecord::Base
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
-  has_many :update_subscribers, foreign_key: :subscriber_id, dependent: :delete_all
-  has_many :update_subscriber_actions, source: :update_action, through: :update_subscribers
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
@@ -816,6 +814,7 @@ class User < ActiveRecord::Base
   end
 
   def recent_notifications(options={})
+    return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
     options[:inverse_filters] = options[:inverse_filters] ? options[:inverse_filters].dup : [ ]
     options[:per_page] ||= 10

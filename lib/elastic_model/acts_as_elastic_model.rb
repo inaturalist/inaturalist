@@ -135,31 +135,27 @@ module ActsAsElasticModel
           scope = scope.load_for_index
         end
         scope.find_in_batches(options) do |batch|
-          prepare_for_index(batch)
           Rails.logger.debug "[DEBUG] Processing from #{ batch.first.id }"
           results = elastic_search(
             sort: { id: :asc },
             size: options[:batch_size],
             filters: [
               { terms: { id: batch.map(&:id) } }
-            ]
+            ],
+            source: ["id"]
           ).group_by{ |r| r.id.to_i }
           batchToIndex = [ ]
           batch.each do |obj|
             if result = results[ obj.id ]
               result = result.first._source
-              if obj.as_indexed_json.to_json == result.to_json
-                # it's OK
-              else
-                Rails.logger.debug "[DEBUG] Object #{ obj } is out of sync"
-                batchToIndex << obj
-              end
+              batchToIndex << obj
             else
               Rails.logger.debug "[DEBUG] Object #{ obj } is not in ES"
               batchToIndex << obj
             end
           end
           unless batchToIndex.empty?
+            prepare_for_index(batchToIndex)
             bulk_index(batchToIndex, skip_prepare_batch: true)
           end
           ids_only_in_es = results.keys - batch.map(&:id)
@@ -170,7 +166,7 @@ module ActsAsElasticModel
         end
       end
 
-      def result_to_will_paginate_collection(result, options)
+      def result_to_will_paginate_collection(result, options={})
         try_and_try_again( PG::ConnectionBad, sleep_for: 20 ) do
           begin
             records = options[:keep_es_source] ?

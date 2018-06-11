@@ -7,17 +7,21 @@ describe Emailer, "updates_notification" do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
   before do
+    enable_elastic_indexing( Taxon )
+    enable_has_subscribers
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }
     @user = @observation.user
-    enable_elastic_indexing( UpdateAction, Taxon )
   end
-  after(:each) { disable_elastic_indexing( UpdateAction, Taxon ) }
+  after{
+    disable_elastic_indexing( Taxon )
+    disable_has_subscribers
+  }
   
   it "should work when recipient has a blank locale" do
     @user.update_attributes(:locale => "")
-    expect(@user.update_subscribers.all).not_to be_blank
-    mail = Emailer.updates_notification(@user, @user.update_subscriber_actions.all)
+    expect( UpdateAction.unviewed_by_user_from_query(@user.id, notifier: @comment) ).to eq true
+    mail = Emailer.updates_notification(@user, @user.recent_notifications)
     expect(mail.body).not_to be_blank
   end
 
@@ -29,8 +33,8 @@ describe Emailer, "updates_notification" do
     ptn = PlaceTaxonName.make!( taxon_name: tn_local, place: p )
     @user.update_attributes( place_id: p.id )
     identification = without_delay { Identification.make!( taxon: t, observation: @observation ) }
-    update_action = @user.update_subscriber_actions.where( notifier: identification ).first
-    mail = Emailer.updates_notification( @user, [update_action] )
+    update_action = UpdateAction.last
+    mail = Emailer.updates_notification( @user, @user.recent_notifications )
     expect( mail.body ).to match /#{tn_local.name}/
     expect( mail.body ).not_to match /#{tn_default.name}/
   end
@@ -40,7 +44,7 @@ describe Emailer, "updates_notification" do
     without_delay { @ofv = ObservationFieldValue.make!(observation: @observation, user: User.make!) }
     I18N_SUPPORTED_LOCALES.each do |loc|
       @user.update_attributes(locale: loc)
-      mail = Emailer.updates_notification(@user, [@user.update_subscriber_actions.last])
+      mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.body).to include I18n.t(:user_added_an_observation_field_html,
         user: FakeView.link_to(@ofv.user.login, FakeView.person_url(@ofv.user, host: Site.default.url)),
         field_name: @ofv.observation_field.name.truncate(30),
@@ -59,24 +63,24 @@ describe Emailer, "updates_notification" do
     end
 
     it "should use the user's site logo" do
-      mail = Emailer.updates_notification(@user, @user.update_subscriber_actions.all)
+      mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.body).to match @site.logo_email_banner.url
     end
 
     it "should use the user's site url as the base url" do
-      mail = Emailer.updates_notification(@user, @user.update_subscriber_actions.all)
+      mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.body).to match @site.url
     end
 
     it "should default to the user's site locale if the user has no locale" do
       @user.update_attributes(:locale => "")
-      mail = Emailer.updates_notification(@user, @user.update_subscriber_actions.all)
+      mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.body).to match /Nuevas actualizaciones/
     end
 
     it "should include site name in subject" do
       @user.update_attributes(:locale => "")
-      mail = Emailer.updates_notification(@user, @user.update_subscriber_actions.all)
+      mail = Emailer.updates_notification(@user, @user.recent_notifications)
       expect(mail.subject).to match @site.name
     end
   end

@@ -18,8 +18,9 @@ class ProjectUserInvitation < ActiveRecord::Base
       notifier: self,
       notification: "invited"
     }
-    action = UpdateAction.first_with_attributes(action_attrs)
-    action.append_subscribers( [invited_user.id] )
+    if action = UpdateAction.first_with_attributes(action_attrs)
+      action.append_subscribers( [invited_user.id] )
+    end
   end
 
   def destroy_updates
