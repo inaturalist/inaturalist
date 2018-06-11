@@ -189,7 +189,7 @@ describe ProjectObservation, "creation" do
       end
       es_response = UpdateAction.elastic_search(
         filters: [
-          { term: { subscriber_id: observer.id } },
+          { term: { subscriber_ids: observer.id } },
           { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } }
         ]
       ).per_page(100).page(1)
@@ -204,8 +204,12 @@ describe ProjectObservation, "destruction" do
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
+    enable_has_subscribers
   end
-  after(:each) { disable_elastic_indexing(Observation, Place) }
+  after(:each) {
+    disable_elastic_indexing(Observation, Place)
+    disable_has_subscribers
+  }
 
   it "should queue a DJ job for the list" do
     stamp = Time.now
