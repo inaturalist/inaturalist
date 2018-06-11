@@ -3302,6 +3302,16 @@ describe Observation do
       expect( o.mappable? ).to be false
     end
 
+    it "should be mappable if the community taxon contains the taxon" do
+      genus = Taxon.make!( rank: Taxon::GENUS )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      o = make_research_grade_candidate_observation( taxon: genus )
+      i = Identification.make!( observation: o, taxon: species )
+      expect( o.taxon ).to eq species
+      expect( o.community_taxon ).to eq genus
+      expect( o ).to be_mappable
+    end
+
   end
 
   describe "observations_places" do

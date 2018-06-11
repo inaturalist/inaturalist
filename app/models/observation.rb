@@ -2706,7 +2706,11 @@ class Observation < ActiveRecord::Base
     return false if inaccurate_location?
     return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?
-    return false if community_taxon && taxon && !community_taxon.self_and_ancestor_ids.include?( taxon.id )
+    if community_taxon && taxon &&
+        !community_taxon.self_and_ancestor_ids.include?( taxon.id ) &&
+        !taxon.self_and_ancestor_ids.include?( community_taxon.id )
+      return false
+    end
     true
   end
 
