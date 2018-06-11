@@ -273,6 +273,32 @@ describe TaxonSwap, "commit" do
     }.to raise_error TaxonChange::PermissionError
   end
 
+  describe "for input taxa with reverted changes" do
+    it "should not die in an infinite loop" do
+      @swap.commit
+      Delayed::Worker.new.work_off
+
+      swap2 = TaxonSwap.make( committer: @swap.committer )
+      swap2.add_input_taxon( @swap.output_taxon )
+      swap2.add_output_taxon( @swap.input_taxon )
+      swap2.commit
+      Delayed::Worker.new.work_off
+
+      swap3 = TaxonSwap.make( committer: @swap.committer )
+      swap3.add_input_taxon( @swap.input_taxon )
+      swap3.add_output_taxon( Taxon.make!( is_active: false, rank: @swap.input_taxon.rank ) )
+      swap3.save!
+      swap3.reload
+      @swap.reload
+      expect( @swap ).to be_committed
+      expect( @swap.input_taxon ).to be_is_active
+      expect( @swap.output_taxon ).not_to be_is_active
+      expect( swap3.input_taxon ).to be_is_active
+      expect( swap3.output_taxon ).not_to be_is_active
+      expect { swap3.commit }.not_to raise_error
+    end
+  end
+
 end
 
 describe TaxonSwap, "commit_records" do

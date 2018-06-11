@@ -1549,27 +1549,32 @@ class Taxon < ActiveRecord::Base
     @cached_atlas_presence_places ||= atlas.presence_places if atlas
   end
 
-  def current_synonymous_taxon
+  def current_synonymous_taxon( options = {} )
     return nil if is_active?
+    without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
     synonymous_taxon = TaxonChange.committed.where( "type IN ('TaxonSwap', 'TaxonMerge')" ).
       joins( :taxon_change_taxa ).
       where( "taxon_change_taxa.taxon_id = ?", self ).
-      where( "taxon_changes.taxon_id != ?", self ).order(:id).last.try(:output_taxon)
+      where( "taxon_changes.taxon_id NOT IN (?)", without_taxon_ids ).order(:id).last.try(:output_taxon)
     return synonymous_taxon if synonymous_taxon.blank? || synonymous_taxon.is_active?
-    candidates = synonymous_taxon.current_synonymous_taxa
+    candidates = synonymous_taxon.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
     return nil if candidates.size > 1
     candidates.first
   end
 
-  def current_synonymous_taxa_from_split
+  def current_synonymous_taxa_from_split( options = {} )
+    without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
     last_committed_split = TaxonSplit.committed.order( "taxon_changes.id desc" ).where( taxon_id: id ).first
     return [] if last_committed_split.blank?
-    last_committed_split.output_taxa.map{|t| t.is_active? ? t : t.current_synonymous_taxa }.flatten.uniq
+    last_committed_split.output_taxa.map{|t|
+      t.is_active? ? t : t.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
+    }.flatten.uniq
   end
 
-  def current_synonymous_taxa
-    synonymous_taxa = current_synonymous_taxa_from_split
-    taxon_from_swaps_and_merge = current_synonymous_taxon
+  def current_synonymous_taxa( options = {} )
+    without_taxon_ids = [options[:without_taxon_ids] || [], id].flatten.uniq
+    synonymous_taxa = current_synonymous_taxa_from_split( without_taxon_ids: without_taxon_ids )
+    taxon_from_swaps_and_merge = current_synonymous_taxon( without_taxon_ids: without_taxon_ids )
     if taxon_from_swaps_and_merge
       synonymous_taxa << taxon_from_swaps_and_merge
     end
