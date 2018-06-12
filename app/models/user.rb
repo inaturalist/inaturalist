@@ -753,7 +753,7 @@ class User < ActiveRecord::Base
     deleted_sounds = DeletedSound.where( user_id: user_id )
     puts "Deleting #{deleted_sounds.count} DeletedSounds and associated records from s3"
     deleted_sounds.find_each do |ds|
-      sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }/" ).contents
+      sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }." ).contents
       puts "\tSound #{ds.sound_id}, removing #{sounds.size} sounds from S3"
       if sounds.any?
         s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
