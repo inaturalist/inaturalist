@@ -471,7 +471,7 @@ br:
   back_to_calendar: Distreiñ da zeiziadur %{user}
   back_to_help: Distro d'ar skoazell
   back_to_import: Distro d'an ezporzhiañ
-  back_to_lists: Disro d'an %{nom}
+  back_to_lists: Disro d'an %{name}
   back_to_observation: Distro d'an evzezhiadenn
   back_to_observation_fields: Distro da vaeziennoù an evezhiadennoù
   back_to_people: Distreiñ d'an dud
@@ -479,7 +479,7 @@ br:
   back_to_possessive_user_profile: Distreiñ da brofil %{possuser}
   back_to_post: Distreiñ d'an notenn
   back_to_projects: Distreiñ d'ar raktresoù
-  back_to_shared_taxon: Distreiñ da %{sharetaxon}
+  back_to_shared_taxon: Distreiñ da %{sharedtaxon}
   back_to_taxon: Distreiñ da %{defaulttaxon}
   back_to_taxon_changes: Distreiñ d'ar c'hemmoù taksonomek
   back_to_this: Distreiñ da %{place}
@@ -604,7 +604,7 @@ br:
   clear_color_filters: Diverkañ ar silioù liv
   clear_search: Diverkañ an enklask
   clear_shapes: Diverkañ ar stummoù
-  click_add_an_observation_to_the_lower_right: Degemer mat e %{site-name-short}! Klikit
+  click_add_an_observation_to_the_lower_right: Degemer mat e %{site_name_short}! Klikit
     war "Ouzhpennañ un evezhiadenn" en traoñ a-zehoù. Kaset e viot war-zu ar c'hevreañ/an
     enskrivañ ma n'ho peus ket en graet dija
   click_on_map_to_draw_shape_around_place: Klikit war ar gartenn evit tresañ ur stumm

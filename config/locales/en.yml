@@ -1743,6 +1743,7 @@ en:
   lexicons:
     scientific_names: Scientific Names
     afrikaans: Afrikaans
+    albanian: Albanian
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
@@ -1897,6 +1898,7 @@ en:
     pt-BR: Portuguese (Brazil)
     pt-PT: Portuguese (Portugal)
     ru: Russian
+    sq: Albanian
     zh-CN: Chinese (simplified)
     zh-TW: Chinese (traditional)
   locality_notes: Locality notes
@@ -3924,9 +3926,8 @@ en:
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
   user_observations: User observations
-  user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
-  user_s_lists: "%{user} Lists"
+  user_s_lists: "%{user}'s Lists"
   user_suggested_an_id: "%{user} suggested an ID"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
   username: Username
@@ -3942,6 +3943,7 @@ en:
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
+  users_projects: "%{user}'s Projects"
   users_year_on_site: "%{user}'s Year On %{site} %{year}"
   using_a_license: using a license
   using_cc_license_makes_easier_use_your_data: Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like.
@@ -5390,7 +5392,7 @@ en:
           Make sure you have read about the differences in
           our <a href="%{url}" target="_blank">blog post about Collection Projects</a>.
         this_is_a_preview: |
-          This is a preview of what this project would looke like as a Collection Project.
+          This is a preview of what this project would look like as a Collection Project.
       updates_desc: |
         Receive updates about this project on your dashboard and in the daily
         updates email.

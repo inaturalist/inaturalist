@@ -476,7 +476,7 @@ cs:
   are_you_sure_no_undo: Jste si jistí? Tento krok nelze vrátit.
   are_you_sure_delete_asset: Opravdu chcete odstranit tuto položku?
   are_you_sure_delete_observation_from_project: Jste si jisti, že chcete odstranit
-    toto pozorování z projektu %{projekt}?
+    toto pozorování z projektu %{project}?
   are_you_sure_delete_post: Opravdu chcete odstranit tento post?
   are_you_sure_delete_taxon_move_associates: Jste si jisti, že chcete smazat %{taxonname}
     (%{taxonid}) a přesunout všechny jeho vazby?
@@ -596,7 +596,7 @@ cs:
   back_to_taxon: Zpět do %{defaulttaxon}
   back_to_taxon_changes: Zpět do změn taxonů
   back_to_this: Zpět do %{place}
-  back_to_viewing: Zpět na prohlížení <i>%{taxonu}</i>
+  back_to_viewing: Zpět na prohlížení <i>%{taxon}</i>
   back_to_x: Zpět do %{noun}
   back_to_x_assessment: Zpět do hodnocení %{project}
   back_to_x_history: Zpět na %{x} historii
@@ -5692,9 +5692,9 @@ cs:
       7: Červenec
       8: Srpen
       9: Září
-      10: 10.
-      11: 11.
-      12: 12.
+      10: "10."
+      11: "11."
+      12: "12."
     day_names:
     - Neděle
     - Pondělí

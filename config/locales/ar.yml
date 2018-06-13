@@ -52,8 +52,6 @@ ar:
   x_matching_taxa_html:
     one: <span class="count">1</span> أصنوفة مطابقة
     other: <span class="count">%{count}</span> أصنوفة مطابقة
-  x_misidentifications_of_this_species:
-    other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -680,6 +678,8 @@ ar:
   by_user: حسب %{user}
   by_you: بواسطتك
   calendar: تقويم
+  calendars_only_show_x_observations_at_time: لا تعرض التقاويم سوى %{x} من الملاحظات
+    في كل مرة
   can_you_help_your_friends_id_these: هل يمكنك مساعدة معرفات أصدقائك هؤلاء؟
   cancel: إلغاء
   cant_flag_an_object_that_doesnt_exist: لا يمكن وضع علامة على كائن غير موجود
@@ -2225,7 +2225,6 @@ ar:
   more_journal_posts: المزيد من مشاركات المجلات
   more_observations: المزيد من الملاحظات
   more_photos: المزيد من الصور
-  more_than_x_years_ago: أكثر من %{x} سنوات
   most: الأكثر
   most_agree: الأكثر توافقا
   most_disagree: الأكثر خلافا
@@ -3028,6 +3027,8 @@ ar:
   positional_accuracy: الدقة الموضعية
   possessive_user: '%{user}'
   post: إرسال
+  post_from_journal_by_parent_html: منشور من <a href="%{url}">journal by %{parent}</a>
+  post_from_your_journal_html: النشر من Post from <a href="%{url}">مجلتك</a>
   post_published: تم نشر المشاركة!
   post_some_new_stuff: إضافة بعض الاشياء الجديدة
   posted_by: نشرها
@@ -3124,6 +3125,7 @@ ar:
   projects_description: "تتيح لك المشروعات تجميع ملاحظاتك مع أشخاص آخرين في %{site_name}،\nسواء
     كنت ترغب في بدء مشروع علم مواطن أو أو تحافظ على علامات تبويب \nالطيور في منطقتك،
     فإن المشاريع هي الطريق للذهاب فيه."
+  projects_from_everywhere: مشاريع من كل مكان
   projects_from_place: مشاريع من %{place}
   projects_in_x: مشاريع في %{x}
   projects_you_admin: مشاريع أنت إداريها
@@ -6006,10 +6008,6 @@ ar:
         other: '%{count} ثانية'
     countdown_x_days: '{{PLURAL:$1|يوم|أيام}}'
     countdown_x_hours: '{{PLURAL:$1|ساعة واحدة|ساعات}}'
-    countdown_x_minutes:
-      other: دق
-    countdown_x_seconds:
-      other: ثان
     prompts:
       day: يوم
       hour: ساعة

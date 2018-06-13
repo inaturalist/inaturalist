@@ -19,6 +19,7 @@
 # Author: Josecurioso
 # Author: KATRINE1992
 # Author: Loarie
+# Author: Luanibraj
 # Author: Luisangelrg
 # Author: Mack
 # Author: Macofe
@@ -58,12 +59,11 @@ es:
     one: 1 entrada de diario
     other: '%{count} entradas de diario'
   x_journal_posts_html:
-    other: una=<span class="count">1</span> persona está de acuerdo
+    one: <span class="count">1</span> entrada de diario
+    other: '<span class="count">%{count}</span> entradas de diario'
   x_matching_taxa:
     one: 1 taxón que coincide
     other: '%{count} taxones que coinciden'
-  x_matching_taxa_html:
-    other: =<span class="count">1</span> coincidencia de taxón
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
@@ -710,6 +710,8 @@ es:
   by_user: por %{user}
   by_you: Tuyas
   calendar: Calendario
+  calendars_only_show_x_observations_at_time: Calendarios sólo muestran %{x} observaciones
+    en un momento
   can_you_help_your_friends_id_these: ¿Puedes ayudar a identificar estas observaciones?
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: No puedes marcar un objeto que no existe
@@ -2312,7 +2314,6 @@ es:
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
   more_photos: Más fotos
-  more_than_x_years_ago: Hace más de %{x} años
   most: Más
   most_agree: La mayoría la apoya
   most_disagree: La mayoría no la apoyan
@@ -3152,6 +3153,8 @@ es:
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
   post: Ingresar
+  post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
+  post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   post_published: ¡Nota publicada!
   post_some_new_stuff: publicar algo nuevo
   posted_by: Publicado por
@@ -3192,8 +3195,6 @@ es:
   profile: Perfil
   project: Proyecto
   project_added_your_observations: Se añadió el proyecto a tus observaciones
-  project_admins:
-    other: uno=Administrador de proyecto
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3251,6 +3252,7 @@ es:
     otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de
     ciencia ciudadana o solamente mantener registros de las aves de un parque cercano
     con tu club local, la forma de hacerlo es con Proyectos.
+  projects_from_everywhere: Projekte nga të gjitha anët
   projects_from_place: Proyectos de %{place}
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que usted administra
@@ -3763,7 +3765,7 @@ es:
   start_a_new_project: Comenzar un proyecto nuevo
   start_a_project: Comenzar un proyecto
   start_adding_observations: Comience a agregar observaciones
-  start_date_time: Fecha de inicio / tiempo
+  start_date_time: Fecha y hora de inicio
   start_new_account: Comenzar una cuenta nueva
   start_new_project: Comenzar proyecto nuevo
   start_one: comenzar uno
@@ -3866,37 +3868,36 @@ es:
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
-  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
-    other: un=%{taxon} es un %{rank} en %{icónico_taxon} con una observación
-  taxon_is_a_rank_of_amphibia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de anfibios con una observación
-  taxon_is_a_rank_of_aves_with_x_observations:
-    other: un=%{taxon} es un %{rank} de aves con una observación
-  taxon_is_a_rank_of_mammalia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de mamíferos con una observación
-  taxon_is_a_rank_of_reptilia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de reptiles con una observación
-  taxon_is_a_rank_of_plantae_with_x_observations:
-    other: un=%{taxon} es un %{rank} de plantas con una observación
-  taxon_is_a_rank_of_actinopterygii_with_x_observations:
-    other: un=%{taxon} es un %{rank} de peces con aletas radiadas con una observación
-  taxon_is_a_rank_of_animalia_with_x_observations:
-    other: un=%{taxon} es un %{rank} de animales con una observación
-  taxon_is_a_rank_of_insecta_with_x_observations:
-    other: un=%{taxon} es un %{rank} de insectos con una observación
-  taxon_is_a_rank_of_arachnida_with_x_observations:
-    other: un=%{taxon} es un %{rank} de arácnidos con una observación
-  taxon_is_a_rank_of_fungi_with_x_observations:
-    other: un=%{taxon} es un %{rank} de hongos con una observación
-  taxon_is_a_rank_of_protozoa_with_x_observations:
-    other: un=%{taxon} es un %{rank} de protozoarios con una observación
-  taxon_is_a_rank_of_mollusca_with_x_observations:
-    other: un=%{taxon} es un %{rank} de moluscos con una observación
-  taxon_is_a_rank_of_chromista_with_x_observations:
-    other: un=%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una
-      observación
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations: '{{SHUMËS|një=%{taxon} është
+    një %{shkallës} në %{iconic_taxon} me 1 vëzhgim|%{taxon} është një %{rank} në
+    %{iconic_taxon} me %{llogarit} vëzhgimet}}}'
+  taxon_is_a_rank_of_amphibia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të amfibeve me 1 vëzhgim|%{taxon} është një %{shkallës} të amfibeve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_aves_with_x_observations: '{{SHUMËS|një=%{taxon} është një %{shkallës}
+    të zogjve me 1 vëzhgim|%{taxon} është një %{shkallës} të zogjve me %{llogarit}
+    vëzhgimet}}'
+  taxon_is_a_rank_of_mammalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të gjitarëve me 1 vëzhgim|%{taxon} është një %{shkallës} të gjitarëve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_reptilia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të zvarranikëve me 1 vëzhgim|%{taxon} është një %{shkallës} të zvarranikëve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_plantae_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të bimëve me 1 vëzhgim|%{taxon} është një %{shkallës} të bimëve me
+    %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations: '{{SHUMËS|një=%{taxon} është
+    një %{shkallës} së peshqve rajë 1 vëzhgim|%{taxon} është një %{shkallës} së peshqve
+    rajë me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_animalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të kafshëve me 1 vëzhgim|%{taxon} është një %{shkallës} të kafshëve
+    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_of_insecta_with_x_observations: '{{SHUMËS|një=%{taxon} është një
+    %{shkallës} të insekteve me 1 vëzhgim|%{taxon} është një %{shkallës} të insekteve
+    me %{llogarit} vëzhgimet}}'
   taxon_is_kingdom_of_life_with_x_observations:
-    other: un=%{taxon} es un reino con una observación
+    one: '%{taxon} es un reino con una observación'
+    other: '%{taxon} es un reino con %{count} observaciones'
   taxonomy: Taxonomía
   taxon_: Taxón
   taxon_assessments_are: Las evaluaciones del taxón son documentos que evalúan el
@@ -4072,7 +4073,7 @@ es:
   there_were_errors: Hubo errores.
   there_were_problems_adding_taxa: 'Ocurrieron problemas al añadir esos taxones: %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Hubo problemas al
-    añadir tus observaciones al proyecto: %{@project_observation}'
+    añadir tus observaciones al proyecto: '
   there_were_problems_adding_that_observation_to_this_project: 'Hubo problemas agregando
     esa observación a este proyecto:'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
@@ -4388,7 +4389,6 @@ es:
     %{project}
   user_muted: Usuario silenciado
   user_observations: Observaciones del usuario
-  user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
   user_suggested_an_id: '%{user} sugirió una identificación'
@@ -4632,7 +4632,7 @@ es:
   x_does_not_exist: '"%{x}" no existe'
   x_doesnt: '%{login} no'
   x_flagged: '%{x} advertencias'
-  x_flagged_as_flag: '%{x} advertido como %{advertencia}'
+  x_flagged_as_flag: '%{x} marcado como %{flag}'
   x_hasnt: '%{login} no ha'
   x_journal: Diario de %{user}
   x_journal_archives_for_y: Diario de %{user} • Archivos de
@@ -4915,7 +4915,7 @@ es:
             </a> para ver sugerencias de cómo mantener NaturaLista como un lugar amistoso.
           please_read_the_teachers_guide_html: Si es así, por favor lee nuestra<a
             href="%{url}">guía para profesores</a> para sugerencias en la utilización
-            de %{nombre_de sitio} con estudiantes.
+            de %{site_name} con estudiantes.
     guides:
       index:
         funding_html: "Los fondos para el desarrollo de Guías fue proporcionada por
@@ -6347,8 +6347,6 @@ es:
     countdown_x_hours:
       one: hora
       other: horas
-    countdown_x_minutes:
-      other: un=min
     countdown_x_seconds:
       one: s
       other: s
@@ -6471,17 +6469,13 @@ es:
         record_invalid: 'Falló la validación: %{errors}'
         taken: ya ha sido tomado.
         too_long:
-          one: es demasiado largo (el máximo es %{count} carácter
+          one: es demasiado largo (el máximo es 1 carácter)
           other: es demasiado largo (el máximo son %{count} caracteres)
         too_short:
-          one: es demasiado corto (el mínimo es %{count} carácter
+          one: es demasiado corto (el mínimo es 1 carácter)
           other: es demasiado corto (el mínimo son %{count} caracteres)
-        wrong_length:
-          other: =no tiene el tamaño correcto(debe ser de 1 carácter)
       template:
         body: 'Hubo problemas con los siguientes campos:'
-        header:
-          other: =1 error prohibió este %{model} de ser salvado
   activerecord:
     errors:
       models:
@@ -6660,7 +6654,7 @@ es:
         email: Correo
         login: Nombre de usuario
         name: Nombre
-        locale: Localización
+        locale: Configuración regional
         time_zone: Zona horaria
         search_place_id: Busca lugares
         place_id: Lugar

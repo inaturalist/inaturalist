@@ -14,6 +14,7 @@
 # Author: Greis
 # Author: JackLantern
 # Author: LauraCri
+# Author: Lucascan
 # Author: Macofe
 # Author: Marsitown
 # Author: Martinligabue
@@ -62,8 +63,6 @@ it:
   x_matching_taxa_html:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
-  x_misidentifications_of_this_species:
-    other: =1 identificazione errata di questa specie
   x_observations:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -722,6 +721,8 @@ it:
   by_user: da %{user}
   by_you: Le mie
   calendar: Calendario
+  calendars_only_show_x_observations_at_time: I calendari mostrano solo %{x} osservazioni
+    alla volta
   can_you_help_your_friends_id_these: Puoi aiutare i tuoi amici a identificare questi?
   cancel: Annulla
   cant_flag_an_object_that_doesnt_exist: Non è possibile contrassegnare un oggetto
@@ -1893,6 +1894,9 @@ it:
     risalto su altri siti web
   it_has: Ha
   it_instead: invece.
+  item_flagged_notice_html: |-
+    Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href="mailto:%{help_email}" class="contact">contattaci</a>.
+    <a href="%{manage_flags_path}">Gestisci contrassegni</a>
   its_important_that_you: È importante che tu clicchi
   iucn_red_list_status: Stato delle Lista Rossa IUCN
   january: Gennaio
@@ -2324,7 +2328,6 @@ it:
   more_journal_posts: Più post del diario
   more_observations: Più osservazioni
   more_photos: Più Foto
-  more_than_x_years_ago: Più di %{x} anni fa
   most: Il più
   most_agree: la maggior parte è daccordo
   most_disagree: la maggior parte è in disaccordo
@@ -3160,6 +3163,8 @@ it:
   positional_accuracy: Precisione della posizione
   possessive_user: di %{user}
   post: Post
+  post_from_journal_by_parent_html: Post dal <a href="%{url}">diario di %{parent}</a>
+  post_from_your_journal_html: Post dal <a href="%{url}">tuo diario</a>
   post_published: Post pubblicato!
   post_some_new_stuff: posta qualcosa di nuovo
   posted_by: Postato da
@@ -3261,6 +3266,7 @@ it:
     altre persone su %{site_name}. Se stai per avviare un progetto di citizen science
     o semplicemente vuoi annotarti le specie di uccelli presenti in un parco vicino
     a te, i Progetti fanno per te.
+  projects_from_everywhere: Progetti da tutti i luoghi
   projects_from_place: Progetti in %{place}
   projects_in_x: Progetti in %{x}
   projects_you_admin: Progetti che amministri
@@ -6009,6 +6015,9 @@ it:
           Vitale di insetto" o "Stadio Vitale". Per la "Fenologia della Pianta" noi
           cerchiamo ogni campo con la parola "fenologia" nel nome, e "fiore" o "frutto"
           come valore; un campo adatto è ad esempio "Fenologia della fioritura".'
+        charts_help_relative_observations: |-
+          Il mostrare la frequenza come proporzione relativa di tutte le osservazioni aiuta a mediare l'effetto della crescita globale del sito. Per esempio,
+          se il sito sta crescendo mentre raccogliamo più osservazioni ogni anno che passa, abbiamo più osservazioni di qualsiasi taxón individuale. Questo non dici niente su se c'è più individui di quello taxón o se c'è più persone che l'osservano. Al mostrare la proporzione relativa significa che se c'è un totale di 100 osservazioni totali, ma 20 di questo taxón, la proporzione è 0.2 (20 / 100). Se le persone osservano 2000 osservazioni l'anno entrante e 400 osservazioni di questo taxón, la proporzione è ancora 0.2 (400 / 2000). Questo causa alcune aberrazioni quando ci sono molto pochi osservatori in una area, o per taxa che non sono molto osservati, ma quello stesso accade con i conteos totali.
         complete_taxon_desc: Per i taxa "completi" sono elencati nel database del
           sito tutti i discendenti o tutti i taxa esistenti di uno specifico livello.
           Quando un taxon è completo a livello di specie, per esempio, è possibile
@@ -6060,7 +6069,7 @@ it:
             <li><p>Non aggiungere duplicati, e.g. non nominare numerose aquile "aquila"</p></li>
             <li><p>Per i taxa di categoria più elevata, cerca di utilizzare nomi che contengano tutti i discendenti, come ad esempio "aironi e simili" o "ericacee"</p></li>
             <li>Non aggiungere informazioni che non siano il nome, ad esempio informazioni parentetiche su come pensate che il nome debba essere utilizzato  </p></li>
-            <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte "Francese" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali per le persone che usano il sito in lingue diverse.</p></li>
+            <li><p>Il nuovo lessico deve essere in inglese. Per favore non aggiungere nomi di lingue tradotte come "Francese, Français" perché ciò renderebbe più difficile o impossibile per noi mostrare i nomi locali alle persone che usano il sito in lingue diverse.</p></li>
           </ul>
         places_help_html: Aggiungi un nome per un luogo al fine di dargli una priorità
           per il sito e per gli utenti di quel luogo. Se ci sono più nomi per lo stesso

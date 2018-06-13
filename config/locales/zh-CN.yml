@@ -591,6 +591,7 @@ zh-CN:
   by_user: 由 %{user}
   by_you: 由您
   calendar: 日历
+  calendars_only_show_x_observations_at_time: 日历每次只显示%{x}个观察
   can_you_help_your_friends_id_these: 您可以帮助您这些ID的朋友么？
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 无法给不存在的对象进行标注
@@ -1859,7 +1860,6 @@ zh-CN:
   more_journal_posts: 更多日志发布
   more_observations: 更多观察
   more_photos: 更多照片
-  more_than_x_years_ago: 超过%{x}年前
   most: 多数
   most_agree: 多数同意
   most_disagree: 多数不同意
@@ -2409,6 +2409,8 @@ zh-CN:
   position: 位置
   possessive_user: '%{user}的'
   post: 帖子
+  post_from_journal_by_parent_html: 来自<a href="%{url}">%{parent}的日记</a>的帖子
+  post_from_your_journal_html: 来自<a href="%{url}">您的日记</a>的帖子
   post_published: 贴子已发布！
   posted_by: 发帖人：
   posted_on: 发帖时间：
@@ -2482,6 +2484,7 @@ zh-CN:
   project_was_successfully_updated: 已成功更新项目。
   project_x_was_delete: '%{project}已删除（请允许几分钟以从网站中移除）'
   projects: 项目
+  projects_from_everywhere: 来自各处的项目
   projects_from_place: 来自%{place}的项目
   projects_in_x: 在 %{x} 中的项目
   projects_you_admin: 您管理的项目
