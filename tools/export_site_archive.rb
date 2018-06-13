@@ -147,12 +147,13 @@ paths = []
 Rails.application.eager_load!
 ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
   # try to ignore 3rd party stuff
-  next if klass.name =~ /(Doorkeeper|Delayed|Thinking|\:\:|DeletedUser|DeletedObservation)/
+  next if klass.name =~ /(Doorkeeper|Delayed|Thinking|\:\:)/
 
   # ignore weird HABTM stuff
   next if klass.name =~ /HABTM_/i
 
-  next if klass.name =~ /ApiEndpoint/
+  # ignore models that are caches or aren't relevant to a site
+  next if klass.name =~ /^(ApiEndpoint|Deleted|Goal)/
 
   # ignore STI descendants
   next if klass != List && klass.ancestors.include?(List)
@@ -162,10 +163,11 @@ ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
   next if klass != TaxonChange && klass.ancestors.include?(TaxonChange)
   next if klass != FlowTask && klass.ancestors.include?(FlowTask)
   next if klass != Rule && klass.ancestors.include?(Rule)
-  next if klass.name =~ /^Goal/
   next if [
+    ComputerVisionDemoUpload,
     DeletedObservation, # irrelevant
     UpdateAction, # massive
+    UpdateSubscriber,
     FlowTask, # irrelevant
     TaxonRange # massive
   ].include?(klass)
