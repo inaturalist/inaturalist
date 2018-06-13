@@ -1679,11 +1679,6 @@ gl:
   observation_removed_from_the_project: Eliminouse a observación do proxecto %{project}
   observation_rights_html: Observación %{rights}
   observation_rules: Regras de observación
-  observation_rules_description: 'Podes crear regras para determinar que observacións
-    poden engadirse a este proxecto. Por exemplo, limitar as observacións a un lugar
-    determinado. Nota: A limitación de lugares baséase actualmente en %{site_name}
-    Places e só pode limitar as observacións ao rectángulo máis pequeno que rodea
-    un lugar.'
   observation_was_deleted: A observación borrouse.
   observation_would_like_some_help: '%{user} necesitaría un pouco de axuda para identificar
     este elemento!'
@@ -2614,7 +2609,7 @@ gl:
     identificación: %{error}'
   there_were_errors: Houbo erros.
   there_were_problems_adding_your_observation_to_this_project: 'Houbo problemas ao
-    engadir as túas observacións ao proxecto: %{@project_observation}'
+    engadir as túas observacións ao proxecto: '
   there_were_problems_importing_that_place: 'Houbo problemas ao importar este lugar:
     %{place_error}'
   there_were_some_problems_saving_this_observation: Houbo algúns problemas ao gardar

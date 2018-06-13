@@ -1,5 +1,5 @@
 <%- content_for(:title) do -%>
-  <%= is_me?(@selected_user) ? t(:your) : t(:user_s, :user => " #{@login} ", :model_name => t(:projects)) %>
+  <%=raw is_me?( @selected_user ) ? t(:your_projects) : t(:users_projects, user: h( @login ) ) %>
 <%- end -%>
 <%- content_for(:extracss) do -%>
   <style type="text/css" media="screen">

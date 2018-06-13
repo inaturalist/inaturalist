@@ -59,12 +59,11 @@ es:
     one: 1 entrada de diario
     other: '%{count} entradas de diario'
   x_journal_posts_html:
-    other: una=<span class="count">1</span> persona está de acuerdo
+    one: <span class="count">1</span> entrada de diario
+    other: '<span class="count">%{count}</span> entradas de diario'
   x_matching_taxa:
     one: 1 taxón que coincide
     other: '%{count} taxones que coinciden'
-  x_matching_taxa_html:
-    other: =<span class="count">1</span> coincidencia de taxón
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
@@ -95,8 +94,6 @@ es:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
-  x_flags_resolved_html:
-    other: un=<span class='count'>1</span> grupo observado</span>
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -126,13 +123,9 @@ es:
       investigación para especies o descendientes</span>
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
-  x_taxa_curated_html:
-    other: un=<span class='count'>1</span> grupo observado</span>
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
-  x_taxon_changes_added_html:
-    other: un=<span class='count'>1</span> grupo observado</span>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
   a: un(a)
@@ -1523,7 +1516,7 @@ es:
   flagged_thing_explanation: Los usuarios han marcado esta %{thing} porque
   flagger: Marcador
   flags: Marcas
-  flags_with_count: Shënimet (%{llogaritja})
+  flags_with_count: Shënimet (%{count})
   flags_explanation: Los usuarios de %{site_name} marcan cosas cuando encuentran algo
     que no está bien. Aquí hay algunos problemas que los curadores no han resuelto
     todavía.
@@ -3202,8 +3195,6 @@ es:
   profile: Perfil
   project: Proyecto
   project_added_your_observations: Se añadió el proyecto a tus observaciones
-  project_admins:
-    other: uno=Administrador de proyecto
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3904,19 +3895,9 @@ es:
   taxon_is_a_rank_of_insecta_with_x_observations: '{{SHUMËS|një=%{taxon} është një
     %{shkallës} të insekteve me 1 vëzhgim|%{taxon} është një %{shkallës} të insekteve
     me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_arachnida_with_x_observations:
-    one: '%{taxon} es un %{rank} de arácnidos con una observación'
-  taxon_is_a_rank_of_fungi_with_x_observations:
-    one: '%{taxon} es un %{rank} de hongos con una observación'
-  taxon_is_a_rank_of_protozoa_with_x_observations:
-    one: '%{taxon} es un %{rank} de protozoarios con una observación'
-  taxon_is_a_rank_of_mollusca_with_x_observations:
-    one: '%{taxon} es un %{rank} de moluscos con una observación'
-  taxon_is_a_rank_of_chromista_with_x_observations:
-    one: '%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una observación'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
-    other: '%{taxon} es un reino con %{observaciones} de conteo'
+    other: '%{taxon} es un reino con %{count} observaciones'
   taxonomy: Taxonomía
   taxon_: Taxón
   taxon_assessments_are: Las evaluaciones del taxón son documentos que evalúan el
@@ -4092,7 +4073,7 @@ es:
   there_were_errors: Hubo errores.
   there_were_problems_adding_taxa: 'Ocurrieron problemas al añadir esos taxones: %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Hubo problemas al
-    añadir tus observaciones al proyecto: %{@project_observation}'
+    añadir tus observaciones al proyecto: '
   there_were_problems_adding_that_observation_to_this_project: 'Hubo problemas agregando
     esa observación a este proyecto:'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
@@ -4408,7 +4389,6 @@ es:
     %{project}
   user_muted: Usuario silenciado
   user_observations: Observaciones del usuario
-  user_s: '%{model_name} de %{user}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
   user_suggested_an_id: '%{user} sugirió una identificación'
@@ -4935,7 +4915,7 @@ es:
             </a> para ver sugerencias de cómo mantener NaturaLista como un lugar amistoso.
           please_read_the_teachers_guide_html: Si es así, por favor lee nuestra<a
             href="%{url}">guía para profesores</a> para sugerencias en la utilización
-            de %{nombre_de sitio} con estudiantes.
+            de %{site_name} con estudiantes.
     guides:
       index:
         funding_html: "Los fondos para el desarrollo de Guías fue proporcionada por
@@ -6367,8 +6347,6 @@ es:
     countdown_x_hours:
       one: hora
       other: horas
-    countdown_x_minutes:
-      other: un=min
     countdown_x_seconds:
       one: s
       other: s
@@ -6491,17 +6469,13 @@ es:
         record_invalid: 'Falló la validación: %{errors}'
         taken: ya ha sido tomado.
         too_long:
-          one: es demasiado largo (el máximo es %{count} carácter
+          one: es demasiado largo (el máximo es 1 carácter)
           other: es demasiado largo (el máximo son %{count} caracteres)
         too_short:
-          one: es demasiado corto (el mínimo es %{count} carácter
+          one: es demasiado corto (el mínimo es 1 carácter)
           other: es demasiado corto (el mínimo son %{count} caracteres)
-        wrong_length:
-          other: =no tiene el tamaño correcto(debe ser de 1 carácter)
       template:
         body: 'Hubo problemas con los siguientes campos:'
-        header:
-          other: =1 error prohibió este %{model} de ser salvado
   activerecord:
     errors:
       models:

@@ -34,8 +34,6 @@ pt-PT:
   x_ids:
     one: 1 ID
     other: '%{count} IDs'
-  x_lists:
-    other: um=1 lista
   x_journal_posts:
     one: 1 entrada de diário
     other: '%{count} entradas de diário'
@@ -45,8 +43,6 @@ pt-PT:
   x_matching_taxa_html:
     one: <span class="count">1</span> táxon coincidente
     other: <span class="count">%{count}</span> taxa coincidente
-  x_misidentifications_of_this_species:
-    other: um=1 identificação incorreta desta espécie
   x_observations:
     one: 1 observação
     other: '%{count} observações'
@@ -901,7 +897,7 @@ pt-PT:
   comparing: comparando
   comparing_list_to_list: Comparando %{list1} com %{list2}
   comparing_versions_x_and_y: Comparando as versões %{x} e %{y}
-  comparing_observations_from: Comparando as observações de %{user} em %{fechas}
+  comparing_observations_from: Comparando as observações de %{user} em %{dates}
   compiled_by_name: Compilado por %{name}
   completed: Concluído
   completed_at: Concluído em

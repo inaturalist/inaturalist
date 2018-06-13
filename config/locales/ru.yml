@@ -459,14 +459,14 @@ ru:
       few: '%{count} моллюска'
       other: '%{count} моллюсков'
     x_amphibia:
-      one: '%{count} амфибия'
+      one: '1 амфибия'
       few: '%{count} амфибии'
       other: '%{count} амфибий'
     x_mammalia:
       one: 1 млекопитающее
       other: '%{count} млекопитающих'
     x_actinopterygii:
-      one: '%{count} лучепёрая рыба'
+      one: '1 лучепёрая рыба'
       few: '%{count} лучепёрые рыбы'
       other: '%{count} лучепёрых рыб'
     x_reptilia:
@@ -478,13 +478,13 @@ ru:
       few: '%{count} птицы'
       other: '%{count} птиц'
     x_insecta:
-      one: '%{count} насекомое'
+      one: '1 насекомое'
       other: '%{count} насекомых'
     x_arachnida:
       one: 1 паукообразное
       other: '%{count} паукообразных'
     x_fungi:
-      one: '%{count} гриб'
+      one: '1 гриб'
       few: '%{count} гриба'
       other: '%{count} грибов'
     x_chromista:
@@ -2615,7 +2615,7 @@ ru:
   observation_would_like_some_help: '%{user} хотел бы помощи в идентификации этого!'
   observations: Наблюдения
   observations_: наблюдения
-  observations_added_by_x_html: Замечания добавленные %{х}
+  observations_added_by_x_html: Замечания добавленные %{x}
   observations_annotated_with_annotation: Наблюдения, снабженные %{annotation}
   observations_by: Наблюдения
   observations_by_everyone: Любые наблюдения
