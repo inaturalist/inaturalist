@@ -80,6 +80,7 @@ class TaxonName < ActiveRecord::Base
   end
 
   LOCALES = {
+    "albanian"              => "sq",
     "arabic"                => "ar",
     "basque"                => "eu",
     "breton"                => "br",
