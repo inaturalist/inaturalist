@@ -762,9 +762,9 @@ class User < ActiveRecord::Base
     end
 
     # Delete from PandionES where user_id:user_id
-    if CONFIG.logstash_es_host
+    if options[:logstash_es_host]
       logstash_es_client = Elasticsearch::Client.new(
-        host: CONFIG.logstash_es_host,
+        host: options[:logstash_es_host],
       )
       puts "Deleting logstash records"
       begin

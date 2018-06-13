@@ -132,9 +132,6 @@ base: &base
     # same code running at CONFIG.tile_servers.elasticsearch
     node_api_url: http://localhost:4000/v1
 
-    # Elasticsearch instance hosting logstash data, should include port
-    # logstash_es_host: "logstash.yourhost.com:9200"
-
 development:
     <<: *base
 
