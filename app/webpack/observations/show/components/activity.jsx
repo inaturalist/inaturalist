@@ -118,7 +118,7 @@ class Activity extends React.Component {
     const visionEligiblePhotos = _.compact( _.map( observation.photos, p => {
       if ( !p.url || p.preview ) { return null; }
       const mediumUrl = p.photoUrl( "medium" );
-      if ( mediumUrl && mediumUrl.match( /static\.inaturalist.*\/medium\.jpe?g[\?$]/i ) ) {
+      if ( mediumUrl && mediumUrl.match( /static\.inaturalist.*\/medium\./i ) ) {
         return p;
       }
       return null;

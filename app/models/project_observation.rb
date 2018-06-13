@@ -140,7 +140,7 @@ class ProjectObservation < ActiveRecord::Base
   def update_curator_identification
     return true if observation.new_record?
     return true if observation.owners_identification.blank?
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(observation.owners_identification.id)
+    observation.owners_identification.update_curator_identification
     true
   end
 
@@ -243,12 +243,7 @@ class ProjectObservation < ActiveRecord::Base
   def revisit_curator_identifications_later
     return true if observation && observation.bulk_import
     observation.identifications.each do |i|
-      Identification.
-        delay(
-          priority: USER_INTEGRITY_PRIORITY,
-          unique_hash: { "Identification::run_update_curator_identification": i.id }
-        ).
-        run_update_curator_identification( i.id )
+      i.update_curator_identification
     end
     true
   end
