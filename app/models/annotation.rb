@@ -95,7 +95,7 @@ class Annotation < ActiveRecord::Base
       joins( :controlled_value ).
       where( "controlled_terms.blocking" )
     unless new_record?
-      scope = scope.where( "id != ?", id )
+      scope = scope.where( "annotations.id != ?", id )
     end
     if scope.count > 0
       errors.add( :controlled_value, "blocked by another value" )
