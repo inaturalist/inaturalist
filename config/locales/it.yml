@@ -63,6 +63,8 @@ it:
   x_matching_taxa_html:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
+  x_misidentifications_of_this_species:
+    other: =1 identificazione errata
   x_observations:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -4412,7 +4414,6 @@ it:
     %{project}
   user_muted: Utente silenziato
   user_observations: Osservazioni dell'utente
-  user_s: di %{user}
   user_s_id: '%{id} di %{user}'
   user_s_lists: Elenchi di %{user}
   user_suggested_an_id: '%{user} ha suggerito un ID'

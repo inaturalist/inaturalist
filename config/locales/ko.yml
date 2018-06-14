@@ -465,7 +465,7 @@ ko:
   can_you_help_your_friends_id_these: 동정을 도와줄 수 있나요?
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
-  cant_merge_a_taxon_with_itself: 분류군을 그 자체와 병합시킬 수 없다.
+  cant_merge_a_taxon_with_itself: 분류군을 자기 자신과 병합할 수 없습니다.
   captive_cultivated: 포획된/양식된
   card: 카드
   casual: 비공식적
@@ -2497,6 +2497,7 @@ ko:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%Y %b %d'
       month_year: '%Y년 %B'
       month_day_year: '%B %d, %Y'
     month_names:
@@ -2517,6 +2518,14 @@ ko:
     - :월
     - :일
   datetime:
+    countdown_x_days:
+      other: 일
+    countdown_x_hours:
+      other: 시간
+    countdown_x_minutes:
+      other: 분
+    countdown_x_seconds:
+      other: 초
     prompts:
       day: 일
       hour: 시간

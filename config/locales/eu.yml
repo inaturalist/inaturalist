@@ -1842,6 +1842,10 @@ eu:
     da'
   observation_rights_html: '%{rights} behaketa'
   observation_rules: Behaketa-arauak
+  observation_rules_description: 'Zuk arauak sor ditzakezu proiektuari zein behaketa
+    gehitu daitezkeen zehazteko. Esate baterako, behaketak leku jakin batera mugatzea.
+    Oharra: Lekuen mugaketa hemen oinarritzen da gaur egun: %{site_name} Places. Behaketak
+    leku baten inguruko laukizuzen txikienera soilik mugatu ditzake.'
   observation_was_deleted: Behaketa ezabatu egin da.
   observation_would_like_some_help: ¡%{user}-(e)k laguntza pixka bat beharko luke
     elementu hau identifikatzeko!
@@ -2814,7 +2818,7 @@ eu:
     gordetzean: %{error}'
   there_were_errors: Erroreak egon ziren.
   there_were_problems_adding_your_observation_to_this_project: 'Arazoak egon ziren
-    zure behaketak proiektura gehitzean: '
+    zure behaketak proiektura gehitzean:'
   there_were_problems_importing_that_place: 'Arazoak egon ziren leku hau inportatzean:
     %{place_error}'
   there_were_some_problems_saving_this_observation: Arazo batzuk egon ziren behaketa
@@ -3014,7 +3018,6 @@ eu:
   user_is_a_naturalist: '%{user} naturalista da!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> orain da %{project}-(e)ko
     %{role}
-  user_s: '%{user}-(r)en %{model_name}'
   user_s_id: '%{user}-(r)en %{id}'
   user_s_lists: '%Zerrendak {user}'
   user_thinks_yours_is: '%{user} %{noun} zure %{observation} behaketa honelakoa da:'

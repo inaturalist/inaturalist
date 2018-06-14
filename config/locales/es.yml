@@ -60,10 +60,12 @@ es:
     other: '%{count} entradas de diario'
   x_journal_posts_html:
     one: <span class="count">1</span> entrada de diario
-    other: '<span class="count">%{count}</span> entradas de diario'
+    other: <span class="count">%{count}</span> entradas de diario
   x_matching_taxa:
     one: 1 taxón que coincide
     other: '%{count} taxones que coinciden'
+  x_matching_taxa_html:
+    other: =<span class="count">1</span> coincidencia de taxón
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
@@ -94,6 +96,8 @@ es:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
+  x_flags_resolved_html:
+    other: un=<span class='count'>1</span> grupo observado</span>
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -123,9 +127,13 @@ es:
       investigación para especies o descendientes</span>
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
+  x_taxa_curated_html:
+    other: un=<span class='count'>1</span> grupo observado</span>
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
+  x_taxon_changes_added_html:
+    other: un=<span class='count'>1</span> grupo observado</span>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
   a: un(a)
@@ -3153,8 +3161,8 @@ es:
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
   post: Ingresar
-  post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
-  post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
+  post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
+  post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: ¡Nota publicada!
   post_some_new_stuff: publicar algo nuevo
   posted_by: Publicado por
@@ -3195,6 +3203,8 @@ es:
   profile: Perfil
   project: Proyecto
   project_added_your_observations: Se añadió el proyecto a tus observaciones
+  project_admins:
+    other: uno=Administrador de proyecto
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3252,7 +3262,7 @@ es:
     otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de
     ciencia ciudadana o solamente mantener registros de las aves de un parque cercano
     con tu club local, la forma de hacerlo es con Proyectos.
-  projects_from_everywhere: Projekte nga të gjitha anët
+  projects_from_everywhere: Projects from Everywhere
   projects_from_place: Proyectos de %{place}
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que usted administra
@@ -3868,33 +3878,34 @@ es:
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
-  taxon_is_a_rank_in_iconic_taxon_with_x_observations: '{{SHUMËS|një=%{taxon} është
-    një %{shkallës} në %{iconic_taxon} me 1 vëzhgim|%{taxon} është një %{rank} në
-    %{iconic_taxon} me %{llogarit} vëzhgimet}}}'
-  taxon_is_a_rank_of_amphibia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të amfibeve me 1 vëzhgim|%{taxon} është një %{shkallës} të amfibeve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_aves_with_x_observations: '{{SHUMËS|një=%{taxon} është një %{shkallës}
-    të zogjve me 1 vëzhgim|%{taxon} është një %{shkallës} të zogjve me %{llogarit}
-    vëzhgimet}}'
-  taxon_is_a_rank_of_mammalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të gjitarëve me 1 vëzhgim|%{taxon} është një %{shkallës} të gjitarëve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_reptilia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të zvarranikëve me 1 vëzhgim|%{taxon} është një %{shkallës} të zvarranikëve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_plantae_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të bimëve me 1 vëzhgim|%{taxon} është një %{shkallës} të bimëve me
-    %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_actinopterygii_with_x_observations: '{{SHUMËS|një=%{taxon} është
-    një %{shkallës} së peshqve rajë 1 vëzhgim|%{taxon} është një %{shkallës} së peshqve
-    rajë me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_animalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të kafshëve me 1 vëzhgim|%{taxon} është një %{shkallës} të kafshëve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_insecta_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të insekteve me 1 vëzhgim|%{taxon} është një %{shkallës} të insekteve
-    me %{llogarit} vëzhgimet}}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} es un %{rank} en %{iconic_taxon} con una observación'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} es un %{rank} de anfibios con una observación'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} es un %{rank} de aves con una observación'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} es un %{rank} de mamíferos con una observación'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} es un %{rank} de reptiles con una observación'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} es un %{rank} de plantas con una observación'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} es un %{rank} de peces con aletas radiadas con una observación'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} es un %{rank} de animales con una observación'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} es un %{rank} de insectos con una observación'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} es un %{rank} de arácnidos con una observación'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} es un %{rank} de hongos con una observación'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} es un %{rank} de protozoarios con una observación'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} es un %{rank} de moluscos con una observación'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una observación'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
     other: '%{taxon} es un reino con %{count} observaciones'
@@ -4073,7 +4084,7 @@ es:
   there_were_errors: Hubo errores.
   there_were_problems_adding_taxa: 'Ocurrieron problemas al añadir esos taxones: %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Hubo problemas al
-    añadir tus observaciones al proyecto: '
+    añadir tus observaciones al proyecto:'
   there_were_problems_adding_that_observation_to_this_project: 'Hubo problemas agregando
     esa observación a este proyecto:'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
@@ -6347,6 +6358,8 @@ es:
     countdown_x_hours:
       one: hora
       other: horas
+    countdown_x_minutes:
+      other: un=min
     countdown_x_seconds:
       one: s
       other: s
@@ -6474,8 +6487,12 @@ es:
         too_short:
           one: es demasiado corto (el mínimo es 1 carácter)
           other: es demasiado corto (el mínimo son %{count} caracteres)
+        wrong_length:
+          other: =no tiene el tamaño correcto(debe ser de 1 carácter)
       template:
         body: 'Hubo problemas con los siguientes campos:'
+        header:
+          other: =1 error prohibió este %{model} de ser salvado
   activerecord:
     errors:
       models:

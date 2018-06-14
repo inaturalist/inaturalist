@@ -741,6 +741,8 @@ fr:
   by_user: par %{user}
   by_you: Par vous
   calendar: Calendrier
+  calendars_only_show_x_observations_at_time: Les agendas ne montrent que %{x} observations
+    à la fois
   can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe
@@ -3251,6 +3253,9 @@ fr:
   positional_accuracy: Exactitude de l’emplacement
   possessive_user: '%{user}'
   post: Note
+  post_from_journal_by_parent_html: Publié depuis <a href="%{url}">le journal par
+    %{parent}</a>
+  post_from_your_journal_html: Publié depuis <a href="%{url}">votre journal</a>
   post_published: Note publiée!
   post_some_new_stuff: publier quelque chose de neuf
   posted_by: Publié par
@@ -3354,6 +3359,7 @@ fr:
     avec celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un
     projet scientifique entre citoyens ou gérer des onglets sur les oiseaux du voisinage,
     les projets sont le moyen d’y arriver.
+  projects_from_everywhere: Projets de partout
   projects_from_place: Projets de %{place}
   projects_in_x: Projets dans %{x}
   projects_you_admin: Projets que vous administrez
@@ -4519,7 +4525,6 @@ fr:
     pour %{project}
   user_muted: Utilisateur réduit au silence
   user_observations: Observations utilisateur
-  user_s: de %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listes de %{user}
   user_suggested_an_id: '%{user} a suggéré un ID'
