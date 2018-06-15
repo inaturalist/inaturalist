@@ -69,6 +69,18 @@ describe Project do
       expect(UpdateAction.where(resource: p).first).to be_blank
     end
 
+    it "should not set the slug to a number when the title is just unicode and a number" do
+      p = Project.make( title: "荒野1號地" )
+      p.save
+      expect( p.slug ).not_to eq "1"
+    end
+
+    it "should transliterate slugs when possible" do
+      p = Project.make!( title: "föö" )
+      p.save
+      expect( p.slug ).to eq "foo"
+    end
+
     describe "for bioblitzes" do
       let(:p) do
         Project.make(
