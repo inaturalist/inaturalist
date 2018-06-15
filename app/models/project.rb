@@ -592,6 +592,7 @@ class Project < ActiveRecord::Base
           observation: [{
             identifications: :taxon,
             observation_photos: :photo,
+            sounds: {},
             taxon: {taxon_names: :place_taxon_names},
             observation_field_values: :observation_field,
             project_observations: :stored_preferences,

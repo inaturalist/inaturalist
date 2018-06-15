@@ -84,8 +84,9 @@ class ObservationsExportFlowTask < FlowTask
       includes[1][:identifications] = [:stored_preferences, :user]
     end
     includes << { observation_field_values: :observation_field }
-    includes << { photos: :user } if export_columns.detect{ |c| c == 'image_url' }
-    includes << :quality_metrics if export_columns.detect{ |c| c == 'captive_cultivated' }
+    includes << { photos: :user } if export_columns.detect{ |c| c == "image_url" }
+    includes << :sounds if export_columns.detect{ |c| c == "sound_url" }
+    includes << :quality_metrics if export_columns.detect{ |c| c == "captive_cultivated" }
     includes
   end
 
