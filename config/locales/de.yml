@@ -1565,6 +1565,7 @@ de:
   import: Importieren
   import_all_photos_as_observations: Alle Fotos als Beobachtungen importieren
   import_as_an_observation: Als eine Beobachtung importieren
+  import_as_another_observation: Als weitere Beobachtung importieren?
   import_from_csv: Von CSV importieren
   import_from_other_photo_sites: Von anderen Foto-Websites importieren
   import_from_photos: Von Fotos importieren
@@ -1700,6 +1701,7 @@ de:
   lexicons:
     scientific_names: Wissenschaftliche Namen
     afrikaans: Afrikaans
+    albanian: Albanisch
     bengali: Bengali
     catalan: Katalanisch
     cebuano: Cebuano
@@ -1789,6 +1791,7 @@ de:
   load: Laden
   loading: Lädt...
   loading_flickr_photos: Lade Flickr-Fotos …
+  loading_full_description_html: Lade vollständige Beschreibung …
   loading_images: Lade Bilder…
   loading_map: Lade Karte...
   loading_metadata: Lade Metadaten...
@@ -1829,6 +1832,7 @@ de:
     pt-BR: Portugiesisch (Brasilien)
     pt-PT: Portugiesisch (Portugal)
     ru: Russisch
+    sq: Albanisch
     zh-CN: Chinesisch (vereinfacht)
     zh-TW: Chinesisch (traditionell)
   location: Standort
@@ -1860,6 +1864,7 @@ de:
   made_a: machte eine
   make_admin: Zum Administrator machen
   make_an_observation: eine Beobachtung machen
+  main_content: Hauptinhalt
   make_a_new_place: Neuen Ort erstellen
   make_curator: Kurator machen
   make_it_a_life_list?: Zu einer Lebens-Liste machen?
@@ -1878,10 +1883,12 @@ de:
   manually_create_new_place: Manuell einen neuen Ort erstellen
   map: Karte
   map_legend: Kartenlegende
+  map_marker_size: Größe des Kartenmarkers
   map_of_observations: Karte der Beobachtungen
   maps:
     overlays:
       all_observations: Alle Beobachtungen
+      featured_observations: Vorgestellte Beobachtungen
       gbif_network: GBIF Netzwerk
       observations: Beobachtungen
       place_boundary: Orts-Grenzen
@@ -1987,6 +1994,7 @@ de:
   naturalised: naturalisiert
   naturalized: naturalisiert
   native: einheimisch
+  native_page_url: Native Seiten-URL
   native_to_place: Einheimisch in %{place}
   near: nahe
   near_threatened: potenziell gefährdet
@@ -2123,6 +2131,7 @@ de:
   normal: normal
   not_completed: Nicht komplett
   not_evaluated: nicht beurteilt
+  not_filtering: Keine Filterung
   not_found: Nicht gefunden
   not_linked_facebook: Dein %{site_name}-Benutzerkonto ist nicht mit deinem Facebook-Benutzerkonto
     verknüpft
@@ -2133,6 +2142,7 @@ de:
   not_yet: Noch nicht
   note: Notiz
   notes: Notizen
+  number_of_observations: Anzahl der Beobachtungen
   number_selected: '# ausgewählt'
   numeric_: numerisch
   noun_by_you: '%{noun} von Ihnen'
@@ -2144,6 +2154,7 @@ de:
   observation_added_to_the_project: Beobachtung zum Projekt "%{project}" hinzugefügt
   observation_photo_uploader: Beobachtungs-Foto-Uploader
   observations_by_category: Beobachtungen nach Kategorie
+  observations_by_app: Beobachtungen nach App
   observations_by_user_on_date: Beobachtet von %{user} am %{date}
   observations_by_you: Beobachtungen von Ihnen
   observations_by_you_on_date: 'Beobachtungen von Ihnen: %{date}'
@@ -2850,6 +2861,7 @@ de:
   users_id: '%{user}''s ID'
   users_identification_short_html: Kennung von <a href='%{url}'>%{user}</a>
   users_profile: '%{user}''s Profil'
+  users_projects: Projekte von %{user}
   valid_interrogation: Gültig?
   value: Wert
   view: Ansehen

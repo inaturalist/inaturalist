@@ -170,7 +170,7 @@ ru:
     other: <span class='count'>%{count}</span> изменений таксонов добавлено
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: '% идентифицированных'
-  a: a
+  a: это
   a_: a
   a_community_for_naturalist: Сообщество Натуралистов
   a_default_taxon_name_will_automatically_created: Наименование таксона по умолчанию
@@ -226,7 +226,7 @@ ru:
   active: активный
   active_users: Активные участники
   activity: Активность
-  activity_settings: Активность настройки
+  activity_settings: Настройки активности
   adapted_by_name_from_a_work_by_original: Адапритовано названием %{name} из работы
     %{original}
   add: Добавить
@@ -542,7 +542,7 @@ ru:
   android: Android
   animals: Животные
   animated_observations_map: Анимированная карта наблюдений
-  annotations: Аннотация
+  annotations: Аннотации
   announcement_was_successfully_created: Объявление было успешно создано.
   announcement_was_successfully_updated: Объявление было успешно обновлено.
   announcements: Объявления
@@ -717,7 +717,7 @@ ru:
   birds: птицы
   black: черный
   block_user: Блокировать пользователя
-  block_removed: Блокировка удалена
+  block_removed: Блок удалён
   blocked_users: Заблокированные Пользователи
   blog_widget: Виджет блога
   blue: синий
@@ -749,11 +749,11 @@ ru:
   bulk_import_of_filename_is_complete: Групповой импорт %{filename} завершён
   but_we_didnt_add_this_observation_to_the_x_project: Мы не добавили это наблюдение
     к проекту %{project} потому, что вы не согласны с условиями проекта.
-  by: по
+  by: _
   by_adding_ids_to_observations: добавляя идентификаторы к наблюдениям
   by_everyone: Любые
   by_project_list: по списку проекта
-  by_user: по %{user}
+  by_user: '%{user}'
   by_you: Ваши
   calendar: Календарь
   calendars_only_show_x_observations_at_time: Календари показывают только %{x} наблюдений
@@ -766,7 +766,7 @@ ru:
   captive: В неволе
   captive_cultivated: В неволе / культивируемое
   card: Карта
-  case_plural: с
+  case_plural: _
   casual: обыкновенный
   casual_: Обыкновенный
   catalogue_of_life: Каталог жизни
@@ -827,7 +827,7 @@ ru:
     split: Разделить
     merge: Объединить
     swap: Заменить
-    stage: Статус
+    stage: Стадия
     drop: Бросить
     split_from: Разделить форму
     split_into: разделить на
@@ -1040,7 +1040,7 @@ ru:
     таксона, которые здесь встречаются?
   contest: конкурс
   continue: Продолжить
-  contributions: вклад
+  contributions: вклады
   contributions_from: Вклад
   contributor_cannot_be_found: Не удается найти поставщика данных
   contributors_to_project: Участники %{project}
@@ -1061,7 +1061,7 @@ ru:
     larva: Личинка
     egg: Яйцо
     juvenile: Юношеский
-  controls: Управления
+  controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
   coordinates: Координаты
@@ -1080,7 +1080,7 @@ ru:
     no_known_copyright_restrictions_text: нет ограничений копирайтом
     no_rights_reserved: нет правообладания
     no_rights_reserved_by: '%{name}, нет правообладания (%{license_name})'
-    anonymous: аноним
+    anonymous: неизвестные
     public_domain: общественное достояние
     copyright: авторские права
     no_copyright: нет авторский прав (СС0)
@@ -1121,8 +1121,8 @@ ru:
     Создать наблюдения, загружая фотографии с привязкой к %{place}. После загрузки %{place} попытается извлечь GPS координаты и дату/время из фото.
     Для начала
   created: Создано
-  created_by: Создатель
-  created_by_user_on_date: Создано %{user} в %{date}
+  created_by: Создан
+  created_by_user_on_date: Создан %{user} %{date}
   created_on: Создано в
   creating_your_account: Создаётся ваша учётная запись...
   creative_commons_flickr_tagged: Фото с Flickr с лицензией Creative Commons
@@ -1227,7 +1227,7 @@ ru:
   delete_selected: Удалить Выбранное
   delete_taxon_and_merge_most_data_html: Удалить <i>%{taxon}</i> и объединить большинство
     его данных с другим таксоном. Использовать этот инструмент для <strong>удаления
-    дубликатов таксонов</strong>. Если вы хотите удалить устаревший синоним, пожалуйста,
+    задвоенности таксонов</strong>. Если вы хотите удалить устаревший синоним, пожалуйста,
     создайте таксон для замены. <strong>БУДЬТЕ ОСТОРОЖНЫ!</strong> Удаление таксонов
     может быть очень деструктивной операцией. Сверьтесь с <a href="%{curator_url}">Руководством
     для куратора</a> для более подробной информации.
@@ -1301,7 +1301,7 @@ ru:
   drafts: Черновики
   drag_and_drop_some_photos_or_sounds: Перетащите и отпустите несколько фото или звуков
   drawings: Рисунки
-  duplicate_verb: Дублировать
+  duplicate_verb: Задвоить
   each_place_displays_all_species_inat_knows: Страница каждого места отображает все
     виды %{site_name}, известные в этом месте, в том числе информацию об их численности,
     статусе, охранном статусе и о том, кто первым наблюдал этот вид на данном месте
@@ -1378,7 +1378,7 @@ ru:
   either_that_user_doesnt_exist_or: Эти пользователи либо не существуют, либо вы их
     уже отслеживаете.
   eligible_for_research_grade: Доступно для Исследовательского уровня
-  email: Электронная почта
+  email: Адрес электронной почты
   email_addresses_description: Адреса электронной почты, разделенные запятыми, ограничение
     60 каждые 30 дней.
   email_address_for_comments_and_other_feedback: Email адрес для комментариев и обратной
@@ -1909,7 +1909,7 @@ ru:
     спамом или оскорбительным?
   is_this_offensive_html: Является ли это <a href="/help#inappropriate">неприемлемым</a>,
     спамом или оскорбительным?
-  is_this_place_a_duplicate: Не является ли это место задублированным?
+  is_this_place_a_duplicate: Не является ли это место задвоенным?
   it: это
   it_can_now_be_used_for_research: Теперь оно может использоваться в исследованиях
     и на других веб-сайтах.
@@ -1994,6 +1994,7 @@ ru:
   lexicon: Язык
   lexicons:
     scientific_names: Научные Наименования
+    albanian: албанский
     bengali: Бенгальский
     catalan: Каталонский
     chinese_simplified: Китайский (упрощенный)
@@ -2174,6 +2175,7 @@ ru:
     pt-BR: Португальский (Бразилия)
     pt-PT: Португальский (Португалия)
     ru: Русский
+    sq: албанский
     zh-CN: Китайский (упрощенный)
     zh-TW: Китайский (традиционный)
   locality_notes: Примечания локалитета
@@ -5136,7 +5138,7 @@ ru:
         new_name_guidelines_html: |-
           <ul>
             <li><p>Старайтесь добавлять имена, которые используются повсеместно. Пожалуйста, не изобретайте новые имена.</p></li>
-            <li><p>Не добавляйте повторяющиеся имена, например, не называйте ястребов "ястреб"</p></li>
+            <li><p>Не добавляйте задвоенные имена, например, не называйте ястребов "ястреб"</p></li>
             <li><p>Для таксонов более высокого уровня старайтесь использовать имена, которые включают всех потомков, например, «цаплевые» или «семейство вересковых»,</p></li>
             <li>
               <p>

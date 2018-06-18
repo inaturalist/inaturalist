@@ -4,6 +4,7 @@
 # Author: Bjakupi
 # Author: Elmi
 # Author: Eridan Xharahi
+# Author: Fitoschido
 # Author: Halimebici
 # Author: Jtroshani
 # Author: Kosovastar
@@ -1924,6 +1925,7 @@ sq:
   lexicons:
     scientific_names: Emrat shkencor
     afrikaans: Afrikanisht
+    albanian: Shqip
     bengali: Bengali
     catalan: Katalunisht
     cebuano: Cebuano
@@ -2111,6 +2113,7 @@ sq:
     pt-BR: Portugalisht (Brazil)
     pt-PT: Portugalisht (Portugali)
     ru: Rusisht
+    sq: Shqip
     zh-CN: Kinezisht (e thjeshtuar)
     zh-TW: Kinezisht (tradicionale)
   locality_notes: Shënime të lokalitetit
@@ -2314,9 +2317,19 @@ sq:
   name: Emri
   name_entered: Emri u fut
   name_llaves: '[EMËR]'
+  name_of_the_place_you: Emëro vendin ku ke bërë vëzhgimin
+  name_or_username: Emri ose emri i perdoruesit
+  name_provider: Emri i ofruesit
+  name_providers:
+    col: Katalogu i Jetës
+  named_based_url_might_change: Emri i bazuar ne IP adresen tuaj mund te ndryshoj,
+    mirepo kjo jo.
   names: Emrat
   names_for_taxon_html: Emrat për %{taxon}
+  naturalised: i natyralizuar
+  naturalized: i natyralizuar
   native: autokton
+  native_page_url: IP adresa e faqes vendëse
   nav_description: Lorem Ipsum është një tekst shabllon i industrisë së printimit
     dhe shtypshkronjave. Lorem Ipsum ka qenë teksti shabllon i industrisë që nga vitet
     1500, kur një shtypës i panjohur morri një galeri shkrimesh dhe i ngatërroi për
@@ -2327,6 +2340,8 @@ sq:
   nearby_observations_: Vëzhgimet në afërsi
   nearby_observations: Vëzhgimet në Afërsi
   need_id_help?: Ke nevojë për ndihmë mbi ID?
+  needs_id: Nevojitet ID
+  needs_to_be_identified: E nevojshme të identifikohen
   new: E re
   new_and_noteworthy: E re dhe me vlerë
   new_announcement: Njoftim i ri
@@ -2336,16 +2351,32 @@ sq:
   new_check_list_record: Nëse doni ta konsideroni këtë listë gjithëpërfshirëse, krijojeni
     atë, shtoni taxa, më pas rregullojeni, dhe këtu do të keni opsionin për ta shënuar
     si gjithëpërfshirëse.
+  new_comment_on_a_parent_by_user_link: Koment i ri ne @vow_or_con{vow:an|a} %{parent}
+    by %{user_link}
+  new_guide: Udhëzues i ri
+  new_journal_posts: Postim i ri i revistes
   new_list: Listë e re
   new_members: Anëtarë të rinj
   new_message: Mesazh i ri
+  new_observation_field: Fushë e re vëzhgimi
+  new_observation_rules: Rregulla të reja vëzhgimi
+  new_observations: Vëzhgime të reja
+  new_observations_ellispsis: Vëzhgime të reja...
+  new_observations_from_place_html: Vëzhgime të reja nga %{place}
+  new_observations_may_take_up_to: Vëzhgimet e reja mund të marrin deri %{widget_expiration}
+    minuta për shfaqjen e paisjes
+  new_observations_of_x_html: Vëzhgime të reja të %{x}
   new_password: Fjalëkalimi i ri
   new_post: Postim i ri
   new_project: Projekt i ri
   new_source: Burim i ri
   new_taxon_change: Ndryshim i ri në taxon
+  new_taxon_link: Linku i ri i taxonit
   new_taxon_name: Emri i takson të ri
+  new_taxon_name_for: Emri i ri i taxonit për
   new_taxon_range: Varg i Ri Taxon
+  new_updates_in_the_last_24_hours_from: Përditësime të reja në 24 orëshin e fundit
+    nga %{site_name}
   new_user_rules: Rregullat e reja të përdoruesit
   new_users: Përdorues i ri
   new_users_w_7_obs: Përdorues të rinj w/ 7 Obs
@@ -2356,6 +2387,11 @@ sq:
   next_page: Faqja tjetër
   next_photo: Foto tjetër
   "no": Jo
+  no_activity_in_the_past_week: Asnjë aktivitet i javës së kaluar. Koha për
+  no_administrator_knows_your_password: Asnjë %{sitename} nga administratorët nuk
+    di fjalëkalimin tuaj të ri dhe nuk ka mundësi qasjeje në fjalëkalimin tuaj.
+  no_assessments_have_been_added_to_this_project_yet: Asnjë vlerësim nuk është shtuar
+    ende rreth këtij projekti.
   no_but_it_is_a_member_of_taxon: Jo, por është anëtar i %{taxon}
   no_colors_selected: Nuk ka ngjyra të zgjedhura.
   no_comments_yet: Nuk ka komente ende.
@@ -2372,6 +2408,9 @@ sq:
   no_ids_have_been_suggested_yet: Asnjë ID nuk është sugjeruar ende
   no_interaction_data_available: Nuk ka të dhëna të ndërveprimit
   no_its_as_good_as_it_can_be: Jo, është aq e mirë sa mund të jetë
+  no_favorites_added:
+    current_user: Ju nuk keni shtuar ende të preferuarit tuaj.
+    user: '%{user} nuk ka shtuar të preferuarit.'
   no_journal_post_have_been: Asnjë postim i ditarit nuk është shtuar ende në këtë
     projekt.
   no_license_all_rights_reserved: Asnjë licencë (të gjitha të drejtat e rezervuara)
@@ -2559,6 +2598,8 @@ sq:
     këto kushte
   observations_it_may_take_a_few: Vëzhgime. Mund të marrë disa minuta.
   observations_last500: Vëzhgime (500 të fundit)
+  observations_map: Vezhgimet / Harta
+  observation_must_dotdotdot: Vëzhgimi duhet...
   observations_near_a_place_are: Vëzhgimet “afër” një vendi të caktuar ndodhin brenda
     një drejtkëndëshi të vizatuar përgjatë rrethojës së vendit, çka mund të rezultojë
     në pasaktësi për vendet që nuk ngjasojnë me formën e drejtkëndëshit. Kjo ndodh
@@ -2640,14 +2681,39 @@ sq:
       që postojnë. Gjithashtu mund të regjistroheni tek specie të caktuara për t’u
       informuar rreth vëzhgimeve të reja të atyre specieve, dhe të njëjtën gjë mund
       ta bëni edhe me vendet.
+    comments_panel_title: Kureshtar rreth diskutimeve që po ndodhin në %{site_name}?
     comments_panel_body: '<p>%{site_name} mundëson ndarjen e mendimeve rreth vëzhgimit
       të gjallesave. Këtu poshtë janë diskutimet që po ndodhin tani. (Shënim: Ju regjistroheni
       automatikisht në çdo diskutim ku shtoni komente apo identifikime. Përditësimet
       i menaxhoni në seksionin ‘Regjistrime’ djathtas.)</p>'
+    youve_got_updates_panel_title: Ke të reja!
+    youve_got_updates_panel_body_p1: Qëndro i kyqur me përditësimet në vazhdim...
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li><strong>Permbajtja juaj:</strong> Aktiviteti ne vezhgimet tuaja si komentet, identifikimet apo te preferuarat nga komuniteti %{site_name} . Ju gjithashtu do te pranoni perditesimet kur dikush shton vezhgim ne nje projekt apo shton shenime me fusha shtese </li>
+        <li><strong>Njerezit:</strong> Vezhgime te reja apo postime te revistes nga njerezit qe ju ndiqni</li>
+        <li><strong>Organizmat, Projektet & Vendet:</strong> Vezhgime te reja nga organizma specifike ose nga vendet per te cilat jeni abonuar. Ju gjithashtu mund te ju bashkangjiteni projekteve, ne menyre qe te njoftoheni me te rejat, kur ata postojne projekte apo postime nga revista.</li>
+        <li><strong>Diskutimet ne te cilat jeni interesuar:</strong> Te komentuarit apo te shtuarit e identifikimeve ne permbajtjen e te tjereve ben qe ju automatikisht te abonoheni per cdo aktivitet tjeter te asaj permbajtjeje. Perdorni opsiononin: "Menagjoni abonimet tuaja, ne menyre qe mos te pranoni te rejat"</li>
+      </ul>
   one_by_one: Një nga një
   one_of_your_lists: Një nga listat tuaja...
+  only_administrators_may_access_that_page: Vetem administratoret mund te qasen ne
+    kete faqe
+  only_accepts_taxa: pranon vetem taxa
+  only_an_admin_can_remove_project_users: Vetem administratori mund te largoje perdoruesit
+    e projekteve
   only_receive_updates_about_this_taxon: Merrni vetëm përditësime për këtë takson
+  only_the_project_admin_can_delete_this_project: Vetem administratori i projektit
+    mund ta fshije kete projekt.
+  only_you: Vetem ju
+  open: hape
+  open_: Hape
+  or_if_you_dont_want_email: Apo, ne qofte se nuk deshironi mesazhet...
+  or_invite_your_friends: apo fto miqte tuaj
+  or_invited: apo te ftuar
+  or_post_message_to_google_group: 'apo posto mesazhin ne grupin tone ne Google:'
   original: Origjinal
+  other_annimals: Kafshët e tjera
   password: Fjalëkalimi
   password_confirmation: Konfirmim i fjalëkalimit
   pdf: PDF
@@ -2839,6 +2905,7 @@ sq:
   positional_accuracy: Saktësi pozicionimi
   possessive_user: i/e %{user}
   post: Posto
+  post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   previewing: Duke paraafishuar...
   previous: Paraprak
   prev: Para
@@ -2871,6 +2938,7 @@ sq:
   project_x_was_delete: '%{project} u fshi (Ju lutemi prisni ca minuta derisa të largohet
     nga faqja)'
   projects: Projektet
+  projects_from_everywhere: Projekte nga të gjitha anët
   projects_you_admin: Projektet që ju administroni
   projects_youve_joined: Projektet që u jeni bashkuar
   reorder_by_taxonomy: Renditja sipas taksonomisë
