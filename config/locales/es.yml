@@ -3868,33 +3868,6 @@ es:
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
-  taxon_is_a_rank_in_iconic_taxon_with_x_observations: '{{SHUMËS|një=%{taxon} është
-    një %{shkallës} në %{iconic_taxon} me 1 vëzhgim|%{taxon} është një %{rank} në
-    %{iconic_taxon} me %{llogarit} vëzhgimet}}}'
-  taxon_is_a_rank_of_amphibia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të amfibeve me 1 vëzhgim|%{taxon} është një %{shkallës} të amfibeve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_aves_with_x_observations: '{{SHUMËS|një=%{taxon} është një %{shkallës}
-    të zogjve me 1 vëzhgim|%{taxon} është një %{shkallës} të zogjve me %{llogarit}
-    vëzhgimet}}'
-  taxon_is_a_rank_of_mammalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të gjitarëve me 1 vëzhgim|%{taxon} është një %{shkallës} të gjitarëve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_reptilia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të zvarranikëve me 1 vëzhgim|%{taxon} është një %{shkallës} të zvarranikëve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_plantae_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të bimëve me 1 vëzhgim|%{taxon} është një %{shkallës} të bimëve me
-    %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_actinopterygii_with_x_observations: '{{SHUMËS|një=%{taxon} është
-    një %{shkallës} së peshqve rajë 1 vëzhgim|%{taxon} është një %{shkallës} së peshqve
-    rajë me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_animalia_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të kafshëve me 1 vëzhgim|%{taxon} është një %{shkallës} të kafshëve
-    me %{llogarit} vëzhgimet}}'
-  taxon_is_a_rank_of_insecta_with_x_observations: '{{SHUMËS|një=%{taxon} është një
-    %{shkallës} të insekteve me 1 vëzhgim|%{taxon} është një %{shkallës} të insekteve
-    me %{llogarit} vëzhgimet}}'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
     other: '%{taxon} es un reino con %{count} observaciones'
