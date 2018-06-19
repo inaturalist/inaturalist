@@ -52,8 +52,6 @@ ar:
   x_matching_taxa_html:
     one: <span class="count">1</span> أصنوفة مطابقة
     other: <span class="count">%{count}</span> أصنوفة مطابقة
-  x_misidentifications_of_this_species:
-    other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -6010,12 +6008,6 @@ ar:
       x_seconds:
         one: ثانية واحدة
         other: '%{count} ثانية'
-    countdown_x_days: '{{PLURAL:$1|يوم|أيام}}'
-    countdown_x_hours: '{{PLURAL:$1|ساعة واحدة|ساعات}}'
-    countdown_x_minutes:
-      other: دق
-    countdown_x_seconds:
-      other: ثان
     prompts:
       day: يوم
       hour: ساعة

@@ -73,15 +73,9 @@ sq:
   x_people_like_this:
     one: 1 person ka pëlqyer këtë
     other: '%{count} people like this'
-  x_people_agree_html:
-    other: një=<span class="count">1</span> personi pajtohet
   x_species:
     one: 1 lloj
     other: '%{count} species'
-  x_species_html:
-    other: një=<span class='count'>1</span> speciet
-  x_species_link_html:
-    other: një=<a href='%{url}'>1 speciet</nje>
   x_suggestions_filtered_by_colon:
     one: '1 Suggestion Filtered By:'
     other: '%{count} Suggestions Filtered By:'
@@ -386,30 +380,6 @@ sq:
     ray_finned_fishes: Peshqit pendë-rreze
     reptiles: Zvarranikët
     life: Jeta
-    x_plantae:
-      other: ' një =1 bimë'
-    x_animalia: '{{ SHUMËS| një =1 kafshë|%{count} kafshët}}'
-    x_mollusca: '{{ SHUMËS| një =1 mollusk|%{count} mollusqet}}'
-    x_amphibia: '{{ SHUMËS| një =1 amfib|%{count} amfibët}}'
-    x_mammalia: '{{ SHUMËS| një =1 gjitar|%{count} gjitarët}}'
-    x_actinopterygii: '{{ SHUMËS| një =1 peshk pendë rrezë|%{count} peshqit pendë
-      rrezë}}'
-    x_reptilia:
-      other: ' një =1 zvarranik'
-    x_aves:
-      other: ' një =1 zog'
-    x_insecta:
-      other: ' një =1 insekt'
-    x_arachnida:
-      other: ' një =1 araknid'
-    x_fungi:
-      other: ' një =1 kërpudhë'
-    x_chromista:
-      other: ' një =1 kromist'
-    x_protozoa:
-      other: ' një =1 protozoar'
-    x_other_animals:
-      other: ' një =1 kafshë tjetër'
   all_taxa_: Të gjitha taxat
   all_taxa_in_this_guide: Të gjitha taxat në këtë udhëzues
   all_taxonomic_groups: '&laquo; Të gjitha grupet taksonomike'
@@ -448,7 +418,6 @@ sq:
     tuaj dhe pastaj t’i lidhni llogaritë me njëra tjetrën. Përndryshe %{site_name}
     mund të mos jetë në gjendje të kuptojë që dy llogaritë janë të lidhura dhe mund
     të krijojë një llogari të re.
-  and_x_more_people!: '{{SHUMËS|një=dhe 1 njeri më shumë|%{count} më shumë njerëz}}'
   android: Android
   animals: Kafshët
   animated_observations_map: Harta e vëzhgimeve të animuara
@@ -1710,9 +1679,6 @@ sq:
   if_you_already_have_an_account: Nëse tanimë keni %{article} %{site_name} llogari...
   if_you_dont_want_us_to_share_your_data: Nëse nuk dëshironi që ne ti ndajmë të dhënat
     tuaja
-  if_you_have_any_trouble_with_the_site_check_out: Nëse keni ndonjë pyetje, ju lutemi
-    shihi <a href="%{url_ndihmëse}">seksioni ndihmës</a> apo posto një mesazh tek<a
-    href="%{pergjigje _url}">grup pergjigjesh </a>tona.
   if_you_have_trouble_with_the_site: 'Nëse keni ndonjë problem me këtë faqe, ju lutem
     shikoni seksionin tonë të ndihmës:'
   if_you_use: Nëse përdorni
