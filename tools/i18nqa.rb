@@ -18,7 +18,6 @@ end
 def traverse( obj, key = nil, &blk )
   case obj
   when Hash
-    # Forget keys because I don't know what to do with them
     obj.each {|k,v| traverse( v, [key, k].compact.join( "." ), &blk ) }
   # when Array
   #   obj.each {|v| traverse(v, &blk) }
@@ -51,6 +50,12 @@ data.each do |key, translation|
   locale = key[/^(.+?)\./, 1]
   en_key = key.sub( "#{locale}.", "en." )
   # puts "\tdata[#{en_key}]: #{data[en_key]}"
+  if translation.is_a?( String )
+    translation.scan( /\{\{.+?\=.+?\}\}/ ).each do |match|
+      problems[key] = problems[key] || []
+      problems[key] << "**ERROR:** Must not include `#{match}`"
+    end
+  end
   next unless data[en_key]
   if data[en_key].is_a?( Array )
     if data[en_key].size > translation.size
