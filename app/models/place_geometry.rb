@@ -112,7 +112,11 @@ class PlaceGeometry < ActiveRecord::Base
   def simplified_geom
     return if !geom
     if !place.bbox_area || place.bbox_area < 0.1
-      return geom
+      # this method is currently only used for indexing places in Elasticsearch.
+      # Running the cleangeometry method here helps fix geom validation errors
+      # which psql is comfortable with but might cause ES to throw errors
+      return PlaceGeometry.where(id: id).
+        select("id, cleangeometry(geom) as simpl").first.try(:simpl)
     end
     tolerance =
       if place.bbox_area < 1
