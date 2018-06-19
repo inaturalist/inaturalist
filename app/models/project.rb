@@ -41,6 +41,16 @@ class Project < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :title, :use => [ :slugged, :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
+
+  def normalize_friendly_id( string )
+    super_candidate = super( string )
+    candidate = title.parameterize
+    candidate = super_candidate if candidate.blank? || candidate == super_candidate
+    if candidate.to_i > 0
+      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
+    end
+    candidate
+  end
   
   preference :count_from_list, :boolean, :default => false
   preference :place_boundary_visible, :boolean, :default => false
@@ -582,6 +592,7 @@ class Project < ActiveRecord::Base
           observation: [{
             identifications: :taxon,
             observation_photos: :photo,
+            sounds: {},
             taxon: {taxon_names: :place_taxon_names},
             observation_field_values: :observation_field,
             project_observations: :stored_preferences,

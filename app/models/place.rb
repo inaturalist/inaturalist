@@ -56,10 +56,13 @@ class Place < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
   
-  def normalize_friendly_id(string)
+  def normalize_friendly_id( string )
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
     candidate = super_candidate if candidate.blank? || candidate == super_candidate
+    if candidate.to_i > 0
+      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
+    end
     if Place.where(:slug => candidate).exists? && !display_name.blank?
       candidate = display_name.parameterize
     end
@@ -68,14 +71,6 @@ class Place < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     name_changed?
-  end
-
-  def slug_candidates
-    [
-      :name,
-      :display_name,
-      [:name, :id]
-    ]
   end
   
   # Place to put a GeoPlanet response to avoid re-querying

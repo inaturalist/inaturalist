@@ -69,6 +69,18 @@ describe Project do
       expect(UpdateAction.where(resource: p).first).to be_blank
     end
 
+    it "should not set the slug to a number when the title is just unicode and a number" do
+      p = Project.make( title: "荒野1號地" )
+      p.save
+      expect( p.slug ).not_to eq "1"
+    end
+
+    it "should transliterate slugs when possible" do
+      p = Project.make!( title: "föö" )
+      p.save
+      expect( p.slug ).to eq "foo"
+    end
+
     describe "for bioblitzes" do
       let(:p) do
         Project.make(
@@ -130,9 +142,9 @@ describe Project do
       subproject = Project.make!(project_type: "collection")
       rule = umbrella_project.project_observation_rules.build( operator: "in_project?", operand: subproject )
       rule.save!
-      expect( Project.find( umbrella_project ).project_observation_rules.length ).to eq 1
+      expect( Project.find( umbrella_project.id ).project_observation_rules.length ).to eq 1
       subproject.destroy
-      expect( Project.find( umbrella_project ).project_observation_rules.length ).to eq 0
+      expect( Project.find( umbrella_project.id ).project_observation_rules.length ).to eq 0
     end
   end
 

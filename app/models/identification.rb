@@ -285,7 +285,12 @@ class Identification < ActiveRecord::Base
   # identifier is a curator of a project that the observation is submitted to
   def update_curator_identification
     return true if self.observation.blank?
-    Identification.delay(:priority => INTEGRITY_PRIORITY).run_update_curator_identification(id)
+    Identification.
+      delay(
+        priority: INTEGRITY_PRIORITY,
+        unique_hash: { "Identification::run_update_curator_identification": id }
+      ).
+      run_update_curator_identification( id )
     true
   end
   

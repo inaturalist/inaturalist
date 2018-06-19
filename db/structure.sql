@@ -7282,6 +7282,13 @@ CREATE UNIQUE INDEX index_observation_field_values_on_uuid ON observation_field_
 
 
 --
+-- Name: index_observation_field_values_on_value_and_field; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_observation_field_values_on_value_and_field ON observation_field_values USING btree (value, observation_field_id);
+
+
+--
 -- Name: index_observation_fields_on_datatype; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9332,4 +9339,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180504213719');
 INSERT INTO schema_migrations (version) VALUES ('20180518192353');
 
 INSERT INTO schema_migrations (version) VALUES ('20180518231918');
+
+INSERT INTO schema_migrations (version) VALUES ('20180613193352');
 

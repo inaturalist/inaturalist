@@ -161,7 +161,8 @@ class Observation < ActiveRecord::Base
     "quality_grade",
     "license",
     "url", 
-    "image_url", 
+    "image_url",
+    "sound_url",
     "tag_list",
     "description",
     "oauth_application_id",
@@ -181,7 +182,8 @@ class Observation < ActiveRecord::Base
     "quality_grade",
     "license",
     "url", 
-    "image_url", 
+    "image_url",
+    "sound_url",
     "tag_list",
     "description",
     "id_please",
@@ -2000,6 +2002,12 @@ class Observation < ActiveRecord::Base
   
   def obs_image_url
     image_url
+  end
+
+  def sound_url
+    if s = sounds.detect{|s| s.is_a?( LocalSound ) }
+      return s.file.url
+    end
   end
   
   def short_description
