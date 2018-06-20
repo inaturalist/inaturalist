@@ -3664,6 +3664,31 @@ describe "ident getters" do
   end
 end
 
+describe "observation field value getter" do
+  it "should get the value of an observation field" do
+    ofv = ObservationFieldValue.make!
+    expect(
+      ofv.observation.send("field:#{ofv.observation_field.name}")
+    ).to eq ofv.value
+  end
+
+  it "should work for observation fields with colons" do
+    of = ObservationField.make!( name: "dwc:locality" )
+    ofv = ObservationFieldValue.make!( observation_field: of )
+    expect(
+      ofv.observation.send("field:#{ofv.observation_field.name}")
+    ).to eq ofv.value
+  end
+
+  it "should work for observation fields with other non-word characters" do
+    of = ObservationField.make!( name: "\% cover" )
+    ofv = ObservationFieldValue.make!( observation_field: of )
+    expect(
+      ofv.observation.send("field:#{ofv.observation_field.name}")
+    ).to eq ofv.value
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf
