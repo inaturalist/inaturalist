@@ -1651,7 +1651,11 @@ class Observation < ActiveRecord::Base
   end
 
   def set_taxon_from_probable_taxon
-    return if identifications.count == 0 && taxon_id
+    if identifications.size == 0 && taxon_id
+      self.taxon = nil
+      self.species_guess = nil
+      return true
+    end
     prob_taxon = probable_taxon( force: true )
     self.taxon_id = if ( !user.prefers_community_taxa? && prefers_community_taxon == nil ) || prefers_community_taxon == false
       # obs opted out or user opted out

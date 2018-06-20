@@ -2797,8 +2797,6 @@ describe Observation do
       o = Observation.make( taxon: t )
       expect( o.identifications.size ).to eq 0
       expect( o.taxon ).to eq t
-      o.set_taxon_from_probable_taxon
-      expect( o.taxon ).to eq t
       o.save!
       o.reload
       expect( o.taxon ).to eq t
