@@ -739,6 +739,12 @@ class User < ActiveRecord::Base
       region: CONFIG.s3_region
     )
 
+    cf_client = ::Aws::CloudFront::Client.new(
+      access_key_id: s3_config["access_key_id"],
+      secret_access_key: s3_config["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+
     deleted_photos = DeletedPhoto.where( user_id: user_id )
     puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
     deleted_photos.find_each do |dp|
@@ -748,6 +754,22 @@ class User < ActiveRecord::Base
         s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
       end
       dp.destroy
+    end
+
+    # This might cause problems with multiple simultaneous invalidations. FWIW,
+    # CloudFront is supposed to expire things in 24 hours by default
+    if options[:cloudfront_distribution_id]
+      paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
+      cf_client.create_invalidation(
+        distribution_id: options[:cloudfront_distribution_id],
+        invalidation_batch: {
+          paths: {
+            quantity: paths.size,
+            items: paths
+          },
+          caller_reference: "#{paths[0]}/#{Time.now.to_i}"
+        }
+      )
     end
 
     deleted_sounds = DeletedSound.where( user_id: user_id )
