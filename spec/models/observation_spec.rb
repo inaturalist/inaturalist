@@ -1543,12 +1543,16 @@ describe Observation do
       expect( observations ).to include( pos )
       expect( observations ).not_to include( @neg )
     end
-  
-    it "should find observations with photos" do
-      make_observation_photo(:observation => @pos)
-      obs = Observation.has_photos.all
-      expect(obs).to include(@pos)
-      expect(obs).not_to include(@neg)
+    
+    describe "has_photos" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      it "should find observations with photos" do
+        make_observation_photo(:observation => @pos)
+        obs = Observation.has_photos.all
+        expect(obs).to include(@pos)
+        expect(obs).not_to include(@neg)
+      end
     end
   
     it "should find observations observed after a certain time" do
@@ -3280,13 +3284,18 @@ describe Observation do
       expect(o.mappable?).to be false
     end
 
-    it "should not be mappable if its photo is flagged" do
-      o = make_research_grade_observation
-      op = make_observation_photo(observation: o)
-      expect(o.mappable?).to be true
-      Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
-      o.reload
-      expect(o.mappable?).to be false
+    describe "with a photo" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      
+      it "should not be mappable if its photo is flagged" do
+        o = make_research_grade_observation
+        op = make_observation_photo(observation: o)
+        expect(o.mappable?).to be true
+        Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
+        o.reload
+        expect(o.mappable?).to be false
+      end
     end
 
     it "should not be mappable if community disagrees with taxon" do
