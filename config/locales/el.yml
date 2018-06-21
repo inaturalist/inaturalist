@@ -956,6 +956,7 @@ el:
   lexicons:
     scientific_names: Επιστημονικά ονόματα
     afrikaans: Αφρικάανς
+    albanian: Αλβανικά
     bengali: Βεγγαλικά
     catalan: Καταλανικά
     cebuano: Σεμπουανικά
@@ -1077,6 +1078,7 @@ el:
     pt-BR: Πορτογαλικά (Βραζιλίας)
     pt-PT: Πορτογαλικά (Πορτογαλίας)
     ru: Ρωσικά
+    sq: Αλβανικά
     zh-CN: Κινέζικα (Απλοποιημένα)
     zh-TW: Κινεζικά (Παραδοσιακά)
   location: Τοποθεσία
@@ -1435,7 +1437,6 @@ el:
   other_animals_plural:
     one: άλλο ζώο
     other: άλλα ζώα
-  other_annimals: Άλλα ζώα
   other_lexicons: Άλλα λεξικά
   our_blog: Το ιστολόγιό μας
   out_of_range: Εκτός εύρους
@@ -2131,6 +2132,9 @@ el:
   datetime:
     distance_in_words:
       half_a_minute: μισό λεπτό
+    countdown_x_days:
+      one: ημέρα)
+      other: ημέρες)
     countdown_x_minutes:
       one: λεπτό
       other: λεπτά

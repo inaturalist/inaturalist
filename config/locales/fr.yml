@@ -2967,7 +2967,6 @@ fr:
   other_animals_plural:
     one: autre animal
     other: autres animaux
-  other_annimals: Autres animaux
   other_lexicons: Autres lexicons
   other_listings_of_this_taxon_for_this_place: Autres listes de ce taxon pour ce lieu
   other_species_commonly_misidentified_as_this_species: Autres espèces souvent confondues
@@ -5565,6 +5564,9 @@ fr:
         license: Licence que l’observateur a choisie pour cette observation
         url: URL de l’observation
         image_url: URL de l’image par défaut
+        sound_url: URL pour le son par défaut. Notez que cela ne fonctionnera que
+          pour les téléchargements directs, non pour les sons hébergés sur des services
+          tiers
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau
           pays

@@ -2522,6 +2522,18 @@ ko:
     - :월
     - :일
   datetime:
+    countdown_x_days:
+      one: 일
+      other: 일
+    countdown_x_hours:
+      one: 시간
+      other: 시간
+    countdown_x_minutes:
+      one: 분
+      other: 분
+    countdown_x_seconds:
+      one: 초
+      other: 초
     prompts:
       day: 일
       hour: 시간

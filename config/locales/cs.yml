@@ -2702,7 +2702,6 @@ cs:
   other_animals_plural:
     one: jiné zvíře
     other: jiná zvířata
-  other_annimals: Ostatní zvířata
   other_listings_of_this_taxon_for_this_place: Jiné záznamy o tomto taxonu z tohoto
     místa
   other_species_commonly_misidentified_as_this_species: Další druhy často chybně identifikované
@@ -5735,6 +5734,9 @@ cs:
     - :den
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: 1 hodina
+        other: '%{count} hodiny'
       about_x_months:
         one: asi 1 měsíc
         other: asi %{count} měsíce/ů

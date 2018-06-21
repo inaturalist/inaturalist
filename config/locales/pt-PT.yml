@@ -34,6 +34,9 @@ pt-PT:
   x_ids:
     one: 1 ID
     other: '%{count} IDs'
+  x_lists:
+    one: 1 lista
+    other: '%{count} listas'
   x_journal_posts:
     one: 1 entrada de diário
     other: '%{count} entradas de diário'
@@ -43,6 +46,9 @@ pt-PT:
   x_matching_taxa_html:
     one: <span class="count">1</span> táxon coincidente
     other: <span class="count">%{count}</span> taxa coincidente
+  x_misidentifications_of_this_species:
+    one: 1 identificação incorreta desta espécie
+    other: '%{count} identificações incorretas desta espécie'
   x_observations:
     one: 1 observação
     other: '%{count} observações'
@@ -2365,7 +2371,6 @@ pt-PT:
   other_animals_plural:
     one: outro animal
     other: outros animais
-  other_annimals: Outros animais
   other_listings_of_this_taxon_for_this_place: Outros registos deste táxon para este
     local
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam

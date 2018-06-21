@@ -64,6 +64,9 @@ it:
   x_matching_taxa_html:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
+  x_misidentifications_of_this_species:
+    one: 1 identificazione errata di questa specie
+    other: '%{count} identificazioni errate di questa specie'
   x_observations:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -2876,7 +2879,6 @@ it:
   other_animals_plural:
     one: 1 altro animale
     other: altri animali
-  other_annimals: Altri Animali
   other_lexicons: Altre lingue
   other_listings_of_this_taxon_for_this_place: Altre osservazioni di questo taxon
     per questo luogo

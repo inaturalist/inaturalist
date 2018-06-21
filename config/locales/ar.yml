@@ -52,6 +52,8 @@ ar:
   x_matching_taxa_html:
     one: <span class="count">1</span> أصنوفة مطابقة
     other: <span class="count">%{count}</span> أصنوفة مطابقة
+  x_misidentifications_of_this_species:
+    other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -2745,7 +2747,6 @@ ar:
   other_animals_plural:
     one: حيوان آخر
     other: حيوانات أخرى
-  other_annimals: حيوانات أخرى
   other_lexicons: معاجم أخرى
   other_listings_of_this_taxon_for_this_place: قوائم أخرى لهذه الأصنوفة لهذا المكان
   other_species_commonly_misidentified_as_this_species: الأنواع الأخرى عادة ما يتم
@@ -5104,6 +5105,8 @@ ar:
         license: الترخيص الذي اختاره الملاحظ لهذه الملاحظة
         url: مسار للملاحظة
         image_url: مسار للصورة الافتراضية
+        sound_url: مسار للصوت الافتراضي، لاحظ أنه سيعمل فقط للمرفوعات المباشرة، وليس
+          الأصوات المستضافة في خدمات الجهات الخارجية
         tag_list: قائمة مفصولة بفواصل بالعلامات
         place_admin1_name: اسم المكان الإداري مرتبة واحدة تحت مستوى البلد
         place_admin2_name: اسم المكان الإداري رتبان تحت مستوى البلد
@@ -6008,6 +6011,18 @@ ar:
       x_seconds:
         one: ثانية واحدة
         other: '%{count} ثانية'
+    countdown_x_days:
+      one: يوم
+      other: أيام
+    countdown_x_hours:
+      one: ساعة واحدة
+      other: ساعات
+    countdown_x_minutes:
+      one: دق
+      other: دق
+    countdown_x_seconds:
+      one: ثان
+      other: ثوانٍ
     prompts:
       day: يوم
       hour: ساعة

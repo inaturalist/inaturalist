@@ -13,6 +13,15 @@
 # Author: Milot
 ---
 sq:
+  x_comments:
+    one: 1 koment
+    other: '%{count} komentet'
+  x_followers:
+    one: 1 ndjekës
+    other: '%{count} ndjekësit'
+  x_identifications:
+    one: 1 identifikim
+    other: '%{count} identifikimet'
   x_identifications_html:
     one: <span class="count">1</span> identification
     other: <span class="count">%{count}</span> identifications
@@ -73,9 +82,18 @@ sq:
   x_people_like_this:
     one: 1 person ka pëlqyer këtë
     other: '%{count} people like this'
+  x_people_agree_html:
+    one: <span class="count">1</span> personi pajtohet
+    other: <span class="count">%{count}</span> njerëzit pajtohen
   x_species:
     one: 1 lloj
     other: '%{count} species'
+  x_species_html:
+    one: <span class='count'>1</span> speciet
+    other: <span class='count'>%{count}</span> speciet
+  x_species_link_html:
+    one: <a href='%{url}'>1 speciet</nje>
+    other: <a href='%{url}'>%{count} speciet</a>
   x_suggestions_filtered_by_colon:
     one: '1 Suggestion Filtered By:'
     other: '%{count} Suggestions Filtered By:'
@@ -380,6 +398,48 @@ sq:
     ray_finned_fishes: Peshqit pendë-rreze
     reptiles: Zvarranikët
     life: Jeta
+    x_plantae:
+      one: 1 bimë
+      other: '%{count} bimët'
+    x_animalia:
+      one: 1 kafshë
+      other: '%{count} kafshët'
+    x_mollusca:
+      one: 1 mollusk
+      other: '%{count} mollusqet'
+    x_amphibia:
+      one: 1 amfib
+      other: '%{count} amfibët'
+    x_mammalia:
+      one: 1 gjitar
+      other: '%{count} gjitarët'
+    x_actinopterygii:
+      one: 1 peshk pendë rrezë
+      other: '%{count} peshqit pendë rrezë'
+    x_reptilia:
+      one: 1 zvarranik
+      other: '%{count} zvarranikët'
+    x_aves:
+      one: 1 zog
+      other: '%{count} zogjtë'
+    x_insecta:
+      one: 1 insekt
+      other: '%{count} insektet'
+    x_arachnida:
+      one: 1 araknid
+      other: '%{count} araknidët'
+    x_fungi:
+      one: 1 kërpudhë
+      other: '%{count} kërpudhat'
+    x_chromista:
+      one: 1 kromist
+      other: '%{count} kromistët'
+    x_protozoa:
+      one: 1 protozoar
+      other: '%{count} protozoarët'
+    x_other_animals:
+      one: 1 kafshë tjetër
+      other: '%{count} kafshët tjera'
   all_taxa_: Të gjitha taxat
   all_taxa_in_this_guide: Të gjitha taxat në këtë udhëzues
   all_taxonomic_groups: '&laquo; Të gjitha grupet taksonomike'
@@ -418,6 +478,9 @@ sq:
     tuaj dhe pastaj t’i lidhni llogaritë me njëra tjetrën. Përndryshe %{site_name}
     mund të mos jetë në gjendje të kuptojë që dy llogaritë janë të lidhura dhe mund
     të krijojë një llogari të re.
+  and_x_more_people!:
+    one: dhe 1 njeri më shumë
+    other: '%{count} më shumë njerëz'
   android: Android
   animals: Kafshët
   animated_observations_map: Harta e vëzhgimeve të animuara
@@ -1679,6 +1742,9 @@ sq:
   if_you_already_have_an_account: Nëse tanimë keni %{article} %{site_name} llogari...
   if_you_dont_want_us_to_share_your_data: Nëse nuk dëshironi që ne ti ndajmë të dhënat
     tuaja
+  if_you_have_any_trouble_with_the_site_check_out: Nëse keni ndonjë pyetje, ju lutemi
+    shihi <a href="%{help_url}">seksioni ndihmës</a> apo posto një mesazh tek<a href="%{feedback_url}">grup
+    pergjigjesh </a>tona.
   if_you_have_trouble_with_the_site: 'Nëse keni ndonjë problem me këtë faqe, ju lutem
     shikoni seksionin tonë të ndihmës:'
   if_you_use: Nëse përdorni
@@ -2290,6 +2356,7 @@ sq:
   naturalized: i natyralizuar
   native: autokton
   native_page_url: IP adresa e faqes vendëse
+  native_to_place: Autokton në %{place}
   nav_description: Lorem Ipsum është një tekst shabllon i industrisë së printimit
     dhe shtypshkronjave. Lorem Ipsum ka qenë teksti shabllon i industrisë që nga vitet
     1500, kur një shtypës i panjohur morri një galeri shkrimesh dhe i ngatërroi për
@@ -2361,6 +2428,7 @@ sq:
   no_description: Pa pershkrim
   no_facebook_photos: Ne nuk mund të gjejmë ndonjë foto nga Facebook.
   no_flags: Nuk ka flamuj këtë herë
+  no_flickr_photos_tagged: Nuk u gjet asnje etiketim në fotot e Flickr!
   no_identifications: Asnjë identifikim
   no_identifications_added:
     current_user: Ju nuk keni shtuar identifikime për vëzhgimet e askujt.
@@ -2602,6 +2670,7 @@ sq:
     për më shumë informacion mbi terminologjinë </a>
   occurrence_status: Statusi i përhapjes
   occurrence_status_levels:
+    present: i tanishëm
     common: i zakonshëm
     uncommon: i pazakontë
     irregular: i ç'regullt
@@ -2663,36 +2732,93 @@ sq:
   only_an_admin_can_remove_project_users: Vetem administratori mund te largoje perdoruesit
     e projekteve
   only_receive_updates_about_this_taxon: Merrni vetëm përditësime për këtë takson
+  only_species: Vetëm specjet
+  only_species_and_subspecies: Vetëm specjet dhe nënspecjet/llojet
+  only_the_author_of_this_post_can_do_that: Vetëm autori i ketij postimi mund ta bëjë
+    këtë. Mos u bëni i ligë.
+  only_the_owner_of_this_list_can_do_that: Vetëm pronari i kesaj liste mund ta bëjë
+    këtë. Mos u bëni i ligë.
   only_the_project_admin_can_delete_this_project: Vetem administratori i projektit
     mund ta fshije kete projekt.
   only_you: Vetem ju
   open: hape
   open_: Hape
+  open_description: Çdokush mund ti shohë koordinatat përveç nëse taxon-i është i
+    rrezikuar.
+  opt_in_for_this_observation: Zgjidhni për këtë vëzhgim
+  optional: zgjedhore
+  optional_columns_note_for_any: 'Kolonat opsionale (shënim: Për t''u përdorur cilado
+    nga kolonat në vëzhgim, duhet që të gjitha të jenë prezente)'
+  or: ose
+  or_choose_high_level_taxa: '...ose zgjidh nga ndonjë taxa e nivelit më të lartë'
   or_if_you_dont_want_email: Apo, ne qofte se nuk deshironi mesazhet...
   or_invite_your_friends: apo fto miqte tuaj
   or_invited: apo te ftuar
   or_post_message_to_google_group: 'apo posto mesazhin ne grupin tone ne Google:'
+  or_upload: Ose ngarko
+  or_you_can: Ose mundeni të...
+  or_you_can_: ose mundeni të
+  orange: Portokalli
+  order: Rendit
+  order_by: Rendit sipas
+  organism_is_wild: Organizmi është i egër
+  organisms: Organizmat
   original: Origjinal
-  other_annimals: Kafshët e tjera
+  originally_flagged_by: Fillimisht e shenjuar nga
+  originally_imported_from_url_html: Fillimisht e importuar nga <a href='%{url}'>%{url}</a>
+  original_page_url_for_this_photo: Liku i faqes orgjinale e për këtë foto.
+  original_rights_holder: Mbajtësi i të drejtave të origjinalitetit
+  original_url: URL origjinale
+  original_url_for_this_map: URL origjinale për këtë hartë
+  organism_appears_captive_cultivated: Organizmi shfaqet i mbyllur / kultivuar
+  other: Tjetër
+  other_animals: kafshë tjera
+  other_animals_plural:
+    one: kafshë tjetër
+    other: kafshë tjera
+  other_lexicons: Leksikone tjera
+  our_blog: Blogu ynë
+  owner: Pronar
+  parent: Prindi
+  parent_name: Emri i prindit
   password: Fjalëkalimi
   password_confirmation: Konfirmim i fjalëkalimit
+  paste: Ngjit
   pdf: PDF
   pdf_slash_print: PDF/Print
   people: Njerëz
   people_agree: Njerëz që pajtohen
   people_following_user: Njerëz që ndjekin %{user}
   people_user_follows: Njerëz që %{user} i ndjek
+  people_added:
+    observation: Shtoi nje %{observation_link} te %{taxon_link}
+    identification:
+      with_observation: Shtoi nje %{observation_link}te %{user_link}
+      without_observation: Shtoi nje <strong>ID</strong>
+    post: Beri nje %{post_link}
+    comment:
+      with_by: Komentoi ne %{comment_subject_link} nga %{by_link}
+      without_by: Komentoi ne @vow_or_con{vow:an|a} %{comment_subject_link}
   per_day: Në ditë
   per_month: Në muaj
   per_week: Në javë
+  person: personi
   personal_message: Mesazh personal
   personal_message_description: Askush nuk deshiron të marrë email nga një makinë!
     Përse nuk ua bën me dije miqve se përse i ftoni ato?
   per_page: Për faqe
+  permalink: Link permanent
   photo: Fotografi
+  photo?: Foto?
+  photo_attribution: Foto %{attribution}
   photo_deleted: Fotografia u fshi
+  photo_type: Lloji i fotos
   photos_chosen_for_this_taxon: Fotot e zgjedhura për këtë taxon
+  photos_from: Foto nga
+  photos_of: Fotot e
   photos_of_taxon_html: Fotografitë e %{taxon}
+  photos_or_sounds: Foto apo tinguj
+  photos_or_sounds?: Foto apo tinguj?
   photos_size:
     small: e vogël
     medium: e mesme
@@ -2701,6 +2827,8 @@ sq:
   photos_size_photos: fotografi %{photos_size}
   photos_size_photo: fotografi %{photos_size}
   photos_updated: fotografia u përditësua.
+  google_account_not_linked: '%{user} nuk ka më një llogari të lidhur me facebook,
+    kështu që %{site_name} nuk ka leje për të parë këtë foto.'
   picasa_identity: Identiteti Pikasa
   pick_a_username: Perzgjidh nje emer perdoruesi
   pink: njgyre roze
@@ -2865,6 +2993,7 @@ sq:
   positional_accuracy: Saktësi pozicionimi
   possessive_user: i/e %{user}
   post: Posto
+  post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
   previewing: Duke paraafishuar...
   previous: Paraprak
@@ -2987,6 +3116,36 @@ sq:
     Kontrolloni më vonë
   subscribe_to_a_taxon: Regjistrohu tek një Taxon
   taxon: Taxon
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} është një %{rank} në %{iconic_taxon} me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} në %{iconic_taxon} me %{count} vëzhgimet'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} është një %{rank} të amfibeve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të amfibeve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} është një %{rank} të zogjve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të zogjve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} është një %{rank} të gjitarëve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të gjitarëve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} është një %{rank} të zvarranikëve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të zvarranikëve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} është një %{rank} të bimëve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të bimëve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} është një %{rank} së peshqve rajë 1 vëzhgim'
+    other: '%{taxon} është një %{rank} së peshqve rajë me %{count} vëzhgimet'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} është një %{rank} të kafshëve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të kafshëve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} është një %{rank} të insekteve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të insekteve me %{count} vëzhgimet'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} është një %{rank} të araknidëve me 1 vëzhgim'
+    other: '%{taxon} është një %{rank} të kafshëve me %{count} vëzhgimet'
   taxon_: taxon
   taxon_change: ndryshim i taxon
   taxon_doesnt_have_a_range: Taxon nuk ka një varg

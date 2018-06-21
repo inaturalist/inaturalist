@@ -41,6 +41,9 @@ eu:
   x_species_html:
     one: <span class='count'>1</span> espezie
     other: <span class='count'>%{count}</span> espezieak
+  x_suggestions_filtered_by_colon:
+    one: '1 Iradukizuna Hautatua:'
+    other: '%{count} Iradokizunak Hautatuta:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> behatutako taxona</span>
     other: <span class='count'>%{count}</span> behatutako taxonak</span>
@@ -1842,7 +1845,7 @@ eu:
   observation_rules: Behaketa-arauak
   observation_rules_description: 'Zuk arauak sor ditzakezu proiektuari zein behaketa
     gehitu daitezkeen zehazteko. Esate baterako, behaketak leku jakin batera mugatzea.
-    Oharra: Lekuen mugaketa hemen oinarritzen da gaur egun: Places. Behaketak
+    Oharra: Lekuen mugaketa hemen oinarritzen da gaur egun: %{site_name} Places. Behaketak
     leku baten inguruko laukizuzen txikienera soilik mugatu ditzake.'
   observation_was_deleted: Behaketa ezabatu egin da.
   observation_would_like_some_help: ¡%{user}-(e)k laguntza pixka bat beharko luke
@@ -1983,7 +1986,6 @@ eu:
   other_animals_plural:
     one: beste animalia bat
     other: beste animalia batzuk
-  other_annimals: Beste animalia batzuk
   our_blog: Gure bloga
   out_of_range: Mailatik kanpo
   owner: Jabea

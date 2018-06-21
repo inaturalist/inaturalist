@@ -64,6 +64,9 @@ es:
   x_matching_taxa:
     one: 1 taxón que coincide
     other: '%{count} taxones que coinciden'
+  x_matching_taxa_html:
+    one: <span class="count">1</span> coincidencia de taxón
+    other: <span class="count">%{count}</span> coincidencia de los taxones
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
@@ -94,6 +97,9 @@ es:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> grupo observado</span>
+    other: <span class='count'>%{count}</span> grupos observados</span>
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -123,9 +129,15 @@ es:
       investigación para especies o descendientes</span>
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span> grupo observado</span>
+    other: <span class='count'>%{count}</span> grupos observados</span>
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
+  x_taxon_changes_added_html:
+    one: <span class='count'>1</span> grupo observado</span>
+    other: <span class='count'>%{count}</span> grupos observados</span>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
   a: un(a)
@@ -2868,7 +2880,6 @@ es:
   other_animals_plural:
     one: otro animal
     other: otros animales
-  other_annimals: Otros animales
   other_lexicons: Otros léxicos
   other_listings_of_this_taxon_for_this_place: Otras ejemplas de este especies listado
     en este lugar
@@ -3155,7 +3166,7 @@ es:
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
   post: Ingresar
-  post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
+  post_from_journal_by_parent_html: Publicación del <a href="%{url}">diario de %{parent}</a>
   post_from_your_journal_html: Publicación de <a href="%{url}">tu diario</a>
   post_published: ¡Nota publicada!
   post_some_new_stuff: publicar algo nuevo
@@ -3197,6 +3208,9 @@ es:
   profile: Perfil
   project: Proyecto
   project_added_your_observations: Se añadió el proyecto a tus observaciones
+  project_admins:
+    one: Administrador de proyecto
+    other: Proyecto admins
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3870,6 +3884,34 @@ es:
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} es un %{rank} en %{iconic_taxon} con una observación'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} es un %{rank} de anfibios con una observación'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} es un %{rank} de aves con una observación'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} es un %{rank} de mamíferos con una observación'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} es un %{rank} de reptiles con una observación'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} es un %{rank} de plantas con una observación'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} es un %{rank} de peces con aletas radiadas con una observación'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} es un %{rank} de animales con una observación'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} es un %{rank} de insectos con una observación'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} es un %{rank} de arácnidos con una observación'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} es un %{rank} de hongos con una observación'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} es un %{rank} de protozoarios con una observación'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} es un %{rank} de moluscos con una observación'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una observación'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
     other: '%{taxon} es un reino con %{count} observaciones'
@@ -6162,7 +6204,7 @@ es:
           identificaciones, pero la opinión de la comunidad no serán priorizadas frente
           a la suya. Esto significa que sus observaciones sólo serán de grado de investigación,
           cuando usted esté de acuerdo con la comunidad.'
-        search_place_help_html: Sitio de defecto para búsquedas de observaciones.
+        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
         scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
         youve_used_all_of_your_blocks: Has utilizado todos tus bloques. Quita un bloque
           para añadir otro.
@@ -6322,6 +6364,9 @@ es:
     countdown_x_hours:
       one: hora
       other: horas
+    countdown_x_minutes:
+      one: min
+      other: min
     countdown_x_seconds:
       one: s
       other: s
@@ -6449,8 +6494,14 @@ es:
         too_short:
           one: es demasiado corto (el mínimo es 1 carácter)
           other: es demasiado corto (el mínimo son %{count} caracteres)
+        wrong_length:
+          one: no tiene el tamaño correcto(debe ser de 1 carácter)
+          other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Hubo problemas con los siguientes campos:'
+        header:
+          one: 1 error prohibió este %{model} de ser salvado
+          other: '%{count} errores prohibieron este %{model} de ser salvado'
   activerecord:
     errors:
       models:

@@ -2833,7 +2833,6 @@ da:
   other_animals_plural:
     one: andet dyr
     other: andre dyr
-  other_annimals: Andre dyr
   other_lexicons: Andre leksika
   other_listings_of_this_taxon_for_this_place: Andre fortegnelser over denne takson
     for dette sted
@@ -5292,6 +5291,8 @@ da:
         license: Licens, som observatøren har valgt til denne observation
         url: URL for observationen
         image_url: URL til standardbilledet
+        sound_url: URL for standard lyden. Bemærk at det kun virker ved direkte uploads
+          og ikke lyde som er hosted på tredjeparts services
         tag_list: Kommasepareret liste over tags
         place_admin1_name: Navn på det administrative sted en rang under landeniveau
         place_admin2_name: Navn på det administrative sted to rang under landeniveau
