@@ -27,6 +27,7 @@ class ObservationPhoto < ActiveRecord::Base
     return true unless observation
     return true if observation.new_record? # presumably this will happen when the obs is saved
     Observation.set_quality_grade( observation.id )
+    observation.elastic_index!
     true
   end
 
