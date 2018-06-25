@@ -9,6 +9,7 @@
 # Author: Jaumeortola
 # Author: Lib2know
 # Author: Macofe
+# Author: Quel.soler
 ---
 ca:
   x_comments:
@@ -703,6 +704,8 @@ ca:
   by_user: per %{user}
   by_you: Pròpies
   calendar: Calendari
+  calendars_only_show_x_observations_at_time: Els calendaris només mostren %{x} observacions
+    alhora
   can_you_help_your_friends_id_these: Podeu ajudar a ID aquestes observacions?
   cancel: Cancel·la
   cant_flag_an_object_that_doesnt_exist: No podeu posar una marca a un contingut que
@@ -1895,6 +1898,7 @@ ca:
   joined!: Unit!
   joined_any_projects: unit a cap projecte.
   joined_projects: Projectes als que us heu unit
+  joined_with_date: 'Donat d''alta: %{date}'
   joining: Unint-se
   journal: Revista
   journal_archives_for: Arxius de revistes de
@@ -1919,6 +1923,7 @@ ca:
   location_unknown: Ubicació desconeguda
   language_slash_type: Idioma / Tipus
   large: gran
+  last_active_with_date: 'Darrera activitat: %{date}'
   last_confirmed_observation: Última observació confirmada
   last_inat_observation: Última observació a %{site_name}
   last_observation: Darrera observació
@@ -1958,6 +1963,7 @@ ca:
   lexicons:
     scientific_names: Noms científics
     afrikaans: Afrikaans
+    albanian: Albanès
     bengali: Bengalí
     catalan: Català
     cebuano: Cebuà
@@ -2146,6 +2152,7 @@ ca:
     pt-BR: Portuguès (Brasil)
     pt-PT: Portuguès (Portugal)
     ru: Rus
+    sq: Albanès
     zh-CN: Xinès (simplificat)
     zh-TW: Xinès (tradicional)
   locality_notes: Notes locals
@@ -3143,6 +3150,8 @@ ca:
   positional_accuracy: Precisió de la ubicació
   possessive_user: de %{user}
   post: Publica
+  post_from_journal_by_parent_html: Publicació de <a href="%{url}">diari de %{parent}</a>
+  post_from_your_journal_html: Publicació de <a href="%{url}">el vostre diari</a>
   post_published: Nota publicada!
   post_some_new_stuff: nova publicació
   posted_by: Publicat per
@@ -3242,8 +3251,9 @@ ca:
   projects: Projectes
   projects_description: Els projectes són una manera d'agrupar les vostres observacions
     amb les d’altres persones a %{site_name}. Tant si us interessa iniciar un projecte
-    científic ciutadà com si només voleu mantenir registres de les aus d'un parc proper
-    al vostre club d'observació local, podeu fer servir projectes.
+    científic ciutadà com si només voleu mantenir registres de les aus del vostre
+    veïnat, podeu fer servir projectes.
+  projects_from_everywhere: Projectes de tot arreu
   projects_from_place: Projectes de %{place}
   projects_in_x: Projectes en %{x}
   projects_you_admin: Projectes que administreu
@@ -3919,7 +3929,9 @@ ca:
     data_url: URL de les dades
     overlays: Capes
   taxon_changes: Canvis de tàxon
+  taxon_colors: Colors del taxon
   taxon_curators: Conservadors del Taxon
+  taxon_extras: Extres del taxon
   taxon_merge: fusió de tàxon
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de
@@ -3932,6 +3944,7 @@ ca:
     uns minut perquè aparegui als mapes.
   taxon_range_updated_notice: El rang del tàxon a estat actualitzat correctament.
     Espereu uns minut perquè els canvis apareguin als mapes.
+  taxon_ranks: Categories del Taxon
   taxon_removed_from_list: Tàxon eliminat de la llista.
   taxon_scheme: Esquema de taxonomia
   taxon_schemes: Esquema de taxonomia
@@ -4407,6 +4420,7 @@ ca:
   users_latest_observations_on_site: Últimes observacions de %{user} a %{site}
   users_observations: Observacions de %{user}
   users_profile: Perfil de %{user}
+  users_projects: Projectes de %{user}
   users_year_on_site: L'any %{year} de %{user} a %{site}
   using_a_license: utilitzant una llicència
   using_cc_license_makes_easier_use_your_data: En utilitzar una llicència de <strong>Reconeixement
@@ -5669,6 +5683,7 @@ ca:
           i es retallarà en forma de quadrat.
         project_name: Nom del Projecte
         project_summary: Resum de projecte
+        welcome_to_projects: benvinguts al Projects!
       project_location_privacy_notice_html: |-
         <p>
         Si us plau, tingueu en comte que els supervisors del projecte poden veure les ubicacions privades o enfosquides de les vostres observacions a aquest projecte llevat que hagueu revocat aquesta autorització, i afegir les vostres observacions a aquest projecte, llevat que <a href="/users/edit">ho canvieu a la vostra configuració</a>. També es pot concedir o revocar l'accés a les observacions del projecte cas per cas.

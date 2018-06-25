@@ -2348,6 +2348,7 @@ sq:
   name_provider: Emri i ofruesit
   name_providers:
     col: Katalogu i Jetës
+    nzor: Regjistri i Organizmave të Zelandës së Re
   named_based_url_might_change: Emri i bazuar ne IP adresen tuaj mund te ndryshoj,
     mirepo kjo jo.
   names: Emrat
@@ -2402,6 +2403,8 @@ sq:
   new_taxon_name: Emri i takson të ri
   new_taxon_name_for: Emri i ri i taxonit për
   new_taxon_range: Varg i Ri Taxon
+  new_taxonomic_change: Ndryshim i ri Taksonimik (Skicë)
+  new_trip: Udhëtim i ri
   new_updates_in_the_last_24_hours_from: Përditësime të reja në 24 orëshin e fundit
     nga %{site_name}
   new_user_rules: Rregullat e reja të përdoruesit
@@ -2567,6 +2570,7 @@ sq:
   observations_by_you: Vëzhgime nga ju
   observations_by_you_on_date: Vëzhgime ga ju më %{date}
   observation_calendar_for: Kalendari i vëzhgimeve për %{user} në %{year}
+  observation_contest: Gara e vëzhgimeve
   observation_date: Data
   observation_date?: Data?
   observation_field: Fushë e vëzhgimit
@@ -2626,12 +2630,17 @@ sq:
     këto kushte
   observations_it_may_take_a_few: Vëzhgime. Mund të marrë disa minuta.
   observations_last500: Vëzhgime (500 të fundit)
+  observations_last_aggregated: Vëzhgimet e grumbulluara së fundmi
   observations_map: Vezhgimet / Harta
   observation_must_dotdotdot: Vëzhgimi duhet...
   observations_near_a_place_are: Vëzhgimet “afër” një vendi të caktuar ndodhin brenda
     një drejtkëndëshi të vizatuar përgjatë rrethojës së vendit, çka mund të rezultojë
     në pasaktësi për vendet që nuk ngjasojnë me formën e drejtkëndëshit. Kjo ndodh
     për shkak të një kufizimi në bazën e të dhënave, të cilin po përpiqemi ta zgjidhim.
+  observations_obscured: Vëzhgimet (e fshehura)
+  observations_observed_this_month: Vëzhgimet <em>observed</em> këtë muaj, jo të shtuara
+    këtë muaj. Dilni jashtë!
+  observations_of_relatives: Vëzhgimet e familjarëve
   observations_of_taxon: Vëzhgime të %{taxon_name}
   observations_on_inat_check_list: Vëzhgimet në %{site_name}. Vendet e konfirmuara
     të listës kontrolluese kanë së paku një vrojtim të konfirmuar brenda territorit
@@ -2651,6 +2660,7 @@ sq:
   observations_w_field: Vëzhgime javë/fushë
   observations_was_successfully_updated: Vëzhgimi/et u perditësua/n me sukses.
   observations_week: Vëzhgime/Javë
+  observations_widget: Mjet vëzhgimi
   observations_will_revert_to_casual: Vëzhgimet do të rikthehen në gradën "e rastësishme"
     nëse nuk përmbushen kriteret e lartëshënuara ose
   observations_with_this_field: Vëzhgime me këtë fushë
@@ -2669,6 +2679,7 @@ sq:
     apo i rallë është një taxon në nj[ territor të caktuar. Shih DarwinCore <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">
     për më shumë informacion mbi terminologjinë </a>
   occurrence_status: Statusi i përhapjes
+  occurrence_status_establishment_means: Gjendja e dukurisë, mjetet themeluese
   occurrence_status_levels:
     present: i tanishëm
     common: i zakonshëm
@@ -2677,6 +2688,7 @@ sq:
     doubtful: i dyshimtë
     absent: i munguar
   of: i/të
+  of_it_and_its_descendants: E tija apo e pasardhësve të tij
   of_least_concern: Të më pak i kërcënuar
   of_observations: vëzhgime
   of_species: specje
@@ -2695,17 +2707,25 @@ sq:
   on_edit_date: në %{editdate}
   on_list?: në listë
   on_submit_date: më %{submitdate}
+  on_your_life_list: Në listën tuaj të jetës
   onboarding:
     observe_panel_title: Le të fillojmë duke postuar ca vëzhgime
     observe_panel_body_p1_local: Ke nevojë për inspirim? Këtu janë disa nga organizmat
       e vëzhguar atypari...
     observe_panel_body_p1_global: Ke nevojë për inspirim? Këtu janë disa nga organizmat
       e vëzhguar...
+    observe_panel_body_p2: Dilni jashtë, dhe vëzhgoni një organizëm të ndonjë qenie.
+      Zgjedh një të egër dhe shkrep një foto të qartë kornize. Nëse vecse keni foto
+      të ndonjë organizmi të egër, <a href="%{new_observation_path}">Shtojeni tani</a>.
+      Ju gjithashtu mund të përdorni %{site_name} në mënyrë që t'i regjistroni vëzhgimet.
     observe_panel_body_p3: Pasi ndani vrojtimet tuaja me të tjerët, kjo faqe do t’ju
       shfaqë përditësimet nga komuniteti në formën e komenteve dhe identifikimeve.
       Kushedi çfarë do të zbuloni!
+    follow_panel_title_local: Ndiqni Natyralistët tuaj afër jush
+    follow_panel_title_global: Ndiqni Natyralistët më Aktivë
     follow_panel_body: Nëse vizitoni këto profile dhe klikoni butonin vijues, do të
       merrni përditësime rreth vëzhgimeve të tyre.
+    following_panel_title: Mbahuni të njoftuar për njerëzit, taxat dhe vendet
     following_panel_body: Në %{site_name} mund të ndiqni njerëz të ndryshëm dhe vëzhgimet
       që postojnë. Gjithashtu mund të regjistroheni tek specie të caktuara për t’u
       informuar rreth vëzhgimeve të reja të atyre specieve, dhe të njëjtën gjë mund
@@ -2715,6 +2735,10 @@ sq:
       të gjallesave. Këtu poshtë janë diskutimet që po ndodhin tani. (Shënim: Ju regjistroheni
       automatikisht në çdo diskutim ku shtoni komente apo identifikime. Përditësimet
       i menaxhoni në seksionin ‘Regjistrime’ djathtas.)</p>'
+    updates_by_you_panel_body: Mbani mend, në dritaren "Të gjitha përditësimet" ju
+      do të pranoni përditësimet jo vetëm të përmbajtjes suaj, por gjithashtu të përmbajtjeve
+      të njerëzve që ju ndiqni, si dhe taxave apo vendeve për të cilat ju abonoheni,
+      përmes përdorimit të veglës "Abonimet" në të djathtë.
     youve_got_updates_panel_title: Ke të reja!
     youve_got_updates_panel_body_p1: Qëndro i kyqur me përditësimet në vazhdim...
     youve_got_updates_panel_body_p2: |-
@@ -2726,12 +2750,30 @@ sq:
       </ul>
   one_by_one: Një nga një
   one_of_your_lists: Një nga listat tuaja...
+  only_a_project_manager_can_add: Vetëm njëri nga menaxherët e projektit mund të shtoj
+    gjendjen e projektit të përzgjedhur
   only_administrators_may_access_that_page: Vetem administratoret mund te qasen ne
     kete faqe
   only_accepts_taxa: pranon vetem taxa
   only_an_admin_can_remove_project_users: Vetem administratori mund te largoje perdoruesit
     e projekteve
+  only_curators_can_add_edit_scientific_names: Vetëm përgjegjësit/kuratorët mund të
+    shtojnë/redaktojnë emrat shkencorë.
+  only_curators_can_access_that_page: Vetëm përgjegjësit/kuratorët mund t'i qasen
+    kësaj faqeje.
+  only_files_with_10000_rows_at_a_time: Vetëm skeda me 10000 reshta përnjëherë herë,
+    ju lutemi
+  only_letters_numbers: Vetëm shkronja dhe numra, pa zbrazëtira, patjetër të fillojë
+    me shkronjë
+  only_one_coordinate_system_per_file: Vetëm një sistem koordinativ mund të përdoret
+    për skedë, përndryshe diskutim ose shfaqje e pasktë do të paraqitet
+  only_project_curators_can_do_that: Vetëm përgjegjësit/kuratorët e projektit mund
+    ta bëjnë atë.
   only_receive_updates_about_this_taxon: Merrni vetëm përditësime për këtë takson
+  only_show_events_that_last_less_than_2_weeks: Shfaq vetëm ngjarjet që zgjasin më
+    pak se 2 javë
+  only_show_for_species_subspecies_varieties_etc: Shfaq vetëm llojet, nënllojet, shumëllojshmëritë,
+    etj.
   only_species: Vetëm specjet
   only_species_and_subspecies: Vetëm specjet dhe nënspecjet/llojet
   only_the_author_of_this_post_can_do_that: Vetëm autori i ketij postimi mund ta bëjë
@@ -2777,7 +2819,12 @@ sq:
     one: kafshë tjetër
     other: kafshë tjera
   other_lexicons: Leksikone tjera
+  other_species_commonly_misidentified_as_this_species: Lloje të tjera zakonisht janë
+    ngatërruar si këto lloje
+  other_species_commonly_misidentified_as_this_species_in_place_html: Lloje të tjera
+    zakonisht janë ngatërruar si këto lloje në <a href="%{url}">%{place}</a>
   our_blog: Blogu ynë
+  overview: Pamje e përgjithshme
   owner: Pronar
   parent: Prindi
   parent_name: Emri i prindit
@@ -2811,6 +2858,8 @@ sq:
   photo: Fotografi
   photo?: Foto?
   photo_attribution: Foto %{attribution}
+  photo_browser: Kërkuesi i fotove
+  photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Fotografia u fshi
   photo_type: Lloji i fotos
   photos_chosen_for_this_taxon: Fotot e zgjedhura për këtë taxon
@@ -2843,10 +2892,16 @@ sq:
       airport: aeroport
       Building: Ndertese
       building: Ndërtesa
+      Continent: Kontinenti
+      continent: Kontinent
       Country: Shteti
       country: shteti
       County: Qarku
       county: qarku
+      District: Qarku
+      district: qarku
+      Division: Ndarje
+      division: ndarje
       Island: Ishull
       island: ishull
       Local_Authority: Autoritetet Vendase
@@ -3017,6 +3072,8 @@ sq:
     vëzhgimesh përveç nëse projekti është i lidhur me vend me madhësi të moderuar
     ose vetëm nëse lejon vëzhgime përndonjë taxa specifike ose taxa nga lista
   project_group_label: Grup
+  project_membership_model_description: A është projekti juaj i hapur për të gjithë
+    apo vetëm njerëzit që ju ftoni?
   project_name: Emri i projektit
   project_observation_settings: Cilësimet e vëzhgimeve të projektit
   project_observations: Vëzhgimet e projektit
@@ -3089,6 +3146,23 @@ sq:
     momentin.
   soundcloud_needs_to_confirm: SoundCloud duhet të konfirmojë që ju doni ta lidhni
     llogarinë tuaj me %{site_name}.
+  sounds:
+    add_sounds: Shto tinguj
+    listen: Dëgjo
+    no_photos_sounds: Pa foto apo tinguj
+    photos_sounds: Foto / Tinguj
+    select_one_or_more_sounds: Përzgjedhni një apo më shumë tinguj
+    selected_sounds: Tingujt e përzgjedhur
+    sound: Tingull
+    sounds: Tingujt
+    sounds_size_sound: '%{sounds_size} Tingull'
+    sounds_size_sounds: '%{sounds_size} Tinguj'
+    view_all_soundcount_sounds: Shih të gjithë %{sound_count} tingujt
+    we_didnt_find_any_sounds: Na vjen keq! Nuk arritëm të marrim ndonjë nga tingujt
+      prej llogarisë suaj në SoundCloud.
+    you_need_to_link_your_soundcloud_account: Ju duhet të lidheni me llogarinë tuaj
+      në SoundCloud në mënyrë që të shtoni tingujt.
+    your_soundcloud_account: Llogaria juaj SoundCloud
   source: Burimi
   source_: 'Burimi:'
   source_wikipedia: 'Burimi: Wikipedia'

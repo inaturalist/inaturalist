@@ -3210,7 +3210,7 @@ es:
   project_added_your_observations: Se añadió el proyecto a tus observaciones
   project_admins:
     one: Administrador de proyecto
-    other: Proyecto admins
+    other: Administradores de proyecto
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -6302,7 +6302,7 @@ es:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
       short: '%d de %b'
-      short_with_year: '%B %d, %Y'
+      short_with_year: '%d.%b.%Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:
