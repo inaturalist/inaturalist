@@ -13,6 +13,16 @@ EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :locale, "Only check this locale", type: :string, short: "-l"
   opt :filter, "Filter keys by this substring", type: :string, short: "-f"
+  opt :level, "Show only this error level.", type: :string
+end
+
+@levels = %w(error warning)
+if OPTS.level
+  if @levels.include?( OPTS.level )
+    @levels = [OPTS.level]
+  else
+    Trollop::die :level, "must be `error` or `warning`"
+  end
 end
 
 def traverse( obj, key = nil, &blk )
@@ -25,11 +35,6 @@ def traverse( obj, key = nil, &blk )
     blk.call( obj, key )
   end
 end
-
-# en = {}
-# traverse( YAML.load_file( "config/locales/en.yml" ) ) do |translation, key|
-#   en[key] = translation
-# end
 
 data = {}
 
@@ -50,7 +55,7 @@ data.each do |key, translation|
   locale = key[/^(.+?)\./, 1]
   en_key = key.sub( "#{locale}.", "en." )
   # puts "\tdata[#{en_key}]: #{data[en_key]}"
-  if translation.is_a?( String )
+  if translation.is_a?( String ) && @levels.include?( "error" )
     translation.scan( /\{\{.+?\=.+?\}\}/ ).each do |match|
       problems[key] = problems[key] || []
       problems[key] << "**ERROR:** Must not include `#{match}`"
@@ -58,7 +63,7 @@ data.each do |key, translation|
   end
   next unless data[en_key]
   if data[en_key].is_a?( Array )
-    if data[en_key].size > translation.size
+    if data[en_key].size > translation.size && @levels.include?( "warning" )
       problems[key] = problems[key] || []
       problems[key] << "WARNING: Missing #{data[en_key].size - translation.size} items"
     end
@@ -66,7 +71,7 @@ data.each do |key, translation|
   elsif !data[en_key].is_a?( String )
     next
   end
-  if translation.blank?
+  if translation.blank? && @levels.include?( "warning" )
     problems[key] = problems[key] || []
     problems[key] << "WARNING: Translation is blank"
     next
@@ -74,14 +79,14 @@ data.each do |key, translation|
   variables = data[en_key].scan( /%{.+?}/ )
   variables.each do |variable|
     # puts "\tVariable: #{variable}"
-    unless translation =~ /#{variable}/
+    if translation !~ /#{variable}/ && @levels.include?( "warning" )
       problems[key] = problems[key] || []
       problems[key] << "WARNING: Should include `#{variable}`"
     end
   end
   bad_variables = translation.scan( /%{.+?}/ )
   bad_variables.each do |bad_variable|
-    unless data[en_key] =~ /#{bad_variable.encode( "utf-8" )}/
+    if data[en_key] !~ /#{bad_variable.encode( "utf-8" )}/ && @levels.include?( "error" )
       problems[key] = problems[key] || []
       problems[key] << "**ERROR:** Must not include `#{bad_variable}`"
     end
@@ -89,7 +94,7 @@ data.each do |key, translation|
 
   if key =~ /#{locale}\..+\.one$/
     other_key = key.sub( /\.one$/ , ".other" )
-    unless data[other_key]
+    if !data[other_key] && @levels.include?( "error" )
       problems[other_key] = problems[other_key] || []
       problems[other_key] << "**ERROR:** Missing part of a plural key"
     end
@@ -97,7 +102,7 @@ data.each do |key, translation|
 
   if key =~ /#{locale}\..+\.other$/
     one_key = key.sub( /\.other$/ , ".one" )
-    unless data[one_key]
+    if !data[one_key] && @levels.include?( "error" )
       problems[one_key] = problems[one_key] || []
       problems[one_key] << "**ERROR:** Missing part of a plural key"
     end
