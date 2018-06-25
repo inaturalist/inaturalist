@@ -13,12 +13,6 @@ $.fn.universalAutocomplete = function( options ) {
       $( field ).data( "selected", false );
       return;
     }
-    // var results = $( "li:visible", options.appendTo )
-    // if ( results.length === 0 ) {
-    //   window.location = "/search?q=" + $( field ).val( );
-    // } else {
-    //   results.get( 0 ).click( );
-    // }
     window.location = "/search?q=" + $( field ).val( );
   } );
 
@@ -152,29 +146,37 @@ $.fn.universalAutocomplete = function( options ) {
     wrapperDiv.on( "mouseup", function( e ) {
       if (
         // We only care about the middle mouse button
-        e.which == 2 &&
-        // ...and not about link clicks
-        e.target.nodeName !== "A" &&
-        $( e.target ).parents( "a" ).length == 0
+        e.which == 2
       ) {
-        $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
-          item: item,
-          openBlank: true
-        } );
+        var a = e.target.nodeName == "A" ? e.target : $( e.target ).parents( "a" ).get( 0 );
+        if ( a ) {
+          window.open( a.href, "_blank" );
+        } else {
+          $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
+            item: item,
+            openBlank: true
+          } );
+        }
         e.preventDefault( );
         return false;
       }
     } );
     wrapperDiv.on( "click", function( e ) {
-      if (
-        ( e.metaKey || e.ctrlKey || e.altKey ) &&
-        e.target.nodeName !== "A" &&
-        $( e.target ).parents( "a" ).length == 0
-      ) {
-        $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
-          item: item,
-          openBlank: true
-        } );
+      var a = e.target.nodeName == "A" ? e.target : $( e.target ).parents( "a" ).get( 0 );
+      if ( e.metaKey || e.ctrlKey || e.altKey ) {
+        if ( a ) {
+          window.open( a.href, "_blank" );
+        } else {
+          $( field ).data( "ui-autocomplete" )._trigger( "select", "autocompleteselect", {
+            item: item,
+            openBlank: true
+          } );
+        }
+        e.preventDefault( );
+        return false;
+      }
+      if ( a ) {
+        window.location = a.href;
         e.preventDefault( );
         return false;
       }

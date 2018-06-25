@@ -1,8 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ObservationPhoto, "creation" do  
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
 
   it "should update observation quality grade" do
     o = Observation.make!( observed_on_string: "2017-02-01", latitude: 1, longitude: 1 )
@@ -32,6 +34,8 @@ end
 describe ObservationPhoto, "destruction" do
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
 
   it "should update observation quality grade" do
     o = make_research_grade_observation

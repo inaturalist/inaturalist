@@ -651,13 +651,22 @@ describe Identification, "deletion" do
   end
 
   it "should remove the observation's community taxon if no more identifications" do
-    o = Observation.make!(:taxon => Taxon.make!)
-    i = Identification.make!(:observation => o, :taxon => o.taxon)
+    o = Observation.make!( taxon: Taxon.make! )
+    i = Identification.make!( observation: o, taxon: o.taxon )
     o.reload
-    expect(o.community_taxon).to eq o.taxon
+    expect( o.community_taxon ).to eq o.taxon
     i.destroy
     o.reload
-    expect(o.community_taxon).to be_blank
+    expect( o.community_taxon ).to be_blank
+  end
+
+  it "should remove the observation.taxon if there are no more identifications" do
+    o = Observation.make!
+    i = Identification.make!( observation: o )
+    expect( o.taxon ).to eq i.taxon
+    i.destroy
+    o.reload
+    expect( o.taxon ).to be_blank
   end
 
   it "destroys automatically created reviews" do

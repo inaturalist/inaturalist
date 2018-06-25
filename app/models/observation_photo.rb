@@ -6,8 +6,9 @@ class ObservationPhoto < ActiveRecord::Base
   validates_uniqueness_of :photo_id, scope: :observation_id
   validate :observer_owns_photo
   
-  after_create :set_observation_quality_grade,
-               :set_observation_photos_count
+  after_commit :set_observation_quality_grade,
+               :set_observation_photos_count,
+               on: :create
   after_destroy :destroy_orphan_photo, :set_observation_quality_grade, :set_observation_photos_count
 
   include Shared::TouchesObservationModule
@@ -26,6 +27,7 @@ class ObservationPhoto < ActiveRecord::Base
     return true unless observation
     return true if observation.new_record? # presumably this will happen when the obs is saved
     Observation.set_quality_grade( observation.id )
+    observation.elastic_index!
     true
   end
 
