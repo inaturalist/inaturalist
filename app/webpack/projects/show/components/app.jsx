@@ -18,7 +18,7 @@ import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 
-const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) => {
+const App = ( { config, project, join, leave, setSelectedTab, convertProject } ) => {
   let view;
   let tab = config.selectedTab;
   const showingCountdown = ( project.startDate && !project.started && tab !== "about" &&
@@ -53,6 +53,7 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
         ( <OverviewTabContainer /> );
   }
   const loggedIn = config.currentUser;
+  const userIsOwner = loggedIn && config.currentUser.id === project.user_id;
   const userIsManager = loggedIn &&
     _.find( project.admins, a => a.user.id === config.currentUser.id );
   const viewerIsAdmin = loggedIn && config.currentUser.roles &&
@@ -60,38 +61,38 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
   const hasIcon = !project.hide_title && project.customIcon && project.customIcon( );
   const hasBanner = !!project.header_image_url;
   const colorRGB = tinycolor( project.banner_color || "#28387d" ).toRgb( );
-  let followLabel;
-  if ( loggedIn ) {
-    if ( project.follow_status === "saving" ) {
-      followLabel = ( <div className="loading_spinner" /> );
+  let membershipLabel;
+  if ( loggedIn && !userIsOwner ) {
+    if ( project.membership_status === "saving" ) {
+      membershipLabel = ( <div className="loading_spinner" /> );
     } else {
-      followLabel = project.currentUserSubscribed ? I18n.t( "unfollow" ) : I18n.t( "follow" );
+      membershipLabel = project.currentUserIsMember ? I18n.t( "leave" ) : I18n.t( "join" );
     }
   } else {
-    followLabel = I18n.t( "followers" );
+    membershipLabel = I18n.t( "members" );
   }
   const headerButton = (
-    <div className="header-followers-button">
+    <div className="header-members-button">
       <div
-        className={ `action ${loggedIn && "clicky"}` }
+        className={ `action ${membershipLabel !== I18n.t( "members" ) && "clicky"}` }
         onClick={ ( ) => {
-          if ( loggedIn ) {
-            subscribe( );
+          if ( loggedIn && !userIsOwner ) {
+            project.currentUserIsMember ? leave( ) : join( );
           }
         } }
       >
-        { followLabel }
+        { membershipLabel }
       </div>
       <UsersPopover
-        users={ project.followers_loaded ?
-          _.compact( _.map( project.followers.results, "user" ) ) : null }
-        keyPrefix="followers-popover"
+        users={ project.members_loaded ?
+          _.compact( _.map( project.members.results, "user" ) ) : null }
+        keyPrefix="members-popover"
         placement="bottom"
         returnContentsWhenEmpty
         contents={ (
           <div className="count">
             <i className="fa fa-user" />
-            { project.followers_loaded ? project.followers.total_results : "---" }
+            { project.members_loaded ? project.members.total_results : "---" }
           </div>
         ) }
       />
@@ -255,7 +256,8 @@ const App = ( { config, project, subscribe, setSelectedTab, convertProject } ) =
 App.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
-  subscribe: PropTypes.func,
+  join: PropTypes.func,
+  leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
   convertProject: PropTypes.func
 };

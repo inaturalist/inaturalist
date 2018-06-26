@@ -20,10 +20,18 @@ export default function reducer( state = { }, action ) {
   return state;
 }
 
-export function setProject( project ) {
-  return {
-    type: SET_PROJECT,
-    project: new Project( project )
+export function setProject( p ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const project = new Project( p );
+    if ( state.config.currentUser && _.includes( project.user_ids, state.config.currentUser.id ) ) {
+      project.currentUserIsMember = true;
+    }
+    dispatch( {
+      type: SET_PROJECT,
+      project
+    } );
+    console.log( project );
   };
 }
 
@@ -34,27 +42,14 @@ export function setAttributes( attributes ) {
   };
 }
 
-export function fetchSubscriptions( ) {
+export function fetchMembers( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    if ( !state.project || !state.config.currentUser ) { return null; }
-    const params = { id: state.project.id };
-    return inatjs.projects.subscriptions( params ).then( response => {
+    const params = { id: state.project.id, per_page: 100, order: "login" };
+    return inatjs.projects.members( params ).then( response => {
       dispatch( setAttributes( {
-        currentUserSubscribed: !_.isEmpty( response.results )
-      } ) );
-    } ).catch( e => { } );
-  };
-}
-
-export function fetchFollowers( ) {
-  return ( dispatch, getState ) => {
-    const state = getState( );
-    const params = { id: state.project.id, per_page: 100 };
-    return inatjs.projects.followers( params ).then( response => {
-      dispatch( setAttributes( {
-        followers_loaded: true,
-        followers: response
+        members_loaded: true,
+        members: response
       } ) );
     } ).catch( e => { } );
   };
@@ -306,8 +301,7 @@ export function fetchOverviewData( ) {
     dispatch( fetchSpeciesObservers( ) );
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchPosts( ) );
-    dispatch( fetchSubscriptions( ) );
-    dispatch( fetchFollowers( ) );
+    dispatch( fetchMembers( ) );
     dispatch( fetchIconicTaxaCounts( ) );
   };
 }
@@ -357,24 +351,42 @@ export function setSelectedTab( tab, options = { } ) {
   };
 }
 
-export function subscribe( ) {
+export function join( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project || !config.currentUser ) { return; }
     const payload = { id: project.id };
     dispatch( setAttributes( {
-      follow_status: "saving"
+      membership_status: "saving"
     } ) );
-    inatjs.projects.subscribe( payload ).then( ( ) => {
+    inatjs.projects.join( payload ).then( ( ) => {
       dispatch( setAttributes( {
-        currentUserSubscribed: !project.currentUserSubscribed
+        currentUserIsMember: true
       } ) );
-      dispatch( fetchSubscriptions( ) );
-      dispatch( fetchFollowers( ) );
-      dispatch( setAttributes( { follow_status: null } ) );
+      dispatch( fetchMembers( ) );
+      dispatch( setAttributes( { membership_status: null } ) );
     } );
   };
 }
+
+export function leave( ) {
+  return ( dispatch, getState ) => {
+    const { project, config } = getState( );
+    if ( !project || !config.currentUser ) { return; }
+    const payload = { id: project.id };
+    dispatch( setAttributes( {
+      membership_status: "saving"
+    } ) );
+    inatjs.projects.leave( payload ).then( ( ) => {
+      dispatch( setAttributes( {
+        currentUserIsMember: false
+      } ) );
+      dispatch( fetchMembers( ) );
+      dispatch( setAttributes( { membership_status: null } ) );
+    } );
+  };
+}
+
 
 export function convertProject( ) {
   return ( dispatch, getState ) => {
