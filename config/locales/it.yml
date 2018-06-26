@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Alexmar983
 # Author: Beta16
+# Author: Clapwing
 # Author: Danieleseglie
 # Author: Devid Farinelli
 # Author: Einreiher
@@ -63,6 +64,9 @@ it:
   x_matching_taxa_html:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
+  x_misidentifications_of_this_species:
+    one: 1 identificazione errata di questa specie
+    other: '%{count} identificazioni errate di questa specie'
   x_observations:
     one: 1 osservazione
     other: '%{count} osservazioni'
@@ -1974,6 +1978,7 @@ it:
   lexicons:
     scientific_names: Nomi Scientifici
     afrikaans: Afrikaans
+    albanian: Albanese
     bengali: Bengalese
     catalan: Catalano
     cebuano: Cebuano
@@ -2160,6 +2165,7 @@ it:
     pt-BR: Portoghese (Brasile)
     pt-PT: Portoghese (Portogallo)
     ru: Russo
+    sq: Albanese
     zh-CN: Cinese (tradizionale)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
@@ -2873,7 +2879,6 @@ it:
   other_animals_plural:
     one: 1 altro animale
     other: altri animali
-  other_annimals: Altri Animali
   other_lexicons: Altre lingue
   other_listings_of_this_taxon_for_this_place: Altre osservazioni di questo taxon
     per questo luogo
@@ -4412,7 +4417,6 @@ it:
     %{project}
   user_muted: Utente silenziato
   user_observations: Osservazioni dell'utente
-  user_s: di %{user}
   user_s_id: '%{id} di %{user}'
   user_s_lists: Elenchi di %{user}
   user_suggested_an_id: '%{user} ha suggerito un ID'
@@ -4432,6 +4436,7 @@ it:
   users_latest_observations_on_site: Le osservazioni più recenti di %{user} su %{site}
   users_observations: Le osservazioni di %{user}
   users_profile: Il profilo di %{user}
+  users_projects: I progetti di %{user}
   users_year_on_site: Anno di %{user} su %{site} %{year}
   using_a_license: usare una licenza
   using_cc_license_makes_easier_use_your_data: Usare una licenza <strong>Creative

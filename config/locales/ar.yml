@@ -1884,6 +1884,7 @@ ar:
   lexicons:
     scientific_names: الأسماء العلمية
     afrikaans: الأفريكانية
+    albanian: الألبانية
     bengali: البنغالية
     catalan: الكتالونية
     cebuano: السيبوانية
@@ -2061,6 +2062,7 @@ ar:
     pt-BR: البرتغالية (البرازيل).
     pt-PT: البرتغالية (البرتغال)
     ru: الروسية
+    sq: الألبانية
     zh-CN: الصينية (المبسطة)
     zh-TW: الصينية (التقليدية)
   locality_notes: ملاحظات محلية
@@ -2743,7 +2745,6 @@ ar:
   other_animals_plural:
     one: حيوان آخر
     other: حيوانات أخرى
-  other_annimals: حيوانات أخرى
   other_lexicons: معاجم أخرى
   other_listings_of_this_taxon_for_this_place: قوائم أخرى لهذه الأصنوفة لهذا المكان
   other_species_commonly_misidentified_as_this_species: الأنواع الأخرى عادة ما يتم
@@ -4218,7 +4219,6 @@ ar:
   user_is_now_role_for_project_html: <strong>%{user}</strong> الآن %{role} ل%{project}
   user_muted: تم كتم صوت المستخدم
   user_observations: ملاحظات المستخدم
-  user_s: '%{user}'
   user_s_id: '%{user} %{id}'
   user_s_lists: قوائم %{user}
   user_suggested_an_id: اقترح %{user} معرفا
@@ -4237,6 +4237,7 @@ ar:
   users_latest_observations_on_site: ملاحظات %{user} الأخيرة على %{site}
   users_observations: ملاحظات %{user}
   users_profile: الملف الشخصي ل%{user}
+  users_projects: مشاريع %{user}
   users_year_on_site: سنة %{user} في %{site} %{year}
   using_a_license: استخدام ترخيص
   using_cc_license_makes_easier_use_your_data: يسهل استخدام الترخيص <strong>المشاع
@@ -5102,6 +5103,8 @@ ar:
         license: الترخيص الذي اختاره الملاحظ لهذه الملاحظة
         url: مسار للملاحظة
         image_url: مسار للصورة الافتراضية
+        sound_url: مسار للصوت الافتراضي، لاحظ أنه سيعمل فقط للمرفوعات المباشرة، وليس
+          الأصوات المستضافة في خدمات الجهات الخارجية
         tag_list: قائمة مفصولة بفواصل بالعلامات
         place_admin1_name: اسم المكان الإداري مرتبة واحدة تحت مستوى البلد
         place_admin2_name: اسم المكان الإداري رتبان تحت مستوى البلد
@@ -6006,8 +6009,18 @@ ar:
       x_seconds:
         one: ثانية واحدة
         other: '%{count} ثانية'
-    countdown_x_days: '{{PLURAL:$1|يوم|أيام}}'
-    countdown_x_hours: '{{PLURAL:$1|ساعة واحدة|ساعات}}'
+    countdown_x_days:
+      one: يوم
+      other: أيام
+    countdown_x_hours:
+      one: ساعة واحدة
+      other: ساعات
+    countdown_x_minutes:
+      one: دق
+      other: دق
+    countdown_x_seconds:
+      one: ثان
+      other: ثوانٍ
     prompts:
       day: يوم
       hour: ساعة

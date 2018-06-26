@@ -465,7 +465,7 @@ ko:
   can_you_help_your_friends_id_these: 동정을 도와줄 수 있나요?
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
-  cant_merge_a_taxon_with_itself: 분류군을 그 자체와 병합시킬 수 없다.
+  cant_merge_a_taxon_with_itself: 분류군을 자기 자신과 병합할 수 없습니다.
   captive_cultivated: 포획된/양식된
   card: 카드
   casual: 비공식적
@@ -1366,6 +1366,7 @@ ko:
   lexicons:
     scientific_names: 학명
     afrikaans: Afrikaans
+    albanian: 알바니아어
     bengali: বাঙালি
     cebuano: Cebuano
     chinese_simplified: 중국어(간체)
@@ -1489,6 +1490,7 @@ ko:
     pt-BR: 포루투갈어 (브라질)
     pt-PT: 포르투갈어 (포르투갈)
     ru: 러시아어
+    sq: 알바니아어
     zh-CN: 중국어(간체)
   location: 위치
   location_: 위치
@@ -2198,6 +2200,7 @@ ko:
   user_blocked: 사용자가 차단됨
   user_commented: '%{user}님이 댓글을 남겼습니다'
   user_muted: 사용자를 알림에서 제외함
+  user_s_lists: '%{user}님의 목록'
   user_suggested_an_id: '%{user}님이 ID를 제시했습니다'
   username: 사용자 이름
   username_or_email: 사용자 이름이나 이메일
@@ -2206,6 +2209,7 @@ ko:
   users_id: '%{user}의 ID'
   users_identification_short_html: <a href='%{url}'>%{user}</a> ID
   users_profile: '%{user}의 프로필'
+  users_projects: '%{user}님의 프로젝트'
   valid_interrogation: 유효합니까?
   valid_options_are: '유효한 옵션:'
   value: 값
@@ -2497,6 +2501,7 @@ ko:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%Y %b %d'
       month_year: '%Y년 %B'
       month_day_year: '%B %d, %Y'
     month_names:
@@ -2517,6 +2522,18 @@ ko:
     - :월
     - :일
   datetime:
+    countdown_x_days:
+      one: 일
+      other: 일
+    countdown_x_hours:
+      one: 시간
+      other: 시간
+    countdown_x_minutes:
+      one: 분
+      other: 분
+    countdown_x_seconds:
+      one: 초
+      other: 초
     prompts:
       day: 일
       hour: 시간

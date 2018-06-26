@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: 578985s
 # Author: Aru
+# Author: Chestnut123tw
 # Author: Corainn
 # Author: Cwlin0416
 # Author: Kly
@@ -1348,7 +1349,7 @@ zh-TW:
   flowering_phenology: 開花物候
   fluid_layout: 流動佈局
   fluid: 流動
-  follow: 關注
+  follow: 關注中
   follow_us: 關注我們在
   follow_us_on: 關注我們在
   follow_user: 關注 %{user}
@@ -1502,7 +1503,7 @@ zh-TW:
   id_more_in_id_please: 在鑑定請求裡頭有更多鑑定
   id_please!: 需要鑑定！
   id_please: 需要鑑定
-  id_please_expandable_html: <span class='full'>需要</span> ID！
+  id_please_expandable_html: <span class='full'>需要</span>鑑定！
   id_withdrawn: 鑑定撤回
   ids_by_taxon: 按物種分類的鑑定
   identify: 鑑定
@@ -1519,7 +1520,7 @@ zh-TW:
   identifications: 鑑定
   identifications_by: 由 %{user} 做的鑑定
   identified?: 已鑑定
-  identifiers: 鑑定人
+  identifiers: 鑑定者
   identotron: Identotron
   identotron_for: Identotron 用於
   identotron_help: Identotron 說明
@@ -1709,6 +1710,7 @@ zh-TW:
   lexicons:
     scientific_names: 學名
     afrikaans: 南非語
+    albanian: 阿爾巴尼亞語
     bengali: 孟加拉語
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
@@ -1868,6 +1870,7 @@ zh-TW:
     pt-BR: 葡萄牙語 (巴西)
     pt-PT: 葡萄牙語 (葡萄牙)
     ru: 俄語
+    sq: 阿爾巴尼亞
     zh-CN: 簡體中文
     zh-TW: 繁體中文
   locality_notes: 位置註解
@@ -2469,7 +2472,6 @@ zh-TW:
   other_animals_plural:
     one: 個其它動物
     other: 個其它動物
-  other_annimals: 其它動物
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
   other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
@@ -2490,8 +2492,8 @@ zh-TW:
   pdf_slash_print: PDF / 列印
   people: 成員
   people_agree: 人們同意
-  people_following_user: 關注 %{user} 的人們
-  people_user_follows: '%{user} 關注的人物'
+  people_following_user: 關注 %{user} 的人
+  people_user_follows: '%{user} 關注的人'
   people_added:
     observation: 添加一個@vow_or_con{vow:an|a} %{taxon_link}的%{observation_link}
     identification:
@@ -2520,7 +2522,7 @@ zh-TW:
   photo_integration: 照片整合
   photo_licensing: 照片許可
   photo_type: 相片類型
-  photo_urls_repaired: 需要照片 URLs
+  photo_urls_repaired: 需要照片 URL
   photos_chosen_for_this_taxon: 挑選用於此物種分類的照片
   photos_from: 照片來自
   photos_of: 照片屬於
@@ -3098,8 +3100,8 @@ zh-TW:
   select_one_or_more_photos: 選擇一張或更多照片
   select_none: 都不選擇
   select_observations_to_edit: 選擇觀察來編輯...
-  select_one_of_friends_albums: 選擇 %{friend} 的相簿之一
-  select_one_of_your_albums: 選擇您的相簿之一
+  select_one_of_friends_albums: 選擇一個 %{friend} 的相簿
+  select_one_of_your_albums: 選擇一個您的相簿
   select_options: 選擇選項
   select_photos_from_your_photo_stream: 選擇來自於外部照片分享網站來轉換至 %{site_name} 觀察。我們會填入將來自於照片詮釋資料的日期、時間、以及位置，並嘗試查找來自於標籤的物種名稱。
   select_photos_to_display: 選擇照片來顯示
@@ -3681,7 +3683,7 @@ zh-TW:
   unknown: 未知
   unknown_error: 不明錯誤
   unknown_rank: （未知級別）
-  unfollow: 未關注
+  unfollow: 取消關注
   unlink_your_google_account: 取消連結您的 Google 帳號
   unmute: 取消禁言
   unobserved_listings: 不可觀察清單
@@ -3719,7 +3721,7 @@ zh-TW:
   updated_photo: 已更新照片
   upload: 上傳
   upload_a_csv_file: 上傳 CSV 檔案
-  upload_a_csv_file_with_observation: 上傳帶有觀察資料的 CVS 檔案。如果您擁有帶有您的資料之電子試算表或資料庫，這會是最常利用的方式。
+  upload_a_csv_file_with_observation: 上傳帶有觀察資料的 CSV 檔案。如果您的資料是以電子試算表或資料庫的形式儲存，這會是最佳的上傳方式。
   upload_photo: 上傳照片
   upload_photos: 上傳照片
   upload_range: 上傳範圍
@@ -3776,7 +3778,6 @@ zh-TW:
   user_is_now_role_for_project_html: <strong>%{user}</strong>現在是 %{project} 的%{role}了
   user_muted: 使用者已禁言
   user_observations: 用戶觀察
-  user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user} 的清單'
   user_suggested_an_id: '%{user} 建議了一個鑑定'
@@ -3795,6 +3796,7 @@ zh-TW:
   users_latest_observations_on_site: '%{user} 在 %{site} 的最新觀察'
   users_observations: '%{user}的觀察'
   users_profile: '%{user}的個人檔案'
+  users_projects: '%{user} 的專案'
   users_year_on_site: '%{user} 在 %{site} 上的 %{year} 一年'
   using_a_license: 使用一份許可
   using_cc_license_makes_easier_use_your_data: 使用<strong>創用 CC 姓名標示</strong>協議可讓研究員能更容易使用您的資料。您可以在註冊後挑選您所要的協議。
@@ -4454,6 +4456,7 @@ zh-TW:
         license: 觀察者挑選此許可協議用於觀察
         url: 用於觀察的 URL
         image_url: 用於預設圖片的 URL
+        sound_url: 預設聲音內容的 URL。請選用直接上傳到此站台；而非在第三方服務上託管聲音內容的網址
         tag_list: 逗號分隔的標籤清單
         place_admin1_name: 在國家層級下一個級別的行政地點名稱
         place_admin2_name: 在國家層級下兩個級別的行政地點名稱

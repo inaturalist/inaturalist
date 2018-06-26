@@ -489,8 +489,6 @@ cs:
   are_you_sure_remove_curator: Jste si jisti, že chcete odebrat uživatele %{user}
     jako kurátora?
   are_you_sure_remove_from_project: Jste si jisti, že chcete %{user} z tohoto projektu?
-  are_you_sure_remove_photo: Jste si {{GENDER:|jistý|jistá|jistý/á}}, že chcete odstranit
-    tuto fotografii?
   are_you_sure_remove_taxon_from_list: Jste si jisti, že chcete tento taxon odebrat
     ze seznamu?
   are_you_sure_remove_taxon_from_place: Jste si jisti, že chcete tento taxon odebrat
@@ -2610,8 +2608,6 @@ cs:
       věděli, jaká pozorování vložili. Také se můžete přihlásit k odběru určitého
       druhu, abyste měli přehled o nových pozorováních tohoto druhu. To samé si můžete
       nastavit pro konkrétní místa.
-    comments_panel_title: Jste {{GENDER:|zvědavý|zvědavá|zvědavý/á}}, jaké diskuse
-      probíhají na stránce %{site_name}?
     comments_panel_body: '<p>%{site_name} je o sdílení a diskutování o pozorování
       všeho živého. Níže jsou právě probíhající diskuze. (Poznámka: Budete automaticky
       přihlášeni k odběru diskuzí, do kterých přispějete komentářem nebo identifikací.
@@ -2621,7 +2617,6 @@ cs:
     updates_by_you_panel_body: Nezapomeňte, že v panelu „Všechny aktualizace“ budete
       dostávat aktualizace nejen vašeho vlastního obsahu, ale také obsahu lidí, které
       sledujete, a taxonů nebo míst, která odebíráte pomocí nastavení Odebírání vpravo.
-    youve_got_updates_panel_title: '{{GENDER:|Dostal|Dostala|Dostal(a)}} jste aktualizace!'
     youve_got_updates_panel_body_p1: Zůstat aktuální s aktualizacemi následujícího...
     youve_got_updates_panel_body_p2: |-
       <ul>
@@ -2702,7 +2697,6 @@ cs:
   other_animals_plural:
     one: jiné zvíře
     other: jiná zvířata
-  other_annimals: Ostatní zvířata
   other_listings_of_this_taxon_for_this_place: Jiné záznamy o tomto taxonu z tohoto
     místa
   other_species_commonly_misidentified_as_this_species: Další druhy často chybně identifikované
@@ -4076,13 +4070,11 @@ cs:
     musí být uvnitř dvojitých uvozovek. Většina tabulkových aplikací by měla CSV exportovat
     v tomto formátu.
   user: Uživatel
-  user_added_a_x: '%{user} {{GENDER:|přidal|přidala|přidal(a)}} %{x}'
   user_added_a_x_to_noun_by_html: '%{user} přidal %{x} k %{noun} podle %{by}'
   user_added_a_x_to_noun_html: '%{user} přidal %{x} k %{noun}'
   user_added_an_observation_field_html: Uživatel %{user} přidal hodnotu pro "%{field_name}"
     k pozorování %{owner}
   user_added_an_observation_html: Uživatel %{user} přidal pozorování
-  user_added_an_x: '%{user} {{GENDER:|přidal|přidala|přidal(a)}} %{x}'
   user_added_an_x_to_noun_by_html: Uživatel %{user} přidal %{x} k %{noun} podle %{by}
   user_added_an_x_to_noun_html: Uživatel %{user} přidal %{x} k %{noun}
   user_added_x_observations_html: Uživatel %{user} přidal %{x} pozorování
@@ -4111,7 +4103,6 @@ cs:
     %{project}
   user_muted: Vypnutý zvuk pro uživatele
   user_observations: Pozorování uživatele
-  user_s: uživatele %{user}
   user_s_id: uživatele %{user} %{id}
   user_s_lists: Seznamy uživatele %{user}
   user_suggested_an_id: Uživatel %{user} navrhl ID
@@ -4380,8 +4371,6 @@ cs:
   you: vy
   you_: Vy
   you_admin: vy spravujete
-  you_appear_offline_try_again: Jste pravděpodobně offline. Pokud jste {{GENDER:|připojený|připojená|připojený/á}}
-    k internetu, pak to, prosím, zkuste znovu.
   youre_a_site_curator_which_means: Jste kurátorem stránky, což znamená, že jste se
     dobrovolně přihlásili, abyste nám pomohli spravovat naše údaje a sledovat obsah.
     Rozhodně nejste povinni řešit všechny tyto záležitosti, ale pokud máte čas se
@@ -5736,7 +5725,9 @@ cs:
     - :den
   datetime:
     distance_in_words:
-      about_x_hours: '{{MNOŽNÉ ČÍSLO|jedna=1 hodina|%{count} hodiny}}'
+      about_x_hours:
+        one: 1 hodina
+        other: '%{count} hodiny'
       about_x_months:
         one: asi 1 měsíc
         other: asi %{count} měsíce/ů
