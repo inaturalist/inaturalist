@@ -1018,7 +1018,7 @@ qqq:
   sounds:
     sound: '{{Identical|Sound}}'
     sounds: '{{Identical|Sound}}'
-    sounds_size_sound: number of soundes
+    sounds_size_sound: number of sounds
     sounds_size_sounds: |-
       number of sounds
       {{Identical|Sound}}
@@ -1062,6 +1062,51 @@ qqq:
   taxa: '{{Identical|Taxa}}'
   taxon_is_a_rank: Statement that a particular taxon is of a particular rank. Do not
     translation the variable names, i.e. anything between { and }.
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_amphibia_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_aves_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_mammalia_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_reptilia_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_plantae_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_actinopterygii_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_animalia_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_insecta_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_arachnida_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_fungi_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_protozoa_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_mollusca_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_a_rank_of_chromista_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
+  taxon_is_kingdom_of_life_with_x_observations: Like all plural strings,
+    you must translate both `one` and `other` or users of this language will
+    experience crashes.
   taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
@@ -1138,6 +1183,10 @@ qqq:
   use_name_as_a_placeholder: where name is the name of a new taxon not yet in our
     database
   user: '{{Identical|User}}'
+  user_added_a_x: |-
+    as in "user add a journal post". Note that we do not know the genders of
+    our users, so this should use a gender-neutral inflection for languages
+    that have gendered verbs.
   user_added_a_x_to_noun_by_html: |-
     where user is the name of a user and x is a resource like an observation
     and nown is a resource like a project and by is the owner of that resource
@@ -1175,7 +1224,6 @@ qqq:
   user_is_a_naturalist: where user is the name of a user
   user_is_now_role_for_project_html: where user is the name of a user role is a role
     like curator and project is the name of a project
-  user_s: where user is the name of a user
   user_s_id: where user is the name of a user
   user_s_lists: |-
     where user is the name of a user
@@ -1471,6 +1519,7 @@ qqq:
       x_seconds: |-
         number of seconds
         {{Identical|Second}}
+    countdown_x_days: '{{Identical|Day}}'
     prompts:
       day: '{{Identical|Day}}'
       hour: '{{Identical|Hour}}'

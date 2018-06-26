@@ -14,6 +14,7 @@
 # Author: LucyDiniz
 # Author: Luk3
 # Author: MokaAkashiyaPT
+# Author: Pedrofariasm
 # Author: Peter Fernando
 # Author: Tim Vincent
 # Author: Vonmatter
@@ -1862,6 +1863,7 @@ pt-BR:
   lexicons:
     scientific_names: Nomes Científicos
     afrikaans: Africâner
+    albanian: Albanês
     bengali: Bengalês
     catalan: Catalão
     cebuano: Cebuano
@@ -2043,6 +2045,7 @@ pt-BR:
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
     ru: Russo
+    sq: Albanês
     zh-CN: Chinês (Simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -2718,7 +2721,6 @@ pt-BR:
   other_animals_plural:
     one: outro animal
     other: outros animais
-  other_annimals: Outros Animais
   other_listings_of_this_taxon_for_this_place: Outros registros deste táxon para este
     local
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam
@@ -4120,7 +4122,6 @@ pt-BR:
   user_invited_your_x_to_a_project_html: '%{user} convidou você para %{x} um projeto'
   user_is_a_naturalist: '%{user} é um naturalista!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
-  user_s: Do %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugeriu uma identificação'
@@ -5038,6 +5039,8 @@ pt-BR:
         license: Licença que o observador escolheu para esta observação
         url: URL para a observação
         image_url: URL para a imagem padrão
+        sound_url: URL para o som padrão. Observe que isso só funcionará para carregamentos
+          diretos, não para sons hospedados em serviços de terceiros
         tag_list: Lista de Marcações separadas por vírgulas
         positioning_method: Como as coordenadas foram determinadas
         positioning_device: Equipamento utilizado para determinar coordenadas
@@ -5431,6 +5434,8 @@ pt-BR:
         curated_checklist_desc: Esta é a lista de verificação moderada e a lista de
           contagem dos táxons de observações explicitas adicionadas à esta projeto,
           nem todas as observações foram gravadas neste local e neste período do evento.
+        this_is_a_preview: Esta é uma prévia do que este projeto parecerá como um
+          Projeto de Coleção.
       updates_desc: Receba atualizações sobre este projeto em seu painel de controle
         e, através de e-mails diários.
     shared:

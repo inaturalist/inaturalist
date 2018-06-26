@@ -380,6 +380,15 @@ fi:
     x_animalia:
       one: 1 eläin
       other: '%{count} eläintä'
+    x_mollusca:
+      one: 1 nilviäinen
+      other: '%{count} nilviäistä'
+    x_amphibia:
+      one: 1 sammakkoeläin
+      other: '%{count} sammakkoeläintä'
+    x_mammalia:
+      one: 1 nisäkäs
+      other: '%{count} nisäkästä'
     x_actinopterygii:
       one: 1 viuhkaeväinen
       other: '%{count} viuhkaeväistä'
@@ -2168,7 +2177,6 @@ fi:
   other_animals_plural:
     one: muu eläin
     other: muut eläimet
-  other_annimals: Muut eläimet
   other_species_commonly_misidentified_as_this_species: Lajeja, jotka usein määritetään
     virheellisesti täksi lajiksi
   other_species_commonly_misidentified_as_this_species_in_place_html: Lajeja, jotka
@@ -3085,7 +3093,6 @@ fi:
     %{project}
   user_muted: Käyttäjä hiljennetty
   user_observations: Käyttäjän havainnot
-  user_s: Käyttäjän %{user}
   user_s_id: Käyttäjän %{user} %{id}
   user_s_lists: Käyttäjän %{user} lista
   user_suggested_an_id: '%{user} ehdotti tunnistetta'

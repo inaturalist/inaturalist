@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Apflu
 # Author: Cgalindo
+# Author: Deathkon
 # Author: Frog7301
 # Author: Jiang123aa
 # Author: Jiangche
@@ -24,6 +25,9 @@ zh-CN:
   x_identifications:
     one: 1次鉴定
     other: '%{count} 次鉴定'
+  x_identifications_html:
+    one: <span class="count">1</span> 个标识
+    other: <span class="count">%{count}</span> 个标识
   x_identifications_:
     one: 1次鉴定
     other: '%{count} 次鉴定'
@@ -111,6 +115,9 @@ zh-CN:
   x_taxa_matching_current_filters:
     one: 1个分类单元匹配当前的过滤器
     other: '%{count} 个分类群匹配当前的过滤器'
+  x_taxon_changes_added_html:
+    one: <span class='count'>1</span> 个分类单元变化已增加
+    other: <span class='count'>%{count}</span> 个分类单元变化已增加
   _100_day_trends: 100天动态
   _percent_ID_d: '% ID''d'
   a: 一个
@@ -192,6 +199,8 @@ zh-CN:
   add_annotations_for_x: 添加用于“%{x}”的注释
   add_annotations_for_controlled_attribute:
     sex: 添加用于“性”的注释
+    plant_phenology: 为“植物物候学”添加注释
+    life_stage: 为“生命阶段”添加注释
   add_another: 添加其他
   add_another_flag: 添加其他标记
   add_another_photo: 添加其他照片
@@ -250,6 +259,7 @@ zh-CN:
   add_life_stage_nymph_annotation: 添加“生活期：若虫”注解
   add_life_stage_larva_annotation: 添加“生活期：幼虫”注解
   add_life_stage_juvenile_annotation: 添加“生命阶段：青少年”注释
+  add_life_stage_egg_annotation: 为“生命阶段：卵”添加注释
   add_section: 添加章节
   add_several_observations_at_once: 马上添加几个观察。
   add_sex_female_annotation: 添加“性别：女”注释
@@ -297,6 +307,7 @@ zh-CN:
   adding_observations: 正在添加观察
   adding_to_your_life_list: 正在加入您的生命清单……
   additional_range: 额外范围
+  additional_range_data_from_an_unknown_source: 来自未知来源的额外范围数据
   admin: 管理员
   admin_s: 管理员
   admin_any_projects: 管理任何项目
@@ -312,6 +323,7 @@ zh-CN:
   all_colors: '&laquo; 所有颜色'
   all_comments: 所有评论
   all_csv: 所有CSV
+  all_flags_must_be_resolved: 所有标志必须解决
   all_life: 一生
   all_names: 所有名字
   all_observations: 所有观察
@@ -319,9 +331,33 @@ zh-CN:
   all_places: 所有地点
   all_projects: 所有项目
   all_rank_added_to_the_database:
+    phylum: 所有门已添加到数据库
+    subphylum: 所有亚门已添加到数据库
+    superclass: 所有总纲已添加到数据库
+    class: 所有纲已添加到数据库
+    subclass: 所有亚纲已添加到数据库
+    infraclass: 所有次亚纲已添加到数据库
+    superorder: 所有总目已添加到数据库
+    order: 所有目已添加到数据库
+    suborder: 所有亚目已添加到数据库
+    infraorder: 所有次亚目已添加到数据库
+    superfamily: 所有总科已添加到数据库
+    epifamily: 所有领科已添加到数据库
+    family: 所有科已添加到数据库
+    subfamily: 所有亚科已添加到数据库
+    supertribe: 所有总族已添加到数据库
+    tribe: 所有族已添加到数据库
+    subtribe: 所有亚族已添加到数据库
     genus: 所有属已添加到数据库
+    genushybrid: 所有杂种属已添加到数据库
+    subgenus: 所有亚属已添加到数据库
+    section: 所有节已添加到数据库
     subsection: 所有亚组已添加到数据库
     species: 所有物种已添加到数据库
+    hybrid: 所有杂种体已添加到数据库
+    subspecies: 所有亚种属已添加到数据库
+    variety: 所有变种属已添加到数据库
+    form: 所有型已添加到数据库
   all_rights_reserved: 保留所有权利
   all_species: 所有物种
   all_taxa:
@@ -398,7 +434,11 @@ zh-CN:
   all_your_projects: 您所有的项目
   allow_any: 允许任何
   allow_curator_access: 允许馆长访问
+  allow_curator_coordinate_access: 允许馆长坐标访问
+  allow_project_curators_to_view_your_private_coordinates: 允许项目馆长查看您的私人坐标信息
+  allowed_establish_means_values: 被允许的建立手段值
   allowed_html: 允许的HTML
+  allowed_occurrence_status_values: 被允许的发生状态值
   allowed_values: 允许的值
   alphabetical: 按字母排序
   alphabetical_order: 按字母顺序
@@ -408,6 +448,7 @@ zh-CN:
   an: 一个
   an_: 一个
   and: 和
+  and_choose_a_matching_taxon: 并从列表中选择一个匹配的分类单元。如果你并未以此结尾
   and_help_the_inaturalist_community_grow: 并帮助%{site_name}社区成长。
   and_make_some_new: 并制作一些新的
   and_other_taxa: '&amp; 其他分类'
@@ -431,6 +472,7 @@ zh-CN:
   apply_fields: 申请字段
   apply_geoprivacy: 应用位置隐私
   apply_darr: 申请 &darr;
+  apply_establishment_means_to_descendant_places: 将建立手段应用于后裔的地点
   apply_these_settings_to_all: 将这些设置应用于下面所有的观察记录
   appropriate?: 适当么？
   arachnids: 蛛形纲
@@ -544,11 +586,13 @@ zh-CN:
   back_to_your_observations: 回到您的观察
   back_to_your_profile: 回到您的详细信息
   back_to_your_projects: 回到您的项目
+  based_on_the_evidence_can_id_be_improved: 根据此证据，社区ID能否得到确认或改善？
   basic: 基本
   batch: 批
   batch_edit: 批编辑
   batch_edit_taxa_for_x_html: 为 %{x} 批处理编辑分类
   batch_operations: 批操作
+  be_the_first_to_fave_this_observation: 成为第一个发表这一观察的人！
   beacuse_we_recently_changed_auth_system: 因为我们刚刚更改了我们用户的验证系统，您必须重置您的密码。
   because: 因为
   because_of: 因为
@@ -569,6 +613,7 @@ zh-CN:
   body: 身体
   bounding_box: 边界框
   breadcrumbs: 面包屑
+  breadcrumbs_description: 这将取代h1和默认调用行为，因此如果它们对此项目很重要，请确保包含它们，并记住最大宽度允许值为950px
   brief_caption: 简要描述
   brief_description_on_what_you_observed: 您观察到的事物的简短描述
   brief_description_of_what_you_saw: 您看见的东西的简短描述
@@ -628,6 +673,7 @@ zh-CN:
     merge: 若干旧分类单元合并成一个新的分类单元
     swap: 一对一的名称修改
     drop: 分类单元概念完全无效，因历史目的或伙伴兼容性而维护
+    stage: 准备一个待用的学说，并将其发布成为一个修改组的一部分
   change_geoprivacy: 更改位置隐私
   change_group: 更改组
   change_icon: 更改图标
@@ -687,6 +733,8 @@ zh-CN:
   checklist_places: 检查表地点
   checklist_places_absent: 名录地点（缺如）
   checklist_places_confirmed: 名录地点（已确认）
+  checklist_places_introduced: 地点列表（介绍）
+  cheklist_places_are_places_with_contain_taxon: “地点清单”是指那些包括该分类单元的清单上的地点
   child_taxa: 子分类
   choose_a_field: 选择字段
   choose_a_list_above: 在上方选择一个列表。
@@ -702,6 +750,7 @@ zh-CN:
   choose_good_default_photos: 从Flickr上的知识共享图片池中选择良好的默认照片
   choose_photos: 选择照片
   choose_photos_for_this_taxon: 为这个分类单元选择照片
+  choose_photos_to_tag_from_photostream: 从您的照片流中选择照片并进行标记
   choose_place: 选择一个地方
   choose_rule: 选择一条规则
   choose_subjects: 选择学科
@@ -717,6 +766,8 @@ zh-CN:
   clear_search: 清空搜索
   clear_shapes: 清除形状
   click_add_an_observation_to_the_lower_right: 欢迎来到 %{site_name_short}！在右下方点击“添加观察”。如果您尚未登录/注册的话，您将被提示这样做
+  click_on_map_to_draw_shape_around_place: 点击地图在地点周围画一个图案
+  click_on_the_map_to: 点击地图进行观察
   click_the_map: <strong>点击地图</strong>以增加一个地点。
   click_the_map_to_jump_new_place: 点击地图切换到新地点
   close: 关闭
@@ -754,6 +805,8 @@ zh-CN:
   community_id: <strong>社区</strong>ID：
   community_id_heading: 社群ID
   community_id_at_species_or_lower?: 社区ID是否在物种中，还是更低？
+  community_id_at_genus_level_or_lower: 属于“属”或更低一级的社区ID
+  community_id_at_species_level_or_lower: 属于“种”或更低一级的社区ID
   community_moderation_settings: 社群管制设置
   community_supported_id: 社区支持的ID么？
   compare: 比较
@@ -790,7 +843,12 @@ zh-CN:
     status: 状态代码、排名等。如果存在类似E或CR的短代码，请使用它，但如果没有，请使用完整的状态，例如濒临灭绝或极度濒危。
     description: 简单描述为什么列出这个。
     authority: 宣布此状态的组织。如果*您*希望被列为权威，您可以跳过这条。
+    place: 此状态受限制的地点。
+    url: 描述此状态的页面的URL。
     geoprivacy: 用于此分类单元观察的默认位置隐私
+    iucn: 等价的世界自然保护联盟红色名录代码
+  conservation_summary: 保护概要
+  contain_all_descendants?: 这个清单是否包含这个分类单元在此地的所有后代？
   contest: 竞赛
   continue: 继续
   contributions: 贡献
@@ -820,6 +878,7 @@ zh-CN:
   coordinates: 坐标
   coordinates_private: （私有坐标）
   copy: 复制
+  copy_and_paste_the_following_code_to: 复制并粘贴以下代码，将此评估嵌入到其他网页中。
   copy_and_paste_this_into_your_own_html: 复制并粘贴到您自己的HTML。
   copy_guide_taxon_to: 把指南的分类单元复制到……
   copyright:
@@ -827,6 +886,7 @@ zh-CN:
     some_rights_reserved_by: (c) %{name}，保留部分权利（%{license_short}）
     all_rights_reserved: 版权所有 (c) %{name}，保留所有权利
     no_known_copyright_restrictions: '%{name}，没有已知的版权限制（%{license_name}）'
+    no_known_copyright_restrictions_text: 没有已知的版权限制
     no_rights_reserved: 不保留任何权利
     no_rights_reserved_by: '%{name}，不保留任何权利（%{license_name}）'
     anonymous: 匿名
@@ -843,6 +903,7 @@ zh-CN:
   copyright_holder: 版权所有人
   copyright_info: 版权信息
   copyright_info_and_more: 版权信息及更多
+  copyright_infringement_desc: 违反版权法，或者由观察者以外的人创作并且缺乏归属
   couldnt_change_your_password: 无法更改您的密码：%{e}
   couldnt_find_a_user_matching_x_param: 找不到符合%{id}的用户
   couldnt_find_that_taxon: 找不到这个分类单元。
@@ -871,6 +932,8 @@ zh-CN:
   creating_your_account: 创建您的账户……
   creative_commons_flickr_tagged: 知识共享Flickr照片已标记
   creative_commons_unless_otherwise_noted: 知识共享，除非另有声明。
+  critically_endangered: 极度濒危
+  critically_imperiled: 极度受威胁
   css_description: 这将在页面的所有其他CSS都包含后才包含。
   csv: CSV
   csv_file: CSV文件
@@ -887,11 +950,14 @@ zh-CN:
   curator: 馆长
   curators_changed_for_x_html: 为%{x}工作的馆长已更改
   curators: 馆长
+  curators_can_remove_observations_from: 馆长可以从项目中删除观察结果，并将其标识与项目特定视图的观察结果一起显示。馆长也可以看到这个项目中私人贡献者和匿名贡献者的真实地理位置。
+  curator_identification: 馆长鉴定
   current_flags: 当前标记
   current_password: 当前密码
   custom_field_values: 自定义字段值
   custom_project_fields: 自定义项目字段
   custom_project_was_successfully_created: 已成功创建定制项目。
+  custom_project_was_successfully_updated: 已成功更新自定义项目。
   customize_location: 自定义位置
   darr_apply_darr: '&darr; 申请 &darr;'
   dashboard: 仪表板
@@ -998,6 +1064,7 @@ zh-CN:
   disagree_: 不同意
   disconnect_provider: 取消连接 %{provider}
   display_link_to_checklist: 显示来自项目页面的，至项目列表的链接
+  display_listings_added_by_curators: 显示馆长添加的列表
   display_listings_from_place: 查看某一地点的列表
   dna_: DNA
   documentation_for_developers_html: 面向<a href="/pages/developers">开发者</a>的文档
@@ -1028,6 +1095,7 @@ zh-CN:
   drag_and_drop_some_photos_or_sounds: 拖放一些照片或声音
   drawings: 绘画
   duplicate_verb: 复制
+  each_place_displays_all_species_inat_knows: 每个地点页面都会显示%{site_name}已知的该地点所有分类单元的相关信息，包括其丰度，保护状态以及谁首先在%{site_name}上从该地点发现了该分类单元的信息。您可以通过分类群，颜色，保护状态等条件来检索分类单元，或通过旧版的普通搜索检索分类单元。
   edit: 编辑
   edit_a_batch_of_observations: 批量编辑观察记录
   edit_account_settings_and_profile: 编辑账户设置和详细信息
@@ -1075,6 +1143,7 @@ zh-CN:
   edited_by_name_html: 由%{name}编辑
   editing: 编辑中
   editing_announcement: 编辑公告
+  editing_custom_project_fields_for: 编辑自定义项目字段
   editing_observation_field: 编辑观察记录字段
   editing_observation_id: 编辑观察记录%{obs_id}
   editing_observations:
@@ -1102,6 +1171,7 @@ zh-CN:
   embed: 已嵌入
   embed_a_widget_for_this_taxon_on_website: 在您的网站上嵌入此分类单元的小部件
   embed_place_widget: 嵌入地点小部件
+  embed_this_assessment: 嵌入此评估
   embed_widget_project: 在您的网站嵌入到此项目的小部件
   enable_offline_access: 启用离线访问
   enable_offline_access_for_mobile: 为移动设备启用离线访问
@@ -1123,6 +1193,7 @@ zh-CN:
     naturalised: 归化
     invasive: 攻击性
     managed: 管理
+  establishment_means: 建立手段
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: 本地物种，在其他地方没有出现记录
     arrived_in_the_region_via_anthropogenic_means: 通过人类活动途径到达此地区
@@ -1140,11 +1211,13 @@ zh-CN:
   everyone_journal_posts: 每个人的日志
   everywhere: 任意地方
   exact: 准确
+  exact_coordinates_obscured_for: 为受威胁物种隐蔽其确切坐标不被公开。
   exact_date: 具体日期
   exact_location: 精确位置
   exact_rank: 精密排名
   existing_flags: 现有标记
   exit_full_screen: 退出全屏
+  examples_of_ranking_organizations: 排名机构的例子
   expand_days: 展开日
   expand_updates: 展开更新
   explore!: 探索！
@@ -1159,6 +1232,7 @@ zh-CN:
   extinct_in_the_wild: 在野外已绝灭
   extra_properties: 额外属性
   extras: 附加
+  evidence_of_organism: 生物证据
   evidence_of_organism?: 存在有机体的证明么？
   facebook: 脸书
   facebook_account_information: 您的Facebook账户信息
@@ -1198,6 +1272,7 @@ zh-CN:
   fields_merged: 字段已合并
   file: 文件
   file_should_be_in_the_following_format: 文件应该为以下格式：分类单元名称、描述
+  fill_out_project_observation_fields: 填写项目观察领域
   fill_out_your_profile: 完成您的个人资料
   filling_out_checklist_for_place: 尽可能为您知道的地点填写检查表
   filling_out_your_profile: 填写您的个人资料
@@ -1209,6 +1284,7 @@ zh-CN:
   filter_by_place_taxon_and_color: 按地点、分类单元和颜色标注进行筛选
   filter_list_by_this_taxon: 按这一分类单元筛选列表
   filtering: 过滤中
+  filtering_observations_that_pass_the: 过滤那些通过项目规则或在项目地点制作但尚未提供的观察结果
   filters: 过滤器
   find: 查找
   find_a_guide: 查找一个指南
@@ -1220,6 +1296,7 @@ zh-CN:
   find_places: 找到地点
   find_some_people_to_follow: 寻找一些人以关注
   find_species: 查找物种
+  find_suitable_observations: 找到合适的观察
   find_unsuitable_observations: 查找不适当的观察
   find_your_current_location: 找到您当前的位置
   finished: 已结束
@@ -1228,6 +1305,7 @@ zh-CN:
   first_connect_your_provider_account_to_your_site: 首先，将您的%{provider}账户连接到%{site_name}：
   first_inat_observation: 第一个%{site_name}观察
   first_observation: 第一个观察
+  first_observation_by_date_added: 按添加日期排序的首次观察
   first_observer: 第一个观察者
   first_report: 第一份报告
   flag: 标记
@@ -1257,6 +1335,7 @@ zh-CN:
   flickr_account_information: 您的Flickr账户信息
   flickr_description: Flickr是一个在线的照片托管服务，您也许已经了解它了！
   flickr_has_no_creative_commons: Flickr没有来自此地区的，知识共享许可协议授权的照片。
+  flickr_identity: Flickr身份
   flickr_invite_link_raquo: Flickr邀请链接&raquo;
   flickr_needs_to_confirm: Flickr需要确认您想要将您的账户连接到%{site_name}。
   flickr_photo: Flickr 照片
@@ -1264,6 +1343,7 @@ zh-CN:
   flickr_style: Flickr样式
   flickr_tagger: Flickr 贴标签者
   flickr_tags: Flickr 标签
+  flickr_youre_all_set: 您准备开始探索%{site_name}
   flowering_phenology: 开花物候学
   fluid_layout: 流动布局
   fluid: 液体
@@ -1309,6 +1389,7 @@ zh-CN:
   gbif_occurrences: GBIF发现
   geo: 地理
   general: 常规
+  generally_these_come_from_iucn_red_list: 这些通常来自世界自然保护联盟红色名录，如果他们来自其他地方，他们将遵循于自然保护联盟类别。
   generate_pdf: 生成 PDF
   generate_taxonomic_tags_for_flickr: 为您的Flickr照片生成分类学标签
   generate_widget: 生成小部件
@@ -1337,6 +1418,7 @@ zh-CN:
   got_your_data_somewhere_else?: 在别的地方找到了您的数据？我们可以帮助。
   graft: 移植
   grafting: 移植中……
+  grafting_attemps_to_insert_this_taxon: 嫁接试图将该分类单元插入我们的分类树中，找到一个现有的父分类单元或创建所有必要的中间分类单元，以便将其附加到现有的更高级别分类单元中。
   grant_role: '%{grant} %{role}角色'
   gray: 灰色
   green: 绿色
@@ -1359,6 +1441,7 @@ zh-CN:
   guidelines: 指南
   has_already_been_flagged_by: 已被标记，标记者
   has_been: 已经
+  has_id_supported_by_two_or_more: 由两个或以上ID所支持
   has_one_or_more_faves: 有一个或更多喜爱
   has_photo: 有照片
   has_photos: 有照片
@@ -1385,6 +1468,7 @@ zh-CN:
   here_are_3_examples: 这里是3个格式良好数据的例子
   here_are_our_top_species_suggestions: 这里有我们最常用的物种建议
   here_are_some_things_you_can_do_meantime: 在此期间您可以做这些事情：
+  here_are_some_things_you_can_do_in_the_meantime: 在此期间您可以做这些事情：
   heres_a_litle_about: 这里有一些关于
   hex_color_eg: 十六进制颜色代码，例如：65644F
   hi: 嗨，
@@ -1395,6 +1479,7 @@ zh-CN:
   high: 高
   highest_rank: 最高等级
   highlights: 高亮
+  highlights_and_stats_from_year_on_site: 来自 %{site} 在 %{year} 年的要点与统计数据
   history: 历史
   home: 首页
   home_faq: 常见问题
@@ -1405,8 +1490,14 @@ zh-CN:
   icon: 图标
   icon_size: 图标大小
   icon_slash_photo: 图标 / 照片
+  iconic_taxon: 标志性的分类单元
   id: ID
   id_: ID
+  id_categories:
+    tooltips:
+      leading: 分类单元来自社区分类单元。这种认同更有可能产生正确的结果。
+      improving: 此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。
+      maverick: 分类单元并不是社区分类单元的后代或者祖先分类单元，这意味着社区并不赞同这个分类单元。
   id_more_in_id_please: 更多ID请在ID中
   id_please!: 请添加ID！
   id_please: 请添加ID
@@ -1429,10 +1520,16 @@ zh-CN:
   identified?: 已认证
   identifiers: 标识符
   identotron: Identotron
+  identotron_for: Identotron 为
   identotron_help: Identotron帮助
   ids: ID
   ids_made_for_others: 由其他人做出的ID
+  if_for_some_reason_a_user_doesnt_agree: 如果出于某种原因，你不同意社区分类单元，你可以拒绝它，这意味着你的ID会被用于链接到其他观察，更新生命列表等。这也意味着只有当社区同意你的看法时，你的观察才能被作为研究成绩
+    。
+  if_matches_come_from_a_comprehensive_list: 如果比赛来自综合名单，这里会显示一个绿色栏。
   if_this_is_a_scientific_name: 如果这是一个学名，它目前是否接受？
+  if_this_link_will_apply_to_descendant: 如果此链接适用于后代分类群，你可以使用模板标签在URL中填写分类单元名称
+  if_you_already_have_an_account: 如果你已经拥有 %{article} %{site_name} 账号...
   if_you_dont_want_us_to_share_your_data: 如果您不希望我们分享您的数据
   if_you_have_any_trouble_with_the_site_check_out: 如果您有任何问题，请您查看我们的<a href="%{help_url}">帮助区</a>或在我们的<a
     href="%{feedback_url}">反馈群组</a>提交信息。
@@ -1480,6 +1577,7 @@ zh-CN:
   inactive_taxon: 不活跃的分类单元
   inactive_taxon_concepts_are: 不活跃的分类单元概念要么是分类学过时，要么是正在进行分类单元的更改。过时概念会被保留在维护历史中，并与其他合作伙伴网站相互兼容。
   inappropriate: 不适当？
+  inappropriate_content: 不适当的内容？
   inat_account_action: '%{site_name} &#58; 账户 &#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name}相信这是此地区内，这种分类单元的完整列表。'
   inat_user_profile: '%{site_name}：%{user}的详细资料'
@@ -1488,6 +1586,7 @@ zh-CN:
   inaturalist_is_catching_some_zs: '%{site_name} 正在抓住一些Zs'
   inaturalist_observations_by: '%{site_name}&#58;由%{login}做出的观察'
   inaturalist_places: '%{site_name} 地点'
+  inaturalist_places_are_way_record_what_lives_where: '%{site_name}地点是记录生物在哪里的一种方式。如果你正在寻找一个特定的物种，你会知道去哪里找寻。每个地点都有一个清单，记录所有在那里被发现的物种，因此它们也可以用于查找你在特定地点发现的生物。'
   info: 信息
   input_taxon: 输入分类单元
   insects: 昆虫
@@ -1522,6 +1621,9 @@ zh-CN:
   iphone: iPhone
   is_a: 是一个
   is_an: 是一个
+  is_an_evaluation: |-
+    是对观测精度的评估。
+    科研级的观察可能被科学家用于研究。请在下方投票：
   is_not_following_anyone: 未关注任何人。
   is_now: 现已
   is_the_evidence_provided_enough_to_confirm_this_is_taxon: 有提供足够证据来确认这是%{taxon}么？
@@ -1530,8 +1632,12 @@ zh-CN:
   is_this_offensive_html: 这是<a href="/help#inappropriate">不可接受</a>、滥发消息或攻击性内容么？
   is_this_place_a_duplicate: 此地点是否重复？
   it: 它
+  it_can_now_be_used_for_research: 它现在可以用于科学研究，并在其他网站上展示
   it_has: 它有
   it_instead: 而不是它。
+  item_flagged_notice_html: |-
+    这已被标记为垃圾邮件，不再公开可见。你可以看到它，因为你是创建者，或者你是站点馆长。 如果您认为这是一个误判，请<a href="mailto:%{help_email}" class="contact">联系我们</a>。
+    <a href="%{manage_flags_path}">管理标签</a>
   its_important_that_you: 点此链接对您而言是重要的
   iucn_red_list_status: IUCN红色名录状态
   january: 一月
@@ -1554,12 +1660,15 @@ zh-CN:
   journal_posts: 日记帖子
   jpg_png_or_gif: JPG、PNG或GIF
   jump_to_letter: 跳转至信件
+  just_a_reminder: 提醒一下，您可能已经向项目馆长授予了查看此项目中私人观察者的地理位置的权限。
   just_added!: 添加了！
   keep_editing: 保持编辑
+  kelp_diatoms_and_allies: 海带，硅藻和allies
   keyboard_shortcuts: 键盘快捷键
   kml: KML
   kml_file_size_error: KML 大小必须小于 1 MB
   labels: 标签
+  label_to_group_a_batch_of_taxon_changes: 为一组分类单元的变化进行标记
   location_private: 位置是私有的
   location_unknown: 位置未知
   language_slash_type: 语言/种类
@@ -1572,6 +1681,7 @@ zh-CN:
   last_year: 去年
   lat: 纬度
   latitude: 纬度
+  latitude_in_decimals: 以十进制度数表示的纬度，例如：38.123
   latitude_slash_y_coord_slash_northing: 纬度/y轴坐标/北向
   layers: 图层
   layout: 布局
@@ -1589,15 +1699,18 @@ zh-CN:
   learn_more: 了解更多
   learn_more_raquo: 了解更多 &raquo;
   learn_what_these_licenses_mean: 了解这些授权协议是什么意思
+  least_concern: 无需担心
   leave_a_comment: 留下评论
   leave_this_project: 离开这个项目
   leaves: 离开
+  not_absent: 毫不稀有
   legacy_authentication_notice_html: 看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
   lexicons:
     scientific_names: 学名
     afrikaans: 南非语
+    albanian: 阿尔巴尼亚语
     bengali: 孟加拉语
     catalan: 加泰罗尼亚语
     cebuano: 宿务语
@@ -1655,6 +1768,8 @@ zh-CN:
   life_list_updated: 生物列表已更新！
   life_list_updated_we_also_saved_a: 生命清单已更新！我们也保存了此分类单元的一份空白观察。
   life_lists_automatically_fill: 生物列表会自动填充您所观察到的新分类单元，它们可能会限定于更高阶的父分类单元，例如，鸦科（Corvidae）鸟类的生物列表。
+  life_list_first: 很稀有
+  life_list_firsts: 较稀有
   link: 链接
   link_or_unlink_your_facebook_account: 链接或取消链接您的Facebook账户
   link_or_unlink_your_flickr_account: 链接或取消链接您的Flickr账户
@@ -1667,11 +1782,14 @@ zh-CN:
   linked_facebook: 您的%{site_name}账户目前已链接到您的Facebook账户。
   linked_facebook_automaticaly: 另请注意，如果您通过Facebook登录至 %{site_name}，我们将自动重新连接您的 %{site_name}
     账户与Facebook账户。看起来如果您使用Facebook的话，您将希望能够导入Facebook的照片，对么？
+  linked_facebook_description: 让您的%{site_name}帐户与您的Facebook帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Facebook取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Facebook账户会是个最佳选择。
   linked_facebook_howto: 要将Facebook连接到%{site_name}，请点击右侧链接，并登录至Facebook.com。
   linked_facebook_password: 我们将不会询问您的Facebook密码（但是Facebook可能检查按钮发送给您的URL并确保那是Facebook.com）。我们也将不会更改您的Facebook数据，除非您要求我们去做。
   linked_flickr: 您的%{site_name}账户目前已链接到您的Flickr账户。
   linked_flickr_automatically: 另请注意，如果您通过Flickr登录至 %{site_name}，我们将自动重新连接您的 %{site_name}
     账户与Flickr账户。看起来如果您使用Flickr的话，您将希望能够导入Flickr的照片，对么？
+  linked_flickr_description: 让您的%{site_name}帐户与您的Flickr帐户关联，可以让您为观察添加多张照片。当然，如果你想要%{site_name}和Flickr取消关联，我们不会阻止你，你只是无法添加照片。有时候，可能创建一个用于链接%{site_name}的新Flickr账户会是个最佳选择。
+  linked_flickr_hotwo: 您可以通过在%{site_name}上激活您的Flickr帐户，点击此链接来添加照片。
   linked_flickr_password_html: <strong>我们将不会询问您的Flickr密码</strong>（但是Flickr可能检查按钮发送给您的URL并确保那是Flickr.com）。
   linked_flickr_photo_copy_html: <strong>我们将不会存储您照片的拷贝，或更改您的Flickr数据（除非您要求我们去做）等。</strong>我们太过于在乎有关鸟、小虫和鼻涕虫，以避免接触您的信息！
   list: 列表
@@ -1687,13 +1805,19 @@ zh-CN:
   listed_taxa: 列举的分类群
   listed_taxon: 列举的分类单元
   listed_taxon_updated: 列举的分类已更新
+  listing_announcement: 列出公告
+  listing_announcements: 列出公告
   listing_lists: 正在列举列表
+  listing_project_assets: 列出项目资产
+  listing_taxa: 列出分类群
   listing_taxon_names: 正在列举分类单元名称
   lists: 列表
+  lists_are_lists_of_species: 列表是物种（或其他分类群）的列表，例如您所见过的所有鸟类的生物列表或您最喜爱的蝾螈列表。它们<em>不是</em>观察列表。
   lists_by_login:
     title:
       current_user: 您的列表
       login: 由 %{login} 列举
+  lists_come_in_three: 有三种列表：
   load: 加载
   loading: 正在载入...
   loading_flickr_photos: 正在加载Flickr照片……
@@ -1703,8 +1827,10 @@ zh-CN:
   loading_metadata: 正在加载元数据...
   loading_more_photos: 正在加载更多照片……
   loading_observations: 正在导入观察...
+  loading_preview_and_code: 正在加载预览和代码...
   loading_suggestions: 正在加载建议...
   loading_tags: 正在加载标签……
+  loading_taxa_from_your: 正在从您的观察记录中加载分类群...
   loading_wikipedia_description: 正在加载维基百科描述...
   locale_description: 区域设置您的语言和日期格式选项。
   locales_: 区域
@@ -1737,6 +1863,7 @@ zh-CN:
     pt-BR: 葡萄牙语（巴西）
     pt-PT: 葡萄牙语（葡萄牙）
     ru: 俄语
+    sq: 阿尔巴尼亚语
     zh-CN: 简体中文
     zh-TW: 繁体中文
   locality_notes: 位置注释
@@ -1744,10 +1871,14 @@ zh-CN:
   location: 位置
   location_: 位置
   locations: 位置
+  location_is_accurate: 位置准确
   location_is_exact: 位置是精确的
   location_is_public: 位置是公开的
   location_is_obscured: 位置已遮盖
   location_is_private: 位置是私有的
+  location_specified: 位置被指定
+  locked_taxa_will_not_allow_new: 锁定的分类群不允许将新的分类群添加到它们中。因此，如果你锁定了两栖动物，并且有人试图从外部名称提供者那里导入<i>Rana
+    catesbeiana</i>，那么将会创建新的分类单元，但它不能被分类为两栖动物。当发生这种情况时，新添加的分类群应该被打上标记，以引起馆长的注意。 这应该只适用于我们认为我们已经囊括了所有后代的分类群。馆长可以通过编辑分类单元并直接输入父ID来覆盖此项，但请考虑将新分类单元合并为现有分类单元。
   log_in: 登录
   logged_in_as: 登录为
   login_slash_username: 登录 / 用户名
@@ -1755,12 +1886,15 @@ zh-CN:
     logo: 标志
     white_bg_gif: 白色BG GIF
     transparent_png: 透明PNG
+    white_text_transparent_png: 白色文字透明PNG
     none: 无
   long: 经度
   longitude: 经度
   longitude_in_decimal: 十进制角度经度，例如：-122.123
   longitude_slash_x_coord_slash_easting: 精度/x轴坐标/东向
   look_up_name: 查阅名称
+  looks_like_neither_have!: 似乎还没有任何分类群！
+  looks_like_no_species_in_guide: 似乎你的指南里目前还没有物种呢。
   lookup: 查找
   lookup_user_rarr: 查找用户 &rarr;
   low: 低
@@ -1768,18 +1902,30 @@ zh-CN:
   made_a: 做一个
   make_admin: 做为管理员
   make_an_observation: 制作一个观察
+  mail_disclaimer: '%{site_name}不允许其用户通过我们的邀请者向您发送其他邀请。请向%{site}举报滥用行为。'
   main_content: 主内容
   make_a_new_place: 做出一个新地点
+  make_a_taxon_swap_instead?: 改用TaxonSwap吗？
+  make_curator: 指定馆长
+  make_it_a_life_list?: 让它成为生物列表？
+  make_manager: 指定管理员
+  make_new_place: 创建一个新地点
   make_one: 制作一个？
+  make_sure_the_default_photo_looks_good: 确保默认照片在大尺寸上看起来不错。
+  make_taxonomic_flickr_tags_for_taxon_raquo: 为此分类单元生成分类Flickr标签＆raquo;
   make_this_your_default_license: 将其作为您的默认 %{type} 许可协议
+  make_this_the_primary_listing: 将其作为主要列表
   mammals: 哺乳类
   manage: 管理
+  manage_all_your_subscriptions: 管理所有订阅者
   manage_names: 管理名称
   manage_your_projects: 管理您的项目
+  manage_your_project_invitations: 管理你的项目邀请
   manage_subscriptions: 管理订阅
   managed: 已管理
   manager: 经理
   managers: 经理
+  managers_can_do: 管理者可以完成馆长可以完成的任何工作，也可以编辑项目设置并编写项目日志文章。
   manually_create_new_place: 手动创建一个新地点
   map: 地图
   map_legend: 地图图例
@@ -1802,6 +1948,8 @@ zh-CN:
   mark_as_reviewed: 标记为已复核
   mark_all_as_reviewed: 全部标记为已复核
   mark_all_as_unreviewed: 全部标记为未复核
+  matched_several_different_taxa: 已匹配几个不同的分类群
+  matching_species_will_shown_up_here: 匹配的物种将出现在这里。如果%{place}有一个物种，地图将显示出一个范围。
   maverick: 未烙印动物
   maybe_your_signed_in_with: 也许您是使用您的 %{omniauth} 账户登录的？
   media: 媒体
@@ -1820,6 +1968,9 @@ zh-CN:
   mentioned_you_in_an_x_on_noun_by_html: '%{user} 在 %{noun} 上的 %{x} 通过 %{by} 提到了您'
   mentions: 提及
   merge: 合并
+  merge_it_with_another_place: 将其与另一个地点合并
+  merge_two_places_together: 合并两个地点。清单上的所有物种都将被合并，所有地理数据也将被合并。
+  merge_observation_field_x_into: 将观察字段“%{x}”合并进...
   merging: 正在合并
   merging_places: 合并地点
   message: 消息
@@ -1864,15 +2015,21 @@ zh-CN:
   most_agree: 多数同意
   most_disagree: 多数不同意
   most_comments_and_faves: 最多评论和喜爱
+  most_observations: 最多观察
+  most_recent_observation_by_date_observed: 按最近可查观察日期排序的最近观察结果
   most_species: 最多物种
   most_observed_species: 最多观察的物种
   most_observed_introduced_species: 最多观察的引进物种
   most_observed_threatened_species: 最多观察的受威胁物种
   multiple: 多重
   multiple_select_option: -- 多重 --
+  multiple_taxa_for_taxon_change: 复合分类单元（交换/合并输入，分别输出）
+  multiple_taxon_ids_separated_by_commas: 以逗号分隔的多个分类单元ID，例如：123654
   must_be_observed_after: 必须在 %{operand} 之后被观察
   must_be_observed_before: 必须在 %{operand} 之前被观察
+  must_be_observed_in: 必须观察在
   must_be_less_than_x_MB: 必须小于 %{x} MB
+  must_have_observation_field: 必须填写观察字段“%{operand}”
   must_have_x: 必须有 %{x}
   mute_user: 禁言用户
   mute_removed: 禁言已移除
@@ -1886,6 +2043,7 @@ zh-CN:
   name_entered: 输入的名称
   name_llaves: '[名称]'
   name_or_slug: 名称或URL slug，例如my-project
+  name_of_the_place_you: 观察时所处的地点的名称
   name_or_username: 名称或用户名
   name_provider: 名称提供方
   name_providers:
@@ -1910,8 +2068,10 @@ zh-CN:
   ne_lat: 东北纬度
   ne_lon: 东北经度
   near: 近似于
+  near_threatened: 近乎受到威胁
   nearby: 附近
   nearby_observations_: 附近观察
+  nearby_observations: 附近的观察
   need_id_help?: 需要ID帮助？
   needs_id: 需要ID
   needs_id_: 需要ID
@@ -1920,12 +2080,17 @@ zh-CN:
   needs_to_be_identified: 需要被鉴定
   new: 新
   new_and_noteworthy: 新闻与显著内容
+  new_announcement: 新公告
   new_assessment: 新评估
   new_check_list: 新检查表
   new_check_list_for: 为 %{place} 创建一个新检查表&raquo;
+  new_check_list_record: 如果您想将此列表标记为详尽，请创建它，添加分类群，然后对其进行编辑，您可以选择在此处将其标记为详尽。
   new_comment_on_a_parent_by_user_link: 由 %{user_link} 在 @vow_or_con{vow:an|a} %{parent}
     做出的新评论
+  new_custom_field_for: 新的自定义字段
   new_flag_for: 新标记用于
+  new_guide: 新指南
+  new_journal_posts: 新日志
   new_lexicon: 新的辞典
   new_list: 新列表
   new_members: 新成员
@@ -1935,6 +2100,7 @@ zh-CN:
   new_observations: 新观察
   new_observations_ellispsis: 新观察...
   new_observations_from_place_html: 来自 %{place} 的新观察
+  new_observations_may_take_up_to: 新的观察可能需要至多%{widget_expiration}分钟才能显示在小部件中。
   new_observations_of_x_html: '%{x} 的新观察'
   new_password: 新密码
   new_post: 新贴子
@@ -1942,8 +2108,13 @@ zh-CN:
   new_project_asset: 新项目_财产
   new_project_asset_for: 新项目财产用于
   new_source: 新来源
+  new_taxon_change: 新的分类单元变化
   new_taxon_link: 新分类链接
   new_taxon_name: 新的分类名称
+  new_taxon_name_for: 新的分类单元名称
+  new_taxon_range: 新的分类单元范围
+  new_taxonomic_change: 新的分类学变化（草案）
+  new_trip: 新旅程
   new_updates_in_the_last_24_hours_from: 来自%{site_name}的近24小时新更新
   new_user_rules: 新用户规则
   new_users: 新用户
@@ -1957,15 +2128,20 @@ zh-CN:
   next_tab: 下一标签
   "no": 否
   no_activity_in_the_past_week: 上周没有活跃。时间至
+  no_administrator_knows_your_password: '%{sitename}的管理员不会知晓您的新密码，在任何时候也都不能查看您的密码。'
+  no_assessments_have_been_added_to_this_project_yet: 此项目尚未添加任何评估。
   no_but_it_is_a_member_of_taxon: 不，但它是%{taxon}的成员之一
   no_colors_selected: 未选择颜色。
   no_comments_yet: 尚无评论。
   no_countries_added_yet: 尚未添加国家
   no_creative_commons_flickr_photo: 没有知识共享Flickr照片已标记
   no_creative_commons_flickr_photos_tagged_x: 没有知识共享Flickr照片标记为“%{x}”
+  no_curators_set: 未设馆长
+  no_curators_yet: 目前还没有馆长！
   no_description: 无描述
   no_facebook_photos: 我们找不到任何来自Facebook的照片。
   no_flags: 目前没有标记
+  no_flickr_photos_tagged: 还没有Flickr照片标记！
   no_header_row: 没有标题行
   no_identifications: 没有鉴定
   no_identifications_added:
@@ -1973,12 +2149,17 @@ zh-CN:
     user: '%{user}还没有对别人的观察添加过身份验证。'
   no_ids_have_been_suggested_yet: 没有建议ID
   no_interaction_data_available: 没有可用的交互数据
+  no_its_as_good_as_it_can_be: 不，它可以
   no_favorites_added:
     current_user: 您尚未添加收藏夹。
     user: '%{user}还没有添加过收藏。'
+  no_journal_post_have_been: 此项目尚未添加任何日志文章。
   no_license_all_rights_reserved: 无许可协议（保留所有权利）
   no_link_flickr: 不，我宁愿不那样。
+  no_managers_set: 未设管理员
   no_matching_article_from_x: 没有来自%{x}的匹配的条目
+  no_matching_invitations: 没有匹配的邀请
+  no_matching_observations: 没有匹配的观察
   no_matching_places: 没有匹配的地点
   no_matching_projects: 没有匹配的项目
   no_matching_species: 没有匹配的物种。
@@ -1990,11 +2171,20 @@ zh-CN:
   no_more_taxa_to_load: 没有更多要加载的分类！
   no_more_results_found: 找不到更多结果
   no_more_updates: 没有更多更新！
+  no_nearby_observations: 没有附近的观察
   no_new_messages: 没有新消息
   no_news_yet: 尚无新闻
   no_observations: 没有观察
+  no_observations_from_this_place_yet: 尚无来自此地区的观察。
+  no_observations_matching_those_ids: 尚无匹配此ID的观察。
+  no_observations_need_an_id: 目前还尚无观察需要ID。真不可思议！
   no_observations_submitted: 没有提交观察！
+  no_observations_suitable_for_this_project: 在此项目中，尚无未提供或邀请的信息的观察。
+  no_observations_yet: 尚无观察
+  no_one_has_added_any: 目前还没人为此地点添加任何记录
   no_one_has_been_invited_yet: 还没有人被邀请
+  no_one_posted_anything_yet: 目前还没有人发布任何内容！
+  no_ones_observed: 没有人进行过观察
   no_photo: 没有照片
   no_photos: 无照片
   no_places_available: 没有可用的地点
@@ -2007,18 +2197,27 @@ zh-CN:
   no_range_data_available: 没有范围数据可用。
   no_recent_activity: 没有最近活跃
   no_recently_active: 没有近期激活的项目。
+  no_relevant_annotations: 没有相关的注释
   no_reply_yet: 尚无恢复
   no_results_found: 没有找到结果
   no_results_for: 没有结果用于
   no_results_matching: 没有匹配的结果
+  no_sections_available: 没有可用的章节。
+  no_sections_have_been_added_to_this_assessments_yet: 此评估中尚未添加任何章节。
+  no_species_have_been_listed: 目前还没有物种被列入这个地方呢！
   no_species_observed: 没有观察的物种
+  no_species_on_this_list: 目前还没有物种在这个列表上呢！
   no_species_on_this_list_for_owner_html: 您可以开始直接将物种添加至此列表，或如果这是生命清单，它将在您<a href="%{url}"
     class="nobr">添加观察</a>时自动与物种更新。
   no_subject_parens: （无主题）
   no_suggestions_available: 没有可用建议
   no_summary_from_wikipedia: 没有来自维基百科的概要
+  no_summary_has_been_set: 尚无描述。
   no_taxa: 无分类群
+  no_taxa_listed: 没有可列出的分类群
+  no_taxa_selected: 尚未选择分类群！
   no_taxa_yet: 尚无分类群！
+  no_taxonomic_changes_match_those_criteria: 没有分类学的改变符合这些标准
   no_wikipedia_page_for_taxon: 没有用于此分类单元的维基百科页面。
   no_x_this_y: 不是%{x}这个%{y}
   noble_curators: '%{site}的博物馆长'
@@ -2028,9 +2227,12 @@ zh-CN:
   normal: 一般
   not_completed: 未完成
   not_evaluated: 未评估
+  not_filtering: 未过滤
   not_findig_what_you_want: 找不到您想找的东西么？
   not_finding_place_you_want?: 找不到您想去的地点么？
+  not_finding_what_looking_for: 没有找到你要找的东西吗？
   not_found: 未找到
+  not_just_creative_commons_licensed: 不仅仅是知识共享许可
   not_linked_facebook: 您的%{site_name}账户并未链接至您的Facebook账户
   not_linked_flickr: 您的%{site_name}账户并未链接至您的Flickr账户
   not_logged_in: 未登录
@@ -2043,6 +2245,8 @@ zh-CN:
   note_you_can_modify_the_height_attribute: 注意：您可以调整“height”属性来适应您页面的空间。
   notify_me_of_mentions: 通知提及我的（例如@username）
   notify_me_about_redundant_identifications: 通知我有关确认身份证明
+  notify_me_about_redundant_identifications_desc: 接收与您自己相匹配的标识的通知。如果您选择退出此选项，您将只会收到关于与您自己的身份标识中的分类单元并不完全匹配的分类群标识的通知。
+  number_of_observations: 观察次数
   number_selected: '# 已选择'
   numeric_: 数字
   noun_by_you: 由您做出的 %{noun}
@@ -2052,9 +2256,11 @@ zh-CN:
   obscured_: 已遮盖
   obscured: 已遮盖
   obscured_or_private: 已掩盖或私有
+  obscured_description: 公共坐标显示为真实坐标10KM内的随机点。真正的坐标只对您和您加入观察项目的馆长可见。
   observation: 观察
   observation_: 观察
   observation_added: 观察已添加。
+  observation_added_to_the_project: 添加观察到项目“%{project}”
   observations_by_category: 按分类排序观察
   observations_by_app: 通过应用观察
   observations_by_rank: 按等级排序观察
@@ -2170,7 +2376,6 @@ zh-CN:
   other_animals_plural:
     one: 其他动物
     other: 其他动物
-  other_annimals: 其他动物
   other_lexicons: 其他辞典
   our_blog: 我们的博客
   out_of_range: 超出范围
@@ -3142,9 +3347,8 @@ zh-CN:
   user_hasnt: '%{user}没有'
   user_muted: 用户已禁言
   user_observations: 用户观察
-  user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
-  user_s_lists: '%{user} 的列表'
+  user_s_lists: '%{user}的列表'
   user_suggested_an_id: '%{user}建议了一个ID'
   username: 用户名
   username_or_email: 用户名或电子邮件
@@ -3157,6 +3361,7 @@ zh-CN:
   users_identification_short_html: <a href='%{url}'>%{user}</a>的ID
   users_observations: '%{user}的观察'
   users_profile: '%{user}的详细信息'
+  users_projects: '%{user}的项目'
   users_year_on_site: '%{site}在%{year}年中，%{user}的复核'
   using_a_license: 使用一份许可协议
   valid_interrogation: 有效么？
@@ -3647,6 +3852,7 @@ zh-CN:
         user_login: 观察者的用户名
         updated_at: 日期时间观察最近已更新
         image_url: 用于默认图片的URL
+        sound_url: 默认音频的URL。注意这只对直接上传的音频有效，对托管在第三方服务上的音频无效
         tag_list: 逗号分隔的标签列表
         positioning_method: 坐标如何被测定
         positioning_device: 测定坐标的设备
@@ -3846,6 +4052,7 @@ zh-CN:
           <p>
             要开始入门，请<a href="%{url}" class="readmore">创建一个帖子</a>
           </p>
+        this_is_a_preview: 这是该项目作为一个收集项目时的样子的预览。
       updates_desc: 在您的控制面板与每日更新邮件中接收有关此项目的更新。
     shared:
       blocked:

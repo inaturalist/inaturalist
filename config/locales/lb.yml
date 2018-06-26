@@ -751,6 +751,7 @@ lb:
   lexicons:
     scientific_names: Wëssenschaftlech Nimm
     afrikaans: Afrikaans
+    albanian: Albanesch
     bengali: Bengalesch
     catalan: Katalanesch
     chinese_simplified: Chinesesch (Vereinfacht)
@@ -832,6 +833,7 @@ lb:
     pt-BR: Portugisesch (Brasilien)
     pt-PT: Portugisesch (Portugal)
     ru: Russesch
+    sq: Albanesch
     zh-CN: Chinesesch (Vereinfacht)
     zh-TW: Chinesesch (traditionell)
   location: Plaz
@@ -1082,7 +1084,6 @@ lb:
   other_animals_plural:
     one: anert Déier
     other: aner Déieren
-  other_annimals: Aner Déieren
   other_lexicons: Aner Lexikonen
   our_blog: Eise Blog
   overview: Iwwersiicht
@@ -1436,14 +1437,14 @@ lb:
   user_blocked: Benotzer gespaart
   user_invited_you_to_join_html: '%{user} huet Iech invitéiert fir matzemaachen'
   user_muted: Benotzer stommgeschalt
-  user_s: '%{user}'
-  user_s_lists: '%{user} Lëschten'
+  user_s_lists: Lëschte vum %{user}
   username: Benotzernumm
   username_or_email: Benotzernumm oder E-Mail-Adress
   users: Benotzer
   users_identification_short_html: ID vum <a href='%{url}'>%{user}</a>
   users_observations: Observatioune vum %{user}
   users_profile: Profil vum %{user}
+  users_projects: Projete vum %{user}
   valid_interrogation: Valabel?
   value: Wäert
   view: Weisen
@@ -1722,7 +1723,9 @@ lb:
     countdown_x_days:
       one: Dag
       other: Deeg
-    countdown_x_hours: '{{PLURAL: $1|one=Stonn|Stonnen}}'
+    countdown_x_hours:
+      one: Stonn
+      other: Stonnen
     countdown_x_seconds:
       one: Sek
       other: Sek

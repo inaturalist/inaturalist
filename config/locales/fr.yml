@@ -741,6 +741,8 @@ fr:
   by_user: par %{user}
   by_you: Par vous
   calendar: Calendrier
+  calendars_only_show_x_observations_at_time: Les agendas ne montrent que %{x} observations
+    à la fois
   can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe
@@ -2044,6 +2046,7 @@ fr:
   lexicons:
     scientific_names: Noms scientifiques
     afrikaans: Afrikaans
+    albanian: Albanais
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
@@ -2233,6 +2236,7 @@ fr:
     pt-BR: Portugais (Brésil)
     pt-PT: Portugais (du Portugal)
     ru: Russe
+    sq: Albanais
     zh-CN: Chinois (simplifié)
     zh-TW: Chinois (traditionnel)
   locality_notes: Notes localisées
@@ -2963,7 +2967,6 @@ fr:
   other_animals_plural:
     one: autre animal
     other: autres animaux
-  other_annimals: Autres animaux
   other_lexicons: Autres lexicons
   other_listings_of_this_taxon_for_this_place: Autres listes de ce taxon pour ce lieu
   other_species_commonly_misidentified_as_this_species: Autres espèces souvent confondues
@@ -3251,6 +3254,9 @@ fr:
   positional_accuracy: Exactitude de l’emplacement
   possessive_user: '%{user}'
   post: Note
+  post_from_journal_by_parent_html: Publié depuis <a href="%{url}">le journal par
+    %{parent}</a>
+  post_from_your_journal_html: Publié depuis <a href="%{url}">votre journal</a>
   post_published: Note publiée!
   post_some_new_stuff: publier quelque chose de neuf
   posted_by: Publié par
@@ -3354,6 +3360,7 @@ fr:
     avec celles d’autres personnes sur %{site_name}. Si vous souhaitez démarrer un
     projet scientifique entre citoyens ou gérer des onglets sur les oiseaux du voisinage,
     les projets sont le moyen d’y arriver.
+  projects_from_everywhere: Projets de partout
   projects_from_place: Projets de %{place}
   projects_in_x: Projets dans %{x}
   projects_you_admin: Projets que vous administrez
@@ -4519,7 +4526,6 @@ fr:
     pour %{project}
   user_muted: Utilisateur réduit au silence
   user_observations: Observations utilisateur
-  user_s: de %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listes de %{user}
   user_suggested_an_id: '%{user} a suggéré un ID'
@@ -4539,6 +4545,7 @@ fr:
   users_latest_observations_on_site: dernières observations de %{user} sur %{site}
   users_observations: observations de %{user}
   users_profile: Profil de %{user}
+  users_projects: Projets de %{user}
   users_year_on_site: Année de %{user} sur %{site} %{year}
   using_a_license: au moyen d’une licence
   using_cc_license_makes_easier_use_your_data: L’utilisation d’une licence <strong>d’attribution
@@ -5557,6 +5564,9 @@ fr:
         license: Licence que l’observateur a choisie pour cette observation
         url: URL de l’observation
         image_url: URL de l’image par défaut
+        sound_url: URL pour le son par défaut. Notez que cela ne fonctionnera que
+          pour les téléchargements directs, non pour les sons hébergés sur des services
+          tiers
         tag_list: Liste d’étiquettes séparée par des virgules
         place_admin1_name: Nom de l’endroit administratif un rang en dessous du niveau
           pays

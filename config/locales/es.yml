@@ -60,10 +60,13 @@ es:
     other: '%{count} entradas de diario'
   x_journal_posts_html:
     one: <span class="count">1</span> entrada de diario
-    other: '<span class="count">%{count}</span> entradas de diario'
+    other: <span class="count">%{count}</span> entradas de diario
   x_matching_taxa:
     one: 1 taxón que coincide
     other: '%{count} taxones que coinciden'
+  x_matching_taxa_html:
+    one: <span class="count">1</span> coincidencia de taxón
+    other: <span class="count">%{count}</span> coincidencia de los taxones
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
@@ -94,6 +97,9 @@ es:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> grupo observado</span>
+    other: <span class='count'>%{count}</span> grupos observados</span>
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -123,9 +129,15 @@ es:
       investigación para especies o descendientes</span>
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span> grupo observado</span>
+    other: <span class='count'>%{count}</span> grupos observados</span>
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
+  x_taxon_changes_added_html:
+    one: <span class='count'>1</span> grupo observado</span>
+    other: <span class='count'>%{count}</span> grupos observados</span>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
   a: un(a)
@@ -1962,6 +1974,7 @@ es:
   lexicons:
     scientific_names: Nombres científicos
     afrikaans: Afrikáans
+    albanian: Albanés
     bengali: Bengalí
     catalan: Catalán
     cebuano: Cebuano
@@ -2146,6 +2159,7 @@ es:
     pt-BR: Portugués (Brasil)
     pt-PT: Portugués (Portugal)
     ru: Ruso
+    sq: Albanés
     zh-CN: Chino (simplificado)
     zh-TW: Chino (tradicional)
   locality_notes: Notas por localidad
@@ -2866,7 +2880,6 @@ es:
   other_animals_plural:
     one: otro animal
     other: otros animales
-  other_annimals: Otros animales
   other_lexicons: Otros léxicos
   other_listings_of_this_taxon_for_this_place: Otras ejemplas de este especies listado
     en este lugar
@@ -3153,8 +3166,8 @@ es:
   positional_accuracy: precisión de tu ubicación
   possessive_user: de %{user}
   post: Ingresar
-  post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
-  post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
+  post_from_journal_by_parent_html: Publicación del <a href="%{url}">diario de %{parent}</a>
+  post_from_your_journal_html: Publicación de <a href="%{url}">tu diario</a>
   post_published: ¡Nota publicada!
   post_some_new_stuff: publicar algo nuevo
   posted_by: Publicado por
@@ -3195,6 +3208,9 @@ es:
   profile: Perfil
   project: Proyecto
   project_added_your_observations: Se añadió el proyecto a tus observaciones
+  project_admins:
+    one: Administrador de proyecto
+    other: Administradores de proyecto
   project_aggregator_filter_error: Los proyectos no permiten la agregación automática
     de observaciones, excepto que se hayan asociado a un territorio de dimensiones
     moderadas o que únicamente permitan observaciones de taxones específicos o de
@@ -3252,7 +3268,7 @@ es:
     otras personas en %{site_name}.  Ya sea que te interese comenzar un proyecto de
     ciencia ciudadana o solamente mantener registros de las aves de un parque cercano
     con tu club local, la forma de hacerlo es con Proyectos.
-  projects_from_everywhere: Projekte nga të gjitha anët
+  projects_from_everywhere: Proyectos de todas partes
   projects_from_place: Proyectos de %{place}
   projects_in_x: Proyectos en %{x}
   projects_you_admin: Proyectos que usted administra
@@ -4046,7 +4062,7 @@ es:
   there_were_errors: Hubo errores.
   there_were_problems_adding_taxa: 'Ocurrieron problemas al añadir esos taxones: %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Hubo problemas al
-    añadir tus observaciones al proyecto: '
+    añadir tus observaciones al proyecto:'
   there_were_problems_adding_that_observation_to_this_project: 'Hubo problemas agregando
     esa observación a este proyecto:'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
@@ -4363,7 +4379,7 @@ es:
   user_muted: Usuario silenciado
   user_observations: Observaciones del usuario
   user_s_id: '%{id} de %{user}'
-  user_s_lists: Listas %{user}
+  user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugirió una identificación'
   user_thinks_yours_is: '%{user} %{noun} su observación %{observation} es'
   username: Nombre de usuario
@@ -4381,6 +4397,7 @@ es:
   users_latest_observations_on_site: Lates observaciones de %{user} en %{site}
   users_observations: Observaciones de %{user}
   users_profile: Perfil de %{user}
+  users_projects: Proyectos de %{user}
   users_year_on_site: El año %{year} de %{user} en %{site}
   using_a_license: utilizando una licencia
   using_cc_license_makes_easier_use_your_data: Usar una licencia de <strong>Atribución
@@ -6139,9 +6156,8 @@ es:
           </p>
         name_place_help_html: Priorizar los nombres vernáculos utilizados en este
           lugar.
-        place_preference_changed_notice_html: |-
-          Si cambias de opinión siempre puedes
-          <a href='/users/edit'>editar tus preferencias</a>.
+        place_preference_changed_notice_html: Se modificó la preferencia de lugar.
+          Si cambias de opinión, siempre podrás <a href='/users/edit'>editar tus preferencias</a>.
         project_addition_preferences:
           any: Cualquiera
           joined: Proyectos a los que te has unido
@@ -6160,7 +6176,7 @@ es:
           identificaciones, pero la opinión de la comunidad no serán priorizadas frente
           a la suya. Esto significa que sus observaciones sólo serán de grado de investigación,
           cuando usted esté de acuerdo con la comunidad.'
-        search_place_help_html: Sitio de defecto para búsquedas de observaciones.
+        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
         scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
         youve_used_all_of_your_blocks: Has utilizado todos tus bloques. Quita un bloque
           para añadir otro.
@@ -6258,7 +6274,7 @@ es:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
       short: '%d de %b'
-      short_with_year: '%B %d, %Y'
+      short_with_year: '%d.%b.%Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:
@@ -6320,6 +6336,9 @@ es:
     countdown_x_hours:
       one: hora
       other: horas
+    countdown_x_minutes:
+      one: min
+      other: min
     countdown_x_seconds:
       one: s
       other: s
@@ -6447,8 +6466,14 @@ es:
         too_short:
           one: es demasiado corto (el mínimo es 1 carácter)
           other: es demasiado corto (el mínimo son %{count} caracteres)
+        wrong_length:
+          one: no tiene el tamaño correcto(debe ser de 1 carácter)
+          other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Hubo problemas con los siguientes campos:'
+        header:
+          one: 1 error prohibió este %{model} de ser salvado
+          other: '%{count} errores prohibieron este %{model} de ser salvado'
   activerecord:
     errors:
       models:
