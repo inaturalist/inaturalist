@@ -16,7 +16,6 @@ class GuidesController < ApplicationController
     :add_tags_for_rank, :remove_all_tags, :import_tags_from_csv]
 
   layout "bootstrap"
-  PDF_LAYOUTS = GuidePdfFlowTask::LAYOUTS
 
   caches_page :show, :if => Proc.new {|c| c.request.format == :ngz || c.request.format == :xml}
   
@@ -222,45 +221,18 @@ class GuidesController < ApplicationController
       format.json { render json: @guide.as_json(:root => true) }
 
       format.pdf do
-        @layout = params[:layout] if GuidePdfFlowTask::LAYOUTS.include?(params[:layout])
-        @layout ||= GuidePdfFlowTask::GRID
+        @layout = params[:layout] if Guide::PDF_LAYOUTS.include?(params[:layout])
+        @layout ||= Guide::GRID
         @template = "guides/show_#{@layout}.pdf.haml"
-        if params[:print].present?
-          render :pdf => "#{@guide.title.parameterize}.#{@layout}", 
-            :layout => "bootstrap.pdf",
-            :template => @template,
-            :orientation => @layout == "journal" ? 'Landscape' : nil,
-            :show_as_html => params[:pdf].blank?,
-            :margin => {
-              :left => 0,
-              :right => 0
-            }
-        elsif params[:flow_task_id] && flow_task = FlowTask.find_by_id(params[:flow_task_id])
-          redirect_to flow_task.pdf_url || @guide
-        else
-          matching_flow_task = GuidePdfFlowTask.
-            select("DISTINCT ON (flow_tasks.id) flow_tasks.*").
-            joins("INNER JOIN flow_task_resources inputs ON inputs.flow_task_id = flow_tasks.id").
-            joins("INNER JOIN flow_task_resources outputs ON inputs.flow_task_id = flow_tasks.id").
-            where("inputs.type = 'FlowTaskInput'").
-            where("outputs.type = 'FlowTaskOutput'").
-            where("inputs.resource_type = 'Guide' AND inputs.resource_id = ?", @guide).
-            where("outputs.file_file_name IS NOT NULL").
-            order("flow_tasks.id DESC").
-            detect{|ft| ft.options['layout'] == @layout}
-          if matching_flow_task && 
-              matching_flow_task.created_at > @guide.updated_at && 
-              (matching_flow_task.options['query'].blank? || matching_flow_task.options['query'] == 'all') &&
-              !@guide.guide_taxa.where("updated_at > ?", matching_flow_task.created_at).exists? &&
-              !GuidePhoto.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_photos.updated_at > ?", matching_flow_task.created_at).exists? &&
-              !GuideSection.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_sections.updated_at > ?", matching_flow_task.created_at).exists? &&
-              !GuideRange.joins(:guide_taxon).where("guide_taxa.guide_id = ?", @guide).where("guide_ranges.updated_at > ?", matching_flow_task.created_at).exists? &&
-              matching_flow_task.pdf_url
-            redirect_to matching_flow_task.pdf_url
-          else
-            render :status => :not_found, :text => "", :layout => false
-          end
-        end
+        render :pdf => "#{@guide.title.parameterize}.#{@layout}",
+          :layout => "bootstrap.pdf",
+          :template => @template,
+          :orientation => @layout == "journal" ? 'Landscape' : nil,
+          :show_as_html => params[:pdf].blank?,
+          :margin => {
+            :left => 0,
+            :right => 0
+          }
       end
       format.xml
       format.ngz do

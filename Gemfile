@@ -94,7 +94,6 @@ gem 'trollop'
 gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
-gem 'wicked_pdf'
 gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
