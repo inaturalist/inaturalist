@@ -121,11 +121,23 @@
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
-      var SITE = <%= @site.to_json(
-        only: [ :id, :name, :logo ],
-        methods: [ :logo ],
-        include: { place: { only: [ :id, :name ] } }
-      ).html_safe %>;
+      var SITE = {
+        name: "<%= @site.name %>",
+        short_name: "<%= @site.site_name_short %>",
+        help_email: "<%= @site.email_help %>",
+        logo_square: "<%= @site.logo_square.url %>",
+        copyrighted_media_image_urls: {
+          original: "<%= image_url("copyright-infringement-original.png") %>",
+          large: "<%= image_url("copyright-infringement-large.png") %>",
+          medium: "<%= image_url("copyright-infringement-medium.png") %>",
+          small: "<%= image_url("copyright-infringement-small.png") %>",
+          square: "<%= image_url("copyright-infringement-square.png") %>"
+        },
+        processing_image_urls: {
+          small: "<%= image_url(LocalPhoto.new.file.url(:small)) %>",
+          square: "<%= image_url(LocalPhoto.new.file.url(:square)) %>"
+        }
+      };
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
