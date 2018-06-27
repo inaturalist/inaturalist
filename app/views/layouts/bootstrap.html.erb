@@ -121,6 +121,11 @@
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;
       var TIMEZONE = "<%= Time.zone.tzinfo.name %>";
+      var SITE = <%= @site.to_json(
+        only: [ :id, :name, :logo ],
+        methods: [ :logo ],
+        include: { place: { only: [ :id, :name ] } }
+      ).html_safe %>;
     </script>
     <%= javascript_include_tag 'application_bundle' %>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
