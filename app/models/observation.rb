@@ -379,11 +379,11 @@ class Observation < ActiveRecord::Base
              :set_taxon_photo,
              :create_observation_review,
              :reassess_annotations
-  after_create :set_uri, :update_user_counter_caches
+  after_create :set_uri, :update_user_counter_caches_after_create
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
     :update_taxon_counter_caches, :create_deleted_observation,
-    :update_user_counter_caches, :delete_observations_places
+    :update_user_counter_caches_after_destroy, :delete_observations_places
 
   after_commit :reindex_identifications, :reindex_places, :reindex_projects
   
@@ -1943,9 +1943,29 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def update_user_counter_caches_after_create
+    # For immediate gratification
+    User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i + 1, 0].max )
+    user.reload
+    user.elastic_index!
+    # For accuracy
+    update_user_counter_caches
+    true
+  end
+
+  def update_user_counter_caches_after_destroy
+    User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i - 1, 0].max )
+    user.reload
+    user.elastic_index!
+    update_user_counter_caches
+    true
+  end
+
   def update_user_counter_caches
-    User.delay( unique_hash: { "User::update_observations_counter_cache": user_id } ).
-      update_observations_counter_cache( user_id )
+    User.delay(
+      unique_hash: { "User::update_observations_counter_cache": user_id },
+      run_at: 1.minute.from_now
+    ).update_observations_counter_cache( user_id )
     true
   end
 
