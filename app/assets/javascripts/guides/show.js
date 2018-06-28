@@ -10,11 +10,11 @@ $('.taxonmap').waypoint(function() {
 }, {
   triggerOnce: true,
   offset: '100%'
-}
+} );
 $('#printbtn').click(function() {
   var layout = $('#print_dialog input[name*=layout]:checked').val(),
       printUrl = window.location.pathname.replace(/\.+/, '') + '.' + layout+'.pdf'
-  if ($('#guide_pdf_flow_task_options_query_all:checked').length == 0) {
+  if ($('#print_dialog_options_query_all:checked').length == 0) {
     if (window.location.search.length == 0) { printUrl += "?print=t" }
     else { printUrl += window.location.search + '&print=t' }
   } else {
