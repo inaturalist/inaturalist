@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Cgalindo
 # Author: Fitoschido
+# Author: Kueda
 # Author: Loarie
 # Author: Macofe
 # Author: MattiaMen
@@ -2941,7 +2942,7 @@ es-MX:
       inténtalo de nuveo más tarde.
     sounds: Sonidos
     sounds_size_sound: '%Duración del sonido: {sounds_size}'
-    sounds_size_sounds: '%Peso del sonido: {sounds_size}'
+    sounds_size_sounds: 'Peso del sonido: %{sounds_size}'
     view_all_soundcount_sounds: Ver los %{sound_count} sonidos
     we_didnt_find_any_sounds: Lo sentimos, no pudimos encontrar ningún sonido de tu
       cuenta de SoundCloud.
@@ -3534,7 +3535,7 @@ es-MX:
   view_more: Ver más
   view_more_about_x: Ve más sobre %{x}
   view_more_observations: Ve mas observaciones
-  view_more_observations_from_x: Ve más observaciones de
+  view_more_observations_from_x: Ve más observaciones de %{x}
   view_more_observations_from: Ve mas observaciones de
   view_more_observations_near_x_place: Ver mas observaciones cerca del lugar %{place}
     en <nobr>%{site_name} &raquo;</nobr>

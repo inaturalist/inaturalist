@@ -2757,6 +2757,8 @@ sq:
   only_accepts_taxa: pranon vetem taxa
   only_an_admin_can_remove_project_users: Vetem administratori mund te largoje perdoruesit
     e projekteve
+  only_country_state_and_county: Vetëm vendet, shtetet dhe ekuivalentët e qarqece
+    shihen tani. Afroni që të shihni vendet më të vogla.
   only_curators_can_add_edit_scientific_names: Vetëm përgjegjësit/kuratorët mund të
     shtojnë/redaktojnë emrat shkencorë.
   only_curators_can_access_that_page: Vetëm përgjegjësit/kuratorët mund t'i qasen
@@ -2770,10 +2772,13 @@ sq:
   only_project_curators_can_do_that: Vetëm përgjegjësit/kuratorët e projektit mund
     ta bëjnë atë.
   only_receive_updates_about_this_taxon: Merrni vetëm përditësime për këtë takson
+  only_show_active_taxa: Shfaq vetëm taxa-t aktive
   only_show_events_that_last_less_than_2_weeks: Shfaq vetëm ngjarjet që zgjasin më
     pak se 2 javë
   only_show_for_species_subspecies_varieties_etc: Shfaq vetëm llojet, nënllojet, shumëllojshmëritë,
     etj.
+  only_show_taxa_fom_this_list: Shfaq vetëm taxa-t nga kjo listë
+  only_showing_taxa_from: Duke shfaqur vetëm taxa nga kjo listë
   only_species: Vetëm specjet
   only_species_and_subspecies: Vetëm specjet dhe nënspecjet/llojet
   only_the_author_of_this_post_can_do_that: Vetëm autori i ketij postimi mund ta bëjë
@@ -2892,6 +2897,8 @@ sq:
       airport: aeroport
       Building: Ndertese
       building: Ndërtesa
+      Canton: Kantoni
+      canton: kantoni
       Continent: Kontinenti
       continent: Kontinent
       Country: Shteti
@@ -2959,6 +2966,8 @@ sq:
     ato për vende të mëdha, përveç nëse ato nuk janë shtuar nga administratorët e
     faqes. Megjithatë, ju ende mund ta përdorni këtë vend për kufijtë e projektit
     dhe paqartësitë te vëzhgimet
+  place_updated: Vendi u përditësua!
+  placement: Vendosje
   places: Vende
   places_added_by_members_of_the_community: Vendet e shtuara nga anëtarë të komunitetit
   places_maintained_by_site_admins: Vende të mirëmbajtura nga adminstratorët e faqes
@@ -3050,6 +3059,24 @@ sq:
   post: Posto
   post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
+  post_published: Postimi u publikua!
+  post_some_new_stuff: Posto ca gjera të reja
+  posted_by: Postuar nga
+  posted_on: Postuar më
+  posts: Postimet
+  potential_disagreement: Mosmarrëveshjet potenciale
+  powered_by: Mbështetur nga
+  powered_by_inaturalist_open_source_software_html: Mbështetur nga <a href="https://github.com/inaturalist/inaturalist"
+    target="_new" >iNaturalist open source software</a>
+  present: i tanishëm
+  preview: Paraafishim
+  preview_observations: Paraafisho vëzhgimet
+  preview_of_synced_observation: <strong>Parafisho</strong> vëzhgimin e sinkronizuar.  <a
+    href="%{url}">zhbëj?</a>
+  preview_personal_message: Do të kisha dëshirë të më bashkangjiteshit në %{site},
+    webfaqe ku mund ti regjistroni vëzhgimet tuaja të bimëve dhe shtazëve, ndiqni
+    listën tuaj jetësore, dhe mësoni rreth botës natyrale!
+  preview_your_message: Paraafisho mesazhin tuaj
   previewing: Duke paraafishuar...
   previous: Paraprak
   prev: Para
@@ -3062,15 +3089,24 @@ sq:
   privacy_policy: Politika e privatësisë
   private: privat
   private_: Privat
+  private_description: Koordinatat janë plotësisht të padukshme për hartat publike,
+    koordinatat e vërteta janë të dukshme vetëm për ju dhe kuratorëve të projektit
+    në të cilin ju e shtoni vëzhgimin. Vëzhgimet me koordinata private megjithatë
+    përsëri do të përdoren për të verifikuar listat kontrolluese të vendit.
   proceed: Përpunuar
   processing: Përpunimi
   processing3p: Duke përpunuar...
   profile: Profili
   project: Projekti
   project_added_your_observations: Projekti i shtoi vëzhgimet e juaja
+  project_admins:
+    one: Administratori i projektit
+    other: Administratorët e projektit
   project_aggregator_filter_error: Projektet nuk mund të lejojnë grumbullime automatike
     vëzhgimesh përveç nëse projekti është i lidhur me vend me madhësi të moderuar
     ose vetëm nëse lejon vëzhgime përndonjë taxa specifike ose taxa nga lista
+  project_assessments: Vlerësimet e projektit
+  project_created_on: e krijoi këtë projekt më %{date}
   project_group_label: Grup
   project_membership_model_description: A është projekti juaj i hapur për të gjithë
     apo vetëm njerëzit që ju ftoni?
@@ -3087,6 +3123,22 @@ sq:
   projects_from_everywhere: Projekte nga të gjitha anët
   projects_you_admin: Projektet që ju administroni
   projects_youve_joined: Projektet që u jeni bashkuar
+  read_more: Lexo më shumë
+  receive_email_notifications_when_people_leave_you: Prano njoftimet përmes emailit
+    rreth
+  receive_updates_from_this_project: Prano përditësimet nga ky projekt
+  received: E pranuar
+  recent: Të fundit
+  recent_comments_on_your_stuff: Komentet e kohëve të fundit në gjërat tuaja
+  recent_observations: Vëzhgimet e kohëve të fundit
+  recent_observations_: Vëzhgimet e Kohëve të fundit
+  recent_post: Postim i kohës së fundit
+  recent_atom_observations_by: Vëzhgimet e kohëve të fundit nga %{login}(Atom)
+  recent_observations_by: Vëzhgimet e kohëve të fundit nga %{login}
+  recent_updates: Përditësimet e kohëve të fundit
+  recently_observed: E vëzhguar kohëve të fundit
+  red: e kuqe
+  refresh: Rifresko
   reorder_by_taxonomy: Renditja sipas taksonomisë
   rules_types:
     must_be_in: E detyrueshme të jetë në taxon

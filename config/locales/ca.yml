@@ -4208,6 +4208,7 @@ ca:
   those_observations_no_longer_exist: Aquestes observacions ja no existeixen.
   threatened: amenaçat
   thu: Dj.
+  thumb_url: Miniatura de l'URL
   time_: hora
   time_ago: fa %{time}
   tired_of_testing_this_new_version: Cansat de provar aquesta nova versió?
@@ -4332,6 +4333,7 @@ ca:
     haureu de fer-ho d'aquesta manera.
   upload_photo: Pugeu Foto
   upload_photos: Penja fotos
+  upload_range: Carregar distribució
   uploaded_by: Pujat per
   uploader:
     tooltips:
@@ -5344,6 +5346,8 @@ ca:
         license: Llicència que l'observador ha escollit per a aquesta observació
         url: URL de l'observació
         image_url: URL de la imatge per defecte
+        sound_url: URL del só per defecte. Noteu que únicament funciona per pujades
+          directes, no per a sons allotjats a altres serveis
         tag_list: Llista d'etiquetes separada per comes
         place_admin1_name: Nom del lloc administratiu situat per sota del nivell de
           país
@@ -5745,10 +5749,22 @@ ca:
           cerca no ha estat possible trobar res de res!
     stats:
       index:
+        android_desc_html: Creat des de l'<a href="%{url}">App iNaturalist d'Android</a>
+        avg_ttcid: TTCID mitjana
+        avg_ttid: TTID mitjana
+        iphone_desc_html: Creat des de l'<a href="%{url}">App iNaturalist d'iPhone</a>
+        med_ttcid: TTCID mediana
+        med_ttid: TTID mediana
         obs_1_day: Obs (1 dia)
         obs_1_day_desc: Les observacions creades en un únic dia
         obs_cid_d_desc: Creat en 7 dies anteriors i té una ID de comunitat
+        obs_cid_d_to_genus: CID de l'observació d'un gèners
         obs_desc: Creat en els 7 dies anteriors
+        TTCID: TTCID
+        TTCID_desc: Temps fins a rebre una observació d'algú més que coincideix amb
+          el tàxon de la comunitat.
+        TTID: TTID
+        TTID_desc: Temps fins a rebre una identificació per part d'algú més
     taxa:
       edit:
         complete_desc_html: Un tàxon "complet" inclou <em>tots</em> els tàxons descendents
@@ -5832,10 +5848,16 @@ ca:
            <li><p>No afegir noms duplicats, per exemple, no poseu diversos falcons "falcó"</p></li>
            <li><p>Per a tàxons de més alt nivell de tàxons, proveu d'utilitzar noms que incloguin tots els descendents, com "garses i similars" o "Família dels Brucs"<p></li>
             <li>
-              <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom    </p>
+              <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom</p>
             </li>
             <li>
-              <p>Els lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
+              <p>Els nous lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
+            </li>
+           <li>
+              <p>
+                Els noms comuns associats a traduccions apareixen com a noms per defecte per aquest idioma (amb independpencia de l'efecte del lloc de preferència, l'ordre dels noms...).
+                <a class="readmore" href="/pages/translate">Llegiu més sobre les traduccions</a>
+              </p>
             </li>
           </ul>
         places_help_html: |-
@@ -6011,6 +6033,7 @@ ca:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
       short: '%d de %b'
+      short_with_year: '%d de %B del %Y'
       month_year: '%B %Y'
       month_day_year: '%d de %B de %Y'
     month_names:

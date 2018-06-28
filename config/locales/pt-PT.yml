@@ -2086,6 +2086,7 @@ pt-PT:
   listing_announcement: A listar anúncio
   listing_announcements: A listar anúncios
   listing_lists: A listar listas
+  listing_project_assets: Listando as avaliações do projeto
   listing_taxa: Lista de táxones
   listing_taxon_names: A listar os nomes de táxones
   lists: Listas
@@ -2533,25 +2534,103 @@ pt-PT:
   no_taxa: Não existem taxons
   no_taxa_listed: Não existem taxons listados
   no_taxa_selected: Nenhum taxon selecionado!
+  no_taxa_yet: Não existem táxons ainda!
+  no_taxonomic_changes_match_those_criteria: Nenhuma mudança taxonômica corresponde
+    a estes critérios
+  no_wikipedia_page_for_taxon: Nenhuma página da Wikipédia foi encontrada para este
+    táxon.
+  no_x_this_y: Não existe %{x} deste %{y}
+  noble_curators: Nobres Curadores do %{site}
+  non_human?: Não-humano?
+  none: Nenhum
+  none_found: Não encontrado
+  normal: normal
+  not_completed: Incompleto
+  not_evaluated: Não avaliado
+  not_filtering: Sem filtrar
+  not_findig_what_you_want: Não encontra o que deseja?
+  not_finding_place_you_want?: Não encontra o lugar que deseja?
+  not_finding_what_looking_for: Não encontra o que procura?
+  not_found: Não encontrado
+  not_just_creative_commons_licensed: não apenas licenças Creative Commons
+  not_linked_facebook: A sua conta do %{site_name} não está atualmente ligada à sua
+    conta do Facebook.
+  not_linked_flickr: A sua conta do %{site_name} não está actualmente ligada à sua
+    conta do Flickr.
+  not_logged_in: Não está logado
+  not_on_this_list: Não está nesta lista.
+  not_recorded: Não registado
+  not_seeing_what_looking_for: Não vê o que procura?
+  not_yet: Ainda não
+  note: Nota
+  notes: Notas
+  note_you_can_modify_the_height_attribute: 'Nota: pode modificar o atributo "altura"
+    para que se adeque ao espaço disponível no seu site.'
+  notify_me_of_mentions: Notifique-me quando for mencionado (e.g. @username)
+  notify_me_about_redundant_identifications: Notifique-me sobre confirmações de identificação
+  notify_me_about_redundant_identifications_desc: Receber notificações sobre identificações
+    que correspondem às minhas. Se você desactivar esta opção, apenas receberá notificações
+    sobre identificações de taxons que não correspondam à sua própria identificação.
   number_of_observations: Número de observações
+  number_selected: '# seleccionado'
+  numeric_: numérico
+  noun_by_you: '%{noun} por si'
+  obs: Obs
+  obs_cid_d: Obs CID'd
+  obs_id_d: Obs ID'd
+  obscured_: oculto
+  obscured: Oculto
+  obscured_or_private: oculta ou privada
+  obscured_description: Coordenadas públicas mostram um raio de um ponto aproximado
+    de 10km das coordenadas verdadeiras. As coordenadas verdadeiras somente são visíveis
+    para si e para os coordenadores dos projetos a que adiciona as suas observações.
+  observation: Observação
+  observation_: observação
+  observation_added: Observação adicionada.
+  observation_added_to_the_project: Observação adicionada ao projeto "%{project}"
+  observation_aggregation: Observações associadas
+  observation_photo_uploader: Carregador de Observações por Fotos
   observations_by_category: Observações Por categoria
+  observations_by_app: Observações Por App
   observations_by_rank: Observações Por Ranking
+  observations_by_user_on_date: Observações por %{user} em %{date}
   observations_by_you: Suas observações
+  observations_by_you_on_date: Observações suas em %{date}
+  observation_calendar_for: Calendário de Observações de %{user} em %{year}
   observation_contest: concurso de observações
+  observation_curation: Moderar observações
   observation_date: Data
   observation_date?: Data?
+  observation_field: Campo de Observação
+  observation_field_details: Detalhes de campo de observação
+  observation_fields: Campos de Observação
   observation_fields_are_additional: Campos de Observação são dados adicionais que
     podem ser adicionados às observações.
+  observation_fields_by_preferences_description: Campos de observação são como marcações,
+    com excepção de que qualquer pessoa pode adicioná-los às suas observações, por
+    defeito. Mude isto se prefere que apenas você tenha esta permissão, ou somente
+    os coordenadores do site.
+  observation_flagged: Observação marcada
+  observation_flagged_as_flag: Observação marcada como %{flag}
+  observation_removed_from_the_project: Observação removida do projeto "%{project}"
+  observation_requirements: Requisitos de observação
+  observation_rights_html: '%{rights} da Observação'
+  observation_rules: Regras de Observação
   observation_rules_description: Você pode escolher regras para determinar quais observações
     podem ser adicionadas neste projeto, por exemplo limitando as observações para
     lugares específicos. Se você tem mais de uma regra para um tipo específico de
     regra, observações vão ser validadas se passarem por elas. Por exemplo, se você
     determinar nas regras "deve ser Anfíbio" e "deve ser Réptil", então o projeto
     aceitará observações de répteis OU anfíbios.
+  observation_was_deleted: Observação foi apagada.
+  observation_without_media: Observação sem multimédia
+  observation_would_like_some_help: '%{user} gostaria de ajuda para identificar isto!'
   observations: Observações
   observations_: observações
   observations_added_by_x_html: Observações adicionadas por %{x}
+  observations_annotated_with_annotation: Observações registadas com %{annotation}
   observations_by: Observações por
+  observations_by_everyone: Observações de todos
   observations_by_user: Observações de %{user}
   observations_deleted: Observações apagadas.
   observations_for: Observações para
