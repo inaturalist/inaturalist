@@ -153,6 +153,19 @@ class GuidesController < ApplicationController
 
     respond_to do |format|
       format.html do
+        if params[:print].yesish?
+          @layout = params[:layout] if Guide::PDF_LAYOUTS.include?(params[:layout])
+          @layout ||= Guide::GRID
+          @template = "guides/show_#{@layout}.pdf.haml"
+          render layout: "bootstrap.pdf",
+            template: @template,
+            orientation: @layout == "journal" ? 'Landscape' : nil,
+            margin: {
+              :left => 0,
+              :right => 0
+            }
+          return
+        end
         @guide_taxa = @guide_taxa.page(params[:page]).per_page(100)
         GuideTaxon.preload_associations(@guide_taxa, [
           { guide_photos: [ :photo, {taggings: :tag} ] } ])
@@ -217,23 +230,7 @@ class GuidesController < ApplicationController
           end
         end
       end
-
       format.json { render json: @guide.as_json(:root => true) }
-
-      format.pdf do
-        @layout = params[:layout] if Guide::PDF_LAYOUTS.include?(params[:layout])
-        @layout ||= Guide::GRID
-        @template = "guides/show_#{@layout}.pdf.haml"
-        render :pdf => "#{@guide.title.parameterize}.#{@layout}",
-          :layout => "bootstrap.pdf",
-          :template => @template,
-          :orientation => @layout == "journal" ? 'Landscape' : nil,
-          :show_as_html => params[:pdf].blank?,
-          :margin => {
-            :left => 0,
-            :right => 0
-          }
-      end
       format.xml
       format.ngz do
         path = "public/guides/#{@guide.to_param}.ngz"

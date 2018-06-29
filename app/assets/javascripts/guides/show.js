@@ -13,13 +13,13 @@ $('.taxonmap').waypoint(function() {
 } );
 $('#printbtn').click(function() {
   var layout = $('#print_dialog input[name*=layout]:checked').val(),
-      printUrl = window.location.pathname.replace(/\.+/, '') + '.' + layout+'.pdf'
-  if ($('#print_dialog_options_query_all:checked').length == 0) {
-    if (window.location.search.length == 0) { printUrl += "?print=t" }
-    else { printUrl += window.location.search + '&print=t' }
+      printUrl = window.location.toString();
+  if ( printUrl.indexOf( "?" ) >= 0 ) {
+    printUrl += "&print=t";
   } else {
-    printUrl = printUrl.replace(/\.pdf\??.*$/, '.pdf?print=t')
+    printUrl += "?print=t";
   }
+  printUrl += "&layout="+layout;
   var w = window.open(printUrl, '_blank')
   return false
 })
