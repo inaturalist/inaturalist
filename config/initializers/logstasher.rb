@@ -113,6 +113,7 @@ module Logstasher
     Logstasher.replace_known_types!(custom)
     begin
       Logstasher.write_hash( custom.merge({
+        "@timestamp": Time.now,
         subtype: "Exception",
         error_type: exception.class.name,
         error_message: [ exception.class.name, exception.message ].join(": "),
