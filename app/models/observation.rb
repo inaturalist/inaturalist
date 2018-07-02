@@ -161,7 +161,8 @@ class Observation < ActiveRecord::Base
     "quality_grade",
     "license",
     "url", 
-    "image_url", 
+    "image_url",
+    "sound_url",
     "tag_list",
     "description",
     "oauth_application_id",
@@ -181,7 +182,8 @@ class Observation < ActiveRecord::Base
     "quality_grade",
     "license",
     "url", 
-    "image_url", 
+    "image_url",
+    "sound_url",
     "tag_list",
     "description",
     "id_please",
@@ -375,12 +377,13 @@ class Observation < ActiveRecord::Base
              :update_mappable,
              :set_captive,
              :set_taxon_photo,
-             :create_observation_review
-  after_create :set_uri, :update_user_counter_caches
+             :create_observation_review,
+             :reassess_annotations
+  after_create :set_uri, :update_user_counter_caches_after_create
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
     :update_taxon_counter_caches, :create_deleted_observation,
-    :update_user_counter_caches, :delete_observations_places
+    :update_user_counter_caches_after_destroy, :delete_observations_places
 
   after_commit :reindex_identifications, :reindex_places, :reindex_projects
   
@@ -1648,7 +1651,11 @@ class Observation < ActiveRecord::Base
   end
 
   def set_taxon_from_probable_taxon
-    return if identifications.count == 0 && taxon_id
+    if identifications.size == 0 && taxon_id
+      self.taxon = nil
+      self.species_guess = nil
+      return true
+    end
     prob_taxon = probable_taxon( force: true )
     self.taxon_id = if ( !user.prefers_community_taxa? && prefers_community_taxon == nil ) || prefers_community_taxon == false
       # obs opted out or user opted out
@@ -1936,9 +1943,29 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def update_user_counter_caches_after_create
+    # For immediate gratification
+    User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i + 1, 0].max )
+    user.reload
+    user.elastic_index!
+    # For accuracy
+    update_user_counter_caches
+    true
+  end
+
+  def update_user_counter_caches_after_destroy
+    User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i - 1, 0].max )
+    user.reload
+    user.elastic_index!
+    update_user_counter_caches
+    true
+  end
+
   def update_user_counter_caches
-    User.delay( unique_hash: { "User::update_observations_counter_cache": user_id } ).
-      update_observations_counter_cache( user_id )
+    User.delay(
+      unique_hash: { "User::update_observations_counter_cache": user_id },
+      run_at: 1.minute.from_now
+    ).update_observations_counter_cache( user_id )
     true
   end
 
@@ -1999,6 +2026,12 @@ class Observation < ActiveRecord::Base
   
   def obs_image_url
     image_url
+  end
+
+  def sound_url
+    if s = sounds.detect{|s| s.is_a?( LocalSound ) }
+      return s.file.url
+    end
   end
   
   def short_description
@@ -2454,7 +2487,7 @@ class Observation < ActiveRecord::Base
   def method_missing(method, *args, &block)
     return super unless method.to_s =~ /^field:/ || method.to_s =~ /^taxon_[^=]+/ || method.to_s =~ /^ident_by_/
     if method.to_s =~ /^field:/
-      of_name = ObservationField.normalize_name( method.to_s.split(':').last )
+      of_name = ObservationField.normalize_name( method.to_s[/^field\:(.+)/, 1] )
       ofv = observation_field_values.detect{|ofv| ofv.observation_field.normalized_name == of_name}
       if ofv
         return ofv.taxon ? ofv.taxon.name : ofv.value
@@ -2520,6 +2553,14 @@ class Observation < ActiveRecord::Base
     return true unless taxon_id_was.blank?
     return true unless editing_user_id && editing_user_id == user_id
     ObservationReview.where( observation_id: id, user_id: user_id ).first_or_create.touch
+    true
+  end
+
+  def reassess_annotations
+    return true unless taxon_id_changed?
+    annotations.each do |a|
+      a.destroy unless a.valid?
+    end
     true
   end
 
@@ -2697,7 +2738,11 @@ class Observation < ActiveRecord::Base
     return false if inaccurate_location?
     return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?
-    return false if community_taxon && taxon && !community_taxon.self_and_ancestor_ids.include?( taxon.id )
+    if community_taxon && taxon &&
+        !community_taxon.self_and_ancestor_ids.include?( taxon.id ) &&
+        !taxon.self_and_ancestor_ids.include?( community_taxon.id )
+      return false
+    end
     true
   end
 

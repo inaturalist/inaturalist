@@ -52,8 +52,6 @@ ar:
   x_matching_taxa_html:
     one: <span class="count">1</span> أصنوفة مطابقة
     other: <span class="count">%{count}</span> أصنوفة مطابقة
-  x_misidentifications_of_this_species:
-    other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -680,6 +678,8 @@ ar:
   by_user: حسب %{user}
   by_you: بواسطتك
   calendar: تقويم
+  calendars_only_show_x_observations_at_time: لا تعرض التقاويم سوى %{x} من الملاحظات
+    في كل مرة
   can_you_help_your_friends_id_these: هل يمكنك مساعدة معرفات أصدقائك هؤلاء؟
   cancel: إلغاء
   cant_flag_an_object_that_doesnt_exist: لا يمكن وضع علامة على كائن غير موجود
@@ -1823,6 +1823,7 @@ ar:
   joined!: تم الانضام!
   joined_any_projects: انضم إلى أي المشاريع
   joined_projects: المشاريع التي أنت منضم إليها
+  joined_with_date: انضم %{date}
   joining: جارٍ الانضام...
   journal: مجلة
   journal_archives_for: أرشيفات المجلة لـ
@@ -1845,6 +1846,7 @@ ar:
   location_unknown: الموقع غير معروف
   language_slash_type: اللغة / النوع
   large: كبير
+  last_active_with_date: 'آخر نشاط: %{date}'
   last_confirmed_observation: آخر ملاحظة مؤكدة
   last_inat_observation: آخر ملاحظة لـ%{site_name}
   last_observation: الملاحظة الأخيرة
@@ -1882,6 +1884,7 @@ ar:
   lexicons:
     scientific_names: الأسماء العلمية
     afrikaans: الأفريكانية
+    albanian: الألبانية
     bengali: البنغالية
     catalan: الكتالونية
     cebuano: السيبوانية
@@ -2059,6 +2062,7 @@ ar:
     pt-BR: البرتغالية (البرازيل).
     pt-PT: البرتغالية (البرتغال)
     ru: الروسية
+    sq: الألبانية
     zh-CN: الصينية (المبسطة)
     zh-TW: الصينية (التقليدية)
   locality_notes: ملاحظات محلية
@@ -2741,7 +2745,6 @@ ar:
   other_animals_plural:
     one: حيوان آخر
     other: حيوانات أخرى
-  other_annimals: حيوانات أخرى
   other_lexicons: معاجم أخرى
   other_listings_of_this_taxon_for_this_place: قوائم أخرى لهذه الأصنوفة لهذا المكان
   other_species_commonly_misidentified_as_this_species: الأنواع الأخرى عادة ما يتم
@@ -3025,6 +3028,8 @@ ar:
   positional_accuracy: الدقة الموضعية
   possessive_user: '%{user}'
   post: إرسال
+  post_from_journal_by_parent_html: منشور من <a href="%{url}">journal by %{parent}</a>
+  post_from_your_journal_html: النشر من Post from <a href="%{url}">مجلتك</a>
   post_published: تم نشر المشاركة!
   post_some_new_stuff: إضافة بعض الاشياء الجديدة
   posted_by: نشرها
@@ -3121,6 +3126,7 @@ ar:
   projects_description: "تتيح لك المشروعات تجميع ملاحظاتك مع أشخاص آخرين في %{site_name}،\nسواء
     كنت ترغب في بدء مشروع علم مواطن أو أو تحافظ على علامات تبويب \nالطيور في منطقتك،
     فإن المشاريع هي الطريق للذهاب فيه."
+  projects_from_everywhere: مشاريع من كل مكان
   projects_from_place: مشاريع من %{place}
   projects_in_x: مشاريع في %{x}
   projects_you_admin: مشاريع أنت إداريها
@@ -4213,7 +4219,6 @@ ar:
   user_is_now_role_for_project_html: <strong>%{user}</strong> الآن %{role} ل%{project}
   user_muted: تم كتم صوت المستخدم
   user_observations: ملاحظات المستخدم
-  user_s: '%{user}'
   user_s_id: '%{user} %{id}'
   user_s_lists: قوائم %{user}
   user_suggested_an_id: اقترح %{user} معرفا
@@ -4232,6 +4237,7 @@ ar:
   users_latest_observations_on_site: ملاحظات %{user} الأخيرة على %{site}
   users_observations: ملاحظات %{user}
   users_profile: الملف الشخصي ل%{user}
+  users_projects: مشاريع %{user}
   users_year_on_site: سنة %{user} في %{site} %{year}
   using_a_license: استخدام ترخيص
   using_cc_license_makes_easier_use_your_data: يسهل استخدام الترخيص <strong>المشاع
@@ -5097,6 +5103,8 @@ ar:
         license: الترخيص الذي اختاره الملاحظ لهذه الملاحظة
         url: مسار للملاحظة
         image_url: مسار للصورة الافتراضية
+        sound_url: مسار للصوت الافتراضي، لاحظ أنه سيعمل فقط للمرفوعات المباشرة، وليس
+          الأصوات المستضافة في خدمات الجهات الخارجية
         tag_list: قائمة مفصولة بفواصل بالعلامات
         place_admin1_name: اسم المكان الإداري مرتبة واحدة تحت مستوى البلد
         place_admin2_name: اسم المكان الإداري رتبان تحت مستوى البلد
@@ -5945,6 +5953,7 @@ ar:
       default: '%س-%ش-%ي'
       long: '%ش %ي، %س'
       short: '%ش %ي'
+      short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%ش %ي، %س'
     month_names:
@@ -6000,12 +6009,18 @@ ar:
       x_seconds:
         one: ثانية واحدة
         other: '%{count} ثانية'
-    countdown_x_days: '{{PLURAL:$1|يوم|أيام}}'
-    countdown_x_hours: '{{PLURAL:$1|ساعة واحدة|ساعات}}'
+    countdown_x_days:
+      one: يوم
+      other: أيام
+    countdown_x_hours:
+      one: ساعة واحدة
+      other: ساعات
     countdown_x_minutes:
+      one: دق
       other: دق
     countdown_x_seconds:
-      other: ثان
+      one: ثان
+      other: ثوانٍ
     prompts:
       day: يوم
       hour: ساعة

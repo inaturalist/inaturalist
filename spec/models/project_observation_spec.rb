@@ -343,6 +343,8 @@ describe ProjectObservation, "has_a_photo?" do
   let(:p) { Project.make! }
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)
@@ -381,6 +383,8 @@ describe ProjectObservation, "has_media?" do
   let(:p) { Project.make! }
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
+  before(:all) { DatabaseCleaner.strategy = :truncation }
+  after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
     o = make_research_grade_observation
     pu = ProjectUser.make!(:project => p, :user => o.user)

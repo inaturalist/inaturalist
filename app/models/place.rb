@@ -29,7 +29,8 @@ class Place < ActiveRecord::Base
   before_save :calculate_bbox_area, :set_display_name
   after_save :check_default_check_list
   after_save :reindex_projects_later, if: Proc.new { |place| place.ancestry_changed? }
-  
+  after_destroy :destroy_project_rules
+
   validates_presence_of :latitude, :longitude
   validates_numericality_of :latitude,
     :allow_blank => true, 
@@ -55,10 +56,13 @@ class Place < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
   
-  def normalize_friendly_id(string)
+  def normalize_friendly_id( string )
     super_candidate = super(string)
     candidate = display_name.to_s.split(',').first.parameterize
     candidate = super_candidate if candidate.blank? || candidate == super_candidate
+    if candidate.to_i > 0
+      candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
+    end
     if Place.where(:slug => candidate).exists? && !display_name.blank?
       candidate = display_name.parameterize
     end
@@ -67,14 +71,6 @@ class Place < ActiveRecord::Base
 
   def should_generate_new_friendly_id?
     name_changed?
-  end
-
-  def slug_candidates
-    [
-      :name,
-      :display_name,
-      [:name, :id]
-    ]
   end
   
   # Place to put a GeoPlanet response to avoid re-querying
@@ -462,6 +458,14 @@ class Place < ActiveRecord::Base
   def reindex_projects_later
     Project.elastic_index!( scope: Project.in_place( id ), delay: true )
     true
+  end
+
+  def destroy_project_rules
+    ProjectObservationRule.where(
+      operator: "observed_in_place?",
+      operand_type: "Place",
+      operand_id: id
+    ).destroy_all
   end
 
   def too_big_for_check_list?

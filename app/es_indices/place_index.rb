@@ -11,7 +11,7 @@ class Place < ActiveRecord::Base
   after_commit :double_check_index
   attr_accessor :index_without_geometry
 
-  scope :load_for_index, -> { includes([ :place_geometry, :user ]) }
+  scope :load_for_index, -> { includes([ :place_geometry, { user: :flags } ]) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
@@ -68,6 +68,7 @@ class Place < ActiveRecord::Base
   end
 
   def double_check_index
+    return if destroyed?
     unless geom_in_elastic_index?
       original_index_without_geometry = self.index_without_geometry
       self.index_without_geometry = true

@@ -164,6 +164,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     map._overlayControl.removeAll( );
   }
   map.removeObservations( );
+  delete map.taxonLayerSignatures;
 
   // All Observations layer
   if( options.showAllLayer ) {
@@ -229,6 +230,12 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
 };
 
 inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
+  map.taxonLayerSignatures = map.taxonLayerSignatures || {};
+  var sig = JSON.stringify( layer );
+  if ( map.taxonLayerSignatures[sig] ) {
+    return;
+  }
+  map.taxonLayerSignatures[sig] = true;
   if( layer.places && layer.taxon && taxonData.listed_places ) {
     layerOptions = _.isObject( layer.places ) ?
       layer.places : { };

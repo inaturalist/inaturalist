@@ -1704,7 +1704,6 @@ es-ES:
   observation_removed_from_the_project: "Se ha eliminado la observación del proyecto %{project}"
   observation_rights_html: "Observación %{rights}"
   observation_rules: "Reglas de observación"
-  observation_rules_description: "Puedes crear reglas para determinar qué observaciones pueden añadirse a este proyecto. Por ejemplo, limitar las observaciones a un lugar determinado. Nota: La limitación de lugares se basa actualmente en %{site_name} Places y sólo puede limitar las observaciones al rectángulo más pequeño que rodea un lugar."
   observation_was_deleted: "La observación fue borrada."
   observation_would_like_some_help: "¡%{user} necesitaría un poco de ayuda para identificar este elemento!"
   observations: Observaciones
@@ -2533,7 +2532,7 @@ es-ES:
   there_merge_problems_with_the_merge: "Existen problemas al tratar de combinar los lugares: %{merged_errors}"
   there_was_a_problem_saving_your_identification: "Hubo un problema al guardar tu identificación: %{error}"
   there_were_errors: "Hubo errores."
-  there_were_problems_adding_your_observation_to_this_project: "Hubo problemas al añadir tus observaciones al proyecto: %{@project_observation}"
+  there_were_problems_adding_your_observation_to_this_project: "Hubo problemas al añadir tus observaciones al proyecto"
   there_were_problems_importing_that_place: "Hubo problemas al importar este lugar: %{place_error}"
   there_were_some_problems_saving_this_observation: "Hubo algunos problemas al guardar esta observación"
   there_were_some_problems_saving_those_colors: "Hubo algunos problemas al guardar estos colores: %{error}"

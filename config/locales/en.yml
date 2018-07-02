@@ -621,6 +621,7 @@ en:
   by_user: "by %{user}"
   by_you: By you
   calendar: Calendar
+  calendars_only_show_x_observations_at_time: Calendars only show %{x} observations at a time
   can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
@@ -1406,7 +1407,6 @@ en:
   geo: Geo
   general: General
   generally_these_come_from_iucn_red_list: Generally these come from IUCN Red List, and if they come from elsewhere they will adhere to the IUCN categories.
-  generate_pdf: Generate PDF
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
   generate_your_stats: Generate Your Stats
@@ -1742,6 +1742,7 @@ en:
   lexicons:
     scientific_names: Scientific Names
     afrikaans: Afrikaans
+    albanian: Albanian
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
@@ -1896,6 +1897,7 @@ en:
     pt-BR: Portuguese (Brazil)
     pt-PT: Portuguese (Portugal)
     ru: Russian
+    sq: Albanian
     zh-CN: Chinese (simplified)
     zh-TW: Chinese (traditional)
   locality_notes: Locality notes
@@ -2051,6 +2053,7 @@ en:
   more_photos: More Photos
   most: Most
   most_agree: most agree
+  most_browser_print_pdf: "Note: most browsers have an option to print to PDF"
   most_disagree: most disagree
   most_comments_and_faves: Most Comments and Faves
   most_observations: Most observations
@@ -2531,7 +2534,6 @@ en:
   other_animals_plural:
     one: other animal
     other: other animals
-  other_annimals: Other Animals
   other_lexicons: Other Lexicons
   other_listings_of_this_taxon_for_this_place: Other listings of this taxon for this place
   other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
@@ -2550,7 +2552,6 @@ en:
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   paste_in_a_comma_separated_list: Paste in a comma-separated list of countries
   pdf: PDF
-  pdf_slash_print: PDF / Print
   people: People
   people_agree: people agree
   people_following_user: "People Following %{user}"
@@ -2805,6 +2806,8 @@ en:
   positional_accuracy: Positional accuracy
   possessive_user: "%{user}'s"
   post: Post
+  post_from_journal_by_parent_html: Post from <a href="%{url}">journal by %{parent}</a>
+  post_from_your_journal_html: Post from <a href="%{url}">your journal</a>
   post_published: Post published!
   post_some_new_stuff: post some new stuff
   posted_by: Posted by
@@ -2827,6 +2830,7 @@ en:
   previous_page: Previous page
   previous_photo: Previous Photo
   previous_tab: Previous Tab
+  print_verb: Print
   print_in_browser: Print in browser
   privacy: Privacy Policy
   privacy_policy: Privacy Policy
@@ -2896,6 +2900,7 @@ en:
     Projects let you pool your observations with other people on %{site_name}.
     Whether you're starting a citizen science effort or keeping tabs on
     the birds in your neighborhood, Projects are the way to go.
+  projects_from_everywhere: Projects from Everywhere
   projects_from_place: "Projects from %{place}"
   projects_in_x: "Projects in %{x}"
   projects_you_admin: Projects You Admin
@@ -3900,6 +3905,7 @@ en:
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
+  user_already_authenticated: User is already authenticated
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: User blocked
   user_commented: "%{user} commented"
@@ -3920,9 +3926,8 @@ en:
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
   user_observations: User observations
-  user_s: "%{user}'s"
   user_s_id: "%{user}'s %{id}"
-  user_s_lists: "%{user} Lists"
+  user_s_lists: "%{user}'s Lists"
   user_suggested_an_id: "%{user} suggested an ID"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
   username: Username
@@ -3938,6 +3943,7 @@ en:
   users_latest_observations_on_site: "%{user}'s latest observations on %{site}"
   users_observations: "%{user}'s observations"
   users_profile: "%{user}'s Profile"
+  users_projects: "%{user}'s Projects"
   users_year_on_site: "%{user}'s Year On %{site} %{year}"
   using_a_license: using a license
   using_cc_license_makes_easier_use_your_data: Using a <strong>Creative Commons Attribution</strong> license makes it easier for researchers to use your data.  You can choose a different license after signing up if you like.
@@ -4841,6 +4847,7 @@ en:
         license: License the observer has chosen for this observation
         url: URL for the observation
         image_url: URL for the default image
+        sound_url: URL for the default sound. Note this will only work for direct uploads, not sounds hosted on 3rd-party services
         tag_list: Comma-separated list of tags
         place_admin1_name: Name of the administrative place one rank below the country level
         place_admin2_name: Name of the administrative place two ranks below the country level
@@ -5386,7 +5393,7 @@ en:
           Make sure you have read about the differences in
           our <a href="%{url}" target="_blank">blog post about Collection Projects</a>.
         this_is_a_preview: |
-          This is a preview of what this project would looke like as a Collection Project.
+          This is a preview of what this project would look like as a Collection Project.
       updates_desc: |
         Receive updates about this project on your dashboard and in the daily
         updates email.
@@ -6291,6 +6298,7 @@ en:
       gender:
         m: male
         f: female
+        n: neuter
         observation: :@f
         note: :@f
         place: :@m
@@ -6300,7 +6308,8 @@ en:
         check_list: :@f
         observation_field: :@m
         post: :@m
-        taxon: :@m      
+        taxon: :@m
+        default: :n
   wild: wild
   will_paginate:
     previous_label: "&#8592; Prev"

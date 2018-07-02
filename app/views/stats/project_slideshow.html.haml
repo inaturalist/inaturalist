@@ -12,6 +12,7 @@
     UMBRELLA_SUB_PROJECTS = #{ @sub_projects.to_json };
     ALL_SUB_PROJECTS = #{ @all_sub_projects.to_json };
     LOGO_PATHS = #{ @logo_paths.to_json };
+    TILESERVER = "#{ CONFIG.tile_servers.elasticsearch }";
 #app
 - content_for :delayed_js do
   = javascript_include_tag 'i18n/translations'

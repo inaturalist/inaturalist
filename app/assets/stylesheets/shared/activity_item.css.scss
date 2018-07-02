@@ -229,7 +229,8 @@ body > div > [role="dialog"] .ActivityItem.withdrawn {
     }
     .taxon {
       .comname,
-      .sciname {
+      .sciname,
+      .member-group {
         text-decoration: line-through;
       }
     }

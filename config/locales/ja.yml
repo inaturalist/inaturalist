@@ -1,6 +1,7 @@
 # Messages for Japanese (日本語)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Cgalindo
 # Author: Omotecho
 # Author: Otokoume
 # Author: S2KTS
@@ -1583,6 +1584,7 @@ ja:
   mollusks: 軟体動物
   momentjs:
     shortRelativeTime:
+      future: '%sに'
       past: '%s'
       s: 1秒
       m: 1分
@@ -1952,7 +1954,6 @@ ja:
   other_animals_plural:
     one: その他の動物
     other: その他の動物
-  other_annimals: その他の動物
   other_listings_of_this_taxon_for_this_place: この場所で同じ分類群の他の観察記録
   other_species_commonly_misidentified_as_this_species: この種とよく間違われる種
   our_blog: iNaturalistブログ
@@ -2925,7 +2926,6 @@ ja:
   user_invited_your_x_to_a_project_html: '%{user}があなたの%{x}をプロジェクトに招待しました'
   user_is_a_naturalist: '%{user}はナチュラリストです！'
   user_is_now_role_for_project_html: <strong>%{user}</strong>は%{project}の%{role}になりました
-  user_s: '%{user}の'
   user_s_id: '%{user}の%{id}'
   user_s_lists: '%{user}のリスト'
   username: ユーザー名

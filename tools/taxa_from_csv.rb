@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'rubygems'
 require 'trollop'
 require 'csv'
@@ -6,7 +8,7 @@ opts = Trollop::options do
     banner <<-EOS
 Import taxa from a list of names in CSV following the format
 
-scientific name,iconic taxon name,common name 1, common name 1 lexicon, common name 2, common name 2 lexicon
+scientific name,common name 1, common name 1 lexicon, common name 2, common name 2 lexicon
 
 Only the scientific name is required. So an example row might be
 

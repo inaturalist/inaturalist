@@ -53,6 +53,18 @@ describe Place, "creation" do
     expect(p).to_not be_valid
     expect(p.errors[:name]).to_not be_blank
   end
+
+  it "should not set the slug to a number when the name is just unicode and a number" do
+    p = Place.make( name: "荒野1號地" )
+    p.save
+    expect( p.slug ).not_to eq "1"
+  end
+
+  it "should transliterate slugs when possible" do
+    p = Place.make!( name: "föö" )
+    p.save
+    expect( p.slug ).to eq "foo"
+  end
 end
 
 describe Place, "updating" do
@@ -388,3 +400,14 @@ describe Place, "save_geom" do
   end
 end
 
+describe Place, "destruction" do
+  it "should delete associated project rules" do
+    collection_project = Project.make!(project_type: "collection")
+    place = make_place_with_geom
+    rule = collection_project.project_observation_rules.build( operator: "observed_in_place?", operand: place )
+    rule.save!
+    expect( Project.find( collection_project.id ).project_observation_rules.length ).to eq 1
+    place.destroy
+    expect( Project.find( collection_project.id ).project_observation_rules.length ).to eq 0
+  end
+end

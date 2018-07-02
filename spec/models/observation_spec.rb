@@ -1542,12 +1542,16 @@ describe Observation do
       expect( observations ).to include( pos )
       expect( observations ).not_to include( @neg )
     end
-  
-    it "should find observations with photos" do
-      make_observation_photo(:observation => @pos)
-      obs = Observation.has_photos.all
-      expect(obs).to include(@pos)
-      expect(obs).not_to include(@neg)
+    
+    describe "has_photos" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      it "should find observations with photos" do
+        make_observation_photo(:observation => @pos)
+        obs = Observation.has_photos.all
+        expect(obs).to include(@pos)
+        expect(obs).not_to include(@neg)
+      end
     end
   
     it "should find observations observed after a certain time" do
@@ -2792,8 +2796,6 @@ describe Observation do
       o = Observation.make( taxon: t )
       expect( o.identifications.size ).to eq 0
       expect( o.taxon ).to eq t
-      o.set_taxon_from_probable_taxon
-      expect( o.taxon ).to eq t
       o.save!
       o.reload
       expect( o.taxon ).to eq t
@@ -3277,13 +3279,18 @@ describe Observation do
       expect(o.mappable?).to be false
     end
 
-    it "should not be mappable if its photo is flagged" do
-      o = make_research_grade_observation
-      op = make_observation_photo(observation: o)
-      expect(o.mappable?).to be true
-      Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
-      o.reload
-      expect(o.mappable?).to be false
+    describe "with a photo" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+      
+      it "should not be mappable if its photo is flagged" do
+        o = make_research_grade_observation
+        op = make_observation_photo(observation: o)
+        expect(o.mappable?).to be true
+        Flag.make!(flaggable: op.photo, flag: Flag::SPAM)
+        o.reload
+        expect(o.mappable?).to be false
+      end
     end
 
     it "should not be mappable if community disagrees with taxon" do
@@ -3295,6 +3302,16 @@ describe Observation do
       expect( o.taxon ).not_to eq t
       expect( o.community_taxon ).to eq t
       expect( o.mappable? ).to be false
+    end
+
+    it "should be mappable if the community taxon contains the taxon" do
+      genus = Taxon.make!( rank: Taxon::GENUS )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      o = make_research_grade_candidate_observation( taxon: genus )
+      i = Identification.make!( observation: o, taxon: species )
+      expect( o.taxon ).to eq species
+      expect( o.community_taxon ).to eq genus
+      expect( o ).to be_mappable
     end
 
   end
@@ -3647,6 +3664,31 @@ describe "ident getters" do
     o = i.observation
     o.reload
     expect( o.send( "ident_by_#{u.id}:taxon_id" ) ).to eq i.taxon_id
+  end
+end
+
+describe "observation field value getter" do
+  it "should get the value of an observation field" do
+    ofv = ObservationFieldValue.make!
+    expect(
+      ofv.observation.send("field:#{ofv.observation_field.name}")
+    ).to eq ofv.value
+  end
+
+  it "should work for observation fields with colons" do
+    of = ObservationField.make!( name: "dwc:locality" )
+    ofv = ObservationFieldValue.make!( observation_field: of )
+    expect(
+      ofv.observation.send("field:#{ofv.observation_field.name}")
+    ).to eq ofv.value
+  end
+
+  it "should work for observation fields with other non-word characters" do
+    of = ObservationField.make!( name: "\% cover" )
+    ofv = ObservationFieldValue.make!( observation_field: of )
+    expect(
+      ofv.observation.send("field:#{ofv.observation_field.name}")
+    ).to eq ofv.value
   end
 end
 

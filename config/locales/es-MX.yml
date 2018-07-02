@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Cgalindo
 # Author: Fitoschido
+# Author: Loarie
 # Author: Macofe
 # Author: MattiaMen
 ---
@@ -2073,8 +2074,8 @@ es-MX:
   observation_rules: Reglas de observación
   observation_rules_description: Puedes escoger las reglas que determinan que observaciones
     pueden ser añadidas a este proyecto, y limitarlas a cierto lugar. Nota&#58; La
-    limitación de lugares solo abarca los lugares de %{site_name}, y solo se pueden
-    limitar las observaciones de acuerdo a los límites que rodean el lugar.
+    limitación de lugares solo abarca los lugares de sitio, y solo se pueden limitar
+    las observaciones de acuerdo a los límites que rodean el lugar.
   observation_was_deleted: La observación fue borrada.
   observation_would_like_some_help: A %{user} agradecería su ayuda para identificar
     esto!
@@ -2169,14 +2170,14 @@ es-MX:
   onboarding:
     observe_panel_title: Empieza añadiendo observaciones
     observe_panel_body_p1_local: Por si necesitas inspiración, aquí hay algunas especies
-      que se observan a través de la NatraLista...
+      que se observan a través de la sitio...
     observe_panel_body_p1_global: Por si necesitas inspiración, aquí hay algunas especies
-      que se observan a través de la NatraLista...
-    observe_panel_body_p2: Ahora sal y observa a alguna especie. Escoge algo salvaje
-      y toma una foto clara que lo enfoque en su totalidad. Si ya tienes una foto
-      de algo salvaje, puedes<a href="%{new_observation_path}">subirla</a>.También
-      puedes utilizar las aplicaciones móviles de %{site_name} para compartir tus
-      observaciones con la comunidad.
+      que se observan a través de la sitio...
+    observe_panel_body_p2: Ahora sal al campo y observa a alguna especie. Escoge algo
+      silvestre y toma una foto clara que lo enfoque en su totalidad. Si ya tienes
+      una foto de algo silvestre, puedes <a href="%{new_observation_path}">subirla</a>.
+      También puedes utilizar las aplicaciones móviles de %{site_name} para compartir
+      tus observaciones con la comunidad.
     observe_panel_body_p3: Aquí, se actualizará el contenido acerca de tus observaciones
       de la comunidad en forma de comentarios o identificaciones. ¡Podrías descrubir
       una nueva especie!
@@ -2283,9 +2284,8 @@ es-MX:
   other: otro
   other_animals: Otros animales
   other_animals_plural:
-    one: 1 otro animal
-    other: '%{count} otros animales'
-  other_annimals: Otros animales
+    one: otro animal
+    other: otros animales
   other_listings_of_this_taxon_for_this_place: Otros listados para este taxón para
     este lugar
   our_blog: nuestro blog
@@ -3225,7 +3225,7 @@ es-MX:
   there_were_errors: Hubo errores.
   there_were_problems_adding_taxa: 'Hubo problemas al añadir esos taxa: %{errors}'
   there_were_problems_adding_your_observation_to_this_project: 'Hubo problemas al
-    añadir tus observaciones al proyecto: %{@project_observation}'
+    añadir tus observaciones al proyecto:'
   there_were_problems_adding_that_observation_to_this_project: 'Hubo problemas agregando
     esa observación a este proyecto:'
   there_were_problems_importing_that_place: 'Hubo problemas al importar ese lugar:
@@ -3483,7 +3483,6 @@ es-MX:
   user_is_a_naturalist: ¡%{user} es un naturalista!
   user_is_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
     %{project}
-  user_s: del %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas %{user}
   user_thinks_yours_is: '%{user} %{noun} tu observación %{observation} es'
@@ -3717,8 +3716,7 @@ es-MX:
     duda, comentario o simplemente ya no quieres ser un curador, contáctanos a
   you_are_over_your_invites_quota: … has superado el límite mensual de 60 invitaciones
   you_are_now_following_x: Estas siguiendo a %{friend_user}.
-  you_are_now_role_for_project_html: <strong>%{user}</strong> es ahora %{role} de
-    %{project}
+  you_are_now_role_for_project_html: <strong>Ya</strong> eres ahora %{role} de %{project}
   you_are_not_editing_any_guides_add_one_html: No estas editando ninguna de las guías.
     <a href="/guides/new">Agrega una</a>
   you_are_already_a_member_of_this_project: ¡Ya eres un miembro de este proyecto!
@@ -4825,7 +4823,7 @@ es-MX:
       body: 'Hubo problemas con los siguientes campos:'
       header:
         one: Un error no permitió que este %{model} se guardara
-        other: '%{count} errores evitaron que este %{resource} se guardara:'
+        other: '%{count} errores evitaron que este %{model} se guardara:'
   helpers:
     select:
       prompt: Por favor selecciona

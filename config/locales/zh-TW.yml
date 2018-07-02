@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: 578985s
 # Author: Aru
+# Author: Chestnut123tw
 # Author: Corainn
 # Author: Cwlin0416
 # Author: Kly
@@ -62,11 +63,11 @@ zh-TW:
     one: <span class='count'>1</span> 個觀察記錄
     other: <span class='count'>%{count}</span> 個觀察記錄
   x_observations_link_html:
-    one: <a href='%{url}'>1個觀察紀錄
-    other: <a href='%{url}'>%{count}</a>個觀察紀錄
+    one: <a href='%{url}'>1個觀察記錄
+    other: <a href='%{url}'>%{count}</a>個觀察記錄
   x_observations_reviewed_html:
-    one: <span class='count'>1</span> 個觀察紀錄已檢閱
-    other: <span class='count'>%{count}</span> 個觀察紀錄已檢閱
+    one: <span class='count'>1</span> 個觀察記錄已檢閱
+    other: <span class='count'>%{count}</span> 個觀察記錄已檢閱
   x_others:
     one: 1 個其它
     other: '%{count} 個其它'
@@ -170,14 +171,14 @@ zh-TW:
   actions: 操作
   activate_user: 啟用用戶
   active: 有效
-  active_users: 活躍使用者
+  active_users: 有效的使用者
   activity: 動態
   activity_settings: 動態設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
   add: 新增
   add_a: 新增一
-  add_a_batch_of_observations: 新增一批觀察紀錄
-  add_a_batch_of_observations_by_csv: 以CSV檔案新增一批觀察紀錄
+  add_a_batch_of_observations: 新增一批觀察記錄
+  add_a_batch_of_observations_by_csv: 以 CSV 檔案新增一批觀察記錄
   add_a_batch_of_taxa: 新增一批分類群
   add_a_comment: 新增評論
   add_a_field: 新增一個欄位
@@ -185,12 +186,12 @@ zh-TW:
   add_a_link_raquo: 新增一個連結
   add_a_name: 加入名稱
   add_a_new_change_group: 增加一新變更群組
-  add_a_new_observation_to_id_please!: 請新增一個需要鑑定的新觀察紀錄
+  add_a_new_observation_to_id_please!: 請增加一個需要鑑定的新觀察記錄！
   add_a_place_raquo: 新增地點 &raquo;
-  add_a_single_observation: 新增一項觀察紀錄
+  add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
-  add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察紀錄添加到此專案
-  add_all_your_matching_obs_to_this_project: 把您所有符合的觀察紀錄新增到此專案
+  add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察記錄添加到此專案
+  add_all_your_matching_obs_to_this_project: 把您所有符合的觀察記錄新增到此專案
   add_an_assessment: 新增評估
   add_an_identification: 新增物種鑑定
   add_an_observation: 新增觀察紀錄
@@ -635,6 +636,7 @@ zh-TW:
   by_user: 由 %{user}
   by_you: 由您
   calendar: 行事曆
+  calendars_only_show_x_observations_at_time: 行事曆每次僅會顯示 %{x} 個觀察
   can_you_help_your_friends_id_these: 您可以幫助您的好友來鑑定這些嗎？
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
@@ -1217,7 +1219,7 @@ zh-TW:
   exact_rank: 精確級別
   existing_flags: 精確標記
   exit_full_screen: 退出全螢幕
-  examples_of_ranking_organizations: 有機體級別範例
+  examples_of_ranking_organizations: 生物階層範例
   expand_days: 展開日期
   expand_updates: 擴充更新
   explore!: 探索！
@@ -1347,7 +1349,7 @@ zh-TW:
   flowering_phenology: 開花物候
   fluid_layout: 流動佈局
   fluid: 流動
-  follow: 關注
+  follow: 關注中
   follow_us: 關注我們在
   follow_us_on: 關注我們在
   follow_user: 關注 %{user}
@@ -1404,7 +1406,7 @@ zh-TW:
   get_current_position: 獲得目前位置
   get_started_raquo: 入門&raquo;
   get_started: 入門
-  getting_started: 入門
+  getting_started: 開始建立
   getting_started_guide: 入門指南
   give_it_some_detail: 為它提供一些詳細內容！
   global_conservation_status: 全球保育狀態
@@ -1501,7 +1503,7 @@ zh-TW:
   id_more_in_id_please: 在鑑定請求裡頭有更多鑑定
   id_please!: 需要鑑定！
   id_please: 需要鑑定
-  id_please_expandable_html: <span class='full'>需要</span> ID！
+  id_please_expandable_html: <span class='full'>需要</span>鑑定！
   id_withdrawn: 鑑定撤回
   ids_by_taxon: 按物種分類的鑑定
   identify: 鑑定
@@ -1518,7 +1520,7 @@ zh-TW:
   identifications: 鑑定
   identifications_by: 由 %{user} 做的鑑定
   identified?: 已鑑定
-  identifiers: 鑑定人
+  identifiers: 鑑定者
   identotron: Identotron
   identotron_for: Identotron 用於
   identotron_help: Identotron 說明
@@ -1649,6 +1651,7 @@ zh-TW:
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
   joined_projects: 已加入的專案
+  joined_with_date: 加入於：%{date}
   joining: 加入中…
   journal: 日誌
   journal_archives_for: 期刊歸檔用於
@@ -1670,6 +1673,7 @@ zh-TW:
   location_unknown: 位置不明
   language_slash_type: 語言/類型
   large: 大
+  last_active_with_date: 最近活躍：%{date}
   last_confirmed_observation: 最近提交的觀察
   last_inat_observation: 最近 %{site_name} 的觀察
   last_observation: 最近觀察
@@ -1706,6 +1710,7 @@ zh-TW:
   lexicons:
     scientific_names: 學名
     afrikaans: 南非語
+    albanian: 阿爾巴尼亞語
     bengali: 孟加拉語
     catalan: 加泰隆尼亞語
     cebuano: 宿霧語
@@ -1865,6 +1870,7 @@ zh-TW:
     pt-BR: 葡萄牙語 (巴西)
     pt-PT: 葡萄牙語 (葡萄牙)
     ru: 俄語
+    sq: 阿爾巴尼亞
     zh-CN: 簡體中文
     zh-TW: 繁體中文
   locality_notes: 位置註解
@@ -2452,7 +2458,7 @@ zh-TW:
   order: 排序
   order_by: 排序依
   organism_is_wild: 野生生物
-  organisms: 有機體
+  organisms: 生物
   original: 原有
   originally_flagged_by: 原有標記由
   originally_imported_from_url_html: 最初從 <a href='%{url}'>%{url}</a> 所匯入
@@ -2466,11 +2472,10 @@ zh-TW:
   other_animals_plural:
     one: 個其它動物
     other: 個其它動物
-  other_annimals: 其它動物
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
-  other_species_commonly_misidentified_as_this_species: 常被誤認為此物種的其它物種
-  other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>的其它物種常被誤認為此物種
+  other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
+  other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
   our_blog: 我們的部落格
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
@@ -2487,8 +2492,8 @@ zh-TW:
   pdf_slash_print: PDF / 列印
   people: 成員
   people_agree: 人們同意
-  people_following_user: 關注 %{user} 的人們
-  people_user_follows: '%{user} 關注的人物'
+  people_following_user: 關注 %{user} 的人
+  people_user_follows: '%{user} 關注的人'
   people_added:
     observation: 添加一個@vow_or_con{vow:an|a} %{taxon_link}的%{observation_link}
     identification:
@@ -2517,7 +2522,7 @@ zh-TW:
   photo_integration: 照片整合
   photo_licensing: 照片許可
   photo_type: 相片類型
-  photo_urls_repaired: 需要照片 URLs
+  photo_urls_repaired: 需要照片 URL
   photos_chosen_for_this_taxon: 挑選用於此物種分類的照片
   photos_from: 照片來自
   photos_of: 照片屬於
@@ -2732,6 +2737,8 @@ zh-TW:
   positional_accuracy: 位置準確性
   possessive_user: '%{user} 的'
   post: 貼文
+  post_from_journal_by_parent_html: 來自 <a href="%{url}">%{parent} 的日誌</a>的發佈文章
+  post_from_your_journal_html: 來自<a href="%{url}">您的日誌</a>的發佈文章
   post_published: 貼文已發佈！
   post_some_new_stuff: 發佈一些新事物
   posted_by: 發佈由
@@ -2815,6 +2822,7 @@ zh-TW:
   projects_description: |-
     專案能讓您的觀察在 %{site_name} 上與其他人交流。
     無論您是有意開始進行公眾科學事項，或是僅對在您的鄰近地區裡賞鳥感興趣，專案都會是可採用的方法。
+  projects_from_everywhere: 來自各處的專案
   projects_from_place: 來自於%{place}的專案
   projects_in_x: 在%{x}的專案
   projects_you_admin: 您管理的專案
@@ -3092,8 +3100,8 @@ zh-TW:
   select_one_or_more_photos: 選擇一張或更多照片
   select_none: 都不選擇
   select_observations_to_edit: 選擇觀察來編輯...
-  select_one_of_friends_albums: 選擇 %{friend} 的相簿之一
-  select_one_of_your_albums: 選擇您的相簿之一
+  select_one_of_friends_albums: 選擇一個 %{friend} 的相簿
+  select_one_of_your_albums: 選擇一個您的相簿
   select_options: 選擇選項
   select_photos_from_your_photo_stream: 選擇來自於外部照片分享網站來轉換至 %{site_name} 觀察。我們會填入將來自於照片詮釋資料的日期、時間、以及位置，並嘗試查找來自於標籤的物種名稱。
   select_photos_to_display: 選擇照片來顯示
@@ -3675,7 +3683,7 @@ zh-TW:
   unknown: 未知
   unknown_error: 不明錯誤
   unknown_rank: （未知級別）
-  unfollow: 未關注
+  unfollow: 取消關注
   unlink_your_google_account: 取消連結您的 Google 帳號
   unmute: 取消禁言
   unobserved_listings: 不可觀察清單
@@ -3713,7 +3721,7 @@ zh-TW:
   updated_photo: 已更新照片
   upload: 上傳
   upload_a_csv_file: 上傳 CSV 檔案
-  upload_a_csv_file_with_observation: 上傳帶有觀察資料的 CVS 檔案。如果您擁有帶有您的資料之電子試算表或資料庫，這會是最常利用的方式。
+  upload_a_csv_file_with_observation: 上傳帶有觀察資料的 CSV 檔案。如果您的資料是以電子試算表或資料庫的形式儲存，這會是最佳的上傳方式。
   upload_photo: 上傳照片
   upload_photos: 上傳照片
   upload_range: 上傳範圍
@@ -3770,7 +3778,6 @@ zh-TW:
   user_is_now_role_for_project_html: <strong>%{user}</strong>現在是 %{project} 的%{role}了
   user_muted: 使用者已禁言
   user_observations: 用戶觀察
-  user_s: '%{user}的'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user} 的清單'
   user_suggested_an_id: '%{user} 建議了一個鑑定'
@@ -3789,6 +3796,7 @@ zh-TW:
   users_latest_observations_on_site: '%{user} 在 %{site} 的最新觀察'
   users_observations: '%{user}的觀察'
   users_profile: '%{user}的個人檔案'
+  users_projects: '%{user} 的專案'
   users_year_on_site: '%{user} 在 %{site} 上的 %{year} 一年'
   using_a_license: 使用一份許可
   using_cc_license_makes_easier_use_your_data: 使用<strong>創用 CC 姓名標示</strong>協議可讓研究員能更容易使用您的資料。您可以在註冊後挑選您所要的協議。
@@ -3906,7 +3914,7 @@ zh-TW:
   we_didnt_find_any_photos: 我們使用您所提供的搜尋項目未發現任何照片。
   we_had_a_problem_flagging_that_item: 我們標記此項目時出現問題：%{flag_error}
   we_had_trouble_saving_comment: 我們在儲存評論時出現問題：
-  we_have_no_conservation_status_for_this_taxon: 我們對於此物種分類沒有保護狀態
+  we_have_no_conservation_status_for_this_taxon: 我們對於此物種分類沒有保育狀態
   we_have_no_establishment_data_for_this_taxon: 我們對於此物種分類沒有建置資料
   we_import_our_taxonomic_data: 我們從來自於一些外部分類資料庫匯入至我們的分類資料，包含像是物種目錄（Catalogue of Life）與
     uBio。我們的一些物種分類群當中是被手動輸入，並且任何用戶皆可添加用於物種分類群的新名稱。如果您查無某個物種分類或是名稱，請嘗試
@@ -4353,8 +4361,8 @@ zh-TW:
         what_is_the_quality_assessment: 什麼是品質評估以及如何讓觀察品質成為有「研究」的等級？
         what_is_a_life_list?: 甚麼是生物清單呢?
         just_a_simple_list: 純為簡單的物種分類群列表而無特別功能。
-        automatically_updates_based_on_your_observations: 根據您的觀察紀錄自動更新。每位用戶在 %{site_name}
-          都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察紀錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該記錄，您手動添加到清單中的物種將不會被刪除。
+        automatically_updates_based_on_your_observations: 根據您的觀察記錄自動更新。每位用戶在 %{site_name}
+          都有一個如設的生物清單以包含每個你觀察過的物種。如果您刪除一個觀察記錄或改變您的物種鑒定，該物種將會被移動或清除。您也能跟普通清單一樣，把物種分類群手動添加到您的生物清單中。就算當您觀察及刪除該記錄，您手動添加到清單中的物種將不會被刪除。
         you_can_also_make_additional_life_lists: 您也可為指定的生命體組別製作一份生物清單，例如鳥類的生物清單，或乳草屬植物的生物清單等。
         a_project_list_belongs: 專案清單隸屬於某一專案，並列出由專案成員們所觀察出的物種分類群。專案清單也可由該專案管理員來手動加入內容，也可對於在清單上物種分類群的專案貢獻做出限制。
         a_check_list_is_html: 核對清單是物種分類群發生在地點上的清單。每一地點都有預設的清單，而每當地點邊界上有觀察產生<em>以及</em>達到研究等級狀態時，所觀察物種將會自動添加到地點的清單。
@@ -4448,6 +4456,7 @@ zh-TW:
         license: 觀察者挑選此許可協議用於觀察
         url: 用於觀察的 URL
         image_url: 用於預設圖片的 URL
+        sound_url: 預設聲音內容的 URL。請選用直接上傳到此站台；而非在第三方服務上託管聲音內容的網址
         tag_list: 逗號分隔的標籤清單
         place_admin1_name: 在國家層級下一個級別的行政地點名稱
         place_admin2_name: 在國家層級下兩個級別的行政地點名稱
@@ -5086,6 +5095,7 @@ zh-TW:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%Y %b %d'
       month_year: '%Y年%B'
       month_day_year: '%B %d, %Y'
     month_names:

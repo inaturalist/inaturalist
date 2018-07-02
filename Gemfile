@@ -30,7 +30,7 @@ gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on
 gem 'daemons'
 gem 'daemon-spawn'
 gem 'dbf'
-gem 'delayed_job', '~> 4.0.1'
+gem 'delayed_job', '~> 4.1.5'
 gem 'delayed_job_active_record',
   git: 'https://github.com/hugueslamy/delayed_job_active_record.git',
   ref: '7dcacc2459ad47c948153cc3bab78bc822191718'
@@ -88,13 +88,12 @@ gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '= 3.2.5'
 gem 'sass-rails', '=5.0.1'
 gem 'soundcloud'
-gem 'sprockets', '~> 2.8'
+gem 'sprockets', '~> 2.12.5'
 gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
 gem 'trollop'
 gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
-gem 'wicked_pdf'
 gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'

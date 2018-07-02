@@ -76,6 +76,14 @@ shared_examples_for "an ObservationsController" do
       expect( o.photos ).to include p
     end
 
+    it "should not unset the taxon if existing photo included" do
+      t = Taxon.make!
+      p = LocalPhoto.make!( user: user )
+      post :create, format: :json, observation: { taxon_id: t.id }, local_photos: { "0" => p.id }
+      o = user.observations.last
+      expect( o.taxon ).to eq t
+    end
+
     it "should include coordinates in create response when geoprivacy is obscured" do
       post :create, format: :json, observation: {
         latitude: 1.2345,
@@ -184,15 +192,19 @@ shared_examples_for "an ObservationsController" do
         expect(p.project_users.where(:user_id => user.id)).to be_blank
       end
 
-      it "should add to project with has_media rule if photo present" do
-        photo = LocalPhoto.make!(:user => user)
-        project = Project.make!
-        project_rule = ProjectObservationRule.make!(:ruler => project, :operator => "has_media?")
-        post :create, :format => :json, :project_id => project.id, :observation => {:species_guess => "foo"}, :local_photos => {
-          "0" => photo.id
-        }
-        o = user.observations.last
-        expect(o.projects).to include(project)
+      describe "if photo present" do
+        before(:all) { DatabaseCleaner.strategy = :truncation }
+        after(:all)  { DatabaseCleaner.strategy = :transaction }
+        it "should add to project with has_media rule" do
+          photo = LocalPhoto.make!(:user => user)
+          project = Project.make!
+          project_rule = ProjectObservationRule.make!(:ruler => project, :operator => "has_media?")
+          post :create, :format => :json, :project_id => project.id, :observation => {:species_guess => "foo"}, :local_photos => {
+            "0" => photo.id
+          }
+          o = user.observations.last
+          expect(o.projects).to include(project)
+        end
       end
 
       it "should set the project_observation's user_id" do

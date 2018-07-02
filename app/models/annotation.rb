@@ -95,7 +95,7 @@ class Annotation < ActiveRecord::Base
       joins( :controlled_value ).
       where( "controlled_terms.blocking" )
     unless new_record?
-      scope = scope.where( "id != ?", id )
+      scope = scope.where( "annotations.id != ?", id )
     end
     if scope.count > 0
       errors.add( :controlled_value, "blocked by another value" )
@@ -170,6 +170,45 @@ class Annotation < ActiveRecord::Base
   def touch_resource
     resource.touch if resource
     true
+  end
+
+  def self.reassess_annotations_for_taxon_ids( taxon_ids )
+    Annotation.
+        joins(
+          controlled_value: [
+            { controlled_term_taxa: :taxon }
+          ],
+          controlled_attribute: {
+            controlled_term_taxa: {
+              taxon: :taxon_ancestors
+            }
+          }
+        ).
+        where( "taxon_ancestors.ancestor_taxon_id IN (?)", taxon_ids ).
+        includes(
+          { resource: :taxon },
+          controlled_value: [
+            :taxa,
+            :excepted_taxa,
+            { controlled_term_taxa: :taxon }
+          ],
+          controlled_attribute: [
+            :values,
+            :taxa,
+            :excepted_taxa,
+            { controlled_term_taxa: :taxon }
+          ]
+        ).
+        find_each do |a|
+      a.destroy unless a.valid?
+    end
+    
+  end
+
+  def self.reassess_annotations_for_attribute_id( attribute_id )
+    Annotation.where( controlled_attribute_id: attribute_id ).find_each do |a|
+      a.destroy unless a.valid?
+    end
   end
 
 end

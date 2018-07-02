@@ -1,6 +1,7 @@
 # Messages for Brazilian Portuguese (português do Brasil)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Allysson
 # Author: AndroidOSUser
 # Author: Angelocl
 # Author: Athena in Wonderland
@@ -13,6 +14,7 @@
 # Author: LucyDiniz
 # Author: Luk3
 # Author: MokaAkashiyaPT
+# Author: Pedrofariasm
 # Author: Peter Fernando
 # Author: Tim Vincent
 # Author: Vonmatter
@@ -1441,6 +1443,7 @@ pt-BR:
   flagged_thing_explanation: Usuários marcaram isto %{thing} porque
   flagger: Sinalizador
   flags: Sinalizações
+  flags_with_count: Linhas (%{count})
   flags_explanation: '%{site_name} usuários marcam com alertas aquilo que eles encontram
     e percebem que não está correto. Aqui estão alguns aspectos que ainda não foram
     resolvidos pelos administradores.'
@@ -1784,6 +1787,10 @@ pt-BR:
     em outros sites
   it_has: Tem
   it_instead: ao invés disso.
+  item_flagged_notice_html: |-
+    Isto foi marcado como spam e não está mais visível publicamente. Você pode vê-lo porque o criou, ou você é um curador do site. Se você acha que foi um erro, por favor
+    <a href="mailto:%{help_email}" class="contact">contact us</a>.
+    <a href="%{manage_flags_path}">Manage flags</a>
   its_important_that_you: É importante que você marque
   iucn_red_list_status: Status da Lista Vermelha da IUCN
   january: Janeiro
@@ -1796,6 +1803,7 @@ pt-BR:
   join_this_project: Entre neste projeto
   joined!: Participando!
   joined_any_projects: participações e projetos
+  joined_with_date: 'Entrou: %{date}'
   joining: Participando...
   journal: Boletim Informativo
   journal_archives_for: Arquivos do Boletim Informativo
@@ -1818,6 +1826,7 @@ pt-BR:
   location_unknown: Localização Desconhecida
   language_slash_type: Idioma / Tipo
   large: grande
+  last_active_with_date: 'Última vez ativo: %{date}'
   last_confirmed_observation: Última observação confirmada
   last_inat_observation: Última observação %{site_name}
   last_observation: Última observação
@@ -1854,6 +1863,7 @@ pt-BR:
   lexicons:
     scientific_names: Nomes Científicos
     afrikaans: Africâner
+    albanian: Albanês
     bengali: Bengalês
     catalan: Catalão
     cebuano: Cebuano
@@ -2035,6 +2045,7 @@ pt-BR:
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
     ru: Russo
+    sq: Albanês
     zh-CN: Chinês (Simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -2710,7 +2721,6 @@ pt-BR:
   other_animals_plural:
     one: outro animal
     other: outros animais
-  other_annimals: Outros Animais
   other_listings_of_this_taxon_for_this_place: Outros registros deste táxon para este
     local
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam
@@ -3410,7 +3420,7 @@ pt-BR:
   show_only: 'Mostrar somente:'
   show_taxa_from_both: (exibir táxons de ambas as listas)
   show_taxa_from_everywhere: Exibir táxons de todas as localidades
-  show_taxa_from_place: Exibir táxons de %{local}
+  show_taxa_from_place: Exibir táxons de %{place}
   show_total_listed_taxa: Exibir a lista total de espécies
   showing_observations_by: exibindo observações por
   showing_one_to: Exibindo 1 -
@@ -3517,7 +3527,7 @@ pt-BR:
   source_list:
     ubio: uBio
     catalogue_of_life: Catálogo da Vida
-    inaturalist: NaturaLista
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Registro de organismos da Nova Zelândia
     nzbrn_birds: NZBRN Aves
     nzbrn_fungi: NZBRN Fungos
@@ -4112,7 +4122,6 @@ pt-BR:
   user_invited_your_x_to_a_project_html: '%{user} convidou você para %{x} um projeto'
   user_is_a_naturalist: '%{user} é um naturalista!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
-  user_s: Do %{user}
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugeriu uma identificação'
@@ -5030,6 +5039,8 @@ pt-BR:
         license: Licença que o observador escolheu para esta observação
         url: URL para a observação
         image_url: URL para a imagem padrão
+        sound_url: URL para o som padrão. Observe que isso só funcionará para carregamentos
+          diretos, não para sons hospedados em serviços de terceiros
         tag_list: Lista de Marcações separadas por vírgulas
         positioning_method: Como as coordenadas foram determinadas
         positioning_device: Equipamento utilizado para determinar coordenadas
@@ -5423,6 +5434,8 @@ pt-BR:
         curated_checklist_desc: Esta é a lista de verificação moderada e a lista de
           contagem dos táxons de observações explicitas adicionadas à esta projeto,
           nem todas as observações foram gravadas neste local e neste período do evento.
+        this_is_a_preview: Esta é uma prévia do que este projeto parecerá como um
+          Projeto de Coleção.
       updates_desc: Receba atualizações sobre este projeto em seu painel de controle
         e, através de e-mails diários.
     shared:
@@ -5700,6 +5713,7 @@ pt-BR:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      short_with_year: '%b %d %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:

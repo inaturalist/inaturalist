@@ -117,6 +117,7 @@ el:
   add_new_place: Προσθήκη ενός νέου μέρους
   add_new_rule: Προσθήκη ενός νέου κανόνα
   add_new_source: Προσθήκη νέας πηγής...
+  add_obs_from_a_link: 'Προσθήκη παρατηρήσεων από την λίστα: %{link}'
   add_obs_from_a_list: Προσθήκη παρατηρήσεων από μια λίστα
   add_observation: Προσθήκη παρατήρησης
   add_observations!: Προσθήκη παρατηρήσεων!
@@ -129,7 +130,11 @@ el:
   add_photos_to_this_observation: Προσθήκη φωτογραφιών σε αυτή τη παρατήρηση
   add_place: Προσθήκη μέρους
   add_section: Προσθήκη τμήματος
+  add_several_observations_at_once: Προσθήκη πολλαπλών παρατηρήσεων με τη μία.
+  add_shape: Προσθήκη σχήματος
+  add_some_now: Προσθήκη μερικών τώρα
   add_tag: Πρόσθεση ετικέτας
+  add_tags: Προσθήκη ετικετών
   add_to: Πρόσθεση σε
   add_to_a_scheme: Πρόσθεση σε ένα σχήμα
   add_to_a_project: Πρόσθεση σε ένα εγχείρημα
@@ -140,12 +145,15 @@ el:
   add_to_list: Προσθήκη στον κατάλογο
   add_to_project: Πρόσθεση σε εγχείρημα
   add_to_your_list: Προσθήκη στον κατάλογό σας
+  add_your_own_observations_at: Προσθέστε τις δικές παρατηρήσεις στο %{site_name}
   add_your_photo: Προσθέστε την φωτογραφία σας
+  add_your_photo_to: Προσθήκη της φωτογραφίας σας στο %{project}
   added: Προστέθηκε
   added!: Προστέθηκε!
   added_an: Προστέθηκε ένα
   added_as_a_part_of: Προσθέθηκε ως μέρος ενός
   added_by: Προστέθηκε από
+  added_by_user_on_date_html: Προστέθηκε από τον %{user} στις %{date}
   added_on: Προστέθηκε σε
   added_to: Προστέθηκε προς
   added_to_favorites: Προστέθηκε στα αγαπημένα
@@ -202,20 +210,29 @@ el:
   all_your_projects: Όλα τα εγχειρήματά σας
   allow_any: Επιτρέψτε οτιδήποτε
   allowed_html: Επιτρεπόμενο HTML
+  allowed_values: Επιτρεπτές τιμές
   alphabetical: Αλφαβητικά
   alphabetical_order: Αλφαβητική σειρά
   amphibians: Αμφίβια
+  amphibiaweb_taxonomy: Ταξονομία AmphibiaWeb
   an: ένα
   an_: ένα
   and: και
+  and_help_the_inaturalist_community_grow: και βοηθήστε την κοινότητα %{site_name}
+    να αυξηθεί.
   and_make_some_new: και φτιάξτε μερικά καινούρια
   and_un_license_all_your_observations: και ξε-αδειοδοτήστε όλες τις παρατηρήσεις
     σας
+  and_x_more_people!:
+    one: και 1 ακόμα άτομο!
+    other: και %{count} ακόμα άτομα!
   android: Ανδροειδές
   animals: Ζώα
   announcements: Ανακοινώσεις
   any: Οτιδήποτε
   any_: Οποιοδήποτε
+  apply_fields: Εφαρμογή πεδίων
+  apply_darr: Εφαρμογή &darr;
   appropriate?: Κατάλληλο;
   arachnids: Αραχνίδια
   archives: Αρχεία
@@ -332,12 +349,16 @@ el:
   by_user: από τον %{user}
   by_you: από εσάς
   calendar: Ημερολόγιο
+  calendars_only_show_x_observations_at_time: Τα ημερολόγια δείχνουν μόνο τις %{x}
+    παρατηρήσεις σε ένα χρονικό διάστημα
   cancel: Ακύρωση
   cant_flag_an_object_that_doesnt_exist: Δεν μπορεί να αναφερθεί ένα αντικείμενο που
     δεν υπάρχει
   captive: Σε αιχμαλωσία
   card: Κάρτα
   case_plural: δ
+  casual: ανέμελος
+  casual_: Ανέμελος
   catalogue_of_life: Κατάλογος της ζωής
   categories: Κατηγορίες
   cc_0_name: Χωρίς πνευματικά δικαιώματα (CC0)
@@ -360,6 +381,7 @@ el:
     change_types: Αλλαγή τύπων
     split: Διαχωρισμός
     merge: Συγχώνευση
+    drop: Σύρτε
     split_from: διάσπαση από
     split_into: διάσπαση σε
     merge_into: συγχώνευση σε
@@ -893,6 +915,7 @@ el:
     και <a href='%{invite_url}'>προσκαλέστε μερικές παρατηρήσεις</a>
   join_this_project: Γίνετε μέλος στο εγχείρημα
   joined_projects: Εγχειρήματα που έχετε προσχωρήσει
+  joined_with_date: 'Έγινε μέλος στις: %{date}'
   jpg_png_or_gif: JPG, PNG, ή GIF
   just_added!: Μόλις προστέθηκε!
   keep_editing: Συνέχεια επεξεργασίας
@@ -903,6 +926,7 @@ el:
   location_unknown: Η τοποθεσία είναι άγνωστη
   language_slash_type: Γλώσσα / Τύπος
   large: μεγάλο
+  last_active_with_date: 'Ενεργός για τελευταία φορά στις: %{date}'
   last_confirmed_observation: Τελευταία επιβεβαιωμένη παρατήρηση
   last_inat_observation: Τελευταία %{site_name} παρατήρηση
   last_observation: Τελευταία παρατήρηση
@@ -932,6 +956,7 @@ el:
   lexicons:
     scientific_names: Επιστημονικά ονόματα
     afrikaans: Αφρικάανς
+    albanian: Αλβανικά
     bengali: Βεγγαλικά
     catalan: Καταλανικά
     cebuano: Σεμπουανικά
@@ -1053,6 +1078,7 @@ el:
     pt-BR: Πορτογαλικά (Βραζιλίας)
     pt-PT: Πορτογαλικά (Πορτογαλίας)
     ru: Ρωσικά
+    sq: Αλβανικά
     zh-CN: Κινέζικα (Απλοποιημένα)
     zh-TW: Κινεζικά (Παραδοσιακά)
   location: Τοποθεσία
@@ -1411,7 +1437,6 @@ el:
   other_animals_plural:
     one: άλλο ζώο
     other: άλλα ζώα
-  other_annimals: Άλλα ζώα
   other_lexicons: Άλλα λεξικά
   our_blog: Το ιστολόγιό μας
   out_of_range: Εκτός εύρους
@@ -1612,6 +1637,9 @@ el:
   position: Θέση
   positional_accuracy: Ακρίβεια θέσης
   post: Καταχώριση
+  post_from_journal_by_parent_html: Δημοσίευση από το <a href="%{url}">ημερολόγιο
+    από %{parent}</a>
+  post_from_your_journal_html: Δημοσίευση από το <a href="%{url}">ημερολόγιό σας</a>
   post_published: Η ανάρτηση δημοσιεύτηκε!
   posted_by: Δημοσιεύθηκε από
   posted_on: Καταχωρήθηκε στις
@@ -1647,6 +1675,7 @@ el:
   project_name: Όνομα εγχειρήματος
   project_requirements: Απαιτήσεις εγχειρήματος
   projects: Εγχειρήματα
+  projects_from_everywhere: Εγχειρήματα από παντού
   projects_from_place: Εγχειρήματα από το %{place}
   projects_in_x: Εγχειρήματα στο %{x}
   projects_youve_joined: Εγχειρήματα που είστε μέλος
@@ -2082,6 +2111,7 @@ el:
       7: Σα
     formats:
       default: '%d-%m-%Y'
+      short_with_year: '%b %d, %Y'
     month_names:
       1: Ιανουάριος
       2: Φεβρουάριος
@@ -2102,7 +2132,9 @@ el:
   datetime:
     distance_in_words:
       half_a_minute: μισό λεπτό
-    countdown_x_days: '{{PLURAL: $1|one=ημέρα|ημέρες}})'
+    countdown_x_days:
+      one: ημέρα)
+      other: ημέρες)
     countdown_x_minutes:
       one: λεπτό
       other: λεπτά

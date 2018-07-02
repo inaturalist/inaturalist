@@ -1658,12 +1658,12 @@ id:
   license_descriptions_and_images: Deskripsi lisensi dan gambar
   licensing: lisensi
   licensing_your_content: Melisensi konten Anda memberi orang lain hak hukum untuk
-    menggunakannya jika mereka tetap dengan persyaratan lisensi. %{Site_name} menggunakan
+    menggunakannya jika mereka tetap dengan persyaratan lisensi. %{site_name} menggunakan
     konten Anda yang berlisensi Creative Commons untuk berbagi dengan mitra Data seperti
     <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a> (GBIF).
   licensing_your_content_gives_others_legal: Melisensi konten Anda memberikan orang
     lain hak hukum untuk menggunakannya jika mereka tetap dengan persyaratan lisensi.
-    %{Site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan
+    %{site_name} menggunakan konten Anda lisensi Creative Commons untuk berbagi dengan
     mitra Data seperti
   life: Kehidupan
   life!: Kehidupan!
@@ -2267,8 +2267,9 @@ id:
   organism_appears_captive_cultivated: Organisme muncul kaptif / dibudidayakan
   other: lainnya
   other_animals: binatangt lain
-  other_animals_plural: '{{JAMAK|satu=binatang lainnya|binatang lainnya}}'
-  other_annimals: Binatang lainnya
+  other_animals_plural:
+    one: binatang lainnya
+    other: binatang lainnya
   other_listings_of_this_taxon_for_this_place: Daftar lain dari takson ini untuk tempat
     ini
   our_blog: Blog Kami

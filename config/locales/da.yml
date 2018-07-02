@@ -512,7 +512,7 @@ da:
   are_you_sure_remove_curator: Er du sikker på at du vil fjerne %{user} som kurator?
   are_you_sure_remove_from_project: Er du sikker på, at du ønsker at fjerne %{user}
     fra dette projekt?
-  are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette billede?
+  are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette foto?
   are_you_sure_remove_taxon_from_list: Er du sikker på at du vil fjerne denne takson
     fra listen?
   are_you_sure_remove_taxon_from_place: Er du sikker på, at du vil fjerne denne takson
@@ -697,6 +697,8 @@ da:
   by_user: af %{user}
   by_you: Af dig
   calendar: Kalender
+  calendars_only_show_x_observations_at_time: Kalendere viser kun %{x} observationer
+    ad gangen
   can_you_help_your_friends_id_these: Kan du hjælpe dine venner med at identificere
     disse?
   cancel: Annullér
@@ -1492,6 +1494,7 @@ da:
   flagged_thing_explanation: Bruger har markeret dette %{thing} fordi
   flagger: Markør
   flags: Markéringer
+  flags_with_count: Markeringer (%{count})
   flags_explanation: '%{site_name} brugere markerer ting, når de finder noget, der
     ikke er rigtigt. Her er nogle problemer, som ikke er blevet løst af kuratorerne
     endnu.'
@@ -1856,6 +1859,11 @@ da:
     web-sider
   it_has: Det har
   it_instead: det i stedet.
+  item_flagged_notice_html: "Dette er blevet markeret som spam, og er ikke længere
+    synligt for offentligheden. Du kan se det, enten fordi, at du har oprettet det
+    eller du er sidekurator. Hvis du mener det er en fejl, så \n<a href=\"mailto:%{help_email}\"
+    class=\"contact\">kontakt os venligst</a>.\n<a href=\"%{manage_flags_path}\">Manage
+    flags</a>"
   its_important_that_you: Det er vigtigt, at du klikker
   iucn_red_list_status: IUCN Rødliste status
   january: Januar
@@ -1869,6 +1877,7 @@ da:
   joined!: Tilsluttet!
   joined_any_projects: tilsluttet nogen projekter
   joined_projects: Tilmeldte projekter
+  joined_with_date: 'Tilmeldt: %{date}'
   joining: Tilslutter...
   journal: Journal
   journal_archives_for: Journal arkiveres til
@@ -1892,6 +1901,7 @@ da:
   location_unknown: Sted ukendt
   language_slash_type: Sprog / Type
   large: stor
+  last_active_with_date: 'Senest aktiv: %{date}'
   last_confirmed_observation: Sidste bekræftede observation
   last_inat_observation: Sidste %{site_name} observation
   last_observation: Sidste observation
@@ -1930,6 +1940,7 @@ da:
   lexicons:
     scientific_names: Videnskabelige navne
     afrikaans: Afrikaans
+    albanian: Albansk
     bengali: Bengali
     catalan: Catalan
     cebuano: Cebuano
@@ -2116,6 +2127,7 @@ da:
     pt-BR: Portugisisk (Brasilien)
     pt-PT: Portugisisk (Portugal)
     ru: Russisk
+    sq: Albansk
     zh-CN: Kinesisk (simplificeret)
     zh-TW: Kinesisk (traditionel)
   locality_notes: Lokalitetsnotater
@@ -2821,7 +2833,6 @@ da:
   other_animals_plural:
     one: andet dyr
     other: andre dyr
-  other_annimals: Andre dyr
   other_lexicons: Andre leksika
   other_listings_of_this_taxon_for_this_place: Andre fortegnelser over denne takson
     for dette sted
@@ -3107,6 +3118,8 @@ da:
   positional_accuracy: Positionsnøjagtighed
   possessive_user: '%{user}''s'
   post: Indlæg
+  post_from_journal_by_parent_html: Indlæg af<a href="%{url}">journal af %{parent}</a>
+  post_from_your_journal_html: Indlæg af <a href="%{url}">din journal</a>
   post_published: Indlæg publiceret!
   post_some_new_stuff: indsend nogle nye ting
   posted_by: Indsendt af
@@ -3203,9 +3216,10 @@ da:
   project_x_was_delete: '%{project} blev slettet (Giv det et par minutter til at fjerne
     det fra websiden)'
   projects: Projekter
-  projects_description: Projekter er en måde at samle dine med andres observationer
-    på %{site_name}. Om du er interesseret i at starte et "citizen science" projekt
+  projects_description: Projekter er en måde at forene dine - med andres observationer
+    på %{site_name}. Hvis du er interesseret i at starte et "citizen science" projekt
     eller holde styr på fuglene i en nærliggende park, er projekter skabt til det.
+  projects_from_everywhere: Projekter alle steder fra
   projects_from_place: Projekter fra %{place}
   projects_in_x: Projekter i %{x}
   projects_you_admin: Projekter du administrerer
@@ -4322,9 +4336,8 @@ da:
   user_is_now_role_for_project_html: <strong>%{user}</strong> er nu %{role} for %{project}
   user_muted: Slukket for bruger
   user_observations: Bruger observationer
-  user_s: '%{user}''s'
   user_s_id: '%{user}''s %{id}'
-  user_s_lists: '%{user} Lister'
+  user_s_lists: '%{user}s lister'
   user_suggested_an_id: '%{user} foreslog et ID'
   user_thinks_yours_is: '%{user} %{noun} din observation %{observation} er'
   username: Brugernavn
@@ -4342,6 +4355,7 @@ da:
   users_latest_observations_on_site: '%{user}''s seneste observation på %{site}'
   users_observations: '%{user}''s observationer'
   users_profile: '%{user}''s profil'
+  users_projects: '%{user}''s projekter'
   users_year_on_site: '%{user}''s år på %{site} %{year}'
   using_a_license: bruger en licens
   using_cc_license_makes_easier_use_your_data: Brug af en <strong> Creative Commons
@@ -4562,6 +4576,8 @@ da:
   x_deleted: '%{x} slettet'
   x_does_not_exist: '%{x} findes ikke'
   x_doesnt: '%{login} gør ikke'
+  x_flagged: '%{x} markeret'
+  x_flagged_as_flag: '%{x} markeret som %{flag}'
   x_hasnt: '%{login} har ikke'
   x_journal: '%{user}''s journal'
   x_journal_archives_for_y: '%{user}''s journal • Arkiver for'
@@ -5275,6 +5291,8 @@ da:
         license: Licens, som observatøren har valgt til denne observation
         url: URL for observationen
         image_url: URL til standardbilledet
+        sound_url: URL for standard lyden. Bemærk at det kun virker ved direkte uploads
+          og ikke lyde som er hosted på tredjeparts services
         tag_list: Kommasepareret liste over tags
         place_admin1_name: Navn på det administrative sted en rang under landeniveau
         place_admin2_name: Navn på det administrative sted to rang under landeniveau
@@ -6182,6 +6200,7 @@ da:
       default: '%d-%m-%Y'
       long: '%d. %B, %Y'
       short: '%d. %b'
+      short_with_year: '%d. %b, %Y'
       month_year: '%B %Y'
       month_day_year: '%d. %B, %Y'
     month_names:
@@ -6470,7 +6489,7 @@ da:
           attributes:
             login:
               must_begin_with_a_letter: skal begynde med et bogstav, ikke indeholde
-                mellemrum, kun anvende bogstaver, tal, bindestreger og understregninger
+                mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
     models:

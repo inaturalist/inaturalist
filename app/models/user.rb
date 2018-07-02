@@ -714,6 +714,105 @@ class User < ActiveRecord::Base
 
     end_log_timer
   end
+
+  #
+  #  Wipes all the data related to a user, within reason (can't do backups).
+  #  Only for extreme cases and compliance with privacy regulations. Do not
+  #  expose in the UI.
+  #
+  def self.forget( user_id, options = {} )
+    if user = User.find_by_id( user_id )
+      puts "Destroying user (this could take a while)"
+      user.sane_destroy
+    end
+
+    deleted_observations = DeletedObservation.where( user_id: user_id )
+    puts "Deleting #{deleted_observations.count} DeletedObservations"
+    deleted_observations.delete_all
+
+    s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
+    s3_client = ::Aws::S3::Client.new(
+      access_key_id: s3_config["access_key_id"],
+      secret_access_key: s3_config["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+
+    cf_client = ::Aws::CloudFront::Client.new(
+      access_key_id: s3_config["access_key_id"],
+      secret_access_key: s3_config["secret_access_key"],
+      region: CONFIG.s3_region
+    )
+
+    deleted_photos = DeletedPhoto.where( user_id: user_id )
+    puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
+    deleted_photos.find_each do |dp|
+      images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
+      puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
+      if images.any?
+        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+      end
+      dp.destroy
+    end
+
+    # This might cause problems with multiple simultaneous invalidations. FWIW,
+    # CloudFront is supposed to expire things in 24 hours by default
+    if options[:cloudfront_distribution_id]
+      paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
+      cf_client.create_invalidation(
+        distribution_id: options[:cloudfront_distribution_id],
+        invalidation_batch: {
+          paths: {
+            quantity: paths.size,
+            items: paths
+          },
+          caller_reference: "#{paths[0]}/#{Time.now.to_i}"
+        }
+      )
+    end
+
+    deleted_sounds = DeletedSound.where( user_id: user_id )
+    puts "Deleting #{deleted_sounds.count} DeletedSounds and associated records from s3"
+    deleted_sounds.find_each do |ds|
+      sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }." ).contents
+      puts "\tSound #{ds.sound_id}, removing #{sounds.size} sounds from S3"
+      if sounds.any?
+        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
+      end
+      ds.destroy
+    end
+
+    # Delete from PandionES where user_id:user_id
+    if options[:logstash_es_host]
+      logstash_es_client = Elasticsearch::Client.new(
+        host: options[:logstash_es_host],
+      )
+      puts "Deleting logstash records"
+      begin
+        logstash_es_client.delete_by_query(
+          index: "logstash-*",
+          body: {
+            query: {
+              term: {
+                user_id: user_id
+              }
+            }
+          }
+        )
+      rescue Faraday::TimeoutError, Net::ReadTimeout
+        retry
+      end
+    else
+      puts "Logstash ES host not configured. You may have to manually remove log entries for this user."
+    end
+
+    puts "Deleting DeletedUser"
+    DeletedUser.where( user_id: user_id ).delete_all
+
+    # Trigger sync on all staging servers
+    puts
+    puts "Ensure all staging servers get synced"
+    puts
+  end
   
   def create_default_life_list
     return true if life_list
