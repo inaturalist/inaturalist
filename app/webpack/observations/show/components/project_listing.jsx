@@ -11,21 +11,22 @@ class ProjectListing extends React.Component {
     this.settingsMenu = this.settingsMenu.bind( this );
   }
 
-  settingsMenu( po ) {
+  settingsMenu( obj ) {
+    const isProjectObservation = !!obj.uuid;
     const currentUser = this.props.config && this.props.config.currentUser;
     let menuItems = [];
-    if ( currentUser.id === this.props.observation.user.id ) {
-      const allowsAccess = po.preferences && po.preferences.allows_curator_coordinate_access;
-      menuItems.push( ( <div key={ `project-allow-${po.project.id}` } className="allow">
+    if ( isProjectObservation && currentUser.id === this.props.observation.user.id ) {
+      const allowsAccess = obj.preferences && obj.preferences.allows_curator_coordinate_access;
+      menuItems.push( ( <div key={ `project-allow-${obj.project.id}` } className="allow">
         <input
           type="checkbox"
           defaultChecked={ allowsAccess }
-          id={ `project-allow-input-${po.project.id}` }
+          id={ `project-allow-input-${obj.project.id}` }
           onClick={ ( ) => {
-            this.props.updateCuratorAccess( po, allowsAccess ? 0 : 1 );
+            this.props.updateCuratorAccess( obj, allowsAccess ? 0 : 1 );
           }}
         />
-        <label htmlFor={ `project-allow-input-${po.project.id}` }>
+        <label htmlFor={ `project-allow-input-${obj.project.id}` }>
           { I18n.t( "allow_curator_access" ) }
         </label>
         <div className="text-muted">
@@ -34,24 +35,26 @@ class ProjectListing extends React.Component {
       </div> ) );
       menuItems.push( ( <MenuItem divider key="project-allow-divider" /> ) );
     }
-    if ( !po.current_user_is_member ) {
+    if ( !obj.current_user_is_member ) {
       menuItems.push( ( <MenuItem
-        key={ `project-join-${po.project.id}` }
+        key={ `project-join-${obj.project.id}` }
         eventKey="join"
       >
         { I18n.t( "join_this_project" ) }
       </MenuItem> ) );
     }
-    menuItems.push( ( <MenuItem
-      key={ `project-remove-${po.project.id}` }
-      eventKey="delete"
-    >
-      { I18n.t( "remove_from_project" ) }
-    </MenuItem> ) );
-    if ( po.current_user_is_member ) {
+    if ( isProjectObservation ) {
+      menuItems.push( ( <MenuItem
+        key={ `project-remove-${obj.project.id}` }
+        eventKey="delete"
+      >
+        { I18n.t( "remove_from_project" ) }
+      </MenuItem> ) );
+    }
+    if ( isProjectObservation && obj.current_user_is_member ) {
       if (
-        po.project.project_observation_fields &&
-        po.project.project_observation_fields.length > 0
+        obj.project.project_observation_fields &&
+        obj.project.project_observation_fields.length > 0
       ) {
         menuItems.push( (
           <MenuItem
@@ -62,16 +65,18 @@ class ProjectListing extends React.Component {
           </MenuItem>
         ) );
       }
+    }
+    if ( obj.current_user_is_member ) {
       menuItems.push( ( <MenuItem
-        key={ `project-settings-${po.project.id}` }
+        key={ `project-settings-${obj.project.id}` }
         eventKey="projectSettings"
-        href={ `/projects/${po.project.slug}/contributors/${currentUser.login}` }
+        href={ `/projects/${obj.project.slug}/contributors/${currentUser.login}` }
       >
         { I18n.t( "edit_your_settings_for_this_project" ) }
       </MenuItem> ) );
     }
     menuItems.push( ( <MenuItem
-      key={ `project-global-${po.project.id}` }
+      key={ `project-global-${obj.project.id}` }
       eventKey="globalSettings"
       href="/users/edit#projects"
     >
@@ -83,11 +88,11 @@ class ProjectListing extends React.Component {
           id="grouping-control"
           onSelect={ ( event, key ) => {
             if ( key === "join" ) {
-              this.props.joinProject( po.project );
+              this.props.joinProject( obj.project );
             } else if ( key === "delete" ) {
-              this.props.removeFromProject( po.project );
+              this.props.removeFromProject( obj.project );
             } else if ( key === "edit-project-observation-fields" ) {
-              this.props.showProjectFieldsModal( po.project );
+              this.props.showProjectFieldsModal( obj.project );
             }
           } }
         >
@@ -105,92 +110,96 @@ class ProjectListing extends React.Component {
   render( ) {
     let observationFieldLink;
     let observationFields;
-    const po = this.props.projectObservation;
-    const observation = this.props.observation;
     const config = this.props.config;
+    const displayObject = this.props.displayObject;
+    const project = displayObject.project;
+    const isProjectObservation = !!displayObject.uuid;
+    const observation = this.props.observation;
     const viewerIsObserver = config && config.currentUser &&
       config.currentUser.id === observation.user.id;
-    const viewerIsAdder = config && config.currentUser &&
-      config.currentUser.id === po.user_id;
+    const viewerIsAdder = isProjectObservation && config && config.currentUser &&
+      config.currentUser.id === displayObject.user_id;
     const viewerIsCurator = config && config.currentUser &&
-      _.includes( config.currentUser.curator_project_ids, po.project.id );
-    const fields = po.project.project_observation_fields;
-    if ( fields && fields.length > 1 ) {
-      const fieldIDs = po.project.project_observation_fields.
-        map( pof => ( pof.observation_field.id ) );
-      const projectFieldValues = _.filter( observation.ofvs, ofv => (
-       ofv.observation_field && _.includes( fieldIDs, ofv.observation_field.id ) ) );
-      if ( projectFieldValues.length > 0 ) {
-        observationFieldLink = (
-          <span
-            className="fieldLink"
-            onClick={ ( ) => this.setState( { fieldsPanelOpen: !this.state.fieldsPanelOpen } ) }
-          >
-            { I18n.t( "observation_fields" ) } <i className="fa fa-angle-double-down" />
-          </span>
-        );
-        observationFields = (
-          <Panel collapsible expanded={ this.state.fieldsPanelOpen }>
-            { projectFieldValues.map( ofv => {
-              if ( this.state.editingFieldValue &&
-                   this.state.editingFieldValue.uuid === ofv.uuid ) {
+      _.includes( config.currentUser.curator_project_ids, project.id );
+    if ( isProjectObservation ) {
+      const fields = project.project_observation_fields;
+      if ( fields && fields.length > 1 ) {
+        const fieldIDs = project.project_observation_fields.
+          map( pof => ( pof.observation_field.id ) );
+        const projectFieldValues = _.filter( observation.ofvs, ofv => (
+         ofv.observation_field && _.includes( fieldIDs, ofv.observation_field.id ) ) );
+        if ( projectFieldValues.length > 0 ) {
+          observationFieldLink = (
+            <span
+              className="fieldLink"
+              onClick={ ( ) => this.setState( { fieldsPanelOpen: !this.state.fieldsPanelOpen } ) }
+            >
+              { I18n.t( "observation_fields" ) } <i className="fa fa-angle-double-down" />
+            </span>
+          );
+          observationFields = (
+            <Panel collapsible expanded={ this.state.fieldsPanelOpen }>
+              { projectFieldValues.map( ofv => {
+                if ( this.state.editingFieldValue &&
+                     this.state.editingFieldValue.uuid === ofv.uuid ) {
+                  return (
+                    <ObservationFieldInput
+                      observationField={ ofv.observation_field }
+                      observationFieldValue={ ofv.value }
+                      observationFieldTaxon={ ofv.taxon }
+                      key={ `editing-field-value-${ofv.uuid}` }
+                      setEditingFieldValue={ fieldValue => {
+                        this.setState( { editingFieldValue: fieldValue } );
+                      }}
+                      editing
+                      originalOfv={ ofv }
+                      hideFieldChooser
+                      onCancel={ ( ) => {
+                        this.setState( { editingFieldValue: null } );
+                      } }
+                      onSubmit={ r => {
+                        if ( r.value !== ofv.value ) {
+                          this.props.updateObservationFieldValue( ofv.uuid, r );
+                        }
+                        this.setState( { editingFieldValue: null } );
+                      } }
+                    />
+                  );
+                }
                 return (
-                  <ObservationFieldInput
-                    observationField={ ofv.observation_field }
-                    observationFieldValue={ ofv.value }
-                    observationFieldTaxon={ ofv.taxon }
-                    key={ `editing-field-value-${ofv.uuid}` }
+                  <ObservationFieldValue
+                    ofv={ ofv }
+                    key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
                     setEditingFieldValue={ fieldValue => {
                       this.setState( { editingFieldValue: fieldValue } );
                     }}
-                    editing
-                    originalOfv={ ofv }
-                    hideFieldChooser
-                    onCancel={ ( ) => {
-                      this.setState( { editingFieldValue: null } );
-                    } }
-                    onSubmit={ r => {
-                      if ( r.value !== ofv.value ) {
-                        this.props.updateObservationFieldValue( ofv.uuid, r );
-                      }
-                      this.setState( { editingFieldValue: null } );
-                    } }
+                    { ...this.props }
                   />
                 );
-              }
-              return (
-                <ObservationFieldValue
-                  ofv={ ofv }
-                  key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
-                  setEditingFieldValue={ fieldValue => {
-                    this.setState( { editingFieldValue: fieldValue } );
-                  }}
-                  { ...this.props }
-                />
-              );
-            } ) }
-          </Panel>
-        );
+              } ) }
+            </Panel>
+          );
+        }
       }
     }
     return (
       <div className="projectEntry">
-        <div className="project" key={ `project-${po.project.id}` }>
+        <div className="project" key={ `project-${project.id}` }>
           <div className="squareIcon">
-            <a href={ `/projects/${po.project.id}` }>
-              <img src={po.project.icon} />
+            <a href={ `/projects/${project.id}` }>
+              <img src={project.icon} />
             </a>
           </div>
           <div className="info">
             <div className="title">
-              <a href={ `/projects/${po.project.id}` }>
-                { po.project.title }
+              <a href={ `/projects/${project.id}` }>
+                { project.title }
               </a>
             </div>
             { observationFieldLink }
           </div>
-          { viewerIsObserver || viewerIsAdder || viewerIsCurator ?
-            this.settingsMenu( po ) : "" }
+          { ( viewerIsObserver || viewerIsAdder || viewerIsCurator ) ?
+            this.settingsMenu( displayObject ) : "" }
         </div>
         { observationFields }
       </div>
@@ -204,7 +213,7 @@ ProjectListing.propTypes = {
   updateCuratorAccess: PropTypes.func,
   config: PropTypes.object,
   observation: PropTypes.object,
-  projectObservation: PropTypes.object,
+  displayObject: PropTypes.object,
   removeObservationFieldValue: PropTypes.func,
   updateObservationFieldValue: PropTypes.func,
   showProjectFieldsModal: PropTypes.func

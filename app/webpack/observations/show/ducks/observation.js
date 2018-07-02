@@ -211,6 +211,7 @@ export function fetchObservation( id, options = { } ) {
   return ( dispatch, getState ) => {
     const s = getState( );
     const params = {
+      include_new_projects: "true",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1

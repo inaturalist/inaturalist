@@ -66,8 +66,13 @@ class Projects extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
+
+    const projectsOrProjObs = observation.project_observations.concat(
+      observation.non_traditional_projects );
+    observation.non_traditional_projects = observation.non_traditional_projects || [];
     if ( !observation || !observation.user ||
-         ( !loggedIn && observation.project_observations.length === 0 ) ) {
+         ( !loggedIn &&
+           projectsOrProjObs.length === 0 ) ) {
       return ( <span /> );
     }
     let addProjectInput;
@@ -84,8 +89,8 @@ class Projects extends React.Component {
         </form>
       );
     }
-    const count = observation.project_observations.length > 0 ?
-      `(${observation.project_observations.length})` : "";
+    const count = projectsOrProjObs.length > 0 ?
+      `(${projectsOrProjObs.length})` : "";
     return (
       <div className="Projects collapsible-section">
         <h4
@@ -102,10 +107,10 @@ class Projects extends React.Component {
         </h4>
         <Panel collapsible expanded={ this.state.open }>
           { addProjectInput }
-          { observation.project_observations.map( po => (
+          { projectsOrProjObs.map( obj => (
             <ProjectListing
-              key={ po.project.id }
-              projectObservation={ po }
+              key={ obj.project.id }
+              displayObject={ obj }
               { ...this.props }
             />
           ) ) }
