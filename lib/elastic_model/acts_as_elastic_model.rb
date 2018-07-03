@@ -97,18 +97,16 @@ module ActsAsElasticModel
       end
 
       def elastic_delete!(options = {})
-        begin
-          __elasticsearch__.client.delete_by_query(index: index_name,
-            body: ElasticModel.search_hash(options))
-          __elasticsearch__.refresh_index! if Rails.env.test?
-        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-        rescue Elasticsearch::Transport::Transport::Errors::Conflict => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+          begin
+            __elasticsearch__.client.delete_by_query(index: index_name,
+              body: ElasticModel.search_hash(options))
+            __elasticsearch__.refresh_index! if Rails.env.test?
+          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+            Logstasher.write_exception(e)
+            Rails.logger.error "[Error] elastic_delete failed: #{ e }"
+            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+          end
         end
       end
 
@@ -184,7 +182,7 @@ module ActsAsElasticModel
       end
 
       def result_to_will_paginate_collection(result, options)
-        try_and_try_again( PG::ConnectionBad, sleep_for: 20 ) do
+        try_and_try_again( PG::ConnectionBad, sleep: 20 ) do
           begin
             records = options[:keep_es_source] ?
               result.records.map_with_hit do |record, hit|
@@ -259,14 +257,16 @@ module ActsAsElasticModel
     end
 
     def elastic_delete!
-      begin
-        __elasticsearch__.delete_document
-        # in the test ENV, we will need to wait for changes to be applied
-        self.class.__elasticsearch__.refresh_index! if Rails.env.test?
-      rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
-        Logstasher.write_exception(e)
-        Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
-        Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+        begin
+          __elasticsearch__.delete_document
+          # in the test ENV, we will need to wait for changes to be applied
+          self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+        rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        end
       end
     end
 

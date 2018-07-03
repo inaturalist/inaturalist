@@ -198,7 +198,7 @@ class UpdateAction < ActiveRecord::Base
   def self.user_viewed_updates(updates, user_id)
     updates = updates.to_a.compact
     return if updates.blank?
-    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep_for: 1, tries: 10 ) do
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
       UpdateAction.__elasticsearch__.client.update_by_query(
         index: UpdateAction.index_name,
         type: "update_action",
@@ -275,7 +275,7 @@ class UpdateAction < ActiveRecord::Base
   def append_subscribers( user_ids )
     raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
     if es_source
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep_for: 1, tries: 10 ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
         UpdateAction.__elasticsearch__.client.update_by_query(
           index: UpdateAction.index_name,
           type: "update_action",
@@ -311,7 +311,7 @@ class UpdateAction < ActiveRecord::Base
   def restrict_to_subscribers( user_ids )
     raise "UpdateAction cannot append_subscribers" unless created_but_not_indexed || es_source
     if es_source
-      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep_for: 1, tries: 10 ) do
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
         UpdateAction.__elasticsearch__.client.update_by_query(
           index: UpdateAction.index_name,
           type: "update_action",
