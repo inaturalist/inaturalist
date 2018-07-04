@@ -101,9 +101,7 @@ body > div > [role="dialog"] .ObservationModal {
     overflow: hidden;
   }
 
-  .image-gallery-image {
-    flex: 2
-  }
+  
   .easyzoom > a img {
     object-position: 50% 50%;
   }
@@ -117,6 +115,23 @@ body > div > [role="dialog"] .ObservationModal {
     line-height: 140px;
     background-color: #eee;
     color: #999;
+  }
+
+  .image-gallery-image {
+    flex: 2
+  }
+
+  .image-gallery-thumbnail,
+  .image-gallery-thumbnail.active {
+    border: none;
+  }
+  .image-gallery-thumbnail.active img {
+    border: 4px solid #337ab7;
+  }
+  .image-gallery-slide .image-gallery-description {
+    position: relative;
+    padding: 0;
+    bottom: 0;
   }
 
   .image-gallery {

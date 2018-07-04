@@ -46,36 +46,38 @@ class ObservationModal extends React.Component {
   }
   render( ) {
     const {
-      onClose,
-      observation,
-      visible,
-      toggleReviewed,
-      toggleCaptive,
-      reviewedByCurrentUser,
-      captiveByCurrentUser,
-      images,
-      commentFormVisible,
-      identificationFormVisible,
-      addIdentification,
       addComment,
-      loadingDiscussionItem,
+      addIdentification,
+      agreeingWithObservation,
       agreeWithCurrentObservation,
+      blind,
+      captiveByCurrentUser,
+      chooseSuggestedTaxon,
+      chooseTab,
+      commentFormVisible,
+      controlledTerms,
+      currentUser,
       currentUserIdentification,
+      hidePrevNext,
+      hideTools,
+      identificationFormVisible,
+      images,
+      imagesCurrentIndex,
+      keyboardShortcutsShown,
+      loadingDiscussionItem,
+      observation,
+      onClose,
+      reviewedByCurrentUser,
+      setImagesCurrentIndex,
       showNextObservation,
       showPrevObservation,
-      agreeingWithObservation,
-      blind,
       tab,
       tabs,
-      chooseTab,
-      controlledTerms,
-      imagesCurrentIndex,
-      setImagesCurrentIndex,
-      keyboardShortcutsShown,
+      tabTitles,
+      toggleCaptive,
       toggleKeyboardShortcuts,
-      currentUser,
-      hideTools,
-      hidePrevNext
+      toggleReviewed,
+      visible
     } = this.props;
     if ( !observation ) {
       return <div></div>;
@@ -440,7 +442,7 @@ class ObservationModal extends React.Component {
                       return false;
                     } }
                   >
-                    { I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
+                    { tabTitles[tabName] || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
                   </a>
                 </li>
               ) ) }
@@ -611,7 +613,7 @@ class ObservationModal extends React.Component {
               ) }
               { activeTabs.indexOf( "suggestions" ) < 0 ? null : (
                 <div className={`inat-tab suggestions-tab ${activeTab === "suggestions" ? "active" : ""}`}>
-                  <SuggestionsContainer />
+                  <SuggestionsContainer chooseTaxon={ chooseSuggestedTaxon } />
                 </div>
               ) }
               { activeTabs.indexOf( "annotations" ) < 0 ? null : (
@@ -636,42 +638,45 @@ class ObservationModal extends React.Component {
 }
 
 ObservationModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  observation: PropTypes.object,
-  visible: PropTypes.bool,
-  toggleReviewed: PropTypes.func,
-  toggleCaptive: PropTypes.func,
-  reviewedByCurrentUser: PropTypes.bool,
+  addComment: PropTypes.func,
+  addIdentification: PropTypes.func,
+  agreeingWithObservation: PropTypes.bool,
+  agreeWithCurrentObservation: PropTypes.func,
+  blind: PropTypes.bool,
   captiveByCurrentUser: PropTypes.bool,
+  chooseSuggestedTaxon: PropTypes.func,
+  chooseTab: PropTypes.func,
+  commentFormVisible: PropTypes.bool,
+  controlledTerms: PropTypes.array,
+  currentUser: PropTypes.object,
+  currentUserIdentification: PropTypes.object,
+  hidePrevNext: PropTypes.bool,
+  hideTools: PropTypes.bool,
+  identificationFormVisible: PropTypes.bool,
   images: PropTypes.array,
   imagesCurrentIndex: PropTypes.number,
-  commentFormVisible: PropTypes.bool,
-  identificationFormVisible: PropTypes.bool,
-  addIdentification: PropTypes.func,
-  addComment: PropTypes.func,
+  keyboardShortcutsShown: PropTypes.bool,
   loadingDiscussionItem: PropTypes.bool,
-  agreeWithCurrentObservation: PropTypes.func,
-  currentUserIdentification: PropTypes.object,
+  observation: PropTypes.object,
+  onClose: PropTypes.func.isRequired,
+  reviewedByCurrentUser: PropTypes.bool,
+  setImagesCurrentIndex: PropTypes.func,
   showNextObservation: PropTypes.func,
   showPrevObservation: PropTypes.func,
-  agreeingWithObservation: PropTypes.bool,
-  blind: PropTypes.bool,
   tab: PropTypes.string,
-  chooseTab: PropTypes.func,
-  controlledTerms: PropTypes.array,
-  setImagesCurrentIndex: PropTypes.func,
-  keyboardShortcutsShown: PropTypes.bool,
-  toggleKeyboardShortcuts: PropTypes.func,
-  currentUser: PropTypes.object,
-  hideTools: PropTypes.bool,
   tabs: PropTypes.array,
-  hidePrevNext: PropTypes.bool
+  tabTitles: PropTypes.object,
+  toggleCaptive: PropTypes.func,
+  toggleKeyboardShortcuts: PropTypes.func,
+  toggleReviewed: PropTypes.func,
+  visible: PropTypes.bool
 };
 
 ObservationModal.defaultProps = {
   controlledTerms: [],
   imagesCurrentIndex: 0,
-  tabs: TABS
+  tabs: TABS,
+  tabTitles: {}
 };
 
 export default ObservationModal;

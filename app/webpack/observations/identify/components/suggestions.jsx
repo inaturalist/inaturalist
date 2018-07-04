@@ -361,7 +361,7 @@ class Suggestions extends React.Component {
                   </div>
                 </div>
                 { detailTaxon ? (
-                  <div className={ `detail-taxon ${detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
+                  <div className={ `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
                     { detailPhotos }
                     <div className="obs-modal-header">
                       <SplitTaxon

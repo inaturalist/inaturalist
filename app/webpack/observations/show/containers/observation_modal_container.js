@@ -1,16 +1,9 @@
 import { connect } from "react-redux";
 import ObservationModal from "../../identify/components/observation_modal";
+import { addID } from "../ducks/observation";
 import {
   hideCurrentObservation,
-  addIdentification,
-  // addComment,
-  // toggleCaptive,
-  // toggleReviewed,
-  // agreeWithCurrentObservation,
-  // showNextObservation,
-  // showPrevObservation,
-  updateCurrentObservation,
-  fetchDataForTab
+  updateCurrentObservation
 } from "../../identify/actions/current_observation_actions";
 
 function mapStateToProps( state ) {
@@ -33,6 +26,7 @@ function mapStateToProps( state ) {
     currentUser: state.config.currentUser,
     tab: "suggestions",
     tabs: ["suggestions"],
+    tabTitles: { suggestions: I18n.t( "compare" ) },
     hidePrevNext: true,
     hideTools: true
   }, state.currentObservation );
@@ -43,39 +37,13 @@ function mapDispatchToProps( dispatch ) {
     onClose: ( ) => {
       dispatch( hideCurrentObservation( ) );
     },
-    // toggleCaptive: ( ) => {
-    //   dispatch( toggleCaptive( ) );
-    // },
-    // toggleReviewed: ( ) => {
-    //   dispatch( toggleReviewed( ) );
-    // },
-    addIdentification: ( ) => {
-      dispatch( addIdentification( ) );
-    },
-    // addComment: ( ) => {
-    //   dispatch( addComment( ) );
-    // },
-    // agreeWithCurrentObservation: ( ) => {
-    //   dispatch( agreeWithCurrentObservation( ) ).then( ( ) => {
-    //     $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
-    //   } );
-    // },
-    // showNextObservation: ( ) => {
-    //   dispatch( showNextObservation( ) );
-    // },
-    // showPrevObservation: ( ) => {
-    //   dispatch( showPrevObservation( ) );
-    // },
-    chooseTab: ( tab ) => {
-      dispatch( updateCurrentObservation( { tab } ) );
-      dispatch( fetchDataForTab( ) );
-    },
     setImagesCurrentIndex: index => {
       dispatch( updateCurrentObservation( { imagesCurrentIndex: index } ) );
+    },
+    chooseSuggestedTaxon: taxon => {
+      dispatch( addID( taxon ) );
+      dispatch( hideCurrentObservation( ) );
     }
-    // toggleKeyboardShortcuts: keyboardShortcutsShown => {
-    //   dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
-    // }
   };
 }
 

@@ -200,17 +200,18 @@
   }
 }
 
-.ObservationModal .right-col .Suggestions .tools {
-  background-color: #E3E9DA;
-}
-.ObservationModal .right-col .Suggestions .tools > * {
-  width: auto;
-}
-
-.ObservationModal .inat-tab.active.suggestions-tab {
-  display: flex;
-  flex: 2;
-  overflow: hidden; // firefox needs this
+body > div > [role="dialog"] .ObservationModal {
+  .right-col .Suggestions .tools {
+    background-color: #E3E9DA;
+  }
+  .right-col .Suggestions .tools > * {
+    width: auto;
+  }
+  .inat-tab.active.suggestions-tab {
+    display: flex;
+    flex: 2;
+    overflow: hidden; // firefox needs this
+  }
 }
 
 body > div > [role="dialog"] .TaxonChooserPopover .form-group {
