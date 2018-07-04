@@ -319,7 +319,7 @@ class CommunityIdentification extends React.Component {
   }
 
   render( ) {
-    const { observation, config, addID } = this.props;
+    const { observation, config, addID, onClickCompare } = this.props;
     const test = $.deparam.querystring( ).test;
     const loggedIn = config && config.currentUser;
     let communityTaxon = observation.communityTaxon;
@@ -401,7 +401,16 @@ class CommunityIdentification extends React.Component {
                   x: votesFor.length,
                   y: numIdentifiers
                 } ) }
-                <a href={ compareLink } className="pull-right compare-link">
+                <a
+                  href={ compareLink }
+                  className="pull-right compare-link"
+                  onClick={ e => {
+                    if ( onClickCompare ) {
+                      return onClickCompare( e, observation.communityTaxon, observation );
+                    }
+                    return true;
+                  } }
+                >
                   <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
                 </a>
               </div>
@@ -528,7 +537,15 @@ class CommunityIdentification extends React.Component {
               { agreeButton }
             </div>
             <div className="btn-space">
-              <a href={ compareLink }>
+              <a
+                href={ compareLink }
+                onClick={ e => {
+                  if ( onClickCompare ) {
+                    return onClickCompare( e, communityTaxon, observation );
+                  }
+                  return true;
+                }}
+              >
                 <button className="btn btn-default">
                   <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
                 </button>
@@ -552,7 +569,8 @@ CommunityIdentification.propTypes = {
   addID: PropTypes.func,
   setCommunityIDModalState: PropTypes.func,
   updateObservation: PropTypes.func,
-  updateSession: PropTypes.func
+  updateSession: PropTypes.func,
+  onClickCompare: PropTypes.func
 };
 
 CommunityIdentification.defaultProps = {

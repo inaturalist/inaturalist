@@ -14,6 +14,8 @@
 @import "../shared/modals";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+@import "./identify/observation_modal";
+@import "./identify/suggestions";
 
 #react-images-container {
   .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {

@@ -32,6 +32,7 @@ import ProjectFieldsModalContainer from "../containers/project_fields_modal_cont
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
+import ObservationModalContainer from "../containers/observation_modal_container";
 
 moment.locale( "en", {
   relativeTime: {
@@ -270,6 +271,7 @@ const App = ( {
       <LicensingModalContainer />
       <MediaViewerContainer />
       <ProjectFieldsModalContainer />
+      <ObservationModalContainer />
     </div>
   );
 };
