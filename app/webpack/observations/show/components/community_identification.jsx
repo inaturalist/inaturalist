@@ -401,18 +401,20 @@ class CommunityIdentification extends React.Component {
                   x: votesFor.length,
                   y: numIdentifiers
                 } ) }
-                <a
-                  href={ compareLink }
-                  className="pull-right compare-link"
-                  onClick={ e => {
-                    if ( onClickCompare ) {
-                      return onClickCompare( e, observation.communityTaxon, observation );
-                    }
-                    return true;
-                  } }
-                >
-                  <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
-                </a>
+                { loggedIn ? (
+                  <a
+                    href={ compareLink }
+                    className="pull-right compare-link"
+                    onClick={ e => {
+                      if ( onClickCompare ) {
+                        return onClickCompare( e, observation.communityTaxon, observation );
+                      }
+                      return true;
+                    } }
+                  >
+                    <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                  </a>
+                ) : null }
               </div>
             ) : (
               <div className="about">
@@ -536,21 +538,23 @@ class CommunityIdentification extends React.Component {
             <div className="btn-space">
               { agreeButton }
             </div>
-            <div className="btn-space">
-              <a
-                href={ compareLink }
-                onClick={ e => {
-                  if ( onClickCompare ) {
-                    return onClickCompare( e, communityTaxon, observation );
-                  }
-                  return true;
-                }}
-              >
-                <button className="btn btn-default">
-                  <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
-                </button>
-              </a>
-            </div>
+            { loggedIn ? (
+              <div className="btn-space">
+                <a
+                  href={ compareLink }
+                  onClick={ e => {
+                    if ( onClickCompare ) {
+                      return onClickCompare( e, communityTaxon, observation );
+                    }
+                    return true;
+                  }}
+                >
+                  <button className="btn btn-default">
+                    <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+                  </button>
+                </a>
+              </div>
+            ) : null }
             <div className="btn-space">
               <button className="btn btn-default" onClick={ this.showCommunityIDModal }>
                 <i className="fa fa-info-circle" /> { I18n.t( "about" ) }

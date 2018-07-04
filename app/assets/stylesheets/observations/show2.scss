@@ -1435,8 +1435,9 @@ h3, h4 {
     border: 1px solid $border-grey;
     border-top: 0px;
     padding: 17px 12px;
+    display: flex;
     .btn-space {
-      width: 33%;
+      flex: 2;
       display: inline-block;
       text-align: center;
       button {

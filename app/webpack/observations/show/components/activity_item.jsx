@@ -56,7 +56,7 @@ const ActivityItem = ( {
         canAgree = true;
       }
     }
-    if ( firstDisplay && !hideCompare ) {
+    if ( loggedIn && firstDisplay && !hideCompare ) {
       let compareTaxonID = taxon.id;
       if ( taxon.rank_level <= 10 ) {
         compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
