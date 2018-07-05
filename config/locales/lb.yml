@@ -143,6 +143,7 @@ lb:
   add_place: Plaz derbäisetzen
   add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
+  add_some_now: Der elo e puer derbäisetzen
   add_to_a_project: E Projet derbäisetzen
   add_to_calendar: Bei de Kalenner derbäisetzen
   add_to_favorites: Bei d'Favoriten deräisetzen
@@ -223,6 +224,7 @@ lb:
   alphabetical_order: Alphabetesch Reiefolleg
   amphibians: Amphibien
   and: a(n)
+  and_make_some_new: an e puer Neier maachen
   android: Android
   animals: Déieren
   animated_observations_map: Animéiert Kaart mat den Observatiounen
@@ -260,6 +262,8 @@ lb:
   are_you_sure_want_delete_this_range: Sidd Dir sécher datt Dir dëse Beräich läsche
     wëllt?
   are_you_sure_want_join: Sidd Dir sécher datt Dir matmaache wëllt
+  are_you_sure_you_want_to_commit_this_change: Sidd Dir sécher datt Dir dës Ännerung
+    confirméiere wëllt? Dëst kann net réckgängeg gemaach ginn.
   are_you_sure_you_want_to_delete_this: Sidd Dir sécher datt Dir dëst läsche wëllt?
   are_you_sure_you_want_to_delete_this_photo?: Sidd Dir sécher datt Dir dës Foto läsche
     wëllt?
@@ -275,6 +279,7 @@ lb:
   you_sure_delete_list: Sidd Dir sécher datt Dir dës Lëscht läsche wëllt?
   you_sure_delete_taxon_from_list?: Sidd Dir sécher datt Dir %{taxon} vun der Lëscht
     erofhuele wëllt?
+  ascending: vu kleng op grouss
   associations: Associatiounen
   atom: Atom
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
@@ -352,6 +357,7 @@ lb:
     replaced_by: ersat duerch
     replace_with: ersetzen duerch
   change_your_password: Ännert Äert Passwuert
+  check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
   check_it_out: Probéiert et aus
   check_out_our_blog: Besicht eise Blog
   checklist: Check-Lëscht
@@ -516,6 +522,7 @@ lb:
   disconnect_provider: '%{provider} trennen'
   dna_: DNA
   documentation_for_developers_html: Dokumentatioun fir <a href="/pages/developers">Entwéckler</a>
+  do_not_show_this_message_again: Dëse Message net,méi weisen
   do_you_want_to_proceed: Wëllt Dir virufueren?
   doh_something_went_wrong: Ups, da ass eppes schif gaang.
   done: Fäerdeg
@@ -664,7 +671,9 @@ lb:
   has_photo: Huet eng Foto
   has_photos: huet Fotoen
   has_photos_or_sounds: Huet Fotoen oder Téin
+  has_sound: Mat Toun
   has_sounds: huet Téin
+  hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
   hello: <test>
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
@@ -724,7 +733,9 @@ lb:
   join: Matmaachen
   join_inat: Bei %{site_name} matmaachen!
   join_project: Bei dësem Projet matmaachen
+  join_this_project: Bei dësem Projet matmaachen
   joined_with_date: 'Bäigetrueden: %{date}'
+  jpg_png_or_gif: JPG, PNG, oder GIF
   just_added!: Elo grad bäigesat!
   keep_editing: Virufuere mat Änneren
   kml: KML
@@ -816,8 +827,10 @@ lb:
     da: Dänesch
     de: Däitsch
     el: Griichesch
+    en-US: Englesch (USA)
     en: Englesch
     es-ES: Spuenesch (Spuenien)
+    es-MX: Spuenesch (Mexiko)
     es: Spuenesch
     et: Estnesch
     eu: Baskesch
@@ -880,17 +893,28 @@ lb:
   mentioned_you_in_an_x_on_noun_by_html: '%{user} huet Iech an engem %{x} iwwer %{noun}
     vum %{by} ernimmt'
   mentions: Mentiounen
+  merge: Fusionéieren
+  merging: Gëtt fusionéiert
   message: Message
   messages: Messagen
   mobile: Mobil
+  mobile_app_for: Mobil App fir
+  mobile_apps_for: Mobil Appe fir
   momentjs:
     shortRelativeTime:
+      future: an %s
       past: '%s'
       s: 1s
       m: 1min
+      mm: '%d Méint'
+      h: 1 Stonn
+      hh: '%d Stonnen'
       d: 1d
+      dd: '%d Deeg'
       M: 1min
       MM: '%dmo'
+      "y": 1 Joer
+      yy: '%d Joer'
   mon: Méi
   month: Mount
   months: Méint
@@ -1030,6 +1054,7 @@ lb:
   observations_by_user: Observatioune vum %{user}
   observations_confirmed: Observatiounen (confirméiert)
   observations_deleted: Observatioune goufe geläscht.
+  observations_for: Observatioune fir
   observations_for_project: Observatioune fir %{project}
   observations_from: Observatioune vum %{date}
   observations_from_people_taxa_and_places_youre_following: Observatioune vu Leit,

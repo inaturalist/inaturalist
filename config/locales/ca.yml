@@ -4208,6 +4208,7 @@ ca:
   those_observations_no_longer_exist: Aquestes observacions ja no existeixen.
   threatened: amenaçat
   thu: Dj.
+  thumb_url: Miniatura de l'URL
   time_: hora
   time_ago: fa %{time}
   tired_of_testing_this_new_version: Cansat de provar aquesta nova versió?
@@ -4332,6 +4333,7 @@ ca:
     haureu de fer-ho d'aquesta manera.
   upload_photo: Pugeu Foto
   upload_photos: Penja fotos
+  upload_range: Carregar distribució
   uploaded_by: Pujat per
   uploader:
     tooltips:
@@ -5344,6 +5346,8 @@ ca:
         license: Llicència que l'observador ha escollit per a aquesta observació
         url: URL de l'observació
         image_url: URL de la imatge per defecte
+        sound_url: URL del só per defecte. Noteu que únicament funciona per pujades
+          directes, no per a sons allotjats a altres serveis
         tag_list: Llista d'etiquetes separada per comes
         place_admin1_name: Nom del lloc administratiu situat per sota del nivell de
           país
@@ -5644,6 +5648,8 @@ ca:
           els gestors del projecte poden, potencialment, afegir JavaSripts maliciosos,
           per tant confieu únicament en projectes que tenen gestors responsables i
           tècnicament competents
+        you_can_preview: Podeu previsualitzar com es veuria el vostre projecte com
+          a Projecte de Col·lecció <a href="%{url}">prement aquí</a>.
       invite:
         description_html: |-
           <h3>Sobre les invitacions</h3>
@@ -5663,6 +5669,10 @@ ca:
           invitació. Si voleu unir-vos-hi, contacteu amb un dels administradors de
           sota i sol·liciteu-li una invitació.
       new:
+        a_project_allows_you_to_gather: Un Projecte de Col·lecció us permet reunir
+          i visualitzar les observacions emprant les eines de cerca del nucli d'iNaturalist.
+          Això elimina la necessitat d'afegir manualment les observacions perquè tot
+          allò que compleix els paràmetres del projecte s'inclouen automàticament.
         collection_projects: Col·lecció de Projectes
         collection_project_features: 'Característiques de la col·lecció de Projectes:'
         contain_entire_image_without_cropping: Conté imatge sencera sense retallar
@@ -5683,7 +5693,24 @@ ca:
           i es retallarà en forma de quadrat.
         project_name: Nom del Projecte
         project_summary: Resum de projecte
+        start_and_end_times_for_bioblitzes: Moment d'inici i final dels bioblitzes
+        umbrella_project_features: 'Característiques del Projecte Paraigua:'
+        unique_url_for_outreach: URL única per a la promoció
+        users_can_follow_your_project: Els usuaris poden seguir les actualitzacions
+          del vostre a través de les publicacions.
+        use_this_link_to_create_html: Utilitzeu <a href="%{url}">aquest enllaç</a>
+          per crear una projecte tradicional en comptes d'aquest.
+        visual_comparison_of_data_among: Comparacions visuals de data entre projectes
+          sota el paraigua
+        we_have_redesigned_projects: 'Redissenyem els projectes per incloure automàticament
+          totes les observacions que coincideixen amb el lloc, tàxon, usuaris, qualitat
+          i dates que definiu. Escolliu entre dos tipus: Projectes de Col·lecció o
+          de Paraigua, que comparteixen les característiques següents:'
         welcome_to_projects: benvinguts al Projects!
+        you_have_not_defined_any_observation_requirements: No heu definit cap requeriment
+          de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e.
+          ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates
+          per identificar les observacions que voleu incloure en el vostres projecte.
       project_location_privacy_notice_html: |-
         <p>
         Si us plau, tingueu en comte que els supervisors del projecte poden veure les ubicacions privades o enfosquides de les vostres observacions a aquest projecte llevat que hagueu revocat aquesta autorització, i afegir les vostres observacions a aquest projecte, llevat que <a href="/users/edit">ho canvieu a la vostra configuració</a>. També es pot concedir o revocar l'accés a les observacions del projecte cas per cas.
@@ -5703,6 +5730,8 @@ ca:
       project_terms_desc_html: Permetre que els supervisors d'aquest projecte utilitzin
         les vostres observacions segons les <a href="%{url}">condiciones del projecte</a>.
       show:
+        are_you_sure_you_want_to_convert: Esteu segur que voleu convertir aquest projecte
+          en un Projecte de Col·lecció?
         bioblitz_results_desc_html: |-
           <p>
           A diferència dels projectes regulars, bioblitzes mostra estadístiques de <em> totes </ em> les observacions d'un lloc i període de temps, i no només observacions que les persones han afegit intencionadament al projecte. Això permet evitar la dificultat d'afegir observacions a un projecte únicament per obtenir les estadístiques en temps real. Recordeu que les observacions no estaran disponibles per a l'exportació o la visualització en algunes vistes de projecte com contribucions dels membres en el lloc web o en cerques d'observacions del projecte a les aplicacions mòbils a menys que l'equip del projecte i els participants incorporin activament les observacions pertinents com ho farien en un projecte normal.
@@ -5710,6 +5739,8 @@ ca:
           <p>
           Recordeu que, si bé aquest tipus de projecte mostra les estadístiques per a les observacions que no s'han afegit deliberadament al projecte, no permet que els gestor puguin veure les coordenades privades o ocultes d'aquestes o assumir que els observadors estan d'acord amb les condicions del projecte. Si sou gestor del projecte i necessiteu accés a les coordenades privades, cal que els participants estiguin d'acord amb les normes del projecte o, si vols que els recomptes de les observacions s'incorporin a la llista de comprovació del projecte gestionat, assegureu-vos que els seus participants s'uneixen al projecte i afegeixen les seves observacions com ho farien en un projecte normal.
           </p>
+        click_here_to_convert_this_project: Prem aquí per convertir aquest projecte
+          en un Projecte de Col·lecció.
         no_journal_blurb_html: |-
           <p>
            El vostre diari del projecte és una eina per comunicar-vos amb els seus membres. Podeu utilitzar-lo per fer anuncis, per establir les prioritats, o xerrar sobre els resultats del projecte.
@@ -5721,6 +5752,11 @@ ca:
           compte de tàxons a partir de les observacions explícitament afegides a aquest
           projecte, no conté totes les observacions registrades en el lloc i al llarg
           de tot el temps que ha durat l'esdeveniment.
+        make_sure_you_have_read_about_the_differences: Assegureu-vos de llegir sobre
+          les diferències en el nostre <a href="%{url}" target="_blank">blog sobre
+          Projectes de Col·leció</a>.
+        this_is_a_preview: Aquesta és una previsualització de com quedaria el vostre
+          projecte com a Projecte de Col·lecció.
       updates_desc: Rebre les actualitzacions d'aquest projecte en el vostre tauler
         i en el correu electrònic diari d'actualitzacions.
     shared:
@@ -5745,10 +5781,39 @@ ca:
           cerca no ha estat possible trobar res de res!
     stats:
       index:
+        active_desc: S'ha creat una ID, observació, comentari o article en els darrers
+          30 dies
+        active_users_desc: S'ha creat una ID, observació, comentari o article en els
+          darrers 30 dies
+        android_desc_html: Creat des de l'<a href="%{url}">App iNaturalist d'Android</a>
+        avg_ttcid: TTCID mitjana
+        avg_ttid: TTID mitjana
+        identifiers_desc: S'ha afegit una ID a l'observació d'algú altre aquest dia
+        iphone_desc_html: Creat des de l'<a href="%{url}">App iNaturalist d'iPhone</a>
+        med_ttcid: TTCID mediana
+        med_ttid: TTID mediana
+        new_users_desc: Connectat aquest dia
         obs_1_day: Obs (1 dia)
         obs_1_day_desc: Les observacions creades en un únic dia
         obs_cid_d_desc: Creat en 7 dies anteriors i té una ID de comunitat
+        obs_cid_d_to_genus: CID de l'observació d'un gèners
+        obs_cid_d_to_genus_desc: Creat els darrers 7 dies i amb una ID de la comunitat
+          a un nivell de gènere o inferior
         obs_desc: Creat en els 7 dies anteriors
+        obs_id_d_desc: Creat els darrers 7 dies i té una ID (podria ser de l'observador)
+        other_desc_html: Creat des d'altres aplicacions <a href="%{url}">fet per desenvolupadors</a>
+        recent_desc: Connectat en els darrer 7 dies
+        recent_w_0_obs: Recent sense observacions
+        recent_w_0_obs_desc: Connectat els darrers 7 dies i sense observacions afegides
+        recent_w_7_obs: Recent amb >= 7 observacions
+        recent_w_7_obs_desc: Connectat els darrers 7 dies i més de 7 observacions
+          afegides
+        time_to_id_desc: Temps fins a ID (hores, finestra mòbil d'una setmana)
+        TTCID: TTCID
+        TTCID_desc: Temps fins a rebre una observació d'algú més que coincideix amb
+          el tàxon de la comunitat.
+        TTID: TTID
+        TTID_desc: Temps fins a rebre una identificació per part d'algú més
     taxa:
       edit:
         complete_desc_html: Un tàxon "complet" inclou <em>tots</em> els tàxons descendents
@@ -5832,10 +5897,16 @@ ca:
            <li><p>No afegir noms duplicats, per exemple, no poseu diversos falcons "falcó"</p></li>
            <li><p>Per a tàxons de més alt nivell de tàxons, proveu d'utilitzar noms que incloguin tots els descendents, com "garses i similars" o "Família dels Brucs"<p></li>
             <li>
-              <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom    </p>
+              <p>No afegiu informació que no sigui el nom, p.e. cites bibliogràfiques que creieu justifiquen el perquè s'hauria d'utilitzar un nom</p>
             </li>
             <li>
-              <p>Els lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
+              <p>Els nous lèxics han de ser en Anglès. No utilitzeu noms com "French, Français" perquè poden dificultar i impossibilitzar la localització d'un nom per a usuarus del lloc de diferents idiomes.</p>
+            </li>
+           <li>
+              <p>
+                Els noms comuns associats a traduccions apareixen com a noms per defecte per aquest idioma (amb independpencia de l'efecte del lloc de preferència, l'ordre dels noms...).
+                <a class="readmore" href="/pages/translate">Llegiu més sobre les traduccions</a>
+              </p>
             </li>
           </ul>
         places_help_html: |-
@@ -6011,6 +6082,7 @@ ca:
       default: '%d/%m/%Y'
       long: '%d de %B de %Y'
       short: '%d de %b'
+      short_with_year: '%d de %B del %Y'
       month_year: '%B %Y'
       month_day_year: '%d de %B de %Y'
     month_names:
@@ -6343,6 +6415,7 @@ ca:
         terms: Termes
         map_type: Tipus de mapa
         zoom_level: Nivell d'apropament
+        preferred_membership_model: Forma de pertinença preferit
         preferred_submission_model: Model de submissió preferida
         prefers_place_boundary_visible: Mostra els límits del lloc en el mapa
         tracking_codes: Codis de seguiment
