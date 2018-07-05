@@ -103,12 +103,6 @@ base: &base
 
     # natureserve:
     #     key: 0x0x0x0x0x0x0x0x
-    
-    # wkhtmltopdf is an HTML-to-PDF converter that we use to generate PDFs.
-    # You'll need to have it installed somewhere on your system. We highly
-    # recommend using one of the static binaries.
-    # https://code.google.com/p/wkhtmltopdf/
-    wkhtmltopdf_path: '/usr/local/bin/wkhtmltopdf'
 
     # config.action_dispatch.x_sendfile_header. Most servers use X-Sendfile, but nginx prefers X-Accel-Redirect
     x_sendfile_header: 'X-Sendfile'

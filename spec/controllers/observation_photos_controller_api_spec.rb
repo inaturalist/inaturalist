@@ -38,6 +38,33 @@ shared_examples_for "an ObservationPhotosController" do
       observation.reload
       expect( observation.photos ).to be_blank
     end
+
+    describe "observation" do
+      before(:each) { enable_elastic_indexing( Identification ) }
+      after(:each) { disable_elastic_indexing( Identification ) }
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+
+      it "should change quality_grade from casual to needs_id" do
+        o = Observation.make!( user: user, observed_on_string: "2018-05-02", latitude: 1, longitude: 1 )
+        expect( o.quality_grade ).to eq Observation::CASUAL
+        post :create, format: :json, observation_photo: { observation_id: o.id }, file: file
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      it "should change quality_grade in the observations index" do
+        o = Observation.make!( user: user, observed_on_string: "2018-05-02", latitude: 1, longitude: 1 )
+        expect(
+          Observation.elastic_search( where: { id: o.id } ).results.results.first.quality_grade
+        ).to eq Observation::CASUAL
+        post :create, format: :json, observation_photo: { observation_id: o.id }, file: file
+        o.reload
+        expect(
+          Observation.elastic_search( where: { id: o.id } ).results.results.first.quality_grade
+        ).to eq Observation::NEEDS_ID
+      end
+    end
   end
 
   describe "update" do

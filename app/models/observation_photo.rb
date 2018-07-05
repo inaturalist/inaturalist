@@ -26,8 +26,10 @@ class ObservationPhoto < ActiveRecord::Base
   def set_observation_quality_grade
     return true unless observation
     return true if observation.new_record? # presumably this will happen when the obs is saved
-    Observation.set_quality_grade( observation.id )
-    observation.elastic_index!
+    # For some reason the observation's after_commit callbacks seem to fire
+    # after the ObservationPhoto is saved, so if you don't set the quality_grade
+    # on this instance of the observation, it will fail to index properly
+    observation.quality_grade = Observation.set_quality_grade( observation.id )
     true
   end
 

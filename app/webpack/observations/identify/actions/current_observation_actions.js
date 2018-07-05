@@ -82,7 +82,7 @@ function fetchCurrentObservation( observation = null ) {
         let captiveByCurrentUser = false;
         if ( currentUser && newObs && newObs.quality_metrics ) {
           const userQualityMetric = _.find( newObs.quality_metrics, ( qm ) => (
-            qm.user.id === currentUser.id && qm.metric === "wild"
+            qm.user && qm.user.id === currentUser.id && qm.metric === "wild"
           ) );
           if ( userQualityMetric ) {
             captiveByCurrentUser = !userQualityMetric.agree;

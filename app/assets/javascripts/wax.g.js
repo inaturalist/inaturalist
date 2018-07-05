@@ -5,6 +5,7 @@
  * 2014-10-29 pleary - Support for minZoom and maxZoom for grid interactions
  * 2015-08-05 pleary - Specify jsonpCallbackName so varnish can cache responses
  * 2015-08-19 pleary - Remove click timeout to avoid delay in popups
+ * 2018-07-02 pleary - Some fixes for Google maps renderer in JS v3.32
  */
 
 !function (name, context, definition) {
@@ -3495,22 +3496,21 @@ wax.g.connector = function(options) {
 
     // DOM element cache
     this.cache = {};
+    this.createdAtTime = new Date( ).getTime( );
 };
 
 // Get a tile element from a coordinate, zoom level, and an ownerDocument.
 wax.g.connector.prototype.getTile = function(coord, zoom, ownerDocument) {
     var key = zoom + '/' + coord.x + '/' + coord.y;
-    if (!this.cache[key]) {
-        var img = this.cache[key] = new Image(256, 256);
-        if (zoom < this.minZoom || zoom > this.maxZoom) {
-          this.cache[key].src = this.options.blankImage
-          this.cache[key].style.display = 'none'
-        } else {
-          this.cache[key].src = this.getTileUrl(coord, zoom);
-        }
-        this.cache[key].setAttribute('gTileKey', key);
-        this.cache[key].onerror = function() { img.style.display = 'none'; };
+    var img = this.cache[key] = new Image(256, 256);
+    if (zoom < this.minZoom || zoom > this.maxZoom) {
+      this.cache[key].src = this.options.blankImage
+      this.cache[key].style.display = 'none'
+    } else {
+      this.cache[key].src = this.getTileUrl(coord, zoom);
     }
+    this.cache[key].setAttribute('gTileKey', key);
+    this.cache[key].onerror = function() { img.style.display = 'none'; };
     return this.cache[key];
 };
 
@@ -3518,6 +3518,12 @@ wax.g.connector.prototype.getTile = function(coord, zoom, ownerDocument) {
 //
 // TODO: expire cache data in the gridmanager.
 wax.g.connector.prototype.releaseTile = function(tile) {
+    var elapsedTimeSinceCreation = new Date( ).getTime( ) - this.createdAtTime;
+    // (pleary, 2018/07/01) this was getting called shortly after the map loaded
+    // and before the user did anything, this removing all interactions until
+    // the user zoomed in or out. Making sure the connector must have been
+    // loaded for 5 seconds before clearing the cache
+    if( elapsedTimeSinceCreation < 5000 ) { return; }
     var key = tile.getAttribute('gTileKey');
     if (this.cache[key]) delete this.cache[key];
 };
