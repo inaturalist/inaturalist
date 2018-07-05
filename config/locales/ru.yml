@@ -781,7 +781,7 @@ ru:
   cc_by_description: Эта лицензия позволяет другим распространять, ремикшировать,
     настраивать и основываться на вашей работе, даже на коммерческой основе, если
     они признают вас как первоначального создателя.
-  cc_by_name: Attribution
+  cc_by_name: Атрибуция
   cc_by_nc_description: Эта лицензия позволяет другим ремикшировать, настраивать и
     строить свою работу некоммерчески, и хотя их новые работы также должны признавать
     вас и быть некоммерческими, они не должны лицензировать свои производные работы
@@ -1160,7 +1160,7 @@ ru:
   dashboard: Панель мониторинга
   data_deficient: нехватка данных
   data_quality: Качество данных
-  data_quality_assessment: Оценка Качества Данных
+  data_quality_assessment: Оценка качества данных
   data_quality_assessment_: оценка качества данных
   datatype: Тип данных
   date_: Дата
@@ -1683,7 +1683,7 @@ ru:
   guidelines: Руководства
   has_already_been_flagged_by: был уже отмечен
   has_been: был
-  has_id_supported_by_two_or_more: Поддержана ли идентификация двумя или более
+  has_id_supported_by_two_or_more: Поддержка идентификации двумя или более участниками
   has_one_or_more_faves: Имеет один или больше фаворитов
   has_photo: Содержит фото
   has_photos: имеет фото
@@ -1759,7 +1759,7 @@ ru:
   id_please_expandable_html: ID<span class='full'> пожалуйста</span>!
   id_withdrawn: ID изъято
   ids_by_taxon: Идентификации по таксону
-  identify: Идентифицировать
+  identify: Идентифицируйте
   identify_observations: Идентифицируйте наблюдения
   identify_title: Идентифицируйте
   identification: идентификация
@@ -1786,7 +1786,7 @@ ru:
     время общепринятым?
   if_this_link_will_apply_to_descendant: Если применить эту ссылку к вложенным таксонам,
     можно использовать теги шаблона для вставки наименования таксона в URL
-  if_you_already_have_an_account: Если вы уже имеете %{article} %{site_name} аккаунт...
+  if_you_already_have_an_account: Если у вас уже есть %{article} %{site_name} аккаунт...
   if_you_dont_want_us_to_share_your_data: Если вы не хотиде делиться вашими данными
   if_you_have_any_trouble_with_the_site_check_out: Если у вас есть вопросы, пожалуйста
     зайдите сюда <a href="%{help_url}">help section</a> or post a message to our <a
@@ -2704,7 +2704,7 @@ ru:
   observed_on: Наблюдалось
   observed_one: наблюдался один
   observer: Наблюдатель
-  observers: Наблюдатели
+  observers: наблюдателей
   observer_short: Наблюдатель
   observing: наблюдая
   occurence_status_describes_how: Статус присутствия указывает, насколько часто или
@@ -3316,27 +3316,49 @@ ru:
   results: результаты
   reviewed: Проверено
   rg_observations: Наблюдения статуса "исследовательский"
+  rotate_left: Повернуть влево
+  rotate_right: Повернуть вправо
+  row_singular_or_plural: Строка(и)
+  row_number_i_was_parsed_as: Номер строки %{row} был проанализирован как
+  rule_must_be: Правило должно быть ...
+  rules_and_formatting: Правила и форматирование
   rules_for_adding_observations: Правила добавления наблюдений
+  rules_for_becoming_a_member: Как стать участником
+  rules_for_becoming_memner: Как стать участником
   rules_types:
+    must_be_georeferenced: должен иметь геолокацию
+    must_be_identified: должен быть идентифицирован
+    must_be_on_list: должен быть в списке
     must_be_observed_in_place: должен наблюдаться в месте
+    must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить
       куратору проекта видеть координаты.
   sat: Сб
+  satellite: спутниковый
   save: Сохранить
+  save_all: Сохранить все
   save_and_add_another: Сохранить и добавить ещё
   save_and_add_taxa: Сохранить и начать добавлять виды
+  save_changes: Сохранить изменения
   save_colors: Сохранить Цвета
   save_comment: Сохранить комментарий
   save_draft: Сохранить Черновик
+  save_fields: Сохранить поля
   save_flag: Сохранить флаг
+  save_guide: Сохранить руководство
+  save_guide_taxon: Сохранить путеводитель
   save_identification: Сохранить идентификацию
   save_observation: Сохранить наблюдение
   save_photos: Сохранить фото
   save_place: Сохранить место
   save_trip: Сохранить путешествие
+  saved: Сохранено
+  saving: Сохраняется…
   saving_num_of_count_observations:
     one: Сохранение наблюдения...
     other: Сохранение %{num} из %{count} наблюдений...
+  saving_verb: Сохраняется
+  schemes: Схемы
   schemes_including: Схемы, включающие
   scientific_names: Научные наименования
   search: Поиск
@@ -3413,11 +3435,13 @@ ru:
   showing_taxa_from_place: Показ таксонов из %{place}
   sign_out: Выйти
   sign_up!: Зарегистрируйтесь!
+  sign_up: Зарегистрироваться
   sign_up_exclamation: Зарегистрируйтесь!
   similar_species: Аналогичные виды
   single_observation: Одиночное наблюдение
   single_taxon: Отдельный таксон (ввод для разделения/отбрасывания/стадии, вывод для
     слияния/замены)
+  sizes: Размеры
   skip_to_next_page: Перейти на следующую страницу
   small: маленький
   site_name_place: '%{site_name} место'
@@ -3540,7 +3564,7 @@ ru:
     return false;">Подписаться</a> на %{x} к этому %{y}.
   subscriptions: Подписки
   subscriptions_arent_available_for: Невозможна подписка на место, не имеющее границ.
-  suggest_an_identification: Предложить Идентификацию
+  suggest_an_identification: Предложить идентификацию
   suggest_or_require_that: Предложить или потребовать, чтобы вносители информации
     заполнили эти поля наблюдений, добавляемых в ваш проект.
   suggestions: Предложения
@@ -3893,8 +3917,9 @@ ru:
   time_ago: '%{time} назад'
   tired_of_testing_this_new_version: Устали от тестирования этой новой версии?
   title: название
-  titled_favorites_and_the_most_recent_additions: озаглавленный «Фавориты» и самые
+  titled_favorites_and_the_most_recent_additions: озаглавленный «Фавориты», и самые
     последние пополнения появятся в этом пространстве.
+  to_add_comments: чтобы добавить комментарии
   to_add_identifications: добавлять идентификации
   to_add_ids: добавить идентификации
   to_configure_your_widget: сформировать ваш виджет.
@@ -3969,6 +3994,7 @@ ru:
   upload_photo: Загрузить фото
   upload_photos: Загрузить фото
   upload_range: Диапазон загрузки
+  uploaded_by: Загружено
   uploader:
     tooltips:
       combine: Объединить выбранные наблюдения
@@ -4252,6 +4278,7 @@ ru:
     вы курируете один из проектов, к которым было добавлено это наблюдение.
   you_can_show_the_boundary_of: Вы можете показать границу места на странице вашего
     проекта, если место имеет границы.
+  you_can_sign_free_at: Вы можете бесплатно зарегистрировать аккаунт на %{site_name}
   you_cant_delete_a_project_list: Вы не можете удалить список проекта
   you_cant_delete_observation_fields_that_people_are_using: Вы не можете удалить поля
     наблюдения, которые люди используют.
@@ -5429,9 +5456,11 @@ ru:
           чтобы добавить следующий.
     welcome:
       index:
-        explore_and_share: Просмотреть и поделиться вашими наблюдениями природного
-          мира.
+        connect_with_nature: На связи с природой
+        explore_and_share: Просматривайте и делитесь вашими наблюдениями природного
+          мира
         observations_to_date: наблюдений
+        species_observed: видов содержат наблюдения
         how_it_works: 'Как это работает:'
         record_your_observations: Зарегистрируйте ваши наблюдения
         share_with_fellow_naturalists: Поделитесь с другими
@@ -5444,25 +5473,29 @@ ru:
           Information Facility</a>, чтобы помочь ученым найти и использовать ваши
           данные. Все, что вам нужно сделать, - это наблюдать.
         nature_at_your_fingertips: Природа на кончиках пальцев
-        record_your_encounters: Регистрируйте ваши встречи с другими организмами и
-          поддерживайте  списки жизней, всё в облаке.
-        create_useful_data: Добавить полезные данные
+        keep_track: Отмечайтесь
+        record_your_encounters: Регистрируйте ваши наблюдения и организуйте их в списки,
+          сохраняя в облачном хранилище.
+        create_useful_data: Добавьте полезную информацию
         help_scientists: Помогите ученым и менеджерам ресурсов понять, когда и где
           встречаются организмы.
-        connect_with_experts: Свяжитесь с экспертами, которые могут идентифицировать
+        crowdsource_identifications: Распознавайте вместе с волонтёрами
+        connect_with_experts: Свяжитесь с экспертами, которые помогут идентифицировать
           организмы, которые вы наблюдаете.
+        become_a_citizen_scientist: Станьте исследователем-любителем
         find_a_project: Найдите проект с интересующей вас задачей или начните свой
           собственный.
-        learn_about_nature: Узнать о Природе
+        learn_about_nature: Познавайте природу
         build_your_knowledge: Создавайте свои знания, общаясь с другими натуралистами
           и помогая другим.
-        run_a_bioblitz: Начать Биоблиц
+        run_a_bioblitz: Начните биоблиц
         hold_an_event: Проведите мероприятие, в котором люди пытаются найти как можно
           больше видов.
         works_on_all_your_devices: Работает на всех ваших устройствах
         install_our_mobile_apps: Установите наши мобильные приложения, чтобы вы всегда
           могли делать наблюдения, даже без наличия сотовой связи или Wi-Fi.
-        what_are_you_waiting_for: Чего вы ждёте?
+        who_uses_site_name: Кто использует %{site_name}?
+        what_are_you_waiting_for: Чего же вы ждёте?
         join_today: Присоединяйтесь!
     wiki_pages:
       form:
