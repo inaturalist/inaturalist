@@ -151,6 +151,7 @@ class User < ActiveRecord::Base
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
+  has_many :annotations, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -676,12 +677,88 @@ class User < ActiveRecord::Base
       l.destroy
     end
 
+    User.preload_associations(self, [ :stored_preferences, :roles, :flags ])
     # delete observations without onerous callbacks
-    observations.find_each do |o|
+    observations.includes([
+      { user: :stored_preferences },
+      :votes_for,
+      :flags,
+      :stored_preferences,
+      :observation_photos,
+      :comments,
+      :annotations,
+      { identifications: [
+        :taxon,
+        :user,
+        :flags
+      ] },
+      :project_observations,
+      :project_invitations,
+      :quality_metrics,
+      :observation_field_values,
+      :observation_sounds,
+      :observation_reviews,
+      { listed_taxa: :list },
+      :tags,
+      :taxon,
+      :quality_metrics,
+      :sounds
+    ]).find_each(batch_size: 100) do |o|
       o.skip_refresh_lists = true
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
+      o.bulk_delete = true
+      o.comments.each{ |c| c.bulk_delete = true }
+      o.annotations.each{ |a| a.bulk_delete = true }
       o.destroy
+    end
+
+    identification_observation_ids = Identification.where(user_id: id).
+      select(:observation_id).distinct.pluck(:observation_id)
+    comment_observation_ids = Comment.where(user_id: id, parent_type: "Observation").
+      select(:parent_id).distinct.pluck(:parent_id)
+    annotation_observation_ids = Annotation.where(user_id: id, resource_type: "Observation").
+      select(:resource_id).distinct.pluck(:resource_id)
+    unique_obs_ids = ( identification_observation_ids + comment_observation_ids +
+      annotation_observation_ids ).uniq
+
+    identifications.includes([
+      :observation,
+      :taxon,
+      :user,
+      :flags
+    ]).find_each(batch_size: 100) do |i|
+      i.observation.skip_indexing = true
+      i.observation.bulk_delete = true
+      i.bulk_delete = true
+      i.destroy
+    end
+
+    identification_observation_ids.in_groups_of(100, false) do |obs_ids|
+      Observation.where(id: obs_ids).includes(
+        { user: :stored_preferences },
+        :votes_for,
+        :flags,
+        :taxon,
+        { photos: :flags },
+        { identifications: [ :taxon, { user: :flags } ] },
+        :quality_metrics
+      ).each do |o|
+        Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
+        o.update_stats
+      end
+      Identification.elastic_index!(scope: Identification.where(observation_id: obs_ids))
+    end
+
+    comments.find_each(batch_size: 100) do |c|
+      c.bulk_delete = true
+      c.destroy
+    end
+
+    annotations.includes(:votes_for).find_each(batch_size: 100) do |a|
+      a.votes_for.each{ |v| v.bulk_delete = true }
+      a.bulk_delete = true
+      a.destroy
     end
 
     # transition ownership of projects with observations, delete the rest
@@ -700,6 +777,8 @@ class User < ActiveRecord::Base
         p.destroy
       end
     end
+
+    Observation.elastic_index!(ids: unique_obs_ids )
 
     # delete the user
     destroy

@@ -34,7 +34,7 @@ class Annotation < ActiveRecord::Base
   after_save :index_observation
   after_destroy :index_observation, :touch_resource
 
-  attr_accessor :skip_indexing
+  attr_accessor :skip_indexing, :bulk_delete
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)
@@ -139,7 +139,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def votable_callback
-    index_observation
+    index_observation unless bulk_delete
   end
 
   def as_indexed_json(options={})
@@ -155,7 +155,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def index_observation
-    if resource.is_a?(Observation) && !skip_indexing
+    if resource.is_a?(Observation) && !skip_indexing && !bulk_delete
       Observation.elastic_index!(ids: [resource.id])
     end
     true
@@ -168,7 +168,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def touch_resource
-    resource.touch if resource
+    resource.touch if resource && !(resource.bulk_delete || bulk_delete)
     true
   end
 
