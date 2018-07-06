@@ -181,7 +181,7 @@ module ActsAsElasticModel
         end
       end
 
-      def result_to_will_paginate_collection(result, options)
+      def result_to_will_paginate_collection(result, options={})
         try_and_try_again( PG::ConnectionBad, sleep: 20 ) do
           begin
             records = options[:keep_es_source] ?
