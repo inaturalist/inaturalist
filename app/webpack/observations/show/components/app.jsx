@@ -33,6 +33,7 @@ import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
+import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
 moment.locale( "en", {
   relativeTime: {
@@ -260,6 +261,16 @@ const App = ( {
             </Col>
             <Col xs={6}>
               <SimilarContainer />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <TestGroupToggle
+                group="suggestions-obs-detail"
+                joinPrompt="Do you want to test Identify suggestions on the observation detail page?"
+                joinedStatus="You're testing Identify suggestions on the observation detail page."
+                user={ config.currentUser }
+              />
             </Col>
           </Row>
         </Grid>

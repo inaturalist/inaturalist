@@ -39,13 +39,20 @@ function mapDispatchToProps( dispatch ) {
     setActiveTab: activeTab => { dispatch( setActiveTab( activeTab ) ); },
     review: ( ) => { dispatch( review( ) ); },
     unreview: ( ) => { dispatch( unreview( ) ); },
-    onClickCompare: ( e, taxon, observation ) => {
-      const newObs = Object.assign( {}, observation, { taxon } );
-      dispatch( updateSuggestionsWithObservation( newObs ) );
-      dispatch( fetchSuggestions( ) );
-      dispatch( showObservationModal( observation ) );
-      e.preventDefault( );
-      return false;
+    onClickCompare: ( e, taxon, observation, options = {} ) => {
+      if (
+        options.currentUser &&
+        options.currentUser.testGroups &&
+        options.currentUser.testGroups.indexOf( "suggestions-obs-detail" ) >= 0
+      ) {
+        const newObs = Object.assign( {}, observation, { taxon } );
+        dispatch( updateSuggestionsWithObservation( newObs ) );
+        dispatch( fetchSuggestions( ) );
+        dispatch( showObservationModal( observation ) );
+        e.preventDefault( );
+        return false;
+      }
+      return true;
     }
   };
 }
