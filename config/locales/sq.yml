@@ -2757,6 +2757,8 @@ sq:
   only_accepts_taxa: pranon vetem taxa
   only_an_admin_can_remove_project_users: Vetem administratori mund te largoje perdoruesit
     e projekteve
+  only_country_state_and_county: Vetëm vendet, shtetet dhe ekuivalentët e qarqece
+    shihen tani. Afroni që të shihni vendet më të vogla.
   only_curators_can_add_edit_scientific_names: Vetëm përgjegjësit/kuratorët mund të
     shtojnë/redaktojnë emrat shkencorë.
   only_curators_can_access_that_page: Vetëm përgjegjësit/kuratorët mund t'i qasen
@@ -2770,10 +2772,13 @@ sq:
   only_project_curators_can_do_that: Vetëm përgjegjësit/kuratorët e projektit mund
     ta bëjnë atë.
   only_receive_updates_about_this_taxon: Merrni vetëm përditësime për këtë takson
+  only_show_active_taxa: Shfaq vetëm taxa-t aktive
   only_show_events_that_last_less_than_2_weeks: Shfaq vetëm ngjarjet që zgjasin më
     pak se 2 javë
   only_show_for_species_subspecies_varieties_etc: Shfaq vetëm llojet, nënllojet, shumëllojshmëritë,
     etj.
+  only_show_taxa_fom_this_list: Shfaq vetëm taxa-t nga kjo listë
+  only_showing_taxa_from: Duke shfaqur vetëm taxa nga kjo listë
   only_species: Vetëm specjet
   only_species_and_subspecies: Vetëm specjet dhe nënspecjet/llojet
   only_the_author_of_this_post_can_do_that: Vetëm autori i ketij postimi mund ta bëjë
@@ -2861,7 +2866,10 @@ sq:
   photo_browser: Kërkuesi i fotove
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Fotografia u fshi
+  photo_integration: Integrimi i fotos
+  photo_licensing: Liçencimi i fotove
   photo_type: Lloji i fotos
+  photo_urls_repaired: URL-ja e fotos u riparua
   photos_chosen_for_this_taxon: Fotot e zgjedhura për këtë taxon
   photos_from: Foto nga
   photos_of: Fotot e
@@ -2883,6 +2891,7 @@ sq:
   pink: njgyre roze
   place: Vend
   placeholder: Vend-mbajtes
+  place_added_to_inat_by: Vendi u shtua tek %{site_name} nga
   place_autocomplete_placeholder: Parku nacional Zion, Majami,etj
   place_deleted: Vendi i fshire
   place_geo:
@@ -2892,6 +2901,8 @@ sq:
       airport: aeroport
       Building: Ndertese
       building: Ndërtesa
+      Canton: Kantoni
+      canton: kantoni
       Continent: Kontinenti
       continent: Kontinent
       Country: Shteti
@@ -2902,6 +2913,12 @@ sq:
       district: qarku
       Division: Ndarje
       division: ndarje
+      Historical_County: Qark historik
+      historical_county: qark historik
+      Historical_State: Shtet historik
+      historical_state: shtet historik
+      Historical_Town: Qytet historik
+      historical_town: qytet historik
       Island: Ishull
       island: ishull
       Local_Authority: Autoritetet Vendase
@@ -2959,6 +2976,8 @@ sq:
     ato për vende të mëdha, përveç nëse ato nuk janë shtuar nga administratorët e
     faqes. Megjithatë, ju ende mund ta përdorni këtë vend për kufijtë e projektit
     dhe paqartësitë te vëzhgimet
+  place_updated: Vendi u përditësua!
+  placement: Vendosje
   places: Vende
   places_added_by_members_of_the_community: Vendet e shtuara nga anëtarë të komunitetit
   places_maintained_by_site_admins: Vende të mirëmbajtura nga adminstratorët e faqes
@@ -3050,6 +3069,24 @@ sq:
   post: Posto
   post_from_journal_by_parent_html: Publiko nga <a href="%{url}">ditari me %{parent}</a>
   post_from_your_journal_html: Publiko nga <a href="%{url}">ditari juaj</a>
+  post_published: Postimi u publikua!
+  post_some_new_stuff: Posto ca gjera të reja
+  posted_by: Postuar nga
+  posted_on: Postuar më
+  posts: Postimet
+  potential_disagreement: Mosmarrëveshjet potenciale
+  powered_by: Mbështetur nga
+  powered_by_inaturalist_open_source_software_html: Mbështetur nga <a href="https://github.com/inaturalist/inaturalist"
+    target="_new" >iNaturalist open source software</a>
+  present: i tanishëm
+  preview: Paraafishim
+  preview_observations: Paraafisho vëzhgimet
+  preview_of_synced_observation: <strong>Parafisho</strong> vëzhgimin e sinkronizuar.  <a
+    href="%{url}">zhbëj?</a>
+  preview_personal_message: Do të kisha dëshirë të më bashkangjiteshit në %{site},
+    webfaqe ku mund ti regjistroni vëzhgimet tuaja të bimëve dhe shtazëve, ndiqni
+    listën tuaj jetësore, dhe mësoni rreth botës natyrale!
+  preview_your_message: Paraafisho mesazhin tuaj
   previewing: Duke paraafishuar...
   previous: Paraprak
   prev: Para
@@ -3062,15 +3099,24 @@ sq:
   privacy_policy: Politika e privatësisë
   private: privat
   private_: Privat
+  private_description: Koordinatat janë plotësisht të padukshme për hartat publike,
+    koordinatat e vërteta janë të dukshme vetëm për ju dhe kuratorëve të projektit
+    në të cilin ju e shtoni vëzhgimin. Vëzhgimet me koordinata private megjithatë
+    përsëri do të përdoren për të verifikuar listat kontrolluese të vendit.
   proceed: Përpunuar
   processing: Përpunimi
   processing3p: Duke përpunuar...
   profile: Profili
   project: Projekti
   project_added_your_observations: Projekti i shtoi vëzhgimet e juaja
+  project_admins:
+    one: Administratori i projektit
+    other: Administratorët e projektit
   project_aggregator_filter_error: Projektet nuk mund të lejojnë grumbullime automatike
     vëzhgimesh përveç nëse projekti është i lidhur me vend me madhësi të moderuar
     ose vetëm nëse lejon vëzhgime përndonjë taxa specifike ose taxa nga lista
+  project_assessments: Vlerësimet e projektit
+  project_created_on: e krijoi këtë projekt më %{date}
   project_group_label: Grup
   project_membership_model_description: A është projekti juaj i hapur për të gjithë
     apo vetëm njerëzit që ju ftoni?
@@ -3087,6 +3133,22 @@ sq:
   projects_from_everywhere: Projekte nga të gjitha anët
   projects_you_admin: Projektet që ju administroni
   projects_youve_joined: Projektet që u jeni bashkuar
+  read_more: Lexo më shumë
+  receive_email_notifications_when_people_leave_you: Prano njoftimet përmes emailit
+    rreth
+  receive_updates_from_this_project: Prano përditësimet nga ky projekt
+  received: E pranuar
+  recent: Të fundit
+  recent_comments_on_your_stuff: Komentet e kohëve të fundit në gjërat tuaja
+  recent_observations: Vëzhgimet e kohëve të fundit
+  recent_observations_: Vëzhgimet e Kohëve të fundit
+  recent_post: Postim i kohës së fundit
+  recent_atom_observations_by: Vëzhgimet e kohëve të fundit nga %{login}(Atom)
+  recent_observations_by: Vëzhgimet e kohëve të fundit nga %{login}
+  recent_updates: Përditësimet e kohëve të fundit
+  recently_observed: E vëzhguar kohëve të fundit
+  red: e kuqe
+  refresh: Rifresko
   reorder_by_taxonomy: Renditja sipas taksonomisë
   rules_types:
     must_be_in: E detyrueshme të jetë në taxon
@@ -3242,9 +3304,89 @@ sq:
           Biodiversity Information Facility</a> (GBIF), një organizatë ndërkombëtar
           dhe ndërqeveritare që përpilon dhe shpërndan informacion mbi biodiversitetin
           nga e gjithë bota.
+  datetime:
+    prompts:
+      day: Dita
+      hour: Ora
+      minute: Minuti
+      month: Muaji
+      second: Sekondat
+      year: Viti
+  errors:
+    format: '%{attribute} %{message}'
+    messages:
+      accepted: Duhet të pranohet
+      blank: nuk mund të jetë bosh
+      confirmation: nuk përputhet me konfirmimin
+      empty: nuk mund të jetë bosh
+      equal_to: duhet të jetë e barabartë me %{count}
+      even: duhet të jetë çift
+      exclusion: është e rezervuar
+      greater_than: duhet të jetë më i madh se %{count}
+      greater_than_or_equal_to: duhet të jetë më i madh ose i barabartë me %{count}
+      inclusion: nuk është përfshirë në listë
+      invalid: është i pavlefshëm
+      less_than: duhet të jetë më pak se %{count}
+      less_than_or_equal_to: duhet të jetë më pak ose e barabartë me %{count}
+      not_a_number: nuk është një numër
+      not_an_integer: duhet të jetë një numër i plotë
+      odd: duhet të jetë tek
+      record_invalid: 'Vlefshmëria dështoi: %{errors}'
+      taken: është marrë tashmë
+      too_long:
+        one: is too long (maximum is 1 character)
+        other: is too long (maximum is %{count} characters)
+      too_short:
+        one: is too short (minimum is 1 character)
+        other: is too short (minimum is %{count} characters)
+      wrong_length:
+        one: is the wrong length (should be 1 character)
+        other: is the wrong length (should be %{count} characters)
+    template:
+      body: 'Kishte probleme me fushat e mëposhtme:'
+  helpers:
+    select:
+      prompt: Ju lutem zgjidhni
+    submit:
+      create: Krijo %{model}
+      submit: Ruaj %{model}
+      update: Përditëso %{model}
+  number:
+    currency:
+      format:
+        delimiter: ','
+        separator: .
+        unit: $
+    format:
+      delimiter: ','
+      precision: "3"
+      separator: .
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: Miljardë
+          million: Milion
+          quadrillion: Kuadriljon
+          thousand: Mijë
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+  time:
+    am: pd
+    pm: md
   activemodel:
     errors:
+      format: '%{message} %{attribute}'
       messages:
+        accepted: Patjetër të pranohet
         blank: nuk mund të jetë bosh
         confirmation: nuk përputhet me konfirmimin
         empty: nuk mund të jetë bosh
@@ -3279,6 +3421,22 @@ sq:
   activerecord:
     errors:
       models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: Nevojiten së paku 3 taxa në sqarimin tuaj
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: Sqarimet mund të kenë vetëm 500 taxa
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: Për ADN-në mund të përmbajë vetëm shkronjat A,T,C ose
+                G
+            observation_id:
+              user_does_not_accept_fields_from_others: Përdoruesi nuk pranon fusha
+                nga të tjerët
         place:
           attributes:
             place_geometry:
@@ -3290,12 +3448,28 @@ sq:
               project_does_not_allow_observations: Projekti nuk lejon vëzhgime
             user_id:
               must_be_curator: duhet të jetë kurator i këtij projekti
+            observation_id:
+              must_be_observed_after: Duhet të vëzhgohet pas %{time}
+              must_be_observed_before: Duhet të vëzhgohet para %{time}
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: Nuk duhet të përmbajë presje apo
+                thyerje
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: Nuk
+                mund ta krahasojmë emrin shkencor të specjeve për këtë leksikon
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: duhet të fillojë me shkronjë, të mos përmbajë
+                zbrazëtira, dhe të përdoren vetëm shkronja, numra, kllapa dhe nënvizime
             email:
               must_look_like_an_email_address: duhet të duket si një adresë e-mail
     models:
       AssessmentSection: Seksioni i Vlerësimit
+      Atlas: Atlas
+      TaxonLink: Vegëza e taxon-it
     attributes:
       assessment:
         description: Përshkrimi
@@ -3305,14 +3479,20 @@ sq:
       conservation_status:
         status: Statusi
         description: Përshkrimi
+        authority: Autoriteti
         place_id: Vend
         url: URL
+        geoprivacy: Privatësia e Gjeografike
+        iucn: Ekuivalent i IUCN
       flag:
         reason: Arsyeja
         flag: Flamur
       guide:
         source_url: Burimi URL
         published_at: Publikim
+      listed_taxon:
+        occurrence_status_level: Shkalla e statusit të paraqitjes
+        establishment_means: Qëllimet e themelimit
       observation:
         geo_y: Asgjë
       observation_field_value:
@@ -3339,11 +3519,18 @@ sq:
         source_url: Burimi URL
         start_time: Koha e nisjes
         last_aggregated_at: Vrojtimet e agreguara të fundit
+      project_observation:
+        user_id: Parashtruesi
       place:
         code: Kodi
+        display_name: Emër që shfaqet
         latitude: Latituda
         longitude: Longituda
         name: Emër
+        parent_id: amë
+        place_type: Lloji i vendit
+        prefers_check_lists: Listat e kontrollit të lejuara ?
+        woeid: WOEID
       source:
         title: Titulli
         in_text: Ne tekst
@@ -3352,7 +3539,10 @@ sq:
       taxon:
         name: Emri
         rank: Renditja
+        parent_id: ID amë
         locked: I bllokuar
+        auto_photos: Foto automatike
+        auto_description: Përshrkim automatik
         wikipedia_title: Titulli i Wikipedia
         wikipedia_summary: Përmbledhje e Wikipedia
         source_identifier: Identifikuesi i burimit
@@ -3372,6 +3562,7 @@ sq:
         preferred_observation_fields_by: Lejo fusha vëzhgimi nga
   wild: i egër
   will_paginate:
+    previous_label: '&#8592; Para'
     next_label: Tjetër &#8594;
   zoom_in: Zmadhoni
   zoom_out: Zvogëloni

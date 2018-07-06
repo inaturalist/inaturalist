@@ -48,7 +48,11 @@ module INatAPIService
     unless params.blank? || !params.is_a?(Hash)
       url += "?" + params.map{|k,v| "#{k}=#{[v].flatten.join(',')}"}.join("&")
     end
-    uri = URI(url)
+    begin
+      uri = URI.parse(url)
+    rescue URI::InvalidURIError
+      uri = URI.parse(URI.escape(url))
+    end
     begin
       timed_out = Timeout::timeout( options[:timeout] ) do
         http = Net::HTTP.new(uri.host, uri.port)
