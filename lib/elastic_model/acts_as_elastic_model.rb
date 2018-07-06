@@ -28,12 +28,14 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        begin
-          __elasticsearch__.search(ElasticModel.search_hash(options))
-        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_search failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10 ) do
+          begin
+            __elasticsearch__.search(ElasticModel.search_hash(options))
+          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+            Logstasher.write_exception(e)
+            Rails.logger.error "[Error] elastic_search failed: #{ e }"
+            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+          end
         end
       end
 
