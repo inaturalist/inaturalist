@@ -61,7 +61,8 @@
         preferred_observation_license: (current_user.preferred_observation_license || "").downcase,
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
         blockedUserHashes: current_user.user_blocks.map{|ub| Digest::MD5.hexdigest( ub.blocked_user_id.to_s ) },
-        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) }
+        blockedByUserHashes: current_user.user_blocks_as_blocked_user.map{|ub| Digest::MD5.hexdigest( ub.user_id.to_s ) },
+        testGroups: current_user.test_groups_array
       }
   :javascript
     var INITIAL_OBSERVATION_ID = #{@observation.id};

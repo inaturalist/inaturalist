@@ -4,6 +4,13 @@ import { addID } from "../ducks/observation";
 import { updateObservation } from "../ducks/observation";
 import { setCommunityIDModalState } from "../ducks/community_id_modal";
 import { updateSession } from "../ducks/users";
+import {
+  fetchSuggestions,
+  updateWithObservation as updateSuggestionsWithObservation
+} from "../../identify/ducks/suggestions";
+import {
+  showCurrentObservation as showObservationModal
+} from "../../identify/actions/current_observation_actions";
 
 function mapStateToProps( state ) {
   return {
@@ -19,7 +26,15 @@ function mapDispatchToProps( dispatch ) {
     setCommunityIDModalState: ( key, value ) => {
       dispatch( setCommunityIDModalState( key, value ) );
     },
-    updateSession: params => { dispatch( updateSession( params ) ); }
+    updateSession: params => { dispatch( updateSession( params ) ); },
+    onClickCompare: ( e, taxon, observation ) => {
+      const newObs = Object.assign( {}, observation, { taxon } );
+      dispatch( updateSuggestionsWithObservation( newObs ) );
+      dispatch( fetchSuggestions( ) );
+      dispatch( showObservationModal( observation ) );
+      e.preventDefault( );
+      return false;
+    }
   };
 }
 

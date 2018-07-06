@@ -157,7 +157,6 @@ class TaxaController < ApplicationController
           return redirect_to( action: "index" )
         end
         
-        # if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
         site_place = @site && @site.place
         user_place = current_user && current_user.place
         preferred_place = user_place || site_place

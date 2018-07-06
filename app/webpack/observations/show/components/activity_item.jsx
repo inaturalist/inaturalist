@@ -25,7 +25,8 @@ const ActivityItem = ( {
   hideCompare,
   hideDisagreement,
   hideCategory,
-  noTaxonLink
+  noTaxonLink,
+  onClickCompare
 } ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
@@ -55,7 +56,7 @@ const ActivityItem = ( {
         canAgree = true;
       }
     }
-    if ( firstDisplay && !hideCompare ) {
+    if ( loggedIn && firstDisplay && !hideCompare ) {
       let compareTaxonID = taxon.id;
       if ( taxon.rank_level <= 10 ) {
         compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
@@ -65,7 +66,15 @@ const ActivityItem = ( {
           key={ `id-compare-${item.id}` }
           href={ `/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}` }
         >
-          <button className="btn btn-default btn-sm">
+          <button
+            className="btn btn-default btn-sm"
+            onClick={ e => {
+              if ( onClickCompare ) {
+                return onClickCompare( e, taxon, observation, { currentUser: config.currentUser } );
+              }
+              return true;
+            } }
+          >
             <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
           </button>
         </a>
@@ -279,7 +288,8 @@ ActivityItem.propTypes = {
   hideCompare: PropTypes.bool,
   hideDisagreement: PropTypes.bool,
   hideCategory: PropTypes.bool,
-  noTaxonLink: PropTypes.bool
+  noTaxonLink: PropTypes.bool,
+  onClickCompare: PropTypes.func
 };
 
 export default ActivityItem;
