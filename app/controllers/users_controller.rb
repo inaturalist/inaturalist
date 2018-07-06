@@ -1,9 +1,9 @@
 #encoding: utf-8
-class UsersController < ApplicationController  
+class UsersController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, 
+  before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
@@ -464,6 +464,8 @@ class UsersController < ApplicationController
   end
   
   def new_updates
+    # not sure why current_user would be nil here, but sometimes it is
+    return redirect_to login_path if !current_user
     params[:notification] ||= "activity"
     params[:notification] = params[:notification].split(",")
     filters = [ { terms: { notification: params[:notification] } } ]
@@ -647,7 +649,7 @@ class UsersController < ApplicationController
       }
     }.symbolize_keys
     updates.each do |k,v|
-      v = true if v.yesish?
+      v = true if v.yesish? && v != "1"
       v = false if v.noish?
       session[k] = v
       if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
@@ -658,6 +660,8 @@ class UsersController < ApplicationController
   end
 
   def api_token
+    # not sure why current_user would be nil here, but sometimes it is
+    return redirect_to login_path if !current_user
     payload = { user_id: current_user.id }
     if doorkeeper_token && (a = doorkeeper_token.application)
       payload[:oauth_application_id] = a.becomes( OauthApplication ).id

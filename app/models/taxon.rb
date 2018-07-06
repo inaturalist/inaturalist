@@ -1057,7 +1057,7 @@ class Taxon < ActiveRecord::Base
       I18n.t( "ranks.#{rank}", default: rank ).downcase
     end
     summary = if kingdom?
-      I18n.t(:taxon_is_kingdom_of_life_with_x_observations, count: observations_count )
+      I18n.t(:taxon_is_kingdom_of_life_with_x_observations, taxon: name, count: observations_count )
     elsif iconic_taxon_id
       iconic_name = if parent && iconic_taxon_id == id
         parent.iconic_taxon_name
