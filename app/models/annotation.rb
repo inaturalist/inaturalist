@@ -188,13 +188,11 @@ class Annotation < ActiveRecord::Base
         includes(
           { resource: :taxon },
           controlled_value: [
-            :taxa,
             :excepted_taxa,
             { controlled_term_taxa: :taxon }
           ],
           controlled_attribute: [
             :values,
-            :taxa,
             :excepted_taxa,
             { controlled_term_taxa: :taxon }
           ]
