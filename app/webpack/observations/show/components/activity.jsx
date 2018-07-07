@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Button, Tabs, Tab } from "react-bootstrap";
 import moment from "moment-timezone";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";

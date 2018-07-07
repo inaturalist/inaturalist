@@ -1,9 +1,9 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {
   OverlayTrigger,
-  Popover,
-  Input
+  Popover
 } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
@@ -192,19 +192,22 @@ class PlaceChooserPopover extends React.Component {
         }}
         overlay={
           <Popover id="place-chooser" className="PlaceChooserPopover RecordChooserPopover">
-            <Input
-              type="text"
-              placeholder={I18n.t( "search" )}
-              ref="input"
-              onChange={ ( ) => {
-                const text = $( "input", ReactDOM.findDOMNode( this.refs.input ) ).val( );
-                if ( text.length === 0 ) {
-                  this.setState( { places: [] } );
-                } else {
-                  this.searchPlaces( text );
-                }
-              }}
-            />
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder={I18n.t( "search" )}
+                ref="input"
+                className="form-control"
+                onChange={ ( ) => {
+                  const text = $( "input", ReactDOM.findDOMNode( this.refs.input ) ).val( );
+                  if ( text.length === 0 ) {
+                    this.setState( { places: [] } );
+                  } else {
+                    this.searchPlaces( text );
+                  }
+                }}
+              />
+            </div>
             <ul className="list-unstyled">
               <li
                 className={this.state.current === -1 ? "current" : ""}

@@ -1,7 +1,8 @@
 import _ from "lodash";
 import moment from "moment-timezone";
-import React, { PropTypes } from "react";
-import { Input, Glyphicon, Badge, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
+import React from "react";
+import PropTypes from "prop-types";
+import { Glyphicon, Badge, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
@@ -110,11 +111,11 @@ class LeftMenu extends SelectionBasedComponent {
 
   selectInput( field ) {
     return (
-      <Input type="select" name="value" >
+      <input type="select" name="value" >
         { _.map( field.allowed_values.split( "|" ), f => (
           <option value={ f } key={ f }>{ f }</option>
         ) ) }
-      </Input>
+      </input>
     );
   }
 

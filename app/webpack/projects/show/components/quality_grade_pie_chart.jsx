@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { COLORS } from "../../../shared/util";
 import PieChart from "../../../stats/year/components/pie_chart";
 
@@ -65,11 +66,11 @@ const QualityGradePieChart = ( { project } ) => {
 QualityGradePieChart.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
-  margin: React.PropTypes.object,
-  labelForDatum: React.PropTypes.func,
-  innerRadius: React.PropTypes.number,
-  donutWidth: React.PropTypes.number,
-  urlPrefix: React.PropTypes.string
+  margin: PropTypes.object,
+  labelForDatum: PropTypes.func,
+  innerRadius: PropTypes.number,
+  donutWidth: PropTypes.number,
+  urlPrefix: PropTypes.string
 };
 
 export default QualityGradePieChart;

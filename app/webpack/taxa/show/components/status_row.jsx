@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import StatusHeader from "./status_header";
 import EstablishmentHeaderContainer from "../containers/establishment_header_container";

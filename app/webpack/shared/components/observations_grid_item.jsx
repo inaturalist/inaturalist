@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import SplitTaxon from "./split_taxon";
 import UserImage from "./user_image";
 

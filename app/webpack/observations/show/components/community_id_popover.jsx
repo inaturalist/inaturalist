@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import UserImage from "../../../shared/components/user_image";
 import SplitTaxon from "../../../shared/components/split_taxon";

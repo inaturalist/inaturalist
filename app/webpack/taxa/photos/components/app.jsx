@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonCrumbsContainer from "../containers/taxon_crumbs_container";

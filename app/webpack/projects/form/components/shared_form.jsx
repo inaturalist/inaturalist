@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, OverlayTrigger, Popover, Overlay } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { ChromePicker } from "react-color";

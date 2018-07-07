@@ -1,6 +1,7 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
-import { Modal, Button, Input, Glyphicon } from "react-bootstrap";
+import React from "react";
+import PropTypes from "prop-types";
+import { Modal, Button, Glyphicon } from "react-bootstrap";
 import { GoogleMapLoader, GoogleMap, Circle, SearchBox, Marker,
   OverlayView } from "react-google-maps";
 import SelectionBasedComponent from "./selection_based_component";
@@ -378,7 +379,7 @@ class LocationChooser extends SelectionBasedComponent {
             }
           />
           <div className="form">
-            <Input
+            <input
               key="lat"
               type="text"
               label={ I18n.t( "latitude" ) }
@@ -386,7 +387,7 @@ class LocationChooser extends SelectionBasedComponent {
               placeholder={ this.placeholder( "latitude" ) }
               onChange={ e => this.update( "lat", e ) }
             />
-            <Input
+            <input
               key="lng"
               type="text"
               label={ I18n.t( "longitude" ) }
@@ -394,7 +395,7 @@ class LocationChooser extends SelectionBasedComponent {
               placeholder={ this.placeholder( "longitude" ) }
               onChange={ e => this.update( "lng", e ) }
             />
-            <Input
+            <input
               key="radius"
               type="text"
               label={ I18n.t( "accuracy_meters" ) }
@@ -402,7 +403,7 @@ class LocationChooser extends SelectionBasedComponent {
               placeholder={ this.placeholder( "accuracy" ) }
               onChange={ e => this.update( "radius", e ) }
             />
-            <Input
+            <input
               className="notes"
               key="notes"
               type="text"

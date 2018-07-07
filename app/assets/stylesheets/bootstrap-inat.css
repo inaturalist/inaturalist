@@ -331,3 +331,10 @@ input[type="color"]:focus,
   opacity: 1;
   color: inherit;
 }
+
+.modal-container {
+  position: relative;
+}
+.modal-container .modal, .modal-container .modal-backdrop {
+  position: absolute;
+}

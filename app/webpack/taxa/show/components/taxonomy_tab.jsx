@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, OverlayTrigger, Popover } from "react-bootstrap";
 import _ from "lodash";
 import { urlForTaxon, RANK_LEVELS } from "../../shared/util";

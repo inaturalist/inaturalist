@@ -153,9 +153,9 @@ const Summary = ( {
 };
 
 Summary.propTypes = {
-  data: React.PropTypes.object,
-  year: React.PropTypes.number,
-  user: React.PropTypes.object
+  data: PropTypes.object,
+  year: PropTypes.number,
+  user: PropTypes.object
 };
 
 export default Summary;

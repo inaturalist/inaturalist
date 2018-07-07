@@ -1,5 +1,6 @@
-import React, { PropTypes } from "react";
-import { Input, Button } from "react-bootstrap";
+import React from "react";
+import PropTypes from "prop-types";
+import { Button } from "react-bootstrap";
 import _ from "lodash";
 import { objectToComparable } from "../../../shared/util";
 import FiltersButton from "./filters_button";
@@ -41,25 +42,28 @@ class SearchBar extends React.Component {
     } = this.props;
     return (
       <form className="SearchBar form-inline">
-        <TaxonAutocomplete
-          bootstrapClear
-          searchExternal={false}
-          resetOnChange={false}
-          initialTaxonID={params.taxon_id}
-          afterSelect={ function ( result ) {
-            updateSearchParams( { taxon_id: result.item.id } );
-          } }
-          afterUnselect={ idWas => {
-            // Our autocompletes seem to fire afterUnselect for mysterious
-            // reasons sometimes, even when the selected ID was null, leading to
-            // annoying flickering effects and unnecessary requests. In theory
-            // this shouldn't happen, but if it does, this should prevent
-            // updating search params when there wasn't really a change.
-            if ( idWas ) {
-              updateSearchParams( { taxon_id: null } );
-            }
-          } }
-        />
+        <span className="form-group">
+          <TaxonAutocomplete
+            bootstrapClear
+            searchExternal={false}
+            resetOnChange={false}
+            initialTaxonID={params.taxon_id}
+            afterSelect={ function ( result ) {
+              updateSearchParams( { taxon_id: result.item.id } );
+            } }
+            afterUnselect={ idWas => {
+              // Our autocompletes seem to fire afterUnselect for mysterious
+              // reasons sometimes, even when the selected ID was null, leading to
+              // annoying flickering effects and unnecessary requests. In theory
+              // this shouldn't happen, but if it does, this should prevent
+              // updating search params when there wasn't really a change.
+              if ( idWas ) {
+                updateSearchParams( { taxon_id: null } );
+              }
+            } }
+          />
+        </span>
+
         <span className="form-group">
           <PlaceAutocomplete
             resetOnChange={false}
@@ -77,6 +81,7 @@ class SearchBar extends React.Component {
             } }
           />
         </span>
+
         <Button bsStyle="primary">
           { I18n.t( "go" ) }
         </Button> <FiltersButton
@@ -86,14 +91,20 @@ class SearchBar extends React.Component {
           defaultParams={defaultParams}
           terms={allControlledTerms}
         />
-        <Input
-          type="checkbox"
-          label={ I18n.t( "reviewed" ) }
-          checked={ params.reviewed }
-          onChange={function ( e ) {
-            updateSearchParams( { reviewed: e.target.checked } );
-          }}
-        />
+        <div className="form-group">
+          <div className="checkbox">
+            <label>
+              <input
+                type="checkbox"
+                checked={ params.reviewed }
+                onChange={function ( e ) {
+                  updateSearchParams( { reviewed: e.target.checked } );
+                }}
+              />
+              { I18n.t( "reviewed" ) }
+            </label>
+          </div>
+        </div>
         <div className="pull-right">
           <Button
             bsStyle={allReviewed ? "primary" : "default"}

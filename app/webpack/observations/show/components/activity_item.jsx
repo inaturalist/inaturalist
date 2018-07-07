@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
 import { OverlayTrigger, Panel, Tooltip } from "react-bootstrap";
@@ -229,10 +230,9 @@ const ActivityItem = ( {
       <div className="icon">
         <UserImage user={ item.user } linkTarget={ linkTarget } />
       </div>
-      <Panel
-        className={ panelClass }
-        header={(
-          <div>
+      <Panel className={ panelClass }>
+        <Panel.Heading>
+          <Panel.Title>
             <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
             { headerItems }
             <time
@@ -251,14 +251,15 @@ const ActivityItem = ( {
               setFlaggingModalState={ setFlaggingModalState }
               linkTarget={linkTarget}
             />
+          </Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          { taxonChange }
+          <div className="contents">
+            { contents }
           </div>
-        )}
-        footer={ footer }
-      >
-        { taxonChange }
-        <div className="contents">
-          { contents }
-        </div>
+        </Panel.Body>
+        { footer ? <Panel.Footer>{ footer }</Panel.Footer> : null }
       </Panel>
     </div>
   );

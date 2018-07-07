@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import moment from "moment";
 import _ from "lodash";
 import ActivityItemContainer from "../containers/activity_item_container";
@@ -41,15 +42,18 @@ const DiscussionList = ( { observation, currentUserID } ) => {
     <div className="DiscussionList">
       {items.map( ( item ) => {
         let firstDisplay;
+        let key = `activity-item-comment-${item.id}`;
         if ( item.taxon && item.current ) {
           firstDisplay = !taxonIDsDisplayed[item.taxon.id];
           taxonIDsDisplayed[item.taxon.id] = true;
+          key = `activity-item-identification-${item.id}`;
         }
         return (
           <ActivityItemContainer
-            item={item}
-            observation={observation}
-            firstDisplay={firstDisplay}
+            key={ key }
+            item={ item }
+            observation={ observation }
+            firstDisplay={ firstDisplay }
             linkTarget="_blank"
           />
         );

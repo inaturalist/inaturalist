@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Dropdown, MenuItem, Panel } from "react-bootstrap";
 import ObservationFieldValue from "./observation_field_value";
 import ObservationFieldInput from "./observation_field_input";
@@ -81,7 +82,7 @@ class ProjectListing extends React.Component {
       <span className="control-group">
         <Dropdown
           id="grouping-control"
-          onSelect={ ( event, key ) => {
+          onSelect={ key => {
             if ( key === "join" ) {
               this.props.joinProject( po.project );
             } else if ( key === "delete" ) {

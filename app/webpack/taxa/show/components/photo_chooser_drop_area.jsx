@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { DropTarget as dropTarget } from "react-dnd";
 import _ from "lodash";
 import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";

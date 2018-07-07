@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroller";
 import SplitTaxon from "../../../shared/components/split_taxon";

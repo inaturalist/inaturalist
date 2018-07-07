@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { scaleOrdinal, schemeCategory10, timeFormat, extent, isoParse } from "d3";
 import _ from "lodash";
 import DateHistogram from "../../../stats/year/components/date_histogram";

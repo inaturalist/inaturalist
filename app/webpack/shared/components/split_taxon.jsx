@@ -1,23 +1,26 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
+import { objectToComparable } from "../util";
 
-const SplitTaxon = ( {
-  taxon,
-  url,
-  target,
-  noParens,
-  placeholder,
-  displayClassName,
-  forceRank,
-  showIcon,
-  truncate,
-  onClick,
-  noInactive,
-  showMemberGroup,
-  user
-} ) => {
+const SplitTaxon = props => {
+  const {
+    taxon,
+    url,
+    target,
+    noParens,
+    placeholder,
+    displayClassName,
+    showIcon,
+    truncate,
+    onClick,
+    noInactive,
+    showMemberGroup,
+    user
+  } = props;
   const showScinameFirst = user && user.prefers_scientific_name_first;
   const LinkElement = ( url || onClick ) ? "a" : "span";
+  const keyBase = objectToComparable( props );
   let title = "";
   if ( taxon ) {
     if ( taxon.rank && taxon.rank_level > 10 ) {
@@ -44,7 +47,7 @@ const SplitTaxon = ( {
     } else {
       iconClass += "unknown";
     }
-    return <LinkElement href={ url } className={iconClass} />;
+    return <LinkElement key={ `${keyBase}-icon` }href={ url } className={iconClass} />;
   };
   const taxonClass = ( ) => {
     let cssClass = "taxon";
@@ -64,6 +67,7 @@ const SplitTaxon = ( {
   );
   const comName = ( ) => {
     let comNameClass = displayClassName || "";
+    const key = `${keyBase}-comName`;
     if ( taxon && taxon.preferred_common_name ) {
       if ( showScinameFirst ) {
         comNameClass = `secondary-name ${comNameClass}`;
@@ -73,6 +77,7 @@ const SplitTaxon = ( {
       const commonName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       return (
         <LinkElement
+          key={ key }
           className={`comname ${comNameClass}`}
           href={ url }
           target={ target }
@@ -87,6 +92,7 @@ const SplitTaxon = ( {
         return (
           <span>
             <LinkElement
+              key={ key }
               className={ comNameClass }
               href={ url }
               onClick={ onClick }
@@ -101,6 +107,7 @@ const SplitTaxon = ( {
       }
       return (
         <LinkElement
+          key={ key }
           className={ comNameClass }
           href={ url }
           onClick={ onClick }
@@ -116,6 +123,7 @@ const SplitTaxon = ( {
     if ( !taxon ) {
       return null;
     }
+    const key = `${keyBase}-sciName`;
     let sciNameClass = `sciname ${taxon.rank}`;
     if ( !taxon.preferred_common_name || showScinameFirst ) {
       sciNameClass += ` display-name ${displayClassName || ""}`;
@@ -152,6 +160,7 @@ const SplitTaxon = ( {
     if ( taxon.rank && taxon.rank_level > 10 ) {
       return (
         <LinkElement
+          key={ key }
           className={sciNameClass}
           href={ url }
           onClick={ onClick }
@@ -165,6 +174,7 @@ const SplitTaxon = ( {
     }
     return (
       <LinkElement
+        key={ key }
         className={sciNameClass}
         href={ url }
         onClick={ onClick }
@@ -179,7 +189,7 @@ const SplitTaxon = ( {
       return null;
     }
     return (
-      <span className="inactive">
+      <span key={ `${keyBase}-inactive` } className="inactive">
         <a
           href={`/taxon_changes?taxon_id=${taxon.id}`}
           target={ target }
@@ -194,7 +204,7 @@ const SplitTaxon = ( {
       return null;
     }
     return (
-      <span className="extinct">
+      <span key={ `${keyBase}-extinct` } className="extinct">
         [
           { I18n.t( "extinct" ) }
         ]
@@ -222,7 +232,7 @@ const SplitTaxon = ( {
     }
     if ( groupAncestor ) {
       memberGroup = (
-        <span className="member-group">
+        <span key={ `${keyBase}-memberGroup` }className="member-group">
           { I18n.t( "a_member_of" ) } <SplitTaxon
             taxon={ groupAncestor }
             forceRank

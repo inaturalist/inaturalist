@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import moment from "moment";
 import { Button } from "react-bootstrap";
 import _ from "lodash";
@@ -118,7 +119,7 @@ const DiscussionListItem = ( {
 DiscussionListItem.propTypes = {
   user: PropTypes.object.isRequired,
   body: PropTypes.string,
-  createdAt: React.PropTypes.oneOfType( [
+  createdAt: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.object
   ] ),

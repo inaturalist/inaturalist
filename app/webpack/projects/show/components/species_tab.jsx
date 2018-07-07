@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 import InfiniteScroll from "react-infinite-scroller";

@@ -1,6 +1,7 @@
 import _ from "lodash";
 import moment from "moment-timezone";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Input, Glyphicon, Accordion, Panel, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";

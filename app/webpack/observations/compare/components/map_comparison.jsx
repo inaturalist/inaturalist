@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import { scaleOrdinal, schemeCategory10 } from "d3";
 import TaxonMap from "../../../observations/identify/components/taxon_map";

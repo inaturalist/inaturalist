@@ -143,10 +143,10 @@ class TorqueMap extends React.Component {
 }
 
 TorqueMap.propTypes = {
-  params: React.PropTypes.object,
-  interval: React.PropTypes.string,
-  basemap: React.PropTypes.string,
-  color: React.PropTypes.string
+  params: PropTypes.object,
+  interval: PropTypes.string,
+  basemap: PropTypes.string,
+  color: PropTypes.string
 };
 
 export default TorqueMap;

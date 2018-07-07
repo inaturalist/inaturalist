@@ -1045,7 +1045,7 @@ $nav-btn-dim: 40px;
 .PhotoChooserDropArea .btn-primary {
   text-transform: capitalize;
 }
-body > div > [role="dialog"] .PhotoChooserModal .modal-title {
+body > [role="dialog"] .PhotoChooserModal .modal-title {
   line-height: 1;
   padding: 0;
 }

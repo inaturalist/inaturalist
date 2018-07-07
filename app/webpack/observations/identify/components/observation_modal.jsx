@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import {
   Modal,
@@ -286,6 +287,7 @@ class ObservationModal extends React.Component {
         show={visible}
         onHide={onClose}
         bsSize="large"
+        backdrop
         className={`ObservationModal ${blind ? "blind" : ""}`}
       >
         <div className="nav-buttons">
@@ -388,7 +390,7 @@ class ObservationModal extends React.Component {
                 { blind ? null : <div className="btn"><FavesContainer /></div> }
                 <OverlayTrigger
                   placement="top"
-                  trigger="hover"
+                  trigger={["hover", "focus"]}
                   delayShow={1000}
                   overlay={
                     <Tooltip id="captive-btn-tooltip">
@@ -404,7 +406,7 @@ class ObservationModal extends React.Component {
                   >
                     <input
                       type="checkbox"
-                      checked={ captiveByCurrentUser }
+                      defaultChecked={ captiveByCurrentUser }
                       onChange={function ( ) {
                         toggleCaptive( );
                       }}
@@ -548,7 +550,7 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                        defaultChecked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
                         onChange={function ( ) {
                           toggleReviewed( );
                         }}

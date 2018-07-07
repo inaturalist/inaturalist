@@ -100,9 +100,9 @@ class GlobalMap extends React.Component {
 }
 
 GlobalMap.propTypes = {
-  site: React.PropTypes.object,
-  year: React.PropTypes.number,
-  interval: React.PropTypes.string
+  site: PropTypes.object,
+  year: PropTypes.number,
+  interval: PropTypes.string
 };
 
 export default GlobalMap;

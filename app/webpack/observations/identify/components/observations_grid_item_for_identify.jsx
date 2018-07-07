@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import {
   Button,
@@ -17,7 +18,7 @@ const ObservationsGridItemForIdentify = ( {
   const agreeButton = (
     <OverlayTrigger
       placement="bottom"
-      trigger="hover"
+      trigger={["hover", "focus"]}
       rootClose
       overlay={
         <Tooltip id={`agree-tooltip-${observation.id}`}>
@@ -50,7 +51,7 @@ const ObservationsGridItemForIdentify = ( {
       <label>
         <input
           type="checkbox"
-          checked={ observation.reviewedByCurrentUser }
+          defaultChecked={ observation.reviewedByCurrentUser }
           onChange={ ( ) => {
             toggleReviewed( observation );
           } }

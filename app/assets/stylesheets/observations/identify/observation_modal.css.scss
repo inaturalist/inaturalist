@@ -319,7 +319,7 @@ $galleryHeightElements: "
   width: 100%;
   cursor: zoom-in;
 }
-body > div > [role="dialog"] .easyzoom > a > img {
+body > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
 }
 
@@ -340,10 +340,10 @@ body > div > [role="dialog"] .easyzoom > a > img {
   text-shadow: 0 0 5px black;
 }
 
-body > div > [role="dialog"] .btn-checkbox label {
+body > [role="dialog"] .btn-checkbox label {
   margin: 0;
 }
-body > div > [role="dialog"] .btn-default.btn-checkbox.checked {
+body > [role="dialog"] .btn-default.btn-checkbox.checked {
   background-color: $inat-green;
   color: white;
 }
@@ -371,7 +371,7 @@ tr.keyboard-shortcuts td {
   background-color: deeppink;
 }
 
-body > div > [role="dialog"] .inat-tabs,
+body > [role="dialog"] .inat-tabs,
 .inat-tabs {
   display: flex;
   list-style: none;
@@ -380,13 +380,13 @@ body > div > [role="dialog"] .inat-tabs,
   width: 100%;
   background-color: #eee;
 }
-body > div > [role="dialog"] .inat-tabs li,
+body > [role="dialog"] .inat-tabs li,
 .inat-tabs li {
   text-align: center;
   flex: 1;
   display: flex;
 }
-body > div > [role="dialog"] .inat-tabs li a,
+body > [role="dialog"] .inat-tabs li a,
 .inat-tabs li a {
   border: 0 transparent;
   border-bottom: 3px solid transparent;
@@ -399,17 +399,17 @@ body > div > [role="dialog"] .inat-tabs li a,
   flex: 1;
   line-height: 45px;
 }
-body > div > [role="dialog"] .inat-tabs li a:focus,
+body > [role="dialog"] .inat-tabs li a:focus,
 .inat-tabs li a:focus {
   text-decoration: none;
 }
-body > div > [role="dialog"] .inat-tabs li.active a,
+body > [role="dialog"] .inat-tabs li.active a,
 .inat-tabs li.active a {
   border-bottom: 3px solid #74ac00;
 }
 
 
-body > div > [role="dialog"] .ObservationModal .modal-header {
+body > [role="dialog"] .ObservationModal .modal-header {
   min-height: 45px;
   padding: 0;
   display: flex;
@@ -464,7 +464,7 @@ body > div > [role="dialog"] .ObservationModal .modal-header {
 }
 
 .ObservationModal,
-body > div > [role="dialog"] .ObservationModal {
+body > [role="dialog"] .ObservationModal {
   .map-and-details {
     display: flex;
     margin-bottom: 20px;
@@ -605,12 +605,12 @@ body > div > [role="dialog"] .ObservationModal {
   }
 }
 
-body > div > [role="dialog"] .ObservationModal .modal-body {
+body > [role="dialog"] .ObservationModal .modal-body {
   overflow: initial;
 }
 
 .ActivityItem,
-body > div > [role="dialog"] .ActivityItem {
+body > [role="dialog"] .ActivityItem {
   .panel-heading {
     padding: 7px 15px;
   }

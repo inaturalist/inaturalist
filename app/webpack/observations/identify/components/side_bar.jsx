@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import ProgressChartContainer from "../containers/progress_chart_container";
 import IdentifierStatsContainer from "../containers/identifier_stats_container";
 
@@ -51,7 +52,7 @@ const SideBar = ( { blind } ) => (
 );
 
 SideBar.propTypes = {
-  blind: React.PropTypes.bool
+  blind: PropTypes.bool
 };
 
 export default SideBar;

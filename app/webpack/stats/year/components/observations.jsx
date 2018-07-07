@@ -150,10 +150,10 @@ const Observations = ( { data, site, user, year } ) => {
 };
 
 Observations.propTypes = {
-  site: React.PropTypes.object,
-  user: React.PropTypes.object,
-  year: React.PropTypes.number,
-  data: React.PropTypes.object
+  site: PropTypes.object,
+  user: PropTypes.object,
+  year: PropTypes.number,
+  data: PropTypes.object
 };
 
 export default Observations;

@@ -187,12 +187,12 @@ const App = ( {
 };
 
 App.propTypes = {
-  year: React.PropTypes.number,
-  user: React.PropTypes.object,
-  currentUser: React.PropTypes.object,
-  data: React.PropTypes.object,
-  site: React.PropTypes.object,
-  rootTaxonID: React.PropTypes.number
+  year: PropTypes.number,
+  user: PropTypes.object,
+  currentUser: PropTypes.object,
+  data: PropTypes.object,
+  site: PropTypes.object,
+  rootTaxonID: PropTypes.number
 };
 
 export default App;

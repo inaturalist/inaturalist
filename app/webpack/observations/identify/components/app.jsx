@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import ObservationsGridContainer from "../containers/observations_grid_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
@@ -42,7 +43,7 @@ const App = ( { blind } ) => (
 );
 
 App.propTypes = {
-  blind: React.PropTypes.bool
+  blind: PropTypes.bool
 };
 
 export default App;

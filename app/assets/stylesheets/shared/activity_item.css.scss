@@ -1,7 +1,7 @@
 @import "../colors";
 
 .ActivityItem,
-body > div > [role="dialog"] .ActivityItem {
+body > [role="dialog"] .ActivityItem {
   .identification {
     display: inline-block;
     width: 100%;
@@ -213,7 +213,7 @@ body > div > [role="dialog"] .ActivityItem {
 }
 
 .ActivityItem.withdrawn,
-body > div > [role="dialog"] .ActivityItem.withdrawn {
+body > [role="dialog"] .ActivityItem.withdrawn {
   .title_text, .time {
     opacity: 0.5;
   }
@@ -238,7 +238,7 @@ body > div > [role="dialog"] .ActivityItem.withdrawn {
 }
 
 .ActivityItemMenu,
-body > div > [role="dialog"] .ActivityItemMenu {
+body > [role="dialog"] .ActivityItemMenu {
   border-left: 1px solid $border-grey;
   .search {
     line-height: 24px;

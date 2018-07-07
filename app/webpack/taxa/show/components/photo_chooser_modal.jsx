@@ -1,13 +1,11 @@
-import React, { PropTypes } from "react";
-import update from "react/lib/update";
+import React from "react";
+import PropTypes from "prop-types";
+import update from "immutability-helper";
 import querystring from "querystring";
 import {
   Modal,
   Button,
-  ButtonGroup,
-  Grid,
-  Row,
-  Col
+  ButtonGroup
 } from "react-bootstrap";
 import _ from "lodash";
 import { fetch } from "../../../shared/util";

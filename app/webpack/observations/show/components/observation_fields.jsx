@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Panel } from "react-bootstrap";
 import ObservationFieldValue from "./observation_field_value";
 import ObservationFieldInput from "./observation_field_input";

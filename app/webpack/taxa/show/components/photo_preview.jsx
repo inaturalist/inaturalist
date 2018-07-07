@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import CoverImage from "../../../shared/components/cover_image";
 import { urlForTaxonPhotos } from "../../shared/util";
 import TaxonPhoto from "../../shared/components/taxon_photo";

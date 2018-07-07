@@ -195,8 +195,10 @@ body > div > div > .popover[role="tooltip"] {
 }
 
 .ui-front {z-index: 1051;}
+
 .bootstrap,
-body > div > [role="dialog"],
+// body > div > [role="dialog"],
+body > [role="dialog"],
 body > div > .popover,
 body > div > div > .popover {
   position: relative;

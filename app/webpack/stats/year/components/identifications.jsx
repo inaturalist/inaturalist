@@ -119,8 +119,8 @@ const Identifications = ( { data, user } ) => {
 };
 
 Identifications.propTypes = {
-  data: React.PropTypes.object,
-  user: React.PropTypes.object
+  data: PropTypes.object,
+  user: PropTypes.object
 };
 
 export default Identifications;

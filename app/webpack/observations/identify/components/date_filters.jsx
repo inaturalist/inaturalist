@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import DateTimeFieldWrapper from "../../uploader/components/date_time_field_wrapper";
 import JQueryUIMultiselect from "./jquery_ui_multiselect";

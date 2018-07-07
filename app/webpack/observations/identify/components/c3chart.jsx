@@ -2,7 +2,8 @@
   * Based on https://github.com/bcbcarl/react-c3js/blob/master/src/index.js
   * Light wrapper around C3. Just pass it a config attribute and follow the c3 docs.
 **/
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { findDOMNode } from "react-dom";
 import c3 from "c3";
 

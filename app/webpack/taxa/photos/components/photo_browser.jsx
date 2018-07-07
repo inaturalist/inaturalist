@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroller";
 import _ from "lodash";
 import {
@@ -196,7 +197,7 @@ const PhotoBrowser = ( {
               <span className="control-group">
                 <Dropdown
                   id="grouping-control"
-                  onSelect={ ( event, key ) => {
+                  onSelect={ key => {
                     if ( key === "none" ) {
                       setGrouping( null );
                     } else if ( key === "taxon_id" ) {
@@ -221,7 +222,7 @@ const PhotoBrowser = ( {
                 <span key={`term-${attr.label}`} className="control-group">
                   <Dropdown
                     id={`term-chooser-${attr.label}`}
-                    onSelect={ ( event, key ) => setTerm( attr.id, key ) }
+                    onSelect={ key => setTerm( attr.id, key ) }
                   >
                     <Dropdown.Toggle bsClass="link">
                       { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }:&nbsp;
@@ -261,7 +262,7 @@ const PhotoBrowser = ( {
             <span className="control-group">
               <Dropdown
                 id="sort-control"
-                onSelect={ ( event, key ) => {
+                onSelect={ key => {
                   setParam( "order_by", key );
                 } }
               >

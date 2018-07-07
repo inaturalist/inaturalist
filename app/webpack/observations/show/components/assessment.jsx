@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, Panel } from "react-bootstrap";
 import ResearchGradeProgressContainer from "../containers/research_grade_progress_container";
 import QualityMetricsContainer from "../containers/quality_metrics_container";

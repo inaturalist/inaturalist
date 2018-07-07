@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
 
 class FlaggingModal extends Component {

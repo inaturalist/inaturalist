@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Col, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../../taxa/shared/util";

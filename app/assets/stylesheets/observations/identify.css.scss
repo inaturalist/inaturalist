@@ -29,7 +29,7 @@
   font-size: 110%;
 }
 
-body > div > [role="dialog"] .searchclear.glyphicon,
+body > [role="dialog"] .searchclear.glyphicon,
 .searchclear.glyphicon {
   position: absolute;
   right: 10px;
@@ -226,9 +226,9 @@ li.rc-pagination-item-active a {
   color: #333;
 }
 .bootstrap .AlertModal .modal-dialog,
-body > div > [role="dialog"] .AlertModal .modal-dialog,
+body > [role="dialog"] .AlertModal .modal-dialog,
 .bootstrap .DisagreementAlert .modal-dialog,
-body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
+body > [role="dialog"] .DisagreementAlert .modal-dialog {
   margin: 170px auto;
 }
 
@@ -257,5 +257,12 @@ body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
   }
   input[type="radio"] {
     margin-right: 3px !important;
+  }
+}
+
+.SearchBar {
+  .PlaceAutocomplete {
+    position: relative;
+    top: 1px;
   }
 }

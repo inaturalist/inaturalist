@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Dropdown, MenuItem } from "react-bootstrap";
 
 const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
@@ -61,7 +62,8 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
             href={ `/observations?taxon_id=${item.taxon.id}&user_id=${loggedInUser.id}` }
             target={linkTarget}
           >
-            <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "you_" ) }
+            <i className="fa fa-arrow-circle-o-right" />
+            <span>{ I18n.t( "you_" ) }</span>
           </a>
         </div>
       ) );
@@ -73,7 +75,8 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
             href={ `/observations?taxon_id=${item.taxon.id}&user_id=${item.user.id}` }
             target={linkTarget}
           >
-            <i className="fa fa-arrow-circle-o-right" />{ item.user.login }
+            <i className="fa fa-arrow-circle-o-right" />
+            <span>{ item.user.login }</span>
           </a>
         </div>
       ) );
@@ -84,7 +87,8 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
           href={ `/observations?taxon_id=${item.taxon.id}` }
           target={linkTarget}
         >
-          <i className="fa fa-arrow-circle-o-right" />{ I18n.t( "everyone_" ) }
+          <i className="fa fa-arrow-circle-o-right" />
+          <span>{ I18n.t( "everyone_" ) }</span>
         </a>
       </div>
     ) );
@@ -111,7 +115,8 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
               href={ `/observations/identify?taxon_id=${item.taxon.id}` }
               target={linkTarget}
             >
-              <i className="fa fa-arrow-circle-o-right" />{ _.capitalize( I18n.t( "of_this_taxon" ) ) }
+              <i className="fa fa-arrow-circle-o-right" />
+              <span>{ _.capitalize( I18n.t( "of_this_taxon" ) ) }</span>
             </a>
           </div>
           <div className="search">
@@ -119,7 +124,8 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
               href={ `/observations/identify?user_id=${item.user.login}` }
               target={linkTarget}
             >
-              <i className="fa fa-arrow-circle-o-right" />{ _.capitalize( I18n.t( "by_user", { user: item.user.login } ) ) }
+              <i className="fa fa-arrow-circle-o-right" />
+              <span>{ _.capitalize( I18n.t( "by_user", { user: item.user.login } ) ) }</span>
             </a>
           </div>
         </li>
@@ -171,7 +177,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
       <span className="control-group">
         <Dropdown
           id="grouping-control"
-          onSelect={ ( event, key ) => {
+          onSelect={ key => {
             if ( key === "flag" ) {
               setFlaggingModalState( { item, show: true } );
             } else if ( isID ) {

@@ -212,10 +212,10 @@
   overflow: hidden; // firefox needs this
 }
 
-body > div > [role="dialog"] .TaxonChooserPopover .form-group {
+body > [role="dialog"] .TaxonChooserPopover .form-group {
   margin-bottom: 0;
 }
 
-body > div > [role="dialog"] .RecordChooserPopover.popover {
+body > [role="dialog"] .RecordChooserPopover.popover {
   max-width: 200px;
 }
