@@ -175,9 +175,6 @@ class Annotation < ActiveRecord::Base
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
     Annotation.
         joins(
-          controlled_value: [
-            { controlled_term_taxa: :taxon }
-          ],
           controlled_attribute: {
             controlled_term_taxa: {
               taxon: :taxon_ancestors
@@ -189,16 +186,21 @@ class Annotation < ActiveRecord::Base
           { resource: :taxon },
           controlled_value: [
             :excepted_taxa,
-            { controlled_term_taxa: :taxon }
+            :taxa,
+            :controlled_term_taxa
           ],
           controlled_attribute: [
-            :values,
             :excepted_taxa,
-            { controlled_term_taxa: :taxon }
+            :taxa,
+            :controlled_term_taxa
           ]
         ).
         find_each do |a|
-      a.destroy unless a.valid?
+      # run the validation methods which might be affected by taxon changes
+      a.attribute_belongs_to_taxon
+      a.value_belongs_to_taxon
+      # if any of them added errors, the annotation is no longer valid and should be destroyed
+      a.destroy if a.errors.any?
     end
     
   end

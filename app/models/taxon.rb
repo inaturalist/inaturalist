@@ -427,9 +427,12 @@ class Taxon < ActiveRecord::Base
       unique_hash: { "Identification::update_disagreement_identifications_for_taxon": id }).
       update_disagreement_identifications_for_taxon(id)
     annotation_taxon_ids_to_reassess = [ancestry_was.to_s.split( "/" ).map(&:to_i), id].flatten.compact.sort
-    Annotation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
-      unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": annotation_taxon_ids_to_reassess.join( "-" ) } ).
-      reassess_annotations_for_taxon_ids( annotation_taxon_ids_to_reassess )
+    annotation_taxon_ids_to_reassess.each do |taxon_id|
+      Annotation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
+        run_at: 1.day.from_now,
+        unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": [taxon_id] } ).
+        reassess_annotations_for_taxon_ids( [taxon_id] )
+    end
     true
   end
 
