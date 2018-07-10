@@ -62,6 +62,7 @@ class Identification < ActiveRecord::Base
   attr_accessor :captive_flag
   attr_accessor :skip_set_previous_observation_taxon
   attr_accessor :skip_set_disagreement
+  attr_accessor :bulk_delete
 
   preference :vision, :boolean, default: false
 
@@ -218,6 +219,7 @@ class Identification < ActiveRecord::Base
   def update_observation
     return true unless observation
     return true if skip_observation
+    return true if destroyed?
     attrs = {}
     if user_id == observation.user_id || !observation.community_taxon_rejected?
       observation.skip_identifications = true
@@ -276,7 +278,7 @@ class Identification < ActiveRecord::Base
   #
   def update_obs_stats
     return true unless observation
-    return true if skip_observation
+    return true if skip_observation || bulk_delete
     observation.update_stats(:include => self)
     true
   end
@@ -299,6 +301,7 @@ class Identification < ActiveRecord::Base
   def update_user_counter_cache
     return true unless self.user && self.observation
     return true if user.destroyed?
+    return if bulk_delete
     if self.user_id != self.observation.user_id
       User.delay(unique_hash: { "User::update_identifications_counter_cache": user_id }).
         update_identifications_counter_cache(user_id)
@@ -330,7 +333,7 @@ class Identification < ActiveRecord::Base
   end
 
   def create_observation_review
-    return true if skip_observation
+    return true if skip_observation || bulk_delete
     ObservationReview.where(observation_id: observation_id,
       user_id: user_id).first_or_create.touch
     true
@@ -438,12 +441,15 @@ class Identification < ActiveRecord::Base
       next if idents.compact.blank?
       Identification.where( id: idents.map(&:id) ).update_all( category: category )
     end
-    Identification.elastic_index!( ids: idents.map(&:id) )
-    o.reload
-    o.elastic_index!
+    unless options[:skip_indexing]
+      Identification.elastic_index!( ids: idents.map(&:id) )
+      o.reload
+      o.elastic_index!
+    end
   end
 
   def update_categories
+    return if bulk_delete
     if skip_observation
       Identification.delay.update_categories_for_observation( observation_id )
     else

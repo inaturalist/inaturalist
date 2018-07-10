@@ -52,7 +52,7 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics
+    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -1954,6 +1954,7 @@ class Observation < ActiveRecord::Base
   end
 
   def update_user_counter_caches_after_destroy
+    return if bulk_delete
     User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i - 1, 0].max )
     user.reload
     user.elastic_index!
@@ -1962,6 +1963,7 @@ class Observation < ActiveRecord::Base
   end
 
   def update_user_counter_caches
+    return if bulk_delete
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 1.minute.from_now
