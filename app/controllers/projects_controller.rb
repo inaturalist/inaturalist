@@ -449,21 +449,30 @@ class ProjectsController < ApplicationController
       redirect_to project_contributors_path(@project)
       return
     end
-    
-    @project_observations = @project.project_observations.joins(:observation).
-      where(observations: { user_id: @contributor.user }).
-      paginate(page: params[:page], per_page: 28)
 
-    @research_grade_count = @project.project_observations.
-      joins(:observation).
-      where(observations: { user_id: @contributor.user,
-        quality_grade: Observation::RESEARCH_GRADE }).count
+    if @project.is_new_project?
+      @observations = Observation.page_of_results({
+        projects: [ @project ],
+        user: @contributor.user,
+        page: params[:page],
+        per_page: 20
+      })
+    else
+      @project_observations = @project.project_observations.joins(:observation).
+        where(observations: { user_id: @contributor.user }).
+        paginate(page: params[:page], per_page: 28)
 
-    @research_grade_species_count = @project.project_observations.
-      joins(observation: :taxon).
-      where(observations: { user_id: @contributor.user,
-        quality_grade: Observation::RESEARCH_GRADE }).
-      where("taxa.rank_level < ?", Taxon::GENUS_LEVEL).count
+      @research_grade_count = @project.project_observations.
+        joins(:observation).
+        where(observations: { user_id: @contributor.user,
+          quality_grade: Observation::RESEARCH_GRADE }).count
+
+      @research_grade_species_count = @project.project_observations.
+        joins(observation: :taxon).
+        where(observations: { user_id: @contributor.user,
+          quality_grade: Observation::RESEARCH_GRADE }).
+        where("taxa.rank_level < ?", Taxon::GENUS_LEVEL).count
+    end
   end
   
   def list
