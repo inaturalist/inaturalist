@@ -201,11 +201,18 @@
 }
 
 body > div > [role="dialog"] .ObservationModal {
-  .right-col .Suggestions .tools {
-    background-color: #E3E9DA;
-  }
-  .right-col .Suggestions .tools > * {
-    width: auto;
+  .right-col {
+    .Suggestions {
+      .TaxonMap {
+        height: 300px;
+      }
+      .tools {
+        background-color: #E3E9DA;
+        > * {
+          width: auto;
+        }
+      }
+    }
   }
   .inat-tab.active.suggestions-tab {
     display: flex;

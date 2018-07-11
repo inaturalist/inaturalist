@@ -381,7 +381,7 @@ class Suggestions extends React.Component {
                       minZoom={2}
                       gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
                       observations={[observation]}
-                      scrollwheel={false}
+                      gestureHandling="auto"
                       taxonLayers={[{
                         taxon: detailTaxon,
                         observations: true,
