@@ -64,13 +64,13 @@ class MushroomObserverImportFlowTask < FlowTask
   def get_results_xml( options = {} )
     user_id = mo_user_id( options[:api_key] )
     page = options[:page] || 1
-    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
+    Nokogiri::XML( open( "https://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
   end
 
   def mo_user_id( for_api_key = nil )
     unless @mo_user_id
       for_api_key ||= api_key
-      xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
+      xml = Nokogiri::XML( open( "https://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
       @mo_user_id = xml.at( "response/user" )[:id]
     end
     @mo_user_id
@@ -79,7 +79,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def mo_user_name( for_api_key = nil )
     unless @mo_user_name
       user_id = mo_user_id( for_api_key )
-      xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/users?id=#{user_id}&detail=high" ) )
+      xml = Nokogiri::XML( open( "https://mushroomobserver.org/api/users?id=#{user_id}&detail=high" ) )
       @mo_user_name = xml.at( "login_name" ).text
     end
     @mo_user_name
@@ -201,7 +201,7 @@ class MushroomObserverImportFlowTask < FlowTask
       @mo_url_observation_field ||= ObservationField.create!(
         name: "Mushroom Observer URL",
         datatype: ObservationField::TEXT,
-        description: "URL of this record on http://mushroomobserver.org"
+        description: "URL of this record on https://mushroomobserver.org"
       )
     end
     @mo_url_observation_field
@@ -213,7 +213,7 @@ class MushroomObserverImportFlowTask < FlowTask
       @mo_name_observation_field ||= ObservationField.create!(
         name: "Mushroom Observer Consensus Name",
         datatype: ObservationField::TEXT,
-        description: "Consensus taxon name for this record on http://mushroomobserver.org"
+        description: "Consensus taxon name for this record on https://mushroomobserver.org"
       )
     end
     @mo_name_observation_field
