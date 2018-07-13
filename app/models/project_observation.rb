@@ -37,6 +37,7 @@ class ProjectObservation < ActiveRecord::Base
   include ActsAsUUIDable
 
   def notify_observer(association)
+    return if CONFIG.has_subscribers == :disabled
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
@@ -52,9 +53,8 @@ class ProjectObservation < ActiveRecord::Base
       notifier: self,
       notification: UpdateAction::YOUR_OBSERVATIONS_ADDED
     }
-    action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-    action.bulk_insert_subscribers( [observation.user.id] )
-    UpdateAction.elastic_index!(ids: [action.id])
+    action = UpdateAction.first_with_attributes(action_attrs)
+    action.append_subscribers( [observation.user.id] )
   end
   
   after_destroy do |record|
